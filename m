@@ -2,214 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1144A2DECD
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 15:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D822DEE7
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 15:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727172AbfE2Nqn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 May 2019 09:46:43 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:53060 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727014AbfE2Nqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 09:46:43 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 2A66E261484;
-        Wed, 29 May 2019 14:46:41 +0100 (BST)
-Date:   Wed, 29 May 2019 15:46:38 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 5/9] media: hantro: add support for named register
- ranges
-Message-ID: <20190529154638.0ebd7c56@collabora.com>
-In-Reply-To: <1559136052.3651.9.camel@pengutronix.de>
-References: <20190529095424.23614-1-p.zabel@pengutronix.de>
-        <20190529095424.23614-6-p.zabel@pengutronix.de>
-        <20190529134645.65f8feb4@collabora.com>
-        <1559136052.3651.9.camel@pengutronix.de>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727249AbfE2NwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 09:52:11 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:40331 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726932AbfE2NwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 09:52:11 -0400
+Received: by mail-wr1-f66.google.com with SMTP id t4so1854843wrx.7;
+        Wed, 29 May 2019 06:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=RzNbr+rvjVdKwJ2zLeewdxXC9e98E6i+o7Np7MkUHgA=;
+        b=SJcopnJPjQmBRgDIX9ahvgLuKq3zJFlyoV1QzalXPN0KaNjlCMtWE7SvriX64SiYO5
+         dIFBK242KAT/ZXkCQiwxkGHj8aN3y9J8k3X2n54pt3ftu25Gbur8a2JUefNzK885fL13
+         GQCc6y+gGIuYQNDK5UPSZRrztEFlNk468foFo8RC7lVUWTX3L6bHtjsU1gdkuBAiCeU9
+         1MS3zv7272236m38iRHrZv27CvkPT6iv4WvpXgMq5kyqYsrdBMiPqOWXig14XXwcGPKU
+         Je6qszQZgVvpXHo7N8jOEsPnOShCeTLxf005EZ9bhw2kXbs+87wMm76tk7hi9r6LWd1C
+         cwfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=RzNbr+rvjVdKwJ2zLeewdxXC9e98E6i+o7Np7MkUHgA=;
+        b=Mf5DaXlPbbxtnRaSKIoepssGFbfyRvw0LtMXAYZApm3vmYZb8HgVtgo0bItj462h3z
+         Ck9SrDWAT4pYvK5fYHW0oMyXWIfeJEn/Tt0Z6eKvzVY1d0O9fxP9kV+ANYCGFZrzZyDn
+         elf19TpKlGXX7GoMvFpcKpYUWXPd45PRBG+7RzKR7+fTFgwlfzjEjPiVmfAdodW2o7tM
+         Jl6QXBrCC7+MRXJv9yS74XY3+4tGa+OupmdT0SQ0BT3ZKJwA5Jdd+uoNgel912vlkRte
+         dknzkqLUFDOcfXB/mjD5TrVOokC8tr0inbJpphCxORVbJdrc6An2jvfZOxcUZR7gUsYJ
+         qbJA==
+X-Gm-Message-State: APjAAAVnTvsK+h6S4HJLoDsX2ngMk/fbKnpuha8bgDUdsMLeIzH1jT9z
+        mZCv5R9MQnWFue9F/Kxr8K0=
+X-Google-Smtp-Source: APXvYqwz1D070gdCi35Mtsv432bNl6e4KQkE7FUC/QIcUDyIb+aXMysH1+LO780wo33pgpimSphDhw==
+X-Received: by 2002:a5d:488a:: with SMTP id g10mr18257400wrq.344.1559137927096;
+        Wed, 29 May 2019 06:52:07 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id w23sm4743720wmc.38.2019.05.29.06.52.06
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 29 May 2019 06:52:06 -0700 (PDT)
+Date:   Wed, 29 May 2019 15:52:05 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     jonathanh@nvidia.com, tglx@linutronix.de, jason@lakedaemon.net,
+        marc.zyngier@arm.com, linus.walleij@linaro.org, stefan@agner.ch,
+        mark.rutland@arm.com, pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, jckuo@nvidia.com, josephl@nvidia.com,
+        talho@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 09/12] soc/tegra: pmc: add pmc wake support for
+ tegra210
+Message-ID: <20190529135205.GA17679@ulmo>
+References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
+ <1559084936-4610-10-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qDbXVdCdHGoSgWSk"
+Content-Disposition: inline
+In-Reply-To: <1559084936-4610-10-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 May 2019 15:20:52 +0200
-Philipp Zabel <p.zabel@pengutronix.de> wrote:
 
-> Hi Boris,
-> 
-> thank you for the review.
-> 
-> On Wed, 2019-05-29 at 13:46 +0200, Boris Brezillon wrote:
-> > On Wed, 29 May 2019 11:54:20 +0200
-> > Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> >   
-> > > Add support for multiple register ranges with SoC specific names.
-> > > 
-> > > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > > ---
-> > >  drivers/staging/media/hantro/hantro.h     |  7 ++++++-
-> > >  drivers/staging/media/hantro/hantro_drv.c | 25 +++++++++++++++++------
-> > >  2 files changed, 25 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> > > index 6b90fe48bcdf..b796867808d5 100644
-> > > --- a/drivers/staging/media/hantro/hantro.h
-> > > +++ b/drivers/staging/media/hantro/hantro.h
-> > > @@ -27,6 +27,7 @@
-> > >  
-> > >  #define HANTRO_MAX_CLOCKS		4
-> > >  #define HANTRO_MAX_IRQS			3
-> > > +#define HANTRO_MAX_REG_RANGES		4
-> > >  
-> > >  #define MPEG2_MB_DIM			16
-> > >  #define MPEG2_MB_WIDTH(w)		DIV_ROUND_UP(w, MPEG2_MB_DIM)
-> > > @@ -63,6 +64,8 @@ struct hantro_codec_ops;
-> > >   * @num_irqs:			number of irqs in the arrays
-> > >   * @clk_names:			array of clock names
-> > >   * @num_clocks:			number of clocks in the array
-> > > + * @reg_names:			array of register range names
-> > > + * @num_regs:			number of register range names in the array
-> > >   */
-> > >  struct hantro_variant {
-> > >  	unsigned int enc_offset;
-> > > @@ -80,6 +83,8 @@ struct hantro_variant {
-> > >  	int num_irqs;
-> > >  	const char *clk_names[HANTRO_MAX_CLOCKS];
-> > >  	int num_clocks;
-> > > +	const char *reg_names[HANTRO_MAX_REG_RANGES];
-> > > +	int num_regs;  
-> 
-> Do you suggest
-> 	const char * const *reg_names;
-> ...
+--qDbXVdCdHGoSgWSk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yes.
+On Tue, May 28, 2019 at 04:08:53PM -0700, Sowjanya Komatineni wrote:
+> This patch implements PMC wakeup sequence for Tegra210 and defines
+> common used wake events of RTC alarm and power key.
+>=20
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/soc/tegra/pmc.c | 113 ++++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 113 insertions(+)
+>=20
+> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+> index 974b4c9f6ada..54dc8409e353 100644
+> --- a/drivers/soc/tegra/pmc.c
+> +++ b/drivers/soc/tegra/pmc.c
+> @@ -57,6 +57,7 @@
+>  #include <dt-bindings/pinctrl/pinctrl-tegra-io-pad.h>
+>  #include <dt-bindings/gpio/tegra186-gpio.h>
+>  #include <dt-bindings/gpio/tegra194-gpio.h>
+> +#include <dt-bindings/gpio/tegra-gpio.h>
+> =20
+>  #define PMC_CNTRL			0x0
+>  #define  PMC_CNTRL_INTR_POLARITY	BIT(17) /* inverts INTR polarity */
+> @@ -66,6 +67,12 @@
+>  #define  PMC_CNTRL_SYSCLK_OE		BIT(11) /* system clock enable */
+>  #define  PMC_CNTRL_SYSCLK_POLARITY	BIT(10) /* sys clk polarity */
+>  #define  PMC_CNTRL_MAIN_RST		BIT(4)
+> +#define  PMC_CNTRL_LATCH_WAKEUPS	BIT(5)
+> +
+> +#define PMC_WAKE_MASK			0x0c
+> +#define PMC_WAKE_LEVEL			0x10
+> +#define PMC_WAKE_STATUS			0x14
+> +#define PMC_SW_WAKE_STATUS		0x18
+> =20
+>  #define DPD_SAMPLE			0x020
+>  #define  DPD_SAMPLE_ENABLE		BIT(0)
+> @@ -96,6 +103,11 @@
+> =20
+>  #define PMC_SCRATCH41			0x140
+> =20
+> +#define PMC_WAKE2_MASK			0x160
+> +#define PMC_WAKE2_LEVEL			0x164
+> +#define PMC_WAKE2_STATUS		0x168
+> +#define PMC_SW_WAKE2_STATUS		0x16c
+> +
+>  #define PMC_SENSOR_CTRL			0x1b0
+>  #define  PMC_SENSOR_CTRL_SCRATCH_WRITE	BIT(2)
+>  #define  PMC_SENSOR_CTRL_ENABLE_RST	BIT(1)
+> @@ -245,6 +257,7 @@ struct tegra_pmc_soc {
+> =20
+>  	const struct tegra_wake_event *wake_events;
+>  	unsigned int num_wake_events;
+> +	unsigned int max_supported_wake_events;
 
-> 
-> > >  };
-> > >  
-> > >  /**
-> > > @@ -170,7 +175,7 @@ struct hantro_dev {
-> > >  	struct platform_device *pdev;
-> > >  	struct device *dev;
-> > >  	struct clk_bulk_data clocks[HANTRO_MAX_CLOCKS];
-> > > -	void __iomem *base;
-> > > +	void __iomem *base[HANTRO_MAX_REG_RANGES];  
-> > 
-> > Same comment as for the irq stuff.  
-> 
-> ... and
-> 	void __iomem **base;
-> to get rid of HANTRO_MAX_REG_RANGES?
+Do we really need this? It's only used in Tegra210 specific code and
+it's always 64 on Tegra210. Can't we always hard-code it?
 
-This one would have to be dynamically allocated, but yes.
+>  };
+> =20
+>  static const char * const tegra186_reset_sources[] =3D {
+> @@ -1917,6 +1930,54 @@ static const struct irq_domain_ops tegra_pmc_irq_d=
+omain_ops =3D {
+>  	.alloc =3D tegra_pmc_irq_alloc,
+>  };
+> =20
+> +static int tegra210_pmc_irq_set_wake(struct irq_data *data, unsigned int=
+ on)
+> +{
+> +	struct tegra_pmc *pmc =3D irq_data_get_irq_chip_data(data);
+> +	unsigned int offset, bit;
+> +	u32 value;
+> +
+> +	if (data->hwirq =3D=3D ULONG_MAX)
+> +		return 0;
+> +
+> +	offset =3D data->hwirq / 32;
+> +	bit =3D data->hwirq % 32;
+> +
+> +	/*
+> +	 * latch wakeups to SW_WAKE_STATUS register to capture events
+> +	 * that would not make it into wakeup event register during LP0 exit.
+> +	 */
+> +	value =3D tegra_pmc_readl(pmc, PMC_CNTRL);
+> +	value |=3D PMC_CNTRL_LATCH_WAKEUPS;
+> +	tegra_pmc_writel(pmc, value, PMC_CNTRL);
+> +	usleep_range(110, 120);
+> +
+> +	value &=3D ~PMC_CNTRL_LATCH_WAKEUPS;
+> +	tegra_pmc_writel(pmc, value, PMC_CNTRL);
+> +	usleep_range(110, 120);
+> +
+> +	tegra_pmc_writel(pmc, 0, PMC_SW_WAKE_STATUS);
+> +	if (pmc->soc->max_supported_wake_events > 32)
+> +		tegra_pmc_writel(pmc, 0, PMC_SW_WAKE2_STATUS);
+> +
+> +	tegra_pmc_writel(pmc, 0, PMC_WAKE_STATUS);
+> +	if (pmc->soc->max_supported_wake_events > 32)
+> +		tegra_pmc_writel(pmc, 0, PMC_WAKE2_STATUS);
+> +
+> +	/* enable PMC wake */
+> +	if (data->hwirq >=3D 32)
+> +		offset =3D PMC_WAKE2_MASK;
+> +	else
+> +		offset =3D PMC_WAKE_MASK;
+> +	value =3D tegra_pmc_readl(pmc, offset);
 
-> 
-> Would you like to see the same for clk_names?
+Blank line before and after the "value =3D ..." line, for readability.
 
-It'd be better, indeed.
+> +	if (on)
+> +		value |=3D 1 << bit;
+> +	else
+> +		value &=3D ~(1 << bit);
+> +	tegra_pmc_writel(pmc, value, offset);
 
-> 
-> > >  	void __iomem *enc_base;
-> > >  	void __iomem *dec_base;
-> > >  
-> > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> > > index f677b40bcd2d..bd02b27258e3 100644
-> > > --- a/drivers/staging/media/hantro/hantro_drv.c
-> > > +++ b/drivers/staging/media/hantro/hantro_drv.c
-> > > @@ -692,12 +692,25 @@ static int hantro_probe(struct platform_device *pdev)
-> > >  	if (ret)
-> > >  		return ret;
-> > >  
-> > > -	res = platform_get_resource(vpu->pdev, IORESOURCE_MEM, 0);
-> > > -	vpu->base = devm_ioremap_resource(vpu->dev, res);
-> > > -	if (IS_ERR(vpu->base))
-> > > -		return PTR_ERR(vpu->base);
-> > > -	vpu->enc_base = vpu->base + vpu->variant->enc_offset;
-> > > -	vpu->dec_base = vpu->base + vpu->variant->dec_offset;
-> > > +	if (vpu->variant->num_regs) {
-> > > +		for (i = 0; i < vpu->variant->num_regs; i++) {
-> > > +			const char *reg_name = vpu->variant->reg_names[i];
-> > > +
-> > > +			res = platform_get_resource_byname(vpu->pdev,
-> > > +							   IORESOURCE_MEM,
-> > > +							   reg_name);
-> > > +			vpu->base[i] = devm_ioremap_resource(vpu->dev, res);
-> > > +			if (IS_ERR(vpu->base[i]))
-> > > +				return PTR_ERR(vpu->base[i]);
-> > > +		}
-> > > +	} else {
-> > > +		res = platform_get_resource(vpu->pdev, IORESOURCE_MEM, 0);
-> > > +		vpu->base[0] = devm_ioremap_resource(vpu->dev, res);
-> > > +		if (IS_ERR(vpu->base[0]))
-> > > +			return PTR_ERR(vpu->base[0]);
-> > > +		vpu->enc_base = vpu->base[0] + vpu->variant->enc_offset;
-> > > +		vpu->dec_base = vpu->base[0] + vpu->variant->dec_offset;  
-> > 
-> > I see ->dec_based is assigned in ->hw_init() in patch 8, so maybe it's
-> > better to have the same workflow for rk variants: assign
-> > vpu->{dec,enc}_base in ->hw_init()   
-> 
-> I didn't want to change this around too much, as dec_base is just needed
-> for the vdpu_read/write functions, and I expect we'll have to somehow
-> replace these anyway when adding G2 support.
+Same here, leave a blank line before the tegra_pmc_writel(...) call to
+improve readability.
 
-If G1 and G2 blocks are completely independent I think they should be
-represented as separate instances, and we can then re-use the same
-accessors. Am I missing something?
+> +
+> +	return 0;
+> +}
+> +
+>  static int tegra186_pmc_irq_set_wake(struct irq_data *data, unsigned int=
+ on)
+>  {
+>  	struct tegra_pmc *pmc =3D irq_data_get_irq_chip_data(data);
+> @@ -1948,6 +2009,48 @@ static int tegra186_pmc_irq_set_wake(struct irq_da=
+ta *data, unsigned int on)
+>  	return 0;
+>  }
+> =20
+> +static int tegra210_pmc_irq_set_type(struct irq_data *data, unsigned int=
+ type)
+> +{
+> +	struct tegra_pmc *pmc =3D irq_data_get_irq_chip_data(data);
+> +	unsigned int offset, bit;
+> +	u32 value;
+> +
+> +	if (data->hwirq =3D=3D ULONG_MAX)
+> +		return 0;
+> +
+> +	offset =3D data->hwirq / 32;
+> +	bit =3D data->hwirq % 32;
+> +
+> +	if (data->hwirq >=3D 32)
+> +		offset =3D PMC_WAKE2_LEVEL;
+> +	else
+> +		offset =3D PMC_WAKE_LEVEL;
+> +	value =3D tegra_pmc_readl(pmc, offset);
 
-> Adding yet another set of register accessors for g1_read/write vs
-> g2_read/write isn't very convenient. Maybe it woudl be better to call
-> the register accessors with the base as a parameter instead of
-> hantro_dev.
+Same comment as above.
 
-Looks like the reg base is actually per functionality (decoder or
-encoder) not per device. Maybe we should stop passing hantro_dev
-directly and instead expose hantro_func objects that would have a
-pointer to the underlying hantro_dev plus extra attributes like a base
-address for regs, ....
+Otherwise, looking good, thanks.
 
-That might help cope with the single-instance+multi-func vs
-single-instance-single-func difference we have between rk and imx
-integration, and we would also have a single set of read/write
-accessors.
+Thierry
 
-> 
-> Also the kerneldoc comment says .init() should "initialize hardware".
-> Should that be changed to "variant specific initialization" if the
-> enc/dec_base are set there?
-> 
-> > and set ->num_regs to 1 (plus a
-> > fallback to platform_get_resource() instead of
-> > platform_get_resource_byname() when ->reg_names[0] == NULL).  
-> 
-> I suppose we could do that, but
-> 
-> 	static const char * const rk3288_regs[] = {
-> 		NULL
-> 	}
-> 
-> 	const struct hantro_variant rk3288_vpu_variant = {
-> 		.reg_n
-> ames = rk3288_regs,
-> 		.num_regs = ARRAY_SIZE(rk3288_regs)
-> 	};
-> 
-> would look a bit strange if we were to get rid of
-> HANTRO_MAX_REG_RANGES...
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +		value |=3D 1 << bit;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		value &=3D ~(1 << bit);
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING:
+> +		value ^=3D 1 << bit;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	tegra_pmc_writel(pmc, value, offset);
+> +
+> +	return 0;
+> +}
+> +
+>  static int tegra186_pmc_irq_set_type(struct irq_data *data, unsigned int=
+ type)
+>  {
+>  	struct tegra_pmc *pmc =3D irq_data_get_irq_chip_data(data);
+> @@ -2535,6 +2638,11 @@ static const struct pinctrl_pin_desc tegra210_pin_=
+descs[] =3D {
+>  	TEGRA210_IO_PAD_TABLE(TEGRA_IO_PIN_DESC)
+>  };
+> =20
+> +static const struct tegra_wake_event tegra210_wake_events[] =3D {
+> +	TEGRA_WAKE_GPIO("power", 24, 0, 189),
+> +	TEGRA_WAKE_IRQ("rtc", 16, 2),
+> +};
+> +
+>  static const struct tegra_pmc_soc tegra210_pmc_soc =3D {
+>  	.num_powergates =3D ARRAY_SIZE(tegra210_powergates),
+>  	.powergates =3D tegra210_powergates,
+> @@ -2552,10 +2660,15 @@ static const struct tegra_pmc_soc tegra210_pmc_so=
+c =3D {
+>  	.regs =3D &tegra20_pmc_regs,
+>  	.init =3D tegra20_pmc_init,
+>  	.setup_irq_polarity =3D tegra20_pmc_setup_irq_polarity,
+> +	.irq_set_wake =3D tegra210_pmc_irq_set_wake,
+> +	.irq_set_type =3D tegra210_pmc_irq_set_type,
+>  	.reset_sources =3D tegra210_reset_sources,
+>  	.num_reset_sources =3D ARRAY_SIZE(tegra210_reset_sources),
+>  	.reset_levels =3D NULL,
+>  	.num_reset_levels =3D 0,
+> +	.num_wake_events =3D ARRAY_SIZE(tegra210_wake_events),
+> +	.wake_events =3D tegra210_wake_events,
+> +	.max_supported_wake_events =3D 64,
+>  };
+> =20
+>  #define TEGRA186_IO_PAD_TABLE(_pad)					     \
+> --=20
+> 2.7.4
+>=20
 
-You're right, we can probably stay with num_regs = 0 for the unnamed
-mem-resource case.
+--qDbXVdCdHGoSgWSk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzujoUACgkQ3SOs138+
+s6ERYA/9EmA5sQpVE+KkUtS+6+gtw5ZdfjrcZU88794wu43vFH3L4qpVQ+ee1ycZ
+silqzFRA/+s7LinbU8nkKYBkSQT/Fi3kfsxh7XcsEIN97Hp/sG6FJ6fPJ1XGvUMP
+xzsbpHWADAKYpfVBMQqG41BX20AeP8QGuBPNfQBvEfjvda7kUck+p9hqei8r7Hbl
+9kiVsMTOQMFODuD0zFg6vTyzXJAmDrsg4Xm+v962nN1wTRvhiJXR7dXAOwjnFTJG
+UP9BXACICrtLUqhG98s8hFe0M99GEA84+mVg2XIO35jFIUwKsUBBef/SNet16NKL
+6XOD9XYJd+iLFI8uZiG/6XXl5f8orfDOSuZ5uovrMPpQOBQW2CSloFysV6U0BnNu
+CD3uupaayuvrp0dLhtqBJHZCm0so3aBJMNyGCwpJsaL3v40nPAXonBvIAofk7Svj
+Hidwwj81VmcXHj/1peKEJWEgLLNVReGvtVm7P28g6ffBI3B279wP64M2i0bUYUoh
+XCMaKRDFVk2bjrNoUkpbjQYPpG9aFwwmuOA/jIjXz5wPX8Qr9HDeW5qOxZUNcwMC
+yxZgDDF0i4K1I49WzAGb+z+rrET1OuwIZSeXVtLbNYqFKJ8vMBAbUEO7N1y0f+xQ
+c1t2CQHoxPdQ7GPVMJjqTIg43rqkIh6whGJ8SnKWxVKEUleA/Ig=
+=Gn7+
+-----END PGP SIGNATURE-----
+
+--qDbXVdCdHGoSgWSk--
