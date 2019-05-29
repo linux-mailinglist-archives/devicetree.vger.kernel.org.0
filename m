@@ -2,263 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3230B2E713
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 23:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CF632E728
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 23:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726540AbfE2VIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 17:08:02 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:6662 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726043AbfE2VIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 17:08:02 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ceef4a50004>; Wed, 29 May 2019 14:07:49 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 29 May 2019 14:07:58 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 29 May 2019 14:07:58 -0700
-Received: from [10.110.103.86] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 29 May
- 2019 21:07:58 +0000
-Subject: Re: [PATCH V2 02/12] pinctrl: tegra: add suspend and resume support
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
-        <linus.walleij@linaro.org>, <stefan@agner.ch>,
-        <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
- <1559084936-4610-3-git-send-email-skomatineni@nvidia.com>
- <6273a790-d4b7-c501-3fec-d9816288b139@gmail.com>
- <d9d54f05-b0bf-6e65-9308-45e94454301e@nvidia.com>
- <11fe4d9a-6d8e-bc4f-b764-a849571fb6b0@gmail.com>
- <0f087659-cdde-9f89-55a2-d399ee539431@nvidia.com>
- <34480b14-48da-2745-086d-6a8900c5a049@gmail.com>
- <fc1f3c56-ab6b-478e-75d8-797d8e3bf21f@nvidia.com>
-Message-ID: <412be5a5-8f82-95ce-72ef-623602cb7c81@nvidia.com>
-Date:   Wed, 29 May 2019 14:07:59 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726155AbfE2VOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 17:14:31 -0400
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:60730 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726043AbfE2VOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 17:14:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1559164503; x=1590700503;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=cwAgfUHqeRqoUhGOkggkpMSiQ/tus4AQpYKjVxtRBd4=;
+  b=ODu24ekSDUoy1IJ24f0gCmDRg6jWQkyWCmPHwzeLvcVj7cC2HlPeUncH
+   KuLMJV+I2N2UGzQ7mpUR/fxrvu3hJEFT1nWyD/6dky5Jl9HbJ/o+ZeH3i
+   IiaTzyvouF4Xhwqdyr+1lD99FG2bUeK2k8ZtHgBZ74EBa6RovLUubXvfq
+   yHzJ8QLy+RAQeuH5VIJ8C0LpfHiz80YXut0r71abvSSowcoEHvleQiiLZ
+   nRjM1XQpWiT1C4xEkRR+MDe4VFvnYmAXvO9WNPfjABMFNP+ntCnAWYFfs
+   5N6E0gIb8tpXJ7q9+u/68jljImfjT+8mnY6IeRMDwQvfdT9zTmpCdKA3R
+   A==;
+X-IronPort-AV: E=Sophos;i="5.60,527,1549900800"; 
+   d="scan'208";a="208905627"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 30 May 2019 05:15:03 +0800
+IronPort-SDR: H4f6/+ojQhQ0PRnKQbkGU8x3ixLwbOEh2FkoE6N18+Nu4wuCi/+FmkgsxZ8pXP0AwgFrvewLVO
+ BSMQx4UToXSDymxe/ASnMQ0e6M/qRG8dD8bqvPnr2o4eG5jP8w5WXofe12f/mnaLbnTyrIORPI
+ NNiSa+SXlHV1UGLZ5W7fLYtzSUS7tmd00FvQm8LZh+aE4mrtTHswzraktFn0RTswt9NNOwAOet
+ HZ29omy6ekAe2AF8sqa/rGfK+BksQz2Hn851cOGclkqlSnQFcU770NW2ec+AMUcafuJqyV1xRE
+ mVEXv43dIuETzG0oftXtmFIe
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP; 29 May 2019 13:49:40 -0700
+IronPort-SDR: YC8bCUR58DTIbPJfzX0+z9k0MY7/SOZnQyrrSDZ737cU8+bizRT9YHJDuxjCS1KH/ry3jFwTmD
+ uNr9h1DDTdMUkiPPmHOrJy/QdOeFJHltaBX0Gc7Ie/wRqmW+dUOguVt0r4URXJ4R7IQZPcD6lO
+ /lowRQnQLUBmlA4nqyocjdSFjkBraOJ0NNdpuY5VOzWRJzfosDlorV5LefgjsegQzNKmQES/mu
+ zZ2JndFjicoBEQgdzfMNjMQv+tdndkNo46b0+LEEwT52AxYx5duwofoBhBRz+KHRpQdgr3KcUB
+ IyM=
+Received: from jedi-01.sdcorp.global.sandisk.com (HELO jedi-01.int.fusionio.com) ([10.11.143.218])
+  by uls-op-cesaip02.wdc.com with ESMTP; 29 May 2019 14:14:30 -0700
+From:   Atish Patra <atish.patra@wdc.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 0/7] Unify CPU topology across ARM & RISC-V 
+Date:   Wed, 29 May 2019 14:13:33 -0700
+Message-Id: <20190529211340.17087-1-atish.patra@wdc.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <fc1f3c56-ab6b-478e-75d8-797d8e3bf21f@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559164070; bh=SLDysiNXh9Cebape9LK0dCyfSPsLCcX5Wp6B5ALFGqo=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=j5HSXGb4UcfgyYXMD+ouKO4qxVF158XX9Y4T+e8zPszIcA9beGGqYbXqSvuIZgXvT
-         D6B7CeO4AZPqxbmSOmcIAIILCpViE2AUGqCjIpfA0De6CdRSHJzsYiw9hBeXyy+Hok
-         +fC5m7CVG10lr9TMxodSV+IZ47iNZ7uawjIwhJrThzomUodMCW1dj1dcnggmzHw/da
-         y30szU/fZdUksT6ZNkse0ixsV0J89xiWK8NwohAJ49XM4h5r787ItfMD5h3rvEOqJ1
-         4Uz6bf3DXUbQZcXidDbMx9PMmqR1rKgeMQk7fhWC8S3pVxgOSK5/jQozJIbzDTtHHm
-         MwuPp4HWwxvCA==
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The cpu-map DT entry in ARM can describe the CPU topology in much better
+way compared to other existing approaches. RISC-V can easily adopt this
+binding to represent its own CPU topology. Thus, both cpu-map DT
+binding and topology parsing code can be moved to a common location so
+that RISC-V or any other architecture can leverage that.
 
-On 5/29/19 1:56 PM, Sowjanya Komatineni wrote:
->
-> On 5/29/19 1:47 PM, Dmitry Osipenko wrote:
->> 29.05.2019 23:11, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>> On 5/29/19 12:32 PM, Dmitry Osipenko wrote:
->>>> 29.05.2019 21:14, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>> On 5/29/19 8:29 AM, Dmitry Osipenko wrote:
->>>>>> 29.05.2019 2:08, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>>>> This patch adds suspend and resume support for Tegra pinctrl driver
->>>>>>> and registers them to syscore so the pinmux settings are restored
->>>>>>> before the devices resume.
->>>>>>>
->>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>>>>>> ---
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra.c=C2=A0=C2=
-=A0=C2=A0 | 68
->>>>>>> +++++++++++++++++++++++++++++++-
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra.h=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 3 ++
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra114.c |=C2=A0=
- 1 +
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra124.c |=C2=A0=
- 1 +
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra20.c=C2=A0 |=
-=C2=A0 1 +
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra210.c |=C2=A0=
- 1 +
->>>>>>> =C2=A0=C2=A0=C2=A0 drivers/pinctrl/tegra/pinctrl-tegra30.c=C2=A0 |=
-=C2=A0 1 +
->>>>>>> =C2=A0=C2=A0=C2=A0 7 files changed, 75 insertions(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c
->>>>>>> b/drivers/pinctrl/tegra/pinctrl-tegra.c
->>>>>>> index a5008c066bac..bdc47e62c457 100644
->>>>>>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
->>>>>>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
->>>>>>> @@ -28,11 +28,18 @@
->>>>>>> =C2=A0=C2=A0=C2=A0 #include <linux/pinctrl/pinmux.h>
->>>>>>> =C2=A0=C2=A0=C2=A0 #include <linux/pinctrl/pinconf.h>
->>>>>>> =C2=A0=C2=A0=C2=A0 #include <linux/slab.h>
->>>>>>> +#include <linux/syscore_ops.h>
->>>>>>> =C2=A0=C2=A0=C2=A0 =C2=A0 #include "../core.h"
->>>>>>> =C2=A0=C2=A0=C2=A0 #include "../pinctrl-utils.h"
->>>>>>> =C2=A0=C2=A0=C2=A0 #include "pinctrl-tegra.h"
->>>>>>> =C2=A0=C2=A0=C2=A0 +#define EMMC2_PAD_CFGPADCTRL_0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x1c8
->>>>>>> +#define EMMC4_PAD_CFGPADCTRL_0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x1e0
->>>>>>> +#define EMMC_DPD_PARKING=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 (0x1fff << 14)
->>>>>>> +
->>>>>>> +static struct tegra_pmx *pmx;
->>>>>>> +
->>>>>>> =C2=A0=C2=A0=C2=A0 static inline u32 pmx_readl(struct tegra_pmx *pm=
-x, u32 bank,=20
->>>>>>> u32
->>>>>>> reg)
->>>>>>> =C2=A0=C2=A0=C2=A0 {
->>>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return readl(pmx->regs[b=
-ank] + reg);
->>>>>>> @@ -629,6 +636,50 @@ static void
->>>>>>> tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
->>>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>>>>>> =C2=A0=C2=A0=C2=A0 }
->>>>>>> =C2=A0=C2=A0=C2=A0 +static int __maybe_unused tegra_pinctrl_suspend=
-(void)
->>>>>>> +{
->>>>>>> +=C2=A0=C2=A0=C2=A0 u32 *backup_regs =3D pmx->backup_regs;
->>>>>>> +=C2=A0=C2=A0=C2=A0 u32 *regs;
->>>>>>> +=C2=A0=C2=A0=C2=A0 int i, j;
->>>>>>> +
->>>>>>> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < pmx->nbanks; i++) {
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regs =3D pmx->regs[i];
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (j =3D 0; j < pmx->=
-reg_bank_size[i] / 4; j++)
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- *backup_regs++ =3D readl(regs++);
->>>>>>> +=C2=A0=C2=A0=C2=A0 }
->>>>>>> +
->>>>>>> +=C2=A0=C2=A0=C2=A0 return pinctrl_force_sleep(pmx->pctl);
->>>>>>> +}
->>>>>>> +
->>>>>>> +static void __maybe_unused tegra_pinctrl_resume(void)
->>>>>>> +{
->>>>>>> +=C2=A0=C2=A0=C2=A0 u32 *backup_regs =3D pmx->backup_regs;
->>>>>>> +=C2=A0=C2=A0=C2=A0 u32 *regs;
->>>>>>> +=C2=A0=C2=A0=C2=A0 u32 val;
->>>>>>> +=C2=A0=C2=A0=C2=A0 int i, j;
->>>>>>> +
->>>>>>> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < pmx->nbanks; i++) {
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regs =3D pmx->regs[i];
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (j =3D 0; j < pmx->=
-reg_bank_size[i] / 4; j++)
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- writel(*backup_regs++, regs++);
->>>>>>> +=C2=A0=C2=A0=C2=A0 }
->>>>>>> +
->>>>>>> +=C2=A0=C2=A0=C2=A0 if (pmx->soc->has_park_padcfg) {
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 val =3D pmx_readl(pmx, =
-0, EMMC2_PAD_CFGPADCTRL_0);
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 val &=3D ~EMMC_DPD_PARK=
-ING;
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pmx_writel(pmx, val, 0,=
- EMMC2_PAD_CFGPADCTRL_0);
->>>>>>> +
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 val =3D pmx_readl(pmx, =
-0, EMMC4_PAD_CFGPADCTRL_0);
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 val &=3D ~EMMC_DPD_PARK=
-ING;
->>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pmx_writel(pmx, val, 0,=
- EMMC4_PAD_CFGPADCTRL_0);
->>>>>>> +=C2=A0=C2=A0=C2=A0 }
->>>>>>> +}
->>>>>>>
->>>>>> But the CFGPADCTRL registers are already programmed by restoring the
->>>>>> backup_regs and hence the relevant EMMC's are already unparked.=20
->>>>>> Hence
->>>>>> why do you need to force-unpark both of the EMMC's? What if EMMC is
->>>>>> unpopulated on a board, why do you need to unpark it then?
->>>>> PARK bit for EMMC2/EMMC4 (EMMC2_PAD_CFGPADCTRL and=20
->>>>> EMMC4_PAD_CFGPADCTRL)
->>>>> are not part of pinmux.
->>>>>
->>>>> They are part of CFGPADCTRL register so pinctrl driver pingroup=20
->>>>> doesn't
->>>>> include these registers.
->>>> I'm looking at the tegra210_groups and it clearly has these both
->>>> registers as a part of pinctrl setup because the rest of the bits
->>>> configure drive of the pads.
->>>>
->>>> =C2=A0=C2=A0From pinctrl-tegra210.c:
->>>>
->>>> #define DRV_PINGROUP_REG_A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
-x8d4=C2=A0=C2=A0=C2=A0 /* bank 0 */
->>>>
->>>> DRV_PINGROUP(sdmmc2, 0xa9c, 2,=C2=A0 6,=C2=A0 8,=C2=A0 6,=C2=A0 28, 2,=
-=C2=A0 30, 2),
->>>> DRV_PINGROUP(sdmmc4, 0xab4, 2,=C2=A0 6,=C2=A0 8,=C2=A0 6,=C2=A0 28, 2,=
-=C2=A0 30, 2),
->>>>
->>>> ...
->>>>
->>>> 0xa9c - 0x8d4 =3D 0x1c8
->>>> 0xab4 - 0x8d4 =3D 0x1e0
->>>>
->>>> Hence the PARK bits are already getting unset by restoring the
->>>> backup_regs because the CFGPADCTRL registers are a part of the=20
->>>> "bank 0"
->>>> registers.
->>>>
->>>> Am I still missing something?
->>> DRV_PINGROUP parked_bit is -1 and will not be programmed so store and
->>> restore will not take care of it.
->>>
->>> Also EMMC PADCFG is the only padcfg register which has parked bit and
->>> for other IO pads its part of pinmux
->> You're storing raw values of all of the PINCTRL registers and then
->> restoring the raw values (if I'm not misreading that part on the patch),
->> it's absolutely meaningless that DRV_PINGROUP doesn't define the PARK=20
->> bits.
->>
->> In a result, the backup_regs array contains raw CFGPADCTRL value with
->> the PARK bits being unset on store, that value is written out on the
->> restore as-is and hence the PARK bits are getting unset as well.
->>
->> And why DRV_PINGROUP misses PARK bits for the EMMC's? Looks like a
->> driver's drawback that need to be addressed.
->
-> Parked bits from padcfg are available only for couple of EMMC registers.
->
-> default PARK bits are set so stored value contains park bit set. on=20
-> resume, after restoring park bit is cleared.
->
-> on subsequence DPD entry, stored value contains park bit 0 and HW=20
-> clamps park bit to logic 1 during DPD entry and cleared again on resume.
->
->
-Other IOs park bit in pinmux gets cleared thru=20
-tegra_pinctrl_clear_parked_bits on probe and during suspend register=20
-values saved contains park bit =3D 0 which is same when restored on DPD=20
-resume.
+The relevant discussion regarding unifying cpu topology can be found in
+[1].
 
-clearing park bit during resume for EMMC pads is same as clearing it=20
-during probe which is then saved during suspend and restored on resume=20
-similar to pinmux registers.
+arch_topology seems to be a perfect place to move the common code. I
+have not introduced any significant functional changes in the moved code.
+The only downside in this approach is that the capacity code will be
+executed for RISC-V as well. But, it will exit immediately after not
+able to find the appropriate DT node. If the overhead is considered too
+much, we can always compile out capacity related functions under a
+different config for the architectures that do not support them.
 
-So for more readability, probably can clear parked bit for EMMC during=20
-pinctrl_clear_parked_bits instead of on resume.
+There was an opportunity to unify topology data structure for ARM32 done
+by patch 3/4. But, I refrained from making any other changes as I am not
+very well versed with original intention for some functions that
+are present in arch_topology.c. I hope this patch series can be served
+as a baseline for such changes in the future.
+
+The patches have been tested for RISC-V and compile tested for ARM64,
+ARM32 & x86.
+
+The socket change[2] is also now part of this series.
+
+[1] https://lkml.org/lkml/2018/11/6/19
+[2] https://lkml.org/lkml/2018/11/7/918
+
+QEMU changes for RISC-V topology are available at
+
+https://github.com/atishp04/qemu/tree/riscv_topology_dt
+
+HiFive Unleashed DT with topology node is available here.
+https://github.com/atishp04/opensbi/tree/HiFive_unleashed_topology
+
+It can be verified with OpenSBI with following additional compile time
+option.
+
+FW_PAYLOAD_FDT="unleashed_topology.dtb"
+
+Changes from v5->v6
+1. Added two more patches from Sudeep about maintainership of arch_topology.c
+   and Kconfig update. 
+2. Added Tested-by & Reviewed-by
+3. Fixed a nit (reordering of variables)
+
+Changes from v4-v5
+1. Removed the arch_topology.h header inclusion from topology.c and arch_topology.c
+file. Added it in linux/topology.h.
+2. core_id is set to -1 upon reset. Otherwise, ARM topology store function does not
+work.
+
+Changes from v3->v4
+1. Get rid of ARM32 specific information in topology structure.
+2. Remove redundant functions from ARM32 and use common code instead. 
+
+Changes from v2->v3
+1. Cover letter update with experiment DT for topology changes.
+2. Added the patch for [2].
+
+Changes from v1->v2
+1. ARM32 can now use the common code as well.
+
+Atish Patra (4):
+dt-binding: cpu-topology: Move cpu-map to a common binding.
+cpu-topology: Move cpu topology code to common code.
+arm: Use common cpu_topology structure and functions.
+RISC-V: Parse cpu topology during boot.
+
+Sudeep Holla (3):
+Documentation: DT: arm: add support for sockets defining package
+boundaries
+base: arch_topology: update Kconfig help description
+MAINTAINERS: Add an entry for generic architecture topology
+
+.../topology.txt => cpu/cpu-topology.txt}     | 134 ++++++--
+MAINTAINERS                                   |   7 +
+arch/arm/include/asm/topology.h               |  20 --
+arch/arm/kernel/topology.c                    |  60 +---
+arch/arm64/include/asm/topology.h             |  23 --
+arch/arm64/kernel/topology.c                  | 303 +-----------------
+arch/riscv/Kconfig                            |   1 +
+arch/riscv/kernel/smpboot.c                   |   3 +
+drivers/base/Kconfig                          |   2 +-
+drivers/base/arch_topology.c                  | 298 +++++++++++++++++
+include/linux/arch_topology.h                 |  26 ++
+include/linux/topology.h                      |   1 +
+12 files changed, 452 insertions(+), 426 deletions(-)
+rename Documentation/devicetree/bindings/{arm/topology.txt => cpu/cpu-topology.txt} (66%)
+
+--
+2.21.0
 
