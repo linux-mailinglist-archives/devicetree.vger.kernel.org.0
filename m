@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D219D2D339
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 03:22:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC95B2D388
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 04:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725830AbfE2BWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 21:22:43 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:53491 "EHLO
+        id S1725828AbfE2CAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 22:00:16 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:43707 "EHLO
         out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725805AbfE2BWm (ORCPT
+        by vger.kernel.org with ESMTP id S1725816AbfE2CAQ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 21:22:42 -0400
+        Tue, 28 May 2019 22:00:16 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 084352203E;
-        Tue, 28 May 2019 21:22:39 -0400 (EDT)
+        by mailout.nyi.internal (Postfix) with ESMTP id 5CA0921FB5;
+        Tue, 28 May 2019 22:00:15 -0400 (EDT)
 Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Tue, 28 May 2019 21:22:39 -0400
+  by compute4.internal (MEProxy); Tue, 28 May 2019 22:00:15 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
         mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=O3Xkv3EI6y00AB2M6iUlJwWyBdvRoMi
-        nM2rnAHW1aYg=; b=hOV871nmAdvpcLrcayvkgFn0OV342CHDmf9kRVh6YDNmapN
-        fJb/O6F+9R4mH5T2vUaw/G/lAjwe1k35zu/KVu376BtR7EMzdjcWH9srREK6cmwe
-        mPrU+UuN9nSCLzEJr5KwObQEP8qgH+qWdsIZR6O1ksL5VoRb/APcKCGZyciXMzAg
-        0bK5svhKSY/ZUx7jCipcmflg+MfIxXSDVXKcMeEJ2S9T2O2EB/WV+vrFDtTZeniQ
-        9uocJZZ2+5sX1XfbDZ6pcoVIaL+v3nfWlbRrfT4MzCd05XZKk7rAdvwqJ3NqcUC3
-        cjPOVgfq29rA/oq50mMHOJvpVP8ev72bcJDVCmQ==
+        :subject:content-type; s=fm2; bh=dlc53IBOkSiD1cNJTaXRxiWXEJHrTor
+        ic23hUYCRqC0=; b=p6dl5bzDLh/yjgsl38thCiHBTu1NiTa3FnUSaE1rxt84EDN
+        X8C6yph+Vylp+eI3uA6FGMp+Id8ZiZCLYYNwJxOAAiXnorcjUcJye3GdMWZAOKVj
+        9mBoMtBBpGdKkTt2rdwATOmj/sQkAaNT/Ti/j8TVJKvCghAOnO0uS42iL1INindJ
+        rR5vNkH+k4+rMYgiFJUC/U6IJwAoopzEa4UmnWcC4MGsvKXGz8ih7vT/8s/dSnqL
+        iI6cFELlsddpaMx0/n8Eto+Q2/RZvknA6pJ851yq+dmWgYXHVRr5I3+IRUfICO/K
+        PtH50uo+wlRtJGzzvVJHw5cKU5n+ZaWUpk9cgqQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=O3Xkv3
-        EI6y00AB2M6iUlJwWyBdvRoMinM2rnAHW1aYg=; b=nYZSZa2jMoyk0fHbHbePYC
-        GFW/9W5yQC4kMgPoLN7SlHkfxWroFiLVNRyPRcoktMVkSYZyKyIzP5oBKRJTHBcu
-        X3Tg4xxvy0eKxst8OKBpCV6NXhuN+E33sZrKPK5EhTd6z0OY3K4JYsbXhn0MOjv5
-        TxK6JQMn/5/pfeOiyEMFoy/aud+7JIoqWVCKROVlJypkLRvbdxnaaOwnk7bWlb5Z
-        2LrABS+yVXintxlj6vOBljfKpnsaLgscHaCtgTTnT6fkfMVIvfJOUDnC8aoZTQuV
-        jHATHUB5AGUFHD8qsSFFA/FYZ+tx8uogNEBWUOvWZRUJXgRTNskpf3R/Wk4Szy/Q
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=dlc53I
+        BOkSiD1cNJTaXRxiWXEJHrToric23hUYCRqC0=; b=JqcyNamqu7tP9cvJUmavXh
+        JAXe6my8TQxMp8lHwKBxJTh7rbp77nDcjOCdfC4vyeRT2OaF1BTCXnVmIjb3NVbP
+        j+/MG9bhYzc4hB/ogykl8y52BF1Cw4oTNelOT/5XSCiSPszdkDG5PselJhw3jGkZ
+        5CAKX16kbOmzqlcOHUFLmkykurEIKHqbelLAXn9HJ0SEixgXFkEGgv0OAs4pFi2K
+        eo08tBPmuRJmrIh/q2UQ7OQA0/etMX7Srg3x7EP4ehMHwuvl2P3TBGlliAfljXLt
+        YfKgcsNVG9sARt7fNGMp4VnFcB9KUSv0Twy58LfqdIBZNxC7KlBhm+Ru7yqRQzoQ
         ==
-X-ME-Sender: <xms:3d7tXKQ_mHmvNk8LYkpIljRURpmhytPa06O4NBRV1egLyXIuEyolqw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddviedggeegucetufdoteggodetrfdotf
+X-ME-Sender: <xms:reftXMl0FnaCAIeRS5CR9IlAZ8ZJ5tUK1AdeZQK3Y0M8kN7Qkhciug>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddviedgheduucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
     rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
     grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
     rhfuihiivgeptd
-X-ME-Proxy: <xmx:3d7tXFQHu7jR7Vh8F975N4hdkfE8Jvw6GtZjT_KasakbDHkvaP8hsw>
-    <xmx:3d7tXG5opnSsYQh9XuURjuUhGMxzAXlIFfjMNM_ddsDKtU5zNJEtyw>
-    <xmx:3d7tXKVYrp-nVot3T4GLSTfXXoqv8Scjl8fGLSdSu2wmvFXXYIETBA>
-    <xmx:3t7tXL14R3RvaZCn_gnQ2MRGOzKNMaHfplYh8XlawYvBZGEjy61q4A>
+X-ME-Proxy: <xmx:reftXEqMiHbJhE5i2NZ-mXeKl-NK0iqTAVjymI2tVf2OWyod0PNm4A>
+    <xmx:reftXA-AzznNp4LLTdNivUODgvf3QYAOf8KIxPIFIgzDqEdcKh5YuQ>
+    <xmx:reftXPN1xwsbGYOVYulxBphHCVE2FCHmOqXGmVFqr-uXFSAg0nXUsA>
+    <xmx:r-ftXPzJlzd3uKn9wPg23LmkCQmUPdda0Y5brmsm8GXAHfHiIf0Ktw>
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 42D6FE00A2; Tue, 28 May 2019 21:22:37 -0400 (EDT)
+        id 49A3CE00A1; Tue, 28 May 2019 22:00:13 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.1.6-555-g49357e1-fmstable-20190528v2
 Mime-Version: 1.0
-Message-Id: <c0e01b11-5ea2-42d1-be67-2998809e310c@www.fastmail.com>
-In-Reply-To: <20190527112753.1681-1-a.filippov@yadro.com>
-References: <20190527112753.1681-1-a.filippov@yadro.com>
-Date:   Wed, 29 May 2019 10:52:36 +0930
+Message-Id: <39ca244a-1243-4039-9dcb-7eb2183908d4@www.fastmail.com>
+In-Reply-To: <687e4a77-0df1-4982-1edd-9d0559c489fe@linux.vnet.ibm.com>
+References: <1558383565-11821-1-git-send-email-eajames@linux.ibm.com>
+ <1558383565-11821-3-git-send-email-eajames@linux.ibm.com>
+ <CAK8P3a2HSOsw33VhAk4Z8ARiYn4jG68Ec7fynKbrFWUNDo37Wg@mail.gmail.com>
+ <687e4a77-0df1-4982-1edd-9d0559c489fe@linux.vnet.ibm.com>
+Date:   Wed, 29 May 2019 11:29:35 +0930
 From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Alexander A. Filippov" <a.filippov@yadro.com>,
-        linux-aspeed@lists.ozlabs.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        "Joel Stanley" <joel@jms.id.au>,
+To:     "Eddie James" <eajames@linux.vnet.ibm.com>,
+        "Arnd Bergmann" <arnd@arndb.de>,
+        "Eddie James" <eajames@linux.ibm.com>
+Cc:     linux-aspeed@lists.ozlabs.org,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         "Mark Rutland" <mark.rutland@arm.com>,
-        "Rob Herring" <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: aspeed: g4: add video engine support
+        DTML <devicetree@vger.kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>
+Subject: Re: [PATCH v2 2/7] drivers/soc: Add Aspeed XDMA Engine Driver
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -74,114 +80,50 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On Mon, 27 May 2019, at 20:58, Alexander Filippov wrote:
-> Add a node to describe the video engine and VGA scratch registers on
-> AST2400.
+On Sat, 25 May 2019, at 01:39, Eddie James wrote:
 > 
-> These changes were copied from aspeed-g5.dtsi
+> On 5/21/19 7:02 AM, Arnd Bergmann wrote:
+> > On Mon, May 20, 2019 at 10:19 PM Eddie James <eajames@linux.ibm.com> wrote:
+> >> diff --git a/include/uapi/linux/aspeed-xdma.h b/include/uapi/linux/aspeed-xdma.h
+> >> new file mode 100644
+> >> index 0000000..2a4bd13
+> >> --- /dev/null
+> >> +++ b/include/uapi/linux/aspeed-xdma.h
+> >> @@ -0,0 +1,26 @@
+> >> +/* SPDX-License-Identifier: GPL-2.0+ */
+> >> +/* Copyright IBM Corp 2019 */
+> >> +
+> >> +#ifndef _UAPI_LINUX_ASPEED_XDMA_H_
+> >> +#define _UAPI_LINUX_ASPEED_XDMA_H_
+> >> +
+> >> +#include <linux/types.h>
+> >> +
+> >> +/*
+> >> + * aspeed_xdma_op
+> >> + *
+> >> + * upstream: boolean indicating the direction of the DMA operation; upstream
+> >> + *           means a transfer from the BMC to the host
+> >> + *
+> >> + * host_addr: the DMA address on the host side, typically configured by PCI
+> >> + *            subsystem
+> >> + *
+> >> + * len: the size of the transfer in bytes; it should be a multiple of 16 bytes
+> >> + */
+> >> +struct aspeed_xdma_op {
+> >> +       __u32 upstream;
+> >> +       __u64 host_addr;
+> >> +       __u32 len;
+> >> +};
+> >> +
+> >> +#endif /* _UAPI_LINUX_ASPEED_XDMA_H_ */
+> > If this is a user space interface, please remove the holes in the
+> > data structure.
 > 
-> Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
-
-Ugh, I should really sort out the bmc-misc stuff, I don't like to see it propagate
-in its current form. That's not your problem though, and I hope to address it in
-the near future.
-
-For the OpenBMC kernel tree:
-
-Acked-by: Andrew Jeffery <andrew@aj.id.au>
-
-> ---
->  arch/arm/boot/dts/aspeed-g4.dtsi | 62 ++++++++++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
-> index 6011692df15a..adc1804918df 100644
-> --- a/arch/arm/boot/dts/aspeed-g4.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g4.dtsi
-> @@ -168,6 +168,10 @@
->  					compatible = "aspeed,g4-pinctrl";
->  				};
->  
-> +				vga_scratch: scratch {
-> +					compatible = "aspeed,bmc-misc";
-> +				};
-> +
->  				p2a: p2a-control {
->  					compatible = "aspeed,ast2400-p2a-ctrl";
->  					status = "disabled";
-> @@ -195,6 +199,16 @@
->  				reg = <0x1e720000 0x8000>;	// 32K
->  			};
->  
-> +			video: video@1e700000 {
-> +				compatible = "aspeed,ast2400-video-engine";
-> +				reg = <0x1e700000 0x1000>;
-> +				clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
-> +					 <&syscon ASPEED_CLK_GATE_ECLK>;
-> +				clock-names = "vclk", "eclk";
-> +				interrupts = <7>;
-> +				status = "disabled";
-> +			};
-> +
->  			gpio: gpio@1e780000 {
->  				#gpio-cells = <2>;
->  				gpio-controller;
-> @@ -1408,6 +1422,54 @@
->  	};
->  };
->  
-> +&vga_scratch {
-> +	dac_mux {
-> +		offset = <0x2c>;
-> +		bit-mask = <0x3>;
-> +		bit-shift = <16>;
-> +	};
-> +	vga0 {
-> +		offset = <0x50>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga1 {
-> +		offset = <0x54>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga2 {
-> +		offset = <0x58>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga3 {
-> +		offset = <0x5c>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga4 {
-> +		offset = <0x60>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga5 {
-> +		offset = <0x64>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga6 {
-> +		offset = <0x68>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +	vga7 {
-> +		offset = <0x6c>;
-> +		bit-mask = <0xffffffff>;
-> +		bit-shift = <0>;
-> +	};
-> +};
-> +
->  &sio_regs {
->  	sio_2b {
->  		offset = <0xf0>;
-> -- 
-> 2.20.1
-> 
->
+> Surely it's 4-byte aligned and there won't be holes??
+
+__u64 is 8-byte aligned, so you have a hole after upstream.
+
+Easiest just to put upstream after len?
+
+Andrew
