@@ -2,128 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC95B2D388
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 04:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6FB62D3FF
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 04:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725828AbfE2CAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 22:00:16 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:43707 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725816AbfE2CAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 22:00:16 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 5CA0921FB5;
-        Tue, 28 May 2019 22:00:15 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Tue, 28 May 2019 22:00:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=dlc53IBOkSiD1cNJTaXRxiWXEJHrTor
-        ic23hUYCRqC0=; b=p6dl5bzDLh/yjgsl38thCiHBTu1NiTa3FnUSaE1rxt84EDN
-        X8C6yph+Vylp+eI3uA6FGMp+Id8ZiZCLYYNwJxOAAiXnorcjUcJye3GdMWZAOKVj
-        9mBoMtBBpGdKkTt2rdwATOmj/sQkAaNT/Ti/j8TVJKvCghAOnO0uS42iL1INindJ
-        rR5vNkH+k4+rMYgiFJUC/U6IJwAoopzEa4UmnWcC4MGsvKXGz8ih7vT/8s/dSnqL
-        iI6cFELlsddpaMx0/n8Eto+Q2/RZvknA6pJ851yq+dmWgYXHVRr5I3+IRUfICO/K
-        PtH50uo+wlRtJGzzvVJHw5cKU5n+ZaWUpk9cgqQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=dlc53I
-        BOkSiD1cNJTaXRxiWXEJHrToric23hUYCRqC0=; b=JqcyNamqu7tP9cvJUmavXh
-        JAXe6my8TQxMp8lHwKBxJTh7rbp77nDcjOCdfC4vyeRT2OaF1BTCXnVmIjb3NVbP
-        j+/MG9bhYzc4hB/ogykl8y52BF1Cw4oTNelOT/5XSCiSPszdkDG5PselJhw3jGkZ
-        5CAKX16kbOmzqlcOHUFLmkykurEIKHqbelLAXn9HJ0SEixgXFkEGgv0OAs4pFi2K
-        eo08tBPmuRJmrIh/q2UQ7OQA0/etMX7Srg3x7EP4ehMHwuvl2P3TBGlliAfljXLt
-        YfKgcsNVG9sARt7fNGMp4VnFcB9KUSv0Twy58LfqdIBZNxC7KlBhm+Ru7yqRQzoQ
-        ==
-X-ME-Sender: <xms:reftXMl0FnaCAIeRS5CR9IlAZ8ZJ5tUK1AdeZQK3Y0M8kN7Qkhciug>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddviedgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
-    rhfuihiivgeptd
-X-ME-Proxy: <xmx:reftXEqMiHbJhE5i2NZ-mXeKl-NK0iqTAVjymI2tVf2OWyod0PNm4A>
-    <xmx:reftXA-AzznNp4LLTdNivUODgvf3QYAOf8KIxPIFIgzDqEdcKh5YuQ>
-    <xmx:reftXPN1xwsbGYOVYulxBphHCVE2FCHmOqXGmVFqr-uXFSAg0nXUsA>
-    <xmx:r-ftXPzJlzd3uKn9wPg23LmkCQmUPdda0Y5brmsm8GXAHfHiIf0Ktw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 49A3CE00A1; Tue, 28 May 2019 22:00:13 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-555-g49357e1-fmstable-20190528v2
-Mime-Version: 1.0
-Message-Id: <39ca244a-1243-4039-9dcb-7eb2183908d4@www.fastmail.com>
-In-Reply-To: <687e4a77-0df1-4982-1edd-9d0559c489fe@linux.vnet.ibm.com>
-References: <1558383565-11821-1-git-send-email-eajames@linux.ibm.com>
- <1558383565-11821-3-git-send-email-eajames@linux.ibm.com>
- <CAK8P3a2HSOsw33VhAk4Z8ARiYn4jG68Ec7fynKbrFWUNDo37Wg@mail.gmail.com>
- <687e4a77-0df1-4982-1edd-9d0559c489fe@linux.vnet.ibm.com>
-Date:   Wed, 29 May 2019 11:29:35 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Eddie James" <eajames@linux.vnet.ibm.com>,
-        "Arnd Bergmann" <arnd@arndb.de>,
-        "Eddie James" <eajames@linux.ibm.com>
-Cc:     linux-aspeed@lists.ozlabs.org,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>
-Subject: Re: [PATCH v2 2/7] drivers/soc: Add Aspeed XDMA Engine Driver
-Content-Type: text/plain
+        id S1726224AbfE2Cxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 22:53:36 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:43614 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726131AbfE2Cxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 22:53:36 -0400
+Received: by mail-pg1-f195.google.com with SMTP id f25so402899pgv.10;
+        Tue, 28 May 2019 19:53:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=IRbOxDloc34+bVD1clrnHE8qeNgQWI5zIDtydL1C1Nk=;
+        b=SVXxzt3Szs/n4Egthe5l0wstUwHu0GteoKDAV1UOOTMEs4O42+JUV93q+YzJyiNbHS
+         y/Hrj+22ObeUhL9Llc6jnyxaaAhGn/yaYUNnI1J4TB05rzceiu9GQCVnIP08Mppaj1QT
+         Xkt0T9CIf4OWKlsTUUMkviEwe4Bn2+CGNhx0M5IY2sN31sDsU5GYOtR6Ep/Oh9/kON/O
+         9FPEErzHqo47d/ZlI+2KFsDWa+Fs4N1GptqE/yqqkQ9n+1AparOin8QDEiCvDTss6o1h
+         bFqeI9VJOVud2nwvWzMv227PCqhKFrVyoSb3eCQ8WvTbCWGtvbUKIzfoEwqQPH7x8gwe
+         Y9JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=IRbOxDloc34+bVD1clrnHE8qeNgQWI5zIDtydL1C1Nk=;
+        b=RyD3URBBUo87M/UnQWRgtUrUWcfroRl26l5QYjMNpjz4M03e6VuaUkbtMgli15ZUa1
+         BNbfyQP0sKvsoPn6sGNPnSZjy7D0DL+Fq5nmMNS8p0+EppCeARgw1Y/F/vHE0/PLYKnk
+         z/x4YlRBLznu57tiPEpAycOTJb5wA2aat00t3hn6oHI7kUfKHe5i/IO9aojj4yHFvFGe
+         NN6IOC115yvzl3rH5zBtjg6P9xZN65OqtkwJLfrsBT7ILiP7AetCpvx5exidOaK+le1m
+         9/edQhbF31ffyHfb/GOU8TQjHvSZelaqsOS+mZJKZvLMdaYMaY4cYb/A1pplHubNh/11
+         t+Lg==
+X-Gm-Message-State: APjAAAW7qJlmcpEdQ8uFzMM158wDwL1ei9gvs0g+mPIplcRDu1MtHP+X
+        PnJE6ZusESS8MWks/JI5a20=
+X-Google-Smtp-Source: APXvYqwSGGDaSrL60LvaJmFCEVVVRHqpXuqZZDAXAzAI/Eqcp7AQAAnqTtBorkEQgcScBJHiEeOuLQ==
+X-Received: by 2002:a63:4826:: with SMTP id v38mr10318770pga.417.1559098415428;
+        Tue, 28 May 2019 19:53:35 -0700 (PDT)
+Received: from localhost.localdomain ([2601:644:8201:32e0:7256:81ff:febd:926d])
+        by smtp.gmail.com with ESMTPSA id x24sm3893935pjq.27.2019.05.28.19.53.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 28 May 2019 19:53:34 -0700 (PDT)
+Date:   Tue, 28 May 2019 19:53:32 -0700
+From:   Eduardo Valentin <edubezval@gmail.com>
+To:     Yuantian Tang <andy.tang@nxp.com>
+Cc:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, daniel.lezcano@linaro.org,
+        rui.zhang@intel.com
+Subject: Re: [PATCH] arm64: dts: ls1028a: Add Thermal Monitor Unit node
+Message-ID: <20190529025331.GB2419@localhost.localdomain>
+References: <20190425082640.37982-1-andy.tang@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190425082640.37982-1-andy.tang@nxp.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Sat, 25 May 2019, at 01:39, Eddie James wrote:
+On Thu, Apr 25, 2019 at 04:26:40PM +0800, Yuantian Tang wrote:
+> The Thermal Monitoring Unit (TMU) monitors and reports the
+> temperature from 2 remote temperature measurement sites
+> located on ls1028a chip.
+> Add TMU dts node to enable this feature.
 > 
-> On 5/21/19 7:02 AM, Arnd Bergmann wrote:
-> > On Mon, May 20, 2019 at 10:19 PM Eddie James <eajames@linux.ibm.com> wrote:
-> >> diff --git a/include/uapi/linux/aspeed-xdma.h b/include/uapi/linux/aspeed-xdma.h
-> >> new file mode 100644
-> >> index 0000000..2a4bd13
-> >> --- /dev/null
-> >> +++ b/include/uapi/linux/aspeed-xdma.h
-> >> @@ -0,0 +1,26 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0+ */
-> >> +/* Copyright IBM Corp 2019 */
-> >> +
-> >> +#ifndef _UAPI_LINUX_ASPEED_XDMA_H_
-> >> +#define _UAPI_LINUX_ASPEED_XDMA_H_
-> >> +
-> >> +#include <linux/types.h>
-> >> +
-> >> +/*
-> >> + * aspeed_xdma_op
-> >> + *
-> >> + * upstream: boolean indicating the direction of the DMA operation; upstream
-> >> + *           means a transfer from the BMC to the host
-> >> + *
-> >> + * host_addr: the DMA address on the host side, typically configured by PCI
-> >> + *            subsystem
-> >> + *
-> >> + * len: the size of the transfer in bytes; it should be a multiple of 16 bytes
-> >> + */
-> >> +struct aspeed_xdma_op {
-> >> +       __u32 upstream;
-> >> +       __u64 host_addr;
-> >> +       __u32 len;
-> >> +};
-> >> +
-> >> +#endif /* _UAPI_LINUX_ASPEED_XDMA_H_ */
-> > If this is a user space interface, please remove the holes in the
-> > data structure.
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+
+I dont see anything wrong from a thermal standpoint.
+
+Acked-by: Eduardo Valentin <edubezval@gmail.com>
+
+Please get this via your arch tree maintainer to avoid merge conflicts.
+
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  114 ++++++++++++++++++++++++
+>  1 files changed, 114 insertions(+), 0 deletions(-)
 > 
-> 
-> Surely it's 4-byte aligned and there won't be holes??
-
-__u64 is 8-byte aligned, so you have a hole after upstream.
-
-Easiest just to put upstream after len?
-
-Andrew
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index b045812..a25f5fc 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -29,6 +29,7 @@
+>  			clocks = <&clockgen 1 0>;
+>  			next-level-cache = <&l2>;
+>  			cpu-idle-states = <&CPU_PH20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+>  		cpu1: cpu@1 {
+> @@ -39,6 +40,7 @@
+>  			clocks = <&clockgen 1 0>;
+>  			next-level-cache = <&l2>;
+>  			cpu-idle-states = <&CPU_PH20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+>  		l2: l2-cache {
+> @@ -398,6 +400,118 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		tmu: tmu@1f00000 {
+> +			compatible = "fsl,qoriq-tmu";
+> +			reg = <0x0 0x1f80000 0x0 0x10000>;
+> +			interrupts = <0 23 0x4>;
+> +			fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x70061>;
+> +			fsl,tmu-calibration = <0x00000000 0x00000024
+> +					       0x00000001 0x0000002b
+> +					       0x00000002 0x00000031
+> +					       0x00000003 0x00000038
+> +					       0x00000004 0x0000003f
+> +					       0x00000005 0x00000045
+> +					       0x00000006 0x0000004c
+> +					       0x00000007 0x00000053
+> +					       0x00000008 0x00000059
+> +					       0x00000009 0x00000060
+> +					       0x0000000a 0x00000066
+> +					       0x0000000b 0x0000006d
+> +
+> +					       0x00010000 0x0000001c
+> +					       0x00010001 0x00000024
+> +					       0x00010002 0x0000002c
+> +					       0x00010003 0x00000035
+> +					       0x00010004 0x0000003d
+> +					       0x00010005 0x00000045
+> +					       0x00010006 0x0000004d
+> +					       0x00010007 0x00000045
+> +					       0x00010008 0x0000005e
+> +					       0x00010009 0x00000066
+> +					       0x0001000a 0x0000006e
+> +
+> +					       0x00020000 0x00000018
+> +					       0x00020001 0x00000022
+> +					       0x00020002 0x0000002d
+> +					       0x00020003 0x00000038
+> +					       0x00020004 0x00000043
+> +					       0x00020005 0x0000004d
+> +					       0x00020006 0x00000058
+> +					       0x00020007 0x00000063
+> +					       0x00020008 0x0000006e
+> +
+> +					       0x00030000 0x00000010
+> +					       0x00030001 0x0000001c
+> +					       0x00030002 0x00000029
+> +					       0x00030003 0x00000036
+> +					       0x00030004 0x00000042
+> +					       0x00030005 0x0000004f
+> +					       0x00030006 0x0000005b
+> +					       0x00030007 0x00000068>;
+> +			little-endian;
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+> +		thermal-zones {
+> +			core-cluster {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <5000>;
+> +				thermal-sensors = <&tmu 0>;
+> +
+> +				trips {
+> +					core_cluster_alert: core-cluster-alert {
+> +						temperature = <85000>;
+> +						hysteresis = <2000>;
+> +						type = "passive";
+> +					};
+> +
+> +					core_cluster_crit: core-cluster-crit {
+> +						temperature = <95000>;
+> +						hysteresis = <2000>;
+> +						type = "critical";
+> +					};
+> +				};
+> +
+> +				cooling-maps {
+> +					map0 {
+> +						trip = <&core_cluster_alert>;
+> +						cooling-device =
+> +							<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					};
+> +				};
+> +			};
+> +
+> +			ddr-controller {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <5000>;
+> +				thermal-sensors = <&tmu 1>;
+> +
+> +				trips {
+> +					ddr_controller_alert: ddr-controller-alert {
+> +						temperature = <85000>;
+> +						hysteresis = <2000>;
+> +						type = "passive";
+> +					};
+> +
+> +					ddr_controller_crit: ddr-controller-crit {
+> +						temperature = <95000>;
+> +						hysteresis = <2000>;
+> +						type = "critical";
+> +					};
+> +				};
+> +
+> +				cooling-maps {
+> +					map0 {
+> +						trip = <&ddr_controller_alert>;
+> +						cooling-device =
+> +							<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>  		pcie@1f0000000 { /* Integrated Endpoint Root Complex */
+>  			compatible = "pci-host-ecam-generic";
+>  			reg = <0x01 0xf0000000 0x0 0x100000>;
