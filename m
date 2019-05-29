@@ -2,95 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD6B02E42A
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 20:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F15732E444
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 20:14:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727597AbfE2SKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 14:10:25 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:57636 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727555AbfE2SKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 14:10:25 -0400
-Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4TI4Vg6089656
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 14:10:24 -0400
-Received: from e13.ny.us.ibm.com (e13.ny.us.ibm.com [129.33.205.203])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2ssx9ra488-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 14:10:24 -0400
-Received: from localhost
-        by e13.ny.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <eajames@linux.ibm.com>;
-        Wed, 29 May 2019 19:10:23 +0100
-Received: from b01cxnp23032.gho.pok.ibm.com (9.57.198.27)
-        by e13.ny.us.ibm.com (146.89.104.200) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Wed, 29 May 2019 19:10:18 +0100
-Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com [9.57.199.109])
-        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x4TIAIWh26935658
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 29 May 2019 18:10:18 GMT
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id DC19C112064;
-        Wed, 29 May 2019 18:10:17 +0000 (GMT)
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2D4EE112061;
-        Wed, 29 May 2019 18:10:17 +0000 (GMT)
-Received: from talon7.ibm.com (unknown [9.41.179.222])
-        by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTP;
-        Wed, 29 May 2019 18:10:17 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     linux-kernel@vger.kernel.org, arnd@arndb.de, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org, joel@jms.id.au,
-        andrew@aj.id.au, Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH v3 8/8] ARM: dts: aspeed: witherspoon: Enable XDMA Engine
-Date:   Wed, 29 May 2019 13:10:08 -0500
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1559153408-31190-1-git-send-email-eajames@linux.ibm.com>
-References: <1559153408-31190-1-git-send-email-eajames@linux.ibm.com>
-X-TM-AS-GCONF: 00
-x-cbid: 19052918-0064-0000-0000-000003E68FF2
-X-IBM-SpamModules-Scores: 
-X-IBM-SpamModules-Versions: BY=3.00011180; HX=3.00000242; KW=3.00000007;
- PH=3.00000004; SC=3.00000286; SDB=6.01210373; UDB=6.00635908; IPR=6.00991405;
- MB=3.00027105; MTD=3.00000008; XFM=3.00000015; UTC=2019-05-29 18:10:21
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19052918-0065-0000-0000-00003DA90AD9
-Message-Id: <1559153408-31190-9-git-send-email-eajames@linux.ibm.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-29_09:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=738 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1905290117
+        id S1727227AbfE2SOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 14:14:49 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:16849 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726245AbfE2SOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 14:14:49 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ceecc0e0000>; Wed, 29 May 2019 11:14:38 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Wed, 29 May 2019 11:14:47 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Wed, 29 May 2019 11:14:47 -0700
+Received: from [10.110.103.86] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 29 May
+ 2019 18:14:45 +0000
+Subject: Re: [PATCH V2 02/12] pinctrl: tegra: add suspend and resume support
+To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
+        <linus.walleij@linaro.org>, <stefan@agner.ch>,
+        <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
+ <1559084936-4610-3-git-send-email-skomatineni@nvidia.com>
+ <6273a790-d4b7-c501-3fec-d9816288b139@gmail.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <d9d54f05-b0bf-6e65-9308-45e94454301e@nvidia.com>
+Date:   Wed, 29 May 2019 11:14:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <6273a790-d4b7-c501-3fec-d9816288b139@gmail.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559153678; bh=A9YK/nFxLV3PJjOi7BCVU2yWC+RVl5qSeED4QLSsntQ=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=sMA1G/hK2fy+v7joD29O4P+g1qw+eTvO4mInczl2kFzTjOBgm/L8zygm+96e28Oe0
+         TAEUIVAgZYdyTL+40oXWlQyrmb5evGStTC7Pweb4lYQFbP2o8nEDBD4N4u1UvGJWDT
+         6FjvWwvd7U1u4lyMXgPB/aw8W/E3O4EJQTRJOXkOzw47YbQjABIQmrF+bCqJIvNoCK
+         3nIkRI1b/lxkc7wO38I7dPyXWIDR+29WIo3UO6pwhEIsoqQCDQS1vr26Icba9CVpK0
+         f25sOpUSM2v/V2efZgxAjPlb++RleDbUJNTkzOQGW3b+saaeSXbgP7dUsIGl0fpnno
+         VQL+DXoltW1fw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the XDMA engine node.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On 5/29/19 8:29 AM, Dmitry Osipenko wrote:
+> 29.05.2019 2:08, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> This patch adds suspend and resume support for Tegra pinctrl driver
+>> and registers them to syscore so the pinmux settings are restored
+>> before the devices resume.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   drivers/pinctrl/tegra/pinctrl-tegra.c    | 68 ++++++++++++++++++++++++=
++++++++-
+>>   drivers/pinctrl/tegra/pinctrl-tegra.h    |  3 ++
+>>   drivers/pinctrl/tegra/pinctrl-tegra114.c |  1 +
+>>   drivers/pinctrl/tegra/pinctrl-tegra124.c |  1 +
+>>   drivers/pinctrl/tegra/pinctrl-tegra20.c  |  1 +
+>>   drivers/pinctrl/tegra/pinctrl-tegra210.c |  1 +
+>>   drivers/pinctrl/tegra/pinctrl-tegra30.c  |  1 +
+>>   7 files changed, 75 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c b/drivers/pinctrl/teg=
+ra/pinctrl-tegra.c
+>> index a5008c066bac..bdc47e62c457 100644
+>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> @@ -28,11 +28,18 @@
+>>   #include <linux/pinctrl/pinmux.h>
+>>   #include <linux/pinctrl/pinconf.h>
+>>   #include <linux/slab.h>
+>> +#include <linux/syscore_ops.h>
+>>  =20
+>>   #include "../core.h"
+>>   #include "../pinctrl-utils.h"
+>>   #include "pinctrl-tegra.h"
+>>  =20
+>> +#define EMMC2_PAD_CFGPADCTRL_0			0x1c8
+>> +#define EMMC4_PAD_CFGPADCTRL_0			0x1e0
+>> +#define EMMC_DPD_PARKING			(0x1fff << 14)
+>> +
+>> +static struct tegra_pmx *pmx;
+>> +
+>>   static inline u32 pmx_readl(struct tegra_pmx *pmx, u32 bank, u32 reg)
+>>   {
+>>   	return readl(pmx->regs[bank] + reg);
+>> @@ -629,6 +636,50 @@ static void tegra_pinctrl_clear_parked_bits(struct =
+tegra_pmx *pmx)
+>>   	}
+>>   }
+>>  =20
+>> +static int __maybe_unused tegra_pinctrl_suspend(void)
+>> +{
+>> +	u32 *backup_regs =3D pmx->backup_regs;
+>> +	u32 *regs;
+>> +	int i, j;
+>> +
+>> +	for (i =3D 0; i < pmx->nbanks; i++) {
+>> +		regs =3D pmx->regs[i];
+>> +		for (j =3D 0; j < pmx->reg_bank_size[i] / 4; j++)
+>> +			*backup_regs++ =3D readl(regs++);
+>> +	}
+>> +
+>> +	return pinctrl_force_sleep(pmx->pctl);
+>> +}
+>> +
+>> +static void __maybe_unused tegra_pinctrl_resume(void)
+>> +{
+>> +	u32 *backup_regs =3D pmx->backup_regs;
+>> +	u32 *regs;
+>> +	u32 val;
+>> +	int i, j;
+>> +
+>> +	for (i =3D 0; i < pmx->nbanks; i++) {
+>> +		regs =3D pmx->regs[i];
+>> +		for (j =3D 0; j < pmx->reg_bank_size[i] / 4; j++)
+>> +			writel(*backup_regs++, regs++);
+>> +	}
+>> +
+>> +	if (pmx->soc->has_park_padcfg) {
+>> +		val =3D pmx_readl(pmx, 0, EMMC2_PAD_CFGPADCTRL_0);
+>> +		val &=3D ~EMMC_DPD_PARKING;
+>> +		pmx_writel(pmx, val, 0, EMMC2_PAD_CFGPADCTRL_0);
+>> +
+>> +		val =3D pmx_readl(pmx, 0, EMMC4_PAD_CFGPADCTRL_0);
+>> +		val &=3D ~EMMC_DPD_PARKING;
+>> +		pmx_writel(pmx, val, 0, EMMC4_PAD_CFGPADCTRL_0);
+>> +	}
+>> +}
+>>
+> But the CFGPADCTRL registers are already programmed by restoring the
+> backup_regs and hence the relevant EMMC's are already unparked. Hence
+> why do you need to force-unpark both of the EMMC's? What if EMMC is
+> unpopulated on a board, why do you need to unpark it then?
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts b/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-index 85b9e40..ad7ccf1 100644
---- a/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-@@ -641,4 +641,8 @@
- 	status = "okay";
- };
- 
-+&xdma {
-+	status = "okay";
-+};
-+
- #include "ibm-power9-dual.dtsi"
--- 
-1.8.3.1
+PARK bit for EMMC2/EMMC4 (EMMC2_PAD_CFGPADCTRL and EMMC4_PAD_CFGPADCTRL)=20
+are not part of pinmux.
 
+They are part of CFGPADCTRL register so pinctrl driver pingroup doesn't=20
+include these registers.
+
+backup_regs doesn't take care of this and need to handled separately for=20
+Tegra210.
+
+
+During resume we have to clear PARK bit for the pads on Tegra210 and=20
+this is not related to presence/absence of eMMC on the board.
+
+PAD is parked during LP0 entry to have it in DPD mode and it stays in=20
+DPD till its cleared by SW on resume.
