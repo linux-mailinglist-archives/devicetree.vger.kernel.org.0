@@ -2,264 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D9072D526
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 07:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C5272D53D
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 07:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725887AbfE2Fmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 01:42:44 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:4302 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725874AbfE2Fmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 01:42:44 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cee1bd10001>; Tue, 28 May 2019 22:42:41 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Tue, 28 May 2019 22:42:41 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Tue, 28 May 2019 22:42:41 -0700
-Received: from [10.19.108.127] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 29 May
- 2019 05:42:36 +0000
-Subject: Re: [PATCH V2 09/12] soc/tegra: pmc: add pmc wake support for
- tegra210
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
-        <stefan@agner.ch>, <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <josephl@nvidia.com>,
-        <talho@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mperttunen@nvidia.com>,
-        <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
- <1559084936-4610-10-git-send-email-skomatineni@nvidia.com>
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <ddf07eae-a933-9d2e-94f9-3893b4e09db0@nvidia.com>
-Date:   Wed, 29 May 2019 13:42:35 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <1559084936-4610-10-git-send-email-skomatineni@nvidia.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559108561; bh=7ahERssj3Ya7BbN2GOfMLoQovuYCFnBedCRnhZury04=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=Mi7n4lK36ZH8qYlfUuFIGtM30pPDk1Mfwd3un1JpIalBUYUdWAdCPLy3vGHSgH09L
-         AYe1Z3pVzzCD+zreHWGQZEH67cGXZ8v10HD51Z1yzUOptEf/maRXGq8dOHHBXVP0vY
-         qbdihLtx8qXSxFuivzebwpSRxlq5tMWEQd+jFQJE3VQOqtB/PJhxGwtqn70GtrINT/
-         ZOYuM9GLnkCfh3qnLJrk6CcvdalGW/fC9Y8HY3H2SgKYG+egSUPSU3t0TMe4RlONNh
-         9jc4dGktPlBW9Kfo8Lmp2/FhwcefxvIhG98z6hPfMIFcI3hDx18UpdiHA9/ZKU77Zx
-         OsMpjr+U6FtUw==
+        id S1725956AbfE2F6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 01:58:11 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:33334 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725874AbfE2F6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 01:58:10 -0400
+Received: by mail-pg1-f194.google.com with SMTP id h17so695452pgv.0;
+        Tue, 28 May 2019 22:58:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=orJ8ZO7tYb0c4h/BjgkxaEoMgsYs4zgzsSwG/Ejhacg=;
+        b=V3ltzRXEI6Je/vbiwfHCq0y+tNk1CaP38GKlpXuoIjtb3ZFD2kQ5+JlNgeTz96mvt0
+         DrHC15TE9UyEguGJYE2PN0FYeaNTfBVa+Z/8RQPwmEcS+oyEvKVmywE+vS0erBnCZvB/
+         cr14QL+j7iVzZCJrhHxgHNxqE4VXJ+6IzXR9FN6ZgXTYEGQoidQGOQlmWMfsqfUyVgq3
+         PK0uYguS0hu4OSdQ2FGg1MQq/ttXgXCqAtXx1FSrG17p0uei0vNsOEz9At6Z0RemB7jQ
+         Grc/bs8s9rN8Geq43lAHAPmn6NzKwLwVLU04w+2lf+zV6MhhO6O0AhcZbaX7NWsZ1Bgb
+         qd7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=orJ8ZO7tYb0c4h/BjgkxaEoMgsYs4zgzsSwG/Ejhacg=;
+        b=PMrqzeHFy0N4we6WKFIBOdVbtm+qTmNU4YPDv78ajkZSP/yhu/osQe0zBIdiJnbK4H
+         faArfQ/ZmbJEeMgsHROlyR540I32fTuQ72C2GfBSud7cynrfuJfKRbmkRtNNCqd/8F1f
+         BuYu7yCPLZr46t+4+FlnfiTTxJxa0aUd6zi6EifOeeK7jSTYLQHL+I6K/L33XHKxH71R
+         ZG1NnP5tA1o5tCJ4JLJ1/HlVJEgI8YL1eK69KezR5wVGTQEkUCMD1wbl11W86/FAmoaY
+         GVEUSCKR2TN5yOY+jejteY0XYHaZaVd+RByEye7ANBQfCa/zSeJ3VG0zZZz8Uj2CrzqQ
+         aQ1Q==
+X-Gm-Message-State: APjAAAXhg0YL7VyiARpPs1zZ+pGjkNOs9oUmvuBS6E4jJv0xvAC9lYA+
+        9Ca9SBZalabaMtAnXXZAgfWKqwYa
+X-Google-Smtp-Source: APXvYqznLFwDTHXxzdN8Q28ZLMLCKplUIo6BI1HkjcbnDrlkI+LA4XVVAeGRWtzsG/pwZIhs4uiMzA==
+X-Received: by 2002:a63:1c19:: with SMTP id c25mr12394440pgc.183.1559109489952;
+        Tue, 28 May 2019 22:58:09 -0700 (PDT)
+Received: from localhost.localdomain (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id w1sm19093127pfg.51.2019.05.28.22.58.08
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 28 May 2019 22:58:09 -0700 (PDT)
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     David Miller <davem@davemloft.net>, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Miroslav Lichvar <mlichvar@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Willem de Bruijn <willemb@google.com>
+Subject: [PATCH V4 net-next 0/6] Peer to Peer One-Step time stamping
+Date:   Tue, 28 May 2019 22:58:01 -0700
+Message-Id: <cover.1559109076.git.richardcochran@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sowjanya,
+This series adds support for PTP (IEEE 1588) P2P one-step time
+stamping along with a driver for a hardware device that supports this.
 
-usleep_range() in tegra210_pmc_irq_set_wake() should be replaced with 
-udelay() because caller irq_set_irq_wake() acquired spinlock and made 
-this context atomic.
+If the hardware supports p2p one-step, it subtracts the ingress time
+stamp value from the Pdelay_Request correction field.  The user space
+software stack then simply copies the correction field into the
+Pdelay_Response, and on transmission the hardware adds the egress time
+stamp into the correction field.
+
+This new functionality extends CONFIG_NETWORK_PHY_TIMESTAMPING to
+cover MII snooping devices, but it still depends on phylib, just as
+that option does.  Expanding beyond phylib is not within the scope of
+the this series.
+
+User space support is available in the current linuxptp master branch.
+
+- Patch 1 adds the new option.
+- Patches 2-5 add support for MII time stamping in non-PHY devices.
+- Patch 6 adds a driver implementing the new option.
 
 Thanks,
+Richard
 
-JC
+Changed in v4:
+~~~~~~~~~~~~~~
 
-On 5/29/19 7:08 AM, Sowjanya Komatineni wrote:
-> This patch implements PMC wakeup sequence for Tegra210 and defines
-> common used wake events of RTC alarm and power key.
->
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->   drivers/soc/tegra/pmc.c | 113 ++++++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 113 insertions(+)
->
-> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-> index 974b4c9f6ada..54dc8409e353 100644
-> --- a/drivers/soc/tegra/pmc.c
-> +++ b/drivers/soc/tegra/pmc.c
-> @@ -57,6 +57,7 @@
->   #include <dt-bindings/pinctrl/pinctrl-tegra-io-pad.h>
->   #include <dt-bindings/gpio/tegra186-gpio.h>
->   #include <dt-bindings/gpio/tegra194-gpio.h>
-> +#include <dt-bindings/gpio/tegra-gpio.h>
->   
->   #define PMC_CNTRL			0x0
->   #define  PMC_CNTRL_INTR_POLARITY	BIT(17) /* inverts INTR polarity */
-> @@ -66,6 +67,12 @@
->   #define  PMC_CNTRL_SYSCLK_OE		BIT(11) /* system clock enable */
->   #define  PMC_CNTRL_SYSCLK_POLARITY	BIT(10) /* sys clk polarity */
->   #define  PMC_CNTRL_MAIN_RST		BIT(4)
-> +#define  PMC_CNTRL_LATCH_WAKEUPS	BIT(5)
-> +
-> +#define PMC_WAKE_MASK			0x0c
-> +#define PMC_WAKE_LEVEL			0x10
-> +#define PMC_WAKE_STATUS			0x14
-> +#define PMC_SW_WAKE_STATUS		0x18
->   
->   #define DPD_SAMPLE			0x020
->   #define  DPD_SAMPLE_ENABLE		BIT(0)
-> @@ -96,6 +103,11 @@
->   
->   #define PMC_SCRATCH41			0x140
->   
-> +#define PMC_WAKE2_MASK			0x160
-> +#define PMC_WAKE2_LEVEL			0x164
-> +#define PMC_WAKE2_STATUS		0x168
-> +#define PMC_SW_WAKE2_STATUS		0x16c
-> +
->   #define PMC_SENSOR_CTRL			0x1b0
->   #define  PMC_SENSOR_CTRL_SCRATCH_WRITE	BIT(2)
->   #define  PMC_SENSOR_CTRL_ENABLE_RST	BIT(1)
-> @@ -245,6 +257,7 @@ struct tegra_pmc_soc {
->   
->   	const struct tegra_wake_event *wake_events;
->   	unsigned int num_wake_events;
-> +	unsigned int max_supported_wake_events;
->   };
->   
->   static const char * const tegra186_reset_sources[] = {
-> @@ -1917,6 +1930,54 @@ static const struct irq_domain_ops tegra_pmc_irq_domain_ops = {
->   	.alloc = tegra_pmc_irq_alloc,
->   };
->   
-> +static int tegra210_pmc_irq_set_wake(struct irq_data *data, unsigned int on)
-> +{
-> +	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
-> +	unsigned int offset, bit;
-> +	u32 value;
-> +
-> +	if (data->hwirq == ULONG_MAX)
-> +		return 0;
-> +
-> +	offset = data->hwirq / 32;
-> +	bit = data->hwirq % 32;
-> +
-> +	/*
-> +	 * latch wakeups to SW_WAKE_STATUS register to capture events
-> +	 * that would not make it into wakeup event register during LP0 exit.
-> +	 */
-> +	value = tegra_pmc_readl(pmc, PMC_CNTRL);
-> +	value |= PMC_CNTRL_LATCH_WAKEUPS;
-> +	tegra_pmc_writel(pmc, value, PMC_CNTRL);
-> +	usleep_range(110, 120);
-> +
-> +	value &= ~PMC_CNTRL_LATCH_WAKEUPS;
-> +	tegra_pmc_writel(pmc, value, PMC_CNTRL);
-> +	usleep_range(110, 120);
-> +
-> +	tegra_pmc_writel(pmc, 0, PMC_SW_WAKE_STATUS);
-> +	if (pmc->soc->max_supported_wake_events > 32)
-> +		tegra_pmc_writel(pmc, 0, PMC_SW_WAKE2_STATUS);
-> +
-> +	tegra_pmc_writel(pmc, 0, PMC_WAKE_STATUS);
-> +	if (pmc->soc->max_supported_wake_events > 32)
-> +		tegra_pmc_writel(pmc, 0, PMC_WAKE2_STATUS);
-> +
-> +	/* enable PMC wake */
-> +	if (data->hwirq >= 32)
-> +		offset = PMC_WAKE2_MASK;
-> +	else
-> +		offset = PMC_WAKE_MASK;
-> +	value = tegra_pmc_readl(pmc, offset);
-> +	if (on)
-> +		value |= 1 << bit;
-> +	else
-> +		value &= ~(1 << bit);
-> +	tegra_pmc_writel(pmc, value, offset);
-> +
-> +	return 0;
-> +}
-> +
->   static int tegra186_pmc_irq_set_wake(struct irq_data *data, unsigned int on)
->   {
->   	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
-> @@ -1948,6 +2009,48 @@ static int tegra186_pmc_irq_set_wake(struct irq_data *data, unsigned int on)
->   	return 0;
->   }
->   
-> +static int tegra210_pmc_irq_set_type(struct irq_data *data, unsigned int type)
-> +{
-> +	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
-> +	unsigned int offset, bit;
-> +	u32 value;
-> +
-> +	if (data->hwirq == ULONG_MAX)
-> +		return 0;
-> +
-> +	offset = data->hwirq / 32;
-> +	bit = data->hwirq % 32;
-> +
-> +	if (data->hwirq >= 32)
-> +		offset = PMC_WAKE2_LEVEL;
-> +	else
-> +		offset = PMC_WAKE_LEVEL;
-> +	value = tegra_pmc_readl(pmc, offset);
-> +
-> +	switch (type) {
-> +	case IRQ_TYPE_EDGE_RISING:
-> +	case IRQ_TYPE_LEVEL_HIGH:
-> +		value |= 1 << bit;
-> +		break;
-> +
-> +	case IRQ_TYPE_EDGE_FALLING:
-> +	case IRQ_TYPE_LEVEL_LOW:
-> +		value &= ~(1 << bit);
-> +		break;
-> +
-> +	case IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING:
-> +		value ^= 1 << bit;
-> +		break;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	tegra_pmc_writel(pmc, value, offset);
-> +
-> +	return 0;
-> +}
-> +
->   static int tegra186_pmc_irq_set_type(struct irq_data *data, unsigned int type)
->   {
->   	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
-> @@ -2535,6 +2638,11 @@ static const struct pinctrl_pin_desc tegra210_pin_descs[] = {
->   	TEGRA210_IO_PAD_TABLE(TEGRA_IO_PIN_DESC)
->   };
->   
-> +static const struct tegra_wake_event tegra210_wake_events[] = {
-> +	TEGRA_WAKE_GPIO("power", 24, 0, 189),
-> +	TEGRA_WAKE_IRQ("rtc", 16, 2),
-> +};
-> +
->   static const struct tegra_pmc_soc tegra210_pmc_soc = {
->   	.num_powergates = ARRAY_SIZE(tegra210_powergates),
->   	.powergates = tegra210_powergates,
-> @@ -2552,10 +2660,15 @@ static const struct tegra_pmc_soc tegra210_pmc_soc = {
->   	.regs = &tegra20_pmc_regs,
->   	.init = tegra20_pmc_init,
->   	.setup_irq_polarity = tegra20_pmc_setup_irq_polarity,
-> +	.irq_set_wake = tegra210_pmc_irq_set_wake,
-> +	.irq_set_type = tegra210_pmc_irq_set_type,
->   	.reset_sources = tegra210_reset_sources,
->   	.num_reset_sources = ARRAY_SIZE(tegra210_reset_sources),
->   	.reset_levels = NULL,
->   	.num_reset_levels = 0,
-> +	.num_wake_events = ARRAY_SIZE(tegra210_wake_events),
-> +	.wake_events = tegra210_wake_events,
-> +	.max_supported_wake_events = 64,
->   };
->   
->   #define TEGRA186_IO_PAD_TABLE(_pad)					     \
+- Correct error paths and PTR_ERR return values in the framework.
+- Expanded KernelDoc comments WRT PHY locking.
+- Pick up Andrew's review tag.
+
+Changed in v3:
+~~~~~~~~~~~~~~
+
+- Simplify the device tree binding and document the time stamping
+  phandle by itself.
+
+Changed in v2:
+~~~~~~~~~~~~~~
+
+- Per the v1 review, changed the modeling of MII time stamping
+  devices.  They are no longer a kind of mdio device.
+
+
+Richard Cochran (6):
+  net: Introduce peer to peer one step PTP time stamping.
+  net: Introduce a new MII time stamping interface.
+  net: Add a layer for non-PHY MII time stamping drivers.
+  dt-bindings: ptp: Introduce MII time stamping devices.
+  net: mdio: of: Register discovered MII time stampers.
+  ptp: Add a driver for InES time stamping IP core.
+
+ Documentation/devicetree/bindings/ptp/ptp-ines.txt |  35 +
+ .../devicetree/bindings/ptp/timestamper.txt        |  41 +
+ drivers/net/ethernet/broadcom/bnx2x/bnx2x_main.c   |   1 +
+ drivers/net/phy/Makefile                           |   2 +
+ drivers/net/phy/dp83640.c                          |  47 +-
+ drivers/net/phy/mii_timestamper.c                  | 121 +++
+ drivers/net/phy/phy.c                              |   4 +-
+ drivers/net/phy/phy_device.c                       |   5 +
+ drivers/of/of_mdio.c                               |  30 +-
+ drivers/ptp/Kconfig                                |  10 +
+ drivers/ptp/Makefile                               |   1 +
+ drivers/ptp/ptp_ines.c                             | 859 +++++++++++++++++++++
+ include/linux/mii_timestamper.h                    | 120 +++
+ include/linux/phy.h                                |  25 +-
+ include/uapi/linux/net_tstamp.h                    |   8 +
+ net/8021q/vlan_dev.c                               |   4 +-
+ net/Kconfig                                        |   7 +-
+ net/core/dev_ioctl.c                               |   1 +
+ net/core/ethtool.c                                 |   4 +-
+ net/core/timestamping.c                            |  20 +-
+ 20 files changed, 1287 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ptp/ptp-ines.txt
+ create mode 100644 Documentation/devicetree/bindings/ptp/timestamper.txt
+ create mode 100644 drivers/net/phy/mii_timestamper.c
+ create mode 100644 drivers/ptp/ptp_ines.c
+ create mode 100644 include/linux/mii_timestamper.h
+
+-- 
+2.11.0
+
