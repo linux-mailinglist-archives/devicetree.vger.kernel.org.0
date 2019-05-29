@@ -2,230 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EECD2DDE7
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 15:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77FE22DDFE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 15:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727054AbfE2NRK convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 May 2019 09:17:10 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:41940 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbfE2NRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 09:17:10 -0400
-Received: by mail-qt1-f193.google.com with SMTP id s57so2454006qte.8
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 06:17:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=38WVoDkA5tNJSn+74g5K5hd5HeWV9GPT9Cu7zY/fE7k=;
-        b=kmlH3+cB5bXp/X4NeNzxQSl/Ba+s7IMb5P9UWoXoL82VmoHuiJJuqg48LpfjW6joGS
-         hMEb5XF+TCxukqpSwXDbb542GcEsy+d1AQ0OtpY0akH8GRg7GG49SXWEyfCTRVquEFrO
-         q3Foa016v0LVJ6IfOdgnKOknUd1Y1DnD8+VpA6R0vDAOhxyp4150zXfrz2bEsH50KBAU
-         zwqF9Ffh77G7w6cx2QmmZJK6fDK3qlhRe21T7BptFmz/FHTDT4BfXqM0/YEeiKAAjxqS
-         LiscYXnrb6ghhTshDuP4cmTFRbSkHVydjmGiI7xwc9Bn9J5VnLVrnou35muFF1oDukbo
-         r77A==
-X-Gm-Message-State: APjAAAXgCdkIl0MnUG/jJTrzuaUQA3xcqstq0KBDSFEWstq7oM8ugHqb
-        0WDd5dg0ouMpayFma4QiUDaXuzgWpleROsc1tkcIxQ==
-X-Google-Smtp-Source: APXvYqwz4w5VaLU1XoZ45utYk/ZFqxDNLwTqIP/uw1ATQJcHa/8XriiX0iGvO1IdB/MedXQAqndDtpggI0JUND5s7xU=
-X-Received: by 2002:ac8:7656:: with SMTP id i22mr83063261qtr.260.1559135829299;
- Wed, 29 May 2019 06:17:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
- <20190521132712.2818-9-benjamin.tissoires@redhat.com> <CAO-hwJJXGTZq7zRVhcFNwh-kOo0rUhZOsNtFX1yA93Km=L+ynA@mail.gmail.com>
- <00f901d5143f$f5ea8420$e1bf8c60$@emc.com.tw> <20190528012101.GA193221@dtor-ws>
- <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com>
- <CAOOzhkq+vD034Q2FKB2ryR7Q9nY=iQjdrREuihkZTaVcg+E_Xg@mail.gmail.com>
- <CAO-hwJ+9tnmvD-K3_Ksesdvag1aNbLB7eJxb9ZKb7kM24unqQQ@mail.gmail.com> <010301d5161d$dd201e70$97605b50$@emc.com.tw>
-In-Reply-To: <010301d5161d$dd201e70$97605b50$@emc.com.tw>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Wed, 29 May 2019 15:16:55 +0200
-Message-ID: <CAO-hwJKFSFqupf10Dgmd-sLOSD2T0oymd-CwLLtAJ2QeE7DzZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
-To:     =?UTF-8?B?5buW5bSH5qau?= <kt.liao@emc.com.tw>
-Cc:     "Sean O'Brien" <seobrien@chromium.org>,
-        Peter Hutterer <peter.hutterer@who-t.net>,
-        Harry Cutts <hcutts@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
+        id S1727056AbfE2NVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 09:21:01 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:56759 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726029AbfE2NVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 09:21:01 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hVyVh-0003eY-JP; Wed, 29 May 2019 15:20:53 +0200
+Message-ID: <1559136052.3651.9.camel@pengutronix.de>
+Subject: Re: [PATCH v2 5/9] media: hantro: add support for named register
+ ranges
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Date:   Wed, 29 May 2019 15:20:52 +0200
+In-Reply-To: <20190529134645.65f8feb4@collabora.com>
+References: <20190529095424.23614-1-p.zabel@pengutronix.de>
+         <20190529095424.23614-6-p.zabel@pengutronix.de>
+         <20190529134645.65f8feb4@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+X-Mailer: Evolution 3.22.6-1+deb9u1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 29, 2019 at 2:56 PM 廖崇榮 <kt.liao@emc.com.tw> wrote:
->
->
->
-> -----Original Message-----
-> From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
-> Sent: Wednesday, May 29, 2019 3:17 PM
-> To: Sean O'Brien; Peter Hutterer
-> Cc: Harry Cutts; Dmitry Torokhov; 廖崇榮; Rob Herring; Aaron Ma; Hans de Goede; open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
-> Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
->
-> On Wed, May 29, 2019 at 2:12 AM Sean O'Brien <seobrien@chromium.org> wrote:
-> >
-> > We do still use a maxed out major axis as a signal for a palm in the
-> > touchscreen logic, but I'm not too concerned because if that axis is
-> > maxed out, the contact should probably be treated as a palm anyway...
-> >
-> > I'm more concerned with this affecting our gesture detection for
-> > touchpad. It looks like this change would cause all contacts to
-> > reported as some percentage bigger than they are currently. Can you
-> > give me an idea of how big that percentage is?
->
-> On the P52, I currently have:
-> [  +0.000009] max:    (3045,1731) drivers/input/mouse/elan_i2c_core.c:428
-> [  +0.000003] traces: (24,14) drivers/input/mouse/elan_i2c_core.c:429
->
-> -> with the computation done in the kernel:
-> width_ratio: 126
-> height_ratio: 123
->
-> For my average finger, the reported traces are between 4 and 6:
-> With the ETP_FWIDTH_REDUCE:
-> Major between 144 to 216
-> Minor between 132 to 198
->
-> Without:
-> Major between 504 to 756
-> Minor between 492 to 738
->
-> So a rough augmentation of 350%
->
-> For the Synaptics devices (over SMBus), they send the raw value of the traces, so you will get a major/minor between 2 to 5. Max on these axes is 15, so we should get the same percentage of value comparing to the range.
->
-> Elan's vendor report contains such information, which indicate how many trace are touched by finger/palm
->                 mk_x = (finger_data[3] & 0x0f);
->                 mk_y = (finger_data[3] >> 4);
-> Do we need to use mk_* for major/minor for keeping it consistent with other vendor?
+Hi Boris,
 
-IMO, no. It is better to send something closer to an actual unit
-instead of 12,5th of mm.
-However, the problem here is that major/minor can be swapped depending
-on how the finger is placed (horizontally or vertically), so
-unfortunately, if the axes and resolutions are not the same, then we
-are screwed, this would just be a value without unit.
+thank you for the review.
 
-> But this modification will impact Chromebook's usability and Chrome test suite.
+On Wed, 2019-05-29 at 13:46 +0200, Boris Brezillon wrote:
+> On Wed, 29 May 2019 11:54:20 +0200
+> Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> 
+> > Add support for multiple register ranges with SoC specific names.
+> > 
+> > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > ---
+> >  drivers/staging/media/hantro/hantro.h     |  7 ++++++-
+> >  drivers/staging/media/hantro/hantro_drv.c | 25 +++++++++++++++++------
+> >  2 files changed, 25 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+> > index 6b90fe48bcdf..b796867808d5 100644
+> > --- a/drivers/staging/media/hantro/hantro.h
+> > +++ b/drivers/staging/media/hantro/hantro.h
+> > @@ -27,6 +27,7 @@
+> >  
+> >  #define HANTRO_MAX_CLOCKS		4
+> >  #define HANTRO_MAX_IRQS			3
+> > +#define HANTRO_MAX_REG_RANGES		4
+> >  
+> >  #define MPEG2_MB_DIM			16
+> >  #define MPEG2_MB_WIDTH(w)		DIV_ROUND_UP(w, MPEG2_MB_DIM)
+> > @@ -63,6 +64,8 @@ struct hantro_codec_ops;
+> >   * @num_irqs:			number of irqs in the arrays
+> >   * @clk_names:			array of clock names
+> >   * @num_clocks:			number of clocks in the array
+> > + * @reg_names:			array of register range names
+> > + * @num_regs:			number of register range names in the array
+> >   */
+> >  struct hantro_variant {
+> >  	unsigned int enc_offset;
+> > @@ -80,6 +83,8 @@ struct hantro_variant {
+> >  	int num_irqs;
+> >  	const char *clk_names[HANTRO_MAX_CLOCKS];
+> >  	int num_clocks;
+> > +	const char *reg_names[HANTRO_MAX_REG_RANGES];
+> > +	int num_regs;
 
-Yeah, there is no point breaking things just for the fun of it.
+Do you suggest
+	const char * const *reg_names;
+...
 
-Cheers,
-Benjamin
+> >  };
+> >  
+> >  /**
+> > @@ -170,7 +175,7 @@ struct hantro_dev {
+> >  	struct platform_device *pdev;
+> >  	struct device *dev;
+> >  	struct clk_bulk_data clocks[HANTRO_MAX_CLOCKS];
+> > -	void __iomem *base;
+> > +	void __iomem *base[HANTRO_MAX_REG_RANGES];
+> 
+> Same comment as for the irq stuff.
 
->
->
->
-> Which is why libinput has a database of which device reports which pressure/major/minor ranges as otherwise the values are just impossible to understand.
->
-> Cheers,
-> Benjamin
->
->
->
-> >
-> > On Tue, May 28, 2019 at 11:13 AM Harry Cutts <hcutts@chromium.org> wrote:
-> > >
-> > > On Mon, 27 May 2019 at 18:21, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
-> > > >
-> > > > Hi Benjamin, KT,
-> > > >
-> > > > On Mon, May 27, 2019 at 11:55:01AM +0800, 廖崇榮 wrote:
-> > > > > Hi
-> > > > >
-> > > > > -----Original Message-----
-> > > > > From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
-> > > > > Sent: Friday, May 24, 2019 5:37 PM
-> > > > > To: Dmitry Torokhov; KT Liao; Rob Herring; Aaron Ma; Hans de
-> > > > > Goede
-> > > > > Cc: open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
-> > > > > Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true
-> > > > > width/height
-> > > > >
-> > > > > On Tue, May 21, 2019 at 3:28 PM Benjamin Tissoires <benjamin.tissoires@redhat.com> wrote:
-> > > > > >
-> > > > > > The width/height is actually in the same unit than X and Y. So
-> > > > > > we should not tamper the data, but just set the proper
-> > > > > > resolution, so that userspace can correctly detect which touch is a palm or a finger.
-> > > > > >
-> > > > > > Signed-off-by: Benjamin Tissoires
-> > > > > > <benjamin.tissoires@redhat.com>
-> > > > > >
-> > > > > > --
-> > > > > >
-> > > > > > new in v2
-> > > > > > ---
-> > > > > >  drivers/input/mouse/elan_i2c_core.c | 11 ++++-------
-> > > > > >  1 file changed, 4 insertions(+), 7 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/input/mouse/elan_i2c_core.c
-> > > > > > b/drivers/input/mouse/elan_i2c_core.c
-> > > > > > index 7ff044c6cd11..6f4feedb7765 100644
-> > > > > > --- a/drivers/input/mouse/elan_i2c_core.c
-> > > > > > +++ b/drivers/input/mouse/elan_i2c_core.c
-> > > > > > @@ -45,7 +45,6 @@
-> > > > > >  #define DRIVER_NAME            "elan_i2c"
-> > > > > >  #define ELAN_VENDOR_ID         0x04f3
-> > > > > >  #define ETP_MAX_PRESSURE       255
-> > > > > > -#define ETP_FWIDTH_REDUCE      90
-> > > > > >  #define ETP_FINGER_WIDTH       15
-> > > > > >  #define ETP_RETRY_COUNT                3
-> > > > > >
-> > > > > > @@ -915,12 +914,8 @@ static void elan_report_contact(struct elan_tp_data *data,
-> > > > > >                         return;
-> > > > > >                 }
-> > > > > >
-> > > > > > -               /*
-> > > > > > -                * To avoid treating large finger as palm, let's reduce the
-> > > > > > -                * width x and y per trace.
-> > > > > > -                */
-> > > > > > -               area_x = mk_x * (data->width_x - ETP_FWIDTH_REDUCE);
-> > > > > > -               area_y = mk_y * (data->width_y - ETP_FWIDTH_REDUCE);
-> > > > > > +               area_x = mk_x * data->width_x;
-> > > > > > +               area_y = mk_y * data->width_y;
-> > > > > >
-> > > > > >                 major = max(area_x, area_y);
-> > > > > >                 minor = min(area_x, area_y); @@ -1123,8
-> > > > > > +1118,10 @@ static int elan_setup_input_device(struct elan_tp_data *data)
-> > > > > >                              ETP_MAX_PRESSURE, 0, 0);
-> > > > > >         input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0,
-> > > > > >                              ETP_FINGER_WIDTH * max_width, 0,
-> > > > > > 0);
-> > > > > > +       input_abs_set_res(input, ABS_MT_TOUCH_MAJOR,
-> > > > > > + data->x_res);
-> > > > > >         input_set_abs_params(input, ABS_MT_TOUCH_MINOR, 0,
-> > > > > >                              ETP_FINGER_WIDTH * min_width, 0,
-> > > > > > 0);
-> > > > > > +       input_abs_set_res(input, ABS_MT_TOUCH_MINOR,
-> > > > > > + data->y_res);
-> > > > >
-> > > > > I had a chat with Peter on Wednesday, and he mentioned that this is dangerous as Major/Minor are max/min of the width and height. And given that we might have 2 different resolutions, we would need to do some computation in the kernel to ensure the data is correct with respect to the resolution.
-> > > > >
-> > > > > TL;DR: I don't think we should export the resolution there :(
-> > > > >
-> > > > > KT, should I drop the patch entirely, or is there a strong argument for keeping the ETP_FWIDTH_REDUCE around?
-> > > > > I suggest you apply the patch, I have no idea why ETP_FWIDTH_REDUCE existed.
-> > > > > Our FW team know nothing about ETP_FWIDTH_REDUCE ether.
-> > > > >
-> > > > > The only side effect will happen on Chromebook because such computation have stayed in ChromeOS' kernel for four years.
-> > > > > Chrome's finger/palm threshold may be different from other Linux distribution.
-> > > > > We will discuss it with Google once the patch picked by chrome and cause something wrong.
-> > > >
-> > > > Chrome has logic that contact with maximum major/minor is treated
-> > > > as a palm, so here the driver (which originally came from Chrome
-> > > > OS) artificially reduces the contact size to ensure that palm
-> > > > rejection logic does not trigger.
-> > > >
-> > > > I'm adding Harry to confirm whether we are still using this logic
-> > > > and to see if we can adjust it to be something else.
-> > >
-> > > I'm not very familiar with our touchpad code, so adding Sean
-> > > O'Brien, who is.
->
+... and
+	void __iomem **base;
+to get rid of HANTRO_MAX_REG_RANGES?
+
+Would you like to see the same for clk_names?
+
+> >  	void __iomem *enc_base;
+> >  	void __iomem *dec_base;
+> >  
+> > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> > index f677b40bcd2d..bd02b27258e3 100644
+> > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > @@ -692,12 +692,25 @@ static int hantro_probe(struct platform_device *pdev)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > -	res = platform_get_resource(vpu->pdev, IORESOURCE_MEM, 0);
+> > -	vpu->base = devm_ioremap_resource(vpu->dev, res);
+> > -	if (IS_ERR(vpu->base))
+> > -		return PTR_ERR(vpu->base);
+> > -	vpu->enc_base = vpu->base + vpu->variant->enc_offset;
+> > -	vpu->dec_base = vpu->base + vpu->variant->dec_offset;
+> > +	if (vpu->variant->num_regs) {
+> > +		for (i = 0; i < vpu->variant->num_regs; i++) {
+> > +			const char *reg_name = vpu->variant->reg_names[i];
+> > +
+> > +			res = platform_get_resource_byname(vpu->pdev,
+> > +							   IORESOURCE_MEM,
+> > +							   reg_name);
+> > +			vpu->base[i] = devm_ioremap_resource(vpu->dev, res);
+> > +			if (IS_ERR(vpu->base[i]))
+> > +				return PTR_ERR(vpu->base[i]);
+> > +		}
+> > +	} else {
+> > +		res = platform_get_resource(vpu->pdev, IORESOURCE_MEM, 0);
+> > +		vpu->base[0] = devm_ioremap_resource(vpu->dev, res);
+> > +		if (IS_ERR(vpu->base[0]))
+> > +			return PTR_ERR(vpu->base[0]);
+> > +		vpu->enc_base = vpu->base[0] + vpu->variant->enc_offset;
+> > +		vpu->dec_base = vpu->base[0] + vpu->variant->dec_offset;
+> 
+> I see ->dec_based is assigned in ->hw_init() in patch 8, so maybe it's
+> better to have the same workflow for rk variants: assign
+> vpu->{dec,enc}_base in ->hw_init() 
+
+I didn't want to change this around too much, as dec_base is just needed
+for the vdpu_read/write functions, and I expect we'll have to somehow
+replace these anyway when adding G2 support.
+Adding yet another set of register accessors for g1_read/write vs
+g2_read/write isn't very convenient. Maybe it woudl be better to call
+the register accessors with the base as a parameter instead of
+hantro_dev.
+
+Also the kerneldoc comment says .init() should "initialize hardware".
+Should that be changed to "variant specific initialization" if the
+enc/dec_base are set there?
+
+> and set ->num_regs to 1 (plus a
+> fallback to platform_get_resource() instead of
+> platform_get_resource_byname() when ->reg_names[0] == NULL).
+
+I suppose we could do that, but
+
+	static const char * const rk3288_regs[] = {
+		NULL
+	}
+
+	const struct hantro_variant rk3288_vpu_variant = {
+		.reg_n
+ames = rk3288_regs,
+		.num_regs = ARRAY_SIZE(rk3288_regs)
+	};
+
+would look a bit strange if we were to get rid of
+HANTRO_MAX_REG_RANGES...
+
+regards
+Philipp
