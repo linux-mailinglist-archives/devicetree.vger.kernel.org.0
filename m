@@ -2,91 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D918F2D30B
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 03:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D219D2D339
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 03:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725856AbfE2BAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 21:00:42 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:43331 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725805AbfE2BAl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 21:00:41 -0400
-Received: by mail-pg1-f194.google.com with SMTP id f25so249149pgv.10
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 18:00:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=5okW6g2VapWq+966zCYvvEkTXlL5bw9tVSxlg7ghy+Y=;
-        b=YUuDgzjEuJMlWW4Q7SU3Nwqb9mKmP8inZ7fTn8526il+ecMkkCKinaV5fhtcohgMms
-         8tQs/rulsNffA0rbpzc0ANiUa57KQCw7VMPFTRqrS4d3JJ+99G/Nk6lJ1nCoMlXDgsLM
-         bZdDe7hx2ecOU2dlHCuN6vqcbfs+qwTKP1GxAt+beJWErt10s7C2dk3qnxTrmb+ElFVA
-         HmwbGFspPbvFjnJC6dXVb5fjK+iUXLVYTnJuh/9fnL3EXc2u/eoQipDU7aGbPZY82ZCM
-         x+tw+Qv2CZ3ULihn65VrHSiADLAQuy5kHfeqbfL4u7iy1O6JLeFk39Wj0KKflIGYIyox
-         sOZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5okW6g2VapWq+966zCYvvEkTXlL5bw9tVSxlg7ghy+Y=;
-        b=EYs8jHJY6GkneJS6oQfsD7XaZK198aEfjeaSzk2wGASGCKRjkM0VJ6vD8d/1uIh5NA
-         mKNggH0RptexRmneHwNHxJ4cJ6JrVZDuck2U27dk5VQA9TH9LUc8ozXX7j8qevFyxSEg
-         MEC32IxrTquTiApr5uS/PvIvvMwOdgoPCq10pTs4GXX0Ew7YB5niqPafAMUkhWakwIMp
-         V/dvA7Z2IWY0zFX1TEVG9UT72lLnsUQM7WboEZwx79ghin6PNUJA2WsVuE2W2Jg+UeFO
-         /VTBbkrX7Ff6q242vPmyhhKTVHH/3aGBGR348t2fnw9WYQhw16MXhVkcvvJiyEKvwiFw
-         fr8w==
-X-Gm-Message-State: APjAAAXnKDTJaJ3k8aY58Dok1dy/TMu8qUVBNFfTOCMYQLg8E1Dre+2s
-        QRl9k/QvWMWk2pzZxTybrC0OxQ==
-X-Google-Smtp-Source: APXvYqwLe9mfrNT7kmddfcq3cOHoZhNyk/rZbdgG0+dKzVdRNnJ5+snM6mVlWtpLxJZWw1Q1w/2BIA==
-X-Received: by 2002:a63:f703:: with SMTP id x3mr132423383pgh.394.1559091641061;
-        Tue, 28 May 2019 18:00:41 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id p64sm19050426pfp.72.2019.05.28.18.00.40
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 28 May 2019 18:00:40 -0700 (PDT)
-Date:   Tue, 28 May 2019 18:00:38 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] Qualcomm PCIe2 PHY
-Message-ID: <20190529010038.GB3923@builder>
-References: <20190502001406.10431-1-bjorn.andersson@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190502001406.10431-1-bjorn.andersson@linaro.org>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+        id S1725830AbfE2BWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 21:22:43 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:53491 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725805AbfE2BWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 21:22:42 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 084352203E;
+        Tue, 28 May 2019 21:22:39 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Tue, 28 May 2019 21:22:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=O3Xkv3EI6y00AB2M6iUlJwWyBdvRoMi
+        nM2rnAHW1aYg=; b=hOV871nmAdvpcLrcayvkgFn0OV342CHDmf9kRVh6YDNmapN
+        fJb/O6F+9R4mH5T2vUaw/G/lAjwe1k35zu/KVu376BtR7EMzdjcWH9srREK6cmwe
+        mPrU+UuN9nSCLzEJr5KwObQEP8qgH+qWdsIZR6O1ksL5VoRb/APcKCGZyciXMzAg
+        0bK5svhKSY/ZUx7jCipcmflg+MfIxXSDVXKcMeEJ2S9T2O2EB/WV+vrFDtTZeniQ
+        9uocJZZ2+5sX1XfbDZ6pcoVIaL+v3nfWlbRrfT4MzCd05XZKk7rAdvwqJ3NqcUC3
+        cjPOVgfq29rA/oq50mMHOJvpVP8ev72bcJDVCmQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=O3Xkv3
+        EI6y00AB2M6iUlJwWyBdvRoMinM2rnAHW1aYg=; b=nYZSZa2jMoyk0fHbHbePYC
+        GFW/9W5yQC4kMgPoLN7SlHkfxWroFiLVNRyPRcoktMVkSYZyKyIzP5oBKRJTHBcu
+        X3Tg4xxvy0eKxst8OKBpCV6NXhuN+E33sZrKPK5EhTd6z0OY3K4JYsbXhn0MOjv5
+        TxK6JQMn/5/pfeOiyEMFoy/aud+7JIoqWVCKROVlJypkLRvbdxnaaOwnk7bWlb5Z
+        2LrABS+yVXintxlj6vOBljfKpnsaLgscHaCtgTTnT6fkfMVIvfJOUDnC8aoZTQuV
+        jHATHUB5AGUFHD8qsSFFA/FYZ+tx8uogNEBWUOvWZRUJXgRTNskpf3R/Wk4Szy/Q
+        ==
+X-ME-Sender: <xms:3d7tXKQ_mHmvNk8LYkpIljRURpmhytPa06O4NBRV1egLyXIuEyolqw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddviedggeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:3d7tXFQHu7jR7Vh8F975N4hdkfE8Jvw6GtZjT_KasakbDHkvaP8hsw>
+    <xmx:3d7tXG5opnSsYQh9XuURjuUhGMxzAXlIFfjMNM_ddsDKtU5zNJEtyw>
+    <xmx:3d7tXKVYrp-nVot3T4GLSTfXXoqv8Scjl8fGLSdSu2wmvFXXYIETBA>
+    <xmx:3t7tXL14R3RvaZCn_gnQ2MRGOzKNMaHfplYh8XlawYvBZGEjy61q4A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 42D6FE00A2; Tue, 28 May 2019 21:22:37 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-555-g49357e1-fmstable-20190528v2
+Mime-Version: 1.0
+Message-Id: <c0e01b11-5ea2-42d1-be67-2998809e310c@www.fastmail.com>
+In-Reply-To: <20190527112753.1681-1-a.filippov@yadro.com>
+References: <20190527112753.1681-1-a.filippov@yadro.com>
+Date:   Wed, 29 May 2019 10:52:36 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Alexander A. Filippov" <a.filippov@yadro.com>,
+        linux-aspeed@lists.ozlabs.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Rob Herring" <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: aspeed: g4: add video engine support
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 01 May 17:14 PDT 2019, Bjorn Andersson wrote:
 
-> The Qualcomm PCIe2 PHY is based on design from Synopsys and found in
-> several different platforms where the QMP PHY isn't used.
+
+On Mon, 27 May 2019, at 20:58, Alexander Filippov wrote:
+> Add a node to describe the video engine and VGA scratch registers on
+> AST2400.
 > 
-
-Kishon, any feedback on this or would you be willing to pick it up?
-
-Regards,
-Bjorn
-
-> Bjorn Andersson (2):
->   dt-bindings: phy: Add binding for Qualcomm PCIe2 PHY
->   phy: qcom: Add Qualcomm PCIe2 PHY driver
+> These changes were copied from aspeed-g5.dtsi
 > 
->  .../bindings/phy/qcom-pcie2-phy.txt           |  42 +++
->  drivers/phy/qualcomm/Kconfig                  |   8 +
->  drivers/phy/qualcomm/Makefile                 |   1 +
->  drivers/phy/qualcomm/phy-qcom-pcie2.c         | 331 ++++++++++++++++++
->  4 files changed, 382 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom-pcie2-phy.txt
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-pcie2.c
+> Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
+
+Ugh, I should really sort out the bmc-misc stuff, I don't like to see it propagate
+in its current form. That's not your problem though, and I hope to address it in
+the near future.
+
+For the OpenBMC kernel tree:
+
+Acked-by: Andrew Jeffery <andrew@aj.id.au>
+
+> ---
+>  arch/arm/boot/dts/aspeed-g4.dtsi | 62 ++++++++++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 > 
+> diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
+> index 6011692df15a..adc1804918df 100644
+> --- a/arch/arm/boot/dts/aspeed-g4.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g4.dtsi
+> @@ -168,6 +168,10 @@
+>  					compatible = "aspeed,g4-pinctrl";
+>  				};
+>  
+> +				vga_scratch: scratch {
+> +					compatible = "aspeed,bmc-misc";
+> +				};
+> +
+>  				p2a: p2a-control {
+>  					compatible = "aspeed,ast2400-p2a-ctrl";
+>  					status = "disabled";
+> @@ -195,6 +199,16 @@
+>  				reg = <0x1e720000 0x8000>;	// 32K
+>  			};
+>  
+> +			video: video@1e700000 {
+> +				compatible = "aspeed,ast2400-video-engine";
+> +				reg = <0x1e700000 0x1000>;
+> +				clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
+> +					 <&syscon ASPEED_CLK_GATE_ECLK>;
+> +				clock-names = "vclk", "eclk";
+> +				interrupts = <7>;
+> +				status = "disabled";
+> +			};
+> +
+>  			gpio: gpio@1e780000 {
+>  				#gpio-cells = <2>;
+>  				gpio-controller;
+> @@ -1408,6 +1422,54 @@
+>  	};
+>  };
+>  
+> +&vga_scratch {
+> +	dac_mux {
+> +		offset = <0x2c>;
+> +		bit-mask = <0x3>;
+> +		bit-shift = <16>;
+> +	};
+> +	vga0 {
+> +		offset = <0x50>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga1 {
+> +		offset = <0x54>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga2 {
+> +		offset = <0x58>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga3 {
+> +		offset = <0x5c>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga4 {
+> +		offset = <0x60>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga5 {
+> +		offset = <0x64>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga6 {
+> +		offset = <0x68>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +	vga7 {
+> +		offset = <0x6c>;
+> +		bit-mask = <0xffffffff>;
+> +		bit-shift = <0>;
+> +	};
+> +};
+> +
+>  &sio_regs {
+>  	sio_2b {
+>  		offset = <0xf0>;
 > -- 
-> 2.18.0
+> 2.20.1
 > 
+>
