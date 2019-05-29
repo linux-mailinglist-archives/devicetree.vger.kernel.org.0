@@ -2,190 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 089652D60C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 09:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA4C2D61C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 09:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726076AbfE2HQw convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 May 2019 03:16:52 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:39863 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726080AbfE2HQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 03:16:52 -0400
-Received: by mail-qt1-f196.google.com with SMTP id i34so1344266qta.6
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 00:16:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=YBsWEZZfo+UgqHtldSmUeH6vzvpGKBEdjxmYs3cxrzQ=;
-        b=lx6Skjs9fyGEo3R80NH77YQFGsgd1v9g0vL66daJeJT/fIXl0qWw/rSKlsqXYHvz2b
-         i5sFwJYd8VLvlNiDS2+ne8C5eqaP00RzMIdsE3pmBqhLjB2OF/KoKRcHvsjB/LaJiYer
-         FAaS6UMrNy1ugEqmI+tpPnYLI2j2S8JUa32OY3hYvoQK2O7OY+lli9HYbn+8JZDMsu3P
-         lLXGb/ZzaYhYTKuR03UurlIgbZRI2vIt/pncBZo5anLBx+85VY5lPgS+yjPHbXz13il4
-         bXXr01T66lPap26ar1QLz5PG0MUr9qpPb5Bmx5kB9UjfZqPl4qYWAN3thU14dtAYAeaW
-         7ejA==
-X-Gm-Message-State: APjAAAUqCosr7uZ5EiTEDBRVKaBslHdmf32nqbcY7Hr73i1BO9tr8OFL
-        OPmw+iaPq8qVImA2dvVz7/QOs9+HnkfrTVRhif8/bA==
-X-Google-Smtp-Source: APXvYqx3QpT7U52GOpJXgpspwc7C5sBUu9dZBrX+Y0X3RjiEndCbZ2+u1ir4OX62jHwIBBrVhwd28m50aYY5rJOeHMo=
-X-Received: by 2002:ac8:224d:: with SMTP id p13mr6085549qtp.154.1559114210817;
- Wed, 29 May 2019 00:16:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
- <20190521132712.2818-9-benjamin.tissoires@redhat.com> <CAO-hwJJXGTZq7zRVhcFNwh-kOo0rUhZOsNtFX1yA93Km=L+ynA@mail.gmail.com>
- <00f901d5143f$f5ea8420$e1bf8c60$@emc.com.tw> <20190528012101.GA193221@dtor-ws>
- <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com> <CAOOzhkq+vD034Q2FKB2ryR7Q9nY=iQjdrREuihkZTaVcg+E_Xg@mail.gmail.com>
-In-Reply-To: <CAOOzhkq+vD034Q2FKB2ryR7Q9nY=iQjdrREuihkZTaVcg+E_Xg@mail.gmail.com>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Wed, 29 May 2019 09:16:38 +0200
-Message-ID: <CAO-hwJ+9tnmvD-K3_Ksesdvag1aNbLB7eJxb9ZKb7kM24unqQQ@mail.gmail.com>
-Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
-To:     "Sean O'Brien" <seobrien@chromium.org>,
-        Peter Hutterer <peter.hutterer@who-t.net>
-Cc:     Harry Cutts <hcutts@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        =?UTF-8?B?5buW5bSH5qau?= <kt.liao@emc.com.tw>,
+        id S1726080AbfE2HT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 03:19:56 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:55629 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726683AbfE2HTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 03:19:55 -0400
+Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 740E3240014;
+        Wed, 29 May 2019 07:19:46 +0000 (UTC)
+Date:   Wed, 29 May 2019 09:19:45 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+Subject: Re: [linux-sunxi] Re: [PATCH v2 00/10] Allwinner A64/H6 IR support
+Message-ID: <20190529071945.mrbgurcvl2jvpm5r@flea>
+References: <20190526222536.10917-1-peron.clem@gmail.com>
+ <20190527134805.j7t4ffstrnhdml47@core.my.home>
+ <CAJiuCcdnQa0TArduT4yBbUyd+dOaM0cQ1JcRUQLXLR6s_5e8sA@mail.gmail.com>
+ <20190527163117.hpealt6cttqzqdxz@core.my.home>
+ <20190527172337.5qxh5qeqnul55gsb@core.my.home>
+ <CAJiuCccnRCqez2uG-pU8XY4Z=5S8rDwFB3rgsBovPHY1Uxyazw@mail.gmail.com>
+ <20190527193016.yxngu5grsqnctx3z@core.my.home>
+ <20190527195330.pugb7ypvnyv32fug@core.my.home>
+ <CAJiuCccpnEqw_tGXST+WtGmZLbE+=wN1Hn9HKrk1+4WsW-abiA@mail.gmail.com>
+ <20190528180447.zlrdfmn73fntnf4n@core.my.home>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="o7ly3ahra6ipavvh"
+Content-Disposition: inline
+In-Reply-To: <20190528180447.zlrdfmn73fntnf4n@core.my.home>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 29, 2019 at 2:12 AM Sean O'Brien <seobrien@chromium.org> wrote:
+
+--o7ly3ahra6ipavvh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, May 28, 2019 at 08:04:47PM +0200, Ond=C5=99ej Jirman wrote:
+> Hello Cl=C3=A9ment,
 >
-> We do still use a maxed out major axis as a signal for a palm in the touchscreen
-> logic, but I'm not too concerned because if that axis is maxed out, the contact
-> should probably be treated as a palm anyway...
->
-> I'm more concerned with this affecting our gesture detection for
-> touchpad. It looks
-> like this change would cause all contacts to reported as some percentage bigger
-> than they are currently. Can you give me an idea of how big that percentage is?
-
-On the P52, I currently have:
-[  +0.000009] max:    (3045,1731) drivers/input/mouse/elan_i2c_core.c:428
-[  +0.000003] traces: (24,14) drivers/input/mouse/elan_i2c_core.c:429
-
--> with the computation done in the kernel:
-width_ratio: 126
-height_ratio: 123
-
-For my average finger, the reported traces are between 4 and 6:
-With the ETP_FWIDTH_REDUCE:
-Major between 144 to 216
-Minor between 132 to 198
-
-Without:
-Major between 504 to 756
-Minor between 492 to 738
-
-So a rough augmentation of 350%
-
-For the Synaptics devices (over SMBus), they send the raw value of the
-traces, so you will get a major/minor between 2 to 5. Max on these
-axes is 15, so we should get the same percentage of value comparing to
-the range.
-Which is why libinput has a database of which device reports which
-pressure/major/minor ranges as otherwise the values are just
-impossible to understand.
-
-Cheers,
-Benjamin
-
-
-
->
-> On Tue, May 28, 2019 at 11:13 AM Harry Cutts <hcutts@chromium.org> wrote:
+> On Tue, May 28, 2019 at 06:21:19PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Hi Ond=C5=99ej,
 > >
-> > On Mon, 27 May 2019 at 18:21, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
+> > On Mon, 27 May 2019 at 21:53, 'Ond=C5=99ej Jirman' via linux-sunxi
+> > <linux-sunxi@googlegroups.com> wrote:
 > > >
-> > > Hi Benjamin, KT,
+> > > Hi Cl=C3=A9ment,
 > > >
-> > > On Mon, May 27, 2019 at 11:55:01AM +0800, 廖崇榮 wrote:
-> > > > Hi
+> > > On Mon, May 27, 2019 at 09:30:16PM +0200, verejna wrote:
+> > > > Hi Cl=C3=A9ment,
 > > > >
-> > > > -----Original Message-----
-> > > > From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
-> > > > Sent: Friday, May 24, 2019 5:37 PM
-> > > > To: Dmitry Torokhov; KT Liao; Rob Herring; Aaron Ma; Hans de Goede
-> > > > Cc: open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
-> > > > Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
+> > > > On Mon, May 27, 2019 at 08:49:59PM +0200, Cl=C3=A9ment P=C3=A9ron w=
+rote:
+> > > > > Hi Ondrej,
+> > > > >
+> > > > > >
+> > > > > > I'm testing on Orange Pi 3.
+> > > > > >
+> > > > > > With your patches, I get kernel lockup after ~1 minute of use (=
+ssh stops
+> > > > > > responding/serial console stops responding). I don't have RC co=
+ntroller to test
+> > > > > > the CIR. But just enabling the CIR causes kernel to hang shortl=
+y after boot.
+> > > > > >
+> > > > > > I tried booting multiple times. Other results:
+> > > > > >
+> > > > > > boot 2:
+> > > > > >
+> > > > > > - ssh hangs even before connecting (ethernet crashes/is reset)
+> > > > > >
+> > > > > > INFO: rcu_sched detected stalls on CPUs/tasks:
+> > > > > > rcu:    0-....: (1 GPs behind) idle=3D64a/0/0x3 softirq=3D4091/=
+4091 fqs=3D2437
+> > > > > > dwmac-sun8i 5020000.ethernet eth0: Reset adapter.
+> > > > > > rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: {=
+ 0-... } 5696 jiffies s: 81 root: 0x1/.
+> > > > > > rcu: blocking rcu_node structures:
+> > > > > >  rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> > > > > > rcu:    0-....: (1 GPs behind) idle=3D64a/0/0x3 softirq=3D4091/=
+4091 fqs=3D9714
+> > > > > > rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: {=
+ 0-... } 21568 jiffies s: 81 root: 0x1/.
+> > > > > > rcu: blocking rcu_node structures:
+> > > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> > > > > > rcu:    0-....: (1 GPs behind) idle=3D64a/0/0x3 softirq=3D4091/=
+4091 fqs=3D17203
+> > > > > >
+> > > > > > above messages appear regularly.
+> > > > > >
+> > > > > > boot 3:
+> > > > > >
+> > > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> > > > > > rcu:    0-....: (9 GPs behind) idle=3D992/0/0x3 softirq=3D6123/=
+6123 fqs=3D2600
+> > > > > >
+> > > > > >
+> > > > > > Sometimes serial console keeps working. Sometimes it locks up t=
+oo (but not
+> > > > > > frequently). Storage locks up always (any program that was not =
+run before
+> > > > > > the crash can't be started and lock up the kernel hard, program=
+s that
+> > > > > > were executed prior, can be run again).
+> > > > > >
+> > > > > >
+> > > > > > Exactly the same kernel build on H5 seems to work (or at least =
+I was not able to
+> > > > > > trigger the crash). So this seems to be limited to H6 for now.
+> > > > > >
+> > > > > > I suspect that the crash occurs sooner if I vary the light (tur=
+n on/off the table
+> > > > > > lamp light).
+> > > > > >
+> > > > > > Without your patches, everything works fine on H6, and I never =
+see
+> > > > > > crashes/lockups.
+> > > > > >
+> > > > > > I tired physically covering the IR receiver, and that helps pre=
+venting the
+> > > > > > crash. As soon as I uncover it, the crash happens again in 1s o=
+r so:
+> > > > > >
+> > > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> > > > > > rcu:    0-....: (1 GPs behind) idle=3D4ea/0/0x3 softirq=3D4483/=
+4484 fqs=3D2444
+> > > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> > > > > > rcu:    0-....: (1 GPs behind) idle=3D4ea/0/0x3 softirq=3D4483/=
+4484 fqs=3D9777
+> > > > > >
+> > > > > > This time I got the hung task and reboot: (probably not directl=
+y related)
+> > > > > >
+> > > > > > INFO: task find:560 blocked for more than 120 seconds.
+> > > > > >       Not tainted 5.2.0-rc2+ #7
+> > > > > > "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables thi=
+s message.
+> > > > > > find            D    0   560    551 0x00000000
+> > > > > > Call trace:
+> > > > > >  __switch_to+0x6c/0x90
+> > > > > >  __schedule+0x1f4/0x578
+> > > > > >  schedule+0x28/0xa8
+> > > > > >  io_schedule+0x18/0x38
+> > > > > >  __lock_page+0x12c/0x208
+> > > > > >  pagecache_get_page+0x238/0x2e8
+> > > > > >  __get_node_page+0x6c/0x310
+> > > > > >  f2fs_get_node_page+0x14/0x20
+> > > > > >  f2fs_iget+0x70/0xc60
+> > > > > >  f2fs_lookup+0xcc/0x218
+> > > > > >  __lookup_slow+0x78/0x160
+> > > > > >  lookup_slow+0x3c/0x60
+> > > > > >  walk_component+0x1e4/0x2e0
+> > > > > >  path_lookupat.isra.13+0x5c/0x1e0
+> > > > > >  filename_lookup.part.23+0x6c/0xe8
+> > > > > >  user_path_at_empty+0x4c/0x60
+> > > > > >  vfs_statx+0x78/0xd8
+> > > > > >  __se_sys_newfstatat+0x24/0x48
+> > > > > >  __arm64_sys_newfstatat+0x18/0x20
+> > > > > >  el0_svc_handler+0x9c/0x170
+> > > > > >  el0_svc+0x8/0xc
+> > > > > > Kernel panic - not syncing: hung_task: blocked tasks
+> > > > > > CPU: 1 PID: 34 Comm: khungtaskd Not tainted 5.2.0-rc2+ #7
+> > > > > > Hardware name: OrangePi 3 (DT)
+> > > > > > Call trace:
+> > > > > >  dump_backtrace+0x0/0xf8
+> > > > > >  show_stack+0x14/0x20
+> > > > > >  dump_stack+0xa8/0xcc
+> > > > > >  panic+0x124/0x2dc
+> > > > > >  proc_dohung_task_timeout_secs+0x0/0x40
+> > > > > >  kthread+0x120/0x128
+> > > > > >  ret_from_fork+0x10/0x18
+> > > > > > SMP: stopping secondary CPUs
+> > > > > > Kernel Offset: disabled
+> > > > > > CPU features: 0x0002,20002000
+> > > > > > Memory Limit: none
+> > > > > > Rebooting in 3 seconds..
+> > > > > >
+> > > > > >
+> > > > > > Meanwhile H5 based board now runs for 15 minutes without issues.
+> > > > > >
+> > > > > > So to sum up:
+> > > > > >
+> > > > > > - these crashes are definitely H6 IR related
+> > > > > >   - the same kernel, on H5 works
+> > > > > >   - covering the sensor prevents the crashes on H6
+> > > > > >
+> > > > > > So we should probably hold on with the series, until this is fi=
+gured out.
+> > > > >
+> > > > > Thanks for testing, but I think it's more hardware related.
+> > > > > It seems that your IR is flooded or misconfigured for your board.
+> > > > > Could you add a simple print in the "sunxi_ir_irq"
 > > > >
-> > > > On Tue, May 21, 2019 at 3:28 PM Benjamin Tissoires <benjamin.tissoires@redhat.com> wrote:
-> > > > >
-> > > > > The width/height is actually in the same unit than X and Y. So we
-> > > > > should not tamper the data, but just set the proper resolution, so
-> > > > > that userspace can correctly detect which touch is a palm or a finger.
-> > > > >
-> > > > > Signed-off-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> > > > >
-> > > > > --
-> > > > >
-> > > > > new in v2
-> > > > > ---
-> > > > >  drivers/input/mouse/elan_i2c_core.c | 11 ++++-------
-> > > > >  1 file changed, 4 insertions(+), 7 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/input/mouse/elan_i2c_core.c
-> > > > > b/drivers/input/mouse/elan_i2c_core.c
-> > > > > index 7ff044c6cd11..6f4feedb7765 100644
-> > > > > --- a/drivers/input/mouse/elan_i2c_core.c
-> > > > > +++ b/drivers/input/mouse/elan_i2c_core.c
-> > > > > @@ -45,7 +45,6 @@
-> > > > >  #define DRIVER_NAME            "elan_i2c"
-> > > > >  #define ELAN_VENDOR_ID         0x04f3
-> > > > >  #define ETP_MAX_PRESSURE       255
-> > > > > -#define ETP_FWIDTH_REDUCE      90
-> > > > >  #define ETP_FINGER_WIDTH       15
-> > > > >  #define ETP_RETRY_COUNT                3
-> > > > >
-> > > > > @@ -915,12 +914,8 @@ static void elan_report_contact(struct elan_tp_data *data,
-> > > > >                         return;
-> > > > >                 }
-> > > > >
-> > > > > -               /*
-> > > > > -                * To avoid treating large finger as palm, let's reduce the
-> > > > > -                * width x and y per trace.
-> > > > > -                */
-> > > > > -               area_x = mk_x * (data->width_x - ETP_FWIDTH_REDUCE);
-> > > > > -               area_y = mk_y * (data->width_y - ETP_FWIDTH_REDUCE);
-> > > > > +               area_x = mk_x * data->width_x;
-> > > > > +               area_y = mk_y * data->width_y;
-> > > > >
-> > > > >                 major = max(area_x, area_y);
-> > > > >                 minor = min(area_x, area_y); @@ -1123,8 +1118,10 @@
-> > > > > static int elan_setup_input_device(struct elan_tp_data *data)
-> > > > >                              ETP_MAX_PRESSURE, 0, 0);
-> > > > >         input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0,
-> > > > >                              ETP_FINGER_WIDTH * max_width, 0, 0);
-> > > > > +       input_abs_set_res(input, ABS_MT_TOUCH_MAJOR, data->x_res);
-> > > > >         input_set_abs_params(input, ABS_MT_TOUCH_MINOR, 0,
-> > > > >                              ETP_FINGER_WIDTH * min_width, 0, 0);
-> > > > > +       input_abs_set_res(input, ABS_MT_TOUCH_MINOR, data->y_res);
-> > > >
-> > > > I had a chat with Peter on Wednesday, and he mentioned that this is dangerous as Major/Minor are max/min of the width and height. And given that we might have 2 different resolutions, we would need to do some computation in the kernel to ensure the data is correct with respect to the resolution.
-> > > >
-> > > > TL;DR: I don't think we should export the resolution there :(
-> > > >
-> > > > KT, should I drop the patch entirely, or is there a strong argument for keeping the ETP_FWIDTH_REDUCE around?
-> > > > I suggest you apply the patch, I have no idea why ETP_FWIDTH_REDUCE existed.
-> > > > Our FW team know nothing about ETP_FWIDTH_REDUCE ether.
-> > > >
-> > > > The only side effect will happen on Chromebook because such computation have stayed in ChromeOS' kernel for four years.
-> > > > Chrome's finger/palm threshold may be different from other Linux distribution.
-> > > > We will discuss it with Google once the patch picked by chrome and cause something wrong.
+> > > > Yes, I get flood of IRQs with status =3D 0x30. (after I turn on the=
+ lamp,
+> > > > but it persists even after I turn it off and cover the IR sensor).
 > > >
-> > > Chrome has logic that contact with maximum major/minor is treated as a
-> > > palm, so here the driver (which originally came from Chrome OS)
-> > > artificially reduces the contact size to ensure that palm rejection
-> > > logic does not trigger.
+> > > Interestingly, status also contains RAC, and it's 0 in this case. So =
+the
+> > > interrupt if firing with "No available data in RX FIFO" repeatedly. R=
+egardless
+> > > of input.
 > > >
-> > > I'm adding Harry to confirm whether we are still using this logic and to
-> > > see if we can adjust it to be something else.
+> > > So there's something else up.
 > >
-> > I'm not very familiar with our touchpad code, so adding Sean O'Brien, who is.
+> > Really weird indeed...
+> >
+> > I have pushed a new version, where I didn't enabled the support for
+> > others H6 board and the cover letter include a link to this thread.
+> >
+> > It would be great if other sunxi users could test this series, to
+> > check if this issue in present in other OPi3 / Pine H64.
+>
+> I don't know if this is enough. I'd rather prefer if the driver has a way
+> of detecting this situation and shutting the module down, at the very lea=
+st,
+> instead of taking down the entire system with IRQ flood.
+>
+> It may be detectable by checking RAC =3D=3D 0 when RX FIFO available inte=
+rrupt
+> flag is set.
+>
+> Otherwise, this will eventually be forgotten (cover letters are not even =
+stored
+> in git), and someone will fall into the trap again, after enabling r_ir on
+> their board, and end up chasing their tail for a day. I've initially only=
+ found
+> this is IR driver issue after a long unpleasant debugging session, chasin=
+g other
+> more obvious ideas (as when this happens there's absolutely nothing in th=
+e log
+> indicating this is IR issue).
+
+Returning IRQ_NONE in the handler will disable the interrupt line
+after 100,000 (I think?) occurences. That might be a good workaround,
+but we definitely want to have a comment there :)
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--o7ly3ahra6ipavvh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXO4ykQAKCRDj7w1vZxhR
+xb1NAQDNa15Jo+iKDcJUUbYL1BxtfxSwU8hyju1duEPWEdh9IgEAhopDq0liLqdG
+T92UnkB3/xmbiRXIsrutMI+zxSNBvgU=
+=MPUW
+-----END PGP SIGNATURE-----
+
+--o7ly3ahra6ipavvh--
