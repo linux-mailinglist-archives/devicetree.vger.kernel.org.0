@@ -2,231 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99ED02DEB1
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 15:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1144A2DECD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 15:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727310AbfE2NmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 09:42:17 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:45705 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726612AbfE2NmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 09:42:16 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 545AC1BF204;
-        Wed, 29 May 2019 13:42:12 +0000 (UTC)
-Date:   Wed, 29 May 2019 15:43:21 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Ian Arkver <ian.arkver.dev@gmail.com>, linux-media@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
-Message-ID: <20190529134321.3naykdw4jx5xu3jl@uno.localdomain>
-References: <20190520201812.7937-1-marex@denx.de>
- <20190528114758.a4oac3zgdy7dkx7k@uno.localdomain>
- <6cd36678-2a2c-2a43-e245-4263c0e0f666@denx.de>
- <20190528151036.nxsh7tjyqrbpbrhy@uno.localdomain>
- <08c1a65e-dcc5-e1ae-053a-823931b9ec15@denx.de>
- <20190529062844.bsdg7u7rgvkcmq6k@uno.localdomain>
- <e481c8a1-a0c8-f0d9-9df7-e016e5c3bc57@denx.de>
- <59881e2a-56c2-3801-2058-d939b25d6259@gmail.com>
- <acb6c57e-49da-614b-d9fd-833b5eca131c@denx.de>
+        id S1727172AbfE2Nqn convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 May 2019 09:46:43 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:53060 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727014AbfE2Nqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 09:46:43 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 2A66E261484;
+        Wed, 29 May 2019 14:46:41 +0100 (BST)
+Date:   Wed, 29 May 2019 15:46:38 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 5/9] media: hantro: add support for named register
+ ranges
+Message-ID: <20190529154638.0ebd7c56@collabora.com>
+In-Reply-To: <1559136052.3651.9.camel@pengutronix.de>
+References: <20190529095424.23614-1-p.zabel@pengutronix.de>
+        <20190529095424.23614-6-p.zabel@pengutronix.de>
+        <20190529134645.65f8feb4@collabora.com>
+        <1559136052.3651.9.camel@pengutronix.de>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nipb565inxjvdusf"
-Content-Disposition: inline
-In-Reply-To: <acb6c57e-49da-614b-d9fd-833b5eca131c@denx.de>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 29 May 2019 15:20:52 +0200
+Philipp Zabel <p.zabel@pengutronix.de> wrote:
 
---nipb565inxjvdusf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi Boris,
+> 
+> thank you for the review.
+> 
+> On Wed, 2019-05-29 at 13:46 +0200, Boris Brezillon wrote:
+> > On Wed, 29 May 2019 11:54:20 +0200
+> > Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> >   
+> > > Add support for multiple register ranges with SoC specific names.
+> > > 
+> > > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > > ---
+> > >  drivers/staging/media/hantro/hantro.h     |  7 ++++++-
+> > >  drivers/staging/media/hantro/hantro_drv.c | 25 +++++++++++++++++------
+> > >  2 files changed, 25 insertions(+), 7 deletions(-)
+> > > 
+> > > diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+> > > index 6b90fe48bcdf..b796867808d5 100644
+> > > --- a/drivers/staging/media/hantro/hantro.h
+> > > +++ b/drivers/staging/media/hantro/hantro.h
+> > > @@ -27,6 +27,7 @@
+> > >  
+> > >  #define HANTRO_MAX_CLOCKS		4
+> > >  #define HANTRO_MAX_IRQS			3
+> > > +#define HANTRO_MAX_REG_RANGES		4
+> > >  
+> > >  #define MPEG2_MB_DIM			16
+> > >  #define MPEG2_MB_WIDTH(w)		DIV_ROUND_UP(w, MPEG2_MB_DIM)
+> > > @@ -63,6 +64,8 @@ struct hantro_codec_ops;
+> > >   * @num_irqs:			number of irqs in the arrays
+> > >   * @clk_names:			array of clock names
+> > >   * @num_clocks:			number of clocks in the array
+> > > + * @reg_names:			array of register range names
+> > > + * @num_regs:			number of register range names in the array
+> > >   */
+> > >  struct hantro_variant {
+> > >  	unsigned int enc_offset;
+> > > @@ -80,6 +83,8 @@ struct hantro_variant {
+> > >  	int num_irqs;
+> > >  	const char *clk_names[HANTRO_MAX_CLOCKS];
+> > >  	int num_clocks;
+> > > +	const char *reg_names[HANTRO_MAX_REG_RANGES];
+> > > +	int num_regs;  
+> 
+> Do you suggest
+> 	const char * const *reg_names;
+> ...
 
-HI Marek,
+Yes.
 
-On Wed, May 29, 2019 at 01:09:47PM +0200, Marek Vasut wrote:
-> On 5/29/19 1:04 PM, Ian Arkver wrote:
-> > Hi,
-> >
-> > On 29/05/2019 11:41, Marek Vasut wrote:
-> >> On 5/29/19 8:28 AM, Jacopo Mondi wrote:
-> >>
-> >> [...]
-> >>
-> >>>>>>> [1]
-> >>>>>>> https://www.renesas.com/eu/en/products/audio-video/video-decoders=
--encoders/video-decoders/device/ISL79987.html
-> >>>>>>>
-> >>>>>>>
-> >>>>>>>> +Required Properties:
-> >>>>>>>> +- compatible: value should be "isil,isl79987"
-> >>>>>
-> >>>>> And here you might want to have 2 different compatibles for 79987 a=
-nd
-> >>>>> 79988.
-> >>>>
-> >>>> The 79988 is not supported yet, do we want to have it in the binding
-> >>>> doc?
-> >>>>
-> >>>
-> >>> I got mislead by the isl7998x naming scheme you used...
-> >>>
-> >>> I would say that's up to you, the two chips seems very similar,
-> >>> and it might make sense to provide bindings that support both. At the
-> >>> same time, as long as the here defined bindings does not prevent
-> >>> future expansions to include the ISL79988, its support could be safely
-> >>> post-poned. In that case please s/isl7998x/isl79987/ in this document
-> >>> and do not mention BT565 in the description.
-> >>
-> >> Right
-> >>
-> >>>> [...]
-> >>>>
-> >>>>>>> I see from the example you only support one output port? How do y=
-ou
-> >>>>>>> model the input ones.
-> >>>>>>
-> >>>>>> I don't . Do we model analog inputs now somehow ?
-> >>>>>
-> >>>>> I really think so, please see:
-> >>>>> Documentation/devicetree/bindings/display/connector/analog-tv-conne=
-ctor.txt
-> >>>>>
-> >>>>>
-> >>>>> And as an example of a board device tree using connectors to model
-> >>>>> analog input see how the cvbs input on Salvator-X is described:
-> >>>>>
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0cvbs-in {
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "composit=
-e-video-connector";
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =3D "CVBS IN";
-> >>>>>
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port {
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-cvbs_con: endpoint {
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 remote-endpoint =3D <&adv7482_ain7>;
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-};
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0};
-> >>>>>
-> >>>>> I think you should provide 4 input ports, where to connect input fr=
-om
-> >>>>> the analog connectors, and derive the number of enabled inputs from
-> >>>>> the number of endpoints connected to an active remote.
-> >>>>
-> >>>> Deriving the number of active physical inputs from some existing
-> >>>> binding
-> >>>> makes sense.
-> >>>>
-> >>>> However unlike the adv7482, the isl79987 does not support remapping =
-the
-> >>>> physical inputs to ADCs in the chip. It does support some remapping =
-of
-> >>>> physical inputs to MIPI CSI2 channels, but that's probably not very
-> >>>> useful.
-> >>>>
-> >>>
-> >>> I understand, but I will now use against you the argument you have
-> >>> correctly pointed out here below that DT should describe hardware, and
-> >>> the hardware has indeed 4 input ports..
-> >>
-> >> My question here is whether it makes sense to describe the ports even =
-if
-> >> they cannot be muxed to different ADC. Does it ?
-> >
-> > Each input port can be either differential CVBS or single ended with a
-> > 2:1 input select mux. It would be nice to be able to describe this.
->
-> Where do you see that ?
->
-> > You cannot remap the inputs to different ADCs, but you can remap the
-> > ADCs to different VC IDs using the
-> > ISL7998x_REG_P5_LI_ENGINE_VC_ASSIGNMENT register. Describing each input
-> > would proivde somewhere to specify the vc-id.
->
-> I think Jacopo mentioned above the input muxing and the MIPI CSI2 VC
-> muxing are two separate things. But I have to wonder, do we have a way
-> of muxing the VCs in the DT or via the media controller yet ?
+> 
+> > >  };
+> > >  
+> > >  /**
+> > > @@ -170,7 +175,7 @@ struct hantro_dev {
+> > >  	struct platform_device *pdev;
+> > >  	struct device *dev;
+> > >  	struct clk_bulk_data clocks[HANTRO_MAX_CLOCKS];
+> > > -	void __iomem *base;
+> > > +	void __iomem *base[HANTRO_MAX_REG_RANGES];  
+> > 
+> > Same comment as for the irq stuff.  
+> 
+> ... and
+> 	void __iomem **base;
+> to get rid of HANTRO_MAX_REG_RANGES?
 
-I'm not sure I get what you mean with "input muxing", do you mean
-controlling which input is directed to which ADC ? I don't have the
-chip manual, but according to what you and Ian said this is not
-possible.
+This one would have to be dynamically allocated, but yes.
 
-Selecting which input video stream is directed to which CSI-2 virtual
-channel in the output CSI-2 stream is not possible in mainline. There
-are patches in development that would allow you to do so, but their
-design is not fully finalized yet. They would, in any case, require
-you to have one sink pad for each input port, and while you could
-register as many pads as it is specified in your custom property,
-you would loose the notion of which input is connected to which port
-ie. when a single input (isil,num-inputs=3D1) is connected to an input
-port which is not the first one (anyway, quickly looking at 2/2 it
-seems to me you only register a single source pad for this device).
+> 
+> Would you like to see the same for clk_names?
 
-The DT bindings layout is an orthogonal problem though. My opinion is
-that as the chip has 4 available input connections it should have 4
-input ports in the bindings definition, and for each one you would
-register a sink pad. Only the actually connected ones should be present
-in the DTS, so that the driver knows which input port is active and,
-once something that allows you to control VC will land in mainline,
-it will let you tell something like "I want the video stream
-received on the input port@2 sent in virtual channel x in the output
-CSI-2 stream", but again this is quite an orthogonal issue. Sure thing
-is that with the current design and implementation, which afaict does
-not provides any sink pad, this is frowned upon (but you can then say
-'who cares, since it's not here yet' :)
+It'd be better, indeed.
 
-Or what Ian said, if you can model a connector that provides 2 single
-ended inputs, each connected to an input port and muxed internally by
-the chip, you could only do that if you have numbered input ports I
-guess. Nobody requires you support any of these, but at least bindings
-should be defined in a future proof way, to avoid later changes to the
-ABI.
+> 
+> > >  	void __iomem *enc_base;
+> > >  	void __iomem *dec_base;
+> > >  
+> > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> > > index f677b40bcd2d..bd02b27258e3 100644
+> > > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > > @@ -692,12 +692,25 @@ static int hantro_probe(struct platform_device *pdev)
+> > >  	if (ret)
+> > >  		return ret;
+> > >  
+> > > -	res = platform_get_resource(vpu->pdev, IORESOURCE_MEM, 0);
+> > > -	vpu->base = devm_ioremap_resource(vpu->dev, res);
+> > > -	if (IS_ERR(vpu->base))
+> > > -		return PTR_ERR(vpu->base);
+> > > -	vpu->enc_base = vpu->base + vpu->variant->enc_offset;
+> > > -	vpu->dec_base = vpu->base + vpu->variant->dec_offset;
+> > > +	if (vpu->variant->num_regs) {
+> > > +		for (i = 0; i < vpu->variant->num_regs; i++) {
+> > > +			const char *reg_name = vpu->variant->reg_names[i];
+> > > +
+> > > +			res = platform_get_resource_byname(vpu->pdev,
+> > > +							   IORESOURCE_MEM,
+> > > +							   reg_name);
+> > > +			vpu->base[i] = devm_ioremap_resource(vpu->dev, res);
+> > > +			if (IS_ERR(vpu->base[i]))
+> > > +				return PTR_ERR(vpu->base[i]);
+> > > +		}
+> > > +	} else {
+> > > +		res = platform_get_resource(vpu->pdev, IORESOURCE_MEM, 0);
+> > > +		vpu->base[0] = devm_ioremap_resource(vpu->dev, res);
+> > > +		if (IS_ERR(vpu->base[0]))
+> > > +			return PTR_ERR(vpu->base[0]);
+> > > +		vpu->enc_base = vpu->base[0] + vpu->variant->enc_offset;
+> > > +		vpu->dec_base = vpu->base[0] + vpu->variant->dec_offset;  
+> > 
+> > I see ->dec_based is assigned in ->hw_init() in patch 8, so maybe it's
+> > better to have the same workflow for rk variants: assign
+> > vpu->{dec,enc}_base in ->hw_init()   
+> 
+> I didn't want to change this around too much, as dec_base is just needed
+> for the vdpu_read/write functions, and I expect we'll have to somehow
+> replace these anyway when adding G2 support.
 
-Anyway, you had my opinion, multiple times already, and as I'm not in
-any position to judge if something is acceptable for merge or not,
-I'll now get quiet hoping that this prolonged email exchange drags in
-opinion from more experienced people to tell you which direction you
-should take and if what you have here is fine already or not :)
+If G1 and G2 blocks are completely independent I think they should be
+represented as separate instances, and we can then re-use the same
+accessors. Am I missing something?
 
-Cheers
-   j
+> Adding yet another set of register accessors for g1_read/write vs
+> g2_read/write isn't very convenient. Maybe it woudl be better to call
+> the register accessors with the base as a parameter instead of
+> hantro_dev.
 
->
-> --
-> Best regards,
-> Marek Vasut
+Looks like the reg base is actually per functionality (decoder or
+encoder) not per device. Maybe we should stop passing hantro_dev
+directly and instead expose hantro_func objects that would have a
+pointer to the underlying hantro_dev plus extra attributes like a base
+address for regs, ....
 
---nipb565inxjvdusf
-Content-Type: application/pgp-signature; name="signature.asc"
+That might help cope with the single-instance+multi-func vs
+single-instance-single-func difference we have between rk and imx
+integration, and we would also have a single set of read/write
+accessors.
 
------BEGIN PGP SIGNATURE-----
+> 
+> Also the kerneldoc comment says .init() should "initialize hardware".
+> Should that be changed to "variant specific initialization" if the
+> enc/dec_base are set there?
+> 
+> > and set ->num_regs to 1 (plus a
+> > fallback to platform_get_resource() instead of
+> > platform_get_resource_byname() when ->reg_names[0] == NULL).  
+> 
+> I suppose we could do that, but
+> 
+> 	static const char * const rk3288_regs[] = {
+> 		NULL
+> 	}
+> 
+> 	const struct hantro_variant rk3288_vpu_variant = {
+> 		.reg_n
+> ames = rk3288_regs,
+> 		.num_regs = ARRAY_SIZE(rk3288_regs)
+> 	};
+> 
+> would look a bit strange if we were to get rid of
+> HANTRO_MAX_REG_RANGES...
 
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlzujHkACgkQcjQGjxah
-Vjwi+g//XOEwGejKpnanrjRDRDUq05QzROLEuW1OLaNFRY9OE0FSD1r6UsvnAasa
-V1oBOkFGA0mzKxeoQ7tiURhXZY6JB/1I73b7Xbm0BT4Ol/uus90hfOjUe2ZoG9x5
-Il3/DLM7bz6LJUSsXJIz1STydUx7LlKwJ3M8PL3xcpLC28XoB9jbfVBjk1LEEzpo
-TDbXE8/BaL+ui9xePKJK3pT2h3utbklG/1EF8zkxKl9ugGzrFeIBBsaWRAejlsBm
-o8TzyqdWzCcS9Nn8EkLDp/aP+IGSEuWk+b9gwVSlgUBdbsjpPBXi0G4EJkblWXq4
-ggOZNph1TAuCpsiiuuSG1QQIFNH0o4yF3o0ZTfJtJeC9qC6oFwjiSOLmvgtcCBNe
-o7UE658iRo2ELXdvB20WnsY9285ydYXg7OHvQq8w+mgILRmZJdxRciXjlFG60xal
-Wjwt7Qckz8obCDdUm2govLrCaq/fpKAxBsU5KwEfZXDhqGnRjET1EKMMN6tkb3KM
-yuIgmZ085Yv7PQcwIjsSpNTEtKnfLKu7oSoDFqtsE/MzfSminlbpt/UIxz8+19xV
-/9iqJUG4ucWAd/XxbmyexMGOT2gZrCMxvupfxyqTg3zvq6ybPP7OL0HCa3CR9Edi
-k07kZYavI/rMlX/3r5MIIsWobS0WpSlUKrfQ21Vs2bg3IGJpGJM=
-=HawL
------END PGP SIGNATURE-----
-
---nipb565inxjvdusf--
+You're right, we can probably stay with num_regs = 0 for the unnamed
+mem-resource case.
