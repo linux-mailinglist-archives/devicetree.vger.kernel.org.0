@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B7592DA6E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:25:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A42FB2DA8B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726076AbfE2KZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:25:16 -0400
-Received: from mail-eopbgr70071.outbound.protection.outlook.com ([40.107.7.71]:61248
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725911AbfE2KZQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 06:25:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FXKIyHYWRL/5yD5Hh+pQ0F4XUIBGy3kBE/ZPXYhtL3g=;
- b=JA5CR2KZNqJa8xUoTAif4joAFRYZLWvtNQEi8UxyXfGdETRR47O8lpwIJPHu9rtz/KyjZtAEoaMC/3YVDwSw4iU/YE1PxMBBLKL18Gh796tdfHOaDOUGZK6mUq9aJgjpmBz3Mh6wciXoHhMPGY0RMIc4pkbbbUxwJPuA/duIJH4=
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
- VI1PR04MB3135.eurprd04.prod.outlook.com (10.170.229.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.20; Wed, 29 May 2019 10:25:10 +0000
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::9577:379c:2078:19a1]) by VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::9577:379c:2078:19a1%7]) with mapi id 15.20.1922.021; Wed, 29 May 2019
- 10:25:10 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Anson Huang <anson.huang@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH] ARM: dts: imx7d-sdb: Make SW2's voltage fixed
-Thread-Topic: [PATCH] ARM: dts: imx7d-sdb: Make SW2's voltage fixed
-Thread-Index: AQHVFeqgtOd5kX+KPEOTGMPKRjBjKg==
-Date:   Wed, 29 May 2019 10:25:10 +0000
-Message-ID: <VI1PR04MB505512BC507108ABC7620F4AEE1F0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-References: <20190529065056.27516-1-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a8a87c4d-e2b5-40d9-089b-08d6e41fee09
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB3135;
-x-ms-traffictypediagnostic: VI1PR04MB3135:
-x-microsoft-antispam-prvs: <VI1PR04MB31352E515814F1B1298C48CAEE1F0@VI1PR04MB3135.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:792;
-x-forefront-prvs: 0052308DC6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(396003)(346002)(39860400002)(366004)(136003)(189003)(199004)(14454004)(8676002)(7696005)(66476007)(66946007)(76176011)(446003)(81166006)(53936002)(6436002)(64756008)(8936002)(66556008)(6506007)(66446008)(33656002)(73956011)(102836004)(91956017)(305945005)(2906002)(81156014)(74316002)(3846002)(99286004)(7736002)(76116006)(110136005)(54906003)(26005)(186003)(316002)(229853002)(6116002)(9686003)(68736007)(71190400001)(476003)(55016002)(53546011)(6246003)(66066001)(52536014)(4744005)(478600001)(44832011)(4326008)(2501003)(25786009)(86362001)(5660300002)(71200400001)(256004)(486006);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3135;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 9OXalPQEc9KOb93PjJhwt30DnSdiZuwA5fgbQjA7mmWcKs2RFOHNV6VL/rcee8Py8hMuXRCJZrwtr/3bgCDubDiGZvrPtNGx1eoy6thqewojsTziptHZqbamBF0fCh3H+zrQgkpGLxzr0ygItMwyprVhS/JQySaMovd+Z4urmrXVdhs41YsgHegCFYCSL2SfVfzsZTZNl532Cm6HGIabID2wNyt5pjvutshmCvhuruMy4lpZpG6XKngTRQ3nvnikUXY6/dh9mw6RIH5uCB7ym7/9NfhOYVclNC/OJkwdLfBPQY8K9r6l+sJzlbU8Wmof41LiDl0GOJR1WjY+u4rEchURZqJGe/ZQMM9LE5TENsiYmlsQJbtgEvZWTzO2HlyqfISrqT+H3g6KLo+rMY1GwzcKxIH+zSNJocuJs3rwq8k=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726439AbfE2K0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 06:26:17 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:37401 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726718AbfE2K0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:26:17 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 45DRh73yGqz1rJ78;
+        Wed, 29 May 2019 12:26:15 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 45DRh73VHQz1qqkp;
+        Wed, 29 May 2019 12:26:15 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id CfurZjzY8LnY; Wed, 29 May 2019 12:26:14 +0200 (CEST)
+X-Auth-Info: Vk0zqBZ8amlFVaT33yycQxDuIwxajVTrwTwaF0PGk5E=
+Received: from kurokawa.lan (ip-86-49-110-70.net.upcbroadband.cz [86.49.110.70])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed, 29 May 2019 12:26:14 +0200 (CEST)
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Jan Tuerk <jan.tuerk@emtrion.com>,
+        Thierry Reding <treding@nvidia.com>, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: Add ETM0700G0DH6 compatible string
+Date:   Wed, 29 May 2019 12:25:40 +0200
+Message-Id: <20190529102540.4608-1-marex@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8a87c4d-e2b5-40d9-089b-08d6e41fee09
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2019 10:25:10.7902
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3135
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29.05.2019 09:49, Anson.Huang@nxp.com wrote:=0A=
-> From: Anson Huang <Anson.Huang@nxp.com>=0A=
-> =0A=
-> On i.MX7D SDB board, SW2 supplies a lot of peripheral devices,=0A=
-> its voltage should be fixed at 1.8V. The commit 43967d9b5a7c=0A=
-> ("ARM: dts: imx7d-sdb: Assign corresponding power supply for LDOs")=0A=
-> assigns SW2 as the supplier of vdd1p0d, and when its comsumers=0A=
-> pcie-phy/mipi-phy try to set the vdd1p0d to 1.0V, regulator core=0A=
-> will also set SW2 to its best(min) voltage to 1.5V, and it will=0A=
-> lead to board reset.=0A=
-> =0A=
-> This patch makes SW2's voltage fixed at 1.8V to avoid this issue.=0A=
-> =0A=
-> Fixes: 43967d9b5a7c ("ARM: dts: imx7d-sdb: Assign corresponding power sup=
-ply for LDOs")=0A=
-> Reported-by: Leonard Crestez <leonard.crestez@nxp.com>=0A=
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>=0A=
-=0A=
-Reviewed-by: Leonard Crestez <leonard.crestez@nxp.com>=0A=
-=0A=
-Other boards don't seem to be affected by the original series.=0A=
+The ETM0700G0DH6 is currently documented as using edt,etm070080dh6
+compatible string, however the Linux kernel driver as well as a
+couple of DTs use edt,etm0700g0dh6 compatible string. Add it into
+the documentation.
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Jan Tuerk <jan.tuerk@emtrion.com>
+Cc: Thierry Reding <treding@nvidia.com>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+ .../devicetree/bindings/display/panel/edt,et-series.txt         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/edt,et-series.txt b/Documentation/devicetree/bindings/display/panel/edt,et-series.txt
+index be8684327ee4..b7ac1c725f97 100644
+--- a/Documentation/devicetree/bindings/display/panel/edt,et-series.txt
++++ b/Documentation/devicetree/bindings/display/panel/edt,et-series.txt
+@@ -40,7 +40,7 @@ simple-panel.txt
+ | Identifier      | compatbile          | description                         |
+ +=================+=====================+=====================================+
+ | ETM0700G0DH6    | edt,etm070080dh6    | WVGA TFT Display with capacitive    |
+-|                 |                     | Touchscreen                         |
++|                 | edt,etm0700g0dh6    | Touchscreen                         |
+ +-----------------+---------------------+-------------------------------------+
+ | ETM0700G0BDH6   | edt,etm070080bdh6   | Same as ETM0700G0DH6 but with       |
+ |                 |                     | inverted pixel clock.               |
+-- 
+2.20.1
+
