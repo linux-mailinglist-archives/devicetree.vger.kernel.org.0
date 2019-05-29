@@ -2,88 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 862EC2E806
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 00:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E11B2E89E
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 00:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbfE2WSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 18:18:49 -0400
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:42841 "EHLO
-        mail-qt1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726395AbfE2WSt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 18:18:49 -0400
-Received: by mail-qt1-f180.google.com with SMTP id s15so4587056qtk.9
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 15:18:49 -0700 (PDT)
+        id S1726225AbfE2W7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 18:59:01 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35037 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726189AbfE2W7B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 18:59:01 -0400
+Received: by mail-pl1-f195.google.com with SMTP id p1so1688576plo.2;
+        Wed, 29 May 2019 15:59:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=netronome-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :organization:mime-version:content-transfer-encoding;
-        bh=Wc/2ZTn3bTmajEUQNWRtv6uulelmq6BsGRobTvdNAko=;
-        b=SksXRdsB8O7xv2f88XfT5zyPQ0rks09KzTEHjOnbw/ryUGuywHy5C96zm7m55V4q1S
-         6pOsPtw7TOD4SVxUkZVF6hQVs99zRYAPUXoTYJjTjUlXY9L9EvD9Cu3uYN3qX+rlsoQx
-         WWgrHNM4W/Dqq8MGzbR7W8JMqj5bR8alEOxERhiCFvJGCcSL4H4Jc5HW66kKpESk8wmh
-         6KVbUPIhHzmYlipsNDxxyrG8BX5og+rz5KIOWdRFvXWw618m0zTP4qATl5bw61Z6KRvf
-         ey9UjpJwQOjMA7VP5vq5C7zNgR67G428HtZ2cSushTk7wJyPG4qSakQr9c1C8A6E0ppa
-         mVDw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=iRXiq08eonK9BxjJjymdgHQ4qGSvRUxD96bZCDtUMV8=;
+        b=stSrV1REP7r/iO0UySmKgfFQfgnoSywv5NEtp+3mDh+GJouFI80ivyUakPvqig8Azk
+         YgB10Lri9r0RC0ld01sWyFm0/h8uTiv14UMm9g9A5G5CsmRxkOYkpXzsBxF+Q17278tr
+         Px91blXo6+fUgF+HLBAuoi2qy4+OyklLJPHr9DZt3StO0PqO4rhu88kqA9lQuNlnPgvN
+         yn07ols/kBnUXU7GcG4++x6XMFl1njQt5KNlxr6O8HGncwNDZXgKxrpK6qctCadJc6WV
+         PlenhQY9FKgMHji+69msD05gr+N6JwIZ2G+9zzgd1/be20BaLEw4xZLahuoCFZPzkVjy
+         dljg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:organization:mime-version:content-transfer-encoding;
-        bh=Wc/2ZTn3bTmajEUQNWRtv6uulelmq6BsGRobTvdNAko=;
-        b=aALlqnEkH75PJV96gfnv8SSpYVXK+4W94Zlbdy8ED3IOwKscak+v2JG6sZpQQcjnid
-         2c3lcVZ04qqmI8mQ/gSdAbG6bPyhFOu82C9ikdcemdlDjBqZcqau7mRV9v4FDjQnJq2a
-         HADm6kt1FUpwapyu2zuUxrYEyIVWN4VIex3Icoy6dATBluZh7Kj6wZXzEtDDGqX7Ov3Q
-         k6e1v4yqysKhR6KeVqj6xuGss5UFlSluXDcRNPBmpE7GoQxHkYcxVPrNhFXCi71fuzoG
-         JTvwKjyhwKlDcSVo8rA+4IgTAbtKblrRiiP1mB+L/j7aH8nZaOX2cV/cno49P1KTZBix
-         9D2A==
-X-Gm-Message-State: APjAAAXCZT2a4MSMksSQCCaoh6XdLbee1dhUKTa0OcaoyNumM1YdWjw4
-        URES6I91s0QcmbtLhz76sOEHTQ==
-X-Google-Smtp-Source: APXvYqyrWklChrPKL+Kd4yWTw1qaxtz9fRC45MEyUccJVW59QWt96Dd3OtsUvwdgNreRsyBaN2yHeg==
-X-Received: by 2002:aed:39e5:: with SMTP id m92mr394942qte.106.1559168328672;
-        Wed, 29 May 2019 15:18:48 -0700 (PDT)
-Received: from cakuba.netronome.com ([66.60.152.14])
-        by smtp.gmail.com with ESMTPSA id s28sm400345qtc.81.2019.05.29.15.18.47
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 29 May 2019 15:18:48 -0700 (PDT)
-Date:   Wed, 29 May 2019 15:18:44 -0700
-From:   Jakub Kicinski <jakub.kicinski@netronome.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        "Paul Burton" <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 2/2] net: mscc: ocelot: Hardware ofload for
- tc flower filter
-Message-ID: <20190529151802.19aa82a2@cakuba.netronome.com>
-In-Reply-To: <1559125580-6375-3-git-send-email-horatiu.vultur@microchip.com>
-References: <1559125580-6375-1-git-send-email-horatiu.vultur@microchip.com>
- <1559125580-6375-3-git-send-email-horatiu.vultur@microchip.com>
-Organization: Netronome Systems, Ltd.
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=iRXiq08eonK9BxjJjymdgHQ4qGSvRUxD96bZCDtUMV8=;
+        b=lIKICgNdqe8nW2pKu226NZHVZM8dO147F1gPugTsGpbLhr+u77QJgdAbjF+H9EJliV
+         co0r9aaHsm/01TP7b2Cyf4PtXgARL1FqwtP546o7fbtGrHUe9tTbqQYX6Or/ZuQSh8ZB
+         eizX9HMXEVRFSRqeobl0F2MVczZggy8ZaDS+6CixDAqtymuKuYXIHSMK7MFBVIDPX+2d
+         qHRKeScffwtFuvPEBX0fZAItVFafPrThHQ7RIh3Vut44mFuWsCFnfxNj3x0/rGq9DHMI
+         aAFLMvrqwyxhcPV6clVPSPIbr5+X68caQIfNJUB5ZNRmloxEinib9djDeNGOTILY+ABo
+         wyuA==
+X-Gm-Message-State: APjAAAWHIOXWTNUGk8NgirbSn5jLAVC43aodSaCxCwAYd1zVBiCX5/j2
+        NpGFKQfI7s2fz3+lzJJNhYX/3H8sV8Q=
+X-Google-Smtp-Source: APXvYqx96A2IXwPpSqyQ4BjLhdKAVqBGtW28Z6W8F3//efV2DHQ3i/2tcwUQ5QxYVU6xOHShEZbpJA==
+X-Received: by 2002:a17:902:b601:: with SMTP id b1mr458014pls.117.1559170740954;
+        Wed, 29 May 2019 15:59:00 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id s66sm822586pfb.37.2019.05.29.15.58.59
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 29 May 2019 15:59:00 -0700 (PDT)
+Date:   Wed, 29 May 2019 15:57:48 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "timur@kernel.org" <timur@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>
+Subject: Re: [PATCH 1/3] ARM: dts: imx: Add mclk0 clock for SAI
+Message-ID: <20190529225742.GA17556@Asurada-Nvidia.nvidia.com>
+References: <20190528132034.3908-1-daniel.baluta@nxp.com>
+ <20190528132034.3908-2-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190528132034.3908-2-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 May 2019 12:26:20 +0200, Horatiu Vultur wrote:
-> +static int ocelot_flower_replace(struct tc_cls_flower_offload *f,
-> +				 struct ocelot_port_block *port_block)
-> +{
-> +	struct ocelot_ace_rule *rule;
-> +	int ret;
-> +
-> +	if (port_block->port->tc.block_shared)
-> +		return -EOPNOTSUPP;
+On Tue, May 28, 2019 at 01:21:00PM +0000, Daniel Baluta wrote:
+> From: Shengjiu Wang <shengjiu.wang@nxp.com>
+> 
+> Audio MCLK source option is selected with a 4:1 MUX
+> controller using MCLK Select bits in SAI xCR2 register.
+> 
+> On imx6/7 mclk0 and mclk1 always point to the same clock
+> source. Anyhow, this is no longer true for imx8.
+> 
+> For this reason, we need to add mclk0 and handle it
+> in a generic way in SAI driver.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+>  arch/arm/boot/dts/imx6sx.dtsi | 6 ++++--
+>  arch/arm/boot/dts/imx6ul.dtsi | 9 ++++++---
+>  arch/arm/boot/dts/imx7s.dtsi  | 9 ++++++---
 
-FWIW since you only support TRAP and DROP actions here (AFAICT) you
-should actually be okay with shared blocks.  The problems with shared
-blocks start when the action is stateful (like act_police), because we
-can't share that state between devices.  But for most actions which just
-maintain statistics, it's fine to allow shared blocks.  HTH
+These are dtsi/dts files that have SAI missing mclk0:
+arch/arm/boot/dts/imx6ul.dtsi
+arch/arm/boot/dts/imx6sx.dtsi
+arch/arm/boot/dts/ls1021a.dtsi
+arch/arm/boot/dts/imx7s.dtsi
+arch/arm/boot/dts/vfxxx.dtsi
+arch/arm64/boot/dts/freescale/imx8mq.dtsi
+arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+
+Would it be possible for you to update the others also?
+
+Thanks
+Nicolin
