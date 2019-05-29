@@ -2,75 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A42FB2DA8B
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D502DAB6
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:29:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726439AbfE2K0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:26:17 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:37401 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726718AbfE2K0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:26:17 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 45DRh73yGqz1rJ78;
-        Wed, 29 May 2019 12:26:15 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 45DRh73VHQz1qqkp;
-        Wed, 29 May 2019 12:26:15 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id CfurZjzY8LnY; Wed, 29 May 2019 12:26:14 +0200 (CEST)
-X-Auth-Info: Vk0zqBZ8amlFVaT33yycQxDuIwxajVTrwTwaF0PGk5E=
-Received: from kurokawa.lan (ip-86-49-110-70.net.upcbroadband.cz [86.49.110.70])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed, 29 May 2019 12:26:14 +0200 (CEST)
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Jan Tuerk <jan.tuerk@emtrion.com>,
-        Thierry Reding <treding@nvidia.com>, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: display: Add ETM0700G0DH6 compatible string
-Date:   Wed, 29 May 2019 12:25:40 +0200
-Message-Id: <20190529102540.4608-1-marex@denx.de>
-X-Mailer: git-send-email 2.20.1
+        id S1727014AbfE2K3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 06:29:21 -0400
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:41112 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726761AbfE2K3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:29:20 -0400
+Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
+  Horatiu.Vultur@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+  envelope-from="Horatiu.Vultur@microchip.com";
+  x-sender="Horatiu.Vultur@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa5.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+  envelope-from="Horatiu.Vultur@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa5.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+X-IronPort-AV: E=Sophos;i="5.60,526,1549954800"; 
+   d="scan'208";a="33434198"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 May 2019 03:29:20 -0700
+Received: from soft-dev3.microsemi.net (10.10.85.251) by mx.microchip.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5; Wed, 29 May 2019
+ 03:29:16 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        "Paul Burton" <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
+Subject: [PATCH net-next v2 0/2] Add hw offload of TC flower on MSCC Ocelot
+Date:   Wed, 29 May 2019 12:26:18 +0200
+Message-ID: <1559125580-6375-1-git-send-email-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ETM0700G0DH6 is currently documented as using edt,etm070080dh6
-compatible string, however the Linux kernel driver as well as a
-couple of DTs use edt,etm0700g0dh6 compatible string. Add it into
-the documentation.
+This patch series enables hardware offload for flower filter used in
+traffic controller on MSCC Ocelot board.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Jan Tuerk <jan.tuerk@emtrion.com>
-Cc: Thierry Reding <treding@nvidia.com>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
- .../devicetree/bindings/display/panel/edt,et-series.txt         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The patch series is based on:
+commit 1896ae827534 ("net: mscc: ocelot: Implement port policers via tc
+command")
 
-diff --git a/Documentation/devicetree/bindings/display/panel/edt,et-series.txt b/Documentation/devicetree/bindings/display/panel/edt,et-series.txt
-index be8684327ee4..b7ac1c725f97 100644
---- a/Documentation/devicetree/bindings/display/panel/edt,et-series.txt
-+++ b/Documentation/devicetree/bindings/display/panel/edt,et-series.txt
-@@ -40,7 +40,7 @@ simple-panel.txt
- | Identifier      | compatbile          | description                         |
- +=================+=====================+=====================================+
- | ETM0700G0DH6    | edt,etm070080dh6    | WVGA TFT Display with capacitive    |
--|                 |                     | Touchscreen                         |
-+|                 | edt,etm0700g0dh6    | Touchscreen                         |
- +-----------------+---------------------+-------------------------------------+
- | ETM0700G0BDH6   | edt,etm070080bdh6   | Same as ETM0700G0DH6 but with       |
- |                 |                     | inverted pixel clock.               |
+v1->v2 changes:
+ - when declaring variables use reverse christmas tree
+
+CC: Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC: Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Mark Rutland <mark.rutland@arm.com>
+CC: Ralf Baechle <ralf@linux-mips.org>
+CC: Paul Burton <paul.burton@mips.com>
+CC: James Hogan <jhogan@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>
+CC: linux-mips@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: netdev@vger.kernel.org
+
+Horatiu Vultur (2):
+  net: mscc: ocelot: Add support for tcam
+  net: mscc: ocelot: Hardware ofload for tc flower filter
+
+ arch/mips/boot/dts/mscc/ocelot.dtsi       |   5 +-
+ drivers/net/ethernet/mscc/Makefile        |   2 +-
+ drivers/net/ethernet/mscc/ocelot.c        |  13 +
+ drivers/net/ethernet/mscc/ocelot.h        |   8 +
+ drivers/net/ethernet/mscc/ocelot_ace.c    | 777 ++++++++++++++++++++++++++++++
+ drivers/net/ethernet/mscc/ocelot_ace.h    | 232 +++++++++
+ drivers/net/ethernet/mscc/ocelot_board.c  |   1 +
+ drivers/net/ethernet/mscc/ocelot_flower.c | 360 ++++++++++++++
+ drivers/net/ethernet/mscc/ocelot_regs.c   |  11 +
+ drivers/net/ethernet/mscc/ocelot_s2.h     |  64 +++
+ drivers/net/ethernet/mscc/ocelot_tc.c     |  16 +-
+ drivers/net/ethernet/mscc/ocelot_vcap.h   | 403 ++++++++++++++++
+ 12 files changed, 1883 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_ace.c
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_ace.h
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_flower.c
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_s2.h
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_vcap.h
+
 -- 
-2.20.1
+2.7.4
 
