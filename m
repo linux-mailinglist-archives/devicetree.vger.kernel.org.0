@@ -2,90 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05348304B1
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 00:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A133044C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 23:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbfE3WSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 18:18:34 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:34831 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726045AbfE3WSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 18:18:33 -0400
-Received: by mail-ed1-f68.google.com with SMTP id p26so11384652edr.2;
-        Thu, 30 May 2019 15:18:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Qzbfu0dliCkkEmJ1UFnYukQdP9RWNNavonlb+Fp2x7g=;
-        b=N6vjmWjy73gJGAwNl3ai5Uybv0PFyuyvJaAPxAibzRxqUVjyvhUg2NhHoega74+C8c
-         B1nVuyy3hJ9/oHxD9EMRLQ9Rp3o0aMiKODRU3frOrC616DVBH9SAaW6w8NX37vRyhW/O
-         L2G7hByWBQr2BCsqkm+KpOmOLAZmcS7FobnGSvlGeKWLpUriE8ZAZZ3zQeMFdS7WUH5b
-         vWS+n+5SATB6kCzCtSLQrCdtIdVYsHxiBmWZugnMX0mNrpziiDRxpy4VVfo4mUzNLCN1
-         T9DKSmHlkGChdIlLj1LoCb3UqZXMPTjyLxBtlNKx1ue7I6z8bdFeI8LyEZnTrKLt6D5i
-         lrAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Qzbfu0dliCkkEmJ1UFnYukQdP9RWNNavonlb+Fp2x7g=;
-        b=E8VuGNGlDNTcZNq7E6zo1ocpFqCV3P3WXpwLG9M9yuz3/2yyWnukKHbxBV1CNHsXXL
-         bDMukssXSz97ZYI49PCV9e1pR32kaVaRJF6E34d7+pOTCYWRPoE46Kjpm2Ej9Zc5Gjrn
-         ogYWgOIZmqjoiIAn7JQz0/sMyJGiv/gPsgbNh3PcccGOfP4dF23jx1XMwF7cPEK3soWv
-         z95Mh0aU2dlwNkLVTmBYrmBoisDIKa3t0kzK21jSjv70aRwBZ0m3RW6zhIUD3AIT04Xu
-         ZajVTuiOr8WaBZr2bPUvjEx4NGMFAkpMqnGfLzIAClSKZyC9sGDqboltftCMdOiHj8cX
-         4o4w==
-X-Gm-Message-State: APjAAAWOEcMBuNvtUX02UGiUJhj6c0wtNZ2zbYIUq/xb6BtxdZc5E/Sg
-        RVk/IAnzAduHOrLJNiJrwkrRDMD/
-X-Google-Smtp-Source: APXvYqzRR8gKNI+QpfK/2N0R8st5YfVLx33/T/e2b+X2T7vDp5V2dfBvEgtcUFXa4rQ2gOUlOrnsNw==
-X-Received: by 2002:a17:906:3b8f:: with SMTP id u15mr5624827ejf.6.1559251284636;
-        Thu, 30 May 2019 14:21:24 -0700 (PDT)
-Received: from mail.broadcom.com ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id h25sm597082ejz.10.2019.05.30.14.21.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 May 2019 14:21:24 -0700 (PDT)
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-To:     linux-mtd@lists.infradead.org
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        id S1727105AbfE3VzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 17:55:11 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:49572 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726986AbfE3VzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 17:55:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=cMVlGTvXkUveUITBldNsm2wqtZ0vfwdSAKndguUBaOQ=; b=DLH2JYbeHwq/YpEbWMtT0JGBL
+        spO2pEc/2hmPltlibpNfKJ2Ih/2Rm4G0phN5i2XSKks3aWtbDZz/GjR3JOGCj0DN/EFFNJYoQcgdY
+        KCaXkwyYwGjN4/dPWIvnF995pitZOxwUX3cRQdPGcd08tJMbDelcgzPTaceo+3xiEu6bQ9l0KxDmW
+        A6ERMXUYjHd+RHWZrpMMqsX0zPrTCj1eb0FZ12RnJMUJ3c1CbH3/iBVkW/k/nJ87VxzdpYmPFA/Bj
+        w8HefDp2VNcdyksBGBu0eg9AnsJHYltB0rlhwyOs9x/BKnj7EROswpX3bRDMtwawd5XTsxhzCT215
+        893fQ6/Cw==;
+Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:56076)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1hWSpD-0005E4-3f; Thu, 30 May 2019 22:43:03 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.89)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1hWSp5-0005jk-2U; Thu, 30 May 2019 22:42:55 +0100
+Date:   Thu, 30 May 2019 22:42:54 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Morten Rasmussen <morten.rasmussen@arm.com>
+Cc:     "Andrew F. Davis" <afd@ti.com>, Atish Patra <atish.patra@wdc.com>,
+        linux-kernel@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] dt: bindings: mtd: brcmand: Add brcmnand,brcmnand-v7.3 support
-Date:   Thu, 30 May 2019 17:20:37 -0400
-Message-Id: <1559251257-12383-3-git-send-email-kdasu.kdev@gmail.com>
-X-Mailer: git-send-email 1.9.0.138.g2de3478
-In-Reply-To: <1559251257-12383-1-git-send-email-kdasu.kdev@gmail.com>
-References: <1559251257-12383-1-git-send-email-kdasu.kdev@gmail.com>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 1/7] Documentation: DT: arm: add support for sockets
+ defining package boundaries
+Message-ID: <20190530214254.tuxsnyv52a2fyhck@shell.armlinux.org.uk>
+References: <20190529211340.17087-1-atish.patra@wdc.com>
+ <20190529211340.17087-2-atish.patra@wdc.com>
+ <49f41e62-5354-a674-d95f-5f63851a0ca6@ti.com>
+ <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added brcm,brcmnand-v7.3 as possible compatible string to support
-brcmnand controller v7.3.
+On Thu, May 30, 2019 at 12:51:03PM +0100, Morten Rasmussen wrote:
+> On Wed, May 29, 2019 at 07:39:17PM -0400, Andrew F. Davis wrote:
+> > On 5/29/19 5:13 PM, Atish Patra wrote:
+> > >From: Sudeep Holla <sudeep.holla@arm.com>
+> > >
+> > >The current ARM DT topology description provides the operating system
+> > >with a topological view of the system that is based on leaf nodes
+> > >representing either cores or threads (in an SMT system) and a
+> > >hierarchical set of cluster nodes that creates a hierarchical topology
+> > >view of how those cores and threads are grouped.
+> > >
+> > >However this hierarchical representation of clusters does not allow to
+> > >describe what topology level actually represents the physical package or
+> > >the socket boundary, which is a key piece of information to be used by
+> > >an operating system to optimize resource allocation and scheduling.
+> > >
+> > 
+> > Are physical package descriptions really needed? What does "socket" imply
+> > that a higher layer "cluster" node grouping does not? It doesn't imply a
+> > different NUMA distance and the definition of "socket" is already not well
+> > defined, is a dual chiplet processor not just a fancy dual "socket" or are
+> > dual "sockets" on a server board "slotket" card, will we need new names for
+> > those too..
+> 
+> Socket (or package) just implies what you suggest, a grouping of CPUs
+> based on the physical socket (or package). Some resources might be
+> associated with packages and more importantly socket information is
+> exposed to user-space. At the moment clusters are being exposed to
+> user-space as sockets which is less than ideal for some topologies.
 
-Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
----
- Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 1 +
- 1 file changed, 1 insertion(+)
+Please point out a 32-bit ARM system that has multiple "socket"s.
 
-diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-index 0b7c373..ad4cd30 100644
---- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-+++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-@@ -28,6 +28,7 @@ Required properties:
-                          brcm,brcmnand-v7.0
-                          brcm,brcmnand-v7.1
-                          brcm,brcmnand-v7.2
-+                         brcm,brcmnand-v7.3
-                          brcm,brcmnand
- - reg              : the register start and length for NAND register region.
-                      (optional) Flash DMA register range (if present)
+As far as I'm aware, all 32-bit systems do not have socketed CPUs
+(modern ARM CPUs are part of a larger SoC), and the CPUs are always
+in one package.
+
+Even the test systems I've seen do not have socketed CPUs.
+
 -- 
-1.9.0.138.g2de3478
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
