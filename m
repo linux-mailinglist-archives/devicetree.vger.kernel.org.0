@@ -2,135 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D172FC06
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 413242FC0E
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726128AbfE3NMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 09:12:49 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:35670 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726031AbfE3NMt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 09:12:49 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E194A78;
-        Thu, 30 May 2019 06:12:48 -0700 (PDT)
-Received: from e105550-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C29753F59C;
-        Thu, 30 May 2019 06:12:43 -0700 (PDT)
-Date:   Thu, 30 May 2019 14:12:41 +0100
-From:   Morten Rasmussen <morten.rasmussen@arm.com>
-To:     "Andrew F. Davis" <afd@ti.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        linux-riscv@lists.infradead.org, Ingo Molnar <mingo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        id S1726415AbfE3NQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 09:16:31 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:46375 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726253AbfE3NQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 09:16:31 -0400
+Received: by mail-lf1-f68.google.com with SMTP id l26so4965642lfh.13;
+        Thu, 30 May 2019 06:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:newsgroups:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/wo/IbEeAJ9hsENKT3caSWlfePL4jGoTXJCbueVNDgA=;
+        b=Q72IpVwPw6IchK/vyAidzYWyEO6OG9P709yrvua0CMrz/RlZUHUi9zsBgxxnUIBv17
+         lFnYWHS59WHi57gTvMwdShuxj6Ie9x9ImMRtkl7JDp1Mjk0vnVhh4CvWYwPYy0wN+Keg
+         lHmlwijyZshMaT/yXgcGpYhEMt5+xPGJGFs77tmGqmCObDjODW4vs1wIyvqpeMmyQD4G
+         XjbnvqwyWeqtEoDodAi80xk3hgMDLtOY0tCVgqJmOyQfN3I9YcQElEjF+YaLevLNUi+H
+         1RStWXksOA9ud5BKClsroeJls+Y96O0cPnvK5maHj35YH4QS/aD0qFjEWkCpI9yDl9sh
+         fIgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:newsgroups:references:from
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=/wo/IbEeAJ9hsENKT3caSWlfePL4jGoTXJCbueVNDgA=;
+        b=IERjaFDWyaVPZ1NaCktmo5TJEUp+9hjYnHwCSMzs4e2UoZBN6yTw1HEDwx2w/43sL/
+         LUhPqs/jvhbQOik4mGwkfAussEkJuGyvGiLAPErZdOwbE/8nVcSyUA4uSFkCJM/dQkG9
+         if/ypcrhxZVrT+NPSzWH2RCWN3dGW4tkXi5ObuLuf0jSDua2hnCXMD8wUBNyLFL+rqJ6
+         t72mKA2SORTL4ABP//tXSgLHlLS3fODB6rdTdwIPSKdNhi1Z1x7NYzHkSpLgNJ+zJiUQ
+         QRp00WXJxSU+FODarQk2JxduUufGyHqjl+YYCpXFWdywX0WoLrFJW3FarEvpSKqegMCk
+         rCug==
+X-Gm-Message-State: APjAAAX5hycSqMpNpbLfikVG6vfv1St94hgGt2TRAbjnLbfJBXtN/ehc
+        QlwXdDbh0DwGZ7qpTiYbJZk=
+X-Google-Smtp-Source: APXvYqxpcgDwwYzwQSo6d4iOLauigH9H3tz8PaSQRCVDJa7sOicZdKK2t7a/GYAL3OvRBVkp6qP1fw==
+X-Received: by 2002:a19:6b04:: with SMTP id d4mr2079636lfa.57.1559222188882;
+        Thu, 30 May 2019 06:16:28 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.35.141])
+        by smtp.googlemail.com with ESMTPSA id p5sm480738ljg.55.2019.05.30.06.16.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 06:16:28 -0700 (PDT)
+Subject: Re: [PATCH V4 6/8] memory: tegra: Add EMC scaling sequence code for
+ Tegra210
+To:     Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v6 1/7] Documentation: DT: arm: add support for sockets
- defining package boundaries
-Message-ID: <20190530131241.GB10919@e105550-lin.cambridge.arm.com>
-References: <20190529211340.17087-1-atish.patra@wdc.com>
- <20190529211340.17087-2-atish.patra@wdc.com>
- <49f41e62-5354-a674-d95f-5f63851a0ca6@ti.com>
- <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
- <70639181-09d1-4644-f062-b19e06db7471@ti.com>
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Newsgroups: gmane.linux.ports.arm.kernel,gmane.linux.ports.tegra,gmane.linux.drivers.devicetree,gmane.linux.kernel.clk
+References: <20190529082139.5581-1-josephl@nvidia.com>
+ <20190529082139.5581-7-josephl@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <3929cca9-5277-a88d-5270-c6c2a9c5c2a0@gmail.com>
+Date:   Thu, 30 May 2019 16:16:26 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <70639181-09d1-4644-f062-b19e06db7471@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190529082139.5581-7-josephl@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 08:56:03AM -0400, Andrew F. Davis wrote:
-> On 5/30/19 7:51 AM, Morten Rasmussen wrote:
-> >On Wed, May 29, 2019 at 07:39:17PM -0400, Andrew F. Davis wrote:
-> >>On 5/29/19 5:13 PM, Atish Patra wrote:
-> >>>From: Sudeep Holla <sudeep.holla@arm.com>
-> >>>
-> >>>The current ARM DT topology description provides the operating system
-> >>>with a topological view of the system that is based on leaf nodes
-> >>>representing either cores or threads (in an SMT system) and a
-> >>>hierarchical set of cluster nodes that creates a hierarchical topology
-> >>>view of how those cores and threads are grouped.
-> >>>
-> >>>However this hierarchical representation of clusters does not allow to
-> >>>describe what topology level actually represents the physical package or
-> >>>the socket boundary, which is a key piece of information to be used by
-> >>>an operating system to optimize resource allocation and scheduling.
-> >>>
-> >>
-> >>Are physical package descriptions really needed? What does "socket" imply
-> >>that a higher layer "cluster" node grouping does not? It doesn't imply a
-> >>different NUMA distance and the definition of "socket" is already not well
-> >>defined, is a dual chiplet processor not just a fancy dual "socket" or are
-> >>dual "sockets" on a server board "slotket" card, will we need new names for
-> >>those too..
-> >
-> >Socket (or package) just implies what you suggest, a grouping of CPUs
-> >based on the physical socket (or package). Some resources might be
-> >associated with packages and more importantly socket information is
-> >exposed to user-space. At the moment clusters are being exposed to
-> >user-space as sockets which is less than ideal for some topologies.
-> >
+29.05.2019 11:21, Joseph Lo пишет:
+> This patch includes the sequence for clock tuning and the dynamic
+> training mechanism for the clock above 800MHz.
 > 
-> I see the benefit of reporting the physical layout and packaging information
-> to user-space for tracking reasons, but from software perspective this
-> doesn't matter, and the resource partitioning should be described elsewhere
-> (NUMA nodes being the go to example).
-
-That would make defining a NUMA node mandatory even for non-NUMA
-systems?
-
-> >At the moment user-space is only told about hw threads, cores, and
-> >sockets. In the very near future it is going to be told about dies too
-> >(look for Len Brown's multi-die patch set).
-> >
+> And historically there have been different sequences to change the EMC
+> clock. The sequence to be used is specified in the EMC table.
+> However, for the currently supported upstreaming platform, only the most
+> recent sequence is used. So only support that in this patch.
 > 
-> Seems my hypothetical case is already in the works :(
-
-Indeed. IIUC, the reasoning behind it is related to actual multi-die
-x86 packages and some rapl stuff being per-die or per-core.
-
+> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
 > 
-> >I don't see how we can provide correct information to user-space based
-> >on the current information in DT. I'm not convinced it was a good idea
-> >to expose this information to user-space to begin with but that is
-> >another discussion.
-> >
+> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+> ---
+> v4:
+> - no change
+> ---
+>  drivers/memory/tegra/Makefile                 |    2 +-
+>  drivers/memory/tegra/tegra210-emc-cc-r21021.c | 1953 +++++++++++++++++
+>  drivers/memory/tegra/tegra210-emc.c           |    5 +
+>  drivers/memory/tegra/tegra210-emc.h           |  157 ++
+>  4 files changed, 2116 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/memory/tegra/tegra210-emc-cc-r21021.c
 > 
-> Fair enough, it's a little late now to un-expose this info to userspace so
-> we should at least present it correctly. My worry was this getting out of
-> hand with layering, for instance what happens when we need to add die nodes
-> in-between cluster and socket?
+> diff --git a/drivers/memory/tegra/Makefile b/drivers/memory/tegra/Makefile
+> index f78bbb7cd16f..def087f13a09 100644
+> --- a/drivers/memory/tegra/Makefile
+> +++ b/drivers/memory/tegra/Makefile
+> @@ -12,5 +12,5 @@ obj-$(CONFIG_TEGRA_MC) += tegra-mc.o
+>  
+>  obj-$(CONFIG_TEGRA20_EMC)  += tegra20-emc.o
+>  obj-$(CONFIG_TEGRA124_EMC) += tegra124-emc.o
+> -obj-$(CONFIG_TEGRA210_EMC) += tegra210-emc.o
+> +obj-$(CONFIG_TEGRA210_EMC) += tegra210-emc.o tegra210-emc-cc-r21021.o
+>  obj-$(CONFIG_ARCH_TEGRA_186_SOC) += tegra186.o
+> diff --git a/drivers/memory/tegra/tegra210-emc-cc-r21021.c b/drivers/memory/tegra/tegra210-emc-cc-r21021.c
+> new file mode 100644
+> index 000000000000..ec5e1db71896
+> --- /dev/null
+> +++ b/drivers/memory/tegra/tegra210-emc-cc-r21021.c
+> @@ -0,0 +1,1953 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2014-2019, NVIDIA CORPORATION.  All rights reserved.
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/io.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/of.h>
+> +#include <soc/tegra/mc.h>
 
-If we want the die mask to be correct for arm/arm64/riscv we need die
-information from somewhere. I'm not in favour of adding more topology
-layers to the user-space visible topology description, but others might
-have a valid reason and if it is exposed I would prefer if we try to
-expose the right information.
+Minor nit: please keep all the includes sorted in alphabet order.
 
-Btw, for packages, we already have that information in ACPI/PPTT so it
-would be nice if we could have that for DT based systems too.
-
-Morten
+-- 
+Dmitry
