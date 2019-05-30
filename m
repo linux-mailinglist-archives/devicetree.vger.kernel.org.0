@@ -2,104 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D0A42FFE7
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 18:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11FC330000
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 18:14:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726469AbfE3QI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 12:08:27 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:43942 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726320AbfE3QI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 12:08:27 -0400
-Received: by mail-pl1-f194.google.com with SMTP id gn7so2739583plb.10
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 09:08:26 -0700 (PDT)
+        id S1726609AbfE3QOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 12:14:18 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:44221 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725934AbfE3QOS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 12:14:18 -0400
+Received: by mail-lj1-f193.google.com with SMTP id e13so6583431ljl.11;
+        Thu, 30 May 2019 09:14:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=CCzOFuBrRzsjGJT6QYZDplwoC8znNP+oEnCTc9pJCd8=;
-        b=cVdkU0UsiubYEXpbBQbS7cvSuFjQe08Adw6e346iSTE5OsA/QADaLcgAVFLBakmg6z
-         2Q2O38L63Bn80R60xkrnN8k4evgFKp+1SBFNsoKvL2F2vTQOA/WqzUnFi3fuWiBpjCnh
-         bf2mpR9Tm+9Kh9qyWRGBinlrH9NFfRCKnnjE4=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=XmK9q1mGN7b6J4ODdEo3M1qArYHGWBwKVshxM4f06qI=;
+        b=NC+9gVMIPhE4UEq4DmEQVSxKVVvwWVxObVXuy3Dy5tCThFcZXko5nmhViQRnze2i/I
+         fSwXUz+NaxDnIHe0IC480esVOWswPMZeWILlHqW74AfwllaX2QGptx7cKGx3qLTtS8j6
+         NzEcEdw+QKfjvFBS0VtMyk1XfKXDuxdwvR9xdd681UFY+nT6KHPleB0RyM+ZDi7xKLOz
+         /fHNz2v5OVDrGszE4fUAUl2dUU/+7pXCVebD+bHigJ2t7xUJ9S2ZoTX9Sj+0Jo06ctuC
+         Mad5J+HrWL+0HoBvSW2iQKBWGlZMshQ8rU6aZjdEBMPedGBkXxcpZkeNF7Bw1hcwFUrQ
+         NS1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CCzOFuBrRzsjGJT6QYZDplwoC8znNP+oEnCTc9pJCd8=;
-        b=KRjQdaMwbJgrtRZXIijv3q7GeQknPh5bvmtjciJrfoSESk+HIEdYlIpKII7sH0Yz5v
-         tMZhsXSiexKu+mo51TJNEgZBwmh7A5xiv1D4Mcpx3L21rsvVnK6UA1xg+cLOSf2gC3C1
-         abkC1Z3Vqi09oMRJNCJJRFIwR8SMfckODsCvQXItDV9zveivb8Ys+KE9Ufpmpgq7m6DG
-         DKxLNEA9EBwUOK9glosbttHhzuTfokIft3KjVEgGh5voBKM+tzC9gRo0n7BPuC5hqBJl
-         GSVcIZdT2LAbY9cijeOF/V5s0cxV5wYORZBlpjFN2VqirHfRmTaCQNCY8QpLp/j/Mq2j
-         98Og==
-X-Gm-Message-State: APjAAAUl24BFJhViYL7lZLog+sWNTv8nNuQCBD91n4ZqW4nUvzqRh5qH
-        9szZBiV+sEfZqZXjoC2hKUiO5w==
-X-Google-Smtp-Source: APXvYqwTufU4ReY8GoGuWrjOS8pyLhEFpYHGf/dPgPB2mg1+d5otdc1js0QS6kCxqXlGXEcw9FpdAA==
-X-Received: by 2002:a17:902:690b:: with SMTP id j11mr4416976plk.149.1559232506416;
-        Thu, 30 May 2019 09:08:26 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id a69sm4045967pfa.81.2019.05.30.09.08.25
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 30 May 2019 09:08:25 -0700 (PDT)
-Date:   Thu, 30 May 2019 09:08:25 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "michael.kao" <michael.kao@mediatek.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XmK9q1mGN7b6J4ODdEo3M1qArYHGWBwKVshxM4f06qI=;
+        b=WQ445ZyVhmiQgwkBDPvgjhXRbcepTdyrQeY7z4GnRrLu640baOOoh4TVm4pW4DXDVv
+         WCwaAPpHf0qhatTg7i1QkJ5QKu+NWiVZd0YNdnUkafm5IMbBtpdXfj7NMSe2kaK7I32+
+         QxyovlH2CGvQpBCvMHrlaeTPQKTF3gSf9hF8FlxDUW1zbgGZ+Es5+RxPW0brT+kLAFrR
+         3LJuVG7giRwzVUoAOCyM8GKeY13T0dOqoAh4/ZxwnPsUR/aNCKdoFY5eoayO/NhGEko2
+         tN95o/5JD9rHePOJkqJ4+exZFU6Q9W7ix9loQGxBWAZ3+HnZZVuBQqWlSHT6QVljKbzR
+         CZvw==
+X-Gm-Message-State: APjAAAVYzXAWdXXoCdEzyJCt1V1lawNvcfDQOZ81tj+VW8UCrJYiVb4z
+        XsNLuN2cSTBPVin9Clh7Cnw=
+X-Google-Smtp-Source: APXvYqzmFSkb0VYg/nw/YZHYkemnGBzkLyFKJzkID+tESoZ47z/BnAUSJVfRTTWIL2jjvt0h3pYjCw==
+X-Received: by 2002:a2e:8741:: with SMTP id q1mr2523378ljj.97.1559232856343;
+        Thu, 30 May 2019 09:14:16 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.35.141])
+        by smtp.googlemail.com with ESMTPSA id r14sm570580lff.44.2019.05.30.09.14.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 09:14:14 -0700 (PDT)
+Subject: Re: [PATCH V4 5/8] memory: tegra: Add EMC scaling support code for
+ Tegra210
+To:     Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/8] arm64: dts: mt8183: add thermal zone node
-Message-ID: <20190530160825.GM40515@google.com>
-References: <1557494826-6044-1-git-send-email-michael.kao@mediatek.com>
- <1557494826-6044-2-git-send-email-michael.kao@mediatek.com>
- <CAJMQK-giJTeERnqjxoSMjF-JXxW9SPmeARWf3f9ZyRgBsYN5fg@mail.gmail.com>
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190529082139.5581-1-josephl@nvidia.com>
+ <20190529082139.5581-6-josephl@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <1e197124-57f5-285b-1624-bba2f3d31386@gmail.com>
+Date:   Thu, 30 May 2019 19:14:13 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <20190529082139.5581-6-josephl@nvidia.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAJMQK-giJTeERnqjxoSMjF-JXxW9SPmeARWf3f9ZyRgBsYN5fg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 02:27:28PM +0800, Hsin-Yi Wang wrote:
-> On Fri, May 10, 2019 at 9:27 PM michael.kao <michael.kao@mediatek.com> wrote:
+29.05.2019 11:21, Joseph Lo пишет:
+> This patch adds the required APIs and variables for the EMC scaling
+> sequence code on Tegra210.
 > 
-> > +
-> > +                       tzts1: tzts1 {
-> > +                               polling-delay-passive = <0>;
-> > +                               polling-delay = <0>;
-> > +                               thermal-sensors = <&thermal 1>;
-> > +                               sustainable-power = <0>;
-> > +                               trips {};
-> > +                               cooling-maps {};
-> > +                       };
-> > +
-> Is 0 a valid initial sustainable-power setting? Since we'll still get
-> warning[1] about this, though it might not be harmful.
+> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
 > 
-> If 0 is a valid setting, maybe we should consider showing the warning
-> of not setting this property in [2]?
-> 
-> [1] https://elixir.bootlin.com/linux/latest/source/drivers/thermal/power_allocator.c#L570
-> [2] https://elixir.bootlin.com/linux/latest/source/drivers/thermal/of-thermal.c#L1049
+> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+> ---
+> v4:
+> - fix the API with generic naming
+> - use 'u16' in 'struct emc_table_register_offset'
+> ---
 
-IIUC a value of 0 is pointless, the thermal framework will still use
-an estimated value:
+>  
+> +extern const struct emc_table_register_offset reg_off;
+> +extern unsigned long dram_over_temp_state;
 
-https://elixir.bootlin.com/linux/v5.1.5/source/drivers/thermal/power_allocator.c#L203
+Please avoid global variables where they are not really needed.
 
-As commented on v1 (https://patchwork.kernel.org/patch/10926519/#22620905)
-the value of the property may depend on the thermal characteristics of
-the device, there is not one correct value per SoC/core. If it is
-specified at SoC level device makers should be aware that they might
-have to override it for 'optimal' behavior on their device.
+Add reg_off pointer to tegra_emc.
+
+Remove dram_over_temp_state variable entirely and replace it with
+TEGRA_DRAM_OVER_TEMP_NONE in the code since nothing changes the variable.
+
+Again, prepend all global symbols with tegra210_.
+
+Alternatively you could simply include tegra210-emc-cc-r21021.c into
+tegra210-emc.c, I don't see anything wrong with that variant.
+
+	#include "tegra210-emc-cc-r21021.c"
+
+Or you could squash it all into a single source file if variants other
+than "r21021" are not planned to be supported. This will help to reduce
+messiness of the code and will allow compiler to better optimize it all.
+
+-- 
+Dmitry
