@@ -2,121 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8C8C2EFCC
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 05:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4582F718
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 07:30:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387864AbfE3D5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 23:57:50 -0400
-Received: from mail-vk1-f193.google.com ([209.85.221.193]:37314 "EHLO
-        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727923AbfE3D5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 23:57:43 -0400
-Received: by mail-vk1-f193.google.com with SMTP id t204so385525vke.4
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 20:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=knP9Vdv/W9CTVqFRXbGhRDZ6S1C60rRcw9hZ+qG6uSI=;
-        b=ZmldDBEPfCONxwpTJVlWszmR8g7AW3et6y0xSLMruEMwOdIXeFddd9HCltth1r5kBq
-         sDmq/yoFJM4MFKOePC7YAmmgfC8izwuEcBf3KTDHbJ99AlgawtpYCSFgM5RZ37t9vZUs
-         +gdp2UcLBPc52KiKo7mgT+3g6dVnVVf7oGVyiwRrIIt/ba8D1RvMyk4j2jJIS6ujOoVR
-         eMGNd3hOH5HEfSsLm0lhb1cvkymfrTbiL0NQppS2PmtPQFUdaOd/jHeC1x0/ORUzLoGR
-         GC15E5eo6rdxNB3PtMZUtQMFQRWQGQ3Ic4s8MW002f2OYbeW0rzhq8A52kaa/Vj6RPkP
-         ISpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=knP9Vdv/W9CTVqFRXbGhRDZ6S1C60rRcw9hZ+qG6uSI=;
-        b=Zo22/pDIapYQ6G7Pr1mBcXdZjikYmr5Eg/QS4h/3Uv2WxQJcSJjxyVDkmm3eGex3YS
-         m4w7FnY+BmQzd4AokQWv6mHKt/1eaFd1tNz4LoDHUfOfqg0wOv0og8CnSMmvuNL0wpQF
-         VpRPPRTgI67/vefcY/1yXmo0MC2UuIC5aP0cCEfJejTEFZpsAWYPPVvUwhC7usl5eDS7
-         7GSE6iOhS21xglKb3eh34mcaAN5W5RzvRN9AmVfBlji666ifeglTfG58+9XsOJajST54
-         z3w3u9nE213wOYf/40jopgXtEze0XKSAP47ArWeuyhshC6Gt5XjS2bvFYYFXyj8uTpA6
-         +iGA==
-X-Gm-Message-State: APjAAAX45259oWl2rACe8qN3gfqsMNqX3XAM6bDPFod9ZbD+vCItC8O/
-        2oGrUANEAi/s6Zlbb0fPlRXyBr/VRebyx7w4/umarA==
-X-Google-Smtp-Source: APXvYqwgq0hw9LUvz5cuuDP/OzdFkdA/aey96P69lz2u1TwLNK5+B/g6I0a75Filrgu8sfxR+q3gaQnmfYsUlBgRxyQ=
-X-Received: by 2002:a1f:e043:: with SMTP id x64mr548839vkg.74.1559188662612;
- Wed, 29 May 2019 20:57:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <1559104047-13920-1-git-send-email-sagar.kadam@sifive.com> <1559104047-13920-2-git-send-email-sagar.kadam@sifive.com>
-In-Reply-To: <1559104047-13920-2-git-send-email-sagar.kadam@sifive.com>
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-Date:   Thu, 30 May 2019 09:27:31 +0530
-Message-ID: <CAARK3Hm0F+6qAh5LYbqnfn5LeDyptyBy+_DZxAxxFg5bhe8Uxg@mail.gmail.com>
-Subject: Re: [PATCH v8 1/3] dt-bindings: i2c: extend existing opencore bindings.
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1726555AbfE3Fa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 01:30:29 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:42341 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725961AbfE3Fa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 01:30:29 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id ABA8021B42;
+        Thu, 30 May 2019 01:30:27 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Thu, 30 May 2019 01:30:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=CzFtZ9I8cNfdZpCeL+UPORC3ICYpQX5
+        KalmGG602HJg=; b=DVsyE+X8EZQsJqyYiTsTIT78wC1usk00mmn1QgTjw8aJfMB
+        /xLNKmYskf1OgW/QRQxUzyLJ4GKjswGVLPpY/vvUNOKQrfXa1JPhSNHslT8JqjAy
+        1UENXTroSWRaWXlKiSLj06ZSRi6qbSm8RGRHJa3YqNoBEQbdg40AwfDDgCRsnNUA
+        YavQAmIyWoOYzL7qWaebzwFEV1yDDO8MiW6Wi2RXjSH9P/HK96DbULZ2gRpezUIS
+        HK3Vnob6yJphrVX43wCBsuji9MNa72EWKy5GnCwneMdiJ9d+GTDGNVMD16AUYvq1
+        IxoBHwTRcCjIcf65oki8M2g+Gg5Gg09eX8NyhOQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=CzFtZ9
+        I8cNfdZpCeL+UPORC3ICYpQX5KalmGG602HJg=; b=cFyFExWaa6RvA0mSG6Wp3X
+        GcR05ifkLyAGsnrfjI9uy2DrcAohOCWS7DuIGlK/+OB27HJn0wWe8r+RdNgCPW1a
+        q99dkV15OogxhlaPL8g4JxK7KenK+j5/ODiuR70UpIn1/VTcj9mLyMikY1NZfGJ6
+        gSBuHlWuHkwOTY/CzPNZtXUCKmiJh3sIusaOQz/ipVZKz9TgSnnttyRHdpHBGP3g
+        R6YoL/xS7FBJh7XFInGf+xziUA3C3qjQAy2DaHgmLV7ixavj6nqBC0PLGavR4dRm
+        JsKD54xZHNgWIX3CDivtpTGUGIitZEQhXyRkw8J9vkj+UxRUWmBTW0NT2XJtjHLw
+        ==
+X-ME-Sender: <xms:cmrvXJbPZLx8TJ8KdHwMpH5wrvGX2bmAp7ZY0RBxeW00P-ckfO0shw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddvkedgleegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:cmrvXFowtEqPt7N8i6upVHrKgl0Lusi3Hqr2l57jgGFo2h7hM6gtGg>
+    <xmx:cmrvXNoRtSn9-uFwWAwU-kG89-khz3PtbkrMvkAdExtIqadQE0s_3w>
+    <xmx:cmrvXP1rYyWJu8tvy05WeAOaYlexZ4u0Cn_-f908UWl_mu_EzTtslQ>
+    <xmx:c2rvXFf5DBzK4kZ0617dC3MnfyPnsO-Wkm1zxSfFLcCKwy1nYB29og>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id F326EE00A1; Thu, 30 May 2019 01:30:25 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-555-g49357e1-fmstable-20190528v2
+Mime-Version: 1.0
+Message-Id: <58b74556-cbf0-4da2-9392-4c4ac40ad760@www.fastmail.com>
+In-Reply-To: <1559153408-31190-2-git-send-email-eajames@linux.ibm.com>
+References: <1559153408-31190-1-git-send-email-eajames@linux.ibm.com>
+ <1559153408-31190-2-git-send-email-eajames@linux.ibm.com>
+Date:   Thu, 30 May 2019 15:00:25 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Eddie James" <eajames@linux.ibm.com>,
+        linux-aspeed@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, "Arnd Bergmann" <arnd@arndb.de>,
+        "Rob Herring" <robh+dt@kernel.org>, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, "Joel Stanley" <joel@jms.id.au>
+Subject: =?UTF-8?Q?Re:_[PATCH_v3_1/8]_dt-bindings:_soc:_Add_Aspeed_XDMA_engine_bi?=
+ =?UTF-8?Q?nding_documentation?=
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
 
-Please let me know if this patch is as per your requirements/comments
-you mentioned earlier.
 
-Thanks & Regards,
-Sagar Kadam
-On Wed, May 29, 2019 at 9:57 AM Sagar Shrikant Kadam
-<sagar.kadam@sifive.com> wrote:
->
-> Reformatted compatibility strings to one valid combination on
-> each line.
-> Add FU540-C000 specific device tree bindings to already available
-> i2-ocores file. This device is available on
-> HiFive Unleashed Rev A00 board. Move interrupt under optional
-> property list as this can be optional.
->
-> The FU540-C000 SoC from sifive, has an Opencore's I2C block
-> reimplementation.
->
-> The DT compatibility string for this IP is present in HDL and available at.
-> https://github.com/sifive/sifive-blocks/blob/master/src/main/scala/devices/i2c/I2C.scala#L73
->
-> Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+On Thu, 30 May 2019, at 03:40, Eddie James wrote:
+> Document the bindings.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> index 17bef9a..6b25a80 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> @@ -1,9 +1,13 @@
->  Device tree configuration for i2c-ocores
->
->  Required properties:
-> -- compatible      : "opencores,i2c-ocores" or "aeroflexgaisler,i2cmst"
-> +- compatible      : "opencores,i2c-ocores"
-> +                    "aeroflexgaisler,i2cmst"
-> +                    "sifive,fu540-c000-i2c", "sifive,i2c0"
-> +                    For Opencore based I2C IP block reimplemented in
-> +                    FU540-C000 SoC. Please refer to sifive-blocks-ip-versioning.txt
-> +                    for additional details.
->  - reg             : bus address start and address range size of device
-> -- interrupts      : interrupt number
->  - clocks          : handle to the controller clock; see the note below.
->                      Mutually exclusive with opencores,ip-clock-frequency
->  - opencores,ip-clock-frequency: frequency of the controller clock in Hz;
-> @@ -12,6 +16,7 @@ Required properties:
->  - #size-cells     : should be <0>
->
->  Optional properties:
-> +- interrupts      : interrupt number.
->  - clock-frequency : frequency of bus clock in Hz; see the note below.
->                      Defaults to 100 KHz when the property is not specified
->  - reg-shift       : device register offsets are shifted by this value
-> --
-> 1.9.1
+>  .../devicetree/bindings/soc/aspeed/xdma.txt        | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/aspeed/xdma.txt 
+> b/Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+> new file mode 100644
+> index 0000000..85e82ea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+> @@ -0,0 +1,23 @@
+> +* Device tree bindings for the Aspeed XDMA Engine
+> +
+> +The XDMA Engine embedded in the AST2500 SOC can perform automatic DMA
+> +operations over PCI between the AST2500 (acting as a BMC) and a host 
+> processor.
+> +
+> +Required properties:
+> +
+> + - compatible		"aspeed,ast2500-xdma"
+> + - reg			contains the offset and length of the memory region
+> +			assigned to the XDMA registers
+> + - resets		reset specifier for the syscon reset associated with
+> +			the XDMA engine
+> + - interrupts		the interrupt associated with the XDMA engine on this
+> +			platform
+
+The indentation is quite distracting. If you rev the series can you fix it?
+
+Otherwise,
+
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+
+> +
+> +Example:
+> +
+> +    xdma@1e6e7000 {
+> +        compatible = "aspeed,ast2500-xdma";
+> +        reg = <0x1e6e7000 0x100>;
+> +        resets = <&syscon ASPEED_RESET_XDMA>;
+> +        interrupts = <6>;
+> +    };
+> -- 
+> 1.8.3.1
+> 
 >
