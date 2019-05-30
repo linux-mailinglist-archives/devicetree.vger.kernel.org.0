@@ -2,172 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5102E9B8
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 02:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 352B42EA80
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 04:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbfE3AeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 20:34:20 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:33696 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726395AbfE3AeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 20:34:20 -0400
-Received: by mail-qk1-f195.google.com with SMTP id p18so2795819qkk.0;
-        Wed, 29 May 2019 17:34:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KHD+sHVUPLQmygDU5dgl8aDe2PTeVVrxe8ejiYsJbzA=;
-        b=nW0+RjTgr112JeSC0qx2gUZmFr6cGCDqdl+BpCHWqJuE+d78Bs5iJJebC6syz05H1g
-         APITCHaqFOtnhiPTw51uDWFk0zRdcaug6U0SqwHUL+FX62RpIXyMwquSehD4D9wCa9Nz
-         DjkgdB2ypi/hj1qa/QKZLnb8qvc1wkMBkifao=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KHD+sHVUPLQmygDU5dgl8aDe2PTeVVrxe8ejiYsJbzA=;
-        b=PSozzJ5MylixD74xAziq2vnYErIjyjlFPOeJRj+qEWtVcGEkWDo+JKoN8WZThX5Dw7
-         xb/Vc6oY3DjOT5hvQBIbeNXLsnTNfr78w1lYDWKTy3yHYbFW/n25Lx+ABuQXx5hTPUZ6
-         bMHK7+skthwO/JKcLRD6Jov8iJKc6L9EZFM6llifQZixo5W6A4B6kBtp0m0mxtO9TTiU
-         q95eH9PfyMR8DSP9U3ahoRG/7IKyyNtud7ILDGSXYHqD61LT2tpZLuLkdmLeBj9E66Aj
-         TnXoyALnWsgam0NCTsmfWGGclrbnvfQqwBvD0Ww/+7Pdo2/CPNAofJTzA6Eovb1+w9r5
-         RxMg==
-X-Gm-Message-State: APjAAAUPR9RH5raicE9cF1iie/t13w24IdRjHdQ97DIGrxjVVkPDAepr
-        l8WKP+ibJHltRQ4JMtasuanUUlAfIYRw6VxQ4Og=
-X-Google-Smtp-Source: APXvYqxYyCeKyYUztJa3DHENKeZigts1pQtuupR+90lPSZNjZI5bKFuOpg4mU0O5bqKNHFmvb0879Dook4z1MhjB/qo=
-X-Received: by 2002:a37:a10b:: with SMTP id k11mr713236qke.76.1559176459320;
- Wed, 29 May 2019 17:34:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190527112753.1681-1-a.filippov@yadro.com>
-In-Reply-To: <20190527112753.1681-1-a.filippov@yadro.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 30 May 2019 00:34:04 +0000
-Message-ID: <CACPK8XeXh8uiQ6f5LWJRBJ=VwMAvdPHOo34uHhWZyMFBG2HVqw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: g4: add video engine support
-To:     Alexander Filippov <a.filippov@yadro.com>
-Cc:     linux-aspeed@lists.ozlabs.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1726980AbfE3CHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 22:07:11 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:6547 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726411AbfE3CHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 22:07:11 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cef3ac40000>; Wed, 29 May 2019 19:07:00 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Wed, 29 May 2019 19:07:09 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Wed, 29 May 2019 19:07:09 -0700
+Received: from [10.19.108.132] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 30 May
+ 2019 02:07:06 +0000
+Subject: Re: [PATCH V4 7/8] clk: tegra: Remove the old emc_mux clock for
+ Tegra210
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20190529082139.5581-1-josephl@nvidia.com>
+ <20190529082139.5581-8-josephl@nvidia.com>
+ <6651442d-d501-9363-ff95-988e1a4a3982@gmail.com>
+From:   Joseph Lo <josephl@nvidia.com>
+Message-ID: <75aa10d9-ac01-3581-49f8-020c742ea251@nvidia.com>
+Date:   Thu, 30 May 2019 10:06:53 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <6651442d-d501-9363-ff95-988e1a4a3982@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559182020; bh=UWdWtW4j+KOak+WZ2j6xAhxesQy6AFdueC5SP3hK5EE=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=KTAd8UyRioFQjhThEeu/VBvoQCLVHUIs+2Cd/VvGtn9gv+t0ZnTaME4auzC1NiY+y
+         0unlBnBvoghWUh4+c0ciYIFFEgiFr/c9FOasaN59s9Ddz3JEW2EjrA+zQcRmikDfpT
+         IKFCP8mCELck0vWq9YARfmEsgJcI7HIIGjV88zOz3qhXu/04pVnDlRJgCWm4KUQNPo
+         SwISy6NZbe7GvFdfRM8iyHwcxhh1os4kV76pcRVusUVgBPtLoc4oslLNgiTGMlLdzu
+         CGc9pGbvt5VA1BIz7wNd9tj1+tppbJGqaVFJPL853VgB+7Xf8+U3MFF2nw3ja8Wvus
+         /N2P1b6PIAAqg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+On 5/29/19 8:49 PM, Dmitry Osipenko wrote:
+> 29.05.2019 11:21, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> Remove the old emc_mux clock and don't use the common EMC clock
+>> definition. This will be replaced by a new clock defined in the
+>> EMC driver.
+>>
+>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+>> ---
+>> v4:
+>> - make sure the behavior is compatible with case if the kernel still
+>>    uses the older DTB which doesn't have EMC node. And the MC and EMC
+>>    clock can still be registered successuflly.
+>> v3:
+>> - split to 3 patches from the previous version
+>> ---
+>>   drivers/clk/tegra/clk-tegra210.c | 42 ++++++++++++++++++++------------
+>>   1 file changed, 27 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-te=
+gra210.c
+>> index 1d52354820ca..8b209e8b5eaf 100644
+>> --- a/drivers/clk/tegra/clk-tegra210.c
+>> +++ b/drivers/clk/tegra/clk-tegra210.c
+>> @@ -28,6 +28,7 @@
+>>   #include <dt-bindings/reset/tegra210-car.h>
+>>   #include <linux/iopoll.h>
+>>   #include <linux/sizes.h>
+>> +#include <soc/tegra/emc.h>
+>>   #include <soc/tegra/pmc.h>
+>>  =20
+>>   #include "clk.h"
+>> @@ -324,12 +325,6 @@ static unsigned long tegra210_input_freq[] =3D {
+>>   	[8] =3D 12000000,
+>>   };
+>>  =20
+>> -static const char *mux_pllmcp_clkm[] =3D {
+>> -	"pll_m", "pll_c", "pll_p", "clk_m", "pll_m_ud", "pll_mb", "pll_mb",
+>> -	"pll_p",
+>> -};
+>> -#define mux_pllmcp_clkm_idx NULL
+>> -
+>>   #define PLL_ENABLE			(1 << 30)
+>>  =20
+>>   #define PLLCX_MISC1_IDDQ		(1 << 27)
+>> @@ -2346,7 +2341,6 @@ static struct tegra_clk tegra210_clks[tegra_clk_ma=
+x] __initdata =3D {
+>>   	[tegra_clk_i2c2] =3D { .dt_id =3D TEGRA210_CLK_I2C2, .present =3D tru=
+e },
+>>   	[tegra_clk_uartc_8] =3D { .dt_id =3D TEGRA210_CLK_UARTC, .present =3D=
+ true },
+>>   	[tegra_clk_mipi_cal] =3D { .dt_id =3D TEGRA210_CLK_MIPI_CAL, .present=
+ =3D true },
+>> -	[tegra_clk_emc] =3D { .dt_id =3D TEGRA210_CLK_EMC, .present =3D true }=
+,
+>>   	[tegra_clk_usb2] =3D { .dt_id =3D TEGRA210_CLK_USB2, .present =3D tru=
+e },
+>>   	[tegra_clk_bsev] =3D { .dt_id =3D TEGRA210_CLK_BSEV, .present =3D tru=
+e },
+>>   	[tegra_clk_uartd_8] =3D { .dt_id =3D TEGRA210_CLK_UARTD, .present =3D=
+ true },
+>> @@ -2957,6 +2951,27 @@ static int tegra210_init_pllu(void)
+>>   	return 0;
+>>   }
+>>  =20
+>> +static const struct clk_div_table mc_div_table_tegra210[] =3D {
+>> +	{ .val =3D 0, .div =3D 2 },
+>> +	{ .val =3D 1, .div =3D 4 },
+>> +	{ .val =3D 2, .div =3D 1 },
+>> +	{ .val =3D 3, .div =3D 2 },
+>> +	{ .val =3D 0, .div =3D 0 },
+>> +};
+>> +
+>> +static void tegra210_clk_register_mc(const char *name,
+>> +				     const char *parent_name)
+>> +{
+>> +	struct clk *clk;
+>> +
+>> +	clk =3D clk_register_divider_table(NULL, name, parent_name,
+>> +					 CLK_IS_CRITICAL,
+>> +					 clk_base + CLK_SOURCE_EMC,
+>> +					 15, 2, CLK_DIVIDER_READ_ONLY,
+>> +					 mc_div_table_tegra210, &emc_lock);
+>=20
+> This doesn't look right, you're mixing up the MC divider with the EMC
+> divider here. The MC clock is always sourced from EMC and there is only
+> one bit for the MC divider, the bit 16 MC_EMC_SAME_FREQ.
+>=20
+> When EMC clock is divided down by 2 (bit 15 EMC_CLK_DIV2_EN), then the
+> clk-framework will take care of it by calculating the MC rate based on
+> the actual parent EMC rate.
+>=20
+>> +	clks[TEGRA210_CLK_MC] =3D clk;
+>> +}
+>> +
+>>   static const char * const sor1_out_parents[] =3D {
+>>   	/*
+>>   	 * Bit 0 of the mux selects sor1_pad_clkout, irrespective of bit 1, s=
+o
+>> @@ -3040,15 +3055,12 @@ static __init void tegra210_periph_clk_init(void=
+ __iomem *clk_base,
+>>   			CLK_SOURCE_LA, 0);
+>>   	clks[TEGRA210_CLK_LA] =3D clk;
+>>  =20
+>> -	/* emc mux */
+>> -	clk =3D clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
+>> -			       ARRAY_SIZE(mux_pllmcp_clkm), 0,
+>> -			       clk_base + CLK_SOURCE_EMC,
+>> -			       29, 3, 0, &emc_lock);
+>> +	/* emc */
+>> +	clk =3D tegra210_clk_register_emc();
+>> +	clks[TEGRA210_CLK_EMC] =3D clk;
+>>  =20
+>> -	clk =3D tegra_clk_register_mc("mc", "emc_mux", clk_base + CLK_SOURCE_E=
+MC,
+>> -				    &emc_lock);
+>> -	clks[TEGRA210_CLK_MC] =3D clk;
+>> +	/* mc */
+>> +	tegra210_clk_register_mc("mc", "emc");
+>>  =20
+>>   	/* cml0 */
+>>   	clk =3D clk_register_gate(NULL, "cml0", "pll_e", 0, clk_base + PLLE_A=
+UX,
+>>
+>=20
+> You should leave the common tegra_clk_register_mc() usage as-is and only
+> s/emc_mux/emc/ in the argument.
 
-On Mon, 27 May 2019 at 11:28, Alexander Filippov <a.filippov@yadro.com> wrote:
->
-> Add a node to describe the video engine and VGA scratch registers on
-> AST2400.
+Ah, yes, that was wrong mixing up with two irrelevant bits. Fixed in my=20
+local patch.
 
-The scratch registers are unrelated to the video engine. As Andrew
-pointed out, the bindings are not upstream either.
-
-Can you re-spin this patch wit just the video engine changes?
-
-We also need a platform to enable and test this on. Can you submit the
-device tree for your system?
-
->
-> These changes were copied from aspeed-g5.dtsi
->
-> Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
-> ---
->  arch/arm/boot/dts/aspeed-g4.dtsi | 62 ++++++++++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
-> index 6011692df15a..adc1804918df 100644
-> --- a/arch/arm/boot/dts/aspeed-g4.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g4.dtsi
-> @@ -168,6 +168,10 @@
->                                         compatible = "aspeed,g4-pinctrl";
->                                 };
->
-> +                               vga_scratch: scratch {
-> +                                       compatible = "aspeed,bmc-misc";
-> +                               };
-> +
->                                 p2a: p2a-control {
->                                         compatible = "aspeed,ast2400-p2a-ctrl";
->                                         status = "disabled";
-> @@ -195,6 +199,16 @@
->                                 reg = <0x1e720000 0x8000>;      // 32K
->                         };
->
-> +                       video: video@1e700000 {
-> +                               compatible = "aspeed,ast2400-video-engine";
-> +                               reg = <0x1e700000 0x1000>;
-> +                               clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
-> +                                        <&syscon ASPEED_CLK_GATE_ECLK>;
-> +                               clock-names = "vclk", "eclk";
-> +                               interrupts = <7>;
-> +                               status = "disabled";
-> +                       };
-> +
->                         gpio: gpio@1e780000 {
->                                 #gpio-cells = <2>;
->                                 gpio-controller;
-> @@ -1408,6 +1422,54 @@
->         };
->  };
->
-> +&vga_scratch {
-> +       dac_mux {
-> +               offset = <0x2c>;
-> +               bit-mask = <0x3>;
-> +               bit-shift = <16>;
-> +       };
-> +       vga0 {
-> +               offset = <0x50>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga1 {
-> +               offset = <0x54>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga2 {
-> +               offset = <0x58>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga3 {
-> +               offset = <0x5c>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga4 {
-> +               offset = <0x60>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga5 {
-> +               offset = <0x64>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga6 {
-> +               offset = <0x68>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +       vga7 {
-> +               offset = <0x6c>;
-> +               bit-mask = <0xffffffff>;
-> +               bit-shift = <0>;
-> +       };
-> +};
-> +
->  &sio_regs {
->         sio_2b {
->                 offset = <0xf0>;
-> --
-> 2.20.1
->
+Thanks,
+Joseph
