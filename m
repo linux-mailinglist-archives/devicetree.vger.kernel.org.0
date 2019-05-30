@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F27192FA69
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 12:40:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA602FA7B
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 12:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726527AbfE3KkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 06:40:13 -0400
-Received: from conuserg-10.nifty.com ([210.131.2.77]:16700 "EHLO
-        conuserg-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725440AbfE3KkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 06:40:13 -0400
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
-        by conuserg-10.nifty.com with ESMTP id x4UAdVWM014412;
-        Thu, 30 May 2019 19:39:31 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com x4UAdVWM014412
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1559212772;
-        bh=yBfKarMdVIq09NQR0PtT44QeSlRwJqdSLI3JOBOKuVE=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Iqr/sqJb/AsaRdwPGr99isNaEy2NgeA/D3F6dMppQChx5OD9k7bipp/f2Gozo4rXM
-         ly1f8ceK77ecPzu0IlTO0enL80HP/AvMlHScxouQthD0fwFa4XyFv/rBEsQYV5x23F
-         hNMTCxn8A8l6BeaN9zwDYrtfYuG3cgS+16kvYDTxAjyBuam0VMUp1j6HT+SPUk6rLz
-         F7AqFJ6vdZBSdcuXP6UCj22CJyxhJGC10qD8I9RvReNmtzIm7qSaf1hTd9BYYtIqlF
-         SSWLVw4GZYOEbLX2KF5gw8FZ6chyamZIYcU575/SiT2azy/2NfGnXlcM31zJtgHLPX
-         ISUs/o92JRPig==
-X-Nifty-SrcIP: [153.142.97.92]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] of/fdt: pass early_init_dt_reserve_memory_arch() with bool type nomap
-Date:   Thu, 30 May 2019 19:39:27 +0900
-Message-Id: <20190530103927.20952-1-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726527AbfE3KqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 06:46:05 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:34729 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726768AbfE3KqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 06:46:04 -0400
+Received: by mail-lf1-f65.google.com with SMTP id v18so4651281lfi.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 03:46:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FdyLDySyY2SfWb2BuTzN6z4FCYV5XabX9rJWqR8bNUo=;
+        b=dH4UjsVPdRxIrhyFCWNDyKaIpXukZkvi4I4GP/2IQSxsiAe0eaPC6XdSkLv4NRZ3hb
+         I+vouiLDA22w6rl2t9eKwt8BemL7XWPQEb7AB1rNTPZ6OQ5yc8dRW0oN14V+EPAH+vwg
+         pAJBiYG1dcdfsbmE5MGGnzmfIGuW6XzJbhTi7vVH+4tLZn1cBOxIl2SEnsM7XHLR4vPi
+         CX2xpKPLSFXEJN/8RxYldcfIWpG+QZewkznMcvBGfl2vyiUbFIRmdrRlTE6NwIrXX16w
+         VxLTi/zD3RUPHvjfMNAu7lnhqivZxxFcwMLX18VckKwGGBsdKSv5pU4cr632quMPVhfc
+         9RiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FdyLDySyY2SfWb2BuTzN6z4FCYV5XabX9rJWqR8bNUo=;
+        b=Hg4kZY7BpE8KancEzVfdvMrZA+1jLtC7udIORmoR4FCxJ8MA+7wPfeO8EJUKnLkuH1
+         z37IeAWMSw7RAvjq7eUBuKnHdWfmCCZkm7dcyLxkiYiaUkXaikCk0eYx8UU793A9gURl
+         gi36wf913xTijc6DzD+ZpPZcLLL3DuFfebzp0URXD8xLCYAwmRIzQUCG4vL5JJqdO28L
+         BNejiwhsmuovS4uhe100A7XlWYqWLRzK8JoMeLKzpHFdK44AOKeEJbu9WsO4+vOqycAm
+         oSLCh70Z3wH0lC8jaXpxsXHF4EtzwwR3KDOK/JJXMrhjrlll7i5r24f55A/P1NiFSbXg
+         oGzw==
+X-Gm-Message-State: APjAAAXCc+xoaAX9oFkQgA4I/rbkqGdU+GqE6xrM2j76oRF3sePj63hz
+        pdTpy+4xgfiBvvRbiz0x6CaBknLIWbPOx6avJewpZg==
+X-Google-Smtp-Source: APXvYqwoiY05tkLHHnJ2HYytNusIfN5SM0hIi0igtjTMShzhp4Mv+LI9yhd+aacV+lEOVqWj45vv9O6aNLEknR4ze68=
+X-Received: by 2002:a19:7616:: with SMTP id c22mr1769026lff.115.1559213162732;
+ Thu, 30 May 2019 03:46:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190530091156.11693-1-sudeep.holla@arm.com>
+In-Reply-To: <20190530091156.11693-1-sudeep.holla@arm.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 30 May 2019 12:45:52 +0200
+Message-ID: <CACRpkdZi3GPjkzyPAXBx2Ffc7DbgLfVhxpBW2q+iMWV5Rfz_4g@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: vexpress: set the right partition type for NOR flash
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The third argument 'nomap' of early_init_dt_reserve_memory_arch() is
-bool. It is preferred to pass it with a bool type parameter.
+On Thu, May 30, 2019 at 11:12 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
 
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
----
+> We should set up the partitions in the right way so we will find out
+> what is in the flash.
+>
+> The ARM Firmware Suite now has its own compatible and proper device
+> tree bindings to trigger discovery of the flash contents, and Linux
+> supports handling the new type of AFS partitions.
+>
+> Based on commit 7f8e78ca90e2 ("arm64: dts: juno: set the right partition
+> type for NOR flash")
+>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 
- drivers/of/fdt.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index de893c9616a1..b165e8b3a347 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -551,7 +551,8 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 	phys_addr_t base, size;
- 	int len;
- 	const __be32 *prop;
--	int nomap, first = 1;
-+	int first = 1;
-+	bool nomap;
- 
- 	prop = of_get_flat_dt_prop(node, "reg", &len);
- 	if (!prop)
-@@ -666,7 +667,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
- 		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
- 		if (!size)
- 			break;
--		early_init_dt_reserve_memory_arch(base, size, 0);
-+		early_init_dt_reserve_memory_arch(base, size, false);
- 	}
- 
- 	of_scan_flat_dt(__fdt_scan_reserved_mem, NULL);
-@@ -684,7 +685,7 @@ void __init early_init_fdt_reserve_self(void)
- 	/* Reserve the dtb region */
- 	early_init_dt_reserve_memory_arch(__pa(initial_boot_params),
- 					  fdt_totalsize(initial_boot_params),
--					  0);
-+					  false);
- }
- 
- /**
--- 
-2.17.1
+Thanks for fixing this!
 
+Yours,
+Linus Walleij
