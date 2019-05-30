@@ -2,72 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 445C52FBE2
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D172FC06
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:12:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726079AbfE3NEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 09:04:07 -0400
-Received: from smtprelay0017.hostedemail.com ([216.40.44.17]:35238 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725919AbfE3NEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 09:04:07 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay02.hostedemail.com (Postfix) with ESMTP id 8215F3AB9;
-        Thu, 30 May 2019 13:04:05 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:800:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1539:1593:1594:1711:1730:1747:1777:1792:2393:2553:2559:2562:2828:2911:3138:3139:3140:3141:3142:3352:3622:3865:3866:3870:3871:3872:3873:4250:4321:4425:5007:6119:6742:10004:10400:10848:11026:11232:11658:11914:12043:12050:12438:12679:12740:12760:12895:13069:13311:13357:13439:14096:14097:14181:14659:14721:21080:21451:21627:30054:30064:30090:30091,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:27,LUA_SUMMARY:none
-X-HE-Tag: need41_405f0fead5e31
-X-Filterd-Recvd-Size: 2102
-Received: from XPS-9350.home (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
-        (Authenticated sender: joe@perches.com)
-        by omf07.hostedemail.com (Postfix) with ESMTPA;
-        Thu, 30 May 2019 13:04:02 +0000 (UTC)
-Message-ID: <8bc749161a8b8640ebdf78d693111d5350514638.camel@perches.com>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-From:   Joe Perches <joe@perches.com>
-To:     hhhawa@amazon.com, Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, bp@alien8.de,
-        mchehab@kernel.org, james.morse@arm.com, davem@davemloft.net,
-        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
-        dwmw@amazon.co.uk, benh@amazon.com, ronenk@amazon.com,
-        talel@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
-        linux-edac@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Thu, 30 May 2019 06:04:00 -0700
-In-Reply-To: <0ebfe8d7-3e0c-e0be-abd5-5e10b7d4b6aa@amazon.com>
-References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
-         <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
-         <20190530115732.GB14088@kroah.com>
-         <0ebfe8d7-3e0c-e0be-abd5-5e10b7d4b6aa@amazon.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.30.1-1build1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S1726128AbfE3NMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 09:12:49 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:35670 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726031AbfE3NMt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 09:12:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E194A78;
+        Thu, 30 May 2019 06:12:48 -0700 (PDT)
+Received: from e105550-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C29753F59C;
+        Thu, 30 May 2019 06:12:43 -0700 (PDT)
+Date:   Thu, 30 May 2019 14:12:41 +0100
+From:   Morten Rasmussen <morten.rasmussen@arm.com>
+To:     "Andrew F. Davis" <afd@ti.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        linux-riscv@lists.infradead.org, Ingo Molnar <mingo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v6 1/7] Documentation: DT: arm: add support for sockets
+ defining package boundaries
+Message-ID: <20190530131241.GB10919@e105550-lin.cambridge.arm.com>
+References: <20190529211340.17087-1-atish.patra@wdc.com>
+ <20190529211340.17087-2-atish.patra@wdc.com>
+ <49f41e62-5354-a674-d95f-5f63851a0ca6@ti.com>
+ <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
+ <70639181-09d1-4644-f062-b19e06db7471@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <70639181-09d1-4644-f062-b19e06db7471@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-05-30 at 15:52 +0300, hhhawa@amazon.com wrote:
-> On 5/30/19 2:57 PM, Greg KH wrote:
-> > On Thu, May 30, 2019 at 01:15:29PM +0300, Hanna Hawa wrote:
-> > > +static void al_a57_edac_cpumerrsr(void *arg)
-> > > +{
-> > > +	struct edac_device_ctl_info *edac_dev =
-> > > +		(struct edac_device_ctl_info *)arg;
-> > No need for casting anything here, just assign it.  Doesn't checkpatch
-> > catch this type of thing these days?  You did run it, right?
+On Thu, May 30, 2019 at 08:56:03AM -0400, Andrew F. Davis wrote:
+> On 5/30/19 7:51 AM, Morten Rasmussen wrote:
+> >On Wed, May 29, 2019 at 07:39:17PM -0400, Andrew F. Davis wrote:
+> >>On 5/29/19 5:13 PM, Atish Patra wrote:
+> >>>From: Sudeep Holla <sudeep.holla@arm.com>
+> >>>
+> >>>The current ARM DT topology description provides the operating system
+> >>>with a topological view of the system that is based on leaf nodes
+> >>>representing either cores or threads (in an SMT system) and a
+> >>>hierarchical set of cluster nodes that creates a hierarchical topology
+> >>>view of how those cores and threads are grouped.
+> >>>
+> >>>However this hierarchical representation of clusters does not allow to
+> >>>describe what topology level actually represents the physical package or
+> >>>the socket boundary, which is a key piece of information to be used by
+> >>>an operating system to optimize resource allocation and scheduling.
+> >>>
+> >>
+> >>Are physical package descriptions really needed? What does "socket" imply
+> >>that a higher layer "cluster" node grouping does not? It doesn't imply a
+> >>different NUMA distance and the definition of "socket" is already not well
+> >>defined, is a dual chiplet processor not just a fancy dual "socket" or are
+> >>dual "sockets" on a server board "slotket" card, will we need new names for
+> >>those too..
+> >
+> >Socket (or package) just implies what you suggest, a grouping of CPUs
+> >based on the physical socket (or package). Some resources might be
+> >associated with packages and more importantly socket information is
+> >exposed to user-space. At the moment clusters are being exposed to
+> >user-space as sockets which is less than ideal for some topologies.
+> >
 > 
-> I did, but checkpatch didn't catch this. I'll fix in next patch-set.
+> I see the benefit of reporting the physical layout and packaging information
+> to user-space for tracking reasons, but from software perspective this
+> doesn't matter, and the resource partitioning should be described elsewhere
+> (NUMA nodes being the go to example).
+
+That would make defining a NUMA node mandatory even for non-NUMA
+systems?
+
+> >At the moment user-space is only told about hw threads, cores, and
+> >sockets. In the very near future it is going to be told about dies too
+> >(look for Len Brown's multi-die patch set).
+> >
 > 
-> Thanks for your review.
+> Seems my hypothetical case is already in the works :(
 
-checkpatch is brainless about the types of variables/arguments.
+Indeed. IIUC, the reasoning behind it is related to actual multi-die
+x86 packages and some rapl stuff being per-die or per-core.
 
-coccinelle is another very useful tool so you could also run
-scripts/coccicheck on your sources.
+> 
+> >I don't see how we can provide correct information to user-space based
+> >on the current information in DT. I'm not convinced it was a good idea
+> >to expose this information to user-space to begin with but that is
+> >another discussion.
+> >
+> 
+> Fair enough, it's a little late now to un-expose this info to userspace so
+> we should at least present it correctly. My worry was this getting out of
+> hand with layering, for instance what happens when we need to add die nodes
+> in-between cluster and socket?
 
-see: Documentation/dev-tools/coccinelle.rst
+If we want the die mask to be correct for arm/arm64/riscv we need die
+information from somewhere. I'm not in favour of adding more topology
+layers to the user-space visible topology description, but others might
+have a valid reason and if it is exposed I would prefer if we try to
+expose the right information.
 
+Btw, for packages, we already have that information in ACPI/PPTT so it
+would be nice if we could have that for DT based systems too.
 
+Morten
