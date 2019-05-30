@@ -2,82 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBA602FA7B
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 12:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5972FA82
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 12:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726527AbfE3KqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 06:46:05 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:34729 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726768AbfE3KqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 06:46:04 -0400
-Received: by mail-lf1-f65.google.com with SMTP id v18so4651281lfi.1
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 03:46:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FdyLDySyY2SfWb2BuTzN6z4FCYV5XabX9rJWqR8bNUo=;
-        b=dH4UjsVPdRxIrhyFCWNDyKaIpXukZkvi4I4GP/2IQSxsiAe0eaPC6XdSkLv4NRZ3hb
-         I+vouiLDA22w6rl2t9eKwt8BemL7XWPQEb7AB1rNTPZ6OQ5yc8dRW0oN14V+EPAH+vwg
-         pAJBiYG1dcdfsbmE5MGGnzmfIGuW6XzJbhTi7vVH+4tLZn1cBOxIl2SEnsM7XHLR4vPi
-         CX2xpKPLSFXEJN/8RxYldcfIWpG+QZewkznMcvBGfl2vyiUbFIRmdrRlTE6NwIrXX16w
-         VxLTi/zD3RUPHvjfMNAu7lnhqivZxxFcwMLX18VckKwGGBsdKSv5pU4cr632quMPVhfc
-         9RiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FdyLDySyY2SfWb2BuTzN6z4FCYV5XabX9rJWqR8bNUo=;
-        b=Hg4kZY7BpE8KancEzVfdvMrZA+1jLtC7udIORmoR4FCxJ8MA+7wPfeO8EJUKnLkuH1
-         z37IeAWMSw7RAvjq7eUBuKnHdWfmCCZkm7dcyLxkiYiaUkXaikCk0eYx8UU793A9gURl
-         gi36wf913xTijc6DzD+ZpPZcLLL3DuFfebzp0URXD8xLCYAwmRIzQUCG4vL5JJqdO28L
-         BNejiwhsmuovS4uhe100A7XlWYqWLRzK8JoMeLKzpHFdK44AOKeEJbu9WsO4+vOqycAm
-         oSLCh70Z3wH0lC8jaXpxsXHF4EtzwwR3KDOK/JJXMrhjrlll7i5r24f55A/P1NiFSbXg
-         oGzw==
-X-Gm-Message-State: APjAAAXCc+xoaAX9oFkQgA4I/rbkqGdU+GqE6xrM2j76oRF3sePj63hz
-        pdTpy+4xgfiBvvRbiz0x6CaBknLIWbPOx6avJewpZg==
-X-Google-Smtp-Source: APXvYqwoiY05tkLHHnJ2HYytNusIfN5SM0hIi0igtjTMShzhp4Mv+LI9yhd+aacV+lEOVqWj45vv9O6aNLEknR4ze68=
-X-Received: by 2002:a19:7616:: with SMTP id c22mr1769026lff.115.1559213162732;
- Thu, 30 May 2019 03:46:02 -0700 (PDT)
+        id S1726198AbfE3KtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 06:49:15 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:39832 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726450AbfE3KtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 06:49:15 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4UAn3m4001170;
+        Thu, 30 May 2019 05:49:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559213343;
+        bh=zESXW5EtamOTtmBA+ydMjmOz1arrUTtIScAj+pTVAvY=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=w/1B8ZPv8eUL4pzsFwc/Ym7ocpk6KhqZkAPEeSExs7SR2ELfTnzSQfDjugiS2CByb
+         JJpbSId1jQ8grgdjZq1IMkUhbGaI3jdhMb5wpkC94MaVloLbHQeQbP2VJlMWi7AqeP
+         Ho+d82yOAHcy0FCl1zPy80uNLp9BN3LB1zwXlw4Y=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4UAn3Zi108225
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 30 May 2019 05:49:03 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 30
+ May 2019 05:49:03 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 30 May 2019 05:49:03 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4UAn3x0078277;
+        Thu, 30 May 2019 05:49:03 -0500
+Date:   Thu, 30 May 2019 05:49:03 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Roger Quadros <rogerq@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add MSMC RAM ranges in
+ interconnect node
+Message-ID: <20190530104903.ldcmkunjnk7a5y3c@akan>
+References: <20190529211344.18014-1-s-anna@ti.com>
 MIME-Version: 1.0
-References: <20190530091156.11693-1-sudeep.holla@arm.com>
-In-Reply-To: <20190530091156.11693-1-sudeep.holla@arm.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 30 May 2019 12:45:52 +0200
-Message-ID: <CACRpkdZi3GPjkzyPAXBx2Ffc7DbgLfVhxpBW2q+iMWV5Rfz_4g@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: vexpress: set the right partition type for NOR flash
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20190529211344.18014-1-s-anna@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 11:12 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+On 16:13-20190529, Suman Anna wrote:
+> From: Roger Quadros <rogerq@ti.com>
+> 
+> Add the MSCM RAM address space to the ranges property of the cbass_main
+> interconnect node so that the addresses can be translated properly.
+> 
+> This fixes the probe failure in the sram driver for the MSMC RAM node.
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+> 
+> The following error message is seen without this:
+> [    0.480261] sram interconnect@100000:sram@70000000: found no memory resource
+> [    0.487497] sram: probe of interconnect@100000:sram@70000000 failed with error -22
+> 
+> regards
+> Suman
+> 
+>  arch/arm64/boot/dts/ti/k3-am65.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> index 50f4be2047a9..68b3f954f1d1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> @@ -68,6 +68,7 @@
+>  			 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /* serdes */
+>  			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
+>  			 <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>, /* MAIN NAVSS */
+> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00200000>, /* MSMC SRAM */
+>  			 /* MCUSS Range */
+>  			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+>  			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00900100>,
+> -- 
+> 2.21.0
+> 
 
-> We should set up the partitions in the right way so we will find out
-> what is in the flash.
->
-> The ARM Firmware Suite now has its own compatible and proper device
-> tree bindings to trigger discovery of the flash contents, and Linux
-> supports handling the new type of AFS partitions.
->
-> Based on commit 7f8e78ca90e2 ("arm64: dts: juno: set the right partition
-> type for NOR flash")
->
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Arrgh.. Nice catch. Thanks. We should consider pulling this in as part
+of early rc fixes please.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Nishanth Menon <nm@ti.com>
 
-Thanks for fixing this!
-
-Yours,
-Linus Walleij
+-- 
+Regards,
+Nishanth Menon
