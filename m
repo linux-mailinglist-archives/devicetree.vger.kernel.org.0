@@ -2,83 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7875F30257
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 20:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9368830264
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 20:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfE3SyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 14:54:01 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:37841 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725961AbfE3SyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 14:54:01 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 8BD9BFF806;
-        Thu, 30 May 2019 18:53:54 +0000 (UTC)
-Date:   Thu, 30 May 2019 20:53:48 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH] dt-bindings: display: Convert Allwinner DSI to a schema
-Message-ID: <20190530185347.aql4znrk5msk2q6o@flea>
-References: <20190527120910.18964-1-maxime.ripard@bootlin.com>
- <CAGb2v66uhrm20BwmODkPZjSM6Ek+xEg23w2Cs49ikW3WcU1Lqg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="n26wko6czjrwlbek"
-Content-Disposition: inline
-In-Reply-To: <CAGb2v66uhrm20BwmODkPZjSM6Ek+xEg23w2Cs49ikW3WcU1Lqg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+        id S1725961AbfE3SzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 14:55:08 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:57582 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726031AbfE3SzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 14:55:08 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id A1A1114D9DD5B;
+        Thu, 30 May 2019 11:55:07 -0700 (PDT)
+Date:   Thu, 30 May 2019 11:55:07 -0700 (PDT)
+Message-Id: <20190530.115507.1344606945620280103.davem@davemloft.net>
+To:     richardcochran@gmail.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org, andrew@lunn.ch,
+        f.fainelli@gmail.com, jacob.e.keller@intel.com,
+        mark.rutland@arm.com, mlichvar@redhat.com, robh+dt@kernel.org,
+        willemb@google.com
+Subject: Re: [PATCH V4 net-next 0/6] Peer to Peer One-Step time stamping
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <cover.1559109076.git.richardcochran@gmail.com>
+References: <cover.1559109076.git.richardcochran@gmail.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Thu, 30 May 2019 11:55:08 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Richard Cochran <richardcochran@gmail.com>
+Date: Tue, 28 May 2019 22:58:01 -0700
 
---n26wko6czjrwlbek
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> This series adds support for PTP (IEEE 1588) P2P one-step time
+> stamping along with a driver for a hardware device that supports this.
+> 
+> If the hardware supports p2p one-step, it subtracts the ingress time
+> stamp value from the Pdelay_Request correction field.  The user space
+> software stack then simply copies the correction field into the
+> Pdelay_Response, and on transmission the hardware adds the egress time
+> stamp into the correction field.
+> 
+> This new functionality extends CONFIG_NETWORK_PHY_TIMESTAMPING to
+> cover MII snooping devices, but it still depends on phylib, just as
+> that option does.  Expanding beyond phylib is not within the scope of
+> the this series.
+> 
+> User space support is available in the current linuxptp master branch.
+> 
+> - Patch 1 adds the new option.
+> - Patches 2-5 add support for MII time stamping in non-PHY devices.
+> - Patch 6 adds a driver implementing the new option.
 
-Hi,
-
-On Thu, May 30, 2019 at 09:48:02PM +0800, Chen-Yu Tsai wrote:
-> On Mon, May 27, 2019 at 8:09 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > The Allwinner SoCs have a MIPI-DSI and MIPI-D-PHY controllers supported in
-> > Linux, with a matching Device Tree binding.
-> >
-> > Now that we have the DT validation in place, let's convert the device tree
-> > bindings for that controller over to a YAML schemas.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> Looks good to me. However not sure why you replaced the clock index macros
-> with raw numbers.
-
-The examples are compiled now, and unfortunately we can't use the
-defines at this point.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---n26wko6czjrwlbek
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPAmuwAKCRDj7w1vZxhR
-xTrkAP9aecEKOK5bHZC70YnbsnYn/b1tZ+7DzzXoqX/FQEYF5AEAylRFy9rknaOQ
-uAzr1PQPqbqIGy8rVpSH/ibPa/zelgY=
-=yRoQ
------END PGP SIGNATURE-----
-
---n26wko6czjrwlbek--
+Series applied, thanks Richard.
