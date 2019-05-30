@@ -2,161 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B40F62EA93
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 04:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EAF2EAC6
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 04:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726546AbfE3CRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 22:17:55 -0400
-Received: from mail-eopbgr150041.outbound.protection.outlook.com ([40.107.15.41]:48894
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726311AbfE3CRz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 22:17:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8LvHwmCVnlAgk4vIdUdJTRhYZl6n7CWhwmMNgwvUmDM=;
- b=VV+59EBm5yHQ6Xa2HvLw4Ly7x40821x+ukhLX4fN2K+bwNbG+6xVcAoxT70uN2OXkaKgWd2ZcKdQ9WcvgFOIiI3mcIg/FuGOdItTGVJYaUOUFsbCUFbFryaOyxhRNp0v6XiS9aGMOrYnFgzfTws68xoZ4lmZwjt6BJwmxzxS4W0=
-Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
- AM5PR0402MB2881.eurprd04.prod.outlook.com (10.175.42.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.17; Thu, 30 May 2019 02:17:51 +0000
-Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
- ([fe80::a1bf:17d:a52:3824]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
- ([fe80::a1bf:17d:a52:3824%4]) with mapi id 15.20.1943.016; Thu, 30 May 2019
- 02:17:50 +0000
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Felipe Balbi <balbi@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:DESIGNWARE USB3 DRD IP DRIVER" <linux-usb@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH] usb: dwc3: Enable the USB snooping
-Thread-Topic: [PATCH] usb: dwc3: Enable the USB snooping
-Thread-Index: AQHTXdpMV/QBUrO8J0eNmcCmR0ATg6MVIlkAgAAD6zCAABVWgINueaJwgAAMz4CAAYVcwIAADlOAgAEFSVA=
-Date:   Thu, 30 May 2019 02:17:50 +0000
-Message-ID: <AM5PR0402MB28650ECE851C840990816C1CF1180@AM5PR0402MB2865.eurprd04.prod.outlook.com>
-References: <20171115060459.45375-1-ran.wang_1@nxp.com>
- <87ineb9b5v.fsf@linux.intel.com>
- <VI1PR04MB1504776EF3D4D8C374F0C069F1290@VI1PR04MB1504.eurprd04.prod.outlook.com>
- <87shdfet90.fsf@linux.intel.com>
- <AM5PR0402MB28654EBE2D431CC2F8061CF8F11E0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
- <87k1eaanjw.fsf@linux.intel.com>
- <AM5PR0402MB2865AB6C2A50851B7EA4E653F11F0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
- <874l5dr21m.fsf@linux.intel.com>
-In-Reply-To: <874l5dr21m.fsf@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ran.wang_1@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f5c6e834-a328-43d9-3c35-08d6e4a50426
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2881;
-x-ms-traffictypediagnostic: AM5PR0402MB2881:
-x-microsoft-antispam-prvs: <AM5PR0402MB288134B70D4E5954895E5915F1180@AM5PR0402MB2881.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 00531FAC2C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(366004)(396003)(376002)(39860400002)(189003)(199004)(7736002)(52536014)(81166006)(316002)(66946007)(9686003)(8936002)(64756008)(66556008)(229853002)(71200400001)(66066001)(4326008)(76116006)(446003)(66476007)(11346002)(71190400001)(305945005)(486006)(476003)(14444005)(68736007)(256004)(81156014)(74316002)(86362001)(6246003)(102836004)(2906002)(26005)(73956011)(5660300002)(8676002)(6506007)(7696005)(53546011)(6436002)(66446008)(53936002)(33656002)(25786009)(6916009)(55016002)(6116002)(3846002)(54906003)(14454004)(186003)(478600001)(99286004)(76176011);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2881;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: oNI7vJm8GJgd/dEva3fPZYPX3F9AVbgo9cU4GZL3ntgeZCKqR6Yg+gHSgHKfj4JGhCp30Hau981pfscQgGrQms0krJxlR7N+gsVWY2QMd3e2T+HpmQ4Mei8ZLS23yk66IbdAEApIj8a3hGcImd0IP/lEySxxZcZYyGaXh4q+bhNkaMoY4k2B1MtStNub8qzK3rdymuRHu6ko5WUmcmQHCQ+4MFheBe43/C0uvRmoAAGXvXIb8qP/3ahvtN5NP3KUbV8RkODiEkNXUL+Co1PD8bw3CjP2H4b/RKqKoedK3vBw8UfiSHarNNcaYPegDNqNxeBYRMUF66zGlgbwXsKxXxqPOe/JzjbEFjwS7kuPZXdcP5iEWHWrqSRoqEoBwdxCIh3Ja0/O8ScLo1+rTMLrvh6Gp1Unaab6OuYoC/mZTPM=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5c6e834-a328-43d9-3c35-08d6e4a50426
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2019 02:17:50.8684
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ran.wang_1@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2881
+        id S1726469AbfE3Cme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 22:42:34 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:46658 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725961AbfE3Cme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 22:42:34 -0400
+Received: by mail-pf1-f195.google.com with SMTP id y11so2905145pfm.13
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 19:42:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=KpcFXbFBwLxCGyy/Jk49fis3KZuLGYD4HsSFk6V42fk=;
+        b=PMh15HR9mQblcV+ALtH6+1MxZLMnT9JCvjJgQfoTzVOWlzwzLyIabbGAnrKI6H79mA
+         4q7hcaHnQPVb2apVIF5N1McGIn2718jLHP7HjRHGGHQggg2o28Cqx8LHeW2YlmKQZu/u
+         WIS7TcANAUev8gX43UhdYzte8Zi6TFb+imJPVaNvs50hBIeXYIMQ7glmtYhhVj+WUfdX
+         iPfQxPLbiAw6GzLrHuEaZSEBTw6vJLl+J5xj3uQQ8qcrceUGwRApm/XT4y9o84rIduwO
+         vQHaOCHLm5FqovxLE6UUXctysyDYsIZpq36vhONV5sYsmJgYJsBI4nyWJAj9HFYDGTZb
+         3oSg==
+X-Gm-Message-State: APjAAAVYTYON5/4PtkOwx+eT+pkA4z+p3mMFXmYA8ljDiC8nBfIcm5Ag
+        N7IZ9rl1AafJOZ8XIGB6DhxRow==
+X-Google-Smtp-Source: APXvYqyMgSr8zbcysyqaP52vbPviSt9ykqRZ6sLQ4REBy1M6NY8HNtd2bruAoXR44eoyah/GzDNUJA==
+X-Received: by 2002:a62:ea0a:: with SMTP id t10mr1228321pfh.236.1559184153533;
+        Wed, 29 May 2019 19:42:33 -0700 (PDT)
+Received: from localhost ([12.206.222.5])
+        by smtp.gmail.com with ESMTPSA id b90sm363054pjc.0.2019.05.29.19.42.32
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 29 May 2019 19:42:32 -0700 (PDT)
+Date:   Wed, 29 May 2019 19:42:32 -0700 (PDT)
+X-Google-Original-Date: Wed, 29 May 2019 19:42:12 PDT (-0700)
+Subject:     Re: [PATCH 2/2] net: macb: Add support for SiFive FU540-C000
+In-Reply-To: <20190524134847.GF2979@lunn.ch>
+CC:     yash.shah@sifive.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        nicolas.ferre@microchip.com,
+        Sachin Ghadi <sachin.ghadi@sifive.com>, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, ynezz@true.cz,
+        linux-riscv@lists.infradead.org, davem@davemloft.net
+From:   Palmer Dabbelt <palmer@sifive.com>
+To:     andrew@lunn.ch
+Message-ID: <mhng-c7fba225-8035-4808-bdd6-bc05da5d2674@palmer-si-x1e>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+On Fri, 24 May 2019 06:48:47 PDT (-0700), andrew@lunn.ch wrote:
+> On Fri, May 24, 2019 at 10:22:06AM +0530, Yash Shah wrote:
+>> On Thu, May 23, 2019 at 8:24 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>> >
+>> > > +static int fu540_macb_tx_set_rate(struct clk_hw *hw, unsigned long rate,
+>> > > +                               unsigned long parent_rate)
+>> > > +{
+>> > > +     rate = fu540_macb_tx_round_rate(hw, rate, &parent_rate);
+>> > > +     iowrite32(rate != 125000000, mgmt->reg);
+>> >
+>> > That looks odd. Writing the result of a comparison to a register?
+>>
+>> The idea was to write "1" to the register if the value of rate is
+>> anything else than 125000000.
+>
+> I'm not a language lawyer. Is it guaranteed that an expression like
+> this returns 1? Any value !0 is true, so maybe it actually returns 42?
 
-On Wednesday, May 29, 2019 18:25, Felipe Balbi wrote:
->=20
-> Hi,
->=20
-> Ran Wang <ran.wang_1@nxp.com> writes:
-> >> >> >> c) WHAT does this mean for PCI devices?
-> >
-> > According to DWC3 data book, I think this (PCI) mean to the case of 'ma=
-ster
-> bus type =3D Native'
-> > The data book describes this feature as 'system bus DMA option for the
-> > master bus, which may be configured as AHB, AXI, or Native.' On Table
-> > 6-5, it says when MBUS_TYPE is Native, the definition of 4 transfer typ=
-es
-> control bits [3-0] is 'Same as AXI'.
-> >
-> > However, as to the code implementation to be generic to both PCI and
-> > AXI, I admit I don't have a perfect solution so far, only 2 proposals w=
-ith
-> concerns:
-> >
-> > a. Create another module driver like dwc3-exynos.c
-> (arch/arm/boot/dts/wxynos54xx.dtsi)
-> >     to contain above programming code. However, it will touch the same =
-reg
-> range of DWC3
-> >     I think this is not good.
->=20
-> I'd prefer avoiding another glue :-)
+From Stack Overflow: https://stackoverflow.com/questions/18097922/return-value-of-operator-in-c
 
-Got it.
-=20
-> > b. Add #ifdef CONFIG_ARCH_LAYERSCAPE in drivers/usb/dwc3/core.c to
-> constrain hacking code
-> >    can only take effect for Layerscape (AXI case). I know it look ugly.
-> >
-> > Do you have any better advice on this (besides changed power on default
-> value from HW perspective)?
->=20
-> Maybe we don't need to care, actually. Since this property will only be n=
-eeded
-> for RTL instantiation that didn't configure these defaults properly durin=
-g
-> coreConsultant.
+"C11(ISO/IEC 9899:201x) §6.5.8 Relational operators
 
-Ok, I think I could add information in bindings to highlight this setting m=
-ight
-be RTL instantiation (SoC) relevant to prevent misusing.
+Each of the operators < (less than), > (greater than), <= (less than or equal
+to), and >= (greater than or equal to) shall yield 1 if the specified relation
+is true and 0 if it is false. The result has type int."
 
-> >> >> >> Another question is: Why wasn't this setup properly during
-> >> >> >> coreConsultant instantiation of the RTL? Do you have devices on
-> >> >> >> the market already that need this or is this some early FPGA
-> >> >> >> model or test-only
-> >> >> ASIC?
-> >
-> > Several Layerscape platforms like LS1043ARDB, LS1046ARDB, etc. are
-> > already on the market and have this issue. So I have to work out a SW p=
-atch to
-> fix them.
->=20
-> Thank you, now I'm certain that this is not some temporary solution :-)
->=20
-> Thanks for going through this again. Please refresh the patch so we can t=
-ry to
-> get it merged.
-
-Sure, as I know all LS1043A and LS1046A relevant platforms have added 'dma-=
-coherent'
-to DTS node of 'soc' in mainline, which means without this fix USB function=
- will down
-definitely, I will go through all update requirement we've discussed and wo=
-rk out
-next version patch. Thank you.
-
-Regards,
-Ran=20
+>> To make it easier to read, I will change this to below:
+>>     - iowrite32(rate != 125000000, mgmt->reg);
+>>     + if (rate != 125000000)
+>>     +     iowrite32(1, mgmt->reg);
+>>     + else
+>>     +     iowrite32(0, mgmt->reg);
+>>
+>> Hope that's fine. Thanks for your comment
+>
+> Yes, that is good.
+>
+>      Andrew
