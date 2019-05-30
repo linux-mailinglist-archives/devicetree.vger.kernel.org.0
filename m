@@ -2,25 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1F22300B8
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 19:13:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D346D3012E
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 19:45:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727779AbfE3RM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 13:12:59 -0400
-Received: from foss.arm.com ([217.140.101.70]:40306 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726887AbfE3RM7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 13:12:59 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DFD2619F6;
-        Thu, 30 May 2019 10:12:58 -0700 (PDT)
-Received: from ostrya.cambridge.arm.com (ostrya.cambridge.arm.com [10.1.196.129])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C7D9E3F5AF;
-        Thu, 30 May 2019 10:12:55 -0700 (PDT)
-From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-To:     joro@8bytes.org, mst@redhat.com
-Cc:     iommu@lists.linux-foundation.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
+        id S1726688AbfE3Rpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 13:45:38 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:34128 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726684AbfE3Rpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 13:45:38 -0400
+Received: by mail-qt1-f194.google.com with SMTP id h1so8050461qtp.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 10:45:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UgEoJIEOWgKSmNpnwJapd7xKMVBGEnMvpNqFuwdcHSY=;
+        b=Fn/ANT4MXdKSWGuWOrpPeP98WM3E9iym5IYE+8c9BVbTfT5sP9hiLSFUBTsUol8cTW
+         dWUBH7hDDa+fdzvcNDiLIPD0vemofSYGPiwtlWiQ2b/++WJttZeWSEbXp44Ql71oDmXD
+         st2Bwo+bn0aiRzKFTTojowbipmLDs6RwCSTCqDsiU//+h+v6X8vMiwwvpUWIPX/N02RQ
+         hdONda6ZoIatyae+tV49dVhk5eSP2HZRyJNQaJPNj+I1TSWZKfzlKiBmKrb1lqTe4bPE
+         MVnNtlGhfuNrpTLavRPlrmnenmroF+hf2iA19jM95IrlNesG148vK8vQ2IberOpvmHhA
+         j+mw==
+X-Gm-Message-State: APjAAAVuufTAiU2RxefRcolnwQbTOkeFU8azpfcrPk/Cu3fR1hyQi7LG
+        aJw2cSeOd7hzAxSegX9bZ5C/Hw==
+X-Google-Smtp-Source: APXvYqy9DfCkbHWFwnoJIZhnJEIk9jBDmoJOESod/F/vQr9Iv7gjOGLceZ55BmbRJubgQEOI/tivJw==
+X-Received: by 2002:aed:3b5a:: with SMTP id q26mr4641355qte.158.1559238337003;
+        Thu, 30 May 2019 10:45:37 -0700 (PDT)
+Received: from redhat.com (pool-100-0-197-103.bstnma.fios.verizon.net. [100.0.197.103])
+        by smtp.gmail.com with ESMTPSA id r186sm691141qkb.9.2019.05.30.10.45.34
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 30 May 2019 10:45:35 -0700 (PDT)
+Date:   Thu, 30 May 2019 13:45:32 -0400
+From:   "Michael S. Tsirkin" <mst@redhat.com>
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Cc:     joro@8bytes.org, iommu@lists.linux-foundation.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         virtualization@lists.linux-foundation.org,
         virtio-dev@lists.oasis-open.org, jasowang@redhat.com,
         robh+dt@kernel.org, mark.rutland@arm.com,
@@ -29,223 +46,119 @@ Cc:     iommu@lists.linux-foundation.org, linux-pci@vger.kernel.org,
         kvmarm@lists.cs.columbia.edu, eric.auger@redhat.com,
         tnowicki@caviumnetworks.com, kevin.tian@intel.com,
         bauerman@linux.ibm.com
-Subject: [PATCH v8 7/7] iommu/virtio: Add event queue
-Date:   Thu, 30 May 2019 18:09:29 +0100
-Message-Id: <20190530170929.19366-8-jean-philippe.brucker@arm.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190530170929.19366-1-jean-philippe.brucker@arm.com>
+Subject: Re: [PATCH v8 2/7] dt-bindings: virtio: Add virtio-pci-iommu node
+Message-ID: <20190530133523-mutt-send-email-mst@kernel.org>
 References: <20190530170929.19366-1-jean-philippe.brucker@arm.com>
+ <20190530170929.19366-3-jean-philippe.brucker@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190530170929.19366-3-jean-philippe.brucker@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The event queue offers a way for the device to report access faults from
-endpoints. It is implemented on virtqueue #1. Whenever the host needs to
-signal a fault, it fills one of the buffers offered by the guest and
-interrupts it.
+On Thu, May 30, 2019 at 06:09:24PM +0100, Jean-Philippe Brucker wrote:
+> Some systems implement virtio-iommu as a PCI endpoint. The operating
+> system needs to discover the relationship between IOMMU and masters long
+> before the PCI endpoint gets probed. Add a PCI child node to describe the
+> virtio-iommu device.
+> 
+> The virtio-pci-iommu is conceptually split between a PCI programming
+> interface and a translation component on the parent bus. The latter
+> doesn't have a node in the device tree. The virtio-pci-iommu node
+> describes both, by linking the PCI endpoint to "iommus" property of DMA
+> master nodes and to "iommu-map" properties of bus nodes.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Eric Auger <eric.auger@redhat.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
 
-Acked-by: Joerg Roedel <jroedel@suse.de>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
-Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
----
- drivers/iommu/virtio-iommu.c      | 115 +++++++++++++++++++++++++++---
- include/uapi/linux/virtio_iommu.h |  19 +++++
- 2 files changed, 125 insertions(+), 9 deletions(-)
+So this is just an example right?
+We are not defining any new properties or anything like that.
 
-diff --git a/drivers/iommu/virtio-iommu.c b/drivers/iommu/virtio-iommu.c
-index 5d4947c47420..2688cdcac6e5 100644
---- a/drivers/iommu/virtio-iommu.c
-+++ b/drivers/iommu/virtio-iommu.c
-@@ -29,7 +29,8 @@
- #define MSI_IOVA_LENGTH			0x100000
- 
- #define VIOMMU_REQUEST_VQ		0
--#define VIOMMU_NR_VQS			1
-+#define VIOMMU_EVENT_VQ			1
-+#define VIOMMU_NR_VQS			2
- 
- struct viommu_dev {
- 	struct iommu_device		iommu;
-@@ -41,6 +42,7 @@ struct viommu_dev {
- 	struct virtqueue		*vqs[VIOMMU_NR_VQS];
- 	spinlock_t			request_lock;
- 	struct list_head		requests;
-+	void				*evts;
- 
- 	/* Device configuration */
- 	struct iommu_domain_geometry	geometry;
-@@ -86,6 +88,15 @@ struct viommu_request {
- 	char				buf[];
- };
- 
-+#define VIOMMU_FAULT_RESV_MASK		0xffffff00
-+
-+struct viommu_event {
-+	union {
-+		u32			head;
-+		struct virtio_iommu_fault fault;
-+	};
-+};
-+
- #define to_viommu_domain(domain)	\
- 	container_of(domain, struct viommu_domain, domain)
- 
-@@ -509,6 +520,68 @@ static int viommu_probe_endpoint(struct viommu_dev *viommu, struct device *dev)
- 	return ret;
- }
- 
-+static int viommu_fault_handler(struct viommu_dev *viommu,
-+				struct virtio_iommu_fault *fault)
-+{
-+	char *reason_str;
-+
-+	u8 reason	= fault->reason;
-+	u32 flags	= le32_to_cpu(fault->flags);
-+	u32 endpoint	= le32_to_cpu(fault->endpoint);
-+	u64 address	= le64_to_cpu(fault->address);
-+
-+	switch (reason) {
-+	case VIRTIO_IOMMU_FAULT_R_DOMAIN:
-+		reason_str = "domain";
-+		break;
-+	case VIRTIO_IOMMU_FAULT_R_MAPPING:
-+		reason_str = "page";
-+		break;
-+	case VIRTIO_IOMMU_FAULT_R_UNKNOWN:
-+	default:
-+		reason_str = "unknown";
-+		break;
-+	}
-+
-+	/* TODO: find EP by ID and report_iommu_fault */
-+	if (flags & VIRTIO_IOMMU_FAULT_F_ADDRESS)
-+		dev_err_ratelimited(viommu->dev, "%s fault from EP %u at %#llx [%s%s%s]\n",
-+				    reason_str, endpoint, address,
-+				    flags & VIRTIO_IOMMU_FAULT_F_READ ? "R" : "",
-+				    flags & VIRTIO_IOMMU_FAULT_F_WRITE ? "W" : "",
-+				    flags & VIRTIO_IOMMU_FAULT_F_EXEC ? "X" : "");
-+	else
-+		dev_err_ratelimited(viommu->dev, "%s fault from EP %u\n",
-+				    reason_str, endpoint);
-+	return 0;
-+}
-+
-+static void viommu_event_handler(struct virtqueue *vq)
-+{
-+	int ret;
-+	unsigned int len;
-+	struct scatterlist sg[1];
-+	struct viommu_event *evt;
-+	struct viommu_dev *viommu = vq->vdev->priv;
-+
-+	while ((evt = virtqueue_get_buf(vq, &len)) != NULL) {
-+		if (len > sizeof(*evt)) {
-+			dev_err(viommu->dev,
-+				"invalid event buffer (len %u != %zu)\n",
-+				len, sizeof(*evt));
-+		} else if (!(evt->head & VIOMMU_FAULT_RESV_MASK)) {
-+			viommu_fault_handler(viommu, &evt->fault);
-+		}
-+
-+		sg_init_one(sg, evt, sizeof(*evt));
-+		ret = virtqueue_add_inbuf(vq, sg, 1, evt, GFP_ATOMIC);
-+		if (ret)
-+			dev_err(viommu->dev, "could not add event buffer\n");
-+	}
-+
-+	virtqueue_kick(vq);
-+}
-+
- /* IOMMU API */
- 
- static struct iommu_domain *viommu_domain_alloc(unsigned type)
-@@ -895,16 +968,35 @@ static struct iommu_ops viommu_ops = {
- static int viommu_init_vqs(struct viommu_dev *viommu)
- {
- 	struct virtio_device *vdev = dev_to_virtio(viommu->dev);
--	const char *name = "request";
--	void *ret;
-+	const char *names[] = { "request", "event" };
-+	vq_callback_t *callbacks[] = {
-+		NULL, /* No async requests */
-+		viommu_event_handler,
-+	};
- 
--	ret = virtio_find_single_vq(vdev, NULL, name);
--	if (IS_ERR(ret)) {
--		dev_err(viommu->dev, "cannot find VQ\n");
--		return PTR_ERR(ret);
--	}
-+	return virtio_find_vqs(vdev, VIOMMU_NR_VQS, viommu->vqs, callbacks,
-+			       names, NULL);
-+}
- 
--	viommu->vqs[VIOMMU_REQUEST_VQ] = ret;
-+static int viommu_fill_evtq(struct viommu_dev *viommu)
-+{
-+	int i, ret;
-+	struct scatterlist sg[1];
-+	struct viommu_event *evts;
-+	struct virtqueue *vq = viommu->vqs[VIOMMU_EVENT_VQ];
-+	size_t nr_evts = vq->num_free;
-+
-+	viommu->evts = evts = devm_kmalloc_array(viommu->dev, nr_evts,
-+						 sizeof(*evts), GFP_KERNEL);
-+	if (!evts)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < nr_evts; i++) {
-+		sg_init_one(sg, &evts[i], sizeof(*evts));
-+		ret = virtqueue_add_inbuf(vq, sg, 1, &evts[i], GFP_KERNEL);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	return 0;
- }
-@@ -981,6 +1073,11 @@ static int viommu_probe(struct virtio_device *vdev)
- 
- 	virtio_device_ready(vdev);
- 
-+	/* Populate the event queue with buffers */
-+	ret = viommu_fill_evtq(viommu);
-+	if (ret)
-+		goto err_free_vqs;
-+
- 	ret = iommu_device_sysfs_add(&viommu->iommu, dev, NULL, "%s",
- 				     virtio_bus_name(vdev));
- 	if (ret)
-diff --git a/include/uapi/linux/virtio_iommu.h b/include/uapi/linux/virtio_iommu.h
-index 20ead0cadced..237e36a280cb 100644
---- a/include/uapi/linux/virtio_iommu.h
-+++ b/include/uapi/linux/virtio_iommu.h
-@@ -143,4 +143,23 @@ struct virtio_iommu_req_probe {
- 	 */
- };
- 
-+/* Fault types */
-+#define VIRTIO_IOMMU_FAULT_R_UNKNOWN		0
-+#define VIRTIO_IOMMU_FAULT_R_DOMAIN		1
-+#define VIRTIO_IOMMU_FAULT_R_MAPPING		2
-+
-+#define VIRTIO_IOMMU_FAULT_F_READ		(1 << 0)
-+#define VIRTIO_IOMMU_FAULT_F_WRITE		(1 << 1)
-+#define VIRTIO_IOMMU_FAULT_F_EXEC		(1 << 2)
-+#define VIRTIO_IOMMU_FAULT_F_ADDRESS		(1 << 8)
-+
-+struct virtio_iommu_fault {
-+	__u8					reason;
-+	__u8					reserved[3];
-+	__le32					flags;
-+	__le32					endpoint;
-+	__u8					reserved2[4];
-+	__le64					address;
-+};
-+
- #endif
--- 
-2.21.0
+I think down the road for non dt platforms we want to put this
+info in the config space of the device. I do not think ACPI
+is the best option for this since not all systems have it.
+But that can wait.
 
+> ---
+>  .../devicetree/bindings/virtio/iommu.txt      | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/virtio/iommu.txt b/Documentation/devicetree/bindings/virtio/iommu.txt
+> new file mode 100644
+> index 000000000000..2407fea0651c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/virtio/iommu.txt
+> @@ -0,0 +1,66 @@
+> +* virtio IOMMU PCI device
+> +
+> +When virtio-iommu uses the PCI transport, its programming interface is
+> +discovered dynamically by the PCI probing infrastructure. However the
+> +device tree statically describes the relation between IOMMU and DMA
+> +masters. Therefore, the PCI root complex that hosts the virtio-iommu
+> +contains a child node representing the IOMMU device explicitly.
+> +
+> +Required properties:
+> +
+> +- compatible:	Should be "virtio,pci-iommu"
+> +- reg:		PCI address of the IOMMU. As defined in the PCI Bus
+> +		Binding reference [1], the reg property is a five-cell
+> +		address encoded as (phys.hi phys.mid phys.lo size.hi
+> +		size.lo). phys.hi should contain the device's BDF as
+> +		0b00000000 bbbbbbbb dddddfff 00000000. The other cells
+> +		should be zero.
+> +- #iommu-cells:	Each platform DMA master managed by the IOMMU is assigned
+> +		an endpoint ID, described by the "iommus" property [2].
+> +		For virtio-iommu, #iommu-cells must be 1.
+> +
+> +Notes:
+> +
+> +- DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
+> +  virtio-iommu node doesn't have an "iommus" property, and is omitted from
+> +  the iommu-map property of the root complex.
+> +
+> +Example:
+> +
+> +pcie@10000000 {
+> +	compatible = "pci-host-ecam-generic";
+> +	...
+> +
+> +	/* The IOMMU programming interface uses slot 00:01.0 */
+> +	iommu0: iommu@0008 {
+> +		compatible = "virtio,pci-iommu";
+> +		reg = <0x00000800 0 0 0 0>;
+> +		#iommu-cells = <1>;
+> +	};
+> +
+> +	/*
+> +	 * The IOMMU manages all functions in this PCI domain except
+> +	 * itself. Omit BDF 00:01.0.
+> +	 */
+> +	iommu-map = <0x0 &iommu0 0x0 0x8>
+> +		    <0x9 &iommu0 0x9 0xfff7>;
+> +};
+> +
+> +pcie@20000000 {
+> +	compatible = "pci-host-ecam-generic";
+> +	...
+> +	/*
+> +	 * The IOMMU also manages all functions from this domain,
+> +	 * with endpoint IDs 0x10000 - 0x1ffff
+> +	 */
+> +	iommu-map = <0x0 &iommu0 0x10000 0x10000>;
+> +};
+> +
+> +ethernet@fe001000 {
+> +	...
+> +	/* The IOMMU manages this platform device with endpoint ID 0x20000 */
+> +	iommus = <&iommu0 0x20000>;
+> +};
+> +
+> +[1] Documentation/devicetree/bindings/pci/pci.txt
+> +[2] Documentation/devicetree/bindings/iommu/iommu.txt
+> -- 
+> 2.21.0
