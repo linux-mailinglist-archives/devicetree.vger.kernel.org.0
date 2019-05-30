@@ -2,122 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F98B2FBD6
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 14:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 445C52FBE2
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:04:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726015AbfE3M6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 08:58:45 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:36406 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726587AbfE3M6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 08:58:45 -0400
-Received: by mail-pf1-f195.google.com with SMTP id u22so3930210pfm.3;
-        Thu, 30 May 2019 05:58:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GvIkFSS6zYb3I2dgFnSydPQ6jC4jn1KdG+v4VePYDQk=;
-        b=gZ0kUco2TbQiQDQDexJBvPdg0HouSZLKePsOfYv6pLG+qWJ0GrIa4KS0xDHzq7Njp1
-         JVX6Yd55JBSYaL22fwI4u7uzTEp4gJcZqLcB73bkSZlzEjKFp8dDB5P7Tk6X/kaB1YHn
-         QfAC/0xUHvqisTK71ekwrUFYQyTNhCU6wOjlTvrB8tX7crU4DR8FV65k4FyheSikFYjv
-         KJASKPKyS3NfhgHPlOcoDys4WcuH/Mm67Qie62B23Y+m20R7rZKGS5EALfq3AP2zT5HX
-         5VC1IujrphDhnuTa9lxmASESCmScK/wXSsufBZX9TIBVC9ofCknRuN8wwtquBNt3PU71
-         YTog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GvIkFSS6zYb3I2dgFnSydPQ6jC4jn1KdG+v4VePYDQk=;
-        b=jEOwsIAKsxbW4dRBMBAWVHr4R4se60MMXpJND2XaZRHxkH+BryxrS5h3R/2ysMTyng
-         hvMDzxF7kG/kp97/kaV/ysspCnH15ReW0M3F38OdgVv0HfDUI/Rr3V8sVBuGGINuRNrW
-         lkQjFFXT8oi5P/ZMhjQablfHHRxk8bc4tZM16tstQEeh2wVGspKdZ6+4AvaSNEJg9TxZ
-         OXm0s//ArtBv/RicDZ7ZwocVA92YHTaMhYBxntPkMtJ4tcoKIWSwNmg8S2ymnTh2BoSy
-         RQcmo57TuhUCAl5qpuREdlFYwF1dA168oFfqsGHs24zVGtBqw8siZoQowoeLJ9xm4T9c
-         P5Ow==
-X-Gm-Message-State: APjAAAXxZGFO9EXZU8nwnN2tTEXexbnBWiPWJbhB15+Jz8nfQsXBpoTa
-        WjrMo4Qc0HiPXaIZhU+mKpo=
-X-Google-Smtp-Source: APXvYqzU0QjvBVCx0ssrUfq8kLh4g1PKTBBj2qaRjGJOAuYeog+j57yeoXYuz55utK4trv6oBJIKWw==
-X-Received: by 2002:a63:8ac3:: with SMTP id y186mr3590817pgd.22.1559221124817;
-        Thu, 30 May 2019 05:58:44 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.35])
-        by smtp.gmail.com with ESMTPSA id j13sm2928912pfh.13.2019.05.30.05.58.41
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 May 2019 05:58:44 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Add missing PCIe pwr amd rst configuration
-Date:   Thu, 30 May 2019 12:58:37 +0000
-Message-Id: <20190530125837.730-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726079AbfE3NEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 09:04:07 -0400
+Received: from smtprelay0017.hostedemail.com ([216.40.44.17]:35238 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725919AbfE3NEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 09:04:07 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay02.hostedemail.com (Postfix) with ESMTP id 8215F3AB9;
+        Thu, 30 May 2019 13:04:05 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:800:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1539:1593:1594:1711:1730:1747:1777:1792:2393:2553:2559:2562:2828:2911:3138:3139:3140:3141:3142:3352:3622:3865:3866:3870:3871:3872:3873:4250:4321:4425:5007:6119:6742:10004:10400:10848:11026:11232:11658:11914:12043:12050:12438:12679:12740:12760:12895:13069:13311:13357:13439:14096:14097:14181:14659:14721:21080:21451:21627:30054:30064:30090:30091,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:27,LUA_SUMMARY:none
+X-HE-Tag: need41_405f0fead5e31
+X-Filterd-Recvd-Size: 2102
+Received: from XPS-9350.home (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
+        (Authenticated sender: joe@perches.com)
+        by omf07.hostedemail.com (Postfix) with ESMTPA;
+        Thu, 30 May 2019 13:04:02 +0000 (UTC)
+Message-ID: <8bc749161a8b8640ebdf78d693111d5350514638.camel@perches.com>
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+From:   Joe Perches <joe@perches.com>
+To:     hhhawa@amazon.com, Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, bp@alien8.de,
+        mchehab@kernel.org, james.morse@arm.com, davem@davemloft.net,
+        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
+        dwmw@amazon.co.uk, benh@amazon.com, ronenk@amazon.com,
+        talel@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
+        linux-edac@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Thu, 30 May 2019 06:04:00 -0700
+In-Reply-To: <0ebfe8d7-3e0c-e0be-abd5-5e10b7d4b6aa@amazon.com>
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
+         <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+         <20190530115732.GB14088@kroah.com>
+         <0ebfe8d7-3e0c-e0be-abd5-5e10b7d4b6aa@amazon.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.30.1-1build1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add missing PCIe gpio and pinctrl for power (#PCIE_PWR)
-also add PCIe gpio and pinctrl for reset (#PCIE_PERST_L).
+On Thu, 2019-05-30 at 15:52 +0300, hhhawa@amazon.com wrote:
+> On 5/30/19 2:57 PM, Greg KH wrote:
+> > On Thu, May 30, 2019 at 01:15:29PM +0300, Hanna Hawa wrote:
+> > > +static void al_a57_edac_cpumerrsr(void *arg)
+> > > +{
+> > > +	struct edac_device_ctl_info *edac_dev =
+> > > +		(struct edac_device_ctl_info *)arg;
+> > No need for casting anything here, just assign it.  Doesn't checkpatch
+> > catch this type of thing these days?  You did run it, right?
+> 
+> I did, but checkpatch didn't catch this. I'll fix in next patch-set.
+> 
+> Thanks for your review.
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-Tested on Rock960 Model A
----
- arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+checkpatch is brainless about the types of variables/arguments.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-index c7d48d41e184..f5bef6b0fe89 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-@@ -55,9 +55,10 @@
- 
- 	vcc3v3_pcie: vcc3v3-pcie-regulator {
- 		compatible = "regulator-fixed";
-+		gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pcie_drv>;
-+		pinctrl-0 = <&pcie_drv &pcie_pwr>;
- 		regulator-boot-on;
- 		regulator-name = "vcc3v3_pcie";
- 		regulator-min-microvolt = <3300000>;
-@@ -381,9 +382,10 @@
- };
- 
- &pcie0 {
-+	ep-gpio = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
- 	num-lanes = <4>;
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pcie_clkreqn_cpm>;
-+	pinctrl-0 = <&pcie_clkreqn_cpm &pcie_perst_l>;
- 	vpcie3v3-supply = <&vcc3v3_pcie>;
- 	status = "okay";
- };
-@@ -408,6 +410,16 @@
- 		};
- 	};
- 
-+	pcie {
-+		pcie_pwr: pcie-pwr {
-+			rockchip,pins = <2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie_perst_l:pcie-perst-l {
-+			rockchip,pins = <2 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	sdmmc {
- 		sdmmc_bus1: sdmmc-bus1 {
- 			rockchip,pins =
--- 
-2.21.0
+coccinelle is another very useful tool so you could also run
+scripts/coccicheck on your sources.
+
+see: Documentation/dev-tools/coccinelle.rst
+
 
