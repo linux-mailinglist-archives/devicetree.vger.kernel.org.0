@@ -2,110 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11FC330000
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 18:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4AB3005E
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 18:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726609AbfE3QOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 12:14:18 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44221 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725934AbfE3QOS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 12:14:18 -0400
-Received: by mail-lj1-f193.google.com with SMTP id e13so6583431ljl.11;
-        Thu, 30 May 2019 09:14:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XmK9q1mGN7b6J4ODdEo3M1qArYHGWBwKVshxM4f06qI=;
-        b=NC+9gVMIPhE4UEq4DmEQVSxKVVvwWVxObVXuy3Dy5tCThFcZXko5nmhViQRnze2i/I
-         fSwXUz+NaxDnIHe0IC480esVOWswPMZeWILlHqW74AfwllaX2QGptx7cKGx3qLTtS8j6
-         NzEcEdw+QKfjvFBS0VtMyk1XfKXDuxdwvR9xdd681UFY+nT6KHPleB0RyM+ZDi7xKLOz
-         /fHNz2v5OVDrGszE4fUAUl2dUU/+7pXCVebD+bHigJ2t7xUJ9S2ZoTX9Sj+0Jo06ctuC
-         Mad5J+HrWL+0HoBvSW2iQKBWGlZMshQ8rU6aZjdEBMPedGBkXxcpZkeNF7Bw1hcwFUrQ
-         NS1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=XmK9q1mGN7b6J4ODdEo3M1qArYHGWBwKVshxM4f06qI=;
-        b=WQ445ZyVhmiQgwkBDPvgjhXRbcepTdyrQeY7z4GnRrLu640baOOoh4TVm4pW4DXDVv
-         WCwaAPpHf0qhatTg7i1QkJ5QKu+NWiVZd0YNdnUkafm5IMbBtpdXfj7NMSe2kaK7I32+
-         QxyovlH2CGvQpBCvMHrlaeTPQKTF3gSf9hF8FlxDUW1zbgGZ+Es5+RxPW0brT+kLAFrR
-         3LJuVG7giRwzVUoAOCyM8GKeY13T0dOqoAh4/ZxwnPsUR/aNCKdoFY5eoayO/NhGEko2
-         tN95o/5JD9rHePOJkqJ4+exZFU6Q9W7ix9loQGxBWAZ3+HnZZVuBQqWlSHT6QVljKbzR
-         CZvw==
-X-Gm-Message-State: APjAAAVYzXAWdXXoCdEzyJCt1V1lawNvcfDQOZ81tj+VW8UCrJYiVb4z
-        XsNLuN2cSTBPVin9Clh7Cnw=
-X-Google-Smtp-Source: APXvYqzmFSkb0VYg/nw/YZHYkemnGBzkLyFKJzkID+tESoZ47z/BnAUSJVfRTTWIL2jjvt0h3pYjCw==
-X-Received: by 2002:a2e:8741:: with SMTP id q1mr2523378ljj.97.1559232856343;
-        Thu, 30 May 2019 09:14:16 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.35.141])
-        by smtp.googlemail.com with ESMTPSA id r14sm570580lff.44.2019.05.30.09.14.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 May 2019 09:14:14 -0700 (PDT)
-Subject: Re: [PATCH V4 5/8] memory: tegra: Add EMC scaling support code for
- Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190529082139.5581-1-josephl@nvidia.com>
- <20190529082139.5581-6-josephl@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <1e197124-57f5-285b-1624-bba2f3d31386@gmail.com>
-Date:   Thu, 30 May 2019 19:14:13 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726015AbfE3Qxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 12:53:30 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:42064 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726430AbfE3Qxa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 12:53:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=G0I2VaOxTquFi5Bd18+xCgo/6GrYaQ0PNfS3fZjdKAw=; b=cpAOSfyqMpN0nX5VaEaBtO8LQZ
+        xdYN38EEh3X2QeGUi2C2fbTXAenMFUxW+pzJxxXGo6TraAneV6wPqtHxUm6w/qqY0ke/0GeExjUx7
+        4lIjv18JJMhbyr2MiKEl7IHwCiYT3I2V8qeC/V17lEII7u56RHWT17Gz5bzTnBgPUBMA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hWOIi-0008GL-61; Thu, 30 May 2019 18:53:12 +0200
+Date:   Thu, 30 May 2019 18:53:12 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexander Filippov <a.filippov@yadro.com>
+Cc:     linux-aspeed@lists.ozlabs.org, Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Andrew Jeffery <andrew@aj.id.au>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] ARM: dts: aspeed: Add YADRO VESNIN BMC
+Message-ID: <20190530165312.GH18059@lunn.ch>
+References: <20190530143933.25414-1-a.filippov@yadro.com>
 MIME-Version: 1.0
-In-Reply-To: <20190529082139.5581-6-josephl@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190530143933.25414-1-a.filippov@yadro.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-29.05.2019 11:21, Joseph Lo пишет:
-> This patch adds the required APIs and variables for the EMC scaling
-> sequence code on Tegra210.
+On Thu, May 30, 2019 at 05:39:33PM +0300, Alexander Filippov wrote:
+> VESNIN is an OpenPower machine with an Aspeed 2400 BMC SoC manufactured
+> by YADRO.
 > 
-> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
+> Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
+> ---
+>  arch/arm/boot/dts/Makefile                  |   1 +
+>  arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts | 234 ++++++++++++++++++++
+>  2 files changed, 235 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
 > 
-> Signed-off-by: Joseph Lo <josephl@nvidia.com>
-> ---
-> v4:
-> - fix the API with generic naming
-> - use 'u16' in 'struct emc_table_register_offset'
-> ---
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 834cce80d1b8..811e9312cf22 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1259,6 +1259,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-microsoft-olympus.dtb \
+>  	aspeed-bmc-opp-lanyang.dtb \
+>  	aspeed-bmc-opp-palmetto.dtb \
+> +	aspeed-bmc-opp-vesnin.dtb \
+>  	aspeed-bmc-opp-romulus.dtb \
+>  	aspeed-bmc-opp-swift.dtb \
+>  	aspeed-bmc-opp-witherspoon.dtb \
 
->  
-> +extern const struct emc_table_register_offset reg_off;
-> +extern unsigned long dram_over_temp_state;
+Hi Alexander
 
-Please avoid global variables where they are not really needed.
+These appear to be in alphabetic order, so it should be added before
+witherspoon.
 
-Add reg_off pointer to tegra_emc.
-
-Remove dram_over_temp_state variable entirely and replace it with
-TEGRA_DRAM_OVER_TEMP_NONE in the code since nothing changes the variable.
-
-Again, prepend all global symbols with tegra210_.
-
-Alternatively you could simply include tegra210-emc-cc-r21021.c into
-tegra210-emc.c, I don't see anything wrong with that variant.
-
-	#include "tegra210-emc-cc-r21021.c"
-
-Or you could squash it all into a single source file if variants other
-than "r21021" are not planned to be supported. This will help to reduce
-messiness of the code and will allow compiler to better optimize it all.
-
--- 
-Dmitry
+	Andrew
