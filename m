@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46ADE2FEF2
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 17:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EBEB2FFC0
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 17:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727282AbfE3PIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 11:08:45 -0400
-Received: from foss.arm.com ([217.140.101.70]:38142 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725934AbfE3PIp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 11:08:45 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3046F341;
-        Thu, 30 May 2019 08:08:45 -0700 (PDT)
-Received: from redmoon (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F1C093F59C;
-        Thu, 30 May 2019 08:08:43 -0700 (PDT)
-Date:   Thu, 30 May 2019 16:08:41 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Ley Foon Tan <ley.foon.tan@intel.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        lftan.linux@gmail.com
-Subject: Re: [PATCH] PCI: altera-msi: Allow building as module
-Message-ID: <20190530150841.GC13993@redmoon>
-References: <1556081835-12921-1-git-send-email-ley.foon.tan@intel.com>
- <1556081835-12921-2-git-send-email-ley.foon.tan@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1556081835-12921-2-git-send-email-ley.foon.tan@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726418AbfE3P7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 11:59:18 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:37051 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726250AbfE3P7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 11:59:17 -0400
+Received: by mail-pf1-f196.google.com with SMTP id a23so4247821pff.4;
+        Thu, 30 May 2019 08:59:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Y8nAAbKBo+GsjR2wR8X+b6EMGLV2z628Qb4JzCYHIQ4=;
+        b=XLLCbKfwDGtQAZawpyoKQffPiR9Xf8Q7jYF7Uvvmr/cWUh74ThmPXC6oZCk7/PEAyF
+         YzSquNHpQc7JGFV+Zp/4c/pAJWiRbSJdJU0n9zOTE8zsei+hjeIKCMEJcKyz+rShlXV7
+         eZd0TKAe2c/GRvS6wBM/gDKpUDkY4bCUygPCwMrebyFAS1StIUXwGMvAkZ1rlWZv3eLM
+         xp3FZbOLNED3XSOgQp1xOFe6THUw3PwQDIk4DSriRXwadZDES0iwTFnTPLJwhvaIJrjI
+         FVpE3afKn+WFYW4Fyg1/STsHGL20fYxsSWuc126MZOyrruTOiQxsI0iIoGNmk7vWFAdd
+         8wpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Y8nAAbKBo+GsjR2wR8X+b6EMGLV2z628Qb4JzCYHIQ4=;
+        b=Ib+mQ2DEvJCEvzRFj7ffOsj9uMg96ltMB/+ihxfTia8aWA/o0uFdTbXLu9WdI7chi+
+         ZivmM09KQU4rn7TQ2tV6rEIfmltbeM9Sm/tv0QDEYT1ihMm3r7Fjst4cA/g/hbyLmxnT
+         etlsfS1EyZfvENOhFRee8IkQo0Y5IOuMaacJ4Z6wk8cXPAx7y2FDvLaflaXekMwS8T7X
+         cV/ZbNL9mEXyCY5GF9c+eTY1QiPdAV+7apYGnl+n5bn+fTBsDkcN+zywz6PU0wh8YfH3
+         awLw8Q1DTOSIZq6GogCAOdQV4G4yBuxP4AjJgTO8P/rea+gJnEb+rsC6c0zGlYMeVIYw
+         5v7A==
+X-Gm-Message-State: APjAAAX85xH6k+dFNXaIMq3v0zRWGVAqyrRBORBi477FKkcuAJlFww8X
+        13ygyt8q/g78eERVQ3L5njE=
+X-Google-Smtp-Source: APXvYqwr8GMJVp3pLyVMxK1wV0ENCJ3tZpw/SGabGJp9Pyp7Pfnzkhra0qVRagJdDgUjO9dbrjeSig==
+X-Received: by 2002:a63:c20c:: with SMTP id b12mr4155982pgd.3.1559231957162;
+        Thu, 30 May 2019 08:59:17 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id e184sm4213045pfa.169.2019.05.30.08.59.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 08:59:16 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     robdclark@gmail.com, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org, mark.rutland@arm.com,
+        sibis@codeaurora.org, chandanu@codeaurora.org,
+        abhinavk@codeaurora.org, bjorn.andersson@linaro.org,
+        marc.w.gonzalez@free.fr, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH 0/4] MSM8998 DSI support
+Date:   Thu, 30 May 2019 08:59:09 -0700
+Message-Id: <20190530155909.2718-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 24, 2019 at 12:57:15PM +0800, Ley Foon Tan wrote:
-> Altera MSI IP is a soft IP and is only available after
-> FPGA image is programmed.
-> 
-> Make driver modulable to support use case FPGA image is programmed
-> after kernel is booted. User proram FPGA image in kernel then only load
-> MSI driver module.
-> 
-> Signed-off-by: Ley Foon Tan <ley.foon.tan@intel.com>
-> ---
->  drivers/pci/controller/Kconfig           |  2 +-
->  drivers/pci/controller/pcie-altera-msi.c | 10 ++++++++++
->  2 files changed, 11 insertions(+), 1 deletion(-)
+Enabling DSI support for the MSM8998 SoC is another step to getting end
+to end display going.  This will allow the SoC to drive panels that are
+integraded on the device (ie not a HDMI port), but won't do much until
+we have the display processor feeding the DSI blocks with lines to
+scanout.
 
-Applied to pci/altera for v5.3, thanks.
+Jeffrey Hugo (4):
+  dt-bindings: msm/dsi: Add 10nm phy for msm8998 compatible
+  drm/msm/dsi: Add support for MSM8998 10nm dsi phy
+  drm/msm/dsi: Add old timings quirk for 10nm phy
+  drm/msm/dsi: Add support for MSM8998 DSI controller
 
-Lorenzo
+ .../devicetree/bindings/display/msm/dsi.txt   |  1 +
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c             | 21 +++++++++++++
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h             |  1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |  2 ++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |  5 ++++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c    | 30 +++++++++++++++++--
+ 6 files changed, 57 insertions(+), 3 deletions(-)
 
-> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-> index 4b550f9cdd56..920546cb84e2 100644
-> --- a/drivers/pci/controller/Kconfig
-> +++ b/drivers/pci/controller/Kconfig
-> @@ -181,7 +181,7 @@ config PCIE_ALTERA
->  	  FPGA.
->  
->  config PCIE_ALTERA_MSI
-> -	bool "Altera PCIe MSI feature"
-> +	tristate "Altera PCIe MSI feature"
->  	depends on PCIE_ALTERA
->  	depends on PCI_MSI_IRQ_DOMAIN
->  	help
-> diff --git a/drivers/pci/controller/pcie-altera-msi.c b/drivers/pci/controller/pcie-altera-msi.c
-> index 025ef7d9a046..16d938920ca5 100644
-> --- a/drivers/pci/controller/pcie-altera-msi.c
-> +++ b/drivers/pci/controller/pcie-altera-msi.c
-> @@ -10,6 +10,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/irqchip/chained_irq.h>
->  #include <linux/init.h>
-> +#include <linux/module.h>
->  #include <linux/msi.h>
->  #include <linux/of_address.h>
->  #include <linux/of_irq.h>
-> @@ -288,4 +289,13 @@ static int __init altera_msi_init(void)
->  {
->  	return platform_driver_register(&altera_msi_driver);
->  }
-> +
-> +static void __exit altera_msi_exit(void)
-> +{
-> +	platform_driver_unregister(&altera_msi_driver);
-> +}
-> +
->  subsys_initcall(altera_msi_init);
-> +MODULE_DEVICE_TABLE(of, altera_msi_of_match);
-> +module_exit(altera_msi_exit);
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.19.0
-> 
+-- 
+2.17.1
+
