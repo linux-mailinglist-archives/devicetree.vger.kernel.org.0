@@ -2,95 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D93642FA9E
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 13:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 457452FACD
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 13:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726541AbfE3LBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 07:01:54 -0400
-Received: from foss.arm.com ([217.140.101.70]:34342 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726462AbfE3LBx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 07:01:53 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5D174374;
-        Thu, 30 May 2019 04:01:53 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2538E3F5AF;
-        Thu, 30 May 2019 04:01:52 -0700 (PDT)
-Date:   Thu, 30 May 2019 12:01:45 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH] arm: dts: vexpress-v2p-ca15_a7: disable NOR flash node
- by default
-Message-ID: <20190530110145.GA20028@e107155-lin>
-References: <20190530091139.11643-1-sudeep.holla@arm.com>
- <CACRpkdZZkfRPTH1h1EOC=YWt7tdqbOp3hpfFou8thsUf8_EqSA@mail.gmail.com>
+        id S1726794AbfE3LUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 07:20:22 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:33456 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726563AbfE3LUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 07:20:22 -0400
+Received: by mail-lf1-f66.google.com with SMTP id y17so4731560lfe.0;
+        Thu, 30 May 2019 04:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=VekgKS2qzcKcSAxRPfpFghP7GZS0WUkLzmxFEC0aAfw=;
+        b=i5Y/x+LaTL+31TC/zpG95n9Pxw2Ttz9M8CjsJwaFNoF8mqscNVhB8iZB8iasTK5+GJ
+         R4vFDjRYOr01LtD8iq59BJZ1JgTLhSg26Mtbz4zaxOGirksWIbFAmXgd2v6lR/mhD3o9
+         zlAxoRCMQsK/yqB7X5vxT0P0a65W0IDsrHLpQ16Xz3wgaym7he5ulnucdJpePFLK0N/q
+         hD6oU9KRrBZUNxAJfkDkWQgYBEqWlkptHTXbKa7KX5AXLhShQBEsdNEFzpJNcJNhradN
+         XTANkmB+vax7WVabB3JKEo80N+UkarcrfmoLt33gHMPPDy1e9THzG1e+sipTu9H3hHA6
+         fblg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=VekgKS2qzcKcSAxRPfpFghP7GZS0WUkLzmxFEC0aAfw=;
+        b=GVrt6rC4tqvNyonnd3x9BAYJuy2z/OVrY/Js4xgZnWDe/hTe5/1OwQOV3lFhALPq3m
+         y4cmeOjOb/ilIPsoERKf1YMBWinLsxaDt7Be9aYKnAgmf0yBItViPZMGFYJZYBQdkLTg
+         G96WRvzKUvOEwEV/M6sHUPojzRmHq4diDP3W+siFq6/F8slYcjnFBl9A7yqs+IpAx6E5
+         hTRh3/zSDSA+iLSxlAWoyo01GXjZ7sSW9qzWb44PVSelVHZlZdUH8ZNwQd3vEpA/uTgM
+         MZeWFO5D3QS4pmspfGQGg9qPlcHSy8zghj6gpS0+sfafzcQBd/NRxW7f3sWXdzcDsj2n
+         PU3g==
+X-Gm-Message-State: APjAAAVgg9wtQXn1+2DJLHpQBLSw2XnfUfunBIynZKgsrE1HcLXCfDTZ
+        4OcrE5MQFkS3RhC1I7lCmgk=
+X-Google-Smtp-Source: APXvYqxcrL5kdqSLjZhlD0FVQkH3bohM0sbHuwh/0mk3vsWwNIiZx41LWxTDWsUlDr10RgWDi82Mjw==
+X-Received: by 2002:ac2:4908:: with SMTP id n8mr1767791lfi.10.1559215219998;
+        Thu, 30 May 2019 04:20:19 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.35.141])
+        by smtp.googlemail.com with ESMTPSA id f30sm440648lfa.48.2019.05.30.04.20.18
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 04:20:19 -0700 (PDT)
+Subject: Re: [PATCH V4 5/8] memory: tegra: Add EMC scaling support code for
+ Tegra210
+To:     Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190529082139.5581-1-josephl@nvidia.com>
+ <20190529082139.5581-6-josephl@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <1838333d-bf58-1e06-7e4c-a64753075053@gmail.com>
+Date:   Thu, 30 May 2019 14:20:18 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZZkfRPTH1h1EOC=YWt7tdqbOp3hpfFou8thsUf8_EqSA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190529082139.5581-6-josephl@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 12:50:12PM +0200, Linus Walleij wrote:
-> On Thu, May 30, 2019 at 11:11 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+29.05.2019 11:21, Joseph Lo пишет:
+> This patch adds the required APIs and variables for the EMC scaling
+> sequence code on Tegra210.
 > 
-> > Accessing the NOR flash memory from the kernel will disrupt CPU sleep/
-> > idles states and CPU hotplugging. We need to disable this DT node by
-> > default. Setups that want to access the flash can modify this entry to
-> > enable the flash again but also ensuring to disable CPU idle states and
-> > CPU hotplug.
-> >
-> > The platform firmware assumes the flash is always in read mode while
-> > Linux kernel driver leaves NOR flash in "read id" mode after
-> > initialization. If it gets used actively, it can be in some other state.
-> >
-> > So far we had not seen this issue as the NOR flash drivers in kernel
-> > were not enabled by default. However it was enable in multi_v7 config by
-> > Commit 5f068190cc10 ("ARM: multi_v7_defconfig: Enable support for CFI NOR FLASH")
-> >
-> > So, let's mark the NOR flash disabled so that the platform can boot
-> > again. This based on:
-> > Commit 980bbff018f6 ("ARM64: juno: disable NOR flash node by default")
-> >
-> > Cc: Liviu Dudau <liviu.dudau@arm.com>
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->
+> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
+> 
+> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+> ---
+> v4:
+> - fix the API with generic naming
 
-Thanks.
+> +extern const struct emc_table_register_offset reg_off;
+> +extern unsigned long dram_over_temp_state;
+> +
+> +void ccfifo_writel(struct tegra_emc *emc, u32 val, unsigned long addr,
+> +		   u32 delay);
+> +u32 div_o3(u32 a, u32 b);
+> +void emc_writel(struct tegra_emc *emc, u32 val, unsigned long offset);
+> +u32  emc_readl(struct tegra_emc *emc, unsigned long offset);
+> +void emc_writel_per_ch(struct tegra_emc *emc, u32 val, int type,
+> +		       unsigned long offset);
+> +u32  emc1_readl(struct tegra_emc *emc, unsigned long offset);
+> +
+> +void emc_do_clock_change(struct tegra_emc *emc, u32 clksrc);
+> +void emc_set_shadow_bypass(struct tegra_emc *emc, int set);
+> +void emc_timing_update(struct tegra_emc *emc, int dual_chan);
+> +u32 emc_get_dll_state(struct emc_table *next_timing);
+> +struct emc_table *emc_get_timing_from_freq(struct tegra_emc *emc,
+> +					   unsigned long rate);
+> +void emc_set_over_temp_timing(struct tegra_emc *emc, struct emc_table *timing,
+> +			      unsigned long state);
+> +int emc_wait_for_update(struct tegra_emc *emc, u32 status_reg, u32 bit_mask,
+> +			bool updated_state, int chan);
 
-> It's a bit sad that this cannot be easily fixed (I don't know if it can even
-> be fixed with firmware updates?), it's kind of useful to be able to
-> update the flash from within Linux, as that mimics what pretty much
-> every IoT device (such as routers) is doing and would be nince for
-> an OpenWrt port.
->
+It wouldn't hurt to prepend these all with "tegra210_".
 
-IMO, it issue with partitioning of the system. Basically these traditional
-NOR flash don't support partitions at hardware level so that one accessed
-by firmware/secure side is protected from another accessed from non-secure.
-
-I like the eMMC boot partitions in that ways as these are hardware
-partitions and the device state is separate for these.
-
-Also, ideally firmware/secure side should just restrict themselves to
-Secure ROM, but as a record we consistently ensure firmware on SROM is
-busted and use non-secure ROM/NOR Flash as bypass :) which then makes
-it tricky to deal with such scenarios in Linux. Hope we fill have some
-system with everything working *one day* :D
-
---
-Regards,
-Sudeep
+-- 
+Dmitry
