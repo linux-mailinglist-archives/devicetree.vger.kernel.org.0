@@ -2,113 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21941302E7
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 21:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEAA302FE
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 21:52:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725961AbfE3TkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 15:40:10 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:33113 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725897AbfE3TkK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 15:40:10 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 314F780337; Thu, 30 May 2019 21:39:57 +0200 (CEST)
-Date:   Thu, 30 May 2019 21:40:06 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
-Message-ID: <20190530194006.GA22367@amd>
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-2-dmurphy@ti.com>
- <20190527103355.GA5287@amd>
- <522728b0-147b-3708-fea1-88a895491e05@ti.com>
- <34dbfab0-0dd4-cf9a-ed86-a74363981077@ti.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="a8Wt8u1KmwUX3Y2C"
-Content-Disposition: inline
-In-Reply-To: <34dbfab0-0dd4-cf9a-ed86-a74363981077@ti.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+        id S1726029AbfE3Tw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 15:52:28 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:59248 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725961AbfE3Tw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 15:52:28 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 2211E14DA9761;
+        Thu, 30 May 2019 12:52:27 -0700 (PDT)
+Date:   Thu, 30 May 2019 12:52:26 -0700 (PDT)
+Message-Id: <20190530.125226.748439790590538564.davem@davemloft.net>
+To:     jakub.kicinski@netronome.com
+Cc:     horatiu.vultur@microchip.com, alexandre.belloni@bootlin.com,
+        UNGLinuxDriver@microchip.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, ralf@linux-mips.org, paul.burton@mips.com,
+        jhogan@kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/2] net: mscc: ocelot: Hardware ofload for
+ tc flower filter
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190529151802.19aa82a2@cakuba.netronome.com>
+References: <1559125580-6375-1-git-send-email-horatiu.vultur@microchip.com>
+        <1559125580-6375-3-git-send-email-horatiu.vultur@microchip.com>
+        <20190529151802.19aa82a2@cakuba.netronome.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Thu, 30 May 2019 12:52:27 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Jakub Kicinski <jakub.kicinski@netronome.com>
+Date: Wed, 29 May 2019 15:18:44 -0700
 
---a8Wt8u1KmwUX3Y2C
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Wed, 29 May 2019 12:26:20 +0200, Horatiu Vultur wrote:
+>> +static int ocelot_flower_replace(struct tc_cls_flower_offload *f,
+>> +				 struct ocelot_port_block *port_block)
+>> +{
+>> +	struct ocelot_ace_rule *rule;
+>> +	int ret;
+>> +
+>> +	if (port_block->port->tc.block_shared)
+>> +		return -EOPNOTSUPP;
+> 
+> FWIW since you only support TRAP and DROP actions here (AFAICT) you
+> should actually be okay with shared blocks.  The problems with shared
+> blocks start when the action is stateful (like act_police), because we
+> can't share that state between devices.  But for most actions which just
+> maintain statistics, it's fine to allow shared blocks.  HTH
 
-On Tue 2019-05-28 06:34:47, Dan Murphy wrote:
-> Pavel
->=20
-> On 5/27/19 7:45 PM, Dan Murphy wrote:
-> >Pavel
-> >
-> >On 5/27/19 5:33 AM, Pavel Machek wrote:
-> >>On Thu 2019-05-23 14:08:12, Dan Murphy wrote:
-> >>>Add a documentation of LED Multicolor LED class specific
-> >>>sysfs attributes.
-> >>>
-> >>>Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> >>>---
-> >>>=A0 .../ABI/testing/sysfs-class-led-multicolor=A0=A0=A0 | 57
-> >>>+++++++++++++++++++
-> >>>=A0 1 file changed, 57 insertions(+)
-> >>>=A0 create mode 100644
-> >>>Documentation/ABI/testing/sysfs-class-led-multicolor
-> >>>
-> >>>diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor
-> >>>b/Documentation/ABI/testing/sysfs-class-led-multicolor
-> >>>new file mode 100644
-> >>>index 000000000000..2f102ede258b
-> >>>--- /dev/null
-> >>>+++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
-> >>>@@ -0,0 +1,57 @@
-> >>>+What:=A0=A0=A0=A0=A0=A0=A0 /sys/class/leds/<led>/colors/sync_enable
-> >>>+Date:=A0=A0=A0=A0=A0=A0=A0 April 2019
-> >>I believe I suggested more reasonable interface. Why not use that?
-> >>
-> >
-> >Can you please provide the reference to your interface?
-> >
-> I think I found the suggestion [0].=A0 Assuming that was the suggestion it
-> violates the kernel 1 value/file and there was agreement that this interf=
-ace
-> had value. In testing the interface, it made sense to be able to
-
-1 value/file is actually slightly more complex rule:
-
-Attributes should be ASCII text files, preferably with only one value
-per file. It is noted that it may not be efficient to contain only one
-value per file, so it is socially acceptable to express an array of
-values of the same type.
-
-See sysfs.txt. Proposed "sync_enable" is ugly enough, and the values
-really are array of values of same type, so we should be ok with nicer
-interface.
-
-Best regards,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---a8Wt8u1KmwUX3Y2C
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlzwMZYACgkQMOfwapXb+vI8kACeI37r0eiFv/mgu7wPB7ylJwT3
-vpwAn3CQPq9ECn9UTVYgiTl947hx0+zO
-=nQ/Y
------END PGP SIGNATURE-----
-
---a8Wt8u1KmwUX3Y2C--
+Please update to remove this test Horatiu, thanks.
