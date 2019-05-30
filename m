@@ -2,64 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14ADF301AE
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 20:19:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7875F30257
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 20:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726125AbfE3STe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 14:19:34 -0400
-Received: from mail.skyhub.de ([5.9.137.197]:35080 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725961AbfE3STe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 14:19:34 -0400
-Received: from [172.20.8.77] (unknown [207.225.69.115])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id F1E911EC033F;
-        Thu, 30 May 2019 20:19:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1559240372;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=+FySjQvkw3gub2985lSwYfwdxjK48qhJJdaawn7bwWw=;
-        b=cOO6KmApd03PNn2XMw3Tn6baTYU4r7UAS1R913nuS0nHijjQ6j8BDkFWp6voJjGQEy3tgO
-        3fs7DJOfmS6pj8ZteGTAFM2et+0JKArhtHQvmGZi3eS3W4vzKN4WQoBTZmnac5oF95KgHh
-        IiUG2E6k9av3XSOGh2eYfXobE1A7Tr4=
-Date:   Thu, 30 May 2019 11:19:27 -0700
-User-Agent: K-9 Mail for Android
-In-Reply-To: <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
-References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com> <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+        id S1726670AbfE3SyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 14:54:01 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:37841 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725961AbfE3SyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 14:54:01 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 8BD9BFF806;
+        Thu, 30 May 2019 18:53:54 +0000 (UTC)
+Date:   Thu, 30 May 2019 20:53:48 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH] dt-bindings: display: Convert Allwinner DSI to a schema
+Message-ID: <20190530185347.aql4znrk5msk2q6o@flea>
+References: <20190527120910.18964-1-maxime.ripard@bootlin.com>
+ <CAGb2v66uhrm20BwmODkPZjSM6Ek+xEg23w2Cs49ikW3WcU1Lqg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-To:     Hanna Hawa <hhhawa@amazon.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, mchehab@kernel.org, james.morse@arm.com,
-        davem@davemloft.net, gregkh@linuxfoundation.org,
-        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
-        dwmw@amazon.co.uk, benh@amazon.com
-CC:     ronenk@amazon.com, talel@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, hhhawa@amazon.com, linux-edac@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Boris Petkov <bp@alien8.de>
-Message-ID: <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="n26wko6czjrwlbek"
+Content-Disposition: inline
+In-Reply-To: <CAGb2v66uhrm20BwmODkPZjSM6Ek+xEg23w2Cs49ikW3WcU1Lqg@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On May 30, 2019 3:15:29 AM PDT, Hanna Hawa <hhhawa@amazon=2Ecom> wrote:
->Add support for error detection and correction for Amazon's Annapurna
->Labs SoCs for L1/L2 caches=2E
 
+--n26wko6czjrwlbek
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-So this should be a driver for the whole annapurna platform and not only a=
-bout the RAS functionality in an IP like the caches=2E See other ARM EDAC d=
-rivers in drivers/edac/ for an example=2E
+Hi,
 
-Thx=2E
+On Thu, May 30, 2019 at 09:48:02PM +0800, Chen-Yu Tsai wrote:
+> On Mon, May 27, 2019 at 8:09 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >
+> > The Allwinner SoCs have a MIPI-DSI and MIPI-D-PHY controllers supported in
+> > Linux, with a matching Device Tree binding.
+> >
+> > Now that we have the DT validation in place, let's convert the device tree
+> > bindings for that controller over to a YAML schemas.
+> >
+> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+>
+> Looks good to me. However not sure why you replaced the clock index macros
+> with raw numbers.
 
---=20
-Sent from a small device: formatting sux and brevity is inevitable=2E 
+The examples are compiled now, and unfortunately we can't use the
+defines at this point.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--n26wko6czjrwlbek
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPAmuwAKCRDj7w1vZxhR
+xTrkAP9aecEKOK5bHZC70YnbsnYn/b1tZ+7DzzXoqX/FQEYF5AEAylRFy9rknaOQ
+uAzr1PQPqbqIGy8rVpSH/ibPa/zelgY=
+=yRoQ
+-----END PGP SIGNATURE-----
+
+--n26wko6czjrwlbek--
