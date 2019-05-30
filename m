@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72AD92F910
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 11:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9760A2F927
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 11:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727209AbfE3JMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 05:12:03 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:32820 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725913AbfE3JMD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 05:12:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 18D41A78;
-        Thu, 30 May 2019 02:12:03 -0700 (PDT)
-Received: from usa.arm.com (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D98C43F59C;
-        Thu, 30 May 2019 02:12:01 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: [PATCH] ARM: dts: vexpress: set the right partition type for NOR flash
-Date:   Thu, 30 May 2019 10:11:56 +0100
-Message-Id: <20190530091156.11693-1-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.17.1
+        id S1727243AbfE3JTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 05:19:06 -0400
+Received: from mx.socionext.com ([202.248.49.38]:34634 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727198AbfE3JTG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 05:19:06 -0400
+Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 30 May 2019 18:19:04 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 47E99180D46;
+        Thu, 30 May 2019 18:19:04 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Thu, 30 May 2019 18:19:04 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+        by iyokan.css.socionext.com (Postfix) with ESMTP id DC0A24053B;
+        Thu, 30 May 2019 18:19:03 +0900 (JST)
+Received: from user-VB.e01.socionext.com (unknown [10.213.119.151])
+        by yuzu.css.socionext.com (Postfix) with ESMTP id C1A00120C10;
+        Thu, 30 May 2019 18:19:03 +0900 (JST)
+From:   Takao Orito <orito.takao@socionext.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, masami.hiramatsu@linaro.org,
+        jaswinder.singh@linaro.org, sugaya.taichi@socionext.com,
+        kasai.kazuhiro@socionext.com, kanematsu.shinji@socionext.com,
+        orito.takao@socionext.com
+Subject: [PATCH v2 0/2] mmc: sdhci-milbeaut: add Milbeaut SD driver
+Date:   Thu, 30 May 2019 18:20:52 +0900
+Message-Id: <1559208052-385-1-git-send-email-orito.takao@socionext.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We should set up the partitions in the right way so we will find out
-what is in the flash.
+The following patches add driver for SD Host controller on
+Socionext's Milbeaut M10V platforms.
 
-The ARM Firmware Suite now has its own compatible and proper device
-tree bindings to trigger discovery of the flash contents, and Linux
-supports handling the new type of AFS partitions.
+SD Host controller on Milbeaut consists of two controller parts.
+One is core controller F_SDH30, this is similar to sdhci-fujitsu
+controller.
+Another is bridge controller. This bridge controller is not compatible
+with sdhci-fujitsu controller. This is special for Milbeaut series.
 
-Based on commit 7f8e78ca90e2 ("arm64: dts: juno: set the right partition
-type for NOR flash")
+It has the several parts,
+ - reset control
+ - clock enable / select for SDR50/25/12
+ - hold control of DATA/CMD line
+ - select characteristics for WP/CD/LED line
+ - Re-tuning control for mode3
+ - Capability setting
+   Timeout Clock / Base Clock / Timer Count for Re-Tuning /
+   Debounce period
+These requires special procedures at reset or clock enable/change or
+ further tuning of clock.
 
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- arch/arm/boot/dts/vexpress-v2m-rs1.dtsi | 3 +++
- arch/arm/boot/dts/vexpress-v2m.dtsi     | 3 +++
- 2 files changed, 6 insertions(+)
+Takao Orito (2):
+  dt-bindings: mmc: add DT bindings for Milbeaut SD controller
+  mmc: sdhci-milbeaut: add Milbeaut SD controller driver
 
-diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-index 1b5bc536c547..d6a1fc269241 100644
---- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-+++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-@@ -35,6 +35,9 @@
- 				reg = <0 0x00000000 0x04000000>,
- 				      <4 0x00000000 0x04000000>;
- 				bank-width = <4>;
-+				partitions {
-+					compatible = "arm,arm-firmware-suite";
-+				};
- 			};
- 
- 			psram@1,00000000 {
-diff --git a/arch/arm/boot/dts/vexpress-v2m.dtsi b/arch/arm/boot/dts/vexpress-v2m.dtsi
-index 798c97aff7fa..8e57e15307e2 100644
---- a/arch/arm/boot/dts/vexpress-v2m.dtsi
-+++ b/arch/arm/boot/dts/vexpress-v2m.dtsi
-@@ -35,6 +35,9 @@
- 				reg = <0 0x00000000 0x04000000>,
- 				      <1 0x00000000 0x04000000>;
- 				bank-width = <4>;
-+				partitions {
-+					compatible = "arm,arm-firmware-suite";
-+				};
- 			};
- 
- 			psram@2,00000000 {
+ .../devicetree/bindings/mmc/sdhci-milbeaut.txt     |  32 ++
+ drivers/mmc/host/Kconfig                           |  11 +
+ drivers/mmc/host/Makefile                          |   1 +
+ drivers/mmc/host/sdhci-milbeaut.c                  | 362 +++++++++++++++++++++
+ drivers/mmc/host/sdhci_f_sdh30.c                   |  26 +-
+ drivers/mmc/host/sdhci_f_sdh30.h                   |  32 ++
+ 6 files changed, 439 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
+ create mode 100644 drivers/mmc/host/sdhci-milbeaut.c
+ create mode 100644 drivers/mmc/host/sdhci_f_sdh30.h
+
 -- 
-2.17.1
+1.9.1
+
 
