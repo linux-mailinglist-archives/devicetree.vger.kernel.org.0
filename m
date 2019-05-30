@@ -2,293 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 900582F9C8
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 11:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8555E2FA01
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 12:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727911AbfE3Jpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 05:45:39 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:40078 "EHLO inva021.nxp.com"
+        id S1727451AbfE3KMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 06:12:55 -0400
+Received: from mout.gmx.net ([212.227.15.15]:34109 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727787AbfE3Jpi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 05:45:38 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BDC8A2012AE;
-        Thu, 30 May 2019 11:45:35 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 318BF2012A4;
-        Thu, 30 May 2019 11:45:26 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2F64040307;
-        Thu, 30 May 2019 17:45:15 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
-        bruno.thomsen@gmail.com, aisheng.dong@nxp.com, ping.bai@nxp.com,
-        leoyang.li@nxp.com, l.stach@pengutronix.de, pankaj.bansal@nxp.com,
-        bhaskar.upadhaya@nxp.com, pramod.kumar_1@nxp.com,
-        vabhav.sharma@nxp.com, leonard.crestez@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1726515AbfE3KMz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 06:12:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1559211164;
+        bh=hj0JmJoKrbKo0kNtrEQyUbV6+9Oj1+AD3IrDjQ8FxeU=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=Jw4Ud/Fjb4uivkmC1rP8mTV8OprkDC72UMplmzzNOOlbVGIcxPOtIHkhsKlA3RHiZ
+         8d6TEB6LV9Cj3dUmMcL3TK/vWOE+izdMRsQLxhLlKbNDVKw61JmHwC9XpFTxY+emK+
+         kOzXC9p5Wnq2/IAkKJsMztDThkBojQiiprlW0Q9c=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.166] ([37.4.249.160]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MdvqW-1gvIo13STe-00b0KZ; Thu, 30
+ May 2019 12:12:43 +0200
+Subject: Re: [PATCH 0/7] ARM: dts: Broadcom: Fix W=1 DTC warnings
+To:     Florian Fainelli <f.fainelli@gmail.com>,
         linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] arm64: dts: freescale: Add i.MX8MN DDR4 EVK board support
-Date:   Thu, 30 May 2019 17:47:06 +0800
-Message-Id: <20190530094706.865-3-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190530094706.865-1-Anson.Huang@nxp.com>
-References: <20190530094706.865-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Gregory Fong <gregory.0xf0@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Brian Norris <computersforpeace@gmail.com>
+References: <20190528230134.27007-1-f.fainelli@gmail.com>
+From:   Stefan Wahren <wahrenst@gmx.net>
+Message-ID: <070047b5-a101-e7b3-9ef3-7afc765921d9@gmx.net>
+Date:   Thu, 30 May 2019 12:12:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190528230134.27007-1-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Provags-ID: V03:K1:8bKgMOPWa8LkhAvg01EzpUp+5SMkw19C68RsVzKXMI0izuMs8p+
+ zCr1oY7LfL0012BFijFabgcgORBAQIKZ4lH/xhTrR1kg6VfFh1a22Y9JLQcO26ZHGKc8U3r
+ YiGYAss+CCWrVQYkDS7B6jOsVEr5B86wYUTpSkH1BZvkeXFmYcmc9KpFxHnSI5wR0aMXMRZ
+ AbNAkWECobdv9zULa10Rw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:oTZVT7i2Iig=:3pvE6Z2N+KE3/BtfvG6R2R
+ 1sfzHsY6UmbKDUaCW5YVoaAOIU4K/Tom9EC+bfy/BOeGeO/8Qn/3cv5e6EV9z0k04egYfGWIg
+ X92U+26aL84nhbqLfuuDR5gTyuXgGYt/lxYeddByJ/RGZTf+Q2kv8PDspGJOEyrtBJQsK4A7g
+ ZQVqAgth0BGIfirZnWO1iIGNMs6tjMLpCYawD6CgRyx1Cd+BM59acTvv5F4rvO0mbxYw2DUvC
+ 9BU1MQRsWaqCYwr5WTPyNpzwLPzt4w5ANAm0XWLdcICdI09wHrXnHs9hsM8lIUScyaLHvDyRb
+ xlqWtRMHB5BuFpg2Q4hXBazWfW5Co036gHuc5DuBIfyYByzvBGKmbInjohR8GtyCvRUJbxrvr
+ oFd7YGbFd2K9aFhJIDswZ22qEuZeHJ2QXr6wvXC2Zy/l4ML4cge94HnrimBkfamE5nRU1f6Jx
+ Cs5QEj0sEmRQFwTzCPPSN8rWTAjxJkQsoA3E76ym9ljSusvy6SXW0IK97xXEUwZy2e4m37Xx3
+ It3k8zlsKI810yREsr1d3VriRad85H6Zqs0XUu7vpym+AI5MiLj25b6vAzsWFJ6kWIzli1b3X
+ 7CpLwVO9X/2hgmAGDn/sno6bzK1yxhJGbbLCMOSgQ8qE4xAIrF+bpIDgcqvFdNXRvinieW3kH
+ rINfaraZb6o/7fxCqqlO5J5f3T2NyJRvhKJshSAijxKq00SSH/u3gTlP9EwZxnssPWMI0vUlL
+ qJspZIz/4nAeHVB8e5koO++/S9+VhehO73CuFaW0yeytcx3/Io47LP4P1HibQ2xXvj5daCf90
+ KE9m9CP2wMM5U+p877GwYzgxRWTM8w2OwbwDqgP5bZGGwYlAywmZI+SX+T24lzdrIpgpgpoxy
+ oNtl7aUfskwQWRocJ20hFQA7rbohcwgNkKIbptumsnraw+KohGJrxlwXnwWGqXD4XptvfLMn5
+ nzY3fcfQzM5/v7omahjVqPe5vVTKgNV2t7uAtYVKZrEN0f6+J0m3s
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+Hi Florian,
 
-This patch adds basic i.MM8MN DDR4 EVK board support.
+Am 29.05.19 um 01:01 schrieb Florian Fainelli:
+> Hi all,
+>
+> This patch series attempts to fix the most obvious W=3D1 DTC warnings fo=
+r
+> Broadcom SoCs DTS files. Stefan, if you could do the same for all
+> bcm283* that would be fantastic.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile            |   1 +
- arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 217 ++++++++++++++++++++++
- 2 files changed, 218 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+we tried to fix as much as possible in the past. So there are only those
+left, which i don't know how to fix it properly (and without breaking
+things):
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 0bd122f..2cdd4cc 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2088a-rdb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
- 
-+dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-new file mode 100644
-index 0000000..da552c2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -0,0 +1,217 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2019 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mn.dtsi"
-+
-+/ {
-+	model = "NXP i.MX8MNano DDR4 EVK board";
-+	compatible = "fsl,imx8mn-ddr4-evk", "fsl,imx8mn";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_ENET_MDC_ENET1_MDC		0x3
-+			MX8MN_IOMUXC_ENET_MDIO_ENET1_MDIO	0x3
-+			MX8MN_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
-+			MX8MN_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
-+			MX8MN_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
-+			MX8MN_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
-+			MX8MN_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
-+			MX8MN_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
-+			MX8MN_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
-+			MX8MN_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
-+			MX8MN_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
-+			MX8MN_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
-+			MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-+			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-+			MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22	0x19
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmc {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
-+			MX8MN_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2grpgpio {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x1c4
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
-+			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
-+			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
-+			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
-+			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
-+			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
-+			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
-+			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
-+			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
-+			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
-+			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
-+			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
-+			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
-+			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
-+			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
-+			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
-+			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
-+			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
-+			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000190
-+			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
-+			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
-+			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
-+			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
-+			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
-+			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
-+			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
-+			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
-+			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
-+			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000194
-+			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
-+			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
-+			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
-+			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
-+			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
-+			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
-+			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
-+			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
-+			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
-+			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000196
-+			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
-+			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
-+			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
-+			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
-+			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
-+			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
-+			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
-+			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
-+			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
-+			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
-+		>;
-+	};
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec1>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	fsl,magic-packet;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			at803x,led-act-blind-workaround;
-+			at803x,eee-disabled;
-+			at803x,vddio-1p8v;
-+		};
-+	};
-+};
-+
-+&uart2 { /* console */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
--- 
-2.7.4
+arch/arm/boot/dts/bcm283x.dtsi:54.6-651.4: Warning
+(unit_address_vs_reg): /soc: node has a reg or ranges property, but no
+unit name
+
+This from the SoC specific dtsi files which add values for the ranges /
+dma-ranges.
+
+soc {
+=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ranges =3D <0x7e000000 0x20000000 0x=
+02000000>;
+=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 dma-ranges =3D <0x40000000 0x0000000=
+0 0x20000000>;
+};
+
+arch/arm/boot/dts/bcm283x.dtsi:648.12-650.5: Warning (simple_bus_reg):
+/soc/gpu: missing or empty reg/ranges property
+
+This comes from the following simple bus child node:
+
+vc4: gpu {
+=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 compatible =3D "b=
+rcm,bcm2835-vc4";
+};
+
+This issue should also exists in bcm-cygnus.dtsi. From the hardware side
+the GPU is part of the SoC, but maybe we should move this node out of
+the SoC simple bus?
+
+Stefan
 
