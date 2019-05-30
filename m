@@ -2,143 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52F6A2FBCB
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 14:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F98B2FBD6
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 14:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726399AbfE3M4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 08:56:47 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48380 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726045AbfE3M4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 08:56:47 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4UCu5DC038584;
-        Thu, 30 May 2019 07:56:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559220965;
-        bh=yfsOyzA/w0iHAo88Lim+9pYU3sP+lTVSj1gMoRm+IRc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ddAoZJV3O3SjnGH9+ATpox3dT93TWhxKCISRrbGLs9LFAbRLHysUrElN6YWYLT8QE
-         d8Q7Fh7/cXQj9fMmUMZWZ+4Uzr2PLcvs60tHreblxsFmBWdfc88CcdNMTAqqPz+ifd
-         +udj9djsPUutSwb+jbCQ+7rKnozfTLt8EKp4wIIQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4UCu5Kg096915
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 30 May 2019 07:56:05 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 30
- May 2019 07:56:05 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 30 May 2019 07:56:05 -0500
-Received: from [10.250.93.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4UCu3Dt070901;
-        Thu, 30 May 2019 07:56:03 -0500
-Subject: Re: [PATCH v6 1/7] Documentation: DT: arm: add support for sockets
- defining package boundaries
-To:     Morten Rasmussen <morten.rasmussen@arm.com>
-CC:     Atish Patra <atish.patra@wdc.com>, <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-riscv@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190529211340.17087-1-atish.patra@wdc.com>
- <20190529211340.17087-2-atish.patra@wdc.com>
- <49f41e62-5354-a674-d95f-5f63851a0ca6@ti.com>
- <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
-From:   "Andrew F. Davis" <afd@ti.com>
-Message-ID: <70639181-09d1-4644-f062-b19e06db7471@ti.com>
-Date:   Thu, 30 May 2019 08:56:03 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726015AbfE3M6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 08:58:45 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:36406 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726587AbfE3M6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 08:58:45 -0400
+Received: by mail-pf1-f195.google.com with SMTP id u22so3930210pfm.3;
+        Thu, 30 May 2019 05:58:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GvIkFSS6zYb3I2dgFnSydPQ6jC4jn1KdG+v4VePYDQk=;
+        b=gZ0kUco2TbQiQDQDexJBvPdg0HouSZLKePsOfYv6pLG+qWJ0GrIa4KS0xDHzq7Njp1
+         JVX6Yd55JBSYaL22fwI4u7uzTEp4gJcZqLcB73bkSZlzEjKFp8dDB5P7Tk6X/kaB1YHn
+         QfAC/0xUHvqisTK71ekwrUFYQyTNhCU6wOjlTvrB8tX7crU4DR8FV65k4FyheSikFYjv
+         KJASKPKyS3NfhgHPlOcoDys4WcuH/Mm67Qie62B23Y+m20R7rZKGS5EALfq3AP2zT5HX
+         5VC1IujrphDhnuTa9lxmASESCmScK/wXSsufBZX9TIBVC9ofCknRuN8wwtquBNt3PU71
+         YTog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GvIkFSS6zYb3I2dgFnSydPQ6jC4jn1KdG+v4VePYDQk=;
+        b=jEOwsIAKsxbW4dRBMBAWVHr4R4se60MMXpJND2XaZRHxkH+BryxrS5h3R/2ysMTyng
+         hvMDzxF7kG/kp97/kaV/ysspCnH15ReW0M3F38OdgVv0HfDUI/Rr3V8sVBuGGINuRNrW
+         lkQjFFXT8oi5P/ZMhjQablfHHRxk8bc4tZM16tstQEeh2wVGspKdZ6+4AvaSNEJg9TxZ
+         OXm0s//ArtBv/RicDZ7ZwocVA92YHTaMhYBxntPkMtJ4tcoKIWSwNmg8S2ymnTh2BoSy
+         RQcmo57TuhUCAl5qpuREdlFYwF1dA168oFfqsGHs24zVGtBqw8siZoQowoeLJ9xm4T9c
+         P5Ow==
+X-Gm-Message-State: APjAAAXxZGFO9EXZU8nwnN2tTEXexbnBWiPWJbhB15+Jz8nfQsXBpoTa
+        WjrMo4Qc0HiPXaIZhU+mKpo=
+X-Google-Smtp-Source: APXvYqzU0QjvBVCx0ssrUfq8kLh4g1PKTBBj2qaRjGJOAuYeog+j57yeoXYuz55utK4trv6oBJIKWw==
+X-Received: by 2002:a63:8ac3:: with SMTP id y186mr3590817pgd.22.1559221124817;
+        Thu, 30 May 2019 05:58:44 -0700 (PDT)
+Received: from localhost.localdomain ([45.114.62.35])
+        by smtp.gmail.com with ESMTPSA id j13sm2928912pfh.13.2019.05.30.05.58.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 05:58:44 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add missing PCIe pwr amd rst configuration
+Date:   Thu, 30 May 2019 12:58:37 +0000
+Message-Id: <20190530125837.730-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/30/19 7:51 AM, Morten Rasmussen wrote:
-> On Wed, May 29, 2019 at 07:39:17PM -0400, Andrew F. Davis wrote:
->> On 5/29/19 5:13 PM, Atish Patra wrote:
->>> From: Sudeep Holla <sudeep.holla@arm.com>
->>>
->>> The current ARM DT topology description provides the operating system
->>> with a topological view of the system that is based on leaf nodes
->>> representing either cores or threads (in an SMT system) and a
->>> hierarchical set of cluster nodes that creates a hierarchical topology
->>> view of how those cores and threads are grouped.
->>>
->>> However this hierarchical representation of clusters does not allow to
->>> describe what topology level actually represents the physical package or
->>> the socket boundary, which is a key piece of information to be used by
->>> an operating system to optimize resource allocation and scheduling.
->>>
->>
->> Are physical package descriptions really needed? What does "socket" imply
->> that a higher layer "cluster" node grouping does not? It doesn't imply a
->> different NUMA distance and the definition of "socket" is already not well
->> defined, is a dual chiplet processor not just a fancy dual "socket" or are
->> dual "sockets" on a server board "slotket" card, will we need new names for
->> those too..
-> 
-> Socket (or package) just implies what you suggest, a grouping of CPUs
-> based on the physical socket (or package). Some resources might be
-> associated with packages and more importantly socket information is
-> exposed to user-space. At the moment clusters are being exposed to
-> user-space as sockets which is less than ideal for some topologies.
-> 
+This patch add missing PCIe gpio and pinctrl for power (#PCIE_PWR)
+also add PCIe gpio and pinctrl for reset (#PCIE_PERST_L).
 
-I see the benefit of reporting the physical layout and packaging 
-information to user-space for tracking reasons, but from software 
-perspective this doesn't matter, and the resource partitioning should be 
-described elsewhere (NUMA nodes being the go to example).
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+Tested on Rock960 Model A
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-> At the moment user-space is only told about hw threads, cores, and
-> sockets. In the very near future it is going to be told about dies too
-> (look for Len Brown's multi-die patch set).
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+index c7d48d41e184..f5bef6b0fe89 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+@@ -55,9 +55,10 @@
+ 
+ 	vcc3v3_pcie: vcc3v3-pcie-regulator {
+ 		compatible = "regulator-fixed";
++		gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pcie_drv>;
++		pinctrl-0 = <&pcie_drv &pcie_pwr>;
+ 		regulator-boot-on;
+ 		regulator-name = "vcc3v3_pcie";
+ 		regulator-min-microvolt = <3300000>;
+@@ -381,9 +382,10 @@
+ };
+ 
+ &pcie0 {
++	ep-gpio = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
+ 	num-lanes = <4>;
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie_clkreqn_cpm>;
++	pinctrl-0 = <&pcie_clkreqn_cpm &pcie_perst_l>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie>;
+ 	status = "okay";
+ };
+@@ -408,6 +410,16 @@
+ 		};
+ 	};
+ 
++	pcie {
++		pcie_pwr: pcie-pwr {
++			rockchip,pins = <2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		pcie_perst_l:pcie-perst-l {
++			rockchip,pins = <2 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	sdmmc {
+ 		sdmmc_bus1: sdmmc-bus1 {
+ 			rockchip,pins =
+-- 
+2.21.0
 
-Seems my hypothetical case is already in the works :(
-
-> I don't see how we can provide correct information to user-space based
-> on the current information in DT. I'm not convinced it was a good idea
-> to expose this information to user-space to begin with but that is
-> another discussion.
-> 
-
-Fair enough, it's a little late now to un-expose this info to userspace 
-so we should at least present it correctly. My worry was this getting 
-out of hand with layering, for instance what happens when we need to add 
-die nodes in-between cluster and socket?
-
-Andrew
-
-> Morten
-> 
