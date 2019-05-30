@@ -2,111 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 457452FACD
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 13:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B43A2FAD2
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 13:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726794AbfE3LUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 07:20:22 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:33456 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726563AbfE3LUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 07:20:22 -0400
-Received: by mail-lf1-f66.google.com with SMTP id y17so4731560lfe.0;
-        Thu, 30 May 2019 04:20:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VekgKS2qzcKcSAxRPfpFghP7GZS0WUkLzmxFEC0aAfw=;
-        b=i5Y/x+LaTL+31TC/zpG95n9Pxw2Ttz9M8CjsJwaFNoF8mqscNVhB8iZB8iasTK5+GJ
-         R4vFDjRYOr01LtD8iq59BJZ1JgTLhSg26Mtbz4zaxOGirksWIbFAmXgd2v6lR/mhD3o9
-         zlAxoRCMQsK/yqB7X5vxT0P0a65W0IDsrHLpQ16Xz3wgaym7he5ulnucdJpePFLK0N/q
-         hD6oU9KRrBZUNxAJfkDkWQgYBEqWlkptHTXbKa7KX5AXLhShQBEsdNEFzpJNcJNhradN
-         XTANkmB+vax7WVabB3JKEo80N+UkarcrfmoLt33gHMPPDy1e9THzG1e+sipTu9H3hHA6
-         fblg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VekgKS2qzcKcSAxRPfpFghP7GZS0WUkLzmxFEC0aAfw=;
-        b=GVrt6rC4tqvNyonnd3x9BAYJuy2z/OVrY/Js4xgZnWDe/hTe5/1OwQOV3lFhALPq3m
-         y4cmeOjOb/ilIPsoERKf1YMBWinLsxaDt7Be9aYKnAgmf0yBItViPZMGFYJZYBQdkLTg
-         G96WRvzKUvOEwEV/M6sHUPojzRmHq4diDP3W+siFq6/F8slYcjnFBl9A7yqs+IpAx6E5
-         hTRh3/zSDSA+iLSxlAWoyo01GXjZ7sSW9qzWb44PVSelVHZlZdUH8ZNwQd3vEpA/uTgM
-         MZeWFO5D3QS4pmspfGQGg9qPlcHSy8zghj6gpS0+sfafzcQBd/NRxW7f3sWXdzcDsj2n
-         PU3g==
-X-Gm-Message-State: APjAAAVgg9wtQXn1+2DJLHpQBLSw2XnfUfunBIynZKgsrE1HcLXCfDTZ
-        4OcrE5MQFkS3RhC1I7lCmgk=
-X-Google-Smtp-Source: APXvYqxcrL5kdqSLjZhlD0FVQkH3bohM0sbHuwh/0mk3vsWwNIiZx41LWxTDWsUlDr10RgWDi82Mjw==
-X-Received: by 2002:ac2:4908:: with SMTP id n8mr1767791lfi.10.1559215219998;
-        Thu, 30 May 2019 04:20:19 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.35.141])
-        by smtp.googlemail.com with ESMTPSA id f30sm440648lfa.48.2019.05.30.04.20.18
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 May 2019 04:20:19 -0700 (PDT)
-Subject: Re: [PATCH V4 5/8] memory: tegra: Add EMC scaling support code for
- Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190529082139.5581-1-josephl@nvidia.com>
- <20190529082139.5581-6-josephl@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <1838333d-bf58-1e06-7e4c-a64753075053@gmail.com>
-Date:   Thu, 30 May 2019 14:20:18 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726649AbfE3LXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 07:23:36 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:34546 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725440AbfE3LXf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 07:23:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 21CD1374;
+        Thu, 30 May 2019 04:23:35 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B8FA03F5AF;
+        Thu, 30 May 2019 04:23:32 -0700 (PDT)
+Date:   Thu, 30 May 2019 12:23:29 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
+Message-ID: <20190530122329.235d13c7@donnerap.cambridge.arm.com>
+In-Reply-To: <AM0PR04MB4481C44F9B5EFCDD076EF728881D0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <20190523060437.11059-1-peng.fan@nxp.com>
+        <4ba2b243-5622-bb27-6fc3-cd9457430e54@gmail.com>
+        <AM0PR04MB4481C44F9B5EFCDD076EF728881D0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190529082139.5581-6-josephl@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-29.05.2019 11:21, Joseph Lo пишет:
-> This patch adds the required APIs and variables for the EMC scaling
-> sequence code on Tegra210.
+On Mon, 27 May 2019 05:19:41 +0000
+Peng Fan <peng.fan@nxp.com> wrote:
+
+Hi,
+
+> > Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
+> > 
+> > Hi,
+> > 
+> > On 5/22/19 10:50 PM, Peng Fan wrote:  
+> > > This is a modified version from Andre Przywara's patch series
+> > >  
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.ke
+> > rnel.org%2Fpatchwork%2Fcover%2F812997%2F&amp;data=02%7C01%7Cpe
+> > ng.fan%40nxp.com%7C010c9ddd5df645c9c66b08d6dfa46cb2%7C686ea1d3b
+> > c2b4c6fa92cd99c5c301635%7C0%7C0%7C636942294631442665&amp;sdat
+> > a=BbS5ZQtzMANSwaKRDJ62NKrPrAyaED1%2BvymQaT6Qr8E%3D&amp;rese
+> > rved=0.  
+> > > [1] is a draft implementation of i.MX8MM SCMI ATF implementation that
+> > > use smc as mailbox, power/clk is included, but only part of clk has
+> > > been implemented to work with hardware, power domain only supports get
+> > > name for now.
+> > >
+> > > The traditional Linux mailbox mechanism uses some kind of dedicated
+> > > hardware IP to signal a condition to some other processing unit,
+> > > typically a dedicated management processor.
+> > > This mailbox feature is used for instance by the SCMI protocol to
+> > > signal a request for some action to be taken by the management processor.
+> > > However some SoCs does not have a dedicated management core to  
+> > provide  
+> > > those services. In order to service TEE and to avoid linux shutdown
+> > > power and clock that used by TEE, need let firmware to handle power
+> > > and clock, the firmware here is ARM Trusted Firmware that could also
+> > > run SCMI service.
+> > >
+> > > The existing SCMI implementation uses a rather flexible shared memory
+> > > region to communicate commands and their parameters, it still requires
+> > > a mailbox to actually trigger the action.  
+> > 
+> > We have had something similar done internally with a couple of minor
+> > differences:
+> > 
+> > - a SGI is used to send SCMI notifications/delayed replies to support
+> > asynchronism (patches are in the works to actually add that to the Linux SCMI
+> > framework). There is no good support for SGI in the kernel right now so we
+> > hacked up something from the existing SMP code and adding the ability to
+> > register our own IPI handlers (SHAME!). Using a PPI should work and should
+> > allow for using request_irq() AFAICT.  
 > 
-> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
+> So you are also implementing a firmware inside ATF for SCMI usecase, right?
 > 
-> Signed-off-by: Joseph Lo <josephl@nvidia.com>
-> ---
-> v4:
-> - fix the API with generic naming
+> Introducing SGI in ATF to notify Linux will introduce complexity, there is
+> no good framework inside ATF for SCMI, and I use synchronization call for
+> simplicity for now.
 
-> +extern const struct emc_table_register_offset reg_off;
-> +extern unsigned long dram_over_temp_state;
-> +
-> +void ccfifo_writel(struct tegra_emc *emc, u32 val, unsigned long addr,
-> +		   u32 delay);
-> +u32 div_o3(u32 a, u32 b);
-> +void emc_writel(struct tegra_emc *emc, u32 val, unsigned long offset);
-> +u32  emc_readl(struct tegra_emc *emc, unsigned long offset);
-> +void emc_writel_per_ch(struct tegra_emc *emc, u32 val, int type,
-> +		       unsigned long offset);
-> +u32  emc1_readl(struct tegra_emc *emc, unsigned long offset);
-> +
-> +void emc_do_clock_change(struct tegra_emc *emc, u32 clksrc);
-> +void emc_set_shadow_bypass(struct tegra_emc *emc, int set);
-> +void emc_timing_update(struct tegra_emc *emc, int dual_chan);
-> +u32 emc_get_dll_state(struct emc_table *next_timing);
-> +struct emc_table *emc_get_timing_from_freq(struct tegra_emc *emc,
-> +					   unsigned long rate);
-> +void emc_set_over_temp_timing(struct tegra_emc *emc, struct emc_table *timing,
-> +			      unsigned long state);
-> +int emc_wait_for_update(struct tegra_emc *emc, u32 status_reg, u32 bit_mask,
-> +			bool updated_state, int chan);
+I think we don't disagree, but just to clarify on one thing:
 
-It wouldn't hurt to prepend these all with "tegra210_".
+I think we should avoid tying this driver to specific protocol or software on the other end, be it ATF or SCMI. After all it's just a mailbox driver, meant to signal some event (and parameters) to some external entity. Yes, SCMI (or SCPI back then) was the reason to push for this, but it should be independent from that. I am not even sure we should mention it too much in the documentation.
 
--- 
-Dmitry
+So whether the receiving end is ATF or something else it irrelevant, I think. For instance we have had discussions in Xen to provide guests some virtualised device management support, and using an HVC mailbox seems like a neat solution. This could be using the SCMI (or SCPI) protocol, but that's not a requirement. In this case the Xen hypervisor would be the one to pick up the mailbox trigger, probably forwarding the request to something else (Dom0 in this case).
+Also having a generic SMC mailbox could avoid having the actual hardware mailbox drivers in the kernel, so EL3 firmware could forward the request to an external management processor, and Linux would just work, without the need to describe the actual hardware mailbox device in some firmware tables. This might help ACPI on those devices.
+
+Cheers,
+Andre.
+
+> > 
+> > - the mailbox identifier is indicated as part of the SMC call such that we can
+> > have multiple SCMI mailboxes serving both standard protocols and
+> > non-standard (in the 0x80 and above) range, also they may have different
+> > throughput (in hindsight, these could simply be different channels)
+> > 
+> > Your patch series looks both good and useful to me, I would just put a
+> > provision in the binding to support an optional interrupt such that
+> > asynchronism gets reasonably easy to plug in when it is available (and
+> > desirable).  
+> 
+> Ok. Let me think about and add that in new version patch.
+> 
+> Thanks,
+> Peng.
+> 
+> >   
+> > >
+> > > This patch series provides a Linux mailbox compatible service which
+> > > uses smc calls to invoke firmware code, for instance taking care of SCMI  
+> > requests.  
+> > > The actual requests are still communicated using the standard SCMI way
+> > > of shared memory regions, but a dedicated mailbox hardware IP can be
+> > > replaced via this new driver.
+> > >
+> > > This simple driver uses the architected SMC calling convention to
+> > > trigger firmware services, also allows for using "HVC" calls to call
+> > > into hypervisors or firmware layers running in the EL2 exception level.
+> > >
+> > > Patch 1 contains the device tree binding documentation, patch 2
+> > > introduces the actual mailbox driver.
+> > >
+> > > Please note that this driver just provides a generic mailbox
+> > > mechanism, though this is synchronous and one-way only (triggered by
+> > > the OS only, without providing an asynchronous way of triggering
+> > > request from the firmware).
+> > > And while providing SCMI services was the reason for this exercise,
+> > > this driver is in no way bound to this use case, but can be used
+> > > generically where the OS wants to signal a mailbox condition to
+> > > firmware or a hypervisor.
+> > > Also the driver is in no way meant to replace any existing firmware
+> > > interface, but actually to complement existing interfaces.
+> > >
+> > > [1]
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgith
+> > >  
+> > ub.com%2FMrVan%2Farm-trusted-firmware%2Ftree%2Fscmi&amp;data=02
+> > %7C01%7  
+> > >  
+> > Cpeng.fan%40nxp.com%7C010c9ddd5df645c9c66b08d6dfa46cb2%7C686ea1
+> > d3bc2b4  
+> > >  
+> > c6fa92cd99c5c301635%7C0%7C0%7C636942294631442665&amp;sdata=kN
+> > 9bEFFcsZA  
+> > > 1ePeNLLfHmONpVaG6O5ajVQvKMuaBXyk%3D&amp;reserved=0
+> > >
+> > > Peng Fan (2):
+> > >   DT: mailbox: add binding doc for the ARM SMC mailbox
+> > >   mailbox: introduce ARM SMC based mailbox
+> > >
+> > >  .../devicetree/bindings/mailbox/arm-smc.txt        |  96  
+> > +++++++++++++  
+> > >  drivers/mailbox/Kconfig                            |   7 +
+> > >  drivers/mailbox/Makefile                           |   2 +
+> > >  drivers/mailbox/arm-smc-mailbox.c                  | 154  
+> > +++++++++++++++++++++  
+> > >  include/linux/mailbox/arm-smc-mailbox.h            |  10 ++
+> > >  5 files changed, 269 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > >  create mode 100644 drivers/mailbox/arm-smc-mailbox.c  create mode
+> > > 100644 include/linux/mailbox/arm-smc-mailbox.h
+> > >  
+> > 
+> > 
+> > --
+> > Florian  
+
