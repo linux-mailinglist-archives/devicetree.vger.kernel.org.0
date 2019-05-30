@@ -2,94 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 413D12FC94
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E11A72FC9F
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 15:48:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726965AbfE3NoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 09:44:09 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:38078 "EHLO deadmen.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726540AbfE3NoJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 09:44:09 -0400
-Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
-        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
-        id 1hWLLk-0005gQ-Fn; Thu, 30 May 2019 21:44:08 +0800
-Received: from herbert by gondobar with local (Exim 4.89)
-        (envelope-from <herbert@gondor.apana.org.au>)
-        id 1hWLLh-0003hY-2D; Thu, 30 May 2019 21:44:05 +0800
-Date:   Thu, 30 May 2019 21:44:05 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>
-Subject: Re: [PATCH v2 0/6] crypto - wire up Atmel SHA204A as RNG in DT and
- ACPI mode
-Message-ID: <20190530134404.kpxdpkxbzyxhpbxo@gondor.apana.org.au>
-References: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
+        id S1726574AbfE3NsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 09:48:21 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:43187 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbfE3NsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 09:48:20 -0400
+Received: by mail-io1-f68.google.com with SMTP id k20so5065931ios.10
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 06:48:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f4rkyvetspz0f+UlMWFdOOo6R1mEg57wlesDPAijXPo=;
+        b=LghQzQZ9TMVx2ERKO1WFjeaFPIeD7V+5u8AB5/zL6N/QlqYm/iTesG/vH69+3b8D9Q
+         sFLM7rtXTU7hRsspi3B2JY4QcYiy4aAMRiP7hsNSYNsAxYvbT2QDrX0+lyah7fWBVuT2
+         cVgspZKfT2NDAYxupzM7PFum8Hu2mrGrE3UuMrq1XrcDJBROa7FPZslZPQcy1GCeKstT
+         EadHmetpYM92XcslRxmF3ZL2S+RdPlAKtKY1/ByCrPAgtNyLatN1YczwfHfK9m99uxww
+         8vPu40BBznlAKXIMeqHVGZUbHkGuCkJI92Mnvg+iVmHheOcM8s1s0q3tbhSiwHu1enA9
+         zg7A==
+X-Gm-Message-State: APjAAAUR/2Zq5kwGKK4e/u11R5kmkoH647qSqDCP5GBuiW6JMa9hdOYE
+        dRwOFv/221y0V8RB8i/wO0Ni2uilgT4=
+X-Google-Smtp-Source: APXvYqzbadKGFVMYMqrqq/eTAXxqionGQwYxNpCXnZH9q4mdH+lgT2nut1kc3zAF95+fkwRmbX2b6Q==
+X-Received: by 2002:a5d:851a:: with SMTP id q26mr2525814ion.246.1559224099312;
+        Thu, 30 May 2019 06:48:19 -0700 (PDT)
+Received: from mail-it1-f170.google.com (mail-it1-f170.google.com. [209.85.166.170])
+        by smtp.gmail.com with ESMTPSA id 4sm1122188ity.9.2019.05.30.06.48.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 06:48:17 -0700 (PDT)
+Received: by mail-it1-f170.google.com with SMTP id g24so9927381iti.5
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 06:48:17 -0700 (PDT)
+X-Received: by 2002:a24:91d2:: with SMTP id i201mr3054942ite.88.1559224097044;
+ Thu, 30 May 2019 06:48:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20190527120910.18964-1-maxime.ripard@bootlin.com>
+In-Reply-To: <20190527120910.18964-1-maxime.ripard@bootlin.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Thu, 30 May 2019 21:48:02 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66uhrm20BwmODkPZjSM6Ek+xEg23w2Cs49ikW3WcU1Lqg@mail.gmail.com>
+Message-ID: <CAGb2v66uhrm20BwmODkPZjSM6Ek+xEg23w2Cs49ikW3WcU1Lqg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: Convert Allwinner DSI to a schema
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 06:26:45PM +0200, Ard Biesheuvel wrote:
-> The Socionext SynQuacer based 96boards DeveloperBox platform does not
-> incorporate a random number generator, but it does have a 96boards low
-> speed connector which supports extension boards such as the Secure96,
-> which has a TPM and some crypto accelerators, one of which incorporates
-> a random number generator.
-> 
-> This series implements support for the RNG part, which is one of several
-> functions of the Atmel SHA204A I2C crypto accelerator, and wires it up so
-> both DT and ACPI based boot methods can use the device.
-> 
-> v2:
-> - update DT binding patches so the SHA204A and ECC508A module bindings are
->   in trivial-devices.yaml.
-> - add acks from Linus and Mika
-> 
-> Assuming Rob is ok now with the DT binding patches, can we please take
-> this through the crypto tree?
-> 
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: Tudor Ambarus <tudor.ambarus@microchip.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
-> 
-> Ard Biesheuvel (6):
->   i2c: acpi: permit bus speed to be discovered after enumeration
->   crypto: atmel-ecc: add support for ACPI probing on non-AT91 platforms
->   crypto: atmel-ecc: factor out code that can be shared
->   crypto: atmel-i2c: add support for SHA204A random number generator
->   dt-bindings: add Atmel SHA204A I2C crypto processor
->   dt-bindings: move Atmel ECC508A I2C crypto processor to
->     trivial-devices
-> 
->  Documentation/devicetree/bindings/crypto/atmel-crypto.txt |  13 -
->  Documentation/devicetree/bindings/trivial-devices.yaml    |   4 +
->  drivers/crypto/Kconfig                                    |  19 +-
->  drivers/crypto/Makefile                                   |   2 +
->  drivers/crypto/atmel-ecc.c                                | 403 ++------------------
->  drivers/crypto/atmel-ecc.h                                | 116 ------
->  drivers/crypto/atmel-i2c.c                                | 364 ++++++++++++++++++
->  drivers/crypto/atmel-i2c.h                                | 196 ++++++++++
->  drivers/crypto/atmel-sha204a.c                            | 171 +++++++++
->  drivers/i2c/i2c-core-acpi.c                               |   6 +-
->  10 files changed, 781 insertions(+), 513 deletions(-)
->  delete mode 100644 drivers/crypto/atmel-ecc.h
->  create mode 100644 drivers/crypto/atmel-i2c.c
->  create mode 100644 drivers/crypto/atmel-i2c.h
->  create mode 100644 drivers/crypto/atmel-sha204a.c
+On Mon, May 27, 2019 at 8:09 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> The Allwinner SoCs have a MIPI-DSI and MIPI-D-PHY controllers supported in
+> Linux, with a matching Device Tree binding.
+>
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for that controller over to a YAML schemas.
+>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-All applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Looks good to me. However not sure why you replaced the clock index macros
+with raw numbers.
+
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
