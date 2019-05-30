@@ -2,163 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D346D3012E
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 19:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14ADF301AE
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 20:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726688AbfE3Rpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 13:45:38 -0400
-Received: from mail-qt1-f194.google.com ([209.85.160.194]:34128 "EHLO
-        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726684AbfE3Rpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 13:45:38 -0400
-Received: by mail-qt1-f194.google.com with SMTP id h1so8050461qtp.1
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 10:45:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UgEoJIEOWgKSmNpnwJapd7xKMVBGEnMvpNqFuwdcHSY=;
-        b=Fn/ANT4MXdKSWGuWOrpPeP98WM3E9iym5IYE+8c9BVbTfT5sP9hiLSFUBTsUol8cTW
-         dWUBH7hDDa+fdzvcNDiLIPD0vemofSYGPiwtlWiQ2b/++WJttZeWSEbXp44Ql71oDmXD
-         st2Bwo+bn0aiRzKFTTojowbipmLDs6RwCSTCqDsiU//+h+v6X8vMiwwvpUWIPX/N02RQ
-         hdONda6ZoIatyae+tV49dVhk5eSP2HZRyJNQaJPNj+I1TSWZKfzlKiBmKrb1lqTe4bPE
-         MVnNtlGhfuNrpTLavRPlrmnenmroF+hf2iA19jM95IrlNesG148vK8vQ2IberOpvmHhA
-         j+mw==
-X-Gm-Message-State: APjAAAVuufTAiU2RxefRcolnwQbTOkeFU8azpfcrPk/Cu3fR1hyQi7LG
-        aJw2cSeOd7hzAxSegX9bZ5C/Hw==
-X-Google-Smtp-Source: APXvYqy9DfCkbHWFwnoJIZhnJEIk9jBDmoJOESod/F/vQr9Iv7gjOGLceZ55BmbRJubgQEOI/tivJw==
-X-Received: by 2002:aed:3b5a:: with SMTP id q26mr4641355qte.158.1559238337003;
-        Thu, 30 May 2019 10:45:37 -0700 (PDT)
-Received: from redhat.com (pool-100-0-197-103.bstnma.fios.verizon.net. [100.0.197.103])
-        by smtp.gmail.com with ESMTPSA id r186sm691141qkb.9.2019.05.30.10.45.34
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 30 May 2019 10:45:35 -0700 (PDT)
-Date:   Thu, 30 May 2019 13:45:32 -0400
-From:   "Michael S. Tsirkin" <mst@redhat.com>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Cc:     joro@8bytes.org, iommu@lists.linux-foundation.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        virtio-dev@lists.oasis-open.org, jasowang@redhat.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        Lorenzo.Pieralisi@arm.com, robin.murphy@arm.com,
-        bhelgaas@google.com, frowand.list@gmail.com,
-        kvmarm@lists.cs.columbia.edu, eric.auger@redhat.com,
-        tnowicki@caviumnetworks.com, kevin.tian@intel.com,
-        bauerman@linux.ibm.com
-Subject: Re: [PATCH v8 2/7] dt-bindings: virtio: Add virtio-pci-iommu node
-Message-ID: <20190530133523-mutt-send-email-mst@kernel.org>
-References: <20190530170929.19366-1-jean-philippe.brucker@arm.com>
- <20190530170929.19366-3-jean-philippe.brucker@arm.com>
+        id S1726125AbfE3STe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 14:19:34 -0400
+Received: from mail.skyhub.de ([5.9.137.197]:35080 "EHLO mail.skyhub.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725961AbfE3STe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 May 2019 14:19:34 -0400
+Received: from [172.20.8.77] (unknown [207.225.69.115])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id F1E911EC033F;
+        Thu, 30 May 2019 20:19:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1559240372;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+FySjQvkw3gub2985lSwYfwdxjK48qhJJdaawn7bwWw=;
+        b=cOO6KmApd03PNn2XMw3Tn6baTYU4r7UAS1R913nuS0nHijjQ6j8BDkFWp6voJjGQEy3tgO
+        3fs7DJOfmS6pj8ZteGTAFM2et+0JKArhtHQvmGZi3eS3W4vzKN4WQoBTZmnac5oF95KgHh
+        IiUG2E6k9av3XSOGh2eYfXobE1A7Tr4=
+Date:   Thu, 30 May 2019 11:19:27 -0700
+User-Agent: K-9 Mail for Android
+In-Reply-To: <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com> <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190530170929.19366-3-jean-philippe.brucker@arm.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+To:     Hanna Hawa <hhhawa@amazon.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, mchehab@kernel.org, james.morse@arm.com,
+        davem@davemloft.net, gregkh@linuxfoundation.org,
+        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
+        dwmw@amazon.co.uk, benh@amazon.com
+CC:     ronenk@amazon.com, talel@amazon.com, jonnyc@amazon.com,
+        hanochu@amazon.com, hhhawa@amazon.com, linux-edac@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Boris Petkov <bp@alien8.de>
+Message-ID: <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 06:09:24PM +0100, Jean-Philippe Brucker wrote:
-> Some systems implement virtio-iommu as a PCI endpoint. The operating
-> system needs to discover the relationship between IOMMU and masters long
-> before the PCI endpoint gets probed. Add a PCI child node to describe the
-> virtio-iommu device.
-> 
-> The virtio-pci-iommu is conceptually split between a PCI programming
-> interface and a translation component on the parent bus. The latter
-> doesn't have a node in the device tree. The virtio-pci-iommu node
-> describes both, by linking the PCI endpoint to "iommus" property of DMA
-> master nodes and to "iommu-map" properties of bus nodes.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Eric Auger <eric.auger@redhat.com>
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+On May 30, 2019 3:15:29 AM PDT, Hanna Hawa <hhhawa@amazon=2Ecom> wrote:
+>Add support for error detection and correction for Amazon's Annapurna
+>Labs SoCs for L1/L2 caches=2E
 
-So this is just an example right?
-We are not defining any new properties or anything like that.
 
-I think down the road for non dt platforms we want to put this
-info in the config space of the device. I do not think ACPI
-is the best option for this since not all systems have it.
-But that can wait.
+So this should be a driver for the whole annapurna platform and not only a=
+bout the RAS functionality in an IP like the caches=2E See other ARM EDAC d=
+rivers in drivers/edac/ for an example=2E
 
-> ---
->  .../devicetree/bindings/virtio/iommu.txt      | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/virtio/iommu.txt b/Documentation/devicetree/bindings/virtio/iommu.txt
-> new file mode 100644
-> index 000000000000..2407fea0651c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/virtio/iommu.txt
-> @@ -0,0 +1,66 @@
-> +* virtio IOMMU PCI device
-> +
-> +When virtio-iommu uses the PCI transport, its programming interface is
-> +discovered dynamically by the PCI probing infrastructure. However the
-> +device tree statically describes the relation between IOMMU and DMA
-> +masters. Therefore, the PCI root complex that hosts the virtio-iommu
-> +contains a child node representing the IOMMU device explicitly.
-> +
-> +Required properties:
-> +
-> +- compatible:	Should be "virtio,pci-iommu"
-> +- reg:		PCI address of the IOMMU. As defined in the PCI Bus
-> +		Binding reference [1], the reg property is a five-cell
-> +		address encoded as (phys.hi phys.mid phys.lo size.hi
-> +		size.lo). phys.hi should contain the device's BDF as
-> +		0b00000000 bbbbbbbb dddddfff 00000000. The other cells
-> +		should be zero.
-> +- #iommu-cells:	Each platform DMA master managed by the IOMMU is assigned
-> +		an endpoint ID, described by the "iommus" property [2].
-> +		For virtio-iommu, #iommu-cells must be 1.
-> +
-> +Notes:
-> +
-> +- DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
-> +  virtio-iommu node doesn't have an "iommus" property, and is omitted from
-> +  the iommu-map property of the root complex.
-> +
-> +Example:
-> +
-> +pcie@10000000 {
-> +	compatible = "pci-host-ecam-generic";
-> +	...
-> +
-> +	/* The IOMMU programming interface uses slot 00:01.0 */
-> +	iommu0: iommu@0008 {
-> +		compatible = "virtio,pci-iommu";
-> +		reg = <0x00000800 0 0 0 0>;
-> +		#iommu-cells = <1>;
-> +	};
-> +
-> +	/*
-> +	 * The IOMMU manages all functions in this PCI domain except
-> +	 * itself. Omit BDF 00:01.0.
-> +	 */
-> +	iommu-map = <0x0 &iommu0 0x0 0x8>
-> +		    <0x9 &iommu0 0x9 0xfff7>;
-> +};
-> +
-> +pcie@20000000 {
-> +	compatible = "pci-host-ecam-generic";
-> +	...
-> +	/*
-> +	 * The IOMMU also manages all functions from this domain,
-> +	 * with endpoint IDs 0x10000 - 0x1ffff
-> +	 */
-> +	iommu-map = <0x0 &iommu0 0x10000 0x10000>;
-> +};
-> +
-> +ethernet@fe001000 {
-> +	...
-> +	/* The IOMMU manages this platform device with endpoint ID 0x20000 */
-> +	iommus = <&iommu0 0x20000>;
-> +};
-> +
-> +[1] Documentation/devicetree/bindings/pci/pci.txt
-> +[2] Documentation/devicetree/bindings/iommu/iommu.txt
-> -- 
-> 2.21.0
+Thx=2E
+
+--=20
+Sent from a small device: formatting sux and brevity is inevitable=2E 
