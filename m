@@ -2,197 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 352B42EA80
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 04:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B40F62EA93
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 04:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726980AbfE3CHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 22:07:11 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:6547 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726411AbfE3CHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 22:07:11 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cef3ac40000>; Wed, 29 May 2019 19:07:00 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Wed, 29 May 2019 19:07:09 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Wed, 29 May 2019 19:07:09 -0700
-Received: from [10.19.108.132] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 30 May
- 2019 02:07:06 +0000
-Subject: Re: [PATCH V4 7/8] clk: tegra: Remove the old emc_mux clock for
- Tegra210
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
+        id S1726546AbfE3CRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 22:17:55 -0400
+Received: from mail-eopbgr150041.outbound.protection.outlook.com ([40.107.15.41]:48894
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726311AbfE3CRz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 22:17:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8LvHwmCVnlAgk4vIdUdJTRhYZl6n7CWhwmMNgwvUmDM=;
+ b=VV+59EBm5yHQ6Xa2HvLw4Ly7x40821x+ukhLX4fN2K+bwNbG+6xVcAoxT70uN2OXkaKgWd2ZcKdQ9WcvgFOIiI3mcIg/FuGOdItTGVJYaUOUFsbCUFbFryaOyxhRNp0v6XiS9aGMOrYnFgzfTws68xoZ4lmZwjt6BJwmxzxS4W0=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2881.eurprd04.prod.outlook.com (10.175.42.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.17; Thu, 30 May 2019 02:17:51 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::a1bf:17d:a52:3824]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::a1bf:17d:a52:3824%4]) with mapi id 15.20.1943.016; Thu, 30 May 2019
+ 02:17:50 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Felipe Balbi <balbi@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:DESIGNWARE USB3 DRD IP DRIVER" <linux-usb@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20190529082139.5581-1-josephl@nvidia.com>
- <20190529082139.5581-8-josephl@nvidia.com>
- <6651442d-d501-9363-ff95-988e1a4a3982@gmail.com>
-From:   Joseph Lo <josephl@nvidia.com>
-Message-ID: <75aa10d9-ac01-3581-49f8-020c742ea251@nvidia.com>
-Date:   Thu, 30 May 2019 10:06:53 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <6651442d-d501-9363-ff95-988e1a4a3982@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH] usb: dwc3: Enable the USB snooping
+Thread-Topic: [PATCH] usb: dwc3: Enable the USB snooping
+Thread-Index: AQHTXdpMV/QBUrO8J0eNmcCmR0ATg6MVIlkAgAAD6zCAABVWgINueaJwgAAMz4CAAYVcwIAADlOAgAEFSVA=
+Date:   Thu, 30 May 2019 02:17:50 +0000
+Message-ID: <AM5PR0402MB28650ECE851C840990816C1CF1180@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20171115060459.45375-1-ran.wang_1@nxp.com>
+ <87ineb9b5v.fsf@linux.intel.com>
+ <VI1PR04MB1504776EF3D4D8C374F0C069F1290@VI1PR04MB1504.eurprd04.prod.outlook.com>
+ <87shdfet90.fsf@linux.intel.com>
+ <AM5PR0402MB28654EBE2D431CC2F8061CF8F11E0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+ <87k1eaanjw.fsf@linux.intel.com>
+ <AM5PR0402MB2865AB6C2A50851B7EA4E653F11F0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+ <874l5dr21m.fsf@linux.intel.com>
+In-Reply-To: <874l5dr21m.fsf@linux.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f5c6e834-a328-43d9-3c35-08d6e4a50426
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2881;
+x-ms-traffictypediagnostic: AM5PR0402MB2881:
+x-microsoft-antispam-prvs: <AM5PR0402MB288134B70D4E5954895E5915F1180@AM5PR0402MB2881.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 00531FAC2C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(366004)(396003)(376002)(39860400002)(189003)(199004)(7736002)(52536014)(81166006)(316002)(66946007)(9686003)(8936002)(64756008)(66556008)(229853002)(71200400001)(66066001)(4326008)(76116006)(446003)(66476007)(11346002)(71190400001)(305945005)(486006)(476003)(14444005)(68736007)(256004)(81156014)(74316002)(86362001)(6246003)(102836004)(2906002)(26005)(73956011)(5660300002)(8676002)(6506007)(7696005)(53546011)(6436002)(66446008)(53936002)(33656002)(25786009)(6916009)(55016002)(6116002)(3846002)(54906003)(14454004)(186003)(478600001)(99286004)(76176011);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2881;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: oNI7vJm8GJgd/dEva3fPZYPX3F9AVbgo9cU4GZL3ntgeZCKqR6Yg+gHSgHKfj4JGhCp30Hau981pfscQgGrQms0krJxlR7N+gsVWY2QMd3e2T+HpmQ4Mei8ZLS23yk66IbdAEApIj8a3hGcImd0IP/lEySxxZcZYyGaXh4q+bhNkaMoY4k2B1MtStNub8qzK3rdymuRHu6ko5WUmcmQHCQ+4MFheBe43/C0uvRmoAAGXvXIb8qP/3ahvtN5NP3KUbV8RkODiEkNXUL+Co1PD8bw3CjP2H4b/RKqKoedK3vBw8UfiSHarNNcaYPegDNqNxeBYRMUF66zGlgbwXsKxXxqPOe/JzjbEFjwS7kuPZXdcP5iEWHWrqSRoqEoBwdxCIh3Ja0/O8ScLo1+rTMLrvh6Gp1Unaab6OuYoC/mZTPM=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559182020; bh=UWdWtW4j+KOak+WZ2j6xAhxesQy6AFdueC5SP3hK5EE=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=KTAd8UyRioFQjhThEeu/VBvoQCLVHUIs+2Cd/VvGtn9gv+t0ZnTaME4auzC1NiY+y
-         0unlBnBvoghWUh4+c0ciYIFFEgiFr/c9FOasaN59s9Ddz3JEW2EjrA+zQcRmikDfpT
-         IKFCP8mCELck0vWq9YARfmEsgJcI7HIIGjV88zOz3qhXu/04pVnDlRJgCWm4KUQNPo
-         SwISy6NZbe7GvFdfRM8iyHwcxhh1os4kV76pcRVusUVgBPtLoc4oslLNgiTGMlLdzu
-         CGc9pGbvt5VA1BIz7wNd9tj1+tppbJGqaVFJPL853VgB+7Xf8+U3MFF2nw3ja8Wvus
-         /N2P1b6PIAAqg==
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5c6e834-a328-43d9-3c35-08d6e4a50426
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2019 02:17:50.8684
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ran.wang_1@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2881
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/29/19 8:49 PM, Dmitry Osipenko wrote:
-> 29.05.2019 11:21, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> Remove the old emc_mux clock and don't use the common EMC clock
->> definition. This will be replaced by a new clock defined in the
->> EMC driver.
->>
->> Signed-off-by: Joseph Lo <josephl@nvidia.com>
->> ---
->> v4:
->> - make sure the behavior is compatible with case if the kernel still
->>    uses the older DTB which doesn't have EMC node. And the MC and EMC
->>    clock can still be registered successuflly.
->> v3:
->> - split to 3 patches from the previous version
->> ---
->>   drivers/clk/tegra/clk-tegra210.c | 42 ++++++++++++++++++++------------
->>   1 file changed, 27 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-te=
-gra210.c
->> index 1d52354820ca..8b209e8b5eaf 100644
->> --- a/drivers/clk/tegra/clk-tegra210.c
->> +++ b/drivers/clk/tegra/clk-tegra210.c
->> @@ -28,6 +28,7 @@
->>   #include <dt-bindings/reset/tegra210-car.h>
->>   #include <linux/iopoll.h>
->>   #include <linux/sizes.h>
->> +#include <soc/tegra/emc.h>
->>   #include <soc/tegra/pmc.h>
->>  =20
->>   #include "clk.h"
->> @@ -324,12 +325,6 @@ static unsigned long tegra210_input_freq[] =3D {
->>   	[8] =3D 12000000,
->>   };
->>  =20
->> -static const char *mux_pllmcp_clkm[] =3D {
->> -	"pll_m", "pll_c", "pll_p", "clk_m", "pll_m_ud", "pll_mb", "pll_mb",
->> -	"pll_p",
->> -};
->> -#define mux_pllmcp_clkm_idx NULL
->> -
->>   #define PLL_ENABLE			(1 << 30)
->>  =20
->>   #define PLLCX_MISC1_IDDQ		(1 << 27)
->> @@ -2346,7 +2341,6 @@ static struct tegra_clk tegra210_clks[tegra_clk_ma=
-x] __initdata =3D {
->>   	[tegra_clk_i2c2] =3D { .dt_id =3D TEGRA210_CLK_I2C2, .present =3D tru=
-e },
->>   	[tegra_clk_uartc_8] =3D { .dt_id =3D TEGRA210_CLK_UARTC, .present =3D=
- true },
->>   	[tegra_clk_mipi_cal] =3D { .dt_id =3D TEGRA210_CLK_MIPI_CAL, .present=
- =3D true },
->> -	[tegra_clk_emc] =3D { .dt_id =3D TEGRA210_CLK_EMC, .present =3D true }=
-,
->>   	[tegra_clk_usb2] =3D { .dt_id =3D TEGRA210_CLK_USB2, .present =3D tru=
-e },
->>   	[tegra_clk_bsev] =3D { .dt_id =3D TEGRA210_CLK_BSEV, .present =3D tru=
-e },
->>   	[tegra_clk_uartd_8] =3D { .dt_id =3D TEGRA210_CLK_UARTD, .present =3D=
- true },
->> @@ -2957,6 +2951,27 @@ static int tegra210_init_pllu(void)
->>   	return 0;
->>   }
->>  =20
->> +static const struct clk_div_table mc_div_table_tegra210[] =3D {
->> +	{ .val =3D 0, .div =3D 2 },
->> +	{ .val =3D 1, .div =3D 4 },
->> +	{ .val =3D 2, .div =3D 1 },
->> +	{ .val =3D 3, .div =3D 2 },
->> +	{ .val =3D 0, .div =3D 0 },
->> +};
->> +
->> +static void tegra210_clk_register_mc(const char *name,
->> +				     const char *parent_name)
->> +{
->> +	struct clk *clk;
->> +
->> +	clk =3D clk_register_divider_table(NULL, name, parent_name,
->> +					 CLK_IS_CRITICAL,
->> +					 clk_base + CLK_SOURCE_EMC,
->> +					 15, 2, CLK_DIVIDER_READ_ONLY,
->> +					 mc_div_table_tegra210, &emc_lock);
->=20
-> This doesn't look right, you're mixing up the MC divider with the EMC
-> divider here. The MC clock is always sourced from EMC and there is only
-> one bit for the MC divider, the bit 16 MC_EMC_SAME_FREQ.
->=20
-> When EMC clock is divided down by 2 (bit 15 EMC_CLK_DIV2_EN), then the
-> clk-framework will take care of it by calculating the MC rate based on
-> the actual parent EMC rate.
->=20
->> +	clks[TEGRA210_CLK_MC] =3D clk;
->> +}
->> +
->>   static const char * const sor1_out_parents[] =3D {
->>   	/*
->>   	 * Bit 0 of the mux selects sor1_pad_clkout, irrespective of bit 1, s=
-o
->> @@ -3040,15 +3055,12 @@ static __init void tegra210_periph_clk_init(void=
- __iomem *clk_base,
->>   			CLK_SOURCE_LA, 0);
->>   	clks[TEGRA210_CLK_LA] =3D clk;
->>  =20
->> -	/* emc mux */
->> -	clk =3D clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
->> -			       ARRAY_SIZE(mux_pllmcp_clkm), 0,
->> -			       clk_base + CLK_SOURCE_EMC,
->> -			       29, 3, 0, &emc_lock);
->> +	/* emc */
->> +	clk =3D tegra210_clk_register_emc();
->> +	clks[TEGRA210_CLK_EMC] =3D clk;
->>  =20
->> -	clk =3D tegra_clk_register_mc("mc", "emc_mux", clk_base + CLK_SOURCE_E=
-MC,
->> -				    &emc_lock);
->> -	clks[TEGRA210_CLK_MC] =3D clk;
->> +	/* mc */
->> +	tegra210_clk_register_mc("mc", "emc");
->>  =20
->>   	/* cml0 */
->>   	clk =3D clk_register_gate(NULL, "cml0", "pll_e", 0, clk_base + PLLE_A=
-UX,
->>
->=20
-> You should leave the common tegra_clk_register_mc() usage as-is and only
-> s/emc_mux/emc/ in the argument.
+Hi Felipe,
 
-Ah, yes, that was wrong mixing up with two irrelevant bits. Fixed in my=20
-local patch.
+On Wednesday, May 29, 2019 18:25, Felipe Balbi wrote:
+>=20
+> Hi,
+>=20
+> Ran Wang <ran.wang_1@nxp.com> writes:
+> >> >> >> c) WHAT does this mean for PCI devices?
+> >
+> > According to DWC3 data book, I think this (PCI) mean to the case of 'ma=
+ster
+> bus type =3D Native'
+> > The data book describes this feature as 'system bus DMA option for the
+> > master bus, which may be configured as AHB, AXI, or Native.' On Table
+> > 6-5, it says when MBUS_TYPE is Native, the definition of 4 transfer typ=
+es
+> control bits [3-0] is 'Same as AXI'.
+> >
+> > However, as to the code implementation to be generic to both PCI and
+> > AXI, I admit I don't have a perfect solution so far, only 2 proposals w=
+ith
+> concerns:
+> >
+> > a. Create another module driver like dwc3-exynos.c
+> (arch/arm/boot/dts/wxynos54xx.dtsi)
+> >     to contain above programming code. However, it will touch the same =
+reg
+> range of DWC3
+> >     I think this is not good.
+>=20
+> I'd prefer avoiding another glue :-)
 
-Thanks,
-Joseph
+Got it.
+=20
+> > b. Add #ifdef CONFIG_ARCH_LAYERSCAPE in drivers/usb/dwc3/core.c to
+> constrain hacking code
+> >    can only take effect for Layerscape (AXI case). I know it look ugly.
+> >
+> > Do you have any better advice on this (besides changed power on default
+> value from HW perspective)?
+>=20
+> Maybe we don't need to care, actually. Since this property will only be n=
+eeded
+> for RTL instantiation that didn't configure these defaults properly durin=
+g
+> coreConsultant.
+
+Ok, I think I could add information in bindings to highlight this setting m=
+ight
+be RTL instantiation (SoC) relevant to prevent misusing.
+
+> >> >> >> Another question is: Why wasn't this setup properly during
+> >> >> >> coreConsultant instantiation of the RTL? Do you have devices on
+> >> >> >> the market already that need this or is this some early FPGA
+> >> >> >> model or test-only
+> >> >> ASIC?
+> >
+> > Several Layerscape platforms like LS1043ARDB, LS1046ARDB, etc. are
+> > already on the market and have this issue. So I have to work out a SW p=
+atch to
+> fix them.
+>=20
+> Thank you, now I'm certain that this is not some temporary solution :-)
+>=20
+> Thanks for going through this again. Please refresh the patch so we can t=
+ry to
+> get it merged.
+
+Sure, as I know all LS1043A and LS1046A relevant platforms have added 'dma-=
+coherent'
+to DTS node of 'soc' in mainline, which means without this fix USB function=
+ will down
+definitely, I will go through all update requirement we've discussed and wo=
+rk out
+next version patch. Thank you.
+
+Regards,
+Ran=20
