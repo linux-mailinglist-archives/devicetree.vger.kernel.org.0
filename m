@@ -2,185 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EEC5315B0
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 21:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D876315DB
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 22:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727343AbfEaT4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 15:56:03 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:15143 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727318AbfEaT4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 15:56:02 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cf186d00001>; Fri, 31 May 2019 12:56:00 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Fri, 31 May 2019 12:56:00 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Fri, 31 May 2019 12:56:00 -0700
-Received: from [10.2.175.94] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 31 May
- 2019 19:55:57 +0000
-Subject: Re: [PATCH V2 04/12] clk: tegra: add support for peripheral clock
- suspend and resume
-To:     Stephen Boyd <sboyd@kernel.org>, <jason@lakedaemon.net>,
-        <jonathanh@nvidia.com>, <linus.walleij@linaro.org>,
-        <marc.zyngier@arm.com>, <mark.rutland@arm.com>, <stefan@agner.ch>,
-        <tglx@linutronix.de>, <thierry.reding@gmail.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <jckuo@nvidia.com>, <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
- <1559084936-4610-5-git-send-email-skomatineni@nvidia.com>
- <20190529233049.A7E5924371@mail.kernel.org>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <abd481db-9387-8e7f-e68e-9f1a3e217b51@nvidia.com>
-Date:   Fri, 31 May 2019 12:55:56 -0700
+        id S1727446AbfEaUJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 16:09:58 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:46043 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727405AbfEaUJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 16:09:58 -0400
+Received: by mail-qk1-f196.google.com with SMTP id s22so5098315qkj.12;
+        Fri, 31 May 2019 13:09:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UVgt0vwEj7EAXy/j4qPK77xL+oH2BUtF2/YFZzbt1nE=;
+        b=O9KKxO12fFVFOyC/LX/kfokc+aOsPKSKZdV1lTR5Xn08biFb0Xem4ZuqQJM6fQLSj+
+         M1bvaAl1mZnMkcfsfdSkj33OCJdogMMWt1QpXd2/Z+H72ilHfFRCZh5LeTB40jTFDyLa
+         nqdqiBmnRKKLgcAnJJQOTjnmGbQGp1OCu2TEV+jp6RI+l7uHFbNuACQ1MUXD8o5XrnSF
+         0Fc8/Kz+TG44tgf6mMfNJdEaIg6Y6/JEOKV/Le2N4P91F2cEOh9sCiCKpLc+0cF9fQeg
+         WVbcKiJ70Bseq7ZO0ZLiClObCXxVQTHQNUYTHMTtrkErpz93I9pawmK4fPoBdl5PkMNh
+         tfMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UVgt0vwEj7EAXy/j4qPK77xL+oH2BUtF2/YFZzbt1nE=;
+        b=bgvzb16jxZuqG00sw91bxOaGFRQgmfmLOz1WUJqrTux9cekGp19pRP8MlZY6d0K0u2
+         8cAxaWLw8Lhayt2Ak2azZ++zuqvsOJygE8482lcqRqWHu0HD0GWuFGARnBe2wjhYn9hX
+         K9QHERddiQ4exEvP9/l4/te4e58dlfXo9GJLEIQupu9f/gI4Mc262lOgL545gWbLDLzS
+         fDI5YhvAb5rNbGh3N31KJ+xfN3q6ATFkXHaGPZzys3YaJqaKZ/TVjpWioIDmn/6IOhwY
+         do/nvs2iu2eGIc80hfuF/NYRB0PLs1nNwJ1X4cbP/8MqWonEsDmhph9cQ+mNc3ACHVfa
+         tXIA==
+X-Gm-Message-State: APjAAAU786yTUQQXi4RqjPFVSrGBSQLJ7k8ytEGdiHyyEKpcdnSrSkHT
+        Nan2GDAc71M7UxNlkaiR974=
+X-Google-Smtp-Source: APXvYqymW1cVo6+LlPBjEpmjRf0EtIZns9ZrSlsJ5Z5b59JmVAJascjO1fJgJivZYri/211PDW+Eqg==
+X-Received: by 2002:a37:de06:: with SMTP id h6mr10540356qkj.322.1559333396485;
+        Fri, 31 May 2019 13:09:56 -0700 (PDT)
+Received: from [172.19.65.94] ([143.107.45.1])
+        by smtp.gmail.com with ESMTPSA id c9sm5434994qtc.39.2019.05.31.13.09.52
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 31 May 2019 13:09:55 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: iio: accel: adxl372: switch to YAML bindings
+To:     Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, kernel-usp@googlegroups.com,
+        Rodrigo Ribeiro <rodrigorsdc@gmail.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+References: <20190518215542.25140-1-lucasseikioshiro@gmail.com>
+ <20190519122418.7722641b@archlinux>
+ <CA+U=DsrvRcAARa+jZB8GKQ+q+wWWqAh7dmnHymLd9cpFGC2QSw@mail.gmail.com>
+From:   Lucas Oshiro <lucasseikioshiro@gmail.com>
+Message-ID: <504cc8e0-b94e-5418-ef8f-8b28f668ab6a@gmail.com>
+Date:   Fri, 31 May 2019 17:09:51 -0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190529233049.A7E5924371@mail.kernel.org>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <CA+U=DsrvRcAARa+jZB8GKQ+q+wWWqAh7dmnHymLd9cpFGC2QSw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-	t=1559332560; bh=fyUgksf15TgB7D/+ZMOAO7M7CVG31MW/WSQCDBy4pVQ=;
-	h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-	 User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-	 X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-	 Content-Language;
-	b=iqAjo2NdebEX6IQgtE+dZ1EoyeCEIZAqRf22p21EapkVX0OBJC3q4Gq7gRPrH2fJC
-	 uhLbg6vyTpA7tw+SL/Q6OC76foZllVOZDlC8m02oSU3qttQyJX5rCD59shHR+I4y1U
-	 EO5f5ynsViWBR2kJNtgRO2yTrKQCYOWgX2VSfb1c3OX347L/TSCQDDFU/bocKSDD6L
-	 cjVCbddyiIHj6HtpiRzWKIezGprf40oa5Lsd7heEqGTFe2IPIuIAcrtSjmg455iUvU
-	 qyKwofgEpOyXkvlW1Jy4Xm+1v3hRH1W5bgxWWMWL7BWkGQQDwHLZXwNVTA0iT/JH6L
-	 nz/b3Hyar6Dwg==
+Thanks, Alexandru. We're going to send a new version for this patch.
 
-On 5/29/19 4:30 PM, Stephen Boyd wrote:
-> Quoting Sowjanya Komatineni (2019-05-28 16:08:48)
->> This patch implements peripheral clock context save and restore
->> to support system suspend and resume operation.
-> Again, why?
-Will add more in commit in next version of this series.
->> diff --git a/drivers/clk/tegra/clk.c b/drivers/clk/tegra/clk.c
->> index 6f2862eddad7..08b788766564 100644
->> --- a/drivers/clk/tegra/clk.c
->> +++ b/drivers/clk/tegra/clk.c
->> @@ -81,6 +81,10 @@ static struct clk **clks;
->>   static int clk_num;
->>   static struct clk_onecell_data clk_data;
->>   
->> +#ifdef CONFIG_PM_SLEEP
->> +static u32 *periph_ctx;
->> +#endif
-> Please move this into the ifdef below.
->
-WIll fix in V3
->> +
->>   /* Handlers for SoC-specific reset lines */
->>   static int (*special_reset_assert)(unsigned long);
->>   static int (*special_reset_deassert)(unsigned long);
->> @@ -210,6 +214,65 @@ const struct tegra_clk_periph_regs *get_reg_bank(int clkid)
->>          }
->>   }
->>   
->> +#ifdef CONFIG_PM_SLEEP
->> +void tegra_clk_periph_suspend(void __iomem *clk_base)
->> +{
->> +       int i, idx;
->> +
->> +       idx = 0;
->> +       for (i = 0; i < periph_banks; i++, idx++)
->> +               periph_ctx[idx] =
->> +                       readl_relaxed(clk_base + periph_regs[i].rst_reg);
->> +
->> +       for (i = 0; i < periph_banks; i++, idx++)
->> +               periph_ctx[idx] =
->> +                       readl_relaxed(clk_base + periph_regs[i].enb_reg);
->> +}
->> +
->> +void tegra_clk_periph_force_on(u32 *clks_on, int count, void __iomem *clk_base)
->> +{
->> +       int i;
->> +
->> +       WARN_ON(count != periph_banks);
->> +
->> +       for (i = 0; i < count; i++)
->> +               writel_relaxed(clks_on[i], clk_base + periph_regs[i].enb_reg);
->> +}
->> +
->> +void tegra_clk_periph_resume(void __iomem *clk_base)
->> +{
->> +       int i, idx;
->> +
->> +       idx = 0;
->> +       for (i = 0; i < periph_banks; i++, idx++)
->> +               writel_relaxed(periph_ctx[idx],
->> +                              clk_base + periph_regs[i].rst_reg);
->> +
->> +       /* ensure all resets have propagated */
->> +       fence_udelay(2, clk_base);
->> +       tegra_read_chipid();
->> +
->> +       for (i = 0; i < periph_banks; i++, idx++)
->> +               writel_relaxed(periph_ctx[idx],
->> +                              clk_base + periph_regs[i].enb_reg);
->> +
->> +       /* ensure all enables have propagated */
->> +       fence_udelay(2, clk_base);
->> +       tegra_read_chipid();
->> +}
->> +
->> +static int tegra_clk_suspend_ctx_init(int banks)
->> +{
->> +       int err = 0;
->> +
->> +       periph_ctx = kzalloc(2 * banks * sizeof(*periph_ctx), GFP_KERNEL);
-> Is this kcalloc(2 * banks, sizeof(*periph_ctx)... ?
-Will fix in V3
->> +       if (!periph_ctx)
->> +               err = -ENOMEM;
->> +
->> +       return err;
->> +}
->> +#endif
->> +
->>   struct clk ** __init tegra_clk_init(void __iomem *regs, int num, int banks)
->>   {
->>          clk_base = regs;
->> @@ -226,11 +289,20 @@ struct clk ** __init tegra_clk_init(void __iomem *regs, int num, int banks)
->>          periph_banks = banks;
->>   
->>          clks = kcalloc(num, sizeof(struct clk *), GFP_KERNEL);
->> -       if (!clks)
->> +       if (!clks) {
->>                  kfree(periph_clk_enb_refcnt);
->> +               return NULL;
->> +       }
->>   
->>          clk_num = num;
->>   
->> +#ifdef CONFIG_PM_SLEEP
-> Can you use if (IS_ENABLED(CONFIG_PM_SLEEP)) here?
-Will fix in V3
->
->> +       if (tegra_clk_suspend_ctx_init(banks)) {
->> +               kfree(periph_clk_enb_refcnt);
->> +               kfree(clks);
->> +               return NULL;
->> +       }
->> +#endif
->>          return clks;
->>   }
->>   
+On 20/05/2019 07:46, Alexandru Ardelean wrote:
+> On Sun, May 19, 2019 at 8:27 PM Jonathan Cameron <jic23@kernel.org> wrote:
+>>
+>> On Sat, 18 May 2019 18:55:42 -0300
+>> Lucas Oshiro <lucasseikioshiro@gmail.com> wrote:
+>>
+>>> Convert the old device tree documentation to yaml format.
+>>>
+>>> Signed-off-by: Lucas Oshiro <lucasseikioshiro@gmail.com>
+>>> Signed-off-by: Rodrigo Ribeiro <rodrigorsdc@gmail.com>
+>>> Co-developed-by: Rodrigo Ribeiro <rodrigorsdc@gmail.com>
+>>> ---
+>>>
+>>> Hello,
+>>> We've added Stefan Popa as maintainer of the yaml documentation of this driver
+>>> because we found through git that he was the author of the older documentation.
+>>
+>> Definitely going to need an Ack from Stefan for that ;)
+> 
+> CC-ing my work-email
+> There are some issues with it and mailing lists; I'll hopefully sort
+> them out in the next weeks.
+> 
+> Stefan is out-of-office.
+> He'll take a look when he comes back.
+> 
+> I'll add a few notes until then.
+> 
+> I'd still like Stefan's ack to be final.
+> 
+>>
+>> I've not really gotten yaml formats into my head yet, but from a quick
+>> look I think this is fine.  I will however be looking for review from others
+>> on these.
+>>
+>> Thanks,
+>>
+>> Jonathan
+>>
+>>>
+>>>   .../bindings/iio/accel/adi,adxl372.yaml       | 66 +++++++++++++++++++
+>>>   .../devicetree/bindings/iio/accel/adxl372.txt | 33 ----------
+>>>   2 files changed, 66 insertions(+), 33 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+>>>   delete mode 100644 Documentation/devicetree/bindings/iio/accel/adxl372.txt
+> 
+> Also update the MAINTAINERS file when changing this.
+> For reference, many things can be borrowed from the ADXL345, which is
+> similar (from a dt-binding doc perspective only).
+> 
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+>>> new file mode 100644
+>>> index 000000000000..a6e2893d2ab1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+>>> @@ -0,0 +1,66 @@
+>>> +# SPDX-License-Identifier: GPL-2.0
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl372.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
+>>> +
+>>> +maintainers:
+>>> +  - Stefan Popa <stefan.popa@analog.com>
+>>> +
+>>> +description: |
+>>> +  Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer that supports
+>>> +  both I2C & SPI interfaces
+>>> +    https://www.analog.com/en/products/adxl372.html
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - adi,adxl372
+>>> +
+>>> +  reg:
+>>> +    description: the I2C address or SPI chip select number for the device
+> 
+> no need to add a description for reg
+> it's a standard property
+> 
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    description:
+>>> +      interrupt mapping for IRQ as documented in
+>>> +      Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+> 
+> no need to describe this either
+> 
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+> 
+> I think interrupts is also required.
+> 
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +        #include <dt-bindings/gpio/gpio.h>
+>>> +        #include <dt-bindings/interrupt-controller/irq.h>
+>>> +        i2c0 {
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <0>;
+>>> +
+>>> +                /* Example for a I2C device node */
+>>> +                accelerometer@53 {
+>>> +                        compatible = "adi,adxl372";
+>>> +                        reg = <0x53>;
+>>> +                        interrupt-parent = <&gpio>;
+>>> +                        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>>> +                };
+>>> +        };
+>>> +  - |
+>>> +        #include <dt-bindings/gpio/gpio.h>
+>>> +        #include <dt-bindings/interrupt-controller/irq.h>
+>>> +        spi0 {
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <0>;
+>>> +
+>>> +                accelerometer@0 {
+>>> +                        compatible = "adi,adxl372";
+>>> +                        reg = <0>;
+>>> +                        spi-max-frequency = <1000000>;
+>>> +                        interrupt-parent = <&gpio>;
+>>> +                        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>>> +                };
+>>> +        };
+> 
+> Rest looks good.
+> 
+>>> diff --git a/Documentation/devicetree/bindings/iio/accel/adxl372.txt b/Documentation/devicetree/bindings/iio/accel/adxl372.txt
+>>> deleted file mode 100644
+>>> index a289964756a7..000000000000
+>>> --- a/Documentation/devicetree/bindings/iio/accel/adxl372.txt
+>>> +++ /dev/null
+>>> @@ -1,33 +0,0 @@
+>>> -Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
+>>> -
+>>> -http://www.analog.com/media/en/technical-documentation/data-sheets/adxl372.pdf
+>>> -
+>>> -Required properties:
+>>> - - compatible : should be "adi,adxl372"
+>>> - - reg: the I2C address or SPI chip select number for the device
+>>> -
+>>> -Required properties for SPI bus usage:
+>>> - - spi-max-frequency: Max SPI frequency to use
+>>> -
+>>> -Optional properties:
+>>> - - interrupts: interrupt mapping for IRQ as documented in
+>>> -   Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+>>> -
+>>> -Example for a I2C device node:
+>>> -
+>>> -     accelerometer@53 {
+>>> -             compatible = "adi,adxl372";
+>>> -             reg = <0x53>;
+>>> -             interrupt-parent = <&gpio>;
+>>> -             interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>>> -     };
+>>> -
+>>> -Example for a SPI device node:
+>>> -
+>>> -     accelerometer@0 {
+>>> -             compatible = "adi,adxl372";
+>>> -             reg = <0>;
+>>> -             spi-max-frequency = <1000000>;
+>>> -             interrupt-parent = <&gpio>;
+>>> -             interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>>> -     };
+>>
