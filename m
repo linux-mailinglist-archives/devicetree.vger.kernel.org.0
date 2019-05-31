@@ -2,69 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E69AB313BE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 19:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAEF13144E
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 19:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726876AbfEaRYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 13:24:46 -0400
-Received: from mga17.intel.com ([192.55.52.151]:32641 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726860AbfEaRYq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 13:24:46 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 31 May 2019 10:24:45 -0700
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 31 May 2019 10:24:43 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
-        (envelope-from <lkp@intel.com>)
-        id 1hWlGk-0004Aq-PE; Sat, 01 Jun 2019 01:24:42 +0800
-Date:   Sat, 1 Jun 2019 01:24:01 +0800
-From:   kbuild test robot <lkp@intel.com>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     kbuild-all@01.org, netdev@vger.kernel.org,
-        David Miller <davem@davemloft.net>, devicetree@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Willem de Bruijn <willemb@google.com>
-Subject: [RFC PATCH] net: mdio: of: of_find_mii_timestamper() can be static
-Message-ID: <20190531172401.GA73874@lkp-kbuild06>
-References: <a375c2b73288184fe86155707ba150daaf946943.1559281985.git.richardcochran@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a375c2b73288184fe86155707ba150daaf946943.1559281985.git.richardcochran@gmail.com>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.5.23 (2014-03-12)
+        id S1726721AbfEaR5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 13:57:25 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:47354 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726541AbfEaR5Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 13:57:25 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 0E47514FC6F63;
+        Fri, 31 May 2019 10:57:24 -0700 (PDT)
+Date:   Fri, 31 May 2019 10:57:21 -0700 (PDT)
+Message-Id: <20190531.105721.740773292135946256.davem@davemloft.net>
+To:     richardcochran@gmail.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org, andrew@lunn.ch,
+        f.fainelli@gmail.com, jacob.e.keller@intel.com,
+        mark.rutland@arm.com, mlichvar@redhat.com, robh+dt@kernel.org,
+        willemb@google.com
+Subject: Re: [PATCH V4 net-next 0/6] Peer to Peer One-Step time stamping
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190531055132.7qrjuqgtw6qw4mgh@localhost>
+References: <20190530.115507.1344606945620280103.davem@davemloft.net>
+        <20190530.125833.1049383711116106790.davem@davemloft.net>
+        <20190531055132.7qrjuqgtw6qw4mgh@localhost>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=iso-8859-7
+Content-Transfer-Encoding: base64
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 31 May 2019 10:57:24 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Fixes: 500a41a402da ("net: mdio: of: Register discovered MII time stampers.")
-Signed-off-by: kbuild test robot <lkp@intel.com>
----
- of_mdio.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/of_mdio.c b/drivers/of/of_mdio.c
-index 255f47d..1251d73 100644
---- a/drivers/of/of_mdio.c
-+++ b/drivers/of/of_mdio.c
-@@ -43,7 +43,7 @@ static int of_get_phy_id(struct device_node *device, u32 *phy_id)
- 	return -EINVAL;
- }
- 
--struct mii_timestamper *of_find_mii_timestamper(struct device_node *node)
-+static struct mii_timestamper *of_find_mii_timestamper(struct device_node *node)
- {
- 	struct of_phandle_args arg;
- 	int err;
+RnJvbTogUmljaGFyZCBDb2NocmFuIDxyaWNoYXJkY29jaHJhbkBnbWFpbC5jb20+DQpEYXRlOiBU
+aHUsIDMwIE1heSAyMDE5IDIyOjUxOjMyIC0wNzAwDQoNCj4gQW55aG93LCBJIHJlYmFzZWQgdjUg
+b2YgbXkgc2VyaWVzIHRvIGxhdGVzdCBuZXQtbmV4dCwgYW5kIEknbSBnZXR0aW5nDQo+IGEgbG90
+IG9mIHRoZXNlOg0KPiANCj4gSW4gZmlsZSBpbmNsdWRlZCBmcm9tIG5ldC9pcHY2L2FmX2luZXQ2
+LmM6NDU6MDoNCj4gLi9pbmNsdWRlL2xpbnV4L25ldGZpbHRlcl9pcHY2Lmg6IEluIGZ1bmN0aW9u
+IKFuZl9pcHY2X2JyX2RlZnJhZ6I6DQo+IC4vaW5jbHVkZS9saW51eC9uZXRmaWx0ZXJfaXB2Ni5o
+OjExMDo5OiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24goW5mX2N0X2Zy
+YWc2X2dhdGhlcqI7IGRpZCB5b3UgbWVhbiChbmZfY3RfYXR0YWNooj8gWy1XZXJyb3I9aW1wbGlj
+aXQtZnVuY3Rpb24tZGVjbGFyYXRpb25dDQo+ICAgcmV0dXJuIG5mX2N0X2ZyYWc2X2dhdGhlcihu
+ZXQsIHNrYiwgdXNlcik7DQo+ICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fg0KPiAgICAgICAg
+ICBuZl9jdF9hdHRhY2gNCg0KVGhpcyBzaG91bGQgYmUgZml4ZWQgbm93Lg0K
