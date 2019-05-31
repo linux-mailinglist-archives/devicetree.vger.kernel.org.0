@@ -2,95 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EE1B30D20
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 13:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8E0A30D6D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 13:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbfEaLON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 07:14:13 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:50240 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726240AbfEaLON (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 07:14:13 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A8B6341;
-        Fri, 31 May 2019 04:14:13 -0700 (PDT)
-Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2E6DF3F5AF;
-        Fri, 31 May 2019 04:14:10 -0700 (PDT)
-Subject: Re: [virtio-dev] Re: [PATCH v8 2/7] dt-bindings: virtio: Add
- virtio-pci-iommu node
-To:     "Michael S. Tsirkin" <mst@redhat.com>
-Cc:     "joro@8bytes.org" <joro@8bytes.org>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "virtualization@lists.linux-foundation.org" 
-        <virtualization@lists.linux-foundation.org>,
-        "virtio-dev@lists.oasis-open.org" <virtio-dev@lists.oasis-open.org>,
-        "jasowang@redhat.com" <jasowang@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Mark Rutland <Mark.Rutland@arm.com>,
-        Lorenzo Pieralisi <Lorenzo.Pieralisi@arm.com>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>,
-        "kvmarm@lists.cs.columbia.edu" <kvmarm@lists.cs.columbia.edu>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "tnowicki@caviumnetworks.com" <tnowicki@caviumnetworks.com>,
-        "kevin.tian@intel.com" <kevin.tian@intel.com>,
-        "bauerman@linux.ibm.com" <bauerman@linux.ibm.com>
-References: <20190530170929.19366-1-jean-philippe.brucker@arm.com>
- <20190530170929.19366-3-jean-philippe.brucker@arm.com>
- <20190530133523-mutt-send-email-mst@kernel.org>
-From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Message-ID: <c3cd5dba-123d-e808-98b1-731ac2d4b950@arm.com>
-Date:   Fri, 31 May 2019 12:13:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726515AbfEaLkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 07:40:01 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:35152 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726158AbfEaLkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 07:40:00 -0400
+Received: by mail-lj1-f193.google.com with SMTP id h11so9322648ljb.2;
+        Fri, 31 May 2019 04:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1nPmul1q9AAucCoI9yY3uJOYKaMzqR7bEf/iEX/aqjE=;
+        b=bvbFz7kIlrTImz4Is9rlZJVgVwodHyMIKxGHokBpzd3jyqtrT+N3NzxY7rOqC0jweG
+         DSMZZjQ+lcwWYldWhwcDc6MDUtSmWwU3lgIaW3V5IyaiIDgkEjIvhuCYGUTr8M0RXuNc
+         O0fzNTX5I8oSooPoLDLs8veC2SMwcgA6oTQ+UL8SCdBdiEoIVyFPp0IdTRROhpyNeEUv
+         A412MMiyx1SG8fEtAf6TQL1kE94zOSIAiATRg50MnYQ2Ik19C6EtVxcBkBP8ZtR7diXt
+         L9XnCkcFed8oQ1GOfN+jt5Xvm9HOqpOQ6rHsp4ZVcmffoJmFb6KLq7aIIXjJo1M84mUf
+         Waxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1nPmul1q9AAucCoI9yY3uJOYKaMzqR7bEf/iEX/aqjE=;
+        b=DXmctQ/mUZ5nusAS6ZR28aP0A2G2+YM9Ta2vQNS/FtOrH3pMxdmo1pcKm7C1+EG+cB
+         MLffxEltpQV0RZmO333LJFBF08e7Yytn6YFJ1x4tjO8EbKVYN/KqdKtKy7uFXbzQ3ifu
+         Lt+51ZmyNxXSE9HdOmrXRq+Z3wVfMnqlTYBf0OIPu8xRy1Gyxo4yxwQCDh+4AsHl5KcR
+         z+Y63LCkI2kuecRp9DtaCBye+aUQ7iq2zD8lnGGTPdlgZbh3bpUB3nzMuQaOKAvTNNqk
+         9sYQaI6uAFMEPs768yMAFo6iB/gF8Pgq6PMvvZVdK2o0K4Q8PYhiOQLVUv+wRqVLe/cC
+         WTyQ==
+X-Gm-Message-State: APjAAAUXouDIqFENC7G0/9T73Rz11XQH2XROeH03ZTfC7yngH/fnshBR
+        zfflQgottKmqym+/+ufgVYVd5tDN+tjlIiXAGQU=
+X-Google-Smtp-Source: APXvYqyCAo8ow6MnnWWOBWsq1Cm0GTfIZYIH3tTY29CEmrrLVa3t2AA8hrgydqxU4pH85ptW2LRQNyKxfPY6IS4halk=
+X-Received: by 2002:a2e:890c:: with SMTP id d12mr5463170lji.107.1559302798500;
+ Fri, 31 May 2019 04:39:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190530133523-mutt-send-email-mst@kernel.org>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190530094706.865-1-Anson.Huang@nxp.com> <20190530094706.865-2-Anson.Huang@nxp.com>
+In-Reply-To: <20190530094706.865-2-Anson.Huang@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 31 May 2019 08:39:49 -0300
+Message-ID: <CAOMZO5D1B1tKs8eu_a8hXs193+TukHAYHiCEyk5g63p1S-cnbg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: freescale: Add i.MX8MN dtsi support
+To:     Yongcai Huang <Anson.Huang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bruno Thomsen <bruno.thomsen@gmail.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Ping Bai <ping.bai@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>, pankaj.bansal@nxp.com,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2019 18:45, Michael S. Tsirkin wrote:
-> On Thu, May 30, 2019 at 06:09:24PM +0100, Jean-Philippe Brucker wrote:
->> Some systems implement virtio-iommu as a PCI endpoint. The operating
->> system needs to discover the relationship between IOMMU and masters long
->> before the PCI endpoint gets probed. Add a PCI child node to describe the
->> virtio-iommu device.
->>
->> The virtio-pci-iommu is conceptually split between a PCI programming
->> interface and a translation component on the parent bus. The latter
->> doesn't have a node in the device tree. The virtio-pci-iommu node
->> describes both, by linking the PCI endpoint to "iommus" property of DMA
->> master nodes and to "iommu-map" properties of bus nodes.
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Reviewed-by: Eric Auger <eric.auger@redhat.com>
->> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-> 
-> So this is just an example right?
-> We are not defining any new properties or anything like that.
+On Thu, May 30, 2019 at 6:45 AM <Anson.Huang@nxp.com> wrote:
 
-Yes it's just an example. The properties already exist but it's good to
-describe how to put them together for this particular case, because
-there isn't a precedent describing the topology for an IOMMU that
-appears on the PCI bus.
+> +                       gpio1: gpio@30200000 {
+> +                               compatible = "fsl,imx8mn-gpio", "fsl,imx35-gpio";
+> +                               reg = <0x30200000 0x10000>;
+> +                               interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
+> +                                            <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
 
-> I think down the road for non dt platforms we want to put this
-> info in the config space of the device. I do not think ACPI
-> is the best option for this since not all systems have it.
-> But that can wait.
+No GPIO clocks entries?
 
-There is the probe order problem - PCI needs this info before starting
-to probe devices on the bus. Maybe we could store the info in a separate
-memory region, that is referenced on the command-line and that the guest
-can read early.
+> +                       usbphynop1: usbphynop1 {
+> +                               compatible = "usb-nop-xceiv";
+> +                               clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
+> +                               assigned-clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
+> +                               assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_100M>;
+> +                               clock-names = "main_clk";
+> +                       };
 
-Thanks,
-Jean
+ usbphynop1 does not have any registers associated, so it should be
+placed outside the soc.
+
+Building with W=1 should warn you about that.
+
+> +                       usbphynop2: usbphynop2 {
+> +                               compatible = "usb-nop-xceiv";
+> +                               clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
+> +                               assigned-clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
+> +                               assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_100M>;
+> +                               clock-names = "main_clk";
+> +                       };
+> +
+
+Ditto
