@@ -2,143 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F7B030E55
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 14:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D44F30E64
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 14:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726626AbfEaMqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 08:46:35 -0400
-Received: from vps.xff.cz ([195.181.215.36]:49248 "EHLO vps.xff.cz"
+        id S1726826AbfEaMwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 08:52:49 -0400
+Received: from vps.xff.cz ([195.181.215.36]:49370 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726403AbfEaMqe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 08:46:34 -0400
+        id S1726330AbfEaMwt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 08:52:49 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1559306791; bh=Vq6PHN+aRiKBxc4hddRHLSZfiSd9bUvG627zPC4o9vY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r7SNqaIwNqwOb9guoWHE+5kcqm8Eu7YcYIULLPtYivZ8AwmvJo/eJZGEmRO1PppSD
-         sTdI0zKF207BU/1eEZQuURPmnPPtCk//a5UQlBB0RqHTU9jsBnN14mUimA6O4If6tq
-         3YsMz2n2ah8SkyCqn84s9ElTauLkHFeD0Xypwu1E=
-Date:   Fri, 31 May 2019 14:46:30 +0200
+        t=1559307166; bh=MzehFNsFWdso1PSBBodWcbOt17a6y4Bkl/7J5D4dJxM=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=leYfL1GkTc5tv9YKMObM7uLJimTV/Lul6pc3RcPczj3teChDoKop0mFuU351oqMgM
+         8FTjFxDA7C8NJxiGTq3mCeQzPIER768n+7wsbWh+70JBKQDFL8GgEJ1mk/bbd/TGmS
+         ZsCfcxmw2MvaElHxsYGQsGdUOu9QFnNuk9M3UMbs=
+Date:   Fri, 31 May 2019 14:52:46 +0200
 From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+To:     linux-sunxi@googlegroups.com,
         Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [linux-sunxi] Re: [PATCH v3 10/12] arm64: dts: allwinner: h6:
- Add IR receiver node
-Message-ID: <20190531124630.q2guo54kjfzr7rkn@core.my.home>
-Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [linux-sunxi] [PATCH v6 0/6] Add support for Orange Pi 3
+Message-ID: <20190531125246.qqfvmgmw2mv442tq@core.my.home>
+Mail-Followup-To: linux-sunxi@googlegroups.com,
         Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-References: <20190528161440.27172-1-peron.clem@gmail.com>
- <20190528161440.27172-11-peron.clem@gmail.com>
- <20190530145550.amalnxmx7kpokykv@core.my.home>
- <CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw@mail.gmail.com>
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20190527162237.18495-1-megous@megous.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw@mail.gmail.com>
+In-Reply-To: <20190527162237.18495-1-megous@megous.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Clément,
+Hello,
 
-On Fri, May 31, 2019 at 12:25:32AM +0200, Clément Péron wrote:
-> Hi Ondrej,
+On Mon, May 27, 2019 at 06:22:31PM +0200, megous via linux-sunxi wrote:
+> From: Ondrej Jirman <megous@megous.com>
 > 
-> On Thu, 30 May 2019 at 16:55, Ondřej Jirman <megous@megous.com> wrote:
-> >
-> > Hello Clément,
-> >
-> > On Tue, May 28, 2019 at 06:14:38PM +0200, Clément Péron wrote:
-> > > Allwinner H6 IR is similar to A31 and can use same driver.
-> > >
-> > > Add support for it.
-> > >
-> > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 19 +++++++++++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > index 16c5c3d0fd81..649cbdfe452e 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > @@ -647,6 +647,25 @@
-> > >                               pins = "PL0", "PL1";
-> > >                               function = "s_i2c";
-> > >                       };
-> > > +
-> > > +                     r_ir_rx_pin: r-ir-rx-pin {
-> > > +                             pins = "PL9";
-> > > +                             function = "s_cir_rx";
-> > > +                     };
-> > > +             };
-> > > +
-> > > +             r_ir: ir@7040000 {
-> > > +                             compatible = "allwinner,sun50i-h6-ir",
-> > > +                                          "allwinner,sun6i-a31-ir";
-> > > +                             reg = <0x07040000 0x400>;
-> > > +                             interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                             clocks = <&r_ccu CLK_R_APB1_IR>,
-> > > +                                      <&r_ccu CLK_IR>;
-> > > +                             clock-names = "apb", "ir";
-> > > +                             resets = <&r_ccu RST_R_APB1_IR>;
-> > > +                             pinctrl-names = "default";
-> > > +                             pinctrl-0 = <&r_ir_rx_pin>;
-> > > +                             status = "disabled";
-> > >               };
-> >
-> > Please make a comment here, that this is known broken on some boards and may
-> > result IRQ flood if enabled. Otherwise noone will know.
+> This series implements support for Xunlong Orange Pi 3 board.
 > 
-> I'm planning to send a v4 next week with the IRQ_NONE return as Maxime
-> suggested it.
-> https://github.com/clementperon/linux/tree/h6_ir_v4
+> Unfortunately, this board needs some small driver patches, so I have
+> split the boards DT patch into chunks that require patches for drivers
+> in various subsystems.
 > 
-> But maybe we could also use the bit 5 of the IRQ status.
+> Suggested merging plan/dependencies:
+> 
+> - stmmac patches are needed for ethernet support (patches 1-3)
+>   - these should be ready now
+> - HDMI support (patches 4-6)
+>   - should be ready
 
-Thanks, that's nice, but that will not make the HW work. That will just disable
-it. The comment is still necessary.
+If there are no futher comments, can all these patches please be merged?
 
-thank you,
-	o.
+thank you and kind regards,
+	Ondrej
 
-> Regards, Clement
+> Changes in v2:
+> - added dt-bindings documentation for the board's compatible string
+>   (suggested by Clement)
+> - addressed checkpatch warnings and code formatting issues (on Maxime's
+>   suggestions)
+> - stmmac: dropped useless parenthesis, reworded description of the patch
+>   (suggested by Sergei)
+> - drop useles dev_info() about the selected io bias voltage
+> - docummented io voltage bias selection variant macros
+> - wifi: marked WiFi DTS patch and realted mmc1_pins as "DO NOT MERGE",
+>   because wifi depends on H6 RTC support that's not merged yet (suggested
+>   by Clement)
+> - added missing signed-of-bys
+> - changed &usb2otg dr_mode to otg, and added a note about VBUS
+> - improved wording of HDMI driver's DDC power supply patch
 > 
-> >
-> > thanks,
-> >         o.
-> >
-> > >               r_i2c: i2c@7081400 {
-> > > --
-> > > 2.20.1
-> > >
-> > >
-> > > _______________________________________________
-> > > linux-arm-kernel mailing list
-> > > linux-arm-kernel@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> Changes in v3:
+> - dropped already applied patches
+> - changed pinctrl I/O bias selection constants to enum and renamed
+> - added /omit-if-no-ref/ to mmc1_pins
+> - made mmc1_pins default pinconf for mmc1 in H6 dtsi
+> - move ddc-supply to HDMI connector node, updated patch descriptions,
+>   changed dt-bindings docs
+> 
+> Changes in v4:
+> - fix checkpatch warnings/style issues
+> - use enum in struct sunxi_desc_function for io_bias_cfg_variant
+> - collected acked-by's
+> - fix compile error in drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c:156
+>   caused by missing conversion from has_io_bias_cfg struct member
+>   (I've kept the acked-by, because it's a trivial change, but feel free
+>   to object.) (reported by Martin A. on github)
+>   I did not have A80 pinctrl enabled for some reason, so I did not catch
+>   this sooner.
+> - dropped brcm firmware patch (was already applied)
+> - dropped the wifi dts patch (will re-send after H6 RTC gets merged,
+>   along with bluetooth support, in a separate series)
+> 
+> Changes in v5:
+> - dropped already applied patches (pinctrl patches, mmc1 pinconf patch)
+> - rename GMAC-3V3 -> GMAC-3V to match the schematic (Jagan)
+> - changed hdmi-connector's ddc-supply property to ddc-en-gpios
+>   (Rob Herring)
+> 
+> Changes in v6:
+> - added dt-bindings reviewed-by tag
+> - fix wording in stmmac commit (as suggested by Sergei)
+> 
+> Please take a look.
+> 
+> thank you and regards,
+>   Ondrej Jirman
+> 
+> Icenowy Zheng (2):
+>   net: stmmac: sun8i: add support for Allwinner H6 EMAC
+>   net: stmmac: sun8i: force select external PHY when no internal one
+> 
+> Ondrej Jirman (4):
+>   arm64: dts: allwinner: orange-pi-3: Enable ethernet
+>   dt-bindings: display: hdmi-connector: Support DDC bus enable
+>   drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
+>   arm64: dts: allwinner: orange-pi-3: Enable HDMI output
+> 
+>  .../display/connector/hdmi-connector.txt      |  1 +
+>  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 70 +++++++++++++++++++
+>  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         | 55 ++++++++++++++-
+>  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h         |  3 +
+>  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 21 ++++++
+>  5 files changed, 147 insertions(+), 3 deletions(-)
+> 
+> -- 
+> 2.21.0
 > 
 > -- 
 > You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
 > To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw%40mail.gmail.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190527162237.18495-1-megous%40megous.com.
 > For more options, visit https://groups.google.com/d/optout.
