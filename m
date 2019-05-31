@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E0A30D6D
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 13:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E5C30DC0
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 14:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726515AbfEaLkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 07:40:01 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:35152 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726158AbfEaLkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 07:40:00 -0400
-Received: by mail-lj1-f193.google.com with SMTP id h11so9322648ljb.2;
-        Fri, 31 May 2019 04:39:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1nPmul1q9AAucCoI9yY3uJOYKaMzqR7bEf/iEX/aqjE=;
-        b=bvbFz7kIlrTImz4Is9rlZJVgVwodHyMIKxGHokBpzd3jyqtrT+N3NzxY7rOqC0jweG
-         DSMZZjQ+lcwWYldWhwcDc6MDUtSmWwU3lgIaW3V5IyaiIDgkEjIvhuCYGUTr8M0RXuNc
-         O0fzNTX5I8oSooPoLDLs8veC2SMwcgA6oTQ+UL8SCdBdiEoIVyFPp0IdTRROhpyNeEUv
-         A412MMiyx1SG8fEtAf6TQL1kE94zOSIAiATRg50MnYQ2Ik19C6EtVxcBkBP8ZtR7diXt
-         L9XnCkcFed8oQ1GOfN+jt5Xvm9HOqpOQ6rHsp4ZVcmffoJmFb6KLq7aIIXjJo1M84mUf
-         Waxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1nPmul1q9AAucCoI9yY3uJOYKaMzqR7bEf/iEX/aqjE=;
-        b=DXmctQ/mUZ5nusAS6ZR28aP0A2G2+YM9Ta2vQNS/FtOrH3pMxdmo1pcKm7C1+EG+cB
-         MLffxEltpQV0RZmO333LJFBF08e7Yytn6YFJ1x4tjO8EbKVYN/KqdKtKy7uFXbzQ3ifu
-         Lt+51ZmyNxXSE9HdOmrXRq+Z3wVfMnqlTYBf0OIPu8xRy1Gyxo4yxwQCDh+4AsHl5KcR
-         z+Y63LCkI2kuecRp9DtaCBye+aUQ7iq2zD8lnGGTPdlgZbh3bpUB3nzMuQaOKAvTNNqk
-         9sYQaI6uAFMEPs768yMAFo6iB/gF8Pgq6PMvvZVdK2o0K4Q8PYhiOQLVUv+wRqVLe/cC
-         WTyQ==
-X-Gm-Message-State: APjAAAUXouDIqFENC7G0/9T73Rz11XQH2XROeH03ZTfC7yngH/fnshBR
-        zfflQgottKmqym+/+ufgVYVd5tDN+tjlIiXAGQU=
-X-Google-Smtp-Source: APXvYqyCAo8ow6MnnWWOBWsq1Cm0GTfIZYIH3tTY29CEmrrLVa3t2AA8hrgydqxU4pH85ptW2LRQNyKxfPY6IS4halk=
-X-Received: by 2002:a2e:890c:: with SMTP id d12mr5463170lji.107.1559302798500;
- Fri, 31 May 2019 04:39:58 -0700 (PDT)
+        id S1726403AbfEaMEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 08:04:38 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:34080 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726330AbfEaMEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 08:04:38 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4VC4TTI117248;
+        Fri, 31 May 2019 07:04:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559304269;
+        bh=rlE7J+DFRfJnFGPTUHYB3E0MgfOvRLqRsYOcEw4ujHQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JOUgheJZGvEQh3lnmfyZz/pOqYDaXbsjGQvIYXBmzcdG6518NDhX7CoxaL5CP7tmR
+         fl7DL6LMhpgSohnbFbTySDCIakoIkGEShgS+/NTvoatMOUf+U+nM+iOc1ICo6vkfuO
+         ehOberKU8A9HDJiJymJcH1Fq3QSP0k4qXCeutLy0=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4VC4Tob064540
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 31 May 2019 07:04:29 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 31
+ May 2019 07:04:28 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 31 May 2019 07:04:28 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4VC4Rbr009149;
+        Fri, 31 May 2019 07:04:27 -0500
+Subject: Re: [PATCH] clk: ti: clkctrl: Fix returning uninitialized data
+To:     Tony Lindgren <tony@atomide.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
+References: <20190530065557.42741-1-tony@atomide.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <47c47d4f-54fe-956d-7936-eb4bc651c464@ti.com>
+Date:   Fri, 31 May 2019 15:04:26 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190530094706.865-1-Anson.Huang@nxp.com> <20190530094706.865-2-Anson.Huang@nxp.com>
-In-Reply-To: <20190530094706.865-2-Anson.Huang@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 31 May 2019 08:39:49 -0300
-Message-ID: <CAOMZO5D1B1tKs8eu_a8hXs193+TukHAYHiCEyk5g63p1S-cnbg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: freescale: Add i.MX8MN dtsi support
-To:     Yongcai Huang <Anson.Huang@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Ping Bai <ping.bai@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>, pankaj.bansal@nxp.com,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Pramod Kumar <pramod.kumar_1@nxp.com>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190530065557.42741-1-tony@atomide.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 6:45 AM <Anson.Huang@nxp.com> wrote:
+On 30/05/2019 09:55, Tony Lindgren wrote:
+> If we do a clk_get() for a clock that does not exists, we have
+> _ti_omap4_clkctrl_xlate() return uninitialized data if no match
+> is found. This can be seen in some cases with SLAB_DEBUG enabled:
+> 
+> Unable to handle kernel paging request at virtual address 5a5a5a5a
+> ...
+> clk_hw_create_clk.part.33
+> sysc_notifier_call
+> notifier_call_chain
+> blocking_notifier_call_chain
+> device_add
+> 
+> Let's fix this by setting a found flag only when we find a match.
+> 
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Fixes: 88a172526c32 ("clk: ti: add support for clkctrl clocks")
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>   drivers/clk/ti/clkctrl.c | 7 +++++--
+>   1 file changed, 5 insertions(+), 2 deletions(-)
 
-> +                       gpio1: gpio@30200000 {
-> +                               compatible = "fsl,imx8mn-gpio", "fsl,imx35-gpio";
-> +                               reg = <0x30200000 0x10000>;
-> +                               interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
-> +                                            <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+I can boot again with this fix, thanks!
 
-No GPIO clocks entries?
+Tested-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 
-> +                       usbphynop1: usbphynop1 {
-> +                               compatible = "usb-nop-xceiv";
-> +                               clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
-> +                               assigned-clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
-> +                               assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_100M>;
-> +                               clock-names = "main_clk";
-> +                       };
-
- usbphynop1 does not have any registers associated, so it should be
-placed outside the soc.
-
-Building with W=1 should warn you about that.
-
-> +                       usbphynop2: usbphynop2 {
-> +                               compatible = "usb-nop-xceiv";
-> +                               clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
-> +                               assigned-clocks = <&clk IMX8MN_CLK_USB_PHY_REF>;
-> +                               assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_100M>;
-> +                               clock-names = "main_clk";
-> +                       };
-> +
-
-Ditto
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
