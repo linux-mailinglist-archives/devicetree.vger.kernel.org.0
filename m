@@ -2,99 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A6AA3070E
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 05:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3513C30716
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 05:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726546AbfEaDks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 23:40:48 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:62049 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726531AbfEaDks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 23:40:48 -0400
-X-UUID: 90c434ee22d747c5a374ad6b8076e0ab-20190531
-X-UUID: 90c434ee22d747c5a374ad6b8076e0ab-20190531
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1162707599; Fri, 31 May 2019 11:40:43 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS33N2.mediatek.inc (172.27.4.76) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 31 May 2019 11:40:41 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 31 May 2019 11:40:41 +0800
-Message-ID: <1559274041.9102.3.camel@mtksdaap41>
-Subject: Re: [v3 7/7] drm: mediatek: adjust dsi and mipi_tx probe sequence
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        "Rahul Sharma" <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King" <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Fri, 31 May 2019 11:40:41 +0800
-In-Reply-To: <20190519092537.69053-8-jitao.shi@mediatek.com>
-References: <20190519092537.69053-1-jitao.shi@mediatek.com>
-         <20190519092537.69053-8-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726546AbfEaDpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 23:45:08 -0400
+Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:43274 "EHLO
+        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726535AbfEaDpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 23:45:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559274307; x=1590810307;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UIwdMV/ZvahHI0nYgAbL/aF+9fcUeB4vVN59ORlDahU=;
+  b=mgCgRfQFNmHPdx3yObmwpqmTxEdOGPXBlRS39Cd3KG2WkPx80/sHcSxV
+   D2GL/ymUCxQNvpeusbKTdsZP0+sN54h1cTHwrtH/JE2pho0JUEzQSuTR2
+   zexfimtI4PnWOhh97AadQUw7IXvCjREIVB0Y4X3p97QW6TuaIZSaqJc17
+   U=;
+X-IronPort-AV: E=Sophos;i="5.60,533,1549929600"; 
+   d="scan'208";a="404442620"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2a-f14f4a47.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 31 May 2019 03:45:04 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-2a-f14f4a47.us-west-2.amazon.com (Postfix) with ESMTPS id 06C21A27B1;
+        Fri, 31 May 2019 03:45:03 +0000 (UTC)
+Received: from EX13D04UEA002.ant.amazon.com (10.43.61.61) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Fri, 31 May 2019 03:45:03 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
+ EX13D04UEA002.ant.amazon.com (10.43.61.61) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Fri, 31 May 2019 03:45:03 +0000
+Received: from localhost (10.85.16.145) by mail-relay.amazon.com
+ (10.43.61.243) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
+ Transport; Fri, 31 May 2019 03:45:03 +0000
+Date:   Thu, 30 May 2019 20:45:02 -0700
+From:   Eduardo Valentin <eduval@amazon.com>
+To:     Eddie James <eajames@linux.ibm.com>
+CC:     <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <arnd@arndb.de>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>
+Subject: Re: [PATCH v3 5/8] drivers/soc: xdma: Add PCI device configuration
+ sysfs
+Message-ID: <20190531034502.GH17772@u40b0340c692b58f6553c.ant.amazon.com>
+References: <1559153408-31190-1-git-send-email-eajames@linux.ibm.com>
+ <1559153408-31190-6-git-send-email-eajames@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1559153408-31190-6-git-send-email-eajames@linux.ibm.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-On Sun, 2019-05-19 at 17:25 +0800, Jitao Shi wrote:
-> mtk_mipi_tx is the phy of mtk_dsi.
-> mtk_dsi get the phy(mtk_mipi_tx) in probe().
+On Wed, May 29, 2019 at 01:10:05PM -0500, Eddie James wrote:
+> The AST2500 has two PCI devices embedded. The XDMA engine can use either
+> device to perform DMA transfers. Users need the capability to choose
+> which device to use. This commit therefore adds two sysfs files that
+> toggle the AST2500 and XDMA engine between the two PCI devices.
 > 
-> So,  mtk_mipi_tx init should be ahead of mtk_dsi. Or mtk_dsi will
-> defer to wait mtk_mipi_tx probe done.
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/soc/aspeed/aspeed-xdma.c | 103 +++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 100 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> index cf59ea9bccfd..583d533d9574 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -633,8 +633,8 @@ static struct platform_driver * const mtk_drm_drivers[] = {
->  	&mtk_disp_rdma_driver,
->  	&mtk_dpi_driver,
->  	&mtk_drm_platform_driver,
-> -	&mtk_dsi_driver,
->  	&mtk_mipi_tx_driver,
-> +	&mtk_dsi_driver,
+> diff --git a/drivers/soc/aspeed/aspeed-xdma.c b/drivers/soc/aspeed/aspeed-xdma.c
+> index 39f6545..ddd5e1e 100644
+> --- a/drivers/soc/aspeed/aspeed-xdma.c
+> +++ b/drivers/soc/aspeed/aspeed-xdma.c
+> @@ -143,6 +143,7 @@ struct aspeed_xdma {
+>  	void *cmdq_vga_virt;
+>  	struct gen_pool *vga_pool;
+>  
+> +	char pcidev[4];
+>  	struct miscdevice misc;
 >  };
 >  
->  static int __init mtk_drm_init(void)
+> @@ -165,6 +166,10 @@ struct aspeed_xdma_client {
+>  	SCU_PCIE_CONF_VGA_EN_IRQ | SCU_PCIE_CONF_VGA_EN_DMA |
+>  	SCU_PCIE_CONF_RSVD;
+>  
+> +static char *_pcidev = "vga";
+> +module_param_named(pcidev, _pcidev, charp, 0600);
+> +MODULE_PARM_DESC(pcidev, "Default PCI device used by XDMA engine for DMA ops");
+> +
+>  static void aspeed_scu_pcie_write(struct aspeed_xdma *ctx, u32 conf)
+>  {
+>  	u32 v = 0;
+> @@ -512,7 +517,7 @@ static int aspeed_xdma_release(struct inode *inode, struct file *file)
+>  	.release		= aspeed_xdma_release,
+>  };
+>  
+> -static int aspeed_xdma_init_mem(struct aspeed_xdma *ctx)
+> +static int aspeed_xdma_init_mem(struct aspeed_xdma *ctx, u32 conf)
+>  {
+>  	int rc;
+>  	u32 scu_conf = 0;
+> @@ -522,7 +527,7 @@ static int aspeed_xdma_init_mem(struct aspeed_xdma *ctx)
+>  	const u32 vga_sizes[4] = { 0x800000, 0x1000000, 0x2000000, 0x4000000 };
+>  	void __iomem *sdmc_base = ioremap(0x1e6e0000, 0x100);
+>  
+> -	aspeed_scu_pcie_write(ctx, aspeed_xdma_vga_pcie_conf);
+> +	aspeed_scu_pcie_write(ctx, conf);
+>  
+>  	regmap_read(ctx->scu, SCU_STRAP, &scu_conf);
+>  	ctx->vga_size = vga_sizes[FIELD_GET(SCU_STRAP_VGA_MEM, scu_conf)];
+> @@ -598,10 +603,91 @@ static int aspeed_xdma_init_mem(struct aspeed_xdma *ctx)
+>  	return rc;
+>  }
+>  
+> +static int aspeed_xdma_change_pcie_conf(struct aspeed_xdma *ctx, u32 conf)
+> +{
+> +	int rc;
+> +
+> +	mutex_lock(&ctx->start_lock);
+> +	rc = wait_event_interruptible_timeout(ctx->wait,
+> +					      !test_bit(XDMA_IN_PRG,
+> +							&ctx->flags),
+> +					      msecs_to_jiffies(1000));
+> +	if (rc < 0) {
+> +		mutex_unlock(&ctx->start_lock);
+> +		return -EINTR;
+> +	}
+> +
+> +	/* previous op didn't complete, wake up waiters anyway */
+> +	if (!rc)
+> +		wake_up_interruptible_all(&ctx->wait);
+> +
+> +	reset_control_assert(ctx->reset);
+> +	msleep(10);
+> +
+> +	aspeed_scu_pcie_write(ctx, conf);
+> +	msleep(10);
+> +
+> +	reset_control_deassert(ctx->reset);
+> +	msleep(10);
+> +
+> +	aspeed_xdma_init_eng(ctx);
+> +
+> +	mutex_unlock(&ctx->start_lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_xdma_pcidev_to_conf(struct aspeed_xdma *ctx,
+> +				      const char *pcidev, u32 *conf)
+> +{
+> +	if (!strcasecmp(pcidev, "vga")) {
+> +		*conf = aspeed_xdma_vga_pcie_conf;
+> +		return 0;
+> +	}
+> +
+> +	if (!strcasecmp(pcidev, "bmc")) {
+> +		*conf = aspeed_xdma_bmc_pcie_conf;
+> +		return 0;
+> +	}
 
+strncasecmp()?
 
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static ssize_t aspeed_xdma_show_pcidev(struct device *dev,
+> +				       struct device_attribute *attr,
+> +				       char *buf)
+> +{
+> +	struct aspeed_xdma *ctx = dev_get_drvdata(dev);
+> +
+> +	return snprintf(buf, PAGE_SIZE - 1, "%s", ctx->pcidev);
+> +}
+> +
+> +static ssize_t aspeed_xdma_store_pcidev(struct device *dev,
+> +					struct device_attribute *attr,
+> +					const char *buf, size_t count)
+> +{
+> +	u32 conf;
+> +	struct aspeed_xdma *ctx = dev_get_drvdata(dev);
+> +	int rc = aspeed_xdma_pcidev_to_conf(ctx, buf, &conf);
+> +
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = aspeed_xdma_change_pcie_conf(ctx, conf);
+> +	if (rc)
+> +		return rc;
+> +
+> +	strcpy(ctx->pcidev, buf);
+
+should we use strncpy() instead?
+
+> +	return count;
+> +}
+> +static DEVICE_ATTR(pcidev, 0644, aspeed_xdma_show_pcidev,
+> +		   aspeed_xdma_store_pcidev);
+> +
+>  static int aspeed_xdma_probe(struct platform_device *pdev)
+>  {
+>  	int irq;
+>  	int rc;
+> +	u32 conf;
+>  	struct resource *res;
+>  	struct device *dev = &pdev->dev;
+>  	struct aspeed_xdma *ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> @@ -657,7 +743,14 @@ static int aspeed_xdma_probe(struct platform_device *pdev)
+>  
+>  	msleep(10);
+>  
+> -	rc = aspeed_xdma_init_mem(ctx);
+> +	if (aspeed_xdma_pcidev_to_conf(ctx, _pcidev, &conf)) {
+> +		conf = aspeed_xdma_vga_pcie_conf;
+> +		strcpy(ctx->pcidev, "vga");
+> +	} else {
+> +		strcpy(ctx->pcidev, _pcidev);
+> +	}
+
+same...
+
+> +
+> +	rc = aspeed_xdma_init_mem(ctx, conf);
+>  	if (rc) {
+>  		reset_control_assert(ctx->reset);
+>  		return rc;
+> @@ -682,6 +775,8 @@ static int aspeed_xdma_probe(struct platform_device *pdev)
+>  		return rc;
+>  	}
+>  
+> +	device_create_file(dev, &dev_attr_pcidev);
+
+Should we consider using one of the default attributes here instead of device_create_file()?
+http://kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
+
+BTW, was this ABI documented? Is this the same file documented in patch 2?
+
+> +
+>  	return 0;
+>  }
+>  
+> @@ -689,6 +784,8 @@ static int aspeed_xdma_remove(struct platform_device *pdev)
+>  {
+>  	struct aspeed_xdma *ctx = platform_get_drvdata(pdev);
+>  
+> +	device_remove_file(ctx->dev, &dev_attr_pcidev);
+> +
+>  	misc_deregister(&ctx->misc);
+>  	gen_pool_free(ctx->vga_pool, (unsigned long)ctx->cmdq_vga_virt,
+>  		      XDMA_CMDQ_SIZE);
+> -- 
+> 1.8.3.1
+> 
+
+-- 
+All the best,
+Eduardo Valentin
