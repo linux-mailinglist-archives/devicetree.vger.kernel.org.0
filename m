@@ -2,54 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39298316C5
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 23:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA18316CF
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 23:54:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726531AbfEaVuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 17:50:07 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:51114 "EHLO
+        id S1726485AbfEaVy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 17:54:58 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:51210 "EHLO
         shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725913AbfEaVuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 17:50:07 -0400
+        with ESMTP id S1726483AbfEaVy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 17:54:58 -0400
 Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
         (using TLSv1 with cipher AES256-SHA (256/256 bits))
         (Client did not present a certificate)
         (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 2BEDE15015E90;
-        Fri, 31 May 2019 14:50:06 -0700 (PDT)
-Date:   Fri, 31 May 2019 14:50:05 -0700 (PDT)
-Message-Id: <20190531.145005.798440469894507477.davem@davemloft.net>
-To:     elder@linaro.org
-Cc:     arnd@arndb.de, bjorn.andersson@linaro.org,
-        ilias.apalodimas@linaro.org, evgreen@chromium.org,
-        benchan@google.com, ejcaruso@google.com, cpratapa@codeaurora.org,
-        syadagir@codeaurora.org, subashab@codeaurora.org,
-        abhishek.esse@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 03/17] soc: qcom: ipa: main code
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 4C26F15010A59;
+        Fri, 31 May 2019 14:54:57 -0700 (PDT)
+Date:   Fri, 31 May 2019 14:54:56 -0700 (PDT)
+Message-Id: <20190531.145456.1740583785604198757.davem@davemloft.net>
+To:     richardcochran@gmail.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org, andrew@lunn.ch,
+        f.fainelli@gmail.com, jacob.e.keller@intel.com,
+        mark.rutland@arm.com, mlichvar@redhat.com, robh+dt@kernel.org,
+        willemb@google.com
+Subject: Re: [PATCH V5 net-next 0/6] Peer to Peer One-Step time stamping
 From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20190531035348.7194-4-elder@linaro.org>
-References: <20190531035348.7194-1-elder@linaro.org>
-        <20190531035348.7194-4-elder@linaro.org>
+In-Reply-To: <cover.1559281985.git.richardcochran@gmail.com>
+References: <cover.1559281985.git.richardcochran@gmail.com>
 X-Mailer: Mew version 6.8 on Emacs 26.1
 Mime-Version: 1.0
 Content-Type: Text/Plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 31 May 2019 14:50:06 -0700 (PDT)
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 31 May 2019 14:54:57 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alex Elder <elder@linaro.org>
-Date: Thu, 30 May 2019 22:53:34 -0500
+From: Richard Cochran <richardcochran@gmail.com>
+Date: Thu, 30 May 2019 22:56:20 -0700
 
-> +	void *route_virt;
- ...
-> +	void *filter_virt;
+> This series adds support for PTP (IEEE 1588) P2P one-step time
+> stamping along with a driver for a hardware device that supports this.
  ...
 
-If these are arrays of u64's, please declare them as "u64 *" instead of
-the opaque "void *".
+Series applied, will push out after build testing :-)
+
+Thanks.
