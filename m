@@ -2,363 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA113088C
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 08:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E975308B6
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 08:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726002AbfEaGcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 02:32:41 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:36049 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725955AbfEaGcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 02:32:41 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 438CF21C1C;
-        Fri, 31 May 2019 02:32:39 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Fri, 31 May 2019 02:32:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=eHsCSKwiL50isW9M7Os0oH0hIAtyWEL
-        zv22cCRYdRhY=; b=auoLB1VP1juPgobrKAd1pVA5zUgmsi3DOyaz8trU6pX5cX1
-        K/Io6kaR3fhdE4ol5fLtCyKAIwXHniGXbtjsL+NIegsRjNVC7DFtpHxxCmzhhNoe
-        9ekM9pQ2Xqa7l4XjPFbD4QydRzgexJBirBQ1dbidlo/f8YKPkxAqVICNEDq7hBrZ
-        IaVnhdt++O1T4njqZDIKq6Y/d+NgRUXwe1RHanLRN5tfQoF6CrP+og5xiflwGjdL
-        Oy6Fc7QgBER0JggGhRFOTCfcKhouT34u9gVNJzfegJFgZ6+CHpR9vFgNL+FLqc+z
-        Cl1ECKB6dLekiwpBgMPWO2f7SuDAhTmFJmVWkvQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=eHsCSK
-        wiL50isW9M7Os0oH0hIAtyWELzv22cCRYdRhY=; b=abRTm+US9E9ZGIUSP4C/zM
-        dKnlwOFNHFRyPH/OPxkOoD0VUrq+OIlX67rRkRSKt7FI1MW+y8Cq/3WUUr/XDD9d
-        26M/1RD554hwtGF4WevSRZsMl7sgfJHXH0HpWxr6glKTm09KIpYj9ZkGgsJIiMlo
-        V0UeALat+Tynmv+ilKzE+KQ/6c1CdyaUvYM0jHb3rwAlHDyC+cDhF+VPsOYT2AqF
-        /l79N1HzisU+qHPN29yKksrVYXpyjqtvowcjwbkJiB4NPike7JPEGHqBaRkK3ZX1
-        A5CtM2lm7UPa8Sn19ws2IQqxVecNnnvmfoYctFoszN6ED5TuobImJfqjljRCrpBQ
-        ==
-X-ME-Sender: <xms:hsrwXJF2ZJXV3OZfOuOgKU0Pdoe2XziXCq1l_JWB3pzLWJuTrFOr7g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrudeftddgudduudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrg
-    hrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushht
-    vghrufhiiigvpedt
-X-ME-Proxy: <xmx:hsrwXOhGorIKqygvxcZgdm6EGTh-zoqZhCaQCnrFDXlcS-bxgaoAIQ>
-    <xmx:hsrwXEoKTJWTAQw_C6Ffe0YWAx733JMAx2QVIoaSkg4b8wXVsDsr7g>
-    <xmx:hsrwXOKSrsA6Xzv15_iVwJnNXYb55uNaGDR9m1ZexPx1da3OmmFE8A>
-    <xmx:h8rwXJug24ECwK9EX88qUWa0l4HNvxxdScC_G-aa3XjFvKhdP7lZzw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 2D89DE00A1; Fri, 31 May 2019 02:32:38 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-555-g49357e1-fmstable-20190528v2
-Mime-Version: 1.0
-Message-Id: <2966b961-77ca-4371-949c-195b623e344b@www.fastmail.com>
-In-Reply-To: <20190531061207.23079-1-a.filippov@yadro.com>
-References: <20190531061207.23079-1-a.filippov@yadro.com>
-Date:   Fri, 31 May 2019 16:02:37 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Alexander A. Filippov" <a.filippov@yadro.com>,
-        linux-aspeed@lists.ozlabs.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Rob Herring" <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] ARM: dts: aspeed: Add YADRO VESNIN BMC
-Content-Type: text/plain
+        id S1726668AbfEaGjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 02:39:14 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:44083 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726634AbfEaGjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 02:39:14 -0400
+Received: by mail-pg1-f194.google.com with SMTP id n2so3458402pgp.11
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 23:39:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SXBhhNmLSZ7SfSIDocpcP+tG+VZK/npThfwPX+RXL68=;
+        b=DPebLeDbFNVD5P67tqP0E6NbXfo0GqBg57A5cpk0ASEU2EHf6awCPba6G4D+1PwlRj
+         YhsRX/gA0mlYVXED8lkdcJV8bWS2fB9I4CqPcbawD/e2P+1RPta6Kb/8y4DQXjWw9gm0
+         +H3zmCDCa3KW537AnnuScG0NEae48ULqRfGYODDp2u4Pv7GdHb+4t17s+Dqj77brlAs5
+         JDJRlvf4tsykSLgQU84EyPwqQ6OgsG4flhnrJVBbMlBoDARGLJqIHwj5DbmUPcpAYjKg
+         AVCnE0ukyuWLUZelupQ7fL261pnfoDdFWrj6/KLqGfTT8PkZjxmKb5c9viU0i+Qn/TMl
+         O4ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SXBhhNmLSZ7SfSIDocpcP+tG+VZK/npThfwPX+RXL68=;
+        b=OtrSPQXPHK0p8CignbHoyknAOPPM/APGhbVDGIvhf/2Ud0Oqvjct14Qkq/0QWv6Ua0
+         MtoUMhI1ezdA6WNQe6xGpJ06NNCNHAteJLvLfVfQbpTr9tfavRJcdOFcFrk85QXawoMX
+         tUfMLz0Bp9jPMJXI7YxauKFfp8EV2fUs4bN+MFmiDV2rcMPtJ4quQ2gLbbawVSAbhCMd
+         AxHRkJu+WCc2dF+susBUXnn+f3A7cayWX/WEmqnHHPPBq8hDIsXiBZfuPxF+SD4PKnnQ
+         M58WRjuopJEON/MxGZebEiL67OkWkRMMX2Pr9IoVdKVP3Zk8lL5E7FBofLp2URF64316
+         mfQQ==
+X-Gm-Message-State: APjAAAV9JcUZN/e49pDfU0e8kNhzbCRs/gvkfkexYPJLRiBg6bAMc7Rs
+        mMdbZ6YoP1it8kw8P7Lukm+4
+X-Google-Smtp-Source: APXvYqxSXSKcfJHZzFiDp9JVK/XspKz74WHAtcBbnHiEhOKXCoHZ3JHNNC2pEpI0Wj0IJGDLpMcR/g==
+X-Received: by 2002:a63:ff52:: with SMTP id s18mr3535804pgk.187.1559284753339;
+        Thu, 30 May 2019 23:39:13 -0700 (PDT)
+Received: from localhost.localdomain ([2405:204:72cb:ebf2:a51d:3877:feab:5634])
+        by smtp.gmail.com with ESMTPSA id y12sm4644158pgp.63.2019.05.30.23.39.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 May 2019 23:39:12 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        robh+dt@kernel.org
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loic.pallardy@st.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/4] Add Avenger96 board support
+Date:   Fri, 31 May 2019 12:08:45 +0530
+Message-Id: <20190531063849.26142-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alexander,
+Hello,
 
-On Fri, 31 May 2019, at 15:42, Alexander Filippov wrote:
-> VESNIN is an OpenPower machine with an Aspeed 2400 BMC SoC manufactured
-> by YADRO.
-> 
-> Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
-> ---
->  arch/arm/boot/dts/Makefile                  |   1 +
->  arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts | 234 ++++++++++++++++++++
->  2 files changed, 235 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 834cce80d1b8..09a851a4705c 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1261,6 +1261,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-opp-palmetto.dtb \
->  	aspeed-bmc-opp-romulus.dtb \
->  	aspeed-bmc-opp-swift.dtb \
-> +	aspeed-bmc-opp-vesnin.dtb \
+This patchset adds Avenger96 board support. This board is one of the
+Consumer Edition boards of the 96Boards family from Arrow Electronics
+featuring STM32MP157A MPU and has the following features:
 
-The patch doesn't apply to upstream - the Swift machine only exists in the
-OpenBMC kernel tree. Please rebase the patch onto upstream and resend.
+SoC: STM32MP157AAC
+PMIC: STPMIC1A
+RAM: 1024 Mbyte @ 533MHz
+Storage: eMMC v4.51: 8 Gbyte
+         microSD Socket: UHS-1 v3.01
+Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
+Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
+          Bluetooth®v4.2 (BR/EDR/BLE)
+USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
+Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
+LED: 4x User LED, 1x WiFi LED, 1x BT LED
 
->  	aspeed-bmc-opp-witherspoon.dtb \
->  	aspeed-bmc-opp-zaius.dtb \
->  	aspeed-bmc-portwell-neptune.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts 
-> b/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
-> new file mode 100644
-> index 000000000000..20f07f5bb4f4
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
-> @@ -0,0 +1,234 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright 2019 YADRO
-> +/dts-v1/;
-> +
-> +#include "aspeed-g4.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +
-> +/ {
-> +	model = "Vesnin BMC";
-> +	compatible = "yadro,vesnin-bmc", "aspeed,ast2400";
-> +
-> +	chosen {
-> +		stdout-path = &uart5;
-> +		bootargs = "console=ttyS4,115200 earlyprintk";
-> +	};
-> +
-> +	memory {
-> +		reg = <0x40000000 0x20000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		vga_memory: framebuffer@5f000000 {
-> +			no-map;
-> +			reg = <0x5f000000 0x01000000>; /* 16MB */
-> +		};
-> +		flash_memory: region@5c000000 {
-> +			no-map;
-> +			reg = <0x5c000000 0x02000000>; /* 32M */
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		heartbeat {
-> +			gpios = <&gpio ASPEED_GPIO(R, 4) GPIO_ACTIVE_LOW>;
-> +		};
-> +		power_red {
-> +			gpios = <&gpio ASPEED_GPIO(N, 1) GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		id_blue {
-> +			gpios = <&gpio ASPEED_GPIO(O, 0) GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		alarm_red {
-> +			gpios = <&gpio ASPEED_GPIO(N, 6) GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		alarm_yel {
-> +			gpios = <&gpio ASPEED_GPIO(N, 7) GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		button_checkstop {
-> +			label = "checkstop";
-> +			linux,code = <74>;
-> +			gpios = <&gpio ASPEED_GPIO(P, 5) GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		button_identify {
-> +			label = "identify";
-> +			linux,code = <152>;
-> +			gpios = <&gpio ASPEED_GPIO(O, 7) GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&fmc {
-> +	status = "okay";
-> +	flash@0 {
-> +		status = "okay";
-> +		m25p,fast-read;
-> +        label = "bmc";
-> +#include "openbmc-flash-layout.dtsi"
-> +	};
-> +};
-> +
-> +&spi {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi1debug_default>;
+More information about this board can be found in 96Boards website:
+https://www.96boards.org/product/avenger96/
 
-Is this how the board is strapped? I'm asking in case it's just copy/paste
-from Palmetto, which was (unfortunately) strapped this way.
+Thanks,
+Mani
 
-> +
-> +	flash@0 {
-> +		status = "okay";
-> +		label = "pnor";
-> +		m25p,fast-read;
-> +	};
-> +};
-> +
-> +&mac0 {
-> +	status = "okay";
-> +
-> +	use-ncsi;
-> +	no-hw-checksum;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rmii1_default>;
-> +};
-> +
-> +
-> +&uart5 {
-> +	status = "okay";
-> +};
-> +
-> +&lpc_ctrl {
-> +	status = "okay";
-> +	memory-region = <&flash_memory>;
-> +	flash = <&spi>;
-> +};
-> +
-> +&ibt {
-> +	status = "okay";
-> +};
-> +
-> +&lpc_host {
-> +    sio_regs: regs {
-> +        compatible = "aspeed,bmc-misc";
+Changes in v3:
 
-The patches for this are not upstream, and won't make it in their current
-form. Please drop this node from the patch.
+* Converted STM32 platform bindings to DT schema
 
-> +    };
-> +};
-> +
-> +&mbox {
-> +	status = "okay";
+Changes in v2:
 
-This driver is not upstream either, and we plan on dropping it from the
-OpenBMC tree too. Please remove this node from the patch.
+As per Alex's review:
 
-Cheers,
+* Fixed I2C2 pinctrl node
+* Sorted the avenger96 dtb in alphabetical order
+* Added device-type property to memory node
 
-Andrew
+Manivannan Sadhasivam (4):
+  ARM: dts: stm32mp157: Add missing pinctrl definitions
+  dt-bindings: arm: stm32: Convert STM32 SoC bindings to DT schema
+  dt-bindings: arm: stm32: Document Avenger96 devicetree binding
+  ARM: dts: Add Avenger96 devicetree support based on STM32MP157A
 
-> +};
-> +
-> +&uart3 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_txd2_default &pinctrl_rxd2_default>;
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c256";
-> +		reg = <0x50>;
-> +		pagesize = <64>;
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +
-> +	tmp75@49 {
-> +		compatible = "ti,tmp75";
-> +		reg = <0x49>;
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	status = "okay";
-> +
-> +	occ-hwmon@50 {
-> +		compatible = "ibm,p8-occ-hwmon";
-> +		reg = <0x50>;
-> +	};
-> +};
-> +
-> +&i2c5 {
-> +	status = "okay";
-> +
-> +	occ-hwmon@51 {
-> +		compatible = "ibm,p8-occ-hwmon";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&i2c6 {
-> +	status = "okay";
-> +
-> +	w83795g@2f {
-> +		compatible = "nuvoton,w83795g";
-> +		reg = <0x2f>;
-> +	};
-> +};
-> +
-> +&i2c7 {
-> +	status = "okay";
-> +
-> +	occ-hwmon@56 {
-> +		compatible = "ibm,p8-occ-hwmon";
-> +		reg = <0x56>;
-> +	};
-> +};
-> +
-> +&i2c9 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c10 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c11 {
-> +	status = "okay";
-> +
-> +	occ-hwmon@57 {
-> +		compatible = "ibm,p8-occ-hwmon";
-> +		reg = <0x57>;
-> +	};
-> +};
-> +
-> +&i2c12 {
-> +	status = "okay";
-> +
-> +	rtc@68 {
-> +		compatible = "maxim,ds3231";
-> +		reg = <0x68>;
-> +	};
-> +};
-> +
-> +&i2c13 {
-> +	status = "okay";
-> +};
-> +
-> +&vuart {
-> +	status = "okay";
-> +};
-> -- 
-> 2.20.1
-> 
->
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |  31 ++
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi     |  75 ++++
+ arch/arm/boot/dts/stm32mp157a-avenger96.dts   | 321 ++++++++++++++++++
+ 4 files changed, 428 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-avenger96.dts
+
+-- 
+2.17.1
+
