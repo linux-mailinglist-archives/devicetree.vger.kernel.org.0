@@ -2,305 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E5E31281
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 18:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD65E312ED
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 18:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726852AbfEaQgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 12:36:52 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:39546 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726531AbfEaQgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 12:36:52 -0400
-Received: by mail-io1-f65.google.com with SMTP id r185so8710173iod.6
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2019 09:36:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=sWH2fRj1Mi7gFEy1Vo3Yban4ZfrElYghc3kI9aR4+g4=;
-        b=EaG977szScW8r2vr4msPSESu7B0zum65EZBOErQAq2N32o9DBG6pFfG9P6qstZFi93
-         yPit22+S0RkamVcwb3yToQUOGJvx4Yw6B0Nt8/dowbd8OaE2/J0vz0rXzt5eLtlpsqcC
-         qhmMlPn7fhNXVeJY8gbtXhBPL1xjxwLZkQ6KWD4pYjrSxJmbm9plyNZ/gmlgkv37Yfgw
-         esCNaYzzX0vnPJQpM6V0dpfeGXL+Ic7NZ7ZcI8N16WBif9y+JV8wRyl4IEmWtCWN9R7T
-         QpiJdGOdFyWFW/LyaZDXnqz4yoin68RrQ7akFhEnTbfQYY35HzsBySFnhbIrMMBCNvLd
-         cVcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=sWH2fRj1Mi7gFEy1Vo3Yban4ZfrElYghc3kI9aR4+g4=;
-        b=ACbXz+Qao/YLPOCDL1YZK0ojOIMy/64CQgQbgUmHz0tZFbBXXpXAd1PEKrQ26pAXB8
-         UZV+g5LXlvaOeDP/N9ZZNy1rjrZ47xyjr77P6XyCZVJJwbCxHrNaA7Z6BZFLQ0Kdfoxg
-         L5erpIoEb8DLE4SPTZVBS6OVqJD/LPGFBQ4xQOnugXmPYGlQT+WlGWCNzzwTEoPKdvsm
-         4yEnz4XcKgkdzX5ax8Pqi5Reg49NcTWbgps7gOlL8ymPuo4iPK/pkEhURnCjHi3bSs5Z
-         YzodOe4Ei0kucMEhQD6794/YyC10aTn58ny1SDsF9eMSR8El/RsRvdYCpPc/qATOumC9
-         iI8g==
-X-Gm-Message-State: APjAAAVqYZ4K9a/Wopc/a3NAPHoFgc5njLLHzkUg0hvgjAx7KT5Gbdo9
-        yWf8a2YFQcxS20gFSfdpa6xBjg==
-X-Google-Smtp-Source: APXvYqwF1QelzFZK9OIIns6zH2PSZ2TasRMDIzTWOpJ7KwvscJ5avHLcUTTuC1V8jHgWrTx3FSJMFg==
-X-Received: by 2002:a6b:8b8b:: with SMTP id n133mr6924128iod.183.1559320611338;
-        Fri, 31 May 2019 09:36:51 -0700 (PDT)
-Received: from [172.22.22.26] (c-71-195-29-92.hsd1.mn.comcast.net. [71.195.29.92])
-        by smtp.googlemail.com with ESMTPSA id j13sm1985761iog.78.2019.05.31.09.36.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 31 May 2019 09:36:50 -0700 (PDT)
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Dan Williams <dcbw@redhat.com>, davem@davemloft.net, arnd@arndb.de,
-        bjorn.andersson@linaro.org, ilias.apalodimas@linaro.org
-Cc:     evgreen@chromium.org, benchan@google.com, ejcaruso@google.com,
-        cpratapa@codeaurora.org, syadagir@codeaurora.org,
-        subashab@codeaurora.org, abhishek.esse@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-References: <20190531035348.7194-1-elder@linaro.org>
- <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
-From:   Alex Elder <elder@linaro.org>
-Message-ID: <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org>
-Date:   Fri, 31 May 2019 11:36:48 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
-Content-Type: text/plain; charset=utf-8
+        id S1727055AbfEaQr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 12:47:29 -0400
+Received: from mail-eopbgr80059.outbound.protection.outlook.com ([40.107.8.59]:56017
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727105AbfEaQr2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 12:47:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0PNB+iX0JXfIC0kbo7QRgW+BBwqfUl6yy2PWjiq0550=;
+ b=WE8aLIMgkT6+mj+1pimOxRgKud4Nsu+0perqEnBGYI6mvtLqm64hBvV7ImBQuq8aQwGi0w9IRa+qpiAGhIyPHwKvl0z1+g6NBZIDK0dIPrry9vM1A+6ppJ+5evvfe4Kzd2CgMDsou5zv41/n9BwXro7z5ZMHzrO1KcH0kxz/DpE=
+Received: from AM0PR04MB3971.eurprd04.prod.outlook.com (52.134.90.16) by
+ AM0PR04MB4212.eurprd04.prod.outlook.com (52.134.95.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.18; Fri, 31 May 2019 16:47:24 +0000
+Received: from AM0PR04MB3971.eurprd04.prod.outlook.com
+ ([fe80::3df6:6e48:cc6d:71c6]) by AM0PR04MB3971.eurprd04.prod.outlook.com
+ ([fe80::3df6:6e48:cc6d:71c6%5]) with mapi id 15.20.1922.021; Fri, 31 May 2019
+ 16:47:24 +0000
+From:   York Sun <york.sun@nxp.com>
+To:     Radu Nicolae Pirea <radu_nicolae.pirea@upb.ro>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+CC:     Mike Turquette <mturquette@baylibre.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Andrey Filippov <andrey@elphel.com>,
+        Paul Bolle <pebolle@tiscali.nl>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [EXT] Re: [Patch v9] driver/clk/clk-si5338: Add common clock
+ framework driver for si5338
+Thread-Topic: [EXT] Re: [Patch v9] driver/clk/clk-si5338: Add common clock
+ framework driver for si5338
+Thread-Index: AQHVF7oG6C1le8DQ9Euu7t2xmZzbwg==
+Date:   Fri, 31 May 2019 16:47:24 +0000
+Message-ID: <AM0PR04MB3971799F379795FE812D6D529A190@AM0PR04MB3971.eurprd04.prod.outlook.com>
+References: <1472247978-29312-1-git-send-email-york.sun@nxp.com>
+ <96cb1e730ea5afd651d4c79f20f365df5fe8a29b.camel@upb.ro>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=york.sun@nxp.com; 
+x-originating-ip: [66.235.24.83]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cd73a39a-1f28-46d9-5be2-08d6e5e7a84f
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4212;
+x-ms-traffictypediagnostic: AM0PR04MB4212:
+x-microsoft-antispam-prvs: <AM0PR04MB421265AE67A1B5B3CF01E64D9A190@AM0PR04MB4212.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:862;
+x-forefront-prvs: 00540983E2
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(39860400002)(346002)(376002)(396003)(366004)(199004)(189003)(3846002)(7736002)(52536014)(76116006)(54906003)(4744005)(2906002)(64756008)(6116002)(7696005)(6436002)(26005)(73956011)(86362001)(229853002)(33656002)(478600001)(91956017)(110136005)(66476007)(66446008)(74316002)(25786009)(316002)(66556008)(66946007)(5660300002)(305945005)(2501003)(186003)(7416002)(44832011)(446003)(8936002)(68736007)(55016002)(486006)(76176011)(6506007)(9686003)(71190400001)(99286004)(81156014)(102836004)(8676002)(53936002)(53546011)(71200400001)(66066001)(4326008)(14454004)(6246003)(81166006)(256004)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4212;H:AM0PR04MB3971.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: GRCqxB4sHejEnDciYNjolrqYJCNdiN/+9H5QD6Eyh1dY/VJuOiw+IYHg+jJbH2KGaaz+INqmQ9CmmuJGP70PLaHtmaqDcIYGFl6Ap4cSI8hDj2DIol1ocasPu9LhC4VCd5GLMZ3MnLOooAhGiwiVqpQUMIqweThVFaeNn6YxLzKUjGi60Ku5NFCBmxt3J5ymcK1Ur40XodzoPP8nM62zk4s43d/+H5p+7J4HLomqqlec0VawHQXbYanYXfcBisC/2aF8Jnlo/zlpZkjj2Pc1jXsX1WpjaiGQrC7IrzS7uze9JCtyWThVvnCKxTDv0KtE3pQuJekEBL6gQdP4947nOf0jUBYxnCzTnnS0kzMQ16C4DwBY5sLFdbT0fylnyU7w/qC1q1TSptdbUyH86cgobvgqf+JDuUVbuAFPIMWlhFQ=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd73a39a-1f28-46d9-5be2-08d6e5e7a84f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2019 16:47:24.2653
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: york.sun@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4212
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/31/19 9:58 AM, Dan Williams wrote:
-> On Thu, 2019-05-30 at 22:53 -0500, Alex Elder wrote:
->> This series presents the driver for the Qualcomm IP Accelerator
->> (IPA).
->>
->> This is version 2 of the series.  This version has addressed almost
->> all of the feedback received in the first version:
->>   
->> https://lore.kernel.org/lkml/20190512012508.10608-1-elder@linaro.org/
->> More detail is included in the individual patches, but here is a
->> high-level summary of what's changed since then:
->>   - Two spinlocks have been removed.
->>       - The code for enabling and disabling endpoint interrupts has
->>         been simplified considerably, and the spinlock is no longer
->> 	required
->>       - A spinlock used when updating ring buffer pointers is no
->>         longer needed.  Integers indexing the ring are used instead
->> 	(and they don't even have to be atomic).
->>   - One spinlock remains to protect list updates, but it is always
->>     acquired using spin_lock_bh() (no more irqsave).
->>   - Information about the queueing and completion of messages is now
->>     supplied to the network stack in batches rather than one at a
->>     time.
->>   - I/O completion handling has been simplified, with the IRQ
->>     handler now consisting mainly of disabling the interrupt and
->>     calling napi_schedule().
->>   - Some comments have been updated and improved througout.
->>
->> What follows is the introduction supplied with v1 of the series.
->>
->> -----
->>
->> The IPA is a component present in some Qualcomm SoCs that allows
->> network functions such as aggregation, filtering, routing, and NAT
->> to be performed without active involvement of the main application
->> processor (AP).
->>
->> Initially, these advanced features are disabled; the IPA driver
->> simply provides a network interface that makes the modem's LTE
->> network available to the AP.  In addition, only support for the
->> IPA found in the Qualcomm SDM845 SoC is provided.
-> 
-> My question from the Nov 2018 IPA rmnet driver still stands; how does
-> this relate to net/ethernet/qualcomm/rmnet/ if at all? And if this is
-> really just a netdev talking to the IPA itself and unrelated to
-> net/ethernet/qualcomm/rmnet, let's call it "ipa%d" and stop cargo-
-> culting rmnet around just because it happens to be a net driver for a
-> QC SoC.
-
-First, the relationship between the IPA driver and the rmnet driver
-is that the IPA driver is assumed to sit between the rmnet driver
-and the hardware.
-
-Currently the modem is assumed to use QMAP protocol.  This means
-each packet is prefixed by a (struct rmnet_map_header) structure
-that allows the IPA connection to be multiplexed for several logical
-connections.  The rmnet driver parses such messages and implements
-the multiplexed network interfaces.
-
-QMAP protocol can also be used for aggregating many small packets
-into a larger message.  The rmnet driver implements de-aggregation
-of such messages (and could probably aggregate them for TX as well).
-
-Finally, the IPA can support checksum offload, and the rmnet
-driver handles providing a prepended header (for TX) and
-interpreting the appended trailer (for RX) if these features
-are enabled.
-
-So basically, the purpose of the rmnet driver is to handle QMAP
-protocol connections, and right now that's what the modem
-provides.
-
-> Is the firmware that the driver loads already in linux-firmware or
-> going to be there soon?
-
-It is not right now, and I have no information on when it can be
-available.  The AP *can* load the firmware but right now we rely
-on the modem doing it (until we can make the firmware available).
-
-> How does the driver support multiple PDNs (eg PDP or EPS contexts) that
-> are enabled through the control plane via QMI messages? I couldn't
-> quite find that out.
-
-To be honest, I don't know the answer to this.  All of my work
-has been on this transport driver and I believe these things
-are handled by user space.  But I really don't know details.
-
-					-Alex
-
-> Thanks,
-> Dan
-> 
->> This code is derived from a driver developed internally by Qualcomm.
->> A version of the original source can be seen here:
->>   https://source.codeaurora.org/quic/la/kernel/msm-4.9/tree
->> in the "drivers/platform/msm/ipa" directory.  Many were involved in
->> developing this, but the following individuals deserve explicit
->> acknowledgement for their substantial contributions:
->>
->>     Abhishek Choubey
->>     Ady Abraham
->>     Chaitanya Pratapa
->>     David Arinzon
->>     Ghanim Fodi
->>     Gidon Studinski
->>     Ravi Gummadidala
->>     Shihuan Liu
->>     Skylar Chang
->>
->> A version of this code was posted in November 2018 as an RFC.
->>   
->> https://lore.kernel.org/lkml/20181107003250.5832-1-elder@linaro.org/
->> All feedback received was addressed.  The code has undergone
->> considerable further rework since that time, and most of the
->> "future work" described then has now been completed.
->>
->> This code is available in buildable form here, based on kernel
->> v5.2-rc1:
->>   remote: ssh://git@git.linaro.org/people/alex.elder/linux.git
->>   branch: ipa-v2_kernel-v5.2-rc2
->>     75adf2ac1266 arm64: defconfig: enable build of IPA code
->>
->> The branch depends on a commit now found in in net-next.  It has
->> been cherry-picked, and (in this branch) has this commit ID:
->>   13c627b5a078 net: qualcomm: rmnet: Move common struct definitions
->> to include
->> by 
->>
->> 					-Alex
->>
->> Alex Elder (17):
->>   bitfield.h: add FIELD_MAX() and field_max()
->>   dt-bindings: soc: qcom: add IPA bindings
->>   soc: qcom: ipa: main code
->>   soc: qcom: ipa: configuration data
->>   soc: qcom: ipa: clocking, interrupts, and memory
->>   soc: qcom: ipa: GSI headers
->>   soc: qcom: ipa: the generic software interface
->>   soc: qcom: ipa: GSI transactions
->>   soc: qcom: ipa: IPA interface to GSI
->>   soc: qcom: ipa: IPA endpoints
->>   soc: qcom: ipa: immediate commands
->>   soc: qcom: ipa: IPA network device and microcontroller
->>   soc: qcom: ipa: AP/modem communications
->>   soc: qcom: ipa: support build of IPA code
->>   MAINTAINERS: add entry for the Qualcomm IPA driver
->>   arm64: dts: sdm845: add IPA information
->>   arm64: defconfig: enable build of IPA code
->>
->>  .../devicetree/bindings/net/qcom,ipa.yaml     |  180 ++
->>  MAINTAINERS                                   |    6 +
->>  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   51 +
->>  arch/arm64/configs/defconfig                  |    1 +
->>  drivers/net/Kconfig                           |    2 +
->>  drivers/net/Makefile                          |    1 +
->>  drivers/net/ipa/Kconfig                       |   16 +
->>  drivers/net/ipa/Makefile                      |    7 +
->>  drivers/net/ipa/gsi.c                         | 1635
->> +++++++++++++++++
->>  drivers/net/ipa/gsi.h                         |  246 +++
->>  drivers/net/ipa/gsi_private.h                 |  148 ++
->>  drivers/net/ipa/gsi_reg.h                     |  376 ++++
->>  drivers/net/ipa/gsi_trans.c                   |  624 +++++++
->>  drivers/net/ipa/gsi_trans.h                   |  116 ++
->>  drivers/net/ipa/ipa.h                         |  131 ++
->>  drivers/net/ipa/ipa_clock.c                   |  297 +++
->>  drivers/net/ipa/ipa_clock.h                   |   52 +
->>  drivers/net/ipa/ipa_cmd.c                     |  377 ++++
->>  drivers/net/ipa/ipa_cmd.h                     |  116 ++
->>  drivers/net/ipa/ipa_data-sdm845.c             |  245 +++
->>  drivers/net/ipa/ipa_data.h                    |  267 +++
->>  drivers/net/ipa/ipa_endpoint.c                | 1283 +++++++++++++
->>  drivers/net/ipa/ipa_endpoint.h                |   97 +
->>  drivers/net/ipa/ipa_gsi.c                     |   48 +
->>  drivers/net/ipa/ipa_gsi.h                     |   49 +
->>  drivers/net/ipa/ipa_interrupt.c               |  279 +++
->>  drivers/net/ipa/ipa_interrupt.h               |   53 +
->>  drivers/net/ipa/ipa_main.c                    |  921 ++++++++++
->>  drivers/net/ipa/ipa_mem.c                     |  234 +++
->>  drivers/net/ipa/ipa_mem.h                     |   83 +
->>  drivers/net/ipa/ipa_netdev.c                  |  251 +++
->>  drivers/net/ipa/ipa_netdev.h                  |   24 +
->>  drivers/net/ipa/ipa_qmi.c                     |  402 ++++
->>  drivers/net/ipa/ipa_qmi.h                     |   35 +
->>  drivers/net/ipa/ipa_qmi_msg.c                 |  583 ++++++
->>  drivers/net/ipa/ipa_qmi_msg.h                 |  238 +++
->>  drivers/net/ipa/ipa_reg.h                     |  279 +++
->>  drivers/net/ipa/ipa_smp2p.c                   |  304 +++
->>  drivers/net/ipa/ipa_smp2p.h                   |   47 +
->>  drivers/net/ipa/ipa_uc.c                      |  208 +++
->>  drivers/net/ipa/ipa_uc.h                      |   32 +
->>  include/linux/bitfield.h                      |   14 +
->>  42 files changed, 10358 insertions(+)
->>  create mode 100644
->> Documentation/devicetree/bindings/net/qcom,ipa.yaml
->>  create mode 100644 drivers/net/ipa/Kconfig
->>  create mode 100644 drivers/net/ipa/Makefile
->>  create mode 100644 drivers/net/ipa/gsi.c
->>  create mode 100644 drivers/net/ipa/gsi.h
->>  create mode 100644 drivers/net/ipa/gsi_private.h
->>  create mode 100644 drivers/net/ipa/gsi_reg.h
->>  create mode 100644 drivers/net/ipa/gsi_trans.c
->>  create mode 100644 drivers/net/ipa/gsi_trans.h
->>  create mode 100644 drivers/net/ipa/ipa.h
->>  create mode 100644 drivers/net/ipa/ipa_clock.c
->>  create mode 100644 drivers/net/ipa/ipa_clock.h
->>  create mode 100644 drivers/net/ipa/ipa_cmd.c
->>  create mode 100644 drivers/net/ipa/ipa_cmd.h
->>  create mode 100644 drivers/net/ipa/ipa_data-sdm845.c
->>  create mode 100644 drivers/net/ipa/ipa_data.h
->>  create mode 100644 drivers/net/ipa/ipa_endpoint.c
->>  create mode 100644 drivers/net/ipa/ipa_endpoint.h
->>  create mode 100644 drivers/net/ipa/ipa_gsi.c
->>  create mode 100644 drivers/net/ipa/ipa_gsi.h
->>  create mode 100644 drivers/net/ipa/ipa_interrupt.c
->>  create mode 100644 drivers/net/ipa/ipa_interrupt.h
->>  create mode 100644 drivers/net/ipa/ipa_main.c
->>  create mode 100644 drivers/net/ipa/ipa_mem.c
->>  create mode 100644 drivers/net/ipa/ipa_mem.h
->>  create mode 100644 drivers/net/ipa/ipa_netdev.c
->>  create mode 100644 drivers/net/ipa/ipa_netdev.h
->>  create mode 100644 drivers/net/ipa/ipa_qmi.c
->>  create mode 100644 drivers/net/ipa/ipa_qmi.h
->>  create mode 100644 drivers/net/ipa/ipa_qmi_msg.c
->>  create mode 100644 drivers/net/ipa/ipa_qmi_msg.h
->>  create mode 100644 drivers/net/ipa/ipa_reg.h
->>  create mode 100644 drivers/net/ipa/ipa_smp2p.c
->>  create mode 100644 drivers/net/ipa/ipa_smp2p.h
->>  create mode 100644 drivers/net/ipa/ipa_uc.c
->>  create mode 100644 drivers/net/ipa/ipa_uc.h
->>
-> 
-
+On 5/31/19 7:06 AM, Radu Nicolae Pirea wrote:=0A=
+> Caution: EXT Email=0A=
+> =0A=
+> Hi,=0A=
+> =0A=
+> @York I want to continue the work on this driver and I want to upstream=
+=0A=
+> it. Are you OK with this?=0A=
+> =0A=
+> I saw later improvement suggestions related to the bindings and I will=0A=
+> make the changes.=0A=
+=0A=
+Radu,=0A=
+=0A=
+You are welcome to improve this driver.=0A=
+=0A=
+York=0A=
