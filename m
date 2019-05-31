@@ -2,144 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BE3830787
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 06:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7DA5307CC
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 06:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726158AbfEaECd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 00:02:33 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41374 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbfEaECd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 00:02:33 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q17so5315107pfq.8
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2019 21:02:33 -0700 (PDT)
+        id S1726616AbfEaEef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 00:34:35 -0400
+Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:41121 "EHLO
+        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725955AbfEaEef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 00:34:35 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ukEC3MMMF7VZfZKjRmeuoQSQX5eGcJH/5lmeM5Xiv1s=;
-        b=VXw9JliX+By7ETjpg/VwT4cIvO5bt9B5kaUNS2hcsP92UbdLa1fgpaQAE/XPqJSi/7
-         qBTnZtb9FYsYB/JtGEalVQ7ZZYtdHM4K5tJy44QI1wae6QDJJ6S6xEvY4zV25yXLj0CZ
-         2MZqvtdmBIoISzz2bpfpAUYtDs14qrbKfwdwqmhwipBSmelAD2M1dde0La5Nr8hrGpXN
-         vSzuF5L7pr/hdm+lHqsgGzCD0/7xwed8vMYeMKe/4H5rC+PljIl3sPxhcohWdzLdxYFR
-         D2w+5vzntIcMRodAV6qZV7cE2XYHYiHmQrgogQZ7ubjNO0Lh9y3elutJb5Pb9iO8vsbM
-         QB5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ukEC3MMMF7VZfZKjRmeuoQSQX5eGcJH/5lmeM5Xiv1s=;
-        b=OAet540f5z8hmccP1UviJxIUQTe89rVaES/YgNJGpjlGgJdQmdQAVNMsFT5M9ASo9S
-         w/WtUYqVX6mXy86zDnCtQRSr0dni3ciBGm7Ax+lwndoSXN0qTyW3frxygzPTMdQaRMDp
-         W/4V8KFMTzxBVbPn3CK9lF5t3XjcWtGImi2k2rZOnxHkkNkSLgy37eGpqHobWGvm76k5
-         uE1i/WZXn61wn8CvKGhbBj29aTV9SnjTIWG97u/jdggOczi8Bj+M6vv43K1Cdb5lkpER
-         BV+tCfdSdXALEMOViNmpQ/W1WERDdo3QemMjhKsSmJNM8K1hu6+Zc53FYbjUFwBgWW1v
-         agEA==
-X-Gm-Message-State: APjAAAWYeFdMYJ4U3LjzTFIEyji/n9g09N4o6ozOq6rMiZeoD8QUgCap
-        hOZO1KoZeBJ3XqZuUVMm7dhv
-X-Google-Smtp-Source: APXvYqzvhodd3uafA/IahYHPivWkQXtELuD62p5DCQP+wY6MG98U46yQKwyEMeP2EeyQeZcrUWJbVQ==
-X-Received: by 2002:a17:90a:26a9:: with SMTP id m38mr6679956pje.93.1559275352740;
-        Thu, 30 May 2019 21:02:32 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2405:204:72cb:ebf2:a51d:3877:feab:5634])
-        by smtp.gmail.com with ESMTPSA id q7sm4348899pjb.0.2019.05.30.21.02.26
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 30 May 2019 21:02:31 -0700 (PDT)
-Date:   Fri, 31 May 2019 09:32:22 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add missing PCIe pwr amd rst
- configuration
-Message-ID: <20190531040222.GB9641@Mani-XPS-13-9360>
-References: <20190530125837.730-1-linux.amoon@gmail.com>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559277274; x=1590813274;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=rWZylmxt/NNWlYGvQ7wVH1y8Psn+3RZud7pA+S3VO8U=;
+  b=cUnuTd7rjQ7+xzB9DK40kIj0Z/x9mfXliZFC2Zjov/uFqkhcMIgK2+2f
+   lXRN4dpt8k4F8ahBI4VGvOIjzLWJpQFBKRu9glWEthWpAAGvxRr1lqUWi
+   jU+7q2wXEgxF9FjmZAJg5Kzf2gsX6xhX+c9IvA7YbA7y3I/DCJUKT2AbU
+   Y=;
+X-IronPort-AV: E=Sophos;i="5.60,533,1549929600"; 
+   d="scan'208";a="802758359"
+Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-1e-a70de69e.us-east-1.amazon.com) ([10.47.22.34])
+  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 31 May 2019 04:34:32 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
+        by email-inbound-relay-1e-a70de69e.us-east-1.amazon.com (Postfix) with ESMTPS id BC12DA22FB;
+        Fri, 31 May 2019 04:34:28 +0000 (UTC)
+Received: from EX13D05UWB002.ant.amazon.com (10.43.161.50) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Fri, 31 May 2019 04:34:28 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
+ EX13D05UWB002.ant.amazon.com (10.43.161.50) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Fri, 31 May 2019 04:34:27 +0000
+Received: from localhost (10.85.16.145) by mail-relay.amazon.com
+ (10.43.160.118) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
+ Transport; Fri, 31 May 2019 04:34:27 +0000
+From:   Eduardo Valentin <eduval@amazon.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Haiyue Wang <haiyue.wang@linux.intel.com>,
+        <jarkko.nikula@linux.intel.com>, <andriy.shevchenko@intel.com>,
+        <brendanhiggins@google.com>, Eduardo Valentin <eduval@amazon.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] introduce i2c-slave-mqueue
+Date:   Thu, 30 May 2019 21:33:44 -0700
+Message-ID: <20190531043347.4196-1-eduval@amazon.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190530125837.730-1-linux.amoon@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Wolfram,
 
-On Thu, May 30, 2019 at 12:58:37PM +0000, Anand Moon wrote:
-> This patch add missing PCIe gpio and pinctrl for power (#PCIE_PWR)
-> also add PCIe gpio and pinctrl for reset (#PCIE_PERST_L).
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> Tested on Rock960 Model A
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-> index c7d48d41e184..f5bef6b0fe89 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-> @@ -55,9 +55,10 @@
->  
->  	vcc3v3_pcie: vcc3v3-pcie-regulator {
->  		compatible = "regulator-fixed";
-> +		gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
->  		enable-active-high;
->  		pinctrl-names = "default";
-> -		pinctrl-0 = <&pcie_drv>;
-> +		pinctrl-0 = <&pcie_drv &pcie_pwr>;
->  		regulator-boot-on;
->  		regulator-name = "vcc3v3_pcie";
->  		regulator-min-microvolt = <3300000>;
-> @@ -381,9 +382,10 @@
->  };
->  
->  &pcie0 {
-> +	ep-gpio = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
->  	num-lanes = <4>;
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie_clkreqn_cpm>;
-> +	pinctrl-0 = <&pcie_clkreqn_cpm &pcie_perst_l>;
->  	vpcie3v3-supply = <&vcc3v3_pcie>;
->  	status = "okay";
->  };
-> @@ -408,6 +410,16 @@
->  		};
->  	};
->  
-> +	pcie {
-> +		pcie_pwr: pcie-pwr {
-> +			rockchip,pins = <2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		pcie_perst_l:pcie-perst-l {
-> +			rockchip,pins = <2 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
+I am sending you the i2c-slave-mqueue driver.
+Apparently Haiyue had to move on to another project and
+does not have cycles to continue with the comments on this
+driver after some time waiting for feedback,
+that is essentially why I took over.
 
-Which schematics did you refer? According to Rock960 v2.1 schematics [1], below
-is the pin mapping for PCI-E PWR and PERST:
+Here is a small changelog from V5 to V6:
+- Added DT support for probing via Device Tree
+- Docummented DT bindings
+- Documented sysfs ABI
+- Small fixes on wording and Kconfig entries.
 
-PCIE_PERST - GPIO2_A2
-PCIE_PWR - GPIO2_A5
+Haiyue's V5: https://lkml.org/lkml/2018/4/23/835
 
-Above mapping holds true for Rock960 version 1.1, 1.2 and 1.3. Also,
-rk3399-rock960.dtsi is common for both Rock960 and Ficus boards, so the board
-specific parts should go to rk3399-rock960.dts and rk3399-ficus.dts.
+BR,
 
-Thanks,
-Mani
+Eduardo Valentin (2):
+  dt-bindings: i2c: document bindings for i2c-slave-mqueue
+  Documentation: ABI: Add i2c-slave-mqueue sysfs documentation
 
-[1] https://dl.vamrs.com/products/rock960/docs/hw/rock960_sch_v12_20180314.pdf
-> +	};
-> +
->  	sdmmc {
->  		sdmmc_bus1: sdmmc-bus1 {
->  			rockchip,pins =
-> -- 
-> 2.21.0
-> 
+Haiyue Wang (1):
+  i2c: slave-mqueue: add a slave backend to receive and queue messages
+
+ .../sysfs-bus-i2c-devices-slave-mqueue        |  10 +
+ .../bindings/i2c/i2c-slave-mqueue.txt         |  34 +++
+ Documentation/i2c/slave-mqueue-backend.rst    | 124 ++++++++++
+ MAINTAINERS                                   |   8 +
+ drivers/i2c/Kconfig                           |  25 +++
+ drivers/i2c/Makefile                          |   1 +
+ drivers/i2c/i2c-slave-mqueue.c                | 211 ++++++++++++++++++
+ 7 files changed, 413 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-slave-mqueue
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
+ create mode 100644 Documentation/i2c/slave-mqueue-backend.rst
+ create mode 100644 drivers/i2c/i2c-slave-mqueue.c
+
+-- 
+2.21.0
+
