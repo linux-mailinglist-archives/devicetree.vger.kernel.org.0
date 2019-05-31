@@ -2,95 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78157307CF
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 06:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA95307EC
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 06:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbfEaEez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 00:34:55 -0400
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:12072 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbfEaEey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 00:34:54 -0400
+        id S1725988AbfEaE5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 00:57:35 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:39499 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725955AbfEaE5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 00:57:35 -0400
+Received: by mail-it1-f193.google.com with SMTP id j204so7894228ite.4;
+        Thu, 30 May 2019 21:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1559277294; x=1590813294;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4KissP6CMHlJHUEfDn3Ulh/jhmUATHtnEKo07Th9Pjo=;
-  b=Y9MvmrlRQyLDz4ISkyFk/TbXAq1vFY19M4KWuBT7gyIHhwAaKhaS4X6Y
-   NENcge8QmjOmkvg8zxdAyPrd/TjaW625fnwja9rLnUrZn82fteivSrLcM
-   H1GQ+m7957nr1O9202n1kWeH43KIciDQh8czwf7lIVvlpbcFGoyBTuGgu
-   s=;
-X-IronPort-AV: E=Sophos;i="5.60,533,1549929600"; 
-   d="scan'208";a="404446461"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1d-9ec21598.us-east-1.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 31 May 2019 04:34:53 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
-        by email-inbound-relay-1d-9ec21598.us-east-1.amazon.com (Postfix) with ESMTPS id 01A85A247F;
-        Fri, 31 May 2019 04:34:49 +0000 (UTC)
-Received: from EX13D05UWB001.ant.amazon.com (10.43.161.181) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Fri, 31 May 2019 04:34:29 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
- EX13D05UWB001.ant.amazon.com (10.43.161.181) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Fri, 31 May 2019 04:34:29 +0000
-Received: from localhost (10.85.16.145) by mail-relay.amazon.com
- (10.43.160.118) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
- Transport; Fri, 31 May 2019 04:34:29 +0000
-From:   Eduardo Valentin <eduval@amazon.com>
-To:     Wolfram Sang <wsa@the-dreams.de>
-CC:     Haiyue Wang <haiyue.wang@linux.intel.com>,
-        <jarkko.nikula@linux.intel.com>, <andriy.shevchenko@intel.com>,
-        <brendanhiggins@google.com>, Eduardo Valentin <eduval@amazon.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] Documentation: ABI: Add i2c-slave-mqueue sysfs documentation
-Date:   Thu, 30 May 2019 21:33:47 -0700
-Message-ID: <20190531043347.4196-4-eduval@amazon.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190531043347.4196-1-eduval@amazon.com>
-References: <20190531043347.4196-1-eduval@amazon.com>
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pYMrn55kLH2S++DFur1WFLWOoxAYXbVwA77jHVN56K0=;
+        b=kfoYhZkf6QrrWJKyrfZm2jySez/Ob1PR92nLjbtbCIkwApTrJE8LqKlBo+hOLDWtzm
+         Kbtq5RETimAdVvyEQlSWLCxb9FxX67p4RfrZmKYTPVmM/7a66eqQt8supqC5Jl68mjXl
+         3g0meLrU3kkQS2nIBulztcE8EsYVtq5Zt3yldQON/t2fiIgLNmGmq0iW9TjOf3cb8HRV
+         hQUCSI48LvaJU4wgAQw6+tTPUsfGbpYE1FTI8IlM24vtiVxgkCJdT3er1u/dmKP5v9xo
+         6pn8gVndXm6lkx/pDiVVkcj0Aqz42IxHdM3Zo+vXVJjOCDvwGBRmjTKMTNy21DiMmG6H
+         FnfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pYMrn55kLH2S++DFur1WFLWOoxAYXbVwA77jHVN56K0=;
+        b=Ehn4b8YkAqvu/76XT3bfWlGQHzij9YfL3YhqVanRYndsmpwlAW2VUK9Subjnt1jsGC
+         WJrQCfPdunCEJTN5TMU8vtqMfqxg1Pqxnqql2FePz1PSP1YOt4+LtLBpU1rKnvHfRJe3
+         GOWl0PQMf0ULSsTu9rmsDod9pjmw1CmHIRpSBVt0h6Y+nJ5tNPR6DfCfQllsRTElwOBW
+         fKBixJ6oJcIS22u9AonnItThbccT3UnQKdw7Bqn6ZZR1H5+ON9yIyQfMiou6+wLlmXn7
+         yZQB/RsO0xoaatRK2lob4+LQEEp5nyZtA8nuVwgq+F5ZcZJf8JxddQGDXmdyi9xH3wkW
+         Iq6Q==
+X-Gm-Message-State: APjAAAXGaDBlxpHPU+gIFKyRmWaJcXAwQd5toJ95Dtb7k2jNlesf5hzY
+        q365fps38mrkSR5lKRbj3DepxYqQq6PYRAdrM7KOhyvp
+X-Google-Smtp-Source: APXvYqyrNSflW/4/Z9Kt+shMt+wzrH+meKU5Uw8V7PnnqJVcWdQXyvi3s2unKfCvSA99bkG0l1jdlkupXL3T+WefGeQ=
+X-Received: by 2002:a24:4acd:: with SMTP id k196mr5575395itb.157.1559278654178;
+ Thu, 30 May 2019 21:57:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20190530125837.730-1-linux.amoon@gmail.com> <20190531040222.GB9641@Mani-XPS-13-9360>
+In-Reply-To: <20190531040222.GB9641@Mani-XPS-13-9360>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Fri, 31 May 2019 10:27:22 +0530
+Message-ID: <CANAwSgQ13PizDuNEVF5JMM=byt-HELCmZFhLAa3RS6kvxmXuhw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add missing PCIe pwr amd rst configuration
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-rockchip@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the slave-mqueue sysfs attribute used by
-the i2c-slave-mqueue driver.
+Hi Manivannan,
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Wolfram Sang <wsa@the-dreams.de>
-Cc: linux-i2c@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Eduardo Valentin <eduval@amazon.com>
----
- .../ABI/testing/sysfs-bus-i2c-devices-slave-mqueue     | 10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-slave-mqueue
+On Fri, 31 May 2019 at 09:32, Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> Hi,
+>
+> On Thu, May 30, 2019 at 12:58:37PM +0000, Anand Moon wrote:
+> > This patch add missing PCIe gpio and pinctrl for power (#PCIE_PWR)
+> > also add PCIe gpio and pinctrl for reset (#PCIE_PERST_L).
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > Tested on Rock960 Model A
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi | 16 ++++++++++++++--
+> >  1 file changed, 14 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+> > index c7d48d41e184..f5bef6b0fe89 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+> > @@ -55,9 +55,10 @@
+> >
+> >       vcc3v3_pcie: vcc3v3-pcie-regulator {
+> >               compatible = "regulator-fixed";
+> > +             gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
+> >               enable-active-high;
+> >               pinctrl-names = "default";
+> > -             pinctrl-0 = <&pcie_drv>;
+> > +             pinctrl-0 = <&pcie_drv &pcie_pwr>;
+> >               regulator-boot-on;
+> >               regulator-name = "vcc3v3_pcie";
+> >               regulator-min-microvolt = <3300000>;
+> > @@ -381,9 +382,10 @@
+> >  };
+> >
+> >  &pcie0 {
+> > +     ep-gpio = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
+> >       num-lanes = <4>;
+> >       pinctrl-names = "default";
+> > -     pinctrl-0 = <&pcie_clkreqn_cpm>;
+> > +     pinctrl-0 = <&pcie_clkreqn_cpm &pcie_perst_l>;
+> >       vpcie3v3-supply = <&vcc3v3_pcie>;
+> >       status = "okay";
+> >  };
+> > @@ -408,6 +410,16 @@
+> >               };
+> >       };
+> >
+> > +     pcie {
+> > +             pcie_pwr: pcie-pwr {
+> > +                     rockchip,pins = <2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +             };
+> > +
+> > +             pcie_perst_l:pcie-perst-l {
+> > +                     rockchip,pins = <2 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +             };
+>
+> Which schematics did you refer? According to Rock960 v2.1 schematics [1], below
+> is the pin mapping for PCI-E PWR and PERST:
+>
+> PCIE_PERST - GPIO2_A2
+> PCIE_PWR - GPIO2_A5
+>
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-i2c-devices-slave-mqueue b/Documentation/ABI/testing/sysfs-bus-i2c-devices-slave-mqueue
-new file mode 100644
-index 000000000000..28318108ce85
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-i2c-devices-slave-mqueue
-@@ -0,0 +1,10 @@
-+What:		/sys/bus/i2c/devices/*/slave-mqueue
-+Date:		May 2019
-+KernelVersion:	5.2
-+Contact:	Eduardo Valentin <eduval@amazon.com>
-+Description:
-+		Reading to this file will return exactly one message,
-+		when available, of the i2c-slave-mqueue device attached
-+		to that bus. Userspace can also poll on this file to
-+		get notified when new messages are available.
-+Users:		i2c-slave-mqueue driver
--- 
-2.21.0
+Opps, I have referred the wrong schematics *RK3399_Rock960_V1.0.pdf*
+may be old version.
+Thanks for pointing out the correct schematics.
 
+> Above mapping holds true for Rock960 version 1.1, 1.2 and 1.3. Also,
+> rk3399-rock960.dtsi is common for both Rock960 and Ficus boards, so the board
+> specific parts should go to rk3399-rock960.dts and rk3399-ficus.dts.
+>
+> Thanks,
+> Mani
+
+I have ROCK960-V 1.2 (Model A) for testing so. I will be sending patch
+v2 the relevant
+node update in rk3399-rock960.dts and rk3399-ficus.dts if below common
+for both the boards.
+
+PCIE_PERST - GPIO2_A2
+PCIE_PWR - GPIO2_A5
+
+>
+> [1] https://dl.vamrs.com/products/rock960/docs/hw/rock960_sch_v12_20180314.pdf
+
+Best Regards
+-Anand
