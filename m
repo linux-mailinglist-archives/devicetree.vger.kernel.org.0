@@ -2,287 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0993030643
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 03:39:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4E83065F
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 03:51:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726576AbfEaBjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 21:39:52 -0400
-Received: from mail-eopbgr10064.outbound.protection.outlook.com ([40.107.1.64]:2790
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726372AbfEaBjv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 May 2019 21:39:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TTNhtGYhPPJuhqHryhWsl4UxIu51hGi1bhHDVlxWVZs=;
- b=Jt5+NigsheRAWNKyDjrqpkSUxdakp4dsTD+S2MtJRPfoKw/VKL/9ya8Uq++W3+oZYxLMcDl+3xkk48GV8y8opFv9bbpptiKPDmENJznVX0e6MBPMibIxhYdDV1NLY80qHEOCKw3NlKhlXMsInimmvkxQr3Foc1u/LJUFiLuQMTc=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB4419.eurprd04.prod.outlook.com (52.135.152.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.19; Fri, 31 May 2019 01:39:46 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::3173:24:d401:2378]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::3173:24:d401:2378%6]) with mapi id 15.20.1922.021; Fri, 31 May 2019
- 01:39:46 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-CC:     Florian Fainelli <f.fainelli@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
-Thread-Topic: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
-Thread-Index: AQHVESt7O8zUR8j7k0mzGFqyu7YBg6Z4+DAAgAVHW8CABVJUgIAA7cKA
-Date:   Fri, 31 May 2019 01:39:45 +0000
-Message-ID: <AM0PR04MB4481C97696C68ECF5E6D4A7988190@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <20190523060437.11059-1-peng.fan@nxp.com>
-        <4ba2b243-5622-bb27-6fc3-cd9457430e54@gmail.com>
-        <AM0PR04MB4481C44F9B5EFCDD076EF728881D0@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <20190530122329.235d13c7@donnerap.cambridge.arm.com>
-In-Reply-To: <20190530122329.235d13c7@donnerap.cambridge.arm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 786c4c99-cd19-4c30-f99b-08d6e568dcb5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4419;
-x-ms-traffictypediagnostic: AM0PR04MB4419:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <AM0PR04MB44199DA2C5EA75D91654B1E588190@AM0PR04MB4419.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 00540983E2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(376002)(39860400002)(396003)(366004)(189003)(199004)(229853002)(3846002)(54906003)(6116002)(6306002)(6246003)(4326008)(8676002)(14444005)(44832011)(256004)(476003)(25786009)(14454004)(71190400001)(99286004)(71200400001)(5660300002)(55016002)(6436002)(8936002)(81156014)(81166006)(53936002)(26005)(76116006)(7696005)(7736002)(33656002)(53546011)(73956011)(76176011)(478600001)(305945005)(66946007)(6506007)(446003)(186003)(66556008)(64756008)(66446008)(86362001)(74316002)(15650500001)(11346002)(66476007)(45080400002)(68736007)(316002)(7416002)(6916009)(66066001)(52536014)(486006)(9686003)(102836004)(2906002)(966005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4419;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: T5Q75JgpGJuwx5PbjB+x2jtIPe9AZoiB4HAME/qoB2gHCZ3vJHeNayYZnfaRjKMCJcy3o2SY0TLUogW3i6oiaTBKZxD+1H8kyxE7/Njo7otniBpH6aOdTUYYnpR026Jzx5MLpqviE/yOs2339hpSSuKOufpDZ/8W3niNMBSdonSyVfLnPsRum/zn0tvyLTfFw3aUNyf1+nOffW8G+1KVTEmuoEnSxg4dL0y/9oZW90JY1Yp1XEF8MZelFgkjF2BuiB2XPYhZklBRIhFIpuouFXcBsTb/BSsHgmqqwfwv7m1fzjYfPvWJcEXohJXxHdSL80aofCmJXWUvbzN6LJ0mEJ205qppU/F4gA/1urS/84N0nQnpC4lKLCdmR88mv8l+dXC3OeWcG64aGXelHUO4/5skHgevjCTalLp1t1AL7/o=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726548AbfEaBvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 21:51:06 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:47661 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726372AbfEaBvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 21:51:06 -0400
+X-UUID: 536ab7e78a6a489b8e6edd02f9c9b29e-20190531
+X-UUID: 536ab7e78a6a489b8e6edd02f9c9b29e-20190531
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 645292041; Fri, 31 May 2019 09:50:54 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ MTKMBS33N2.mediatek.inc (172.27.4.76) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 31 May 2019 09:50:52 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 31 May 2019 09:50:52 +0800
+Message-ID: <1559267452.9102.0.camel@mtksdaap41>
+Subject: Re: [PATCH] drm/mediatek: add dsi module reset driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Thierry Reding" <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        "Inki Dae" <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        "Sean Paul" <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        "Andy Yan" <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <stonea168@163.com>
+Date:   Fri, 31 May 2019 09:50:52 +0800
+In-Reply-To: <20190519111513.73919-1-jitao.shi@mediatek.com>
+References: <20190519111513.73919-1-jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 786c4c99-cd19-4c30-f99b-08d6e568dcb5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2019 01:39:46.0737
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4419
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Jitao:
 
->=20
-> > > Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered
-> > > mailbox
-> > >
-> > > Hi,
-> > >
-> > > On 5/22/19 10:50 PM, Peng Fan wrote:
-> > > > This is a modified version from Andre Przywara's patch series
-> > > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
-o
-> > > re.ke
-> rnel.org%2Fpatchwork%2Fcover%2F812997%2F&amp;data=3D02%7C01%7Cpe
-> > >
-> ng.fan%40nxp.com%7C010c9ddd5df645c9c66b08d6dfa46cb2%7C686ea1d3b
-> > >
-> c2b4c6fa92cd99c5c301635%7C0%7C0%7C636942294631442665&amp;sdat
-> > >
-> a=3DBbS5ZQtzMANSwaKRDJ62NKrPrAyaED1%2BvymQaT6Qr8E%3D&amp;rese
-> > > rved=3D0.
-> > > > [1] is a draft implementation of i.MX8MM SCMI ATF implementation
-> > > > that use smc as mailbox, power/clk is included, but only part of
-> > > > clk has been implemented to work with hardware, power domain only
-> > > > supports get name for now.
-> > > >
-> > > > The traditional Linux mailbox mechanism uses some kind of
-> > > > dedicated hardware IP to signal a condition to some other
-> > > > processing unit, typically a dedicated management processor.
-> > > > This mailbox feature is used for instance by the SCMI protocol to
-> > > > signal a request for some action to be taken by the management
-> processor.
-> > > > However some SoCs does not have a dedicated management core to
-> > > provide
-> > > > those services. In order to service TEE and to avoid linux
-> > > > shutdown power and clock that used by TEE, need let firmware to
-> > > > handle power and clock, the firmware here is ARM Trusted Firmware
-> > > > that could also run SCMI service.
-> > > >
-> > > > The existing SCMI implementation uses a rather flexible shared
-> > > > memory region to communicate commands and their parameters, it
-> > > > still requires a mailbox to actually trigger the action.
-> > >
-> > > We have had something similar done internally with a couple of minor
-> > > differences:
-> > >
-> > > - a SGI is used to send SCMI notifications/delayed replies to
-> > > support asynchronism (patches are in the works to actually add that
-> > > to the Linux SCMI framework). There is no good support for SGI in
-> > > the kernel right now so we hacked up something from the existing SMP
-> > > code and adding the ability to register our own IPI handlers
-> > > (SHAME!). Using a PPI should work and should allow for using request_=
-irq()
-> AFAICT.
-> >
-> > So you are also implementing a firmware inside ATF for SCMI usecase, ri=
-ght?
-> >
-> > Introducing SGI in ATF to notify Linux will introduce complexity,
-> > there is no good framework inside ATF for SCMI, and I use
-> > synchronization call for simplicity for now.
->=20
-> I think we don't disagree, but just to clarify on one thing:
->=20
-> I think we should avoid tying this driver to specific protocol or softwar=
-e on the
-> other end, be it ATF or SCMI. After all it's just a mailbox driver, meant=
- to signal
-> some event (and parameters) to some external entity. Yes, SCMI (or SCPI b=
-ack
-> then) was the reason to push for this, but it should be independent from =
-that.
+On Sun, 2019-05-19 at 19:15 +0800, Jitao Shi wrote:
+> Reset dsi HW to default when power on. Prevent the setting differet
+> between bootloader and kernel.
+> 
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 35 ++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index b00eb2d2e086..39ccb34a7c7f 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -21,10 +21,12 @@
+>  #include <linux/component.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/irq.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/of.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+>  #include <video/mipi_display.h>
+>  #include <video/videomode.h>
+>  
+> @@ -146,6 +148,8 @@
+>  #define T_HS_EXIT	7
+>  #define T_HS_ZERO	10
+>  
+> +#define MMSYS_SW_RST_DSI_B BIT(25)
+> +
+>  #define NS_TO_CYCLE(n, c)    ((n) / (c) + (((n) % (c)) ? 1 : 0))
+>  
+>  #define MTK_DSI_HOST_IS_READ(type) \
+> @@ -165,6 +169,8 @@ struct mtk_dsi {
+>  	struct drm_panel *panel;
+>  	struct drm_bridge *bridge;
+>  	struct phy *phy;
+> +	struct regmap *mmsys_sw_rst_b;
+> +	u32 sw_rst_b;
+>  
+>  	void __iomem *regs;
+>  
+> @@ -238,6 +244,16 @@ static void mtk_dsi_disable(struct mtk_dsi *dsi)
+>  	mtk_dsi_mask(dsi, DSI_CON_CTRL, DSI_EN, 0);
+>  }
+>  
+> +static void mtk_dsi_reset_all(struct mtk_dsi *dsi)
+> +{
+> +	regmap_update_bits(dsi->mmsys_sw_rst_b, dsi->sw_rst_b,
+> +			   MMSYS_SW_RST_DSI_B, ~MMSYS_SW_RST_DSI_B);
+> +	usleep_range(1000, 1100);
+> +
+> +	regmap_update_bits(dsi->mmsys_sw_rst_b, dsi->sw_rst_b,
+> +			   MMSYS_SW_RST_DSI_B, MMSYS_SW_RST_DSI_B);
+> +}
+> +
+>  static void mtk_dsi_reset_engine(struct mtk_dsi *dsi)
+>  {
+>  	mtk_dsi_mask(dsi, DSI_CON_CTRL, DSI_RESET, DSI_RESET);
+> @@ -831,6 +847,8 @@ static int mtk_dsi_create_conn_enc(struct drm_device *drm, struct mtk_dsi *dsi)
+>  			goto err_encoder_cleanup;
+>  	}
+>  
+> +	mtk_dsi_reset_all(dsi);
+> +
+>  	return 0;
+>  
+>  err_encoder_cleanup:
+> @@ -1087,6 +1105,7 @@ static int mtk_dsi_probe(struct platform_device *pdev)
+>  	struct mtk_dsi *dsi;
+>  	struct device *dev = &pdev->dev;
+>  	struct resource *regs;
+> +	struct regmap *regmap;
+>  	int irq_num;
+>  	int comp_id;
+>  	int ret;
+> @@ -1139,6 +1158,22 @@ static int mtk_dsi_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						 "mediatek,syscon-dsi");
 
-Thanks, I agree.
+Where is the binding document for "mediatek,syscon-dsi"?
 
-> I am not even sure we should mention it too much in the documentation.
+Regards,
+CK
 
-I think we need a usecase here, so it should be fine.
+> +	ret = of_property_read_u32_index(dev->of_node, "mediatek,syscon-dsi", 1,
+> +					 &dsi->sw_rst_b);
+> +
+> +	if (IS_ERR(regmap))
+> +		ret = PTR_ERR(regmap);
+> +
+> +	if (ret) {
+> +		ret = PTR_ERR(regmap);
+> +		dev_err(dev, "Failed to get mmsys registers: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	dsi->mmsys_sw_rst_b = regmap;
+> +
+>  	comp_id = mtk_ddp_comp_get_id(dev->of_node, MTK_DSI);
+>  	if (comp_id < 0) {
+>  		dev_err(dev, "Failed to identify by alias: %d\n", comp_id);
 
->=20
-> So whether the receiving end is ATF or something else it irrelevant, I th=
-ink. For
-> instance we have had discussions in Xen to provide guests some virtualise=
-d
-> device management support, and using an HVC mailbox seems like a neat
-> solution. This could be using the SCMI (or SCPI) protocol, but that's not=
- a
-> requirement. In this case the Xen hypervisor would be the one to pick up =
-the
-> mailbox trigger, probably forwarding the request to something else (Dom0 =
-in
-> this case).
-
-I do not get the point "forwarding the request", DomU HVC will trap to Xen,
-so how to forward to Dom0?
-
-Thanks,
-Peng.
-
-> Also having a generic SMC mailbox could avoid having the actual hardware
-> mailbox drivers in the kernel, so EL3 firmware could forward the request =
-to an
-> external management processor, and Linux would just work, without the nee=
-d
-> to describe the actual hardware mailbox device in some firmware tables. T=
-his
-> might help ACPI on those devices.
->=20
-> Cheers,
-> Andre.
->=20
-> > >
-> > > - the mailbox identifier is indicated as part of the SMC call such
-> > > that we can have multiple SCMI mailboxes serving both standard
-> > > protocols and non-standard (in the 0x80 and above) range, also they
-> > > may have different throughput (in hindsight, these could simply be
-> > > different channels)
-> > >
-> > > Your patch series looks both good and useful to me, I would just put
-> > > a provision in the binding to support an optional interrupt such
-> > > that asynchronism gets reasonably easy to plug in when it is
-> > > available (and desirable).
-> >
-> > Ok. Let me think about and add that in new version patch.
-> >
-> > Thanks,
-> > Peng.
-> >
-> > >
-> > > >
-> > > > This patch series provides a Linux mailbox compatible service
-> > > > which uses smc calls to invoke firmware code, for instance taking
-> > > > care of SCMI
-> > > requests.
-> > > > The actual requests are still communicated using the standard SCMI
-> > > > way of shared memory regions, but a dedicated mailbox hardware IP
-> > > > can be replaced via this new driver.
-> > > >
-> > > > This simple driver uses the architected SMC calling convention to
-> > > > trigger firmware services, also allows for using "HVC" calls to
-> > > > call into hypervisors or firmware layers running in the EL2 excepti=
-on
-> level.
-> > > >
-> > > > Patch 1 contains the device tree binding documentation, patch 2
-> > > > introduces the actual mailbox driver.
-> > > >
-> > > > Please note that this driver just provides a generic mailbox
-> > > > mechanism, though this is synchronous and one-way only (triggered
-> > > > by the OS only, without providing an asynchronous way of
-> > > > triggering request from the firmware).
-> > > > And while providing SCMI services was the reason for this
-> > > > exercise, this driver is in no way bound to this use case, but can
-> > > > be used generically where the OS wants to signal a mailbox
-> > > > condition to firmware or a hypervisor.
-> > > > Also the driver is in no way meant to replace any existing
-> > > > firmware interface, but actually to complement existing interfaces.
-> > > >
-> > > > [1]
-> > > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-F
-> > > > gith
-> > > >
-> > >
-> ub.com%2FMrVan%2Farm-trusted-firmware%2Ftree%2Fscmi&amp;data=3D02
-> > > %7C01%7
-> > > >
-> > >
-> Cpeng.fan%40nxp.com%7C010c9ddd5df645c9c66b08d6dfa46cb2%7C686ea1
-> > > d3bc2b4
-> > > >
-> > >
-> c6fa92cd99c5c301635%7C0%7C0%7C636942294631442665&amp;sdata=3DkN
-> > > 9bEFFcsZA
-> > > > 1ePeNLLfHmONpVaG6O5ajVQvKMuaBXyk%3D&amp;reserved=3D0
-> > > >
-> > > > Peng Fan (2):
-> > > >   DT: mailbox: add binding doc for the ARM SMC mailbox
-> > > >   mailbox: introduce ARM SMC based mailbox
-> > > >
-> > > >  .../devicetree/bindings/mailbox/arm-smc.txt        |  96
-> > > +++++++++++++
-> > > >  drivers/mailbox/Kconfig                            |   7 +
-> > > >  drivers/mailbox/Makefile                           |   2 +
-> > > >  drivers/mailbox/arm-smc-mailbox.c                  | 154
-> > > +++++++++++++++++++++
-> > > >  include/linux/mailbox/arm-smc-mailbox.h            |  10 ++
-> > > >  5 files changed, 269 insertions(+)  create mode 100644
-> > > > Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> > > >  create mode 100644 drivers/mailbox/arm-smc-mailbox.c  create
-> mode
-> > > > 100644 include/linux/mailbox/arm-smc-mailbox.h
-> > > >
-> > >
-> > >
-> > > --
-> > > Florian
 
