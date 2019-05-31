@@ -2,122 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2A1E30CDC
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 12:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE1B30D20
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 13:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726233AbfEaKvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 06:51:52 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:43149 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726307AbfEaKvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 06:51:51 -0400
-Received: by mail-lj1-f193.google.com with SMTP id z5so9137431lji.10
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2019 03:51:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eSFdj8v/B2hn6eq+aISdcOvbu5JLjtu1Vr8ajLwYUNk=;
-        b=aI2iy5Ad/wjTGlIM92kqSiFz7uuJXxsM4eJMJ/DVQV+jWAHN/0CCQdN+93pDoASKW9
-         1N0dBNSnQUw0G6ZDZ9KUpi+mbRf++fvqXn0fUiFF2pJFaeGvJ1uZrgTZJHYFBNO1Emlb
-         DXttEAlqIbd+pj1EjNkAAAi3maQwCR/z04iq1mrqS0wpw+vAY5wBbbbWHTMNBeiYjXMa
-         z8+ENbh7A7egZLdTl9rXCxRvePZBbywJKlAFC3GxtpqrtQ4CZvB0u/GPu5c9r9xgPOwE
-         KhLLA1yqyzf89NSVW+imIs4ICPDL5sGnFB8n6eUDeQNsoKR8oY6nkVNDBzshJOVxAd89
-         Uhaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eSFdj8v/B2hn6eq+aISdcOvbu5JLjtu1Vr8ajLwYUNk=;
-        b=Rw1aDuECJPZcURrFiXajz0ZwiTGua9tSKr0kqByNABSPoAkT2vX7kBTMepkDRBlirv
-         ulxYBQs7xAyZvPGWzovby0cVbMLQCC7j242LNYye6l59IvPcRlArrD1QBAxf+J7SUhI3
-         U8xB8Fl/HG4BpZTWadweAiX01UEhfx6kPkf06XWTXLZVqzGYb/syzdx8+Yq200FNvgoG
-         clwvzV+5EM3oP1/w9U93TK2yWVP3alfrbWVZSO9pCrMnKTYNwHPzuV4ofWd50dhNY1uU
-         Z/QF3r6NA9ch+M1z/xIdZucT1ZLdxv8nu44Pqs2AIkIuUSIHweC3FrK2pzLxLcOwWYNc
-         3rkg==
-X-Gm-Message-State: APjAAAVH98JhwupHKiuTqM4zoMfbP9vkvxhfX5Pl5RcWjiReWBbE7cQH
-        TkbPzDsDbM7gqa+bQ7ZWUQtNOmlu/8seCuK+wpexZNy/NWE=
-X-Google-Smtp-Source: APXvYqxDnzlPXNU+Y5DTaA2BPB+vxJPMWOGT2RoVnJiU+Yk0Rw8NoHYd3Xpa8pVi6m3Tfl2myIAXKSoBTK3XNFk1VOg=
-X-Received: by 2002:a2e:8902:: with SMTP id d2mr5474176lji.94.1559299909636;
- Fri, 31 May 2019 03:51:49 -0700 (PDT)
+        id S1726386AbfEaLON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 07:14:13 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:50240 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726240AbfEaLON (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 07:14:13 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A8B6341;
+        Fri, 31 May 2019 04:14:13 -0700 (PDT)
+Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2E6DF3F5AF;
+        Fri, 31 May 2019 04:14:10 -0700 (PDT)
+Subject: Re: [virtio-dev] Re: [PATCH v8 2/7] dt-bindings: virtio: Add
+ virtio-pci-iommu node
+To:     "Michael S. Tsirkin" <mst@redhat.com>
+Cc:     "joro@8bytes.org" <joro@8bytes.org>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "virtualization@lists.linux-foundation.org" 
+        <virtualization@lists.linux-foundation.org>,
+        "virtio-dev@lists.oasis-open.org" <virtio-dev@lists.oasis-open.org>,
+        "jasowang@redhat.com" <jasowang@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        Lorenzo Pieralisi <Lorenzo.Pieralisi@arm.com>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "kvmarm@lists.cs.columbia.edu" <kvmarm@lists.cs.columbia.edu>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "tnowicki@caviumnetworks.com" <tnowicki@caviumnetworks.com>,
+        "kevin.tian@intel.com" <kevin.tian@intel.com>,
+        "bauerman@linux.ibm.com" <bauerman@linux.ibm.com>
+References: <20190530170929.19366-1-jean-philippe.brucker@arm.com>
+ <20190530170929.19366-3-jean-philippe.brucker@arm.com>
+ <20190530133523-mutt-send-email-mst@kernel.org>
+From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Message-ID: <c3cd5dba-123d-e808-98b1-731ac2d4b950@arm.com>
+Date:   Fri, 31 May 2019 12:13:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190516085018.2207-1-masneyb@onstation.org> <20190520142149.D56DA214AE@mail.kernel.org>
- <CACRpkdZxu1LfK11OHEx5L_4kyjMZ7qERpvDzFj5u3Pk2kD1qRA@mail.gmail.com> <20190529101231.GA14540@basecamp>
-In-Reply-To: <20190529101231.GA14540@basecamp>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 31 May 2019 12:51:38 +0200
-Message-ID: <CACRpkdY-TcF7rizbPz=UcHrFvDgPJD68vbovNdcWP-aBYppp=g@mail.gmail.com>
-Subject: Re: [PATCH RESEND] ARM: dts: qcom: msm8974-hammerhead: add device
- tree bindings for vibrator
-To:     Brian Masney <masneyb@onstation.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190530133523-mutt-send-email-mst@kernel.org>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 29, 2019 at 12:12 PM Brian Masney <masneyb@onstation.org> wrote:
+On 30/05/2019 18:45, Michael S. Tsirkin wrote:
+> On Thu, May 30, 2019 at 06:09:24PM +0100, Jean-Philippe Brucker wrote:
+>> Some systems implement virtio-iommu as a PCI endpoint. The operating
+>> system needs to discover the relationship between IOMMU and masters long
+>> before the PCI endpoint gets probed. Add a PCI child node to describe the
+>> virtio-iommu device.
+>>
+>> The virtio-pci-iommu is conceptually split between a PCI programming
+>> interface and a translation component on the parent bus. The latter
+>> doesn't have a node in the device tree. The virtio-pci-iommu node
+>> describes both, by linking the PCI endpoint to "iommus" property of DMA
+>> master nodes and to "iommu-map" properties of bus nodes.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: Eric Auger <eric.auger@redhat.com>
+>> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+> 
+> So this is just an example right?
+> We are not defining any new properties or anything like that.
 
-> My first revision of this vibrator driver used the Linux PWM framework
-> due to the variable duty cycle:
+Yes it's just an example. The properties already exist but it's good to
+describe how to put them together for this particular case, because
+there isn't a precedent describing the topology for an IOMMU that
+appears on the PCI bus.
 
-So what I perceive if I get the thread right is that actually a lot of
-qcom clocks (all with the M/N/D counter set-up) have variable duty
-cycle. Very few consumers use that feature.
+> I think down the road for non dt platforms we want to put this
+> info in the config space of the device. I do not think ACPI
+> is the best option for this since not all systems have it.
+> But that can wait.
 
-It would be a bit much to ask that they all be implemented as PWMs
-and then cast into clocks for the 50/50 dutycycle case, I get that.
+There is the probe order problem - PCI needs this info before starting
+to probe devices on the bus. Maybe we could store the info in a separate
+memory region, that is referenced on the command-line and that the guest
+can read early.
 
-What about simply doing both?
-
-Export the same clocks from the clk and pwm frameworks and be
-happy. Of course with some mutex inside the driver so that it can't
-be used from both ends at the same time.
-
-Further Thierry comments
-https://lore.kernel.org/lkml/20181012114749.GC31561@ulmo/
-
-> The device itself doesn't seem to be a
-> generic PWM in the way that the PWM framework
-> expects it.
-
-I don't see why.  I just look at this function from the original
-patch series:
-
-+static int msm_vibra_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
-+ int duty_ns, int period_ns)
-+{
-+ struct msm_vibra_pwm *msm_pwm = to_msm_vibra_pwm(chip);
-+ int d_reg_val;
-+
-+ d_reg_val = 127 - (((duty_ns / 1000) * 126) / (period_ns / 1000));
-+
-+ msm_vibra_pwm_write(msm_pwm, REG_CFG_RCGR,
-+    (2 << 12) | /* dual edge mode */
-+    (0 << 8) |  /* cxo */
-+    (7 << 0));
-+ msm_vibra_pwm_write(msm_pwm, REG_M, 1);
-+ msm_vibra_pwm_write(msm_pwm, REG_N, 128);
-+ msm_vibra_pwm_write(msm_pwm, REG_D, d_reg_val);
-+ msm_vibra_pwm_write(msm_pwm, REG_CMD_RCGR, 1);
-+ msm_vibra_pwm_write(msm_pwm, REG_CBCR, 1);
-+
-+ return 0;
-+}
-
-How is this NOT a a generic PWM in the way that the PWM
-framework expects it? It configures the period and duty cycle on
-a square wave, that is what a generic PWM is in my book.
-
-Yours,
-Linus Walleij
+Thanks,
+Jean
