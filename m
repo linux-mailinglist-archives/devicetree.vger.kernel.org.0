@@ -2,21 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC8B30914
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 08:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D9D30919
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 09:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726158AbfEaG7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 02:59:39 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:43223 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725963AbfEaG7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 02:59:38 -0400
-X-Originating-IP: 90.89.68.76
+        id S1726330AbfEaHAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 03:00:31 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:55915 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725963AbfEaHAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 03:00:31 -0400
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 0DDFCE0005;
-        Fri, 31 May 2019 06:59:28 +0000 (UTC)
-Date:   Fri, 31 May 2019 08:59:28 +0200
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 8ECD020000D;
+        Fri, 31 May 2019 07:00:24 +0000 (UTC)
+Date:   Fri, 31 May 2019 09:00:23 +0200
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
 To:     Jagan Teki <jagan@amarulasolutions.com>
 Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
@@ -27,54 +26,54 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         linux-amarula@amarulasolutions.com,
         Sergey Suloev <ssuloev@orpaltech.com>,
         Ryan Pannell <ryan@osukl.com>, bshah@mykolab.com
-Subject: Re: [PATCH v9 1/9] dt-bindings: sun6i-dsi: Add A64 MIPI-DSI
- compatible
-Message-ID: <20190531065928.4wfr3kjngefy4q2b@flea>
+Subject: Re: [PATCH v9 2/9] dt-bindings: sun6i-dsi: Add A64 DPHY compatible
+ (w/ A31 fallback)
+Message-ID: <20190531070023.2vj4sq4kk3aji25d@flea>
 References: <20190529105615.14027-1-jagan@amarulasolutions.com>
- <20190529105615.14027-2-jagan@amarulasolutions.com>
+ <20190529105615.14027-3-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190529105615.14027-2-jagan@amarulasolutions.com>
+In-Reply-To: <20190529105615.14027-3-jagan@amarulasolutions.com>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 29, 2019 at 04:26:07PM +0530, Jagan Teki wrote:
-> The MIPI DSI controller in Allwinner A64 is similar to A33.
+On Wed, May 29, 2019 at 04:26:08PM +0530, Jagan Teki wrote:
+> The MIPI DSI PHY controller on Allwinner A64 is similar
+> on the one on A31.
 >
-> But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
-> to with separate compatible for A64 on the same driver.
+> Add A64 compatible and append A31 compatible as fallback.
 >
 > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > Reviewed-by: Rob Herring <robh@kernel.org>
-> Tested-by: Merlijn Wajer <merlijn@wizzup.org>
 > ---
 >  Documentation/devicetree/bindings/display/sunxi/sun6i-dsi.txt | 1 +
 >  1 file changed, 1 insertion(+)
 >
 > diff --git a/Documentation/devicetree/bindings/display/sunxi/sun6i-dsi.txt b/Documentation/devicetree/bindings/display/sunxi/sun6i-dsi.txt
-> index 1cc40663b7a2..9877398be69a 100644
+> index 9877398be69a..d0ce51fea103 100644
 > --- a/Documentation/devicetree/bindings/display/sunxi/sun6i-dsi.txt
 > +++ b/Documentation/devicetree/bindings/display/sunxi/sun6i-dsi.txt
-> @@ -12,6 +12,7 @@ The DSI Encoder generates the DSI signal from the TCON's.
+> @@ -38,6 +38,7 @@ D-PHY
 >  Required properties:
 >    - compatible: value must be one of:
->      * allwinner,sun6i-a31-mipi-dsi
-> +    * allwinner,sun50i-a64-mipi-dsi
+>      * allwinner,sun6i-a31-mipi-dphy
+> +    * allwinner,sun50i-a64-mipi-dphy, allwinner,sun6i-a31-mipi-dphy
 >    - reg: base address and size of memory-mapped region
->    - interrupts: interrupt associated to this IP
 >    - clocks: phandles to the clocks feeding the DSI encoder
+>      * bus: the DSI interface clock
 
-We've switch to YAML now, and the compatible should be expressed that
-way now:
+And this one should be:
 
 compatible:
-  enum:
-    - allwinner,sun6i-a31-mipi-dsi
-    - allwinner,sun50i-a64-mipi-dsi
+  oneOf:
+    - const: allwinner,sun6i-a31-mipi-dphy
+    - items:
+      - const: allwinner,sun50i-a64-mipi-dphy
+      - const: allwinner,sun6i-a31-mipi-dphy
 
 Maxime
 
