@@ -2,115 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B78AB31672
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 23:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39298316C5
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 23:50:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727233AbfEaVMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 17:12:38 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:46256 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727005AbfEaVMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 17:12:38 -0400
-Received: by mail-qt1-f196.google.com with SMTP id z19so2594676qtz.13;
-        Fri, 31 May 2019 14:12:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AZptDCZbtMb0PQHhtVnS/aF9UysKMAzgtneB0+7FC+I=;
-        b=fXeIVN34xckBCndWGV5hGmm7h9qaopS1ztQocf+iEL8dlB9iQt0WrO6Yqw1j2BjNb4
-         Av4aWOR5F3XWolPuq/+zl1aGyfviRFwmvriCnSiYMdSsYpAepBkUg1CvBsHjU3NogKRk
-         qywUvfnhntKZcKN3oIjEAq25M2rGaUwdJGIs2IlUg71Y9whAuZRB1Lbi6HT1mGMfh9um
-         8fT6i35u7AqX3tfVpPvDwIvNbvC7gecbUp7fn7dATjugICJY9ql6Sd0egP9WZlRWBs5f
-         Vumh8D/d/eG5WKMOCvGfk/S5wmyGuCgK+Ipl9NoCjOiviCIl3VE5SEPhB+3YecFl9vag
-         Y1LQ==
-X-Gm-Message-State: APjAAAWs2RUKSTHYkiK0O9znTh8lDDX2DraweKL+E6uhqk/KxX2xvOgT
-        MLs2idA2MFdU6ks31xBK3743tMAen4Q9tIs8RjR3Jm9i
-X-Google-Smtp-Source: APXvYqzHvUnfa6x/YLh/Fjn3Tw3E+yBquiW3NroCyGZFdVC85oGAnHKEDZucf7nAm9xpQNUD3gkU2OGRWDNqkRg6xhY=
-X-Received: by 2002:aed:3e7c:: with SMTP id m57mr6159988qtf.204.1559337157081;
- Fri, 31 May 2019 14:12:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190531035348.7194-1-elder@linaro.org> <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
- <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org> <CAK8P3a05CevRBV3ym+pnKmxv+A0_T+AtURW2L4doPAFzu3QcJw@mail.gmail.com>
- <a28c5e13-59bc-144d-4153-9d104cfa9188@linaro.org>
-In-Reply-To: <a28c5e13-59bc-144d-4153-9d104cfa9188@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 31 May 2019 23:12:20 +0200
-Message-ID: <CAK8P3a2rkQd3t-yNdNGePW8E7rhObjAvUpW6Ga9AM6rJJ27BOw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Alex Elder <elder@linaro.org>
-Cc:     Dan Williams <dcbw@redhat.com>, David Miller <davem@davemloft.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        evgreen@chromium.org, Ben Chan <benchan@google.com>,
-        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
-        syadagir@codeaurora.org,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        abhishek.esse@gmail.com, Networking <netdev@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        id S1726531AbfEaVuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 17:50:07 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:51114 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725913AbfEaVuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 17:50:07 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 2BEDE15015E90;
+        Fri, 31 May 2019 14:50:06 -0700 (PDT)
+Date:   Fri, 31 May 2019 14:50:05 -0700 (PDT)
+Message-Id: <20190531.145005.798440469894507477.davem@davemloft.net>
+To:     elder@linaro.org
+Cc:     arnd@arndb.de, bjorn.andersson@linaro.org,
+        ilias.apalodimas@linaro.org, evgreen@chromium.org,
+        benchan@google.com, ejcaruso@google.com, cpratapa@codeaurora.org,
+        syadagir@codeaurora.org, subashab@codeaurora.org,
+        abhishek.esse@gmail.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v2 03/17] soc: qcom: ipa: main code
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190531035348.7194-4-elder@linaro.org>
+References: <20190531035348.7194-1-elder@linaro.org>
+        <20190531035348.7194-4-elder@linaro.org>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 31 May 2019 14:50:06 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 31, 2019 at 10:47 PM Alex Elder <elder@linaro.org> wrote:
-> On 5/31/19 2:19 PM, Arnd Bergmann wrote:
-> > On Fri, May 31, 2019 at 6:36 PM Alex Elder <elder@linaro.org> wrote:
-> >> On 5/31/19 9:58 AM, Dan Williams wrote:
-> >>> On Thu, 2019-05-30 at 22:53 -0500, Alex Elder wrote:
-> >
-> > Does this mean that IPA can only be used to back rmnet, and rmnet
-> > can only be used on top of IPA, or can or both of them be combined
-> > with another driver to talk to instead?
->
-> No it does not mean that.
->
-> As I understand it, one reason for the rmnet layer was to abstract
-> the back end, which would allow using a modem, or using something
-> else (a LAN?), without exposing certain details of the hardware.
-> (Perhaps to support multiplexing, etc. without duplicating that
-> logic in two "back-end" drivers?)
->
-> To be perfectly honest, at first I thought having IPA use rmnet
-> was a cargo cult thing like Dan suggested, because I didn't see
-> the benefit.  I now see why one would use that pass-through layer
-> to handle the QMAP features.
->
-> But back to your question.  The other thing is that I see no
-> reason the IPA couldn't present a "normal" (non QMAP) interface
-> for a modem.  It's something I'd really like to be able to do,
-> but I can't do it without having the modem firmware change its
-> configuration for these endpoints.  My access to the people who
-> implement the modem firmware has been very limited (something
-> I hope to improve), and unless and until I can get corresponding
-> changes on the modem side to implement connections that don't
-> use QMAP, I can't implement such a thing.
+From: Alex Elder <elder@linaro.org>
+Date: Thu, 30 May 2019 22:53:34 -0500
 
-Why would that require firmware changes? What I was thinking
-here is to turn the bits of the rmnet driver that actually do anything
-interesting on the headers into a library module (or a header file
-with inline functions) that can be called directly by the ipa driver,
-keeping the protocol unchanged.
+> +	void *route_virt;
+ ...
+> +	void *filter_virt;
+ ...
 
-> > Always passing data from one netdev to another both ways
-> > sounds like it introduces both direct CPU overhead, and
-> > problems with flow control when data gets buffered inbetween.
->
-> My impression is the rmnet driver is a pretty thin layer,
-> so the CPU overhead is probably not that great (though
-> deaggregating a message is expensive).  I agree with you
-> on the flow control.
-
-The CPU overhead I mean is not from executing code in the
-rmnet driver, but from passing packets through the network
-stack between the two drivers, i.e. adding each frame to
-a queue and taking it back out. I'm not sure how this ends
-up working in reality but from a first look it seems like
-we might bounce in an out of the softirq handler inbetween.
-
-          Arnd
+If these are arrays of u64's, please declare them as "u64 *" instead of
+the opaque "void *".
