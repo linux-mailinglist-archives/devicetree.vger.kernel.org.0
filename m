@@ -2,115 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C99D6305E2
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 02:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D06230614
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 03:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbfEaAtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 May 2019 20:49:02 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:46960 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726131AbfEaAtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 20:49:02 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4V0mp6I026191;
-        Thu, 30 May 2019 19:48:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559263731;
-        bh=WK2k58QukEIJdpLlTnnulnkBnYtAL9Snthfg/26Dpqk=;
-        h=From:To:CC:Subject:Date;
-        b=wUbIg09Ma8NH35/hGDFgI+X+6t2VsqCEP11qR0HcHzyf0GUJTfCh+Wb4WFG0z/K1f
-         ycfD2gTCFgeJBHqBpww77/TGP7k07QHVztDDLrkHtsLvQU4YFKv39+FY7ai+fkEKqg
-         Kn4x/tC7wHtG6TN71BwFRYvNlLm4ATZRzc735ws0=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4V0moI4075840
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 30 May 2019 19:48:50 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 30
- May 2019 19:48:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 30 May 2019 19:48:50 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4V0moIh026309;
-        Thu, 30 May 2019 19:48:50 -0500
-Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
-        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x4V0mnm09273;
-        Thu, 30 May 2019 19:48:49 -0500 (CDT)
-From:   Suman Anna <s-anna@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Add Main NavSS Interrupt controller node
-Date:   Thu, 30 May 2019 19:48:48 -0500
-Message-ID: <20190531004848.32061-1-s-anna@ti.com>
-X-Mailer: git-send-email 2.21.0
+        id S1726540AbfEaBPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 May 2019 21:15:43 -0400
+Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:29020 "EHLO
+        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726430AbfEaBPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 May 2019 21:15:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559265342; x=1590801342;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=3dcPHAI0Gvq/CrzqlflWGQYcqDQGvQfO4+LTuOCZQf0=;
+  b=o1iYe1RCH25ehBM/bk0HZxbeiV7gS9nmkZA8FO7NcKAlEp4S9T1BWZ6+
+   DJutdo6TCH8cj0jZFvQkFJNbotDEPntqmxsjXSNfiztNmffFrRYCqW5sk
+   7Kg+zTCXDRrjwCkxXY1UGLuRuzMz12UApqnPdiaFK0RPya0cNug7zD8rQ
+   M=;
+X-IronPort-AV: E=Sophos;i="5.60,533,1549929600"; 
+   d="scan'208";a="677322120"
+Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1a-e34f1ddc.us-east-1.amazon.com) ([10.47.22.38])
+  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 31 May 2019 01:15:38 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
+        by email-inbound-relay-1a-e34f1ddc.us-east-1.amazon.com (Postfix) with ESMTPS id CD7CAA22BA;
+        Fri, 31 May 2019 01:15:34 +0000 (UTC)
+Received: from EX13D13UWB002.ant.amazon.com (10.43.161.21) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Fri, 31 May 2019 01:15:34 +0000
+Received: from EX13D21UWB003.ant.amazon.com (10.43.161.212) by
+ EX13D13UWB002.ant.amazon.com (10.43.161.21) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Fri, 31 May 2019 01:15:33 +0000
+Received: from EX13D21UWB003.ant.amazon.com ([10.43.161.212]) by
+ EX13D21UWB003.ant.amazon.com ([10.43.161.212]) with mapi id 15.00.1367.000;
+ Fri, 31 May 2019 01:15:33 +0000
+From:   "Herrenschmidt, Benjamin" <benh@amazon.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "james.morse@arm.com" <james.morse@arm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "bp@alien8.de" <bp@alien8.de>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+Thread-Topic: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+Thread-Index: AQHVFtCyWJ5GzFYeVU2EkxX7Kqkx+qaD+syAgAB0QoA=
+Date:   Fri, 31 May 2019 01:15:33 +0000
+Message-ID: <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
+         <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+         <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
+In-Reply-To: <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.43.160.73]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B3A23C2C906B5342B0BC7E950DEA5E92@amazon.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Interrupt controller node for the Interrupt Router present within
-the Main NavSS module. This Interrupt Router can route 192 interrupts to
-the GIC_SPI in 3 sets of 64 interrupts each. Note that the last set is
-reserved for the host ID A72_3 for hypervisor usecases, so the node is
-added only with 2 sets for the Linux kernel context (host id A72_2). This
-is specified through the ti,sci-rm-range-girq property.
-
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-Hi Tero,
-
-This patch depends on the J721E series [1] from Nishanth. Patch tested
-using additional patches exercising Mailbox IP.
-
-regards
-Suman
-
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=121189
-
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index d42912044a5d..36c51ff9a898 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -50,6 +50,24 @@
- 		#iommu-cells = <1>;
- 	};
- 
-+	cbass_main_navss: interconnect0 {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		main_navss_intr: interrupt-controller1 {
-+			compatible = "ti,sci-intr";
-+			ti,intr-trigger-type = <4>;
-+			interrupt-controller;
-+			interrupt-parent = <&gic500>;
-+			#interrupt-cells = <2>;
-+			ti,sci = <&dmsc>;
-+			ti,sci-dst-id = <14>;
-+			ti,sci-rm-range-girq = <0>, <2>;
-+		};
-+	};
-+
- 	secure_proxy_main: mailbox@32c00000 {
- 		compatible = "ti,am654-secure-proxy";
- 		#mbox-cells = <1>;
--- 
-2.21.0
-
+T24gVGh1LCAyMDE5LTA1LTMwIGF0IDExOjE5IC0wNzAwLCBCb3JpcyBQZXRrb3Ygd3JvdGU6DQo+
+IE9uIE1heSAzMCwgMjAxOSAzOjE1OjI5IEFNIFBEVCwgSGFubmEgSGF3YSA8aGhoYXdhQGFtYXpv
+bi5jb20+IHdyb3RlOg0KPiA+IEFkZCBzdXBwb3J0IGZvciBlcnJvciBkZXRlY3Rpb24gYW5kIGNv
+cnJlY3Rpb24gZm9yIEFtYXpvbidzDQo+ID4gQW5uYXB1cm5hDQo+ID4gTGFicyBTb0NzIGZvciBM
+MS9MMiBjYWNoZXMuDQo+IA0KPiANCj4gU28gdGhpcyBzaG91bGQgYmUgYSBkcml2ZXIgZm9yIHRo
+ZSB3aG9sZSBhbm5hcHVybmEgcGxhdGZvcm0gYW5kIG5vdA0KPiBvbmx5IGFib3V0IHRoZSBSQVMg
+ZnVuY3Rpb25hbGl0eSBpbiBhbiBJUCBsaWtlIHRoZSBjYWNoZXMuIFNlZSBvdGhlcg0KPiBBUk0g
+RURBQyBkcml2ZXJzIGluIGRyaXZlcnMvZWRhYy8gZm9yIGFuIGV4YW1wbGUuDQoNClRoaXMgaXNu
+J3QgdGVycmlibHkgaGVscGZ1bCwgdGhlcmUncyBub3RoaW5nIHRlbGxpbmcgYW55Ym9keSB3aGlj
+aCBvZg0KdGhvc2UgZmlsZXMgY29ycmVzcG9uZHMgdG8gYW4gQVJNIFNvQyA6LSkNCg0KVGhhdCBz
+YWlkIC4uLg0KDQpZb3UgcmVhbGx5IHdhbnQgYSBzaW5nbGUgRURBQyBkcml2ZXIgdGhhdCBjb250
+YWlucyBhbGwgdGhlIHN0dWZmIGZvcg0KdGhlIGNhY2hlcywgdGhlIG1lbW9yeSBjb250cm9sbGVy
+LCBldGMuLi4gPw0KDQpUaGUgaWRlYSBoZXJlIHdhcyB0byBzZXBhcmF0ZSB0aGUgY29yZSBMMS9M
+MiBFREFDIGZyb20gdGhlIG1lbW9yeQ0KY29udHJvbGxlciBFREFDIEkgdGhpbmsgLi4uIFJvYmVu
+LCBIYW5uYSwgY2FuIHlvdSBkZXNjcmliZSB0aGUgbG9uZyBydW4NCnN0cmF0ZWd5IGhlcmUgPw0K
+DQpDaGVlcnMsDQpCZW4uDQoNCg==
