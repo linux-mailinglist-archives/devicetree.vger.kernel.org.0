@@ -2,216 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6BEB30989
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 09:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11BF83099D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 09:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726403AbfEaHlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 03:41:02 -0400
-Received: from mail-eopbgr1410120.outbound.protection.outlook.com ([40.107.141.120]:43006
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726275AbfEaHlC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 03:41:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2JJfhjlChlsZblk494lEolIoahzYewRVgkt13gf0nWw=;
- b=UuI8pqtaJug4kV9Uu/Oe/3rLCLNq7eiMY4k8vSVqL0yp2kn34OWbUyLri+F2I67YD2C4f6rdN6cRVi8PV4IZYEmMEzal8QtuafREC+3xfKedXeVm8UctCJCkwGFCbMP7wyNhtsYCeJXNji0p1CpPACp6jokK826sebNkCYGVx9w=
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
- OSBPR01MB3159.jpnprd01.prod.outlook.com (52.134.253.78) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.17; Fri, 31 May 2019 07:40:52 +0000
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::a146:39f0:5df9:11bc]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::a146:39f0:5df9:11bc%7]) with mapi id 15.20.1922.021; Fri, 31 May 2019
- 07:40:52 +0000
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        id S1727051AbfEaHmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 03:42:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45472 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725955AbfEaHmv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 03:42:51 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 893E326529;
+        Fri, 31 May 2019 07:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559288570;
+        bh=OWF+4zfsD8qBU6ktHETlir6S0oiuOLtAfekZ034iKY0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iysMdhNCi2xWgzoTXnZjUwJc2pdkVKxfVEZ8thttZYmoxAdx87t1qlmIu22KVDXAY
+         7onsfx8ZDeIswfEtGuce16zrtvk34R4q77rANfiVsMRgq1H3FwtKwsIINHAkQ7uhri
+         jXtE3SvBGg2X5bfWVxh/oUkWwWpWzZBiR9Qy74+U=
+Date:   Fri, 31 May 2019 15:41:31 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Pankaj Bansal <pankaj.bansal@nxp.com>
+Cc:     Leo Li <leoyang.li@nxp.com>, Mingkai Hu <mingkai.hu@nxp.com>,
+        Rajesh Bhagat <rajesh.bhagat@nxp.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yu Chen <chenyu56@huawei.com>
-Subject: RE: [PATCH v6 06/10] device connection: Add
- fwnode_connection_find_match()
-Thread-Topic: [PATCH v6 06/10] device connection: Add
- fwnode_connection_find_match()
-Thread-Index: AQHVFfJUqUbU7Icg8UiVJq3QJgY4TaaE3Adg
-Date:   Fri, 31 May 2019 07:40:52 +0000
-Message-ID: <OSBPR01MB2103EAE24D36E23BFE8A76A5B8190@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
- <1559115828-19146-7-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1559115828-19146-7-git-send-email-chunfeng.yun@mediatek.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biju.das@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e226b5ac-0d7b-4e75-1332-08d6e59b4f1e
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB3159;
-x-ms-traffictypediagnostic: OSBPR01MB3159:
-x-microsoft-antispam-prvs: <OSBPR01MB31591D0E63212706D3957FACB8190@OSBPR01MB3159.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 00540983E2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(39860400002)(396003)(376002)(346002)(366004)(189003)(199004)(51914003)(305945005)(53936002)(33656002)(110136005)(99286004)(5660300002)(256004)(14444005)(76176011)(4326008)(25786009)(68736007)(6116002)(2906002)(7736002)(6246003)(86362001)(7696005)(74316002)(71200400001)(11346002)(71190400001)(7416002)(476003)(3846002)(54906003)(52536014)(9686003)(66066001)(55016002)(186003)(76116006)(26005)(14454004)(102836004)(64756008)(66946007)(44832011)(229853002)(81156014)(73956011)(6436002)(478600001)(6506007)(316002)(446003)(66556008)(8936002)(66476007)(66446008)(486006)(81166006)(8676002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB3159;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 9ve87iDhwS2Bv2t20CDXq8Lmym3IMLYLmUYuFGiVVhZDrG3GENrS7SgY7pnqrMT3/ZjRVbEDCvmoBaeUENs63lIDw7TKlli4dQ7R8gQO93Q6o1BwEbKkPZM4h+oLnAMB82hoB/8raodlNKKedS6veSvDqegQgbePg6vWFbZXkXSa9O8BxoX3oXr1s+DRjOdGTqj8Y7VW4xCSR2W022adb0g3eFiekoRIPHBAPCc0C92EpbxZgaO2qCnAO559QZESckJFltNM0dkP7Q9tY30XufQO5DiPAvOmuKCf+sCgSKbgMmx36D2CGLm+dKZ6ci/wfdOZa0PUuN3dIMhDzXmpwikBSw1No7LOGoAWbuMpfryrYXjOJdV1NKNRw0bK2z3zK8+jJuKVgqutNW0ICFaVTvV5+LLsk73NkjCaiMEtB9k=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: fsl: ls1046: Modify the qspi flash frequency
+Message-ID: <20190531074128.GD23453@dragon>
+References: <20190521150336.8409-1-pankaj.bansal@nxp.com>
+ <20190523124806.GU9261@dragon>
+ <VI1PR0401MB24966C5BB07836D5FA00BC12F11D0@VI1PR0401MB2496.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e226b5ac-0d7b-4e75-1332-08d6e59b4f1e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2019 07:40:52.6808
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: biju.das@bp.renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3159
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VI1PR0401MB24966C5BB07836D5FA00BC12F11D0@VI1PR0401MB2496.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, May 27, 2019 at 06:12:28AM +0000, Pankaj Bansal wrote:
+> HI Shawn,
+> 
+> > -----Original Message-----
+> > From: Shawn Guo <shawnguo@kernel.org>
+> > Sent: Thursday, 23 May, 2019 06:18 PM
+> > To: Pankaj Bansal <pankaj.bansal@nxp.com>
+> > Cc: Leo Li <leoyang.li@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>; Rajesh
+> > Bhagat <rajesh.bhagat@nxp.com>; linux-arm-kernel@lists.infradead.org;
+> > devicetree@vger.kernel.org
+> > Subject: Re: [PATCH] arm64: dts: fsl: ls1046: Modify the qspi flash frequency
+> > 
+> > On Tue, May 21, 2019 at 09:40:09AM +0000, Pankaj Bansal wrote:
+> > > The qspi flash in ls1046a based QDS and RDB boards can operate at
+> > > 50MHz frequency.
+> > > Therefore, update the maximum supported freq in their respective dts
+> > > files.
+> > >
+> > > Signed-off-by: Pankaj Bansal <pankaj.bansal@nxp.com>
+> > 
+> > Do not use base64 encoding for patch posting.
+> 
+> I did not understand this comment? Do you want me to change something in patch?
+> I had run checkpatch script on the patch before sending and it did not report any waning or error.
+> Can this patch not be merged in current tree ?
 
-Thanks for the patch
+You mail server is using a content-transfer-encoding that makes patch
+applying very difficult.  Talk to NXP colleague Anson Huang
+<Anson.Huang@nxp.com> to find out how to fix it.
 
-> Subject: [PATCH v6 06/10] device connection: Add
-> fwnode_connection_find_match()
->=20
-> From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->=20
-> The fwnode_connection_find_match() function is exactly the same as
-> device_connection_find_match(), except it takes struct fwnode_handle as
-> parameter instead of struct device.
-> That allows locating device connections before the device entries have be=
-en
-> created.
->=20
-> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Tested-by: Biju Das <biju.das@bp.renesas.com>
-> ---
-> v6:
->   new patch
-> ---
->  drivers/base/devcon.c  | 33 +++++++++++++++++++++++++--------
-> include/linux/device.h | 10 +++++++---
->  2 files changed, 32 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/base/devcon.c b/drivers/base/devcon.c index
-> 04db9ae235e4..8311b70bbca2 100644
-> --- a/drivers/base/devcon.c
-> +++ b/drivers/base/devcon.c
-> @@ -12,9 +12,6 @@
->  static DEFINE_MUTEX(devcon_lock);
->  static LIST_HEAD(devcon_list);
->=20
-> -typedef void *(*devcon_match_fn_t)(struct device_connection *con, int
-> ep,
-> -				   void *data);
-> -
->  static void *
->  fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char
-> *con_id,
->  			  void *data, devcon_match_fn_t match) @@ -38,6
-> +35,28 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode,
-> const char *con_id,
->  	return NULL;
->  }
->=20
-> +/**
-> + * fwnode_connection_find_match - Find connection from a device node
-> + * @fwnode: Device node with the connection
-> + * @con_id: Identifier for the connection
-> + * @data: Data for the match function
-> + * @match: Function to check and convert the connection description
-> + *
-> + * Find a connection with unique identifier @con_id between @fwnode and
-> +another
-> + * device node. @match will be used to convert the connection
-> +description to
-> + * data the caller is expecting to be returned.
-> + */
-> +void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
-> +				   const char *con_id, void *data,
-> +				   devcon_match_fn_t match)
-> +{
-> +	if (!fwnode || !match)
-> +		return NULL;
-> +
-> +	return fwnode_graph_devcon_match(fwnode, con_id, data, match);
-> }
-> +EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
-> +
->  /**
->   * device_connection_find_match - Find physical connection to a device
->   * @dev: Device with the connection
-> @@ -61,11 +80,9 @@ void *device_connection_find_match(struct device
-> *dev, const char *con_id,
->  	if (!match)
->  		return NULL;
->=20
-> -	if (fwnode) {
-> -		ret =3D fwnode_graph_devcon_match(fwnode, con_id, data,
-> match);
-> -		if (ret)
-> -			return ret;
-> -	}
-> +	ret =3D fwnode_connection_find_match(fwnode, con_id, data,
-> match);
-> +	if (ret)
-> +		return ret;
->=20
->  	mutex_lock(&devcon_lock);
->=20
-> diff --git a/include/linux/device.h b/include/linux/device.h index
-> e85264fb6616..9445f068602f 100644
-> --- a/include/linux/device.h
-> +++ b/include/linux/device.h
-> @@ -772,10 +772,14 @@ struct device_connection {
->  	struct list_head	list;
->  };
->=20
-> +typedef void *(*devcon_match_fn_t)(struct device_connection *con, int
-> ep,
-> +				   void *data);
-> +
-> +void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
-> +				   const char *con_id, void *data,
-> +				   devcon_match_fn_t match);
->  void *device_connection_find_match(struct device *dev, const char
-> *con_id,
-> -				void *data,
-> -				void *(*match)(struct device_connection
-> *con,
-> -					       int ep, void *data));
-> +				   void *data, devcon_match_fn_t match);
->=20
->  struct device *device_connection_find(struct device *dev, const char
-> *con_id);
->=20
-> --
-> 2.21.0
+https://patchwork.kernel.org/patch/10944169/#22656941
 
+Shawn
