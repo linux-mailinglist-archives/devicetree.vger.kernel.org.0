@@ -2,87 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B385F3095A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 09:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D233096D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 09:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726158AbfEaH36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 03:29:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42208 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725955AbfEaH36 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 03:29:58 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E55FA264E7;
-        Fri, 31 May 2019 07:29:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559287798;
-        bh=Sx1m5/E8D/5A8KuMvDlpJkX5r56naO8qUsBat8C+qgk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mTrEKnP3igGNFyinU5WlegALoxSzHevTxDMhvJML01Fxvds9diY9kGh0ptqTEVba6
-         jZt+kT6htNw5fnBs9nk4d0FTlH5KiAWoPM3Y6WcCd31Ggzsfzo/Mgb3lVBrxVqA5jx
-         jhOcrry6DTnI5nrlsGw61OpHny4D+zMtZFL6SIw8=
-Date:   Fri, 31 May 2019 15:28:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx8mm-evk: Enable audio codec wm8524
-Message-ID: <20190531072832.GC23453@dragon>
-References: <20190515144210.25596-1-daniel.baluta@nxp.com>
- <20190515144210.25596-3-daniel.baluta@nxp.com>
- <CAOMZO5A6Gv5k3up0AtKrhQPyMLMe_8SXift68KEP2J+j8D_cJg@mail.gmail.com>
- <CAOMZO5BTqwnun6d7G1vcHUu_Rs+xfvgxTzamWnBPy76W7eeF_A@mail.gmail.com>
- <CAEnQRZD98TKduVLshGrBANRB6NT7Se6CXD0cgd5XRYa6grAo4Q@mail.gmail.com>
+        id S1726403AbfEaHi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 03:38:58 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:37054 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725955AbfEaHi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 03:38:58 -0400
+Received: by mail-pg1-f195.google.com with SMTP id 20so3567905pgr.4
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2019 00:38:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=g8DOkQs3tJJMTiP3KpsnfFyLKFLOLt0qtvZcNKVpUCg=;
+        b=TjB+ZxUhUm9GBCDVwfx4e/cuXlJwh7kaM6nf9OLRcp6qOX/H8RxjWlYekkcJ93ftDp
+         cFsdU/itNxI04wVELPsulpenyXzmZkmk4BE0w9JDz2/6hOoEr4yanKFBmiogY1Um3EWI
+         iIRm6hyyW7zUhRf0FNanzmwdP6tw7YfeQRQrM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=g8DOkQs3tJJMTiP3KpsnfFyLKFLOLt0qtvZcNKVpUCg=;
+        b=TLO5pi1YoxxJEGZqE0mwwyp4dJ2jnMqor/yfUdp7/3ZiPBXblOLiy88vXTvCWUOSSd
+         SvzdI2Qm4Kxyp+PPR+itn3Z8SR7jqbJnizDpynZw/m+gMGElZ62+Lc9fcafHR0S+Pn/D
+         6jFigvs9Y+jYS1buPdWlz1RC9MEVTK1730s5OMc3v3Nn+EzDEY7bUALI+LGgmOnPlR2x
+         efE0VX0JC5aFtFpb/T8MotpgSgW4sSXQgBMWBvY49fXfszLnljUKHA4FAg1y3Sk9BMvv
+         FQdCR3abzIcPjTy9Et5OWxHoCThRjUl42ij0BuQ5sHsvzIJ+vwbroz21B9ppfkwwWIPB
+         nqcg==
+X-Gm-Message-State: APjAAAVPrLLhoVMySmxLSNKFuWZwqDDZAtAXWd/kb7zMKILSuLc/fsiK
+        SgJiEPvZX8LmKXocOzs4YV2blgWhYpw=
+X-Google-Smtp-Source: APXvYqyh9Gx4WMpB1o5c4zInzMILlvq5fF1RbNXMaUCPTCYPs4s+1ahQf9BJqP4MNuiuhHpkwzReBA==
+X-Received: by 2002:a62:5306:: with SMTP id h6mr8141814pfb.29.1559288337403;
+        Fri, 31 May 2019 00:38:57 -0700 (PDT)
+Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
+        by smtp.googlemail.com with ESMTPSA id r71sm17051741pjb.2.2019.05.31.00.38.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 31 May 2019 00:38:56 -0700 (PDT)
+From:   Pi-Hsun Shih <pihsun@chromium.org>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>, Erin Lo <erin.lo@mediatek.com>,
+        Rob Herring <robh@kernel.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-remoteproc@vger.kernel.org (open list:REMOTE PROCESSOR
+        (REMOTEPROC) SUBSYSTEM),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support),
+        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v9 1/7] dt-bindings: Add a binding for Mediatek SCP
+Date:   Fri, 31 May 2019 15:38:42 +0800
+Message-Id: <20190531073848.155444-2-pihsun@chromium.org>
+X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
+In-Reply-To: <20190531073848.155444-1-pihsun@chromium.org>
+References: <20190531073848.155444-1-pihsun@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAEnQRZD98TKduVLshGrBANRB6NT7Se6CXD0cgd5XRYa6grAo4Q@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 10:10:43AM +0300, Daniel Baluta wrote:
-> On Mon, May 20, 2019 at 10:33 PM Fabio Estevam <festevam@gmail.com> wrote:
-> >
-> > On Thu, May 16, 2019 at 3:35 PM Fabio Estevam <festevam@gmail.com> wrote:
-> > >
-> > > On Wed, May 15, 2019 at 11:42 AM Daniel Baluta <daniel.baluta@nxp.com> wrote:
-> > >
-> > > > +               simple-audio-card,codec {
-> > > > +                       sound-dai = <&wm8524>;
-> > > > +                       clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
-> > >
-> > > IMX8MM_CLK_SAI3_ROOT is the internal clock that drives the SAI3
-> > > interface, not an external clock that feeds the codec.
-> > >
-> > > It seems you should remove this 'clocks' entry.
-> >
-> > Just checked the schematics and the SAI3_MCLK pin clocks the codec, so
-> > the representation is correct:
-> >
-> > Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> 
-> Shawn,
-> 
-> Can you have a look?
+From: Erin Lo <erin.lo@mediatek.com>
 
-I cannot apply this one, because there are '=20' in the patch content.
+Add a DT binding documentation of SCP for the
+MT8183 SoC from Mediatek.
 
-Shawn
+Signed-off-by: Erin Lo <erin.lo@mediatek.com>
+Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+---
+Changes from v8, v7, v6:
+ - No change.
+
+Changes from v5:
+ - Remove dependency on CONFIG_RPMSG_MTK_SCP.
+
+Changes from v4:
+ - Add detail of more properties.
+ - Document the usage of mtk,rpmsg-name in subnode from the new design.
+
+Changes from v3:
+ - No change.
+
+Changes from v2:
+ - No change. I realized that for this patch series, there's no need to
+   add anything under the mt8183-scp node (neither the mt8183-rpmsg or
+   the cros-ec-rpmsg) for them to work, since mt8183-rpmsg is added
+   directly as a rproc_subdev by code, and cros-ec-rpmsg is dynamically
+   created by SCP name service.
+
+Changes from v1:
+ - No change.
+---
+ .../bindings/remoteproc/mtk,scp.txt           | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+
+diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+new file mode 100644
+index 000000000000..3ba668bab14b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+@@ -0,0 +1,36 @@
++Mediatek SCP Bindings
++----------------------------------------
++
++This binding provides support for ARM Cortex M4 Co-processor found on some
++Mediatek SoCs.
++
++Required properties:
++- compatible		Should be "mediatek,mt8183-scp"
++- reg			Should contain the address ranges for the two memory
++			regions, SRAM and CFG.
++- reg-names		Contains the corresponding names for the two memory
++			regions. These should be named "sram" & "cfg".
++- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
++- clock-names		Contains the corresponding name for the clock. This
++			should be named "main".
++
++Subnodes
++--------
++
++Subnodes of the SCP represent rpmsg devices. The names of the devices are not
++important. The properties of these nodes are defined by the individual bindings
++for the rpmsg devices - but must contain the following property:
++
++- mtk,rpmsg-name	Contains the name for the rpmsg device. Used to match
++			the subnode to rpmsg device announced by SCP.
++
++Example:
++
++	scp: scp@10500000 {
++		compatible = "mediatek,mt8183-scp";
++		reg = <0 0x10500000 0 0x80000>,
++		      <0 0x105c0000 0 0x5000>;
++		reg-names = "sram", "cfg";
++		clocks = <&infracfg CLK_INFRA_SCPSYS>;
++		clock-names = "main";
++	};
+-- 
+2.22.0.rc1.257.g3120a18244-goog
+
