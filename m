@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4770D30BBD
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 11:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B169D30BD0
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 11:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726002AbfEaJhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 05:37:51 -0400
-Received: from foss.arm.com ([217.140.101.70]:48884 "EHLO foss.arm.com"
+        id S1726331AbfEaJlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 05:41:16 -0400
+Received: from foss.arm.com ([217.140.101.70]:48990 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726280AbfEaJhv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 05:37:51 -0400
+        id S1726330AbfEaJlQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 05:41:16 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 735ED341;
-        Fri, 31 May 2019 02:37:50 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8520341;
+        Fri, 31 May 2019 02:41:15 -0700 (PDT)
 Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 106B93F59C;
-        Fri, 31 May 2019 02:37:45 -0700 (PDT)
-Date:   Fri, 31 May 2019 10:37:43 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 44C313F59C;
+        Fri, 31 May 2019 02:41:11 -0700 (PDT)
+Date:   Fri, 31 May 2019 10:41:08 +0100
 From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     "Andrew F. Davis" <afd@ti.com>
 Cc:     Morten Rasmussen <morten.rasmussen@arm.com>,
-        "Andrew F. Davis" <afd@ti.com>, Atish Patra <atish.patra@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
         linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
         Albert Ou <aou@eecs.berkeley.edu>,
         Anup Patel <anup@brainfault.org>,
@@ -43,42 +43,43 @@ Cc:     Morten Rasmussen <morten.rasmussen@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Thomas Gleixner <tglx@linutronix.de>,
         Will Deacon <will.deacon@arm.com>,
+        Russell King <linux@armlinux.org.uk>,
         Sudeep Holla <sudeep.holla@arm.com>,
         linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH v6 1/7] Documentation: DT: arm: add support for sockets
  defining package boundaries
-Message-ID: <20190531093743.GB18292@e107155-lin>
+Message-ID: <20190531094108.GC18292@e107155-lin>
 References: <20190529211340.17087-1-atish.patra@wdc.com>
  <20190529211340.17087-2-atish.patra@wdc.com>
  <49f41e62-5354-a674-d95f-5f63851a0ca6@ti.com>
  <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
- <20190530214254.tuxsnyv52a2fyhck@shell.armlinux.org.uk>
+ <70639181-09d1-4644-f062-b19e06db7471@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190530214254.tuxsnyv52a2fyhck@shell.armlinux.org.uk>
+In-Reply-To: <70639181-09d1-4644-f062-b19e06db7471@ti.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 10:42:54PM +0100, Russell King - ARM Linux admin wrote:
-> On Thu, May 30, 2019 at 12:51:03PM +0100, Morten Rasmussen wrote:
+On Thu, May 30, 2019 at 08:56:03AM -0400, Andrew F. Davis wrote:
+> On 5/30/19 7:51 AM, Morten Rasmussen wrote:
 > > On Wed, May 29, 2019 at 07:39:17PM -0400, Andrew F. Davis wrote:
 > > > On 5/29/19 5:13 PM, Atish Patra wrote:
-> > > >From: Sudeep Holla <sudeep.holla@arm.com>
+> > > > From: Sudeep Holla <sudeep.holla@arm.com>
 > > > >
-> > > >The current ARM DT topology description provides the operating system
-> > > >with a topological view of the system that is based on leaf nodes
-> > > >representing either cores or threads (in an SMT system) and a
-> > > >hierarchical set of cluster nodes that creates a hierarchical topology
-> > > >view of how those cores and threads are grouped.
+> > > > The current ARM DT topology description provides the operating system
+> > > > with a topological view of the system that is based on leaf nodes
+> > > > representing either cores or threads (in an SMT system) and a
+> > > > hierarchical set of cluster nodes that creates a hierarchical topology
+> > > > view of how those cores and threads are grouped.
 > > > >
-> > > >However this hierarchical representation of clusters does not allow to
-> > > >describe what topology level actually represents the physical package or
-> > > >the socket boundary, which is a key piece of information to be used by
-> > > >an operating system to optimize resource allocation and scheduling.
+> > > > However this hierarchical representation of clusters does not allow to
+> > > > describe what topology level actually represents the physical package or
+> > > > the socket boundary, which is a key piece of information to be used by
+> > > > an operating system to optimize resource allocation and scheduling.
 > > > >
 > > >
 > > > Are physical package descriptions really needed? What does "socket" imply
@@ -93,19 +94,35 @@ On Thu, May 30, 2019 at 10:42:54PM +0100, Russell King - ARM Linux admin wrote:
 > > associated with packages and more importantly socket information is
 > > exposed to user-space. At the moment clusters are being exposed to
 > > user-space as sockets which is less than ideal for some topologies.
+> >
 >
-> Please point out a 32-bit ARM system that has multiple "socket"s.
+> I see the benefit of reporting the physical layout and packaging information
+> to user-space for tracking reasons, but from software perspective this
+> doesn't matter, and the resource partitioning should be described elsewhere
+> (NUMA nodes being the go to example).
 >
-> As far as I'm aware, all 32-bit systems do not have socketed CPUs
-> (modern ARM CPUs are part of a larger SoC), and the CPUs are always
-> in one package.
+> > At the moment user-space is only told about hw threads, cores, and
+> > sockets. In the very near future it is going to be told about dies too
+> > (look for Len Brown's multi-die patch set).
+> >
 >
-> Even the test systems I've seen do not have socketed CPUs.
+> Seems my hypothetical case is already in the works :(
+>
+> > I don't see how we can provide correct information to user-space based
+> > on the current information in DT. I'm not convinced it was a good idea
+> > to expose this information to user-space to begin with but that is
+> > another discussion.
+> >
+>
+> Fair enough, it's a little late now to un-expose this info to userspace so
+> we should at least present it correctly. My worry was this getting out of
+> hand with layering, for instance what happens when we need to add die nodes
+> in-between cluster and socket?
 >
 
-As far as we know, there's none. So we simply have to assume all
-those systems are single socket(IOW all CPUs reside inside a single
-SoC package) system.
+We may have to, if there's a similar requirement on ARM64 as the one
+addressed by Len Brown's multi-die patch set. But for now, no one has
+asked for it.
 
 --
 Regards,
