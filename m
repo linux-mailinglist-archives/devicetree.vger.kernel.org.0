@@ -2,149 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB64930DE4
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 14:13:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F7B030E55
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 14:46:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726403AbfEaMNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 08:13:09 -0400
-Received: from mail-eopbgr70044.outbound.protection.outlook.com ([40.107.7.44]:56803
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726233AbfEaMNI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 08:13:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tSVZFnz5EofKxjDO51pqdERUDg0mztW6Np+chrnU8WI=;
- b=MUGHXYMeybuB/bqGoe8dDT/hRUdtc4H9wcJd+RrhmiHVpvQL48i/MSZeNj9k3FRESkK0FxzmdEB2ZXaPIAOFbbRHQaT1ET1MRw2I2c9QuUJHVKM/5Aj1OqhdJ0ZEt0Gk6xOAaF1Ub8mrwUa8XqY9BK+n6kkCUm84uuGuMfH6mV8=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3836.eurprd04.prod.outlook.com (52.134.71.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.17; Fri, 31 May 2019 12:13:02 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec%5]) with mapi id 15.20.1943.018; Fri, 31 May 2019
- 12:13:02 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Fabio Estevam <festevam@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1726626AbfEaMqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 08:46:35 -0400
+Received: from vps.xff.cz ([195.181.215.36]:49248 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726403AbfEaMqe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 08:46:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1559306791; bh=Vq6PHN+aRiKBxc4hddRHLSZfiSd9bUvG627zPC4o9vY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r7SNqaIwNqwOb9guoWHE+5kcqm8Eu7YcYIULLPtYivZ8AwmvJo/eJZGEmRO1PppSD
+         sTdI0zKF207BU/1eEZQuURPmnPPtCk//a5UQlBB0RqHTU9jsBnN14mUimA6O4If6tq
+         3YsMz2n2ah8SkyCqn84s9ElTauLkHFeD0Xypwu1E=
+Date:   Fri, 31 May 2019 14:46:30 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Leo Li <leoyang.li@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Pankaj Bansal <pankaj.bansal@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Pramod Kumar <pramod.kumar_1@nxp.com>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 2/3] arm64: dts: freescale: Add i.MX8MN dtsi support
-Thread-Topic: [PATCH 2/3] arm64: dts: freescale: Add i.MX8MN dtsi support
-Thread-Index: AQHVFsxub3h/I8/ZmEeLiTXReak9WqaFHYKAgAAIYOA=
-Date:   Fri, 31 May 2019 12:13:02 +0000
-Message-ID: <DB3PR0402MB3916139B49D9EF7E44E33911F5190@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190530094706.865-1-Anson.Huang@nxp.com>
- <20190530094706.865-2-Anson.Huang@nxp.com>
- <CAOMZO5D1B1tKs8eu_a8hXs193+TukHAYHiCEyk5g63p1S-cnbg@mail.gmail.com>
-In-Reply-To: <CAOMZO5D1B1tKs8eu_a8hXs193+TukHAYHiCEyk5g63p1S-cnbg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 56a1de6b-3714-4bd0-b86c-08d6e5c15431
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3836;
-x-ms-traffictypediagnostic: DB3PR0402MB3836:
-x-microsoft-antispam-prvs: <DB3PR0402MB3836F93AA410562FFF848736F5190@DB3PR0402MB3836.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-forefront-prvs: 00540983E2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(136003)(366004)(39860400002)(396003)(346002)(189003)(199004)(13464003)(8936002)(44832011)(71190400001)(486006)(305945005)(81156014)(66066001)(229853002)(478600001)(9686003)(86362001)(55016002)(71200400001)(7736002)(52536014)(6436002)(53936002)(2906002)(8676002)(5660300002)(33656002)(7416002)(316002)(6916009)(476003)(73956011)(26005)(256004)(76116006)(99286004)(1411001)(25786009)(54906003)(3846002)(6116002)(4326008)(102836004)(53546011)(66446008)(74316002)(6506007)(6246003)(66476007)(7696005)(76176011)(66946007)(68736007)(11346002)(81166006)(66556008)(446003)(186003)(64756008)(14454004);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3836;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: yDyvQeX3GAMW6i/RpXz/NW1iOLdvQjaiom/2hfnmF+HUeT71ur7qrLNlRoJiDD0TagvUtpKN5Vjr5w2+2gHEDEc3BveUjyz+48SEreDLXEg35d7x3UzUKimaPCt+EmyeJz6MhSRFmLelNrHXmxYGmcE9D9P+8MdcKLhzqyciX/zPNBcMj2PPdA6oyT6+Wbw9865TTLDml40/71UTUvOe183SV6doNmVYtuxiAAHvhn59TYHtNleU16fus3gHrXecHLl1uqvb0DeohRyJklRwmkmutea+XmqROSIFOXK4rlmV5WWROiEQG7D55DV+EtCjG9nIy072ZRdMCdiEg8CHCgCEkv7Ad9dwzb6KVcyxJuCTnUCMnSu7a9qzFTkXAV967NhnMf9nsnq42sad6ztCd2U5SEPk9f590iMwzCc6at8=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+Subject: Re: [linux-sunxi] Re: [PATCH v3 10/12] arm64: dts: allwinner: h6:
+ Add IR receiver node
+Message-ID: <20190531124630.q2guo54kjfzr7rkn@core.my.home>
+Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+References: <20190528161440.27172-1-peron.clem@gmail.com>
+ <20190528161440.27172-11-peron.clem@gmail.com>
+ <20190530145550.amalnxmx7kpokykv@core.my.home>
+ <CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56a1de6b-3714-4bd0-b86c-08d6e5c15431
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2019 12:13:02.2258
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3836
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEZhYmlvDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRmFiaW8g
-RXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPg0KPiBTZW50OiBGcmlkYXksIE1heSAzMSwgMjAx
-OSA3OjQwIFBNDQo+IFRvOiBBbnNvbiBIdWFuZyA8YW5zb24uaHVhbmdAbnhwLmNvbT4NCj4gQ2M6
-IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBNYXJrIFJ1dGxhbmQNCj4gPG1hcmsu
-cnV0bGFuZEBhcm0uY29tPjsgU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgU2FzY2hh
-DQo+IEhhdWVyIDxzLmhhdWVyQHBlbmd1dHJvbml4LmRlPjsgU2FzY2hhIEhhdWVyIDxrZXJuZWxA
-cGVuZ3V0cm9uaXguZGU+Ow0KPiBBbmRyZXkgU21pcm5vdiA8YW5kcmV3LnNtaXJub3ZAZ21haWwu
-Y29tPjsgTWFuaXZhbm5hbiBTYWRoYXNpdmFtDQo+IDxtYW5pdmFubmFuLnNhZGhhc2l2YW1AbGlu
-YXJvLm9yZz47IEJydW5vIFRob21zZW4NCj4gPGJydW5vLnRob21zZW5AZ21haWwuY29tPjsgQWlz
-aGVuZyBEb25nIDxhaXNoZW5nLmRvbmdAbnhwLmNvbT47DQo+IEphY2t5IEJhaSA8cGluZy5iYWlA
-bnhwLmNvbT47IExlbyBMaSA8bGVveWFuZy5saUBueHAuY29tPjsgTHVjYXMgU3RhY2gNCj4gPGwu
-c3RhY2hAcGVuZ3V0cm9uaXguZGU+OyBQYW5rYWogQmFuc2FsIDxwYW5rYWouYmFuc2FsQG54cC5j
-b20+Ow0KPiBCaGFza2FyIFVwYWRoYXlhIDxiaGFza2FyLnVwYWRoYXlhQG54cC5jb20+OyBQcmFt
-b2QgS3VtYXINCj4gPHByYW1vZC5rdW1hcl8xQG54cC5jb20+OyBWYWJoYXYgU2hhcm1hIDx2YWJo
-YXYuc2hhcm1hQG54cC5jb20+Ow0KPiBMZW9uYXJkIENyZXN0ZXogPGxlb25hcmQuY3Jlc3RlekBu
-eHAuY29tPjsgb3BlbiBsaXN0Ok9QRU4gRklSTVdBUkUNCj4gQU5EIEZMQVRURU5FRCBERVZJQ0Ug
-VFJFRSBCSU5ESU5HUyA8ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+Ow0KPiBsaW51eC1rZXJu
-ZWwgPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc+OyBtb2RlcmF0ZWQgbGlzdDpBUk0vRlJF
-RVNDQUxFDQo+IElNWCAvIE1YQyBBUk0gQVJDSElURUNUVVJFIDxsaW51eC1hcm0ta2VybmVsQGxp
-c3RzLmluZnJhZGVhZC5vcmc+OyBkbC0NCj4gbGludXgtaW14IDxsaW51eC1pbXhAbnhwLmNvbT4N
-Cj4gU3ViamVjdDogUmU6IFtQQVRDSCAyLzNdIGFybTY0OiBkdHM6IGZyZWVzY2FsZTogQWRkIGku
-TVg4TU4gZHRzaSBzdXBwb3J0DQo+IA0KPiBPbiBUaHUsIE1heSAzMCwgMjAxOSBhdCA2OjQ1IEFN
-IDxBbnNvbi5IdWFuZ0BueHAuY29tPiB3cm90ZToNCj4gDQo+ID4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgZ3BpbzE6IGdwaW9AMzAyMDAwMDAgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgY29tcGF0aWJsZSA9ICJmc2wsaW14OG1uLWdwaW8iLCAiZnNsLGlteDM1LWdwaW8i
-Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MzAyMDAwMDAg
-MHgxMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnRlcnJ1cHRz
-ID0gPEdJQ19TUEkgNjQgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPEdJQ19TUEkgNjUNCj4gPiArIElSUV9UWVBF
-X0xFVkVMX0hJR0g+Ow0KPiANCj4gTm8gR1BJTyBjbG9ja3MgZW50cmllcz8NCg0KSnVzdCBub3Rp
-Y2VkIHRoaXMsIHRoZSBpbnRlcm5hbCBicmluZy11cCBicmFuY2gncyBjbG9jayBkcml2ZXIgZG9l
-cyBOT1QgaGF2ZSBpdCwNCkkgd2lsbCBhZGQgdGhlbSBpbiBWMiwgdGhhbmtzIGZvciBwb2ludGlu
-ZyBvdXQgdGhpcy4gDQoNCj4gDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgdXNicGh5bm9w
-MTogdXNicGh5bm9wMSB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb21w
-YXRpYmxlID0gInVzYi1ub3AteGNlaXYiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgY2xvY2tzID0gPCZjbGsgSU1YOE1OX0NMS19VU0JfUEhZX1JFRj47DQo+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBhc3NpZ25lZC1jbG9ja3MgPSA8JmNsayBJTVg4TU5f
-Q0xLX1VTQl9QSFlfUkVGPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFz
-c2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8JmNsaw0KPiBJTVg4TU5fU1lTX1BMTDFfMTAwTT47DQo+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJtYWluX2Ns
-ayI7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gDQo+ICB1c2JwaHlub3AxIGRv
-ZXMgbm90IGhhdmUgYW55IHJlZ2lzdGVycyBhc3NvY2lhdGVkLCBzbyBpdCBzaG91bGQgYmUgcGxh
-Y2VkDQo+IG91dHNpZGUgdGhlIHNvYy4NCj4gDQo+IEJ1aWxkaW5nIHdpdGggVz0xIHNob3VsZCB3
-YXJuIHlvdSBhYm91dCB0aGF0Lg0KPiANCg0KT0ssIEkgd2lsbCBtb3ZlIHRoZW0gdG8gb3V0c2lk
-ZSBvZiBzb2MuDQoNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICB1c2JwaHlub3AyOiB1c2Jw
-aHlub3AyIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUg
-PSAidXNiLW5vcC14Y2VpdiI7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBj
-bG9ja3MgPSA8JmNsayBJTVg4TU5fQ0xLX1VTQl9QSFlfUkVGPjsNCj4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIGFzc2lnbmVkLWNsb2NrcyA9IDwmY2xrIElNWDhNTl9DTEtfVVNC
-X1BIWV9SRUY+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXNzaWduZWQt
-Y2xvY2stcGFyZW50cyA9IDwmY2xrDQo+IElNWDhNTl9TWVNfUExMMV8xMDBNPjsNCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrLW5hbWVzID0gIm1haW5fY2xrIjsNCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gDQo+IERpdHRvDQoNCk9LLCBJ
-IHdpbGwgbW92ZSB0aGVtIHRvIG91dHNpZGUgb2Ygc29jLg0KDQpUaGFua3MsDQpBbnNvbi4NCg0K
+Hello Clément,
+
+On Fri, May 31, 2019 at 12:25:32AM +0200, Clément Péron wrote:
+> Hi Ondrej,
+> 
+> On Thu, 30 May 2019 at 16:55, Ondřej Jirman <megous@megous.com> wrote:
+> >
+> > Hello Clément,
+> >
+> > On Tue, May 28, 2019 at 06:14:38PM +0200, Clément Péron wrote:
+> > > Allwinner H6 IR is similar to A31 and can use same driver.
+> > >
+> > > Add support for it.
+> > >
+> > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 19 +++++++++++++++++++
+> > >  1 file changed, 19 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > index 16c5c3d0fd81..649cbdfe452e 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > @@ -647,6 +647,25 @@
+> > >                               pins = "PL0", "PL1";
+> > >                               function = "s_i2c";
+> > >                       };
+> > > +
+> > > +                     r_ir_rx_pin: r-ir-rx-pin {
+> > > +                             pins = "PL9";
+> > > +                             function = "s_cir_rx";
+> > > +                     };
+> > > +             };
+> > > +
+> > > +             r_ir: ir@7040000 {
+> > > +                             compatible = "allwinner,sun50i-h6-ir",
+> > > +                                          "allwinner,sun6i-a31-ir";
+> > > +                             reg = <0x07040000 0x400>;
+> > > +                             interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                             clocks = <&r_ccu CLK_R_APB1_IR>,
+> > > +                                      <&r_ccu CLK_IR>;
+> > > +                             clock-names = "apb", "ir";
+> > > +                             resets = <&r_ccu RST_R_APB1_IR>;
+> > > +                             pinctrl-names = "default";
+> > > +                             pinctrl-0 = <&r_ir_rx_pin>;
+> > > +                             status = "disabled";
+> > >               };
+> >
+> > Please make a comment here, that this is known broken on some boards and may
+> > result IRQ flood if enabled. Otherwise noone will know.
+> 
+> I'm planning to send a v4 next week with the IRQ_NONE return as Maxime
+> suggested it.
+> https://github.com/clementperon/linux/tree/h6_ir_v4
+> 
+> But maybe we could also use the bit 5 of the IRQ status.
+
+Thanks, that's nice, but that will not make the HW work. That will just disable
+it. The comment is still necessary.
+
+thank you,
+	o.
+
+> Regards, Clement
+> 
+> >
+> > thanks,
+> >         o.
+> >
+> > >               r_i2c: i2c@7081400 {
+> > > --
+> > > 2.20.1
+> > >
+> > >
+> > > _______________________________________________
+> > > linux-arm-kernel mailing list
+> > > linux-arm-kernel@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw%40mail.gmail.com.
+> For more options, visit https://groups.google.com/d/optout.
