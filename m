@@ -2,127 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F23530C14
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 11:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B40A530C58
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 12:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726555AbfEaJyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 05:54:35 -0400
-Received: from foss.arm.com ([217.140.101.70]:49254 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726415AbfEaJyf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 May 2019 05:54:35 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CFAB5341;
-        Fri, 31 May 2019 02:54:34 -0700 (PDT)
-Received: from e105550-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8F9353F59C;
-        Fri, 31 May 2019 02:54:30 -0700 (PDT)
-Date:   Fri, 31 May 2019 10:54:28 +0100
-From:   Morten Rasmussen <morten.rasmussen@arm.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        "Andrew F. Davis" <afd@ti.com>, Atish Patra <atish.patra@wdc.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
+        id S1726960AbfEaKHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 06:07:44 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:18024 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726002AbfEaKHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 May 2019 06:07:44 -0400
+X-IronPort-AV: E=Sophos;i="5.60,534,1549897200"; 
+   d="scan'208";a="17479541"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 31 May 2019 19:07:42 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E394B421D792;
+        Fri, 31 May 2019 19:07:38 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 1/7] Documentation: DT: arm: add support for sockets
- defining package boundaries
-Message-ID: <20190531095428.GC10919@e105550-lin.cambridge.arm.com>
-References: <20190529211340.17087-1-atish.patra@wdc.com>
- <20190529211340.17087-2-atish.patra@wdc.com>
- <49f41e62-5354-a674-d95f-5f63851a0ca6@ti.com>
- <20190530115103.GA10919@e105550-lin.cambridge.arm.com>
- <20190530214254.tuxsnyv52a2fyhck@shell.armlinux.org.uk>
- <20190531093743.GB18292@e107155-lin>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190531093743.GB18292@e107155-lin>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v7 0/7] Add USB3.0 and TI HD3SS3220 driver support
+Date:   Fri, 31 May 2019 10:59:53 +0100
+Message-Id: <1559296800-5610-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 31, 2019 at 10:37:43AM +0100, Sudeep Holla wrote:
-> On Thu, May 30, 2019 at 10:42:54PM +0100, Russell King - ARM Linux admin wrote:
-> > On Thu, May 30, 2019 at 12:51:03PM +0100, Morten Rasmussen wrote:
-> > > On Wed, May 29, 2019 at 07:39:17PM -0400, Andrew F. Davis wrote:
-> > > > On 5/29/19 5:13 PM, Atish Patra wrote:
-> > > > >From: Sudeep Holla <sudeep.holla@arm.com>
-> > > > >
-> > > > >The current ARM DT topology description provides the operating system
-> > > > >with a topological view of the system that is based on leaf nodes
-> > > > >representing either cores or threads (in an SMT system) and a
-> > > > >hierarchical set of cluster nodes that creates a hierarchical topology
-> > > > >view of how those cores and threads are grouped.
-> > > > >
-> > > > >However this hierarchical representation of clusters does not allow to
-> > > > >describe what topology level actually represents the physical package or
-> > > > >the socket boundary, which is a key piece of information to be used by
-> > > > >an operating system to optimize resource allocation and scheduling.
-> > > > >
-> > > >
-> > > > Are physical package descriptions really needed? What does "socket" imply
-> > > > that a higher layer "cluster" node grouping does not? It doesn't imply a
-> > > > different NUMA distance and the definition of "socket" is already not well
-> > > > defined, is a dual chiplet processor not just a fancy dual "socket" or are
-> > > > dual "sockets" on a server board "slotket" card, will we need new names for
-> > > > those too..
-> > >
-> > > Socket (or package) just implies what you suggest, a grouping of CPUs
-> > > based on the physical socket (or package). Some resources might be
-> > > associated with packages and more importantly socket information is
-> > > exposed to user-space. At the moment clusters are being exposed to
-> > > user-space as sockets which is less than ideal for some topologies.
-> >
-> > Please point out a 32-bit ARM system that has multiple "socket"s.
-> >
-> > As far as I'm aware, all 32-bit systems do not have socketed CPUs
-> > (modern ARM CPUs are part of a larger SoC), and the CPUs are always
-> > in one package.
-> >
-> > Even the test systems I've seen do not have socketed CPUs.
-> >
-> 
-> As far as we know, there's none. So we simply have to assume all
-> those systems are single socket(IOW all CPUs reside inside a single
-> SoC package) system.
+This series adds USB 3.0 support for the CAT874 platform, including a
+new driver for the TI HD3SS3220 USB Type-C DRP port controller.
 
-Right, but we don't make that assumption. Clusters are reported as
-sockets/packages for arm, just like they are for arm64. My comment above
-applied to what can be described using DT, not what systems actually
-exists. We need to be able describe packages for architecture where we
-can't make assumptions.
+This patch series supports:
+1) Host hotplug operation
+2) Device hot plug operation
+3) USB type-C data_role switch
+   (Tested with 2 RZ/G2E boards connected with a Type-C cable)
 
-arm example (ARM TC2):
-root@morras01-tc2:~# lstopo
-Machine (985MB)
-  Package L#0
-    Core L#0 + PU L#0 (P#0)
-    Core L#1 + PU L#1 (P#1)
-  Package L#1
-    Core L#2 + PU L#2 (P#2)
-    Core L#3 + PU L#3 (P#3)
-    Core L#4 + PU L#4 (P#4)
+This patchset is based on linux_next next-20190531 branch.
+V6-->V7
+  * Rebased on the below patch series
+    (https://patchwork.kernel.org/project/linux-usb/list/?series=124223)
+  * Updted the hd3ss3220 binding documentation
+    -> Removed Rob's reviewed by tag, since there is a rework.
+    -> Incorporated Sergie and Shimoda-San's review comment.
+     (https://patchwork.kernel.org/patch/10944629/)
+  * Rebased hd3ss3220 driver based on the new API
+    --> Removed Heikki's review comment, since there is a rework
+    (https://patchwork.kernel.org/patch/10942499/)
+  * Incorporated shimoda-san's review comments for renesas usb3 binding
+    (https://patchwork.kernel.org/patch/10944631/)
+  * Incorporated shimoda-san's review comments for renesas usb3 driver
+    (https://patchwork.kernel.org/patch/10944643/)
+V5-->V6
+  * Updated bindings patch by using usb-role-switch property
+  * Used graph api's to get role switch supported by the usb-c-connector
+V4-->V5
+  * Incorporated Heikki's review comment.
+    (https://patchwork.kernel.org/patch/10902531/)
+  * Patch 1 is a dependency patch to make the compilation successful.
+    (https://patchwork.kernel.org/patch/10909971/)
+  * Patch 2 is also dependency patch to make the compilation successful.
+    Rebased on top of Patch1 and fixed Heikki's review comments
+    (https://patchwork.kernel.org/patch/10882555/)
+  * Incorporated Shimoda-San's review comment.
+    (https://patchwork.kernel.org/patch/10902535/)
+V3-->V4
+  * Incorporated Chunfeng Yun's review comment
+    (https://patchwork.kernel.org/project/linux-usb/list/?submitter=133171)
+  * Used fwnode API's to get roleswitch handle
 
-Morten
+V2-->V3
+  * Used the new API to usb_role_switch by node to find the remote endpoint
+    (https://patchwork.kernel.org/patch/10882555/)
+  * Added renesas,usb-role-switch property
+  * Incorporated shimoda-san's review comment
+    (https://patchwork.kernel.org/patch/10852507/)
+
+V1-->V2
+  * Use USB role class instead of extcon to receive connect and disconnect
+    events and also for the dual role switch.
+  * Dropped patch 6
+  * Squashed patch 8 and patch 9
+  * https://patchwork.kernel.org/cover/10840641/
+
+
+Biju Das (7):
+  dt-bindings: usb: hd3ss3220 device tree binding document
+  dt-bindings: usb: renesas_usb3: Document usb role switch support
+  usb: typec: driver for TI HD3SS3220 USB Type-C DRP port controller
+  usb: gadget: udc: renesas_usb3: Enhance role switch support
+  arm64: defconfig: enable TYPEC_HD3SS3220 config option
+  arm64: dts: renesas: cat874: Enable USB3.0 host/peripheral device node
+  arm64: dts: renesas: cat874: Enable usb role switch support
+
+ .../devicetree/bindings/usb/renesas_usb3.txt       |  23 ++
+ .../devicetree/bindings/usb/ti,hd3ss3220.txt       |  38 +++
+ arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts    |  49 ++++
+ arch/arm64/configs/defconfig                       |   2 +
+ drivers/usb/gadget/udc/renesas_usb3.c              |  91 +++++++-
+ drivers/usb/typec/Kconfig                          |  10 +
+ drivers/usb/typec/Makefile                         |   1 +
+ drivers/usb/typec/hd3ss3220.c                      | 259 +++++++++++++++++++++
+ 8 files changed, 466 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
+ create mode 100644 drivers/usb/typec/hd3ss3220.c
+
+-- 
+2.7.4
+
