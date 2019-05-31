@@ -2,114 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B8E31529
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 21:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB3D4315AA
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2019 21:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727255AbfEaTTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 15:19:36 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:35042 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727147AbfEaTTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 15:19:36 -0400
-Received: by mail-qt1-f193.google.com with SMTP id d23so2279847qto.2;
-        Fri, 31 May 2019 12:19:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZasN1uMb6LWNr3Bdl17/Az/Guny0XVTL4T4x9/AydIU=;
-        b=UM7nM38a4xI4mDFTwnvkJ5uHeKUmW5NKf3JRUxdTvVLKyk3lfgeHGBlEUqaNm+x6op
-         udiG16NB4a4/8mD1sYtFKZj/e7GY+WmzrZiVg4lYlWN6zFfd09RrCx+R5Nje6ghN1QRn
-         yzoAa+Wq1me6pdGv2h8OPve/9ubJP1LKN1/8Mou1YDKNckcjjPjTsoeez9gkCeLQg5Wu
-         IHlT2IDcB04iwimQNvzsqyVAMTK4lyHaW4eeBLEAETEPKj/W/hbbXZWcwrRlmPgg1b0k
-         9uYspbGfFV+zqceCU0Yq1ECpOIInlGicyj+yOgHlAgwNQQVz0hsmVsYOjC/Xwp5HwSke
-         o2uQ==
-X-Gm-Message-State: APjAAAVtt06/JdcWU2abaK4ocDsg948NoQUaRlUX/fjoihElVyrWttft
-        UV8Bh8u5tk7Ns+rvlNcoBA579DL7o8wLYjIN204=
-X-Google-Smtp-Source: APXvYqwTzyt4WCkVVX3Qulyt1v2QQMhca2JE7R2nPL+bbYIIgogHgkLIhe92uxEulcPWL7paeV3/6XiyNu5oc8Epn44=
-X-Received: by 2002:aed:3e7c:: with SMTP id m57mr5706705qtf.204.1559330374999;
- Fri, 31 May 2019 12:19:34 -0700 (PDT)
+        id S1727411AbfEaTwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 15:52:51 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:15015 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727343AbfEaTwv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 15:52:51 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cf186100002>; Fri, 31 May 2019 12:52:48 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Fri, 31 May 2019 12:52:49 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Fri, 31 May 2019 12:52:49 -0700
+Received: from [10.2.175.94] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 31 May
+ 2019 19:52:45 +0000
+Subject: Re: [PATCH V2 03/12] clk: tegra: save and restore PLLs state for
+ system
+To:     Stephen Boyd <sboyd@kernel.org>, <jason@lakedaemon.net>,
+        <jonathanh@nvidia.com>, <linus.walleij@linaro.org>,
+        <marc.zyngier@arm.com>, <mark.rutland@arm.com>, <stefan@agner.ch>,
+        <tglx@linutronix.de>, <thierry.reding@gmail.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <jckuo@nvidia.com>, <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
+ <1559084936-4610-4-git-send-email-skomatineni@nvidia.com>
+ <20190529232810.14A5224366@mail.kernel.org>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <f5fd9068-134a-3343-9cca-94db67cd748f@nvidia.com>
+Date:   Fri, 31 May 2019 12:52:44 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190531035348.7194-1-elder@linaro.org> <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
- <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org>
-In-Reply-To: <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 31 May 2019 21:19:18 +0200
-Message-ID: <CAK8P3a05CevRBV3ym+pnKmxv+A0_T+AtURW2L4doPAFzu3QcJw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Alex Elder <elder@linaro.org>
-Cc:     Dan Williams <dcbw@redhat.com>, David Miller <davem@davemloft.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        evgreen@chromium.org, Ben Chan <benchan@google.com>,
-        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
-        syadagir@codeaurora.org,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        abhishek.esse@gmail.com, Networking <netdev@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190529232810.14A5224366@mail.kernel.org>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559332368; bh=+OtNzRTspnNq7fTZGHYQmYRka68TmYn5YO1oiUAfnMI=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=nG/K91HTv7KRVGECV5Ru4ruZvcwq0LKATCDUqMuTwTthN2VzO0OZZHdhzaOcN9E/I
+         Hp9JT+hRqnCIAcLCmaSBSX7bMtQxRt22SfNClRCnIBhwLMaSj5ho1n0h7xeLBw2Gjx
+         mQqfh0UOsXgFoKWcNK5TQ1PsBV47GvzC5vYODB8TmMPi1hR0nc5QUTvfjXR+VLyd4t
+         9jyZo7wFIs7pjwY1sTt2u2w4wtqKBayyBkZpLvq0hY6YFBxrNplg5iKNOV02AGPz5v
+         EpCllyU1QX1gRWeJXxvP+1FUHXXzOndRzQm4BCCPAgTIsDRC53dIVF6Pxxthg53WCt
+         lLv1eFbNAOePA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 31, 2019 at 6:36 PM Alex Elder <elder@linaro.org> wrote:
-> On 5/31/19 9:58 AM, Dan Williams wrote:
-> > On Thu, 2019-05-30 at 22:53 -0500, Alex Elder wrote:
-> >
-> > My question from the Nov 2018 IPA rmnet driver still stands; how does
-> > this relate to net/ethernet/qualcomm/rmnet/ if at all? And if this is
-> > really just a netdev talking to the IPA itself and unrelated to
-> > net/ethernet/qualcomm/rmnet, let's call it "ipa%d" and stop cargo-
-> > culting rmnet around just because it happens to be a net driver for a
-> > QC SoC.
+
+On 5/29/19 4:28 PM, Stephen Boyd wrote:
+> Quoting Sowjanya Komatineni (2019-05-28 16:08:47)
+>> This patch has implementation of saving and restoring PLL's state to
+>> support system suspend and resume operations.
+> Can you provide some more background on _why_ this patch should exist?
+> That's typically what gets written in the commit text.
+Will add more in next version of this series.
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   drivers/clk/tegra/clk-divider.c | 19 ++++++++
+>>   drivers/clk/tegra/clk-pll-out.c | 25 +++++++++++
+>>   drivers/clk/tegra/clk-pll.c     | 99 ++++++++++++++++++++++++++++++++---------
+>>   drivers/clk/tegra/clk.h         |  9 ++++
+>>   4 files changed, 132 insertions(+), 20 deletions(-)
+>>
+>> diff --git a/drivers/clk/tegra/clk-divider.c b/drivers/clk/tegra/clk-divider.c
+>> index 2a1822a22740..718694727042 100644
+>> --- a/drivers/clk/tegra/clk-divider.c
+>> +++ b/drivers/clk/tegra/clk-divider.c
+>> @@ -14,6 +14,7 @@
+>>    * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+>>    */
+>>   
+>> +#include <linux/clk.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/io.h>
+>>   #include <linux/err.h>
+>> @@ -179,3 +180,21 @@ struct clk *tegra_clk_register_mc(const char *name, const char *parent_name,
+>>                                            reg, 16, 1, CLK_DIVIDER_READ_ONLY,
+>>                                            mc_div_table, lock);
+>>   }
+>> +
+>> +#if defined(CONFIG_PM_SLEEP)
+>> +void tegra_clk_divider_resume(struct clk_hw *hw, unsigned long rate)
+>> +{
+>> +       struct clk_hw *parent = clk_hw_get_parent(hw);
+>> +       unsigned long parent_rate;
+>> +
+>> +       if (IS_ERR(parent)) {
+> Will this ever happen? Collapse the WARN_ON into the if please:
 >
-> First, the relationship between the IPA driver and the rmnet driver
-> is that the IPA driver is assumed to sit between the rmnet driver
-> and the hardware.
-
-Does this mean that IPA can only be used to back rmnet, and rmnet
-can only be used on top of IPA, or can or both of them be combined
-with another driver to talk to instead?
-
-> Currently the modem is assumed to use QMAP protocol.  This means
-> each packet is prefixed by a (struct rmnet_map_header) structure
-> that allows the IPA connection to be multiplexed for several logical
-> connections.  The rmnet driver parses such messages and implements
-> the multiplexed network interfaces.
+> 	if (WARN_ON(IS_ERR(parent)))
 >
-> QMAP protocol can also be used for aggregating many small packets
-> into a larger message.  The rmnet driver implements de-aggregation
-> of such messages (and could probably aggregate them for TX as well).
+Will fix in next version of this series.
+>> +               WARN_ON(1);
+>> +               return;
+>> +       }
+>> +
+>> +       parent_rate = clk_hw_get_rate(parent);
+>> +
+>> +       if (clk_frac_div_set_rate(hw, rate, parent_rate) < 0)
+>> +               WARN_ON(1);
+>> +}
+>> +#endif
+>> diff --git a/drivers/clk/tegra/clk.h b/drivers/clk/tegra/clk.h
+>> index 09bccbb9640c..e4d124cc5657 100644
+>> --- a/drivers/clk/tegra/clk.h
+>> +++ b/drivers/clk/tegra/clk.h
+>> @@ -841,6 +841,15 @@ int tegra_pll_p_div_to_hw(struct tegra_clk_pll *pll, u8 p_div);
+>>   int div_frac_get(unsigned long rate, unsigned parent_rate, u8 width,
+>>                   u8 frac_width, u8 flags);
+>>   
+>> +#ifdef CONFIG_PM_SLEEP
+> Can you remove this ifdef? It just complicates compilation testing.
+OK, Will fix in next version
+>> +void tegra_clk_pll_resume(struct clk *c, unsigned long rate);
+>> +void tegra_clk_divider_resume(struct clk_hw *hw, unsigned long rate);
+>> +void tegra_clk_pll_out_resume(struct clk *clk, unsigned long rate);
+>> +void tegra_clk_plle_tegra210_resume(struct clk *c);
+>> +void tegra_clk_sync_state_pll(struct clk *c);
+>> +void tegra_clk_sync_state_pll_out(struct clk *clk);
+> Do these APIs need to operate on struct clk? Why can't they operate on
+> clk_hw or why can't we drive the suspend/resume sequence from the clk
+> provider driver itself?
 >
-> Finally, the IPA can support checksum offload, and the rmnet
-> driver handles providing a prepended header (for TX) and
-> interpreting the appended trailer (for RX) if these features
-> are enabled.
->
-> So basically, the purpose of the rmnet driver is to handle QMAP
-> protocol connections, and right now that's what the modem provides.
+Yes can change to use clk_hw.
 
-Do you have any idea why this particular design was picked?
+By clk provider driver, are you referring to clk-tegra210?
 
-My best guess is that it evolved organically with multiple
-generations of hardware and software, rather than being thought
-out as a nice abstraction layer. If the two are tightly connected,
-this might mean that what we actually want here is to reintegrate
-the two components into a single driver with a much simpler
-RX and TX path that handles the checksumming and aggregation
-of data packets directly as it passes them from the network
-stack into the hardware.
+clk-terga210 driver has suspend/resume implementation. These API's are 
+for corresponding clock specific implementations (clk-pll, clk-pll-out, 
+clk-divider) for enabling and restoring to proper rate and are invoked 
+during clk-tegra210 driver resume.
 
-Always passing data from one netdev to another both ways
-sounds like it introduces both direct CPU overhead, and
-problems with flow control when data gets buffered inbetween.
-The intermediate buffer here acts like a router that must
-pass data along or randomly drop packets when the consumer
-can't keep up with the producer.
+thanks
 
-        Arnd
+Sowjanya
+
