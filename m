@@ -2,112 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB72031896
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 02:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98842318AD
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 02:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726713AbfFAAFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 May 2019 20:05:45 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:39225 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726610AbfFAAFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 20:05:45 -0400
-Received: by mail-wm1-f66.google.com with SMTP id z23so6889259wma.4
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2019 17:05:43 -0700 (PDT)
+        id S1727141AbfFAAJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 May 2019 20:09:25 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35416 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726945AbfFAAJV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 May 2019 20:09:21 -0400
+Received: by mail-pg1-f194.google.com with SMTP id t1so1365369pgc.2
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2019 17:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=q8wl8Ebr+tk3zdpRQhTbcjzF7wVJuwWPREKgkot9nSU=;
-        b=WNJY/3yWFpK+ZSv7Sxw4R3kUbleuB6gvBougV0etbg8DpJcU4ZBc5RQKwXJzf6ih8/
-         ihAgNSuoaYELwpfeBMVRfqiKXP1yormx16Tl5sx0yli8Qh3KuJTVHD/1L5r1KMvjlSkT
-         aqbw4BpqU2oYWkcmoEvoPDDG4jNuIAAs9VOHhM+i/9riLzEBzZA9AA0wkeCsY3Ebdj+s
-         wD88tcTcr4KudgeppRszfgbrcFEPUVvpSulgAfcl+gdeajNaTtSPnjuOTv1N+XeickCA
-         ML1DAXzB3sh80l02yfMPxJH6qXWtsNIhJI6z07eXniTB0Cj4V0UuZa09o9o0Qv68b44w
-         KANg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=nU7TNgR5LpcNvtYfSjIrl1EToZnQ809br5ciYzVxz7U=;
+        b=I9FC/0ZN/P/uw2vcGA853atGEf+PUvmHuWe6siUN9uSS4JO2+5MB8qHRmZy20iRVpB
+         YU72lxTiwZZ/cBdhfRmt7Zy9/C4xG2ZRKMpeA92Y5B2NXOz/SkEa4hL6q+pZoWboE9MU
+         26z1rzEZaUZj1mx/EQ2vdmwpGyEj0YQpvCPLbv3RQuaK0IL2yu6SamJAtAgubX8z8nrM
+         O753bm2N089NIIjQ6BNnrFigotYL4rmqLenI31/X9TBd3m46slJ44Z8tN0NMky7Rrsne
+         ojR5pFxSLUTBs1UtZx25wL/TpcPYTVC8ez1Kkd38jLrJLXcsZXXVrXufvs70Qnidi2Sw
+         vtDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=q8wl8Ebr+tk3zdpRQhTbcjzF7wVJuwWPREKgkot9nSU=;
-        b=CIN7lk13/skv7OAQiyloYMR79VjZhHzEKSZ7BLO88kkzhsib2bbOYxy7FfIQivC+dI
-         VW5hFqD1WEPkwaqlj9e2UL/hCUhKPNox4Oa5F8g7B9obOgoMNsv5drakXEOfuYX1i7n1
-         oSaZkciyznuX1qtbO3Hu5BuxTmXlxvvivI2GTwI56s+5/YAR5OsVMEe5ZAIJsnUWMgc3
-         2+QQUjcJ8h0su9TKiskT7kyE1A6C1zNg0/RitT/S4kjZS2AuKzG6NBzBT3ArSAQlQSNk
-         JztDxun7+CsvMr5TMtrodVbbpdGOwDRPRQQuqd7cFehSrB6BIE+DuQ6O2md+/8SMUi8v
-         uZZg==
-X-Gm-Message-State: APjAAAVLxBmfcPwBx93ay00F0rys1xB5QW6fybDBx0W82JrSjRYor9aR
-        x4LTlCm3OkxZCOb/Gy9XdJ4/XnLHlYTxzhSszUXQxg==
-X-Google-Smtp-Source: APXvYqx6IqRo6a9cOKueKjJoBvf6m40KnlPpQdf6c682eEXGzCyVjaUTixWO7j8FalDLH0+SUsUPfSsPHlP05rS3Z50=
-X-Received: by 2002:a1c:9a53:: with SMTP id c80mr1080859wme.173.1559347542656;
- Fri, 31 May 2019 17:05:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190531234734.102842-1-john.stultz@linaro.org>
- <20190531234734.102842-2-john.stultz@linaro.org> <20190531235302.GD25597@minitux>
-In-Reply-To: <20190531235302.GD25597@minitux>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Fri, 31 May 2019 17:05:30 -0700
-Message-ID: <CALAqxLXAdu63roX0WgXHqOwrr2dyJV+Oh06SSu8D+LqUOE3gng@mail.gmail.com>
-Subject: Re: [RFC][PATCH 2/2] reset: qcom-pon: Add support for gen2 pon
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=nU7TNgR5LpcNvtYfSjIrl1EToZnQ809br5ciYzVxz7U=;
+        b=QXZ0mA2cCB1a4kbnko7oAYpE1CN+qfLGR/3NThZd4/9qU0LXC4eeAP0QqFLPmLjWVG
+         9Y3D5G84r5kZ0/lbzL8ItYoooowZTlK+VKhoIRZMSKDNkIq9O9hR2tUS+he2Oc7eFRuu
+         Ewvf4ePceCJ0bDQ2tLLR2F8CN+bUlbylAfsLzH3FBGuzF6tJJIhmRs8cqimDK0f6UWC5
+         57G85XnQOUnWFSy1C29BwW2+ekx/Us66YsBpliKOF6BCMwekQtjyhaQ4AmWKienz7ETa
+         iohiNEIBbOSx/n61lv2SLdasPpTObFpkJ4/SOU0avb0/ZhHo233/CaAo0kX/JSaKXNpU
+         17vA==
+X-Gm-Message-State: APjAAAXYPR+UCYyaveco1lvvJCpe1w+EczLpAReSdSdqwGkZRbAIPI6T
+        wsyIzhG7UuWeWUx29pJkTVt4+m74vgk=
+X-Google-Smtp-Source: APXvYqyy+66Tc/ezRAw9Zd8t0fwoOYr/EWkFnuNA2Mr7izQNHyFv54Hb3h8WLJ37PE1ILgdrom0QRg==
+X-Received: by 2002:a62:582:: with SMTP id 124mr13734526pff.209.1559347760035;
+        Fri, 31 May 2019 17:09:20 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id e4sm6451863pgi.80.2019.05.31.17.09.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 31 May 2019 17:09:19 -0700 (PDT)
+Date:   Fri, 31 May 2019 17:09:17 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
         David Brown <david.brown@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Arun Kumar Neelakantam <aneela@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 2/4] soc: qcom: Add AOSS QMP driver
+Message-ID: <20190601000917.GE25597@minitux>
+References: <20190531030057.18328-1-bjorn.andersson@linaro.org>
+ <20190531030057.18328-3-bjorn.andersson@linaro.org>
+ <CAD=FV=V=_ozPiTvT-Fnrc1a+qfHYi3ynNn8cbw9ibqfKk7Am_w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=V=_ozPiTvT-Fnrc1a+qfHYi3ynNn8cbw9ibqfKk7Am_w@mail.gmail.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 31, 2019 at 4:53 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Fri 31 May 16:47 PDT 2019, John Stultz wrote:
->
-> > Add support for gen2 pon register so "reboot bootloader" can
-> > work on pixel3 and db845.
-> >
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: David Brown <david.brown@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Amit Pundir <amit.pundir@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Mark Rutland <mark.rutland@arm.com>
-> > Cc: Sebastian Reichel <sre@kernel.org>
-> > Cc: linux-arm-msm@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: John Stultz <john.stultz@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pm8998.dtsi |  2 +-
-> >  drivers/power/reset/qcom-pon.c       | 15 ++++++++++++---
-> >  2 files changed, 13 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> > index d3ca35a940fb..051a52df80f9 100644
-> > --- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> > @@ -39,7 +39,7 @@
-> >               #size-cells = <0>;
-> >
-> >               pm8998_pon: pon@800 {
-> > -                     compatible = "qcom,pm8916-pon";
-> > +                     compatible = "qcom,pm8998-pon";
-> >
-> >                       reg = <0x800>;
-> >                       mode-bootloader = <0x2>;
->
-> We want to take this through arm-soc and the rest through Sebastian's
-> tree, so please provide the dts update in a separate commit.
+On Fri 31 May 15:24 PDT 2019, Doug Anderson wrote:
 
-Sure. I wasn't sure if tracking the change in a separate patch was
-worth it for such a trivial oneliner, but that's fine, I'll split it
-out.
+> Hi,
+> 
+> On Thu, May 30, 2019 at 8:01 PM Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> >
+> > +/**
+> > + * qmp_send() - send a message to the AOSS
+> > + * @qmp: qmp context
+> > + * @data: message to be sent
+> > + * @len: length of the message
+> > + *
+> > + * Transmit @data to AOSS and wait for the AOSS to acknowledge the message.
+> > + * @len must be a multiple of 4 and not longer than the mailbox size. Access is
+> > + * synchronized by this implementation.
+> > + *
+> > + * Return: 0 on success, negative errno on failure
+> > + */
+> > +static int qmp_send(struct qmp *qmp, const void *data, size_t len)
+> > +{
+> > +       int ret;
+> > +
+> > +       if (WARN_ON(len + sizeof(u32) > qmp->size))
+> > +               return -EINVAL;
+> > +
+> > +       if (WARN_ON(len % sizeof(u32)))
+> > +               return -EINVAL;
+> > +
+> > +       mutex_lock(&qmp->tx_lock);
+> > +
+> > +       /* The message RAM only implements 32-bit accesses */
+> > +       __iowrite32_copy(qmp->msgram + qmp->offset + sizeof(u32),
+> > +                        data, len / sizeof(u32));
+> > +       writel(len, qmp->msgram + qmp->offset);
+> > +       qmp_kick(qmp);
+> > +
+> > +       ret = wait_event_interruptible_timeout(qmp->event,
+> > +                                              qmp_message_empty(qmp), HZ);
+> > +       if (!ret) {
+> > +               dev_err(qmp->dev, "ucore did not ack channel\n");
+> > +               ret = -ETIMEDOUT;
+> > +
+> > +               /* Clear message from buffer */
+> > +               writel(0, qmp->msgram + qmp->offset);
+> > +       } else {
+> > +               ret = 0;
+> > +       }
+> 
+> Just like Vinod said in in v7, the "ret = 0" is redundant.
+> 
 
-thanks for the review!
--john
+If the condition passed to wait_event_interruptible_timeout() evaluates
+true the remote side has consumed the message and ret will be 1. We end
+up in the else block (i.e. not timeout) and we want the function to
+return 0, so we set ret to 0.
+
+Please let me know if I'm reading this wrong.
+
+> 
+> > +static int qmp_qdss_clk_add(struct qmp *qmp)
+> > +{
+> > +       struct clk_init_data qdss_init = {
+> > +               .ops = &qmp_qdss_clk_ops,
+> > +               .name = "qdss",
+> > +       };
+> 
+> As I mentioned in v7, there is no downside in marking qdss_init as
+> "static const" and it avoids the compiler inserting a memcpy() to get
+> this data on the stack.  Using static const also reduces your stack
+> usage.
+> 
+
+In which case we would just serve it from .ro, makes sense now that I
+read your comment again. 
+
+> 
+> > +       int ret;
+> > +
+> > +       qmp->qdss_clk.init = &qdss_init;
+> > +       ret = clk_hw_register(qmp->dev, &qmp->qdss_clk);
+> > +       if (ret < 0) {
+> > +               dev_err(qmp->dev, "failed to register qdss clock\n");
+> > +               return ret;
+> > +       }
+> > +
+> > +       ret = of_clk_add_hw_provider(qmp->dev->of_node, of_clk_hw_simple_get,
+> > +                                    &qmp->qdss_clk);
+> 
+> I still prefer to devm-ify the whole driver, using
+> devm_add_action_or_reset() to handle things where there is no devm.
+> ...but I won't insist.
+> 
+> 
+> Above things are just nits and I won't insist.  They also could be
+> addressed in follow-up patches.  Thus:
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+Thanks!
+
+Regards,
+Bjorn
