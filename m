@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 955C132013
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 19:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE42E32016
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 19:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726496AbfFARVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jun 2019 13:21:43 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:37156 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726148AbfFARVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jun 2019 13:21:43 -0400
-Received: by mail-lj1-f195.google.com with SMTP id h19so12518310ljj.4
-        for <devicetree@vger.kernel.org>; Sat, 01 Jun 2019 10:21:42 -0700 (PDT)
+        id S1726210AbfFARWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jun 2019 13:22:45 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:44000 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726195AbfFARWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jun 2019 13:22:45 -0400
+Received: by mail-lf1-f67.google.com with SMTP id d7so894241lfb.10
+        for <devicetree@vger.kernel.org>; Sat, 01 Jun 2019 10:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=tccTfkPaCkJqRCXrpmp0F9b3WbVNC0IPQMXCiDJx7Zw=;
-        b=UZtlyyL6Ejbc3chPwsjMtIJrr+PXyz7LxaO4UIZFJt2+uxLH5ykzqraVFcICHhrsY9
-         pGfOa7MQ2C6zVn3ddiQXwce6RVhQcO8AvhM3d3OmVGP9AlXxqoOqMNQtxdd+fsYhSoZ3
-         6mdjty69zdNWY2S+vzaOoG3QQSTu3k9QJSCFac1JleRtSBsrOUd+FLpqegh+BbUlPfG2
-         Ih1/6yKSKGQVyfe/wYgbkqaXy7OEU0wvX176nvmmPqyDNm/VH5RLolti/OKrXLhwTs5D
-         U5ApdQK/AFDljwY6mE/ZUvu9SXcqTwmt1oX4FzuSMHFmNkx9doAwynnQDftnnTzwdz2t
-         T8Pg==
+        bh=yD3/2nMu40iWkCJApa1un3cbczzFbKdO9B0J2VVf/BQ=;
+        b=fdXIboJGEs9ESGymq78yu8qUEGAMvfm1YFl7lJvcJq74hnBGstgi3nh1Ht7YV0Ckm4
+         XZ8/FKCIUqFbF3v+mtlW8LWp3BuPT8bjmcahkROSYSZ+unuhb8849YDQDon13YS/gZfp
+         uqWhz3jP9iZ+94jHeB0wTBPQfgfM6Pu0642rIFbomK/rrAllD8V5JoaaDMLqZQR/p5uT
+         +XXXicxvkrcPkwk79q4OPIxeqDLvbxQrMBWbUjjiOHV7zOwrgtn0YYyGP5/11yMmrN3N
+         bKZby/3X/rUyhnTaBnkGhFORTADk5zbD/ISe7q3l0wAQJGUCu8b5HZys81i0NHgpcqJB
+         l7YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tccTfkPaCkJqRCXrpmp0F9b3WbVNC0IPQMXCiDJx7Zw=;
-        b=Tfhvzzf4Pd7k9cm5ni9F6ZCv2W67tVIxc/KbA5240cPQ1btbwCdkJEGFeFMb1ZmHtI
-         ZGXNb5kN6ARrMcbu7YoTkksQoALVZHwj0RKayWiMxAmm4pr+0eq0W/fH+dZg1hwGjDfq
-         Ydor1gMWRxKPif9pCUStuO2aUr2/z2HWzxridPX3ahX2/SoTV+nNf//5cy3pPgKtPnie
-         3rVXjWy+TSTUiG3KOjgTlK1pedQPQQAYmiazZzIl7g/OlG2xuSGH5CF1RorVMrnZnk8s
-         oIiTbWy+Dn4qTsda4J6m7/xoYwnPGIqsI10lzyxAcdBnUgdtHNyyNxXuZyE5AP3/jpOY
-         IfjA==
-X-Gm-Message-State: APjAAAXK3z1HPIoM0EcjBh5boo0UpIMHxh3FliME1KOHfao5GimHgYLK
-        T2yNa+TnqTyFmz8lbnuMUkZlwS2YTHAGzZL0KBtcKA==
-X-Google-Smtp-Source: APXvYqy7Mf/XaWFq/LXOzPSf1s6Jcjn+sKV/HBkrnZUpN8ofis3WnAWx2KOtRgDlC08AA+7Y/pJ1KFcI15Rf9GhIu2A=
-X-Received: by 2002:a2e:9018:: with SMTP id h24mr2415646ljg.165.1559409701490;
- Sat, 01 Jun 2019 10:21:41 -0700 (PDT)
+        bh=yD3/2nMu40iWkCJApa1un3cbczzFbKdO9B0J2VVf/BQ=;
+        b=W3nzfvUGxNCmOxc+ILXpt/1VYoBmTpTknsuGXZ5GyskXhfvEKnAE9xUzVi0194GT0t
+         yoazTsg/nTNl4h+uPaZh3ik0xP68iFOgkzweGibQdcvgJqnAImyvPgTp8tBFh6gNd2Jh
+         MXKYJeOQuP1pc1SGePYVZJtmQR2c0oZN9j3w3Gn4nn9BlkK4guZtnwqNZSBqNZYHFJ5j
+         7bKTkCbEZiGMjbiNHv3gu4jvRV3npoH632iL8wYuIBeZUfqBLfFy985g3KYEr00hyphd
+         W+68k5VpJc74yPktbhX5D9DLZ9Tv/feXKEILbgCd74bGz5odVHLkgsFB+ZwEjXxFMDsU
+         pI0Q==
+X-Gm-Message-State: APjAAAXpwSt1l3Hb1RXU5Nij5qYCtOmejlGBleWJDbGk0MpGpvf+J23L
+        6XRLv2IBwkq92B0Lai8wO1zDLq4AjfXZJTQBExB/8g==
+X-Google-Smtp-Source: APXvYqw55gN5VS0X6O9i9hhjw+uvDGiRLwxkuM3dwGJ0LgEBcvGtcO3QnqZCk2Lc0KpmVCUEwbZz3DIJZLpEdAK2dJQ=
+X-Received: by 2002:a19:6a01:: with SMTP id u1mr7439447lfu.141.1559409763924;
+ Sat, 01 Jun 2019 10:22:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <1558007594-14824-1-git-send-email-kyarlagadda@nvidia.com>
-In-Reply-To: <1558007594-14824-1-git-send-email-kyarlagadda@nvidia.com>
+References: <1558007594-14824-1-git-send-email-kyarlagadda@nvidia.com> <1558007594-14824-2-git-send-email-kyarlagadda@nvidia.com>
+In-Reply-To: <1558007594-14824-2-git-send-email-kyarlagadda@nvidia.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 1 Jun 2019 19:21:30 +0200
-Message-ID: <CACRpkdYMx9obZV70EsieU_3eVVxqu9jVFpCO3Fk4t-2PUya97Q@mail.gmail.com>
-Subject: Re: [PATCH V3 1/4] dt-binding: Tegra194 pinctrl support
+Date:   Sat, 1 Jun 2019 19:22:32 +0200
+Message-ID: <CACRpkdb9swUxO9GBvZQMVu0t0-77Pr9W5RivuiVhgrM1eBGtdA@mail.gmail.com>
+Subject: Re: [PATCH V3 2/4] pinctrl: tegra: Support 32 bit register access
 To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
 Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
         Jon Hunter <jonathanh@nvidia.com>,
@@ -68,14 +68,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, May 16, 2019 at 1:53 PM Krishna Yarlagadda
 <kyarlagadda@nvidia.com> wrote:
 
-> Add binding doc for Tegra 194 pinctrl driver
+> Tegra194 chip has 32 bit pinctrl registers. Existing register defines in
+> header are only 16 bit.
+> Modified common pinctrl-tegra driver to support 32 bit registers of
+> Tegra 194 and later chips.
 >
 > Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
-> ---
-> Changes in V3:
-> remove optional fields not supported by pins published here
 
-Patch applied with the tags.
+Patch applied.
 
 Yours,
 Linus Walleij
