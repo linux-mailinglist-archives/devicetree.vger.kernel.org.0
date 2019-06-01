@@ -2,214 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38BC731AC7
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 11:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B166231ACB
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 11:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726109AbfFAJX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jun 2019 05:23:58 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:46368 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726089AbfFAJX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jun 2019 05:23:58 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4CCF02682E1;
-        Sat,  1 Jun 2019 10:23:56 +0100 (BST)
-Date:   Sat, 1 Jun 2019 11:23:53 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v3 10/10] media: hantro: allow arbitrary number of
- clocks
-Message-ID: <20190601112353.132c7f23@collabora.com>
-In-Reply-To: <20190531085523.10892-11-p.zabel@pengutronix.de>
-References: <20190531085523.10892-1-p.zabel@pengutronix.de>
-        <20190531085523.10892-11-p.zabel@pengutronix.de>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726180AbfFAJ03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jun 2019 05:26:29 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:64382 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726089AbfFAJ02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jun 2019 05:26:28 -0400
+X-UUID: 27c8530086f9486db697b69fb0584e58-20190601
+X-UUID: 27c8530086f9486db697b69fb0584e58-20190601
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1148342631; Sat, 01 Jun 2019 17:26:21 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33DR.mediatek.inc
+ (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 1 Jun
+ 2019 17:26:19 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (172.27.4.253) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1395.4 via Frontend Transport; Sat, 1 Jun 2019 17:26:18 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <ck.hu@mediatek.com>, <stonea168@163.com>
+Subject: [v4 0/7] Support dsi for mt8183
+Date:   Sat, 1 Jun 2019 17:26:08 +0800
+Message-ID: <20190601092615.67917-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 May 2019 10:55:23 +0200
-Philipp Zabel <p.zabel@pengutronix.de> wrote:
+changes since v3
+ - add one more 'tab' for bitwise define.
+ - add Tested-by: Ryan Case <ryandcase@chromium.org>
+	and Reviewed-by: CK Hu <ck.hu@mediatek.com>.
+ - remove compare da_hs_zero to da_hs_prepare.
 
-> Dynamically allocate clocks and move clock names out of struct
-> hantro_variant. This lifts the four clock limit and allows to use
-> ARRAY_SIZE() to fill .num_clocks to reduce the risk of mismatches.
-> 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+Changes since v2:
+ - change the video timing calc method
+ - fine the dsi and mipitx init sequence
+ - fine tune commit msg
 
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+Changes since v1:
+ - separate frame size and reg commit control independent patches.
+ - fix some return values in probe
+ - remove DSI_CMDW0 in "CMDQ reg address of mt8173 is different with mt2701" 
 
-> ---
-> New in v3.
-> ---
->  drivers/staging/media/hantro/hantro.h        |  6 ++----
->  drivers/staging/media/hantro/hantro_drv.c    |  5 +++++
->  drivers/staging/media/hantro/imx8m_vpu_hw.c  | 10 ++++++----
->  drivers/staging/media/hantro/rk3288_vpu_hw.c |  8 ++++++--
->  drivers/staging/media/hantro/rk3399_vpu_hw.c | 12 ++++++++----
->  5 files changed, 27 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index 295a00d59a5f..0a3b2a8b3e67 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -25,8 +25,6 @@
->  
->  #include "hantro_hw.h"
->  
-> -#define HANTRO_MAX_CLOCKS		4
-> -
->  #define MPEG2_MB_DIM			16
->  #define MPEG2_MB_WIDTH(w)		DIV_ROUND_UP(w, MPEG2_MB_DIM)
->  #define MPEG2_MB_HEIGHT(h)		DIV_ROUND_UP(h, MPEG2_MB_DIM)
-> @@ -88,7 +86,7 @@ struct hantro_variant {
->  	int (*runtime_resume)(struct hantro_dev *vpu);
->  	const struct hantro_irq *irqs;
->  	int num_irqs;
-> -	const char *clk_names[HANTRO_MAX_CLOCKS];
-> +	const char * const *clk_names;
->  	int num_clocks;
->  	const char * const *reg_names;
->  	int num_regs;
-> @@ -182,7 +180,7 @@ struct hantro_dev {
->  	struct hantro_func *decoder;
->  	struct platform_device *pdev;
->  	struct device *dev;
-> -	struct clk_bulk_data clocks[HANTRO_MAX_CLOCKS];
-> +	struct clk_bulk_data *clocks;
->  	void __iomem **bases;
->  	void __iomem *enc_base;
->  	void __iomem *dec_base;
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index ef2b29d50100..d9624ee9fdc3 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -688,6 +688,11 @@ static int hantro_probe(struct platform_device *pdev)
->  
->  	INIT_DELAYED_WORK(&vpu->watchdog_work, hantro_watchdog);
->  
-> +	vpu->clocks = devm_kcalloc(&pdev->dev, vpu->variant->num_clocks,
-> +				   sizeof(*vpu->clocks), GFP_KERNEL);
-> +	if (!vpu->clocks)
-> +		return -ENOMEM;
-> +
->  	for (i = 0; i < vpu->variant->num_clocks; i++)
->  		vpu->clocks[i].id = vpu->variant->clk_names[i];
->  	ret = devm_clk_bulk_get(&pdev->dev, vpu->variant->num_clocks,
-> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> index fbe84c5f5619..811899e8416a 100644
-> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> @@ -266,6 +266,7 @@ static const struct hantro_irq imx8mq_irqs[] = {
->  	{ "g2", NULL /* TODO: imx8m_vpu_g2_irq */ },
->  };
->  
-> +static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
->  static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
->  
->  const struct hantro_variant imx8mq_vpu_variant = {
-> @@ -278,8 +279,8 @@ const struct hantro_variant imx8mq_vpu_variant = {
->  	.irqs = imx8mq_irqs,
->  	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
->  	.num_irqs = 2,
-> -	.clk_names = { "g1", "g2", "bus" },
-> -	.num_clocks = 3,
-> +	.clk_names = imx8mq_clk_names,
-> +	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
->  	.reg_names = imx8mq_reg_names,
->  	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
->  };
-> @@ -290,6 +291,7 @@ static const struct hantro_irq imx8mm_irqs[] = {
->  	{ "h1", imx8mm_vpu_h1_irq },
->  };
->  
-> +static const char * const imx8mm_clk_names[] = { "g1", "g2", "h1", "bus" };
->  static const char * const imx8mm_reg_names[] = { "g1", "g2", "h1", "ctrl" };
->  
->  const struct hantro_variant imx8mm_vpu_variant = {
-> @@ -301,8 +303,8 @@ const struct hantro_variant imx8mm_vpu_variant = {
->  	.runtime_resume = imx8mm_runtime_resume,
->  	.irqs = imx8mm_irqs,
->  	.num_irqs = ARRAY_SIZE(imx8mm_irqs),
-> -	.clk_names = { "g1", "g2", "h1", "bus" },
-> -	.num_clocks = 4,
-> +	.clk_names = imx8mm_clk_names,
-> +	.num_clocks = ARRAY_SIZE(imx8mm_clk_names),
->  	.reg_names = imx8mm_reg_names,
->  	.num_regs = ARRAY_SIZE(imx8mm_reg_names)
->  };
-> diff --git a/drivers/staging/media/hantro/rk3288_vpu_hw.c b/drivers/staging/media/hantro/rk3288_vpu_hw.c
-> index b4d5e24167db..fe721e0b948d 100644
-> --- a/drivers/staging/media/hantro/rk3288_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/rk3288_vpu_hw.c
-> @@ -165,6 +165,10 @@ static const struct hantro_irq rk3288_irqs[] = {
->  	{ "vdpu", rk3288_vdpu_irq },
->  };
->  
-> +static const char * const rk3288_clk_names[] = {
-> +	"aclk", "hclk"
-> +};
-> +
->  const struct hantro_variant rk3288_vpu_variant = {
->  	.enc_offset = 0x0,
->  	.enc_fmts = rk3288_vpu_enc_fmts,
-> @@ -177,6 +181,6 @@ const struct hantro_variant rk3288_vpu_variant = {
->  	.irqs = rk3288_irqs,
->  	.num_irqs = ARRAY_SIZE(rk3288_irqs),
->  	.init = rk3288_vpu_hw_init,
-> -	.clk_names = {"aclk", "hclk"},
-> -	.num_clocks = 2
-> +	.clk_names = rk3288_clk_names,
-> +	.num_clocks = ARRAY_SIZE(rk3288_clk_names)
->  };
-> diff --git a/drivers/staging/media/hantro/rk3399_vpu_hw.c b/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> index fc52bedf3665..f8400e49bc50 100644
-> --- a/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> @@ -165,6 +165,10 @@ static const struct hantro_irq rk3399_irqs[] = {
->  	{ "vdpu", rk3399_vdpu_irq },
->  };
->  
-> +static const char * const rk3399_clk_names[] = {
-> +	"aclk", "hclk"
-> +};
-> +
->  const struct hantro_variant rk3399_vpu_variant = {
->  	.enc_offset = 0x0,
->  	.enc_fmts = rk3399_vpu_enc_fmts,
-> @@ -177,8 +181,8 @@ const struct hantro_variant rk3399_vpu_variant = {
->  	.irqs = rk3399_irqs,
->  	.num_irqs = ARRAY_SIZE(rk3399_irqs),
->  	.init = rk3399_vpu_hw_init,
-> -	.clk_names = {"aclk", "hclk"},
-> -	.num_clocks = 2
-> +	.clk_names = rk3399_clk_names,
-> +	.num_clocks = ARRAY_SIZE(rk3399_clk_names)
->  };
->  
->  static const struct hantro_irq rk3328_irqs[] = {
-> @@ -194,6 +198,6 @@ const struct hantro_variant rk3328_vpu_variant = {
->  	.irqs = rk3328_irqs,
->  	.num_irqs = ARRAY_SIZE(rk3328_irqs),
->  	.init = rk3399_vpu_hw_init,
-> -	.clk_names = {"aclk", "hclk"},
-> -	.num_clocks = 2
-> +	.clk_names = rk3399_clk_names,
-> +	.num_clocks = ARRAY_SIZE(rk3399_clk_names),
->  };
+Jitao Shi (7):
+  drm/mediatek: move mipi_dsi_host_register to probe
+  drm/mediatek: fixes CMDQ reg address of mt8173 is different with
+    mt2701
+  drm/mediatek: add dsi reg commit disable control
+  drm/mediatek: add frame size control
+  drm/mediatek: add mt8183 dsi driver support
+  drm/mediatek: change the dsi phytiming calculate method
+  drm: mediatek: adjust dsi and mipi_tx probe sequence
+
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c |   2 +-
+ drivers/gpu/drm/mediatek/mtk_dsi.c     | 222 ++++++++++++++++++-------
+ 2 files changed, 160 insertions(+), 64 deletions(-)
+
+-- 
+2.21.0
 
