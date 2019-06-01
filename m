@@ -2,158 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3588A319DF
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 08:11:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BDF319F9
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2019 09:07:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726965AbfFAGLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jun 2019 02:11:55 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41414 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726952AbfFAGLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jun 2019 02:11:55 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q17so7486067pfq.8
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2019 23:11:55 -0700 (PDT)
+        id S1726013AbfFAHH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jun 2019 03:07:29 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:34231 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725928AbfFAHH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jun 2019 03:07:28 -0400
+Received: by mail-wr1-f68.google.com with SMTP id f8so7889565wrt.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Jun 2019 00:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=SOLuY/R/QS+l1W9FKWqgele10Viv9LvbKIwVAA0kNm8=;
-        b=d+cvo2gIFq6hLOlcwYDfGirRUjDXJLuj5z61HgVDs72gYfgBpvUrHrxic6IdRyYNK6
-         64sdFMaYgyrIM2I+55keFM26XVesvzBEkNS4lRyfEazbFN5tmkBNX4Sn+iAUsB/jlxou
-         IbVPwJUO6aw4M9lkQj+5SJhH1n9mi86mK/afg8kY9OWezCV/Yqjxh8h1QKiDAoOJdwgP
-         iiLDalPwwEIFUx3jdSrigiQSZuccIHWEe8o2hPC6WAd3m13lOpnUjCBMvuJPQr3nYARI
-         Dv225GD/CMEyRl+ZchLqkU2PrF0q38vB7knwerfSNZEfPVmSk/R+Q6RBiMnEE0IEVIOY
-         2pXA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=71VNyN4Ro2czwJ5KFVnEX3HLCh70R/RKyfgoDtrVXOA=;
+        b=BlNzkwkFJRUzE/oQj3uKii45pcdM2Y397RITq392c+sOVkV1Rq9dfrlfmXRz2av0oj
+         Fj4WKKsra0JjdSMBBVvktZ5dDKbayLd67d//U9qgk7R4DUlrqWgrBNXaHhISbkxgGQAG
+         68/e1sufkwFiTyyVGujDzP/G3/TTTrPOOfq+IfhuJHcpl9yejG9OgFOpoOYUycNqab+K
+         KZY0zwhEvb7PQFRM9cpOsYM3AERqpAVEDsrZvaL3033kTc0QfmuPYrHzAiLJQDEN9p42
+         LxthztYbqidR7qu1hKewVgxu1MHt1psO1Oi5r8LL7yIXqu5wOxRgGxRSDqnE8bBg4wX6
+         8HXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=SOLuY/R/QS+l1W9FKWqgele10Viv9LvbKIwVAA0kNm8=;
-        b=L5C8a0hJXv48fBWyO/HZhrDEqGPRkTBhpW8pZVZz389OKZKTp8r8DNaUAE6j6h84NN
-         I1c/W+aFhWW65w1MqHRiEFU9ENU2I29tcB/xxja3lkbIh3op6ou+N1Qgh6/MBKpD7uva
-         dG0nly/cdTYJ8S1qC019NdCtJQ2dar8eI30eRpiO1gTLtMCBC35EbSKsGOMz4IGI96lJ
-         MqPJ6SQoS9OPCVKPWcXwQjVaE6VMTDpWQhfGPN3WvdDaY5Tzf5+n3omD7sqqppE0s+Yl
-         4xzJPHm8H9ricNnEN0db7RAT9B1bLpMaabI73r1yruDlZ3GxcpdvwGPyfEwqlt3XHBUc
-         dohA==
-X-Gm-Message-State: APjAAAUGf1sbjwqSHTPo0lqD5CibHj/0dz+YG3fBvM/JEKzynA5/rQZH
-        BtbMn9l3Mmc3z4uvemvjNZodvQ==
-X-Google-Smtp-Source: APXvYqyaFP3RwpKW0rt3bz1dzY/B4BEYi8u/4Gpw4jzlPR9FDwU98CbU1B23zpMqMoCntWhYDmyfag==
-X-Received: by 2002:a62:5f02:: with SMTP id t2mr15171599pfb.7.1559369514886;
-        Fri, 31 May 2019 23:11:54 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id 2sm8935850pgl.40.2019.05.31.23.11.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 31 May 2019 23:11:54 -0700 (PDT)
-From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
-        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH REPOST v8 3/3] i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC.
-Date:   Sat,  1 Jun 2019 11:41:15 +0530
-Message-Id: <1559369475-15374-4-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1559369475-15374-1-git-send-email-sagar.kadam@sifive.com>
-References: <1559369475-15374-1-git-send-email-sagar.kadam@sifive.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=71VNyN4Ro2czwJ5KFVnEX3HLCh70R/RKyfgoDtrVXOA=;
+        b=pNT79YFvq1o64tCmWNhHDR/JXvg2bSuYAOcJdQdT30yvdMdSiaYqkh/3x5FrGjbeoD
+         vPVKuxs+nesbzLZ/oo1lZ+YxaoFnQsKZF5mxaM5bk1L6MT5T2J0Cp13MwozjavWRYghR
+         a2YFPUVnmnwsoMvXW96MvS43AxFBH4a1doNtdi4Xbavt0ShUAWXKfUR2yhpFqP+uJszx
+         TTYdIw3nxCjrBRNBlMBY1YOrIqjbwnQvfsmEbQ81EbstUX5phfC4V/CwKVtdPy04CFbd
+         lOdmj7MrqnSgXAe2MhyEkP2qbkmpaWQEuKP97GsbnoHJi5YRxdvmDcKU5n6JZwLxQPbZ
+         Ftkw==
+X-Gm-Message-State: APjAAAV4tzicqMAtJp4EquaZaftyilF24qoQhEMa0xAC/cQYQ6LsnmRf
+        i+DCd0pcTN+fL+cnvfWrndc=
+X-Google-Smtp-Source: APXvYqySCrlRzCFEF6/6Dxo+v8AfYqfnaUyGqhpOsIqLUJDk0UHzcQhk9iTNzszTHPxZEmixS+s2+A==
+X-Received: by 2002:adf:e344:: with SMTP id n4mr9091822wrj.192.1559372847280;
+        Sat, 01 Jun 2019 00:07:27 -0700 (PDT)
+Received: from morpheus.roving-it.com.com (2.e.6.5.c.a.a.1.a.8.0.3.1.e.3.c.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:c3e1:308a:1aac:56e2])
+        by smtp.googlemail.com with ESMTPSA id h8sm19008382wmf.5.2019.06.01.00.07.26
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sat, 01 Jun 2019 00:07:26 -0700 (PDT)
+From:   Peter Robinson <pbrobinson@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Peter Robinson <pbrobinson@gmail.com>
+Subject: Updates for UDOO Neo
+Date:   Sat,  1 Jun 2019 08:07:15 +0100
+Message-Id: <20190601070718.26971-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i2c-ocore driver already has a polling mode interface.But it needs
-a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-There is an erratum in FU540 chip that prevents interrupt driven i2c
-transfers from working, and also the I2C controller's interrupt bit
-cannot be cleared if set, due to this the existing i2c polling mode
-interface added in mainline earlier doesn't work, and CPU stall's
-infinitely, when-ever i2c transfer is initiated.
+A small improvements series to update licenece to SPDX License Identifier,
+enable two of the i2c interfaces that contain either on-board sensors or
+a connector for "bricks" of sensors, and finally enable bluetooth using
+the serdev driver for the TI module.
 
-Ref:
-	commit dd7dbf0eb090 ("i2c: ocores: refactor setup for polling")
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 
-The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-FU540-COOO SoC.
-
-The polling function identifies a SiFive device based on the device node
-and enables the workaround.
-
-Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- drivers/i2c/busses/i2c-ocores.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
-index b334fa2..4117f1a 100644
---- a/drivers/i2c/busses/i2c-ocores.c
-+++ b/drivers/i2c/busses/i2c-ocores.c
-@@ -35,6 +35,7 @@ struct ocores_i2c {
- 	int iobase;
- 	u32 reg_shift;
- 	u32 reg_io_width;
-+	unsigned long flags;
- 	wait_queue_head_t wait;
- 	struct i2c_adapter adap;
- 	struct i2c_msg *msg;
-@@ -84,6 +85,8 @@ struct ocores_i2c {
- #define TYPE_GRLIB		1
- #define TYPE_SIFIVE_REV0	2
- 
-+#define OCORES_FLAG_BROKEN_IRQ BIT(1) /* Broken IRQ for FU540-C000 SoC */
-+
- static void oc_setreg_8(struct ocores_i2c *i2c, int reg, u8 value)
- {
- 	iowrite8(value, i2c->base + (reg << i2c->reg_shift));
-@@ -236,9 +239,12 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
- 	struct ocores_i2c *i2c = dev_id;
- 	u8 stat = oc_getreg(i2c, OCI2C_STATUS);
- 
--	if (!(stat & OCI2C_STAT_IF))
-+	if (i2c->flags & OCORES_FLAG_BROKEN_IRQ) {
-+		if ((stat & OCI2C_STAT_IF) && !(stat & OCI2C_STAT_BUSY))
-+			return IRQ_NONE;
-+	} else if (!(stat & OCI2C_STAT_IF)) {
- 		return IRQ_NONE;
--
-+	}
- 	ocores_process(i2c, stat);
- 
- 	return IRQ_HANDLED;
-@@ -353,6 +359,11 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
- 		ret = ocores_isr(-1, i2c);
- 		if (ret == IRQ_NONE)
- 			break; /* all messages have been transferred */
-+		else {
-+			if (i2c->flags & OCORES_FLAG_BROKEN_IRQ)
-+				if (i2c->state == STATE_DONE)
-+					break;
-+		}
- 	}
- }
- 
-@@ -595,6 +606,7 @@ static int ocores_i2c_probe(struct platform_device *pdev)
- {
- 	struct ocores_i2c *i2c;
- 	struct ocores_i2c_platform_data *pdata;
-+	const struct of_device_id *match;
- 	struct resource *res;
- 	int irq;
- 	int ret;
-@@ -677,6 +689,14 @@ static int ocores_i2c_probe(struct platform_device *pdev)
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq == -ENXIO) {
- 		ocores_algorithm.master_xfer = ocores_xfer_polling;
-+
-+		/*
-+		 * Set in OCORES_FLAG_BROKEN_IRQ to enable workaround for
-+		 * FU540-C000 SoC in polling mode.
-+		 */
-+		match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
-+		if (match && (long)match->data == TYPE_SIFIVE_REV0)
-+			i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
- 	} else {
- 		if (irq < 0)
- 			return irq;
--- 
-1.9.1
 
