@@ -2,105 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 06807322D0
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2019 11:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5DA323E7
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2019 18:49:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726122AbfFBJdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 05:33:32 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:50100 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725977AbfFBJdb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 2 Jun 2019 05:33:31 -0400
-Received: from g550jk.localnet (188-23-224-77.adsl.highway.telekom.at [188.23.224.77])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id CB64EC62FD;
-        Sun,  2 Jun 2019 09:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1559468008; bh=pQdvPMLIBmdIcqXAkWH+WvQdnCpnkFRtt4HIJgSnwC4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=mvP5P3mXB/dB/BvooP+TNehmDN6t1qMkvdl5CKdYRgltnKJO9kpa7fU37fFxFDiy4
-         0UXkiSOpD3TQfZGcOQZdzeS6m8IU7DMfmUKH9kfPRpppTaxnQhtnGTx3v+SfBowUxH
-         uTH0vnS1/M55LTnxWhCcMDZFJK5uo7VMp+SuBl1E=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, Vasily Khoruzhick <anarsoul@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>
-Subject: Re: [PATCH 3/8] dt-bindings: net: bluetooth: Add rtl8723bs-bluetooth
-Date:   Sun, 02 Jun 2019 11:33:19 +0200
-Message-ID: <3444508.DTbMFtmaYk@g550jk>
-In-Reply-To: <CAL_Jsq+kqFrY3DoHG_TJCCSxVHRkin4OwM+F9qm6W0w5YfjPQQ@mail.gmail.com>
-References: <20190118170232.16142-1-anarsoul@gmail.com> <CA+E=qVdq5GORg-t-vVXM3zBxy3Aq93iCE+zmcGgLFBMcnTDgfw@mail.gmail.com> <CAL_Jsq+kqFrY3DoHG_TJCCSxVHRkin4OwM+F9qm6W0w5YfjPQQ@mail.gmail.com>
+        id S1726270AbfFBQtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 12:49:00 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:44000 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726084AbfFBQtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 12:49:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1559494136; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:references; bh=vb7xsY48X0IRX6WU/JJNVZf+YbRONceHxAfWa0qnxCM=;
+        b=UemrOozu4Rr/GzEu+cKFK/mOKU91ndgTzD9ExD9YClsejMyJmTvR7OPou7D0BOrtuzoztp
+        M1CTSia3mAC3rXHuLtg3r9OUszmbj9NrOuV+stE/jTYl7SgoNLPZ6X+XCjC3VrVzBXfEr6
+        wBpFhMHNjXsMc5E7UO+I+8dhfOjVSLU=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sam@ravnborg.org, od@zcrc.me,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 1/2] dt-bindings: display: Add King Display KD035G6-54NT panel documentation
+Date:   Sun,  2 Jun 2019 18:48:43 +0200
+Message-Id: <20190602164844.15659-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart8714085.0COXUpWfup"; micalg="pgp-sha256"; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---nextPart8714085.0COXUpWfup
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+The KD035G6-54NT is a 3.5" 320x240 24-bit TFT LCD panel.
 
-On Dienstag, 19. Februar 2019 15:14:01 CEST Rob Herring wrote:
-> > > How is this used?
-> > 
-> > rtl8723bs-bt needs 2 firmware binaries -- one is actual firmware,
-> > another is firmware config which is specific to the board. If
-> > firmware-postfix is specified, driver appends it to the name of config
-> > and requests board-specific config while loading firmware. I.e. if
-> > 'pine64' is specified as firmware-postfix driver will load
-> > rtl8723bs_config-pine64.bin.
-> 
-> We already have 'firmware-name' defined and I'd prefer not to have
-> another way to do things. The difference is just you have to give the
-> full filename.
-> 
+Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+---
+ .../panel/kingdisplay,kd035g6-54nt.txt        | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
 
-Hi Rob,
-
-I'm working on a v2 for this patchset and I've looked on how using "firmware-
-name" with the full filename would be possible but as David Summers has already 
-written [1], the existing code [2] takes this "postfix" as parameter and 
-basically fills it into a filename template ("${CFG_NAME}-${POSTFIX}.bin"). So 
-either we stay with the "firmware-postfix" property or the existing code would 
-have to be modified to accomodate the full filename; but if using firmware-postfix 
-is unacceptable, I can rework the existing code.
-
-Luca
-
-[1] https://lore.kernel.org/netdev/d06e3c30-a34a-bd84-9cdf-535f253843e3@davidjohnsummers.uk/
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
-drivers/bluetooth/btrtl.c#n566
---nextPart8714085.0COXUpWfup
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEE66ocILd+OiPORlvAOY2pEqPLBhkFAlzzl98ACgkQOY2pEqPL
-BhnnFA//VC5cSighumkwqn1tDlKT2am98yezWEof4TyDc9ep57nBLBfxfVi/J9o7
-S3uuBW876kpDuh5jCZ9jc7ajY/HOVk2kP63WklFmCPrFSatDw8JGaNV03cnbgV4z
-NFZh3Vgnouz+9ELHRG6o2gQiQgu4FLHrQZWzHoccDS5RmerDEFN+1/LYEQuPuFay
-WzXUcwNW4STqqQrw0AqfR61Gws1JarHMqShEmvI/5OEdfCFBlVu7uEkyMhQgurNO
-dz6Nc6KQQKPV6xBHDAHnTtXKauBENpAe8GSZyIcqpDdIIMzLm/xP1uSG7E9W2yQ8
-8YI62hXxCuKcLqNhMmmlxtnR4zQPpqV8b0bMlTHqZ/xdMsiksx/dgagafvPorvRs
-U76IRzgrye43KpLQQEmYZxCVjrvtI6RAPY764AfdwoUpo17VEUrmT40W1NkmsPyQ
-zo8m3Sl8DIvbxPTOSivZeMpN5GdgkCBT9mEQbYEkdMlDf+mUVOJBqZSNyfimwqL5
-mvtTWXneuQmpRrrIhugsO0T0fLEUqTzddawDOgA3r3f6KjQQ6JnGA7FOfF8eJNeO
-8uwK36whihKCYqUaUJaWSayF6VZVV4uurjyOMccHD+h1dYiNRBOLxcEns2XiWftw
-fcKG10h3MfKscapGVYL6HegnxTnmTSDdeb3CD+v7aP57RIqLb0g=
-=np+i
------END PGP SIGNATURE-----
-
---nextPart8714085.0COXUpWfup--
-
-
+diff --git a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
+new file mode 100644
+index 000000000000..a6e4a9af4925
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
+@@ -0,0 +1,27 @@
++King Display KD035G6-54NT 3.5" (320x240 pixels) 24-bit TFT LCD panel
++
++Required properties:
++- compatible: should be "kingdisplay,kd035g6-54nt"
++- power-supply: See panel-common.txt
++- reset-gpios: See panel-common.txt
++
++Optional properties:
++- backlight: see panel-common.txt
++
++Example:
++
++&spi {
++	display-panel {
++		compatible = "kingdisplay,kd035g6-54nt";
++		reg = <0>;
++
++		spi-max-frequency = <3125000>;
++		spi-3wire;
++		spi-cs-high;
++
++		reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
++
++		backlight = <&backlight>;
++		power-supply = <&ldo6>;
++	};
++};
+-- 
+2.21.0.593.g511ec345e18
 
