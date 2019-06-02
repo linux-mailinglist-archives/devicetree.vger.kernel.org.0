@@ -2,54 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CB40324D2
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2019 22:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9053250F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2019 23:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726716AbfFBUuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 16:50:12 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:48296 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbfFBUuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 16:50:12 -0400
-Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id ACB2F1411B403;
-        Sun,  2 Jun 2019 13:50:10 -0700 (PDT)
-Date:   Sun, 02 Jun 2019 13:50:10 -0700 (PDT)
-Message-Id: <20190602.135010.1382762534390460032.davem@davemloft.net>
-To:     horatiu.vultur@microchip.com
-Cc:     alexandre.belloni@bootlin.com, UNGLinuxDriver@microchip.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, ralf@linux-mips.org,
-        paul.burton@mips.com, jhogan@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v3 0/2] Add hw offload of TC flower on MSCC
- Ocelot
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <1559287017-32397-1-git-send-email-horatiu.vultur@microchip.com>
-References: <1559287017-32397-1-git-send-email-horatiu.vultur@microchip.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Sun, 02 Jun 2019 13:50:11 -0700 (PDT)
+        id S1726981AbfFBVoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 17:44:39 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:42253 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726776AbfFBVoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 17:44:39 -0400
+Received: by mail-lf1-f66.google.com with SMTP id y13so11961729lfh.9;
+        Sun, 02 Jun 2019 14:44:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SBjg5eRa81EzQPPSxTQMKBg6nX0dKdVE0RBDky8GBmA=;
+        b=YsDpK0enaC3AKpHJBpeWesF3I3XFx4UEa2ArMOUJ2gsU4VYeNUUuq4kR/nx155oPpP
+         xl6GGEIP9QYoSDkJ5aAoJUMPa2/3s0W852J27jTTKA45mngN7mX8kMnfXIHTQxukywXz
+         q7vYo5pRad4doGyTnwL4f7QLHY/pm2sRcSSA03cDGkvt94fRYjgUWlfCsj5CiHL4FfSS
+         LRlmMRRq+MH5nc0Nua1SOa69PCFksPfDcwUv74z9l8SruttXz2bBmMhcpQHswHTTA4z0
+         QgHoXCM5GYRgJrB6GtS2USoORtnW0OVNnzkTo3vEywkLWMLh3AdQyA3iQx2MIlgjw05P
+         HZAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SBjg5eRa81EzQPPSxTQMKBg6nX0dKdVE0RBDky8GBmA=;
+        b=bn1sZQikJF3LR6BshmspF4bgHkC8ILuknU7t4UpFOkphnASqKH0wJW86felA2a9uHd
+         b6tH77ZcSWVtoofJgJ1/6RlhiZVsHV+3omLX9DOS0/OK/q1TSsGYqDN9sEOXS1F+QoLW
+         2suR73dRVi2OwpdUOnJYlM7p4BL5KtIIG/hEcmCcHvCSdGtT+ZZ440hNNe+fiRAvv/wl
+         zmkTcLoxtiYyKdMlTzHvvV9gzY8C1HGrrFYXRiS2zxVN+BDOoj7lumst6cqj5H5y9q3P
+         qs2rDnGJYkSwn/g3w1fgLObH+hJ2CyWjK9TClC+KrK8iFBu+97HN0PRqy28J0CYkGAQU
+         nJpw==
+X-Gm-Message-State: APjAAAV1MWyBhm5cdCpLq91HTol1i2HoVNsA9xyNbW2omSI+NyAofELK
+        aX18wps5D+rrF2zPCpSSb8c=
+X-Google-Smtp-Source: APXvYqzRFvCNnsb07UorKV39uaj4aB8VnwzziVDJkkHdhszJ9fxKQWmdYoy/eC6HvwChuiuiNPCnww==
+X-Received: by 2002:a19:6a01:: with SMTP id u1mr10103527lfu.141.1559511876507;
+        Sun, 02 Jun 2019 14:44:36 -0700 (PDT)
+Received: from localhost.localdomain ([94.29.35.141])
+        by smtp.gmail.com with ESMTPSA id g22sm2803653lje.43.2019.06.02.14.44.32
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 02 Jun 2019 14:44:35 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/4] NVIDIA Tegra Video Decoder driver improvements
+Date:   Mon,  3 Jun 2019 00:37:05 +0300
+Message-Id: <20190602213712.26857-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-Date: Fri, 31 May 2019 09:16:55 +0200
+Hello,
 
-> This patch series enables hardware offload for flower filter used in
-> traffic controller on MSCC Ocelot board.
-> 
-> v2->v3 changes:
->  - remove the check for shared blocks
-> 
-> v1->v2 changes:
->  - when declaring variables use reverse christmas tree
+This series cleans up some of minor shortcomings that are caused by
+checkpatch recommendations that are not very applicable for the driver.
+Then IOMMU support is added to the driver and now it can handle sparse
+memory buffers that GPU hands to VDE in a default kernel configuration
+on Tegra30+.
 
-Series applied, thanks.
+Dmitry Osipenko (4):
+  staging: media: tegra-vde: Remove BIT() macro from UAPI header
+  staging: media: tegra-vde: Manually pack UAPI structures
+  staging: media: tegra-vde: Add IOMMU support
+  staging: media: tegra-vde: Defer dmabuf's unmapping
+
+ drivers/staging/media/tegra-vde/Kconfig       |   1 +
+ drivers/staging/media/tegra-vde/Makefile      |   1 +
+ .../staging/media/tegra-vde/dmabuf-cache.c    | 223 ++++++++++++++++++
+ drivers/staging/media/tegra-vde/iommu.c       | 146 ++++++++++++
+ drivers/staging/media/tegra-vde/trace.h       |   1 +
+ drivers/staging/media/tegra-vde/uapi.h        |  48 ++--
+ .../media/tegra-vde/{tegra-vde.c => vde.c}    | 212 ++++++-----------
+ drivers/staging/media/tegra-vde/vde.h         | 105 +++++++++
+ 8 files changed, 574 insertions(+), 163 deletions(-)
+ create mode 100644 drivers/staging/media/tegra-vde/dmabuf-cache.c
+ create mode 100644 drivers/staging/media/tegra-vde/iommu.c
+ rename drivers/staging/media/tegra-vde/{tegra-vde.c => vde.c} (88%)
+ create mode 100644 drivers/staging/media/tegra-vde/vde.h
+
+-- 
+2.21.0
+
