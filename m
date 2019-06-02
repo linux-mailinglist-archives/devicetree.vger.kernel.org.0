@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 690983229F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2019 10:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1AC322A1
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2019 10:05:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726722AbfFBIFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 04:05:10 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36573 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726695AbfFBIFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 04:05:08 -0400
-Received: by mail-wr1-f65.google.com with SMTP id n4so6141032wrs.3
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 01:05:06 -0700 (PDT)
+        id S1726784AbfFBIFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 04:05:11 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:33115 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726122AbfFBIFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 04:05:10 -0400
+Received: by mail-wm1-f68.google.com with SMTP id v19so9309864wmh.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 01:05:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=19JHlpBM08NaaoHMsfAWuVL8kWvPtpcvA1ACdpeOftw=;
-        b=VCdfTsHhwzCR9YhzLBuLeD/dMl6Knig2Qrr/Lpl2mzOsirlbvU1qW+irHX7isYh0D9
-         61JGiq+jQWtwbNdIx//Skzk3QztjQOK3IJdl4hnFMlFxKKXdMqNt880RYGiwa04PbPyf
-         wx3kh+5yoUnvomaQdj8RDE2wqlLmjjLg2jqJqIMjP7QfgvrSR+E2DoxHSo9r9MueQc9E
-         LRO/J843GZGz9QAhACybdilvcL3oSrZGjOp08ChuTXgK/6lR+biQbXan2NoItoUcZiwO
-         yPtH39dTYbSnzcmvYnCzWy9kl5NLCNDrVcvmY0JCVGL4bisWtinY7qslXDqIe6+neqxC
-         7ofw==
+        bh=Wvk9LhsSu5lYNJZOdSQrHtIo1oj0PZh/JKcuQJp9vDo=;
+        b=YwyMTxQ0Tv2Qdzp8L6b5CjQfwl8xlL/N7sdxHxKS6MqZq/BtV/T063MjUmRs2SbdmR
+         Sq5DHcZBWq7V/QEeu+Twu624TVEg07klgcnFIdC1qnvqzBUytHts8BwADI9dBQVvGMKc
+         4+z2cbGB2F4ba5nePNL78S7cnIkLoBiEKu3YJCx+zmFvJAaxVxDFCqKtJJGw014VXxrj
+         z3QRd78A1HA1X/AYEDC54il+/X+NkJgGI61lA0jJCHiZx6PiTaLzetAsbjTZN3hb518x
+         7ciIJA93p4pqRvNQe+pBqc9LXyL4KfrRFm9BQnxDD7Vys1z6opqUYhoH4HC0Bjb5i3z0
+         Spmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=19JHlpBM08NaaoHMsfAWuVL8kWvPtpcvA1ACdpeOftw=;
-        b=XJ6s22zLw28fzfWLWwCgEWbsZdV5An2y2h8hY7np7igjJXqt+BaDj4DYasba1R5jHH
-         tymYX0ydGC8xx0FywH4LLca8iQdTul1IhoFQeDEyKEUZidqOCVE9n4BEadgufh74mFxQ
-         g20foIKIQqQ5gBVYVb+7mnb2XA9Np7RcCcVa4kYs/6DMQwFGQfuttGaB9lmX2Pbd/WkG
-         M/tf/zG5/erS3XPBtwNySNSIahv6lkMusSZfMFG+qBBCC+Y+pS5XhBBuco58pKAnMNiF
-         d3ReKHKBFLJ7E9RDtZe32l5u/ZwEEaKCqXHR5+pwVDaTSZBeaNbSkywZ1DaOivDqPnRa
-         EzWA==
-X-Gm-Message-State: APjAAAWyf4gY1tKmmw11H24zLk3FVczJkrIkq1Q5rWv4R/X7xzUrE2ly
-        xaJDi3XTzt873vHLxrQrhr3RHQ==
-X-Google-Smtp-Source: APXvYqwE8EuKMBl8b7yhXkwj4vtsenrRLz2TFZwMuxn258Kx08W0WGwnpfz+wP7SL38hHnLQqp7PqA==
-X-Received: by 2002:adf:ea4a:: with SMTP id j10mr360935wrn.114.1559462706355;
-        Sun, 02 Jun 2019 01:05:06 -0700 (PDT)
+        bh=Wvk9LhsSu5lYNJZOdSQrHtIo1oj0PZh/JKcuQJp9vDo=;
+        b=KyONZ2jAlSfpgBXVIoZojUO5vHlFTCligYFVniUWcUZH6WJeqOOg+z/mqlQQUoPOjT
+         adEfmYI9vP+k3deCwPZXQw3HqAxfVcDUp1JhMnLepMt8q5HVP3ZvCyAVjC/gi1piN/jy
+         OjEy7THN87KVIRZ8Z/jDKsyh8yOHocSHORlVlZQdZr/0+Ul6lgqnsS/wzbe4M2Wbfsvc
+         ryKA1dVjHtpwsgE8qnMxMyaluiGssnUK8polpl35pR/d9vmCniJHw5babZZIwFxF8IRj
+         mwaJlIXsC9pCS6pzFioueCzJBezcDpG1QXRD1DOzQcMS0vplL6KWNqR13hdE38qKKKi3
+         Rdyw==
+X-Gm-Message-State: APjAAAVWRjZ0HLd5W0h6RDHsWg0AwAMfsik0udbiu3729BMxTNUy4cFU
+        Q0beKF/TDT5BRqJujsHW1By1JQ==
+X-Google-Smtp-Source: APXvYqyAZ6rxxIrchthzK1GIyd+woTIGPDx+BzNwo8BfN8W3cUIcc5lwTK4V5096dz+9iq2uCXG2HQ==
+X-Received: by 2002:a1c:b4d4:: with SMTP id d203mr10966857wmf.34.1559462707984;
+        Sun, 02 Jun 2019 01:05:07 -0700 (PDT)
 Received: from viisi.fritz.box (217-76-161-89.static.highway.a1.net. [217.76.161.89])
-        by smtp.gmail.com with ESMTPSA id l190sm10186301wml.16.2019.06.02.01.05.04
+        by smtp.gmail.com with ESMTPSA id l190sm10186301wml.16.2019.06.02.01.05.06
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sun, 02 Jun 2019 01:05:05 -0700 (PDT)
+        Sun, 02 Jun 2019 01:05:07 -0700 (PDT)
 From:   Paul Walmsley <paul.walmsley@sifive.com>
 To:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Cc:     Paul Walmsley <paul@pwsan.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org
-Subject: [PATCH v3 2/5] dt-bindings: riscv: sifive: add YAML documentation for the SiFive FU540
-Date:   Sun,  2 Jun 2019 01:04:57 -0700
-Message-Id: <20190602080500.31700-3-paul.walmsley@sifive.com>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 3/5] dt-bindings: riscv: convert cpu binding to json-schema
+Date:   Sun,  2 Jun 2019 01:04:58 -0700
+Message-Id: <20190602080500.31700-4-paul.walmsley@sifive.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190602080500.31700-1-paul.walmsley@sifive.com>
 References: <20190602080500.31700-1-paul.walmsley@sifive.com>
@@ -63,82 +63,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML DT binding documentation for the SiFive FU540 SoC.  This
-SoC is documented at:
+At Rob's request, we're starting to migrate our DT binding
+documentation to json-schema YAML format.  Start by converting our cpu
+binding documentation.  While doing so, document more properties and
+nodes.  This includes adding binding documentation support for the E51
+and U54 CPU cores ("harts") that are present on this SoC.  These cores
+are described in:
 
     https://static.dev.sifive.com/FU540-C000-v1.0.pdf
 
-Passes dt-doc-validate, as of yaml-bindings commit 4c79d42e9216.
+This cpus.yaml file is intended to be a starting point and to
+evolve over time.  It passes dt-doc-validate as of the yaml-bindings
+commit 4c79d42e9216.
 
-This second version incorporates review feedback from Rob Herring
-<robh@kernel.org>.
+This patch was originally based on the ARM json-schema binding
+documentation as added by commit 672951cbd1b7 ("dt-bindings: arm: Convert
+cpu binding to json-schema").
 
 Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
 Signed-off-by: Paul Walmsley <paul@pwsan.com>
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Palmer Dabbelt <palmer@sifive.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
 Cc: devicetree@vger.kernel.org
-Cc: linux-riscv@lists.infradead.org
 Cc: linux-kernel@vger.kernel.org
+Cc: linux-riscv@lists.infradead.org
 ---
- .../devicetree/bindings/riscv/sifive.yaml     | 25 +++++++++++++++++++
- MAINTAINERS                                   |  9 +++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/riscv/sifive.yaml
+ .../devicetree/bindings/riscv/cpus.yaml       | 168 ++++++++++++++++++
+ 1 file changed, 168 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/cpus.yaml
 
-diff --git a/Documentation/devicetree/bindings/riscv/sifive.yaml b/Documentation/devicetree/bindings/riscv/sifive.yaml
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
 new file mode 100644
-index 000000000000..ce7ca191789e
+index 000000000000..6e8d55d9d4e1
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/riscv/sifive.yaml
-@@ -0,0 +1,25 @@
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -0,0 +1,168 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/riscv/sifive.yaml#
++$id: http://devicetree.org/schemas/riscv/cpus.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: SiFive SoC-based boards
++title: RISC-V bindings for 'cpus' DT nodes
 +
 +maintainers:
 +  - Paul Walmsley <paul.walmsley@sifive.com>
 +  - Palmer Dabbelt <palmer@sifive.com>
 +
-+description:
-+  SiFive SoC-based boards
++allOf:
++  - $ref: /schemas/cpus.yaml#
 +
 +properties:
 +  $nodename:
-+    const: '/'
-+  compatible:
-+    items:
-+      - enum:
-+          - sifive,freedom-unleashed-a00
-+      - const: sifive,fu540-c000
-+      - const: sifive,fu540
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5cfbea4ce575..8a64051cf5fc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14322,6 +14322,15 @@ S:	Supported
- K:	sifive
- N:	sifive
- 
-+SIFIVE FU540 SYSTEM-ON-CHIP
-+M:	Paul Walmsley <paul.walmsley@sifive.com>
-+M:	Palmer Dabbelt <palmer@sifive.com>
-+L:	linux-riscv@lists.infradead.org
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pjw/sifive.git
-+S:	Supported
-+K:	fu540
-+N:	fu540
++    const: cpus
++    description: Container of cpu nodes
 +
- SILEAD TOUCHSCREEN DRIVER
- M:	Hans de Goede <hdegoede@redhat.com>
- L:	linux-input@vger.kernel.org
++  '#address-cells':
++    const: 1
++    description: |
++      A single unsigned 32-bit integer uniquely identifies each RISC-V
++      hart in a system.  (See the "reg" node under the "cpu" node,
++      below).
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  '^cpu@[0-9a-f]+$':
++    properties:
++      compatible:
++        type: array
++        items:
++          - enum:
++              - sifive,rocket0
++              - sifive,e5
++              - sifive,e51
++              - sifive,u54-mc
++              - sifive,u54
++              - sifive,u5
++          - const: riscv
++        description:
++          Identifies that the hart uses the RISC-V instruction set
++          and identifies the type of the hart.
++
++      mmu-type:
++        allOf:
++          - $ref: "/schemas/types.yaml#/definitions/string"
++          - enum:
++              - riscv,sv32
++              - riscv,sv39
++              - riscv,sv48
++        description:
++          Identifies the MMU address translation mode used on this
++          hart.  These values originate from the RISC-V Privileged
++          Specification document, available from
++          https://riscv.org/specifications/
++
++      riscv,isa:
++        allOf:
++          - $ref: "/schemas/types.yaml#/definitions/string"
++          - enum:
++              - rv64imac
++              - rv64imafdc
++        description:
++          Identifies the specific RISC-V instruction set architecture
++          supported by the hart.  These are documented in the RISC-V
++          User-Level ISA document, available from
++          https://riscv.org/specifications/
++
++      timebase-frequency:
++        type: integer
++        minimum: 1
++        description:
++          Specifies the clock frequency of the system timer in Hz.
++          This value is common to all harts on a single system image.
++
++      interrupt-controller:
++        type: object
++        description: Describes the CPU's local interrupt controller
++
++        properties:
++          '#interrupt-cells':
++            const: 1
++
++          compatible:
++            const: riscv,cpu-intc
++
++          interrupt-controller: true
++
++        required:
++          - '#interrupt-cells'
++          - compatible
++          - interrupt-controller
++
++    required:
++      - riscv,isa
++      - timebase-frequency
++      - interrupt-controller
++
++examples:
++  - |
++    // Example 1: SiFive Freedom U540G Development Kit
++    cpus {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        timebase-frequency = <1000000>;
++        cpu@0 {
++                clock-frequency = <0>;
++                compatible = "sifive,rocket0", "riscv";
++                device_type = "cpu";
++                i-cache-block-size = <64>;
++                i-cache-sets = <128>;
++                i-cache-size = <16384>;
++                reg = <0>;
++                riscv,isa = "rv64imac";
++                cpu_intc0: interrupt-controller {
++                        #interrupt-cells = <1>;
++                        compatible = "riscv,cpu-intc";
++                        interrupt-controller;
++                };
++        };
++        cpu@1 {
++                clock-frequency = <0>;
++                compatible = "sifive,rocket0", "riscv";
++                d-cache-block-size = <64>;
++                d-cache-sets = <64>;
++                d-cache-size = <32768>;
++                d-tlb-sets = <1>;
++                d-tlb-size = <32>;
++                device_type = "cpu";
++                i-cache-block-size = <64>;
++                i-cache-sets = <64>;
++                i-cache-size = <32768>;
++                i-tlb-sets = <1>;
++                i-tlb-size = <32>;
++                mmu-type = "riscv,sv39";
++                reg = <1>;
++                riscv,isa = "rv64imafdc";
++                tlb-split;
++                cpu_intc1: interrupt-controller {
++                        #interrupt-cells = <1>;
++                        compatible = "riscv,cpu-intc";
++                        interrupt-controller;
++                };
++        };
++    };
++
++  - |
++    // Example 2: Spike ISA Simulator with 1 Hart
++    cpus {
++            cpu@0 {
++                    device_type = "cpu";
++                    reg = <0>;
++                    compatible = "riscv";
++                    riscv,isa = "rv64imafdc";
++                    mmu-type = "riscv,sv48";
++                    interrupt-controller {
++                            #interrupt-cells = <1>;
++                            interrupt-controller;
++                            compatible = "riscv,cpu-intc";
++                    };
++            };
++    };
++...
 -- 
 2.20.1
 
