@@ -2,643 +2,668 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B65A33140
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2F7833170
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728746AbfFCNjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 09:39:25 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:38438 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727506AbfFCNjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:39:24 -0400
-Received: by mail-wr1-f66.google.com with SMTP id d18so12129811wrs.5;
-        Mon, 03 Jun 2019 06:39:22 -0700 (PDT)
+        id S1728681AbfFCNs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 09:48:58 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:40295 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728253AbfFCNs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:48:57 -0400
+Received: by mail-ua1-f68.google.com with SMTP id d4so6481933uaj.7
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 06:48:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=OGd/wZlcKk8OR0e9eywNJXJdwbPz/GOTBVPWXmYjO9Q=;
-        b=dG+p+G/1M6qCVmTYyElfvb34+7ZiQM+mgPnXs/5YnNMQD2FVW6401aKatULSBhrAfO
-         /p3qdrPutjpLS8pwLJxi0vAbBhKbtvjadf0DiKlmuvL8qzFputVObNkd8CDwlzKCkVA/
-         d7p4wfEsfZKIfX1jcyWSDKnhMwhsncdCVV3FNmB82FFqF3ps7suMgKOynh0jIV6lTQ+k
-         zwukyI9Nuz/vbMY7gegL2pet0FJ8K1DleazG0jEVV1Yvfoen009X6f3a+w5o33Wno/E/
-         UQ3L3E/VUVjHt7cbRmtsySEOOUZ6/L+8NNlbq3F4tPlmIUe+BDiVTea7vlve83j7G4BU
-         EzBQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cs0N9jrN+U9YLPzoR3NgL1xKMXurDg/2AxZnTQYEmzs=;
+        b=vvhrC6f4RCOktqn9R2kL/602Du4nehQBxOHwamY7xpFx2Ki1hJ14oTFMIqOQzBdB6H
+         m7AvQuv5tKB5WYo6eHaMEcSUOUdWmrERUaUsWHAh3q+nLnWSVl8X6d07Cb0FbBdsnzHC
+         OWLrz7V6HcXMMUWVvCJ9lssyP/fHyYxdRZvJc7lVuyGF5tSKPX2QxIXxZ/tE3BG1JOuo
+         CmaA0qM0HjdGIC8vzoI9BoaxwPbuxDOLpq+qCXeEDlOQwFb6OLkkoKvkoU8pLghRjuWr
+         v4Ol4BH2PdDF6i0LxxTwk4T2r6/ty6QO6jFNdUdE6+K41eg1Ht9dOjVXLTCArZrhnGaW
+         F1Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OGd/wZlcKk8OR0e9eywNJXJdwbPz/GOTBVPWXmYjO9Q=;
-        b=iLvhCV5ImGbUoIkPDZ1HczAsV2TILdzIxClgRkRwB/VwKjYC3ZAQnLdTrt2apsamVP
-         0ecdDo+sFx90Zastd8Y8BSLJlkHcZ6VKNAEeY5ROpdX/K2IUZ3ulUrL/FgxhI3/9PPLC
-         BVrMTAC1gmY1L8scFBVdbT8WxR7T6xwa7tGooDICh0XpriwU8SmPv4K97B6Q72KBh574
-         L7bnNMcThxiSe3meNIcJFh3DczhqsA+Pg3wnSaQr3PXXqcluv/DAkFhbcT7xE/Vnr/TK
-         1jLoDhm+o2tOV3J9wrWar+kgTwigDQFhtrFDcrHZEsBeV4bWa4Ydj77SA48PIHW3fHWL
-         m5rA==
-X-Gm-Message-State: APjAAAV9bTfTN35az3KYa5ias4Ic+HjFxM7/1lGIu2kmySpo3BFbIjCb
-        8kVwDDRVyoX1ANPFBU+Pj+I=
-X-Google-Smtp-Source: APXvYqzL+u98luSQybxP10AJJpuDIP1Z0OLlJY6PQnLVEXpUXPIRm63JJLPfhsY4S88bCQiTYDT65Q==
-X-Received: by 2002:adf:a749:: with SMTP id e9mr16739435wrd.64.1559569161478;
-        Mon, 03 Jun 2019 06:39:21 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id s63sm6129254wme.17.2019.06.03.06.39.19
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 03 Jun 2019 06:39:19 -0700 (PDT)
-Date:   Mon, 3 Jun 2019 15:39:18 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Clark <robdclark@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Doug Anderson <dianders@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH] of/device: add blacklist for iommu dma_ops
-Message-ID: <20190603133918.GD30132@ulmo>
-References: <20181201165348.24140-1-robdclark@gmail.com>
- <CAL_JsqJmPqis46Un91QyhXgdrVtfATMP_hTp6wSeSAfc8MLFfw@mail.gmail.com>
- <CAF6AEGs9Nsft8ofZkGz_yWBPBC+prh8dBSkJ4PJr8yk2c5FMdQ@mail.gmail.com>
- <CAF6AEGt-dhbQS5zZCNVTLT57OiUwO0RiP5bawTSu2RKZ-7W-aw@mail.gmail.com>
- <CAAFQd5BdrJFL5LKK8O5NPDKWfFgkTX_JU-jU3giEz33tj-jwCA@mail.gmail.com>
- <CAF6AEGtj+kyXqKeJK2-0e1jw_A4wz-yBEyv5zhf5Vfoi2_p2CA@mail.gmail.com>
- <401f9948-14bd-27a2-34c1-fb429cae966d@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cs0N9jrN+U9YLPzoR3NgL1xKMXurDg/2AxZnTQYEmzs=;
+        b=tGP1voWd70cj1vLh59avUz8tK8zPgmFJce18hHoLWFo0/Ltfm7LzBm/79jC6QIuQFS
+         XI8oHmhTDLtCLkOyrD/hYoMqcnaftJg4rmcuJU4/42EBTQPhYSflvIwl7IpqERqqipaE
+         WiMoi92ZtONGXiOlXsjOpcxhP4dLRjjWnkLYCBtw17ZOgsaKe3jmvg4pJgf6qGj+KkaM
+         W9Sv0a6tzbf0U14y71vxPa2hoIi7MI7Ub8vbm7IqXxUzaWJCE/u488f/3C8Sw7fePyJD
+         wC2PxZKZ7UNbSNDSMPNnx/Bs3q4DovVOPhoWaSL69sfGUyS66HDXF+X92SlY/eeMPiTZ
+         nHYg==
+X-Gm-Message-State: APjAAAU9Fn+PfMDlV9OH6jE5Y4PbNfKcHV4lC89hn9FGfQBskN95x4CM
+        Q6tbYY5uwGU9WJBujvB7VUFQ+SwcvKcRbaiICpZLbg==
+X-Google-Smtp-Source: APXvYqw/YU2VC0YpSCJ821Xv4V8MiypB5k+H2798uqcfcstpK8mWB/6LkMtB5jk0aCOfRDtNQ6mNGo3lolJcTfoG5xo=
+X-Received: by 2002:ab0:5608:: with SMTP id y8mr12698345uaa.129.1559569736050;
+ Mon, 03 Jun 2019 06:48:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Q8BnQc91gJZX4vDc"
-Content-Disposition: inline
-In-Reply-To: <401f9948-14bd-27a2-34c1-fb429cae966d@arm.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <fab0ec653b4e059cdb1206f65bfca051c8b0a7de.1559114458.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <fab0ec653b4e059cdb1206f65bfca051c8b0a7de.1559114458.git-series.maxime.ripard@bootlin.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 3 Jun 2019 15:48:19 +0200
+Message-ID: <CAPDyKFr5r39RTNHTd3-vfx92cm-emZG+3V0NoaS_Cd1EKHtwyA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Add YAML schemas for the generic
+ MMC options
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 29 May 2019 at 09:23, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> The MMC controllers have a bunch of generic options that are needed in a
+> device tree. Add a YAML schemas for those.
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
---Q8BnQc91gJZX4vDc
-Content-Type: multipart/mixed; boundary="hxkXGo8AKqTJ+9QI"
-Content-Disposition: inline
+Applied for next, thanks!
 
-
---hxkXGo8AKqTJ+9QI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jun 03, 2019 at 12:14:27PM +0100, Robin Murphy wrote:
-> On 03/06/2019 11:47, Rob Clark wrote:
-> > On Sun, Jun 2, 2019 at 11:25 PM Tomasz Figa <tfiga@chromium.org> wrote:
-> > >=20
-> > > On Mon, Jun 3, 2019 at 4:40 AM Rob Clark <robdclark@gmail.com> wrote:
-> > > >=20
-> > > > On Fri, May 10, 2019 at 7:35 AM Rob Clark <robdclark@gmail.com> wro=
-te:
-> > > > >=20
-> > > > > On Tue, Dec 4, 2018 at 2:29 PM Rob Herring <robh+dt@kernel.org> w=
-rote:
-> > > > > >=20
-> > > > > > On Sat, Dec 1, 2018 at 10:54 AM Rob Clark <robdclark@gmail.com>=
- wrote:
-> > > > > > >=20
-> > > > > > > This solves a problem we see with drm/msm, caused by getting
-> > > > > > > iommu_dma_ops while we attach our own domain and manage it di=
-rectly at
-> > > > > > > the iommu API level:
-> > > > > > >=20
-> > > > > > >    [0000000000000038] user address but active_mm is swapper
-> > > > > > >    Internal error: Oops: 96000005 [#1] PREEMPT SMP
-> > > > > > >    Modules linked in:
-> > > > > > >    CPU: 7 PID: 70 Comm: kworker/7:1 Tainted: G        W      =
-   4.19.3 #90
-> > > > > > >    Hardware name: xxx (DT)
-> > > > > > >    Workqueue: events deferred_probe_work_func
-> > > > > > >    pstate: 80c00009 (Nzcv daif +PAN +UAO)
-> > > > > > >    pc : iommu_dma_map_sg+0x7c/0x2c8
-> > > > > > >    lr : iommu_dma_map_sg+0x40/0x2c8
-> > > > > > >    sp : ffffff80095eb4f0
-> > > > > > >    x29: ffffff80095eb4f0 x28: 0000000000000000
-> > > > > > >    x27: ffffffc0f9431578 x26: 0000000000000000
-> > > > > > >    x25: 00000000ffffffff x24: 0000000000000003
-> > > > > > >    x23: 0000000000000001 x22: ffffffc0fa9ac010
-> > > > > > >    x21: 0000000000000000 x20: ffffffc0fab40980
-> > > > > > >    x19: ffffffc0fab40980 x18: 0000000000000003
-> > > > > > >    x17: 00000000000001c4 x16: 0000000000000007
-> > > > > > >    x15: 000000000000000e x14: ffffffffffffffff
-> > > > > > >    x13: ffff000000000000 x12: 0000000000000028
-> > > > > > >    x11: 0101010101010101 x10: 7f7f7f7f7f7f7f7f
-> > > > > > >    x9 : 0000000000000000 x8 : ffffffc0fab409a0
-> > > > > > >    x7 : 0000000000000000 x6 : 0000000000000002
-> > > > > > >    x5 : 0000000100000000 x4 : 0000000000000000
-> > > > > > >    x3 : 0000000000000001 x2 : 0000000000000002
-> > > > > > >    x1 : ffffffc0f9431578 x0 : 0000000000000000
-> > > > > > >    Process kworker/7:1 (pid: 70, stack limit =3D 0x0000000017=
-d08ffb)
-> > > > > > >    Call trace:
-> > > > > > >     iommu_dma_map_sg+0x7c/0x2c8
-> > > > > > >     __iommu_map_sg_attrs+0x70/0x84
-> > > > > > >     get_pages+0x170/0x1e8
-> > > > > > >     msm_gem_get_iova+0x8c/0x128
-> > > > > > >     _msm_gem_kernel_new+0x6c/0xc8
-> > > > > > >     msm_gem_kernel_new+0x4c/0x58
-> > > > > > >     dsi_tx_buf_alloc_6g+0x4c/0x8c
-> > > > > > >     msm_dsi_host_modeset_init+0xc8/0x108
-> > > > > > >     msm_dsi_modeset_init+0x54/0x18c
-> > > > > > >     _dpu_kms_drm_obj_init+0x430/0x474
-> > > > > > >     dpu_kms_hw_init+0x5f8/0x6b4
-> > > > > > >     msm_drm_bind+0x360/0x6c8
-> > > > > > >     try_to_bring_up_master.part.7+0x28/0x70
-> > > > > > >     component_master_add_with_match+0xe8/0x124
-> > > > > > >     msm_pdev_probe+0x294/0x2b4
-> > > > > > >     platform_drv_probe+0x58/0xa4
-> > > > > > >     really_probe+0x150/0x294
-> > > > > > >     driver_probe_device+0xac/0xe8
-> > > > > > >     __device_attach_driver+0xa4/0xb4
-> > > > > > >     bus_for_each_drv+0x98/0xc8
-> > > > > > >     __device_attach+0xac/0x12c
-> > > > > > >     device_initial_probe+0x24/0x30
-> > > > > > >     bus_probe_device+0x38/0x98
-> > > > > > >     deferred_probe_work_func+0x78/0xa4
-> > > > > > >     process_one_work+0x24c/0x3dc
-> > > > > > >     worker_thread+0x280/0x360
-> > > > > > >     kthread+0x134/0x13c
-> > > > > > >     ret_from_fork+0x10/0x18
-> > > > > > >    Code: d2800004 91000725 6b17039f 5400048a (f9401f40)
-> > > > > > >    ---[ end trace f22dda57f3648e2c ]---
-> > > > > > >    Kernel panic - not syncing: Fatal exception
-> > > > > > >    SMP: stopping secondary CPUs
-> > > > > > >    Kernel Offset: disabled
-> > > > > > >    CPU features: 0x0,22802a18
-> > > > > > >    Memory Limit: none
-> > > > > > >=20
-> > > > > > > The problem is that when drm/msm does it's own iommu_attach_d=
-evice(),
-> > > > > > > now the domain returned by iommu_get_domain_for_dev() is drm/=
-msm's
-> > > > > > > domain, and it doesn't have domain->iova_cookie.
-> > > > > > >=20
-> > > > > > > We kind of avoided this problem prior to sdm845/dpu because t=
-he iommu
-> > > > > > > was attached to the mdp node in dt, which is a child of the t=
-oplevel
-> > > > > > > mdss node (which corresponds to the dev passed in dma_map_sg(=
-)).  But
-> > > > > > > with sdm845, now the iommu is attached at the mdss level so w=
-e hit the
-> > > > > > > iommu_dma_ops in dma_map_sg().
-> > > > > > >=20
-> > > > > > > But auto allocating/attaching a domain before the driver is p=
-robed was
-> > > > > > > already a blocking problem for enabling per-context pagetable=
-s for the
-> > > > > > > GPU.  This problem is also now solved with this patch.
-> > > > > > >=20
-> > > > > > > Fixes: 97890ba9289c dma-mapping: detect and configure IOMMU i=
-n of_dma_configure
-> > > > > > > Tested-by: Douglas Anderson <dianders@chromium.org>
-> > > > > > > Signed-off-by: Rob Clark <robdclark@gmail.com>
-> > > > > > > ---
-> > > > > > > This is an alternative/replacement for [1].  What it lacks in=
- elegance
-> > > > > > > it makes up for in practicality ;-)
-> > > > > > >=20
-> > > > > > > [1] https://patchwork.freedesktop.org/patch/264930/
-> > > > > > >=20
-> > > > > > >   drivers/of/device.c | 22 ++++++++++++++++++++++
-> > > > > > >   1 file changed, 22 insertions(+)
-> > > > > > >=20
-> > > > > > > diff --git a/drivers/of/device.c b/drivers/of/device.c
-> > > > > > > index 5957cd4fa262..15ffee00fb22 100644
-> > > > > > > --- a/drivers/of/device.c
-> > > > > > > +++ b/drivers/of/device.c
-> > > > > > > @@ -72,6 +72,14 @@ int of_device_add(struct platform_device *=
-ofdev)
-> > > > > > >          return device_add(&ofdev->dev);
-> > > > > > >   }
-> > > > > > >=20
-> > > > > > > +static const struct of_device_id iommu_blacklist[] =3D {
-> > > > > > > +       { .compatible =3D "qcom,mdp4" },
-> > > > > > > +       { .compatible =3D "qcom,mdss" },
-> > > > > > > +       { .compatible =3D "qcom,sdm845-mdss" },
-> > > > > > > +       { .compatible =3D "qcom,adreno" },
-> > > > > > > +       {}
-> > > > > > > +};
-> > > > > >=20
-> > > > > > Not completely clear to whether this is still needed or not, bu=
-t this
-> > > > > > really won't scale. Why can't the driver for these devices over=
-ride
-> > > > > > whatever has been setup by default?
-> > > > > >=20
-> > > > >=20
-> > > > > fwiw, at the moment it is not needed, but it will become needed a=
-gain
-> > > > > to implement per-context pagetables (although I suppose for this =
-we
-> > > > > only need to blacklist qcom,adreno and not also the display nodes=
-).
-> > > >=20
-> > > > So, another case I've come across, on the display side.. I'm working
-> > > > on handling the case where bootloader enables display (and takes io=
-mmu
-> > > > out of reset).. as soon as DMA domain gets attached we get iommu
-> > > > faults, because bootloader has already configured display for scano=
-ut.
-> > > > Unfortunately this all happens before actual driver is probed and h=
-as
-> > > > a chance to intervene.
-> > > >=20
-> > > > It's rather unfortunate that we tried to be clever rather than just
-> > > > making drivers call some function to opt-in to the hookup of dma io=
-mmu
-> > > > ops :-(
-> > >=20
-> > > I think it still works for the 90% of cases and if 10% needs some
-> > > explicit work in the drivers, that's better than requiring 100% of the
-> > > drivers to do things manually.
->=20
-> Right, it's not about "being clever", it's about not adding opt-in code to
-> the hundreds and hundreds and hundreds of drivers which *might* ever find
-> themselves used on a system where they would need the IOMMU's help for DM=
-A.
->=20
-> > > Adding Marek who had the same problem on Exynos.
-> >=20
-> > I do wonder how many drivers need to iommu_map in their ->probe()?
-> > I'm thinking moving the auto-hookup to after a successful probe(),
-> > with some function a driver could call if they need mapping in probe,
-> > might be a way to eventually get rid of the blacklist.  But I've no
-> > idea how to find the subset of drivers that would be broken without a
-> > dma_setup_iommu_stuff() call in their probe.
->=20
-> Wouldn't help much. That particular issue is nothing to do with DMA ops
-> really, it's about IOMMU initialisation. On something like SMMUv3 there is
-> literally no way to turn the thing on without blocking unknown traffic - =
-it
-> *has* to have stream table entries programmed before it can even allow st=
-uff
-> to bypass.
->=20
-> The answer is either to either pay attention to the "Quiesce all DMA capa=
-ble
-> devices" part of the boot protocol (which has been there since pretty much
-> forever), or to come up with some robust way of communicating "live"
-> boot-time mappings to IOMMU drivers so that they can program themselves
-> appropriately during probe.
-
-I ran into a similar issue not too long ago and I've been working on
-what I think is a correct fix for this problem. Unfortunately I went
-down the rabbit hole of trying to get all of the pieces in the
-bootloader merged before posting the kernel patches, and that's been
-taking a long time. Let me chime in here in the hope that it will be
-helpful to others.
-
-The problem that I ran into was pretty much the same thing that Rob
-encountered. We have some platforms that will initialize display over
-HDMI in an early bootloader to show a splash screen. During boot we
-would usually take over display hardware by just resetting it and then
-programming it from scratch. Ultimately we want to do seamless handover
-so that the kernel can take over the splash and replace it by the
-console when that's ready. But I'm getting ahead of myself.
-
-One of the things I've been trying to do is replace direct IOMMU API
-usage in the Tegra DRM driver by using DMA API only, which we need in
-order to fix some corner cases we ran into (I've now forgotten most of
-the details and I realize that my commit messages aren't all that
-helpful...).
-
-Anyway, when I started using the DMA API I was running into a massive
-amount of IOMMU faults starting at early boot. It took me a while to
-realize that this was because now the IOMMU was enabled before the
-driver had a chance to set up the IOMMU domain. I think the only way
-that we were getting around that was because we used to have a custom
-IOMMU driver on older Tegra device and don't expose DMA API compatible
-IOMMU domains. With newer Tegras using the ARM SMMU we don't really have
-that option anymore.
-
-So the root cause of this is that the bootloader initialized the display
-controller to scan out from a physical address (the bootloader does not
-set up the SMMU) and when the kernel attaches the display controller to
-the SMMU during early boot, the display controller ends up trying to
-fetch those physical addresses through the SMMU where no mapping for
-those addresses exists, hence causing these faults.
-
-The solution that I came up with is to use the reserved-memory bindings
-along with memory-region references in the display controller nodes. I
-have a patch for the Tegra SMMU driver that implements support for
-parsing this data (the IOMMU framework has infrastructure to do this, so
-I take it that this has come up before) and setting up 1:1 mappings
-right before the SMMU is enabled for a device. This works rather well in
-my testing. I've been using hard-coded values because the bootloader
-does not properly put the reserved memory regions into the DT. I've been
-trying to add that as a side-project, but it turned into a bit of a can
-of worms.
-
-These are all standard bindings, so I think we could implement something
-similar in the ARM SMMU driver. In fact, I was going to do that once I
-had sorted this all out for Tegra SMMU, but I'd be happy if anyone can
-beat me to it.
-
-I've attached the patch for Tegra SMMU here. I think pretty much the
-same thing could be implement for any other drivers since this is based
-on standard bindings. Perhaps there could even be helpers. Actually it
-looks like one such helpers already exists:
-
-	iommu_dma_get_resv_regions()
-
-I think the generic code looking up the standard memory-region property
-could be added to that to expose this functionality more broadly.
-
-One thing to note is that I have this workaround in the Tegra SMMU
-driver to bind the IOMMU domain to a specific instance during this early
-direct mappings business. But I think that may no longer be necessary
-since there seems to have been some work in this area lately.
-Specifically I'm looking at 7423e01741dd6a5f1255f589145313f0fb1c8cbe,
-which may help. I can investigate, but let me post the patch first to
-keep the discussion going.
-
-Here's a short extract of how I'm using this in device tree:
-
---- >8 ---
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts b/arch/arm6=
-4/boot/dts/nvidia/tegra210-p2371-2180.dts
-index 5a57396b5948..82c4e0c88740 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-@@ -8,6 +8,16 @@
-        model =3D "NVIDIA Jetson TX1 Developer Kit";
-        compatible =3D "nvidia,p2371-2180", "nvidia,tegra210";
-
-+       reserved-memory {
-+               #address-cells =3D <2>;
-+               #size-cells =3D <2>;
-+               ranges;
-+
-+               framebuffer: framebuffer@92c9f000 {
-+                       reg =3D <0 0x92c9f000 0 0x00800000>;
-+               };
-+       };
-+
-        pcie@1003000 {
-                status =3D "okay";
-
-@@ -35,6 +45,14 @@
-        };
-
-        host1x@50000000 {
-+               dc@54200000 {
-+                       memory-region =3D <&framebuffer>;
-+               };
-+
-+               dc@54240000 {
-+                       memory-region =3D <&framebuffer>;
-+               };
-+
-                dsi@54300000 {
-                        status =3D "okay";
-
---- >8 ---
-
-Note that these entries should all be generated at runtime by the
-bootloader once it has allocated the framebuffer. That's the can of
-worms I've been talking about.
-
-Attached is the SMMU driver patch.
-
-Hope that helps,
-Thierry
-
---hxkXGo8AKqTJ+9QI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline; filename="0001-iommu-tegra-smmu-Add-support-for-reserved-regions.patch"
-Content-Transfer-Encoding: quoted-printable
-
-=46rom 1c7c4fcc5364e48fc5390ac17dd7e4ca347a6eb4 Mon Sep 17 00:00:00 2001
-=46rom: Thierry Reding <treding@nvidia.com>
-Date: Fri, 15 Feb 2019 15:16:44 +0100
-Subject: [PATCH] iommu/tegra-smmu: Add support for reserved regions
-
-The Tegra DRM driver currently uses the IOMMU API explicitly. This means
-that it has fine-grained control over when exactly the translation
-through the IOMMU is enabled. This currently happens after the driver
-probes, so the driver is in a DMA quiesced state when the IOMMU
-translation is enabled.
-
-During the transition of the Tegra DRM driver to use the DMA API instead
-of the IOMMU API explicitly, it was observed that on certain platforms
-the display controllers were still actively fetching from memory. When a
-DMA IOMMU domain is created as part of the DMA/IOMMU API setup during
-boot, the IOMMU translation for the display controllers can be enabled a
-significant amount of time before the driver has had a chance to reset
-the hardware into a sane state. This causes the SMMU to detect faults on
-the addresses that the display controller is trying to fetch.
-
-To avoid this, and as a byproduct paving the way for seamless transition
-of display from the bootloader to the kernel, add support for reserved
-regions in the Tegra SMMU driver. This is implemented using the standard
-reserved memory device tree bindings, which let us describe regions of
-memory which the kernel is forbidden from using for regular allocations.
-The Tegra SMMU driver will parse the nodes associated with each device
-via the "memory-region" property and return reserved regions that the
-IOMMU core will then create direct mappings for prior to attaching the
-IOMMU domains to the devices. This ensures that a 1:1 mapping is in
-place when IOMMU translation starts and prevents the SMMU from detecting
-any faults.
-
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/iommu/tegra-smmu.c | 115 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 115 insertions(+)
-
-diff --git a/drivers/iommu/tegra-smmu.c b/drivers/iommu/tegra-smmu.c
-index 8e49869812b0..b96444be325d 100644
---- a/drivers/iommu/tegra-smmu.c
-+++ b/drivers/iommu/tegra-smmu.c
-@@ -12,6 +12,7 @@
- #include <linux/iommu.h>
- #include <linux/kernel.h>
- #include <linux/of.h>
-+#include <linux/of_address.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
-@@ -545,6 +546,38 @@ static void tegra_smmu_set_pde(struct tegra_smmu_as *a=
-s, unsigned long iova,
- 	struct tegra_smmu *smmu =3D as->smmu;
- 	u32 *pd =3D page_address(as->pd);
- 	unsigned long offset =3D pd_index * sizeof(*pd);
-+	bool unmap =3D false;
-+
-+	/*
-+	 * XXX Move this outside of this function. Perhaps add a struct
-+	 * iommu_domain parameter to ->{get,put}_resv_regions() so that
-+	 * the mapping can be done there.
-+	 *
-+	 * The problem here is that as->smmu is only known once we attach
-+	 * the domain to a device (because then we look up the right SMMU
-+	 * instance via the dev->archdata.iommu pointer). When the direct
-+	 * mappings are created for reserved regions, the domain has not
-+	 * been attached to a device yet, so we don't know. We currently
-+	 * fix that up in ->apply_resv_regions() because that is the first
-+	 * time where we have access to a struct device that will be used
-+	 * with the IOMMU domain. However, that's asymmetric and doesn't
-+	 * take care of the page directory mapping either, so we need to
-+	 * come up with something better.
-+	 */
-+	if (as->pd_dma =3D=3D 0) {
-+		as->pd_dma =3D dma_map_page(smmu->dev, as->pd, 0, SMMU_SIZE_PD,
-+					  DMA_TO_DEVICE);
-+		if (dma_mapping_error(smmu->dev, as->pd_dma))
-+			return;
-+
-+		if (!smmu_dma_addr_valid(smmu, as->pd_dma)) {
-+			dma_unmap_page(smmu->dev, as->pd_dma, SMMU_SIZE_PD,
-+				       DMA_TO_DEVICE);
-+			return;
-+		}
-+
-+		unmap =3D true;
-+	}
-=20
- 	/* Set the page directory entry first */
- 	pd[pd_index] =3D value;
-@@ -557,6 +590,12 @@ static void tegra_smmu_set_pde(struct tegra_smmu_as *a=
-s, unsigned long iova,
- 	smmu_flush_ptc(smmu, as->pd_dma, offset);
- 	smmu_flush_tlb_section(smmu, as->id, iova);
- 	smmu_flush(smmu);
-+
-+	if (unmap) {
-+		dma_unmap_page(smmu->dev, as->pd_dma, SMMU_SIZE_PD,
-+			       DMA_TO_DEVICE);
-+		as->pd_dma =3D 0;
-+	}
- }
-=20
- static u32 *tegra_smmu_pte_offset(struct page *pt_page, unsigned long iova)
-@@ -897,6 +936,79 @@ static struct iommu_group *tegra_smmu_device_group(str=
-uct device *dev)
- 	return group;
- }
-=20
-+static void tegra_smmu_get_resv_regions(struct device *dev, struct list_he=
-ad *list)
-+{
-+	struct of_phandle_iterator it;
-+	int err;
-+
-+	if (!dev->of_node)
-+		return;
-+
-+	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0) {
-+		struct iommu_resv_region *region;
-+		struct resource res;
-+
-+		err =3D of_address_to_resource(it.node, 0, &res);
-+		if (err < 0) {
-+			dev_err(dev, "failed to parse memory region %pOFn: %d\n",
-+				it.node, err);
-+			continue;
-+		}
-+
-+		region =3D iommu_alloc_resv_region(res.start, resource_size(&res),
-+						 IOMMU_READ | IOMMU_WRITE,
-+						 IOMMU_RESV_DIRECT);
-+		if (!region)
-+			return;
-+
-+		dev_dbg(dev, "reserved region %pR\n", &res);
-+		list_add_tail(&region->list, list);
-+	}
-+}
-+
-+static void tegra_smmu_put_resv_regions(struct device *dev,
-+					struct list_head *list)
-+{
-+	struct iommu_resv_region *entry, *next;
-+
-+	list_for_each_entry_safe(entry, next, list, list)
-+		kfree(entry);
-+}
-+
-+static void tegra_smmu_apply_resv_region(struct device *dev,
-+					 struct iommu_domain *domain,
-+					 struct iommu_resv_region *region)
-+{
-+	struct tegra_smmu *smmu =3D dev->archdata.iommu;
-+	struct tegra_smmu_as *as =3D to_smmu_as(domain);
-+
-+	/*
-+	 * ->attach_dev() may not have been called yet at this point, so the
-+	 * address space may not have been associated with an SMMU instance.
-+	 * Set up the association here to make sure subsequent code can rely
-+	 * on the SMMU instance being known.
-+	 *
-+	 * Also make sure that the SMMU instance doesn't conflict if an SMMU
-+	 * has been associated with the address space already. This can happen
-+	 * if a domain is shared between multiple devices.
-+	 *
-+	 * Note that this is purely theoretic because there are no known SoCs
-+	 * with multiple instances of this SMMU.
-+	 *
-+	 * XXX Deal with this elsewhere. One possibility would be to pass the
-+	 * struct iommu_domain that we're operating on to ->get_resv_regions()
-+	 * and ->put_resv_regions() so that the connection between it and the
-+	 * struct device (in order to find the SMMU instance) can already be
-+	 * established at that time. This would be nicely symmetric because a
-+	 * ->put_resv_regions() could undo that again so that ->attach_dev()
-+	 * could start from a clean slate.
-+	 */
-+	if (as->smmu && as->smmu !=3D smmu)
-+		WARN(1, "conflicting SMMU instances\n");
-+
-+	as->smmu =3D smmu;
-+}
-+
- static int tegra_smmu_of_xlate(struct device *dev,
- 			       struct of_phandle_args *args)
- {
-@@ -917,6 +1029,9 @@ static const struct iommu_ops tegra_smmu_ops =3D {
- 	.map =3D tegra_smmu_map,
- 	.unmap =3D tegra_smmu_unmap,
- 	.iova_to_phys =3D tegra_smmu_iova_to_phys,
-+	.get_resv_regions =3D tegra_smmu_get_resv_regions,
-+	.put_resv_regions =3D tegra_smmu_put_resv_regions,
-+	.apply_resv_region =3D tegra_smmu_apply_resv_region,
- 	.of_xlate =3D tegra_smmu_of_xlate,
- 	.pgsize_bitmap =3D SZ_4K,
- };
---=20
-2.21.0
+Kind regards
+Uffe
 
 
---hxkXGo8AKqTJ+9QI--
-
---Q8BnQc91gJZX4vDc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlz1IwMACgkQ3SOs138+
-s6HFAxAAql1Hfx2rdOwJAHx+apg2RhwhIJKOmmY3L0aKIey/sRpxFCchGxjNi18u
-xOUEBOYIrVmQgS/qholbxGbyUCupHyJF/1dWXjMKBn8dsw8jDbrHsm7Ew/Hp1jzL
-cpC1LRcm3oBNvAvbMW8VyhYZv9FFp5BsJFgybPnQ8xULbiciA+CxG/LOWtlxy1sx
-CneuLLDauioU2y8Gekx1kRJWYXQ1lHk+iwnS/aRgMCw7LTNnG/Ntzwh5QHwZe9qd
-6YtVbATgxhA6keurY55ZCeLfBPl0k3+/uRqzQ02oGFn8FrWLPFaKo1sFxEoupNVN
-EOkPDLXxuae0dBQaaz4fp+R0Vla7eQ1YXSl1fVxdgXUYgQxBjmFnABJ9rwJjju54
-mTN0bNSKkxKJLDNMJ0i5rOnyexLt31jOTHuILKkGALoMVi9GZ/0SFqRZfa9M97nI
-rejh/m5JK1ucIoeYqMPhK3MUEJ81aCV0cO7dYF1KXSU//cUO2qG+oOSaWvwbJihL
-ON8IkcULv43TnOrjQmnUFSLuceOD0RgmSJZl8C6PecCLA6n4JNUvocHJyIKw4Bna
-0NmDAin7yvgOjyUHki+A2Tfn+JaUfSgkiVl+Jego+jYCj0fp8iIxQWpbqYohp8lp
-sNmKb4QB0tw66yhPIe/OD8QPEA/n9XUZizuBUh1e+GrU8V1MqWU=
-=mlFr
------END PGP SIGNATURE-----
-
---Q8BnQc91gJZX4vDc--
+>
+> ---
+>
+> Changes from v2:
+>   - Add a note to mention where the description has moved
+>   - Add Rob's Reviewed-by
+>
+> Changes from v1:
+>
+>   - Added back the cd-inverted and wp-inverted note
+>   - Removed the dependency of cd-inverted and wp-inverted on cd-gpios and
+>     wp-gpios
+>   - Fixed typo in the title
+>   - Fixed default in the bus-width property
+>   - Fixed typo in the wp-inverted property
+>   - Removed redundant type on cd-debounce-delay-ms
+>   - Switched the dsr maximum to hex instead of decimal notation
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 374 +++++++-
+>  Documentation/devicetree/bindings/mmc/mmc.txt             | 178 +---
+>  2 files changed, 375 insertions(+), 177 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> new file mode 100644
+> index 000000000000..080754e0ef35
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -0,0 +1,374 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/mmc-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MMC Controller Generic Binding
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
+> +description: |
+> +  These properties are common to multiple MMC host controllers. Any host
+> +  that requires the respective functionality should implement them using
+> +  these definitions.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^mmc(@.*)?$"
+> +
+> +  "#address-cells":
+> +    const: 1
+> +    description: |
+> +      The cell is the slot ID if a function subnode is used.
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  # Card Detection.
+> +  # If none of these properties are supplied, the host native card
+> +  # detect will be used. Only one of them should be provided.
+> +
+> +  broken-cd:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      There is no card detection available; polling must be used.
+> +
+> +  cd-gpios:
+> +    description:
+> +      The card detection will be done using the GPIO provided.
+> +
+> +  non-removable:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Non-removable slot (like eMMC); assume always present.
+> +
+> +  # *NOTE* on CD and WP polarity. To use common for all SD/MMC host
+> +  # controllers line polarity properties, we have to fix the meaning
+> +  # of the "normal" and "inverted" line levels. We choose to follow
+> +  # the SDHCI standard, which specifies both those lines as "active
+> +  # low." Therefore, using the "cd-inverted" property means, that the
+> +  # CD line is active high, i.e. it is high, when a card is
+> +  # inserted. Similar logic applies to the "wp-inverted" property.
+> +  #
+> +  # CD and WP lines can be implemented on the hardware in one of two
+> +  # ways: as GPIOs, specified in cd-gpios and wp-gpios properties, or
+> +  # as dedicated pins. Polarity of dedicated pins can be specified,
+> +  # using *-inverted properties. GPIO polarity can also be specified
+> +  # using the GPIO_ACTIVE_LOW flag. This creates an ambiguity in the
+> +  # latter case. We choose to use the XOR logic for GPIO CD and WP
+> +  # lines.  This means, the two properties are "superimposed," for
+> +  # example leaving the GPIO_ACTIVE_LOW flag clear and specifying the
+> +  # respective *-inverted property property results in a
+> +  # double-inversion and actually means the "normal" line polarity is
+> +  # in effect.
+> +  wp-inverted:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      The Write Protect line polarity is inverted.
+> +
+> +  cd-inverted:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      The CD line polarity is inverted.
+> +
+> +  # Other properties
+> +
+> +  bus-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [1, 4, 8]
+> +        default: 1
+> +    description:
+> +      Number of data lines.
+> +
+> +  max-frequency:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - minimum: 400000
+> +      - maximum: 200000000
+> +    description:
+> +      Maximum operating frequency of the bus.
+> +
+> +  disable-wp:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      When set, no physical write-protect line is present. This
+> +      property should only be specified when the controller has a
+> +      dedicated write-protect detection logic. If a GPIO is always
+> +      used for the write-protect detection. If a GPIO is always used
+> +      for the write-protect detection logic, it is sufficient to not
+> +      specify the wp-gpios property in the absence of a write-protect
+> +      line.
+> +
+> +  wp-gpios:
+> +    description:
+> +      GPIO to use for the write-protect detection.
+> +
+> +  cd-debounce-delay-ms:
+> +    description:
+> +      Set delay time before detecting card after card insert
+> +      interrupt.
+> +
+> +  no-1-8-v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      When specified, denotes that 1.8V card voltage is not supported
+> +      on this system, even if the controller claims it.
+> +
+> +  cap-sd-highspeed:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SD high-speed timing is supported.
+> +
+> +  cap-mmc-highspeed:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      MMC high-speed timing is supported.
+> +
+> +  sd-uhs-sdr12:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SD UHS SDR12 speed is supported.
+> +
+> +  sd-uhs-sdr25:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SD UHS SDR25 speed is supported.
+> +
+> +  sd-uhs-sdr50:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SD UHS SDR50 speed is supported.
+> +
+> +  sd-uhs-sdr104:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SD UHS SDR104 speed is supported.
+> +
+> +  sd-uhs-ddr50:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SD UHS DDR50 speed is supported.
+> +
+> +  cap-power-off-card:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Powering off the card is safe.
+> +
+> +  cap-mmc-hw-reset:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC hardware reset is supported
+> +
+> +  cap-sdio-irq:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      enable SDIO IRQ signalling on this interface
+> +
+> +  full-pwr-cycle:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Full power cycle of the card is supported.
+> +
+> +  mmc-ddr-1_2v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC high-speed DDR mode (1.2V I/O) is supported.
+> +
+> +  mmc-ddr-1_8v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC high-speed DDR mode (1.8V I/O) is supported.
+> +
+> +  mmc-ddr-3_3v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC high-speed DDR mode (3.3V I/O) is supported.
+> +
+> +  mmc-hs200-1_2v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC HS200 mode (1.2V I/O) is supported.
+> +
+> +  mmc-hs200-1_8v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC HS200 mode (1.8V I/O) is supported.
+> +
+> +  mmc-hs400-1_2v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC HS400 mode (1.2V I/O) is supported.
+> +
+> +  mmc-hs400-1_8v:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC HS400 mode (1.8V I/O) is supported.
+> +
+> +  mmc-hs400-enhanced-strobe:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      eMMC HS400 enhanced strobe mode is supported
+> +
+> +  dsr:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - minimum: 0
+> +      - maximum: 0xffff
+> +    description:
+> +      Value the card Driver Stage Register (DSR) should be programmed
+> +      with.
+> +
+> +  no-sdio:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Controller is limited to send SDIO commands during
+> +      initialization.
+> +
+> +  no-sd:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Controller is limited to send SD commands during initialization.
+> +
+> +  no-mmc:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Controller is limited to send MMC commands during
+> +      initialization.
+> +
+> +  fixed-emmc-driver-type:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - minimum: 0
+> +      - maximum: 4
+> +    description:
+> +      For non-removable eMMC, enforce this driver type. The value is
+> +      the driver type as specified in the eMMC specification (table
+> +      206 in spec version 5.1)
+> +
+> +  post-power-on-delay-ms:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - default: 10
+> +    description:
+> +      It was invented for MMC pwrseq-simple which could be referred to
+> +      mmc-pwrseq-simple.txt. But now it\'s reused as a tunable delay
+> +      waiting for I/O signalling and card power supply to be stable,
+> +      regardless of whether pwrseq-simple is used. Default to 10ms if
+> +      no available.
+> +
+> +  supports-cqe:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      The presence of this property indicates that the corresponding
+> +      MMC host controller supports HW command queue feature.
+> +
+> +  disable-cqe-dcmd:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      The presence of this property indicates that the MMC
+> +      controller\'s command queue engine (CQE) does not support direct
+> +      commands (DCMDs).
+> +
+> +  keep-power-in-suspend:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SDIO only. Preserves card power during a suspend/resume cycle.
+> +
+> +  # Deprecated: enable-sdio-wakeup
+> +  wakeup-source:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SDIO only. Enables wake up of host system on SDIO IRQ assertion.
+> +
+> +  vmmc-supply:
+> +    description:
+> +      Supply for the card power
+> +
+> +  vqmmc-supply:
+> +    description:
+> +      Supply for the bus IO line power
+> +
+> +  mmc-pwrseq:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      System-on-Chip designs may specify a specific MMC power
+> +      sequence. To successfully detect an (e)MMC/SD/SDIO card, that
+> +      power sequence must be maintained while initializing the card.
+> +
+> +patternProperties:
+> +  "^.*@[0-9]+$":
+> +    type: object
+> +    description: |
+> +      On embedded systems the cards connected to a host may need
+> +      additional properties. These can be specified in subnodes to the
+> +      host controller node. The subnodes are identified by the
+> +      standard \'reg\' property. Which information exactly can be
+> +      specified depends on the bindings for the SDIO function driver
+> +      for the subnode, as specified by the compatible string.
+> +
+> +    properties:
+> +      compatible:
+> +        description: |
+> +          Name of SDIO function following generic names recommended
+> +          practice
+> +
+> +      reg:
+> +        items:
+> +          - minimum: 0
+> +            maximum: 7
+> +            description:
+> +              Must contain the SDIO function number of the function this
+> +              subnode describes. A value of 0 denotes the memory SD
+> +              function, values from 1 to 7 denote the SDIO functions.
+> +
+> +      broken-hpi:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          Use this to indicate that the mmc-card has a broken hpi
+> +          implementation, and that hpi should not be used.
+> +
+> +    required:
+> +      - reg
+> +
+> +dependencies:
+> +  cd-debounce-delay-ms: [ cd-gpios ]
+> +  fixed-emmc-driver-type: [ non-removable ]
+> +
+> +examples:
+> +  - |
+> +    sdhci@ab000000 {
+> +        compatible = "sdhci";
+> +        reg = <0xab000000 0x200>;
+> +        interrupts = <23>;
+> +        bus-width = <4>;
+> +        cd-gpios = <&gpio 69 0>;
+> +        cd-inverted;
+> +        wp-gpios = <&gpio 70 0>;
+> +        max-frequency = <50000000>;
+> +        keep-power-in-suspend;
+> +        wakeup-source;
+> +        mmc-pwrseq = <&sdhci0_pwrseq>;
+> +    };
+> +
+> +  - |
+> +    mmc3: mmc@1c12000 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&mmc3_pins_a>;
+> +        vmmc-supply = <&reg_vmmc3>;
+> +        bus-width = <4>;
+> +        non-removable;
+> +        mmc-pwrseq = <&sdhci0_pwrseq>;
+> +
+> +        brcmf: bcrmf@1 {
+> +            reg = <1>;
+> +            compatible = "brcm,bcm43xx-fmac";
+> +            interrupt-parent = <&pio>;
+> +            interrupts = <10 8>;
+> +            interrupt-names = "host-wake";
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc.txt b/Documentation/devicetree/bindings/mmc/mmc.txt
+> index c269dbe384fe..bf9d7d3febf1 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc.txt
+> +++ b/Documentation/devicetree/bindings/mmc/mmc.txt
+> @@ -1,177 +1 @@
+> -These properties are common to multiple MMC host controllers. Any host
+> -that requires the respective functionality should implement them using
+> -these definitions.
+> -
+> -Interpreted by the OF core:
+> -- reg: Registers location and length.
+> -- interrupts: Interrupts used by the MMC controller.
+> -
+> -Card detection:
+> -If no property below is supplied, host native card detect is used.
+> -Only one of the properties in this section should be supplied:
+> -  - broken-cd: There is no card detection available; polling must be used.
+> -  - cd-gpios: Specify GPIOs for card detection, see gpio binding
+> -  - non-removable: non-removable slot (like eMMC); assume always present.
+> -
+> -Optional properties:
+> -- bus-width: Number of data lines, can be <1>, <4>, or <8>.  The default
+> -  will be <1> if the property is absent.
+> -- wp-gpios: Specify GPIOs for write protection, see gpio binding
+> -- cd-inverted: when present, polarity on the CD line is inverted. See the note
+> -  below for the case, when a GPIO is used for the CD line
+> -- cd-debounce-delay-ms: Set delay time before detecting card after card insert interrupt.
+> -  It's only valid when cd-gpios is present.
+> -- wp-inverted: when present, polarity on the WP line is inverted. See the note
+> -  below for the case, when a GPIO is used for the WP line
+> -- disable-wp: When set no physical WP line is present. This property should
+> -  only be specified when the controller has a dedicated write-protect
+> -  detection logic. If a GPIO is always used for the write-protect detection
+> -  logic it is sufficient to not specify wp-gpios property in the absence of a WP
+> -  line.
+> -- max-frequency: maximum operating clock frequency
+> -- no-1-8-v: when present, denotes that 1.8v card voltage is not supported on
+> -  this system, even if the controller claims it is.
+> -- cap-sd-highspeed: SD high-speed timing is supported
+> -- cap-mmc-highspeed: MMC high-speed timing is supported
+> -- sd-uhs-sdr12: SD UHS SDR12 speed is supported
+> -- sd-uhs-sdr25: SD UHS SDR25 speed is supported
+> -- sd-uhs-sdr50: SD UHS SDR50 speed is supported
+> -- sd-uhs-sdr104: SD UHS SDR104 speed is supported
+> -- sd-uhs-ddr50: SD UHS DDR50 speed is supported
+> -- cap-power-off-card: powering off the card is safe
+> -- cap-mmc-hw-reset: eMMC hardware reset is supported
+> -- cap-sdio-irq: enable SDIO IRQ signalling on this interface
+> -- full-pwr-cycle: full power cycle of the card is supported
+> -- mmc-ddr-3_3v: eMMC high-speed DDR mode(3.3V I/O) is supported
+> -- mmc-ddr-1_8v: eMMC high-speed DDR mode(1.8V I/O) is supported
+> -- mmc-ddr-1_2v: eMMC high-speed DDR mode(1.2V I/O) is supported
+> -- mmc-hs200-1_8v: eMMC HS200 mode(1.8V I/O) is supported
+> -- mmc-hs200-1_2v: eMMC HS200 mode(1.2V I/O) is supported
+> -- mmc-hs400-1_8v: eMMC HS400 mode(1.8V I/O) is supported
+> -- mmc-hs400-1_2v: eMMC HS400 mode(1.2V I/O) is supported
+> -- mmc-hs400-enhanced-strobe: eMMC HS400 enhanced strobe mode is supported
+> -- dsr: Value the card's (optional) Driver Stage Register (DSR) should be
+> -  programmed with. Valid range: [0 .. 0xffff].
+> -- no-sdio: controller is limited to send sdio cmd during initialization
+> -- no-sd: controller is limited to send sd cmd during initialization
+> -- no-mmc: controller is limited to send mmc cmd during initialization
+> -- fixed-emmc-driver-type: for non-removable eMMC, enforce this driver type.
+> -  The value <n> is the driver type as specified in the eMMC specification
+> -  (table 206 in spec version 5.1).
+> -- post-power-on-delay-ms : It was invented for MMC pwrseq-simple which could
+> -  be referred to mmc-pwrseq-simple.txt. But now it's reused as a tunable delay
+> -  waiting for I/O signalling and card power supply to be stable, regardless of
+> -  whether pwrseq-simple is used. Default to 10ms if no available.
+> -- supports-cqe : The presence of this property indicates that the corresponding
+> -  MMC host controller supports HW command queue feature.
+> -- disable-cqe-dcmd: This property indicates that the MMC controller's command
+> -  queue engine (CQE) does not support direct commands (DCMDs).
+> -
+> -*NOTE* on CD and WP polarity. To use common for all SD/MMC host controllers line
+> -polarity properties, we have to fix the meaning of the "normal" and "inverted"
+> -line levels. We choose to follow the SDHCI standard, which specifies both those
+> -lines as "active low." Therefore, using the "cd-inverted" property means, that
+> -the CD line is active high, i.e. it is high, when a card is inserted. Similar
+> -logic applies to the "wp-inverted" property.
+> -
+> -CD and WP lines can be implemented on the hardware in one of two ways: as GPIOs,
+> -specified in cd-gpios and wp-gpios properties, or as dedicated pins. Polarity of
+> -dedicated pins can be specified, using *-inverted properties. GPIO polarity can
+> -also be specified using the GPIO_ACTIVE_LOW flag. This creates an ambiguity
+> -in the latter case. We choose to use the XOR logic for GPIO CD and WP lines.
+> -This means, the two properties are "superimposed," for example leaving the
+> -GPIO_ACTIVE_LOW flag clear and specifying the respective *-inverted property
+> -property results in a double-inversion and actually means the "normal" line
+> -polarity is in effect.
+> -
+> -Optional SDIO properties:
+> -- keep-power-in-suspend: Preserves card power during a suspend/resume cycle
+> -- wakeup-source: Enables wake up of host system on SDIO IRQ assertion
+> -                (Legacy property supported: "enable-sdio-wakeup")
+> -
+> -MMC power
+> ----------
+> -
+> -Controllers may implement power control from both the connected cards and
+> -the IO signaling (for example to change to high-speed 1.8V signalling). If
+> -the system supports this, then the following two properties should point
+> -to valid regulator nodes:
+> -
+> -- vqmmc-supply: supply node for IO line power
+> -- vmmc-supply: supply node for card's power
+> -
+> -
+> -MMC power sequences:
+> ---------------------
+> -
+> -System on chip designs may specify a specific MMC power sequence. To
+> -successfully detect an (e)MMC/SD/SDIO card, that power sequence must be
+> -maintained while initializing the card.
+> -
+> -Optional property:
+> -- mmc-pwrseq: phandle to the MMC power sequence node. See "mmc-pwrseq-*"
+> -       for documentation of MMC power sequence bindings.
+> -
+> -
+> -Use of Function subnodes
+> -------------------------
+> -
+> -On embedded systems the cards connected to a host may need additional
+> -properties. These can be specified in subnodes to the host controller node.
+> -The subnodes are identified by the standard 'reg' property.
+> -Which information exactly can be specified depends on the bindings for the
+> -SDIO function driver for the subnode, as specified by the compatible string.
+> -
+> -Required host node properties when using function subnodes:
+> -- #address-cells: should be one. The cell is the slot id.
+> -- #size-cells: should be zero.
+> -
+> -Required function subnode properties:
+> -- reg: Must contain the SDIO function number of the function this subnode
+> -       describes. A value of 0 denotes the memory SD function, values from
+> -       1 to 7 denote the SDIO functions.
+> -
+> -Optional function subnode properties:
+> -- compatible: name of SDIO function following generic names recommended practice
+> -
+> -
+> -Examples
+> ---------
+> -
+> -Basic example:
+> -
+> -sdhci@ab000000 {
+> -       compatible = "sdhci";
+> -       reg = <0xab000000 0x200>;
+> -       interrupts = <23>;
+> -       bus-width = <4>;
+> -       cd-gpios = <&gpio 69 0>;
+> -       cd-inverted;
+> -       wp-gpios = <&gpio 70 0>;
+> -       max-frequency = <50000000>;
+> -       keep-power-in-suspend;
+> -       wakeup-source;
+> -       mmc-pwrseq = <&sdhci0_pwrseq>
+> -}
+> -
+> -Example with sdio function subnode:
+> -
+> -mmc3: mmc@1c12000 {
+> -       #address-cells = <1>;
+> -       #size-cells = <0>;
+> -
+> -       pinctrl-names = "default";
+> -       pinctrl-0 = <&mmc3_pins_a>;
+> -       vmmc-supply = <&reg_vmmc3>;
+> -       bus-width = <4>;
+> -       non-removable;
+> -       mmc-pwrseq = <&sdhci0_pwrseq>
+> -
+> -       brcmf: bcrmf@1 {
+> -               reg = <1>;
+> -               compatible = "brcm,bcm43xx-fmac";
+> -               interrupt-parent = <&pio>;
+> -               interrupts = <10 8>; /* PH10 / EINT10 */
+> -               interrupt-names = "host-wake";
+> -       };
+> -};
+> +This file has moved to mmc-controller.yaml.
+>
+> base-commit: 9a15d2e3fd03e38a6ee7d7bc34d28bb7340f05f2
+> --
+> git-series 0.9.1
