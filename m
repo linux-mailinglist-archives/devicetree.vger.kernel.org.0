@@ -2,298 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1970B33050
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 14:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7BF433076
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726842AbfFCMyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 08:54:44 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:51113 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726791AbfFCMyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 08:54:43 -0400
-Received: from [192.168.2.10] ([46.9.252.75])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id XmU1hLaFcsDWyXmU4htASV; Mon, 03 Jun 2019 14:54:41 +0200
-Subject: Re: [PATCH v3 09/10] media: hantro: add initial i.MX8MM support
- (untested)
-To:     Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-References: <20190531085523.10892-1-p.zabel@pengutronix.de>
- <20190531085523.10892-10-p.zabel@pengutronix.de>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <a49db696-a31e-7f80-f2c3-bcb162c03dee@xs4all.nl>
-Date:   Mon, 3 Jun 2019 14:54:37 +0200
+        id S1727190AbfFCNDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 09:03:15 -0400
+Received: from mga01.intel.com ([192.55.52.88]:50872 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726360AbfFCNDO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 09:03:14 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Jun 2019 06:03:14 -0700
+X-ExtLoop1: 1
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.198]) ([10.237.72.198])
+  by orsmga005.jf.intel.com with ESMTP; 03 Jun 2019 06:03:09 -0700
+Subject: Re: [PATCH 8/9] mmc: sdhci-sprd: Add PHY DLL delay configuration
+To:     Baolin Wang <baolin.wang@linaro.org>, ulf.hansson@linaro.org,
+        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, arnd@arndb.de, olof@lixom.net
+Cc:     vincent.guittot@linaro.org, arm@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1558346019.git.baolin.wang@linaro.org>
+ <aafceaeb2fc7e9d103d1d7a19cdae97759dd1500.1558346019.git.baolin.wang@linaro.org>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <6b539c8b-c2fd-6c37-d645-ef714c0e29c9@intel.com>
+Date:   Mon, 3 Jun 2019 16:01:58 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190531085523.10892-10-p.zabel@pengutronix.de>
+In-Reply-To: <aafceaeb2fc7e9d103d1d7a19cdae97759dd1500.1558346019.git.baolin.wang@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfFJUr62JRl6hyfKtUr3UuOOZWPQMVTiZGTl1xL6MXvd1ehAVrwIS2I1RO1RTZdpxR5iSke0Ds6Kx6/QsBRtr3ch7HLAl1juLLymrrp3s8Ltj8F8U+jVQ
- aRV+tQsE8siwrmWGMrgqSDgMuIClt7CDepHSlJNBsEvXk1SjZ/qaIxYyYF8JHTUEDam1FbDYS27gQV20WADeBRw7mX3Lit+ZUs4DI4NkoPAnzf6d3dBIFjqh
- DvTo4wj/wUAy7b9RA53usPEO/IZKQd4rAm9FxwWJVd1OihiObfCQlpPFphVq2FOwXPw+ppSP1xWYOg3xAoVMfHgMlsGGs8KoPVv1G9f6uzjHhP3PrpAbXgqX
- 9wlizEjWRioJalgkgW6RZJV/3YJTfn9Z4SrYs/9Y8133ggoKgay+01qJxhQhvbO1j+5NMQ4Yv7UQEXCYPuGHAdUGHbg//g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/31/19 10:55 AM, Philipp Zabel wrote:
-> This should enable MPEG-2 decoding on the Hantro G1 and JPEG encoding on
-> the Hantro H1 on i.MX8MM.
-
-That's the i.MX8M Mini, right? I think that's the official name for this
-SoC.
-
-In any case, I don't like merging this until someone was able to test it.
-
-Regards,
-
-	Hans
-
+On 20/05/19 1:12 PM, Baolin Wang wrote:
+> Set the PHY DLL delay for each timing mode, which is used to sample the clock
+> accurately and make the clock more stable.
 > 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Changes since v2 [1]:
->  - Adapted to changes in patches 4 and 5
-> 
-> [1] https://patchwork.linuxtv.org/patch/56425/
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+
+One comment, nevertheless:
+
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+
 > ---
->  drivers/staging/media/hantro/hantro_drv.c   |   1 +
->  drivers/staging/media/hantro/hantro_hw.h    |   1 +
->  drivers/staging/media/hantro/imx8m_vpu_hw.c | 137 ++++++++++++++++++++
->  3 files changed, 139 insertions(+)
+>  drivers/mmc/host/sdhci-sprd.c |   51 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 > 
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index bf88e594d440..ef2b29d50100 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -419,6 +419,7 @@ static const struct of_device_id of_hantro_match[] = {
->  	{ .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
->  	{ .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
->  	{ .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
-> +	{ .compatible = "nxp,imx8mm-vpu", .data = &imx8mm_vpu_variant, },
->  	{ /* sentinel */ }
+> diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
+> index e6eda13..911a09b 100644
+> --- a/drivers/mmc/host/sdhci-sprd.c
+> +++ b/drivers/mmc/host/sdhci-sprd.c
+> @@ -29,6 +29,8 @@
+>  #define  SDHCI_SPRD_DLL_INIT_COUNT	0xc00
+>  #define  SDHCI_SPRD_DLL_PHASE_INTERNAL	0x3
+>  
+> +#define SDHCI_SPRD_REG_32_DLL_DLY	0x204
+> +
+>  #define SDHCI_SPRD_REG_32_DLL_DLY_OFFSET	0x208
+>  #define  SDHCIBSPRD_IT_WR_DLY_INV		BIT(5)
+>  #define  SDHCI_SPRD_BIT_CMD_DLY_INV		BIT(13)
+> @@ -72,6 +74,24 @@ struct sdhci_sprd_host {
+>  	struct clk *clk_2x_enable;
+>  	u32 base_rate;
+>  	int flags; /* backup of host attribute */
+> +	u32 phy_delay[MMC_TIMING_MMC_HS400 + 2];
+> +};
+> +
+> +struct sdhci_sprd_phy_cfg {
+> +	const char *property;
+> +	u8 timing;
+> +};
+> +
+> +static const struct sdhci_sprd_phy_cfg sdhci_sprd_phy_cfgs[] = {
+> +	{ "sprd,phy-delay-legacy", MMC_TIMING_LEGACY, },
+> +	{ "sprd,phy-delay-sd-highspeed", MMC_TIMING_MMC_HS, },
+
+Did you mean MMC_TIMING_SD_HS
+
+> +	{ "sprd,phy-delay-sd-uhs-sdr50", MMC_TIMING_UHS_SDR50, },
+> +	{ "sprd,phy-delay-sd-uhs-sdr104", MMC_TIMING_UHS_SDR104, },
+> +	{ "sprd,phy-delay-mmc-highspeed", MMC_TIMING_MMC_HS, },
+> +	{ "sprd,phy-delay-mmc-ddr52", MMC_TIMING_MMC_DDR52, },
+> +	{ "sprd,phy-delay-mmc-hs200", MMC_TIMING_MMC_HS200, },
+> +	{ "sprd,phy-delay-mmc-hs400", MMC_TIMING_MMC_HS400, },
+> +	{ "sprd,phy-delay-mmc-hs400es", MMC_TIMING_MMC_HS400 + 1, },
 >  };
->  MODULE_DEVICE_TABLE(of, of_hantro_match);
-> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> index fd6ad017a1cf..1c69669dba54 100644
-> --- a/drivers/staging/media/hantro/hantro_hw.h
-> +++ b/drivers/staging/media/hantro/hantro_hw.h
-> @@ -82,6 +82,7 @@ extern const struct hantro_variant rk3399_vpu_variant;
->  extern const struct hantro_variant rk3328_vpu_variant;
->  extern const struct hantro_variant rk3288_vpu_variant;
->  extern const struct hantro_variant imx8mq_vpu_variant;
-> +extern const struct hantro_variant imx8mm_vpu_variant;
 >  
->  void hantro_watchdog(struct work_struct *work);
->  void hantro_run(struct hantro_ctx *ctx);
-> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> index 3da5cbd1eab1..fbe84c5f5619 100644
-> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> @@ -15,14 +15,17 @@
->  #define CTRL_SOFT_RESET		0x00
->  #define RESET_G1		BIT(1)
->  #define RESET_G2		BIT(0)
-> +#define RESET_H1		BIT(2)
->  
->  #define CTRL_CLOCK_ENABLE	0x04
->  #define CLOCK_G1		BIT(1)
->  #define CLOCK_G2		BIT(0)
-> +#define CLOCK_H1		BIT(2)
->  
->  #define CTRL_G1_DEC_FUSE	0x08
->  #define CTRL_G1_PP_FUSE		0x0c
->  #define CTRL_G2_DEC_FUSE	0x10
-> +#define CTRL_H1_ENC_FUSE	0x14
->  
->  static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
+>  #define TO_SPRD_HOST(host) sdhci_pltfm_priv(sdhci_priv(host))
+> @@ -276,6 +296,9 @@ static unsigned int sdhci_sprd_get_min_clock(struct sdhci_host *host)
+>  static void sdhci_sprd_set_uhs_signaling(struct sdhci_host *host,
+>  					 unsigned int timing)
 >  {
-> @@ -73,6 +76,30 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
->  	return 0;
+> +	struct sdhci_sprd_host *sprd_host = TO_SPRD_HOST(host);
+> +	struct mmc_host *mmc = host->mmc;
+> +	u32 *p = sprd_host->phy_delay;
+>  	u16 ctrl_2;
+>  
+>  	if (timing == host->timing)
+> @@ -314,6 +337,9 @@ static void sdhci_sprd_set_uhs_signaling(struct sdhci_host *host,
+>  	}
+>  
+>  	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
+> +
+> +	if (!mmc->ios.enhanced_strobe)
+> +		sdhci_writel(host, p[timing], SDHCI_SPRD_REG_32_DLL_DLY);
 >  }
 >  
-> +static int imx8mm_runtime_resume(struct hantro_dev *vpu)
-> +{
-> +	int ret;
+>  static void sdhci_sprd_hw_reset(struct sdhci_host *host)
+> @@ -381,6 +407,8 @@ static void sdhci_sprd_hs400_enhanced_strobe(struct mmc_host *mmc,
+>  					     struct mmc_ios *ios)
+>  {
+>  	struct sdhci_host *host = mmc_priv(mmc);
+> +	struct sdhci_sprd_host *sprd_host = TO_SPRD_HOST(host);
+> +	u32 *p = sprd_host->phy_delay;
+>  	u16 ctrl_2;
+>  
+>  	if (!ios->enhanced_strobe)
+> @@ -395,6 +423,28 @@ static void sdhci_sprd_hs400_enhanced_strobe(struct mmc_host *mmc,
+>  	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
+>  
+>  	sdhci_sprd_sd_clk_on(host);
 > +
-> +	ret = clk_bulk_prepare_enable(vpu->variant->num_clocks, vpu->clocks);
-> +	if (ret) {
-> +		dev_err(vpu->dev, "Failed to enable clocks\n");
-> +		return ret;
+> +	/* Set the PHY DLL delay value for HS400 enhanced strobe mode */
+> +	sdhci_writel(host, p[MMC_TIMING_MMC_HS400 + 1],
+> +		     SDHCI_SPRD_REG_32_DLL_DLY);
+> +}
+> +
+> +static void sdhci_sprd_phy_param_parse(struct sdhci_sprd_host *sprd_host,
+> +				       struct device_node *np)
+> +{
+> +	u32 *p = sprd_host->phy_delay;
+> +	int ret, i, index;
+> +	u32 val[4];
+> +
+> +	for (i = 0; i < ARRAY_SIZE(sdhci_sprd_phy_cfgs); i++) {
+> +		ret = of_property_read_u32_array(np,
+> +				sdhci_sprd_phy_cfgs[i].property, val, 4);
+> +		if (ret)
+> +			continue;
+> +
+> +		index = sdhci_sprd_phy_cfgs[i].timing;
+> +		p[index] = val[0] | (val[1] << 8) | (val[2] << 16) | (val[3] << 24);
 > +	}
-> +
-> +	imx8m_soft_reset(vpu, RESET_G1 | RESET_G2 | RESET_H1);
-> +	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2 | RESET_H1);
-> +
-> +	/* Set values of the fuse registers */
-> +	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
-> +	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
-> +	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
-> +	writel(0xffffffff, vpu->ctrl_base + CTRL_H1_ENC_FUSE);
-> +
-> +	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
-> +
-> +	return 0;
-> +}
-> +
->  /*
->   * Supported formats.
->   */
-> @@ -97,6 +124,43 @@ static const struct hantro_fmt imx8m_vpu_dec_fmts[] = {
->  	},
->  };
->  
-> +static const struct hantro_fmt imx8mm_vpu_enc_fmts[] = {
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_YUV420M,
-> +		.codec_mode = HANTRO_MODE_NONE,
-> +		.enc_fmt = RK3288_VPU_ENC_FMT_YUV420P,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_NV12M,
-> +		.codec_mode = HANTRO_MODE_NONE,
-> +		.enc_fmt = RK3288_VPU_ENC_FMT_YUV420SP,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_YUYV,
-> +		.codec_mode = HANTRO_MODE_NONE,
-> +		.enc_fmt = RK3288_VPU_ENC_FMT_YUYV422,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_UYVY,
-> +		.codec_mode = HANTRO_MODE_NONE,
-> +		.enc_fmt = RK3288_VPU_ENC_FMT_UYVY422,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_JPEG,
-> +		.codec_mode = HANTRO_MODE_JPEG_ENC,
-> +		.max_depth = 2,
-> +		.header_size = JPEG_HEADER_SIZE,
-> +		.frmsize = {
-> +			.min_width = 96,
-> +			.max_width = 8192,
-> +			.step_width = JPEG_MB_DIM,
-> +			.min_height = 32,
-> +			.max_height = 8192,
-> +			.step_height = JPEG_MB_DIM,
-> +		},
-> +	},
-> +};
-> +
->  static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
->  {
->  	struct hantro_dev *vpu = dev_id;
-> @@ -115,6 +179,25 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
->  	return IRQ_HANDLED;
 >  }
 >  
-> +static irqreturn_t imx8mm_vpu_h1_irq(int irq, void *dev_id)
-> +{
-> +	struct hantro_dev *vpu = dev_id;
-> +	enum vb2_buffer_state state;
-> +	u32 status, bytesused;
-> +
-> +	status = vepu_read(vpu, VEPU_REG_INTERRUPT);
-> +	bytesused = vepu_read(vpu, VEPU_REG_STR_BUF_LIMIT) / 8;
-> +	state = (status & VEPU_REG_INTERRUPT_FRAME_RDY) ?
-> +		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
-> +
-> +	vepu_write(vpu, 0, VEPU_REG_INTERRUPT);
-> +	vepu_write(vpu, 0, VEPU_REG_AXI_CTRL);
-> +
-> +	hantro_irq_done(vpu, bytesused, state);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
->  static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
->  {
->  	vpu->dec_base = vpu->bases[0];
-> @@ -123,6 +206,15 @@ static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
->  	return 0;
->  }
+>  static const struct sdhci_pltfm_data sdhci_sprd_pdata = {
+> @@ -428,6 +478,7 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
+>  		goto pltfm_free;
 >  
-> +static int imx8mm_vpu_hw_init(struct hantro_dev *vpu)
-> +{
-> +	vpu->dec_base = vpu->bases[0];
-> +	vpu->enc_base = vpu->bases[2];
-> +	vpu->ctrl_base = vpu->bases[vpu->variant->num_regs - 1];
-> +
-> +	return 0;
-> +}
-> +
->  static void imx8m_vpu_g1_reset(struct hantro_ctx *ctx)
->  {
->  	struct hantro_dev *vpu = ctx->dev;
-> @@ -130,6 +222,13 @@ static void imx8m_vpu_g1_reset(struct hantro_ctx *ctx)
->  	imx8m_soft_reset(vpu, RESET_G1);
->  }
+>  	sprd_host = TO_SPRD_HOST(host);
+> +	sdhci_sprd_phy_param_parse(sprd_host, pdev->dev.of_node);
 >  
-> +static void imx8mm_vpu_h1_reset(struct hantro_ctx *ctx)
-> +{
-> +	struct hantro_dev *vpu = ctx->dev;
-> +
-> +	imx8m_soft_reset(vpu, RESET_H1);
-> +}
-> +
->  /*
->   * Supported codec ops.
->   */
-> @@ -143,6 +242,21 @@ static const struct hantro_codec_ops imx8mq_vpu_codec_ops[] = {
->  	},
->  };
->  
-> +static const struct hantro_codec_ops imx8mm_vpu_codec_ops[] = {
-> +	[HANTRO_MODE_MPEG2_DEC] = {
-> +		.run = hantro_g1_mpeg2_dec_run,
-> +		.reset = imx8m_vpu_g1_reset,
-> +		.init = hantro_mpeg2_dec_init,
-> +		.exit = hantro_mpeg2_dec_exit,
-> +	},
-> +	[HANTRO_MODE_JPEG_ENC] = {
-> +		.run = hantro_h1_jpeg_enc_run,
-> +		.reset = imx8mm_vpu_h1_reset,
-> +		.init = hantro_jpeg_enc_init,
-> +		.exit = hantro_jpeg_enc_exit,
-> +	},
-> +};
-> +
->  /*
->   * VPU variants.
->   */
-> @@ -169,3 +283,26 @@ const struct hantro_variant imx8mq_vpu_variant = {
->  	.reg_names = imx8mq_reg_names,
->  	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
->  };
-> +
-> +static const struct hantro_irq imx8mm_irqs[] = {
-> +	{ "g1", imx8m_vpu_g1_irq },
-> +	{ "g2", NULL /* TODO: imx8m_vpu_g2_irq */ },
-> +	{ "h1", imx8mm_vpu_h1_irq },
-> +};
-> +
-> +static const char * const imx8mm_reg_names[] = { "g1", "g2", "h1", "ctrl" };
-> +
-> +const struct hantro_variant imx8mm_vpu_variant = {
-> +	.dec_fmts = imx8m_vpu_dec_fmts,
-> +	.num_dec_fmts = ARRAY_SIZE(imx8m_vpu_dec_fmts),
-> +	.codec = HANTRO_MPEG2_DECODER,
-> +	.codec_ops = imx8mm_vpu_codec_ops,
-> +	.init = imx8mm_vpu_hw_init,
-> +	.runtime_resume = imx8mm_runtime_resume,
-> +	.irqs = imx8mm_irqs,
-> +	.num_irqs = ARRAY_SIZE(imx8mm_irqs),
-> +	.clk_names = { "g1", "g2", "h1", "bus" },
-> +	.num_clocks = 4,
-> +	.reg_names = imx8mm_reg_names,
-> +	.num_regs = ARRAY_SIZE(imx8mm_reg_names)
-> +};
+>  	clk = devm_clk_get(&pdev->dev, "sdio");
+>  	if (IS_ERR(clk)) {
 > 
 
