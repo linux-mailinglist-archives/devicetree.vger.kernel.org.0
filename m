@@ -2,310 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E32C33B71
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABB7133BA2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726301AbfFCWgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 18:36:52 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:40751 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726245AbfFCWgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:36:51 -0400
-Received: by mail-qt1-f195.google.com with SMTP id a15so11482912qtn.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 15:36:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=e/L03brJhYY8u9Hd3CTKtRq0xjx8/jrNsonVfIlrn3E=;
-        b=Tq+s2vCSOC7yd3OQA0u3sAvdi29LqvQtz5uwvGRpL1OyrbFm8VV53GP8rVBe8tAMrA
-         Vklw+bvJ4Nu4EWxHau/ubbkGPTAqfBrcq0bPu3vC/7VwlOisvCzpUOri/n7nv43qv0ex
-         mmEU3vcEhX+XLPK8B41SYWj1cUv6gtROHH+6k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=e/L03brJhYY8u9Hd3CTKtRq0xjx8/jrNsonVfIlrn3E=;
-        b=JMp3dp3ku4SQdqlvqcw8itoMp5JbOHu6qA3tZdxbwwthv3M7glzWR86yNX1+e2T1T6
-         xsWrYgK9vPAh8a7sK3gCgtWUp7WFc1PSH1lME7BUFwgUy09RWczGlG6CjNOpt4LlnUA6
-         b2E+QDrWz+OxrPMOqdYxbrlCVHpK6n2ZDYycwg9JyFUcZbOPbtgXwfD7jDhbCnSy1FWD
-         aCB0KRpsjKR/hPPuxkhSVXHY+vqqq1E0QZ4vfnisUd2haqB3UiRYLp+jHUnPSdlmXQZe
-         UMuLdBK3hErZ073LKigDaQ1pAHwC7BtOF44AL6tuIoNdWbA9x5wHZlQrwQEq9m6FPSk2
-         qQ1Q==
-X-Gm-Message-State: APjAAAWJ7gla8esrzrZVKI06kpjFGsutPcH69I+eA8KvvvOTa3JUUdRY
-        iso8E/WU528lEsF73wU6xptMsVLHr4eg95cn0PHXgg==
-X-Google-Smtp-Source: APXvYqxlCEQeBkuLqEfFteDIX4bB2zq8WUaVaw6un6X2NBiAH+DDI1xY1pmVdGqgRbYiY34sx7gxfE0DyscBh4nsvNs=
-X-Received: by 2002:aed:38a1:: with SMTP id k30mr5469996qte.159.1559601410233;
- Mon, 03 Jun 2019 15:36:50 -0700 (PDT)
+        id S1726463AbfFCW7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 18:59:15 -0400
+Received: from atlmailgw2.ami.com ([63.147.10.42]:64965 "EHLO
+        atlmailgw2.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726025AbfFCW7O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:59:14 -0400
+X-Greylist: delayed 900 seconds by postgrey-1.27 at vger.kernel.org; Mon, 03 Jun 2019 18:59:14 EDT
+X-AuditID: ac10606f-bd5ff70000003de9-4b-5cf5a2bc2cf5
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw2.ami.com (Symantec Messaging Gateway) with SMTP id C7.FD.15849.CB2A5FC5; Mon,  3 Jun 2019 18:44:13 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Mon, 3 Jun 2019 18:44:12 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     Joel Stanley <joel@jms.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     Hongwei Zhang <hongweiz@ami.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH linux dev-5.1 v1] ARM: dts: aspeed: Add SGPM pinmux
+Date:   Mon, 3 Jun 2019 18:43:09 -0400
+Message-ID: <1559601789-27121-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20190601092615.67917-1-jitao.shi@mediatek.com> <20190601092615.67917-7-jitao.shi@mediatek.com>
-In-Reply-To: <20190601092615.67917-7-jitao.shi@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Tue, 4 Jun 2019 06:36:38 +0800
-Message-ID: <CANMq1KDoGO=2yursnB8udJkvMG6GwV=qsW7HFAyTsc93dnBBXQ@mail.gmail.com>
-Subject: Re: [v4 6/7] drm/mediatek: change the dsi phytiming calculate method
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
-        dri-devel@lists.freedesktop.org,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        cawa cheng <cawa.cheng@mediatek.com>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Sean Paul <seanpaul@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCLMWRmVeSWpSXmKPExsWyRiBhgu7eRV9jDJ5NkLTYdZnDYv6Rc6wW
+        v8//ZbaY8mc5k8Wmx9dYLZpXn2O22Dz/D6PF5V1z2CyWXr/IZNG69wi7A5fH1fZd7B5r5q1h
+        9Lj48Rizx6ZVnWwed67tYfPYvKTe4/yMhYwenzfJBXBEcdmkpOZklqUW6dslcGVsubuKqWC2
+        RMWfM81MDYzHRboYOTkkBEwkXrz9xQZiCwnsYpK4s6usi5ELyD7EKDH9/C12kASbgJrE3s1z
+        mEASIgI7GCU657exgjjMAmcZJTY83MsMUiUs4Czx78NGRhCbRUBFYu2sS2BxXgEHic4rk9kh
+        1slJ3DzXCRUXlDg58wkLiM0sICFx8MULZogzZCVuHXrMBFGvIPG87zHLBEa+WUhaZiFpWcDI
+        tIpRKLEkJzcxMye93EgvMTdTLzk/dxMjJKTzdzB+/Gh+iJGJgxHoJQ5mJRHexNtfYoR4UxIr
+        q1KL8uOLSnNSiw8xSnOwKInzzgi5HCMkkJ5YkpqdmlqQWgSTZeLglGpgXFWk/GnRonOdGUuS
+        Yvj+KN696zD/SIOiGe9i1tu51qxbHpmmTKi+xySVLxDkWlKqesnXKcfL1mijY7nSMhND1wcz
+        nFXCAo1vqgbVvpP/wvr8Q3ha28qiqNnlLscamS8/Z7tUU6QdbnZvscfNq0IFhzYXzP59cmJw
+        ZLXxjnk29exmpTETWL4rsRRnJBpqMRcVJwIA93vZXlcCAAA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 1, 2019 at 5:26 PM Jitao Shi <jitao.shi@mediatek.com> wrote:
->
-> Change the method of frame rate calc which can get more accurate
-> frame rate.
->
-> data rate = pixel_clock * bit_per_pixel / lanes
-> Adjust hfp_wc to adapt the additional phy_data
->
-> if MIPI_DSI_MODE_VIDEO_BURST
->         hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12 - 6;
-> else
->         hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12;
->
-> Note:
-> //(2: 1 for sync, 1 for phy idle)
-> data_phy_cycles = T_hs_exit + T_lpx + T_hs_prepare + T_hs_zero + 2;
->
-> bpp: bit per pixel
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Tested-by: Ryan Case <ryandcase@chromium.org>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 122 ++++++++++++++++++++---------
->  1 file changed, 83 insertions(+), 39 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index abf6ddec5db6..558727c60ba3 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -144,12 +144,6 @@
->  #define DATA_0                         (0xff << 16)
->  #define DATA_1                         (0xff << 24)
->
-> -#define T_LPX          5
-> -#define T_HS_PREP      6
-> -#define T_HS_TRAIL     8
-> -#define T_HS_EXIT      7
-> -#define T_HS_ZERO      10
-> -
->  #define NS_TO_CYCLE(n, c)    ((n) / (c) + (((n) % (c)) ? 1 : 0))
->
->  #define MTK_DSI_HOST_IS_READ(type) \
-> @@ -158,6 +152,25 @@
->         (type == MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM) || \
->         (type == MIPI_DSI_DCS_READ))
->
-> +struct mtk_phy_timing {
-> +       u32 lpx;
-> +       u32 da_hs_prepare;
-> +       u32 da_hs_zero;
-> +       u32 da_hs_trail;
-> +
-> +       u32 ta_go;
-> +       u32 ta_sure;
-> +       u32 ta_get;
-> +       u32 da_hs_exit;
-> +
-> +       u32 clk_hs_zero;
-> +       u32 clk_hs_trail;
-> +
-> +       u32 clk_hs_prepare;
-> +       u32 clk_hs_post;
-> +       u32 clk_hs_exit;
-> +};
-> +
->  struct phy;
->
->  struct mtk_dsi_driver_data {
-> @@ -182,12 +195,13 @@ struct mtk_dsi {
->         struct clk *digital_clk;
->         struct clk *hs_clk;
->
-> -       u32 data_rate;
-> +       u64 data_rate;
+Add SGPM pinmux to ast2500-pinctrl function and group, to prepare for
+supporting SGPIO in AST2500 SoC.
 
-As highlighted in
-https://patchwork.kernel.org/patch/10949323/#22673829, this change
-causes issues on 32-bit platforms.
+Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+---
+ Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt | 2 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi                             | 5 +++++
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c                   | 4 ++++
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
->
->         unsigned long mode_flags;
->         enum mipi_dsi_pixel_format format;
->         unsigned int lanes;
->         struct videomode vm;
-> +       struct mtk_phy_timing phy_timing;
->         int refcount;
->         bool enabled;
->         u32 irq_data;
-> @@ -221,17 +235,36 @@ static void mtk_dsi_phy_timconfig(struct mtk_dsi *dsi)
->  {
->         u32 timcon0, timcon1, timcon2, timcon3;
->         u32 ui, cycle_time;
-> +       struct mtk_phy_timing *timing = &dsi->phy_timing;
-> +
-> +       ui = 1000000000 / dsi->data_rate;
-> +       cycle_time = 8000000000 / dsi->data_rate;
-> +
-> +       timing->lpx = NS_TO_CYCLE(60, cycle_time);
-> +       timing->da_hs_prepare = NS_TO_CYCLE(40 + 5 * ui, cycle_time);
-> +       timing->da_hs_zero = NS_TO_CYCLE(110 + 6 * ui, cycle_time);
-> +       timing->da_hs_trail = NS_TO_CYCLE(80 + 4 * ui, cycle_time);
->
-> -       ui = 1000 / dsi->data_rate + 0x01;
-> -       cycle_time = 8000 / dsi->data_rate + 0x01;
-> +       timing->ta_go = 4 * timing->lpx;
-> +       timing->ta_sure = 3 * timing->lpx / 2;
-> +       timing->ta_get = 5 * timing->lpx;
-> +       timing->da_hs_exit = 2 * timing->lpx;
->
-> -       timcon0 = T_LPX | T_HS_PREP << 8 | T_HS_ZERO << 16 | T_HS_TRAIL << 24;
-> -       timcon1 = 4 * T_LPX | (3 * T_LPX / 2) << 8 | 5 * T_LPX << 16 |
-> -                 T_HS_EXIT << 24;
-> -       timcon2 = ((NS_TO_CYCLE(0x64, cycle_time) + 0xa) << 24) |
-> -                 (NS_TO_CYCLE(0x150, cycle_time) << 16);
-> -       timcon3 = NS_TO_CYCLE(0x40, cycle_time) | (2 * T_LPX) << 16 |
-> -                 NS_TO_CYCLE(80 + 52 * ui, cycle_time) << 8;
-> +       timing->clk_hs_zero = NS_TO_CYCLE(336, cycle_time);
-> +       timing->clk_hs_trail = NS_TO_CYCLE(100, cycle_time) + 10;
-> +
-> +       timing->clk_hs_prepare = NS_TO_CYCLE(64, cycle_time);
-> +       timing->clk_hs_post = NS_TO_CYCLE(80 + 52 * ui, cycle_time);
-> +       timing->clk_hs_exit = 2 * timing->lpx;
-> +
-> +       timcon0 = timing->lpx | timing->da_hs_prepare << 8 |
-> +                 timing->da_hs_zero << 16 | timing->da_hs_trail << 24;
-> +       timcon1 = timing->ta_go | timing->ta_sure << 8 |
-> +                 timing->ta_get << 16 | timing->da_hs_exit << 24;
-> +       timcon2 = 1 << 8 | timing->clk_hs_zero << 16 |
-> +                 timing->clk_hs_trail << 24;
-> +       timcon3 = timing->clk_hs_prepare | timing->clk_hs_post << 8 |
-> +                 timing->clk_hs_exit << 16;
->
->         writel(timcon0, dsi->regs + DSI_PHY_TIMECON0);
->         writel(timcon1, dsi->regs + DSI_PHY_TIMECON1);
-> @@ -418,7 +451,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->         u32 horizontal_sync_active_byte;
->         u32 horizontal_backporch_byte;
->         u32 horizontal_frontporch_byte;
-> -       u32 dsi_tmp_buf_bpp;
-> +       u32 dsi_tmp_buf_bpp, data_phy_cycles;
-> +       struct mtk_phy_timing *timing = &dsi->phy_timing;
->
->         struct videomode *vm = &dsi->vm;
->
-> @@ -433,7 +467,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->         writel(vm->vactive, dsi->regs + DSI_VACT_NL);
->
->         if (dsi->driver_data->has_size_ctl)
-> -               writel(vm->vactive << 16 | vm->hactive, dsi->regs + DSI_SIZE_CON);
-> +               writel(vm->vactive << 16 | vm->hactive,
-> +                      dsi->regs + DSI_SIZE_CON);
->
->         horizontal_sync_active_byte = (vm->hsync_len * dsi_tmp_buf_bpp - 10);
->
-> @@ -444,7 +479,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->                 horizontal_backporch_byte = ((vm->hback_porch + vm->hsync_len) *
->                         dsi_tmp_buf_bpp - 10);
->
-> -       horizontal_frontporch_byte = (vm->hfront_porch * dsi_tmp_buf_bpp - 12);
-> +       data_phy_cycles = timing->lpx + timing->da_hs_prepare +
-> +                                 timing->da_hs_zero + timing->da_hs_exit + 2;
-> +
-> +       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
-> +               if (vm->hfront_porch * dsi_tmp_buf_bpp >
-> +                   data_phy_cycles * dsi->lanes + 18) {
-> +                       horizontal_frontporch_byte = vm->hfront_porch *
-> +                                                    dsi_tmp_buf_bpp -
-> +                                                    data_phy_cycles *
-> +                                                    dsi->lanes - 18;
-> +               } else {
-> +                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> +                       horizontal_frontporch_byte = vm->hfront_porch *
-> +                                                    dsi_tmp_buf_bpp;
-> +               }
-> +       } else {
-> +               if (vm->hfront_porch * dsi_tmp_buf_bpp >
-> +                   data_phy_cycles * dsi->lanes + 12) {
-> +                       horizontal_frontporch_byte = vm->hfront_porch *
-> +                                                    dsi_tmp_buf_bpp -
-> +                                                    data_phy_cycles *
-> +                                                    dsi->lanes - 12;
-> +               } else {
-> +                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> +                       horizontal_frontporch_byte = vm->hfront_porch *
-> +                                                    dsi_tmp_buf_bpp;
-> +               }
-> +       }
->
->         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
->         writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
-> @@ -544,8 +606,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  {
->         struct device *dev = dsi->dev;
->         int ret;
-> -       u64 pixel_clock, total_bits;
-> -       u32 htotal, htotal_bits, bit_per_pixel, overhead_cycles, overhead_bits;
-> +       u32 bit_per_pixel;
->
->         if (++dsi->refcount != 1)
->                 return 0;
-> @@ -564,24 +625,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->                 break;
->         }
->
-> -       /**
-> -        * htotal_time = htotal * byte_per_pixel / num_lanes
-> -        * overhead_time = lpx + hs_prepare + hs_zero + hs_trail + hs_exit
-> -        * mipi_ratio = (htotal_time + overhead_time) / htotal_time
-> -        * data_rate = pixel_clock * bit_per_pixel * mipi_ratio / num_lanes;
-> -        */
-> -       pixel_clock = dsi->vm.pixelclock;
-> -       htotal = dsi->vm.hactive + dsi->vm.hback_porch + dsi->vm.hfront_porch +
-> -                       dsi->vm.hsync_len;
-> -       htotal_bits = htotal * bit_per_pixel;
-> -
-> -       overhead_cycles = T_LPX + T_HS_PREP + T_HS_ZERO + T_HS_TRAIL +
-> -                       T_HS_EXIT;
-> -       overhead_bits = overhead_cycles * dsi->lanes * 8;
-> -       total_bits = htotal_bits + overhead_bits;
-> -
-> -       dsi->data_rate = DIV_ROUND_UP_ULL(pixel_clock * total_bits,
-> -                                         htotal * dsi->lanes);
-> +       dsi->data_rate = dsi->vm.pixelclock * bit_per_pixel / dsi->lanes;
->
->         ret = clk_set_rate(dsi->hs_clk, dsi->data_rate);
->         if (ret < 0) {
-> --
-> 2.21.0
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
+index 3b7266c..8f1c5c4 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
+@@ -84,7 +84,7 @@ NDCD2 NDCD3 NDCD4 NDSR1 NDSR2 NDSR3 NDSR4 NDTR1 NDTR2 NDTR3 NDTR4 NRI1 NRI2
+ NRI3 NRI4 NRTS1 NRTS2 NRTS3 NRTS4 OSCCLK PEWAKE PNOR PWM0 PWM1 PWM2 PWM3 PWM4
+ PWM5 PWM6 PWM7 RGMII1 RGMII2 RMII1 RMII2 RXD1 RXD2 RXD3 RXD4 SALT1 SALT10
+ SALT11 SALT12 SALT13 SALT14 SALT2 SALT3 SALT4 SALT5 SALT6 SALT7 SALT8 SALT9
+-SCL1 SCL2 SD1 SD2 SDA1 SDA2 SGPS1 SGPS2 SIOONCTRL SIOPBI SIOPBO SIOPWREQ
++SCL1 SCL2 SD1 SD2 SDA1 SDA2 SGPM SGPS1 SGPS2 SIOONCTRL SIOPBI SIOPBO SIOPWREQ
+ SIOPWRGD SIOS3 SIOS5 SIOSCI SPI1 SPI1CS1 SPI1DEBUG SPI1PASSTHRU SPI2CK SPI2CS0
+ SPI2CS1 SPI2MISO SPI2MOSI TIMER3 TIMER4 TIMER5 TIMER6 TIMER7 TIMER8 TXD1 TXD2
+ TXD3 TXD4 UART6 USB11BHID USB2AD USB2AH USB2BD USB2BH USBCKI VGABIOSROM VGAHS
+diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+index 383510d..d10c3ea 100644
+--- a/arch/arm/boot/dts/aspeed-g5.dtsi
++++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+@@ -1394,6 +1394,11 @@
+ 		groups = "SDA2";
+ 	};
+ 
++	pinctrl_sgpm_default: sgpm_default {
++		function = "SGPM";
++		groups = "SGPM";
++	};
++
+ 	pinctrl_sgps1_default: sgps1_default {
+ 		function = "SGPS1";
+ 		groups = "SGPS1";
+diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c b/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c
+index 187abd7..0c89647 100644
+--- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c
++++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c
+@@ -577,6 +577,8 @@ SS_PIN_DECL(N3, GPIOJ2, SGPMO);
+ SIG_EXPR_LIST_DECL_SINGLE(SGPMI, SGPM, SIG_DESC_SET(SCU84, 11));
+ SS_PIN_DECL(N4, GPIOJ3, SGPMI);
+ 
++FUNC_GROUP_DECL(SGPM, R2, L2, N3, N4);
++
+ #define N5 76
+ SIG_EXPR_LIST_DECL_SINGLE(VGAHS, VGAHS, SIG_DESC_SET(SCU84, 12));
+ SIG_EXPR_LIST_DECL_SINGLE(DASHN5, DASHN5, SIG_DESC_SET(SCU94, 8));
+@@ -2127,6 +2129,7 @@ static const struct aspeed_pin_group aspeed_g5_groups[] = {
+ 	ASPEED_PINCTRL_GROUP(SD2),
+ 	ASPEED_PINCTRL_GROUP(SDA1),
+ 	ASPEED_PINCTRL_GROUP(SDA2),
++	ASPEED_PINCTRL_GROUP(SGPM),
+ 	ASPEED_PINCTRL_GROUP(SGPS1),
+ 	ASPEED_PINCTRL_GROUP(SGPS2),
+ 	ASPEED_PINCTRL_GROUP(SIOONCTRL),
+@@ -2296,6 +2299,7 @@ static const struct aspeed_pin_function aspeed_g5_functions[] = {
+ 	ASPEED_PINCTRL_FUNC(SD2),
+ 	ASPEED_PINCTRL_FUNC(SDA1),
+ 	ASPEED_PINCTRL_FUNC(SDA2),
++	ASPEED_PINCTRL_FUNC(SGPM),
+ 	ASPEED_PINCTRL_FUNC(SGPS1),
+ 	ASPEED_PINCTRL_FUNC(SGPS2),
+ 	ASPEED_PINCTRL_FUNC(SIOONCTRL),
+-- 
+2.7.4
+
