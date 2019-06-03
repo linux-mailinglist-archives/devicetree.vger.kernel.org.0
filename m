@@ -2,77 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F08337C5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 20:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F213B33770
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 20:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726055AbfFCSZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 14:25:15 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:38267 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725876AbfFCSZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 14:25:15 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 125B44000A;
-        Mon,  3 Jun 2019 18:25:04 +0000 (UTC)
-Date:   Mon, 3 Jun 2019 19:53:09 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [linux-sunxi] [PATCH v6 0/6] Add support for Orange Pi 3
-Message-ID: <20190603175309.qjlyfymbl6ybrpag@flea>
-References: <20190527162237.18495-1-megous@megous.com>
- <20190531125246.qqfvmgmw2mv442tq@core.my.home>
+        id S1726787AbfFCSC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 14:02:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49824 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726343AbfFCSC6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 14:02:58 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 70F8F255A2;
+        Mon,  3 Jun 2019 18:02:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559584977;
+        bh=E1ND2nKG/0VMEVLJhyvZL/8aBO7uvsfPiWlFj4RxYFc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iWvTncjVGKjHn3WHUfUPWelndlKFhcSd142wdYBNYIYvBSeSVxznInWL5ZCDjjOUA
+         Eiy92nj+uzOKPdvPAYQL2d5d6bahdemTwQ7IiFy3N4MbpdrFlJiPalmB22zM1NV2gL
+         7FBkGM9zIgbBvTfaoxsRdME1OT1scCPxDtDLjwNg=
+Date:   Mon, 3 Jun 2019 20:02:55 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Richard Gong <richard.gong@linux.intel.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
+        atull@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sen.li@intel.com,
+        Richard Gong <richard.gong@intel.com>
+Subject: Re: A potential broken at platform driver?
+Message-ID: <20190603180255.GA18054@kroah.com>
+References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+ <20190528232224.GA29225@kroah.com>
+ <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
+ <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190531125246.qqfvmgmw2mv442tq@core.my.home>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 31, 2019 at 02:52:46PM +0200, Ondřej Jirman wrote:
-> Hello,
->
-> On Mon, May 27, 2019 at 06:22:31PM +0200, megous via linux-sunxi wrote:
-> > From: Ondrej Jirman <megous@megous.com>
-> >
-> > This series implements support for Xunlong Orange Pi 3 board.
-> >
-> > Unfortunately, this board needs some small driver patches, so I have
-> > split the boards DT patch into chunks that require patches for drivers
-> > in various subsystems.
-> >
-> > Suggested merging plan/dependencies:
-> >
-> > - stmmac patches are needed for ethernet support (patches 1-3)
-> >   - these should be ready now
-> > - HDMI support (patches 4-6)
-> >   - should be ready
->
-> If there are no futher comments, can all these patches please be merged?
+On Mon, Jun 03, 2019 at 10:57:18AM -0500, Richard Gong wrote:
+> 
+> Hi Greg,
+> 
+> Following your suggestion, I replaced devm_device_add_groups() with .group =
+> rus_groups in my version #4 submission. But I found out that RSU driver
+> outputs the garbage data if I use .group = rsu_groups.
 
-I'm waiting for some feedback on the stmmac and the DW-HDMI
-developpers to merge the rest
+What is "garbage"?
 
-Maxime
+> To make RSU driver work properly, I have to revert the change at version #4
+> and use devm_device_add_groups() again. Sorry, I didn't catch this problem
+> early.
+> 
+> I did some debug & below are captured log, you can see priv pointer get
+> messed at current_image_show(). I am not sure if something related to
+> platform driver work properly. I attach my debug patch in this mail.
+> 
+> 1. Using .groups = rsu_groups,
+> 
+> [    1.191115] *** rsu_status_callback:
+> [    1.194782] res->a1=2000000
+> [    1.197588] res->a1=0
+> [    1.199865] res->a2=0
+> [    1.202150] res->a3=0
+> [    1.204433] priv=0xffff80007aa28e80
+> [    1.207933] version=0, state=0, current_image=2000000, fail_image=0,
+> error_location=0, error_details=0
+> [    1.217249] *** stratix10_rsu_probe: priv=0xffff80007aa28e80
+> root@stratix10:/sys/bus/platform/drivers/stratix10-rsu# cat current_image
+> [   38.849341] *** current_image_show: priv=0xffff80007aa28d00
+> ... output garbage data
+> priv pointer got changed
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+I don't understand this, sorry.  Are you sure you are actually using the
+correct pointer to your device?
+
+> @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
+>  	.remove = stratix10_rsu_remove,
+>  	.driver = {
+>  		.name = "stratix10-rsu",
+> -		.groups = rsu_groups,
+> +//		.groups = rsu_groups,
+
+Are you sure this is the correct pointer?  I think that might be
+pointing to the driver's attributes, not the device's attributes.
+
+If platform drivers do not have a way to register groups properly, then
+that really needs to be fixed, as trying to register it by yourself as
+you are doing, is ripe for racing with userspace.
+
+thanks,
+
+greg k-h
