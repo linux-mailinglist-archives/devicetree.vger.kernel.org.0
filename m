@@ -2,295 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38091326CC
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 04:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0304C326EB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 05:45:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726559AbfFCCxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 22:53:43 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:39435 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726270AbfFCCxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 22:53:43 -0400
-X-UUID: dbeae6dfbe254c01aa4bacb80e7a1606-20190603
-X-UUID: dbeae6dfbe254c01aa4bacb80e7a1606-20190603
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 564166442; Mon, 03 Jun 2019 10:53:36 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS33DR.mediatek.inc (172.27.6.106) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 3 Jun 2019 10:53:34 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 3 Jun 2019 10:53:33 +0800
-Message-ID: <1559530413.32185.8.camel@mtksdaap41>
-Subject: Re: [v4 3/3] drm/mediatek: add mipi_tx driver for mt8183
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Thierry Reding" <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        "Inki Dae" <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        "Sean Paul" <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        "Andy Yan" <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Mon, 3 Jun 2019 10:53:33 +0800
-In-Reply-To: <20190601095235.9194-4-jitao.shi@mediatek.com>
-References: <20190601095235.9194-1-jitao.shi@mediatek.com>
-         <20190601095235.9194-4-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726550AbfFCDp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 23:45:58 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:44415 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725872AbfFCDp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 23:45:58 -0400
+Received: by mail-pg1-f195.google.com with SMTP id n2so7446446pgp.11
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 20:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g6Lf+23HSQechU41mGLG7xpgsFb3R/Z2h8CM3X+DSWc=;
+        b=IfRJyLDzuRgF3Dvz3X71zFx0BsGX0g52sg0974YDCjYXiDosnudeBm1Ceh3AE4zbMB
+         P7UK3/EvxHVDMBWFSGz58c3E4vCBLX36bNqoDXPcos1426lhucd4jIjNZKQzb3WKLy0H
+         PPocpEVF4cqjd6nJbL6ZrhC3tp1UCb+AD2PgM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g6Lf+23HSQechU41mGLG7xpgsFb3R/Z2h8CM3X+DSWc=;
+        b=Qu3D4F04IrVDcrQnhL6S6Ev3erNklkgVgXIL4HwlmRyiCb6DxkBvFfWqvSkDgMf+IY
+         bqsNDgZdua1oVushabt7PErwwgczVLO1PiiEah1h/euqV36nM4zZdhYNwjRN6MQPGSSw
+         xSol8O7CwX3qQxRwfIRywCDR3ZxXtrkyDSZ/4nqGuRWvOKwW6DXW6PJKHHJYhmupsaCp
+         B262nLn91tM82zsOVr0uzus3mIjC3sv67toQq1L+QAPFhd84NIOHUtlvVbiBAeTmZQM0
+         s7kPtnJm/g4xK/nqMXjDXzW7spHV6zI6nsVzleS9GBfuotboUHFb3hPwB6jzyVnpfHek
+         ap1w==
+X-Gm-Message-State: APjAAAUzKzuotJnKGmJ0UFM1cfp08B1OJynA2sGDGfIacVJBiTQIZ+T2
+        GZL30fIOJMsqbbqA3+/tNrWT0w==
+X-Google-Smtp-Source: APXvYqwkRDz1voj0iLa2MF5FNoxioGq4wQYWBXcnOZWcUwRP+zV5EhmCNC4Wpc8cOydVhQKYmRlG/Q==
+X-Received: by 2002:a17:90a:a102:: with SMTP id s2mr27300178pjp.53.1559533557550;
+        Sun, 02 Jun 2019 20:45:57 -0700 (PDT)
+Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
+        by smtp.googlemail.com with ESMTPSA id i73sm11878960pje.9.2019.06.02.20.45.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 02 Jun 2019 20:45:56 -0700 (PDT)
+From:   Pi-Hsun Shih <pihsun@chromium.org>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), Erin Lo <erin.lo@mediatek.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support), linux-kernel@vger.kernel.org (open list),
+        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support),
+        linux-remoteproc@vger.kernel.org (open list:REMOTE PROCESSOR
+        (REMOTEPROC) SUBSYSTEM), Nicolas Boichat <drinkcat@chromium.org>
+Subject: [PATCH v10 0/7] Add support for mt8183 SCP.
+Date:   Mon,  3 Jun 2019 11:45:05 +0800
+Message-Id: <20190603034529.154969-1-pihsun@chromium.org>
+X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
+Add support for controlling and communicating with mt8183's system
+control processor (SCP), using the remoteproc & rpmsg framework.
+And also add a cros_ec driver for CrOS EC host command over rpmsg.
 
-On Sat, 2019-06-01 at 17:52 +0800, Jitao Shi wrote:
-> This patch add mt8183 mipi_tx driver.
-> And also support other chips that use the same binding and driver.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/Makefile             |   1 +
->  drivers/gpu/drm/mediatek/mtk_mipi_tx.c        |   2 +
->  drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |   1 +
->  drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c | 162 ++++++++++++++++++++++++++
->  4 files changed, 166 insertions(+)
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-> 
-> diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-> index 2c8de1f5a5ee..8067a4be8311 100644
-> --- a/drivers/gpu/drm/mediatek/Makefile
-> +++ b/drivers/gpu/drm/mediatek/Makefile
-> @@ -13,6 +13,7 @@ mediatek-drm-y := mtk_disp_color.o \
->  		  mtk_dsi.o \
->  		  mtk_mipi_tx.o \
->  		  mtk_mt8173_mipi_tx.o \
-> +		  mtk_mt8183_mipi_tx.o \
->  		  mtk_dpi.o
->  
->  obj-$(CONFIG_DRM_MEDIATEK) += mediatek-drm.o
-> diff --git a/drivers/gpu/drm/mediatek/mtk_mipi_tx.c b/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-> index cdc68b88cefd..ab0fbfba5572 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-> @@ -182,6 +182,8 @@ static const struct of_device_id mtk_mipi_tx_match[] = {
->  	  .data = &mt2701_mipitx_data },
->  	{ .compatible = "mediatek,mt8173-mipi-tx",
->  	  .data = &mt8173_mipitx_data },
-> +	{ .compatible = "mediatek,mt8183-mipi-tx",
-> +	  .data = &mt8183_mipitx_data },
->  	{ },
->  };
->  
-> diff --git a/drivers/gpu/drm/mediatek/mtk_mipi_tx.h b/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-> index 660726924992..3fd24563952e 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-> @@ -45,5 +45,6 @@ unsigned long mtk_mipi_tx_pll_recalc_rate(struct clk_hw *hw,
->  
->  extern const struct mtk_mipitx_data mt2701_mipitx_data;
->  extern const struct mtk_mipitx_data mt8173_mipitx_data;
-> +extern const struct mtk_mipitx_data mt8183_mipitx_data;
->  
->  #endif
-> diff --git a/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c b/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-> new file mode 100644
-> index 000000000000..a9f893d8e409
-> --- /dev/null
-> +++ b/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-> @@ -0,0 +1,162 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2019 MediaTek Inc.
-> + * Author: jitao.shi <jitao.shi@mediatek.com>
-> + */
-> +
-> +#include "mtk_mipi_tx.h"
-> +
-> +#define MIPITX_LANE_CON		0x000c
-> +#define RG_DSI_CPHY_T1DRV_EN		BIT(0)
-> +#define RG_DSI_ANA_CK_SEL		BIT(1)
-> +#define RG_DSI_PHY_CK_SEL		BIT(2)
-> +#define RG_DSI_CPHY_EN			BIT(3)
-> +#define RG_DSI_PHYCK_INV_EN		BIT(4)
-> +#define RG_DSI_PWR04_EN			BIT(5)
-> +#define RG_DSI_BG_LPF_EN		BIT(6)
-> +#define RG_DSI_BG_CORE_EN		BIT(7)
-> +#define RG_DSI_PAD_TIEL_SEL		BIT(8)
-> +
-> +#define MIPITX_PLL_PWR	0x0028
-> +#define MIPITX_PLL_CON0	0x002c
-> +#define MIPITX_PLL_CON1	0x0030
-> +#define MIPITX_PLL_CON2	0x0034
-> +#define MIPITX_PLL_CON3	0x0038
-> +#define MIPITX_PLL_CON4	0x003c
-> +#define RG_DSI_PLL_IBIAS		(3 << 10)
-> +
-> +#define MIPITX_D2_SW_CTL_EN	0x0144
-> +#define MIPITX_D0_SW_CTL_EN	0x0244
-> +#define MIPITX_CK_CKMODE_EN	0x0328
-> +#define DSI_CK_CKMODE_EN		BIT(0)
-> +#define MIPITX_CK_SW_CTL_EN	0x0344
-> +#define MIPITX_D1_SW_CTL_EN	0x0444
-> +#define MIPITX_D3_SW_CTL_EN	0x0544
-> +#define DSI_SW_CTL_EN			BIT(0)
-> +#define AD_DSI_PLL_SDM_PWR_ON		BIT(0)
-> +#define AD_DSI_PLL_SDM_ISO_EN		BIT(1)
-> +
-> +#define RG_DSI_PLL_EN			BIT(4)
-> +#define RG_DSI_PLL_POSDIV		(0x7 << 8)
-> +
-> +static int mtk_mipi_tx_pll_prepare(struct clk_hw *hw)
-> +{
-> +	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-> +	unsigned int txdiv, txdiv0;
-> +	u64 pcw;
-> +	int ret;
-> +
-> +	dev_dbg(mipi_tx->dev, "prepare: %u bps\n", mipi_tx->data_rate);
-> +
-> +	if (mipi_tx->data_rate >= 2000000000) {
-> +		txdiv = 1;
-> +		txdiv0 = 0;
-> +	} else if (mipi_tx->data_rate >= 1000000000) {
-> +		txdiv = 2;
-> +		txdiv0 = 1;
-> +	} else if (mipi_tx->data_rate >= 500000000) {
-> +		txdiv = 4;
-> +		txdiv0 = 2;
-> +	} else if (mipi_tx->data_rate > 250000000) {
-> +		txdiv = 8;
-> +		txdiv0 = 3;
-> +	} else if (mipi_tx->data_rate >= 125000000) {
-> +		txdiv = 16;
-> +		txdiv0 = 4;
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = clk_prepare_enable(mipi_tx->ref_clk);
+The overall structure of the series is:
+* remoteproc/mtk_scp.c: Control the start / stop of SCP (Patch 2, 3).
+* remoteproc/mtk_scp_ipi.c: Communicates to SCP using inter-processor
+  interrupt (IPI) and shared memory (Patch 2, 3).
+* rpmsg/mtk_rpmsg.c: Wrapper to wrap the IPI communication into a rpmsg
+  device. Supports name service for SCP firmware to
+  announce channels (Patch 4).
+* platform/chrome/cros_ec_rpmsg.c: Communicates with the SCP over the
+  rpmsg framework (like what platform/chrome/cros_ec_{i2c,spi}.c does)
+  (Patch 5, 6).
+* add scp dts node to mt8183 platform (Patch 7).
 
-My last comment is in [1].
+This series (In particular, Patch 7) is based on
+https://patchwork.kernel.org/cover/10962385/.
 
-[1]
-http://lists.infradead.org/pipermail/linux-mediatek/2019-May/019851.html
+Changes from v9:
+ - Remove reserve-memory-vpu_share node.
+ - Remove change to cros_ec_commands.h (That is already in
+   https://lore.kernel.org/lkml/20190518063949.GY4319@dell/T/)
 
-Regards,
-CK
+Changes from v8:
+ - Rebased onto https://patchwork.kernel.org/cover/10962385/.
+ - Drop merged cros_ec_rpmsg patch, and add scp dts node patch.
+ - Add more reserved memory region.
 
-> +	if (ret < 0) {
-> +		dev_err(mipi_tx->dev,
-> +			"can't prepare and enable mipi_tx ref_clk %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON4, RG_DSI_PLL_IBIAS);
-> +
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-> +	usleep_range(30, 100);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +	pcw = div_u64(((u64)mipi_tx->data_rate * txdiv) << 24, 26000000);
-> +	writel(pcw, mipi_tx->regs + MIPITX_PLL_CON0);
-> +	mtk_mipi_tx_update_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV,
-> +				txdiv0 << 8);
-> +	usleep_range(1000, 2000);
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static void mtk_mipi_tx_pll_unprepare(struct clk_hw *hw)
-> +{
-> +	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-> +
-> +	dev_dbg(mipi_tx->dev, "unprepare\n");
-> +
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-> +	clk_disable_unprepare(mipi_tx->ref_clk);
-> +}
-> +
-> +static long mtk_mipi_tx_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-> +				       unsigned long *prate)
-> +{
-> +	return clamp_val(rate, 50000000, 1600000000);
-> +}
-> +
-> +static const struct clk_ops mtk_mipi_tx_pll_ops = {
-> +	.prepare = mtk_mipi_tx_pll_prepare,
-> +	.unprepare = mtk_mipi_tx_pll_unprepare,
-> +	.round_rate = mtk_mipi_tx_pll_round_rate,
-> +	.set_rate = mtk_mipi_tx_pll_set_rate,
-> +	.recalc_rate = mtk_mipi_tx_pll_recalc_rate,
-> +};
-> +
-> +static void mtk_mipi_tx_power_on_signal(struct phy *phy)
-> +{
-> +	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
-> +
-> +	/* BG_LPF_EN / BG_CORE_EN */
-> +	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN,
-> +	       mipi_tx->regs + MIPITX_LANE_CON);
-> +	usleep_range(30, 100);
-> +	writel(RG_DSI_BG_CORE_EN | RG_DSI_BG_LPF_EN,
-> +	       mipi_tx->regs + MIPITX_LANE_CON);
-> +
-> +	/* Switch OFF each Lane */
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
-> +
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_CK_CKMODE_EN, DSI_CK_CKMODE_EN);
-> +}
-> +
-> +static void mtk_mipi_tx_power_off_signal(struct phy *phy)
-> +{
-> +	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
-> +
-> +	/* Switch ON each Lane */
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
-> +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
-> +
-> +	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN,
-> +	       mipi_tx->regs + MIPITX_LANE_CON);
-> +	writel(RG_DSI_PAD_TIEL_SEL, mipi_tx->regs + MIPITX_LANE_CON);
-> +}
-> +
-> +const struct mtk_mipitx_data mt8183_mipitx_data = {
-> +	.mipi_tx_clk_ops = &mtk_mipi_tx_pll_ops,
-> +	.mipi_tx_enable_signal = mtk_mipi_tx_power_on_signal,
-> +	.mipi_tx_disable_signal = mtk_mipi_tx_power_off_signal,
-> +};
-> +
+Changes from v7:
+ - Rebase onto https://lore.kernel.org/patchwork/patch/1059196/.
+ - Fix clock enable/disable timing for SCP driver.
+ - Add more SCP IPI ID.
 
+Changes from v6:
+ - Decouple mtk_rpmsg from mtk_scp.
+ - Change data of EC response to be aligned to 4 bytes.
+
+Changes from v5:
+ - Add device tree binding document for cros_ec_rpmsg.
+ - Better document in comments for cros_ec_rpmsg.
+ - Remove dependency on CONFIG_ in binding tree document.
+
+Changes from v4:
+ - Merge patch 6 (Load ELF firmware) into patch 2, so the driver loads
+   ELF firmware by default, and no longer accept plain binary.
+ - rpmsg_device listed in device tree (as a child of the SCP node) would
+   have it's device tree node mapped to the rpmsg_device, so the rpmsg
+   driver can use the properties on device tree.
+
+Changes from v3:
+ - Make writing to SCP SRAM aligned.
+ - Add a new patch (Patch 6) to load ELF instead of bin firmware.
+ - Add host event support for EC driver.
+ - Fix some bugs found in testing (missing spin_lock_init,
+   rproc_subdev_unprepare to rproc_subdev_stop).
+ - Fix some coding style issue found by checkpatch.pl.
+
+Changes from v2:
+ - Fold patch 3 into patch 2 in v2.
+ - Move IPI id around to support cross-testing for old and new firmware.
+ - Finish more TODO items.
+
+Changes from v1:
+ - Extract functions and rename variables in mtk_scp.c.
+ - Do cleanup properly in mtk_rpmsg.c, which also removes the problem of
+   short-lived work items.
+ - Code format fix based on feedback for cros_ec_rpmsg.c.
+ - Extract feature detection for SCP into separate patch (Patch 6).
+
+Eddie Huang (1):
+  arm64: dts: mt8183: add scp node
+
+Erin Lo (3):
+  dt-bindings: Add a binding for Mediatek SCP
+  remoteproc/mediatek: add SCP support for mt8183
+  remoteproc: mt8183: add reserved memory manager API
+
+Pi-Hsun Shih (3):
+  rpmsg: add rpmsg support for mt8183 SCP.
+  dt-bindings: Add binding for cros-ec-rpmsg.
+  mfd: cros_ec: differentiate SCP from EC by feature bit.
+
+ .../devicetree/bindings/mfd/cros-ec.txt       |   5 +-
+ .../bindings/remoteproc/mtk,scp.txt           |  36 +
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |  11 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  12 +
+ drivers/mfd/cros_ec_dev.c                     |  10 +
+ drivers/remoteproc/Kconfig                    |  10 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/mtk_common.h               |  77 ++
+ drivers/remoteproc/mtk_scp.c                  | 678 ++++++++++++++++++
+ drivers/remoteproc/mtk_scp_ipi.c              | 163 +++++
+ drivers/rpmsg/Kconfig                         |   9 +
+ drivers/rpmsg/Makefile                        |   1 +
+ drivers/rpmsg/mtk_rpmsg.c                     | 396 ++++++++++
+ include/linux/mfd/cros_ec.h                   |   1 +
+ include/linux/platform_data/mtk_scp.h         | 167 +++++
+ include/linux/rpmsg/mtk_rpmsg.h               |  30 +
+ 16 files changed, 1606 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+ create mode 100644 drivers/remoteproc/mtk_common.h
+ create mode 100644 drivers/remoteproc/mtk_scp.c
+ create mode 100644 drivers/remoteproc/mtk_scp_ipi.c
+ create mode 100644 drivers/rpmsg/mtk_rpmsg.c
+ create mode 100644 include/linux/platform_data/mtk_scp.h
+ create mode 100644 include/linux/rpmsg/mtk_rpmsg.h
+
+-- 
+2.22.0.rc1.257.g3120a18244-goog
 
