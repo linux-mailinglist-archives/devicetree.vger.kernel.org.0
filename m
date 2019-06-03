@@ -2,100 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A92D733B1B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E32C33B71
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726754AbfFCWX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 18:23:26 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:40079 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726691AbfFCWX0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:23:26 -0400
-Received: by mail-pf1-f193.google.com with SMTP id u17so11403859pfn.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 15:23:25 -0700 (PDT)
+        id S1726301AbfFCWgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 18:36:52 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:40751 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726245AbfFCWgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:36:51 -0400
+Received: by mail-qt1-f195.google.com with SMTP id a15so11482912qtn.7
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 15:36:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=KV1yP4xPKIyp1RKqHB+nD6QgQGfk1bw32PIxxNzkN7U=;
-        b=L7aCm9arW0EF/yMO3AoxQuQPqIWFqHn2McPj1Pnb6jxxV/O6Z+hFMVddo7AdkGjYdI
-         lfIf2RBJi2sqof8W3HPbnDqO3drzS9kN0Xge9AxFf4QV8PzZwxVu5rzY31FVbp7Gwae9
-         SrzeyAOdcv1FP2JGidBa2fUl+2fKzKS2uMdkAFd5OBfsLvewktfT69k0OPQxJEZ6XEpA
-         H3AU6JfQM0sx1XFk+ujk4bKOHXnkD8KsYffAgz46z17K6zIgyySAvNFWMX7S0+ea2zmC
-         D2s1znTbmO9wraSLLyBAZnxrTIyM0OSurxT1G9O9GWYImS8XFrSrd8174uxxP8d8zTAP
-         30fQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=e/L03brJhYY8u9Hd3CTKtRq0xjx8/jrNsonVfIlrn3E=;
+        b=Tq+s2vCSOC7yd3OQA0u3sAvdi29LqvQtz5uwvGRpL1OyrbFm8VV53GP8rVBe8tAMrA
+         Vklw+bvJ4Nu4EWxHau/ubbkGPTAqfBrcq0bPu3vC/7VwlOisvCzpUOri/n7nv43qv0ex
+         mmEU3vcEhX+XLPK8B41SYWj1cUv6gtROHH+6k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=KV1yP4xPKIyp1RKqHB+nD6QgQGfk1bw32PIxxNzkN7U=;
-        b=KUX7UOCtuEBqSnn/OAgyZzB1fruH5yhzkkhHF4AT9kfOh3/WAg6M0qG3tQHykKj7Hg
-         8OB35nA5HOZJ52+TwiR5EGTLHSnCjdnCKC5kVm0MOOTRN0dGgRdefGcCnwJ30m2nuixA
-         8Z2W9xlyxelpsOX4oVKM39NCxrJTaXHvyI5LQ3ZNjqsMGZlBHh/FgKQgh8xtxaN9Efep
-         rbouNTMMDJNKrKKvnI9tLXrlXDbHNGA3B67qoVlH78TpCoLjZDnqBd6ziaAxqphp0UYT
-         jgT+QEVpSmHKaunZW9XFO0fJgKLlWRT0ZI3cGdt9n7080p6fbq1d/nrNXsidJzeDwiJx
-         SDAg==
-X-Gm-Message-State: APjAAAUBlpfqdZPZe6vknvkTbcBMEC2JO2mnjzkYz7W/HMmWhWKWrVwO
-        EqwnR2Iutf1MnuDYKjsmvbRO1Q==
-X-Google-Smtp-Source: APXvYqxeAhg/5hJQWcCD51pc6wcjvauGAvorr2NlhrqLCJn4zUoNyePOZR4JRwhRVRZWzvatY8yVxg==
-X-Received: by 2002:a62:7a8a:: with SMTP id v132mr11712996pfc.103.1559600605383;
-        Mon, 03 Jun 2019 15:23:25 -0700 (PDT)
-Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id g8sm14320588pjp.17.2019.06.03.15.23.24
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Jun 2019 15:23:24 -0700 (PDT)
-From:   John Stultz <john.stultz@linaro.org>
-To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=e/L03brJhYY8u9Hd3CTKtRq0xjx8/jrNsonVfIlrn3E=;
+        b=JMp3dp3ku4SQdqlvqcw8itoMp5JbOHu6qA3tZdxbwwthv3M7glzWR86yNX1+e2T1T6
+         xsWrYgK9vPAh8a7sK3gCgtWUp7WFc1PSH1lME7BUFwgUy09RWczGlG6CjNOpt4LlnUA6
+         b2E+QDrWz+OxrPMOqdYxbrlCVHpK6n2ZDYycwg9JyFUcZbOPbtgXwfD7jDhbCnSy1FWD
+         aCB0KRpsjKR/hPPuxkhSVXHY+vqqq1E0QZ4vfnisUd2haqB3UiRYLp+jHUnPSdlmXQZe
+         UMuLdBK3hErZ073LKigDaQ1pAHwC7BtOF44AL6tuIoNdWbA9x5wHZlQrwQEq9m6FPSk2
+         qQ1Q==
+X-Gm-Message-State: APjAAAWJ7gla8esrzrZVKI06kpjFGsutPcH69I+eA8KvvvOTa3JUUdRY
+        iso8E/WU528lEsF73wU6xptMsVLHr4eg95cn0PHXgg==
+X-Google-Smtp-Source: APXvYqxlCEQeBkuLqEfFteDIX4bB2zq8WUaVaw6un6X2NBiAH+DDI1xY1pmVdGqgRbYiY34sx7gxfE0DyscBh4nsvNs=
+X-Received: by 2002:aed:38a1:: with SMTP id k30mr5469996qte.159.1559601410233;
+ Mon, 03 Jun 2019 15:36:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190601092615.67917-1-jitao.shi@mediatek.com> <20190601092615.67917-7-jitao.shi@mediatek.com>
+In-Reply-To: <20190601092615.67917-7-jitao.shi@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Tue, 4 Jun 2019 06:36:38 +0800
+Message-ID: <CANMq1KDoGO=2yursnB8udJkvMG6GwV=qsW7HFAyTsc93dnBBXQ@mail.gmail.com>
+Subject: Re: [v4 6/7] drm/mediatek: change the dsi phytiming calculate method
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/3 v2] arm64: dts: qcom: pm8998: Use qcom,pm8998-pon binding for second gen pon
-Date:   Mon,  3 Jun 2019 22:23:19 +0000
-Message-Id: <20190603222319.62842-3-john.stultz@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190603222319.62842-1-john.stultz@linaro.org>
-References: <20190603222319.62842-1-john.stultz@linaro.org>
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
+        dri-devel@lists.freedesktop.org,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        cawa cheng <cawa.cheng@mediatek.com>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Sean Paul <seanpaul@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This changes pm8998 to use the new qcom,pm8998-pon compatible
-string for the pon in order to support the gen2 pon
-functionality properly.
+On Sat, Jun 1, 2019 at 5:26 PM Jitao Shi <jitao.shi@mediatek.com> wrote:
+>
+> Change the method of frame rate calc which can get more accurate
+> frame rate.
+>
+> data rate = pixel_clock * bit_per_pixel / lanes
+> Adjust hfp_wc to adapt the additional phy_data
+>
+> if MIPI_DSI_MODE_VIDEO_BURST
+>         hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12 - 6;
+> else
+>         hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12;
+>
+> Note:
+> //(2: 1 for sync, 1 for phy idle)
+> data_phy_cycles = T_hs_exit + T_lpx + T_hs_prepare + T_hs_zero + 2;
+>
+> bpp: bit per pixel
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Tested-by: Ryan Case <ryandcase@chromium.org>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 122 ++++++++++++++++++++---------
+>  1 file changed, 83 insertions(+), 39 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index abf6ddec5db6..558727c60ba3 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -144,12 +144,6 @@
+>  #define DATA_0                         (0xff << 16)
+>  #define DATA_1                         (0xff << 24)
+>
+> -#define T_LPX          5
+> -#define T_HS_PREP      6
+> -#define T_HS_TRAIL     8
+> -#define T_HS_EXIT      7
+> -#define T_HS_ZERO      10
+> -
+>  #define NS_TO_CYCLE(n, c)    ((n) / (c) + (((n) % (c)) ? 1 : 0))
+>
+>  #define MTK_DSI_HOST_IS_READ(type) \
+> @@ -158,6 +152,25 @@
+>         (type == MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM) || \
+>         (type == MIPI_DSI_DCS_READ))
+>
+> +struct mtk_phy_timing {
+> +       u32 lpx;
+> +       u32 da_hs_prepare;
+> +       u32 da_hs_zero;
+> +       u32 da_hs_trail;
+> +
+> +       u32 ta_go;
+> +       u32 ta_sure;
+> +       u32 ta_get;
+> +       u32 da_hs_exit;
+> +
+> +       u32 clk_hs_zero;
+> +       u32 clk_hs_trail;
+> +
+> +       u32 clk_hs_prepare;
+> +       u32 clk_hs_post;
+> +       u32 clk_hs_exit;
+> +};
+> +
+>  struct phy;
+>
+>  struct mtk_dsi_driver_data {
+> @@ -182,12 +195,13 @@ struct mtk_dsi {
+>         struct clk *digital_clk;
+>         struct clk *hs_clk;
+>
+> -       u32 data_rate;
+> +       u64 data_rate;
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: David Brown <david.brown@linaro.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Amit Pundir <amit.pundir@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Sebastian Reichel <sre@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: John Stultz <john.stultz@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm8998.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+As highlighted in
+https://patchwork.kernel.org/patch/10949323/#22673829, this change
+causes issues on 32-bit platforms.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-index d3ca35a940fb6..051a52df80f9e 100644
---- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-@@ -39,7 +39,7 @@
- 		#size-cells = <0>;
- 
- 		pm8998_pon: pon@800 {
--			compatible = "qcom,pm8916-pon";
-+			compatible = "qcom,pm8998-pon";
- 
- 			reg = <0x800>;
- 			mode-bootloader = <0x2>;
--- 
-2.17.1
-
+>
+>         unsigned long mode_flags;
+>         enum mipi_dsi_pixel_format format;
+>         unsigned int lanes;
+>         struct videomode vm;
+> +       struct mtk_phy_timing phy_timing;
+>         int refcount;
+>         bool enabled;
+>         u32 irq_data;
+> @@ -221,17 +235,36 @@ static void mtk_dsi_phy_timconfig(struct mtk_dsi *dsi)
+>  {
+>         u32 timcon0, timcon1, timcon2, timcon3;
+>         u32 ui, cycle_time;
+> +       struct mtk_phy_timing *timing = &dsi->phy_timing;
+> +
+> +       ui = 1000000000 / dsi->data_rate;
+> +       cycle_time = 8000000000 / dsi->data_rate;
+> +
+> +       timing->lpx = NS_TO_CYCLE(60, cycle_time);
+> +       timing->da_hs_prepare = NS_TO_CYCLE(40 + 5 * ui, cycle_time);
+> +       timing->da_hs_zero = NS_TO_CYCLE(110 + 6 * ui, cycle_time);
+> +       timing->da_hs_trail = NS_TO_CYCLE(80 + 4 * ui, cycle_time);
+>
+> -       ui = 1000 / dsi->data_rate + 0x01;
+> -       cycle_time = 8000 / dsi->data_rate + 0x01;
+> +       timing->ta_go = 4 * timing->lpx;
+> +       timing->ta_sure = 3 * timing->lpx / 2;
+> +       timing->ta_get = 5 * timing->lpx;
+> +       timing->da_hs_exit = 2 * timing->lpx;
+>
+> -       timcon0 = T_LPX | T_HS_PREP << 8 | T_HS_ZERO << 16 | T_HS_TRAIL << 24;
+> -       timcon1 = 4 * T_LPX | (3 * T_LPX / 2) << 8 | 5 * T_LPX << 16 |
+> -                 T_HS_EXIT << 24;
+> -       timcon2 = ((NS_TO_CYCLE(0x64, cycle_time) + 0xa) << 24) |
+> -                 (NS_TO_CYCLE(0x150, cycle_time) << 16);
+> -       timcon3 = NS_TO_CYCLE(0x40, cycle_time) | (2 * T_LPX) << 16 |
+> -                 NS_TO_CYCLE(80 + 52 * ui, cycle_time) << 8;
+> +       timing->clk_hs_zero = NS_TO_CYCLE(336, cycle_time);
+> +       timing->clk_hs_trail = NS_TO_CYCLE(100, cycle_time) + 10;
+> +
+> +       timing->clk_hs_prepare = NS_TO_CYCLE(64, cycle_time);
+> +       timing->clk_hs_post = NS_TO_CYCLE(80 + 52 * ui, cycle_time);
+> +       timing->clk_hs_exit = 2 * timing->lpx;
+> +
+> +       timcon0 = timing->lpx | timing->da_hs_prepare << 8 |
+> +                 timing->da_hs_zero << 16 | timing->da_hs_trail << 24;
+> +       timcon1 = timing->ta_go | timing->ta_sure << 8 |
+> +                 timing->ta_get << 16 | timing->da_hs_exit << 24;
+> +       timcon2 = 1 << 8 | timing->clk_hs_zero << 16 |
+> +                 timing->clk_hs_trail << 24;
+> +       timcon3 = timing->clk_hs_prepare | timing->clk_hs_post << 8 |
+> +                 timing->clk_hs_exit << 16;
+>
+>         writel(timcon0, dsi->regs + DSI_PHY_TIMECON0);
+>         writel(timcon1, dsi->regs + DSI_PHY_TIMECON1);
+> @@ -418,7 +451,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
+>         u32 horizontal_sync_active_byte;
+>         u32 horizontal_backporch_byte;
+>         u32 horizontal_frontporch_byte;
+> -       u32 dsi_tmp_buf_bpp;
+> +       u32 dsi_tmp_buf_bpp, data_phy_cycles;
+> +       struct mtk_phy_timing *timing = &dsi->phy_timing;
+>
+>         struct videomode *vm = &dsi->vm;
+>
+> @@ -433,7 +467,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
+>         writel(vm->vactive, dsi->regs + DSI_VACT_NL);
+>
+>         if (dsi->driver_data->has_size_ctl)
+> -               writel(vm->vactive << 16 | vm->hactive, dsi->regs + DSI_SIZE_CON);
+> +               writel(vm->vactive << 16 | vm->hactive,
+> +                      dsi->regs + DSI_SIZE_CON);
+>
+>         horizontal_sync_active_byte = (vm->hsync_len * dsi_tmp_buf_bpp - 10);
+>
+> @@ -444,7 +479,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
+>                 horizontal_backporch_byte = ((vm->hback_porch + vm->hsync_len) *
+>                         dsi_tmp_buf_bpp - 10);
+>
+> -       horizontal_frontporch_byte = (vm->hfront_porch * dsi_tmp_buf_bpp - 12);
+> +       data_phy_cycles = timing->lpx + timing->da_hs_prepare +
+> +                                 timing->da_hs_zero + timing->da_hs_exit + 2;
+> +
+> +       if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
+> +               if (vm->hfront_porch * dsi_tmp_buf_bpp >
+> +                   data_phy_cycles * dsi->lanes + 18) {
+> +                       horizontal_frontporch_byte = vm->hfront_porch *
+> +                                                    dsi_tmp_buf_bpp -
+> +                                                    data_phy_cycles *
+> +                                                    dsi->lanes - 18;
+> +               } else {
+> +                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
+> +                       horizontal_frontporch_byte = vm->hfront_porch *
+> +                                                    dsi_tmp_buf_bpp;
+> +               }
+> +       } else {
+> +               if (vm->hfront_porch * dsi_tmp_buf_bpp >
+> +                   data_phy_cycles * dsi->lanes + 12) {
+> +                       horizontal_frontporch_byte = vm->hfront_porch *
+> +                                                    dsi_tmp_buf_bpp -
+> +                                                    data_phy_cycles *
+> +                                                    dsi->lanes - 12;
+> +               } else {
+> +                       DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
+> +                       horizontal_frontporch_byte = vm->hfront_porch *
+> +                                                    dsi_tmp_buf_bpp;
+> +               }
+> +       }
+>
+>         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
+>         writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
+> @@ -544,8 +606,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
+>  {
+>         struct device *dev = dsi->dev;
+>         int ret;
+> -       u64 pixel_clock, total_bits;
+> -       u32 htotal, htotal_bits, bit_per_pixel, overhead_cycles, overhead_bits;
+> +       u32 bit_per_pixel;
+>
+>         if (++dsi->refcount != 1)
+>                 return 0;
+> @@ -564,24 +625,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
+>                 break;
+>         }
+>
+> -       /**
+> -        * htotal_time = htotal * byte_per_pixel / num_lanes
+> -        * overhead_time = lpx + hs_prepare + hs_zero + hs_trail + hs_exit
+> -        * mipi_ratio = (htotal_time + overhead_time) / htotal_time
+> -        * data_rate = pixel_clock * bit_per_pixel * mipi_ratio / num_lanes;
+> -        */
+> -       pixel_clock = dsi->vm.pixelclock;
+> -       htotal = dsi->vm.hactive + dsi->vm.hback_porch + dsi->vm.hfront_porch +
+> -                       dsi->vm.hsync_len;
+> -       htotal_bits = htotal * bit_per_pixel;
+> -
+> -       overhead_cycles = T_LPX + T_HS_PREP + T_HS_ZERO + T_HS_TRAIL +
+> -                       T_HS_EXIT;
+> -       overhead_bits = overhead_cycles * dsi->lanes * 8;
+> -       total_bits = htotal_bits + overhead_bits;
+> -
+> -       dsi->data_rate = DIV_ROUND_UP_ULL(pixel_clock * total_bits,
+> -                                         htotal * dsi->lanes);
+> +       dsi->data_rate = dsi->vm.pixelclock * bit_per_pixel / dsi->lanes;
+>
+>         ret = clk_set_rate(dsi->hs_clk, dsi->data_rate);
+>         if (ret < 0) {
+> --
+> 2.21.0
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
