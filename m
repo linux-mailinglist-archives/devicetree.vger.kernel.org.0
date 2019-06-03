@@ -2,162 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B11BE33B9C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6027B33C30
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 01:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726097AbfFCW4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 18:56:21 -0400
-Received: from mga12.intel.com ([192.55.52.136]:1498 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726025AbfFCW4V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jun 2019 18:56:21 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Jun 2019 15:56:20 -0700
-X-ExtLoop1: 1
-Received: from marshy.an.intel.com (HELO [10.122.105.159]) ([10.122.105.159])
-  by orsmga001.jf.intel.com with ESMTP; 03 Jun 2019 15:56:18 -0700
-Subject: Re: A potential broken at platform driver?
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
-        atull@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, sen.li@intel.com,
-        Richard Gong <richard.gong@intel.com>
-References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
- <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
- <20190528232224.GA29225@kroah.com>
- <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
- <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
- <20190603180255.GA18054@kroah.com>
-From:   Richard Gong <richard.gong@linux.intel.com>
-Message-ID: <b3dd022b-b585-3dfb-5fe6-9c9f5498bc77@linux.intel.com>
-Date:   Mon, 3 Jun 2019 18:08:37 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726269AbfFCX7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 19:59:47 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:38785 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726163AbfFCX7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 19:59:46 -0400
+Received: by mail-lj1-f195.google.com with SMTP id o13so17912721lji.5;
+        Mon, 03 Jun 2019 16:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iLI33PWY4RayWc4+RDodbHUftFLrLjYjOlOE4x7nHGA=;
+        b=Wq61tK1UIJMjPwtuP+c98memmM8swNGb9jNmWOhXSU+4lYcj3+Em7QOGXwJr1HTdkk
+         URnQNWNCLJSIySBJE7ebjSarvuZlFuYone8LKn7IBChh84tJNZVDZlWF3vVvAMT/yoHb
+         vaGa2yqE1VIX0fE+DGge5OqeeKIs1hAF2/GUFG6D+AVMnlvJAZw6eJkIDL/DfNHi4lt0
+         5OA8s4rc9eE7A7sZo0KRaDEmYTd5MXvo0VXfiQxa0aUKaOXqRnDDg3hsqnDZLkcYWugP
+         Zkyb19bMel+JNmB+LkptWtkbNePUCdVj0mXqgiqFKRTmy8CEgPmRPsHhPX5lW2AUxxJt
+         LA4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iLI33PWY4RayWc4+RDodbHUftFLrLjYjOlOE4x7nHGA=;
+        b=XnrkZoCzap6tshP7XD8fLB3KdBpawgaBVCuX2Olxg+crHWumePjhz+A7KH7dZ/Rk30
+         p7adUcy7hgnNmkMCIVxLHBGax/WDcbqEma2evQfrAiB4eh4KUogQKiYkFsOup6GpJKwA
+         cxTPDJaNArdEMq6lu2BTIclPMLWCS2l+qDLhI8Sd3efvjDovks4hGOSu+BewGEaRkRKK
+         E7bwbZxxca7bXaYubRGpxpcg8Ru0kHh5FZO3waAXSSTuVE2N3Dgp8OKAfTFypS9N9Mee
+         0QAlTdQyjvzywpOs7ed3eEP/OsrmBuYSEblaC+yNOFiRI6SU0LHb0P/FG65xIM0hAPfQ
+         CWvQ==
+X-Gm-Message-State: APjAAAUrxy7dB1OrPNIIzNM39s5g94JNw4i5DvrhEtPaDK2wGGee6VAM
+        WDp3eJCf3Z2Vuz5ufVk24kQ=
+X-Google-Smtp-Source: APXvYqwBYDxdQDZQkSjquZc65ex4DkOMb/zSC9BckjTcjMAqmug2OlzDBADeydRy7AKhvMgxqXbNJA==
+X-Received: by 2002:a2e:b04c:: with SMTP id d12mr179877ljl.218.1559606383862;
+        Mon, 03 Jun 2019 16:59:43 -0700 (PDT)
+Received: from localhost.localdomain ([94.29.35.141])
+        by smtp.gmail.com with ESMTPSA id n7sm2943151lfi.68.2019.06.03.16.59.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 03 Jun 2019 16:59:42 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/8] Introduce customized regulators coupling
+Date:   Tue,  4 Jun 2019 02:58:56 +0300
+Message-Id: <20190603235904.19097-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190603180255.GA18054@kroah.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
+Hello,
 
-On 6/3/19 1:02 PM, Greg KH wrote:
-> On Mon, Jun 03, 2019 at 10:57:18AM -0500, Richard Gong wrote:
->>
->> Hi Greg,
->>
->> Following your suggestion, I replaced devm_device_add_groups() with .group =
->> rus_groups in my version #4 submission. But I found out that RSU driver
->> outputs the garbage data if I use .group = rsu_groups.
-> 
-> What is "garbage"?
-I mean incorrect status info.
+This series introduces a way of specifying a customized regulators coupler
+which is necessary for cases like a non-trivial DVFS implementation. For
+now I'm primarily targeting the CPUFreq driver of NVIDIA Tegra20 and Tegra30
+SoC's to get into a better shape, such that things like CPU voltage scaling
+could be supported. Both these SoC's have voltage-coupled regulators, one of
+the coupled regulators powers CPU and other(s) power SoC peripherals. CPU and
+each of the SoC's peripherals have it's own demand for a minimal voltage
+(which basically depends on the clock rate), hence regulators voltage shall
+not get lower than the minimum value required by one of peripherals (or CPU).
+Right now none of peripheral drivers support voltage scaling in the upstream
+kernel and voltages are statically specified in board device-trees via
+minimum voltage values of the regulators. In order to implement a full-featured
+DVFS, all drivers should gain support for voltage scaling and then there should
+be some solution for having disabled drivers and hardware that is left in
+enabled state by bootloader. That is not an easy problem to solve, so I'm
+trying to start easy by getting some basics to work at first.
 
-> 
->> To make RSU driver work properly, I have to revert the change at version #4
->> and use devm_device_add_groups() again. Sorry, I didn't catch this problem
->> early.
->>
->> I did some debug & below are captured log, you can see priv pointer get
->> messed at current_image_show(). I am not sure if something related to
->> platform driver work properly. I attach my debug patch in this mail.
->>
->> 1. Using .groups = rsu_groups,
->>
->> [    1.191115] *** rsu_status_callback:
->> [    1.194782] res->a1=2000000
->> [    1.197588] res->a1=0
->> [    1.199865] res->a2=0
->> [    1.202150] res->a3=0
->> [    1.204433] priv=0xffff80007aa28e80
->> [    1.207933] version=0, state=0, current_image=2000000, fail_image=0,
->> error_location=0, error_details=0
->> [    1.217249] *** stratix10_rsu_probe: priv=0xffff80007aa28e80
->> root@stratix10:/sys/bus/platform/drivers/stratix10-rsu# cat current_image
->> [   38.849341] *** current_image_show: priv=0xffff80007aa28d00
->> ... output garbage data
->> priv pointer got changed
-> 
-> I don't understand this, sorry.  Are you sure you are actually using the
-> correct pointer to your device?
-> 
-I think so.
+NVIDIA Tegra20 SoC's have a quite straight-forward voltage coupling between 3
+regulators and the customized coupler is needed to address the missing
+support of a full-featured system-wide DVFS, support for coupling of more than
+2 regulators and support for a "min-spread" voltage. Probably it should be
+possible to switch to a generic coupler later on, but for now it will be
+much easier to start with a custom coupler that has all necessary features
+in a simplified form.
 
-The dev pointer at current_image_show() should points to RSU device, but 
-it seems point to driver_private if I use .group = rsU_groups. As a 
-result I can't get the priv pointer properly at current_image_show().
+NVIDIA Tegra30 SoC's have a bit more complicated coupling rules due to
+variable dependency between the regulators (min-spread value depends on
+a voltage of one of the coupled regulators).
 
-[    1.190993] *** rsu_status_callback:
-[    1.194669] dev=0xffff80007b409410
-[    1.198083] priv=0xffff80007a4d4e80
-[    1.201582] version=0, state=0, current_image=0x2000000, 
-fail_image=0x0, error_location=0x0, error_details=0
-[    1.211416] *** stratix10_rsu_probe: priv=0xffff80007a4d4e80
-[    1.217063] *** stratix10_rsu_probe: dev=0xffff80007b409410
+This series has been tested on multiple devices by different people without
+any known issues. CPUFreq voltage scaling works perfectly well with it and
+voltage of peripherals is maintained at a good level. In a result thermal
+sensors show that SoC package is a less warm by few degrees during of CPU
+idling.
 
-root@stratix10:/sys/bus/platform/drivers/stratix10-rsu# cat current_image
-[   72.101277] *** current_image_show: dev=stratix10_rsu_driver
-[   72.136205] *** current_image_show: priv=0xffff80007a4d4d00
+Changelog:
 
-If I use devm_device_add_groups(), the dev pointer does point to RSU device,
+v2: The coupler's registration is now done in a more generic fashion and
+    allow multiple couplers to be registered in a system.
 
-[    1.191456] *** rsu_status_callback:
-[    1.195124] priv=0xffff80007a429280
-[    1.198615] version=0, state=0, current_image=0x2000000, 
-fail_image=0x0, error_location=0x0, error_details=0
-[    1.208458] *** stratix10_rsu_probe: priv=0xffff80007a429280
-[    1.214105] *** stratix10_rsu_probe: dev=0xffff80007b409410
+    Added device-tree binding document for NVIDIA Tegra20/30 SoC's that
+    describes hardware specifics of these SoC's in regards to regulators
+    voltage coupling. In a result coupled regulators that are dedicated to
+    SoC could be distinguished from each other, which in turns is also useful
+    for the customized couplers implementation.
 
-root@stratix10:/sys/devices/platform/stratix10-rsu.0# cat current_image
-[   31.484131] *** current_image_show: dev=0xffff80007b409410
-[   31.489651] *** current_image_show: priv=0xffff80007a429280
+    The customized couplers got some more polish and now have a bit more
+    stricter checkings for coupling rules violation.
 
+The initial v1 of this series could be found here:
 
->> @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
->>   	.remove = stratix10_rsu_remove,
->>   	.driver = {
->>   		.name = "stratix10-rsu",
->> -		.groups = rsu_groups,
->> +//		.groups = rsu_groups,
-> 
-> Are you sure this is the correct pointer?  I think that might be
-> pointing to the driver's attributes, not the device's attributes.
-> 
-> If platform drivers do not have a way to register groups properly, then
-> that really needs to be fixed, as trying to register it by yourself as
-> you are doing, is ripe for racing with userspace.
-> 
-I agree we shouldn't call devm_device_add_groups() directly.
+	https://lore.kernel.org/patchwork/project/lkml/list/?series=390439
 
-RSU status is only updated after power on or reboot, RSU driver get 
-status info at probe() & save them to the private pointer priv via 
-platform_set_drvdata().
+This series, along with CPUFreq and other "in-progress" patches, could be
+found here:
 
-static struct platform_driver stratix10_rsu_driver = {
-         .probe = stratix10_rsu_probe,
-         .remove = stratix10_rsu_remove,
-         .driver = {
-                 .name = "stratix10-rsu",
-                 .groups = rsu_groups,
-         },
-};
+	https://github.com/grate-driver/linux/commits/master
 
-The problem is that I don't have a way to properly retrieve the priv 
-pointer at xx_show() functions. Global variable is a work around, but I 
-don't think it is a good approach.
+Dmitry Osipenko (8):
+  regulator: core: Introduce API for regulators coupling customization
+  regulator: core: Parse max-spread value per regulator couple
+  regulator: core: Expose some of core functions
+  regulator: core Bump MAX_COUPLED to 3
+  dt-bindings: regulator: Document regulators coupling of NVIDIA
+    Tegra20/30 SoC's
+  regulator: core: Don't attach generic coupler to Tegra SoC regulators
+  soc/tegra: regulators: Add regulators coupler for Tegra20
+  soc/tegra: regulators: Add regulators coupler for Tegra30
 
-Any suggestion?
+ .../nvidia,tegra-regulators-coupling.txt      |  65 ++++
+ drivers/regulator/core.c                      | 143 +++++--
+ drivers/regulator/of_regulator.c              |  49 ++-
+ drivers/soc/tegra/Kconfig                     |  12 +
+ drivers/soc/tegra/Makefile                    |   2 +
+ drivers/soc/tegra/regulators-tegra20.c        | 348 ++++++++++++++++++
+ drivers/soc/tegra/regulators-tegra30.c        | 300 +++++++++++++++
+ include/linux/regulator/driver.h              |  46 ++-
+ include/linux/regulator/machine.h             |   3 +-
+ 9 files changed, 916 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
+ create mode 100644 drivers/soc/tegra/regulators-tegra20.c
+ create mode 100644 drivers/soc/tegra/regulators-tegra30.c
 
-Regards,
-Richard
+-- 
+2.21.0
 
-> thanks,
-> 
-> greg k-h
-> 
