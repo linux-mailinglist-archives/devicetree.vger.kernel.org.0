@@ -2,142 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B529F32FE3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 14:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A53F733017
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 14:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbfFCMmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 08:42:14 -0400
-Received: from mga11.intel.com ([192.55.52.93]:61293 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726360AbfFCMmO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jun 2019 08:42:14 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Jun 2019 05:42:13 -0700
-X-ExtLoop1: 1
-Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.198]) ([10.237.72.198])
-  by orsmga005.jf.intel.com with ESMTP; 03 Jun 2019 05:42:09 -0700
-Subject: Re: [PATCH 6/9] mmc: sdhci-sprd: Enable PHY DLL to make clock stable
-To:     Baolin Wang <baolin.wang@linaro.org>, ulf.hansson@linaro.org,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, arnd@arndb.de, olof@lixom.net
-Cc:     vincent.guittot@linaro.org, arm@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1558346019.git.baolin.wang@linaro.org>
- <270e86bf6b1ce138e40830fb63c9bcf150440426.1558346019.git.baolin.wang@linaro.org>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-Message-ID: <8a792a0c-ed53-56ca-ede8-4a2657158b81@intel.com>
-Date:   Mon, 3 Jun 2019 15:40:58 +0300
+        id S1727524AbfFCMpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 08:45:43 -0400
+Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:52677 "EHLO
+        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726792AbfFCMpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 08:45:43 -0400
+Received: from [192.168.2.10] ([46.9.252.75])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id XmLJhLWU8sDWyXmLMht7vZ; Mon, 03 Jun 2019 14:45:41 +0200
+Subject: Re: [PATCH v3 08/10] media: hantro: add initial i.MX8MQ support
+To:     Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20190531085523.10892-1-p.zabel@pengutronix.de>
+ <20190531085523.10892-9-p.zabel@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <cfabcdc7-baff-82d8-2b24-5a18a9c50441@xs4all.nl>
+Date:   Mon, 3 Jun 2019 14:45:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <270e86bf6b1ce138e40830fb63c9bcf150440426.1558346019.git.baolin.wang@linaro.org>
+In-Reply-To: <20190531085523.10892-9-p.zabel@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfGUmvVtXbo4hpmmyG9vcRRzTp2aHcqoTUi5Mjg2Bws5gTVonHrWOlO9punBb39MBYupZRFE8oAwz02MyWyWJTEP5Nf8Ifj0N3zr9u4d2m8vhgZsm4KQT
+ aQPnQKzBNij8n3MWGiXDjx87zV5eebWejo3t8nsepGR+qnyTh9zmklj3XA3k6aJTQxisIs6oySBdFjyVmv7ZyLpnwJegmWT+dTR4HDI2knM5GTnvqPMzkEXh
+ wNE7aFwOHra9zxFjP2kxpaUkUU2sOy6UupIpsLDp9UBl4L5w1/zYdGr72+v+zIUV9tMD75HYJPKnXTvto5VwFsqMBslOGNcxY9/wDrGCuu3Vq9wBoyaMJ44R
+ dkJOKQS04FflQNzNrYxcgH3YYBLF9Hc+tCMVxHoVHMdIEuG4D5Pm556MeLgYtP6flF7srXyRqeoL+m7Z2jCZUFtQ5cvnrg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/19 1:11 PM, Baolin Wang wrote:
-> For the Spreadtrum SD host controller, when we changed the clock to be
-> more than 52M, we should enable the PHY DLL which is used to track the
-> clock frequency to make the clock work more stable. Otherwise deviation
-> may occur of the higher clock.
+On 5/31/19 10:55 AM, Philipp Zabel wrote:
+> For now this just enables MPEG-2 decoding on the Hantro G1 on i.MX8MQ.
 > 
-> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
-
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 > ---
->  drivers/mmc/host/sdhci-sprd.c |   44 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 43 insertions(+), 1 deletion(-)
+> Changes since v2 [1]:
+>  - Adapted to changes in patches 4 and 5
 > 
-> diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-> index edec197..e6eda13 100644
-> --- a/drivers/mmc/host/sdhci-sprd.c
-> +++ b/drivers/mmc/host/sdhci-sprd.c
-> @@ -22,6 +22,13 @@
->  /* SDHCI_ARGUMENT2 register high 16bit */
->  #define SDHCI_SPRD_ARG2_STUFF		GENMASK(31, 16)
->  
-> +#define SDHCI_SPRD_REG_32_DLL_CFG	0x200
-> +#define  SDHCI_SPRD_DLL_ALL_CPST_EN	(BIT(18) | BIT(24) | BIT(25) | BIT(26) | BIT(27))
-> +#define  SDHCI_SPRD_DLL_EN		BIT(21)
-> +#define  SDHCI_SPRD_DLL_SEARCH_MODE	BIT(16)
-> +#define  SDHCI_SPRD_DLL_INIT_COUNT	0xc00
-> +#define  SDHCI_SPRD_DLL_PHASE_INTERNAL	0x3
-> +
->  #define SDHCI_SPRD_REG_32_DLL_DLY_OFFSET	0x208
->  #define  SDHCIBSPRD_IT_WR_DLY_INV		BIT(5)
->  #define  SDHCI_SPRD_BIT_CMD_DLY_INV		BIT(13)
-> @@ -56,6 +63,7 @@
->  #define SDHCI_SPRD_CLK_MAX_DIV		1023
->  
->  #define SDHCI_SPRD_CLK_DEF_RATE		26000000
-> +#define SDHCI_SPRD_PHY_DLL_CLK		52000000
->  
->  struct sdhci_sprd_host {
->  	u32 version;
-> @@ -200,9 +208,33 @@ static inline void _sdhci_sprd_set_clock(struct sdhci_host *host,
->  	}
->  }
->  
-> +static void sdhci_sprd_enable_phy_dll(struct sdhci_host *host)
-> +{
-> +	u32 tmp;
-> +
-> +	tmp = sdhci_readl(host, SDHCI_SPRD_REG_32_DLL_CFG);
-> +	tmp &= ~(SDHCI_SPRD_DLL_EN | SDHCI_SPRD_DLL_ALL_CPST_EN);
-> +	sdhci_writel(host, tmp, SDHCI_SPRD_REG_32_DLL_CFG);
-> +	/* wait 1ms */
-> +	usleep_range(1000, 1250);
-> +
-> +	tmp = sdhci_readl(host, SDHCI_SPRD_REG_32_DLL_CFG);
-> +	tmp |= SDHCI_SPRD_DLL_ALL_CPST_EN | SDHCI_SPRD_DLL_SEARCH_MODE |
-> +		SDHCI_SPRD_DLL_INIT_COUNT | SDHCI_SPRD_DLL_PHASE_INTERNAL;
-> +	sdhci_writel(host, tmp, SDHCI_SPRD_REG_32_DLL_CFG);
-> +	/* wait 1ms */
-> +	usleep_range(1000, 1250);
-> +
-> +	tmp = sdhci_readl(host, SDHCI_SPRD_REG_32_DLL_CFG);
-> +	tmp |= SDHCI_SPRD_DLL_EN;
-> +	sdhci_writel(host, tmp, SDHCI_SPRD_REG_32_DLL_CFG);
-> +	/* wait 1ms */
-> +	usleep_range(1000, 1250);
-> +}
-> +
->  static void sdhci_sprd_set_clock(struct sdhci_host *host, unsigned int clock)
->  {
-> -	bool en = false;
-> +	bool en = false, clk_changed = false;
->  
->  	if (clock == 0) {
->  		sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
-> @@ -214,9 +246,19 @@ static void sdhci_sprd_set_clock(struct sdhci_host *host, unsigned int clock)
->  			en = true;
->  		sdhci_sprd_set_dll_invert(host, SDHCI_SPRD_BIT_CMD_DLY_INV |
->  					  SDHCI_SPRD_BIT_POSRD_DLY_INV, en);
-> +		clk_changed = true;
->  	} else {
->  		_sdhci_sprd_set_clock(host, clock);
->  	}
-> +
-> +	/*
-> +	 * According to the Spreadtrum SD host specification, when we changed
-> +	 * the clock to be more than 52M, we should enable the PHY DLL which
-> +	 * is used to track the clock frequency to make the clock work more
-> +	 * stable. Otherwise deviation may occur of the higher clock.
-> +	 */
-> +	if (clk_changed && clock > SDHCI_SPRD_PHY_DLL_CLK)
-> +		sdhci_sprd_enable_phy_dll(host);
->  }
->  
->  static unsigned int sdhci_sprd_get_max_clock(struct sdhci_host *host)
+> [1] https://patchwork.linuxtv.org/patch/56420/
+> ---
+>  drivers/staging/media/hantro/Kconfig        |   8 +-
+>  drivers/staging/media/hantro/Makefile       |   1 +
+>  drivers/staging/media/hantro/hantro_drv.c   |   1 +
+>  drivers/staging/media/hantro/hantro_hw.h    |   1 +
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c | 171 ++++++++++++++++++++
+>  5 files changed, 178 insertions(+), 4 deletions(-)
+>  create mode 100644 drivers/staging/media/hantro/imx8m_vpu_hw.c
 > 
+> diff --git a/drivers/staging/media/hantro/Kconfig b/drivers/staging/media/hantro/Kconfig
+> index 660cca358f04..6fdb72df7bd3 100644
+> --- a/drivers/staging/media/hantro/Kconfig
+> +++ b/drivers/staging/media/hantro/Kconfig
+> @@ -1,15 +1,15 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  config VIDEO_HANTRO
+>  	tristate "Hantro VPU driver"
+> -	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> +	depends on ARCH_MXC || ARCH_ROCKCHIP || COMPILE_TEST
+>  	depends on VIDEO_DEV && VIDEO_V4L2 && MEDIA_CONTROLLER
+>  	depends on MEDIA_CONTROLLER_REQUEST_API
+>  	select VIDEOBUF2_DMA_CONTIG
+>  	select VIDEOBUF2_VMALLOC
+>  	select V4L2_MEM2MEM_DEV
+>  	help
+> -	  Support for the Hantro IP based Video Processing Unit present on
+> -	  Rockchip SoC, which accelerates video and image encoding and
+> -	  decoding.
+> +	  Support for the Hantro IP based Video Processing Units present on
+> +	  Rockchip and NXP i.MX8M SoCs, which accelerate video and image
+> +	  encoding and decoding.
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called hantro-vpu.
+> diff --git a/drivers/staging/media/hantro/Makefile b/drivers/staging/media/hantro/Makefile
+> index 14f17a4e48cb..1dac16af451e 100644
+> --- a/drivers/staging/media/hantro/Makefile
+> +++ b/drivers/staging/media/hantro/Makefile
+> @@ -9,5 +9,6 @@ hantro-vpu-y += \
+>  		rk3399_vpu_hw.o \
+>  		rk3399_vpu_hw_jpeg_enc.o \
+>  		rk3399_vpu_hw_mpeg2_dec.o \
+> +		imx8m_vpu_hw.o \
+>  		hantro_jpeg.o \
+>  		hantro_mpeg2.o
 
+I'm a bit concerned about how this is organized. As far as I can tell,
+enabling this driver would compile both rockchip and imx8 code into the
+same driver. You would expect that only the code for the selected
+architectures would be compiled in (or all if COMPILE_TEST is set, of course).
+
+Can you take a look at this?
+
+Regards,
+
+	Hans
