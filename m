@@ -2,92 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E566329E3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 09:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B40329E9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 09:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725975AbfFCHm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 03:42:59 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:50995 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725856AbfFCHm7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 03:42:59 -0400
-Received: from localhost (aaubervilliers-681-1-24-139.w90-88.abo.wanadoo.fr [90.88.144.139])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 8ECBB100016;
-        Mon,  3 Jun 2019 07:42:47 +0000 (UTC)
-Date:   Mon, 3 Jun 2019 09:42:47 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/Allwinner sunXi SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Add lradc node
-Message-ID: <20190603074247.hlayod2pxq55f6ci@flea>
-References: <20190518170929.24789-1-luca@z3ntu.xyz>
- <4343071.IDWclfcoxo@g550jk>
- <20190524092001.ztf3kntaj4uiswnv@flea>
- <6901794.oDhxEVzEqc@g550jk>
+        id S1725856AbfFCHot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 03:44:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:52136 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbfFCHot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 03:44:49 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x537iiVJ049374;
+        Mon, 3 Jun 2019 02:44:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559547884;
+        bh=TXG8J+PUkGcvPfKML+X+9SkZHkdS+nNvxMr5mF0IbZc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=pfL8oRuDBHuh47grxYuprlPTIq8guAhLDB4ClOOu4OtuClg8JrS3Xg4TFG4iOn39U
+         YiWBVGtFcj5prRGl1gpYtKvxMhWe+47lWpgoyEqC2Ev/cg2glqaHDyvRL19m662vyv
+         qrR8BkidRHb9igc+6nFA4krAwR3zZcnWrZN3zHCg=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x537ii4m044046
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 3 Jun 2019 02:44:44 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 3 Jun
+ 2019 02:44:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 3 Jun 2019 02:44:42 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x537ieef006709;
+        Mon, 3 Jun 2019 02:44:40 -0500
+Subject: Re: [PATCH] clk: ti: clkctrl: Fix returning uninitialized data
+To:     Tony Lindgren <tony@atomide.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+References: <20190530065557.42741-1-tony@atomide.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <8f77a28b-4496-fbfe-f4e2-4cc8043f27d8@ti.com>
+Date:   Mon, 3 Jun 2019 10:45:07 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pck2udhpnuo5jdg4"
-Content-Disposition: inline
-In-Reply-To: <6901794.oDhxEVzEqc@g550jk>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190530065557.42741-1-tony@atomide.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pck2udhpnuo5jdg4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-Hi,
+On 30/05/2019 9.55, Tony Lindgren wrote:
+> If we do a clk_get() for a clock that does not exists, we have
+> _ti_omap4_clkctrl_xlate() return uninitialized data if no match
+> is found. This can be seen in some cases with SLAB_DEBUG enabled:
+> 
+> Unable to handle kernel paging request at virtual address 5a5a5a5a
+> ...
+> clk_hw_create_clk.part.33
+> sysc_notifier_call
+> notifier_call_chain
+> blocking_notifier_call_chain
+> device_add
+> 
+> Let's fix this by setting a found flag only when we find a match.
 
-On Fri, May 31, 2019 at 12:27:55PM +0200, Luca Weiss wrote:
-> On Freitag, 24. Mai 2019 11:20:01 CEST Maxime Ripard wrote:
-> >
-> > It would be great to drop the -keys from the compatible, and to
-> > document the bindings
-> >
-> > Looks good otherwise
-> >
-> > Maxime
->
-> So I should just document the "allwinner,sun50i-a64-lradc" string in
-> Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt ? Don't I also
-> have to add the compatible to the driver code then? Just adding the a64
-> compatible to a dts wouldn't work without that.
+Tested-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-What I meant was that you needed both, something like:
+> 
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Fixes: 88a172526c32 ("clk: ti: add support for clkctrl clocks")
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  drivers/clk/ti/clkctrl.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/ti/clkctrl.c b/drivers/clk/ti/clkctrl.c
+> --- a/drivers/clk/ti/clkctrl.c
+> +++ b/drivers/clk/ti/clkctrl.c
+> @@ -229,6 +229,7 @@ static struct clk_hw *_ti_omap4_clkctrl_xlate(struct of_phandle_args *clkspec,
+>  {
+>  	struct omap_clkctrl_provider *provider = data;
+>  	struct omap_clkctrl_clk *entry;
+> +	bool found = false;
+>  
+>  	if (clkspec->args_count != 2)
+>  		return ERR_PTR(-EINVAL);
+> @@ -238,11 +239,13 @@ static struct clk_hw *_ti_omap4_clkctrl_xlate(struct of_phandle_args *clkspec,
+>  
+>  	list_for_each_entry(entry, &provider->clocks, node) {
+>  		if (entry->reg_offset == clkspec->args[0] &&
+> -		    entry->bit_offset == clkspec->args[1])
+> +		    entry->bit_offset == clkspec->args[1]) {
+> +			found = true;
+>  			break;
+> +		}
+>  	}
+>  
+> -	if (!entry)
+> +	if (!found)
+>  		return ERR_PTR(-EINVAL);
+>  
+>  	return entry->clk;
+> 
 
-compatible = "allwinner,sun50i-a64-lradc", "allwinner,sun8i-a83t-lradc";
+- Péter
 
-That way, the OS will try to match a driver for the A64 compatible if
-any, and fallback to the A83's otherwise. And since we don't have any
-quirk at the moment, there's no change needed to the driver.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---pck2udhpnuo5jdg4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPTPdwAKCRDj7w1vZxhR
-xdBQAQCizjZAoJNebpV+1K7cJAfYCjktS+jc7qUnLh5ZXhZI3AEA46RCz7UuQmCi
-CFyLUjFOAPabqusD+2Y5LmXDs76vYg4=
-=CmYf
------END PGP SIGNATURE-----
-
---pck2udhpnuo5jdg4--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
