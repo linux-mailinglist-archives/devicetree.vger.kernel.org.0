@@ -2,107 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F30333A8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 17:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 729313342B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 17:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727944AbfFCPfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 11:35:24 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:58254 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726717AbfFCPfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 11:35:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1559576121; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3rK/nnS6+itLqM9olBxKt3l4mVsf/DF5pToHX+j7u/c=;
-        b=L+Mh4oLwF0s0fv/IaRPkUdpLXAdenlWhV13/WbRfH5gxIXJ+p9PJ9kIHaoG4rOo79XNfBv
-        Gvrlata6T9kbRZlZRYfybovzc/Xs6X/vyxznbUe9y5IUN+WujdbZVRhHh3esRby52bBW/3
-        wbndYMlrPC3fHivLvCqUdTFqXZse2lA=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Hans Verkuil <hansverk@cisco.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        od@zcrc.me, Paul Cercueil <paul@crapouillou.net>,
-        Artur Rojek <contact@artur-rojek.eu>
-Subject: [PATCH v4 3/3] drm/panel: simple: Add GiantPlus GPM940B0 panel support
-Date:   Mon,  3 Jun 2019 17:35:11 +0200
-Message-Id: <20190603153511.24384-3-paul@crapouillou.net>
-In-Reply-To: <20190603153511.24384-1-paul@crapouillou.net>
-References: <20190603153511.24384-1-paul@crapouillou.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728774AbfFCPvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 11:51:20 -0400
+Received: from foss.arm.com ([217.140.101.70]:53648 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728706AbfFCPvR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 11:51:17 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 41B63169E;
+        Mon,  3 Jun 2019 08:51:17 -0700 (PDT)
+Received: from en101.cambridge.arm.com (en101.cambridge.arm.com [10.1.196.93])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D6A593F246;
+        Mon,  3 Jun 2019 08:51:15 -0700 (PDT)
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     gregkh@linuxfoundation.org, rafael@kernel.org,
+        suzuki.poulose@arm.com, Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [RFC PATCH 12/57] of: platform: Use bus_find_device_by_of_node helper
+Date:   Mon,  3 Jun 2019 16:49:38 +0100
+Message-Id: <1559577023-558-13-git-send-email-suzuki.poulose@arm.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1559577023-558-1-git-send-email-suzuki.poulose@arm.com>
+References: <1559577023-558-1-git-send-email-suzuki.poulose@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GiantPlus GPM940B0 is a simple 3.0" 320x240 24-bit TFT panel.
+Switch to using the bus_find_device_by_of_node helper
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Tested-by: Artur Rojek <contact@artur-rojek.eu>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 ---
+ drivers/of/platform.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-Notes:
-    v2: Change bus format to MEDIA_BUS_FMT_RGB888_3X8_BE
-    
-    v3: No change
-    
-    v4: Change bus format to MEDIA_BUS_FMT_RGB888_3X8
-
- drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 5a93c4edf1e4..eec9a9efcc73 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1335,6 +1335,31 @@ static const struct panel_desc giantplus_gpg482739qs5 = {
- 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 04ad312..b1e3a51 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -37,11 +37,6 @@ static const struct of_device_id of_skipped_node_table[] = {
+ 	{} /* Empty terminated list */
  };
  
-+static const struct display_timing giantplus_gpm940b0_timing = {
-+	.pixelclock = { 13500000, 27000000, 27500000 },
-+	.hactive = { 320, 320, 320 },
-+	.hfront_porch = { 14, 686, 718 },
-+	.hback_porch = { 50, 70, 255 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 240, 240, 240 },
-+	.vfront_porch = { 1, 1, 179 },
-+	.vback_porch = { 1, 21, 31 },
-+	.vsync_len = { 1, 1, 6 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW,
-+};
-+
-+static const struct panel_desc giantplus_gpm940b0 = {
-+	.timings = &giantplus_gpm940b0_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 60,
-+		.height = 45,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_3X8,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_NEGEDGE,
-+};
-+
- static const struct display_timing hannstar_hsd070pww1_timing = {
- 	.pixelclock = { 64300000, 71100000, 82000000 },
- 	.hactive = { 1280, 1280, 1280 },
-@@ -2882,6 +2907,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "giantplus,gpg482739qs5",
- 		.data = &giantplus_gpg482739qs5
-+	}, {
-+		.compatible = "giantplus,gpm940b0",
-+		.data = &giantplus_gpm940b0,
- 	}, {
- 		.compatible = "hannstar,hsd070pww1",
- 		.data = &hannstar_hsd070pww1,
+-static int of_dev_node_match(struct device *dev, void *data)
+-{
+-	return dev->of_node == data;
+-}
+-
+ /**
+  * of_find_device_by_node - Find the platform_device associated with a node
+  * @np: Pointer to device tree node
+@@ -55,7 +50,7 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+ {
+ 	struct device *dev;
+ 
+-	dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
++	dev = bus_find_device_by_of_node(&platform_bus_type, NULL, np);
+ 	return dev ? to_platform_device(dev) : NULL;
+ }
+ EXPORT_SYMBOL(of_find_device_by_node);
 -- 
-2.21.0.593.g511ec345e18
+2.7.4
 
