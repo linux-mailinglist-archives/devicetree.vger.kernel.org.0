@@ -2,108 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D3AE33204
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 16:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE8C33219
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 16:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728253AbfFCOW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 10:22:58 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34446 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727429AbfFCOW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 10:22:58 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: koike)
-        with ESMTPSA id A1E642639EE
-From:   Helen Koike <helen.koike@collabora.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     kernel@collabora.com, ezequiel@collabora.com,
-        laurent.pinchart@ideasonboard.com,
-        manivannan.sadhasivam@linaro.org,
-        Helen Koike <helen.koike@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Vicente Bergas <vicencb@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        linux-kernel@vger.kernel.org,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
-        Randy Li <ayaka@soulik.info>,
-        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
+        id S1728876AbfFCO04 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Jun 2019 10:26:56 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:45095 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727650AbfFCO04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 10:26:56 -0400
+X-Originating-IP: 92.137.69.152
+Received: from localhost (alyon-656-1-672-152.w92-137.abo.wanadoo.fr [92.137.69.152])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 0D0B8E0008;
+        Mon,  3 Jun 2019 14:26:50 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tony Xie <tony.xie@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: fix isp iommu clocks and power domain
-Date:   Mon,  3 Jun 2019 11:22:15 -0300
-Message-Id: <20190603142214.24686-1-helen.koike@collabora.com>
-X-Mailer: git-send-email 2.20.1
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH resend 0/2] Marvell A7k/A8k thermal throttling
+In-Reply-To: <20190521142504.31558-1-miquel.raynal@bootlin.com>
+References: <20190521142504.31558-1-miquel.raynal@bootlin.com>
+Date:   Mon, 03 Jun 2019 16:26:50 +0200
+Message-ID: <87sgsqkamt.fsf@FE-laptop>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-isp iommu requires wrapper variants of the clocks.
-noc variants are always on and using the wrapper variants will activate
-{A,H}CLK_ISP{0,1} due to the hierarchy.
+Miquel Raynal <miquel.raynal@bootlin.com> writes:
 
-Also add the respective power domain.
+> Hello,
+>
+> This series works on top of Gregory's series adding both CPUfreq (already
+> merged) and a suitable AP806 clock driver. These two patches can fly
+> as-is and do not depend on Gregory's work to apply and should probably
+> merged independently.
+>
+> With his patches, all the pieces where available to enable thermal
+> throttling on the AP806 embedded in Marvell Armada 7k/8k SoCs. This is
+> just the glue to make it actually work.
+>
+> Patch 1 changes the core numbering in the thermal-zone node to be in
+> sync with the CPU numbering in the DT (from 0 to 3 instead of from 1
+> to 4). Patch 2 adds trip points and cooling maps to actually enable
+> the feature.
+>
+> Tested with an Armada 7k DB.
+>
+> Thanks,
+> Miquèl
+>
+> Miquel Raynal (2):
+>   arm64: dts: marvell: Change core numbering in AP806 thermal-node
+>   arm64: dts: marvell: Enable AP806 thermal throttling with CPUfreq
 
-Refer:
- RK3399 TRM v1.4 Fig. 2-4 RK3399 Clock Architecture Diagram
- RK3399 TRM v1.4 Fig. 8-1 RK3399 Power Domain Partition
+Both pacthes applied on mvebu/dt64
 
-Signed-off-by: Helen Koike <helen.koike@collabora.com>
+Thanks,
 
----
-Hello,
+Gregory
 
-I tested this using the isp patch set (which is not upstream
-yet). Without this patch, streaming from the isp stalls.
+>
+>  .../boot/dts/marvell/armada-ap806-dual.dtsi   |   2 +
+>  .../boot/dts/marvell/armada-ap806-quad.dtsi   |   5 +
+>  arch/arm64/boot/dts/marvell/armada-ap806.dtsi | 110 +++++++++++++++---
+>  3 files changed, 103 insertions(+), 14 deletions(-)
+>
+> -- 
+> 2.19.1
+>
 
-I'm also enabling the power domain and removing the disable status,
-please let me know if this should be done in a separated patch.
-
-Thanks
-Helen
-
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 196ac9b78076..89594a7276f4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1706,11 +1706,11 @@
- 		reg = <0x0 0xff914000 0x0 0x100>, <0x0 0xff915000 0x0 0x100>;
- 		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
- 		interrupt-names = "isp0_mmu";
--		clocks = <&cru ACLK_ISP0_NOC>, <&cru HCLK_ISP0_NOC>;
-+		clocks = <&cru ACLK_ISP0_WRAPPER>, <&cru HCLK_ISP0_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3399_PD_ISP0>;
- 		rockchip,disable-mmu-reset;
--		status = "disabled";
- 	};
- 
- 	isp1_mmu: iommu@ff924000 {
-@@ -1718,11 +1718,11 @@
- 		reg = <0x0 0xff924000 0x0 0x100>, <0x0 0xff925000 0x0 0x100>;
- 		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH 0>;
- 		interrupt-names = "isp1_mmu";
--		clocks = <&cru ACLK_ISP1_NOC>, <&cru HCLK_ISP1_NOC>;
-+		clocks = <&cru ACLK_ISP1_WRAPPER>, <&cru HCLK_ISP1_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3399_PD_ISP1>;
- 		rockchip,disable-mmu-reset;
--		status = "disabled";
- 	};
- 
- 	hdmi_sound: hdmi-sound {
 -- 
-2.20.1
-
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
