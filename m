@@ -2,317 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDA2337A0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 20:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3261338B1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 20:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbfFCSOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 14:14:51 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:36326 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726216AbfFCSOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 14:14:51 -0400
-Received: by mail-pl1-f196.google.com with SMTP id d21so7298942plr.3;
-        Mon, 03 Jun 2019 11:14:50 -0700 (PDT)
+        id S1726707AbfFCS7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 14:59:21 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:37414 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726658AbfFCS7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 14:59:20 -0400
+Received: by mail-qk1-f195.google.com with SMTP id d15so1150284qkl.4
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 11:59:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=uYFWaQzFQ5snwyuhA5Wo9knUJ+dwDmCG5TOZVT/0Ues=;
-        b=GtvNLQI0UcMuSMxlxW8HfJaW8ruwYroak68XQJT5ZmOGW7u1P8sBpm8wL8BBUoEt6W
-         7FzOBN3oDW6EzvG7h67WBTfUpnha5F011tZ3d00OqSeIYs0YgrNkx7c67FRWOBcq3/6A
-         lKRiJWj36QFBVeRiTQXC8xZdbpOyoMGFZLGGqH1340gBbX4d2yVey7ipvEP1rIluQbMb
-         1KGZDvH1+lOCDqrwAZr7TRYDtMDthdyxPILd+9yDC1bPuV+RgJSqadGY0WyZ0GizQExh
-         9ImCR1RzxozCbp1wSbSqmdgK/VG6f5ZryL60fPKOSAII/h5hSvDJRKYtBzO+xwNSlFl3
-         c3kw==
+        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version;
+        bh=DPXA/0wnHBzOXGWUem3WKi27tTQOyZuH85bYvVVoCwc=;
+        b=MqevoBPPGoxfiML5mGkvoQ7J073oNolir8VC5Z/RqzvxyxIyjLPcgk4VlzM2JvoDZi
+         XY4wDo0LFYESbMtqVF0Zx0vhB061T4/82jZiHuMHSfGdy9VtyUg1RnTmCvsl7Qfp6Bst
+         drWXqhm4ajObqroANF/SVbObhsQK1IkbxwoXQSdUgzSc7SQxaE0lPUQTI245moY+XPgv
+         08eSzUBY2KaUdYidEJ+8+cn3cJHcOLkGTBLry3A1fwfDlekYMRG4V9gj9qkVGcgedkl2
+         4yvzUlv7os6ilZic8mL01m/Xbzu1z75uWZMvKPUb41DhnwyK9kVluUk0zZ52gRuwiOgL
+         gxMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=uYFWaQzFQ5snwyuhA5Wo9knUJ+dwDmCG5TOZVT/0Ues=;
-        b=W/ADmjxz+JDWUPA0xsWXIw6U5CrOl/GEqf2JaWdu+LDjF0yHUk2NX0G7/JSkBB7BzG
-         uuurxnQsInoYx7Xcmkj3eMfkpQuuzVR6IM8XMCgecU7s754tgrY83OA0K6Bi4KcKxtmR
-         LGsf9/uwVtqKnV+dYH7rSIrAl0HbvnMR/LA8inbE0e3Pdv/l1jzhv6GZjiz5eWMkXmMP
-         Ds8/BL+WxVRd3rBGbNEnrNjyxdyvmoxZ8P/zXc+LNe27bR6Xoh/xaEZeVGoluEG9UEnQ
-         hO+L335E3S8Oj35H54hUoeYkxipqCMyvXeQoC4L+6ApDzsg6GJeB53SWBWawZeF1T1nd
-         GTGw==
-X-Gm-Message-State: APjAAAWq3r8kKY+YuWEdj3ghzdxMy8dbpOfbh5twsxcl+pL308UYsRRI
-        S0XOJJUoedfM28fsTcn1WAg=
-X-Google-Smtp-Source: APXvYqxAq6k0HrANm+sE7CE/NmEXg9rSayXZbcrOQYq8ulhcVLYfja5V3QO7wBNbj8G9SGH4dlUopw==
-X-Received: by 2002:a17:902:2869:: with SMTP id e96mr30606965plb.203.1559585690027;
-        Mon, 03 Jun 2019 11:14:50 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a5sm12544714pjo.29.2019.06.03.11.14.47
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Jun 2019 11:14:48 -0700 (PDT)
-Date:   Mon, 3 Jun 2019 11:14:47 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, linux-pwm@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
-        dri-devel@lists.freedesktop.org,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
-        ck.hu@mediatek.com, Russell King <rmk+kernel@arm.linux.org.uk>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Inki Dae <inki.dae@samsung.com>,
-        linux-mediatek@lists.infradead.org, yingjoe.chen@mediatek.com,
-        eddie.huang@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        srv_heupstream@mediatek.com, linux-kernel@vger.kernel.org,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Sean Paul <seanpaul@chromium.org>
-Subject: Re: [v3 6/7] drm/mediatek: change the dsi phytiming calculate method
-Message-ID: <20190603181447.GA6947@roeck-us.net>
-References: <20190519092537.69053-1-jitao.shi@mediatek.com>
- <20190519092537.69053-7-jitao.shi@mediatek.com>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version;
+        bh=DPXA/0wnHBzOXGWUem3WKi27tTQOyZuH85bYvVVoCwc=;
+        b=MfIkpb9Op4Ll1TeAmf7Tywofs6OJLkG66BsAZ7SD4pmdDRZIcv3biw1k6jfucvKSbH
+         WdLpCnufjX7efw3YsN8CaUihD3js6QzE3FlvL+et7PB+lskLhxcezoZK4Y8bJmtX8tTp
+         sYOe334m4v0Kssn9Y+nh7QmrS8hOChuo4qzgGxtWtFeuublsxoulTwXFTcQf2TyzCnq1
+         /hg6W+RFVLNogwZAF54KgNlAPnRU9odkOtX/neM/6pzbvm6sxJ1B9cl2BqfqNjnppZSL
+         jZw9cR5LRzAoNjlSu8tiraCKlkAkKDv36JGnAbwhsIJWVFW3GRa3hLDMFkjlxft0jjeG
+         Qmhw==
+X-Gm-Message-State: APjAAAWwX4wQ5CXaVau4hBTJmSY6w94PIrevLHxN05o8CUiWJJPUmmwk
+        jOOctZNIYUGlX5qkF0AWP8pDYA==
+X-Google-Smtp-Source: APXvYqzxVdGVGQ5Hmx1e+qBI/dDZ6+VueuiWKGVfTKn4n9eRp8HP4cqAeJjWM9GEYTviGlVEb+WDfg==
+X-Received: by 2002:a37:dcc7:: with SMTP id v190mr23500464qki.286.1559588359024;
+        Mon, 03 Jun 2019 11:59:19 -0700 (PDT)
+Received: from tpx230-nicolas (modemcable154.55-37-24.static.videotron.ca. [24.37.55.154])
+        by smtp.gmail.com with ESMTPSA id y8sm10239290qth.22.2019.06.03.11.59.16
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 03 Jun 2019 11:59:17 -0700 (PDT)
+Message-ID: <7646814d5251d32e3610535688768bde77ceebf4.camel@ndufresne.ca>
+Subject: Re: [PATCH v3 09/10] media: hantro: add initial i.MX8MM support
+ (untested)
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Date:   Mon, 03 Jun 2019 14:59:15 -0400
+In-Reply-To: <a49db696-a31e-7f80-f2c3-bcb162c03dee@xs4all.nl>
+References: <20190531085523.10892-1-p.zabel@pengutronix.de>
+         <20190531085523.10892-10-p.zabel@pengutronix.de>
+         <a49db696-a31e-7f80-f2c3-bcb162c03dee@xs4all.nl>
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
+        boundary="=-HwfOUH1ske5Hp8O2rs06"
+User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190519092537.69053-7-jitao.shi@mediatek.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 19, 2019 at 05:25:36PM +0800, Jitao Shi wrote:
-> Change the method of frame rate calc which can get more accurate
-> frame rate.
-> 
-> data rate = pixel_clock * bit_per_pixel / lanes
-> Adjust hfp_wc to adapt the additional phy_data
-> 
-> if MIPI_DSI_MODE_VIDEO_BURST
-> 	hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12 - 6;
-> else
-> 	hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12;
-> 
-> Note:
-> //(2: 1 for sync, 1 for phy idle)
-> data_phy_cycles = T_hs_exit + T_lpx + T_hs_prepare + T_hs_zero + 2;
-> 
-> bpp: bit per pixel
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Tested-by: Ryan Case <ryandcase@chromium.org>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 119 +++++++++++++++++++++--------
->  1 file changed, 86 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index 1165ff944889..3f51b2000c68 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -158,6 +158,25 @@
->  	(type == MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM) || \
->  	(type == MIPI_DSI_DCS_READ))
->  
-> +struct mtk_phy_timing {
-> +	u32 lpx;
-> +	u32 da_hs_prepare;
-> +	u32 da_hs_zero;
-> +	u32 da_hs_trail;
-> +
-> +	u32 ta_go;
-> +	u32 ta_sure;
-> +	u32 ta_get;
-> +	u32 da_hs_exit;
-> +
-> +	u32 clk_hs_zero;
-> +	u32 clk_hs_trail;
-> +
-> +	u32 clk_hs_prepare;
-> +	u32 clk_hs_post;
-> +	u32 clk_hs_exit;
-> +};
-> +
->  struct phy;
->  
->  struct mtk_dsi_driver_data {
-> @@ -182,12 +201,13 @@ struct mtk_dsi {
->  	struct clk *digital_clk;
->  	struct clk *hs_clk;
->  
-> -	u32 data_rate;
-> +	u64 data_rate;
 
-This results in 64-bit divide operations and thus build failures
-with 32-bit builds. More on that below.
+--=-HwfOUH1ske5Hp8O2rs06
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->  
->  	unsigned long mode_flags;
->  	enum mipi_dsi_pixel_format format;
->  	unsigned int lanes;
->  	struct videomode vm;
-> +	struct mtk_phy_timing phy_timing;
->  	int refcount;
->  	bool enabled;
->  	u32 irq_data;
-> @@ -221,17 +241,39 @@ static void mtk_dsi_phy_timconfig(struct mtk_dsi *dsi)
->  {
->  	u32 timcon0, timcon1, timcon2, timcon3;
->  	u32 ui, cycle_time;
-> +	struct mtk_phy_timing *timing = &dsi->phy_timing;
-> +
-> +	ui = 1000000000 / dsi->data_rate;
-> +	cycle_time = 8000000000 / dsi->data_rate;
+Le lundi 03 juin 2019 =C3=A0 14:54 +0200, Hans Verkuil a =C3=A9crit :
+> On 5/31/19 10:55 AM, Philipp Zabel wrote:
+> > This should enable MPEG-2 decoding on the Hantro G1 and JPEG encoding o=
+n
+> > the Hantro H1 on i.MX8MM.
+>=20
+> That's the i.MX8M Mini, right? I think that's the official name for this
+> SoC.
+>=20
+> In any case, I don't like merging this until someone was able to test it.
 
-This results in 64-bit divide operations. On top of that, 8000000000
-is larger than 0xffffffff, resulting in an integer overflow on 32-bit
-systems; it should be provided as 8000000000ULL. 
+Could you clarify what you have in mind by this ? Normally Boris will
+test the change for regression on the RK, and Philipp is clearly
+testing on it's I.MX8MM eval board.
 
-> +
-> +	timing->lpx = NS_TO_CYCLE(60, cycle_time);
-> +	timing->da_hs_prepare = NS_TO_CYCLE((40 + 5 * ui), cycle_time);
-> +	timing->da_hs_zero = NS_TO_CYCLE((110 + 6 * ui), cycle_time);
-> +	timing->da_hs_trail = NS_TO_CYCLE(((0x4 * ui) + 80), cycle_time);
-> +
-> +	if (timing->da_hs_zero > timing->da_hs_prepare)
-> +		timing->da_hs_zero -= timing->da_hs_prepare;
-> +
-> +	timing->ta_go = 4 * timing->lpx;
-> +	timing->ta_sure = 3 * timing->lpx / 2;
-> +	timing->ta_get = 5 * timing->lpx;
-> +	timing->da_hs_exit = 2 * timing->lpx;
-> +
-> +	timing->clk_hs_zero = NS_TO_CYCLE(0x150, cycle_time);
-> +	timing->clk_hs_trail = NS_TO_CYCLE(0x64, cycle_time) + 0xa;
->  
-> -	ui = 1000 / dsi->data_rate + 0x01;
-> -	cycle_time = 8000 / dsi->data_rate + 0x01;
-> +	timing->clk_hs_prepare = NS_TO_CYCLE(0x40, cycle_time);
-> +	timing->clk_hs_post = NS_TO_CYCLE(80 + 52 * ui, cycle_time);
-> +	timing->clk_hs_exit = 2 * timing->lpx;
->  
-> -	timcon0 = T_LPX | T_HS_PREP << 8 | T_HS_ZERO << 16 | T_HS_TRAIL << 24;
-> -	timcon1 = 4 * T_LPX | (3 * T_LPX / 2) << 8 | 5 * T_LPX << 16 |
-> -		  T_HS_EXIT << 24;
-> -	timcon2 = ((NS_TO_CYCLE(0x64, cycle_time) + 0xa) << 24) |
-> -		  (NS_TO_CYCLE(0x150, cycle_time) << 16);
-> -	timcon3 = NS_TO_CYCLE(0x40, cycle_time) | (2 * T_LPX) << 16 |
-> -		  NS_TO_CYCLE(80 + 52 * ui, cycle_time) << 8;
-> +	timcon0 = timing->lpx | timing->da_hs_prepare << 8 |
-> +		  timing->da_hs_zero << 16 | timing->da_hs_trail << 24;
-> +	timcon1 = timing->ta_go | timing->ta_sure << 8 |
-> +		  timing->ta_get << 16 | timing->da_hs_exit << 24;
-> +	timcon2 = 1 << 8 | timing->clk_hs_zero << 16 |
-> +		  timing->clk_hs_trail << 24;
-> +	timcon3 = timing->clk_hs_prepare | timing->clk_hs_post << 8 |
-> +		  timing->clk_hs_exit << 16;
->  
->  	writel(timcon0, dsi->regs + DSI_PHY_TIMECON0);
->  	writel(timcon1, dsi->regs + DSI_PHY_TIMECON1);
-> @@ -418,7 +460,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->  	u32 horizontal_sync_active_byte;
->  	u32 horizontal_backporch_byte;
->  	u32 horizontal_frontporch_byte;
-> -	u32 dsi_tmp_buf_bpp;
-> +	u32 dsi_tmp_buf_bpp, data_phy_cycles;
-> +	struct mtk_phy_timing *timing = &dsi->phy_timing;
->  
->  	struct videomode *vm = &dsi->vm;
->  
-> @@ -433,7 +476,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->  	writel(vm->vactive, dsi->regs + DSI_VACT_NL);
->  
->  	if (dsi->driver_data->has_size_ctl)
-> -		writel(vm->vactive << 16 | vm->hactive, dsi->regs + DSI_SIZE_CON);
-> +		writel(vm->vactive << 16 | vm->hactive,
-> +		       dsi->regs + DSI_SIZE_CON);
->  
->  	horizontal_sync_active_byte = (vm->hsync_len * dsi_tmp_buf_bpp - 10);
->  
-> @@ -444,7 +488,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->  		horizontal_backporch_byte = ((vm->hback_porch + vm->hsync_len) *
->  			dsi_tmp_buf_bpp - 10);
->  
-> -	horizontal_frontporch_byte = (vm->hfront_porch * dsi_tmp_buf_bpp - 12);
-> +	data_phy_cycles = timing->lpx + timing->da_hs_prepare +
-> +				  timing->da_hs_zero + timing->da_hs_exit + 2;
-> +
-> +	if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
-> +		if (vm->hfront_porch * dsi_tmp_buf_bpp >
-> +		    data_phy_cycles * dsi->lanes + 18) {
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp -
-> +						     data_phy_cycles *
-> +						     dsi->lanes - 18;
-> +		} else {
-> +			DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp;
-> +		}
-> +	} else {
-> +		if (vm->hfront_porch * dsi_tmp_buf_bpp >
-> +		    data_phy_cycles * dsi->lanes + 12) {
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp -
-> +						     data_phy_cycles *
-> +						     dsi->lanes - 12;
-> +		} else {
-> +			DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp;
-> +		}
-> +	}
->  
->  	writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
->  	writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
-> @@ -544,8 +615,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  {
->  	struct device *dev = dsi->dev;
->  	int ret;
-> -	u64 pixel_clock, total_bits;
-> -	u32 htotal, htotal_bits, bit_per_pixel, overhead_cycles, overhead_bits;
-> +	u32 bit_per_pixel;
->  
->  	if (++dsi->refcount != 1)
->  		return 0;
-> @@ -564,24 +634,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  		break;
->  	}
->  
-> -	/**
-> -	 * htotal_time = htotal * byte_per_pixel / num_lanes
-> -	 * overhead_time = lpx + hs_prepare + hs_zero + hs_trail + hs_exit
-> -	 * mipi_ratio = (htotal_time + overhead_time) / htotal_time
-> -	 * data_rate = pixel_clock * bit_per_pixel * mipi_ratio / num_lanes;
-> -	 */
-> -	pixel_clock = dsi->vm.pixelclock;
-> -	htotal = dsi->vm.hactive + dsi->vm.hback_porch + dsi->vm.hfront_porch +
-> -			dsi->vm.hsync_len;
-> -	htotal_bits = htotal * bit_per_pixel;
-> -
-> -	overhead_cycles = T_LPX + T_HS_PREP + T_HS_ZERO + T_HS_TRAIL +
-> -			T_HS_EXIT;
-> -	overhead_bits = overhead_cycles * dsi->lanes * 8;
-> -	total_bits = htotal_bits + overhead_bits;
-> -
-> -	dsi->data_rate = DIV_ROUND_UP_ULL(pixel_clock * total_bits,
-> -					  htotal * dsi->lanes);
-> +	dsi->data_rate = dsi->vm.pixelclock * bit_per_pixel / dsi->lanes;
+I could bootstrap my evaluation board to reproduce, but I don't really
+see the value.
 
-pixelclock and bit_per_pixel are not u64, and neither is dsi->lanes.
-The above will thus be a 32-bit operation on 32-bit systems, and never
-really assign a true 64-bit value to data_rate. On top of that,
-clk_set_rate() expects an unsigned long argument. Declaring data_rate
-as anything but unsigned long has therefore no value.
+>=20
+> Regards,
+>=20
+> 	Hans
+>=20
+> > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > Changes since v2 [1]:
+> >  - Adapted to changes in patches 4 and 5
+> >=20
+> > [1] https://patchwork.linuxtv.org/patch/56425/
+> > ---
+> >  drivers/staging/media/hantro/hantro_drv.c   |   1 +
+> >  drivers/staging/media/hantro/hantro_hw.h    |   1 +
+> >  drivers/staging/media/hantro/imx8m_vpu_hw.c | 137 ++++++++++++++++++++
+> >  3 files changed, 139 insertions(+)
+> >=20
+> > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/stagin=
+g/media/hantro/hantro_drv.c
+> > index bf88e594d440..ef2b29d50100 100644
+> > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > @@ -419,6 +419,7 @@ static const struct of_device_id of_hantro_match[] =
+=3D {
+> >  	{ .compatible =3D "rockchip,rk3328-vpu", .data =3D &rk3328_vpu_varian=
+t, },
+> >  	{ .compatible =3D "rockchip,rk3288-vpu", .data =3D &rk3288_vpu_varian=
+t, },
+> >  	{ .compatible =3D "nxp,imx8mq-vpu", .data =3D &imx8mq_vpu_variant, },
+> > +	{ .compatible =3D "nxp,imx8mm-vpu", .data =3D &imx8mm_vpu_variant, },
+> >  	{ /* sentinel */ }
+> >  };
+> >  MODULE_DEVICE_TABLE(of, of_hantro_match);
+> > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging=
+/media/hantro/hantro_hw.h
+> > index fd6ad017a1cf..1c69669dba54 100644
+> > --- a/drivers/staging/media/hantro/hantro_hw.h
+> > +++ b/drivers/staging/media/hantro/hantro_hw.h
+> > @@ -82,6 +82,7 @@ extern const struct hantro_variant rk3399_vpu_variant=
+;
+> >  extern const struct hantro_variant rk3328_vpu_variant;
+> >  extern const struct hantro_variant rk3288_vpu_variant;
+> >  extern const struct hantro_variant imx8mq_vpu_variant;
+> > +extern const struct hantro_variant imx8mm_vpu_variant;
+> > =20
+> >  void hantro_watchdog(struct work_struct *work);
+> >  void hantro_run(struct hantro_ctx *ctx);
+> > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/stag=
+ing/media/hantro/imx8m_vpu_hw.c
+> > index 3da5cbd1eab1..fbe84c5f5619 100644
+> > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > @@ -15,14 +15,17 @@
+> >  #define CTRL_SOFT_RESET		0x00
+> >  #define RESET_G1		BIT(1)
+> >  #define RESET_G2		BIT(0)
+> > +#define RESET_H1		BIT(2)
+> > =20
+> >  #define CTRL_CLOCK_ENABLE	0x04
+> >  #define CLOCK_G1		BIT(1)
+> >  #define CLOCK_G2		BIT(0)
+> > +#define CLOCK_H1		BIT(2)
+> > =20
+> >  #define CTRL_G1_DEC_FUSE	0x08
+> >  #define CTRL_G1_PP_FUSE		0x0c
+> >  #define CTRL_G2_DEC_FUSE	0x10
+> > +#define CTRL_H1_ENC_FUSE	0x14
+> > =20
+> >  static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
+> >  {
+> > @@ -73,6 +76,30 @@ static int imx8mq_runtime_resume(struct hantro_dev *=
+vpu)
+> >  	return 0;
+> >  }
+> > =20
+> > +static int imx8mm_runtime_resume(struct hantro_dev *vpu)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret =3D clk_bulk_prepare_enable(vpu->variant->num_clocks, vpu->clocks=
+);
+> > +	if (ret) {
+> > +		dev_err(vpu->dev, "Failed to enable clocks\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	imx8m_soft_reset(vpu, RESET_G1 | RESET_G2 | RESET_H1);
+> > +	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2 | RESET_H1);
+> > +
+> > +	/* Set values of the fuse registers */
+> > +	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
+> > +	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
+> > +	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
+> > +	writel(0xffffffff, vpu->ctrl_base + CTRL_H1_ENC_FUSE);
+> > +
+> > +	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  /*
+> >   * Supported formats.
+> >   */
+> > @@ -97,6 +124,43 @@ static const struct hantro_fmt imx8m_vpu_dec_fmts[]=
+ =3D {
+> >  	},
+> >  };
+> > =20
+> > +static const struct hantro_fmt imx8mm_vpu_enc_fmts[] =3D {
+> > +	{
+> > +		.fourcc =3D V4L2_PIX_FMT_YUV420M,
+> > +		.codec_mode =3D HANTRO_MODE_NONE,
+> > +		.enc_fmt =3D RK3288_VPU_ENC_FMT_YUV420P,
+> > +	},
+> > +	{
+> > +		.fourcc =3D V4L2_PIX_FMT_NV12M,
+> > +		.codec_mode =3D HANTRO_MODE_NONE,
+> > +		.enc_fmt =3D RK3288_VPU_ENC_FMT_YUV420SP,
+> > +	},
+> > +	{
+> > +		.fourcc =3D V4L2_PIX_FMT_YUYV,
+> > +		.codec_mode =3D HANTRO_MODE_NONE,
+> > +		.enc_fmt =3D RK3288_VPU_ENC_FMT_YUYV422,
+> > +	},
+> > +	{
+> > +		.fourcc =3D V4L2_PIX_FMT_UYVY,
+> > +		.codec_mode =3D HANTRO_MODE_NONE,
+> > +		.enc_fmt =3D RK3288_VPU_ENC_FMT_UYVY422,
+> > +	},
+> > +	{
+> > +		.fourcc =3D V4L2_PIX_FMT_JPEG,
+> > +		.codec_mode =3D HANTRO_MODE_JPEG_ENC,
+> > +		.max_depth =3D 2,
+> > +		.header_size =3D JPEG_HEADER_SIZE,
+> > +		.frmsize =3D {
+> > +			.min_width =3D 96,
+> > +			.max_width =3D 8192,
+> > +			.step_width =3D JPEG_MB_DIM,
+> > +			.min_height =3D 32,
+> > +			.max_height =3D 8192,
+> > +			.step_height =3D JPEG_MB_DIM,
+> > +		},
+> > +	},
+> > +};
+> > +
+> >  static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
+> >  {
+> >  	struct hantro_dev *vpu =3D dev_id;
+> > @@ -115,6 +179,25 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void =
+*dev_id)
+> >  	return IRQ_HANDLED;
+> >  }
+> > =20
+> > +static irqreturn_t imx8mm_vpu_h1_irq(int irq, void *dev_id)
+> > +{
+> > +	struct hantro_dev *vpu =3D dev_id;
+> > +	enum vb2_buffer_state state;
+> > +	u32 status, bytesused;
+> > +
+> > +	status =3D vepu_read(vpu, VEPU_REG_INTERRUPT);
+> > +	bytesused =3D vepu_read(vpu, VEPU_REG_STR_BUF_LIMIT) / 8;
+> > +	state =3D (status & VEPU_REG_INTERRUPT_FRAME_RDY) ?
+> > +		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+> > +
+> > +	vepu_write(vpu, 0, VEPU_REG_INTERRUPT);
+> > +	vepu_write(vpu, 0, VEPU_REG_AXI_CTRL);
+> > +
+> > +	hantro_irq_done(vpu, bytesused, state);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> >  static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
+> >  {
+> >  	vpu->dec_base =3D vpu->bases[0];
+> > @@ -123,6 +206,15 @@ static int imx8mq_vpu_hw_init(struct hantro_dev *v=
+pu)
+> >  	return 0;
+> >  }
+> > =20
+> > +static int imx8mm_vpu_hw_init(struct hantro_dev *vpu)
+> > +{
+> > +	vpu->dec_base =3D vpu->bases[0];
+> > +	vpu->enc_base =3D vpu->bases[2];
+> > +	vpu->ctrl_base =3D vpu->bases[vpu->variant->num_regs - 1];
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static void imx8m_vpu_g1_reset(struct hantro_ctx *ctx)
+> >  {
+> >  	struct hantro_dev *vpu =3D ctx->dev;
+> > @@ -130,6 +222,13 @@ static void imx8m_vpu_g1_reset(struct hantro_ctx *=
+ctx)
+> >  	imx8m_soft_reset(vpu, RESET_G1);
+> >  }
+> > =20
+> > +static void imx8mm_vpu_h1_reset(struct hantro_ctx *ctx)
+> > +{
+> > +	struct hantro_dev *vpu =3D ctx->dev;
+> > +
+> > +	imx8m_soft_reset(vpu, RESET_H1);
+> > +}
+> > +
+> >  /*
+> >   * Supported codec ops.
+> >   */
+> > @@ -143,6 +242,21 @@ static const struct hantro_codec_ops imx8mq_vpu_co=
+dec_ops[] =3D {
+> >  	},
+> >  };
+> > =20
+> > +static const struct hantro_codec_ops imx8mm_vpu_codec_ops[] =3D {
+> > +	[HANTRO_MODE_MPEG2_DEC] =3D {
+> > +		.run =3D hantro_g1_mpeg2_dec_run,
+> > +		.reset =3D imx8m_vpu_g1_reset,
+> > +		.init =3D hantro_mpeg2_dec_init,
+> > +		.exit =3D hantro_mpeg2_dec_exit,
+> > +	},
+> > +	[HANTRO_MODE_JPEG_ENC] =3D {
+> > +		.run =3D hantro_h1_jpeg_enc_run,
+> > +		.reset =3D imx8mm_vpu_h1_reset,
+> > +		.init =3D hantro_jpeg_enc_init,
+> > +		.exit =3D hantro_jpeg_enc_exit,
+> > +	},
+> > +};
+> > +
+> >  /*
+> >   * VPU variants.
+> >   */
+> > @@ -169,3 +283,26 @@ const struct hantro_variant imx8mq_vpu_variant =3D=
+ {
+> >  	.reg_names =3D imx8mq_reg_names,
+> >  	.num_regs =3D ARRAY_SIZE(imx8mq_reg_names)
+> >  };
+> > +
+> > +static const struct hantro_irq imx8mm_irqs[] =3D {
+> > +	{ "g1", imx8m_vpu_g1_irq },
+> > +	{ "g2", NULL /* TODO: imx8m_vpu_g2_irq */ },
+> > +	{ "h1", imx8mm_vpu_h1_irq },
+> > +};
+> > +
+> > +static const char * const imx8mm_reg_names[] =3D { "g1", "g2", "h1", "=
+ctrl" };
+> > +
+> > +const struct hantro_variant imx8mm_vpu_variant =3D {
+> > +	.dec_fmts =3D imx8m_vpu_dec_fmts,
+> > +	.num_dec_fmts =3D ARRAY_SIZE(imx8m_vpu_dec_fmts),
+> > +	.codec =3D HANTRO_MPEG2_DECODER,
+> > +	.codec_ops =3D imx8mm_vpu_codec_ops,
+> > +	.init =3D imx8mm_vpu_hw_init,
+> > +	.runtime_resume =3D imx8mm_runtime_resume,
+> > +	.irqs =3D imx8mm_irqs,
+> > +	.num_irqs =3D ARRAY_SIZE(imx8mm_irqs),
+> > +	.clk_names =3D { "g1", "g2", "h1", "bus" },
+> > +	.num_clocks =3D 4,
+> > +	.reg_names =3D imx8mm_reg_names,
+> > +	.num_regs =3D ARRAY_SIZE(imx8mm_reg_names)
+> > +};
+> >=20
 
-Note that the old code took possible overflow conditions due to interim
-results larger than u32 / unsigned long into account. This is no longer
-the case. I don't know if this is a concern, but it might be worth watching
-out for. If it is not a concern because the code is not anymore expected
-to run on 32-bit systems, it should be restricted to 64-bit builds.
+--=-HwfOUH1ske5Hp8O2rs06
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-Guenter
+-----BEGIN PGP SIGNATURE-----
 
->  
->  	ret = clk_set_rate(dsi->hs_clk, dsi->data_rate);
->  	if (ret < 0) {
+iFwEABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCXPVuAwAKCRBxUwItrAao
+HHKaAJQL3xRO9YuFy0z93TbRailnjSheAJ9UQHBtCHvn0gMAr4RBzClHryk2Qw==
+=vZLR
+-----END PGP SIGNATURE-----
+
+--=-HwfOUH1ske5Hp8O2rs06--
+
