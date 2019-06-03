@@ -2,253 +2,581 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12FE433172
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 489CF3317D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728316AbfFCNtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 09:49:01 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:35163 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727904AbfFCNtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:49:01 -0400
-Received: by mail-ua1-f67.google.com with SMTP id r7so6493391ual.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 06:49:00 -0700 (PDT)
+        id S1727904AbfFCNtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 09:49:14 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:46803 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728594AbfFCNtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:49:13 -0400
+Received: by mail-vs1-f65.google.com with SMTP id l125so11206939vsl.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 06:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=YXhr+BwIgUPhgF4d09b3r0Qo13e2PHna1eP3jnT6Qi8=;
-        b=TXfcW5K5F21xYiVGqdDr8P2/r41vdZUFtyMAIbmEa4PA9HQBrjCXpmwxgPeCaxc5Kn
-         71pRxtejDttuMkZIgC0eHVUxzdpXYQfdUg3XmHLRAn1qReEUCbrPnW5cYs08wGLwVwc/
-         ef7Wbra9MWQnM9fu2clZCXG/Vj1K+nFSkHnPJVk2HFhWS0U4jUN9txyKWA4ZyIALEatd
-         fawasUZ15AvzKv/qiZ47GVpHfQXqQp0ei6/mNxX9dPNT8IkV3us/IjQpswC31ust9lnJ
-         So3hEjUkkZ9DyIz2lkAENfADiQ8eo5g4Nhf/vOm74jsGYSURWLPOQo9T2S+RMoTyqpjf
-         dYaw==
+        bh=/OxSjciJIeWf3o+SF5GIESfQJ9u3Ak5QaiWnoP/UDfw=;
+        b=D3ANaayNBuhH/wBYNSILUyMur/W3csqCrpCjuxizfljbqS6mDc16ow8wnPQ1EDiuF4
+         cO+TBIsOA9W7/Rh38lUvFso6QrLILL0C/geBpdADlPTF05tiZl2vZyQJUNnyWehVTxWa
+         udC0JK7xJOdnHKrqAf5W2XpsyZE/eVoVDafHtgcYOVQZeCJ+gFY0NplwRlt1e5cm21WO
+         8dvDCOli++VvBU0hx3ODIw7/jM5eYvRpMvO4g2FdwO6b/sb6N3oNiXE3sJUXNnCjNOnJ
+         DVEJFB/sNS+YJ/zFWUeVDgE42eD8WqzPdk5EksmJoPTChQlz4VJlYA1L/YAip4cWZppU
+         9jXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=YXhr+BwIgUPhgF4d09b3r0Qo13e2PHna1eP3jnT6Qi8=;
-        b=Zt7DwlHGCmttfRTX2TQO3L4/jmYZPme8bI69m8h6PKJXg5rT8fODzpXEryVtaicFDC
-         kaE6WopZP81FSa+9bx2P7ZV8YTrwRxm1Gb5GF1MLJZbE7tDf1FUkbhTixHxNZ/2b0VJ/
-         CGB5NnIGJOc7FpZfVVe4XOYM/LotcsFqQSlq3d6B2Opu6FokL4mRoF77xKUqtYC53Zbb
-         VV3GDo7KQMKZ6GvZZhi+mTHehT2WUcilLCPC74kdx97GQ+7T6utl8370i4DBZz5PSfHs
-         vCex/FpwmL7OQ/qL4iLorky7Gh/q76pbnb9GDhVNk/XsOmYRKaj4l0QEoc1cOLUNs2AE
-         d5zg==
-X-Gm-Message-State: APjAAAVJMCe2mpw4qSeTKbC605D8YJK4gskuBgDg+auoWN1+9k3uMGpm
-        3hBVKswRVBRp1YwND1k9HmEok6kSUSaZBe0QW5DXwg==
-X-Google-Smtp-Source: APXvYqzrxZO8qBHiLmue4vi0qZqpShO+FpOyBYDHmeL01dvSwUywWOH3kWLiqCHfZO66hriRv5CuPb4xhbSbdFDpnng=
-X-Received: by 2002:ab0:16da:: with SMTP id g26mr5873388uaf.15.1559569740038;
- Mon, 03 Jun 2019 06:49:00 -0700 (PDT)
+        bh=/OxSjciJIeWf3o+SF5GIESfQJ9u3Ak5QaiWnoP/UDfw=;
+        b=rujMoE/xbuOYVS4P864jnq9zFBOZFoCXRzkvuZLuGQSIag480YGK4yZ0sPPiOQrgD8
+         1KNsZXwbuztLWbb5QrJ6fB6Spru207z10M7mg6rS//j2lZVl8pxtc+bCPqX/zdzwWnuY
+         doNCsX5VEzE/XUebJcs7MxkTvALRe7YElaKUq3dT1BlSQyxrOy7gt+QQkumsRLcSRkOa
+         +jZbyo2vO+VPFgXT1E9LFvMH9OWM9hoj438QCToulIapkgiL0MZiZq98qqbqOU2EOjvq
+         hHqJhcXalM7CMxv9OfE9ouCqsSgpjb6OFVq4ulxE5+VSlTZQE74mc0PdPWg3eB91DDGy
+         1rEw==
+X-Gm-Message-State: APjAAAVWkEINbt3oRMoQ/vRKSkTOo7qa2S/EdoDN+qqyRt4ClkaFjGFB
+        YamWNdTHLKvDVUU//pjutELFejEmcyEj00qCkvUuxA==
+X-Google-Smtp-Source: APXvYqzF5IbIrF28m7F6tBtkO/YRqjksFN0caxOVOMKgPSZT7bPA8JVGtjYyAckcMGz6wF94DBhUck9ocrKWjZw/OdM=
+X-Received: by 2002:a67:ed8b:: with SMTP id d11mr12829986vsp.35.1559569750880;
+ Mon, 03 Jun 2019 06:49:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <fab0ec653b4e059cdb1206f65bfca051c8b0a7de.1559114458.git-series.maxime.ripard@bootlin.com>
- <18bb36183d93fd6bc03a401c2b6b498c0171d375.1559114458.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <18bb36183d93fd6bc03a401c2b6b498c0171d375.1559114458.git-series.maxime.ripard@bootlin.com>
+References: <1559208158-468-1-git-send-email-orito.takao@socionext.com>
+In-Reply-To: <1559208158-468-1-git-send-email-orito.takao@socionext.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 3 Jun 2019 15:48:23 +0200
-Message-ID: <CAPDyKFrjXAdiuYZRT9+BQ9omPT0g+SaAO3NbEHBkF03S3mzDJA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: sun4i: Add YAML schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
+Date:   Mon, 3 Jun 2019 15:48:34 +0200
+Message-ID: <CAPDyKFqeTxqv6W=t_SRgnBnqzjLEpbyW1LR_UkoGC2YfoKJs1A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-milbeaut: add Milbeaut SD controller driver
+To:     Takao Orito <orito.takao@socionext.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jaswinder Singh <jaswinder.singh@linaro.org>,
+        sugaya.taichi@socionext.com, kasai.kazuhiro@socionext.com,
+        kanematsu.shinji@socionext.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 May 2019 at 09:23, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Switch the DT binding to a YAML schema to enable the DT validation.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
++ Adrian
 
-Applied for next, thanks!
+On Thu, 30 May 2019 at 11:20, Takao Orito <orito.takao@socionext.com> wrote:
+>
+> SD Host controller on Milbeaut consists of two controller parts.
+> One is core controller F_SDH30, this is similar to sdhci-fujitsu
+> controller.
+> Another is bridge controller.
+> This bridge controller is not compatible with sdhci-fujitsu controller.
+> This is special for Milbeaut series. This has some functions.
+> For example, reset control, clock enable/select for SDR50/25/12, set
+> property of SD physical pins, retuning control, set capabilityies.
+>
+> This bridge controller requires special procedures at reset or clock
+> enablement or change for further tuning of clock.
+>
+> Signed-off-by: Takao Orito <orito.takao@socionext.com>
+
+This looks good to me, however I have looped in Adrian who maintains
+SDHCI drivers, to allow him to provide some input.
 
 Kind regards
 Uffe
 
 
->
 > ---
+>  drivers/mmc/host/Kconfig          |  11 ++
+>  drivers/mmc/host/Makefile         |   1 +
+>  drivers/mmc/host/sdhci-milbeaut.c | 362 ++++++++++++++++++++++++++++++++++++++
+>  drivers/mmc/host/sdhci_f_sdh30.c  |  26 +--
+>  drivers/mmc/host/sdhci_f_sdh30.h  |  32 ++++
+>  5 files changed, 407 insertions(+), 25 deletions(-)
+>  create mode 100644 drivers/mmc/host/sdhci-milbeaut.c
+>  create mode 100644 drivers/mmc/host/sdhci_f_sdh30.h
 >
-> Changes from v2
->   - Add Rob's Reviewed-by
-> ---
->  Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml | 98 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
->  Documentation/devicetree/bindings/mmc/sunxi-mmc.txt                | 52 +--------------------------------------
->  2 files changed, 98 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index 28fcd8f..9b39111 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -353,6 +353,17 @@ config MMC_SDHCI_F_SDH30
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
+>           If unsure, say N.
+>
+> +config MMC_SDHCI_MILBEAUT
+> +       tristate "SDHCI support for Socionext Milbeaut Serieas using F_SDH30"
+> +       depends on MMC_SDHCI_PLTFM
+> +       depends on OF
+> +       help
+> +         This selects the Secure Digital Host Controller Interface (SDHCI)
+> +         Needed by Milbeaut SoC for MMC / SD / SDIO support.
+> +         If you have a controller with this interface, say Y or M here.
+> +
+> +         If unsure, say N.
+> +
+>  config MMC_SDHCI_IPROC
+>         tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
+>         depends on ARCH_BCM2835 || ARCH_BCM_IPROC || COMPILE_TEST
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index 7357871..db98e8a 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -21,6 +21,7 @@ obj-$(CONFIG_MMC_SDHCI_PXAV2) += sdhci-pxav2.o
+>  obj-$(CONFIG_MMC_SDHCI_S3C)    += sdhci-s3c.o
+>  obj-$(CONFIG_MMC_SDHCI_SIRF)           += sdhci-sirf.o
+>  obj-$(CONFIG_MMC_SDHCI_F_SDH30)        += sdhci_f_sdh30.o
+> +obj-$(CONFIG_MMC_SDHCI_MILBEAUT)       += sdhci-milbeaut.o
+>  obj-$(CONFIG_MMC_SDHCI_SPEAR)  += sdhci-spear.o
+>  obj-$(CONFIG_MMC_SDHCI_AM654)  += sdhci_am654.o
+>  obj-$(CONFIG_MMC_WBSD)         += wbsd.o
+> diff --git a/drivers/mmc/host/sdhci-milbeaut.c b/drivers/mmc/host/sdhci-milbeaut.c
 > new file mode 100644
-> index 000000000000..df0280edef97
+> index 0000000..a1aa21b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/allwinner,sun4i-a10-mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/mmc/host/sdhci-milbeaut.c
+> @@ -0,0 +1,362 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2013 - 2015 Fujitsu Semiconductor, Ltd
+> + *              Vincent Yang <vincent.yang@tw.fujitsu.com>
+> + * Copyright (C) 2015 Linaro Ltd  Andy Green <andy.green@linaro.org>
+> + * Copyright (C) 2019 Socionext Inc.
+> + *              Takao Orito <orito.takao@socionext.com>
+> + */
 > +
-> +title: Allwinner A10 MMC Controller Device Tree Bindings
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/property.h>
 > +
-> +allOf:
-> +  - $ref: "mmc-controller.yaml"
+> +#include "sdhci-pltfm.h"
+> +#include "sdhci_f_sdh30.h"
 > +
-> +maintainers:
-> +  - Chen-Yu Tsai <wens@csie.org>
-> +  - Maxime Ripard <maxime.ripard@bootlin.com>
+> +/* milbeaut bridge controller register */
+> +#define MLB_SOFT_RESET         0x0200
+> +#define  MLB_SOFT_RESET_RSTX           BIT(0)
 > +
-> +properties:
-> +  "#address-cells": true
-> +  "#size-cells": true
+> +#define MLB_WP_CD_LED_SET      0x0210
+> +#define  MLB_WP_CD_LED_SET_LED_INV  BIT(2)
 > +
-> +  compatible:
-> +    oneOf:
-> +      - const: allwinner,sun4i-a10-mmc
-> +      - const: allwinner,sun5i-a13-mmc
-> +      - const: allwinner,sun7i-a20-mmc
-> +      - const: allwinner,sun8i-a83t-emmc
-> +      - const: allwinner,sun9i-a80-mmc
-> +      - const: allwinner,sun50i-a64-emmc
-> +      - const: allwinner,sun50i-a64-mmc
-> +      - items:
-> +          - const: allwinner,sun8i-a83t-mmc
-> +          - const: allwinner,sun7i-a20-mmc
-> +      - items:
-> +          - const: allwinner,sun50i-h6-emmc
-> +          - const: allwinner,sun50i-a64-emmc
-> +      - items:
-> +          - const: allwinner,sun50i-h6-mmc
-> +          - const: allwinner,sun50i-a64-mmc
-> +      - items:
-> +          - const: allwinner,sun8i-r40-emmc
-> +          - const: allwinner,sun50i-a64-emmc
-> +      - items:
-> +          - const: allwinner,sun8i-r40-mmc
-> +          - const: allwinner,sun50i-a64-mmc
+> +#define MLB_CR_SET                     0x0220
+> +#define  MLB_CR_SET_CR_TOCLKUNIT       BIT(24)
+> +#define  MLB_CR_SET_CR_TOCLKFREQ_SFT   (16)
+> +#define  MLB_CR_SET_CR_TOCLKFREQ_MASK  (0x3F << MLB_CR_SET_CR_TOCLKFREQ_SFT)
+> +#define  MLB_CR_SET_CR_BCLKFREQ_SFT    (8)
+> +#define  MLB_CR_SET_CR_BCLKFREQ_MASK   (0xFF << MLB_CR_SET_CR_BCLKFREQ_SFT)
+> +#define  MLB_CR_SET_CR_RTUNTIMER_SFT   (4)
+> +#define  MLB_CR_SET_CR_RTUNTIMER_MASK  (0xF << MLB_CR_SET_CR_RTUNTIMER_SFT)
 > +
-> +  reg:
-> +    maxItems: 1
+> +#define MLB_SD_TOCLK_I_DIV  16
+> +#define MLB_TOCLKFREQ_UNIT_THRES    16000000
+> +#define MLB_CAL_TOCLKFREQ_MHZ(rate) (rate / MLB_SD_TOCLK_I_DIV / 1000000)
+> +#define MLB_CAL_TOCLKFREQ_KHZ(rate) (rate / MLB_SD_TOCLK_I_DIV / 1000)
+> +#define MLB_TOCLKFREQ_MAX   63
+> +#define MLB_TOCLKFREQ_MIN    1
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +#define MLB_SD_BCLK_I_DIV   4
+> +#define MLB_CAL_BCLKFREQ(rate)  (rate / MLB_SD_BCLK_I_DIV / 1000000)
+> +#define MLB_BCLKFREQ_MAX        255
+> +#define MLB_BCLKFREQ_MIN          1
 > +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      - description: Bus Clock
-> +      - description: Module Clock
-> +      - description: Output Clock
-> +      - description: Sample Clock
+> +#define MLB_CDR_SET                    0x0230
+> +#define MLB_CDR_SET_CLK2POW16  3
 > +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      - const: ahb
-> +      - const: mmc
-> +      - const: output
-> +      - const: sample
+> +struct f_sdhost_priv {
+> +       struct clk *clk_iface;
+> +       struct clk *clk;
+> +       struct device *dev;
+> +       bool enable_cmd_dat_delay;
+> +};
 > +
-> +  resets:
-> +    maxItems: 1
+> +static void sdhci_milbeaut_soft_voltage_switch(struct sdhci_host *host)
+> +{
+> +       u32 ctrl = 0;
 > +
-> +  reset-names:
-> +    const: ahb
+> +       usleep_range(2500, 3000);
+> +       ctrl = sdhci_readl(host, F_SDH30_IO_CONTROL2);
+> +       ctrl |= F_SDH30_CRES_O_DN;
+> +       sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
+> +       ctrl |= F_SDH30_MSEL_O_1_8;
+> +       sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
+> +       ctrl &= ~F_SDH30_CRES_O_DN;
+> +       sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
+> +       usleep_range(2500, 3000);
 > +
-> +examples:
-> +  - |
-> +    mmc0: mmc@1c0f000 {
-> +        compatible = "allwinner,sun5i-a13-mmc";
-> +        reg = <0x01c0f000 0x1000>;
-> +        clocks = <&ahb_gates 8>, <&mmc0_clk>;
-> +        clock-names = "ahb", "mmc";
-> +        interrupts = <32>;
-> +        bus-width = <4>;
-> +        cd-gpios = <&pio 7 1 0>;
-> +    };
+> +       ctrl = sdhci_readl(host, F_SDH30_TUNING_SETTING);
+> +       ctrl |= F_SDH30_CMD_CHK_DIS;
+> +       sdhci_writel(host, ctrl, F_SDH30_TUNING_SETTING);
+> +}
 > +
-> +# FIXME: We should set it, but it would report all the generic
-> +# properties as additional properties.
-> +# additionalProperties: false
+> +static unsigned int sdhci_milbeaut_get_min_clock(struct sdhci_host *host)
+> +{
+> +       return F_SDH30_MIN_CLOCK;
+> +}
 > +
-> +...
-> diff --git a/Documentation/devicetree/bindings/mmc/sunxi-mmc.txt b/Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
-> deleted file mode 100644
-> index e9cb3ec5e502..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
-> +++ /dev/null
-> @@ -1,52 +0,0 @@
-> -* Allwinner sunxi MMC controller
+> +static void sdhci_milbeaut_reset(struct sdhci_host *host, u8 mask)
+> +{
+> +       struct f_sdhost_priv *priv = sdhci_priv(host);
+> +       u16 clk;
+> +       u32 ctl;
+> +       ktime_t timeout;
+> +
+> +       clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
+> +       clk = (clk & ~SDHCI_CLOCK_CARD_EN) | SDHCI_CLOCK_INT_EN;
+> +       sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
+> +
+> +       sdhci_reset(host, mask);
+> +
+> +       clk |= SDHCI_CLOCK_CARD_EN;
+> +       sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
+> +
+> +       timeout = ktime_add_ms(ktime_get(), 10);
+> +       while (1) {
+> +               bool timedout = ktime_after(ktime_get(), timeout);
+> +
+> +               clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
+> +               if (clk & SDHCI_CLOCK_INT_STABLE)
+> +                       break;
+> +               if (timedout) {
+> +                       pr_err("%s: Internal clock never stabilised.\n",
+> +                               mmc_hostname(host->mmc));
+> +                       sdhci_dumpregs(host);
+> +                       return;
+> +               }
+> +               udelay(10);
+> +       }
+> +
+> +       if (priv->enable_cmd_dat_delay) {
+> +               ctl = sdhci_readl(host, F_SDH30_ESD_CONTROL);
+> +               ctl |= F_SDH30_CMD_DAT_DELAY;
+> +               sdhci_writel(host, ctl, F_SDH30_ESD_CONTROL);
+> +       }
+> +}
+> +
+> +static void sdhci_milbeaut_set_power(struct sdhci_host *host,
+> +                       unsigned char mode, unsigned short vdd)
+> +{
+> +       if (!IS_ERR(host->mmc->supply.vmmc)) {
+> +               struct mmc_host *mmc = host->mmc;
+> +
+> +               mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
+> +       }
+> +       sdhci_set_power_noreg(host, mode, vdd);
+> +}
+> +
+> +static const struct sdhci_ops sdhci_milbeaut_ops = {
+> +       .voltage_switch = sdhci_milbeaut_soft_voltage_switch,
+> +       .get_min_clock = sdhci_milbeaut_get_min_clock,
+> +       .reset = sdhci_milbeaut_reset,
+> +       .set_clock = sdhci_set_clock,
+> +       .set_bus_width = sdhci_set_bus_width,
+> +       .set_uhs_signaling = sdhci_set_uhs_signaling,
+> +       .set_power = sdhci_milbeaut_set_power,
+> +};
+> +
+> +static void sdhci_milbeaut_bridge_reset(struct sdhci_host *host,
+> +                                               int reset_flag)
+> +{
+> +       if (reset_flag)
+> +               sdhci_writel(host, 0, MLB_SOFT_RESET);
+> +       else
+> +               sdhci_writel(host, MLB_SOFT_RESET_RSTX, MLB_SOFT_RESET);
+> +}
+> +
+> +static void sdhci_milbeaut_bridge_init(struct sdhci_host *host,
+> +                                               int rate)
+> +{
+> +       u32 val, clk;
+> +
+> +       /* IO_SDIO_CR_SET should be set while reset */
+> +       val = sdhci_readl(host, MLB_CR_SET);
+> +       val &= ~(MLB_CR_SET_CR_TOCLKFREQ_MASK | MLB_CR_SET_CR_TOCLKUNIT |
+> +                       MLB_CR_SET_CR_BCLKFREQ_MASK);
+> +       if (rate >= MLB_TOCLKFREQ_UNIT_THRES) {
+> +               clk = MLB_CAL_TOCLKFREQ_MHZ(rate);
+> +               clk = min_t(u32, MLB_TOCLKFREQ_MAX, clk);
+> +               val |= MLB_CR_SET_CR_TOCLKUNIT |
+> +                       (clk << MLB_CR_SET_CR_TOCLKFREQ_SFT);
+> +       } else {
+> +               clk = MLB_CAL_TOCLKFREQ_KHZ(rate);
+> +               clk = min_t(u32, MLB_TOCLKFREQ_MAX, clk);
+> +               clk = max_t(u32, MLB_TOCLKFREQ_MIN, clk);
+> +               val |= clk << MLB_CR_SET_CR_TOCLKFREQ_SFT;
+> +       }
+> +
+> +       clk = MLB_CAL_BCLKFREQ(rate);
+> +       clk = min_t(u32, MLB_BCLKFREQ_MAX, clk);
+> +       clk = max_t(u32, MLB_BCLKFREQ_MIN, clk);
+> +       val |=  clk << MLB_CR_SET_CR_BCLKFREQ_SFT;
+> +       val &= ~MLB_CR_SET_CR_RTUNTIMER_MASK;
+> +       sdhci_writel(host, val, MLB_CR_SET);
+> +
+> +       sdhci_writel(host, MLB_CDR_SET_CLK2POW16, MLB_CDR_SET);
+> +
+> +       sdhci_writel(host, MLB_WP_CD_LED_SET_LED_INV, MLB_WP_CD_LED_SET);
+> +}
+> +
+> +static void sdhci_milbeaut_vendor_init(struct sdhci_host *host)
+> +{
+> +       struct f_sdhost_priv *priv = sdhci_priv(host);
+> +       u32 ctl;
+> +
+> +       ctl = sdhci_readl(host, F_SDH30_IO_CONTROL2);
+> +       ctl |= F_SDH30_CRES_O_DN;
+> +       sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
+> +       ctl &= ~F_SDH30_MSEL_O_1_8;
+> +       sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
+> +       ctl &= ~F_SDH30_CRES_O_DN;
+> +       sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
+> +
+> +       ctl = sdhci_readw(host, F_SDH30_AHB_CONFIG);
+> +       ctl |= F_SDH30_SIN | F_SDH30_AHB_INCR_16 | F_SDH30_AHB_INCR_8 |
+> +              F_SDH30_AHB_INCR_4;
+> +       ctl &= ~(F_SDH30_AHB_BIGED | F_SDH30_BUSLOCK_EN);
+> +       sdhci_writew(host, ctl, F_SDH30_AHB_CONFIG);
+> +
+> +       if (priv->enable_cmd_dat_delay) {
+> +               ctl = sdhci_readl(host, F_SDH30_ESD_CONTROL);
+> +               ctl |= F_SDH30_CMD_DAT_DELAY;
+> +               sdhci_writel(host, ctl, F_SDH30_ESD_CONTROL);
+> +       }
+> +}
+> +
+> +static const struct of_device_id mlb_dt_ids[] = {
+> +       {
+> +               .compatible = "socionext,milbeaut-m10v-sdhci-3.0",
+> +       },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mlb_dt_ids);
+> +
+> +static void sdhci_milbeaut_init(struct sdhci_host *host)
+> +{
+> +       struct f_sdhost_priv *priv = sdhci_priv(host);
+> +       int rate = clk_get_rate(priv->clk);
+> +       u16 ctl;
+> +
+> +       sdhci_milbeaut_bridge_reset(host, 0);
+> +
+> +       ctl = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
+> +       ctl &= ~(SDHCI_CLOCK_CARD_EN | SDHCI_CLOCK_INT_EN);
+> +       sdhci_writew(host, ctl, SDHCI_CLOCK_CONTROL);
+> +
+> +       sdhci_milbeaut_bridge_reset(host, 1);
+> +
+> +       sdhci_milbeaut_bridge_init(host, rate);
+> +       sdhci_milbeaut_bridge_reset(host, 0);
+> +
+> +       sdhci_milbeaut_vendor_init(host);
+> +}
+> +
+> +static int sdhci_milbeaut_probe(struct platform_device *pdev)
+> +{
+> +       struct sdhci_host *host;
+> +       struct device *dev = &pdev->dev;
+> +       struct resource *res;
+> +       int irq, ret = 0;
+> +       struct f_sdhost_priv *priv;
+> +
+> +       irq = platform_get_irq(pdev, 0);
+> +       if (irq < 0) {
+> +               dev_err(dev, "%s: no irq specified\n", __func__);
+> +               return irq;
+> +       }
+> +
+> +       host = sdhci_alloc_host(dev, sizeof(struct f_sdhost_priv));
+> +       if (IS_ERR(host))
+> +               return PTR_ERR(host);
+> +
+> +       priv = sdhci_priv(host);
+> +       priv->dev = dev;
+> +
+> +       host->quirks = SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC |
+> +                          SDHCI_QUIRK_INVERTED_WRITE_PROTECT |
+> +                          SDHCI_QUIRK_CLOCK_BEFORE_RESET |
+> +                          SDHCI_QUIRK_DELAY_AFTER_POWER;
+> +       host->quirks2 = SDHCI_QUIRK2_SUPPORT_SINGLE |
+> +                       SDHCI_QUIRK2_TUNING_WORK_AROUND |
+> +                       SDHCI_QUIRK2_PRESET_VALUE_BROKEN;
+> +
+> +       priv->enable_cmd_dat_delay = device_property_read_bool(dev,
+> +                                               "fujitsu,cmd-dat-delay-select");
+> +
+> +       ret = mmc_of_parse(host->mmc);
+> +       if (ret)
+> +               goto err;
+> +
+> +       platform_set_drvdata(pdev, host);
+> +
+> +       host->hw_name = "f_sdh30";
+> +       host->ops = &sdhci_milbeaut_ops;
+> +       host->irq = irq;
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       host->ioaddr = devm_ioremap_resource(&pdev->dev, res);
+> +       if (IS_ERR(host->ioaddr)) {
+> +               ret = PTR_ERR(host->ioaddr);
+> +               goto err;
+> +       }
+> +
+> +       if (dev_of_node(dev)) {
+> +               sdhci_get_of_property(pdev);
+> +
+> +               priv->clk_iface = devm_clk_get(&pdev->dev, "iface");
+> +               if (IS_ERR(priv->clk_iface)) {
+> +                       ret = PTR_ERR(priv->clk_iface);
+> +                       goto err;
+> +               }
+> +
+> +               ret = clk_prepare_enable(priv->clk_iface);
+> +               if (ret)
+> +                       goto err;
+> +
+> +               priv->clk = devm_clk_get(&pdev->dev, "core");
+> +               if (IS_ERR(priv->clk)) {
+> +                       ret = PTR_ERR(priv->clk);
+> +                       goto err_clk;
+> +               }
+> +
+> +               ret = clk_prepare_enable(priv->clk);
+> +               if (ret)
+> +                       goto err_clk;
+> +       }
+> +
+> +       sdhci_milbeaut_init(host);
+> +
+> +       ret = sdhci_add_host(host);
+> +       if (ret)
+> +               goto err_add_host;
+> +
+> +       return 0;
+> +
+> +err_add_host:
+> +       clk_disable_unprepare(priv->clk);
+> +err_clk:
+> +       clk_disable_unprepare(priv->clk_iface);
+> +err:
+> +       sdhci_free_host(host);
+> +       return ret;
+> +}
+> +
+> +static int sdhci_milbeaut_remove(struct platform_device *pdev)
+> +{
+> +       struct sdhci_host *host = platform_get_drvdata(pdev);
+> +       struct f_sdhost_priv *priv = sdhci_priv(host);
+> +
+> +       sdhci_remove_host(host, readl(host->ioaddr + SDHCI_INT_STATUS) ==
+> +                         0xffffffff);
+> +
+> +       clk_disable_unprepare(priv->clk_iface);
+> +       clk_disable_unprepare(priv->clk);
+> +
+> +       sdhci_free_host(host);
+> +       platform_set_drvdata(pdev, NULL);
+> +
+> +       return 0;
+> +}
+> +
+> +static struct platform_driver sdhci_milbeaut_driver = {
+> +       .driver = {
+> +               .name = "sdhci-milbeaut",
+> +               .of_match_table = of_match_ptr(mlb_dt_ids),
+> +       },
+> +       .probe  = sdhci_milbeaut_probe,
+> +       .remove = sdhci_milbeaut_remove,
+> +};
+> +
+> +module_platform_driver(sdhci_milbeaut_driver);
+> +
+> +MODULE_DESCRIPTION("MILBEAUT SD Card Controller driver");
+> +MODULE_AUTHOR("Takao Orito <orito.takao@socionext.com>");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_ALIAS("platform:sdhci-milbeaut");
+> diff --git a/drivers/mmc/host/sdhci_f_sdh30.c b/drivers/mmc/host/sdhci_f_sdh30.c
+> index 485f759..ca4c99a 100644
+> --- a/drivers/mmc/host/sdhci_f_sdh30.c
+> +++ b/drivers/mmc/host/sdhci_f_sdh30.c
+> @@ -19,31 +19,7 @@
+>  #include <linux/clk.h>
+>
+>  #include "sdhci-pltfm.h"
 > -
-> -The highspeed MMC host controller on Allwinner SoCs provides an interface
-> -for MMC, SD and SDIO types of memory cards.
+> -/* F_SDH30 extended Controller registers */
+> -#define F_SDH30_AHB_CONFIG             0x100
+> -#define  F_SDH30_AHB_BIGED             0x00000040
+> -#define  F_SDH30_BUSLOCK_DMA           0x00000020
+> -#define  F_SDH30_BUSLOCK_EN            0x00000010
+> -#define  F_SDH30_SIN                   0x00000008
+> -#define  F_SDH30_AHB_INCR_16           0x00000004
+> -#define  F_SDH30_AHB_INCR_8            0x00000002
+> -#define  F_SDH30_AHB_INCR_4            0x00000001
 > -
-> -Supported maximum speeds are the ones of the eMMC standard 4.5 as well
-> -as the speed of SD standard 3.0.
-> -Absolute maximum transfer rate is 200MB/s
+> -#define F_SDH30_TUNING_SETTING         0x108
+> -#define  F_SDH30_CMD_CHK_DIS           0x00010000
 > -
-> -Required properties:
-> - - compatible : should be one of:
-> -   * "allwinner,sun4i-a10-mmc"
-> -   * "allwinner,sun5i-a13-mmc"
-> -   * "allwinner,sun7i-a20-mmc"
-> -   * "allwinner,sun8i-a83t-emmc"
-> -   * "allwinner,sun9i-a80-mmc"
-> -   * "allwinner,sun50i-a64-emmc"
-> -   * "allwinner,sun50i-a64-mmc"
-> -   * "allwinner,sun50i-h6-emmc", "allwinner.sun50i-a64-emmc"
-> -   * "allwinner,sun50i-h6-mmc", "allwinner.sun50i-a64-mmc"
-> - - reg : mmc controller base registers
-> - - clocks : a list with 4 phandle + clock specifier pairs
-> - - clock-names : must contain "ahb", "mmc", "output" and "sample"
-> - - interrupts : mmc controller interrupt
+> -#define F_SDH30_IO_CONTROL2            0x114
+> -#define  F_SDH30_CRES_O_DN             0x00080000
+> -#define  F_SDH30_MSEL_O_1_8            0x00040000
 > -
-> -Optional properties:
-> - - resets : phandle + reset specifier pair
-> - - reset-names : must contain "ahb"
-> - - for cd, bus-width and additional generic mmc parameters
-> -   please refer to mmc.txt within this directory
+> -#define F_SDH30_ESD_CONTROL            0x124
+> -#define  F_SDH30_EMMC_RST              0x00000002
+> -#define  F_SDH30_EMMC_HS200            0x01000000
 > -
-> -Examples:
-> -       - Within .dtsi:
-> -       mmc0: mmc@1c0f000 {
-> -               compatible = "allwinner,sun5i-a13-mmc";
-> -               reg = <0x01c0f000 0x1000>;
-> -               clocks = <&ahb_gates 8>, <&mmc0_clk>, <&mmc0_output_clk>, <&mmc0_sample_clk>;
-> -               clock-names = "ahb", "mod", "output", "sample";
-> -               interrupts = <0 32 4>;
-> -               status = "disabled";
-> -       };
+> -#define F_SDH30_CMD_DAT_DELAY          0x200
 > -
-> -       - Within dts:
-> -       mmc0: mmc@1c0f000 {
-> -               pinctrl-names = "default", "default";
-> -               pinctrl-0 = <&mmc0_pins_a>;
-> -               pinctrl-1 = <&mmc0_cd_pin_reference_design>;
-> -               bus-width = <4>;
-> -               cd-gpios = <&pio 7 1 0>; /* PH1 */
-> -               cd-inverted;
-> -               status = "okay";
-> -       };
+> -#define F_SDH30_MIN_CLOCK              400000
+> +#include "sdhci_f_sdh30.h"
+>
+>  struct f_sdhost_priv {
+>         struct clk *clk_iface;
+> diff --git a/drivers/mmc/host/sdhci_f_sdh30.h b/drivers/mmc/host/sdhci_f_sdh30.h
+> new file mode 100644
+> index 0000000..fc1ad28
+> --- /dev/null
+> +++ b/drivers/mmc/host/sdhci_f_sdh30.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2013 - 2015 Fujitsu Semiconductor, Ltd
+> + *              Vincent Yang <vincent.yang@tw.fujitsu.com>
+> + * Copyright (C) 2015 Linaro Ltd  Andy Green <andy.green@linaro.org>
+> + * Copyright (C) 2019 Socionext Inc.
+> + *
+> + */
+> +
+> +/* F_SDH30 extended Controller registers */
+> +#define F_SDH30_AHB_CONFIG      0x100
+> +#define  F_SDH30_AHB_BIGED      BIT(6)
+> +#define  F_SDH30_BUSLOCK_DMA    BIT(5)
+> +#define  F_SDH30_BUSLOCK_EN     BIT(4)
+> +#define  F_SDH30_SIN            BIT(3)
+> +#define  F_SDH30_AHB_INCR_16    BIT(2)
+> +#define  F_SDH30_AHB_INCR_8     BIT(1)
+> +#define  F_SDH30_AHB_INCR_4     BIT(0)
+> +
+> +#define F_SDH30_TUNING_SETTING  0x108
+> +#define  F_SDH30_CMD_CHK_DIS    BIT(16)
+> +
+> +#define F_SDH30_IO_CONTROL2     0x114
+> +#define  F_SDH30_CRES_O_DN      BIT(19)
+> +#define  F_SDH30_MSEL_O_1_8     BIT(18)
+> +
+> +#define F_SDH30_ESD_CONTROL     0x124
+> +#define         F_SDH30_EMMC_RST               BIT(1)
+> +#define  F_SDH30_CMD_DAT_DELAY BIT(9)
+> +#define         F_SDH30_EMMC_HS200             BIT(24)
+> +
+> +#define F_SDH30_MIN_CLOCK              400000
 > --
-> git-series 0.9.1
+> 1.9.1
+>
+>
