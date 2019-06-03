@@ -2,110 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA883395E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 21:55:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C3AC33967
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 21:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726097AbfFCTzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 15:55:55 -0400
-Received: from mail-eopbgr150043.outbound.protection.outlook.com ([40.107.15.43]:18500
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726136AbfFCTzz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jun 2019 15:55:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yw9U0BA/Rbnuost0XrXLpPpt3YzVCVxPdRWpRM9ggvc=;
- b=fN90t4Kti5ZuuGzE/ORrPJ9AOByQdJKZeQX/rMkn0WHWSVa9HOyuGXMqwv715CWlS2FFL0xtH+vKNhVGK9GNfrEPEe96+qk+vQ2c6V5KIYIehqVX7uypr0FCUSytv8w+Yud9HeAHiLDydiChq8sGlVMNj1t/+cukzJo60UxqD9A=
-Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (20.179.235.152) by
- VE1PR04MB6670.eurprd04.prod.outlook.com (20.179.235.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1943.17; Mon, 3 Jun 2019 19:55:51 +0000
-Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
- ([fe80::9e6:e136:4c09:fe67]) by VE1PR04MB6687.eurprd04.prod.outlook.com
- ([fe80::9e6:e136:4c09:fe67%5]) with mapi id 15.20.1943.018; Mon, 3 Jun 2019
- 19:55:51 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Rasmus Villemoes <Rasmus.Villemoes@prevas.se>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>
-CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Scott Wood <oss@buserror.net>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "jocke@infinera.com" <joakim.tjernlund@infinera.com>
-Subject: RE: [PATCH v3 0/6] soc/fsl/qe: cleanups and new DT binding
-Thread-Topic: [PATCH v3 0/6] soc/fsl/qe: cleanups and new DT binding
-Thread-Index: AQHVCX0ZigTT3b8e40uvrg8HEyl+g6aKeRUAgAAAdGA=
-Date:   Mon, 3 Jun 2019 19:55:51 +0000
-Message-ID: <VE1PR04MB6687FF805430978ED307EA2D8F140@VE1PR04MB6687.eurprd04.prod.outlook.com>
-References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
- <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
- <e11c1e55-1e11-7ce3-3c0f-0b723ab260aa@prevas.se>
-In-Reply-To: <e11c1e55-1e11-7ce3-3c0f-0b723ab260aa@prevas.se>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leoyang.li@nxp.com; 
-x-originating-ip: [64.157.242.222]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 579c5b46-ed17-4d70-dd88-08d6e85d7b38
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VE1PR04MB6670;
-x-ms-traffictypediagnostic: VE1PR04MB6670:
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-microsoft-antispam-prvs: <VE1PR04MB667010E870DE62DA6AC70C118F140@VE1PR04MB6670.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0057EE387C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(366004)(39860400002)(346002)(396003)(136003)(13464003)(199004)(189003)(7736002)(305945005)(76176011)(2501003)(99286004)(7696005)(6506007)(486006)(74316002)(33656002)(478600001)(52536014)(6116002)(476003)(68736007)(2906002)(102836004)(3846002)(256004)(26005)(5660300002)(186003)(7416002)(11346002)(86362001)(53546011)(14454004)(25786009)(6436002)(6246003)(4326008)(8676002)(66946007)(446003)(73956011)(71200400001)(71190400001)(66476007)(66446008)(9686003)(64756008)(66066001)(66556008)(229853002)(54906003)(110136005)(53936002)(55016002)(316002)(8936002)(81166006)(81156014)(6636002)(76116006);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6670;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: pICCQVEdCAjHBf+x3/AVVw6qC65ksmgT482DiEDw0msXak+Ss4Sp0KSWtBoeO9yfJefrjtvHpvoBORrakmvIleL+65fO5kMlGMfYaGShSOYsgnOc6GDgIwHzwOPqJHtG7+YZTWzzaNFQSUJTBy+FX+o1XZypMAWMjZZXHaCQWjExo3bzeFYrJgvhKNiyGTdzcKh0QtaRphfwRjR3q4MF5ZU/5/1OPDtNlhEPAzdzrAa5ywmgm6QYQd01hTTs/5fihLLBe1cDk4bOKvpqzRHc/+cuNAMhoWomQfwPgxU5ngqPFyPz3hPhOucqzW2b6QvGYp5MnmyfeuNH+s8KcrzUOuqmgXp4ZOckFWMP8WeCthlE/Fg29wf0vWr8env7mqxYUS78+C8IcZW16YpQ7EkepA6ETtuGdOaLdpbC2FN1758=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726653AbfFCT6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 15:58:36 -0400
+Received: from mail-yw1-f68.google.com ([209.85.161.68]:45081 "EHLO
+        mail-yw1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726349AbfFCT6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 15:58:36 -0400
+Received: by mail-yw1-f68.google.com with SMTP id m16so1948990ywh.12;
+        Mon, 03 Jun 2019 12:58:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=zPryCWRXLrnucE/JiySfXexBGbsw2P5i9EkkB29EvlE=;
+        b=HLZNA8/ZMSuzdLWUPd4akHsIoEpYyGMtqR3HnJRPDBzklcWqP6gjMSNIXSDelJSVEW
+         0wNE4StLBsfUYnsnHUKpFd7VNbBWqrfJOZrEH3SgIeL17ZXPXL/xcEkSiiVvYdh+9slb
+         2NnpcvWS8HoiqZeR+0eYK2AUr5jNztb969b+o31CSMw01nsrl+ViEipKBHbtgG8bqSyk
+         OqtL3KSE4mOsvz7AHivcmik0/fmJBXnFiIOSID5pJN10fGyZHnS5xftTM7oGXzoKNzKU
+         S3awdcqnUupx2m0brs0AM6e5sgMmu7sx0SFOpef0J8wNAVNnbb5+RMVrWKcMpZwFgVUE
+         Ncdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:content-transfer-encoding;
+        bh=zPryCWRXLrnucE/JiySfXexBGbsw2P5i9EkkB29EvlE=;
+        b=JpNE3NsQN3Uzk5RLg4s6Tg/itHPGWTnV+W01xtU8CBCdZa8LPaTHHY1r+rWNv/WwOV
+         Dz8wMFRrErzo+bkrlQmid/LUnGUgc46YDxm1bwb6l8p//rrCR0o2qy/6OZ4aZRq11K3+
+         X8dFl2+MlzJcZgm1GBXFZHFPHpvi9Zq8YVrletBnkdSb0geau/5nEhTG66ANgXBnBMi8
+         8M6iddJRxMYLrwtX4kr4ErFe4hBfWdOoSzmG0lHKjxNdB3UyaubnhaZbdX3bN37tqz5/
+         MAnEgK09oR1diGqTtRux+NfOS87oZ425sQpQcBf36ilmISV9dUrMD1iG2RykifFjUXUZ
+         AMog==
+X-Gm-Message-State: APjAAAW9NTSsrHi2UJyNw6uvwXJ5Va1TxBfXAD/8HxMTqrw+SK6h2nQ5
+        r68udfQurH5ma6rBiIPRtRjhl5sOJlK+mTbrlek=
+X-Google-Smtp-Source: APXvYqzaF/pj6WIIK9LanDm75fPkG92GCmUpgNneIxy1L5Op0Sc7dgolS/x3xgH4Zsp5WeDNIduylRNudGOABU+uGpc=
+X-Received: by 2002:a0d:de01:: with SMTP id h1mr14385025ywe.349.1559591914679;
+ Mon, 03 Jun 2019 12:58:34 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 579c5b46-ed17-4d70-dd88-08d6e85d7b38
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2019 19:55:51.5311
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leoyang.li@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6670
+References: <20190528161440.27172-1-peron.clem@gmail.com> <20190528161440.27172-11-peron.clem@gmail.com>
+ <20190530145550.amalnxmx7kpokykv@core.my.home> <CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw@mail.gmail.com>
+ <20190531124630.q2guo54kjfzr7rkn@core.my.home>
+In-Reply-To: <20190531124630.q2guo54kjfzr7rkn@core.my.home>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Mon, 3 Jun 2019 21:58:23 +0200
+Message-ID: <CAJiuCcdMftAjCwk2_naE9VBGGqS=OY9xcqv6+5pDX2Z8O=L28w@mail.gmail.com>
+Subject: Re: [linux-sunxi] Re: [PATCH v3 10/12] arm64: dts: allwinner: h6: Add
+ IR receiver node
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUmFzbXVzIFZpbGxlbW9l
-cyA8UmFzbXVzLlZpbGxlbW9lc0BwcmV2YXMuc2U+DQo+IFNlbnQ6IE1vbmRheSwgSnVuZSAzLCAy
-MDE5IDI6NTQgUE0NCj4gVG86IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBRaWFuZyBaaGFv
-IDxxaWFuZy56aGFvQG54cC5jb20+OyBMZW8gTGkNCj4gPGxlb3lhbmcubGlAbnhwLmNvbT4NCj4g
-Q2M6IGxpbnV4cHBjLWRldkBsaXN0cy5vemxhYnMub3JnOyBsaW51eC1hcm0ta2VybmVsQGxpc3Rz
-LmluZnJhZGVhZC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IFJvYiBIZXJy
-aW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBTY290dA0KPiBXb29kIDxvc3NAYnVzZXJyb3IubmV0
-PjsgQ2hyaXN0b3BoZSBMZXJveSA8Y2hyaXN0b3BoZS5sZXJveUBjLXMuZnI+Ow0KPiBNYXJrIFJ1
-dGxhbmQgPG1hcmsucnV0bGFuZEBhcm0uY29tPjsgam9ja2VAaW5maW5lcmEuY29tDQo+IDxqb2Fr
-aW0udGplcm5sdW5kQGluZmluZXJhLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MyAwLzZd
-IHNvYy9mc2wvcWU6IGNsZWFudXBzIGFuZCBuZXcgRFQgYmluZGluZw0KPiANCj4gT24gMTMvMDUv
-MjAxOSAxMy4xNCwgUmFzbXVzIFZpbGxlbW9lcyB3cm90ZToNCj4gPiBUaGlzIHNtYWxsIHNlcmll
-cyBjb25zaXN0cyBvZiBzb21lIHNtYWxsIGNsZWFudXBzIGFuZCBzaW1wbGlmaWNhdGlvbnMNCj4g
-PiBvZiB0aGUgUVVJQ0MgZW5naW5lIGRyaXZlciwgYW5kIGludHJvZHVjZXMgYSBuZXcgRFQgYmlu
-ZGluZyB0aGF0IG1ha2VzDQo+ID4gaXQgbXVjaCBlYXNpZXIgdG8gc3VwcG9ydCBvdGhlciB2YXJp
-YW50cyBvZiB0aGUgUVVJQ0MgZW5naW5lIElQIGJsb2NrDQo+ID4gdGhhdCBhcHBlYXJzIGluIHRo
-ZSB3aWxkOiBUaGVyZSdzIG5vIHJlYXNvbiB0byBleHBlY3QgaW4gZ2VuZXJhbCB0aGF0DQo+ID4g
-dGhlIG51bWJlciBvZiB2YWxpZCBTTlVNcyB1bmlxdWVseSBkZXRlcm1pbmVzIHRoZSBzZXQgb2Yg
-c3VjaCwgc28gaXQncw0KPiA+IGJldHRlciB0byBzaW1wbHkgbGV0IHRoZSBkZXZpY2UgdHJlZSBz
-cGVjaWZ5IHRoZSB2YWx1ZXMgKGFuZCwNCj4gPiBpbXBsaWNpdGx5IHZpYSB0aGUgYXJyYXkgbGVu
-Z3RoLCBhbHNvIHRoZSBjb3VudCkuDQo+ID4NCj4gPiBXaGljaCB0cmVlIHNob3VsZCB0aGlzIGdv
-IHRocm91Z2g/DQo+IA0KPiBQaW5nPyBUaGVzZSBwYXRjaGVzIHNob3VsZCBiZSByZWFkeSB0byBn
-byBpbiwgYnV0IEkgZG9uJ3Qga25vdyB3aG8gaXMNCj4gc3VwcG9zZWQgdG8gcGljayB0aGVtIHVw
-Lg0KDQpJIGNhbiBwaWNrIHRoZW0gdXAgdGhyb3VnaCB0aGUgc29jL2ZzbCB0cmVlLg0KDQpSZWdh
-cmRzLA0KTGVvDQo=
+Hi Ondrej,
+
+On Fri, 31 May 2019 at 14:46, Ond=C5=99ej Jirman <megous@megous.com> wrote:
+>
+> Hello Cl=C3=A9ment,
+>
+> On Fri, May 31, 2019 at 12:25:32AM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Hi Ondrej,
+> >
+> > On Thu, 30 May 2019 at 16:55, Ond=C5=99ej Jirman <megous@megous.com> wr=
+ote:
+> > >
+> > > Hello Cl=C3=A9ment,
+> > >
+> > > On Tue, May 28, 2019 at 06:14:38PM +0200, Cl=C3=A9ment P=C3=A9ron wro=
+te:
+> > > > Allwinner H6 IR is similar to A31 and can use same driver.
+> > > >
+> > > > Add support for it.
+> > > >
+> > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 19 ++++++++++++++++=
++++
+> > > >  1 file changed, 19 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/ar=
+m64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > index 16c5c3d0fd81..649cbdfe452e 100644
+> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > @@ -647,6 +647,25 @@
+> > > >                               pins =3D "PL0", "PL1";
+> > > >                               function =3D "s_i2c";
+> > > >                       };
+> > > > +
+> > > > +                     r_ir_rx_pin: r-ir-rx-pin {
+> > > > +                             pins =3D "PL9";
+> > > > +                             function =3D "s_cir_rx";
+> > > > +                     };
+> > > > +             };
+> > > > +
+> > > > +             r_ir: ir@7040000 {
+> > > > +                             compatible =3D "allwinner,sun50i-h6-i=
+r",
+> > > > +                                          "allwinner,sun6i-a31-ir"=
+;
+> > > > +                             reg =3D <0x07040000 0x400>;
+> > > > +                             interrupts =3D <GIC_SPI 109 IRQ_TYPE_=
+LEVEL_HIGH>;
+> > > > +                             clocks =3D <&r_ccu CLK_R_APB1_IR>,
+> > > > +                                      <&r_ccu CLK_IR>;
+> > > > +                             clock-names =3D "apb", "ir";
+> > > > +                             resets =3D <&r_ccu RST_R_APB1_IR>;
+> > > > +                             pinctrl-names =3D "default";
+> > > > +                             pinctrl-0 =3D <&r_ir_rx_pin>;
+> > > > +                             status =3D "disabled";
+> > > >               };
+> > >
+> > > Please make a comment here, that this is known broken on some boards =
+and may
+> > > result IRQ flood if enabled. Otherwise noone will know.
+> >
+> > I'm planning to send a v4 next week with the IRQ_NONE return as Maxime
+> > suggested it.
+> > https://github.com/clementperon/linux/tree/h6_ir_v4
+> >
+> > But maybe we could also use the bit 5 of the IRQ status.
+>
+> Thanks, that's nice, but that will not make the HW work. That will just d=
+isable
+> it. The comment is still necessary.
+I have pushed a new version on my github.
+https://github.com/clementperon/linux/commits/h6_ir_v4
+
+I will submit it, if you are ok with it.
+
+Thanks,
+Cl=C3=A9ment
+
+>
+> thank you,
+>         o.
+>
+> > Regards, Clement
+> >
+> > >
+> > > thanks,
+> > >         o.
+> > >
+> > > >               r_i2c: i2c@7081400 {
+> > > > --
+> > > > 2.20.1
+> > > >
+> > > >
+> > > > _______________________________________________
+> > > > linux-arm-kernel mailing list
+> > > > linux-arm-kernel@lists.infradead.org
+> > > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >
+> > --
+> > You received this message because you are subscribed to the Google Grou=
+ps "linux-sunxi" group.
+> > To unsubscribe from this group and stop receiving emails from it, send =
+an email to linux-sunxi+unsubscribe@googlegroups.com.
+> > To view this discussion on the web, visit https://groups.google.com/d/m=
+sgid/linux-sunxi/CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw%40mail=
+.gmail.com.
+> > For more options, visit https://groups.google.com/d/optout.
