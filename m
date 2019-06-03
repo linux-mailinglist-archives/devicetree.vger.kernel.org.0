@@ -2,64 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D95326EF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 05:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E01326FE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 05:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726779AbfFCDqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 23:46:03 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:36211 "EHLO
+        id S1726976AbfFCDq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 23:46:29 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:44450 "EHLO
         mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726738AbfFCDqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 23:46:02 -0400
-Received: by mail-pg1-f194.google.com with SMTP id a3so61043pgb.3
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 20:46:02 -0700 (PDT)
+        with ESMTP id S1726968AbfFCDq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 23:46:28 -0400
+Received: by mail-pg1-f194.google.com with SMTP id n2so7447060pgp.11
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 20:46:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hEJonRLI9nF5eFhZjIysE4hQm1TY3MN4XBFUsywjVOo=;
-        b=PBKKS9khHDKTfo4Vf1IK0e2eum8/Ah3ZBIpZzQcK8zUg2CerP2x9B5evBBi3dPmM8b
-         mrMMtVjH2WQUEdWDYEQ7NotqtpAHB2Zs/AcNu42Ll5QUZ/+XjY5jgh+7TjRBFdPUcYEA
-         dRJ5vLVem+8zgDc4jTjVqTr4qGCVzB9RC+8Ik=
+        bh=u2+3ufyPAWIhb1gzUN3AC00i4o3W7fSexVAwlsvXQ3Q=;
+        b=Waeh71G0Ao1gbz1gGuip9FpIHrx26lgkHbAgkR19pHfCu7TvYgueGuaPVx4Mcdy6Ef
+         vQNKz9k9oxD/jly0kskdV8xH2XSdTex2YlfZr4jp7qyThgug7nJcl+DbCT4XvB4BTTVk
+         NspEAHxABmDsYqqJgS4E4rwrHOTXf5aOGXzXQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hEJonRLI9nF5eFhZjIysE4hQm1TY3MN4XBFUsywjVOo=;
-        b=CDytYpFBd5kkY5GRiBiYajwkoqPloOItwi9JynxHVAzgaTI47WWcTd/OqaotIgFRNk
-         jlHDPP2MhwqN7eyD2koDeYzGx9R8iUGd6m1NwFY9PAEKDH6yXsgu5RUnplsT0AiOmVSQ
-         T59TFTG0owjjf0vVd5BtTUJ1U2iOCEuswBZX9hIETwTW0ubc1U3DvMazGvEuFV3gyG10
-         MsLltvPbtTrdZNCZHYJcI6wL9gGtcZAPCc9N0UT7dg0veAI+Zts4MfCJ99QHxTPccWdt
-         fZ3v/iME/ON7JYkjaRFnyGjKCxr5Y6zbWsPmeQ/rhVfiCVGHBc10sENdX5RC0FE5gdl8
-         LDdw==
-X-Gm-Message-State: APjAAAWbjWF+NmuMkMvqHvKkZ8mzt+SdUKa/XN8ES59nXH+faeInFd/B
-        N12M4n7JDKh5Ykx+yMhh/3EtRQ==
-X-Google-Smtp-Source: APXvYqwWhD6dJQ7e7U6XXknP+lCqRI/wQ2l7stAOB/LOcEtN9grXtAVkkkFLAih8hwbZy4nolot6NA==
-X-Received: by 2002:a17:90a:7343:: with SMTP id j3mr26398048pjs.84.1559533561988;
-        Sun, 02 Jun 2019 20:46:01 -0700 (PDT)
+        bh=u2+3ufyPAWIhb1gzUN3AC00i4o3W7fSexVAwlsvXQ3Q=;
+        b=XxmZuIViz0+Fu4Vb0JXjdeAz5xZCdhpTZFboJiwu5tB6J5i1TRkO0VSfedzFbejSic
+         VDHCoLA9CV7lA23KGPnOk/5zs+jnqfCnmYzjlJpqTi+fdqw2v6WuB0tq07i/K+G8dxgr
+         LQ+cYPXTSY7Ake52JKjL2d8PHPhNMDqU3BeU2Z2+n5J7YbLVq4IWf2INueoRYKmkcbKB
+         o+k/6WgaR7DLRTX/fVud7jaHWLGNXMxpdLaoq3CwnT/6tG0g68ErGdJlvc5MHSJW6X85
+         YJIm5Bs+udjrnq2ndFX5j2BQvae+ZDtz6ycpTqFb9JPCozBO1CbY6/U5Zc79XCv/WxiB
+         ee8w==
+X-Gm-Message-State: APjAAAWh1gC+OVgfjSELPv23vvwTNLat4iiYGd2BA/+2cKj9gsbTFapd
+        OtHBecUkZnwR8NvY52//z0Q0hA==
+X-Google-Smtp-Source: APXvYqxA86g7RB5zmpCBeLVzvhTmzexBqmGiaS3L94z+SeYH3BCOZ2TPh9/hptbmEkwx7N5xz9seOw==
+X-Received: by 2002:a62:1692:: with SMTP id 140mr27847686pfw.166.1559533587828;
+        Sun, 02 Jun 2019 20:46:27 -0700 (PDT)
 Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
-        by smtp.googlemail.com with ESMTPSA id i73sm11878960pje.9.2019.06.02.20.45.59
+        by smtp.googlemail.com with ESMTPSA id i73sm11878960pje.9.2019.06.02.20.46.25
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 02 Jun 2019 20:46:01 -0700 (PDT)
+        Sun, 02 Jun 2019 20:46:27 -0700 (PDT)
 From:   Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>, Erin Lo <erin.lo@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>, Rob Herring <robh@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-remoteproc@vger.kernel.org (open list:REMOTE PROCESSOR
-        (REMOTEPROC) SUBSYSTEM),
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v10 1/7] dt-bindings: Add a binding for Mediatek SCP
-Date:   Mon,  3 Jun 2019 11:45:06 +0800
-Message-Id: <20190603034529.154969-2-pihsun@chromium.org>
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v10 5/7] dt-bindings: Add binding for cros-ec-rpmsg.
+Date:   Mon,  3 Jun 2019 11:45:10 +0800
+Message-Id: <20190603034529.154969-6-pihsun@chromium.org>
 X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
 In-Reply-To: <20190603034529.154969-1-pihsun@chromium.org>
 References: <20190603034529.154969-1-pihsun@chromium.org>
@@ -71,84 +65,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Erin Lo <erin.lo@mediatek.com>
+Add a DT binding documentation for ChromeOS EC driver over rpmsg.
 
-Add a DT binding documentation of SCP for the
-MT8183 SoC from Mediatek.
-
-Signed-off-by: Erin Lo <erin.lo@mediatek.com>
 Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
 Changes from v9, v8, v7, v6:
  - No change.
 
 Changes from v5:
- - Remove dependency on CONFIG_RPMSG_MTK_SCP.
-
-Changes from v4:
- - Add detail of more properties.
- - Document the usage of mtk,rpmsg-name in subnode from the new design.
-
-Changes from v3:
- - No change.
-
-Changes from v2:
- - No change. I realized that for this patch series, there's no need to
-   add anything under the mt8183-scp node (neither the mt8183-rpmsg or
-   the cros-ec-rpmsg) for them to work, since mt8183-rpmsg is added
-   directly as a rproc_subdev by code, and cros-ec-rpmsg is dynamically
-   created by SCP name service.
-
-Changes from v1:
- - No change.
+ - New patch.
 ---
- .../bindings/remoteproc/mtk,scp.txt           | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+ Documentation/devicetree/bindings/mfd/cros-ec.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
-new file mode 100644
-index 000000000000..3ba668bab14b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
-@@ -0,0 +1,36 @@
-+Mediatek SCP Bindings
-+----------------------------------------
+diff --git a/Documentation/devicetree/bindings/mfd/cros-ec.txt b/Documentation/devicetree/bindings/mfd/cros-ec.txt
+index 6245c9b1a68b..4860eabd0f72 100644
+--- a/Documentation/devicetree/bindings/mfd/cros-ec.txt
++++ b/Documentation/devicetree/bindings/mfd/cros-ec.txt
+@@ -3,7 +3,7 @@ ChromeOS Embedded Controller
+ Google's ChromeOS EC is a Cortex-M device which talks to the AP and
+ implements various function such as keyboard and battery charging.
+ 
+-The EC can be connect through various means (I2C, SPI, LPC) and the
++The EC can be connect through various means (I2C, SPI, LPC, RPMSG) and the
+ compatible string used depends on the interface. Each connection method has
+ its own driver which connects to the top level interface-agnostic EC driver.
+ Other Linux driver (such as cros-ec-keyb for the matrix keyboard) connect to
+@@ -17,6 +17,9 @@ Required properties (SPI):
+ - compatible: "google,cros-ec-spi"
+ - reg: SPI chip select
+ 
++Required properties (RPMSG):
++- compatible: "google,cros-ec-rpmsg"
 +
-+This binding provides support for ARM Cortex M4 Co-processor found on some
-+Mediatek SoCs.
-+
-+Required properties:
-+- compatible		Should be "mediatek,mt8183-scp"
-+- reg			Should contain the address ranges for the two memory
-+			regions, SRAM and CFG.
-+- reg-names		Contains the corresponding names for the two memory
-+			regions. These should be named "sram" & "cfg".
-+- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
-+- clock-names		Contains the corresponding name for the clock. This
-+			should be named "main".
-+
-+Subnodes
-+--------
-+
-+Subnodes of the SCP represent rpmsg devices. The names of the devices are not
-+important. The properties of these nodes are defined by the individual bindings
-+for the rpmsg devices - but must contain the following property:
-+
-+- mtk,rpmsg-name	Contains the name for the rpmsg device. Used to match
-+			the subnode to rpmsg device announced by SCP.
-+
-+Example:
-+
-+	scp: scp@10500000 {
-+		compatible = "mediatek,mt8183-scp";
-+		reg = <0 0x10500000 0 0x80000>,
-+		      <0 0x105c0000 0 0x5000>;
-+		reg-names = "sram", "cfg";
-+		clocks = <&infracfg CLK_INFRA_SCPSYS>;
-+		clock-names = "main";
-+	};
+ Optional properties (SPI):
+ - google,cros-ec-spi-pre-delay: Some implementations of the EC need a little
+   time to wake up from sleep before they can receive SPI transfers at a high
 -- 
 2.22.0.rc1.257.g3120a18244-goog
 
