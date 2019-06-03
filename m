@@ -2,125 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C856032697
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 04:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F39573269F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 04:33:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbfFCC1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 22:27:25 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:62896 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725965AbfFCC1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jun 2019 22:27:25 -0400
-X-UUID: 09855579fe6449a79b62bcff16a04d23-20190603
-X-UUID: 09855579fe6449a79b62bcff16a04d23-20190603
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 659888550; Mon, 03 Jun 2019 10:27:08 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 3 Jun 2019 10:27:07 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 3 Jun 2019 10:27:07 +0800
-Message-ID: <1559528827.6663.8.camel@mtkswgap22>
-Subject: Re: [PATCH v2 2/3] dt-bindings: rng: update bindings for MediaTek
- ARMv8 SoCs
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Sean Wang <sean.wang@kernel.org>
-CC:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
+        id S1726550AbfFCCdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 22:33:22 -0400
+Received: from mail-eopbgr10086.outbound.protection.outlook.com ([40.107.1.86]:46993
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726305AbfFCCdW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 2 Jun 2019 22:33:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a3c3JmRRSQ8pq+B3flUTKYDUe2uH9pKiCbftKqmA1Io=;
+ b=aSAbJwwgCBsdkVpsZ30Q8dsiGKKkcuiO8qrNKDHfqkVmy+yZslUFVRFYPkRnfVZ8UdhEx9gJ6hOnJ7Y5nLobyITj1RMa/+LY0vIF2fUpGHxp9X8bX7rxHnbIxYoJn88BLsMZ8TZYRf++5KqULx2B1NgS6Ab5IvzghAt80g/wwDM=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2740.eurprd04.prod.outlook.com (10.175.42.14) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.17; Mon, 3 Jun 2019 02:33:15 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::a1bf:17d:a52:3824]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::a1bf:17d:a52:3824%4]) with mapi id 15.20.1943.018; Mon, 3 Jun 2019
+ 02:33:15 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Felipe Balbi <balbi@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:DESIGNWARE USB3 DRD IP DRIVER" <linux-usb@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "linux-arm Mailing List" <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
-        Crystal Guo <Crystal.Guo@mediatek.com>
-Date:   Mon, 3 Jun 2019 10:27:07 +0800
-In-Reply-To: <CAGp9LzrQegBb9Oe-=jfkwOrsYY=eN3BSF=DWnu+aSBAhQ5bexA@mail.gmail.com>
-References: <1558946326-13630-1-git-send-email-neal.liu@mediatek.com>
-         <1558946326-13630-3-git-send-email-neal.liu@mediatek.com>
-         <CAGp9LzrQegBb9Oe-=jfkwOrsYY=eN3BSF=DWnu+aSBAhQ5bexA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>
+Subject: RE: [PATCH] usb: dwc3: Enable the USB snooping
+Thread-Topic: [PATCH] usb: dwc3: Enable the USB snooping
+Thread-Index: AQHTXdpMV/QBUrO8J0eNmcCmR0ATg6MVIlkAgAAD6zCAABVWgINueaJwgAAMz4CAAwpoAIAF38Dw
+Date:   Mon, 3 Jun 2019 02:33:15 +0000
+Message-ID: <AM5PR0402MB2865D0F0E2B4F65C86D051F8F1140@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20171115060459.45375-1-ran.wang_1@nxp.com>
+ <87ineb9b5v.fsf@linux.intel.com>
+ <VI1PR04MB1504776EF3D4D8C374F0C069F1290@VI1PR04MB1504.eurprd04.prod.outlook.com>
+ <87shdfet90.fsf@linux.intel.com>
+ <AM5PR0402MB28654EBE2D431CC2F8061CF8F11E0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+ <87k1eaanjw.fsf@linux.intel.com>
+ <AM5PR0402MB2865F3735D808E1BC9F67968F1180@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+In-Reply-To: <AM5PR0402MB2865F3735D808E1BC9F67968F1180@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-originating-ip: [92.121.36.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f900d15f-51af-4cbf-6bb0-08d6e7cbd514
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2740;
+x-ms-traffictypediagnostic: AM5PR0402MB2740:
+x-microsoft-antispam-prvs: <AM5PR0402MB27408496538B8E18AE5B735AF1140@AM5PR0402MB2740.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0057EE387C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(366004)(136003)(376002)(39860400002)(346002)(189003)(199004)(504964003)(5660300002)(26005)(54906003)(66946007)(102836004)(66476007)(76116006)(73956011)(2906002)(6506007)(8676002)(6916009)(478600001)(25786009)(6436002)(33656002)(53546011)(446003)(52536014)(476003)(6116002)(3846002)(64756008)(6246003)(68736007)(99286004)(86362001)(66446008)(66556008)(486006)(11346002)(186003)(8936002)(14444005)(256004)(229853002)(7736002)(305945005)(53936002)(74316002)(14454004)(316002)(66066001)(76176011)(7696005)(55016002)(71190400001)(81156014)(71200400001)(9686003)(81166006)(4326008);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2740;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: jumJUU2z1JIF0GHB/HPJDh7KQ1Fedn7krtlQ8ynwwfDFDfiS9fs+a2JaO7KCPLLOXEqFHKHpT14CG7YwwgFS8ZJNadH5iyrzkRleyVNgUJ/2+AAkVNNh7ozz5Ds9CfImgYrs5RYVl9VRSt8EjZS6WDC0+E7t8H1hd7YoQ5+fyOs3i43cNLOugu+n5UwzD1h/kjix1V3wlljyXuns63wgGfDB2IC3hr9XsPYsjx+szlE3GovAQATHDtOIYqxa65/LFGQdTCY84A7kLca4JQeW1ve8pkQ+6RI+eCYWSO+IhWFMDlcaEsIi0OH7FS4VFO9l6qhHdhqJIvZvulbYHRHaPW57fGXZk9wYaVJPFagT4Lf2o2+lsjpA+lURRnBhiTyusFPtSLfx+sBFtuaEAR05KMpBqaoOIG2euXZsGA+kwuc=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f900d15f-51af-4cbf-6bb0-08d6e7cbd514
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2019 02:33:15.7665
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ran.wang_1@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2740
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
+Hi Felipe,
 
-
-On Thu, 2019-05-30 at 15:56 -0700, Sean Wang wrote:
-> Hi, Neal
-> 
-> On Mon, May 27, 2019 at 1:39 AM Neal Liu <neal.liu@mediatek.com> wrote:
+On Thursday, May 30, 2019 17:09, Ran Wang wrote:
+>=20
+> <snip>
+> > >> >> >  /* Global Debug Queue/FIFO Space Available Register */
+> > >> >> >  #define DWC3_GDBGFIFOSPACE_NUM(n)	((n) & 0x1f)
+> > >> >> >  #define DWC3_GDBGFIFOSPACE_TYPE(n)	(((n) << 5) & 0x1e0)
+> > >> >> > @@ -859,6 +867,7 @@ struct dwc3_scratchpad_array {
+> > >> >> >   * 	3	- Reserved
+> > >> >> >   * @imod_interval: set the interrupt moderation interval in 25=
+0ns
+> > >> >> >   *                 increments or 0 to disable.
+> > >> >> > + * @dma_coherent: set if enable dma-coherent.
+> > >> >>
+> > >> >> you're not enabling dma coherency, you're enabling cache snooping=
+.
+> > >> >> And this property should describe that. Also, keep in mind that
+> > >> >> different devices may want different cache types for each of
+> > >> >> those fields, so your property would have to be a lot more
+> > >> >> complex. Something
+> > like:
+> > >> >>
+> > >> >> 	snps,cache-type =3D <foobar "cacheable">, <baz "cacheable">, ...
+> > >> >>
+> > >> >> Then driver would have to parse this properly to setup GSBUSCFG0.
+> > >
+> > > According to the DesignWare Cores SuperSpeed USB 3.0 Controller
+> > > Databook (v2.60a), it has described Type Bit Assignments for all
+> > > supported
+> > master bus type:
+> > > AHB, AXI3, AXI4 and Native. I found the bit definition are different
+> > > among
+> > them.
+> > > So, for the example you gave above, feel a little bit confused.
+> > > Did you mean:
+> > >     snps,cache-type =3D <DATA_RD  "write allocate">, <DESC_RD
+> > > "cacheable">, <DATA_WR  "bufferable">, <DESC_WR  "read allocate">
 > >
-> > Document the binding used by the MediaTek ARMv8 SoCs random
-> > number generator with TrustZone enabled.
-> >
-> > Signed-off-by: Neal Liu <neal.liu@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/rng/mtk-rng.txt |   13 ++++++++++---
-> >  1 file changed, 10 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.txt b/Documentation/devicetree/bindings/rng/mtk-rng.txt
-> > index 2bc89f1..1fb9b1d 100644
-> > --- a/Documentation/devicetree/bindings/rng/mtk-rng.txt
-> > +++ b/Documentation/devicetree/bindings/rng/mtk-rng.txt
-> > @@ -3,9 +3,12 @@ found in MediaTek SoC family
-> >
-> >  Required properties:
-> >  - compatible       : Should be
-> > -                       "mediatek,mt7622-rng",  "mediatek,mt7623-rng" : for MT7622
-> > -                       "mediatek,mt7629-rng",  "mediatek,mt7623-rng" : for MT7629
-> > -                       "mediatek,mt7623-rng" : for MT7623
-> > +                       "mediatek,mt7622-rng", "mediatek,mt7623-rng" for MT7622
-> > +                       "mediatek,mt7629-rng", "mediatek,mt7623-rng" for MT7629
-> > +                       "mediatek,mt7623-rng" for MT7623
-> 
-> No make any change for those lines not belong to the series
+> > yeah, something like that.
+>=20
+> I think DATA_RD  should be a macro, right? So, where I can put its define=
+?
+> Create a dwc3.h in include/dt-bindings/usb/ ?
 
-There are some unused spaces and symbols. We try to align coding style
-with other bindings.
+Could you please give me some advice here? I'd like to prepare next version=
+ patch after
+getting this settled.
 
-> 
-> > +                       "mediatek,mtk-sec-rng" for MediaTek ARMv8 SoCs
-> 
-> I thought "mediatek,mtk-sec-rng" is only for those MediaTek ARMv8 SoCs
-> with security RNG
+> Another question about this remain open is: DWC3 data book's Table 6-5 Ca=
+che
+> Type Bit Assignments show that bits definition will differ per MBUS_TYPEs=
+ as
+> below:
+> ----------------------------------------------------------------
+>  MBUS_TYPE| bit[3]       |bit[2]       |bit[1]     |bit[0]
+>  ----------------------------------------------------------------
+>  AHB      |Cacheable     |Bufferable   |Privilegge |Data
+>  AXI3     |Write Allocate|Read Allocate|Cacheable  |Bufferable
+>  AXI4     |Allocate Other|Allocate     |Modifiable |Bufferable
+>  AXI4     |Other Allocate|Allocate     |Modifiable |Bufferable
+>  Native   |Same as AXI   |Same as AXI  |Same as AXI|Same as AXI
+>  ----------------------------------------------------------------
+>  Note: The AHB, AXI3, AXI4, and PCIe busses use different names for certa=
+in
+>  signals, which have the same meaning:
+>    Bufferable =3D Posted
+>    Cacheable =3D Modifiable =3D Snoop (negation of No Snoop)
+>=20
+> For Layerscape SoCs, MBUS_TYPE is AXI3. So I am not sure how to use
+> snps,cache-type =3D <DATA_RD  "write allocate">, to cover all MBUS_TYPE?
+> (you can notice that AHB and AXI3's cacheable are on different bit) Or I =
+just need
+> to handle AXI3 case?
 
-Yes, sure. It's better to describe with "MediaTek ARMv8 SoCs with
-security RNG". 
+Also on this open. Thank you in advance.
 
-> 
-> > +
-> > +Optional properties:
-> >  - clocks           : list of clock specifiers, corresponding to
-> >                       entries in clock-names property;
-> >  - clock-names      : Should contain "rng" entries;
-> > @@ -19,3 +22,7 @@ rng: rng@1020f000 {
-> >         clocks = <&infracfg CLK_INFRA_TRNG>;
-> >         clock-names = "rng";
-> >  };
-> 
-> For those MediaTek ARMv8 SoCs with security RNG
-
-Are you suggesting we create a new binding file with security RNG?
-
-> 
-> > +
-> > +hwrng: hwrng {
-> > +       compatible = "mediatek,mtk-sec-rng";
-> > +};
-> > --
-> > 1.7.9.5
-> >
-
-
+Regards,
+Ran
