@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29106327AF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 06:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7C99327BA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 06:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727074AbfFCEeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 00:34:05 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:33978 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727026AbfFCEeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 00:34:05 -0400
-Received: by mail-pl1-f196.google.com with SMTP id i2so2120747plt.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 21:34:05 -0700 (PDT)
+        id S1727071AbfFCEeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 00:34:12 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:42402 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727130AbfFCEeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 00:34:12 -0400
+Received: by mail-pg1-f195.google.com with SMTP id e6so6260369pgd.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 21:34:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Cjn+fe9pHSnglvx4T5q/xNRom5yt6XJeMvAMIuyqpGU=;
-        b=Hfq6ax4j9v67eMl3jzhORUV9xlodMxfyEB5jUFylBnMvGjbup0xltWak92wPnYo8jT
-         z0URgg2rd1r5wg+Oy3xrddVqdvePsxYBMv74zKntc+d+vjFpS0hNfzpdzd1s9AT5d4X1
-         i8E4gAcDkyjhrEy5aOZTU8DXTpX6OpurnFU4Q=
+        bh=b/qy0C/+qIVS4p/9C8coL0gczc7xGffHcCTpl84Pnik=;
+        b=W0HFUAGEBlitH2BpXUVE7tLd15Ng5l2TZqjITWduI3EGWRg3JKMe0MjJis9TBvMp02
+         4awA3xZDrtX56bGXOH5ZQ3oEimCGvzikfQPZANnHJau89l5kDDX0gPAAvlPieYi8kSIP
+         TwDl7/UAUwCplFr2sy8k4qBf+wMfpuYAoO41w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Cjn+fe9pHSnglvx4T5q/xNRom5yt6XJeMvAMIuyqpGU=;
-        b=dT2T8+8I1vYjBcuxjabPBQ+OHYcFWVJ0O8GhiYYapQfhT8YbsKW6lqZYNhv6OsDhTb
-         HTgLKRvNdtgDIzIS4vX583eqLpvOZwv3Ud+NC03m47OZSHhhDpgqk73nzfgrQ/kGZGYU
-         AMLq7iMx70PiwWuKu2lTsuXh07v3BG5gNH1BxaTw80sNUHeYu3oBotQlDVpwiR8deJwP
-         PFSGLSV/kd6q08sDMbrEm26FEvTbckuKPWvtBKkI4EpjxGlH7d/5w7DcoceHmd8WHKkg
-         csU6enMM4kBmZOTYXMQyIbi8MNtgUynywI8anNWCiVgOVWbUPZPhpjCHtR2KCFhscHeZ
-         NeGw==
-X-Gm-Message-State: APjAAAUttZ2PKmhXoIKLqs3uI9f4Fps0y2QlRV0SMo1NfQH3646vIRxk
-        K9tJqXAXYD0eCsjmxnYMq784gw==
-X-Google-Smtp-Source: APXvYqwtsOJ5Pc96EE50WIzahRr4M7P5Cn839A0uqq7pGgYj7JP4xpqAWFOhLexsz8HaBDU7wChTEA==
-X-Received: by 2002:a17:902:9885:: with SMTP id s5mr27565604plp.102.1559536444754;
-        Sun, 02 Jun 2019 21:34:04 -0700 (PDT)
+        bh=b/qy0C/+qIVS4p/9C8coL0gczc7xGffHcCTpl84Pnik=;
+        b=RUCnSSJ8CNQtCb+UNhYEuNmw+zAnI0YWgroPirltZ0F7iCmJxLLQmCCsegJfKa9pmI
+         N+eTm2EZHKX68SkHEMpuo/mb7CNQ2pItYql2QXIwG0rvchhV/0PkxcSMPLY/39K1GWAd
+         le5FCe3WpqaCdIeu5dTsde3LLfU6/j4Khf/7rfdN6QenKkCU5wfHF+dtUoozIvGiV1hN
+         ZXJn0oBm4VRVPCM0RznwOExFRTl6/OBKiifKSN2bYaiqzO6LYmzZeLEFpNC/7njuCeQp
+         cmfJwXsuQsqxGtfjvgndTH3kFI0XLWkCE6ZcmjqZRzHBfHZXiie/RTnPPZqQRhOOOhFJ
+         rIAA==
+X-Gm-Message-State: APjAAAWVWXL3Cn83nyy+xxIYNG8wNDR3wlDC0ebju14/zQtLW1UzyCnq
+        TZnV8lQ/3i/7BzHLQcZSA0k6uw==
+X-Google-Smtp-Source: APXvYqyNg+8OlIDr5Hr5hFnNgwXQAuI+ahu2SvEr6XII+hIpaqZoSlyKPzFn5UBfI4WiO1Ahj/0G/w==
+X-Received: by 2002:a62:6145:: with SMTP id v66mr28539820pfb.144.1559536451549;
+        Sun, 02 Jun 2019 21:34:11 -0700 (PDT)
 Received: from localhost ([2401:fa00:1:b:e688:dfd2:a1a7:2956])
-        by smtp.gmail.com with ESMTPSA id r64sm16094840pfr.58.2019.06.02.21.34.00
+        by smtp.gmail.com with ESMTPSA id e20sm11842630pfi.35.2019.06.02.21.34.07
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 02 Jun 2019 21:34:04 -0700 (PDT)
+        Sun, 02 Jun 2019 21:34:10 -0700 (PDT)
 From:   Cheng-Yi Chiang <cychiang@chromium.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
@@ -64,9 +64,9 @@ Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         Cheng-Yi Chiang <cychiang@chromium.org>
-Subject: [PATCH 6/7] ASoC: rockchip_max98090: Add HDMI jack support
-Date:   Mon,  3 Jun 2019 12:32:50 +0800
-Message-Id: <20190603043251.226549-7-cychiang@chromium.org>
+Subject: [PATCH 7/7] ARM: dts: rockchip: Specify HDMI node to sound card node
+Date:   Mon,  3 Jun 2019 12:32:51 +0800
+Message-Id: <20190603043251.226549-8-cychiang@chromium.org>
 X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
 In-Reply-To: <20190603043251.226549-1-cychiang@chromium.org>
 References: <20190603043251.226549-1-cychiang@chromium.org>
@@ -77,100 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In machine driver, create a jack and let hdmi-codec report jack status.
+Sound card needs HDMI node in order to register jack callback on HDMI
+notifier.
 
 Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
 ---
- sound/soc/rockchip/rockchip_max98090.c | 41 ++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/sound/soc/rockchip/rockchip_max98090.c b/sound/soc/rockchip/rockchip_max98090.c
-index 2dd247670c7a..17c50d9fbac1 100644
---- a/sound/soc/rockchip/rockchip_max98090.c
-+++ b/sound/soc/rockchip/rockchip_max98090.c
-@@ -18,6 +18,7 @@
-  */
- 
- #include <linux/module.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- #include <linux/gpio.h>
-@@ -27,6 +28,7 @@
- #include <sound/pcm.h>
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
-+#include <sound/hdmi-codec.h>
- 
- #include "rockchip_i2s.h"
- #include "../codecs/ts3a227e.h"
-@@ -131,6 +133,26 @@ enum {
- 	DAILINK_HDMI,
- };
- 
-+static struct snd_soc_jack rk_hdmi_jack;
-+
-+static int rk_hdmi_init(struct snd_soc_pcm_runtime *runtime)
-+{
-+	struct snd_soc_card *card = runtime->card;
-+	struct snd_soc_component *component = runtime->codec_dai->component;
-+	struct device *hdmi_dev = snd_soc_card_get_drvdata(card);
-+	int ret;
-+
-+	/* enable jack detection */
-+	ret = snd_soc_card_jack_new(card, "HDMI Jack", SND_JACK_LINEOUT,
-+				    &rk_hdmi_jack, NULL, 0);
-+	if (ret) {
-+		dev_err(card->dev, "Can't new HDMI Jack %d\n", ret);
-+		return ret;
-+	}
-+
-+	return hdmi_codec_set_jack_detect(component, &rk_hdmi_jack, hdmi_dev);
-+}
-+
- /* max98090 and HDMI codec dai_link */
- static struct snd_soc_dai_link rk_dailinks[] = {
- 	[DAILINK_MAX98090] = {
-@@ -148,6 +170,7 @@ static struct snd_soc_dai_link rk_dailinks[] = {
- 		.ops = &rk_aif1_ops,
- 		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
- 			SND_SOC_DAIFMT_CBS_CFS,
-+		.init = rk_hdmi_init,
- 	}
- };
- 
-@@ -200,6 +223,8 @@ static int snd_rk_mc_probe(struct platform_device *pdev)
- 	struct device_node *np = pdev->dev.of_node;
- 	struct device_node *np_cpu;
- 	struct of_phandle_args args;
-+	struct device_node *np_hdmi;
-+	struct platform_device *hdmi_pdev;
- 
- 	/* register the soc card */
- 	card->dev = &pdev->dev;
-@@ -248,6 +273,22 @@ static int snd_rk_mc_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
-+	/* The hdmi device handles HDMI hotplug detection */
-+	np_hdmi = of_parse_phandle(np, "rockchip,hdmi", 0);
-+	if (!np_hdmi) {
-+		dev_err(&pdev->dev, "Failed to find HDMI node\n");
-+		return -EINVAL;
-+	}
-+
-+	hdmi_pdev = of_find_device_by_node(np_hdmi);
-+	if (!hdmi_pdev) {
-+		dev_err(&pdev->dev, "Waiting for HDMI device %s\n",
-+			np_hdmi->full_name);
-+		return -EPROBE_DEFER;
-+	}
-+
-+	snd_soc_card_set_drvdata(card, &hdmi_pdev->dev);
-+
- 	ret = snd_soc_of_parse_card_name(card, "rockchip,model");
- 	if (ret) {
- 		dev_err(&pdev->dev,
+diff --git a/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi b/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi
+index 445270aa136e..096ba4e96db2 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi
+@@ -14,6 +14,7 @@
+ 		rockchip,model = "VEYRON-I2S";
+ 		rockchip,i2s-controller = <&i2s>;
+ 		rockchip,audio-codec = <&max98090>;
++		rockchip,hdmi= <&hdmi>;
+ 		rockchip,hp-det-gpios = <&gpio6 RK_PA5 GPIO_ACTIVE_HIGH>;
+ 		rockchip,mic-det-gpios = <&gpio6 RK_PB3 GPIO_ACTIVE_LOW>;
+ 		rockchip,headset-codec = <&headsetcodec>;
 -- 
 2.22.0.rc1.257.g3120a18244-goog
 
