@@ -2,43 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CD5632627
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 03:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E5D32637
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 03:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726837AbfFCBdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jun 2019 21:33:38 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:46572 "EHLO inva021.nxp.com"
+        id S1726561AbfFCBsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jun 2019 21:48:40 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:38750 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726561AbfFCBdi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 2 Jun 2019 21:33:38 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 49FA220032C;
-        Mon,  3 Jun 2019 03:33:36 +0200 (CEST)
+        id S1726270AbfFCBsk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 2 Jun 2019 21:48:40 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7AA281A0314;
+        Mon,  3 Jun 2019 03:48:38 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 60BA020011D;
-        Mon,  3 Jun 2019 03:33:24 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6553D1A02F9;
+        Mon,  3 Jun 2019 03:48:32 +0200 (CEST)
 Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id F274E402DD;
-        Mon,  3 Jun 2019 09:33:10 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AEACF402A2;
+        Mon,  3 Jun 2019 09:48:24 +0800 (SGT)
 From:   Anson.Huang@nxp.com
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
-        will.deacon@arm.com, maxime.ripard@bootlin.com, olof@lixom.net,
-        horms+renesas@verge.net.au, jagan@amarulasolutions.com,
-        bjorn.andersson@linaro.org, leonard.crestez@nxp.com,
-        dinguyen@kernel.org, enric.balletbo@collabora.com,
-        aisheng.dong@nxp.com, ping.bai@nxp.com, abel.vesa@nxp.com,
-        l.stach@pengutronix.de, linux-clk@vger.kernel.org,
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        leonard.crestez@nxp.com, aisheng.dong@nxp.com,
+        viresh.kumar@linaro.org, ping.bai@nxp.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2 3/3] arm64: defconfig: Select CONFIG_CLK_IMX8MN by default
-Date:   Mon,  3 Jun 2019 09:35:03 +0800
-Message-Id: <20190603013503.40626-3-Anson.Huang@nxp.com>
+Subject: [PATCH] arm64: dts: imx8mm: Move gic node into soc node
+Date:   Mon,  3 Jun 2019 09:50:20 +0800
+Message-Id: <20190603015020.41410-1-Anson.Huang@nxp.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190603013503.40626-1-Anson.Huang@nxp.com>
-References: <20190603013503.40626-1-Anson.Huang@nxp.com>
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -47,27 +40,50 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Anson Huang <Anson.Huang@nxp.com>
 
-Enable CONFIG_CLK_IMX8MN to support i.MX8MN clock driver.
+GIC is inside of SoC from architecture perspective, it should
+be located inside of soc node in DT.
 
 Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
-No changes.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8d4f25c..aef797c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -654,6 +654,7 @@ CONFIG_COMMON_CLK_CS2000_CP=y
- CONFIG_COMMON_CLK_S2MPS11=y
- CONFIG_CLK_QORIQ=y
- CONFIG_COMMON_CLK_PWM=y
-+CONFIG_CLK_IMX8MN=y
- CONFIG_CLK_IMX8MM=y
- CONFIG_CLK_IMX8MQ=y
- CONFIG_CLK_IMX8QXP=y
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index dc99f45..429312e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -169,15 +169,6 @@
+ 		clock-output-names = "clk_ext4";
+ 	};
+ 
+-	gic: interrupt-controller@38800000 {
+-		compatible = "arm,gic-v3";
+-		reg = <0x0 0x38800000 0 0x10000>, /* GIC Dist */
+-		      <0x0 0x38880000 0 0xC0000>; /* GICR (RD_base + SGI_base) */
+-		#interrupt-cells = <3>;
+-		interrupt-controller;
+-		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+-
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
+@@ -739,6 +730,15 @@
+ 			dma-names = "rx-tx";
+ 			status = "disabled";
+ 		};
++
++		gic: interrupt-controller@38800000 {
++			compatible = "arm,gic-v3";
++			reg = <0x38800000 0x10000>, /* GIC Dist */
++			      <0x38880000 0xc0000>; /* GICR (RD_base + SGI_base) */
++			#interrupt-cells = <3>;
++			interrupt-controller;
++			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ 
+ 	usbphynop1: usbphynop1 {
 -- 
 2.7.4
 
