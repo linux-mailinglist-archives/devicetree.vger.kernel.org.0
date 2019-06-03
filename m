@@ -2,96 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E51F932878
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 08:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B98F32900
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 08:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726803AbfFCG0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 02:26:33 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:35796 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726486AbfFCG0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 02:26:33 -0400
-Received: by mail-wr1-f68.google.com with SMTP id m3so10674278wrv.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 23:26:31 -0700 (PDT)
+        id S1727030AbfFCG5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 02:57:04 -0400
+Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:56410 "EHLO
+        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726565AbfFCG5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 02:57:04 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=ZXrkd8Mwo/g3f6eOlB+lKEUaiYlVyH7B52Bno48i0U4=;
-        b=OOCzHmFCQ6+uQmbDwIaRszRMDuClPoHhr5H7kwNJziCiMS9xMcGVf0M1rgm/Pt4rKA
-         fp8XFzndv/jxfUbYsbTd26AVAdUd5q8LdqyIcRgVpys0r3S515KTzbrJ5BqbeCMVH2oI
-         4R+3MxUK68h0Pm/TR7haYbKdTbJT7GJ/X2fHTWsqcN7aa9VZqs9rY3eTrvJWddahgmXd
-         b12GX4gvhRWDiry2Egr5sudFWT3CyF/X8b83pr74p+nrXCa1mM9qwfPxEja+CMgweYnr
-         mcy6AJB+xKFoRwlZg2oWCMxregG6CZVO/L+98DWZOZyBVbodtDRyhy/80y+XosIt9f9h
-         nBpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=ZXrkd8Mwo/g3f6eOlB+lKEUaiYlVyH7B52Bno48i0U4=;
-        b=eiEZAlADZM4axJoTY69wjQnV+Uo2CTixjMrNl5WkK7k8GHfsXBrlPCw5IdIvE2QmIE
-         hGqc6jitxvWTSOhZToQSRMRc7d5EqTlX8iqdpmXZF7lIgmGJc6pp994z3md16H9aGdU1
-         fzZGuN28Om5m+VVuwrdY3UEtA4eHme6ghNAAuHkFOd9VzGz9OWzhi7UcOVFSLkUwJs2d
-         rhrvWtx5sA82evWrvqU6tR/Q6zyzXhGRuCtORN5MXfiNC9xMn2zY6yJ+CDNOfeyi+U0X
-         eOYHfvu26BEM18X/vN06ESYuX1spANTtgHnVGmj3ye5WyGrZpepZYv80oSLRa85qEUYi
-         XzWQ==
-X-Gm-Message-State: APjAAAVUfu8Rsn+L2dp++tXIv9EHmUXb8O2IzuGstNmP9TnEFN9esoAd
-        j1GT5l465iILQVCnJD78Yef18JsXx3A=
-X-Google-Smtp-Source: APXvYqzJsfhbmSJQVtgCRgNfwclLfYr/epaklpCQJuCOOVe3BKwACvrV9Q0BC6QgLZ6iVrSpogWcsw==
-X-Received: by 2002:a5d:6a05:: with SMTP id m5mr8024724wru.161.1559543191236;
-        Sun, 02 Jun 2019 23:26:31 -0700 (PDT)
-Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id 74sm10617403wma.7.2019.06.02.23.26.30
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 02 Jun 2019 23:26:30 -0700 (PDT)
-Date:   Mon, 3 Jun 2019 07:26:29 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH RFC 0/2] Add Renesas RPC-IF support
-Message-ID: <20190603062629.GC4797@dell>
-References: <ad503d6e-4739-9744-64b4-fd13f44ea6fe@cogentembedded.com>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559545022; x=1591081022;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=28ubXn7tIxBtQaVuAwhyLsuJAMZSspzvIGvKhunz4Ug=;
+  b=LDZ3aPZPSYJn7p5wjgCoYuxgzyYs9SUDXLoXceSaYUdDlWrBCtcsNvlK
+   BkOZi/kV03VE4hD0M00ql51YzMlvSz7KMPdNAT38RdmCFsVePQi0e6rB/
+   rfTrCH1DYnfhtRZC/G4R22dvzi8Dp/eb0R3R87s6oSMnhZO9a1XfgQkOT
+   8=;
+X-IronPort-AV: E=Sophos;i="5.60,545,1549929600"; 
+   d="scan'208";a="404727797"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2a-d0be17ee.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 03 Jun 2019 06:56:57 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
+        by email-inbound-relay-2a-d0be17ee.us-west-2.amazon.com (Postfix) with ESMTPS id 582BDA22F8;
+        Mon,  3 Jun 2019 06:56:56 +0000 (UTC)
+Received: from EX13D08UEE001.ant.amazon.com (10.43.62.126) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 3 Jun 2019 06:56:56 +0000
+Received: from EX13MTAUEE001.ant.amazon.com (10.43.62.200) by
+ EX13D08UEE001.ant.amazon.com (10.43.62.126) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 3 Jun 2019 06:56:55 +0000
+Received: from [10.95.119.163] (10.95.119.163) by mail-relay.amazon.com
+ (10.43.62.226) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
+ Transport; Mon, 3 Jun 2019 06:56:50 +0000
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+To:     "Herrenschmidt, Benjamin" <benh@amazon.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "james.morse@arm.com" <james.morse@arm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "bp@alien8.de" <bp@alien8.de>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
+ <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+ <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
+ <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
+From:   "Hawa, Hanna" <hhhawa@amazon.com>
+Message-ID: <c608e269-e409-cd2b-d421-f185a706bbc5@amazon.com>
+Date:   Mon, 3 Jun 2019 09:56:44 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ad503d6e-4739-9744-64b4-fd13f44ea6fe@cogentembedded.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 May 2019, Sergei Shtylyov wrote:
 
-> Hello!
+
+On 5/31/2019 4:15 AM, Herrenschmidt, Benjamin wrote:
+> On Thu, 2019-05-30 at 11:19 -0700, Boris Petkov wrote:
+>> On May 30, 2019 3:15:29 AM PDT, Hanna Hawa <hhhawa@amazon.com> wrote:
+>>> Add support for error detection and correction for Amazon's
+>>> Annapurna
+>>> Labs SoCs for L1/L2 caches.
+>>
+>>
+>> So this should be a driver for the whole annapurna platform and not
+>> only about the RAS functionality in an IP like the caches. See other
+>> ARM EDAC drivers in drivers/edac/ for an example.
 > 
-> Here's a set of 2 patches against the 'for-mfd-next' branch of Lee Jones's
-> 'mfd.git' repo. Renesas Reduced Pin Count Interface (RPC-IF) allows a SPI
-> flash or HyperFlash connected to the SoC to be accessed via the external
-> address space read mode or the manual mode. The MFD driver for RPC-IF
-> registers either the SPI or HyperFLash subdevice, depending on the contents
-> of the device tree subnode; it also provides the absract "back end" API
-> that can be used by the "front end" SPI/MTD drivers to talk to the real
-> hardware... The HyperFlash subdriver isn't ready yet, so the MFD driver
-> may need some updates in order to serve it, hence the RFC status...
+> This isn't terribly helpful, there's nothing telling anybody which of
+> those files corresponds to an ARM SoC :-)
 > 
-> Based on the original patch by Mason Yang <masonccyang@mxic.com.tw>.
+> That said ...
 > 
-> [1/2] dt-bindings: mfd: document Renesas RPC-IF bindings
-> [2/2] mfd: add Renesas RPC-IF driver
+> You really want a single EDAC driver that contains all the stuff for
+> the caches, the memory controller, etc... ?
+> 
+> The idea here was to separate the core L1/L2 EDAC from the memory
+> controller EDAC I think ... Roben, Hanna, can you describe the long run
+> strategy here ?
+Correct our target to separate the L1/L2 EDAC from mc, and to maintain 
+both in separate drivers.
 
-Please use `git` to create your cover letters.
-
-You are missing useful information e.g. the change stats.
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Thanks,
+Hanna
+> 
+> Cheers,
+> Ben.
+> 
