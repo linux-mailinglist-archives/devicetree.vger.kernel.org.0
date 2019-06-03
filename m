@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68DD933B16
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 560C733B18
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726336AbfFCWXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 18:23:23 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:36893 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726025AbfFCWXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:23:23 -0400
-Received: by mail-pf1-f193.google.com with SMTP id a23so11418393pff.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 15:23:23 -0700 (PDT)
+        id S1726735AbfFCWXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 18:23:25 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:36641 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726663AbfFCWXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:23:25 -0400
+Received: by mail-pf1-f195.google.com with SMTP id u22so11408123pfm.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 15:23:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=6niAwzcPpAohPvJt4Jc8GtfUU8V0u7v0Rg+78LYun9M=;
-        b=tpyrIN3pOhJIjlxgLadTRT5CufA7IzK4ux2DtTFgG7teYRUtUh06+WAmNriOTkh6u2
-         2MPJhiEQjvyIIwN3TyUAgw4GPxAti8x9g4fIBmWMYaB5QSONi8/JJhBj05BA4+Wy5vRz
-         PAHvFaONYBe6dGZblkI7awqz3xqSW6y6G4S4tWzElGh0XE0tJtHQDwjqisHNfdW4Veia
-         rG7L5JGJzGKf+TeJNB1m+5C9cQ/Ew9nkrSOZyfz2akaUDuDwO6I8Q4/G8Z5J1jl4fLUi
-         vvldAc/78m23v283dpNjp3mCpC3lLQc/hHp6cUFSWuh7a/kACawIPOMRZJAIJ9cIHIFd
-         FxkA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=LNT+l1wAM3ExTzu8kAKF3OCBx9DgMUq0svFdafuGiNA=;
+        b=RSBsA1sZKPZQGT93W+BOBhN5ctHJdvI/euEzW7VqiT83w1yWpIWw4F/wIqRqPuBPwS
+         fKKXmI7hYcUhj2RyZNzKSmcpjmoEaL7XupXMPJuTkR2lVWLlisrIugg7hmQkbPvjMd11
+         TI4j3rZ7FVM6Q1tbomdGo9f+hjO/SHPgwZHEc4+U8bGfygVQjH8fBTvna0n+vG7X7BZH
+         fP7IlskzUXfs5JGj25rr8StP0H9MVGbAcfJ/7GqoHkA6x2b7dLsD0IWUu/viyPUyni1e
+         Pf7Lqj0MYVvoMTGhuoBESr2O0GaOh9VC5kl77CtY6mKwGQOSU0OwIbluEKvLvB1gYuqt
+         d8yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=6niAwzcPpAohPvJt4Jc8GtfUU8V0u7v0Rg+78LYun9M=;
-        b=ohuPxCapJN56OZICWjVahOG+Fy0o1hWuvGCFsYzJHQMnmPEPf/oxOwkMFLWrNNszSJ
-         JEerSxMvA1r0qUgSaeBhOlHmsSnJ35xa+XZ2xOlKeu3tKiKvlkgW82hGND6wR7R2M4ax
-         RjEFM/YberfNRUO2srP5YBW/ccM0+gKlUMKMKvAzLH7ae5WflkatuWFHWPIwFbF5+1sM
-         dOOLM4C5t7ysaFIbcv/q5iW+PTQe9AY0aDT5dpIIThBh/7RS0LeifFtBJk09kX24apcT
-         jAcTG40HAy6jGtZWPlNlsjhuJIVBBQJ7ralbLw28P9rNBdffrxb97z/QY9xDuQ5akXbr
-         7BIw==
-X-Gm-Message-State: APjAAAVH+M42XMXciREEnKMPqcZyqRdjTosdbjfd2kZv7GAnJSgpWlzq
-        m6xJGFjg/71TvwU/6irjC7BkZA==
-X-Google-Smtp-Source: APXvYqyW9fNJIYUZyJi9V5wJYk9SdgROr34PF8/DcyWJQ0PKLOKb9vtvUgdQ2NiVawrNdsXoeyOSuw==
-X-Received: by 2002:a17:90a:37e9:: with SMTP id v96mr18652976pjb.10.1559600602567;
-        Mon, 03 Jun 2019 15:23:22 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=LNT+l1wAM3ExTzu8kAKF3OCBx9DgMUq0svFdafuGiNA=;
+        b=gl6bkxg10uYYZnaF9+7Nt/Mt3c55J0d639jPNDT1fPHKjxSQgwF5GcbLtRO06HHnT7
+         NBkl09PXLnka+xb4yo7xV7q9iyj1x7vE8FjUht9yAWVDgxAzrMMHbMymDZTJUt0y/KZK
+         ZmWIUqIpn9d8jM4NNJwHVFXKIAa8EYCcoonpzzW5L4ZQzN3UyXe2UN0PVGNGQ1wWQcEu
+         XjGJa/Nset8rvgF53Tj5zMt0lozi9eNXee6+uUF+z6vv2wnJ87qBrq/ik4Yz7bP4GlMq
+         Ea8VWdYui3K8GQeWO+INaWD8zd9kbVUdzzsBSzq4aEaqnRSy2rwX58KnRTkaQZ/7osr3
+         QTmA==
+X-Gm-Message-State: APjAAAX2nqUOc4yUwBgJNMMnqQDBn+pcwHL0ttqDJL/KbzU5mdGoQCul
+        yL3AZYEp3/Aae7aax+bQ1V/YBA==
+X-Google-Smtp-Source: APXvYqyvzQyIVZPpUnCKtqlHVvAak9rWtp9S1Ze02w7DQsnHXT0RcsdjgSSK837eelbF8SsQY965ew==
+X-Received: by 2002:a63:4c54:: with SMTP id m20mr31550310pgl.316.1559600604132;
+        Mon, 03 Jun 2019 15:23:24 -0700 (PDT)
 Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id g8sm14320588pjp.17.2019.06.03.15.23.21
+        by smtp.gmail.com with ESMTPSA id g8sm14320588pjp.17.2019.06.03.15.23.22
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Jun 2019 15:23:21 -0700 (PDT)
+        Mon, 03 Jun 2019 15:23:23 -0700 (PDT)
 From:   John Stultz <john.stultz@linaro.org>
 To:     lkml <linux-kernel@vger.kernel.org>
 Cc:     John Stultz <john.stultz@linaro.org>,
@@ -53,16 +54,19 @@ Cc:     John Stultz <john.stultz@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Sebastian Reichel <sre@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/3 v2] dt-bindings: power: reset: qcom: Add qcom,pm8998-pon compatability line
-Date:   Mon,  3 Jun 2019 22:23:17 +0000
-Message-Id: <20190603222319.62842-1-john.stultz@linaro.org>
+Subject: [PATCH 2/3 v2] reset: qcom-pon: Add support for gen2 pon
+Date:   Mon,  3 Jun 2019 22:23:18 +0000
+Message-Id: <20190603222319.62842-2-john.stultz@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190603222319.62842-1-john.stultz@linaro.org>
+References: <20190603222319.62842-1-john.stultz@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update bindings to support for qcom,pm8998-pon which uses gen2 pon
+Add support for gen2 pon register so "reboot bootloader" can
+work on pixel3 and db845.
 
 Cc: Andy Gross <agross@kernel.org>
 Cc: David Brown <david.brown@linaro.org>
@@ -75,22 +79,63 @@ Cc: linux-arm-msm@vger.kernel.org
 Cc: devicetree@vger.kernel.org
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: John Stultz <john.stultz@linaro.org>
----
- Documentation/devicetree/bindings/power/reset/qcom,pon.txt | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.txt b/Documentation/devicetree/bindings/power/reset/qcom,pon.txt
-index 5705f575862df..0c0dc3a1e693e 100644
---- a/Documentation/devicetree/bindings/power/reset/qcom,pon.txt
-+++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.txt
-@@ -9,6 +9,7 @@ Required Properties:
- -compatible: Must be one of:
- 	"qcom,pm8916-pon"
- 	"qcom,pms405-pon"
-+	"qcom,pm8998-pon"
+v2:
+* Split out dts changes into separate path
+* Minor cleanups and remove unused variables
+---
+ drivers/power/reset/qcom-pon.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+index 3fa1642d4c543..22a743a0bf28c 100644
+--- a/drivers/power/reset/qcom-pon.c
++++ b/drivers/power/reset/qcom-pon.c
+@@ -14,11 +14,15 @@
  
- -reg: Specifies the physical address of the pon register
+ #define PON_SOFT_RB_SPARE		0x8f
  
++#define GEN1_REASON_SHIFT		2
++#define GEN2_REASON_SHIFT		1
++
+ struct pm8916_pon {
+ 	struct device *dev;
+ 	struct regmap *regmap;
+ 	u32 baseaddr;
+ 	struct reboot_mode_driver reboot_mode;
++	long reason_shift;
+ };
+ 
+ static int pm8916_reboot_mode_write(struct reboot_mode_driver *reboot,
+@@ -30,7 +34,7 @@ static int pm8916_reboot_mode_write(struct reboot_mode_driver *reboot,
+ 
+ 	ret = regmap_update_bits(pon->regmap,
+ 				 pon->baseaddr + PON_SOFT_RB_SPARE,
+-				 0xfc, magic << 2);
++				 0xfc, magic << pon->reason_shift);
+ 	if (ret < 0)
+ 		dev_err(pon->dev, "update reboot mode bits failed\n");
+ 
+@@ -60,6 +64,7 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+ 		return error;
+ 
+ 	pon->reboot_mode.dev = &pdev->dev;
++	pon->reason_shift = (long)of_device_get_match_data(&pdev->dev);
+ 	pon->reboot_mode.write = pm8916_reboot_mode_write;
+ 	error = devm_reboot_mode_register(&pdev->dev, &pon->reboot_mode);
+ 	if (error) {
+@@ -73,8 +78,9 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id pm8916_pon_id_table[] = {
+-	{ .compatible = "qcom,pm8916-pon" },
+-	{ .compatible = "qcom,pms405-pon" },
++	{ .compatible = "qcom,pm8916-pon", .data = (void *)GEN1_REASON_SHIFT },
++	{ .compatible = "qcom,pms405-pon", .data = (void *)GEN1_REASON_SHIFT },
++	{ .compatible = "qcom,pm8998-pon", .data = (void *)GEN2_REASON_SHIFT },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, pm8916_pon_id_table);
 -- 
 2.17.1
 
