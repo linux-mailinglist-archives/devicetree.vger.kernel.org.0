@@ -2,26 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FE033292
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 16:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE6993329D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 16:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729149AbfFCOoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 10:44:55 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34592 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728722AbfFCOoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 10:44:55 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 5A81B28A185
-Message-ID: <435028daafebcf23425dd5b9338dc3126fac8b89.camel@collabora.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: fix isp iommu clocks and power
- domain
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Helen Koike <helen.koike@collabora.com>,
-        linux-rockchip@lists.infradead.org
-Cc:     kernel@collabora.com, laurent.pinchart@ideasonboard.com,
-        manivannan.sadhasivam@linaro.org,
+        id S1729119AbfFCOsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 10:48:50 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:35584 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727650AbfFCOsu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 10:48:50 -0400
+Received: by mail-pl1-f194.google.com with SMTP id p1so7078939plo.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 07:48:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Q+sHhqSxZbf8keZOMlJSAWpHXVIafP73qkF/eQ1kaEg=;
+        b=lR82yWXUpVnRwrloRqpoNOP0h28pmhl9RZJEKQG+xRMq6tXSFYRiAwRkNwerYbaYyT
+         mCi4aJWaTlcYDT14orBv5IHGGmzerqXKyNMQDvzQh39isZbQ6oJ36LC8BqeT7yuWXG7f
+         8fyALfgl4w1zSntEm7DRrtKCXvWYtPCRFqSaTSkKeosOkigvtxwR+TDZi1YKPZXgzHsh
+         RVsXsNR+bFFsTarRQfzzr2fbY4nHoHS8WlZfhuvLyQbEWhiscP0/0NcM1yQBh+W/xEdT
+         abcq/hXaFiugkbBaSCcBFR11OfjpYAF4OGmksbpcxHMyqtCA9vbtDRDVQp6zr9w3Y1Fu
+         jWMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Q+sHhqSxZbf8keZOMlJSAWpHXVIafP73qkF/eQ1kaEg=;
+        b=sj4wqQAIBdLpPkk4WjUs46qnzhttJu+etlcCVL7oPli86DEsAhDjVYmew8x61vVJqR
+         +Eq9CPx78kbTTan3AD4Gji1Q4R2Ln2CRheMsTVno6fO5v2I9N/2Pj+lZAUInfNQOy716
+         njFSCkV0uyQ4B2cKWY0VHI6VCPhylZj5yKrEdAPQkp4Bi1NaVag9cj+jZNMxN7Q1FRaP
+         wRuntlvqftxqU2IghaL9pqUYCqQDmEgI4IOOfOCXemz+G4bK+YX9QkbUlbnJ4FGjdWgn
+         vL+SfZpIzwiVtXYgtbHeyG3OGb+f6aO4wy4k8/UMGXkAoJWF2QAABkQoasST9R5k9qNa
+         4FCg==
+X-Gm-Message-State: APjAAAVXABA+xU2/GLg2FzFNZ0I5MFTMKMUXzPouDMxfClYgU39W7jbd
+        yWf+JbzcAYRdf91ii6CbDaHA
+X-Google-Smtp-Source: APXvYqzDCE7HSjzkN8v18+gy/2oC+6Z+r7kTihM1KnbA2Ry1zX6rsvrfzvO37yYwBVRz4RQQxawIEA==
+X-Received: by 2002:a17:902:a982:: with SMTP id bh2mr29907129plb.224.1559573329403;
+        Mon, 03 Jun 2019 07:48:49 -0700 (PDT)
+Received: from mani ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id z125sm18266392pfb.75.2019.06.03.07.48.43
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 03 Jun 2019 07:48:48 -0700 (PDT)
+Date:   Mon, 3 Jun 2019 20:18:38 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Helen Koike <helen.koike@collabora.com>
+Cc:     linux-rockchip@lists.infradead.org, kernel@collabora.com,
+        ezequiel@collabora.com, laurent.pinchart@ideasonboard.com,
         linux-arm-kernel@lists.infradead.org,
         Vicente Bergas <vicencb@gmail.com>,
         Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
@@ -36,20 +63,21 @@ Cc:     kernel@collabora.com, laurent.pinchart@ideasonboard.com,
         Viresh Kumar <viresh.kumar@linaro.org>,
         Marc Zyngier <marc.zyngier@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Date:   Mon, 03 Jun 2019 11:44:43 -0300
-In-Reply-To: <20190603142214.24686-1-helen.koike@collabora.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: fix isp iommu clocks and power
+ domain
+Message-ID: <20190603144838.GA27534@mani>
 References: <20190603142214.24686-1-helen.koike@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190603142214.24686-1-helen.koike@collabora.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-06-03 at 11:22 -0300, Helen Koike wrote:
+On Mon, Jun 03, 2019 at 11:22:15AM -0300, Helen Koike wrote:
 > isp iommu requires wrapper variants of the clocks.
 > noc variants are always on and using the wrapper variants will activate
 > {A,H}CLK_ISP{0,1} due to the hierarchy.
@@ -61,6 +89,14 @@ On Mon, 2019-06-03 at 11:22 -0300, Helen Koike wrote:
 >  RK3399 TRM v1.4 Fig. 8-1 RK3399 Power Domain Partition
 > 
 > Signed-off-by: Helen Koike <helen.koike@collabora.com>
+
+Tested on Rock960 with ISP patches.
+
+Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thanks,
+Mani
+
 > 
 > ---
 > Hello,
@@ -71,13 +107,6 @@ On Mon, 2019-06-03 at 11:22 -0300, Helen Koike wrote:
 > I'm also enabling the power domain and removing the disable status,
 > please let me know if this should be done in a separated patch.
 > 
-
-I think you might want to put the comments about enabling power domain
-and removing disable status on the commit log. It's useful information :-)
-
-Thanks,
-Eze
-
 > Thanks
 > Helen
 > 
@@ -116,5 +145,6 @@ Eze
 >  	};
 >  
 >  	hdmi_sound: hdmi-sound {
-
-
+> -- 
+> 2.20.1
+> 
