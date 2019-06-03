@@ -2,129 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DBE532B49
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A548E32B50
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726561AbfFCJBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 05:01:39 -0400
-Received: from mail-eopbgr70042.outbound.protection.outlook.com ([40.107.7.42]:29038
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727003AbfFCJBj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jun 2019 05:01:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b4lMmQ5IOK3yFjAuwD9kRjqaVsV4ogoUCOJJcal1oQs=;
- b=BftrIDswrGVoc03wgZKhzpNukQuzzcua6n/36RfuRee6n/o3Cd94dsM2spDoEu9DlWESHyx5Npw/iTP6gL/+YsFERNAVDdY0uaxlgVXOw3WMU/811I8ZUGaZZQuCISngUbjMlv/ltzhftbK9nJ8IM6VMEvuwLQ9oLTKjCD2gKec=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3818.eurprd04.prod.outlook.com (52.134.71.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1943.22; Mon, 3 Jun 2019 09:01:33 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec%5]) with mapi id 15.20.1943.018; Mon, 3 Jun 2019
- 09:01:33 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "maxime.ripard@bootlin.com" <maxime.ripard@bootlin.com>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "horms+renesas@verge.net.au" <horms+renesas@verge.net.au>,
-        "jagan@amarulasolutions.com" <jagan@amarulasolutions.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "dinguyen@kernel.org" <dinguyen@kernel.org>,
-        "enric.balletbo@collabora.com" <enric.balletbo@collabora.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Abel Vesa <abel.vesa@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH V2 2/3] clk: imx: Add support for i.MX8MN clock driver
-Thread-Topic: [PATCH V2 2/3] clk: imx: Add support for i.MX8MN clock driver
-Thread-Index: AQHVGaxeLRS7zF6kSEqSfwNQzT+zYKaJonPw
-Date:   Mon, 3 Jun 2019 09:01:33 +0000
-Message-ID: <DB3PR0402MB39162498C890AB92D9722595F5140@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190603013503.40626-1-Anson.Huang@nxp.com>
- <20190603013503.40626-2-Anson.Huang@nxp.com>
- <VI1PR04MB5055D6EB38E84E370E881425EE140@VI1PR04MB5055.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB5055D6EB38E84E370E881425EE140@VI1PR04MB5055.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2e689b54-883d-4a3d-7660-08d6e8021383
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB3PR0402MB3818;
-x-ms-traffictypediagnostic: DB3PR0402MB3818:
-x-microsoft-antispam-prvs: <DB3PR0402MB3818825C7C401FA173C5A1E3F5140@DB3PR0402MB3818.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:113;
-x-forefront-prvs: 0057EE387C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(346002)(366004)(396003)(39860400002)(189003)(199004)(13464003)(53546011)(478600001)(8936002)(76176011)(316002)(229853002)(8676002)(25786009)(6506007)(7736002)(81166006)(71190400001)(81156014)(305945005)(256004)(11346002)(44832011)(102836004)(86362001)(74316002)(71200400001)(6436002)(476003)(2201001)(446003)(7416002)(33656002)(486006)(68736007)(53936002)(6246003)(55016002)(2501003)(5660300002)(9686003)(52536014)(14454004)(2906002)(66066001)(110136005)(26005)(7696005)(6116002)(99286004)(73956011)(64756008)(3846002)(66946007)(186003)(76116006)(66446008)(4326008)(66556008)(66476007)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3818;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 5EhKgCqbkxVJFWFHUW+do0fx6ehLjMR/AbhN23eUHbXTy84CLYqgVUjxoJNQsSq2RldPHN2YUuRN/1o99abBS8fn++Dq4uBR9PiUhOFG8rUNNFNtdID0SxQbKeZQed23gG6SvxT1ZSaTBSXy9W3asUo7AtM4MoKUCLUGeAjkQ94WpLlnNknsdU0fz+cgeJZ80s1f/nM/P2VCyKHGzCCt5fHwSsEYocIN6ch8hWdjN7mgwNVZukwmE5oKSbscTgbQm+ZoDhiIj6R3cVSzYgot7DO54z5hMwy0JDU8nwgp6G6isJ0wzn5EojnGh+Vj9+83gfSO5d9qsRk0xPbxcumGevUB7wKjHVSBprhjHuWG9QmH7kNJ417LpVwAIygXEg5Mo6/t423TlLuJcvABXaVz6BiI/no3KMK2MIc2emrDoSc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726843AbfFCJDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 05:03:11 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39718 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726851AbfFCJDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 05:03:11 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x4so11159452wrt.6
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 02:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=axSkmR4/Wmhd1GVR+mG5T3r4ivwoxDL81oDdaQFl5E8=;
+        b=QdL2vqG+S5MqpQeBh4plB+1IVk7Xk3sr+fQQIhcv1OMnz0WncZc+jCab8dnn2qc2Wo
+         G/vDVBkFzxjiX8rg5EC6g2Ez7FIdYktE2SbC6I4poAZE1Vj8yVwxBmTYP+nAvEPfayOO
+         f+mNlv9G5fgP/VF7WsU1L9p0W2EhrcwW4kaRobljvbCTqRS9404Fn12Y9V7rupVM3jBb
+         gRjdCrwe04T0Rrp+1wki4RTE+UDN36YYQxZNvlZiWhyG+5MhTIbxQqybqa0JwF8ZyU2o
+         eAGPCQZDb7wZ7tYD7P9DPeTtJ0sQ3Aq5ivf6w1V5likg8SU9hizveJjB7lZaDp/COIxP
+         JXdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=axSkmR4/Wmhd1GVR+mG5T3r4ivwoxDL81oDdaQFl5E8=;
+        b=TgjGg1vFEnygBLuxJSkkg9V/U2DGh6pRyGlrUebdiOQkhEQlnZ+8gso0ayV6Mrd/Ug
+         hFoXYo7OcQYrskNYNtg+6lCe4a7Uyzhd4cPzsxilluU0DCttkq64+e4C3WpeOiw2sxeq
+         yyZ/rBz2cINpi3FyXz5bsRtvgT8Hw5WUNNmG+KsHFyTOoIUwn3x+qb2G+A8iiMdleamZ
+         5RHrTswAoXXkDFZ+/pV8JWG9QM7blfIitlH8HJAyz6XyXV4XA8QgAPZnxJ2Yzo3+k+0M
+         j4lVpcf1LRp2nkva9o0TIiYbMUlr3RO/2mMYPuP63ingc8m/s0Ho3eMFEK3qfgDHOlIh
+         kdcg==
+X-Gm-Message-State: APjAAAUHZwj1ugezo1r8x0ZNLy915/a0JxUZPjPOsb7v8w+jwPoSUcTU
+        coxejHutkBWkadlBwYRwuvODog==
+X-Google-Smtp-Source: APXvYqxAFgAGgOSEI8r8mePcq1atG3EcjGeizbjbvD0TfUwUAfZ7nS3C2kTq9eJdbcf/MS2IzVlcQQ==
+X-Received: by 2002:adf:a749:: with SMTP id e9mr15762108wrd.64.1559552589525;
+        Mon, 03 Jun 2019 02:03:09 -0700 (PDT)
+Received: from dell ([2.27.167.43])
+        by smtp.gmail.com with ESMTPSA id l15sm8588945wrb.42.2019.06.03.02.03.08
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 03 Jun 2019 02:03:08 -0700 (PDT)
+Date:   Mon, 3 Jun 2019 10:03:06 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     robh+dt@kernel.org, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, t-kristo@ti.com
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: lp87565: Add lp87561 configuration
+Message-ID: <20190603090306.GH4797@dell>
+References: <20190515100848.19560-1-j-keerthy@ti.com>
+ <20190515100848.19560-2-j-keerthy@ti.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e689b54-883d-4a3d-7660-08d6e8021383
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2019 09:01:33.3075
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3818
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190515100848.19560-2-j-keerthy@ti.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTGVvbmFyZCBDcmVzdGV6
-DQo+IFNlbnQ6IE1vbmRheSwgSnVuZSAzLCAyMDE5IDQ6NDUgUE0NCj4gVG86IEFuc29uIEh1YW5n
-IDxhbnNvbi5odWFuZ0BueHAuY29tPjsgbXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb207DQo+IHNib3lk
-QGtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207DQo+
-IHNoYXduZ3VvQGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IGtlcm5lbEBwZW5n
-dXRyb25peC5kZTsNCj4gZmVzdGV2YW1AZ21haWwuY29tOyBjYXRhbGluLm1hcmluYXNAYXJtLmNv
-bTsgd2lsbC5kZWFjb25AYXJtLmNvbTsNCj4gbWF4aW1lLnJpcGFyZEBib290bGluLmNvbTsgb2xv
-ZkBsaXhvbS5uZXQ7IGhvcm1zK3JlbmVzYXNAdmVyZ2UubmV0LmF1Ow0KPiBqYWdhbkBhbWFydWxh
-c29sdXRpb25zLmNvbTsgYmpvcm4uYW5kZXJzc29uQGxpbmFyby5vcmc7DQo+IGRpbmd1eWVuQGtl
-cm5lbC5vcmc7IGVucmljLmJhbGxldGJvQGNvbGxhYm9yYS5jb207IEFpc2hlbmcgRG9uZw0KPiA8
-YWlzaGVuZy5kb25nQG54cC5jb20+OyBKYWNreSBCYWkgPHBpbmcuYmFpQG54cC5jb20+OyBBYmVs
-IFZlc2ENCj4gPGFiZWwudmVzYUBueHAuY29tPjsgbC5zdGFjaEBwZW5ndXRyb25peC5kZTsgbGlu
-dXgtY2xrQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxp
-bnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2Vy
-Lmtlcm5lbC5vcmcNCj4gQ2M6IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+DQo+IFN1
-YmplY3Q6IFJlOiBbUEFUQ0ggVjIgMi8zXSBjbGs6IGlteDogQWRkIHN1cHBvcnQgZm9yIGkuTVg4
-TU4gY2xvY2sgZHJpdmVyDQo+IA0KPiBPbiA2LzMvMjAxOSA0OjMzIEFNLCBBbnNvbi5IdWFuZ0Bu
-eHAuY29tIHdyb3RlOg0KPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29t
-Pg0KPiA+DQo+ID4gVGhpcyBwYXRjaCBhZGRzIGkuTVg4TU4gY2xvY2sgZHJpdmVyIHN1cHBvcnQu
-DQo+IA0KPiA+ICsjaW5jbHVkZSAiY2xrLmgiDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFBMTF8xNDE2
-WF9SQVRFKF9yYXRlLCBfbSwgX3AsIF9zKQkJXA0KPiA+ICsJewkJCQkJCVwNCj4gPiArCQkucmF0
-ZQk9CShfcmF0ZSksCQlcDQo+ID4gKwkJLm1kaXYJPQkoX20pLAkJCVwNCj4gPiArCQkucGRpdgk9
-CShfcCksCQkJXA0KPiA+ICsJCS5zZGl2CT0JKF9zKSwJCQlcDQo+ID4gKwl9DQo+ID4gKw0KPiA+
-ICsjZGVmaW5lIFBMTF8xNDQzWF9SQVRFKF9yYXRlLCBfbSwgX3AsIF9zLCBfaykJCVwNCj4gPiAr
-CXsJCQkJCQlcDQo+ID4gKwkJLnJhdGUJPQkoX3JhdGUpLAkJXA0KPiA+ICsJCS5tZGl2CT0JKF9t
-KSwJCQlcDQo+ID4gKwkJLnBkaXYJPQkoX3ApLAkJCVwNCj4gPiArCQkuc2Rpdgk9CShfcyksCQkJ
-XA0KPiA+ICsJCS5rZGl2CT0JKF9rKSwJCQlcDQo+ID4gKwl9DQo+IA0KPiBUaGVzZSBtYWNyb3Mg
-YXJlIHNoYXJlZCB3aXRoIGNsay1pbXg4bW0gKGFuZCBwZXJoYXBzIHNvbWUgZnV0dXJlIGNoaXBz
-KQ0KPiBzbyB0aGV5IHNob3VsZCBiZSBtb3ZlZCB0byBkcml2ZXIvY2xrL2lteC9jbGsuaA0KDQpP
-Sywgd2lsbCBtb3ZlIHRoZW0gaW50byBjbGsuaCBpbiBWMy4NCg0KQW5zb24uDQo=
+On Wed, 15 May 2019, Keerthy wrote:
+
+> lp87561 is a single output 4-phase regulator configuration.
+> Add support for the same.
+> 
+> Data Sheet: https://www.ti.com/lit/ds/symlink/lp87561-q1.pdf
+> 
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> ---
+>  .../devicetree/bindings/mfd/lp87565.txt       | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+
+Applied, thanks.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
