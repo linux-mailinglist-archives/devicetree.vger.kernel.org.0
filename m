@@ -2,117 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 537D732B69
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFF7932C98
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726924AbfFCJFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 05:05:50 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:46876 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726876AbfFCJFt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jun 2019 05:05:49 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6AB3B374;
-        Mon,  3 Jun 2019 02:05:49 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2C69F3F690;
-        Mon,  3 Jun 2019 02:05:45 -0700 (PDT)
-Date:   Mon, 3 Jun 2019 10:05:31 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     Jeremy Linton <jeremy.linton@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
+        id S1728101AbfFCJKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 05:10:23 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:34255 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728098AbfFCJKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 05:10:23 -0400
+Received: by mail-wm1-f67.google.com with SMTP id w9so3128560wmd.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 02:10:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=flCBkYYx+PdHsv3XsjTv06FvsWqxIYgVPOMABFKuON0=;
+        b=SwuDnWbt+BrQnQbtSVGVqHEKRwhgpuaH9QN4iH7n58msM+doavax1lbAs5vFSK7Q0F
+         oknUZcm8NJUzRm1eBmLB0P4JsyeqJiqifAZlHLp8KlL7dV0hZ3fP4aHWQ2UHc7yxpJHk
+         deycQtVX+Cjn4UHcZBdcCfjg1AF8Bt7IOlGBHLgBa75Bm28PolHcvHtIfWefwgP8G7FX
+         yYsu+rdKLV1bOVeRGXLWsPPnjAnn50Gy33bJHN3JBZt/ZANjDUXKFKg02g2jvjlv0OD0
+         r9X3Lo/cYrfu5t26qEKi+uV/fbVb8HEcDMBHp6BoPGDjopy22Rhz1xtKLQVGPAf4nKIK
+         f1GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=flCBkYYx+PdHsv3XsjTv06FvsWqxIYgVPOMABFKuON0=;
+        b=OGLKS4rqOaa80mBa+huf8ts/0p14z50aoMdzmq/SpJlUAtbMDFowsOgJWOc8zcVMQK
+         XqNRFushBTOk8Sx6VtWEZNAsZmeigzm6mVxtafklVDFLEjLokz7bmWXtyQyG0VIdKSm7
+         vupUFdcFN6oHvDCwh1htVohazUhXvtqQulyGYG2gb0QLsc1k6NEBaVl9/eQe7dBTkRez
+         WwJRdG3jK4Ec+sfZ7lj7XR60BMCPlVeg0OJMy4w3knnWHiSWpHH/475jpNKh7Hi6fDEd
+         3Q/WbjgCkEi7QYdRMfqIHS/EPhhZHZLiagyiGS2IICcS9b3mNx3YSxolCOnuYPAiPgw5
+         /eKw==
+X-Gm-Message-State: APjAAAXnA8bfnZP7SNMy8mfriz5IkzPgvyxIKjfwamOVdtazypm1uXx5
+        xEq/RlhXO5JjnjZwlR9H4/D4OQ==
+X-Google-Smtp-Source: APXvYqzcNF1uAs9S8hg0XUv2b9wOOsxIrr/vf886v2rk2wi9jg/PFMdqP6QfBdMc3j/0O8fBWS+JhA==
+X-Received: by 2002:a1c:9a16:: with SMTP id c22mr1449423wme.39.1559553021966;
+        Mon, 03 Jun 2019 02:10:21 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id e15sm10676809wme.0.2019.06.03.02.10.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 03 Jun 2019 02:10:20 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh@kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Ingo Molnar <mingo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v6 2/7] dt-binding: cpu-topology: Move cpu-map to a
- common binding.
-Message-ID: <20190603090531.GA26487@e107155-lin>
-References: <20190529211340.17087-1-atish.patra@wdc.com>
- <20190529211340.17087-3-atish.patra@wdc.com>
- <0515d803-0da5-dcbe-3d3e-bb786b320d8b@arm.com>
- <28118149-193d-2a8a-995a-2f1829e95c1c@wdc.com>
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v5 1/3] dt-bindings: arm: amlogic: add G12B bindings
+Date:   Mon,  3 Jun 2019 11:10:06 +0200
+Message-Id: <20190603091008.2382-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190603091008.2382-1-narmstrong@baylibre.com>
+References: <20190603091008.2382-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <28118149-193d-2a8a-995a-2f1829e95c1c@wdc.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 03, 2019 at 01:49:13AM -0700, Atish Patra wrote:
-> On 5/30/19 1:55 PM, Jeremy Linton wrote:
-> > Hi,
-> >
-> > On 5/29/19 4:13 PM, Atish Patra wrote:
-> > > cpu-map binding can be used to described cpu topology for both
-> > > RISC-V & ARM. It makes more sense to move the binding to document
-> > > to a common place.
-> > >
-> > > The relevant discussion can be found here.
-> > > https://lkml.org/lkml/2018/11/6/19
-> > >
-> > > Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> > > Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >    .../topology.txt => cpu/cpu-topology.txt}     | 82 +++++++++++++++----
-> > >    1 file changed, 66 insertions(+), 16 deletions(-)
-> > >    rename Documentation/devicetree/bindings/{arm/topology.txt => cpu/cpu-topology.txt} (86%)
-> > >
+Add compatible for the Amlogic G12B SoC, sharing most of the
+features and architecture with the G12A SoC.
 
-[...]
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> > <nit picking>
-> >
-> > While socket is optional, its probably a good idea to include the node
-> > in the example even if the result is the same.
->
-> Sure. I will update that.
->
-> That is because at least
-> > on arm64 the DT clusters=sockets decision had performance implications
-> > for larger systems.
-> >
-> > Assuring the socket information is correct is helpful by itself to avoid
-> > having to explain why a single socket machine is displaying some other
-> > value in lscpu.
-> >
-> Just for my understanding, can you give a example?
->
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 6d5bb493db03..28115dd49f96 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -137,4 +137,8 @@ properties:
+               - amlogic,u200
+           - const: amlogic,g12a
+ 
++      - description: Boards with the Amlogic Meson G12B S922X SoC
++        items:
++          - const: amlogic,g12b
++
+ ...
+-- 
+2.21.0
 
-That's simple. Today any ARM{32,64} DT based platform sets their cluster
-id to physical package id, which is exposed to userspace. The userspace
-can/must interpret that as multi-socket system. E.g. TC2/Juno which
-2 clusters show up as 2 socket systems which is wrong and needs fixing.
-We have fixed it for ARM64 ACPI based systems but for DT(mostly used in
-mobile/embedded) we need to make sure we don't break anything else before
-we fix it.
-
---
-Regards,
-Sudeep
