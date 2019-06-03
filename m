@@ -2,50 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88ABE32A4B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 10:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDF132A62
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 10:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726638AbfFCIDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 04:03:17 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:39226 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725856AbfFCIDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 04:03:17 -0400
-Received: by mail-lf1-f66.google.com with SMTP id p24so6360746lfo.6;
-        Mon, 03 Jun 2019 01:03:15 -0700 (PDT)
+        id S1727110AbfFCIE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 04:04:59 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:43456 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725856AbfFCIE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 04:04:59 -0400
+Received: by mail-qt1-f194.google.com with SMTP id z24so1161666qtj.10;
+        Mon, 03 Jun 2019 01:04:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RfaSV+pbk7w6/znlXv1qGSq++xp8hdtnx0rwYlptGts=;
+        b=ga6bafZCmHxDV+BcmEwAaQsBBlEZkPFYGOsxhVLqSVdLrMiD8VQTGepUAJnHL2G3wY
+         Aji+SLUEIuw0MSIMC3cBG6nJMELOFarVv7dHMqaO1WN8vDLzJlhClRQjA9PX9dYnQY77
+         ZTEMJ4wNAzhm4f9EYkjt8OoYi9gVeLbnydEao=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8zHct7gI+WfUh/TYxaDLq5h6uP1yLHgrI/pUFB8t+sU=;
-        b=WydoQGQtheDUkzNlnfXg6bIcCAeCnYe/k3ENUzLjiyjbnDefF7SSVbF6Ssc4iEA4i3
-         CDPtNLV2pUMkPkIOLm45G5+LYnhGQzYve3ucee+gOoxzzOm2CIROorTTtRn0ovjYLac3
-         dQXqjnXfbJCUXXD8q4kZJb/ls0Pu5TXHHdLjHOpIOBMekWZM+fIefBrgp/K2NiAkN/2o
-         cICWMI1OrVySVDE7gkSqNt2grQ64y4/tQFbHbwHXe/zoSND20DNuNRGgWl1/Et9i6c5X
-         gvyyiwFrbUt9ptUGXO9Rt4+nnzyl89XaQt7BPUQWAf1o6NEkX2+CAgVHlAIGwmWTKofj
-         WMlQ==
-X-Gm-Message-State: APjAAAXxd/2o0UFcZOg871FwbKMp+RzF+t64VZIr+C9GsdYzyDn+nhF4
-        g+bWM6WKaqywQnc6CP3Igcdjo1l7thc616GhKu4=
-X-Google-Smtp-Source: APXvYqyVB06zohxUXif7x65zmAadYby0VPFg9MxWvFJ0TDCVPewZTLK9b7hBeBYQLOtfa00Znr8eMwxhl8PVi66ukiM=
-X-Received: by 2002:ac2:5a04:: with SMTP id q4mr12927243lfn.90.1559548994812;
- Mon, 03 Jun 2019 01:03:14 -0700 (PDT)
+        bh=RfaSV+pbk7w6/znlXv1qGSq++xp8hdtnx0rwYlptGts=;
+        b=S7qnVrkgAYDY+qPNGEh56Lrall5xKE73DA0EtUbRhz/idJSQYO46KPZxiguyC9H3FN
+         VyA487ZlQ1PmcXDYfwdFqGt2GYTdtd3XA/jKxLsxB3/wqj6ePLlPhGoAeIYtGAg2VPNv
+         RYjbaW8FSpSA9IUcozvb1003saD5lTAgYJBHE4WxcRv6IwAfaTvkUa35tFlISSHV17sO
+         0v2BVE30NL1EaWgTdZkIi9IfOcQG5FyvLDo30PtM1w0pz1l2D2buSmiZ4jGqWDEowleW
+         MOXDOxG61KIQCaivzC0HiLtWt5N1luYz6MgX4YbL48yNg//VSr2NXQvcVPSCIKZgKyDe
+         /ZNA==
+X-Gm-Message-State: APjAAAV3zQW1MKFzkt9JWCiWpciskUbNS9dBGg9qkGVUpNXafKsgxqDm
+        HEktJZpdb2UJT2Lv+XQ/DRQhEidIQ94UtNZHXj0=
+X-Google-Smtp-Source: APXvYqzsF073EvPFX4Takz8KWZ3H1JBY7zZTMY9VElYM72O2DrEKUU55vAn2In2dlmNN7QDVZrx88Z1tiSxYiMYUjoU=
+X-Received: by 2002:ac8:2493:: with SMTP id s19mr1721030qts.220.1559549097905;
+ Mon, 03 Jun 2019 01:04:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <1559044467-2639-1-git-send-email-gareth.williams.jx@renesas.com> <1559044467-2639-2-git-send-email-gareth.williams.jx@renesas.com>
-In-Reply-To: <1559044467-2639-2-git-send-email-gareth.williams.jx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 3 Jun 2019 10:03:02 +0200
-Message-ID: <CAMuHMdXM7j_tCWR-9FZc8DOARmdXqfd88+a=TYHwKZEmMuHCrg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: renesas,r9a06g032-sysctrl:
- Document power Domains
-To:     Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20190531090950.13466-1-a.filippov@yadro.com> <246c9b25-1c05-4c2f-9185-c438c97ebdec@www.fastmail.com>
+In-Reply-To: <246c9b25-1c05-4c2f-9185-c438c97ebdec@www.fastmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 3 Jun 2019 08:04:46 +0000
+Message-ID: <CACPK8Xf9emq+rYjT=O8kQfc-oMcKZwAwXwZ1bciDr+R3CyWz+g@mail.gmail.com>
+Subject: Re: [PATCH v4] ARM: dts: aspeed: Add YADRO VESNIN BMC
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     "Alexander A. Filippov" <a.filippov@yadro.com>,
+        linux-aspeed@lists.ozlabs.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
@@ -53,28 +58,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 1:55 PM Gareth Williams
-<gareth.williams.jx@renesas.com> wrote:
-> The driver is gaining power domain support, so add the new property
-> to the DT binding and update the examples.
+On Mon, 3 Jun 2019 at 01:28, Andrew Jeffery <andrew@aj.id.au> wrote:
+> On Fri, 31 May 2019, at 18:40, Alexander Filippov wrote:
+> > VESNIN is an OpenPower machine with an Aspeed 2400 BMC SoC manufactured
+> > by YADRO.
+> >
+> > Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
 >
-> Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v4:
->  - Added missing HCLK to UART0 example to show the clock added
->    to the driver.
->  - Added Geert's Reviewed-by line.
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
 
-Thanks for the update, will queue in clock-renesas-for-v5.3.
+Thanks. Applied to the aspeed dt-for-5.3 branch.
 
-Gr{oetje,eeting}s,
+Cheers,
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Joel
