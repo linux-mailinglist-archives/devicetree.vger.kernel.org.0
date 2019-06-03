@@ -2,107 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0110433396
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 17:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1250333B7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 17:37:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727663AbfFCPbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 11:31:32 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:55088 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726714AbfFCPbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 11:31:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1559575890; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=qpPjjVPcvPAwJQGYcUpfDZwk6ryVkd8SjEitvpuus/w=;
-        b=s6s9XT3X819O48mzKCUZ4wQ252SfJTDSKNcQxzjEgFjPJ3loZD4GrRq6g8BjELWpZ7PnEv
-        w1r+ARw13Xxay1XA4XXdKTT1oyYrWuL3JJfAcnHIOZYXOT3CFe7P9yk8zX8qo+fA4uvBTG
-        MluADHEbZdnyMxF54/liEKC288s9QoQ=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     od@zcrc.me, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Cercueil <paul@crapouillou.net>,
-        Artur Rojek <contact@artur-rojek.eu>
-Subject: [PATCH v4 3/3] drm/panel: simple: Add Sharp LS020B1DD01D panel support
-Date:   Mon,  3 Jun 2019 17:31:20 +0200
-Message-Id: <20190603153120.23947-3-paul@crapouillou.net>
-In-Reply-To: <20190603153120.23947-1-paul@crapouillou.net>
-References: <20190603153120.23947-1-paul@crapouillou.net>
+        id S1727649AbfFCPhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 11:37:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55120 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727150AbfFCPhu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 11:37:50 -0400
+Received: from localhost (unknown [223.226.32.210])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6D7DC21851;
+        Mon,  3 Jun 2019 15:37:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559576270;
+        bh=zcP9KtKgAhz3mU5lmAfLMYUlzYRfYyCo6F2EvR1j1zw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lw31aVh04wQTEv/7BJ6nkBiZ5zgifqLpQU/x0ATsCfH40b+ZcENsaEHWo2nm7JN07
+         wzB4oR54h8ors5pwFLQMd5NDzFoRSph6VbJUKJKu45bS+6ZEYO2+OQX6Szk0kQ/epF
+         6p5bOIm9qZqTLrTeR7EE5DtJb7/pF2CIJogTQPP8=
+Date:   Mon, 3 Jun 2019 21:04:40 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Arun Kumar Neelakantam <aneela@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/4] soc: qcom: Add AOSS QMP driver
+Message-ID: <20190603153440.GT15118@vkoul-mobl>
+References: <20190531030057.18328-1-bjorn.andersson@linaro.org>
+ <20190531030057.18328-3-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190531030057.18328-3-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Sharp LS020B1DD01D is a simple 2.0" 240x160 16-bit TFT panel.
+On 30-05-19, 20:00, Bjorn Andersson wrote:
+> The Always On Subsystem (AOSS) Qualcomm Messaging Protocol (QMP) driver
+> is used to communicate with the AOSS for certain side-channel requests,
+> that are not available through the RPMh interface.
+> 
+> The communication is a very simple synchronous mechanism of messages
+> being written in message RAM and a doorbell in the AOSS is rung. As the
+> AOSS has processed the message length is cleared and an interrupt is
+> fired by the AOSS as acknowledgment.
+> 
+> The driver exposes the QDSS clock as a clock and the low-power state
+> associated with the remoteprocs in the system as a set of power-domains.
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Tested-by: Artur Rojek <contact@artur-rojek.eu>
----
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Notes:
-    v2: No change
-    
-    v3: Add DRM_BUS_FLAG_SHARP_SIGNALS to the bus flags
-    
-    v4: Rebase on drm-misc-next (b232d4ed92ea)
-
- drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 5a93c4edf1e4..5049f0099fdd 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2454,6 +2454,33 @@ static const struct panel_desc sharp_lq150x1lg11 = {
- 	.bus_format = MEDIA_BUS_FMT_RGB565_1X16,
- };
- 
-+static const struct display_timing sharp_ls020b1dd01d_timing = {
-+	.pixelclock = { 2000000, 4200000, 5000000 },
-+	.hactive = { 240, 240, 240 },
-+	.hfront_porch = { 66, 66, 66 },
-+	.hback_porch = { 1, 1, 1 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 160, 160, 160 },
-+	.vfront_porch = { 52, 52, 52 },
-+	.vback_porch = { 6, 6, 6 },
-+	.vsync_len = { 10, 10, 10 },
-+	.flags = DISPLAY_FLAGS_HSYNC_HIGH | DISPLAY_FLAGS_VSYNC_LOW,
-+};
-+
-+static const struct panel_desc sharp_ls020b1dd01d = {
-+	.timings = &sharp_ls020b1dd01d_timing,
-+	.num_timings = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 42,
-+		.height = 28,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB565_1X16,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH
-+		   | DRM_BUS_FLAG_PIXDATA_NEGEDGE
-+		   | DRM_BUS_FLAG_SHARP_SIGNALS,
-+};
-+
- static const struct drm_display_mode shelly_sca07010_bfn_lnn_mode = {
- 	.clock = 33300,
- 	.hdisplay = 800,
-@@ -3014,6 +3041,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "sharp,lq150x1lg11",
- 		.data = &sharp_lq150x1lg11,
-+	}, {
-+		.compatible = "sharp,ls020b1dd01d",
-+		.data = &sharp_ls020b1dd01d,
- 	}, {
- 		.compatible = "shelly,sca07010-bfn-lnn",
- 		.data = &shelly_sca07010_bfn_lnn,
 -- 
-2.21.0.593.g511ec345e18
-
+~Vinod
