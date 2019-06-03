@@ -2,134 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC8133083
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7D5D330CD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:19:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728144AbfFCNEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 09:04:33 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:52413 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728136AbfFCNEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:04:32 -0400
-Received: by mail-wm1-f66.google.com with SMTP id s3so3785042wms.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 06:04:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=03wIuI+95U2k5wsZC8Hm2JFpOnjzC3cBrRUf8IxbDpU=;
-        b=iIlx/qlAtzx4C+kJiByh9KQ/8RYsdZpNtII/z4eZYZqEFIDOqI3yOqbROGVScEIhFg
-         dhIVxFYa8JH/414z6aG+bF8W10a3l0G5I2opFuAeeCIhZ8JG4uEKH3J8lPD+lg6QNR4t
-         9jG3T32ausmHo7QnAhk9TP5XOQQBhCiuMxVKwoK1TGLZYVsdaSsGWmK44dIVFm2iGCoZ
-         FVc0cUPmdmfq7XzWQBCwLAOJZQ8k4pp5NDz5oKyZeco3NmzRvsp26ASWtPnethz/BBIa
-         Sj79C/FFLdVdOvIrgz7iKVSzela8aqrxdRyAPluVPG9ENrCBdAUh9QN7B0jLNsIc7Ols
-         /CDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=03wIuI+95U2k5wsZC8Hm2JFpOnjzC3cBrRUf8IxbDpU=;
-        b=Luvb0AgpnWtugOS4kdH4ogMMQWHgNjph5os80nyDdCJH0d6kz/Ap2FVQj97o+w5tu+
-         8ny1CS1WsdG73DqtUqUFHQ6mARhZMkbOUhDlAp2kJEokLorvvtS7rF5h3sBZanQVJOR8
-         tzfPUumo6kgB99gJlKYl88wyMcswXObS0PPAtGKaNIeGJOuWJOhfQpvHBnu/22k2vdAc
-         esse+SrrE2MaCwsHlo6vegVZFA8HsRURtY6DaHL1nH9JjhU9yNSvuy/hYDppKivQnRiN
-         StSrKEZ6wZi5t22VqYn4wNeNCA4J//4jvbIJPclL5ulJsAji3YZr49x/3m/08Ok6zpAU
-         fgUw==
-X-Gm-Message-State: APjAAAUQYSo1TafgMov9qsFGHMZLGgpVqpM+eR6ooVoR6FFJ9hc0uula
-        fRQvNXIs3zp3haDdom9f6GpfuQ==
-X-Google-Smtp-Source: APXvYqzE0Z8unVGrUlHJ6gais9BAMuNRWey3Q/3dVyTPEl/lsPXneHfZZPM8FyhWjW7pcb2cO6NENg==
-X-Received: by 2002:a1c:6a11:: with SMTP id f17mr13444788wmc.110.1559567071120;
-        Mon, 03 Jun 2019 06:04:31 -0700 (PDT)
-Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id b69sm10857016wme.44.2019.06.03.06.04.29
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 03 Jun 2019 06:04:30 -0700 (PDT)
-Date:   Mon, 3 Jun 2019 14:04:28 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Cc:     Mason Yang <masonccyang@mxic.com.tw>, broonie@kernel.org,
-        marek.vasut@gmail.com, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, bbrezillon@kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, juliensu@mxic.com.tw,
-        Simon Horman <horms@verge.net.au>, miquel.raynal@bootlin.com
-Subject: Re: [PATCH v13 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
- RPC-IF controller bindings
-Message-ID: <20190603130428.GX4797@dell>
-References: <1558423174-10748-1-git-send-email-masonccyang@mxic.com.tw>
- <1558423174-10748-4-git-send-email-masonccyang@mxic.com.tw>
- <0e2994d6-6efc-9f36-f681-609199f20b9f@cogentembedded.com>
+        id S1726516AbfFCNTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 09:19:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57354 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726336AbfFCNTE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 09:19:04 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 948FB25162;
+        Mon,  3 Jun 2019 13:19:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559567944;
+        bh=aXYplNsQyPIIU3iosXdops52mTbvO5TWj1ZH0e2m5y8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=yKyo6M2XLijHBSpowPCGIa52e50oIDHg5UeXTQK8/A5zpiDZgdgHr6O9spi+oGfM6
+         UzDmJzm4PH+evWpGO0R/juuUCACjkHgWRvdVP8RvqHrpsTN2m18HmT9OzLT3TXidJ0
+         JPVbT1eNdKxVsUTu5846R4uUF014XBU7gbiTMlww=
+Date:   Mon, 3 Jun 2019 15:19:01 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yu Chen <chenyu56@huawei.com>
+Subject: Re: [PATCH v6 07/10] usb: roles: Add fwnode_usb_role_switch_get()
+ function
+Message-ID: <20190603131901.GB10397@kroah.com>
+References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1559115828-19146-8-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0e2994d6-6efc-9f36-f681-609199f20b9f@cogentembedded.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1559115828-19146-8-git-send-email-chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019, Sergei Shtylyov wrote:
-
-> On 05/21/2019 10:19 AM, Mason Yang wrote:
+On Wed, May 29, 2019 at 03:43:45PM +0800, Chunfeng Yun wrote:
+> From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 > 
-> > Document the bindings used by the Renesas R-Car Gen3 RPC-IF controller.
-> > 
-> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> > ---
-> >  .../devicetree/bindings/mfd/renesas-rpc-if.txt     | 65 ++++++++++++++++++++++
-> >  1 file changed, 65 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt b/Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt
-> > new file mode 100644
-> > index 0000000..20ec85b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt
-> > @@ -0,0 +1,65 @@
-> > +Renesas R-Car Gen3 RPC-IF controller Device Tree Bindings
-> > +---------------------------------------------------------
-> > +
-> > +RPC-IF supports both SPI NOR and HyperFlash (CFI-compliant flash)
-> > +
-> > +Required properties:
-> > +- compatible: should be an SoC-specific compatible value, followed by
-> > +		"renesas,rcar-gen3-rpc" as a fallback.
-> > +		supported SoC-specific values are:
-> > +		"renesas,r8a77995-rpc"	(R-Car D3)
-> > +- reg: should contain three register areas:
-> > +	first for RPC-IF registers,
-> > +	second for the direct mapping read mode and
-> > +	third for the write buffer area.
-> > +- reg-names: should contain "regs", "dirmap" and "wbuf"
-> > +- clocks: should contain 1 entries for the module's clock
-> > +- clock-names: should contain "rpc"
-> > +- power-domains: should contain system-controller(sysc) for power-domain-cell
-> > +- resets: should contain clock pulse generator(cpg) for reset-cell,
-> > +	  power-domain-cell and clock-cell
+> The fwnode_usb_role_switch_get() function is exactly the
+> same as usb_role_switch_get(), except that it takes struct
+> fwnode_handle as parameter instead of struct device.
 > 
->    That's just some nonsense, sorry...
->    I suggest that you stop reposting your patches as I'm going to post
-> my version of this patchset RSN (based on your patches, of course) and I'm
-> going to take care of fixing this file as well.
+> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> ---
+> v6:
+>   new patch
 
-Why is this necessary?
+If you are forwarding on a patch from someone else, like this, you need
+to put your signed-off-by line on it as well.
 
-Why not just provide some constructive feedback instead?
+Please fix that up, and add the tested-by one, when you resend this
+series.
 
-> > +- #address-cells: should be 1
-> > +- #size-cells: should be 0
-> [...]
-> 
-> MBR, Sergei
+thanks,
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+greg k-h
