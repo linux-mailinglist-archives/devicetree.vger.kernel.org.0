@@ -2,129 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 989F8338EE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 21:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EF473394F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 21:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726653AbfFCTNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 15:13:07 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36022 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726503AbfFCTNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 15:13:07 -0400
-Received: by mail-ot1-f67.google.com with SMTP id c3so17173117otr.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 12:13:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=mAoddn+++8qwVdvo0LP4Flz+Y0mAR71WsumbGA5/ntU=;
-        b=wUFV0A+XrqyYbdkgHK2CxppQeWvJUI4OC2TQpYTXBHH0DILNt6bkaBhKCwhB5AMwIG
-         0LOIAe+9QJKpYEjKS94senTDbXCrId9d/+f/ZBIfAfPM+uzNRYXp73FwgI8keJiQH6Wx
-         cNe1QAI+DNUL/c6FAldEpXYakT33XUg0x5qP0g1jDJfet10XDHsrdMDInEk52n+QnmBA
-         EzuhaWMFTEIxQS84WmV0CUdoSAaZUMhAm5V8jXOjbmWjyKqFHkZizOEpvqx/kZBlpS24
-         DRbZGfmxdVyKJaGeuHg6Bj5VC642CNXwqO3WOByUzpW7WkyWju0chAM6nifBRzHX6/Mc
-         2x0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=mAoddn+++8qwVdvo0LP4Flz+Y0mAR71WsumbGA5/ntU=;
-        b=lidHHY7yY9hROWcBdBsbmRvUTp/WBvPKVKBb0yke1pxrVc9DYDzbndoAN/ahHUhjk5
-         2Gh/xjjV5nCl14ggDirp/ZVvLGzxrnzj19YEKd78hCi01PoXRu+nXry5YZhN53WbUb96
-         iWQiV7CY0W9VZ7uJQzuo/daJa3cyC8j1Xk1GD2GpBpDjObxceVw5R/Irk5f9n9Rjtnwv
-         NylnjYdV8HypOsuSV175rF3fyH6WSqcC84BrXrnne4yDhOmJY6fHGfl47mcz1EYhmUCh
-         41PvSBbBKO3s73+atMAwTk2tR+VV7kpJQn9oAJsVL4Q6ITycggixuLo/ALdR6r/B+raB
-         yJpQ==
-X-Gm-Message-State: APjAAAXVvd8omssdzRh6B+YQeMFVctWbGvayDyk2xQDbf+PRdQJbu9qm
-        jDE0GwThxpHGQ5ZOXfMuhQjtLBrTZ/dRkQoGaNFohQ==
-X-Google-Smtp-Source: APXvYqy+Lm1ofR4ZAQBNDXyeTt8ZtlyM1FjuSyKegJQbbObal6TMdDAAlb7/1ROuwQ5EjTzGHLN2r16ho6jaEfz21D8=
-X-Received: by 2002:a05:6830:160c:: with SMTP id g12mr2427193otr.231.1559589186170;
- Mon, 03 Jun 2019 12:13:06 -0700 (PDT)
+        id S1726101AbfFCTxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 15:53:43 -0400
+Received: from mail-eopbgr70090.outbound.protection.outlook.com ([40.107.7.90]:24349
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725876AbfFCTxm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 15:53:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.se;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6BNzFMUgJjai20ENr4cV9FqDq6vBCbEYUtdITG1exhM=;
+ b=j0XbqT8ZhLjOvPACzwlztp6EtSqgzozQH6OxOrHwp8V4G/TPiKTFFySs0nyf2Otd6ryfVpiwfmcZ5EoFzspS6MEj/vi1M17cu1ubNYky3vj6lhtEGfs5y3Ug91yFXY2qblgDNkf1ILL02dRsmaSpmgbTkNYqvTuIdEKmxemyNEo=
+Received: from VI1PR10MB2639.EURPRD10.PROD.OUTLOOK.COM (20.178.126.80) by
+ VI1PR10MB2510.EURPRD10.PROD.OUTLOOK.COM (20.177.59.83) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.22; Mon, 3 Jun 2019 19:53:36 +0000
+Received: from VI1PR10MB2639.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8844:426d:816b:f5d5]) by VI1PR10MB2639.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8844:426d:816b:f5d5%6]) with mapi id 15.20.1943.018; Mon, 3 Jun 2019
+ 19:53:36 +0000
+From:   Rasmus Villemoes <Rasmus.Villemoes@prevas.se>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>
+CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Scott Wood <oss@buserror.net>,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>
+Subject: Re: [PATCH v3 0/6] soc/fsl/qe: cleanups and new DT binding
+Thread-Topic: [PATCH v3 0/6] soc/fsl/qe: cleanups and new DT binding
+Thread-Index: AQHVCX0WBepWBUryR0K8DhsVu6ZcHqaKeRAA
+Date:   Mon, 3 Jun 2019 19:53:36 +0000
+Message-ID: <e11c1e55-1e11-7ce3-3c0f-0b723ab260aa@prevas.se>
+References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
+ <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
+In-Reply-To: <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HE1PR05CA0309.eurprd05.prod.outlook.com
+ (2603:10a6:7:93::40) To VI1PR10MB2639.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:803:e1::16)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Rasmus.Villemoes@prevas.se; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [5.186.118.63]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f27868fe-709b-411f-9666-08d6e85d2a68
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR10MB2510;
+x-ms-traffictypediagnostic: VI1PR10MB2510:
+x-microsoft-antispam-prvs: <VI1PR10MB25108FE6C241FFDDF7475C668A140@VI1PR10MB2510.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0057EE387C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(396003)(346002)(376002)(136003)(39850400004)(199004)(189003)(44832011)(71446004)(53936002)(66066001)(25786009)(316002)(6246003)(14454004)(5660300002)(52116002)(486006)(4744005)(7416002)(110136005)(2616005)(446003)(6512007)(4326008)(2906002)(476003)(3846002)(6486002)(11346002)(54906003)(229853002)(6116002)(6436002)(73956011)(64756008)(8676002)(66476007)(102836004)(256004)(81166006)(305945005)(7736002)(76176011)(81156014)(86362001)(66556008)(31686004)(2501003)(72206003)(26005)(99286004)(71200400001)(8936002)(66446008)(478600001)(74482002)(71190400001)(31696002)(68736007)(186003)(386003)(6506007)(36756003)(66946007);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR10MB2510;H:VI1PR10MB2639.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: prevas.se does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: bHHqEOSKRRdFRJUk0NLOMa/EJxHT58PIMySffURmEJMakwrQPeGBgTuYHJSMFP73/2xz4zMYbQg0ji4nU5ab8Wk/Ry6F+Mxo8jhHscg4xsYrVzwB+O9VYwRcL3SC+jhi6cQ4S9fVRx0IddBgJmmOeUVtfO/HfPYvdcTwPHGqQzLT66wzCZxQBfiqUiD6/p9i9MVYLV5uoM0NG73Efiyoq0ZOHorQ707etMWcBrPe9T7nTVstNfLlT89023M4Djg/ElNEp9BPVra5uS0O8wGlKTlq9QSBEP0TFs8p0fpss5afR7rmY1jf/b3t6wcq1kA063ziCv2l/pjB4lsYgw19UJb+0DXE8kB/enr9YVoRnJl7BnCpz+rkI5500ClTk0DNBzyCxbFjfb64PsRsiaYydQwCTx4hP1JlJ0hfUm1Bee0=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <623556BC6EE58D43987924910752EF6D@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190423132823.7915-1-georgi.djakov@linaro.org>
- <20190601021228.210574-1-saravanak@google.com> <20190603155634.GA10741@jcrouse1-lnx.qualcomm.com>
-In-Reply-To: <20190603155634.GA10741@jcrouse1-lnx.qualcomm.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 3 Jun 2019 12:12:30 -0700
-Message-ID: <CAGETcx8yV_D+=qLnJOx5s5Nvq2RxhcJvz+gejDBN1-qrBE=Msg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] Introduce OPP bandwidth bindings
-To:     Saravana Kannan <saravanak@google.com>, georgi.djakov@linaro.org,
-        amit.kucheria@linaro.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        daidavid1@codeaurora.org, devicetree@vger.kernel.org,
-        evgreen@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>, nm@ti.com,
-        rjw@rjwysocki.net, Rob Herring <robh+dt@kernel.org>,
-        sboyd@kernel.org, seansw@qti.qualcomm.com, sibis@codeaurora.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        vireshk@kernel.org, Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: prevas.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: f27868fe-709b-411f-9666-08d6e85d2a68
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2019 19:53:36.3462
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Rasmus.Villemoes@prevas.dk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB2510
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 3, 2019 at 8:56 AM Jordan Crouse <jcrouse@codeaurora.org> wrote:
->
-> On Fri, May 31, 2019 at 07:12:28PM -0700, Saravana Kannan wrote:
-> > I'll have to Nack this series because it's making a couple of wrong assumptions
-> > about bandwidth voting.
-> >
-> > Firstly, it's mixing up OPP to bandwidth mapping (Eg: CPU freq to CPU<->DDR
-> > bandwidth mapping) with the bandwidth levels that are actually supported by an
-> > interconnect path (Eg: CPU<->DDR bandwidth levels). For example, CPU0 might
-> > decide to vote for a max of 10 GB/s because it's a little CPU and never needs
-> > anything higher than 10 GB/s even at CPU0's max frequency. But that has no
-> > bearing on bandwidth level available between CPU<->DDR.
->
-> I'm going to just quote this part of the email to avoid forcing people to
-> scroll too much.
->
-> I agree that there is an enormous universe of new and innovative things that can
-> be done for bandwidth voting. I would love to have smart governors and expansive
-> connections between different components that are all aware of each other. I
-> don't think that anybody is discounting that these things are possible.
->
-> But as it stands today, as a leaf driver developer my primary concern is that I
-> need to vote something for the GPU->DDR path. Right now I'm voting the maximum
-> because that is the bare minimum we need to get working GPU.
->
-> Then the next incremental baby step is to allow us to select a minimum
-> vote based on a GPU frequency level to allow for some sort of very coarse power
-> savings. It isn't perfect, but better than cranking everything to 11.
-
-I completely agree. I'm not saying you shouldn't do bandwidth voting
-based on device frequency. In some cases, it's actually the right
-thing to do too.
-
-> This is
-> why we need the OPP bandwidth bindings to allow us to make the association and
-> tune down the vote.
-
-Again, I'm perfectly fine with this too.
-
-> I fully agree that this isn't the optimal solution but
-> it is the only knob we have right now.
-> And after that we should go nuts. I'll gladly put the OPP bindings in the
-> rear-view mirror and turn over all bandwidth to a governor or two or three.
-
-This is the problem part in the series. Once a property is exposed in
-DT, we can't just take it back. A new kernel needs to continue
-supporting old compiled DT binaries. So if we know we'll have to
-change a DT property in the future to be "more correct", then we
-should just do that one instead of "for now" bindings.
-
-And I even proposed what the new bindings should look like and why we
-should do it that way.
-
-I'll try to get some patches out for that in the near future. But
-doesn't have to be just from me. I'm just pointing out why the current
-bindings aren't good/scalable.
-
-> I'll be happy to have nothing to do with it again. But until then we need
-> a solution for the leaf drivers that lets us provide some modicum of power
-> control.
-
-Agreed.
-
--Saravana
+T24gMTMvMDUvMjAxOSAxMy4xNCwgUmFzbXVzIFZpbGxlbW9lcyB3cm90ZToNCj4gVGhpcyBzbWFs
+bCBzZXJpZXMgY29uc2lzdHMgb2Ygc29tZSBzbWFsbCBjbGVhbnVwcyBhbmQgc2ltcGxpZmljYXRp
+b25zDQo+IG9mIHRoZSBRVUlDQyBlbmdpbmUgZHJpdmVyLCBhbmQgaW50cm9kdWNlcyBhIG5ldyBE
+VCBiaW5kaW5nIHRoYXQgbWFrZXMNCj4gaXQgbXVjaCBlYXNpZXIgdG8gc3VwcG9ydCBvdGhlciB2
+YXJpYW50cyBvZiB0aGUgUVVJQ0MgZW5naW5lIElQIGJsb2NrDQo+IHRoYXQgYXBwZWFycyBpbiB0
+aGUgd2lsZDogVGhlcmUncyBubyByZWFzb24gdG8gZXhwZWN0IGluIGdlbmVyYWwgdGhhdA0KPiB0
+aGUgbnVtYmVyIG9mIHZhbGlkIFNOVU1zIHVuaXF1ZWx5IGRldGVybWluZXMgdGhlIHNldCBvZiBz
+dWNoLCBzbyBpdCdzDQo+IGJldHRlciB0byBzaW1wbHkgbGV0IHRoZSBkZXZpY2UgdHJlZSBzcGVj
+aWZ5IHRoZSB2YWx1ZXMgKGFuZCwNCj4gaW1wbGljaXRseSB2aWEgdGhlIGFycmF5IGxlbmd0aCwg
+YWxzbyB0aGUgY291bnQpLg0KPiANCj4gV2hpY2ggdHJlZSBzaG91bGQgdGhpcyBnbyB0aHJvdWdo
+Pw0KDQpQaW5nPyBUaGVzZSBwYXRjaGVzIHNob3VsZCBiZSByZWFkeSB0byBnbyBpbiwgYnV0IEkg
+ZG9uJ3Qga25vdyB3aG8gaXMNCnN1cHBvc2VkIHRvIHBpY2sgdGhlbSB1cC4NCg0KVGhhbmtzLA0K
+UmFzbXVzDQo=
