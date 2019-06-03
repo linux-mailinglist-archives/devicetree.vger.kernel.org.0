@@ -2,581 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 489CF3317D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:49:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B913318A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 15:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727904AbfFCNtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 09:49:14 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:46803 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728594AbfFCNtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:49:13 -0400
-Received: by mail-vs1-f65.google.com with SMTP id l125so11206939vsl.13
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 06:49:11 -0700 (PDT)
+        id S1727645AbfFCNyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 09:54:13 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:44488 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727033AbfFCNyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 09:54:13 -0400
+Received: by mail-wr1-f66.google.com with SMTP id w13so12143929wru.11;
+        Mon, 03 Jun 2019 06:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/OxSjciJIeWf3o+SF5GIESfQJ9u3Ak5QaiWnoP/UDfw=;
-        b=D3ANaayNBuhH/wBYNSILUyMur/W3csqCrpCjuxizfljbqS6mDc16ow8wnPQ1EDiuF4
-         cO+TBIsOA9W7/Rh38lUvFso6QrLILL0C/geBpdADlPTF05tiZl2vZyQJUNnyWehVTxWa
-         udC0JK7xJOdnHKrqAf5W2XpsyZE/eVoVDafHtgcYOVQZeCJ+gFY0NplwRlt1e5cm21WO
-         8dvDCOli++VvBU0hx3ODIw7/jM5eYvRpMvO4g2FdwO6b/sb6N3oNiXE3sJUXNnCjNOnJ
-         DVEJFB/sNS+YJ/zFWUeVDgE42eD8WqzPdk5EksmJoPTChQlz4VJlYA1L/YAip4cWZppU
-         9jXw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=SOLJAb47J6suPT31dVCEHN+/0FUVoo53pcrrD0BrXa0=;
+        b=kNvHCGiH9bIhYodCq4cBZZUjZidvQr36X/U2+4sypDKAUtopXKLWb9SGUHoIH3ns5b
+         bz+SKWFVFGSeNmGY3AU0xM+AshQxnPJFaq/jXXkpJCqqhZFg6gtUuamyhcAK799JX1uJ
+         5weQwp5aYvm9nAa1Mdfy7mr8XCTGxs1wLCf16y7vPSt96uR3jnWqu0JC1uelvTS33X5W
+         dt7QP+eWuDiWAoRNUGPvDqkQA8qyLG/08JGslSHvdP8f3mngfXYtARRui/+xY9bKtel8
+         LNNtnaIsEur/0cfps6c5jALVT37pZuwiUhQ65XtJ2+dk7LuGn8p9+2mk+zcV7wBaFtVp
+         0CIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/OxSjciJIeWf3o+SF5GIESfQJ9u3Ak5QaiWnoP/UDfw=;
-        b=rujMoE/xbuOYVS4P864jnq9zFBOZFoCXRzkvuZLuGQSIag480YGK4yZ0sPPiOQrgD8
-         1KNsZXwbuztLWbb5QrJ6fB6Spru207z10M7mg6rS//j2lZVl8pxtc+bCPqX/zdzwWnuY
-         doNCsX5VEzE/XUebJcs7MxkTvALRe7YElaKUq3dT1BlSQyxrOy7gt+QQkumsRLcSRkOa
-         +jZbyo2vO+VPFgXT1E9LFvMH9OWM9hoj438QCToulIapkgiL0MZiZq98qqbqOU2EOjvq
-         hHqJhcXalM7CMxv9OfE9ouCqsSgpjb6OFVq4ulxE5+VSlTZQE74mc0PdPWg3eB91DDGy
-         1rEw==
-X-Gm-Message-State: APjAAAVWkEINbt3oRMoQ/vRKSkTOo7qa2S/EdoDN+qqyRt4ClkaFjGFB
-        YamWNdTHLKvDVUU//pjutELFejEmcyEj00qCkvUuxA==
-X-Google-Smtp-Source: APXvYqzF5IbIrF28m7F6tBtkO/YRqjksFN0caxOVOMKgPSZT7bPA8JVGtjYyAckcMGz6wF94DBhUck9ocrKWjZw/OdM=
-X-Received: by 2002:a67:ed8b:: with SMTP id d11mr12829986vsp.35.1559569750880;
- Mon, 03 Jun 2019 06:49:10 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SOLJAb47J6suPT31dVCEHN+/0FUVoo53pcrrD0BrXa0=;
+        b=cEENFjmuin+5CE+dZRK7d0MOF3jhQJUO7gzmsOAw6teC02gxhGcJ5mitzbyfc3ap8r
+         HB25tkUhg7vsAagB5aJh1ejDSuA5em4OKE2pjAe1SnlxsckmkMWr552XdcXXCIpFxa29
+         0Qp2onU+q/6kwIRM9ot74lJG/KPK9LV2pgRbOXskFI+PffaCU/VA9zMPSxaEwR7APUA8
+         kstGp3oDxbhPTDxmkIK3J0ylqA7q3r9magERnqGE6lh0DnSYaV9NiNC8ecaVQE6Eq6Zy
+         c4NKhcUXBOSqQgzspVLwNDXX83qT6m2xdNMRSeldHlR764ZOSAfYbCllbMThZWtXOavU
+         t71Q==
+X-Gm-Message-State: APjAAAUmr/86w+Rj0ujT3mY9dPcYZRVgWsq/kFgDUqsYeImWOaUMbALd
+        /DYlskmBDBivplwftlsitZw=
+X-Google-Smtp-Source: APXvYqwBRxL1UNgBQBtCYJ/fYTy8aYZ+K/EPqrlhRxj135IKkvRYV8d3QAIxXRud/LcpvlJKpcdzjQ==
+X-Received: by 2002:a5d:5283:: with SMTP id c3mr2522063wrv.268.1559570050936;
+        Mon, 03 Jun 2019 06:54:10 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id d3sm11070337wrs.8.2019.06.03.06.54.09
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 03 Jun 2019 06:54:09 -0700 (PDT)
+Date:   Mon, 3 Jun 2019 15:54:08 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Doug Anderson <dianders@chromium.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Christoph Hellwig <hch@lst.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH] of/device: add blacklist for iommu dma_ops
+Message-ID: <20190603135408.GE30132@ulmo>
+References: <20181201165348.24140-1-robdclark@gmail.com>
+ <CAL_JsqJmPqis46Un91QyhXgdrVtfATMP_hTp6wSeSAfc8MLFfw@mail.gmail.com>
+ <CAF6AEGs9Nsft8ofZkGz_yWBPBC+prh8dBSkJ4PJr8yk2c5FMdQ@mail.gmail.com>
+ <CAF6AEGt-dhbQS5zZCNVTLT57OiUwO0RiP5bawTSu2RKZ-7W-aw@mail.gmail.com>
+ <CAAFQd5BdrJFL5LKK8O5NPDKWfFgkTX_JU-jU3giEz33tj-jwCA@mail.gmail.com>
+ <CAF6AEGtj+kyXqKeJK2-0e1jw_A4wz-yBEyv5zhf5Vfoi2_p2CA@mail.gmail.com>
+ <401f9948-14bd-27a2-34c1-fb429cae966d@arm.com>
+ <CAF6AEGuGGAThqs9ztTNyGnMyhFc9wbtn=N8A4qqQxcN_PAxsEw@mail.gmail.com>
 MIME-Version: 1.0
-References: <1559208158-468-1-git-send-email-orito.takao@socionext.com>
-In-Reply-To: <1559208158-468-1-git-send-email-orito.takao@socionext.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 3 Jun 2019 15:48:34 +0200
-Message-ID: <CAPDyKFqeTxqv6W=t_SRgnBnqzjLEpbyW1LR_UkoGC2YfoKJs1A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-milbeaut: add Milbeaut SD controller driver
-To:     Takao Orito <orito.takao@socionext.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jaswinder Singh <jaswinder.singh@linaro.org>,
-        sugaya.taichi@socionext.com, kasai.kazuhiro@socionext.com,
-        kanematsu.shinji@socionext.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TU+u6i6jrDPzmlWF"
+Content-Disposition: inline
+In-Reply-To: <CAF6AEGuGGAThqs9ztTNyGnMyhFc9wbtn=N8A4qqQxcN_PAxsEw@mail.gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Adrian
 
-On Thu, 30 May 2019 at 11:20, Takao Orito <orito.takao@socionext.com> wrote:
->
-> SD Host controller on Milbeaut consists of two controller parts.
-> One is core controller F_SDH30, this is similar to sdhci-fujitsu
-> controller.
-> Another is bridge controller.
-> This bridge controller is not compatible with sdhci-fujitsu controller.
-> This is special for Milbeaut series. This has some functions.
-> For example, reset control, clock enable/select for SDR50/25/12, set
-> property of SD physical pins, retuning control, set capabilityies.
->
-> This bridge controller requires special procedures at reset or clock
-> enablement or change for further tuning of clock.
->
-> Signed-off-by: Takao Orito <orito.takao@socionext.com>
+--TU+u6i6jrDPzmlWF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This looks good to me, however I have looped in Adrian who maintains
-SDHCI drivers, to allow him to provide some input.
+On Mon, Jun 03, 2019 at 06:20:57AM -0700, Rob Clark wrote:
+> On Mon, Jun 3, 2019 at 4:14 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> >
+> > On 03/06/2019 11:47, Rob Clark wrote:
+> > > On Sun, Jun 2, 2019 at 11:25 PM Tomasz Figa <tfiga@chromium.org> wrot=
+e:
+> > >>
+> > >> On Mon, Jun 3, 2019 at 4:40 AM Rob Clark <robdclark@gmail.com> wrote:
+> > >>>
+> > >>> So, another case I've come across, on the display side.. I'm working
+> > >>> on handling the case where bootloader enables display (and takes io=
+mmu
+> > >>> out of reset).. as soon as DMA domain gets attached we get iommu
+> > >>> faults, because bootloader has already configured display for scano=
+ut.
+> > >>> Unfortunately this all happens before actual driver is probed and h=
+as
+> > >>> a chance to intervene.
+> > >>>
+> > >>> It's rather unfortunate that we tried to be clever rather than just
+> > >>> making drivers call some function to opt-in to the hookup of dma io=
+mmu
+> > >>> ops :-(
+> > >>
+> > >> I think it still works for the 90% of cases and if 10% needs some
+> > >> explicit work in the drivers, that's better than requiring 100% of t=
+he
+> > >> drivers to do things manually.
+> >
+> > Right, it's not about "being clever", it's about not adding opt-in code
+> > to the hundreds and hundreds and hundreds of drivers which *might* ever
+> > find themselves used on a system where they would need the IOMMU's help
+> > for DMA.
+>=20
+> Well, I mean, at one point we didn't do the automatic iommu hookup, we
+> could have just stuck with that and added a helper so drivers could
+> request the hookup.  Things wouldn't have been any more broken than
+> before, and when people bring up systems where iommu is required, they
+> could have added the necessary dma_iommu_configure() call.  But that
+> is water under the bridge now.
+>=20
+> > >> Adding Marek who had the same problem on Exynos.
+> > >
+> > > I do wonder how many drivers need to iommu_map in their ->probe()?
+> > > I'm thinking moving the auto-hookup to after a successful probe(),
+> > > with some function a driver could call if they need mapping in probe,
+> > > might be a way to eventually get rid of the blacklist.  But I've no
+> > > idea how to find the subset of drivers that would be broken without a
+> > > dma_setup_iommu_stuff() call in their probe.
+> >
+> > Wouldn't help much. That particular issue is nothing to do with DMA ops
+> > really, it's about IOMMU initialisation. On something like SMMUv3 there
+> > is literally no way to turn the thing on without blocking unknown
+> > traffic - it *has* to have stream table entries programmed before it can
+> > even allow stuff to bypass.
+>=20
+> fwiw, on these sdm850 laptops (and I think sdm845 boards like mtp and
+> db845c) the SMMU (v2) is taken out of bypass by the bootloader.  Bjorn
+> has some patches for arm-smmu to read-back the state at boot.
+>=20
+> (Although older devices were booting with display enabled but SMMU in byp=
+ass.)
+>=20
+> > The answer is either to either pay attention to the "Quiesce all DMA
+> > capable devices" part of the boot protocol (which has been there since
+> > pretty much forever), or to come up with some robust way of
+> > communicating "live" boot-time mappings to IOMMU drivers so that they
+> > can program themselves appropriately during probe.
+>=20
+> Unfortunately display lit up by bootloader is basically ubiquitous.
+> Every single android phone does it.  All of the windows-arm laptops do
+> it.  Basically 99.9% of things that have a display do it.  It's a
+> tough problem to solve involving clks, gdsc, regulators, etc, in
+> addition to the display driver.. and sadly now smmu.  And devices
+> where we can make changes to and update the firmware are rather rare.
+> So there is really no option to ignore this problem.
 
-Kind regards
-Uffe
+I think this is going to require at least some degree of cooperation
+=66rom the bootloader. See my other thread on that. Unfortunately I think
+this is an area where everyone has kind of been doing their own thing
+even if standard bindings for this have been around for quite a while
+(actually 5 years by now). I suspect that most bootloaders that run
+today are not that old, but as always downstream doesn't follow closely
+where upstream is guiding.
 
+> I guess if we had some early-quirks mechanism like x86 does, we could
+> mash the display off early in boot.  That would be an easy solution.
+> Although I'd prefer a proper solution so that android phones aren't
+> carrying around enormous stacks of hack patches to achieve a smooth
+> flicker-free boot.
 
-> ---
->  drivers/mmc/host/Kconfig          |  11 ++
->  drivers/mmc/host/Makefile         |   1 +
->  drivers/mmc/host/sdhci-milbeaut.c | 362 ++++++++++++++++++++++++++++++++++++++
->  drivers/mmc/host/sdhci_f_sdh30.c  |  26 +--
->  drivers/mmc/host/sdhci_f_sdh30.h  |  32 ++++
->  5 files changed, 407 insertions(+), 25 deletions(-)
->  create mode 100644 drivers/mmc/host/sdhci-milbeaut.c
->  create mode 100644 drivers/mmc/host/sdhci_f_sdh30.h
->
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index 28fcd8f..9b39111 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -353,6 +353,17 @@ config MMC_SDHCI_F_SDH30
->
->           If unsure, say N.
->
-> +config MMC_SDHCI_MILBEAUT
-> +       tristate "SDHCI support for Socionext Milbeaut Serieas using F_SDH30"
-> +       depends on MMC_SDHCI_PLTFM
-> +       depends on OF
-> +       help
-> +         This selects the Secure Digital Host Controller Interface (SDHCI)
-> +         Needed by Milbeaut SoC for MMC / SD / SDIO support.
-> +         If you have a controller with this interface, say Y or M here.
-> +
-> +         If unsure, say N.
-> +
->  config MMC_SDHCI_IPROC
->         tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
->         depends on ARCH_BCM2835 || ARCH_BCM_IPROC || COMPILE_TEST
-> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-> index 7357871..db98e8a 100644
-> --- a/drivers/mmc/host/Makefile
-> +++ b/drivers/mmc/host/Makefile
-> @@ -21,6 +21,7 @@ obj-$(CONFIG_MMC_SDHCI_PXAV2) += sdhci-pxav2.o
->  obj-$(CONFIG_MMC_SDHCI_S3C)    += sdhci-s3c.o
->  obj-$(CONFIG_MMC_SDHCI_SIRF)           += sdhci-sirf.o
->  obj-$(CONFIG_MMC_SDHCI_F_SDH30)        += sdhci_f_sdh30.o
-> +obj-$(CONFIG_MMC_SDHCI_MILBEAUT)       += sdhci-milbeaut.o
->  obj-$(CONFIG_MMC_SDHCI_SPEAR)  += sdhci-spear.o
->  obj-$(CONFIG_MMC_SDHCI_AM654)  += sdhci_am654.o
->  obj-$(CONFIG_MMC_WBSD)         += wbsd.o
-> diff --git a/drivers/mmc/host/sdhci-milbeaut.c b/drivers/mmc/host/sdhci-milbeaut.c
-> new file mode 100644
-> index 0000000..a1aa21b
-> --- /dev/null
-> +++ b/drivers/mmc/host/sdhci-milbeaut.c
-> @@ -0,0 +1,362 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2013 - 2015 Fujitsu Semiconductor, Ltd
-> + *              Vincent Yang <vincent.yang@tw.fujitsu.com>
-> + * Copyright (C) 2015 Linaro Ltd  Andy Green <andy.green@linaro.org>
-> + * Copyright (C) 2019 Socionext Inc.
-> + *              Takao Orito <orito.takao@socionext.com>
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/property.h>
-> +
-> +#include "sdhci-pltfm.h"
-> +#include "sdhci_f_sdh30.h"
-> +
-> +/* milbeaut bridge controller register */
-> +#define MLB_SOFT_RESET         0x0200
-> +#define  MLB_SOFT_RESET_RSTX           BIT(0)
-> +
-> +#define MLB_WP_CD_LED_SET      0x0210
-> +#define  MLB_WP_CD_LED_SET_LED_INV  BIT(2)
-> +
-> +#define MLB_CR_SET                     0x0220
-> +#define  MLB_CR_SET_CR_TOCLKUNIT       BIT(24)
-> +#define  MLB_CR_SET_CR_TOCLKFREQ_SFT   (16)
-> +#define  MLB_CR_SET_CR_TOCLKFREQ_MASK  (0x3F << MLB_CR_SET_CR_TOCLKFREQ_SFT)
-> +#define  MLB_CR_SET_CR_BCLKFREQ_SFT    (8)
-> +#define  MLB_CR_SET_CR_BCLKFREQ_MASK   (0xFF << MLB_CR_SET_CR_BCLKFREQ_SFT)
-> +#define  MLB_CR_SET_CR_RTUNTIMER_SFT   (4)
-> +#define  MLB_CR_SET_CR_RTUNTIMER_MASK  (0xF << MLB_CR_SET_CR_RTUNTIMER_SFT)
-> +
-> +#define MLB_SD_TOCLK_I_DIV  16
-> +#define MLB_TOCLKFREQ_UNIT_THRES    16000000
-> +#define MLB_CAL_TOCLKFREQ_MHZ(rate) (rate / MLB_SD_TOCLK_I_DIV / 1000000)
-> +#define MLB_CAL_TOCLKFREQ_KHZ(rate) (rate / MLB_SD_TOCLK_I_DIV / 1000)
-> +#define MLB_TOCLKFREQ_MAX   63
-> +#define MLB_TOCLKFREQ_MIN    1
-> +
-> +#define MLB_SD_BCLK_I_DIV   4
-> +#define MLB_CAL_BCLKFREQ(rate)  (rate / MLB_SD_BCLK_I_DIV / 1000000)
-> +#define MLB_BCLKFREQ_MAX        255
-> +#define MLB_BCLKFREQ_MIN          1
-> +
-> +#define MLB_CDR_SET                    0x0230
-> +#define MLB_CDR_SET_CLK2POW16  3
-> +
-> +struct f_sdhost_priv {
-> +       struct clk *clk_iface;
-> +       struct clk *clk;
-> +       struct device *dev;
-> +       bool enable_cmd_dat_delay;
-> +};
-> +
-> +static void sdhci_milbeaut_soft_voltage_switch(struct sdhci_host *host)
-> +{
-> +       u32 ctrl = 0;
-> +
-> +       usleep_range(2500, 3000);
-> +       ctrl = sdhci_readl(host, F_SDH30_IO_CONTROL2);
-> +       ctrl |= F_SDH30_CRES_O_DN;
-> +       sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
-> +       ctrl |= F_SDH30_MSEL_O_1_8;
-> +       sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
-> +
-> +       ctrl &= ~F_SDH30_CRES_O_DN;
-> +       sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
-> +       usleep_range(2500, 3000);
-> +
-> +       ctrl = sdhci_readl(host, F_SDH30_TUNING_SETTING);
-> +       ctrl |= F_SDH30_CMD_CHK_DIS;
-> +       sdhci_writel(host, ctrl, F_SDH30_TUNING_SETTING);
-> +}
-> +
-> +static unsigned int sdhci_milbeaut_get_min_clock(struct sdhci_host *host)
-> +{
-> +       return F_SDH30_MIN_CLOCK;
-> +}
-> +
-> +static void sdhci_milbeaut_reset(struct sdhci_host *host, u8 mask)
-> +{
-> +       struct f_sdhost_priv *priv = sdhci_priv(host);
-> +       u16 clk;
-> +       u32 ctl;
-> +       ktime_t timeout;
-> +
-> +       clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-> +       clk = (clk & ~SDHCI_CLOCK_CARD_EN) | SDHCI_CLOCK_INT_EN;
-> +       sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-> +
-> +       sdhci_reset(host, mask);
-> +
-> +       clk |= SDHCI_CLOCK_CARD_EN;
-> +       sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-> +
-> +       timeout = ktime_add_ms(ktime_get(), 10);
-> +       while (1) {
-> +               bool timedout = ktime_after(ktime_get(), timeout);
-> +
-> +               clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-> +               if (clk & SDHCI_CLOCK_INT_STABLE)
-> +                       break;
-> +               if (timedout) {
-> +                       pr_err("%s: Internal clock never stabilised.\n",
-> +                               mmc_hostname(host->mmc));
-> +                       sdhci_dumpregs(host);
-> +                       return;
-> +               }
-> +               udelay(10);
-> +       }
-> +
-> +       if (priv->enable_cmd_dat_delay) {
-> +               ctl = sdhci_readl(host, F_SDH30_ESD_CONTROL);
-> +               ctl |= F_SDH30_CMD_DAT_DELAY;
-> +               sdhci_writel(host, ctl, F_SDH30_ESD_CONTROL);
-> +       }
-> +}
-> +
-> +static void sdhci_milbeaut_set_power(struct sdhci_host *host,
-> +                       unsigned char mode, unsigned short vdd)
-> +{
-> +       if (!IS_ERR(host->mmc->supply.vmmc)) {
-> +               struct mmc_host *mmc = host->mmc;
-> +
-> +               mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
-> +       }
-> +       sdhci_set_power_noreg(host, mode, vdd);
-> +}
-> +
-> +static const struct sdhci_ops sdhci_milbeaut_ops = {
-> +       .voltage_switch = sdhci_milbeaut_soft_voltage_switch,
-> +       .get_min_clock = sdhci_milbeaut_get_min_clock,
-> +       .reset = sdhci_milbeaut_reset,
-> +       .set_clock = sdhci_set_clock,
-> +       .set_bus_width = sdhci_set_bus_width,
-> +       .set_uhs_signaling = sdhci_set_uhs_signaling,
-> +       .set_power = sdhci_milbeaut_set_power,
-> +};
-> +
-> +static void sdhci_milbeaut_bridge_reset(struct sdhci_host *host,
-> +                                               int reset_flag)
-> +{
-> +       if (reset_flag)
-> +               sdhci_writel(host, 0, MLB_SOFT_RESET);
-> +       else
-> +               sdhci_writel(host, MLB_SOFT_RESET_RSTX, MLB_SOFT_RESET);
-> +}
-> +
-> +static void sdhci_milbeaut_bridge_init(struct sdhci_host *host,
-> +                                               int rate)
-> +{
-> +       u32 val, clk;
-> +
-> +       /* IO_SDIO_CR_SET should be set while reset */
-> +       val = sdhci_readl(host, MLB_CR_SET);
-> +       val &= ~(MLB_CR_SET_CR_TOCLKFREQ_MASK | MLB_CR_SET_CR_TOCLKUNIT |
-> +                       MLB_CR_SET_CR_BCLKFREQ_MASK);
-> +       if (rate >= MLB_TOCLKFREQ_UNIT_THRES) {
-> +               clk = MLB_CAL_TOCLKFREQ_MHZ(rate);
-> +               clk = min_t(u32, MLB_TOCLKFREQ_MAX, clk);
-> +               val |= MLB_CR_SET_CR_TOCLKUNIT |
-> +                       (clk << MLB_CR_SET_CR_TOCLKFREQ_SFT);
-> +       } else {
-> +               clk = MLB_CAL_TOCLKFREQ_KHZ(rate);
-> +               clk = min_t(u32, MLB_TOCLKFREQ_MAX, clk);
-> +               clk = max_t(u32, MLB_TOCLKFREQ_MIN, clk);
-> +               val |= clk << MLB_CR_SET_CR_TOCLKFREQ_SFT;
-> +       }
-> +
-> +       clk = MLB_CAL_BCLKFREQ(rate);
-> +       clk = min_t(u32, MLB_BCLKFREQ_MAX, clk);
-> +       clk = max_t(u32, MLB_BCLKFREQ_MIN, clk);
-> +       val |=  clk << MLB_CR_SET_CR_BCLKFREQ_SFT;
-> +       val &= ~MLB_CR_SET_CR_RTUNTIMER_MASK;
-> +       sdhci_writel(host, val, MLB_CR_SET);
-> +
-> +       sdhci_writel(host, MLB_CDR_SET_CLK2POW16, MLB_CDR_SET);
-> +
-> +       sdhci_writel(host, MLB_WP_CD_LED_SET_LED_INV, MLB_WP_CD_LED_SET);
-> +}
-> +
-> +static void sdhci_milbeaut_vendor_init(struct sdhci_host *host)
-> +{
-> +       struct f_sdhost_priv *priv = sdhci_priv(host);
-> +       u32 ctl;
-> +
-> +       ctl = sdhci_readl(host, F_SDH30_IO_CONTROL2);
-> +       ctl |= F_SDH30_CRES_O_DN;
-> +       sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
-> +       ctl &= ~F_SDH30_MSEL_O_1_8;
-> +       sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
-> +       ctl &= ~F_SDH30_CRES_O_DN;
-> +       sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
-> +
-> +       ctl = sdhci_readw(host, F_SDH30_AHB_CONFIG);
-> +       ctl |= F_SDH30_SIN | F_SDH30_AHB_INCR_16 | F_SDH30_AHB_INCR_8 |
-> +              F_SDH30_AHB_INCR_4;
-> +       ctl &= ~(F_SDH30_AHB_BIGED | F_SDH30_BUSLOCK_EN);
-> +       sdhci_writew(host, ctl, F_SDH30_AHB_CONFIG);
-> +
-> +       if (priv->enable_cmd_dat_delay) {
-> +               ctl = sdhci_readl(host, F_SDH30_ESD_CONTROL);
-> +               ctl |= F_SDH30_CMD_DAT_DELAY;
-> +               sdhci_writel(host, ctl, F_SDH30_ESD_CONTROL);
-> +       }
-> +}
-> +
-> +static const struct of_device_id mlb_dt_ids[] = {
-> +       {
-> +               .compatible = "socionext,milbeaut-m10v-sdhci-3.0",
-> +       },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, mlb_dt_ids);
-> +
-> +static void sdhci_milbeaut_init(struct sdhci_host *host)
-> +{
-> +       struct f_sdhost_priv *priv = sdhci_priv(host);
-> +       int rate = clk_get_rate(priv->clk);
-> +       u16 ctl;
-> +
-> +       sdhci_milbeaut_bridge_reset(host, 0);
-> +
-> +       ctl = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-> +       ctl &= ~(SDHCI_CLOCK_CARD_EN | SDHCI_CLOCK_INT_EN);
-> +       sdhci_writew(host, ctl, SDHCI_CLOCK_CONTROL);
-> +
-> +       sdhci_milbeaut_bridge_reset(host, 1);
-> +
-> +       sdhci_milbeaut_bridge_init(host, rate);
-> +       sdhci_milbeaut_bridge_reset(host, 0);
-> +
-> +       sdhci_milbeaut_vendor_init(host);
-> +}
-> +
-> +static int sdhci_milbeaut_probe(struct platform_device *pdev)
-> +{
-> +       struct sdhci_host *host;
-> +       struct device *dev = &pdev->dev;
-> +       struct resource *res;
-> +       int irq, ret = 0;
-> +       struct f_sdhost_priv *priv;
-> +
-> +       irq = platform_get_irq(pdev, 0);
-> +       if (irq < 0) {
-> +               dev_err(dev, "%s: no irq specified\n", __func__);
-> +               return irq;
-> +       }
-> +
-> +       host = sdhci_alloc_host(dev, sizeof(struct f_sdhost_priv));
-> +       if (IS_ERR(host))
-> +               return PTR_ERR(host);
-> +
-> +       priv = sdhci_priv(host);
-> +       priv->dev = dev;
-> +
-> +       host->quirks = SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC |
-> +                          SDHCI_QUIRK_INVERTED_WRITE_PROTECT |
-> +                          SDHCI_QUIRK_CLOCK_BEFORE_RESET |
-> +                          SDHCI_QUIRK_DELAY_AFTER_POWER;
-> +       host->quirks2 = SDHCI_QUIRK2_SUPPORT_SINGLE |
-> +                       SDHCI_QUIRK2_TUNING_WORK_AROUND |
-> +                       SDHCI_QUIRK2_PRESET_VALUE_BROKEN;
-> +
-> +       priv->enable_cmd_dat_delay = device_property_read_bool(dev,
-> +                                               "fujitsu,cmd-dat-delay-select");
-> +
-> +       ret = mmc_of_parse(host->mmc);
-> +       if (ret)
-> +               goto err;
-> +
-> +       platform_set_drvdata(pdev, host);
-> +
-> +       host->hw_name = "f_sdh30";
-> +       host->ops = &sdhci_milbeaut_ops;
-> +       host->irq = irq;
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       host->ioaddr = devm_ioremap_resource(&pdev->dev, res);
-> +       if (IS_ERR(host->ioaddr)) {
-> +               ret = PTR_ERR(host->ioaddr);
-> +               goto err;
-> +       }
-> +
-> +       if (dev_of_node(dev)) {
-> +               sdhci_get_of_property(pdev);
-> +
-> +               priv->clk_iface = devm_clk_get(&pdev->dev, "iface");
-> +               if (IS_ERR(priv->clk_iface)) {
-> +                       ret = PTR_ERR(priv->clk_iface);
-> +                       goto err;
-> +               }
-> +
-> +               ret = clk_prepare_enable(priv->clk_iface);
-> +               if (ret)
-> +                       goto err;
-> +
-> +               priv->clk = devm_clk_get(&pdev->dev, "core");
-> +               if (IS_ERR(priv->clk)) {
-> +                       ret = PTR_ERR(priv->clk);
-> +                       goto err_clk;
-> +               }
-> +
-> +               ret = clk_prepare_enable(priv->clk);
-> +               if (ret)
-> +                       goto err_clk;
-> +       }
-> +
-> +       sdhci_milbeaut_init(host);
-> +
-> +       ret = sdhci_add_host(host);
-> +       if (ret)
-> +               goto err_add_host;
-> +
-> +       return 0;
-> +
-> +err_add_host:
-> +       clk_disable_unprepare(priv->clk);
-> +err_clk:
-> +       clk_disable_unprepare(priv->clk_iface);
-> +err:
-> +       sdhci_free_host(host);
-> +       return ret;
-> +}
-> +
-> +static int sdhci_milbeaut_remove(struct platform_device *pdev)
-> +{
-> +       struct sdhci_host *host = platform_get_drvdata(pdev);
-> +       struct f_sdhost_priv *priv = sdhci_priv(host);
-> +
-> +       sdhci_remove_host(host, readl(host->ioaddr + SDHCI_INT_STATUS) ==
-> +                         0xffffffff);
-> +
-> +       clk_disable_unprepare(priv->clk_iface);
-> +       clk_disable_unprepare(priv->clk);
-> +
-> +       sdhci_free_host(host);
-> +       platform_set_drvdata(pdev, NULL);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct platform_driver sdhci_milbeaut_driver = {
-> +       .driver = {
-> +               .name = "sdhci-milbeaut",
-> +               .of_match_table = of_match_ptr(mlb_dt_ids),
-> +       },
-> +       .probe  = sdhci_milbeaut_probe,
-> +       .remove = sdhci_milbeaut_remove,
-> +};
-> +
-> +module_platform_driver(sdhci_milbeaut_driver);
-> +
-> +MODULE_DESCRIPTION("MILBEAUT SD Card Controller driver");
-> +MODULE_AUTHOR("Takao Orito <orito.takao@socionext.com>");
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_ALIAS("platform:sdhci-milbeaut");
-> diff --git a/drivers/mmc/host/sdhci_f_sdh30.c b/drivers/mmc/host/sdhci_f_sdh30.c
-> index 485f759..ca4c99a 100644
-> --- a/drivers/mmc/host/sdhci_f_sdh30.c
-> +++ b/drivers/mmc/host/sdhci_f_sdh30.c
-> @@ -19,31 +19,7 @@
->  #include <linux/clk.h>
->
->  #include "sdhci-pltfm.h"
-> -
-> -/* F_SDH30 extended Controller registers */
-> -#define F_SDH30_AHB_CONFIG             0x100
-> -#define  F_SDH30_AHB_BIGED             0x00000040
-> -#define  F_SDH30_BUSLOCK_DMA           0x00000020
-> -#define  F_SDH30_BUSLOCK_EN            0x00000010
-> -#define  F_SDH30_SIN                   0x00000008
-> -#define  F_SDH30_AHB_INCR_16           0x00000004
-> -#define  F_SDH30_AHB_INCR_8            0x00000002
-> -#define  F_SDH30_AHB_INCR_4            0x00000001
-> -
-> -#define F_SDH30_TUNING_SETTING         0x108
-> -#define  F_SDH30_CMD_CHK_DIS           0x00010000
-> -
-> -#define F_SDH30_IO_CONTROL2            0x114
-> -#define  F_SDH30_CRES_O_DN             0x00080000
-> -#define  F_SDH30_MSEL_O_1_8            0x00040000
-> -
-> -#define F_SDH30_ESD_CONTROL            0x124
-> -#define  F_SDH30_EMMC_RST              0x00000002
-> -#define  F_SDH30_EMMC_HS200            0x01000000
-> -
-> -#define F_SDH30_CMD_DAT_DELAY          0x200
-> -
-> -#define F_SDH30_MIN_CLOCK              400000
-> +#include "sdhci_f_sdh30.h"
->
->  struct f_sdhost_priv {
->         struct clk *clk_iface;
-> diff --git a/drivers/mmc/host/sdhci_f_sdh30.h b/drivers/mmc/host/sdhci_f_sdh30.h
-> new file mode 100644
-> index 0000000..fc1ad28
-> --- /dev/null
-> +++ b/drivers/mmc/host/sdhci_f_sdh30.h
-> @@ -0,0 +1,32 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2013 - 2015 Fujitsu Semiconductor, Ltd
-> + *              Vincent Yang <vincent.yang@tw.fujitsu.com>
-> + * Copyright (C) 2015 Linaro Ltd  Andy Green <andy.green@linaro.org>
-> + * Copyright (C) 2019 Socionext Inc.
-> + *
-> + */
-> +
-> +/* F_SDH30 extended Controller registers */
-> +#define F_SDH30_AHB_CONFIG      0x100
-> +#define  F_SDH30_AHB_BIGED      BIT(6)
-> +#define  F_SDH30_BUSLOCK_DMA    BIT(5)
-> +#define  F_SDH30_BUSLOCK_EN     BIT(4)
-> +#define  F_SDH30_SIN            BIT(3)
-> +#define  F_SDH30_AHB_INCR_16    BIT(2)
-> +#define  F_SDH30_AHB_INCR_8     BIT(1)
-> +#define  F_SDH30_AHB_INCR_4     BIT(0)
-> +
-> +#define F_SDH30_TUNING_SETTING  0x108
-> +#define  F_SDH30_CMD_CHK_DIS    BIT(16)
-> +
-> +#define F_SDH30_IO_CONTROL2     0x114
-> +#define  F_SDH30_CRES_O_DN      BIT(19)
-> +#define  F_SDH30_MSEL_O_1_8     BIT(18)
-> +
-> +#define F_SDH30_ESD_CONTROL     0x124
-> +#define         F_SDH30_EMMC_RST               BIT(1)
-> +#define  F_SDH30_CMD_DAT_DELAY BIT(9)
-> +#define         F_SDH30_EMMC_HS200             BIT(24)
-> +
-> +#define F_SDH30_MIN_CLOCK              400000
-> --
-> 1.9.1
->
->
+The proper solution, I think, is for bootloader and kernel to work
+together. Unfortunately that means we'll just have to bite the bullet
+and get things fixed across the stack. I think this is just the latest
+manifestation of the catch-up that upstream has been playing. Only now
+that we're starting to enable all of these features upstream are we
+running into interoperability issues.
+
+If upstream had been further along we would've caught these issues way
+ahead of time and could've influenced the designs of bootloader much
+earlier. Now, unless we get all the vendors to go back and modify 5 year
+old code that's going to be difficult.
+
+However, I think Robin has a point here: it's clearly documented in the
+boot protocol, so technically bootloaders are buggy and we can't always
+go and fix things so that buggy bootloaders continue to work. There's
+not a whole lot of incentive for anyone to fix the bootloaders if we
+keep doing that, ey?
+
+> I suppose arm-smmu could realize that the context bank is already
+> taken out of bypass..  although I'm not entirely sure if we can assume
+> that the CPU would be able to read back the pagetable setup by the
+> bootloader.  Maybe Vivek has an idea about that?
+
+I've been thinking, though, and I'm not sure I see this issue on newer
+Tegras that use the ARM SMMU. I suppose this could be because the
+bootloader doesn't enable the SMMU, but then again, I should be getting
+these faults even so. Interestingly I don't see those on 64-bit ARM, so
+perhaps there's something special about that.
+
+Let me reload a bit of context here so I can give you more than just
+speculation.
+
+Thierry
+
+--TU+u6i6jrDPzmlWF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlz1Jn4ACgkQ3SOs138+
+s6EGAw//WoBqSWhuMgvrTtVCOhbWBmxJmptmdHLDjx/yvLkoM0MCaam+Aiybw0Kh
+G3KXAkBVmuVBCF2OTARyRatHhq+VOocpT2Kal8dLYU61v7HQv5gh0w3CMlG2h1Xd
+d42cI6eKLvoocd1LcC8R4YD8ouRiecEoQVbz9r8juSXYdWMX8C1NSV9RjnahesWY
+VN5/A256cr+1abCJkL/0CiJQpoqPtO4OmyCNGklzGqDb1iTu4Nmcl6xNfOiVlhtc
+OanNYDOHdEXgS3n7+XWair3DLicvhbWC0N38S3ku+SuG5jk9FNwV+k6NDvNwEkTh
+f1qm6svYfZXW4gGFiem795DEjYmxGww+k7UIkNR+qIMgk7MtyaTHMvxWz1AJzbAy
+UDCdWfFJ1l2Tr38/0Ew1P6ROWrXWbDaF17uMlr/ru3itx0K8jqSwi2Y7H6IqdJTv
+tncVAvf7E956Oq7JsCU7UbrR1hQxyv/MflhajnABr7kHwg20Wj47MQltsffnDIEY
+cxqesXYmS3lnbUb3woKFRRJy9USMt+OKMvpBsX4Pwwo/JfrfQeTlgEt3lDNeD1o2
+S0Am5PYyGji4gTXw0lNRXNImmHKPP/zoF3ykVTQ80VzTxPhvREpTplxTGd38ZylS
+6D+Hff8Y6ToyqtvqGCChbDwPfu7LJg0JtsVBJxZ4Qv10j7FIdMo=
+=Rz8c
+-----END PGP SIGNATURE-----
+
+--TU+u6i6jrDPzmlWF--
