@@ -2,345 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C014F32B31
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 10:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DBE532B49
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:01:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727837AbfFCIyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 04:54:24 -0400
-Received: from mail-vk1-f195.google.com ([209.85.221.195]:34647 "EHLO
-        mail-vk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727799AbfFCIyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 04:54:24 -0400
-Received: by mail-vk1-f195.google.com with SMTP id d7so2717670vkf.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 01:54:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=wdJEk7xoPcDvx0rL8FHQp9oPvWZRTtNsGybP0RtSagY=;
-        b=M5LBwXeW8e3O+PDSsi9zCXscQ8y1vbRUSJsU1dQVFrSJjRzc0XEsTIijLOFvdIySua
-         +OCo46JIId3hfB8wKxv+MCF7fVRzIDejRA2kyMLDpDQwCzug1Ciird69sGvwMmk1d8Mo
-         XsEJ3E2hVFq6TKZA01pfKGQ+jF0WA1WjOA96Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wdJEk7xoPcDvx0rL8FHQp9oPvWZRTtNsGybP0RtSagY=;
-        b=pDufBSgzvy97YEEJWLvTs5FNlxBZF3Kwip/HTjrfb3b8XBeHE339pKSaE7gzgjRZ1R
-         vWYwRQ5pBg6qEljBYTNEh//xwh6Lx/eLMwgVKZT7liqB/UqBjnR26T5+nU+B+9MKwM5I
-         5fh1nZWeofcwN/HqRu+S1pPm4guCa4zpB4sIl/ePyOub+KdL5+IQoczm13UCd602l9mS
-         xWtMvrWR4dPw6jA0HgC4hqUIX6Dev/n75uHnf4IIt+wBPVWahEZXDc/JFwLAb1rcgniH
-         E3A6mKV4O7aYTWCA/bmdwejRYHKDwU/0EhjPqgNMNzOT6GxFpfykw863+VVpxljMZXUL
-         QQBg==
-X-Gm-Message-State: APjAAAUPJPa0VUCUa7dt7F5K66AeJhGEWw6OowJeMkP+EOBbEc0FS6Dh
-        FFvWzQbigP8rqd2ZpbdDfo7qV5f16JcSm5U9OIpCFQ==
-X-Google-Smtp-Source: APXvYqzW5LQtHHySgqxIQwZwXTkV349/aO/EZ86HUpABwdgeY6YY1BGiVYaBh3z0RzEL+55rfLwERjYPN8UokbeRX/Y=
-X-Received: by 2002:a1f:a003:: with SMTP id j3mr5105438vke.74.1559552062071;
- Mon, 03 Jun 2019 01:54:22 -0700 (PDT)
+        id S1726561AbfFCJBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 05:01:39 -0400
+Received: from mail-eopbgr70042.outbound.protection.outlook.com ([40.107.7.42]:29038
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727003AbfFCJBj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jun 2019 05:01:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b4lMmQ5IOK3yFjAuwD9kRjqaVsV4ogoUCOJJcal1oQs=;
+ b=BftrIDswrGVoc03wgZKhzpNukQuzzcua6n/36RfuRee6n/o3Cd94dsM2spDoEu9DlWESHyx5Npw/iTP6gL/+YsFERNAVDdY0uaxlgVXOw3WMU/811I8ZUGaZZQuCISngUbjMlv/ltzhftbK9nJ8IM6VMEvuwLQ9oLTKjCD2gKec=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3818.eurprd04.prod.outlook.com (52.134.71.29) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.22; Mon, 3 Jun 2019 09:01:33 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::5835:e874:bd94:fec]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::5835:e874:bd94:fec%5]) with mapi id 15.20.1943.018; Mon, 3 Jun 2019
+ 09:01:33 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Leonard Crestez <leonard.crestez@nxp.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "maxime.ripard@bootlin.com" <maxime.ripard@bootlin.com>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "horms+renesas@verge.net.au" <horms+renesas@verge.net.au>,
+        "jagan@amarulasolutions.com" <jagan@amarulasolutions.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "dinguyen@kernel.org" <dinguyen@kernel.org>,
+        "enric.balletbo@collabora.com" <enric.balletbo@collabora.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Abel Vesa <abel.vesa@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V2 2/3] clk: imx: Add support for i.MX8MN clock driver
+Thread-Topic: [PATCH V2 2/3] clk: imx: Add support for i.MX8MN clock driver
+Thread-Index: AQHVGaxeLRS7zF6kSEqSfwNQzT+zYKaJonPw
+Date:   Mon, 3 Jun 2019 09:01:33 +0000
+Message-ID: <DB3PR0402MB39162498C890AB92D9722595F5140@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190603013503.40626-1-Anson.Huang@nxp.com>
+ <20190603013503.40626-2-Anson.Huang@nxp.com>
+ <VI1PR04MB5055D6EB38E84E370E881425EE140@VI1PR04MB5055.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB5055D6EB38E84E370E881425EE140@VI1PR04MB5055.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2e689b54-883d-4a3d-7660-08d6e8021383
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB3PR0402MB3818;
+x-ms-traffictypediagnostic: DB3PR0402MB3818:
+x-microsoft-antispam-prvs: <DB3PR0402MB3818825C7C401FA173C5A1E3F5140@DB3PR0402MB3818.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:113;
+x-forefront-prvs: 0057EE387C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(346002)(366004)(396003)(39860400002)(189003)(199004)(13464003)(53546011)(478600001)(8936002)(76176011)(316002)(229853002)(8676002)(25786009)(6506007)(7736002)(81166006)(71190400001)(81156014)(305945005)(256004)(11346002)(44832011)(102836004)(86362001)(74316002)(71200400001)(6436002)(476003)(2201001)(446003)(7416002)(33656002)(486006)(68736007)(53936002)(6246003)(55016002)(2501003)(5660300002)(9686003)(52536014)(14454004)(2906002)(66066001)(110136005)(26005)(7696005)(6116002)(99286004)(73956011)(64756008)(3846002)(66946007)(186003)(76116006)(66446008)(4326008)(66556008)(66476007)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3818;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 5EhKgCqbkxVJFWFHUW+do0fx6ehLjMR/AbhN23eUHbXTy84CLYqgVUjxoJNQsSq2RldPHN2YUuRN/1o99abBS8fn++Dq4uBR9PiUhOFG8rUNNFNtdID0SxQbKeZQed23gG6SvxT1ZSaTBSXy9W3asUo7AtM4MoKUCLUGeAjkQ94WpLlnNknsdU0fz+cgeJZ80s1f/nM/P2VCyKHGzCCt5fHwSsEYocIN6ch8hWdjN7mgwNVZukwmE5oKSbscTgbQm+ZoDhiIj6R3cVSzYgot7DO54z5hMwy0JDU8nwgp6G6isJ0wzn5EojnGh+Vj9+83gfSO5d9qsRk0xPbxcumGevUB7wKjHVSBprhjHuWG9QmH7kNJ417LpVwAIygXEg5Mo6/t423TlLuJcvABXaVz6BiI/no3KMK2MIc2emrDoSc=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190603043251.226549-1-cychiang@chromium.org>
- <20190603043251.226549-3-cychiang@chromium.org> <20190603100301.00d68690@xxx>
-In-Reply-To: <20190603100301.00d68690@xxx>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Mon, 3 Jun 2019 16:53:55 +0800
-Message-ID: <CAFv8Nw+g2SZ00FTH969AbpPBBm_jeN9C-7_Mz5Vr7xc+qs0UfQ@mail.gmail.com>
-Subject: Re: [alsa-devel] [PATCH 2/7] ASoC: hdmi-codec: use HDMI state
- notifier to add jack support
-To:     =?UTF-8?B?QW1hZGV1c3ogU8WCYXdpxYRza2k=?= 
-        <amadeuszx.slawinski@linux.intel.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>, Heiko Stuebner <heiko@sntech.de>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        linux-rockchip@lists.infradead.org,
-        Dylan Reid <dgreid@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, tzungbi@chromium.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e689b54-883d-4a3d-7660-08d6e8021383
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2019 09:01:33.3075
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3818
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 3, 2019 at 3:59 PM Amadeusz S=C5=82awi=C5=84ski
-<amadeuszx.slawinski@linux.intel.com> wrote:
->
-> On Mon,  3 Jun 2019 12:32:46 +0800
-> Cheng-Yi Chiang <cychiang@chromium.org> wrote:
->
-> > From: Philipp Zabel <p.zabel@pengutronix.de>
-> >
-> > Use HDMI connection / disconnection notifications to update an ALSA
-> > jack object. Also make a copy of the ELD block after every change.
-> >
-> > This was posted by Philipp Zabel at
-> >
-> > https://patchwork.kernel.org/patch/9430747/
-> >
-> > Modified by Cheng-Yi Chiang:
-> > - Fix the conflict of removed hdmi_codec_remove ops.
-> > - Other minor fix for the conflict with latest hdmi-codec on ASoC
-> >   for-next tree.
-> >
-> > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-> > ---
-> > The original patch is at https://patchwork.kernel.org/patch/9430747/
-> > I could not find the LKML link for the patch.
-> >
-> >  include/sound/hdmi-codec.h    |   7 +++
-> >  sound/soc/codecs/Kconfig      |   1 +
-> >  sound/soc/codecs/hdmi-codec.c | 104
-> > +++++++++++++++++++++++++++++++++- 3 files changed, 110
-> > insertions(+), 2 deletions(-)
-> >
-> > diff --git a/include/sound/hdmi-codec.h b/include/sound/hdmi-codec.h
-> > index 9483c55f871b..4fa39c93363f 100644
-> > --- a/include/sound/hdmi-codec.h
-> > +++ b/include/sound/hdmi-codec.h
-> > @@ -107,6 +107,13 @@ struct hdmi_codec_pdata {
-> >       void *data;
-> >  };
-> >
-> > +struct snd_soc_component;
-> > +struct snd_soc_jack;
-> > +
-> > +int hdmi_codec_set_jack_detect(struct snd_soc_component *component,
-> > +                            struct snd_soc_jack *jack,
-> > +                            struct device *dev);
-> > +
-> >  #define HDMI_CODEC_DRV_NAME "hdmi-audio-codec"
-> >
-> >  #endif /* __HDMI_CODEC_H__ */
-> > diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> > index 8f577258080b..f5f6dd04234c 100644
-> > --- a/sound/soc/codecs/Kconfig
-> > +++ b/sound/soc/codecs/Kconfig
-> > @@ -639,6 +639,7 @@ config SND_SOC_HDMI_CODEC
-> >       select SND_PCM_ELD
-> >       select SND_PCM_IEC958
-> >       select HDMI
-> > +     select HDMI_NOTIFIERS
-> >
-> >  config SND_SOC_ES7134
-> >         tristate "Everest Semi ES7134 CODEC"
-> > diff --git a/sound/soc/codecs/hdmi-codec.c
-> > b/sound/soc/codecs/hdmi-codec.c index 6a0cc8d7e141..fe796a7475a5
-> > 100644 --- a/sound/soc/codecs/hdmi-codec.c
-> > +++ b/sound/soc/codecs/hdmi-codec.c
-> > @@ -12,9 +12,12 @@
-> >   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.       See
-> > the GNU
-> >   * General Public License for more details.
-> >   */
-> > +#include <linux/hdmi-notifier.h>
-> >  #include <linux/module.h>
-> > +#include <linux/notifier.h>
-> >  #include <linux/string.h>
-> >  #include <sound/core.h>
-> > +#include <sound/jack.h>
-> >  #include <sound/pcm.h>
-> >  #include <sound/pcm_params.h>
-> >  #include <sound/soc.h>
-> > @@ -282,6 +285,13 @@ struct hdmi_codec_priv {
-> >       struct snd_pcm_chmap *chmap_info;
-> >       unsigned int chmap_idx;
-> >       struct mutex lock;
-> > +     struct snd_soc_jack *jack;
-> > +     /* Lock to protect setting and getting eld. */
-> > +     struct mutex eld_lock;
-> > +     struct device *dev;
-> > +     struct hdmi_notifier *notifier;
-> > +     struct notifier_block nb;
-> > +     unsigned int jack_status;
-> >  };
-> >
-> >  static const struct snd_soc_dapm_widget hdmi_widgets[] =3D {
-> > @@ -308,7 +318,9 @@ static int hdmi_eld_ctl_get(struct snd_kcontrol
-> > *kcontrol, struct snd_soc_component *component =3D
-> > snd_kcontrol_chip(kcontrol); struct hdmi_codec_priv *hcp =3D
-> > snd_soc_component_get_drvdata(component);
-> > +     mutex_lock(&hcp->eld_lock);
-> >       memcpy(ucontrol->value.bytes.data, hcp->eld,
-> > sizeof(hcp->eld));
-> > +     mutex_unlock(&hcp->eld_lock);
-> >
-> >       return 0;
-> >  }
-> > @@ -393,7 +405,7 @@ static int hdmi_codec_startup(struct
-> > snd_pcm_substream *substream, struct snd_soc_dai *dai)
-> >  {
-> >       struct hdmi_codec_priv *hcp =3D snd_soc_dai_get_drvdata(dai);
-> > -     int ret =3D 0;
-> > +     int ret;
-> >
-> >       ret =3D mutex_trylock(&hcp->lock);
-> >       if (!ret) {
-> > @@ -408,9 +420,9 @@ static int hdmi_codec_startup(struct
-> > snd_pcm_substream *substream, }
-> >
-> >       if (hcp->hcd.ops->get_eld) {
-> > +             mutex_lock(&hcp->eld_lock);
-> >               ret =3D hcp->hcd.ops->get_eld(dai->dev->parent,
-> > hcp->hcd.data, hcp->eld, sizeof(hcp->eld));
-> > -
-> >               if (!ret) {
-> >                       ret =3D
-> > snd_pcm_hw_constraint_eld(substream->runtime, hcp->eld);
->
-> Seems to me like you missed unlock here. There is return inside this
-> if().
->
-
-Thanks for checking!
-The latest patch on hdmi-codec.c on ASoC tree has a change to replace
-that return to goto err.
-
-https://patchwork.kernel.org/patch/10930875/
-
-My patch is based on that so it should be okay.
-Thanks!
-
-> > @@ -419,6 +431,7 @@ static int hdmi_codec_startup(struct
-> > snd_pcm_substream *substream, }
-> >               /* Select chmap supported */
-> >               hdmi_codec_eld_chmap(hcp);
-> > +             mutex_unlock(&hcp->eld_lock);
-> >       }
-> >       return 0;
-> >
-> > @@ -747,6 +760,77 @@ static const struct snd_soc_component_driver
-> > hdmi_driver =3D { .non_legacy_dai_naming        =3D 1,
-> >  };
-> >
-> > +static void hdmi_codec_jack_report(struct hdmi_codec_priv *hcp,
-> > +                                unsigned int jack_status)
-> > +{
-> > +     if (!hcp->jack)
-> > +             return;
-> > +
-> > +     if (jack_status !=3D hcp->jack_status) {
-> > +             snd_soc_jack_report(hcp->jack, jack_status,
-> > SND_JACK_LINEOUT);
-> > +             hcp->jack_status =3D jack_status;
-> > +     }
-> > +}
-> > +
-> > +static int hdmi_codec_notify(struct notifier_block *nb, unsigned
-> > long event,
-> > +                          void *data)
-> > +{
-> > +     struct hdmi_codec_priv *hcp =3D container_of(nb, struct
-> > hdmi_codec_priv,
-> > +                                                nb);
-> > +     struct hdmi_notifier *n =3D data;
-> > +
-> > +     if (!hcp->jack)
-> > +             return NOTIFY_OK;
-> > +
-> > +     switch (event) {
-> > +     case HDMI_NEW_ELD:
-> > +             mutex_lock(&hcp->eld_lock);
-> > +             memcpy(hcp->eld, n->eld, sizeof(hcp->eld));
-> > +             mutex_unlock(&hcp->eld_lock);
-> > +             /* fall through */
-> > +     case HDMI_CONNECTED:
-> > +             hdmi_codec_jack_report(hcp, SND_JACK_LINEOUT);
-> > +             break;
-> > +     case HDMI_DISCONNECTED:
-> > +             hdmi_codec_jack_report(hcp, 0);
-> > +             break;
-> > +     }
-> > +
-> > +     return NOTIFY_OK;
-> > +}
-> > +
-> > +/**
-> > + * hdmi_codec_set_jack_detect - register HDMI state notifier callback
-> > + * @component: the hdmi-codec instance
-> > + * @jack: ASoC jack to report (dis)connection events on
-> > + * @dev: hdmi_notifier device, usually HDMI_TX or CEC device
-> > + */
-> > +int hdmi_codec_set_jack_detect(struct snd_soc_component *component,
-> > +                            struct snd_soc_jack *jack,
-> > +                            struct device *dev)
-> > +{
-> > +     struct hdmi_codec_priv *hcp =3D
-> > snd_soc_component_get_drvdata(component);
-> > +     int ret;
-> > +
-> > +     hcp->notifier =3D hdmi_notifier_get(dev);
-> > +     if (!hcp->notifier)
-> > +             return -ENOMEM;
-> > +
-> > +     hcp->jack =3D jack;
-> > +     hcp->nb.notifier_call =3D hdmi_codec_notify;
-> > +     ret =3D hdmi_notifier_register(hcp->notifier, &hcp->nb);
-> > +     if (ret)
-> > +             goto err_notifier_put;
-> > +
-> > +     return 0;
-> > +
-> > +err_notifier_put:
-> > +     hdmi_notifier_put(hcp->notifier);
-> > +     hcp->notifier =3D NULL;
-> > +     return ret;
-> > +}
-> > +EXPORT_SYMBOL_GPL(hdmi_codec_set_jack_detect);
-> > +
-> >  static int hdmi_codec_probe(struct platform_device *pdev)
-> >  {
-> >       struct hdmi_codec_pdata *hcd =3D pdev->dev.platform_data;
-> > @@ -774,6 +858,7 @@ static int hdmi_codec_probe(struct
-> > platform_device *pdev)
-> >       hcp->hcd =3D *hcd;
-> >       mutex_init(&hcp->lock);
-> > +     mutex_init(&hcp->eld_lock);
-> >
-> >       daidrv =3D devm_kcalloc(dev, dai_count, sizeof(*daidrv),
-> > GFP_KERNEL); if (!daidrv)
-> > @@ -797,6 +882,20 @@ static int hdmi_codec_probe(struct
-> > platform_device *pdev) __func__, ret);
-> >               return ret;
-> >       }
-> > +
-> > +     hcp->dev =3D dev;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int hdmi_codec_remove(struct platform_device *pdev)
-> > +{
-> > +     struct hdmi_codec_priv *hcp =3D platform_get_drvdata(pdev);
-> > +
-> > +     if (hcp->notifier) {
-> > +             hdmi_notifier_unregister(hcp->notifier, &hcp->nb);
-> > +             hdmi_notifier_put(hcp->notifier);
-> > +     }
-> >       return 0;
-> >  }
-> >
-> > @@ -805,6 +904,7 @@ static struct platform_driver hdmi_codec_driver =3D
-> > { .name =3D HDMI_CODEC_DRV_NAME,
-> >       },
-> >       .probe =3D hdmi_codec_probe,
-> > +     .remove =3D hdmi_codec_remove,
-> >  };
-> >
-> >  module_platform_driver(hdmi_codec_driver);
->
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTGVvbmFyZCBDcmVzdGV6
+DQo+IFNlbnQ6IE1vbmRheSwgSnVuZSAzLCAyMDE5IDQ6NDUgUE0NCj4gVG86IEFuc29uIEh1YW5n
+IDxhbnNvbi5odWFuZ0BueHAuY29tPjsgbXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb207DQo+IHNib3lk
+QGtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207DQo+
+IHNoYXduZ3VvQGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IGtlcm5lbEBwZW5n
+dXRyb25peC5kZTsNCj4gZmVzdGV2YW1AZ21haWwuY29tOyBjYXRhbGluLm1hcmluYXNAYXJtLmNv
+bTsgd2lsbC5kZWFjb25AYXJtLmNvbTsNCj4gbWF4aW1lLnJpcGFyZEBib290bGluLmNvbTsgb2xv
+ZkBsaXhvbS5uZXQ7IGhvcm1zK3JlbmVzYXNAdmVyZ2UubmV0LmF1Ow0KPiBqYWdhbkBhbWFydWxh
+c29sdXRpb25zLmNvbTsgYmpvcm4uYW5kZXJzc29uQGxpbmFyby5vcmc7DQo+IGRpbmd1eWVuQGtl
+cm5lbC5vcmc7IGVucmljLmJhbGxldGJvQGNvbGxhYm9yYS5jb207IEFpc2hlbmcgRG9uZw0KPiA8
+YWlzaGVuZy5kb25nQG54cC5jb20+OyBKYWNreSBCYWkgPHBpbmcuYmFpQG54cC5jb20+OyBBYmVs
+IFZlc2ENCj4gPGFiZWwudmVzYUBueHAuY29tPjsgbC5zdGFjaEBwZW5ndXRyb25peC5kZTsgbGlu
+dXgtY2xrQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxp
+bnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2Vy
+Lmtlcm5lbC5vcmcNCj4gQ2M6IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+DQo+IFN1
+YmplY3Q6IFJlOiBbUEFUQ0ggVjIgMi8zXSBjbGs6IGlteDogQWRkIHN1cHBvcnQgZm9yIGkuTVg4
+TU4gY2xvY2sgZHJpdmVyDQo+IA0KPiBPbiA2LzMvMjAxOSA0OjMzIEFNLCBBbnNvbi5IdWFuZ0Bu
+eHAuY29tIHdyb3RlOg0KPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29t
+Pg0KPiA+DQo+ID4gVGhpcyBwYXRjaCBhZGRzIGkuTVg4TU4gY2xvY2sgZHJpdmVyIHN1cHBvcnQu
+DQo+IA0KPiA+ICsjaW5jbHVkZSAiY2xrLmgiDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFBMTF8xNDE2
+WF9SQVRFKF9yYXRlLCBfbSwgX3AsIF9zKQkJXA0KPiA+ICsJewkJCQkJCVwNCj4gPiArCQkucmF0
+ZQk9CShfcmF0ZSksCQlcDQo+ID4gKwkJLm1kaXYJPQkoX20pLAkJCVwNCj4gPiArCQkucGRpdgk9
+CShfcCksCQkJXA0KPiA+ICsJCS5zZGl2CT0JKF9zKSwJCQlcDQo+ID4gKwl9DQo+ID4gKw0KPiA+
+ICsjZGVmaW5lIFBMTF8xNDQzWF9SQVRFKF9yYXRlLCBfbSwgX3AsIF9zLCBfaykJCVwNCj4gPiAr
+CXsJCQkJCQlcDQo+ID4gKwkJLnJhdGUJPQkoX3JhdGUpLAkJXA0KPiA+ICsJCS5tZGl2CT0JKF9t
+KSwJCQlcDQo+ID4gKwkJLnBkaXYJPQkoX3ApLAkJCVwNCj4gPiArCQkuc2Rpdgk9CShfcyksCQkJ
+XA0KPiA+ICsJCS5rZGl2CT0JKF9rKSwJCQlcDQo+ID4gKwl9DQo+IA0KPiBUaGVzZSBtYWNyb3Mg
+YXJlIHNoYXJlZCB3aXRoIGNsay1pbXg4bW0gKGFuZCBwZXJoYXBzIHNvbWUgZnV0dXJlIGNoaXBz
+KQ0KPiBzbyB0aGV5IHNob3VsZCBiZSBtb3ZlZCB0byBkcml2ZXIvY2xrL2lteC9jbGsuaA0KDQpP
+Sywgd2lsbCBtb3ZlIHRoZW0gaW50byBjbGsuaCBpbiBWMy4NCg0KQW5zb24uDQo=
