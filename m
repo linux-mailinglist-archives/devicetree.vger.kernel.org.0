@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9F7334D1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 18:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D8533500
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 18:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728902AbfFCQWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 12:22:31 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37402 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727162AbfFCQWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 12:22:30 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 22so3520745wmg.2;
-        Mon, 03 Jun 2019 09:22:28 -0700 (PDT)
+        id S1728101AbfFCQcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 12:32:51 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:40704 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728052AbfFCQcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 12:32:51 -0400
+Received: by mail-pf1-f195.google.com with SMTP id u17so10919361pfn.7;
+        Mon, 03 Jun 2019 09:32:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=NC4fC+Zjj4toN18dzTnrQX0pU3xEF/6OCKvzETAHYpw=;
-        b=FO3TYOrDdKS2BZYjR5NDEOL+HHD3fUjB6n2DYfmhf1uOGlYf/Bk9BEtMHxibaREWMh
-         P39W3roO2waUsI3d5OFMkv5AwuQIMDASo6ozJpMd5R0OMY/BqI7DF0OoV9ZJoSiqSPy6
-         mQjkes4Q5n5z8/0PSlSXkMHslIyrfsgH8rT/QXxwtUVccBKz2CLDxcOvvDQZS2hSHaAj
-         tK2dfiR/7EQzB9o4ZAmLVdywH5w9xRo/Q8fLBKoX6pAr78l+3rCjxpOgvG4rhdEY6Nfk
-         typiT5NzjUPvAITDN9UlBNPwBlMY8qekmRnvxTad1GIc50ErpWoVk53WvrIpE+5gjEiS
-         aVFg==
+        bh=mgKMluoVKxAJTrXnfC/r4EPJEI0e0hymnBpiazXbXzs=;
+        b=IDF8u+tOZT6npXBK6iD/pX/MrZOLPiaaPYRTyuY8y5X4YpGyMPp2weP6wzhiMzlhRA
+         bWpbz+ZQbOTzKF7iJbqC0us2Kawbp6XuaypP7O6eGnFE0Sa/+Cri7zE3ys6xzDNqpL0I
+         Wl61NKnZQIEni8Gtw5LpXjuZWEYFBtKParNNHwaK/SIOuwedtSr/MUPscDXs163ZTQiC
+         +dtTDzruAVYY94feOLHeVJkyWOT0fFpqTVGkrGMNIVqEW+yvcHJEhR+z5wkZPawEhmGo
+         Z3AWs1fjolmRItOfbJYF2LT/JsC7YnYL2msmtrVOJ9bbgxZPKlApBxA9gstK0jw5pZhg
+         T1Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=NC4fC+Zjj4toN18dzTnrQX0pU3xEF/6OCKvzETAHYpw=;
-        b=N6PTTNpjrqP0GV+QHP6Qdcdbfo+WOOAdNSfE+nZnrFSxt4wyrIiPy8pysRrrtJ7Ijs
-         d5kRNFyW0irsfqts67q9fymklU/CLI44VOb9ec+1icFfYFxXjDsRxl/H1GF6JhGGJvJ+
-         rW58HghJTUNSK86RB30orjHEuVLcch0C56WNGez21tFPkbVtnl8cmsL4E3cBJdOlttAF
-         YCfnHCNAmTcd3bXGlB9NGvrW333YM7Oz+ZgzvC8AHwpMwKhU1MIUgKhTy/fG+uAxULpc
-         DXZPP5R0PK6Iab5RYoYelcphA4BPeKj6vR51LenVAgiJbqkPhaqf381lsVqXHX6XMHuq
-         iziA==
-X-Gm-Message-State: APjAAAUaOALD/dYRN8ZKGtnDfpftIwCiYe8mU+uD8FUmWWchWMjvZstD
-        I8lQXbWzEkofVkgy2YL7eVU=
-X-Google-Smtp-Source: APXvYqzrUL3Kn4RHjk4QZOm04N3UaNLlLFiONFpQaZx7xhSKQtX8swiv4uYj8qBFbVnQZVC6SDUVtg==
-X-Received: by 2002:a1c:cfc3:: with SMTP id f186mr14053222wmg.134.1559578946980;
-        Mon, 03 Jun 2019 09:22:26 -0700 (PDT)
+        bh=mgKMluoVKxAJTrXnfC/r4EPJEI0e0hymnBpiazXbXzs=;
+        b=uAQpcXLsb7QAB0wYZE4dJ8dh9R3KRLul/HXtEDijc40Wrh9Ja0fjk/OYhu4noJ00cF
+         tuwWfnHFHT4GnNtlDluN3J4BwJYUhhsaj1yq6dKAeQWPcoLP8JrAGGzX1ivLqvRpabpB
+         JVLNvbrRuW5/nNtuzMYilpFR+nYPG9edY5F37SfIMwtubf31ZJ9d8HX1USvtp+jY3m+d
+         qKpb7iGVy3HIereGk3m3Tf1GeNk25WKVsorRqMFt1caibu1V1nz5UKoMdIwQh48PDFd9
+         obZ7y/KjPr6PpSEmr2fclwq6pqJsLBmGe7wXicxsKOuS+j0Ym/zLmYlAGBFHJlwpVoSc
+         65Lg==
+X-Gm-Message-State: APjAAAVPvt69FZCio2Ad78ykYTr9z+77zUJbTehxI5gchjMhaDQCKRL2
+        0yYUbiiqsC2e7P7y+ApHFbwzsLY/
+X-Google-Smtp-Source: APXvYqzlKzPyv2lTAmmRFFuipxaf2otSqo59SKd5yw/g+ZUnsIJrz6vsK9cFJNaM7/t+ZWMDXvgPfw==
+X-Received: by 2002:a63:4714:: with SMTP id u20mr29949744pga.347.1559579570543;
+        Mon, 03 Jun 2019 09:32:50 -0700 (PDT)
 Received: from [10.67.49.123] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id o6sm10005718wmc.15.2019.06.03.09.22.23
+        by smtp.googlemail.com with ESMTPSA id i16sm14913701pfd.100.2019.06.03.09.32.48
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Jun 2019 09:22:26 -0700 (PDT)
-Subject: Re: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC
- mailbox
+        Mon, 03 Jun 2019 09:32:49 -0700 (PDT)
+Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
 To:     peng.fan@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
         jassisinghbrar@gmail.com, sudeep.holla@arm.com
 Cc:     kernel@pengutronix.de, linux-imx@nxp.com, shawnguo@kernel.org,
@@ -55,7 +54,7 @@ Cc:     kernel@pengutronix.de, linux-imx@nxp.com, shawnguo@kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         andre.przywara@arm.com, van.freenix@gmail.com
 References: <20190603083005.4304-1-peng.fan@nxp.com>
- <20190603083005.4304-2-peng.fan@nxp.com>
+ <20190603083005.4304-3-peng.fan@nxp.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
@@ -112,12 +111,12 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <ae4c79f0-4aec-250e-e312-20aba5554665@gmail.com>
-Date:   Mon, 3 Jun 2019 09:22:16 -0700
+Message-ID: <866db682-785a-e0a6-b394-bb65c7a694c6@gmail.com>
+Date:   Mon, 3 Jun 2019 09:32:42 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190603083005.4304-2-peng.fan@nxp.com>
+In-Reply-To: <20190603083005.4304-3-peng.fan@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -129,145 +128,111 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 6/3/19 1:30 AM, peng.fan@nxp.com wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> The ARM SMC mailbox binding describes a firmware interface to trigger
-> actions in software layers running in the EL2 or EL3 exception levels.
-> The term "ARM" here relates to the SMC instruction as part of the ARM
-> instruction set, not as a standard endorsed by ARM Ltd.
+> This mailbox driver implements a mailbox which signals transmitted data
+> via an ARM smc (secure monitor call) instruction. The mailbox receiver
+> is implemented in firmware and can synchronously return data when it
+> returns execution to the non-secure world again.
+> An asynchronous receive path is not implemented.
+> This allows the usage of a mailbox to trigger firmware actions on SoCs
+> which either don't have a separate management processor or on which such
+> a core is not available. A user of this mailbox could be the SCP
+> interface.
 > 
+> Modified from Andre Przywara's v2 patch
+> https://lore.kernel.org/patchwork/patch/812999/
+> 
+> Cc: Andre Przywara <andre.przywara@arm.com>
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> 
-> V2:
-> Introduce interrupts as a property.
-> 
-> V1:
-> arm,func-ids is still kept as an optional property, because there is no
-> defined SMC funciton id passed from SCMI. So in my test, I still use
-> arm,func-ids for ARM SIP service.
-> 
->  .../devicetree/bindings/mailbox/arm-smc.txt        | 101 +++++++++++++++++++++
->  1 file changed, 101 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.txt b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> new file mode 100644
-> index 000000000000..401887118c09
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> @@ -0,0 +1,101 @@
-> +ARM SMC Mailbox Interface
-> +=========================
-> +
-> +This mailbox uses the ARM smc (secure monitor call) instruction to trigger
-> +a mailbox-connected activity in firmware, executing on the very same core
-> +as the caller.
 
-The binding defines both hvc and smc as being valid methods for the mailbox.
+[snip]
 
-> By nature this operation is synchronous and this mailbox
-> +provides no way for asynchronous messages to be delivered the other way
-> +round, from firmware to the OS, but asynchronous notification could also
-> +be supported. However the value of r0/w0/x0 the firmware returns after
-> +the smc call is delivered as a received message to the mailbox framework,
-> +so a synchronous communication can be established, for a asynchronous
-> +notification, no value will be returned. The exact meaning of both the
-> +action the mailbox triggers as well as the return value is defined by
-> +their users and is not subject to this binding.
-> +
-> +One use case of this mailbox is the SCMI interface, which uses shared memory
-> +to transfer commands and parameters, and a mailbox to trigger a function
-> +call. This allows SoCs without a separate management processor (or when
-> +such a processor is not available or used) to use this standardized
-> +interface anyway.
-> +
-> +This binding describes no hardware, but establishes a firmware interface.
-> +Upon receiving an SMC using one of the described SMC function identifiers,
-> +the firmware is expected to trigger some mailbox connected functionality.
-> +The communication follows the ARM SMC calling convention[1].
-> +Firmware expects an SMC function identifier in r0 or w0. The supported
-> +identifiers are passed from consumers, or listed in the the arm,func-ids
-> +properties as described below. The firmware can return one value in
-> +the first SMC result register, it is expected to be an error value,
-> +which shall be propagated to the mailbox client.
-> +
-> +Any core which supports the SMC or HVC instruction can be used, as long as
-> +a firmware component running in EL3 or EL2 is handling these calls.
-> +
-> +Mailbox Device Node:
-> +====================
-> +
-> +This node is expected to be a child of the /firmware node.
-> +
-> +Required properties:
-> +--------------------
-> +- compatible:		Shall be "arm,smc-mbox"
-> +- #mbox-cells		Shall be 1 - the index of the channel needed.
-> +- arm,num-chans		The number of channels supported.
-> +- method:		A string, either:
-> +			"hvc": if the driver shall use an HVC call, or
-> +			"smc": if the driver shall use an SMC call.
-> +
-> +Optional properties:
-> +- arm,func-ids		An array of 32-bit values specifying the function
-> +			IDs used by each mailbox channel. Those function IDs
-> +			follow the ARM SMC calling convention standard [1].
-> +			There is one identifier per channel and the number
-> +			of supported channels is determined by the length
-> +			of this array.
-> +- interrupts		SPI interrupts may be listed for notification,
-> +			each channel should use a dedicated interrupt
-> +			line.
++#define ARM_SMC_MBOX_USB_IRQ	BIT(1)
 
-I would not go about defining a specific kind of interrupt, since SPI is
-a GIC terminology, this firmware interface could be used in premise with
-any parent interrupt controller, for which the concept of a SPI/PPI/SGI
-may not be relevant.
+That flag appears unused.
+
+> +static int arm_smc_mbox_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mbox_controller *mbox;
+> +	struct arm_smc_chan_data *chan_data;
+> +	const char *method;
+> +	bool use_hvc = false;
+> +	int ret, irq_count, i;
+> +	u32 val;
+> +
+> +	if (!of_property_read_u32(dev->of_node, "arm,num-chans", &val)) {
+> +		if (val < 1 || val > INT_MAX) {
+> +			dev_err(dev, "invalid arm,num-chans value %u of %pOFn\n", val, pdev->dev.of_node);
+> +			return -EINVAL;
+> +		}
+> +	}
+
+Should not the upper bound check be done against UINT_MAX since val is
+an unsigned int?
 
 > +
-> +Example:
-> +--------
+> +	irq_count = platform_irq_count(pdev);
+> +	if (irq_count == -EPROBE_DEFER)
+> +		return irq_count;
 > +
-> +	sram@910000 {
-> +		compatible = "mmio-sram";
-> +		reg = <0x0 0x93f000 0x0 0x1000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x0 0x93f000 0x1000>;
-> +
-> +		cpu_scp_lpri: scp-shmem@0 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0x200>;
-> +		};
-> +
-> +		cpu_scp_hpri: scp-shmem@200 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x200 0x200>;
-> +		};
-> +	};
-> +
-> +	smc_mbox: mailbox {
-> +		#mbox-cells = <1>;
-> +		compatible = "arm,smc-mbox";
-> +		method = "smc";
-> +		arm,num-chans = <0x2>;
-> +		/* Optional */
-> +		arm,func-ids = <0xc20000fe>, <0xc20000ff>;
-> +	};
-> +
-> +	firmware {
-> +		scmi {
-> +			compatible = "arm,scmi";
-> +			mboxes = <&mailbox 0 &mailbox 1>;
+> +	if (irq_count && irq_count != val) {
+> +		dev_err(dev, "Interrupts not match num-chans\n");
 
-It is visually nicer (and more consistent with yoyr arm,func-ids example
-to use:
-			mboxes = <&mailbox 0>, <&mailbox 1>;
+Interrupts property does not match \"arm,num-chans\" would be more correct.
 
-> +			mbox-names = "tx", "rx";
-> +			shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!of_property_read_string(dev->of_node, "method", &method)) {
+> +		if (!strcmp("hvc", method)) {
+> +			use_hvc = true;
+> +		} else if (!strcmp("smc", method)) {
+> +			use_hvc = false;
+> +		} else {
+> +			dev_warn(dev, "invalid \"method\" property: %s\n",
+> +				 method);
+> +
+> +			return -EINVAL;
+> +		}
 
-			shmem = <&cpu_scp_lpri>, <&cpu_scp_hpri>;
+Having at least one method specified does not seem to be checked later
+on in the code, so if I omitted to specify that property, we would still
+register the mailbox and default to use "smc" since the
+ARM_SMC_MBOX_USE_HVC flag would not be set, would not we want to make
+sure that we do have in fact a valid method specified given the binding
+documents that property as mandatory?
 
-Other than those, LGTM!
+[snip]
+
+> +	mbox->txdone_poll = false;
+> +	mbox->txdone_irq = false;
+> +	mbox->ops = &arm_smc_mbox_chan_ops;
+> +	mbox->dev = dev;
+> +
+> +	ret = mbox_controller_register(mbox);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, mbox);
+
+I would move this above mbox_controller_register() that way there is no
+room for race conditions in case another part of the driver expects to
+have pdev->dev.drvdata set before the mbox controller is registered.
+Since you use devm_* functions for everything, you may even remove that
+call.
+
+[snip]
+
+> +#ifndef _LINUX_ARM_SMC_MAILBOX_H_
+> +#define _LINUX_ARM_SMC_MAILBOX_H_
+> +
+> +struct arm_smccc_mbox_cmd {
+> +	unsigned long a0, a1, a2, a3, a4, a5, a6, a7;
+> +};
+
+Do you expect this to be used by other in-kernel users? If so, it might
+be good to document how a0 can have a special meaning and be used as a
+substitute for the function_id?
 -- 
 Florian
