@@ -2,101 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C99327BA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 06:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A67E327E4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 07:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727071AbfFCEeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 00:34:12 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:42402 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727130AbfFCEeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 00:34:12 -0400
-Received: by mail-pg1-f195.google.com with SMTP id e6so6260369pgd.9
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 21:34:11 -0700 (PDT)
+        id S1726383AbfFCFMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 01:12:49 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:42308 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726374AbfFCFMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 01:12:49 -0400
+Received: by mail-lj1-f194.google.com with SMTP id t28so3760101lje.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2019 22:12:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=b/qy0C/+qIVS4p/9C8coL0gczc7xGffHcCTpl84Pnik=;
-        b=W0HFUAGEBlitH2BpXUVE7tLd15Ng5l2TZqjITWduI3EGWRg3JKMe0MjJis9TBvMp02
-         4awA3xZDrtX56bGXOH5ZQ3oEimCGvzikfQPZANnHJau89l5kDDX0gPAAvlPieYi8kSIP
-         TwDl7/UAUwCplFr2sy8k4qBf+wMfpuYAoO41w=
+        d=mobiveil.co.in; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1hhBDceAp7DealibgpzRgQkbsVjG+SPyfDmMhWMC+1k=;
+        b=jG9jP4nThSDZwaD/kp6Xib4Vyzog5fkGaOB9Mcgv4DXEGXAX3fPA+ceqLabquL17Cy
+         7tX1tYLDfASqHNZdWw9421ZUVBGDAvLcloFKmmp0yrGGjo8RmoLOehp9xgiAKKaLYiez
+         8RIVCutou53+Y/XUepTtiE9JghvqzS/w1te3s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=b/qy0C/+qIVS4p/9C8coL0gczc7xGffHcCTpl84Pnik=;
-        b=RUCnSSJ8CNQtCb+UNhYEuNmw+zAnI0YWgroPirltZ0F7iCmJxLLQmCCsegJfKa9pmI
-         N+eTm2EZHKX68SkHEMpuo/mb7CNQ2pItYql2QXIwG0rvchhV/0PkxcSMPLY/39K1GWAd
-         le5FCe3WpqaCdIeu5dTsde3LLfU6/j4Khf/7rfdN6QenKkCU5wfHF+dtUoozIvGiV1hN
-         ZXJn0oBm4VRVPCM0RznwOExFRTl6/OBKiifKSN2bYaiqzO6LYmzZeLEFpNC/7njuCeQp
-         cmfJwXsuQsqxGtfjvgndTH3kFI0XLWkCE6ZcmjqZRzHBfHZXiie/RTnPPZqQRhOOOhFJ
-         rIAA==
-X-Gm-Message-State: APjAAAWVWXL3Cn83nyy+xxIYNG8wNDR3wlDC0ebju14/zQtLW1UzyCnq
-        TZnV8lQ/3i/7BzHLQcZSA0k6uw==
-X-Google-Smtp-Source: APXvYqyNg+8OlIDr5Hr5hFnNgwXQAuI+ahu2SvEr6XII+hIpaqZoSlyKPzFn5UBfI4WiO1Ahj/0G/w==
-X-Received: by 2002:a62:6145:: with SMTP id v66mr28539820pfb.144.1559536451549;
-        Sun, 02 Jun 2019 21:34:11 -0700 (PDT)
-Received: from localhost ([2401:fa00:1:b:e688:dfd2:a1a7:2956])
-        by smtp.gmail.com with ESMTPSA id e20sm11842630pfi.35.2019.06.02.21.34.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 02 Jun 2019 21:34:10 -0700 (PDT)
-From:   Cheng-Yi Chiang <cychiang@chromium.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org,
-        linux-media@vger.kernel.org, alsa-devel@alsa-project.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-Subject: [PATCH 7/7] ARM: dts: rockchip: Specify HDMI node to sound card node
-Date:   Mon,  3 Jun 2019 12:32:51 +0800
-Message-Id: <20190603043251.226549-8-cychiang@chromium.org>
-X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
-In-Reply-To: <20190603043251.226549-1-cychiang@chromium.org>
-References: <20190603043251.226549-1-cychiang@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1hhBDceAp7DealibgpzRgQkbsVjG+SPyfDmMhWMC+1k=;
+        b=t/Zk6l5jDgdm/m/VRXtI2KFphUcqceGMGAOPVqBSVABAzsq5I7Z08ZeV13tp3Rn4s+
+         oDMBSOsgDBHzQ6krBZJ+oAU92EheJ09ybGT2T2w87HR87r5BQZ3PTuyP7UYX0wCypAla
+         dAlxt77TTb5aMfqh9P3O7vYIq81yT6FRb5gUiEjzT/f/d4DT4YvUmFVWN5xXTpVzQzKt
+         +ivLGLrVn1LAi+H3Y/Pqzr9KoIwMjuFbXIYYi1aWzPNbZfOiDKfmuS+9Wj9laKwweuwX
+         j6SjTRPjAwoNUopjTukyiXBYxkujR/NZNtJ8plZOBSH5RiZdwWVcO44yC7qXW7/r0Drk
+         pRbQ==
+X-Gm-Message-State: APjAAAUi3oxrMB/t7IZgKA4/DrJH3Zyc9Zo2S/bVX4pQsUWAIbltBGDx
+        JzBhZ5CHJIhD/LgJgnx2GVEMDg8dzrqjwawfMhD44zSj4PrHyGJJmKyQXIFfhgosduLf7icm3eG
+        iQaYtvS2VWqwGQsuicH6Vo4hQ3xTJTl4=
+X-Google-Smtp-Source: APXvYqyWjAc8SYG4ta2+f5Ybndd/TXrp1FQlRY75lQ4TqUbou9Kfolc0l0Jje5R6RKuhzCRFDrhia/kPvTtHFiIVU30=
+X-Received: by 2002:a2e:8555:: with SMTP id u21mr12390145ljj.133.1559538766557;
+ Sun, 02 Jun 2019 22:12:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190528065129.8769-1-Zhiqiang.Hou@nxp.com> <20190528065129.8769-6-Zhiqiang.Hou@nxp.com>
+In-Reply-To: <20190528065129.8769-6-Zhiqiang.Hou@nxp.com>
+From:   Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
+Date:   Mon, 3 Jun 2019 10:42:33 +0530
+Message-ID: <CAKnKUHH8JU2Bqgq90rfgZ8r0xxB_RMRj16DBBLDhMpg3mwFU2Q@mail.gmail.com>
+Subject: Re: [PATCHv6 5/6] arm64: dts: lx2160a: Add PCIe controller DT nodes
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sound card needs HDMI node in order to register jack callback on HDMI
-notifier.
+Hi Hou Zhiqiang
+   Two instances [@3600000 and @3800000] of the six has a different
+window count, the RC can not have more than 8 windows.
+apio-wins = <256>;  //Can we change it to 8
+ppio-wins = <24>;    //Can we change it to 8
 
-Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
----
- arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, May 28, 2019 at 12:20 PM Z.q. Hou <zhiqiang.hou@nxp.com> wrote:
+>
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+>
+> The LX2160A integrated 6 PCIe Gen4 controllers.
+>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
+> ---
+> V6:
+>  - No change.
+>
+>  .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> index 125a8cc2c5b3..7a2b91ff1fbc 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> @@ -964,5 +964,168 @@
+>                                 };
+>                         };
+>                 };
+> +
+> +               pcie@3400000 {
+> +                       compatible = "fsl,lx2160a-pcie";
+> +                       reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
+> +                              0x80 0x00000000 0x0 0x00001000>; /* configuration space */
+> +                       reg-names = "csr_axi_slave", "config_axi_slave";
+> +                       interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                                    <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +                       interrupt-names = "aer", "pme", "intr";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       apio-wins = <8>;
+> +                       ppio-wins = <8>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +                       msi-parent = <&its>;
+> +                       #interrupt-cells = <1>;
+> +                       interrupt-map-mask = <0 0 0 7>;
+> +                       interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 2 &gic 0 0 GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 3 &gic 0 0 GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 4 &gic 0 0 GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               pcie@3500000 {
+> +                       compatible = "fsl,lx2160a-pcie";
+> +                       reg = <0x00 0x03500000 0x0 0x00100000   /* controller registers */
+> +                              0x88 0x00000000 0x0 0x00001000>; /* configuration space */
+> +                       reg-names = "csr_axi_slave", "config_axi_slave";
+> +                       interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                                    <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +                       interrupt-names = "aer", "pme", "intr";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       apio-wins = <8>;
+> +                       ppio-wins = <8>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x82000000 0x0 0x40000000 0x88 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +                       msi-parent = <&its>;
+> +                       #interrupt-cells = <1>;
+> +                       interrupt-map-mask = <0 0 0 7>;
+> +                       interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 2 &gic 0 0 GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 3 &gic 0 0 GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 4 &gic 0 0 GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               pcie@3600000 {
+> +                       compatible = "fsl,lx2160a-pcie";
+> +                       reg = <0x00 0x03600000 0x0 0x00100000   /* controller registers */
+> +                              0x90 0x00000000 0x0 0x00001000>; /* configuration space */
+> +                       reg-names = "csr_axi_slave", "config_axi_slave";
+> +                       interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                                    <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +                       interrupt-names = "aer", "pme", "intr";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       apio-wins = <256>;
+> +                       ppio-wins = <24>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x82000000 0x0 0x40000000 0x90 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +                       msi-parent = <&its>;
+> +                       #interrupt-cells = <1>;
+> +                       interrupt-map-mask = <0 0 0 7>;
+> +                       interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 2 &gic 0 0 GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 3 &gic 0 0 GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 4 &gic 0 0 GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               pcie@3700000 {
+> +                       compatible = "fsl,lx2160a-pcie";
+> +                       reg = <0x00 0x03700000 0x0 0x00100000   /* controller registers */
+> +                              0x98 0x00000000 0x0 0x00001000>; /* configuration space */
+> +                       reg-names = "csr_axi_slave", "config_axi_slave";
+> +                       interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                                    <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +                       interrupt-names = "aer", "pme", "intr";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       apio-wins = <8>;
+> +                       ppio-wins = <8>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x82000000 0x0 0x40000000 0x98 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +                       msi-parent = <&its>;
+> +                       #interrupt-cells = <1>;
+> +                       interrupt-map-mask = <0 0 0 7>;
+> +                       interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 2 &gic 0 0 GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 3 &gic 0 0 GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 4 &gic 0 0 GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               pcie@3800000 {
+> +                       compatible = "fsl,lx2160a-pcie";
+> +                       reg = <0x00 0x03800000 0x0 0x00100000   /* controller registers */
+> +                              0xa0 0x00000000 0x0 0x00001000>; /* configuration space */
+> +                       reg-names = "csr_axi_slave", "config_axi_slave";
+> +                       interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                                    <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +                       interrupt-names = "aer", "pme", "intr";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       apio-wins = <256>;
+> +                       ppio-wins = <24>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x82000000 0x0 0x40000000 0xa0 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +                       msi-parent = <&its>;
+> +                       #interrupt-cells = <1>;
+> +                       interrupt-map-mask = <0 0 0 7>;
+> +                       interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 2 &gic 0 0 GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 3 &gic 0 0 GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 4 &gic 0 0 GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               pcie@3900000 {
+> +                       compatible = "fsl,lx2160a-pcie";
+> +                       reg = <0x00 0x03900000 0x0 0x00100000   /* controller registers */
+> +                              0xa8 0x00000000 0x0 0x00001000>; /* configuration space */
+> +                       reg-names = "csr_axi_slave", "config_axi_slave";
+> +                       interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                                    <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +                       interrupt-names = "aer", "pme", "intr";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       apio-wins = <8>;
+> +                       ppio-wins = <8>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x82000000 0x0 0x40000000 0xa8 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+> +                       msi-parent = <&its>;
+> +                       #interrupt-cells = <1>;
+> +                       interrupt-map-mask = <0 0 0 7>;
+> +                       interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 2 &gic 0 0 GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 3 &gic 0 0 GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <0000 0 0 4 &gic 0 0 GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status = "disabled";
+> +               };
+> +
+>         };
+>  };
+> --
+> 2.17.1
+>
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi b/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi
-index 445270aa136e..096ba4e96db2 100644
---- a/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron-analog-audio.dtsi
-@@ -14,6 +14,7 @@
- 		rockchip,model = "VEYRON-I2S";
- 		rockchip,i2s-controller = <&i2s>;
- 		rockchip,audio-codec = <&max98090>;
-+		rockchip,hdmi= <&hdmi>;
- 		rockchip,hp-det-gpios = <&gpio6 RK_PA5 GPIO_ACTIVE_HIGH>;
- 		rockchip,mic-det-gpios = <&gpio6 RK_PB3 GPIO_ACTIVE_LOW>;
- 		rockchip,headset-codec = <&headsetcodec>;
+
 -- 
-2.22.0.rc1.257.g3120a18244-goog
+Thanks,
+Regards,
+Karthikeyan Mitran
 
+-- 
+Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any 
+attachments, is for the sole use of the intended recipient(s) and may 
+contain proprietary confidential or privileged information or otherwise be 
+protected by law. Any unauthorized review, use, disclosure or distribution 
+is prohibited. If you are not the intended recipient, please notify the 
+sender and destroy all copies and the original message.
