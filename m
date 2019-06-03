@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DFF7932C98
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F1532C92
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2019 11:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728101AbfFCJKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 05:10:23 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:34255 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728098AbfFCJKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 05:10:23 -0400
-Received: by mail-wm1-f67.google.com with SMTP id w9so3128560wmd.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 02:10:22 -0700 (PDT)
+        id S1727868AbfFCJSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 05:18:32 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:46183 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728104AbfFCJKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 05:10:24 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n4so5919126wrw.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 02:10:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=flCBkYYx+PdHsv3XsjTv06FvsWqxIYgVPOMABFKuON0=;
-        b=SwuDnWbt+BrQnQbtSVGVqHEKRwhgpuaH9QN4iH7n58msM+doavax1lbAs5vFSK7Q0F
-         oknUZcm8NJUzRm1eBmLB0P4JsyeqJiqifAZlHLp8KlL7dV0hZ3fP4aHWQ2UHc7yxpJHk
-         deycQtVX+Cjn4UHcZBdcCfjg1AF8Bt7IOlGBHLgBa75Bm28PolHcvHtIfWefwgP8G7FX
-         yYsu+rdKLV1bOVeRGXLWsPPnjAnn50Gy33bJHN3JBZt/ZANjDUXKFKg02g2jvjlv0OD0
-         r9X3Lo/cYrfu5t26qEKi+uV/fbVb8HEcDMBHp6BoPGDjopy22Rhz1xtKLQVGPAf4nKIK
-         f1GA==
+        bh=rO31uLodqtR0UANwODTPyvdISTtsAPEuGeRxrgglRH8=;
+        b=GILKK69Hx1iSG+k6AOOciar2bFvlGC4clbjFLxgycYVPNVnByNoxP7iQg5nnUo9iNK
+         i5PSLwV21N3ARniNEUGDelbQuQ0rXfnOybCAlVoHoseCacMLlfjkpuHgwZh0H+u4eSe/
+         bMlAsl4e/Vp/dfi99qhztHoisCxUc+MZ/X4YXyVnxwe5UAHJvyTL3a1GqA1Yd0gcDi4u
+         K3NM7R3zW2yYy0JPzRojnM4v7bQypNi//BxdJxmkP1uxomNSlYMJ+iEr0eSWrebcGfnl
+         q7bYXdyMQTubSWxC5vorXDPyny39PFpkwnOvyPEcELiey/SVGe3+RHdHXwSQ29IXJxyL
+         bHAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=flCBkYYx+PdHsv3XsjTv06FvsWqxIYgVPOMABFKuON0=;
-        b=OGLKS4rqOaa80mBa+huf8ts/0p14z50aoMdzmq/SpJlUAtbMDFowsOgJWOc8zcVMQK
-         XqNRFushBTOk8Sx6VtWEZNAsZmeigzm6mVxtafklVDFLEjLokz7bmWXtyQyG0VIdKSm7
-         vupUFdcFN6oHvDCwh1htVohazUhXvtqQulyGYG2gb0QLsc1k6NEBaVl9/eQe7dBTkRez
-         WwJRdG3jK4Ec+sfZ7lj7XR60BMCPlVeg0OJMy4w3knnWHiSWpHH/475jpNKh7Hi6fDEd
-         3Q/WbjgCkEi7QYdRMfqIHS/EPhhZHZLiagyiGS2IICcS9b3mNx3YSxolCOnuYPAiPgw5
-         /eKw==
-X-Gm-Message-State: APjAAAXnA8bfnZP7SNMy8mfriz5IkzPgvyxIKjfwamOVdtazypm1uXx5
-        xEq/RlhXO5JjnjZwlR9H4/D4OQ==
-X-Google-Smtp-Source: APXvYqzcNF1uAs9S8hg0XUv2b9wOOsxIrr/vf886v2rk2wi9jg/PFMdqP6QfBdMc3j/0O8fBWS+JhA==
-X-Received: by 2002:a1c:9a16:: with SMTP id c22mr1449423wme.39.1559553021966;
-        Mon, 03 Jun 2019 02:10:21 -0700 (PDT)
+        bh=rO31uLodqtR0UANwODTPyvdISTtsAPEuGeRxrgglRH8=;
+        b=gRnyjLZCUxB1FUeg1xcn7CoC51jaBcvDcQflmYy7oG+vNlBjBtZaYzekk9HzHgzePT
+         SGkignOuidxu/SreJ5qCQFQQwj1tokNMDqas6hcvzTmVmup68DTTjPPpvpUI6TgftEaH
+         Ly25+ssmBXJRc+QqNMctESG0SWl8nExn/tBH0qq89uMMk030+tCZlTC4jPI0gJJ7nL4x
+         lxkBxbJZ4e+/6l9XZTFGjv2GuobU7LSbNtG7llk7cGwomch2XJ/Jl8rZV6KeO0VTv1MM
+         k/ign92E7Z0is4l8x5TpgmQfide4JKH40uk9lpB9pgKogJ5DSKZi6/nhvM3gvNEvTnnm
+         JUmQ==
+X-Gm-Message-State: APjAAAWLt2WHvbzPR/xVonoJf34LJKyEhHnxBoS7Q/EWXcJmNuWFJRMc
+        LWOGPgLJyMKskMVIE0Fo6WIb+A==
+X-Google-Smtp-Source: APXvYqwhB6ROy4l/G46P5gRSukzDQ2ZzoCJP9NJ28xzRpXQf2J19TKDaESEKU+F168cmCcEvpb3UWQ==
+X-Received: by 2002:adf:a509:: with SMTP id i9mr1868475wrb.269.1559553022900;
+        Mon, 03 Jun 2019 02:10:22 -0700 (PDT)
 Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id e15sm10676809wme.0.2019.06.03.02.10.20
+        by smtp.gmail.com with ESMTPSA id e15sm10676809wme.0.2019.06.03.02.10.22
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 03 Jun 2019 02:10:20 -0700 (PDT)
+        Mon, 03 Jun 2019 02:10:22 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     khilman@baylibre.com, devicetree@vger.kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
@@ -51,9 +51,9 @@ Cc:     Neil Armstrong <narmstrong@baylibre.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh@kernel.org>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v5 1/3] dt-bindings: arm: amlogic: add G12B bindings
-Date:   Mon,  3 Jun 2019 11:10:06 +0200
-Message-Id: <20190603091008.2382-2-narmstrong@baylibre.com>
+Subject: [PATCH v5 2/3] dt-bindings: arm: amlogic: add Odroid-N2 binding
+Date:   Mon,  3 Jun 2019 11:10:07 +0200
+Message-Id: <20190603091008.2382-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190603091008.2382-1-narmstrong@baylibre.com>
 References: <20190603091008.2382-1-narmstrong@baylibre.com>
@@ -64,28 +64,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for the Amlogic G12B SoC, sharing most of the
-features and architecture with the G12A SoC.
+Add compatible for the Amlogic G12B (S922X) SoC based Odroid-N2 SBC
+from HardKernel.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 6d5bb493db03..28115dd49f96 100644
+index 28115dd49f96..f75df4471c0a 100644
 --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
 +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -137,4 +137,8 @@ properties:
-               - amlogic,u200
-           - const: amlogic,g12a
+@@ -139,6 +139,8 @@ properties:
  
-+      - description: Boards with the Amlogic Meson G12B S922X SoC
-+        items:
-+          - const: amlogic,g12b
-+
+       - description: Boards with the Amlogic Meson G12B S922X SoC
+         items:
++          - enum:
++              - hardkernel,odroid-n2
+           - const: amlogic,g12b
+ 
  ...
 -- 
 2.21.0
