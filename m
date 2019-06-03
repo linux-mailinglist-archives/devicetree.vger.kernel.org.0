@@ -2,79 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C168933AD0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6130E33AE3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 00:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbfFCWJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 18:09:29 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:44871 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726173AbfFCWJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:09:29 -0400
-Received: by mail-pf1-f193.google.com with SMTP id t16so2564627pfe.11
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 15:09:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=jDdg1OwF0FAhl89N9DnPSHZNHtzrEJIzfPoyVuGv+78=;
-        b=LzGFxQZ0HmsQrlNUSQTMFV923mwkZPYwGjfWrL8bk6Qf75flD9EWeDTDtnlRYNUeSX
-         Z6g/fAiv//bzpgk278/+RMf6+0sie1PDBOJDC0NrwjM55QOJBK2hL2XCflc2vZQGv6Zw
-         Jt00ADsRrcrZH4s4HaaGYWtM0Z+5eRuramr2PeArPDnHHWMxxgHM6chzVAzG4iybTVet
-         GcU4AXW65i1dwoBVxDNf1e0OAvSKOmUq5/CU2oKa7Ldmk+/UCFVWFgdD99gJLOt6BW77
-         oXj6E96l0DF1oFOKkz8oPIx2KVMi+1yzMdfGMpVRo6dCXidZbLV4zHvrwhiTpJ80onOb
-         q39A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=jDdg1OwF0FAhl89N9DnPSHZNHtzrEJIzfPoyVuGv+78=;
-        b=fOPml9izhq4IjsvQAlovFIzMOr9ExwjO7dWpSdBRKaTSGTsttXY2VGMYBy5UcsQ/NC
-         5cIQ79vDRlSid0XLg5UxztLLaa5BE8IR+A/Pfw3Yf+Jy9ST0hZaQaQhP8GPiopzITsjt
-         D+pGC08Y7HBztWH7hh+UTR01tOqkywxxbWspBB+SSJgkIeai41w8CnnG+X/FZd/6J/5o
-         pPmRs+YLT7epR18g+H8bHgQBSYRHam4QaRHz9j5DUGGE/2E8kvyekxcVHHkafSY6XVtM
-         343q31+BTcRXQrM3+36B81db8r8GbpSr/2kEcUEI70cr8u5Xgn4HzrGqB7KZfFWsz6V/
-         T94Q==
-X-Gm-Message-State: APjAAAW4wNP4GTLZ05vWvjiUQwHy4dtNXGsjccn9VcYdsOBScocnfWJV
-        F18KhyFUBoXUavGXeFMx6K8Fgw==
-X-Google-Smtp-Source: APXvYqxg8k7T+sG/qb4J+4RL4O/uO7OVHc+0v4sMYS2wFnS6GZbj06GAxSZ4+jmaEw+VTfJLuCeQSQ==
-X-Received: by 2002:a17:90a:30a1:: with SMTP id h30mr33597503pjb.14.1559599768218;
-        Mon, 03 Jun 2019 15:09:28 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.googlemail.com with ESMTPSA id t7sm13213708pjq.20.2019.06.03.15.09.27
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 03 Jun 2019 15:09:27 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: add dwmac-3.70a to ethmac compatible list
-In-Reply-To: <CAFBinCCKA-15sFwyXpoxmqw5b4=6j1t-fdrHM7CoAojqN+ZGzQ@mail.gmail.com>
-References: <20190524130817.18920-1-jbrunet@baylibre.com> <CAFBinCCKA-15sFwyXpoxmqw5b4=6j1t-fdrHM7CoAojqN+ZGzQ@mail.gmail.com>
-Date:   Mon, 03 Jun 2019 15:09:27 -0700
-Message-ID: <7h4l56jp7s.fsf@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S1726241AbfFCWNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 18:13:31 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:36144 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725956AbfFCWNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 18:13:30 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id D358F136E16B0;
+        Mon,  3 Jun 2019 15:13:29 -0700 (PDT)
+Date:   Mon, 03 Jun 2019 15:13:29 -0700 (PDT)
+Message-Id: <20190603.151329.1880364693299986138.davem@davemloft.net>
+To:     grygorii.strashko@ti.com
+Cc:     ssantosh@kernel.org, richardcochran@gmail.com, robh+dt@kernel.org,
+        nsekhar@ti.com, m-karicheri2@ti.com, w-kwok2@ti.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next 04/10] net: ethernet: ti: cpts: add support
+ for rftclk selection
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190601104534.25790-5-grygorii.strashko@ti.com>
+References: <20190601104534.25790-1-grygorii.strashko@ti.com>
+        <20190601104534.25790-5-grygorii.strashko@ti.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 03 Jun 2019 15:13:30 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+From: Grygorii Strashko <grygorii.strashko@ti.com>
+Date: Sat, 1 Jun 2019 13:45:28 +0300
 
-> Hi Jerome,
->
-> On Fri, May 24, 2019 at 3:08 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->>
->> After discussing with Amlogic, the Synopsys GMAC version used by
->> the gx and axg family is the 3.70a. Set this is in DT
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +static int cpts_of_mux_clk_setup(struct cpts *cpts, struct device_node *node)
+> +{
+> +	unsigned int num_parents;
+> +	const char **parent_names;
+> +	struct device_node *refclk_np;
+> +	struct clk_hw *clk_hw;
+> +	u32 *mux_table;
+> +	int ret = -EINVAL;
 
-Queued for v5.3, w/Martin's tag,
+Reverse christmas tree please.
 
-Thanks,
-
-Kevin
+Thank you.
