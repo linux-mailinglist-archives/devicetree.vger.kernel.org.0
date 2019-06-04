@@ -2,118 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03FF73433A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 11:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39BF6343EC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 12:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727112AbfFDJdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 05:33:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33582 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726918AbfFDJdB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 05:33:01 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EDA46249CF;
-        Tue,  4 Jun 2019 09:32:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559640780;
-        bh=fv30zCd+ya4eAbJ4qBlKi6F+W7utOftCbI5ndSkbhZo=;
-        h=Date:From:To:Cc:Subject:From;
-        b=opKQBg1EmjmuiDNAy8aOnEBCvJP3Ac5iFVNmMiAYHI80Eiwt8JcsTxSJtKzOpmazr
-         kIh/7ratqm4vMuGT7y34esEVCWWub0gyxE03Q0QLX0ZY0agYtaWXFjboWzPdQY9SeD
-         P75Ocf07Mw2YSeXlHqhoW0TUmwyAqqREHqZNluLE=
-Date:   Tue, 4 Jun 2019 11:32:58 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Felipe Balbi <felipe.balbi@linux.intel.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        id S1727027AbfFDKMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 06:12:49 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52722 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727278AbfFDKMP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 06:12:15 -0400
+X-UUID: 09c32f24de5f4180bf28aeb7ddab803a-20190604
+X-UUID: 09c32f24de5f4180bf28aeb7ddab803a-20190604
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <stu.hsieh@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 612278754; Tue, 04 Jun 2019 18:12:06 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 4 Jun 2019 18:11:58 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 4 Jun 2019 18:11:58 +0800
+From:   Stu Hsieh <stu.hsieh@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, CK Hu <ck.hu@mediatek.com>
+CC:     Mark Rutland <mark.rutland@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] USB: move usb debugfs directory creation to the usb common
- core
-Message-ID: <20190604093258.GB30054@kroah.com>
+        Stu Hsieh <stu.hsieh@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH v4 00/14] Add mediatek mipicsi driver for Mediatek SOC MT2712
+Date:   Tue, 4 Jun 2019 18:11:41 +0800
+Message-ID: <1559643115-15124-1-git-send-email-stu.hsieh@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 532CD136B93353C89B0B0C85495B6EDAE408C70C02392551530E77B5757C0DB42000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The USB gadget subsystem wants to use the USB debugfs root directory, so
-move it to the common "core" USB code so that it is properly initialized
-and removed as needed.
+Add mediatek mipicsi driver for Mediatek SOC MT2712
 
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Change in v4:
+- remove soc_camera framework dependence in v3
+- add some error handle and of_node_put() in patch
+  "[media] mtk-mipicsi: add mediatek mipicsi driver for mt2712"
+- remove some useless variable
 
----
+Stu Hsieh (14):
+  dt-bindings: Add binding for MT2712 MIPI-CSI2
+  dt-bindings: media: Add mipicsi common node binding for MT2712
+    MIPI-CSI2
+  dt-bindings: media: Add camsv binding for MT2712 MIPI-CSI2
+  [media] mtk-mipicsi: add mediatek mipicsi driver for mt2712
+  [media] mtk-mipicsi: register the v4l2 device for mt2712 mipicsi
+  [media] mtk-mipicsi: enable/disable ana clk
+  [media] mtk-mipicsi: add function to get the number of subdev link
+  [media] mtk-mipicsi: enable/disable cmos for mt2712
+  [media] mtk-mipicsi: add ISR for writing the data to buffer
+  [media] mtk-mipicsi: set the output address in HW reg
+  [media] mtk-mipicsi: add function to get the format
+  [media] mtk-mipicsi: add debug message for mipicsi driver
+  [media] mtk-mipicsi: add debugfs for mipicsi driver
+  [media] mtk-mipicsi: add function to support SerDes for link number
 
-This should be the "correct" version of this, Chunfeng, can you test
-this to verify it works for you?
+ .../bindings/media/mediatek-mipicsi-camsv.txt |   55 +
+ .../media/mediatek-mipicsi-common.txt         |   19 +
+ .../bindings/media/mediatek-mipicsi.txt       |   58 +
+ drivers/media/platform/mtk-mipicsi/Makefile   |    4 +
+ .../media/platform/mtk-mipicsi/mtk_mipicsi.c  | 1734 +++++++++++++++++
+ 5 files changed, 1870 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-mipicsi-camsv.txt
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-mipicsi-common.txt
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-mipicsi.txt
+ create mode 100644 drivers/media/platform/mtk-mipicsi/Makefile
+ create mode 100644 drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
 
+-- 
+2.18.0
 
-diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
-index 18f5dcf58b0d..3b5e4263ffef 100644
---- a/drivers/usb/common/common.c
-+++ b/drivers/usb/common/common.c
-@@ -15,6 +15,7 @@
- #include <linux/usb/of.h>
- #include <linux/usb/otg.h>
- #include <linux/of_platform.h>
-+#include <linux/debugfs.h>
- 
- static const char *const ep_type_names[] = {
- 	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
-@@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
- EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
- #endif
- 
-+struct dentry *usb_debug_root;
-+EXPORT_SYMBOL_GPL(usb_debug_root);
-+
-+static int usb_common_init(void)
-+{
-+	usb_debug_root = debugfs_create_dir("usb", NULL);
-+	return 0;
-+}
-+
-+static void usb_common_exit(void)
-+{
-+	debugfs_remove_recursive(usb_debug_root);
-+}
-+
-+module_init(usb_common_init);
-+module_exit(usb_common_exit);
-+
- MODULE_LICENSE("GPL");
-diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-index 7fcb9f782931..f3d6b1ab80cb 100644
---- a/drivers/usb/core/usb.c
-+++ b/drivers/usb/core/usb.c
-@@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
- 	.notifier_call = usb_bus_notify,
- };
- 
--struct dentry *usb_debug_root;
--EXPORT_SYMBOL_GPL(usb_debug_root);
-+static struct dentry *usb_devices_root;
- 
- static void usb_debugfs_init(void)
- {
--	usb_debug_root = debugfs_create_dir("usb", NULL);
--	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
--			    &usbfs_devices_fops);
-+	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
-+					       NULL, &usbfs_devices_fops);
- }
- 
- static void usb_debugfs_cleanup(void)
- {
--	debugfs_remove_recursive(usb_debug_root);
-+	debugfs_remove_recursive(usb_devices_root);
- }
- 
- /*
