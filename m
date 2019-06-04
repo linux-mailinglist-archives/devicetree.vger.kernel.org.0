@@ -2,120 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 781EF34F95
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 20:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ACE234FC2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 20:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725933AbfFDSKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 14:10:16 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36737 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726179AbfFDSKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 14:10:16 -0400
-Received: by mail-wr1-f65.google.com with SMTP id n4so13792524wrs.3;
-        Tue, 04 Jun 2019 11:10:14 -0700 (PDT)
+        id S1726211AbfFDSUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 14:20:47 -0400
+Received: from mail-pf1-f180.google.com ([209.85.210.180]:34507 "EHLO
+        mail-pf1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbfFDSUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 14:20:46 -0400
+Received: by mail-pf1-f180.google.com with SMTP id c85so4390908pfc.1;
+        Tue, 04 Jun 2019 11:20:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lLFJn8hfJB0bfYBQ2rEhUXIcdzRXExeNARfQE/rlETg=;
-        b=vUjBWTaBQcbMO0GWKgSI7xMK2QKr+0vX8zwG8ghZF85C1ae5KmMhS2KIgThcOqJ/rJ
-         TRzn+Njtqf/0JHaJzVdZt9V7KWSyWOqkiA8DTFHnfvw3BdAJ+5thsRwTgcBjaI83+gSy
-         1hqQpkUvlZY9LLtaUdp0L0TbBtBClqlkMuM23UiANzcvbBI1FcreHSUVrHBV7XpeZXy/
-         c/3hlvOFu3ruXyFBa/cYv0/K+X+brPVFx7HdrNG+e9RHJoe6JQGdrUhPb3s3UbmnQtj7
-         xAP75dTJ9fanBvBRUykQrrsmL713koEcbQjGcZlZrzMHPpJoeARIzNYJz0zD+hhPd2qG
-         cCsw==
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=rkSwU71K73scZ+gaddkeCEXxdBDgv49bmVU1xExpRSo=;
+        b=jKkRKM8ez3ciBU6QKJC1DXaqmvggOmTW8dQdy1/qcEUfgjn3+AIObJrmSlYoboTCir
+         p2v/Kv9PkrhSLr4BxjJMxQSLllOOMTM2ln98cG1mU8O5zPE19LoWziUyDTTVuGcRR7wW
+         M0Bs9GQD4FrgIzx/gf2hGl9ohJxr0407NBMwbXoPBw0yHNvxfoqWgPCC9ljSFyYgOGPZ
+         gCL9UiaKv8rv6tu0nkfsIw0UctBZ1cP5xXC7JZAwLr4tjoiZFQtOQtIaU9W0gSgY2CsL
+         7m1EG36hk7Dysvsul+kO4UDebsQXxtP2RppzV3+4GUZ3IiejT0UdwMq1gaEbzQP7yy0K
+         f+Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lLFJn8hfJB0bfYBQ2rEhUXIcdzRXExeNARfQE/rlETg=;
-        b=YpAzXpiSCnZZZgDLLm5GwaMTx66Obdj9eczSHMi/u9GtquusEeWSVGYgAAODnS6PUk
-         IG4+uDwbO1gvv8nLobomnQbvolJ/sRoGT8gtzcLKXOtK5N+EBx2m17kEonD9b3fG2+Jh
-         QeY7WhYUzL8N72bnKUdUZr25y1qxnUTb9ZJ3UICk4+CHnZiZc0rXLrIi/OPV2QFsCmVa
-         WdA+5RbmA+RzVusV8DjE8D+rRXWewOqvfS9Yey8ZeoGxzX1JgARTi6FknB/ozo2844i+
-         VN1qN1D0/BwE9pECw6F5NLKlJDur+O4MVEc6iEQwsSVI/OiXrta3Fvq+2lHLGS+fgSiK
-         pQbA==
-X-Gm-Message-State: APjAAAUltmqSAyvTtaujeOiK43AKTZJ8IBctsIjM+I47AFBOCCiiV8oZ
-        FKQstiwMSFFSLylWqqaQecqKGKZQcluz0pabexs=
-X-Google-Smtp-Source: APXvYqxrnaWRBKNjOZJP0zWlO2DmEFkaazI6Z+tkInzQvHcCwD+PxOjOGa8Jm+4UyZqJvTfz1hmYWCIZQQV23Cv8CnY=
-X-Received: by 2002:a5d:4992:: with SMTP id r18mr7697528wrq.107.1559671814077;
- Tue, 04 Jun 2019 11:10:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
- <20190604072001.9288-3-bjorn.andersson@linaro.org> <BN7PR08MB568450B1EC51ABAA2E426AC0DB150@BN7PR08MB5684.namprd08.prod.outlook.com>
-In-Reply-To: <BN7PR08MB568450B1EC51ABAA2E426AC0DB150@BN7PR08MB5684.namprd08.prod.outlook.com>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Tue, 4 Jun 2019 11:10:01 -0700
-Message-ID: <CANcMJZB+bg9LWzo=EaL-QnWiL49=MzyBJy8qsBiSMu8HZeWRxw@mail.gmail.com>
-Subject: Re: [EXT] [PATCH 2/3] scsi: ufs: Allow resetting the UFS device
-To:     "Bean Huo (beanhuo)" <beanhuo@micron.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=rkSwU71K73scZ+gaddkeCEXxdBDgv49bmVU1xExpRSo=;
+        b=T1IdOGm8zD9aMTNnjNyxQsalIL5PqhGN0ZwwJBoFPvGaDtqmWrNtoqQJzamusd64TC
+         9Z1nKntZEuWztGLhbE/WKPakIxdzVsAQrgq1jQ5j/h7P5XcFAyArMYuuQZfuvtTMhwaG
+         y2b4eTKQKlNLB5HDrzvNA7bO6yvdvYn00mEjdgUdKKNNF0+6tlZjBGYMrcTljZt7thiw
+         5bPQoqfE7my9sYAr3HBWgaJ8HtaNz6CWfzEytPMjliBvl8D/C3v9p5IbrtCnIJQ8puq/
+         oz8qpUYPSU6hQank9Bzj4PNTb5CYKyVG+zCwXJU1FFYovKipXUzkaWcHBV3borhnmO4G
+         e/Lg==
+X-Gm-Message-State: APjAAAW5A52dPQj5ISTj4ahPIkMjl6GR6Z+5shN2P5SLmfmweXMg0TRR
+        J3BIGaemedWhUprWWxRX6reBDMmA
+X-Google-Smtp-Source: APXvYqwiSebMkHd42axWHMY4tve11l/QHgRBaJ2adjNS8DZHLvZUGcXQzFwWBosw4EzQ2VzE3rEysw==
+X-Received: by 2002:a63:f54c:: with SMTP id e12mr33695pgk.62.1559672445760;
+        Tue, 04 Jun 2019 11:20:45 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id s42sm22991062pjc.5.2019.06.04.11.20.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Jun 2019 11:20:45 -0700 (PDT)
+Subject: Re: Dynamic overlay failure in 4.19 & 4.20
+To:     Phil Elwell <phil@raspberrypi.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        Subhash Jadavani <subhashj@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <c5af11eb-afe5-08c4-8597-3195c25ba1d5@raspberrypi.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <4d5b9fba-3879-0729-119a-f7d585a74cc1@gmail.com>
+Date:   Tue, 4 Jun 2019 11:20:43 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <c5af11eb-afe5-08c4-8597-3195c25ba1d5@raspberrypi.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 4, 2019 at 1:14 AM Bean Huo (beanhuo) <beanhuo@micron.com> wrote:
->
-> Hi, Bjorn
->
-> >Acquire the device-reset GPIO and toggle this to reset the UFS device during
-> >initialization and host reset.
-> >
-> >+/**
-> >+ ufshcd_device_reset() - toggle the (optional) device reset line
-> >+ * @hba: per-adapter instance
-> >+ *
-> >+ * Toggles the (optional) reset line to reset the attached device.
-> >+ */
-> >+static void ufshcd_device_reset(struct ufs_hba *hba) {
-> >+      /*
-> >+       * The USB device shall detect reset pulses of 1us, sleep for 10us to
-> >+       * be on the safe side.
-> >+       */
-> >+      gpiod_set_value_cansleep(hba->device_reset, 1);
-> >+      usleep_range(10, 15);
-> >+
-> >+      gpiod_set_value_cansleep(hba->device_reset, 0);
-> >+      usleep_range(10, 15);
-> >+}
-> >+
-> > /**
-> >  * ufshcd_host_reset_and_restore - reset and restore host controller
-> >  * @hba: per-adapter instance
-> >@@ -6159,6 +6179,9 @@ static int ufshcd_reset_and_restore(struct ufs_hba
-> >*hba)
-> >       int retries = MAX_HOST_RESET_RETRIES;
-> >
-> >       do {
-> >+              /* Reset the attached device */
-> >+              ufshcd_device_reset(hba);
-> >+
->
-> what's problem you met, and you should reset UFS device here? could you give more info?
+Hi Phil,
 
-On the pixel3, devices with micron UFS chips won't boot upstream
-kernels without this patch, which is a rewrite of an earlier patch:
-  https://git.linaro.org/people/john.stultz/android-dev.git/commit/?h=dev/p3&id=99f3dd8519a848b752679584451c45f42c326a17
+On 6/4/19 5:15 AM, Phil Elwell wrote:
+> Hi,
+> 
+> In the downstream Raspberry Pi kernel we are using configfs to apply overlays at
+> runtime, using a patchset from Pantelis that hasn't been accepted upstream yet.
+> Apart from the occasional need to adapt to upstream changes, this has been working
+> well for us.
+> 
+> A Raspberry Pi user recently noticed that this mechanism was failing for an overlay in
+> 4.19. Although the overlay appeared to be applied successfully, pinctrl was reporting
+> that one of the two fragments contained an invalid phandle, and an examination of the
+> live DT agreed - the target of the reference, which was in the other fragment, was
+> missing the phandle property.
+> 
+> 5.0 added two patches - [1] to stop blindly copying properties from the overlay fragments
+> into the live tree, and [2] to explicitly copy across the name and phandle properties.
+> These two commits should be treated as a pair; the former requires the properties that
+> are legitimately defined by an overlay to be added via a changeset, but this mechanism
+> deliberately skips the name and phandle; the latter addresses this shortcoming. However,
+> [1] was back-ported to 4.19 and 4.20 but [2] wasn't, hence the problem.
 
-Which was pulled from the downstream tree from here:
-  https://android.googlesource.com/kernel/msm.git/+/9c8077087e818017%5E%21/
+I have relied upon Greg's statement that he would handle the stable kernels, and that
+the process of doing so would not impact (or would minimally impact) maintainers.  If
+I think something should go into stable, I will tag it as such, but otherwise I ignore
+the stable branches.  For overlay related code specifically, my base standard is that
+overlay support is an under development, not yet ready for prime time feature and thus
+I do not tag my overlay patches for stable.
 
-CCing Subhash as he may have additional context.
+Your research and analysis above sound like there are on target (thanks for providing
+the clear and detailed explanation!), so if you want the stable branches to work for
+overlays (out of tree, as you mentioned) I would suggest you email Greg, asking that
+the second patch be added to the stable branches.  Since the two patches you pointed
+out are put of a larger series, you might also want to check which of the other
+patches in that series were included in stable or left out from stable.  My suggestion
+that you request Greg add the second patch continues to rely on the concept that
+stable does not add to my workload, so I have not carefully analyzed whether adding
+the patch actually is the correct and full fix, but instead am relying on your good
+judgment that it is.
 
-thanks
--john
+To give you some context on the patch series, I started with 144552c78692 ("of: overlay:
+add tests to validate kfrees from overlay removal") due to my concerns with how
+memory is allocated and freed for overlays.  The added tests exposed issues, and
+the rest of the patches in the series were dealing with the issues that were
+exposed.
+
+You can see the full series (with maybe an extra patch or so) with
+git log --oneline 144552c78692^..eeb07c573ec3
+
+
+> The effect can be seen in the "overlay" overlay in the unittest data. Although the
+> overlay appears to apply correctly, the hvac-large-1 node is lacking the phandle it
+> should have as a result of the hvac_2 label, and that leaves the hvac-provider property
+> of ride@200 with an unresolved phandle.
+> 
+> The obvious fix is to also back-port [2] to 4.19, but that leaves open the question of
+> whether either the overlay application mechanism or the unit test framework should have
+> detected the missing phandle.
+
+Yes, unittest showed the missing phandle, as you described in the /proc view of
+overlay.dts above.  That portion of unittest depends on someone looking at the
+result of what is in /proc/device-tree and is not automated and is not documented.
+I intend to automate that check someday, but the task is still languishing on my
+todo list.
+
+> 
+> Phil
+> 
+> [1] 8814dc46bd9e ("of: overlay: do not duplicate properties from overlay for new nodes")
+> [2] f96278810150 ("of: overlay: set node fields from properties when add new overlay node")
+> 
+
