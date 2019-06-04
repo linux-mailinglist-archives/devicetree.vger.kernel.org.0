@@ -2,180 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E31534CBF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 18:00:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8893D34D22
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 18:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728030AbfFDQAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 12:00:46 -0400
-Received: from mga12.intel.com ([192.55.52.136]:48465 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727422AbfFDQAq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 12:00:46 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Jun 2019 09:00:45 -0700
-X-ExtLoop1: 1
-Received: from marshy.an.intel.com (HELO [10.122.105.159]) ([10.122.105.159])
-  by fmsmga001.fm.intel.com with ESMTP; 04 Jun 2019 09:00:45 -0700
-Subject: Re: A potential broken at platform driver?
-To:     Greg KH <gregkh@linuxfoundation.org>,
-        Romain Izard <romain.izard.pro@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
-        atull@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, sen.li@intel.com,
-        Richard Gong <richard.gong@intel.com>
-References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
- <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
- <20190528232224.GA29225@kroah.com>
- <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
- <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
- <20190603180255.GA18054@kroah.com> <20190604103241.GA4097@5WDYG62>
- <20190604142803.GA28355@kroah.com>
-From:   Richard Gong <richard.gong@linux.intel.com>
-Message-ID: <e3adbd00-e500-70af-1c27-e4c064486561@linux.intel.com>
-Date:   Tue, 4 Jun 2019 11:13:02 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1728287AbfFDQWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 12:22:44 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:41471 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728281AbfFDQWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 12:22:44 -0400
+Received: by mail-pl1-f194.google.com with SMTP id s24so8403146plr.8
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 09:22:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:cc:to:from:subject:user-agent:date;
+        bh=Xpjq9bw6slADT5XCKmt0erTi9PTdSuDRNC9m5h9fUkk=;
+        b=YUJDujuiWHJHMvNYD3L1Gz6F8jaVKgQZQqlqTNcqZmoo8heqS9GzRSWuBdYHy0ZsTN
+         RnIINRo7NVy7VfZknlFtNXSB1vyXygQ/TKOEXtM9LiTUugYZEWgXyB0p1auiKrhr6JPj
+         ZBUNdP9/fO5M96Cc/ttzxbSmKv8jS91EuMLqQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:date;
+        bh=Xpjq9bw6slADT5XCKmt0erTi9PTdSuDRNC9m5h9fUkk=;
+        b=plYbKM2IGtMd9Y+ky43ZQbZq0smNTRXtYRwBTEq7vuI2rRnBR3wPobzapPwzoM+ujE
+         DaUZVdMo3ku9RA8skCW/WZcX25+zgNQhhKcOq8/s18QYbaFS8n6PB9HDQ3fHJMs03S80
+         bn9gyVsadkusMK8kiV8LPKBchanhBMBKKPu+177PLz9EnzwNr9T/UBMgM7sivyWPzSFn
+         HMnQ741sFXsqke6pOlosxiCEtom4fu7gBTAeBHbBcElMLWT2IJwqCTMTlGYm8M1ceYQC
+         Vs331fm1JomVdl0o1v3F9/tI/OVwtM2ocNb3KF6GvwbPiQpUykTNw/8+fKGt6MzJz4jQ
+         knMg==
+X-Gm-Message-State: APjAAAVFrRWyWftNFRdap7H/l1dAB5QjZQgMPBO8UDppHLmUM8H8DRCO
+        icKU4PowxojXQL7V7EtOBsHk/g==
+X-Google-Smtp-Source: APXvYqyVXG8EIds+qzy7r1wtzTPqaJAQxUcsAxNH581QY9KBnrRJOGctYgOl+qzV8OAs14fzo3+vng==
+X-Received: by 2002:a17:902:bc8a:: with SMTP id bb10mr38409335plb.310.1559665363394;
+        Tue, 04 Jun 2019 09:22:43 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id k8sm6855524pfk.177.2019.06.04.09.22.42
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 04 Jun 2019 09:22:42 -0700 (PDT)
+Message-ID: <5cf69ad2.1c69fb81.216a9.30f8@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190604142803.GA28355@kroah.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190604072001.9288-4-bjorn.andersson@linaro.org>
+References: <20190604072001.9288-1-bjorn.andersson@linaro.org> <20190604072001.9288-4-bjorn.andersson@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, Evan Green <evgreen@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
+User-Agent: alot/0.8.1
+Date:   Tue, 04 Jun 2019 09:22:42 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Bjorn Andersson (2019-06-04 00:20:01)
+> Specify the UFS device-reset gpio, so that the controller will issue a
+> reset of the UFS device.
+>=20
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dt=
+s/qcom/sdm845-mtp.dts
+> index 2e78638eb73b..d116a0956a9c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -388,6 +388,8 @@
+>  &ufs_mem_hc {
+>         status =3D "okay";
+> =20
+> +       device-reset-gpios =3D <&tlmm 150 GPIO_ACTIVE_LOW>;
+> +
 
-Hi Greg,
+We had to do something similar on one particular brand of UFS that we had. I
+think it was an SK Hynix part that had trouble and wouldn't provision prope=
+rly.
+Either way, we did this with a pinctrl toggle in the DTS where the "init" s=
+tate
+has the UFS_RESET pin asserted and then "default" state has the pin deasser=
+ted.
+That was good enough to make this work.
 
-On 6/4/19 9:28 AM, Greg KH wrote:
-> On Tue, Jun 04, 2019 at 12:33:03PM +0200, Romain Izard wrote:
->> On Mon, Jun 03, 2019 at 08:02:55PM +0200, Greg KH wrote:
->>>> @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
->>>>   	.remove = stratix10_rsu_remove,
->>>>   	.driver = {
->>>>   		.name = "stratix10-rsu",
->>>> -		.groups = rsu_groups,
->>>> +//		.groups = rsu_groups,
->>>
->>> Are you sure this is the correct pointer?  I think that might be
->>> pointing to the driver's attributes, not the device's attributes.
->>>
->>> If platform drivers do not have a way to register groups properly, then
->>> that really needs to be fixed, as trying to register it by yourself as
->>> you are doing, is ripe for racing with userspace.
->>   
->> This is a very common issue with platform drivers, and it seems to me that
->> it is not possible to add device attributes when binding a device to a
->> driver without entering the race condition.
->>
->> My understanding is the following one:
->>
->> The root cause is that the device has already been created and reported
->> to the userspace with a KOBJ_ADD uevent before the device and the driver
->> are bound together. On receiving this event, userspace will react, and
->> it will try to read the device's attributes. In parallel the kernel will
->> try to find a matching driver. If a driver is found, the kernel will
->> call the probe function from the driver with the device as a parameter,
->> and if successful a KOBJ_BIND uevent will be sent to userspace, but this
->> is a recent addition.
->>
->> Unfortunately, not all created devices will be bound to a driver, and the
->> existing udev code relies on KOBJ_ADD uevents rather than KOBJ_BIND uevents.
->> If new per-device attributes have been added to the device during the
->> binding stage userspace may or may not see them, depending on when userspace
->> tries to read the device's attributes.
->>
->> I have this possible workaround, but I do not know if it is a good solution:
->>
->> When binding the device and the driver together, create a new device as a
->> child to the current device, and fill its "groups" member to point to the
->> per-device attributes' group. As the device will be created with all the
->> attributes, it will not be affected by the race issues. The functions
->> handling the attributes will need to be modified to use the parents of their
->> "device" parameter, instead of the device itself. Additionnaly, the sysfs
->> location of the attributes will be different, as the child device will show
->> up in the sysfs path. But for a newly introduced device this will not be
->> a problem.
->>
->> Is this a good compromise ?
-> 
-> Not really.  You just want the attributes on the platform device itself.
-> 
-> Given the horrible hack that platform devices are today, what's one more
-> hack!
-> 
-> Here's a patch below of what should probably be done here.  Richard, can
-> you change your code to use the new dev_groups pointer in the struct
-> platform_driver and this patch and let me know if that works or not?
-> 
-> Note, I've only compiled this code, not tested it...
->
+	&ufs_mem_hc {
+		pinctrl-names =3D "init", "default";
+		pinctrl-0 =3D <&ufs_dev_reset_assert>;
+		pinctrl-1 =3D <&ufs_dev_reset_deassert>;
+	};
 
-Your patch works.
+        ufs_dev_reset_assert: ufs_dev_reset_assert {
+                config {
+                        pins =3D "ufs_reset";
+                        bias-pull-down;         /* default: pull down */
+                        drive-strength =3D <8>;   /* default: 3.1 mA */
+                        output-low; /* active low reset */
+                };
+        };
 
-Many thanks for your help!
-
-Regards,
-Richard
-
-> thanks,
-> 
-> greg k-h
-> 
-> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-> index 4d1729853d1a..3dd4b73a9b30 100644
-> --- a/drivers/base/platform.c
-> +++ b/drivers/base/platform.c
-> @@ -598,6 +598,7 @@ struct platform_device *platform_device_register_full(
->   }
->   EXPORT_SYMBOL_GPL(platform_device_register_full);
->   
-> +static int platform_drv_remove(struct device *_dev);
->   static int platform_drv_probe(struct device *_dev)
->   {
->   	struct platform_driver *drv = to_platform_driver(_dev->driver);
-> @@ -614,8 +615,18 @@ static int platform_drv_probe(struct device *_dev)
->   
->   	if (drv->probe) {
->   		ret = drv->probe(dev);
-> -		if (ret)
-> +		if (ret) {
->   			dev_pm_domain_detach(_dev, true);
-> +			goto out;
-> +		}
-> +	}
-> +	if (drv->dev_groups) {
-> +		ret = device_add_groups(_dev, drv->dev_groups);
-> +		if (ret) {
-> +			platform_drv_remove(_dev);
-> +			return ret;
-> +		}
-> +		kobject_uevent(&_dev->kobj, KOBJ_CHANGE);
->   	}
->   
->   out:
-> @@ -640,6 +651,8 @@ static int platform_drv_remove(struct device *_dev)
->   
->   	if (drv->remove)
->   		ret = drv->remove(dev);
-> +	if (drv->dev_groups)
-> +		device_remove_groups(_dev, drv->dev_groups);
->   	dev_pm_domain_detach(_dev, true);
->   
->   	return ret;
-> diff --git a/include/linux/platform_device.h b/include/linux/platform_device.h
-> index cc464850b71e..027f1e1d7af8 100644
-> --- a/include/linux/platform_device.h
-> +++ b/include/linux/platform_device.h
-> @@ -190,6 +190,7 @@ struct platform_driver {
->   	int (*resume)(struct platform_device *);
->   	struct device_driver driver;
->   	const struct platform_device_id *id_table;
-> +	const struct attribute_group **dev_groups;
->   	bool prevent_deferred_probe;
->   };
->   
-> 
+        ufs_dev_reset_deassert: ufs_dev_reset_deassert {
+                config {
+                        pins =3D "ufs_reset";
+                        bias-pull-down;         /* default: pull down */
+                        drive-strength =3D <8>;
+                        output-high; /* active low reset */
+                };
+        };
