@@ -2,64 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3947235033
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 21:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F6BA3505D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 21:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726211AbfFDTXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 15:23:51 -0400
-Received: from mga09.intel.com ([134.134.136.24]:40972 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726179AbfFDTXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 15:23:51 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Jun 2019 12:23:49 -0700
-X-ExtLoop1: 1
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga006.jf.intel.com with ESMTP; 04 Jun 2019 12:23:45 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 9177E20BEB; Tue,  4 Jun 2019 22:23:44 +0300 (EEST)
-Date:   Tue, 4 Jun 2019 22:23:44 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Vishal Sagar <vishal.sagar@xilinx.com>
-Cc:     Hyun Kwon <hyunk@xilinx.com>, laurent.pinchart@ideasonboard.com,
-        mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        Michal Simek <michals@xilinx.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hans.verkuil@cisco.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Dinesh Kumar <dineshk@xilinx.com>,
-        Sandip Kothari <sandipk@xilinx.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v8 1/2] media: dt-bindings: media: xilinx: Add Xilinx
- MIPI CSI-2 Rx Subsystem
-Message-ID: <20190604192344.7tycwffjd3yeizxh@paasikivi.fi.intel.com>
-References: <1559555971-193235-1-git-send-email-vishal.sagar@xilinx.com>
- <1559555971-193235-2-git-send-email-vishal.sagar@xilinx.com>
+        id S1726551AbfFDTjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 15:39:11 -0400
+Received: from mx07-00252a01.pphosted.com ([62.209.51.214]:50884 "EHLO
+        mx07-00252a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726399AbfFDTjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 15:39:11 -0400
+Received: from pps.filterd (m0102628.ppops.net [127.0.0.1])
+        by mx07-00252a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x54Jd8p3028530
+        for <devicetree@vger.kernel.org>; Tue, 4 Jun 2019 20:39:08 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=raspberrypi.org; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=pp;
+ bh=UTu/iW6Gtp6K6tBR+5cJXfTvVrLTuenGsHDVI+Q1+SA=;
+ b=TJUKk9Efj9DK5WyaU3pDTaCDkfnjo8n0Ucu/ZCirss4vuioY51eI3R3cDU4EaMKQ59Md
+ urWeG2x8lVaIgGn7+IRPsiGFjz8Iz5bupZbOm+AJ4ILAN3HEzCXYfW7FlkYmjWyXQ7yj
+ Vy5bHg7mCTvxnXQAN8r/iNqPwFdRj8xMsIVDdgxAl9cdHYgp9J/UpORIrto+JSHNHwMs
+ 6VMPbrRv0alsYpWvL9+5858zGXoPVMj39zzmTlf923OWSUUsw12pwM5whH9WC5bD9Wzt
+ b7A/QvP9Jh1qvDZYfv2x4lzwII7jCVhp1lBX0gRsBkSdgyYpSLMffMFBIGEmolJ9dxQj Vw== 
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        by mx07-00252a01.pphosted.com with ESMTP id 2sues31qh3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK)
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 20:39:08 +0100
+Received: by mail-wm1-f72.google.com with SMTP id p16so355676wmi.8
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 12:39:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.org; s=google;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding;
+        bh=UTu/iW6Gtp6K6tBR+5cJXfTvVrLTuenGsHDVI+Q1+SA=;
+        b=X8bynUgEK1mG+lCexiK7h761LTign2OsrCIMxyA5EnHQKdsMauZ1xDBXxop9AGY9mj
+         wG0nR9bSUkBc3ojHjr16DG9opwhaR6lUW2fi8iDuaN/LN+ycyyNewe2yFqBe6bOAVY7y
+         GdKKVndqW+3+kwI0YjAcsuVAY2fFaWwzMc+3NVAZ7bfJ3LixScPgJaYt6ugdsU3MZFXJ
+         1nJPI4g8ZkTR48OnrJZr+LbbfWaQtw+EpBINrun3+L2SPnaQrhSv2ujBaGee7STn9lvH
+         AskLCxrti+LjiyHvYPXG1lENVZwdZhaUhdnv/kJpdX+5R2Xce2K2vHVg+gcCnQl2+SNw
+         wnQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
+        bh=UTu/iW6Gtp6K6tBR+5cJXfTvVrLTuenGsHDVI+Q1+SA=;
+        b=Sprf55CGysW76etwQLFyS+VSqgO3U/VsV0wQPaFtkWt7rDnMVj3YmY+bTGuWjkRV5Q
+         i4FyJTI9Y9XIN1D3dN0+hhyw72Fi03i1snnMaJIeKIziULW9Q/uXpramhmslHky8Z7Q1
+         67wLyCB3HmmOQlyDQ6xb/TKI9wQJBt3cdmmHH7mXp13eyb30DO9LskPb0XlDQJw1j957
+         CIFqSUXihLB38pyyPj5egj717AAdJYVWeXzKkvC6Hjr0/W0ckCiO1sYhbON781tUWDNP
+         XLGiCy/ARBGaRWFKN8MRPgIgb9d4MBoxFb2UiATad6UYLPER1sR0ajmXkzzTUjoHpIzq
+         AlpA==
+X-Gm-Message-State: APjAAAXTUoLu609P3Cktm/HddBis5zfDbS26kQCD4Y4MgSef4lwNVe4h
+        JhvHkpIxjEKbawDh49OEWcxGLfxFsen0wbRF6hAbjC+yVW6l7cRKHJNL2JHoqgZ5JK/Awavt1QT
+        g6U3WcoYj9vVXw2jdVTqCXg==
+X-Received: by 2002:a5d:63cb:: with SMTP id c11mr21713036wrw.65.1559677147230;
+        Tue, 04 Jun 2019 12:39:07 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxH7rWx/dzukCtGkybMmM09pk3h5WIfa3spCxd7vBJqXBbRDcI5BmAKsGCU27uLpH5zPz+x3w==
+X-Received: by 2002:a5d:63cb:: with SMTP id c11mr21713026wrw.65.1559677146954;
+        Tue, 04 Jun 2019 12:39:06 -0700 (PDT)
+Received: from PhilsPB.lan (cpc129774-papw8-2-0-cust832.know.cable.virginm.net. [86.12.207.65])
+        by smtp.gmail.com with ESMTPSA id y12sm15747271wrh.40.2019.06.04.12.39.05
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Jun 2019 12:39:06 -0700 (PDT)
+Subject: Re: Dynamic overlay failure in 4.19 & 4.20
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <c5af11eb-afe5-08c4-8597-3195c25ba1d5@raspberrypi.org>
+ <4d5b9fba-3879-0729-119a-f7d585a74cc1@gmail.com>
+From:   Phil Elwell <phil@raspberrypi.org>
+Message-ID: <db0fdbc6-33ce-d7b6-c807-896905fe4a90@raspberrypi.org>
+Date:   Tue, 4 Jun 2019 20:39:04 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1559555971-193235-2-git-send-email-vishal.sagar@xilinx.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <4d5b9fba-3879-0729-119a-f7d585a74cc1@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-04_12:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vishal,
+Hi Frank,
 
-On Mon, Jun 03, 2019 at 03:29:30PM +0530, Vishal Sagar wrote:
+On 04/06/2019 19:20, Frank Rowand wrote:
+> Hi Phil,
+> 
+> On 6/4/19 5:15 AM, Phil Elwell wrote:
+>> Hi,
+>>
+>> In the downstream Raspberry Pi kernel we are using configfs to apply overlays at
+>> runtime, using a patchset from Pantelis that hasn't been accepted upstream yet.
+>> Apart from the occasional need to adapt to upstream changes, this has been working
+>> well for us.
+>>
+>> A Raspberry Pi user recently noticed that this mechanism was failing for an overlay in
+>> 4.19. Although the overlay appeared to be applied successfully, pinctrl was reporting
+>> that one of the two fragments contained an invalid phandle, and an examination of the
+>> live DT agreed - the target of the reference, which was in the other fragment, was
+>> missing the phandle property.
+>>
+>> 5.0 added two patches - [1] to stop blindly copying properties from the overlay fragments
+>> into the live tree, and [2] to explicitly copy across the name and phandle properties.
+>> These two commits should be treated as a pair; the former requires the properties that
+>> are legitimately defined by an overlay to be added via a changeset, but this mechanism
+>> deliberately skips the name and phandle; the latter addresses this shortcoming. However,
+>> [1] was back-ported to 4.19 and 4.20 but [2] wasn't, hence the problem.
+> 
+> I have relied upon Greg's statement that he would handle the stable kernels, and that
+> the process of doing so would not impact (or would minimally impact) maintainers.  If
+> I think something should go into stable, I will tag it as such, but otherwise I ignore
+> the stable branches.  For overlay related code specifically, my base standard is that
+> overlay support is an under development, not yet ready for prime time feature and thus
+> I do not tag my overlay patches for stable.
+> 
+> Your research and analysis above sound like there are on target (thanks for providing
+> the clear and detailed explanation!), so if you want the stable branches to work for
+> overlays (out of tree, as you mentioned) I would suggest you email Greg, asking that
+> the second patch be added to the stable branches.  Since the two patches you pointed
+> out are put of a larger series, you might also want to check which of the other
+> patches in that series were included in stable or left out from stable.  My suggestion
+> that you request Greg add the second patch continues to rely on the concept that
+> stable does not add to my workload, so I have not carefully analyzed whether adding
+> the patch actually is the correct and full fix, but instead am relying on your good
+> judgment that it is.
 
-> +Optional properties:
-> +--------------------
-> +- xlnx,vfb: This is present when Video Format Bridge is enabled.
-> +  Without this property the driver won't be loaded as IP won't be able to generate
-> +  media bus format compliant stream output.
+<useful context snipped>
 
-I think we previously concluded that the format will be just different in
-this case. So the description appears incorrect.
+Thank you - I'll email Greg directly as you suggest, with your answer as supporting
+evidence.
 
--- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+Phil
