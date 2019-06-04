@@ -2,126 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E048C3460D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 13:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5509834662
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727543AbfFDL7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 07:59:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57096 "EHLO mail.kernel.org"
+        id S1727377AbfFDMRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 08:17:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48554 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727358AbfFDL7W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 07:59:22 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        id S1727358AbfFDMRd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 08:17:33 -0400
+Received: from localhost (unknown [117.99.94.117])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 18AD324891;
-        Tue,  4 Jun 2019 11:59:20 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 80684244BD;
+        Tue,  4 Jun 2019 12:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559649561;
-        bh=Z3XO3oNEi5/5cBT7blM/rDurAsFcvi2cI8yOPOcHAmg=;
+        s=default; t=1559650652;
+        bh=bxcstRLwU2OCrbdzc+Fn7SYXXr3erA6vCBguUl4JiOA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q7T5sA/E2GlQZD03vvdIiG1CS2Ci9xcqsSsS+0uONfWAe/OFiA0jKN3FI43RbjxgS
-         LXDNCJ8E/Ic6Ci4r6t6wd69SKvUX66KvwdLm4fAhedRA46On0BZo83vPlN4YI5/Rpi
-         j9DHYqDnYoB33Z862/bycdkeBXJdp4J6Q2g/IvfI=
-Date:   Tue, 4 Jun 2019 13:59:19 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Felipe Balbi <felipe.balbi@linux.intel.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
- common core
-Message-ID: <20190604115919.GA24346@kroah.com>
-References: <20190604093258.GB30054@kroah.com>
+        b=JSYcVN/j7CL89lKu4Tu8gOiZB0I0mEyU0UEyj4t4sZvDxTHvxr+v4PyDhv0qZDBXC
+         1FkCBlmyGwnunWIQvBS0Oc/+F70Ob3hLItc5b9/aYsgUo3DFHKLbk50OzshVStSTUM
+         VSAG9SSHyqzyN9gy86ya6PVtaQe5ZvytefP5C51c=
+Date:   Tue, 4 Jun 2019 17:44:24 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     dmaengine@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dmagengine: pl330: add code to get reset property
+Message-ID: <20190604121424.GW15118@vkoul-mobl>
+References: <20190524002847.30961-1-dinguyen@kernel.org>
+ <20190524002847.30961-2-dinguyen@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190604093258.GB30054@kroah.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+In-Reply-To: <20190524002847.30961-2-dinguyen@kernel.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 11:32:58AM +0200, Greg Kroah-Hartman wrote:
-> The USB gadget subsystem wants to use the USB debugfs root directory, so
-> move it to the common "core" USB code so that it is properly initialized
-> and removed as needed.
+On 23-05-19, 19:28, Dinh Nguyen wrote:
+> The DMA controller on some SoCs can be held in reset, and thus requires
+> the reset signal(s) to deasserted. Most SoCs will have just one reset
+> signal, but there are others, i.e. Arria10/Stratix10 will have an
+> additional reset signal, referred to as the OCP.
 > 
-> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Add code to get the reset property from the device tree for deassert and
+> assert.
 > 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 > ---
+>  drivers/dma/pl330.c | 38 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
-> This should be the "correct" version of this, Chunfeng, can you test
-> this to verify it works for you?
-> 
-> 
-> diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
-> index 18f5dcf58b0d..3b5e4263ffef 100644
-> --- a/drivers/usb/common/common.c
-> +++ b/drivers/usb/common/common.c
-> @@ -15,6 +15,7 @@
->  #include <linux/usb/of.h>
->  #include <linux/usb/otg.h>
->  #include <linux/of_platform.h>
-> +#include <linux/debugfs.h>
+> diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
+> index 6e6837214210..6018c43e785d 100644
+> --- a/drivers/dma/pl330.c
+> +++ b/drivers/dma/pl330.c
+> @@ -29,6 +29,7 @@
+>  #include <linux/err.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/bug.h>
+> +#include <linux/reset.h>
 >  
->  static const char *const ep_type_names[] = {
->  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
-> @@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
->  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
->  #endif
->  
-> +struct dentry *usb_debug_root;
-> +EXPORT_SYMBOL_GPL(usb_debug_root);
+>  #include "dmaengine.h"
+>  #define PL330_MAX_CHAN		8
+> @@ -500,6 +501,9 @@ struct pl330_dmac {
+>  	unsigned int num_peripherals;
+>  	struct dma_pl330_chan *peripherals; /* keep at end */
+>  	int quirks;
 > +
-> +static int usb_common_init(void)
-> +{
-> +	usb_debug_root = debugfs_create_dir("usb", NULL);
-> +	return 0;
-> +}
-> +
-> +static void usb_common_exit(void)
-> +{
-> +	debugfs_remove_recursive(usb_debug_root);
-> +}
-> +
-> +module_init(usb_common_init);
-> +module_exit(usb_common_exit);
-> +
->  MODULE_LICENSE("GPL");
-> diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-> index 7fcb9f782931..f3d6b1ab80cb 100644
-> --- a/drivers/usb/core/usb.c
-> +++ b/drivers/usb/core/usb.c
-> @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
->  	.notifier_call = usb_bus_notify,
+> +	struct reset_control	*rstc;
+> +	struct reset_control	*rstc_ocp;
 >  };
 >  
-> -struct dentry *usb_debug_root;
-> -EXPORT_SYMBOL_GPL(usb_debug_root);
-> +static struct dentry *usb_devices_root;
+>  static struct pl330_of_quirks {
+> @@ -3028,6 +3032,30 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
 >  
->  static void usb_debugfs_init(void)
->  {
-> -	usb_debug_root = debugfs_create_dir("usb", NULL);
-> -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
-> -			    &usbfs_devices_fops);
-> +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
-> +					       NULL, &usbfs_devices_fops);
+>  	amba_set_drvdata(adev, pl330);
+>  
+> +	pl330->rstc = devm_reset_control_get_optional(&adev->dev, "dma");
+> +	if (IS_ERR(pl330->rstc)) {
+> +		dev_err(&adev->dev, "No reset controller specified.\n");
+
+Wasnt this optional??
+
+> +		return PTR_ERR(pl330->rstc);
+> +	} else {
+> +		ret = reset_control_deassert(pl330->rstc);
+> +		if (ret) {
+> +			dev_err(&adev->dev, "Couldn't deassert the device from reset!\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	pl330->rstc_ocp = devm_reset_control_get_optional(&adev->dev, "dma-ocp");
+> +	if (IS_ERR(pl330->rstc_ocp)) {
+> +		dev_err(&adev->dev, "No reset controller specified.\n");
+> +		return PTR_ERR(pl330->rstc_ocp);
+> +	} else {
+> +		ret = reset_control_deassert(pl330->rstc_ocp);
+> +		if (ret) {
+> +			dev_err(&adev->dev, "Couldn't deassert the device from OCP reset!\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	for (i = 0; i < AMBA_NR_IRQS; i++) {
+>  		irq = adev->irq[i];
+>  		if (irq) {
+> @@ -3168,6 +3196,11 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
+>  probe_err2:
+>  	pl330_del(pl330);
+>  
+> +	if (pl330->rstc_ocp)
+> +		reset_control_assert(pl330->rstc_ocp);
+> +
+> +	if (pl330->rstc)
+> +		reset_control_assert(pl330->rstc);
+>  	return ret;
 >  }
 >  
->  static void usb_debugfs_cleanup(void)
->  {
-> -	debugfs_remove_recursive(usb_debug_root);
-> +	debugfs_remove_recursive(usb_devices_root);
+> @@ -3206,6 +3239,11 @@ static int pl330_remove(struct amba_device *adev)
+>  
+>  	pl330_del(pl330);
+>  
+> +	if (pl330->rstc_ocp)
+> +		reset_control_assert(pl330->rstc_ocp);
+> +
+> +	if (pl330->rstc)
+> +		reset_control_assert(pl330->rstc);
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.20.0
 
-That should just be debugfs_remove();
-
-I'll fix it up after someone tests this :)
-
-thanks,
-
-greg k-h
+-- 
+~Vinod
