@@ -2,112 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A885B3510A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 22:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 677C5350DB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 22:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726527AbfFDUeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 16:34:01 -0400
-Received: from pbmsgap02.intersil.com ([192.157.179.202]:60246 "EHLO
-        pbmsgap02.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726301AbfFDUeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 16:34:00 -0400
-Received: from pps.filterd (pbmsgap02.intersil.com [127.0.0.1])
-        by pbmsgap02.intersil.com (8.16.0.27/8.16.0.27) with SMTP id x54K3xZq017262;
-        Tue, 4 Jun 2019 16:09:44 -0400
-Received: from pbmxdp01.intersil.corp (pbmxdp01.pb.intersil.com [132.158.200.222])
-        by pbmsgap02.intersil.com with ESMTP id 2sukhdjn3m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 04 Jun 2019 16:09:44 -0400
-Received: from pbmxdp02.intersil.corp (132.158.200.223) by
- pbmxdp01.intersil.corp (132.158.200.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.1531.3; Tue, 4 Jun 2019 16:09:43 -0400
-Received: from localhost.localdomain (132.158.202.108) by
- pbmxdp02.intersil.corp (132.158.200.223) with Microsoft SMTP Server id
- 15.1.1531.3 via Frontend Transport; Tue, 4 Jun 2019 16:09:42 -0400
-From:   Chris Brandt <chris.brandt@renesas.com>
-To:     Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>
-Subject: [PATCH 2/2] ARM: dts: rza2mevb: Add input switch
-Date:   Tue, 4 Jun 2019 15:09:14 -0500
-Message-ID: <20190604200914.64896-3-chris.brandt@renesas.com>
-X-Mailer: git-send-email 2.16.1
-In-Reply-To: <20190604200914.64896-1-chris.brandt@renesas.com>
-References: <20190604200914.64896-1-chris.brandt@renesas.com>
+        id S1726343AbfFDU3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 16:29:36 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:46766 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726312AbfFDU3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 16:29:36 -0400
+Received: by mail-ot1-f65.google.com with SMTP id z23so5878179ote.13;
+        Tue, 04 Jun 2019 13:29:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ShuaCglHMPdgyal6GGIwZRaEUD77Ogg+O3HSaYQ63/E=;
+        b=CVlglNZ3fYT4sh8jRWA/ENRM9vOKKJjFYdOARzZ1z7pILRDYvcSXjw8hfk1n5DZB46
+         +Wpw97xUeg2KhxiPjzKvwzLsF4dV6hXeSdH9knYD608BgLnxcm9eaq0nwetMrWFA2ApI
+         rxwP6BdCLtfkLy2d0piYEl8AX12J58q19PkEWtxIrskemvH+Wl+qSz0NsaWJSBBECyqI
+         Lb5R+24tRU25cY7s9uj8/UoIX3Xrsr5ytlM3S4XF1ZmnG0bNJ/XY8onMb37q18vDnRAi
+         J1WW72rkqXCF3ZWLffe8szpKfcSSq/sg6akDLZqg3VKxZlCt/f+y/nNBeEmHOkipSmIY
+         20YA==
+X-Gm-Message-State: APjAAAXu9ecDkXRoi33uMBcaZLaumAoKA0RyxksZQ/bcH53NIoGyd+Ie
+        8NZFDzxcoDMTtK5VX6G2HzcEB4nGkdQ=
+X-Google-Smtp-Source: APXvYqzdjcPNxGvRaK3k9+6Xl7HY5PmwVR+6Vap5/aUXIsaKiT4UalW3DZdexmg8fg9F9Ie21T4Lqw==
+X-Received: by 2002:a9d:6c46:: with SMTP id g6mr457114otq.162.1559680175033;
+        Tue, 04 Jun 2019 13:29:35 -0700 (PDT)
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com. [209.85.210.54])
+        by smtp.gmail.com with ESMTPSA id v13sm6022078oth.23.2019.06.04.13.29.33
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Jun 2019 13:29:34 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id t24so7102820otl.12;
+        Tue, 04 Jun 2019 13:29:33 -0700 (PDT)
+X-Received: by 2002:a9d:6058:: with SMTP id v24mr441623otj.110.1559680173629;
+ Tue, 04 Jun 2019 13:29:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-04_12:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=785
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1906040127
-X-Proofpoint-Spam-Reason: mlx
+References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk> <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
+In-Reply-To: <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Tue, 4 Jun 2019 15:29:22 -0500
+X-Gmail-Original-Message-ID: <CADRPPNRfAk2ZWJQt=Wx5SEqvw4iSpzkj8_XvHa_CZYHDAxFgxg@mail.gmail.com>
+Message-ID: <CADRPPNRfAk2ZWJQt=Wx5SEqvw4iSpzkj8_XvHa_CZYHDAxFgxg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] soc/fsl/qe: cleanups and new DT binding
+To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Scott Wood <oss@buserror.net>,
+        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for input switch SW3 on the Renesas RZ/A2M EVB
-development board.
+On Mon, May 13, 2019 at 6:17 AM Rasmus Villemoes
+<rasmus.villemoes@prevas.dk> wrote:
+>
+> This small series consists of some small cleanups and simplifications
+> of the QUICC engine driver, and introduces a new DT binding that makes
+> it much easier to support other variants of the QUICC engine IP block
+> that appears in the wild: There's no reason to expect in general that
+> the number of valid SNUMs uniquely determines the set of such, so it's
+> better to simply let the device tree specify the values (and,
+> implicitly via the array length, also the count).
+>
+> Which tree should this go through?
+>
+> v3:
+> - Move example from commit log into binding document (adapting to
+>   MPC8360 which the existing example pertains to).
+> - Add more review tags.
+> - Fix minor style issue.
+>
+> v2:
+> - Address comments from Christophe Leroy
+> - Add his Reviewed-by to 1/6 and 3/6
+> - Split DT binding update to separate patch as per
+>   Documentation/devicetree/bindings/submitting-patches.txt
+>
+> Rasmus Villemoes (6):
+>   soc/fsl/qe: qe.c: drop useless static qualifier
+>   soc/fsl/qe: qe.c: reduce static memory footprint by 1.7K
+>   soc/fsl/qe: qe.c: introduce qe_get_device_node helper
+>   dt-bindings: soc/fsl: qe: document new fsl,qe-snums binding
+>   soc/fsl/qe: qe.c: support fsl,qe-snums property
+>   soc/fsl/qe: qe.c: fold qe_get_num_of_snums into qe_snums_init
 
-Note that this uses the IRQ interrupt, as the RZ/A2 GPIO controller
-does not include interrupt support
+Series applied to soc/fsl for-next.  Thanks!
 
-Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
----
- arch/arm/boot/dts/r7s9210-rza2mevb.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Regards,
+Leo
 
-diff --git a/arch/arm/boot/dts/r7s9210-rza2mevb.dts b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-index 4baf4a965090..6049145c120c 100644
---- a/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-+++ b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-@@ -9,6 +9,7 @@
- /dts-v1/;
- #include "r7s9210.dtsi"
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
- #include <dt-bindings/pinctrl/r7s9210-pinctrl.h>
- 
- / {
-@@ -26,6 +27,21 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	keyboard {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&keyboard_pins>;
-+
-+		key-3 {
-+			interrupt-parent = <&irqc>;
-+			interrupts = <0 IRQ_TYPE_EDGE_BOTH>;
-+			linux,code = <KEY_3>;
-+			label = "SW3";
-+			wakeup-source;
-+		};
-+	};
-+
- 	lbsc {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -121,6 +137,10 @@
- 			 <RZA2_PINMUX(PORTL, 1, 5)>; /* IRQ5 */
- 	};
- 
-+	keyboard_pins: keyboard {
-+		pinmux = <RZA2_PINMUX(PORTJ, 1, 6)>;	/* IRQ0 */
-+	};
-+
- 	/* Serial Console */
- 	scif4_pins: serial4 {
- 		pinmux = <RZA2_PINMUX(PORT9, 0, 4)>,	/* TxD4 */
--- 
-2.16.1
-
+>
+>  .../devicetree/bindings/soc/fsl/cpm_qe/qe.txt |  13 +-
+>  drivers/soc/fsl/qe/qe.c                       | 163 +++++++-----------
+>  2 files changed, 77 insertions(+), 99 deletions(-)
+>
+> --
+> 2.20.1
+>
