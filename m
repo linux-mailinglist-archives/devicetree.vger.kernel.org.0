@@ -2,89 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D94C34AA3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 16:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2131D34AA8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 16:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727482AbfFDOnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 10:43:01 -0400
-Received: from mxs2.seznam.cz ([77.75.76.125]:40509 "EHLO mxs2.seznam.cz"
+        id S1727616AbfFDOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 10:44:38 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:46686 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727413AbfFDOnB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 10:43:01 -0400
-Received: from email.seznam.cz
-        by email-smtpc15b.ng.seznam.cz (email-smtpc15b.ng.seznam.cz [10.23.14.195])
-        id 50b0405f64beb56c52b770c6;
-        Tue, 04 Jun 2019 16:42:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=emailprofi.seznam.cz; s=beta; t=1559659377;
-        bh=1vP8m4FFwuK+upJJmFr4lO874QqXKvLf3jfnj7UFpu8=;
-        h=Received:Received:X-Gm-Message-State:X-Google-Smtp-Source:
-         X-Received:MIME-Version:References:In-Reply-To:From:Date:
-         X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type;
-        b=GvI793uPkkaqljHmqSs3bbyW/F3jkTkqG9FFVVxJT1ye6YKsSPwFl/l1/EBrFXpF7
-         IemGxELovrkM8RPOnSzlwM4PkNDyG+464rPlTqNW0GWpFVi9B6S6GoGhtu3EDUX+0b
-         CAiuV1F5Zjz4uB0fwd4YuSqWPQTQCvfjv+ltQ7Mc=
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-        by email-relay24.ng.seznam.cz (Seznam SMTPD 1.3.104) with ESMTP;
-        Tue, 04 Jun 2019 16:42:55 +0200 (CEST)  
-Received: by mail-lj1-f179.google.com with SMTP id v29so8671952ljv.0;
-        Tue, 04 Jun 2019 07:42:55 -0700 (PDT)
-X-Gm-Message-State: APjAAAVJ3FvKjSwsVj+xNA++ux5+i8mCJkdGKu4qt/GbxV6qIJBiVJSq
-        /ZNynw82pg6L4Bk91S0aEVvmr1TU3O9m9Lz8PCI=
-X-Google-Smtp-Source: APXvYqyLLyPXpH+YTbZFALL7KAloU36/jPkNJ1KzuIWYUHB+Mh12gZx5k/4ObTDy1e1n0k270GhuPozl4Gz2VLsNGVM=
-X-Received: by 2002:a2e:1312:: with SMTP id 18mr15593867ljt.79.1559659374603;
- Tue, 04 Jun 2019 07:42:54 -0700 (PDT)
+        id S1727573AbfFDOoh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 10:44:37 -0400
+Received: from localhost.localdomain (80-110-121-20.cgn.dynamic.surfer.at [80.110.121.20])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 372D2C62C0;
+        Tue,  4 Jun 2019 14:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1559659474; bh=f8oeSATHDBbxU/b+96ktGMMjGmkACkAmrJx1PQ0GIvY=;
+        h=From:To:Cc:Subject:Date;
+        b=OMw0svqmPt8cRVBV0t9Vg2B8scLiG7zlIevdrdAR8Q0aL0d7WiyPVszoaOUMhqjF1
+         pz6z7tJ45Gq2h9cGT2kw0NE6VRbrFieY/vJHYFe36KQsZ/O63AVDpkGb3tOMO5lQgr
+         gI+Sy/JdoiR8w15j9Kf/UqFHRrtSFO4xT4jxhoRI=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, Hans de Goede <hdegoede@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-input@vger.kernel.org (open list:SUN4I LOW RES ADC ATTACHED
+        TABLET KEYS DRIVER),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner
+        sunXi SoC support), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: allwinner: a64: Add lradc node
+Date:   Tue,  4 Jun 2019 16:42:53 +0200
+Message-Id: <20190604144252.26965-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190604113407.8948-1-sr@denx.de> <20190604113407.8948-2-sr@denx.de>
- <CAEEQaa9D0cWFNa_MtiGQ5hD4Z+0vG5ftV6etEr-dRMAW2AA1yQ@mail.gmail.com> <0b60c94f-4a06-90f8-cdb7-1cbef090bd3a@denx.de>
-In-Reply-To: <0b60c94f-4a06-90f8-cdb7-1cbef090bd3a@denx.de>
-From:   Jan Breuer <jan.breuer@jaybee.cz>
-Date:   Tue, 4 Jun 2019 16:42:43 +0200
-X-Gmail-Original-Message-ID: <CAEEQaa-VvoJRNM7QSKJf7eNvKDAPN9OK9NWOkPr3bvnsh31+KQ@mail.gmail.com>
-Message-ID: <CAEEQaa-VvoJRNM7QSKJf7eNvKDAPN9OK9NWOkPr3bvnsh31+KQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2 v3] i2c: mt7621: Add MediaTek MT7621/7628/7688 I2C driver
-To:     Stefan Roese <sr@denx.de>
-Cc:     Jan Breuer <jan.breuer@jaybee.cz>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+Add a node describing the KEYADC on the A64.
 
-On 04.06.19 16:03, Stefan Roese wrote:
->
-> Hi Jan,
->
-> On 04.06.19 15:00, Jan Breuer wrote:
-> > Hi Stefan,
-> >
-> >> +#define MT76XX_I2C_INPUT_CLOCK 40000000
-> >
-> > This is peripheral clock and should be reachable by devm_clk_get() and
-> > later clk_get_rate() should give value similar to
-> > MT76XX_I2C_INPUT_CLOCK.
->
-> Unfortunately not (yet) in mainline Linux.
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ .../devicetree/bindings/input/sun4i-lradc-keys.txt        | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi             | 8 ++++++++
+ 2 files changed, 9 insertions(+)
 
-Ou, I didn't notice.
+diff --git a/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt b/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+index 496125c6bfb7..507b737612ea 100644
+--- a/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
++++ b/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+@@ -5,6 +5,7 @@ Required properties:
+  - compatible: should be one of the following string:
+ 		"allwinner,sun4i-a10-lradc-keys"
+ 		"allwinner,sun8i-a83t-r-lradc"
++		"allwinner,sun50i-a64-lradc", "allwinner,sun8i-a83t-r-lradc"
+  - reg: mmio address range of the chip
+  - interrupts: interrupt to which the chip is connected
+  - vref-supply: powersupply for the lradc reference voltage
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 7734f70e1057..3a42352b5c9f 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -704,6 +704,14 @@
+ 			status = "disabled";
+ 		};
+ 
++		lradc: lradc@1c21800 {
++			compatible = "allwinner,sun50i-a64-lradc",
++				     "allwinner,sun8i-a83t-r-lradc";
++			reg = <0x01c21800 0x400>;
++			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
++		};
++
+ 		i2s0: i2s@1c22000 {
+ 			#sound-dai-cells = <0>;
+ 			compatible = "allwinner,sun50i-a64-i2s",
+-- 
+2.21.0
 
-> > I don't have currently recent enough kernel to test it or prove it,
-> > but I see this in openwrt I2C driver for this platform
-> > https://github.com/openwrt/openwrt/blob/master/target/linux/ramips/patches-4.14/0045-i2c-add-mt7621-driver.patch
->
-> Yes, its available in the OpenWRT v4.14 tree, but not in mainline
-> Linux (AFAICT).
->
-> I might try to make some time to add this clock driver for these
-> SoC's. But I would prefer to use the hardcoded define in this
-> driver for now, to not block its usage in mainline any longer.
-
-So it definitely makes sense to hardcode it for now.
-
-Best regards,
-Jan Breuer
