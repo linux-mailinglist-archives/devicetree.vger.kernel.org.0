@@ -2,70 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08736349B7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 16:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F1E349C1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 16:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727383AbfFDODV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 10:03:21 -0400
-Received: from mx2.mailbox.org ([80.241.60.215]:36496 "EHLO mx2.mailbox.org"
+        id S1727265AbfFDOIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 10:08:24 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:48058 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727041AbfFDODU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 10:03:20 -0400
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
-        (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
-        (No client certificate requested)
-        by mx2.mailbox.org (Postfix) with ESMTPS id 5DB8AA01A8;
-        Tue,  4 Jun 2019 16:03:18 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp2.mailbox.org ([80.241.60.241])
-        by spamfilter05.heinlein-hosting.de (spamfilter05.heinlein-hosting.de [80.241.56.123]) (amavisd-new, port 10030)
-        with ESMTP id Hn2ZZs0CSD_D; Tue,  4 Jun 2019 16:03:12 +0200 (CEST)
-Subject: Re: [PATCH 2/2 v3] i2c: mt7621: Add MediaTek MT7621/7628/7688 I2C
- driver
-To:     Jan Breuer <jan.breuer@jaybee.cz>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20190604113407.8948-1-sr@denx.de>
- <20190604113407.8948-2-sr@denx.de>
- <CAEEQaa9D0cWFNa_MtiGQ5hD4Z+0vG5ftV6etEr-dRMAW2AA1yQ@mail.gmail.com>
-From:   Stefan Roese <sr@denx.de>
-Message-ID: <0b60c94f-4a06-90f8-cdb7-1cbef090bd3a@denx.de>
-Date:   Tue, 4 Jun 2019 16:03:11 +0200
+        id S1727041AbfFDOIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 10:08:24 -0400
+Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hYA6v-0001Xj-6y; Tue, 04 Jun 2019 16:08:21 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     xieqinick@gmail.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, nick@khadas.com
+Subject: Re: [PATCH] arm64: dts: rockchip: Add support for Khadas Edge/Edge-V/Captain boards
+Date:   Tue, 04 Jun 2019 16:08:20 +0200
+Message-ID: <2074921.iWOsiWxYGh@phil>
+In-Reply-To: <1559035267-1884-1-git-send-email-xieqinick@gmail.com>
+References: <1559035267-1884-1-git-send-email-xieqinick@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAEEQaa9D0cWFNa_MtiGQ5hD4Z+0vG5ftV6etEr-dRMAW2AA1yQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jan,
+Hi Nick,
 
-On 04.06.19 15:00, Jan Breuer wrote:
-> Hi Stefan,
+devicetrees look mostly good, with a bit of "bookkeeping" issues and
+some small nits below.
+
+Am Dienstag, 28. Mai 2019, 11:21:07 CEST schrieb xieqinick@gmail.com:
+> From: Nick <nick@khadas.com>
+
+Can you provide a full name (first-+surename) for patch from and Signed-off
+lines please?
+
+
+> Add devicetree support for Khadas Edge/Edge-V/Captain boards.
+> Khadas Edge is an expandable Rockchip RK3399 board with goldfinger.
+> Khadas Captain is the carrier board for Khadas Edge.
+> Khadas Edge-V is a Khadas VIM form factor Rockchip RK3399 board.
 > 
->> +#define MT76XX_I2C_INPUT_CLOCK 40000000
-> 
-> This is peripheral clock and should be reachable by devm_clk_get() and
-> later clk_get_rate() should give value similar to
-> MT76XX_I2C_INPUT_CLOCK.
+> Signed-off-by: Nick <nick@khadas.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile              |   3 +
+>  .../boot/dts/rockchip/rk3399-khadas-captain.dts    |  27 +
+>  .../boot/dts/rockchip/rk3399-khadas-edge-v.dts     |  28 +
 
-Unfortunately not (yet) in mainline Linux.
+when adding boards, please also make sure to add entries to
+	Documentation/devicetree/bindings/arm/rockchip.yaml
 
-> I don't have currently recent enough kernel to test it or prove it,
-> but I see this in openwrt I2C driver for this platform
-> https://github.com/openwrt/openwrt/blob/master/target/linux/ramips/patches-4.14/0045-i2c-add-mt7621-driver.patch
+Take a look at the "FriendlyElec NanoPi4 series boards" for an
+example on how to add a family of boards like your Edge/Captain.
 
-Yes, its available in the OpenWRT v4.14 tree, but not in mainline
-Linux (AFAICT).
 
-I might try to make some time to add this clock driver for these
-SoC's. But I would prefer to use the hardcoded define in this
-driver for now, to not block its usage in mainline any longer.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-captain.dts b/arch/arm64/boot/dts/rockchip/rk3399-khadas-captain.dts
+> new file mode 100644
+> index 0000000..85eb51c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-captain.dts
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Shenzhen Wesion Technology Co., Ltd.
+> + * (https://www.khadas.com)
+> + */
+> +
+> +/dts-v1/;
+> +#include "rk3399-khadas-edge.dtsi"
+> +
+> +/ {
+> +	model = "Khadas Captain";
+> +	compatible = "khadas,captain", "rockchip,rk3399";
+> +};
+> +
+> +&gmac {
+> +	status = "okay";
+> +};
+> +
+> +&pcie_phy {
+> +	status = "okay";
+> +};
+> +
+> +&pcie0 {
+> +	ep-gpios = <&gpio1 RK_PA3 GPIO_ACTIVE_HIGH>;
+> +	num-lanes = <4>;
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-v.dts b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-v.dts
+> new file mode 100644
+> index 0000000..396b7f4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-v.dts
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Shenzhen Wesion Technology Co., Ltd.
+> + * (https://www.khadas.com)
+> + */
+> +
+> +/dts-v1/;
+> +#include "rk3399-khadas-edge.dtsi"
+> +
+> +/ {
+> +	model = "Khadas Edge-V";
+> +	compatible = "khadas,edge-v", "rockchip,rk3399";
+> +};
+> +
+> +&gmac {
+> +	status = "okay";
+> +};
+> +
+> +&pcie_phy {
+> +	status = "okay";
+> +};
+> +
+> +&pcie0 {
+> +	ep-gpios = <&gpio1 RK_PA3 GPIO_ACTIVE_HIGH>;
+> +	num-lanes = <4>;
+> +	status = "okay";
+> +};
+> +
 
-Thanks,
-Stefan
+Both Captain and Edge-V seem to be identical from a component point
+of view, so should likely share the same dts, or is there some major
+difference coming later?
+
+For the time being you can represent the individual boards like:
+
+	model = "Khadas Edge-V/Captain";
+	compatible = "khadas,edge-v", "khadas,edge-captain", "rockchip,rk3399";
+
+Also to show that it's Edge+Captain baseboard, maybe you want to
+change the name like shown above (see rk3399-puma-haikou for a similar
+setup).
+
+
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dts b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dts
+> new file mode 100644
+> index 0000000..f0d5bae
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dts
+> @@ -0,0 +1,17 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Shenzhen Wesion Technology Co., Ltd.
+> + * (https://www.khadas.com)
+> + */
+> +
+> +/dts-v1/;
+> +#include "rk3399-khadas-edge.dtsi"
+> +
+> +/ {
+> +	model = "Khadas Edge";
+> +	compatible = "khadas,edge", "rockchip,rk3399";
+> +};
+> +
+> +&gmac {
+> +	status = "disabled";
+
+the Edge-V/Captain boards do enable the gmac, so you shouldn't need
+a special disable here. Just keep it disabled in the edge.dtsi
+[aka it comes in the disabled state from rk3399.dtsi already].
+
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+> new file mode 100644
+> index 0000000..872b535
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+> @@ -0,0 +1,795 @@
+
+[...]
+
+> +&gmac {
+> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
+> +	assigned-clock-parents = <&clkin_gmac>;
+> +	clock_in_out = "input";
+> +	phy-supply = <&vcc_lan>;
+> +	phy-mode = "rgmii";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rgmii_pins>;
+> +	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 10000 50000>;
+> +	tx_delay = <0x28>;
+> +	rx_delay = <0x11>;
+> +	status = "disabled";
+
+status is disabled coming from rk3399.dtsi, so there is no need
+to "re-disable" it here.
+
+> +};
+> +
+
+[...]
+
+> +&sdio0 {
+> +	/* WiFi & BT combo module Ampak AP6356S */
+> +	bus-width = <4>;
+> +	cap-sdio-irq;
+> +	cap-sd-highspeed;
+> +	keep-power-in-suspend;
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +	non-removable;
+> +	num-slots = <1>;
+
+num-slots is not needed anymore
+
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+> +	sd-uhs-sdr104;
+> +
+> +	/* Power supply */
+
+drop that comment and blank line please. Properties called
+*-supply already tell you that they are power supplies :-) .
+
+
+Heiko
+
+
