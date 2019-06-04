@@ -2,29 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B7D34900
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 15:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 627313490F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 15:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727229AbfFDNhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 09:37:43 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:47572 "EHLO gloria.sntech.de"
+        id S1727649AbfFDNjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 09:39:35 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:47630 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727161AbfFDNhm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 09:37:42 -0400
+        id S1727348AbfFDNje (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 09:39:34 -0400
 Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <heiko@sntech.de>)
-        id 1hY9dD-0001P7-Lx; Tue, 04 Jun 2019 15:37:39 +0200
+        id 1hY9ew-0001Qf-Fe; Tue, 04 Jun 2019 15:39:26 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     John Keeping <john@metanate.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: rockchip: fix pwm-cells for rk3288's pwm3
-Date:   Tue, 04 Jun 2019 15:37:38 +0200
-Message-ID: <4241857.8QsoknCOxu@phil>
-In-Reply-To: <20190603143435.23352-1-john@metanate.com>
-References: <20190603143435.23352-1-john@metanate.com>
+To:     Akash Gajjar <akash@openedev.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vicente Bergas <vicencb@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: add WiFi+BT support on ROCK Pi4 board
+Date:   Tue, 04 Jun 2019 15:39:25 +0200
+Message-ID: <1697100.2SMvg6TTVp@phil>
+In-Reply-To: <20190528184705.5240-1-akash@openedev.com>
+References: <20190528184705.5240-1-akash@openedev.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -33,10 +38,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 3. Juni 2019, 16:34:35 CEST schrieb John Keeping:
-> This is the same as the other PWMs on this SoC and uses 3 cells.
+Am Dienstag, 28. Mai 2019, 20:46:58 CEST schrieb Akash Gajjar:
+> Rock Pi 4 has a on board AP6256 WiFi/BT Module. enable wifi and bluetooth
+> support on Rock Pi 4 board.
 > 
-> Signed-off-by: John Keeping <john@metanate.com>
+> Signed-off-by: Akash Gajjar <akash@openedev.com>
 
 applied for 5.3
 
