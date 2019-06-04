@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36AD834752
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C0F6347C7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 15:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727726AbfFDMw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 08:52:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57766 "EHLO mail.kernel.org"
+        id S1727080AbfFDNNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 09:13:30 -0400
+Received: from mxs2.seznam.cz ([77.75.76.125]:51940 "EHLO mxs2.seznam.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727462AbfFDMw0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 08:52:26 -0400
-Received: from localhost (173-25-83-245.client.mchsi.com [173.25.83.245])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 445CF2075C;
-        Tue,  4 Jun 2019 12:52:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559652745;
-        bh=TI//IwvVH2KA10K2fPqSGn4jya7M7Om2ADT6qWSZz60=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UX+QyaR1JZL+2rhj/O/mvKmEnURKyjwVwjIesADGaL7D1soH7BrbMcNGEZ0a1Pan7
-         molVHJYOjaNNJf2mUaP1xnf5jzhjI05SQmOjBSDNcescJ0l8dZFGB+S9PEKapob+p5
-         NwjexAwr6aKk4/OME9Hu1loH3YOeScpWUNnwPsY4=
-Date:   Tue, 4 Jun 2019 07:52:24 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] Qualcomm QCS404 PCIe support
-Message-ID: <20190604125224.GG189360@google.com>
-References: <20190529005710.23950-1-bjorn.andersson@linaro.org>
- <20190529163155.GA24655@redmoon>
- <20190604113347.GA13029@centauri.ideon.se>
+        id S1727169AbfFDNNa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 09:13:30 -0400
+X-Greylist: delayed 765 seconds by postgrey-1.27 at vger.kernel.org; Tue, 04 Jun 2019 09:13:29 EDT
+Received: from email.seznam.cz
+        by email-smtpc8a.ng.seznam.cz (email-smtpc8a.ng.seznam.cz [10.23.10.225])
+        id 737d109d4773e5ae717a2004;
+        Tue, 04 Jun 2019 15:13:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=emailprofi.seznam.cz; s=beta; t=1559654007;
+        bh=UlDA7z971vAl4+SbfYen/ut8yWZSLZyfk9hZq1g72Do=;
+        h=Received:Received:X-Gm-Message-State:X-Google-Smtp-Source:
+         X-Received:MIME-Version:References:In-Reply-To:From:Date:
+         X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type;
+        b=wfMOT8ZaHfDUovKs9+//GeyWuj7c4Edokit7ncgGIP6XkeLed3yRBvzgZE2B8/IuD
+         SJ7eCoap4a7h0GVa9z2jWWmO9KvLRVvltgMYZCpov2ZUYQGjnFrZdF22hmNLtDp6Ka
+         sQuJsr91x0/JedvMrl8ibgKJL1SrQyIedTJTPOeg=
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+        by email-relay24.ng.seznam.cz (Seznam SMTPD 1.3.104) with ESMTP;
+        Tue, 04 Jun 2019 15:00:38 +0200 (CEST)  
+Received: by mail-lj1-f175.google.com with SMTP id a10so16347533ljf.6;
+        Tue, 04 Jun 2019 06:00:38 -0700 (PDT)
+X-Gm-Message-State: APjAAAUmo/9OqNF1bb7oxnT7lqplPB4NuMI5NQBGDaYWuB0S8x2JUHgr
+        0j6yjDhw6FkPFAglabnTblAZSKdSCEBXnvgHmI0=
+X-Google-Smtp-Source: APXvYqx80dQ2dqy238/eYpAmtM1RTiUz9MvM39Alq6Xb2Ct3dz6p9fG3rXZq2x4wGZee4KcNOz1s7JBLMGZTl9ygIQI=
+X-Received: by 2002:a2e:124b:: with SMTP id t72mr7360878lje.143.1559653236886;
+ Tue, 04 Jun 2019 06:00:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190604113347.GA13029@centauri.ideon.se>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190604113407.8948-1-sr@denx.de> <20190604113407.8948-2-sr@denx.de>
+In-Reply-To: <20190604113407.8948-2-sr@denx.de>
+From:   Jan Breuer <jan.breuer@jaybee.cz>
+Date:   Tue, 4 Jun 2019 15:00:25 +0200
+X-Gmail-Original-Message-ID: <CAEEQaa9D0cWFNa_MtiGQ5hD4Z+0vG5ftV6etEr-dRMAW2AA1yQ@mail.gmail.com>
+Message-ID: <CAEEQaa9D0cWFNa_MtiGQ5hD4Z+0vG5ftV6etEr-dRMAW2AA1yQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2 v3] i2c: mt7621: Add MediaTek MT7621/7628/7688 I2C driver
+To:     Stefan Roese <sr@denx.de>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Jan Breuer <jan.breuer@jaybee.cz>,
+        John Crispin <john@phrozen.org>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 01:33:47PM +0200, Niklas Cassel wrote:
-> On Wed, May 29, 2019 at 05:31:55PM +0100, Lorenzo Pieralisi wrote:
-> > On Tue, May 28, 2019 at 05:57:07PM -0700, Bjorn Andersson wrote:
-> > > This series adds support for the PCIe controller in the Qualcomm QCS404
-> > > platform.
-> > > 
-> > > Bjorn Andersson (3):
-> > >   PCI: qcom: Use clk_bulk API for 2.4.0 controllers
-> > >   dt-bindings: PCI: qcom: Add QCS404 to the binding
-> > >   PCI: qcom: Add QCS404 PCIe controller support
-> > > 
-> > >  .../devicetree/bindings/pci/qcom,pcie.txt     |  25 +++-
-> > >  drivers/pci/controller/dwc/pcie-qcom.c        | 113 ++++++++----------
-> > >  2 files changed, 75 insertions(+), 63 deletions(-)
-> > 
-> > Applied to pci/qcom for v5.3, thanks.
-> > 
-> > Lorenzo
-> 
-> Hello Lorenzo,
-> 
-> I don't see these patches in linux-next.
-> 
-> It appears that only Bjorn Helgaas tree is in linux-next, and not yours.
-> 
-> I think that it makes a lot of sense for patches to cook in linux-next
-> for as long a possible.
-> 
-> Perhaps you and Bjorn Helgaas could have a shared PCI git tree?
-> Or perhaps you could add your tree to linux-next?
-> ..or some other solution :)
+Hi Stefan,
 
-I pull Lorenzo's branches into my -nexst branch.  I just haven't
-gotten to it yet.
+> +#define MT76XX_I2C_INPUT_CLOCK 40000000
+
+This is peripheral clock and should be reachable by devm_clk_get() and
+later clk_get_rate() should give value similar to
+MT76XX_I2C_INPUT_CLOCK.
+I don't have currently recent enough kernel to test it or prove it,
+but I see this in openwrt I2C driver for this platform
+https://github.com/openwrt/openwrt/blob/master/target/linux/ramips/patches-4.14/0045-i2c-add-mt7621-driver.patch
+
+Kind regards,
+Jan
