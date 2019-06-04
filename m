@@ -2,155 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C720343EA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 12:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F16A93446F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 12:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727392AbfFDKMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 06:12:30 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37102 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727369AbfFDKM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 06:12:28 -0400
-X-UUID: b8ef724c09d84f16b3ca2b57b38e1c28-20190604
-X-UUID: b8ef724c09d84f16b3ca2b57b38e1c28-20190604
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
-        (envelope-from <stu.hsieh@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1927676770; Tue, 04 Jun 2019 18:12:03 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 4 Jun 2019 18:12:02 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 4 Jun 2019 18:12:02 +0800
-From:   Stu Hsieh <stu.hsieh@mediatek.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, CK Hu <ck.hu@mediatek.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stu Hsieh <stu.hsieh@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
-Subject: [PATCH v4 14/14] [media] mtk-mipicsi: add function to support SerDes for link number
-Date:   Tue, 4 Jun 2019 18:11:55 +0800
-Message-ID: <1559643115-15124-15-git-send-email-stu.hsieh@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1559643115-15124-1-git-send-email-stu.hsieh@mediatek.com>
-References: <1559643115-15124-1-git-send-email-stu.hsieh@mediatek.com>
+        id S1727174AbfFDKdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 06:33:14 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:40028 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726877AbfFDKdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 06:33:13 -0400
+Received: by mail-wr1-f68.google.com with SMTP id p11so10400023wre.7;
+        Tue, 04 Jun 2019 03:33:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=earafvYrtHKW675fqvDjWCC/8Qf9Geg5oAtOEq+3h4s=;
+        b=qYCsaPX3965LwfBNITJf+QhEYqlYgjqgsLeUo6L/o7Ti1263rsedKnAiaw0j/tRPYf
+         t42+5ATBBW5NZ/DDqebnlSmYiiaibe+Ort8iULSCZwFuujnCieGl8uZ7Nt4G5H+Pmifq
+         klXo8h/0txLzbeK5bbJCSYy0SQufMmnyMt/cQidS6idO0iNK5oPFONK/ARuzTp/MgUJR
+         0O4s6+8SxMW1Mt8gJwDTk/VtfmK4MyDDlpTftFih4oTtkL09uKN3bS8R2vKL5UE5GACx
+         H5V88iRDEJiBwtV6kFqssasb39pa+qvMJD2ksOrv5cM+odfqp6Eza3vLq9Bwr4PnoGBz
+         +b3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=earafvYrtHKW675fqvDjWCC/8Qf9Geg5oAtOEq+3h4s=;
+        b=NZR0ziiQC+BgBhJd1FinFySOqovBONzYb2gwvt9zwbNxi9ldB+W1c8RBVuDO6mGNpk
+         PRr4+i1hM3ZKC6CFt3Txpixfhectt2Ygclj11rfj8yawGfcE4HCiOGJ1gv+NF66C8tfH
+         W25WqtCZB/WGCHVpdmnTkOTjBypCBvkdWmk/ZADLxXLGOP9L8JiYDt/r4DCRuB2fPd4O
+         XCX+I/a+FArzX9tRLlOQ4znmtzkhibLIGJ2jR89jA5olowEcwphSgdLMBFTMb9aHTX3k
+         VLwLyWl4aJl7TvaQzysJ1FuFpuMGrqnFfnUxQsZ1XJHRsEcockEU1yO+6lp8gBNUSFb3
+         7gxQ==
+X-Gm-Message-State: APjAAAVlUU5TggkhPAqcyfwieEYiuC22RNUy6icTnhP2svvxTT3B0osO
+        2rRDW/qUZzpnWcNtHm3dDJs=
+X-Google-Smtp-Source: APXvYqzvrV4tFMgHpWkR4RpdGNb7oSeNaRa2s36bVeHEWmNTjau4k7L60C8i2Ea7H2n+YhYaHfNOvA==
+X-Received: by 2002:a5d:694c:: with SMTP id r12mr6551209wrw.214.1559644391661;
+        Tue, 04 Jun 2019 03:33:11 -0700 (PDT)
+Received: from 5WDYG62 (static-css-cqn-143221.business.bouyguestelecom.com. [176.149.143.221])
+        by smtp.gmail.com with ESMTPSA id o21sm16990674wmc.46.2019.06.04.03.33.10
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 04 Jun 2019 03:33:10 -0700 (PDT)
+Date:   Tue, 4 Jun 2019 12:33:03 +0200
+From:   Romain Izard <romain.izard.pro@gmail.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Richard Gong <richard.gong@linux.intel.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, dinguyen@kernel.org, atull@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        sen.li@intel.com, Richard Gong <richard.gong@intel.com>
+Subject: Re: A potential broken at platform driver?
+Message-ID: <20190604103241.GA4097@5WDYG62>
+References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+ <20190528232224.GA29225@kroah.com>
+ <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
+ <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
+ <20190603180255.GA18054@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190603180255.GA18054@kroah.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add function to support SerDes for link number.
+On Mon, Jun 03, 2019 at 08:02:55PM +0200, Greg KH wrote:
+> > @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
+> >  	.remove = stratix10_rsu_remove,
+> >  	.driver = {
+> >  		.name = "stratix10-rsu",
+> > -		.groups = rsu_groups,
+> > +//		.groups = rsu_groups,
+> 
+> Are you sure this is the correct pointer?  I think that might be
+> pointing to the driver's attributes, not the device's attributes.
+> 
+> If platform drivers do not have a way to register groups properly, then
+> that really needs to be fixed, as trying to register it by yourself as
+> you are doing, is ripe for racing with userspace.
+ 
+This is a very common issue with platform drivers, and it seems to me that
+it is not possible to add device attributes when binding a device to a
+driver without entering the race condition.
 
-Mt2712 can serve at most four camera link for each mipicsi port.
-Therefore, driver need to know how many camera link in SerDes and
-set the mipicsi HW to serve.
+My understanding is the following one:
 
-The value "link_reg" defined in dts, and use it to get the link status
-for SerDes.
+The root cause is that the device has already been created and reported
+to the userspace with a KOBJ_ADD uevent before the device and the driver
+are bound together. On receiving this event, userspace will react, and
+it will try to read the device's attributes. In parallel the kernel will
+try to find a matching driver. If a driver is found, the kernel will
+call the probe function from the driver with the device as a parameter,
+and if successful a KOBJ_BIND uevent will be sent to userspace, but this
+is a recent addition.
 
-Signed-off-by: Stu Hsieh <stu.hsieh@mediatek.com>
----
- .../media/platform/mtk-mipicsi/mtk_mipicsi.c  | 53 ++++++++++++++++++-
- 1 file changed, 52 insertions(+), 1 deletion(-)
+Unfortunately, not all created devices will be bound to a driver, and the
+existing udev code relies on KOBJ_ADD uevents rather than KOBJ_BIND uevents.
+If new per-device attributes have been added to the device during the
+binding stage userspace may or may not see them, depending on when userspace
+tries to read the device's attributes.
 
-diff --git a/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c b/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
-index 9b5983b39f2b..ab703e3469ca 100644
---- a/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
-+++ b/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
-@@ -143,6 +143,7 @@ struct mtk_mipicsi_subdev {
- 	struct v4l2_async_subdev asd;
- 	struct v4l2_subdev *subdev;
- 	unsigned int max_vc;
-+	u32 link_reg;
- };
- 
- struct mtk_mipicsi_channel {
-@@ -257,12 +258,37 @@ static const struct file_operations mtk_mipicsi_debug_fops = {
- };
- #endif /* CONFIG_DEBUG_FS */
- 
-+static int get_subdev_register(struct mtk_mipicsi_dev *mipicsi,
-+			       struct v4l2_dbg_register *reg)
-+{
-+	struct v4l2_subdev *sd = mipicsi->mipicsi_sd.subdev;
-+	struct device *dev = &mipicsi->pdev->dev;
-+	int ret = 0;
-+
-+	reg->match.type = V4L2_CHIP_MATCH_SUBDEV;
-+	reg->match.addr = 0;
-+	ret = v4l2_subdev_call(sd, core, g_register, reg);
-+	if (ret != 2) {
-+		dev_err(dev, "mipicsi get des register 0x%llx fail, ret=%d\n",
-+		reg->reg, ret);
-+		return -EIO;
-+	}
-+
-+	dev_info(dev, "read DES [reg/val/ret] is [0x%llx/0x%llx/%d]\n",
-+		 reg->reg, reg->val, ret);
-+
-+	return ret;
-+}
-+
-+
- static int get_subdev_link(struct mtk_mipicsi_dev *mipicsi,
- 	unsigned int *link, u8 *link_reg_val)
- {
- 	struct device *dev = &mipicsi->pdev->dev;
- 	struct mtk_mipicsi_subdev *sd = &mipicsi->mipicsi_sd;
--
-+	struct v4l2_dbg_register reg;
-+	int ret = 0;
-+	unsigned int index = 0;
- 
- 	if (sd->max_vc == 1) {
- 		*link = 1;
-@@ -274,6 +300,24 @@ static int get_subdev_link(struct mtk_mipicsi_dev *mipicsi,
- 
- 	dev_info(dev, "mtk mipicsi support %d channel\n", sd->max_vc);
- 
-+	memset(&reg, 0, sizeof(reg));
-+	/*get camera link number*/
-+	reg.reg = sd->link_reg;
-+	ret = get_subdev_register(mipicsi, &reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	*link = 0;
-+	for (index = 0; index < sd->max_vc; index++) {
-+		if ((reg.val & 0x01) == 0x01) {
-+			*link += 1;
-+			*link_reg_val |= (0x01 << index);
-+		}
-+		reg.val >>= 1;
-+	}
-+
-+	dev_info(dev, "%u camera linked to sub device\n", *link);
-+
- 	return 0;
- }
- 
-@@ -1199,6 +1243,13 @@ static int mtk_mipicsi_node_parse(struct mtk_mipicsi_dev *mipicsi)
- 		sd->max_vc = 1;
- 	}
- 
-+	ret = of_property_read_u32(dev->of_node, "mediatek,serdes_link_reg",
-+				   &sd->link_reg);
-+	if (ret != 0) {
-+		dev_info(dev, "not set mediatek,serdes_link_reg, can't read subdev link number\n");
-+		sd->link_reg = 0x0;
-+	}
-+
- 	/* get and parse seninf_mux_camsv */
- 	camsv_num = of_count_phandle_with_args(dev->of_node,
- 		"mediatek,seninf_mux_camsv", NULL);
+I have this possible workaround, but I do not know if it is a good solution:
+
+When binding the device and the driver together, create a new device as a
+child to the current device, and fill its "groups" member to point to the
+per-device attributes' group. As the device will be created with all the
+attributes, it will not be affected by the race issues. The functions
+handling the attributes will need to be modified to use the parents of their
+"device" parameter, instead of the device itself. Additionnaly, the sysfs
+location of the attributes will be different, as the child device will show
+up in the sysfs path. But for a newly introduced device this will not be
+a problem.
+
+Is this a good compromise ?
+
+Best regards,
 -- 
-2.18.0
-
+Romain Izard
