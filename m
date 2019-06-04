@@ -2,111 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DED10352B7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 00:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0737435469
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 01:35:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726555AbfFDWaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 18:30:30 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:33488 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726502AbfFDWa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 18:30:29 -0400
-Received: by mail-pf1-f195.google.com with SMTP id x15so3763936pfq.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 15:30:29 -0700 (PDT)
+        id S1726464AbfFDXfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 19:35:13 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:41671 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726460AbfFDXfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 19:35:13 -0400
+Received: by mail-lf1-f65.google.com with SMTP id 136so6174945lfa.8
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 16:35:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=LmDCNIRDhs7DNH9NPW4xy+8J+i5MZl5x+uVtCFZTa5g=;
-        b=sxVPDH4yKTfJRPnVkbZ54wQ58ysVL1hfzaDD4ECK1ZYB3PTci6r3+sjVoj2lHmW1pA
-         AxyVgqJ30L6RACIMF0z+XOHSpGmMpm7vxX09D6iqPUVhLzQ5pqTNJ1h+ASZHtuiOp4/3
-         G2UROw7Iuy2bKZ0EuE+MyGB8C//LUGCveyBYXkkvxzoCg+bM/M8/PZPCq548R2ehAOj9
-         3xhPO+FITtygmugNozKr3AKWahz91BWyY+TCRv5Ktmbo+9zR+xPjsGJkYOKz+5Kuiipr
-         WuxcpjbIEfEN/zxdK91N2P/Ked7QePfxQ/jtygOfuYTR1y4ygVj4KmOVD6ce5eEoPuuw
-         FPiA==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yUmGpFNz6fygF8JqTGIH7xCmXTGijTn5zshzVeIRyeU=;
+        b=n7729tdVd3jiiQzxyuAeBqRs5Gxta2lFj3c+5zHccv1uoJt2AmyWyIDUmg3JxWlagm
+         M7C85QUZ1yXvYp4uRNAObTU5YeMqh3a1wo5N9AJPUoMbdbPZFo/1bO/N1rShEEWiWI/v
+         Q5BI60V/NuZ52yrsR6VbaGcuc0c695fmqthfBEC0S0U3y4gF1Q08eneEUDigrRf9hMyB
+         iQhbHsK661Yo5QjuEON5MQg+g2Pkp/H8jIb/fz9zGMrFKEuNEFNEvKupY/jJ8Vu91CzS
+         9bZX4E1E7GESuDjTm/u2NlMe8YNUYbmht0QRBeMkkioK7eHniavWPW592kDJkctLp/+R
+         YphA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LmDCNIRDhs7DNH9NPW4xy+8J+i5MZl5x+uVtCFZTa5g=;
-        b=PMHSq8bT5ST5JOlRxBSuJZ2HRP7ZN5RmXMmmhEXKl1caGdVSXAi5CHgVsEfBnBKziG
-         JJ03rMyZ9Jiaq1vJh6DZmtV26ZIwCrMIONil40I4UE/6YPQRlHe/qVLGZ1feOgOwuZWK
-         f4mKC7BAco/GiK0eCruz/waJSi45yHcWAzLNSBdFEW7Pqdz131IaPbnELMMkXmqP3uZX
-         Az/OPnTJDK/utcIxqcmAsPkbkIrBoMz87nFocX5kQ+f+iuuY+Cu553mYIEb+/mAgO577
-         IFPNBH4WJoKJFPUQ/zTql8mEB/uYcSMdXlc0qDJIvjFo8Ir5ArMQj9CtdFTwphGIwPe6
-         qiYQ==
-X-Gm-Message-State: APjAAAXQ1DC9PIcmssL2OQZGG1rQfNJRrdP4/LtRJxY+i7k0sujiAZkc
-        9GjeC7MFVtMOSvxR7Tt8vIw9Bw==
-X-Google-Smtp-Source: APXvYqzTEUN7udbEF/IQ5S4vaSRT5SZ53qYu6Xq5+iodypdDvCByZtaq5dCbtg4MhJ1JM8f0B77mJg==
-X-Received: by 2002:a17:90a:c38a:: with SMTP id h10mr37802679pjt.112.1559687428923;
-        Tue, 04 Jun 2019 15:30:28 -0700 (PDT)
-Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id u5sm16516107pgp.19.2019.06.04.15.30.26
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 04 Jun 2019 15:30:27 -0700 (PDT)
-Date:   Tue, 4 Jun 2019 15:30:25 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     "Bean Huo (beanhuo)" <beanhuo@micron.com>
-Cc:     Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-Subject: Re: [EXT] [PATCH 2/3] scsi: ufs: Allow resetting the UFS device
-Message-ID: <20190604223025.GD4814@minitux>
-References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
- <20190604072001.9288-3-bjorn.andersson@linaro.org>
- <BN7PR08MB568450B1EC51ABAA2E426AC0DB150@BN7PR08MB5684.namprd08.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yUmGpFNz6fygF8JqTGIH7xCmXTGijTn5zshzVeIRyeU=;
+        b=fbuSGR6DxcXuxpLJ28jOaiYqX46GR7izG0E2+t9EmXWKqXO6kT5kGVQpFIlZWTjnvD
+         ad5E8a7NzMhn09CX2Mm600a8f958sNisrCNztgBCuNUSsSh7j+Izfn56n6GmhquiQ15K
+         SBL7rb6iklb90k11fux+/XFV4pQkVfg9R7Yc9OFJxUvAWzqikzIhYJLXl9fbT9ADQ97K
+         ARZ9mPfe8xWTenbuH2hnqzX0WRnc4NFAF1CYHotD4l4l48xyyXRDK+oz9zdSSH4nEuij
+         Y+PNR74dD/q+3/ylakQSvWAxqiKliVAub40dGDZ6FnEsb4g0p0+27s6M35hpX7b5C3hu
+         nPfw==
+X-Gm-Message-State: APjAAAX9AXVghyvywfmlVjUARImAf3fx0ng6b3s1xz7rCgLFks10wu6M
+        473eO91BL9+eTNlnnwtuokoZeBsJxe3lIeNd7MXdlQ==
+X-Google-Smtp-Source: APXvYqxFVfsY2uUyOvHDHQWsWPz6JVCPCIp44WWY+H6aJDJ/TaoNNgHz4dGto/MoXWH1ptk3ODVootrUgExaXb/yDLQ=
+X-Received: by 2002:a19:7110:: with SMTP id m16mr18059760lfc.4.1559691310771;
+ Tue, 04 Jun 2019 16:35:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN7PR08MB568450B1EC51ABAA2E426AC0DB150@BN7PR08MB5684.namprd08.prod.outlook.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+References: <20190514221711.248228-1-brendanhiggins@google.com>
+ <20190514221711.248228-3-brendanhiggins@google.com> <20190517003847.0962F2082E@mail.kernel.org>
+In-Reply-To: <20190517003847.0962F2082E@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 4 Jun 2019 16:34:58 -0700
+Message-ID: <CAFd5g45taSVNXSQJrXnHLG_Rtum650vFw1zccqv1Tyru5A5d8w@mail.gmail.com>
+Subject: Re: [PATCH v4 02/18] kunit: test: add test resource management API
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 04 Jun 01:13 PDT 2019, Bean Huo (beanhuo) wrote:
-> >@@ -6159,6 +6179,9 @@ static int ufshcd_reset_and_restore(struct ufs_hba
-> >*hba)
-> > 	int retries = MAX_HOST_RESET_RETRIES;
-> >
-> > 	do {
-> >+		/* Reset the attached device */
-> >+		ufshcd_device_reset(hba);
-> >+
-> 
-> what's problem you met, and you should reset UFS device here? could you give more info?
-> 
-> It is true that we don't reset UFS device in case of device fatal error. According to UFS host spec,
-> Host should be device reset except that in addition to resetting UIC. But as so far,
-> We didn't experience any problems result from this missing reset.
-> 
-> We have three UFS device reset ways.  Comparing to this hardware reset, 
-> I prefer to use DME_ENDPOINTRESET.req software reset.
-> 
+On Thu, May 16, 2019 at 5:38 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-05-14 15:16:55)
+> > diff --git a/kunit/test.c b/kunit/test.c
+> > index 86f65ba2bcf92..a15e6f8c41582 100644
+> > --- a/kunit/test.c
+> > +++ b/kunit/test.c
+> [..]
+> > +
+> > +void *kunit_kmalloc(struct kunit *test, size_t size, gfp_t gfp)
+> > +{
+> > +       struct kunit_kmalloc_params params;
+> > +       struct kunit_resource *res;
+> > +
+> > +       params.size = size;
+> > +       params.gfp = gfp;
+> > +
+> > +       res = kunit_alloc_resource(test,
+> > +                                  kunit_kmalloc_init,
+> > +                                  kunit_kmalloc_free,
+> > +                                  &params);
+> > +
+> > +       if (res)
+> > +               return res->allocation;
+> > +       else
+> > +               return NULL;
+>
+> Can be written as
+>
+>         if (res)
+>                 return ....
+>         return
+>
+> and some static analysis tools prefer this.
 
-Hi Bean,
+Sounds reasonable, will fix in next revision.
 
-Thanks for your questions. With some memories we see issues establishing
-the link during bootup, so that's the purpose of issuing this reset.
+> > +}
+> > +
+> > +void kunit_cleanup(struct kunit *test)
+> > +{
+> > +       struct kunit_resource *resource, *resource_safe;
+> > +       unsigned long flags;
+> > +
+> > +       spin_lock_irqsave(&test->lock, flags);
+>
+> Ah ok, test->lock is protecting everything now? Does it need to be a
+> spinlock, or can it be a mutex?
 
-Unfortunately the downstream Qualcomm patch [1] (which I should have
-remembered to attribute), does not mention why the reset during host
-controller reset is needed - but I'm fairly certain that this scenario
-would be similar to the handover from bootloader to kernel that we do
-see an issue with.
+No it needs to be a spin lock. There are some conceivable
+circumstances where the test object can be accessed by code in which
+it isn't safe to sleep.
 
-
-[1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/commit/?h=msm-4.4&id=0c82737188e2d63a08196e078e411032dbbc3b89
-
-Regards,
-Bjorn
+> > +       list_for_each_entry_safe(resource,
+> > +                                resource_safe,
+> > +                                &test->resources,
+> > +                                node) {
+> > +               kunit_free_resource(test, resource);
+> > +       }
+> > +       spin_unlock_irqrestore(&test->lock, flags);
+> > +}
+> > +
