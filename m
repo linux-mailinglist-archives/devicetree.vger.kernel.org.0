@@ -2,149 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B24913515A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 22:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 130F6351E0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 23:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726460AbfFDUwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 16:52:45 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:34680 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726033AbfFDUwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 16:52:45 -0400
-Received: by mail-wm1-f65.google.com with SMTP id w9so287354wmd.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 13:52:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HCHz30SDnTrnAv/weztZxXoYbAkSe2tsArruuDkoSAw=;
-        b=o95o2AtV3WDFGyw1md9OSwObrbp+2ZQKkNV6T0JhyFOOnZVCIONv7VMW3w2kRXmQrQ
-         Y1XC3qGKWVyhoR62ffMrKm80dj/uSTijSjWiIKa2mgSf1SrkeWTQYQIEXlCbeNcEWXKs
-         /k6m/rK93raHxP9W3lCee8kaKnDUlcuiWqj4+k6wG5YIJf35urPMB8GdwN28fg/SbR/v
-         DBTed768GKWrqbXE6cXIDf1ewEDRHu1nGJApaegknzDYL+UCwG7ptPm9hcLqH6pVAv0S
-         6C+1hT46h0GbPwjAqjv2gdjKRDBr5T94Wuz9u0HODtT0xlH00B0ZjRsXI7zY7MS2v7KU
-         4Pew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HCHz30SDnTrnAv/weztZxXoYbAkSe2tsArruuDkoSAw=;
-        b=IS3ZWnhBagebGHfi25PpwNm4doDd5ClVTROyGuLQJZfo5shdYLSduHx48D3DUqIk9y
-         4RerycVzIGfo3xI1D4u0AqV4uYCfaYl2iDNkuQ9tAHCK0Whv6ID1gJV1EZ3GseJqnGZk
-         pOdBijttQVBqeH/g28KjUP9zK1TxHbv3gblxmAJnNZggwGbkhuUavJzqLOjyJp4a/zfn
-         ZnTuV+DSv6WrXY2LQH4jwFjpHpxnXjN1gGc0MdKjLh4xpcnN6JuqQfcjD/UgM5ysG4XA
-         ja02yVKCKIUyC2G/3rfHOh/puaY1/XmP4GSScRtniK4JvutuLJDc21GnsSxDgTGyEHvT
-         IYUw==
-X-Gm-Message-State: APjAAAV5OkSIQLEcOkaXYYa+VCUtNZAbgjDP15xbQgmlN11yeDEcqCUu
-        1AjckD3yU50GiAag46QHl9hgLTfiPnG+RFsPf0tWy6NOag==
-X-Google-Smtp-Source: APXvYqxnV0SOZU/4nmV4NDSQJrqHsnlSq+yDN6cgoSvSwJwPyNnfdu2T/8ZwVNxho0MnA27Ys385vKc1uhUJ75TsjKc=
-X-Received: by 2002:a1c:f507:: with SMTP id t7mr19658456wmh.149.1559681563071;
- Tue, 04 Jun 2019 13:52:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521130357.20803-1-miquel.raynal@bootlin.com>
- <20190521130357.20803-3-miquel.raynal@bootlin.com> <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
- <20190527154610.6d4d5eff@xps13>
-In-Reply-To: <20190527154610.6d4d5eff@xps13>
-From:   Bjorn Helgaas <bhelgaas@google.com>
-Date:   Tue, 4 Jun 2019 15:52:31 -0500
-Message-ID: <CAErSpo7fimH5QhHTLsF2ASyPqstkw7Zibe3CYB=KXTYBOh-4GQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] clk: mvebu: armada-37xx-periph: change
- suspend/resume time
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Linux PM list <linux-pm@vger.kernel.org>
+        id S1726502AbfFDV3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 17:29:33 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:59564 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726033AbfFDV3d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 17:29:33 -0400
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id AC5872F8BEA;
+        Tue,  4 Jun 2019 21:29:32 +0000 (UTC)
+Received: from ovpn-112-67.rdu2.redhat.com (ovpn-112-67.rdu2.redhat.com [10.10.112.67])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 5271C5C207;
+        Tue,  4 Jun 2019 21:29:27 +0000 (UTC)
+Message-ID: <0264d7f9a35430201a89c068bb13c84c622af11a.camel@redhat.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Dan Williams <dcbw@redhat.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Alex Elder <elder@linaro.org>,
+        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Miller <davem@davemloft.net>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        evgreen@chromium.org, Ben Chan <benchan@google.com>,
+        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
+        syadagir@codeaurora.org, abhishek.esse@gmail.com,
+        Networking <netdev@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org
+Date:   Tue, 04 Jun 2019 16:29:26 -0500
+In-Reply-To: <CAK8P3a3pQpSpH4q=CL6gr_YzjYgoyD6-eyiLrvnZsqqjpcRxtQ@mail.gmail.com>
+References: <20190531035348.7194-1-elder@linaro.org>
+         <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
+         <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org>
+         <CAK8P3a05CevRBV3ym+pnKmxv+A0_T+AtURW2L4doPAFzu3QcJw@mail.gmail.com>
+         <a28c5e13-59bc-144d-4153-9d104cfa9188@linaro.org>
+         <20190531233306.GB25597@minitux>
+         <d76a710d45dd7df3a28afb12fc62cf14@codeaurora.org>
+         <CAK8P3a0brT0zyZGNWiS2R0RMHHFF2JG=_ixQyvjhj3Ky39o0UA@mail.gmail.com>
+         <040ce9cc-7173-d10a-a82c-5186d2fcd737@linaro.org>
+         <CAK8P3a2U=RzfpVaAgRP1QwPhRpZiBNsG5qdWjzwG=tCKZefYHA@mail.gmail.com>
+         <b26cf34c0d3fa1a7a700cee935244d7a2a7e1388.camel@redhat.com>
+         <CAK8P3a3pQpSpH4q=CL6gr_YzjYgoyD6-eyiLrvnZsqqjpcRxtQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.38]); Tue, 04 Jun 2019 21:29:33 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 27, 2019 at 8:46 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
->
-> Hi Bjorn,
->
-> Thanks for the feedback.
->
-> Bjorn Helgaas <bhelgaas@google.com> wrote on Tue, 21 May 2019 17:43:05
-> -0500:
->
-> > From: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Date: Tue, May 21, 2019 at 8:04 AM
-> > To: Michael Turquette, Stephen Boyd, Rob Herring, Mark Rutland
-> > Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>, Thomas
-> > Petazzoni, Antoine Tenart, Gregory Clement, Maxime Chevallier, Nadav
-> > Haklai, Bjorn Helgaas, Rafael J . Wysocki, <linux-pm@vger.kernel.org>,
-> > Miquel Raynal
-> >
-> > > Armada 3700 PCIe IP relies on the PCIe clock managed by this
-> > > driver. For reasons related to the PCI core's organization when
-> > > suspending/resuming, PCI host controller drivers must reconfigure
-> > > their register at suspend_noirq()/resume_noirq() which happens after
-> > > suspend()/suspend_late() and before resume_early()/resume().
-> >
-> > "For reasons related to the PCI core's organization" manages to
-> > suggest that this change wouldn't be needed if only the PCI core did
-> > something differently, without actually being specific about what it
-> > would need to do differently.
-> >
-> > Is there something the PCI core could do better to make this easier?
-> > Or is it just something like "the PCI core needs to access registers
-> > after suspend_late()"?  You mention the host controller, but of course
-> > that's not itself a PCI device, so the PCI core doesn't have much to
-> > do with it directly.
->
-> Actually, if I understand correctly the below commit [1] and the core
-> [2] & [3], PCI device fixups can happen at any time, including at the
-> _noirq phase where, obviously, the PCI controller must be already
-> setup.
->
-> I don't think changing this behavior is a viable solution and I would
-> not see it as a "PCI core could do better" alternative.
->
-> ---8<---
->
-> [1]
-> commit ab14d45ea58eae67c739e4ba01871cae7b6c4586
-> Author: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-> Date:   Tue Mar 17 15:55:45 2015 +0100
->
->     PCI: mvebu: Add suspend/resume support
->
->     Add suspend/resume support for the mvebu PCIe host driver.  Without
->     this commit, the system will panic at resume time when PCIe devices
->     are connected.
->
->     Note that we have to use the ->suspend_noirq() and ->resume_noirq()
->     hooks, because at resume time, the PCI fixups are done at
->     ->resume_noirq() time, so the PCIe controller has to be ready at
->     this point.
->
->     Signed-off-by: Thomas Petazzoni
->     <thomas.petazzoni@free-electrons.com> Signed-off-by: Bjorn Helgaas
->     <bhelgaas@google.com> Acked-by: Jason Cooper <jason@lakedaemon.net>
->
-> [2] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L1181
-> [3] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L522
->
-> --->8---
->
-> >
-> > s/register/registers/ ?
->
-> Indeed. I would like to sort out the above technical point before
-> sending a v3 with this typo corrected.
+On Tue, 2019-06-04 at 22:04 +0200, Arnd Bergmann wrote:
+> On Tue, Jun 4, 2019 at 5:18 PM Dan Williams <dcbw@redhat.com> wrote:
+> > On Tue, 2019-06-04 at 10:13 +0200, Arnd Bergmann wrote:
+> > > Can you describe what kind of multiplexing is actually going on?
+> > > I'm still unclear about what we actually use multiple logical
+> > > interfaces for here, and how they relate to one another.
+> > 
+> > Each logical interface represents a different "connection" (PDP/EPS
+> > context) to the provider network with a distinct IP address and
+> > QoS.
+> > VLANs may be a suitable analogy but here they are L3+QoS.
+> > 
+> > In realistic example the main interface (say rmnet0) would be used
+> > for
+> > web browsing and have best-effort QoS. A second interface (say
+> > rmnet1)
+> > would be used for VOIP and have certain QoS guarantees from both
+> > the
+> > modem and the network itself.
+> > 
+> > QMAP can also aggregate frames for a given channel
+> > (connection/EPS/PDP
+> > context/rmnet interface/etc) to better support LTE speeds.
+> 
+> Thanks, that's a very helpful explanation!
+> 
+> Is it correct to say then that the concept of having those separate
+> connections would be required for any proper LTE modem
+> implementation,
+> but the QMAP protocol (and based on that, the rmnet implementation)
+> is Qualcomm specific and shared only among several generations of
+> modems from that one vendor?
 
-I don't have anything more to contribute here; just wanted to make
-sure this wasn't working around a fixable problem in PCI.
+Exactly correct.  This is what Johannes is discussing in his "cellular
+modem APIs - take 2" thread about how this should all be organized at
+the driver level and I think we should figure that out before we commit
+to IPA-with-a-useless-netdev that requires rmnets to be created on top.
+That may end up being the solution but let's have that discussion.
 
-Bjorn
+> > You mentioned the need to have a common user space interface
+> for configuration, and if the above is true, I agree that we should
+> try
+> to achieve that, either by ensuring rmnet is generic enough to
+> cover other vendors (and non-QMAP clients), or by creating a
+> new user level interface that IPA/rmnet can be adapted to.
+
+I would not suggest making rmnet generic; it's pretty QMAP specific
+(but QMAP is spoken by many many modems both SoC, USB stick, and PCIe
+minicard).
+
+Instead, I think what Johannes is discussing is a better approach. A
+kernel WWAN framework with consistent user API that
+rmnet/IPA/qmi_wwan/MBIM/QMI/serial/Sierra can all implement.
+
+That wouldn't affect the core packet processing of IPA/rmnet but
+instead:
+
+1) when/how an rmnet device actually gets created on top of the IPA (or
+qmi_wwan) device
+
+AND (one of these two)
+
+a) whether IPA creates a netdev on probe
+
+OR
+
+b) whether there is some "WWAN device" kernel object which userspace
+interacts with create rmnet channels on top of IPA
+
+Dan
+
