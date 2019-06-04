@@ -2,152 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C44A34F69
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 19:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 781EF34F95
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 20:10:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726572AbfFDR5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 13:57:38 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:39347 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726568AbfFDR5i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 13:57:38 -0400
-Received: by mail-pg1-f196.google.com with SMTP id 196so10797527pgc.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 10:57:38 -0700 (PDT)
+        id S1725933AbfFDSKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 14:10:16 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:36737 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbfFDSKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 14:10:16 -0400
+Received: by mail-wr1-f65.google.com with SMTP id n4so13792524wrs.3;
+        Tue, 04 Jun 2019 11:10:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=t6nRtxNUPqh5Z/Zd2Lm8XPgS1hMkd1CYB8UujWfxC7Q=;
-        b=nTlQhMCisSBubZWMXjKPelLpr6RksrP9pS90I2cSz/kMGif7H/Ap0kQIJjfBB7UU4I
-         bv9izx7ED5AXrnJYKQ1rJ3FdTF+8vt/yZX8lug9eUORLfiX/mFm4c4mO+NJM1ldkZW72
-         /qW3UB6mhbwyNrhv8p2WMGwcW7DPxANMsNAf3mtJopHxFeR9uX03hpfAOruT1EYZ36rG
-         DDLq9oj06019IG18jQX9AB14Q3AMUMJzXM6N/JkG7XZZQ5gVydt5fRrcNbto9HH6QlTK
-         fKZ9lbvvBQIlPV+5iZ2sphmAI5o6/vxB7/88gheuaehkNVynnHApunjAdZ9AqABRc47O
-         XMsA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lLFJn8hfJB0bfYBQ2rEhUXIcdzRXExeNARfQE/rlETg=;
+        b=vUjBWTaBQcbMO0GWKgSI7xMK2QKr+0vX8zwG8ghZF85C1ae5KmMhS2KIgThcOqJ/rJ
+         TRzn+Njtqf/0JHaJzVdZt9V7KWSyWOqkiA8DTFHnfvw3BdAJ+5thsRwTgcBjaI83+gSy
+         1hqQpkUvlZY9LLtaUdp0L0TbBtBClqlkMuM23UiANzcvbBI1FcreHSUVrHBV7XpeZXy/
+         c/3hlvOFu3ruXyFBa/cYv0/K+X+brPVFx7HdrNG+e9RHJoe6JQGdrUhPb3s3UbmnQtj7
+         xAP75dTJ9fanBvBRUykQrrsmL713koEcbQjGcZlZrzMHPpJoeARIzNYJz0zD+hhPd2qG
+         cCsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=t6nRtxNUPqh5Z/Zd2Lm8XPgS1hMkd1CYB8UujWfxC7Q=;
-        b=p2STUpByN70MB7JcFTokkYmRTGDDxam/yLxBjxzE8cGbPozQVvIoTMlQvtAoO7KqS3
-         z3bneoLaPT+FDT/npOSz6rYlFWgMWygCPAARhbfMKaWW/imtvhIrlBA9Bv8VK951Ka5A
-         1sSARjg8E+Sou7cPyOJHgLO370vMJ1eEP1nVulWgTJu4L9hiDXT2Ncmu2ccXjKi51jxZ
-         iWfJzJYaf9J89sbLuZxZhofi+81BGfofAo3eS2LfOUbBqdbn+6T4IZtsM9R/5fkneD1d
-         6BBTWiBnnAA3GKAKKi2ubBma7f0Rx1Z2rfeMOBqqMpg5HB137XLXiVdIgfxoKVOmG5CI
-         33Qw==
-X-Gm-Message-State: APjAAAVwoXj004q8EfdgsW957lbHIyJndzK3nHObRXkDs+ZZWkQqTUOa
-        m/YRkozJQS2tdNkhhW7HyNWE1A==
-X-Google-Smtp-Source: APXvYqyAw+GAG8yrWBrkEDa5ptODblm5FBQl6/nW1vzjq2uaDnlK4j4zrZ6AweVC8FNn2wO2DwuCqA==
-X-Received: by 2002:aa7:940c:: with SMTP id x12mr10683953pfo.80.1559671056609;
-        Tue, 04 Jun 2019 10:57:36 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:bc61:d85d:eb16:9036])
-        by smtp.gmail.com with ESMTPSA id n1sm19474297pgv.15.2019.06.04.10.57.35
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 04 Jun 2019 10:57:35 -0700 (PDT)
-Date:   Tue, 4 Jun 2019 10:57:31 -0700
-From:   Benson Leung <bleung@google.com>
-To:     Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lLFJn8hfJB0bfYBQ2rEhUXIcdzRXExeNARfQE/rlETg=;
+        b=YpAzXpiSCnZZZgDLLm5GwaMTx66Obdj9eczSHMi/u9GtquusEeWSVGYgAAODnS6PUk
+         IG4+uDwbO1gvv8nLobomnQbvolJ/sRoGT8gtzcLKXOtK5N+EBx2m17kEonD9b3fG2+Jh
+         QeY7WhYUzL8N72bnKUdUZr25y1qxnUTb9ZJ3UICk4+CHnZiZc0rXLrIi/OPV2QFsCmVa
+         WdA+5RbmA+RzVusV8DjE8D+rRXWewOqvfS9Yey8ZeoGxzX1JgARTi6FknB/ozo2844i+
+         VN1qN1D0/BwE9pECw6F5NLKlJDur+O4MVEc6iEQwsSVI/OiXrta3Fvq+2lHLGS+fgSiK
+         pQbA==
+X-Gm-Message-State: APjAAAUltmqSAyvTtaujeOiK43AKTZJ8IBctsIjM+I47AFBOCCiiV8oZ
+        FKQstiwMSFFSLylWqqaQecqKGKZQcluz0pabexs=
+X-Google-Smtp-Source: APXvYqxrnaWRBKNjOZJP0zWlO2DmEFkaazI6Z+tkInzQvHcCwD+PxOjOGa8Jm+4UyZqJvTfz1hmYWCIZQQV23Cv8CnY=
+X-Received: by 2002:a5d:4992:: with SMTP id r18mr7697528wrq.107.1559671814077;
+ Tue, 04 Jun 2019 11:10:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
+ <20190604072001.9288-3-bjorn.andersson@linaro.org> <BN7PR08MB568450B1EC51ABAA2E426AC0DB150@BN7PR08MB5684.namprd08.prod.outlook.com>
+In-Reply-To: <BN7PR08MB568450B1EC51ABAA2E426AC0DB150@BN7PR08MB5684.namprd08.prod.outlook.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Tue, 4 Jun 2019 11:10:01 -0700
+Message-ID: <CANcMJZB+bg9LWzo=EaL-QnWiL49=MzyBJy8qsBiSMu8HZeWRxw@mail.gmail.com>
+Subject: Re: [EXT] [PATCH 2/3] scsi: ufs: Allow resetting the UFS device
+To:     "Bean Huo (beanhuo)" <beanhuo@micron.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v9 5/7] dt-bindings: Add binding for cros-ec-rpmsg.
-Message-ID: <20190604175731.GB241153@google.com>
-References: <20190531073848.155444-1-pihsun@chromium.org>
- <20190531073848.155444-6-pihsun@chromium.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="H+4ONPRPur6+Ovig"
-Content-Disposition: inline
-In-Reply-To: <20190531073848.155444-6-pihsun@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        Subhash Jadavani <subhashj@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 4, 2019 at 1:14 AM Bean Huo (beanhuo) <beanhuo@micron.com> wrote:
+>
+> Hi, Bjorn
+>
+> >Acquire the device-reset GPIO and toggle this to reset the UFS device during
+> >initialization and host reset.
+> >
+> >+/**
+> >+ ufshcd_device_reset() - toggle the (optional) device reset line
+> >+ * @hba: per-adapter instance
+> >+ *
+> >+ * Toggles the (optional) reset line to reset the attached device.
+> >+ */
+> >+static void ufshcd_device_reset(struct ufs_hba *hba) {
+> >+      /*
+> >+       * The USB device shall detect reset pulses of 1us, sleep for 10us to
+> >+       * be on the safe side.
+> >+       */
+> >+      gpiod_set_value_cansleep(hba->device_reset, 1);
+> >+      usleep_range(10, 15);
+> >+
+> >+      gpiod_set_value_cansleep(hba->device_reset, 0);
+> >+      usleep_range(10, 15);
+> >+}
+> >+
+> > /**
+> >  * ufshcd_host_reset_and_restore - reset and restore host controller
+> >  * @hba: per-adapter instance
+> >@@ -6159,6 +6179,9 @@ static int ufshcd_reset_and_restore(struct ufs_hba
+> >*hba)
+> >       int retries = MAX_HOST_RESET_RETRIES;
+> >
+> >       do {
+> >+              /* Reset the attached device */
+> >+              ufshcd_device_reset(hba);
+> >+
+>
+> what's problem you met, and you should reset UFS device here? could you give more info?
 
---H+4ONPRPur6+Ovig
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On the pixel3, devices with micron UFS chips won't boot upstream
+kernels without this patch, which is a rewrite of an earlier patch:
+  https://git.linaro.org/people/john.stultz/android-dev.git/commit/?h=dev/p3&id=99f3dd8519a848b752679584451c45f42c326a17
 
-On Fri, May 31, 2019 at 03:38:46PM +0800, Pi-Hsun Shih wrote:
-> Add a DT binding documentation for ChromeOS EC driver over rpmsg.
->=20
-> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+Which was pulled from the downstream tree from here:
+  https://android.googlesource.com/kernel/msm.git/+/9c8077087e818017%5E%21/
 
-Reviewed-by: Benson Leung <bleung@chromium.org>
+CCing Subhash as he may have additional context.
 
->=20
-> ---
-> Changes from v8, v7, v6:
->  - No change.
->=20
-> Changes from v5:
->  - New patch.
-> ---
->  Documentation/devicetree/bindings/mfd/cros-ec.txt | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/cros-ec.txt b/Document=
-ation/devicetree/bindings/mfd/cros-ec.txt
-> index 6245c9b1a68b..4860eabd0f72 100644
-> --- a/Documentation/devicetree/bindings/mfd/cros-ec.txt
-> +++ b/Documentation/devicetree/bindings/mfd/cros-ec.txt
-> @@ -3,7 +3,7 @@ ChromeOS Embedded Controller
->  Google's ChromeOS EC is a Cortex-M device which talks to the AP and
->  implements various function such as keyboard and battery charging.
-> =20
-> -The EC can be connect through various means (I2C, SPI, LPC) and the
-> +The EC can be connect through various means (I2C, SPI, LPC, RPMSG) and t=
-he
->  compatible string used depends on the interface. Each connection method =
-has
->  its own driver which connects to the top level interface-agnostic EC dri=
-ver.
->  Other Linux driver (such as cros-ec-keyb for the matrix keyboard) connec=
-t to
-> @@ -17,6 +17,9 @@ Required properties (SPI):
->  - compatible: "google,cros-ec-spi"
->  - reg: SPI chip select
-> =20
-> +Required properties (RPMSG):
-> +- compatible: "google,cros-ec-rpmsg"
-> +
->  Optional properties (SPI):
->  - google,cros-ec-spi-pre-delay: Some implementations of the EC need a li=
-ttle
->    time to wake up from sleep before they can receive SPI transfers at a =
-high
-> --=20
-> 2.22.0.rc1.257.g3120a18244-goog
->=20
-
---=20
-Benson Leung
-Staff Software Engineer
-Chrome OS Kernel
-Google Inc.
-bleung@google.com
-Chromium OS Project
-bleung@chromium.org
-
---H+4ONPRPur6+Ovig
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCXPaxCwAKCRBzbaomhzOw
-wrfuAP9QcQ2v/pDWTXePJ8PoBlW9S+7RIpMiCvQTzUnjpZ+iKwD/bQPNeneMkrd5
-fBrGE9T80lwQ9Bjy29YcKEPBBfGIRQI=
-=SqoY
------END PGP SIGNATURE-----
-
---H+4ONPRPur6+Ovig--
+thanks
+-john
