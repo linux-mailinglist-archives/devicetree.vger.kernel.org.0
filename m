@@ -2,164 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2EF347A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 15:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 210F9347A9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 15:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727274AbfFDNIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 09:08:30 -0400
-Received: from mail-eopbgr680049.outbound.protection.outlook.com ([40.107.68.49]:24226
-        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727276AbfFDNIa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 09:08:30 -0400
+        id S1727322AbfFDNIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 09:08:43 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:45171 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727200AbfFDNIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 09:08:43 -0400
+Received: by mail-wr1-f65.google.com with SMTP id f9so1033348wre.12;
+        Tue, 04 Jun 2019 06:08:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dHzerxANfLKVuklCjD4HWWszYeByUUdVmCcA6XtN+UQ=;
- b=qkDSVDcYTE9uNaPhYf4JJMQcYdmbkek7N6ivxKhscgJlTPwqP5jBDxD6yGcc6GSAOcCzpOEKP51+M06Y4LPBWn8ghxhlPUocfl9xKvEwgbGCOw16n0qjnqBqbdeMBog5f6N62HURYVBFNR+cFOoYKlrCrFQKemdLFdi0yJKs9p0=
-Received: from DM5PR03CA0029.namprd03.prod.outlook.com (2603:10b6:4:3b::18) by
- CO2PR03MB2262.namprd03.prod.outlook.com (2603:10b6:102:e::25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1943.22; Tue, 4 Jun 2019 13:08:26 +0000
-Received: from SN1NAM02FT062.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::202) by DM5PR03CA0029.outlook.office365.com
- (2603:10b6:4:3b::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1943.18 via Frontend
- Transport; Tue, 4 Jun 2019 13:08:26 +0000
-Authentication-Results: spf=pass (sender IP is 137.71.25.57)
- smtp.mailfrom=analog.com; gmx.de; dkim=none (message not signed)
- header.d=none;gmx.de; dmarc=bestguesspass action=none header.from=analog.com;
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- SN1NAM02FT062.mail.protection.outlook.com (10.152.72.208) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1943.19
- via Frontend Transport; Tue, 4 Jun 2019 13:08:24 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x54D8Mma011418
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Tue, 4 Jun 2019 06:08:22 -0700
-Received: from linux.ad.analog.com (10.32.224.122) by
- NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
- 14.3.408.0; Tue, 4 Jun 2019 09:08:22 -0400
-From:   Stefan Popa <stefan.popa@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <knaack.h@gmx.de>, <lars@metafoo.de>,
-        <pmeerw@pmeerw.net>, <Michael.Hennerich@analog.com>,
-        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stefan.popa@analog.com>
-Subject: [PATCH v5 2/2] dt-bindings: iio: frequency: Add docs for ADF4371 PLL
-Date:   Tue, 4 Jun 2019 16:08:17 +0300
-Message-ID: <1559653697-2760-1-git-send-email-stefan.popa@analog.com>
-X-Mailer: git-send-email 2.7.4
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Ja42kw7uBfsBKpf4+zCIJaSquw+Aa6YWSyrqsgnB08M=;
+        b=iRC5xFX0BivJod9qqeyNu72KEal0IhC2P9gbvWNx1fDr39egx4vc132OVZNMLnvtZu
+         i1obPUJS5JevA52HvHcw4enDAflnCsmk6fNQljKes09Ut9y9Tuf5eKXD4/a6JLRxScdm
+         g+7YsYXtTfrtBhTbuEqBo8/Bus9LCiHWBod/MNKl/tXFtvdwj+dH8kvhkNIEJspcAkTp
+         0VOx7DzMhkg4j2Kz1hZYPLe4c51MRigzZHvQgFGM17lgjj+0H7k7MglQLWSm/Ml/sZ7B
+         ulbZGXDgXXRkAt8cW8uwhKeAZVMhMHtRPq1eY/xEjdRhsLrqJS02s/KeayOPtZFJ1gBS
+         xygQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Ja42kw7uBfsBKpf4+zCIJaSquw+Aa6YWSyrqsgnB08M=;
+        b=RjW8P9CuHyOCZgy4ODM5BrWn9BdbD4VCbI3e3QT33rf+bFFzDQ789Q+3Vg20/GhOwG
+         yuz9BSXnHJoy4fobFugHuurdcaD6/z0D2exot5PAf9/tGM5W1zRmaIO/yHAtpewWQSdv
+         BZ/pAgdMVxmfgy3pf8BgSKjznDN1C1XPNHm73XZZLe8nd8Kp1feIQKTSu+58jUi6yn1S
+         cNh7D+mg1fc33kdyzRBFkO785a6WqdaO8Ktwmp2HooUibdf4YkpxFQyBjHZQepw7CYpJ
+         u/V9ddGFn34UA0S/SBio/N3Unhp1+nQx8nwOQsd/TO6mCjT9VVglOTAt1ojXmyl+1b4D
+         ZeWg==
+X-Gm-Message-State: APjAAAW+m4aH29VU2miv4EMG+mErEwXycHvZofWq56kpf7MrN2xICKcW
+        TeNLCSfEbAJr+EeU5+pfqTzCRSu6
+X-Google-Smtp-Source: APXvYqzNuTabDjtD2ebwcUOKc1RGaO4DF4ePev9C+ps4XkQaNqt9/+faB2BX37NLfINaTAhtpCOXUA==
+X-Received: by 2002:a5d:4b4a:: with SMTP id w10mr4388732wrs.337.1559653720070;
+        Tue, 04 Jun 2019 06:08:40 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id v6sm6362452wru.6.2019.06.04.06.08.39
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 04 Jun 2019 06:08:39 -0700 (PDT)
+Date:   Tue, 4 Jun 2019 15:08:38 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        jonathanh@nvidia.com, lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 04/28] PCI: tegra: Mask AFI_INTR in runtime suspend
+Message-ID: <20190604130838.GR16519@ulmo>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-5-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(376002)(346002)(396003)(136003)(2980300002)(189003)(199004)(426003)(336012)(44832011)(186003)(106002)(2906002)(77096007)(36756003)(7696005)(7416002)(8936002)(70206006)(70586007)(50226002)(47776003)(26005)(48376002)(51416003)(107886003)(50466002)(53376002)(4326008)(5660300002)(8676002)(356004)(478600001)(7636002)(110136005)(72206003)(6666004)(966005)(16586007)(54906003)(126002)(305945005)(486006)(2616005)(316002)(476003)(6306002)(246002);DIR:OUT;SFP:1101;SCL:1;SRVR:CO2PR03MB2262;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 53a43ac7-aac3-4b75-9066-08d6e8edbadb
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:CO2PR03MB2262;
-X-MS-TrafficTypeDiagnostic: CO2PR03MB2262:
-X-MS-Exchange-PUrlCount: 3
-X-Microsoft-Antispam-PRVS: <CO2PR03MB2262A151AFDDAB4D702CF6D99D150@CO2PR03MB2262.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
-X-Forefront-PRVS: 0058ABBBC7
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: JqeCVyRk9wIKcgKibpO4SNMVdKdXHmrdCetDRWL14/gqOZQj3C37ROTzwnh/Z8WooVVbh2/LPXC152Moa5FPCjsIuM3x5rFQgKXYwpcT/cRH7/zXhOdmJMoe0DemTiy4cxLHJ64mYScXaZrVcJ+cliuR728BYksHs89I1Kzw2NW+0sg9z6ZnTEMQHFZAFY0p3J0EjVIV5A5PCIHO4+SqDR1eSQ7ZlAfIAS2Oed163BTByvtpdaJF1Vd1If5LVFSkIoBgdMdttWhvtEJwnUhbVwqTOMhurNUvF7m6GvM4Q7UmBmX/76XRXqqes/WalvvB/jztxdXjncE8bstv0AqP3mvK9KmILGaTQx7MjghMDGBrQSG+E31goH9R0hn7wfyXNxsGCOb9BPexrHu4W37w8/3YDmFfXEw+Ipd4q6m/YkE=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2019 13:08:24.7729
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53a43ac7-aac3-4b75-9066-08d6e8edbadb
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR03MB2262
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0Qexx6XJGNEACt6j"
+Content-Disposition: inline
+In-Reply-To: <20190516055307.25737-5-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for Analog Devices ADF4371 SPI Wideband Synthesizer.
 
-Signed-off-by: Stefan Popa <stefan.popa@analog.com>
----
-Changes in v2:
-	- Nothing changed.
-Changes in v3:
-	- Nothing changed.
-Changes in v4:
-	- Nothing changed.
-Changes in v5:
-	- Nothing changed.
+--0Qexx6XJGNEACt6j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../devicetree/bindings/iio/frequency/adf4371.yaml | 54 ++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+On Thu, May 16, 2019 at 11:22:43AM +0530, Manikanta Maddireddy wrote:
+> AFI_INTR is unmasked in tegra_pcie_enable_controller(), mask it to avoid
+> unwanted interrupts raised by AFI after pex_rst is asserted.
+>=20
+> Following sequence triggers such scenario,
+>  - tegra_pcie_remove() triggers runtime suspend
+>  - pex_rst is asserted in runtime suspend
+>  - PRSNT_MAP bit field in RP_PRIV_MISC register changes from EP_PRSNT to
+>    EP_ABSNT
+>  - This is sensed by AFI and triggers "Slot present pin change" interrupt
+>  - tegra_pcie_isr() function accesses AFI register when runtime suspend
+>    is going through power off sequence
+>=20
+> rmmod pci-tegra
+>  pci_generic_config_write32: 108 callbacks suppressed
+>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x4c may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x9c may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x88 may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x90 may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x4 may corr=
+upt adjacent RW1C bits
+>  igb 0002:04:00.1: removed PHC on enP2p4s0f1
+>  igb 0002:04:00.0: removed PHC on enP2p4s0f0
+>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x4c may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x9c may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x88 may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x90 may cor=
+rupt adjacent RW1C bits
+>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x4 may corr=
+upt adjacent RW1C bits
+>  rcu: INFO: rcu_preempt self-detected stall on CPU
+>  SError Interrupt on CPU0, code 0xbf000002 -- SError
+>  CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.1.0-rc3-next=
+-20190405-00027-gcd8110499e6f-dirty #42
+>  Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
+>  pstate: 20000085 (nzCv daIf -PAN -UAO)
+>  pc : tegra_pcie_isr+0x58/0x178 [pci_tegra]
+>  lr : tegra_pcie_isr+0x40/0x178 [pci_tegra]
+>  sp : ffff000010003da0
+>  x29: ffff000010003da0 x28: 0000000000000000
+>  x27: ffff8000f9e61000 x26: ffff000010fbf420
+>  x25: ffff000011427f93 x24: ffff8000fa600410
+>  x23: ffff00001129d000 x22: ffff00001129d000
+>  x21: ffff8000f18bf3c0 x20: 0000000000000070
+>  x19: 00000000ffffffff x18: 0000000000000000
+>  x17: 0000000000000000 x16: 0000000000000000
+>  x15: 0000000000000000 x14: ffff000008d40a48
+>  x13: ffff000008d40a30 x12: ffff000008d40a20
+>  x11: ffff000008d40a10 x10: ffff000008d40a00
+>  x9 : ffff000008d409e8 x8 : ffff000008d40ae8
+>  x7 : ffff000008d40ad0 x6 : ffff000010003e58
+>  x5 : ffff8000fac00248 x4 : 0000000000000000
+>  x3 : ffff000008d40b08 x2 : fffffffffffffff8
+>  x1 : ffff000008d3f4e8 x0 : 00000000ffffffff
+>  Kernel panic - not syncing: Asynchronous SError Interrupt
+>  CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.1.0-rc3-next=
+-20190405-00027-gcd8110499e6f-dirty #42
+>  Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
+>  Call trace:
+>   dump_backtrace+0x0/0x158
+>   show_stack+0x14/0x20
+>   dump_stack+0xa8/0xcc
+>   panic+0x140/0x2f4
+>   nmi_panic+0x6c/0x70
+>   arm64_serror_panic+0x74/0x80
+>   __pte_error+0x0/0x28
+>   el1_error+0x84/0xf8
+>   tegra_pcie_isr+0x58/0x178 [pci_tegra]
+>   __handle_irq_event_percpu+0x70/0x198
+>   handle_irq_event_percpu+0x34/0x88
+>   handle_irq_event+0x48/0x78
+>   handle_fasteoi_irq+0xb4/0x190
+>   generic_handle_irq+0x24/0x38
+>   __handle_domain_irq+0x5c/0xb8
+>   gic_handle_irq+0x58/0xa8
+>   el1_irq+0xb8/0x180
+>   cpuidle_enter_state+0x138/0x358
+>   cpuidle_enter+0x18/0x20
+>   call_cpuidle+0x1c/0x48
+>   do_idle+0x230/0x2d0
+>   cpu_startup_entry+0x20/0x28
+>   rest_init+0xd4/0xe0
+>   arch_call_rest_init+0xc/0x14
+>   start_kernel+0x444/0x470
+>=20
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> ---
+> V4: No change
+>=20
+> V3:
+> * Update the commit log and comment to reflect why this fix is required
+> * MSI interrupt is not disabled
+>=20
+> V2: This is new patch in V2
+>=20
+>  drivers/pci/controller/pci-tegra.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>=20
+> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/=
+pci-tegra.c
+> index bb3c0af9c830..d0e517f084a1 100644
+> --- a/drivers/pci/controller/pci-tegra.c
+> +++ b/drivers/pci/controller/pci-tegra.c
+> @@ -1622,6 +1622,15 @@ static int tegra_pcie_disable_msi(struct tegra_pci=
+e *pcie)
+>  	return 0;
+>  }
+> =20
+> +static void tegra_pcie_disable_interrupts(struct tegra_pcie *pcie)
+> +{
+> +	u32 value;
+> +
+> +	value =3D afi_readl(pcie, AFI_INTR_MASK);
+> +	value &=3D ~AFI_INTR_MASK_INT_MASK;
+> +	afi_writel(pcie, value, AFI_INTR_MASK);
+> +}
+> +
+>  static int tegra_pcie_get_xbar_config(struct tegra_pcie *pcie, u32 lanes,
+>  				      u32 *xbar)
+>  {
+> @@ -2466,6 +2475,11 @@ static int __maybe_unused tegra_pcie_pm_suspend(st=
+ruct device *dev)
+>  		tegra_pcie_pme_turnoff(port);
+> =20
+>  	tegra_pcie_disable_ports(pcie);
+> +	/*
 
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-new file mode 100644
-index 0000000..d7adf074
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/frequency/adf4371.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADF4371 Wideband Synthesizer
-+
-+maintainers:
-+  - Popa Stefan <stefan.popa@analog.com>
-+
-+description: |
-+  Analog Devices ADF4371 SPI Wideband Synthesizer
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/adf4371.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adf4371
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      Definition of the external clock (see clock/clock-bindings.txt)
-+    maxItems: 1
-+
-+  clock-names:
-+    description:
-+      Must be "clkin"
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        frequency@0 {
-+                compatible = "adi,adf4371";
-+                reg = <0>;
-+                spi-max-frequency = <1000000>;
-+                clocks = <&adf4371_clkin>;
-+                clock-names = "clkin";
-+        };
-+    };
-+...
--- 
-2.7.4
+Use a blank line before block-style comments (and typically comments in
+general) for better readability.
 
+Other than than:
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+> +	 * AFI_INTR is unmasked in tegra_pcie_enable_controller(), mask it to
+> +	 * avoid unwanted interrupts raised by AFI after pex_rst is asserted.
+> +	 */
+> +	tegra_pcie_disable_interrupts(pcie);
+> =20
+>  	if (pcie->soc->program_uphy) {
+>  		err =3D tegra_pcie_phy_power_off(pcie);
+> --=20
+> 2.17.1
+>=20
+
+--0Qexx6XJGNEACt6j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlz2bVMACgkQ3SOs138+
+s6Gn0Q/+IV7+AniIum44ShgAwkcVOVySNa6cNQem8a0reLjG6j7sJi/ILtm3UYb+
+NfnXjIbCP8xYBu7WD902NWZHyzk2byXonUAPHETYnMDTM3I0VjI0HdlHO0LqHhDi
+WGIlOJeReM3fINf6N7xUgDsZO+xj/mPQoeIABX9LaU0K2ZxQiodVL7WxB/18V+Mc
+KiVDUbqONpvL0nLvtArjghwtCfLQaUDPikPjOSC9CaqC7UOvREEE9L5JU9jF5Bhr
+gmjy/NO8OHuoo0i/BqDPBmjcLpPDxqbpxRYgEyctFqIKGL7lSoUYfHJDT4CiQH75
+UqAVIGvWNPEXOtpj56QR2al4LgW00riohF3MgUEEc1OIrbedK8hx+fQ3VJe0mXYB
+ZFmOF0wOQH3MU/U6qbltBYUbtbVCbOsTcbFjcBlWnXcmLHqSapJn0qbHVcigrvfN
+lo/iZP0luqFCyI6cTNLvRPPKQmmcPqaTka+1gCZW3mKBsaYHxgJGEbs2woNHGAr0
+SIJrqD61fy//GVKodgStlP4RcPWBmavnvC0JeDftkTgZk3BkEoqJwKWxBOn6eI15
+pZ+xpZoylzz3qlxCUih+G0OIz8enRztkbSAweSNaEiWBrsdS5VACTWV/ka1q271S
+ma3jPVsSKDdpC/bq3lazBn1Vlz8+FAPDDEnHL21ZFtNEC3i/Grk=
+=rSAz
+-----END PGP SIGNATURE-----
+
+--0Qexx6XJGNEACt6j--
