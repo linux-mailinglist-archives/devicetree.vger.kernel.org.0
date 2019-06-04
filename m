@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F8C933EFC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 08:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D1433F13
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 08:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726645AbfFDGaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 02:30:52 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:42692 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726136AbfFDGaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 02:30:52 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x546Ujqd013637;
-        Tue, 4 Jun 2019 01:30:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559629845;
-        bh=HvPPDN0cohzBbGAXyF4zGYsuRz1yAnxG8709uSbSji4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=xnWCrXf7BHBVW2yOydeLPyUBriHoeCa7BGBJoWlfWg8QnehRuBX/5WGXRMKlA+/RF
-         EVeV1f5iMn7+clIJA+P7Lc0mDKgOh6wXS7a9Hc3Fq6O/eSFcCRcUQxFt04mO+vSDeM
-         uuvz9oQb7rcLs/xaXcJLP9AfmUNKbOAqHBAdkklo=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x546UjTj047896
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 4 Jun 2019 01:30:45 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 4 Jun
- 2019 01:30:44 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 4 Jun 2019 01:30:44 -0500
-Received: from [172.24.190.215] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x546Uf9I091770;
-        Tue, 4 Jun 2019 01:30:41 -0500
-Subject: Re: [PATCH 0/4] Add Support for MMC in J721E
-To:     Sekhar Nori <nsekhar@ti.com>,
+        id S1726697AbfFDGm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 02:42:56 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:32490 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726410AbfFDGm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 02:42:56 -0400
+X-UUID: b1e17f24206b40989f4201573ba7bd9c-20190604
+X-UUID: b1e17f24206b40989f4201573ba7bd9c-20190604
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 333179411; Tue, 04 Jun 2019 14:42:39 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 4 Jun
+ 2019 14:42:38 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 4 Jun 2019 14:42:37 +0800
+Message-ID: <1559630557.8487.59.camel@mhfsdcap03>
+Subject: Re: [PATCH v6 07/10] usb: roles: Add fwnode_usb_role_switch_get()
+ function
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        "Badhri Jagan Sridharan" <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-mmc@vger.kernel.org>
-CC:     <adrian.hunter@intel.com>, <robh+dt@kernel.org>,
-        <ulf.hansson@linaro.org>, <nm@ti.com>
-References: <20190604060914.10886-1-faiz_abbas@ti.com>
- <2f45cef2-c4ca-0404-b205-fabbb92a40fb@ti.com>
-From:   Faiz Abbas <faiz_abbas@ti.com>
-Message-ID: <93ba4b6d-c878-fe62-2835-366167554ef5@ti.com>
-Date:   Tue, 4 Jun 2019 12:01:03 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <2f45cef2-c4ca-0404-b205-fabbb92a40fb@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+        <linux-mediatek@lists.infradead.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yu Chen <chenyu56@huawei.com>
+Date:   Tue, 4 Jun 2019 14:42:37 +0800
+In-Reply-To: <20190603131901.GB10397@kroah.com>
+References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
+         <1559115828-19146-8-git-send-email-chunfeng.yun@mediatek.com>
+         <20190603131901.GB10397@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 04/06/19 11:48 AM, Sekhar Nori wrote:
-> On 04/06/19 11:39 AM, Faiz Abbas wrote:
->> The following patches add driver support for MMC SDHCI interfaces on
->> TI's J721E devices. The 8 bit and 4 bit instances have phys which are
->> different from the am65x interfaces as well as different from each
->> other which leads to 3 different compatibles and a bunch of flags for
->> indicating the differences.
->>
->> Depends on Nishanth's initial J721E patches here:
->> https://lore.kernel.org/patchwork/cover/1077382/
+On Mon, 2019-06-03 at 15:19 +0200, Greg Kroah-Hartman wrote:
+> On Wed, May 29, 2019 at 03:43:45PM +0800, Chunfeng Yun wrote:
+> > From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > 
+> > The fwnode_usb_role_switch_get() function is exactly the
+> > same as usb_role_switch_get(), except that it takes struct
+> > fwnode_handle as parameter instead of struct device.
+> > 
+> > Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > ---
+> > v6:
+> >   new patch
 > 
-> This dependency is only for testing, not for applying these, right?
+> If you are forwarding on a patch from someone else, like this, you need
+> to put your signed-off-by line on it as well.
 > 
+> Please fix that up, and add the tested-by one, when you resend this
+> series.
+Got it, thanks
 
-Yes. The dependency is only for testing.
+> 
+> thanks,
+> 
+> greg k-h
 
-Thanks,
-Faiz
+
