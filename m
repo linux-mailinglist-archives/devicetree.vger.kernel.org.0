@@ -2,109 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 677C5350DB
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 22:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24913515A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 22:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbfFDU3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 16:29:36 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:46766 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726312AbfFDU3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 16:29:36 -0400
-Received: by mail-ot1-f65.google.com with SMTP id z23so5878179ote.13;
-        Tue, 04 Jun 2019 13:29:35 -0700 (PDT)
+        id S1726460AbfFDUwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 16:52:45 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:34680 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726033AbfFDUwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 16:52:45 -0400
+Received: by mail-wm1-f65.google.com with SMTP id w9so287354wmd.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 13:52:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HCHz30SDnTrnAv/weztZxXoYbAkSe2tsArruuDkoSAw=;
+        b=o95o2AtV3WDFGyw1md9OSwObrbp+2ZQKkNV6T0JhyFOOnZVCIONv7VMW3w2kRXmQrQ
+         Y1XC3qGKWVyhoR62ffMrKm80dj/uSTijSjWiIKa2mgSf1SrkeWTQYQIEXlCbeNcEWXKs
+         /k6m/rK93raHxP9W3lCee8kaKnDUlcuiWqj4+k6wG5YIJf35urPMB8GdwN28fg/SbR/v
+         DBTed768GKWrqbXE6cXIDf1ewEDRHu1nGJApaegknzDYL+UCwG7ptPm9hcLqH6pVAv0S
+         6C+1hT46h0GbPwjAqjv2gdjKRDBr5T94Wuz9u0HODtT0xlH00B0ZjRsXI7zY7MS2v7KU
+         4Pew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ShuaCglHMPdgyal6GGIwZRaEUD77Ogg+O3HSaYQ63/E=;
-        b=CVlglNZ3fYT4sh8jRWA/ENRM9vOKKJjFYdOARzZ1z7pILRDYvcSXjw8hfk1n5DZB46
-         +Wpw97xUeg2KhxiPjzKvwzLsF4dV6hXeSdH9knYD608BgLnxcm9eaq0nwetMrWFA2ApI
-         rxwP6BdCLtfkLy2d0piYEl8AX12J58q19PkEWtxIrskemvH+Wl+qSz0NsaWJSBBECyqI
-         Lb5R+24tRU25cY7s9uj8/UoIX3Xrsr5ytlM3S4XF1ZmnG0bNJ/XY8onMb37q18vDnRAi
-         J1WW72rkqXCF3ZWLffe8szpKfcSSq/sg6akDLZqg3VKxZlCt/f+y/nNBeEmHOkipSmIY
-         20YA==
-X-Gm-Message-State: APjAAAXu9ecDkXRoi33uMBcaZLaumAoKA0RyxksZQ/bcH53NIoGyd+Ie
-        8NZFDzxcoDMTtK5VX6G2HzcEB4nGkdQ=
-X-Google-Smtp-Source: APXvYqzdjcPNxGvRaK3k9+6Xl7HY5PmwVR+6Vap5/aUXIsaKiT4UalW3DZdexmg8fg9F9Ie21T4Lqw==
-X-Received: by 2002:a9d:6c46:: with SMTP id g6mr457114otq.162.1559680175033;
-        Tue, 04 Jun 2019 13:29:35 -0700 (PDT)
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com. [209.85.210.54])
-        by smtp.gmail.com with ESMTPSA id v13sm6022078oth.23.2019.06.04.13.29.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 04 Jun 2019 13:29:34 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id t24so7102820otl.12;
-        Tue, 04 Jun 2019 13:29:33 -0700 (PDT)
-X-Received: by 2002:a9d:6058:: with SMTP id v24mr441623otj.110.1559680173629;
- Tue, 04 Jun 2019 13:29:33 -0700 (PDT)
+        bh=HCHz30SDnTrnAv/weztZxXoYbAkSe2tsArruuDkoSAw=;
+        b=IS3ZWnhBagebGHfi25PpwNm4doDd5ClVTROyGuLQJZfo5shdYLSduHx48D3DUqIk9y
+         4RerycVzIGfo3xI1D4u0AqV4uYCfaYl2iDNkuQ9tAHCK0Whv6ID1gJV1EZ3GseJqnGZk
+         pOdBijttQVBqeH/g28KjUP9zK1TxHbv3gblxmAJnNZggwGbkhuUavJzqLOjyJp4a/zfn
+         ZnTuV+DSv6WrXY2LQH4jwFjpHpxnXjN1gGc0MdKjLh4xpcnN6JuqQfcjD/UgM5ysG4XA
+         ja02yVKCKIUyC2G/3rfHOh/puaY1/XmP4GSScRtniK4JvutuLJDc21GnsSxDgTGyEHvT
+         IYUw==
+X-Gm-Message-State: APjAAAV5OkSIQLEcOkaXYYa+VCUtNZAbgjDP15xbQgmlN11yeDEcqCUu
+        1AjckD3yU50GiAag46QHl9hgLTfiPnG+RFsPf0tWy6NOag==
+X-Google-Smtp-Source: APXvYqxnV0SOZU/4nmV4NDSQJrqHsnlSq+yDN6cgoSvSwJwPyNnfdu2T/8ZwVNxho0MnA27Ys385vKc1uhUJ75TsjKc=
+X-Received: by 2002:a1c:f507:: with SMTP id t7mr19658456wmh.149.1559681563071;
+ Tue, 04 Jun 2019 13:52:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk> <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
-In-Reply-To: <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Tue, 4 Jun 2019 15:29:22 -0500
-X-Gmail-Original-Message-ID: <CADRPPNRfAk2ZWJQt=Wx5SEqvw4iSpzkj8_XvHa_CZYHDAxFgxg@mail.gmail.com>
-Message-ID: <CADRPPNRfAk2ZWJQt=Wx5SEqvw4iSpzkj8_XvHa_CZYHDAxFgxg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] soc/fsl/qe: cleanups and new DT binding
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Scott Wood <oss@buserror.net>,
-        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>,
+References: <20190521130357.20803-1-miquel.raynal@bootlin.com>
+ <20190521130357.20803-3-miquel.raynal@bootlin.com> <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
+ <20190527154610.6d4d5eff@xps13>
+In-Reply-To: <20190527154610.6d4d5eff@xps13>
+From:   Bjorn Helgaas <bhelgaas@google.com>
+Date:   Tue, 4 Jun 2019 15:52:31 -0500
+Message-ID: <CAErSpo7fimH5QhHTLsF2ASyPqstkw7Zibe3CYB=KXTYBOh-4GQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] clk: mvebu: armada-37xx-periph: change
+ suspend/resume time
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Linux PM list <linux-pm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 6:17 AM Rasmus Villemoes
-<rasmus.villemoes@prevas.dk> wrote:
+On Mon, May 27, 2019 at 8:46 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 >
-> This small series consists of some small cleanups and simplifications
-> of the QUICC engine driver, and introduces a new DT binding that makes
-> it much easier to support other variants of the QUICC engine IP block
-> that appears in the wild: There's no reason to expect in general that
-> the number of valid SNUMs uniquely determines the set of such, so it's
-> better to simply let the device tree specify the values (and,
-> implicitly via the array length, also the count).
+> Hi Bjorn,
 >
-> Which tree should this go through?
+> Thanks for the feedback.
 >
-> v3:
-> - Move example from commit log into binding document (adapting to
->   MPC8360 which the existing example pertains to).
-> - Add more review tags.
-> - Fix minor style issue.
+> Bjorn Helgaas <bhelgaas@google.com> wrote on Tue, 21 May 2019 17:43:05
+> -0500:
 >
-> v2:
-> - Address comments from Christophe Leroy
-> - Add his Reviewed-by to 1/6 and 3/6
-> - Split DT binding update to separate patch as per
->   Documentation/devicetree/bindings/submitting-patches.txt
+> > From: Miquel Raynal <miquel.raynal@bootlin.com>
+> > Date: Tue, May 21, 2019 at 8:04 AM
+> > To: Michael Turquette, Stephen Boyd, Rob Herring, Mark Rutland
+> > Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>, Thomas
+> > Petazzoni, Antoine Tenart, Gregory Clement, Maxime Chevallier, Nadav
+> > Haklai, Bjorn Helgaas, Rafael J . Wysocki, <linux-pm@vger.kernel.org>,
+> > Miquel Raynal
+> >
+> > > Armada 3700 PCIe IP relies on the PCIe clock managed by this
+> > > driver. For reasons related to the PCI core's organization when
+> > > suspending/resuming, PCI host controller drivers must reconfigure
+> > > their register at suspend_noirq()/resume_noirq() which happens after
+> > > suspend()/suspend_late() and before resume_early()/resume().
+> >
+> > "For reasons related to the PCI core's organization" manages to
+> > suggest that this change wouldn't be needed if only the PCI core did
+> > something differently, without actually being specific about what it
+> > would need to do differently.
+> >
+> > Is there something the PCI core could do better to make this easier?
+> > Or is it just something like "the PCI core needs to access registers
+> > after suspend_late()"?  You mention the host controller, but of course
+> > that's not itself a PCI device, so the PCI core doesn't have much to
+> > do with it directly.
 >
-> Rasmus Villemoes (6):
->   soc/fsl/qe: qe.c: drop useless static qualifier
->   soc/fsl/qe: qe.c: reduce static memory footprint by 1.7K
->   soc/fsl/qe: qe.c: introduce qe_get_device_node helper
->   dt-bindings: soc/fsl: qe: document new fsl,qe-snums binding
->   soc/fsl/qe: qe.c: support fsl,qe-snums property
->   soc/fsl/qe: qe.c: fold qe_get_num_of_snums into qe_snums_init
+> Actually, if I understand correctly the below commit [1] and the core
+> [2] & [3], PCI device fixups can happen at any time, including at the
+> _noirq phase where, obviously, the PCI controller must be already
+> setup.
+>
+> I don't think changing this behavior is a viable solution and I would
+> not see it as a "PCI core could do better" alternative.
+>
+> ---8<---
+>
+> [1]
+> commit ab14d45ea58eae67c739e4ba01871cae7b6c4586
+> Author: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+> Date:   Tue Mar 17 15:55:45 2015 +0100
+>
+>     PCI: mvebu: Add suspend/resume support
+>
+>     Add suspend/resume support for the mvebu PCIe host driver.  Without
+>     this commit, the system will panic at resume time when PCIe devices
+>     are connected.
+>
+>     Note that we have to use the ->suspend_noirq() and ->resume_noirq()
+>     hooks, because at resume time, the PCI fixups are done at
+>     ->resume_noirq() time, so the PCIe controller has to be ready at
+>     this point.
+>
+>     Signed-off-by: Thomas Petazzoni
+>     <thomas.petazzoni@free-electrons.com> Signed-off-by: Bjorn Helgaas
+>     <bhelgaas@google.com> Acked-by: Jason Cooper <jason@lakedaemon.net>
+>
+> [2] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L1181
+> [3] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L522
+>
+> --->8---
+>
+> >
+> > s/register/registers/ ?
+>
+> Indeed. I would like to sort out the above technical point before
+> sending a v3 with this typo corrected.
 
-Series applied to soc/fsl for-next.  Thanks!
+I don't have anything more to contribute here; just wanted to make
+sure this wasn't working around a fixable problem in PCI.
 
-Regards,
-Leo
-
->
->  .../devicetree/bindings/soc/fsl/cpm_qe/qe.txt |  13 +-
->  drivers/soc/fsl/qe/qe.c                       | 163 +++++++-----------
->  2 files changed, 77 insertions(+), 99 deletions(-)
->
-> --
-> 2.20.1
->
+Bjorn
