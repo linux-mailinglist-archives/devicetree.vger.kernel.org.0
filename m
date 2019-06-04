@@ -2,123 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F16A93446F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 12:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6B43447E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 12:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727174AbfFDKdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 06:33:14 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:40028 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726877AbfFDKdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 06:33:13 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p11so10400023wre.7;
-        Tue, 04 Jun 2019 03:33:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=earafvYrtHKW675fqvDjWCC/8Qf9Geg5oAtOEq+3h4s=;
-        b=qYCsaPX3965LwfBNITJf+QhEYqlYgjqgsLeUo6L/o7Ti1263rsedKnAiaw0j/tRPYf
-         t42+5ATBBW5NZ/DDqebnlSmYiiaibe+Ort8iULSCZwFuujnCieGl8uZ7Nt4G5H+Pmifq
-         klXo8h/0txLzbeK5bbJCSYy0SQufMmnyMt/cQidS6idO0iNK5oPFONK/ARuzTp/MgUJR
-         0O4s6+8SxMW1Mt8gJwDTk/VtfmK4MyDDlpTftFih4oTtkL09uKN3bS8R2vKL5UE5GACx
-         H5V88iRDEJiBwtV6kFqssasb39pa+qvMJD2ksOrv5cM+odfqp6Eza3vLq9Bwr4PnoGBz
-         +b3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=earafvYrtHKW675fqvDjWCC/8Qf9Geg5oAtOEq+3h4s=;
-        b=NZR0ziiQC+BgBhJd1FinFySOqovBONzYb2gwvt9zwbNxi9ldB+W1c8RBVuDO6mGNpk
-         PRr4+i1hM3ZKC6CFt3Txpixfhectt2Ygclj11rfj8yawGfcE4HCiOGJ1gv+NF66C8tfH
-         W25WqtCZB/WGCHVpdmnTkOTjBypCBvkdWmk/ZADLxXLGOP9L8JiYDt/r4DCRuB2fPd4O
-         XCX+I/a+FArzX9tRLlOQ4znmtzkhibLIGJ2jR89jA5olowEcwphSgdLMBFTMb9aHTX3k
-         VLwLyWl4aJl7TvaQzysJ1FuFpuMGrqnFfnUxQsZ1XJHRsEcockEU1yO+6lp8gBNUSFb3
-         7gxQ==
-X-Gm-Message-State: APjAAAVlUU5TggkhPAqcyfwieEYiuC22RNUy6icTnhP2svvxTT3B0osO
-        2rRDW/qUZzpnWcNtHm3dDJs=
-X-Google-Smtp-Source: APXvYqzvrV4tFMgHpWkR4RpdGNb7oSeNaRa2s36bVeHEWmNTjau4k7L60C8i2Ea7H2n+YhYaHfNOvA==
-X-Received: by 2002:a5d:694c:: with SMTP id r12mr6551209wrw.214.1559644391661;
-        Tue, 04 Jun 2019 03:33:11 -0700 (PDT)
-Received: from 5WDYG62 (static-css-cqn-143221.business.bouyguestelecom.com. [176.149.143.221])
-        by smtp.gmail.com with ESMTPSA id o21sm16990674wmc.46.2019.06.04.03.33.10
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 04 Jun 2019 03:33:10 -0700 (PDT)
-Date:   Tue, 4 Jun 2019 12:33:03 +0200
-From:   Romain Izard <romain.izard.pro@gmail.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Richard Gong <richard.gong@linux.intel.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, dinguyen@kernel.org, atull@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        sen.li@intel.com, Richard Gong <richard.gong@intel.com>
-Subject: Re: A potential broken at platform driver?
-Message-ID: <20190604103241.GA4097@5WDYG62>
-References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
- <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
- <20190528232224.GA29225@kroah.com>
- <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
- <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
- <20190603180255.GA18054@kroah.com>
+        id S1727179AbfFDKmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 06:42:40 -0400
+Received: from lb1-smtp-cloud7.xs4all.net ([194.109.24.24]:54103 "EHLO
+        lb1-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727242AbfFDKmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 06:42:40 -0400
+Received: from [IPv6:2001:420:44c1:2579:8c28:9f60:8294:d97] ([IPv6:2001:420:44c1:2579:8c28:9f60:8294:d97])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id Y6tlhWA4u3qlsY6tphXrKC; Tue, 04 Jun 2019 12:42:37 +0200
+Subject: Re: [PATCH v3 08/10] media: hantro: add initial i.MX8MQ support
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20190531085523.10892-1-p.zabel@pengutronix.de>
+ <20190531085523.10892-9-p.zabel@pengutronix.de>
+ <cfabcdc7-baff-82d8-2b24-5a18a9c50441@xs4all.nl>
+ <20190603220256.1922901a@collabora.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <93cad5e2-12ef-10e2-e18f-4c22a82d3b04@xs4all.nl>
+Date:   Tue, 4 Jun 2019 12:42:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190603180255.GA18054@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190603220256.1922901a@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfGnQhvpuokQrXdaMwFSbwjcvv9W0uz7YRsgB5DIhJNac1MsNz5U9BjjlaHlH1m4/SWsqu0lRDwx8Or60DBfKM2RAdUTFmo0drDk+JKLSawi7Ld5HPVX2
+ NctodSX82Rhc/51jxfvY3u6F9O60pJshhy6JMpNt9Wii2v+1atv/jpnoUwyJxfr/pSI6b7/VBpHlfOD/HHv+0oo5Dt0qPvb04ulSyEKJylrQP4rg6nlZwHlP
+ s4WIH49taiPCl0znNNFTQFLd2RTGWjmjxxS9X/+jUE/lzMaePIyoRt1oxzAFmV3u4lvRMjRhSMzkmR+UHnuMOxdbFiq0YOaR1zntsFpzVh5l5WLvDMx1XW2v
+ LAYQL/Yb9b5UVsmH7H/k8Ehm+JB1jokQLdNl23q7Xt1v5slDFs3EF8vF+dKv3zHxJ9/3KWMxWkc7RTsDzM/6C+miYCaWRKV1h/Rp+uOb+MIqhLhDxKuqV7LP
+ RNRPirtIfufssV9m5Xk2QN7B3XyWeCniZXWxxMgY4Kc9x/MwAyxM5TyTeV7taMfvTFItmCip2beogDTvRgDBwV1yYgTS+eP8jPj5Mg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 03, 2019 at 08:02:55PM +0200, Greg KH wrote:
-> > @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
-> >  	.remove = stratix10_rsu_remove,
-> >  	.driver = {
-> >  		.name = "stratix10-rsu",
-> > -		.groups = rsu_groups,
-> > +//		.groups = rsu_groups,
+On 6/3/19 10:02 PM, Boris Brezillon wrote:
+> On Mon, 3 Jun 2019 14:45:37 +0200
+> Hans Verkuil <hverkuil@xs4all.nl> wrote:
 > 
-> Are you sure this is the correct pointer?  I think that might be
-> pointing to the driver's attributes, not the device's attributes.
+>> On 5/31/19 10:55 AM, Philipp Zabel wrote:
+>>> For now this just enables MPEG-2 decoding on the Hantro G1 on i.MX8MQ.
+>>>
+>>> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+>>> ---
+>>> Changes since v2 [1]:
+>>>  - Adapted to changes in patches 4 and 5
+>>>
+>>> [1] https://patchwork.linuxtv.org/patch/56420/
+>>> ---
+>>>  drivers/staging/media/hantro/Kconfig        |   8 +-
+>>>  drivers/staging/media/hantro/Makefile       |   1 +
+>>>  drivers/staging/media/hantro/hantro_drv.c   |   1 +
+>>>  drivers/staging/media/hantro/hantro_hw.h    |   1 +
+>>>  drivers/staging/media/hantro/imx8m_vpu_hw.c | 171 ++++++++++++++++++++
+>>>  5 files changed, 178 insertions(+), 4 deletions(-)
+>>>  create mode 100644 drivers/staging/media/hantro/imx8m_vpu_hw.c
+>>>
+>>> diff --git a/drivers/staging/media/hantro/Kconfig b/drivers/staging/media/hantro/Kconfig
+>>> index 660cca358f04..6fdb72df7bd3 100644
+>>> --- a/drivers/staging/media/hantro/Kconfig
+>>> +++ b/drivers/staging/media/hantro/Kconfig
+>>> @@ -1,15 +1,15 @@
+>>>  # SPDX-License-Identifier: GPL-2.0
+>>>  config VIDEO_HANTRO
+>>>  	tristate "Hantro VPU driver"
+>>> -	depends on ARCH_ROCKCHIP || COMPILE_TEST
+>>> +	depends on ARCH_MXC || ARCH_ROCKCHIP || COMPILE_TEST
+>>>  	depends on VIDEO_DEV && VIDEO_V4L2 && MEDIA_CONTROLLER
+>>>  	depends on MEDIA_CONTROLLER_REQUEST_API
+>>>  	select VIDEOBUF2_DMA_CONTIG
+>>>  	select VIDEOBUF2_VMALLOC
+>>>  	select V4L2_MEM2MEM_DEV
+>>>  	help
+>>> -	  Support for the Hantro IP based Video Processing Unit present on
+>>> -	  Rockchip SoC, which accelerates video and image encoding and
+>>> -	  decoding.
+>>> +	  Support for the Hantro IP based Video Processing Units present on
+>>> +	  Rockchip and NXP i.MX8M SoCs, which accelerate video and image
+>>> +	  encoding and decoding.
+>>>  	  To compile this driver as a module, choose M here: the module
+>>>  	  will be called hantro-vpu.
+>>> diff --git a/drivers/staging/media/hantro/Makefile b/drivers/staging/media/hantro/Makefile
+>>> index 14f17a4e48cb..1dac16af451e 100644
+>>> --- a/drivers/staging/media/hantro/Makefile
+>>> +++ b/drivers/staging/media/hantro/Makefile
+>>> @@ -9,5 +9,6 @@ hantro-vpu-y += \
+>>>  		rk3399_vpu_hw.o \
+>>>  		rk3399_vpu_hw_jpeg_enc.o \
+>>>  		rk3399_vpu_hw_mpeg2_dec.o \
+>>> +		imx8m_vpu_hw.o \
+>>>  		hantro_jpeg.o \
+>>>  		hantro_mpeg2.o  
+>>
+>> I'm a bit concerned about how this is organized. As far as I can tell,
+>> enabling this driver would compile both rockchip and imx8 code into the
+>> same driver. You would expect that only the code for the selected
+>> architectures would be compiled in (or all if COMPILE_TEST is set, of course).
+>>
+>> Can you take a look at this?
 > 
-> If platform drivers do not have a way to register groups properly, then
-> that really needs to be fixed, as trying to register it by yourself as
-> you are doing, is ripe for racing with userspace.
- 
-This is a very common issue with platform drivers, and it seems to me that
-it is not possible to add device attributes when binding a device to a
-driver without entering the race condition.
+> Shouldn't be hard to do:
+> 
+> config VIDEO_HANTRO
+> 	tristate "Hantro VPU driver"
+> 	...
+> 
+> config VIDEO_HANTRO_ROCKCHIP
+> 	bool "Rockchip Hantro VPU driver"
+> 	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> 	depends on VIDEO_HANTRO
+> 	...
+> 
+> config VIDEO_HANTRO_IMX8
+> 	bool "IMX8 Hantro VPU driver"
+> 	depends on ARCH_IMX || COMPILE_TEST
+> 	depends on VIDEO_HANTRO
+> 	...
+> 
+> hantro-vpu-$(VIDEO_HANTRO_RK3288)	+= rkxxxx...
+> hantro-vpu-$(VIDEO_HANTRO_IMX8)		+= imx8...
+> 
+> and a couple of #ifdef in rockchip_vpu_drv.c.
+> 
+> This being said, I think most of the code in the SoC specific files
+> could be shared if we find a way to abstract the reg layout (using
+> regmap/reg_field?), leaving a small amount of SoC-specific code, so I'm
+> not sure it's a big deal if have support for all SoCs compiled in. What
+> could be a problem though is if each SoC starts pulling its own set of
+> dependencies.
+> 
 
-My understanding is the following one:
+I'd rather we do this right from the start. It's easy enough to implement,
+and it is cleaner this way.
 
-The root cause is that the device has already been created and reported
-to the userspace with a KOBJ_ADD uevent before the device and the driver
-are bound together. On receiving this event, userspace will react, and
-it will try to read the device's attributes. In parallel the kernel will
-try to find a matching driver. If a driver is found, the kernel will
-call the probe function from the driver with the device as a parameter,
-and if successful a KOBJ_BIND uevent will be sent to userspace, but this
-is a recent addition.
+Regards,
 
-Unfortunately, not all created devices will be bound to a driver, and the
-existing udev code relies on KOBJ_ADD uevents rather than KOBJ_BIND uevents.
-If new per-device attributes have been added to the device during the
-binding stage userspace may or may not see them, depending on when userspace
-tries to read the device's attributes.
-
-I have this possible workaround, but I do not know if it is a good solution:
-
-When binding the device and the driver together, create a new device as a
-child to the current device, and fill its "groups" member to point to the
-per-device attributes' group. As the device will be created with all the
-attributes, it will not be affected by the race issues. The functions
-handling the attributes will need to be modified to use the parents of their
-"device" parameter, instead of the device itself. Additionnaly, the sysfs
-location of the attributes will be different, as the child device will show
-up in the sysfs path. But for a newly introduced device this will not be
-a problem.
-
-Is this a good compromise ?
-
-Best regards,
--- 
-Romain Izard
+	Hans
