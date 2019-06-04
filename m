@@ -2,142 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5509834662
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C84CD3473E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727377AbfFDMRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 08:17:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48554 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727358AbfFDMRd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 08:17:33 -0400
-Received: from localhost (unknown [117.99.94.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 80684244BD;
-        Tue,  4 Jun 2019 12:17:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559650652;
-        bh=bxcstRLwU2OCrbdzc+Fn7SYXXr3erA6vCBguUl4JiOA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JSYcVN/j7CL89lKu4Tu8gOiZB0I0mEyU0UEyj4t4sZvDxTHvxr+v4PyDhv0qZDBXC
-         1FkCBlmyGwnunWIQvBS0Oc/+F70Ob3hLItc5b9/aYsgUo3DFHKLbk50OzshVStSTUM
-         VSAG9SSHyqzyN9gy86ya6PVtaQe5ZvytefP5C51c=
-Date:   Tue, 4 Jun 2019 17:44:24 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     dmaengine@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dmagengine: pl330: add code to get reset property
-Message-ID: <20190604121424.GW15118@vkoul-mobl>
-References: <20190524002847.30961-1-dinguyen@kernel.org>
- <20190524002847.30961-2-dinguyen@kernel.org>
+        id S1727462AbfFDMsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 08:48:40 -0400
+Received: from mx07-00252a01.pphosted.com ([62.209.51.214]:20205 "EHLO
+        mx07-00252a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727403AbfFDMsk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 08:48:40 -0400
+X-Greylist: delayed 1991 seconds by postgrey-1.27 at vger.kernel.org; Tue, 04 Jun 2019 08:48:38 EDT
+Received: from pps.filterd (m0102628.ppops.net [127.0.0.1])
+        by mx07-00252a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x54C4X8Q010313
+        for <devicetree@vger.kernel.org>; Tue, 4 Jun 2019 13:15:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=raspberrypi.org; h=to : from :
+ subject : message-id : date : mime-version : content-type :
+ content-transfer-encoding; s=pp;
+ bh=eMleS+sVc7Zc0KhR3uyqsACYApIneIVmc3GHjPGqrDY=;
+ b=m8hGAbc7piD4I8YIin4BLF5Q2Lh0qd2mi4kUK1tjBSA1Xr1n493QAvBHk89kCo7EkPSN
+ DT0YqnQKaQsxF0qe1x81QYluHMcoz26L3eE9f4aH38Y2OVEyc11XnMCm59aA1rciQzAq
+ Bv6bJkSOcMXs+E+GqnMZWPMwZemfgE42g3i6qBS1UbR7i/VcnfizFo3tXHKARN0amI86
+ zhimPkzXw569K4TvlxfVwM9kS/Q5IF0QQpp5YeuZLnn6tjzyrgK3YrbIkhUaf70m+wwo
+ WFZbvvVC9FqD7CILUGzLL3jATT0zibUP39bPXGzyi12X+qsD+HSGxzO/KltftAH8pY0k Wg== 
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
+        by mx07-00252a01.pphosted.com with ESMTP id 2sues31h27-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK)
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 13:15:26 +0100
+Received: by mail-wm1-f69.google.com with SMTP id v125so1893829wmf.4
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 05:15:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.org; s=google;
+        h=to:from:subject:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=eMleS+sVc7Zc0KhR3uyqsACYApIneIVmc3GHjPGqrDY=;
+        b=UAFK3f55FN4X7/3h+WMHvJ3diLRNNMUPV+7au85j95UyUkIoi9RDMD9sRbsQ+HzpgJ
+         p/+8i1x10zvy0/PIRHtadUnra8gWO+RrKY2hHTifTUiygbQpDEiPG6pXLsryBJjFiz2S
+         H2gg6k0JkQkK+azNIWoQZeD7w4rtGHp74nW4+WtngY/LZc9c0TgKzfe16u7KlQeY4ibD
+         LHWXDfr1CFP4k8uvysBX9aYSzY2jeB8GztL3kdHQS1jDe/WIAK/GMeC/us9GRQt6a85e
+         loBWGpD7s3OHykUEM3wlLaLHbKa3UcTnOE19lhXLbaQTYxykVMOWPz4DQZHsY7yy8cao
+         +94Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=eMleS+sVc7Zc0KhR3uyqsACYApIneIVmc3GHjPGqrDY=;
+        b=kbgo/K3H5SP4tXwZHTeZiLnKUzzMUdY+mpf7VTHTd3zKlu402CmiB+ouo2opuSgWBO
+         jTFgddz5kuuNc5E4CZ64BJw9wtFhsaS2HmvyV6+5eusfq6ydZ0baQUpeVUjsEHuMerhm
+         5WxzeEuW5K+EzmJ7ESctmMUHTrU2XnSeZDqbblhqQj7OQ7Xgu3MoS2ZvHw6jktiyylzL
+         QKIxvQfxninuUf/HTMldJsSghpznC7/XSCc2F2RRUFjV9yu2E9jRBluXyvIhEiR944vq
+         QF+UHOde/gZJdsyIHPv1AG+3vmFX5UDQdHHW+EfDHN8AcR2PxUL21uQA9MtCH3sKAN43
+         VBeA==
+X-Gm-Message-State: APjAAAWR3dIKZUdQitPC87NJj/KLovVvDyku1iAR+d+u5fjZLvSFAyEu
+        hQOCKTvChl1kNmF4SPN0X03wuCtKF+Pl3HSx62Us2ykACX7qK467K46kAd1uEvNlEDnXCceN158
+        j65GcG26/GVHE3a9H3UKzzA==
+X-Received: by 2002:a1c:108:: with SMTP id 8mr13418778wmb.159.1559650525706;
+        Tue, 04 Jun 2019 05:15:25 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwCSywJvJnulKM73GRNdBSWFHfcr6xhEHVCFp2sTrq2mUbutFfMvN9VAsPHz3ylgA124a9ZaA==
+X-Received: by 2002:a1c:108:: with SMTP id 8mr13418764wmb.159.1559650525426;
+        Tue, 04 Jun 2019 05:15:25 -0700 (PDT)
+Received: from ?IPv6:2a00:1098:3142:14:2cbd:20df:89bf:def2? ([2a00:1098:3142:14:2cbd:20df:89bf:def2])
+        by smtp.gmail.com with ESMTPSA id 65sm33948458wro.85.2019.06.04.05.15.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Jun 2019 05:15:24 -0700 (PDT)
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+From:   Phil Elwell <phil@raspberrypi.org>
+Subject: Dynamic overlay failure in 4.19 & 4.20
+Message-ID: <c5af11eb-afe5-08c4-8597-3195c25ba1d5@raspberrypi.org>
+Date:   Tue, 4 Jun 2019 13:15:26 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190524002847.30961-2-dinguyen@kernel.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-04_09:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-05-19, 19:28, Dinh Nguyen wrote:
-> The DMA controller on some SoCs can be held in reset, and thus requires
-> the reset signal(s) to deasserted. Most SoCs will have just one reset
-> signal, but there are others, i.e. Arria10/Stratix10 will have an
-> additional reset signal, referred to as the OCP.
-> 
-> Add code to get the reset property from the device tree for deassert and
-> assert.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
->  drivers/dma/pl330.c | 38 ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
-> diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
-> index 6e6837214210..6018c43e785d 100644
-> --- a/drivers/dma/pl330.c
-> +++ b/drivers/dma/pl330.c
-> @@ -29,6 +29,7 @@
->  #include <linux/err.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/bug.h>
-> +#include <linux/reset.h>
->  
->  #include "dmaengine.h"
->  #define PL330_MAX_CHAN		8
-> @@ -500,6 +501,9 @@ struct pl330_dmac {
->  	unsigned int num_peripherals;
->  	struct dma_pl330_chan *peripherals; /* keep at end */
->  	int quirks;
-> +
-> +	struct reset_control	*rstc;
-> +	struct reset_control	*rstc_ocp;
->  };
->  
->  static struct pl330_of_quirks {
-> @@ -3028,6 +3032,30 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
->  
->  	amba_set_drvdata(adev, pl330);
->  
-> +	pl330->rstc = devm_reset_control_get_optional(&adev->dev, "dma");
-> +	if (IS_ERR(pl330->rstc)) {
-> +		dev_err(&adev->dev, "No reset controller specified.\n");
+Hi,
 
-Wasnt this optional??
+In the downstream Raspberry Pi kernel we are using configfs to apply overlays at
+runtime, using a patchset from Pantelis that hasn't been accepted upstream yet.
+Apart from the occasional need to adapt to upstream changes, this has been working
+well for us.
 
-> +		return PTR_ERR(pl330->rstc);
-> +	} else {
-> +		ret = reset_control_deassert(pl330->rstc);
-> +		if (ret) {
-> +			dev_err(&adev->dev, "Couldn't deassert the device from reset!\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	pl330->rstc_ocp = devm_reset_control_get_optional(&adev->dev, "dma-ocp");
-> +	if (IS_ERR(pl330->rstc_ocp)) {
-> +		dev_err(&adev->dev, "No reset controller specified.\n");
-> +		return PTR_ERR(pl330->rstc_ocp);
-> +	} else {
-> +		ret = reset_control_deassert(pl330->rstc_ocp);
-> +		if (ret) {
-> +			dev_err(&adev->dev, "Couldn't deassert the device from OCP reset!\n");
-> +			return ret;
-> +		}
-> +	}
-> +
->  	for (i = 0; i < AMBA_NR_IRQS; i++) {
->  		irq = adev->irq[i];
->  		if (irq) {
-> @@ -3168,6 +3196,11 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
->  probe_err2:
->  	pl330_del(pl330);
->  
-> +	if (pl330->rstc_ocp)
-> +		reset_control_assert(pl330->rstc_ocp);
-> +
-> +	if (pl330->rstc)
-> +		reset_control_assert(pl330->rstc);
->  	return ret;
->  }
->  
-> @@ -3206,6 +3239,11 @@ static int pl330_remove(struct amba_device *adev)
->  
->  	pl330_del(pl330);
->  
-> +	if (pl330->rstc_ocp)
-> +		reset_control_assert(pl330->rstc_ocp);
-> +
-> +	if (pl330->rstc)
-> +		reset_control_assert(pl330->rstc);
->  	return 0;
->  }
->  
-> -- 
-> 2.20.0
+A Raspberry Pi user recently noticed that this mechanism was failing for an overlay in
+4.19. Although the overlay appeared to be applied successfully, pinctrl was reporting
+that one of the two fragments contained an invalid phandle, and an examination of the
+live DT agreed - the target of the reference, which was in the other fragment, was
+missing the phandle property.
 
--- 
-~Vinod
+5.0 added two patches - [1] to stop blindly copying properties from the overlay fragments
+into the live tree, and [2] to explicitly copy across the name and phandle properties.
+These two commits should be treated as a pair; the former requires the properties that
+are legitimately defined by an overlay to be added via a changeset, but this mechanism
+deliberately skips the name and phandle; the latter addresses this shortcoming. However,
+[1] was back-ported to 4.19 and 4.20 but [2] wasn't, hence the problem.
+
+The effect can be seen in the "overlay" overlay in the unittest data. Although the
+overlay appears to apply correctly, the hvac-large-1 node is lacking the phandle it
+should have as a result of the hvac_2 label, and that leaves the hvac-provider property
+of ride@200 with an unresolved phandle.
+
+The obvious fix is to also back-port [2] to 4.19, but that leaves open the question of
+whether either the overlay application mechanism or the unit test framework should have
+detected the missing phandle.
+
+Phil
+
+[1] 8814dc46bd9e ("of: overlay: do not duplicate properties from overlay for new nodes")
+[2] f96278810150 ("of: overlay: set node fields from properties when add new overlay node")
