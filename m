@@ -2,84 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4777733F18
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 08:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 268F033F37
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 08:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726578AbfFDGnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 02:43:43 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:50335 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726410AbfFDGnn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 02:43:43 -0400
-X-UUID: 2e603b6cad4e44d19cccac9ff12737bb-20190604
-X-UUID: 2e603b6cad4e44d19cccac9ff12737bb-20190604
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 546401711; Tue, 04 Jun 2019 14:43:35 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 4 Jun
- 2019 14:43:34 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 4 Jun 2019 14:43:33 +0800
-Message-ID: <1559630613.8487.60.camel@mhfsdcap03>
-Subject: Re: [PATCH v6 05/10] usb: roles: Introduce stubs for the exiting
- functions in role.h.
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        "Badhri Jagan Sridharan" <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yu Chen <chenyu56@huawei.com>,
-        John Stultz <john.stultz@linaro.org>
-Date:   Tue, 4 Jun 2019 14:43:33 +0800
-In-Reply-To: <20190603131929.GC10397@kroah.com>
-References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1559115828-19146-6-git-send-email-chunfeng.yun@mediatek.com>
-         <20190603131929.GC10397@kroah.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726813AbfFDGxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 02:53:35 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:36581 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726697AbfFDGxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 02:53:35 -0400
+Received: by mail-ua1-f68.google.com with SMTP id 94so7421937uam.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 23:53:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LaDWiHPR9JRMc5dM2JBiUlOrVRUD/jYSdR+XH2uU4Co=;
+        b=vJV/Z6ZXeWZX0q82NAqhljJbpDA+WvULjbfDIx58hTaojW2K0l7Kk0sm9KjHyb17DT
+         kuQoWD7xepb9d29mYUK6sx3XuMTFm1+GXWLg6nVQ2oWiCNk/5C3QPsfK04iXuJez/HU8
+         Lg6ijXWEgAa/nOQk5u/YKkwG31S3B1VcGxD1vkh2lRVwcpjKlOUoDc/bfI4xvVQfpk88
+         4Wzhi5FxG5ihgAv3geCktS3P8DUmC3G3OeXsYVY+VtRDR9zodAhlb51H8IDnvZhbbfPf
+         bnroEVDnDKPMsceW+ac5lih3IBV7ksqtWW7kaDIFQurKU1ZVgIB7Hip3Rq+CaoUpErFh
+         nMlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LaDWiHPR9JRMc5dM2JBiUlOrVRUD/jYSdR+XH2uU4Co=;
+        b=sH4OMQyfJXrmjJ6pMwH0Kx+iJ8v1EisEIdDxS6WktsliJ1uTQV0fNJvDOhYYVCM0uM
+         w/b6bH5MBxf+Cm9AQpi2m5At9WkpDZs9L86IO3Zg3kpG2CtjLGlTIpbvmBjtB5durae1
+         bZkSH1eAd+k4meSzOc0W+tWUwKn1+5rA/EOsAv1Ldyot9J5MD91bmMFiihh2Zufq4kTB
+         Mj8HwJBFfqk7T3afwv8L2rroq/ElA/z/Dmca9EcrDgGg45gWchLRqBti4ksZhBvFmPTy
+         BGG2ybGIn/dxRLozqXXyIwVAYN1ToCs9SzBbcqvkc+bqsw9+H+91RhB9aH07jpKECifO
+         ubAA==
+X-Gm-Message-State: APjAAAUS3z5bS/JBcr/R9h+gMGBJlqKCRBR5dZ8dxjWSRLUyzBoiVsR6
+        2wGidgor/5OCgeTsK8tPgTTVzvcAG77xE3luoymPDdjs
+X-Google-Smtp-Source: APXvYqwOrrnYuan4kp6oT+cECdrmvG/OzTSJGNeXrjAnq+W5vLQh750wxVsaDLCIudNnKnWn328F87yP/49E98Xs9EA=
+X-Received: by 2002:ab0:4a97:: with SMTP id s23mr871475uae.19.1559631214438;
+ Mon, 03 Jun 2019 23:53:34 -0700 (PDT)
 MIME-Version: 1.0
-X-MTK:  N
+References: <cover.1558346019.git.baolin.wang@linaro.org> <ee4ad0e7e131e4d639dbf6bd25ad93726648ce1c.1558346019.git.baolin.wang@linaro.org>
+ <CAPDyKFrWiG3KJad+L3NOQ-dC2XnBM-8mQGVEsVB_Qg0ACTfVag@mail.gmail.com> <CAMz4kuK+yX=V2zp-C4Xb-6ZjgLOY+ON2iHZU=HwONeXcJCkk4w@mail.gmail.com>
+In-Reply-To: <CAMz4kuK+yX=V2zp-C4Xb-6ZjgLOY+ON2iHZU=HwONeXcJCkk4w@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 4 Jun 2019 08:52:57 +0200
+Message-ID: <CAPDyKFrfMWomOe1QgizbfG+4=vHOix8UH3+MbZicMKWusE8Tsw@mail.gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: mmc: sprd: Add another optional clock documentation
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        arm-soc <arm@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-06-03 at 15:19 +0200, Greg Kroah-Hartman wrote:
-> On Wed, May 29, 2019 at 03:43:43PM +0800, Chunfeng Yun wrote:
-> > From: Yu Chen <chenyu56@huawei.com>
-> > 
-> > This patch adds stubs for the exiting functions while
-> > CONFIG_USB_ROLE_SWITCH does not enabled.
-> > 
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > Cc: Hans de Goede <hdegoede@redhat.com>
-> > Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > Cc: John Stultz <john.stultz@linaro.org>
-> > Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> 
-> Same here, you need to sign off on it too.
-Ok, thanks
-> 
-> thanks,
-> 
-> greg k-h
+On Tue, 4 Jun 2019 at 04:33, Baolin Wang <baolin.wang@linaro.org> wrote:
+>
+> Hi Ulf,
+>
+> On Mon, 3 Jun 2019 at 21:34, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >
+> > On Mon, 20 May 2019 at 12:12, Baolin Wang <baolin.wang@linaro.org> wrote:
+> > >
+> > > For some Spreadtrum platforms like SC9860 platform, we should enable another
+> > > gate clock '2x_enable' to make the SD host controller work well. Thus add
+> > > documentation for this optional clock.
+> > >
+> > > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/mmc/sdhci-sprd.txt         |    1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+> > > index 45c9978..a285c77 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+> > > +++ b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+> > > @@ -14,6 +14,7 @@ Required properties:
+> > >  - clock-names: Should contain the following:
+> > >         "sdio" - SDIO source clock (required)
+> > >         "enable" - gate clock which used for enabling/disabling the device (required)
+> > > +       "2x_enable" - gate clock controlling the device for some special platforms (optional)
+> >
+> > This is a bit vague, could you please elaborate (and fold in that
+> > information to the doc) on what kind of clock this is?
+>
+> Sorry for confusing. For some Spreadtrum platfroms like SC9860
+> platform, we should enable 2 gate clocks to enable SD host controller,
+> that means we have 2 serialized clock gates. I know that's a little
+> weird, but that's our clock's design.
 
+Okay, just wanted to make sure this new clock isn't something that
+should be modeled through the clock tree.
 
+Thanks for explaining, then I am happy with the patch as is.
+
+Kind regards
+Uffe
