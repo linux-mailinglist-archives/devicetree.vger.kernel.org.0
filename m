@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA1C33C7E
+	by mail.lfdr.de (Postfix) with ESMTP id 48DC033C7D
 	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 02:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726617AbfFDAcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 20:32:31 -0400
-Received: from mail-pl1-f201.google.com ([209.85.214.201]:34188 "EHLO
+        id S1726653AbfFDAcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 20:32:35 -0400
+Received: from mail-pl1-f201.google.com ([209.85.214.201]:51096 "EHLO
         mail-pl1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726573AbfFDAca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 20:32:30 -0400
-Received: by mail-pl1-f201.google.com with SMTP id d19so12843727pls.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 17:32:30 -0700 (PDT)
+        with ESMTP id S1726530AbfFDAcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 20:32:33 -0400
+Received: by mail-pl1-f201.google.com with SMTP id o12so12804542pll.17
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 17:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=dLVbLGeLPRKDQpbmXUkLBOtDFn4QZcgYqnH/YbjiLco=;
-        b=UkDJE04LAalSJ1AcG0xBGYHsFGFGAasxF/2AhaPMqSxawwHqg6lWSqfuKMysM9hWvq
-         f76878BTnhsOAS3Y2nA15KZHXVsqVhH6WkhmdHXi3jLAOhsP+MLFbZsadLTccsJYKS3k
-         2gx1OoSeerEH0iqyW4iCEOMCwfIJZdoeOPi0wWx9Pv87ZpWpRFR9qeQ0HLCm3k79kkyE
-         CYjGah5TsVMe/zL+RkklNetP/za6n7OqL9p95O58WqO6wGMhp+BkDQwb25KX8NLwBXgc
-         tfTKQ4Cfr1BV6HvsYLgxvbKhzHVaQnaAcWZDxvLrxxmmjDwSjdH0HBdF0htXLsU1kCOw
-         Lotg==
+        bh=2KTzGfh7kv2d74sdNHCbcBSbV7diWdzXOMvg7FHNFO4=;
+        b=EqR/6lt+NpIeCzQKsguoNIfebTcbW58o4uF8UjA2VmZtMhVvZq0NCpV2geMVB9IZb8
+         AqiWkgI+VJ/QGzumXNhOngU3dN4k+xYHwFqyuBFxa2plaPw7Ep/EHRt3KFkOeAbNc1Nd
+         x3j1C6mSwZMLissFCqpR8G8m6f7xPalu8Efd9pe6LUE2zrKOUdltYXQ94aH8x/wKGN1o
+         gQo9ePtghT8W++raYKrkPiX0gpLrC65tiphdmJoeVCpnxr4M8n8SFZK1+LcW+WIMlZEO
+         3xgANuL+07NGwF/cmTfVuRulDSx+5EjGX5wkkAVUH8bLVnj+9Nhxcs9QMbgNU3Q3AkxM
+         xd1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=dLVbLGeLPRKDQpbmXUkLBOtDFn4QZcgYqnH/YbjiLco=;
-        b=fmalqEC2TPOQc7NP0YMrWRDP5douhg3xrp38bUHqck+b8vNpLkMHTx3tUnuvua+kv+
-         vV0IDrtPRQeuHblWXe49ezBIxPdSlc5zMEVHKlV4WfYWPr/Ny1bvKXKkQ6mFkaJJ3gsh
-         S+D8O4dt3fVAnedCNTHb/71yRSYCCklAgDEJ4CaxxksgODYLuVd/WbIogzuiV/4yC1Ni
-         d/onm1amJPN0JFEmZWM8KaRrYK5S1DRtjQc6NzZiFf5RCW01dyG4mv/l/ebMuEg1iWbY
-         AiG2aXOCiqqQzqlJqCxVvdkmi6Ocm9XZwpZrmqOs3lmuyXmp09RQAsiafZvB7qf9rtc3
-         HGRg==
-X-Gm-Message-State: APjAAAUZxKgI/as4lnmRZSvrrEql7nLAVqKsYXBYRSf3Zqnj3fmagdcx
-        66sa3KxbWCsoR88K2+ygx3IDM6ubFlNWiak=
-X-Google-Smtp-Source: APXvYqz3WQNWZHJUQ4FANXEHAgnqXgVw712ylZTQb3kYsI/1JNnZB+Z55brVvgn2dDQp7jlUvy2SAGYiGuB0tqU=
-X-Received: by 2002:a63:b1d:: with SMTP id 29mr31916043pgl.103.1559608349714;
- Mon, 03 Jun 2019 17:32:29 -0700 (PDT)
-Date:   Mon,  3 Jun 2019 17:32:15 -0700
+        bh=2KTzGfh7kv2d74sdNHCbcBSbV7diWdzXOMvg7FHNFO4=;
+        b=OJcXmXNm4I2JdObpLBqyFIPgIPs+1YP+l2XnoIEGkRbl/Lrkz9gSS7ut43MS7oM3Uw
+         U0y+2XMgBu6WVzg0yru3792T5F1eJPH4If91L9IWLda94rQhv3mgKFGXeECLbhlS50II
+         sp9NugWONgnyuqbcsQxGfLo1EUP49NVSyxoeJtNOYy8O7WruHXn5/wAgGKHJSamD1KJT
+         ng8+8m3iRMMPs1JQ4gl5Do/EMSBKS0zHp1x3QgjW4IzRD8B7LaZkglwjCv+1ahc7XFXs
+         2j+WH0n+oP8Aqb5khcZbJ8GOfz5bq5vwtc+Pvze6avc7X92vUimRh+Qplp3cB/MMYDgS
+         qUvA==
+X-Gm-Message-State: APjAAAVvrNUPUli6MhzVRmMd7imlrcBwA1MqN9Lp0Vy6zlDOKHEE6X6m
+        ed+CE8OcBREQvOBoG9lVh3wtB7MPlshf6eU=
+X-Google-Smtp-Source: APXvYqwmEeWS8ozxJF5RfZj9Gtzd0ufeiTQ52H8arltr4tbYi/DlHHZq9tosKc4KOx47fLR9mK0Rxmw3dZdX6BU=
+X-Received: by 2002:a63:2d41:: with SMTP id t62mr32132172pgt.113.1559608352800;
+ Mon, 03 Jun 2019 17:32:32 -0700 (PDT)
+Date:   Mon,  3 Jun 2019 17:32:16 -0700
 In-Reply-To: <20190604003218.241354-1-saravanak@google.com>
-Message-Id: <20190604003218.241354-3-saravanak@google.com>
+Message-Id: <20190604003218.241354-4-saravanak@google.com>
 Mime-Version: 1.0
 References: <20190604003218.241354-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.rc1.311.g5d7573a151-goog
-Subject: [RESEND PATCH v1 2/5] driver core: Add device links support for
- pending links to suppliers
+Subject: [RESEND PATCH v1 3/5] dt-bindings: Add depends-on property
 From:   Saravana Kannan <saravanak@google.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -64,155 +63,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When consumer devices are added, they might not have a supplier device
-to link to despite needing mandatory resources/functionality from one
-or more suppliers. Add a waiting_for_suppliers list to track such
-consumers and add helper functions to manage the list.
-
-Marking/unmarking a consumer device as waiting for suppliers is
-generally expected to be done by the entity that's creating the
-device.
+The depends-on property is used to list the mandatory functional
+dependencies of a consumer device on zero or more supplier devices.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/base/core.c    | 67 ++++++++++++++++++++++++++++++++++++++++++
- include/linux/device.h |  5 ++++
- 2 files changed, 72 insertions(+)
+ .../devicetree/bindings/depends-on.txt        | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/depends-on.txt
 
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index fd7511e04e62..9ab6782dda1c 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -44,6 +44,8 @@ early_param("sysfs.deprecated", sysfs_deprecated_setup);
- #endif
- 
- /* Device links support. */
-+static LIST_HEAD(wait_for_suppliers);
-+static DEFINE_MUTEX(wfs_lock);
- 
- #ifdef CONFIG_SRCU
- static DEFINE_MUTEX(device_links_lock);
-@@ -401,6 +403,53 @@ struct device_link *device_link_add(struct device *consumer,
- }
- EXPORT_SYMBOL_GPL(device_link_add);
- 
-+/**
-+ * device_link_wait_for_supplier - Mark device as waiting for supplier
-+ * @consumer: Consumer device
-+ *
-+ * Marks the consumer device as waiting for suppliers to become available. The
-+ * consumer device will never be probed until it's unmarked as waiting for
-+ * suppliers. The caller is responsible for adding the link to the supplier
-+ * once the supplier device is present.
-+ *
-+ * This function is NOT meant to be called from the probe function of the
-+ * consumer but rather from code that creates the consumer device.
-+ */
-+void device_link_wait_for_supplier(struct device *consumer)
-+{
-+	mutex_lock(&wfs_lock);
-+	list_add_tail(&consumer->links.needs_suppliers, &wait_for_suppliers);
-+	mutex_unlock(&wfs_lock);
-+}
+diff --git a/Documentation/devicetree/bindings/depends-on.txt b/Documentation/devicetree/bindings/depends-on.txt
+new file mode 100644
+index 000000000000..1cbddd11cf17
+--- /dev/null
++++ b/Documentation/devicetree/bindings/depends-on.txt
+@@ -0,0 +1,26 @@
++Functional dependency linking
++=============================
 +
-+/**
-+ * device_link_check_waiting_consumers - Try to unmark waiting consumers
-+ * @add_suppliers: Callback function to add suppliers to waiting consumer
-+ *
-+ * Loops through all consumers waiting on suppliers and tries to add all their
-+ * supplier links. If that succeeds, the consumer device is unmarked as waiting
-+ * for suppliers. Otherwise, they are left marked as waiting on suppliers,
-+ *
-+ * The add_suppliers callback is expected to return 0 if it has found and added
-+ * all the supplier links for the consumer device. It should return an error if
-+ * it isn't able to do so.
-+ *
-+ * The caller of device_link_wait_for_supplier() is expected to call this once
-+ * it's aware of potential suppliers becoming available.
-+ */
-+void device_link_check_waiting_consumers(
-+		int (*add_suppliers)(struct device *consumer))
-+{
-+	struct device *dev, *tmp;
++Apart from parent-child relationships, devices (consumers) often have
++functional dependencies on other devices (suppliers). Common examples of
++suppliers are clock, regulators, pinctrl, etc. However not all of them are
++dependencies with well defined devicetree bindings. Also, not all functional
++dependencies are mandatory as the device might be able to operate in a limited
++mode without some of the dependencies.
 +
-+	mutex_lock(&wfs_lock);
-+	list_for_each_entry_safe(dev, tmp, &wait_for_suppliers,
-+				 links.needs_suppliers)
-+		if (!add_suppliers(dev))
-+			list_del_init(&dev->links.needs_suppliers);
-+	mutex_unlock(&wfs_lock);
-+}
++The depends-on property allows marking these mandatory functional dependencies
++between one or more devices. The depends-on property is used by the consumer
++device to point to all its mandatory supplier devices.
 +
- static void device_link_free(struct device_link *link)
- {
- 	while (refcount_dec_not_one(&link->rpm_active))
-@@ -535,6 +584,19 @@ int device_links_check_suppliers(struct device *dev)
- 	struct device_link *link;
- 	int ret = 0;
- 
-+	/*
-+	 * If a device is waiting for one or more suppliers (in
-+	 * wait_for_suppliers list), it is not ready to probe yet. So just
-+	 * return -EPROBE_DEFER without having to check the links with existing
-+	 * suppliers.
-+	 */
-+	mutex_lock(&wfs_lock);
-+	if (!list_empty(&dev->links.needs_suppliers)) {
-+		mutex_unlock(&wfs_lock);
-+		return -EPROBE_DEFER;
-+	}
-+	mutex_unlock(&wfs_lock);
++Optional properties:
++- depends-on:	A list of phandles to mandatory suppliers of the device.
 +
- 	device_links_write_lock();
- 
- 	list_for_each_entry(link, &dev->links.suppliers, c_node) {
-@@ -812,6 +874,10 @@ static void device_links_purge(struct device *dev)
- {
- 	struct device_link *link, *ln;
- 
-+	mutex_lock(&wfs_lock);
-+	list_del(&dev->links.needs_suppliers);
-+	mutex_unlock(&wfs_lock);
 +
- 	/*
- 	 * Delete all of the remaining links from this device to any other
- 	 * devices (either consumers or suppliers).
-@@ -1673,6 +1739,7 @@ void device_initialize(struct device *dev)
- #endif
- 	INIT_LIST_HEAD(&dev->links.consumers);
- 	INIT_LIST_HEAD(&dev->links.suppliers);
-+	INIT_LIST_HEAD(&dev->links.needs_suppliers);
- 	dev->links.status = DL_DEV_NO_DRIVER;
- }
- EXPORT_SYMBOL_GPL(device_initialize);
-diff --git a/include/linux/device.h b/include/linux/device.h
-index e85264fb6616..4e71e5386aae 100644
---- a/include/linux/device.h
-+++ b/include/linux/device.h
-@@ -887,11 +887,13 @@ enum dl_dev_state {
-  * struct dev_links_info - Device data related to device links.
-  * @suppliers: List of links to supplier devices.
-  * @consumers: List of links to consumer devices.
-+ * @needs_suppliers: Hook to global list of devices waiting for suppliers.
-  * @status: Driver status information.
-  */
- struct dev_links_info {
- 	struct list_head suppliers;
- 	struct list_head consumers;
-+	struct list_head needs_suppliers;
- 	enum dl_dev_state status;
- };
- 
-@@ -1395,6 +1397,9 @@ struct device_link *device_link_add(struct device *consumer,
- 				    struct device *supplier, u32 flags);
- void device_link_del(struct device_link *link);
- void device_link_remove(void *consumer, struct device *supplier);
-+void device_link_wait_for_supplier(struct device *consumer);
-+void device_link_check_waiting_consumers(
-+		int (*add_suppliers)(struct device *consumer));
- 
- #ifndef dev_fmt
- #define dev_fmt(fmt) fmt
++Examples:
++Here, the device is dependent on only 2 of the 3 clock providers
++dev@40031000 {
++	      compatible = "name";
++	      reg = <0x40031000 0x1000>;
++	      clocks = <&osc_1 1>, <&osc_2 7> <&osc_3 5>;
++	      depends-on = <&osc_1>, <&osc_3>;
++};
 -- 
 2.22.0.rc1.257.g3120a18244-goog
 
