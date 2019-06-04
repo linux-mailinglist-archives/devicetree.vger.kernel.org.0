@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A8FB34B47
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 17:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3713B34B40
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 16:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727994AbfFDO7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 10:59:19 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:48996 "EHLO
+        id S1727991AbfFDO7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 10:59:18 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49000 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727970AbfFDO7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 10:59:16 -0400
+        with ESMTP id S1727977AbfFDO7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 10:59:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=NgUgr2ndlv+NkDqtV9ENgHd/H11fu7d+IN1/kqdr8+g=; b=ag3ZQSxk0Wrt
-        S5NE86YttXz7XswuPDesJVfKVBPCr+wSCT1yq7bbA/i31kQCQ+ZauRloAxI9RAWO1yGwCzAmA392o
-        aiRz2lgLasnRCFsL6ghztMqUyxxr5NKnY4qdSLufbI7E5x6MtpiKypcbgKX5TwRMsVpTlCW0xpVBT
-        GZrG0=;
+        List-Archive; bh=Q7dszm4STF3lvuZE1ayXRVg4P2dVVssja00iqA94/bs=; b=rXIpDoiz5E2y
+        YILiLcnsh4JD7uMaBsjcj1Dn9/wGB9SUwxeUkRpQt9Az66sTwxfHijy5Yml36yHDYlsq28/+4Nw6P
+        lgeN9oXRZhMhxiavW89vFNh6QPW4AN/9KwbQhfPl5ylHjIkNxg3UQX2g/5rukVbniyGR0T0g30ejd
+        DjSLk=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hYAu6-0006Fr-Jl; Tue, 04 Jun 2019 14:59:10 +0000
+        id 1hYAu7-0006Fu-5L; Tue, 04 Jun 2019 14:59:11 +0000
 Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 341D0440049; Tue,  4 Jun 2019 15:59:10 +0100 (BST)
+        id B119D440046; Tue,  4 Jun 2019 15:59:10 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
 To:     Masahisa Kojima <masahisa.kojima@linaro.org>
 Cc:     andy.shevchenko@gmail.com, ard.biesheuvel@linaro.org,
@@ -38,10 +38,10 @@ Cc:     andy.shevchenko@gmail.com, ard.biesheuvel@linaro.org,
         masami.hiramatsu@linaro.org, okamoto.satoru@socionext.com,
         osaki.yoshitoyo@socionext.com, robh+dt@kernel.org,
         tpiepho@impinj.com
-Subject: Applied "spi: Add DT bindings for Synquacer" to the spi tree
-In-Reply-To: <20190604051257.14264-3-masahisa.kojima@linaro.org>
+Subject: Applied "MAINTAINERS: Add entry for Synquacer SPI driver" to the spi tree
+In-Reply-To: <20190604051257.14264-2-masahisa.kojima@linaro.org>
 X-Patchwork-Hint: ignore
-Message-Id: <20190604145910.341D0440049@finisterre.sirena.org.uk>
+Message-Id: <20190604145910.B119D440046@finisterre.sirena.org.uk>
 Date:   Tue,  4 Jun 2019 15:59:10 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -50,7 +50,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   spi: Add DT bindings for Synquacer
+   MAINTAINERS: Add entry for Synquacer SPI driver
 
 has been applied to the spi tree at
 
@@ -75,56 +75,39 @@ to this mail.
 Thanks,
 Mark
 
-From 6d72a49ff3f6bb0932718c132b75351aedc9458e Mon Sep 17 00:00:00 2001
+From 6acf0ed57b8c30f57cba1e3d4fd56e37480affc3 Mon Sep 17 00:00:00 2001
 From: Masahisa Kojima <masahisa.kojima@linaro.org>
-Date: Tue, 4 Jun 2019 14:12:56 +0900
-Subject: [PATCH] spi: Add DT bindings for Synquacer
+Date: Tue, 4 Jun 2019 14:12:55 +0900
+Subject: [PATCH] MAINTAINERS: Add entry for Synquacer SPI driver
 
-This patch adds documentation for Device-Tree bindings for the
-Socionext Synquacer spi driver.
+Add entry for the Synquacer spi driver and DT bindings.
 
 Signed-off-by: Masahisa Kojima <masahisa.kojima@linaro.org>
 Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../devicetree/bindings/spi/spi-synquacer.txt | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/spi/spi-synquacer.txt
+ MAINTAINERS | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-synquacer.txt b/Documentation/devicetree/bindings/spi/spi-synquacer.txt
-new file mode 100644
-index 000000000000..291dfa692d0a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/spi-synquacer.txt
-@@ -0,0 +1,27 @@
-+* Socionext Synquacer HS-SPI bindings
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5cfbea4ce575..66738ccc1257 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14599,6 +14599,14 @@ S:	Maintained
+ F:	drivers/net/ethernet/socionext/netsec.c
+ F:	Documentation/devicetree/bindings/net/socionext-netsec.txt
+ 
++SOCIONEXT (SNI) Synquacer SPI DRIVER
++M:	Masahisa Kojima <masahisa.kojima@linaro.org>
++M:	Jassi Brar <jaswinder.singh@linaro.org>
++L:	linux-spi@vger.kernel.org
++S:	Maintained
++F:	drivers/spi/spi-synquacer.c
++F:	Documentation/devicetree/bindings/spi/spi-synquacer.txt
 +
-+Required Properties:
-+- compatible: should be "socionext,synquacer-spi"
-+- reg: physical base address of the controller and length of memory mapped
-+       region.
-+- interrupts: should contain the "spi_rx", "spi_tx" and "spi_fault" interrupts.
-+- clocks: core clock iHCLK. Optional rate clock iPCLK (default is iHCLK)
-+- clock-names: Shall be "iHCLK" and "iPCLK" respectively
-+
-+Optional Properties:
-+- socionext,use-rtm: boolean, if required to use "retimed clock" for RX
-+- socionext,set-aces: boolean, if same active clock edges field to be set.
-+
-+Example:
-+
-+	spi0: spi@ff110000 {
-+		compatible = "socionext,synquacer-spi";
-+		reg = <0xff110000 0x1000>;
-+		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&clk_hsspi>;
-+		clock-names = "iHCLK";
-+		socionext,use-rtm;
-+		socionext,set-aces;
-+	};
+ SOLIDRUN CLEARFOG SUPPORT
+ M:	Russell King <linux@armlinux.org.uk>
+ S:	Maintained
 -- 
 2.20.1
 
