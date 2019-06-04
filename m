@@ -2,155 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5493C34E1A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 18:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C257534E2F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 19:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727839AbfFDQ60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 12:58:26 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:55058 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727709AbfFDQ60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 12:58:26 -0400
-Received: by mail-wm1-f66.google.com with SMTP id g135so810093wme.4
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 09:58:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WVCO5NdhCO4ClvnqUv2FsN5kOQCRCbVjJWhoMXw1NDQ=;
-        b=U8iHJaeNQwgfZyonZpmCY+8eHEAJFzgZQHl4ZBgMB7Ehc1h2CJidpz9etKcpnvU01a
-         fdT0yfOUja+9mp77Qt7n0A8kIpZCp5BOm+jY1QG8/1SSyaF/lYSYJkKv5lhQvqfxApcs
-         aRvUtwN/SQiwf9Gb3ICSTbT7qQxfw8EzQ4t37U4ioJKeyYm9ZKp68qrJaS5TiPi8HNuL
-         Ad2tzh8fiCQgixXuooOSB0jyT4RrTmlzXAAWj6F5suSxrHSkAaLOwXQA6Q8jKbVGsBxv
-         l0AZtugD8sTl+zF6170ZkYKO1l5PD79mwoFVwLwixQlwxPFdlkYXrZ5P9WHE/ixvl8vP
-         LFDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WVCO5NdhCO4ClvnqUv2FsN5kOQCRCbVjJWhoMXw1NDQ=;
-        b=Ovj7AGEOCgyA+WHFmJFI6+FGupv8/WG52kR5zGVBBXguebfO4xNADl9GnDq3sHeYkf
-         lsbOGwjIY3Cm/XoyX+YI5cDGK93DFNQQCUOHh+A/pk5IQ88t37UYPy/vdyGf8HjpM4ka
-         r+87EA7w3j50NLPP2UrIQK5n5kSwhh8QxtOA6yDY06XJMEeez68Rd7Pv2TA3yuathmbr
-         J5c/pznAFqaGV5Mpr3QZ92jDAnv3uTVxAd5YcI+Fit6QyIx6rJDjVRUpKZWLh78MZKYy
-         PpbAh8Idx6XFfM2eJ0IJYxpT7PKDmOCUc01GsGpfjQOQAwqncR8l+RsGa3taq1lh2JDs
-         H7+A==
-X-Gm-Message-State: APjAAAWftvwuoIA8gnNf8WvPD51Md9lpxBMkJRu/v/27/lu6F0FPgqjs
-        jHh7KnCZ1qSC/yNkOg1Jy29bUg==
-X-Google-Smtp-Source: APXvYqyTSxvUapZ02X/hXKoASJXPNOtj9HjRjSK5iLdyKziVYT0pPX38I5nv+gb7+mLfsXpPzGyVLg==
-X-Received: by 2002:a1c:b6d4:: with SMTP id g203mr9346231wmf.19.1559667504165;
-        Tue, 04 Jun 2019 09:58:24 -0700 (PDT)
-Received: from clegane.local (20.119.129.77.rev.sfr.net. [77.129.119.20])
-        by smtp.gmail.com with ESMTPSA id t13sm25524979wra.81.2019.06.04.09.58.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 04 Jun 2019 09:58:23 -0700 (PDT)
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-To:     heiko@sntech.de
-Cc:     linux-kernel@vger.kernel.org, edubezval@gmail.com,
-        manivannan.sadhasivam@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
-        support),
-        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
-Subject: [PATCH 2/2] arm64: dts: rockchip: Define values for the IPA governor for rock960
-Date:   Tue,  4 Jun 2019 18:57:58 +0200
-Message-Id: <20190604165802.7338-2-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190604165802.7338-1-daniel.lezcano@linaro.org>
-References: <20190604165802.7338-1-daniel.lezcano@linaro.org>
+        id S1727741AbfFDRCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 13:02:00 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52830 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726532AbfFDRCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 13:02:00 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x54H1rIA084228;
+        Tue, 4 Jun 2019 12:01:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559667713;
+        bh=tJUbaYS3PXeCQDqLVzPk13j5W5PyU3RKgopVrDFEeQg=;
+        h=From:To:CC:Subject:Date;
+        b=g99hBXdJ5Ku+pEdJSxXzrA8vje66HcnNOeFGe0pg44GMPt6l8TFdgsRYkfeaND30G
+         RjY+YinDO2YOj+qvZze9b4cX1w4o9scy+3fZqMD7VW0gIYTvaY9OoQFMckdIvCHYVt
+         O5u8a7GBMU4UEiXdbNyHF5o+0G8s8BfKwrY1cU0Y=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x54H1qAO055469
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 4 Jun 2019 12:01:52 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 4 Jun
+ 2019 12:01:52 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 4 Jun 2019 12:01:52 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x54H1qr7052476;
+        Tue, 4 Jun 2019 12:01:52 -0500
+Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x54H1pm17287;
+        Tue, 4 Jun 2019 12:01:51 -0500 (CDT)
+From:   Suman Anna <s-anna@ti.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/2] Add Mailbox support for TI K3 SoCs
+Date:   Tue, 4 Jun 2019 12:01:44 -0500
+Message-ID: <20190604170146.12205-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the default thermal values for the rk3399-rock960 board is
-inherited from the generic definition in rk3399.dtsi.
+Hi Jassi,
 
-In order to ensure the rock960 has more room for througput before
-being capped by the thermal framework and is correctly supported by
-the IPA governor, let's define the power values and the right trip
-points for better performances:
+The following series adds the support for the Mailbox IP present
+within the Main NavSS module on the newer TI K3 AM65x and J721E SoCs.
 
- - sustainable power is tested to be 1550mW
+The Mailbox IP is similar to the previous generation IP on OMAP SoCs
+with a few differences:
+ - Multiple IP instances from previous DRA7/AM57 family each form a
+   cluster and are part of the same IP. The driver support will continue
+   to be based on a cluster.
+ - The IP is present within a Main NaVSS, and interrupts have to go
+   through an Interrupt Router within Main NavSS before they reach the
+   respective processor sub-system's interrupt controllers.
+ - The register layout is mostly same, with difference in two registers
 
- - increase the first mitigation point to 75°C in order to get better
-   performances
+Support is added by enhancing the existing OMAP Mailbox driver to 
+support the K3 IP using a new compatible. The driver also has to be
+adjusted to deal with the 32-bit mailbox payloads vs the 64-bit 
+pointers used by the Mailbox API on these Arm v8 platforms.
 
- - the first trip point is 65°C in order to let the IPA to collect
-   enough data for the PID regulation when it reaches 75°C
+DT nodes will be posted separately once the binding is acked.
 
- - restrict the cooling device to the big CPUs as the little CPUs
-   contribution to the heating effect can be considered negligible
+regards
+Suman
 
-The intelligent power allocator PID coefficient to be set in sysfs
-are:
+Suman Anna (2):
+  dt-bindings: mailbox: omap: Update bindings for TI K3 SoCs
+  mailbox/omap: Add support for TI K3 SoCs
 
-    k_d: 0
-    k_po: 79
-    k_i: 10
-    k_pu: 50
+ .../bindings/mailbox/omap-mailbox.txt         | 59 ++++++++++++++++---
+ drivers/mailbox/Kconfig                       |  2 +-
+ drivers/mailbox/omap-mailbox.c                | 43 ++++++++------
+ include/linux/omap-mailbox.h                  |  4 +-
+ 4 files changed, 80 insertions(+), 28 deletions(-)
 
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- .../boot/dts/rockchip/rk3399-rock960.dts      | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
-index 12285c51cceb..701d5b5fad46 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
-@@ -114,6 +114,45 @@
- 	};
- };
- 
-+&thermal_zones {
-+	cpu_thermal: cpu {
-+		polling-delay-passive = <100>;
-+		polling-delay = <1000>;
-+		thermal-sensors = <&tsadc 0>;
-+		sustainable-power = <1550>;
-+
-+		trips {
-+			cpu_alert0: cpu_alert0 {
-+				    temperature = <65000>;
-+				    hysteresis = <2000>;
-+				    type = "passive";
-+			};
-+
-+			cpu_alert1: cpu_alert1 {
-+				    temperature = <75000>;
-+				    hysteresis = <2000>;
-+				    type = "passive";
-+			};
-+
-+			cpu_crit: cpu_crit {
-+				  temperature = <95000>;
-+				  hysteresis = <2000>;
-+				  type = "critical";
-+			};
-+		};
-+
-+		cooling-maps {
-+			     map0 {
-+
-+			     trip = <&cpu_alert1>;
-+			     cooling-device =
-+					<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+		};
-+	};
-+};
-+
- &usbdrd_dwc3_0 {
- 	dr_mode = "otg";
- };
 -- 
-2.17.1
+2.21.0
 
