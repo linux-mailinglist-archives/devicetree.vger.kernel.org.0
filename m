@@ -2,73 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1FF33CED
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 03:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 074C833D0C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 04:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726464AbfFDB6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 21:58:06 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:59740 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726463AbfFDB6G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jun 2019 21:58:06 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E6F06200568;
-        Tue,  4 Jun 2019 03:58:04 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3502B20056E;
-        Tue,  4 Jun 2019 03:57:53 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 70C96402DD;
-        Tue,  4 Jun 2019 09:57:39 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
-        will.deacon@arm.com, maxime.ripard@bootlin.com, olof@lixom.net,
-        horms+renesas@verge.net.au, jagan@amarulasolutions.com,
-        bjorn.andersson@linaro.org, leonard.crestez@nxp.com,
-        dinguyen@kernel.org, enric.balletbo@collabora.com,
-        aisheng.dong@nxp.com, ping.bai@nxp.com, abel.vesa@nxp.com,
-        l.stach@pengutronix.de, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V3 4/4] arm64: defconfig: Select CONFIG_CLK_IMX8MN by default
-Date:   Tue,  4 Jun 2019 09:59:28 +0800
-Message-Id: <20190604015928.23157-4-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190604015928.23157-1-Anson.Huang@nxp.com>
-References: <20190604015928.23157-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726163AbfFDCSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 22:18:51 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:36009 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725876AbfFDCSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 22:18:51 -0400
+Received: by mail-ot1-f65.google.com with SMTP id c3so18095726otr.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 19:18:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1l+D3rSEai4qzn+TyHSQz7IIWfxK6zl3YHxlBM75Sxk=;
+        b=ji0kqvdjzqwIUAMrKo44/NCdPxG7kCOt7Hn0ZEmNeX4IylO3gLu2LJSi/pElY7IIbM
+         HN5nagHzCYI8L27LLselXWAYkf6bFKXGIxq2Vctezw/AB8zsC8WOydU92z/XH/2aoK2A
+         yh2lvRhAVbV8FPmdWiyypeA6uHZAXIx5pvFi+Ct0Kh7I0FAf64XN2E/BwPIBb0bcHdSX
+         0Gta6gcFmqEcmnp9kCfe3nLwyWf+SbQ1Nw+DlL57VPLsJeN/JiL8rhTgp1JmmBtAQZsF
+         I1fiAFO0iWTIN38nBkT3M8I9T/Fupjok5DxcRbIXHTx7RIXemRNu1Cdirlm7sqCCiuyq
+         CTFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1l+D3rSEai4qzn+TyHSQz7IIWfxK6zl3YHxlBM75Sxk=;
+        b=O5XMXxfUHUNijYK6pc1FGfV+vVEqudP1j9lbpOenfAzIX1SQDg6ztFy7a4fDjT8HPe
+         mGNQFeGhZQuS8lJGMpfMqlZMduTgdEn+52DcsZq3GmIDgdtjcid/XRDFAkHltCSsL7Kf
+         7AGUPJbMvshflcioMgwidGrpt4oFdhf06a10glRXRfGtYDB073g3bHPGwJXlxp9Nkd7d
+         hc00O8/8/ljkWHdtCXArLmkELKJW9Y2NOaJHgHjbaZfUd055nbgtvHDRFu/2kxRLfbdi
+         ts7BOZ8L9jcbRdwha+0TrX4u5bVUJW0kBy51e90E+3aWf2jSnZ6PlmnrEdy3XyazGouQ
+         6vsw==
+X-Gm-Message-State: APjAAAUgxeFUevy8FBiZJ8RbjVilMFDqJrW5Dt74699j3zn8Ap+Z8m4/
+        WTlXIyB+ffmZS0KCz4R39m/zJMXxv2d1W0hyWsJ40Q==
+X-Google-Smtp-Source: APXvYqyRqFO8DnlUxTuulaeN51Ccoi/wNUL1xOjgvaLRhN641y5Hw/UsspKPB9nl9NukmCmvcMaNWtuiBw6YLY/JcLo=
+X-Received: by 2002:a9d:10c:: with SMTP id 12mr3560362otu.123.1559614730649;
+ Mon, 03 Jun 2019 19:18:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1558346019.git.baolin.wang@linaro.org> <aafceaeb2fc7e9d103d1d7a19cdae97759dd1500.1558346019.git.baolin.wang@linaro.org>
+ <6b539c8b-c2fd-6c37-d645-ef714c0e29c9@intel.com>
+In-Reply-To: <6b539c8b-c2fd-6c37-d645-ef714c0e29c9@intel.com>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Tue, 4 Jun 2019 10:18:39 +0800
+Message-ID: <CAMz4kuKXqTWfH0d=4hV_+k8ukYhihQP4QcqFQ+jpiQSu21TQ3g@mail.gmail.com>
+Subject: Re: [PATCH 8/9] mmc: sdhci-sprd: Add PHY DLL delay configuration
+To:     Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        arm-soc <arm@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+Hi Adrian,
 
-Enable CONFIG_CLK_IMX8MN to support i.MX8MN clock driver.
+On Mon, 3 Jun 2019 at 21:03, Adrian Hunter <adrian.hunter@intel.com> wrote:
+>
+> On 20/05/19 1:12 PM, Baolin Wang wrote:
+> > Set the PHY DLL delay for each timing mode, which is used to sample the clock
+> > accurately and make the clock more stable.
+> >
+> > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+>
+> One comment, nevertheless:
+>
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+>
+> > ---
+> >  drivers/mmc/host/sdhci-sprd.c |   51 +++++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >
+> > diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
+> > index e6eda13..911a09b 100644
+> > --- a/drivers/mmc/host/sdhci-sprd.c
+> > +++ b/drivers/mmc/host/sdhci-sprd.c
+> > @@ -29,6 +29,8 @@
+> >  #define  SDHCI_SPRD_DLL_INIT_COUNT   0xc00
+> >  #define  SDHCI_SPRD_DLL_PHASE_INTERNAL       0x3
+> >
+> > +#define SDHCI_SPRD_REG_32_DLL_DLY    0x204
+> > +
+> >  #define SDHCI_SPRD_REG_32_DLL_DLY_OFFSET     0x208
+> >  #define  SDHCIBSPRD_IT_WR_DLY_INV            BIT(5)
+> >  #define  SDHCI_SPRD_BIT_CMD_DLY_INV          BIT(13)
+> > @@ -72,6 +74,24 @@ struct sdhci_sprd_host {
+> >       struct clk *clk_2x_enable;
+> >       u32 base_rate;
+> >       int flags; /* backup of host attribute */
+> > +     u32 phy_delay[MMC_TIMING_MMC_HS400 + 2];
+> > +};
+> > +
+> > +struct sdhci_sprd_phy_cfg {
+> > +     const char *property;
+> > +     u8 timing;
+> > +};
+> > +
+> > +static const struct sdhci_sprd_phy_cfg sdhci_sprd_phy_cfgs[] = {
+> > +     { "sprd,phy-delay-legacy", MMC_TIMING_LEGACY, },
+> > +     { "sprd,phy-delay-sd-highspeed", MMC_TIMING_MMC_HS, },
+>
+> Did you mean MMC_TIMING_SD_HS
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-Changes since V2:
-	- follow alphabet sequence.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Ah, yes, my copy mistake and will fix it in next version.
+Thanks for your reviewing and comments.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8d4f25c..ae17f45 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -655,6 +655,7 @@ CONFIG_COMMON_CLK_S2MPS11=y
- CONFIG_CLK_QORIQ=y
- CONFIG_COMMON_CLK_PWM=y
- CONFIG_CLK_IMX8MM=y
-+CONFIG_CLK_IMX8MN=y
- CONFIG_CLK_IMX8MQ=y
- CONFIG_CLK_IMX8QXP=y
- CONFIG_TI_SCI_CLK=y
 -- 
-2.7.4
-
+Baolin Wang
+Best Regards
