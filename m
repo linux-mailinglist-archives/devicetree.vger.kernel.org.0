@@ -2,138 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0945634E8A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 19:16:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E204034EA0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 19:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725932AbfFDRQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 13:16:18 -0400
-Received: from mga17.intel.com ([192.55.52.151]:2047 "EHLO mga17.intel.com"
+        id S1726245AbfFDRWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 13:22:12 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:49660 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725267AbfFDRQS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 13:16:18 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Jun 2019 10:16:17 -0700
-X-ExtLoop1: 1
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
-  by orsmga006.jf.intel.com with ESMTP; 04 Jun 2019 10:16:11 -0700
-Received: from andy by smile with local (Exim 4.92)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1hYD2h-0001Jc-6c; Tue, 04 Jun 2019 20:16:11 +0300
-Date:   Tue, 4 Jun 2019 20:16:11 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Eduardo Valentin <eduval@amazon.com>
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        jarkko.nikula@linux.intel.com, brendanhiggins@google.com,
+        id S1726293AbfFDRWM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 13:22:12 -0400
+Received: from localhost.localdomain (80-110-121-20.cgn.dynamic.surfer.at [80.110.121.20])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 4C04BC62EF;
+        Tue,  4 Jun 2019 17:22:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1559668929; bh=cSocZErgHFfym8KO8Z5rspnCN1hcPRcdht1ciFTlVhE=;
+        h=From:To:Cc:Subject:Date;
+        b=O1YSYu+F5veWrPj/0ckhF8FFjnzZdHt2Izv9JJOKnYa8IUkEpfT3nlpp94xD8O3zv
+         IDoK0r4PDmCrwazCNfg40Z0G4L98LSaqpDJUvr9dM3qLZw0X1y4Az+5QUZP0HJ61sL
+         WhTpWOANLHN4Et6lbYu3NNdmhVNZA2NMGLlm0lxI=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, Hans de Goede <hdegoede@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive
- and queue messages
-Message-ID: <20190604171611.GS9224@smile.fi.intel.com>
-References: <20190531043347.4196-1-eduval@amazon.com>
- <20190531043347.4196-3-eduval@amazon.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-input@vger.kernel.org (open list:SUN4I LOW RES ADC ATTACHED
+        TABLET KEYS DRIVER),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner
+        sunXi SoC support), linux-kernel@vger.kernel.org (open list),
+        ~martijnbraam/pmos-upstream@lists.sr.ht
+Subject: [PATCH v2 1/2] dt-bindings: input: sun4i-lradc-keys: Add A64 compatible
+Date:   Tue,  4 Jun 2019 19:21:53 +0200
+Message-Id: <20190604172154.25472-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190531043347.4196-3-eduval@amazon.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 09:33:46PM -0700, Eduardo Valentin wrote:
-> From: Haiyue Wang <haiyue.wang@linux.intel.com>
-> 
-> Some protocols over I2C are designed for bi-directional transferring
-> messages by using I2C Master Write protocol. Like the MCTP (Management
-> Component Transport Protocol) and IPMB (Intelligent Platform Management
-> Bus), they both require that the userspace can receive messages from
-> I2C dirvers under slave mode.
-> 
-> This new slave mqueue backend is used to receive and queue messages, it
-> will exposes these messages to userspace by sysfs bin file.
-> 
-> Note: DT interface and a couple of minor fixes here and there
-> by Eduardo, so I kept the original authorship here.
+Add the A64 compatible with a fallback to the A83T compatible.
 
-> +#define MQ_MSGBUF_SIZE		CONFIG_I2C_SLAVE_MQUEUE_MESSAGE_SIZE
-> +#define MQ_QUEUE_SIZE		CONFIG_I2C_SLAVE_MQUEUE_QUEUE_SIZE
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Changes from v1:
+ - New patch. Document new compatible string.
 
-> +#define MQ_QUEUE_NEXT(x)	(((x) + 1) & (MQ_QUEUE_SIZE - 1))
+ Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Also possible ((x + 1) % ..._SIZE)
-
-> +	mq = dev_get_drvdata(container_of(kobj, struct device, kobj));
-
-kobj_to_dev()
-
-> +static int i2c_slave_mqueue_probe(struct i2c_client *client,
-> +				  const struct i2c_device_id *id)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct mq_queue *mq;
-> +	int ret, i;
-> +	void *buf;
-> +
-> +	mq = devm_kzalloc(dev, sizeof(*mq), GFP_KERNEL);
-> +	if (!mq)
-> +		return -ENOMEM;
-> +
-
-> +	BUILD_BUG_ON(!is_power_of_2(MQ_QUEUE_SIZE));
-
-Perhaps start function with this kind of assertions?
-
-> +
-> +	buf = devm_kmalloc_array(dev, MQ_QUEUE_SIZE, MQ_MSGBUF_SIZE,
-> +				 GFP_KERNEL);
-> +	if (!buf)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < MQ_QUEUE_SIZE; i++)
-> +		mq->queue[i].buf = buf + i * MQ_MSGBUF_SIZE;
-
-
-Just wondering if kfifo API can bring an advantage here?
-
-> +	return 0;
-> +}
-
-> +static const struct of_device_id i2c_slave_mqueue_of_match[] = {
-> +	{
-> +		.compatible = "i2c-slave-mqueue",
-> +	},
-
-> +	{ },
-
-No need for comma here.
-
-> +};
-
-> +
-> +static struct i2c_driver i2c_slave_mqueue_driver = {
-> +	.driver = {
-> +		.name	= "i2c-slave-mqueue",
-
-> +		.of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
-
-Wouldn't compiler warn you due to unused data?
-Perhaps drop of_match_ptr() for good...
-
-> +	},
-> +	.probe		= i2c_slave_mqueue_probe,
-> +	.remove		= i2c_slave_mqueue_remove,
-> +	.id_table	= i2c_slave_mqueue_id,
-> +};
-
+diff --git a/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt b/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+index 496125c6bfb7..507b737612ea 100644
+--- a/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
++++ b/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+@@ -5,6 +5,7 @@ Required properties:
+  - compatible: should be one of the following string:
+ 		"allwinner,sun4i-a10-lradc-keys"
+ 		"allwinner,sun8i-a83t-r-lradc"
++		"allwinner,sun50i-a64-lradc", "allwinner,sun8i-a83t-r-lradc"
+  - reg: mmio address range of the chip
+  - interrupts: interrupt to which the chip is connected
+  - vref-supply: powersupply for the lradc reference voltage
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.21.0
 
