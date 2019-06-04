@@ -2,421 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D491D33C44
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 02:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7EA433C74
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 02:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726245AbfFDAAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 20:00:02 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:38798 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726656AbfFDAAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 20:00:01 -0400
-Received: by mail-lj1-f195.google.com with SMTP id o13so17913076lji.5;
-        Mon, 03 Jun 2019 16:59:58 -0700 (PDT)
+        id S1726163AbfFDAcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jun 2019 20:32:24 -0400
+Received: from mail-vk1-f201.google.com ([209.85.221.201]:38689 "EHLO
+        mail-vk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726102AbfFDAcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 20:32:24 -0400
+Received: by mail-vk1-f201.google.com with SMTP id q191so7252428vkh.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 17:32:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cPIIU5wXlFUE6vhh9gHppY6bHCn80mbckRaZLKnKiYs=;
-        b=JSRvHiFdlLFHzAg25JvZ1Yv9sdi4/ir/wHuk5IIvDQ2tQdpbdmaLuMy13pkGEaslXc
-         6x1XJVx8Mle2gIQpjKrIBPQXzdSnPDfzxtq6hY2yoFIQBxQk6kg5eR4wAtZQClitWfTM
-         5X2FzOjqX+tlMtkZU4AwiOoELUqNAhbQtS/hAQJsfpbDWj8T8BHMBYtyvZHTgdfiXyTj
-         oDqCAkwbCAhxcj7Tqy9yMpA78t1cRHP9ZLHEzwR4RADcXKG7TJRjzOdAZq0U6RzyaKtH
-         nTzXhA9LRxSyWVGritaEIBJh623o5HN9fDdyqkQYaQEpjMIRfSuXBcmv274LKlrqOd+r
-         NLmw==
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=DkFNL0Lxas2CTOjiDN2hgVYuR42qb65M2nUWhRx2AoU=;
+        b=jz0CqSLT9oPx/LNHm1SpggTbwu648KXundaKwR3Aku2A4C8KVccZQFhf2nuHxgu95m
+         1JEttGtr7UV9L/k/dbvmWt+DG4/Rt7a3/9lTktxBnTH7kmFGK3lOX5CSVAU8Q7p6KXhd
+         YjNOkCTGxr5rNC5s6YzwurA+rX/Fom/7Mz+e3CpGZgKthJoQXdYLl6Gtr/MA8E2mkSK0
+         bnjs//ABbpsPpr+iADWMjYUnqMaSs6JByEqv8Gd8lhxLitoiQPwxMyTJnqQwtCyfPoQB
+         KDswjYIcWec6OpTrhhM93e51hkI5eOpJILo8fMOwYqVNWQrFAUdFAnZC0kZE3YmK+7UU
+         se7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cPIIU5wXlFUE6vhh9gHppY6bHCn80mbckRaZLKnKiYs=;
-        b=pb0wcOCzHVvRR5yo2IGbSvQ/3pCyc6W0CR+M4doyT10bAc/x8EMIon3km4HdkSkJvc
-         Bi4JJTqHmQmi500lB6KLznDhRUlJfPGuB1qVWFmHETAu0Qxbv1+qJ2YiIxdo0xjFp+Ki
-         985Gr4EyDW6xT6smPmOV4oeRMecMoDb9WjgivDe64py1MQfqZ48YgCdLmctU8yl0y5CS
-         jnRjuQLrUVlFcyOz0nLCFQ7OjRSq1/d51dlA32Mf1x2Kr0UUAIyMGM7ydgZOPZtY0SuQ
-         fN1bciOa2Sw83oGCL4jnwIu/O82bAnULAnAUjyLsWwmtVYf22iF7XvfEhPjPfzpyHar/
-         41Fw==
-X-Gm-Message-State: APjAAAXDu7MBzQ5J2/qLOkS4ra3UyXlh20XbEPOxOeBhFcJP31fQHdE5
-        I/6bfiMftncEZiBhCsH2olU=
-X-Google-Smtp-Source: APXvYqxJdBkr29mZqpGMWt/xlxYC7icKqIiTkTQ6cZCJZA6u6iRDHdn0u+JC4jjGMqWA2/PGxwtLCQ==
-X-Received: by 2002:a2e:2f12:: with SMTP id v18mr14865788ljv.196.1559606397242;
-        Mon, 03 Jun 2019 16:59:57 -0700 (PDT)
-Received: from localhost.localdomain ([94.29.35.141])
-        by smtp.gmail.com with ESMTPSA id n7sm2943151lfi.68.2019.06.03.16.59.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Jun 2019 16:59:56 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] soc/tegra: regulators: Add regulators coupler for Tegra30
-Date:   Tue,  4 Jun 2019 02:59:04 +0300
-Message-Id: <20190603235904.19097-9-digetx@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190603235904.19097-1-digetx@gmail.com>
-References: <20190603235904.19097-1-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=DkFNL0Lxas2CTOjiDN2hgVYuR42qb65M2nUWhRx2AoU=;
+        b=KkEVRCTz4Q/AjB43WkemRSPVwHHKlVr6wPVYRh1izyBEYqTYYISoMf6Wmh7ltj2nH7
+         tgC7Qlq0XmLMEHbZW8K7VfhXqzRDH/79qY9uOZ8eEHXxfwyCp1ApTGbiKmG4ptWVlUj6
+         l26TnO3/9QIS1s9MLYEgNvX5I/cteF9DZVagczQSkWivtC2B76HrLDoISemWNq3+rxw+
+         XuYB4XdwIShZJDc9c1TTQyQoPDlKrDidF5Nv8NsinK+tg1QQbPuTbi7aANNPM4FT3FZ/
+         q+zb4eukvr1sCESolUaotYPG3ZX26aZkoE4QaKpZ7Pzj4P8NWmHKl/C60wDFuoxq87J4
+         veAQ==
+X-Gm-Message-State: APjAAAWfgeFedZ1MVMb+/nZFGG0PO+krtQeT5W3Dzr+forWD/aVqUFWf
+        KKDC8yfWRbmL3fq4lgiHvQ9PaYasSAAFHus=
+X-Google-Smtp-Source: APXvYqz//pvNugcA8Ub1+XgIlGN6l0nTsFMukZFYcAW+LoNM4NKtbt0/2oRDjBXSdd6HYKLROjJMWAUEL0hPELA=
+X-Received: by 2002:a9f:24a3:: with SMTP id 32mr12993229uar.109.1559608343365;
+ Mon, 03 Jun 2019 17:32:23 -0700 (PDT)
+Date:   Mon,  3 Jun 2019 17:32:13 -0700
+Message-Id: <20190604003218.241354-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.rc1.311.g5d7573a151-goog
+Subject: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and optimize
+ probe ordering
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add regulators coupler for Tegra30 SoC's that performs voltage balancing
-of a coupled regulators and thus provides voltage scaling functionality.
+Add a generic "depends-on" property that allows specifying mandatory
+functional dependencies between devices. Add device-links after the
+devices are created (but before they are probed) by looking at this
+"depends-on" property.
 
-There are 2 coupled regulators on all Tegra30 SoC's: CORE and CPU. The
-coupled regulator voltages shall be in a range of 300mV from each other
-and CORE voltage shall be higher than the CPU by N mV, where N depends
-on the CPU voltage.
+This property is used instead of existing DT properties that specify
+phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
+is because not all resources referred to by existing DT properties are
+mandatory functional dependencies. Some devices/drivers might be able
+to operate with reduced functionality when some of the resources
+aren't available. For example, a device could operate in polling mode
+if no IRQ is available, a device could skip doing power management if
+clock or voltage control isn't available and they are left on, etc.
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/soc/tegra/Kconfig              |   6 +
- drivers/soc/tegra/Makefile             |   1 +
- drivers/soc/tegra/regulators-tegra30.c | 300 +++++++++++++++++++++++++
- 3 files changed, 307 insertions(+)
- create mode 100644 drivers/soc/tegra/regulators-tegra30.c
+So, adding mandatory functional dependency links between devices by
+looking at referred phandles in DT properties won't work as it would
+prevent probing devices that could be probed. By having an explicit
+depends-on property, we can handle these cases correctly.
 
-diff --git a/drivers/soc/tegra/Kconfig b/drivers/soc/tegra/Kconfig
-index 4453c982c0b9..6909c9433369 100644
---- a/drivers/soc/tegra/Kconfig
-+++ b/drivers/soc/tegra/Kconfig
-@@ -30,6 +30,7 @@ config ARCH_TEGRA_3x_SOC
- 	select SOC_TEGRA_FLOWCTRL
- 	select SOC_TEGRA_PMC
- 	select TEGRA_TIMER
-+	select SOC_TEGRA30_VOLTAGE_COUPLER if REGULATOR
- 	help
- 	  Support for NVIDIA Tegra T30 processor family, based on the
- 	  ARM CortexA9MP CPU and the ARM PL310 L2 cache controller
-@@ -140,3 +141,8 @@ config SOC_TEGRA20_VOLTAGE_COUPLER
- 	bool "Voltage scaling support for Tegra20 SoC's"
- 	depends on ARCH_TEGRA_2x_SOC
- 	depends on REGULATOR
-+
-+config SOC_TEGRA30_VOLTAGE_COUPLER
-+	bool "Voltage scaling support for Tegra30 SoC's"
-+	depends on ARCH_TEGRA_3x_SOC
-+	depends on REGULATOR
-diff --git a/drivers/soc/tegra/Makefile b/drivers/soc/tegra/Makefile
-index 9f0bdd53bef8..9c809c1814bd 100644
---- a/drivers/soc/tegra/Makefile
-+++ b/drivers/soc/tegra/Makefile
-@@ -6,3 +6,4 @@ obj-$(CONFIG_SOC_TEGRA_FLOWCTRL) += flowctrl.o
- obj-$(CONFIG_SOC_TEGRA_PMC) += pmc.o
- obj-$(CONFIG_SOC_TEGRA_POWERGATE_BPMP) += powergate-bpmp.o
- obj-$(CONFIG_SOC_TEGRA20_VOLTAGE_COUPLER) += regulators-tegra20.o
-+obj-$(CONFIG_SOC_TEGRA30_VOLTAGE_COUPLER) += regulators-tegra30.o
-diff --git a/drivers/soc/tegra/regulators-tegra30.c b/drivers/soc/tegra/regulators-tegra30.c
-new file mode 100644
-index 000000000000..26330f14126c
---- /dev/null
-+++ b/drivers/soc/tegra/regulators-tegra30.c
-@@ -0,0 +1,300 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Voltage regulators coupling resolver for NVIDIA Tegra30
-+ *
-+ * Copyright (C) 2019 GRATE-DRIVER project
-+ */
-+
-+#define pr_fmt(fmt)	"tegra voltage-coupler: " fmt
-+
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/of.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/machine.h>
-+
-+#include <soc/tegra/fuse.h>
-+
-+struct tegra_regulator_coupler {
-+	struct regulator_coupler coupler;
-+	struct regulator_dev *core_rdev;
-+	struct regulator_dev *cpu_rdev;
-+	int core_min_uV;
-+};
-+
-+static inline struct tegra_regulator_coupler *
-+to_tegra_coupler(struct regulator_coupler *coupler)
-+{
-+	return container_of(coupler, struct tegra_regulator_coupler, coupler);
-+}
-+
-+static int tegra30_core_limit(struct tegra_regulator_coupler *tegra,
-+			      struct regulator_dev *core_rdev)
-+{
-+	int core_min_uV = 0;
-+	int core_max_uV;
-+	int core_cur_uV;
-+	int err;
-+
-+	if (tegra->core_min_uV > 0)
-+		return tegra->core_min_uV;
-+
-+	core_cur_uV = regulator_get_voltage_rdev(core_rdev);
-+	if (core_cur_uV < 0)
-+		return core_cur_uV;
-+
-+	core_max_uV = max(core_cur_uV, 1200000);
-+
-+	err = regulator_check_voltage(core_rdev, &core_min_uV, &core_max_uV);
-+	if (err)
-+		return err;
-+
-+	/*
-+	 * Limit minimum CORE voltage to a value left from bootloader or,
-+	 * if it's unreasonably low value, to the most common 1.2v or to
-+	 * whatever maximum value defined via board's device-tree.
-+	 */
-+	tegra->core_min_uV = core_max_uV;
-+
-+	pr_info("core minimum voltage limited to %duV\n", tegra->core_min_uV);
-+
-+	return tegra->core_min_uV;
-+}
-+
-+static int tegra30_core_cpu_limit(int cpu_uV)
-+{
-+	if (cpu_uV < 800000)
-+		return 950000;
-+
-+	if (cpu_uV < 900000)
-+		return 1000000;
-+
-+	if (cpu_uV < 1000000)
-+		return 1100000;
-+
-+	if (cpu_uV < 1100000)
-+		return 1200000;
-+
-+	if (cpu_uV < 1250000) {
-+		switch (tegra_sku_info.cpu_speedo_id) {
-+		case 0 ... 1:
-+		case 4:
-+		case 7 ... 8:
-+			return 1200000;
-+
-+		default:
-+			return 1300000;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int tegra30_voltage_update(struct tegra_regulator_coupler *tegra,
-+				  struct regulator_dev *cpu_rdev,
-+				  struct regulator_dev *core_rdev)
-+{
-+	int core_min_uV, core_max_uV = INT_MAX;
-+	int cpu_min_uV, cpu_max_uV = INT_MAX;
-+	int core_min_limited_uV;
-+	int core_target_uV;
-+	int cpu_target_uV;
-+	int core_max_step;
-+	int cpu_max_step;
-+	int max_spread;
-+	int core_uV;
-+	int cpu_uV;
-+	int err;
-+
-+	/*
-+	 * CPU voltage should not got lower than 300mV from the CORE.
-+	 * CPU voltage should stay below the CORE by 100mV+, depending
-+	 * by the CORE voltage. This applies to all Tegra30 SoC's.
-+	 */
-+	max_spread = cpu_rdev->constraints->max_spread[0];
-+	cpu_max_step = cpu_rdev->constraints->max_uV_step;
-+	core_max_step = core_rdev->constraints->max_uV_step;
-+
-+	if (!max_spread) {
-+		pr_err_once("cpu-core max-spread is undefined in device-tree\n");
-+		max_spread = 300000;
-+	}
-+
-+	if (!cpu_max_step) {
-+		pr_err_once("cpu max-step is undefined in device-tree\n");
-+		cpu_max_step = 150000;
-+	}
-+
-+	if (!core_max_step) {
-+		pr_err_once("core max-step is undefined in device-tree\n");
-+		core_max_step = 150000;
-+	}
-+
-+	/*
-+	 * The CORE voltage scaling is currently not hooked up in drivers,
-+	 * hence we will limit the minimum CORE voltage to a reasonable value.
-+	 * This should be good enough for the time being.
-+	 */
-+	core_min_uV = tegra30_core_limit(tegra, core_rdev);
-+	if (core_min_uV < 0)
-+		return core_min_uV;
-+
-+	err = regulator_check_consumers(core_rdev, &core_min_uV, &core_max_uV,
-+					PM_SUSPEND_ON);
-+	if (err)
-+		return err;
-+
-+	cpu_min_uV = core_min_uV - max_spread;
-+
-+	err = regulator_check_consumers(cpu_rdev, &cpu_min_uV, &cpu_max_uV,
-+					PM_SUSPEND_ON);
-+	if (err)
-+		return err;
-+
-+	err = regulator_check_voltage(cpu_rdev, &cpu_min_uV, &cpu_max_uV);
-+	if (err)
-+		return err;
-+
-+	cpu_uV = regulator_get_voltage_rdev(cpu_rdev);
-+	if (cpu_uV < 0)
-+		return cpu_uV;
-+
-+	core_uV = regulator_get_voltage_rdev(core_rdev);
-+	if (core_uV < 0)
-+		return core_uV;
-+
-+	/*
-+	 * Bootloader shall set up voltages correctly, but if it
-+	 * happens that there is a violation, then try to fix it
-+	 * at first.
-+	 */
-+	core_min_limited_uV = tegra30_core_cpu_limit(cpu_uV);
-+	if (core_min_limited_uV < 0)
-+		return core_min_limited_uV;
-+
-+	core_min_uV = max(core_min_uV, tegra30_core_cpu_limit(cpu_min_uV));
-+
-+	err = regulator_check_voltage(core_rdev, &core_min_uV, &core_max_uV);
-+	if (err)
-+		return err;
-+
-+	if (core_min_limited_uV > core_uV) {
-+		pr_err("core voltage constraint violated: %d %d %d\n",
-+		       core_uV, core_min_limited_uV, cpu_uV);
-+		goto update_core;
-+	}
-+
-+	while (cpu_uV != cpu_min_uV || core_uV != core_min_uV) {
-+		if (cpu_uV < cpu_min_uV) {
-+			cpu_target_uV = min(cpu_uV + cpu_max_step, cpu_min_uV);
-+		} else {
-+			cpu_target_uV = max(cpu_uV - cpu_max_step, cpu_min_uV);
-+			cpu_target_uV = max(core_uV - max_spread, cpu_target_uV);
-+		}
-+
-+		err = regulator_set_voltage_rdev(cpu_rdev,
-+						 cpu_target_uV,
-+						 cpu_max_uV,
-+						 PM_SUSPEND_ON);
-+		if (err)
-+			return err;
-+
-+		cpu_uV = cpu_target_uV;
-+update_core:
-+		core_min_limited_uV = tegra30_core_cpu_limit(cpu_uV);
-+		if (core_min_limited_uV < 0)
-+			return core_min_limited_uV;
-+
-+		core_target_uV = max(core_min_limited_uV, core_min_uV);
-+
-+		if (core_uV < core_target_uV) {
-+			core_target_uV = min(core_target_uV, core_uV + core_max_step);
-+			core_target_uV = min(core_target_uV, cpu_uV + max_spread);
-+		} else {
-+			core_target_uV = max(core_target_uV, core_uV - core_max_step);
-+		}
-+
-+		err = regulator_set_voltage_rdev(core_rdev,
-+						 core_target_uV,
-+						 core_max_uV,
-+						 PM_SUSPEND_ON);
-+		if (err)
-+			return err;
-+
-+		core_uV = core_target_uV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int tegra30_regulator_balance_voltage(struct regulator_coupler *coupler,
-+					     struct regulator_dev *rdev,
-+					     suspend_state_t state)
-+{
-+	struct tegra_regulator_coupler *tegra = to_tegra_coupler(coupler);
-+	struct regulator_dev *core_rdev = tegra->core_rdev;
-+	struct regulator_dev *cpu_rdev = tegra->cpu_rdev;
-+
-+	if ((core_rdev != rdev && cpu_rdev != rdev) || state != PM_SUSPEND_ON) {
-+		pr_err("regulators are not coupled properly\n");
-+		return -EINVAL;
-+	}
-+
-+	return tegra30_voltage_update(tegra, cpu_rdev, core_rdev);
-+}
-+
-+static int tegra30_regulator_attach(struct regulator_coupler *coupler,
-+				    struct regulator_dev *rdev)
-+{
-+	struct tegra_regulator_coupler *tegra = to_tegra_coupler(coupler);
-+	struct device_node *np = rdev->dev.of_node;
-+
-+	if (of_property_read_bool(np, "nvidia,tegra-core-regulator") &&
-+	    !tegra->core_rdev) {
-+		tegra->core_rdev = rdev;
-+		return 0;
-+	}
-+
-+	if (of_property_read_bool(np, "nvidia,tegra-cpu-regulator") &&
-+	    !tegra->cpu_rdev) {
-+		tegra->cpu_rdev = rdev;
-+		return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int tegra30_regulator_detach(struct regulator_coupler *coupler,
-+				    struct regulator_dev *rdev)
-+{
-+	struct tegra_regulator_coupler *tegra = to_tegra_coupler(coupler);
-+
-+	if (tegra->core_rdev == rdev) {
-+		tegra->core_rdev = NULL;
-+		return 0;
-+	}
-+
-+	if (tegra->cpu_rdev == rdev) {
-+		tegra->cpu_rdev = NULL;
-+		return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static struct tegra_regulator_coupler tegra30_coupler = {
-+	.coupler = {
-+		.attach_regulator = tegra30_regulator_attach,
-+		.detach_regulator = tegra30_regulator_detach,
-+		.balance_voltage = tegra30_regulator_balance_voltage,
-+	},
-+};
-+
-+static int __init tegra_regulator_coupler_init(void)
-+{
-+	if (!of_machine_is_compatible("nvidia,tegra30"))
-+		return 0;
-+
-+	return regulator_coupler_register(&tegra30_coupler.coupler);
-+}
-+arch_initcall(tegra_regulator_coupler_init);
+Having functional dependencies explicitly called out in DT and
+automatically added before the devices are probed, provides the
+following benefits:
+
+- Optimizes device probe order and avoids the useless work of
+  attempting probes of devices that will not probe successfully
+  (because their suppliers aren't present or haven't probed yet).
+
+  For example, in a commonly available mobile SoC, registering just
+  one consumer device's driver at an initcall level earlier than the
+  supplier device's driver causes 11 failed probe attempts before the
+  consumer device probes successfully. This was with a kernel with all
+  the drivers statically compiled in. This problem gets a lot worse if
+  all the drivers are loaded as modules without direct symbol
+  dependencies.
+
+- Supplier devices like clock providers, regulators providers, etc
+  need to keep the resources they provide active and at a particular
+  state(s) during boot up even if their current set of consumers don't
+  request the resource to be active. This is because the rest of the
+  consumers might not have probed yet and turning off the resource
+  before all the consumers have probed could lead to a hang or
+  undesired user experience.
+
+  Some frameworks (Eg: regulator) handle this today by turning off
+  "unused" resources at late_initcall_sync and hoping all the devices
+  have probed by then. This is not a valid assumption for systems with
+  loadable modules. Other frameworks (Eg: clock) just don't handle
+  this due to the lack of a clear signal for when they can turn off
+  resources. This leads to downstream hacks to handle cases like this
+  that can easily be solved in the upstream kernel.
+
+  By linking devices before they are probed, we give suppliers a clear
+  count of the number of dependent consumers. Once all of the
+  consumers are active, the suppliers can turn off the unused
+  resources without making assumptions about the number of consumers.
+
+By default we just add device-links to track "driver presence" (probe
+succeeded) of the supplier device. If any other functionality provided
+by device-links are needed, it is left to the consumer/supplier
+devices to change the link when they probe.
+ 
+
+Saravana Kannan (5):
+  of/platform: Speed up of_find_device_by_node()
+  driver core: Add device links support for pending links to suppliers
+  dt-bindings: Add depends-on property
+  of/platform: Add functional dependency link from "depends-on" property
+  driver core: Add sync_state driver/bus callback
+
+ .../devicetree/bindings/depends-on.txt        |  26 +++++
+ drivers/base/core.c                           | 106 ++++++++++++++++++
+ drivers/of/platform.c                         |  75 ++++++++++++-
+ include/linux/device.h                        |  24 ++++
+ include/linux/of.h                            |   3 +
+ 5 files changed, 233 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/depends-on.txt
+
 -- 
-2.21.0
+2.22.0.rc1.257.g3120a18244-goog
 
