@@ -2,122 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C59C34113
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 10:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C55534150
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 10:14:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726855AbfFDIDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 04:03:31 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:40073 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726873AbfFDIDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 04:03:31 -0400
-Received: by mail-oi1-f196.google.com with SMTP id w196so5386644oie.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 01:03:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FKpO8H57h4hKIEfk4q7HqguHGPmqzEwBqOwZI4qAzTI=;
-        b=wfSINV13HS4ZECgj4OMaDwgnjyqqftKSQPf9sdO3jpWk5j1d1uIYnzwIBGGtBcTCDK
-         zBSONMDiI3qwFEuQMKa0jjfLZFJ6uOKnyLxMXNspWMojasO6ZMWT5S2I5sruP96xasLK
-         kiKlOBW/QPWonXzYsXTsoouNR1QDK/aRZ5BcpWY6iSsOfR3OufY+Lxq9lWTXRctpL4Hy
-         a/R24TK38s9dnK0/H1jtWs8kZ/wfjp6nZ1gf/evwTjwwCR71FDMKKzdc3zqiGbzX11Ef
-         d4bFQKqCryQX4Rb3woxnz9UyLAX5WjN5SR2kBXptjQJ4yF804wcIcNR03xl5RNq6h/Ml
-         6qbQ==
+        id S1726857AbfFDIN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 04:13:56 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:41658 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726637AbfFDIN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 04:13:56 -0400
+Received: by mail-qt1-f195.google.com with SMTP id s57so5580411qte.8;
+        Tue, 04 Jun 2019 01:13:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FKpO8H57h4hKIEfk4q7HqguHGPmqzEwBqOwZI4qAzTI=;
-        b=dvmzR713G0UgEt67rHYgkZQjirNuK7fWN/TiD+EQ6J2LAiUHYHzcuIDINRHG02lN23
-         0oXjP5yh7C9vhbASwtzEu8MnEGJSCLmLsc1bvgvG568n4MTRLRijsopA4F6zxPUAnrb6
-         FRGQEKD0mIZjJjfphj8Q/2LDrlu+px3aE1RiDuhJMrDn291u638QZF1Ub8VKmhAq8nNv
-         njJvO2H8lU/8vFnr+npSSGMKSMLp1DOP0ewiEvEwVyL2pzKp4p9BJBaNSDTaDQI51zCc
-         odDBLSocpfYkbQY7Se2jzgLdaKvd5C/NOT9/8s1rF9QKT2o/v44L2pybtlEXN9m+rLaZ
-         5ooQ==
-X-Gm-Message-State: APjAAAV4v+qH4e/z1mvvbWAdbCMuyV/YBus0qY914/FxMMAUZLEUKHOe
-        DGhHUlZUukrDt7ef4ehUi4m42H9hmsAhiL6Kh/yq9Q==
-X-Google-Smtp-Source: APXvYqyMOpg92w6Qp+vhHVCi14htGNn1rx1iAOVrnv9ZgovV4gSotwygWRGsq+15o2Px5EQGrz+6VMFs1vGy8mmk3Fs=
-X-Received: by 2002:aca:dd08:: with SMTP id u8mr44390oig.27.1559635410647;
- Tue, 04 Jun 2019 01:03:30 -0700 (PDT)
+        bh=OlXBKw7HgP4DZult/XowRKn8oIkzj5I8Bd8HMNjnVco=;
+        b=WM6UY//u3gKrc0uo6AsfF8nChVGhf0xjC7EpAbk4VMYXb4/+tNYkyOb+YzQp5QDF+F
+         eATXSb0zT4e1tS4eHVzdmlE5htmqXImNh17u+QbK07ea8zHYXMfc93UVZD9mzC5lkgFf
+         jW2YyBnearx5ncMLRsP6hmF4VtuyxzyJJTuHiEYTY4rjTctXn9T4FojidVlcmEbO+Czk
+         KK2JY7zq6/hFcHFAk4At6DYq5ooPpxWGllOO6r4CyuS+0gAIIovda48sgtxPPWjB5B7W
+         VhJcL99+Maezi626WOXoV0bAmEn2WArGh7xclwN9Rr5nyhNpkMi+fYWMGLUiFkvwvqk9
+         ebOA==
+X-Gm-Message-State: APjAAAUHRFZifjj64hotD1DGUzR/OQaMQ02RxR15vu9da26nwDX0TW9L
+        AZyCatY999QurzjVJu5CvU59YVNFTrjc+vSH80c=
+X-Google-Smtp-Source: APXvYqz5kir33J5AjmzplbKAfH30cVdEZ3sEoQzuyfFO20zuGZF8LYiKII1TI8KuvJglH3idinfKAhZ4lWT5LqRWGgc=
+X-Received: by 2002:ac8:3ff5:: with SMTP id v50mr24492574qtk.142.1559636034539;
+ Tue, 04 Jun 2019 01:13:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1558346019.git.baolin.wang@linaro.org> <ae6e23d4de6bb25cd697412f1402036d5ecc9843.1558346019.git.baolin.wang@linaro.org>
- <ed5bdd08-7227-4d55-23de-e78e15d315c7@intel.com>
-In-Reply-To: <ed5bdd08-7227-4d55-23de-e78e15d315c7@intel.com>
-From:   Baolin Wang <baolin.wang@linaro.org>
-Date:   Tue, 4 Jun 2019 16:03:18 +0800
-Message-ID: <CAMz4kuKEOQwOK2Yh+y+-ZhZDndA2tf9V45J_o-OittuSRJcurQ@mail.gmail.com>
-Subject: Re: [PATCH 4/9] mmc: sdhci-sprd: Implement the get_max_timeout_count()
- interface
-To:     Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        arm-soc <arm@kernel.org>,
+References: <20190531035348.7194-1-elder@linaro.org> <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
+ <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org> <CAK8P3a05CevRBV3ym+pnKmxv+A0_T+AtURW2L4doPAFzu3QcJw@mail.gmail.com>
+ <a28c5e13-59bc-144d-4153-9d104cfa9188@linaro.org> <20190531233306.GB25597@minitux>
+ <d76a710d45dd7df3a28afb12fc62cf14@codeaurora.org> <CAK8P3a0brT0zyZGNWiS2R0RMHHFF2JG=_ixQyvjhj3Ky39o0UA@mail.gmail.com>
+ <040ce9cc-7173-d10a-a82c-5186d2fcd737@linaro.org>
+In-Reply-To: <040ce9cc-7173-d10a-a82c-5186d2fcd737@linaro.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 4 Jun 2019 10:13:37 +0200
+Message-ID: <CAK8P3a2U=RzfpVaAgRP1QwPhRpZiBNsG5qdWjzwG=tCKZefYHA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+To:     Alex Elder <elder@linaro.org>
+Cc:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dan Williams <dcbw@redhat.com>,
+        David Miller <davem@davemloft.net>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        evgreen@chromium.org, Ben Chan <benchan@google.com>,
+        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
+        syadagir@codeaurora.org, abhishek.esse@gmail.com,
+        Networking <netdev@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
+        linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Jun 2019 at 20:35, Adrian Hunter <adrian.hunter@intel.com> wrote:
->
-> On 20/05/19 1:11 PM, Baolin Wang wrote:
-> > Implement the get_max_timeout_count() interface to set the Spredtrum SD
-> > host controller actual maximum timeout count.
+On Mon, Jun 3, 2019 at 3:32 PM Alex Elder <elder@linaro.org> wrote:
+> On 6/3/19 5:04 AM, Arnd Bergmann wrote:
+> > On Sat, Jun 1, 2019 at 1:59 AM Subash Abhinov Kasiviswanathan
 > >
-> > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> > - What I'm worried about most here is the flow control handling on the
+> >   transmit side. The IPA driver now uses the modern BQL method to
+> >   control how much data gets submitted to the hardware at any time.
+> >   The rmnet driver also uses flow control using the
+> >   rmnet_map_command() function, that blocks tx on the higher
+> >   level device when the remote side asks us to.
+> >   I fear that doing flow control for a single physical device on two
+> >   separate netdev instances is counterproductive and confuses
+> >   both sides.
 >
-> Seems surprising that there isn't a custom ->set_timeout() as well.
+> I understand what you're saying here, and instinctively I think
+> you're right.
+>
+> But BQL manages the *local* interface's ability to get rid of
+> packets, whereas the QMAP flow control is initiated by the other
+> end of the connection (the modem in this case).
+>
+> With multiplexing, it's possible that one of several logical
+> devices on the modem side has exhausted a resource and must
+> ask the source of the data on the host side to suspend the
+> flow.  Meanwhile the other logical devices sharing the physical
+> link might be fine, and should not be delayed by the first one.
+>
+> It is the multiplexing itself that confuses the BQL algorithm.
+> The abstraction obscures the *real* rates at which individual
+> logical connections are able to transmit data.
 
-Until now we did not find issues when using sdhci_calc_timeout().
-Thanks for your reviewing.
+I would assume that the real rate constantly changes, at least
+for wireless interfaces that are also shared with other users
+on the same network. BQL is meant to deal with that, at least
+when using a modern queuing algorithm.
 
-> Nevertheless:
->
-> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
->
-> > ---
-> >  drivers/mmc/host/sdhci-sprd.c |    7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-> > index 31ba7d6..d91281d 100644
-> > --- a/drivers/mmc/host/sdhci-sprd.c
-> > +++ b/drivers/mmc/host/sdhci-sprd.c
-> > @@ -285,6 +285,12 @@ static void sdhci_sprd_hw_reset(struct sdhci_host *host)
-> >       usleep_range(300, 500);
-> >  }
-> >
-> > +static unsigned int sdhci_sprd_get_max_timeout_count(struct sdhci_host *host)
-> > +{
-> > +     /* The Spredtrum controller actual maximum timeout count is 1 << 31 */
-> > +     return 1 << 31;
-> > +}
-> > +
-> >  static struct sdhci_ops sdhci_sprd_ops = {
-> >       .read_l = sdhci_sprd_readl,
-> >       .write_l = sdhci_sprd_writel,
-> > @@ -296,6 +302,7 @@ static void sdhci_sprd_hw_reset(struct sdhci_host *host)
-> >       .reset = sdhci_reset,
-> >       .set_uhs_signaling = sdhci_sprd_set_uhs_signaling,
-> >       .hw_reset = sdhci_sprd_hw_reset,
-> > +     .get_max_timeout_count = sdhci_sprd_get_max_timeout_count,
-> >  };
-> >
-> >  static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
-> >
->
+> Even if the multiple logical interfaces implemented BQL, they
+> would not get the feedback they need directly from the IPA
+> driver, because transmitting over the physical interface might
+> succeed even if the logical interface on the modem side can't
+> handle more data.  So I think the flow control commands may be
+> necessary, given multiplexing.
 
+Can you describe what kind of multiplexing is actually going on?
+I'm still unclear about what we actually use multiple logical
+interfaces for here, and how they relate to one another.
 
--- 
-Baolin Wang
-Best Regards
+> The rmnet driver could use BQL, and could return NETDEV_TX_BUSY
+> for a logical interface when its TX flow has been stopped by a
+> QMAP command.  That way the feedback for BQL on the logical
+> interfaces would be provided in the right place.
+>
+> I have no good intuition about the interaction between
+> two layered BQL managed queues though.
+
+Returning NETDEV_TX_BUSY is usually a bad idea as that
+leads to unnecessary frame drop.
+
+I do think that using BQL and the QMAP flow command on
+the /same/ device would be best, as that throttles the connection
+when either of the two algorithms wants us to slow down.
+
+The question is mainly which of the two devices that should be.
+Doing it in the ipa driver is probably easier to implement here,
+but ideally I think we'd only have a single queue visible to the
+network stack, if we can come up with a way to do that.
+
+> > - I was a little confused by the location of the rmnet driver in
+> >   drivers/net/ethernet/... More conventionally, I think as a protocol
+> >   handler it should go into net/qmap/, with the ipa driver going
+> >   into drivers/net/qmap/ipa/, similar to what we have fo ethernet,
+> >   wireless, ppp, appletalk, etc.
+> >
+> > - The rx_handler uses gro_cells, which as I understand is meant
+> >   for generic tunnelling setups and takes another loop through
+> >   NAPI to aggregate data from multiple queues, but in case of
+> >   IPA's single-queue receive calling gro directly would be simpler
+> >   and more efficient.
+>
+> I have been planning to investigate some of the generic GRO
+> stuff for IPA but was going to wait on that until the basic
+> code was upstream.
+
+That's ok, that part can easily be changed after the fact, as it
+does not impact the user interface or the general design.
+
+> >   From the overall design and the rmnet Kconfig description, it
+> >   appears as though the intention as that rmnet could be a
+> >   generic wrapper on top of any device, but from the
+> >   implementation it seems that IPA is not actually usable that
+> >   way and would always go through IPA.
+>
+> As far as I know *nothing* upstream currently uses rmnet; the
+> IPA driver will be the first, but as Bjorn said others seem to
+> be on the way.  I'm not sure what you mean by "IPA is not
+> usable that way."  Currently the IPA driver assumes a fixed
+> configuration, and that configuration assumes the use of QMAP,
+> and therefore assumes the rmnet driver is layered above it.
+> That doesn't preclude rmnet from using a different back end.
+
+Yes, that's what I meant above: IPA can only be used through
+rmnet (I wrote "through IPA", sorry for the typo), but cannot be
+used by itself.
+
+       Arnd
