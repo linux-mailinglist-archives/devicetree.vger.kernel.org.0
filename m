@@ -2,89 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADCF534E0A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 18:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C88934E19
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 18:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727933AbfFDQyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 12:54:37 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:36374 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727924AbfFDQyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 12:54:37 -0400
-Received: by mail-pf1-f195.google.com with SMTP id u22so13047660pfm.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 09:54:37 -0700 (PDT)
+        id S1727872AbfFDQ6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 12:58:17 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:45290 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727716AbfFDQ6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 12:58:16 -0400
+Received: by mail-wr1-f65.google.com with SMTP id f9so1884964wre.12
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 09:58:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:to:from:subject:user-agent:date;
-        bh=gsZInba9qrm7ODb1Yq1UhqmbBbAzbVjS4lLusubD2Ls=;
-        b=LswJWZfy0lu8/m4EY2hN5vUBYjLbzIT/pf+JSF0lQ6U9Y9NIEvJa6+GFHY9rgaj8qi
-         qU4lFztnpLWhlZy9grrENap6Snf4V/1jQk0ZHyBIEqqGQ7BxCKyacYn5gvRSp6IiOTa/
-         u10YwlK6hJfJNh2+Vb2RSJ5qHGVtCqk6ZBheE=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=nf3jJrNk6C76DJ8y1UTRXRubP+zTDL/JpeAicSCnsJM=;
+        b=kqj8P8lxcUc0L8j5tOPPGZ4yyb6M3wmSSOxouSv0loFpvmYHZzWhuVjN2R8JtNK3J6
+         jL/vgM1d2yIWkuOyvL8G8D1rzqKASY0EQZOuTRCuQX5ZTda1jH4wqHL7ifC7Wf9r9Gm8
+         QLrLFFkDAXx2ymTAn9h5lFpY95u7vQMZBvBwmvo8MOkRNAN44sihGto76GpHK5fdQSyB
+         ctKzuQ66jaoP+z4Vx4fzDYUPtMN6A7A+cDQgXSuaNIp6FvxZZKOUGvu56BiLrZo36Q09
+         5tYIgdqHNhZCaZitnRU1D/JdWtz1PL0eCmXI/JOgF1dcYXcbd6sjNCRh14ozlcZ9vOAY
+         NaAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:date;
-        bh=gsZInba9qrm7ODb1Yq1UhqmbBbAzbVjS4lLusubD2Ls=;
-        b=myjVFmaYL1PrkG3pUZMk5Hp0zBXZ+O76ej4g3AumtMEixNs1w8bHWE/kLeVPE0M83j
-         L8u9RPPfddkGwHeP1HrLvCbeW8l86Yp8N96bF5On4hPuElRhsNY0u0JKZugemXBIbv1O
-         /6MfD5YQ7Z2dw8Ym9A6A6j9f3f3Hipwg1Z/Td3kJuYpUfKSk3jsH6Oj1o2AlAboOsVQW
-         CD3igcaOm0I0zMEg+NwiCwYatUNIc5wZp3HQ4StUo0XGS3iOZHOklb9AC8Fg+6P6CkFQ
-         MDofHR6Wx4bT5y9/FxXRKG9qpciqW4P0Ur1MIHThlle6DFCcqKe7rbsyctxFlAbFSOtZ
-         U4CQ==
-X-Gm-Message-State: APjAAAXtpRsAGKYCePgDYrZHY3TooMptlRKAIUXAAP7XZ6zm7T5iStPQ
-        zpNfVJi4X3Wu43ae6TYjL/4AgA==
-X-Google-Smtp-Source: APXvYqw9pQz0rGAmcjPIXcqIkj2VDqLOxoPXUACeihkAkH8amjHnLXEgaHBbXE2DoKkgmbIh57yGoA==
-X-Received: by 2002:a65:56cb:: with SMTP id w11mr36437881pgs.236.1559667277056;
-        Tue, 04 Jun 2019 09:54:37 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id g3sm22917280pfm.150.2019.06.04.09.54.36
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 04 Jun 2019 09:54:36 -0700 (PDT)
-Message-ID: <5cf6a24c.1c69fb81.c970e.907e@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190603155612.GC63283@arrakis.emea.arm.com>
-References: <20190517164746.110786-1-swboyd@chromium.org> <20190517164746.110786-5-swboyd@chromium.org> <20190603155612.GC63283@arrakis.emea.arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Dan Williams <dan.j.williams@intel.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [RFC/PATCH 4/5] arm64: Add support for arch_memremap_ro()
-User-Agent: alot/0.8.1
-Date:   Tue, 04 Jun 2019 09:54:35 -0700
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=nf3jJrNk6C76DJ8y1UTRXRubP+zTDL/JpeAicSCnsJM=;
+        b=Q7NQ4khkq722vEjyX18DWM1BHdINEsINmB6MXhctA1BIVkE1lIxGENwNuAbXDiOtPE
+         JvFGNfaL8QBC52g67+vHGcLneze1VKRVYVq5SNdUvBdU4Pu1rPGSGjdc/mngdOOCWHwz
+         xytG1PJYnS5FEgIVa/59ywBI6BIUafwHKm+TkmgGd57dsXhuqivRb1O9NzVkO0y5U1bN
+         Q2hoXSOahtWickLngDL6yFetMgAvXMgV+n9cMCYTftRcdFEQxCvMTpBrKYa4r72Vlxw/
+         KV5XV56BjrT0XxGRblUwVDNHbXPJjD++PnUQxs6VXX++1O8A3nla9oTh2Oc43lJb92NC
+         GQ0Q==
+X-Gm-Message-State: APjAAAWcTG1XzJtRWpX6xFMoXomx6rKnt2Ehe5as5A4InFzWzHNIBDJX
+        YdbbZivFbMCKk11Oi9B24OC69A==
+X-Google-Smtp-Source: APXvYqxZD1Us/ThhsKGk1nm85wHyP2HqX/Fn7dakkR4+Pd7zhA4BqXTk6Tkmc8vjuYmZTcfBiptgjA==
+X-Received: by 2002:adf:e2cb:: with SMTP id d11mr11255906wrj.66.1559667494840;
+        Tue, 04 Jun 2019 09:58:14 -0700 (PDT)
+Received: from clegane.local (20.119.129.77.rev.sfr.net. [77.129.119.20])
+        by smtp.gmail.com with ESMTPSA id t13sm25524979wra.81.2019.06.04.09.58.12
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Jun 2019 09:58:14 -0700 (PDT)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     heiko@sntech.de
+Cc:     linux-kernel@vger.kernel.org, edubezval@gmail.com,
+        manivannan.sadhasivam@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
+        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Randy Li <ayaka@soulik.info>,
+        Tony Xie <tony.xie@rock-chips.com>,
+        Vicente Bergas <vicencb@gmail.com>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support),
+        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
+Subject: [PATCH 1/2] arm64: dts: rockchip: Fix multiple thermal zones conflict in rk3399.dtsi
+Date:   Tue,  4 Jun 2019 18:57:57 +0200
+Message-Id: <20190604165802.7338-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Catalin Marinas (2019-06-03 08:56:13)
-> On Fri, May 17, 2019 at 09:47:45AM -0700, Stephen Boyd wrote:
-> > Pass in PAGE_KERNEL_RO to the underlying IO mapping mechanism to get a
-> > read-only mapping for the MEMREMAP_RO type of memory mappings that
-> > memremap() supports.
-> >=20
-> > Cc: Evan Green <evgreen@chromium.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: Will Deacon <will.deacon@arm.com>
-> > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > Cc: Dan Williams <dan.j.williams@intel.com>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
->=20
-> Not sure what the plans are with this series but if you need an ack for
-> arm64:
->=20
-> Acked-by: Catalin Marinas <catalin.marinas@arm.com>
+Currently the common thermal zones definitions for the rk3399 assumes
+multiple thermal zones are supported by the governors. This is not the
+case and each thermal zone has its own governor instance acting
+individually without collaboration with other governors.
 
-Thanks. I'll resend without the RFC tag and see how it goes.
+As the cooling device for the CPU and the GPU thermal zones is the
+same, each governors take different decisions for the same cooling
+device leading to conflicting instructions and an erratic behavior.
+
+As the cooling-maps is about to become an optional property, let's
+remove the cpu cooling device map from the GPU thermal zone.
+
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 196ac9b78076..e1357e0f60f7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -821,15 +821,6 @@
+ 					type = "critical";
+ 				};
+ 			};
+-
+-			cooling-maps {
+-				map0 {
+-					trip = <&gpu_alert0>;
+-					cooling-device =
+-						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+-				};
+-			};
+ 		};
+ 	};
+ 
+-- 
+2.17.1
 
