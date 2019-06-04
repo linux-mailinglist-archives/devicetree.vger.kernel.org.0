@@ -2,194 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0C434BA2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 17:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8024434BF9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 17:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727827AbfFDPJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 11:09:08 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39388 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727822AbfFDPJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 11:09:08 -0400
-Received: by mail-ot1-f68.google.com with SMTP id r21so7380104otq.6;
-        Tue, 04 Jun 2019 08:09:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XKSHYo9ctUMrD0sjylIwNb1es2ByOZKas8LIpRbYBmw=;
-        b=iQ0KHhetCVR5IsqwtBICpgv+IF3ki1lApWvboK97GBOeFeF30aJpMMIc+Pv7G75AzY
-         fbNFD0cVlFkARgRfffG0B0/ymhuaz58CPbPj1tRw3w/wzMKB/Q9gh9wimCyFPHETfFCB
-         dIlApbe6rwG169C0YAk650uTa+EZqQlRNnBrNEBsmKxauoxatj6zeERRwK4njpSkGPQV
-         Sda9jJhVREVTr/Wpb2Z+NAAcN0xOxA0sXnrZarbBM3lS0tAqTyWiI86aYo1/4ZcACEZ/
-         B6v91CjdXTlpIAC3w9zSbHeDKu1YHNDQILpNAF6OD0np8sOXOnghUlUz0KHM/jlYzvDX
-         hhZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XKSHYo9ctUMrD0sjylIwNb1es2ByOZKas8LIpRbYBmw=;
-        b=Js0iqgWnJaiGmMKS33Iq8amWB4kUlypHRK4b/Pl+YMijDaG5Mgj9cxM9opRufVN/0Z
-         NnMWBgwpwD5snw6dJwziOGiaotKcbLziOv5ijxJVxL0bmxHVfarFrx6AXcvD4nfb9X+O
-         KtfevzfzUzU9IDv5cD3iVsgpwxclp7IUaybqPddve5zUCTNIYocb4GN65QqtahucB8Le
-         EnyRn2QaJwxOsEmKyNG+5F4+4feC9/QMQVl4EN8L5Z4Td3z6aZiyoI0FyQsVp/4CWqEQ
-         Q1Ck1OSTRJhNgfdjgPVDWlQvew954AGvVTa5VBcyRxP6lDHgvObO6vFA/Ogaoc/3la2A
-         sg/w==
-X-Gm-Message-State: APjAAAXhb/B8bEf44/k36HtFqyByl6tWsTMtaa3XhIcJd13qPbc45/Rj
-        Sq2oyEDy3ZvxGORXmN45evHBUCP3j1GN69U1GPs=
-X-Google-Smtp-Source: APXvYqwWBcudZPjaM9b9iqmRFgfE4JacyimajXEuFISTyDx4p3PP+AK36wMIWf9cNbNJe5l9iy35X4ISimTqp7AgU2I=
-X-Received: by 2002:a9d:d87:: with SMTP id 7mr5183267ots.263.1559660947275;
- Tue, 04 Jun 2019 08:09:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190604122150.29D6468B05@newverein.lst.de> <20190604122308.98D4868B20@newverein.lst.de>
-In-Reply-To: <20190604122308.98D4868B20@newverein.lst.de>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Tue, 4 Jun 2019 08:08:40 -0700
-Message-ID: <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        id S1727995AbfFDPSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 11:18:54 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:37322 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727783AbfFDPSy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 11:18:54 -0400
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com [10.5.11.23])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id 254043087BA9;
+        Tue,  4 Jun 2019 15:18:37 +0000 (UTC)
+Received: from ovpn-112-67.rdu2.redhat.com (ovpn-112-67.rdu2.redhat.com [10.10.112.67])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 08F1F52C4;
+        Tue,  4 Jun 2019 15:18:27 +0000 (UTC)
+Message-ID: <b26cf34c0d3fa1a7a700cee935244d7a2a7e1388.camel@redhat.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Dan Williams <dcbw@redhat.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Alex Elder <elder@linaro.org>
+Cc:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Miller <davem@davemloft.net>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        evgreen@chromium.org, Ben Chan <benchan@google.com>,
+        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
+        syadagir@codeaurora.org, abhishek.esse@gmail.com,
+        Networking <netdev@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org
+Date:   Tue, 04 Jun 2019 10:18:26 -0500
+In-Reply-To: <CAK8P3a2U=RzfpVaAgRP1QwPhRpZiBNsG5qdWjzwG=tCKZefYHA@mail.gmail.com>
+References: <20190531035348.7194-1-elder@linaro.org>
+         <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
+         <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org>
+         <CAK8P3a05CevRBV3ym+pnKmxv+A0_T+AtURW2L4doPAFzu3QcJw@mail.gmail.com>
+         <a28c5e13-59bc-144d-4153-9d104cfa9188@linaro.org>
+         <20190531233306.GB25597@minitux>
+         <d76a710d45dd7df3a28afb12fc62cf14@codeaurora.org>
+         <CAK8P3a0brT0zyZGNWiS2R0RMHHFF2JG=_ixQyvjhj3Ky39o0UA@mail.gmail.com>
+         <040ce9cc-7173-d10a-a82c-5186d2fcd737@linaro.org>
+         <CAK8P3a2U=RzfpVaAgRP1QwPhRpZiBNsG5qdWjzwG=tCKZefYHA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.45]); Tue, 04 Jun 2019 15:18:53 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 4, 2019 at 5:23 AM Torsten Duwe <duwe@lst.de> wrote:
->
-> Teres-I has an anx6345 bridge connected to the RGB666 LCD output, and
-> the I2C controlling signals are connected to I2C0 bus. eDP output goes
-> to an Innolux N116BGE panel.
->
-> Enable it in the device tree.
->
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Torsten Duwe <duwe@suse.de>
-> ---
->  .../boot/dts/allwinner/sun50i-a64-teres-i.dts      | 65 ++++++++++++++++++++--
->  1 file changed, 61 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> index 0ec46b969a75..a0ad438b037f 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> @@ -65,6 +65,21 @@
->                 };
->         };
->
-> +       panel: panel {
-> +               compatible ="innolux,n116bge", "simple-panel";
+On Tue, 2019-06-04 at 10:13 +0200, Arnd Bergmann wrote:
+> On Mon, Jun 3, 2019 at 3:32 PM Alex Elder <elder@linaro.org> wrote:
+> > On 6/3/19 5:04 AM, Arnd Bergmann wrote:
+> > > On Sat, Jun 1, 2019 at 1:59 AM Subash Abhinov Kasiviswanathan
+> > > 
+> > > - What I'm worried about most here is the flow control handling
+> > > on the
+> > >   transmit side. The IPA driver now uses the modern BQL method to
+> > >   control how much data gets submitted to the hardware at any
+> > > time.
+> > >   The rmnet driver also uses flow control using the
+> > >   rmnet_map_command() function, that blocks tx on the higher
+> > >   level device when the remote side asks us to.
+> > >   I fear that doing flow control for a single physical device on
+> > > two
+> > >   separate netdev instances is counterproductive and confuses
+> > >   both sides.
+> > 
+> > I understand what you're saying here, and instinctively I think
+> > you're right.
+> > 
+> > But BQL manages the *local* interface's ability to get rid of
+> > packets, whereas the QMAP flow control is initiated by the other
+> > end of the connection (the modem in this case).
+> > 
+> > With multiplexing, it's possible that one of several logical
+> > devices on the modem side has exhausted a resource and must
+> > ask the source of the data on the host side to suspend the
+> > flow.  Meanwhile the other logical devices sharing the physical
+> > link might be fine, and should not be delayed by the first one.
+> > 
+> > It is the multiplexing itself that confuses the BQL algorithm.
+> > The abstraction obscures the *real* rates at which individual
+> > logical connections are able to transmit data.
+> 
+> I would assume that the real rate constantly changes, at least
+> for wireless interfaces that are also shared with other users
+> on the same network. BQL is meant to deal with that, at least
+> when using a modern queuing algorithm.
+> 
+> > Even if the multiple logical interfaces implemented BQL, they
+> > would not get the feedback they need directly from the IPA
+> > driver, because transmitting over the physical interface might
+> > succeed even if the logical interface on the modem side can't
+> > handle more data.  So I think the flow control commands may be
+> > necessary, given multiplexing.
+> 
+> Can you describe what kind of multiplexing is actually going on?
+> I'm still unclear about what we actually use multiple logical
+> interfaces for here, and how they relate to one another.
 
-It's still "simple-panel". I believe I already mentioned that Rob
-asked it to be edp-connector.
+Each logical interface represents a different "connection" (PDP/EPS
+context) to the provider network with a distinct IP address and QoS.
+VLANs may be a suitable analogy but here they are L3+QoS.
 
-> +               status = "okay";
-> +               power-supply = <&reg_dcdc1>;
-> +               backlight = <&backlight>;
-> +
-> +               ports {
-> +                       panel_in: port {
-> +                               panel_in_edp: endpoint {
-> +                                       remote-endpoint = <&anx6345_out>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +
->         reg_usb1_vbus: usb1-vbus {
->                 compatible = "regulator-fixed";
->                 regulator-name = "usb1-vbus";
-> @@ -81,20 +96,48 @@
->         };
->  };
->
-> +&de {
-> +       status = "okay";
-> +};
-> +
->  &ehci1 {
->         status = "okay";
->  };
->
->
-> -/* The ANX6345 eDP-bridge is on i2c0. There is no linux (mainline)
-> - * driver for this chip at the moment, the bootloader initializes it.
-> - * However it can be accessed with the i2c-dev driver from user space.
-> - */
->  &i2c0 {
->         clock-frequency = <100000>;
->         pinctrl-names = "default";
->         pinctrl-0 = <&i2c0_pins>;
->         status = "okay";
-> +
-> +       anx6345: anx6345@38 {
-> +               compatible = "analogix,anx6345";
-> +               reg = <0x38>;
-> +               reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
-> +               dvdd25-supply = <&reg_dldo2>;
-> +               dvdd12-supply = <&reg_dldo3>;
-> +
-> +               ports {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       port@0 {
-> +                               anx6345_in: endpoint {
-> +                                       remote-endpoint = <&tcon0_out_anx6345>;
-> +                               };
-> +                       };
-> +                       port@1 {
-> +                               anx6345_out: endpoint {
-> +                                       remote-endpoint = <&panel_in_edp>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&mixer0 {
-> +       status = "okay";
->  };
->
->  &mmc0 {
-> @@ -279,6 +322,20 @@
->         vcc-hdmi-supply = <&reg_dldo1>;
->  };
->
-> +&tcon0 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&lcd_rgb666_pins>;
-> +
-> +       status = "okay";
-> +};
-> +
-> +&tcon0_out {
-> +       tcon0_out_anx6345: endpoint@0 {
-> +               reg = <0>;
-> +               remote-endpoint = <&anx6345_in>;
-> +       };
-> +};
-> +
->  &uart0 {
->         pinctrl-names = "default";
->         pinctrl-0 = <&uart0_pb_pins>;
-> --
-> 2.16.4
->
+In realistic example the main interface (say rmnet0) would be used for
+web browsing and have best-effort QoS. A second interface (say rmnet1)
+would be used for VOIP and have certain QoS guarantees from both the
+modem and the network itself.
+
+QMAP can also aggregate frames for a given channel (connection/EPS/PDP
+context/rmnet interface/etc) to better support LTE speeds.
+
+Dan
+
+> > The rmnet driver could use BQL, and could return NETDEV_TX_BUSY
+> > for a logical interface when its TX flow has been stopped by a
+> > QMAP command.  That way the feedback for BQL on the logical
+> > interfaces would be provided in the right place.
+> > 
+> > I have no good intuition about the interaction between
+> > two layered BQL managed queues though.
+> 
+> Returning NETDEV_TX_BUSY is usually a bad idea as that
+> leads to unnecessary frame drop.
+> 
+> I do think that using BQL and the QMAP flow command on
+> the /same/ device would be best, as that throttles the connection
+> when either of the two algorithms wants us to slow down.
+> 
+> The question is mainly which of the two devices that should be.
+> Doing it in the ipa driver is probably easier to implement here,
+> but ideally I think we'd only have a single queue visible to the
+> network stack, if we can come up with a way to do that.
+> 
+> > > - I was a little confused by the location of the rmnet driver in
+> > >   drivers/net/ethernet/... More conventionally, I think as a
+> > > protocol
+> > >   handler it should go into net/qmap/, with the ipa driver going
+> > >   into drivers/net/qmap/ipa/, similar to what we have fo
+> > > ethernet,
+> > >   wireless, ppp, appletalk, etc.
+> > > 
+> > > - The rx_handler uses gro_cells, which as I understand is meant
+> > >   for generic tunnelling setups and takes another loop through
+> > >   NAPI to aggregate data from multiple queues, but in case of
+> > >   IPA's single-queue receive calling gro directly would be
+> > > simpler
+> > >   and more efficient.
+> > 
+> > I have been planning to investigate some of the generic GRO
+> > stuff for IPA but was going to wait on that until the basic
+> > code was upstream.
+> 
+> That's ok, that part can easily be changed after the fact, as it
+> does not impact the user interface or the general design.
+> 
+> > >   From the overall design and the rmnet Kconfig description, it
+> > >   appears as though the intention as that rmnet could be a
+> > >   generic wrapper on top of any device, but from the
+> > >   implementation it seems that IPA is not actually usable that
+> > >   way and would always go through IPA.
+> > 
+> > As far as I know *nothing* upstream currently uses rmnet; the
+> > IPA driver will be the first, but as Bjorn said others seem to
+> > be on the way.  I'm not sure what you mean by "IPA is not
+> > usable that way."  Currently the IPA driver assumes a fixed
+> > configuration, and that configuration assumes the use of QMAP,
+> > and therefore assumes the rmnet driver is layered above it.
+> > That doesn't preclude rmnet from using a different back end.
+> 
+> Yes, that's what I meant above: IPA can only be used through
+> rmnet (I wrote "through IPA", sorry for the typo), but cannot be
+> used by itself.
+> 
+>        Arnd
+
