@@ -2,104 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96D2133D32
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 04:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29C8833DDE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 06:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726566AbfFDCdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jun 2019 22:33:21 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:37392 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726465AbfFDCdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jun 2019 22:33:20 -0400
-Received: by mail-oi1-f195.google.com with SMTP id i4so14048856oih.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2019 19:33:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/efz5fBqwkKql5eaLioEbxPG0lpeX3IuNQzBKE0KZPY=;
-        b=t0Tg5fNTxniTRmz/iZalyXNNLBLd+1rhT2xgBa8LZbek9rqjAlwbOGh00WHUB1ncrx
-         Yo/H4u0aKaaEw1LY3oxY/qG/vRwpEj/gpqna5xGRMKtyhf3tetBrPBVEq5/wW5OunbmT
-         6P+dBmhIXg4OTMvR81tWx1OWHYVdqp3+mTeW/erFR9g1OpVb3yvcUQDsNFS7/xBbe2Ix
-         099d7LnpWWUcDprl9p4V7TN5UkrBzPDwAaJK9fx2m9ZdntdbcTThl4RrqZGvB8aLAESR
-         7H5CqQB/OZL7Y8tzXpk5gqxdRBj4CkDWX7h78XUi9vUABQ5ElROPygSMfDoZJKEFAcyt
-         5New==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/efz5fBqwkKql5eaLioEbxPG0lpeX3IuNQzBKE0KZPY=;
-        b=KebR4kI0uQOILTUrsqVPE7lDC6oc0llwgOHbS0OANrfgmGfr1QWCFZ/TLJxa19iIh7
-         Eis/iemqHGtQMOJ/j6+r8ONbxoOhyt1bXUuxBi+YbHbb/PeTotwVT1VSwToXOz8r1W5Z
-         zIwKAIzfGQmkcKY0GKREBfQrUGEtgnvc/VGRietbHCp+NfFDq1wuqv3WxVKG5QJtjdBh
-         wIdzN9sDudVwtwlDS6egPI0Qk/Fy2gF7+vG5yV0LvdMB/KuOq61TRIgRTmEikvaIc11T
-         VZnfArbPZWAb1pVTblITp9W3THrpa93/hIJRJ+o6NvNDO6Nwor9TfnDULON5RhI5R1mw
-         qjjg==
-X-Gm-Message-State: APjAAAUtDsamoXXa77f1LLSRJB+bMMnk+Iq7uDgyM7CRux7zDBF1VR1p
-        SsLZlXkdHWW1fNV5fcMPISo+nhnzsLBup0dgF/y1Eg==
-X-Google-Smtp-Source: APXvYqxb/i7+n5YIjVsNZWPZfvdm7xM+4h6bvKEOeA1ig/CQVGfW4rtKxXeB0d4+sPhSP0CMWDZvMBprzf2J8CSGkSs=
-X-Received: by 2002:aca:dd08:: with SMTP id u8mr74850oig.27.1559615599920;
- Mon, 03 Jun 2019 19:33:19 -0700 (PDT)
+        id S1726078AbfFDEX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 00:23:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38478 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726327AbfFDEXr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 00:23:47 -0400
+Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.30.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C498D24CA4;
+        Tue,  4 Jun 2019 04:23:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559622226;
+        bh=gLtAailyS6IJm8z2V2PeInJ4Zh8RQw5AhexkL1edZlQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Cam4pLTngHKbpei8gF74EopX7nX49t8VOukQeGIYWDwfJxCUpn/HHzpXC/6yv3Lbi
+         mD9+WZgi6RoCqqxVoYLpJTJxAwCO6UQqV89tXiAwC6xD/1tDPHs0ghtyCHW8ha9Kzn
+         ENTn73F6Rk+QP+lOB42/QBxsDkFAKrCPa5JpXW2A=
+Received: by wens.tw (Postfix, from userid 1000)
+        id 6A0A35FCDF; Tue,  4 Jun 2019 12:23:43 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@kernel.org>,
+        Vincent Donnefort <vdonnefort@gmail.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] rtc: pcf8563: Fix unhandled interrupt storm
+Date:   Tue,  4 Jun 2019 12:23:34 +0800
+Message-Id: <20190604042337.26129-1-wens@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <cover.1558346019.git.baolin.wang@linaro.org> <ee4ad0e7e131e4d639dbf6bd25ad93726648ce1c.1558346019.git.baolin.wang@linaro.org>
- <CAPDyKFrWiG3KJad+L3NOQ-dC2XnBM-8mQGVEsVB_Qg0ACTfVag@mail.gmail.com>
-In-Reply-To: <CAPDyKFrWiG3KJad+L3NOQ-dC2XnBM-8mQGVEsVB_Qg0ACTfVag@mail.gmail.com>
-From:   Baolin Wang <baolin.wang@linaro.org>
-Date:   Tue, 4 Jun 2019 10:33:08 +0800
-Message-ID: <CAMz4kuK+yX=V2zp-C4Xb-6ZjgLOY+ON2iHZU=HwONeXcJCkk4w@mail.gmail.com>
-Subject: Re: [PATCH 2/9] dt-bindings: mmc: sprd: Add another optional clock documentation
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        arm-soc <arm@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ulf,
+From: Chen-Yu Tsai <wens@csie.org>
 
-On Mon, 3 Jun 2019 at 21:34, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Mon, 20 May 2019 at 12:12, Baolin Wang <baolin.wang@linaro.org> wrote:
-> >
-> > For some Spreadtrum platforms like SC9860 platform, we should enable another
-> > gate clock '2x_enable' to make the SD host controller work well. Thus add
-> > documentation for this optional clock.
-> >
-> > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
-> > ---
-> >  .../devicetree/bindings/mmc/sdhci-sprd.txt         |    1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
-> > index 45c9978..a285c77 100644
-> > --- a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
-> > +++ b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
-> > @@ -14,6 +14,7 @@ Required properties:
-> >  - clock-names: Should contain the following:
-> >         "sdio" - SDIO source clock (required)
-> >         "enable" - gate clock which used for enabling/disabling the device (required)
-> > +       "2x_enable" - gate clock controlling the device for some special platforms (optional)
->
-> This is a bit vague, could you please elaborate (and fold in that
-> information to the doc) on what kind of clock this is?
+Hi everyone,
 
-Sorry for confusing. For some Spreadtrum platfroms like SC9860
-platform, we should enable 2 gate clocks to enable SD host controller,
-that means we have 2 serialized clock gates. I know that's a little
-weird, but that's our clock's design.
+While bringing up my Pine H64, I encountered an interrupt storm from the
+pcf8563 RTC. The RTC chip's interrupt line is shared with the PMIC, and
+was not properly added to the device tree. Also, the driver was using an
+trigger method incompatible with the PMIC, preventing the interrupt line
+from being shared. Last, the driver only clears and masks the alarm
+interrupt, while leaving the timer interrupt untouched. This is a
+problem if previous systems left the timer interrupt enabled, and there
+was an interrupt pending.
+
+This patch set fixes all three issues, one per patch.
+
+Please have a look.
+
+Chen-Yu Tsai (3):
+  rtc: pcf8563: Fix interrupt trigger method
+  rtc: pcf8563: Clear event flags and disable interrupts before
+    requesting irq
+  arm64: dts: allwinner: h6: Pine H64: Add interrupt line for RTC
+
+ .../arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts |  2 ++
+ drivers/rtc/rtc-pcf8563.c                           | 13 ++++++-------
+ 2 files changed, 8 insertions(+), 7 deletions(-)
 
 -- 
-Baolin Wang
-Best Regards
+2.20.1
+
