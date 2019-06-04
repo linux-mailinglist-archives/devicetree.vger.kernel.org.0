@@ -2,141 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ACE234FC2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 20:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3947235033
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 21:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726211AbfFDSUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 14:20:47 -0400
-Received: from mail-pf1-f180.google.com ([209.85.210.180]:34507 "EHLO
-        mail-pf1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726179AbfFDSUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 14:20:46 -0400
-Received: by mail-pf1-f180.google.com with SMTP id c85so4390908pfc.1;
-        Tue, 04 Jun 2019 11:20:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=rkSwU71K73scZ+gaddkeCEXxdBDgv49bmVU1xExpRSo=;
-        b=jKkRKM8ez3ciBU6QKJC1DXaqmvggOmTW8dQdy1/qcEUfgjn3+AIObJrmSlYoboTCir
-         p2v/Kv9PkrhSLr4BxjJMxQSLllOOMTM2ln98cG1mU8O5zPE19LoWziUyDTTVuGcRR7wW
-         M0Bs9GQD4FrgIzx/gf2hGl9ohJxr0407NBMwbXoPBw0yHNvxfoqWgPCC9ljSFyYgOGPZ
-         gCL9UiaKv8rv6tu0nkfsIw0UctBZ1cP5xXC7JZAwLr4tjoiZFQtOQtIaU9W0gSgY2CsL
-         7m1EG36hk7Dysvsul+kO4UDebsQXxtP2RppzV3+4GUZ3IiejT0UdwMq1gaEbzQP7yy0K
-         f+Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rkSwU71K73scZ+gaddkeCEXxdBDgv49bmVU1xExpRSo=;
-        b=T1IdOGm8zD9aMTNnjNyxQsalIL5PqhGN0ZwwJBoFPvGaDtqmWrNtoqQJzamusd64TC
-         9Z1nKntZEuWztGLhbE/WKPakIxdzVsAQrgq1jQ5j/h7P5XcFAyArMYuuQZfuvtTMhwaG
-         y2b4eTKQKlNLB5HDrzvNA7bO6yvdvYn00mEjdgUdKKNNF0+6tlZjBGYMrcTljZt7thiw
-         5bPQoqfE7my9sYAr3HBWgaJ8HtaNz6CWfzEytPMjliBvl8D/C3v9p5IbrtCnIJQ8puq/
-         oz8qpUYPSU6hQank9Bzj4PNTb5CYKyVG+zCwXJU1FFYovKipXUzkaWcHBV3borhnmO4G
-         e/Lg==
-X-Gm-Message-State: APjAAAW5A52dPQj5ISTj4ahPIkMjl6GR6Z+5shN2P5SLmfmweXMg0TRR
-        J3BIGaemedWhUprWWxRX6reBDMmA
-X-Google-Smtp-Source: APXvYqwiSebMkHd42axWHMY4tve11l/QHgRBaJ2adjNS8DZHLvZUGcXQzFwWBosw4EzQ2VzE3rEysw==
-X-Received: by 2002:a63:f54c:: with SMTP id e12mr33695pgk.62.1559672445760;
-        Tue, 04 Jun 2019 11:20:45 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id s42sm22991062pjc.5.2019.06.04.11.20.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 04 Jun 2019 11:20:45 -0700 (PDT)
-Subject: Re: Dynamic overlay failure in 4.19 & 4.20
-To:     Phil Elwell <phil@raspberrypi.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <c5af11eb-afe5-08c4-8597-3195c25ba1d5@raspberrypi.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <4d5b9fba-3879-0729-119a-f7d585a74cc1@gmail.com>
-Date:   Tue, 4 Jun 2019 11:20:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726211AbfFDTXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 15:23:51 -0400
+Received: from mga09.intel.com ([134.134.136.24]:40972 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726179AbfFDTXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 15:23:51 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Jun 2019 12:23:49 -0700
+X-ExtLoop1: 1
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga006.jf.intel.com with ESMTP; 04 Jun 2019 12:23:45 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 9177E20BEB; Tue,  4 Jun 2019 22:23:44 +0300 (EEST)
+Date:   Tue, 4 Jun 2019 22:23:44 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Vishal Sagar <vishal.sagar@xilinx.com>
+Cc:     Hyun Kwon <hyunk@xilinx.com>, laurent.pinchart@ideasonboard.com,
+        mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        Michal Simek <michals@xilinx.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, hans.verkuil@cisco.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Dinesh Kumar <dineshk@xilinx.com>,
+        Sandip Kothari <sandipk@xilinx.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v8 1/2] media: dt-bindings: media: xilinx: Add Xilinx
+ MIPI CSI-2 Rx Subsystem
+Message-ID: <20190604192344.7tycwffjd3yeizxh@paasikivi.fi.intel.com>
+References: <1559555971-193235-1-git-send-email-vishal.sagar@xilinx.com>
+ <1559555971-193235-2-git-send-email-vishal.sagar@xilinx.com>
 MIME-Version: 1.0
-In-Reply-To: <c5af11eb-afe5-08c4-8597-3195c25ba1d5@raspberrypi.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1559555971-193235-2-git-send-email-vishal.sagar@xilinx.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Phil,
+Hi Vishal,
 
-On 6/4/19 5:15 AM, Phil Elwell wrote:
-> Hi,
-> 
-> In the downstream Raspberry Pi kernel we are using configfs to apply overlays at
-> runtime, using a patchset from Pantelis that hasn't been accepted upstream yet.
-> Apart from the occasional need to adapt to upstream changes, this has been working
-> well for us.
-> 
-> A Raspberry Pi user recently noticed that this mechanism was failing for an overlay in
-> 4.19. Although the overlay appeared to be applied successfully, pinctrl was reporting
-> that one of the two fragments contained an invalid phandle, and an examination of the
-> live DT agreed - the target of the reference, which was in the other fragment, was
-> missing the phandle property.
-> 
-> 5.0 added two patches - [1] to stop blindly copying properties from the overlay fragments
-> into the live tree, and [2] to explicitly copy across the name and phandle properties.
-> These two commits should be treated as a pair; the former requires the properties that
-> are legitimately defined by an overlay to be added via a changeset, but this mechanism
-> deliberately skips the name and phandle; the latter addresses this shortcoming. However,
-> [1] was back-ported to 4.19 and 4.20 but [2] wasn't, hence the problem.
+On Mon, Jun 03, 2019 at 03:29:30PM +0530, Vishal Sagar wrote:
 
-I have relied upon Greg's statement that he would handle the stable kernels, and that
-the process of doing so would not impact (or would minimally impact) maintainers.  If
-I think something should go into stable, I will tag it as such, but otherwise I ignore
-the stable branches.  For overlay related code specifically, my base standard is that
-overlay support is an under development, not yet ready for prime time feature and thus
-I do not tag my overlay patches for stable.
+> +Optional properties:
+> +--------------------
+> +- xlnx,vfb: This is present when Video Format Bridge is enabled.
+> +  Without this property the driver won't be loaded as IP won't be able to generate
+> +  media bus format compliant stream output.
 
-Your research and analysis above sound like there are on target (thanks for providing
-the clear and detailed explanation!), so if you want the stable branches to work for
-overlays (out of tree, as you mentioned) I would suggest you email Greg, asking that
-the second patch be added to the stable branches.  Since the two patches you pointed
-out are put of a larger series, you might also want to check which of the other
-patches in that series were included in stable or left out from stable.  My suggestion
-that you request Greg add the second patch continues to rely on the concept that
-stable does not add to my workload, so I have not carefully analyzed whether adding
-the patch actually is the correct and full fix, but instead am relying on your good
-judgment that it is.
+I think we previously concluded that the format will be just different in
+this case. So the description appears incorrect.
 
-To give you some context on the patch series, I started with 144552c78692 ("of: overlay:
-add tests to validate kfrees from overlay removal") due to my concerns with how
-memory is allocated and freed for overlays.  The added tests exposed issues, and
-the rest of the patches in the series were dealing with the issues that were
-exposed.
-
-You can see the full series (with maybe an extra patch or so) with
-git log --oneline 144552c78692^..eeb07c573ec3
-
-
-> The effect can be seen in the "overlay" overlay in the unittest data. Although the
-> overlay appears to apply correctly, the hvac-large-1 node is lacking the phandle it
-> should have as a result of the hvac_2 label, and that leaves the hvac-provider property
-> of ride@200 with an unresolved phandle.
-> 
-> The obvious fix is to also back-port [2] to 4.19, but that leaves open the question of
-> whether either the overlay application mechanism or the unit test framework should have
-> detected the missing phandle.
-
-Yes, unittest showed the missing phandle, as you described in the /proc view of
-overlay.dts above.  That portion of unittest depends on someone looking at the
-result of what is in /proc/device-tree and is not automated and is not documented.
-I intend to automate that check someday, but the task is still languishing on my
-todo list.
-
-> 
-> Phil
-> 
-> [1] 8814dc46bd9e ("of: overlay: do not duplicate properties from overlay for new nodes")
-> [2] f96278810150 ("of: overlay: set node fields from properties when add new overlay node")
-> 
-
+-- 
+Sakari Ailus
+sakari.ailus@linux.intel.com
