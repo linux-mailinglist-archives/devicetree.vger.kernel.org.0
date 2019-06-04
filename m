@@ -2,174 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78417346E5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDD1B34711
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727703AbfFDMd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 08:33:58 -0400
-Received: from vps.xff.cz ([195.181.215.36]:60168 "EHLO vps.xff.cz"
+        id S1727730AbfFDMkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 08:40:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47356 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727654AbfFDMd6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 08:33:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1559651635; bh=BxxySmvFXnZjtb/3jRvUJ5xAJWsfsR3yPsxl6YMjSdM=;
+        id S1727580AbfFDMkb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 08:40:31 -0400
+Received: from localhost (unknown [117.99.94.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2874D240B7;
+        Tue,  4 Jun 2019 12:40:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559652030;
+        bh=RWXt3aNCMTy+UTAYePZmQNO2QW1YFLu3Odj5H+eyHNA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XZ/J6YzqPnmG5/SSvTvNnIbG0FUOkSx2ZzQtC2SWzbRGDLTHYkE/9TjTjVyQbLjwx
-         47yTGEb8HeV2BYxRL9AEQDawcAw4Xg5XA3dxUN+GjP2OZnpImMdeH2zuif20Li4lz3
-         84MgE3lXOKt37uWn9fPy3MVThkkGtU93JB4rXP6Y=
-Date:   Tue, 4 Jun 2019 14:33:55 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [linux-sunxi] Re: [PATCH v3 10/12] arm64: dts: allwinner: h6:
- Add IR receiver node
-Message-ID: <20190604123355.m47ufmhtzuzfvmp7@core.my.home>
-Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-References: <20190528161440.27172-1-peron.clem@gmail.com>
- <20190528161440.27172-11-peron.clem@gmail.com>
- <20190530145550.amalnxmx7kpokykv@core.my.home>
- <CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw@mail.gmail.com>
- <20190531124630.q2guo54kjfzr7rkn@core.my.home>
- <CAJiuCcdMftAjCwk2_naE9VBGGqS=OY9xcqv6+5pDX2Z8O=L28w@mail.gmail.com>
+        b=Hdr+1cp/fxGQJ56LsNzXwjSNWS4eq1YQTiZBzI4UDMwB6jZ4XgztjczYnU3pwnb8+
+         uMj6WC0yqMcal5zsMrWfkeqHVgnDI8jvswzpowOSD6tG6q/1ioaLm1OIoFsuF8p4gB
+         MDRiRTit4eY9cpz/wqw4nMAh8myb2AiAISowCT5o=
+Date:   Tue, 4 Jun 2019 18:07:22 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     yibin.gong@nxp.com
+Cc:     robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, mark.rutland@arm.com, dan.j.williams@intel.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v3 7/8] dmaengine: fsl-edma: add i.mx7ulp edma2 version
+ support
+Message-ID: <20190604123722.GF15118@vkoul-mobl>
+References: <20190529090848.34350-1-yibin.gong@nxp.com>
+ <20190529090848.34350-8-yibin.gong@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJiuCcdMftAjCwk2_naE9VBGGqS=OY9xcqv6+5pDX2Z8O=L28w@mail.gmail.com>
+In-Reply-To: <20190529090848.34350-8-yibin.gong@nxp.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
-
-On Mon, Jun 03, 2019 at 09:58:23PM +0200, Clément Péron wrote:
-> Hi Ondrej,
+On 29-05-19, 17:08, yibin.gong@nxp.com wrote:
+> From: Robin Gong <yibin.gong@nxp.com>
 > 
-> On Fri, 31 May 2019 at 14:46, Ondřej Jirman <megous@megous.com> wrote:
-> >
-> > Hello Clément,
-> >
-> > On Fri, May 31, 2019 at 12:25:32AM +0200, Clément Péron wrote:
-> > > Hi Ondrej,
-> > >
-> > > On Thu, 30 May 2019 at 16:55, Ondřej Jirman <megous@megous.com> wrote:
-> > > >
-> > > > Hello Clément,
-> > > >
-> > > > On Tue, May 28, 2019 at 06:14:38PM +0200, Clément Péron wrote:
-> > > > > Allwinner H6 IR is similar to A31 and can use same driver.
-> > > > >
-> > > > > Add support for it.
-> > > > >
-> > > > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 19 +++++++++++++++++++
-> > > > >  1 file changed, 19 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > index 16c5c3d0fd81..649cbdfe452e 100644
-> > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > @@ -647,6 +647,25 @@
-> > > > >                               pins = "PL0", "PL1";
-> > > > >                               function = "s_i2c";
-> > > > >                       };
-> > > > > +
-> > > > > +                     r_ir_rx_pin: r-ir-rx-pin {
-> > > > > +                             pins = "PL9";
-> > > > > +                             function = "s_cir_rx";
-> > > > > +                     };
-> > > > > +             };
-> > > > > +
-> > > > > +             r_ir: ir@7040000 {
-> > > > > +                             compatible = "allwinner,sun50i-h6-ir",
-> > > > > +                                          "allwinner,sun6i-a31-ir";
-> > > > > +                             reg = <0x07040000 0x400>;
-> > > > > +                             interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +                             clocks = <&r_ccu CLK_R_APB1_IR>,
-> > > > > +                                      <&r_ccu CLK_IR>;
-> > > > > +                             clock-names = "apb", "ir";
-> > > > > +                             resets = <&r_ccu RST_R_APB1_IR>;
-> > > > > +                             pinctrl-names = "default";
-> > > > > +                             pinctrl-0 = <&r_ir_rx_pin>;
-> > > > > +                             status = "disabled";
-> > > > >               };
-> > > >
-> > > > Please make a comment here, that this is known broken on some boards and may
-> > > > result IRQ flood if enabled. Otherwise noone will know.
-> > >
-> > > I'm planning to send a v4 next week with the IRQ_NONE return as Maxime
-> > > suggested it.
-> > > https://github.com/clementperon/linux/tree/h6_ir_v4
-> > >
-> > > But maybe we could also use the bit 5 of the IRQ status.
-> >
-> > Thanks, that's nice, but that will not make the HW work. That will just disable
-> > it. The comment is still necessary.
-> I have pushed a new version on my github.
-> https://github.com/clementperon/linux/commits/h6_ir_v4
+>   Add edma2 for i.mx7ulp by version v3, since v2 has already
+
+Why leading spaces at start of line?
+
+> been used by mcf-edma.
+> The big changes based on v1 are belows:
+> 1. only one dmamux.
+> 2. another clock dma_clk except dmamux clk.
+> 3. 16 independent interrupts instead of only one interrupt for
+> all channels.
 > 
-> I will submit it, if you are ok with it.
-
-the changes make it worse. Console is flooded with "Temporarily disable IRQ"
-and other symptoms are the same as I described before. Interrupts are not
-disabled in a any reasonable time. (I've waited for more > 5mins already.)
-
-You probably need to disable interrupts right away, not wait for 100k failures.
-
-thank you and regards,
-	o.
-
-> Thanks,
-> Clément
+> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> ---
+>  drivers/dma/fsl-edma-common.c | 18 +++++++++++-
+>  drivers/dma/fsl-edma-common.h |  3 ++
+>  drivers/dma/fsl-edma.c        | 67 +++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 87 insertions(+), 1 deletion(-)
 > 
-> >
-> > thank you,
-> >         o.
-> >
-> > > Regards, Clement
-> > >
-> > > >
-> > > > thanks,
-> > > >         o.
-> > > >
-> > > > >               r_i2c: i2c@7081400 {
-> > > > > --
-> > > > > 2.20.1
-> > > > >
-> > > > >
-> > > > > _______________________________________________
-> > > > > linux-arm-kernel mailing list
-> > > > > linux-arm-kernel@lists.infradead.org
-> > > > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> > >
-> > > --
-> > > You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> > > To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> > > To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/CAJiuCce7nHSktVsDKcR8GLRpD3WrN5yP3Nb_Hbu_Q9NjUQbSMw%40mail.gmail.com.
-> > > For more options, visit https://groups.google.com/d/optout.
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> diff --git a/drivers/dma/fsl-edma-common.c b/drivers/dma/fsl-edma-common.c
+> index 45d70d3..0d9915c 100644
+> --- a/drivers/dma/fsl-edma-common.c
+> +++ b/drivers/dma/fsl-edma-common.c
+> @@ -90,6 +90,19 @@ static void mux_configure8(struct fsl_edma_chan *fsl_chan, void __iomem *addr,
+>  	iowrite8(val8, addr + off);
+>  }
+>  
+> +void mux_configure32(struct fsl_edma_chan *fsl_chan, void __iomem *addr,
+> +		     u32 off, u32 slot, bool enable)
+> +{
+> +	u32 val;
+> +
+> +	if (enable)
+> +		val = EDMAMUX_CHCFG_ENBL << 24 | slot;
+> +	else
+> +		val = EDMAMUX_CHCFG_DIS;
+> +
+> +	iowrite32(val, addr + off * 4);
+> +}
+> +
+>  void fsl_edma_chan_mux(struct fsl_edma_chan *fsl_chan,
+>  			unsigned int slot, bool enable)
+>  {
+> @@ -102,7 +115,10 @@ void fsl_edma_chan_mux(struct fsl_edma_chan *fsl_chan,
+>  	muxaddr = fsl_chan->edma->muxbase[ch / chans_per_mux];
+>  	slot = EDMAMUX_CHCFG_SOURCE(slot);
+>  
+> -	mux_configure8(fsl_chan, muxaddr, ch_off, slot, enable);
+> +	if (fsl_chan->edma->version == v3)
+> +		mux_configure32(fsl_chan, muxaddr, ch_off, slot, enable);
+> +	else
+> +		mux_configure8(fsl_chan, muxaddr, ch_off, slot, enable);
+>  }
+>  EXPORT_SYMBOL_GPL(fsl_edma_chan_mux);
+>  
+> diff --git a/drivers/dma/fsl-edma-common.h b/drivers/dma/fsl-edma-common.h
+> index 014ab74..07482d2 100644
+> --- a/drivers/dma/fsl-edma-common.h
+> +++ b/drivers/dma/fsl-edma-common.h
+> @@ -125,6 +125,7 @@ struct fsl_edma_chan {
+>  	dma_addr_t			dma_dev_addr;
+>  	u32				dma_dev_size;
+>  	enum dma_data_direction		dma_dir;
+> +	char				chan_name[16];
+>  };
+>  
+>  struct fsl_edma_desc {
+> @@ -139,6 +140,7 @@ struct fsl_edma_desc {
+>  enum edma_version {
+>  	v1, /* 32ch, Vybrid, mpc57x, etc */
+>  	v2, /* 64ch Coldfire */
+> +	v3, /* 32ch, i.mx7ulp */
+>  };
+>  
+>  struct fsl_edma_drvdata {
+> @@ -154,6 +156,7 @@ struct fsl_edma_engine {
+>  	void __iomem		*membase;
+>  	void __iomem		*muxbase[DMAMUX_NR];
+>  	struct clk		*muxclk[DMAMUX_NR];
+> +	struct clk		*dmaclk;
+>  	u32			dmamux_nr;
+>  	struct mutex		fsl_edma_mutex;
+>  	const struct fsl_edma_drvdata *drvdata;
+> diff --git a/drivers/dma/fsl-edma.c b/drivers/dma/fsl-edma.c
+> index cf18301..45b26d6 100644
+> --- a/drivers/dma/fsl-edma.c
+> +++ b/drivers/dma/fsl-edma.c
+> @@ -165,6 +165,51 @@ fsl_edma_irq_init(struct platform_device *pdev, struct fsl_edma_engine *fsl_edma
+>  	return 0;
+>  }
+>  
+> +static int
+> +fsl_edma2_irq_init(struct platform_device *pdev,
+> +		   struct fsl_edma_engine *fsl_edma)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	int i, ret, irq;
+> +	int count = 0;
+
+Superflous initialization of count!
+
+> +
+> +	count = of_irq_count(np);
+> +	dev_info(&pdev->dev, "%s Found %d interrupts\r\n", __func__, count);
+
+Consider using debug level..
+
+> +	if (count <= 2) {
+> +		dev_err(&pdev->dev, "Interrupts in DTS not correct.\n");
+> +		return -EINVAL;
+> +	}
+> +	/*
+> +	 * 16 channel independent interrupts + 1 error interrupt on i.mx7ulp.
+> +	 * 2 channel share one interrupt, for example, ch0/ch16, ch1/ch17...
+> +	 * For now, just simply request irq without IRQF_SHARED flag, since 16
+> +	 * channels are enough on i.mx7ulp whose M4 domain own some peripherals.
+> +	 */
+> +	for (i = 0; i < count; i++) {
+> +		irq = platform_get_irq(pdev, i);
+> +		if (irq < 0)
+> +			return -ENXIO;
+> +
+> +		sprintf(fsl_edma->chans[i].chan_name, "eDMA2-CH%02d", i);
+> +
+> +		/* The last IRQ is for eDMA err */
+> +		if (i == count - 1)
+> +			ret = devm_request_irq(&pdev->dev, irq,
+> +						fsl_edma_err_handler,
+> +						0, "eDMA2-ERR", fsl_edma);
+> +		else
+> +
+
+empty line is waste here
+
+> +			ret = devm_request_irq(&pdev->dev, irq,
+> +						fsl_edma_tx_handler, 0,
+> +						fsl_edma->chans[i].chan_name,
+> +						fsl_edma);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static void fsl_edma_irq_exit(
+>  		struct platform_device *pdev, struct fsl_edma_engine *fsl_edma)
+>  {
+> @@ -191,8 +236,16 @@ static struct fsl_edma_drvdata vf610_data = {
+>  	.setup_irq = fsl_edma_irq_init,
+>  };
+>  
+> +static struct fsl_edma_drvdata imx7ulp_data = {
+> +	.version = v3,
+> +	.dmamuxs = 1,
+> +	.has_dmaclk = true,
+> +	.setup_irq = fsl_edma2_irq_init,
+> +};
+> +
+>  static const struct of_device_id fsl_edma_dt_ids[] = {
+>  	{ .compatible = "fsl,vf610-edma", .data = &vf610_data},
+> +	{ .compatible = "fsl,imx7ulp-edma", .data = &imx7ulp_data},
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, fsl_edma_dt_ids);
+> @@ -242,6 +295,20 @@ static int fsl_edma_probe(struct platform_device *pdev)
+>  	fsl_edma_setup_regs(fsl_edma);
+>  	regs = &fsl_edma->regs;
+>  
+> +	if (drvdata->has_dmaclk) {
+> +		fsl_edma->dmaclk = devm_clk_get(&pdev->dev, "dma");
+> +		if (IS_ERR(fsl_edma->dmaclk)) {
+> +			dev_err(&pdev->dev, "Missing DMA block clock.\n");
+> +			return PTR_ERR(fsl_edma->dmaclk);
+> +		}
+> +
+> +		ret = clk_prepare_enable(fsl_edma->dmaclk);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "DMA clk block failed.\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	for (i = 0; i < fsl_edma->dmamux_nr; i++) {
+>  		char clkname[32];
+>  
+> -- 
+> 2.7.4
+
+-- 
+~Vinod
