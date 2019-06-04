@@ -2,145 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4D8F346A0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2613C346B9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 14:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727724AbfFDM0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 08:26:52 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:15625 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726994AbfFDM0v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 08:26:51 -0400
-X-UUID: e64f5e4932bb49efa567b16a9c3a2533-20190604
-X-UUID: e64f5e4932bb49efa567b16a9c3a2533-20190604
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 404720184; Tue, 04 Jun 2019 20:26:42 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 4 Jun
- 2019 20:26:41 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 4 Jun 2019 20:26:40 +0800
-Message-ID: <1559651200.5871.2.camel@mhfsdcap03>
-Subject: Re: [PATCH 2/2] i3c: master: Add driver for MediaTek IP
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-CC:     <bbrezillon@kernel.org>, <devicetree@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <gregkh@linuxfoundation.org>, <xinping.qian@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <liguo.zhang@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <linux-i3c@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 4 Jun 2019 20:26:40 +0800
-In-Reply-To: <20190604095858.38ed9a28@collabora.com>
-References: <1559533863-10292-1-git-send-email-qii.wang@mediatek.com>
-         <1559533863-10292-3-git-send-email-qii.wang@mediatek.com>
-         <20190604095858.38ed9a28@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1727543AbfFDMae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 08:30:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34126 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726994AbfFDMae (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 08:30:34 -0400
+Received: from localhost (unknown [117.99.94.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7020123E30;
+        Tue,  4 Jun 2019 12:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559651434;
+        bh=IQ7Kg2HzTQ2nVL1MNKgIUyZrLVCbPoVX2ISWMBIj8I4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RByXCAjz6MKy9XaPkoAfY3JJSv/jA5nGvo7B0u1EPB4yqokCcdbqMPQgCfP9vt5jx
+         JYcJn785U/G5uDbglaMLhEAynzdMGuZalesc6mQ6vHUBYdVK54EKOXcYKSubBEMRkb
+         hA6TfYhxo9kFwbD+piVbfM8B/lCCh3uw7NuxFVd4=
+Date:   Tue, 4 Jun 2019 17:57:26 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 1/7] dt-bindings: arm64: allwinner: h6: Add binding
+ for DMA controller
+Message-ID: <20190604122726.GZ15118@vkoul-mobl>
+References: <20190527201459.20130-1-peron.clem@gmail.com>
+ <20190527201459.20130-2-peron.clem@gmail.com>
 MIME-Version: 1.0
-X-MTK:  N
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190527201459.20130-2-peron.clem@gmail.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-04 at 09:58 +0200, Boris Brezillon wrote:
-> On Mon, 3 Jun 2019 11:51:03 +0800
-> Qii Wang <qii.wang@mediatek.com> wrote:
+On 27-05-19, 22:14, Clément Péron wrote:
+> From: Jernej Skrabec <jernej.skrabec@siol.net>
 > 
-> 
-> > +static int mtk_i3c_master_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct mtk_i3c_master *master;
-> > +	struct resource *res;
-> > +	int ret, irqnr;
-> > +
-> > +	master = devm_kzalloc(dev, sizeof(*master), GFP_KERNEL);
-> > +	if (!master)
-> > +		return -ENOMEM;
-> > +
-> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "main");
-> > +	master->regs = devm_ioremap_resource(dev, res);
-> > +	if (IS_ERR(master->regs))
-> > +		return PTR_ERR(master->regs);
-> > +
-> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dma");
-> > +	master->dma_regs = devm_ioremap_resource(dev, res);
-> > +	if (IS_ERR(master->dma_regs))
-> > +		return PTR_ERR(master->dma_regs);
-> > +
-> > +	irqnr = platform_get_irq(pdev, 0);
-> > +	if (irqnr < 0)
-> > +		return irqnr;
-> > +
-> > +	ret = devm_request_irq(dev, irqnr, mtk_i3c_master_irq,
-> > +			       IRQF_TRIGGER_NONE, DRV_NAME, master);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Request I3C IRQ %d fail\n", irqnr);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = of_property_read_u32(pdev->dev.of_node, "clock-div",
-> > +				   &master->clk_src_div);
-> 
-> You say in one comment that this clock divider is fixed in HW but might
-> change on a per-SoC basis. If that's the case, you should get rid of
-> this clock-div prop and attach the divider to the compatible (using an
-> mtk_i3c_master_variant struct that contains a divider field).
+> DMA in H6 is similar to other DMA controller, except it is first which
+> supports more than 32 request sources and has 16 channels. It also needs
+> additional clock to be enabled.
 > 
 
-ok, I will attach the divider to the compatible.
+Applied, thanks
 
-> > +	if (ret < 0)
-> > +		return -EINVAL;
-> > +
-> > +	spin_lock_init(&master->xferqueue.lock);
-> > +	INIT_LIST_HEAD(&master->xferqueue.list);
-> > +
-> > +	if (dma_set_mask(dev, DMA_BIT_MASK(33))) {
-> > +		dev_err(dev, "dma_set_mask return error.\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	master->clk_main = devm_clk_get(dev, "main");
-> > +	if (IS_ERR(master->clk_main)) {
-> > +		dev_err(dev, "cannot get main clock\n");
-> > +		return PTR_ERR(master->clk_main);
-> > +	}
-> > +	master->clk_dma = devm_clk_get(dev, "dma");
-> > +	if (IS_ERR(master->clk_dma)) {
-> > +		dev_err(dev, "cannot get dma clock\n");
-> > +		return PTR_ERR(master->clk_dma);
-> > +	}
-> > +
-> > +	master->clk_arb = devm_clk_get_optional(dev, "arb");
-> > +	if (IS_ERR(master->clk_arb))
-> > +		return PTR_ERR(master->clk_arb);
-> > +
-> > +	ret = mtk_i3c_master_clock_enable(master);
-> > +	if (ret) {
-> > +		dev_err(dev, "clock enable failed!\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	master->dev = dev;
-> > +	platform_set_drvdata(pdev, master);
-> > +
-> > +	ret = i3c_master_register(&master->mas_ctrler, dev,
-> > +				  &mtk_i3c_master_ops, false);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to add i3c bus to i3c core\n");
-> > +		mtk_i3c_master_clock_disable(master);
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-
-
+-- 
+~Vinod
