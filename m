@@ -2,123 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35815342B4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 11:08:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3290342DD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 11:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726961AbfFDJI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 05:08:56 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:10699 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726873AbfFDJI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 05:08:56 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cf635270000>; Tue, 04 Jun 2019 02:08:55 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 04 Jun 2019 02:08:55 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 04 Jun 2019 02:08:55 -0700
-Received: from [10.26.11.158] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 4 Jun
- 2019 09:08:53 +0000
-Subject: Re: [PATCH 2/2] arm64: tegra: enable ACONNECT, ADMA and AGIC
-To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1557143908-5850-1-git-send-email-spujar@nvidia.com>
- <1557143908-5850-2-git-send-email-spujar@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <d503728b-e689-f3bf-c620-f911bef31339@nvidia.com>
-Date:   Tue, 4 Jun 2019 10:08:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <1557143908-5850-2-git-send-email-spujar@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+        id S1727023AbfFDJNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 05:13:16 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:63272 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727017AbfFDJNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 05:13:15 -0400
+X-UUID: f1b8df9676b74030890b8250c336d34e-20190604
+X-UUID: f1b8df9676b74030890b8250c336d34e-20190604
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1895715751; Tue, 04 Jun 2019 17:13:05 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 4 Jun
+ 2019 17:13:03 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 4 Jun 2019 17:13:03 +0800
+Message-ID: <1559639583.8487.76.camel@mhfsdcap03>
+Subject: Re: [PATCH v4] usb: create usb_debug_root for gadget only
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Tue, 4 Jun 2019 17:13:03 +0800
+In-Reply-To: <20190604082407.GA3783@kroah.com>
+References: <1559633647-29040-1-git-send-email-chunfeng.yun@mediatek.com>
+         <20190604073706.GA25045@kroah.com> <87k1e123mc.fsf@linux.intel.com>
+         <20190604082407.GA3783@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559639335; bh=XJ9GGX4x6JbOACeYCqBh7B/qBxUQCNT/wafeU/9X04A=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=ZarS4JaOLon6rCEsN2iL4jq8pFgLd/VQr0mCuAWicN1nX7BG8SxnszcIv011tSIOh
-         vHEJV8SRUieG+zWjxem7hh+xJVi9pxj9jMT6sU5meN4A/Ve0ciX4vRAEBI4BzC7yfy
-         iouDdpXlGqXyova1XrWNx4EtKuFtccgdYfyxjwPZtY7Burmrige0ZbhpRFu4HTxkY1
-         Y0HD4IsfS1Y9qSSg8y7cLr1WzGsmybMTLk3POGAUJKEFsNicjK0ls5A5vKbLU+BH8U
-         7uH226feSf4NzIrs4pwciGWAH/yeiaDXYDTv0Ue7rkRR2wCqMMPupMyZkvLK7x69bY
-         pKGmPLM/8WggQ==
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 06/05/2019 12:58, Sameer Pujar wrote:
-> Enable ACONNECT, ADMA and AGIC devices for following platforms
->   * Jetson TX2
->   * Jetson Xavier
+On Tue, 2019-06-04 at 10:24 +0200, Greg Kroah-Hartman wrote:
+> On Tue, Jun 04, 2019 at 10:47:55AM +0300, Felipe Balbi wrote:
+> > 
+> > Hi,
+> > 
+> > Greg Kroah-Hartman <gregkh@linuxfoundation.org> writes:
+> > >> +struct dentry *usb_debugfs_init(void)
+> > >> +{
+> > >> +	if (!usb_debug_root)
+> > >> +		usb_debug_root = debugfs_create_dir("usb", NULL);
+> > >> +
+> > >> +	atomic_inc(&usb_debug_root_refcnt);
+> > >> +
+> > >> +	return usb_debug_root;
+> > >> +}
+> > >> +EXPORT_SYMBOL_GPL(usb_debugfs_init);
+> > >> +
+> > >> +void usb_debugfs_cleanup(void)
+> > >> +{
+> > >> +	if (atomic_dec_and_test(&usb_debug_root_refcnt)) {
+> > >> +		debugfs_remove_recursive(usb_debug_root);
+> > >> +		usb_debug_root = NULL;
+> > >> +	}
+> > >> +}
+> > >> +EXPORT_SYMBOL_GPL(usb_debugfs_cleanup);
+> > >
+> > > Only remove the debugfs subdir if the usbcore module is removed.  Create
+> > > the debugfs subdir when the usbcore module is loaded.  No need for any
+> > > reference counting of any sort at all.  No need to overthink this :)
+> > 
+> > There is a slight need to overthink. He wants to use the same directory
+> > for gadget-only builds too :-)
 > 
-> Verified driver probe path and devices get registered fine.
+> Again, that's fine, this file will be loaded for those builds as well,
+> right?  
+Yes, either usbcore or gadget will select this file.
+
+> Otherwise, how would this code even be present?  :)
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ++++++++++++
->  arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 12 ++++++++++++
->  2 files changed, 24 insertions(+)
+> thanks,
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-> index 31457f3..21e73db 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-> @@ -183,4 +183,16 @@
->  			vin-supply = <&vdd_5v0_sys>;
->  		};
->  	};
-> +
-> +	aconnect@2a41000 {
-> +		status = "okay";
-> +
-> +		dma@2930000 {
-> +			status = "okay";
-> +		};
-> +
-> +		agic@2a41000 {
-> +			status = "okay";
-> +		};
-> +	};
->  };
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> index b62e969..bca28fc 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> @@ -169,4 +169,16 @@
->  			};
->  		};
->  	};
-> +
-> +	aconnect@2a41000 {
-> +		status = "okay";
-> +
-> +		dma@2930000 {
-> +			status = "okay";
-> +		};
-> +
-> +		agic@2a41000 {
-> +			status = "okay";
-> +		};
-> +	};
->  };
+> greg k-h
 
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
 
-Cheers
-Jon
-
--- 
-nvpublic
