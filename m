@@ -2,131 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C2034E43
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 19:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0945634E8A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 19:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727848AbfFDRDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 13:03:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55144 "EHLO mail.kernel.org"
+        id S1725932AbfFDRQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 13:16:18 -0400
+Received: from mga17.intel.com ([192.55.52.151]:2047 "EHLO mga17.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727716AbfFDRDN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 13:03:13 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 07410207E0;
-        Tue,  4 Jun 2019 17:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559667792;
-        bh=/tTVwesCvaGOAma715+k0fTCF9Xt7CfZcwKpVI/vcmQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PY0d86cXpYMd8mfBRikp/LO6Ph71/9Du6X/VxS40dosZpfUJLXocGWUbdrMhM2Mja
-         B1+IAtSDugHeLvRBWuSk8qTepeDY0hjK5p3EjSvtXTEmB84JUt6UsogJphjuew0Ab1
-         ScjeW89+usqBVWhlXhD2ueM9TPfwQc5a2IIbqjcM=
-Date:   Tue, 4 Jun 2019 19:03:10 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Richard Gong <richard.gong@linux.intel.com>
-Cc:     Romain Izard <romain.izard.pro@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, dinguyen@kernel.org, atull@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        sen.li@intel.com, Richard Gong <richard.gong@intel.com>
-Subject: Re: A potential broken at platform driver?
-Message-ID: <20190604170310.GC14605@kroah.com>
-References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
- <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
- <20190528232224.GA29225@kroah.com>
- <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
- <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
- <20190603180255.GA18054@kroah.com>
- <20190604103241.GA4097@5WDYG62>
- <20190604142803.GA28355@kroah.com>
- <e3adbd00-e500-70af-1c27-e4c064486561@linux.intel.com>
+        id S1725267AbfFDRQS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 13:16:18 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Jun 2019 10:16:17 -0700
+X-ExtLoop1: 1
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by orsmga006.jf.intel.com with ESMTP; 04 Jun 2019 10:16:11 -0700
+Received: from andy by smile with local (Exim 4.92)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1hYD2h-0001Jc-6c; Tue, 04 Jun 2019 20:16:11 +0300
+Date:   Tue, 4 Jun 2019 20:16:11 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Eduardo Valentin <eduval@amazon.com>
+Cc:     Wolfram Sang <wsa@the-dreams.de>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        jarkko.nikula@linux.intel.com, brendanhiggins@google.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive
+ and queue messages
+Message-ID: <20190604171611.GS9224@smile.fi.intel.com>
+References: <20190531043347.4196-1-eduval@amazon.com>
+ <20190531043347.4196-3-eduval@amazon.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e3adbd00-e500-70af-1c27-e4c064486561@linux.intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+In-Reply-To: <20190531043347.4196-3-eduval@amazon.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 11:13:02AM -0500, Richard Gong wrote:
+On Thu, May 30, 2019 at 09:33:46PM -0700, Eduardo Valentin wrote:
+> From: Haiyue Wang <haiyue.wang@linux.intel.com>
 > 
-> Hi Greg,
+> Some protocols over I2C are designed for bi-directional transferring
+> messages by using I2C Master Write protocol. Like the MCTP (Management
+> Component Transport Protocol) and IPMB (Intelligent Platform Management
+> Bus), they both require that the userspace can receive messages from
+> I2C dirvers under slave mode.
 > 
-> On 6/4/19 9:28 AM, Greg KH wrote:
-> > On Tue, Jun 04, 2019 at 12:33:03PM +0200, Romain Izard wrote:
-> > > On Mon, Jun 03, 2019 at 08:02:55PM +0200, Greg KH wrote:
-> > > > > @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
-> > > > >   	.remove = stratix10_rsu_remove,
-> > > > >   	.driver = {
-> > > > >   		.name = "stratix10-rsu",
-> > > > > -		.groups = rsu_groups,
-> > > > > +//		.groups = rsu_groups,
-> > > > 
-> > > > Are you sure this is the correct pointer?  I think that might be
-> > > > pointing to the driver's attributes, not the device's attributes.
-> > > > 
-> > > > If platform drivers do not have a way to register groups properly, then
-> > > > that really needs to be fixed, as trying to register it by yourself as
-> > > > you are doing, is ripe for racing with userspace.
-> > > This is a very common issue with platform drivers, and it seems to me that
-> > > it is not possible to add device attributes when binding a device to a
-> > > driver without entering the race condition.
-> > > 
-> > > My understanding is the following one:
-> > > 
-> > > The root cause is that the device has already been created and reported
-> > > to the userspace with a KOBJ_ADD uevent before the device and the driver
-> > > are bound together. On receiving this event, userspace will react, and
-> > > it will try to read the device's attributes. In parallel the kernel will
-> > > try to find a matching driver. If a driver is found, the kernel will
-> > > call the probe function from the driver with the device as a parameter,
-> > > and if successful a KOBJ_BIND uevent will be sent to userspace, but this
-> > > is a recent addition.
-> > > 
-> > > Unfortunately, not all created devices will be bound to a driver, and the
-> > > existing udev code relies on KOBJ_ADD uevents rather than KOBJ_BIND uevents.
-> > > If new per-device attributes have been added to the device during the
-> > > binding stage userspace may or may not see them, depending on when userspace
-> > > tries to read the device's attributes.
-> > > 
-> > > I have this possible workaround, but I do not know if it is a good solution:
-> > > 
-> > > When binding the device and the driver together, create a new device as a
-> > > child to the current device, and fill its "groups" member to point to the
-> > > per-device attributes' group. As the device will be created with all the
-> > > attributes, it will not be affected by the race issues. The functions
-> > > handling the attributes will need to be modified to use the parents of their
-> > > "device" parameter, instead of the device itself. Additionnaly, the sysfs
-> > > location of the attributes will be different, as the child device will show
-> > > up in the sysfs path. But for a newly introduced device this will not be
-> > > a problem.
-> > > 
-> > > Is this a good compromise ?
-> > 
-> > Not really.  You just want the attributes on the platform device itself.
-> > 
-> > Given the horrible hack that platform devices are today, what's one more
-> > hack!
-> > 
-> > Here's a patch below of what should probably be done here.  Richard, can
-> > you change your code to use the new dev_groups pointer in the struct
-> > platform_driver and this patch and let me know if that works or not?
-> > 
-> > Note, I've only compiled this code, not tested it...
-> > 
+> This new slave mqueue backend is used to receive and queue messages, it
+> will exposes these messages to userspace by sysfs bin file.
 > 
-> Your patch works.
-> 
-> Many thanks for your help!
+> Note: DT interface and a couple of minor fixes here and there
+> by Eduardo, so I kept the original authorship here.
 
-Nice!
+> +#define MQ_MSGBUF_SIZE		CONFIG_I2C_SLAVE_MQUEUE_MESSAGE_SIZE
+> +#define MQ_QUEUE_SIZE		CONFIG_I2C_SLAVE_MQUEUE_QUEUE_SIZE
 
-I guess I need to turn it into a real patch now.  Let me do that tonight
-and see if I can convert some existing drivers to use it as well...
+> +#define MQ_QUEUE_NEXT(x)	(((x) + 1) & (MQ_QUEUE_SIZE - 1))
 
-thanks,
+Also possible ((x + 1) % ..._SIZE)
 
-greg k-h
+> +	mq = dev_get_drvdata(container_of(kobj, struct device, kobj));
+
+kobj_to_dev()
+
+> +static int i2c_slave_mqueue_probe(struct i2c_client *client,
+> +				  const struct i2c_device_id *id)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct mq_queue *mq;
+> +	int ret, i;
+> +	void *buf;
+> +
+> +	mq = devm_kzalloc(dev, sizeof(*mq), GFP_KERNEL);
+> +	if (!mq)
+> +		return -ENOMEM;
+> +
+
+> +	BUILD_BUG_ON(!is_power_of_2(MQ_QUEUE_SIZE));
+
+Perhaps start function with this kind of assertions?
+
+> +
+> +	buf = devm_kmalloc_array(dev, MQ_QUEUE_SIZE, MQ_MSGBUF_SIZE,
+> +				 GFP_KERNEL);
+> +	if (!buf)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < MQ_QUEUE_SIZE; i++)
+> +		mq->queue[i].buf = buf + i * MQ_MSGBUF_SIZE;
+
+
+Just wondering if kfifo API can bring an advantage here?
+
+> +	return 0;
+> +}
+
+> +static const struct of_device_id i2c_slave_mqueue_of_match[] = {
+> +	{
+> +		.compatible = "i2c-slave-mqueue",
+> +	},
+
+> +	{ },
+
+No need for comma here.
+
+> +};
+
+> +
+> +static struct i2c_driver i2c_slave_mqueue_driver = {
+> +	.driver = {
+> +		.name	= "i2c-slave-mqueue",
+
+> +		.of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
+
+Wouldn't compiler warn you due to unused data?
+Perhaps drop of_match_ptr() for good...
+
+> +	},
+> +	.probe		= i2c_slave_mqueue_probe,
+> +	.remove		= i2c_slave_mqueue_remove,
+> +	.id_table	= i2c_slave_mqueue_id,
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
