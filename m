@@ -2,131 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAEAC34101
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 10:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C59C34113
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 10:03:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727087AbfFDIAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 04:00:55 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:40426 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727181AbfFDIAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 04:00:55 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 76BB4260E1F;
-        Tue,  4 Jun 2019 09:00:52 +0100 (BST)
-Date:   Tue, 4 Jun 2019 09:58:58 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Qii Wang <qii.wang@mediatek.com>
-Cc:     <bbrezillon@kernel.org>, devicetree@vger.kernel.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        gregkh@linuxfoundation.org, xinping.qian@mediatek.com,
-        linux-kernel@vger.kernel.org, liguo.zhang@mediatek.com,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        linux-i3c@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] i3c: master: Add driver for MediaTek IP
-Message-ID: <20190604095858.38ed9a28@collabora.com>
-In-Reply-To: <1559533863-10292-3-git-send-email-qii.wang@mediatek.com>
-References: <1559533863-10292-1-git-send-email-qii.wang@mediatek.com>
-        <1559533863-10292-3-git-send-email-qii.wang@mediatek.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726855AbfFDIDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 04:03:31 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:40073 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726873AbfFDIDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 04:03:31 -0400
+Received: by mail-oi1-f196.google.com with SMTP id w196so5386644oie.7
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 01:03:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FKpO8H57h4hKIEfk4q7HqguHGPmqzEwBqOwZI4qAzTI=;
+        b=wfSINV13HS4ZECgj4OMaDwgnjyqqftKSQPf9sdO3jpWk5j1d1uIYnzwIBGGtBcTCDK
+         zBSONMDiI3qwFEuQMKa0jjfLZFJ6uOKnyLxMXNspWMojasO6ZMWT5S2I5sruP96xasLK
+         kiKlOBW/QPWonXzYsXTsoouNR1QDK/aRZ5BcpWY6iSsOfR3OufY+Lxq9lWTXRctpL4Hy
+         a/R24TK38s9dnK0/H1jtWs8kZ/wfjp6nZ1gf/evwTjwwCR71FDMKKzdc3zqiGbzX11Ef
+         d4bFQKqCryQX4Rb3woxnz9UyLAX5WjN5SR2kBXptjQJ4yF804wcIcNR03xl5RNq6h/Ml
+         6qbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FKpO8H57h4hKIEfk4q7HqguHGPmqzEwBqOwZI4qAzTI=;
+        b=dvmzR713G0UgEt67rHYgkZQjirNuK7fWN/TiD+EQ6J2LAiUHYHzcuIDINRHG02lN23
+         0oXjP5yh7C9vhbASwtzEu8MnEGJSCLmLsc1bvgvG568n4MTRLRijsopA4F6zxPUAnrb6
+         FRGQEKD0mIZjJjfphj8Q/2LDrlu+px3aE1RiDuhJMrDn291u638QZF1Ub8VKmhAq8nNv
+         njJvO2H8lU/8vFnr+npSSGMKSMLp1DOP0ewiEvEwVyL2pzKp4p9BJBaNSDTaDQI51zCc
+         odDBLSocpfYkbQY7Se2jzgLdaKvd5C/NOT9/8s1rF9QKT2o/v44L2pybtlEXN9m+rLaZ
+         5ooQ==
+X-Gm-Message-State: APjAAAV4v+qH4e/z1mvvbWAdbCMuyV/YBus0qY914/FxMMAUZLEUKHOe
+        DGhHUlZUukrDt7ef4ehUi4m42H9hmsAhiL6Kh/yq9Q==
+X-Google-Smtp-Source: APXvYqyMOpg92w6Qp+vhHVCi14htGNn1rx1iAOVrnv9ZgovV4gSotwygWRGsq+15o2Px5EQGrz+6VMFs1vGy8mmk3Fs=
+X-Received: by 2002:aca:dd08:: with SMTP id u8mr44390oig.27.1559635410647;
+ Tue, 04 Jun 2019 01:03:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <cover.1558346019.git.baolin.wang@linaro.org> <ae6e23d4de6bb25cd697412f1402036d5ecc9843.1558346019.git.baolin.wang@linaro.org>
+ <ed5bdd08-7227-4d55-23de-e78e15d315c7@intel.com>
+In-Reply-To: <ed5bdd08-7227-4d55-23de-e78e15d315c7@intel.com>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Tue, 4 Jun 2019 16:03:18 +0800
+Message-ID: <CAMz4kuKEOQwOK2Yh+y+-ZhZDndA2tf9V45J_o-OittuSRJcurQ@mail.gmail.com>
+Subject: Re: [PATCH 4/9] mmc: sdhci-sprd: Implement the get_max_timeout_count()
+ interface
+To:     Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        arm-soc <arm@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Jun 2019 11:51:03 +0800
-Qii Wang <qii.wang@mediatek.com> wrote:
+On Mon, 3 Jun 2019 at 20:35, Adrian Hunter <adrian.hunter@intel.com> wrote:
+>
+> On 20/05/19 1:11 PM, Baolin Wang wrote:
+> > Implement the get_max_timeout_count() interface to set the Spredtrum SD
+> > host controller actual maximum timeout count.
+> >
+> > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+>
+> Seems surprising that there isn't a custom ->set_timeout() as well.
+
+Until now we did not find issues when using sdhci_calc_timeout().
+Thanks for your reviewing.
+
+> Nevertheless:
+>
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+>
+> > ---
+> >  drivers/mmc/host/sdhci-sprd.c |    7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >
+> > diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
+> > index 31ba7d6..d91281d 100644
+> > --- a/drivers/mmc/host/sdhci-sprd.c
+> > +++ b/drivers/mmc/host/sdhci-sprd.c
+> > @@ -285,6 +285,12 @@ static void sdhci_sprd_hw_reset(struct sdhci_host *host)
+> >       usleep_range(300, 500);
+> >  }
+> >
+> > +static unsigned int sdhci_sprd_get_max_timeout_count(struct sdhci_host *host)
+> > +{
+> > +     /* The Spredtrum controller actual maximum timeout count is 1 << 31 */
+> > +     return 1 << 31;
+> > +}
+> > +
+> >  static struct sdhci_ops sdhci_sprd_ops = {
+> >       .read_l = sdhci_sprd_readl,
+> >       .write_l = sdhci_sprd_writel,
+> > @@ -296,6 +302,7 @@ static void sdhci_sprd_hw_reset(struct sdhci_host *host)
+> >       .reset = sdhci_reset,
+> >       .set_uhs_signaling = sdhci_sprd_set_uhs_signaling,
+> >       .hw_reset = sdhci_sprd_hw_reset,
+> > +     .get_max_timeout_count = sdhci_sprd_get_max_timeout_count,
+> >  };
+> >
+> >  static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
+> >
+>
 
 
-> +static int mtk_i3c_master_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mtk_i3c_master *master;
-> +	struct resource *res;
-> +	int ret, irqnr;
-> +
-> +	master = devm_kzalloc(dev, sizeof(*master), GFP_KERNEL);
-> +	if (!master)
-> +		return -ENOMEM;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "main");
-> +	master->regs = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(master->regs))
-> +		return PTR_ERR(master->regs);
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dma");
-> +	master->dma_regs = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(master->dma_regs))
-> +		return PTR_ERR(master->dma_regs);
-> +
-> +	irqnr = platform_get_irq(pdev, 0);
-> +	if (irqnr < 0)
-> +		return irqnr;
-> +
-> +	ret = devm_request_irq(dev, irqnr, mtk_i3c_master_irq,
-> +			       IRQF_TRIGGER_NONE, DRV_NAME, master);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Request I3C IRQ %d fail\n", irqnr);
-> +		return ret;
-> +	}
-> +
-> +	ret = of_property_read_u32(pdev->dev.of_node, "clock-div",
-> +				   &master->clk_src_div);
-
-You say in one comment that this clock divider is fixed in HW but might
-change on a per-SoC basis. If that's the case, you should get rid of
-this clock-div prop and attach the divider to the compatible (using an
-mtk_i3c_master_variant struct that contains a divider field).
-
-> +	if (ret < 0)
-> +		return -EINVAL;
-> +
-> +	spin_lock_init(&master->xferqueue.lock);
-> +	INIT_LIST_HEAD(&master->xferqueue.list);
-> +
-> +	if (dma_set_mask(dev, DMA_BIT_MASK(33))) {
-> +		dev_err(dev, "dma_set_mask return error.\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	master->clk_main = devm_clk_get(dev, "main");
-> +	if (IS_ERR(master->clk_main)) {
-> +		dev_err(dev, "cannot get main clock\n");
-> +		return PTR_ERR(master->clk_main);
-> +	}
-> +	master->clk_dma = devm_clk_get(dev, "dma");
-> +	if (IS_ERR(master->clk_dma)) {
-> +		dev_err(dev, "cannot get dma clock\n");
-> +		return PTR_ERR(master->clk_dma);
-> +	}
-> +
-> +	master->clk_arb = devm_clk_get_optional(dev, "arb");
-> +	if (IS_ERR(master->clk_arb))
-> +		return PTR_ERR(master->clk_arb);
-> +
-> +	ret = mtk_i3c_master_clock_enable(master);
-> +	if (ret) {
-> +		dev_err(dev, "clock enable failed!\n");
-> +		return ret;
-> +	}
-> +
-> +	master->dev = dev;
-> +	platform_set_drvdata(pdev, master);
-> +
-> +	ret = i3c_master_register(&master->mas_ctrler, dev,
-> +				  &mtk_i3c_master_ops, false);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to add i3c bus to i3c core\n");
-> +		mtk_i3c_master_clock_disable(master);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
+-- 
+Baolin Wang
+Best Regards
