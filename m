@@ -2,134 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 130F6351E0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 23:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FEC735204
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 23:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726502AbfFDV3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 17:29:33 -0400
-Received: from mx1.redhat.com ([209.132.183.28]:59564 "EHLO mx1.redhat.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726033AbfFDV3d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jun 2019 17:29:33 -0400
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mx1.redhat.com (Postfix) with ESMTPS id AC5872F8BEA;
-        Tue,  4 Jun 2019 21:29:32 +0000 (UTC)
-Received: from ovpn-112-67.rdu2.redhat.com (ovpn-112-67.rdu2.redhat.com [10.10.112.67])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id 5271C5C207;
-        Tue,  4 Jun 2019 21:29:27 +0000 (UTC)
-Message-ID: <0264d7f9a35430201a89c068bb13c84c622af11a.camel@redhat.com>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-From:   Dan Williams <dcbw@redhat.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Alex Elder <elder@linaro.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Miller <davem@davemloft.net>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        evgreen@chromium.org, Ben Chan <benchan@google.com>,
-        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
-        syadagir@codeaurora.org, abhishek.esse@gmail.com,
-        Networking <netdev@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org
-Date:   Tue, 04 Jun 2019 16:29:26 -0500
-In-Reply-To: <CAK8P3a3pQpSpH4q=CL6gr_YzjYgoyD6-eyiLrvnZsqqjpcRxtQ@mail.gmail.com>
-References: <20190531035348.7194-1-elder@linaro.org>
-         <e75cd1c111233fdc05f47017046a6b0f0c97673a.camel@redhat.com>
-         <065c95a8-7b17-495d-f225-36c46faccdd7@linaro.org>
-         <CAK8P3a05CevRBV3ym+pnKmxv+A0_T+AtURW2L4doPAFzu3QcJw@mail.gmail.com>
-         <a28c5e13-59bc-144d-4153-9d104cfa9188@linaro.org>
-         <20190531233306.GB25597@minitux>
-         <d76a710d45dd7df3a28afb12fc62cf14@codeaurora.org>
-         <CAK8P3a0brT0zyZGNWiS2R0RMHHFF2JG=_ixQyvjhj3Ky39o0UA@mail.gmail.com>
-         <040ce9cc-7173-d10a-a82c-5186d2fcd737@linaro.org>
-         <CAK8P3a2U=RzfpVaAgRP1QwPhRpZiBNsG5qdWjzwG=tCKZefYHA@mail.gmail.com>
-         <b26cf34c0d3fa1a7a700cee935244d7a2a7e1388.camel@redhat.com>
-         <CAK8P3a3pQpSpH4q=CL6gr_YzjYgoyD6-eyiLrvnZsqqjpcRxtQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S1726317AbfFDVmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 17:42:13 -0400
+Received: from atlmailgw2.ami.com ([63.147.10.42]:50493 "EHLO
+        atlmailgw2.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbfFDVmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 17:42:13 -0400
+X-AuditID: ac10606f-bbfff70000003de9-15-5cf6e5b10449
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw2.ami.com (Symantec Messaging Gateway) with SMTP id B1.12.15849.2B5E6FC5; Tue,  4 Jun 2019 17:42:10 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Tue, 4 Jun 2019 17:42:09 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Hongwei Zhang <hongweiz@ami.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/3 linux dev-5.1 arm/soc v2] ARM: dts: aspeed: Add SGPM pinmux
+Date:   Tue, 4 Jun 2019 17:42:04 -0400
+Message-ID: <1559684524-15583-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.38]); Tue, 04 Jun 2019 21:29:33 +0000 (UTC)
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPLMWRmVeSWpSXmKPExsWyRiBhgu6mp99iDLad47PYdZnDYv6Rc6wW
+        v8//ZbaY8mc5k8Wmx9dYLZpXn2O2uLxrDpvF0usXmSxa9x5hd+D0uNq+i91jzbw1jB4XPx5j
+        9ti0qpPN4861PWwem5fUe5yfsZDR4/MmuQCOKC6blNSczLLUIn27BK6Mvo5ZzAVrWCuaO+Yz
+        NTCuZ+li5OSQEDCRuHG1jxnEFhLYxSRxewNjFyMXkH2IUeLP0k6wIjYBNYm9m+cwgSREBHYw
+        Slz98QysillgPaNE466tjCBVwgL+Eo/fTgSzWQRUJKbf/MEOYvMKOEjM37iGFWKdnMTNc53M
+        EHFBiZMzn4BtYBaQkDj44gXUGbIStw49ZoKoV5B43veYZQIj3ywkLbOQtCxgZFrFKJRYkpOb
+        mJmTXm6kl5ibqZecn7uJERLI+TsYP340P8TIxMEI9BIHs5IIb+LtLzFCvCmJlVWpRfnxRaU5
+        qcWHGKU5WJTEeVet+RYjJJCeWJKanZpakFoEk2Xi4JRqYJyat2VV6s9lL3fo6G/vlpuVzLMg
+        Y8fVRx0T+LVz+P+sULxYP2fVzAOyW2sMfp9r27qgajnPqtrkIO2Tfwqz7kSyflI+9ftQyfqp
+        O482Gfrfv7CCdevX3gyHuocKbGKB2nlVQr7eVb1Lj17141eIjNt05rnP23PG/YcnHD78g2eP
+        mMP9tbkTSrKUWIozEg21mIuKEwHBh/8yUgIAAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-04 at 22:04 +0200, Arnd Bergmann wrote:
-> On Tue, Jun 4, 2019 at 5:18 PM Dan Williams <dcbw@redhat.com> wrote:
-> > On Tue, 2019-06-04 at 10:13 +0200, Arnd Bergmann wrote:
-> > > Can you describe what kind of multiplexing is actually going on?
-> > > I'm still unclear about what we actually use multiple logical
-> > > interfaces for here, and how they relate to one another.
-> > 
-> > Each logical interface represents a different "connection" (PDP/EPS
-> > context) to the provider network with a distinct IP address and
-> > QoS.
-> > VLANs may be a suitable analogy but here they are L3+QoS.
-> > 
-> > In realistic example the main interface (say rmnet0) would be used
-> > for
-> > web browsing and have best-effort QoS. A second interface (say
-> > rmnet1)
-> > would be used for VOIP and have certain QoS guarantees from both
-> > the
-> > modem and the network itself.
-> > 
-> > QMAP can also aggregate frames for a given channel
-> > (connection/EPS/PDP
-> > context/rmnet interface/etc) to better support LTE speeds.
-> 
-> Thanks, that's a very helpful explanation!
-> 
-> Is it correct to say then that the concept of having those separate
-> connections would be required for any proper LTE modem
-> implementation,
-> but the QMAP protocol (and based on that, the rmnet implementation)
-> is Qualcomm specific and shared only among several generations of
-> modems from that one vendor?
+Add SGPM pinmux to ast2500-pinctrl function and group, to prepare for
+supporting SGPIO in AST2500 SoC.
 
-Exactly correct.  This is what Johannes is discussing in his "cellular
-modem APIs - take 2" thread about how this should all be organized at
-the driver level and I think we should figure that out before we commit
-to IPA-with-a-useless-netdev that requires rmnets to be created on top.
-That may end up being the solution but let's have that discussion.
+Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+---
+ arch/arm/boot/dts/aspeed-g5.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> > You mentioned the need to have a common user space interface
-> for configuration, and if the above is true, I agree that we should
-> try
-> to achieve that, either by ensuring rmnet is generic enough to
-> cover other vendors (and non-QMAP clients), or by creating a
-> new user level interface that IPA/rmnet can be adapted to.
-
-I would not suggest making rmnet generic; it's pretty QMAP specific
-(but QMAP is spoken by many many modems both SoC, USB stick, and PCIe
-minicard).
-
-Instead, I think what Johannes is discussing is a better approach. A
-kernel WWAN framework with consistent user API that
-rmnet/IPA/qmi_wwan/MBIM/QMI/serial/Sierra can all implement.
-
-That wouldn't affect the core packet processing of IPA/rmnet but
-instead:
-
-1) when/how an rmnet device actually gets created on top of the IPA (or
-qmi_wwan) device
-
-AND (one of these two)
-
-a) whether IPA creates a netdev on probe
-
-OR
-
-b) whether there is some "WWAN device" kernel object which userspace
-interacts with create rmnet channels on top of IPA
-
-Dan
+diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+index 85ed9db..8d30818 100644
+--- a/arch/arm/boot/dts/aspeed-g5.dtsi
++++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+@@ -1321,6 +1321,11 @@
+ 		groups = "SDA2";
+ 	};
+ 
++	pinctrl_sgpm_default: sgpm_default {
++		function = "SGPM";
++		groups = "SGPM";
++	};
++
+ 	pinctrl_sgps1_default: sgps1_default {
+ 		function = "SGPS1";
+ 		groups = "SGPS1";
+-- 
+2.7.4
 
