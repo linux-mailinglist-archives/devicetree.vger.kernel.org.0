@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 913D734168
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 10:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0381D3418C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2019 10:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727083AbfFDIPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 04:15:14 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:43608 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727091AbfFDIPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 04:15:12 -0400
-Received: by mail-pl1-f193.google.com with SMTP id cl9so2929905plb.10
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 01:15:12 -0700 (PDT)
+        id S1727160AbfFDIQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 04:16:01 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:41960 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727143AbfFDIPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 04:15:16 -0400
+Received: by mail-pl1-f194.google.com with SMTP id s24so7894670plr.8
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 01:15:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :in-reply-to:references;
-        bh=1vxV7xw/5L8i8m4bOyu5pRBcqwZ6n7yFKBRMfko8eAg=;
-        b=yF/IS8w7PJss7KY8M0Wgdbhr4VXw0eZdXylHTkYXpnzppT6cn89MSsaQKKrjC+DtQN
-         1GtV+NlutX5shDQlf1LrHQXLzThmo4n0NLbMGxqY8RmRnIiR6hfvu8BJoPrg/+oUZHxB
-         +S7jPtfHSDhI+jm1xYZlszQMW6y3F3wkCVj1Hun96siKj9lKc/AhwLiKhSEEM/la8VKX
-         /dexH7LLGORAMf8idnkuxH74+l9ygl2Kvoz/7surXaj1r61Kubiw+dqSgEGF2t3/gI7E
-         zvccHnVXEs90BwkkWUltHssENapZM1r1qHYnT69sGzuHWmyUp9oo0FJhRwKFmJ0zJhcL
-         3ifQ==
+        bh=Fv2whIvWWtuvlrntuYk8WF1rR93EthhOFv6VYDGUqK0=;
+        b=H3U36xsCUdBFRm3KPZyTSWH//zyS50ZT4XZXXWDgwO3Va81kNw7pvlth33eG7dWzrH
+         omDFCLKePr2nlgYtOe4W0MyTeJ4hTspfMvXK5YJB64ESExZnjLJlF4IykS6Q6+qbySr0
+         zZdBNXibIrWEfD6IroCEc0ndnzGDzqBeIt0hnnv2CuM8D9y+lSHrDjc1ZMTR/GHVCo8W
+         t8xBkc6ke362zGEgylzJz4/lIqJ8LwGOolPoY+xSvA8VNzKy2m+syMXqzJNrYUu8XKZA
+         IICbKWPnqI21SxfiOPG5/wasSwdfVBzvFuastyGFb12nknN9hTFgpcQM+85KeTbthNc6
+         gK/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:in-reply-to:references;
-        bh=1vxV7xw/5L8i8m4bOyu5pRBcqwZ6n7yFKBRMfko8eAg=;
-        b=IBkvHv/4KPcvzJ3V+Gc2fpamd27gRGblTsf4naqKGXvQrGEOVUv5ejUEAFfwRGmiu2
-         1f71Yixx3HemBsH2Z3w/CKqWfliixuMMzs7N+zrRxAQW0dWNwQjvD//SqqK4dHpfpNOF
-         pLzDbwhoWuSk1X4llPxwGbNEGSLk+usDOxMMJXSDYPd7SnSEmqj8w+YPz64iFzm/xQ5E
-         mBfshwahjJ+Abr+NkaqpEmgFASFKrQPeqFUJK7Ag0e8wlJEzY600QJY48mYADiALOYtG
-         zfRTF2nI0pa2zE4gJd6M7nZw6+cb3cTEwLVSgGopafsgcxGYpgKWDby0N7sKoXJrFd5D
-         d7fQ==
-X-Gm-Message-State: APjAAAV4xUQbHKDzjE9PqYri3XBFKgkMeszeLqb9cu4YKE9BIsNslQa5
-        s3WyHjpTWJkVSP7F2lXhNNd+sg==
-X-Google-Smtp-Source: APXvYqx5tr7hLBSr2deQxAafI0cRVbDGcHrT9nSSxEdJBYE9hB3oMoE89I4R2+wZwZkLmlk0Mk2HWg==
-X-Received: by 2002:a17:902:aa0a:: with SMTP id be10mr27683709plb.27.1559636112034;
-        Tue, 04 Jun 2019 01:15:12 -0700 (PDT)
+        bh=Fv2whIvWWtuvlrntuYk8WF1rR93EthhOFv6VYDGUqK0=;
+        b=bpjZ7PMvh4vDj6gbmWEcQdw2kITwMRMTyZwq8g1/3AIN8BTkkI0YanR1yDNfBHY9z+
+         Vlmwv6zD2/i2rA8f9l4v2JxCozSMj5RaIiV2QSPmkXdABBOFqFGj2PlqsEkBKmRVPq0q
+         cTi2DNQK3u/pBL50f8oT0dJMurXmlvpl7ZjcxnDVjA0S0rEBSgHVThBx6obd3S7JRAa5
+         BG9BF9nYRPMI9WcqnMNHxM9jlNhBEbLzSRUEcqBWFBiNUWLOq6SWo9OTkhSphtCnvgH0
+         BHPEU6ybREndXxYFrpjk+s5eIqdwdSe4WgU/WKIHVpqWRkn3PgUSoGF6hLh3H+zpLRSz
+         VNAw==
+X-Gm-Message-State: APjAAAXf2AqOrIc2aIv0tDrgROVvljF6iTHs1nONSnjGpG1lzRyxKsIs
+        evuZpFUbvjyoFhg0Cf7NKFJ0Sg==
+X-Google-Smtp-Source: APXvYqyY2NQVzf09JwfhQjHqJ106rVkuXkui5CHCsJNhadMPvAeANQiapZZITmLH2ZerWGrncqNblw==
+X-Received: by 2002:a17:902:b584:: with SMTP id a4mr35666871pls.333.1559636116089;
+        Tue, 04 Jun 2019 01:15:16 -0700 (PDT)
 Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id j4sm14818804pgc.56.2019.06.04.01.15.07
+        by smtp.gmail.com with ESMTPSA id j4sm14818804pgc.56.2019.06.04.01.15.12
         (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 04 Jun 2019 01:15:11 -0700 (PDT)
+        Tue, 04 Jun 2019 01:15:15 -0700 (PDT)
 From:   Baolin Wang <baolin.wang@linaro.org>
 To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
         zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
@@ -51,9 +51,9 @@ To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
 Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org, arm@kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 5/9] mmc: sdhci-sprd: Add HS400 enhanced strobe mode
-Date:   Tue,  4 Jun 2019 16:14:25 +0800
-Message-Id: <e1a8f70c1a393e110677b447e5fd1f25667546b8.1559635435.git.baolin.wang@linaro.org>
+Subject: [PATCH v2 6/9] mmc: sdhci-sprd: Enable PHY DLL to make clock stable
+Date:   Tue,  4 Jun 2019 16:14:26 +0800
+Message-Id: <c784bd147950d3534a92a9f55174c2406eedeb6e.1559635435.git.baolin.wang@linaro.org>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1559635435.git.baolin.wang@linaro.org>
 References: <cover.1559635435.git.baolin.wang@linaro.org>
@@ -64,78 +64,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add HS400 enhanced strobe mode support for Spreadtrum SD host controller.
+For the Spreadtrum SD host controller, when we changed the clock to be
+more than 52M, we should enable the PHY DLL which is used to track the
+clock frequency to make the clock work more stable. Otherwise deviation
+may occur of the higher clock.
 
 Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
 Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 ---
- drivers/mmc/host/sdhci-sprd.c |   32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ drivers/mmc/host/sdhci-sprd.c |   44 ++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 43 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-index d91281d..edec197 100644
+index edec197..e6eda13 100644
 --- a/drivers/mmc/host/sdhci-sprd.c
 +++ b/drivers/mmc/host/sdhci-sprd.c
-@@ -41,6 +41,7 @@
- /* SDHCI_HOST_CONTROL2 */
- #define  SDHCI_SPRD_CTRL_HS200		0x0005
- #define  SDHCI_SPRD_CTRL_HS400		0x0006
-+#define  SDHCI_SPRD_CTRL_HS400ES	0x0007
+@@ -22,6 +22,13 @@
+ /* SDHCI_ARGUMENT2 register high 16bit */
+ #define SDHCI_SPRD_ARG2_STUFF		GENMASK(31, 16)
  
- /*
-  * According to the standard specification, BIT(3) of SDHCI_SOFTWARE_RESET is
-@@ -132,6 +133,15 @@ static inline void sdhci_sprd_sd_clk_off(struct sdhci_host *host)
- 	sdhci_writew(host, ctrl, SDHCI_CLOCK_CONTROL);
++#define SDHCI_SPRD_REG_32_DLL_CFG	0x200
++#define  SDHCI_SPRD_DLL_ALL_CPST_EN	(BIT(18) | BIT(24) | BIT(25) | BIT(26) | BIT(27))
++#define  SDHCI_SPRD_DLL_EN		BIT(21)
++#define  SDHCI_SPRD_DLL_SEARCH_MODE	BIT(16)
++#define  SDHCI_SPRD_DLL_INIT_COUNT	0xc00
++#define  SDHCI_SPRD_DLL_PHASE_INTERNAL	0x3
++
+ #define SDHCI_SPRD_REG_32_DLL_DLY_OFFSET	0x208
+ #define  SDHCIBSPRD_IT_WR_DLY_INV		BIT(5)
+ #define  SDHCI_SPRD_BIT_CMD_DLY_INV		BIT(13)
+@@ -56,6 +63,7 @@
+ #define SDHCI_SPRD_CLK_MAX_DIV		1023
+ 
+ #define SDHCI_SPRD_CLK_DEF_RATE		26000000
++#define SDHCI_SPRD_PHY_DLL_CLK		52000000
+ 
+ struct sdhci_sprd_host {
+ 	u32 version;
+@@ -200,9 +208,33 @@ static inline void _sdhci_sprd_set_clock(struct sdhci_host *host,
+ 	}
  }
  
-+static inline void sdhci_sprd_sd_clk_on(struct sdhci_host *host)
++static void sdhci_sprd_enable_phy_dll(struct sdhci_host *host)
 +{
-+	u16 ctrl;
++	u32 tmp;
 +
-+	ctrl = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	ctrl |= SDHCI_CLOCK_CARD_EN;
-+	sdhci_writew(host, ctrl, SDHCI_CLOCK_CONTROL);
++	tmp = sdhci_readl(host, SDHCI_SPRD_REG_32_DLL_CFG);
++	tmp &= ~(SDHCI_SPRD_DLL_EN | SDHCI_SPRD_DLL_ALL_CPST_EN);
++	sdhci_writel(host, tmp, SDHCI_SPRD_REG_32_DLL_CFG);
++	/* wait 1ms */
++	usleep_range(1000, 1250);
++
++	tmp = sdhci_readl(host, SDHCI_SPRD_REG_32_DLL_CFG);
++	tmp |= SDHCI_SPRD_DLL_ALL_CPST_EN | SDHCI_SPRD_DLL_SEARCH_MODE |
++		SDHCI_SPRD_DLL_INIT_COUNT | SDHCI_SPRD_DLL_PHASE_INTERNAL;
++	sdhci_writel(host, tmp, SDHCI_SPRD_REG_32_DLL_CFG);
++	/* wait 1ms */
++	usleep_range(1000, 1250);
++
++	tmp = sdhci_readl(host, SDHCI_SPRD_REG_32_DLL_CFG);
++	tmp |= SDHCI_SPRD_DLL_EN;
++	sdhci_writel(host, tmp, SDHCI_SPRD_REG_32_DLL_CFG);
++	/* wait 1ms */
++	usleep_range(1000, 1250);
 +}
 +
- static inline void
- sdhci_sprd_set_dll_invert(struct sdhci_host *host, u32 mask, bool en)
+ static void sdhci_sprd_set_clock(struct sdhci_host *host, unsigned int clock)
  {
-@@ -325,6 +335,26 @@ static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 	sdhci_request(mmc, mrq);
+-	bool en = false;
++	bool en = false, clk_changed = false;
+ 
+ 	if (clock == 0) {
+ 		sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
+@@ -214,9 +246,19 @@ static void sdhci_sprd_set_clock(struct sdhci_host *host, unsigned int clock)
+ 			en = true;
+ 		sdhci_sprd_set_dll_invert(host, SDHCI_SPRD_BIT_CMD_DLY_INV |
+ 					  SDHCI_SPRD_BIT_POSRD_DLY_INV, en);
++		clk_changed = true;
+ 	} else {
+ 		_sdhci_sprd_set_clock(host, clock);
+ 	}
++
++	/*
++	 * According to the Spreadtrum SD host specification, when we changed
++	 * the clock to be more than 52M, we should enable the PHY DLL which
++	 * is used to track the clock frequency to make the clock work more
++	 * stable. Otherwise deviation may occur of the higher clock.
++	 */
++	if (clk_changed && clock > SDHCI_SPRD_PHY_DLL_CLK)
++		sdhci_sprd_enable_phy_dll(host);
  }
  
-+static void sdhci_sprd_hs400_enhanced_strobe(struct mmc_host *mmc,
-+					     struct mmc_ios *ios)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	u16 ctrl_2;
-+
-+	if (!ios->enhanced_strobe)
-+		return;
-+
-+	sdhci_sprd_sd_clk_off(host);
-+
-+	/* Set HS400 enhanced strobe mode */
-+	ctrl_2 = sdhci_readw(host, SDHCI_HOST_CONTROL2);
-+	ctrl_2 &= ~SDHCI_CTRL_UHS_MASK;
-+	ctrl_2 |= SDHCI_SPRD_CTRL_HS400ES;
-+	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
-+
-+	sdhci_sprd_sd_clk_on(host);
-+}
-+
- static const struct sdhci_pltfm_data sdhci_sprd_pdata = {
- 	.quirks = SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK,
- 	.quirks2 = SDHCI_QUIRK2_BROKEN_HS200 |
-@@ -346,6 +376,8 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
- 	host->dma_mask = DMA_BIT_MASK(64);
- 	pdev->dev.dma_mask = &host->dma_mask;
- 	host->mmc_host_ops.request = sdhci_sprd_request;
-+	host->mmc_host_ops.hs400_enhanced_strobe =
-+		sdhci_sprd_hs400_enhanced_strobe;
- 
- 	host->mmc->caps = MMC_CAP_SD_HIGHSPEED | MMC_CAP_MMC_HIGHSPEED |
- 		MMC_CAP_ERASE | MMC_CAP_CMD23;
+ static unsigned int sdhci_sprd_get_max_clock(struct sdhci_host *host)
 -- 
 1.7.9.5
 
