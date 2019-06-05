@@ -2,224 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F15DC36835
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 01:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AC0D3686A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 01:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726729AbfFEXmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 19:42:10 -0400
-Received: from casper.infradead.org ([85.118.1.10]:48604 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726532AbfFEXmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 19:42:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=IllZgL/Tvx6ZdOkE8cT0VBvSJHPyC9Kw4E2FxJB9wHw=; b=bm2K2e36Q7ozSQDpAX71FjdUg5
-        t45M9rkJZI5xIcP2xoJLYpzZUzxXj5u12tnAWWX/54JMNifGsA3V/jP6Zrl1YcjUW2xd2uoS2797t
-        rWjOKTkQkRR2q3GJokt0uftfimyVD9gZj99nAn+sKuqn/Lz+4J14aO/TTgBXbwebFpm1HG5ZbQc5r
-        r+lJ//XEq817K3pBD3daHKUeJc6792qKmE1ORtKU5Pw6mhY47ZxiYcbQKWIuiC2FZ1ZTi/l3mQy7p
-        JLKVZGXWt/OZJe8s1MBs5i/bBZYZEHgeKBqh22giDHB2znPppochw2XIRxntaEgnxgoiOUv181hH9
-        ff7H7oiQ==;
-Received: from [179.182.172.34] (helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hYfXa-0004Gc-V0; Wed, 05 Jun 2019 23:41:59 +0000
-Date:   Wed, 5 Jun 2019 20:41:52 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        od@zcrc.me
-Subject: Re: [PATCH v5 2/3] media: uapi: Add MEDIA_BUS_FMT_RGB888_3X8 media
- bus format
-Message-ID: <20190605204152.36f81ebd@coco.lan>
-In-Reply-To: <20190605222247.25657-2-paul@crapouillou.net>
-References: <20190605222247.25657-1-paul@crapouillou.net>
-        <20190605222247.25657-2-paul@crapouillou.net>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726537AbfFEX5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 19:57:30 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:37054 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726510AbfFEX5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 19:57:30 -0400
+Received: by mail-wm1-f67.google.com with SMTP id 22so557717wmg.2;
+        Wed, 05 Jun 2019 16:57:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CoEKt3CyAM8pXZNIOFLtJ4NXiqc8XDf8/zgh2kIleYE=;
+        b=ttD0EcZdokG+eHCPuoKzaxTh1/e9jppmuGOG9Bx7wn2M+XZ/MzL4+73QYIgcSOlF98
+         Wwrmkd9J3VNehRzye7Kbqk7O1XJUqKO8zNxx0yoHZ3cKwl1IIKYgREu5zmc5APYT/6h/
+         Ke5faRmuunUoqwM3bk52rYrH3bm/MytLpIew8Nk2h0oVNleTVbzqPn2XiOWRd55CYBvM
+         +1iHfw1DAvWlcOSjBB+nHK0QvHrvPzX/N2U/jb7iyiZQwQbtRui/tPOEOjs+sLyg60rC
+         j9orX4xyMYpUC2jKnVN++F8VXkZuu11O797s1ZyL53s0lhpvJdpBF0h7CbFEQGxO2+DS
+         s3lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CoEKt3CyAM8pXZNIOFLtJ4NXiqc8XDf8/zgh2kIleYE=;
+        b=Pwl84w3Cjs8iK67sKq3q35yB2DcrXIG9i/4xU6mY8OeQoMjeITPe/xbV0L/C4cpuyP
+         x4n6tkKtSWoY3gH0383CnKnv5c47rbP3wIM3j2ErqpoawgSVJhFcdDTjMFcfIYevHOdO
+         h0fbXsoR5A4BWCWr9TX3G0XNBUllMYv24Ejf8kFnznjmGqKoMWyoRmC2WiSsEbU87nvt
+         g4sMwnaZdwjqWZgqNhsBdgizK3cPkXhKCfXMgqhjucpF46yfsF95RQ2I2zJuw1RkzSAR
+         bgH3UTPmntrdkU/qJMdjsMG4uh1OWHpiP/1TmceYjXp3+VXNIXCvyX64keK2L5Nv5gE2
+         c2IA==
+X-Gm-Message-State: APjAAAXp4SIIlzGEjJA6aar5QKPMU7CAO7WsMeC6ciVZrOuRse1Ju/xg
+        sVoizdcAzT83yqTA89had3I=
+X-Google-Smtp-Source: APXvYqwNXvyVrYJ/+XP8N6e1Hk1Le0wEopGarZqZ89V6cCoDAPq+dq0qX6FmIYJZdMYXIYqWTGNRIA==
+X-Received: by 2002:a1c:f70f:: with SMTP id v15mr23841079wmh.102.1559779048577;
+        Wed, 05 Jun 2019 16:57:28 -0700 (PDT)
+Received: from X555LD.home ([2a02:85f:1501:7500:4991:f471:d726:d8ee])
+        by smtp.gmail.com with ESMTPSA id q15sm245915wrr.19.2019.06.05.16.57.26
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 05 Jun 2019 16:57:27 -0700 (PDT)
+From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        "Leonidas P. Papadakos" <papadakospan@gmail.com>
+Subject: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on rk3328
+Date:   Thu,  6 Jun 2019 02:57:13 +0300
+Message-Id: <20190605235714.22432-1-papadakospan@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Thu,  6 Jun 2019 00:22:46 +0200
-Paul Cercueil <paul@crapouillou.net> escreveu:
+From: <itdaniher@gmail.com>
 
-> This patch adds MEDIA_BUS_FMT_RGB888_3X8, used for the GiantPlus
-> GPM940B0 24-bit TFT panel, where the RGB components are transferred
-> sequentially on a 8-bit bus.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+Following the discussion here:
+https://github.com/rockchip-linux/kernel/issues/123
 
-Looks ok to me. Feel free to apply via DRM tree.
+it can be seen that these are the changes needed to enable the use of the hardware watchdog in the rk3328 SoC.
 
-Acked-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+This is in line with past changes for the rk3288:
+http://lists.infradead.org/pipermail/linux-rockchip/2015-January/002314.html
 
-> ---
-> 
-> Notes:
->     v2: New patch
->     
->     v3: No change
->     
->     v4: Add only MEDIA_BUS_FMT_RGB888_3X8, as we don't have to care about
->         endianness
->     
->     v5: Also update Documentation/media/uapi/v4l/subdev-formats.rst
-> 
->  .../media/uapi/v4l/subdev-formats.rst         | 107 ++++++++++++++++++
->  include/uapi/linux/media-bus-format.h         |   3 +-
->  2 files changed, 109 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/media/uapi/v4l/subdev-formats.rst b/Documentation/media/uapi/v4l/subdev-formats.rst
-> index ab1a48a5ae80..f4f8de31ac63 100644
-> --- a/Documentation/media/uapi/v4l/subdev-formats.rst
-> +++ b/Documentation/media/uapi/v4l/subdev-formats.rst
-> @@ -1305,6 +1305,113 @@ The following tables list existing packed RGB formats.
->        - g\ :sub:`6`
->        - g\ :sub:`5`
->        - g\ :sub:`4`
-> +    * .. _MEDIA-BUS-FMT-RGB888-3X8:
-> +
-> +      - MEDIA_BUS_FMT_RGB888_3X8
-> +      - 0x101c
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      - r\ :sub:`7`
-> +      - r\ :sub:`6`
-> +      - r\ :sub:`5`
-> +      - r\ :sub:`4`
-> +      - r\ :sub:`3`
-> +      - r\ :sub:`2`
-> +      - r\ :sub:`1`
-> +      - r\ :sub:`0`
-> +    * -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      - g\ :sub:`7`
-> +      - g\ :sub:`6`
-> +      - g\ :sub:`5`
-> +      - g\ :sub:`4`
-> +      - g\ :sub:`3`
-> +      - g\ :sub:`2`
-> +      - g\ :sub:`1`
-> +      - g\ :sub:`0`
-> +    * -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      -
-> +      - b\ :sub:`7`
-> +      - b\ :sub:`6`
-> +      - b\ :sub:`5`
-> +      - b\ :sub:`4`
-> +      - b\ :sub:`3`
-> +      - b\ :sub:`2`
-> +      - b\ :sub:`1`
-> +      - b\ :sub:`0`
->      * .. _MEDIA-BUS-FMT-ARGB888-1X32:
->  
->        - MEDIA_BUS_FMT_ARGB888_1X32
-> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
-> index 2a6b253cfb05..16c1fa2d89a4 100644
-> --- a/include/uapi/linux/media-bus-format.h
-> +++ b/include/uapi/linux/media-bus-format.h
-> @@ -34,7 +34,7 @@
->  
->  #define MEDIA_BUS_FMT_FIXED			0x0001
->  
-> -/* RGB - next is	0x101c */
-> +/* RGB - next is	0x101d */
->  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
-> @@ -55,6 +55,7 @@
->  #define MEDIA_BUS_FMT_RGB888_1X24		0x100a
->  #define MEDIA_BUS_FMT_RGB888_2X12_BE		0x100b
->  #define MEDIA_BUS_FMT_RGB888_2X12_LE		0x100c
-> +#define MEDIA_BUS_FMT_RGB888_3X8		0x101c
->  #define MEDIA_BUS_FMT_RGB888_1X7X4_SPWG		0x1011
->  #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
->  #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
+Signed-off-by: Leonidas P. Papadakos <papadakospan@gmail.com>
+---
+ drivers/clk/rockchip/clk-rk3328.c      | 9 +++++++++
+ include/dt-bindings/clock/rk3328-cru.h | 1 +
+ 2 files changed, 10 insertions(+)
 
+diff --git a/drivers/clk/rockchip/clk-rk3328.c b/drivers/clk/rockchip/clk-rk3328.c
+index 076b9777a..546ee0ab7 100644
+--- a/drivers/clk/rockchip/clk-rk3328.c
++++ b/drivers/clk/rockchip/clk-rk3328.c
+@@ -876,6 +876,8 @@ static const char *const rk3328_critical_clocks[] __initconst = {
+ 
+ static void __init rk3328_clk_init(struct device_node *np)
+ {
++	struct clk *clk;
++
+ 	struct rockchip_clk_provider *ctx;
+ 	void __iomem *reg_base;
+ 
+@@ -892,6 +894,13 @@ static void __init rk3328_clk_init(struct device_node *np)
+ 		return;
+ 	}
+ 
++	clk = clk_register_fixed_factor(NULL, "pclk_wdt", "pclk_bus", 0, 1, 1);
++	if (IS_ERR(clk))
++		pr_warn("%s: could not register clock pclk_wdt: %ld\n",
++			__func__, PTR_ERR(clk));
++	else
++		rockchip_clk_add_lookup(ctx, clk, PCLK_WDT);
++
+ 	rockchip_clk_register_plls(ctx, rk3328_pll_clks,
+ 				   ARRAY_SIZE(rk3328_pll_clks),
+ 				   RK3328_GRF_SOC_STATUS0);
+diff --git a/include/dt-bindings/clock/rk3328-cru.h b/include/dt-bindings/clock/rk3328-cru.h
+index afb811340..555b4ff66 100644
+--- a/include/dt-bindings/clock/rk3328-cru.h
++++ b/include/dt-bindings/clock/rk3328-cru.h
+@@ -164,6 +164,7 @@
+ #define PCLK_DCF		233
+ #define PCLK_SARADC		234
+ #define PCLK_ACODECPHY		235
++#define PCLK_WDT		236
+ 
+ /* hclk gates */
+ #define HCLK_PERI		308
+-- 
+2.21.0
 
-
-Thanks,
-Mauro
