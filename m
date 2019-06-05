@@ -2,139 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED4435C45
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 14:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C3F635C5B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 14:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727369AbfFEMF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 08:05:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56860 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727325AbfFEMF1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 08:05:27 -0400
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A5A922070B;
-        Wed,  5 Jun 2019 12:05:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559736326;
-        bh=/yBmtrGUuJzqyyuL9TNw1yQTPdC8StAgllWcH1SusIc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=guT85f4kOCTPb7g81M3ETpUzM46V6ZvoSK6lz1RMVBeCDQghdR68z71f6y5vw/JMe
-         hBoKRQNUzUSI2mUI4gsVQC3gw40VC/BGvj4DjQ+8IU9/ArFF4DfpxjRp6yNl9ePaYr
-         ORaChhw/4HzRut9ppSgk9Q+2IxW5+2r+XCDoPE8c=
-Received: by mail-lj1-f181.google.com with SMTP id o13so22867425lji.5;
-        Wed, 05 Jun 2019 05:05:25 -0700 (PDT)
-X-Gm-Message-State: APjAAAWJA76UXrff0DojScbOXJlNyiB3IDhjlx2NZoh1oFwix9V4Awna
-        lSdDmUy5aaFf3xXyladn07xf69McZHI4jGc0IJM=
-X-Google-Smtp-Source: APXvYqyy3PzIshgd+hJHZQBaDG/tn3wI/iXAXb04vhvfCuOj9XnQLbiv+Uyq+aBSr59JP990kgt/YLqRWBcifg7dsew=
-X-Received: by 2002:a2e:9cc4:: with SMTP id g4mr21556488ljj.47.1559736323980;
- Wed, 05 Jun 2019 05:05:23 -0700 (PDT)
+        id S1727667AbfFEML3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 08:11:29 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:49627 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726305AbfFEML3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 08:11:29 -0400
+X-Originating-IP: 90.88.144.139
+Received: from localhost (aaubervilliers-681-1-24-139.w90-88.abo.wanadoo.fr [90.88.144.139])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 54720240014;
+        Wed,  5 Jun 2019 12:11:26 +0000 (UTC)
+Date:   Wed, 5 Jun 2019 14:11:25 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Wolfram Sang <wsa@the-dreams.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, linux-i2c@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: i2c: mv64xxx: Add YAML schemas
+Message-ID: <20190605121125.4p2eyt7zhtai652b@flea>
+References: <20190525141821.20082-1-maxime.ripard@bootlin.com>
+ <20190525141821.20082-2-maxime.ripard@bootlin.com>
+ <87k1e2k98v.fsf@FE-laptop>
 MIME-Version: 1.0
-References: <CAJKOXPf=nPrmw6Vzi_=LmO=dVsV4Gvoc-q75XP2FBEgm9Gxv0A@mail.gmail.com>
- <20190527022258.32748-1-matheus@castello.eng.br> <20190527022258.32748-4-matheus@castello.eng.br>
- <CAJKOXPd2F6iy0ZqYf+X2k=eQ=tY1zG4gVbrr68XqE9+w4HK6dw@mail.gmail.com> <69a4f003-4413-1316-6145-f8bef2171e86@castello.eng.br>
-In-Reply-To: <69a4f003-4413-1316-6145-f8bef2171e86@castello.eng.br>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 5 Jun 2019 14:05:12 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfpSEq+eOGsZjQQociuemzb1=E4_OetfCEvLyNxVxJpmQ@mail.gmail.com>
-Message-ID: <CAJKOXPfpSEq+eOGsZjQQociuemzb1=E4_OetfCEvLyNxVxJpmQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] power: supply: max17040: Config alert SOC low
- level threshold from FDT
-To:     Matheus Castello <matheus@castello.eng.br>
-Cc:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, lee.jones@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jcggnhf3ykfk7lac"
+Content-Disposition: inline
+In-Reply-To: <87k1e2k98v.fsf@FE-laptop>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Jun 2019 at 00:42, Matheus Castello <matheus@castello.eng.br> wrote:
->
->
->
-> On 5/29/19 11:46 AM, Krzysztof Kozlowski wrote:
-> > On Mon, 27 May 2019 at 04:46, Matheus Castello <matheus@castello.eng.br> wrote:
-> >>
-> >> For configuration of fuel gauge alert for a low level state of charge
-> >> interrupt we add a function to config level threshold and a device tree
-> >> binding property to set it in flatned device tree node.
-> >>
-> >> Now we can use "maxim,alert-low-soc-level" property with the values from
-> >> 1% up to 32% to configure alert interrupt threshold.
-> >>
-> >> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
-> >> ---
-> >>   drivers/power/supply/max17040_battery.c | 52 +++++++++++++++++++++++--
-> >>   1 file changed, 49 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
-> >> index b7433e9ca7c2..2f4851608cfe 100644
-> >> --- a/drivers/power/supply/max17040_battery.c
-> >> +++ b/drivers/power/supply/max17040_battery.c
-> >> @@ -29,6 +29,9 @@
-> >>   #define MAX17040_DELAY         1000
-> >>   #define MAX17040_BATTERY_FULL  95
-> >>
-> >> +#define MAX17040_ATHD_MASK             0xFFC0
-> >> +#define MAX17040_ATHD_DEFAULT_POWER_UP 4
-> >> +
-> >>   struct max17040_chip {
-> >>          struct i2c_client               *client;
-> >>          struct delayed_work             work;
-> >> @@ -43,6 +46,8 @@ struct max17040_chip {
-> >>          int soc;
-> >>          /* State Of Charge */
-> >>          int status;
-> >> +       /* Low alert threshold from 32% to 1% of the State of Charge */
-> >> +       u32 low_soc_alert_threshold;
-> >>   };
-> >>
-> >>   static int max17040_get_property(struct power_supply *psy,
-> >> @@ -99,6 +104,28 @@ static void max17040_reset(struct i2c_client *client)
-> >>          max17040_write_reg(client, MAX17040_CMD, 0x0054);
-> >>   }
-> >>
-> >> +static int max17040_set_low_soc_threshold_alert(struct i2c_client *client,
-> >> +       u32 level)
-> >> +{
-> >> +       int ret;
-> >> +       u16 data;
-> >> +
-> >> +       /* check if level is between 1% and 32% */
-> >> +       if (level > 0 && level < 33) {
-> >> +               level = 32 - level;
-> >> +               data = max17040_read_reg(client, MAX17040_RCOMP);
-> >> +               /* clear the alrt bit and set LSb 5 bits */
-> >> +               data &= MAX17040_ATHD_MASK;
-> >> +               data |= level;
-> >> +               max17040_write_reg(client, MAX17040_RCOMP, data);
-> >> +               ret = 0;
->
-> I will put the return of max17040_write_reg on ret, instead of ret = 0.
->
-> >> +       } else {
-> >> +               ret = -EINVAL;
-> >> +       }
-> >
-> > This is unusual way of handling error... when you parse DTS, you
-> > accept any value for "level" (even incorrect one). You validate the
-> > value later when setting it and show an error... however you ignore
-> > the error of max17040_write_reg() here... This is correct but looks
-> > unusual.
-> >
->
-> Ok, so would it be better to check the level value in
-> "max17040_get_of_data" and return an error there if the input is wrong?
 
-I think yes. It looks more natural - validate the value as early as
-possible and fail the probe which gives the information about point of
-failure.
+--jcggnhf3ykfk7lac
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+Hi,
+
+On Mon, Jun 03, 2019 at 04:56:48PM +0200, Gregory CLEMENT wrote:
+> > +++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> > @@ -0,0 +1,106 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/i2c/marvell,mv64xxx-i2c.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Marvell MV64XXX I2C Controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Chen-Yu Tsai <wens@csie.org>
+> > +  - Maxime Ripard <maxime.ripard@bootlin.com>
+>
+> If you take over the maintenanceship and became maintainer for this
+> driver, then update the MAINTAINERS files too. For now it was assigned
+> to me, but I don't mind letting this for both of you.
+>
+> Actually I gave my acked-by to a patch from Wolfram adding the
+> Documentation/devicetree/bindings/i2c/i2c-mv64xxx.txt file to the "I2C
+> MV64XXX MARVELL AND ALLWINNER DRIVER" entry "MAINTAINERS: add DT
+> bindings to i2c-mv64xxx" so I guess this patch have to be discarded or
+> at least updated.
+
+Sorry for that, it's definitely not intentional. I'll fix it and resend.
+
+Thanks!
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--jcggnhf3ykfk7lac
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPexbQAKCRDj7w1vZxhR
+xe/dAP9810+E+YG6xK7o/znoo25OToisA4qAfR89Ox8darfLQgEAjPOHR1jQl2S+
+xakb+9c/vF+oAFjJD//9cLNS1UOxHgE=
+=JR2U
+-----END PGP SIGNATURE-----
+
+--jcggnhf3ykfk7lac--
