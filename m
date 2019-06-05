@@ -2,134 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D2AD35527
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 04:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2BE35536
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 04:25:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726341AbfFECQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 22:16:07 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:16151 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726293AbfFECQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 22:16:07 -0400
-X-UUID: 9db87658935a4c8f8961da87f290c9d2-20190605
-X-UUID: 9db87658935a4c8f8961da87f290c9d2-20190605
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1510923047; Wed, 05 Jun 2019 10:16:01 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33DR.mediatek.inc
- (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 5 Jun
- 2019 10:16:00 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 5 Jun 2019 10:15:59 +0800
-Message-ID: <1559700959.8487.78.camel@mhfsdcap03>
-Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
- common core
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S1726427AbfFECZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 22:25:05 -0400
+Received: from mail-eopbgr60064.outbound.protection.outlook.com ([40.107.6.64]:35814
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726354AbfFECZF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jun 2019 22:25:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WP44AFfGfS/Dl7DZmYj2i+WklCHcuM18wzZpVSFDxYQ=;
+ b=gVFi7n4ON71QxbkKwLDJXJj6om0v8CQRKGo/IYx+dtF/dCx5amCP68KOpKxLJlP3b57qE3v4ZFD7mRZHT+eJ81c2yzoBzkIWlDPGw0M+jdPEBtNRt7Gv6aUGYGRaauekXLkxB0ltwbfhKimUj5dWkKyrrkiCbNdDkNCvFtv2lf8=
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.235.81) by
+ VE1PR04MB6670.eurprd04.prod.outlook.com (20.179.235.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.17; Wed, 5 Jun 2019 02:25:02 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::a13e:6f61:e9e6:16d7]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::a13e:6f61:e9e6:16d7%7]) with mapi id 15.20.1943.018; Wed, 5 Jun 2019
+ 02:25:02 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     "vkoul@kernel.org" <vkoul@kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 5 Jun 2019 10:15:59 +0800
-In-Reply-To: <20190604115919.GA24346@kroah.com>
-References: <20190604093258.GB30054@kroah.com>
-         <20190604115919.GA24346@kroah.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v3 5/8] dmaengine: fsl-edma: add drvdata for vf610
+Thread-Topic: [PATCH v3 5/8] dmaengine: fsl-edma: add drvdata for vf610
+Thread-Index: AQHVFf3r7/Xb7jxz/ECdaeOw3gnZcaaLd3OAgAFveAA=
+Date:   Wed, 5 Jun 2019 02:25:02 +0000
+Message-ID: <1559730524.24019.11.camel@nxp.com>
+References: <20190529090848.34350-1-yibin.gong@nxp.com>
+         <20190529090848.34350-6-yibin.gong@nxp.com>
+         <20190604123331.GE15118@vkoul-mobl>
+In-Reply-To: <20190604123331.GE15118@vkoul-mobl>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=yibin.gong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5eef4971-2cef-41bc-4b97-08d6e95d03e7
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VE1PR04MB6670;
+x-ms-traffictypediagnostic: VE1PR04MB6670:
+x-microsoft-antispam-prvs: <VE1PR04MB66707006ABC29C7E5D7F474F89160@VE1PR04MB6670.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 00594E8DBA
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(396003)(39860400002)(366004)(136003)(376002)(199004)(189003)(14454004)(6246003)(53546011)(6436002)(25786009)(5660300002)(54906003)(229853002)(53936002)(6506007)(86362001)(11346002)(186003)(7416002)(76176011)(76116006)(1730700003)(64756008)(66476007)(66556008)(66446008)(5640700003)(81156014)(81166006)(6512007)(4326008)(6486002)(91956017)(8676002)(316002)(71190400001)(50226002)(8936002)(71200400001)(66066001)(66946007)(446003)(73956011)(6916009)(486006)(2351001)(7736002)(305945005)(2501003)(36756003)(99286004)(68736007)(2906002)(26005)(4744005)(256004)(3846002)(103116003)(102836004)(476003)(6116002)(478600001)(2616005)(99106002);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6670;H:VE1PR04MB6638.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: joe5DdmRg2PzTPEbrlGD/5ABWreANdEOZbZyYo60HQSZM2cAXEpSKBu4zFeGMcbU4xRjIc9WXfQI3I99QEEKFv9OU1HYjFxmemR/jtCrligbCxrHx6vkszxovrEcepjsXHtYROoLZVdXFO//+kA7V5URj3P32V6mO6+u6PNIlA6NuEoLrGys53zRpmqO8RmDGynKVvJ3iUQ3m++yFxA2TpRYOWWFOB+i/DFiCDi2K/O4KY92LkmEB0iPJH6m0ru6b1uNOFwZ7max7fwBwX7SXbPHqTJu4XYfgY2wjQmAmrtQPFHdmAm96xM7R4zSE02Wy7C7HSS7E7caLpKfQH2ete9i3SKrQLLriLyNryghiZ0BCLX/DpROm8ydCF7p3amvF30w8M8K2/G3hA6QTx2uIboznR1Jk5UNwS2U+EHMeoA=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8D5076106775FA4C8D1276EB52B6257E@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5eef4971-2cef-41bc-4b97-08d6e95d03e7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2019 02:25:02.4774
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yibin.gong@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6670
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-04 at 13:59 +0200, Greg Kroah-Hartman wrote:
-> On Tue, Jun 04, 2019 at 11:32:58AM +0200, Greg Kroah-Hartman wrote:
-> > The USB gadget subsystem wants to use the USB debugfs root directory, so
-> > move it to the common "core" USB code so that it is properly initialized
-> > and removed as needed.
-> > 
-> > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > 
-> > ---
-> > 
-> > This should be the "correct" version of this, Chunfeng, can you test
-> > this to verify it works for you?
-I'll test it ASAP, thanks a lot
-
-> > 
-> > 
-> > diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
-> > index 18f5dcf58b0d..3b5e4263ffef 100644
-> > --- a/drivers/usb/common/common.c
-> > +++ b/drivers/usb/common/common.c
-> > @@ -15,6 +15,7 @@
-> >  #include <linux/usb/of.h>
-> >  #include <linux/usb/otg.h>
-> >  #include <linux/of_platform.h>
-> > +#include <linux/debugfs.h>
-> >  
-> >  static const char *const ep_type_names[] = {
-> >  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
-> > @@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
-> >  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
-> >  #endif
-> >  
-> > +struct dentry *usb_debug_root;
-> > +EXPORT_SYMBOL_GPL(usb_debug_root);
-> > +
-> > +static int usb_common_init(void)
-> > +{
-> > +	usb_debug_root = debugfs_create_dir("usb", NULL);
-> > +	return 0;
-> > +}
-> > +
-> > +static void usb_common_exit(void)
-> > +{
-> > +	debugfs_remove_recursive(usb_debug_root);
-> > +}
-> > +
-> > +module_init(usb_common_init);
-> > +module_exit(usb_common_exit);
-> > +
-> >  MODULE_LICENSE("GPL");
-> > diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-> > index 7fcb9f782931..f3d6b1ab80cb 100644
-> > --- a/drivers/usb/core/usb.c
-> > +++ b/drivers/usb/core/usb.c
-> > @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
-> >  	.notifier_call = usb_bus_notify,
-> >  };
-> >  
-> > -struct dentry *usb_debug_root;
-> > -EXPORT_SYMBOL_GPL(usb_debug_root);
-> > +static struct dentry *usb_devices_root;
-> >  
-> >  static void usb_debugfs_init(void)
-> >  {
-> > -	usb_debug_root = debugfs_create_dir("usb", NULL);
-> > -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
-> > -			    &usbfs_devices_fops);
-> > +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
-> > +					       NULL, &usbfs_devices_fops);
-> >  }
-> >  
-> >  static void usb_debugfs_cleanup(void)
-> >  {
-> > -	debugfs_remove_recursive(usb_debug_root);
-> > +	debugfs_remove_recursive(usb_devices_root);
-> 
-> That should just be debugfs_remove();
-> 
-> I'll fix it up after someone tests this :)
-> 
-> thanks,
-> 
-> greg k-h
-
-
+T24g5LqMLCAyMDE5LTA2LTA0IGF0IDE4OjAzICswNTMwLCBWaW5vZCBLb3VsIHdyb3RlOg0KPiBP
+biAyOS0wNS0xOSwgMTc6MDgsIHlpYmluLmdvbmdAbnhwLmNvbSB3cm90ZToNCj4gDQo+ID4gDQo+
+ID4gQEAgLTIwNSw4ICsyMjgsOSBAQCBzdGF0aWMgaW50IGZzbF9lZG1hX3Byb2JlKHN0cnVjdA0K
+PiA+IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gPiDCoAlpZiAoIWZzbF9lZG1hKQ0KPiA+IMKg
+CQlyZXR1cm4gLUVOT01FTTsNCj4gPiDCoA0KPiA+IC0JZnNsX2VkbWEtPnZlcnNpb24gPSB2MTsN
+Cj4gPiAtCWZzbF9lZG1hLT5kbWFtdXhfbnIgPSBETUFNVVhfTlI7DQo+ID4gKwlmc2xfZWRtYS0+
+ZHJ2ZGF0YSA9IGRydmRhdGE7DQo+ID4gKwlmc2xfZWRtYS0+dmVyc2lvbiA9IGRydmRhdGEtPnZl
+cnNpb247DQo+ID4gKwlmc2xfZWRtYS0+ZG1hbXV4X25yID0gZHJ2ZGF0YS0+ZG1hbXV4czsNCj4g
+QW5kIGNhbiB3ZSBhdm9pZCB0aGUgZHVwbGljYXRpb24gaGVyZSwgeW91IGhhdmUgdmVyc2lvbiBh
+bmQgZG1hbXV4cw0KPiByZXByZXNlbnRlZCBpbiB0d28gcGxhY2VzLiBCdXQgcmlnaHQgbm93IGl0
+IGxvb2tzIGxvZ2ljYWwgc28gdGhlDQo+IHJlbW92YWwNCj4gc2hvdWxkIGJlIGRvbmUgYWZ0ZXIg
+dGhpcyBzZXJpZXMNClRvIGF2b2lkIG1vcmUgY29kZSBjaGFuZ2VzIGluIG90aGVyIGVkbWEgZHJp
+dmVyIHN1Y2ggYXMgbWNmLWVkbWEuYyBhbmQNCmZzbC1lZG1hLWNvbW1vbi5jKHJlcGxhY2UgYWxs
+IHZlcnNpb24vZG1hbXV4X25yIHdpdGggbmV3DQonZHJ2ZGF0YScpLG1lYW53aGlsZSwgbm8gYm9h
+cmQgdG8gdGVzdCBtY2YtZWRtYSBzbyBJIGtlZXANCid2ZXJzaW9uJy8nZG1hbXV4JyBoZXJlIGlu
+IHRoZSBsYXN0IG1pbnV0ZS4gQnV0IGlmIHlvdSBzdGljaywgSSB3b3VsZA0KdHJ5IHRvIHJlZmlu
+ZSBpdCBpbiBuZXh0IHZlcnNpb24uwqANCj4g
