@@ -2,222 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BF26357CC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 09:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C843C3580C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 09:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726597AbfFEHd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 03:33:29 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:35611 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726656AbfFEHd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 03:33:29 -0400
-Received: by mail-io1-f67.google.com with SMTP id m24so6082096ioo.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 00:33:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sT5+EcB+YlUyYXK4d4U6HyNi0I1g3TpKkvkKUR2F5ZM=;
-        b=VCL9eX+gvb3o26vh8+qUEyB25EROXALxlcBtJbdKECcuk3tu3EhsabIrBfSsB75pr5
-         FSPgWuvogGIrYzakye+464zhUCYtAWxxrXoobR4lMdIBE4sPDZhOuVvQYjH+EPDCnjx1
-         VQFFZVOeOFCa2ZERZrwmBQG1QQ1c3oCxK6/5g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sT5+EcB+YlUyYXK4d4U6HyNi0I1g3TpKkvkKUR2F5ZM=;
-        b=ZStz1sbTaddtYSWYG1b4OfDL9jCJJs0DoZjHYLLVOv2/ygmggRoyDp6F/OOj7OJ7yu
-         R7Lv3jmGo7OaKNFjYcTsbLf4jxJXkYrLtVkiUPy999YSFC2+2GAhhQVEvwtDzuEHk87c
-         QwSx2xUbVe2hjbUgNMJz+WDwDNCAXXq1AqzcpTk86ZiBb95WXKYirIZYbea5gIi4A+Xa
-         zvjbiu87dW4SObrmY1YQ2hWKBDTzQ/9rj7rMwVv3+1GWy2qiIv/+waz3vrevZZ3aPeCP
-         AHNQQNwrBUF5BqkniWEsblSBIU/rbWdNzOuREY2ocGUGCvsE6sDjngoYZkrdWUd0YCWj
-         Ojhg==
-X-Gm-Message-State: APjAAAVcQuNS3+iyAb30lDSasjaOtTHcfbFjxIkUcHERvJMjcsv2UJXf
-        P6R37dbz4klMVyymyjLQu+YjKMXvbQzIfWCgHyVjlw==
-X-Google-Smtp-Source: APXvYqxoBfSiE/FChf+zOd+5G7lXRSPudgwOU4Z2EmihRMqCcQlK79PteyJ9VYub2JxxeB4a4GDKO/a5RQWhtvdopNE=
-X-Received: by 2002:a5d:994d:: with SMTP id v13mr8213052ios.77.1559720008302;
- Wed, 05 Jun 2019 00:33:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190124195900.22620-1-jagan@amarulasolutions.com>
- <20190124195900.22620-12-jagan@amarulasolutions.com> <20190125212433.ni2jg3wvpyjazlxf@flea>
- <CAMty3ZAsH2iZ+JEqTE3D58aXfGuhMSg9YoO56ZhhOeE4c4yQHQ@mail.gmail.com>
- <20190129151348.mh27btttsqcmeban@flea> <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
- <20190201143102.rcvrxstc365mezvx@flea> <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
- <20190605064933.6bmskkxzzgn35xz7@flea>
-In-Reply-To: <20190605064933.6bmskkxzzgn35xz7@flea>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 5 Jun 2019 13:03:16 +0530
-Message-ID: <CAMty3ZCCP=oCqm5=49BsjwoxdDETgBfU_5g8fQ=bz=iWApV0tw@mail.gmail.com>
-Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for PLL_MIPI
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+        id S1726527AbfFEHuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 03:50:39 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:48125 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725294AbfFEHuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 03:50:39 -0400
+X-UUID: 3bcae11531cc4d9c8364f18a8d0872fc-20190605
+X-UUID: 3bcae11531cc4d9c8364f18a8d0872fc-20190605
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1696416894; Wed, 05 Jun 2019 15:50:33 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 5 Jun
+ 2019 15:50:32 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 5 Jun 2019 15:50:31 +0800
+Message-ID: <1559721031.8487.99.camel@mhfsdcap03>
+Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
+ common core
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 5 Jun 2019 15:50:31 +0800
+In-Reply-To: <20190604115919.GA24346@kroah.com>
+References: <20190604093258.GB30054@kroah.com>
+         <20190604115919.GA24346@kroah.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 5, 2019 at 12:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Hi,
->
-> I've reordered the mail a bit to work on chunks
->
-> On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
-> > > I wish it was in your commit log in the first place, instead of having
-> > > to exchange multiple mails over this.
-> > >
-> > > However, I don't think that's quite true, and it might be a bug in
-> > > Allwinner's implementation (or rather something quite confusing).
-> > >
-> > > You're right that the lcd_rate and pll_rate seem to be generated from
-> > > the pixel clock, and it indeed looks like the ratio between the pixel
-> > > clock and the TCON dotclock is defined through the number of bits per
-> > > lanes.
-> > >
-> > > However, in this case, dsi_rate is actually the same than lcd_rate,
-> > > since pll_rate is going to be divided by dsi_div:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
-> > >
-> > > Since lcd_div is 1, it also means that in this case, dsi_rate ==
-> > > dclk_rate.
-> > >
-> > > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
-> > > we look at:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
-> > >
-> > > We can see that the rate in clk_info is used if it's different than
-> > > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
-> > > DSI panel, will hardcode it to 148.5 MHz:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
-> >
-> > Let me explain, something more.
-> >
-> > According to bsp there are clk_info.tcon_div which I will explain below.
-> > clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
-> > is 6 for 24bpp and 4 lanes devices.
-> >
-> > PLL rate here depends on dsi_div (not tcon_div)
-> >
-> > Code here
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
-> >
-> > is computing the actual set rate, which depends on dsi_rate.
-> >
-> > lcd_rate = dclk_rate * clk_info.dsi_div;
-> > dsi_rate = pll_rate / clk_info.dsi_div;
-> >
-> > Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
-> > for above link you mentioned.
-> >
-> > Here are the evidence with some prints.
-> >
-> > https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
-> > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
->
-> Ok, so we agree up to this point, and the prints confirm that the
-> analysis above is the right one.
->
-> > > So, the DSI clock is set to this here:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
->
-> Your patch doesn't address that, so let's leave that one alone.
+On Tue, 2019-06-04 at 13:59 +0200, Greg Kroah-Hartman wrote:
+> On Tue, Jun 04, 2019 at 11:32:58AM +0200, Greg Kroah-Hartman wrote:
+> > The USB gadget subsystem wants to use the USB debugfs root directory, so
+> > move it to the common "core" USB code so that it is properly initialized
+> > and removed as needed.
+> > 
+> > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > 
+> > ---
+> > 
+> > This should be the "correct" version of this, Chunfeng, can you test
+> > this to verify it works for you?
+> > 
+> > 
+> > diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
+> > index 18f5dcf58b0d..3b5e4263ffef 100644
+> > --- a/drivers/usb/common/common.c
+> > +++ b/drivers/usb/common/common.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/usb/of.h>
+> >  #include <linux/usb/otg.h>
+> >  #include <linux/of_platform.h>
+> > +#include <linux/debugfs.h>
+> >  
+> >  static const char *const ep_type_names[] = {
+> >  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
+> > @@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
+> >  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
+> >  #endif
+> >  
+> > +struct dentry *usb_debug_root;
+> > +EXPORT_SYMBOL_GPL(usb_debug_root);
+> > +
+> > +static int usb_common_init(void)
+> > +{
+> > +	usb_debug_root = debugfs_create_dir("usb", NULL);
+> > +	return 0;
+> > +}
+> > +
+> > +static void usb_common_exit(void)
+> > +{
+> > +	debugfs_remove_recursive(usb_debug_root);
+> > +}
+> > +
+> > +module_init(usb_common_init);
+I tested this patch.
 
-Basically this is final pll set rate when sun4i_dotclock.c called the
-desired rate with ccu_nkm.c so it ended the final rate with parent as
-Line 8 of
-https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+Here use module_init() indeed have a race as Felipe said before.
+usbcore uses subsys_initcall(), and have a higher priority than
+module_init(), so when usbcore tries to create "devices" file,
+usb_debug_root is not created.
 
->
-> > > The TCON *module* clock (the one in the clock controller) has been set
-> > > to lcd_rate (so the pixel clock times the number of bits per lane) here:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
-> > >
-> > > And the PLL has been set to the same rate here:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
-> > >
-> > > Let's take a step back now: that function we were looking at,
-> > > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
-> > > by disp_lcd_enable here:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
-> > >
-> > > The next function being called is disp_al_lcd_cfg, and that function
-> > > will hardcode the TCON dotclock divider to 4, here:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
-> >
-> > tcon_div from BSP point-of-view of there are two variants
-> > 00) clk_info.tcon_div which is 4 and same is set the divider position
-> > in SUN4I_TCON0_DCLK_REG (like above link refer)
-> > 01) tcon_div which is 4 and used for edge timings computation
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
-> >
-> > The real reason for 01) is again 4 is they set the divider to 4 in 00)
-> > which is technically wrong because the dividers which used during
-> > dotclock in above (dsi_div) should be used here as well. Since there
-> > is no dynamic way of doing this BSP hard-coding these values.
-> >
-> > Patches 5,6,7 on this series doing this
-> > https://patchwork.freedesktop.org/series/60847/
-> >
-> > Hope this explanation helps?
->
-> It doesn't.
->
-> The clock tree is this one:
->
-> PLL(s) -> TCON module clock -> TCON dotclock.
->
-> The links I mentioned above show that the clock set to lcd_rate is the
-> TCON module clocks (and it should be the one taking the bpp and lanes
-> into account), while the TCON dotclock uses a fixed divider of 4.
+after I replace it by postcore_initcall() (debugfs uses
+core_initcall()), test two cases:
 
-Sorry, I can argue much other-than giving some code snips, according to [1]
+1. buildin usbcore/udc-core
 
-00) Line 785, 786 with dclk_rate 148000000
+    "usb" directory is created, and usb/devices file is also created by
+usbcore
 
-lcd_rate = dclk_rate * clk_info.dsi_div;
-pll_rate = lcd_rate * clk_info.lcd_div;
+2. build both usbcore and gadget as ko
 
-Since dsi_div is 6 (bpp/lanes), lcd_div 1
+    usbcore.ko, udc-core.ko and usb-common.ko are created. 
 
-lcd_rate = 888000000, pll_rate = 888000000
+   2.1 
+       insmod usb-common.ko   // "usb" directory is created
+       insmod usb-core.ko   // usb/devices file is created
 
-01)  Line 801, 804 are final rates computed as per clock driver (say
-ccu_nkm in mainline)
+   2.2
+       rmmod usb-common.ko  // failed, usb_common is in use by usb-core
 
-lcd_rate_set=891000000
+   2.3 
+       rmmod usb-core.ko   // usb/devices file is destroyed
+       rmmod usb-common.ko  // usb directory is destroyed
 
-As per your comments if it would be 4 then the desired numbers are
-would be 592000000 not 888000000.
+   2.4 
+       insmod usb-common.ko   // "usb" directory is created
+       insmod udc-core.ko
 
-This is what I'm trying to say in all mails, and same as verified with
-2-lanes devices as well where the dsi_div is 12 so the final rate is
-290MHz * 12
+   2.5
+       rmmod usb-common.ko  // failed, usb_common is in use by udc-core
 
->
-> In your patches, you're using the bpp / lanes divider on the TCON
-> dotclock, ie, the wrong clock.
->
-> Again, I'm not saying that my analysis of the source code is correct
-> here. But you haven't said anything to prove it's wrong either.
+   2.6 
+       rmmod udc-core.ko
+       rmmod usb-common.ko  // usb directory is destroyed
 
-Don't understand what proves are remaining, I have explained each line
-from BSP and saying pll rate is depends on dsi_div which is bpp/lanes
-not wrt tcon_div on BSP (which is set to default 4) and which indeed
-verified in A33, R40. all the code using bpp/lanes.
+they are all in line with expectations
 
-Please let me know if you need any more information to look?
 
-[1] https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
+> > +module_exit(usb_common_exit);
+> > +
+> >  MODULE_LICENSE("GPL");
+> > diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
+> > index 7fcb9f782931..f3d6b1ab80cb 100644
+> > --- a/drivers/usb/core/usb.c
+> > +++ b/drivers/usb/core/usb.c
+> > @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
+> >  	.notifier_call = usb_bus_notify,
+> >  };
+> >  
+> > -struct dentry *usb_debug_root;
+> > -EXPORT_SYMBOL_GPL(usb_debug_root);
+> > +static struct dentry *usb_devices_root;
+> >  
+> >  static void usb_debugfs_init(void)
+> >  {
+> > -	usb_debug_root = debugfs_create_dir("usb", NULL);
+> > -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
+> > -			    &usbfs_devices_fops);
+> > +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
+> > +					       NULL, &usbfs_devices_fops);
+> >  }
+> >  
+> >  static void usb_debugfs_cleanup(void)
+> >  {
+> > -	debugfs_remove_recursive(usb_debug_root);
+> > +	debugfs_remove_recursive(usb_devices_root);
+> 
+> That should just be debugfs_remove();
+> 
+> I'll fix it up after someone tests this :)
+> 
+> thanks,
+> 
+> greg k-h
+
+
