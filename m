@@ -2,87 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E09358B5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:37:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC10B358DE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:44:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726663AbfFEIhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 04:37:16 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:8564 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726777AbfFEIhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 04:37:16 -0400
-X-UUID: a9760f9322f44717a95caaf2b6654d0c-20190605
-X-UUID: a9760f9322f44717a95caaf2b6654d0c-20190605
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 447371291; Wed, 05 Jun 2019 16:37:10 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 5 Jun
- 2019 16:37:08 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 5 Jun 2019 16:37:08 +0800
-Message-ID: <1559723828.8487.103.camel@mhfsdcap03>
-Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
- common core
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Felipe Balbi <felipe.balbi@linux.intel.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 5 Jun 2019 16:37:08 +0800
-In-Reply-To: <871s08ebjn.fsf@linux.intel.com>
-References: <20190604093258.GB30054@kroah.com>
-         <87tvd5illh.fsf@linux.intel.com> <20190604124349.GA10203@kroah.com>
-         <871s08ebjn.fsf@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726840AbfFEIoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 04:44:44 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:59046 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726785AbfFEIoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 04:44:44 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x558iaLL013111;
+        Wed, 5 Jun 2019 03:44:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559724276;
+        bh=QKydF6Lu876iSU7k9u/2w0MqEwWA6SgTM0O/bbSGalU=;
+        h=From:To:CC:Subject:Date;
+        b=moaSXXmEcs6rH/hQuc+U3NW2TtyVq4IHbf3dhyRj/fxxMMa/787KHDwX7uhsgP4Us
+         IJnzDW2EjeZGY9z6iqmhEDFYeCr81LHJ7UwTGIk1YdY3XCbzTy0eOWT8/Mb2fLrZsX
+         1AEHxxlnoVxQ9pJsYuxMqDKfPrPFbnposzWZ8jdM=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x558iaQn101311
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 Jun 2019 03:44:36 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 5 Jun
+ 2019 03:44:36 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 5 Jun 2019 03:44:35 -0500
+Received: from a0132425.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x558iWYF019139;
+        Wed, 5 Jun 2019 03:44:33 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Vignesh R <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa@the-dreams.de>
+CC:     <linux-omap@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] dt-bindings: i2c: omap: Add new compatible for J721E SoCs
+Date:   Wed, 5 Jun 2019 14:15:04 +0530
+Message-ID: <20190605084504.2777-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-06-05 at 10:28 +0300, Felipe Balbi wrote:
-> Hi,
-> 
-> Greg Kroah-Hartman <gregkh@linuxfoundation.org> writes:
-> >> Greg Kroah-Hartman <gregkh@linuxfoundation.org> writes:
-> >> > diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-> >> > index 7fcb9f782931..f3d6b1ab80cb 100644
-> >> > --- a/drivers/usb/core/usb.c
-> >> > +++ b/drivers/usb/core/usb.c
-> >> > @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
-> >> >  	.notifier_call = usb_bus_notify,
-> >> >  };
-> >> >  
-> >> > -struct dentry *usb_debug_root;
-> >> > -EXPORT_SYMBOL_GPL(usb_debug_root);
-> >> > +static struct dentry *usb_devices_root;
-> >> >  
-> >> >  static void usb_debugfs_init(void)
-> >> >  {
-> >> > -	usb_debug_root = debugfs_create_dir("usb", NULL);
-> >> > -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
-> >> > -			    &usbfs_devices_fops);
-> >> > +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
-> >> 
-> >> don't we have a race now? Can usbcore ever probe before usb common?
-> >
-> > How can that happen if usb_debug_root is in usb common?  The module
-> > loader will not let that happen.  Or it shouldn't :)
-> 
-> argh, indeed. The very fact that usbcore tries to resolve usb_debug_root
-> already forces a dependency :-p
-When build as module, usbcore depend on usb-common, but when buildin,
-usbcore init before usb-common (use module_init)
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-> 
+J721E SoCs have same I2C IP as OMAP SoCs. Add new compatible to
+handle J721E SoCs.
 
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+---
+
+Initial support for J721E Platform is proposed here:
+https://lore.kernel.org/patchwork/cover/1077382/
+
+ Documentation/devicetree/bindings/i2c/i2c-omap.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-omap.txt b/Documentation/devicetree/bindings/i2c/i2c-omap.txt
+index 4b90ba9f31b7..a44573d7c118 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-omap.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c-omap.txt
+@@ -7,6 +7,7 @@ Required properties :
+ 	"ti,omap3-i2c" for OMAP3 SoCs
+ 	"ti,omap4-i2c" for OMAP4+ SoCs
+ 	"ti,am654-i2c", "ti,omap4-i2c" for AM654 SoCs
++	"ti,j721e-i2c", "ti,omap4-i2c" for J721E SoCs
+ - ti,hwmods : Must be "i2c<n>", n being the instance number (1-based)
+ - #address-cells = <1>;
+ - #size-cells = <0>;
+-- 
+2.21.0
 
