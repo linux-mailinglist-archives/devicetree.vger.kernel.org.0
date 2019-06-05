@@ -2,93 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E04E358E2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C229358FE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726732AbfFEIqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 04:46:08 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:38871 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726636AbfFEIqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 04:46:07 -0400
-Received: by mail-pg1-f194.google.com with SMTP id v11so12016478pgl.5;
-        Wed, 05 Jun 2019 01:46:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Mk5FRq2HIkggKOYlb1t32JxfiDeZB3gniCUsPO6/xZI=;
-        b=LjE/XPGqoSghQHXJWid6eAalCbvND2JpM7cZodepxdcu5sydDV4ALW4V1indIn2ve+
-         ro/+9AV07szWsujI2k5OWOHpYoqn0Lko99MN4KhJfebhVda8dQB/jTSRvKY3rx/W7a7d
-         jjJe+wLhb6zZNFg86ROAAr8Gb5Pr/pbUuEFY/nX+kkcB6gjGdRf15AQ56BiK0lOwD+mr
-         96rMNUII2i3Vyhn5vvtspJXpfAR0wsn/a06F8E2irwekWWqqLjGSaI9HgCBVyESnIAZR
-         xl5q0G6JW7XP8E5oeUqslpOF2xSz9hHeupjQK+x4VNpBkH0OfPyOzQG03MJ/B/1Ty3LP
-         x0mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Mk5FRq2HIkggKOYlb1t32JxfiDeZB3gniCUsPO6/xZI=;
-        b=ojuHtQHw4pNLcFV7joSo7rG16hfqBXaK0hVknpy6es4m5o0vHC0qcQLPPDcp9dyKCG
-         AHChY/EnsgcRRI4aMGnUOajyCD1wjrxDiLgUOYfsxx88HY/kg8iofDZM7wqepm6e4GoJ
-         fsxhbEiwo5Vl9TNGZdEP/ylzD8+tM60sEp373tDl6eiY9qcC4BxsEsTKQjdzJwVd9P0n
-         WMBpcCyfOlVr3vYWctBZk/MloFXGxsZnjD93dDCICbbFllhpmJqBdWh+ylwq42xVa4VC
-         0ql8Gt4vpZ1bk72gW5hkpY5Af8efi1BYvRNfxbUhbo2hJ6R9r455WwzNFXgbfmyaQMfi
-         sP3Q==
-X-Gm-Message-State: APjAAAXCyKAOV8bfyleAn/mowiX8AyNTuQXn+813vxvgmytC2/817RT6
-        LwCVvY/uReyCaZ7z7e84Cjr296/SCorQvD5l0sQ=
-X-Google-Smtp-Source: APXvYqz9Lj0yCfy+J+2j77hhw6XN27rcOlilHibyQ96byM7FluGi0by+4HbGwYHmbgTq02AfDgdKEa0nzroKSuiuPcs=
-X-Received: by 2002:a17:90b:d8b:: with SMTP id bg11mr10737373pjb.30.1559724367061;
- Wed, 05 Jun 2019 01:46:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com> <1559115828-19146-10-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1559115828-19146-10-git-send-email-chunfeng.yun@mediatek.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 5 Jun 2019 11:45:55 +0300
-Message-ID: <CAHp75VcbZwd0e6r38C2x7HLEHLr4oR7TjwdDXnDxRPRs3anwgA@mail.gmail.com>
-Subject: Re: [PATCH v6 09/10] usb: roles: add USB Type-B GPIO connector driver
+        id S1726693AbfFEIwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 04:52:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726690AbfFEIwT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 04:52:19 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 01A322075C;
+        Wed,  5 Jun 2019 08:52:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559724738;
+        bh=33U2EKfjRS7h+XMGkmD3adAxfr6fGPYO5U7ZjaS/GaY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Jg8LNDdI0PoUYPg/zVrHza4ANwwsNV4xpyvG90wnOrXz6LjtnDwRiaa5W+ti7SflB
+         7ATBvjKJU2WdvbuNwRTWRQPx0hbf1OrcQiHrmNoWTdDl+jVvYwWMzvNGvfBN/4HMx2
+         44ObQkLWTyjt8JccrcHrk/wdy3CfHRaHp+UMDTTo=
+Date:   Wed, 5 Jun 2019 10:52:16 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+Cc:     Felipe Balbi <felipe.balbi@linux.intel.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Min Guo <min.guo@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yu Chen <chenyu56@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
+ common core
+Message-ID: <20190605085216.GB26984@kroah.com>
+References: <20190604093258.GB30054@kroah.com>
+ <20190604115919.GA24346@kroah.com>
+ <1559721031.8487.99.camel@mhfsdcap03>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1559721031.8487.99.camel@mhfsdcap03>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 29, 2019 at 10:44 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
->
-> Due to the requirement of usb-connector.txt binding, the old way
-> using extcon to support USB Dual-Role switch is now deprecated
-> when use Type-B connector.
-> This patch introduces a driver of Type-B connector which typically
-> uses an input GPIO to detect USB ID pin, and try to replace the
-> function provided by extcon-usb-gpio driver
+On Wed, Jun 05, 2019 at 03:50:31PM +0800, Chunfeng Yun wrote:
+> On Tue, 2019-06-04 at 13:59 +0200, Greg Kroah-Hartman wrote:
+> > On Tue, Jun 04, 2019 at 11:32:58AM +0200, Greg Kroah-Hartman wrote:
+> > > The USB gadget subsystem wants to use the USB debugfs root directory, so
+> > > move it to the common "core" USB code so that it is properly initialized
+> > > and removed as needed.
+> > > 
+> > > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > 
+> > > ---
+> > > 
+> > > This should be the "correct" version of this, Chunfeng, can you test
+> > > this to verify it works for you?
+> > > 
+> > > 
+> > > diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
+> > > index 18f5dcf58b0d..3b5e4263ffef 100644
+> > > --- a/drivers/usb/common/common.c
+> > > +++ b/drivers/usb/common/common.c
+> > > @@ -15,6 +15,7 @@
+> > >  #include <linux/usb/of.h>
+> > >  #include <linux/usb/otg.h>
+> > >  #include <linux/of_platform.h>
+> > > +#include <linux/debugfs.h>
+> > >  
+> > >  static const char *const ep_type_names[] = {
+> > >  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
+> > > @@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
+> > >  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
+> > >  #endif
+> > >  
+> > > +struct dentry *usb_debug_root;
+> > > +EXPORT_SYMBOL_GPL(usb_debug_root);
+> > > +
+> > > +static int usb_common_init(void)
+> > > +{
+> > > +	usb_debug_root = debugfs_create_dir("usb", NULL);
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void usb_common_exit(void)
+> > > +{
+> > > +	debugfs_remove_recursive(usb_debug_root);
+> > > +}
+> > > +
+> > > +module_init(usb_common_init);
+> I tested this patch.
+> 
+> Here use module_init() indeed have a race as Felipe said before.
+> usbcore uses subsys_initcall(), and have a higher priority than
+> module_init(), so when usbcore tries to create "devices" file,
+> usb_debug_root is not created.
 
-> +static SIMPLE_DEV_PM_OPS(usb_conn_pm_ops,
-> +                        usb_conn_suspend, usb_conn_resume);
-> +
-> +#define DEV_PMS_OPS (IS_ENABLED(CONFIG_PM_SLEEP) ? &usb_conn_pm_ops : NULL)
+Ah, let me fix that, it should have the same init level and I'll ensure
+it comes first in the linking.
 
-Why this macro is needed?
+> after I replace it by postcore_initcall() (debugfs uses
+> core_initcall()), test two cases:
+> 
+> 1. buildin usbcore/udc-core
+> 
+>     "usb" directory is created, and usb/devices file is also created by
+> usbcore
+> 
+> 2. build both usbcore and gadget as ko
+> 
+>     usbcore.ko, udc-core.ko and usb-common.ko are created. 
+> 
+>    2.1 
+>        insmod usb-common.ko   // "usb" directory is created
+>        insmod usb-core.ko   // usb/devices file is created
+> 
+>    2.2
+>        rmmod usb-common.ko  // failed, usb_common is in use by usb-core
+> 
+>    2.3 
+>        rmmod usb-core.ko   // usb/devices file is destroyed
+>        rmmod usb-common.ko  // usb directory is destroyed
+> 
+>    2.4 
+>        insmod usb-common.ko   // "usb" directory is created
+>        insmod udc-core.ko
+> 
+>    2.5
+>        rmmod usb-common.ko  // failed, usb_common is in use by udc-core
+> 
+>    2.6 
+>        rmmod udc-core.ko
+>        rmmod usb-common.ko  // usb directory is destroyed
+> 
+> they are all in line with expectations
 
--- 
-With Best Regards,
-Andy Shevchenko
+Wonderful!
+
+Let me fix up the init level, and the build issue tha kbuild found, and
+post a v2 patch.
+
+thanks,
+
+greg k-h
