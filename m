@@ -2,189 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD71355A4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 05:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91EC935633
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 07:27:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726502AbfFED1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 23:27:15 -0400
-Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:35598 "EHLO
-        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726354AbfFED1O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 23:27:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1559705233; x=1591241233;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VXjX19MVgR+03nnn2b8Q+rJ+rQtez95FczrcM8VTBYg=;
-  b=FU5fDu6MCrgqbu/UZlG6Gpkg+MC8M6QEzGOA3TXG7CV0h9Apk6CDx35o
-   CSuTcM3v2vSo62WvH6/tVFIA+/RJ5wlwBlgnNf3pwbB4hvnLqwaoNmJH1
-   0w/V8rvxXGlVpoV96NzlMFfQkTchaJMUPvrlfTtwYcBcat9dL6mvxbZkR
-   c=;
-X-IronPort-AV: E=Sophos;i="5.60,550,1549929600"; 
-   d="scan'208";a="769017448"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-4e24fd92.us-west-2.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 05 Jun 2019 03:27:11 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
-        by email-inbound-relay-2b-4e24fd92.us-west-2.amazon.com (Postfix) with ESMTPS id 96D3CA230D;
-        Wed,  5 Jun 2019 03:27:10 +0000 (UTC)
-Received: from EX13D05UWB003.ant.amazon.com (10.43.161.26) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 5 Jun 2019 03:27:10 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
- EX13D05UWB003.ant.amazon.com (10.43.161.26) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 5 Jun 2019 03:27:09 +0000
-Received: from localhost (10.85.18.74) by mail-relay.amazon.com
- (10.43.161.249) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
- Transport; Wed, 5 Jun 2019 03:27:09 +0000
-Date:   Tue, 4 Jun 2019 20:27:09 -0700
-From:   Eduardo Valentin <eduval@amazon.com>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-CC:     Eduardo Valentin <eduval@amazon.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        <jarkko.nikula@linux.intel.com>, <brendanhiggins@google.com>,
+        id S1726464AbfFEF1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 01:27:03 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:32866 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725268AbfFEF1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 01:27:03 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id AE64F6074C; Wed,  5 Jun 2019 05:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1559712422;
+        bh=1KJN3mFJVMBneJMO/d67H03JGGeCwXkWQw9EA/NpWtY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QLRkqZn0wy/3UdzNoUrvwffxt8Kr6B9Bg9hCvpd7OzILqWtSPMzO1mT9DrKc4T7dl
+         TCKl4DhH4x1HTlf+wYnBqlCrS6l26tm6noTFtu6EDec+3rzmkMVw+jYWPreqhjkU9r
+         ppodi2GjDvQz88A7gtDzJjYBe/Alu13bndVse+FY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C3A3C609CD;
+        Wed,  5 Jun 2019 05:27:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1559712422;
+        bh=1KJN3mFJVMBneJMO/d67H03JGGeCwXkWQw9EA/NpWtY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QLRkqZn0wy/3UdzNoUrvwffxt8Kr6B9Bg9hCvpd7OzILqWtSPMzO1mT9DrKc4T7dl
+         TCKl4DhH4x1HTlf+wYnBqlCrS6l26tm6noTFtu6EDec+3rzmkMVw+jYWPreqhjkU9r
+         ppodi2GjDvQz88A7gtDzJjYBe/Alu13bndVse+FY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C3A3C609CD
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
+Received: by mail-ed1-f46.google.com with SMTP id p26so3944263edr.2;
+        Tue, 04 Jun 2019 22:27:01 -0700 (PDT)
+X-Gm-Message-State: APjAAAVgm0GzdoB9JK5inlhi3sv1gMB6DCijHyYDQzr/7fu/yEaypf9/
+        YRee09mrHqqOfEs7/H4bf9BQ+HDzSLpr//+yXho=
+X-Google-Smtp-Source: APXvYqxdlbGMVdeW3rWEdt46VbbnhcG5V+U3jyhEom0QjHb/okBPll2garbSRrpQ9xZmyFz02Z2v9+15OuPvo9kStv0=
+X-Received: by 2002:a50:b797:: with SMTP id h23mr40316638ede.197.1559712420354;
+ Tue, 04 Jun 2019 22:27:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190513210747.22429-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20190513210747.22429-1-bjorn.andersson@linaro.org>
+From:   Vivek Gautam <vivek.gautam@codeaurora.org>
+Date:   Wed, 5 Jun 2019 10:56:49 +0530
+X-Gmail-Original-Message-ID: <CAFp+6iH_pNPVs5QA2fa87ZoVngEFJ362sDivAWzzWPC6K0S5mA@mail.gmail.com>
+Message-ID: <CAFp+6iH_pNPVs5QA2fa87ZoVngEFJ362sDivAWzzWPC6K0S5mA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-mtp: Add Truly display
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive
- and queue messages
-Message-ID: <20190605032709.GA1534@u40b0340c692b58f6553c.ant.amazon.com>
-References: <20190531043347.4196-1-eduval@amazon.com>
- <20190531043347.4196-3-eduval@amazon.com>
- <20190604171611.GS9224@smile.fi.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190604171611.GS9224@smile.fi.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Andry,
+On Tue, May 14, 2019 at 2:39 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> Bring in the Truly display and enable the DSI channels to make the
+> mdss/gpu probe, even though we're lacking LABIB, preventing us from
+> seeing anything on the screen.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
 
-Long time no seeing :-)
+Looks good to me and work well too with a wip lab-ibb driver change.
 
-On Tue, Jun 04, 2019 at 08:16:11PM +0300, Andy Shevchenko wrote:
-> On Thu, May 30, 2019 at 09:33:46PM -0700, Eduardo Valentin wrote:
-> > From: Haiyue Wang <haiyue.wang@linux.intel.com>
-> > 
-> > Some protocols over I2C are designed for bi-directional transferring
-> > messages by using I2C Master Write protocol. Like the MCTP (Management
-> > Component Transport Protocol) and IPMB (Intelligent Platform Management
-> > Bus), they both require that the userspace can receive messages from
-> > I2C dirvers under slave mode.
-> > 
-> > This new slave mqueue backend is used to receive and queue messages, it
-> > will exposes these messages to userspace by sysfs bin file.
-> > 
-> > Note: DT interface and a couple of minor fixes here and there
-> > by Eduardo, so I kept the original authorship here.
-> 
-> > +#define MQ_MSGBUF_SIZE		CONFIG_I2C_SLAVE_MQUEUE_MESSAGE_SIZE
-> > +#define MQ_QUEUE_SIZE		CONFIG_I2C_SLAVE_MQUEUE_QUEUE_SIZE
-> 
-> > +#define MQ_QUEUE_NEXT(x)	(((x) + 1) & (MQ_QUEUE_SIZE - 1))
-> 
-> Also possible ((x + 1) % ..._SIZE)
+Reviewed-by: Vivek Gautam <vivek.gautam@codeaurora.org>
+Tested-by: Vivek Gautam <vivek.gautam@codeaurora.org>
 
-Right.. but I suppose the original idea is to avoid divisions on the hotpath.
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 79 +++++++++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index 02b8357c8ce8..83198a19ff57 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -352,6 +352,77 @@
+>         status = "okay";
+>  };
+>
+> +&dsi0 {
+> +       status = "okay";
+> +       vdda-supply = <&vdda_mipi_dsi0_1p2>;
+> +
+> +       qcom,dual-dsi-mode;
+> +       qcom,master-dsi;
+> +
+> +       ports {
+> +               port@1 {
+> +                       endpoint {
+> +                               remote-endpoint = <&truly_in_0>;
+> +                               data-lanes = <0 1 2 3>;
+> +                       };
+> +               };
+> +       };
+> +
+> +       panel@0 {
+> +               compatible = "truly,nt35597-2K-display";
+> +               reg = <0>;
+> +               vdda-supply = <&vreg_l14a_1p88>;
+> +
+> +               reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+> +               mode-gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       port@0 {
+> +                               reg = <0>;
+> +                               truly_in_0: endpoint {
+> +                                       remote-endpoint = <&dsi0_out>;
+> +                               };
+> +                       };
+> +
+> +                       port@1 {
+> +                               reg = <1>;
+> +                               truly_in_1: endpoint {
+> +                                       remote-endpoint = <&dsi1_out>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&dsi0_phy {
+> +       status = "okay";
+> +       vdds-supply = <&vdda_mipi_dsi0_pll>;
+> +};
+> +
+> +&dsi1 {
+> +       status = "okay";
+> +       vdda-supply = <&vdda_mipi_dsi1_1p2>;
+> +
+> +       qcom,dual-dsi-mode;
+> +
+> +       ports {
+> +               port@1 {
+> +                       endpoint {
+> +                               remote-endpoint = <&truly_in_1>;
+> +                               data-lanes = <0 1 2 3>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&dsi1_phy {
+> +       status = "okay";
+> +       vdds-supply = <&vdda_mipi_dsi1_pll>;
+> +};
+> +
+>  &gcc {
+>         protected-clocks = <GCC_QSPI_CORE_CLK>,
+>                            <GCC_QSPI_CORE_CLK_SRC>,
+> @@ -365,6 +436,14 @@
+>         clock-frequency = <400000>;
+>  };
+>
+> +&mdss {
+> +       status = "okay";
+> +};
+> +
+> +&mdss_mdp {
+> +       status = "okay";
+> +};
+> +
+>  &qupv3_id_1 {
+>         status = "okay";
+>  };
+> --
+> 2.18.0
+>
 
-So, I am actually fine with the limitation of only using power of 2.
-
-> 
-> > +	mq = dev_get_drvdata(container_of(kobj, struct device, kobj));
-> 
-> kobj_to_dev()
-
-Well, yeah, I guess this is a nit, but I can add that in case of a real need for a v7.
-
-> 
-> > +static int i2c_slave_mqueue_probe(struct i2c_client *client,
-> > +				  const struct i2c_device_id *id)
-> > +{
-> > +	struct device *dev = &client->dev;
-> > +	struct mq_queue *mq;
-> > +	int ret, i;
-> > +	void *buf;
-> > +
-> > +	mq = devm_kzalloc(dev, sizeof(*mq), GFP_KERNEL);
-> > +	if (!mq)
-> > +		return -ENOMEM;
-> > +
-> 
-> > +	BUILD_BUG_ON(!is_power_of_2(MQ_QUEUE_SIZE));
-> 
-> Perhaps start function with this kind of assertions?
-> 
-
-
-same here, in case I see a huge ask for a v7, I can move this up.
-
-> > +
-> > +	buf = devm_kmalloc_array(dev, MQ_QUEUE_SIZE, MQ_MSGBUF_SIZE,
-> > +				 GFP_KERNEL);
-> > +	if (!buf)
-> > +		return -ENOMEM;
-> > +
-> > +	for (i = 0; i < MQ_QUEUE_SIZE; i++)
-> > +		mq->queue[i].buf = buf + i * MQ_MSGBUF_SIZE;
-> 
-> 
-> Just wondering if kfifo API can bring an advantage here?
-> 
-
-Well, then again, I suppose the idea is simplify here, not if we need to go
-kfifo as the Protocol on top of this is perfectly fine with the current
-discipline of just having a simple drop of older messages.
-
-
-> > +	return 0;
-> > +}
-> 
-> > +static const struct of_device_id i2c_slave_mqueue_of_match[] = {
-> > +	{
-> > +		.compatible = "i2c-slave-mqueue",
-> > +	},
-> 
-> > +	{ },
-> 
-> No need for comma here.
-
-It does not hurt to have it either :-)
-
-> 
-> > +};
-> 
-> > +
-> > +static struct i2c_driver i2c_slave_mqueue_driver = {
-> > +	.driver = {
-> > +		.name	= "i2c-slave-mqueue",
-> 
-> > +		.of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
-> 
-> Wouldn't compiler warn you due to unused data?
-> Perhaps drop of_match_ptr() for good...
-
-
-Not sure what you meant here. I dont see any compiler warning.
-Also, of_match_ptr seams to be well spread in the kernel.
-> 
-> > +	},
-> > +	.probe		= i2c_slave_mqueue_probe,
-> > +	.remove		= i2c_slave_mqueue_remove,
-> > +	.id_table	= i2c_slave_mqueue_id,
-> > +};
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
 
 -- 
-All the best,
-Eduardo Valentin
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
