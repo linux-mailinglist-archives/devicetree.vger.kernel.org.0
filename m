@@ -2,108 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BF4635500
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 03:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2AD35527
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 04:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbfFEBbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 21:31:36 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:36559 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726530AbfFEBbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 21:31:36 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 42D9B2210C;
-        Tue,  4 Jun 2019 21:31:35 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Tue, 04 Jun 2019 21:31:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=/EWPTD+qPhbo26yslb0jEUCcDXDMMu1
-        NnNiOXIfrmYs=; b=boT0MTedmWfzg2/ZwHtHcIzKC88eMJIH1TBFvYMWGGyp2k7
-        LWPB/f+rs4b64hobSCMp0hEKoxurYgVnn2tDiBoAyDx0lGX3k3ifyBjmw83Sjc7H
-        XC69+6x+vNq0sAWcOjiITwhfJmD07+oM7uktT6iKtt1Edbi6H3/vuzwFL8KqsZIB
-        EoBUuEnKzQelyDOy+QTQQyWju7pG3xnnfGgifn+sWohI820PQnO7e8A0AuFKIiz8
-        gkxrOCAzxj1C+U9ZPF4Gug29Vdsn/TWj5s+Esv1LZ7AtC96omHcFiMkI3+EVt4kc
-        Ef+CzW4BlVYoeHjTZZSupK1yUEXPD06O55eSqOQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=/EWPTD
-        +qPhbo26yslb0jEUCcDXDMMu1NnNiOXIfrmYs=; b=nHnOcozcPFEf9vG5q6SnWj
-        YZSn4aKnrJxEFBYwWWSoegyN1r1P0tSrIBxpNXo28A8B2AvD3sMQKNjlBHvXE0vF
-        0yaM+RaFdqp2a9GFDOrgjQe629+RihqbMQhPdZA+fzjooUgBKicz64A3wa1S4MHE
-        2cWzsyZXOxbsJV4AV4kh4qlDQTLweAQOxQ/q4U225hek9hQcSFHGvhiUafzwQz1a
-        Lgvvlx4OxyEavLvDnh5YGHHD8s8BIQSkHcW+cwhC1+1RDCPMDDz1SVVzaKgA6QpR
-        vHuwgWmrvnjiVbI0iGw0QVTBuhUiz1V0tgvD94kL7OpBQrH00Y4FCSlbZjbI/n0w
-        ==
-X-ME-Sender: <xms:dxv3XLLTDJYG3VKEMWs3peYBBm4nBR81-bZeQS_uXgUtFJ5tXL6luA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrudeguddggeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
-    rhfuihiivgeptd
-X-ME-Proxy: <xmx:dxv3XLxaXCrBaekgEdwOU76V4Zn0iJNmAf4JDTx1ZRCtYPhAFHRJNg>
-    <xmx:dxv3XKHvR1RCQT7lVHvqiwUW6YHZLrIf0WzfTZ-shuF0ga7uLRfzYQ>
-    <xmx:dxv3XORD5ecn5hP5-2ugGVLfahXiDZNTKxvLFGAeW2jIj2661VTP2g>
-    <xmx:dxv3XFsOw_IZvKkPJO-NMnMhaSk6iYiiGCLnzzVNGu1TiWFxg70lOg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id EDB92E00A1; Tue,  4 Jun 2019 21:31:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-650-g74f8db0-fmstable-20190604v3
-Mime-Version: 1.0
-Message-Id: <b899d98e-6f13-4728-9a62-3228ae7a2021@www.fastmail.com>
-In-Reply-To: <1559684524-15583-1-git-send-email-hongweiz@ami.com>
-References: <1559684524-15583-1-git-send-email-hongweiz@ami.com>
-Date:   Wed, 05 Jun 2019 11:01:34 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Hongwei Zhang" <hongweiz@ami.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Linus Walleij" <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: =?UTF-8?Q?Re:_[PATCH_1/3_linux_dev-5.1_arm/soc_v2]_ARM:_dts:_aspeed:_Add?=
- =?UTF-8?Q?_SGPM_pinmux?=
-Content-Type: text/plain
+        id S1726341AbfFECQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 22:16:07 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:16151 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726293AbfFECQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 22:16:07 -0400
+X-UUID: 9db87658935a4c8f8961da87f290c9d2-20190605
+X-UUID: 9db87658935a4c8f8961da87f290c9d2-20190605
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1510923047; Wed, 05 Jun 2019 10:16:01 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33DR.mediatek.inc
+ (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 5 Jun
+ 2019 10:16:00 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 5 Jun 2019 10:15:59 +0800
+Message-ID: <1559700959.8487.78.camel@mhfsdcap03>
+Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
+ common core
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 5 Jun 2019 10:15:59 +0800
+In-Reply-To: <20190604115919.GA24346@kroah.com>
+References: <20190604093258.GB30054@kroah.com>
+         <20190604115919.GA24346@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2019-06-04 at 13:59 +0200, Greg Kroah-Hartman wrote:
+> On Tue, Jun 04, 2019 at 11:32:58AM +0200, Greg Kroah-Hartman wrote:
+> > The USB gadget subsystem wants to use the USB debugfs root directory, so
+> > move it to the common "core" USB code so that it is properly initialized
+> > and removed as needed.
+> > 
+> > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > 
+> > ---
+> > 
+> > This should be the "correct" version of this, Chunfeng, can you test
+> > this to verify it works for you?
+I'll test it ASAP, thanks a lot
 
-
-On Wed, 5 Jun 2019, at 07:12, Hongwei Zhang wrote:
-> Add SGPM pinmux to ast2500-pinctrl function and group, to prepare for
-> supporting SGPIO in AST2500 SoC.
+> > 
+> > 
+> > diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
+> > index 18f5dcf58b0d..3b5e4263ffef 100644
+> > --- a/drivers/usb/common/common.c
+> > +++ b/drivers/usb/common/common.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/usb/of.h>
+> >  #include <linux/usb/otg.h>
+> >  #include <linux/of_platform.h>
+> > +#include <linux/debugfs.h>
+> >  
+> >  static const char *const ep_type_names[] = {
+> >  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
+> > @@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
+> >  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
+> >  #endif
+> >  
+> > +struct dentry *usb_debug_root;
+> > +EXPORT_SYMBOL_GPL(usb_debug_root);
+> > +
+> > +static int usb_common_init(void)
+> > +{
+> > +	usb_debug_root = debugfs_create_dir("usb", NULL);
+> > +	return 0;
+> > +}
+> > +
+> > +static void usb_common_exit(void)
+> > +{
+> > +	debugfs_remove_recursive(usb_debug_root);
+> > +}
+> > +
+> > +module_init(usb_common_init);
+> > +module_exit(usb_common_exit);
+> > +
+> >  MODULE_LICENSE("GPL");
+> > diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
+> > index 7fcb9f782931..f3d6b1ab80cb 100644
+> > --- a/drivers/usb/core/usb.c
+> > +++ b/drivers/usb/core/usb.c
+> > @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
+> >  	.notifier_call = usb_bus_notify,
+> >  };
+> >  
+> > -struct dentry *usb_debug_root;
+> > -EXPORT_SYMBOL_GPL(usb_debug_root);
+> > +static struct dentry *usb_devices_root;
+> >  
+> >  static void usb_debugfs_init(void)
+> >  {
+> > -	usb_debug_root = debugfs_create_dir("usb", NULL);
+> > -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
+> > -			    &usbfs_devices_fops);
+> > +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
+> > +					       NULL, &usbfs_devices_fops);
+> >  }
+> >  
+> >  static void usb_debugfs_cleanup(void)
+> >  {
+> > -	debugfs_remove_recursive(usb_debug_root);
+> > +	debugfs_remove_recursive(usb_devices_root);
 > 
-> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
-
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
-
-> ---
->  arch/arm/boot/dts/aspeed-g5.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+> That should just be debugfs_remove();
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
-> index 85ed9db..8d30818 100644
-> --- a/arch/arm/boot/dts/aspeed-g5.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
-> @@ -1321,6 +1321,11 @@
->  		groups = "SDA2";
->  	};
->  
-> +	pinctrl_sgpm_default: sgpm_default {
-> +		function = "SGPM";
-> +		groups = "SGPM";
-> +	};
-> +
->  	pinctrl_sgps1_default: sgps1_default {
->  		function = "SGPS1";
->  		groups = "SGPS1";
-> -- 
-> 2.7.4
+> I'll fix it up after someone tests this :)
 > 
->
+> thanks,
+> 
+> greg k-h
+
+
