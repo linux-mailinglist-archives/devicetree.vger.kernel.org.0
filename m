@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F0636702
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 23:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 076DA3671C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 23:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726556AbfFEVwF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jun 2019 17:52:05 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:32818 "EHLO gloria.sntech.de"
+        id S1726568AbfFEV4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 17:56:25 -0400
+Received: from gate.crashing.org ([63.228.1.57]:60670 "EHLO gate.crashing.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726541AbfFEVwF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 17:52:05 -0400
-Received: from ip5f5a6320.dynamic.kabel-deutschland.de ([95.90.99.32] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hYdpB-0000oI-ED; Wed, 05 Jun 2019 23:52:01 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH 2/2] ARM: dts: rockchip: Configure BT_HOST_WAKE as wake-up signal on veyron
-Date:   Wed, 05 Jun 2019 23:52:00 +0200
-Message-ID: <2828678.vPWIEPrON5@diego>
-In-Reply-To: <20190605212427.GP40515@google.com>
-References: <20190605204320.22343-1-mka@chromium.org> <3079472.D8Re4Zsj2W@diego> <20190605212427.GP40515@google.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1726537AbfFEV4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 17:56:25 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x55LthpZ022953;
+        Wed, 5 Jun 2019 16:55:44 -0500
+Message-ID: <a81a46ef13273aa8c6ea87c8d3550e33650e27b6.camel@kernel.crashing.org>
+Subject: Re: [PATCH 2/3] irqchip: al-fic: Introduce Amazon's Annapurna Labs
+ Fabric Interrupt Controller Driver
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Talel Shenhar <talel@amazon.com>
+Cc:     nicolas.ferre@microchip.com, jason@lakedaemon.net,
+        marc.zyngier@arm.com, mark.rutland@arm.com,
+        mchehab+samsung@kernel.org, robh+dt@kernel.org,
+        davem@davemloft.net, shawn.lin@rock-chips.com, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dwmw@amazon.co.uk, jonnyc@amazon.com, hhhawa@amazon.com,
+        ronenk@amazon.com, hanochu@amazon.com, barakw@amazon.com
+Date:   Thu, 06 Jun 2019 07:55:43 +1000
+In-Reply-To: <20190605075927.GA9693@kroah.com>
+References: <1559717653-11258-1-git-send-email-talel@amazon.com>
+         <1559717653-11258-3-git-send-email-talel@amazon.com>
+         <20190605075927.GA9693@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 5. Juni 2019, 23:24:27 CEST schrieb Matthias Kaehlcke:
-> On Wed, Jun 05, 2019 at 11:11:12PM +0200, Heiko Stübner wrote:
-> > Am Mittwoch, 5. Juni 2019, 22:43:20 CEST schrieb Matthias Kaehlcke:
-> > > This enables wake up on Bluetooth activity when the device is
-> > > suspended. The BT_HOST_WAKE signal is only connected on devices
-> > > with BT module that are connected through UART.
-> > > 
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > 
-> > Housekeeping question, with the two Signed-off-by lines, is Doug the
-> > original author, or was this Co-developer-by?
+On Wed, 2019-06-05 at 09:59 +0200, Greg KH wrote:
 > 
-> Good question, it's derived from Doug's patch for CrOS 3.14 and
-> https://crrev.com/c/1575556 also from Doug. Let's say I did the
-> porting to upstream, but I'm pretty sure Doug spent more time on it.
+> > +struct irq_domain *al_fic_wire_get_domain(struct al_fic *fic);
+> > +
+> > +struct al_fic *al_fic_wire_init(struct device_node *node,
+> > +				void __iomem *base,
+> > +				const char *name,
+> > +				unsigned int parent_irq);
+> > +int al_fic_cleanup(struct al_fic *fic);
 > 
-> Maybe I should resend it with Doug as author and include the original
-> commit message, which has more information.
+> Who is using these new functions?  We don't add new apis that no one
+> uses :(
 
-It's just that the first Signed-off should be from the original author.
-(And the sender the second)
-In the co-developed-by case (see Kernel documentation) the order
-doesn't matter.
+They will be used by subsequent driver submissions but those aren't
+quite ready yet, so we can hold onto patch 3 for now until they are.
+
+Cheers,
+Ben.
 
 
