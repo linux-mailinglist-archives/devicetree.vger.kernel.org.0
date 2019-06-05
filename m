@@ -2,331 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA1A354CC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 02:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A06E354FD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 03:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726354AbfFEAsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jun 2019 20:48:03 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:39979 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbfFEAsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 20:48:03 -0400
-Received: by mail-lj1-f195.google.com with SMTP id a21so6302052ljh.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 17:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pv23Ci9XYYXbAvdmjUDu6QVKJnotvin7bH7iuxivMig=;
-        b=bCfiN04tgowJLuApBvXwZWyNMtGb9FgYGJp5LkSEcg4PdHWnZmIBeM/cM9k5AbYodp
-         rettTdhr1CO5CzRe80O5GNP151HRdnuXMuXParmN+k4ysLrvJ8T4FJPz5UBNGPIWWhDv
-         jLzSs2o7zt6OpGXykmBbYrEGKSLH0DyvmhFwA2O4C1gJAlb4gCQQYVi8jqNR76aV2CAE
-         B26xYkubYvYF6WWvFMWbUtKHUYW3SWHpux/uSw6Ty7qvZxcnWDlOTriysJ/qSBj39HJL
-         iN8/XK32e67VWiHpnny1O7oiB03Lzd4/CGvnWXT8rNKGMQku64Dn87Rnbdfu/kl1KQN3
-         xajg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pv23Ci9XYYXbAvdmjUDu6QVKJnotvin7bH7iuxivMig=;
-        b=e+QDc16xmXkjsFcqEFCVElNh/8Y5+xr5kkLJuscgEQA/40R21oIoeL2sMXsR53w0xL
-         FN3Iy+eoF6Qi9dfOpFyyAUA2gm4jzwkpDYbSVURcjKtrh4WvLs3UAUN3Opi16+mUxD1i
-         vVQi8898xTRXZlv/Ephbwl5bcfkzl2jS4xjRNya5sOlk7kNdonjZN4nZAWr5W4HD37mc
-         DEGIAfXIztpo2khM4mddKPm9OY/QSap7M99keM0eSx5OJgYeYIu/GuHiPLiPvvrgRlkZ
-         9EkXjvFh/lGzLfgyGz01Z3w+pgq2w/1EZoOqaS6tKfaf9Dg4B8aQ2pFdHymRXqYotR/O
-         rntA==
-X-Gm-Message-State: APjAAAWeTksxAPtPjTR+9JP5wdjE9ZE7vb+Xuo+8WPM6HXIu7eMGpPeh
-        5Vq/cTbDJ4OaXhANSK8JPQEc+JnJ8xnU6JlWD3Bc/g==
-X-Google-Smtp-Source: APXvYqxvjJ99N3aai52FzW/2dSKhKjlCCwgFuNgdJiXvkROkaHK9M4UqMQad+SFwjoWlFMwgkqQd/uzHdaUnjHCnq4g=
-X-Received: by 2002:a2e:a318:: with SMTP id l24mr6685023lje.36.1559695679940;
- Tue, 04 Jun 2019 17:47:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190514221711.248228-1-brendanhiggins@google.com>
- <20190514221711.248228-5-brendanhiggins@google.com> <20190517175841.F3396216FD@mail.kernel.org>
-In-Reply-To: <20190517175841.F3396216FD@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 4 Jun 2019 17:47:48 -0700
-Message-ID: <CAFd5g456V4aQUSxxTAizun8ak4zogcAt4-YGgebX2L55Kb-xEg@mail.gmail.com>
-Subject: Re: [PATCH v4 04/18] kunit: test: add kunit_stream a std::stream like logger
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1726399AbfFEBbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jun 2019 21:31:17 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:46369 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726179AbfFEBbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jun 2019 21:31:17 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id DECD921B2A;
+        Tue,  4 Jun 2019 21:31:15 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Tue, 04 Jun 2019 21:31:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=ZMvsAP7tsZ6FGrkTx8J6BoVyLNN1cS8
+        mg7hACEWmNsQ=; b=bmYuQY2vcOZ8Pqh6ZQ8OOr4sgAlXpREa293b3GnrGtNMkRh
+        w0O7MUyMw8yCoE7wZbwuWWf8j+eagUg0dgnKi0duy4HhwwJ0TVV8K2cO11lKxhYT
+        mU12rQAms3X4NqCQpmaEfWR+BUqtEpEBCMWtgwhoAPszYDlW3DvLALXKgsRi2PIY
+        QWE6YkcIINhMQMkMhHRf95QqILl7C/7g654Yc3V9ljn5r4ekFt3QYODYGs6S8dAY
+        MHYXGe8QXqP3No79MF0wiyS8Km6fBmZHPkhzNWM/WMtzGlB6NekRQgqf2D/hMCxd
+        uPu5y+Q4YpA5zVcdmH0NCx50kNPhlyjP9Z95EPg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ZMvsAP
+        7tsZ6FGrkTx8J6BoVyLNN1cS8mg7hACEWmNsQ=; b=gEOn8Xm09umzuo1HpkPTyr
+        mt4Uxs74T3eG76Xz1SmX4ZKlo1I6XAEOvlDmO2mVoVr7nQpLfwC7KxG/64Ue6Rvu
+        QqUGh25dnmDCGC1QEjdlWgODFpX23ZIVq/1HMCMRZ8c5ZEIOoOzF71sSy1Z2ppHL
+        2uGjd09wHhgzIMNN6bWFdXD6KeKBpbAUBfSdvaXrwAfuPEl8c7zMyp7iObi+VJ7U
+        5W+NQKH4mJLDGiDucssdGgxDjWXEKjdpYv+fDsrlWcedTcL3T0JGH+Xth6kK5RMQ
+        XvkSCPbn/A3Y3HwjO90Mqa21I9PWNr2GCPpVQF3Qfc7IUWd9Dgh3LfTv2VzE9NsQ
+        ==
+X-ME-Sender: <xms:YRv3XL_PfUlnH_igpi7qRhujQeGDskeviEx-AHKEfevYS-0DJJqaWA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrudeguddggeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:YRv3XKwZkIBuJkrHUczmudGr0toCBoJ0En5RVCrS--VpkhShb_hW8A>
+    <xmx:YRv3XHGaF_r7IdVY6_LTMC6sl2IbAgaVnXEP2RGe9KZgwQPueEb-ig>
+    <xmx:YRv3XK6IQrVBYFTZOkoBPL4M-Jz2g0tBxXpYGVSneNFLHYDbpN4ynQ>
+    <xmx:Yxv3XCf_0V1dbiLxW9uKqENY1uVxxNF_ym6kQUPq33WhCMi9iSzRYQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id CECB5E00A1; Tue,  4 Jun 2019 21:31:13 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-650-g74f8db0-fmstable-20190604v3
+Mime-Version: 1.0
+Message-Id: <b4ba9af9-9d6d-45fa-8552-3aad5258352a@www.fastmail.com>
+In-Reply-To: <1559685212-15857-1-git-send-email-hongweiz@ami.com>
+References: <1559685212-15857-1-git-send-email-hongweiz@ami.com>
+Date:   Wed, 05 Jun 2019 11:01:13 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Hongwei Zhang" <hongweiz@ami.com>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3 linux dev-5.1 v2] ARM: dts: aspeed: Add SGPM pinmux
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 17, 2019 at 10:58 AM Stephen Boyd <sboyd@kernel.org> wrote:
+
+
+On Wed, 5 Jun 2019, at 07:23, Hongwei Zhang wrote:
+> Add SGPM pinmux to ast2500-pinctrl function and group, to prepare for
+> supporting SGPIO in AST2500 SoC.
+> 
+> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt | 2 +-
+>  drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c                   | 4 ++++
+>  2 files changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git 
+> a/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt 
+> b/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
+> index 3b7266c..8f1c5c4 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
+> @@ -84,7 +84,7 @@ NDCD2 NDCD3 NDCD4 NDSR1 NDSR2 NDSR3 NDSR4 NDTR1 NDTR2 
+> NDTR3 NDTR4 NRI1 NRI2
+>  NRI3 NRI4 NRTS1 NRTS2 NRTS3 NRTS4 OSCCLK PEWAKE PNOR PWM0 PWM1 PWM2 
+> PWM3 PWM4
+>  PWM5 PWM6 PWM7 RGMII1 RGMII2 RMII1 RMII2 RXD1 RXD2 RXD3 RXD4 SALT1 
+> SALT10
+>  SALT11 SALT12 SALT13 SALT14 SALT2 SALT3 SALT4 SALT5 SALT6 SALT7 SALT8 
+> SALT9
+> -SCL1 SCL2 SD1 SD2 SDA1 SDA2 SGPS1 SGPS2 SIOONCTRL SIOPBI SIOPBO 
+> SIOPWREQ
+> +SCL1 SCL2 SD1 SD2 SDA1 SDA2 SGPM SGPS1 SGPS2 SIOONCTRL SIOPBI SIOPBO 
+> SIOPWREQ
+>  SIOPWRGD SIOS3 SIOS5 SIOSCI SPI1 SPI1CS1 SPI1DEBUG SPI1PASSTHRU SPI2CK 
+> SPI2CS0
+>  SPI2CS1 SPI2MISO SPI2MOSI TIMER3 TIMER4 TIMER5 TIMER6 TIMER7 TIMER8 
+> TXD1 TXD2
+>  TXD3 TXD4 UART6 USB11BHID USB2AD USB2AH USB2BD USB2BH USBCKI 
+> VGABIOSROM VGAHS
+> diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c 
+> b/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c
+> index 187abd7..0c89647 100644
+> --- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c
+> +++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c
+> @@ -577,6 +577,8 @@ SS_PIN_DECL(N3, GPIOJ2, SGPMO);
+>  SIG_EXPR_LIST_DECL_SINGLE(SGPMI, SGPM, SIG_DESC_SET(SCU84, 11));
+>  SS_PIN_DECL(N4, GPIOJ3, SGPMI);
+>  
+> +FUNC_GROUP_DECL(SGPM, R2, L2, N3, N4);
+> +
+>  #define N5 76
+>  SIG_EXPR_LIST_DECL_SINGLE(VGAHS, VGAHS, SIG_DESC_SET(SCU84, 12));
+>  SIG_EXPR_LIST_DECL_SINGLE(DASHN5, DASHN5, SIG_DESC_SET(SCU94, 8));
+> @@ -2127,6 +2129,7 @@ static const struct aspeed_pin_group 
+> aspeed_g5_groups[] = {
+>  	ASPEED_PINCTRL_GROUP(SD2),
+>  	ASPEED_PINCTRL_GROUP(SDA1),
+>  	ASPEED_PINCTRL_GROUP(SDA2),
+> +	ASPEED_PINCTRL_GROUP(SGPM),
+>  	ASPEED_PINCTRL_GROUP(SGPS1),
+>  	ASPEED_PINCTRL_GROUP(SGPS2),
+>  	ASPEED_PINCTRL_GROUP(SIOONCTRL),
+> @@ -2296,6 +2299,7 @@ static const struct aspeed_pin_function 
+> aspeed_g5_functions[] = {
+>  	ASPEED_PINCTRL_FUNC(SD2),
+>  	ASPEED_PINCTRL_FUNC(SDA1),
+>  	ASPEED_PINCTRL_FUNC(SDA2),
+> +	ASPEED_PINCTRL_FUNC(SGPM),
+>  	ASPEED_PINCTRL_FUNC(SGPS1),
+>  	ASPEED_PINCTRL_FUNC(SGPS2),
+>  	ASPEED_PINCTRL_FUNC(SIOONCTRL),
+> -- 
+> 2.7.4
+> 
 >
-> Quoting Brendan Higgins (2019-05-14 15:16:57)
-> > diff --git a/kunit/kunit-stream.c b/kunit/kunit-stream.c
-> > new file mode 100644
-> > index 0000000000000..1884f1b550888
-> > --- /dev/null
-> > +++ b/kunit/kunit-stream.c
-> > @@ -0,0 +1,152 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * C++ stream style string formatter and printer used in KUnit for outputting
-> > + * KUnit messages.
-> > + *
-> > + * Copyright (C) 2019, Google LLC.
-> > + * Author: Brendan Higgins <brendanhiggins@google.com>
-> > + */
-> > +
-> > +#include <kunit/test.h>
-> > +#include <kunit/kunit-stream.h>
-> > +#include <kunit/string-stream.h>
-> > +
-> > +static const char *kunit_stream_get_level(struct kunit_stream *this)
-> > +{
-> > +       unsigned long flags;
-> > +       const char *level;
-> > +
-> > +       spin_lock_irqsave(&this->lock, flags);
-> > +       level = this->level;
-> > +       spin_unlock_irqrestore(&this->lock, flags);
-> > +
-> > +       return level;
->
-> Please remove this whole function and inline it to the one call-site.
->
-> > +}
-> > +
-> > +void kunit_stream_set_level(struct kunit_stream *this, const char *level)
-> > +{
-> > +       unsigned long flags;
-> > +
-> > +       spin_lock_irqsave(&this->lock, flags);
-> > +       this->level = level;
-> > +       spin_unlock_irqrestore(&this->lock, flags);
->
-> I don't get the locking here. What are we protecting against? Are tests
-> running in parallel using the same kunit_stream? If so, why is the level
-> changeable in one call and then adding strings is done in a different
-> function call? It would make sense to combine the level setting and
-> string adding so that it's one atomic operation if it's truly a parallel
-> operation, or remove the locking entirely.
-
-I think you are right. I am not sure it makes sense for two separate
-threads to share a kunit_stream; even if locked properly, it would end
-up printing out corrupted text.
-
-In anycase, I think it makes sense to decide the level when the stream
-is allocated which would sidestep this issue entirely.
-
-> > +}
-> > +
-> > +void kunit_stream_add(struct kunit_stream *this, const char *fmt, ...)
-> > +{
-> > +       va_list args;
-> > +       struct string_stream *stream = this->internal_stream;
-> > +
-> > +       va_start(args, fmt);
-> > +
-> > +       if (string_stream_vadd(stream, fmt, args) < 0)
-> > +               kunit_err(this->test, "Failed to allocate fragment: %s\n", fmt);
-> > +
-> > +       va_end(args);
-> > +}
-> > +
-> > +void kunit_stream_append(struct kunit_stream *this,
-> > +                               struct kunit_stream *other)
-> > +{
-> > +       struct string_stream *other_stream = other->internal_stream;
-> > +       const char *other_content;
-> > +
-> > +       other_content = string_stream_get_string(other_stream);
-> > +
-> > +       if (!other_content) {
-> > +               kunit_err(this->test,
-> > +                         "Failed to get string from second argument for appending.\n");
-> > +               return;
-> > +       }
-> > +
-> > +       kunit_stream_add(this, other_content);
-> > +}
-> > +
-> > +void kunit_stream_clear(struct kunit_stream *this)
-> > +{
-> > +       string_stream_clear(this->internal_stream);
-> > +}
-> > +
-> > +void kunit_stream_commit(struct kunit_stream *this)
->
-> Should this be rather called kunit_stream_flush()?
-
-So the intention is that the string in the buffer will not get printed
-out until commit is called. In this way, you can build up a message
-and then decide not to print it. This is useful when you are parsing
-through a lot of data that would be useful in debugging a failing or
-broken test, but are not yet sure if it is going to pass or not.
-
-I think flush has the connotation, that you are just forcing the
-buffer to get written out now, but that it will happen regardless
-eventually, where commit has the correct connotation that you *must*
-call it in order to write out the data stored in the buffer.
-
-Seems as though I should probably add this distinction to the
-kernel-doc comment.
-
-> > +{
-> > +       struct string_stream *stream = this->internal_stream;
-> > +       struct string_stream_fragment *fragment;
-> > +       const char *level;
-> > +       char *buf;
-> > +
-> > +       level = kunit_stream_get_level(this);
-> > +       if (!level) {
-> > +               kunit_err(this->test,
-> > +                         "Stream was committed without a specified log level.\n");
->
-> Drop the full-stop?
-
-Whoops, nice catch. Will fix in next revision.
-
-> > +               level = KERN_ERR;
-> > +               kunit_stream_set_level(this, level);
-> > +       }
-> > +
-> > +       buf = string_stream_get_string(stream);
-> > +       if (!buf) {
-> > +               kunit_err(this->test,
->
-> Can you grow a local variable for 'this->test'? It's used many times.
-
-Sure, will fix in next revision.
-
-> Also, 'this' is not very kernel idiomatic. We usually name variables by
-> their type instead of 'this' which is a keyword in other languages.
-> Perhaps it could be named 'kstream'?
-
-Seems reasonable. Will fix in next revision.
-
-> > +                        "Could not allocate buffer, dumping stream:\n");
-> > +               list_for_each_entry(fragment, &stream->fragments, node) {
-> > +                       kunit_err(this->test, fragment->fragment);
-> > +               }
-> > +               kunit_err(this->test, "\n");
-> > +               goto cleanup;
-> > +       }
-> > +
-> > +       kunit_printk(level, this->test, buf);
-> > +       kfree(buf);
-> > +
-> > +cleanup:
-> > +       kunit_stream_clear(this);
-> > +}
-> > +
-> > +static int kunit_stream_init(struct kunit_resource *res, void *context)
-> > +{
-> > +       struct kunit *test = context;
-> > +       struct kunit_stream *stream;
-> > +
-> > +       stream = kzalloc(sizeof(*stream), GFP_KERNEL);
->
-> Of course, here it's called 'stream', so maybe it should be 'kstream'
-> here too.
-
-Will do.
-
->
-> > +       if (!stream)
-> > +               return -ENOMEM;
-> > +
-> > +       res->allocation = stream;
-> > +       stream->test = test;
-> > +       spin_lock_init(&stream->lock);
-> > +       stream->internal_stream = new_string_stream();
->
-> Can new_string_stream() be renamed to alloc_string_stream()? Sorry, I
-> just see so much C++ isms in here it's hard to read from the kernel
-> developer perspective.
-
-No problem. WIll fix in next revision.
-
-> > +
-> > +       if (!stream->internal_stream) {
->
-> Nitpick: Please join this to the "allocation" event above instead of
-> keeping it separated.
-
-Yeah, that's a lot cleaner. Will do.
-
-> > +               kfree(stream);
-> > +               return -ENOMEM;
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static void kunit_stream_free(struct kunit_resource *res)
-> > +{
-> > +       struct kunit_stream *stream = res->allocation;
-> > +
-> > +       if (!string_stream_is_empty(stream->internal_stream)) {
-> > +               kunit_err(stream->test,
-> > +                        "End of test case reached with uncommitted stream entries.\n");
-> > +               kunit_stream_commit(stream);
-> > +       }
-> > +
-> > +       destroy_string_stream(stream->internal_stream);
-> > +       kfree(stream);
-> > +}
-> > +
-> > +struct kunit_stream *kunit_new_stream(struct kunit *test)
-> > +{
-> > +       struct kunit_resource *res;
-> > +
-> > +       res = kunit_alloc_resource(test,
-> > +                                  kunit_stream_init,
-> > +                                  kunit_stream_free,
-> > +                                  test);
-> > +
-> > +       if (res)
-> > +               return res->allocation;
-> > +       else
-> > +               return NULL;
->
-> Don't have if (...) return ...; else return ..., just return instead of
-> else.
-
-Sorry. Will fix.
-
-Thanks!
