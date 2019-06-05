@@ -2,118 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 449EE35B30
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A0935B78
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:43:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727371AbfFELWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 07:22:47 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:49180 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727330AbfFELWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:22:47 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 8B6182639B0;
-        Wed,  5 Jun 2019 12:22:45 +0100 (BST)
-Date:   Wed, 5 Jun 2019 13:22:42 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v3 01/10] rockchip/vpu: rename from rockchip to hantro
-Message-ID: <20190605132242.102fcdd2@collabora.com>
-In-Reply-To: <20190531085523.10892-2-p.zabel@pengutronix.de>
-References: <20190531085523.10892-1-p.zabel@pengutronix.de>
-        <20190531085523.10892-2-p.zabel@pengutronix.de>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727580AbfFELn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 07:43:28 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:20858 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727624AbfFELn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:43:28 -0400
+X-UUID: 51816b59e12a44a795963106a2bc9b79-20190605
+X-UUID: 51816b59e12a44a795963106a2bc9b79-20190605
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1953206414; Wed, 05 Jun 2019 19:43:22 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 5 Jun 2019 19:43:21 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 5 Jun 2019 19:43:20 +0800
+From:   <yongqiang.niu@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v3, 00/27] add drm support for MT8183
+Date:   Wed, 5 Jun 2019 19:42:39 +0800
+Message-ID: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 May 2019 10:55:14 +0200
-Philipp Zabel <p.zabel@pengutronix.de> wrote:
+From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-> Rename the driver and all relevant identifiers from Rockchip to Hantro,
-> as other Hantro IP based VPU implementations can be supported by the
-> same driver.
-> The RK3288 decoder is Hantro G1 based, the encoder is Hantro H1.
-> 
-> This patch just renames, no functional changes.
-> 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-> ---
->  MAINTAINERS                                   |   4 +-
->  drivers/staging/media/Kconfig                 |   2 +-
->  drivers/staging/media/Makefile                |   2 +-
->  .../media/{rockchip/vpu => hantro}/Kconfig    |  11 +-
->  drivers/staging/media/hantro/Makefile         |  13 +
->  .../media/{rockchip/vpu => hantro}/TODO       |   0
->  .../vpu/rockchip_vpu.h => hantro/hantro.h}    | 136 +++++-----
->  .../hantro_drv.c}                             | 251 +++++++++---------
->  .../hantro_g1_mpeg2_dec.c}                    |  55 ++--
->  .../hantro_h1_jpeg_enc.c}                     |  44 +--
->  drivers/staging/media/hantro/hantro_hw.h      | 102 +++++++
->  .../hantro_jpeg.c}                            |  18 +-
->  drivers/staging/media/hantro/hantro_jpeg.h    |  13 +
->  .../hantro_mpeg2.c}                           |  14 +-
->  .../hantro_v4l2.c}                            | 234 ++++++++--------
->  .../hantro_v4l2.h}                            |  16 +-
->  .../{rockchip/vpu => hantro}/rk3288_vpu_hw.c  |  64 ++---
->  .../vpu => hantro}/rk3288_vpu_regs.h          |   2 +-
->  .../{rockchip/vpu => hantro}/rk3399_vpu_hw.c  |  64 ++---
->  .../vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c   |  32 +--
->  .../vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c  |  37 ++-
->  .../vpu => hantro}/rk3399_vpu_regs.h          |   2 +-
->  drivers/staging/media/rockchip/vpu/Makefile   |  14 -
->  .../media/rockchip/vpu/rockchip_vpu_hw.h      | 103 -------
->  .../media/rockchip/vpu/rockchip_vpu_jpeg.h    |  14 -
->  25 files changed, 616 insertions(+), 631 deletions(-)
->  rename drivers/staging/media/{rockchip/vpu => hantro}/Kconfig (59%)
->  create mode 100644 drivers/staging/media/hantro/Makefile
->  rename drivers/staging/media/{rockchip/vpu => hantro}/TODO (100%)
->  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu.h => hantro/hantro.h} (69%)
->  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_drv.c => hantro/hantro_drv.c} (74%)
->  rename drivers/staging/media/{rockchip/vpu/rk3288_vpu_hw_mpeg2_dec.c => hantro/hantro_g1_mpeg2_dec.c} (87%)
->  rename drivers/staging/media/{rockchip/vpu/rk3288_vpu_hw_jpeg_enc.c => hantro/hantro_h1_jpeg_enc.c} (76%)
->  create mode 100644 drivers/staging/media/hantro/hantro_hw.h
->  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_jpeg.c => hantro/hantro_jpeg.c} (95%)
->  create mode 100644 drivers/staging/media/hantro/hantro_jpeg.h
->  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_mpeg2.c => hantro/hantro_mpeg2.c} (79%)
->  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.c => hantro/hantro_v4l2.c} (69%)
->  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.h => hantro/hantro_v4l2.h} (53%)
->  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3288_vpu_hw.c (68%)
->  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3288_vpu_regs.h (99%)
+This series are based on 5.2-rc1 and provid 27 patch
+to support mediatek SOC MT8183
 
-Didn't notice that in my initial review, but rk3288_vpu_regs.h should
-be split in 2: hantro_{g1,h1}_regs.h (g1 being the decoder part and h1
-the encoder).
+Change since v2
+- fix reviewed issue in v2
+- add mutex node into dts file
 
->  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw.c (69%)
->  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c (86%)
->  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c (92%)
->  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_regs.h (99%)
+Yongqiang Niu (27):
+  dt-bindings: mediatek: add binding for mt8183 display
+  dt-bindings: mediatek: add ovl_2l description for mt8183 display
+  dt-bindings: mediatek: add ccorr description for mt8183 display
+  dt-bindings: mediatek: add dither description for mt8183 display
+  arm64: dts: add display nodes for mt8183
+  drm/mediatek: add mutex mod into ddp private data
+  drm/mediatek: add mutex mod register offset into ddp private data
+  drm/mediatek: add mutex sof into ddp private data
+  drm/mediatek: add mutex sof register offset into ddp private data
+  drm/mediatek: split DISP_REG_CONFIG_DSI_SEL setting into another use
+    case
+  drm/mediatek: add mmsys private data for ddp path config
+  drm/mediatek: move rdma sout from mtk_ddp_mout_en into
+    mtk_ddp_sout_sel
+  drm/mediatek: add ddp component CCORR
+  drm/mediatek: add commponent OVL_2L0
+  drm/mediatek: add component OVL_2L1
+  drm/mediatek: add component DITHER
+  drm/mediatek: add gmc_bits for ovl private data
+  drm/medaitek: add layer_nr for ovl private data
+  drm/mediatek: add function to background color input select for
+    ovl/ovl_2l direct link
+  drm/mediatek: add background color input select function for
+    ovl/ovl_2l
+  drm/mediatek: add ovl0/ovl_2l0 usecase
+  drm/mediatek: distinguish ovl and ovl_2l by layer_nr
+  drm/mediatek: add connection from ovl0 to ovl_2l0
+  drm/mediatek: add connection from RDMA0 to COLOR0
+  drm/mediatek: add connection from RDMA1 to DSI0
+  drm/mediatek: add clock property check before get it
+  drm/mediatek: add support for mediatek SOC MT8183
 
-Same here, rk3399_vpu_regs.h should be split into hantro_{g2,h2}_regs.h
-(I still need to make sure this is actually a g2/h2 combo we have on
-this SoC). That's also true for the
-rk3399_vpu_hw_{mpeg2_dec,jpeg_enc}.c files: they should be renamed
-hantro_{g2_mpeg2_dec,h2_jpeg_enc}.c
+ .../bindings/display/mediatek/mediatek,disp.txt    |  37 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi           | 114 ++++++
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c            |  80 +++-
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c           |  12 +
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c            |  42 +-
+ drivers/gpu/drm/mediatek/mtk_drm_ddp.c             | 429 ++++++++++++++++-----
+ drivers/gpu/drm/mediatek/mtk_drm_ddp.h             |   6 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c        |  68 ++++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h        |  23 ++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c             |  52 +++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h             |   4 +
+ 11 files changed, 745 insertions(+), 122 deletions(-)
 
->  delete mode 100644 drivers/staging/media/rockchip/vpu/Makefile
->  delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_hw.h
->  delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_jpeg.h
-
+-- 
+1.8.1.1.dirty
 
