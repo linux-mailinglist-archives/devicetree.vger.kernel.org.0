@@ -2,112 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C83623608C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0F64360A9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726859AbfFEPuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 11:50:05 -0400
-Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:36960 "EHLO
-        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726670AbfFEPuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 11:50:05 -0400
+        id S1728601AbfFEP7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 11:59:06 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:36441 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728250AbfFEP7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 11:59:05 -0400
+Received: by mail-pg1-f195.google.com with SMTP id a3so5231288pgb.3;
+        Wed, 05 Jun 2019 08:59:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1559749804; x=1591285804;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9MFrYKLeLiHQwuVnld71Reu+eO4VodzjXUL9QDeOO1A=;
-  b=n4HjD70oKmRskPkU3KwatnzxMH9ESC4EKy8YwcDVuXxkIUK4dmlr8cNj
-   EyUaivDB/XsVsLXmgKnALLQaLpXAocoJUn+Av488tuxel8gIJxCUVlMWo
-   gv2k16dFTW9gKbHZIDN4UyD4Ij7cKbSY+K32cx3pBEQz49LbfU02u/3U8
-   8=;
-X-IronPort-AV: E=Sophos;i="5.60,550,1549929600"; 
-   d="scan'208";a="678323901"
-Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1d-74cf8b49.us-east-1.amazon.com) ([10.47.22.38])
-  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 05 Jun 2019 15:50:00 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1d-74cf8b49.us-east-1.amazon.com (Postfix) with ESMTPS id 9F0BDC10C8;
-        Wed,  5 Jun 2019 15:49:56 +0000 (UTC)
-Received: from EX13D13UWB003.ant.amazon.com (10.43.161.233) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 5 Jun 2019 15:49:55 +0000
-Received: from EX13MTAUWC001.ant.amazon.com (10.43.162.135) by
- EX13D13UWB003.ant.amazon.com (10.43.161.233) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 5 Jun 2019 15:49:55 +0000
-Received: from localhost (10.85.18.74) by mail-relay.amazon.com
- (10.43.162.232) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
- Transport; Wed, 5 Jun 2019 15:49:55 +0000
-Date:   Wed, 5 Jun 2019 08:49:55 -0700
-From:   Eduardo Valentin <eduval@amazon.com>
-To:     Talel Shenhar <talel@amazon.com>
-CC:     <nicolas.ferre@microchip.com>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <mark.rutland@arm.com>,
-        <mchehab+samsung@kernel.org>, <robh+dt@kernel.org>,
-        <davem@davemloft.net>, <shawn.lin@rock-chips.com>,
-        <tglx@linutronix.de>, <devicetree@vger.kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
-        <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <jonnyc@amazon.com>, <hhhawa@amazon.com>, <ronenk@amazon.com>,
-        <hanochu@amazon.com>, <barakw@amazon.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: Amazon's
- Annapurna Labs FIC
-Message-ID: <20190605154955.GD1534@u40b0340c692b58f6553c.ant.amazon.com>
-References: <1559731921-14023-1-git-send-email-talel@amazon.com>
- <1559731921-14023-2-git-send-email-talel@amazon.com>
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LNpmK93zAJJ5Un4fIjDsW9Sm00BMyg+B0/rMr5+eS3I=;
+        b=Z8V1Q9wNaBBgS8izidARY2/sgDSHaOj4/Czitv6F4qDQnhnb7sqjBRAaaXnFIP1iEk
+         TgQGWcMA0ELuDMVa8ssA3C0yT0Kxv2K9BEAbYX9ao1B8hJ1EQVo8c+4wZLMR7JqjfYi9
+         PHdLzxZrBLZTveZHgYpYcl4KJwgOJTCmL8YUFt8sytSx0t1xKYtxw5hrdQYFwauoGvOP
+         4vFRjOHeXu7t7pSXRcJsqxJjO92kdB58VlVC0lKCGgH7UNsFVKFCCeVhm2bt6+UFkY3A
+         tsGKM5RLX/Zcy3hpW91oMzGFVBhuxLkHmR1yrVew2tSiOi+At6lnfO1LOI6hjgv6F54I
+         WhQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LNpmK93zAJJ5Un4fIjDsW9Sm00BMyg+B0/rMr5+eS3I=;
+        b=eGCN9jXnyhH13t9h7wtgmkrszusR/Vl5vyZe4RBx7vqJ6LxR2MnU/X6A5ej1a3r8V1
+         UhAu7dKbKm7Foed+KN8IeuOkVjXuusDjMb0Da2PhSXiP34z6WOQgsHmjebprWhaAjvg2
+         bTIFCliXvNzhjpnVypxPjcmlMGslOi83txyzLKJmPzJgFxdZmWRMn4vLQX5eAxeCVeCQ
+         /uBvhvWfjRL5hgMUzhp0E/Ge5iv+fHHy0g63vEGYMxox1x7Qd5Yap3JEFOKDq+15T/Kv
+         WNEesNqt+9iQm3yD75o012ZBpn/6P56l03Q6mmD60/xASrBNFK4Vx4SZZNqJQT6Qw7sO
+         RivQ==
+X-Gm-Message-State: APjAAAXqe9n+eK+/3pFLpqeHQ1/RB48xfFLJrK8zteQE5AjsBgxBHgAB
+        z0g/NrQ1K4Ik1gI7NuIiZjmbLtusu2Y+cLuL6GM=
+X-Google-Smtp-Source: APXvYqzrE24tcSHeSl0Iq6cMLIC9Q7zXjX4LH11vq0zHI8Mi3Q4o/Ftd6HoJo5XDcWPqWql761Gtdt2RKti3EFtuj8c=
+X-Received: by 2002:a63:fb05:: with SMTP id o5mr5560744pgh.203.1559750344896;
+ Wed, 05 Jun 2019 08:59:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1559731921-14023-2-git-send-email-talel@amazon.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+References: <20190531043347.4196-1-eduval@amazon.com> <20190531043347.4196-3-eduval@amazon.com>
+ <20190604171611.GS9224@smile.fi.intel.com> <20190605032709.GA1534@u40b0340c692b58f6553c.ant.amazon.com>
+ <CAHp75Vdaeprj0hFXukMqDi_dnK9-vA-O-OTRiGY6y3aGrNHUjQ@mail.gmail.com>
+ <20190605143158.GB1534@u40b0340c692b58f6553c.ant.amazon.com>
+ <CAHp75Vc2us0UDmGnzjF0vkzWM_9KqRa0AZKnRsUYmFRTsgwEyg@mail.gmail.com> <20190605153120.GC1534@u40b0340c692b58f6553c.ant.amazon.com>
+In-Reply-To: <20190605153120.GC1534@u40b0340c692b58f6553c.ant.amazon.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 5 Jun 2019 18:58:54 +0300
+Message-ID: <CAHp75VfPYC7xDfsGRZsSy8eV1xoMANsVmyuU_yF0kPG0fMtLCQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive and
+ queue messages
+To:     Eduardo Valentin <eduval@amazon.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 01:52:00PM +0300, Talel Shenhar wrote:
-> Document Amazon's Annapurna Labs Fabric Interrupt Controller SoC binding.
-> 
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
-> ---
->  .../interrupt-controller/amazon,al-fic.txt         | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt b/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-> new file mode 100644
-> index 0000000..a2f31a6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-> @@ -0,0 +1,22 @@
-> +Amazon's Annapurna Labs Fabric Interrupt Controller
-> +
-> +Required properties:
-> +
-> +- compatible: should be "amazon,al-fic"
-> +- reg: physical base address and size of the registers
-> +- interrupt-controller: identifies the node as an interrupt controller
-> +- #interrupt-cells: must be 2.
+On Wed, Jun 5, 2019 at 6:31 PM Eduardo Valentin <eduval@amazon.com> wrote:
+> On Wed, Jun 05, 2019 at 06:20:37PM +0300, Andy Shevchenko wrote:
+> > On Wed, Jun 5, 2019 at 5:32 PM Eduardo Valentin <eduval@amazon.com> wrote:
+> > > On Wed, Jun 05, 2019 at 11:25:39AM +0300, Andy Shevchenko wrote:
+> > > > On Wed, Jun 5, 2019 at 6:30 AM Eduardo Valentin <eduval@amazon.com> wrote:
 
-It would be great if you describe what the 2 numbers must represent here..
-
-> +- interrupt-parent: specifies the parent interrupt controller.
-> +- interrupts: describes which input line in the interrupt parent, this
-> +  fic's output is connected to.
-> +
-> +Example:
-> +
-> +amazon_fic: amazon_fic {
-> +	compatible = "amazon,al-fic";
-> +	interrupt-controller;
-> +	#interrupt-cells = <1>;
-> +	reg = <0x0 0xfd8a8500 0x0 0x1000>;
-> +	interrupt-parent = <&gic>;
-> +	interrupts = <GIC_SPI 0x0 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > > > +           .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
+> > > > > >
+> > > > > > Wouldn't compiler warn you due to unused data?
+> > > > > > Perhaps drop of_match_ptr() for good...
+> > > > >
+> > > > > Not sure what you meant here. I dont see any compiler warning.
+> > > > > Also, of_match_ptr seams to be well spread in the kernel.
+> > > >
+> > > > If this will be compiled with CONFIG_OF=n...
+> > >
+> > > I see.. I obviously did not test with that config..
+> > >
+> > > > Though I didn't check all dependencies to see if it even possible. In
+> > > > any case of_match_ptr() is redundant in both cases here.
+> > > > Either you need to protect i2c_slave_mqueue_of_match with #ifdef
+> > > > CONFIG_OF, or drop the macro use.
+> > >
+> > > I will wrap it into CONFIG_OF..
+> >
+> > Would be this expected to work in the case of CONFIG_OF=n?
+> > If no, why to introduce ugly #ifdef:s and additional macros?
+>
+> I do hate those too...
+>
+> > Wouldn't be better to have
+> >   depends on OF || COMPILE_TEST
+>
+> Well, technically, the original author had a case for using this
+> without CONFIG_OF. That is why I did not force here to be a strong
+> dependency on CONFIG_OF. So, I guess in this case the driver will
+> work properly in both cases if we:
+>
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id i2c_slave_mqueue_of_match[] = {
+> +       {
+> +               .compatible = "i2c-slave-mqueue",
+> +       },
+> +       { /* sentinel */ }
 > +};
-> -- 
-> 2.7.4
-> 
+> +MODULE_DEVICE_TABLE(of, i2c_slave_mqueue_of_match);
+> +#endif
+> +
+> +static struct i2c_driver i2c_slave_mqueue_driver = {
+> +       .driver = {
+> +               .name   = "i2c-slave-mqueue",
+> +               .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
+> +       },
+> +       .probe          = i2c_slave_mqueue_probe,
+> +       .remove         = i2c_slave_mqueue_remove,
+> +       .id_table       = i2c_slave_mqueue_id,
+> +};
+>
+> The above is a well stablish pattern across the drivers.
+
+My point here that you may achieve the same by simple dropping of_match_ptr().
+
+P.S. Many of the drivers just old enough and not being simplified due
+to pointless churn there, but for new drivers we may avoid it.
 
 -- 
-All the best,
-Eduardo Valentin
+With Best Regards,
+Andy Shevchenko
