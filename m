@@ -2,111 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF3C35EF3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 16:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2782C35F37
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 16:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728198AbfFEORI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 10:17:08 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:36272 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728083AbfFEORI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 10:17:08 -0400
-Received: by mail-ed1-f65.google.com with SMTP id a8so6059239edx.3;
-        Wed, 05 Jun 2019 07:17:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DYFO74imdmleJLw5lYkuA6kO6lk6BDNzHYqBpZMjZ8s=;
-        b=kvxtMTCZdYLS36jfstozpuwwHILmf0b2bvAMNZXohkogm+c2hPkV+4Z95BmSa+Iqxh
-         ZVGQ9C767Mwx8Ubqg7OXp4cc5CZA5jSH642GgtyyWORUHyEr1yHfT+o5w1ktS+0B1E2k
-         VE4Q8MtKaqiEo8ZAclw5warQKFbLbRryMg6MMwGAZdzZ0/aXkoolO6+F5v/FVE8PgoRz
-         wjDdu3SfUhW1O6EVCML5GIKEDN1vkOd1YFIkqUl0szkdzv18oI0Pfv/hKcA64SRN4QKq
-         RO1JzS9ecXpXP+8nLy05iP+IsEluRraqXvXeKhUhfZOANq+Kntu5MISL4uAXjrVMgbTe
-         +6EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DYFO74imdmleJLw5lYkuA6kO6lk6BDNzHYqBpZMjZ8s=;
-        b=gMLwK+UtnG3D0YHfkoAawmZ0YnqD0oJSZGb4hoeJeVFC+EJbDApMRcTCeXXlNA+HBX
-         oPrcqed6BjydKk/mjvxn/IvpwJcfIzAOGn0TBDSVd2l2gqmlwb463OAri8aT6gkW+yhp
-         mdhTKs+UTE7UNGr7fCKhVe/xXCx7l+MJkP6ElDCsz30OoQZbN8/G/HGo0Blh0VocQZws
-         MOx0ffD16YRv7wgbW132hIU/cRBruvPcbigQP/YwatgoxdYYcn8ttUe3x7kOsA5WfM/f
-         M88c/6aW6jJuRcnJL6czYPZvl3JBzEg7KOr+oeBpRkN5kOM21fNbwEjhXnhNmTb5oc4D
-         h3vw==
-X-Gm-Message-State: APjAAAWUUIyfuzaSX62gkF9w30Ur9n35aQvW/oBmlLWdsif/Y0/NEW89
-        WDSumJJuL0aykQ67twmNOwmKjP9QOZIdUW/G//k=
-X-Google-Smtp-Source: APXvYqz++haK8phyFHbXw+7xx+j+S+xiNW3yfgGMolbWak16tppAeVvpIviRn0GFGAEATK3z185Rfr0/uCa7tvr7S5E=
-X-Received: by 2002:a17:906:2ada:: with SMTP id m26mr8080786eje.265.1559744226214;
- Wed, 05 Jun 2019 07:17:06 -0700 (PDT)
+        id S1728373AbfFEO1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 10:27:05 -0400
+Received: from casper.infradead.org ([85.118.1.10]:35550 "EHLO
+        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727961AbfFEO1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 10:27:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=lTJZ7yvx2GJn/5Ucl0IpHbkLAJMz/sLGSpI28ny4Qgc=; b=FHC+epX7Epn/9PMwVZpDGE2gYh
+        9bs1PVFxV3ddPcqxWbVbtVC9OvlXVaEiKv7KY+VxKkSrmsSsDkzj5tmUjb8EDKG8oWktusbeahEJ5
+        FssgsPLunzGe9XEtRZSi2BN5xyscJyO5DT53Ckr5gmpQA/jNeap7pVsE2s+NGqS3/u+C4Lh2y+5UV
+        I5zbYGpJnOYqJuDMjEJ6EQ1Eydk7ocvjOoR4FJzl8d0Cq0E6oi6ptgdgGh+ae2j49nUnzwfKBCYsY
+        s5kdPlghAB5sehdD5+zOGJ9trAFcZkO1kaKYvY6mRU10ueKpF2KKukOhKDCj5KAIQ5PTDwdB9p+8S
+        H759F1ug==;
+Received: from [179.182.172.34] (helo=coco.lan)
+        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hYWsO-0002Er-6a; Wed, 05 Jun 2019 14:26:52 +0000
+Date:   Wed, 5 Jun 2019 11:26:45 -0300
+From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Hans Verkuil <hansverk@cisco.com>,
+        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        od@zcrc.me
+Subject: Re: [PATCH v4 2/3] media: uapi: Add RGB bus format for the
+ GiantPlus GPM940B0 panel
+Message-ID: <20190605112645.5b357630@coco.lan>
+In-Reply-To: <20190603153511.24384-2-paul@crapouillou.net>
+References: <20190603153511.24384-1-paul@crapouillou.net>
+        <20190603153511.24384-2-paul@crapouillou.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20181201165348.24140-1-robdclark@gmail.com> <CAL_JsqJmPqis46Un91QyhXgdrVtfATMP_hTp6wSeSAfc8MLFfw@mail.gmail.com>
- <CAF6AEGs9Nsft8ofZkGz_yWBPBC+prh8dBSkJ4PJr8yk2c5FMdQ@mail.gmail.com>
- <CAF6AEGt-dhbQS5zZCNVTLT57OiUwO0RiP5bawTSu2RKZ-7W-aw@mail.gmail.com>
- <CAAFQd5BdrJFL5LKK8O5NPDKWfFgkTX_JU-jU3giEz33tj-jwCA@mail.gmail.com>
- <CAF6AEGtj+kyXqKeJK2-0e1jw_A4wz-yBEyv5zhf5Vfoi2_p2CA@mail.gmail.com>
- <CAAFQd5Dmr+xyd4dyc_44vJFpNpwK6+MgG+ensoey59HgbxXV6g@mail.gmail.com>
- <CGME20190605125734epcas1p43b15cc8c556d917ca71b561791861cec@epcas1p4.samsung.com>
- <CAF6AEGuj=QmEWZVzHMtoDgO0M0t-W9+tay5F4AKYThZqy=nkdA@mail.gmail.com> <95d6e963-7f30-1d9c-99d7-0f6cc1589997@samsung.com>
-In-Reply-To: <95d6e963-7f30-1d9c-99d7-0f6cc1589997@samsung.com>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Wed, 5 Jun 2019 07:16:51 -0700
-Message-ID: <CAF6AEGtb1t4oRXCVvZq_cq1vZCJhgok-Ha+FXrruOOCq4APY_Q@mail.gmail.com>
-Subject: Re: [Freedreno] [PATCH] of/device: add blacklist for iommu dma_ops
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Tomasz Figa <tfiga@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Doug Anderson <dianders@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 5, 2019 at 6:18 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> Hi Rob,
->
-> On 2019-06-05 14:57, Rob Clark wrote:
-> > On Tue, Jun 4, 2019 at 11:58 PM Tomasz Figa <tfiga@chromium.org> wrote:
-> >> But first of all, I remember Marek already submitted some patches long
-> >> ago that extended struct driver with some flag that means that the
-> >> driver doesn't want the IOMMU to be attached before probe. Why
-> >> wouldn't that work? Sounds like a perfect opt-out solution.
-> > Actually, yeah.. we should do that.  That is the simplest solution.
->
-> Tomasz has very good memory. It took me a while to find that old patches:
->
-> https://patchwork.kernel.org/patch/4677251/
-> https://patchwork.kernel.org/patch/4677941/
-> https://patchwork.kernel.org/patch/4677401/
->
-> It looks that my idea was a bit ahead of its time ;)
->
+Em Mon,  3 Jun 2019 17:35:10 +0200
+Paul Cercueil <paul@crapouillou.net> escreveu:
 
-if I re-spin this, was their a reason not to just use bitfields, ie:
+> The GiantPlus GPM940B0 is a 24-bit TFT panel where the RGB components
+> are transferred sequentially on a 8-bit bus.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+> 
+> Notes:
+>     v2: New patch
+>     
+>     v3: No change
+>     
+>     v4: Add only MEDIA_BUS_FMT_RGB888_3X8, as we don't have to care about
+>         endianness
 
--    bool suppress_bind_attrs;    /* disables bind/unbind via sysfs */
-+    bool suppress_bind_attrs : 1;    /* disables bind/unbind via sysfs */
-+    bool has_own_iommu_manager : 1;  /* driver explictly manages IOMMU */
+Same comment as on version 3:
 
-That seems like it would have been a bit less churn and a bit nicer
-looking (IMO at least)
+You should also patch the documentation text at:
 
-BR,
--R
+	Documentation/media/uapi/v4l/subdev-formats.rst
+
+In order to describe the new format that will be included.
+
+
+> 
+>  include/uapi/linux/media-bus-format.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
+> index 2a6b253cfb05..16c1fa2d89a4 100644
+> --- a/include/uapi/linux/media-bus-format.h
+> +++ b/include/uapi/linux/media-bus-format.h
+> @@ -34,7 +34,7 @@
+>  
+>  #define MEDIA_BUS_FMT_FIXED			0x0001
+>  
+> -/* RGB - next is	0x101c */
+> +/* RGB - next is	0x101d */
+>  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
+> @@ -55,6 +55,7 @@
+>  #define MEDIA_BUS_FMT_RGB888_1X24		0x100a
+>  #define MEDIA_BUS_FMT_RGB888_2X12_BE		0x100b
+>  #define MEDIA_BUS_FMT_RGB888_2X12_LE		0x100c
+> +#define MEDIA_BUS_FMT_RGB888_3X8		0x101c
+>  #define MEDIA_BUS_FMT_RGB888_1X7X4_SPWG		0x1011
+>  #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
+>  #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
+
+
+
+Thanks,
+Mauro
