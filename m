@@ -2,110 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C7535689
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1797F3569A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726649AbfFEGBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 02:01:11 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:35019 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbfFEGBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:01:10 -0400
-Received: by mail-pg1-f194.google.com with SMTP id s27so6178863pgl.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 23:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XhgXHLObV5Vbqo0Ol1dr/K9C6PfbnIr6P+CU31xn0uk=;
-        b=JMDtt3o4OpRyNKqkIsA2AAl8veHAMN2+KlqcyzaxHwpNI6+UJ79YrJx/oC0KuKGwN4
-         uLEguOKwpu/0TSXjxpVrV9ohcTpmW1vkIcHcIVFgf/wP1efqPouTguYWm4hBw/s9V3XE
-         aw5GVUVx5BjtFgTryP1pejwqui5+CG9DuIUr2Ev5/THCjVKRvJBSeEgLJSQ/KuXmabKK
-         8imeg+KY2S7LywceHrI7pk9u1toSQeENkXq3lHGZjPFcoLpEOYr1s0TZGtu8CjO/sgnV
-         mzVHrj+TjeVEHvdU1/i3c4QDrjusE5znnwztyeYOiLl5Loaz8upXQeqBR5ZaH4KbdnXP
-         iplA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XhgXHLObV5Vbqo0Ol1dr/K9C6PfbnIr6P+CU31xn0uk=;
-        b=udGqbsz7tq6T0iIoA1GEHdE20uCIv1y5piRaUzrzKiqgaTflQ1UNV6VeJ3qnk6x1kh
-         sw6muIUCE1n++nmyFRpgCWChQvinWnpxKeGnkCMOvKyjne7xKCjW8CtyS7O54y/3h3wS
-         y+zebVxDxzsNS5lhEuqXWRRn/7GjG8mWo43TmyEuF79V2BWHa3oDPrPz7FUqJ1XhBS29
-         9Gsl8BTGBEKhtRo9nayc5sf05iDK6Blv7rV4GFW1dISG1mByn1suw6g0aAGT8fQ7Uiow
-         +NG/ZevI+pGfp5CrsezP0XFnKbbg3ikNBoHxVRGRFXSUSI8Z07Dx69kd3ovys3uxfSuW
-         akfw==
-X-Gm-Message-State: APjAAAV+pfm0E4vWYC7WQXTxk1jERNcdR5MzfCHv95Ke3hJJPi44rupz
-        asWuT29c4xGMNJCP7yANIcMN8A==
-X-Google-Smtp-Source: APXvYqxRBdu6ErpFV+5gKRxDXyTrGYM8duUS6m39Y3koDFw3q4yhtgHG0ERg3ih11MGWr8lRBc13xA==
-X-Received: by 2002:a17:90a:2ec9:: with SMTP id h9mr43058272pjs.130.1559714469980;
-        Tue, 04 Jun 2019 23:01:09 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id q22sm2332383pff.63.2019.06.04.23.01.08
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 04 Jun 2019 23:01:09 -0700 (PDT)
-Date:   Tue, 4 Jun 2019 23:01:54 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Avri Altman <Avri.Altman@wdc.com>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-Subject: Re: [PATCH 0/3] (Qualcomm) UFS device reset support
-Message-ID: <20190605060154.GJ22737@tuxbook-pro>
-References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
- <CANcMJZBmgWMZu7Y53Lnx_x3L2UpCmEbFRHVW0SFCXfW=Yw9uYg@mail.gmail.com>
- <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
+        id S1726464AbfFEGIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 02:08:21 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50460 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726086AbfFEGIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:08:21 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5568Gug005258;
+        Wed, 5 Jun 2019 01:08:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559714896;
+        bh=a94fUpioS4izc+o4g6o2VUCbyzE347IAgLbcvI3/KiI=;
+        h=From:To:CC:Subject:Date;
+        b=nsvXKu/2j0gD75zJgvrAysFGftWBmw6Eh9AkYKU1/j9CBgZqh232CdHqD6CQ3oVnZ
+         KOpAjSAbEsJPFdpbrO038G3xUwkyxd2n+Nnn6WWCibWulrScoij2zmrXH+NnZCP49L
+         g7hTfIjX6RIBV3+jJ8cfJxpQusLDn7ALh/SgAT0Y=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5568GtH129527
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 Jun 2019 01:08:16 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 5 Jun
+ 2019 01:08:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 5 Jun 2019 01:08:16 -0500
+Received: from a0393675ula.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5568Dlg066906;
+        Wed, 5 Jun 2019 01:08:13 -0500
+From:   Keerthy <j-keerthy@ti.com>
+To:     <t-kristo@ti.com>, <nm@ti.com>, <robh+dt@kernel.org>
+CC:     <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <j-keerthy@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [RFC PATCH 0/3] arm64: dts: ti: am6: Add gpio nodes
+Date:   Wed, 5 Jun 2019 11:38:43 +0530
+Message-ID: <20190605060846.25314-1-j-keerthy@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 04 Jun 22:50 PDT 2019, Avri Altman wrote:
+K3 AM6 platform has 2 instances of gpio banks on main domain
+and 1 instance on wakeup domin. All are capable of generating
+banked interrupts.
 
-> Hi,
-> 
-> > 
-> > On Tue, Jun 4, 2019 at 12:22 AM Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > This series exposes the ufs_reset line as a gpio, adds support for ufshcd to
-> > > acquire and toggle this and then adds this to SDM845 MTP.
-> > >
-> > > Bjorn Andersson (3):
-> > >   pinctrl: qcom: sdm845: Expose ufs_reset as gpio
-> > >   scsi: ufs: Allow resetting the UFS device
-> > >   arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
-> > 
-> > Adding similar change as in sdm845-mtp to the not yet upstream
-> > blueline dts, I validated this allows my micron UFS pixel3 to boot.
-> > 
-> > Tested-by: John Stultz <john.stultz@linaro.org>
-> Maybe ufs_hba_variant_ops would be the proper place to add this?
-> 
+This series also adds 2 goio_keys nodes connected to SW6 SW5
+switches and tested for gpio_keys interrupts.
 
-Are you saying that these memories only need a reset when they are
-paired with the Qualcomm host controller?
+The series depends on:
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=112791
 
-The way it's implemented it here is that the device-reset GPIO is
-optional and only if you specify it we'll toggle the reset. So if your
-board design has a UFS memory that requires a reset pulse during
-initialization you specify this, regardless of which vendor your SoC
-comes from.
+Posting as RFC as it has dependencies to be merged.
 
-Regards,
-Bjorn
+Keerthy (3):
+  arm64: dts: ti: am6-wakeup: Add gpio node
+  arm64: dts: ti: am6-main: Add gpio nodes
+  arm64: dts: ti: am654-base-board: Add gpio_keys node
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 32 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    | 15 +++++++++
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 27 ++++++++++++++++
+ 3 files changed, 74 insertions(+)
+
+-- 
+2.17.1
+
