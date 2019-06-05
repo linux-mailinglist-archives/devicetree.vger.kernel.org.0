@@ -2,182 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B81435FEF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A51835FF5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728042AbfFEPMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 11:12:38 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:33150 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727971AbfFEPMh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 11:12:37 -0400
+        id S1728221AbfFEPNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 11:13:09 -0400
+Received: from foss.arm.com ([217.140.101.70]:33182 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727971AbfFEPNJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 11:13:09 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0B476374;
-        Wed,  5 Jun 2019 08:12:37 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EE09C3F246;
-        Wed,  5 Jun 2019 08:12:33 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] irqchip: al-fic: Introduce Amazon's Annapurna Labs
- Fabric Interrupt Controller Driver
-To:     "Shenhar, Talel" <talel@amazon.com>, nicolas.ferre@microchip.com,
-        jason@lakedaemon.net, mark.rutland@arm.com,
-        mchehab+samsung@kernel.org, robh+dt@kernel.org,
-        davem@davemloft.net, shawn.lin@rock-chips.com, tglx@linutronix.de,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org
-Cc:     dwmw@amazon.co.uk, benh@kernel.crashing.org, jonnyc@amazon.com,
-        hhhawa@amazon.com, ronenk@amazon.com, hanochu@amazon.com,
-        barakw@amazon.com
-References: <1559731921-14023-1-git-send-email-talel@amazon.com>
- <1559731921-14023-3-git-send-email-talel@amazon.com>
- <fa6e5a95-d9dd-19f6-43e3-3046e0898bda@arm.com>
- <553d06a4-a6b6-816f-b110-6ef7f300dde4@amazon.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
-Organization: ARM Ltd
-Message-ID: <0915892c-0e53-8f53-e858-b1c3298a4d35@arm.com>
-Date:   Wed, 5 Jun 2019 16:12:32 +0100
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 76A5A374;
+        Wed,  5 Jun 2019 08:13:08 -0700 (PDT)
+Received: from [10.1.196.105] (eglon.cambridge.arm.com [10.1.196.105])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8A19E3F246;
+        Wed,  5 Jun 2019 08:13:05 -0700 (PDT)
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+To:     Borislav Petkov <bp@alien8.de>,
+        "Herrenschmidt, Benjamin" <benh@amazon.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
+ <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+ <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
+ <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
+ <20190531051400.GA2275@cz.tnic>
+From:   James Morse <james.morse@arm.com>
+Message-ID: <d897559e-fcc7-6733-e117-e81ef3739ab1@arm.com>
+Date:   Wed, 5 Jun 2019 16:13:03 +0100
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <553d06a4-a6b6-816f-b110-6ef7f300dde4@amazon.com>
+In-Reply-To: <20190531051400.GA2275@cz.tnic>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/06/2019 15:38, Shenhar, Talel wrote:
-> Thanks, will publish the fixes on v3.
+Hi guys,
+
+On 31/05/2019 06:14, Borislav Petkov wrote:
+> On Fri, May 31, 2019 at 01:15:33AM +0000, Herrenschmidt, Benjamin wrote:
+>> This isn't terribly helpful, there's nothing telling anybody which of
+>> those files corresponds to an ARM SoC :-)
 > 
-> On 6/5/2019 3:22 PM, Marc Zyngier wrote:
->> Talel,
+> drivers/edac/altera_edac.c is one example.
+> 
+> Also, James and I have a small writeup on how an arm driver should look
+> like, we just need to polish it up and post it.
+> 
+> James?
+
+Yes I should get on with that. Its mostly for platforms which end up with multiple
+piecemeal drivers and some co-ordination is needed. It doesn't look like that will be a
+problem here.
+
+
+>> That said ...
 >>
->> On 05/06/2019 11:52, Talel Shenhar wrote:
->>> The Amazon's Annapurna Labs Fabric Interrupt Controller has 32 inputs
->>> lines. A FIC (Fabric Interrupt Controller) may be cascaded into another FIC
->> Really? :-(
-> 
-> Cascading is used for control path events. For data path the HW is not 
-> cascaded (and usually even configured in MSI-X instead of wire interrupts)
-> 
-> 
->>
->> +}
->> +
->> +static int al_fic_irq_set_type(struct irq_data *data, unsigned int flow_type)
->> +{
->> +	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
->> +	struct al_fic *fic = gc->private;
->> +	enum al_fic_state new_state;
->> +	int ret = 0;
->> +
->> +	irq_gc_lock(gc);
->> +
->> +	if (!(flow_type & IRQ_TYPE_LEVEL_HIGH) &&
->> +	    !(flow_type & IRQ_TYPE_EDGE_RISING)) {
->> And what if this gets passed EDGE_BOTH?
-> 
-> FIC only support two sensing modes, rising-edge and level.
+>> You really want a single EDAC driver that contains all the stuff for
+>> the caches, the memory controller, etc... ?
 
-Yes, I can tell. Yet, this code will let EDGE_BOTH pass through, even if
-it cannot handle it.
+This has to be platform specific as it has integration-time dependencies and firmware
+dependencies. Doing it as a platform driver matched from the machine-compatible may be
+more straightforward today.
 
-> 
->>
->>> +	 * This is generally fixed depending on what pieces of HW it's wired up
->>> +	 * to.
->>> +	 *
->>> +	 * We configure it based on the sensitivity of the first source
->>> +	 * being setup, and reject any subsequent attempt at configuring it in a
->>> +	 * different way.
->> Is that a reliable guess? It also strikes me that the DT binding doesn't
->> allow for the trigger type to be passed, meaning the individual drivers
->> have to request the trigger as part of their request_irq() call. I'd
->> rather you have a complete interrupt specifier in DT, and document the
->> various limitations of the HW.
-> 
-> Indeed we use interrupt specifier that has the level type in it 
-> (dt-binding: "#interrupt-cells: must be 2.") which in turns causes to 
-> this irq_set_type callback.
+The DT will already say "compatible = arm,cortex-a57" for the Alpine-v2, what that
+'edac_l1_l2' node is telling us is the integration/firmware stuff has been done, and the
+imp-def instructions can be used.
 
-Well, this isn't what the example in your DT binding shows.
-
-> 
-> Part of the FICs are connected to hws that generate pulse (for those, 
-> FIC shall be configured to rising-edge-triggered) and the others to hws 
-> that keep the line up (for those the FIC shall be configured to 
-> level-triggered).
-> 
->>
->>> +	 */
->>> +	if (fic->state == AL_FIC_CLEAN) {
->>> +		al_fic_set_trigger(fic, gc, new_state);
->>> +	} else if (fic->state != new_state) {
->>> +		pr_err("fic %s state already configured to %d\n",
->>> +		       fic->name, fic->state);
->>> +		ret = -EPERM;
->> Same as above.
-> 
-> Those error messages are control path messages. if we return the same 
-> error value from here and from the previous error, how can we 
-> differentiate between the two error cases by looking at the log?
-> 
-> Having informative printouts seems like a good idea for bad 
-> configuration cases as such, wouldn't you agree?
-
-I completely disagree. The kernel log isn't a dumping ground for this
-kind of pretty useless information. Furthermore, the irq subsystem will
-also shout at you when it gets an error, so no need to add insult to injury.
-
-If you really want to keep them around, turn them into pr_debug.
 
 Thanks,
 
-	M.
--- 
-Jazz is not dead. It just smells funny...
+James
