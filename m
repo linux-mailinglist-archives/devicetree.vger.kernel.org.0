@@ -2,94 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD7E36165
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 18:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6575F3616E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 18:36:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728591AbfFEQek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 12:34:40 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:57872 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728523AbfFEQek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 12:34:40 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x55GYakN130367;
-        Wed, 5 Jun 2019 11:34:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559752476;
-        bh=8ACagW3EYCwLoCoiktlVl2qTdzviu48vaHSxM1Pmbnc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=udeKRnTgj9dLbmxYbBFxzhKSkU1PfhkR47q/bMfz1VootkELMzfPd9pMGoroUqVws
-         gvTiDz2Y4RAz5T68eXB4ccVS2JRefDEPtNt+erXXbj9YGEzMAIrxXdj0Y0Mpq265bm
-         84raIdQ9c3st/Kwr5NfTUhYTZ7RrZgG475MA3G6E=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x55GYaTs010422
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 5 Jun 2019 11:34:36 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 5 Jun
- 2019 11:34:36 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 5 Jun 2019 11:34:36 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x55GYaEd023935;
-        Wed, 5 Jun 2019 11:34:36 -0500
-Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
-        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x55GYam10222;
-        Wed, 5 Jun 2019 11:34:36 -0500 (CDT)
-From:   Suman Anna <s-anna@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-am65: Add R5F ranges in interconnect nodes
-Date:   Wed, 5 Jun 2019 11:34:34 -0500
-Message-ID: <20190605163434.23173-5-s-anna@ti.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190605163434.23173-1-s-anna@ti.com>
-References: <20190605163434.23173-1-s-anna@ti.com>
+        id S1728649AbfFEQgc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jun 2019 12:36:32 -0400
+Received: from mga17.intel.com ([192.55.52.151]:44601 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728523AbfFEQgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 12:36:31 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jun 2019 09:36:31 -0700
+X-ExtLoop1: 1
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Jun 2019 09:36:29 -0700
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.93]) by
+ IRSMSX103.ger.corp.intel.com ([169.254.3.200]) with mapi id 14.03.0415.000;
+ Wed, 5 Jun 2019 17:36:28 +0100
+From:   "Rojewski, Cezary" <cezary.rojewski@intel.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
+        computation
+Thread-Topic: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
+        computation
+Thread-Index: AQHVG4bgmCHrbSha2Eu49nUgFR9xEaaNPoxA
+Date:   Wed, 5 Jun 2019 16:36:28 +0000
+Message-ID: <3BD9CEE4EBD5E74B98FE2D277EB60E0B38FF8117@IRSMSX104.ger.corp.intel.com>
+References: <20190605100801.2488-1-maxime.ripard@bootlin.com>
+In-Reply-To: <20190605100801.2488-1-maxime.ripard@bootlin.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmZlYTAwMjYtM2E5Mi00M2FjLTg4MDAtYzFlOTQ0NDcyN2E2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTmdWQmRKSVVsVzVMaUMrVlwvNGhzNGJxbGRFc2d1bWZyOG5cL3Qrd2U5MXhWREN3aWM1c3krcndZd2lBVlBzeCsrIn0=
+dlp-product: dlpe-windows
+dlp-version: 11.0.600.7
+dlp-reaction: no-action
+x-originating-ip: [163.33.239.181]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the address spaces for the R5F cores in MCU domain to the ranges
-property of the cbass_mcu interconnect node so that the addresses
-within the R5F nodes can be translated properly by the relevant OF
-address API.
+>From: Alsa-devel [mailto:alsa-devel-bounces@alsa-project.org] On Behalf Of
+>Maxime Ripard
+>Sent: Wednesday, June 5, 2019 12:08 PM
+>To: Mark Brown <broonie@kernel.org>; Liam Girdwood
+><lgirdwood@gmail.com>; Mark Rutland <mark.rutland@arm.com>; Rob
+>Herring <robh+dt@kernel.org>; Frank Rowand <frowand.list@gmail.com>
+>Cc: devicetree@vger.kernel.org; alsa-devel@alsa-project.org; Maxime Ripard
+><maxime.ripard@bootlin.com>; Marcus Cooper <codekipper@gmail.com>;
+>Chen-Yu Tsai <wens@csie.org>; linux-arm-kernel@lists.infradead.org
+>Subject: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
+>computation
+>
+>The current computation for the SR (sample resolution) and the WSS (word
+>slot size) register parameters is based on a switch returning the matching
+>parameters for a given params width.
+>
+>Later SoCs (A83t, H3, A64) changed that calculation, which was loosely the
+>same with an offset. Therefore, an offset was added to adjust those
+>parameters.
+>
+>However, the calculation is a bit less trivial than initially thought.
+>Indeed, while we assumed that SR and WSS were always the same, on older
+>SoCs, SR will max at 24 (since those SoCs do not support 32 bits formats),
+>but the word size can be 32.
+>
+>Newer SoCs can also support a much larger range (8 bits to 32 bits, by
+>increments of 4) of size than the older SoCs could.
+>
+>Finally, the A64 and A83t were never adjusted to have that offset in the
+>first place, and were therefore broken from that point of view.
+>
+>In order to fix all those issues, let's introduce two functions, get_wss
+>and get_sr, with their respective implementations for all the SoCs
+>supported so far.
+>
+>Fixes: 21faaea1343f ("ASoC: sun4i-i2s: Add support for A83T")
+>Fixes: 66ecce332538 ("ASoC: sun4i-i2s: Add compatibility with A64 codec I2S")
+>Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+>
+>---
+>
+>Changes from v1:
+>  - Declare the structure sun4i_i2s to fix compilation errors
+>---
+> sound/soc/sunxi/sun4i-i2s.c | 71 ++++++++++++++++++++++++++++---------
+> 1 file changed, 55 insertions(+), 16 deletions(-)
+>
+>diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+>index c53bfed8d4c2..78d44dbc6373 100644
+>--- a/sound/soc/sunxi/sun4i-i2s.c
+>+++ b/sound/soc/sunxi/sun4i-i2s.c
+>@@ -114,6 +114,8 @@
+> #define SUN8I_I2S_RX_CHAN_SEL_REG	0x54
+> #define SUN8I_I2S_RX_CHAN_MAP_REG	0x58
+>
+>+struct sun4i_i2s;
+>+
+> /**
+>  * struct sun4i_i2s_quirks - Differences between SoC variants.
+>  *
+>@@ -127,7 +129,6 @@
+>  * @sun4i_i2s_regmap: regmap config to use.
+>  * @mclk_offset: Value by which mclkdiv needs to be adjusted.
+>  * @bclk_offset: Value by which bclkdiv needs to be adjusted.
+>- * @fmt_offset: Value by which wss and sr needs to be adjusted.
+>  * @field_clkdiv_mclk_en: regmap field to enable mclk output.
+>  * @field_fmt_wss: regmap field to set word select size.
+>  * @field_fmt_sr: regmap field to set sample resolution.
+>@@ -150,7 +151,6 @@ struct sun4i_i2s_quirks {
+> 	const struct regmap_config	*sun4i_i2s_regmap;
+> 	unsigned int			mclk_offset;
+> 	unsigned int			bclk_offset;
+>-	unsigned int			fmt_offset;
+>
+> 	/* Register fields for i2s */
+> 	struct reg_field		field_clkdiv_mclk_en;
+>@@ -163,6 +163,9 @@ struct sun4i_i2s_quirks {
+> 	struct reg_field		field_rxchanmap;
+> 	struct reg_field		field_txchansel;
+> 	struct reg_field		field_rxchansel;
+>+
+>+	s8	(*get_sr)(const struct sun4i_i2s *, int);
+>+	s8	(*get_wss)(const struct sun4i_i2s *, int);
+> };
+>
+> struct sun4i_i2s {
+>@@ -345,6 +348,39 @@ static int sun4i_i2s_set_clk_rate(struct snd_soc_dai
+>*dai,
+> 	return 0;
+> }
+>
+>+static s8 sun4i_i2s_get_sr(const struct sun4i_i2s *i2s, int width)
+>+{
+>+	if (width < 16 || width > 24)
+>+		return -EINVAL;
+>+
+>+	if (width % 4)
+>+		return -EINVAL;
+>+
+>+	return (width - 16) / 4;
+>+}
+>+
+>+static s8 sun4i_i2s_get_wss(const struct sun4i_i2s *i2s, int width)
+>+{
+>+	if (width < 16 || width > 32)
+>+		return -EINVAL;
+>+
+>+	if (width % 4)
+>+		return -EINVAL;
+>+
+>+	return (width - 16) / 4;
+>+}
+>+
+>+static s8 sun8i_i2s_get_sr_wss(const struct sun4i_i2s *i2s, int width)
+>+{
+>+	if (width % 4)
+>+		return -EINVAL;
+>+
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+In the two above you start with boundary check before mod yet in this one the order is reversed.
+Keeping the same order should prove more cohesive.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-index abb085f5e784..f71c8f50a5e0 100644
---- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-@@ -72,6 +72,8 @@
- 			 /* MCUSS Range */
- 			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
- 			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00900100>,
-+			 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>,
-+			 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>,
- 			 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00080000>,
- 			 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>,
- 			 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>,
-@@ -84,6 +86,8 @@
- 			#size-cells = <2>;
- 			ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>, /* MCU NAVSS*/
- 				 <0x00 0x40200000 0x00 0x40200000 0x00 0x00900100>, /* First peripheral window */
-+				 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>, /* MCU R5F Core0 */
-+				 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>, /* MCU R5F Core1 */
- 				 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00080000>, /* MCU SRAM */
- 				 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>, /* WKUP */
- 				 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>, /* MMRs, remaining NAVSS */
--- 
-2.21.0
+>+	if (width < 8 || width > 32)
+>+		return -EINVAL;
+>+
+>+	return (width - 8) / 4 + 1;
+>+}
+>+
 
+Other, probably less welcome suggestion is introduction of unified function which ones listed here would simply invoke.
+All of these "computations" differ in fact only in: min and max boundary. The +1 for _sr_wss is negligible, you can append it on return.
+
+> static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
+> 			       struct snd_pcm_hw_params *params,
+> 			       struct snd_soc_dai *dai)
+>@@ -396,22 +432,16 @@ static int sun4i_i2s_hw_params(struct
+>snd_pcm_substream *substream,
+> 	}
+> 	i2s->playback_dma_data.addr_width = width;
+>
+>-	switch (params_width(params)) {
+>-	case 16:
+>-		sr = 0;
+>-		wss = 0;
+>-		break;
+>+	sr = i2s->variant->get_sr(i2s, params_width(params));
+>+	if (sr < 0)
+>+		return -EINVAL;
+>
+>-	default:
+>-		dev_err(dai->dev, "Unsupported sample width: %d\n",
+>-			params_width(params));
+>+	wss = i2s->variant->get_wss(i2s, params_width(params));
+>+	if (wss < 0)
+> 		return -EINVAL;
+>-	}
+>
+>-	regmap_field_write(i2s->field_fmt_wss,
+>-			   wss + i2s->variant->fmt_offset);
+>-	regmap_field_write(i2s->field_fmt_sr,
+>-			   sr + i2s->variant->fmt_offset);
+>+	regmap_field_write(i2s->field_fmt_wss, wss);
+>+	regmap_field_write(i2s->field_fmt_sr, sr);
+>
+> 	return sun4i_i2s_set_clk_rate(dai, params_rate(params),
+> 				      params_width(params));
+>@@ -887,6 +917,8 @@ static const struct sun4i_i2s_quirks
+>sun4i_a10_i2s_quirks = {
+> 	.field_rxchanmap	=
+>REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
+> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
+>0, 2),
+> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
+>0, 2),
+>+	.get_sr			= sun4i_i2s_get_sr,
+>+	.get_wss		= sun4i_i2s_get_wss,
+> };
+>
+> static const struct sun4i_i2s_quirks sun6i_a31_i2s_quirks = {
+>@@ -904,6 +936,8 @@ static const struct sun4i_i2s_quirks
+>sun6i_a31_i2s_quirks = {
+> 	.field_rxchanmap	=
+>REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
+> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
+>0, 2),
+> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
+>0, 2),
+>+	.get_sr			= sun4i_i2s_get_sr,
+>+	.get_wss		= sun4i_i2s_get_wss,
+> };
+>
+> static const struct sun4i_i2s_quirks sun8i_a83t_i2s_quirks = {
+>@@ -921,6 +955,8 @@ static const struct sun4i_i2s_quirks
+>sun8i_a83t_i2s_quirks = {
+> 	.field_rxchanmap	=
+>REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
+> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
+>0, 2),
+> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
+>0, 2),
+>+	.get_sr			= sun8i_i2s_get_sr_wss,
+>+	.get_wss		= sun8i_i2s_get_sr_wss,
+> };
+>
+> static const struct sun4i_i2s_quirks sun8i_h3_i2s_quirks = {
+>@@ -929,7 +965,6 @@ static const struct sun4i_i2s_quirks
+>sun8i_h3_i2s_quirks = {
+> 	.sun4i_i2s_regmap	= &sun8i_i2s_regmap_config,
+> 	.mclk_offset		= 1,
+> 	.bclk_offset		= 2,
+>-	.fmt_offset		= 3,
+> 	.has_fmt_set_lrck_period = true,
+> 	.has_chcfg		= true,
+> 	.has_chsel_tx_chen	= true,
+>@@ -944,6 +979,8 @@ static const struct sun4i_i2s_quirks
+>sun8i_h3_i2s_quirks = {
+> 	.field_rxchanmap	=
+>REG_FIELD(SUN8I_I2S_RX_CHAN_MAP_REG, 0, 31),
+> 	.field_txchansel	= REG_FIELD(SUN8I_I2S_TX_CHAN_SEL_REG,
+>0, 2),
+> 	.field_rxchansel	= REG_FIELD(SUN8I_I2S_RX_CHAN_SEL_REG,
+>0, 2),
+>+	.get_sr			= sun8i_i2s_get_sr_wss,
+>+	.get_wss		= sun8i_i2s_get_sr_wss,
+> };
+>
+> static const struct sun4i_i2s_quirks sun50i_a64_codec_i2s_quirks = {
+>@@ -961,6 +998,8 @@ static const struct sun4i_i2s_quirks
+>sun50i_a64_codec_i2s_quirks = {
+> 	.field_rxchanmap	=
+>REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
+> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
+>0, 2),
+> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
+>0, 2),
+>+	.get_sr			= sun8i_i2s_get_sr_wss,
+>+	.get_wss		= sun8i_i2s_get_sr_wss,
+> };
+>
+> static int sun4i_i2s_init_regmap_fields(struct device *dev,
+>--
+>2.21.0
+>
+>_______________________________________________
+>Alsa-devel mailing list
+>Alsa-devel@alsa-project.org
+>https://mailman.alsa-project.org/mailman/listinfo/alsa-devel
