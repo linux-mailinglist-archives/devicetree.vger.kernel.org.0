@@ -2,114 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B5013574B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 09:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8448E3576B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 09:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbfFEHAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 03:00:38 -0400
-Received: from mail-eopbgr20060.outbound.protection.outlook.com ([40.107.2.60]:4038
+        id S1726467AbfFEHHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 03:07:34 -0400
+Received: from mail-eopbgr20080.outbound.protection.outlook.com ([40.107.2.80]:62209
         "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726427AbfFEHAh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 03:00:37 -0400
+        id S1726536AbfFEHHe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 03:07:34 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HccSg1pjcRa0jcE1T/DJWoI8g/5bbQ14TUp6NTIiDrI=;
- b=o2anj2eb/cJD5rrk5FfRNzwe1Jo3iqge/vl69qkiYaLn/6QscB31EIkuBNUpbe3uHnzVDFyV+oWHm0GNmKBiBS/bNP8U7JOTSFvWjPG1UUgyrmpEyhZB5woMcqtMgMp9A8tpDS7q2vi2OOrAmNFjLVtNzpIdo0mByumU9BqagDk=
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
- AM0PR04MB4321.eurprd04.prod.outlook.com (52.134.126.152) with Microsoft SMTP
+ bh=zLAAt3BL+sGQp4G4btulciJGZrB7AfgtnguDDX6EvfU=;
+ b=jF70+Es9DCcFZRI6sgfNHduCGIWgAHMXSlHiZ1EYssKN/kVYBJTqxNqQL9WwcR5mCiRLzkIBLaRki9XEqu+1mlEF7KyvMnOa0CRyJefRIezyxKfTd54U2LBxQherU7lGB4VY8NgBGbI2d2chdxzIlNPC7kBJQwoQGWKUw8q9aHI=
+Received: from VI1PR04MB5327.eurprd04.prod.outlook.com (20.177.52.16) by
+ VI1PR04MB4846.eurprd04.prod.outlook.com (20.177.49.15) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Wed, 5 Jun 2019 07:00:34 +0000
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::11e1:3bb9:156b:a3e4]) by AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::11e1:3bb9:156b:a3e4%3]) with mapi id 15.20.1943.023; Wed, 5 Jun 2019
- 07:00:33 +0000
-From:   Aisheng Dong <aisheng.dong@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Pramod Kumar <pramod.kumar_1@nxp.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>,
-        Leo Li <leoyang.li@nxp.com>,
+ 15.20.1943.22; Wed, 5 Jun 2019 07:07:30 +0000
+Received: from VI1PR04MB5327.eurprd04.prod.outlook.com
+ ([fe80::9891:c973:a697:3c7b]) by VI1PR04MB5327.eurprd04.prod.outlook.com
+ ([fe80::9891:c973:a697:3c7b%3]) with mapi id 15.20.1965.011; Wed, 5 Jun 2019
+ 07:07:30 +0000
+From:   Peter Chen <peter.chen@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "balbi@kernel.org" <balbi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>
-Subject: RE: [PATCH v3 1/3] dt-bindings: arm: nxp: Add device tree binding for
- ls1046a-frwy board
-Thread-Topic: [PATCH v3 1/3] dt-bindings: arm: nxp: Add device tree binding
- for ls1046a-frwy board
-Thread-Index: AQHVFIg0QNRaL3LFI0OeuwRCFx28W6aMqHwAgAAF/gA=
-Date:   Wed, 5 Jun 2019 07:00:33 +0000
-Message-ID: <AM0PR04MB42115435AD01AD6481C9D0B980160@AM0PR04MB4211.eurprd04.prod.outlook.com>
-References: <20190527123404.30858-1-pramod.kumar_1@nxp.com>
- <20190527123404.30858-2-pramod.kumar_1@nxp.com>
- <20190605063449.GG29853@dragon>
-In-Reply-To: <20190605063449.GG29853@dragon>
-Accept-Language: zh-CN, en-US
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "chunfeng.yun@mediatek.com" <chunfeng.yun@mediatek.com>
+Subject: RE: [PATCH v3 6/8] ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+Thread-Topic: [PATCH v3 6/8] ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+Thread-Index: AQHVFDjwJwcxVExAwkGmD5zag5gWjKaMpnEAgAALr+A=
+Date:   Wed, 5 Jun 2019 07:07:30 +0000
+Message-ID: <VI1PR04MB53274359CFCA91AE6A3681678B160@VI1PR04MB5327.eurprd04.prod.outlook.com>
+References: <20190527030616.44397-1-peter.chen@nxp.com>
+ <20190527030616.44397-7-peter.chen@nxp.com> <20190605062517.GF29853@dragon>
+In-Reply-To: <20190605062517.GF29853@dragon>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=aisheng.dong@nxp.com; 
+ smtp.mailfrom=peter.chen@nxp.com; 
 x-originating-ip: [119.31.174.66]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0b980fd1-edd5-4c32-f807-08d6e983815b
+x-ms-office365-filtering-correlation-id: 9bd2feaa-8643-4a11-da47-08d6e984799a
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4321;
-x-ms-traffictypediagnostic: AM0PR04MB4321:
-x-microsoft-antispam-prvs: <AM0PR04MB4321EE0F54A312D44C0ADD4480160@AM0PR04MB4321.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4846;
+x-ms-traffictypediagnostic: VI1PR04MB4846:
+x-microsoft-antispam-prvs: <VI1PR04MB484652FCA720ACD74FA66AA78B160@VI1PR04MB4846.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3826;
 x-forefront-prvs: 00594E8DBA
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(396003)(376002)(366004)(346002)(39860400002)(189003)(199004)(86362001)(6636002)(26005)(74316002)(5660300002)(6506007)(53546011)(71200400001)(102836004)(71190400001)(73956011)(66946007)(76116006)(66556008)(66476007)(64756008)(66446008)(53936002)(305945005)(7736002)(6436002)(99286004)(486006)(9686003)(52536014)(476003)(478600001)(7696005)(446003)(256004)(44832011)(76176011)(11346002)(55016002)(186003)(68736007)(14454004)(4326008)(3846002)(6116002)(110136005)(54906003)(66066001)(229853002)(6246003)(8676002)(81166006)(81156014)(8936002)(25786009)(33656002)(316002)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4321;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(346002)(366004)(136003)(39860400002)(376002)(199004)(189003)(53936002)(14444005)(256004)(55016002)(6436002)(9686003)(7736002)(66066001)(74316002)(99286004)(229853002)(71190400001)(71200400001)(44832011)(25786009)(5660300002)(6116002)(486006)(6246003)(476003)(6916009)(3846002)(11346002)(446003)(4326008)(86362001)(52536014)(33656002)(73956011)(6506007)(66476007)(66946007)(66556008)(66446008)(64756008)(76116006)(76176011)(7696005)(54906003)(316002)(102836004)(2906002)(8936002)(305945005)(68736007)(8676002)(81156014)(81166006)(478600001)(26005)(186003)(14454004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4846;H:VI1PR04MB5327.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
 received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: S+B07aN9+xI+il/Rey/bivbsRBkyjdigNbMv2KWfwv/IQ9q2MwU73DuhQc+VLXqqJYdnHjbP8XJTExR8CSQQ43lCJ5GwGwV/1LG5qKEK3oGyjxdCVRk4BciDaPexxg20y6aFz3JS67SZNdlqNrJB5LnyK27tU0SRMhWiSDGl/q8nPpgUsEcE/2i926VOiwc4z+DcVt0gSia4bWQxuBSZ9e7Wt7LTZ6eC2//jjqS0aciBaGBPr0TTU5oyF4luaogBU/y4WXDfeodRZEgk5j7ELcOvsAJTU70FSXpHXz49P0IElugFOit/i1cIJzJQDYgkccnI9rig+2Ev9gRn7Zwlug5EOTaJgRdg4n5RITQHWB0hIws4wD6SE0Oi3atyTE75q8qvIaSCkDyBbW03glqgl9OpoAHYWtqAJJJtCSWFYJg=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: J6ZfiYXQEemDHuK223RWhdo6tBRF4MsNwEVinmU3LKjVDR+hY+qJoWPJ73M6zqvxWBEHSWNI+R3tRhw6MVAZDfxJJAtL8PS0bNgqHFAAxD2Ps76Wrs8tcultTp8Nap1SaoSdoYWYSCNWq9+GK5baEsAP20RQJvKkaKZwIH7n9kEputOwpUQz4JNBbXeDOKhSQTAQpl28yAnYcIc/+1Srx+xhgG22ia9F+sOogjUvdLTmgG43zH8/E51QwymS/rmYaP4HLmDYnm5M6HvhE5g9I1oI59FGkill3mbLPo60fmXDAEL2+w6YsdL1WuTTpPdntvPw/TxPBENbFQSl/fN0qI413dDq9aFQ+qHgJllmuemcvewHhGfTUGZ1V8v5jWbF/ZUYsnzYs8B3YGrDjsLo1EyCn62xbIl54feN41w36ls=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b980fd1-edd5-4c32-f807-08d6e983815b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2019 07:00:33.8110
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bd2feaa-8643-4a11-da47-08d6e984799a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2019 07:07:30.3660
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aisheng.dong@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4321
+X-MS-Exchange-CrossTenant-userprincipalname: peter.chen@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4846
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUHJhbW9kLA0KDQo+IEZyb206IFNoYXduIEd1byBbbWFpbHRvOnNoYXduZ3VvQGtlcm5lbC5v
-cmddDQo+IFNlbnQ6IFdlZG5lc2RheSwgSnVuZSA1LCAyMDE5IDI6MzUgUE0NCj4gU3ViamVjdDog
-UmU6IFtQQVRDSCB2MyAxLzNdIGR0LWJpbmRpbmdzOiBhcm06IG54cDogQWRkIGRldmljZSB0cmVl
-IGJpbmRpbmcgZm9yDQo+IGxzMTA0NmEtZnJ3eSBib2FyZA0KPiANCj4gT24gTW9uLCBNYXkgMjcs
-IDIwMTkgYXQgMTI6MzI6MDlQTSArMDAwMCwgUHJhbW9kIEt1bWFyIHdyb3RlOg0KPiA+IEFkZCAi
-ZnNsLGxzMTA0NmEtZnJ3eSIgYmluZGluZ3MgZm9yIGxzMTA0NmFmcnd5IGJvYXJkIGJhc2VkIG9u
-IGxzMTA0NmEgU29DDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBWYWJoYXYgU2hhcm1hIDx2YWJo
-YXYuc2hhcm1hQG54cC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogUHJhbW9kIEt1bWFyIDxwcmFt
-b2Qua3VtYXJfMUBueHAuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBr
-ZXJuZWwub3JnPg0KPiANCj4gSSBjYW5ub3QgYXBwbHkgcGF0Y2ggZnJvbSBtZXNzYWdlIHVzaW5n
-ICdDb250ZW50LVRyYW5zZmVyLUVuY29kaW5nOiBiYXNlNjQnLg0KPiANCg0KV2hpY2ggc2VydmVy
-IGFyZSB5b3UgdXNpbmc/IElzIGl0IGluIHRoZSB3aGl0ZWxpc3QgZm9yIHVzaW5nIHRoZSBzcGVj
-aWZpYyBTTVRQPw0KSSByZW1lbWJlciBETiBzZXJ2ZXIgZG9lcyBub3QgaGF2ZSB0aGlzIGlzc3Vl
-LiBNYXliZSB1c2luZyB0aGUgd3Jvbmcgb25lPw0KDQpSZWdhcmRzDQpEb25nIEFpc2hlbmcNCg0K
-PiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55
-YW1sIHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+DQo+ID4g
-ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlh
-bWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55YW1sDQo+
-ID4gaW5kZXggNDA3MTM4ZWJjMGQwLi4wOWZmMTk5OWNlOTYgMTAwNjQ0DQo+ID4gLS0tIGEvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiA+ICsrKyBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWwNCj4gPiBAQCAtMjQx
-LDYgKzI0MSw3IEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICAgICAgICAtIGVudW06DQo+ID4gICAg
-ICAgICAgICAgICAgLSBmc2wsbHMxMDQ2YS1xZHMNCj4gPiAgICAgICAgICAgICAgICAtIGZzbCxs
-czEwNDZhLXJkYg0KPiA+ICsgICAgICAgICAgICAgIC0gZnNsLGxzMTA0NmEtZnJ3eQ0KPiANCj4g
-SXQgbWlnaHQgYmUgYmV0dGVyIHRvIGtlZXAgdGhlIGxpc3QgYWxwaGFiZXRpY2FsbHkgc29ydGVk
-Lg0KPiANCj4gU2hhd24NCj4gDQo+ID4gICAgICAgICAgICAtIGNvbnN0OiBmc2wsbHMxMDQ2YQ0K
-PiA+DQo+ID4gICAgICAgIC0gZGVzY3JpcHRpb246IExTMTA4OEEgYmFzZWQgQm9hcmRzDQo+ID4g
-LS0NCj4gPiAyLjE3LjENCj4gPg0K
+=20
+> > Signed-off-by: Peter Chen <peter.chen@nxp.com>
+> > ---
+> >  arch/arm/boot/dts/imx7ulp.dtsi | 31 +++++++++++++++++++++++++++++++
+> >  1 file changed, 31 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/imx7ulp.dtsi
+> > b/arch/arm/boot/dts/imx7ulp.dtsi index fca6e50f37c8..37b058119505
+> > 100644
+> > --- a/arch/arm/boot/dts/imx7ulp.dtsi
+> > +++ b/arch/arm/boot/dts/imx7ulp.dtsi
+> > @@ -30,6 +30,7 @@
+> >  		serial1 =3D &lpuart5;
+> >  		serial2 =3D &lpuart6;
+> >  		serial3 =3D &lpuart7;
+> > +		usbphy0 =3D &usbphy1;
+> >  	};
+> >
+> >  	cpus {
+> > @@ -133,6 +134,36 @@
+> >  			clock-names =3D "ipg", "per";
+> >  		};
+> >
+> > +		usbotg1: usb@40330000 {
+> > +			compatible =3D "fsl,imx7ulp-usb", "fsl,imx6ul-usb",
+> > +				"fsl,imx27-usb";
+>=20
+> If "fsl,imx6ul-usb" is the one that imx7ulp device is compatible with and=
+ will match in
+> driver, "fsl,imx27-usb" can just be dropped.  Same comment on usbmisc and
+> usbphy below.
+>=20
+
+Ok, will change, thanks.
+
+Peter
+
+> Shawn
+>=20
+> > +			reg =3D <0x40330000 0x200>;
+> > +			interrupts =3D <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&pcc2 IMX7ULP_CLK_USB0>;
+> > +			phys =3D <&usbphy1>;
+> > +			fsl,usbmisc =3D <&usbmisc1 0>;
+> > +			ahb-burst-config =3D <0x0>;
+> > +			tx-burst-size-dword =3D <0x8>;
+> > +			rx-burst-size-dword =3D <0x8>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		usbmisc1: usbmisc@40330200 {
+> > +			compatible =3D "fsl,imx7ulp-usbmisc", "fsl,imx7d-usbmisc",
+> > +				"fsl,imx6q-usbmisc";
+> > +			#index-cells =3D <1>;
+> > +			reg =3D <0x40330200 0x200>;
+> > +		};
+> > +
+> > +		usbphy1: usbphy@0x40350000 {
+> > +			compatible =3D "fsl,imx7ulp-usbphy",
+> > +				"fsl,imx6ul-usbphy", "fsl,imx23-usbphy";
+> > +			reg =3D <0x40350000 0x1000>;
+> > +			interrupts =3D <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&pcc2 IMX7ULP_CLK_USB_PHY>;
+> > +			#phy-cells =3D <0>;
+> > +		};
+> > +
+> >  		usdhc0: mmc@40370000 {
+> >  			compatible =3D "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
+> >  			reg =3D <0x40370000 0x10000>;
+> > --
+> > 2.14.1
+> >
