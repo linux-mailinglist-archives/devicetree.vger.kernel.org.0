@@ -2,309 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6575F3616E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 18:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 723EF36197
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 18:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728649AbfFEQgc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jun 2019 12:36:32 -0400
-Received: from mga17.intel.com ([192.55.52.151]:44601 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728523AbfFEQgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 12:36:31 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jun 2019 09:36:31 -0700
-X-ExtLoop1: 1
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-  by FMSMGA003.fm.intel.com with ESMTP; 05 Jun 2019 09:36:29 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.93]) by
- IRSMSX103.ger.corp.intel.com ([169.254.3.200]) with mapi id 14.03.0415.000;
- Wed, 5 Jun 2019 17:36:28 +0100
-From:   "Rojewski, Cezary" <cezary.rojewski@intel.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S1728725AbfFEQrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 12:47:03 -0400
+Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:7961 "EHLO
+        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728690AbfFEQrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 12:47:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559753221; x=1591289221;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=gAunuADjUlfvR6+lZVJDavO/Jg439Hd4VR1/jUhyiuU=;
+  b=EtIXGMemhK8XfXLJO9UL3EhyVVewcFRo96pbCqEfFd5duGfjyhKJxVYY
+   EKgs+eS+uod8a93nBR7cLSEhkChp7yszd1g4d9ooXC77WOwQKWf3U6rGx
+   enJuVkKi1EcytUUPHUCA6VCz7iQlXE3TbHc9F3DyJ1lXLJy0wd3Pr86tR
+   U=;
+X-IronPort-AV: E=Sophos;i="5.60,550,1549929600"; 
+   d="scan'208";a="769129587"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-4e24fd92.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 05 Jun 2019 16:46:54 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-2b-4e24fd92.us-west-2.amazon.com (Postfix) with ESMTPS id C53A5A23E9;
+        Wed,  5 Jun 2019 16:46:53 +0000 (UTC)
+Received: from EX13D05UWB001.ant.amazon.com (10.43.161.181) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 5 Jun 2019 16:46:53 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
+ EX13D05UWB001.ant.amazon.com (10.43.161.181) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 5 Jun 2019 16:46:53 +0000
+Received: from localhost (10.85.18.74) by mail-relay.amazon.com
+ (10.43.160.118) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
+ Transport; Wed, 5 Jun 2019 16:46:53 +0000
+From:   Eduardo Valentin <eduval@amazon.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Haiyue Wang <haiyue.wang@linux.intel.com>,
+        <jarkko.nikula@linux.intel.com>, <andriy.shevchenko@intel.com>,
+        <brendanhiggins@google.com>, Eduardo Valentin <eduval@amazon.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
-        computation
-Thread-Topic: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
-        computation
-Thread-Index: AQHVG4bgmCHrbSha2Eu49nUgFR9xEaaNPoxA
-Date:   Wed, 5 Jun 2019 16:36:28 +0000
-Message-ID: <3BD9CEE4EBD5E74B98FE2D277EB60E0B38FF8117@IRSMSX104.ger.corp.intel.com>
-References: <20190605100801.2488-1-maxime.ripard@bootlin.com>
-In-Reply-To: <20190605100801.2488-1-maxime.ripard@bootlin.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmZlYTAwMjYtM2E5Mi00M2FjLTg4MDAtYzFlOTQ0NDcyN2E2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTmdWQmRKSVVsVzVMaUMrVlwvNGhzNGJxbGRFc2d1bWZyOG5cL3Qrd2U5MXhWREN3aWM1c3krcndZd2lBVlBzeCsrIn0=
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-originating-ip: [163.33.239.181]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCHv7 1/3] dt-bindings: i2c: document bindings for i2c-slave-mqueue
+Date:   Wed, 5 Jun 2019 09:46:49 -0700
+Message-ID: <20190605164651.15991-2-eduval@amazon.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190605164651.15991-1-eduval@amazon.com>
+References: <20190605164651.15991-1-eduval@amazon.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->From: Alsa-devel [mailto:alsa-devel-bounces@alsa-project.org] On Behalf Of
->Maxime Ripard
->Sent: Wednesday, June 5, 2019 12:08 PM
->To: Mark Brown <broonie@kernel.org>; Liam Girdwood
-><lgirdwood@gmail.com>; Mark Rutland <mark.rutland@arm.com>; Rob
->Herring <robh+dt@kernel.org>; Frank Rowand <frowand.list@gmail.com>
->Cc: devicetree@vger.kernel.org; alsa-devel@alsa-project.org; Maxime Ripard
-><maxime.ripard@bootlin.com>; Marcus Cooper <codekipper@gmail.com>;
->Chen-Yu Tsai <wens@csie.org>; linux-arm-kernel@lists.infradead.org
->Subject: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
->computation
->
->The current computation for the SR (sample resolution) and the WSS (word
->slot size) register parameters is based on a switch returning the matching
->parameters for a given params width.
->
->Later SoCs (A83t, H3, A64) changed that calculation, which was loosely the
->same with an offset. Therefore, an offset was added to adjust those
->parameters.
->
->However, the calculation is a bit less trivial than initially thought.
->Indeed, while we assumed that SR and WSS were always the same, on older
->SoCs, SR will max at 24 (since those SoCs do not support 32 bits formats),
->but the word size can be 32.
->
->Newer SoCs can also support a much larger range (8 bits to 32 bits, by
->increments of 4) of size than the older SoCs could.
->
->Finally, the A64 and A83t were never adjusted to have that offset in the
->first place, and were therefore broken from that point of view.
->
->In order to fix all those issues, let's introduce two functions, get_wss
->and get_sr, with their respective implementations for all the SoCs
->supported so far.
->
->Fixes: 21faaea1343f ("ASoC: sun4i-i2s: Add support for A83T")
->Fixes: 66ecce332538 ("ASoC: sun4i-i2s: Add compatibility with A64 codec I2S")
->Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
->---
->
->Changes from v1:
->  - Declare the structure sun4i_i2s to fix compilation errors
->---
-> sound/soc/sunxi/sun4i-i2s.c | 71 ++++++++++++++++++++++++++++---------
-> 1 file changed, 55 insertions(+), 16 deletions(-)
->
->diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
->index c53bfed8d4c2..78d44dbc6373 100644
->--- a/sound/soc/sunxi/sun4i-i2s.c
->+++ b/sound/soc/sunxi/sun4i-i2s.c
->@@ -114,6 +114,8 @@
-> #define SUN8I_I2S_RX_CHAN_SEL_REG	0x54
-> #define SUN8I_I2S_RX_CHAN_MAP_REG	0x58
->
->+struct sun4i_i2s;
->+
-> /**
->  * struct sun4i_i2s_quirks - Differences between SoC variants.
->  *
->@@ -127,7 +129,6 @@
->  * @sun4i_i2s_regmap: regmap config to use.
->  * @mclk_offset: Value by which mclkdiv needs to be adjusted.
->  * @bclk_offset: Value by which bclkdiv needs to be adjusted.
->- * @fmt_offset: Value by which wss and sr needs to be adjusted.
->  * @field_clkdiv_mclk_en: regmap field to enable mclk output.
->  * @field_fmt_wss: regmap field to set word select size.
->  * @field_fmt_sr: regmap field to set sample resolution.
->@@ -150,7 +151,6 @@ struct sun4i_i2s_quirks {
-> 	const struct regmap_config	*sun4i_i2s_regmap;
-> 	unsigned int			mclk_offset;
-> 	unsigned int			bclk_offset;
->-	unsigned int			fmt_offset;
->
-> 	/* Register fields for i2s */
-> 	struct reg_field		field_clkdiv_mclk_en;
->@@ -163,6 +163,9 @@ struct sun4i_i2s_quirks {
-> 	struct reg_field		field_rxchanmap;
-> 	struct reg_field		field_txchansel;
-> 	struct reg_field		field_rxchansel;
->+
->+	s8	(*get_sr)(const struct sun4i_i2s *, int);
->+	s8	(*get_wss)(const struct sun4i_i2s *, int);
-> };
->
-> struct sun4i_i2s {
->@@ -345,6 +348,39 @@ static int sun4i_i2s_set_clk_rate(struct snd_soc_dai
->*dai,
-> 	return 0;
-> }
->
->+static s8 sun4i_i2s_get_sr(const struct sun4i_i2s *i2s, int width)
->+{
->+	if (width < 16 || width > 24)
->+		return -EINVAL;
->+
->+	if (width % 4)
->+		return -EINVAL;
->+
->+	return (width - 16) / 4;
->+}
->+
->+static s8 sun4i_i2s_get_wss(const struct sun4i_i2s *i2s, int width)
->+{
->+	if (width < 16 || width > 32)
->+		return -EINVAL;
->+
->+	if (width % 4)
->+		return -EINVAL;
->+
->+	return (width - 16) / 4;
->+}
->+
->+static s8 sun8i_i2s_get_sr_wss(const struct sun4i_i2s *i2s, int width)
->+{
->+	if (width % 4)
->+		return -EINVAL;
->+
+Document the i2c-slave-mqueue binding by adding
+descriptor, required properties, and example.
 
-In the two above you start with boundary check before mod yet in this one the order is reversed.
-Keeping the same order should prove more cohesive.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Wolfram Sang <wsa@the-dreams.de>
+Cc: linux-i2c@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Eduardo Valentin <eduval@amazon.com>
+---
 
->+	if (width < 8 || width > 32)
->+		return -EINVAL;
->+
->+	return (width - 8) / 4 + 1;
->+}
->+
+Changes from V6 to V7:
+- none
 
-Other, probably less welcome suggestion is introduction of unified function which ones listed here would simply invoke.
-All of these "computations" differ in fact only in: min and max boundary. The +1 for _sr_wss is negligible, you can append it on return.
+ .../bindings/i2c/i2c-slave-mqueue.txt         | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
 
-> static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
-> 			       struct snd_pcm_hw_params *params,
-> 			       struct snd_soc_dai *dai)
->@@ -396,22 +432,16 @@ static int sun4i_i2s_hw_params(struct
->snd_pcm_substream *substream,
-> 	}
-> 	i2s->playback_dma_data.addr_width = width;
->
->-	switch (params_width(params)) {
->-	case 16:
->-		sr = 0;
->-		wss = 0;
->-		break;
->+	sr = i2s->variant->get_sr(i2s, params_width(params));
->+	if (sr < 0)
->+		return -EINVAL;
->
->-	default:
->-		dev_err(dai->dev, "Unsupported sample width: %d\n",
->-			params_width(params));
->+	wss = i2s->variant->get_wss(i2s, params_width(params));
->+	if (wss < 0)
-> 		return -EINVAL;
->-	}
->
->-	regmap_field_write(i2s->field_fmt_wss,
->-			   wss + i2s->variant->fmt_offset);
->-	regmap_field_write(i2s->field_fmt_sr,
->-			   sr + i2s->variant->fmt_offset);
->+	regmap_field_write(i2s->field_fmt_wss, wss);
->+	regmap_field_write(i2s->field_fmt_sr, sr);
->
-> 	return sun4i_i2s_set_clk_rate(dai, params_rate(params),
-> 				      params_width(params));
->@@ -887,6 +917,8 @@ static const struct sun4i_i2s_quirks
->sun4i_a10_i2s_quirks = {
-> 	.field_rxchanmap	=
->REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
-> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
->0, 2),
-> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
->0, 2),
->+	.get_sr			= sun4i_i2s_get_sr,
->+	.get_wss		= sun4i_i2s_get_wss,
-> };
->
-> static const struct sun4i_i2s_quirks sun6i_a31_i2s_quirks = {
->@@ -904,6 +936,8 @@ static const struct sun4i_i2s_quirks
->sun6i_a31_i2s_quirks = {
-> 	.field_rxchanmap	=
->REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
-> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
->0, 2),
-> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
->0, 2),
->+	.get_sr			= sun4i_i2s_get_sr,
->+	.get_wss		= sun4i_i2s_get_wss,
-> };
->
-> static const struct sun4i_i2s_quirks sun8i_a83t_i2s_quirks = {
->@@ -921,6 +955,8 @@ static const struct sun4i_i2s_quirks
->sun8i_a83t_i2s_quirks = {
-> 	.field_rxchanmap	=
->REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
-> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
->0, 2),
-> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
->0, 2),
->+	.get_sr			= sun8i_i2s_get_sr_wss,
->+	.get_wss		= sun8i_i2s_get_sr_wss,
-> };
->
-> static const struct sun4i_i2s_quirks sun8i_h3_i2s_quirks = {
->@@ -929,7 +965,6 @@ static const struct sun4i_i2s_quirks
->sun8i_h3_i2s_quirks = {
-> 	.sun4i_i2s_regmap	= &sun8i_i2s_regmap_config,
-> 	.mclk_offset		= 1,
-> 	.bclk_offset		= 2,
->-	.fmt_offset		= 3,
-> 	.has_fmt_set_lrck_period = true,
-> 	.has_chcfg		= true,
-> 	.has_chsel_tx_chen	= true,
->@@ -944,6 +979,8 @@ static const struct sun4i_i2s_quirks
->sun8i_h3_i2s_quirks = {
-> 	.field_rxchanmap	=
->REG_FIELD(SUN8I_I2S_RX_CHAN_MAP_REG, 0, 31),
-> 	.field_txchansel	= REG_FIELD(SUN8I_I2S_TX_CHAN_SEL_REG,
->0, 2),
-> 	.field_rxchansel	= REG_FIELD(SUN8I_I2S_RX_CHAN_SEL_REG,
->0, 2),
->+	.get_sr			= sun8i_i2s_get_sr_wss,
->+	.get_wss		= sun8i_i2s_get_sr_wss,
-> };
->
-> static const struct sun4i_i2s_quirks sun50i_a64_codec_i2s_quirks = {
->@@ -961,6 +998,8 @@ static const struct sun4i_i2s_quirks
->sun50i_a64_codec_i2s_quirks = {
-> 	.field_rxchanmap	=
->REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
-> 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG,
->0, 2),
-> 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG,
->0, 2),
->+	.get_sr			= sun8i_i2s_get_sr_wss,
->+	.get_wss		= sun8i_i2s_get_sr_wss,
-> };
->
-> static int sun4i_i2s_init_regmap_fields(struct device *dev,
->--
->2.21.0
->
->_______________________________________________
->Alsa-devel mailing list
->Alsa-devel@alsa-project.org
->https://mailman.alsa-project.org/mailman/listinfo/alsa-devel
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt b/Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
+new file mode 100644
+index 000000000000..eb1881a4fc0e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
+@@ -0,0 +1,34 @@
++===============================================
++Device Tree for I2C slave message queue backend
++===============================================
++
++Some protocols over I2C/SMBus are designed for bi-directional transferring
++messages by using I2C Master Write protocol. This requires that both sides
++of the communication have slave addresses.
++
++This I2C slave mqueue (message queue) is used to receive and queue
++messages from the remote i2c intelligent device; and it will add the target
++slave address (with R/W# bit is always 0) into the message at the first byte.
++
++Links
++----
++`Intelligent Platform Management Bus
++Communications Protocol Specification
++<https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmp-spec-v1.0.pdf>`_
++
++`Management Component Transport Protocol (MCTP)
++SMBus/I2C Transport Binding Specification
++<https://www.dmtf.org/sites/default/files/standards/documents/DSP0237_1.1.0.pdf>`_
++
++Required Properties:
++- compatible		: should be "i2c-slave-mqueue"
++- reg			: slave address
++
++Example:
++
++i2c {
++	slave_mqueue: i2c-slave-mqueue {
++		compatible = "i2c-slave-mqueue";
++		reg = <0x10>;
++	};
++};
+-- 
+2.21.0
+
