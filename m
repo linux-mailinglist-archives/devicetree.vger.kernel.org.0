@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 225BC35BA7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC4F35B96
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727296AbfFELoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 07:44:34 -0400
+        id S1727922AbfFELoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 07:44:14 -0400
 Received: from mailgw01.mediatek.com ([210.61.82.183]:12287 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727882AbfFELoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:44:12 -0400
-X-UUID: 0d9c16dd5943426783345f622b4e8f32-20190605
-X-UUID: 0d9c16dd5943426783345f622b4e8f32-20190605
+        with ESMTP id S1727912AbfFELoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:44:13 -0400
+X-UUID: c4b9b2a11e0c4243a921f6d91478fe0e-20190605
+X-UUID: c4b9b2a11e0c4243a921f6d91478fe0e-20190605
 Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
         (envelope-from <yongqiang.niu@mediatek.com>)
         (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1308283880; Wed, 05 Jun 2019 19:43:54 +0800
+        with ESMTP id 1305159411; Wed, 05 Jun 2019 19:43:54 +0800
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
  mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 5 Jun 2019 19:43:53 +0800
+ 15.0.1395.4; Wed, 5 Jun 2019 19:43:54 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 5 Jun 2019 19:43:52 +0800
+ Transport; Wed, 5 Jun 2019 19:43:53 +0800
 From:   <yongqiang.niu@mediatek.com>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
@@ -34,9 +34,9 @@ CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v3, 19/27] drm/mediatek: add function to background color input select for ovl/ovl_2l direct link
-Date:   Wed, 5 Jun 2019 19:42:58 +0800
-Message-ID: <1559734986-7379-20-git-send-email-yongqiang.niu@mediatek.com>
+Subject: [PATCH v3, 20/27] drm/mediatek: add background color input select function for ovl/ovl_2l
+Date:   Wed, 5 Jun 2019 19:42:59 +0800
+Message-ID: <1559734986-7379-21-git-send-email-yongqiang.niu@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
 References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
@@ -50,50 +50,81 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-This patch add function to background color input select for ovl/ovl_2l direct link
-for ovl/ovl_2l direct link usecase, we need set background color
-input select for these hardware.
-this is preparation patch for ovl/ovl_2l usecase
+This patch add background color input select function for ovl/ovl_2l
+
+ovl include 4 DRAM layer and 1 background color layer
+ovl_2l include 4 DRAM layer and 1 background color layer
+DRAM layer frame buffer data from render hardware, GPU for example.
+backgournd color layer is embed in ovl/ovl_2l, we can only set
+it color, but not support DRAM frame buffer.
+
+for ovl0->ovl0_2l direct link usecase,
+we need set ovl0_2l background color intput select from ovl0
+if render send DRAM buffer layer number <=4, all these layer read
+by ovl.
+layer0 is at the bottom of all layers.
+layer3 is at the top of all layers.
+if render send DRAM buffer layer numbfer >=4 && <=6
+ovl0 read layer0~3
+ovl0_2l read layer4~5
+layer5 is at the top ot all these layers.
+
+the decision of how to setting ovl0/ovl0_2l read these layer data
+is controlled in mtk crtc, which will be another patch
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-index 158c1e5..aa1e183 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-@@ -92,6 +92,9 @@ struct mtk_ddp_comp_funcs {
- 			     struct mtk_plane_state *state);
- 	void (*gamma_set)(struct mtk_ddp_comp *comp,
- 			  struct drm_crtc_state *state);
-+	void (*bgclr_in_on)(struct mtk_ddp_comp *comp,
-+			    enum mtk_ddp_comp_id prev);
-+	void (*bgclr_in_off)(struct mtk_ddp_comp *comp);
- };
- 
- struct mtk_ddp_comp {
-@@ -173,6 +176,19 @@ static inline void mtk_ddp_gamma_set(struct mtk_ddp_comp *comp,
- 		comp->funcs->gamma_set(comp, state);
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+index a0ab760..b5a9907 100644
+--- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
++++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+@@ -27,6 +27,8 @@
+ #define DISP_REG_OVL_EN				0x000c
+ #define DISP_REG_OVL_RST			0x0014
+ #define DISP_REG_OVL_ROI_SIZE			0x0020
++#define DISP_REG_OVL_DATAPATH_CON		0x0024
++#define OVL_BGCLR_SEL_IN				BIT(2)
+ #define DISP_REG_OVL_ROI_BGCLR			0x0028
+ #define DISP_REG_OVL_SRC_CON			0x002c
+ #define DISP_REG_OVL_CON(n)			(0x0030 + 0x20 * (n))
+@@ -245,6 +247,25 @@ static void mtk_ovl_layer_config(struct mtk_ddp_comp *comp, unsigned int idx,
+ 		mtk_ovl_layer_on(comp, idx);
  }
  
-+static inline void mtk_ddp_comp_bgclr_in_on(struct mtk_ddp_comp *comp,
-+					    enum mtk_ddp_comp_id prev)
++static void mtk_ovl_bgclr_in_on(struct mtk_ddp_comp *comp,
++				enum mtk_ddp_comp_id prev)
 +{
-+	if (comp->funcs && comp->funcs->bgclr_in_on)
-+		comp->funcs->bgclr_in_on(comp, prev);
++	unsigned int reg;
++
++	reg = readl(comp->regs + DISP_REG_OVL_DATAPATH_CON);
++	reg = reg | OVL_BGCLR_SEL_IN;
++	writel(reg, comp->regs + DISP_REG_OVL_DATAPATH_CON);
 +}
 +
-+static inline void mtk_ddp_comp_bgclr_in_off(struct mtk_ddp_comp *comp)
++static void mtk_ovl_bgclr_in_off(struct mtk_ddp_comp *comp)
 +{
-+	if (comp->funcs && comp->funcs->bgclr_in_off)
-+		comp->funcs->bgclr_in_off(comp);
++	unsigned int reg;
++
++	reg = readl(comp->regs + DISP_REG_OVL_DATAPATH_CON);
++	reg = reg & ~OVL_BGCLR_SEL_IN;
++	writel(reg, comp->regs + DISP_REG_OVL_DATAPATH_CON);
 +}
 +
- int mtk_ddp_comp_get_id(struct device_node *node,
- 			enum mtk_ddp_comp_type comp_type);
- int mtk_ddp_comp_init(struct device *dev, struct device_node *comp_node,
+ static const struct mtk_ddp_comp_funcs mtk_disp_ovl_funcs = {
+ 	.config = mtk_ovl_config,
+ 	.start = mtk_ovl_start,
+@@ -255,6 +276,8 @@ static void mtk_ovl_layer_config(struct mtk_ddp_comp *comp, unsigned int idx,
+ 	.layer_on = mtk_ovl_layer_on,
+ 	.layer_off = mtk_ovl_layer_off,
+ 	.layer_config = mtk_ovl_layer_config,
++	.bgclr_in_on = mtk_ovl_bgclr_in_on,
++	.bgclr_in_off = mtk_ovl_bgclr_in_off,
+ };
+ 
+ static int mtk_disp_ovl_bind(struct device *dev, struct device *master,
 -- 
 1.8.1.1.dirty
 
