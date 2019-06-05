@@ -2,279 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03E8935741
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B5013574B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 09:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726086AbfFEG6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 02:58:12 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:34549 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726467AbfFEG6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:58:11 -0400
-Received: by mail-ed1-f67.google.com with SMTP id c26so4256524edt.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 23:58:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K+YOPXuoNozKFUTKk70ZiSIcIZboUSDaXdA3+gInvFc=;
-        b=H1lcY9ELylwWULa5oY99DYK17q2E6yChBaVBJwb63R2VEamRSvABDjmu7YF3IomDRG
-         T5hl5VdOKAL8g0oLxpXdKDgE7etrGOqh6IZQih7xGBkWnfhGz9b9WpFyIlsySAt/ZRjB
-         55wJGdHApc1a/GtDMQfQeeNXqgB1dcZ/w/XyM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K+YOPXuoNozKFUTKk70ZiSIcIZboUSDaXdA3+gInvFc=;
-        b=ptFrsXnphlgEH77pherMyfe62pJVMvsYEw7RMBZMckHEZTayXOaBaUeuK/uv1DYgUD
-         Y8wbGKUdq0AjRSFsLLahBfMfRDm4T/Vo/x7Y1vSrvDCgF9B1MJ23s4TpzRYAHYZ0TrNV
-         ZT5OtuoFUGaqKj5MJI4nJhUd9VZS3FH/waY0iKY0eMDisP/NX+udiIHAeTYAkCcbkFmd
-         CfjIq66P5rLBltri0+cPAbJVdiPvbI+KnuUkRUOqFSxUtvyY/N75AHk4FDJawFNF7rvm
-         kVmm+dufmJqVqbL0bFUfRj+3FgZnDFo369wCuqEBYgfdYdfwHLM6LvUZ2NiSFHssVsSk
-         zzRg==
-X-Gm-Message-State: APjAAAXr1Zc6wx0zI4j4q8o5GkuANnZBLAEmWTRytFcYTHek3K7VH17E
-        8429y8Ydy92Hb63rWfS5eoJ7DfrPHe81/w==
-X-Google-Smtp-Source: APXvYqxMZhULyo9fGJptRnYjWYqVy6ZwK4hf/59CLSjIpLAigd7Rqh/imfF6OHyz6oHjxVUblyPeoQ==
-X-Received: by 2002:a17:906:a3cf:: with SMTP id ca15mr9664941ejb.302.1559717888911;
-        Tue, 04 Jun 2019 23:58:08 -0700 (PDT)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
-        by smtp.gmail.com with ESMTPSA id w4sm3581870ejj.66.2019.06.04.23.58.07
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 04 Jun 2019 23:58:08 -0700 (PDT)
-Received: by mail-wr1-f45.google.com with SMTP id d18so18232571wrs.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 23:58:07 -0700 (PDT)
-X-Received: by 2002:a5d:514d:: with SMTP id u13mr6897622wrt.77.1559717886336;
- Tue, 04 Jun 2019 23:58:06 -0700 (PDT)
+        id S1726467AbfFEHAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 03:00:38 -0400
+Received: from mail-eopbgr20060.outbound.protection.outlook.com ([40.107.2.60]:4038
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726427AbfFEHAh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 03:00:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HccSg1pjcRa0jcE1T/DJWoI8g/5bbQ14TUp6NTIiDrI=;
+ b=o2anj2eb/cJD5rrk5FfRNzwe1Jo3iqge/vl69qkiYaLn/6QscB31EIkuBNUpbe3uHnzVDFyV+oWHm0GNmKBiBS/bNP8U7JOTSFvWjPG1UUgyrmpEyhZB5woMcqtMgMp9A8tpDS7q2vi2OOrAmNFjLVtNzpIdo0mByumU9BqagDk=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB4321.eurprd04.prod.outlook.com (52.134.126.152) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.12; Wed, 5 Jun 2019 07:00:34 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::11e1:3bb9:156b:a3e4]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::11e1:3bb9:156b:a3e4%3]) with mapi id 15.20.1943.023; Wed, 5 Jun 2019
+ 07:00:33 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>,
+        Leo Li <leoyang.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>
+Subject: RE: [PATCH v3 1/3] dt-bindings: arm: nxp: Add device tree binding for
+ ls1046a-frwy board
+Thread-Topic: [PATCH v3 1/3] dt-bindings: arm: nxp: Add device tree binding
+ for ls1046a-frwy board
+Thread-Index: AQHVFIg0QNRaL3LFI0OeuwRCFx28W6aMqHwAgAAF/gA=
+Date:   Wed, 5 Jun 2019 07:00:33 +0000
+Message-ID: <AM0PR04MB42115435AD01AD6481C9D0B980160@AM0PR04MB4211.eurprd04.prod.outlook.com>
+References: <20190527123404.30858-1-pramod.kumar_1@nxp.com>
+ <20190527123404.30858-2-pramod.kumar_1@nxp.com>
+ <20190605063449.GG29853@dragon>
+In-Reply-To: <20190605063449.GG29853@dragon>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0b980fd1-edd5-4c32-f807-08d6e983815b
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4321;
+x-ms-traffictypediagnostic: AM0PR04MB4321:
+x-microsoft-antispam-prvs: <AM0PR04MB4321EE0F54A312D44C0ADD4480160@AM0PR04MB4321.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 00594E8DBA
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(396003)(376002)(366004)(346002)(39860400002)(189003)(199004)(86362001)(6636002)(26005)(74316002)(5660300002)(6506007)(53546011)(71200400001)(102836004)(71190400001)(73956011)(66946007)(76116006)(66556008)(66476007)(64756008)(66446008)(53936002)(305945005)(7736002)(6436002)(99286004)(486006)(9686003)(52536014)(476003)(478600001)(7696005)(446003)(256004)(44832011)(76176011)(11346002)(55016002)(186003)(68736007)(14454004)(4326008)(3846002)(6116002)(110136005)(54906003)(66066001)(229853002)(6246003)(8676002)(81166006)(81156014)(8936002)(25786009)(33656002)(316002)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4321;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: S+B07aN9+xI+il/Rey/bivbsRBkyjdigNbMv2KWfwv/IQ9q2MwU73DuhQc+VLXqqJYdnHjbP8XJTExR8CSQQ43lCJ5GwGwV/1LG5qKEK3oGyjxdCVRk4BciDaPexxg20y6aFz3JS67SZNdlqNrJB5LnyK27tU0SRMhWiSDGl/q8nPpgUsEcE/2i926VOiwc4z+DcVt0gSia4bWQxuBSZ9e7Wt7LTZ6eC2//jjqS0aciBaGBPr0TTU5oyF4luaogBU/y4WXDfeodRZEgk5j7ELcOvsAJTU70FSXpHXz49P0IElugFOit/i1cIJzJQDYgkccnI9rig+2Ev9gRn7Zwlug5EOTaJgRdg4n5RITQHWB0hIws4wD6SE0Oi3atyTE75q8qvIaSCkDyBbW03glqgl9OpoAHYWtqAJJJtCSWFYJg=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20181201165348.24140-1-robdclark@gmail.com> <CAL_JsqJmPqis46Un91QyhXgdrVtfATMP_hTp6wSeSAfc8MLFfw@mail.gmail.com>
- <CAF6AEGs9Nsft8ofZkGz_yWBPBC+prh8dBSkJ4PJr8yk2c5FMdQ@mail.gmail.com>
- <CAF6AEGt-dhbQS5zZCNVTLT57OiUwO0RiP5bawTSu2RKZ-7W-aw@mail.gmail.com>
- <CAAFQd5BdrJFL5LKK8O5NPDKWfFgkTX_JU-jU3giEz33tj-jwCA@mail.gmail.com> <CAF6AEGtj+kyXqKeJK2-0e1jw_A4wz-yBEyv5zhf5Vfoi2_p2CA@mail.gmail.com>
-In-Reply-To: <CAF6AEGtj+kyXqKeJK2-0e1jw_A4wz-yBEyv5zhf5Vfoi2_p2CA@mail.gmail.com>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Wed, 5 Jun 2019 15:57:54 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5Dmr+xyd4dyc_44vJFpNpwK6+MgG+ensoey59HgbxXV6g@mail.gmail.com>
-Message-ID: <CAAFQd5Dmr+xyd4dyc_44vJFpNpwK6+MgG+ensoey59HgbxXV6g@mail.gmail.com>
-Subject: Re: [PATCH] of/device: add blacklist for iommu dma_ops
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b980fd1-edd5-4c32-f807-08d6e983815b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2019 07:00:33.8110
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aisheng.dong@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4321
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 3, 2019 at 7:48 PM Rob Clark <robdclark@gmail.com> wrote:
->
-> On Sun, Jun 2, 2019 at 11:25 PM Tomasz Figa <tfiga@chromium.org> wrote:
-> >
-> > On Mon, Jun 3, 2019 at 4:40 AM Rob Clark <robdclark@gmail.com> wrote:
-> > >
-> > > On Fri, May 10, 2019 at 7:35 AM Rob Clark <robdclark@gmail.com> wrote:
-> > > >
-> > > > On Tue, Dec 4, 2018 at 2:29 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > > >
-> > > > > On Sat, Dec 1, 2018 at 10:54 AM Rob Clark <robdclark@gmail.com> wrote:
-> > > > > >
-> > > > > > This solves a problem we see with drm/msm, caused by getting
-> > > > > > iommu_dma_ops while we attach our own domain and manage it directly at
-> > > > > > the iommu API level:
-> > > > > >
-> > > > > >   [0000000000000038] user address but active_mm is swapper
-> > > > > >   Internal error: Oops: 96000005 [#1] PREEMPT SMP
-> > > > > >   Modules linked in:
-> > > > > >   CPU: 7 PID: 70 Comm: kworker/7:1 Tainted: G        W         4.19.3 #90
-> > > > > >   Hardware name: xxx (DT)
-> > > > > >   Workqueue: events deferred_probe_work_func
-> > > > > >   pstate: 80c00009 (Nzcv daif +PAN +UAO)
-> > > > > >   pc : iommu_dma_map_sg+0x7c/0x2c8
-> > > > > >   lr : iommu_dma_map_sg+0x40/0x2c8
-> > > > > >   sp : ffffff80095eb4f0
-> > > > > >   x29: ffffff80095eb4f0 x28: 0000000000000000
-> > > > > >   x27: ffffffc0f9431578 x26: 0000000000000000
-> > > > > >   x25: 00000000ffffffff x24: 0000000000000003
-> > > > > >   x23: 0000000000000001 x22: ffffffc0fa9ac010
-> > > > > >   x21: 0000000000000000 x20: ffffffc0fab40980
-> > > > > >   x19: ffffffc0fab40980 x18: 0000000000000003
-> > > > > >   x17: 00000000000001c4 x16: 0000000000000007
-> > > > > >   x15: 000000000000000e x14: ffffffffffffffff
-> > > > > >   x13: ffff000000000000 x12: 0000000000000028
-> > > > > >   x11: 0101010101010101 x10: 7f7f7f7f7f7f7f7f
-> > > > > >   x9 : 0000000000000000 x8 : ffffffc0fab409a0
-> > > > > >   x7 : 0000000000000000 x6 : 0000000000000002
-> > > > > >   x5 : 0000000100000000 x4 : 0000000000000000
-> > > > > >   x3 : 0000000000000001 x2 : 0000000000000002
-> > > > > >   x1 : ffffffc0f9431578 x0 : 0000000000000000
-> > > > > >   Process kworker/7:1 (pid: 70, stack limit = 0x0000000017d08ffb)
-> > > > > >   Call trace:
-> > > > > >    iommu_dma_map_sg+0x7c/0x2c8
-> > > > > >    __iommu_map_sg_attrs+0x70/0x84
-> > > > > >    get_pages+0x170/0x1e8
-> > > > > >    msm_gem_get_iova+0x8c/0x128
-> > > > > >    _msm_gem_kernel_new+0x6c/0xc8
-> > > > > >    msm_gem_kernel_new+0x4c/0x58
-> > > > > >    dsi_tx_buf_alloc_6g+0x4c/0x8c
-> > > > > >    msm_dsi_host_modeset_init+0xc8/0x108
-> > > > > >    msm_dsi_modeset_init+0x54/0x18c
-> > > > > >    _dpu_kms_drm_obj_init+0x430/0x474
-> > > > > >    dpu_kms_hw_init+0x5f8/0x6b4
-> > > > > >    msm_drm_bind+0x360/0x6c8
-> > > > > >    try_to_bring_up_master.part.7+0x28/0x70
-> > > > > >    component_master_add_with_match+0xe8/0x124
-> > > > > >    msm_pdev_probe+0x294/0x2b4
-> > > > > >    platform_drv_probe+0x58/0xa4
-> > > > > >    really_probe+0x150/0x294
-> > > > > >    driver_probe_device+0xac/0xe8
-> > > > > >    __device_attach_driver+0xa4/0xb4
-> > > > > >    bus_for_each_drv+0x98/0xc8
-> > > > > >    __device_attach+0xac/0x12c
-> > > > > >    device_initial_probe+0x24/0x30
-> > > > > >    bus_probe_device+0x38/0x98
-> > > > > >    deferred_probe_work_func+0x78/0xa4
-> > > > > >    process_one_work+0x24c/0x3dc
-> > > > > >    worker_thread+0x280/0x360
-> > > > > >    kthread+0x134/0x13c
-> > > > > >    ret_from_fork+0x10/0x18
-> > > > > >   Code: d2800004 91000725 6b17039f 5400048a (f9401f40)
-> > > > > >   ---[ end trace f22dda57f3648e2c ]---
-> > > > > >   Kernel panic - not syncing: Fatal exception
-> > > > > >   SMP: stopping secondary CPUs
-> > > > > >   Kernel Offset: disabled
-> > > > > >   CPU features: 0x0,22802a18
-> > > > > >   Memory Limit: none
-> > > > > >
-> > > > > > The problem is that when drm/msm does it's own iommu_attach_device(),
-> > > > > > now the domain returned by iommu_get_domain_for_dev() is drm/msm's
-> > > > > > domain, and it doesn't have domain->iova_cookie.
-> > > > > >
-> > > > > > We kind of avoided this problem prior to sdm845/dpu because the iommu
-> > > > > > was attached to the mdp node in dt, which is a child of the toplevel
-> > > > > > mdss node (which corresponds to the dev passed in dma_map_sg()).  But
-> > > > > > with sdm845, now the iommu is attached at the mdss level so we hit the
-> > > > > > iommu_dma_ops in dma_map_sg().
-> > > > > >
-> > > > > > But auto allocating/attaching a domain before the driver is probed was
-> > > > > > already a blocking problem for enabling per-context pagetables for the
-> > > > > > GPU.  This problem is also now solved with this patch.
-> > > > > >
-> > > > > > Fixes: 97890ba9289c dma-mapping: detect and configure IOMMU in of_dma_configure
-> > > > > > Tested-by: Douglas Anderson <dianders@chromium.org>
-> > > > > > Signed-off-by: Rob Clark <robdclark@gmail.com>
-> > > > > > ---
-> > > > > > This is an alternative/replacement for [1].  What it lacks in elegance
-> > > > > > it makes up for in practicality ;-)
-> > > > > >
-> > > > > > [1] https://patchwork.freedesktop.org/patch/264930/
-> > > > > >
-> > > > > >  drivers/of/device.c | 22 ++++++++++++++++++++++
-> > > > > >  1 file changed, 22 insertions(+)
-> > > > > >
-> > > > > > diff --git a/drivers/of/device.c b/drivers/of/device.c
-> > > > > > index 5957cd4fa262..15ffee00fb22 100644
-> > > > > > --- a/drivers/of/device.c
-> > > > > > +++ b/drivers/of/device.c
-> > > > > > @@ -72,6 +72,14 @@ int of_device_add(struct platform_device *ofdev)
-> > > > > >         return device_add(&ofdev->dev);
-> > > > > >  }
-> > > > > >
-> > > > > > +static const struct of_device_id iommu_blacklist[] = {
-> > > > > > +       { .compatible = "qcom,mdp4" },
-> > > > > > +       { .compatible = "qcom,mdss" },
-> > > > > > +       { .compatible = "qcom,sdm845-mdss" },
-> > > > > > +       { .compatible = "qcom,adreno" },
-> > > > > > +       {}
-> > > > > > +};
-> > > > >
-> > > > > Not completely clear to whether this is still needed or not, but this
-> > > > > really won't scale. Why can't the driver for these devices override
-> > > > > whatever has been setup by default?
-> > > > >
-> > > >
-> > > > fwiw, at the moment it is not needed, but it will become needed again
-> > > > to implement per-context pagetables (although I suppose for this we
-> > > > only need to blacklist qcom,adreno and not also the display nodes).
-> > >
-> > > So, another case I've come across, on the display side.. I'm working
-> > > on handling the case where bootloader enables display (and takes iommu
-> > > out of reset).. as soon as DMA domain gets attached we get iommu
-> > > faults, because bootloader has already configured display for scanout.
-> > > Unfortunately this all happens before actual driver is probed and has
-> > > a chance to intervene.
-> > >
-> > > It's rather unfortunate that we tried to be clever rather than just
-> > > making drivers call some function to opt-in to the hookup of dma iommu
-> > > ops :-(
-> >
-> > I think it still works for the 90% of cases and if 10% needs some
-> > explicit work in the drivers, that's better than requiring 100% of the
-> > drivers to do things manually.
-> >
-> > Adding Marek who had the same problem on Exynos.
->
-> I do wonder how many drivers need to iommu_map in their ->probe()?
-
-Any driver that allocates some internal buffers using DMA API.
-
-Also all V4L2 drivers would need it, because as soon as they call
-register_video_device() the userspace can open the video node and do
-buffer allocations, which in turn requires the DMA API to be all set.
-
-> I'm thinking moving the auto-hookup to after a successful probe(),
-> with some function a driver could call if they need mapping in probe,
-> might be a way to eventually get rid of the blacklist.  But I've no
-> idea how to find the subset of drivers that would be broken without a
-> dma_setup_iommu_stuff() call in their probe.
-
-Most of the drivers that call dma_alloc_() or dma_map_() from probe
-(or could have it called asynchronously before the probe returns).
-
-But first of all, I remember Marek already submitted some patches long
-ago that extended struct driver with some flag that means that the
-driver doesn't want the IOMMU to be attached before probe. Why
-wouldn't that work? Sounds like a perfect opt-out solution.
-
->
-> BR,
-> -R
->
-> > Best regards,
-> > Tomasz
-> >
-> > >
-> > > BR,
-> > > -R
-> > >
-> > > >
-> > > > The reason is that in the current state the core code creates the
-> > > > first domain before the driver has a chance to intervene and tell it
-> > > > not to.  And this results that driver ends up using a different
-> > > > context bank on the iommu than what the firmware expects.
-> > > >
-> > > > I guess the alternative is to put some property in DT.. but that
-> > > > doesn't really feel right.  I guess there aren't really many (or any?)
-> > > > other drivers that have this specific problem, so I don't really
-> > > > expect it to be a scaling problem.
-> > > >
-> > > > Yeah, it's a bit ugly, but I'll take a small ugly working hack, over
-> > > > elegant but non-working any day ;-)... but if someone has a better
-> > > > idea then I'm all ears.
-> > > >
-> > > > BR,
-> > > > -R
+SGkgUHJhbW9kLA0KDQo+IEZyb206IFNoYXduIEd1byBbbWFpbHRvOnNoYXduZ3VvQGtlcm5lbC5v
+cmddDQo+IFNlbnQ6IFdlZG5lc2RheSwgSnVuZSA1LCAyMDE5IDI6MzUgUE0NCj4gU3ViamVjdDog
+UmU6IFtQQVRDSCB2MyAxLzNdIGR0LWJpbmRpbmdzOiBhcm06IG54cDogQWRkIGRldmljZSB0cmVl
+IGJpbmRpbmcgZm9yDQo+IGxzMTA0NmEtZnJ3eSBib2FyZA0KPiANCj4gT24gTW9uLCBNYXkgMjcs
+IDIwMTkgYXQgMTI6MzI6MDlQTSArMDAwMCwgUHJhbW9kIEt1bWFyIHdyb3RlOg0KPiA+IEFkZCAi
+ZnNsLGxzMTA0NmEtZnJ3eSIgYmluZGluZ3MgZm9yIGxzMTA0NmFmcnd5IGJvYXJkIGJhc2VkIG9u
+IGxzMTA0NmEgU29DDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBWYWJoYXYgU2hhcm1hIDx2YWJo
+YXYuc2hhcm1hQG54cC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogUHJhbW9kIEt1bWFyIDxwcmFt
+b2Qua3VtYXJfMUBueHAuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBr
+ZXJuZWwub3JnPg0KPiANCj4gSSBjYW5ub3QgYXBwbHkgcGF0Y2ggZnJvbSBtZXNzYWdlIHVzaW5n
+ICdDb250ZW50LVRyYW5zZmVyLUVuY29kaW5nOiBiYXNlNjQnLg0KPiANCg0KV2hpY2ggc2VydmVy
+IGFyZSB5b3UgdXNpbmc/IElzIGl0IGluIHRoZSB3aGl0ZWxpc3QgZm9yIHVzaW5nIHRoZSBzcGVj
+aWZpYyBTTVRQPw0KSSByZW1lbWJlciBETiBzZXJ2ZXIgZG9lcyBub3QgaGF2ZSB0aGlzIGlzc3Vl
+LiBNYXliZSB1c2luZyB0aGUgd3Jvbmcgb25lPw0KDQpSZWdhcmRzDQpEb25nIEFpc2hlbmcNCg0K
+PiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55
+YW1sIHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+DQo+ID4g
+ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlh
+bWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55YW1sDQo+
+ID4gaW5kZXggNDA3MTM4ZWJjMGQwLi4wOWZmMTk5OWNlOTYgMTAwNjQ0DQo+ID4gLS0tIGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiA+ICsrKyBiL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWwNCj4gPiBAQCAtMjQx
+LDYgKzI0MSw3IEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICAgICAgICAtIGVudW06DQo+ID4gICAg
+ICAgICAgICAgICAgLSBmc2wsbHMxMDQ2YS1xZHMNCj4gPiAgICAgICAgICAgICAgICAtIGZzbCxs
+czEwNDZhLXJkYg0KPiA+ICsgICAgICAgICAgICAgIC0gZnNsLGxzMTA0NmEtZnJ3eQ0KPiANCj4g
+SXQgbWlnaHQgYmUgYmV0dGVyIHRvIGtlZXAgdGhlIGxpc3QgYWxwaGFiZXRpY2FsbHkgc29ydGVk
+Lg0KPiANCj4gU2hhd24NCj4gDQo+ID4gICAgICAgICAgICAtIGNvbnN0OiBmc2wsbHMxMDQ2YQ0K
+PiA+DQo+ID4gICAgICAgIC0gZGVzY3JpcHRpb246IExTMTA4OEEgYmFzZWQgQm9hcmRzDQo+ID4g
+LS0NCj4gPiAyLjE3LjENCj4gPg0K
