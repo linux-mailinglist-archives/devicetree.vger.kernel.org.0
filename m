@@ -2,148 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C229358FE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F53335939
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 11:03:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726693AbfFEIwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 04:52:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57048 "EHLO mail.kernel.org"
+        id S1726879AbfFEJDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 05:03:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33246 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726690AbfFEIwT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 04:52:19 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726823AbfFEJDi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 05:03:38 -0400
+Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 01A322075C;
-        Wed,  5 Jun 2019 08:52:17 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3040D2075C;
+        Wed,  5 Jun 2019 09:03:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559724738;
-        bh=33U2EKfjRS7h+XMGkmD3adAxfr6fGPYO5U7ZjaS/GaY=;
+        s=default; t=1559725417;
+        bh=7oQg41xcoj3dVt4T0jDLoKl6UKw+TwF7gFJVO8yYM2Y=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jg8LNDdI0PoUYPg/zVrHza4ANwwsNV4xpyvG90wnOrXz6LjtnDwRiaa5W+ti7SflB
-         7ATBvjKJU2WdvbuNwRTWRQPx0hbf1OrcQiHrmNoWTdDl+jVvYwWMzvNGvfBN/4HMx2
-         44ObQkLWTyjt8JccrcHrk/wdy3CfHRaHp+UMDTTo=
-Date:   Wed, 5 Jun 2019 10:52:16 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] USB: move usb debugfs directory creation to the usb
- common core
-Message-ID: <20190605085216.GB26984@kroah.com>
-References: <20190604093258.GB30054@kroah.com>
- <20190604115919.GA24346@kroah.com>
- <1559721031.8487.99.camel@mhfsdcap03>
+        b=Uda6dfzApaEOc6glLrFxNX04FrsXa228DHOmHCZKa5g2jB0yJIgdCfsk3qeKfPJxb
+         DhqgFJc/VX40B205oj92vcNpBHaGWqO53DcrWCY5YUk0D9CkGg8z0KlROlsHjim1m4
+         NuwxUqRx3jlIp0nPlfuFgNDa2ftIs4IT183v+lCM=
+Date:   Wed, 5 Jun 2019 17:03:17 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Carlo Caione <ccaione@baylibre.com>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v15 0/3] Add support for the Purism Librem5 devkit
+Message-ID: <20190605090315.GJ29853@dragon>
+References: <20190528125747.1047-1-angus@akkea.ca>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1559721031.8487.99.camel@mhfsdcap03>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+In-Reply-To: <20190528125747.1047-1-angus@akkea.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 03:50:31PM +0800, Chunfeng Yun wrote:
-> On Tue, 2019-06-04 at 13:59 +0200, Greg Kroah-Hartman wrote:
-> > On Tue, Jun 04, 2019 at 11:32:58AM +0200, Greg Kroah-Hartman wrote:
-> > > The USB gadget subsystem wants to use the USB debugfs root directory, so
-> > > move it to the common "core" USB code so that it is properly initialized
-> > > and removed as needed.
-> > > 
-> > > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > 
-> > > ---
-> > > 
-> > > This should be the "correct" version of this, Chunfeng, can you test
-> > > this to verify it works for you?
-> > > 
-> > > 
-> > > diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
-> > > index 18f5dcf58b0d..3b5e4263ffef 100644
-> > > --- a/drivers/usb/common/common.c
-> > > +++ b/drivers/usb/common/common.c
-> > > @@ -15,6 +15,7 @@
-> > >  #include <linux/usb/of.h>
-> > >  #include <linux/usb/otg.h>
-> > >  #include <linux/of_platform.h>
-> > > +#include <linux/debugfs.h>
-> > >  
-> > >  static const char *const ep_type_names[] = {
-> > >  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
-> > > @@ -291,4 +292,21 @@ struct device *usb_of_get_companion_dev(struct device *dev)
-> > >  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
-> > >  #endif
-> > >  
-> > > +struct dentry *usb_debug_root;
-> > > +EXPORT_SYMBOL_GPL(usb_debug_root);
-> > > +
-> > > +static int usb_common_init(void)
-> > > +{
-> > > +	usb_debug_root = debugfs_create_dir("usb", NULL);
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void usb_common_exit(void)
-> > > +{
-> > > +	debugfs_remove_recursive(usb_debug_root);
-> > > +}
-> > > +
-> > > +module_init(usb_common_init);
-> I tested this patch.
+On Tue, May 28, 2019 at 05:57:44AM -0700, Angus Ainslie (Purism) wrote:
+> The Librem5 devkit is based on the imx8mq from NXP. This is a default
+> devicetree to boot the board to a command prompt.
 > 
-> Here use module_init() indeed have a race as Felipe said before.
-> usbcore uses subsys_initcall(), and have a higher priority than
-> module_init(), so when usbcore tries to create "devices" file,
-> usb_debug_root is not created.
+> Changes since v14:
+> 
+> Add regulator-always-on for the SNVS regulators.
+> Added pgc nodes.
+> Fixed charger pre-current.
 
-Ah, let me fix that, it should have the same init level and I'll ensure
-it comes first in the linking.
+Since Pavel was reviewing your patches, you should copy him on the new
+version.  Has this version addressed all his review comments?
 
-> after I replace it by postcore_initcall() (debugfs uses
-> core_initcall()), test two cases:
-> 
-> 1. buildin usbcore/udc-core
-> 
->     "usb" directory is created, and usb/devices file is also created by
-> usbcore
-> 
-> 2. build both usbcore and gadget as ko
-> 
->     usbcore.ko, udc-core.ko and usb-common.ko are created. 
-> 
->    2.1 
->        insmod usb-common.ko   // "usb" directory is created
->        insmod usb-core.ko   // usb/devices file is created
-> 
->    2.2
->        rmmod usb-common.ko  // failed, usb_common is in use by usb-core
-> 
->    2.3 
->        rmmod usb-core.ko   // usb/devices file is destroyed
->        rmmod usb-common.ko  // usb directory is destroyed
-> 
->    2.4 
->        insmod usb-common.ko   // "usb" directory is created
->        insmod udc-core.ko
-> 
->    2.5
->        rmmod usb-common.ko  // failed, usb_common is in use by udc-core
-> 
->    2.6 
->        rmmod udc-core.ko
->        rmmod usb-common.ko  // usb directory is destroyed
-> 
-> they are all in line with expectations
+Shawn
 
-Wonderful!
-
-Let me fix up the init level, and the build issue tha kbuild found, and
-post a v2 patch.
-
-thanks,
-
-greg k-h
+> 
+> Changes since v13:
+> 
+> Moved haptic motor from pwm-led to gpio-vibrator.
+> Cleaned up regulator node naming.
+> Whitescpace cleanup.
+> Re-indent pinmux stanzas.
+> Drop pwm2 node.
+> Drop MAINTAINERS patch.
+> 
+> Changes since v12:
+> 
+> Updated patch to vendor-prefixes.yaml.
+> Dropped always on from regulators.
+> 
+> Changes since v11:
+> 
+> Added reviewed-by tags.
+> Fixed subject typo.
+> 
+> Changes since v10:
+> 
+> Moved MAINTAINERS entry to "ARM/FREESCALE IMX" section
+> 
+> Changes since v9:
+> 
+> Added a MAINTAINERS entry for arm64 imx devicetree files.
+> 
+> Changes since v8:
+> 
+> Fixed license comment.
+> Changed regulators to all lower case.
+> Changed clock frequency for NXP errata e7805.
+> Dropped blank line.
+> 
+> Changes since v7:
+> 
+> More regulators always on for USB.
+> Add vbus regulator.
+> Drop vbat regulator.
+> Replace legacy "gpio-key,wakeup" with "wakeup-source".
+> Add vbus-supply to get rid of warning
+> imx8mq-usb-phy 382f0040.usb-phy: 382f0040.usb-phy supply vbus not found,
+> using dummy regulator
+> 
+> Changes since v6:
+> 
+> Dropped unused regulators.
+> Fix regulator phandles case.
+> Dropped extra whitespace.
+> 
+> Changes since v5:
+> 
+> Added reviewed-by tags.
+> Moved USB port links to USB controller node.
+> 
+> Changes since v4:
+> 
+> Compiled against linux-next next-20190415.
+> Added imx8mq to the arm yaml file.
+> Re-arrange regulator nodes to drop undefined supplies.
+> Additional ordering for aesthetics.
+> Split some long lines.
+> Added lots of blank lines.
+> Moved pinctl muxes to where they are used.
+> Cleaned out reg defintions from regulator nodes.
+> 
+> Changes since v3:
+> 
+> Freshly sorted and pressed nodes.
+> Change the backlight to an interpolated scale.
+> Dropped i2c2.
+> Dropped devkit version number to match debian MR.
+> 
+> Changes since v2:
+> 
+> Fixed incorrect phy-supply for the fsl-fec.
+> Dropped unused regulator property.
+> Fixup Makefile for linux-next.
+> 
+> Changes since v1:
+> 
+> Dropped config file.
+> Updated the board compatible label.
+> Changed node names to follow naming conventions.
+> Added a more complete regulator hierachy.
+> Removed unused nodes.
+> Removed unknown devices.
+> Fixed comment style.
+> Dropped undocumented properties.
+> 
+> Angus Ainslie (Purism) (3):
+>   arm64: dts: fsl: librem5: Add a device tree for the Librem5 devkit
+>   dt-bindings: Add an entry for Purism SPC
+>   dt-bindings: arm: fsl: Add the imx8mq boards
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |   7 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../dts/freescale/imx8mq-librem5-devkit.dts   | 806 ++++++++++++++++++
+>  4 files changed, 816 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> 
+> -- 
+> 2.17.1
+> 
