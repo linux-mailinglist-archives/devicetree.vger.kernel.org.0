@@ -2,159 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0173F3583B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 196F23587B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 10:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726464AbfFEIAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 04:00:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33230 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725294AbfFEIAC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 04:00:02 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BA2482083E;
-        Wed,  5 Jun 2019 08:00:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559721601;
-        bh=6Tay8/CJ4xgbrxlKxpcTnSD08W3NG/ziSH9l0+5goPg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LN8j8xrINtrTZO5aw1TTy8Xy1k3lfhlaMfAuNfT7/y1XbmBnmc7qpEe2OeOI05wK8
-         Lzj9rbTebg2CTlJ/x4/mdzCL8cU2d0h2iHOgQ9byRSg1DbZXUs/0rA/EBW1pYl/v1y
-         ZLQZ72Ds+5oUQJo71E8ESrVGoJZFrMrmBBOiBwbE=
-Date:   Wed, 5 Jun 2019 09:59:58 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Talel Shenhar <talel@amazon.com>
-Cc:     nicolas.ferre@microchip.com, jason@lakedaemon.net,
-        marc.zyngier@arm.com, mark.rutland@arm.com,
-        mchehab+samsung@kernel.org, robh+dt@kernel.org,
-        davem@davemloft.net, shawn.lin@rock-chips.com, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dwmw@amazon.co.uk, benh@kernel.crashing.org, jonnyc@amazon.com,
-        hhhawa@amazon.com, ronenk@amazon.com, hanochu@amazon.com,
-        barakw@amazon.com
-Subject: Re: [PATCH 3/3] irqchip: al-fic: Introducing support for MSI-X
-Message-ID: <20190605075958.GB9693@kroah.com>
-References: <1559717653-11258-1-git-send-email-talel@amazon.com>
- <1559717653-11258-4-git-send-email-talel@amazon.com>
+        id S1726556AbfFEIZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 04:25:52 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:37477 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726554AbfFEIZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 04:25:52 -0400
+Received: by mail-pg1-f196.google.com with SMTP id 20so11996479pgr.4;
+        Wed, 05 Jun 2019 01:25:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rhYnBQKzzjpsWttGzlyRthUCGzSdV8WWDcXlaXIYhD4=;
+        b=YOs1cweicWv8OrM2y6u2h2AujaDW8F5RqoCD8CKvAsXfodopZLHrv4Y4CGe2PrPQxI
+         fX0Q+tLN0SHAhZd8FGpep73n8znvJbqq9sVzrSNTkw/tqAzE9vovyUv/BQEo4YnjACqG
+         Jjo626rBQs5P5TaeY1b9mJXLiFhue4Wv0Icy1/qG31TQkxIqXW4gOeHnLePcYgGEJFY5
+         PfcldvgBrBeKUSD+/EJaEN5XqcEbxIDdDnHVNJmccANRIDcs9lxNrIQC2uwFPO9Ne5Ge
+         UaqMiPg5GyR8q59yFu7qr9mTR+AaivJpl1ezgLE2FDoi0k14VundKfd1yy47h0KH5PFp
+         ynPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rhYnBQKzzjpsWttGzlyRthUCGzSdV8WWDcXlaXIYhD4=;
+        b=Su8WWGx6GixfNizLuZgO8IEtAk7uXd0UEiLNJz79M2jY66Sm5VWUkBRNDab6wMOnen
+         k+q2rJEVoEzmoZCVX59tjPpYZ+bPNsB3drW/wDrF24kGQv4UEAjRkziusR2h2sn7GzPG
+         ADL1ohZbRG8yBD9hV209aYcFBNWQcznB57lXnB+sV0MrXGSESLTTL0QL2peL0bJRLk1y
+         AGG7+DeuXaRUGTl5zkBjxI7C2WF8ck4xFkeTjGKWk+SrBEUIZEzmK654BRkYc24NHGf7
+         bdZ/9So6VeG6ZHCG4XdROBsvn21KfeSm640ehHi4MCP0kwQAPIeHI9mVw9rIDUreJTFd
+         zBDw==
+X-Gm-Message-State: APjAAAUE5Seu3JdfOtWsq9e3GrhZuApbXLEQ7aUOvBDJT391nH6zPaar
+        wNtwSYrx4n9vblAhMI9VKdKcm8vQaaPpiiGNKTaodsjoOJQ=
+X-Google-Smtp-Source: APXvYqypkHzrK2McuPMDdJoFuMEnosiU+wPsyvPVIpv/QwbkVemXD4cNR6zXZnQcyhvaID0UiX3o/IidXwX81t9oYBg=
+X-Received: by 2002:a63:fb05:: with SMTP id o5mr2858955pgh.203.1559723151256;
+ Wed, 05 Jun 2019 01:25:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1559717653-11258-4-git-send-email-talel@amazon.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+References: <20190531043347.4196-1-eduval@amazon.com> <20190531043347.4196-3-eduval@amazon.com>
+ <20190604171611.GS9224@smile.fi.intel.com> <20190605032709.GA1534@u40b0340c692b58f6553c.ant.amazon.com>
+In-Reply-To: <20190605032709.GA1534@u40b0340c692b58f6553c.ant.amazon.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 5 Jun 2019 11:25:39 +0300
+Message-ID: <CAHp75Vdaeprj0hFXukMqDi_dnK9-vA-O-OTRiGY6y3aGrNHUjQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive and
+ queue messages
+To:     Eduardo Valentin <eduval@amazon.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 09:54:13AM +0300, Talel Shenhar wrote:
-> The FIC supports either a (single) wired output, or generation of an MSI-X
-> interrupt per input (for cases where it is embedded in a PCIe device,
-> hence, allowing the PCIe drivers to call this API).
-> This patch introduces the support for allowing the configuration of MSI-X
-> instead of a wire interrupt.
-> 
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
-> ---
->  drivers/irqchip/irq-al-fic.c   | 48 +++++++++++++++++++++++++++++++++++++++---
->  include/linux/irqchip/al-fic.h |  2 ++
->  2 files changed, 47 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-al-fic.c b/drivers/irqchip/irq-al-fic.c
-> index d881d42..e49b912 100644
-> --- a/drivers/irqchip/irq-al-fic.c
-> +++ b/drivers/irqchip/irq-al-fic.c
-> @@ -19,6 +19,7 @@
->  #define AL_FIC_MASK		0x10
->  #define AL_FIC_CONTROL		0x28
->  
-> +#define CONTROL_AUTO_CLEAR	BIT(2)
->  #define CONTROL_TRIGGER_RISING	BIT(3)
->  #define CONTROL_MASK_MSI_X	BIT(5)
->  
-> @@ -193,9 +194,11 @@ struct irq_domain *al_fic_wire_get_domain(struct al_fic *fic)
->  }
->  EXPORT_SYMBOL_GPL(al_fic_wire_get_domain);
->  
-> -static void al_fic_hw_init(struct al_fic *fic)
-> +static void al_fic_hw_init(struct al_fic *fic,
-> +			   int use_msi)
->  {
-> -	u32 control = CONTROL_MASK_MSI_X;
-> +	u32 control = (use_msi ? (CONTROL_AUTO_CLEAR | CONTROL_TRIGGER_RISING) :
-> +		       CONTROL_MASK_MSI_X);
->  
->  	/* mask out all interrupts */
->  	writel(0xFFFFFFFF, fic->base + AL_FIC_MASK);
-> @@ -240,7 +243,7 @@ struct al_fic *al_fic_wire_init(struct device_node *node,
->  	fic->parent_irq = parent_irq;
->  	fic->name = (name ?: "al-fic-wire");
->  
-> -	al_fic_hw_init(fic);
-> +	al_fic_hw_init(fic, false);
->  
->  	ret = al_fic_register(node, fic);
->  	if (ret) {
-> @@ -260,6 +263,45 @@ struct al_fic *al_fic_wire_init(struct device_node *node,
->  EXPORT_SYMBOL_GPL(al_fic_wire_init);
->  
->  /**
-> + * al_fic_msi_x_init() - initialize and configure fic in msi-x mode
-> + * @base: mmio to fic register
-> + * @name: name of the fic
-> + *
-> + * This API will configure the fic hardware to to work in msi-x mode.
-> + * msi-x fic is to be configured for fics that are embedded inside AL PCIE EP.
-> + * Those kind of fic are aware of the fact that they live inside PCIE and
-> + * familiar with the MSI-X table which is configured as part of
-> + * pci_enable_msix_range() and friends.
-> + * Interrupt can be generated based on a positive edge or level - configuration
-> + * is to be determined based on connected hardware to this fic.
-> + *
-> + * Returns pointer to fic context or ERR_PTR in case of error.
-> + */
-> +struct al_fic *al_fic_msi_x_init(void __iomem *base,
-> +				 const char *name)
-> +{
-> +	struct al_fic *fic;
-> +
-> +	if (!base)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	fic = kzalloc(sizeof(*fic), GFP_KERNEL);
-> +	if (!fic)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	fic->base = base;
-> +	fic->name = (name ?: "al-fic-full-fledged");
-> +
-> +	al_fic_hw_init(fic, true);
-> +
-> +	pr_debug("%s initialized successfully in Full-Fledged mode\n",
-> +		 fic->name);
-> +
-> +	return fic;
-> +}
-> +EXPORT_SYMBOL_GPL(al_fic_msi_x_init);
-> +
-> +/**
->   * al_fic_cleanup() - free all resources allocated by fic
->   * @fic: pointer to fic context
->   *
-> diff --git a/include/linux/irqchip/al-fic.h b/include/linux/irqchip/al-fic.h
-> index 0833749..a2e89ff 100644
-> --- a/include/linux/irqchip/al-fic.h
-> +++ b/include/linux/irqchip/al-fic.h
-> @@ -16,6 +16,8 @@ struct al_fic *al_fic_wire_init(struct device_node *node,
->  				void __iomem *base,
->  				const char *name,
->  				unsigned int parent_irq);
-> +struct al_fic *al_fic_msi_x_init(void __iomem *base,
-> +				 const char *name);
+On Wed, Jun 5, 2019 at 6:30 AM Eduardo Valentin <eduval@amazon.com> wrote:
+>
+> Hey Andry,
+>
+> Long time no seeing :-)
 
-Who uses this new function?
+True!
 
-thanks,
 
-greg k-h
+> > > +#define MQ_MSGBUF_SIZE             CONFIG_I2C_SLAVE_MQUEUE_MESSAGE_SIZE
+> > > +#define MQ_QUEUE_SIZE              CONFIG_I2C_SLAVE_MQUEUE_QUEUE_SIZE
+> >
+> > > +#define MQ_QUEUE_NEXT(x)   (((x) + 1) & (MQ_QUEUE_SIZE - 1))
+> >
+> > Also possible ((x + 1) % ..._SIZE)
+>
+> Right.. but I suppose the original idea is to avoid divisions on the hotpath.
+>
+> So, I am actually fine with the limitation of only using power of 2.
+
+The original code implies that anyway, so, my proposal doesn't
+restrict it any farther.
+> > > +   {
+> > > +           .compatible = "i2c-slave-mqueue",
+> > > +   },
+> >
+> > > +   { },
+> >
+> > No need for comma here.
+>
+> It does not hurt to have it either :-)
+
+It's just a protection against some weird cases of adding entries
+behind the terminator.
+
+> > > +           .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
+> >
+> > Wouldn't compiler warn you due to unused data?
+> > Perhaps drop of_match_ptr() for good...
+>
+>
+> Not sure what you meant here. I dont see any compiler warning.
+> Also, of_match_ptr seams to be well spread in the kernel.
+
+If this will be compiled with CONFIG_OF=n...
+Though I didn't check all dependencies to see if it even possible. In
+any case of_match_ptr() is redundant in both cases here.
+Either you need to protect i2c_slave_mqueue_of_match with #ifdef
+CONFIG_OF, or drop the macro use.
+
+P.S. Taking into account the last part, I would wait for v7 with that
+fixed followed by fixing other nits.
+
+-- 
+With Best Regards,
+Andy Shevchenko
