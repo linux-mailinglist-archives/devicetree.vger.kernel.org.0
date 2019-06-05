@@ -2,126 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 010E1361C5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 18:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F696361FC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 19:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728962AbfFEQyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 12:54:53 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:33022 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728941AbfFEQyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 12:54:45 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190605165443euoutp01ff02313cfb7fcf6ceedb512a0d221d2f~lW7YgXpmz3074630746euoutp01R
-        for <devicetree@vger.kernel.org>; Wed,  5 Jun 2019 16:54:43 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190605165443euoutp01ff02313cfb7fcf6ceedb512a0d221d2f~lW7YgXpmz3074630746euoutp01R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1559753683;
-        bh=Rv+G7xRM5W0qIJMO/1XEZpXdtXED3pTULKiTBpTxK9M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hlbgo/qEkH+LIQyln4XDrnOd8kUSB1uMoucsldVWa/anrVXif/iaswSsTrfnNmdfF
-         WDbqYv5rpgMsgRNqrqOqywWJe1/vj+R68qRvbYM/1UqaVSfGo3H5lCSVhtw6Qnp1U2
-         BvJbu/V16JYdPGmq/mmQ++3ivyIapxKPU/+AI8IY=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190605165442eucas1p1c4d97cab15bac75809e045a0dbf2ded3~lW7XoJiYe0320603206eucas1p1q;
-        Wed,  5 Jun 2019 16:54:42 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 64.5E.04377.2D3F7FC5; Wed,  5
-        Jun 2019 17:54:42 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190605165441eucas1p1cf771211156e8aca384ed11c6498c263~lW7Wx7Nr-0347403474eucas1p1W;
-        Wed,  5 Jun 2019 16:54:41 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190605165441eusmtrp20b1c7e327ea27d34e11e9fac674fe633~lW7WiIZOA2868028680eusmtrp2k;
-        Wed,  5 Jun 2019 16:54:41 +0000 (GMT)
-X-AuditID: cbfec7f4-12dff70000001119-06-5cf7f3d2b5c9
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 3A.B2.04146.1D3F7FC5; Wed,  5
-        Jun 2019 17:54:41 +0100 (BST)
-Received: from AMDC3778.DIGITAL.local (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190605165440eusmtip11f3008f9bc1be6c8921c0547bb423e3f~lW7Vh6QDL0338903389eusmtip1Q;
-        Wed,  5 Jun 2019 16:54:40 +0000 (GMT)
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        cw00.choi@samsung.com, kyungmin.park@samsung.com,
-        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
-        myungjoo.ham@samsung.com, keescook@chromium.org, tony@atomide.com,
-        jroedel@suse.de, treding@nvidia.com, digetx@gmail.com,
-        willy.mh.wolff.ml@gmail.com,
-        Lukasz Luba <l.luba@partner.samsung.com>
-Subject: [PATCH v8 13/13] ARM: exynos_defconfig: enable DMC driver
-Date:   Wed,  5 Jun 2019 18:54:10 +0200
-Message-Id: <20190605165410.14606-14-l.luba@partner.samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190605165410.14606-1-l.luba@partner.samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WSWUwTURSGvZ2lw1IyFKMnrkkTjBrFNfEGlajxYWKMUR7UKIlWmSCxBewA
-        AjValaCgLIIioAhqFCwS2WSLgBakpgpIERQQohBCRMSlZa2itFP17Tv/Of/9z725DCFvpOYx
-        wSHhvCZEqVLQrmR542TzSrNlPGB1ScpCXJzxiMJvrYMUzmlopnDB936E00zZEvzqkhon938m
-        cEtLkRQ3nRuW4i7dAtxWfZPGlsQGhDNaaiW4sKFHirvP5tO4fvgCheve7MDdNg889qIPbfHi
-        xkZTSe6GrpXkqrJ6pFyJPp7mEs+P0NyzkScSLqlMj7jSl1rOUrJot8sB102BvCo4ktes8jvs
-        eqzc9IQO+0ZFjWZ2kjqUTiUgFwbY9TA6YCYTkCsjZ/MRZEyPSMTCiiCu45OzsCDInJz6Z+l4
-        kE2IjTwEI8Wd9D9L4kObNAExDM36QKX+hN0wm9XC+7d1DgPBDkugaWqCtDe82G1wazqWtjPJ
-        ekOpzezQZewWuNjxnRDTFkNB0VMHu8zo6cZSx7LA9krh2mgRLQ5th6bBXKnIXjBkLHPyAvhd
-        lSMRWQBd4m0k8inoT852zmyEemMrZV+aYJfBo+pVorwV3t155rgLsB7w7ounXSZmMLX8OiHK
-        MrgYJxenl0LZ5dfOoDmQ9zDdeTgHuQN3kfg8aQgMVzrpFLQ4639YLkJ6NJePENRBvLA2hD/p
-        IyjVQkRIkM/RUHUJmvldL6eN1kpU/fOIAbEMUrjLoHg8QE4pI4VotQEBQyhmy5Td1gC5LFAZ
-        HcNrQg9pIlS8YEDzGVIxV6ad9eGgnA1ShvPHeT6M1/ztShiXeTp0usOktST5uzUl1W69enei
-        b2LYZvNO6WpfUxG+z+2wp7nemOWj8vdM2jCRubPm6F7/dWf8UtzrSruJPQ8KnsuyIsPu1TQv
-        QW7Tj31711pfDW7Wt9/39YqJXfpVZdDWrgdThVto/IrQyaihXY9/aAojl0dxhbb2XysaV3/c
-        P9YQ32ZWkMIx5ZrlhEZQ/gGTmik4WQMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsVy+t/xu7oXP3+PMbi5U95i44z1rBbXvzxn
-        tZh/5ByrxeqPjxktJp+ay2RxpjvXov/xa2aL8+c3sFucbXrDbnGrQcbi8q45bBafe48wWsw4
-        v4/JYu2Ru+wWtxtXsFkcftPOarH/ipfF7d98Ft9OPGJ0EPb49nUSi8fshossHjtn3WX32LSq
-        k82jt/kdm8fBd3uYPPq2rGL02Hy62uPzJrkAzig9m6L80pJUhYz84hJbpWhDCyM9Q0sLPSMT
-        Sz1DY/NYKyNTJX07m5TUnMyy1CJ9uwS9jG2n9rAVfGCt+DrzJksD4zTWLkZODgkBE4lrK+cy
-        dzFycQgJLGWUON4xESohJjFp33Z2CFtY4s+1LjaIok+MEhN/bgMq4uBgE9CT2LGqEKRGRKBe
-        ov/NJbAaZoEGZok126+CDRIWcJKY96+FDcRmEVCV2Pz7EguIzSvgINFx7SMzxAJ5idUbDoDZ
-        nEDxacc3g9UICdhLXLr+m3kCI98CRoZVjCKppcW56bnFhnrFibnFpXnpesn5uZsYgbG07djP
-        zTsYL20MPsQowMGoxMMrsfF7jBBrYllxZe4hRgkOZiUR3sTbX2KEeFMSK6tSi/Lji0pzUosP
-        MZoCHTWRWUo0OR8Y53kl8YamhuYWlobmxubGZhZK4rwdAgdjhATSE0tSs1NTC1KLYPqYODil
-        GhgXei0ucGDLld/oerfhzANdWb6Uz0kdq7xOvrntZ3fhWVpSvuGZjJdXlTweLTrL11Pckxd/
-        QLLsjkt175mDywv3S7x/YWSSeKfwFY/4uue/gniyLdlipabavo663Onptze+ZUq0Z6Pheen+
-        kxXFGmePOvitldizgbla+l/1f2HG90H7tD9v+K3EUpyRaKjFXFScCAC2qai3uwIAAA==
-X-CMS-MailID: 20190605165441eucas1p1cf771211156e8aca384ed11c6498c263
-X-Msg-Generator: CA
+        id S1728753AbfFERBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 13:01:24 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:60348 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728570AbfFERBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 13:01:24 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x55H1MeS005829;
+        Wed, 5 Jun 2019 12:01:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559754082;
+        bh=8sdv9OMwCo1DjNPKoB6XMbjUo3Wy5dATHmE6s5+hYes=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=h6tKOVmLufk7aN/lQPgEB1edmZ+dYwOejzRGPm0sIqyNLbNK4aTuFf1DJoZDbPUVw
+         Yx2j3Ink/8jeAGEXlRuD/H8RzS1Cj8YdBz541BJAQivYiFZLA1EwdAwcJkOesLc+fQ
+         tRug/Z15TpgHL7jNFVebqAWmtZkET62vBL3yzdYE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x55H1Ml7127413
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 Jun 2019 12:01:22 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 5 Jun
+ 2019 12:01:21 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 5 Jun 2019 12:01:21 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x55H1L8Z083065;
+        Wed, 5 Jun 2019 12:01:21 -0500
+Subject: Re: [PATCH 0/4] Add MCU SRAM nodes for TI K3 SoCs
+To:     "Andrew F. Davis" <afd@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Nishanth Menon <nm@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190605163434.23173-1-s-anna@ti.com>
+ <acf9cf30-bcd6-76a0-5498-c334c7c43213@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <37a5bf73-2f93-8474-bca1-2e9fae4d6668@ti.com>
+Date:   Wed, 5 Jun 2019 12:01:21 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <acf9cf30-bcd6-76a0-5498-c334c7c43213@ti.com>
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190605165441eucas1p1cf771211156e8aca384ed11c6498c263
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190605165441eucas1p1cf771211156e8aca384ed11c6498c263
-References: <20190605165410.14606-1-l.luba@partner.samsung.com>
-        <CGME20190605165441eucas1p1cf771211156e8aca384ed11c6498c263@eucas1p1.samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable driver for Exynos5422 Dynamic Memory Controller supporting
-dynamic frequency and voltage scaling in Exynos5422 SoCs.
+On 6/5/19 11:53 AM, Andrew F. Davis wrote:
+> On 6/5/19 12:34 PM, Suman Anna wrote:
+>> Hi Tero,
+>>
+>> The following series adds the DT nodes for the MCU SRAM present within
+>> the MCU domain for both AM65x and J721E SoCs. The first 2 patches enable
+>> the MCU SRAM node to be probed properly on AM65x SoCs, and the third
+>> patch the equivalent for J721E SoCs. The third patch depends on the
+>> base J721E support patch series from Nishanth [1].
+>>
+>> The last patch is not related to MCU SRAM, but adds the ranges for the
+>> R5F cluster that is also present in the MCU domain in preparation for
+>> the R5F nodes.
+>>
+> 
+> Why not have this last patch as part of the series adding the R5F nodes?
 
-Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
----
- arch/arm/configs/exynos_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+The patch can be applied independently as is, no reason to wait until I
+post those.
 
-diff --git a/arch/arm/configs/exynos_defconfig b/arch/arm/configs/exynos_defconfig
-index c95c54284da2..0cd16c924941 100644
---- a/arch/arm/configs/exynos_defconfig
-+++ b/arch/arm/configs/exynos_defconfig
-@@ -290,6 +290,7 @@ CONFIG_DEVFREQ_GOV_PERFORMANCE=y
- CONFIG_DEVFREQ_GOV_POWERSAVE=y
- CONFIG_DEVFREQ_GOV_USERSPACE=y
- CONFIG_ARM_EXYNOS_BUS_DEVFREQ=y
-+CONFIG_ARM_EXYNOS5422_DMC=y
- CONFIG_DEVFREQ_EVENT_EXYNOS_NOCP=y
- CONFIG_EXYNOS_IOMMU=y
- CONFIG_EXTCON=y
--- 
-2.17.1
+regards
+Suman
+
+> 
+> Andrew
+> 
+>> regards
+>> Suman
+>>
+>> [1]
+>> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=121189
+>>
+>> Suman Anna (4):
+>>    arm64: dts: ti: k3-am65: Add MCU SRAM ranges in interconnect nodes
+>>    arm64: dts: ti: k3-am65-mcu: Add the MCU RAM node
+>>    arm64: dts: ti: k3-j721e: Add the MCU SRAM node
+>>    arm64: dts: ti: k3-am65: Add R5F ranges in interconnect nodes
+>>
+>>   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi         | 8 ++++++++
+>>   arch/arm64/boot/dts/ti/k3-am65.dtsi             | 6 ++++++
+>>   arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 8 ++++++++
+>>   3 files changed, 22 insertions(+)
+>>
 
