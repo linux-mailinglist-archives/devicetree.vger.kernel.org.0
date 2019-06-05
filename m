@@ -2,190 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D823572B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F9835734
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726464AbfFEGto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 02:49:44 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:47939 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726341AbfFEGtn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:49:43 -0400
-Received: from localhost (aaubervilliers-681-1-24-139.w90-88.abo.wanadoo.fr [90.88.144.139])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id CB24B100008;
-        Wed,  5 Jun 2019 06:49:33 +0000 (UTC)
-Date:   Wed, 5 Jun 2019 08:49:33 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for
- PLL_MIPI
-Message-ID: <20190605064933.6bmskkxzzgn35xz7@flea>
-References: <20190124195900.22620-1-jagan@amarulasolutions.com>
- <20190124195900.22620-12-jagan@amarulasolutions.com>
- <20190125212433.ni2jg3wvpyjazlxf@flea>
- <CAMty3ZAsH2iZ+JEqTE3D58aXfGuhMSg9YoO56ZhhOeE4c4yQHQ@mail.gmail.com>
- <20190129151348.mh27btttsqcmeban@flea>
- <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
- <20190201143102.rcvrxstc365mezvx@flea>
- <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
+        id S1726341AbfFEGyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 02:54:45 -0400
+Received: from smtp-fw-6001.amazon.com ([52.95.48.154]:42573 "EHLO
+        smtp-fw-6001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726086AbfFEGyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:54:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559717684; x=1591253684;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=FuBV3uC5Kw67IxIOVRtKTfaR92I/vsHGNbRqB7qOVrU=;
+  b=U4WxIUI4a2gveI7qalJaa8ZHpC0BshpLVagOxEbcrY094iIZ0rWcU4eg
+   13qGSSLiDC4+B4Ve24y7A2ribAcrT1EBudtBPFUXw1l++aIBNcd7i8jf1
+   oUKAIvQZe+6VkftWLYHaMk1RoHPyYGQ+cFTsqiWGOryvrsub6bJ9OAiUN
+   w=;
+X-IronPort-AV: E=Sophos;i="5.60,550,1549929600"; 
+   d="scan'208";a="399432759"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1d-38ae4ad2.us-east-1.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6001.iad6.amazon.com with ESMTP; 05 Jun 2019 06:54:42 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
+        by email-inbound-relay-1d-38ae4ad2.us-east-1.amazon.com (Postfix) with ESMTPS id E009EA26C1;
+        Wed,  5 Jun 2019 06:54:38 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 5 Jun 2019 06:54:38 +0000
+Received: from udc4a3e82dbc15a031435.hfa15.amazon.com (10.43.160.91) by
+ EX13D01EUB001.ant.amazon.com (10.43.166.194) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 5 Jun 2019 06:54:28 +0000
+From:   Talel Shenhar <talel@amazon.com>
+To:     <nicolas.ferre@microchip.com>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <mark.rutland@arm.com>,
+        <mchehab+samsung@kernel.org>, <robh+dt@kernel.org>,
+        <davem@davemloft.net>, <shawn.lin@rock-chips.com>,
+        <tglx@linutronix.de>, <devicetree@vger.kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>
+CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
+        <jonnyc@amazon.com>, <hhhawa@amazon.com>, <ronenk@amazon.com>,
+        <hanochu@amazon.com>, <barakw@amazon.com>,
+        Talel Shenhar <talel@amazon.com>
+Subject: [PATCH 0/3] Amazon's Annapurna Labs Fabric Interrupt Controller
+Date:   Wed, 5 Jun 2019 09:54:10 +0300
+Message-ID: <1559717653-11258-1-git-send-email-talel@amazon.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zppxshyy34mh4cra"
-Content-Disposition: inline
-In-Reply-To: <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-Originating-IP: [10.43.160.91]
+X-ClientProxiedBy: EX13d09UWC001.ant.amazon.com (10.43.162.60) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces support for Amazon's Annapurna Labs Fabric Interrupt
+Controller.
 
---zppxshyy34mh4cra
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The Amazon's Annapurna Labs FIC (Fabric Interrupt Controller) has 32
+inputs/sources. The output of this interrupt controller can be legacy-wired
+output or, in case embedded inside PCIe devices, msi-x message. This FIC may
+be cascaded into another FIC or connected directly to the main CPU
+Interrupt Controller (e.g. GIC).
 
-Hi,
+The FIC is a flexible HW unit that is embedded inside different parts of
+the Amazon's Annapurna Labs chips. It can be a simple level 2 interrupt
+controller which is then configured as a wired interrupt controller that
+aggregates events from different units, or, while embedded inside PCIe
+device, it can generate MSI-X messages based on the tables configured to
+that PCIe device or can be configured to generate wired interrupt. 
 
-I've reordered the mail a bit to work on chunks
 
-On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
-> > I wish it was in your commit log in the first place, instead of having
-> > to exchange multiple mails over this.
-> >
-> > However, I don't think that's quite true, and it might be a bug in
-> > Allwinner's implementation (or rather something quite confusing).
-> >
-> > You're right that the lcd_rate and pll_rate seem to be generated from
-> > the pixel clock, and it indeed looks like the ratio between the pixel
-> > clock and the TCON dotclock is defined through the number of bits per
-> > lanes.
-> >
-> > However, in this case, dsi_rate is actually the same than lcd_rate,
-> > since pll_rate is going to be divided by dsi_div:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
-> >
-> > Since lcd_div is 1, it also means that in this case, dsi_rate ==
-> > dclk_rate.
-> >
-> > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
-> > we look at:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
-> >
-> > We can see that the rate in clk_info is used if it's different than
-> > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
-> > DSI panel, will hardcode it to 148.5 MHz:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
->
-> Let me explain, something more.
->
-> According to bsp there are clk_info.tcon_div which I will explain below.
-> clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
-> is 6 for 24bpp and 4 lanes devices.
->
-> PLL rate here depends on dsi_div (not tcon_div)
->
-> Code here
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
->
-> is computing the actual set rate, which depends on dsi_rate.
->
-> lcd_rate = dclk_rate * clk_info.dsi_div;
-> dsi_rate = pll_rate / clk_info.dsi_div;
->
-> Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
-> for above link you mentioned.
->
-> Here are the evidence with some prints.
->
-> https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
-> https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
 
-Ok, so we agree up to this point, and the prints confirm that the
-analysis above is the right one.
+Talel Shenhar (3):
+  dt-bindings: interrupt-controller: Amazon's Annapurna Labs FIC
+  irqchip: al-fic: Introduce Amazon's Annapurna Labs Fabric Interrupt
+    Controller Driver
+  irqchip: al-fic: Introducing support for MSI-X
 
-> > So, the DSI clock is set to this here:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
+ .../interrupt-controller/amazon,al-fic.txt         |  22 ++
+ MAINTAINERS                                        |   7 +
+ drivers/irqchip/Kconfig                            |  11 +
+ drivers/irqchip/Makefile                           |   1 +
+ drivers/irqchip/irq-al-fic.c                       | 388 +++++++++++++++++++++
+ include/linux/irqchip/al-fic.h                     |  23 ++
+ 6 files changed, 452 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
+ create mode 100644 drivers/irqchip/irq-al-fic.c
+ create mode 100644 include/linux/irqchip/al-fic.h
 
-Your patch doesn't address that, so let's leave that one alone.
+-- 
+2.7.4
 
-> > The TCON *module* clock (the one in the clock controller) has been set
-> > to lcd_rate (so the pixel clock times the number of bits per lane) here:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
-> >
-> > And the PLL has been set to the same rate here:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
-> >
-> > Let's take a step back now: that function we were looking at,
-> > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
-> > by disp_lcd_enable here:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
-> >
-> > The next function being called is disp_al_lcd_cfg, and that function
-> > will hardcode the TCON dotclock divider to 4, here:
-> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
->
-> tcon_div from BSP point-of-view of there are two variants
-> 00) clk_info.tcon_div which is 4 and same is set the divider position
-> in SUN4I_TCON0_DCLK_REG (like above link refer)
-> 01) tcon_div which is 4 and used for edge timings computation
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
->
-> The real reason for 01) is again 4 is they set the divider to 4 in 00)
-> which is technically wrong because the dividers which used during
-> dotclock in above (dsi_div) should be used here as well. Since there
-> is no dynamic way of doing this BSP hard-coding these values.
->
-> Patches 5,6,7 on this series doing this
-> https://patchwork.freedesktop.org/series/60847/
->
-> Hope this explanation helps?
-
-It doesn't.
-
-The clock tree is this one:
-
-PLL(s) -> TCON module clock -> TCON dotclock.
-
-The links I mentioned above show that the clock set to lcd_rate is the
-TCON module clocks (and it should be the one taking the bpp and lanes
-into account), while the TCON dotclock uses a fixed divider of 4.
-
-In your patches, you're using the bpp / lanes divider on the TCON
-dotclock, ie, the wrong clock.
-
-Again, I'm not saying that my analysis of the source code is correct
-here. But you haven't said anything to prove it's wrong either.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---zppxshyy34mh4cra
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPdl/QAKCRDj7w1vZxhR
-xVRiAQCGwYHPpjGwI8PBAolQDDh8EMQ4OwKHtPaRxqSpTh6aNgD/Uv1nSGajLUak
-r4VOaR3S8IynrXXXSDDBAo+8aG1nZgE=
-=eDpG
------END PGP SIGNATURE-----
-
---zppxshyy34mh4cra--
