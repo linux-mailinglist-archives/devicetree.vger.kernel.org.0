@@ -2,129 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A10635714
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0606E35719
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726341AbfFEGh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 02:37:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50973 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726086AbfFEGh6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 02:37:58 -0400
-Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6AE7A2075B;
-        Wed,  5 Jun 2019 06:37:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559716677;
-        bh=nBdxQcgsl55tdFVJsUcQMLtU2Dv9DO6ibXfHPVMrREE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XmkNnpCxD3BDra2zyezFe5+AQt5n1xFexhouAFiUgRINOXfn1rH7bC4pY/okgz8jy
-         gojBkSw2gZTSLM3DFI6hWNxyp6nloGD9g6pXMEpvqG8QJlqt9afk78hmO/aOpIQFFx
-         aqR5drVM/8Mv2uW7WF4BSXuwBrWmlYDPsXeHKCW0=
-Date:   Wed, 5 Jun 2019 14:37:42 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Yuantian Tang <andy.tang@nxp.com>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: ls1028a: Add temperature sensor node
-Message-ID: <20190605063741.GH29853@dragon>
-References: <20190528022633.40124-1-andy.tang@nxp.com>
+        id S1726341AbfFEGk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 02:40:57 -0400
+Received: from mail-eopbgr20073.outbound.protection.outlook.com ([40.107.2.73]:63878
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726086AbfFEGk4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 02:40:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DQAFldp7YMqcp0/BQ07SEdE60//P9hdyz6bDDLsN1Zc=;
+ b=LyC9LMOP1VM9LPkVM/ID3dzNaALCTvMonfV+IMkPguncIyYfA9REV2aeDR+h5+TfwUlov559BCfFq7gyhTYOd/Zj2cOQlvNnrLOD4DxYl64o5UIzgDRYcHrypRxGwUC2XpPu6SdJaukgJiMZsCZk/D6Wz0Ia5Jv5qZ9zs2VByxY=
+Received: from DB7PR04MB5178.eurprd04.prod.outlook.com (20.176.236.22) by
+ DB7PR04MB4924.eurprd04.prod.outlook.com (20.176.234.31) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.12; Wed, 5 Jun 2019 06:40:53 +0000
+Received: from DB7PR04MB5178.eurprd04.prod.outlook.com
+ ([fe80::24da:94bd:6034:4d45]) by DB7PR04MB5178.eurprd04.prod.outlook.com
+ ([fe80::24da:94bd:6034:4d45%4]) with mapi id 15.20.1965.011; Wed, 5 Jun 2019
+ 06:40:53 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: [PATCH v5 1/2] dt-bindings: timer: Add binding doc for nxp system
+ counter timer
+Thread-Topic: [PATCH v5 1/2] dt-bindings: timer: Add binding doc for nxp
+ system counter timer
+Thread-Index: AQHVG2mejuiyXbx6C06qLbcoYpslMg==
+Date:   Wed, 5 Jun 2019 06:40:52 +0000
+Message-ID: <20190605064546.29249-1-ping.bai@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.21.0
+x-clientproxiedby: HK0P153CA0029.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:203:17::17) To DB7PR04MB5178.eurprd04.prod.outlook.com
+ (2603:10a6:10:20::22)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ping.bai@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 08dd0eff-011a-4735-407a-08d6e980c144
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4924;
+x-ms-traffictypediagnostic: DB7PR04MB4924:
+x-microsoft-antispam-prvs: <DB7PR04MB492444D8C6890BD17F14F6A687160@DB7PR04MB4924.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 00594E8DBA
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(136003)(366004)(396003)(346002)(189003)(199004)(4326008)(8936002)(2501003)(71200400001)(71190400001)(6436002)(1076003)(68736007)(486006)(86362001)(6116002)(2616005)(6486002)(8676002)(81156014)(476003)(50226002)(36756003)(81166006)(66066001)(53936002)(305945005)(5660300002)(6506007)(110136005)(386003)(26005)(186003)(66556008)(64756008)(99286004)(66946007)(66476007)(66446008)(73956011)(25786009)(478600001)(7736002)(14444005)(256004)(6512007)(52116002)(6636002)(3846002)(14454004)(316002)(54906003)(102836004)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4924;H:DB7PR04MB5178.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 3J19WYzFcfplhLCV/7Z1Tvl0YezT7iaVJgxpckP9zOKHxfl3kkJtGvwoRtQmPvh/4X7ps1lSdQfHvxszPi3V6xs+Y/eFwXbmi0ZzEoAkVe65PEZBrkcCkjWvanh72lOgJPwo9LT/W3u1VuV/Jl/cxpsFjXA2Nl2LwMoWDg4abvS0kZBMwtJnpE+ETeu5KHFbj4Xp4GekMlE32H4+xnz8slnfNvegL+vwWHwr6SaBowIkrFplOojRZVsHSWBIstv6j/MHeaCnC1lgknZDM6eLRYeHSRSRQJSSvuATAFb+tbtlUbNp5vpRT+xaJXxu9dVXZvxxDyCvT1uPEbe5+ZPgx+zRVNeYEEShBI2jyY2wTjeKEMopHAySjBCiWzuk43VbNYKPVUhuC+KD+ncGVBcyDzEEdFxQHKbKHj1+oaH9yYk=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <82FBF9FC5424C0498FBDE889F75776F2@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190528022633.40124-1-andy.tang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08dd0eff-011a-4735-407a-08d6e980c144
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2019 06:40:53.0253
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ping.bai@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4924
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 10:26:33AM +0800, Yuantian Tang wrote:
-> Add nxp sa56004 chip node for temperature monitor.
-> 
-> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
-> ---
-> v2:
-> 	- change the node name and add vcc-supply
-> 
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 15 +++++++++++++++
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 15 +++++++++++++++
->  2 files changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> index 6571d0483c7a..f12e4f510d6e 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> @@ -47,6 +47,15 @@
->  		regulator-always-on;
->  	};
->  
-> +	sb_3v3: regulator-sb3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3v3_vbus";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->  	sound {
->  		compatible = "simple-audio-card";
->  		simple-audio-card,format = "i2s";
-> @@ -147,6 +156,12 @@
->  				compatible = "atmel,24c512";
->  				reg = <0x57>;
->  			};
-> +
-> +			temperature-sensor@4c {
+From: Bai Ping <ping.bai@nxp.com>
 
-Keep these i2c devices sort in unit-address order.
+Add the binding doc for nxp system counter timer module.
 
-Shawn
+Signed-off-by: Bai Ping <ping.bai@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+change v1->v2
+ - remove the blank line at EOF
+change v2->v3
+ - update the binding example based on the driver change
+change v3->v4
+ - no change
+change v4->v5
+ - no change
+---
+ .../bindings/timer/nxp,sysctr-timer.txt       | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/nxp,sysctr-time=
+r.txt
 
-> +				compatible = "nxp,sa56004";
-> +				reg = <0x4c>;
-> +				vcc-supply = <&sb_3v3>;
-> +			};
->  		};
->  
->  		i2c@5 {
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> index 235ca3a83dc3..e64c28983ec9 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> @@ -43,6 +43,15 @@
->  		regulator-always-on;
->  	};
->  
-> +	sb_3v3: regulator-sb3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3v3_vbus";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->  	sound {
->  		compatible = "simple-audio-card";
->  		simple-audio-card,format = "i2s";
-> @@ -132,6 +141,12 @@
->  				compatible = "nxp,pcf2129";
->  				reg = <0x51>;
->  			};
-> +
-> +			temperature-sensor@4c {
-> +				compatible = "nxp,sa56004";
-> +				reg = <0x4c>;
-> +				vcc-supply = <&sb_3v3>;
-> +			};
->  		};
->  	};
->  };
-> -- 
-> 2.17.1
-> 
+diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt b=
+/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
+new file mode 100644
+index 000000000000..d57659996d62
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
+@@ -0,0 +1,25 @@
++NXP System Counter Module(sys_ctr)
++
++The system counter(sys_ctr) is a programmable system counter which provide=
+s
++a shared time base to Cortex A15, A7, A53, A73, etc. it is intended for us=
+e in
++applications where the counter is always powered and support multiple,
++unrelated clocks. The compare frame inside can be used for timer purpose.
++
++Required properties:
++
++- compatible :      should be "nxp,sysctr-timer"
++- reg :             Specifies the base physical address and size of the co=
+mapre
++                    frame and the counter control, read & compare.
++- interrupts :      should be the first compare frames' interrupt
++- clocks : 	    Specifies the counter clock.
++- clock-names: 	    Specifies the clock's name of this module
++
++Example:
++
++	system_counter: timer@306a0000 {
++		compatible =3D "nxp,sysctr-timer";
++		reg =3D <0x306a0000 0x20000>;/* system-counter-rd & compare */
++		clocks =3D <&clk_8m>;
++		clock-names =3D "per";
++		interrupts =3D <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++	};
+--=20
+2.21.0
+
