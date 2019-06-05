@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F69836034
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:19:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26AE236038
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:20:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728184AbfFEPTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 11:19:49 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:36242 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728089AbfFEPTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 11:19:49 -0400
-Received: by mail-lj1-f196.google.com with SMTP id i21so8938982ljj.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 08:19:47 -0700 (PDT)
+        id S1728187AbfFEPUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 11:20:18 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:42777 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728089AbfFEPUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 11:20:18 -0400
+Received: by mail-lf1-f66.google.com with SMTP id y13so19381948lfh.9
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 08:20:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=22hufaH3Q5GijUkof2n1pKMQKsh43fPBzC3gxcBif9M=;
-        b=nq4k0NL3ENycKEi29BxWZsSxh+bQTnU1+dEa7P9RDoxs7aGxeP3oIjYtGjKpQpRszP
-         RO6h9NQivWAo72wxZmYNu/nKtNq5d+3fZCsSZvPzmzYW6bmHpae0EBAA6fO5RdNayP3j
-         EN99Dsg0TjHcN7QHL3fFPR913zE4JUW6/JOkqoYKv6b45bn67JjTfZoBAGxmP3Huox9Z
-         Vw1RYcnaY/TQ9Iw8VLpthU9wJsu5SJwjlvtbU5Gs5zvt2aNaggy9PF/7gJIHAIIGFPpO
-         PhSALNFY4adEWJK+8HJNOe0WUrtTp2FCJiRT/gw0noLwSzLF9N9y0A/iKNgHX6TbY5F0
-         BNVg==
+        bh=73MKzC4eufncyXFtj8U83qgAHAhmUvAHte32wW78vmw=;
+        b=hpOcLqjAwkX3ykkfqCztHfm6aGxIz7fn7L0oqCkC76Im4ykJ6lBzzY41L7vrcKqZly
+         tAkwxw3S/tZ16YJIe7ZOgan4wow09wYZkEqcow898ftNBJGND/2Vd5dz4LFrtHTVvLwW
+         bcyWlTkrNQbONzk/2Mp0ASXPPbrjyOAjTFg8ltLV03bYyiBhcUvftNaO0YDfyoJ5J59R
+         4Dwi+qVVxTN1rY4NycOrKCpI5WcXJezPbc4nrCV9tYrb9S9u+6RlsHxDd94uCHkhl7qV
+         q/cJ2R8E2ANuM0FRppBCPwru6WOkURnVYnKzX7Hs2mcKAeGW3w4as5hdQrE5HH+XLoTr
+         vGnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=22hufaH3Q5GijUkof2n1pKMQKsh43fPBzC3gxcBif9M=;
-        b=c0yQGYujE0aMyjvfFzsAjnDubXOdIQCRB85oLeLh5wcIWwVx2B4DUjZ5TPpdh3/2mj
-         FynqlM82Z3/f3D/6MDYe7jx6zgNJ3/IKHlNI2AaoibTFHhENjJ+MNbD/I5HvaXj/d0/u
-         4MI/7e62F0LnHte60njHsEmP/Lgsn5uSrdFOCmpL9tMN2rN0EnLaNIiKrwEJflW5gSSB
-         meCW1ldUVVBwW3EPiTt0DalG0/1nlpl+pX4SpfMprq2gHHt3cWZuMY+tMc4omaGjZdSu
-         rZX2+/W6vMqubjHtxN1kUZl9WziaRkV9rrW2xxQ06AKbnwe6Ok5+8K5se6jjY37BW4sU
-         uWuw==
-X-Gm-Message-State: APjAAAXdrHCpIuO1rn8tZiPrUIgsiOah3cQqSaEO5fgzsXm0/Vbcq3qw
-        8mg/3YkIXkosR6rxtMJGIz4+ld/5oqMcu/5dswM=
-X-Google-Smtp-Source: APXvYqxvgj6ZW9rKAvsmv5sC2dSDN1uEvfTtZl+Q3CGyV2RW/OLl6vkiaYubj30yO+nkm9RMk4pvHb+Ekj+UeNsto3Y=
-X-Received: by 2002:a2e:9284:: with SMTP id d4mr21718777ljh.26.1559747986951;
- Wed, 05 Jun 2019 08:19:46 -0700 (PDT)
+        bh=73MKzC4eufncyXFtj8U83qgAHAhmUvAHte32wW78vmw=;
+        b=rGS+6enUn/8ASRkQY7sTiDMFEsbdvL1FoWVW4GcRe99MAWTzGIglXqbjiajBhI4VQ9
+         lRb5BZkxQb3WJzUDquT3g3M0Hc8IwkIsAGxkAIjnGRRv2ALVlV+D6UOw1Sg6g3+fkq0a
+         MDxPkFeuhHqR2fPMWKoZG9nXOXOFdGEjlrrQ5MlfxCr7/OgCHjIqQLEUyPZpgxDhDrij
+         IDZffAmtxPiNuV4ntngVzCh74hiQrG7jH5oRC1Qq9DM7+53klaZa6mTiEwaiEdWPC9Rm
+         fXd7EmZTGnLhNqAIww82/Oo8zrGDV4v/3Wx9DBmWUx2q6+1xZzbYV6EuGpN5tCU1gPd8
+         GyyA==
+X-Gm-Message-State: APjAAAXdwv5jg+a5E+ozcCFi9RNlvundfx+2YrEKNTqiDgbuBkdqhVUN
+        uZNwqbOAVD+CRUuD+jeco4NyK/hUiDDJi13g6Xc=
+X-Google-Smtp-Source: APXvYqwG8Cw5ekYUpbTPhxvYYmYC7pjq7c/owRl1TZ7nz1kgesZgYvlQFPHKCjDQkm/UNmlGYywIavqEowzngZ+kmgM=
+X-Received: by 2002:a19:5044:: with SMTP id z4mr19882205lfj.80.1559748016651;
+ Wed, 05 Jun 2019 08:20:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190601070718.26971-1-pbrobinson@gmail.com> <20190601070718.26971-3-pbrobinson@gmail.com>
-In-Reply-To: <20190601070718.26971-3-pbrobinson@gmail.com>
+References: <20190601070718.26971-1-pbrobinson@gmail.com> <20190601070718.26971-4-pbrobinson@gmail.com>
+In-Reply-To: <20190601070718.26971-4-pbrobinson@gmail.com>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 5 Jun 2019 12:19:38 -0300
-Message-ID: <CAOMZO5AtsCBdxD_O_ke8hEZMx8Mzhj1V1T5XZ0RkSw+y7+VG0g@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ARM: dts: imx6sx-udoo-neo: enable i2c-2 and i2c-4 for
- onboard sensors
+Date:   Wed, 5 Jun 2019 12:20:07 -0300
+Message-ID: <CAOMZO5C7gZ1RR8DHKsJUTTZ2iCZGUa7N3KooVFjsAvnytX7EnQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: imx6sx-udoo-neo: add bluetooth config to uart3
 To:     Peter Robinson <pbrobinson@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -65,11 +64,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sat, Jun 1, 2019 at 4:07 AM Peter Robinson <pbrobinson@gmail.com> wrote:
 >
-> The i2c2 bus has a external plug which enables the easy connection of external
-> "bricks" with sensors of various kinds, while i2c4 on the Extended/Full boards
-> has a pair of on board motion sensors, accelerometer and magnetometer on one chip
-> and gyroscope on another so it makes sense to enable these i2c buses for use.
-> Tested on UDOO Neo Full.
+> This updates the WL1831 bluetooth to use the serial serdev driver
+> interface.
 >
 > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 
