@@ -2,69 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C792635AB5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 12:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6102B35ACC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727106AbfFEK4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 06:56:20 -0400
-Received: from mout.kundenserver.de ([217.72.192.73]:51269 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726502AbfFEK4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 06:56:20 -0400
-Received: from [192.168.1.110] ([77.2.1.21]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1M5wTt-1hVQFd3zoZ-007V9O for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019
- 12:56:19 +0200
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From:   "Enrico Weigelt, metux IT consult" <info@metux.net>
-Subject: Is this an open list ?
-Message-ID: <f200bcf9-2c04-f214-144e-775bc672faef@metux.net>
-Date:   Wed, 5 Jun 2019 10:56:18 +0000
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+        id S1727126AbfFELCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 07:02:13 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:27292 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726502AbfFELCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:02:13 -0400
+X-UUID: 62358f7f558746279a4e7c9afa609bd4-20190605
+X-UUID: 62358f7f558746279a4e7c9afa609bd4-20190605
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1997192840; Wed, 05 Jun 2019 19:01:57 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 5 Jun
+ 2019 19:01:55 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 5 Jun 2019 19:01:55 +0800
+Message-ID: <1559732515.8487.106.camel@mhfsdcap03>
+Subject: Re: [PATCH v2] USB: move usb debugfs directory creation to the usb
+ common core
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 5 Jun 2019 19:01:55 +0800
+In-Reply-To: <20190605092816.GA23758@kroah.com>
+References: <20190605092816.GA23758@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:sK8RHQ6SIWWRz45lO4s8Lmx2/ajy6zhP6+3qxVHvOXbWw4VGWlR
- dFSr/7w3x/gu8nyl/MFiCjlnXjyZrY231JnoIFILHqIxYoTg1UJg4isbEP33DsXOCO9Xeo+
- 7i9hZi5Kt7JNtYetyo4LTDrs3++rNh7e+61najuwXX0fmRIYVSLuylxK4oVGNiqdp7TMluH
- kqi3IFtsvyCnpgPRV97oA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:grJnnkrnd5Y=:zg/6IccKHzVL90Pig64abX
- 6wjrrlSeRFutBhmuPtkyrAazl3E8tR1PxPCEl1sTMwIGrv/WpT0uCu29irb4cNPQw+bFx3cQN
- pDTfa9aW6/SO9wzF4kTOMLUAA5GW/MA95d2NMsEIrD6R/Iu+CLKzaUw1MhdL2SYWZooa3eNFm
- uC3nmAqc14j0yybCO6D6R2CHNr/7k80PFuCZEhK6q+SyBDsNrVwwbx1smAOVCXhj0OzF+e6uV
- SroLkH3UHHUB7ZlJVGHznBNYOacA+JdZI6ZsLHNsY98jrksRvezlRYPepXcov3MixM0lmPxLz
- Jer3hJ4IdrUzwNoTDrMGXChnVZVVuSrGdCYiqxRUzYg2GXiwzR1xDSM6rJCd433r7IG8VHCs8
- vy/ZReCsQA2QuIjkWj+PreFRme1w2O/Q2f1mTqP0XGPIHdxgxUzzDBm32X9S1jgfprli9pnOY
- WWAS/G0pQeQdLLRS+YtACBjfNP9IwQ98FK61tmOwRZem03eu6hGKGZJ9jyzEYEVsHtGYJZNtW
- L1mwEnh+chfM+MDf+bw5oYokfftR90PN1qHt5zSe3ahbqbVpSI+jP6FtEcFNHM1Zkcm35kQjp
- oGbLkWoiHOZT4e0QES2JIdvOKDdMVr/yq3M20TE2xwIo1xQmngE2SMDdlStzWylyno1OGfybO
- f9LW7lKd2UR53pNuHQ0TrnJPX4WR0PQqow2fHrskIqoHVqoVrOb9NtjjgO/Zu6WJ29FhDfxLi
- SjSiu0ESjgbykMuyk9JVFdbwG1GPkT/Goc9LJQeJPOQsR2dCmvqrqQ0fS1s=
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi folks,
+Hi Greg,
+On Wed, 2019-06-05 at 11:28 +0200, Greg Kroah-Hartman wrote:
+> The USB gadget subsystem wants to use the USB debugfs root directory, so
+> move it to the common "core" USB code so that it is properly initialized
+> and removed as needed.
+> 
+> In order to properly do this, we need to load the common code before the
+> usb core code, when everything is linked into the kernel, so reorder the
+> link order of the code.
+> 
+> Also as the usb common code has the possibility of the led trigger logic
+> to be merged into it, handle the build option properly by only having
+> one module init/exit function and have the common code initialize the
+> led trigger if needed.
+> 
+> Reported-by: From: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Cc: Felipe Balbi <felipe.balbi@linux.intel.com>
+> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> ---
+> 
+> Chunfeng, can you test this version to verify it works for you when
+> building the code into the kernel?
+> 
+> v2: handle led common code link error reported by kbuild
+>     handle subsys_initcall issue pointed out by Chunfeng
+> 
+>  drivers/usb/Makefile        |  3 +--
+>  drivers/usb/common/common.c | 21 +++++++++++++++++++++
+>  drivers/usb/common/common.h | 14 ++++++++++++++
+>  drivers/usb/common/led.c    |  9 +++------
+>  drivers/usb/core/usb.c      | 10 ++++------
+>  5 files changed, 43 insertions(+), 14 deletions(-)
+>  create mode 100644 drivers/usb/common/common.h
+> 
+> diff --git a/drivers/usb/Makefile b/drivers/usb/Makefile
+> index 7d1b8c82b208..ecc2de1ffaae 100644
+> --- a/drivers/usb/Makefile
+> +++ b/drivers/usb/Makefile
+> @@ -5,6 +5,7 @@
+>  
+>  # Object files in subdirectories
+>  
+> +obj-$(CONFIG_USB_COMMON)	+= common/
+>  obj-$(CONFIG_USB)		+= core/
+>  obj-$(CONFIG_USB_SUPPORT)	+= phy/
+>  
+> @@ -60,8 +61,6 @@ obj-$(CONFIG_USB_CHIPIDEA)	+= chipidea/
+>  obj-$(CONFIG_USB_RENESAS_USBHS)	+= renesas_usbhs/
+>  obj-$(CONFIG_USB_GADGET)	+= gadget/
+>  
+> -obj-$(CONFIG_USB_COMMON)	+= common/
+> -
+>  obj-$(CONFIG_USBIP_CORE)	+= usbip/
+>  
+>  obj-$(CONFIG_TYPEC)		+= typec/
+> diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
+> index 18f5dcf58b0d..84a4423aaddf 100644
+> --- a/drivers/usb/common/common.c
+> +++ b/drivers/usb/common/common.c
+> @@ -15,6 +15,8 @@
+>  #include <linux/usb/of.h>
+>  #include <linux/usb/otg.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/debugfs.h>
+> +#include "common.h"
+>  
+>  static const char *const ep_type_names[] = {
+>  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
+> @@ -291,4 +293,23 @@ struct device *usb_of_get_companion_dev(struct device *dev)
+>  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
+>  #endif
+>  
+> +struct dentry *usb_debug_root;
+> +EXPORT_SYMBOL_GPL(usb_debug_root);
+> +
+> +static int usb_common_init(void)
+> +{
+> +	usb_debug_root = debugfs_create_dir("usb", NULL);
+> +	ledtrig_usb_init();
+> +	return 0;
+> +}
+> +
+> +static void usb_common_exit(void)
+> +{
+> +	ledtrig_usb_exit();
+> +	debugfs_remove_recursive(usb_debug_root);
+> +}
+> +
+When enable CONFIG_LED_TRIGGER, there is a warning
+
+ MODPOST vmlinux.o
+WARNING: vmlinux.o(.text+0x68e300): Section mismatch in reference from
+the function usb_common_init() to the
+function .init.text:ledtrig_usb_init()
+The function usb_common_init() references
+the function __init ledtrig_usb_init().
+This is often because usb_common_init lacks a __init
+annotation or the annotation of ledtrig_usb_init is wrong.
+
+WARNING: vmlinux.o(.text+0x68e318): Section mismatch in reference from
+the function usb_common_exit() to the
+function .exit.text:ledtrig_usb_exit()
+The function usb_common_exit() references a function in an exit section.
+Often the function ledtrig_usb_exit() has valid usage outside the exit
+section
+and the fix is to remove the __exit annotation of ledtrig_usb_exit.
+
+seems need add __init and __exit for usb_common_init/exit
+
+> +subsys_initcall(usb_common_init);
+> +module_exit(usb_common_exit);
+> +
+>  MODULE_LICENSE("GPL");
+> diff --git a/drivers/usb/common/common.h b/drivers/usb/common/common.h
+> new file mode 100644
+> index 000000000000..424a91316a4b
+> --- /dev/null
+> +++ b/drivers/usb/common/common.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +
+> +#ifndef __LINUX_USB_COMMON_H
+> +#define __LINUX_USB_COMMON_H
+> +
+> +#if defined(CONFIG_USB_LED_TRIG)
+> +void ledtrig_usb_init(void);
+> +void ledtrig_usb_exit(void);
+> +#else
+> +static inline void ledtrig_usb_init(void) { }
+> +static inline void ledtrig_usb_exit(void) { }
+> +#endif
+> +
+> +#endif	/* __LINUX_USB_COMMON_H */
+> diff --git a/drivers/usb/common/led.c b/drivers/usb/common/led.c
+> index 7bd81166b77d..0865dd44a80a 100644
+> --- a/drivers/usb/common/led.c
+> +++ b/drivers/usb/common/led.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/init.h>
+>  #include <linux/leds.h>
+>  #include <linux/usb.h>
+> +#include "common.h"
+>  
+>  #define BLINK_DELAY 30
+>  
+> @@ -36,18 +37,14 @@ void usb_led_activity(enum usb_led_event ev)
+>  EXPORT_SYMBOL_GPL(usb_led_activity);
+>  
+> 
+> -static int __init ledtrig_usb_init(void)
+> +void __init ledtrig_usb_init(void)
+>  {
+>  	led_trigger_register_simple("usb-gadget", &ledtrig_usb_gadget);
+>  	led_trigger_register_simple("usb-host", &ledtrig_usb_host);
+> -	return 0;
+>  }
+>  
+> -static void __exit ledtrig_usb_exit(void)
+> +void __exit ledtrig_usb_exit(void)
+>  {
+>  	led_trigger_unregister_simple(ledtrig_usb_gadget);
+>  	led_trigger_unregister_simple(ledtrig_usb_host);
+>  }
+> -
+> -module_init(ledtrig_usb_init);
+> -module_exit(ledtrig_usb_exit);
+> diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
+> index 7fcb9f782931..5a0df527a8ca 100644
+> --- a/drivers/usb/core/usb.c
+> +++ b/drivers/usb/core/usb.c
+> @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
+>  	.notifier_call = usb_bus_notify,
+>  };
+>  
+> -struct dentry *usb_debug_root;
+> -EXPORT_SYMBOL_GPL(usb_debug_root);
+> +static struct dentry *usb_devices_root;
+>  
+>  static void usb_debugfs_init(void)
+>  {
+> -	usb_debug_root = debugfs_create_dir("usb", NULL);
+> -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
+> -			    &usbfs_devices_fops);
+> +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
+> +					       NULL, &usbfs_devices_fops);
+>  }
+>  
+>  static void usb_debugfs_cleanup(void)
+>  {
+> -	debugfs_remove_recursive(usb_debug_root);
+> +	debugfs_remove(usb_devices_root);
+>  }
+>  
+>  /*
 
 
-I wonder whether this is an open list (also passes mails of non-
-subscribers). Background:
-
-Yesterday I've crossposted to this list, but the mail doesn't show up
-in the archives. (*1)
-
-Do need to resend ? (I'm subscribed now)
-
-
---mtx
-
-https://lkml.org/lkml/2019/6/4/691
-
--- 
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
