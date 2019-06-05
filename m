@@ -2,147 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7D2C36052
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D45736055
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:31:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728157AbfFEPb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 11:31:29 -0400
-Received: from smtp-fw-9101.amazon.com ([207.171.184.25]:27037 "EHLO
-        smtp-fw-9101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726829AbfFEPb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 11:31:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1559748688; x=1591284688;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SZDqMhXVHKpi6b60Mndyg6IqKyAEKB8xVLBf3wCGp48=;
-  b=YkmfipVk/32s1sMohbCiuDppYdTQGNJcnJ6ZJ2oKTSpWVduS0KcT6JaS
-   mapbUV9cV74y86HYBw6fHAfi0abYTU2GgBUIY3L27awUHbKy+oufVQUXS
-   lGPSo7jXd4/+ow8yGTurbI/vC8OZGoFzEpdgp9afyDDUnMnHJTslGiKra
-   E=;
-X-IronPort-AV: E=Sophos;i="5.60,550,1549929600"; 
-   d="scan'208";a="808761647"
-Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1a-715bee71.us-east-1.amazon.com) ([10.47.22.38])
-  by smtp-border-fw-out-9101.sea19.amazon.com with ESMTP; 05 Jun 2019 15:31:25 +0000
-Received: from EX13MTAUWC001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1a-715bee71.us-east-1.amazon.com (Postfix) with ESMTPS id 60EDEA18D7;
-        Wed,  5 Jun 2019 15:31:21 +0000 (UTC)
-Received: from EX13D05UWC004.ant.amazon.com (10.43.162.223) by
- EX13MTAUWC001.ant.amazon.com (10.43.162.135) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 5 Jun 2019 15:31:20 +0000
-Received: from EX13MTAUWC001.ant.amazon.com (10.43.162.135) by
- EX13D05UWC004.ant.amazon.com (10.43.162.223) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 5 Jun 2019 15:31:20 +0000
-Received: from localhost (10.85.18.74) by mail-relay.amazon.com
- (10.43.162.232) with Microsoft SMTP Server id 15.0.1367.3 via Frontend
- Transport; Wed, 5 Jun 2019 15:31:20 +0000
-Date:   Wed, 5 Jun 2019 08:31:20 -0700
-From:   Eduardo Valentin <eduval@amazon.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Eduardo Valentin <eduval@amazon.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Brendan Higgins <brendanhiggins@google.com>,
+        id S1728339AbfFEPbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 11:31:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48464 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726829AbfFEPbo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 11:31:44 -0400
+Received: from [192.168.1.31] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7FBA520693;
+        Wed,  5 Jun 2019 15:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559748703;
+        bh=dtocFJggJ4WvufOlMJlL/RsOOsd6BkC+t7/9mKATkWk=;
+        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
+        b=EuyhSUeG9/7FqrfVtpLtOS3rcYET1jXkNUQXrRAwvie1nYSfAjOfQHSvDzsaJ7DlI
+         tlXDegBEnjDz/h1Xqr+M6xLdBxTFrqJZ70sOu5UQjN002EM0F546WX9GLuRC7b8q1n
+         IXqzLR74Q5GpA82dT7gpqHygiMNSB1E+uewqiV4E=
+Subject: Re: [PATCH 2/2] dmagengine: pl330: add code to get reset property
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive
- and queue messages
-Message-ID: <20190605153120.GC1534@u40b0340c692b58f6553c.ant.amazon.com>
-References: <20190531043347.4196-1-eduval@amazon.com>
- <20190531043347.4196-3-eduval@amazon.com>
- <20190604171611.GS9224@smile.fi.intel.com>
- <20190605032709.GA1534@u40b0340c692b58f6553c.ant.amazon.com>
- <CAHp75Vdaeprj0hFXukMqDi_dnK9-vA-O-OTRiGY6y3aGrNHUjQ@mail.gmail.com>
- <20190605143158.GB1534@u40b0340c692b58f6553c.ant.amazon.com>
- <CAHp75Vc2us0UDmGnzjF0vkzWM_9KqRa0AZKnRsUYmFRTsgwEyg@mail.gmail.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20190524002847.30961-1-dinguyen@kernel.org>
+ <20190524002847.30961-2-dinguyen@kernel.org>
+ <20190604121424.GW15118@vkoul-mobl>
+ <1dd97825-f6a2-7a1b-33ef-e28e00cc8506@kernel.org>
+ <CAMuHMdV+_DzS+LD720BeAn05RzYGO9rS51-ucicP=8D0wz9Psg@mail.gmail.com>
+ <00841780-ad68-ba8d-bdf0-d3f78fa42c98@kernel.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <55cc6016-f297-539d-df08-777903b79005@kernel.org>
+Date:   Wed, 5 Jun 2019 10:31:41 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vc2us0UDmGnzjF0vkzWM_9KqRa0AZKnRsUYmFRTsgwEyg@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <00841780-ad68-ba8d-bdf0-d3f78fa42c98@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 06:20:37PM +0300, Andy Shevchenko wrote:
-> On Wed, Jun 5, 2019 at 5:32 PM Eduardo Valentin <eduval@amazon.com> wrote:
-> > On Wed, Jun 05, 2019 at 11:25:39AM +0300, Andy Shevchenko wrote:
-> > > On Wed, Jun 5, 2019 at 6:30 AM Eduardo Valentin <eduval@amazon.com> wrote:
+Hi Geert,
+
+On 6/5/19 9:41 AM, Dinh Nguyen wrote:
+> Hi Geert,
 > 
-> > Well, yes, but the point is you would be switching from a simple AND (&) operation
-> > to a division...
-> >
-> > I am keeping the power of 2 dep so that we can keep this with a simple &.
+> On 6/4/19 11:31 AM, Geert Uytterhoeven wrote:
+>> Hi Dinh,
+>>
+>> On Tue, Jun 4, 2019 at 4:21 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
+>>> On 6/4/19 7:14 AM, Vinod Koul wrote:
+>>>> On 23-05-19, 19:28, Dinh Nguyen wrote:
+>>>>> The DMA controller on some SoCs can be held in reset, and thus requires
+>>>>> the reset signal(s) to deasserted. Most SoCs will have just one reset
+>>>>> signal, but there are others, i.e. Arria10/Stratix10 will have an
+>>>>> additional reset signal, referred to as the OCP.
+>>>>>
+>>>>> Add code to get the reset property from the device tree for deassert and
+>>>>> assert.
+>>>>>
+>>>>> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+>>>>> ---
+>>>>>  drivers/dma/pl330.c | 38 ++++++++++++++++++++++++++++++++++++++
+>>>>>  1 file changed, 38 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
+>>>>> index 6e6837214210..6018c43e785d 100644
+>>>>> --- a/drivers/dma/pl330.c
+>>>>> +++ b/drivers/dma/pl330.c
+>>>>> @@ -29,6 +29,7 @@
+>>>>>  #include <linux/err.h>
+>>>>>  #include <linux/pm_runtime.h>
+>>>>>  #include <linux/bug.h>
+>>>>> +#include <linux/reset.h>
+>>>>>
+>>>>>  #include "dmaengine.h"
+>>>>>  #define PL330_MAX_CHAN              8
+>>>>> @@ -500,6 +501,9 @@ struct pl330_dmac {
+>>>>>      unsigned int num_peripherals;
+>>>>>      struct dma_pl330_chan *peripherals; /* keep at end */
+>>>>>      int quirks;
+>>>>> +
+>>>>> +    struct reset_control    *rstc;
+>>>>> +    struct reset_control    *rstc_ocp;
+>>>>>  };
+>>>>>
+>>>>>  static struct pl330_of_quirks {
+>>>>> @@ -3028,6 +3032,30 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
+>>>>>
+>>>>>      amba_set_drvdata(adev, pl330);
+>>>>>
+>>>>> +    pl330->rstc = devm_reset_control_get_optional(&adev->dev, "dma");
+>>>>> +    if (IS_ERR(pl330->rstc)) {
+>>>>> +            dev_err(&adev->dev, "No reset controller specified.\n");
+>>>>
+>>>> Wasnt this optional??
+>>>
+>>> Yes, this is optional. The call devm_reset_control_get_optional() will
+>>> just return NULL if the reset property is not there, but an error
+>>> pointer if something really went wrong. Thus, I'm using IS_ERR() for the
+>>> error checking.
+>>
+>> So the error message is incorrect, as this is a real error condition?
+>>
 > 
-> Works for me.
-> 
-> > > > > > +           .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
-> > > > >
-> > > > > Wouldn't compiler warn you due to unused data?
-> > > > > Perhaps drop of_match_ptr() for good...
-> > > >
-> > > > Not sure what you meant here. I dont see any compiler warning.
-> > > > Also, of_match_ptr seams to be well spread in the kernel.
-> > >
-> > > If this will be compiled with CONFIG_OF=n...
-> >
-> > I see.. I obviously did not test with that config..
-> >
-> > > Though I didn't check all dependencies to see if it even possible. In
-> > > any case of_match_ptr() is redundant in both cases here.
-> > > Either you need to protect i2c_slave_mqueue_of_match with #ifdef
-> > > CONFIG_OF, or drop the macro use.
-> >
-> > I will wrap it into CONFIG_OF..
-> 
-> Would be this expected to work in the case of CONFIG_OF=n?
-> If no, why to introduce ugly #ifdef:s and additional macros?
+> Yes, you're right! Will correct in V2.
 
-I do hate those too...
+Looking at this again, I think the error message is correct. The
+optional call will return NULL if the resets property is not specified,
+and will return an error pointer if the reset propert is specified, but
+the pointer to the reset controller is not found.
 
-> Wouldn't be better to have
->   depends on OF || COMPILE_TEST
+So I think the error message is correct.
 
-Well, technically, the original author had a case for using this
-without CONFIG_OF. That is why I did not force here to be a strong
-dependency on CONFIG_OF. So, I guess in this case the driver will
-work properly in both cases if we:
-
-+#ifdef CONFIG_OF
-+static const struct of_device_id i2c_slave_mqueue_of_match[] = {
-+       {
-+               .compatible = "i2c-slave-mqueue",
-+       },
-+       { /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, i2c_slave_mqueue_of_match);
-+#endif
-+
-+static struct i2c_driver i2c_slave_mqueue_driver = {
-+       .driver = {
-+               .name   = "i2c-slave-mqueue",
-+               .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
-+       },
-+       .probe          = i2c_slave_mqueue_probe,
-+       .remove         = i2c_slave_mqueue_remove,
-+       .id_table       = i2c_slave_mqueue_id,
-+};
-
-The above is a well stablish pattern across the drivers.
-
-> ?
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-
--- 
-All the best,
-Eduardo Valentin
+Dinh
