@@ -2,158 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D755535F6F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 16:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0170435F9F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 16:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728244AbfFEOlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 10:41:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47932 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726442AbfFEOlK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 10:41:10 -0400
-Received: from [192.168.1.31] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 033F220693;
-        Wed,  5 Jun 2019 14:41:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559745668;
-        bh=KTZdsmYGDDPFKN+zESa0rwQkKlJrh/trUHIuCjFhpb4=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ApPfFc3vbmlGNieHraqpitefi3/VS7yNN6KmwJGIXnX2av7s2ZUye2/wDx9jGGUYl
-         f5f/WjubIYzf4vN/nCoYj3q6I3kpf64EndAS8iYwURjZiAoCQuxU5xUwTs0UaHwzrb
-         /j2/Zc0Ycdwn4LunjmZp+dVWdz/mhwAlSB1vm2BQ=
-Subject: Re: [PATCH 2/2] dmagengine: pl330: add code to get reset property
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20190524002847.30961-1-dinguyen@kernel.org>
- <20190524002847.30961-2-dinguyen@kernel.org>
- <20190604121424.GW15118@vkoul-mobl>
- <1dd97825-f6a2-7a1b-33ef-e28e00cc8506@kernel.org>
- <CAMuHMdV+_DzS+LD720BeAn05RzYGO9rS51-ucicP=8D0wz9Psg@mail.gmail.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <00841780-ad68-ba8d-bdf0-d3f78fa42c98@kernel.org>
-Date:   Wed, 5 Jun 2019 09:41:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        id S1728358AbfFEOv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 10:51:26 -0400
+Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:26595 "EHLO
+        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728306AbfFEOv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 10:51:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559746285; x=1591282285;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=IZ8RZ0C0aRcyyn2nmwffWRB8xOsqFtkZCpJc5LHuhpo=;
+  b=NrxzvsRDnExhY5qBth68RtXXkAbqc8gCLe1sIV3LwRM8qblLYLVCXgi3
+   +EkOkS40O61q86DZ03lZ6vXrfNUIAFxo8PPxKaQthjGnYJtwntfmIHoeN
+   ubYPs9lfIcg1bHCdxSMGDP0vzRpBil0Jfp4K5g/h2WdZZTgwRTLpDJ2FW
+   w=;
+X-IronPort-AV: E=Sophos;i="5.60,550,1549929600"; 
+   d="scan'208";a="769112211"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-55156cd4.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 05 Jun 2019 14:51:23 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-2b-55156cd4.us-west-2.amazon.com (Postfix) with ESMTPS id 29AC7A1CF4;
+        Wed,  5 Jun 2019 14:51:22 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 5 Jun 2019 14:51:21 +0000
+Received: from [10.125.238.52] (10.43.160.65) by EX13D01EUB001.ant.amazon.com
+ (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Wed, 5 Jun
+ 2019 14:51:12 +0000
+Subject: Re: [PATCH v2 2/2] irqchip: al-fic: Introduce Amazon's Annapurna Labs
+ Fabric Interrupt Controller Driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     <nicolas.ferre@microchip.com>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <mark.rutland@arm.com>,
+        <mchehab+samsung@kernel.org>, <robh+dt@kernel.org>,
+        <davem@davemloft.net>, <shawn.lin@rock-chips.com>,
+        <tglx@linutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <jonnyc@amazon.com>,
+        <hhhawa@amazon.com>, <ronenk@amazon.com>, <hanochu@amazon.com>,
+        <barakw@amazon.com>, <talel@amazon.com>
+References: <1559731921-14023-1-git-send-email-talel@amazon.com>
+ <1559731921-14023-3-git-send-email-talel@amazon.com>
+ <20190605125055.GA3184@kroah.com>
+From:   "Shenhar, Talel" <talel@amazon.com>
+Message-ID: <fb3f5f4d-26f4-8729-7370-f206369ab2b7@amazon.com>
+Date:   Wed, 5 Jun 2019 17:51:08 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdV+_DzS+LD720BeAn05RzYGO9rS51-ucicP=8D0wz9Psg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <20190605125055.GA3184@kroah.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.43.160.65]
+X-ClientProxiedBy: EX13D13UWA004.ant.amazon.com (10.43.160.251) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-On 6/4/19 11:31 AM, Geert Uytterhoeven wrote:
-> Hi Dinh,
-> 
-> On Tue, Jun 4, 2019 at 4:21 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
->> On 6/4/19 7:14 AM, Vinod Koul wrote:
->>> On 23-05-19, 19:28, Dinh Nguyen wrote:
->>>> The DMA controller on some SoCs can be held in reset, and thus requires
->>>> the reset signal(s) to deasserted. Most SoCs will have just one reset
->>>> signal, but there are others, i.e. Arria10/Stratix10 will have an
->>>> additional reset signal, referred to as the OCP.
->>>>
->>>> Add code to get the reset property from the device tree for deassert and
->>>> assert.
->>>>
->>>> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
->>>> ---
->>>>  drivers/dma/pl330.c | 38 ++++++++++++++++++++++++++++++++++++++
->>>>  1 file changed, 38 insertions(+)
->>>>
->>>> diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
->>>> index 6e6837214210..6018c43e785d 100644
->>>> --- a/drivers/dma/pl330.c
->>>> +++ b/drivers/dma/pl330.c
->>>> @@ -29,6 +29,7 @@
->>>>  #include <linux/err.h>
->>>>  #include <linux/pm_runtime.h>
->>>>  #include <linux/bug.h>
->>>> +#include <linux/reset.h>
->>>>
->>>>  #include "dmaengine.h"
->>>>  #define PL330_MAX_CHAN              8
->>>> @@ -500,6 +501,9 @@ struct pl330_dmac {
->>>>      unsigned int num_peripherals;
->>>>      struct dma_pl330_chan *peripherals; /* keep at end */
->>>>      int quirks;
->>>> +
->>>> +    struct reset_control    *rstc;
->>>> +    struct reset_control    *rstc_ocp;
->>>>  };
->>>>
->>>>  static struct pl330_of_quirks {
->>>> @@ -3028,6 +3032,30 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
->>>>
->>>>      amba_set_drvdata(adev, pl330);
->>>>
->>>> +    pl330->rstc = devm_reset_control_get_optional(&adev->dev, "dma");
->>>> +    if (IS_ERR(pl330->rstc)) {
->>>> +            dev_err(&adev->dev, "No reset controller specified.\n");
->>>
->>> Wasnt this optional??
->>
->> Yes, this is optional. The call devm_reset_control_get_optional() will
->> just return NULL if the reset property is not there, but an error
->> pointer if something really went wrong. Thus, I'm using IS_ERR() for the
->> error checking.
-> 
-> So the error message is incorrect, as this is a real error condition?
-> 
+On 6/5/2019 3:50 PM, Greg KH wrote:
+> On Wed, Jun 05, 2019 at 01:52:01PM +0300, Talel Shenhar wrote:
+>> --- /dev/null
+>> +++ b/drivers/irqchip/irq-al-fic.c
+>> @@ -0,0 +1,289 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/**
+> No need for kernel-doc format style here.
+done
+>
+>> + * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+> "or its affiliates"?  You know the answer to this, don't keep us in
+> suspense.  Put the proper copyright holder here please, otherwise this
+> is totally useless.
+>
+> Well, copyright notices are technically useless anyway, but lawyers like
+> to cargo-cult with the best of them, so it should be correct at the
+> least.
 
-Yes, you're right! Will correct in V2.
+This is the format we were asked to use and have been using.
 
-Dinh
+I am pinging them with your comment but I am likely not to get immediate 
+response so I'm publishing v3 without changing the "affiliates" for now.
+
+>
+> thanks,
+>
+> greg k-h
