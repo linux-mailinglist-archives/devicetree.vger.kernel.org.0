@@ -2,127 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C0F35680
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C7535689
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:01:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726407AbfFEGAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 02:00:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726086AbfFEGAW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 02:00:22 -0400
-Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ABB3F2075B;
-        Wed,  5 Jun 2019 06:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559714421;
-        bh=su8k6bM1KzrD1rvDqDrPDiZKbk24uNLXNFln/Ozpo1M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JXHukabfHuZjrkXdPv62iMvyXZv1uWJ520l8/EWOms4QMQ2e/n7ostXn3475SbRLP
-         SSCxjYxJGlvRXmj5oKOkx9dRu/BPE7kYHnUhCASi7bXfYV213sJXcLXZaWX9jCTbMP
-         btHR7IFw0S5FmRIBmPdSkwdAT+hL73VDPMDHUb/g=
-Date:   Wed, 5 Jun 2019 14:00:02 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
+        id S1726649AbfFEGBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 02:01:11 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35019 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726593AbfFEGBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:01:10 -0400
+Received: by mail-pg1-f194.google.com with SMTP id s27so6178863pgl.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2019 23:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XhgXHLObV5Vbqo0Ol1dr/K9C6PfbnIr6P+CU31xn0uk=;
+        b=JMDtt3o4OpRyNKqkIsA2AAl8veHAMN2+KlqcyzaxHwpNI6+UJ79YrJx/oC0KuKGwN4
+         uLEguOKwpu/0TSXjxpVrV9ohcTpmW1vkIcHcIVFgf/wP1efqPouTguYWm4hBw/s9V3XE
+         aw5GVUVx5BjtFgTryP1pejwqui5+CG9DuIUr2Ev5/THCjVKRvJBSeEgLJSQ/KuXmabKK
+         8imeg+KY2S7LywceHrI7pk9u1toSQeENkXq3lHGZjPFcoLpEOYr1s0TZGtu8CjO/sgnV
+         mzVHrj+TjeVEHvdU1/i3c4QDrjusE5znnwztyeYOiLl5Loaz8upXQeqBR5ZaH4KbdnXP
+         iplA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XhgXHLObV5Vbqo0Ol1dr/K9C6PfbnIr6P+CU31xn0uk=;
+        b=udGqbsz7tq6T0iIoA1GEHdE20uCIv1y5piRaUzrzKiqgaTflQ1UNV6VeJ3qnk6x1kh
+         sw6muIUCE1n++nmyFRpgCWChQvinWnpxKeGnkCMOvKyjne7xKCjW8CtyS7O54y/3h3wS
+         y+zebVxDxzsNS5lhEuqXWRRn/7GjG8mWo43TmyEuF79V2BWHa3oDPrPz7FUqJ1XhBS29
+         9Gsl8BTGBEKhtRo9nayc5sf05iDK6Blv7rV4GFW1dISG1mByn1suw6g0aAGT8fQ7Uiow
+         +NG/ZevI+pGfp5CrsezP0XFnKbbg3ikNBoHxVRGRFXSUSI8Z07Dx69kd3ovys3uxfSuW
+         akfw==
+X-Gm-Message-State: APjAAAV+pfm0E4vWYC7WQXTxk1jERNcdR5MzfCHv95Ke3hJJPi44rupz
+        asWuT29c4xGMNJCP7yANIcMN8A==
+X-Google-Smtp-Source: APXvYqxRBdu6ErpFV+5gKRxDXyTrGYM8duUS6m39Y3koDFw3q4yhtgHG0ERg3ih11MGWr8lRBc13xA==
+X-Received: by 2002:a17:90a:2ec9:: with SMTP id h9mr43058272pjs.130.1559714469980;
+        Tue, 04 Jun 2019 23:01:09 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id q22sm2332383pff.63.2019.06.04.23.01.08
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 04 Jun 2019 23:01:09 -0700 (PDT)
+Date:   Tue, 4 Jun 2019 23:01:54 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Avri Altman <Avri.Altman@wdc.com>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH RESEND V4 2/3] arm64: dts: imx8qxp: Move watchdog node
- into scu node
-Message-ID: <20190605060000.GA29853@dragon>
-References: <1557655528-12816-1-git-send-email-Anson.Huang@nxp.com>
- <1557655528-12816-2-git-send-email-Anson.Huang@nxp.com>
- <DB3PR0402MB39162F3811484D90546B4CC2F5150@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
+Subject: Re: [PATCH 0/3] (Qualcomm) UFS device reset support
+Message-ID: <20190605060154.GJ22737@tuxbook-pro>
+References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
+ <CANcMJZBmgWMZu7Y53Lnx_x3L2UpCmEbFRHVW0SFCXfW=Yw9uYg@mail.gmail.com>
+ <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DB3PR0402MB39162F3811484D90546B4CC2F5150@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 09:06:28AM +0000, Anson Huang wrote:
-> Hi, Shawn
-> 	The driver and binding doc are already reviewed and waiting for DT patch, will you help review this DT patch?
+On Tue 04 Jun 22:50 PDT 2019, Avri Altman wrote:
 
-I'm fine with it.  Should I just pick this patch up, or is there any
-dependency we need to handle?
+> Hi,
+> 
+> > 
+> > On Tue, Jun 4, 2019 at 12:22 AM Bjorn Andersson
+> > <bjorn.andersson@linaro.org> wrote:
+> > >
+> > > This series exposes the ufs_reset line as a gpio, adds support for ufshcd to
+> > > acquire and toggle this and then adds this to SDM845 MTP.
+> > >
+> > > Bjorn Andersson (3):
+> > >   pinctrl: qcom: sdm845: Expose ufs_reset as gpio
+> > >   scsi: ufs: Allow resetting the UFS device
+> > >   arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
+> > 
+> > Adding similar change as in sdm845-mtp to the not yet upstream
+> > blueline dts, I validated this allows my micron UFS pixel3 to boot.
+> > 
+> > Tested-by: John Stultz <john.stultz@linaro.org>
+> Maybe ufs_hba_variant_ops would be the proper place to add this?
+> 
 
-Shawn
+Are you saying that these memories only need a reset when they are
+paired with the Qualcomm host controller?
 
-> 
-> Thanks,
-> Anson
-> 
-> > -----Original Message-----
-> > From: Anson Huang
-> > Sent: Sunday, May 12, 2019 6:11 PM
-> > To: robh+dt@kernel.org; mark.rutland@arm.com; wim@linux-watchdog.org;
-> > linux@roeck-us.net; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > kernel@pengutronix.de; festevam@gmail.com; Aisheng Dong
-> > <aisheng.dong@nxp.com>; ulf.hansson@linaro.org; Daniel Baluta
-> > <daniel.baluta@nxp.com>; Peng Fan <peng.fan@nxp.com>;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> > watchdog@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > Cc: dl-linux-imx <linux-imx@nxp.com>
-> > Subject: [PATCH RESEND V4 2/3] arm64: dts: imx8qxp: Move watchdog node
-> > into scu node
-> > 
-> > i.MX system controller watchdog has pretimeout function which depends on
-> > i.MX SCU driver, so it should be a subnode of SCU.
-> > 
-> > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> > ---
-> > No change, just resend patch with correct encoding.
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 10 +++++-----
-> >  1 file changed, 5 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > index 0683ee2..b17c22e 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > @@ -149,6 +149,11 @@
-> >  		rtc: rtc {
-> >  			compatible = "fsl,imx8qxp-sc-rtc";
-> >  		};
-> > +
-> > +		watchdog {
-> > +			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
-> > +			timeout-sec = <60>;
-> > +		};
-> >  	};
-> > 
-> >  	timer {
-> > @@ -517,9 +522,4 @@
-> >  			power-domains = <&pd IMX_SC_R_GPIO_7>;
-> >  		};
-> >  	};
-> > -
-> > -	watchdog {
-> > -		compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
-> > -		timeout-sec = <60>;
-> > -	};
-> >  };
-> > --
-> > 2.7.4
-> 
+The way it's implemented it here is that the device-reset GPIO is
+optional and only if you specify it we'll toggle the reset. So if your
+board design has a UFS memory that requires a reset pulse during
+initialization you specify this, regardless of which vendor your SoC
+comes from.
+
+Regards,
+Bjorn
