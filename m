@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 609DC35BB9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0167F35B90
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 13:44:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727571AbfFELpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 07:45:11 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:7123 "EHLO
+        id S1727830AbfFELoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 07:44:03 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:61386 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727816AbfFELoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:44:04 -0400
-X-UUID: 0e95e89091ce4746a67411bab00b16fb-20190605
-X-UUID: 0e95e89091ce4746a67411bab00b16fb-20190605
+        with ESMTP id S1727812AbfFELoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 07:44:02 -0400
+X-UUID: d69711e99d064e749ae2c045e0c638e2-20190605
+X-UUID: d69711e99d064e749ae2c045e0c638e2-20190605
 Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
         (envelope-from <yongqiang.niu@mediatek.com>)
         (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 530520526; Wed, 05 Jun 2019 19:43:57 +0800
+        with ESMTP id 1321504457; Wed, 05 Jun 2019 19:43:57 +0800
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
  mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 5 Jun 2019 19:43:55 +0800
+ 15.0.1395.4; Wed, 5 Jun 2019 19:43:56 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 5 Jun 2019 19:43:55 +0800
+ Transport; Wed, 5 Jun 2019 19:43:56 +0800
 From:   <yongqiang.niu@mediatek.com>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
 CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
         <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v3, 22/27] drm/mediatek: distinguish ovl and ovl_2l by layer_nr
-Date:   Wed, 5 Jun 2019 19:43:01 +0800
-Message-ID: <1559734986-7379-23-git-send-email-yongqiang.niu@mediatek.com>
+Subject: [PATCH v3, 23/27] drm/mediatek: add connection from ovl0 to ovl_2l0
+Date:   Wed, 5 Jun 2019 19:43:02 +0800
+Message-ID: <1559734986-7379-24-git-send-email-yongqiang.niu@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
 References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
@@ -50,41 +50,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-distinguish ovl and ovl_2l by layer_nr when get comp
-id
+This patch add connection from ovl0 to ovl_2l0
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index b5a9907..63072d1 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -327,7 +327,12 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
- 	if (irq < 0)
- 		return irq;
- 
--	comp_id = mtk_ddp_comp_get_id(dev->of_node, MTK_DISP_OVL);
-+	priv->data = of_device_get_match_data(dev);
-+
-+	comp_id = mtk_ddp_comp_get_id(dev->of_node,
-+				      priv->data->layer_nr == 4 ?
-+				      MTK_DISP_OVL :
-+				      MTK_DISP_OVL_2L);
- 	if (comp_id < 0) {
- 		dev_err(dev, "Failed to identify by alias: %d\n", comp_id);
- 		return comp_id;
-@@ -340,8 +345,6 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
- 		return ret;
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+index 872c744..f980826 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+@@ -322,6 +322,9 @@ static unsigned int mtk_ddp_mout_en(const struct mtk_mmsys_reg_data *data,
+ 	} else if (cur == DDP_COMPONENT_OD1 && next == DDP_COMPONENT_RDMA1) {
+ 		*addr = DISP_REG_CONFIG_DISP_OD_MOUT_EN;
+ 		value = OD1_MOUT_EN_RDMA1;
++	} else if (cur == DDP_COMPONENT_OVL0 && next == DDP_COMPONENT_OVL_2L0) {
++		*addr = DISP_REG_OVL0_MOUT_EN(data);
++		value = OVL0_MOUT_EN_OVL0_2L;
+ 	} else {
+ 		value = 0;
  	}
- 
--	priv->data = of_device_get_match_data(dev);
--
- 	platform_set_drvdata(pdev, priv);
- 
- 	ret = devm_request_irq(dev, irq, mtk_disp_ovl_irq_handler,
 -- 
 1.8.1.1.dirty
 
