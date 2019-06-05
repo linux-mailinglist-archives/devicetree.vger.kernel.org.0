@@ -2,138 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F64360A9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 17:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73EB036112
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 18:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728601AbfFEP7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 11:59:06 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:36441 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728250AbfFEP7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 11:59:05 -0400
-Received: by mail-pg1-f195.google.com with SMTP id a3so5231288pgb.3;
-        Wed, 05 Jun 2019 08:59:05 -0700 (PDT)
+        id S1728698AbfFEQTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 12:19:44 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38672 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726670AbfFEQTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 12:19:44 -0400
+Received: by mail-wm1-f68.google.com with SMTP id t5so2930412wmh.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 09:19:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LNpmK93zAJJ5Un4fIjDsW9Sm00BMyg+B0/rMr5+eS3I=;
-        b=Z8V1Q9wNaBBgS8izidARY2/sgDSHaOj4/Czitv6F4qDQnhnb7sqjBRAaaXnFIP1iEk
-         TgQGWcMA0ELuDMVa8ssA3C0yT0Kxv2K9BEAbYX9ao1B8hJ1EQVo8c+4wZLMR7JqjfYi9
-         PHdLzxZrBLZTveZHgYpYcl4KJwgOJTCmL8YUFt8sytSx0t1xKYtxw5hrdQYFwauoGvOP
-         4vFRjOHeXu7t7pSXRcJsqxJjO92kdB58VlVC0lKCGgH7UNsFVKFCCeVhm2bt6+UFkY3A
-         tsGKM5RLX/Zcy3hpW91oMzGFVBhuxLkHmR1yrVew2tSiOi+At6lnfO1LOI6hjgv6F54I
-         WhQA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FURrmBtPVRyAAy8g93tFOkL8QmzrBrsRx5unPCnCVxE=;
+        b=SseLN+RKHqlHCwlhVbH/uFf39GJ4/B772xgbqgWlA+bsrY/pxiV8AnzicMZB2zXqGx
+         xTGte2Fhh41FvhClfRO4wVPDGaVya08ATNAHYCvlOAROynA0YhGLiCqDqUMDBobo0w/g
+         R4Nrq1Oz4oX33c7UpbI0CaZNKCkw4FBCoDNv5YKYPqia7TVw3sBRL3/C6scf3UsZa3NZ
+         bwX6x4EIvQGxQGbIL0pVC9HewQMOCoZJCwJ1ewpP4PudPYlA9ljCsQEyota7pdX2ttXu
+         ve3RxHFGjiqLjmRsgT69Ewsr1FDj+0J2eaJEd+aRr7XvU6vxu5M0XnnIdrjgd8Br0hLc
+         VAsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LNpmK93zAJJ5Un4fIjDsW9Sm00BMyg+B0/rMr5+eS3I=;
-        b=eGCN9jXnyhH13t9h7wtgmkrszusR/Vl5vyZe4RBx7vqJ6LxR2MnU/X6A5ej1a3r8V1
-         UhAu7dKbKm7Foed+KN8IeuOkVjXuusDjMb0Da2PhSXiP34z6WOQgsHmjebprWhaAjvg2
-         bTIFCliXvNzhjpnVypxPjcmlMGslOi83txyzLKJmPzJgFxdZmWRMn4vLQX5eAxeCVeCQ
-         /uBvhvWfjRL5hgMUzhp0E/Ge5iv+fHHy0g63vEGYMxox1x7Qd5Yap3JEFOKDq+15T/Kv
-         WNEesNqt+9iQm3yD75o012ZBpn/6P56l03Q6mmD60/xASrBNFK4Vx4SZZNqJQT6Qw7sO
-         RivQ==
-X-Gm-Message-State: APjAAAXqe9n+eK+/3pFLpqeHQ1/RB48xfFLJrK8zteQE5AjsBgxBHgAB
-        z0g/NrQ1K4Ik1gI7NuIiZjmbLtusu2Y+cLuL6GM=
-X-Google-Smtp-Source: APXvYqzrE24tcSHeSl0Iq6cMLIC9Q7zXjX4LH11vq0zHI8Mi3Q4o/Ftd6HoJo5XDcWPqWql761Gtdt2RKti3EFtuj8c=
-X-Received: by 2002:a63:fb05:: with SMTP id o5mr5560744pgh.203.1559750344896;
- Wed, 05 Jun 2019 08:59:04 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FURrmBtPVRyAAy8g93tFOkL8QmzrBrsRx5unPCnCVxE=;
+        b=XaMvYgYC30DgyAgFCrPSRzHPjnxo9+Al8thKjatvyTE3UBXSC0l5lD0HwtfHXo0FEK
+         H1flyfwr+GYGbj441hcy8NSHxUy0E7Kz8f0SCd3PlPLFjmlUtEzPvSPRva11jd0pAgH5
+         THD2WNuA/DtM2h2QiGxTEfq4+WP3As88ljYwA6HMNvDmGpHthInFqZ0P0feKwWX/17Gh
+         F30V8ow6fkNaCWOxHTTdeEzvfzw4A6mE8Am8bxGvOTMQBJNsGUUvKLaqEkjko39UFbGo
+         T03u0WzNXFBVahT3h6k4pCgxGdL3hQqocYTWe9LI9uTcbkRDNNCKyWQrM6r+SKYovHqV
+         O87g==
+X-Gm-Message-State: APjAAAWunpDfHeJ8UMAHvn9iRSRYgW77ZypbaCYQQz46yYwISUQu61V/
+        c0J9BWTOu1oGkcXE7nHq68RJ9Q==
+X-Google-Smtp-Source: APXvYqwS/C9H/KxNc5AnWQ2rCGqlv69V+zQm6eVa5CRXc95Potyfthi6p+68Zg15GRnDyt/gPSkFdA==
+X-Received: by 2002:a1c:750d:: with SMTP id o13mr10618690wmc.35.1559751580145;
+        Wed, 05 Jun 2019 09:19:40 -0700 (PDT)
+Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr. [85.68.183.99])
+        by smtp.gmail.com with ESMTPSA id 95sm40062336wrk.70.2019.06.05.09.19.39
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 05 Jun 2019 09:19:39 -0700 (PDT)
+From:   Maxime Jourdan <mjourdan@baylibre.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v8 0/3] Add Amlogic video decoder driver
+Date:   Wed,  5 Jun 2019 18:18:55 +0200
+Message-Id: <20190605161858.29372-1-mjourdan@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190531043347.4196-1-eduval@amazon.com> <20190531043347.4196-3-eduval@amazon.com>
- <20190604171611.GS9224@smile.fi.intel.com> <20190605032709.GA1534@u40b0340c692b58f6553c.ant.amazon.com>
- <CAHp75Vdaeprj0hFXukMqDi_dnK9-vA-O-OTRiGY6y3aGrNHUjQ@mail.gmail.com>
- <20190605143158.GB1534@u40b0340c692b58f6553c.ant.amazon.com>
- <CAHp75Vc2us0UDmGnzjF0vkzWM_9KqRa0AZKnRsUYmFRTsgwEyg@mail.gmail.com> <20190605153120.GC1534@u40b0340c692b58f6553c.ant.amazon.com>
-In-Reply-To: <20190605153120.GC1534@u40b0340c692b58f6553c.ant.amazon.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 5 Jun 2019 18:58:54 +0300
-Message-ID: <CAHp75VfPYC7xDfsGRZsSy8eV1xoMANsVmyuU_yF0kPG0fMtLCQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] i2c: slave-mqueue: add a slave backend to receive and
- queue messages
-To:     Eduardo Valentin <eduval@amazon.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 5, 2019 at 6:31 PM Eduardo Valentin <eduval@amazon.com> wrote:
-> On Wed, Jun 05, 2019 at 06:20:37PM +0300, Andy Shevchenko wrote:
-> > On Wed, Jun 5, 2019 at 5:32 PM Eduardo Valentin <eduval@amazon.com> wrote:
-> > > On Wed, Jun 05, 2019 at 11:25:39AM +0300, Andy Shevchenko wrote:
-> > > > On Wed, Jun 5, 2019 at 6:30 AM Eduardo Valentin <eduval@amazon.com> wrote:
+Hi everyone,
 
-> > > > > > > +           .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
-> > > > > >
-> > > > > > Wouldn't compiler warn you due to unused data?
-> > > > > > Perhaps drop of_match_ptr() for good...
-> > > > >
-> > > > > Not sure what you meant here. I dont see any compiler warning.
-> > > > > Also, of_match_ptr seams to be well spread in the kernel.
-> > > >
-> > > > If this will be compiled with CONFIG_OF=n...
-> > >
-> > > I see.. I obviously did not test with that config..
-> > >
-> > > > Though I didn't check all dependencies to see if it even possible. In
-> > > > any case of_match_ptr() is redundant in both cases here.
-> > > > Either you need to protect i2c_slave_mqueue_of_match with #ifdef
-> > > > CONFIG_OF, or drop the macro use.
-> > >
-> > > I will wrap it into CONFIG_OF..
-> >
-> > Would be this expected to work in the case of CONFIG_OF=n?
-> > If no, why to introduce ugly #ifdef:s and additional macros?
->
-> I do hate those too...
->
-> > Wouldn't be better to have
-> >   depends on OF || COMPILE_TEST
->
-> Well, technically, the original author had a case for using this
-> without CONFIG_OF. That is why I did not force here to be a strong
-> dependency on CONFIG_OF. So, I guess in this case the driver will
-> work properly in both cases if we:
->
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id i2c_slave_mqueue_of_match[] = {
-> +       {
-> +               .compatible = "i2c-slave-mqueue",
-> +       },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, i2c_slave_mqueue_of_match);
-> +#endif
-> +
-> +static struct i2c_driver i2c_slave_mqueue_driver = {
-> +       .driver = {
-> +               .name   = "i2c-slave-mqueue",
-> +               .of_match_table = of_match_ptr(i2c_slave_mqueue_of_match),
-> +       },
-> +       .probe          = i2c_slave_mqueue_probe,
-> +       .remove         = i2c_slave_mqueue_remove,
-> +       .id_table       = i2c_slave_mqueue_id,
-> +};
->
-> The above is a well stablish pattern across the drivers.
+[V7] The Driver was moved to staging until it can pass future
+specification & compliance tools.
 
-My point here that you may achieve the same by simple dropping of_match_ptr().
+[V6] Good news, the firmware situation is resolved. We have received a
+redistributable license from Amlogic and the firmwares have been merged
+in linux-firmware[5].
 
-P.S. Many of the drivers just old enough and not being simplified due
-to pointless churn there, but for new drivers we may avoid it.
+[V5] It's been a while since the last patch series regarding the Amlogic
+video decoder. Unfortunately, the firmware licensing situation is still
+on hold as we await communication from Amlogic. As such, we do not have
+the firmwares in linux-firmware yet.
+I decided to push the V5 anyway, as changes were starting to pile up.
+
+This patch series adds support for the Amlogic video decoder,
+as well as the corresponding dt bindings for GXBB/GXL/GXM chips.
+
+It features decoding for the following formats:
+- MPEG 1
+- MPEG 2
+
+The following formats will be added in future patches:
+- MJPEG
+- MPEG 4 (incl. Xvid, H.263)
+- H.264
+- HEVC (incl. 10-bit)
+- VP9 (incl. 10-bit)
+
+The code was made in such a way to allow easy inclusion of those formats
+in the future.
+
+The decoder is single instance.
+
+Files:
+ - vdec.c handles the V4L2 M2M logic
+ - esparser.c manages the hardware bitstream parser
+ - vdec_helpers.c provides helpers to DONE the dst buffers as well as
+ various common code used by the codecs
+ - vdec_1.c manages the VDEC_1 block of the vdec IP
+ - vdec_ctrls.c handles the V4L2 controls exposed by the driver
+ - codec_mpeg12.c enables decoding for MPEG 1/2.
+ - vdec_platform.c links codec units with vdec units
+ (e.g vdec_1 with codec_mpeg12) and lists all the available
+ src/dst formats and requirements (max width/height, etc.),
+ per compatible chip.
+
+It was tested primarily with ffmpeg's v4l2-m2m implementation. For instance:
+$ ffmpeg -c:v mpeg2_v4l2m2m -i sample_mpeg2.mkv -f rawvideo out.nv12
+
+The v4l2-compliance results are available below the patch diff.
+Tests start failing when v4l2-compliance tries to dequeue the
+V4L2_EVENT_SOURCE_CHANGE event, which is not supported for MPEG2 currently.
+
+Changes since v7 [7]:
+ - Removed the patch with V4L2_FMT_FLAG_FIXED_RESOLUTION from the serie.
+ It will be dealt in another manner in the near future.
+ - use the new v4l2_m2m_ioctl_try_decoder_cmd helper
+ - Rebased against media/master
+
+Changes since v6 [6]:
+ - Rebased against v5.2-rc2 (fixed build issue with missing interrupt include)
+ - Moved to staging - added TODO file
+ - Don't declare V4L2_CID_MIN_BUFFERS_FOR_CAPTURE as volatile. Use
+ v4l2_ctrl_s_ctrl() instead.
+ - Fix compliance issues with V4L2_DEC_CMD_STOP, V4L2_DEC_CMD_START and
+ vbuf->field not prepared to V4L2_FIELD_NONE.
+ - Fixed coccinelle issue (unneeded semicolon)
+ - Fixed smatch issue (PTR_ERR() could be called with 0)
+
+Changes since v5 [4]:
+ - Rebased against media_tree (fixes conflict with platform/meson/Makefile
+ following the meson CEC driver updates)
+
+Changes since v4 [3]:
+ - Updated for 5.1: 
+  - cropcap -> g_pixelaspect
+  - dma_zalloc_coherent -> dma_alloc_coherent
+ - enum_framesizes: changed from STEPWISE to CONTINUOUS, as suggested by Hans
+ - Reintroduced support for CREATE_BUFS. It was a driver bug where I wasn't
+ accounting for the amount of buffers created this way (only buffers created
+ via REQBUFS were).
+ - Added the patch introducing V4L2_FMT_FLAG_FIXED_RESOLUTION to the V4L2
+ framework, needed as MPEG2 on Amlogic hardware only supports a fixed
+ resolution during a decode session.
+ - Added support for events and V4L2_EVENT_SOURCE_CHANGE, as it is now checked
+ by v4l2-compliance for stateful decoders. I was planning on introducing this
+ for codecs that actually use it (H264, HEVC..), but it doesn't hurt to have
+ this in the initial commit.
+ - Added support for controls, mainly V4L2_CID_MIN_BUFFERS_FOR_CAPTURE
+
+Changes since v3 [2]:
+ - strlcpy -> strscpy
+ - queue_setup: account for existing buffers when clamping *num_buffers
+ - removed support for CREATE_BUFS. This caused issues with gstreamer and allowed
+ userspace to alloc more buffers than the decoder can handle in its fixed list.
+ So for now we just disable it and only allow allocating via REQBUFS.
+ - rebased & tested with 4.20-rc1
+
+Changes since v2 [1]:
+ - Override capture queue's min_buffers_needed in queue_setup
+ The HW needs the full buffer list to be available when doing start_streaming
+ - Fix the draining sequence
+ The blob that we write to the ESPARSER to trigger drain is codec-dependent.
+ The one that was sent in v1 is specific to H.264 and isn't guaranteed to
+ trigger drain for MPEG2. For the latter, a simple MPEG2 EOS code
+ should be sent to the ESPARSER instead.
+ - Slight enhancements to the way we do vififo offset<=>timestamp matching
+
+Changes since v1 [0]:
+ - use named interrupts in the bindings
+ - rewrite description in the bindings doc
+ - don't include the dts changes in the patch series
+ - fill the vb2 queues locks
+ - fill the video_device lock
+ - use helpers for wait_prepare and wait_finish vb2_ops
+ - remove unnecessary usleep in between esparser writes.
+ Extensive testing of every codec on GXBB/GXL didn't reveal
+ any fails without it, so just remove it.
+ - compile v4l2_compliance inside the git repo
+ - Check for plane number/plane size to pass the latest v4l2-compliance test
+ - Moved the single instance check (returning -EBUSY) to start/stop streaming
+ The check was previously in queue_setup but there was no great location to
+ clear it except for .close().
+ - Slight rework of the way CAPTURE frames are timestamped for better accuracy
+ - Implement PAR reporting via VIDIOC_CROPCAP
+
+[7] https://patchwork.kernel.org/cover/10969815/
+[6] https://patchwork.kernel.org/cover/10943029/
+[5] https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/?id=e04cc56d0e6b6ff05924ff88fdba1a438ee7d3c8
+[4] https://patchwork.kernel.org/cover/10879959/
+[3] https://patchwork.kernel.org/cover/10669875/
+[2] https://lore.kernel.org/patchwork/cover/993093/
+[1] https://patchwork.kernel.org/cover/10595803/
+[0] https://patchwork.kernel.org/cover/10583391/
+
+Maxime Jourdan (3):
+  dt-bindings: media: add Amlogic Video Decoder Bindings
+  media: meson: add v4l2 m2m video decoder driver
+  MAINTAINERS: Add meson video decoder
+
+ .../bindings/media/amlogic,vdec.txt           |   71 ++
+ MAINTAINERS                                   |    8 +
+ drivers/staging/media/Kconfig                 |    2 +
+ drivers/staging/media/Makefile                |    1 +
+ drivers/staging/media/meson/vdec/Kconfig      |   11 +
+ drivers/staging/media/meson/vdec/Makefile     |    8 +
+ drivers/staging/media/meson/vdec/TODO         |    8 +
+ .../staging/media/meson/vdec/codec_mpeg12.c   |  209 ++++
+ .../staging/media/meson/vdec/codec_mpeg12.h   |   14 +
+ drivers/staging/media/meson/vdec/dos_regs.h   |   98 ++
+ drivers/staging/media/meson/vdec/esparser.c   |  324 +++++
+ drivers/staging/media/meson/vdec/esparser.h   |   32 +
+ drivers/staging/media/meson/vdec/vdec.c       | 1075 +++++++++++++++++
+ drivers/staging/media/meson/vdec/vdec.h       |  269 +++++
+ drivers/staging/media/meson/vdec/vdec_1.c     |  229 ++++
+ drivers/staging/media/meson/vdec/vdec_1.h     |   14 +
+ drivers/staging/media/meson/vdec/vdec_ctrls.c |   29 +
+ drivers/staging/media/meson/vdec/vdec_ctrls.h |   14 +
+ .../staging/media/meson/vdec/vdec_helpers.c   |  449 +++++++
+ .../staging/media/meson/vdec/vdec_helpers.h   |   83 ++
+ .../staging/media/meson/vdec/vdec_platform.c  |  101 ++
+ .../staging/media/meson/vdec/vdec_platform.h  |   30 +
+ 22 files changed, 3079 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
+ create mode 100644 drivers/staging/media/meson/vdec/Kconfig
+ create mode 100644 drivers/staging/media/meson/vdec/Makefile
+ create mode 100644 drivers/staging/media/meson/vdec/TODO
+ create mode 100644 drivers/staging/media/meson/vdec/codec_mpeg12.c
+ create mode 100644 drivers/staging/media/meson/vdec/codec_mpeg12.h
+ create mode 100644 drivers/staging/media/meson/vdec/dos_regs.h
+ create mode 100644 drivers/staging/media/meson/vdec/esparser.c
+ create mode 100644 drivers/staging/media/meson/vdec/esparser.h
+ create mode 100644 drivers/staging/media/meson/vdec/vdec.c
+ create mode 100644 drivers/staging/media/meson/vdec/vdec.h
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_1.c
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_1.h
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_ctrls.c
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_ctrls.h
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_helpers.c
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_helpers.h
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_platform.c
+ create mode 100644 drivers/staging/media/meson/vdec/vdec_platform.h
+
+
+root@hardkernel-odroidc2:~# v4l2-compliance -s --stream-from=hst_2.mpg 
+v4l2-compliance SHA: a162244d47d4bb01d0692da879dce5a070f118e7, 64 bits
+
+Compliance test for meson-vdec device /dev/video0:
+
+Driver Info:
+        Driver name      : meson-vdec
+        Card type        : Amlogic Video Decoder
+        Bus info         : platform:meson-vdec
+        Driver version   : 5.2.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateful Decoder
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 2 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+        test read/write: OK (Not Supported)
+        test blocking wait: OK
+                fail: v4l2-test-buffers.cpp(1324): node->dqevent(ev)
+        test MMAP (select): FAIL
+                fail: v4l2-test-buffers.cpp(1324): node->dqevent(ev)
+        test MMAP (epoll): FAIL
+        test USERPTR (select): OK (Not Supported)
+        test DMABUF: Cannot test, specify --expbuf-device
+
+Total for meson-vdec device /dev/video0: 49, Succeeded: 47, Failed: 2, Warnings: 0
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.21.0
+
