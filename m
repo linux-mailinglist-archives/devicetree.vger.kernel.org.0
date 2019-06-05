@@ -2,304 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E47883571B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:41:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51D823572B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2019 08:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726477AbfFEGlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 02:41:05 -0400
-Received: from mail-eopbgr20067.outbound.protection.outlook.com ([40.107.2.67]:35584
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726086AbfFEGlE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 02:41:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4/EywsIVKRKoHyTgwA213UbVtBqPJzgp0+OhbhTYvPc=;
- b=DHDS9lY85zlrz3PcgudsqMR5YPVEMuzMMupDBNyYiDVWpi582QII5i3jzlbgRKaWue9iS/kCQhvS+toFD1npi6cuEVVeG5OAoHvp4eUqOgkto3ybigfCWi5uH6/3DuanL7Wy0PJ+y7ME/dwtaKdnOpW0D3F/WMNy++vpB2hPx0U=
-Received: from DB7PR04MB5178.eurprd04.prod.outlook.com (20.176.236.22) by
- DB7PR04MB4924.eurprd04.prod.outlook.com (20.176.234.31) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Wed, 5 Jun 2019 06:40:59 +0000
-Received: from DB7PR04MB5178.eurprd04.prod.outlook.com
- ([fe80::24da:94bd:6034:4d45]) by DB7PR04MB5178.eurprd04.prod.outlook.com
- ([fe80::24da:94bd:6034:4d45%4]) with mapi id 15.20.1965.011; Wed, 5 Jun 2019
- 06:40:59 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: [PATCH v5 2/2] driver: clocksource: Add nxp system counter timer
- driver support
-Thread-Topic: [PATCH v5 2/2] driver: clocksource: Add nxp system counter timer
- driver support
-Thread-Index: AQHVG2miQGCCqxWZbUG/anskRBuVTw==
-Date:   Wed, 5 Jun 2019 06:40:59 +0000
-Message-ID: <20190605064546.29249-2-ping.bai@nxp.com>
-References: <20190605064546.29249-1-ping.bai@nxp.com>
-In-Reply-To: <20190605064546.29249-1-ping.bai@nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.21.0
-x-clientproxiedby: HK0P153CA0029.APCP153.PROD.OUTLOOK.COM
- (2603:1096:203:17::17) To DB7PR04MB5178.eurprd04.prod.outlook.com
- (2603:10a6:10:20::22)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ping.bai@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 49a3630b-0344-4066-76a1-08d6e980c4dc
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4924;
-x-ms-traffictypediagnostic: DB7PR04MB4924:
-x-microsoft-antispam-prvs: <DB7PR04MB4924C12DA1A0B82AE56C8C4F87160@DB7PR04MB4924.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 00594E8DBA
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(136003)(366004)(396003)(346002)(189003)(199004)(4326008)(8936002)(2501003)(71200400001)(71190400001)(11346002)(6436002)(1076003)(68736007)(446003)(486006)(86362001)(6116002)(2616005)(6486002)(8676002)(81156014)(476003)(50226002)(36756003)(81166006)(66066001)(53936002)(305945005)(5660300002)(6506007)(110136005)(386003)(26005)(76176011)(186003)(66556008)(64756008)(99286004)(66946007)(66476007)(66446008)(73956011)(25786009)(478600001)(7736002)(256004)(6512007)(52116002)(6636002)(3846002)(14454004)(316002)(54906003)(102836004)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4924;H:DB7PR04MB5178.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: l4wSSz9p4GyzOVecMQavuACgZ8UIBP94qj3l7Gz4c4z9Ot9cPIFQGLuQdXxy9unWW3qF6r4wKhFNGP+sNyPpPH9YhR+Z+31EstHiqY//jrzZ7uGdRQY9Y1RwiSpSGwpgpcy9T1N8YF8IWmMdbzVQ4imLAl6PPhFYsX2ipMUjzDIBUlHwTyRWUkxHLIw4mvFhYVmVteb6gHaY7JgTgTYXDMbaNX7wyiPpCYai5YxLIl97Txv7W+GK3m9hmvyWOycE5aK9JVmMtcR55v3/qizS0c7Wl8wWii9ejttiayS+5uAomdIN3E6UT5lC+XvQmfUqidKs/stBvTkmrhHerqvsnzi12wzYs97VborPiqP9OJmfVOo6czOZu8ZT2bhf7vI3W/P5fHhYY+rH/8MutseJqzZ00xg/gtyVNyYXcoy91fA=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <3516069B4BCD3842943FFBA1B39F89DE@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726464AbfFEGto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 02:49:44 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:47939 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726341AbfFEGtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 02:49:43 -0400
+Received: from localhost (aaubervilliers-681-1-24-139.w90-88.abo.wanadoo.fr [90.88.144.139])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id CB24B100008;
+        Wed,  5 Jun 2019 06:49:33 +0000 (UTC)
+Date:   Wed, 5 Jun 2019 08:49:33 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for
+ PLL_MIPI
+Message-ID: <20190605064933.6bmskkxzzgn35xz7@flea>
+References: <20190124195900.22620-1-jagan@amarulasolutions.com>
+ <20190124195900.22620-12-jagan@amarulasolutions.com>
+ <20190125212433.ni2jg3wvpyjazlxf@flea>
+ <CAMty3ZAsH2iZ+JEqTE3D58aXfGuhMSg9YoO56ZhhOeE4c4yQHQ@mail.gmail.com>
+ <20190129151348.mh27btttsqcmeban@flea>
+ <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
+ <20190201143102.rcvrxstc365mezvx@flea>
+ <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49a3630b-0344-4066-76a1-08d6e980c4dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2019 06:40:59.2429
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ping.bai@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4924
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zppxshyy34mh4cra"
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bai Ping <ping.bai@nxp.com>
 
-The system counter (sys_ctr) is a programmable system counter
-which provides a shared time base to the Cortex A15, A7, A53 etc cores.
-It is intended for use in applications where the counter is always
-powered on and supports multiple, unrelated clocks. The sys_ctr hardware
-supports:
- - 56-bit counter width (roll-over time greater than 40 years)
- - compare frame(64-bit compare value) contains programmable interrupt
-   generation when compare value <=3D counter value.
+--zppxshyy34mh4cra
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Bai Ping <ping.bai@nxp.com>
----
-change v1->v2:
- - no change=20
-change v2->v3:
- - remove the clocksource, we only need to use this module for timer purpos=
-e,
-   so register it as clockevent is enough.
- - use the timer_of_init to init the irq, clock, etc.
- - remove some unnecessary comments.
-change v3->v4:
- - use cached value for CMPCR,
- - remove unnecessary timer enabe from set_state_oneshot function.
-change v4->v5:
- - remove the unnecessary config dependency
- - simplify the timer enable
----
- drivers/clocksource/Kconfig            |   6 ++
- drivers/clocksource/Makefile           |   1 +
- drivers/clocksource/timer-imx-sysctr.c | 143 +++++++++++++++++++++++++
- 3 files changed, 150 insertions(+)
- create mode 100644 drivers/clocksource/timer-imx-sysctr.c
+Hi,
 
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index 3300739edce4..8bcab0a008a8 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -617,6 +617,12 @@ config CLKSRC_IMX_TPM
- 	  Enable this option to use IMX Timer/PWM Module (TPM) timer as
- 	  clocksource.
-=20
-+config TIMER_IMX_SYS_CTR
-+	bool "i.MX system counter timer" if COMPILE_TEST
-+	select TIMER_OF
-+	help
-+	  Enable this option to use i.MX system counter timer for clockevent.
-+
- config CLKSRC_ST_LPC
- 	bool "Low power clocksource found in the LPC" if COMPILE_TEST
- 	select TIMER_OF if OF
-diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-index 236858fa7fbf..5fba39e81a40 100644
---- a/drivers/clocksource/Makefile
-+++ b/drivers/clocksource/Makefile
-@@ -74,6 +74,7 @@ obj-$(CONFIG_CLKSRC_MIPS_GIC)		+=3D mips-gic-timer.o
- obj-$(CONFIG_CLKSRC_TANGO_XTAL)		+=3D timer-tango-xtal.o
- obj-$(CONFIG_CLKSRC_IMX_GPT)		+=3D timer-imx-gpt.o
- obj-$(CONFIG_CLKSRC_IMX_TPM)		+=3D timer-imx-tpm.o
-+obj-$(CONFIG_TIMER_IMX_SYS_CTR)		+=3D timer-imx-sysctr.o
- obj-$(CONFIG_ASM9260_TIMER)		+=3D asm9260_timer.o
- obj-$(CONFIG_H8300_TMR8)		+=3D h8300_timer8.o
- obj-$(CONFIG_H8300_TMR16)		+=3D h8300_timer16.o
-diff --git a/drivers/clocksource/timer-imx-sysctr.c b/drivers/clocksource/t=
-imer-imx-sysctr.c
-new file mode 100644
-index 000000000000..d3a049c1088c
---- /dev/null
-+++ b/drivers/clocksource/timer-imx-sysctr.c
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+//
-+// Copyright 2017-2019 NXP
-+
-+#include <linux/interrupt.h>
-+#include <linux/clockchips.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+
-+#include "timer-of.h"
-+
-+#define CMP_OFFSET	0x10000
-+
-+#define CNTCV_LO	0x8
-+#define CNTCV_HI	0xc
-+#define CMPCV_LO	(CMP_OFFSET + 0x20)
-+#define CMPCV_HI	(CMP_OFFSET + 0x24)
-+#define CMPCR		(CMP_OFFSET + 0x2c)
-+
-+#define SYS_CTR_EN		0x1
-+#define SYS_CTR_IRQ_MASK	0x2
-+
-+static void __iomem *sys_ctr_base;
-+static u32 cmpcr;
-+
-+static void sysctr_timer_enable(bool enable)
-+{
-+	writel(enable ? cmpcr | SYS_CTR_EN : cmpcr, sys_ctr_base + CMPCR);
-+}
-+
-+static void sysctr_irq_acknowledge(void)
-+{
-+	/*
-+	 * clear the enable bit(EN =3D0) will clear
-+	 * the status bit(ISTAT =3D 0), then the interrupt
-+	 * signal will be negated(acknowledged).
-+	 */
-+	sysctr_timer_enable(false);
-+}
-+
-+static inline u64 sysctr_read_counter(void)
-+{
-+	u32 cnt_hi, tmp_hi, cnt_lo;
-+
-+	do {
-+		cnt_hi =3D readl_relaxed(sys_ctr_base + CNTCV_HI);
-+		cnt_lo =3D readl_relaxed(sys_ctr_base + CNTCV_LO);
-+		tmp_hi =3D readl_relaxed(sys_ctr_base + CNTCV_HI);
-+	} while (tmp_hi !=3D cnt_hi);
-+
-+	return  ((u64) cnt_hi << 32) | cnt_lo;
-+}
-+
-+static int sysctr_set_next_event(unsigned long delta,
-+				 struct clock_event_device *evt)
-+{
-+	u32 cmp_hi, cmp_lo;
-+	u64 next;
-+
-+	sysctr_timer_enable(false);
-+
-+	next =3D sysctr_read_counter();
-+
-+	next +=3D delta;
-+
-+	cmp_hi =3D (next >> 32) & 0x00fffff;
-+	cmp_lo =3D next & 0xffffffff;
-+
-+	writel_relaxed(cmp_hi, sys_ctr_base + CMPCV_HI);
-+	writel_relaxed(cmp_lo, sys_ctr_base + CMPCV_LO);
-+
-+	sysctr_timer_enable(true);
-+
-+	return 0;
-+}
-+
-+static int sysctr_set_state_oneshot(struct clock_event_device *evt)
-+{
-+	return 0;
-+}
-+
-+static int sysctr_set_state_shutdown(struct clock_event_device *evt)
-+{
-+	sysctr_timer_enable(false);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t sysctr_timer_interrupt(int irq, void *dev_id)
-+{
-+	struct clock_event_device *evt =3D dev_id;
-+
-+	sysctr_irq_acknowledge();
-+
-+	evt->event_handler(evt);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static struct timer_of to_sysctr =3D {
-+	.flags =3D TIMER_OF_IRQ | TIMER_OF_CLOCK | TIMER_OF_BASE,
-+	.clkevt =3D {
-+		.name			=3D "i.MX system counter timer",
-+		.features		=3D CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_DYNIRQ,
-+		.set_state_oneshot	=3D sysctr_set_state_oneshot,
-+		.set_next_event		=3D sysctr_set_next_event,
-+		.set_state_shutdown	=3D sysctr_set_state_shutdown,
-+		.rating			=3D 200,
-+	},
-+	.of_irq =3D {
-+		.handler		=3D sysctr_timer_interrupt,
-+		.flags			=3D IRQF_TIMER | IRQF_IRQPOLL,
-+	},
-+	.of_clk =3D {
-+		.name =3D "per",
-+	},
-+};
-+
-+static void __init sysctr_clockevent_init(void)
-+{
-+	to_sysctr.clkevt.cpumask =3D cpumask_of(0);
-+
-+	clockevents_config_and_register(&to_sysctr.clkevt, timer_of_rate(&to_sysc=
-tr),
-+					0xff, 0x7fffffff);
-+}
-+
-+static int __init sysctr_timer_init(struct device_node *np)
-+{
-+	int ret =3D 0;
-+
-+	ret =3D timer_of_init(np, &to_sysctr);
-+	if (ret)
-+		return ret;
-+
-+	sys_ctr_base =3D timer_of_base(&to_sysctr);
-+	cmpcr =3D readl(sys_ctr_base + CMPCR);
-+	cmpcr &=3D ~SYS_CTR_EN;
-+
-+	sysctr_clockevent_init();
-+
-+	return 0;
-+}
-+TIMER_OF_DECLARE(sysctr_timer, "nxp,sysctr-timer", sysctr_timer_init);
---=20
-2.21.0
+I've reordered the mail a bit to work on chunks
 
+On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
+> > I wish it was in your commit log in the first place, instead of having
+> > to exchange multiple mails over this.
+> >
+> > However, I don't think that's quite true, and it might be a bug in
+> > Allwinner's implementation (or rather something quite confusing).
+> >
+> > You're right that the lcd_rate and pll_rate seem to be generated from
+> > the pixel clock, and it indeed looks like the ratio between the pixel
+> > clock and the TCON dotclock is defined through the number of bits per
+> > lanes.
+> >
+> > However, in this case, dsi_rate is actually the same than lcd_rate,
+> > since pll_rate is going to be divided by dsi_div:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
+> >
+> > Since lcd_div is 1, it also means that in this case, dsi_rate ==
+> > dclk_rate.
+> >
+> > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
+> > we look at:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
+> >
+> > We can see that the rate in clk_info is used if it's different than
+> > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
+> > DSI panel, will hardcode it to 148.5 MHz:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
+>
+> Let me explain, something more.
+>
+> According to bsp there are clk_info.tcon_div which I will explain below.
+> clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
+> is 6 for 24bpp and 4 lanes devices.
+>
+> PLL rate here depends on dsi_div (not tcon_div)
+>
+> Code here
+> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
+>
+> is computing the actual set rate, which depends on dsi_rate.
+>
+> lcd_rate = dclk_rate * clk_info.dsi_div;
+> dsi_rate = pll_rate / clk_info.dsi_div;
+>
+> Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
+> for above link you mentioned.
+>
+> Here are the evidence with some prints.
+>
+> https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
+> https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+
+Ok, so we agree up to this point, and the prints confirm that the
+analysis above is the right one.
+
+> > So, the DSI clock is set to this here:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
+
+Your patch doesn't address that, so let's leave that one alone.
+
+> > The TCON *module* clock (the one in the clock controller) has been set
+> > to lcd_rate (so the pixel clock times the number of bits per lane) here:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
+> >
+> > And the PLL has been set to the same rate here:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
+> >
+> > Let's take a step back now: that function we were looking at,
+> > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
+> > by disp_lcd_enable here:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
+> >
+> > The next function being called is disp_al_lcd_cfg, and that function
+> > will hardcode the TCON dotclock divider to 4, here:
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
+>
+> tcon_div from BSP point-of-view of there are two variants
+> 00) clk_info.tcon_div which is 4 and same is set the divider position
+> in SUN4I_TCON0_DCLK_REG (like above link refer)
+> 01) tcon_div which is 4 and used for edge timings computation
+> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
+>
+> The real reason for 01) is again 4 is they set the divider to 4 in 00)
+> which is technically wrong because the dividers which used during
+> dotclock in above (dsi_div) should be used here as well. Since there
+> is no dynamic way of doing this BSP hard-coding these values.
+>
+> Patches 5,6,7 on this series doing this
+> https://patchwork.freedesktop.org/series/60847/
+>
+> Hope this explanation helps?
+
+It doesn't.
+
+The clock tree is this one:
+
+PLL(s) -> TCON module clock -> TCON dotclock.
+
+The links I mentioned above show that the clock set to lcd_rate is the
+TCON module clocks (and it should be the one taking the bpp and lanes
+into account), while the TCON dotclock uses a fixed divider of 4.
+
+In your patches, you're using the bpp / lanes divider on the TCON
+dotclock, ie, the wrong clock.
+
+Again, I'm not saying that my analysis of the source code is correct
+here. But you haven't said anything to prove it's wrong either.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--zppxshyy34mh4cra
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPdl/QAKCRDj7w1vZxhR
+xVRiAQCGwYHPpjGwI8PBAolQDDh8EMQ4OwKHtPaRxqSpTh6aNgD/Uv1nSGajLUak
+r4VOaR3S8IynrXXXSDDBAo+8aG1nZgE=
+=eDpG
+-----END PGP SIGNATURE-----
+
+--zppxshyy34mh4cra--
