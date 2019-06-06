@@ -2,149 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E687236CFE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEAF636D15
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:10:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726472AbfFFHJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 03:09:12 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:33708 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726173AbfFFHJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 03:09:11 -0400
-Received: by mail-pg1-f196.google.com with SMTP id h17so831558pgv.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 00:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=puIXzR2Own0cbDgtZ/rESXOOL8scU6F9mL+QrFjp0g8=;
-        b=cVgCr6vnkGfjbhGXEObW1I3eyaTZzs4e6YbdY6IpyHvoRC/cyQjHSlt0gxIth7Hdeu
-         eN5d1Xq7g1lwpP9OqdHss8u059osQZKuNhLLZQDMfVeXEnwdfWXX/9x5wMPNmTf8vdMp
-         edojQQ/rLLAz+Ma+B+VExLG44vHl79i9L+21ZSA3+/M+XhdLiyrhJh7bfmceA5yyn+O5
-         F5U1b3PO/PE12bohPtUqnSdgMu8VX6VQP1ZbADi89a+bsmYX1ZeVg1c7YZy4XHTXQyR+
-         K85N7Y+nqqCSKG8JWtn16z8k9ZHBXM5Z3X6Q26+9a4Pz7Z+zIOWyj13pD8cU9hReymQe
-         EVpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=puIXzR2Own0cbDgtZ/rESXOOL8scU6F9mL+QrFjp0g8=;
-        b=aNJSKKo5ADiwkyLH2E+SRg/2/sNJVfwQMzXGugnjgAT2WAnJSzWPhji3tP5D+LV4QR
-         nF8EBRjk+cyjHTi0Jn73x9VSLM6A25dttAsKuhEkqKipx42Kd5YE36FQ3wb/BnvDpgFe
-         zZ862sp5WFZJip3qPhslWGTwY8iwnAGRGUxHOTdbWwt3FeDTXAT9p30d9WNKseFslxZv
-         30sOPUiLzj8SzBEE0o7I03SRb5G+pxw4TVJeu37rO6RtrLFT7nYe3MfLZYHKRJtO4SgU
-         9mlbloooe51+KWSmc/bjMHtUdaj1t6Fg/F+T9lwTGkWkIi5s362n7GDKqullrvoph1Dz
-         iy8Q==
-X-Gm-Message-State: APjAAAWuz2CzoVIrdN9gzm58TrzNqTgroby55uFmsZ+pxE+9nVV9fFPU
-        VC5SRTTl+cowFFVPvZiBBcX4Ow==
-X-Google-Smtp-Source: APXvYqx349qBmplwQGOq+Bk/EBJps0gB+WxTpibAF0E4c9G3e41oIpAGmhaSWsAhZzds2x83VVRXrg==
-X-Received: by 2002:a62:63c6:: with SMTP id x189mr39479895pfb.31.1559804950625;
-        Thu, 06 Jun 2019 00:09:10 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id x128sm1376557pfd.186.2019.06.06.00.09.09
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 06 Jun 2019 00:09:10 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 00:09:55 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Avri Altman <Avri.Altman@wdc.com>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-Subject: Re: [PATCH 0/3] (Qualcomm) UFS device reset support
-Message-ID: <20190606070955.GR22737@tuxbook-pro>
-References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
- <CANcMJZBmgWMZu7Y53Lnx_x3L2UpCmEbFRHVW0SFCXfW=Yw9uYg@mail.gmail.com>
- <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
- <20190605060154.GJ22737@tuxbook-pro>
- <SN6PR04MB492521B7D2DB6F3462EDB7D9FC160@SN6PR04MB4925.namprd04.prod.outlook.com>
- <20190606003959.GM4814@minitux>
- <SN6PR04MB49255AF3D92E655E1BBD75AEFC170@SN6PR04MB4925.namprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR04MB49255AF3D92E655E1BBD75AEFC170@SN6PR04MB4925.namprd04.prod.outlook.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+        id S1726040AbfFFHKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 03:10:32 -0400
+Received: from foss.arm.com ([217.140.101.70]:41596 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725782AbfFFHKb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 03:10:31 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39C98374;
+        Thu,  6 Jun 2019 00:10:31 -0700 (PDT)
+Received: from big-swifty.misterjones.org (usa-sjc-mx-foss1.foss.arm.com [217.140.101.70])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 13ADB3F246;
+        Thu,  6 Jun 2019 00:10:25 -0700 (PDT)
+Date:   Thu, 06 Jun 2019 08:10:24 +0100
+Message-ID: <86o93bgpen.wl-marc.zyngier@arm.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc:     Talel Shenhar <talel@amazon.com>, <nicolas.ferre@microchip.com>,
+        <jason@lakedaemon.net>, <mark.rutland@arm.com>,
+        <mchehab+samsung@kernel.org>, <robh+dt@kernel.org>,
+        <davem@davemloft.net>, <shawn.lin@rock-chips.com>,
+        <tglx@linutronix.de>, <devicetree@vger.kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
+        <dwmw@amazon.co.uk>, <jonnyc@amazon.com>, <hhhawa@amazon.com>,
+        <ronenk@amazon.com>, <hanochu@amazon.com>, <barakw@amazon.com>
+Subject: Re: [PATCH v2 2/2] irqchip: al-fic: Introduce Amazon's Annapurna Labs Fabric Interrupt Controller Driver
+In-Reply-To: <8930de04d7f40b84068e4478a12fc496d53930c9.camel@kernel.crashing.org>
+References: <1559731921-14023-1-git-send-email-talel@amazon.com>
+        <1559731921-14023-3-git-send-email-talel@amazon.com>
+        <fa6e5a95-d9dd-19f6-43e3-3046e0898bda@arm.com>
+        <8930de04d7f40b84068e4478a12fc496d53930c9.camel@kernel.crashing.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+Organization: ARM Ltd
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 05 Jun 23:32 PDT 2019, Avri Altman wrote:
-
-> > 
-> > On Wed 05 Jun 02:32 PDT 2019, Avri Altman wrote:
-> > 
-> > > >
-> > > > On Tue 04 Jun 22:50 PDT 2019, Avri Altman wrote:
-> > > >
-> > > > > Hi,
-> > > > >
-> > > > > >
-> > > > > > On Tue, Jun 4, 2019 at 12:22 AM Bjorn Andersson
-> > > > > > <bjorn.andersson@linaro.org> wrote:
-> > > > > > >
-> > > > > > > This series exposes the ufs_reset line as a gpio, adds support for ufshcd
-> > to
-> > > > > > > acquire and toggle this and then adds this to SDM845 MTP.
-> > > > > > >
-> > > > > > > Bjorn Andersson (3):
-> > > > > > >   pinctrl: qcom: sdm845: Expose ufs_reset as gpio
-> > > > > > >   scsi: ufs: Allow resetting the UFS device
-> > > > > > >   arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
-> > > > > >
-> > > > > > Adding similar change as in sdm845-mtp to the not yet upstream
-> > > > > > blueline dts, I validated this allows my micron UFS pixel3 to boot.
-> > > > > >
-> > > > > > Tested-by: John Stultz <john.stultz@linaro.org>
-> > > > > Maybe ufs_hba_variant_ops would be the proper place to add this?
-> > > > >
-> > > >
-> > > > Are you saying that these memories only need a reset when they are
-> > > > paired with the Qualcomm host controller?
-> > > ufs_hba_variant_ops is for vendors to implement their own vops,
-> > > and as you can see, many of them do.
-> > > Adding hw_reset to that template seems like the proper way
-> > > to do what you are doing.
-> > >
-> > 
-> > Right, but the vops is operations related to the UFS controller, this
-> > property relates to the memory connected.
-> This is not entirely accurate. Those are vendor/board specific,
-> As the original commit log indicates:
-> " vendor/board specific and hence determined with
->  the help of compatible property in device tree."
+On Wed, 05 Jun 2019 23:02:13 +0100,
+Benjamin Herrenschmidt <benh@kernel.crashing.org> wrote:
 > 
-> I would rather have this new vop:
-> void    (*device_reset)(struct ufs_hba *), Or whatever, 
-> actively set in ufs_hba_variant_ops, rather than ufshcd_init_device_reset
-> failing as part of the default init flow.
+> On Wed, 2019-06-05 at 13:22 +0100, Marc Zyngier wrote:
+> > 
+> > > +	 * This is generally fixed depending on what pieces of HW it's wired up
+> > > +	 * to.
+> > > +	 *
+> > > +	 * We configure it based on the sensitivity of the first source
+> > > +	 * being setup, and reject any subsequent attempt at configuring it in a
+> > > +	 * different way.
+> > 
+> > Is that a reliable guess? It also strikes me that the DT binding doesn't
+> > allow for the trigger type to be passed, meaning the individual drivers
+> > have to request the trigger as part of their request_irq() call. I'd
+> > rather you have a complete interrupt specifier in DT, and document the
+> > various limitations of the HW.
 > 
+> Actually the DT does, but Talel forgot to update the "example" part of
+> the binding patch. The description does say 2 cells.
 
-But such an vops would allow me to provide a Qualcomm-specific way of
-toggling the GPIO that is connected to the UFS_RESET pin on the
-Hynix/Micron memory.
+Yeah, I missed that and only read the example.
 
-But acquiring and toggling GPIOs is not a Qualcomm thing, it's a
-completely generic thing, and as it's not a chip-internal line it is a
-GPIO and not a reset - regardless of SoC vendor.
-Further more, it's optional so boards that does not have this pin
-connected will just omit the property in their hardware description
-(DeviceTree).
+> This is the best approach imho (translation: I asked Talel to do it
+> this way :-) The other option which I don't like is to stick to
+> #interrupt-cells = 1, and have a separate property in the interrupt
+> controller node to indicate whether it needs to be configured as level
+> or edge.
 
+Right, that's what I was suggesting in a separate email.
 
-So I think the halting part here is that we don't have a representation
-of the memory device's resources, because this is really a matter of
-toggling the reset pin on the memory device.
+> These FICs are used for what is generally fixed wires inside the SoC,
+> so it doesn't matter much either way, but I prefer having it self
+> configured based on source just in case a future implementation doesn't
+> have the limitation of all inputs having the same trigger type.
 
-Regards,
-Bjorn
+Fair enough. But it should be pretty easy to verify statically that
+all interrupt specifiers targeting this interrupt controller have a
+similar type.
+
+RobH, is that something the yaml thing could do for us?
+
+Thanks,
+
+	M.
+
+-- 
+Jazz is not dead, it just smells funny.
