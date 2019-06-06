@@ -2,101 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0EB037536
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 15:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56ECF37541
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 15:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727234AbfFFN2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 09:28:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54996 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726014AbfFFN2p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 09:28:45 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A539D20866;
-        Thu,  6 Jun 2019 13:28:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559827725;
-        bh=UHWrtQgpvixRqPbEtkrChsh4DvWxscCBoV1YMgNBxGg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0yjG6Bddq99LhfiaYiI3rJevdiHeIpzCUmVUfkqh052ofns7xizCLJEEC9QW8AWiR
-         KwnSd5ZR1pPhnX7ZbkgIru9bVWnT57pk77L+901o8LE12SSIIYQfwZaXMVJHPetSEF
-         qLNBBwl2a5cdhPnL08ZRoTAHkkoZZn9s0Ju27f2w=
-Date:   Thu, 6 Jun 2019 15:28:42 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Dragan Cvetic <dragan.cvetic@xilinx.com>
-Cc:     arnd@arndb.de, michal.simek@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Derek Kiernan <derek.kiernan@xilinx.com>
-Subject: Re: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
-Message-ID: <20190606132842.GC7943@kroah.com>
-References: <1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com>
- <1558784245-108751-5-git-send-email-dragan.cvetic@xilinx.com>
+        id S1727133AbfFFNcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 09:32:51 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:41744 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726924AbfFFNcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 09:32:51 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 359FD25B77A;
+        Thu,  6 Jun 2019 23:32:49 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id D0F1F940356; Thu,  6 Jun 2019 15:32:46 +0200 (CEST)
+Date:   Thu, 6 Jun 2019 15:32:46 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Nguyen An Hoan <na-hoan@jinso.co.jp>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        ramesh.shanmugasundaram@bp.renesas.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kuninori.morimoto.gx@renesas.com, magnus.damm@gmail.com,
+        yoshihiro.shimoda.uh@renesas.com, h-inayoshi@jinso.co.jp,
+        cv-dong@jinso.co.jp
+Subject: Re: [PATCH 1/2] media: dt-bindings: media: Add r8a77965 DRIF bindings
+Message-ID: <20190606133244.yso6l5ivaat4jwyo@verge.net.au>
+References: <1556014199-12698-1-git-send-email-na-hoan@jinso.co.jp>
+ <20190423105046.cshmwghdufaqp4pj@verge.net.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1558784245-108751-5-git-send-email-dragan.cvetic@xilinx.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+In-Reply-To: <20190423105046.cshmwghdufaqp4pj@verge.net.au>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 25, 2019 at 12:37:17PM +0100, Dragan Cvetic wrote:
-> +static int xsdfec_dev_open(struct inode *iptr, struct file *fptr)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int xsdfec_dev_release(struct inode *iptr, struct file *fptr)
-> +{
-> +	return 0;
-> +}
+On Tue, Apr 23, 2019 at 12:50:46PM +0200, Simon Horman wrote:
+> On Tue, Apr 23, 2019 at 07:09:58PM +0900, Nguyen An Hoan wrote:
+> > From: Hoan Nguyen An <na-hoan@jinso.co.jp>
+> > 
+> > Add r8a77965 DRIF bindings.
+> > 
+> > Signed-off-by: Hoan Nguyen An <na-hoan@jinso.co.jp>
+> 
+> According to the User's Manual Hardware, v1.50 Nov 20 2019,
+> the DRIF IP block M3-N (r8a77965) has a BITCTR register which
+> is not present on the H3 (r8a7795) or M3-W (r8a77995).
+> 
+> Does the DRIF IP block present on the M3-N (r8a77965) function
+> without support for this register in the driver?
+> 
+> If not then I think that:
+> 1) This patch should be updated to note that renesas,rcar-gen3-drif
+>    can only be used with H3 (r8a7795) and M3-W (r8a77995).
+> 2) A driver patch is required
+> 3) The DT patch, 2/2 of this series, should be updated to
+>    i) Not use renesas,rcar-gen3-drif
+>    ii) Extend the register aperture from 0x64 to 0x84.
 
-empty open/close functions are never needed, just drop them.
+Hi,
 
-> +
-> +static long xsdfec_dev_ioctl(struct file *fptr, unsigned int cmd,
-> +			     unsigned long data)
-> +{
-> +	struct xsdfec_dev *xsdfec;
-> +	void __user *arg = NULL;
-> +	int rval = -EINVAL;
-> +
-> +	xsdfec = container_of(fptr->private_data, struct xsdfec_dev, miscdev);
-> +	if (!xsdfec)
-> +		return rval;
+I'm wondering what the status of this patchset it.
 
-It is impossible for container_of() to return NULL, unless something
-very magical and rare just happened.  It's just doing pointer math, you
-can never check the return value of it.
-
-> +
-> +	if (_IOC_TYPE(cmd) != XSDFEC_MAGIC)
-> +		return -ENOTTY;
-
-How can this happen?
-
-> +
-> +	/* check if ioctl argument is present and valid */
-> +	if (_IOC_DIR(cmd) != _IOC_NONE) {
-> +		arg = (void __user *)data;
-> +		if (!arg)
-> +			return rval;
-> +	}
-> +
-> +	switch (cmd) {
-> +	default:
-> +		/* Should not get here */
-> +		dev_warn(xsdfec->dev, "Undefined SDFEC IOCTL");
-
-Nice that userspace has a way to fill up the kernel log :(
-
-Just return the correct error here, don't log it.
-
-thanks,
-
-greg k-h
+> 
+> > ---
+> >  Documentation/devicetree/bindings/media/renesas,drif.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,drif.txt b/Documentation/devicetree/bindings/media/renesas,drif.txt
+> > index 0d8974a..16cdee3 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,drif.txt
+> > +++ b/Documentation/devicetree/bindings/media/renesas,drif.txt
+> > @@ -41,6 +41,7 @@ Required properties of an internal channel:
+> >  -------------------------------------------
+> >  - compatible:	"renesas,r8a7795-drif" if DRIF controller is a part of R8A7795 SoC.
+> >  		"renesas,r8a7796-drif" if DRIF controller is a part of R8A7796 SoC.
+> > +		"renesas,r8a77965-drif" if DRIF controller is a part of R8A77965 SoC.
+> >  		"renesas,rcar-gen3-drif" for a generic R-Car Gen3 compatible device.
+> >  
+> >  		When compatible with the generic version, nodes must list the
+> > -- 
+> > 2.7.4
+> > 
+> 
