@@ -2,86 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8BF379BB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 18:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67F22379CC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 18:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728416AbfFFQcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 12:32:31 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:54348 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbfFFQca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 12:32:30 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x56GW32H064811;
-        Thu, 6 Jun 2019 11:32:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559838723;
-        bh=vve9U+wzc4vCwKL4B0UU+JLqKTIC0YBQuBU2TPamO4Y=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=dJwaayArfJ8bsC3MRaRqoyl0uJugrygIEQ9F6wehuBIPzmW6hDLAQR7xRGHlYYhDA
-         DVT90EdiDCF3yV3ydP5kc8Fu3uYa+FeHScZoRmb00AvSSLNDuGQCVlV35tMusCIZTe
-         2OlD906SZgbUVU5xWiBmZcPVx8h8d/xXomt/i1fE=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x56GW305083755
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 6 Jun 2019 11:32:03 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 6 Jun
- 2019 11:32:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 6 Jun 2019 11:32:03 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x56GW2J6056400;
-        Thu, 6 Jun 2019 11:32:03 -0500
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Wingman Kwok <w-kwok2@ti.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH net-next v2 10/10] ARM: configs: keystone: enable cpts
-Date:   Thu, 6 Jun 2019 19:30:47 +0300
-Message-ID: <20190606163047.31199-11-grygorii.strashko@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190606163047.31199-1-grygorii.strashko@ti.com>
-References: <20190606163047.31199-1-grygorii.strashko@ti.com>
+        id S1727157AbfFFQfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 12:35:54 -0400
+Received: from mail-it1-f196.google.com ([209.85.166.196]:51100 "EHLO
+        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726777AbfFFQfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 12:35:54 -0400
+Received: by mail-it1-f196.google.com with SMTP id a186so996480itg.0;
+        Thu, 06 Jun 2019 09:35:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kZVofKIX8cuevQT7Eo8t89U9uZvINfNqGUyEDzkiDB8=;
+        b=ndP56wM7bylQINUrjIQ9Ij5CE71JfnJe0DB5gosPulnzn3aE4r5QN3rTOy7WFQK6jn
+         C/Z0LF8GPKjaraty0LCA8Vxhoy4a5Z3JtA+ElqmXPo8GeU+M3OeJTe3JmDeStEw91rYS
+         eviNeXiUJqwQ+zFFkygjdmWjxO942+BEbSdBYYBxxm5YzSeaRFj/Tl/n470l4anL1T8S
+         R66T726U1G37tThzShIXtRsSjo52297Hf5sy0IgMcwg5VExLcdAPsgT1R6tqwSSEjc31
+         O0qFBDdoExVgT18QuUyD6XNjF3Izh0tS+D/oWH5ZJtMVuvwpPqc+qZbl61m5joLHB5CO
+         yRkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kZVofKIX8cuevQT7Eo8t89U9uZvINfNqGUyEDzkiDB8=;
+        b=DDWTd/howMjRri98+VZUnckQCs2DQYgzJINm1f1zunZLxKcoiTzsH2d9vJC/sm4pIA
+         hhRmO0RsbWjQLs4pgtR6V3MxaXrq3v1oR3iB3XnmY7NMsK5YCSzxbf3AWI/6yiYvfVwl
+         leB+ofrXlZvD6cWjU0Zj75+CfWeO65s6uO5FYM8hporE0pN/2NFNuAIzyWjcYr/6jkwD
+         DCkNBYbIMB5zE+Rw1EokeG++SmCXm3vf+qUVCse5SoEKCjeqLTUuRJ6kPZEe993DGDP0
+         PYGlQLXHHQaechtCNqQ1EvTzcpuIwyXBGdC8U1MZnuY40JeMkNz4d/qNScJNrZjrIPUy
+         KWxQ==
+X-Gm-Message-State: APjAAAXOcfycX2uOsre4hSjjpfPzkvtgqIXshVpKckde46pnDnpbc2PD
+        VuQlvgb6OlmSGbk19uf/zFY=
+X-Google-Smtp-Source: APXvYqy5UJ1Ew/Rn199zv3Jda6+BDkgik9cm4AqeLCU1a8gIDZAzg15i4BGv0jZa74ArwP9AjTV/LA==
+X-Received: by 2002:a02:1a86:: with SMTP id 128mr32154721jai.95.1559838953406;
+        Thu, 06 Jun 2019 09:35:53 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.35.141])
+        by smtp.googlemail.com with ESMTPSA id 20sm798893iog.62.2019.06.06.09.35.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Jun 2019 09:35:53 -0700 (PDT)
+Subject: Re: [PATCH V8 14/15] PCI: tegra: Add Tegra194 PCIe support
+To:     Vidya Sagar <vidyas@nvidia.com>, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com
+Cc:     mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
+References: <20190526043751.12729-1-vidyas@nvidia.com>
+ <20190526043751.12729-15-vidyas@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <f30e7fc6-3f64-d321-c32c-5e273115a869@gmail.com>
+Date:   Thu, 6 Jun 2019 19:35:47 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20190526043751.12729-15-vidyas@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CPTS support which is present in Network Coprocessor Gigabit
-Ethernet (GbE) Switch Subsystem.
+26.05.2019 7:37, Vidya Sagar пишет:
+> Add support for Synopsys DesignWare core IP based PCIe host controller
+> present in Tegra194 SoC.
+> 
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> ---
+> Changes since [v7]:
+> * Addressed review comments from Thierry
+> 
+> Changes since [v6]:
+> * Removed code around "nvidia,disable-aspm-states" DT property
+> * Refactored code to remove code duplication
+> 
+> Changes since [v5]:
+> * Addressed review comments from Thierry
+> 
+> Changes since [v4]:
+> * None
+> 
+> Changes since [v3]:
+> * None
+> 
+> Changes since [v2]:
+> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
+> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
+> * Removed .runtime_suspend() & .runtime_resume() implementations
+> 
+> Changes since [v1]:
+> * Made CONFIG_PCIE_TEGRA194 as 'm' by default from its previous 'y' state
+> * Modified code as per changes made to DT documentation
+> * Refactored code to address Bjorn & Thierry's review comments
+> * Added goto to avoid recursion in tegra_pcie_dw_host_init() API
+> * Merged .scan_bus() of dw_pcie_host_ops implementation to tegra_pcie_dw_host_init() API
+> 
+>  drivers/pci/controller/dwc/Kconfig         |   10 +
+>  drivers/pci/controller/dwc/Makefile        |    1 +
+>  drivers/pci/controller/dwc/pcie-tegra194.c | 1621 ++++++++++++++++++++
+>  3 files changed, 1632 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+> 
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index a6ce1ee51b4c..884112afc11b 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -220,6 +220,16 @@ config PCI_MESON
+>  	  and therefore the driver re-uses the DesignWare core functions to
+>  	  implement the driver.
+>  
+> +config PCIE_TEGRA194
+> +	tristate "NVIDIA Tegra194 (and later) PCIe controller"
+> +	depends on (TEGRA_BPMP && ARCH_TEGRA) || COMPILE_TEST
 
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-Acked-by: Richard Cochran <richardcochran@gmail.com>
----
- arch/arm/configs/keystone_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+TEGRA_BPMP will be enough here as it depends on other relevant options.
 
-diff --git a/arch/arm/configs/keystone_defconfig b/arch/arm/configs/keystone_defconfig
-index 72fee57aad2f..0b2281407ecf 100644
---- a/arch/arm/configs/keystone_defconfig
-+++ b/arch/arm/configs/keystone_defconfig
-@@ -136,6 +136,7 @@ CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
- CONFIG_TI_KEYSTONE_NETCP=y
- CONFIG_TI_KEYSTONE_NETCP_ETHSS=y
-+CONFIG_TI_CPTS=y
- CONFIG_MARVELL_PHY=y
- CONFIG_SERIAL_8250=y
- CONFIG_SERIAL_8250_CONSOLE=y
+Hence I mean:
+
+	depends on TEGRA_BPMP || COMPILE_TEST
+
+
+> +	depends on PCI_MSI_IRQ_DOMAIN
+
+You probably want to s/depends on/select/ PCI_MSI_IRQ_DOMAIN, don't you?
+
 -- 
-2.17.1
-
+Dmitry
