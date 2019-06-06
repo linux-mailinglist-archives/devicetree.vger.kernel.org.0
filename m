@@ -2,176 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 724C73720C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 12:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25D2337276
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 13:07:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726729AbfFFKuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 06:50:23 -0400
-Received: from foss.arm.com ([217.140.101.70]:45292 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725784AbfFFKuX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 06:50:23 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA9FFA78;
-        Thu,  6 Jun 2019 03:50:22 -0700 (PDT)
-Received: from e105550-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 383063F690;
-        Thu,  6 Jun 2019 03:50:20 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 11:50:17 +0100
-From:   Morten Rasmussen <morten.rasmussen@arm.com>
-To:     Vincent Guittot <vincent.guittot@linaro.org>
-Cc:     Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Quentin Perret <quentin.perret@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726969AbfFFLHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 07:07:00 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:56361 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726103AbfFFLHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 07:07:00 -0400
+X-Originating-IP: 90.88.144.139
+Received: from localhost (aaubervilliers-681-1-24-139.w90-88.abo.wanadoo.fr [90.88.144.139])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 2F512E000F;
+        Thu,  6 Jun 2019 11:06:47 +0000 (UTC)
+Date:   Thu, 6 Jun 2019 13:06:47 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     "Rojewski, Cezary" <cezary.rojewski@intel.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
-Message-ID: <20190606105017.GD10919@e105550-lin.cambridge.arm.com>
-References: <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com>
- <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
- <CAHLCerP69Jw27VyO+ek4Fe3-2fDiOejtz6XZPykPSRA2G1831w@mail.gmail.com>
- <5cdf2dc8.1c69fb81.521c8.9339@mx.google.com>
- <20190605172048.ahzusevvdxrpnebk@queper01-ThinkPad-T460s>
- <CAKfTPtCR360osDz3oW+XhHT1R12SacAuJ44W_NfFOPWxJFjOPg@mail.gmail.com>
- <20190606074921.43mbinemk3j565yu@queper01-ThinkPad-T460s>
- <CAKfTPtA9WDOH3UzU-Qz4AqhLNGkOPo9EFkTHXGqTq7qsrec_JA@mail.gmail.com>
- <9267b9ed-89b0-7b71-88a2-ca1894d4c497@arm.com>
- <CAKfTPtAc=aOD=ukuPKhEL_gBSeb9DJaK-oYAPg1MWNcr-6HLQw@mail.gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [alsa-devel] [PATCH v2] ASoC: sun4i-i2s: Change SR and WSS
+ computation
+Message-ID: <20190606110647.iojplb27mdo276xk@flea>
+References: <20190605100801.2488-1-maxime.ripard@bootlin.com>
+ <3BD9CEE4EBD5E74B98FE2D277EB60E0B38FF8117@IRSMSX104.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="o7dxdhneu2w5lbt5"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKfTPtAc=aOD=ukuPKhEL_gBSeb9DJaK-oYAPg1MWNcr-6HLQw@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <3BD9CEE4EBD5E74B98FE2D277EB60E0B38FF8117@IRSMSX104.ger.corp.intel.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 06, 2019 at 10:44:58AM +0200, Vincent Guittot wrote:
-> On Thu, 6 Jun 2019 at 10:34, Dietmar Eggemann <dietmar.eggemann@arm.com> wrote:
-> >
-> > On 6/6/19 10:20 AM, Vincent Guittot wrote:
-> > > On Thu, 6 Jun 2019 at 09:49, Quentin Perret <quentin.perret@arm.com> wrote:
-> > >>
-> > >> Hi Vincent,
-> > >>
-> > >> On Thursday 06 Jun 2019 at 09:05:16 (+0200), Vincent Guittot wrote:
-> > >>> Hi Quentin,
-> > >>>
-> > >>> On Wed, 5 Jun 2019 at 19:21, Quentin Perret <quentin.perret@arm.com> wrote:
-> > >>>>
-> > >>>> On Friday 17 May 2019 at 14:55:19 (-0700), Stephen Boyd wrote:
-> > >>>>> Quoting Amit Kucheria (2019-05-16 04:54:45)
-> > >>>>>> (cc'ing Andy's correct email address)
-> > >>>>>>
-> > >>>>>> On Wed, May 15, 2019 at 2:46 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> > >>>>>>>
-> > >>>>>>> Quoting Amit Kucheria (2019-05-13 04:54:12)
-> > >>>>>>>> On Mon, May 13, 2019 at 4:31 PM Amit Kucheria <amit.kucheria@linaro.org> wrote:
-> > >>>>>>>>>
-> > >>>>>>>>> On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >>>>>>>>>>
-> > >>>>>>>>>> The 8 CPU cores of the SDM845 are organized in two clusters of 4 big
-> > >>>>>>>>>> ("gold") and 4 little ("silver") cores. Add a cpu-map node to the DT
-> > >>>>>>>>>> that describes this topology.
-> > >>>>>>>>>
-> > >>>>>>>>> This is partly true. There are two groups of gold and silver cores,
-> > >>>>>>>>> but AFAICT they are in a single cluster, not two separate ones. SDM845
-> > >>>>>>>>> is one of the early examples of ARM's Dynamiq architecture.
-> > >>>>>>>>>
-> > >>>>>>>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > >>>>>>>>>
-> > >>>>>>>>> I noticed that this patch sneaked through for this merge window but
-> > >>>>>>>>> perhaps we can whip up a quick fix for -rc2?
-> > >>>>>>>>>
-> > >>>>>>>>
-> > >>>>>>>> And please find attached a patch to fix this up. Andy, since this
-> > >>>>>>>> hasn't landed yet (can we still squash this into the original patch?),
-> > >>>>>>>> I couldn't add a Fixes tag.
-> > >>>>>>>>
-> > >>>>>>>
-> > >>>>>>> I had the same concern. Thanks for catching this. I suspect this must
-> > >>>>>>> cause some problem for IPA given that it can't discern between the big
-> > >>>>>>> and little "power clusters"?
-> > >>>>>>
-> > >>>>>> Both EAS and IPA, I believe. It influences the scheduler's view of the
-> > >>>>>> the topology.
-> > >>>>>
-> > >>>>> And EAS and IPA are OK with the real topology? I'm just curious if
-> > >>>>> changing the topology to reflect reality will be a problem for those
-> > >>>>> two.
-> > >>>>
-> > >>>> FWIW, neither EAS nor IPA depends on this. Not the upstream version of
-> > >>>> EAS at least (which is used in recent Android kernels -- 4.19+).
-> > >>>>
-> > >>>> But doing this is still required for other things in the scheduler (the
-> > >>>> so-called 'capacity-awareness' code). So until we have a better
-> > >>>> solution, this patch is doing the right thing.
-> > >>>
-> > >>> I'm not sure to catch what you mean ?
-> > >>> Which so-called 'capacity-awareness' code are you speaking about ? and
-> > >>> what is the problem ?
-> > >>
-> > >> I'm talking about the wake-up path. ATM select_idle_sibling() is totally
-> > >> unaware of capacity differences. In its current form, this function
-> > >> basically assumes that all CPUs in a given sd_llc have the same
-> > >> capacity, which would be wrong if we had a single MC level for SDM845.
-> > >> So, until select_idle_sibling() is 'fixed' to be capacity-aware, we need
-> > >> two levels of sd for asymetric systems (including DynamIQ) so the
-> > >> wake_cap() story actually works.
-> > >>
-> > >> I hope that clarifies it :)
-> > >
-> > > hmm... does this justifies this wrong topology ?
 
-No, it doesn't. It relies heavily on how nested clusters are interpreted
-too, so it is quite fragile.
+--o7dxdhneu2w5lbt5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > > select_idle_sibling() is called only when system is overloaded and
-> > > scheduler disables the EAS path
-> > > In this case, the scheduler looks either for an idle cpu or for evenly
-> > > spreading the loads
-> > > This is maybe not always optimal and should probably be fixed but
-> > > doesn't justifies a wrong topology description IMHO
-> >
-> > The big/Little cluster detection in wake_cap() doesn't work anymore with
-> > DynamIQ w/o Phanton (DIE) domain. So the decision of going sis() or slow
-> > path is IMHO broken.
-> 
-> That's probably not the right thread to discuss this further but i'm
-> not sure to understand why wake_cap() doesn't work as it compares the
-> capacity_orig of local cpu and prev cpu which are the same whatever
-> the sche domainœ
+Hi,
 
-We have had this discussion a couple of times over the last couple of
-years. The story, IIRC, is that when we introduced capacity awareness in
-the wake-up path (wake_cap()) we realised (I think it was actually you)
-that we could use select_idle_sibling() in cases where we know that the
-search space is limited to cpus with sufficient capacity so we didn't
-have to take the long route through find_idlest_cpu(). Back then, big
-and little were grouped by clusters so it was "safe" to use
-select_idle_sibling() on cpu or prev_cpu if they have sufficient
-capacity.
+On Wed, Jun 05, 2019 at 04:36:28PM +0000, Rojewski, Cezary wrote:
+> >+static s8 sun4i_i2s_get_sr(const struct sun4i_i2s *i2s, int width)
+> >+{
+> >+	if (width < 16 || width > 24)
+> >+		return -EINVAL;
+> >+
+> >+	if (width % 4)
+> >+		return -EINVAL;
+> >+
+> >+	return (width - 16) / 4;
+> >+}
+> >+
+> >+static s8 sun4i_i2s_get_wss(const struct sun4i_i2s *i2s, int width)
+> >+{
+> >+	if (width < 16 || width > 32)
+> >+		return -EINVAL;
+> >+
+> >+	if (width % 4)
+> >+		return -EINVAL;
+> >+
+> >+	return (width - 16) / 4;
+> >+}
+> >+
+> >+static s8 sun8i_i2s_get_sr_wss(const struct sun4i_i2s *i2s, int width)
+> >+{
+> >+	if (width % 4)
+> >+		return -EINVAL;
+> >+
+>
+> In the two above you start with boundary check before mod yet in
+> this one the order is reversed.  Keeping the same order should prove
+> more cohesive.
 
-With DynamiQ the true topology on many systems is just one cluster and
-hence using select_idle_sibling() there means search space includes all
-cpu types which isn't "safe" if you have a task requiring more capacity
-than can be offered by any cpu in the system. We need to use the
-find_idlest_cpu() path on more cases than we do today.
+Indeed, I'll fix this.
 
-All the code is there I think, we just have to tweak some conditions. I
-can try to come up with a simple fix we can discuss and refine as
-necessary.
+>
+> >+	if (width < 8 || width > 32)
+> >+		return -EINVAL;
+> >+
+> >+	return (width - 8) / 4 + 1;
+> >+}
+> >+
+>
+> Other, probably less welcome suggestion is introduction of unified
+> function which ones listed here would simply invoke. All of these
+> "computations" differ in fact only in: min and max boundary. The +1
+> for _sr_wss is negligible, you can append it on return.
 
-Morten
+It's not just about the min and max boundaries. It's also the offset
+at which to start with (16 vs 8), and the offset to apply to the
+result (0 vs 1).
+
+That's 4 parameters out of 5 that are different. For something that
+trivial, I don't think it's worth it to put it in common.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--o7dxdhneu2w5lbt5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXPjzxwAKCRDj7w1vZxhR
+xU5ZAQDqFqCGgErcrAi4FdZbvdZZ+e5HA8TXh3Adj2HYz68TGAEAnsOVcPT4sWAS
+/Bvn0cG01lOSXngr19W99FolGay/Lgk=
+=cTma
+-----END PGP SIGNATURE-----
+
+--o7dxdhneu2w5lbt5--
