@@ -2,156 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C47DB36E65
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 10:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AF6B36E75
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 10:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727131AbfFFIU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 04:20:28 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:34182 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727072AbfFFIU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 04:20:28 -0400
-Received: by mail-lj1-f196.google.com with SMTP id j24so1147796ljg.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 01:20:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TdF1v4zNmglgg6wRPSMEUUX+aiqDBLcWc0FEbJ3SK/c=;
-        b=inVF2SVnrhXJctU6cvftwgiH6jhX52LsKf+SD2K74Q1TYYxrr94ztiUPR+tkEAmNqG
-         aHrFY8Azl6VW3k6Fg+9RTwUCI5gvDR38VZouO6YMTaebpoqZ0UtSKPyMJZCrL5qvWRJY
-         wYAOmHVzGLVPWHy58HVCUbcEDpifnOIlmmPwZR8Z4WgUSrSc5PKYhn65hrW4n6+U78oi
-         tHa+YyF0WdMxWbJsz7WhDszmJcXesPyels4MMBcE7CVbTW3FG92os80vQb1qnWrCG6ar
-         lrI4SgaUsDnx7HOAl0Eg9/k5lEfllxz5X0+4jBuPM2kjvaDlxCbnUjOJ4mqdG7M7gcax
-         pFEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TdF1v4zNmglgg6wRPSMEUUX+aiqDBLcWc0FEbJ3SK/c=;
-        b=LOLgVl9BJdsk5x7CepYeYnYMMIxwLcihZxeZhfni1PXXRAjHqSDqPghCRZlQ10TTGb
-         t8w5LUfWYhXO5lgAW1E2RfkvfBG1QkYd4gcI7ZU3PEmvT82E7+wrKjpFkEamZLiRAGP0
-         M7/hxFlKPY0BdStx+Wh+Z8XawVmY71+DtAubXHzf2ELDQ4GUoVupGbt0O1/WwED9eE6L
-         X5ymJYhfnCMRqkP/6o/SzriXhj+SHzovRqpyh+CV8jk9d3ctOuASR4k92FCxpbnMg+2Q
-         qZAM8L7C0CbXTzFYhw7Kb0jspQoz/FOV24AB/EyCF2I+Kj7vHiPCdphbtrBkFrqSQ285
-         J/HA==
-X-Gm-Message-State: APjAAAW7bkWDQx9cKktx0QL3+3XzF9RHgfPUQu0LyLq2UhzWPvCNjcLE
-        U+5BY+1MzbHiYNZNLF2E69dd79syMYh3q2RzsPdBBwHEhUA=
-X-Google-Smtp-Source: APXvYqxrq3Csc717Yxh30k3K1QTXdOLvuL7CJlzkO7gNEZaHwBqa0R5v/zq4UUdsK5UPe4vQAMfI1+YcE1nBoWSZJcI=
-X-Received: by 2002:a2e:9d07:: with SMTP id t7mr16654557lji.43.1559809223322;
- Thu, 06 Jun 2019 01:20:23 -0700 (PDT)
+        id S1727356AbfFFIW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 04:22:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59408 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727109AbfFFIW7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 04:22:59 -0400
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4446020866;
+        Thu,  6 Jun 2019 08:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559809378;
+        bh=gKzN6z2+9cSG7vi6DKtDlhAy7Iw5t3nBvZYXPHQIj1c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ngnHK3kNT6Ik+jknuJxz4usImOs/0J8Gk+RBc8GNl0AG2gjt4wv6RbT8zFJntNpXK
+         eoEwFyqomKLEQZvuseLDDyPFqnRcSCi/wQ33maV+kohnGEdLOugSVFujy2X6Te0Vq8
+         s8fceHyGR5sW63mBr6zWSlZ9uOgGck9w5ZO+UZfQ=
+Received: by mail-lf1-f41.google.com with SMTP id a25so902750lfg.2;
+        Thu, 06 Jun 2019 01:22:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAW8WFdIRwRt9SDiHMGc5P0mqL/ansGdDRxaq7J6LJJaSYjPgE8T
+        NyM66RSuOGKbNIF5OR0khiInXgSB7qzy+z//7VA=
+X-Google-Smtp-Source: APXvYqxpSKprvvtB2rb8p/kAr5+gW8AhO5iZBE7iucDogxLrho5mwGpIFgmnHkQoZ9aRJKhbX6ibXh991STqtmR31zU=
+X-Received: by 2002:ac2:4d1c:: with SMTP id r28mr8401245lfi.159.1559809376572;
+ Thu, 06 Jun 2019 01:22:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190114184255.258318-1-mka@chromium.org> <CAHLCerP+F9AP97+qVCMqwu-OMJXRhwZrXd33Wk-vj5eyyw-KyA@mail.gmail.com>
- <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com>
- <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
- <CAHLCerP69Jw27VyO+ek4Fe3-2fDiOejtz6XZPykPSRA2G1831w@mail.gmail.com>
- <5cdf2dc8.1c69fb81.521c8.9339@mx.google.com> <20190605172048.ahzusevvdxrpnebk@queper01-ThinkPad-T460s>
- <CAKfTPtCR360osDz3oW+XhHT1R12SacAuJ44W_NfFOPWxJFjOPg@mail.gmail.com> <20190606074921.43mbinemk3j565yu@queper01-ThinkPad-T460s>
-In-Reply-To: <20190606074921.43mbinemk3j565yu@queper01-ThinkPad-T460s>
-From:   Vincent Guittot <vincent.guittot@linaro.org>
-Date:   Thu, 6 Jun 2019 10:20:12 +0200
-Message-ID: <CAKfTPtA9WDOH3UzU-Qz4AqhLNGkOPo9EFkTHXGqTq7qsrec_JA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
-To:     Quentin Perret <quentin.perret@arm.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
+References: <CGME20190605165427eucas1p27610c38c96313dd80ab445472735a242@eucas1p2.samsung.com>
+ <20190605165410.14606-1-l.luba@partner.samsung.com> <20190605165410.14606-2-l.luba@partner.samsung.com>
+In-Reply-To: <20190605165410.14606-2-l.luba@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Thu, 6 Jun 2019 10:22:45 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdm3FG1KE+JmKx=P+7CK6NBWY3fOiO4OvTxibGsrUxWBg@mail.gmail.com>
+Message-ID: <CAJKOXPdm3FG1KE+JmKx=P+7CK6NBWY3fOiO4OvTxibGsrUxWBg@mail.gmail.com>
+Subject: Re: [PATCH v8 01/13] clk: samsung: add needed IDs for DMC clocks in Exynos5420
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 Jun 2019 at 09:49, Quentin Perret <quentin.perret@arm.com> wrote:
+On Wed, 5 Jun 2019 at 18:54, Lukasz Luba <l.luba@partner.samsung.com> wrote:
 >
-> Hi Vincent,
+> Define new IDs for clocks used by Dynamic Memory Controller in
+> Exynos5422 SoC.
 >
-> On Thursday 06 Jun 2019 at 09:05:16 (+0200), Vincent Guittot wrote:
-> > Hi Quentin,
-> >
-> > On Wed, 5 Jun 2019 at 19:21, Quentin Perret <quentin.perret@arm.com> wrote:
-> > >
-> > > On Friday 17 May 2019 at 14:55:19 (-0700), Stephen Boyd wrote:
-> > > > Quoting Amit Kucheria (2019-05-16 04:54:45)
-> > > > > (cc'ing Andy's correct email address)
-> > > > >
-> > > > > On Wed, May 15, 2019 at 2:46 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > > > >
-> > > > > > Quoting Amit Kucheria (2019-05-13 04:54:12)
-> > > > > > > On Mon, May 13, 2019 at 4:31 PM Amit Kucheria <amit.kucheria@linaro.org> wrote:
-> > > > > > > >
-> > > > > > > > On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > > > > > > >
-> > > > > > > > > The 8 CPU cores of the SDM845 are organized in two clusters of 4 big
-> > > > > > > > > ("gold") and 4 little ("silver") cores. Add a cpu-map node to the DT
-> > > > > > > > > that describes this topology.
-> > > > > > > >
-> > > > > > > > This is partly true. There are two groups of gold and silver cores,
-> > > > > > > > but AFAICT they are in a single cluster, not two separate ones. SDM845
-> > > > > > > > is one of the early examples of ARM's Dynamiq architecture.
-> > > > > > > >
-> > > > > > > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > > > > > > >
-> > > > > > > > I noticed that this patch sneaked through for this merge window but
-> > > > > > > > perhaps we can whip up a quick fix for -rc2?
-> > > > > > > >
-> > > > > > >
-> > > > > > > And please find attached a patch to fix this up. Andy, since this
-> > > > > > > hasn't landed yet (can we still squash this into the original patch?),
-> > > > > > > I couldn't add a Fixes tag.
-> > > > > > >
-> > > > > >
-> > > > > > I had the same concern. Thanks for catching this. I suspect this must
-> > > > > > cause some problem for IPA given that it can't discern between the big
-> > > > > > and little "power clusters"?
-> > > > >
-> > > > > Both EAS and IPA, I believe. It influences the scheduler's view of the
-> > > > > the topology.
-> > > >
-> > > > And EAS and IPA are OK with the real topology? I'm just curious if
-> > > > changing the topology to reflect reality will be a problem for those
-> > > > two.
-> > >
-> > > FWIW, neither EAS nor IPA depends on this. Not the upstream version of
-> > > EAS at least (which is used in recent Android kernels -- 4.19+).
-> > >
-> > > But doing this is still required for other things in the scheduler (the
-> > > so-called 'capacity-awareness' code). So until we have a better
-> > > solution, this patch is doing the right thing.
-> >
-> > I'm not sure to catch what you mean ?
-> > Which so-called 'capacity-awareness' code are you speaking about ? and
-> > what is the problem ?
->
-> I'm talking about the wake-up path. ATM select_idle_sibling() is totally
-> unaware of capacity differences. In its current form, this function
-> basically assumes that all CPUs in a given sd_llc have the same
-> capacity, which would be wrong if we had a single MC level for SDM845.
-> So, until select_idle_sibling() is 'fixed' to be capacity-aware, we need
-> two levels of sd for asymetric systems (including DynamIQ) so the
-> wake_cap() story actually works.
->
-> I hope that clarifies it :)
+> Acked-by: Rob Herring <robh@kernel.org>
+> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> ---
+>  include/dt-bindings/clock/exynos5420.h | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 
-hmm... does this justifies this wrong topology ?
-select_idle_sibling() is called only when system is overloaded and
-scheduler disables the EAS path
-In this case, the scheduler looks either for an idle cpu or for evenly
-spreading the loads
-This is maybe not always optimal and should probably be fixed but
-doesn't justifies a wrong topology description IMHO
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-
->
-> Thanks,
-> Quentin
+Best regards,
+Krzysztof
