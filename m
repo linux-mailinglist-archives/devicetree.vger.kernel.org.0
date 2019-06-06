@@ -2,100 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F0F236B74
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 07:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8D136BC4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 07:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726040AbfFFFUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 01:20:33 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46266 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbfFFFUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 01:20:33 -0400
-Received: by mail-wr1-f67.google.com with SMTP id n4so899168wrw.13
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 22:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=MtXzwtsPXMZuGm5S7Wt5QqtWB5p6F/HX65Y8+M45wGE=;
-        b=p4C6n5EJHuI9vL+mnsfJhnxJhd2W6xHIE6RgPzS8Kin29QH0SWW8SrHd+/MkNiNgIx
-         c0Q61roJTynhbgtXMouySryytcLFvX8mD0RvO7tBbZ6zj3O2/T6QqZULHJ9/8HwEun4j
-         3kbwkoCMb3e8jKORTTf45GJTbW+PxWYrwGogre9RZ1n+1cU+2J+MphYPrJgC1uUrYHSH
-         Zj4k1TnWRYS4wOgNTPOx3GQXY6Fz3oHlq8cAT7DZxUdrUfhnH1hu8MeiOAlLw2dHvSDy
-         Kr20iC+BWnkx1UoaMTkzd5Ebaxo8Ny1nl89ECFnbsbmjOdYtwdGVgWizjSMGmrblF16Z
-         yp0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=MtXzwtsPXMZuGm5S7Wt5QqtWB5p6F/HX65Y8+M45wGE=;
-        b=Eix6O4/DT8ihgpPRNgBzU6ODEm2rbCUdT0HkCIWwzjmuPKp9rlpYDivnFT3aYDoITm
-         cE3LF+scg1/DpBCPSeq5y+M9d8nXlt+uzskLbgVNoxqeBMlQ9oK0LbansHWAnEuWdF/s
-         LENOFicKsCgqf+pvFuPzChFXSZe2OV8sHZeWDLP3heQDQ3nNKxMx6qiy7M/3KMLCxbEA
-         yg4LJHfZeLm64LtVVEyjeHBFQj+QtJlqUQSlBKNcxbzJtVRq23v4CQLvsFtiXYyMBC0J
-         w18Ks/xSn16B84xtdOzVoKni7z1AshrmYMkS6zGt9Q6O1DofJlKTBJ0S/4GKSdj6CT4D
-         HFfg==
-X-Gm-Message-State: APjAAAVyNBnsq0J2cH/CbIbJ9eDyb2WhAhkSdTgoWcib1sp/SgE1Y6To
-        kkjA9RJVfaTvE4BNtyrNjG3F9g==
-X-Google-Smtp-Source: APXvYqyO8Cc5NUJHvSF2a5vtpvToysuHvLAYz5b06+CRZQGvcWsO4Er19RBs9HCmzQT1bhXinH8ngw==
-X-Received: by 2002:a5d:4e50:: with SMTP id r16mr1392999wrt.197.1559798431594;
-        Wed, 05 Jun 2019 22:20:31 -0700 (PDT)
-Received: from dell ([2.31.167.229])
-        by smtp.gmail.com with ESMTPSA id k10sm600470wmj.37.2019.06.05.22.20.30
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 05 Jun 2019 22:20:30 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 06:20:28 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     dmitry.torokhov@gmail.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, agross@kernel.org,
-        david.brown@linaro.org, hdegoede@redhat.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] HID: quirks: Refactor ELAN 400 and 401 handling
-Message-ID: <20190606052028.GY4797@dell>
-References: <20190423160543.9922-1-jeffrey.l.hugo@gmail.com>
- <20190423160605.9970-1-jeffrey.l.hugo@gmail.com>
+        id S1725782AbfFFFmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 01:42:51 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:29517 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725267AbfFFFmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 01:42:50 -0400
+X-UUID: 9c3da1f7682a4564842f2f6a9a9598ad-20190606
+X-UUID: 9c3da1f7682a4564842f2f6a9a9598ad-20190606
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 520499542; Thu, 06 Jun 2019 13:42:43 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 6 Jun 2019 13:42:39 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 6 Jun 2019 13:42:37 +0800
+Message-ID: <1559799757.20098.6.camel@mtksdaap41>
+Subject: Re: [PATCH v3, 06/27] drm/mediatek: add mutex mod into ddp private
+ data
+From:   CK Hu <ck.hu@mediatek.com>
+To:     <yongqiang.niu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Thu, 6 Jun 2019 13:42:37 +0800
+In-Reply-To: <1559734986-7379-7-git-send-email-yongqiang.niu@mediatek.com>
+References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1559734986-7379-7-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190423160605.9970-1-jeffrey.l.hugo@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Apr 2019, Jeffrey Hugo wrote:
+Hi, Yongqiang:
 
-> There needs to be coordination between hid-quirks and the elan_i2c driver
-> about which devices are handled by what drivers.  Currently, both use
-> whitelists, which results in valid devices being unhandled by default,
-> when they should not be rejected by hid-quirks.  This is quickly becoming
-> an issue.
+On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> Since elan_i2c has a maintained whitelist of what devices it will handle,
-> use that to implement a blacklist in hid-quirks so that only the devices
-> that need to be handled by elan_i2c get rejected by hid-quirks, and
-> everything else is handled by default.  The downside is the whitelist and
-> blacklist need to be kept in sync.
+> except mutex mod, mutex mod reg,mutex sof reg,
+> and mutex sof id will be ddp private data
 > 
-> Suggested-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  drivers/hid/hid-quirks.c            | 64 ++++++++++++++++++++++++-----
->  drivers/input/mouse/elan_i2c_core.c |  4 ++
->  2 files changed, 58 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 53 +++++++++++++++++++++++-----------
+>  1 file changed, 36 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> index 579ce28..ae94d44 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> @@ -41,12 +41,12 @@
+>  #define DISP_REG_CONFIG_DSI_SEL			0x050
+>  #define DISP_REG_CONFIG_DPI_SEL			0x064
+>  
+> -#define DISP_REG_MUTEX_EN(n)	(0x20 + 0x20 * (n))
+> -#define DISP_REG_MUTEX(n)	(0x24 + 0x20 * (n))
+> -#define DISP_REG_MUTEX_RST(n)	(0x28 + 0x20 * (n))
+> -#define DISP_REG_MUTEX_MOD(n)	(0x2c + 0x20 * (n))
+> -#define DISP_REG_MUTEX_SOF(n)	(0x30 + 0x20 * (n))
+> -#define DISP_REG_MUTEX_MOD2(n)	(0x34 + 0x20 * (n))
+> +#define DISP_REG_MUTEX_EN(n)			(0x20 + 0x20 * (n))
+> +#define DISP_REG_MUTEX(n)			(0x24 + 0x20 * (n))
+> +#define DISP_REG_MUTEX_RST(n)			(0x28 + 0x20 * (n))
+> +#define DISP_REG_MUTEX_MOD(n)			(0x2c + 0x20 * (n))
+> +#define DISP_REG_MUTEX_SOF(n)			(0x30 + 0x20 * (n))
+> +#define DISP_REG_MUTEX_MOD2(n)			(0x34 + 0x20 * (n))
 
-Reviewed-by: Lee Jones <lee.jones@linaro.org>
-Tested-by: Lee Jones <lee.jones@linaro.org>
+You add 'tab' because of "add mutex mod register offset into ddp private
+data" not "add mutex mod into ddp private data", so move this to the
+related patch.
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+CK
+
+>  
+>  #define INT_MUTEX				BIT(1)
+>  
+> @@ -147,12 +147,16 @@ struct mtk_disp_mutex {
+>  	bool claimed;
+>  };
+>  
+> +struct mtk_ddp_data {
+> +	const unsigned int *mutex_mod;
+> +};
+> +
+>  struct mtk_ddp {
+>  	struct device			*dev;
+>  	struct clk			*clk;
+>  	void __iomem			*regs;
+>  	struct mtk_disp_mutex		mutex[10];
+> -	const unsigned int		*mutex_mod;
+> +	const struct mtk_ddp_data	*data;
+>  };
+>  
+>  static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX] = {
+> @@ -202,6 +206,18 @@ struct mtk_ddp {
+>  	[DDP_COMPONENT_WDMA1] = MT8173_MUTEX_MOD_DISP_WDMA1,
+>  };
+>  
+> +static const struct mtk_ddp_data mt2701_ddp_driver_data = {
+> +	.mutex_mod = mt2701_mutex_mod,
+> +};
+> +
+> +static const struct mtk_ddp_data mt2712_ddp_driver_data = {
+> +	.mutex_mod = mt2712_mutex_mod,
+> +};
+> +
+> +static const struct mtk_ddp_data mt8173_ddp_driver_data = {
+> +	.mutex_mod = mt8173_mutex_mod,
+> +};
+> +
+>  static unsigned int mtk_ddp_mout_en(enum mtk_ddp_comp_id cur,
+>  				    enum mtk_ddp_comp_id next,
+>  				    unsigned int *addr)
+> @@ -464,15 +480,15 @@ void mtk_disp_mutex_add_comp(struct mtk_disp_mutex *mutex,
+>  		reg = MUTEX_SOF_DPI1;
+>  		break;
+>  	default:
+> -		if (ddp->mutex_mod[id] < 32) {
+> +		if (ddp->data->mutex_mod[id] < 32) {
+>  			offset = DISP_REG_MUTEX_MOD(mutex->id);
+>  			reg = readl_relaxed(ddp->regs + offset);
+> -			reg |= 1 << ddp->mutex_mod[id];
+> +			reg |= 1 << ddp->data->mutex_mod[id];
+>  			writel_relaxed(reg, ddp->regs + offset);
+>  		} else {
+>  			offset = DISP_REG_MUTEX_MOD2(mutex->id);
+>  			reg = readl_relaxed(ddp->regs + offset);
+> -			reg |= 1 << (ddp->mutex_mod[id] - 32);
+> +			reg |= 1 << (ddp->data->mutex_mod[id] - 32);
+>  			writel_relaxed(reg, ddp->regs + offset);
+>  		}
+>  		return;
+> @@ -502,15 +518,15 @@ void mtk_disp_mutex_remove_comp(struct mtk_disp_mutex *mutex,
+>  			       ddp->regs + DISP_REG_MUTEX_SOF(mutex->id));
+>  		break;
+>  	default:
+> -		if (ddp->mutex_mod[id] < 32) {
+> +		if (ddp->data->mutex_mod[id] < 32) {
+>  			offset = DISP_REG_MUTEX_MOD(mutex->id);
+>  			reg = readl_relaxed(ddp->regs + offset);
+> -			reg &= ~(1 << ddp->mutex_mod[id]);
+> +			reg &= ~(1 << ddp->data->mutex_mod[id]);
+>  			writel_relaxed(reg, ddp->regs + offset);
+>  		} else {
+>  			offset = DISP_REG_MUTEX_MOD2(mutex->id);
+>  			reg = readl_relaxed(ddp->regs + offset);
+> -			reg &= ~(1 << (ddp->mutex_mod[id] - 32));
+> +			reg &= ~(1 << (ddp->data->mutex_mod[id] - 32));
+>  			writel_relaxed(reg, ddp->regs + offset);
+>  		}
+>  		break;
+> @@ -585,7 +601,7 @@ static int mtk_ddp_probe(struct platform_device *pdev)
+>  		return PTR_ERR(ddp->regs);
+>  	}
+>  
+> -	ddp->mutex_mod = of_device_get_match_data(dev);
+> +	ddp->data = of_device_get_match_data(dev);
+>  
+>  	platform_set_drvdata(pdev, ddp);
+>  
+> @@ -598,9 +614,12 @@ static int mtk_ddp_remove(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id ddp_driver_dt_match[] = {
+> -	{ .compatible = "mediatek,mt2701-disp-mutex", .data = mt2701_mutex_mod},
+> -	{ .compatible = "mediatek,mt2712-disp-mutex", .data = mt2712_mutex_mod},
+> -	{ .compatible = "mediatek,mt8173-disp-mutex", .data = mt8173_mutex_mod},
+> +	{ .compatible = "mediatek,mt2701-disp-mutex",
+> +	  .data = &mt2701_ddp_driver_data},
+> +	{ .compatible = "mediatek,mt2712-disp-mutex",
+> +	  .data = &mt2712_ddp_driver_data},
+> +	{ .compatible = "mediatek,mt8173-disp-mutex",
+> +	  .data = &mt8173_ddp_driver_data},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, ddp_driver_dt_match);
+
+
