@@ -2,74 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3347A3712D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 12:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67AAC37131
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 12:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727846AbfFFKCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 06:02:12 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:33672 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726972AbfFFKCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 06:02:11 -0400
-Received: by mail-lj1-f195.google.com with SMTP id v29so1426408ljv.0;
-        Thu, 06 Jun 2019 03:02:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m81Ou0XGG7I9SfwR21fkGVLykW9DoBiKbEWcv11+3Go=;
-        b=ohM3QPizXheVM5zoHvGRU+OP7M/TGoszEgBpbM7XNWnePiXKoLIy41SazdAMC7b+bz
-         iQcgimZfSoPnG258MewxyZsInsaUr0ghEwXFcokQS09Rg42UpfK9+/MWrvkS6VwSsWCP
-         dy6I49rkVgJL/lDmiIx3hWinj2Qj2bG2kQK3qoq8M9VVY6imfYBZMue+OE5rJFy+PPLI
-         0l5ki5X0l6DKvAS/bqltLbfMb62NJjyaI6qIgENIDkEvPWeAc8r9NgljlBIT1hUOhVMT
-         Dt4ZWjjjZonMFndcby6yZeaY/jREP911cVDoO7Gd8FQCjW9tohiFFKQ4uWAlVyjzBkYh
-         yGbw==
-X-Gm-Message-State: APjAAAXMKNT0TjfOe0nT0VVEH6xZ6rf1lDSjLU6N6JaCiGmI287Z8Qqi
-        MNlzf8H5fk4clCgwdieP3tYHCJhKR0/QB2OGlqs=
-X-Google-Smtp-Source: APXvYqynZKmBiRteYaNlvFZNvkwpjqeQpgmvMv+E09i4SAFgHYfNG+PI3TxVc8ilUqEoAoMP/cPNa4Iysw7DmOSdoTY=
-X-Received: by 2002:a2e:960e:: with SMTP id v14mr24378893ljh.31.1559815329654;
- Thu, 06 Jun 2019 03:02:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <1559228266-16724-1-git-send-email-biju.das@bp.renesas.com> <1559228266-16724-4-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1559228266-16724-4-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 6 Jun 2019 12:01:57 +0200
-Message-ID: <CAMuHMdW=5R82QLZre5Azr4VKAXQn+gmavTBzRy7uGZmrVCWDsA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: Add HiHope RZ/G2M sub board support
-To:     Biju Das <biju.das@bp.renesas.com>
+        id S1727734AbfFFKDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 06:03:01 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:37234 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726972AbfFFKDB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 06:03:01 -0400
+Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hYpEW-0003Vv-Kz; Thu, 06 Jun 2019 12:02:56 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     "Leonidas P. Papadakos" <papadakospan@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, xu_shunji@hoperun.com,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on rk3328
+Date:   Thu, 06 Jun 2019 12:02:56 +0200
+Message-ID: <3485393.4UdOu2YNQE@phil>
+In-Reply-To: <20190605235714.22432-1-papadakospan@gmail.com>
+References: <20190605235714.22432-1-papadakospan@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 5:05 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> The HiHope RZ/G2M sub board sits below the HiHope RZ/G2M main board.
-> This patch also adds ethernet support along with a dtsi common to
-> both HiHope RZ/G2M and RZ/G2N sub boards.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Am Donnerstag, 6. Juni 2019, 01:57:13 CEST schrieb Leonidas P. Papadakos:
+> From: <itdaniher@gmail.com>
 
-Gr{oetje,eeting}s,
+Why is the From different from the Signed-off-by? Would also need a full name.
+If the patch is from you, please just use the same From as for the Signed-off-by.
 
-                        Geert
+> 
+> Following the discussion here:
+> https://github.com/rockchip-linux/kernel/issues/123
+> 
+> it can be seen that these are the changes needed to enable the use of the hardware watchdog in the rk3328 SoC.
+> 
+> This is in line with past changes for the rk3288:
+> http://lists.infradead.org/pipermail/linux-rockchip/2015-January/002314.html
+> 
+> Signed-off-by: Leonidas P. Papadakos <papadakospan@gmail.com>
+> ---
+>  drivers/clk/rockchip/clk-rk3328.c      | 9 +++++++++
+>  include/dt-bindings/clock/rk3328-cru.h | 1 +
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/drivers/clk/rockchip/clk-rk3328.c b/drivers/clk/rockchip/clk-rk3328.c
+> index 076b9777a..546ee0ab7 100644
+> --- a/drivers/clk/rockchip/clk-rk3328.c
+> +++ b/drivers/clk/rockchip/clk-rk3328.c
+> @@ -876,6 +876,8 @@ static const char *const rk3328_critical_clocks[] __initconst = {
+>  
+>  static void __init rk3328_clk_init(struct device_node *np)
+>  {
+> +	struct clk *clk;
+> +
+>  	struct rockchip_clk_provider *ctx;
+>  	void __iomem *reg_base;
+>  
+> @@ -892,6 +894,13 @@ static void __init rk3328_clk_init(struct device_node *np)
+>  		return;
+>  	}
+>  
+> +	clk = clk_register_fixed_factor(NULL, "pclk_wdt", "pclk_bus", 0, 1, 1);
+> +	if (IS_ERR(clk))
+> +		pr_warn("%s: could not register clock pclk_wdt: %ld\n",
+> +			__func__, PTR_ERR(clk));
+> +	else
+> +		rockchip_clk_add_lookup(ctx, clk, PCLK_WDT);
+> +
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I've just Cc'ed you on 2 patches adding a SGRF_GATE clock-type. Please
+use that as base for you rk3328-wdt-clock, so that we don't introduce more
+boilderplate code.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+>  	rockchip_clk_register_plls(ctx, rk3328_pll_clks,
+>  				   ARRAY_SIZE(rk3328_pll_clks),
+>  				   RK3328_GRF_SOC_STATUS0);
+
+> diff --git a/include/dt-bindings/clock/rk3328-cru.h b/include/dt-bindings/clock/rk3328-cru.h
+> index afb811340..555b4ff66 100644
+> --- a/include/dt-bindings/clock/rk3328-cru.h
+> +++ b/include/dt-bindings/clock/rk3328-cru.h
+> @@ -164,6 +164,7 @@
+>  #define PCLK_DCF		233
+>  #define PCLK_SARADC		234
+>  #define PCLK_ACODECPHY		235
+> +#define PCLK_WDT		236
+>  
+>  /* hclk gates */
+>  #define HCLK_PERI		308
+
+please split the addition of the clock-id into a separate patch only adding
+said id.
+
+
+Thanks
+Heiko
+
+
+
