@@ -2,238 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB03373C1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 14:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D80373CF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 14:09:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728722AbfFFMEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 08:04:35 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:51964 "EHLO
+        id S1726729AbfFFMJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 08:09:40 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:52876 "EHLO
         lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728561AbfFFMEf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 08:04:35 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x56C4Q8r021326;
-        Thu, 6 Jun 2019 07:04:26 -0500
+        with ESMTP id S1726581AbfFFMJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 08:09:40 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x56C91JO022739;
+        Thu, 6 Jun 2019 07:09:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559822666;
-        bh=AvzxyZQyViAqtwQYq7pnaktuRRb4B8pnvEPR+rdnJvU=;
+        s=ti-com-17Q1; t=1559822941;
+        bh=qcyIk2SJUn0ZdZwR3JN8S2jqhxldDWKzw9rcIaBM9CY=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Q8uBqHnU3UExbGChb9DO4sjnnhugmJsFrBP9iCTlHMLDf+xbcSW6AE99IIiCiqDJF
-         Q9S3YKLmZfzTaVwlDUpPnzpF3UlZaqnM1sXs8nwWQdT/D+pe7ihHLHIDcbkfIGSrt2
-         gdlF0IQQDu+iHtutHyDFYkRAKPN6moljaKzPs/Lo=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x56C4QpG010887
+        b=r1DfGkAVMqtciddhXYiHl8QMDCTU/qQpAicziLVILpa8KpKMbqfJui+zeGvjT4GhI
+         SRIUt7L4kK40Egrm6VBGerre2yXhaPVNVfse9pVcPFFgH48VDmZQS81BByHg2rQ+AW
+         Ur+7hqcX1lzzJRn97RNTxSDJFv61OFNPHcT3PnlA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x56C910S073346
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 6 Jun 2019 07:04:26 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 6 Jun 2019 07:09:01 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 6 Jun
- 2019 07:04:26 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ 2019 07:09:00 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 6 Jun 2019 07:04:26 -0500
-Received: from [192.168.2.10] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x56C4N15062131;
-        Thu, 6 Jun 2019 07:04:23 -0500
-Subject: Re: [PATCH 01/16] firmware: ti_sci: Add resource management APIs for
- ringacc, psi-l and udma
-To:     Lokesh Vutla <lokeshvutla@ti.com>, <vkoul@kernel.org>,
-        <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>
-CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <t-kristo@ti.com>, <tony@atomide.com>
-References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
- <20190506123456.6777-2-peter.ujfalusi@ti.com>
- <f2056b18-3f65-b7ae-90ba-5ebf9ac425bc@ti.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <78a2d824-d730-4174-e80b-4153a2744427@ti.com>
-Date:   Thu, 6 Jun 2019 15:04:51 +0300
+ Frontend Transport; Thu, 6 Jun 2019 07:09:00 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x56C8u4P076209;
+        Thu, 6 Jun 2019 07:08:56 -0500
+Subject: Re: [PATCH v7 1/6] dt-bindings: add binding for USBSS-DRD controller.
+To:     Pawel Laszczak <pawell@cadence.com>, <devicetree@vger.kernel.org>
+CC:     <gregkh@linuxfoundation.org>, <felipe.balbi@linux.intel.com>,
+        <linux-usb@vger.kernel.org>, <hdegoede@redhat.com>,
+        <heikki.krogerus@linux.intel.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <jbergsagel@ti.com>,
+        <nsekhar@ti.com>, <nm@ti.com>, <sureshp@cadence.com>,
+        <peter.chen@nxp.com>, <jpawar@cadence.com>, <kurahul@cadence.com>
+References: <1559729030-16390-1-git-send-email-pawell@cadence.com>
+ <1559729030-16390-2-git-send-email-pawell@cadence.com>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <f032b3f3-409d-b0fc-8d5f-01c898b4c7a7@ti.com>
+Date:   Thu, 6 Jun 2019 15:08:55 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <f2056b18-3f65-b7ae-90ba-5ebf9ac425bc@ti.com>
+In-Reply-To: <1559729030-16390-2-git-send-email-pawell@cadence.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lokesh,
+Pawel,
 
-On 06/06/2019 9.00, Lokesh Vutla wrote:
-> Hi Peter,
+On 05/06/2019 13:03, Pawel Laszczak wrote:
+> This patch aim at documenting USB related dt-bindings for the
+> Cadence USBSS-DRD controller.
 > 
-> On 06/05/19 6:04 PM, Peter Ujfalusi wrote:
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Pawel Laszczak <pawell@cadence.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> Patch has the following checkpatch warnings and checks which can be fixed:
+> ---
+>  .../devicetree/bindings/usb/cdns-usb3.txt     | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/cdns-usb3.txt
 > 
-> WARNING: Missing commit description - Add an appropriate one
+> diff --git a/Documentation/devicetree/bindings/usb/cdns-usb3.txt b/Documentation/devicetree/bindings/usb/cdns-usb3.txt
+> new file mode 100644
+> index 000000000000..1d2b449e3cb4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/cdns-usb3.txt
+> @@ -0,0 +1,30 @@
+> +Binding for the Cadence USBSS-DRD controller
+> +
+> +Required properties:
+> +  - reg: Physical base address and size of the controller's register areas.
+> +	 Controller has 3 different regions:
+> +	 region 1 - HOST registers area
+> +	 region 2 - DEVICE registers area
+> +	 region 3 - OTG/DRD registers area
+> +  - reg-names - register memory area names:
+> +	"xhci" - for HOST registers space
+> +	"dev" - for DEVICE registers space
+> +	"otg" - for OTG/DRD registers space
+> +  - compatible: Should contain: "cdns,usb3-1.0.0" or "cdns,usb3-1.0.1"
+> +  - interrupts: Interrupts used by cdns3 controller.
 
-How did I missed it?
+Since we are requesting 3 separate named interrupts in code we need to
+mention them here.
 
-> CHECK: Lines should not end with a '('
-> #262: FILE: drivers/firmware/ti_sci.c:2286:
-> +static int ti_sci_cmd_rm_udmap_tx_ch_cfg(
-> 
-> CHECK: Lines should not end with a '('
-> #323: FILE: drivers/firmware/ti_sci.c:2347:
-> +static int ti_sci_cmd_rm_udmap_rx_ch_cfg(
-> 
-> CHECK: Lines should not end with a '('
-> #383: FILE: drivers/firmware/ti_sci.c:2407:
-> +static int ti_sci_cmd_rm_udmap_rx_flow_cfg1(
-> 
-> CHECK: Lines should not end with a '('
-> #1414: FILE: include/linux/soc/ti/ti_sci_protocol.h:455:
-> +	int (*rx_flow_cfg)(
-> 
-> total: 0 errors, 2 warnings, 4 checks, 1399 lines checked
+> +
+> +Optional properties:
+> + - maximum-speed : valid arguments are "super-speed", "high-speed" and
+> +                   "full-speed"; refer to usb/generic.txt
+> + - dr_mode: Should be one of "host", "peripheral" or "otg".
+> + - phys: reference to the USB PHY
+> +
+> +Example:
+> +	usb@f3000000 {
+> +		compatible = "cdns,usb3-1.0.1";
+> +		interrupts = <USB_IRQ  7 IRQ_TYPE_LEVEL_HIGH>;
 
-There must be a reason why these left, but I will take another look.
+This example won't work as code requests for 3 separate interrupts.
 
->> ---
->>  drivers/firmware/ti_sci.c              | 439 +++++++++++++++
->>  drivers/firmware/ti_sci.h              | 704 +++++++++++++++++++++++++
->>  include/linux/soc/ti/ti_sci_protocol.h | 216 ++++++++
->>  3 files changed, 1359 insertions(+)
->>
->> diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
->> index 64d895b80bc3..af3ebcdeab18 100644
->> --- a/drivers/firmware/ti_sci.c
->> +++ b/drivers/firmware/ti_sci.c
-> 
-> [..snip.]
-> 
->> +}
->> +
->> +static int ti_sci_cmd_rm_psil_pair(const struct ti_sci_handle *handle,
->> +				   u32 nav_id, u32 src_thread, u32 dst_thread)
->> +{
-> 
-> All the psil ops doesn't have the  kernel-doc function comments. Just be
-> consistent with other functions :)
-
-OK.
-
->> +	struct ti_sci_msg_hdr *resp;
->> +	struct ti_sci_msg_psil_pair *req;
->> +	struct ti_sci_xfer *xfer;
->> +	struct ti_sci_info *info;
->> +	struct device *dev;
->> +	int ret = 0;
->> +
->> +	if (IS_ERR(handle))
->> +		return PTR_ERR(handle);
->> +	if (!handle)
->> +		return -EINVAL;
->> +
->> +	info = handle_to_ti_sci_info(handle);
->> +	dev = info->dev;
->> +
->> +	xfer = ti_sci_get_one_xfer(info, TI_SCI_MSG_RM_PSIL_PAIR,
->> +				   TI_SCI_FLAG_REQ_ACK_ON_PROCESSED,
->> +				   sizeof(*req), sizeof(*resp));
->> +	if (IS_ERR(xfer)) {
->> +		ret = PTR_ERR(xfer);
->> +		dev_err(dev, "RM_PSIL:Message reconfig failed(%d)\n", ret);
->> +		return ret;
->> +	}
->> +	req = (struct ti_sci_msg_psil_pair *)xfer->xfer_buf;
->> +	req->nav_id = nav_id;
->> +	req->src_thread = src_thread;
->> +	req->dst_thread = dst_thread;
->> +
->> +	ret = ti_sci_do_xfer(info, xfer);
->> +	if (ret) {
->> +		dev_err(dev, "RM_PSIL:Mbox send fail %d\n", ret);
->> +		goto fail;
->> +	}
->> +
->> +	resp = (struct ti_sci_msg_hdr *)xfer->xfer_buf;
->> +	ret = ti_sci_is_response_ack(resp) ? 0 : -EINVAL;
->> +
->> +fail:
->> +	ti_sci_put_one_xfer(&info->minfo, xfer);
->> +
->> +	return ret;
->> +}
->> +
-> 
-> [..snip..]
-> 
->> + */
->> +struct ti_sci_msg_rm_ring_cfg_req {
->> +	struct ti_sci_msg_hdr hdr;
->> +	u32 valid_params;
->> +	u16 nav_id;
->> +	u16 index;
->> +	u32 addr_lo;
->> +	u32 addr_hi;
->> +	u32 count;
->> +	u8 mode;
->> +	u8 size;
->> +	u8 order_id;
->> +} __packed;
->> +
->> +/**
->> + * struct ti_sci_msg_rm_ring_cfg_resp - Response to configuring a ring.
->> + *
->> + * @hdr:	Generic Header
->> + */
->> +struct ti_sci_msg_rm_ring_cfg_resp {
->> +	struct ti_sci_msg_hdr hdr;
->> +} __packed;
-> 
-> If it is a generic ACK, NACK response, just use the header directly.
-
-Sure, I'll fix it and other places if any.
-
-> 
-> [..snip..]
-> 
->> + */
->> +struct ti_sci_msg_rm_udmap_rx_ch_cfg_req {
->> +	struct ti_sci_msg_hdr hdr;
->> +	u32 valid_params;
->> +	u16 nav_id;
->> +	u16 index;
->> +	u16 rx_fetch_size;
->> +	u16 rxcq_qnum;
->> +	u8 rx_priority;
->> +	u8 rx_qos;
->> +	u8 rx_orderid;
->> +	u8 rx_sched_priority;
->> +	u16 flowid_start;
->> +	u16 flowid_cnt;
->> +	u8 rx_pause_on_err;
->> +	u8 rx_atype;
->> +	u8 rx_chan_type;
->> +	u8 rx_ignore_short;
->> +	u8 rx_ignore_long;
->> +	u8 rx_burst_size;
->> +
-> 
-> extra line?
-
-Will remove it.
-> 
->> +} __packed;
->> +
->> +/**
-> 
-> 
-> Thanks and regards,
-> Lokesh
+> +		reg = <0xf3000000 0x10000	/* memory area for HOST registers */
+> +			0xf3010000 0x10000	/* memory area for DEVICE registers */
+> +			0xf3020000 0x10000>;	/* memory area for OTG/DRD registers */
+> +		reg-names = "xhci", "dev", "otg";
+> +	};
 > 
 
-Thanks,
-- Péter
+-- 
+cheers,
+-roger
 
 Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
 Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
