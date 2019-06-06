@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A828338084
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 00:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AD8380A4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 00:28:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729222AbfFFWWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 18:22:47 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:39770 "EHLO
+        id S1726870AbfFFW2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 18:28:24 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35468 "EHLO
         mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729182AbfFFWWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 18:22:47 -0400
-Received: by mail-wr1-f68.google.com with SMTP id x4so193272wrt.6;
-        Thu, 06 Jun 2019 15:22:45 -0700 (PDT)
+        with ESMTP id S1726200AbfFFW2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 18:28:23 -0400
+Received: by mail-wr1-f68.google.com with SMTP id m3so221457wrv.2;
+        Thu, 06 Jun 2019 15:28:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=8HB0xFXnBLxUfHqZ0Zttc4lJLneDgdEO2LsiuqrZzHI=;
-        b=iHFoH1CPPxQMvqhNtNSsB4gT8yIUlYxO6c9xUCJ5QUIiDcD9QRLx4J4IU+NZ/YEbo5
-         Dcqw51z3f+GZ+aIyDYmtxeUmsAOuMhxqdQKtpQZ4K3rsZigN0XAIpAfC1QWyOSgYROft
-         8R+yPCn7F3KKpsZd7hNBXPP1sWE1atsQKeA8SRj4RuzsWrFdQcjd5O523KJA1jFiWlI5
-         nsqPcxcU0NL6tD8a+Oycz/a2R4lB1iIKRUik0/i6fMrruvzLahhvH6XRKwFczDvbPjf+
-         D+SjRUgjyL19OJAQ47oP0EwEoG6Qm6LAvpNhndd15T7apKSm7grur2mSEeIQ2ltVwKuk
-         7T5A==
+        bh=K8LRZAGyxTA91e565NC0WdxUL44tT7JJZTxvCh2Q5n0=;
+        b=AhtcL6cP7rZU1yX2Iu9vJzeoGJ0Bnz7Hl/floUOmKa4mZYwItJz8fNrF6Lbc1LB0fp
+         XY2xFcADNY2grLi+jPcrkgawo9jn1qz0FT/Rrx0r/48eRjvUUT7HCSzcZqd9NjNOAgKb
+         yfxFMAP0D9dhfRSmis03kKBUEwaL27NmtfHe6FoSxYedpmN2M4x/QzTDniI+ESEA8aXi
+         Rh/X6EyJJ0OarAYkJzf4t4k9RKjQaxvD3kk+sBMN5OBZBenMJ7zscvopNCMtORWprxdj
+         t7275r0jPEfhxV5JwohNn8pmb8hhTEI+k9Oc8FY/bqh2dVGkvA97qs3mvJFc/tXjTTg+
+         XeLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=8HB0xFXnBLxUfHqZ0Zttc4lJLneDgdEO2LsiuqrZzHI=;
-        b=J73ziY1UNK5uT1sPm+OB1k+tBf/O8tgkm6bk7hVao5DWGeUHLHKGM3Sil2/pqfUA+0
-         boz3SqIhQMI5b8lY5BM2IYVZlW23hnDZlOJWKeNZa87P7O7VSmHvH/qtmn0GmWmhS75G
-         nMytoev7mPnfafK/p9y7DdU21GuYxDZhnHloC2a0yQoQDSgJ+hqRjqeEmdP5Jbw917AJ
-         3PyYqYY7jIb7khEHkk6QDJq/W2Dam6az+BdDIt8Tirb6i/7anpo+Vg3OvNm7jA7ojuSD
-         aQBBu41aQjH5QrLS9JZ+AI1g62deUSiQ+DRKjNKNuTDU6KRc0XlTOzy3bWB966ma8hPB
-         gfBQ==
-X-Gm-Message-State: APjAAAXqK/Bm/DdafMTs5g1moI1oaDInqB38omXLvz98Ltuy42cKVN4v
-        QzltjKkBFcd93+33r+9HgBc=
-X-Google-Smtp-Source: APXvYqznYsxSJmLXAKRuSZLOPDjMkbTahz8S0FO9cJMGM0PrdRtqygVPkhlq8ja3EA3m8zhTTPbdZQ==
-X-Received: by 2002:adf:dd51:: with SMTP id u17mr16859197wrm.218.1559859764610;
-        Thu, 06 Jun 2019 15:22:44 -0700 (PDT)
+        bh=K8LRZAGyxTA91e565NC0WdxUL44tT7JJZTxvCh2Q5n0=;
+        b=bloLDXaoFsulK/AjkiwK0KIPHz/hy7VbG5EMErGfzGYHhV7RuxGKYB57dGFmOXqFIS
+         VGoUbUIXZxIt4ey+mfmOvWv1ru/3Jvv3sz0EjFDEAwDmlFzkFBYt5LpSJOfvRuDxGOTv
+         jMK+YTx6YwSbs0vmG8XtpZmHiBreBrU9qLH/jxMCbapkn+iVMWLmYJLAoR8DPuhhgWwb
+         fMan0yMJj6jTxn2l+ILJ0gJTwvCgGzkJn34yVttYSlGodzoW2lY8bbMSUCOmb3nhRkJ3
+         cc6aDygoYy3rzW5ApRZ1NfgoxTFn0F334DYoi/ODDeCANZI8wQt8oF0xMIkWRCjlHryL
+         GWcQ==
+X-Gm-Message-State: APjAAAWskTKriQLo/RikchMbrpVI2K9FEf/N7iSG+nQXlILcw/QDif8D
+        LvfqCB2QuBSymMZh0nT68Gg=
+X-Google-Smtp-Source: APXvYqyvuY1RelhcBhUggjE4fxrjJ4yul8towhNZkJtNFNc5/o2oigiFGX39aGq/51KA5rgSgLsrBw==
+X-Received: by 2002:adf:f50c:: with SMTP id q12mr4506022wro.300.1559860100607;
+        Thu, 06 Jun 2019 15:28:20 -0700 (PDT)
 Received: from localhost.localdomain (5-12-124-26.residential.rdsnet.ro. [5.12.124.26])
-        by smtp.gmail.com with ESMTPSA id o126sm236436wmo.31.2019.06.06.15.22.43
+        by smtp.gmail.com with ESMTPSA id v184sm220527wme.10.2019.06.06.15.28.19
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Jun 2019 15:22:43 -0700 (PDT)
+        Thu, 06 Jun 2019 15:28:20 -0700 (PDT)
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Vladimir Oltean <olteanv@gmail.com>
-Subject: [PATCH v3] ARM: dts: Introduce the NXP LS1021A-TSN board
-Date:   Fri,  7 Jun 2019 01:21:30 +0300
-Message-Id: <20190606222130.27515-1-olteanv@gmail.com>
+Subject: [PATCH v4] ARM: dts: Introduce the NXP LS1021A-TSN board
+Date:   Fri,  7 Jun 2019 01:28:17 +0300
+Message-Id: <20190606222817.14223-1-olteanv@gmail.com>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -76,6 +76,9 @@ It also features:
 
 Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
 ---
+Changes from v3:
+- Not all nodes were alphabetically sorted ("d->i->e" vs "d->e->i")
+
 Changes from v2:
 - Sorted nodes alphabetically
 - Renamed SAI2 codec node into audio-codec
@@ -109,7 +112,7 @@ index dab2914fa293..a4eb4ca5e148 100644
  	vf500-colibri-eval-v3.dtb \
 diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021a-tsn.dts
 new file mode 100644
-index 000000000000..ef4a0b1e4d47
+index 000000000000..5b7689094b70
 --- /dev/null
 +++ b/arch/arm/boot/dts/ls1021a-tsn.dts
 @@ -0,0 +1,289 @@
@@ -216,6 +219,35 @@ index 000000000000..ef4a0b1e4d47
 +	};
 +};
 +
++&enet0 {
++	tbi-handle = <&tbi0>;
++	phy-handle = <&sgmii_phy2>;
++	phy-mode = "sgmii";
++	status = "okay";
++};
++
++&enet1 {
++	tbi-handle = <&tbi1>;
++	phy-handle = <&sgmii_phy1>;
++	phy-mode = "sgmii";
++	status = "okay";
++};
++
++/* RGMII delays added via PCB traces */
++&enet2 {
++	phy-mode = "rgmii";
++	status = "okay";
++
++	fixed-link {
++		speed = <1000>;
++		full-duplex;
++	};
++};
++
++&esdhc {
++	status = "okay";
++};
++
 +&i2c0 {
 +	status = "okay";
 +
@@ -275,35 +307,6 @@ index 000000000000..ef4a0b1e4d47
 +
 +&ifc {
 +	status = "disabled";
-+};
-+
-+&enet0 {
-+	tbi-handle = <&tbi0>;
-+	phy-handle = <&sgmii_phy2>;
-+	phy-mode = "sgmii";
-+	status = "okay";
-+};
-+
-+&enet1 {
-+	tbi-handle = <&tbi1>;
-+	phy-handle = <&sgmii_phy1>;
-+	phy-mode = "sgmii";
-+	status = "okay";
-+};
-+
-+/* RGMII delays added via PCB traces */
-+&enet2 {
-+	phy-mode = "rgmii";
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
-+&esdhc {
-+	status = "okay";
 +};
 +
 +&lpuart0 {
