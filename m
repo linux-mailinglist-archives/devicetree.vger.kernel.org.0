@@ -2,168 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4128937331
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 13:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7EE37348
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 13:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728631AbfFFLm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 07:42:27 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:42077 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728162AbfFFLm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 07:42:27 -0400
-Received: by mail-wr1-f65.google.com with SMTP id x17so2056829wrl.9;
-        Thu, 06 Jun 2019 04:42:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=Hm8jnVKj/49pMZ/YRr3G6M11770UiUWVYtiApy3hGqI=;
-        b=A19pqkikhBtY++OguCINEbIXI3xRn5Ebn3irMyP+Nosg1P/LybZCNSeGYOe/78wG1e
-         xZ/b4FDwheBSJPdKvqwbZLY/SI7f8B5LHaBg6eML1m+yBTLhkFm4J2gTFXe9VX+vbUWY
-         1Y/wldH9+tuz2h1zbO32ODLH+4KupTa3TjlXA9vGnjn/iFVHj+Umka/15AnyCXQMFa0A
-         pWHN1IHZnNuNNLOUHUgHmdStCiWEQRWjxzUgrZPBcVFAw6ogfA0zj8pL+tSeC32JvLEN
-         laviVO8m1ZlBYh7UHsJZQfrXfOeQdLbuS+FSbEuuxQNoAYMcJU0MPt2oAxZOOZC1Z0UQ
-         FoGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=Hm8jnVKj/49pMZ/YRr3G6M11770UiUWVYtiApy3hGqI=;
-        b=dMYvvSKgrR6ozqS+GYH98Zo31+/Mo5nusjTCYcz6o00QYxsMGnHxzIC7ybUyVwv3TQ
-         G2RiEG+4ttTC5EPev1xBd/5rQfL+Ej8x/098UzfMTI1lpWEDzVeuAd8OKZqihorDDzAc
-         4KmdBOYG9F3XG40UfUgBWjb1tLB9hCIofqSulCdQoX7mLvRkKd5ios3NFk5/cohRQupB
-         +G8WMPcn3wv/HDwywFu4w5boc9CurKTJkrGSQp8Oyj5+mN5H80lgonPmF0gyMmKLsqdG
-         Djmefqw41gPSZAR/mhVCIsUdFvYxtlnrZ71nu6z2SfbzvasLxeDougHTE+s/OsEnxJTB
-         FJoQ==
-X-Gm-Message-State: APjAAAUwWXDg9p+M0+y8E9mwT0sambBfpzASEL4uSKKUSbJC1eL/1vYL
-        xk+1iqX6COdSEkJp7P+2kYI=
-X-Google-Smtp-Source: APXvYqyGbeHxc8tZuXHRIYqtw0Bip3jMlyDlc5AEJHsdIvkmwwkH5eFtA6b2PyG0LPf5PvclT2dA+Q==
-X-Received: by 2002:adf:9003:: with SMTP id h3mr6206679wrh.172.1559821345407;
-        Thu, 06 Jun 2019 04:42:25 -0700 (PDT)
-Received: from X555LD ([2a02:85f:1501:7500:4d25:7f51:1663:c28f])
-        by smtp.gmail.com with ESMTPSA id o6sm1509958wmc.15.2019.06.06.04.42.22
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 06 Jun 2019 04:42:24 -0700 (PDT)
-Date:   Thu, 06 Jun 2019 14:42:20 +0300
-From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
-Subject: Re: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on
- rk3328
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     itdaniher@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Message-Id: <1559821340.1384.0@gmail.com>
-In-Reply-To: <3485393.4UdOu2YNQE@phil>
-References: <20190605235714.22432-1-papadakospan@gmail.com>
-        <3485393.4UdOu2YNQE@phil>
-X-Mailer: geary/3.32.1
+        id S1727182AbfFFLpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 07:45:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37876 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725267AbfFFLp3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 07:45:29 -0400
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A3439208C0;
+        Thu,  6 Jun 2019 11:45:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559821529;
+        bh=vqDCsXe5IHyavNfXW5krmCev6CdBmExEhG6HMAbCLhc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=b6yQ9oA8ENOTDIff2KAsFD3F/2NkJA10BoHe6N5aygghiYufyZUDmWLKLSdgY/2s5
+         QQA61xYx11ZD/CnuimtlFIGJchk3K7856I/p/OqUxgKQkOimJQRTh34vyKAti116SA
+         mkz/P+8qVzFpnMqqL0jlMYlxU+pMuzxiC9qeMHPE=
+Received: by mail-lj1-f179.google.com with SMTP id o13so1698278lji.5;
+        Thu, 06 Jun 2019 04:45:28 -0700 (PDT)
+X-Gm-Message-State: APjAAAWiOTPzDmE/LU8D7L/BDloXUFNUy0KceyVOuijhcpa1FQLxAL9+
+        TyccQOEht1ts/3ZDFib7qr3UdEmvgcrIcXkteT4=
+X-Google-Smtp-Source: APXvYqw9cRx3ydyjVTR7FBMwbZdJR6asW1APtajO6t1UPptVjz86e1QW4Q5Md03p3BchHDHfSNkcP3PD41BDIh6uTSg=
+X-Received: by 2002:a2e:568d:: with SMTP id k13mr23893341lje.194.1559821526851;
+ Thu, 06 Jun 2019 04:45:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+References: <CGME20190605165435eucas1p2fa32f4583f396fdce443b6943ac180d3@eucas1p2.samsung.com>
+ <20190605165410.14606-1-l.luba@partner.samsung.com> <20190605165410.14606-9-l.luba@partner.samsung.com>
+ <CAJKOXPfKbWpx9AapOudDyEZjDpgtMX-aHPQHRivuVNKaap8EQg@mail.gmail.com> <d5758d38-c0e5-1732-1407-91d602ae5500@partner.samsung.com>
+In-Reply-To: <d5758d38-c0e5-1732-1407-91d602ae5500@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Thu, 6 Jun 2019 13:45:15 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfiFCp52rYtOBk5mfHfLLA=VtBpakAdUB__UcVCqbma-g@mail.gmail.com>
+Message-ID: <CAJKOXPfiFCp52rYtOBk5mfHfLLA=VtBpakAdUB__UcVCqbma-g@mail.gmail.com>
+Subject: Re: [PATCH v8 08/13] drivers: memory: add DMC driver for Exynos5422
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 6 Jun 2019 at 12:38, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+> Hi Krzysztof,
+> >> +/**
+> >> + * exynos5_dmc_init_clks() - Initialize clocks needed for DMC operation.
+> >> + * @dmc:       DMC structure containing needed fields
+> >> + *
+> >> + * Get the needed clocks defined in DT device, enable and set the right parents.
+> >> + * Read current frequency and initialize the initial rate for governor.
+> >> + */
+> >> +static int exynos5_dmc_init_clks(struct exynos5_dmc *dmc)
+> >> +{
+> >> +       int ret;
+> >> +       unsigned long target_volt = 0;
+> >> +       unsigned long target_rate = 0;
+> >> +
+> >> +       dmc->fout_spll = devm_clk_get(dmc->dev, "fout_spll");
+> >> +       if (IS_ERR(dmc->fout_spll))
+> >> +               return PTR_ERR(dmc->fout_spll);
+> >> +
+> >> +       dmc->fout_bpll = devm_clk_get(dmc->dev, "fout_bpll");
+> >> +       if (IS_ERR(dmc->fout_bpll))
+> >> +               return PTR_ERR(dmc->fout_bpll);
+> >> +
+> >> +       dmc->mout_mclk_cdrex = devm_clk_get(dmc->dev, "mout_mclk_cdrex");
+> >> +       if (IS_ERR(dmc->mout_mclk_cdrex))
+> >> +               return PTR_ERR(dmc->mout_mclk_cdrex);
+> >
+> > You are not enabling this clock. It is divider so it is fine for him
+> > but what about its parents? How can you guarantee that parents are
+> > enabled?
+> It uses two parents in this configuration:
+> 1. 'mout_bpll' which is set by the bootloader and is a default mode
+> 2. 'mout_mx_mspll_ccore' which is used temporary as a 'bypass clock
+> source' only for the time when BPLL is changing it's settings
+>
+> Do you suggest to put a call:
+>
+> to make sure the parent is up and running?
+> OR just move the lines from the end of this function:
+>         clk_prepare_enable(dmc->fout_bpll);
+>         clk_prepare_enable(dmc->mout_bpll);
+> and add:
+>         ret = clk_set_parent(dmc->mout_mclk_cdrex, dmc->mout_bpll);
+> then call the clk_get_rate on 'mout_mclk_cdrex'
+>
 
-Hi,
-> 
-> Am Donnerstag, 6. Juni 2019, 01:57:13 CEST schrieb Leonidas P. 
-> Papadakos:
->>  From: <itdaniher@gmail.com>
-> 
-> Why is the From different from the Signed-off-by? Would also need a 
-> full name.
-> If the patch is from you, please just use the same From as for the 
-> Signed-off-by.
-> 
+Ah, It's my mistake. I missed that later you enable its new parent. It's fine.
 
-I mistakenly though this was the way to credit someone for a patch, but 
-it seems to be different.
-I'll Cc: the author of this patch
-
->> 
->>  Following the discussion here:
->>  https://github.com/rockchip-linux/kernel/issues/123
->> 
->>  it can be seen that these are the changes needed to enable the use 
->> of the hardware watchdog in the rk3328 SoC.
->> 
->>  This is in line with past changes for the rk3288:
->>  
->> http://lists.infradead.org/pipermail/linux-rockchip/2015-January/002314.html
->> 
->>  Signed-off-by: Leonidas P. Papadakos <papadakospan@gmail.com>
->>  ---
->>   drivers/clk/rockchip/clk-rk3328.c      | 9 +++++++++
->>   include/dt-bindings/clock/rk3328-cru.h | 1 +
->>   2 files changed, 10 insertions(+)
->> 
->>  diff --git a/drivers/clk/rockchip/clk-rk3328.c 
->> b/drivers/clk/rockchip/clk-rk3328.c
->>  index 076b9777a..546ee0ab7 100644
->>  --- a/drivers/clk/rockchip/clk-rk3328.c
->>  +++ b/drivers/clk/rockchip/clk-rk3328.c
->>  @@ -876,6 +876,8 @@ static const char *const 
->> rk3328_critical_clocks[] __initconst = {
->> 
->>   static void __init rk3328_clk_init(struct device_node *np)
->>   {
->>  +	struct clk *clk;
->>  +
->>   	struct rockchip_clk_provider *ctx;
->>   	void __iomem *reg_base;
->> 
->>  @@ -892,6 +894,13 @@ static void __init rk3328_clk_init(struct 
->> device_node *np)
->>   		return;
->>   	}
->> 
->>  +	clk = clk_register_fixed_factor(NULL, "pclk_wdt", "pclk_bus", 0, 
->> 1, 1);
->>  +	if (IS_ERR(clk))
->>  +		pr_warn("%s: could not register clock pclk_wdt: %ld\n",
->>  +			__func__, PTR_ERR(clk));
->>  +	else
->>  +		rockchip_clk_add_lookup(ctx, clk, PCLK_WDT);
->>  +
-> 
-> I've just Cc'ed you on 2 patches adding a SGRF_GATE clock-type. Please
-> use that as base for you rk3328-wdt-clock, so that we don't introduce 
-> more
-> boilderplate code.
-> 
-> 
->>   	rockchip_clk_register_plls(ctx, rk3328_pll_clks,
->>   				   ARRAY_SIZE(rk3328_pll_clks),
->>   				   RK3328_GRF_SOC_STATUS0);
-> 
->>  diff --git a/include/dt-bindings/clock/rk3328-cru.h 
->> b/include/dt-bindings/clock/rk3328-cru.h
->>  index afb811340..555b4ff66 100644
->>  --- a/include/dt-bindings/clock/rk3328-cru.h
->>  +++ b/include/dt-bindings/clock/rk3328-cru.h
->>  @@ -164,6 +164,7 @@
->>   #define PCLK_DCF		233
->>   #define PCLK_SARADC		234
->>   #define PCLK_ACODECPHY		235
->>  +#define PCLK_WDT		236
->> 
->>   /* hclk gates */
->>   #define HCLK_PERI		308
-> 
-> please split the addition of the clock-id into a separate patch only 
-> adding
-> said id.
-> 
-> 
-> Thanks
-> Heiko
-> 
-
-I know less than him on this, but I want the feedback to be visible in 
-the Cc:
-
-
+Best regards,
+Krzysztof
