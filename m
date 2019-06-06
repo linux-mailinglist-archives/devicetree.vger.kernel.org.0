@@ -2,229 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C17C736A02
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A984C36A17
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726519AbfFFCdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 22:33:02 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:58827 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726590AbfFFCdC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 22:33:02 -0400
-X-UUID: f2f05a0dff3b4d0c8a33395bed6ee558-20190606
-X-UUID: f2f05a0dff3b4d0c8a33395bed6ee558-20190606
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 994228977; Thu, 06 Jun 2019 10:32:49 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 6 Jun
- 2019 10:32:48 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 6 Jun 2019 10:32:48 +0800
-Message-ID: <1559788368.8487.109.camel@mhfsdcap03>
-Subject: Re: [PATCH v3] USB: move usb debugfs directory creation to the usb
- common core
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S1726427AbfFFCjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 22:39:23 -0400
+Received: from mail-eopbgr130081.outbound.protection.outlook.com ([40.107.13.81]:44877
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725783AbfFFCjX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 22:39:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jEfw2XP7woddP8jkb5yiTWjUQEYtKYxoGszP/xMn0K8=;
+ b=Um58YizCLjZ0MjMCRTAakRCeE0UnE9DDxUlG+G6Rxcd9tmbDD2ezaLqeEBJm2zGel0Ww3tOcdrT677/X8YEj6q81La1p2kD2XYm6BjRq0GZlWTDfdna8J4Thq6blkqkYYJLakx4W/bfKcdbLfupbbC+X4UNUeB7GFWmoDImKfPg=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3691.eurprd04.prod.outlook.com (52.134.66.150) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.14; Thu, 6 Jun 2019 02:38:38 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::5835:e874:bd94:fec]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::5835:e874:bd94:fec%5]) with mapi id 15.20.1965.011; Thu, 6 Jun 2019
+ 02:38:38 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 6 Jun 2019 10:32:48 +0800
-In-Reply-To: <20190605124440.GD17558@kroah.com>
-References: <20190605092816.GA23758@kroah.com>
-         <20190605124440.GD17558@kroah.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH] arm64: dts: imx8mm: Move gic node into soc node
+Thread-Topic: [PATCH] arm64: dts: imx8mm: Move gic node into soc node
+Thread-Index: AQHVGa55LUfZhzUgv0u2mUng1o8nvaaN6NYAgAAFcuA=
+Date:   Thu, 6 Jun 2019 02:38:38 +0000
+Message-ID: <DB3PR0402MB3916D9019F65E901DC4E6BDAF5170@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190603015020.41410-1-Anson.Huang@nxp.com>
+ <20190606021803.GW29853@dragon>
+In-Reply-To: <20190606021803.GW29853@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8caeaf81-823d-465f-6d90-08d6ea2814b8
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB3PR0402MB3691;
+x-ms-traffictypediagnostic: DB3PR0402MB3691:
+x-microsoft-antispam-prvs: <DB3PR0402MB3691523F8874F4B694BBD1CCF5170@DB3PR0402MB3691.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-forefront-prvs: 00603B7EEF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(136003)(376002)(396003)(366004)(39860400002)(189003)(199004)(13464003)(53546011)(6506007)(102836004)(4326008)(76176011)(25786009)(33656002)(316002)(5660300002)(52536014)(74316002)(71200400001)(71190400001)(6246003)(6436002)(54906003)(73956011)(76116006)(55016002)(66946007)(7736002)(6916009)(81156014)(446003)(11346002)(476003)(305945005)(2906002)(229853002)(478600001)(86362001)(486006)(44832011)(26005)(186003)(6116002)(3846002)(7416002)(99286004)(256004)(68736007)(53936002)(14444005)(66066001)(7696005)(8676002)(81166006)(8936002)(66556008)(9686003)(64756008)(66446008)(66476007)(14454004)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3691;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: LucmTFVOC3Hkcc0lWN2hloCjeZIUJGNfzNF35pWZ1/QD0mcoQ3wAt/bMuyYxmkrzCx7seWhIWXTmq0Nm9hq9YrfspFJFOW7OHmUksX0ULN4AOO4ruUu/nIpSyQUZ9kUb2qNuIr+LvHuYU6H1GESlVesuQjXBHo0snoFTOFsBYB0AcbnGIRv2n6X+x/BLW1hVP1U3pz1qx5usBBBFBwG6INW3LhyK9rq3BEL83FXqhGX0B/7romfPwFBPkr97zqHLavPWnRzljAwR9PKjQ+oyCN2fyZ0hZcDodqgeDNNW6wVQYGszFETsR75Ty65m2Hwezafj4139Vj8eKnEuX8WgNJVlojNT5jETksaRZ47u4p1VCzybM6aKJRGM73vmIJvEq7W5vXeXbgqKXRzGBo3D5RM1+Mo5QKWzYORKD2yKQUo=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8caeaf81-823d-465f-6d90-08d6ea2814b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 02:38:38.5107
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3691
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-06-05 at 14:44 +0200, Greg Kroah-Hartman wrote:
-> The USB gadget subsystem wants to use the USB debugfs root directory, so
-> move it to the common "core" USB code so that it is properly initialized
-> and removed as needed.
-> 
-> In order to properly do this, we need to load the common code before the
-> usb core code, when everything is linked into the kernel, so reorder the
-> link order of the code.
-> 
-> Also as the usb common code has the possibility of the led trigger logic
-> to be merged into it, handle the build option properly by only having
-> one module init/exit function and have the common code initialize the
-> led trigger if needed.
-> 
-> Reported-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> Cc: Felipe Balbi <felipe.balbi@linux.intel.com>
-> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> ---
-> Chunfeng, can you try testing this again?
-
-Tested-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-
-Thank you, Greg, Felipe
-
-> 
-> v3: Fix __init and __exit error when building into the tree as reported
->     by Chunfeng
->     Fix Reported-by: line as reported
-> v2: handle led common code link error reported by kbuild
->     handle subsys_initcall issue pointed out by Chunfeng
-> 
->  drivers/usb/Makefile        |  3 +--
->  drivers/usb/common/common.c | 21 +++++++++++++++++++++
->  drivers/usb/common/common.h | 14 ++++++++++++++
->  drivers/usb/common/led.c    |  9 +++------
->  drivers/usb/core/usb.c      | 10 ++++------
->  5 files changed, 43 insertions(+), 14 deletions(-)
->  create mode 100644 drivers/usb/common/common.h
-> 
-> diff --git a/drivers/usb/Makefile b/drivers/usb/Makefile
-> index 7d1b8c82b208..ecc2de1ffaae 100644
-> --- a/drivers/usb/Makefile
-> +++ b/drivers/usb/Makefile
-> @@ -5,6 +5,7 @@
->  
->  # Object files in subdirectories
->  
-> +obj-$(CONFIG_USB_COMMON)	+= common/
->  obj-$(CONFIG_USB)		+= core/
->  obj-$(CONFIG_USB_SUPPORT)	+= phy/
->  
-> @@ -60,8 +61,6 @@ obj-$(CONFIG_USB_CHIPIDEA)	+= chipidea/
->  obj-$(CONFIG_USB_RENESAS_USBHS)	+= renesas_usbhs/
->  obj-$(CONFIG_USB_GADGET)	+= gadget/
->  
-> -obj-$(CONFIG_USB_COMMON)	+= common/
-> -
->  obj-$(CONFIG_USBIP_CORE)	+= usbip/
->  
->  obj-$(CONFIG_TYPEC)		+= typec/
-> diff --git a/drivers/usb/common/common.c b/drivers/usb/common/common.c
-> index 18f5dcf58b0d..1433260d99b4 100644
-> --- a/drivers/usb/common/common.c
-> +++ b/drivers/usb/common/common.c
-> @@ -15,6 +15,8 @@
->  #include <linux/usb/of.h>
->  #include <linux/usb/otg.h>
->  #include <linux/of_platform.h>
-> +#include <linux/debugfs.h>
-> +#include "common.h"
->  
->  static const char *const ep_type_names[] = {
->  	[USB_ENDPOINT_XFER_CONTROL] = "ctrl",
-> @@ -291,4 +293,23 @@ struct device *usb_of_get_companion_dev(struct device *dev)
->  EXPORT_SYMBOL_GPL(usb_of_get_companion_dev);
->  #endif
->  
-> +struct dentry *usb_debug_root;
-> +EXPORT_SYMBOL_GPL(usb_debug_root);
-> +
-> +static int __init usb_common_init(void)
-> +{
-> +	usb_debug_root = debugfs_create_dir("usb", NULL);
-> +	ledtrig_usb_init();
-> +	return 0;
-> +}
-> +
-> +static void __exit usb_common_exit(void)
-> +{
-> +	ledtrig_usb_exit();
-> +	debugfs_remove_recursive(usb_debug_root);
-> +}
-> +
-> +subsys_initcall(usb_common_init);
-> +module_exit(usb_common_exit);
-> +
->  MODULE_LICENSE("GPL");
-> diff --git a/drivers/usb/common/common.h b/drivers/usb/common/common.h
-> new file mode 100644
-> index 000000000000..424a91316a4b
-> --- /dev/null
-> +++ b/drivers/usb/common/common.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +
-> +#ifndef __LINUX_USB_COMMON_H
-> +#define __LINUX_USB_COMMON_H
-> +
-> +#if defined(CONFIG_USB_LED_TRIG)
-> +void ledtrig_usb_init(void);
-> +void ledtrig_usb_exit(void);
-> +#else
-> +static inline void ledtrig_usb_init(void) { }
-> +static inline void ledtrig_usb_exit(void) { }
-> +#endif
-> +
-> +#endif	/* __LINUX_USB_COMMON_H */
-> diff --git a/drivers/usb/common/led.c b/drivers/usb/common/led.c
-> index 7bd81166b77d..0865dd44a80a 100644
-> --- a/drivers/usb/common/led.c
-> +++ b/drivers/usb/common/led.c
-> @@ -10,6 +10,7 @@
->  #include <linux/init.h>
->  #include <linux/leds.h>
->  #include <linux/usb.h>
-> +#include "common.h"
->  
->  #define BLINK_DELAY 30
->  
-> @@ -36,18 +37,14 @@ void usb_led_activity(enum usb_led_event ev)
->  EXPORT_SYMBOL_GPL(usb_led_activity);
->  
-> 
-> -static int __init ledtrig_usb_init(void)
-> +void __init ledtrig_usb_init(void)
->  {
->  	led_trigger_register_simple("usb-gadget", &ledtrig_usb_gadget);
->  	led_trigger_register_simple("usb-host", &ledtrig_usb_host);
-> -	return 0;
->  }
->  
-> -static void __exit ledtrig_usb_exit(void)
-> +void __exit ledtrig_usb_exit(void)
->  {
->  	led_trigger_unregister_simple(ledtrig_usb_gadget);
->  	led_trigger_unregister_simple(ledtrig_usb_host);
->  }
-> -
-> -module_init(ledtrig_usb_init);
-> -module_exit(ledtrig_usb_exit);
-> diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-> index 7fcb9f782931..5a0df527a8ca 100644
-> --- a/drivers/usb/core/usb.c
-> +++ b/drivers/usb/core/usb.c
-> @@ -1185,19 +1185,17 @@ static struct notifier_block usb_bus_nb = {
->  	.notifier_call = usb_bus_notify,
->  };
->  
-> -struct dentry *usb_debug_root;
-> -EXPORT_SYMBOL_GPL(usb_debug_root);
-> +static struct dentry *usb_devices_root;
->  
->  static void usb_debugfs_init(void)
->  {
-> -	usb_debug_root = debugfs_create_dir("usb", NULL);
-> -	debugfs_create_file("devices", 0444, usb_debug_root, NULL,
-> -			    &usbfs_devices_fops);
-> +	usb_devices_root = debugfs_create_file("devices", 0444, usb_debug_root,
-> +					       NULL, &usbfs_devices_fops);
->  }
->  
->  static void usb_debugfs_cleanup(void)
->  {
-> -	debugfs_remove_recursive(usb_debug_root);
-> +	debugfs_remove(usb_devices_root);
->  }
->  
->  /*
-
-
+SGksIFNoYXduDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU2hhd24g
+R3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPiBTZW50OiBUaHVyc2RheSwgSnVuZSA2LCAyMDE5
+IDEwOjE4IEFNDQo+IFRvOiBBbnNvbiBIdWFuZyA8YW5zb24uaHVhbmdAbnhwLmNvbT4NCj4gQ2M6
+IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207IHMuaGF1ZXJAcGVuZ3V0
+cm9uaXguZGU7DQo+IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgZmVzdGV2YW1AZ21haWwuY29tOyBM
+ZW9uYXJkIENyZXN0ZXoNCj4gPGxlb25hcmQuY3Jlc3RlekBueHAuY29tPjsgQWlzaGVuZyBEb25n
+IDxhaXNoZW5nLmRvbmdAbnhwLmNvbT47DQo+IHZpcmVzaC5rdW1hckBsaW5hcm8ub3JnOyBKYWNr
+eSBCYWkgPHBpbmcuYmFpQG54cC5jb20+Ow0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsg
+bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eC0NCj4ga2VybmVsQHZn
+ZXIua2VybmVsLm9yZzsgZGwtbGludXgtaW14IDxsaW51eC1pbXhAbnhwLmNvbT4NCj4gU3ViamVj
+dDogUmU6IFtQQVRDSF0gYXJtNjQ6IGR0czogaW14OG1tOiBNb3ZlIGdpYyBub2RlIGludG8gc29j
+IG5vZGUNCj4gDQo+IE9uIE1vbiwgSnVuIDAzLCAyMDE5IGF0IDA5OjUwOjIwQU0gKzA4MDAsIEFu
+c29uLkh1YW5nQG54cC5jb20gd3JvdGU6DQo+ID4gRnJvbTogQW5zb24gSHVhbmcgPEFuc29uLkh1
+YW5nQG54cC5jb20+DQo+ID4NCj4gPiBHSUMgaXMgaW5zaWRlIG9mIFNvQyBmcm9tIGFyY2hpdGVj
+dHVyZSBwZXJzcGVjdGl2ZSwgaXQgc2hvdWxkIGJlDQo+ID4gbG9jYXRlZCBpbnNpZGUgb2Ygc29j
+IG5vZGUgaW4gRFQuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNvbiBIdWFuZyA8QW5zb24u
+SHVhbmdAbnhwLmNvbT4NCj4gDQo+IEl0IGRvZXNuJ3QgYXBwbHkgdG8gbXkgaW14L2R0NjQgYnJh
+bmNoLiAgUGxlYXNlIGdlbmVyYXRlIGl0IGFnYWluc3QgdGhhdA0KPiBicmFuY2ggZm9yIG15IGZv
+ci1uZXh0Lg0KDQpPSywganVzdCByZXNlbnQgdGhlIHBhdGNoIGJhc2VkIG9uIHRoZSBjb3JyZWN0
+IGJyYW5jaC4NCg0KVGhhbmtzLA0KQW5zb24uDQoNCj4gDQo+IFNoYXduDQo+IA0KPiA+IC0tLQ0K
+PiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaSB8IDE4ICsrKysr
+KysrKy0tLS0tLS0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCA5IGRl
+bGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJl
+ZXNjYWxlL2lteDhtbS5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9p
+bXg4bW0uZHRzaQ0KPiA+IGluZGV4IGRjOTlmNDUuLjQyOTMxMmUgMTAwNjQ0DQo+ID4gLS0tIGEv
+YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4gPiArKysgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+IEBAIC0xNjksMTUgKzE2
+OSw2IEBADQo+ID4gIAkJY2xvY2stb3V0cHV0LW5hbWVzID0gImNsa19leHQ0IjsNCj4gPiAgCX07
+DQo+ID4NCj4gPiAtCWdpYzogaW50ZXJydXB0LWNvbnRyb2xsZXJAMzg4MDAwMDAgew0KPiA+IC0J
+CWNvbXBhdGlibGUgPSAiYXJtLGdpYy12MyI7DQo+ID4gLQkJcmVnID0gPDB4MCAweDM4ODAwMDAw
+IDAgMHgxMDAwMD4sIC8qIEdJQyBEaXN0ICovDQo+ID4gLQkJICAgICAgPDB4MCAweDM4ODgwMDAw
+IDAgMHhDMDAwMD47IC8qIEdJQ1IgKFJEX2Jhc2UgKw0KPiBTR0lfYmFzZSkgKi8NCj4gPiAtCQkj
+aW50ZXJydXB0LWNlbGxzID0gPDM+Ow0KPiA+IC0JCWludGVycnVwdC1jb250cm9sbGVyOw0KPiA+
+IC0JCWludGVycnVwdHMgPSA8R0lDX1BQSSA5IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+IC0J
+fTsNCj4gPiAtDQo+ID4gIAlwc2NpIHsNCj4gPiAgCQljb21wYXRpYmxlID0gImFybSxwc2NpLTEu
+MCI7DQo+ID4gIAkJbWV0aG9kID0gInNtYyI7DQo+ID4gQEAgLTczOSw2ICs3MzAsMTUgQEANCj4g
+PiAgCQkJZG1hLW5hbWVzID0gInJ4LXR4IjsNCj4gPiAgCQkJc3RhdHVzID0gImRpc2FibGVkIjsN
+Cj4gPiAgCQl9Ow0KPiA+ICsNCj4gPiArCQlnaWM6IGludGVycnVwdC1jb250cm9sbGVyQDM4ODAw
+MDAwIHsNCj4gPiArCQkJY29tcGF0aWJsZSA9ICJhcm0sZ2ljLXYzIjsNCj4gPiArCQkJcmVnID0g
+PDB4Mzg4MDAwMDAgMHgxMDAwMD4sIC8qIEdJQyBEaXN0ICovDQo+ID4gKwkJCSAgICAgIDwweDM4
+ODgwMDAwIDB4YzAwMDA+OyAvKiBHSUNSIChSRF9iYXNlICsNCj4gU0dJX2Jhc2UpICovDQo+ID4g
+KwkJCSNpbnRlcnJ1cHQtY2VsbHMgPSA8Mz47DQo+ID4gKwkJCWludGVycnVwdC1jb250cm9sbGVy
+Ow0KPiA+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19QUEkgOSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsN
+Cj4gPiArCQl9Ow0KPiA+ICAJfTsNCj4gPg0KPiA+ICAJdXNicGh5bm9wMTogdXNicGh5bm9wMSB7
+DQo+ID4gLS0NCj4gPiAyLjcuNA0KPiA+DQo=
