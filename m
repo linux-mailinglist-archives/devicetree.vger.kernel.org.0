@@ -2,125 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CB136C5D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 08:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D3F736C63
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 08:37:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726294AbfFFGga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 02:36:30 -0400
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:12850 "EHLO
-        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725267AbfFFGga (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 02:36:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1559803027; x=1591339027;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=GROh4qCTdCjDOeNTyHdfWCyNWpdwRCHJ5JXYERWlgu0=;
-  b=LcmEO5ccA5R3PSpAdvlFBX9D2Rl46oBQQBrXh17CJIgev0B9pPavXGo0
-   tBGbmgFz8CAvjZuqhX0VLnhFmUjobZHV6cM1n+/lUHjugGnODX3cgcudw
-   6owL02qnvaAk0pAn5LIbVaLzgzZYsgtlUzQZP/Hca/HnJT9OuMbIafd5B
-   tBVWtFO4by7q209gB7JbPUrG5puAD7KmQUFOsJq0/n8XJcEHU1xiTJ3/3
-   ECAJbQ6l/Ara4fOSmJNi92FzhvgZIByFvGBib9HU9+uv0IoDSN7KOSnoF
-   V+ZscA37J1Ll4TxucJv2pz9gOMAeQmkKNQZtk3PWu8Qg8gMvsB4DCpRa/
-   w==;
-X-IronPort-AV: E=Sophos;i="5.63,558,1557158400"; 
-   d="scan'208";a="209549030"
-Received: from mail-dm3nam03lp2051.outbound.protection.outlook.com (HELO NAM03-DM3-obe.outbound.protection.outlook.com) ([104.47.41.51])
-  by ob1.hgst.iphmx.com with ESMTP; 06 Jun 2019 14:37:05 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sdhSAoDoPtdHbdxwUQZniSOsm6I76sfh9IxmQMqTqks=;
- b=r85ctanC0fsTOgTMTSpXJQeucLOZXrTbELDDxPuNqbha/lpON5SeAUkdliMS2/TiDpilTRrdLy5eE17SFFhymJljpvIVaLoThnm1777p6y8tvW70XnBxHwvqiODJbqk0aKFfOAS+91ySGcU+qXrjzgYB2BMee7KmAI/8e4YTtU8=
-Received: from SN6PR04MB4925.namprd04.prod.outlook.com (52.135.114.82) by
- SN6PR04MB4158.namprd04.prod.outlook.com (52.135.71.28) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1943.21; Thu, 6 Jun 2019 06:36:22 +0000
-Received: from SN6PR04MB4925.namprd04.prod.outlook.com
- ([fe80::6d99:14d9:3fa:f530]) by SN6PR04MB4925.namprd04.prod.outlook.com
- ([fe80::6d99:14d9:3fa:f530%6]) with mapi id 15.20.1943.018; Thu, 6 Jun 2019
- 06:36:22 +0000
-From:   Avri Altman <Avri.Altman@wdc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>
-CC:     Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-Subject: RE: [PATCH v2 2/3] scsi: ufs: Allow resetting the UFS device
-Thread-Topic: [PATCH v2 2/3] scsi: ufs: Allow resetting the UFS device
-Thread-Index: AQHVHAOW/gPfCB+BCUqDoLF2sKUkJqaOK2sA
-Date:   Thu, 6 Jun 2019 06:36:22 +0000
-Message-ID: <SN6PR04MB4925FC3F1001326AA218DF21FC170@SN6PR04MB4925.namprd04.prod.outlook.com>
-References: <20190606010249.3538-1-bjorn.andersson@linaro.org>
- <20190606010249.3538-3-bjorn.andersson@linaro.org>
-In-Reply-To: <20190606010249.3538-3-bjorn.andersson@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Avri.Altman@wdc.com; 
-x-originating-ip: [212.25.79.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 41b35a9c-4567-4f04-99d2-08d6ea494a7d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:SN6PR04MB4158;
-x-ms-traffictypediagnostic: SN6PR04MB4158:
-wdcipoutbound: EOP-TRUE
-x-microsoft-antispam-prvs: <SN6PR04MB4158EF452179F86E542F9400FC170@SN6PR04MB4158.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-forefront-prvs: 00603B7EEF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(136003)(346002)(396003)(376002)(366004)(189003)(199004)(73956011)(76116006)(66446008)(66556008)(64756008)(66476007)(86362001)(66946007)(99286004)(14454004)(7416002)(74316002)(5660300002)(4326008)(6246003)(478600001)(68736007)(52536014)(256004)(102836004)(72206003)(305945005)(25786009)(71190400001)(71200400001)(7696005)(4744005)(6506007)(66066001)(53936002)(76176011)(186003)(2906002)(8676002)(81156014)(81166006)(8936002)(26005)(3846002)(55016002)(486006)(9686003)(110136005)(54906003)(6116002)(33656002)(7736002)(316002)(476003)(446003)(11346002)(6436002)(229853002);DIR:OUT;SFP:1102;SCL:1;SRVR:SN6PR04MB4158;H:SN6PR04MB4925.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: O5fXCumXJe8xh/1Hp2CY2EBrpkx9FbkYVpUAE8hwX2oD97nmXB9OQQ0b2zUuSuc0Y74A4G7oDbiORHOKwzTvoJQBNdWu0fqHv/EJuCj1GxdCyBQ7Et4lq6ky9OSZMrO2NZBO39uc22jBHDaQ3LV8lgDeTwiwOVFCvj86kSEJHKY0OjHwDblXP1KDw72uW0lVZoEz3fq+SZLRFeXxcEm0fCIzAY8oKEMBvpUuNKUIX4HHTkMohViLzpa33wd8OlpA6cJJFFZeGKsLc8wO3nJ2clndAtDjhnoBxcIWVDwkR/3woM1l05coO5GOBjaIPZWgp+Tb3OK0llWSyV+fNLjJvQ64bKg/WK8VVRDjUZc1ZS4Xz2oofqjvqSgJZcWjM8DmF1dvi4VXj7cwVEMqzSSUxU0NtajthYpOGAPhpCX9GPw=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726077AbfFFGho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 02:37:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57008 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725267AbfFFGho (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 02:37:44 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6493820673;
+        Thu,  6 Jun 2019 06:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559803063;
+        bh=PZclXto95zQCnAw7+RqvTMceiBAgvFgp7tWzFU0lQ7U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PaF9zKniU6nz+hpZYk8sIfBvycyGZXZUtrcuDhaITxaiz5LG2nCh0JS0S5FvvNyC9
+         S8cOJlblvb92R4pTjv0XRtItw/uMxdk6ya3j3pVfpahog89GnUzrxaOHFIH5v1uyK1
+         OOfd2N6+JPXmoN/BRUTgBLi3v/26cJgJpjKvOT0I=
+Date:   Thu, 6 Jun 2019 08:37:41 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc:     Talel Shenhar <talel@amazon.com>, nicolas.ferre@microchip.com,
+        jason@lakedaemon.net, marc.zyngier@arm.com, mark.rutland@arm.com,
+        mchehab+samsung@kernel.org, robh+dt@kernel.org,
+        davem@davemloft.net, shawn.lin@rock-chips.com, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dwmw@amazon.co.uk, jonnyc@amazon.com, hhhawa@amazon.com,
+        ronenk@amazon.com, hanochu@amazon.com, barakw@amazon.com
+Subject: Re: [PATCH 2/3] irqchip: al-fic: Introduce Amazon's Annapurna Labs
+ Fabric Interrupt Controller Driver
+Message-ID: <20190606063741.GA23305@kroah.com>
+References: <1559717653-11258-1-git-send-email-talel@amazon.com>
+ <1559717653-11258-3-git-send-email-talel@amazon.com>
+ <20190605075927.GA9693@kroah.com>
+ <a81a46ef13273aa8c6ea87c8d3550e33650e27b6.camel@kernel.crashing.org>
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41b35a9c-4567-4f04-99d2-08d6ea494a7d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 06:36:22.1322
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Avri.Altman@wdc.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB4158
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a81a46ef13273aa8c6ea87c8d3550e33650e27b6.camel@kernel.crashing.org>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 06, 2019 at 07:55:43AM +1000, Benjamin Herrenschmidt wrote:
+> On Wed, 2019-06-05 at 09:59 +0200, Greg KH wrote:
+> > 
+> > > +struct irq_domain *al_fic_wire_get_domain(struct al_fic *fic);
+> > > +
+> > > +struct al_fic *al_fic_wire_init(struct device_node *node,
+> > > +				void __iomem *base,
+> > > +				const char *name,
+> > > +				unsigned int parent_irq);
+> > > +int al_fic_cleanup(struct al_fic *fic);
+> > 
+> > Who is using these new functions?  We don't add new apis that no one
+> > uses :(
+> 
+> They will be used by subsequent driver submissions but those aren't
+> quite ready yet, so we can hold onto patch 3 for now until they are.
 
->  static int ufshcd_hba_init(struct ufs_hba *hba)
->  {
->  	int err;
-> @@ -7425,9 +7460,15 @@ static int ufshcd_hba_init(struct ufs_hba *hba)
->  	if (err)
->  		goto out_disable_vreg;
->=20
-> +	err =3D ufshcd_init_device_reset(hba);
-> +	if (err)
-> +		goto out_disable_variant;
-> +
->  	hba->is_powered =3D true;
->  	goto out;
->=20
-> +out_disable_variant:
-> +	ufshcd_vops_setup_regulators(hba, false);
-Is this necessary?
-ufshcd_vops_setup_regulators() was just called as part of ufshcd_variant_hb=
-a_init
+Patch 2 also should have these removed :)
 
-Thanks,
-Avri
+You know we don't add new apis until we have a real, in-kernel user for
+them...
+
+thanks,
+
+greg k-h
