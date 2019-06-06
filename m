@@ -2,660 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D860B36B06
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 06:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2632036B5F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 07:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725766AbfFFEi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 00:38:56 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:39191 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726174AbfFFEi4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 00:38:56 -0400
-Received: by mail-pg1-f196.google.com with SMTP id 196so593382pgc.6
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 21:38:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=k/jkFt1zc7ESMc19IP/d2k7/2fePC1dkqisp3zYhod8=;
-        b=qDYfnsLzbmLu+8VO1pfvqaJb7TwIJ7/uLeN/zlypa7xU3YyVY0usDeLf7OESjSsCCR
-         tE9WzAyqHmUdB9LmEdMkwOk8HC82JZg7MXRQ5HeIRehuV9Q8XEFM2qfXVoNtrp/PoYCy
-         9kwVk8Lw1v8Gw528wAAUl4sqz4zy9S44egmBTaskwBhDHQzoaMsDjFrCxm8ZCyJFEt8P
-         r0Em+2dm+uRauaTlJOrbenMUSaRoEWiUETamjilQBS33n3MEsqq8n9X2ns1JYzKJ4G6W
-         0NHJQx7NGXNrA6phLryUgt9DptU9LtZZjrZxHln0KKoR1KMdyipMLUpWGxL3yUJGZjOF
-         +zsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=k/jkFt1zc7ESMc19IP/d2k7/2fePC1dkqisp3zYhod8=;
-        b=tOUnZSEJHDGzJ8ny08FKO5Cnw33GTEcCMSt/86VDODiiyJwm2cvU0Hju8wTnqIis7X
-         c6Gz/W37qEEadfI0BdbMklcGJVcVKlJ73FvKfT72TaKCDvTRakuNQPBMPxCEIIDQXq6/
-         Y1BSziEtGHNq7TzHxkD67Otk3vFpG1FL1cI5tO6k/iGN5Vnjgv86NA61fFgyElua1swD
-         reVApo6gW2xy4rP0tQ8/lgybvxA938lhggpch+mDW4G+MLErG6aDtabvEuvB74BAU5B4
-         rXfweaW+b13GOBhS+IwkDvYxcvKKqfRh7RfspdUEQfVXR61AbsYaE2p2uCgVx8KeNLmk
-         CPOg==
-X-Gm-Message-State: APjAAAWdqORD79wkMbFUq7NHwcNDcui1lEbfVjOlkra4Miz3Fq9tSm44
-        BFAeDHzkiNtMRZUuGNFr6lTw8g==
-X-Google-Smtp-Source: APXvYqzAV7sOqc4nktio8ZQ4iBxC8wy5LE93UtYQMJf7EcGiGaUPaIygLVMXM7JqCckx8ahKn1QZ2Q==
-X-Received: by 2002:a62:e119:: with SMTP id q25mr14879172pfh.148.1559795934808;
-        Wed, 05 Jun 2019 21:38:54 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id 22sm740599pje.15.2019.06.05.21.38.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 05 Jun 2019 21:38:54 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: Add Dragonboard 845c
-Date:   Wed,  5 Jun 2019 21:38:51 -0700
-Message-Id: <20190606043851.18050-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.18.0
+        id S1726301AbfFFFNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 01:13:31 -0400
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:60428 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725782AbfFFFNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 01:13:31 -0400
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5658UAq011318;
+        Wed, 5 Jun 2019 22:11:37 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=proofpoint;
+ bh=ylmvFaynTnm2xShYZm5lLLOJk58zqFatT2ShI1S/0e4=;
+ b=cmMfYsneq1kIIwlWnYy+TwpIQ3mVx0ShILi1PsQI3rqRBDK1foGfKz6pHJnuNlEXvsoS
+ yEBm3pzYg+rQ0YXII3hsqwErSzN2SJvNHVxP5jPApNP1ybreMZz+Tk5p0pDQSxnxddUR
+ bbc1CofCt2eLpYfRBjNl5klLm06WjoevOu6x9jknI7RJvcfKNgZebWHqW1cH6VwGllgY
+ aQou7/Qr6zrz2TjAs7oH82bZEA5O/163I28xkqBm9gqrAsUFbl87jsuF9B4oa2l0EeUp
+ 7wsAGIcNC5SEZrPUobpu8HHO3ek8iFCVW7yOMtat7Zdy7sSk5sIFRiTt36P3rzCgAnJP Jg== 
+Authentication-Results: cadence.com;
+        spf=pass smtp.mailfrom=pawell@cadence.com
+Received: from nam04-co1-obe.outbound.protection.outlook.com (mail-co1nam04lp2057.outbound.protection.outlook.com [104.47.45.57])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 2sun4r3h7h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Wed, 05 Jun 2019 22:11:37 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ylmvFaynTnm2xShYZm5lLLOJk58zqFatT2ShI1S/0e4=;
+ b=XJnS1rPztbtbTnjJB6ihyOriFbKHUBLSQA28V3sZ3Op5o/N46UVkxtseI8fRzJe4I32CqYRQDTpriPpxJRbCl4vRy6FXBHvEMgKlC2yXRpw76z8t3Ppd+QsR/Hxo34KuQftlbuC4zsJ2tov8f5/XDG+7LKqH5FKTIMHWDsCbCsQ=
+Received: from BYAPR07MB4709.namprd07.prod.outlook.com (52.135.204.159) by
+ BYAPR07MB5720.namprd07.prod.outlook.com (20.178.0.78) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.22; Thu, 6 Jun 2019 05:11:33 +0000
+Received: from BYAPR07MB4709.namprd07.prod.outlook.com
+ ([fe80::594a:4a73:3ead:457d]) by BYAPR07MB4709.namprd07.prod.outlook.com
+ ([fe80::594a:4a73:3ead:457d%3]) with mapi id 15.20.1943.023; Thu, 6 Jun 2019
+ 05:11:33 +0000
+From:   Pawel Laszczak <pawell@cadence.com>
+To:     Lars Melin <larsm17@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "rogerq@ti.com" <rogerq@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jbergsagel@ti.com" <jbergsagel@ti.com>,
+        "nsekhar@ti.com" <nsekhar@ti.com>, "nm@ti.com" <nm@ti.com>,
+        Suresh Punnoose <sureshp@cadence.com>,
+        "peter.chen@nxp.com" <peter.chen@nxp.com>,
+        Jayshri Dajiram Pawar <jpawar@cadence.com>,
+        Rahul Kumar <kurahul@cadence.com>
+Subject: RE: [PATCH v7 0/6] Introduced new Cadence USBSS DRD Driver.
+Thread-Topic: [PATCH v7 0/6] Introduced new Cadence USBSS DRD Driver.
+Thread-Index: AQHVG4YPLuNsPGFK2Eaa0JSlSMiZDaaN0ryAgABCM9A=
+Date:   Thu, 6 Jun 2019 05:11:33 +0000
+Message-ID: <BYAPR07MB4709E7267C34F09747B13568DD170@BYAPR07MB4709.namprd07.prod.outlook.com>
+References: <1559729030-16390-1-git-send-email-pawell@cadence.com>
+ <30b6ac49-2edc-fde0-a106-34ff94999e5a@gmail.com>
+In-Reply-To: <30b6ac49-2edc-fde0-a106-34ff94999e5a@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNccGF3ZWxsXGFwcGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEyOWUzNWJcbXNnc1xtc2ctOGIzYjY0ODYtODgxOS0xMWU5LTg3NDEtMWM0ZDcwMWRmYmE0XGFtZS10ZXN0XDhiM2I2NDg4LTg4MTktMTFlOS04NzQxLTFjNGQ3MDFkZmJhNGJvZHkudHh0IiBzej0iNTkxIiB0PSIxMzIwNDI3MTQ5MTMzMTQxNDkiIGg9IlpEMUIreEpVMVQvTVBaREZaOFkvZXJFTHJ3ST0iIGlkPSIiIGJsPSIwIiBibz0iMSIvPjwvbWV0YT4=
+x-dg-rorf: 
+x-originating-ip: [185.217.253.59]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fd51c603-16a2-42d1-f710-08d6ea3d7188
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BYAPR07MB5720;
+x-ms-traffictypediagnostic: BYAPR07MB5720:
+x-microsoft-antispam-prvs: <BYAPR07MB5720A475F174818ABE00FCE1DD170@BYAPR07MB5720.namprd07.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 00603B7EEF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(39860400002)(376002)(346002)(136003)(366004)(36092001)(189003)(199004)(14454004)(7696005)(76176011)(6506007)(76116006)(74316002)(73956011)(99286004)(7416002)(186003)(6436002)(478600001)(110136005)(55016002)(33656002)(305945005)(54906003)(102836004)(52536014)(26005)(9686003)(7736002)(229853002)(81156014)(8676002)(2501003)(4744005)(66476007)(486006)(6246003)(256004)(107886003)(66946007)(446003)(5660300002)(11346002)(81166006)(316002)(86362001)(3846002)(68736007)(25786009)(476003)(8936002)(66066001)(71200400001)(71190400001)(64756008)(53936002)(2906002)(4326008)(6116002)(66446008)(66556008);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR07MB5720;H:BYAPR07MB4709.namprd07.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: cadence.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: j279DhvQn9vuzUlxyg05cEm70xlCpgeX64bhenSE8XhB84JOeogqbBM0hW/li8HkipuBbwQCnCbQtAEPqrC3YSVtno1Fcox8/hTeRfQFzVB2oMYfcC4w4ztDyi07nQwr0MG1gjQiCX1jsZ12YixdU1EWwh99Pfp3DcOBfeHAxK4IkkKDHrIsUvW8cSnNTHk3s/pCyqMo0N6lsEIXdvZGnrjQwfRzv0Jsi7vs7jgoByW3jaihE4NGueWYL0HGLZnySDSpM+/IDwBt1sva5p3vhgmijK1GD1Mt5iqkLs00Imns+r5Jc4y50/gHYNNsLZBjaKHFwZPSv9IvhDjwgCfede7hi+i0TwwKKbBUoT6uo0FnJPk2EODC2zz6LnzY+mPcIyszzUmjL/qc13ztlvrsQwqySj0CCota9lOgACY8Z8U=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd51c603-16a2-42d1-f710-08d6ea3d7188
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 05:11:33.7010
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pawell@global.cadence.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR07MB5720
+X-Proofpoint-SPF-Result: pass
+X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
+ include:mktomail.com include:spf-0014ca01.pphosted.com
+ include:spf.protection.outlook.com include:auth.msgapp.com
+ include:spf.mandrillapp.com ~all
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-06_04:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
+ spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=594 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1906060038
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds an initial dts for the Dragonboard 845. Supported
-functionality includes Debug UART, UFS, USB-C (peripheral), USB-A
-(host), microSD-card and Bluetooth.
-
-Initializing the SMMU is clearing the mapping used for the splash screen
-framebuffer, which causes the board to reboot. This can be worked around
-using:
-
-  fastboot oem select-display-panel none
-
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
-
-Changes since v1:
-- Dropped PCIe as this hasn't landed
-- Added adsp_pas and cdsp_pas
-- Added regulators for wifi
-- Updated LED labels to match 96boards specification
-
- arch/arm64/boot/dts/qcom/Makefile          |   1 +
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 556 +++++++++++++++++++++
- 2 files changed, 557 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 21d548f02d39..b3fe72ff2955 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-new file mode 100644
-index 000000000000..0424227f0c96
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -0,0 +1,556 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include "sdm845.dtsi"
-+#include "pm8998.dtsi"
-+#include "pmi8998.dtsi"
-+
-+/ {
-+	model = "Thundercomm Dragonboard 845c";
-+	compatible = "thundercomm,db845c", "qcom,sdm845";
-+
-+	aliases {
-+		serial0 = &uart9;
-+		hsuart0 = &uart6;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	dc12v: dc12v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	lt9611_1v8: lt9611-vdd18-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_1V8";
-+
-+		vin-supply = <&vdc_5v>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	lt9611_3v3: lt9611-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_3V3";
-+
-+		vin-supply = <&vdc_3v3>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		// TODO: make it possible to drive same GPIO from two clients
-+		// gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
-+		// enable-active-high;
-+	};
-+
-+	pcie0_1p05v: pcie-0-1p05v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIE0_1.05V";
-+
-+		vin-supply = <&vbat>;
-+		regulator-min-microvolt = <1050000>;
-+		regulator-max-microvolt = <1050000>;
-+
-+		// TODO: make it possible to drive same GPIO from two clients
-+		// gpio = <&tlmm 90 GPIO_ACTIVE_HIGH>;
-+		// enable-active-high;
-+	};
-+
-+	pcie0_3p3v_dual: vldo-3v3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VLDO_3V3";
-+
-+		vin-supply = <&vbat>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 90 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pcie0_pwren_state>;
-+	};
-+
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		autorepeat;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vol_up_pin_a>;
-+
-+		vol-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		user4 {
-+			label = "green:user4";
-+			gpios = <&pm8998_gpio 13 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "panic-indicator";
-+			default-state = "off";
-+		};
-+
-+		wlan {
-+			label = "yellow:wlan";
-+			gpios = <&pm8998_gpio 9 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+
-+		bt {
-+			label = "blue:bt";
-+			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "bluetooth-power";
-+			default-state = "off";
-+		};
-+	};
-+
-+	v5p0_hdmiout: v5p0-hdmiout-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "V5P0_HDMIOUT";
-+
-+		vin-supply = <&vdc_5v>;
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <500000>;
-+
-+		// TODO: make it possible to drive same GPIO from two clients
-+		// gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
-+		// enable-active-high;
-+	};
-+
-+	vbat: vbat-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VBAT";
-+
-+		vin-supply = <&dc12v>;
-+		regulator-min-microvolt = <4200000>;
-+		regulator-max-microvolt = <4200000>;
-+		regulator-always-on;
-+	};
-+
-+	vbat_som: vbat-som-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VBAT_SOM";
-+
-+		vin-supply = <&dc12v>;
-+		regulator-min-microvolt = <4200000>;
-+		regulator-max-microvolt = <4200000>;
-+		regulator-always-on;
-+	};
-+
-+	vdc_3v3: vdc-3v3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDC_3V3";
-+		vin-supply = <&dc12v>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	vdc_5v: vdc-5v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDC_5V";
-+
-+		vin-supply = <&dc12v>;
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <500000>;
-+		regulator-always-on;
-+	};
-+
-+	vreg_s4a_1p8: vreg-s4a-1p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_s4a_1p8";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+
-+		vin-supply = <&vbat_som>;
-+	};
-+};
-+
-+&adsp_pas {
-+	status = "okay";
-+
-+	firmware-name = "qcom/db845c/adsp.mdt";
-+};
-+
-+&apps_rsc {
-+	pm8998-rpmh-regulators {
-+		compatible = "qcom,pm8998-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-s11-supply = <&vph_pwr>;
-+		vdd-s12-supply = <&vph_pwr>;
-+		vdd-s13-supply = <&vph_pwr>;
-+		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
-+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-+		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
-+		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
-+		vdd-l6-supply = <&vph_pwr>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-+		vdd-l9-supply = <&vreg_bob>;
-+		vdd-l10-l23-l25-supply = <&vreg_bob>;
-+		vdd-l13-l19-l21-supply = <&vreg_bob>;
-+		vdd-l16-l28-supply = <&vreg_bob>;
-+		vdd-l18-l22-supply = <&vreg_bob>;
-+		vdd-l20-l24-supply = <&vreg_bob>;
-+		vdd-l26-supply = <&vreg_s3a_1p35>;
-+		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
-+
-+		vreg_s3a_1p35: smps3 {
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+		};
-+
-+		vreg_s5a_2p04: smps5 {
-+			regulator-min-microvolt = <1904000>;
-+			regulator-max-microvolt = <2040000>;
-+		};
-+
-+		vreg_s7a_1p025: smps7 {
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <1028000>;
-+		};
-+
-+		vreg_l1a_0p875: ldo1 {
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5a_0p8: ldo5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a_1p8: ldo7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13a_2p95: ldo13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l17a_1p3: ldo17 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20a_2p95: ldo20 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2968000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21a_2p95: ldo21 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2968000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l24a_3p075: ldo24 {
-+			regulator-min-microvolt = <3088000>;
-+			regulator-max-microvolt = <3088000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l25a_3p3: ldo25 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l26a_1p2: ldo26 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	pmi8998-rpmh-regulators {
-+		compatible = "qcom,pmi8998-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-bob-supply = <&vph_pwr>;
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3312000>;
-+			regulator-max-microvolt = <3600000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+			regulator-allow-bypass;
-+		};
-+	};
-+};
-+
-+&cdsp_pas {
-+	status = "okay";
-+	firmware-name = "qcom/db845c/cdsp.mdt";
-+};
-+
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CORE_CLK>,
-+			   <GCC_QSPI_CORE_CLK_SRC>,
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+};
-+
-+&pm8998_gpio {
-+	vol_up_pin_a: vol-up-active {
-+		pins = "gpio6";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-+	};
-+};
-+
-+&pm8998_pon {
-+	resin {
-+		compatible = "qcom,pm8941-resin";
-+		interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-+		debounce = <15625>;
-+		bias-pull-up;
-+		linux,code = <KEY_VOLUMEDOWN>;
-+	};
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdc2_default_state &sdc2_card_det_n>;
-+
-+	vmmc-supply = <&vreg_l21a_2p95>;
-+	vqmmc-supply = <&vreg_l13a_2p95>;
-+
-+	bus-width = <4>;
-+	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
-+};
-+
-+&tlmm {
-+	pcie0_pwren_state: pcie0-pwren {
-+		pins = "gpio90";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_default_state: sdc2-default {
-+		clk {
-+			pins = "sdc2_clk";
-+			bias-disable;
-+
-+			/*
-+			 * It seems that mmc_test reports errors if drive
-+			 * strength is not 16 on clk, cmd, and data pins.
-+			 */
-+			drive-strength = <16>;
-+		};
-+
-+		cmd {
-+			pins = "sdc2_cmd";
-+			bias-pull-up;
-+			drive-strength = <10>;
-+		};
-+
-+		data {
-+			pins = "sdc2_data";
-+			bias-pull-up;
-+			drive-strength = <10>;
-+		};
-+	};
-+
-+	sdc2_card_det_n: sd-card-det-n {
-+		pins = "gpio126";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
-+};
-+
-+&uart6 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart9 {
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l12a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l26a_1p2>;
-+	vdda-pll-supply = <&vreg_l1a_0p875>;
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_2_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l12a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_22_8_MA>;
-+};
-+
-+&usb_2_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l26a_1p2>;
-+	vdda-pll-supply = <&vreg_l1a_0p875>;
-+};
-+
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	vcc-supply = <&vreg_l20a_2p95>;
-+	vcc-max-microamp = <800000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l26a_1p2>;
-+};
-+
-+&wifi {
-+	status = "okay";
-+
-+	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
-+	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
-+	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
-+};
-+
-+/* PINCTRL - additions to nodes defined in sdm845.dtsi */
-+
-+&qup_uart6_default {
-+	pinmux {
-+		pins = "gpio45", "gpio46", "gpio47", "gpio48";
-+		function = "qup6";
-+	};
-+
-+	cts {
-+		pins = "gpio45";
-+		bias-disable;
-+	};
-+
-+	rts-tx {
-+		pins = "gpio46", "gpio47";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	rx {
-+		pins = "gpio48";
-+		bias-pull-up;
-+	};
-+};
-+
-+&qup_uart9_default {
-+	pinconf-tx {
-+		pins = "gpio4";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	pinconf-rx {
-+		pins = "gpio5";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+};
--- 
-2.18.0
-
+Pk9uIDYvNS8yMDE5IDE3OjAzLCBQYXdlbCBMYXN6Y3phayB3cm90ZToNCj4+IFRoaXMgcGF0Y2gg
+aW50cm9kdWNlcyBuZXcgQ2FkZW5jZSBVU0JTUyBEUkQgZHJpdmVyIHRvIExpbnV4IGtlcm5lbC4N
+Cj4+DQo+PiBUaGUgQ2FkZW5jZSBVU0JTUyBEUkQgRHJpdmVyIGlzIGEgaGlnaGx5IGNvbmZpZ3Vy
+YWJsZSBJUCBDb3JlIHdoaWNoDQo+PiBjYW4gYmUgaW5zdGFudGlhdGVkIGFzIER1YWwtUm9sZSBE
+ZXZpY2UgKERSRCksIFBlcmlwaGVyYWwgT25seSBhbmQNCj4+IEhvc3QgT25seSAoWEhDSSljb25m
+aWd1cmF0aW9ucy4NCj4+DQo+VGhlIGRyaXZlciBpcyBub3QgYW4gSVAgQ29yZSwgdGhlIGhhcmR3
+YXJlIGRldmljZSBpcy4NCj4NCkkgcmVtZW1iZXIgdGhhdCBJIGhhZCBzdWNoIGNvbW1lbnQgaW4g
+dGhlIHBhc3RlLiBJIGRvbid0IGtub3cgd2h5IHRoZXJlIGlzICJJUCBDb3JlIi4NCg0KSSB3aWxs
+IGNoYW5nZSBpdC4NCnRoYW5rcyAsDQpQYXdlbA0KPg0KPi9MYXJzDQo+DQoNCg==
