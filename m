@@ -2,47 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FD0337F84
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 23:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 055ED37F86
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 23:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728441AbfFFV1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 17:27:33 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:58908 "EHLO
+        id S1726531AbfFFV1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 17:27:45 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:59372 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726531AbfFFV1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 17:27:32 -0400
+        with ESMTP id S1728452AbfFFV1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 17:27:45 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=CStWQ/SRpZOEF3bSNUAK4dWBALmyIGSjwUJk+gDk7u0=; b=tPGaG1aWR67s
-        q6FM76qDdKDFpssWt/ro1o9jTg86kXq6T4bawpf5GZRhVsVWiCRprscW5P43gyldNgXAiCvQQYg+0
-        OJRJc+jcrYFeCDIWmNJTWETYRSslUAXfTiW2YEBOTy7QgKUC26EDdc4nlKWbAhQBB2TGnYQ86ueSW
-        8bd3k=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
+        List-Archive; bh=iTBpUenYt5TRt0pKN2VQcUXbaHgvcGjOjaOWkyUYusc=; b=ACrAPspd8ob8
+        SUn7J5Coyi9qIqntZ2TxVhuJuOW+cVduSwxFu5B4nnyVH+i5icsnWRzNIf0EzuFRJ2jE4tyCR9K/8
+        XNEFRjkGsHsC/m1yvZpwkAF9+MQOP7Emw/e8XNVKjzeG2M0B94l2/wTWk28iCbL+VzCd7gM3h6RGQ
+        Mubas=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hYzur-0007VR-Dn; Thu, 06 Jun 2019 21:27:21 +0000
+        id 1hYzv3-0007Wf-RB; Thu, 06 Jun 2019 21:27:33 +0000
 Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id D7CE5440046; Thu,  6 Jun 2019 22:27:20 +0100 (BST)
+        id 5E2FE440046; Thu,  6 Jun 2019 22:27:33 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     alsa-devel@alsa-project.org, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Marcus Cooper <codekipper@gmail.com>,
+To:     Leilk Liu <leilk.liu@mediatek.com>
+Cc:     devicetree@vger.kernel.org, fparent@baylibre.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
         Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Applied "ASoC: sun4i-i2s: Change SR and WSS computation" to the asoc tree
-In-Reply-To: <20190605100801.2488-1-maxime.ripard@bootlin.com>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Applied "spi: mediatek: add SPI_LSB_FIRST support" to the spi tree
+In-Reply-To: <1559704024-5369-1-git-send-email-leilk.liu@mediatek.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190606212720.D7CE5440046@finisterre.sirena.org.uk>
-Date:   Thu,  6 Jun 2019 22:27:20 +0100 (BST)
+Message-Id: <20190606212733.5E2FE440046@finisterre.sirena.org.uk>
+Date:   Thu,  6 Jun 2019 22:27:33 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -50,11 +48,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: sun4i-i2s: Change SR and WSS computation
+   spi: mediatek: add SPI_LSB_FIRST support
 
-has been applied to the asoc tree at
+has been applied to the spi tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.3
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
@@ -75,204 +73,75 @@ to this mail.
 Thanks,
 Mark
 
-From 619c15f7fac98fbeaae02d76a5529f5026a2b6d7 Mon Sep 17 00:00:00 2001
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-Date: Wed, 5 Jun 2019 12:08:01 +0200
-Subject: [PATCH] ASoC: sun4i-i2s: Change SR and WSS computation
+From 3e582c6e911ffe6c90b9f90324bdf85fc728d0c3 Mon Sep 17 00:00:00 2001
+From: Leilk Liu <leilk.liu@mediatek.com>
+Date: Wed, 5 Jun 2019 11:07:04 +0800
+Subject: [PATCH] spi: mediatek: add SPI_LSB_FIRST support
 
-The current computation for the SR (sample resolution) and the WSS (word
-slot size) register parameters is based on a switch returning the matching
-parameters for a given params width.
+this patch add SPI_LSB_FIRST feature support.
 
-Later SoCs (A83t, H3, A64) changed that calculation, which was loosely the
-same with an offset. Therefore, an offset was added to adjust those
-parameters.
-
-However, the calculation is a bit less trivial than initially thought.
-Indeed, while we assumed that SR and WSS were always the same, on older
-SoCs, SR will max at 24 (since those SoCs do not support 32 bits formats),
-but the word size can be 32.
-
-Newer SoCs can also support a much larger range (8 bits to 32 bits, by
-increments of 4) of size than the older SoCs could.
-
-Finally, the A64 and A83t were never adjusted to have that offset in the
-first place, and were therefore broken from that point of view.
-
-In order to fix all those issues, let's introduce two functions, get_wss
-and get_sr, with their respective implementations for all the SoCs
-supported so far.
-
-Fixes: 21faaea1343f ("ASoC: sun4i-i2s: Add support for A83T")
-Fixes: 66ecce332538 ("ASoC: sun4i-i2s: Add compatibility with A64 codec I2S")
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/sunxi/sun4i-i2s.c | 71 ++++++++++++++++++++++++++++---------
- 1 file changed, 55 insertions(+), 16 deletions(-)
+ drivers/spi/spi-mt65xx.c                 | 15 ++++++---------
+ include/linux/platform_data/spi-mt65xx.h |  2 --
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
-diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-index d5ec1a20499d..03696f880080 100644
---- a/sound/soc/sunxi/sun4i-i2s.c
-+++ b/sound/soc/sunxi/sun4i-i2s.c
-@@ -118,6 +118,8 @@
- #define SUN8I_I2S_RX_CHAN_SEL_REG	0x54
- #define SUN8I_I2S_RX_CHAN_MAP_REG	0x58
- 
-+struct sun4i_i2s;
-+
- /**
-  * struct sun4i_i2s_quirks - Differences between SoC variants.
-  *
-@@ -131,7 +133,6 @@
-  * @sun4i_i2s_regmap: regmap config to use.
-  * @mclk_offset: Value by which mclkdiv needs to be adjusted.
-  * @bclk_offset: Value by which bclkdiv needs to be adjusted.
-- * @fmt_offset: Value by which wss and sr needs to be adjusted.
-  * @field_clkdiv_mclk_en: regmap field to enable mclk output.
-  * @field_fmt_wss: regmap field to set word select size.
-  * @field_fmt_sr: regmap field to set sample resolution.
-@@ -154,7 +155,6 @@ struct sun4i_i2s_quirks {
- 	const struct regmap_config	*sun4i_i2s_regmap;
- 	unsigned int			mclk_offset;
- 	unsigned int			bclk_offset;
--	unsigned int			fmt_offset;
- 
- 	/* Register fields for i2s */
- 	struct reg_field		field_clkdiv_mclk_en;
-@@ -167,6 +167,9 @@ struct sun4i_i2s_quirks {
- 	struct reg_field		field_rxchanmap;
- 	struct reg_field		field_txchansel;
- 	struct reg_field		field_rxchansel;
-+
-+	s8	(*get_sr)(const struct sun4i_i2s *, int);
-+	s8	(*get_wss)(const struct sun4i_i2s *, int);
+diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
+index 0cce6f0ba824..7f4dc1844789 100644
+--- a/drivers/spi/spi-mt65xx.c
++++ b/drivers/spi/spi-mt65xx.c
+@@ -131,8 +131,6 @@ static const struct mtk_spi_compatible mt8183_compat = {
+  * supplies it.
+  */
+ static const struct mtk_chip_config mtk_default_chip_info = {
+-	.rx_mlsb = 1,
+-	.tx_mlsb = 1,
+ 	.cs_pol = 0,
+ 	.sample_sel = 0,
  };
+@@ -203,14 +201,13 @@ static int mtk_spi_prepare_message(struct spi_master *master,
+ 		reg_val &= ~SPI_CMD_CPOL;
  
- struct sun4i_i2s {
-@@ -349,6 +352,39 @@ static int sun4i_i2s_set_clk_rate(struct snd_soc_dai *dai,
- 	return 0;
- }
+ 	/* set the mlsbx and mlsbtx */
+-	if (chip_config->tx_mlsb)
+-		reg_val |= SPI_CMD_TXMSBF;
+-	else
++	if (spi->mode & SPI_LSB_FIRST) {
+ 		reg_val &= ~SPI_CMD_TXMSBF;
+-	if (chip_config->rx_mlsb)
+-		reg_val |= SPI_CMD_RXMSBF;
+-	else
+ 		reg_val &= ~SPI_CMD_RXMSBF;
++	} else {
++		reg_val |= SPI_CMD_TXMSBF;
++		reg_val |= SPI_CMD_RXMSBF;
++	}
  
-+static s8 sun4i_i2s_get_sr(const struct sun4i_i2s *i2s, int width)
-+{
-+	if (width < 16 || width > 24)
-+		return -EINVAL;
-+
-+	if (width % 4)
-+		return -EINVAL;
-+
-+	return (width - 16) / 4;
-+}
-+
-+static s8 sun4i_i2s_get_wss(const struct sun4i_i2s *i2s, int width)
-+{
-+	if (width < 16 || width > 32)
-+		return -EINVAL;
-+
-+	if (width % 4)
-+		return -EINVAL;
-+
-+	return (width - 16) / 4;
-+}
-+
-+static s8 sun8i_i2s_get_sr_wss(const struct sun4i_i2s *i2s, int width)
-+{
-+	if (width % 4)
-+		return -EINVAL;
-+
-+	if (width < 8 || width > 32)
-+		return -EINVAL;
-+
-+	return (width - 8) / 4 + 1;
-+}
-+
- static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
- 			       struct snd_pcm_hw_params *params,
- 			       struct snd_soc_dai *dai)
-@@ -400,22 +436,16 @@ static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
- 	}
- 	i2s->playback_dma_data.addr_width = width;
+ 	/* set the tx/rx endian */
+ #ifdef __LITTLE_ENDIAN
+@@ -607,7 +604,7 @@ static int mtk_spi_probe(struct platform_device *pdev)
  
--	switch (params_width(params)) {
--	case 16:
--		sr = 0;
--		wss = 0;
--		break;
-+	sr = i2s->variant->get_sr(i2s, params_width(params));
-+	if (sr < 0)
-+		return -EINVAL;
+ 	master->auto_runtime_pm = true;
+ 	master->dev.of_node = pdev->dev.of_node;
+-	master->mode_bits = SPI_CPOL | SPI_CPHA;
++	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_LSB_FIRST;
  
--	default:
--		dev_err(dai->dev, "Unsupported sample width: %d\n",
--			params_width(params));
-+	wss = i2s->variant->get_wss(i2s, params_width(params));
-+	if (wss < 0)
- 		return -EINVAL;
--	}
+ 	master->set_cs = mtk_spi_set_cs;
+ 	master->prepare_message = mtk_spi_prepare_message;
+diff --git a/include/linux/platform_data/spi-mt65xx.h b/include/linux/platform_data/spi-mt65xx.h
+index ba4e4bb70262..8d5df58a13ef 100644
+--- a/include/linux/platform_data/spi-mt65xx.h
++++ b/include/linux/platform_data/spi-mt65xx.h
+@@ -14,8 +14,6 @@
  
--	regmap_field_write(i2s->field_fmt_wss,
--			   wss + i2s->variant->fmt_offset);
--	regmap_field_write(i2s->field_fmt_sr,
--			   sr + i2s->variant->fmt_offset);
-+	regmap_field_write(i2s->field_fmt_wss, wss);
-+	regmap_field_write(i2s->field_fmt_sr, sr);
- 
- 	return sun4i_i2s_set_clk_rate(dai, params_rate(params),
- 				      params_width(params));
-@@ -891,6 +921,8 @@ static const struct sun4i_i2s_quirks sun4i_a10_i2s_quirks = {
- 	.field_rxchanmap	= REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
- 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG, 0, 2),
- 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG, 0, 2),
-+	.get_sr			= sun4i_i2s_get_sr,
-+	.get_wss		= sun4i_i2s_get_wss,
+ /* Board specific platform_data */
+ struct mtk_chip_config {
+-	u32 tx_mlsb;
+-	u32 rx_mlsb;
+ 	u32 cs_pol;
+ 	u32 sample_sel;
  };
- 
- static const struct sun4i_i2s_quirks sun6i_a31_i2s_quirks = {
-@@ -908,6 +940,8 @@ static const struct sun4i_i2s_quirks sun6i_a31_i2s_quirks = {
- 	.field_rxchanmap	= REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
- 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG, 0, 2),
- 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG, 0, 2),
-+	.get_sr			= sun4i_i2s_get_sr,
-+	.get_wss		= sun4i_i2s_get_wss,
- };
- 
- static const struct sun4i_i2s_quirks sun8i_a83t_i2s_quirks = {
-@@ -925,6 +959,8 @@ static const struct sun4i_i2s_quirks sun8i_a83t_i2s_quirks = {
- 	.field_rxchanmap	= REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
- 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG, 0, 2),
- 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG, 0, 2),
-+	.get_sr			= sun8i_i2s_get_sr_wss,
-+	.get_wss		= sun8i_i2s_get_sr_wss,
- };
- 
- static const struct sun4i_i2s_quirks sun8i_h3_i2s_quirks = {
-@@ -933,7 +969,6 @@ static const struct sun4i_i2s_quirks sun8i_h3_i2s_quirks = {
- 	.sun4i_i2s_regmap	= &sun8i_i2s_regmap_config,
- 	.mclk_offset		= 1,
- 	.bclk_offset		= 2,
--	.fmt_offset		= 3,
- 	.has_fmt_set_lrck_period = true,
- 	.has_chcfg		= true,
- 	.has_chsel_tx_chen	= true,
-@@ -948,6 +983,8 @@ static const struct sun4i_i2s_quirks sun8i_h3_i2s_quirks = {
- 	.field_rxchanmap	= REG_FIELD(SUN8I_I2S_RX_CHAN_MAP_REG, 0, 31),
- 	.field_txchansel	= REG_FIELD(SUN8I_I2S_TX_CHAN_SEL_REG, 0, 2),
- 	.field_rxchansel	= REG_FIELD(SUN8I_I2S_RX_CHAN_SEL_REG, 0, 2),
-+	.get_sr			= sun8i_i2s_get_sr_wss,
-+	.get_wss		= sun8i_i2s_get_sr_wss,
- };
- 
- static const struct sun4i_i2s_quirks sun50i_a64_codec_i2s_quirks = {
-@@ -965,6 +1002,8 @@ static const struct sun4i_i2s_quirks sun50i_a64_codec_i2s_quirks = {
- 	.field_rxchanmap	= REG_FIELD(SUN4I_I2S_RX_CHAN_MAP_REG, 0, 31),
- 	.field_txchansel	= REG_FIELD(SUN4I_I2S_TX_CHAN_SEL_REG, 0, 2),
- 	.field_rxchansel	= REG_FIELD(SUN4I_I2S_RX_CHAN_SEL_REG, 0, 2),
-+	.get_sr			= sun8i_i2s_get_sr_wss,
-+	.get_wss		= sun8i_i2s_get_sr_wss,
- };
- 
- static int sun4i_i2s_init_regmap_fields(struct device *dev,
 -- 
 2.20.1
 
