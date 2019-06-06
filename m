@@ -2,141 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E56375D0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 15:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94861375DD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 15:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbfFFN5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 09:57:32 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:49974 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727178AbfFFN5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 09:57:31 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190606135730euoutp02cb23363474daa0801b8363a5a1fb9c0d~loJ7s_DJX2990029900euoutp02N
-        for <devicetree@vger.kernel.org>; Thu,  6 Jun 2019 13:57:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190606135730euoutp02cb23363474daa0801b8363a5a1fb9c0d~loJ7s_DJX2990029900euoutp02N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1559829450;
-        bh=qfiWKm4oy633kNOl1n1lWHSeQY0kLY/qBAJbe3ytBCE=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Cb5lisiBKO6qZiBki0s0PKkBepHhIWKBzOSIqCHKB888IRsa9ULUOEcnifHfuXM9t
-         LWbZg6zW3pRWXjM249R3sjd43cVoBJbsDPi4M20PKmatMTGWegaTMQZt1NNWIWra+5
-         GxXvXfjafz5YV0OpjdzfzLcXMjRFKHI+YoCOoJ88=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190606135729eucas1p285cb608519e7e78c76b567dffb4c0ae5~loJ6745aX1661816618eucas1p2J;
-        Thu,  6 Jun 2019 13:57:29 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 2A.2E.04298.9CB19FC5; Thu,  6
-        Jun 2019 14:57:29 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190606135728eucas1p1bd7e94ec2de4343cbf63a5a51ae1164b~loJ56lXAq1775117751eucas1p10;
-        Thu,  6 Jun 2019 13:57:28 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190606135728eusmtrp28bdc9e69bdf7cda337307cd3862199a7~loJ5q3LZl1085410854eusmtrp2S;
-        Thu,  6 Jun 2019 13:57:28 +0000 (GMT)
-X-AuditID: cbfec7f2-f13ff700000010ca-f2-5cf91bc9cc62
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 97.2E.04140.8CB19FC5; Thu,  6
-        Jun 2019 14:57:28 +0100 (BST)
-Received: from [106.120.51.75] (unknown [106.120.51.75]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190606135727eusmtip2fd0deda65f36dbda83992becd8ba388c~loJ4yRMU-3116631166eusmtip2p;
-        Thu,  6 Jun 2019 13:57:27 +0000 (GMT)
-Subject: Re: [PATCH v8 00/13] Exynos5 Dynamic Memory Controller driver
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        cw00.choi@samsung.com, kyungmin.park@samsung.com,
-        m.szyprowski@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <b1024bed-a8d9-12d9-9e20-5e5624a1b189@samsung.com>
-Date:   Thu, 6 Jun 2019 15:57:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.7.0
+        id S1726693AbfFFN7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 09:59:36 -0400
+Received: from h1.radempa.de ([176.9.142.194]:35036 "EHLO mail.cosmopool.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727087AbfFFN7g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 09:59:36 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.cosmopool.net (Postfix) with ESMTP id 0B80890FE45;
+        Thu,  6 Jun 2019 15:59:33 +0200 (CEST)
+Received: from mail.cosmopool.net ([127.0.0.1])
+        by localhost (mail.b.radempa.de [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id t6ScGfx02b-c; Thu,  6 Jun 2019 15:59:32 +0200 (CEST)
+Received: from stardust.g4.wien.funkfeuer.at (77.117.149.20.wireless.dyn.drei.com [77.117.149.20])
+        by mail.cosmopool.net (Postfix) with ESMTPSA id 513A190213F;
+        Thu,  6 Jun 2019 15:59:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ccbib.org; s=201902;
+        t=1559829572; bh=yRX2r+1exJu+xt6035zadTL1ALZUnRaTg/CjqI7wAzk=;
+        h=From:To:cc:Subject:In-reply-to:References:Date:From;
+        b=Xfkl4O7wX3W5m8UlC0jDHhFkqAU2BvG0QxydrPbS9pMTSjHknn5s/c1SBTbtruCcq
+         coWAmuJr1yuOJaqZowoulZ4CcLBNmsNeCqUBUAZ7PircVahSQsVhWKIyeT5tBQ5436
+         fIYEpSYrT8cO2D3AnUl0hF34wAuI64BKWaKomt8Y=
+Received: from lambda by stardust.g4.wien.funkfeuer.at with local (Exim 4.89)
+        (envelope-from <harald@ccbib.org>)
+        id 1hYsvP-0000PY-Pz; Thu, 06 Jun 2019 15:59:27 +0200
+From:   Harald Geyer <harald@ccbib.org>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+cc:     Torsten Duwe <duwe@lst.de>, Vasily Khoruzhick <anarsoul@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge on Teres-I
+In-reply-to: <20190605120237.ekmytfxcwbjaqy3x@flea>
+References: <20190604122150.29D6468B05@newverein.lst.de> <20190604122308.98D4868B20@newverein.lst.de> <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com> <20190605101317.GA9345@lst.de> <20190605120237.ekmytfxcwbjaqy3x@flea>
+Comments: In-reply-to Maxime Ripard <maxime.ripard@bootlin.com>
+   message dated "Wed, 05 Jun 2019 14:02:37 +0200."
 MIME-Version: 1.0
-In-Reply-To: <20190605165410.14606-1-l.luba@partner.samsung.com>
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUyMcRz3u3vueZ47Lk+X1rfyMrc2YyqZ5bcxw8jjZcY/XpI4PHrRXe0e
-        RcxWTta7lug6pbwNWUvXLYWRpEulk7xcL2iqJSS9UYvS3ZPpv8/38/189vl+ti8tVpwh3egQ
-        zVFOq1GFKUkZUVI1YvF87j4SsOSCYTou0hdK8LvBLgnOrayX4Dt97Qifr8kR4bokNT7X/lWM
-        LZa7FH5x+huFm2Nm477kDxLceD+bxAMplQjrLY9EuKDyPYUbatbjlthbJB57W0Tgx6834ZZR
-        B/yz+hNa7cz+HEon2F5rHMVeimkg2DLDe4o15ieQbIruO8k++f5QxKaa8hFbXHuSHTDO3Sbz
-        l608xIWFRHFa71X7ZcFWXRIR0U0f/5xSJYlBY2QiktLALIOMjgzKhhXMLQSFv0MSkWwCDyJ4
-        UpRGCcMAgurGZOqfo7GshBQcNxHoTV6CqAfB1T8G+8KJ8YO6+Fd2wyxmMVj6e0U2kZjJJuBZ
-        fSphW5CMD6Q8S0U2LGdWQZPeYjcQjAc8NebaNc7MLhgsM05qHOF5VoedlzKr4aK52I7FjAuc
-        HrwtEfA8uNeTLbaFAVNKgzlHh4Sz14G1bogQsBN8MZsm68yG8bJckWDQIUh+0EIJQxqCj+a8
-        SfcKeGpumIigJyIWQuF9b4FeAz/iPthpYBzA2uMoHOEA6SWZYoGWQ/xZhaD2gNH8TJGA3SCp
-        Y5xIQ0rDlGqGKXUMU+oY/ufmISIfuXCRvDqI43003DEvXqXmIzVBXgfD1UY08Zu1Y+b+UjT0
-        6kAFYmiknCFnqZEAhUQVxUerKxDQYuUsedTL4QCF/JAq+gSnDd+njQzj+ArkThNKF/nJaW17
-        FEyQ6ih3hOMiOO2/rYiWusUggrYm9Nc0XbnsCy5d9em838Zd7ldCD+gDTTc2hHcv3v4go/f4
-        nGD/HVt5TadC4+k7c0+59VqxNnN5SfOW2pq1b5Z0mlUDfYnzTe6brifs7YgrUEjLF5B+Hq4b
-        pAtPuZaaDw+34p0nfnUFLv1WsPmSLtb/eptXbC3du3nv7tCM0NYsJcEHq3wWibW86i+Ik8nj
-        lwMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOKsWRmVeSWpSXmKPExsVy+t/xe7onpH/GGExewWaxccZ6VovrX56z
-        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7jVIGPxseceq8XlXXPYLD73
-        HmG0mHF+H5PF2iN32S0unnK1uN0INPHftY0sFvuveFnc/s1n8e3EI0YHUY9vXyexeLy/0cru
-        MbvhIovHzll32T02repk8+htfsfmcfDdHiaPvi2rGD02n672+LxJLoArSs+mKL+0JFUhI7+4
-        xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1SN8uQS/jRnM3S8FLjooXvcdYGxj/
-        sXUxcnJICJhIXN65Dcjm4hASWMooMXfqayCHAyghJTG/RQmiRljiz7UuqJrXjBKLLx5lBUkI
-        C7hJnOm4xA5iiwjoSJz/9J4JpIhZYA6LROfS5ewQHZMZJf5NXQi2jk3AUKL3aB8jiM0rYCdx
-        c8Z5sG4WARWJw5vms4DYogIRErN3NbBA1AhKnJz5BMzmFHCQmHZ8M5jNLKAu8WfeJWYIW1yi
-        6ctKVghbXmL72znMExiFZiFpn4WkZRaSlllIWhYwsqxiFEktLc5Nzy020itOzC0uzUvXS87P
-        3cQITBTbjv3csoOx613wIUYBDkYlHt4ZTD9jhFgTy4orcw8xSnAwK4nwll34ESPEm5JYWZVa
-        lB9fVJqTWnyI0RTouYnMUqLJ+cAkllcSb2hqaG5haWhubG5sZqEkztshcDBGSCA9sSQ1OzW1
-        ILUIpo+Jg1OqgfHY56MZVh92/u0p+V16fdPdHQoOzv4fZm1bIiPc79Lgq+P260+VZfCXjSuD
-        OzoceV1nTRLvmDktpepVHctf3l+cHoeqTr03Fy5U2/LD7Pame94f/upM+HHzlX2YTPqr3+kX
-        uCN+nmCbeMY715qB8dds451pRl9jtJ5rvk9m7JNbuHrPRJNdBw8qsRRnJBpqMRcVJwIAHcs0
-        wyoDAAA=
-X-CMS-MailID: 20190606135728eucas1p1bd7e94ec2de4343cbf63a5a51ae1164b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190605165426eucas1p20524669a299f740b5502db24977b098f
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190605165426eucas1p20524669a299f740b5502db24977b098f
-References: <CGME20190605165426eucas1p20524669a299f740b5502db24977b098f@eucas1p2.samsung.com>
-        <20190605165410.14606-1-l.luba@partner.samsung.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <1582.1559829566.1@stardust.g4.wien.funkfeuer.at>
+Content-Transfer-Encoding: quoted-printable
+Date:   Thu, 06 Jun 2019 15:59:27 +0200
+Message-Id: <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/5/19 18:53, Lukasz Luba wrote:
-> Lukasz Luba (13):
->   clk: samsung: add needed IDs for DMC clocks in Exynos5420
->   clk: samsung: add new clocks for DMC for Exynos5422 SoC
->   clk: samsung: add BPLL rate table for Exynos 5422 SoC
->   dt-bindings: ddr: rename lpddr2 directory
->   dt-bindings: ddr: add LPDDR3 memories
->   drivers: memory: extend of_memory by LPDDR3 support
->   dt-bindings: memory-controllers: add Exynos5422 DMC device description
->   drivers: memory: add DMC driver for Exynos5422
->   drivers: devfreq: events: add Exynos PPMU new events
->   ARM: dts: exynos: add chipid label and syscon compatible
->   ARM: dts: exynos: add syscon to clock compatible
->   ARM: dts: exynos: add DMC device for exynos5422
->   ARM: exynos_defconfig: enable DMC driver
+Guys, this discussion is getting heated for no reason. Let's put
+personal frustrations aside and discuss the issue on its merits:
 
+Maxime Ripard writes:
+> On Wed, Jun 05, 2019 at 12:13:17PM +0200, Torsten Duwe wrote:
+> > On Tue, Jun 04, 2019 at 08:08:40AM -0700, Vasily Khoruzhick wrote:
+> > > On Tue, Jun 4, 2019 at 5:23 AM Torsten Duwe <duwe@lst.de> wrote:
+> > > >
+> > > > Teres-I has an anx6345 bridge connected to the RGB666 LCD output, =
+and
+> > > > the I2C controlling signals are connected to I2C0 bus. eDP output =
+goes
+> > > > to an Innolux N116BGE panel.
+> > > >
+> > > > Enable it in the device tree.
+> > > >
+> > > > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> > > > Signed-off-by: Torsten Duwe <duwe@suse.de>
+> > > > ---
+> > > >  .../boot/dts/allwinner/sun50i-a64-teres-i.dts      | 65 +++++++++=
++++++++++++--
+> > > >  1 file changed, 61 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts =
+b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > > index 0ec46b969a75..a0ad438b037f 100644
+> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > > @@ -65,6 +65,21 @@
+> > > >                 };
+> > > >         };
+> > > >
+> > > > +       panel: panel {
+> > > > +               compatible =3D"innolux,n116bge", "simple-panel";
+> > >
+> > > It's still "simple-panel". I believe I already mentioned that Rob
+> > > asked it to be edp-connector.
 
-I have applied first 3 patches from this series to clk/samsung tree.
+Actually just dropping the "simple-panel" compatible would be a poor
+choice. Even if "edp-connector" is specified as binding and implemented in=
+ a
+driver, there are older kernel versions and other operating systems to
+keep in mind. If the HW works with "simple-panel" driver satisfactorily,
+we should definitely keep the compatible as a fall back for cases where
+the edp-connector driver is unavailable.
 
-But can you please also send this series to linux-clk@vger.kernel.org 
-ML, adding the clk maintainers (Stephen, Michael) at Cc?
+If think valid compatible properties would be:
+compatible =3D "innolux,n116bge", "simple-panel";
+compatible =3D "edp-connector", "simple-panel";
+compatible =3D "innolux,n116bge", "edp-connector", "simple-panel";
+compatible =3D "edp-connector", "innolux,n116bge", "simple-panel";
 
-Please make sure if future any clk patches are also sent to 
-linux-clk@vger.kernel.org mailing list.
+I can't make up my mind which one I prefere. However neither of these
+variants requires actually implmenting an edp-connector driver. And each
+of these variants is clearly preferable to shipping DTs without
+description of the panel at all and complies with bindings after adding
+a stub for "edp-connector".
 
--- 
-Thanks,
-Sylwester
+> And the DT is considered an ABI, so yeah, we will witheld everything
+> that doesn't fit what we would like.
 
+I fail to see how the patch in discussion adds new ABI. While I understand
+the need to pester contributors for more work, outright blocking DTs, that
+properly describe the HW and comply with existing bindings, seems a
+bit unreasonable. (Assuming there are no other issues of course.)
+
+Also note that the innolux,n116bge binding suggestes using simple-panel
+as fallback.
+
+HTH,
+Harald
+
+-- =
+
+If you want to support my work:
+see http://friends.ccbib.org/harald/supporting/
+or donate via CLAM to xASPBtezLNqj4cUe8MT5nZjthRSEjrRQXN
+or via peercoin to P98LRdhit3gZbHDBe7ta5jtXrMJUms4p7w
