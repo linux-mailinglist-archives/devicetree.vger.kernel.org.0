@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A44438175
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 01:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C26203819C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 01:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727011AbfFFXAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 19:00:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45944 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726352AbfFFXAv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 19:00:51 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2F33720645;
-        Thu,  6 Jun 2019 23:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559862050;
-        bh=A2CuOolZBDK0Z3relfnI07Z/gnbTneghKbkRvdlGm3k=;
-        h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=YPTYWA7Vd0sPaZNRyWtc/92OXwKwg9OT3pB847NFm0o9iDF9nfdg8fVMgvED/Pkfk
-         1VL7Wmd8s+t4afWGIqrccCUMimewhaJMvcNqlJ3bsxi5tV3BvSvvHUYQy+c8t7meV6
-         Mblbc7xMXzts2DiX4kqPkf4nphq4ynOe4XTgZavA=
-Content-Type: text/plain; charset="utf-8"
+        id S1726623AbfFFXKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 19:10:51 -0400
+Received: from merlin.infradead.org ([205.233.59.134]:43810 "EHLO
+        merlin.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726593AbfFFXKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 19:10:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=WrR8a0nd7OqHeGMYq59lvGgYOhTcXv05lY92PTWM2CQ=; b=oGpZKv7v1449BYsCbjNBM23I59
+        AeS10K3WrsuNY4wsvrv1v35sohJrGMRvaGQEKNq3MdRM8lvHiWBOBBBoPxXt+FXCQN5Fnem47OjSY
+        Qzwa3F1vokFNDVeBNOtxbdTgUvwUk7VOD/k/FinOC44l2cTTG0crQ1sWOAIpg3/Jiq9Y4yiW0I9Aw
+        WGO/zPFTdSE6bCX6qM5sF9XMPGXawRE5EctHBBcCVoct1Leh53VSTvD20ebDJhUzjIzEeDd4v3a1q
+        zUAlixJtXCC1UQp7bOmgCiTpB1DT/LPw8z15jOb8ERhJ/KtT9nqL0MQW22vuzZ1QlwiEUEPuabx4m
+        BH/G2evQ==;
+Received: from static-50-53-52-16.bvtn.or.frontiernet.net ([50.53.52.16] helo=dragon.dunlab)
+        by merlin.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hZ1Wn-0007f1-Gj; Thu, 06 Jun 2019 23:10:37 +0000
+Subject: Re: [PATCH v2 2/3] media: imx7-media-csi: add i.MX6UL support
+To:     =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Steve Longerbeam <slongerbeam@gmail.com>
+References: <20190606153825.8183-1-sebastien.szymanski@armadeus.com>
+ <20190606153825.8183-2-sebastien.szymanski@armadeus.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <92ca6e6e-2ebd-cec4-4f75-2674fd2c3d99@infradead.org>
+Date:   Thu, 6 Jun 2019 16:10:30 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190528164803.38642-1-jeffrey.l.hugo@gmail.com>
-References: <20190528164616.38517-1-jeffrey.l.hugo@gmail.com> <20190528164803.38642-1-jeffrey.l.hugo@gmail.com>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, mturquette@baylibre.com
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH 2/3] clk: qcom: Add MSM8998 GPU Clock Controller (GPUCC) driver
-Cc:     agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, marc.w.gonzalez@free.fr,
-        jcrouse@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-User-Agent: alot/0.8.1
-Date:   Thu, 06 Jun 2019 16:00:49 -0700
-Message-Id: <20190606230050.2F33720645@mail.kernel.org>
+In-Reply-To: <20190606153825.8183-2-sebastien.szymanski@armadeus.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jeffrey Hugo (2019-05-28 09:48:03)
-> diff --git a/drivers/clk/qcom/gpucc-msm8998.c b/drivers/clk/qcom/gpucc-ms=
-m8998.c
-> new file mode 100644
-> index 000000000000..e45062e40718
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gpucc-msm8998.c
-> +
-> +static int gpucc_msm8998_probe(struct platform_device *pdev)
-> +{
-> +       struct regmap *regmap;
-> +       struct clk *xo;
-> +
-> +       /*
-> +        * We must have a valid XO to continue until orphan probe defer is
-> +        * implemented.
-> +        */
-> +       xo =3D clk_get(&pdev->dev, "xo");
+On 6/6/19 8:38 AM, Sébastien Szymanski wrote:
+> i.MX7 and i.MX6UL/L have the same CSI controller. So add i.MX6UL/L support
+> to imx7-media-csi driver.
+> 
+> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+> ---
+> 
+> Changes for v2:
+>  - rebase on top of linuxtv/master
+>  - mention i.MX6UL/L in header and Kconfig help text
+>  - rename csi_type to csi_soc_id
+> 
+>  drivers/staging/media/imx/Kconfig          |  4 +-
+>  drivers/staging/media/imx/imx7-media-csi.c | 62 ++++++++++++++++------
+>  2 files changed, 49 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/staging/media/imx/Kconfig b/drivers/staging/media/imx/Kconfig
+> index ad3d7df6bb3c..8b6dc42c39e0 100644
+> --- a/drivers/staging/media/imx/Kconfig
+> +++ b/drivers/staging/media/imx/Kconfig
+> @@ -22,11 +22,11 @@ config VIDEO_IMX_CSI
+>  	  A video4linux camera sensor interface driver for i.MX5/6.
+>  
+>  config VIDEO_IMX7_CSI
+> -	tristate "i.MX7 Camera Sensor Interface driver"
+> +	tristate "i.MX6UL/L / i.MX7 Camera Sensor Interface driver"
+>  	depends on VIDEO_IMX_MEDIA && VIDEO_DEV && I2C
+>  	default y
 
-Why is this necessary?
+Hi,
+I realize that this "default y" is not part of this patch set, but we have
+pretty strong guidance that a driver should not default to 'y' unless it is
+needed for a system to boot.  If this driver is optional, then please drop
+the 2 occurrences of "default y" in this Kconfig file.
 
-> +       if (IS_ERR(xo))
-> +               return PTR_ERR(xo);
-> +       clk_put(xo);
-> +
-> +       regmap =3D qcom_cc_map(pdev, &gpucc_msm8998_desc);
-> +       if (IS_ERR(regmap))
-> +               return PTR_ERR(regmap);
-> +
-> +       /* force periph logic on to acoid perf counter corruption */
+thanks.
+>  	help
+>  	  Enable support for video4linux camera sensor interface driver for
+> -	  i.MX7.
+> +	  i.MX6UL/L or i.MX7.
+>  endmenu
+>  endif
 
-avoid?
 
-> +       regmap_write_bits(regmap, gfx3d_clk.clkr.enable_reg, BIT(13), BIT=
-(13));
-> +       /* tweak droop detector (GPUCC_GPU_DD_WRAP_CTRL) to reduce leakag=
-e */
-> +       regmap_write_bits(regmap, gfx3d_clk.clkr.enable_reg, BIT(0), BIT(=
-0));
-> +
-> +       return qcom_cc_really_probe(pdev, &gpucc_msm8998_desc, regmap);
-> +}
-> +
+-- 
+~Randy
