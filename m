@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5686536D48
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E25636D46
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:25:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725769AbfFFH0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 03:26:13 -0400
-Received: from smtp-fw-9101.amazon.com ([207.171.184.25]:31672 "EHLO
-        smtp-fw-9101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725267AbfFFH0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 03:26:13 -0400
+        id S1726581AbfFFHZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 03:25:17 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:41634 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726066AbfFFHZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 03:25:17 -0400
+Received: by mail-pl1-f193.google.com with SMTP id s24so560171plr.8
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 00:25:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1559805972; x=1591341972;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=mwPg6ZnGSCRENnbKaTCqPwiVkjA1qtZzZjwWWCUaAyA=;
-  b=cpT4Ry8uLZ4APaumzAGkHy/+sO2YsV41Yx0y19uXOD5VbCvAnbRMUstS
-   g9ReMzJZHcEv+p6fVa07OKsjlKmyRkj+h2DxWemUsVbxHjd0SFGCnSBr+
-   H1SLlwxKpMlYp4f9kwLP+ajJo1dnshuvE2ZEDQLqRiEM2ruION8Nltg1P
-   U=;
-X-IronPort-AV: E=Sophos;i="5.60,558,1549929600"; 
-   d="scan'208";a="808901085"
-Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-2c-1968f9fa.us-west-2.amazon.com) ([10.47.22.38])
-  by smtp-border-fw-out-9101.sea19.amazon.com with ESMTP; 06 Jun 2019 07:26:10 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
-        by email-inbound-relay-2c-1968f9fa.us-west-2.amazon.com (Postfix) with ESMTPS id EE7C9A2963;
-        Thu,  6 Jun 2019 07:26:09 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 6 Jun 2019 07:26:09 +0000
-Received: from [10.125.238.52] (10.43.162.225) by EX13D01EUB001.ant.amazon.com
- (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Thu, 6 Jun
- 2019 07:26:00 +0000
-Subject: Re: [PATCH v2 2/2] irqchip: al-fic: Introduce Amazon's Annapurna Labs
- Fabric Interrupt Controller Driver
-To:     Marc Zyngier <marc.zyngier@arm.com>, <nicolas.ferre@microchip.com>,
-        <jason@lakedaemon.net>, <mark.rutland@arm.com>,
-        <mchehab+samsung@kernel.org>, <robh+dt@kernel.org>,
-        <davem@davemloft.net>, <shawn.lin@rock-chips.com>,
-        <tglx@linutronix.de>, <devicetree@vger.kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>
-CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <jonnyc@amazon.com>, <hhhawa@amazon.com>, <ronenk@amazon.com>,
-        <hanochu@amazon.com>, <barakw@amazon.com>, <talel@amazon.com>
-References: <1559731921-14023-1-git-send-email-talel@amazon.com>
- <1559731921-14023-3-git-send-email-talel@amazon.com>
- <fa6e5a95-d9dd-19f6-43e3-3046e0898bda@arm.com>
- <553d06a4-a6b6-816f-b110-6ef7f300dde4@amazon.com>
- <0915892c-0e53-8f53-e858-b1c3298a4d35@arm.com>
-From:   "Shenhar, Talel" <talel@amazon.com>
-Message-ID: <88907fea-aee1-62c8-604a-726b603ec48a@amazon.com>
-Date:   Thu, 6 Jun 2019 10:25:55 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=HPvBPBVMaGSa/zB6ZJwA0LCVSOOo7DC2+M4V383+koE=;
+        b=YqYjs36xGAcQq6oProJyN99xewoE3Gp9dUzg5pvrKQgZWcmXMPyycjleWh6eJ0I3VM
+         6YwbWdPuIHoaW1cljaZDCqzRhri6ADFOnZ78uroxzrdwpZ4ut0oxPb2Ylw1SVnIiYJFn
+         7SMYhRQz/85vXnJoLBwwz26mrOxvHO0XG3T+MdCiRVQrvDOa+k5ZuS/Q8U/liWv0L1cz
+         iKeSua4sUqK326obz9Up6o2HwCqRiRAnxHJv/KP+keyali2BbIOOaVj5y9X3q/Usz6Au
+         aywDLpB6RcMyoBnUuKDfQi2y97cztibqZ9MXXPcXf8xiFfxfE58l+VGxG9J8IbbPT/sd
+         8LoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=HPvBPBVMaGSa/zB6ZJwA0LCVSOOo7DC2+M4V383+koE=;
+        b=kMhh8/kusLRuKI81SV1BObSa/hXkW3DbNW/gMDDCvqiOI8P8flixkJS7gPNS3ynfE7
+         BX28ApdKF7ll88pJmKkkm5VdIZMHEoXwMD/Au3I3HKvSOhBfu/7ekUFf54DmQ1vTEi24
+         Y1E/9g4cVwshj62y3fFkSjqX3NNtNSJL3Mg2k2k9+ELm+mlqAgtUgx7h6f0j3LEavcK1
+         xH0Gg9p+f9maXH3SGROfj3ZcnEisbtM54IkYehhFGPYH0DRzjGqaoxTNQJzBT6yezNVn
+         gIPMwKIobz6jztMxkEafWFPok6OQ28gq3Vpak0QNqtaVvrJSMmOeRo9OBpYLwXaskA8n
+         SdrA==
+X-Gm-Message-State: APjAAAXXMdKPraVhd1JUCqgpMa4E8x2IM4OE04ucXf5KUXz2QYJ4LrHZ
+        yAUC6jFLINaeHnNxQvV9NFBYtg==
+X-Google-Smtp-Source: APXvYqzfbpVJA69MZdz+/1GgtiWjtGcWwvPJtbzUDJzAbhae7fYlJ98zQNMenG1LomSBTtQg1H8vvw==
+X-Received: by 2002:a17:902:d70a:: with SMTP id w10mr41023406ply.251.1559805916729;
+        Thu, 06 Jun 2019 00:25:16 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id a25sm1053735pfo.112.2019.06.06.00.25.15
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 06 Jun 2019 00:25:16 -0700 (PDT)
+Date:   Thu, 6 Jun 2019 00:26:01 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, agross@kernel.org, david.brown@linaro.org,
+        dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, hdegoede@redhat.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Add Lenovo Miix 630
+Message-ID: <20190606072601.GT22737@tuxbook-pro>
+References: <20190423160543.9922-1-jeffrey.l.hugo@gmail.com>
+ <20190423160616.10017-1-jeffrey.l.hugo@gmail.com>
+ <20190606055034.GA4797@dell>
 MIME-Version: 1.0
-In-Reply-To: <0915892c-0e53-8f53-e858-b1c3298a4d35@arm.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.43.162.225]
-X-ClientProxiedBy: EX13D21UWA002.ant.amazon.com (10.43.160.246) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190606055034.GA4797@dell>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed 05 Jun 22:50 PDT 2019, Lee Jones wrote:
 
-On 6/5/2019 6:12 PM, Marc Zyngier wrote:
-> On 05/06/2019 15:38, Shenhar, Talel wrote:
->>
->> FIC only support two sensing modes, rising-edge and level.
-> Yes, I can tell. Yet, this code will let EDGE_BOTH pass through, even if
-> it cannot handle it.
-Will handle on v4
-> Indeed we use interrupt specifier that has the level type in it
->> (dt-binding: "#interrupt-cells: must be 2.") which in turns causes to
->> this irq_set_type callback.
-> Well, this isn't what the example in your DT binding shows.
-Will update the example in v4
+> On Tue, 23 Apr 2019, Jeffrey Hugo wrote:
+> 
+> > This adds the initial DT for the Lenovo Miix 630 laptop.  Supported
+> > functionality includes USB (host), microSD-card, keyboard, and trackpad.
+> > 
+> > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../boot/dts/qcom/msm8998-clamshell.dtsi      | 278 ++++++++++++++++++
+> >  .../boot/dts/qcom/msm8998-lenovo-miix-630.dts |  30 ++
+> 
+> What's happening with this patch?
+> 
 
+The thermal-zones are wrong, but I'm okay with an incremental patch for
+that...
 
-Thanks,
+> It's been on the list a while now.  I'm waiting for it to be accepted,
+> since there are patches I wish to submit which are based on it.
+> 
+> Who is responsible for merging these?
+> 
 
-Talel.
+...so I've just been waiting for a conclusion on the HID patch before I
+could pick this up.
 
+Regards,
+Bjorn
