@@ -2,85 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9014D36A33
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E10636A2A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:52:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726593AbfFFCyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 22:54:02 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:5362 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726568AbfFFCyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 22:54:02 -0400
-X-UUID: d5af71d09e6b485c88b28e506c4167fe-20190606
-X-UUID: d5af71d09e6b485c88b28e506c4167fe-20190606
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 395981444; Thu, 06 Jun 2019 10:53:53 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 6 Jun
- 2019 10:53:51 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 6 Jun 2019 10:53:51 +0800
-Message-ID: <1559789630.8487.111.camel@mhfsdcap03>
-Subject: Re: [PATCH v6 09/10] usb: roles: add USB Type-B GPIO connector
- driver
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        id S1726519AbfFFCwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 22:52:41 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:54880 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726427AbfFFCwl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 22:52:41 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7FADB200997;
+        Thu,  6 Jun 2019 04:52:38 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6058B20098C;
+        Thu,  6 Jun 2019 04:52:34 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 01B76402A6;
+        Thu,  6 Jun 2019 10:52:28 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        "Badhri Jagan Sridharan" <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Min Guo <min.guo@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Yu Chen" <chenyu56@huawei.com>
-Date:   Thu, 6 Jun 2019 10:53:51 +0800
-In-Reply-To: <CAHp75VcbZwd0e6r38C2x7HLEHLr4oR7TjwdDXnDxRPRs3anwgA@mail.gmail.com>
-References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1559115828-19146-10-git-send-email-chunfeng.yun@mediatek.com>
-         <CAHp75VcbZwd0e6r38C2x7HLEHLr4oR7TjwdDXnDxRPRs3anwgA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
-MIME-Version: 1.0
-X-MTK:  N
+        Felipe Balbi <balbi@kernel.org>, Yang Li <pku.leo@gmail.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
+Subject: [RESEND][PATCH v3 1/2] usb: dwc3: Add avoiding vbus glitch happen during xhci reset
+Date:   Thu,  6 Jun 2019 10:54:17 +0800
+Message-Id: <20190606025418.26313-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-06-05 at 11:45 +0300, Andy Shevchenko wrote:
-> On Wed, May 29, 2019 at 10:44 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> >
-> > Due to the requirement of usb-connector.txt binding, the old way
-> > using extcon to support USB Dual-Role switch is now deprecated
-> > when use Type-B connector.
-> > This patch introduces a driver of Type-B connector which typically
-> > uses an input GPIO to detect USB ID pin, and try to replace the
-> > function provided by extcon-usb-gpio driver
-> 
-> > +static SIMPLE_DEV_PM_OPS(usb_conn_pm_ops,
-> > +                        usb_conn_suspend, usb_conn_resume);
-> > +
-> > +#define DEV_PMS_OPS (IS_ENABLED(CONFIG_PM_SLEEP) ? &usb_conn_pm_ops : NULL)
-> 
-> Why this macro is needed?
-Want to set .pm as NULL when CONFIG_PM_SLEEP is not enabled.
+When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
+(or its control signal) will turn on immediately on related Root Hub
+ports. Then the VBUS will be de-asserted for a little while during xhci
+reset (conducted by xhci driver) for a little while and back to normal.
 
-Thanks
-> 
+This VBUS glitch might cause some USB devices emuration fail if kernel
+boot with them connected. One SW workaround which can fix this is to
+program all PORTSC[PP] to 0 to turn off VBUS immediately after setting
+host mode in DWC3 driver(per signal measurement result, it will be too
+late to do it in xhci-plat.c or xhci.c).
 
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+Changes in v3:
+  - None
+
+Changes in v2:
+  - Correct typos
+  - Shorten the name to snps,host-vbus-glitches
+
+ Documentation/devicetree/bindings/usb/dwc3.txt |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 8e5265e..453f562 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -106,6 +106,9 @@ Optional properties:
+ 			When just one value, which means INCRX burst mode enabled. When
+ 			more than one value, which means undefined length INCR burst type
+ 			enabled. The values can be 1, 4, 8, 16, 32, 64, 128 and 256.
++ - snps,host-vbus-glitches: Power off all Root Hub ports immediately after
++			setting host mode to avoid vbus (negative) glitch happen in later
++			xhci reset. And the vbus will back to 5V automatically when reset done.
+ 
+  - in addition all properties from usb-xhci.txt from the current directory are
+    supported as well
+-- 
+1.7.1
 
