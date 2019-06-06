@@ -2,141 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD1FC37822
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 17:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0601637D15
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 21:15:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729173AbfFFPg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 11:36:59 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:35309 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728871AbfFFPg7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 11:36:59 -0400
-Received: by mail-wm1-f66.google.com with SMTP id c6so433893wml.0;
-        Thu, 06 Jun 2019 08:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=DyRXAwIkACrL75qrkaIpiaUyXrFK4zgAUD6OMPn5KbE=;
-        b=g3S2sTxqBXi5WyyBC3kSqRB4jy1/u8zRu8CaUu9B6m1YAV7H2ngfPZ/1L/yjfJqfG4
-         Rcg1ScXJJlGFN5bz+QrAH0iXCJ4VfvP5L9a5ehiumq51US+TgIvDDkrOZ+lCxaMXj3bJ
-         +bKu0U37sa7xvVg0BHrevd6nIQZjEwe/Pt3VltHUfBlZb4NuxEFlF+J0Y6rn/8vm5r7d
-         d9brNEt7L7LPi7f54EQAw7mqjZHbrI9oaQ0UpV0gIbPhnBUnxrCfFj+4/H+RcldEqBbA
-         J7IFnBVF48uPXmLNIEvshA9A4XJIfT4tSfCb2sSjwpRmrq0Jeg7fwUZzzcwBMKLnwqRt
-         z+hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=DyRXAwIkACrL75qrkaIpiaUyXrFK4zgAUD6OMPn5KbE=;
-        b=aT1n4/xsKy6uXywBhDxbQruPkiIYceGdK99ksHZpPvmSeGfgBnVYzzjkYaqxZ+6dsM
-         NHuKjKQ4Oy9JnPHxXIF5Q75cXXNPqbjVEXlVFoH/rWrXYtnZ/DpF1PUJvJVXDX9/PWDk
-         lKtq4EDY2IDOM69BD0oBu1m4geqrMgbPug11LeiwYJM53VdkGr20vVz1WuQBTzaQfw1f
-         0IO+8lx04/noI+KDGGwXhuK8BIA0515/laOrB9h4f2DbQmdZ3kmpOsWBqimzWptTCNWl
-         DtlBZxyG6lKXWw+X1F/iXhVq+SCkkavwnJMa1nvfpRBYixvvRzA1H3mcOkhQ/BeJUOwR
-         909Q==
-X-Gm-Message-State: APjAAAV3le4ImTk7pf2uSPtpfeKx3Dl/StNke0IKK+2dNFrHG0RySQK5
-        gC/fFC59CHo/1vS5HjnyAjM=
-X-Google-Smtp-Source: APXvYqzoIc0HCuMlyYira3wL7A3WbV0QPNSbcpXOCeVTl1Ab6mMnqDsM2t7fldaeLqrPRCvQdP5yOw==
-X-Received: by 2002:a1c:c706:: with SMTP id x6mr456960wmf.162.1559835417018;
-        Thu, 06 Jun 2019 08:36:57 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id s11sm1697185wro.17.2019.06.06.08.36.56
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 06 Jun 2019 08:36:56 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 17:36:55 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V8 14/15] PCI: tegra: Add Tegra194 PCIe support
-Message-ID: <20190606153655.GC3338@ulmo>
-References: <20190526043751.12729-1-vidyas@nvidia.com>
- <20190526043751.12729-15-vidyas@nvidia.com>
+        id S1728843AbfFFTPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 15:15:41 -0400
+Received: from 4.mo4.mail-out.ovh.net ([178.32.98.131]:53731 "EHLO
+        4.mo4.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728504AbfFFTPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 15:15:41 -0400
+X-Greylist: delayed 12595 seconds by postgrey-1.27 at vger.kernel.org; Thu, 06 Jun 2019 15:15:41 EDT
+Received: from player697.ha.ovh.net (unknown [10.109.143.232])
+        by mo4.mail-out.ovh.net (Postfix) with ESMTP id 9F1DF1F5C9E
+        for <devicetree@vger.kernel.org>; Thu,  6 Jun 2019 17:38:55 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player697.ha.ovh.net (Postfix) with ESMTPSA id 0AFA9697A5DB;
+        Thu,  6 Jun 2019 15:38:36 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH v2 1/3] ARM: dts: imx6ul: Add csi node
+Date:   Thu,  6 Jun 2019 17:38:23 +0200
+Message-Id: <20190606153825.8183-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.19.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bAmEntskrkuBymla"
-Content-Disposition: inline
-In-Reply-To: <20190526043751.12729-15-vidyas@nvidia.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 3715188221214217412
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudeggedgledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add csi node for i.MX6UL SoC.
 
---bAmEntskrkuBymla
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+---
 
-On Sun, May 26, 2019 at 10:07:50AM +0530, Vidya Sagar wrote:
-> Add support for Synopsys DesignWare core IP based PCIe host controller
-> present in Tegra194 SoC.
->=20
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> Changes since [v7]:
-> * Addressed review comments from Thierry
->=20
-> Changes since [v6]:
-> * Removed code around "nvidia,disable-aspm-states" DT property
-> * Refactored code to remove code duplication
->=20
-> Changes since [v5]:
-> * Addressed review comments from Thierry
->=20
-> Changes since [v4]:
-> * None
->=20
-> Changes since [v3]:
-> * None
->=20
-> Changes since [v2]:
-> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
-> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
-> * Removed .runtime_suspend() & .runtime_resume() implementations
->=20
-> Changes since [v1]:
-> * Made CONFIG_PCIE_TEGRA194 as 'm' by default from its previous 'y' state
-> * Modified code as per changes made to DT documentation
-> * Refactored code to address Bjorn & Thierry's review comments
-> * Added goto to avoid recursion in tegra_pcie_dw_host_init() API
-> * Merged .scan_bus() of dw_pcie_host_ops implementation to tegra_pcie_dw_=
-host_init() API
->=20
->  drivers/pci/controller/dwc/Kconfig         |   10 +
->  drivers/pci/controller/dwc/Makefile        |    1 +
->  drivers/pci/controller/dwc/pcie-tegra194.c | 1621 ++++++++++++++++++++
->  3 files changed, 1632 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+Changes for v2:
+ - only "mclk" clock is required now.
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+ arch/arm/boot/dts/imx6ul.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
---bAmEntskrkuBymla
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index bbf010c73336..f10012de5eb6 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -951,6 +951,15 @@
+ 				};
+ 			};
+ 
++			csi: csi@21c4000 {
++				compatible = "fsl,imx6ul-csi", "fsl,imx7-csi";
++				reg = <0x021c4000 0x4000>;
++				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clks IMX6UL_CLK_CSI>;
++				clock-names = "mclk";
++				status = "disabled";
++			};
++
+ 			lcdif: lcdif@21c8000 {
+ 				compatible = "fsl,imx6ul-lcdif", "fsl,imx28-lcdif";
+ 				reg = <0x021c8000 0x4000>;
+-- 
+2.19.2
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlz5MxcACgkQ3SOs138+
-s6G/ZhAAjpmV/vx2RYEnxlLLhgYrDv+eJ4c99U63vbP5N/OjnWh9s51GJWF26MbS
-y2mW0FgYxsUXm+M3WFBBs7l38iCwYp8bTAahH7i3kEyw+Eb0nv/UMq0DF2t6ESOR
-zxA76mLckgzZ0rn7wXGqYVLPU7M0eTw1SGJhz5YTPmR3ghTfE837R1vkfXKV3bYo
-zr8V8p6ZsZ5AgaYg781zLnxIhc84iuXMGSpt0n4Bw9T0IX9TBoZvnOKa9kPujQdk
-R53voGhAVATSx/c/MuA6TLc3SdKedKdaP8V2POGWZbffTbYT74wa7TxC+p5SlYQu
-KcmedzYUsiqAqjG/uIiIG2X2zOqGBgp4Z1zmizaEC6mzaJWEPfZBWz2MXZqNPhq8
-l4P2JgOfB8TwF7Qtw18IaIYa26L1Uaxt/604YnSpJJeQxHpXJVgHQ4K+cgENneLI
-EWc4RYCr5O0M4q6P6IIyZypKXBtzMd4eCVM0pDlPz6HRInNGNzgFa6DPENWMExc1
-V15xEZXmXGwhVwhuqoMmXN7Rd0p+5wSWQFWxKETXf1NETlN5L89s3hoEZ+O9eDBU
-tHb1eaY9+wuq56jwySzGst3np9/8VGx+p9u5xE0coTDHSlQbb7XpSe8cfhDSXp0n
-3k5kNWWMNn6SGUe3H8P7mquhingQDwZ30PCGTCpfvwnxM7q9o68=
-=8lND
------END PGP SIGNATURE-----
-
---bAmEntskrkuBymla--
