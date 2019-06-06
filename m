@@ -2,31 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 903CC36EF5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 10:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A7136F00
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 10:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727344AbfFFIn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 04:43:26 -0400
-Received: from mail.myocard.eu ([80.211.34.180]:60186 "EHLO mail.myocard.eu"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725782AbfFFIn0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 04:43:26 -0400
-Received: by mail.myocard.eu (Postfix, from userid 1001)
-        id F14968764A; Thu,  6 Jun 2019 10:43:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=myocard.eu; s=mail;
-        t=1559810602; bh=xqqTtMIwrdiA7dqnQhoAQdMueQWzOyOSooCPJrKxKOw=;
-        h=Date:From:To:Subject:From;
-        b=I4W74pm7M2zkvPTcUQ8q2LZwhVmstZdiodoL7+mBuriLmVIxZGeH36eOjOjbpI/pg
-         K8FIZUW1qk+EZiFcfVN9Mh5Pk4vIn9aUGHX34/QzrLQsrrMMDq+ABBS05KqgSGe8fB
-         jT8q1ft0iEvjwlfHp07UeHSNLbfOrNX3yT/gsBW4=
-Received: by mail.myocard.eu for <devicetree@vger.kernel.org>; Thu,  6 Jun 2019 08:43:15 GMT
-Message-ID: <20190606093813-0.1.g.7o2.0.gepetzv72b@myocard.eu>
-Date:   Thu,  6 Jun 2019 08:43:15 GMT
-From:   "Radoslav Dobrev" <radoslav.dobrev@myocard.eu>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?=D0=92=D0=B5=D0=BB=D0=B8=D0=BA=D0=B4=D0=B5=D0=BD=D1=81=D0=BA=D0=B8_=D0=B1=D0=BE=D0=BD=D1=83=D1=81=D0=B8?=
-X-Mailer: mail.myocard.eu
+        id S1725782AbfFFIpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 04:45:12 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:37732 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727326AbfFFIpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 04:45:11 -0400
+Received: by mail-lf1-f67.google.com with SMTP id m15so944641lfh.4
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 01:45:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Z3BynniL104up+cW9b6F68LH7Vk3TYOj+gBnu/PWYiY=;
+        b=NGK9pbnWYhJ4n548kyDQ9PxhAo0Ex1P/YwAaGMfvoCN0RDA64no9A5UXi9Jmuc1K6z
+         fuIZGvuAUEuYYqoFHHnc7r1K5kjLln83q5LvGPazaOvc+x+zScan/xXrkPe40uNBj77G
+         T/CL77DCLUWBjtm8LTdxwwVQBSeUigdj+z0hhVbv11FJOJ/7LfzgRVWtfELzDTUjlDo0
+         8G+J1c3U9BQpMISDcsLfmKwdyr8Kxh16/bYqEgX5K5HHjWbqR2sFWcPdCY7l8R2hUkVa
+         av6vEG6mG5CbVdoS8CPjekOUxg9nR2TtoX2IhIrJFB/qYWqrGInvdbo45Rw9aIqiijmA
+         R+XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Z3BynniL104up+cW9b6F68LH7Vk3TYOj+gBnu/PWYiY=;
+        b=ZS90GypbxNZ6w0WJZ8IyjIPPd0pAX3GbABi0rbKkPyrMIeLRpKwEmtgi/145BW9MBp
+         og8mTnW8LHbw4vSk6/d3LqAY3/X2Fn90fdSOv/c+3uUWHZgwKg20LDjCrHcHhbU2MWFM
+         +osSPvWjCF+QOOu83itSOB6lfUo5syUTLLMSLeIS4orAY2APJy+UALD2kuBRWhZyt04C
+         njs/JED77QfFSHSPzPUp2IuvO+AepCYTqGMpHiyNb3aMHENSdQ4FDU5Kl7HlaWQTGJhs
+         xetFCYaaz2TXaguJtF1iI4uGczMWyK7j5esiYgAIOD66ObgCicAo6GZEMq85LG2Ksjds
+         jbzw==
+X-Gm-Message-State: APjAAAVcvpcN29u7CPc8w0lBeVRaYlYDE9uqCsfPcmUsnGwbG5+lHZxM
+        jOOiuQnQBILEKMBIOhY8yAz8DuvhefB9rlp4P0mYLQ==
+X-Google-Smtp-Source: APXvYqwinrI/Sz/MuhNNBaa8oDDl62sVOoVlxcqzhtV+9qT41TPe4niHspBpZO4IXiwufNQsJB/BdGZXP3nKEMufd+A=
+X-Received: by 2002:ac2:46d5:: with SMTP id p21mr20502406lfo.133.1559810709333;
+ Thu, 06 Jun 2019 01:45:09 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190114184255.258318-1-mka@chromium.org> <CAHLCerP+F9AP97+qVCMqwu-OMJXRhwZrXd33Wk-vj5eyyw-KyA@mail.gmail.com>
+ <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com>
+ <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
+ <CAHLCerP69Jw27VyO+ek4Fe3-2fDiOejtz6XZPykPSRA2G1831w@mail.gmail.com>
+ <5cdf2dc8.1c69fb81.521c8.9339@mx.google.com> <20190605172048.ahzusevvdxrpnebk@queper01-ThinkPad-T460s>
+ <CAKfTPtCR360osDz3oW+XhHT1R12SacAuJ44W_NfFOPWxJFjOPg@mail.gmail.com>
+ <20190606074921.43mbinemk3j565yu@queper01-ThinkPad-T460s> <CAKfTPtA9WDOH3UzU-Qz4AqhLNGkOPo9EFkTHXGqTq7qsrec_JA@mail.gmail.com>
+ <9267b9ed-89b0-7b71-88a2-ca1894d4c497@arm.com>
+In-Reply-To: <9267b9ed-89b0-7b71-88a2-ca1894d4c497@arm.com>
+From:   Vincent Guittot <vincent.guittot@linaro.org>
+Date:   Thu, 6 Jun 2019 10:44:58 +0200
+Message-ID: <CAKfTPtAc=aOD=ukuPKhEL_gBSeb9DJaK-oYAPg1MWNcr-6HLQw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
+To:     Dietmar Eggemann <dietmar.eggemann@arm.com>
+Cc:     Quentin Perret <quentin.perret@arm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Morten Rasmussen <Morten.Rasmussen@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -34,68 +77,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=A3=D0=B2=D0=B0=D0=B6=D0=B0=D0=B5=D0=BC=D0=B8 =D0=93=D0=BE=D1=81=D0=BF=
-=D0=BE=D0=B4=D0=B8=D0=BD=D0=B5/=D0=93=D0=BE=D1=81=D0=BF=D0=BE=D0=B6=D0=BE=
-,
+On Thu, 6 Jun 2019 at 10:34, Dietmar Eggemann <dietmar.eggemann@arm.com> wr=
+ote:
+>
+> On 6/6/19 10:20 AM, Vincent Guittot wrote:
+> > On Thu, 6 Jun 2019 at 09:49, Quentin Perret <quentin.perret@arm.com> wr=
+ote:
+> >>
+> >> Hi Vincent,
+> >>
+> >> On Thursday 06 Jun 2019 at 09:05:16 (+0200), Vincent Guittot wrote:
+> >>> Hi Quentin,
+> >>>
+> >>> On Wed, 5 Jun 2019 at 19:21, Quentin Perret <quentin.perret@arm.com> =
+wrote:
+> >>>>
+> >>>> On Friday 17 May 2019 at 14:55:19 (-0700), Stephen Boyd wrote:
+> >>>>> Quoting Amit Kucheria (2019-05-16 04:54:45)
+> >>>>>> (cc'ing Andy's correct email address)
+> >>>>>>
+> >>>>>> On Wed, May 15, 2019 at 2:46 AM Stephen Boyd <swboyd@chromium.org>=
+ wrote:
+> >>>>>>>
+> >>>>>>> Quoting Amit Kucheria (2019-05-13 04:54:12)
+> >>>>>>>> On Mon, May 13, 2019 at 4:31 PM Amit Kucheria <amit.kucheria@lin=
+aro.org> wrote:
+> >>>>>>>>>
+> >>>>>>>>> On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromiu=
+m.org> wrote:
+> >>>>>>>>>>
+> >>>>>>>>>> The 8 CPU cores of the SDM845 are organized in two clusters of=
+ 4 big
+> >>>>>>>>>> ("gold") and 4 little ("silver") cores. Add a cpu-map node to =
+the DT
+> >>>>>>>>>> that describes this topology.
+> >>>>>>>>>
+> >>>>>>>>> This is partly true. There are two groups of gold and silver co=
+res,
+> >>>>>>>>> but AFAICT they are in a single cluster, not two separate ones.=
+ SDM845
+> >>>>>>>>> is one of the early examples of ARM's Dynamiq architecture.
+> >>>>>>>>>
+> >>>>>>>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> >>>>>>>>>
+> >>>>>>>>> I noticed that this patch sneaked through for this merge window=
+ but
+> >>>>>>>>> perhaps we can whip up a quick fix for -rc2?
+> >>>>>>>>>
+> >>>>>>>>
+> >>>>>>>> And please find attached a patch to fix this up. Andy, since thi=
+s
+> >>>>>>>> hasn't landed yet (can we still squash this into the original pa=
+tch?),
+> >>>>>>>> I couldn't add a Fixes tag.
+> >>>>>>>>
+> >>>>>>>
+> >>>>>>> I had the same concern. Thanks for catching this. I suspect this =
+must
+> >>>>>>> cause some problem for IPA given that it can't discern between th=
+e big
+> >>>>>>> and little "power clusters"?
+> >>>>>>
+> >>>>>> Both EAS and IPA, I believe. It influences the scheduler's view of=
+ the
+> >>>>>> the topology.
+> >>>>>
+> >>>>> And EAS and IPA are OK with the real topology? I'm just curious if
+> >>>>> changing the topology to reflect reality will be a problem for thos=
+e
+> >>>>> two.
+> >>>>
+> >>>> FWIW, neither EAS nor IPA depends on this. Not the upstream version =
+of
+> >>>> EAS at least (which is used in recent Android kernels -- 4.19+).
+> >>>>
+> >>>> But doing this is still required for other things in the scheduler (=
+the
+> >>>> so-called 'capacity-awareness' code). So until we have a better
+> >>>> solution, this patch is doing the right thing.
+> >>>
+> >>> I'm not sure to catch what you mean ?
+> >>> Which so-called 'capacity-awareness' code are you speaking about ? an=
+d
+> >>> what is the problem ?
+> >>
+> >> I'm talking about the wake-up path. ATM select_idle_sibling() is total=
+ly
+> >> unaware of capacity differences. In its current form, this function
+> >> basically assumes that all CPUs in a given sd_llc have the same
+> >> capacity, which would be wrong if we had a single MC level for SDM845.
+> >> So, until select_idle_sibling() is 'fixed' to be capacity-aware, we ne=
+ed
+> >> two levels of sd for asymetric systems (including DynamIQ) so the
+> >> wake_cap() story actually works.
+> >>
+> >> I hope that clarifies it :)
+> >
+> > hmm... does this justifies this wrong topology ?
+> > select_idle_sibling() is called only when system is overloaded and
+> > scheduler disables the EAS path
+> > In this case, the scheduler looks either for an idle cpu or for evenly
+> > spreading the loads
+> > This is maybe not always optimal and should probably be fixed but
+> > doesn't justifies a wrong topology description IMHO
+>
+> The big/Little cluster detection in wake_cap() doesn't work anymore with
+> DynamIQ w/o Phanton (DIE) domain. So the decision of going sis() or slow
+> path is IMHO broken.
 
-=D0=A1=D1=8A=D0=B2=D1=80=D0=B5=D0=BC=D0=B5=D0=BD=D0=BD=D0=B0=D1=82=D0=B0 =
-=D1=81=D0=BE=D1=86=D0=B8=D0=B0=D0=BB=D0=BD=D0=B0 =D0=BF=D1=80=D0=B8=D0=B4=
-=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B0 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=
-=D0=B8 =D0=B7=D0=B0 =D1=85=D1=80=D0=B0=D0=BD=D0=B0, =D0=BA=D0=BE=D0=B8=D1=
-=82=D0=BE =D0=BC=D0=BE=D0=B3=D0=B0=D1=82 =D0=B4=D0=B0 =D0=B1=D1=8A=D0=B4=D0=
-=B0=D1=82 =D0=B8=D0=B7=D0=BF=D0=BE=D0=BB=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8 =D0=
-=B2 =D1=88=D0=B8=D1=80=D0=BE=D0=BA=D0=B0 =D1=82=D1=8A=D1=80=D0=B3=D0=BE=D0=
-=B2=D1=81=D0=BA=D0=B0 =D0=BC=D1=80=D0=B5=D0=B6=D0=B0 =D0=BE=D1=82 =D1=81=D1=
-=83=D0=BF=D0=B5=D1=80=D0=BC=D0=B0=D1=80=D0=BA=D0=B5=D1=82=D0=B8 =D0=B8 =D0=
-=B7=D0=B0=D0=B2=D0=B5=D0=B4=D0=B5=D0=BD=D0=B8=D1=8F =D0=B7=D0=B0 =D1=85=D1=
-=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B5 =D0=B2 =D1=81=D1=82=D1=80=D0=B0=D0=BD=D0=
-=B0=D1=82=D0=B0, =D0=B5 =D0=B8=D0=BD=D1=81=D1=82=D1=80=D1=83=D0=BC=D0=B5=D0=
-=BD=D1=82, =D0=BA=D0=BE=D0=B9=D1=82=D0=BE =D0=B5=D1=84=D0=B5=D0=BA=D1=82=D0=
-=B8=D0=B2=D0=BD=D0=BE =D0=BF=D0=BE=D0=B2=D0=B8=D1=88=D0=B0=D0=B2=D0=B0 =D0=
-=B5=D1=84=D0=B8=D0=BA=D0=B0=D1=81=D0=BD=D0=BE=D1=81=D1=82=D1=82=D0=B0 =D0=
-=BD=D0=B0 =D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0.
+That's probably not the right thread to discuss this further but i'm
+not sure to understand why wake_cap() doesn't work as it compares the
+capacity_orig of local cpu and prev cpu which are the same whatever
+the sche domain=C5=93
 
-=D0=A2=D0=BE=D0=B2=D0=B0 =D1=81=D0=B5 =D0=BF=D0=BE=D1=82=D0=B2=D1=8A=D1=80=
-=D0=B6=D0=B4=D0=B0=D0=B2=D0=B0 =D0=B8 =D0=BE=D1=82 =D0=BF=D1=80=D0=BE=D1=83=
-=D1=87=D0=B2=D0=B0=D0=BD=D0=B5=D1=82=D0=BE =D0=BD=D0=B0 =D0=A1=D0=B2=D0=B5=
-=D1=82=D0=BE=D0=B2=D0=BD=D0=B0=D1=82=D0=B0 =D0=B7=D0=B4=D1=80=D0=B0=D0=B2=
-=D0=BD=D0=B0 =D0=BE=D1=80=D0=B3=D0=B0=D0=BD=D0=B8=D0=B7=D0=B0=D1=86=D0=B8=
-=D1=8F (=D0=A1=D0=97=D0=9E), =D0=BA=D0=BE=D0=B5=D1=82=D0=BE =D0=BF=D0=BE=D0=
-=BA=D0=B0=D0=B7=D0=B2=D0=B0, =D1=87=D0=B5 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=
-=82=D0=B5=D0=BB, =D0=BA=D0=BE=D0=B9=D1=82=D0=BE =D0=BF=D0=BE=D0=BB=D1=83=D1=
-=87=D0=B0=D0=B2=D0=B0 =D0=B4=D0=BE=D0=BF=D0=BB=D0=B0=D1=89=D0=B0=D0=BD=D0=
-=B5 =D0=B7=D0=B0 =D1=85=D1=80=D0=B0=D0=BD=D0=B0, =D0=B5 =D0=BF=D0=BE-=D0=B5=
-=D1=84=D0=B5=D0=BA=D1=82=D0=B8=D0=B2=D0=B5=D0=BD =D1=81 20%, =D0=B0  =D0=BE=
-=D1=82=D1=81=D1=8A=D1=81=D1=82=D0=B2=D0=B8=D1=8F=D1=82=D0=B0 =D0=BC=D1=83=
- =D0=BD=D0=B0=D0=BC=D0=B0=D0=BB=D1=8F=D0=B2=D0=B0=D1=82 =D1=81 27%.
-
-=D0=98=D0=B7=D0=B1=D0=BE=D1=80=D1=8A=D1=82 =D0=BD=D0=B0 =D0=BD=D0=B0=D1=88=
-=D0=B8=D1=82=D0=B5 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=D0=B8 =D0=B7=D0=B0=
- =D1=85=D1=80=D0=B0=D0=BD=D0=B0 =D0=BA=D0=B0=D1=82=D0=BE =D1=84=D0=BE=D1=80=
-=D0=BC=D0=B0 =D0=BD=D0=B0 =D1=81=D0=BE=D1=86=D0=B8=D0=B0=D0=BB=D0=BD=D0=B0=
- =D0=BF=D1=80=D0=B8=D0=B4=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B0 =D0=B5 =D1=80=
-=D0=B0=D0=B2=D0=BD=D0=BE=D0=B7=D0=BD=D0=B0=D1=87=D0=BD=D0=BE =D0=BD=D0=B5=
- =D1=81=D0=B0=D0=BC=D0=BE =D0=BD=D0=B0 =D0=BF=D1=80=D0=BE=D0=B4=D1=83=D0=BA=
-=D1=82=D0=B8=D0=B2=D0=B5=D0=BD =D0=B8 =D0=BC=D0=BE=D1=82=D0=B8=D0=B2=D0=B8=
-=D1=80=D0=B0=D0=BD =D0=B5=D0=BA=D0=B8=D0=BF =D0=B7=D0=B0 =D1=80=D0=B0=D0=B1=
-=D0=BE=D1=82=D0=BE=D0=B4=D0=B0=D1=82=D0=B5=D0=BB=D1=8F, =D0=BD=D0=BE =D0=B8=
- =D1=84=D0=B8=D0=BD=D0=B0=D0=BD=D1=81=D0=BE=D0=B2=D0=BE =D0=BE=D0=B1=D0=BB=
-=D0=B5=D0=BA=D1=87=D0=B5=D0=BD=D0=B8=D0=B5 - =D1=81=D1=82=D0=BE=D0=B9=D0=BD=
-=D0=BE=D1=81=D1=82=D1=82=D0=B0 =D0=BD=D0=B0 =D0=B8=D0=B7=D1=80=D0=B0=D0=B7=
-=D1=85=D0=BE=D0=B4=D0=B2=D0=B0=D0=BD=D0=B8=D1=82=D0=B5 =D1=81=D1=80=D0=B5=
-=D0=B4=D1=81=D1=82=D0=B2=D0=B0 =D0=BD=D0=B5 =D1=81=D0=B5 =D0=BE=D0=B1=D0=BB=
-=D0=B0=D0=B3=D0=B0 =D1=81 =D0=B4=D0=B0=D0=BD=D1=8A=D0=BA.
-
-=D0=96=D0=B5=D0=BB=D0=B0=D0=B5=D1=82=D0=B5 =D0=BB=D0=B8 =D0=B4=D0=B0 =D0=92=
-=D0=B8 =D0=BF=D1=80=D0=B5=D0=B4=D0=BE=D1=81=D1=82=D0=B0=D0=B2=D1=8F =D0=BF=
-=D0=BE=D0=B2=D0=B5=D1=87=D0=B5 =D0=B8=D0=BD=D1=84=D0=BE=D1=80=D0=BC=D0=B0=
-=D1=86=D0=B8=D1=8F =D0=BE=D1=82=D0=BD=D0=BE=D1=81=D0=BD=D0=BE =D0=B2=D0=B0=
-=D1=83=D1=87=D0=B5=D1=80=D0=B8=D1=82=D0=B5 =D0=B7=D0=B0 =D1=85=D1=80=D0=B0=
-=D0=BD=D0=B0 =D0=B7=D0=B0 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=
-=D0=B8?
-
-
-=D0=A0=D0=B0=D0=B4=D0=BE=D1=81=D0=BB=D0=B0=D0=B2 =D0=94=D0=BE=D0=B1=D1=80=
-=D0=B5=D0=B2
-Head of HR Benefit Team
-www.myocard.eu
+> But I support the idea of not introducing Phantom Domains in device tree
+> and fix wake_cap() instead.
