@@ -2,265 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E11D37C3B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 20:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E5337C94
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 20:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730561AbfFFS13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 14:27:29 -0400
-Received: from mail-eopbgr720086.outbound.protection.outlook.com ([40.107.72.86]:29396
-        "EHLO NAM05-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729592AbfFFS13 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 14:27:29 -0400
+        id S1727646AbfFFSuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 14:50:12 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:39854 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727163AbfFFSuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 14:50:12 -0400
+Received: by mail-pl1-f195.google.com with SMTP id g9so1273088plm.6;
+        Thu, 06 Jun 2019 11:50:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BcxPZJ8Cyu/te9TYREK31YISsiKlZdZy+PGqS11EjaY=;
- b=ibEa8c2ZdjR+V4psqbbKnRn09/cXcDzLPz8Y1y2Ym4XIalh34OeEq/QCNzQY83n518W5Agvb3elC7hOcdCKnOZ+KDyw1w0ItbuAflNtOi+FLDUUzwKA0SVLtaebogQE0WqKs3v4oF5ad1smQuGl8mA7+rsYFXdym5mnZKpk2vlw=
-Received: from CH2PR02MB6359.namprd02.prod.outlook.com (52.132.231.93) by
- CH2PR02MB6199.namprd02.prod.outlook.com (52.132.229.225) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Thu, 6 Jun 2019 18:27:23 +0000
-Received: from CH2PR02MB6359.namprd02.prod.outlook.com
- ([fe80::b9dd:11e0:7fca:ba55]) by CH2PR02MB6359.namprd02.prod.outlook.com
- ([fe80::b9dd:11e0:7fca:ba55%5]) with mapi id 15.20.1943.018; Thu, 6 Jun 2019
- 18:27:23 +0000
-From:   Dragan Cvetic <draganc@xilinx.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <dkiernan@xilinx.com>
-Subject: RE: [PATCH V4 10/12] misc: xilinx_sdfec: Add stats & status ioctls
-Thread-Topic: [PATCH V4 10/12] misc: xilinx_sdfec: Add stats & status ioctls
-Thread-Index: AQHVEu5G4Eibm0gnKE+3rKpAEh7MYqaOvaYAgABGCVA=
-Date:   Thu, 6 Jun 2019 18:27:23 +0000
-Message-ID: <CH2PR02MB635905A42F3F667E81D30E27CB170@CH2PR02MB6359.namprd02.prod.outlook.com>
-References: <1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com>
- <1558784245-108751-11-git-send-email-dragan.cvetic@xilinx.com>
- <20190606141138.GD7943@kroah.com>
-In-Reply-To: <20190606141138.GD7943@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=draganc@xilinx.com; 
-x-originating-ip: [149.199.80.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a46c33e0-cfe8-4622-d241-08d6eaac9e8d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:CH2PR02MB6199;
-x-ms-traffictypediagnostic: CH2PR02MB6199:
-x-microsoft-antispam-prvs: <CH2PR02MB6199E3BAB5E148152F132B72CB170@CH2PR02MB6199.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3968;
-x-forefront-prvs: 00603B7EEF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(396003)(39860400002)(346002)(366004)(189003)(199004)(13464003)(5660300002)(52536014)(3846002)(478600001)(14454004)(33656002)(66476007)(25786009)(64756008)(76116006)(99286004)(66066001)(81156014)(305945005)(86362001)(53936002)(81166006)(73956011)(14444005)(7736002)(4326008)(6916009)(107886003)(74316002)(9686003)(256004)(6246003)(8676002)(68736007)(6436002)(476003)(66446008)(66556008)(53546011)(6506007)(66946007)(76176011)(55016002)(8936002)(71200400001)(71190400001)(229853002)(316002)(6116002)(2906002)(486006)(54906003)(26005)(102836004)(11346002)(186003)(446003)(7696005);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6199;H:CH2PR02MB6359.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: xilinx.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: D8q8Z3TukDe/YT/IZHRo7D5w0xDLXSbgnDtOnR9671hSbEsWCC4dg6FOTkpdB2DcJNq823uz4ROxODVvczFuzkkZk2mBxSTE8NoABxY/vlAAyObQq54oySDl07D7bpF85MwPOOUpX5ynBrdG5wr3nGi1k/NGiQSUfxd6IIpbvWlehxFAYxm8VpLyO6gfA6cnXE+cPydMlylNnZZr18ksEx4arJ3mZuagdeTfbbzNExHPNgMRitw4W1M8g0DVjAuIAxGpx/yvrkVZSiPzFix8Sgez0LkfC0PLYXnABa/Lc3l2b2NokTvZTosDjSmPfLwSv9hbpv0jC15zBHjRscgbET66tjP2mLneyC9wBX06YyRLfwcEOwG+DS3VM4s0yFCL2pSUuBvwmPDwysz2E4V+4lT1tkxyb2bigOK4H3cxVEM=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a46c33e0-cfe8-4622-d241-08d6eaac9e8d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 18:27:23.2594
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: draganc@xilinx.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6199
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=mtDz93Y1TuKw4yabSIG15GQuxtlGSwCV0Vd7oPRbGU8=;
+        b=tV5NEkK5Vkx3jlMPQ8U1HYCBlORe1msZGEUTOk3KdWKam1BQA2wPawKlAxsPMrwpfV
+         I2n97g+/Wl4YkrerEiVkG8pO/0oG09EqTxUpvDgeObGckju45xi6DBHJyIx95V082691
+         rDAnJTKF1G0FapFCJOq7RSt+Mz5707JPgG7o2WWD3vCsFlm9obL1RZ1+4j5a93MvR8sj
+         HjnWeBDuYfWqew71uxicPKt+xu18/KW0PzLEnhKLq3KY449AS5AR1zpcRX8d4mm0oIv9
+         YxCWYlx4sv0ds+eVfCyflaV9fb1gBc6eYsKoGausVVJI5P7GUmNfIC7Xi08wI9QoD+uR
+         bgpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mtDz93Y1TuKw4yabSIG15GQuxtlGSwCV0Vd7oPRbGU8=;
+        b=BqYXa4iXkFHSml7rQxsnWXYBQ6ej8hrxDCEBXWZAQxTa4Dof9ErlsOOH0VAm9lEv6I
+         6K2r5G0wQU2avDZW8x20SI7bKIqhqorSRuj4AqbroI9rYjuAk0gE2uL9IG45lsTZWQiK
+         Dc6zZUw0G/facSfw6/zASqrvE5kc7G5spVhUXFZlrabs7+7buW6ID43L6BDO4K3cwCZD
+         J1C2M/TArb1tcw4eT0mFHX9PeoHDadCsVkyaYWvjB1Np9FFeq3/OlURDip7q0M2kVjjK
+         xa4YWUptNlMDnUwABRIsdGERXdFMVFs+ybqqVz/OUinDIxhySkLFUmfSjx7WnM0XMQNH
+         YzdA==
+X-Gm-Message-State: APjAAAWjGnFPv40ucCcTsKL5WWVww3asgFWzICrPdcVMTzS+I0S1pz7K
+        eqeLh635saK1DMhJACxwe5k=
+X-Google-Smtp-Source: APXvYqyWePVzgK8bieSmAYEq53trRloEm5KEWW8F8570TMuxUWlRRIC+myDXrQ+R6OVze6JBbsgybg==
+X-Received: by 2002:a17:902:f01:: with SMTP id 1mr51442182ply.170.1559847011599;
+        Thu, 06 Jun 2019 11:50:11 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 26sm2543917pfi.147.2019.06.06.11.50.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Jun 2019 11:50:11 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, david.brown@linaro.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        jorge.ramirez-ortiz@linaro.org, niklas.cassel@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH v2 0/7] PM8005 and PMS405 regulator support
+Date:   Thu,  6 Jun 2019 11:48:42 -0700
+Message-Id: <20190606184842.39484-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The MSM8998 MTP reference platform supplies VDD_GFX from s1 of the
+pm8005 PMIC.  VDD_GFX is needed to turn on the GPU.  As we are looking
+to bring up the GPU, add the support for pm8005 and wire up s1 in a
+basic manner so that we have this dependency out of the way and can
+focus on enabling the GPU driver.
 
+The s3 regulator of PMS405 is used for voltage scaling of the CPU on
+QCS404.
 
-> -----Original Message-----
-> From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> Sent: Thursday 6 June 2019 15:12
-> To: Dragan Cvetic <draganc@xilinx.com>
-> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
-sts.infradead.org; robh+dt@kernel.org;
-> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
-l.org; Derek Kiernan <dkiernan@xilinx.com>
-> Subject: Re: [PATCH V4 10/12] misc: xilinx_sdfec: Add stats & status ioct=
-ls
->=20
-> On Sat, May 25, 2019 at 12:37:23PM +0100, Dragan Cvetic wrote:
-> > SD-FEC statistic data are:
-> > - count of data interface errors (isr_err_count)
-> > - count of Correctable ECC errors (cecc_count)
-> > - count of Uncorrectable ECC errors (uecc_count)
-> >
-> > Add support:
-> > 1. clear stats ioctl callback which clears collected
-> > statistic data,
-> > 2. get stats ioctl callback which reads a collected
-> > statistic data,
-> > 3. set default configuration ioctl callback,
-> > 4. start ioctl callback enables SD-FEC HW,
-> > 5. stop ioctl callback disables SD-FEC HW.
-> >
-> > In a failed state driver enables the following ioctls:
-> > - get status
-> > - get statistics
-> > - clear stats
-> > - set default SD-FEC device configuration
-> >
-> > Tested-by: Santhosh Dyavanapally <SDYAVANA@xilinx.com>
-> > Tested by: Punnaiah Choudary Kalluri <punnaia@xilinx.com>
-> > Tested-by: Derek Kiernan <derek.kiernan@xilinx.com>
-> > Tested-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
-> > Signed-off-by: Derek Kiernan <derek.kiernan@xilinx.com>
-> > Signed-off-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
-> > ---
-> >  drivers/misc/xilinx_sdfec.c      | 121 +++++++++++++++++++++++++++++++=
-++++++++
-> >  include/uapi/misc/xilinx_sdfec.h |  75 ++++++++++++++++++++++++
-> >  2 files changed, 196 insertions(+)
-> >
-> > diff --git a/drivers/misc/xilinx_sdfec.c b/drivers/misc/xilinx_sdfec.c
-> > index 544e746..6e04492 100644
-> > --- a/drivers/misc/xilinx_sdfec.c
-> > +++ b/drivers/misc/xilinx_sdfec.c
-> > @@ -189,6 +189,7 @@ struct xsdfec_clks {
-> >   * @dev: pointer to device struct
-> >   * @state: State of the SDFEC device
-> >   * @config: Configuration of the SDFEC device
-> > + * @intr_enabled: indicates IRQ enabled
-> >   * @state_updated: indicates State updated by interrupt handler
-> >   * @stats_updated: indicates Stats updated by interrupt handler
-> >   * @isr_err_count: Count of ISR errors
-> > @@ -207,6 +208,7 @@ struct xsdfec_dev {
-> >  	struct device *dev;
-> >  	enum xsdfec_state state;
-> >  	struct xsdfec_config config;
-> > +	bool intr_enabled;
-> >  	bool state_updated;
-> >  	bool stats_updated;
-> >  	atomic_t isr_err_count;
-> > @@ -290,6 +292,26 @@ static int xsdfec_dev_release(struct inode *iptr, =
-struct file *fptr)
-> >  	return 0;
-> >  }
-> >
-> > +static int xsdfec_get_status(struct xsdfec_dev *xsdfec, void __user *a=
-rg)
-> > +{
-> > +	struct xsdfec_status status;
-> > +	int err;
-> > +
-> > +	status.fec_id =3D xsdfec->config.fec_id;
-> > +	spin_lock_irqsave(&xsdfec->irq_lock, xsdfec->flags);
-> > +	status.state =3D xsdfec->state;
-> > +	xsdfec->state_updated =3D false;
-> > +	spin_unlock_irqrestore(&xsdfec->irq_lock, xsdfec->flags);
-> > +	status.activity =3D (xsdfec_regread(xsdfec, XSDFEC_ACTIVE_ADDR) &
-> > +			   XSDFEC_IS_ACTIVITY_SET);
-> > +
-> > +	err =3D copy_to_user(arg, &status, sizeof(status));
-> > +	if (err)
-> > +		err =3D -EFAULT;
-> > +
-> > +	return err;
-> > +}
-> > +
-> >  static int xsdfec_get_config(struct xsdfec_dev *xsdfec, void __user *a=
-rg)
-> >  {
-> >  	int err;
-> > @@ -850,6 +872,80 @@ static int xsdfec_cfg_axi_streams(struct xsdfec_de=
-v *xsdfec)
-> >  	return 0;
-> >  }
-> >
-> > +static int xsdfec_start(struct xsdfec_dev *xsdfec)
-> > +{
-> > +	u32 regread;
-> > +
-> > +	regread =3D xsdfec_regread(xsdfec, XSDFEC_FEC_CODE_ADDR);
-> > +	regread &=3D 0x1;
-> > +	if (regread !=3D xsdfec->config.code) {
-> > +		dev_dbg(xsdfec->dev,
-> > +			"%s SDFEC HW code does not match driver code, reg %d, code %d",
-> > +			__func__, regread, xsdfec->config.code);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/* Set AXIS enable */
-> > +	xsdfec_regwrite(xsdfec, XSDFEC_AXIS_ENABLE_ADDR,
-> > +			XSDFEC_AXIS_ENABLE_MASK);
-> > +	/* Done */
-> > +	xsdfec->state =3D XSDFEC_STARTED;
-> > +	return 0;
-> > +}
-> > +
-> > +static int xsdfec_stop(struct xsdfec_dev *xsdfec)
-> > +{
-> > +	u32 regread;
-> > +
-> > +	if (xsdfec->state !=3D XSDFEC_STARTED)
-> > +		dev_dbg(xsdfec->dev, "Device not started correctly");
-> > +	/* Disable AXIS_ENABLE Input interfaces only */
-> > +	regread =3D xsdfec_regread(xsdfec, XSDFEC_AXIS_ENABLE_ADDR);
-> > +	regread &=3D (~XSDFEC_AXIS_IN_ENABLE_MASK);
-> > +	xsdfec_regwrite(xsdfec, XSDFEC_AXIS_ENABLE_ADDR, regread);
-> > +	/* Stop */
-> > +	xsdfec->state =3D XSDFEC_STOPPED;
-> > +	return 0;
-> > +}
-> > +
-> > +static int xsdfec_clear_stats(struct xsdfec_dev *xsdfec)
-> > +{
-> > +	atomic_set(&xsdfec->isr_err_count, 0);
-> > +	atomic_set(&xsdfec->uecc_count, 0);
-> > +	atomic_set(&xsdfec->cecc_count, 0);
->=20
-> Atomics for counters?  Are you sure?  Don't we have some sort of sane
-> counter api these days for stuff like this instead of abusing atomic
-> variables?  What does the networking people use?  How often/fast do
-> these change that you need to synchronize things?
+Both PMICs are very similar in deisgn, so add the base support with one,
+and trivially add the support for the other on top.
 
-Accepted.
-No need to have them atomic. They are lock protected already.
+The PMS405 work has only been compile tested as I don't have the proper
+platform.  A tested-by from Jorge or someone with the platform would be
+great.
 
->=20
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int xsdfec_get_stats(struct xsdfec_dev *xsdfec, void __user *ar=
-g)
-> > +{
-> > +	int err;
-> > +	struct xsdfec_stats user_stats;
-> > +
-> > +	spin_lock_irqsave(&xsdfec->irq_lock, xsdfec->flags);
-> > +	user_stats.isr_err_count =3D atomic_read(&xsdfec->isr_err_count);
-> > +	user_stats.cecc_count =3D atomic_read(&xsdfec->cecc_count);
-> > +	user_stats.uecc_count =3D atomic_read(&xsdfec->uecc_count);
-> > +	xsdfec->stats_updated =3D false;
-> > +	spin_unlock_irqrestore(&xsdfec->irq_lock, xsdfec->flags);
->=20
-> Wait, you just grabbed a lock, and then read atomic variables, why?  Why
-> do these need to be atomic variables if you are already locking around
-> them?  Unless you want to be "extra sure" they are safe?  :)
+v2:
+-Perform if statement cleanups per review discussion
+-Pull in linear range support since its related, and simple
+-Rework the PM8005 to minimize special cases in the driver
+-"common2" is now ftsmps426 since that design first implemented it
+-Reworked the PMS405 changes on top, since they are related to pm8005 and
+trivial
 
-Accepted.
-Absolutely no need for atomic variables.
-=20
->=20
-> Please fix up.
->=20
-> thanks,
->=20
-> greg k-h
+Jeffrey Hugo (4):
+  drivers: regulator: qcom_spmi: Refactor get_mode/set_mode
+  dt-bindings: qcom_spmi: Document PM8005 regulators
+  regulator: qcom_spmi: Add support for PM8005
+  arm64: dts: msm8998-mtp: Add pm8005_s1 regulator
+
+Jorge Ramirez (2):
+  dt-bindings: qcom_spmi: Document pms405 support
+  drivers: regulator: qcom: add PMS405 SPMI regulator
+
+Jorge Ramirez-Ortiz (1):
+  drivers: regulator: qcom_spmi: enable linear range info
+
+ .../regulator/qcom,spmi-regulator.txt         |  28 +++
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi     |  17 ++
+ drivers/regulator/qcom_spmi-regulator.c       | 233 +++++++++++++++++-
+ 3 files changed, 271 insertions(+), 7 deletions(-)
+
+-- 
+2.17.1
+
