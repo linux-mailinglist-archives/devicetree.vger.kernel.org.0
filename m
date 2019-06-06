@@ -2,121 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB6E337109
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 11:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 433F237116
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 12:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728326AbfFFJ4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 05:56:12 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:46520 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728072AbfFFJ4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 05:56:11 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x569u3Vm078863;
-        Thu, 6 Jun 2019 04:56:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559814963;
-        bh=e23WnTYvUjw9k/zJtezvgJoxPPb3ZOXliq0JWnFHfqk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kdhMAv/SIp7Oz5pW85x+hEflM9hQV60bFXhGgLRwlWb9Cck0v6eujqxbF6mwIdtrn
-         5/l6frjbKgqM1wJyEMs+bnGLIVTQUTf+ftfoxdrwEye8eBlVUrljr0yMBD+v8alu1m
-         CrdX+c8aJvsjnP1QAOZ5RbMdlNoSL/EbS1tvY5QM=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x569u35f054665
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 6 Jun 2019 04:56:03 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 6 Jun
- 2019 04:56:03 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 6 Jun 2019 04:56:03 -0500
-Received: from a0393675ula.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x569thsu016817;
-        Thu, 6 Jun 2019 04:55:59 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <t-kristo@ti.com>, <nm@ti.com>, <robh+dt@kernel.org>
-CC:     <lokeshvutla@ti.com>, <bgolaszewski@baylibre.com>,
-        <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <j-keerthy@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [RFC RESEND PATCH v2 4/4] arm64: dts: ti: am654-base-board: Add gpio_keys node
-Date:   Thu, 6 Jun 2019 15:26:20 +0530
-Message-ID: <20190606095620.6211-5-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190606095620.6211-1-j-keerthy@ti.com>
-References: <20190606095620.6211-1-j-keerthy@ti.com>
+        id S1727971AbfFFKA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 06:00:57 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:50715 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727947AbfFFKA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 06:00:57 -0400
+X-UUID: d7f54f26e9d54826914f49043fa71151-20190606
+X-UUID: d7f54f26e9d54826914f49043fa71151-20190606
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <louis.kuo@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 2120658348; Thu, 06 Jun 2019 18:00:37 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 6 Jun 2019 18:00:36 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 6 Jun 2019 18:00:36 +0800
+From:   Louis Kuo <louis.kuo@mediatek.com>
+To:     <hans.verkuil@cisco.com>,
+        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
+        <keiichiw@chromium.org>, <matthias.bgg@gmail.com>,
+        <mchehab@kernel.org>
+CC:     <yuzhao@chromium.org>, <zwisler@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <Sean.Cheng@mediatek.com>,
+        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
+        <holmes.chiou@mediatek.com>, <frederic.chen@mediatek.com>,
+        <Jerry-ch.Chen@mediatek.com>, <jungo.lin@mediatek.com>,
+        <Rynn.Wu@mediatek.com>, <linux-media@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>
+Subject: [RFC PATCH V3 0/4] media: support Mediatek sensor interface driver
+Date:   Thu, 6 Jun 2019 18:00:29 +0800
+Message-ID: <1559815233-24796-1-git-send-email-louis.kuo@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 2 push buttons: SW5 and SW6 that are basically connected to
-WKUP_GPIO0_24 and WKUP_GPIO0_27 respectively. Add the respective
-nodes and the pinctrl data to set the mode to GPIO and Input.
+Hello,
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+This is the RFC patch adding Sensor Inferface(seninf) driver on
+Mediatek mt8183 SoC, which will be used in camera features on CrOS application.
+It belongs to the first Mediatek's camera driver series based on V4L2 and media controller framework.
+I posted the main part of the seninf driver as RFC to discuss first and would like some review comments
+on the overall structure of the driver.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index cf1aa276a1ea..ea50b6e36eff 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "k3-am654.dtsi"
-+#include <dt-bindings/input/input.h>
- 
- / {
- 	compatible =  "ti,am654-evm", "ti,am654";
-@@ -33,6 +34,25 @@
- 			no-map;
- 		};
- 	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&push_button_pins_default>;
-+
-+		sw5 {
-+			label = "GPIO Key USER1";
-+			linux,code = <BTN_0>;
-+			gpios = <&wkup_gpio0 24 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		sw6 {
-+			label = "GPIO Key USER2";
-+			linux,code = <BTN_1>;
-+			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
-+		};
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -42,6 +62,13 @@
- 			AM65X_WKUP_IOPAD(0x00e4, PIN_INPUT, 0) /* (AD6) WKUP_I2C0_SDA */
- 		>;
- 	};
-+
-+	push_button_pins_default: push_button__pins_default {
-+		pinctrl-single,pins = <
-+			AM65X_WKUP_IOPAD(0x0030, PIN_INPUT, 7) /* (R5) WKUP_GPIO0_24 */
-+			AM65X_WKUP_IOPAD(0x003c, PIN_INPUT, 7) /* (P2) WKUP_GPIO0_27 */
-+		>;
-+	};
- };
- 
- &main_pmx0 {
--- 
-2.17.1
+The driver is implemented with V4L2 framework.
+1. Register as a V4L2 sub-device.
+2. Only one entity with sink pads linked to camera sensors for choosing desired camera sensor by setup link
+   and with source pads linked to cam-io for routing different types of decoded packet datas to PASS1 driver
+   to generate sensor image frame and meta-data.
+
+The overall file structure of the seninf driver is as following:
+
+* mtk_seninf.c: Implement software and HW control flow of seninf driver.
+* mtk_seninf_def.h: Define data structure and enumeration.
+* mtk_seninf_reg.h: Define HW register R/W macros and HW register names.
+
+[ V3: use recommended coding style, remove redundant code, change endpoint parsing method ]
+
+  media: platform: mtk-isp: Add Mediatek sensor interface driver
+  media: platform: Add Mediatek sensor interface driver KConfig
+  dt-bindings: mt8183: Add sensor interface dt-bindings
+  dts: arm64: mt8183: Add sensor interface nodes
+
+ .../devicetree/bindings/media/mediatek-seninf.txt  |   31 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi           |   15 +
+ drivers/media/platform/Makefile                    |    2 +
+ drivers/media/platform/mtk-isp/Kconfig             |   17 +
+ drivers/media/platform/mtk-isp/Makefile            |    3 +
+ drivers/media/platform/mtk-isp/isp_50/Makefile     |    5 +
+ .../media/platform/mtk-isp/isp_50/seninf/Makefile  |    6 +
+ .../platform/mtk-isp/isp_50/seninf/mtk_seninf.c    | 1330 ++++++++++++++++++++
+ .../mtk-isp/isp_50/seninf/mtk_seninf_def.h         |  155 +++
+ .../mtk-isp/isp_50/seninf/mtk_seninf_reg.h         |  965 ++++++++++++++
+ 10 files changed, 2529 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-seninf.txt
+ create mode 100644 drivers/media/platform/mtk-isp/Kconfig
+ create mode 100644 drivers/media/platform/mtk-isp/Makefile
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/Makefile
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/seninf/Makefile
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf.c
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf_def.h
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf_reg.h
 
