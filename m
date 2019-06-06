@@ -2,188 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B3D136A2F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 564A236A78
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 05:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726637AbfFFCwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 22:52:45 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:37692 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726474AbfFFCwm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 22:52:42 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A83011A0FA4;
-        Thu,  6 Jun 2019 04:52:39 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5911B1A00F6;
-        Thu,  6 Jun 2019 04:52:35 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id EE2D1402D5;
-        Thu,  6 Jun 2019 10:52:29 +0800 (SGT)
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>, Yang Li <pku.leo@gmail.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [RESEND][PATCH v3 2/2] usb: dwc3: Add workaround for host mode VBUS glitch when boot
-Date:   Thu,  6 Jun 2019 10:54:18 +0800
-Message-Id: <20190606025418.26313-2-ran.wang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190606025418.26313-1-ran.wang_1@nxp.com>
-References: <20190606025418.26313-1-ran.wang_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726581AbfFFDYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 23:24:43 -0400
+Received: from mail-eopbgr80049.outbound.protection.outlook.com ([40.107.8.49]:55926
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726427AbfFFDYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 23:24:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NOOuwUCUiVc6WZkaFHa4DL/UnHk2vuFFTUvIS+XE/yM=;
+ b=nHQPlhkitmnSLTH4moWsWcndSusPKuOpPyHadm23ouSdgc4pzjRV9vSQ1m7owB9aSQzwWdDUgwGKrgRs6oM9kpH5nhCyqGSDg5/C+Mo4M7wDaA/rnWGb2QQKmZwOX/Ya7++j8tIcy8lEx/fUSsXXBFmmxLn0AjNXcYOm8PogPRk=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB6484.eurprd04.prod.outlook.com (20.179.253.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.13; Thu, 6 Jun 2019 03:24:38 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6090:1f0b:b85b:8015]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6090:1f0b:b85b:8015%3]) with mapi id 15.20.1943.023; Thu, 6 Jun 2019
+ 03:24:38 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+CC:     Florian Fainelli <f.fainelli@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>
+Subject: RE: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC
+ mailbox
+Thread-Topic: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC
+ mailbox
+Thread-Index: AQHVGeZSRIOE2F02XEeufaIbr7CheqaKHTcAgAAJqoCAAAYrAIADzXeQ
+Date:   Thu, 6 Jun 2019 03:24:38 +0000
+Message-ID: <AM0PR04MB4481632406DF235996719C0788170@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+        <20190603083005.4304-2-peng.fan@nxp.com>
+        <ae4c79f0-4aec-250e-e312-20aba5554665@gmail.com>
+        <20190603165651.GA12196@e107155-lin>
+ <20190603181856.34996aaa@donnerap.cambridge.arm.com>
+In-Reply-To: <20190603181856.34996aaa@donnerap.cambridge.arm.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9a62be9d-0f03-48e8-cd66-08d6ea2e81bf
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6484;
+x-ms-traffictypediagnostic: AM0PR04MB6484:
+x-microsoft-antispam-prvs: <AM0PR04MB6484A7483A3A2076490127C788170@AM0PR04MB6484.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 00603B7EEF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(136003)(376002)(366004)(346002)(396003)(199004)(189003)(7696005)(33656002)(186003)(53546011)(102836004)(26005)(3846002)(6116002)(7416002)(6506007)(76176011)(66066001)(229853002)(6436002)(6246003)(8676002)(14454004)(15650500001)(74316002)(316002)(110136005)(5660300002)(54906003)(478600001)(71200400001)(71190400001)(99286004)(52536014)(4326008)(66556008)(25786009)(7736002)(256004)(53936002)(55016002)(2906002)(81156014)(86362001)(81166006)(8936002)(14444005)(68736007)(486006)(44832011)(446003)(11346002)(476003)(66476007)(66946007)(76116006)(73956011)(64756008)(66446008)(9686003)(305945005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6484;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: EANI2+MuLpqHK8Wycwtqs5ea69v7RjMfu3vwMzfrGpE/mf9lLQlFUK0CFJPD/VQ+WaMUhE/Dvgo6bLDEZXm7XayHXMzth84b0p2BVTK1/zQXBox8Njn9M9YVTagkV5ZvX4R1lB8x+tjhu2yXvdVRlWfPfnkaDahKKf8YXC0eI+a9uuFvuSqjGuRCDL/apRGRADEX/sE5mtqqYWuD6lTW4ejuKGwqr9NX6F5x8ytBzjwYVkgkl2syYN3PuPpZY1CSt9yuGwMarXitsJ7XOgUyg3L5XlJWP9A6PzjMXy1eDljjsOvRH9qus0i4nnL+bIkK/wS8wq4608JCgablQIPdDopUDiuHzx/Eazo+oMy8/yjM5pOeIQd/0pPB3w4YMFtE44B6xmlK+Fq8FFrsfbl3aNGIrQgMnHluxAnfxx7gxH8=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a62be9d-0f03-48e8-cd66-08d6ea2e81bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 03:24:38.4930
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6484
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
-(or its control signal) will be turned on immediately on related Root Hub
-ports. Then, the VBUS is turned off for a little while(15us) when do xhci
-reset (conducted by xhci driver) and back to normal finally, we can
-observe a negative glitch of related signal happen.
+> Subject: Re: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC
+> mailbox
+>=20
+> On Mon, 3 Jun 2019 17:56:51 +0100
+> Sudeep Holla <sudeep.holla@arm.com> wrote:
+>=20
+> Hi,
+>=20
+> > On Mon, Jun 03, 2019 at 09:22:16AM -0700, Florian Fainelli wrote:
+> > > On 6/3/19 1:30 AM, peng.fan@nxp.com wrote:
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > >
+> > > > The ARM SMC mailbox binding describes a firmware interface to
+> > > > trigger actions in software layers running in the EL2 or EL3 except=
+ion
+> levels.
+> > > > The term "ARM" here relates to the SMC instruction as part of the
+> > > > ARM instruction set, not as a standard endorsed by ARM Ltd.
+> > > >
+> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > > >
+> > > > V2:
+> > > > Introduce interrupts as a property.
+> > > >
+> > > > V1:
+> > > > arm,func-ids is still kept as an optional property, because there
+> > > > is no defined SMC funciton id passed from SCMI. So in my test, I
+> > > > still use arm,func-ids for ARM SIP service.
+> > > >
+> > > >  .../devicetree/bindings/mailbox/arm-smc.txt        | 101
+> +++++++++++++++++++++
+> > > >  1 file changed, 101 insertions(+)  create mode 100644
+> > > > Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > > > b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > > > new file mode 100644
+> > > > index 000000000000..401887118c09
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > > > @@ -0,0 +1,101 @@
+> >
+> > [...]
+> >
+> > > > +Optional properties:
+> > > > +- arm,func-ids		An array of 32-bit values specifying the function
+> > > > +			IDs used by each mailbox channel. Those function IDs
+> > > > +			follow the ARM SMC calling convention standard [1].
+> > > > +			There is one identifier per channel and the number
+> > > > +			of supported channels is determined by the length
+> > > > +			of this array.
+> > > > +- interrupts		SPI interrupts may be listed for notification,
+> > > > +			each channel should use a dedicated interrupt
+> > > > +			line.
+> > >
+> > > I would not go about defining a specific kind of interrupt, since
+> > > SPI is a GIC terminology, this firmware interface could be used in
+> > > premise with any parent interrupt controller, for which the concept
+> > > of a SPI/PPI/SGI may not be relevant.
+> > >
+> >
+> > While I agree the binding document may not contain specifics, I still
+> > don't see how to use SGI with this. Also note it's generally reserved
+> > for OS future use(IPC) and using this for other than IPC may be bit
+> > challenging IMO. It opens up lots of questions.
+>=20
+> Well, a PPI might be possible to use, although it's somewhat dodgy to hij=
+ack
+> the GIC's (re-)distributor from EL3 to write to GICD_ISPENDR<n>. Need to =
+ask
+> Marc about his feelings towards this. But it's definitely possible from a
+> hypervisor to inject arbitrary interrupts into a guest.
+>=20
+> But more importantly: is there any actual reason this needs to be a GIC
+> interrupt?=20
 
-This VBUS glitch might cause some USB devices enumeration fail if kernel
-boot with them connected. Such as LS1012AFWRY/LS1043ARDB/LX2160AQDS
-/LS1088ARDB with Kingston 16GB USB2.0/Kingston USB3.0/JetFlash Transcend
-4GB USB2.0 drives. The fail cases include enumerated as full-speed device
-or report wrong device descriptor, etc.
+No. I just test ATF with SPI when I posting out this. Should not restrict t=
+o be GIC.
 
-One SW workaround which can fix this is by programing all xhci PORTSC[PP]
-to 0 to turn off VBUS immediately after setting host mode in DWC3 driver
-(per signal measurement result, it will be too late to do it in
-xhci-plat.c or xhci.c). Then, after xhci reset complete in xhci driver,
-PORTSC[PP]s' value will back to 1 automatically and VBUS on at that time,
-no glitch happen and normal enumeration process has no impact.
+If I understand the code correctly, this could just be any interrupt,
+> including one of an interrupt combiner or a GPIO chip. So why not just us=
+e the
+> standard wording of: "exactly one interrupt specifier for each channel"?
 
-Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
----
-Changes in v3:
-  - Add macro PORT_REGS_SIZE to replace 0x10
-  - Change initial value of i to 0 for the for loop
-  - Cosmetic changes
+Agree.
 
-Changes in v2:
-  - Rename related property to 'snps,host-vbus-glitches'
-  - Rename related dwc member to 'host_vbus_glitches'
-  - Add member 'host_vbus_glitches' description in 'dwc3'
+>=20
+> By the way: Shouldn't new bindings use the YAML format instead?
 
- drivers/usb/dwc3/core.c |   48 +++++++++++++++++++++++++++++++++++++++++++++++
- drivers/usb/dwc3/core.h |   12 +++++++++++
- 2 files changed, 60 insertions(+), 0 deletions(-)
+I'll convert to YAML in next version.
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index a1b126f..dd80e3d 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -100,6 +100,42 @@ static int dwc3_get_dr_mode(struct dwc3 *dwc)
- 	return 0;
- }
- 
-+/*
-+ * dwc3_power_of_all_roothub_ports - Power off all Root hub ports
-+ * @dwc3: Pointer to our controller context structure
-+ */
-+static void dwc3_power_off_all_roothub_ports(struct dwc3 *dwc)
-+{
-+	int i, port_num;
-+	u32 reg, op_regs_base, offset;
-+	void __iomem		*xhci_regs;
-+
-+	/* xhci regs is not mapped yet, do it temperary here */
-+	if (dwc->xhci_resources[0].start) {
-+		xhci_regs = ioremap(dwc->xhci_resources[0].start,
-+				DWC3_XHCI_REGS_END);
-+		if (IS_ERR(xhci_regs)) {
-+			dev_err(dwc->dev, "Failed to ioremap xhci_regs\n");
-+			return;
-+		}
-+
-+		op_regs_base = HC_LENGTH(readl(xhci_regs));
-+		reg = readl(xhci_regs + XHCI_HCSPARAMS1);
-+		port_num = HCS_MAX_PORTS(reg);
-+
-+		for (i = 0; i < port_num; i++) {
-+			offset = op_regs_base + XHCI_PORTSC_BASE +
-+				PORT_REGS_SIZE * i;
-+			reg = readl(xhci_regs + offset);
-+			reg &= ~PORT_POWER;
-+			writel(reg, xhci_regs + offset);
-+		}
-+
-+		iounmap(xhci_regs);
-+	} else
-+		dev_err(dwc->dev, "xhci base reg invalid\n");
-+}
-+
- void dwc3_set_prtcap(struct dwc3 *dwc, u32 mode)
- {
- 	u32 reg;
-@@ -109,6 +145,15 @@ void dwc3_set_prtcap(struct dwc3 *dwc, u32 mode)
- 	reg |= DWC3_GCTL_PRTCAPDIR(mode);
- 	dwc3_writel(dwc->regs, DWC3_GCTL, reg);
- 
-+	/*
-+	 * We have to power off all Root hub ports immediately after DWC3 set
-+	 * to host mode to avoid VBUS glitch happen when xhci get reset later.
-+	 */
-+	if (dwc->host_vbus_glitches) {
-+		if (mode == DWC3_GCTL_PRTCAP_HOST)
-+			dwc3_power_off_all_roothub_ports(dwc);
-+	}
-+
- 	dwc->current_dr_role = mode;
- }
- 
-@@ -1306,6 +1351,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
- 	dwc->dis_metastability_quirk = device_property_read_bool(dev,
- 				"snps,dis_metastability_quirk");
- 
-+	dwc->host_vbus_glitches = device_property_read_bool(dev,
-+				"snps,host-vbus-glitches");
-+
- 	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
- 	dwc->tx_de_emphasis = tx_de_emphasis;
- 
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index df87641..c2dee0b 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -606,6 +606,15 @@
- #define DWC3_OSTS_VBUSVLD		BIT(1)
- #define DWC3_OSTS_CONIDSTS		BIT(0)
- 
-+/* Partial XHCI Register and Bit fields for quirk */
-+#define XHCI_HCSPARAMS1		0x4
-+#define XHCI_PORTSC_BASE	0x400
-+#define PORT_REGS_SIZE		0x10
-+#define PORT_POWER			(1 << 9)
-+#define HCS_MAX_PORTS(p)	(((p) >> 24) & 0x7f)
-+#define XHCI_HC_LENGTH(p)	(((p)>>00)&0x00ff)
-+#define HC_LENGTH(p)		XHCI_HC_LENGTH(p)
-+
- /* Structures */
- 
- struct dwc3_trb;
-@@ -1024,6 +1033,8 @@ struct dwc3_scratchpad_array {
-  * 	2	- No de-emphasis
-  * 	3	- Reserved
-  * @dis_metastability_quirk: set to disable metastability quirk.
-+ * @host-vbus-glitches: set to avoid vbus glitch during
-+ *                      xhci reset.
-  * @imod_interval: set the interrupt moderation interval in 250ns
-  *                 increments or 0 to disable.
-  */
-@@ -1209,6 +1220,7 @@ struct dwc3 {
- 	unsigned		tx_de_emphasis:2;
- 
- 	unsigned		dis_metastability_quirk:1;
-+	unsigned		host_vbus_glitches:1;
- 
- 	u16			imod_interval;
- };
--- 
-1.7.1
+Thanks,
+Peng.
 
+>=20
+> Cheers,
+> Andre.
