@@ -2,108 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F513780C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 17:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9EBE37828
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 17:37:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729256AbfFFPeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 11:34:14 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:51807 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729156AbfFFPeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 11:34:14 -0400
-Received: by mail-wm1-f67.google.com with SMTP id f10so409737wmb.1;
-        Thu, 06 Jun 2019 08:34:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YNCZH4cwmzPfukjIuLRGuMkntmVdByW0qbXhUjyBVJI=;
-        b=qkTuWFTlw3+q8iegPcKQi5pHRkjycGloiIIztCCnol8eUIPokPCXP4YRVghDXDiwSK
-         G9p8cvDaWEVxt0dCZ2CKExTIKqIRnqOCq4ZK8EXYWbTi5aSHF2+AoESLcZWuHMykQ/dq
-         gXx+aq/LsdL2uFtqWoT98mHJ6HtH+LbosxYY6Fr4QFD3rim+dI2jxLb0+oQpCav0+/kQ
-         z368AmjqFNen6gnMfrduuUo3a6Xf5Tln7SofOb8EEom1KHuTY5vwQiFKOHqAxgELqdtB
-         w9/xd0qp+1/wr2nya+0+ra7AX4cW9pMKhrDgGlu+xegVxxWiw/yQL+6CxNgCvBBg9exk
-         Ws6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YNCZH4cwmzPfukjIuLRGuMkntmVdByW0qbXhUjyBVJI=;
-        b=b30l//SlwmLh30Xk+29HTEFGOvwyBskPVfWmaXPHv4jYFLkxGNE+YEj/MxsYl+R//Z
-         ijuCOnvJC6FpxvunSW4v1b3DqmbmtscLrGIxZZbf87BbMMr9bbcwMJb7IMwz+am6fkGx
-         FGrn7urZX8alC+hk3FJoSKlVyvgs4TglwLBC73tuxciZ1wbLn700NVd86fYVj9Co4PwG
-         0R6lIZzn2RlXHKTbwbX1FY6eR4p+jh/scFpszB6htFMb/0jPFsV7u3gP8dPrB/jOsuQb
-         e29ArEx6YvyflL9qox6f9S6+1czHJAyCGhF/OTGQo9aWYcTNGW6eR8SXdu/bwA0WQMDT
-         YWaA==
-X-Gm-Message-State: APjAAAWnWrU0lr3qN4uL5N5M+88WcVzK7X2ChyvSqnH0oylTRCw9iHcn
-        Wy/RYlB3VXVQ0my+xhSkpzs=
-X-Google-Smtp-Source: APXvYqwlmKS/iYNpwXsxb3o95trjpJEbEMQt25ZZsFm3shcsDu2hQJZ+WVxjYH8Lt0OMyySB6KY5wQ==
-X-Received: by 2002:a1c:5546:: with SMTP id j67mr503162wmb.80.1559835251398;
-        Thu, 06 Jun 2019 08:34:11 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id u13sm2173183wrq.62.2019.06.06.08.34.10
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 06 Jun 2019 08:34:10 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 17:34:09 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V8 09/15] dt-bindings: PCI: tegra: Add device tree
- support for Tegra194
-Message-ID: <20190606153409.GB3338@ulmo>
-References: <20190526043751.12729-1-vidyas@nvidia.com>
- <20190526043751.12729-10-vidyas@nvidia.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jho1yZJdad60DJr+"
-Content-Disposition: inline
-In-Reply-To: <20190526043751.12729-10-vidyas@nvidia.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+        id S1729256AbfFFPhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 11:37:06 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.47.102]:41242 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728871AbfFFPhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 11:37:06 -0400
+Received: from mailhost.synopsys.com (unknown [10.225.0.210])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 7618FC0ABC;
+        Thu,  6 Jun 2019 15:37:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1559835437; bh=+h2vDYvKU/Eqz/lBSbkDj8osIUzT6k7dY1OtU9w00zg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JLt9/6aX90m8lNFknwiXU4wrpB0GtIpIrg3Mk6NI1/5bXQBnjV8/x3O74h+CZmn38
+         9WvJE5Cw6f46gGm4bgp0yejC1gVtqrGw/vyuXWnRlslf0yvqhPCJzvaMOlRDghMTzr
+         aoXWXWdV4aqPe30tPcoKBEa4pETc85sW0fa05UKy6LJkQaDle+8VShsXMyJE7R2FcR
+         MZWwgBjeYErApdbZVFU7fIuXyT7MY6Kyw9qOxG5zFrHOKP1ToCcQy2C6MBkiSPKwI1
+         PcelzQ7K1gL1hwgu5nXnDajk+tK/RH0BEtm4c6Ca8omOW/CZq1ZvRpd/eBB2Qdcsgd
+         kJT7NPR7Wlt8w==
+Received: from de02.synopsys.com (de02.internal.synopsys.com [10.225.17.21])
+        by mailhost.synopsys.com (Postfix) with ESMTP id 807D9A0234;
+        Thu,  6 Jun 2019 15:37:03 +0000 (UTC)
+Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
+        by de02.synopsys.com (Postfix) with ESMTP id 613653F1FB;
+        Thu,  6 Jun 2019 17:37:03 +0200 (CEST)
+From:   Luis Oliveira <Luis.Oliveira@synopsys.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Joao.Pinto@synopsys.com, Luis Oliveira <Luis.Oliveira@synopsys.com>
+Subject: [PATCH V2 0/2] Add DesignWare IP support to simple reset
+Date:   Thu,  6 Jun 2019 17:36:26 +0200
+Message-Id: <1559835388-2578-1-git-send-email-luis.oliveira@synopsys.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds a reset-simple compatible string for DesignWare
+IPs allowing active high and low resets inputs.
 
---jho1yZJdad60DJr+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Also adds the corresponding documentation.
 
-On Sun, May 26, 2019 at 10:07:45AM +0530, Vidya Sagar wrote:
-> Add support for Tegra194 PCIe controllers. These controllers are based
-> on Synopsys DesignWare core IP.
->=20
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Gustavo Pimentel (1):
+  reset: Add DesignWare IP support to simple reset
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Luis Oliveira (1):
+  dt-bindings: Document the DesignWare IP reset bindings
 
---jho1yZJdad60DJr+
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/reset/snps,dw-reset.txt    | 30 ++++++++++++++++++++++
+ drivers/reset/Kconfig                              |  2 +-
+ drivers/reset/reset-simple.c                       |  3 +++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.txt
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.7.4
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlz5MnEACgkQ3SOs138+
-s6EZuRAArnRIwdHFGGw7PRPo7CkDJeVM+eTKg/JkJJmI9FfY5NbdVm7wwEXJJg4b
-jkzRaxcDKtL/8WkfptcnjrtRiz+GY5oz4+FvkIqaAXVy2pYQChgfecQ5fTgf8R5b
-U/cyR75uLNk7VTyOjHsn8s16NsvTEe4eVgxQzt9OF/AiR0OPeT2Fnu/wvUO5MJmA
-zeyr/MaJ8vkm6qOmkntugy0cTjx+o0/7kOd7Oi7FEOOvrKUsgbuW3k31pvykYIbE
-qzDwL+R7Ay9h3dM+OAbRgrK7K/sHZFJQxGtIRn8jq5iTIJcPs8jIK+B5v8d8ahlC
-aSlUS1gouB7Fp0zSJEdD25wGtZh8MV80kM9wSC/R/4CnY1VqX+/o5sDbL0X8ir1v
-cd9h+XKLY5ZgSRsz1EHdbilB+uu5LNtDYBdkBWcEY7oLM/ACom2JSI4vtJs0w7nJ
-yBWq1Qxw/9Gy8pOc3YfUuNx2yjdlK1c9QwLJd585/aKExzYJfrlOCvljY4nl75DD
-1bw4mDI7uWdBWUhgsdMugW2sVz5RgkVPjen2sx+tIgBPCmR8JInAEROvIpALG5hC
-9VHz2Yc2GGSM6tHiVUD5lBmNmhdh1PS38nEw4KUEuDFlc26S7S9Vf/tqHlwZ0G4f
-JaFf4UTs1U7Z+PtXw13of7OpxYVFfdMlswoI6y1ottPBuBFhLU0=
-=M5MQ
------END PGP SIGNATURE-----
-
---jho1yZJdad60DJr+--
