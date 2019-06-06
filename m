@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95D413752D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 15:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0EB037536
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 15:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727133AbfFFN0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 09:26:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53818 "EHLO mail.kernel.org"
+        id S1727234AbfFFN2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 09:28:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54996 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726757AbfFFN0c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 09:26:32 -0400
+        id S1726014AbfFFN2p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 09:28:45 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BEAA520866;
-        Thu,  6 Jun 2019 13:26:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A539D20866;
+        Thu,  6 Jun 2019 13:28:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559827592;
-        bh=+YFE5KfxRqfYtx6rWWzBRcfeTGDL0h4C05kyoVGm8/E=;
+        s=default; t=1559827725;
+        bh=UHWrtQgpvixRqPbEtkrChsh4DvWxscCBoV1YMgNBxGg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2TQ96GlbngiJ3UHV2MJizMMOMHTKuu8n0r9WABtfcnIaw3SsHmWEKeHcYck6Z0RpA
-         ttXxBM44zNh+0vE0zX5s5CO3KrAj4B0NbxOBeU4p19sfHBxKUXPwFKHbn/tM2Vt/Qf
-         rMegbanfCqBR641qvx9IOaLkNRj9FYuVpKos0x1o=
-Date:   Thu, 6 Jun 2019 15:26:29 +0200
+        b=0yjG6Bddq99LhfiaYiI3rJevdiHeIpzCUmVUfkqh052ofns7xizCLJEEC9QW8AWiR
+         KwnSd5ZR1pPhnX7ZbkgIru9bVWnT57pk77L+901o8LE12SSIIYQfwZaXMVJHPetSEF
+         qLNBBwl2a5cdhPnL08ZRoTAHkkoZZn9s0Ju27f2w=
+Date:   Thu, 6 Jun 2019 15:28:42 +0200
 From:   Greg KH <gregkh@linuxfoundation.org>
 To:     Dragan Cvetic <dragan.cvetic@xilinx.com>
 Cc:     arnd@arndb.de, michal.simek@xilinx.com,
@@ -32,7 +32,7 @@ Cc:     arnd@arndb.de, michal.simek@xilinx.com,
         linux-kernel@vger.kernel.org,
         Derek Kiernan <derek.kiernan@xilinx.com>
 Subject: Re: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
-Message-ID: <20190606132629.GB7943@kroah.com>
+Message-ID: <20190606132842.GC7943@kroah.com>
 References: <1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com>
  <1558784245-108751-5-git-send-email-dragan.cvetic@xilinx.com>
 MIME-Version: 1.0
@@ -46,33 +46,56 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Sat, May 25, 2019 at 12:37:17PM +0100, Dragan Cvetic wrote:
-> Add char device interface per DT node present and support
-> file operations:
-> - open(),
-> - close(),
-> - unlocked_ioctl(),
-> - compat_ioctl().
-> 
-> Tested-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
-> Signed-off-by: Derek Kiernan <derek.kiernan@xilinx.com>
-> Signed-off-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
-> ---
->  drivers/misc/xilinx_sdfec.c      | 57 +++++++++++++++++++++++++++++++++++++---
->  include/uapi/misc/xilinx_sdfec.h |  4 +++
->  2 files changed, 58 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/misc/xilinx_sdfec.c b/drivers/misc/xilinx_sdfec.c
-> index ff32d29..740b487 100644
-> --- a/drivers/misc/xilinx_sdfec.c
-> +++ b/drivers/misc/xilinx_sdfec.c
-> @@ -51,7 +51,6 @@ struct xsdfec_clks {
->   * @regs: device physical base address
->   * @dev: pointer to device struct
->   * @config: Configuration of the SDFEC device
-> - * @open_count: Count of char device being opened
+> +static int xsdfec_dev_open(struct inode *iptr, struct file *fptr)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int xsdfec_dev_release(struct inode *iptr, struct file *fptr)
+> +{
+> +	return 0;
+> +}
 
-Why is this removed here?  You don't add something in one patch and then
-remove it in a later one if it's never needed :)
+empty open/close functions are never needed, just drop them.
+
+> +
+> +static long xsdfec_dev_ioctl(struct file *fptr, unsigned int cmd,
+> +			     unsigned long data)
+> +{
+> +	struct xsdfec_dev *xsdfec;
+> +	void __user *arg = NULL;
+> +	int rval = -EINVAL;
+> +
+> +	xsdfec = container_of(fptr->private_data, struct xsdfec_dev, miscdev);
+> +	if (!xsdfec)
+> +		return rval;
+
+It is impossible for container_of() to return NULL, unless something
+very magical and rare just happened.  It's just doing pointer math, you
+can never check the return value of it.
+
+> +
+> +	if (_IOC_TYPE(cmd) != XSDFEC_MAGIC)
+> +		return -ENOTTY;
+
+How can this happen?
+
+> +
+> +	/* check if ioctl argument is present and valid */
+> +	if (_IOC_DIR(cmd) != _IOC_NONE) {
+> +		arg = (void __user *)data;
+> +		if (!arg)
+> +			return rval;
+> +	}
+> +
+> +	switch (cmd) {
+> +	default:
+> +		/* Should not get here */
+> +		dev_warn(xsdfec->dev, "Undefined SDFEC IOCTL");
+
+Nice that userspace has a way to fill up the kernel log :(
+
+Just return the correct error here, don't log it.
 
 thanks,
 
