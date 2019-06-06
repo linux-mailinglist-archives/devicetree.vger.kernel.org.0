@@ -2,107 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD23369B4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 182DF369EE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:18:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726613AbfFFCCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 22:02:09 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:41442 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbfFFCCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 22:02:09 -0400
-Received: by mail-pf1-f193.google.com with SMTP id q17so461411pfq.8;
-        Wed, 05 Jun 2019 19:02:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VyKAAyyKF/StTl6Cc7Bhi0hP4Fbpr1Wnyb227vQxupA=;
-        b=lTuCSGE8jGdHt1mpj8oE5y0pNaeqonUE94Pp4sA/I3REVC7LDjhxZGajzIRthAJO9Y
-         E1/KCnJbDAhiYGjZ0jeuf27dZG7ikrXgA3qZqXlGdI5zmDJSS3diC8XzgaLwE86WqVKT
-         DfPLFcyzUu6ZeVFRi3h0JOEt/fjr0h99BkH1V2wyU0xHsVlBZV3qIYfkzvmAIkMQXQGn
-         GnLDYuks2zgsat+9WE/IdQjuQwMyJk4GonhMW6LAOOZZ7YucZMDl18z9+LxQTC6DPXI1
-         uhcv3L9Mu7gbSgXc2umbMenT9iQyJs9leOiMLiIs5Sau+QLwsZr9SUPf9q67VoXmYtDe
-         8A4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VyKAAyyKF/StTl6Cc7Bhi0hP4Fbpr1Wnyb227vQxupA=;
-        b=dSatX4DioFEk4cZxVFJiNjOR3t0Gr7EtyadR8gTg92gUKWieX2ufou0TsdMzJwmjal
-         Gz8FOqu2Kosx40euBUTcMlMIU6sv2bsiqLs+uLHMSGh7PnXorvrUlDUYAYUzaUdldSVk
-         /KkAWw/823w06oARLFA5/4FqWDl+VXqJ01SDg+UsKcHh7pSG/3n090HbdcSLwlB8cydi
-         oFaBB6NZyvdfGvOsFv/cm9TPBD6xe/mCYVOpRqRo5A669UoMPdG90E+uofzkuKaDCqmx
-         WjZKh/WXI0oze+vdZ95L52LbekMO9muyaEpEbjJisqxViTV+Ax4aeG9unCpJk66NjTc7
-         Y7sw==
-X-Gm-Message-State: APjAAAWHpz3OBdTVUKIlY7KoltbIgnOn96xTedPfzm9YQzbld9thbRjw
-        ZIObhlUZdVji2vNlNub+YQQ=
-X-Google-Smtp-Source: APXvYqzOgkLxlVaBoCV6UwBu57yiXAf6/1tBbA/MUmQ/Fq6F3ju9AQm2TVNVsXzsM6YQZdPCsdhJiw==
-X-Received: by 2002:a63:db47:: with SMTP id x7mr860524pgi.259.1559786528992;
-        Wed, 05 Jun 2019 19:02:08 -0700 (PDT)
-Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id o66sm247961pje.8.2019.06.05.19.02.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 05 Jun 2019 19:02:08 -0700 (PDT)
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-To:     agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, marc.w.gonzalez@free.fr,
-        jcrouse@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: msm8998: Add gpucc node
-Date:   Wed,  5 Jun 2019 19:00:27 -0700
-Message-Id: <20190606020027.2441-1-jeffrey.l.hugo@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190606015844.2285-1-jeffrey.l.hugo@gmail.com>
-References: <20190606015844.2285-1-jeffrey.l.hugo@gmail.com>
+        id S1726593AbfFFCSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 22:18:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57632 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726589AbfFFCSf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 22:18:35 -0400
+Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E44EF2075B;
+        Thu,  6 Jun 2019 02:18:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559787515;
+        bh=jPhjz3SJtpJ0/jkTHGUxExTd7E6N9MYmbVa4lf1c1qU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tx77BCu7F5RhelD9SSq0df4I0jWlsUT2lOTZRjCwaZqODpKUomkIQ26UWy8PfrQI1
+         eF/o76e5/W7yMBm40XVBo01ZxwtOAq+2sP3IpFZaNPZk2JU4+9rPg2sBPODr+0ea9i
+         RHb1wgcbAdGs8NkMV7xMZNOlMXV6wbbjeIErV08k=
+Date:   Thu, 6 Jun 2019 10:18:16 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Anson.Huang@nxp.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, leonard.crestez@nxp.com,
+        aisheng.dong@nxp.com, viresh.kumar@linaro.org, ping.bai@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
+Subject: Re: [PATCH] arm64: dts: imx8mm: Move gic node into soc node
+Message-ID: <20190606021803.GW29853@dragon>
+References: <20190603015020.41410-1-Anson.Huang@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190603015020.41410-1-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MSM8998 GPU Clock Controller DT node.
+On Mon, Jun 03, 2019 at 09:50:20AM +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> GIC is inside of SoC from architecture perspective, it should
+> be located inside of soc node in DT.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+It doesn't apply to my imx/dt64 branch.  Please generate it against that
+branch for my for-next.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 574be78a936e..cf00bfeec6b3 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -3,6 +3,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-msm8998.h>
-+#include <dt-bindings/clock/qcom,gpucc-msm8998.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -763,6 +764,20 @@
- 			reg = <0x1f40000 0x20000>;
- 		};
- 
-+		gpucc: clock-controller@5065000 {
-+			compatible = "qcom,gpucc-msm8998";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			reg = <0x05065000 0x9000>;
-+
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+				 <&gcc GPLL0_OUT_MAIN>;
-+			clock-names = "xo",
-+				      "gpll0";
-+		};
-+
-+
- 		apcs_glb: mailbox@9820000 {
- 			compatible = "qcom,msm8998-apcs-hmss-global";
- 			reg = <0x17911000 0x1000>;
--- 
-2.17.1
+Shawn
 
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index dc99f45..429312e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -169,15 +169,6 @@
+>  		clock-output-names = "clk_ext4";
+>  	};
+>  
+> -	gic: interrupt-controller@38800000 {
+> -		compatible = "arm,gic-v3";
+> -		reg = <0x0 0x38800000 0 0x10000>, /* GIC Dist */
+> -		      <0x0 0x38880000 0 0xC0000>; /* GICR (RD_base + SGI_base) */
+> -		#interrupt-cells = <3>;
+> -		interrupt-controller;
+> -		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> -	};
+> -
+>  	psci {
+>  		compatible = "arm,psci-1.0";
+>  		method = "smc";
+> @@ -739,6 +730,15 @@
+>  			dma-names = "rx-tx";
+>  			status = "disabled";
+>  		};
+> +
+> +		gic: interrupt-controller@38800000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x38800000 0x10000>, /* GIC Dist */
+> +			      <0x38880000 0xc0000>; /* GICR (RD_base + SGI_base) */
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+>  	};
+>  
+>  	usbphynop1: usbphynop1 {
+> -- 
+> 2.7.4
+> 
