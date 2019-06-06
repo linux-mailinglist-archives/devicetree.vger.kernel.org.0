@@ -2,128 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DA6136CF5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E687236CFE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:09:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725784AbfFFHHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 03:07:02 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:14164 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725267AbfFFHHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 03:07:02 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cf8bb930000>; Thu, 06 Jun 2019 00:06:59 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 06 Jun 2019 00:07:01 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 06 Jun 2019 00:07:01 -0700
-Received: from [10.26.11.84] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 6 Jun
- 2019 07:06:59 +0000
-Subject: Re: [PATCH 1/2] arm64: tegra: add ACONNECT, ADMA and AGIC nodes
-To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1557143908-5850-1-git-send-email-spujar@nvidia.com>
- <9f9962fc-a261-aecc-b4c5-408a75ebcb5f@nvidia.com>
- <490b81d9-2734-bb93-303b-94bb20a4f6a5@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <3b19a2bb-20a0-c650-49b7-d966585b5ba9@nvidia.com>
-Date:   Thu, 6 Jun 2019 08:06:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726472AbfFFHJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 03:09:12 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:33708 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726173AbfFFHJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 03:09:11 -0400
+Received: by mail-pg1-f196.google.com with SMTP id h17so831558pgv.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 00:09:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=puIXzR2Own0cbDgtZ/rESXOOL8scU6F9mL+QrFjp0g8=;
+        b=cVgCr6vnkGfjbhGXEObW1I3eyaTZzs4e6YbdY6IpyHvoRC/cyQjHSlt0gxIth7Hdeu
+         eN5d1Xq7g1lwpP9OqdHss8u059osQZKuNhLLZQDMfVeXEnwdfWXX/9x5wMPNmTf8vdMp
+         edojQQ/rLLAz+Ma+B+VExLG44vHl79i9L+21ZSA3+/M+XhdLiyrhJh7bfmceA5yyn+O5
+         F5U1b3PO/PE12bohPtUqnSdgMu8VX6VQP1ZbADi89a+bsmYX1ZeVg1c7YZy4XHTXQyR+
+         K85N7Y+nqqCSKG8JWtn16z8k9ZHBXM5Z3X6Q26+9a4Pz7Z+zIOWyj13pD8cU9hReymQe
+         EVpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=puIXzR2Own0cbDgtZ/rESXOOL8scU6F9mL+QrFjp0g8=;
+        b=aNJSKKo5ADiwkyLH2E+SRg/2/sNJVfwQMzXGugnjgAT2WAnJSzWPhji3tP5D+LV4QR
+         nF8EBRjk+cyjHTi0Jn73x9VSLM6A25dttAsKuhEkqKipx42Kd5YE36FQ3wb/BnvDpgFe
+         zZ862sp5WFZJip3qPhslWGTwY8iwnAGRGUxHOTdbWwt3FeDTXAT9p30d9WNKseFslxZv
+         30sOPUiLzj8SzBEE0o7I03SRb5G+pxw4TVJeu37rO6RtrLFT7nYe3MfLZYHKRJtO4SgU
+         9mlbloooe51+KWSmc/bjMHtUdaj1t6Fg/F+T9lwTGkWkIi5s362n7GDKqullrvoph1Dz
+         iy8Q==
+X-Gm-Message-State: APjAAAWuz2CzoVIrdN9gzm58TrzNqTgroby55uFmsZ+pxE+9nVV9fFPU
+        VC5SRTTl+cowFFVPvZiBBcX4Ow==
+X-Google-Smtp-Source: APXvYqx349qBmplwQGOq+Bk/EBJps0gB+WxTpibAF0E4c9G3e41oIpAGmhaSWsAhZzds2x83VVRXrg==
+X-Received: by 2002:a62:63c6:: with SMTP id x189mr39479895pfb.31.1559804950625;
+        Thu, 06 Jun 2019 00:09:10 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id x128sm1376557pfd.186.2019.06.06.00.09.09
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 06 Jun 2019 00:09:10 -0700 (PDT)
+Date:   Thu, 6 Jun 2019 00:09:55 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Avri Altman <Avri.Altman@wdc.com>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
+Subject: Re: [PATCH 0/3] (Qualcomm) UFS device reset support
+Message-ID: <20190606070955.GR22737@tuxbook-pro>
+References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
+ <CANcMJZBmgWMZu7Y53Lnx_x3L2UpCmEbFRHVW0SFCXfW=Yw9uYg@mail.gmail.com>
+ <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
+ <20190605060154.GJ22737@tuxbook-pro>
+ <SN6PR04MB492521B7D2DB6F3462EDB7D9FC160@SN6PR04MB4925.namprd04.prod.outlook.com>
+ <20190606003959.GM4814@minitux>
+ <SN6PR04MB49255AF3D92E655E1BBD75AEFC170@SN6PR04MB4925.namprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <490b81d9-2734-bb93-303b-94bb20a4f6a5@nvidia.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559804819; bh=Qogml3uZUkadmLM0Z3jsCr7L/168NFfO/EMbeCDrj+I=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=NfvtPKfrIyF4L1qHT1vMGT8m3zkSeuEAgZGRrBpEhYAlyfXdTajamdTupH7UWsAGS
-         EkK7pM5bYmycH5N4sLbfJ2DW4PPjXl795g4lCNznXmRH5AHb9TK0N13zmLtUQSBwxP
-         uA8wokpa+EvmKXXsT+7kWuqjGmeiffJ+4ZkT0nxk0iFWLEoOfrchB5fitolsw4J8t0
-         IJLwgiDvRjn+z+d3PeT6I1r21eatgJj1GMVvCYQRVjpF7/4JGXJiyv3+gqafloI2q5
-         GiCqN6P6GzbWTH/CAPmZIujCbSqKz7yiD4KxUVf5AzD6nE3sRywqtwtmp/g7iHR1z9
-         u2lu8VhygfM/w==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN6PR04MB49255AF3D92E655E1BBD75AEFC170@SN6PR04MB4925.namprd04.prod.outlook.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed 05 Jun 23:32 PDT 2019, Avri Altman wrote:
 
-On 06/06/2019 06:58, Sameer Pujar wrote:
->=20
-> On 6/4/2019 2:37 PM, Jon Hunter wrote:
->> On 06/05/2019 12:58, Sameer Pujar wrote:
->>> Add DT nodes for following devices on Tegra186 and Tegra194
->>> =C2=A0 * ACONNECT
->>> =C2=A0 * ADMA
->>> =C2=A0 * AGIC
->>>
->>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->>> ---
->>> =C2=A0 arch/arm64/boot/dts/nvidia/tegra186.dtsi | 67
->>> ++++++++++++++++++++++++++++++++
->>> =C2=A0 arch/arm64/boot/dts/nvidia/tegra194.dtsi | 67
->>> ++++++++++++++++++++++++++++++++
->>> =C2=A0 2 files changed, 134 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>> b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>> index 6e2b6ce..2c432c9 100644
->>> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>> @@ -1153,4 +1153,71 @@
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_=
-LOW)>;
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupt-parent=
- =3D <&gic>;
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->>> +
->>> +=C2=A0=C2=A0=C2=A0 aconnect@2a41000 {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "nvidia,tegr=
-a210-aconnect";
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&bpmp TEGRA186_=
-CLK_APE>,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 <&bpmp TEGRA186_CLK_APB2APE>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "ape", "apb=
-2ape";
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 power-domains =3D <&bpmp TE=
-GRA186_POWER_DOMAIN_AUD>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <2>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <2>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ranges;
->> My recollection is that non-empty range is preferred from what Rob told
->> me in the past. See the Tegra210 binding.
-> I see at various places empty ranges property is used. From DT spec, it
-> means
-> there is no translation in the address space between parent/child.
+> > 
+> > On Wed 05 Jun 02:32 PDT 2019, Avri Altman wrote:
+> > 
+> > > >
+> > > > On Tue 04 Jun 22:50 PDT 2019, Avri Altman wrote:
+> > > >
+> > > > > Hi,
+> > > > >
+> > > > > >
+> > > > > > On Tue, Jun 4, 2019 at 12:22 AM Bjorn Andersson
+> > > > > > <bjorn.andersson@linaro.org> wrote:
+> > > > > > >
+> > > > > > > This series exposes the ufs_reset line as a gpio, adds support for ufshcd
+> > to
+> > > > > > > acquire and toggle this and then adds this to SDM845 MTP.
+> > > > > > >
+> > > > > > > Bjorn Andersson (3):
+> > > > > > >   pinctrl: qcom: sdm845: Expose ufs_reset as gpio
+> > > > > > >   scsi: ufs: Allow resetting the UFS device
+> > > > > > >   arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
+> > > > > >
+> > > > > > Adding similar change as in sdm845-mtp to the not yet upstream
+> > > > > > blueline dts, I validated this allows my micron UFS pixel3 to boot.
+> > > > > >
+> > > > > > Tested-by: John Stultz <john.stultz@linaro.org>
+> > > > > Maybe ufs_hba_variant_ops would be the proper place to add this?
+> > > > >
+> > > >
+> > > > Are you saying that these memories only need a reset when they are
+> > > > paired with the Qualcomm host controller?
+> > > ufs_hba_variant_ops is for vendors to implement their own vops,
+> > > and as you can see, many of them do.
+> > > Adding hw_reset to that template seems like the proper way
+> > > to do what you are doing.
+> > >
+> > 
+> > Right, but the vops is operations related to the UFS controller, this
+> > property relates to the memory connected.
+> This is not entirely accurate. Those are vendor/board specific,
+> As the original commit log indicates:
+> " vendor/board specific and hence determined with
+>  the help of compatible property in device tree."
+> 
+> I would rather have this new vop:
+> void    (*device_reset)(struct ufs_hba *), Or whatever, 
+> actively set in ufs_hba_variant_ops, rather than ufshcd_init_device_reset
+> failing as part of the default init flow.
+> 
 
-Yes that is correct, but this is what Rob told me in the past ...
+But such an vops would allow me to provide a Qualcomm-specific way of
+toggling the GPIO that is connected to the UFS_RESET pin on the
+Hynix/Micron memory.
 
-"Use of non-empty ranges is preferred though there is not much benefit
-if the parent and child sizes are the same. However, it does also
-limit what is a valid address for those child nodes."
+But acquiring and toggling GPIOs is not a Qualcomm thing, it's a
+completely generic thing, and as it's not a chip-internal line it is a
+GPIO and not a reset - regardless of SoC vendor.
+Further more, it's optional so boards that does not have this pin
+connected will just omit the property in their hardware description
+(DeviceTree).
 
-So I think it is best to be consistent.
 
-> Also I looked at Tegra210 binding,
-> ranges =3D <0x702c0000 0x0 0x702c0000 0x00040000>;
-> Should it be encoded as a triplet(child addr, parent addr, length)?
-Right but remember the parent address is 2 cells, hence the 4 values.
+So I think the halting part here is that we don't have a representation
+of the memory device's resources, because this is really a matter of
+toggling the reset pin on the memory device.
 
-Jon
-
---=20
-nvpublic
+Regards,
+Bjorn
