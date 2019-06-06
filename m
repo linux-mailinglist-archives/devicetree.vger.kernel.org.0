@@ -2,138 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F22379CC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 18:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEF237BC4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 20:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727157AbfFFQfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 12:35:54 -0400
-Received: from mail-it1-f196.google.com ([209.85.166.196]:51100 "EHLO
-        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726777AbfFFQfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 12:35:54 -0400
-Received: by mail-it1-f196.google.com with SMTP id a186so996480itg.0;
-        Thu, 06 Jun 2019 09:35:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kZVofKIX8cuevQT7Eo8t89U9uZvINfNqGUyEDzkiDB8=;
-        b=ndP56wM7bylQINUrjIQ9Ij5CE71JfnJe0DB5gosPulnzn3aE4r5QN3rTOy7WFQK6jn
-         C/Z0LF8GPKjaraty0LCA8Vxhoy4a5Z3JtA+ElqmXPo8GeU+M3OeJTe3JmDeStEw91rYS
-         eviNeXiUJqwQ+zFFkygjdmWjxO942+BEbSdBYYBxxm5YzSeaRFj/Tl/n470l4anL1T8S
-         R66T726U1G37tThzShIXtRsSjo52297Hf5sy0IgMcwg5VExLcdAPsgT1R6tqwSSEjc31
-         O0qFBDdoExVgT18QuUyD6XNjF3Izh0tS+D/oWH5ZJtMVuvwpPqc+qZbl61m5joLHB5CO
-         yRkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kZVofKIX8cuevQT7Eo8t89U9uZvINfNqGUyEDzkiDB8=;
-        b=DDWTd/howMjRri98+VZUnckQCs2DQYgzJINm1f1zunZLxKcoiTzsH2d9vJC/sm4pIA
-         hhRmO0RsbWjQLs4pgtR6V3MxaXrq3v1oR3iB3XnmY7NMsK5YCSzxbf3AWI/6yiYvfVwl
-         leB+ofrXlZvD6cWjU0Zj75+CfWeO65s6uO5FYM8hporE0pN/2NFNuAIzyWjcYr/6jkwD
-         DCkNBYbIMB5zE+Rw1EokeG++SmCXm3vf+qUVCse5SoEKCjeqLTUuRJ6kPZEe993DGDP0
-         PYGlQLXHHQaechtCNqQ1EvTzcpuIwyXBGdC8U1MZnuY40JeMkNz4d/qNScJNrZjrIPUy
-         KWxQ==
-X-Gm-Message-State: APjAAAXOcfycX2uOsre4hSjjpfPzkvtgqIXshVpKckde46pnDnpbc2PD
-        VuQlvgb6OlmSGbk19uf/zFY=
-X-Google-Smtp-Source: APXvYqy5UJ1Ew/Rn199zv3Jda6+BDkgik9cm4AqeLCU1a8gIDZAzg15i4BGv0jZa74ArwP9AjTV/LA==
-X-Received: by 2002:a02:1a86:: with SMTP id 128mr32154721jai.95.1559838953406;
-        Thu, 06 Jun 2019 09:35:53 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.35.141])
-        by smtp.googlemail.com with ESMTPSA id 20sm798893iog.62.2019.06.06.09.35.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Jun 2019 09:35:53 -0700 (PDT)
-Subject: Re: [PATCH V8 14/15] PCI: tegra: Add Tegra194 PCIe support
-To:     Vidya Sagar <vidyas@nvidia.com>, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com
-Cc:     mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-References: <20190526043751.12729-1-vidyas@nvidia.com>
- <20190526043751.12729-15-vidyas@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <f30e7fc6-3f64-d321-c32c-5e273115a869@gmail.com>
-Date:   Thu, 6 Jun 2019 19:35:47 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728970AbfFFSDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 14:03:02 -0400
+Received: from 8.mo178.mail-out.ovh.net ([46.105.74.227]:40883 "EHLO
+        8.mo178.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727559AbfFFSDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 14:03:02 -0400
+X-Greylist: delayed 8083 seconds by postgrey-1.27 at vger.kernel.org; Thu, 06 Jun 2019 14:03:01 EDT
+Received: from player759.ha.ovh.net (unknown [10.109.160.143])
+        by mo178.mail-out.ovh.net (Postfix) with ESMTP id 4A7F36BC9E
+        for <devicetree@vger.kernel.org>; Thu,  6 Jun 2019 18:46:58 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player759.ha.ovh.net (Postfix) with ESMTPSA id 4051B69C160A;
+        Thu,  6 Jun 2019 16:46:47 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH 1/1] ARM: dts: imx6ul: Add PXP node
+Date:   Thu,  6 Jun 2019 18:46:42 +0200
+Message-Id: <20190606164642.11539-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.19.2
 MIME-Version: 1.0
-In-Reply-To: <20190526043751.12729-15-vidyas@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 4864450547657430039
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudeggedguddtiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-26.05.2019 7:37, Vidya Sagar пишет:
-> Add support for Synopsys DesignWare core IP based PCIe host controller
-> present in Tegra194 SoC.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> Changes since [v7]:
-> * Addressed review comments from Thierry
-> 
-> Changes since [v6]:
-> * Removed code around "nvidia,disable-aspm-states" DT property
-> * Refactored code to remove code duplication
-> 
-> Changes since [v5]:
-> * Addressed review comments from Thierry
-> 
-> Changes since [v4]:
-> * None
-> 
-> Changes since [v3]:
-> * None
-> 
-> Changes since [v2]:
-> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
-> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
-> * Removed .runtime_suspend() & .runtime_resume() implementations
-> 
-> Changes since [v1]:
-> * Made CONFIG_PCIE_TEGRA194 as 'm' by default from its previous 'y' state
-> * Modified code as per changes made to DT documentation
-> * Refactored code to address Bjorn & Thierry's review comments
-> * Added goto to avoid recursion in tegra_pcie_dw_host_init() API
-> * Merged .scan_bus() of dw_pcie_host_ops implementation to tegra_pcie_dw_host_init() API
-> 
->  drivers/pci/controller/dwc/Kconfig         |   10 +
->  drivers/pci/controller/dwc/Makefile        |    1 +
->  drivers/pci/controller/dwc/pcie-tegra194.c | 1621 ++++++++++++++++++++
->  3 files changed, 1632 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index a6ce1ee51b4c..884112afc11b 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -220,6 +220,16 @@ config PCI_MESON
->  	  and therefore the driver re-uses the DesignWare core functions to
->  	  implement the driver.
->  
-> +config PCIE_TEGRA194
-> +	tristate "NVIDIA Tegra194 (and later) PCIe controller"
-> +	depends on (TEGRA_BPMP && ARCH_TEGRA) || COMPILE_TEST
+Add PXP node for i.MX6UL/L SoC.
 
-TEGRA_BPMP will be enough here as it depends on other relevant options.
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+---
+ arch/arm/boot/dts/imx6ul.dtsi  | 9 +++++++++
+ arch/arm/boot/dts/imx6ull.dtsi | 6 ++++++
+ 2 files changed, 15 insertions(+)
 
-Hence I mean:
-
-	depends on TEGRA_BPMP || COMPILE_TEST
-
-
-> +	depends on PCI_MSI_IRQ_DOMAIN
-
-You probably want to s/depends on/select/ PCI_MSI_IRQ_DOMAIN, don't you?
-
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index f10012de5eb6..a3c005373ae1 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -971,6 +971,15 @@
+ 				status = "disabled";
+ 			};
+ 
++			pxp: pxp@21cc000 {
++				compatible = "fsl,imx6ul-pxp";
++				reg = <0x021cc000 0x4000>;
++				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clks IMX6UL_CLK_PXP>;
++				clock-names = "axi";
++				status = "disabled";
++			};
++
+ 			qspi: spi@21e0000 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/imx6ull.dtsi b/arch/arm/boot/dts/imx6ull.dtsi
+index 22e4a307fa59..b017e925bd87 100644
+--- a/arch/arm/boot/dts/imx6ull.dtsi
++++ b/arch/arm/boot/dts/imx6ull.dtsi
+@@ -34,6 +34,12 @@
+ 	compatible = "fsl,imx6ull-ocotp", "syscon";
+ };
+ 
++&pxp {
++	compatible = "fsl,imx6ull-pxp";
++	interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++		     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++};
++
+ &usdhc1 {
+ 	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
+ };
 -- 
-Dmitry
+2.19.2
+
