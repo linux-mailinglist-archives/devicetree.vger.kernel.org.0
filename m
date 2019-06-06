@@ -2,129 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8335237982
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 18:30:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 275713798E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 18:31:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727202AbfFFQaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 12:30:15 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:44765 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727054AbfFFQaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 12:30:15 -0400
-Received: by mail-io1-f66.google.com with SMTP id s7so664587iob.11;
-        Thu, 06 Jun 2019 09:30:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=d7LytwrxXouA0Zs6R/AiX1+NNXroNALfB+EP9vrU3ak=;
-        b=CqDzhS28zOoXKqAmwZIGxqbShXAuwtqOzzqhggdfQVmXEfeJln82iHfrubi8vmVLfS
-         yjJMYT3JBT/pMQKyZwotP9cvg2CPLI8iawIC3LlhyybNGEuMJPBZA+O+H2877aBFuMbL
-         fowQ67ZuQZWNM0tESPs5I+ZMat9YSqOm1ldfdSI2UKOfdg6wUiV0O33De7/PxsH5+wSq
-         l81xAi7PWhySQ6y27rt+nSwNwEM6scBeWf8/0MdhaHXNE2CqjVBMUTROQtLn9CxfCemq
-         GhHxb/tduVEt73Elpc5FUhkGrzq0IKIOwLOF30IDZE9W7sPzQDwCvl53nvNTchjYHmPg
-         EScA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=d7LytwrxXouA0Zs6R/AiX1+NNXroNALfB+EP9vrU3ak=;
-        b=oZjtX10MbGsBMCbVvrwui4jl2zt3dsNfGaOeozmkNqKShGuk+4ph3bwFZexI/vk2mc
-         gL+hp6ykj1UhkBjcdGbPnmvdJA4tRSA8Y7VAH97hQEtEmdy+glFJVM1UD6n30dxBE6M4
-         kZixBdK7F9dW3Dov8WTG5mt7lfyd3a6CgxbwD67/0hGRNuqpzGr9EOtUhPQzNBQ91ayD
-         8pfK1rNKfxFpEJjEOe84Rjep7IpxqR65bBWVPQBykl7CwJsTGX4b8HbTc8hPU5BgKFAZ
-         /pn12b3A5DRUKpd8vM5lq+vWl0/MT7uD9pNnw9fstf/2u25b4VZgOJV3p1bFIJYr+58m
-         fxag==
-X-Gm-Message-State: APjAAAX174f9/toB1jjcRHvewBTABUqGMBnLyLIp9vHsX3ulynf+2+eD
-        6fRAnTcwXx9ulXmVFmjrh/Q=
-X-Google-Smtp-Source: APXvYqx6Y2P7X9DmDW6zWXGbATaWZwdPGt54+mRbNR9V0Z0IbrAHa9vJLSmEXZTPLGvVlVq2Z9SkCg==
-X-Received: by 2002:a6b:8dcf:: with SMTP id p198mr33147282iod.46.1559838614878;
-        Thu, 06 Jun 2019 09:30:14 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.35.141])
-        by smtp.googlemail.com with ESMTPSA id c100sm1217734itd.0.2019.06.06.09.30.10
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Jun 2019 09:30:14 -0700 (PDT)
-Subject: Re: [PATCH V8 13/15] phy: tegra: Add PCIe PIPE2UPHY support
-To:     Vidya Sagar <vidyas@nvidia.com>, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com
-Cc:     mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-References: <20190526043751.12729-1-vidyas@nvidia.com>
- <20190526043751.12729-14-vidyas@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <c81c5d42-4292-ba6d-b5ab-afe1a604115f@gmail.com>
-Date:   Thu, 6 Jun 2019 19:30:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1729673AbfFFQbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 12:31:09 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50110 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726719AbfFFQbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 12:31:09 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x56GUwAQ108009;
+        Thu, 6 Jun 2019 11:30:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559838658;
+        bh=MXa33xhQsD/O4PCRwHx6hc+kme91RbO7C14UFiMrnmY=;
+        h=From:To:CC:Subject:Date;
+        b=M/+40rgEismw2eyuGbCucD/OFuCOcEuObIEBxksoQI8QkNKrd7U6hJz2N9feGlUp1
+         hdVZIEWZlAypWLaLYLK7GpkXkDGujdhCxYm405wyM2iLwyAX5WVwVS7KkzMrq5O4j/
+         b3HK/MSes6aSvkTQRBT4zPmWhM/a90aUr3uLIY1o=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x56GUwIl006832
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 6 Jun 2019 11:30:58 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 6 Jun
+ 2019 11:30:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 6 Jun 2019 11:30:58 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x56GUv0A054737;
+        Thu, 6 Jun 2019 11:30:57 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        Wingman Kwok <w-kwok2@ti.com>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH net-next v2 00/10] net: ethernet: ti: netcp: update and enable cpts support
+Date:   Thu, 6 Jun 2019 19:30:37 +0300
+Message-ID: <20190606163047.31199-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190526043751.12729-14-vidyas@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-26.05.2019 7:37, Vidya Sagar пишет:
-> Synopsys DesignWare core based PCIe controllers in Tegra 194 SoC interface
-> with Universal PHY (UPHY) module through a PIPE2UPHY (P2U) module.
-> For each PCIe lane of a controller, there is a P2U unit instantiated at
-> hardware level. This driver provides support for the programming required
-> for each P2U that is going to be used for a PCIe controller.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> Changes since [v7]:
-> * Changed P2U driver file name from pcie-p2u-tegra194.c to phy-tegra194-p2u.c
-> 
-> Changes since [v6]:
-> * None
-> 
-> Changes since [v5]:
-> * Addressed review comments from Thierry
-> 
-> Changes since [v4]:
-> * None
-> 
-> Changes since [v3]:
-> * Rebased on top of linux-next top of the tree
-> 
-> Changes since [v2]:
-> * Replaced spaces with tabs in Kconfig file
-> * Sorted header file inclusion alphabetically
-> 
-> Changes since [v1]:
-> * Added COMPILE_TEST in Kconfig
-> * Removed empty phy_ops implementations
-> * Modified code according to DT documentation file modifications
-> 
->  drivers/phy/tegra/Kconfig            |   7 ++
->  drivers/phy/tegra/Makefile           |   1 +
->  drivers/phy/tegra/phy-tegra194-p2u.c | 109 +++++++++++++++++++++++++++
->  3 files changed, 117 insertions(+)
->  create mode 100644 drivers/phy/tegra/phy-tegra194-p2u.c
-> 
-> diff --git a/drivers/phy/tegra/Kconfig b/drivers/phy/tegra/Kconfig
-> index a3b1de953fb7..c56fc8452e03 100644
-> --- a/drivers/phy/tegra/Kconfig
-> +++ b/drivers/phy/tegra/Kconfig
-> @@ -6,3 +6,10 @@ config PHY_TEGRA_XUSB
->  
->  	  To compile this driver as a module, choose M here: the module will
->  	  be called phy-tegra-xusb.
-> +
-> +config PHY_TEGRA194_P2U
-> +	tristate "NVIDIA Tegra194 PIPE2UPHY PHY driver"
-> +	depends on ARCH_TEGRA || COMPILE_TEST
+Hi
 
-ARCH_TEGRA is a bit too much, ARCH_TEGRA_194_SOC should fit better here.
+The Keystone 2 66AK2HK/E/L 1G Ethernet Switch Subsystems contains The
+Common Platform Time Sync (CPTS) module which is in general compatible with
+CPTS module found on TI AM3/4/5 SoCs. So, the basic support for
+Keystone 2 CPTS is available by default, but not documented and has never been
+enabled inconfig files.
+
+The Keystone 2 CPTS module supports also some additional features like time
+sync reference (RFTCLK) clock selection through CPTS_RFTCLK_SEL register
+(offset: x08) in CPTS module, which can modelled as multiplexer clock
+(this was discussed some time ago [1]).
+
+This series adds missed binding documentation for Keystone 2 66AK2HK/E/L
+CPTS module and enables CPTS for TI Keystone 2 66AK2HK/E/L SoCs with possiblity
+to select CPTS reference clock.
+
+Patch 1: adds the CPTS binding documentation. CPTS bindings are defined in the
+way that allows CPTS properties to be grouped under "cpts" sub-node.
+It also defines "cpts-refclk-mux" clock for CPTS RFTCLK selection.
+Patches 2-3: implement CPTS properties grouping under "cpts" sub-node with
+backward compatibility support.
+Patch 4: adds support for time sync reference (RFTCLK) clock selection from DT
+by adding support for "cpts-refclk-mux" multiplexer clock.
+Patches 5-9: DT CPTS nodes update for TI Keystone 2 66AK2HK/E/L SoCs.
+Patch 10: enables CPTS for TI Keystone 2 66AK2HK/E/L SoCs.
+
+I grouped all patches in one series for better illustration of the changes,
+but in general Pateches 1-4 are netdev matarieal (first) and other patches
+are platform specific.
+
+Series can be found at:
+ git@git.ti.com:~gragst/ti-linux-kernel/gragsts-ti-linux-kernel.git
+branch:
+ net-next-k2e-cpts-refclk
+
+Changes in v2:
+ - do reverse christmas tree in cpts_of_mux_clk_setup()
+ - add ack from Richard Cochran
+
+v1: https://lkml.org/lkml/2019/6/1/77
+
+[1] https://www.spinics.net/lists/netdev/msg408931.html
+
+Grygorii Strashko (10):
+  dt-bindings: doc: net: keystone-netcp: document cpts
+  net: ethernet: ti: cpts: use devm_get_clk_from_child
+  net: ethernet: ti: netcp_ethss: add support for child cpts node
+  net: ethernet: ti: cpts: add support for ext rftclk selection
+  ARM: dts: keystone-clocks: add input fixed clocks
+  ARM: dts: k2e-clocks: add input ext. fixed clocks tsipclka/b
+  ARM: dts: k2e-netcp: add cpts refclk_mux node
+  ARM: dts: k2hk-netcp: add cpts refclk_mux node
+  ARM: dts: k2l-netcp: add cpts refclk_mux node
+  ARM: configs: keystone: enable cpts
+
+ .../bindings/net/keystone-netcp.txt           | 44 ++++++++++
+ arch/arm/boot/dts/keystone-clocks.dtsi        | 27 ++++++
+ arch/arm/boot/dts/keystone-k2e-clocks.dtsi    | 20 +++++
+ arch/arm/boot/dts/keystone-k2e-netcp.dtsi     | 21 ++++-
+ arch/arm/boot/dts/keystone-k2hk-netcp.dtsi    | 20 ++++-
+ arch/arm/boot/dts/keystone-k2l-netcp.dtsi     | 20 ++++-
+ arch/arm/configs/keystone_defconfig           |  1 +
+ drivers/net/ethernet/ti/cpts.c                | 88 ++++++++++++++++++-
+ drivers/net/ethernet/ti/cpts.h                |  2 +-
+ drivers/net/ethernet/ti/netcp_ethss.c         |  9 +-
+ 10 files changed, 240 insertions(+), 12 deletions(-)
 
 -- 
-Dmitry
+2.17.1
+
