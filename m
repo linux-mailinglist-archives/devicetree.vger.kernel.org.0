@@ -2,98 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C38DB36DC3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 191B036DD6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 09:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725947AbfFFHt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 03:49:57 -0400
-Received: from gate.crashing.org ([63.228.1.57]:49036 "EHLO gate.crashing.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725769AbfFFHt5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jun 2019 03:49:57 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x567nPUG022679;
-        Thu, 6 Jun 2019 02:49:26 -0500
-Message-ID: <c558ca3caac6f0c24a13cd5d7599bf4e861bca62.camel@kernel.crashing.org>
-Subject: Re: [PATCH v2 2/2] irqchip: al-fic: Introduce Amazon's Annapurna
- Labs Fabric Interrupt Controller Driver
-From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
-To:     Marc Zyngier <marc.zyngier@arm.com>
-Cc:     "Shenhar, Talel" <talel@amazon.com>, nicolas.ferre@microchip.com,
-        jason@lakedaemon.net, mark.rutland@arm.com,
-        mchehab+samsung@kernel.org, robh+dt@kernel.org,
-        davem@davemloft.net, shawn.lin@rock-chips.com, tglx@linutronix.de,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org, dwmw@amazon.co.uk, jonnyc@amazon.com,
-        hhhawa@amazon.com, ronenk@amazon.com, hanochu@amazon.com,
-        barakw@amazon.com
-Date:   Thu, 06 Jun 2019 17:49:25 +1000
-In-Reply-To: <86pnnrgpmm.wl-marc.zyngier@arm.com>
-References: <1559731921-14023-1-git-send-email-talel@amazon.com>
-         <1559731921-14023-3-git-send-email-talel@amazon.com>
-         <fa6e5a95-d9dd-19f6-43e3-3046e0898bda@arm.com>
-         <553d06a4-a6b6-816f-b110-6ef7f300dde4@amazon.com>
-         <0915892c-0e53-8f53-e858-b1c3298a4d35@arm.com>
-         <54df139cc6cfef9202be6b945c968c3040591607.camel@kernel.crashing.org>
-         <86pnnrgpmm.wl-marc.zyngier@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
+        id S1726040AbfFFHxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 03:53:53 -0400
+Received: from smtp-fw-6001.amazon.com ([52.95.48.154]:43781 "EHLO
+        smtp-fw-6001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725267AbfFFHxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 03:53:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1559807632; x=1591343632;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=4rKMDgk0idWhZbYe/MH2P9996yrzfb/TgPhooH3LB20=;
+  b=A4Tz+HeUgJv+KhXGNR8ov3D9CQ6eB32ywTpXglB2b28lRirIIKm9ImXv
+   jbuhUf6jZ+hOe03o1tKfzletybDDgEL0DbJPB/68Im6kcG6bBgDUjfUwy
+   sr4aE32vZpViHiflo1WsSLiT9O62N1DiqMEgNQAgbwMOPfHMv1uxIBsui
+   A=;
+X-IronPort-AV: E=Sophos;i="5.60,558,1549929600"; 
+   d="scan'208";a="399612691"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-3714e498.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6001.iad6.amazon.com with ESMTP; 06 Jun 2019 07:53:49 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-2b-3714e498.us-west-2.amazon.com (Postfix) with ESMTPS id 0F26AA27E5;
+        Thu,  6 Jun 2019 07:53:49 +0000 (UTC)
+Received: from EX13D21UWB001.ant.amazon.com (10.43.161.108) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 6 Jun 2019 07:53:48 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX13D21UWB001.ant.amazon.com (10.43.161.108) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 6 Jun 2019 07:53:48 +0000
+Received: from [10.107.3.17] (10.107.3.17) by mail-relay.amazon.com
+ (10.43.161.249) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
+ Transport; Thu, 6 Jun 2019 07:53:43 +0000
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+To:     Borislav Petkov <bp@alien8.de>,
+        "Herrenschmidt, Benjamin" <benh@amazon.com>,
+        "james.morse@arm.com" <james.morse@arm.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
+ <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+ <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
+ <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
+ <20190531051400.GA2275@cz.tnic>
+From:   "Hawa, Hanna" <hhhawa@amazon.com>
+Message-ID: <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
+Date:   Thu, 6 Jun 2019 10:53:42 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190531051400.GA2275@cz.tnic>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-06-06 at 08:05 +0100, Marc Zyngier wrote:
+
+
+On 5/31/2019 8:14 AM, Borislav Petkov wrote:
+> On Fri, May 31, 2019 at 01:15:33AM +0000, Herrenschmidt, Benjamin wrote:
+>> This isn't terribly helpful, there's nothing telling anybody which of
+>> those files corresponds to an ARM SoC :-)
 > 
-> > I disagree Marc. This is a rather bad error which indicates that the
-> > device-tree is probably incorrect (or the HW was wired in a way that
-> > cannot work).
+> drivers/edac/altera_edac.c is one example.
 > 
-> But surely that's something you'll spot pretty quickly.
-
-Not really. A level/edge mismatch isn't something you can spot that
-quickly, but will cause lost interrupts on load. Since the kernel can
-spot the error pretty much right away, I think that could even be a
-pr_err :)
-
-> Also, you get
-> a splat from the irq subsystem already, telling you that things went
-> wrong (see __irq_set_trigger). At that stage, you can enable debugging
-> and figure it out.
-
-Ah returning an error will cause such splat indeed.
-
-> What I'm trying to avoid is the kernel becoming a (pretty bad)
-> validation tool for DTS files.
-
-Haha, yeah, I don't like it going out of its way to validate them but
-that sort of very obvious sanity checking makes sense.
-
-> > Basically a given FIC can either be entirely level sensitive or
-> > entirely edge sensitive. This catches cases where the DT has routed
-> > a mixed of both to the same FIC. Definitely worth barfing loudly
-> > about rather than trying to understand subtle odd misbehaviours of
-> > the device in the field.
+> Also, James and I have a small writeup on how an arm driver should look
+> like, we just need to polish it up and post it.
 > 
-> Then, in the interest of not producing incorrect DTs, could the
-> edge/level property be encoded in the FIC description itself, rather
-> than in the interrupt specifiers of the individual devices? It would
-> sidestep the problem altogether. You can still put the wrong one in
-> the FIC node, but it then becomes even more obvious what is going
-> on...
+> James?
+> 
+>> That said ...
+>>
+>> You really want a single EDAC driver that contains all the stuff for
+>> the caches, the memory controller, etc... ?
+> 
+> Yap.
 
-This was Talel original approach internally in fact. I told him to put
-it in the specifier instead :-) The advantage in doing it that way is
-that you get the right flags in the descriptor by default iirc, so the
-right value in /proc/interrupts etc... And it will continue working if
-a future FIC loses that limitation.
+Disagree. The various drivers don't depend on each other.
+I think we should keep the drivers separated as they are distinct and 
+independent IP blocks.
 
-That said, if you feel strongly about it, we can revert to putting a
-global property in the FIC node itself. Let us know what you want.
-
-Cheers,
-Ben.
-
-
+> 
