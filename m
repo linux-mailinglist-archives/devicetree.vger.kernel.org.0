@@ -2,66 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4629636998
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 03:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66999369A3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 04:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726635AbfFFBsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 21:48:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49366 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726613AbfFFBsE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jun 2019 21:48:04 -0400
-Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8D8FA2070B;
-        Thu,  6 Jun 2019 01:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559785683;
-        bh=AQf07PzbL36wKAQUrJOrcOkQ4LuctIqx8gRdVnnMQEQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gy/8/bZJwuAYu+DjoZBi/m7umY7zw427FKV+szGvUtDEEVCrvlaoXHYlnxHWVBnlQ
-         OQ8/nE8SAY43FL3kCjwwB/YcZVsMQQck2rkraNEhqfUUfRftbwXpdxsxp747q9QymE
-         yJMHRTfuAdgcknpBdnz9s1GHpY2T+rU0z4DNy7yg=
-Date:   Thu, 6 Jun 2019 09:47:47 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/3] arm: imx6sx: udoo: Use the correct style for SPDX
- License Identifier
-Message-ID: <20190606014745.GR29853@dragon>
-References: <20190601070718.26971-1-pbrobinson@gmail.com>
- <20190601070718.26971-2-pbrobinson@gmail.com>
- <CAOMZO5B3dedXPyGgwWpdDL5ccC0TQuN=+UKBOW4Emv1_xwbZJw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5B3dedXPyGgwWpdDL5ccC0TQuN=+UKBOW4Emv1_xwbZJw@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+        id S1726693AbfFFCAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 22:00:17 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:33379 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726593AbfFFCAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 22:00:17 -0400
+Received: by mail-pf1-f196.google.com with SMTP id x15so483715pfq.0;
+        Wed, 05 Jun 2019 19:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=x7qwOsCUljcPtS0zwGfT/F7OR260b2vj2I2Z3hV+0Vw=;
+        b=A9qObc4i5vO0woGJ3cg3uISuB5bxnGAL/+ozW+EhdwWNA31g3TMfQIeiD5NULF0cA2
+         XYZKt9Jel0pAbExfDGszMRiWtFxOpGfUZdzBnjShNA3K+lfXeNSH6udRdX4+puQDg2Y3
+         4HSQpALDaGVvKEKK2Q4DCpxqaNlx8q8f/AlKyRGLaqveYSPvXZC8oE3oNSHS2Hk2CGnh
+         p9SnF9IXb0e4J7wrfzdmPNULuKTVJg32mDvQFvYY7krDNRSOIu4cONvhSRc4KkUsAOxj
+         F0C9aaJ/XPNJmEbCyy10tF+mMPxNlNPvj2B/tzf8ZVFX2a67suPLpO5ksNbmU4VFxdPX
+         x9rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=x7qwOsCUljcPtS0zwGfT/F7OR260b2vj2I2Z3hV+0Vw=;
+        b=W7eqkk5JUNtAW2wUmL+wb/i/zXcKdTR1FvIM22+tKU4vk9mxqSxGPJTftEI19pW+Hf
+         fV4nTd0EPvDS1SnLEaytcSvw4sZRRtfd2J6nTYF/I1fgI4M5dbsc56s9B3NL0h+YZnAE
+         XNo3Gq79coTax+xjbW+kMUtVBNhq/wPcPk1V6kSeOcaPohamw6+Fw0mvivz30LJpEL4U
+         jZmMyqeRfImN5oQxoDnbsW49jAJDPTiiK8Q9vI48O3HppTJyWHSyu2xWkROeDcTTBwiS
+         VS5Zf6iplcqmp5T3yCYf+7jwm5BnCNKh2nDjjJTNIh70b1rE08otSKy3/TUUytYPCvhO
+         E0Uw==
+X-Gm-Message-State: APjAAAWZt4lD+14jNZhlami1UGTmssTyPM6NP9MukW4PXbQZ4946H+ar
+        J1FRGVrdrsqQct6YP2KNvcg=
+X-Google-Smtp-Source: APXvYqyPmqa7lqmty0IqA8/OiwgJIYtWHbs/vn7I7gtRg48rBH4l7U9lXE5gPHXIQWvvzkHtLfXb+w==
+X-Received: by 2002:a63:de53:: with SMTP id y19mr884162pgi.166.1559786416299;
+        Wed, 05 Jun 2019 19:00:16 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id k14sm185234pga.5.2019.06.05.19.00.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 05 Jun 2019 19:00:15 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, david.brown@linaro.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        marc.w.gonzalez@free.fr, jcrouse@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH v2 0/3] MSM8998 GPUCC Support
+Date:   Wed,  5 Jun 2019 18:58:44 -0700
+Message-Id: <20190606015844.2285-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 12:19:18PM -0300, Fabio Estevam wrote:
-> On Sat, Jun 1, 2019 at 4:07 AM Peter Robinson <pbrobinson@gmail.com> wrote:
-> >
-> > Use the SPDX License Identifier for GPL-2.0+ OR X11
-> >
-> > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-> 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> 
-> Nit: the Subject could be consistent with the other patches in the series:
-> 
-> ARM: dts: imx6sx-udoo: Use the correct...
+The Adreno GPU on MSM8998 has its own clock controller, which is a
+dependency for bringing up the GPU.  This series gets the gpucc all in
+place as another step on the road to getting the GPU enabled.
 
-Fixed it up and applied all, thanks.
+v2:
+-drop desd code
+
+Jeffrey Hugo (3):
+  dt-bindings: clock: Document gpucc for msm8998
+  clk: qcom: Add MSM8998 GPU Clock Controller (GPUCC) driver
+  arm64: dts: qcom: msm8998: Add gpucc node
+
+ .../devicetree/bindings/clock/qcom,gpucc.txt  |   4 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  15 +
+ drivers/clk/qcom/Kconfig                      |   8 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/gpucc-msm8998.c              | 364 ++++++++++++++++++
+ .../dt-bindings/clock/qcom,gpucc-msm8998.h    |  29 ++
+ 6 files changed, 420 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/clk/qcom/gpucc-msm8998.c
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-msm8998.h
+
+-- 
+2.17.1
+
