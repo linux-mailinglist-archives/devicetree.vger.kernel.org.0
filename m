@@ -2,305 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14AF537A07
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 18:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24AF737AB9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 19:15:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727843AbfFFQvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 12:51:08 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:36068 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726379AbfFFQvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 12:51:08 -0400
-Received: by mail-ed1-f66.google.com with SMTP id a8so4333095edx.3;
-        Thu, 06 Jun 2019 09:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=5PNxcGwC+2v/A3mIrlXX6NGy0I4ZBqyu/22kY20nPjQ=;
-        b=huhC3NMYKu2sbW+dvbwq39geQ7yj55AAuj6vLqWrjOv+Gyi573LEET4Zq+ofafOTLh
-         b07kmCBzC3hXUffQds5gwjkiis7hk/G5o12aOjm0cl0GIQAt/gsVExpXPtwtwfGRjTC/
-         UCxo9MjfBt4eJ5FP2JMD4uQI7TAPifPP0tElXbi05wzzRRHumq5fFzS5+mXSL+U0F9hJ
-         GZGSftdoU+2zKg2OOvX4kkdWVciGUWZaS/5It40v+DPHD2asLGW3w/o9Ro3YUV6qL/yh
-         VbjtJzNq7sWTloIOx181f+Abn08YW6JikYBHOZ6X6FVDZoZbZ1LivBIUdcQW8PLFo9Vz
-         Ek6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=5PNxcGwC+2v/A3mIrlXX6NGy0I4ZBqyu/22kY20nPjQ=;
-        b=JHy+EY9VfgoIuFHmodatCA9nKlo760hakbZu+O+aA/HRkLGY2PptCEZMFew3tMTqoO
-         YWjte1jnuTcR1PzhhxpfizbnXUNxsYX0N/oaVfhJFoH5afPQQiEpi3jUho8b2mYXvY9T
-         IeNfsV50ezKBKfM2bMKcwPO/z5NyT/JlgKtOuRtuvmDQB1/FfqJ12F1Vn4YWlz044qC9
-         A02Us9ZG9NJOBVo0lw+t2sFJkMTX3EpzrkVLH/cNy3BZGUhsV7JoAvggHOH0ltJ6uxht
-         MCQrMm7BWt7r81XIx7GebSYPU2xpdCshDQNfd/AfNQZ90FKtMBe3wWt5SB6Zith9hrZy
-         ZSNw==
-X-Gm-Message-State: APjAAAUHfofHXnqb45VGY6BIarCrrVYZnG7ubXlkGNC3PpgUwSerWeNY
-        aK3WRKj9B2vhRslw4tSITZY=
-X-Google-Smtp-Source: APXvYqwN5ENGTSybk19GwQZPE1XCsc1zDKYWcCF4YLHxef3mOh+cAn0mGYJ8w1hD0Fh3fRxUTaCJtg==
-X-Received: by 2002:a50:9601:: with SMTP id y1mr51649699eda.27.1559839865916;
-        Thu, 06 Jun 2019 09:51:05 -0700 (PDT)
-Received: from localhost (ip1f10d6e1.dynamic.kabel-deutschland.de. [31.16.214.225])
-        by smtp.gmail.com with ESMTPSA id a13sm558015edy.49.2019.06.06.09.51.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Jun 2019 09:51:05 -0700 (PDT)
-From:   Oliver Graute <oliver.graute@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     oliver.graute@gmail.com, narmstrong@baylibre.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCHv3 2/2] ARM: dts: Add support for i.MX6 UltraLite DART Variscite Customboard
-Date:   Thu,  6 Jun 2019 18:47:02 +0200
-Message-Id: <1559839624-12286-3-git-send-email-oliver.graute@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
-References: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
+        id S1729947AbfFFRPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 13:15:37 -0400
+Received: from mail-eopbgr130079.outbound.protection.outlook.com ([40.107.13.79]:20822
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727522AbfFFRPg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 13:15:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8BO6M7AjhOrmOxGslFzN/bgKqFe5z7habblc+oo3UMQ=;
+ b=L42reirwGlm0+Qh/GXifKXk4cBWWg30qMfOVIkWVE+1ZxlalM951u9b2LZzRiEz4TE2vYt/HryxE3JSDZrhVZJJybpCc4lisNFJ0X3biBV7CI6e0yckc7mlOArQErPXkZoP5v5VT6wxVAPeK30u8QLE0XNQZEqUKlU7O/UP1r8U=
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
+ VI1PR04MB7008.eurprd04.prod.outlook.com (52.133.247.148) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.12; Thu, 6 Jun 2019 17:15:33 +0000
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::9577:379c:2078:19a1]) by VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::9577:379c:2078:19a1%7]) with mapi id 15.20.1965.011; Thu, 6 Jun 2019
+ 17:15:33 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Fabio Estevam <festevam@gmail.com>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Anson Huang <anson.huang@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] clk: imx8qxp: Use devm_platform_ioremap_resource()
+Thread-Topic: [PATCH] clk: imx8qxp: Use devm_platform_ioremap_resource()
+Thread-Index: AQHVHIcxHWmfkvAr/EuXpTcQK96tVA==
+Date:   Thu, 6 Jun 2019 17:15:32 +0000
+Message-ID: <VI1PR04MB5055C4B288BC19F6E1EF9D65EE170@VI1PR04MB5055.eurprd04.prod.outlook.com>
+References: <20190606164443.6991-1-festevam@gmail.com>
+ <20190606165546.6675520693@mail.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 00ac89c4-8f8f-4e3a-aee0-08d6eaa2955a
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB7008;
+x-ms-traffictypediagnostic: VI1PR04MB7008:
+x-ms-exchange-purlcount: 4
+x-microsoft-antispam-prvs: <VI1PR04MB70087E116D750AA74D9485B4EE170@VI1PR04MB7008.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 00603B7EEF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(376002)(39860400002)(136003)(366004)(346002)(189003)(199004)(486006)(66946007)(8936002)(14454004)(316002)(4326008)(66476007)(66556008)(64756008)(66446008)(73956011)(110136005)(7696005)(476003)(186003)(446003)(25786009)(76116006)(44832011)(54906003)(2906002)(966005)(86362001)(74316002)(99286004)(53546011)(8676002)(81166006)(66066001)(6246003)(81156014)(71200400001)(71190400001)(6506007)(229853002)(305945005)(6116002)(3846002)(478600001)(26005)(256004)(7736002)(6436002)(68736007)(53936002)(52536014)(5660300002)(33656002)(6306002)(9686003)(102836004)(76176011)(55016002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB7008;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: EyW915xf/KhJtxpsMxjuDtZ/w9McvgWWhHV5YnvPmvaB6Z3tmuo2JxeRWV66VcpdSt88Wg87nqp+QTeBcvd3Q+rwpXubdL1M/Lwf9/3T/oHtyffzmmwC/qGaOCLnhZ7fYo27F2XxHYCnSOZPYgKpm2Vaq9g3Ur5kO8i0EzQzd3lDThRULCeAXkS47Ow78csmEIhvaVWS0G+GElEy9Z03jLhT/cN37kgiDajoKtS8Q1vHTharOKFKgugKzUQLwofvKwQNtF1sV9+EOp6HCo9XRseP4Jyt/QfrkqBnqJsrpLczt0dm8AElmMwjyJQrGml5PhfByeDinjaZGsSyDupc4JOrTMBZpBbZE2X/OCyfMukvLXKPwUCoapZvI0f6sbY6WyPVOL3KPZfEwL+uWZFZMFHRfODipM4HnqojRRhvoOA=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00ac89c4-8f8f-4e3a-aee0-08d6eaa2955a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 17:15:32.9924
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7008
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds DeviceTree Bindings for the i.MX6 UltraLite DART NAND/WIFI
-
-Signed-off-by: Oliver Graute <oliver.graute@gmail.com>
----
- arch/arm/boot/dts/Makefile                      |   1 +
- arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts | 209 ++++++++++++++++++++++++
- 2 files changed, 210 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 5559028..7f03ab5 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -577,6 +577,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ul-tx6ul-0010.dtb \
- 	imx6ul-tx6ul-0011.dtb \
- 	imx6ul-tx6ul-mainboard.dtb \
-+	imx6ul-var-6ulcustomboard.dtb \
- 	imx6ull-14x14-evk.dtb \
- 	imx6ull-colibri-eval-v3.dtb \
- 	imx6ull-colibri-wifi-eval-v3.dtb \
-diff --git a/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
-new file mode 100644
-index 0000000..80b860a
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: (GPL-2.0)
-+/*
-+ * Support for Variscite DART-6UL Module
-+ *
-+ * Copyright (C) 2015 Freescale Semiconductor, Inc.
-+ * Copyright (C) 2015-2016 Variscite Ltd. - http://www.variscite.com
-+ * Copyright (C) 2018-2019 Oliver Graute <oliver.graute@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include "imx6ul-imx6ull-var-dart-common.dtsi"
-+
-+/ {
-+	model = "Variscite i.MX6 UltraLite Carrier-board";
-+	compatible = "fsl,6ulcustomboard", "fsl,imx6ul";
-+
-+	backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 20000>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <6>;
-+		status = "okay";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		user {
-+			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_BACK>;
-+			gpio-key,wakeup;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		d16_led {
-+			gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "wm8731audio";
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack",
-+			"Line", "Line Jack",
-+			"Microphone", "Mic Jack";
-+		simple-audio-card,routing =
-+			"Headphone Jack", "RHPOUT",
-+			"Headphone Jack", "LHPOUT",
-+			"LLINEIN", "Line Jack",
-+			"RLINEIN", "Line Jack",
-+			"MICIN", "Mic Bias",
-+			"Mic Bias", "Mic Jack";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+
-+		sound_master: simple-audio-card,cpu {
-+				sound-dai = <&sai2>;
-+		};
-+	};
-+};
-+
-+&can1 {
-+	status = "okay";
-+};
-+
-+&can2 {
-+	status = "okay";
-+};
-+
-+&gpc {
-+	fsl,cpu_pupscr_sw2iso = <0x2>;
-+	fsl,cpu_pupscr_sw = <0x1>;
-+	fsl,cpu_pdnscr_iso2sw = <0x1>;
-+	fsl,cpu_pdnscr_iso = <0x1>;
-+	fsl,ldo-bypass = <0>; /* DCDC, ldo-enable */
-+};
-+
-+&fec1 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-+	phy-handle = <&ethphy0>;
-+};
-+
-+&fec2 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+	phy-handle = <&ethphy1>;
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock_frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	wm8731: codec@1a {
-+		#sound-dai-cells = <0>;
-+		compatible = "wlf,wm8731";
-+		reg = <0x1a>;
-+		clocks = <&clks IMX6UL_CLK_SAI2>;
-+		clock-names = "mclk";
-+	};
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5x06";
-+		reg = <0x38>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <4 0>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
-+
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lcdif_dat
-+		     &pinctrl_lcdif_ctrl>;
-+	display = <&display0>;
-+	status = "okay";
-+
-+	display0: display {
-+		bits-per-pixel = <16>;
-+		bus-width = <24>;
-+
-+		display-timings {
-+			native-mode = <&timing0>;
-+			timing0: timing0 {
-+				clock-frequency =<35000000>;
-+				hactive = <800>;
-+				vactive = <480>;
-+				hfront-porch = <40>;
-+				hback-porch = <40>;
-+				hsync-len = <48>;
-+				vback-porch = <29>;
-+				vfront-porch = <13>;
-+				vsync-len = <3>;
-+				hsync-active = <0>;
-+				vsync-active = <0>;
-+				de-active = <1>;
-+				pixelclk-active = <0>;
-+			};
-+		};
-+	};
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog_1>;
-+	imx6ul-evk {
-+
-+		pinctrl_rtc: rtcgrp {
-+			fsl,pins = <
-+				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x1b0b0
-+			>;
-+		};
-+	};
-+};
--- 
-2.7.4
-
+On 06.06.2019 19:55, Stephen Boyd wrote:=0A=
+> Quoting Fabio Estevam (2019-06-06 09:44:43)=0A=
+>> Use devm_platform_ioremap_resource() to simplify the code a bit.=0A=
+>>=0A=
+>> Signed-off-by: Fabio Estevam <festevam@gmail.com>=0A=
+>> ---=0A=
+> =0A=
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>=0A=
+=0A=
+An extremely similar patch was already submitted and then reverted =0A=
+because it breaks boot:=0A=
+=0A=
+     https://patchwork.kernel.org/patch/10908807/=0A=
+=0A=
+I tested and this new patch also breaks boot.=0A=
+=0A=
+The current imx8 lpcg driver maps entire subsystems at once and if =0A=
+devm_platform_ioremap_resource is used then devices inside the subsystem =
+=0A=
+will fail to probe, including lpuart!=0A=
+=0A=
+The hardware on imx8qxp and related parts (imx8qm) has multiple separate =
+=0A=
+LPCG blocks interspersed between devices. Some refactoring patches were =0A=
+posted by Aisheng to split LPCG into multiple blocks but apparently got =0A=
+stuck in review:=0A=
+=0A=
+     https://patchwork.kernel.org/cover/10924029/=0A=
+     https://patchwork.kernel.org/cover/10824443/=0A=
+     https://patchwork.kernel.org/cover/10824537/=0A=
+=0A=
+There were some disagreements regarding DT bindings for split imx8 =0A=
+clocks, what would it take to move those patches forward?=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
