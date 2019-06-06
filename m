@@ -2,289 +2,404 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ABCF3692F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 03:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3123D36939
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 03:31:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726613AbfFFBaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 21:30:22 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:42306 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbfFFBaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 21:30:22 -0400
-Received: by mail-wr1-f66.google.com with SMTP id x17so602943wrl.9
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 18:30:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZpGCO041Tg4SdQTzukwjDvK5uvTmFYR2PFl3r1dL9b8=;
-        b=ejvHIsk4euV0ppc0epTzvVzKP6ja3YamlfuEnsYOlwGiRDpcKsu5blj9KswKc1lmHk
-         FlHNai9oKCPDuqXa7TJVSlPeiKK3R0r+zHaoc0/vO+KgoYHspMWlx28mglyIxvgpaPHe
-         hzizJY3TdPzpNMvRO3GLuNa2Z3bBIyLELT3tU3Ha3njuSlNB+l7YFoEZJGWDICks22rP
-         Qed1+wFLqO11s+sVV1ovH/1qQeWozeg+0PR8715Yw5GgkDw0trU7l6zXsnXOhVJDNEMj
-         aMz3quLWYhYCfEO9JKtWdOPTQc+vfT1SWWx3gQh089h7Li6omjAeHLZGPGCeWfbJrYgP
-         eqUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZpGCO041Tg4SdQTzukwjDvK5uvTmFYR2PFl3r1dL9b8=;
-        b=YPQ7iDMorJ0r56Zfs/BYwagTnt1kUu48K7Fue7glg0uEKZQkE5zPnr4XqEJyxnoR4I
-         0Vov57joQ8xMkeHfvjpHi6FpNz0kxe4jKQfvxVH0Dew4oApN+urK/xR+XyLSUjOEMsx0
-         jsCVDp50cWEbrMdwtqrkzt8L9j9N/r3AgU3N6DVQmMV3w3Jz+RfLF9sAq+z2ZnYCP8NB
-         9oveCPckmiJtBYnwT2xLpfFmQTYqrgYEvcImQKLmAd3gPQv1u04vWdJzNuF1/woGOaPn
-         yATf2CXD44S2rALTAUZco0to7o3EDsmq0NRWhFZ4W/YCE1+rHDm0E9QEFqUHkLOx8v0u
-         EohQ==
-X-Gm-Message-State: APjAAAX1E6B5ZfNCKA0z9jk1pVFr52H1JEgaYTaHB4Q4ZdJrUln/+Y3t
-        9jWMxq0LXxAd48RqSI2Jr1hQJJuRTZbVhWhhaXJj
-X-Google-Smtp-Source: APXvYqwxpKa2J21eVqy9vuAUqWSndFyq+8Hj5f1fxZf/oyQGr75L3YoqW8zROuipuK2Zrr7VCYmxZRrq/mq2BI+GwQw=
-X-Received: by 2002:adf:e352:: with SMTP id n18mr4855529wrj.82.1559784619871;
- Wed, 05 Jun 2019 18:30:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190514221711.248228-1-brendanhiggins@google.com>
- <20190514221711.248228-18-brendanhiggins@google.com> <20190517182254.548EA20815@mail.kernel.org>
-In-Reply-To: <20190517182254.548EA20815@mail.kernel.org>
-From:   Iurii Zaikin <yzaikin@google.com>
-Date:   Wed, 5 Jun 2019 18:29:42 -0700
-Message-ID: <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com>
-Subject: Re: [PATCH v4 17/18] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1726637AbfFFBb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 21:31:57 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:54668 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726573AbfFFBb5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jun 2019 21:31:57 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A99BD1A09D7;
+        Thu,  6 Jun 2019 03:31:53 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3251C1A0F76;
+        Thu,  6 Jun 2019 03:31:41 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 658A54029A;
+        Thu,  6 Jun 2019 09:31:27 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
+        will.deacon@arm.com, maxime.ripard@bootlin.com, olof@lixom.net,
+        jagan@amarulasolutions.com, horms+renesas@verge.net.au,
+        bjorn.andersson@linaro.org, leonard.crestez@nxp.com,
+        dinguyen@kernel.org, enric.balletbo@collabora.com,
+        aisheng.dong@nxp.com, abel.vesa@nxp.com, ping.bai@nxp.com,
+        l.stach@pengutronix.de, peng.fan@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V4 1/4] dt-bindings: imx: Add clock binding doc for i.MX8MN
+Date:   Thu,  6 Jun 2019 09:33:20 +0800
+Message-Id: <20190606013323.3392-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 17, 2019 at 11:22 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Brendan Higgins (2019-05-14 15:17:10)
-> > diff --git a/kernel/sysctl-test.c b/kernel/sysctl-test.c
-> > new file mode 100644
-> > index 0000000000000..fe0f2bae66085
-> > --- /dev/null
-> > +++ b/kernel/sysctl-test.c
-> > @@ -0,0 +1,293 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * KUnit test of proc sysctl.
-> > + */
-> > +
-> > +#include <kunit/test.h>
-> > +#include <linux/printk.h>
->
-> Is this include used?
-  Deleted.
->
-> > +#include <linux/sysctl.h>
-> > +#include <linux/uaccess.h>
->
-> Is this include used?
-Deleted.
->
-> > +
-> > +
-> > +static void sysctl_test_dointvec_happy_single_negative(struct kunit *test)
-> > +{
-> > +       struct ctl_table table = {
-> > +               .procname = "foo",
-> > +               .data           = &test_data.int_0001,
-> > +               .maxlen         = sizeof(int),
-> > +               .mode           = 0644,
-> > +               .proc_handler   = proc_dointvec,
-> > +               .extra1         = &i_zero,
-> > +               .extra2         = &i_one_hundred,
-> > +       };
-> > +       char input[] = "-9";
-> > +       size_t len = sizeof(input) - 1;
-> > +       loff_t pos = 0;
-> > +
-> > +       table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
-> > +       KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, input, &len, &pos));
-> > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
-> > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, pos);
-> > +       KUNIT_EXPECT_EQ(test, -9, *(int *)table.data);
->
-> Is the casting necessary? Or can the macro do a type coercion of the
-> second parameter based on the first type?
- Data field is defined as void* so I believe casting is necessary to
-dereference it as a pointer to an array of ints. I don't think the
-macro should do any type coercion that == operator wouldn't do.
- I did change the cast to make it more clear that it's a pointer to an
-array of ints being dereferenced.
->
-> > +}
-> > +
-> > +static void sysctl_test_dointvec_single_less_int_min(struct kunit *test)
-> > +{
-> > +       struct ctl_table table = {
-> > +               .procname = "foo",
-> > +               .data           = &test_data.int_0001,
-> > +               .maxlen         = sizeof(int),
-> > +               .mode           = 0644,
-> > +               .proc_handler   = proc_dointvec,
-> > +               .extra1         = &i_zero,
-> > +               .extra2         = &i_one_hundred,
-> > +       };
-> > +       char input[32];
-> > +       size_t len = sizeof(input) - 1;
-> > +       loff_t pos = 0;
-> > +       unsigned long abs_of_less_than_min = (unsigned long)INT_MAX
-> > +                                            - (INT_MAX + INT_MIN) + 1;
-> > +
-> > +       KUNIT_EXPECT_LT(test,
-> > +                       snprintf(input, sizeof(input), "-%lu",
-> > +                                abs_of_less_than_min),
-> > +                       sizeof(input));
-> > +
-> > +       table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
-> > +       KUNIT_EXPECT_EQ(test, -EINVAL,
-> > +                       proc_dointvec(&table, 1, input, &len, &pos));
-> > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
-> > +       KUNIT_EXPECT_EQ(test, 0, *(int *)table.data);
-> > +}
-> > +
-> > +static void sysctl_test_dointvec_single_greater_int_max(struct kunit *test)
-> > +{
-> > +       struct ctl_table table = {
-> > +               .procname = "foo",
-> > +               .data           = &test_data.int_0001,
-> > +               .maxlen         = sizeof(int),
-> > +               .mode           = 0644,
-> > +               .proc_handler   = proc_dointvec,
-> > +               .extra1         = &i_zero,
-> > +               .extra2         = &i_one_hundred,
-> > +       };
-> > +       char input[32];
-> > +       size_t len = sizeof(input) - 1;
-> > +       loff_t pos = 0;
-> > +       unsigned long greater_than_max = (unsigned long)INT_MAX + 1;
-> > +
-> > +       KUNIT_EXPECT_GT(test, greater_than_max, INT_MAX);
-> > +       KUNIT_EXPECT_LT(test, snprintf(input, sizeof(input), "%lu",
-> > +                                      greater_than_max),
-> > +                       sizeof(input));
-> > +       table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
-> > +       KUNIT_EXPECT_EQ(test, -EINVAL,
-> > +                       proc_dointvec(&table, 1, input, &len, &pos));
-> > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
-> > +       KUNIT_EXPECT_EQ(test, 0, *(int *)table.data);
-> > +}
-> > +
-> > +static int sysctl_test_init(struct kunit *test)
-> > +{
-> > +       return 0;
-> > +}
-> > +
-> > +/*
-> > + * This is run once after each test case, see the comment on example_test_module
-> > + * for more information.
-> > + */
-> > +static void sysctl_test_exit(struct kunit *test)
-> > +{
-> > +}
-> Can the above two be omitted? If they can be empty sometimes it would be
-> nice to avoid the extra symbols and code by letting them be assigned to
-> NULL in the kunit_module.
- Deleted.
->
-> > +
-> > +/*
-> > + * Here we make a list of all the test cases we want to add to the test module
-> > + * below.
-> > + */
-> > +static struct kunit_case sysctl_test_cases[] = {
-> > +       /*
-> > +        * This is a helper to create a test case object from a test case
-> > +        * function; its exact function is not important to understand how to
-> > +        * use KUnit, just know that this is how you associate test cases with a
-> > +        * test module.
-> > +        */
-> > +       KUNIT_CASE(sysctl_test_dointvec_null_tbl_data),
-> > +       KUNIT_CASE(sysctl_test_dointvec_table_maxlen_unset),
-> > +       KUNIT_CASE(sysctl_test_dointvec_table_len_is_zero),
-> > +       KUNIT_CASE(sysctl_test_dointvec_table_read_but_position_set),
-> > +       KUNIT_CASE(sysctl_test_dointvec_happy_single_positive),
-> > +       KUNIT_CASE(sysctl_test_dointvec_happy_single_negative),
-> > +       KUNIT_CASE(sysctl_test_dointvec_single_less_int_min),
-> > +       KUNIT_CASE(sysctl_test_dointvec_single_greater_int_max),
-> > +       {},
-> > +};
-> > +
-> > +/*
-> > + * This defines a suite or grouping of tests.
-> > + *
-> > + * Test cases are defined as belonging to the suite by adding them to
-> > + * `test_cases`.
-> > + *
-> > + * Often it is desirable to run some function which will set up things which
-> > + * will be used by every test; this is accomplished with an `init` function
-> > + * which runs before each test case is invoked. Similarly, an `exit` function
-> > + * may be specified which runs after every test case and can be used to for
-> > + * cleanup. For clarity, running tests in a test module would behave as follows:
-> > + *
-> > + * module.init(test);
-> > + * module.test_case[0](test);
-> > + * module.exit(test);
-> > + * module.init(test);
-> > + * module.test_case[1](test);
-> > + * module.exit(test);
-> > + * ...;
->
-> This comment (and the one above for "this is a helper") looks generic
-> and should probably only be in some documentation somewhere and not for
-> a sysctl test?
->
-Deleted.
-> > + */
-> > +static struct kunit_module sysctl_test_module = {
-> > +       .name = "sysctl_test",
-> > +       .init = sysctl_test_init,
-> > +       .exit = sysctl_test_exit,
-> > +       .test_cases = sysctl_test_cases,
-> > +};
-> > +
-> > +/*
-> > + * This registers the above test module telling KUnit that this is a suite of
-> > + * tests that need to be run.
-> > + */
->
-> Same comment about generic comment.
->
-Deleted.
-> > +module_test(sysctl_test_module);
-> > diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-> > index d5a4a4036d2f8..772af4ec70111 100644
-> > --- a/lib/Kconfig.debug
-> > +++ b/lib/Kconfig.debug
-> > @@ -1908,6 +1908,12 @@ config TEST_SYSCTL
-> >
-> >           If unsure, say N.
-> >
-> > +config SYSCTL_KUNIT_TEST
-> > +       bool "KUnit test for sysctl"
->
-> Why not tristate?
->
-I don't believe KUnit as a module is currently supported.
-> > +       depends on KUNIT
-> > +       help
-> > +         Enables KUnit sysctl test.
-> > +
+From: Anson Huang <Anson.Huang@nxp.com>
+
+Add the clock binding doc for i.MX8MN.
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V3:
+	- switch binding doc from .txt to .yaml.
+---
+ .../devicetree/bindings/clock/imx8mn-clock.yaml    | 115 +++++++++++
+ include/dt-bindings/clock/imx8mn-clock.h           | 215 +++++++++++++++++++++
+ 2 files changed, 330 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
+ create mode 100644 include/dt-bindings/clock/imx8mn-clock.h
+
+diff --git a/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml b/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
+new file mode 100644
+index 0000000..8cb8fcf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
+@@ -0,0 +1,115 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/bindings/clock/imx8mn-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX8M Nano Clock Control Module Binding
++
++maintainers:
++  - Anson Huang <Anson.Huang@nxp.com>
++
++description: |
++  NXP i.MX8M Nano clock control module is an integrated clock controller, which
++  generates and supplies to all modules.
++
++  This binding uses common clock bindings
++  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
++
++properties:
++  compatible:
++    const: fsl,imx8mn-ccm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: 32k osc
++      - description: 24m osc
++      - description: ext1 clock input
++      - description: ext2 clock input
++      - description: ext3 clock input
++      - description: ext4 clock input
++
++  clock-names:
++    items:
++      - const: osc_32k
++      - const: osc_24m
++      - const: clk_ext1
++      - const: clk_ext2
++      - const: clk_ext3
++      - const: clk_ext4
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++examples:
++  # Clock Control Module node:
++  - |
++    clk: clock-controller@30380000 {
++        compatible = "fsl,imx8mn-ccm";
++        reg = <0x0 0x30380000 0x0 0x10000>;
++        #clock-cells = <1>;
++        clocks = <&osc_32k>, <&osc_24m>, <&clk_ext1>,
++                 <&clk_ext2>, <&clk_ext3>, <&clk_ext4>;
++        clock-names = "osc_32k", "osc_24m", "clk_ext1",
++                      "clk_ext2", "clk_ext3", "clk_ext4";
++    };
++
++  # Required external clocks for Clock Control Module node:
++  - |
++    osc_32k: clock-osc-32k {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <32768>;
++	clock-output-names = "osc_32k";
++    };
++
++    osc_24m: clock-osc-24m {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <24000000>;
++        clock-output-names = "osc_24m";
++    };
++
++    clk_ext1: clock-ext1 {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <133000000>;
++        clock-output-names = "clk_ext1";
++    };
++
++    clk_ext2: clock-ext2 {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <133000000>;
++        clock-output-names = "clk_ext2";
++    };
++
++    clk_ext3: clock-ext3 {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <133000000>;
++        clock-output-names = "clk_ext3";
++    };
++
++    clk_ext4: clock-ext4 {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency= <133000000>;
++        clock-output-names = "clk_ext4";
++    };
++
++  # The clock consumer should specify the desired clock by having the clock
++  # ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8mn-clock.h
++  # for the full list of i.MX8M Nano clock IDs.
++
++...
+diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
+new file mode 100644
+index 0000000..5255b1c
+--- /dev/null
++++ b/include/dt-bindings/clock/imx8mn-clock.h
+@@ -0,0 +1,215 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright 2018-2019 NXP
++ */
++
++#ifndef __DT_BINDINGS_CLOCK_IMX8MN_H
++#define __DT_BINDINGS_CLOCK_IMX8MN_H
++
++#define IMX8MN_CLK_DUMMY			0
++#define IMX8MN_CLK_32K				1
++#define IMX8MN_CLK_24M				2
++#define IMX8MN_OSC_HDMI_CLK			3
++#define IMX8MN_CLK_EXT1				4
++#define IMX8MN_CLK_EXT2				5
++#define IMX8MN_CLK_EXT3				6
++#define IMX8MN_CLK_EXT4				7
++#define IMX8MN_AUDIO_PLL1_REF_SEL		8
++#define IMX8MN_AUDIO_PLL2_REF_SEL		9
++#define IMX8MN_VIDEO_PLL1_REF_SEL		10
++#define IMX8MN_DRAM_PLL_REF_SEL			11
++#define IMX8MN_GPU_PLL_REF_SEL			12
++#define IMX8MN_VPU_PLL_REF_SEL			13
++#define IMX8MN_ARM_PLL_REF_SEL			14
++#define IMX8MN_SYS_PLL1_REF_SEL			15
++#define IMX8MN_SYS_PLL2_REF_SEL			16
++#define IMX8MN_SYS_PLL3_REF_SEL			17
++#define IMX8MN_AUDIO_PLL1			18
++#define IMX8MN_AUDIO_PLL2			19
++#define IMX8MN_VIDEO_PLL1			20
++#define IMX8MN_DRAM_PLL				21
++#define IMX8MN_GPU_PLL				22
++#define IMX8MN_VPU_PLL				23
++#define IMX8MN_ARM_PLL				24
++#define IMX8MN_SYS_PLL1				25
++#define IMX8MN_SYS_PLL2				26
++#define IMX8MN_SYS_PLL3				27
++#define IMX8MN_AUDIO_PLL1_BYPASS		28
++#define IMX8MN_AUDIO_PLL2_BYPASS		29
++#define IMX8MN_VIDEO_PLL1_BYPASS		30
++#define IMX8MN_DRAM_PLL_BYPASS			31
++#define IMX8MN_GPU_PLL_BYPASS			32
++#define IMX8MN_VPU_PLL_BYPASS			33
++#define IMX8MN_ARM_PLL_BYPASS			34
++#define IMX8MN_SYS_PLL1_BYPASS			35
++#define IMX8MN_SYS_PLL2_BYPASS			36
++#define IMX8MN_SYS_PLL3_BYPASS			37
++#define IMX8MN_AUDIO_PLL1_OUT			38
++#define IMX8MN_AUDIO_PLL2_OUT			39
++#define IMX8MN_VIDEO_PLL1_OUT			40
++#define IMX8MN_DRAM_PLL_OUT			41
++#define IMX8MN_GPU_PLL_OUT			42
++#define IMX8MN_VPU_PLL_OUT			43
++#define IMX8MN_ARM_PLL_OUT			44
++#define IMX8MN_SYS_PLL1_OUT			45
++#define IMX8MN_SYS_PLL2_OUT			46
++#define IMX8MN_SYS_PLL3_OUT			47
++#define IMX8MN_SYS_PLL1_40M			48
++#define IMX8MN_SYS_PLL1_80M			49
++#define IMX8MN_SYS_PLL1_100M			50
++#define IMX8MN_SYS_PLL1_133M			51
++#define IMX8MN_SYS_PLL1_160M			52
++#define IMX8MN_SYS_PLL1_200M			53
++#define IMX8MN_SYS_PLL1_266M			54
++#define IMX8MN_SYS_PLL1_400M			55
++#define IMX8MN_SYS_PLL1_800M			56
++#define IMX8MN_SYS_PLL2_50M			57
++#define IMX8MN_SYS_PLL2_100M			58
++#define IMX8MN_SYS_PLL2_125M			59
++#define IMX8MN_SYS_PLL2_166M			60
++#define IMX8MN_SYS_PLL2_200M			61
++#define IMX8MN_SYS_PLL2_250M			62
++#define IMX8MN_SYS_PLL2_333M			63
++#define IMX8MN_SYS_PLL2_500M			64
++#define IMX8MN_SYS_PLL2_1000M			65
++
++/* CORE CLOCK ROOT */
++#define IMX8MN_CLK_A53_SRC			66
++#define IMX8MN_CLK_GPU_CORE_SRC			67
++#define IMX8MN_CLK_GPU_SHADER_SRC		68
++#define IMX8MN_CLK_A53_CG			69
++#define IMX8MN_CLK_GPU_CORE_CG			70
++#define IMX8MN_CLK_GPU_SHADER_CG		71
++#define IMX8MN_CLK_A53_DIV			72
++#define IMX8MN_CLK_GPU_CORE_DIV			73
++#define IMX8MN_CLK_GPU_SHADER_DIV		74
++
++/* BUS CLOCK ROOT */
++#define IMX8MN_CLK_MAIN_AXI			75
++#define IMX8MN_CLK_ENET_AXI			76
++#define IMX8MN_CLK_NAND_USDHC_BUS		77
++#define IMX8MN_CLK_DISP_AXI			78
++#define IMX8MN_CLK_DISP_APB			79
++#define IMX8MN_CLK_USB_BUS			80
++#define IMX8MN_CLK_GPU_AXI			81
++#define IMX8MN_CLK_GPU_AHB			82
++#define IMX8MN_CLK_NOC				83
++#define IMX8MN_CLK_AHB				84
++#define IMX8MN_CLK_AUDIO_AHB			85
++
++/* IPG CLOCK ROOT */
++#define IMX8MN_CLK_IPG_ROOT			86
++#define IMX8MN_CLK_IPG_AUDIO_ROOT		87
++
++/* IP */
++#define IMX8MN_CLK_DRAM_CORE			88
++#define IMX8MN_CLK_DRAM_ALT			89
++#define IMX8MN_CLK_DRAM_APB			90
++#define IMX8MN_CLK_DRAM_ALT_ROOT		91
++#define IMX8MN_CLK_DISP_PIXEL			92
++#define IMX8MN_CLK_SAI2				93
++#define IMX8MN_CLK_SAI3				94
++#define IMX8MN_CLK_SAI5				95
++#define IMX8MN_CLK_SAI6				96
++#define IMX8MN_CLK_SPDIF1			97
++#define IMX8MN_CLK_ENET_REF			98
++#define IMX8MN_CLK_ENET_TIMER			99
++#define IMX8MN_CLK_ENET_PHY_REF			100
++#define IMX8MN_CLK_NAND				101
++#define IMX8MN_CLK_QSPI				102
++#define IMX8MN_CLK_USDHC1			103
++#define IMX8MN_CLK_USDHC2			104
++#define IMX8MN_CLK_I2C1				105
++#define IMX8MN_CLK_I2C2				106
++#define IMX8MN_CLK_I2C3				107
++#define IMX8MN_CLK_I2C4				118
++#define IMX8MN_CLK_UART1			119
++#define IMX8MN_CLK_UART2			110
++#define IMX8MN_CLK_UART3			111
++#define IMX8MN_CLK_UART4			112
++#define IMX8MN_CLK_USB_CORE_REF			113
++#define IMX8MN_CLK_USB_PHY_REF			114
++#define IMX8MN_CLK_ECSPI1			115
++#define IMX8MN_CLK_ECSPI2			116
++#define IMX8MN_CLK_PWM1				117
++#define IMX8MN_CLK_PWM2				118
++#define IMX8MN_CLK_PWM3				119
++#define IMX8MN_CLK_PWM4				120
++#define IMX8MN_CLK_WDOG				121
++#define IMX8MN_CLK_WRCLK			122
++#define IMX8MN_CLK_CLKO1			123
++#define IMX8MN_CLK_CLKO2			124
++#define IMX8MN_CLK_DSI_CORE			125
++#define IMX8MN_CLK_DSI_PHY_REF			126
++#define IMX8MN_CLK_DSI_DBI			127
++#define IMX8MN_CLK_USDHC3			128
++#define IMX8MN_CLK_CAMERA_PIXEL			129
++#define IMX8MN_CLK_CSI1_PHY_REF			130
++#define IMX8MN_CLK_CSI2_PHY_REF			131
++#define IMX8MN_CLK_CSI2_ESC			132
++#define IMX8MN_CLK_ECSPI3			133
++#define IMX8MN_CLK_PDM				134
++#define IMX8MN_CLK_SAI7				135
++
++#define IMX8MN_CLK_ECSPI1_ROOT			136
++#define IMX8MN_CLK_ECSPI2_ROOT			137
++#define IMX8MN_CLK_ECSPI3_ROOT			138
++#define IMX8MN_CLK_ENET1_ROOT			139
++#define IMX8MN_CLK_GPIO1_ROOT			140
++#define IMX8MN_CLK_GPIO2_ROOT			141
++#define IMX8MN_CLK_GPIO3_ROOT			142
++#define IMX8MN_CLK_GPIO4_ROOT			143
++#define IMX8MN_CLK_GPIO5_ROOT			144
++#define IMX8MN_CLK_I2C1_ROOT			145
++#define IMX8MN_CLK_I2C2_ROOT			146
++#define IMX8MN_CLK_I2C3_ROOT			147
++#define IMX8MN_CLK_I2C4_ROOT			148
++#define IMX8MN_CLK_MU_ROOT			149
++#define IMX8MN_CLK_OCOTP_ROOT			150
++#define IMX8MN_CLK_PWM1_ROOT			151
++#define IMX8MN_CLK_PWM2_ROOT			152
++#define IMX8MN_CLK_PWM3_ROOT			153
++#define IMX8MN_CLK_PWM4_ROOT			154
++#define IMX8MN_CLK_QSPI_ROOT			155
++#define IMX8MN_CLK_NAND_ROOT			156
++#define IMX8MN_CLK_SAI2_ROOT			157
++#define IMX8MN_CLK_SAI2_IPG			158
++#define IMX8MN_CLK_SAI3_ROOT			159
++#define IMX8MN_CLK_SAI3_IPG			160
++#define IMX8MN_CLK_SAI5_ROOT			161
++#define IMX8MN_CLK_SAI5_IPG			162
++#define IMX8MN_CLK_SAI6_ROOT			163
++#define IMX8MN_CLK_SAI6_IPG			164
++#define IMX8MN_CLK_SAI7_ROOT			165
++#define IMX8MN_CLK_SAI7_IPG			166
++#define IMX8MN_CLK_SDMA1_ROOT			167
++#define IMX8MN_CLK_SDMA2_ROOT			168
++#define IMX8MN_CLK_UART1_ROOT			169
++#define IMX8MN_CLK_UART2_ROOT			170
++#define IMX8MN_CLK_UART3_ROOT			171
++#define IMX8MN_CLK_UART4_ROOT			172
++#define IMX8MN_CLK_USB1_CTRL_ROOT		173
++#define IMX8MN_CLK_USDHC1_ROOT			174
++#define IMX8MN_CLK_USDHC2_ROOT			175
++#define IMX8MN_CLK_WDOG1_ROOT			176
++#define IMX8MN_CLK_WDOG2_ROOT			177
++#define IMX8MN_CLK_WDOG3_ROOT			178
++#define IMX8MN_CLK_GPU_BUS_ROOT			179
++#define IMX8MN_CLK_ASRC_ROOT			180
++#define IMX8MN_CLK_GPU3D_ROOT			181
++#define IMX8MN_CLK_PDM_ROOT			182
++#define IMX8MN_CLK_PDM_IPG			183
++#define IMX8MN_CLK_DISP_AXI_ROOT		184
++#define IMX8MN_CLK_DISP_APB_ROOT		185
++#define IMX8MN_CLK_DISP_PIXEL_ROOT		186
++#define IMX8MN_CLK_CAMERA_PIXEL_ROOT		187
++#define IMX8MN_CLK_USDHC3_ROOT			188
++#define IMX8MN_CLK_SDMA3_ROOT			189
++#define IMX8MN_CLK_TMU_ROOT			190
++#define IMX8MN_CLK_ARM				191
++#define IMX8MN_CLK_NAND_USDHC_BUS_RAWNAND_CLK	192
++#define IMX8MN_CLK_GPU_CORE_ROOT		193
++
++#define IMX8MN_CLK_END				194
++
++#endif
+-- 
+2.7.4
+
