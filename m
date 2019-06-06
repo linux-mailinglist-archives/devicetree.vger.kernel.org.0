@@ -2,185 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8866C36C12
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 08:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7364436C27
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 08:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726077AbfFFGMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jun 2019 02:12:38 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:45403 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725267AbfFFGMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jun 2019 02:12:38 -0400
-X-UUID: a73ae1321c6046df80c67682ae788815-20190606
-X-UUID: a73ae1321c6046df80c67682ae788815-20190606
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 485898404; Thu, 06 Jun 2019 14:12:31 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 6 Jun 2019 14:12:29 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 6 Jun 2019 14:12:29 +0800
-Message-ID: <1559801548.20098.8.camel@mtksdaap41>
-Subject: Re: [PATCH v3, 08/27] drm/mediatek: add mutex sof into ddp private
- data
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <yongqiang.niu@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        id S1726066AbfFFGWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jun 2019 02:22:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50540 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726014AbfFFGWG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jun 2019 02:22:06 -0400
+Received: from localhost (unknown [106.200.230.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AACE52083D;
+        Thu,  6 Jun 2019 06:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559802125;
+        bh=APfyBG2fyrPz68QqYZ1pqp6URdwzAiGlAVa4nP58yZw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AgIZqJBcKNmUDG+OlyFyWa6p1X88k6vww3vudl+DfBf72LOMikPCA+kmsldhxbB7c
+         JAT6lwaI0LqnJf0YpTAmdmX6mL44JNHhGxv76MEu80S9FKKk/7zm+BngWqh2aWYLgk
+         nqg8WY9RctYK0zcY6J2zgfvVzgkcYE+jXrFYfZMk=
+Date:   Thu, 6 Jun 2019 11:48:57 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 6 Jun 2019 14:12:28 +0800
-In-Reply-To: <1559734986-7379-9-git-send-email-yongqiang.niu@mediatek.com>
-References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1559734986-7379-9-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: Add Dragonboard 845c
+Message-ID: <20190606061857.GA9160@vkoul-mobl.Dlink>
+References: <20190606043851.18050-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190606043851.18050-1-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On 05-06-19, 21:38, Bjorn Andersson wrote:
+> This adds an initial dts for the Dragonboard 845. Supported
+> functionality includes Debug UART, UFS, USB-C (peripheral), USB-A
+> (host), microSD-card and Bluetooth.
 > 
-> mutex sof will be ddp private data
+> Initializing the SMMU is clearing the mapping used for the splash screen
+> framebuffer, which causes the board to reboot. This can be worked around
+> using:
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 44 +++++++++++++++++++++++++++-------
->  1 file changed, 36 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> index 8bde2cf..e1a510f 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> @@ -149,8 +149,20 @@ struct mtk_disp_mutex {
->  	bool claimed;
->  };
->  
-> +enum mtk_ddp_mutex_sof_id {
-> +	DDP_MUTEX_SOF_SINGLE_MODE,
-> +	DDP_MUTEX_SOF_DSI0,
-> +	DDP_MUTEX_SOF_DSI1,
-> +	DDP_MUTEX_SOF_DPI0,
-> +	DDP_MUTEX_SOF_DPI1,
-> +	DDP_MUTEX_SOF_DSI2,
-> +	DDP_MUTEX_SOF_DSI3,
-> +	DDP_MUTEX_SOF_MAX,
+>   fastboot oem select-display-panel none
 
-DDP_MUTEX_SOF_MAX can be removed.
+I was able to boot db845c on v5.2-rc1 with this patch :)
+ 
+I found some nits, nevertheless this looks good, so:
+ 
+Tested-by: Vinod Koul <vkoul@kernel.org>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Regards,
-CK
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -0,0 +1,556 @@
+> +// SPDX-License-Identifier: GPL-2.0
 
-> +};
+No copyright?
+
+> +	pcie0_3p3v_dual: vldo-3v3-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VLDO_3V3";
 > +
->  struct mtk_ddp_data {
->  	const unsigned int *mutex_mod;
-> +	const unsigned int *mutex_sof;
->  	const unsigned int mutex_mod_reg;
->  };
->  
-> @@ -209,18 +221,31 @@ struct mtk_ddp {
->  	[DDP_COMPONENT_WDMA1] = MT8173_MUTEX_MOD_DISP_WDMA1,
->  };
->  
-> +static const unsigned int mt2712_mutex_sof[DDP_MUTEX_SOF_MAX] = {
-> +	[DDP_MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
-> +	[DDP_MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
-> +	[DDP_MUTEX_SOF_DSI1] = MUTEX_SOF_DSI1,
-> +	[DDP_MUTEX_SOF_DPI0] = MUTEX_SOF_DPI0,
-> +	[DDP_MUTEX_SOF_DPI1] = MUTEX_SOF_DPI1,
-> +	[DDP_MUTEX_SOF_DSI2] = MUTEX_SOF_DSI2,
-> +	[DDP_MUTEX_SOF_DSI3] = MUTEX_SOF_DSI3,
-> +};
+> +		vin-supply = <&vbat>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
 > +
->  static const struct mtk_ddp_data mt2701_ddp_driver_data = {
->  	.mutex_mod = mt2701_mutex_mod,
-> +	.mutex_sof = mt2712_mutex_sof,
->  	.mutex_mod_reg = MT2701_DISP_MUTEX0_MOD0,
->  };
->  
->  static const struct mtk_ddp_data mt2712_ddp_driver_data = {
->  	.mutex_mod = mt2712_mutex_mod,
-> +	.mutex_sof = mt2712_mutex_sof,
->  	.mutex_mod_reg = MT2701_DISP_MUTEX0_MOD0,
->  };
->  
->  static const struct mtk_ddp_data mt8173_ddp_driver_data = {
->  	.mutex_mod = mt8173_mutex_mod,
-> +	.mutex_sof = mt2712_mutex_sof,
->  	.mutex_mod_reg = MT2701_DISP_MUTEX0_MOD0,
->  };
->  
-> @@ -462,28 +487,29 @@ void mtk_disp_mutex_add_comp(struct mtk_disp_mutex *mutex,
->  	struct mtk_ddp *ddp = container_of(mutex, struct mtk_ddp,
->  					   mutex[mutex->id]);
->  	unsigned int reg;
-> +	unsigned int sof_id;
->  	unsigned int offset;
->  
->  	WARN_ON(&ddp->mutex[mutex->id] != mutex);
->  
->  	switch (id) {
->  	case DDP_COMPONENT_DSI0:
-> -		reg = MUTEX_SOF_DSI0;
-> +		sof_id = DDP_MUTEX_SOF_DSI0;
->  		break;
->  	case DDP_COMPONENT_DSI1:
-> -		reg = MUTEX_SOF_DSI0;
-> +		sof_id = DDP_MUTEX_SOF_DSI0;
->  		break;
->  	case DDP_COMPONENT_DSI2:
-> -		reg = MUTEX_SOF_DSI2;
-> +		sof_id = DDP_MUTEX_SOF_DSI2;
->  		break;
->  	case DDP_COMPONENT_DSI3:
-> -		reg = MUTEX_SOF_DSI3;
-> +		sof_id = DDP_MUTEX_SOF_DSI3;
->  		break;
->  	case DDP_COMPONENT_DPI0:
-> -		reg = MUTEX_SOF_DPI0;
-> +		sof_id = DDP_MUTEX_SOF_DPI0;
->  		break;
->  	case DDP_COMPONENT_DPI1:
-> -		reg = MUTEX_SOF_DPI1;
-> +		sof_id = DDP_MUTEX_SOF_DPI1;
->  		break;
->  	default:
->  		if (ddp->data->mutex_mod[id] < 32) {
-> @@ -501,7 +527,8 @@ void mtk_disp_mutex_add_comp(struct mtk_disp_mutex *mutex,
->  		return;
->  	}
->  
-> -	writel_relaxed(reg, ddp->regs + DISP_REG_MUTEX_SOF(mutex->id));
-> +	writel_relaxed(ddp->data->mutex_sof[sof_id],
-> +		       ddp->regs + DISP_REG_MUTEX_SOF(mutex->id));
->  }
->  
->  void mtk_disp_mutex_remove_comp(struct mtk_disp_mutex *mutex,
-> @@ -522,7 +549,8 @@ void mtk_disp_mutex_remove_comp(struct mtk_disp_mutex *mutex,
->  	case DDP_COMPONENT_DPI0:
->  	case DDP_COMPONENT_DPI1:
->  		writel_relaxed(MUTEX_SOF_SINGLE_MODE,
-> -			       ddp->regs + DISP_REG_MUTEX_SOF(mutex->id));
-> +			       ddp->regs +
-> +			       DISP_REG_MUTEX_SOF(mutex->id));
->  		break;
->  	default:
->  		if (ddp->data->mutex_mod[id] < 32) {
+> +		gpio = <&tlmm 90 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pcie0_pwren_state>;
+> +	};
+> +
+> +	gpio_keys {
 
+Rest of this file is sorted but this isn't, so this should be after dc12v
 
+> +		compatible = "gpio-keys";
+> +		#address-cells = <1>;
+
+does this require address cell, we don't have range property here?
+
+> +		#size-cells = <0>;
+> +		autorepeat;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vol_up_pin_a>;
+> +
+> +		vol-up {
+> +			label = "Volume Up";
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	leds {
+
+This one as well..
+
+-- 
+~Vinod
