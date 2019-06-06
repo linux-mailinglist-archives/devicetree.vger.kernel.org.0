@@ -2,120 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E983686C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 01:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 433FC368CC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2019 02:40:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726581AbfFEX5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jun 2019 19:57:36 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:55072 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726510AbfFEX5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 19:57:36 -0400
-Received: by mail-wm1-f68.google.com with SMTP id g135so548563wme.4;
-        Wed, 05 Jun 2019 16:57:34 -0700 (PDT)
+        id S1726593AbfFFAkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jun 2019 20:40:04 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:41596 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726581AbfFFAkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jun 2019 20:40:03 -0400
+Received: by mail-pg1-f195.google.com with SMTP id 83so276541pgg.8
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2019 17:40:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=a+G/2dEOEsnbE77njerY0dEzhggxdzBtc1olhGXytlg=;
-        b=quruOtem69W2QhHEuO85YEGHSWX2GXMMgVEsWJmX87XrfX+oEFF4uqGgMWHqlN7l5k
-         Fcp61ocf49ehUcoMtvgScur1z5OfJIZA6qCWYD/RfO1FBQEr3HQGq5D53B1CQ3cF30oX
-         nC0DA/mYvfrXxmd0nJ2l36rT6VBf9nJYnsSevgquaNLY94nDX4ue7ndVxaaEvQcPQ/g4
-         zxTPG2Ri/yV8p6gBMX5mWZt7pnq/XXPJx2ExC6la9VUIpV96uiAAN/SGlQ0QOx1XRS+s
-         B0fa+rHOPACOoJlxcoKBUDfIhiHJHKNV8556tjx4u10IXAXHb2B+GaUuTsoCN1VC2mcd
-         3J2A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=2j6AeMQyqlvFrN/cZ76T3pXgzcnOXpcF30PXkUvG5XQ=;
+        b=pD2wunXYqvfYwPLkqvphd1Nzp5oBP1ZJMlmbllJSDRqtIDW6GMm+JLMRRA0rbZiS1C
+         +9pX2xQxEuN9NhtiVlPu2Jxh6vHv5pnFnYTwBGb5uvtA1DL8+Rf4kviOf5xc77dpWKSB
+         rf8bStUliSESYC80DHlCn8Zkpe6fr6yqjkblYLgaVy0mUYWGe2eSvbKU5FdYiCayUKmB
+         IS2+/HgohoC/dtOAoPVklaNzTd/4lnl4tVjaA8ytHMG8vSWNF8tHI4lhaEMgn3r1eDai
+         XQyeR/zl4UZGvJsyrPL5pR5yxascYYXBmP2ViQI/Xs2NIXa0Fz4whXJebVBrtj4cuJto
+         4/pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=a+G/2dEOEsnbE77njerY0dEzhggxdzBtc1olhGXytlg=;
-        b=A+c96pwsmFrJ9KVT5mQ4w16u1F6wURjwhdTLuZ/R0IkJlW3hT+GkocroULHWzn8j4i
-         awHqNYx4qDIVW6tSkHwUHjo+L6HYRIpXMW8PuThxRAXhlUd1bd1EfP394LFy3ZMLd6Te
-         raqpXE7UGTvdw1pqOGv29ECLo3xEoWXr4mWgZebsEx//gN/dxQhNrnZ7J3BLBbfbwPDA
-         9XZfNDEPbUNSzHJwUmTLD6F7c6srT7DRkvdJga7Kq+JEGe2sp8+KsEHwgZtctj3T72ih
-         l33GDNPlfgbuuawfaVDUeJn9UkK6SsWwCsFYRlhs4ZbWRCuGNsS56J/zw6y5jnEfYdXg
-         8+yw==
-X-Gm-Message-State: APjAAAXNibylH+ERld/OG9SQiTOMKkqIELygrNHkeaZkiwidydP+ETlK
-        OD8msdTsJfPOG31alEVryT0=
-X-Google-Smtp-Source: APXvYqw+F3qx6Zsh+mA0aetKfVYltOG6KeaG0XDLA9aqdK2eY7tXvI4nC/JkW915YNGhTbRYU2uaUw==
-X-Received: by 2002:a1c:f408:: with SMTP id z8mr23548559wma.140.1559779053877;
-        Wed, 05 Jun 2019 16:57:33 -0700 (PDT)
-Received: from X555LD.home ([2a02:85f:1501:7500:4991:f471:d726:d8ee])
-        by smtp.gmail.com with ESMTPSA id q15sm245915wrr.19.2019.06.05.16.57.32
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 05 Jun 2019 16:57:33 -0700 (PDT)
-From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        "Leonidas P. Papadakos" <papadakospan@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: enable rk3328 watchdog clock
-Date:   Thu,  6 Jun 2019 02:57:14 +0300
-Message-Id: <20190605235714.22432-2-papadakospan@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190605235714.22432-1-papadakospan@gmail.com>
-References: <20190605235714.22432-1-papadakospan@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2j6AeMQyqlvFrN/cZ76T3pXgzcnOXpcF30PXkUvG5XQ=;
+        b=YyEMgC7sdb2m3Yxnh6AUDarnFWVzjlA2pDu3iFsHZiEdEwTQql9qpKyubUG0SPJnTD
+         /88mVNe5C+kxHlsXd1yCcfQ1NwVrhV0IkVdeU2mR9+Q5CYi2KgOuX0MMzZNSvnlaSWa6
+         z+rzTZK+wSM769GQp64zeeBRxyKJfHCBATi2HIHnb/luUmvduwJnUJufY3xBAMq0RNx3
+         p5kIoL1WjpZcSI3i2PTP34NXVIfFDqR2prJMfiRKfruiLZChGaI9YEsbdP1gOql/dP9x
+         SnaoR1gcSq006hyvwyYsiX92jFJSOUvJq2RQy4oCjCT2yqxJJks2BrAP9XReah6rfJJ6
+         9tbg==
+X-Gm-Message-State: APjAAAWrs+d8S8NOGOnzhyHALn87fZ+sSRgMWIqtxkXOA/ICwLNqApj/
+        u+U9ORAQi4CRmwst1IktqCykhw==
+X-Google-Smtp-Source: APXvYqzvXQ5ewa5JC1Giq17eXL/bIpyul2XvnitexIdi7NKOYgS8rm1aWJkbpisCuaALbZ2LP5zfhA==
+X-Received: by 2002:a62:e511:: with SMTP id n17mr43614480pff.181.1559781602896;
+        Wed, 05 Jun 2019 17:40:02 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id v28sm89656pga.65.2019.06.05.17.40.01
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 05 Jun 2019 17:40:02 -0700 (PDT)
+Date:   Wed, 5 Jun 2019 17:39:59 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Avri Altman <Avri.Altman@wdc.com>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
+Subject: Re: [PATCH 0/3] (Qualcomm) UFS device reset support
+Message-ID: <20190606003959.GM4814@minitux>
+References: <20190604072001.9288-1-bjorn.andersson@linaro.org>
+ <CANcMJZBmgWMZu7Y53Lnx_x3L2UpCmEbFRHVW0SFCXfW=Yw9uYg@mail.gmail.com>
+ <SN6PR04MB4925530F216E86F6404FE14CFC160@SN6PR04MB4925.namprd04.prod.outlook.com>
+ <20190605060154.GJ22737@tuxbook-pro>
+ <SN6PR04MB492521B7D2DB6F3462EDB7D9FC160@SN6PR04MB4925.namprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN6PR04MB492521B7D2DB6F3462EDB7D9FC160@SN6PR04MB4925.namprd04.prod.outlook.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: <itdaniher@gmail.com>
+On Wed 05 Jun 02:32 PDT 2019, Avri Altman wrote:
 
-Add the missing clock property for the watchdog on rk3328.
+> > 
+> > On Tue 04 Jun 22:50 PDT 2019, Avri Altman wrote:
+> > 
+> > > Hi,
+> > >
+> > > >
+> > > > On Tue, Jun 4, 2019 at 12:22 AM Bjorn Andersson
+> > > > <bjorn.andersson@linaro.org> wrote:
+> > > > >
+> > > > > This series exposes the ufs_reset line as a gpio, adds support for ufshcd to
+> > > > > acquire and toggle this and then adds this to SDM845 MTP.
+> > > > >
+> > > > > Bjorn Andersson (3):
+> > > > >   pinctrl: qcom: sdm845: Expose ufs_reset as gpio
+> > > > >   scsi: ufs: Allow resetting the UFS device
+> > > > >   arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
+> > > >
+> > > > Adding similar change as in sdm845-mtp to the not yet upstream
+> > > > blueline dts, I validated this allows my micron UFS pixel3 to boot.
+> > > >
+> > > > Tested-by: John Stultz <john.stultz@linaro.org>
+> > > Maybe ufs_hba_variant_ops would be the proper place to add this?
+> > >
+> > 
+> > Are you saying that these memories only need a reset when they are
+> > paired with the Qualcomm host controller?
+> ufs_hba_variant_ops is for vendors to implement their own vops,
+> and as you can see, many of them do.
+> Adding hw_reset to that template seems like the proper way
+> to do what you are doing.
+> 
 
-This patch depends on:
-clk: rockchip: add clock for the watchdog pclk on rk3328
+Right, but the vops is operations related to the UFS controller, this
+property relates to the memory connected.
 
-Signed-off-by: Leonidas P. Papadakos <papadakospan@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts | 4 ++++
- arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 4 ++++
- arch/arm64/boot/dts/rockchip/rk3328.dtsi       | 2 ++
- 3 files changed, 10 insertions(+)
+E.g I have a Hynix memory and John have a Micron memory that needs this
+reset and my assumption is that these memories will need their RESET pin
+toggled regardless of which controller they are connected to.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-index 5d499c908..49d51dd93 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-@@ -349,3 +349,7 @@
- &vop_mmu {
- 	status = "okay";
- };
-+
-+&wdt {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index 7cfd5ca6c..18a3e0dfa 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -405,3 +405,7 @@
- &vop_mmu {
- 	status = "okay";
- };
-+
-+&wdt {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 994468671..e0a6279da 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -407,6 +407,8 @@
- 		compatible = "snps,dw-wdt";
- 		reg = <0x0 0xff1a0000 0x0 0x100>;
- 		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru PCLK_WDT>;
-+		status = "disabled";
- 	};
- 
- 	pwm0: pwm@ff1b0000 {
--- 
-2.21.0
-
+Regards,
+Bjorn
