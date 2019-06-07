@@ -2,278 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C99BA39824
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5EA39854
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:12:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730803AbfFGWAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 18:00:07 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:43656 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729577AbfFGWAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:00:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1559944803; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=AQnb5MU0eTlAbqICypbJU3QjjXkMomI8LkFXc6D9/gI=;
-        b=wHLgUC9Uc0HVEIp4xayu9LNWKq3CBXZiBZEk9OaIFTwceB727iXzlZScQDW9N2VKYIB6vs
-        dQuGw9Fw+J9dUJ62mKkCNGMzTxKymtIhPHaepGmDuP4rlp6TfWj+4gL3C6J32hVq7/jSJt
-        nvmsbyuTAAm3zeNTuZnYLjjPl03rM8Y=
-Date:   Fri, 07 Jun 2019 23:59:54 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v12 05/13] clk: ingenic: Add driver for the TCU clocks
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        James Hogan <jhogan@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mathieu Malaterre <malat@debian.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, od@zcrc.me
-Message-Id: <1559944794.11351.0@crapouillou.net>
-In-Reply-To: <20190607212819.A5FAE208C3@mail.kernel.org>
-References: <20190521145141.9813-1-paul@crapouillou.net>
-        <20190521145141.9813-6-paul@crapouillou.net>
-        <20190607212819.A5FAE208C3@mail.kernel.org>
+        id S1729864AbfFGWMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 18:12:39 -0400
+Received: from smtp.220.in.ua ([89.184.67.205]:54292 "EHLO smtp.220.in.ua"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729456AbfFGWMj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 18:12:39 -0400
+Received: from [192.168.202.100] (unknown [95.67.115.55])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by smtp.220.in.ua (Postfix) with ESMTPSA id 9070B1A20B58;
+        Sat,  8 Jun 2019 01:12:35 +0300 (EEST)
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add docs for EL15203000
+From:   Oleh Kravchenko <oleg@kaa.org.ua>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org
+References: <20190607184022.13793-1-oleg@kaa.org.ua>
+ <b1f0eaf6-e91c-2095-5928-179ad8695b33@ti.com>
+ <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
+ <b6a5cc5e-74f1-d328-7a47-995670ba7aa7@ti.com>
+ <adf5a755-c534-64c3-6e99-ba39ffea95e2@kaa.org.ua>
+ <2eba86cb-01be-c002-32d0-80ab2ab14f97@gmail.com>
+ <7e787498-537b-390d-589a-577f34ffbc3f@kaa.org.ua>
+Openpgp: preference=signencrypt
+Autocrypt: addr=oleg@kaa.org.ua; prefer-encrypt=mutual; keydata=
+ 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
+ WVdfrwbus0lVCELNSvCIW2IktSytUxjQfmjBMw==
+Message-ID: <94968b55-a9cc-277e-ac25-bf765f9db138@kaa.org.ua>
+Date:   Sat, 8 Jun 2019 01:12:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <7e787498-537b-390d-589a-577f34ffbc3f@kaa.org.ua>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="vG1zKJ1DLp9BCWm74pxVtJRKDSHsPi682"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen, thanks for the review.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--vG1zKJ1DLp9BCWm74pxVtJRKDSHsPi682
+Content-Type: multipart/mixed; boundary="UJBr04gkGR3IxGReCbfiELJC7oUYTbDzn";
+ protected-headers="v1"
+From: Oleh Kravchenko <oleg@kaa.org.ua>
+To: Jacek Anaszewski <jacek.anaszewski@gmail.com>, Dan Murphy
+ <dmurphy@ti.com>, devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+Message-ID: <94968b55-a9cc-277e-ac25-bf765f9db138@kaa.org.ua>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add docs for EL15203000
+References: <20190607184022.13793-1-oleg@kaa.org.ua>
+ <b1f0eaf6-e91c-2095-5928-179ad8695b33@ti.com>
+ <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
+ <b6a5cc5e-74f1-d328-7a47-995670ba7aa7@ti.com>
+ <adf5a755-c534-64c3-6e99-ba39ffea95e2@kaa.org.ua>
+ <2eba86cb-01be-c002-32d0-80ab2ab14f97@gmail.com>
+ <7e787498-537b-390d-589a-577f34ffbc3f@kaa.org.ua>
+In-Reply-To: <7e787498-537b-390d-589a-577f34ffbc3f@kaa.org.ua>
 
-Le ven. 7 juin 2019 =E0 23:28, Stephen Boyd <sboyd@kernel.org> a =E9crit :
-> Quoting Paul Cercueil (2019-05-21 07:51:33)
->>  diff --git a/drivers/clk/ingenic/Kconfig=20
->> b/drivers/clk/ingenic/Kconfig
->>  index 34dc0da79c39..434893133eb4 100644
->>  --- a/drivers/clk/ingenic/Kconfig
->>  +++ b/drivers/clk/ingenic/Kconfig
->>  @@ -1,4 +1,4 @@
->>  -menu "Ingenic JZ47xx CGU drivers"
->>  +menu "Ingenic JZ47xx drivers"
->>          depends on MIPS
->>=20
->>   config INGENIC_CGU_COMMON
->>  @@ -44,4 +44,13 @@ config INGENIC_CGU_JZ4780
->>=20
->>            If building for a JZ4780 SoC, you want to say Y here.
->>=20
->>  +config INGENIC_TCU_CLK
->>  +       bool "Ingenic JZ47xx TCU clocks driver"
->>  +       default MACH_INGENIC
->>  +       depends on COMMON_CLK
+--UJBr04gkGR3IxGReCbfiELJC7oUYTbDzn
+Content-Type: text/plain; charset=utf-8
+Content-Language: uk-UA
+Content-Transfer-Encoding: quoted-printable
+
+Hello Jacek,
+
+08.06.19 00:48, Oleh Kravchenko =D0=BF=D0=B8=D1=88=D0=B5:
+> Jacek,
 >=20
-> Does the INGENIC_TCU_CLK config even exist if COMMON_CLK is disabled?=20
-> I
-> suspect it's all part of the menuconfig so this depends is not useful?
-
-Right, it can be dropped.
-
->>  +       select INGENIC_TCU
->>  +       help
->>  +         Support the clocks of the Timer/Counter Unit (TCU) of the=20
->> Ingenic
->>  +         JZ47xx SoCs.
->>  +
->>   endmenu
->>  diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
->>  new file mode 100644
->>  index 000000000000..7249225a6994
->>  --- /dev/null
->>  +++ b/drivers/clk/ingenic/tcu.c
->>  @@ -0,0 +1,458 @@
->>  +// SPDX-License-Identifier: GPL-2.0
->>  +/*
->>  + * JZ47xx SoCs TCU clocks driver
->>  + * Copyright (C) 2019 Paul Cercueil <paul@crapouillou.net>
->>  + */
->>  +
->>  +#include <linux/clk.h>
->>  +#include <linux/clk-provider.h>
->>  +#include <linux/clkdev.h>
->>  +#include <linux/clockchips.h>
->>  +#include <linux/mfd/ingenic-tcu.h>
->>  +#include <linux/regmap.h>
->>  +
->>  +#include <dt-bindings/clock/ingenic,tcu.h>
->>  +
->>  +/* 8 channels max + watchdog + OST */
->>  +#define TCU_CLK_COUNT  10
->>  +
->>  +#define TCU_ERR(...) pr_crit("ingenic-tcu-clk: " __VA_ARGS__)
+>> For blinking you can use blink_set op. To be able to recommend
+>> you anoptimal solution for the effect we would need more
+>> details regarding its nature.
 >=20
-> Why is it pr_crit instead of pr_err()?
+> Thanks, I will do that.
+> But how to properly handle other effects? Not only blinking?
 
-If the TCU timer clocks are not provided for any reason, the system
-will have no timer, and the kernel will hang very early in the init
-process. That's why I chose pr_crit().
+	int		(*blink_set)(struct led_classdev *led_cdev,
+				     unsigned long *delay_on,
+				     unsigned long *delay_off);
 
->>  +
->>  +enum tcu_clk_parent {
->>  +       TCU_PARENT_PCLK,
->>  +       TCU_PARENT_RTC,
->>  +       TCU_PARENT_EXT,
->>  +};
->>  +
-> [...]
->>  +
->>  +static int __init ingenic_tcu_register_clock(struct ingenic_tcu=20
->> *tcu,
->>  +                       unsigned int idx, enum tcu_clk_parent=20
->> parent,
->>  +                       const struct ingenic_tcu_clk_info *info,
->>  +                       struct clk_hw_onecell_data *clocks)
->>  +{
->>  +       struct ingenic_tcu_clk *tcu_clk;
->>  +       int err;
->>  +
->>  +       tcu_clk =3D kzalloc(sizeof(*tcu_clk), GFP_KERNEL);
->>  +       if (!tcu_clk)
->>  +               return -ENOMEM;
->>  +
->>  +       tcu_clk->hw.init =3D &info->init_data;
->>  +       tcu_clk->idx =3D idx;
->>  +       tcu_clk->info =3D info;
->>  +       tcu_clk->tcu =3D tcu;
->>  +
->>  +       /* Reset channel and clock divider, set default parent */
->>  +       ingenic_tcu_enable_regs(&tcu_clk->hw);
->>  +       regmap_update_bits(tcu->map, info->tcsr_reg, 0xffff,=20
->> BIT(parent));
->>  +       ingenic_tcu_disable_regs(&tcu_clk->hw);
->>  +
->>  +       err =3D clk_hw_register(NULL, &tcu_clk->hw);
->>  +       if (err)
->>  +               goto err_free_tcu_clk;
->>  +
->>  +       err =3D clk_hw_register_clkdev(&tcu_clk->hw,=20
->> info->init_data.name, NULL);
+My LED board doesn't support any delay settings at all.
+Should I always set delay_on, delay_off to zero?
+
+=20
+> And how to define it by device tree?
+> Driver can't get this information about what is really supported.
+> I don't want define effect code inside DT.
 >=20
-> Do you have a use for clkdev? If DT lookups work just as well it would
-> be better to skip clkdev registration.
+> =20
+>>>> This is a new driver there should be no DT that has this compatible =
+or
 
-OK.
+--=20
+Best regards,
+Oleh Kravchenko
 
->>  +       if (err)
->>  +               goto err_clk_unregister;
->>  +
->>  +       clocks->hws[idx] =3D &tcu_clk->hw;
->>  +
->>  +       return 0;
->>  +
->>  +err_clk_unregister:
->>  +       clk_hw_unregister(&tcu_clk->hw);
->>  +err_free_tcu_clk:
->>  +       kfree(tcu_clk);
->>  +       return err;
->>  +}
->>  +
->>  +static const struct ingenic_soc_info jz4740_soc_info =3D {
->>  +       .num_channels =3D 8,
->>  +       .has_ost =3D false,
->>  +       .has_tcu_clk =3D true,
->>  +};
->>  +
->>  +static const struct ingenic_soc_info jz4725b_soc_info =3D {
->>  +       .num_channels =3D 6,
->>  +       .has_ost =3D true,
->>  +       .has_tcu_clk =3D true,
->>  +};
->>  +
->>  +static const struct ingenic_soc_info jz4770_soc_info =3D {
->>  +       .num_channels =3D 8,
->>  +       .has_ost =3D true,
->>  +       .has_tcu_clk =3D false,
->>  +};
->>  +
->>  +static const struct of_device_id ingenic_tcu_of_match[]=20
->> __initconst =3D {
->>  +       { .compatible =3D "ingenic,jz4740-tcu", .data =3D=20
->> &jz4740_soc_info, },
->>  +       { .compatible =3D "ingenic,jz4725b-tcu", .data =3D=20
->> &jz4725b_soc_info, },
->>  +       { .compatible =3D "ingenic,jz4770-tcu", .data =3D=20
->> &jz4770_soc_info, },
->>  +       { }
->>  +};
->>  +
->>  +static int __init ingenic_tcu_probe(struct device_node *np)
->>  +{
->>  +       const struct of_device_id *id =3D=20
->> of_match_node(ingenic_tcu_of_match, np);
->>  +       struct ingenic_tcu *tcu;
->>  +       struct regmap *map;
->>  +       unsigned int i;
->>  +       int ret;
->>  +
->>  +       map =3D ingenic_tcu_get_regmap(np);
->>  +       if (IS_ERR(map))
->>  +               return PTR_ERR(map);
->>  +
->>  +       tcu =3D kzalloc(sizeof(*tcu), GFP_KERNEL);
->>  +       if (!tcu)
->>  +               return -ENOMEM;
->>  +
->>  +       tcu->map =3D map;
->>  +       tcu->soc_info =3D id->data;
->>  +
->>  +       if (tcu->soc_info->has_tcu_clk) {
->>  +               tcu->clk =3D of_clk_get_by_name(np, "tcu");
->=20
-> Is this clk necessary to read/write registers in this clk driver? And
-> this clk isn't the parent of the clks? Why is it managed by Linux at
-> all? Will there be a time when it's turned off?
 
-For the SoCs which have the "tcu" clock, it has to be enabled for the
-registers to be accessible, yes. And as you noticed, it is not the
-parent of the timer clocks.
 
-The "tcu" clock can be turned off during suspend, for instance.
+--UJBr04gkGR3IxGReCbfiELJC7oUYTbDzn--
 
-> I'm asking because it looks like we're calling clk APIs from within=20
-> clk
-> provider implementation. That works right now because of our locking
-> scheme, but this will put up another roadblock to making the prepare=20
-> and
-> enable locks not recursive. I've seen some drivers take an approach of
-> enabling the clk when the provider is PM runtime active, and disable=20
-> the
-> clk when the provider is runtime PM inactive. This gets it out of the
-> provider path and into the runtime PM path. If you take that approach
-> then when we move the runtime PM code in clk core outside of the=20
-> prepare
-> lock we should be able to avoid any recursive locking scenarios.
+--vG1zKJ1DLp9BCWm74pxVtJRKDSHsPi682
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-Most of the code here works without a struct device, it wouldn't be=20
-easy to
-get it to work with runtime PM.
+-----BEGIN PGP SIGNATURE-----
 
-I can enable the "tcu" clock in the probe and just gate/ungate it in the
-suspend/resume callbacks, that would work just fine. We don't need=20
-anything
-fancy here.
+iQIzBAEBCAAdFiEEC/TM5t+2NenFhW0Q0xNJm20pl4wFAlz64UwACgkQ0xNJm20p
+l4xyYxAAucF8gIdpcDBHtCNUKyCRbHrmbQrvR269wDeIZm+752g2Wo9z7SACLsBh
+W7SrZCdhYZ7sfUussfrtEJUyEYdxvjmNTiWmQGhkiI5kHYGSHKflc/9MvN/qK3n1
+i91/46shbNSzCKIE+KdUedil24XXgPQWLQJrO2GRdt6BflIv/Yp1uKG9vJ9ra2R9
+0ET60VmHmI7kzQFMfP6AbkSYN++r5TzTasDKECLFCofzEPaS5fwWFOeI2jg1tSE+
+mke9tn0Q4/YJJGT4+yBNQAOMJVxL87nzZ2E+WWEy2eN9mSwPS3tJkacrIASkBsJI
+8yJxHmGNUtnQcHDWM47vftPzDFO5ea9VeQT3nXefmISXb4KhDPfgFNZO7sWGmN5V
+g23+itvb94Q7jxo/s8Yr1X9L6lXcIZ/xAlU4aYEsi+lhgJycRTUoC28A2lZsLkoU
+JiEwtZmQWoyZsh1CHjaBybwQ43j4o1LeU7/Ni8dmDigmyhBhJr/oB75qCSlGtNgo
+xXYE36MqaWc6P4v7VD4zWFMB7joab7Mf1o5dfjnLe/WSDw4gal1oJ7MlTrjNSUji
+ab15K8gc9tuJcxmHBuRXcHVtjcZeWqUJwFWYDRfpcXOYDeGr3YPCKD9n1bdY+fkS
+h/hGR+cQ66Eaf1q9JkbpLZYTADA+drBnQNqvCQadarHzXl5KpHE=
+=Qj19
+-----END PGP SIGNATURE-----
 
->>  +               if (IS_ERR(tcu->clk)) {
->>  +                       ret =3D PTR_ERR(tcu->clk);
->>  +                       TCU_ERR("Cannot get TCU clock\n");
->>  +                       goto err_free_tcu;
->>  +               }
->>  +
-
-=
-
+--vG1zKJ1DLp9BCWm74pxVtJRKDSHsPi682--
