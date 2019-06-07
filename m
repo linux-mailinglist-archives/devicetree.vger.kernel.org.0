@@ -2,113 +2,378 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A3938DFA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 16:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5138938E2E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 16:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728521AbfFGOtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 10:49:40 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:3440 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728446AbfFGOtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 10:49:40 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cfa79800000>; Fri, 07 Jun 2019 07:49:36 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 07 Jun 2019 07:49:38 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 07 Jun 2019 07:49:38 -0700
-Received: from HQMAIL112.nvidia.com (172.18.146.18) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 7 Jun
- 2019 14:49:38 +0000
-Received: from HQMAIL103.nvidia.com (172.20.187.11) by HQMAIL112.nvidia.com
- (172.18.146.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 7 Jun
- 2019 14:49:38 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL103.nvidia.com
- (172.20.187.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Fri, 7 Jun 2019 14:49:38 +0000
-Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5cfa797c0001>; Fri, 07 Jun 2019 07:49:37 -0700
-From:   Vidya Sagar <vidyas@nvidia.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
-CC:     <digetx@gmail.com>, <mperttunen@nvidia.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
-Subject: [PATCH V9 15/15] arm64: Add Tegra194 PCIe driver to defconfig
-Date:   Fri, 7 Jun 2019 20:16:40 +0530
-Message-ID: <20190607144640.13427-16-vidyas@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190607144640.13427-1-vidyas@nvidia.com>
-References: <20190607144640.13427-1-vidyas@nvidia.com>
-X-NVConfidentiality: public
+        id S1729005AbfFGO71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 10:59:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59580 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728998AbfFGO70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 10:59:26 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x57ExLZo100446;
+        Fri, 7 Jun 2019 09:59:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559919561;
+        bh=NFGRd8/2u7WtRVc1/i8WzyM61bQAujXoBdrqZ3AZvHk=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=rEs3QQlbQda4zKeMNqy9SmcW+zJ0aVZFnVyek/3PFPljPwJ0ELymydCmpD2dt9Rp0
+         P2HdOVwmqzKg7Gtk+dRajs3e34D5tuChcLDh47Ew8bT9vx6IuJK46IOIscG83LGapQ
+         6Hj7wWhMAeccitBs0Rd03kC6BQ+JpmEWkGN8zXog=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x57ExL5g094218
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 Jun 2019 09:59:21 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 7 Jun
+ 2019 09:59:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 7 Jun 2019 09:59:21 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x57ExKOI063056;
+        Fri, 7 Jun 2019 09:59:21 -0500
+Subject: Re: [PATCH 2/2] leds: add LED driver for EL15203000 board
+To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
+        <linux-leds@vger.kernel.org>
+References: <20190607114823.3735-1-oleg@kaa.org.ua>
+ <20190607114823.3735-2-oleg@kaa.org.ua>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <f0ec5988-77c2-b0fa-045d-ec6a7445fc48@ti.com>
+Date:   Fri, 7 Jun 2019 09:59:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559918977; bh=OF0Vc5Gv9oKB4qn5lB9HEPllg5IU66SpuuMj9sV4+bo=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=mMRfghxSmSY7HF6PyPq6X6zi5lxXMrdWtDKitw6ifKrbM6AG16Z6GEHyoOpe6x3FC
-         Ol1Z6sJhPjpAM9e71kGYJbogY7T727vGulf6BDe5C4dtZBCd6zAqkfFUHVccxgYs+Y
-         vl7xWx5yDvjiPl8kSxo8RTUtIzhKBXl2/sCmjPVc5bIwE4W7RfD1JatdNMBgOflEtO
-         3vTUP1pHwv8TkzLAYv0Bq8PpA+yUpw3XAodsO8ohACQ9ePGUfaOCRmHidclBQg3nGF
-         fedUYffTDcvnslmm6WvBaZToqxworpaHlfd6oGOaNs4M71GDtLv7TdfPvoujfWqM9s
-         uPqeAyBoc41Ng==
+In-Reply-To: <20190607114823.3735-2-oleg@kaa.org.ua>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe host controller driver for DesignWare core based
-PCIe controller IP present in Tegra194.
+Oleh
 
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
----
-Changes since [v8]:
-* None
+On 6/7/19 6:48 AM, Oleh Kravchenko wrote:
+> This patch adds a LED class driver for the RGB LEDs found on
+> the Crane Merchandising System EL15203000 LEDs board
+> (aka RED LEDs board).
+>
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+> ---
+>   drivers/leds/Kconfig           |  13 ++
+>   drivers/leds/Makefile          |   1 +
+>   drivers/leds/leds-el15203000.c | 236 +++++++++++++++++++++++++++++++++
+>   3 files changed, 250 insertions(+)
+>   create mode 100644 drivers/leds/leds-el15203000.c
+>
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index 71be87bdb926..ae293a0f7598 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -128,6 +128,19 @@ config LEDS_CR0014114
+>   	  To compile this driver as a module, choose M here: the module
+>   	  will be called leds-cr0014114.
+>   
+> +config LEDS_EL15203000
+> +	tristate "LED Support for Crane EL15203000"
+> +	depends on LEDS_CLASS
+> +	depends on SPI
+> +	depends on OF
+> +	help
+> +	  This option enables support for EL15203000 LED Board which
+> +	  is widely used in coffee vending machines produced by
+> +	  Crane Merchandising Systems.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called leds-el15203000.
+> +
+>   config LEDS_LM3530
+>   	tristate "LCD Backlight driver for LM3530"
+>   	depends on LEDS_CLASS
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 1e9702ebffee..1f193ffc2feb 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -85,6 +85,7 @@ obj-$(CONFIG_LEDS_LM3601X)		+= leds-lm3601x.o
+>   # LED SPI Drivers
+>   obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
+>   obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
+> +obj-$(CONFIG_LEDS_EL15203000)		+= leds-el15203000.o
+>   
+>   # LED Userspace Drivers
+>   obj-$(CONFIG_LEDS_USER)			+= uleds.o
+> diff --git a/drivers/leds/leds-el15203000.c b/drivers/leds/leds-el15203000.c
+> new file mode 100644
+> index 000000000000..0f211871e63c
+> --- /dev/null
+> +++ b/drivers/leds/leds-el15203000.c
+> @@ -0,0 +1,236 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2019 Crane Merchandising Systems. All rights reserved.
+> +// Copyright (C) 2019 Oleh Kravchenko <oleg@kaa.org.ua>
+> +
+> +#include <linux/delay.h>
+> +#include <linux/leds.h>
+> +#include <linux/limits.h>
+I do not see any #defines used from this file
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/workqueue.h>
 
-Changes since [v7]:
-* None
+It does not look like you are using any work queues.
 
-Changes since [v6]:
-* None
 
-Changes since [v5]:
-* None
+> +#include <uapi/linux/uleds.h>
+> +
+> +/*
+> + * EL15203000 SPI protocol descrtiption:
+> + * +-----+------------+
+> + * | LED | BRIGHTNESS |
+> + * +-----+------------+
+> + * |  1  |      1     |
+> + * +-----+------------+
+> + *
+> + * LED		ID, known values is 0x50 (Pipe), 0x53 (Screen Frame) and
+> + * 		0x56 (Vending Area);
+> + * BRIGHTNESS	Can be 0x30 (OFF), 0x31 (ON).
+> + * 		0x32 (Effect) can be used for 0x50 (leaking) and
+> + * 		for 0x53 (blinking).
+> + *
 
-Changes since [v4]:
-* None
+These can be #defined which makes them desctiptive
 
-Changes since [v3]:
-* None
+#define EL15203000_LED_OFF     0x30
 
-Changes since [v2]:
-* None
+#define EL15203000_LED_ON     0x31
 
-Changes since [v1]:
-* Changed CONFIG_PCIE_TEGRA194 from 'y' to 'm'
+and so on
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bb0705e1f52e..6462a4dbac87 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -192,6 +192,7 @@ CONFIG_PCIE_QCOM=y
- CONFIG_PCIE_ARMADA_8K=y
- CONFIG_PCIE_KIRIN=y
- CONFIG_PCIE_HISI_STB=y
-+CONFIG_PCIE_TEGRA194=m
- CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
- CONFIG_DEVTMPFS=y
- CONFIG_DEVTMPFS_MOUNT=y
--- 
-2.17.1
+> + * LEDs MCU board expects 20 msec delay per byte.
+> + */
+> +
+> +/* EL15203000 default settings */
+> +#define EL_MAX_BRIGHTNESS	2
+> +#define EL_FW_DELAY_USEC	20000
+> +
+> +struct el15203000_led {
+> +	char			name[LED_MAX_NAME_SIZE];
+> +	struct el15203000	*priv;
+> +	struct led_classdev	ldev;
+> +	u8			reg;
+> +};
+> +
+> +struct el15203000 {
+> +	size_t			count;
+> +	struct device		*dev;
+> +	struct mutex		lock;
+> +	struct spi_device	*spi;
+> +	unsigned long		delay;
+> +	struct el15203000_led	leds[];
+> +};
+> +
+> +static int el15203000_set_sync(struct led_classdev *ldev,
+> +			      enum led_brightness brightness)
+> +{
+> +	int			ret;
+> +	u8			cmd[2];
+> +	size_t			i;
+> +	unsigned long		udelay, now;
+> +	struct el15203000_led	*led = container_of(ldev,
+> +						    struct el15203000_led,
+> +						    ldev);
+> +
+> +	mutex_lock(&led->priv->lock);
+> +
+> +	dev_dbg(led->priv->dev, "Set brightness of %s to %d",
+> +		led->name, brightness);
+> +
+> +	/* to avoid SPI mistiming with firmware we should wait some time */
+> +	now = jiffies;
+> +	if (time_after(led->priv->delay, now)) {
+> +		udelay = jiffies_to_usecs(led->priv->delay - now);
+> +
+> +		dev_dbg(led->priv->dev, "Wait %luus to synch", udelay);
+> +		usleep_range(udelay, udelay + 1);
+> +	}
+> +
+> +	cmd[0] = led->reg;
+> +	cmd[1] = 0x30 + (u8)brightness;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(cmd); i++) {
+> +		if (i)
+> +			usleep_range(EL_FW_DELAY_USEC,
+> +				     EL_FW_DELAY_USEC + 1);
+> +
+> +		ret = spi_write(led->priv->spi, &cmd[i], sizeof(cmd[i]));
+> +		if (ret) {
+> +			dev_err(led->priv->dev,
+> +				"spi_write() error %d\n", ret);
+> +			break;
+> +		}
+> +	}
+> +
+> +	led->priv->delay = jiffies + usecs_to_jiffies(EL_FW_DELAY_USEC);
+> +
+> +	mutex_unlock(&led->priv->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int el15203000_probe_dt(struct el15203000 *priv)
+> +{
+> +	size_t			i = 0;
+> +	struct el15203000_led	*led;
+> +	struct fwnode_handle	*child;
+> +	struct device_node	*np;
+> +	int			ret;
+> +	const char		*str;
+> +	u32			reg;
+> +
+> +	device_for_each_child_node(priv->dev, child) {
+> +		np = to_of_node(child);
+> +		led = &priv->leds[i];
+> +
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret) {
+> +			dev_err(priv->dev, "LED without ID number");
+> +			fwnode_handle_put(child);
+> +
+> +			return ret;
+> +		}
+> +		if (reg > U8_MAX) {
+> +			dev_err(priv->dev, "LED value %d is invalid", reg);
+> +			fwnode_handle_put(child);
+> +
+> +			return -ENODEV;
+-EINVAL
+> +		}
+> +		led->reg = reg;
+> +
+> +		ret = fwnode_property_read_string(child, "label", &str);
+> +		if (ret)
+> +			snprintf(led->name, sizeof(led->name),
+> +				 "el15203000::");
+> +		else
+> +			snprintf(led->name, sizeof(led->name),
+> +				 "el15203000:%s", str);
+> +
+> +		fwnode_property_read_string(child, "linux,default-trigger",
+> +					    &led->ldev.default_trigger);
+> +
+> +		led->priv			  = priv;
+> +		led->ldev.name			  = led->name;
+> +		led->ldev.max_brightness	  = LED_ON;
+Do not need this as it should be stored when doing the fwnode read.
+> +		led->ldev.brightness_set_blocking = el15203000_set_sync;
+> +
+> +		ret = fwnode_property_read_u32(child, "max-brightness",
+> +					       &led->ldev.max_brightness);
+> +		if (led->ldev.max_brightness > EL_MAX_BRIGHTNESS) {
+> +			dev_err(priv->dev, "invalid max brightness %d",
+> +				led->ldev.max_brightness);
+> +			fwnode_handle_put(child);
+> +
+> +			return -ENODEV;
 
+-EINVAL
+
+
+> +		}
+> +
+> +		ret = devm_of_led_classdev_register(priv->dev, np,
+> +						    &led->ldev);
+
+please use devm_led_classdev_register then there is no need to set np or 
+store it.
+
+Dan
+
+> +		if (ret) {
+> +			dev_err(priv->dev,
+> +				"failed to register LED device %s, err %d",
+> +				led->name, ret);
+> +			fwnode_handle_put(child);
+> +			return ret;
+> +		}
+> +
+> +		led->ldev.dev->of_node = np;
+> +
+> +		i++;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int el15203000_probe(struct spi_device *spi)
+> +{
+> +	struct el15203000	*priv;
+> +	size_t			count;
+> +	int			ret;
+> +
+> +	count = device_get_child_node_count(&spi->dev);
+> +	if (!count) {
+> +		dev_err(&spi->dev, "LEDs are not defined in device tree!");
+> +		return -ENODEV;
+> +	}
+> +
+> +	priv = devm_kzalloc(&spi->dev, struct_size(priv, leds, count),
+> +			    GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	mutex_init(&priv->lock);
+> +	priv->count	= count;
+> +	priv->dev	= &spi->dev;
+> +	priv->spi	= spi;
+> +	priv->delay	= jiffies -
+> +			  usecs_to_jiffies(EL_FW_DELAY_USEC);
+> +
+> +	ret = el15203000_probe_dt(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	spi_set_drvdata(spi, priv);
+> +	dev_dbg(priv->dev, "%zd LEDs registered", priv->count);
+> +
+> +	return 0;
+> +}
+> +
+> +static int el15203000_remove(struct spi_device *spi)
+> +{
+> +	struct el15203000 *priv = spi_get_drvdata(spi);
+> +
+> +	mutex_destroy(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id el15203000_dt_ids[] = {
+> +	{ .compatible = "crane,el15203000", },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, el15203000_dt_ids);
+> +
+> +static struct spi_driver el15203000_driver = {
+> +	.probe		= el15203000_probe,
+> +	.remove		= el15203000_remove,
+> +	.driver = {
+> +		.name		= KBUILD_MODNAME,
+> +		.of_match_table	= el15203000_dt_ids,
+> +	},
+> +};
+> +
+> +module_spi_driver(el15203000_driver);
+> +
+> +MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
+> +MODULE_DESCRIPTION("el15203000 LED driver");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_ALIAS("spi:el15203000");
