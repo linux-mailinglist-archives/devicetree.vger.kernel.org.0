@@ -2,108 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B31FD3872A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 11:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE28D38792
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 12:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726880AbfFGJk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 05:40:59 -0400
-Received: from verein.lst.de ([213.95.11.211]:55092 "EHLO newverein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725978AbfFGJk7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 05:40:59 -0400
-Received: by newverein.lst.de (Postfix, from userid 2005)
-        id 931BF68C65; Fri,  7 Jun 2019 11:40:30 +0200 (CEST)
-Date:   Fri, 7 Jun 2019 11:40:30 +0200
-From:   Torsten Duwe <duwe@lst.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Harald Geyer <harald@ccbib.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345
- bridge on Teres-I
-Message-ID: <20190607094030.GA12373@lst.de>
-References: <20190604122150.29D6468B05@newverein.lst.de> <20190604122308.98D4868B20@newverein.lst.de> <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com> <20190605101317.GA9345@lst.de> <20190605120237.ekmytfxcwbjaqy3x@flea> <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at> <20190607062802.m5wslx3imiqooq5a@flea>
+        id S1726851AbfFGKCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 06:02:21 -0400
+Received: from mail-eopbgr1410122.outbound.protection.outlook.com ([40.107.141.122]:36128
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726584AbfFGKCU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 06:02:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+Z6z4LvArFmwjk5Kxar9ciw2QDAt5r84X13H7hbm+KM=;
+ b=LOtqTM/lmjtjcbRSBlWhcYZum6zC8oxPYfPz/bJM2F+7bD4HIbxPrsSKKa3/RqSKrK9xH3PdN/NgNouvJ7HLMHJweMrzxV67Cle60t/cwBQHwWMmlaAlECZRdLhsvzfdmFe5B/UuVI82eZDbmBkOPgNvBjiXzpwywTjlIc42+hg=
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
+ TY1PR01MB1882.jpnprd01.prod.outlook.com (52.133.162.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.22; Fri, 7 Jun 2019 10:02:14 +0000
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1965.011; Fri, 7 Jun 2019
+ 10:02:13 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
+Thread-Topic: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
+Thread-Index: AQHVBpxEfaP7dJG4WES76lrhZ+ehP6aQILng
+Date:   Fri, 7 Jun 2019 10:02:13 +0000
+Message-ID: <TY1PR01MB1770D2AAF2ED748575CA4CBFC0100@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+References: <1557429622-31676-1-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1557429622-31676-1-git-send-email-fabrizio.castro@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3bb7a36a-2c04-4062-be2b-08d6eb2f3712
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1882;
+x-ms-traffictypediagnostic: TY1PR01MB1882:
+x-microsoft-antispam-prvs: <TY1PR01MB188207A4899633CE8973AC4EC0100@TY1PR01MB1882.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 0061C35778
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(366004)(376002)(136003)(396003)(39860400002)(199004)(189003)(66946007)(64756008)(66446008)(54906003)(66476007)(66556008)(102836004)(486006)(8676002)(81166006)(25786009)(74316002)(446003)(3846002)(6116002)(2906002)(68736007)(53936002)(7736002)(76176011)(4744005)(305945005)(7696005)(8936002)(99286004)(9686003)(110136005)(6246003)(186003)(6506007)(53546011)(71200400001)(71190400001)(5660300002)(66066001)(316002)(478600001)(52536014)(76116006)(73956011)(81156014)(14454004)(229853002)(476003)(86362001)(11346002)(413944005)(44832011)(55016002)(256004)(4326008)(33656002)(6436002)(26005)(7416002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1882;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: dlDf+dk+pWb+C5qOZMtBKmrGye4JRFEkzhh21Tjj25vParGo5Dymx38yuu2up+iwgEGfhEPE2GGF2CgTpaslhJdwkcZJLwBH7TKeH6Qk/ddPm4KNlRLsON3+BZqCUXaw4g7N/pqPts/wVMrnSNmNlb0BkXMKnpH/OIOyb/PQbf0JVAXULGytIvvfzeq98Pr7Tos5Drs1BE8U2/FzIb1L/t3xgm7TThS1jNG6kNawsf+Iq4M1/2T7R6ku3VkdmqU9fdE+ZhtzRW4g0jltxKkAbYfvLIHctq8ygQ92Fv669md4w5/CuY5rjPSnTKQMB1x4Rm3n2VVgnKMdV/Qt+g6QGSzw0ZTQN7PurozkM2DIGh7dSqu03sRJoX6DGT/Wlr2yw6GqBbf1hT9ALhFmS8tfrCIgaqDDU14lyQBbFR5MT9k=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190607062802.m5wslx3imiqooq5a@flea>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bb7a36a-2c04-4062-be2b-08d6eb2f3712
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2019 10:02:13.7320
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1882
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 07, 2019 at 08:28:02AM +0200, Maxime Ripard wrote:
-> On Thu, Jun 06, 2019 at 03:59:27PM +0200, Harald Geyer wrote:
-> >
-> > If think valid compatible properties would be:
-> > compatible = "innolux,n116bge", "simple-panel";
-> > compatible = "edp-connector", "simple-panel";
-> 
-> A connector isn't a panel.
-> 
-> > compatible = "innolux,n116bge", "edp-connector", "simple-panel";
-> 
-> And the innolux,n116bge is certainly not a connector either.
-> 
-> > compatible = "edp-connector", "innolux,n116bge", "simple-panel";
-> >
-> > I can't make up my mind which one I prefere. However neither of these
-> > variants requires actually implmenting an edp-connector driver.
-> 
-> No-one asked to do an edp-connector driver. You should use it in your
-> DT, but if you want to have some code in your driver that parses the
-> DT directly, I'm totally fine with that.
+Dear All,
 
-I must admit I fail to understand what that extra node would be good for.
-Logically, the eDP far side is connected to the well-known n116bge.
-Inside the laptop case it might as well be a flat ribbon cable or
-soldered directly.
-In good intention, that's all I wanted to express in the DT. I don't
-know whether the relevant mechanical dimensions of the panel and the
-connector are standardised, so whether one could in theory assemble it
-with a different panel than the one it came with.
+These patches have been around for a very long time now, is anybody willing=
+ to take them?
 
-OTOH, as I checked during the discussion with anarsoul, the panel's
-supply voltage is permanently connected to the main 3.3V rail.
-We already agreed that the eDP output port must not neccessarily be
-specified, this setup is a good example why: because the panel is
-always powered, the anx6345 can always pull valid EDID data from it
-so at this stage there's no need for any OS driver to reach beyond
-the bridge. IIRC even the backlight got switched off for the blank
-screen without.
+Cheers,
+Fab
 
-All I wanted to say is that "there's usually an n116bge behind it";
-but this is mostly redundant.
-
-So, shall we just drop the output port specification (along with the
-panel node) in order to get one step further?
-
-> I guess you should describe why do you think it's "clear", because I'm
-> not sure this is obvious for everyone here. eDP allows to discover
-> which device is on the other side and its supported timings, just like
-> HDMI for example (or regular DP, for that matter). Would you think
-> it's clearly preferable to ship a DT with the DP/HDMI monitor
-> connected on the other side exposed as a panel as well?
-
-Well, as I wrote: "in good intention". That's the panel that comes with
-the kit but it is very well detected automatically, just like you describe.
-
-So, just leave it out?
-
-	Torsten
+> From: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> Sent: 09 May 2019 20:20
+> Subject: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
+>=20
+> Dear All,
+>=20
+> I am reposting some CAN and CANFD related dt-bindings changes for
+> Renesas' R-Car and RZ/G devices that have been originally sent
+> end of last year and beginning of this year.
+>=20
+> Thanks,
+> Fab
+>=20
+> Fabrizio Castro (3):
+>   dt-bindings: can: rcar_can: Fix RZ/G2 CAN clocks
+>   dt-bindings: can: rcar_can: Add r8a774c0 support
+>   dt-bindings: can: rcar_canfd: document r8a774c0 support
+>=20
+> Marek Vasut (2):
+>   dt-bindings: can: rcar_canfd: document r8a77965 support
+>   dt-bindings: can: rcar_canfd: document r8a77990 support
+>=20
+>  Documentation/devicetree/bindings/net/can/rcar_can.txt   | 13 ++++------=
+---
+>  Documentation/devicetree/bindings/net/can/rcar_canfd.txt | 16 ++++++++++=
+------
+>  2 files changed, 14 insertions(+), 15 deletions(-)
+>=20
+> --
+> 2.7.4
 
