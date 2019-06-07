@@ -2,129 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A48D38C35
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 16:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16ABE38C41
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 16:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728834AbfFGOI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 10:08:58 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35578 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727840AbfFGOI5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 10:08:57 -0400
-Received: by mail-io1-f68.google.com with SMTP id m24so1514512ioo.2;
-        Fri, 07 Jun 2019 07:08:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pCTc9jsipUoi63VdTLHDq+J3b8osAzXSjDn0slmiFY4=;
-        b=oZzuXtFmut9n4jR87BPzOqCINKRM9d9nSOlA6LqyRGYVMnHoDIUSN9iFKe90wej7tj
-         ER264ZUFfBAIEY7euu1cZrEfDEYSPp1k0fUGak9xE4t3kiVlffd9gM6ifqgbIsLm0wQT
-         EXMSkFJAQxgYbX4a/bNoZiaxCcIzhpCcFC8l4ydxf7k4krU3sb05f4qZAtfeb5dsW+Zk
-         UkTV30CxUjgiJghfILJ3nDVUnr8+55ZF3+0gu1qLivvcLNjC6yfjL8nf5lmjjlwcneqQ
-         2xWGjRySqeiw2Gd4OVJpRzLJQ9KmFmZV4xJTMWPDTp4DspPpPCbJWx3pjTe8ZxPlb6QB
-         Rjlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pCTc9jsipUoi63VdTLHDq+J3b8osAzXSjDn0slmiFY4=;
-        b=pOoJ/nFaKP1jDW2JnG66Uta608iDW3JQ+2mrdW8dyqrF+zyaiqeLZs+cSUfCgAQUbC
-         B2CfQEB1J+gYr7iMlwpzSNXERJyBo/uaqwMsjft114YVmMla97tszl79VP/QTzqP7Suw
-         uytPWnubjPpW577vWGBwjQgawFmRNBQdSm+c8+ExyYEUP8Nsth7fX47dba7SXguQwpLi
-         uO4axy8FIS4UmXjEZN+2Qcz1s/boCqEXkj26jwvGTGPJEG9keG8RoGl6/NaRk0T48jim
-         1PCK+yFZCVLnpx4r0DMJ1kDEUCENenvuDtS0tHhtymovlAiS1qKAnlL7+5FcrhB1RMca
-         soFw==
-X-Gm-Message-State: APjAAAUwLzxOpMYkCCYGBhoWYDiltf2Yf2AHvdvTRRayF0xWuYfVgrDb
-        0nVoQcEHFumWsd1g7+itEW95EaE36PLZcoyFLYc=
-X-Google-Smtp-Source: APXvYqwbSPhjuuMf9/v2tEx2rOUvzTVYr08r5T2FJscY80vogA7xlSoSgNUAMJ8dWw2gCLnxFBofO3r6QgiBpUMMqxE=
-X-Received: by 2002:a05:6602:2001:: with SMTP id y1mr15641346iod.166.1559916536908;
- Fri, 07 Jun 2019 07:08:56 -0700 (PDT)
+        id S1728795AbfFGOKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 10:10:49 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:1800 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727840AbfFGOKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 10:10:49 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cfa70640000>; Fri, 07 Jun 2019 07:10:44 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 07 Jun 2019 07:10:46 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 07 Jun 2019 07:10:46 -0700
+Received: from [10.25.74.159] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 7 Jun
+ 2019 14:10:40 +0000
+Subject: Re: [PATCH V8 14/15] PCI: tegra: Add Tegra194 PCIe support
+To:     Dmitry Osipenko <digetx@gmail.com>, <lorenzo.pieralisi@arm.com>,
+        <bhelgaas@google.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
+        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
+        <gustavo.pimentel@synopsys.com>
+CC:     <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190526043751.12729-1-vidyas@nvidia.com>
+ <20190526043751.12729-15-vidyas@nvidia.com>
+ <f30e7fc6-3f64-d321-c32c-5e273115a869@gmail.com>
+ <cbdac43f-32f7-c992-832b-ed40bef2375b@gmail.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <06f2f74e-d618-8688-14ae-beb4920bcbf6@nvidia.com>
+Date:   Fri, 7 Jun 2019 19:40:37 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190528164616.38517-1-jeffrey.l.hugo@gmail.com>
- <20190528164803.38642-1-jeffrey.l.hugo@gmail.com> <20190606230050.2F33720645@mail.kernel.org>
-In-Reply-To: <20190606230050.2F33720645@mail.kernel.org>
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Date:   Fri, 7 Jun 2019 08:08:46 -0600
-Message-ID: <CAOCk7NqYptsLkYyfUCSvh0J0FZd_9gPDZJoyjB5Ng4v8aLFUNw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] clk: qcom: Add MSM8998 GPU Clock Controller (GPUCC) driver
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        MSM <linux-arm-msm@vger.kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <cbdac43f-32f7-c992-832b-ed40bef2375b@gmail.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559916644; bh=kCVs7s3ql5eXfQ55yWGJage7yhSr4zC1epcNDEDiQoA=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=iFEBpn0KD8A+Ae9ZNga92KTXdb4eRIXGYSolKJ129/Ih0D1VroYuNzwTITR4m0AJB
+         1r+6arN8Ukdw/epqAKK07/e42nCmH11KLtIC+51rgz6DmxeQ1dTBExseCXKFJIEBA6
+         uAur9CD7FEeYayB+wmanCY8ksw08o4OQB78/VE23vi0QIrdUDQi/bjQkjTvulbCHsB
+         aKLyXU8kv5fS8lDWRSvru8XKx+qmRfYVD3XWiK6mLx4+oa3+bTIXQXR4H8pbF3eVbd
+         WHLImrSDuG6C3CVREjsuPbYC5pG530GYSWCdinsboCchx2TI+pbAmxcF767bW+Wr87
+         iHohkMdb9oy+g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 6, 2019 at 5:00 PM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Jeffrey Hugo (2019-05-28 09:48:03)
-> > diff --git a/drivers/clk/qcom/gpucc-msm8998.c b/drivers/clk/qcom/gpucc-msm8998.c
-> > new file mode 100644
-> > index 000000000000..e45062e40718
-> > --- /dev/null
-> > +++ b/drivers/clk/qcom/gpucc-msm8998.c
-> > +
-> > +static int gpucc_msm8998_probe(struct platform_device *pdev)
-> > +{
-> > +       struct regmap *regmap;
-> > +       struct clk *xo;
-> > +
-> > +       /*
-> > +        * We must have a valid XO to continue until orphan probe defer is
-> > +        * implemented.
-> > +        */
-> > +       xo = clk_get(&pdev->dev, "xo");
->
-> Why is this necessary?
+On 6/7/2019 12:22 AM, Dmitry Osipenko wrote:
+> 06.06.2019 19:35, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> 26.05.2019 7:37, Vidya Sagar =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>> Add support for Synopsys DesignWare core IP based PCIe host controller
+>>> present in Tegra194 SoC.
+>>>
+>>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>>> ---
+>>> Changes since [v7]:
+>>> * Addressed review comments from Thierry
+>>>
+>>> Changes since [v6]:
+>>> * Removed code around "nvidia,disable-aspm-states" DT property
+>>> * Refactored code to remove code duplication
+>>>
+>>> Changes since [v5]:
+>>> * Addressed review comments from Thierry
+>>>
+>>> Changes since [v4]:
+>>> * None
+>>>
+>>> Changes since [v3]:
+>>> * None
+>>>
+>>> Changes since [v2]:
+>>> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
+>>> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
+>>> * Removed .runtime_suspend() & .runtime_resume() implementations
+>>>
+>>> Changes since [v1]:
+>>> * Made CONFIG_PCIE_TEGRA194 as 'm' by default from its previous 'y' sta=
+te
+>>> * Modified code as per changes made to DT documentation
+>>> * Refactored code to address Bjorn & Thierry's review comments
+>>> * Added goto to avoid recursion in tegra_pcie_dw_host_init() API
+>>> * Merged .scan_bus() of dw_pcie_host_ops implementation to tegra_pcie_d=
+w_host_init() API
+>>>
+>>>   drivers/pci/controller/dwc/Kconfig         |   10 +
+>>>   drivers/pci/controller/dwc/Makefile        |    1 +
+>>>   drivers/pci/controller/dwc/pcie-tegra194.c | 1621 +++++++++++++++++++=
++
+>>>   3 files changed, 1632 insertions(+)
+>>>   create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+>>>
+>>> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controlle=
+r/dwc/Kconfig
+>>> index a6ce1ee51b4c..884112afc11b 100644
+>>> --- a/drivers/pci/controller/dwc/Kconfig
+>>> +++ b/drivers/pci/controller/dwc/Kconfig
+>>> @@ -220,6 +220,16 @@ config PCI_MESON
+>>>   	  and therefore the driver re-uses the DesignWare core functions to
+>>>   	  implement the driver.
+>>>  =20
+>>> +config PCIE_TEGRA194
+>>> +	tristate "NVIDIA Tegra194 (and later) PCIe controller"
+>>> +	depends on (TEGRA_BPMP && ARCH_TEGRA) || COMPILE_TEST
+>>
+>> TEGRA_BPMP will be enough here as it depends on other relevant options.
+>>
+>> Hence I mean:
+>>
+>> 	depends on TEGRA_BPMP || COMPILE_TEST
+>=20
+> Maybe it's worth to even change TEGRA_BPMP to ARCH_TEGRA_194_SOC.
+> Although then you'll have to extend it with other platforms later on,
+> but probably that's fine.
+I received an explicit comment previously to make this dependent on TEGRA_B=
+PMP
+as the driver is using APIs to get certain jobs done by BPMP-FW. But, since
+we can't boot kernel in the first place without having BPMP-FW in place, I =
+think
+it should be fine to make it dependent on ARCH_TEGRA_194_SOC directly.
 
-As you well know, XO is the root clock for pretty much everything on
-Qualcomm platforms.  We are trying to do things "properly" on 8998.
-We are planning on having rpmcc manage it (see my other series), and
-all the other components consume xo from there.  Unfortunately we
-cannot control the probe order, particularly when things are built as
-modules, so its possible gpucc might be the first thing to probe.
-Currently, the clock framework will allow that since everything in
-gpucc will just be an orphan.  However that doesn't prevent gpucc
-consumers from grabbing their clocks, and we've seen that cause
-issues.
+>=20
+>>
+>>> +	depends on PCI_MSI_IRQ_DOMAIN
+>>
+>> You probably want to s/depends on/select/ PCI_MSI_IRQ_DOMAIN, don't you?
+>>
+>=20
+> I actually looked up the PCI_MSI_IRQ_DOMAIN and it is correct in your
+> case, my bad.
+>=20
 
-As you've previously explained, you have a ton of work to do to
-refactor things so that a clock will probe defer if its dependencies
-are not present.  We'd prefer that functionality, but are not really
-willing to wait for it.  Thus, we are implementing the same
-functionality in the driver until the framework handles it for us, at
-which point we'll gladly rip this out.
-
->
-> > +       if (IS_ERR(xo))
-> > +               return PTR_ERR(xo);
-> > +       clk_put(xo);
-> > +
-> > +       regmap = qcom_cc_map(pdev, &gpucc_msm8998_desc);
-> > +       if (IS_ERR(regmap))
-> > +               return PTR_ERR(regmap);
-> > +
-> > +       /* force periph logic on to acoid perf counter corruption */
->
-> avoid?
-
-Yes.  Do you want a v3 with this fixed?
-
->
-> > +       regmap_write_bits(regmap, gfx3d_clk.clkr.enable_reg, BIT(13), BIT(13));
-> > +       /* tweak droop detector (GPUCC_GPU_DD_WRAP_CTRL) to reduce leakage */
-> > +       regmap_write_bits(regmap, gfx3d_clk.clkr.enable_reg, BIT(0), BIT(0));
-> > +
-> > +       return qcom_cc_really_probe(pdev, &gpucc_msm8998_desc, regmap);
-> > +}
-> > +
