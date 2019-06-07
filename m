@@ -2,318 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21FF03953E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 21:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F38039548
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 21:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729841AbfFGTEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 15:04:08 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:41294 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729764AbfFGTEI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 15:04:08 -0400
-Received: from oleh-pc.lan (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id 3F53F1A20B58;
-        Fri,  7 Jun 2019 22:04:04 +0300 (EEST)
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org
-Cc:     Oleh Kravchenko <oleg@kaa.org.ua>
-Subject: [PATCH v2 2/2] leds: add LED driver for EL15203000 board
-Date:   Fri,  7 Jun 2019 22:03:51 +0300
-Message-Id: <20190607190351.14092-2-oleg@kaa.org.ua>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728738AbfFGTHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 15:07:16 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:39364 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728727AbfFGTHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 15:07:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=+tUmJIy3CbEFchUytsXWp6t66QqGoPGh2GzgBgkAhjQ=; b=OUPOKv1YtcnU
+        EC2+fiMt2g5UBpPUCWyCRGPrxZasxwBrhh8k8vGX5S90SiEuYyMH7z0N4C59/WBzlH5CbJRscU76Y
+        ppSn3qyhS+LWx4aogD5y+suoFd8OTGKVeRLJUwURuJto5vYGPcU/a/xcTrHrbqpt5QyE/iIwaAfZq
+        gtJ1I=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hZKCh-0003gB-VK; Fri, 07 Jun 2019 19:07:08 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 50C1E440046; Fri,  7 Jun 2019 20:07:07 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
+        alsa-devel@alsa-project.org,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        devicetree@vger.kernel.org, Hugues Fruchet <hugues.fruchet@st.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Applied "ASoC: dt-bindings: fix some broken links from txt->yaml conversion" to the asoc tree
+In-Reply-To: <effeafed3023d8dc5f2440c8d5637ea31c02a533.1559933665.git.mchehab+samsung@kernel.org>
+X-Patchwork-Hint: ignore
+Message-Id: <20190607190707.50C1E440046@finisterre.sirena.org.uk>
+Date:   Fri,  7 Jun 2019 20:07:07 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a LED class driver for the RGB LEDs found on
-the Crane Merchandising System EL15203000 LEDs board
-(aka RED LEDs board).
+The patch
 
-Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+   ASoC: dt-bindings: fix some broken links from txt->yaml conversion
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 6c0215f5d9f2a1fa5cab2ca320a41d9f19cfa80c Mon Sep 17 00:00:00 2001
+From: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Date: Fri, 7 Jun 2019 15:54:33 -0300
+Subject: [PATCH] ASoC: dt-bindings: fix some broken links from txt->yaml
+ conversion
+
+Some new files got converted to yaml, but references weren't
+updated accordingly.
+
+Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/leds/Kconfig           |  13 ++
- drivers/leds/Makefile          |   1 +
- drivers/leds/leds-el15203000.c | 230 +++++++++++++++++++++++++++++++++
- 3 files changed, 244 insertions(+)
- create mode 100644 drivers/leds/leds-el15203000.c
+ Documentation/devicetree/bindings/media/st,stm32-dcmi.txt | 2 +-
+ Documentation/devicetree/bindings/sound/st,stm32-i2s.txt  | 2 +-
+ Documentation/devicetree/bindings/sound/st,stm32-sai.txt  | 2 +-
+ MAINTAINERS                                               | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 71be87bdb926..ae293a0f7598 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -128,6 +128,19 @@ config LEDS_CR0014114
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-cr0014114.
+diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt b/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
+index 249790a93017..3122ded82eb4 100644
+--- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
++++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
+@@ -11,7 +11,7 @@ Required properties:
+ - clock-names: must contain "mclk", which is the DCMI peripherial clock
+ - pinctrl: the pincontrol settings to configure muxing properly
+            for pins that connect to DCMI device.
+-           See Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt.
++           See Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml.
+ - dmas: phandle to DMA controller node,
+         see Documentation/devicetree/bindings/dma/stm32-dma.txt
+ - dma-names: must contain "tx", which is the transmit channel from DCMI to DMA
+diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt b/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt
+index 58c341300552..cbf24bcd1b8d 100644
+--- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt
++++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt
+@@ -18,7 +18,7 @@ Required properties:
+     See Documentation/devicetree/bindings/dma/stm32-dma.txt.
+   - dma-names: Identifier for each DMA request line. Must be "tx" and "rx".
+   - pinctrl-names: should contain only value "default"
+-  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt
++  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
  
-+config LEDS_EL15203000
-+	tristate "LED Support for Crane EL15203000"
-+	depends on LEDS_CLASS
-+	depends on SPI
-+	depends on OF
-+	help
-+	  This option enables support for EL15203000 LED Board which
-+	  is widely used in coffee vending machines produced by
-+	  Crane Merchandising Systems.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-el15203000.
-+
- config LEDS_LM3530
- 	tristate "LCD Backlight driver for LM3530"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 1e9702ebffee..1f193ffc2feb 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -85,6 +85,7 @@ obj-$(CONFIG_LEDS_LM3601X)		+= leds-lm3601x.o
- # LED SPI Drivers
- obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
- obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
-+obj-$(CONFIG_LEDS_EL15203000)		+= leds-el15203000.o
+ Optional properties:
+   - resets: Reference to a reset controller asserting the reset controller
+diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.txt b/Documentation/devicetree/bindings/sound/st,stm32-sai.txt
+index 3f4467ff0aa2..944743dd9212 100644
+--- a/Documentation/devicetree/bindings/sound/st,stm32-sai.txt
++++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.txt
+@@ -41,7 +41,7 @@ SAI subnodes required properties:
+ 	"tx": if sai sub-block is configured as playback DAI
+ 	"rx": if sai sub-block is configured as capture DAI
+   - pinctrl-names: should contain only value "default"
+-  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt
++  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
  
- # LED Userspace Drivers
- obj-$(CONFIG_LEDS_USER)			+= uleds.o
-diff --git a/drivers/leds/leds-el15203000.c b/drivers/leds/leds-el15203000.c
-new file mode 100644
-index 000000000000..5598c3bc835d
---- /dev/null
-+++ b/drivers/leds/leds-el15203000.c
-@@ -0,0 +1,230 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Crane Merchandising Systems. All rights reserved.
-+// Copyright (C) 2019 Oleh Kravchenko <oleg@kaa.org.ua>
-+
-+#include <linux/delay.h>
-+#include <linux/leds.h>
-+#include <linux/limits.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi.h>
-+#include <uapi/linux/uleds.h>
-+
-+/*
-+ * EL15203000 SPI protocol descrtiption:
-+ * +-----+------------+
-+ * | LED | BRIGHTNESS |
-+ * +-----+------------+
-+ * |  1  |      1     |
-+ * +-----+------------+
-+ *
-+ * LED		ID, known values is 0x50 (Pipe), 0x53 (Screen Frame) and
-+ * 		0x56 (Vending Area);
-+ * BRIGHTNESS	Can be 0x30 (OFF), 0x31 (ON).
-+ * 		0x32 (Effect) can be used for 0x50 (leaking) and
-+ * 		for 0x53 (blinking).
-+ *
-+ * LEDs MCU board expects 20 msec delay per byte.
-+ */
-+
-+/* EL15203000 default settings */
-+#define EL_MAX_BRIGHTNESS	2
-+#define EL_FW_DELAY_USEC	20000
-+
-+struct el15203000_led {
-+	char			name[LED_MAX_NAME_SIZE];
-+	struct el15203000	*priv;
-+	struct led_classdev	ldev;
-+	u8			reg;
-+};
-+
-+struct el15203000 {
-+	size_t			count;
-+	struct device		*dev;
-+	struct mutex		lock;
-+	struct spi_device	*spi;
-+	unsigned long		delay;
-+	struct el15203000_led	leds[];
-+};
-+
-+static int el15203000_set_sync(struct led_classdev *ldev,
-+			      enum led_brightness brightness)
-+{
-+	int			ret;
-+	u8			cmd[2];
-+	size_t			i;
-+	unsigned long		udelay, now;
-+	struct el15203000_led	*led = container_of(ldev,
-+						    struct el15203000_led,
-+						    ldev);
-+
-+	mutex_lock(&led->priv->lock);
-+
-+	dev_dbg(led->priv->dev, "Set brightness of %s to %d",
-+		led->name, brightness);
-+
-+	/* to avoid SPI mistiming with firmware we should wait some time */
-+	now = jiffies;
-+	if (time_after(led->priv->delay, now)) {
-+		udelay = jiffies_to_usecs(led->priv->delay - now);
-+
-+		dev_dbg(led->priv->dev, "Wait %luus to synch", udelay);
-+		usleep_range(udelay, udelay + 1);
-+	}
-+
-+	cmd[0] = led->reg;
-+	cmd[1] = 0x30 + (u8)brightness;
-+
-+	for (i = 0; i < ARRAY_SIZE(cmd); i++) {
-+		if (i)
-+			usleep_range(EL_FW_DELAY_USEC,
-+				     EL_FW_DELAY_USEC + 1);
-+
-+		ret = spi_write(led->priv->spi, &cmd[i], sizeof(cmd[i]));
-+		if (ret) {
-+			dev_err(led->priv->dev,
-+				"spi_write() error %d\n", ret);
-+			break;
-+		}
-+	}
-+
-+	led->priv->delay = jiffies + usecs_to_jiffies(EL_FW_DELAY_USEC);
-+
-+	mutex_unlock(&led->priv->lock);
-+
-+	return ret;
-+}
-+
-+static int el15203000_probe_dt(struct el15203000 *priv)
-+{
-+	size_t			i = 0;
-+	struct el15203000_led	*led;
-+	struct fwnode_handle	*child;
-+	int			ret;
-+	const char		*str;
-+	u32			reg;
-+
-+	device_for_each_child_node(priv->dev, child) {
-+		led = &priv->leds[i];
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret) {
-+			dev_err(priv->dev, "LED without ID number");
-+			fwnode_handle_put(child);
-+
-+			return ret;
-+		}
-+		if (reg > U8_MAX) {
-+			dev_err(priv->dev, "LED value %d is invalid", reg);
-+			fwnode_handle_put(child);
-+
-+			return -EINVAL;
-+		}
-+		led->reg = reg;
-+
-+		ret = fwnode_property_read_string(child, "label", &str);
-+		if (ret)
-+			snprintf(led->name, sizeof(led->name),
-+				 "el15203000::");
-+		else
-+			snprintf(led->name, sizeof(led->name),
-+				 "el15203000:%s", str);
-+
-+		fwnode_property_read_string(child, "linux,default-trigger",
-+					    &led->ldev.default_trigger);
-+
-+		led->priv			  = priv;
-+		led->ldev.name			  = led->name;
-+		led->ldev.max_brightness	  = LED_ON;
-+		led->ldev.brightness_set_blocking = el15203000_set_sync;
-+
-+		ret = fwnode_property_read_u32(child, "max-brightness",
-+					       &led->ldev.max_brightness);
-+		if (led->ldev.max_brightness > EL_MAX_BRIGHTNESS) {
-+			dev_err(priv->dev, "invalid max brightness %d",
-+				led->ldev.max_brightness);
-+			fwnode_handle_put(child);
-+
-+			return -EINVAL;
-+		}
-+
-+		ret = devm_led_classdev_register(priv->dev, &led->ldev);
-+		if (ret) {
-+			dev_err(priv->dev,
-+				"failed to register LED device %s, err %d",
-+				led->name, ret);
-+			fwnode_handle_put(child);
-+			return ret;
-+		}
-+
-+		i++;
-+	}
-+
-+	return ret;
-+}
-+
-+static int el15203000_probe(struct spi_device *spi)
-+{
-+	struct el15203000	*priv;
-+	size_t			count;
-+	int			ret;
-+
-+	count = device_get_child_node_count(&spi->dev);
-+	if (!count) {
-+		dev_err(&spi->dev, "LEDs are not defined in device tree!");
-+		return -ENODEV;
-+	}
-+
-+	priv = devm_kzalloc(&spi->dev, struct_size(priv, leds, count),
-+			    GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	mutex_init(&priv->lock);
-+	priv->count	= count;
-+	priv->dev	= &spi->dev;
-+	priv->spi	= spi;
-+	priv->delay	= jiffies -
-+			  usecs_to_jiffies(EL_FW_DELAY_USEC);
-+
-+	ret = el15203000_probe_dt(priv);
-+	if (ret)
-+		return ret;
-+
-+	spi_set_drvdata(spi, priv);
-+	dev_dbg(priv->dev, "%zd LEDs registered", priv->count);
-+
-+	return 0;
-+}
-+
-+static int el15203000_remove(struct spi_device *spi)
-+{
-+	struct el15203000 *priv = spi_get_drvdata(spi);
-+
-+	mutex_destroy(&priv->lock);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id el15203000_dt_ids[] = {
-+	{ .compatible = "crane,el15203000", },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, el15203000_dt_ids);
-+
-+static struct spi_driver el15203000_driver = {
-+	.probe		= el15203000_probe,
-+	.remove		= el15203000_remove,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= el15203000_dt_ids,
-+	},
-+};
-+
-+module_spi_driver(el15203000_driver);
-+
-+MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
-+MODULE_DESCRIPTION("el15203000 LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("spi:el15203000");
+ SAI subnodes Optional properties:
+   - st,sync: specify synchronization mode.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5cfbea4ce575..b3d686fba562 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1288,7 +1288,7 @@ ARM PRIMECELL SSP PL022 SPI DRIVER
+ M:	Linus Walleij <linus.walleij@linaro.org>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/spi/spi_pl022.txt
++F:	Documentation/devicetree/bindings/spi/spi-pl022.yaml
+ F:	drivers/spi/spi-pl022.c
+ 
+ ARM PRIMECELL UART PL010 AND PL011 DRIVERS
 -- 
-2.21.0
+2.20.1
 
