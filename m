@@ -2,79 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8499A3990E
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BEA239922
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:50:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729787AbfFGWkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 18:40:05 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:34520 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728749AbfFGWkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:40:05 -0400
-Received: by mail-lj1-f194.google.com with SMTP id j24so3069715ljg.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 15:40:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2He8fM7kcXQfsornTR9w4EIW8ewTHe/YWrAox5h8fVA=;
-        b=Y1wzQSw3xyLXOije8DwbtzUeT40ID/RB3K6j9lA9ycHeOawwFiOB2UGDToQY9iptd8
-         qdB0PTbgAPUdAs5j6OGLikt0UDPGJVvwRx3MQrFm1sa/4ive4N+MZEH1ZdRZkWTj7jan
-         Ea4lmsPTV1MmZvUaLuyQ+1N202QQE1+a5jt06n7dyjTuxVkLeGD862oU7Yv/bwPfI6Ek
-         /0wcCoDdB4M+BU3QmL1/uR/m3vbdS1Xuj9DKutHK5+rObzRUXA/CJBp+n7yQU+Lsvz5R
-         vbfHWFBswsWYELI4G8Akq5VXlkm870a6aSKiOWw2ejytuYdUkwWGVItwc6Dc/nd3xNkF
-         S0/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2He8fM7kcXQfsornTR9w4EIW8ewTHe/YWrAox5h8fVA=;
-        b=WI1MU4iZzl5QPP+pgdbDxzWHpMAwWI8ntp3Q2LOQqNmFKU7z9rrQb6MIRNa4W/FmnC
-         VnxUagj6obv8uKrbC3y/thvdVDlj6i834OX+oVvFVUvbYgfUHs5j5uhurjhcT/H6/R8z
-         423IxBKKtdwrUapeZzhqFu4hqYqjB2dlSpOUDmF2ammGOrxyTJ9bVQ6kpCNHzBrMgClk
-         CBBn/CDySZnO3uY2ijZZRCELYAE5fXl8Cao1wFt1moBEY0tJUocE8vOedyxxUCM7byKw
-         dkpIQVi2wkRugqL+f1apNISKx5kJTXh4ON4OhL+9YwhrIS3R0Y6GcPgqkF741dJcki6e
-         59LA==
-X-Gm-Message-State: APjAAAV2ohUREiuP0E7x5XHU0J3vNT+7HrLVLlRhbZTSa6FB/oFIGKFK
-        4mpWh+Q2cMYDSnJg/4F0vpH5RqxGnn/kPsnMks+iZA==
-X-Google-Smtp-Source: APXvYqx/VwNEsPm3ayxAU3renmpKyYQsiC7r4U3mSDqbHCSnM+jZ3lPRwPTRSWn4x0qqtNvr8hw2rES8YOA2GkaI/gY=
-X-Received: by 2002:a2e:9e85:: with SMTP id f5mr23363303ljk.104.1559947203348;
- Fri, 07 Jun 2019 15:40:03 -0700 (PDT)
+        id S1729924AbfFGWuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 18:50:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59794 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728756AbfFGWui (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 18:50:38 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 02A5D20868;
+        Fri,  7 Jun 2019 22:50:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559947838;
+        bh=ApxVfHs8JnkHiww93//1LZR4TXbvN/4IO2MtYEzl9mo=;
+        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
+        b=xfujo2GLbkIM+KKtYFuiV81Iew3/QJfwEMbo2anGI8s4SiwI07Ah1j2/ciUOhTDOO
+         q3goGaFH8UPTc3Ej7pzCV+vxygsPZnRYStoVowZC3Jxm6bRTeQ9ni5Ny2lOQ1txxv7
+         PtMvH0dcM+c/REo3Y1kZ5cZB/lRKUS2wrJhduqGA=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20190606095620.6211-1-j-keerthy@ti.com> <20190606095620.6211-2-j-keerthy@ti.com>
-In-Reply-To: <20190606095620.6211-2-j-keerthy@ti.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 8 Jun 2019 00:39:55 +0200
-Message-ID: <CACRpkdY-yK3+uZvq1Xk7qJ2Nd7mgRkQ9C22AYO4AiZP5Cs719w@mail.gmail.com>
-Subject: Re: [RFC RESEND PATCH v2 1/4] dt-bindings: gpio: davinci: Add k3
- am654 compatible
-To:     Keerthy <j-keerthy@ti.com>
-Cc:     Tero Kristo <t-kristo@ti.com>, ext Nishanth Menon <nm@ti.com>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1559944794.11351.0@crapouillou.net>
+References: <20190521145141.9813-1-paul@crapouillou.net> <20190521145141.9813-6-paul@crapouillou.net> <20190607212819.A5FAE208C3@mail.kernel.org> <1559944794.11351.0@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        James Hogan <jhogan@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mathieu Malaterre <malat@debian.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-clk@vger.kernel.org, od@zcrc.me
+Subject: Re: [PATCH v12 05/13] clk: ingenic: Add driver for the TCU clocks
+User-Agent: alot/0.8.1
+Date:   Fri, 07 Jun 2019 15:50:37 -0700
+Message-Id: <20190607225038.02A5D20868@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 6, 2019 at 11:55 AM Keerthy <j-keerthy@ti.com> wrote:
+Quoting Paul Cercueil (2019-06-07 14:59:54)
+> Hi Stephen, thanks for the review.
+> > Quoting Paul Cercueil (2019-05-21 07:51:33)
+> >>  diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
+> >>  new file mode 100644
+> >>  index 000000000000..7249225a6994
+> >>  --- /dev/null
+> >>  +++ b/drivers/clk/ingenic/tcu.c
+> >>  @@ -0,0 +1,458 @@
+> >>  +// SPDX-License-Identifier: GPL-2.0
+> >>  +/*
+> >>  + * JZ47xx SoCs TCU clocks driver
+> >>  + * Copyright (C) 2019 Paul Cercueil <paul@crapouillou.net>
+> >>  + */
+> >>  +
+> >>  +#include <linux/clk.h>
+> >>  +#include <linux/clk-provider.h>
+> >>  +#include <linux/clkdev.h>
+> >>  +#include <linux/clockchips.h>
+> >>  +#include <linux/mfd/ingenic-tcu.h>
+> >>  +#include <linux/regmap.h>
+> >>  +
+> >>  +#include <dt-bindings/clock/ingenic,tcu.h>
+> >>  +
+> >>  +/* 8 channels max + watchdog + OST */
+> >>  +#define TCU_CLK_COUNT  10
+> >>  +
+> >>  +#define TCU_ERR(...) pr_crit("ingenic-tcu-clk: " __VA_ARGS__)
+> >=20
+> > Why is it pr_crit instead of pr_err()?
+>=20
+> If the TCU timer clocks are not provided for any reason, the system
+> will have no timer, and the kernel will hang very early in the init
+> process. That's why I chose pr_crit().
 
-> The patch adds k3 am654 compatible, specific properties and
-> an example.
->
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
+HMm. So maybe it should be TCU_CRIT() then? Or just drop the wrapper
+macro and define a pr_fmt for this file that has ingenic-tcu-clk: for
+it?
 
-Patch applied with the three others, so now all
-GPIO changes are in tree.
+>=20
+> Most of the code here works without a struct device, it wouldn't be=20
+> easy to
+> get it to work with runtime PM.
+>=20
+> I can enable the "tcu" clock in the probe and just gate/ungate it in the
+> suspend/resume callbacks, that would work just fine. We don't need=20
+> anything
+> fancy here.
 
-Please funnel all the DTS changes through ARM SoC.
+OK. That sounds like a better approach to gate and ungate in
+suspend/resume.
 
-Yours,
-Linus Walleij
