@@ -2,79 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46CFF383A0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 07:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB24E383B6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 07:24:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726107AbfFGFA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 01:00:56 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:42896 "EHLO
+        id S1726336AbfFGFYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 01:24:37 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:39274 "EHLO
         mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726010AbfFGFA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 01:00:56 -0400
-Received: by mail-pl1-f196.google.com with SMTP id go2so332830plb.9
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 22:00:56 -0700 (PDT)
+        with ESMTP id S1726324AbfFGFYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 01:24:36 -0400
+Received: by mail-pl1-f196.google.com with SMTP id g9so361232plm.6
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 22:24:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=date:from:to:cc:subject:in-reply-to:message-id:references
          :user-agent:mime-version;
-        bh=GNyxhCfsORr2e6M8vPY8+L5gnSVQwdktACAugcErG1s=;
-        b=TNIHxn+tFESTWzJW+ZyuBRPd3t6RRyEnrDKP4AiawT/1wDdQyioePTAqbomtN0wWN2
-         y1c0b+3ePB/bOyDr+kf8D84Vc1txJKud22aFGd2KVgCwyqnLylvrnJWDrXvj33vqGOpN
-         OjLtZ+kqyLxgTCVJxkSpI71SYb/v4U6fH1gaOaHKHbcc70mxuZu/GuXAVp81oMqIknE8
-         2kQSUVCdXR68/ViRhMKfv/UXz7kH2otBS6Bo8LA9tb6J9JCEoXc5+bFUv1vYHdHC0Lt7
-         iVr6dKcezKhC5Aj5b9OFbBiu3Cf7MLLnlZu19VtFVi87q4n7ztQFWsGbPzSbdF/5GGoX
-         HjWg==
+        bh=wqe6kl8DbEpNzk+gxBdngVVPGBYURaHyfgLLC4qaii0=;
+        b=Z8ebDry0731Ww7qRvJu1pqbm3GJ+szf2+j7eytajaqJtwAmW3D6btMQIC9TE6+64jo
+         O+/0zIVJSEEkB0+07WKzaru0XazGerN1yQ9YckR5JZUneUhZIFdtEbAnT7tC7DvMpJKJ
+         rpQFIFw6hao9QHiivNPi/3R/tftDhjPcTDJ1N7wOsNPKGhUmguPFRRG9J1gM/spcEeXV
+         qIZEhuP55biu4fwH99gVGj7NKohBhWO26CnMlm8NVHmCypHSY+A9TCeJylTpXyV6YY6X
+         IJ8lwnD03PZ7c65ptZXQcHsUXprO4wtMuHRCQcZBRQ8U7A10xh2EIzznYo7A9WKotKJr
+         sD5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
          :references:user-agent:mime-version;
-        bh=GNyxhCfsORr2e6M8vPY8+L5gnSVQwdktACAugcErG1s=;
-        b=Vuly3OgPFZJTYgn8fUv3W9Wxfi8hrVklMmTKv8BaDMHNW3Qdby0nemuQhrVdq8ns3I
-         wx2PDaKKsvgITQkWQbC8yX9UeeyDLfyMXJ/wVDVIgTpOBbxaZBO5srmeEsCrexqq8oYJ
-         KkB1tZlNMqzpPa1cFoNWjoeJ1hptSXY5OfMBUsJL0PFEV1sgqgKkWmVAr/Om2Ac+e9Dl
-         voQ2u9D5BBNmiGSl0MPl8mGxWUqRFoScoaOfvdzo6TzA88lyE17Yv2P9EmzOvyuZsi4u
-         Osz7LBCYgF1N6633caGO7473CIHInUCgyCzKdCK6STrtD854G91mqIlBcVIv0d7zsQk5
-         RYTA==
-X-Gm-Message-State: APjAAAV6AeTEFI8KlzwkQ4DMdyJ+bBdCEOB5MPME/TSy+qo8an1m1FH8
-        fSbNXJeliHN4OTwVco+ZtjmE2g==
-X-Google-Smtp-Source: APXvYqyUw+DSN9BiUBvaRMwQnFBxQ6SFZJjWJHMVUssQoXJy4hDGI7eMn36g4CBZ3Y53pZ456i1wZA==
-X-Received: by 2002:a17:902:d715:: with SMTP id w21mr54153246ply.234.1559883655599;
-        Thu, 06 Jun 2019 22:00:55 -0700 (PDT)
+        bh=wqe6kl8DbEpNzk+gxBdngVVPGBYURaHyfgLLC4qaii0=;
+        b=jkVE8mMkS82rmMVH+Fsr4AbHlMxrBNNrvIrfTGoH1aZJrz9ZFFqBhYHfIXxk2Pmz9X
+         Av3oppGePvSRhIqEAIZcujkEf/IxCY7T7LS4oKjpcAVniB6wxoxYeJaGIyB4XfQZGKCn
+         mJeUOqo84QO9ZRWaJwsOAxN2XyCZLmtJP/Yyb4KWqHpprGl0JfbnjMnpjiyhW/lSrG6q
+         TAPpuJpnXXwvUNSg5YaJRcQNPzSFVgwDhrI1slX1inMNTVKPLwwf48E0JG7ldf/vXQZS
+         qNM87mAL3sFxvdAsK8PmgW6YmRmvvDV/811uMGrkuqe5yq1R26eXv+foqgxpbINoVqcN
+         UWAQ==
+X-Gm-Message-State: APjAAAU6IMAwVSx7SS+YZT3zvflRJCTLj+arFz+Xl7aKOSp/RnZiKp/M
+        gVBELN1B3F1Cqlw9ji5NfZUozg==
+X-Google-Smtp-Source: APXvYqzQFNiED7FnxJJgBrM9ljjzZaPd8GsA5Es9uz10QhQqODIm1yA+jRKiFrpyJIhkn2S/CAFDyQ==
+X-Received: by 2002:a17:902:9a84:: with SMTP id w4mr54404661plp.241.1559885076185;
+        Thu, 06 Jun 2019 22:24:36 -0700 (PDT)
 Received: from localhost ([14.141.105.52])
-        by smtp.gmail.com with ESMTPSA id 10sm811396pfh.179.2019.06.06.22.00.53
+        by smtp.gmail.com with ESMTPSA id t187sm881078pfb.64.2019.06.06.22.24.35
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 06 Jun 2019 22:00:54 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 22:00:51 -0700 (PDT)
+        Thu, 06 Jun 2019 22:24:35 -0700 (PDT)
+Date:   Thu, 6 Jun 2019 22:24:33 -0700 (PDT)
 From:   Paul Walmsley <paul.walmsley@sifive.com>
 X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <atish.patra@wdc.com>
-cc:     linux-kernel@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 5/7] RISC-V: Parse cpu topology during boot.
-In-Reply-To: <20190529211340.17087-6-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1906062159380.28147@viisi.sifive.com>
-References: <20190529211340.17087-1-atish.patra@wdc.com> <20190529211340.17087-6-atish.patra@wdc.com>
+To:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+        robh@kernel.org, mark.rutland@arm.com
+cc:     linux-riscv@lists.infradead.org, Atish Patra <atish.patra@wdc.com>,
+        palmer@sifive.com, linux-kernel@vger.kernel.org
+Subject: Re: Patches for v5.2-rc and v5.3 merge window
+In-Reply-To: <7hr288exi7.fsf@baylibre.com>
+Message-ID: <alpine.DEB.2.21.9999.1906062219490.28147@viisi.sifive.com>
+References: <alpine.DEB.2.21.9999.1905201019010.15580@viisi.sifive.com> <7hr288exi7.fsf@baylibre.com>
 User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -83,31 +63,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 May 2019, Atish Patra wrote:
++ Rob, devicetree@, Mark
 
-> Currently, there are no topology defined for RISC-V.
-> Parse the cpu-map node from device tree and setup the
-> cpu topology.
+On Wed, 5 Jun 2019, Kevin Hilman wrote:
+
+> Paul Walmsley <paul.walmsley@sifive.com> writes:
 > 
-> CPU topology after applying the patch.
-> $cat /sys/devices/system/cpu/cpu2/topology/core_siblings_list
-> 0-3
-> $cat /sys/devices/system/cpu/cpu3/topology/core_siblings_list
-> 0-3
-> $cat /sys/devices/system/cpu/cpu3/topology/physical_package_id
-> 0
-> $cat /sys/devices/system/cpu/cpu3/topology/core_id
-> 3
+> > Palmer has asked me to collect patches for the v5.2-rc releases and v5.3 
+> > merge window, so I'll be doing so.  This is just a heads-up so no one is 
+> > surprised to see 'patch queued' responses from me.
 > 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+> Speaking of v5.2-rc, any chance your DT series will make it for v5.2?
 
-Looks reasonable to me.
+Ideally it would be nice to get acks from the DT folks first for:
 
-Acked-by: Paul Walmsley <paul.walmsley@sifive.com>
+https://lore.kernel.org/linux-riscv/20190602080500.31700-3-paul.walmsley@sifive.com/T/#u
 
-We're assuming, on the RISC-V side, that these patches will go in via 
-another tree.
+https://lore.kernel.org/linux-riscv/20190602080500.31700-4-paul.walmsley@sifive.com/T/#u
+
+If those come soon, I'd be fine with submitting them for v5.2-rc.  But if 
+that stretches much further into the v5.2-rc series, it seems best to 
+schedule it for v5.3.
+
+
+> I'm hoping to have upstream v5.2 ready for testing in kernelCI, and
+> that's one of the last missing pieces.  I just tested it on v5.2-rc3 and
+> it's working great with mainline u-boot.
+
+OK, great.  Thanks again for your testing help.
 
 
 - Paul
