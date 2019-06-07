@@ -2,109 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E02397B4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 23:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 246D6397B5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 23:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729655AbfFGV0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 17:26:46 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47618 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729125AbfFGV0q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 17:26:46 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x57LQgpR009525;
-        Fri, 7 Jun 2019 16:26:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559942802;
-        bh=nHPsm2nmCWWAIBSZDOcvYScUIPyjPWV+nTtHwcEmS4g=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=k4qqkONAPDmTx1F2cruzmpdOlFZ3jlocX0ucw2raWcXEa0VsQtOfA018ACGutiMxW
-         u8p4Y/6DutT1PuDNeDvVpwTxFao/m4V14X/w1q0NTMD6woDE0LWEljNJcrPsxftbDb
-         uZ9U2cN0flb+dr2TuFjIgcevxhI51WsSzBO1T3/8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x57LQgQu101864
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 7 Jun 2019 16:26:42 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 7 Jun
- 2019 16:26:42 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 7 Jun 2019 16:26:42 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x57LQfCE091727;
-        Fri, 7 Jun 2019 16:26:41 -0500
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add docs for EL15203000
-To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
-        <linux-leds@vger.kernel.org>
-References: <20190607184022.13793-1-oleg@kaa.org.ua>
- <b1f0eaf6-e91c-2095-5928-179ad8695b33@ti.com>
- <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
- <b6a5cc5e-74f1-d328-7a47-995670ba7aa7@ti.com>
- <adf5a755-c534-64c3-6e99-ba39ffea95e2@kaa.org.ua>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <361ecc6a-b0b6-1bc9-a52b-e3531340deeb@ti.com>
-Date:   Fri, 7 Jun 2019 16:26:41 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1729815AbfFGV0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 17:26:55 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:46746 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729787AbfFGV0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 17:26:55 -0400
+Received: by mail-lj1-f193.google.com with SMTP id m15so2917519ljg.13
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 14:26:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q6sGj4udjdudlOgOeP/H6pDDZcmuzFdAkSUlLYTz7Hc=;
+        b=z23mfVUe0uLJ/lnbrCPAfFLlJoZeq+fXYSy3t319XR2mXsJF2HJBlsHc72bDowYPbr
+         BKlcfggdOUpnzKEOcmo/gWDJBafNeMAp2aw7/FOy/CEMhLhZAkJiqltxY9gqYHhdPADe
+         LWRluJiEIcw2pJBdRmdTdrAVM13WBgOAg9klKPj6zLBbvJjcvG0SF3UGpq5K05+1nydQ
+         YVvrkZaXl+tnN/7TgP1T8xCinH9HAqs6lCo00edbK7wHMvW8WMzCuFvKYkfX8GduJi99
+         j0wanfih+iwQg+9v0kDSq7XaxRBoHZrhq0vIpY4sKoaShnKX2Gdts7XNyc78ZgcYCS/j
+         ih7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q6sGj4udjdudlOgOeP/H6pDDZcmuzFdAkSUlLYTz7Hc=;
+        b=rqyS91g4hBBIFgFHQfxMGTjiD/IB54X6oJPPgNgtudzTqhRizvqCxG0TnUkzcW8vkl
+         2d3e0IdRys/uDNil3QBl9CnBeqz1SsmaAh6VQBYY+48TUp1PjH7/TyTsqtLIRQu8Yde+
+         +ZaPe3i3FVnvqOBbAqpkBgV/gcGdZavolwVC+eh4Bc4qU17ORszMRfCQx6rOoAbVLQ1s
+         DpOta3ltpP7Jb7WWbpbqWsz1zc/92Rhzb+Nhw1K1ZsDwieTdy9TOP+xquOiWGknxzANP
+         xYdivtPaJULpjEQvWh+vpS5NubL9zvk4REDGqUsOfUjoID6EQclUMe66wp8iFTCJx1m+
+         YeaA==
+X-Gm-Message-State: APjAAAVp/APVEYUvpBPzBKGp2bvowvv36NjNpjv48lwfJ2/1d4dLraOL
+        mTkwwuF6TxdcgqanDvKKLNJvj+jhg6lkf4G+t5aYmA==
+X-Google-Smtp-Source: APXvYqwIajTpMSgCMZav18YPN+TlLmExrYklafV6rIWWxNFhS1pNAPS/UUbCntmRCn13SfjJkYCmG7CoaruMAno9FuY=
+X-Received: by 2002:a2e:7508:: with SMTP id q8mr13158846ljc.165.1559942813429;
+ Fri, 07 Jun 2019 14:26:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <adf5a755-c534-64c3-6e99-ba39ffea95e2@kaa.org.ua>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190604072001.9288-1-bjorn.andersson@linaro.org> <20190604072001.9288-2-bjorn.andersson@linaro.org>
+In-Reply-To: <20190604072001.9288-2-bjorn.andersson@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 7 Jun 2019 23:26:46 +0200
+Message-ID: <CACRpkdazzRV5XydKHmXRQiU2Mx+=HyRgNCEpNqsOsCdycXmMOg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] pinctrl: qcom: sdm845: Expose ufs_reset as gpio
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-scsi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Oleh
+On Tue, Jun 4, 2019 at 9:20 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
 
-On 6/7/19 4:17 PM, Oleh Kravchenko wrote:
-> Dan,
+> The ufs_reset pin is expected to be wired to the reset pin of the
+> primary UFS memory but is pretty much just a general purpose output pinr
 >
-> On 08.06.19 00:04, Dan Murphy wrote:
->> Oleh
->> But this is not really max_brightness now this is a feature and now
->> does not make sense in this context
->>>> You may need to use something different for this property or expose
->>>> a file in the driver.
->>>>
->>>>
->>> Protocol for this board define 0x32 as brightness level.
->>> This behaviur needed to keep backward compatibity.
->>>
->>>
->> Backwards compatibility to what?
-> With old/new boards.
-
-This does not make sense.
-
-How would a device tree entry or a file that controls the blinking have 
-to deal with the hardware?
-
-If it allows feature setting then you should create a bool in the device 
-tree.
-
-el15203000-blink;
-
-If the board supports the feature you set this and create a file to 
-dis/enable the feature.
-
-If the board does not support it then no file is created.
-
-max_brightness for this device appears to be 1.
-
-Dan
-
-
->> This is a new driver there should be no DT that has this compatible or
->> definition.
->>
->> I will let Rob ack or nack this node.
->>
->> Dan
->>
+> Reorder the pins and expose it as gpio 150, so that the UFS driver can
+> toggle it.
 >
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Patch applied.
+
+Yours,
+Linus Walleij
