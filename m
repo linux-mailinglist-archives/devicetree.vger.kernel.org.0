@@ -2,157 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F38039548
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 21:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3236395D8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 21:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728738AbfFGTHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 15:07:16 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:39364 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728727AbfFGTHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 15:07:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=+tUmJIy3CbEFchUytsXWp6t66QqGoPGh2GzgBgkAhjQ=; b=OUPOKv1YtcnU
-        EC2+fiMt2g5UBpPUCWyCRGPrxZasxwBrhh8k8vGX5S90SiEuYyMH7z0N4C59/WBzlH5CbJRscU76Y
-        ppSn3qyhS+LWx4aogD5y+suoFd8OTGKVeRLJUwURuJto5vYGPcU/a/xcTrHrbqpt5QyE/iIwaAfZq
-        gtJ1I=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hZKCh-0003gB-VK; Fri, 07 Jun 2019 19:07:08 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 50C1E440046; Fri,  7 Jun 2019 20:07:07 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
-        alsa-devel@alsa-project.org,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        devicetree@vger.kernel.org, Hugues Fruchet <hugues.fruchet@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Mark Brown <broonie@kernel.org>,
+        id S1729794AbfFGTfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 15:35:44 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33850 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729943AbfFGTfo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 15:35:44 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x57JZQV9112093;
+        Fri, 7 Jun 2019 14:35:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559936126;
+        bh=zbSkB5Ajhq5+I2P/3ydJOL0aLvWRvmr8/ursYCm7yS0=;
+        h=From:To:CC:Subject:Date;
+        b=XiItKva0Y3eCs1Ox/nzCGi05jIW0SeJTZEcT1Q4f0vr+QGWjk3CC1RziNGJjpAvwk
+         2HWcuYl7pE+3/72kfLnaDw4JUXG5hojaBirjI+BDDyjTag81mcNbkeJFxDu9cl7nVD
+         VVLzf7hgiaf7iH51YhLvthxNhrZgZlfGL0dob48I=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x57JZQaR105636
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 Jun 2019 14:35:26 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 7 Jun
+ 2019 14:35:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 7 Jun 2019 14:35:25 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x57JZP2s068219;
+        Fri, 7 Jun 2019 14:35:25 -0500
+Received: from localhost ([10.250.68.219])
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x57JZOm20275;
+        Fri, 7 Jun 2019 14:35:24 -0500 (CDT)
+From:   "Andrew F. Davis" <afd@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Applied "ASoC: dt-bindings: fix some broken links from txt->yaml conversion" to the asoc tree
-In-Reply-To: <effeafed3023d8dc5f2440c8d5637ea31c02a533.1559933665.git.mchehab+samsung@kernel.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20190607190707.50C1E440046@finisterre.sirena.org.uk>
-Date:   Fri,  7 Jun 2019 20:07:07 +0100 (BST)
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Tero Kristo <t-kristo@ti.com>,
+        William Mills <wmills@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <iommu@lists.linux-foundation.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, "Andrew F . Davis" <afd@ti.com>
+Subject: [RFC PATCH 0/2] Support for TI Page-based Address Translator
+Date:   Fri, 7 Jun 2019 15:35:21 -0400
+Message-ID: <20190607193523.25700-1-afd@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Hello all,
 
-   ASoC: dt-bindings: fix some broken links from txt->yaml conversion
+So I've got a new IP on our new SoC I'm looking to make use of and would
+like some help figuring out what framework best matches its function. The
+IP is called a "Page-based Address Translator" or PAT. A PAT instance
+(there are 5 of these things on our J721e device[0]) is basically a
+really simple IOMMU sitting on the interconnect between the device bus
+and what is effectively our northbridge called
+MSMC (DRAM/SRAM/L3-Cache/Coherency controller).
 
-has been applied to the asoc tree at
+Simplified it looks about like this:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+         CPUs
+          |
+DRAM --- MSMC --- SRAM/L3
+          |
+        NAVSS - (PATs)
+          |
+  --- Device Bus ---------
+ |      |      |          |
+Device  Device  Device   etc..
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+Each PAT has a set a window in high memory (about 0x48_0000_0000 area)
+for which any transaction with an address targeting its window will be
+routed into that PAT. The PAT then does a simple calculation based on
+the how far into the window the address is and the current page size,
+does a lookup to an internally held table of translations, then sends the
+transaction back out on the interconnect with a new address. Usually this
+address should be towards somewhere in DRAM, but can be some other device
+or even back into PAT (I'm not sure there is a valid use-case for this
+but just a point of interest).
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+My gut reaction is that this is an IOMMU which belongs in the IOMMU
+subsystem. But there are a couple oddities that make me less sure it is
+really suitable for the IOMMU framework. First it doesn't sit in front of
+any devices, it sits in front of *all* devices, this means we would have
+every device claim it as an IOMMU parent, even though many devices also
+have a traditional IOMMU connected. Second, there is only a limited
+window of address space per PAT, this means we will get fragmentation and
+allocation failures on occasion, in this way it looks to me more like AGP
+GART. Third, the window is in high-memory, so unlike some IOMMU devices
+which can be used to allow DMA to high-mem from low-mem only devices, PAT
+can't be used for that. Lastly it doesn't provide any isolation, if the
+access does not target the PAT window it is not used (that is not to say
+we don't have isolation, just that it is taken care of by other parts of
+the interconnect).
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+This means, to me, that PAT has one main purpose: making
+physically-contiguous views of scattered pages in system memory for DMA.
+But it does that really well, the whole translation table is held in a
+PAT-internal SRAM giving 1 bus cycle latency and at full bus bandwidth.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+So what are my options here, is IOMMU the right way to go or not?
+
+Looking around the kernel I also see the char dev ARP/GART interface
+which looks like a good fit, but also looks quite dated and my guess
+deprecated at this point. Moving right along..
+
+Another thing I saw is we have the support upstream of the DMM device[1]
+available in some OMAPx/AM57x SoCs. I'm a little more familiar with this
+device. The DMM is a bundle of IPs and in fact one of them is called
+"PAT" and it even does basically the same thing this incarnation of "PAT"
+does. It's upstream integration design is a bit questionable
+unfortunately, the DMM support was integrated into the OMAPDRM display
+driver, which does make some sense then given its support for rotation
+(using TILER IP contained in DMM). The issue with this was that the
+DMM/TILER/PAT IP was not part of the our display IP, but instead out at
+the end of the shared device bus, inside the external memory controller.
+Like this new PAT this meant that any IP that could make use of it, but
+only the display framework could actually provide buffers backed by it.
+This meant, for instance, if we wanted to decode some video buffer using
+our video decoder we would have to allocate from DRM framework then pass
+that over to the V4L2 system. This doesn't make much sense and required
+the user-space to know about this odd situation and allocate from the
+right spot or else have to use up valuable CMA space or waste memory with
+dedicated carveouts.
+
+Another idea would be to have this as a special central allocator
+(exposed through DMA-BUF heaps[2] or ION) that would give out normal
+system memory as a DMA-BUF but remap it with PAT if a device that only
+supports contiguous memory tries to attach/map that DMA-BUF.
+
+One last option would be to allow user-space to choose to make the buffer
+contiguous when it needs. That's what the driver in this series allows.
+We expose a remapping device, user-space passes it a non-contiguous
+DMA-BUF handle and it passes a contiguous one back. Simple as that.
+
+So how do we use this, lets take Android for example, we don't know at
+allocation time if a rendering buffer will end up going back into the GPU
+for further processing, or if it will be consumed directly by the display.
+This is a problem for us as our GPU can work with non-contiguous buffers
+but our display cannot, so any buffers that could possibly go to the
+display at some point currently needs to be allocated as contiguous from
+the start, this leads to a lot of unneeded use of carveout/CMA memory.
+With this driver on the other hand, we allocate regular non-contiguous
+system memory (again using DMA-BUF heaps, but ION could work here too),
+then only when a buffer is about to be sent to the display we pass the
+handle to this DMA-BUF to our driver here and take the handle it gives
+back and pass that to the display instead.
+
+As said, it is probably not the ideal solution but it does work and was
+used for some early testing of the IP.
+
+Well, sorry for the wall of text.
+Any and all suggestions very welcome and appreciated.
 
 Thanks,
-Mark
+Andrew
 
-From 6c0215f5d9f2a1fa5cab2ca320a41d9f19cfa80c Mon Sep 17 00:00:00 2001
-From: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Date: Fri, 7 Jun 2019 15:54:33 -0300
-Subject: [PATCH] ASoC: dt-bindings: fix some broken links from txt->yaml
- conversion
+[0] http://www.ti.com/lit/pdf/spruil1
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/omapdrm/omap_dmm_tiler.c
+[2] https://lkml.org/lkml/2019/6/6/1211
 
-Some new files got converted to yaml, but references weren't
-updated accordingly.
+Andrew F. Davis (2):
+  dt-bindings: soc: ti: Add TI PAT bindings
+  soc: ti: Add Support for the TI Page-based Address Translator (PAT)
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/media/st,stm32-dcmi.txt | 2 +-
- Documentation/devicetree/bindings/sound/st,stm32-i2s.txt  | 2 +-
- Documentation/devicetree/bindings/sound/st,stm32-sai.txt  | 2 +-
- MAINTAINERS                                               | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ .../devicetree/bindings/misc/ti,pat.txt       |  34 ++
+ drivers/soc/ti/Kconfig                        |   9 +
+ drivers/soc/ti/Makefile                       |   1 +
+ drivers/soc/ti/ti-pat.c                       | 569 ++++++++++++++++++
+ include/uapi/linux/ti-pat.h                   |  44 ++
+ 5 files changed, 657 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/ti,pat.txt
+ create mode 100644 drivers/soc/ti/ti-pat.c
+ create mode 100644 include/uapi/linux/ti-pat.h
 
-diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt b/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
-index 249790a93017..3122ded82eb4 100644
---- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
-+++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
-@@ -11,7 +11,7 @@ Required properties:
- - clock-names: must contain "mclk", which is the DCMI peripherial clock
- - pinctrl: the pincontrol settings to configure muxing properly
-            for pins that connect to DCMI device.
--           See Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt.
-+           See Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml.
- - dmas: phandle to DMA controller node,
-         see Documentation/devicetree/bindings/dma/stm32-dma.txt
- - dma-names: must contain "tx", which is the transmit channel from DCMI to DMA
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt b/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt
-index 58c341300552..cbf24bcd1b8d 100644
---- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.txt
-@@ -18,7 +18,7 @@ Required properties:
-     See Documentation/devicetree/bindings/dma/stm32-dma.txt.
-   - dma-names: Identifier for each DMA request line. Must be "tx" and "rx".
-   - pinctrl-names: should contain only value "default"
--  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt
-+  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
- 
- Optional properties:
-   - resets: Reference to a reset controller asserting the reset controller
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.txt b/Documentation/devicetree/bindings/sound/st,stm32-sai.txt
-index 3f4467ff0aa2..944743dd9212 100644
---- a/Documentation/devicetree/bindings/sound/st,stm32-sai.txt
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.txt
-@@ -41,7 +41,7 @@ SAI subnodes required properties:
- 	"tx": if sai sub-block is configured as playback DAI
- 	"rx": if sai sub-block is configured as capture DAI
-   - pinctrl-names: should contain only value "default"
--  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt
-+  - pinctrl-0: see Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
- 
- SAI subnodes Optional properties:
-   - st,sync: specify synchronization mode.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5cfbea4ce575..b3d686fba562 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1288,7 +1288,7 @@ ARM PRIMECELL SSP PL022 SPI DRIVER
- M:	Linus Walleij <linus.walleij@linaro.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--F:	Documentation/devicetree/bindings/spi/spi_pl022.txt
-+F:	Documentation/devicetree/bindings/spi/spi-pl022.yaml
- F:	drivers/spi/spi-pl022.c
- 
- ARM PRIMECELL UART PL010 AND PL011 DRIVERS
 -- 
-2.20.1
+2.17.1
 
