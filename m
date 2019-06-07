@@ -2,91 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 784A93986C
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F19BB39875
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729511AbfFGWSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 18:18:30 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:40404 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729291AbfFGWSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:18:30 -0400
-Received: by mail-lj1-f195.google.com with SMTP id a21so3019747ljh.7
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 15:18:29 -0700 (PDT)
+        id S1730979AbfFGWTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 18:19:50 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:38676 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729014AbfFGWTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:19:49 -0400
+Received: by mail-pf1-f195.google.com with SMTP id a186so1930398pfa.5
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 15:19:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gldb3yKNAdLFuCuMW3i8lSkcWD9AeAuQqWMCJcjMt1w=;
-        b=G9jAqm4GrJw44aseApNTMp1ZjQ/aMJNeUyiv8kQagv/gNhX33BEX/CzFFfoO08fSPB
-         FIRt58LdAq424pNBetPm0eg6QkNKMjoFW09a34suTKYEqckDAocINkl4cJNxDodCE96C
-         HhxaX0N2dtDsMgQTRenOa3Zz57TDPLOznIac0ahpARr0gBzRph6O+fMw7xfyM5gNCyc4
-         ZEwFIOTj8bRtPvpJ/TJwP+iooxqBStOJPX265Lu/PgJ4qiYq+EqEOfo3dHGcStjFlqV7
-         i7GxnfE3GpXg8kAr9/410RMqCH8UFTsX34P3RGCzpBMeWL/RtxobGuc1DPYjYqXccE1K
-         XzbA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8iuPUmxzg7rQ1mcChA8EFOd7sUTB/HD7Cy4zNZiOnqU=;
+        b=CFxvdk65xd7tcdZzJVz4UpmWkpj2H0DyBEP+rSqqcdcBPMPUXaHAK2yMfBeGuEzfcK
+         stk+FYrZRrEUIFuksmoi9O52OT8AevaATD57kkw1chD3TO3mDhDjM1uOuEasaWq/K+ci
+         sfAVNw3mZCK0NZ8i3/luNQ/qVucJTF0GbUfTk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gldb3yKNAdLFuCuMW3i8lSkcWD9AeAuQqWMCJcjMt1w=;
-        b=SAskVZMjV4DVtDlRKq5yI24Swd1mWDL6ZpftuYt1HSYDs7+MoADJEXx3mJlbV93V7W
-         75JhQFCqIHzFzqVfA57Wveok3lR9+kzOxW06rULz/wia4/bQZ8vHynch8XCdD4btUnUa
-         glInX8YOi3qUBaqY0tOkKxOp32Kvth9b5h5zrQwcYtfrC4z9rRSb8XimHfOIZvySq7p0
-         IaMEkOnvW9YUmCa8SrCI9AX5FT4Xt9Ze6M08d3QI8w1hczKXeaqa6k9fP/yQ76EwXjNv
-         OkNBCWzVmnBwHGt2X5Pnx0OgE0DWMzd9xzjV9n/lyEGWg6KGfG9eNTi5h2A0kSMFaG2h
-         kxAQ==
-X-Gm-Message-State: APjAAAXoUQKswDqt27BNlXZPk9iDxUko9mauL5ZwU1YQfPK40TKqKXnE
-        e1Ij0HbjBqwkEyCcPCNACwiFpq2QEYL2R7xCqwLNog==
-X-Google-Smtp-Source: APXvYqxOTBAeYX+u/Eh9xZoqx5z1jjeiP4aVzSBSOMzDg0FyT03H0TfU69azZbe7G7oS0gd/G5TcR0QxubMS3IbiYDI=
-X-Received: by 2002:a2e:5dc4:: with SMTP id v65mr20370501lje.138.1559945908563;
- Fri, 07 Jun 2019 15:18:28 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8iuPUmxzg7rQ1mcChA8EFOd7sUTB/HD7Cy4zNZiOnqU=;
+        b=MYfCDmxKUHZUnjUKPGKxeX364rcASjB2l3k5tcBdrbHbnAi+iOUKuZRfqblUkmGG94
+         RNvx7qOb/TRcuFXGNWT7ZoYHTyaZpJmQmKyu4nm1eiX+JZFclIWVsOURFCkaaqXdib2x
+         +FLNSiVXEASnGStYXGxV2BCk3nMnLq6xSmvZYME8VbmVSpvrsSpUsWV/4ysZnO42qVLO
+         8UigtjKAGYJOCjIajgYVQnyYKVsmQHcC9FknXVxldE5dRNN8pgYYC9zGFnP/r8ZP20p9
+         Wj25zhzNKo6yqHnaFiHj+cvC1tDGJgvVchPFfL4PbeZG3hDHFdJsf4s3ukThxr/Kx7Dc
+         zZ7A==
+X-Gm-Message-State: APjAAAUFHOaLKttnwS24QgLRCl0diNLMZWurZRVbyiDuFtJPsYKg2OEX
+        AWu+0iOFfY8yOcOb6EQSv4ymcg==
+X-Google-Smtp-Source: APXvYqz2x5Lf3XLwNWkRmjImZUEqpXEjYipatdtaIyzpqULgmQhr7hnhIYl70ZYH3co6M3PTWxBmjw==
+X-Received: by 2002:a17:90a:5d15:: with SMTP id s21mr7940880pji.126.1559945989250;
+        Fri, 07 Jun 2019 15:19:49 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id g17sm3474771pfb.56.2019.06.07.15.19.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 07 Jun 2019 15:19:48 -0700 (PDT)
+Date:   Fri, 7 Jun 2019 15:19:44 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Doug Anderson <dianders@google.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Brian Norris <briannorris@google.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190607220947.GR40515@google.com>
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
 MIME-Version: 1.0
-References: <20190604165802.7338-1-daniel.lezcano@linaro.org> <20190604165802.7338-2-daniel.lezcano@linaro.org>
-In-Reply-To: <20190604165802.7338-2-daniel.lezcano@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 8 Jun 2019 00:18:20 +0200
-Message-ID: <CACRpkdazSvjt0G58dQOr=cw6mJTptNd3ZmEXduXVh4=01YHNvQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Define values for the IPA
- governor for rock960
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20180208113032.27810-4-enric.balletbo@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 4, 2019 at 6:58 PM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+Hi Enric,
 
-> The intelligent power allocator PID coefficient to be set in sysfs
-> are:
+some comments inline, a bit late, but I just tested this on veyron
+minnie.
+
+On Thu, Feb 08, 2018 at 12:30:31PM +0100, Enric Balletbo i Serra wrote:
+> When you want to change the brightness using a PWM signal, one thing you
+> need to consider is how human perceive the brightness. Human perceive
+> the brightness change non-linearly, we have better sensitivity at low
+> luminance than high luminance, so to achieve perceived linear dimming,
+> the brightness must be matches to the way our eyes behave. The CIE 1931
+> lightness formula is what actually describes how we perceive light.
+> 
+> This patch computes a default table with the brightness levels filled
+> with the numbers provided by the CIE 1931 algorithm, the number of the
+> brightness levels is calculated based on the PWM resolution.
+> 
+> The calculation of the table using the CIE 1931 algorithm is enabled by
+> default when you do not define the 'brightness-levels' propriety in your
+> device tree.
+> 
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 >
->     k_d: 0
->     k_po: 79
->     k_i: 10
->     k_pu: 50
+> ...
+>
+> +static
+> +int pwm_backlight_brightness_default(struct device *dev,
+> +				     struct platform_pwm_backlight_data *data,
+> +				     unsigned int period)
+> +{
+> +	unsigned int counter = 0;
+> +	unsigned int i, n;
+> +	u64 retval;
+> +
+> +	/*
+> +	 * Count the number of bits needed to represent the period number. The
+> +	 * number of bits is used to calculate the number of levels used for the
+> +	 * brightness-levels table, the purpose of this calculation is have a
+> +	 * pre-computed table with enough levels to get linear brightness
+> +	 * perception. The period is divided by the number of bits so for a
+> +	 * 8-bit PWM we have 255 / 8 = 32 brightness levels or for a 16-bit PWM
+> +	 * we have 65535 / 16 = 4096 brightness levels.
+> +	 *
+> +	 * Note that this method is based on empirical testing on different
+> +	 * devices with PWM of 8 and 16 bits of resolution.
+> +	 */
+> +	n = period;
+> +	while (n) {
+> +		counter += n % 2;
+> +		n >>= 1;
+> +	}
 
-With all the other interesting parametrization in the device tree
-I kind of wonder why the PID regulator constants defaults are
-not set up from device tree?
+I don't quite follow the heuristics above. Are you sure the number of
+PWM bits can be infered from the period? What if the period value (in
+ns) doesn't directly correspond to a register value? And even if it
+did, counting the number of set bits (the above loops is a
+re-implementation of ffs()) doesn't really result in the dividers
+mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
+in a divider of 1, i.e. 32768 brighness levels.
 
-Any specific reason?
+On veyron minnie the period is 1000000 ns, which results in 142858
+levels (1000000 / 7)!
 
-To me it seems like the kind of stuff userpace will invariably just
-get wrong or forget about (somebody just runs a different
-distribution without the extra magic to set sysfs right) unless
-we supply good defaults.
+Not sure if there is a clean solution using heuristics, a DT property
+specifying the number of levels could be an alternative. This could
+also be useful to limit the number of (mostly) redundant levels, even
+the intended max of 4096 seems pretty high.
 
-Yours,
-Linus Walleij
+Another (not directly related) observation is that on minnie the
+actual brightness at a nominal 50% is close to 0 (duty cycle ~3%). I
+haven't tested with other devices, but I wonder if it would make
+sense to have an option to drop the bottom N% of levels, since the
+near 0 brightness in the lower 50% probably isn't very useful in most
+use cases, but maybe it looks different on other devices.
+
+Cheers
+
+Matthias
