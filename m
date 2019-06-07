@@ -2,95 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB24E383B6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 07:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9FE43844D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 08:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726336AbfFGFYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 01:24:37 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:39274 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726324AbfFGFYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 01:24:36 -0400
-Received: by mail-pl1-f196.google.com with SMTP id g9so361232plm.6
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2019 22:24:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=wqe6kl8DbEpNzk+gxBdngVVPGBYURaHyfgLLC4qaii0=;
-        b=Z8ebDry0731Ww7qRvJu1pqbm3GJ+szf2+j7eytajaqJtwAmW3D6btMQIC9TE6+64jo
-         O+/0zIVJSEEkB0+07WKzaru0XazGerN1yQ9YckR5JZUneUhZIFdtEbAnT7tC7DvMpJKJ
-         rpQFIFw6hao9QHiivNPi/3R/tftDhjPcTDJ1N7wOsNPKGhUmguPFRRG9J1gM/spcEeXV
-         qIZEhuP55biu4fwH99gVGj7NKohBhWO26CnMlm8NVHmCypHSY+A9TCeJylTpXyV6YY6X
-         IJ8lwnD03PZ7c65ptZXQcHsUXprO4wtMuHRCQcZBRQ8U7A10xh2EIzznYo7A9WKotKJr
-         sD5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=wqe6kl8DbEpNzk+gxBdngVVPGBYURaHyfgLLC4qaii0=;
-        b=jkVE8mMkS82rmMVH+Fsr4AbHlMxrBNNrvIrfTGoH1aZJrz9ZFFqBhYHfIXxk2Pmz9X
-         Av3oppGePvSRhIqEAIZcujkEf/IxCY7T7LS4oKjpcAVniB6wxoxYeJaGIyB4XfQZGKCn
-         mJeUOqo84QO9ZRWaJwsOAxN2XyCZLmtJP/Yyb4KWqHpprGl0JfbnjMnpjiyhW/lSrG6q
-         TAPpuJpnXXwvUNSg5YaJRcQNPzSFVgwDhrI1slX1inMNTVKPLwwf48E0JG7ldf/vXQZS
-         qNM87mAL3sFxvdAsK8PmgW6YmRmvvDV/811uMGrkuqe5yq1R26eXv+foqgxpbINoVqcN
-         UWAQ==
-X-Gm-Message-State: APjAAAU6IMAwVSx7SS+YZT3zvflRJCTLj+arFz+Xl7aKOSp/RnZiKp/M
-        gVBELN1B3F1Cqlw9ji5NfZUozg==
-X-Google-Smtp-Source: APXvYqzQFNiED7FnxJJgBrM9ljjzZaPd8GsA5Es9uz10QhQqODIm1yA+jRKiFrpyJIhkn2S/CAFDyQ==
-X-Received: by 2002:a17:902:9a84:: with SMTP id w4mr54404661plp.241.1559885076185;
-        Thu, 06 Jun 2019 22:24:36 -0700 (PDT)
-Received: from localhost ([14.141.105.52])
-        by smtp.gmail.com with ESMTPSA id t187sm881078pfb.64.2019.06.06.22.24.35
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 06 Jun 2019 22:24:35 -0700 (PDT)
-Date:   Thu, 6 Jun 2019 22:24:33 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
-        robh@kernel.org, mark.rutland@arm.com
-cc:     linux-riscv@lists.infradead.org, Atish Patra <atish.patra@wdc.com>,
-        palmer@sifive.com, linux-kernel@vger.kernel.org
-Subject: Re: Patches for v5.2-rc and v5.3 merge window
-In-Reply-To: <7hr288exi7.fsf@baylibre.com>
-Message-ID: <alpine.DEB.2.21.9999.1906062219490.28147@viisi.sifive.com>
-References: <alpine.DEB.2.21.9999.1905201019010.15580@viisi.sifive.com> <7hr288exi7.fsf@baylibre.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1726048AbfFGG2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 02:28:20 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:58893 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfFGG2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 02:28:19 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id A363840003;
+        Fri,  7 Jun 2019 06:28:03 +0000 (UTC)
+Date:   Fri, 7 Jun 2019 08:28:02 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Harald Geyer <harald@ccbib.org>
+Cc:     Torsten Duwe <duwe@lst.de>, Vasily Khoruzhick <anarsoul@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
+ on Teres-I
+Message-ID: <20190607062802.m5wslx3imiqooq5a@flea>
+References: <20190604122150.29D6468B05@newverein.lst.de>
+ <20190604122308.98D4868B20@newverein.lst.de>
+ <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
+ <20190605101317.GA9345@lst.de>
+ <20190605120237.ekmytfxcwbjaqy3x@flea>
+ <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Rob, devicetree@, Mark
+On Thu, Jun 06, 2019 at 03:59:27PM +0200, Harald Geyer wrote:
+> Guys, this discussion is getting heated for no reason. Let's put
+> personal frustrations aside and discuss the issue on its merits:
+>
+> Maxime Ripard writes:
+> > On Wed, Jun 05, 2019 at 12:13:17PM +0200, Torsten Duwe wrote:
+> > > On Tue, Jun 04, 2019 at 08:08:40AM -0700, Vasily Khoruzhick wrote:
+> > > > On Tue, Jun 4, 2019 at 5:23 AM Torsten Duwe <duwe@lst.de> wrote:
+> > > > >
+> > > > > Teres-I has an anx6345 bridge connected to the RGB666 LCD output, and
+> > > > > the I2C controlling signals are connected to I2C0 bus. eDP output goes
+> > > > > to an Innolux N116BGE panel.
+> > > > >
+> > > > > Enable it in the device tree.
+> > > > >
+> > > > > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> > > > > Signed-off-by: Torsten Duwe <duwe@suse.de>
+> > > > > ---
+> > > > >  .../boot/dts/allwinner/sun50i-a64-teres-i.dts      | 65 ++++++++++++++++++++--
+> > > > >  1 file changed, 61 insertions(+), 4 deletions(-)
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > > > index 0ec46b969a75..a0ad438b037f 100644
+> > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > > > @@ -65,6 +65,21 @@
+> > > > >                 };
+> > > > >         };
+> > > > >
+> > > > > +       panel: panel {
+> > > > > +               compatible ="innolux,n116bge", "simple-panel";
+> > > >
+> > > > It's still "simple-panel". I believe I already mentioned that Rob
+> > > > asked it to be edp-connector.
+>
+> Actually just dropping the "simple-panel" compatible would be a poor
+> choice. Even if "edp-connector" is specified as binding and implemented in a
+> driver, there are older kernel versions and other operating systems to
+> keep in mind.
 
-On Wed, 5 Jun 2019, Kevin Hilman wrote:
+Which older kernels? This is a new binding, adding a new driver, so if
+an older kernel uses a separate driver with its own binding, good for
+them, but we don't have to support it.
 
-> Paul Walmsley <paul.walmsley@sifive.com> writes:
-> 
-> > Palmer has asked me to collect patches for the v5.2-rc releases and v5.3 
-> > merge window, so I'll be doing so.  This is just a heads-up so no one is 
-> > surprised to see 'patch queued' responses from me.
-> 
-> Speaking of v5.2-rc, any chance your DT series will make it for v5.2?
+> If the HW works with "simple-panel" driver satisfactorily,
+> we should definitely keep the compatible as a fall back for cases where
+> the edp-connector driver is unavailable.
+>
+> If think valid compatible properties would be:
+> compatible = "innolux,n116bge", "simple-panel";
+> compatible = "edp-connector", "simple-panel";
 
-Ideally it would be nice to get acks from the DT folks first for:
+A connector isn't a panel.
 
-https://lore.kernel.org/linux-riscv/20190602080500.31700-3-paul.walmsley@sifive.com/T/#u
+> compatible = "innolux,n116bge", "edp-connector", "simple-panel";
 
-https://lore.kernel.org/linux-riscv/20190602080500.31700-4-paul.walmsley@sifive.com/T/#u
+And the innolux,n116bge is certainly not a connector either.
 
-If those come soon, I'd be fine with submitting them for v5.2-rc.  But if 
-that stretches much further into the v5.2-rc series, it seems best to 
-schedule it for v5.3.
+> compatible = "edp-connector", "innolux,n116bge", "simple-panel";
+>
+> I can't make up my mind which one I prefere. However neither of these
+> variants requires actually implmenting an edp-connector driver.
 
+No-one asked to do an edp-connector driver. You should use it in your
+DT, but if you want to have some code in your driver that parses the
+DT directly, I'm totally fine with that.
 
-> I'm hoping to have upstream v5.2 ready for testing in kernelCI, and
-> that's one of the last missing pieces.  I just tested it on v5.2-rc3 and
-> it's working great with mainline u-boot.
+> And each of these variants is clearly preferable to shipping DTs
+> without description of the panel at all and complies with bindings
+> after adding a stub for "edp-connector".
 
-OK, great.  Thanks again for your testing help.
+I guess you should describe why do you think it's "clear", because I'm
+not sure this is obvious for everyone here. eDP allows to discover
+which device is on the other side and its supported timings, just like
+HDMI for example (or regular DP, for that matter). Would you think
+it's clearly preferable to ship a DT with the DP/HDMI monitor
+connected on the other side exposed as a panel as well?
 
+> > And the DT is considered an ABI, so yeah, we will witheld everything
+> > that doesn't fit what we would like.
+>
+> I fail to see how the patch in discussion adds new ABI.
 
-- Paul
+The binding itself is the ABI, and we will have to support that
+binding for pretty much forever.
+
+> While I understand the need to pester contributors for more work,
+> outright blocking DTs, that properly describe the HW
+
+Properly is arguable.
+
+> and comply with existing bindings
+
+And that's bindings meant for another use-case.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
