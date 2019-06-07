@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3625239112
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 17:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF1B39126
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 17:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730245AbfFGP4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 11:56:30 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:48150 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731066AbfFGPoZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 11:44:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1559922263; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Lyfxz9ZFMEgaN/ge8mu7C3B/fHgwTl4wfi0Crw5xZyg=;
-        b=B+SxfZQvKKJ0G1xakg+RrSsSTb/IaRp/FPOPYpUXf1ALKKrVlVTXNIDrAEuHM3eha0k/YQ
-        JkRvV4F6FcbXZQMJcMRSNKaMzrwsll7F138nPI6CSCc9wQNW6nmD9Geq15Dys4lcj40a11
-        xHG9sSsvEgF6iiN8Y0YpQ7BUDfA/xAY=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     od@zcrc.me, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH v2 6/6] pwm: jz4740: Use __init_or_module and __exit for .probe and .remove
-Date:   Fri,  7 Jun 2019 17:44:10 +0200
-Message-Id: <20190607154410.10633-7-paul@crapouillou.net>
-In-Reply-To: <20190607154410.10633-1-paul@crapouillou.net>
-References: <20190607154410.10633-1-paul@crapouillou.net>
+        id S1729955AbfFGP5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 11:57:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45078 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728847AbfFGP5f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 11:57:35 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 176DA20657;
+        Fri,  7 Jun 2019 15:57:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559923054;
+        bh=moVjOQu+0fxwl4+qBFcaT5nSX69Y7SsHo95mn91RMHQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PnGgQlJFu52ZBRKJpAN9rhg2ncvxnPs76IhL3/WakJ2O3M2BtbHjQWErDkxeGpUF+
+         bespNOJSQEEziWFq+cSe6WmQOh5vTwd68C0aNND520a/ipC1JWK6SLnPjqnZ6p0jvL
+         LPAK2XM8gVoPaLkso8Zs9BEZjgYJVqd5LGUtXTrw=
+Date:   Fri, 7 Jun 2019 17:57:31 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Dragan Cvetic <draganc@xilinx.com>
+Cc:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: Re: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
+Message-ID: <20190607155731.GB8752@kroah.com>
+References: <1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1558784245-108751-5-git-send-email-dragan.cvetic@xilinx.com>
+ <20190606132842.GC7943@kroah.com>
+ <CH2PR02MB6359747C72220A978CCA807BCB100@CH2PR02MB6359.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CH2PR02MB6359747C72220A978CCA807BCB100@CH2PR02MB6359.namprd02.prod.outlook.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows the probe function to be dropped after the kernel finished
-its initialization, in the case where the driver was not compiled as a
-module.
+On Fri, Jun 07, 2019 at 10:58:34AM +0000, Dragan Cvetic wrote:
+> > On Sat, May 25, 2019 at 12:37:17PM +0100, Dragan Cvetic wrote:
+> > > +static int xsdfec_dev_open(struct inode *iptr, struct file *fptr)
+> > > +{
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int xsdfec_dev_release(struct inode *iptr, struct file *fptr)
+> > > +{
+> > > +	return 0;
+> > > +}
+> > 
+> > empty open/close functions are never needed, just drop them.
+> > 
+> 
+> open() is needed to allocate file descriptor eg.
+> fd = open(dev_name, O_RDWR);
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
----
+But you do nothing in those open/release callbacks.  Remove them and see
+that the code works just fine :)
 
-Notes:
-    v2: New patch
+thanks,
 
- drivers/pwm/pwm-jz4740.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/pwm/pwm-jz4740.c b/drivers/pwm/pwm-jz4740.c
-index f901e8a0d33d..1b5077825721 100644
---- a/drivers/pwm/pwm-jz4740.c
-+++ b/drivers/pwm/pwm-jz4740.c
-@@ -145,7 +145,7 @@ static const struct pwm_ops jz4740_pwm_ops = {
- 	.owner = THIS_MODULE,
- };
- 
--static int jz4740_pwm_probe(struct platform_device *pdev)
-+static int __init_or_module jz4740_pwm_probe(struct platform_device *pdev)
- {
- 	struct jz4740_pwm_chip *jz4740;
- 
-@@ -169,7 +169,7 @@ static int jz4740_pwm_probe(struct platform_device *pdev)
- 	return pwmchip_add(&jz4740->chip);
- }
- 
--static int jz4740_pwm_remove(struct platform_device *pdev)
-+static int __exit jz4740_pwm_remove(struct platform_device *pdev)
- {
- 	struct jz4740_pwm_chip *jz4740 = platform_get_drvdata(pdev);
- 
--- 
-2.21.0.593.g511ec345e18
-
+greg k-h
