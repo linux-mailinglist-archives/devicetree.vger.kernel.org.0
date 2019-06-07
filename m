@@ -2,172 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 284FE398D4
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8499A3990E
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729977AbfFGWgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 18:36:22 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:55440 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729042AbfFGWgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:36:22 -0400
-Received: from [192.168.0.20] (cpc89242-aztw30-2-0-cust488.18-1.cable.virginm.net [86.31.129.233])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AAB6B334;
-        Sat,  8 Jun 2019 00:36:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1559946980;
-        bh=j5FFVrqIhrnGayeQScH9v/urXDU5UXFWBYSvtpUlKS4=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=pyva/gFomn8TCPxdlKjYq1gmLTubEqxTD39fVDr0/IilmrpgdP0x/cgbiCbmrxf7s
-         En7+d4x3xS4xKtUdvPPEvXan8kH/hmjcayz2KvUjkNftX/mi1km4XlygORyJH3nB/2
-         h1UABC0/ebgojjIBVD8jrmFa1RryKbMF/r9viSc0=
-Reply-To: kieran.bingham@ideasonboard.com
-Subject: Re: [PATCH v3 02/10] dt-bindings: display: bridge: thc63lvd1024:
- Document dual-link operation
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-References: <20190528141234.15425-1-laurent.pinchart+renesas@ideasonboard.com>
- <20190528141234.15425-3-laurent.pinchart+renesas@ideasonboard.com>
- <63985327-c796-c8cc-50c8-f486942e3161@ideasonboard.com>
- <20190607223020.GB5110@pendragon.ideasonboard.com>
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=kieran.bingham@ideasonboard.com; keydata=
- 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
- sbsRB8KNNvVXBOVNwko86rQqF9drZuw=
-Organization: Ideas on Board
-Message-ID: <17f06c94-a2d3-e159-f89a-02e5a355b7ee@ideasonboard.com>
-Date:   Fri, 7 Jun 2019 23:36:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1729787AbfFGWkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 18:40:05 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:34520 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728749AbfFGWkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:40:05 -0400
+Received: by mail-lj1-f194.google.com with SMTP id j24so3069715ljg.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 15:40:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2He8fM7kcXQfsornTR9w4EIW8ewTHe/YWrAox5h8fVA=;
+        b=Y1wzQSw3xyLXOije8DwbtzUeT40ID/RB3K6j9lA9ycHeOawwFiOB2UGDToQY9iptd8
+         qdB0PTbgAPUdAs5j6OGLikt0UDPGJVvwRx3MQrFm1sa/4ive4N+MZEH1ZdRZkWTj7jan
+         Ea4lmsPTV1MmZvUaLuyQ+1N202QQE1+a5jt06n7dyjTuxVkLeGD862oU7Yv/bwPfI6Ek
+         /0wcCoDdB4M+BU3QmL1/uR/m3vbdS1Xuj9DKutHK5+rObzRUXA/CJBp+n7yQU+Lsvz5R
+         vbfHWFBswsWYELI4G8Akq5VXlkm870a6aSKiOWw2ejytuYdUkwWGVItwc6Dc/nd3xNkF
+         S0/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2He8fM7kcXQfsornTR9w4EIW8ewTHe/YWrAox5h8fVA=;
+        b=WI1MU4iZzl5QPP+pgdbDxzWHpMAwWI8ntp3Q2LOQqNmFKU7z9rrQb6MIRNa4W/FmnC
+         VnxUagj6obv8uKrbC3y/thvdVDlj6i834OX+oVvFVUvbYgfUHs5j5uhurjhcT/H6/R8z
+         423IxBKKtdwrUapeZzhqFu4hqYqjB2dlSpOUDmF2ammGOrxyTJ9bVQ6kpCNHzBrMgClk
+         CBBn/CDySZnO3uY2ijZZRCELYAE5fXl8Cao1wFt1moBEY0tJUocE8vOedyxxUCM7byKw
+         dkpIQVi2wkRugqL+f1apNISKx5kJTXh4ON4OhL+9YwhrIS3R0Y6GcPgqkF741dJcki6e
+         59LA==
+X-Gm-Message-State: APjAAAV2ohUREiuP0E7x5XHU0J3vNT+7HrLVLlRhbZTSa6FB/oFIGKFK
+        4mpWh+Q2cMYDSnJg/4F0vpH5RqxGnn/kPsnMks+iZA==
+X-Google-Smtp-Source: APXvYqx/VwNEsPm3ayxAU3renmpKyYQsiC7r4U3mSDqbHCSnM+jZ3lPRwPTRSWn4x0qqtNvr8hw2rES8YOA2GkaI/gY=
+X-Received: by 2002:a2e:9e85:: with SMTP id f5mr23363303ljk.104.1559947203348;
+ Fri, 07 Jun 2019 15:40:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190607223020.GB5110@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20190606095620.6211-1-j-keerthy@ti.com> <20190606095620.6211-2-j-keerthy@ti.com>
+In-Reply-To: <20190606095620.6211-2-j-keerthy@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 8 Jun 2019 00:39:55 +0200
+Message-ID: <CACRpkdY-yK3+uZvq1Xk7qJ2Nd7mgRkQ9C22AYO4AiZP5Cs719w@mail.gmail.com>
+Subject: Re: [RFC RESEND PATCH v2 1/4] dt-bindings: gpio: davinci: Add k3
+ am654 compatible
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     Tero Kristo <t-kristo@ti.com>, ext Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Thu, Jun 6, 2019 at 11:55 AM Keerthy <j-keerthy@ti.com> wrote:
 
-On 07/06/2019 23:30, Laurent Pinchart wrote:
-> Hi Kieran,
-> 
-> On Fri, Jun 07, 2019 at 11:15:06PM +0100, Kieran Bingham wrote:
->> On 28/05/2019 15:12, Laurent Pinchart wrote:
->>> The THC63LVD1024 LVDS decoder can operate in two modes, single-link or
->>> dual-link. In dual-link mode both input ports are used to carry even-
->>> and odd-numbered pixels separately. Document this in the DT bindings,
->>> along with the related rules governing port and usage.
->>>
->>> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->>> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> Tested-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
->>> ---
->>>  .../bindings/display/bridge/thine,thc63lvd1024.txt          | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
->>> index 37f0c04d5a28..d17d1e5820d7 100644
->>> --- a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
->>> +++ b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
->>> @@ -28,6 +28,12 @@ Optional video port nodes:
->>>  - port@1: Second LVDS input port
->>>  - port@3: Second digital CMOS/TTL parallel output
->>>  
->>> +The device can operate in single-link mode or dual-link mode. In single-link
->>> +mode, all pixels are received on port@0, and port@1 shall not contain any
->>> +endpoint. In dual-link mode, even-numbered pixels are received on port@0 and
->>> +odd-numbered pixels on port@1, and both port@0 and port@1 shall contain
->>> +endpoints.
->>> +
->>
->> Your cover letter details 4 different modes of operation for this part.
->>
->> Do you anticipate the other combinations {Single-in, dual-out; dual-in,
->> dual-out} being supported? Perhaps that would be defined by the relevant
->> endpoints being connected or not ?
-> 
-> I expect that someone might need those modes at some point, but I
-> haven't specified them on purpose, as I don't like writing DT bindings
-> that can't be tested. I however expoect that those additional modes can
-> be derived from the connected endpoints.
-> 
->> You state that in dual-link mode, both port@0, and port@1 shall contain
->> endpoints, so that implies that you only expect to support dual-in with
->> the 'dual-link' property. If that is correct, should it be stated
->> explicitly?
-> 
-> What do you mean by the 'dual-link' property ? The patch series defines
-> no such property.
+> The patch adds k3 am654 compatible, specific properties and
+> an example.
+>
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
 
-Aha, my imagination is creating something from all the references to the
-word 'dual-link' :-D
+Patch applied with the three others, so now all
+GPIO changes are in tree.
 
-Ok - so it is just the existence of the endpoints which will
-enable//configure the various modes of operation.
+Please funnel all the DTS changes through ARM SoC.
 
-I guess that will become more clear when I get down to the driver patches :)
-
-
-
-> 
->> Otherwise,
->>
->> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
->>
->>>  Example:
->>>  --------
->>>  
-> 
-
--- 
-Regards
---
-Kieran
+Yours,
+Linus Walleij
