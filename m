@@ -2,178 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6294638EA0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 17:12:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 356D538ED9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 17:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728446AbfFGPLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 11:11:47 -0400
-Received: from foss.arm.com ([217.140.110.172]:42296 "EHLO foss.arm.com"
+        id S1729679AbfFGPVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 11:21:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60504 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729173AbfFGPLr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 11:11:47 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 84117C0A;
-        Fri,  7 Jun 2019 08:11:46 -0700 (PDT)
-Received: from [10.1.196.105] (eglon.cambridge.arm.com [10.1.196.105])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3F8053F718;
-        Fri,  7 Jun 2019 08:11:44 -0700 (PDT)
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-To:     "Shenhar, Talel" <talel@amazon.com>
-Cc:     "Hawa, Hanna" <hhhawa@amazon.com>, Borislav Petkov <bp@alien8.de>,
-        "Herrenschmidt, Benjamin" <benh@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
- <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
- <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
- <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
- <20190531051400.GA2275@cz.tnic>
- <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
- <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
- <71da083e-1a74-cf86-455d-260a34ee01fd@amazon.com>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <25efb27c-b725-137d-5735-b3ab88323846@arm.com>
-Date:   Fri, 7 Jun 2019 16:11:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+        id S1728665AbfFGPVw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 11:21:52 -0400
+Received: from [192.168.1.31] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4ACCB208C3;
+        Fri,  7 Jun 2019 15:21:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559920911;
+        bh=C4wSxFGlR6b9yxuGgWtjERfZiktf9Nic7InAMLS2vlc=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=f0Y+3vyWwKNie94rK4lNNs5Gjz8Njf4YDzV52+JvXjDibV6vA1j7g+A8+RGBRvj5T
+         aaSxRqJeEcqn1xYFeeR6+oHhuwoUYd3Ykl5qUZS+uRVrtj+BgoL4Wi95MUwVr4wQ7s
+         jMGhgXO4r5jl56S4D74j47sX5KRVgaB83H5rtT5g=
+Subject: Re: [PATCHv16 1/3] ARM:dt-bindings:display Intel FPGA Video and Image
+ Processing Suite
+To:     "Hean-Loong, Ong" <hean.loong.ong@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Randy Dunlap <rdunlap@infradead.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, chin.liang.see@intel.com
+References: <20190607143022.427-1-hean.loong.ong@intel.com>
+ <20190607143022.427-2-hean.loong.ong@intel.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <9695f3e1-92ab-23ce-5922-71fbb7d8149f@kernel.org>
+Date:   Fri, 7 Jun 2019 10:21:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <71da083e-1a74-cf86-455d-260a34ee01fd@amazon.com>
+In-Reply-To: <20190607143022.427-2-hean.loong.ong@intel.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi guys,
+Hi Hean-Loong:
 
-On 06/06/2019 12:37, Shenhar, Talel wrote:
->>> Disagree. The various drivers don't depend on each other.
->>> I think we should keep the drivers separated as they are distinct and independent IP
->>> blocks.
->> But they don't exist in isolation, they both depend on the integration-choices/firmware
->> that makes up your platform.
->>
->> Other platforms may have exactly the same IP blocks, configured differently, or with
->> different features enabled in firmware. This means we can't just probe the driver based on
->> the presence of the IP block, we need to know the integration choices and firmware
->> settings match what the driver requires.
->>
->> (Case in point, that A57 ECC support is optional, another A57 may not have it)
->>
->> Descriptions of what firmware did don't really belong in the DT. Its not a hardware
->> property.
->>
->> This is why its better to probe this stuff based on the machine-compatible/platform-name,
->> not the presence of the IP block in the DT.
->>
->>
->> Will either of your separate drivers ever run alone? If they're probed from the same
->> machine-compatible this won't happen.
->>
->>
->> How does your memory controller report errors? Does it send back some data with an invalid
->> checksum, or a specific poison/invalid flag? Will the cache report this as a cache error
->> too, if its an extra signal, does the cache know what it is?
->>
->> All these are integration choices between the two IP blocks, done as separate drivers we
->> don't have anywhere to store that information. Even if you don't care about this, making
->> them separate drivers should only be done to make them usable on other platforms, where
->> these choices may have been different.
+Please format your commit message like this:
 
-> From our perspective, l1/l2 has nothing to do with the ddr memory controller.
+<Commit message>
 
-I understand you're coming from the position that these things have counters, you want
-something to read and export them.
-
-I'm coming at this from somewhere else. This stuff has to be considered all the way
-through the system. Just because each component supports error detection, doesn't mean you
-aren't going to get silent corruption. Likewise if another platform picks up two piecemeal
-edac drivers for hardware it happens to have in common with yours, it doesn't mean we're
-counting all the errors. This stuff has to be viewed for the whole platform.
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Ong, Hean Loong <hean.loong.ong@intel.com>
+---
+V15:
+v14:
 
 
-> Its right that they both use same edac subsystem but they are using totally different APIs
-> of it.
+The version history needs go after the ---
+
+Dinh
+
+On 6/7/19 9:30 AM, Hean-Loong, Ong wrote:
+> From: "Ong, Hean Loong" <hean.loong.ong@intel.com>
 > 
-> We also even want to have separate control for enabling/disabling l1/l2 edac vs memory
-> controller edac.
-
-Curious, what for? Surely you either care about counting errors, or you don't.
-
-
-> Even from technical point-of-view L1/L2 UE collection method is totally different from
-> collecting memory-controller UE. (CPU exception vs actual interrupts).
+> Device tree binding for Intel FPGA Video and Image Processing Suite.
+> The bindings would set the max width, max height,
+> bits per pixel and memory port width.
+> The device tree binding only supports the Intel
+> Arria10 devkit and its variants. Vendor name retained as altr.
 > 
-> So there is less reason why to combine them vs giving each one its own file, e.g.
-> al_mc_edac, al_l1_l2_edac (I even don't see why Hanna combined l1 and l2...)
-
-> As we don't have any technical relation between the two we would rather avoid this
-> combination.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> Also, Lets assume we have different setups with different memory controllers, having a dt
-> binding to control the difference is super easy and flexible.
-
-If the hardware is different you should describe this in the DT. I'm not suggesting you
-don't describe it.
-
-The discussion here is whether we should probe the driver based on a dummy-node
-compatible, (which this 'edac_l1_l2' is) or based on the machine compatible.
-
-At the extreme end: you should paint the CPU and cache nodes with a compatible describing
-your integration. (I've mangled Juno's DT here:)
-| A57_0: cpu@0 {
-| 	compatible = "amazon-al,cortex-a57", "arm,cortex-a57";
-| 	reg = <0x0 0x0>;
-| 	device_type = "cpu";
-| 	next-level-cache = <&A57_L2>;
-| };
-|
-[...]
-|
-| A57_L2: l2-cache0 {
-| 	compatible = "amazon-al,cache", "cache";
-|	cpu_map = <A57_0, A57_1>
-| };
-
-
-This is the most accurate way to describe what you have here. The driver can use this to
-know that this integration of CPU and Cache support the edac registers. (This doesn't tell
-us anything about whether firmware enabled this stuff, or made/left it all secure-only)
-
-But this doesn't give you a device you can bind a driver to, to kick this stuff off.
-This (I assume) is why you added a dummy 'edac_l1_l2' node, that just probes the driver.
-The hardware is to do with the CPU and caches, 'edac_l1'_l2' doesn't correspond to any
-distinct part of the soc.
-
-The request is to use the machine compatible, not a dummy node. This wraps up the firmware
-properties too, and any other platform property we don't know about today.
-
-Once you have this, you don't really need the cpu/cache integration annotations, and your
-future memory-controller support can be picked up as part of the platform driver.
-If you have otherwise identical platforms with different memory controllers, OF gives you
-the API to match the node in the DT.
-
-
-> Would having a dedicated folder for amazon ease the move to separate files?
-
-I don't think anyone cares about the number of files. Code duplication and extra
-boiler-plate, maybe.
-
-
-Thanks,
-
-James
+> V15:
+> Reviewed
+> 
+> V14:
+> No Change
+> 
+> V13:
+> No change
+> 
+> V12:
+> Wrap comments and fix commit message
+> 
+> V11:
+> No change
+> 
+> V10:
+> No change
+> 
+> V9:
+> Remove Display port node
+> 
+> V8:
+> *Add port to Display port decoder
+> 
+> V7:
+> *Fix OF graph for better description
+> *Add description for encoder
+> 
+> V6:
+> *Description have not describe DT device in general
+> 
+> V5:
+> *remove bindings for bits per symbol as it has only one value which is 8
+> 
+> V4:
+> *fix properties that does not describe the values
+> 
+> V3:
+> *OF graph not in accordance to graph.txt
+> 
+> V2:
+> *Remove Linux driver description
+> 
+> V1:
+> *Missing vendor prefix
+> 
+> Signed-off-by: Ong, Hean Loong <hean.loong.ong@intel.com>
+> ---
+>  .../bindings/display/altr,vip-fb2.txt         | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/altr,vip-fb2.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/altr,vip-fb2.txt b/Documentation/devicetree/bindings/display/altr,vip-fb2.txt
+> new file mode 100644
+> index 000000000000..89a3b9e166a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/altr,vip-fb2.txt
+> @@ -0,0 +1,63 @@
+> +Intel Video and Image Processing(VIP) Frame Buffer II bindings
+> +
+> +Supported hardware: Intel FPGA SoC Arria10 and above with display port IP
+> +
+> +The Video Frame Buffer II in Video Image Processing (VIP) suite is an IP core
+> +that interfaces between system memory and Avalon-ST video ports. The IP core
+> +can be configured to support the memory reader (from memory to Avalon-ST)
+> +and/or memory writer (from Avalon-ST to memory) interfaces.
+> +
+> +More information the FPGA video IP component can be acquired from
+> +https://www.altera.com/content/dam/altera-www/global/en_US/pdfs\
+> +/literature/ug/ug_vip.pdf
+> +
+> +DT-Bindings:
+> +=============
+> +Required properties:
+> +----------------------------
+> +- compatible: "altr,vip-frame-buffer-2.0"
+> +- reg: Physical base address and length of the framebuffer controller's
+> +	registers.
+> +- altr,max-width: The maximum width of the framebuffer in pixels.
+> +- altr,max-height: The maximum height of the framebuffer in pixels.
+> +- altr,mem-port-width = the bus width of the avalon master port
+> +	on the frame reader
+> +
+> +Optional sub-nodes:
+> +- ports: The connection to the encoder
+> +
+> +Connections between the Frame Buffer II and other video IP cores in the system
+> +are modelled using the OF graph DT bindings. The Frame Buffer II node has up
+> +to two OF graph ports. When the memory writer interface is enabled, port 0
+> +maps to the Avalon-ST Input (din) port. When the memory reader interface is
+> +enabled, port 1 maps to the Avalon-ST Output (dout) port.
+> +
+> +The encoder is built into the FPGA HW design and therefore would not
+> +be accessible from the DDR.
+> +
+> +		Port 0				Port1
+> +---------------------------------------------------------
+> +ARRIA10 AVALON_ST (DIN)		AVALON_ST (DOUT)
+> +
+> +Required Properties Example:
+> +----------------------------
+> +
+> +framebuffer@100000280 {
+> +		compatible = "altr,vip-frame-buffer-2.0";
+> +		reg = <0x00000001 0x00000280 0x00000040>;
+> +		altr,max-width = <1280>;
+> +		altr,max-height = <720>;
+> +		altr,mem-port-width = <128>;
+> +
+> +		ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +					fb_output: endpoint {
+> +						remote-endpoint = <&dp_encoder_input>;
+> +					};
+> +			};
+> +		};
+> +};
+> 
