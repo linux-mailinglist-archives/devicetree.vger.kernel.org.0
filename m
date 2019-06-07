@@ -2,104 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 297713974C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 23:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF00739769
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 23:11:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731189AbfFGVEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 17:04:42 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:35354 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731132AbfFGVEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 17:04:42 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x57L4dBx023761;
-        Fri, 7 Jun 2019 16:04:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559941479;
-        bh=y3TMmwalj8p/ibUMQfnAwnQm2tAicIorIe/nuI/lHWE=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=ZW33/FzALdojrXTpeEv2lw+ID+ysdGEpM/h59O3boDTZzAXcQmbigGG7unFD/DvtR
-         3byspdlwgqTSgOSciy4g1S/sZoNZuCtSifXIyj1zxdxSlML0fZ+wKs7p4y+Ogr9zPW
-         6+DxUqGjKcdROMmicM88e0ckOcmXOHngFxDMnaX4=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x57L4ddP077244
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 7 Jun 2019 16:04:39 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 7 Jun
- 2019 16:04:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 7 Jun 2019 16:04:39 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x57L4cH0119088;
-        Fri, 7 Jun 2019 16:04:38 -0500
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add docs for EL15203000
-To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
-        <linux-leds@vger.kernel.org>
-References: <20190607184022.13793-1-oleg@kaa.org.ua>
- <b1f0eaf6-e91c-2095-5928-179ad8695b33@ti.com>
- <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <b6a5cc5e-74f1-d328-7a47-995670ba7aa7@ti.com>
-Date:   Fri, 7 Jun 2019 16:04:38 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1730540AbfFGVLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 17:11:12 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:46131 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730392AbfFGVLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 17:11:08 -0400
+Received: by mail-lf1-f66.google.com with SMTP id l26so2599785lfh.13
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 14:11:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GPc4uqgBsBwvM/V5yLC3GgSCS1qEGuH2AgCesOfjZVs=;
+        b=Xj+2CqjydRXkCSQdyY7hh8PknmG976aSmUGB6M0CXKwV68YBSlt7lEEc+0Q42HLwWz
+         Kra3lWvzcZx8eZY4JLM9mGD+VkNWxtwDyVXjTFTgP11NG2vkLXXXisA4gdEpta8GgDB2
+         yxGporWlOf2R6G+iU1qVE/dS2KcDdPsOgzlWsQScxqbH7f/eMvtehgLWrh/1s1mMzjg1
+         BK/0CrHmik6HkETFYVX4kcOMMJv106KemH4Z0D8fzGvw9Y3KVrowv8NuJWMIEnm7Eorb
+         QD7hXFsgXb7V41En3COZDajj/mMY4wVVGLQ6hrmrSsj80bmLgb4VTYAq4+CJUHOuV9ia
+         B5IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GPc4uqgBsBwvM/V5yLC3GgSCS1qEGuH2AgCesOfjZVs=;
+        b=qwhcvRHCc7loE9mD5PTc8UzJJGs1XgjSzf3N5IaPgRA56/hjEGWsVjUp0BVn0Qglxy
+         GAhzoqPUwFGDJz0EkcyHO6JOyJOUcecuD0lQFTFP6We/I8erUsXZqfj5/i2LeuqvNDuV
+         b2+rRf7dJTGXOBvnYKfA5XBYpe5WJXdqCamzGsO3L++JSZo/PagGVtvuASsI9rwS4jZ8
+         bzPXTX5CBKnTzoguwoK2tCI8FvvEkwuCt/1qgIzE5e91u/1mwbbPdAiwstsG0OHsMN1g
+         hdoY+8u+I7kAKc1P+HYiQgoAjUy0eQ6OVd6IeGgfYXhnR/GgJzQSJdW6xBnFg/Jcch2Z
+         HdoA==
+X-Gm-Message-State: APjAAAXctnK5JClSe6C8eTpDK3hSogNL4GKAtDp/0srn1OaplHctzSci
+        f6uvSJWKN8dsk4xkGYWZAQILdHDepaQxEAnnbxJc+Q==
+X-Google-Smtp-Source: APXvYqwLMWoxXQVxSrAqsjepyHJHrlxKQondxww0aj1IMUZLcbBmaGIZOjMLnDuUtqzxjWJr+xi7qFr48fEF7tdb+eo=
+X-Received: by 2002:a19:6a01:: with SMTP id u1mr26200028lfu.141.1559941866676;
+ Fri, 07 Jun 2019 14:11:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190603010455.17060-1-masneyb@onstation.org>
+In-Reply-To: <20190603010455.17060-1-masneyb@onstation.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 7 Jun 2019 23:10:58 +0200
+Message-ID: <CACRpkdYP2C1cUN9w9uguSbXV3vkCDrm3o84qNbpTiaD9TcdMog@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: msm8974-hammerhead: add touchscreen support
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Russell King <linux@armlinux.org.uk>, frank.rowand@sony.com,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        absahu@codeaurora.org, MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Jonathan Marek <jonathan@marek.ca>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Oleh
+On Mon, Jun 3, 2019 at 3:05 AM Brian Masney <masneyb@onstation.org> wrote:
 
-On 6/7/19 3:53 PM, Oleh Kravchenko wrote:
+> From: Jonathan Marek <jonathan@marek.ca>
 >
-> 07.06.19 23:14, Dan Murphy пише:
->> Oleh
->>
->> On 6/7/19 1:40 PM, Oleh Kravchenko wrote:
->>> +LED sub-node properties:
->>> +- label :
->>> +    see Documentation/devicetree/bindings/leds/common.txt
->> Add this
->>
->> Optional LED sub-node properties:
->>
->> And remove (optional) from the below.
->>
-> Done
+> Add support for the Synaptics RMI4 touchscreen that is found on the
+> Nexus 5.
 >
->>> +- linux,default-trigger : (optional)
->>> +    see Documentation/devicetree/bindings/leds/common.txt
->>> +- max-brightness : (optional)
->>> +    Specify here 2 if LED has special effect. Effects by LED type:
->> s/Specify here 2/Specify 2
->>
-> Done
->
->> But this is not really max_brightness now this is a feature and now does not make sense in this context
->>
->> You may need to use something different for this property or expose a file in the driver.
->>
->>
-> Protocol for this board define 0x32 as brightness level.
-> This behaviur needed to keep backward compatibity.
->
->
-Backwards compatibility to what?
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
 
-This is a new driver there should be no DT that has this compatible or 
-definition.
+Looks good to me:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-I will let Rob ack or nack this node.
-
-Dan
-
+Yours,
+Linus Walleij
