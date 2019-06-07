@@ -2,103 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B474638A77
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 14:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F3838AA7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 14:50:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728764AbfFGMig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 08:38:36 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:39630 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728750AbfFGMig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 08:38:36 -0400
-Received: by mail-qt1-f196.google.com with SMTP id i34so1998971qta.6
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 05:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6iGSfs58nJEWANfcqakVLDnIqBJN0sG2xeLAj5suBzA=;
-        b=jpVVBJBgGBWvuVp1bgLIZ6kj6T33Jf3ZDqewzBsJiOkescpA4SpZIjK7BPSkEzPdjX
-         0dq7fPDipCzIibmPYHDj3PxkYUgh+sbcCivpbRLZqfEzd7Sw5gKo74I1ik2CIHi5dXN1
-         foWiBBYiLqj5Mz0qdlPngVLRyuObhyodT8oAs5AybIXdvpuxZVd4kiIOFIHZNu61dGi+
-         59C4WoZTeq4RqmTOjxyGrJWQ+24MZh/KCs1mTxibbctjN66XCLo+2Gr5lomdghWEaW0i
-         ZxHjciIn7nT6kBOcWVabp8qLR9Fc1yFkZZ9SubnkXwkiabJsu93GrTTxSVjwm5TRqTl/
-         WQCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6iGSfs58nJEWANfcqakVLDnIqBJN0sG2xeLAj5suBzA=;
-        b=F+9s8f6hIwtIBrAiBorl3KyyVztIUfzbYfh5H98y7IP1axSv0cmYMHoYpHYvmxTN0n
-         /7KJt+YcW0GMQFVUteAVTJZgxnAfELU9c2K9NQdgSeuc/0iIdQYvfsnJTaIbCFlVD1Mr
-         N6mz3ounXK3mWjRhFCaQ01yY+OqKPTXBgV+mFY2K5RC1DNP8RM4MfBhEPfrvLnuw2Hlk
-         rgRUwhBan8Vwp3EfQp5Msqe6Bb4PLqzx6ljGKE1E8istrnKeASTLu8IbyYrLrRpJouhr
-         vM5krc55r+rZgSqdJaqTltvUX0URbY4fhhQM/erxxaM8sSDAJq8rC4NRrqTD2V/0bi07
-         7d9w==
-X-Gm-Message-State: APjAAAXmkRBUVel9/iW/jzXaEW/KuaeaguzTYuG/uzlDDqkvXx+E1ONV
-        chBeknAxw+5IvJuVih4OxjI=
-X-Google-Smtp-Source: APXvYqy3lnFlY+YhZJzwKz2YNnsUjtvp2Q1p+GonECjpcMx9XDR0cb8cTW4wC/H47MjLRzYxMFcpFw==
-X-Received: by 2002:a05:6214:206:: with SMTP id i6mr16751479qvt.169.1559911115340;
-        Fri, 07 Jun 2019 05:38:35 -0700 (PDT)
-Received: from firefly.sparksnet ([2601:153:900:ebb::2])
-        by smtp.gmail.com with ESMTPSA id o54sm1281963qtb.63.2019.06.07.05.38.34
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 07 Jun 2019 05:38:34 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     "Leonidas P . Papadakos" <papadakospan@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jose Abreu <jose.abreu@synopsys.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii performance.
-Date:   Fri,  7 Jun 2019 12:37:32 +0000
-Message-Id: <20190607123731.8737-1-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        id S1728338AbfFGMuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 08:50:24 -0400
+Received: from mga05.intel.com ([192.55.52.43]:32818 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727783AbfFGMuY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 08:50:24 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Jun 2019 05:50:23 -0700
+X-ExtLoop1: 1
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga001.fm.intel.com with ESMTP; 07 Jun 2019 05:50:23 -0700
+Received: from kwong4-mobl.amr.corp.intel.com (unknown [10.252.203.122])
+        by linux.intel.com (Postfix) with ESMTP id 76DB058044F;
+        Fri,  7 Jun 2019 05:50:22 -0700 (PDT)
+Subject: Re: [alsa-devel] [RFC PATCH 5/6] dt-bindings: soundwire: add bindings
+ for Qcom controller
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        broonie@kernel.org, vkoul@kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
+ <20190607085643.932-6-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <f2ea97b2-935d-0c7d-cb55-6e16a19c2060@linux.intel.com>
+Date:   Fri, 7 Jun 2019 07:50:10 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190607085643.932-6-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the rk3328-roc-cc ethernet is enabled using "snps,force_thresh_dma_mode".
-While this works, the performance leaves a lot to be desired.
-A previous attempt to improve performance used "snps,txpbl = <0x4>".
-This also allowed networking to function, but performance varied between boards.
+On 6/7/19 3:56 AM, Srinivas Kandagatla wrote:
+> This patch adds bindings for Qualcomm soundwire controller.
+> 
+> Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
+> either integrated as part of WCD audio codecs via slimbus or
+> as part of SOC I/O.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>   .../bindings/soundwire/qcom,swr.txt           | 62 +++++++++++++++++++
+>   1 file changed, 62 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,swr.txt
 
-This patch takes that one step further.
-Set txpbl and rxpbl to 0x4.
-This can also be accomplished with "snps,pbl =<0x4>" which affects both.
-Also set "snps,aal" which forces address aligned DMA mode.
+you seem to use the 'swr' prefix in this patch. Most implementers use 
+'sdw', and that's the default also used in the MIPI DisCo spec for 
+properties. Can we align on the same naming conventions?
 
-On my board this achieves the best performance yet, however we need broad testing to ensure this works for everyone.
-Please test and provide feedback.
+> 
+> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,swr.txt b/Documentation/devicetree/bindings/soundwire/qcom,swr.txt
+> new file mode 100644
+> index 000000000000..eb84d0f4f36f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soundwire/qcom,swr.txt
+> @@ -0,0 +1,62 @@
+> +Qualcomm SoundWire Controller
+> +
+> +This binding describes the Qualcomm SoundWire Controller Bindings.
+> +
+> +Required properties:
+> +
+> +- compatible:		Must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
+> +	 		example:
+> +			"qcom,soundwire-v1.3.0"
+> +			"qcom,soundwire-v1.5.0"
+> +			"qcom,soundwire-v1.6.0"
+> +- reg:			SoundWire controller address space.
+> +- interrupts:		SoundWire controller interrupt.
+> +- clock-names:		Must contain "iface".
+> +- clocks:		Interface clocks needed for controller.
+> +- #sound-dai-cells:	Must be 1 for digital audio interfaces on the controllers.
+> +- #address-cells:	Must be 1 for SoundWire devices;
+> +- #size-cells:		Must be <0> as SoundWire addresses have no size component.
+> +- qcom,dout-ports: 	Must be count of data out ports
+> +- qcom,din-ports: 	Must be count of data in ports
+> +- qcom,ports-offset1:	Must be frame offset1 of each data port.
+> +			Out followed by In. Used for Block size calculation.
+> +- qcom,ports-offset2: 	Must be frame offset2 of each data port.
+> +			Out followed by In. Used for Block size calculation.
+> +- qcom,ports-sinterval-low: Must be sample interval low of each data port.
+> +			Out followed by In. Used for Sample Interval calculation.
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+These definitions are valid only for specific types of ports, I believe 
+here it's a 'reduced' port since offset2 is not required for simpler 
+ports and you don't have Hstart/Hstop.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-index 5d499c9086fb..8bcc08de82fb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-@@ -141,10 +141,12 @@
- 	phy-mode = "rgmii";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmiim1_pins>;
--	snps,force_thresh_dma_mode;
- 	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
- 	snps,reset-active-low;
- 	snps,reset-delays-us = <0 10000 50000>;
-+	snps,txpbl = <0x4>;
-+	snps,rxpbl = <0x4>;
-+	snps,aal;
- 	tx_delay = <0x24>;
- 	rx_delay = <0x18>;
- 	status = "okay";
--- 
-2.20.1
+so if you state that all of these properties are required, you are 
+explicitly ruling out future implementations of simple ports or will 
+have to redefine them later.
+
+Also the definition 'frame offset1/2' is incorrect. the offset is 
+defined within each Payload Transport Window - not each frame - and its 
+definition depends on the packing mode used, which isn't defined or 
+stated here.
+
+And last it looks like you assume a fixed frame shape - likely 50 rows 
+by 8 columns, it might be worth adding a note on the max values for 
+offset1/2 implied by this frame shape.
+
+> +
+> += SoundWire devices
+> +Each subnode of the bus represents SoundWire device attached to it.
+> +The properties of these nodes are defined by the individual bindings.
+> +
+> += EXAMPLE
+> +The following example represents a SoundWire controller on DB845c board
+> +which has controller integrated inside WCD934x codec on SDM845 SoC.
+> +
+> +soundwire: soundwire@c85 {
+> +	compatible = "qcom,soundwire-v1.3.0";
+> +	reg = <0xc85 0x20>;
+> +	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
+> +	clocks = <&wcc>;
+> +	clock-names = "iface";
+> +	#sound-dai-cells = <1>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	qcom,dout-ports	= <6>;
+> +	qcom,din-ports	= <2>;
+> +	qcom,ports-sinterval-low =/bits/ 8  <0x07 0x1F 0x3F 0x7 0x1F 0x3F 0x0F 0x0F>;
+> +	qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0C 0x6 0x12 0x0D 0x07 0x0A >;
+> +	qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1F 0x00 0x00 0x1F 0x00 0x00>;
+> +
+> +	/* Left Speaker */
+> +	wsa8810@1{
+> +		....
+> +		reg = <1>;
+> +	};
+> +
+> +	/* Right Speaker */
+> +	wsa8810@2{
+> +		....
+> +		reg = <2>;
+> +	};
+> +};
+> 
 
