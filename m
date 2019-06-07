@@ -2,108 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D681639524
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 21:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21FF03953E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 21:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729738AbfFGTAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 15:00:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59054 "EHLO mail.kernel.org"
+        id S1729841AbfFGTEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 15:04:08 -0400
+Received: from smtp.220.in.ua ([89.184.67.205]:41294 "EHLO smtp.220.in.ua"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728595AbfFGTAs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 15:00:48 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729764AbfFGTEI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 15:04:08 -0400
+Received: from oleh-pc.lan (unknown [95.67.115.55])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C3E7A20868;
-        Fri,  7 Jun 2019 19:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559934047;
-        bh=SaF9wNj2glMXJrUlhGfPV51XspfvGCl4GV+n5wOltIk=;
-        h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=pOa773KinCbWZNwUdN0H2jdZol+fGp2XY6GywMUyTl3QZS5pW9hFAAcg/RQpuePFb
-         6lPWUUf3AvmyqHdMay0eDupbNJ7WbuBfNXwJ4jnDfqEl3Pw+6YKFdZVlrZIY2LFVvc
-         bfbI2V1LcTAYX/HU3jn8XFwP21qj/1NllQ+0AO60=
-Content-Type: text/plain; charset="utf-8"
+        by smtp.220.in.ua (Postfix) with ESMTPSA id 3F53F1A20B58;
+        Fri,  7 Jun 2019 22:04:04 +0300 (EEST)
+From:   Oleh Kravchenko <oleg@kaa.org.ua>
+To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+Cc:     Oleh Kravchenko <oleg@kaa.org.ua>
+Subject: [PATCH v2 2/2] leds: add LED driver for EL15203000 board
+Date:   Fri,  7 Jun 2019 22:03:51 +0300
+Message-Id: <20190607190351.14092-2-oleg@kaa.org.ua>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com>
-References: <20190514221711.248228-1-brendanhiggins@google.com> <20190514221711.248228-18-brendanhiggins@google.com> <20190517182254.548EA20815@mail.kernel.org> <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com>
-To:     Iurii Zaikin <yzaikin@google.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 17/18] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
-Cc:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-User-Agent: alot/0.8.1
-Date:   Fri, 07 Jun 2019 12:00:47 -0700
-Message-Id: <20190607190047.C3E7A20868@mail.kernel.org>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Iurii Zaikin (2019-06-05 18:29:42)
-> On Fri, May 17, 2019 at 11:22 AM Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > Quoting Brendan Higgins (2019-05-14 15:17:10)
-> > > diff --git a/kernel/sysctl-test.c b/kernel/sysctl-test.c
-> > > new file mode 100644
-> > > index 0000000000000..fe0f2bae66085
-> > > --- /dev/null
-> > > +++ b/kernel/sysctl-test.c
-> > > +
-> > > +
-> > > +static void sysctl_test_dointvec_happy_single_negative(struct kunit =
-*test)
-> > > +{
-> > > +       struct ctl_table table =3D {
-> > > +               .procname =3D "foo",
-> > > +               .data           =3D &test_data.int_0001,
-> > > +               .maxlen         =3D sizeof(int),
-> > > +               .mode           =3D 0644,
-> > > +               .proc_handler   =3D proc_dointvec,
-> > > +               .extra1         =3D &i_zero,
-> > > +               .extra2         =3D &i_one_hundred,
-> > > +       };
-> > > +       char input[] =3D "-9";
-> > > +       size_t len =3D sizeof(input) - 1;
-> > > +       loff_t pos =3D 0;
-> > > +
-> > > +       table.data =3D kunit_kzalloc(test, sizeof(int), GFP_USER);
-> > > +       KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, input, &len=
-, &pos));
-> > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
-> > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, pos);
-> > > +       KUNIT_EXPECT_EQ(test, -9, *(int *)table.data);
-> >
-> > Is the casting necessary? Or can the macro do a type coercion of the
-> > second parameter based on the first type?
->  Data field is defined as void* so I believe casting is necessary to
-> dereference it as a pointer to an array of ints. I don't think the
-> macro should do any type coercion that =3D=3D operator wouldn't do.
->  I did change the cast to make it more clear that it's a pointer to an
-> array of ints being dereferenced.
+This patch adds a LED class driver for the RGB LEDs found on
+the Crane Merchandising System EL15203000 LEDs board
+(aka RED LEDs board).
 
-Ok, I still wonder if we should make KUNIT_EXPECT_EQ check the types on
-both sides and cause a build warning/error if the types aren't the same.
-This would be similar to our min/max macros that complain about
-mismatched types in the comparisons. Then if a test developer needs to
-convert one type or the other they could do so with a
-KUNIT_EXPECT_EQ_T() macro that lists the types to coerce both sides to
-explicitly.
+Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+---
+ drivers/leds/Kconfig           |  13 ++
+ drivers/leds/Makefile          |   1 +
+ drivers/leds/leds-el15203000.c | 230 +++++++++++++++++++++++++++++++++
+ 3 files changed, 244 insertions(+)
+ create mode 100644 drivers/leds/leds-el15203000.c
+
+diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+index 71be87bdb926..ae293a0f7598 100644
+--- a/drivers/leds/Kconfig
++++ b/drivers/leds/Kconfig
+@@ -128,6 +128,19 @@ config LEDS_CR0014114
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called leds-cr0014114.
+ 
++config LEDS_EL15203000
++	tristate "LED Support for Crane EL15203000"
++	depends on LEDS_CLASS
++	depends on SPI
++	depends on OF
++	help
++	  This option enables support for EL15203000 LED Board which
++	  is widely used in coffee vending machines produced by
++	  Crane Merchandising Systems.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called leds-el15203000.
++
+ config LEDS_LM3530
+ 	tristate "LCD Backlight driver for LM3530"
+ 	depends on LEDS_CLASS
+diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+index 1e9702ebffee..1f193ffc2feb 100644
+--- a/drivers/leds/Makefile
++++ b/drivers/leds/Makefile
+@@ -85,6 +85,7 @@ obj-$(CONFIG_LEDS_LM3601X)		+= leds-lm3601x.o
+ # LED SPI Drivers
+ obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
+ obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
++obj-$(CONFIG_LEDS_EL15203000)		+= leds-el15203000.o
+ 
+ # LED Userspace Drivers
+ obj-$(CONFIG_LEDS_USER)			+= uleds.o
+diff --git a/drivers/leds/leds-el15203000.c b/drivers/leds/leds-el15203000.c
+new file mode 100644
+index 000000000000..5598c3bc835d
+--- /dev/null
++++ b/drivers/leds/leds-el15203000.c
+@@ -0,0 +1,230 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (c) 2019 Crane Merchandising Systems. All rights reserved.
++// Copyright (C) 2019 Oleh Kravchenko <oleg@kaa.org.ua>
++
++#include <linux/delay.h>
++#include <linux/leds.h>
++#include <linux/limits.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/spi/spi.h>
++#include <uapi/linux/uleds.h>
++
++/*
++ * EL15203000 SPI protocol descrtiption:
++ * +-----+------------+
++ * | LED | BRIGHTNESS |
++ * +-----+------------+
++ * |  1  |      1     |
++ * +-----+------------+
++ *
++ * LED		ID, known values is 0x50 (Pipe), 0x53 (Screen Frame) and
++ * 		0x56 (Vending Area);
++ * BRIGHTNESS	Can be 0x30 (OFF), 0x31 (ON).
++ * 		0x32 (Effect) can be used for 0x50 (leaking) and
++ * 		for 0x53 (blinking).
++ *
++ * LEDs MCU board expects 20 msec delay per byte.
++ */
++
++/* EL15203000 default settings */
++#define EL_MAX_BRIGHTNESS	2
++#define EL_FW_DELAY_USEC	20000
++
++struct el15203000_led {
++	char			name[LED_MAX_NAME_SIZE];
++	struct el15203000	*priv;
++	struct led_classdev	ldev;
++	u8			reg;
++};
++
++struct el15203000 {
++	size_t			count;
++	struct device		*dev;
++	struct mutex		lock;
++	struct spi_device	*spi;
++	unsigned long		delay;
++	struct el15203000_led	leds[];
++};
++
++static int el15203000_set_sync(struct led_classdev *ldev,
++			      enum led_brightness brightness)
++{
++	int			ret;
++	u8			cmd[2];
++	size_t			i;
++	unsigned long		udelay, now;
++	struct el15203000_led	*led = container_of(ldev,
++						    struct el15203000_led,
++						    ldev);
++
++	mutex_lock(&led->priv->lock);
++
++	dev_dbg(led->priv->dev, "Set brightness of %s to %d",
++		led->name, brightness);
++
++	/* to avoid SPI mistiming with firmware we should wait some time */
++	now = jiffies;
++	if (time_after(led->priv->delay, now)) {
++		udelay = jiffies_to_usecs(led->priv->delay - now);
++
++		dev_dbg(led->priv->dev, "Wait %luus to synch", udelay);
++		usleep_range(udelay, udelay + 1);
++	}
++
++	cmd[0] = led->reg;
++	cmd[1] = 0x30 + (u8)brightness;
++
++	for (i = 0; i < ARRAY_SIZE(cmd); i++) {
++		if (i)
++			usleep_range(EL_FW_DELAY_USEC,
++				     EL_FW_DELAY_USEC + 1);
++
++		ret = spi_write(led->priv->spi, &cmd[i], sizeof(cmd[i]));
++		if (ret) {
++			dev_err(led->priv->dev,
++				"spi_write() error %d\n", ret);
++			break;
++		}
++	}
++
++	led->priv->delay = jiffies + usecs_to_jiffies(EL_FW_DELAY_USEC);
++
++	mutex_unlock(&led->priv->lock);
++
++	return ret;
++}
++
++static int el15203000_probe_dt(struct el15203000 *priv)
++{
++	size_t			i = 0;
++	struct el15203000_led	*led;
++	struct fwnode_handle	*child;
++	int			ret;
++	const char		*str;
++	u32			reg;
++
++	device_for_each_child_node(priv->dev, child) {
++		led = &priv->leds[i];
++
++		ret = fwnode_property_read_u32(child, "reg", &reg);
++		if (ret) {
++			dev_err(priv->dev, "LED without ID number");
++			fwnode_handle_put(child);
++
++			return ret;
++		}
++		if (reg > U8_MAX) {
++			dev_err(priv->dev, "LED value %d is invalid", reg);
++			fwnode_handle_put(child);
++
++			return -EINVAL;
++		}
++		led->reg = reg;
++
++		ret = fwnode_property_read_string(child, "label", &str);
++		if (ret)
++			snprintf(led->name, sizeof(led->name),
++				 "el15203000::");
++		else
++			snprintf(led->name, sizeof(led->name),
++				 "el15203000:%s", str);
++
++		fwnode_property_read_string(child, "linux,default-trigger",
++					    &led->ldev.default_trigger);
++
++		led->priv			  = priv;
++		led->ldev.name			  = led->name;
++		led->ldev.max_brightness	  = LED_ON;
++		led->ldev.brightness_set_blocking = el15203000_set_sync;
++
++		ret = fwnode_property_read_u32(child, "max-brightness",
++					       &led->ldev.max_brightness);
++		if (led->ldev.max_brightness > EL_MAX_BRIGHTNESS) {
++			dev_err(priv->dev, "invalid max brightness %d",
++				led->ldev.max_brightness);
++			fwnode_handle_put(child);
++
++			return -EINVAL;
++		}
++
++		ret = devm_led_classdev_register(priv->dev, &led->ldev);
++		if (ret) {
++			dev_err(priv->dev,
++				"failed to register LED device %s, err %d",
++				led->name, ret);
++			fwnode_handle_put(child);
++			return ret;
++		}
++
++		i++;
++	}
++
++	return ret;
++}
++
++static int el15203000_probe(struct spi_device *spi)
++{
++	struct el15203000	*priv;
++	size_t			count;
++	int			ret;
++
++	count = device_get_child_node_count(&spi->dev);
++	if (!count) {
++		dev_err(&spi->dev, "LEDs are not defined in device tree!");
++		return -ENODEV;
++	}
++
++	priv = devm_kzalloc(&spi->dev, struct_size(priv, leds, count),
++			    GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	mutex_init(&priv->lock);
++	priv->count	= count;
++	priv->dev	= &spi->dev;
++	priv->spi	= spi;
++	priv->delay	= jiffies -
++			  usecs_to_jiffies(EL_FW_DELAY_USEC);
++
++	ret = el15203000_probe_dt(priv);
++	if (ret)
++		return ret;
++
++	spi_set_drvdata(spi, priv);
++	dev_dbg(priv->dev, "%zd LEDs registered", priv->count);
++
++	return 0;
++}
++
++static int el15203000_remove(struct spi_device *spi)
++{
++	struct el15203000 *priv = spi_get_drvdata(spi);
++
++	mutex_destroy(&priv->lock);
++
++	return 0;
++}
++
++static const struct of_device_id el15203000_dt_ids[] = {
++	{ .compatible = "crane,el15203000", },
++	{},
++};
++
++MODULE_DEVICE_TABLE(of, el15203000_dt_ids);
++
++static struct spi_driver el15203000_driver = {
++	.probe		= el15203000_probe,
++	.remove		= el15203000_remove,
++	.driver = {
++		.name		= KBUILD_MODNAME,
++		.of_match_table	= el15203000_dt_ids,
++	},
++};
++
++module_spi_driver(el15203000_driver);
++
++MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
++MODULE_DESCRIPTION("el15203000 LED driver");
++MODULE_LICENSE("GPL v2");
++MODULE_ALIAS("spi:el15203000");
+-- 
+2.21.0
 
