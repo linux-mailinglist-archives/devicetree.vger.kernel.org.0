@@ -2,52 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D60A0388C7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 13:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16A43896F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 13:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727754AbfFGLRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 07:17:18 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:21921 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728052AbfFGLRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 07:17:18 -0400
-X-Greylist: delayed 352 seconds by postgrey-1.27 at vger.kernel.org; Fri, 07 Jun 2019 07:17:17 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1559906236;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=z2Lawv9tCJkbiMtjftVTXc595vid1xyVceWlHWvLNYs=;
-        b=QUoOy7qAMLZ++AX9rwjoSbEjB5IQVVbcPQznDZu39kDOFQnprZL3/Meq/3em/x1BO1
-        V39aMrA3Ecs7e+UyGeqKiddgrJhN65jfBIW1H9jb15JNQy+eOwZ3WiCY/18qxq5MPRQD
-        Wgsj4h1+RR2jwR/rOOuhzZkfm2OYezTjMcjSAn26UloWYyUD5r8kW5rbKpgAn2X3/j9Y
-        l7hbVZ5/TRkVaTFoGGyva9hiazEt2+5Fl+OZX1FaUlApM88OLKU7+j/cV1kfNnYvuWbx
-        ru+yZNF65lWQcdcqHtPDjbL7grhXdvgyRlHzJ/TfrStoXGZt8RDBOXfCNq81zd4UJy32
-        Cg6Q==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0pAwkq13LM="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 44.22 DYNA|AUTH)
-        with ESMTPSA id i01b98v57BBFPaT
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 7 Jun 2019 13:11:15 +0200 (CEST)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, tomi.valkeinen@ti.com,
-        imirkin@alum.mit.edu, marek.belisko@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, letux-kernel@openphoenux.org,
-        devicetree@vger.kernel.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v3 5/5] dt-bindings: drm/panel: simple: add sharp,lq070y3dg3b panel
-Date:   Fri,  7 Jun 2019 13:11:11 +0200
-Message-Id: <ee90ed56d2c294ce8ac3b44bf2229c5ab9f85e91.1559905870.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <cover.1559905870.git.hns@goldelico.com>
-References: <cover.1559905870.git.hns@goldelico.com>
+        id S1728669AbfFGLzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 07:55:01 -0400
+Received: from smtp.220.in.ua ([89.184.67.205]:39053 "EHLO smtp.220.in.ua"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727047AbfFGLzB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 07:55:01 -0400
+X-Greylist: delayed 374 seconds by postgrey-1.27 at vger.kernel.org; Fri, 07 Jun 2019 07:55:01 EDT
+Received: from oleh-pc.lan (unknown [95.67.115.55])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by smtp.220.in.ua (Postfix) with ESMTPSA id 797FA1A20B8E;
+        Fri,  7 Jun 2019 14:48:46 +0300 (EEST)
+From:   Oleh Kravchenko <oleg@kaa.org.ua>
+To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+Cc:     Oleh Kravchenko <oleg@kaa.org.ua>
+Subject: [PATCH 1/2] dt-bindings: Add vendor prefix and docs for EL15203000
+Date:   Fri,  7 Jun 2019 14:48:22 +0300
+Message-Id: <20190607114823.3735-1-oleg@kaa.org.ua>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -55,30 +31,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- .../bindings/display/panel/sharp,lq070y3dg3b.txt     | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,lq070y3dg3b.txt
+Add documentation and example for dt-bindings EL15203000.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq070y3dg3b.txt b/Documentation/devicetree/bindings/display/panel/sharp,lq070y3dg3b.txt
+Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+---
+ .../bindings/leds/leds-el15203000.txt         | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-el15203000.txt
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-el15203000.txt b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
 new file mode 100644
-index 000000000000..95534b55ee5f
+index 000000000000..f47ee91cb419
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/sharp,lq070y3dg3b.txt
-@@ -0,0 +1,12 @@
-+Sharp LQ070Y3DG3B 7.0" WVGA landscape TFT LCD panel
++++ b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
+@@ -0,0 +1,48 @@
++Crane Merchandising System - el15203000 LED driver
++--------------------------------------------------
++
++This LED Board (aka RED LEDs board) is widely used in coffee vending machines
++produced by Crane Merchandising Systems.
 +
 +Required properties:
-+- compatible: should be "sharp,lq070y3dg3b"
++- compatible: "crane,el15203000"
 +
-+Optional properties:
-+- enable-gpios: GPIO pin to enable or disable the panel
-+- backlight: phandle of the backlight device attached to the panel
-+- power-supply: phandle of the regulator that provides the supply voltage
++Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
++apply. In particular, "reg" and "spi-max-frequency" properties must be given.
 +
-+This binding is compatible with the simple-panel binding, which is specified
-+in simple-panel.txt in this directory.
++LED sub-node properties:
++- label :
++	see Documentation/devicetree/bindings/leds/common.txt
++- linux,default-trigger : (optional)
++	see Documentation/devicetree/bindings/leds/common.txt
++
++Example
++-------
++
++led-controller@0 {
++	compatible = "crane,el15203000";
++	reg = <0>;
++	spi-max-frequency = <50000>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	/* water pipe */
++	pipe@50 {
++		reg = <0x50>;
++		label = "red:pipe";
++		max-brightness = <2>;
++	};
++
++	/* screen frame */
++	screen@53 {
++		reg = <0x53>;
++		label = "red:screen";
++		max-brightness = <2>;
++	};
++
++	/* vending area */
++	vend@56 {
++		reg = <0x56>;
++		label = "red:vend";
++	};
++};
 -- 
-2.19.1
+2.21.0
 
