@@ -2,494 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 651AE38BBF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 15:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 731E838BE2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 15:45:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728479AbfFGNgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 09:36:16 -0400
-Received: from mga07.intel.com ([134.134.136.100]:43982 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728071AbfFGNgQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 09:36:16 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Jun 2019 06:36:15 -0700
-X-ExtLoop1: 1
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga008.jf.intel.com with ESMTP; 07 Jun 2019 06:36:15 -0700
-Received: from kwong4-mobl.amr.corp.intel.com (unknown [10.252.203.122])
-        by linux.intel.com (Postfix) with ESMTP id 4F7F558044F;
-        Fri,  7 Jun 2019 06:36:14 -0700 (PDT)
-Subject: Re: [alsa-devel] [RFC PATCH 6/6] soundwire: qcom: add support for
- SoundWire controller
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org, vkoul@kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org
-References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
- <20190607085643.932-7-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <249f9647-94d0-41d7-3b95-64c36d90f8e8@linux.intel.com>
-Date:   Fri, 7 Jun 2019 08:36:02 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
- Gecko/20100101 Thunderbird/60.7.0
+        id S1728740AbfFGNpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 09:45:42 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:2102 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728242AbfFGNpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 09:45:42 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cfa6a850000>; Fri, 07 Jun 2019 06:45:41 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 07 Jun 2019 06:45:41 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 07 Jun 2019 06:45:41 -0700
+Received: from [10.25.74.159] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 7 Jun
+ 2019 13:45:35 +0000
+Subject: Re: [PATCH V8 13/15] phy: tegra: Add PCIe PIPE2UPHY support
+To:     Dmitry Osipenko <digetx@gmail.com>, <lorenzo.pieralisi@arm.com>,
+        <bhelgaas@google.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
+        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
+        <gustavo.pimentel@synopsys.com>
+CC:     <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190526043751.12729-1-vidyas@nvidia.com>
+ <20190526043751.12729-14-vidyas@nvidia.com>
+ <c81c5d42-4292-ba6d-b5ab-afe1a604115f@gmail.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <5a5545c8-9e4c-b459-c40e-9e1c4e5daf5b@nvidia.com>
+Date:   Fri, 7 Jun 2019 19:15:32 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190607085643.932-7-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <c81c5d42-4292-ba6d-b5ab-afe1a604115f@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559915141; bh=X7YbyMYnPU4o/uuTsDoXMzQCmQIN7PmhE/enZhHNCbs=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=razz/z/YkMUuZJAs2q0s0SSZ/bUR5omne4pEFftfOU61dLcPqJXKCsGHE3NcpO35+
+         8/F2iY2hVc46KAjY6gmEvqpg5fZ3KSxtuPhgOMOwYKMqeO9JIGY6v17MKg2Or+8u+H
+         KlITvD4TlEvUpP4ZaERzjMOe/Uw/MNFgiZuqHAY4aQAOWJUJ1FuVnWa356Z1OJu5RL
+         Y6R72p7/fJwuiWR/h3U5Eh8WMG0HEStRFp9Pr9OgZGW/VJAIAyZZoqfbqcIqzCExV0
+         phKG+yMITM2HvqQyAOuTLfbzBgJQSbyydm6e2I9WMYP+4QQY+Fq8/03gsOCNAchoQG
+         +1xx4qJ63FuHA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-> +config SOUNDWIRE_QCOM
-> +	tristate "Qualcomm SoundWire Master driver"
-> +	select SOUNDWIRE_BUS
-> +	depends on SND_SOC
-
-depends on SLIMBUS if you need the SlimBus link to talk to your 
-SoundWire Master?
-
-Also depends on device tree since you use of_ functions?
-
-> +#define SWRM_COMP_HW_VERSION					0x00
-
-Can we please use SDW_ or QCOM_SDW_ as prefix?
-
-> +#define SWRM_INTERRUPT_STATUS_NEW_SLAVE_AUTO_ENUM_FINISHED	BIT(11)
-> +#define SWRM_INTERRUPT_STATUS_AUTO_ENUM_FAILED			BIT(12)
-> +#define SWRM_INTERRUPT_STATUS_AUTO_ENUM_TABLE_IS_FULL		BIT(13)
-
-This hints at hardware support to assign Device Numbers automagically so 
-will likely have impacts on the bus driver code, no?
-
-
-> +#define SWRM_MAX_ROW_VAL	0 /* Rows = 48 */
-> +#define SWRM_DEFAULT_ROWS	48
-> +#define SWRM_MIN_COL_VAL	0 /* Cols = 2 */
-> +#define SWRM_DEFAULT_COL	16
-> +#define SWRM_SPECIAL_CMD_ID	0xF
-> +#define MAX_FREQ_NUM		1
-> +#define TIMEOUT_MS		1000
-> +#define QCOM_SWRM_MAX_RD_LEN	0xf
-> +#define DEFAULT_CLK_FREQ	9600000
-
-The clocks and frame shape don't match usual expectations for PDM.
-For a 9.6 MHz support, you would typically use 8 columns and 50 rows to 
-transport PDM with a 50x oversampling. I've never seen anyone use 48x 
-for PDM.
-
-> +#define SWRM_MAX_DAIS		0xF
-> +
-> +struct qcom_swrm_port_config {
-> +	u8 si;
-> +	u8 off1;
-> +	u8 off2;
-> +};
-> +
-> +struct qcom_swrm_ctrl {
-> +	struct sdw_bus bus;
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	struct completion sp_cmd_comp;
-> +	struct work_struct slave_work;
-> +	/* read/write lock */
-> +	struct mutex lock;
-> +	/* Port alloc/free lock */
-> +	struct mutex port_lock;
-> +	struct clk *hclk;
-> +	int fifo_status;
-> +	void __iomem *base;
-> +	u8 wr_cmd_id;
-> +	u8 rd_cmd_id;
-> +	int irq;
-> +	unsigned int version;
-> +	int num_din_ports;
-> +	int num_dout_ports;
-> +	unsigned long dout_port_mask;
-> +	unsigned long din_port_mask;
-> +	struct qcom_swrm_port_config pconfig[SDW_MAX_PORTS];
-
-this is not necessarily correct. the initial definitions for 
-SDW_MAX_PORTS was for Slave devices. There is no definitions for Masters 
-in the SoundWire spec, so you could use whatever constant you want for 
-your hardware.
-
-> +	struct sdw_stream_runtime *sruntime[SWRM_MAX_DAIS];
-> +	enum sdw_slave_status status[SDW_MAX_DEVICES];
-> +	u32 (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg);
-> +	int (*reg_write)(struct qcom_swrm_ctrl *ctrl, int reg, int val);
-> +};
-> +
-> +#define to_qcom_sdw(b)	container_of(b, struct qcom_swrm_ctrl, bus)
-> +
-> +struct usecase {
-> +	u8 num_port;
-> +	u8 num_ch;
-> +	u32 chrate;
-> +};
-
-this structure doesn't seem to be used?
-
-> +static int qcom_swrm_cmd_fifo_wr_cmd(struct qcom_swrm_ctrl *ctrl, u8 cmd_data,
-> +				     u8 dev_addr, u16 reg_addr)
-> +{
-> +	int ret = 0;
-> +	u8 cmd_id;
-> +	u32 val;
-> +
-> +	mutex_lock(&ctrl->lock);
-> +	if (dev_addr == SDW_BROADCAST_DEV_NUM) {
-> +		cmd_id = SWRM_SPECIAL_CMD_ID;
-> +	} else {
-> +		if (++ctrl->wr_cmd_id == SWRM_SPECIAL_CMD_ID)
-> +			ctrl->wr_cmd_id = 0;
-> +
-> +		cmd_id = ctrl->wr_cmd_id;
-> +	}
-
-might be worth having a helper/macro since you are doing the same thing 
-below.
-
-> +
-> +	val = SWRM_REG_VAL_PACK(cmd_data, dev_addr, cmd_id, reg_addr);
-> +	ret = ctrl->reg_write(ctrl, SWRM_CMD_FIFO_WR_CMD, val);
-> +	if (ret < 0) {
-> +		dev_err(ctrl->dev, "%s: reg 0x%x write failed, err:%d\n",
-> +			__func__, val, ret);
-> +		goto err;
-> +	}
-> +
-> +	if (dev_addr == SDW_BROADCAST_DEV_NUM) {
-> +		ctrl->fifo_status = 0;
-> +		ret = wait_for_completion_timeout(&ctrl->sp_cmd_comp,
-> +						  msecs_to_jiffies(TIMEOUT_MS));
-
-This is odd. The SoundWire spec does not handle writes to a single 
-device or broadcast writes differently. I don't see a clear reason why 
-you would only timeout for a broadcast write.
-
-> +
-> +		if (!ret || ctrl->fifo_status) {
-> +			dev_err(ctrl->dev, "reg 0x%x write failed\n", val);
-> +			ret = -ENODATA;
-> +			goto err;
-> +		}
-> +	}
-> +err:
-> +	mutex_unlock(&ctrl->lock);
-> +	return ret;
-> +}
-> +
-> +static int qcom_swrm_cmd_fifo_rd_cmd(struct qcom_swrm_ctrl *ctrl,
-> +				     u8 dev_addr, u16 reg_addr,
-> +				     u32 len, u8 *rval)
-> +{
-> +	int i, ret = 0;
-> +	u8 cmd_id = 0;
-> +	u32 val;
-> +
-> +	mutex_lock(&ctrl->lock);
-> +	if (dev_addr == SDW_ENUM_DEV_NUM) {
-> +		cmd_id = SWRM_SPECIAL_CMD_ID;
-> +	} else {
-> +		if (++ctrl->rd_cmd_id == SWRM_SPECIAL_CMD_ID)
-> +			ctrl->rd_cmd_id = 0;
-> +
-> +		cmd_id = ctrl->rd_cmd_id;
-> +	}
-
-helper?
-
-> +	val = SWRM_REG_VAL_PACK(len, dev_addr, cmd_id, reg_addr);
-> +	ret = ctrl->reg_write(ctrl, SWRM_CMD_FIFO_RD_CMD, val);
-> +	if (ret < 0) {
-> +		dev_err(ctrl->dev, "reg 0x%x write failed err:%d\n", val, ret);
-> +		goto err;
-> +	}
-> +
-> +	if (dev_addr == SDW_ENUM_DEV_NUM) {
-> +		ctrl->fifo_status = 0;
-> +		ret = wait_for_completion_timeout(&ctrl->sp_cmd_comp,
-> +						  msecs_to_jiffies(TIMEOUT_MS));
-> 
-same comment here, there isn't a clear reason to only timeout for a read 
-from device0.
-
-> +		if (!ret || ctrl->fifo_status) {
-> +			dev_err(ctrl->dev, "reg 0x%x read failed\n", val);
-> +			ret = -ENODATA;
-> +			goto err;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < len; i++) {
-> +		rval[i] = ctrl->reg_read(ctrl, SWRM_CMD_FIFO_RD_FIFO_ADDR);
-> +		rval[i] &= 0xFF;
-> +	}
-> +
-> +err:
-> +	mutex_unlock(&ctrl->lock);
-> +	return ret;
-> +}
-> +
-> +static void qcom_swrm_get_device_status(struct qcom_swrm_ctrl *ctrl)
-> +{
-> +	u32 val = ctrl->reg_read(ctrl, SWRM_MCP_SLV_STATUS);
-> +	int i;
-> +
-> +	for (i = 1; i < SDW_MAX_DEVICES; i++) {
-> +		u32 s;
-> +
-> +		s = (val >> (i * 2));
-> +		s &= SWRM_MCP_SLV_STATUS_MASK;
-> +		ctrl->status[i] = s;
-> +	}
-> +}
-> +
-> +static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct qcom_swrm_ctrl *ctrl = dev_id;
-> +	u32 sts, value;
-> +
-> +	sts = ctrl->reg_read(ctrl, SWRM_INTERRUPT_STATUS);
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED)
-> +		complete(&ctrl->sp_cmd_comp);
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_CMD_ERROR) {
-> +		value = ctrl->reg_read(ctrl, SWRM_CMD_FIFO_STATUS);
-> +		dev_err_ratelimited(ctrl->dev,
-> +				    "CMD error, fifo status 0x%x\n",
-> +				     value);
-> +		ctrl->reg_write(ctrl, SWRM_CMD_FIFO_CMD, 0x1);
-> +		if ((value & 0xF) == 0xF) {
-> +			ctrl->fifo_status = -ENODATA;
-> +			complete(&ctrl->sp_cmd_comp);
-> +		}
-> +	}
-> +
-> +	if ((sts & SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED) ||
-> +	    sts & SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS) {
-> +		if (sts & SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED)
-> +			ctrl->status[0] = SDW_SLAVE_ATTACHED;
-> +
-> +		schedule_work(&ctrl->slave_work);
-> +	}
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_SLAVE_PEND_IRQ)
-> +		dev_dbg(ctrl->dev, "Slave pend irq\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED)
-> +		dev_dbg(ctrl->dev, "New slave attached\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET)
-> +		dev_err_ratelimited(ctrl->dev, "Bus clash detected\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_RD_FIFO_OVERFLOW)
-> +		dev_err(ctrl->dev, "Read FIFO overflow\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_RD_FIFO_UNDERFLOW)
-> +		dev_err(ctrl->dev, "Read FIFO underflow\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_WR_CMD_FIFO_OVERFLOW)
-> +		dev_err(ctrl->dev, "Write FIFO overflow\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_DOUT_PORT_COLLISION)
-> +		dev_err(ctrl->dev, "Port collision detected\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_READ_EN_RD_VALID_MISMATCH)
-> +		dev_err(ctrl->dev, "Read enable valid mismatch\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED)
-> +		dev_err(ctrl->dev, "Cmd id finished\n");
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED)
-> +		dev_err(ctrl->dev, "Bus reset finished\n");
-
-This list is odd as well. It makes sense to only log error cases if you 
-don't really know how to handle them, but a 'NEW SLAVE ATTACHED' should 
-lead to an action, no?
-
-> +
-> +	ctrl->reg_write(ctrl, SWRM_INTERRUPT_CLEAR, sts);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
-> +{
-> +	u32 val;
-> +	u8 row_ctrl = SWRM_MAX_ROW_VAL;
-> +	u8 col_ctrl = SWRM_MIN_COL_VAL;
-> +	u8 ssp_period = 1;
-> +	u8 retry_cmd_num = 3;
-
-probably want a define for those magic values, they are quite important.
-
-> +
-> +	/* Clear Rows and Cols */
-> +	val = ((row_ctrl << SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_SHFT) |
-> +		(col_ctrl << SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_SHFT) |
-> +		(ssp_period << SWRM_MCP_FRAME_CTRL_BANK_SSP_PERIOD_SHFT));
-> +
-> +	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
-> +
-> +	/* Disable Auto enumeration */
-> +	ctrl->reg_write(ctrl, SWRM_ENUMERATOR_CFG_ADDR, 0);
-
-This goes back to my earlier comment. Do you disable this 
-auto-enumeration to avoid conflicts with the existing bus management? 
-That's not necessarily smart, we may want to change that bus layer to 
-reduce the enumeration time if hardware can do it.
-
-> +
-> +	/* Mask soundwire interrupts */
-> +	ctrl->reg_write(ctrl, SWRM_INTERRUPT_MASK_ADDR,
-> +					SWRM_INTERRUPT_STATUS_RMSK);
-> +
-> +	/* Configure No pings */
-> +	val = ctrl->reg_read(ctrl, SWRM_MCP_CFG_ADDR);
-
-If there is any sort of PREQ signaling for Slave-initiated interrupts, 
-disabling PINGs is likely a non-conformant implementation since the 
-master is required to issue a PING command within 32 frames. That's also 
-the only way to know if a device is attached, so additional comments are 
-likely required.
-
-> +
-> +	val &= ~SWRM_MCP_CFG_MAX_NUM_OF_CMD_NO_PINGS_BMSK;
-> +	val |= (0x1f << SWRM_MCP_CFG_MAX_NUM_OF_CMD_NO_PINGS_SHFT);
-> +	ctrl->reg_write(ctrl, SWRM_MCP_CFG_ADDR, val);
-> +
-> +	/* Configure number of retries of a read/write cmd */
-> +	val = (retry_cmd_num << SWRM_CMD_FIFO_CFG_NUM_OF_CMD_RETRY_SHFT);
-> +	ctrl->reg_write(ctrl, SWRM_CMD_FIFO_CFG_ADDR, val);
-> +
-> +	/* Set IRQ to PULSE */
-> +	ctrl->reg_write(ctrl, SWRM_COMP_CFG_ADDR,
-> +				SWRM_COMP_CFG_IRQ_LEVEL_OR_PULSE_MSK |
-> +				SWRM_COMP_CFG_ENABLE_MSK);
-
-indentation seems off in this code?
-
-> +	return 0;
-> +}
-> +
-> +static enum sdw_command_response qcom_swrm_xfer_msg(struct sdw_bus *bus,
-> +						    struct sdw_msg *msg)
-> +{
-> +	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
-> +	int ret, i, len;
-> +
-> +	if (msg->flags == SDW_MSG_FLAG_READ) {
-> +		for (i = 0; i < msg->len;) {
-> +			if ((msg->len - i) < QCOM_SWRM_MAX_RD_LEN)
-> +				len = msg->len - i;
-> +			else
-> +				len = QCOM_SWRM_MAX_RD_LEN;
-> +
-> +			ret = qcom_swrm_cmd_fifo_rd_cmd(ctrl, msg->dev_num,
-> +							msg->addr + i, len,
-> +						       &msg->buf[i]);
-> +			if (ret < 0) {
-> +				if (ret == -ENODATA)
-> +					return SDW_CMD_IGNORED;
-> +
-> +				return ret;
-> +			}
-> +
-> +			i = i + len;
-> +		}
-> +	} else if (msg->flags == SDW_MSG_FLAG_WRITE) {
-> +		for (i = 0; i < msg->len; i++) {
-> +			ret = qcom_swrm_cmd_fifo_wr_cmd(ctrl, msg->buf[i],
-> +							msg->dev_num,
-> +						       msg->addr + i);
-> +			if (ret < 0) {
-> +				if (ret == -ENODATA)
-> +					return SDW_CMD_IGNORED;
-> +
-> +				return ret;
-> +			}
-> +		}
-> +	}
-> +
-> +	return SDW_CMD_OK;
-> +}
-> +
-> +static int qcom_swrm_pre_bank_switch(struct sdw_bus *bus)
-> +{
-> +	u32 reg = SWRM_MCP_FRAME_CTRL_BANK_ADDR(bus->params.next_bank);
-> +	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
-> +	u32 val;
-> +
-> +	val = ctrl->reg_read(ctrl, reg);
-> +	val |= ((0 << SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_SHFT) |
-> +		(7l << SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_SHFT));
-
-magic values, probably need a macro here?
-
-> +	ctrl->reg_write(ctrl, reg, val);
-> +
-> +	return 0;
-> +}
-> +
-
-> +static int qcom_swrm_register_dais(struct qcom_swrm_ctrl *ctrl)
-> +{
-> +	int num_dais = ctrl->num_dout_ports + ctrl->num_din_ports;
-> +	struct snd_soc_dai_driver *dais;
-> +	int i;
-> +
-> +	/* PDM dais are only tested for now */
-> +	dais = devm_kcalloc(ctrl->dev, num_dais, sizeof(*dais), GFP_KERNEL);
-> +	if (!dais)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < num_dais; i++) {
-> +		dais[i].name = kasprintf(GFP_KERNEL, "SDW Pin%d", i);
-
-if (!dais[i].name)
-
-> +		if (i < ctrl->num_dout_ports) {
-> +			dais[i].playback.stream_name = kasprintf(GFP_KERNEL,
-> +								 "SDW Tx%d", i);
-> +			if (!dais[i].playback.stream_name) {
-> +				kfree(dais[i].name);
-> +				return -ENOMEM;
-> +			}
-
-also need to free previously allocated memory in earlier iterations, or 
-use devm_
-
-> +			dais[i].playback.channels_min = 1;
-> +			dais[i].playback.channels_max = 1;
-> +			dais[i].playback.rates = SNDRV_PCM_RATE_48000;
-> +			dais[i].playback.formats = SNDRV_PCM_FMTBIT_S16_LE;
-> +		} else {
-> +			dais[i].capture.stream_name = kasprintf(GFP_KERNEL,
-> +								"SDW Rx%d", i);
-> +			if (!dais[i].capture.stream_name) {
-> +				kfree(dais[i].name);
-> +				kfree(dais[i].playback.stream_name);
-> +				return -ENOMEM;
-> +			}
-> +
-> +			dais[i].capture.channels_min = 1;
-> +			dais[i].capture.channels_max = 1;
-> +			dais[i].capture.rates = SNDRV_PCM_RATE_48000;
-> +			dais[i].capture.formats = SNDRV_PCM_FMTBIT_S16_LE;
-> +		}
-> +		dais[i].ops = &qcom_swrm_pdm_dai_ops;
-> +		dais[i].id = i;
-> +	}
-> +
-> +	return devm_snd_soc_register_component(ctrl->dev,
-> +						&qcom_swrm_dai_component,
-> +						dais, num_dais);
-> +}
+On 6/6/2019 10:00 PM, Dmitry Osipenko wrote:
+> 26.05.2019 7:37, Vidya Sagar =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> Synopsys DesignWare core based PCIe controllers in Tegra 194 SoC interfa=
+ce
+>> with Universal PHY (UPHY) module through a PIPE2UPHY (P2U) module.
+>> For each PCIe lane of a controller, there is a P2U unit instantiated at
+>> hardware level. This driver provides support for the programming require=
+d
+>> for each P2U that is going to be used for a PCIe controller.
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>> Changes since [v7]:
+>> * Changed P2U driver file name from pcie-p2u-tegra194.c to phy-tegra194-=
+p2u.c
+>>
+>> Changes since [v6]:
+>> * None
+>>
+>> Changes since [v5]:
+>> * Addressed review comments from Thierry
+>>
+>> Changes since [v4]:
+>> * None
+>>
+>> Changes since [v3]:
+>> * Rebased on top of linux-next top of the tree
+>>
+>> Changes since [v2]:
+>> * Replaced spaces with tabs in Kconfig file
+>> * Sorted header file inclusion alphabetically
+>>
+>> Changes since [v1]:
+>> * Added COMPILE_TEST in Kconfig
+>> * Removed empty phy_ops implementations
+>> * Modified code according to DT documentation file modifications
+>>
+>>   drivers/phy/tegra/Kconfig            |   7 ++
+>>   drivers/phy/tegra/Makefile           |   1 +
+>>   drivers/phy/tegra/phy-tegra194-p2u.c | 109 +++++++++++++++++++++++++++
+>>   3 files changed, 117 insertions(+)
+>>   create mode 100644 drivers/phy/tegra/phy-tegra194-p2u.c
+>>
+>> diff --git a/drivers/phy/tegra/Kconfig b/drivers/phy/tegra/Kconfig
+>> index a3b1de953fb7..c56fc8452e03 100644
+>> --- a/drivers/phy/tegra/Kconfig
+>> +++ b/drivers/phy/tegra/Kconfig
+>> @@ -6,3 +6,10 @@ config PHY_TEGRA_XUSB
+>>  =20
+>>   	  To compile this driver as a module, choose M here: the module will
+>>   	  be called phy-tegra-xusb.
+>> +
+>> +config PHY_TEGRA194_P2U
+>> +	tristate "NVIDIA Tegra194 PIPE2UPHY PHY driver"
+>> +	depends on ARCH_TEGRA || COMPILE_TEST
+>=20
+> ARCH_TEGRA is a bit too much, ARCH_TEGRA_194_SOC should fit better here.
+>=20
+Ok. I'll take care of it in the next patch series.
