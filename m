@@ -2,181 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BEA539880
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D9739886
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730230AbfFGWVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 18:21:36 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53270 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729796AbfFGWVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:21:36 -0400
-Received: from pendragon.ideasonboard.com (unknown [IPv6:2a02:a03f:44f0:8500:ca05:8177:199c:fed4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 82EEF334;
-        Sat,  8 Jun 2019 00:21:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1559946093;
-        bh=gMQ4BLbreJJSxcy+ecg5LGkPV/D/A4gkhNj1NpN0OLg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QE71NC1gUHOdte+jfhTY8emzMBd/2XTUV2ZfZJKLd7iLYFDbbQvjHvu0u3Ib8ILjB
-         iWPgnZPPD7eGUGqW5CmfU6xlVpdcqbDgAPeiYuMQ0kbsUYOjqUWDxjfnDAZHboNmMZ
-         uchMssWSVQYMSDgI8YIPUvuciY5qcveBvHJpRG1o=
-Date:   Sat, 8 Jun 2019 01:21:19 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        devicetree@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>
-Subject: Re: [PATCH v3 00/10] R-Car DU: LVDS dual-link mode support
-Message-ID: <20190607222119.GA5110@pendragon.ideasonboard.com>
-References: <20190528141234.15425-1-laurent.pinchart+renesas@ideasonboard.com>
- <1385e8b5-1bf9-4a9c-4835-787775b138f2@ideasonboard.com>
+        id S1731139AbfFGWXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 18:23:05 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:39058 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731119AbfFGWXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 18:23:05 -0400
+Received: by mail-pl1-f194.google.com with SMTP id g9so1327387plm.6
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 15:23:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OscIWC1H8BYVUTSTRMLtHcpa3RbQBWs93JhulNsk+jk=;
+        b=kdR49OFNsFx7GSx/8YCa4OAXnuGm9wR3mA3FGM2j9z9kYOvNzqrt6gDMUmNTCF4V83
+         UuY0GuaC7cU7suXulXpVOn5N4HicehNGLM2Gv1N1iXUCkOIxaL4tP0q7CFg3Zr0ELRoH
+         c1K2fAfx/OZnoqY6EocLtP4K2Gyk7fJHcbAd5+nbSwsumoNC9uZdy1ZbqRPl2ZGb2KR0
+         5790YANxN6yo4XDpToutn8HtDWJ9qc4x2RtxrkIe4yf2ys4A7CKPGFlNlR6vaeXcDbDI
+         eCRkI67w15jEuFPGTFzQI8EIXARxKyvN1+GR9F9Qoev+vDDjbBqEj+ZoKNPmKxLF0J5U
+         DgLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OscIWC1H8BYVUTSTRMLtHcpa3RbQBWs93JhulNsk+jk=;
+        b=NbjSS9xZDBMBCz4vgHBTBwRt2lHi/lovzJMmh6/3+pQ22bpsZYi5EocGT9k+w6sOpQ
+         20uOVstMbRvdYV+SSM9SA289zC/kr6IB5fFJ4hC1jtul8JYpOjB/+vhSF0Mimim9KZaS
+         c7tuNiPxqZJ8GWcrYVmdEzXhTcz3Ato7882QePSVYDvyWCrqZEX9acyQNj6JaMGaL0j3
+         JTEv0Kg98pD7+b/871WqNMDy/sLPBFSdKoo/kJ4ehQzKEFvJEwOrSJNrUPlg/Oj+HaHI
+         OXp94OsdeTyUlDIw8LsoimB78M7JKT/N02mShPX6LiS8HsJNIHFY+QmwLZ8ayBNcx3Oe
+         IqRA==
+X-Gm-Message-State: APjAAAX2rPgQAOvlGPGrl2dt915dh3BwQCEnS54gtlJYQ9NYbbQ8Og43
+        99D6+m4WU1ZsJeiwRwfdL3tPuUuiQtGVP8YW3qzQVw==
+X-Google-Smtp-Source: APXvYqxqRVfuyQEdyfJNNkPVX/y1rXYgnEMZVKj/CtJa0Fm8bihW1BebEYmymKIH0C8/tAoxb6DpKUorgA1wvW4QAXM=
+X-Received: by 2002:a17:902:624:: with SMTP id 33mr59045206plg.325.1559946184199;
+ Fri, 07 Jun 2019 15:23:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1385e8b5-1bf9-4a9c-4835-787775b138f2@ideasonboard.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190514221711.248228-1-brendanhiggins@google.com>
+ <20190514221711.248228-18-brendanhiggins@google.com> <20190517182254.548EA20815@mail.kernel.org>
+ <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com> <20190607190047.C3E7A20868@mail.kernel.org>
+In-Reply-To: <20190607190047.C3E7A20868@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 7 Jun 2019 15:22:53 -0700
+Message-ID: <CAFd5g475eUKnpNM3kDe_9PboCyZ=aanPeV2gTuzuJXRp-xbsWg@mail.gmail.com>
+Subject: Re: [PATCH v4 17/18] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Iurii Zaikin <yzaikin@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
+On Fri, Jun 7, 2019 at 12:00 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Iurii Zaikin (2019-06-05 18:29:42)
+> > On Fri, May 17, 2019 at 11:22 AM Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Quoting Brendan Higgins (2019-05-14 15:17:10)
+> > > > diff --git a/kernel/sysctl-test.c b/kernel/sysctl-test.c
+> > > > new file mode 100644
+> > > > index 0000000000000..fe0f2bae66085
+> > > > --- /dev/null
+> > > > +++ b/kernel/sysctl-test.c
+> > > > +
+> > > > +
+> > > > +static void sysctl_test_dointvec_happy_single_negative(struct kunit *test)
+> > > > +{
+> > > > +       struct ctl_table table = {
+> > > > +               .procname = "foo",
+> > > > +               .data           = &test_data.int_0001,
+> > > > +               .maxlen         = sizeof(int),
+> > > > +               .mode           = 0644,
+> > > > +               .proc_handler   = proc_dointvec,
+> > > > +               .extra1         = &i_zero,
+> > > > +               .extra2         = &i_one_hundred,
+> > > > +       };
+> > > > +       char input[] = "-9";
+> > > > +       size_t len = sizeof(input) - 1;
+> > > > +       loff_t pos = 0;
+> > > > +
+> > > > +       table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > > +       KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, input, &len, &pos));
+> > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, pos);
+> > > > +       KUNIT_EXPECT_EQ(test, -9, *(int *)table.data);
+> > >
+> > > Is the casting necessary? Or can the macro do a type coercion of the
+> > > second parameter based on the first type?
+> >  Data field is defined as void* so I believe casting is necessary to
+> > dereference it as a pointer to an array of ints. I don't think the
+> > macro should do any type coercion that == operator wouldn't do.
+> >  I did change the cast to make it more clear that it's a pointer to an
+> > array of ints being dereferenced.
+>
+> Ok, I still wonder if we should make KUNIT_EXPECT_EQ check the types on
+> both sides and cause a build warning/error if the types aren't the same.
+> This would be similar to our min/max macros that complain about
+> mismatched types in the comparisons. Then if a test developer needs to
+> convert one type or the other they could do so with a
+> KUNIT_EXPECT_EQ_T() macro that lists the types to coerce both sides to
+> explicitly.
 
-On Fri, Jun 07, 2019 at 11:16:37PM +0100, Kieran Bingham wrote:
-> On 28/05/2019 15:12, Laurent Pinchart wrote:
-> > Hello everybody,
-> > 
-> > This patch series implements support for LVDS dual-link mode in the
-> > R-Car DU and R-Car LVDS encoder drivers, and well as in the thc63lvd1024
-> > LVDS decoder driver.
-> > 
-> > LVDS dual-link is a mode of operation where two individual LVDS links
-> > are operated together to carry even- and odd-numbered pixels separately.
-> > This doubles the possible bandwidth of the video transmission. Both the
-> > transmitter and the receiver need to support this mode of operation.
-> > 
-> > The R-Car D3 and E3 SoCs include two independent LVDS encoders that can
-> > be grouped together to operate in dual-link mode. When used separately,
-> > the LVDS encoders are connected to two different CRTCs and transmit
-> > independent video streams. When used in dual-link mode, the first LVDS
-> > encoder is connected to the first CRTC, and split even- and odd-numbered
-> > pixels. It transmits half of the pixels on its LVDS output, and sends
-> > the other half to the second LVDS encoder for transmittion over the
-> > second LVDS link. The second LVDS encoder thus operates under control of
-> > the first one, and isn't connected directly to a CRTC.
-> > 
-> > On the receiving side, the THC63LVD1024 LVDS-to-parallel bridge has two
-> > LVDS inputs and two parallel outputs. It can operate in four different
-> > modes:
-> > 
-> > - Single-in, single-out: The first LVDS input receives the video stream,
-> >   and the bridge outputs it on the first parallel output. The second
-> >   LVDS input and the second parallel output are not used.
-> > 
-> > - Single-in, dual-out: The first LVDS input receives the video stream,
-> >   and the bridge splits even- and odd-numbered pixels and outputs them
-> >   on the first and second parallel outputs. The second LVDS input is not
-> >   used.
-> > 
-> > - Dual-in, single-out: The two LVDS inputs are used in dual-link mode,
-> >   and the bridge combines the even- and odd-numbered pixels and outputs
-> >   them on the first parallel output. The second parallel output is not
-> >   used.
-> > 
-> > - Dual-in, dual-out: The two LVDS inputs are used in dual-link mode,
-> >   and the bridge outputs the even- and odd-numbered pixels on the first
-> >   parallel output.
-> 
-> Clarifying this, having checked with you, Dual-in, dual-out means 'even
-> pixels are received on the first input, and provided on the first
-> output, and odd pixels are received on the second input, and provided on
-> the second output'.
+Good point. I would definitely like to do this, for me it is only a
+question of how difficult it would be to make all that happen.
 
-Yes, my bad, this is wrong in the cover letter.
+We will investigate and report back on it.
 
-> > The operating mode is selected by two input pins of the bridge, which
-> > are connected to DIP switches on the development boards I use. The mode
-> > is thus fixed from a Linux point of view.
-> 
-> Would there ever by a scenario where these could be connected to GPIO's
-> and changed dynamically? I guess that might not make much sense - as the
-> configuration is more use case dependant.
+Thanks for the suggestion! It's a really good idea!
 
-This can't be ruled out, but the use cases would indeed be limited. If
-the need ever arises, we can just extend the DT bindings to specify
-those GPIOs, and add a new in-kernel API at the drm_bridge level to
-configure the mode dynamically.
-
-> > Patch 01/10 adds a new dual_link boolen field to the drm_bridge_timings
-> > structure to let bridges report their LVDS mode of operation. Patch
-> > 02/10 clarifies the THC63LVD1024 DT bindings to document dual-link
-> > operation, and patch 03/10 implements dual-link support in the
-> > thc64lvd1024 bridge driver by setting the drm_bridge_timings dual_link
-> > field according to the mode selected through DT.
-> > 
-> > Patch 04/10 extends the R-Car LVDS DT bindings to specify the companion
-> > LVDS encoder for dual-link operation. Patches 05/10 then performs a
-> > small cleanup in the LVDS encoder driver. Patch 06/10 implements
-> > dual-link support in the LVDS encoder driver, which involves retrieving
-> > the operation mode from the LVDS receiver, locating the companion LVDS
-> > encoder, and configuring both encoders when dual-link operation is
-> > desired. The API towards the DU driver is also extended to report the
-> > mode of operation.
-> > 
-> > Patch 07/10 implements dual-link mode support in the DU driver. There is
-> > no specific configuration to be performed there, as dual-link is fully
-> > implemented in the LVDS encoder driver, but the DU driver has to skip
-> > creation of the DRM encoder and connector related to the second LVDS
-> > encoder when dual-link is used, as the second LVDS encoder operates as a
-> > slave of the first one, transparently from a CRTC (and thus userspace)
-> > perspective.
-> > 
-> > Patch 08/10 specifies the companion LVDS encoder in the D3 and E3 DT
-> > bindings. This by itself doesn't enable dual-link mode, the LVDS0
-> > encoder is still connected to the HDMI output through LVDS receiver, and
-> > the LVDS1 encoder is not used. Patches 09/10 and 10/10, not intended to
-> > be merged, enable dual-link operation for the D3 and E3 boards for
-> > testing and require flipping DIP switches on the boards.
-> > 
-> > The patches are based on top of my drm/du/next branch, and are available
-> > for convenience at
-> > 
-> >         git://linuxtv.org/pinchartl/media.git drm/du/lvds/dual-link
-> > 
-> > They have been tested successfully on the D3 Draak board. I expect them
-> > to work on E3 as well, but I don't have access to an Ebisu board to test
-> > this.
-> > 
-> > Laurent Pinchart (10):
-> >   drm: bridge: Add dual_link field to the drm_bridge_timings structure
-> >   dt-bindings: display: bridge: thc63lvd1024: Document dual-link
-> >     operation
-> >   drm: bridge: thc63: Report input bus mode through bridge timings
-> >   dt-bindings: display: renesas: lvds: Add renesas,companion property
-> >   drm: rcar-du: lvds: Remove LVDS double-enable checks
-> >   drm: rcar-du: lvds: Add support for dual-link mode
-> >   drm: rcar-du: Skip LVDS1 output on Gen3 when using dual-link LVDS mode
-> >   arm64: dts: renesas: r8a7799[05]: Point LVDS0 to its companion LVDS1
-> >   [HACK] arm64: dts: renesas: draak: Enable LVDS dual-link operation
-> >   [HACK] arm64: dts: renesas: ebisu: Enable LVDS dual-link operation
-> > 
-> >  .../bindings/display/bridge/renesas,lvds.txt  |   7 +
-> >  .../display/bridge/thine,thc63lvd1024.txt     |   6 +
-> >  .../arm64/boot/dts/renesas/r8a77990-ebisu.dts |  24 +++-
-> >  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   2 +
-> >  .../arm64/boot/dts/renesas/r8a77995-draak.dts |  24 +++-
-> >  arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +
-> >  drivers/gpu/drm/bridge/thc63lvd1024.c         |  54 ++++++--
-> >  drivers/gpu/drm/rcar-du/rcar_du_encoder.c     |  12 ++
-> >  drivers/gpu/drm/rcar-du/rcar_du_kms.c         |   2 +-
-> >  drivers/gpu/drm/rcar-du/rcar_lvds.c           | 126 +++++++++++++-----
-> >  drivers/gpu/drm/rcar-du/rcar_lvds.h           |   5 +
-> >  include/drm/drm_bridge.h                      |   8 ++
-> >  12 files changed, 214 insertions(+), 58 deletions(-)
-
--- 
-Regards,
-
-Laurent Pinchart
+Cheers
