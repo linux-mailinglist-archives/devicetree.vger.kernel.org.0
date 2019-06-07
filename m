@@ -2,107 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFEC739749
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 23:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297713974C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 23:04:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731144AbfFGVEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 17:04:35 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:42456 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731059AbfFGVEf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 17:04:35 -0400
-Received: by mail-lj1-f193.google.com with SMTP id t28so2880409lje.9
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 14:04:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vkU0CLA4zd7U+4w/MeYB7MsnfkDi0Po4BQ8jWMFBUjo=;
-        b=Bl3VdEFDNRcw68lQN2+iAhPiWw5DQMPXg2SfOdO0jMkLGnBZ+uzq2sVjmQ4vaHAbG4
-         yNaYAP/1r/yIlm+Vay8Wsve+dfOIcTk28G0cVRmtAwbrROgC3Dyj8uSlyUDJNpKeM1wL
-         EBMTqw5WMOWJKdh3wSd10dvEDiZK+z1gGAbKjQrBjE6N7MCrUY9X5KM/bZYvdjcRZ424
-         gdJXbrG19WOm+xi1E8pcpR2k4g5NwCTXuPQO1pXeFt8zefmVKfKGIXKgKIHsdyV+XrUH
-         AIsp1mw/e21lcxOHA2q/t59+syFLF30vm0Vl1BbVgLnQG/sILfmw0yuI/keT7LFF3F9f
-         Ghqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vkU0CLA4zd7U+4w/MeYB7MsnfkDi0Po4BQ8jWMFBUjo=;
-        b=a3pPOWlAlUvYaNNWii+sHGH/+FQhDtOeOFwObDhKf6Ug7w2ApgBlCp+3AanG03OO+6
-         ykBiHC6CLgcG4EaVv8J9aSzeYmdFZs94Cv6IoeKSd6Pn+0pjXCtfD28TNqXAG/d5CrFs
-         ZE2/kPXlfwcxNNd18QcSfgDdm7gPTaFCIbJwHfo/dFR7wrrMqmhmz5NzLLnugU3JW/tR
-         SngsxA+O/NWZwncbf6/+U1NtBqHBHtmghM0c5gjSY7U4IBq+g1tGqhZLnBzyXPYDvEOZ
-         799g6YOMz8lUm8FmVcPokZk/79Zalr6xTy6/jzx7ghM9dBvxQHWlVJP0g5BgYaLjbHbO
-         xEzg==
-X-Gm-Message-State: APjAAAXOVlgL2GQEMiylRurXTstDVuDJAl86sxVgNCne3bKzsmhmZYXp
-        ngnN/AWCdQ8KUw4LTNdih+3XiZfFnWg8n2fIaALyLQ==
-X-Google-Smtp-Source: APXvYqyCQqq/sYVcHyrozCmhdkems9DE56UaaALAZIcDJuvLRmL+KVL12nZblAfJci6jVwnq/iR/eVswn8WPsSelqws=
-X-Received: by 2002:a2e:5bdd:: with SMTP id m90mr19782540lje.46.1559941473627;
- Fri, 07 Jun 2019 14:04:33 -0700 (PDT)
+        id S1731189AbfFGVEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 17:04:42 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:35354 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731132AbfFGVEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 17:04:42 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x57L4dBx023761;
+        Fri, 7 Jun 2019 16:04:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559941479;
+        bh=y3TMmwalj8p/ibUMQfnAwnQm2tAicIorIe/nuI/lHWE=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=ZW33/FzALdojrXTpeEv2lw+ID+ysdGEpM/h59O3boDTZzAXcQmbigGG7unFD/DvtR
+         3byspdlwgqTSgOSciy4g1S/sZoNZuCtSifXIyj1zxdxSlML0fZ+wKs7p4y+Ogr9zPW
+         6+DxUqGjKcdROMmicM88e0ckOcmXOHngFxDMnaX4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x57L4ddP077244
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 Jun 2019 16:04:39 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 7 Jun
+ 2019 16:04:39 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 7 Jun 2019 16:04:39 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x57L4cH0119088;
+        Fri, 7 Jun 2019 16:04:38 -0500
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add docs for EL15203000
+To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
+        <linux-leds@vger.kernel.org>
+References: <20190607184022.13793-1-oleg@kaa.org.ua>
+ <b1f0eaf6-e91c-2095-5928-179ad8695b33@ti.com>
+ <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <b6a5cc5e-74f1-d328-7a47-995670ba7aa7@ti.com>
+Date:   Fri, 7 Jun 2019 16:04:38 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190530030546.9224-1-Anson.Huang@nxp.com>
-In-Reply-To: <20190530030546.9224-1-Anson.Huang@nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 Jun 2019 23:04:25 +0200
-Message-ID: <CACRpkdY-35o378Ka+4bgeSPjmq6P8DM872sgTxq2X3dDP9XZHQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: imx: Add pinctrl binding doc for i.MX8MN
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Olof Johansson <olof@lixom.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <27c0b356-8111-6b36-23cc-8e654147178f@kaa.org.ua>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 5:04 AM <Anson.Huang@nxp.com> wrote:
+Oleh
 
-> From: Anson Huang <Anson.Huang@nxp.com>
+On 6/7/19 3:53 PM, Oleh Kravchenko wrote:
 >
-> Add binding doc for i.MX8MN pinctrl driver.
+> 07.06.19 23:14, Dan Murphy пише:
+>> Oleh
+>>
+>> On 6/7/19 1:40 PM, Oleh Kravchenko wrote:
+>>> +LED sub-node properties:
+>>> +- label :
+>>> +    see Documentation/devicetree/bindings/leds/common.txt
+>> Add this
+>>
+>> Optional LED sub-node properties:
+>>
+>> And remove (optional) from the below.
+>>
+> Done
 >
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+>>> +- linux,default-trigger : (optional)
+>>> +    see Documentation/devicetree/bindings/leds/common.txt
+>>> +- max-brightness : (optional)
+>>> +    Specify here 2 if LED has special effect. Effects by LED type:
+>> s/Specify here 2/Specify 2
+>>
+> Done
+>
+>> But this is not really max_brightness now this is a feature and now does not make sense in this context
+>>
+>> You may need to use something different for this property or expose a file in the driver.
+>>
+>>
+> Protocol for this board define 0x32 as brightness level.
+> This behaviur needed to keep backward compatibity.
+>
+>
+Backwards compatibility to what?
 
-Looks mostly OK to me, but I'd like the maintainers to review,
-so Dong et al please look at this!
+This is a new driver there should be no DT that has this compatible or 
+definition.
 
-> +Required properties:
-> +- compatible: "fsl,imx8mn-iomuxc"
+I will let Rob ack or nack this node.
 
-So should this not be "nxp,imx8mn-iomuxc"
-or "nxp,freescale-imx8mn-iomuxc" or something these
-days? The vendor name is nxp is it not.
+Dan
 
-I was complaining to the DT maintainers at one point that
-these companies seem to buy each other left and right
-so this vendor nomenclature is dubious, but I guess at least
-it should reflect the vendor that produced the chip or something.
-
-If everyone is happy with "fsl,*" I will not complain though.
-(i.e. if the maintainers ACK it.)
-
-Yours,
-Linus Walleij
