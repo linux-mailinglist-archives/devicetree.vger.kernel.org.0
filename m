@@ -2,204 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5AB0387F0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 12:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC2238855
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 12:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727953AbfFGKae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 06:30:34 -0400
-Received: from mga06.intel.com ([134.134.136.31]:46377 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726939AbfFGKae (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 06:30:34 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Jun 2019 03:30:32 -0700
-X-ExtLoop1: 1
-Received: from kuha.fi.intel.com ([10.237.72.189])
-  by fmsmga001.fm.intel.com with SMTP; 07 Jun 2019 03:30:27 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 07 Jun 2019 13:30:26 +0300
-Date:   Fri, 7 Jun 2019 13:30:26 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yu Chen <chenyu56@huawei.com>
-Subject: Re: [PATCH v6 06/10] device connection: Add
- fwnode_connection_find_match()
-Message-ID: <20190607103026.GE10298@kuha.fi.intel.com>
-References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
- <1559115828-19146-7-git-send-email-chunfeng.yun@mediatek.com>
+        id S1728205AbfFGK6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 06:58:38 -0400
+Received: from mail-eopbgr680086.outbound.protection.outlook.com ([40.107.68.86]:26849
+        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728323AbfFGK6h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 06:58:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vt6qoelTKHrMvuE1NywSjFEzIxJLjE+/50Vli2jX3Tk=;
+ b=IV5rdcFL9DfmqcIuPodVD4DvWOZHCOIFMNgefbH4n1b4Ke0xrNZATedVODZJe7OPxB/LZQ2vAFnLnRwEgAgFLKDcBxWqIwl0JiDpctcJy1Dc8rjdwL6Ic8liW52aWQzSgSYdrEmzknGnGFzDsfmOvqAHG1421005mwb5gMTH9Io=
+Received: from CH2PR02MB6359.namprd02.prod.outlook.com (52.132.231.93) by
+ CH2PR02MB6071.namprd02.prod.outlook.com (52.132.228.29) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.22; Fri, 7 Jun 2019 10:58:34 +0000
+Received: from CH2PR02MB6359.namprd02.prod.outlook.com
+ ([fe80::b9dd:11e0:7fca:ba55]) by CH2PR02MB6359.namprd02.prod.outlook.com
+ ([fe80::b9dd:11e0:7fca:ba55%5]) with mapi id 15.20.1943.023; Fri, 7 Jun 2019
+ 10:58:34 +0000
+From:   Dragan Cvetic <draganc@xilinx.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: RE: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
+Thread-Topic: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
+Thread-Index: AQHVEu5GErREaULonk+tvtDvF1CkjaaOsacAgAFm4tA=
+Date:   Fri, 7 Jun 2019 10:58:34 +0000
+Message-ID: <CH2PR02MB6359747C72220A978CCA807BCB100@CH2PR02MB6359.namprd02.prod.outlook.com>
+References: <1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1558784245-108751-5-git-send-email-dragan.cvetic@xilinx.com>
+ <20190606132842.GC7943@kroah.com>
+In-Reply-To: <20190606132842.GC7943@kroah.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=draganc@xilinx.com; 
+x-originating-ip: [149.199.80.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d509c819-b61d-4030-ffa5-08d6eb3715ce
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:CH2PR02MB6071;
+x-ms-traffictypediagnostic: CH2PR02MB6071:
+x-microsoft-antispam-prvs: <CH2PR02MB60715F8289A11E5E3EA43124CB100@CH2PR02MB6071.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 0061C35778
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(366004)(396003)(346002)(39860400002)(189003)(199004)(3846002)(71200400001)(6116002)(14444005)(71190400001)(316002)(74316002)(66476007)(99286004)(14454004)(256004)(86362001)(305945005)(478600001)(6506007)(54906003)(7736002)(64756008)(73956011)(102836004)(66446008)(76116006)(66946007)(2906002)(9686003)(7696005)(76176011)(66556008)(186003)(6916009)(4326008)(8676002)(68736007)(6436002)(81156014)(81166006)(4744005)(53936002)(8936002)(229853002)(486006)(25786009)(26005)(476003)(446003)(5660300002)(11346002)(6246003)(52536014)(33656002)(66066001)(55016002)(107886003);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6071;H:CH2PR02MB6359.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: DTCTOtaFLVMVjg/MpBGLkAR86bmZd8vSP2g23e2ggu48E+FL2cC9WKBFU9cXAApevXkck9LoFapvLgUg8PZOC19fC/uvpAAQoNjiXvbu1GvvQ00d/2e84zWNsjqJrZrQZ7pVsztpZUxsy9BftkRI1ecYWYQTQcE4N34s4H2lTWkZGHqXEIXWB07Ky9U0a2IocOkoLfIKufBjy3dj1Eh6wKcRVSCkMhuTexI/Ll7Fb1r0NVs0A24qLB+86uLXy88Fyo/x9rM9Eiep2uMezVfQC4vXeVL0KAzUeyV7ApCvE6iXL221uFgGR2UDMEZa1fWfeVFvJWhvOAV+iI76DXD2v4dy+zWUYMMugpMfu0vc0jBM+po7zjOtaUzY03F6SsuB5d5kqDIujNDD4LCtoJP++oDiPb2oDrg13bZ5iaGondw=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="bg08WKrSYDhXBjb5"
-Content-Disposition: inline
-In-Reply-To: <1559115828-19146-7-git-send-email-chunfeng.yun@mediatek.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d509c819-b61d-4030-ffa5-08d6eb3715ce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2019 10:58:34.0280
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: draganc@xilinx.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6071
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> On Sat, May 25, 2019 at 12:37:17PM +0100, Dragan Cvetic wrote:
+> > +static int xsdfec_dev_open(struct inode *iptr, struct file *fptr)
+> > +{
+> > +	return 0;
+> > +}
+> > +
+> > +static int xsdfec_dev_release(struct inode *iptr, struct file *fptr)
+> > +{
+> > +	return 0;
+> > +}
+>=20
+> empty open/close functions are never needed, just drop them.
+>=20
 
---bg08WKrSYDhXBjb5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+open() is needed to allocate file descriptor eg.
+fd =3D open(dev_name, O_RDWR);
 
-Hi,
+Please, advise if you have some other idea in mind
 
-On Wed, May 29, 2019 at 03:43:44PM +0800, Chunfeng Yun wrote:
-> From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> 
-> The fwnode_connection_find_match() function is exactly the
-> same as device_connection_find_match(), except it takes
-> struct fwnode_handle as parameter instead of struct device.
-> That allows locating device connections before the device
-> entries have been created.
-> 
-> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-This one is also missing your SoB.
-
-There are now some other changes to the devcon API in Rafael's tree
-[1] that will conflict with this one. I'm attaching a modified version
-of the patch that is rebased on top of today's linux-next. If you use
-it, you should make a note (probable in the cover letter) that the
-series now depends on Rafael's tree.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/log/?h=linux-next
-
-
-thanks,
-
--- 
-heikki
-
---bg08WKrSYDhXBjb5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="0001-device-connection-Add-fwnode_connection_find_match.patch"
-
-From ea4ebbfd00e6ddc7bb7ad32e2f921bfc67f2ff8f Mon Sep 17 00:00:00 2001
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Date: Wed, 22 May 2019 17:06:54 +0300
-Subject: [PATCH] device connection: Add fwnode_connection_find_match()
-
-The fwnode_connection_find_match() function is exactly the
-same as device_connection_find_match(), except it takes
-struct fwnode_handle as parameter instead of struct device.
-That allows locating device connections before the device
-entries have been created.
-
-Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
----
- drivers/base/devcon.c  | 43 ++++++++++++++++++++++++++++++------------
- include/linux/device.h | 10 +++++++---
- 2 files changed, 38 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/base/devcon.c b/drivers/base/devcon.c
-index f7035fc12b92..5bf9537bd738 100644
---- a/drivers/base/devcon.c
-+++ b/drivers/base/devcon.c
-@@ -12,9 +12,6 @@
- static DEFINE_MUTEX(devcon_lock);
- static LIST_HEAD(devcon_list);
- 
--typedef void *(*devcon_match_fn_t)(struct device_connection *con, int ep,
--				   void *data);
--
- static void *
- fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
- 			  void *data, devcon_match_fn_t match)
-@@ -60,6 +57,34 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
- 	return NULL;
- }
- 
-+/**
-+ * fwnode_connection_find_match - Find connection from a device node
-+ * @fwnode: Device node with the connection
-+ * @con_id: Identifier for the connection
-+ * @data: Data for the match function
-+ * @match: Function to check and convert the connection description
-+ *
-+ * Find a connection with unique identifier @con_id between @fwnode and another
-+ * device node. @match will be used to convert the connection description to
-+ * data the caller is expecting to be returned.
-+ */
-+void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
-+				   const char *con_id, void *data,
-+				   devcon_match_fn_t match)
-+{
-+	void *ret;
-+
-+	if (!fwnode || !match)
-+		return NULL;
-+
-+	ret = fwnode_graph_devcon_match(fwnode, con_id, data, match);
-+	if (ret)
-+		return ret;
-+
-+	return fwnode_devcon_match(fwnode, con_id, data, match);
-+}
-+EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
-+
- /**
-  * device_connection_find_match - Find physical connection to a device
-  * @dev: Device with the connection
-@@ -83,15 +108,9 @@ void *device_connection_find_match(struct device *dev, const char *con_id,
- 	if (!match)
- 		return NULL;
- 
--	if (fwnode) {
--		ret = fwnode_graph_devcon_match(fwnode, con_id, data, match);
--		if (ret)
--			return ret;
--
--		ret = fwnode_devcon_match(fwnode, con_id, data, match);
--		if (ret)
--			return ret;
--	}
-+	ret = fwnode_connection_find_match(fwnode, con_id, data, match);
-+	if (ret)
-+		return ret;
- 
- 	mutex_lock(&devcon_lock);
- 
-diff --git a/include/linux/device.h b/include/linux/device.h
-index e0649f6adf2e..fd06d75da206 100644
---- a/include/linux/device.h
-+++ b/include/linux/device.h
-@@ -773,10 +773,14 @@ struct device_connection {
- 	struct list_head	list;
- };
- 
-+typedef void *(*devcon_match_fn_t)(struct device_connection *con, int ep,
-+				   void *data);
-+
-+void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
-+				   const char *con_id, void *data,
-+				   devcon_match_fn_t match);
- void *device_connection_find_match(struct device *dev, const char *con_id,
--				void *data,
--				void *(*match)(struct device_connection *con,
--					       int ep, void *data));
-+				   void *data, devcon_match_fn_t match);
- 
- struct device *device_connection_find(struct device *dev, const char *con_id);
- 
--- 
-2.20.1
-
-
---bg08WKrSYDhXBjb5--
+Thanks
+Dragan
