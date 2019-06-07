@@ -2,79 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E409038A5F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 14:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B474638A77
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 14:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729066AbfFGMcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 08:32:13 -0400
-Received: from mga12.intel.com ([192.55.52.136]:41805 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728786AbfFGMcN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 08:32:13 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Jun 2019 05:32:12 -0700
-X-ExtLoop1: 1
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga005.fm.intel.com with ESMTP; 07 Jun 2019 05:32:11 -0700
-Received: from kwong4-mobl.amr.corp.intel.com (unknown [10.252.203.122])
-        by linux.intel.com (Postfix) with ESMTP id 04D3A58044F;
-        Fri,  7 Jun 2019 05:32:10 -0700 (PDT)
-Subject: Re: [alsa-devel] [RFC PATCH 3/6] soundwire: core: define SDW_MAX_PORT
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org, vkoul@kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org
-References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
- <20190607085643.932-4-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <a4b527af-c999-829d-c4a0-41f0a6775b65@linux.intel.com>
-Date:   Fri, 7 Jun 2019 07:31:59 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
- Gecko/20100101 Thunderbird/60.7.0
+        id S1728764AbfFGMig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 08:38:36 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:39630 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728750AbfFGMig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 08:38:36 -0400
+Received: by mail-qt1-f196.google.com with SMTP id i34so1998971qta.6
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 05:38:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6iGSfs58nJEWANfcqakVLDnIqBJN0sG2xeLAj5suBzA=;
+        b=jpVVBJBgGBWvuVp1bgLIZ6kj6T33Jf3ZDqewzBsJiOkescpA4SpZIjK7BPSkEzPdjX
+         0dq7fPDipCzIibmPYHDj3PxkYUgh+sbcCivpbRLZqfEzd7Sw5gKo74I1ik2CIHi5dXN1
+         foWiBBYiLqj5Mz0qdlPngVLRyuObhyodT8oAs5AybIXdvpuxZVd4kiIOFIHZNu61dGi+
+         59C4WoZTeq4RqmTOjxyGrJWQ+24MZh/KCs1mTxibbctjN66XCLo+2Gr5lomdghWEaW0i
+         ZxHjciIn7nT6kBOcWVabp8qLR9Fc1yFkZZ9SubnkXwkiabJsu93GrTTxSVjwm5TRqTl/
+         WQCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6iGSfs58nJEWANfcqakVLDnIqBJN0sG2xeLAj5suBzA=;
+        b=F+9s8f6hIwtIBrAiBorl3KyyVztIUfzbYfh5H98y7IP1axSv0cmYMHoYpHYvmxTN0n
+         /7KJt+YcW0GMQFVUteAVTJZgxnAfELU9c2K9NQdgSeuc/0iIdQYvfsnJTaIbCFlVD1Mr
+         N6mz3ounXK3mWjRhFCaQ01yY+OqKPTXBgV+mFY2K5RC1DNP8RM4MfBhEPfrvLnuw2Hlk
+         rgRUwhBan8Vwp3EfQp5Msqe6Bb4PLqzx6ljGKE1E8istrnKeASTLu8IbyYrLrRpJouhr
+         vM5krc55r+rZgSqdJaqTltvUX0URbY4fhhQM/erxxaM8sSDAJq8rC4NRrqTD2V/0bi07
+         7d9w==
+X-Gm-Message-State: APjAAAXmkRBUVel9/iW/jzXaEW/KuaeaguzTYuG/uzlDDqkvXx+E1ONV
+        chBeknAxw+5IvJuVih4OxjI=
+X-Google-Smtp-Source: APXvYqy3lnFlY+YhZJzwKz2YNnsUjtvp2Q1p+GonECjpcMx9XDR0cb8cTW4wC/H47MjLRzYxMFcpFw==
+X-Received: by 2002:a05:6214:206:: with SMTP id i6mr16751479qvt.169.1559911115340;
+        Fri, 07 Jun 2019 05:38:35 -0700 (PDT)
+Received: from firefly.sparksnet ([2601:153:900:ebb::2])
+        by smtp.gmail.com with ESMTPSA id o54sm1281963qtb.63.2019.06.07.05.38.34
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 07 Jun 2019 05:38:34 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     "Leonidas P . Papadakos" <papadakospan@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jose Abreu <jose.abreu@synopsys.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii performance.
+Date:   Fri,  7 Jun 2019 12:37:32 +0000
+Message-Id: <20190607123731.8737-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190607085643.932-4-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/7/19 3:56 AM, Srinivas Kandagatla wrote:
-> This patch adds SDW_MAX_PORT so that other driver can use it.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->   include/linux/soundwire/sdw.h | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
-> index aac68e879fae..80ca997e4e5d 100644
-> --- a/include/linux/soundwire/sdw.h
-> +++ b/include/linux/soundwire/sdw.h
-> @@ -36,6 +36,7 @@ struct sdw_slave;
->   #define SDW_FRAME_CTRL_BITS		48
->   #define SDW_MAX_DEVICES			11
->   
-> +#define SDW_MAX_PORTS	14
+Currently the rk3328-roc-cc ethernet is enabled using "snps,force_thresh_dma_mode".
+While this works, the performance leaves a lot to be desired.
+A previous attempt to improve performance used "snps,txpbl = <0x4>".
+This also allowed networking to function, but performance varied between boards.
 
-That's an ambiguous definition.
-You can have 16 ports per the SoundWire spec, but DP0 is reserved for 
-control and DP15 is an alias for all ports (same idea as device 15 for 
-broadcast operations but limited to a single device), which leaves 14 
-ports for audio usages.
+This patch takes that one step further.
+Set txpbl and rxpbl to 0x4.
+This can also be accomplished with "snps,pbl =<0x4>" which affects both.
+Also set "snps,aal" which forces address aligned DMA mode.
 
-In the MIPI specs, specifically the DisCo part, the difference is called 
-about with the the DP0 and DPn notations, so this could be SDW_MAX_DPn. 
-Alternatively you could use SDW_MAX_AUDIO_PORTS which is more 
-self-explanatory and does not require in-depth familiarity with the spec.
+On my board this achieves the best performance yet, however we need broad testing to ensure this works for everyone.
+Please test and provide feedback.
 
->   #define SDW_VALID_PORT_RANGE(n)		((n) <= 14 && (n) >= 1)
->   
->   #define SDW_DAI_ID_RANGE_START		100
-> 
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+index 5d499c9086fb..8bcc08de82fb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+@@ -141,10 +141,12 @@
+ 	phy-mode = "rgmii";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rgmiim1_pins>;
+-	snps,force_thresh_dma_mode;
+ 	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+ 	snps,reset-active-low;
+ 	snps,reset-delays-us = <0 10000 50000>;
++	snps,txpbl = <0x4>;
++	snps,rxpbl = <0x4>;
++	snps,aal;
+ 	tx_delay = <0x24>;
+ 	rx_delay = <0x18>;
+ 	status = "okay";
+-- 
+2.20.1
 
