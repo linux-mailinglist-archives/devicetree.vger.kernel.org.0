@@ -2,153 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9FB338CF0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 16:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15F938457
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 08:34:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728961AbfFGO0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 10:26:37 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:44219 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728667AbfFGO0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 10:26:36 -0400
-Received: by mail-lj1-f194.google.com with SMTP id k18so1904359ljc.11;
-        Fri, 07 Jun 2019 07:26:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=72tWwa0dcIt8Xo0+smV7Jx5Ec2g3rCWEBlAObPTLz0U=;
-        b=Quyw9qOD7tAC7+vKO/Ti/b8U2aQSuAwV62sUcW/dxj8F1IM/XPq4mdt6iLlo66b0uZ
-         xJAzrC7jTHmIFyk1FjpnwfvVEmArng0fsymszNKfJmiZM6asd2NtB1/StM59cv20Zqk7
-         cT1CC7BaCq9aZ3puiuC0oMBVVOg/3ti81TnYMIN8+jawBMsv4yw3oStaUpddRvlojaP+
-         U/Rhh6E+N6PgKoV2lPwAzS5N3fPrkMaGoHLjplrfTsZTCfBeSMo7sblg/A6ip3R5fre+
-         u1jEc9kwEWwm0xPBCQ1wM1+Y0p+HkUV5W7hL5SF/GVk9EOvI/kr2BVtRCNaKrQW2nfb0
-         3Jlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=72tWwa0dcIt8Xo0+smV7Jx5Ec2g3rCWEBlAObPTLz0U=;
-        b=Tr5wP5U2vNoNtpNAGZ0wiuWcHylbHB4XwbmoxvTszWhkwPGix8spq7qmx8IVpJvdCK
-         AMRU4r33y3rZKBY/HEMC1fTsk1iAS/G1v6AWi4CvSo6WGrWN0IEDV1z3jxgRio75ggdD
-         7pRWq3VXIj4g4W+/85J3Quy8HAmCMzf3ryGBBitgpA0tQ1ld+LGdRssvyXAFf1HzFVxS
-         8ukjJGVyvGmerRJvBfMleDHKdT1Irfs5p43GwH6V4v8EsUrkKj1Wl7VGnipGmm/xk9vZ
-         wIFDeYcsL7WDosUioWrBQFfw2IhpTTb50CwPDN9Vt+6HjI8N8s3PY+039jMd40rSjcN+
-         PbaQ==
-X-Gm-Message-State: APjAAAWx14wzT6FtPi0jq27mU5fKVKvRh/aeg4KkdRRU0dKlNVCmO2Tf
-        ffMGApqcgM0WqgVJh5tEHK0=
-X-Google-Smtp-Source: APXvYqw/4TOOoHDJgr7Ck0jOuvFeItX6JbVqu4ZEiItCsTrasrIybscN26Wy76qCrzC8ZZgwwAmqSw==
-X-Received: by 2002:a2e:864e:: with SMTP id i14mr28055127ljj.141.1559917594310;
-        Fri, 07 Jun 2019 07:26:34 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-76-170-54.pppoe.mtu-net.ru. [91.76.170.54])
-        by smtp.googlemail.com with ESMTPSA id u13sm434946lfl.61.2019.06.07.07.26.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 07 Jun 2019 07:26:33 -0700 (PDT)
-Subject: Re: [PATCH V8 14/15] PCI: tegra: Add Tegra194 PCIe support
-To:     Vidya Sagar <vidyas@nvidia.com>, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com
-Cc:     mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-References: <20190526043751.12729-1-vidyas@nvidia.com>
- <20190526043751.12729-15-vidyas@nvidia.com>
- <f30e7fc6-3f64-d321-c32c-5e273115a869@gmail.com>
- <cbdac43f-32f7-c992-832b-ed40bef2375b@gmail.com>
- <06f2f74e-d618-8688-14ae-beb4920bcbf6@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <2a51622f-7bd8-2c6c-b3c5-8b87c2b5be0c@gmail.com>
-Date:   Fri, 7 Jun 2019 17:26:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <06f2f74e-d618-8688-14ae-beb4920bcbf6@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1726248AbfFGGeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 02:34:31 -0400
+Received: from mga02.intel.com ([134.134.136.20]:49508 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726825AbfFGGea (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jun 2019 02:34:30 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Jun 2019 23:34:29 -0700
+X-ExtLoop1: 1
+Received: from pg-eswbuild-angstrom-alpha.altera.com ([10.142.34.148])
+  by orsmga001.jf.intel.com with ESMTP; 06 Jun 2019 23:34:26 -0700
+From:   "Hean-Loong, Ong" <hean.loong.ong@intel.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Randy Dunlap <rdunlap@infradead.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, hean.loong.ong@intel.com,
+        chin.liang.see@intel.com
+Subject: [PATCHv15 0/3] Intel FPGA Video and Image Processing Suite
+Date:   Fri,  7 Jun 2019 22:28:24 +0800
+Message-Id: <20190607142827.329-1-hean.loong.ong@intel.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.06.2019 17:10, Vidya Sagar пишет:
-> On 6/7/2019 12:22 AM, Dmitry Osipenko wrote:
->> 06.06.2019 19:35, Dmitry Osipenko пишет:
->>> 26.05.2019 7:37, Vidya Sagar пишет:
->>>> Add support for Synopsys DesignWare core IP based PCIe host controller
->>>> present in Tegra194 SoC.
->>>>
->>>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->>>> ---
->>>> Changes since [v7]:
->>>> * Addressed review comments from Thierry
->>>>
->>>> Changes since [v6]:
->>>> * Removed code around "nvidia,disable-aspm-states" DT property
->>>> * Refactored code to remove code duplication
->>>>
->>>> Changes since [v5]:
->>>> * Addressed review comments from Thierry
->>>>
->>>> Changes since [v4]:
->>>> * None
->>>>
->>>> Changes since [v3]:
->>>> * None
->>>>
->>>> Changes since [v2]:
->>>> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
->>>> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
->>>> * Removed .runtime_suspend() & .runtime_resume() implementations
->>>>
->>>> Changes since [v1]:
->>>> * Made CONFIG_PCIE_TEGRA194 as 'm' by default from its previous 'y'
->>>> state
->>>> * Modified code as per changes made to DT documentation
->>>> * Refactored code to address Bjorn & Thierry's review comments
->>>> * Added goto to avoid recursion in tegra_pcie_dw_host_init() API
->>>> * Merged .scan_bus() of dw_pcie_host_ops implementation to
->>>> tegra_pcie_dw_host_init() API
->>>>
->>>>   drivers/pci/controller/dwc/Kconfig         |   10 +
->>>>   drivers/pci/controller/dwc/Makefile        |    1 +
->>>>   drivers/pci/controller/dwc/pcie-tegra194.c | 1621
->>>> ++++++++++++++++++++
->>>>   3 files changed, 1632 insertions(+)
->>>>   create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
->>>>
->>>> diff --git a/drivers/pci/controller/dwc/Kconfig
->>>> b/drivers/pci/controller/dwc/Kconfig
->>>> index a6ce1ee51b4c..884112afc11b 100644
->>>> --- a/drivers/pci/controller/dwc/Kconfig
->>>> +++ b/drivers/pci/controller/dwc/Kconfig
->>>> @@ -220,6 +220,16 @@ config PCI_MESON
->>>>         and therefore the driver re-uses the DesignWare core
->>>> functions to
->>>>         implement the driver.
->>>>   +config PCIE_TEGRA194
->>>> +    tristate "NVIDIA Tegra194 (and later) PCIe controller"
->>>> +    depends on (TEGRA_BPMP && ARCH_TEGRA) || COMPILE_TEST
->>>
->>> TEGRA_BPMP will be enough here as it depends on other relevant options.
->>>
->>> Hence I mean:
->>>
->>>     depends on TEGRA_BPMP || COMPILE_TEST
->>
->> Maybe it's worth to even change TEGRA_BPMP to ARCH_TEGRA_194_SOC.
->> Although then you'll have to extend it with other platforms later on,
->> but probably that's fine.
-> I received an explicit comment previously to make this dependent on
-> TEGRA_BPMP
-> as the driver is using APIs to get certain jobs done by BPMP-FW. But, since
-> we can't boot kernel in the first place without having BPMP-FW in place,
-> I think
-> it should be fine to make it dependent on ARCH_TEGRA_194_SOC directly.
+From: Hean-Loong Ong <hean.loong.ong@intel.com>
 
-ARCH_TEGRA_194_SOC selects BPMP by itself (see
-drivers/soc/tegra/Kconfig), so it's indeed absolutely fine.
+The FPGA FrameBuffer Soft IP could be seen  as the GPU and the DRM driver
+patch here is allocating memory for information to be streamed from the
+ARM/Linux to the display port.
+
+Basically the driver just wraps the information such as the pixels to be
+drawn by the Sodt IP FrameBuffer 2.
+
+The piece of hardware in discussion is the SoC FPGA where Linux runs on
+the ARM chip and the FGPA is driven by its NIOS soft core with its own
+proprietary firmware.
+
+For example the application from the ARM Linux would have to write
+information on the /dev/fb0 with the information stored in the
+SDRAM to be fetched by the Framebuffer 2 Soft IP and displayed
+on the Display Port Monitor.
+
+Reviewed and ACKed need to merge this into drm-misc
+
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+Ong Hean Loong (1):
+  ARM:socfpga-defconfig Intel FPGA Video and Image Processing Suite
+
+Ong, Hean Loong (2):
+  ARM:dt-bindings:display Intel FPGA Video and Image Processing Suite
+  ARM:drm ivip Intel FPGA Video and Image Processing Suite
+
+ .../bindings/display/altr,vip-fb2.txt         |  63 ++++
+ MAINTAINERS                                   |   9 +
+ arch/arm/configs/socfpga_defconfig            |   8 +
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/ivip/Kconfig                  |  14 +
+ drivers/gpu/drm/ivip/Makefile                 |   6 +
+ drivers/gpu/drm/ivip/intel_vip_conn.c         |  93 +++++
+ drivers/gpu/drm/ivip/intel_vip_drv.c          | 335 ++++++++++++++++++
+ drivers/gpu/drm/ivip/intel_vip_drv.h          |  73 ++++
+ 10 files changed, 604 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/altr,vip-fb2.txt
+ create mode 100644 drivers/gpu/drm/ivip/Kconfig
+ create mode 100644 drivers/gpu/drm/ivip/Makefile
+ create mode 100644 drivers/gpu/drm/ivip/intel_vip_conn.c
+ create mode 100644 drivers/gpu/drm/ivip/intel_vip_drv.c
+ create mode 100644 drivers/gpu/drm/ivip/intel_vip_drv.h
+
+-- 
+2.17.1
+
