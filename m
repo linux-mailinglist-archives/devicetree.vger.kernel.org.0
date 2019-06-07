@@ -2,108 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BEA239922
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 00:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D20AB39963
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 01:10:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729924AbfFGWuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 18:50:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728756AbfFGWui (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 18:50:38 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 02A5D20868;
-        Fri,  7 Jun 2019 22:50:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559947838;
-        bh=ApxVfHs8JnkHiww93//1LZR4TXbvN/4IO2MtYEzl9mo=;
-        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
-        b=xfujo2GLbkIM+KKtYFuiV81Iew3/QJfwEMbo2anGI8s4SiwI07Ah1j2/ciUOhTDOO
-         q3goGaFH8UPTc3Ej7pzCV+vxygsPZnRYStoVowZC3Jxm6bRTeQ9ni5Ny2lOQ1txxv7
-         PtMvH0dcM+c/REo3Y1kZ5cZB/lRKUS2wrJhduqGA=
-Content-Type: text/plain; charset="utf-8"
+        id S1729879AbfFGXIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 19:08:00 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:44612 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729325AbfFGXH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 19:07:59 -0400
+Received: by mail-qt1-f195.google.com with SMTP id x47so4184632qtk.11
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 16:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hmSIYkzntP70mGAy0+3sIVGlGsW0SY7lR03AJk9BDaE=;
+        b=WZPbW3eaKxDVqvS79g8AhPg0AXL7yEzS0cPoKlo47btXUecP/458v/d/PiK6M/i2S1
+         GIIIOrROLDMOmJDJQzFw2i8QHOnqozCFNFWBRa42C81JbcNjnu9Nv0zpRK9BemnZLA1+
+         VjcCIKZ0ELie+j4D+quamsdrB9+G0pF8VGqquna1t9EZTW5UgPM8aV/y5ZGyLBmBeFOA
+         jbfFYdnET1ixPAAjk68QQF/Ie8Q0bpdOio1IV8EX41AqUKw7enSq282KJdKfaaKF1Wwk
+         ynyoWGc+7Im8EKHOjAkJ17h8AuFnnGGJDbhOzTz9YqfzHSkNI9OfVOG8XlPcEA3zYDcE
+         mImw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hmSIYkzntP70mGAy0+3sIVGlGsW0SY7lR03AJk9BDaE=;
+        b=BHnPYhESN7j35PD3eXx/Z89CXjiL1jcQdbyiEh855oKrYaczxRmmQI9MgedPV0EO0p
+         vr7f9mE1Dx31ImF1csMm/eBRwt6CbpzlkXkwp/13ulOA0xKBKGzh2D+YeKOhjvDIyaFm
+         enZnfwawRdoSC2HgeHlA/ghoBQTNq8meFOkrm40EjQC/sde7FnptceMzz0yCSw0eAROC
+         dL0KdGRCFo8JN/9qrRQnurBgEDOAuv+0f1bq4OvZa4E9uuiFHG27qcrqcPJNp6dHQofT
+         OfWYpylg9WfHxx3HiRWfih15fLFrPVuQuDIlnHSCFmFFJRNb2p9C2z3NEjGqW+EQMd3Y
+         QMjQ==
+X-Gm-Message-State: APjAAAWCb2ee4sTyFhk16CRnWI/TQylgkaYb++v+VHg+rN9lkZXrCpEB
+        kagvggyFFGFUZAbFeZ67UfTpRFbuG3/6AJn6PrY=
+X-Google-Smtp-Source: APXvYqzBgF6gOQsbg7FGCS5nTpxiSJgifgCAg7cWOztdJgWpAZX6qriDoJ9UdD0C48nGsknhQPHqHEQm6GiX3MFLk0g=
+X-Received: by 2002:a0c:d4a2:: with SMTP id u31mr26989141qvh.218.1559948878483;
+ Fri, 07 Jun 2019 16:07:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1559944794.11351.0@crapouillou.net>
-References: <20190521145141.9813-1-paul@crapouillou.net> <20190521145141.9813-6-paul@crapouillou.net> <20190607212819.A5FAE208C3@mail.kernel.org> <1559944794.11351.0@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        James Hogan <jhogan@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mathieu Malaterre <malat@debian.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, od@zcrc.me
-Subject: Re: [PATCH v12 05/13] clk: ingenic: Add driver for the TCU clocks
-User-Agent: alot/0.8.1
-Date:   Fri, 07 Jun 2019 15:50:37 -0700
-Message-Id: <20190607225038.02A5D20868@mail.kernel.org>
+References: <20190607123731.8737-1-pgwipeout@gmail.com> <1559912295.22520.0@gmail.com>
+In-Reply-To: <1559912295.22520.0@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Fri, 7 Jun 2019 19:07:48 -0400
+Message-ID: <CAMdYzYorvWr1YhmFKaMQUCditjop5AZp4d1tO79XsVr7m7HrMw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii performance.
+To:     "Leonidas P. Papadakos" <papadakospan@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Jose Abreu <jose.abreu@synopsys.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Paul Cercueil (2019-06-07 14:59:54)
-> Hi Stephen, thanks for the review.
-> > Quoting Paul Cercueil (2019-05-21 07:51:33)
-> >>  diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
-> >>  new file mode 100644
-> >>  index 000000000000..7249225a6994
-> >>  --- /dev/null
-> >>  +++ b/drivers/clk/ingenic/tcu.c
-> >>  @@ -0,0 +1,458 @@
-> >>  +// SPDX-License-Identifier: GPL-2.0
-> >>  +/*
-> >>  + * JZ47xx SoCs TCU clocks driver
-> >>  + * Copyright (C) 2019 Paul Cercueil <paul@crapouillou.net>
-> >>  + */
-> >>  +
-> >>  +#include <linux/clk.h>
-> >>  +#include <linux/clk-provider.h>
-> >>  +#include <linux/clkdev.h>
-> >>  +#include <linux/clockchips.h>
-> >>  +#include <linux/mfd/ingenic-tcu.h>
-> >>  +#include <linux/regmap.h>
-> >>  +
-> >>  +#include <dt-bindings/clock/ingenic,tcu.h>
-> >>  +
-> >>  +/* 8 channels max + watchdog + OST */
-> >>  +#define TCU_CLK_COUNT  10
-> >>  +
-> >>  +#define TCU_ERR(...) pr_crit("ingenic-tcu-clk: " __VA_ARGS__)
-> >=20
-> > Why is it pr_crit instead of pr_err()?
->=20
-> If the TCU timer clocks are not provided for any reason, the system
-> will have no timer, and the kernel will hang very early in the init
-> process. That's why I chose pr_crit().
+On Fri, Jun 7, 2019 at 8:58 AM Leonidas P. Papadakos
+<papadakospan@gmail.com> wrote:
+>
+>
+> I'll test on my board, but if in the end it does end up being a change
+> to both tx and rxpbl then we can replce the 2 tx/rxpbl options with
+> one, as far as I know:
+>
+> snps,pbl = <0x4>;
+>
+>
 
-HMm. So maybe it should be TCU_CRIT() then? Or just drop the wrapper
-macro and define a pr_fmt for this file that has ingenic-tcu-clk: for
-it?
+The big change was actually snps,aal.
+As per the TRM, DMA channels not address aligned have severe
+limitations, if they work at all.
 
->=20
-> Most of the code here works without a struct device, it wouldn't be=20
-> easy to
-> get it to work with runtime PM.
->=20
-> I can enable the "tcu" clock in the probe and just gate/ungate it in the
-> suspend/resume callbacks, that would work just fine. We don't need=20
-> anything
-> fancy here.
-
-OK. That sounds like a better approach to gate and ungate in
-suspend/resume.
-
+Setting the DMA ops as address aligned fixed my 30mbps TX issue when
+combined with your snps,txpbl = <0x4>.
