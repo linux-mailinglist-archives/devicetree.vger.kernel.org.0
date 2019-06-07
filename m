@@ -2,712 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B88663846B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 08:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8690C38D13
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2019 16:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727541AbfFGGgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 02:36:32 -0400
-Received: from mga14.intel.com ([192.55.52.115]:52439 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727505AbfFGGgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jun 2019 02:36:31 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Jun 2019 23:36:30 -0700
-X-ExtLoop1: 1
-Received: from pg-eswbuild-angstrom-alpha.altera.com ([10.142.34.148])
-  by fmsmga007.fm.intel.com with ESMTP; 06 Jun 2019 23:36:28 -0700
-From:   "Hean-Loong, Ong" <hean.loong.ong@intel.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Randy Dunlap <rdunlap@infradead.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, hean.loong.ong@intel.com,
-        chin.liang.see@intel.com, Ong@vger.kernel.org
-Subject: [PATCHv16 3/3] ARM:drm ivip Intel FPGA Video and Image Processing Suite
-Date:   Fri,  7 Jun 2019 22:30:22 +0800
-Message-Id: <20190607143022.427-4-hean.loong.ong@intel.com>
+        id S1729213AbfFGOf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 10:35:28 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:40391 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728900AbfFGOf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 10:35:28 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190607143525euoutp02da69cd399426e583df5d7b68bad1a550~l8UVHrDDB0257202572euoutp02D
+        for <devicetree@vger.kernel.org>; Fri,  7 Jun 2019 14:35:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190607143525euoutp02da69cd399426e583df5d7b68bad1a550~l8UVHrDDB0257202572euoutp02D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1559918125;
+        bh=LfIzVpHvL6QUADSI2AZywhT+Vizxo3HFKvCNEc672TY=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=sxIV4KNux0twg31+a20iskFvwrG/B9GblIIGYUyKjvCU8dPwRpuJT+UG1f0d50vOG
+         vRp8sGM7ohOQBLuGkemAXhmwcnB7spdzA0ecZNfjGv2qklQ+5yspFdHHMhvFKyGpd6
+         ifTLfbFYeDNK1ko+u+NOsOJg4uyiCa5FPcRwkfnU=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190607143524eucas1p21c628de9975bf25a675e7c5ed9a4abe5~l8UUF_b072161821618eucas1p2N;
+        Fri,  7 Jun 2019 14:35:24 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 32.D0.04325.C267AFC5; Fri,  7
+        Jun 2019 15:35:24 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190607143523eucas1p1015a614a64ed22f4c65ace8b795dd6d0~l8UTOYbT_1212112121eucas1p1v;
+        Fri,  7 Jun 2019 14:35:23 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190607143523eusmtrp1b65ec071b994034d5999dc9bd1d61174~l8US_je-S1284512845eusmtrp1Q;
+        Fri,  7 Jun 2019 14:35:23 +0000 (GMT)
+X-AuditID: cbfec7f5-b75ff700000010e5-8a-5cfa762c6bb7
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id B2.C0.04140.B267AFC5; Fri,  7
+        Jun 2019 15:35:23 +0100 (BST)
+Received: from AMDC3778.DIGITAL.local (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190607143522eusmtip19de1cde106eb8ef250a153c0d882ce54~l8USE36Pm2644726447eusmtip1s;
+        Fri,  7 Jun 2019 14:35:22 +0000 (GMT)
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        cw00.choi@samsung.com, kyungmin.park@samsung.com,
+        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+        myungjoo.ham@samsung.com, keescook@chromium.org, tony@atomide.com,
+        jroedel@suse.de, treding@nvidia.com, digetx@gmail.com,
+        gregkh@linuxfoundation.org, willy.mh.wolff.ml@gmail.com,
+        Lukasz Luba <l.luba@partner.samsung.com>
+Subject: [PATCH v9 00/13] Exynos5 Dynamic Memory Controller driver
+Date:   Fri,  7 Jun 2019 16:34:54 +0200
+Message-Id: <20190607143507.30286-1-l.luba@partner.samsung.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190607143022.427-1-hean.loong.ong@intel.com>
-References: <20190607143022.427-1-hean.loong.ong@intel.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA0WSfUzMcRzHfe93vwen4+dq7rskdsvkKRqzr3k27Kch5p+mxKXfKrqj++nk
+        Ye1kqHRXq61uPQwzqiuq0061ntwdUagWiZKHSsmJpNYDl87v8N/78/68Pvu899mHwiQtuDsV
+        oTzJqpTySBkhEpoejjUuX6YeD1pZ+ckVleiLcPTyRy+Orlqf4ahgsAugCzeKCJRWnyNAT64o
+        UHLXZww1NhaT6GmcjUSvNR5oMKkTRy0V2QQa0loB0jdWC9Bt6xsSNddvR+3n8whksV3Gkb21
+        RIhqnvuh9omZaOTRB7BZyowMpwqZr20XSSZL0yxkyjPfkIzRkEAwNTmFJKO9MEAw9wcqBYyu
+        1ACYuw1nmSGj594ZB0TrQ9nICDWrWrHxsCj8dbeOOFHBxLzX2oAGfFibCKZTkF4N7+gNZCIQ
+        URI6D8DuvByCL34A2BtXjfHFEIA3iyeFf0eMVQ8wh5bQuVNUfcy/iXjLpCARUBRB+8AyQ5SD
+        caP1AGb17XcwGH0Pg1/aO4CDcaW3QrNF6mCE9EJoGm/FHVpMb4LGzFsYv2s+LCiu/RMC0sMk
+        LCgdFPCNbTCr45sTcoX9daUkrz1gQ1qSMygHNdrrgNfnYFdyjpNZBy11zbgjA0YvhkUVK3h7
+        C0zvHvljQ3ombPsy22FjUzLVlIHxthjGX5LwtDcsTWpyhpkDcwvTSR5h4APtGf44B6Et9TOZ
+        Ajwz/6+6BoABSNloThHGcquU7CkfTq7gopVhPkeOK4xg6tUa7HXDZaD6Z4gZ0BSQuYgZcixI
+        gsvV3GmFGUAKk7mJ1U2jQRJxqPz0GVZ1/JAqOpLlzGAuJZRJxWenvQuU0GHyk+wxlj3Bqv52
+        BdR0dw0497EwOfBx7NjDyfK8zlc7XXbpdpPfrSHK/HVVdV6+Gbj/nrRFE56181LKQ/b1jQan
+        JNjag4e8e94zo/p8jDCJmnylHm5l/TH+dqNdmtGhswTEX/IzzerbcDRjgcuqX+ae1QMBEaHD
+        neFelUferYlq2ZErdl0a++jpC1322ygm8JlMyIXLfZdgKk7+G4m859ZmAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLIsWRmVeSWpSXmKPExsVy+t/xu7raZb9iDCZ8k7bYOGM9q8X1L89Z
+        LeYfOcdqsfrjY0aL5sXr2Swmn5rLZHGmO9ei//FrZovz5zewW5xtesNucatBxuJjzz1Wi8u7
+        5rBZfO49wmgx4/w+Jou1R+6yW1w85Wpxu3EFm8XhN+2sFv+ubWSx2H/Fy+L2bz6LbyceMTqI
+        e3z7OonF4/2NVnaP2Q0XWTx2zrrL7rFpVSebx/65a9g9epvfsXkcfLeHyaNvyypGj82nqz0+
+        b5IL4I7SsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQ
+        y7j1pI+tYJdHxcPeN4wNjI8suxg5OSQETCQ27T3K3MXIxSEksJRR4sCTBSwQCTGJSfu2s0PY
+        whJ/rnWxQRR9YpRYt+sokMPBwSagJ7FjVSFIXERgDqPEz65tjCAOs8BZZondK94wgRQJCzhJ
+        HDosDjKIRUBVYtuva6wgNq+AvcSmWcuYIRbIS6zecIB5AiPPAkaGVYwiqaXFuem5xUZ6xYm5
+        xaV56XrJ+bmbGIFRte3Yzy07GLveBR9iFOBgVOLhncH0M0aINbGsuDL3EKMEB7OSCG/ZhR8x
+        QrwpiZVVqUX58UWlOanFhxhNgZZPZJYSTc4HRnxeSbyhqaG5haWhubG5sZmFkjhvh8DBGCGB
+        9MSS1OzU1ILUIpg+Jg5OqQZGrXuMbxc8KeTU/Xv09WuVdxXz6uxWPFBfrrLed2pq4cSvtX8b
+        GQXX5Uy/cj4tpoFlZTCHxUtp+aObPup8UCreFKq/j8Hgini2wptVN50tlogtPXrI8Xacz7FJ
+        u58qVRdZhv21NqqbxdBV8Xd5sHnVcsl/FiVl76IO3v4ZuMr7guMrr0vJFhodSizFGYmGWsxF
+        xYkAlM/eVsACAAA=
+X-CMS-MailID: 20190607143523eucas1p1015a614a64ed22f4c65ace8b795dd6d0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190607143523eucas1p1015a614a64ed22f4c65ace8b795dd6d0
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190607143523eucas1p1015a614a64ed22f4c65ace8b795dd6d0
+References: <CGME20190607143523eucas1p1015a614a64ed22f4c65ace8b795dd6d0@eucas1p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Ong, Hean Loong" <hean.loong.ong@intel.com>
+Hi all,
 
-Driver for Intel FPGA Video and Image Processing Suite Frame Buffer II.
-The driver only supports the Intel Arria10 devkit and its variants.
-This driver can be either loaded staticlly or in modules.
-The OF device tree binding is located at:
-Documentation/devicetree/bindings/display/altr,vip-fb2.txt
+This is v9 which introduces minor changes. The patch set adds support of
+Dynamic Memory Controller for Exynos5422 SoC.
+The driver supports Dynamic Voltage and Frequency Scaling
+for the DMC and DRAM. It also provides needed timings for different
+speed operations of the DRAM memory.
+There is also new generic code in of_memory and headers which allows to parse
+LPDDR3 memories defined in device-tree.
 
-Signed-off-by: Ong, Hean Loong <hean.loong.ong@intel.com>
-Acked-by: Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+The patch set has been cut to land mainline quickly and the dependency
+on PPMU patches are removed (which was in v7). It implies that the debugging
+code which was presenting details about traffic on the AXI slots has been
+removed. It will be added when this driver got mainline and the PPMU code
+got mainline. Also DT dependency of PPMU header has been removed.
 
-V15:
-Fix indentation issues
+changes:
+v9:
+- disable bpll instead of spll clocks in the remove path
+- safely disable 'bypass' clocks when error was captured
+- removed unused clocks and related code
+- changed code to make 'if' statement clean as Krzysztof sugested
+- removed cloks from dt-binding and DT
+- minor fix for clocks to read the state for DIV with NOCACHE
+- removed spaces in #define and put tabs
+- removed duplicated entry for OPPs phandle in dt-binding
+- collected ACKs
+- based on v5.2-rc3 tag
+v8 [3]:
+- removed chipID dependency, as Krzysztof suggested and drop the whole checking
+  code in the driver (which also Marek suggested offline) (it might be needed
+  in future when other configuration would be supported). It also avoids
+  a misunderstandings and simplifies the documentation.
+- reordered clock IDs in 1st patch to keep the old IDs and add the new clocks
+  at the end as Chanwoo suggested (added also his ACK there)
+- in patch 6 (dt-bindings) added explicit clocks and names in the right order
+  needed for the driver
+- added proper address for the memory node in the documentation and in the DT
+  (lpddr3-timings@0 -> @80000000)
+- fixed wrong reg offset for pause feature
+- removed debug code which shows AXI slots traffic and removed DT ppmu events
+- in the driver code usage of 'dev', 'pdev->dev' has been aligned
+- manipulating clocks has been aligned as Krzysztof suggested, now it enables
+  only two clocks (and disables) and enables/disables the 'bypass' clocks
+  on demand
+- added comments in the documentation why there is a need of clock registers
+  to be accessed via syscon regmap
+- added proper link to Documentation/devicetree/bindings/ddr/lpddr3.txt
+  in dt-bindings for memory controller doc
+- removed unneeded prints when there was a deferred probe or during remove
+- added 'syscon' also to exynos5420-clock node as Krzysztof suggested
+- from 2nd patch removed blank line and added Acked-by: Chanwoo Choi
+- collecting ACKs, which makes the clock related 3 patches
+  ready to be merged (4 ACKs),
+- patches 4,5 got 'Reviewed-by' from Rob
+- it is now based on v5.2-rc3 tag
+v7 [2]:
+- added using regmap in chipid registers and clock registers
+- in DT added "syscon" to compatible field in clock and chipid
+- added two addition clocks in clocks definition file which were there
+  in first implementation but now are grouped and commented properly
+  (CLK_DOUT_PCLK_DREX0, CLK_DOUT_PCLK_DREX1)
+- the BPLL ratio table now is set for Exynos 5422 and 5800 and not for 5420
+- in DMC driver, changed code macro which generates functions for setup events
+  into normal three functions as Krzysztof suggested
+- moved 'clock_prepare_enable()' calls into the same function where 'disable'
+  were called
+- changed 'timing_reg' static variables into static const
+- in DMC driver: the proper device_node *np_ddr is now put correctly
+- in DMC driver: removed code related to counters_enabled
+- mapped only 0x100 from DREX registers
+- in DT memory node there is now 'reg' as Rob suggested instead of 'max-freq'
+- in Documentation/devicetree/bindings/lpddr2 renamed into 'ddr' and the lpdd3*
+  files landed there.
+- cleaned the commit subject and message as Rob suggested for the patch 4/10 in v6
+- added doxygen comments to exported functions in of_memory file
+- cleaned minor issues like: missing space, 2 empty lines, in the doc JESD209-2 ->
+  JESD209-3C, removed 'status = "okay"' from the doc file, etc
+- based on v5.1 (+ PPMU patches from [1])
+v6:
+- driver code has been converted to use generic code which parses DT memory
+  definition in drivers/memory/of_memory.c
+- extended of_memory by LPDDR3 support (there was LPDDR2 made by TI)
+- extended jedec_lpddr.h by the needed structures for LPDDR3 (AC timings)
+- driver file moved to proper directory, where other memory controllers
+  live, which is in this case drivers/memory/samsung/
+- driver code now uses regmap_{read|write} to access registers for pausing
+  and changing timings set, as suggested by Chanwoo
+- DT contains simple definition of memory device, similar to LPDDR2 made by TI
+- driver code generates the needed timings for registered OPPs, based on
+  memory description in DT
+- patch 1 contains Rob's ACK,
+- simplified memory bandwidth calculation
+- added debug information files with timings, raw counters and statistics
+- updated dt-bindings files accordingly
+- based on v5.1-rc5 (+ PPMU patches from [1])
+v5:
+- removed unneeded wrapper functions i.e. for regulator_set_voltage
+- removed unused defines
+- removed direct access to clock register base and used CCF for
+  pause and timing set usage
+- switched to OPP comming from DT according to Chanowoo's comments
+- switched to timings comming from DT, added parsing function
+- extended dt-binding with description of OPPs and timings
+- according to Rob Herring comment, moved dt-binding file before driver code
+  in the patch set.
+- rebased on top of v5.0
+v4:
+- removed unneeded DPLL and G3D clocks IDs
+- changed names of parent clocks for mout_mx_mspll_ccore_phy_p
+  and added one more parent: mout_sclk_epll
+- removed 933Mhz and 138MHz from the BPLL ratio table
+v3:
+- in DTS align to proper indent the clocks and clock-names entries
+v2:
+- changed file name exynos5-dmc.c -> exynos5422-dmc.c
+  and related entries in other files
+- changed dt-binding file name
+- changed config entry to CONFIG_ARM_EXYNOS5422_DMC_DEVFREQ
+- removed sysfs and print info messages (print only one line)
+- removed function exynos5_read_chip_info and compact code
+- changed dt-binding patch and move it up in the patch set
+- new entries in MAINTAINERS are added with the driver c code
+- clean-up in DTS file: renamed nodes to 'ppmu' and 'memory-controller',
+  entries moved to suggested location (before nocp nodes or after),
+  moved according to alfabetical order, compacted clocks names with right indent.
 
-V14:
-Fix indentation issues
+Regards,
+Lukasz Luba
 
-V13:
-Fix drm-misc build failure
+[1] https://lkml.org/lkml/2019/4/19/158
+[2] https://lkml.org/lkml/2019/5/6/829
+[3] https://lkml.org/lkml/2019/6/5/687
 
-V12:
-Fix comments
 
-V11:
-move to drm-misc
+Lukasz Luba (13):
+  clk: samsung: add needed IDs for DMC clocks in Exynos5420
+  clk: samsung: add new clocks for DMC for Exynos5422 SoC
+  clk: samsung: add BPLL rate table for Exynos 5422 SoC
+  dt-bindings: ddr: rename lpddr2 directory
+  dt-bindings: ddr: add LPDDR3 memories
+  drivers: memory: extend of_memory by LPDDR3 support
+  dt-bindings: memory-controllers: add Exynos5422 DMC device description
+  drivers: memory: add DMC driver for Exynos5422
+  drivers: devfreq: events: add Exynos PPMU new events
+  ARM: dts: exynos: add chipid label and syscon compatible
+  ARM: dts: exynos: add syscon to clock compatible
+  ARM: dts: exynos: add DMC device for exynos5422
+  ARM: exynos_defconfig: enable DMC driver
 
-V10:
-Fix Build failure
+ .../{lpddr2 => ddr}/lpddr2-timings.txt        |    0
+ .../bindings/{lpddr2 => ddr}/lpddr2.txt       |    2 +-
+ .../bindings/ddr/lpddr3-timings.txt           |   58 +
+ .../devicetree/bindings/ddr/lpddr3.txt        |   97 ++
+ .../memory-controllers/exynos5422-dmc.txt     |   75 +
+ MAINTAINERS                                   |    8 +
+ arch/arm/boot/dts/exynos5.dtsi                |    4 +-
+ arch/arm/boot/dts/exynos5420.dtsi             |   75 +-
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |  116 ++
+ arch/arm/boot/dts/exynos5800.dtsi             |    2 +-
+ arch/arm/configs/exynos_defconfig             |    1 +
+ drivers/clk/samsung/clk-exynos5420.c          |   78 +-
+ drivers/devfreq/event/exynos-ppmu.c           |    6 +
+ drivers/memory/of_memory.c                    |  154 ++
+ drivers/memory/of_memory.h                    |   18 +
+ drivers/memory/samsung/Kconfig                |   17 +
+ drivers/memory/samsung/Makefile               |    1 +
+ drivers/memory/samsung/exynos5422-dmc.c       | 1261 +++++++++++++++++
+ include/dt-bindings/clock/exynos5420.h        |   18 +-
+ include/memory/jedec_ddr.h                    |   62 +
+ 20 files changed, 2040 insertions(+), 13 deletions(-)
+ rename Documentation/devicetree/bindings/{lpddr2 => ddr}/lpddr2-timings.txt (100%)
+ rename Documentation/devicetree/bindings/{lpddr2 => ddr}/lpddr2.txt (96%)
+ create mode 100644 Documentation/devicetree/bindings/ddr/lpddr3-timings.txt
+ create mode 100644 Documentation/devicetree/bindings/ddr/lpddr3.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+ create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
 
-V9:
-Fix Build failure
-
-V8:
-Changes to device tree docs
-
-V6:
-Changes to device tree docs
-
-V7:
-Changes to device tree docs
-
-V6:
-Fix comments
-
-V5:
-Fix comments
-
-V4:
-Fix comments
-
-V3:
-Fix comments
-
-V2:
-Move to simple drm
-
-V1:
-Initial changes
----
- MAINTAINERS                           |   9 +
- drivers/gpu/drm/Kconfig               |   2 +
- drivers/gpu/drm/Makefile              |   1 +
- drivers/gpu/drm/ivip/Kconfig          |  14 ++
- drivers/gpu/drm/ivip/Makefile         |   6 +
- drivers/gpu/drm/ivip/intel_vip_conn.c |  93 +++++++
- drivers/gpu/drm/ivip/intel_vip_drv.c  | 335 ++++++++++++++++++++++++++
- drivers/gpu/drm/ivip/intel_vip_drv.h  |  73 ++++++
- 8 files changed, 533 insertions(+)
- create mode 100644 drivers/gpu/drm/ivip/Kconfig
- create mode 100644 drivers/gpu/drm/ivip/Makefile
- create mode 100644 drivers/gpu/drm/ivip/intel_vip_conn.c
- create mode 100644 drivers/gpu/drm/ivip/intel_vip_drv.c
- create mode 100644 drivers/gpu/drm/ivip/intel_vip_drv.h
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e7e81fadff65..0fdec52a356a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5229,6 +5229,15 @@ L:	dri-devel@lists.freedesktop.org
- F:	include/drm/ttm/
- F:	drivers/gpu/drm/ttm/
- 
-+DRM INTEL IVIP
-+M:	Hean Loong, Ong <han.loong.ong@intel.com>
-+L:      dri-devel@lists.freedesktop.org
-+T:      git git://anongit.freedesktop.org/drm/drm-misc
-+S:	Maintained
-+F:	intel_vip_conn.c
-+F:	intel_vip_drv.c
-+F: 	intel_vip_drv.h
-+
- DSBR100 USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
- L:	linux-media@vger.kernel.org
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index bd943a71756c..3db01e99479b 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -231,6 +231,8 @@ source "drivers/gpu/drm/nouveau/Kconfig"
- 
- source "drivers/gpu/drm/i915/Kconfig"
- 
-+source "drivers/gpu/drm/ivip/Kconfig"
-+
- config DRM_VGEM
- 	tristate "Virtual GEM provider"
- 	depends on DRM
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 1ac55c65eac0..e8ac4e3de9c6 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -63,6 +63,7 @@ obj-$(CONFIG_DRM_AMDGPU)+= amd/amdgpu/
- obj-$(CONFIG_DRM_MGA)	+= mga/
- obj-$(CONFIG_DRM_I810)	+= i810/
- obj-$(CONFIG_DRM_I915)	+= i915/
-+obj-$(CONFIG_DRM_IVIP)	+= ivip/
- obj-$(CONFIG_DRM_MGAG200) += mgag200/
- obj-$(CONFIG_DRM_V3D)  += v3d/
- obj-$(CONFIG_DRM_VC4)  += vc4/
-diff --git a/drivers/gpu/drm/ivip/Kconfig b/drivers/gpu/drm/ivip/Kconfig
-new file mode 100644
-index 000000000000..1b2af85fe757
---- /dev/null
-+++ b/drivers/gpu/drm/ivip/Kconfig
-@@ -0,0 +1,14 @@
-+config DRM_IVIP
-+        tristate "Intel FGPA Video and Image Processing"
-+        depends on DRM && OF
-+        select DRM_GEM_CMA_HELPER
-+        select DRM_KMS_HELPER
-+        select DRM_KMS_FB_HELPER
-+        select DRM_KMS_CMA_HELPER
-+        help
-+		Choose this option if you have an Intel FPGA Arria 10 system
-+		and above with an Intel Display Port IP. This does not support
-+		legacy Intel FPGA Cyclone V display port. Currently only single
-+		frame buffer is supported. Note that ACPI and X_86 architecture
-+		is not supported for Arria10. If M is selected the module will be
-+		called ivip.
-diff --git a/drivers/gpu/drm/ivip/Makefile b/drivers/gpu/drm/ivip/Makefile
-new file mode 100644
-index 000000000000..8c54e11daeca
---- /dev/null
-+++ b/drivers/gpu/drm/ivip/Makefile
-@@ -0,0 +1,6 @@
-+#
-+# Makefile for the drm device driver.  This driver provides support for the
-+# Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
-+
-+obj-$(CONFIG_DRM_IVIP) += ivip.o
-+ivip-objs := intel_vip_drv.o intel_vip_conn.o
-diff --git a/drivers/gpu/drm/ivip/intel_vip_conn.c b/drivers/gpu/drm/ivip/intel_vip_conn.c
-new file mode 100644
-index 000000000000..041b7a576983
---- /dev/null
-+++ b/drivers/gpu/drm/ivip/intel_vip_conn.c
-@@ -0,0 +1,93 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019 Intel Corporation.
-+ *
-+ * intel_vip_conn.c -- Intel Video and Image Processing(VIP)
-+ * Frame Buffer II driver
-+ *
-+ * This driver supports the Intel VIP Frame Reader component.
-+ * More info on the hardware can be found in the Intel Video
-+ * and Image Processing Suite User Guide at this address
-+ * http://www.altera.com/literature/ug/ug_vip.pdf.
-+ *
-+ * Authors:
-+ * Walter Goossens <waltergoossens@home.nl>
-+ * Thomas Chou <thomas@wytron.com.tw>
-+ * Chris Rauer <crauer@altera.com>
-+ * Ong, Hean-Loong <hean.loong.ong@intel.com>
-+ *
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_crtc_helper.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_encoder_slave.h>
-+#include <drm/drm_plane_helper.h>
-+#include <drm/drm_probe_helper.h>
-+
-+static enum drm_connector_status
-+intelvipfb_drm_connector_detect(struct drm_connector *connector, bool force)
-+{
-+	return connector_status_connected;
-+}
-+
-+static void intelvipfb_drm_connector_destroy(struct drm_connector *connector)
-+{
-+	drm_connector_unregister(connector);
-+	drm_connector_cleanup(connector);
-+}
-+
-+static const struct drm_connector_funcs intelvipfb_drm_connector_funcs = {
-+	.detect = intelvipfb_drm_connector_detect,
-+	.reset = drm_atomic_helper_connector_reset,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+	.destroy = intelvipfb_drm_connector_destroy,
-+};
-+
-+static int intelvipfb_drm_connector_get_modes(struct drm_connector *connector)
-+{
-+	struct drm_device *drm = connector->dev;
-+	int count;
-+
-+	count = drm_add_modes_noedid(connector, drm->mode_config.max_width,
-+			drm->mode_config.max_height);
-+	drm_set_preferred_mode(connector, drm->mode_config.max_width,
-+			drm->mode_config.max_height);
-+	return count;
-+}
-+
-+static const struct drm_connector_helper_funcs
-+intelvipfb_drm_connector_helper_funcs = {
-+	.get_modes = intelvipfb_drm_connector_get_modes,
-+};
-+
-+struct drm_connector *
-+intelvipfb_conn_setup(struct drm_device *drm)
-+{
-+	struct drm_connector *conn;
-+	int ret;
-+
-+	conn = devm_kzalloc(drm->dev, sizeof(*conn), GFP_KERNEL);
-+	if (IS_ERR(conn))
-+		return NULL;
-+
-+	drm_connector_helper_add(conn, &intelvipfb_drm_connector_helper_funcs);
-+	ret = drm_connector_init(drm, conn, &intelvipfb_drm_connector_funcs,
-+			DRM_MODE_CONNECTOR_DisplayPort);
-+	if (ret < 0) {
-+		dev_err(drm->dev, "failed to initialize drm connector\n");
-+		ret = -ENOMEM;
-+		goto error_connector_cleanup;
-+	}
-+
-+	return conn;
-+
-+error_connector_cleanup:
-+	drm_connector_cleanup(conn);
-+
-+	return NULL;
-+}
-diff --git a/drivers/gpu/drm/ivip/intel_vip_drv.c b/drivers/gpu/drm/ivip/intel_vip_drv.c
-new file mode 100644
-index 000000000000..592183d0b090
---- /dev/null
-+++ b/drivers/gpu/drm/ivip/intel_vip_drv.c
-@@ -0,0 +1,335 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019 Intel Corporation.
-+ *
-+ * intel_vip_core.c -- Intel Video and Image Processing(VIP)
-+ * Frame Buffer II driver
-+ *
-+ * This driver supports the Intel VIP Frame Reader component.
-+ * More info on the hardware can be found in the Intel Video
-+ * and Image Processing Suite User Guide at this address
-+ * http://www.altera.com/literature/ug/ug_vip.pdf.
-+ *
-+ * Authors:
-+ * Walter Goossens <waltergoossens@home.nl>
-+ * Thomas Chou <thomas@wytron.com.tw>
-+ * Chris Rauer <crauer@altera.com>
-+ * Ong, Hean-Loong <hean.loong.ong@intel.com>
-+ *
-+ */
-+
-+#include <drm/drm_atomic.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_crtc_helper.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_drv.h>
-+#include <drm/drm_fb_helper.h>
-+#include <drm/drm_fb_cma_helper.h>
-+#include <drm/drm_gem_cma_helper.h>
-+#include <drm/drm_gem_framebuffer_helper.h>
-+#include <drm/drm_of.h>
-+#include <drm/drm_plane_helper.h>
-+#include <drm/drm_simple_kms_helper.h>
-+#include <drm/drm_vblank.h>
-+
-+#include <linux/component.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#include "intel_vip_drv.h"
-+
-+static inline struct intelvipfb_priv *
-+pipe_to_intelvipdrm(struct drm_simple_display_pipe *pipe)
-+{
-+	return container_of(pipe, struct intelvipfb_priv, pipe);
-+}
-+
-+DEFINE_DRM_GEM_CMA_FOPS(drm_fops);
-+
-+static struct drm_driver intelvipfb_drm = {
-+	.driver_features =
-+			DRIVER_MODESET | DRIVER_GEM |
-+			DRIVER_PRIME | DRIVER_ATOMIC,
-+	.gem_free_object_unlocked = drm_gem_cma_free_object,
-+	.gem_vm_ops = &drm_gem_cma_vm_ops,
-+	.dumb_create = drm_gem_cma_dumb_create,
-+	.dumb_destroy = drm_gem_dumb_destroy,
-+	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
-+	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
-+	.gem_prime_export = drm_gem_prime_export,
-+	.gem_prime_import = drm_gem_prime_import,
-+	.gem_prime_get_sg_table = drm_gem_cma_prime_get_sg_table,
-+	.gem_prime_import_sg_table = drm_gem_cma_prime_import_sg_table,
-+	.gem_prime_vmap = drm_gem_cma_prime_vmap,
-+	.gem_prime_vunmap = drm_gem_cma_prime_vunmap,
-+	.gem_prime_mmap = drm_gem_cma_prime_mmap,
-+	.name = DRIVER_NAME,
-+	.date = "20190129",
-+	.desc = "Intel FPGA VIP SUITE",
-+	.major = 1,
-+	.minor = 0,
-+	.ioctls = NULL,
-+	.patchlevel = 0,
-+	.fops = &drm_fops,
-+};
-+
-+/*
-+ * Setting up information derived from OF Device Tree Nodes
-+ * max-width, max-height, bits per pixel, memory port width
-+ */
-+
-+static int intelvipfb_drm_setup(struct device *dev,
-+					struct intelvipfb_priv *priv)
-+{
-+	struct drm_device *drm = &priv->drm;
-+	struct device_node *np = dev->of_node;
-+	int mem_word_width;
-+	int max_h, max_w;
-+	int ret;
-+
-+	ret = of_property_read_u32(np, "altr,max-width", &max_w);
-+	if (ret) {
-+		dev_err(dev,
-+			"Missing required parameter 'altr,max-width'");
-+		return ret;
-+	}
-+
-+	ret = of_property_read_u32(np, "altr,max-height", &max_h);
-+	if (ret) {
-+		dev_err(dev,
-+			"Missing required parameter 'altr,max-height'");
-+		return ret;
-+	}
-+
-+	ret = of_property_read_u32(np, "altr,mem-port-width", &mem_word_width);
-+	if (ret) {
-+		dev_err(dev, "Missing required parameter 'altr,mem-port-width '");
-+		return ret;
-+	}
-+
-+	if (!(mem_word_width >= 32 && mem_word_width % 32 == 0)) {
-+		dev_err(dev,
-+			"mem-word-width is set to %i. must be >= 32 and multiple of 32.",
-+			 mem_word_width);
-+		return -ENODEV;
-+	}
-+
-+	drm->mode_config.min_width = 640;
-+	drm->mode_config.min_height = 480;
-+	drm->mode_config.max_width = max_w;
-+	drm->mode_config.max_height = max_h;
-+	drm->mode_config.preferred_depth = 32;
-+
-+	return 0;
-+}
-+
-+static int intelvipfb_of_probe(struct platform_device *pdev)
-+{
-+	int retval;
-+	struct resource *reg_res;
-+	struct intelvipfb_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	struct drm_device *drm;
-+
-+	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	drm = &priv->drm;
-+
-+	/* setup DRM */
-+	retval = drm_dev_init(drm, &intelvipfb_drm, dev);
-+	if (retval) {
-+		dev_err(dev, "[" DRM_NAME ":%s] drm_dev_init failed: %d\n",
-+			__func__, retval);
-+		return -ENODEV;
-+	}
-+
-+	retval = dma_set_mask_and_coherent(drm->dev, DMA_BIT_MASK(32));
-+	if (retval)
-+		return -ENODEV;
-+
-+	reg_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!reg_res)
-+		return -ENOMEM;
-+
-+	priv->base = devm_ioremap_resource(dev, reg_res);
-+
-+	if (IS_ERR(priv->base)) {
-+		dev_err(dev, "devm_ioremap_resource failed\n");
-+		retval = PTR_ERR(priv->base);
-+		return -ENOMEM;
-+	}
-+
-+	intelvipfb_drm_setup(dev, priv);
-+
-+	dev_set_drvdata(dev, priv);
-+
-+	return intelvipfb_probe(dev);
-+}
-+
-+static int intelvipfb_of_remove(struct platform_device *pdev)
-+{
-+	return intelvipfb_remove(&pdev->dev);
-+}
-+
-+static void intelvipfb_enable(struct drm_simple_display_pipe *pipe,
-+				struct drm_crtc_state *crtc_state,
-+				struct drm_plane_state *
-+				plane_state)
-+{
-+	/*
-+	 * The frameinfo variable has to correspond to the size of the VIP Suite
-+	 * Frame Reader register 7 which will determine the maximum size used
-+	 * in this frameinfo
-+	 */
-+	struct intelvipfb_priv *priv = pipe_to_intelvipdrm(pipe);
-+	u32 frameinfo;
-+	void __iomem *base = priv->base;
-+	struct drm_plane_state *state = pipe->plane.state;
-+	dma_addr_t addr;
-+
-+	addr = drm_fb_cma_get_gem_addr(state->fb, state, 0);
-+
-+	frameinfo =
-+		readl(base + INTELVIPFB_FRAME_READER) & 0x00ffffff;
-+	writel(frameinfo, base + INTELVIPFB_FRAME_INFO);
-+	writel(addr, base + INTELVIPFB_FRAME_START);
-+	/* Finally set the control register to 1 to start streaming */
-+	writel(1, base + INTELVIPFB_CONTROL);
-+}
-+
-+static void intelvipfb_disable(struct drm_simple_display_pipe *pipe)
-+{
-+	struct intelvipfb_priv *priv = pipe_to_intelvipdrm(pipe);
-+	void __iomem *base = priv->base;
-+	/* set the control register to 0 to stop streaming */
-+	writel(0, base + INTELVIPFB_CONTROL);
-+}
-+
-+static const struct drm_mode_config_funcs intelvipfb_mode_config_funcs = {
-+	.fb_create = drm_gem_fb_create,
-+	.atomic_check = drm_atomic_helper_check,
-+	.atomic_commit = drm_atomic_helper_commit,
-+};
-+
-+static void intelvipfb_setup_mode_config(struct drm_device *drm)
-+{
-+	drm_mode_config_init(drm);
-+	drm->mode_config.funcs = &intelvipfb_mode_config_funcs;
-+}
-+
-+void intelvipfb_display_pipe_update(struct drm_simple_display_pipe *pipe,
-+				    struct drm_plane_state *old_state)
-+{
-+	struct intelvipfb_priv *priv = pipe_to_intelvipdrm(pipe);
-+	struct drm_crtc *crtc = &priv->pipe.crtc;
-+
-+	if (crtc->state->event) {
-+		spin_lock_irq(&crtc->dev->event_lock);
-+		drm_crtc_send_vblank_event(crtc, crtc->state->event);
-+		spin_unlock_irq(&crtc->dev->event_lock);
-+		crtc->state->event = NULL;
-+	}
-+}
-+EXPORT_SYMBOL(intelvipfb_display_pipe_update);
-+
-+static struct drm_simple_display_pipe_funcs priv_funcs = {
-+	.prepare_fb = drm_gem_fb_simple_display_pipe_prepare_fb,
-+	.update = intelvipfb_display_pipe_update,
-+	.enable = intelvipfb_enable,
-+	.disable = intelvipfb_disable
-+};
-+
-+int intelvipfb_probe(struct device *dev)
-+{
-+	int retval;
-+	struct drm_device *drm;
-+	struct intelvipfb_priv *priv = dev_get_drvdata(dev);
-+	struct drm_connector *connector;
-+	u32 formats[] = {DRM_FORMAT_XRGB8888};
-+
-+	drm = &priv->drm;
-+
-+	intelvipfb_setup_mode_config(drm);
-+
-+	connector = intelvipfb_conn_setup(drm);
-+	if (!connector) {
-+		dev_err(drm->dev, "Connector setup failed\n");
-+		goto err_mode_config;
-+	}
-+
-+	retval = drm_simple_display_pipe_init(drm,
-+						&priv->pipe,
-+						&priv_funcs,
-+						formats,
-+						ARRAY_SIZE(formats),
-+						NULL, connector);
-+
-+	if (retval < 0) {
-+		dev_err(drm->dev, "Cannot setup simple display pipe\n");
-+		goto err_mode_config;
-+	}
-+
-+	drm_mode_config_reset(drm);
-+
-+	drm_dev_register(drm, 0);
-+
-+	drm_fbdev_generic_setup(drm, 32);
-+
-+	dev_info(drm->dev, "ivip: Successfully created fb\n");
-+
-+	return retval;
-+
-+err_mode_config:
-+
-+	drm_mode_config_cleanup(drm);
-+	return -ENODEV;
-+}
-+
-+int intelvipfb_remove(struct device *dev)
-+{
-+	struct intelvipfb_priv *priv = dev_get_drvdata(dev);
-+	struct drm_device *drm =  &priv->drm;
-+
-+	drm_dev_unregister(drm);
-+
-+	drm_mode_config_cleanup(drm);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id intelvipfb_of_match[] = {
-+	{ .compatible = "altr,vip-frame-buffer-2.0" },
-+	{},
-+/*
-+ * The name vip-frame-buffer-2.0 is derived from
-+ * http://www.altera.com/literature/ug/ug_vip.pdf
-+ * frame buffer IP cores section 14
-+ */
-+};
-+
-+MODULE_DEVICE_TABLE(of, intelvipfb_of_match);
-+
-+static struct platform_driver intelvipfb_driver = {
-+	.probe = intelvipfb_of_probe,
-+	.remove = intelvipfb_of_remove,
-+	.driver = {
-+		.name = DRIVER_NAME,
-+		.of_match_table = intelvipfb_of_match,
-+	},
-+};
-+
-+module_platform_driver(intelvipfb_driver);
-+
-+/* Original author of Altera Frame Buffer*/
-+MODULE_AUTHOR("Walter Goossens <waltergoossens@home.nl>");
-+MODULE_AUTHOR("Thomas Chou <thomas@wytron.com.tw>");
-+MODULE_AUTHOR("Chris Rauer <crauer@altera.com>");
-+/* Author of Intel FPGA Frame Buffer II*/
-+MODULE_AUTHOR("Ong, Hean-Loong <hean.loong.ong@intel.com>");
-+MODULE_DESCRIPTION("Intel VIP Frame Buffer II driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/gpu/drm/ivip/intel_vip_drv.h b/drivers/gpu/drm/ivip/intel_vip_drv.h
-new file mode 100644
-index 000000000000..a8e3a6603e26
---- /dev/null
-+++ b/drivers/gpu/drm/ivip/intel_vip_drv.h
-@@ -0,0 +1,73 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2019 Intel Corporation.
-+ *
-+ * Intel Video and Image Processing(VIP) Frame Buffer II driver.
-+ * Frame Buffer II driver
-+ *
-+ * This driver supports the Intel VIP Frame Reader component.
-+ * More info on the hardware can be found in the Intel Video
-+ * and Image Processing Suite User Guide at this address
-+ * http://www.altera.com/literature/ug/ug_vip.pdf.
-+ *
-+ * Authors:
-+ * Walter Goossens <waltergoossens@home.nl>
-+ * Thomas Chou <thomas@wytron.com.tw>
-+ * Chris Rauer <crauer@altera.com>
-+ * Ong, Hean-Loong <hean.loong.ong@intel.com>
-+ *
-+ */
-+#ifndef _INTEL_VIP_DRV_H
-+#define _INTEL_VIP_DRV_H
-+
-+#define DRIVER_NAME    "intelvipfb"
-+#define BYTES_PER_PIXEL	 4
-+#define CRTC_NUM	        1
-+#define CONN_NUM	        1
-+
-+/* control registers */
-+#define INTELVIPFB_CONTROL	      0
-+#define INTELVIPFB_STATUS	       0x4
-+#define INTELVIPFB_INTERRUPT	    0x8
-+#define INTELVIPFB_FRAME_COUNTER	0xC
-+#define INTELVIPFB_FRAME_DROP	   0x10
-+#define INTELVIPFB_FRAME_INFO	   0x14
-+#define INTELVIPFB_FRAME_START	  0x18
-+#define INTELVIPFB_FRAME_READER	         0x1C
-+
-+int intelvipfb_probe(struct device *dev);
-+int intelvipfb_remove(struct device *dev);
-+int intelvipfb_setup_crtc(struct drm_device *drm);
-+struct drm_connector *intelvipfb_conn_setup(struct drm_device *drm);
-+
-+struct intelvipfb_priv {
-+	/**
-+	 * @pipe: Display pipe structure
-+	 */
-+	struct drm_simple_display_pipe pipe;
-+
-+	/**
-+	 * @drm: DRM device
-+	 */
-+	struct drm_device drm;
-+
-+	/**
-+	 * @dirty_lock: Serializes framebuffer flushing
-+	 */
-+	struct mutex dirty_lock;
-+
-+	/**
-+	 * @base: Base memory for the framebuffer
-+	 */
-+	void    __iomem *base;
-+
-+	/**
-+	 * @fb_dirty: Framebuffer dirty callback
-+	 */
-+	int (*fb_dirty)(struct drm_framebuffer *framebuffer,
-+			struct drm_file *file_priv, unsigned int flags,
-+			unsigned int color, struct drm_clip_rect *clips,
-+			unsigned int num_clips);
-+};
-+
-+#endif
 -- 
 2.17.1
 
