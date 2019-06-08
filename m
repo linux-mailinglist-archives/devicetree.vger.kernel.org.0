@@ -2,118 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0944839BF9
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 11:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44EA639C0F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 11:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726535AbfFHJGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 05:06:05 -0400
-Received: from mail.skyhub.de ([5.9.137.197]:46438 "EHLO mail.skyhub.de"
+        id S1726604AbfFHJTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 05:19:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44466 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726448AbfFHJGE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jun 2019 05:06:04 -0400
-Received: from zn.tnic (p200300EC2F288A00DCF654BEDE068B01.dip0.t-ipconnect.de [IPv6:2003:ec:2f28:8a00:dcf6:54be:de06:8b01])
+        id S1726478AbfFHJTC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jun 2019 05:19:02 -0400
+Received: from localhost (unknown [106.200.229.24])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 095CF1EC0235;
-        Sat,  8 Jun 2019 11:06:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1559984763;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=znhinQl17PEsTheLSRwexWszGv20Z4hEeaGt0gI6Nko=;
-        b=rDiolTE6ydti3CyGiAtroz5OJOVaWOubsBimpUVEegmDId1qWwoJ7x+iP551w4VLHzKBTd
-        dg2oefQPYs6UbnPnx7TV/Vc0PwiHgZtr+eKPnxLqA+dswznVYCOu6beQjP7s07I3zHcVn6
-        GSxxdYgVnWYG5OXTBzYlMbIff5gVbak=
-Date:   Sat, 8 Jun 2019 11:05:56 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Cc:     James Morse <james.morse@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-Message-ID: <20190608090556.GA32464@zn.tnic>
-References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
- <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
- <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
- <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
- <20190531051400.GA2275@cz.tnic>
- <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
- <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
- <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 83A782146E;
+        Sat,  8 Jun 2019 09:18:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559985541;
+        bh=OanMxsEXZVTB4mNJ5mhC8IHdcZWYqLtxc3NYjHBDJ9I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZffyHhrygV7SQLLbKaVoX3Yj4oG4O+m9VvIfTxasTkFgYK/FRjRBPFLQShEZVSfd/
+         u/zLFL4CdCuIRdtp4+Oc6C53XJPxTDntZtx3ioHFJU5Vo85e3BkSTc6LwpOH8weT2O
+         nGEvkMyyJA4lVDFGjAMZBieZHJqgHs07F42S0cfA=
+Date:   Sat, 8 Jun 2019 14:45:37 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Deepak Katragadda <dkatraga@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Taniya Das <tdas@codeaurora.org>
+Subject: Re: [PATCH 2/2] clk: qcom: gcc: Add global clock controller driver
+ for SM8150
+Message-ID: <20190608091537.GG9160@vkoul-mobl.Dlink>
+References: <20190607101234.30449-1-vkoul@kernel.org>
+ <20190607101234.30449-2-vkoul@kernel.org>
+ <20190607174353.31EDA208C3@mail.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190607174353.31EDA208C3@mail.kernel.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 08, 2019 at 10:16:11AM +1000, Benjamin Herrenschmidt wrote:
-> Those IP blocks don't need any SW coordination at runtime. The drivers
-> don't share data nor communicate with each other. There is absolultely
-> no reason to go down that path.
+On 07-06-19, 10:43, Stephen Boyd wrote:
+> Quoting Vinod Koul (2019-06-07 03:12:34)
+> > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
+> > new file mode 100644
+> > index 000000000000..1cbc884444c9
+> > --- /dev/null
+> > +++ b/drivers/clk/qcom/gcc-sm8150.c
+> > +static const struct parent_map gcc_parent_map_0[] = {
+> > +       { P_BI_TCXO, 0 },
+> > +       { P_GPLL0_OUT_MAIN, 1 },
+> > +       { P_GPLL0_OUT_EVEN, 6 },
+> > +       { P_CORE_BI_PLL_TEST_SE, 7 },
+> > +};
+> > +
+> > +static const char * const gcc_parent_names_0[] = {
+> 
+> We have a new way of specifying clk parents now. Can you use that
+> instead of using strings everywhere?
 
-Let me set one thing straight: the EDAC "subsystem" if you will - or
-that pile of code which does error counting and reporting - has its
-limitations in supporting one EDAC driver per platform. And whenever we
-have two drivers loadable on a platform, we have to do dirty hacks like
+Okay I will update, any pointers on new implementation I can look up?
 
-  301375e76432 ("EDAC: Add owner check to the x86 platform drivers")
-
-What that means is, that if you need to call EDAC logging routines or
-whatnot from two different drivers, there's no locking, no nothing. So
-it might work or it might set your cat on fire.
-
-IOW, having multiple separate "drivers" or representations of RAS
-functionality using EDAC facilities is something that hasn't been
-done. Well, almost. highbank_mc_edac.c and highbank_l2_edac.c is one
-example but they make sure they don't step on each other's toes by using
-different EDAC pieces - a device vs a memory controller abstraction.
-
-And now the moment all of a sudden you decide you want for those
-separate "drivers" to synchronize on something, you need to do something
-hacky like the amd_register_ecc_decoder() thing, for example, because we
-need to call into the EDAC memory controller driver to decode a DRAM ECC
-error properly, while the rest of the error types get decoded somewhere
-else...
-
-Then there comes the issue with code reuse - wouldn't it be great if a
-memory controller driver can be shared between platform drivers instead of
-copying it in both?
-
-We already do that - see fsl_ddr_edac.c which gets shared between PPC
-*and* ARM. drivers/edac/skx_common.c is another example for Intel chips.
-
-Now, if you have a platform with 10 IP blocks which each have RAS
-functionality, are you saying you'll do 10 different pieces called
-
-<platform_name>_<ip_block#>_edac.c
-
-?
-
-And if <next_platform> has an old IP block with the old RAS
-functionality, you load <platform_name>_<ip_block>_edac.c on the new
-platform too?
-
+Thanks
 -- 
-Regards/Gruss,
-    Boris.
-
-Good mailing practices for 400: avoid top-posting and trim the reply.
+~Vinod
