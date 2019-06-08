@@ -2,77 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D31C23A0E3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 19:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 188F03A156
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 21:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727220AbfFHRge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 13:36:34 -0400
-Received: from first.geanix.com ([116.203.34.67]:34268 "EHLO first.geanix.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727202AbfFHRge (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jun 2019 13:36:34 -0400
-Received: from [192.168.100.94] (unknown [95.138.208.137])
-        by first.geanix.com (Postfix) with ESMTPSA id B2FB61384;
-        Sat,  8 Jun 2019 17:34:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1560015263; bh=mNDoHCkSun3d06zVPINHndHBS2P/YpVpsE58jkB97uI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=KDVrfnj6Q2/3X4WHeL7nexlV1oU9MaxK3Q1Q2sKUHBg/oZ1PlD7FHaO+L39oaV2jC
-         WZDNuRRQnn90rqwl1vQscJsQrXcHf2kU8/CrNWauypXMFMncznDENlddkEt42uI25Y
-         tPCVmo/gh/ele1/afR/AyNT9zspH2kNTphGRXfY3Wu5O2Tj2iQ9AfV/hEu2N5nTcCi
-         frbQNHRWqLYLjj5k7tSHkYQm6isB1KeWCXgW1Mm7eyk4eL6uae0ZjKIUNtfEg7/T3F
-         ARqc7uYTL6tOB2Jkdfwc+OzbiUNQw+JcIhHS+aKxex03IuV66ix5krgofBCI98Bclw
-         lRMTd/M3jRz9w==
-Subject: Re: [PATCH 1/2] can: flexcan: add support for DT property
- 'wakeup-source'
-To:     netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        mkl@pengutronix.de, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, aisheng.dong@nxp.com,
-        qiangqing.zhang@nxp.com
-References: <20190409083949.27917-1-sean@geanix.com>
-From:   Sean Nyekjaer <sean@geanix.com>
-Message-ID: <61ce24fa-34ca-326a-dcd2-75d2783c43c8@geanix.com>
-Date:   Sat, 8 Jun 2019 19:36:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727310AbfFHTET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 15:04:19 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:42267 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727250AbfFHTET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 15:04:19 -0400
+Received: by mail-wr1-f66.google.com with SMTP id x17so5269341wrl.9;
+        Sat, 08 Jun 2019 12:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9jXFcak2cBpexQk8XYN9VwrCjw1WZmHd35NHcnWvlUM=;
+        b=eIjUllelamnWeZcriXf4pecRr643goyySvVh2oJM0Dhb5G7lrmEbCequZfHbZbaCmN
+         g/qHrO6fzfqlK0ycFPOnUio+yrz8dc0qLpiCnfuXN7M6474V4gNYjCk3aJ+QH4uU++P5
+         FrZ92j96kXDKox9o6FBdjE3XYWlEJB/hELgeaW+vykoT3GVOA7Od8zmFN1LBaUoVyBuW
+         8+mBMqYndQxBlqJfVE8dgEcuXDIeqqMRcmPZc7WnYlQo/ch83e8I7DUQPQyigBLHu/WU
+         9Y2cAe1hPF3l0f5elho+4et2FsznVRtBCpcnT9Y9b/OLWllASSjSaJA7lwm7tQB7KyIq
+         VnAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9jXFcak2cBpexQk8XYN9VwrCjw1WZmHd35NHcnWvlUM=;
+        b=fS5Zp5vZxqCVMq+5bs8jY6YZFQYjNk3V4ByzUQozpWdv1NbcjTWUzmzg2+9KTO4vLF
+         BJs5C/AOcYThZ79Fsqb28HmTz0dlnoDSUUBFnlUDXKKf30Gqtc0fzVcRS5AUInH6JugO
+         5ZTTjPLGGBux5m/HBUXTKxZW1pgaJVbmnzjfFNSDqt31c6gdCQIPIyNpGMvW6lmQ5DoY
+         NRMk2hyouRAZyNjK6OIBWGD5vM0453J/6LozAFKi9NXQeiAMNQWTfkdJLbd7gAegy05L
+         WfJLHU0M3ene4aEipr3HAJOPx4vMXTdU6EhT9lTtceOgHhghK04UppN6I60yDu/dOb5K
+         WPRg==
+X-Gm-Message-State: APjAAAWRbtNLYJl+5LiNWHJ8z9eSVv52IYqtqnyENGTTwIi4enahexgg
+        FmnVvXLDhNFCYePUAqDGgOYNxRUL
+X-Google-Smtp-Source: APXvYqwG28JNmUgm1CsQro+958rHZ/hNNfAHUq1Xkkz1MmrE6sJADMNYtPLldhD5c8SSB7LZxxUWJA==
+X-Received: by 2002:a5d:43d0:: with SMTP id v16mr36679469wrr.252.1560020657104;
+        Sat, 08 Jun 2019 12:04:17 -0700 (PDT)
+Received: from blackbox.darklights.net (p200300F133DDA400D12EFF43FED1E981.dip0.t-ipconnect.de. [2003:f1:33dd:a400:d12e:ff43:fed1:e981])
+        by smtp.googlemail.com with ESMTPSA id t6sm5655062wmb.29.2019.06.08.12.04.15
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sat, 08 Jun 2019 12:04:16 -0700 (PDT)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        tglx@linutronix.de, jason@lakedaemon.net, marc.zyngier@arm.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, khilman@baylibre.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 0/3] meson-gpio-irqc: Add support for the Meson-G12A SoC
+Date:   Sat,  8 Jun 2019 21:04:08 +0200
+Message-Id: <20190608190411.14018-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190409083949.27917-1-sean@geanix.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US-large
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,URIBL_BLOCKED
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on 796779db2bec
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-kind ping :-)
+This series adds GPIO interrupt controller support for Meson-G12A SoCs.
+Although the total number of pins is the same as the Meson-AXG SoC, the
+GPIO banks and IRQ numbers are different. Add a new compatible string
+to avoid confusion when using it.
 
-On 09/04/2019 10.39, Sean Nyekjaer wrote:
-> The flexcan controller can be forced as a wakeup source by
-> stating that explicitly in the device's .dts file using the
-> "wakeup-source" boolean property.
-> 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> ---
->   drivers/net/can/flexcan.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/net/can/flexcan.c b/drivers/net/can/flexcan.c
-> index c46e6ce22701..df3d2abd98e4 100644
-> --- a/drivers/net/can/flexcan.c
-> +++ b/drivers/net/can/flexcan.c
-> @@ -1373,6 +1373,9 @@ static int flexcan_setup_stop_mode(struct platform_device *pdev)
->   
->   	device_set_wakeup_capable(&pdev->dev, true);
->   
-> +	if (of_property_read_bool(np, "wakeup-source"))
-> +		device_set_wakeup_enable(&pdev->dev, true);
-> +
->   	return 0;
->   }
->   
-> 
+I am re-sending this update because v2 looked good in my opinion (Xingyu
+Chen did good work here) but it never made it into mainline.
+
+
+Changes since v1 at [1]:
+- share the device data with Meson-AXG
+
+Changes since v2 at [2]:
+- dropped "Change-Id" from patch #2
+- added .dts patch #3 - this should go through Kevin's linux-amlogic
+  tree. if required I can re-send it in a separate series
+
+
+[1] https://lore.kernel.org/lkml/20181203061324.36248-1-xingyu.chen@amlogic.com
+[2] https://lore.kernel.org/patchwork/cover/1021232/
+
+
+Martin Blumenstingl (1):
+  arm64: dts: meson: g12a: add the GPIO interrupt controller
+
+Xingyu Chen (2):
+  dt-bindings: interrupt-controller: New binding for Meson-G12A SoC
+  irqchip/meson-gpio: Add support for Meson-G12A SoC
+
+ .../interrupt-controller/amlogic,meson-gpio-intc.txt     | 1 +
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi              | 9 +++++++++
+ drivers/irqchip/irq-meson-gpio.c                         | 1 +
+ 3 files changed, 11 insertions(+)
+
+-- 
+2.21.0
+
