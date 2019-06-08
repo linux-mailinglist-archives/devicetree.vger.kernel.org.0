@@ -2,107 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C66B239A6B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 05:51:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4870E39A7C
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 05:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732333AbfFHDvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jun 2019 23:51:06 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:33107 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730985AbfFHDvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 23:51:06 -0400
-Received: by mail-pf1-f193.google.com with SMTP id x15so2248753pfq.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 20:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=IzVl5hZC8i4hei2lB4B7NGvZFOFsdZTFEiwkTZdNcbI=;
-        b=zbm4x2IQkkYxrWv2IeE0ppaapAoezEstTyL/waMvEJf48eUcGb66KQkuRDgP0rCjmg
-         7l5drrzOpjDnXq2S6r1kqEeRKF3JED1OfwZDuCi8Uxejc1mRxsPvSadhDPfJWkeL2C9i
-         iywuh9w4eNWS3i0i2GHUU1xWuGF1bHV4Xwicm/fq8jsKbfb55r5Hbe6vCtojoae7sN6Q
-         KSDdoYBO5GgiuaN/Fec0DXMB4wHwxoRGSLQrIfZj605T9U04WO+oeuyuS+SNIplKFvge
-         SKmROS12EnVu8egM+TlTg5JOtdYsdQRNZnqFIp4Ox1r4xHyLbC+VEwECjNDTXmwfOj5q
-         BfyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IzVl5hZC8i4hei2lB4B7NGvZFOFsdZTFEiwkTZdNcbI=;
-        b=b5RuCIIWkTULHRjSB4mVSNT1dMaCGsfzp+0IBBS+zkH4skHV+knQJEHM9VtmWLgVlG
-         UC7vxSuuf5cpPoJaigQDOiHzVNccdovaJluXcqMMJU9yMkJL93ubqBwVUfjSOvmlE+Ut
-         8M86ghg+LvHqQx9wHBNc0Ubni8MawZjG+PsMWKHRrjQpervEMVKhYI0sV3kXh+H0HZqQ
-         DBt5xyBv9huYrlAJVTnwZPJmyp//fbg/4VLESYkUqm4w7cDjrVIBxhv3MVUsGTKlm7Mh
-         Mdcr9u6O2rpgc5EpCm+Wg3vOcUO94J944Tlb6bRP2fCMvjRzMIw5DlQyEOghlD/B86mH
-         mRlA==
-X-Gm-Message-State: APjAAAXMXQhIKMNFP4bsKfFQ2nN0MZF+bdgCTOps54s5FFEuvzPE4S4n
-        O4T6z+VUdV5S8gp7sxHAR2TIXw==
-X-Google-Smtp-Source: APXvYqzv3Wi+b5fl0fYtshM8YZCs9iIWMwg5/dCaLo03hUwNyJHjJ6/OEMKN/nVc0NV5ckcKb0L1pw==
-X-Received: by 2002:a62:1b0c:: with SMTP id b12mr60478869pfb.230.1559965845025;
-        Fri, 07 Jun 2019 20:50:45 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id m19sm7622094pff.153.2019.06.07.20.50.44
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 07 Jun 2019 20:50:44 -0700 (PDT)
-Date:   Fri, 7 Jun 2019 20:50:42 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, amit.kucheria@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: msm8996: fix PSCI entry-latency-us
-Message-ID: <20190608035042.GI24059@builder>
-References: <20190604122931.22235-1-niklas.cassel@linaro.org>
+        id S1730819AbfFHDw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jun 2019 23:52:29 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52588 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731745AbfFHDw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jun 2019 23:52:29 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x583pFqT086258;
+        Fri, 7 Jun 2019 22:51:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559965875;
+        bh=k9uAGfNmCZMx2i8iIVnU8ifAQs1wiMos3XiiVhnmPYw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ErIZp655yzFoXvDbdTJOcOZPNLWiwxb0qoGtdpmVxzvg7IcSmJvq+vL9r8fihdBQv
+         gfAFZw9uEil4PR/iwutbUeNI8HmmO9By+TOmH6TSDjxaxR+7nc37XcqF3ZWRpLzY7j
+         mKZ9hheB2lRtpE4gPk9UnTbRUR3VFz1l9sBD2r9k=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x583pFo4130929
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 7 Jun 2019 22:51:15 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 7 Jun
+ 2019 22:51:15 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 7 Jun 2019 22:51:15 -0500
+Received: from [172.22.216.123] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x583pANr058884;
+        Fri, 7 Jun 2019 22:51:11 -0500
+Subject: Re: [RFC RESEND PATCH v2 1/4] dt-bindings: gpio: davinci: Add k3
+ am654 compatible
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     ext Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190606095620.6211-1-j-keerthy@ti.com>
+ <20190606095620.6211-2-j-keerthy@ti.com>
+ <CACRpkdY-yK3+uZvq1Xk7qJ2Nd7mgRkQ9C22AYO4AiZP5Cs719w@mail.gmail.com>
+From:   keerthy <j-keerthy@ti.com>
+Message-ID: <bcaf05c2-e4a2-8fe6-50f8-9df603d65a21@ti.com>
+Date:   Sat, 8 Jun 2019 09:21:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190604122931.22235-1-niklas.cassel@linaro.org>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+In-Reply-To: <CACRpkdY-yK3+uZvq1Xk7qJ2Nd7mgRkQ9C22AYO4AiZP5Cs719w@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 04 Jun 05:29 PDT 2019, Niklas Cassel wrote:
 
-> The current entry-latency-us is too short.
-> The proper way to convert between the device tree properties
-> from the vendor tree to the upstream PSCI device tree properties is:
-> 
-> entry-latency-us = qcom,time-overhead - qcom,latency-us
-> 
-> which gives
-> 
-> entry-latency-us = 210 - 80 = 130
-> 
-> Fixes: f6aee7af59b6 ("arm64: dts: qcom: msm8996: Add PSCI cpuidle low power states")
-> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
 
-Thanks Niklas
-
-Applied,
-Bjorn
-
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On 6/8/2019 4:09 AM, Linus Walleij wrote:
+> On Thu, Jun 6, 2019 at 11:55 AM Keerthy <j-keerthy@ti.com> wrote:
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index b7cf2a17dcb5..e8c03b5c8990 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -174,7 +174,7 @@
->  				compatible = "arm,idle-state";
->  				idle-state-name = "standalone-power-collapse";
->  				arm,psci-suspend-param = <0x00000004>;
-> -				entry-latency-us = <40>;
-> +				entry-latency-us = <130>;
->  				exit-latency-us = <80>;
->  				min-residency-us = <300>;
->  			};
-> -- 
-> 2.21.0
+>> The patch adds k3 am654 compatible, specific properties and
+>> an example.
+>>
+>> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> 
+> Patch applied with the three others, so now all
+> GPIO changes are in tree.
+> 
+> Please funnel all the DTS changes through ARM SoC.
+
+Thank you Linus!
+
+Tero,
+
+Could you pull the dts changes on top of intr dts patches.
+
+Regards,
+Keerthy
+> 
+> Yours,
+> Linus Walleij
 > 
