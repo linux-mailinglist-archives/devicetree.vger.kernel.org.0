@@ -2,95 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CB639B35
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 07:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B7239B50
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 07:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730754AbfFHFFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 01:05:00 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:37722 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730542AbfFHFE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 01:04:57 -0400
-Received: by mail-pl1-f193.google.com with SMTP id bh12so1583700plb.4
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 22:04:57 -0700 (PDT)
+        id S1725790AbfFHFq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 01:46:27 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:33844 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727244AbfFHFq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 01:46:27 -0400
+Received: by mail-pg1-f196.google.com with SMTP id q15so48265pgr.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 22:46:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=7JHMxvIq1jsW2qWML7iET1ggCLWTMelSL100NyRTudI=;
-        b=EDHJtD4g8m8NgywjVghSqy+PL2KBFW+vEhsLk+5399uhepYp6Kcj7W9M5c+hBaLixK
-         h0g9ZHCNugDtJttP0mUwBtaOU55XtJ/Ep7K+YYQNJGk8HzR2PcXO5ASWe0RuewbKN0PE
-         o2eE00inVhPttmqsymXxsGYTKBOuUjjPzRmp/sny5NEFNgUuSbufcRhMjtwTookZaOrn
-         fi5AoxdioRxYHyt8m5XdjZ4N99zqXxCnXhWWrQOK7WxKDLAWZNdd5nuOVDCDFn8LHVEs
-         GEQLMXROaepbpCAegsCIEv7p2BmrG3jKvhZjLPukkA9lamgDOYtf2C6vPYEJ3Tfd8i8n
-         ZJ2g==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=GlixWvcFYVT2osuXuqp6jTW4HjMG+s+4U9TFHSTGDvM=;
+        b=D/h/ZJrVYwHg/tF2albH+nWZGTIGP8mgb5vZqEEbfXXFUfX33AxVnze8ASnaJQLV4X
+         laIgnr0wy/LMQTmXv09dRJl6EpPA3cstVq2diFihAoqQr6xqsV6qzWRUpuCTMUQ7rpHY
+         K/GGdjJcnRZXh/UrZ79eaCOSiPOFMXAilypyz123UORgpvVHaxO8H9sXqc9dz0g+kd4L
+         x9BLMbNBWSP8C9PwC3vyCb9o8PZ1C0jdr4MNNdoHIxDHSfqnWXxK7kqrjBWJdKeo7Jc/
+         LrfM5dIRm5RN/UlR8/PUBnOR5OkE4S2bmTwMQzc577wzJYfjcOh6QgINA/q2zhtWJMvw
+         kwsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=7JHMxvIq1jsW2qWML7iET1ggCLWTMelSL100NyRTudI=;
-        b=IRZxoVUu/VMGTsYYo+3MErVBM0IN3qtCu0g3yCyoMKc+kmpMRE0nwHypNoqMEQQGp6
-         W+cthCylVNH3iTUeOQ0ufnC09x4KgfzufPlwOxfsKSR6W0fvRxp4d52xKvZ1iggxCTYT
-         vCis7OTJSw5jQrVlOlUUi07AL54F1zFUpcgKy1xIV0Vfr7cPsSjtZvX0NaNPNnrM53IW
-         Viuo9OkbxRfcXiAYDRX9X6kCxN6NS8Izw4HwHGfthHqW4G3Uqpi+yeqL/NdW5pP7GOeO
-         NGmy7Szvu03URdwio8J/lq4Hxvz2U4CJ++omLaSH6dkz1eAMcoVhRfFp/YTJSsgDdSo8
-         tS3g==
-X-Gm-Message-State: APjAAAWYICahFXe2keIe+CBkfgMpyRnEj+Pur5W0E2Bk2MWVCCskpRTz
-        OYM76WXcwOyyJVEwgVa1SfKGyA==
-X-Google-Smtp-Source: APXvYqyAHw1AV05o3p032VHhbyghs7+weXTqVDC+E/50Yqk2YdvccJr8yaM4fMNzlvhMVl17Ezvqqw==
-X-Received: by 2002:a17:902:b611:: with SMTP id b17mr6065542pls.261.1559970296912;
-        Fri, 07 Jun 2019 22:04:56 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id b8sm4522482pff.20.2019.06.07.22.04.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 07 Jun 2019 22:04:56 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=GlixWvcFYVT2osuXuqp6jTW4HjMG+s+4U9TFHSTGDvM=;
+        b=Lk1o3sEMjwYItrcY4Jpu434swGYcPo06vNYRaC3XURqST79RO8Mrhq30ZcZ4XlcJd3
+         i62e1b9UEf/C4NPoXB2Z/Aox0iIe9+lWwOTKHGddkjEtcs0w/ibk44TVb5Z6jbH62XJP
+         m1nYl1qJDELQch+eTGCpr4lt7Hl7ZVzs61sfp55nj9xj4JxMdU7XG0oS2uFVaqEFogpa
+         pgKzvaFKnSUg3QXMJfpaUn4DMrs3AXeCiI1MnFKABX410p/buSIwnL5loxOe1eg1kNwQ
+         xPuSeJGEyOzI9qnmWoyC8uYgTlikCiPs+cbr4duq2M5dWWvyfHArjEwjmhH1JkVTopfc
+         Zqkg==
+X-Gm-Message-State: APjAAAW2I3SAukM/IBAv6R1NkcxFH8JyO2ne0Wj54Cq6tVNxYgCuMYnP
+        m/nTj9Up/9dscsoJaAp4asnaQA==
+X-Google-Smtp-Source: APXvYqx46cEKrkm060Svem6vg7rJOO6SGeAlDGseD6x8321eEySq/IrkVQWtC7EaA4ZGrVcaKjF6vQ==
+X-Received: by 2002:a63:1a5e:: with SMTP id a30mr5985274pgm.433.1559972785979;
+        Fri, 07 Jun 2019 22:46:25 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id f3sm526309pjo.31.2019.06.07.22.46.24
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 07 Jun 2019 22:46:25 -0700 (PDT)
+Date:   Fri, 7 Jun 2019 22:47:11 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
-Date:   Fri,  7 Jun 2019 22:04:50 -0700
-Message-Id: <20190608050450.12056-4-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190608050450.12056-1-bjorn.andersson@linaro.org>
-References: <20190608050450.12056-1-bjorn.andersson@linaro.org>
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        vincent.guittot@linaro.org, amit.kucheria@linaro.org,
+        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
+        evgreen@chromium.org, sibis@codeaurora.org,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/9] Introduce Bandwidth OPPs & interconnect devfreq
+ driver
+Message-ID: <20190608054711.GZ22737@tuxbook-pro>
+References: <20190608044339.115026-1-saravanak@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190608044339.115026-1-saravanak@google.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specify the UFS device-reset gpio, so that the controller will issue a
-reset of the UFS device.
+On Fri 07 Jun 21:43 PDT 2019, Saravana Kannan wrote:
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+> I replied[1] to this patch series[2] and described how I think interconnect
+> bandwidth voting should be captured in DT and how it should work.
+> 
+> So sending out a patch series implementing that. This patch series does the
+> following:
+> - Adds Bandwidth OPP table support (this adds device freq to bandwidth
+>   mapping for free)
+> - Adds a devfreq library for interconnect paths
+> 
 
-Changes since v2:
-- None
+Please provide a driver that uses this devfreq library, without it this
+its impossible to gauge the usefulness of your approach.
 
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> Interconnects and interconnect paths quantify they performance levels in
+> terms of bandwidth. So similar to how we have frequency based OPP tables
+> in DT and in the OPP framework, this patch series adds bandwidth OPP
+> table support in the OPP framework and in DT.
+> 
+> To simplify voting for interconnects, this patch series adds helper
+> functions to create devfreq devices out of interconnect paths. This
+> allows drivers to add a single line of code to add interconnect voting
+> capability.
+> 
+> To add devfreq device for the "gpu-mem" interconnect path:
+> icc_create_devfreq(dev, "gpu-mem");
+> 
+> With the future addition of a "passive_bandwidth" devfreq governor,
+> device frequency to interconnect bandwidth mapping would come for free.
+> 
+> If the feedback on this patch series is positive, I'll then add the
+> devfreq passive_bandwidth governor (or something similar) to v2 of this
+> patch series.
+> 
+> So with the DT bindings added in this patch series, the DT for a GPU
+> that does bandwidth voting from GPU to Cache and GPU to DDR would look
+> something like this:
+> 
+> gpu_cache_opp_table: gpu_cache_opp_table {
+> 	compatible = "operating-points-v2";
+> 
+> 	gpu_cache_3000: opp-3000 {
+> 		opp-peak-KBps = <3000>;
+> 		opp-avg-KBps = <1000>;
+> 	};
+> 	gpu_cache_6000: opp-6000 {
+> 		opp-peak-KBps = <6000>;
+> 		opp-avg-KBps = <2000>;
+> 	};
+> 	gpu_cache_9000: opp-9000 {
+> 		opp-peak-KBps = <9000>;
+> 		opp-avg-KBps = <9000>;
+> 	};
+> };
+> 
+> gpu_ddr_opp_table: gpu_ddr_opp_table {
+> 	compatible = "operating-points-v2";
+> 
+> 	gpu_ddr_1525: opp-1525 {
+> 		opp-peak-KBps = <1525>;
+> 		opp-avg-KBps = <452>;
+> 	};
+> 	gpu_ddr_3051: opp-3051 {
+> 		opp-peak-KBps = <3051>;
+> 		opp-avg-KBps = <915>;
+> 	};
+> 	gpu_ddr_7500: opp-7500 {
+> 		opp-peak-KBps = <7500>;
+> 		opp-avg-KBps = <3000>;
+> 	};
+> };
+> 
+> gpu_opp_table: gpu_opp_table {
+> 	compatible = "operating-points-v2";
+> 	opp-shared;
+> 
+> 	opp-200000000 {
+> 		opp-hz = /bits/ 64 <200000000>;
+> 		required-opps = <&gpu_cache_3000>, <&gpu_ddr_1525>;
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-index 80189807b4e5..441045847e9f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-@@ -467,6 +467,8 @@
- &ufs_mem_hc {
- 	status = "okay";
- 
-+	device-reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
-+
- 	vcc-supply = <&vreg_l20a_2p95>;
- 	vcc-max-microamp = <600000>;
- };
--- 
-2.18.0
+I still don't see the benefit of the indirection, over just spelling out
+the bandwidth values here.
 
+Regards,
+Bjorn
+
+> 	};
+> 	opp-400000000 {
+> 		opp-hz = /bits/ 64 <400000000>;
+> 		required-opps = <&gpu_cache_6000>, <&gpu_ddr_3051>;
+> 	};
+> };
+> 
+> gpu@7864000 {
+> 	...
+> 	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
+> 	interconnects = <&mmnoc MASTER_GPU_1 &bimc SLAVE_SYSTEL_CACHE>,
+> 			<&mmnoc MASTER_GPU_1 &bimc SLAVE_DDR>;
+> 	interconnect-names = "gpu-cache", "gpu-mem";
+> 	interconnect-opp-table = <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>
+> };
+> 
+> Cheers,
+> Saravana
+> 
+> [1] - https://lore.kernel.org/lkml/20190601021228.210574-1-saravanak@google.com/
+> [2] - https://lore.kernel.org/lkml/20190423132823.7915-1-georgi.djakov@linaro.org/ 
+> 
+> Saravana Kannan (9):
+>   dt-bindings: opp: Introduce opp-peak-KBps and opp-avg-KBps bindings
+>   OPP: Add support for bandwidth OPP tables
+>   OPP: Add helper function for bandwidth OPP tables
+>   OPP: Add API to find an OPP table from its DT node
+>   dt-bindings: interconnect: Add interconnect-opp-table property
+>   interconnect: Add OPP table support for interconnects
+>   OPP: Add function to look up required OPP's for a given OPP
+>   OPP: Allow copying OPPs tables between devices
+>   interconnect: Add devfreq support
+> 
+>  .../bindings/interconnect/interconnect.txt    |   8 +
+>  Documentation/devicetree/bindings/opp/opp.txt |  15 +-
+>  drivers/interconnect/Makefile                 |   2 +-
+>  drivers/interconnect/core.c                   |  27 +++-
+>  drivers/interconnect/icc-devfreq.c            | 144 ++++++++++++++++++
+>  drivers/opp/core.c                            | 109 +++++++++++++
+>  drivers/opp/of.c                              |  75 +++++++--
+>  drivers/opp/opp.h                             |   4 +-
+>  include/linux/interconnect.h                  |  17 +++
+>  include/linux/pm_opp.h                        |  41 +++++
+>  10 files changed, 426 insertions(+), 16 deletions(-)
+>  create mode 100644 drivers/interconnect/icc-devfreq.c
+> 
+> -- 
+> 2.22.0.rc2.383.gf4fbbf30c2-goog
+> 
