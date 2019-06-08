@@ -2,81 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0DD939B27
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 06:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36F339B2D
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 07:04:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725768AbfFHEuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 00:50:06 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:53320 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725379AbfFHEuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 00:50:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=gwZHN6g8rrJZZNXc5XgsWcgNpvLcubn0e/88oGuv6nA=; b=Q0wF09O3nya3WaZACBVPt/lVP
-        UxWlscZ4Ii2/bdHaA47KI7ySk2JnjiSpsFyrdjtW57qnC7JiYFXDt/0TN4bx04QSZphix1/xhgZPD
-        Bnmqo+95y/pkeohfeD/h/QD8SXP9mODnBy8wMSvUAQ7AMCP6TvMfNNyjbPLNqMgCrKBrjWjFZGCQE
-        Geql4V7BmpM566hjQcUr2essMDn1Q6thYrsEwhkKtFRCTHOmVogJvb7orUP0+vTiiaTOdy8jXIvV4
-        aKXPA03ijb9l4XW8LiogXE6vnA8Uo9mcuIWKML52Z6h0Qz/dm5RJBqe5QTx00IidFPn+ZVDyJUq6L
-        tuSAozzXg==;
-Received: from static-50-53-52-16.bvtn.or.frontiernet.net ([50.53.52.16] helo=dragon.dunlab)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hZTIq-0003jj-6K; Sat, 08 Jun 2019 04:50:04 +0000
-Subject: Re: [PATCHv16 3/3] ARM:drm ivip Intel FPGA Video and Image Processing
- Suite
-To:     "Hean-Loong, Ong" <hean.loong.ong@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, chin.liang.see@intel.com,
-        Ong@vger.kernel.org
-References: <20190607143022.427-1-hean.loong.ong@intel.com>
- <20190607143022.427-4-hean.loong.ong@intel.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <bc42cad0-8c03-4e22-4475-c25f2e824944@infradead.org>
-Date:   Fri, 7 Jun 2019 21:50:01 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190607143022.427-4-hean.loong.ong@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1726347AbfFHFEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 01:04:54 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:34949 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726227AbfFHFEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 01:04:54 -0400
+Received: by mail-pg1-f196.google.com with SMTP id s27so2208956pgl.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 22:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=MI5UP8+6YzX1wT43lJpua6JKjZgkLt+dbe6TcXG9cy8=;
+        b=Z2HdysXy7QD5MtVYuQPu7sZPtUTxdmzw3yNdieEQ6kdhO6eifQihTq5GULJg7Y8de4
+         aUQCU2nclqpJsZzBm7Y1MWR8uzCyK8PDAwKAgMWAFMs/n6q99tqerXjRgrB844Rziliw
+         o+i/m88RKRI5RZVJjuni8ysJclc4uYOq0kj++HvzY5ZLuZZPj+d7vT2nXdQbFifX0ewn
+         zkNMcnGiJeVDKXaglu90C9ZRixUeowTKmwUl0JJd8LM4twLryHXcWHMMgXY6wcUZkdDz
+         My9j6lsxDaQfpaL/vsPij1ymzOqJrSAGwpIbT3v8vr8wezhuUPM/zD8BneLzK3hJXfvF
+         zfUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=MI5UP8+6YzX1wT43lJpua6JKjZgkLt+dbe6TcXG9cy8=;
+        b=APjovUO9YH30fdKjC6WWzzKUEvGJyLO0fFKCPNDL6xTyQrxRIbBHE+zUFEj4uQNhgu
+         fhFw4sOGEL4dewY/zyly/0Z7P5f3H5+dL9lswFSI6fE3fo7zFfQnEpA2NCa7N3BCzaVk
+         gFvfEbNPMU6xZfgP9k1xH/9Ku101MMAgjBtYuIQVBGKnZWi1P2h0h/kH6w82d7hrlEu4
+         zZwTXyLzgkMv70UD3rPv5yGr3J3IlvU56vlo6OfAhRTwoCjNaRVqZlgganftzu6IZefD
+         +QsVS2KaPjX25MdVm3mYDkEWlhHe3XBSDxp5RYikrO0MAVUBT0AwKJDExzqr0Lc1fKde
+         wtSQ==
+X-Gm-Message-State: APjAAAXXkraU3Z+nFXyhSMgxfGvc2qBjuxULIdkkM0ubh9tAid6Z/WgS
+        5/oyCIRVVeHXpiT2EFsXvrZYcg==
+X-Google-Smtp-Source: APXvYqzgWooneYqQXysZKH4LudPeWAk7m7Gra9BixdXpmIfM9kEjOY99VzJO08laxBbJSRvlGoVELQ==
+X-Received: by 2002:a62:61c2:: with SMTP id v185mr47155236pfb.0.1559970293715;
+        Fri, 07 Jun 2019 22:04:53 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id b8sm4522482pff.20.2019.06.07.22.04.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 07 Jun 2019 22:04:53 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: [PATCH v3 0/3] Qualcomm UFS device reset support
+Date:   Fri,  7 Jun 2019 22:04:47 -0700
+Message-Id: <20190608050450.12056-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.18.0
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/7/19 7:30 AM, Hean-Loong, Ong wrote:
-> diff --git a/drivers/gpu/drm/ivip/Kconfig b/drivers/gpu/drm/ivip/Kconfig
-> new file mode 100644
-> index 000000000000..1b2af85fe757
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ivip/Kconfig
-> @@ -0,0 +1,14 @@
-> +config DRM_IVIP
-> +        tristate "Intel FGPA Video and Image Processing"
-> +        depends on DRM && OF
-> +        select DRM_GEM_CMA_HELPER
-> +        select DRM_KMS_HELPER
-> +        select DRM_KMS_FB_HELPER
-> +        select DRM_KMS_CMA_HELPER
-> +        help
-> +		Choose this option if you have an Intel FPGA Arria 10 system
-> +		and above with an Intel Display Port IP. This does not support
-> +		legacy Intel FPGA Cyclone V display port. Currently only single
-> +		frame buffer is supported. Note that ACPI and X_86 architecture
-> +		is not supported for Arria10. If M is selected the module will be
-> +		called ivip.
+This series adds a new ufs vops to allow platform specific methods for
+resetting an attached UFS device, then implements this for the Qualcomm driver.
 
-According to Documentation/process/coding-style.rst, Kconfig help text should be
-indented with 1 tab + 2 spaces, not 2 tabs.
+Bjorn Andersson (3):
+  scsi: ufs: Introduce vops for resetting device
+  scsi: ufs-qcom: Implement device_reset vops
+  arm64: dts: qcom: sdm845-mtp: Specify UFS device-reset GPIO
+
+ .../devicetree/bindings/ufs/ufshcd-pltfrm.txt |  2 ++
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |  2 ++
+ drivers/scsi/ufs/ufs-qcom.c                   | 32 +++++++++++++++++++
+ drivers/scsi/ufs/ufs-qcom.h                   |  4 +++
+ drivers/scsi/ufs/ufshcd.c                     |  6 ++++
+ drivers/scsi/ufs/ufshcd.h                     |  8 +++++
+ 6 files changed, 54 insertions(+)
 
 -- 
-~Randy
+2.18.0
+
