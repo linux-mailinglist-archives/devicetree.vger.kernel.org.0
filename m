@@ -2,85 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8DE339C7C
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 12:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3526A39D03
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 13:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726816AbfFHKv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 06:51:29 -0400
-Received: from casper.infradead.org ([85.118.1.10]:37456 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726692AbfFHKv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 06:51:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=mgeScMz6rj/dz5CujtnU7v335CfKeHECqxwDNtzgkgY=; b=GyrjwBj00gZE9eaLRKHfky58Co
-        YsT7v1zKxGTRvz3OUQxC2wRK3KGwYNzVaJd373H4vT21rbQ+uXfQf4Fbu1PcDWukxtxDdy4EW14F/
-        jFrRYnMRazPXuy3XfTL0BR39hlBuk5CA1M0gb8F4nCw4LMsdqfsVJAibH+ocVsdtyBqxlznRDB68R
-        7dqTfCETv2iBfVGkcAVSH85f5+Dd1+4flbQ+VBoWD6GJSXFYBHPZ7rnCcXLlObMLw84xH332yK0G9
-        vxf9/2dI2KqhBMn8sWr67PA1PKVI2eFqEOQy0vU6C0DXIcf+ptS4nvZ6myRKE0bfWnXL9BkXQT2FN
-        I5k5Swcg==;
-Received: from [179.181.119.115] (helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hZYwS-0002D7-9q; Sat, 08 Jun 2019 10:51:20 +0000
-Date:   Sat, 8 Jun 2019 07:51:13 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Hugues Fruchet <hugues.fruchet@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 17/20] dt: bindings: fix some broken links from
- txt->yaml conversion
-Message-ID: <20190608075113.32f2c7bb@coco.lan>
-In-Reply-To: <20190607185728.GJ2456@sirena.org.uk>
-References: <ff457774d46d96e8fe56b45409aba39d87a8672a.1559933665.git.mchehab+samsung@kernel.org>
-        <effeafed3023d8dc5f2440c8d5637ea31c02a533.1559933665.git.mchehab+samsung@kernel.org>
-        <20190607185728.GJ2456@sirena.org.uk>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727082AbfFHLAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 07:00:15 -0400
+Received: from smtp.220.in.ua ([89.184.67.205]:49460 "EHLO smtp.220.in.ua"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726835AbfFHLAP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jun 2019 07:00:15 -0400
+Received: from oleh-pc.lan (unknown [95.67.115.55])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by smtp.220.in.ua (Postfix) with ESMTPSA id 437661A20425;
+        Sat,  8 Jun 2019 14:00:13 +0300 (EEST)
+From:   Oleh Kravchenko <oleg@kaa.org.ua>
+To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+Cc:     Oleh Kravchenko <oleg@kaa.org.ua>
+Subject: [PATCH v3 1/2] dt-bindings: Add docs for EL15203000
+Date:   Sat,  8 Jun 2019 14:00:03 +0300
+Message-Id: <20190608110004.8248-1-oleg@kaa.org.ua>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Fri, 7 Jun 2019 19:57:28 +0100
-Mark Brown <broonie@kernel.org> escreveu:
+Add documentation and example for dt-bindings EL15203000.
+LED board (aka RED LED board) from Crane Merchandising Systems.
 
-> On Fri, Jun 07, 2019 at 03:54:33PM -0300, Mauro Carvalho Chehab wrote:
-> > Some new files got converted to yaml, but references weren't
-> > updated accordingly.  
-> 
-> These should probably just be sent as normal patches rather than tied in
-> with the rest of this series...
+Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+---
+ .../bindings/leds/leds-el15203000.txt         | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-el15203000.txt
 
-Thanks for applying it!
+diff --git a/Documentation/devicetree/bindings/leds/leds-el15203000.txt b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
+new file mode 100644
+index 000000000000..64213e3118cb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
+@@ -0,0 +1,53 @@
++Crane Merchandising System - el15203000 LED driver
++--------------------------------------------------
++
++This LED Board (aka RED LEDs board) is widely used in coffee vending machines
++produced by Crane Merchandising Systems.
++
++Required properties:
++- compatible : "crane,el15203000"
++- reg :
++	see Documentation/devicetree/bindings/spi/spi-bus.txt
++- spi-max-frequency : (optional)
++	see Documentation/devicetree/bindings/spi/spi-bus.txt
++
++Optional LED sub-node properties:
++- label :
++	see Documentation/devicetree/bindings/leds/common.txt
++- linux,default-trigger :
++	see Documentation/devicetree/bindings/leds/common.txt
++- max-brightness :
++	Specify 2 if LED has special effect. Effects by LED type:
++	- Pipe has leaking
++	- Screen Frame has blinking
++
++Example
++-------
++
++led-controller@0 {
++	compatible = "crane,el15203000";
++	reg = <0>;
++	spi-max-frequency = <50000>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	/* water pipe */
++	pipe@50 {
++		reg = <0x50>;
++		label = "red:pipe";
++		max-brightness = <2>;
++	};
++
++	/* screen frame */
++	screen@53 {
++		reg = <0x53>;
++		label = "red:screen";
++		max-brightness = <2>;
++	};
++
++	/* vending area */
++	vend@56 {
++		reg = <0x56>;
++		label = "red:vend";
++	};
++};
+-- 
+2.21.0
 
-Yeah, but the problem with documentation patches is that sometimes
-the patches are merged via docs tree, and sometimes via maintainer's
-tree, depending on the subsystem.
-
-Anyway, Jon merged this week a patch that should produce warnings
-on COMPILE_TEST builds when a file has a broken link.
-
-Hopefully, this will help a lot to warn people against regressions
-related to it.
-
-
-Thanks,
-Mauro
