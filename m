@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4501139B12
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 06:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A16439B23
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 06:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730529AbfFHEoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 00:44:01 -0400
-Received: from mail-qt1-f202.google.com ([209.85.160.202]:34475 "EHLO
-        mail-qt1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730467AbfFHEn7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 00:43:59 -0400
-Received: by mail-qt1-f202.google.com with SMTP id z8so3715650qti.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 21:43:58 -0700 (PDT)
+        id S1730633AbfFHEoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 00:44:03 -0400
+Received: from mail-vk1-f201.google.com ([209.85.221.201]:43387 "EHLO
+        mail-vk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730534AbfFHEoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 00:44:02 -0400
+Received: by mail-vk1-f201.google.com with SMTP id d143so1569836vkf.10
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 21:44:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=AQaL/PGq4V0DuXs35/Wx+s7nNXc5+qEy/Os9W/iGFYA=;
-        b=cHfi3CnTUcT1n2hmhkaz7Mg9O1ojtQBcEgDon17GIJ7rAI2DCEokMLnia6lX2ELmA1
-         xmRYRLLSFDWkW4AbAza2SAuDM8uNw1ML5WBrgCxz53AKgWu/5e+V67Og3J/KXliXlq9P
-         viieHIuJgf2Q43PHgfe3i6Fb5VuUmOFwzOVJbWLcZiEPXqpJUgqbbHKzcs6gTTSDnHAI
-         SQog4t282FQWBS+PPYN8Lem/9034ox8YIearSEgBN8nVVXVXuApsd3tOcr/HXp73U9Fh
-         yLdkzE4F2D7baTtK4XvCFfhGbigKyDViR63AutM8OLXSitJshAKEhifKe4m0FQgJm7Xu
-         ujpQ==
+        bh=nYfthp2AfyfO7B9ZHl8Ammgshm5FNB69pWC4uzGdWTs=;
+        b=dMmIR9zPNKZhyMj3vydkxUzXcQ5Wm+QYdCizczZFkIvzDmfPxqciSkaELIvEK5Uxih
+         os7R+Bfrvx8ppB4h9Lehrkkyr2hNrBpZKz6KUgLW7eikgchAjWmW4brCbz0GESrD4gUr
+         KOAldARNoWDFkH7M/X3DYcnyEkQPOyyDbzaEWpozSS9vPYGmeMVbHWJLv8MS6mZ9vYZT
+         8xkMnreKVikDXYWgfZ17GA+fWtZb03Hvs75yvGestNhmk5AGCRmflDoCC7BqhIYAtYS8
+         dwkJlIxMDIjq8xH6AY1NCud6bFT+S6W56c3l8qUPrOnJpQKyKa/GjyD+LZjJ5UP8C01A
+         wuIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=AQaL/PGq4V0DuXs35/Wx+s7nNXc5+qEy/Os9W/iGFYA=;
-        b=PhGFv0yQqraiiTCmqJlz6oWOjdnyre4kOk4ACuud+AdSqomfu4pp6efMjQbCcptF9d
-         wAKjnH857X00cItWjdzWMXvT+NejWBb6zetKSR/Cnu6MonaJsGCkyX3ZsiJbhDWE20dh
-         Ap1JmNm3Sk+CRL66Oj6XrqF+4nAnGCc03MySnzNnIxw85dq6rD2dhtlwB6DxEsOxbz5e
-         tv8D6lteofrCVxyCVvUsyTjypWDsrheQAAWUcYfgHX2gj8aNPZqFhrWMDS8T804Ewf63
-         6umqU0UAoI5Fw/ZriQ/V09bth6LrBC9YgJxhH+n+TJwmJ/OSijUOL8KmvQiaBQ/tH5ig
-         ygng==
-X-Gm-Message-State: APjAAAVdhDTuzZNz1xGACP5Yda9504OSB0nQA4J+Dw7rLrmgqvR3iDT+
-        LTPflv+ZFf1ZS9NYF+W/U1I/FGtAUx8xGvc=
-X-Google-Smtp-Source: APXvYqzDiL0bLzrWM4BPLbZ4rXoIgduk46Uiyp6JQp8vO+GfSBOMdB0GFp36bFyZrGIsx1NIsnvnzMRXmsbPiuI=
-X-Received: by 2002:a0c:d047:: with SMTP id d7mr45723029qvh.64.1559969038459;
- Fri, 07 Jun 2019 21:43:58 -0700 (PDT)
-Date:   Fri,  7 Jun 2019 21:43:34 -0700
+        bh=nYfthp2AfyfO7B9ZHl8Ammgshm5FNB69pWC4uzGdWTs=;
+        b=Rk1UVdIASIJSwEEIPpKXIbm3vF7aL4ZsRt4VB7+ZjIi0oRGED8vkFGieWDHgcEE6DO
+         igsSnWrUYFuMYE0w5XeTSz8Z2f32Wa4PZktT/sopFH1afzbZY62/VXhhEPzCISaHqAkf
+         5IiWyM1XDsRnINyeWcVDFJp7siplP20Hc3QnwrlL3TvLvwJ4P2xjwthY5t6Xc4mGv0Th
+         0PRe+0CpHvLYRedwTjJxCoTdK8zn+JEAYqh8YMUonbMONTEzdbDfv/VCJpX+m1Ku7ZTS
+         H540wDuvjmbrNohStbRCcS3RbAiz3dWVGqqeOR71ocktYOfavVecLFX4B57gC/jZMqTb
+         b25A==
+X-Gm-Message-State: APjAAAWd4Q0FsgKGhCF+Gdyjlh+Ywy3I2n7Sz2Rn2xnFmNJz+5NIPjlw
+        zKhh9/T/s5Et+FxSiR0xWTxQksroW2VtRdU=
+X-Google-Smtp-Source: APXvYqwiuDqsREIBPM5HcBRZmU9ocdAtwS9Xwtx0WfII9zeKP5yslJnw2HWFvQ3SRyhjeXZMrdRFC3gLD1HglW4=
+X-Received: by 2002:ab0:30a3:: with SMTP id b3mr571866uam.3.1559969041487;
+ Fri, 07 Jun 2019 21:44:01 -0700 (PDT)
+Date:   Fri,  7 Jun 2019 21:43:35 -0700
 In-Reply-To: <20190608044339.115026-1-saravanak@google.com>
-Message-Id: <20190608044339.115026-5-saravanak@google.com>
+Message-Id: <20190608044339.115026-6-saravanak@google.com>
 Mime-Version: 1.0
 References: <20190608044339.115026-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.rc2.383.gf4fbbf30c2-goog
-Subject: [PATCH v1 4/9] OPP: Add API to find an OPP table from its DT node
+Subject: [PATCH v1 5/9] dt-bindings: interconnect: Add interconnect-opp-table property
 From:   Saravana Kannan <saravanak@google.com>
 To:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -69,105 +69,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows finding a device's OPP table (when it has multiple) from a
-phandle to the OPP table in DT.
+Add support for listing bandwidth OPP tables for each interconnect path
+listed using the interconnects property.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/opp/of.c       | 42 ++++++++++++++++++++++++++++++++++--------
- include/linux/pm_opp.h |  7 +++++++
- 2 files changed, 41 insertions(+), 8 deletions(-)
+ .../devicetree/bindings/interconnect/interconnect.txt     | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-index 54fa70ed2adc..34c51905f56d 100644
---- a/drivers/opp/of.c
-+++ b/drivers/opp/of.c
-@@ -42,14 +42,9 @@ struct device_node *dev_pm_opp_of_get_opp_desc_node(struct device *dev)
- }
- EXPORT_SYMBOL_GPL(dev_pm_opp_of_get_opp_desc_node);
+diff --git a/Documentation/devicetree/bindings/interconnect/interconnect.txt b/Documentation/devicetree/bindings/interconnect/interconnect.txt
+index 6f5d23a605b7..fc5b75b76a2c 100644
+--- a/Documentation/devicetree/bindings/interconnect/interconnect.txt
++++ b/Documentation/devicetree/bindings/interconnect/interconnect.txt
+@@ -55,10 +55,18 @@ interconnect-names : List of interconnect path name strings sorted in the same
+ 			 * dma-mem: Path from the device to the main memory of
+ 			            the system
  
--struct opp_table *_managed_opp(struct device *dev, int index)
-+struct opp_table *_find_opp_table_from_node(struct device_node *np)
- {
- 	struct opp_table *opp_table, *managed_table = NULL;
--	struct device_node *np;
--
--	np = _opp_of_get_opp_desc_node(dev->of_node, index);
--	if (!np)
--		return NULL;
++interconnect-opp-table: List of phandles to OPP tables (bandwidth OPP tables)
++			that specify the OPPs for the interconnect paths listed
++			in the interconnects property. This property can only
++			point to OPP tables that belong to the device and are
++			listed in the device's operating-points-v2 property.
++
+ Example:
  
- 	list_for_each_entry(opp_table, &opp_tables, node) {
- 		if (opp_table->np == np) {
-@@ -69,11 +64,42 @@ struct opp_table *_managed_opp(struct device *dev, int index)
- 		}
- 	}
- 
--	of_node_put(np);
--
- 	return managed_table;
- }
- 
-+/**
-+ * dev_pm_opp_of_find_table_from_node() - Find OPP table from its DT node
-+ * @np: DT node used for finding the OPP table
-+ *
-+ * Return: OPP table corresponding to the DT node, else NULL on failure.
-+ *
-+ * The caller needs to put the node with of_node_put() after using it.
-+ */
-+struct opp_table *dev_pm_opp_of_find_table_from_node(struct device_node *np)
-+{
-+	struct opp_table *opp_table;
-+
-+	mutex_lock(&opp_table_lock);
-+	opp_table = _find_opp_table_from_node(np);
-+	mutex_unlock(&opp_table_lock);
-+	return opp_table;
-+}
-+EXPORT_SYMBOL_GPL(dev_pm_opp_of_find_table_from_node);
-+
-+struct opp_table *_managed_opp(struct device *dev, int index)
-+{
-+	struct device_node *np;
-+	struct opp_table *opp_table;
-+
-+	np = _opp_of_get_opp_desc_node(dev->of_node, index);
-+	if (!np)
-+		return NULL;
-+
-+	opp_table = _find_opp_table_from_node(np);
-+	of_node_put(np);
-+	return opp_table;
-+}
-+
- /* The caller must call dev_pm_opp_put() after the OPP is used */
- static struct dev_pm_opp *_find_opp_of_np(struct opp_table *opp_table,
- 					  struct device_node *opp_np)
-diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
-index 7f040cc20daf..3f30ce55e8eb 100644
---- a/include/linux/pm_opp.h
-+++ b/include/linux/pm_opp.h
-@@ -359,6 +359,7 @@ int dev_pm_opp_of_cpumask_add_table(const struct cpumask *cpumask);
- void dev_pm_opp_of_cpumask_remove_table(const struct cpumask *cpumask);
- int dev_pm_opp_of_get_sharing_cpus(struct device *cpu_dev, struct cpumask *cpumask);
- struct device_node *dev_pm_opp_of_get_opp_desc_node(struct device *dev);
-+struct opp_table *dev_pm_opp_of_find_table_from_node(struct device_node *np);
- struct device_node *dev_pm_opp_get_of_node(struct dev_pm_opp *opp);
- int of_get_required_opp_performance_state(struct device_node *np, int index);
- void dev_pm_opp_of_register_em(struct cpumask *cpus);
-@@ -396,6 +397,12 @@ static inline struct device_node *dev_pm_opp_of_get_opp_desc_node(struct device
- 	return NULL;
- }
- 
-+static inline struct opp_table *dev_pm_opp_of_find_table_from_node(
-+							struct device_node *np)
-+{
-+	return NULL;
-+}
-+
- static inline struct device_node *dev_pm_opp_get_of_node(struct dev_pm_opp *opp)
- {
- 	return NULL;
+ 	sdhci@7864000 {
++		operating-points-v2 = <&sdhc_opp_table>, <&sdhc_mem_opp_table>;
+ 		...
+ 		interconnects = <&pnoc MASTER_SDCC_1 &bimc SLAVE_EBI_CH0>;
+ 		interconnect-names = "sdhc-mem";
++		interconnect-opp-table = <&sdhc_mem_opp_table>;
+ 	};
 -- 
 2.22.0.rc2.383.gf4fbbf30c2-goog
 
