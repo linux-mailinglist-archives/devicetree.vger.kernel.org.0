@@ -2,94 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28D853A177
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 21:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D676F3A18A
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 21:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727323AbfFHTWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 15:22:15 -0400
-Received: from mga01.intel.com ([192.55.52.88]:48556 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727215AbfFHTWP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jun 2019 15:22:15 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Jun 2019 12:22:14 -0700
-X-ExtLoop1: 1
-Received: from crojewsk-mobl1.ger.corp.intel.com (HELO [10.251.93.16]) ([10.251.93.16])
-  by orsmga006.jf.intel.com with ESMTP; 08 Jun 2019 12:22:10 -0700
-Subject: Re: [RFC PATCH 1/6] ASoC: core: add support to
- snd_soc_dai_get_sdw_stream()
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     broonie@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, mark.rutland@arm.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
- <20190607085643.932-2-srinivas.kandagatla@linaro.org>
-From:   Cezary Rojewski <cezary.rojewski@intel.com>
-Message-ID: <13bfb632-f743-c416-2224-c7acb5b28604@intel.com>
-Date:   Sat, 8 Jun 2019 21:22:08 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <20190607085643.932-2-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1727323AbfFHTlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 15:41:01 -0400
+Received: from mail-eopbgr680084.outbound.protection.outlook.com ([40.107.68.84]:33670
+        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727215AbfFHTlB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jun 2019 15:41:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dduBsOtI3AySDNvyRkfFyB0uZnLrh6bMbc/SM/4UcEI=;
+ b=QlrQv8w57SOibc3keKogeSe5IO2EBQvtvaJwSr0qNX6P2ahX46KcfKsseui39wYwJfPG2haCk+wEJm0Xp1IAT4FmCSV7jeRGX67itUn3N/S5lmcOqjUJocq7fX3KUtf4SYfALukLW4sXcBPx2k93vqlZYW9w2LaYbiR3GJihjwQ=
+Received: from CH2PR02MB6359.namprd02.prod.outlook.com (52.132.231.93) by
+ CH2PR02MB6231.namprd02.prod.outlook.com (52.132.230.89) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.15; Sat, 8 Jun 2019 19:40:58 +0000
+Received: from CH2PR02MB6359.namprd02.prod.outlook.com
+ ([fe80::b9dd:11e0:7fca:ba55]) by CH2PR02MB6359.namprd02.prod.outlook.com
+ ([fe80::b9dd:11e0:7fca:ba55%5]) with mapi id 15.20.1965.017; Sat, 8 Jun 2019
+ 19:40:57 +0000
+From:   Dragan Cvetic <draganc@xilinx.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: RE: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
+Thread-Topic: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioctl
+Thread-Index: AQHVEu5GErREaULonk+tvtDvF1CkjaaOsacAgAFm4tCAAFUHgIABzWHQ
+Date:   Sat, 8 Jun 2019 19:40:57 +0000
+Message-ID: <CH2PR02MB6359406779BEEC45AAB41A98CB110@CH2PR02MB6359.namprd02.prod.outlook.com>
+References: <1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1558784245-108751-5-git-send-email-dragan.cvetic@xilinx.com>
+ <20190606132842.GC7943@kroah.com>
+ <CH2PR02MB6359747C72220A978CCA807BCB100@CH2PR02MB6359.namprd02.prod.outlook.com>
+ <20190607155731.GB8752@kroah.com>
+In-Reply-To: <20190607155731.GB8752@kroah.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=draganc@xilinx.com; 
+x-originating-ip: [149.199.80.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7e2369b1-4268-41a8-fa02-08d6ec493a9e
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:CH2PR02MB6231;
+x-ms-traffictypediagnostic: CH2PR02MB6231:
+x-microsoft-antispam-prvs: <CH2PR02MB62315EC2FB84405614DEA5DFCB110@CH2PR02MB6231.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:350;
+x-forefront-prvs: 0062BDD52C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(366004)(346002)(396003)(376002)(39850400004)(199004)(189003)(13464003)(33656002)(52536014)(81156014)(68736007)(229853002)(14454004)(8936002)(81166006)(99286004)(478600001)(7736002)(8676002)(74316002)(73956011)(66556008)(76116006)(64756008)(66946007)(2906002)(66446008)(66476007)(305945005)(55016002)(53936002)(66066001)(6916009)(6436002)(4326008)(6506007)(53546011)(14444005)(256004)(9686003)(476003)(76176011)(186003)(486006)(102836004)(54906003)(7696005)(6116002)(71190400001)(86362001)(26005)(71200400001)(3846002)(5660300002)(6246003)(25786009)(316002)(107886003)(446003)(11346002);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6231;H:CH2PR02MB6359.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: mDd9gNhw6PgbDZhHoPAel8CyA8tgln6Sku2zPy0/5jbT8SgMZKeblZHYRqC2NL+4+gbMifS+hJyugXyA3mX1CVMa1wodqgjLeACMwWEMm49ODrvuJH+clyUwYFh4lICS8MB7y2t32mt4RH4Rw5Zra0RrZ10DTHpsR/BBQShVTGyRrjl70jO6Zr7Od2gzkhoS5tA+TDOushlaRp58rdm/iqiDXsZ3ui48i+oplmfraLD9bDMfKaz6obDHXTlSyLUyKBry/w+T97w0HHApD+INqiapEnog590xXkNxq4zG+ALmQtv4M9BMxRi2Gf6SMiMIJAv6NU04bWvuP01EFUWAjlP0y8W/DRr3R3pOJrB5gCTJ1D+AsD7lRj8UnPUQIW1zLibBDZ4T155Tw+sdgPFKsYhvkntnnxgqmOny1BlnQzE=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e2369b1-4268-41a8-fa02-08d6ec493a9e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2019 19:40:57.4671
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: draganc@xilinx.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6231
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-06-07 10:56, Srinivas Kandagatla wrote:
-> On platforms which have smart speaker amplifiers connected via
-> soundwire and modeled as aux devices in ASoC, in such usecases machine
-> driver should be able to get sdw master stream from dai so that it can
-> use the runtime stream to setup slave streams.
-> 
-> soundwire already as a set function, get function would provide more
-> flexibility to above configurations.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->   include/sound/soc-dai.h | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/include/sound/soc-dai.h b/include/sound/soc-dai.h
-> index f5d70041108f..9f90b936fd9a 100644
-> --- a/include/sound/soc-dai.h
-> +++ b/include/sound/soc-dai.h
-> @@ -177,6 +177,7 @@ struct snd_soc_dai_ops {
->   
->   	int (*set_sdw_stream)(struct snd_soc_dai *dai,
->   			void *stream, int direction);
-> +	void *(*get_sdw_stream)(struct snd_soc_dai *dai, int direction);
->   	/*
->   	 * DAI digital mute - optional.
->   	 * Called by soc-core to minimise any pops.
-> @@ -385,4 +386,13 @@ static inline int snd_soc_dai_set_sdw_stream(struct snd_soc_dai *dai,
->   		return -ENOTSUPP;
->   }
->   
-> +static inline void *snd_soc_dai_get_sdw_stream(struct snd_soc_dai *dai, int direction)
 
-Exceeds character limit?
 
-> +{
-> +	if (dai->driver->ops->get_sdw_stream)
-> +		return dai->driver->ops->get_sdw_stream(dai, direction);
-> +	else
-> +		return NULL;
+> -----Original Message-----
+> From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> Sent: Friday 7 June 2019 16:58
+> To: Dragan Cvetic <draganc@xilinx.com>
+> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
+sts.infradead.org; robh+dt@kernel.org;
+> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
+l.org; Derek Kiernan <dkiernan@xilinx.com>
+> Subject: Re: [PATCH V4 04/12] misc: xilinx_sdfec: Add open, close and ioc=
+tl
+>=20
+> On Fri, Jun 07, 2019 at 10:58:34AM +0000, Dragan Cvetic wrote:
+> > > On Sat, May 25, 2019 at 12:37:17PM +0100, Dragan Cvetic wrote:
+> > > > +static int xsdfec_dev_open(struct inode *iptr, struct file *fptr)
+> > > > +{
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int xsdfec_dev_release(struct inode *iptr, struct file *fpt=
+r)
+> > > > +{
+> > > > +	return 0;
+> > > > +}
+> > >
+> > > empty open/close functions are never needed, just drop them.
+> > >
+> >
+> > open() is needed to allocate file descriptor eg.
+> > fd =3D open(dev_name, O_RDWR);
+>=20
+> But you do nothing in those open/release callbacks.  Remove them and see
+> that the code works just fine :)
+>=20
 
-set_ equivalent returns -ENOTSUPP instead.
-ERR_PTR seems to make more sense here.
+Accepted.
+I will squash this commit with the first next which needs open/close, iocta=
+l.
 
-> +
+> thanks,
+>=20
+> greg k-h
 
-Unnecessary newline.
+Thanks
+Dragan
 
-> +}
-> +
->   #endif
-> 
