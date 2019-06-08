@@ -2,136 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6389E3A023
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 15:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D513A033
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 16:12:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727063AbfFHN6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 09:58:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34274 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727009AbfFHN6P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jun 2019 09:58:15 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 06B1921530;
-        Sat,  8 Jun 2019 13:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560002295;
-        bh=jorZ+LEe0qVqkWc1q8FjW59bXFnWIkPygngkNYmxICY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ldsVLNZK7Mi2rupoxhQ729yfTzC/sgxlfAWNJXnKB23d7Fy+YCEoRcRdQMKlkuton
-         /Am8SLbFPEQj8y41PuXge3jBskY2LwqnzWg618vmgNKn2C9JJ7hdNsRkmdeq3/HDcu
-         vZmF6yhgQ+GVoeLk9KZrG1U3HvJf3JruSS4IG6FA=
-Date:   Sat, 8 Jun 2019 14:58:09 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stefan Popa <stefan.popa@analog.com>
-Cc:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <knaack.h@gmx.de>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <Michael.Hennerich@analog.com>, <gregkh@linuxfoundation.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 2/2] dt-bindings: iio: frequency: Add docs for
- ADF4371 PLL
-Message-ID: <20190608145809.4350ea02@archlinux>
-In-Reply-To: <1559660301-12298-1-git-send-email-stefan.popa@analog.com>
-References: <1559660301-12298-1-git-send-email-stefan.popa@analog.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1727053AbfFHOL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 10:11:59 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:46934 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727012AbfFHOL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 10:11:58 -0400
+Received: by mail-lf1-f66.google.com with SMTP id z15so976841lfh.13
+        for <devicetree@vger.kernel.org>; Sat, 08 Jun 2019 07:11:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z/Lc3GoSd97S4UlXfUe20NKseC9kq0KZ3QtIbR+UKdU=;
+        b=C9izCbEPkC0U7LlS2yX/MM37xekbGe4fM1HSimFKsiQDuTQR76cxqqyyXa/43/3uxD
+         Wwmi9TRwY/+y++1xaw+DeUEvIDIttHGs+5Kg1sohN8+qo6PQfzd/3RWfWxoa6q1UVkIO
+         v+mSG1VT1hY5A0BC5Ua48+aRW9vBgCUQ5GeqD+w1/tnOnuXupWcvR8PNo9dX+hvfXfZt
+         D03Q0KEn0MOg6ak2mUG2jzQCpWmKQZ5mcZDMtQnuxpKgfM7JG1bKfhq52rNzx3QPFPE0
+         6L2SJ7wbE00qzSmSF3Gg5R/jdOcK/pMJabDUWqEdLyHcUM/79Iirvbn4n4mRn5c1Iqq1
+         FqvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z/Lc3GoSd97S4UlXfUe20NKseC9kq0KZ3QtIbR+UKdU=;
+        b=GIL5d5kYnB3WwJ2yBcvJ1yrtauv/GGlVVFgF1W+ruA96mj8L9tDlLir5B53iTgJuiy
+         9AQHTehT2UyFtRJTiIEwbosTemVyXpNlZFLN276x3yJdePo0cQlWogc0GhhO3XNkuMLX
+         hGktk0L+aBYKoNppspG90RcQoymhKygpbFw940A3PCcAUbxV08lDj+hC8auuJxtQEm1l
+         JtfqKoilMOWPkvfpUEHi681+RhNEctNGMH6Vw/L0TfOnF2xOKWEvhKlGqyn4utxLJusQ
+         pyqqCWDTmzAawNv70KJrBJitKhgP0vl43SbKr2mp4ivbFfSbddAtHwcSnof1y9d4t0nx
+         EkqQ==
+X-Gm-Message-State: APjAAAWMXXBecQrKZtjbBm8j8DIOmMklsJuS3+F/vnjvq5iz/VcR6nFr
+        jV8KwcZCRVF1BIOEiYhuKCuT5C84eSWChlKh8+TZsw==
+X-Google-Smtp-Source: APXvYqx2u6ua04Y2DWZCjnRk0Yb4gA36ghvH787XRHzsYhxv4xxKaUG/0dYaDFteZbFlqHDjqvzEIMOYdrLEHwKPayg=
+X-Received: by 2002:ac2:4891:: with SMTP id x17mr17680496lfc.60.1560003117100;
+ Sat, 08 Jun 2019 07:11:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20190607110612.12625-1-geert+renesas@glider.be>
+In-Reply-To: <20190607110612.12625-1-geert+renesas@glider.be>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 8 Jun 2019 16:11:49 +0200
+Message-ID: <CACRpkdZp+dxGOKBm-puvuqC2kjhw8Oy0-8jjkBBU4EkRTDUkkg@mail.gmail.com>
+Subject: Re: [PATCH trivial] dt-bindings: pinctrl: pic32: Spelling s/configuraion/configuration/
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jiri Kosina <trivial@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Jun 2019 17:58:21 +0300
-Stefan Popa <stefan.popa@analog.com> wrote:
+On Fri, Jun 7, 2019 at 1:06 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 
-> Document support for Analog Devices ADF4371 SPI Wideband Synthesizer.
-> 
-> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Applied,
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Thanks
+Patch applied.
 
-Jonathan
-
-> ---
-> Changes in v2:
-> 	- Nothing changed.
-> Changes in v3:
-> 	- Nothing changed.
-> Changes in v4:
-> 	- Nothing changed.
-> Changes in v5:
-> 	- Nothing changed.
-> Changes in v6:
-> 	- Nothing changed.
-> 
->  .../devicetree/bindings/iio/frequency/adf4371.yaml | 54 ++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> new file mode 100644
-> index 0000000..d7adf074
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/frequency/adf4371.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices ADF4371 Wideband Synthesizer
-> +
-> +maintainers:
-> +  - Popa Stefan <stefan.popa@analog.com>
-> +
-> +description: |
-> +  Analog Devices ADF4371 SPI Wideband Synthesizer
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adf4371.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adf4371
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Definition of the external clock (see clock/clock-bindings.txt)
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
-> +      Must be "clkin"
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +examples:
-> +  - |
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        frequency@0 {
-> +                compatible = "adi,adf4371";
-> +                reg = <0>;
-> +                spi-max-frequency = <1000000>;
-> +                clocks = <&adf4371_clkin>;
-> +                clock-names = "clkin";
-> +        };
-> +    };
-> +...
-
+Yours,
+Linus Walleij
