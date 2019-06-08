@@ -2,119 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9959B39FF7
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 15:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15ADF3A004
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 15:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727032AbfFHNkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 09:40:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56536 "EHLO mail.kernel.org"
+        id S1726989AbfFHNqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 09:46:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59272 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726227AbfFHNkL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jun 2019 09:40:11 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        id S1726227AbfFHNqn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jun 2019 09:46:43 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E242D214C6;
-        Sat,  8 Jun 2019 13:40:09 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id DEA58214C6;
+        Sat,  8 Jun 2019 13:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560001210;
-        bh=J92X63eJnF4/ZVdxVIzn3vP2M1eHZgcHuOyotC/SU70=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m73bra1Z+41F0rgW/uhg+IO5K040f0AtsUsJDeViRz2rbmwBQHi02yq9+vforBjdz
-         McI+37imngbfGlmpzulh2QG7T5hy9uGJCLBinLya2e6DcmT+M0SRJCe5BLMJuNgylf
-         O3SlY3L1djbLQDYAsNPNro2UzNxTEWRYVUHcHg6E=
-Date:   Sat, 8 Jun 2019 15:40:08 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Pawel Laszczak <pawell@cadence.com>
-Cc:     devicetree@vger.kernel.org, felipe.balbi@linux.intel.com,
-        linux-usb@vger.kernel.org, hdegoede@redhat.com,
-        heikki.krogerus@linux.intel.com, robh+dt@kernel.org, rogerq@ti.com,
-        linux-kernel@vger.kernel.org, jbergsagel@ti.com, nsekhar@ti.com,
-        nm@ti.com, sureshp@cadence.com, peter.chen@nxp.com,
-        jpawar@cadence.com, kurahul@cadence.com
-Subject: Re: [PATCH v7 2/6] usb:common Separated decoding functions from dwc3
- driver.
-Message-ID: <20190608134008.GB11489@kroah.com>
-References: <1559729030-16390-1-git-send-email-pawell@cadence.com>
- <1559729030-16390-3-git-send-email-pawell@cadence.com>
+        s=default; t=1560001603;
+        bh=AqXNccIG2e5sGKnKMI+lneT6PylUp0yKkW8DCVu/wYc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tIp2G7+6knROEdDhm318XgsOCUXuvkDbr+NYn307Bnkdq5VwC+DN+FVlrZ4sKENeF
+         p1KfWllMoMxFws/4FANUMPDb8jnnDePPZA1LGJhET9sTn9wkEhaiQaLNSKq2l8Fk6S
+         cUqb86C1k6ysUjf9ct/WUfzmBckHBFP9MOXD4PxI=
+Date:   Sat, 8 Jun 2019 14:46:36 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Stefan Popa <stefan.popa@analog.com>
+Cc:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <knaack.h@gmx.de>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <Michael.Hennerich@analog.com>, <gregkh@linuxfoundation.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 2/2] dt-bindings: iio: frequency: Add docs for
+ ADF4371 PLL
+Message-ID: <20190608144636.13b31f52@archlinux>
+In-Reply-To: <1559660301-12298-1-git-send-email-stefan.popa@analog.com>
+References: <1559660301-12298-1-git-send-email-stefan.popa@analog.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1559729030-16390-3-git-send-email-pawell@cadence.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 11:03:46AM +0100, Pawel Laszczak wrote:
-> Patch moves some decoding functions from driver/usb/dwc3/debug.h driver
-> to driver/usb/common/debug.c file. These moved functions include:
->     dwc3_decode_get_status
->     dwc3_decode_set_clear_feature
->     dwc3_decode_set_address
->     dwc3_decode_get_set_descriptor
->     dwc3_decode_get_configuration
->     dwc3_decode_set_configuration
->     dwc3_decode_get_intf
->     dwc3_decode_set_intf
->     dwc3_decode_synch_frame
->     dwc3_decode_set_sel
->     dwc3_decode_set_isoch_delay
->     dwc3_decode_ctrl
+On Tue, 4 Jun 2019 17:58:21 +0300
+Stefan Popa <stefan.popa@analog.com> wrote:
+
+> Document support for Analog Devices ADF4371 SPI Wideband Synthesizer.
 > 
-> These functions are used also in inroduced cdns3 driver.
-> 
-> All functions prefixes were changed from dwc3 to usb.
-> Also, function's parameters has been extended according to the name
-> of fields in standard SETUP packet.
-> Additionally, patch adds usb_decode_ctrl function to
-> include/linux/usb/ch9.h file.i
-> 
-> Signed-off-by: Pawel Laszczak <pawell@cadence.com>
+> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to play with it.
+
+Thanks,
+
+Jonathan
+
 > ---
->  drivers/usb/common/Makefile |   2 +-
->  drivers/usb/common/debug.c  | 273 ++++++++++++++++++++++++++++++++++++
->  drivers/usb/dwc3/debug.h    | 252 ---------------------------------
->  drivers/usb/dwc3/trace.h    |   2 +-
->  include/linux/usb/ch9.h     |  25 ++++
->  5 files changed, 300 insertions(+), 254 deletions(-)
->  create mode 100644 drivers/usb/common/debug.c
+> Changes in v2:
+> 	- Nothing changed.
+> Changes in v3:
+> 	- Nothing changed.
+> Changes in v4:
+> 	- Nothing changed.
+> Changes in v5:
+> 	- Nothing changed.
+> Changes in v6:
+> 	- Nothing changed.
 > 
-> diff --git a/drivers/usb/common/Makefile b/drivers/usb/common/Makefile
-> index 0a7c45e85481..02eb01666289 100644
-> --- a/drivers/usb/common/Makefile
-> +++ b/drivers/usb/common/Makefile
-> @@ -4,7 +4,7 @@
->  #
->  
->  obj-$(CONFIG_USB_COMMON)	  += usb-common.o
-> -usb-common-y			  += common.o
-> +usb-common-y			  += common.o debug.o
->  usb-common-$(CONFIG_USB_LED_TRIG) += led.o
->  
->  obj-$(CONFIG_USB_OTG_FSM) += usb-otg-fsm.o
-> diff --git a/drivers/usb/common/debug.c b/drivers/usb/common/debug.c
+>  .../devicetree/bindings/iio/frequency/adf4371.yaml | 54 ++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
 > new file mode 100644
-> index 000000000000..f7218d794aa6
+> index 0000000..d7adf074
 > --- /dev/null
-> +++ b/drivers/usb/common/debug.c
-> @@ -0,0 +1,273 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * Common USB debugging functions
-> + *
-> + * Copyright (C) 2010-2011 Texas Instruments Incorporated - http://www.ti.com
-> + *
-> + * Authors: Felipe Balbi <balbi@ti.com>,
-> + *	    Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> + */
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/frequency/adf4371.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef __LINUX_USB_COMMON_DEBUG
-> +#define __LINUX_USB_COMMON_DEBUG
+> +title: Analog Devices ADF4371 Wideband Synthesizer
+> +
+> +maintainers:
+> +  - Popa Stefan <stefan.popa@analog.com>
+> +
+> +description: |
+> +  Analog Devices ADF4371 SPI Wideband Synthesizer
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adf4371.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adf4371
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Definition of the external clock (see clock/clock-bindings.txt)
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description:
+> +      Must be "clkin"
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    spi0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        frequency@0 {
+> +                compatible = "adi,adf4371";
+> +                reg = <0>;
+> +                spi-max-frequency = <1000000>;
+> +                clocks = <&adf4371_clkin>;
+> +                clock-names = "clkin";
+> +        };
+> +    };
+> +...
 
-Why are you doing thsi in a .c file?
-
-thanks,
-
-greg k-h
