@@ -2,97 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7258C3A161
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 21:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D853A177
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 21:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727469AbfFHTEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 15:04:24 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:32812 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727410AbfFHTEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 15:04:22 -0400
-Received: by mail-wr1-f68.google.com with SMTP id n9so5328165wru.0;
-        Sat, 08 Jun 2019 12:04:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aFV8wLAz1XUXEXzc85OBEqEUiMkenB8CQtS+Vt1/BiM=;
-        b=W3GI02+AJAI/VaMVlY/zu2APCio3iURaaXWz00uebnZQF1i5wIck7r84AquCmwxoSm
-         QVUQlITH04SsEk5yX4n1+Htt/S66k/8DnxhJT+Sj9JpTUeLmarHPrJyerC6uO4U7D+c9
-         J9bEwz26MFRSk4K4LX/TvVmadvj7t+s/s/3HH1H/7RfWjKHe7yyPegf1WG7Nb/XAeoL9
-         I1TkQgIozoFyBYKtBukYrp+Yg6NwDQA8pTvQacx3wup+DG6a2hAEcjA0ctQ8xZ6u1IXe
-         xno9GYn9TZOBxaybhLSP6waj8uZcqRJoJL7xa2PTEX3AE7vOxbv1XKXC8iIl2QEIQIBE
-         ExXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aFV8wLAz1XUXEXzc85OBEqEUiMkenB8CQtS+Vt1/BiM=;
-        b=GS/XcVi+eY4i/u4eIZ3jrfWYILLH873W1NicfV1hf6eVDl3P/Z5rkrPnn5vGyz/SAy
-         YDsWCGo8ZoFRY4S7TOfmtGugaCI/iTJ7RDUDoqx2JkOauJ9ceoie+PAf5+oNMmaBZd88
-         C/FZvmz4jRAjc+nselkips/zVtKfCWfDILcqUV1uEL4X93KxLDkIvnVFDqyK4k3zwd9W
-         UWvxa4wwSC/0uLDXWN+IBCYt9ZAYQrBaC4eC8jm/GPpc/s7N/g/QGswi6PqI05sRont1
-         1dhvwfQwoTl1EbukkgVBm98DG0EIYx0vDadxcuTeqPDpSfqyLpkyKB836GOFXsk90WGY
-         7ouQ==
-X-Gm-Message-State: APjAAAWgw/q3Z8dB9OhcZcFBNRH9ir6PH9/oYeJ7rtoh+iHhzu8shMxj
-        rlKwWbF0z4mePUsGFVIr1YoKUB7x
-X-Google-Smtp-Source: APXvYqxeWMqj9C2OusCvfves/EELauA2ecBxZT6qIcQg37NCmz0ahYkESZJeSIOqrDaeXSF3C0s2Eg==
-X-Received: by 2002:adf:da48:: with SMTP id r8mr18981182wrl.18.1560020660535;
-        Sat, 08 Jun 2019 12:04:20 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133DDA400D12EFF43FED1E981.dip0.t-ipconnect.de. [2003:f1:33dd:a400:d12e:ff43:fed1:e981])
-        by smtp.googlemail.com with ESMTPSA id t6sm5655062wmb.29.2019.06.08.12.04.19
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sat, 08 Jun 2019 12:04:20 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        tglx@linutronix.de, jason@lakedaemon.net, marc.zyngier@arm.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, khilman@baylibre.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 3/3] arm64: dts: meson: g12a: add the GPIO interrupt controller
-Date:   Sat,  8 Jun 2019 21:04:11 +0200
-Message-Id: <20190608190411.14018-4-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190608190411.14018-1-martin.blumenstingl@googlemail.com>
-References: <20190608190411.14018-1-martin.blumenstingl@googlemail.com>
+        id S1727323AbfFHTWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 15:22:15 -0400
+Received: from mga01.intel.com ([192.55.52.88]:48556 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727215AbfFHTWP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jun 2019 15:22:15 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Jun 2019 12:22:14 -0700
+X-ExtLoop1: 1
+Received: from crojewsk-mobl1.ger.corp.intel.com (HELO [10.251.93.16]) ([10.251.93.16])
+  by orsmga006.jf.intel.com with ESMTP; 08 Jun 2019 12:22:10 -0700
+Subject: Re: [RFC PATCH 1/6] ASoC: core: add support to
+ snd_soc_dai_get_sdw_stream()
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, mark.rutland@arm.com,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
+ <20190607085643.932-2-srinivas.kandagatla@linaro.org>
+From:   Cezary Rojewski <cezary.rojewski@intel.com>
+Message-ID: <13bfb632-f743-c416-2224-c7acb5b28604@intel.com>
+Date:   Sat, 8 Jun 2019 21:22:08 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190607085643.932-2-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO interrupts are used for the external Ethernet RGMII PHY interrupt
-line.
-Add the GPIO interrupt controller so we can describe that connection in
-the dts files.
+On 2019-06-07 10:56, Srinivas Kandagatla wrote:
+> On platforms which have smart speaker amplifiers connected via
+> soundwire and modeled as aux devices in ASoC, in such usecases machine
+> driver should be able to get sdw master stream from dai so that it can
+> use the runtime stream to setup slave streams.
+> 
+> soundwire already as a set function, get function would provide more
+> flexibility to above configurations.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>   include/sound/soc-dai.h | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/include/sound/soc-dai.h b/include/sound/soc-dai.h
+> index f5d70041108f..9f90b936fd9a 100644
+> --- a/include/sound/soc-dai.h
+> +++ b/include/sound/soc-dai.h
+> @@ -177,6 +177,7 @@ struct snd_soc_dai_ops {
+>   
+>   	int (*set_sdw_stream)(struct snd_soc_dai *dai,
+>   			void *stream, int direction);
+> +	void *(*get_sdw_stream)(struct snd_soc_dai *dai, int direction);
+>   	/*
+>   	 * DAI digital mute - optional.
+>   	 * Called by soc-core to minimise any pops.
+> @@ -385,4 +386,13 @@ static inline int snd_soc_dai_set_sdw_stream(struct snd_soc_dai *dai,
+>   		return -ENOTSUPP;
+>   }
+>   
+> +static inline void *snd_soc_dai_get_sdw_stream(struct snd_soc_dai *dai, int direction)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Exceeds character limit?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 6aec4cf87350..50fcdb3e55bb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -2222,6 +2222,15 @@
- 				#reset-cells = <1>;
- 			};
- 
-+			gpio_intc: interrupt-controller@f080 {
-+				compatible = "amlogic,meson-g12a-gpio-intc",
-+					     "amlogic,meson-gpio-intc";
-+				reg = <0x0 0xf080 0x0 0x10>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
-+			};
-+
- 			pwm_ef: pwm@19000 {
- 				compatible = "amlogic,meson-g12a-ee-pwm";
- 				reg = <0x0 0x19000 0x0 0x20>;
--- 
-2.21.0
+> +{
+> +	if (dai->driver->ops->get_sdw_stream)
+> +		return dai->driver->ops->get_sdw_stream(dai, direction);
+> +	else
+> +		return NULL;
 
+set_ equivalent returns -ENOTSUPP instead.
+ERR_PTR seems to make more sense here.
+
+> +
+
+Unnecessary newline.
+
+> +}
+> +
+>   #endif
+> 
