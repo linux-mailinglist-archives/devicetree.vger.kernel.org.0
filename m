@@ -2,47 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E7B39B09
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 06:43:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C994A39B0C
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2019 06:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfFHEnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 00:43:47 -0400
-Received: from mail-pg1-f201.google.com ([209.85.215.201]:36278 "EHLO
-        mail-pg1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726289AbfFHEnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 00:43:47 -0400
-Received: by mail-pg1-f201.google.com with SMTP id u1so2752934pgh.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 21:43:46 -0700 (PDT)
+        id S1727686AbfFHEnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 00:43:50 -0400
+Received: from mail-vk1-f201.google.com ([209.85.221.201]:55721 "EHLO
+        mail-vk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726252AbfFHEnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 00:43:50 -0400
+Received: by mail-vk1-f201.google.com with SMTP id h84so1565426vke.22
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2019 21:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=eH9fapKAJwolfX12q6qFY4CZH/Ll8SfSGTB5TLEBq1E=;
-        b=TX6ck3Thsys8vR8ZnG1NNJCOVjJ6bQCRPH90VpAfp3KSB9AM3aULyOkDl1EaWkOqTc
-         QnZEbSTY6tAGFzAFAYSfTN6CG8R3HvYBoZIp4Q3E2rWu76kB5PcUymL/8IiqmL7a5hNH
-         TABCU/hgYQ8tE5NznIF4720eqTUGU/V/JVWCa5Xkw0+BJ8TcnkcV0GmJtz927Nvw49bj
-         CCGvogxwcWjs+fmmXurVko5beuFSo3oCafhssGZ0GIWS3isVoOpHSYmhs9xaalC7BlI/
-         ZmiFk7dQ8OQoV1MXMWSPc9Z8n0Jw+tLV0peVQgqX67FUCxfkwSinP5mqGuTq6psfvF2G
-         /swg==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=yAz3k7OzPjxwzR5iBZENxEm1ewgrxin9ITMqtF0yTXk=;
+        b=h16Y4HD/UPQ8Qdd8puBUJX6swjYiLioJGWRuDvWtjxgSH5taeUQyhOx79lWt1tEXh9
+         WP5jLzggF4W2BJI+QMCOkRsdE+R1jjdoA/MyslRnGDBrarPhPv3O8V8nQTinkxBX78O2
+         1u0gp3xytA+oINw+NizDSVapwgPCn8UIlQOweBTlg/DxloT62xhbeR2/KfYcCT+CR5n5
+         FoD1m0WGw4gEanoi/kzNuz3zX9MzXvrhLeBaEwvfiV/uRWD+3BXr7MVff/SrZVEp99DR
+         PApeHHYPaL01eGLGrhz5jFMOkLLYRpS4qdRTDJpXZ3wAWpZH4ZBZ7YEA8XQwMnCpnccL
+         1ZNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=eH9fapKAJwolfX12q6qFY4CZH/Ll8SfSGTB5TLEBq1E=;
-        b=EUwN1KxiEA/fLu82T93Z7WWli3ugy4DFbT86ewIdRZaR1HZGgvJI3FN1eoKBXKX1ql
-         e3YwnLqX16a8PacyfmC+HMVH/uBFunRJpiWgeNOeXjHK3Q7kBnHKf+KQxvwAqQ5MtN0P
-         vvqjNYxDePQDeiBo5H4o2u/O2z5e7+9LxEoPFGGZVNTt0ptc3grQRKFkfiXeiO3+Swol
-         bRLIe8MnkWx9YdAr9WQjoC+z3LtUZdQqnK046t9kZhURDY1yoUGfRQUt8Ss28sYtlwvf
-         t0QOsLd7C4myXSumybneOOZQLaln0m0UHC/xwgTnYDAWJcu9q0TOt8LtW77m5X/NGA8q
-         eXwA==
-X-Gm-Message-State: APjAAAWxqpUkOVsQi5q++n8Z5Re0GnNamEFBGQvZ7f8sM+U2J9KlPqlO
-        RxV4mh4ygFRFpl8osYlO6vrHJ1yT9f6KfKE=
-X-Google-Smtp-Source: APXvYqzyuMJ13rtRIBQUEAtXcZjmhvphMToX8lIX0cyimVKucuf4Er3USxwQ5OENVm49MxHrQ6wgw16jkUJt7cE=
-X-Received: by 2002:a63:2224:: with SMTP id i36mr6114353pgi.70.1559969025896;
- Fri, 07 Jun 2019 21:43:45 -0700 (PDT)
-Date:   Fri,  7 Jun 2019 21:43:30 -0700
-Message-Id: <20190608044339.115026-1-saravanak@google.com>
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=yAz3k7OzPjxwzR5iBZENxEm1ewgrxin9ITMqtF0yTXk=;
+        b=WPeA7fd461WgG+cLLxMtdUJHirko9QHkZyiJC/073nyhYdo2RdtzIhOBceQn8f/KXC
+         X5qmtYHreSAGtVEgg8T9OBoQobwWwXFChnutnYkvWagcYluJOIB9E5PKTEZ1j3OTB6b4
+         ADvxJlttwMAQAWu6KAbga4cUno3oOo+ZAaiqcGyXxwx4f75C6V3F5+Ck3W4O75JADhNM
+         +bC5Vbp9g/LV2bxqCO+g4OlJJTWbTmfKwUVR0HY2gY9wmP/XCkQMTAgdo8iu1MFDmjfz
+         rAgnj/1tQ0WCphQLNkG7jeP9YXux3WJQvCVXLG61k5J5BGGR5ZNw2yByp5ZwkSAuQVDc
+         GSfA==
+X-Gm-Message-State: APjAAAVtoPvXf9wRsaUncpI1NpeNqxK2BfZ8EpV5E6k0s/W4yrKT0I1x
+        wcbCdA1/Wt6t8uPSXqZfMWafhNloyiI9dnk=
+X-Google-Smtp-Source: APXvYqzgoCdbmtERP8lXY/RLG0ooX+4jcXs9QIN2JZHB94tDUDQbpKEPFjga7MoFGI0pHJDoAp7O7S8tT1TDM6M=
+X-Received: by 2002:a67:1ec1:: with SMTP id e184mr19214210vse.83.1559969029067;
+ Fri, 07 Jun 2019 21:43:49 -0700 (PDT)
+Date:   Fri,  7 Jun 2019 21:43:31 -0700
+In-Reply-To: <20190608044339.115026-1-saravanak@google.com>
+Message-Id: <20190608044339.115026-2-saravanak@google.com>
 Mime-Version: 1.0
+References: <20190608044339.115026-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.rc2.383.gf4fbbf30c2-goog
-Subject: [PATCH v1 0/9] Introduce Bandwidth OPPs & interconnect devfreq driver
+Subject: [PATCH v1 1/9] dt-bindings: opp: Introduce opp-peak-KBps and
+ opp-avg-KBps bindings
 From:   Saravana Kannan <saravanak@google.com>
 To:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,126 +70,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I replied[1] to this patch series[2] and described how I think interconnect
-bandwidth voting should be captured in DT and how it should work.
+Interconnects often quantify their performance points in terms of
+bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
+allow specifying Bandwidth OPP tables in DT.
 
-So sending out a patch series implementing that. This patch series does the
-following:
-- Adds Bandwidth OPP table support (this adds device freq to bandwidth
-  mapping for free)
-- Adds a devfreq library for interconnect paths
+opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
+tables.
 
-Interconnects and interconnect paths quantify they performance levels in
-terms of bandwidth. So similar to how we have frequency based OPP tables
-in DT and in the OPP framework, this patch series adds bandwidth OPP
-table support in the OPP framework and in DT.
+opp-avg-KBps is an optional property that can be used in Bandwidth OPP
+tables.
 
-To simplify voting for interconnects, this patch series adds helper
-functions to create devfreq devices out of interconnect paths. This
-allows drivers to add a single line of code to add interconnect voting
-capability.
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+---
+ Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-To add devfreq device for the "gpu-mem" interconnect path:
-icc_create_devfreq(dev, "gpu-mem");
-
-With the future addition of a "passive_bandwidth" devfreq governor,
-device frequency to interconnect bandwidth mapping would come for free.
-
-If the feedback on this patch series is positive, I'll then add the
-devfreq passive_bandwidth governor (or something similar) to v2 of this
-patch series.
-
-So with the DT bindings added in this patch series, the DT for a GPU
-that does bandwidth voting from GPU to Cache and GPU to DDR would look
-something like this:
-
-gpu_cache_opp_table: gpu_cache_opp_table {
-	compatible = "operating-points-v2";
-
-	gpu_cache_3000: opp-3000 {
-		opp-peak-KBps = <3000>;
-		opp-avg-KBps = <1000>;
-	};
-	gpu_cache_6000: opp-6000 {
-		opp-peak-KBps = <6000>;
-		opp-avg-KBps = <2000>;
-	};
-	gpu_cache_9000: opp-9000 {
-		opp-peak-KBps = <9000>;
-		opp-avg-KBps = <9000>;
-	};
-};
-
-gpu_ddr_opp_table: gpu_ddr_opp_table {
-	compatible = "operating-points-v2";
-
-	gpu_ddr_1525: opp-1525 {
-		opp-peak-KBps = <1525>;
-		opp-avg-KBps = <452>;
-	};
-	gpu_ddr_3051: opp-3051 {
-		opp-peak-KBps = <3051>;
-		opp-avg-KBps = <915>;
-	};
-	gpu_ddr_7500: opp-7500 {
-		opp-peak-KBps = <7500>;
-		opp-avg-KBps = <3000>;
-	};
-};
-
-gpu_opp_table: gpu_opp_table {
-	compatible = "operating-points-v2";
-	opp-shared;
-
-	opp-200000000 {
-		opp-hz = /bits/ 64 <200000000>;
-		required-opps = <&gpu_cache_3000>, <&gpu_ddr_1525>;
-	};
-	opp-400000000 {
-		opp-hz = /bits/ 64 <400000000>;
-		required-opps = <&gpu_cache_6000>, <&gpu_ddr_3051>;
-	};
-};
-
-gpu@7864000 {
-	...
-	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
-	interconnects = <&mmnoc MASTER_GPU_1 &bimc SLAVE_SYSTEL_CACHE>,
-			<&mmnoc MASTER_GPU_1 &bimc SLAVE_DDR>;
-	interconnect-names = "gpu-cache", "gpu-mem";
-	interconnect-opp-table = <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>
-};
-
-Cheers,
-Saravana
-
-[1] - https://lore.kernel.org/lkml/20190601021228.210574-1-saravanak@google.com/
-[2] - https://lore.kernel.org/lkml/20190423132823.7915-1-georgi.djakov@linaro.org/ 
-
-Saravana Kannan (9):
-  dt-bindings: opp: Introduce opp-peak-KBps and opp-avg-KBps bindings
-  OPP: Add support for bandwidth OPP tables
-  OPP: Add helper function for bandwidth OPP tables
-  OPP: Add API to find an OPP table from its DT node
-  dt-bindings: interconnect: Add interconnect-opp-table property
-  interconnect: Add OPP table support for interconnects
-  OPP: Add function to look up required OPP's for a given OPP
-  OPP: Allow copying OPPs tables between devices
-  interconnect: Add devfreq support
-
- .../bindings/interconnect/interconnect.txt    |   8 +
- Documentation/devicetree/bindings/opp/opp.txt |  15 +-
- drivers/interconnect/Makefile                 |   2 +-
- drivers/interconnect/core.c                   |  27 +++-
- drivers/interconnect/icc-devfreq.c            | 144 ++++++++++++++++++
- drivers/opp/core.c                            | 109 +++++++++++++
- drivers/opp/of.c                              |  75 +++++++--
- drivers/opp/opp.h                             |   4 +-
- include/linux/interconnect.h                  |  17 +++
- include/linux/pm_opp.h                        |  41 +++++
- 10 files changed, 426 insertions(+), 16 deletions(-)
- create mode 100644 drivers/interconnect/icc-devfreq.c
-
+diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+index 76b6c79604a5..c869e87caa2a 100644
+--- a/Documentation/devicetree/bindings/opp/opp.txt
++++ b/Documentation/devicetree/bindings/opp/opp.txt
+@@ -83,9 +83,14 @@ properties.
+ 
+ Required properties:
+ - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
+-  required property for all device nodes but devices like power domains. The
+-  power domain nodes must have another (implementation dependent) property which
+-  uniquely identifies the OPP nodes.
++  required property for all device nodes but for devices like power domains or
++  bandwidth opp tables. The power domain nodes must have another (implementation
++  dependent) property which uniquely identifies the OPP nodes. The interconnect
++  opps are required to have the opp-peak-bw property.
++
++- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a 32-bit
++  big-endian integer. This is a required property for all devices that don't
++  have opp-hz. For example, bandwidth OPP tables for interconnect paths.
+ 
+ Optional properties:
+ - opp-microvolt: voltage in micro Volts.
+@@ -132,6 +137,10 @@ Optional properties:
+ - opp-level: A value representing the performance level of the device,
+   expressed as a 32-bit integer.
+ 
++- opp-avg-KBps: Average bandwidth in kilobytes per second, expressed as a
++  32-bit big-endian integer. This property is only meaningful in OPP tables
++  where opp-peak-KBps is present.
++
+ - clock-latency-ns: Specifies the maximum possible transition latency (in
+   nanoseconds) for switching to this OPP from any other OPP.
+ 
 -- 
 2.22.0.rc2.383.gf4fbbf30c2-goog
 
