@@ -2,137 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D75663A28C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2019 02:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0493A402
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2019 08:18:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728023AbfFIAEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 20:04:37 -0400
-Received: from mail-eopbgr780079.outbound.protection.outlook.com ([40.107.78.79]:1660
-        "EHLO NAM03-BY2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727990AbfFIAEg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jun 2019 20:04:36 -0400
+        id S1726178AbfFIGSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jun 2019 02:18:25 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:41914 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725850AbfFIGSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jun 2019 02:18:24 -0400
+Received: by mail-lj1-f195.google.com with SMTP id s21so5098977lji.8;
+        Sat, 08 Jun 2019 23:18:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H9W8ol28YE2CqSuPc/m8fmI/Wka8vmjamOSybBa3E8U=;
- b=34DmBMOKF50h211aHrJBG/3WniN+NlweJmH4YNkTpMbkD5hWhgbx0Xmweg9Pk3nNDKEoLs4nUDfiEVAHdD/GNn/5R0BSZtMJznN5201xIRaexKqixo2grY/OH3qQ9pDq4OFx0nby6WXAiZJ+ayPjb9cm9dP1P3+uKJLRCShz9W4=
-Received: from CY4PR02CA0038.namprd02.prod.outlook.com (2603:10b6:903:117::24)
- by CH2PR02MB6231.namprd02.prod.outlook.com (2603:10b6:610:d::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1965.15; Sun, 9 Jun
- 2019 00:04:31 +0000
-Received: from SN1NAM02FT053.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::203) by CY4PR02CA0038.outlook.office365.com
- (2603:10b6:903:117::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.14 via Frontend
- Transport; Sun, 9 Jun 2019 00:04:31 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.80.198)
- smtp.mailfrom=xilinx.com; arndb.de; dkim=none (message not signed)
- header.d=none;arndb.de; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.80.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.80.198; helo=xir-pvapexch02.xlnx.xilinx.com;
-Received: from xir-pvapexch02.xlnx.xilinx.com (149.199.80.198) by
- SN1NAM02FT053.mail.protection.outlook.com (10.152.72.102) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.1965.12 via Frontend Transport; Sun, 9 Jun 2019 00:04:31 +0000
-Received: from xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) by
- xir-pvapexch02.xlnx.xilinx.com (172.21.17.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1531.3; Sun, 9 Jun 2019 01:04:24 +0100
-Received: from smtp.xilinx.com (172.21.105.198) by
- xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) with Microsoft SMTP Server id
- 15.1.1531.3 via Frontend Transport; Sun, 9 Jun 2019 01:04:24 +0100
-Envelope-to: arnd@arndb.de,
- gregkh@linuxfoundation.org,
- michal.simek@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- robh+dt@kernel.org,
- mark.rutland@arm.com,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- dragan.cvetic@xilinx.com,
- derek.kiernan@xilinx.com
-Received: from [149.199.110.15] (port=48046 helo=xirdraganc40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <dragan.cvetic@xilinx.com>)
-        id 1hZlJw-0001PN-E6; Sun, 09 Jun 2019 01:04:24 +0100
-From:   Dragan Cvetic <dragan.cvetic@xilinx.com>
-To:     <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
-        <michal.simek@xilinx.com>, <linux-arm-kernel@lists.infradead.org>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Derek Kiernan <derek.kiernan@xilinx.com>
-Subject: [PATCH V5 11/11] MAINTAINERS: add maintainer for SD-FEC
-Date:   Sun, 9 Jun 2019 01:04:16 +0100
-Message-ID: <1560038656-380620-12-git-send-email-dragan.cvetic@xilinx.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560038656-380620-1-git-send-email-dragan.cvetic@xilinx.com>
-References: <1560038656-380620-1-git-send-email-dragan.cvetic@xilinx.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.80.198;IPV:CAL;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(346002)(39850400004)(376002)(136003)(2980300002)(199004)(189003)(60926002)(48376002)(426003)(8936002)(106002)(7636002)(28376004)(478600001)(71366001)(246002)(8676002)(70206006)(76130400001)(356004)(6666004)(70586007)(9786002)(2906002)(36906005)(305945005)(50226002)(4326008)(36756003)(336012)(47776003)(476003)(186003)(76176011)(4744005)(316002)(486006)(44832011)(16586007)(110136005)(54906003)(7696005)(26826003)(2201001)(26005)(956004)(51416003)(5660300002)(107886003)(2616005)(446003)(11346002)(50466002)(126002)(102446001);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6231;H:xir-pvapexch02.xlnx.xilinx.com;FPR:;SPF:Pass;LANG:en;PTR:unknown-80-198.xilinx.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 35c629dc-8a8c-474f-53f6-08d6ec6e0c3b
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:CH2PR02MB6231;
-X-MS-TrafficTypeDiagnostic: CH2PR02MB6231:
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-Microsoft-Antispam-PRVS: <CH2PR02MB62311AB688A8DE0B44BC51DACB120@CH2PR02MB6231.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-Forefront-PRVS: 006339698F
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: RUXMhg+a6vWNoI8O/xqYxOYZzcXNqNpddQ0K4nsnwqLbHUyJApMmHBVXoM3ZFEzbcmHIMvjmNNciYHhhX0PkWYoEQw0dBz4gZQxUs66fF+f4xLQySIns1BBpe5Tz2fn0KyyC4zSZVzPLKbcnKLQ/QNxm0f5ACrj8Uu6SGCnpLJTEi2YxY9EnmgsD/u6290hieEvG8JgJgqEufjjBbfJlYGTDcMkkMZbD1vJHrtQ7J6PQSS+oKjUfvP4s9kM2aGIpuXNYgKVPIqw4W5/ypdwtbLrMOzShkFVe+SyD3rgfDTZZ4CQGZQ7JWhpVi95PE+y6TLyOFYo7YXNlcwH0Iw6oEJgkNnk7ghrY0nap7RMQNX6KIUfwKbmNt5HoeLt/TghAhv1KmPLzQ4znXxcFQXhE9qnH1L7W8UkjSZvc1gXTztQ=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2019 00:04:31.1580
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35c629dc-8a8c-474f-53f6-08d6ec6e0c3b
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.80.198];Helo=[xir-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6231
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=7Vo5eaKQWCMq7v7z2ph7sxEFSNuB5Lf75LyEjuFRQsU=;
+        b=gbeklqhv5CVhh907QpjsEgaQqjswCM1044mz4/7WNlhZg6tywR07JjbEinmhaPFc79
+         p21Nhu7NcWjGThV8grm4UdhkGlFDzkToOqmGRquLjJDndricciBQIFu7VG2IUy8eId/g
+         xASjqXHd+XMDy+twqrE4jMu4ZTE5xzD5cEFuFnle5HrN/NB6H8bA+PAJe5kt4FbK0qDR
+         dHiJkXpNYFv7Pf3yHzfuw2chVHkO9gVL9bT1BgWX4avTIIVTQinbfmTgB4Xm+MGQDffP
+         3g9hpVK2eK2OkuMlMT5It2urrbG8hBhvH95tNSbCmgv82S4odc5wGq9HzDXZqBXf85Ql
+         ZlJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=7Vo5eaKQWCMq7v7z2ph7sxEFSNuB5Lf75LyEjuFRQsU=;
+        b=Zz3SHgL4K/cSHrIvliAV0Yp2Nmndkomc4DnCXE0zVMMEjkMoTlzTxW+suQTx9pNsn3
+         7VRU+dqAJLNMHtIHDN3SbbDq+HXLFp2JgYcKOYqC8/GF3M9cBGlnO51tndW9PRB2Mi9J
+         kkBS/4KUDQMVjSyr2aSTpDOeB1MKTFcspTiw7hTHUz3cyk3TIdo+7/vr41xqsAJyR+Wq
+         /ZgATrj4gNrjU8HjijQb8Pl+M1p3ZHH3A/i/2C9i+VWj4XfK/n4K7X/w4M/OZxxbzIQo
+         zg3GRJErRP1xBCNiWCP7599edIFjHW0LRs/LbE2C66vbBXXmIZdnMr2MfBCwLArQp4kA
+         qZVw==
+X-Gm-Message-State: APjAAAXX/QatQ4HYkZWp78b/L5p17tbkOXC/lLw8QBCXuEiqT2vcLQXn
+        7cq5UsE8l9iNqUCNeUS+zbI=
+X-Google-Smtp-Source: APXvYqye6JnuBAsP0g3mvLnlp32I7Us4WHTg9hj/ifomjyySkFiDqstvspKK7uMtV+n3dxSibLa+mw==
+X-Received: by 2002:a2e:6e0e:: with SMTP id j14mr4075717ljc.85.1560061102240;
+        Sat, 08 Jun 2019 23:18:22 -0700 (PDT)
+Received: from flare (t35.niisi.ras.ru. [193.232.173.35])
+        by smtp.gmail.com with ESMTPSA id q13sm1296215lfk.65.2019.06.08.23.18.20
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 08 Jun 2019 23:18:21 -0700 (PDT)
+Date:   Sun, 9 Jun 2019 09:18:19 +0300
+From:   Antony Pavlov <antonynpavlov@gmail.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Paul Walmsley <paul@pwsan.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 5/5] riscv: dts: add initial board data for the
+ SiFive HiFive Unleashed
+Message-Id: <20190609091819.2d1a97c90c0b44aa9120d373@gmail.com>
+In-Reply-To: <20190602080500.31700-6-paul.walmsley@sifive.com>
+References: <20190602080500.31700-1-paul.walmsley@sifive.com>
+        <20190602080500.31700-6-paul.walmsley@sifive.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-support
+On Sun,  2 Jun 2019 01:05:00 -0700
+Paul Walmsley <paul.walmsley@sifive.com> wrote:
 
-Add maintainer entry for Xilinx SD-FEC driver support.
+Hi!
 
-Signed-off-by: Derek Kiernan <derek.kiernan@xilinx.com>
-Signed-off-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> Add initial board data for the SiFive HiFive Unleashed A00.
+>=20
+> Currently the data populated in this DT file describes the board
+> DRAM configuration and the external clock sources that supply the
+> PRCI.
+>=20
+> This third version incorporates changes based on more comments from
+> Rob Herring <robh+dt@kernel.org>.
+>=20
+> Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
+> Signed-off-by: Paul Walmsley <paul@pwsan.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Palmer Dabbelt <palmer@sifive.com>
+> Cc: Albert Ou <aou@eecs.berkeley.edu>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-riscv@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+>  arch/riscv/boot/dts/sifive/Makefile           |  2 +
+>  .../boot/dts/sifive/hifive-unleashed-a00.dts  | 67 +++++++++++++++++++
+>  2 files changed, 69 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/sifive/Makefile
+>  create mode 100644 arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+>=20
+> diff --git a/arch/riscv/boot/dts/sifive/Makefile b/arch/riscv/boot/dts/si=
+five/Makefile
+> new file mode 100644
+> index 000000000000..baaeef9efdcb
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sifive/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-y +=3D hifive-unleashed-a00.dtb
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/r=
+iscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> new file mode 100644
+> index 000000000000..1de4ea1577d5
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> @@ -0,0 +1,67 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/* Copyright (c) 2018-2019 SiFive, Inc */
+> +
+> +/dts-v1/;
+> +
+> +#include "fu540-c000.dtsi"
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bfe48cb..2b754a8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17345,6 +17345,17 @@ S:	Supported
- F:	Documentation/filesystems/xfs.txt
- F:	fs/xfs/
- 
-+XILINX SD-FEC IP CORES
-+M:	Derek Kiernan <derek.kiernan@xilinx.com>
-+M:	Dragan Cvetic <dragan.cvetic@xilinx.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
-+F:	Documentation/misc-devices/xilinx_sdfec.rst
-+F:	drivers/misc/xilinx_sdfec.c
-+F:	drivers/misc/Kconfig
-+F:	drivers/misc/Makefile
-+F:	include/uapi/misc/xilinx_sdfec.h
-+
- XILINX AXI ETHERNET DRIVER
- M:	Anirudha Sarangi <anirudh@xilinx.com>
- M:	John Linn <John.Linn@xilinx.com>
--- 
-2.7.4
+You already have "/dts-v1/;" in the fu540-c000.dtsi file.
 
+You can omit it in the hifive-unleashed-a00.dts file.
+
+> +/* Clock frequency (in Hz) of the PCB crystal for rtcclk */
+> +#define RTCCLK_FREQ		1000000
+> +
+> +/ {
+> +	#address-cells =3D <2>;
+> +	#size-cells =3D <2>;
+> +	model =3D "SiFive HiFive Unleashed A00";
+> +	compatible =3D "sifive,hifive-unleashed-a00", "sifive,fu540-c000";
+> +
+> +	chosen {
+> +	};
+> +
+> +	cpus {
+> +		timebase-frequency =3D <RTCCLK_FREQ>;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type =3D "memory";
+> +		reg =3D <0x0 0x80000000 0x2 0x00000000>;
+> +	};
+> +
+> +	soc {
+> +	};
+> +
+> +	hfclk: hfclk {
+> +		#clock-cells =3D <0>;
+> +		compatible =3D "fixed-clock";
+> +		clock-frequency =3D <33333333>;
+> +		clock-output-names =3D "hfclk";
+> +	};
+> +
+> +	rtcclk: rtcclk {
+> +		#clock-cells =3D <0>;
+> +		compatible =3D "fixed-clock";
+> +		clock-frequency =3D <RTCCLK_FREQ>;
+> +		clock-output-names =3D "rtcclk";
+> +	};
+> +};
+> +
+> +&qspi0 {
+> +	flash@0 {
+> +		compatible =3D "issi,is25wp256", "jedec,spi-nor";
+> +		reg =3D <0>;
+> +		spi-max-frequency =3D <50000000>;
+> +		m25p,fast-read;
+> +		spi-tx-bus-width =3D <4>;
+> +		spi-rx-bus-width =3D <4>;
+> +	};
+> +};
+> +
+> +&qspi2 {
+> +	status =3D "okay";
+> +	mmc@0 {
+> +		compatible =3D "mmc-spi-slot";
+> +		reg =3D <0>;
+> +		spi-max-frequency =3D <20000000>;
+> +		voltage-ranges =3D <3300 3300>;
+> +		disable-wp;
+> +	};
+> +};
+> --=20
+> 2.20.1
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+
+--=20
+Best regards,
+=A0 Antony Pavlov
