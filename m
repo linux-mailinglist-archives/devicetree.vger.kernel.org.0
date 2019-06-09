@@ -2,82 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 153143A504
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2019 13:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9319D3A51A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2019 13:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728218AbfFILHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jun 2019 07:07:39 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:58726 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728095AbfFILHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jun 2019 07:07:39 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
+        id S1728161AbfFILWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jun 2019 07:22:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49866 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728095AbfFILWi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 9 Jun 2019 07:22:38 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 5123C2002D;
-        Sun,  9 Jun 2019 13:07:35 +0200 (CEST)
-Date:   Sun, 9 Jun 2019 13:07:33 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
-        dri-devel@lists.freedesktop.org,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        cawa.cheng@mediatek.com,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        srv_heupstream@mediatek.com, linux-kernel@vger.kernel.org,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Sean Paul <seanpaul@chromium.org>
-Subject: Re: [2/2] drm/panel: support for BOE tv101wum-n16 wuxga dsi video
- mode panel
-Message-ID: <20190609110733.GD28935@ravnborg.org>
-References: <20190608070230.55381-1-jitao.shi@mediatek.com>
- <20190608070230.55381-2-jitao.shi@mediatek.com>
+        by mail.kernel.org (Postfix) with ESMTPSA id 68C3320840;
+        Sun,  9 Jun 2019 11:22:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560079357;
+        bh=ptu/UtjTcmnAD1z/pLhf3hslt2ujtQSdCDjEoDsQr5E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NN9O7/gFk1Lu0voj3XZWaNIG3tO9qAqauL2HIr3aJNZYG6sErjLPD/exbvN6lYQiX
+         bt8ZJM7fS52FYas4GwKAJpD71NzE+zmcpfiTEfC0+ZIbIASkYXNArIk6qOawWrFGB0
+         2y4LIYHF8XI3bqdCNw+Vn5/+T2UNaKu0jbs4HNs4=
+Date:   Sun, 9 Jun 2019 13:22:35 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Dragan Cvetic <dragan.cvetic@xilinx.com>
+Cc:     arnd@arndb.de, michal.simek@xilinx.com,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>
+Subject: Re: [PATCH V5 02/11] misc: xilinx-sdfec: add core driver
+Message-ID: <20190609112235.GA16574@kroah.com>
+References: <1560038656-380620-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1560038656-380620-3-git-send-email-dragan.cvetic@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190608070230.55381-2-jitao.shi@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
-        a=syvv3YeMXAyozcvYpBgA:9 a=CjuIK1q_8ugA:10
+In-Reply-To: <1560038656-380620-3-git-send-email-dragan.cvetic@xilinx.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jitao.
+On Sun, Jun 09, 2019 at 01:04:07AM +0100, Dragan Cvetic wrote:
+> Implement a platform driver that matches with xlnx,
+> sd-fec-1.1 device tree node and registers as a character
+> device, including:
+> - SD-FEC driver binds to sdfec DT node.
+> - creates and initialise an initial driver dev structure.
+> - add the driver in Linux build and Kconfig.
+> 
+> Tested-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
+> Signed-off-by: Derek Kiernan <derek.kiernan@xilinx.com>
+> Signed-off-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
+> ---
+>  drivers/misc/Kconfig        |  12 +++++
+>  drivers/misc/Makefile       |   1 +
+>  drivers/misc/xilinx_sdfec.c | 118 ++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 131 insertions(+)
+>  create mode 100644 drivers/misc/xilinx_sdfec.c
+> 
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 6b0417b..319a6bf 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -471,6 +471,18 @@ config PCI_ENDPOINT_TEST
+>             Enable this configuration option to enable the host side test driver
+>             for PCI Endpoint.
+>  
+> +config XILINX_SDFEC
+> +	tristate "Xilinx SDFEC 16"
+> +	help
+> +	  This option enables support for the Xilinx SDFEC (Soft Decision
+> +	  Forward Error Correction) driver. This enables a char driver
+> +	  for the SDFEC.
+> +
+> +	  You may select this driver if your design instantiates the
+> +	  SDFEC(16nm) hardened block. To compile this as a module choose M.
+> +
+> +	  If unsure, say N.
+> +
+>  config MISC_RTSX
+>  	tristate
+>  	default MISC_RTSX_PCI || MISC_RTSX_USB
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index b9affcd..0cb3546 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -59,3 +59,4 @@ obj-$(CONFIG_OCXL)		+= ocxl/
+>  obj-y				+= cardreader/
+>  obj-$(CONFIG_PVPANIC)   	+= pvpanic.o
+>  obj-$(CONFIG_HABANA_AI)		+= habanalabs/
+> +obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+> diff --git a/drivers/misc/xilinx_sdfec.c b/drivers/misc/xilinx_sdfec.c
+> new file mode 100644
+> index 0000000..75cc980
+> --- /dev/null
+> +++ b/drivers/misc/xilinx_sdfec.c
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx SDFEC
+> + *
+> + * Copyright (C) 2019 Xilinx, Inc.
+> + *
+> + * Description:
+> + * This driver is developed for SDFEC16 (Soft Decision FEC 16nm)
+> + * IP. It exposes a char device which supports file operations
+> + * like  open(), close() and ioctl().
+> + */
+> +
+> +#include <linux/miscdevice.h>
+> +#include <linux/io.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/poll.h>
+> +#include <linux/slab.h>
+> +#include <linux/clk.h>
+> +
+> +static int xsdfec_ndevs;
 
-> +
-> +enum dsi_cmd_type {
-> +	INIT_GENENIC_CMD,
-> +	INIT_DCS_CMD,
-> +	DELAY_CMD,
-> +};
-> +
-> +struct panel_init_cmd {
-> +	enum dsi_cmd_type type;
-> +	size_t len;
-> +	const char *data;
-> +};
-> +
-> +#define _INIT_CMD(...) { \
-> +	.type = INIT_GENENIC_CMD,\
-> +	.len = sizeof((char[]){__VA_ARGS__}), \
-> +	.data = (char[]){__VA_ARGS__} }
-This macro is not used - so all code around INIT_GENENIC_CMD can be
-deleted.
+You should use an idr for this, not just a number you bump up and down.
+This will not work properly at all.
 
-	Sam
+Think about this situation:
+	probe device 0
+	xsdfec_ndevs = 1
+	probe device 1
+	xsdfec_ndevs = 2
+	remove device 0
+	xsdfec_ndevs = 0
+	probe another device
+	misc device fails due to duplicate name.
+
+thanks,
+
+greg k-h
