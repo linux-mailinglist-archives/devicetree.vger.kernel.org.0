@@ -2,175 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 062563A263
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2019 00:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA2B3A281
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2019 02:05:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727758AbfFHWbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jun 2019 18:31:50 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39730 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727486AbfFHWbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jun 2019 18:31:49 -0400
-Received: by mail-wm1-f65.google.com with SMTP id z23so4939676wma.4
-        for <devicetree@vger.kernel.org>; Sat, 08 Jun 2019 15:31:47 -0700 (PDT)
+        id S1727791AbfFIAEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jun 2019 20:04:31 -0400
+Received: from mail-eopbgr750043.outbound.protection.outlook.com ([40.107.75.43]:37886
+        "EHLO NAM02-BL2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727528AbfFIAEb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jun 2019 20:04:31 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=S28DLyjXokUnyk1aGzvoAYy88G1ove7E13LzQdJAzq0=;
-        b=zuoZpRu9oUw1sHGT3ppUJ7+Vs75+7D/ZvzAbFobf7EARySA1sKzbNtfNdO0D8+GYJW
-         ztKTZgxKZt2QxllxP+RaPuf8E5SF1CE4G9PD3Ai0G1AGcziHsHi+Gz+DZijXe4F6sH2d
-         Zsh1m0eAut8df49bvipd3m4/c/5pPzq5A4QoNTSVkHDhukedJ1qSaVhKZ9sM0xmtAnw9
-         75LxT4AVW2PlM63rt2S8STu1DRPQlcy5WwPVFdCNSMnhN8c7VwsFIul10umOfbC32aV/
-         FtIe7rsXVJEU4290y6VtJrrQ0RqI2iXR3xAYuShTFlGDN9314CB0nqskxp36phavTD8E
-         Zz7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=S28DLyjXokUnyk1aGzvoAYy88G1ove7E13LzQdJAzq0=;
-        b=U3gUMnXM6FH7w+tdvL/xOG//6pdd9GxJ4e+BauxBntD+WKET1EDltbVAUBtaiBOBGP
-         Q9dwGVRTjOSy9jzw9GVC9An1nrSVG0QgmDaSIsewf4+MOHFrZAMkF63HYsV+swe64ogq
-         E/xVHddXla7edMLmvVFsn3GKxaY3ZdRkdp15EpcpM6i90umbQec3mJF3lqAa00E2gHM/
-         SP1OpdkrAPwWDoH9XsZj0+UilUY3198fjtzoDPnqMIZKl+IBt1yLRU51ptzu75OHfQn0
-         UtfLlLIL6ECU/TAbJg6zOY0VJE22zpaTV3HMU9KqJpI0FEAz+TFbK9ydamQoUKXyfbFq
-         HM0w==
-X-Gm-Message-State: APjAAAX2jhtYHiU2I/sP0cCC0Kii6BBk43nlPsYdbHBum9ZUowCqyMFq
-        Is6STO986auU9iz3vSqzw097pQ==
-X-Google-Smtp-Source: APXvYqwUpOQOqWCfNdI1m+OMXGhW0n1biWiDxddt0MQyCtkg0a3M8EmzQGxSq/sDD5L93e9c5ovxvg==
-X-Received: by 2002:a1c:2d5:: with SMTP id 204mr8626493wmc.175.1560031517502;
-        Sat, 08 Jun 2019 15:05:17 -0700 (PDT)
-Received: from [192.168.0.41] (149.71.129.77.rev.sfr.net. [77.129.71.149])
-        by smtp.googlemail.com with ESMTPSA id o6sm5742670wmc.15.2019.06.08.15.05.15
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 08 Jun 2019 15:05:16 -0700 (PDT)
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Define values for the IPA
- governor for rock960
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>
-References: <20190604165802.7338-1-daniel.lezcano@linaro.org>
- <20190604165802.7338-2-daniel.lezcano@linaro.org>
- <CACRpkdazSvjt0G58dQOr=cw6mJTptNd3ZmEXduXVh4=01YHNvQ@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <945577ba-d57a-cdbc-27a3-755e13dade37@linaro.org>
-Date:   Sun, 9 Jun 2019 00:05:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sUiJZfns/jm85hjwk3+pNAmROPmpkrmOcInRJiafUNQ=;
+ b=vPfhCTc1Do6QGErV8nRDMBWQSWE61dw1+/sYjvg+Sb12ZIDiyY4Gr92FhmF7tCsMRWURsJ98BShYM45LArXEt1SEMwbfoRYIgIe+HSvQUhVv4+9bVCjRBVdFLVRBiZSROVa2KiBr5s1w72hBJ4Ev2AjNrUBuUdAv7jvv/9edNxc=
+Received: from CY4PR02CA0048.namprd02.prod.outlook.com (2603:10b6:903:117::34)
+ by CH2PR02MB6229.namprd02.prod.outlook.com (2603:10b6:610:d::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1965.17; Sun, 9 Jun
+ 2019 00:04:27 +0000
+Received: from SN1NAM02FT053.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::204) by CY4PR02CA0048.outlook.office365.com
+ (2603:10b6:903:117::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.12 via Frontend
+ Transport; Sun, 9 Jun 2019 00:04:27 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.80.198)
+ smtp.mailfrom=xilinx.com; arndb.de; dkim=none (message not signed)
+ header.d=none;arndb.de; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.80.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.80.198; helo=xir-pvapexch02.xlnx.xilinx.com;
+Received: from xir-pvapexch02.xlnx.xilinx.com (149.199.80.198) by
+ SN1NAM02FT053.mail.protection.outlook.com (10.152.72.102) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.1965.12 via Frontend Transport; Sun, 9 Jun 2019 00:04:26 +0000
+Received: from xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) by
+ xir-pvapexch02.xlnx.xilinx.com (172.21.17.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1531.3; Sun, 9 Jun 2019 01:04:24 +0100
+Received: from smtp.xilinx.com (172.21.105.198) by
+ xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) with Microsoft SMTP Server id
+ 15.1.1531.3 via Frontend Transport; Sun, 9 Jun 2019 01:04:24 +0100
+Envelope-to: arnd@arndb.de,
+ gregkh@linuxfoundation.org,
+ michal.simek@xilinx.com,
+ linux-arm-kernel@lists.infradead.org,
+ robh+dt@kernel.org,
+ mark.rutland@arm.com,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ dragan.cvetic@xilinx.com,
+ derek.kiernan@xilinx.com
+Received: from [149.199.110.15] (port=48046 helo=xirdraganc40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <dragan.cvetic@xilinx.com>)
+        id 1hZlJw-0001PN-5I; Sun, 09 Jun 2019 01:04:24 +0100
+From:   Dragan Cvetic <dragan.cvetic@xilinx.com>
+To:     <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
+        <michal.simek@xilinx.com>, <linux-arm-kernel@lists.infradead.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Derek Kiernan <derek.kiernan@xilinx.com>
+Subject: [PATCH V5 00/12]  misc: xilinx sd-fec drive
+Date:   Sun, 9 Jun 2019 01:04:05 +0100
+Message-ID: <1560038656-380620-1-git-send-email-dragan.cvetic@xilinx.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdazSvjt0G58dQOr=cw6mJTptNd3ZmEXduXVh4=01YHNvQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.80.198;IPV:CAL;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(346002)(136003)(39860400002)(376002)(2980300002)(54534003)(199004)(189003)(70206006)(14444005)(28376004)(51416003)(26005)(106002)(76130400001)(70586007)(6306002)(7696005)(36756003)(6666004)(356004)(47776003)(9786002)(2201001)(71366001)(60926002)(476003)(126002)(26826003)(44832011)(478600001)(426003)(50226002)(486006)(54906003)(16586007)(110136005)(956004)(966005)(2616005)(7636002)(36906005)(4326008)(8936002)(107886003)(8676002)(50466002)(316002)(48376002)(2906002)(5660300002)(186003)(305945005)(246002)(336012)(102446001);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6229;H:xir-pvapexch02.xlnx.xilinx.com;FPR:;SPF:Pass;LANG:en;PTR:unknown-80-198.xilinx.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 33ebcdcd-bb17-4c0a-735a-08d6ec6e09ad
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:CH2PR02MB6229;
+X-MS-TrafficTypeDiagnostic: CH2PR02MB6229:
+X-MS-Exchange-PUrlCount: 5
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-Microsoft-Antispam-PRVS: <CH2PR02MB62292F039AAC55899F5DACD8CB120@CH2PR02MB6229.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
+X-Forefront-PRVS: 006339698F
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: 7IwgdPpCCJ+OcChI8PM0V+fW7KSGxGLKdP3T7nAi3GaEztEoiXrGt4ya4f56LirY6D9g8TjyjlvwGpYFW9LAfiYDu4/8qtTeA5/vSAdUB3GxeKWcZ63f/gmHnQrXpul97IjGuukpMNBDGsaBvRYlSW+1dzBR+C7P+11APDmbrdI6nEw9e5MMmHOGDqR8r8uIeYRQwzYMeVzgYKVqmDr6VxnRIFjjwocwSaq+cUlJDRkYZeR16oBIatgPrDl4YZsBRXpLGrBoLpjxWC+mhrBTZIU58mRlpqpVJyPqcUiO7T1ggGEMIv1ogRxGNoJ3W/iG1sdHDOO1MZzQsW/4scoK5I73yPa8pcMAAlMVezVn9W7/zmVYwhjL+SkPYuXhd80raFQ4Ze9B2woMiPIqaVx0btaMaNa4eg7fCFXZmBm88A4=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2019 00:04:26.8720
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33ebcdcd-bb17-4c0a-735a-08d6ec6e09ad
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.80.198];Helo=[xir-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6229
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2019 00:18, Linus Walleij wrote:
-> On Tue, Jun 4, 2019 at 6:58 PM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
-> 
->> The intelligent power allocator PID coefficient to be set in sysfs
->> are:
->>
->>     k_d: 0
->>     k_po: 79
->>     k_i: 10
->>     k_pu: 50
-> 
-> With all the other interesting parametrization in the device tree
-> I kind of wonder why the PID regulator constants defaults are
-> not set up from device tree?
-> 
-> Any specific reason?
+This patchset is adding the full Soft Decision Forward Error
+Correction (SD-FEC) driver implementation, driver DT binding and
+driver documentation.
 
-None I'm aware of. I guess these constants are considered as tweak
-values and not hardware related.
+Forward Error Correction (FEC) codes such as Low Density Parity
+Check (LDPC) and turbo codes provide a means to control errors in
+data transmissions over unreliable or noisy communication
+channels. The SD-FEC Integrated Block is an optimized block for
+soft-decision decoding of these codes. Fixed turbo codes are
+supported directly, whereas custom and standardized LDPC codes
+are supported through the ability to specify the parity check
+matrix through an AXI4-Lite bus or using the optional programmable
+(PL)-based support logic. For the further information see
+https://www.xilinx.com/support/documentation/ip_documentation/
+sd_fec/v1_1/pg256-sdfec-integrated-block.pdf
 
-> To me it seems like the kind of stuff userpace will invariably just
-> get wrong or forget about (somebody just runs a different
-> distribution without the extra magic to set sysfs right) unless
-> we supply good defaults.
+This driver is a platform device driver which supports SDFEC16
+(16nm) IP. SD-FEC driver supports LDPC decoding and encoding and
+Turbo code decoding. LDPC codes can be specified on
+a codeword-by-codeword basis, also a custom LDPC code can be used.
 
-I agree.
+The SD-FEC driver exposes a char device interface and supports
+file operations: open(), close(), poll() and ioctl(). The driver
+allows only one usage of the device, open() limits the number of
+driver instances. The driver also utilize Common Clock Framework
+(CCF).
+
+The control and monitoring is supported over ioctl system call.
+The features supported by ioctl():
+- enable or disable data pipes to/from device
+- configure the FEC algorithm parameters
+- set the order of data
+- provide a control of a SDFEC bypass option
+- activates/deactivates SD-FEC
+- collect and provide statistical data
+- enable/disable interrupt mode
+
+Poll can be utilized to detect errors on IRQ trigger rather than
+using looping status and stats ioctl's.
+
+Tested-by: Santhosh Dyavanapally <SDYAVANA@xilinx.com>
+Tested by: Punnaiah Choudary Kalluri <punnaia@xilinx.com>
+Tested-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
+Signed-off-by: Derek Kiernan <derek.kiernan@xilinx.com>
+Signed-off-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
+
+Changes V1 -> V2:
+- Removed unnecesary comenting from the commit messages.
+- Removed error log messages which can be triggered from user space.
+- Corrected the SDFEC table end addresses.
+- Removed casting between user pointer and kernel pointer.
+- Corrected definition of ioctl command code, used a corect type for
+size parameters.
+- Changes to declarations of IOCTL that pass structures, i.e. do not
+use pointers for sizeof as prevents compile time checks
+- IOCTL size fix, using a paging to manage a memory. Implemented a big
+tables transfer from user to kernel with get_user_pages_fast().
+- Removed unnecessary check after container_of.
+- Removed not needed ioctl code checkes inside ioctl handler.
+- Implemented compat_ioctl.
+- Updated reviewer and tester lists.
+- Updated documentation, added Limitation chapter related to fork()
+and dup().
+
+Link to V1 patch series:
+https://lore.kernel.org/lkml/1552997064-432700-1-git-send-email-dragan.cvetic@xilinx.com/
+
+Changes V2 -> V3:
+- Corrected a licence in xilinx_sdfec.h changed to uapi licence format.
+- Corrected driver variable data types into user space data types.
+
+Link to V2 patch series:
+https://lore.kernel.org/lkml/1554804414-206099-1-git-send-email-dragan.cvetic@xilinx.com/
+
+Changes V3 -> V4:
+- Migrate to simplier misc driver
+- Fix DT example
+- Remove helper function
+- Remove unused open_count variable
+- Remove some logs
+- Change log level to dev_dbg in the most logs
+- Change spin lock to spin_lock_irqsave/spin_lock_irqrestore
+- Correct a licence date in xilinx_sdfec.c
+- Add PTR_ERR in clock handling
+
+Link to V3 patch series:
+https://lore.kernel.org/lkml/1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com/
+
+Changes V4 -> V5:
+- change atomic variables to c type variables
+- align spinlock name to better description
+- correct a logicla error in LDPC algorithm
+- remove log messages
+- remove useless if statements
+- remove not needed fec_id variable
+- squash commit 4 with 6
+
+Link to V4 patch series:
+https://lore.kernel.org/lkml/1558784245-108751-1-git-send-email-dragan.cvetic@xilinx.com/
+
+Dragan Cvetic (11):
+  dt-bindings: xilinx-sdfec: Add SDFEC binding
+  misc: xilinx-sdfec: add core driver
+  misc: xilinx_sdfec: Add CCF support
+  misc: xilinx_sdfec: Store driver config and state
+  misc: xilinx_sdfec: Add ability to configure turbo
+  misc: xilinx_sdfec: Add ability to configure LDPC
+  misc: xilinx_sdfec: Add ability to get/set config
+  misc: xilinx_sdfec: Support poll file operation
+  misc: xilinx_sdfec: Add stats & status ioctls
+  Docs: misc: xilinx_sdfec: Add documentation
+  MAINTAINERS: add maintainer for SD-FEC
+
+ .../devicetree/bindings/misc/xlnx,sd-fec.txt       |   58 +
+ Documentation/misc-devices/index.rst               |    1 +
+ Documentation/misc-devices/xilinx_sdfec.rst        |  291 ++++
+ MAINTAINERS                                        |   11 +
+ drivers/misc/Kconfig                               |   12 +
+ drivers/misc/Makefile                              |    1 +
+ drivers/misc/xilinx_sdfec.c                        | 1476 ++++++++++++++++++++
+ include/uapi/misc/xilinx_sdfec.h                   |  448 ++++++
+ 8 files changed, 2298 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+ create mode 100644 Documentation/misc-devices/xilinx_sdfec.rst
+ create mode 100644 drivers/misc/xilinx_sdfec.c
+ create mode 100644 include/uapi/misc/xilinx_sdfec.h
 
 -- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.7.4
 
