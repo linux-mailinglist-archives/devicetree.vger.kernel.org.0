@@ -2,94 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB403B39F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 13:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2344D3B3A5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 13:01:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389169AbfFJK7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 06:59:39 -0400
-Received: from mail-qt1-f194.google.com ([209.85.160.194]:38391 "EHLO
-        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389104AbfFJK7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 06:59:38 -0400
-Received: by mail-qt1-f194.google.com with SMTP id n11so7871246qtl.5
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 03:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lYS873xwFvgHJlWnAlNcy3+738aq6TAuNgiiGGA4PYI=;
-        b=DucPq623iXSUdIpU0sIAvsS6WoDxfPXDCI8M1Z/cLDSvAghOCQhzkn7n7CRUZTV+n4
-         D7kno671l158zYXcQ5CcTKS//ZnxFCq2lAzzR8jkfMiXRI7qZOJ39ioMp2roV7C+XDeh
-         18gxi0DLvMAiIoesnOPgfWT/y6QIiThSsrAXQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lYS873xwFvgHJlWnAlNcy3+738aq6TAuNgiiGGA4PYI=;
-        b=nA8pCXVKLrFIe0XqVEhR5EVvvqoEZtdGNzul6AZi78XQXgAS8QZU9RJxP6Ll01oyID
-         PcIGHb/2afl5C4vX34fGrPjR4ImOat8rCg3GLUk/tqB7o88kbwpZxnOVFzMN24uYcsC4
-         SdGudA1Qj5i9WiJMwY6G0NWQdxdpkVBP1AgFP3PfYOW3KMYKBLY+4LqgyW21Zqi7gYaO
-         RgLixwSQuQ1WnUVR3pd7vmUV70xFOA7fuE7+9UIc+Fzhr5nL0J5INCOFEw7nAAE8NzbJ
-         OtlYJVcQtqCOfw+l3Vo1pBicMt/iU5J8UjCnusmXBrVWdiCSQtrRX7YReL9M4QoV8xot
-         MsRQ==
-X-Gm-Message-State: APjAAAUAdhivJitl+vwPeQv0NKGiseHgVUoSYpY09YUNN7R/MPSL2ttV
-        Vw4WYzkMYYsq9EfCtPvz9IsWLtKKc4aZQ4r2DwPs1w==
-X-Google-Smtp-Source: APXvYqwfm97Zg0Zz9VmQex8hsHuU/WItevpCJwgENnoSKs11e4b9vXzYpWawPLMtR9aoaRwrQ+h4hOapW5NQrVQbggk=
-X-Received: by 2002:ac8:42d4:: with SMTP id g20mr58845965qtm.78.1560164377769;
- Mon, 10 Jun 2019 03:59:37 -0700 (PDT)
+        id S2389257AbfFJLBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 07:01:08 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:59498 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389191AbfFJLBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 07:01:08 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id BB26C6087F; Mon, 10 Jun 2019 11:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560164466;
+        bh=3trH4tk+FpSyNWsSjAcyso4X8iKz3q8bkwkkDW6kp0c=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=i8tCth4CABKcWpiDev0U4v9Cd0hlZ2e6aN4vxx7m5ErpM6rGgwy5QBYdBSJtDvF5U
+         j8bzacfJIq/qf06qk7YwR/Gp6vzz5q8/TOC1wawsnW0cDxcjP6b/p3ehn5lkSO0Vpy
+         3iwXiU1dhYnMx0jz2KBnZnY34TruF0R1BQl+q66U=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.201.2.161] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sricharan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D3A9060271;
+        Mon, 10 Jun 2019 11:01:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560164465;
+        bh=3trH4tk+FpSyNWsSjAcyso4X8iKz3q8bkwkkDW6kp0c=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Zs7bRIFkXPtBEcVN0IE3hG8C/WidjWXVwfjfZUssqzofuOtu47AoMtEwzeR2ie/QY
+         GGAv5OEPk1Xt899aW9drGqPiVD2eARuuAaZU03W5qIMRxlGDvUZTBFZiaCM/1+kM6K
+         AGqozjHVsq4h9oAHisZKzuUAsj48PMm85Iz6xaCY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D3A9060271
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
+Subject: Re: [PATCH 1/6] pinctrl: qcom: Add ipq6018 pinctrl driver
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     robh+dt@kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linus.walleij@linaro.org, agross@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org>
+ <1559754961-26783-2-git-send-email-sricharan@codeaurora.org>
+ <20190608032613.GC24059@builder>
+From:   Sricharan R <sricharan@codeaurora.org>
+Message-ID: <1766bee3-e4da-7c7c-9881-4a58885640dc@codeaurora.org>
+Date:   Mon, 10 Jun 2019 16:30:59 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190527043336.112854-1-hsinyi@chromium.org> <20190527043336.112854-2-hsinyi@chromium.org>
- <5ced598d.1c69fb81.dabd8.339d@mx.google.com>
-In-Reply-To: <5ced598d.1c69fb81.dabd8.339d@mx.google.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Mon, 10 Jun 2019 18:59:11 +0800
-Message-ID: <CAJMQK-i0z1EHCMK3eTya+SmK6GD_C4Ljvb7BHvsaMWLDxxmwMg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] fdt: add support for rng-seed
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Kees Cook <keescook@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190608032613.GC24059@builder>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 11:53 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Hsin-Yi Wang (2019-05-26 21:33:35)
-> > Introducing a chosen node, rng-seed, which is an entropy that can be
-> > passed to kernel called very early to increase initial device
-> > randomness. Bootloader should provide this entropy and the value is
-> > read from /chosen/rng-seed in DT.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
->
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->
+Hi Bjorn,
 
-Hi Rob,
+On 6/8/2019 8:56 AM, Bjorn Andersson wrote:
+> On Wed 05 Jun 10:15 PDT 2019, Sricharan R wrote:
+> 
+>> Add initial pinctrl driver to support pin configuration with
+>> pinctrl framework for ipq6018.
+>>
+>> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+>> Signed-off-by: Rajkumar Ayyasamy <arajkuma@codeaurora.org>
+>> Signed-off-by: speriaka <speriaka@codeaurora.org>
+> 
 
-Is this series accepted? Or is there any other related concern?
+ Thanks for the review !!
 
-If it's fine, I also have sent a patch for updating
-schemas/chosen.yaml document.
+> These should start with the author, then followed by each person that
+> handled the patch on its way to the list - so your name should probably
+> be last.  If you have more than one author add Co-developed-by, in
+> addition to the Signed-off-by.
+> 
+> And please spell our speriaka's first and last name.
+> 
+ 
+  ok, will fix it.
 
-Thanks
+> [..]
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.txt
+> [..]
+>> +- #gpio-cells:
+>> +	Usage: required
+>> +	Value type: <u32>
+>> +	Definition: must be 2. Specifying the pin number and flags, as defined
+>> +		    in <dt-bindings/gpio/gpio.h>
+> 
+> You're missing the required "gpio-ranges" property.
+> 
+
+ ok, will add.
+
+>> +
+> [..]
+>> +- function:
+>> +	Usage: required
+>> +	Value type: <string>
+>> +	Definition: Specify the alternative function to be configured for the
+>> +		    specified pins. Functions are only valid for gpio pins.
+>> +		    Valid values are:
+>> +	adsp_ext, alsp_int, atest_bbrx0, atest_bbrx1, atest_char, atest_char0,
+> 
+> Please indent these.
+> 
+
+ ok.
+
+> [..]
+> 
+> The rest should be in a separate patch from the binding.
+> 
+>> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
+> [..]
+>> +enum ipq6018_functions {
+> [..]
+>> +	msm_mux_NA,
+> 
+> I like when these are sorted, and if you make the last entry msm_mux__
+> the msm_pingroup array becomes easier to read.
+> 
+
+ ok.
+
+>> +};
+> [..]
+>> +static const struct msm_function ipq6018_functions[] = {
+> [..]
+>> +	FUNCTION(gcc_tlmm),
+> 
+> As above, please sort these.
+> 
+
+ ok.
+
+>> +};
+>> +
+>> +static const struct msm_pingroup ipq6018_groups[] = {
+>> +	PINGROUP(0, qpic_pad, wci20, qdss_traceclk_b, NA, burn0, NA, NA, NA,
+>> +		 NA),
+> 
+> Please ignore the 80-char and skip the line breaks.
+> 
+
+ ok.
+
+>> +	PINGROUP(1, qpic_pad, mac12, qdss_tracectl_b, NA, burn1, NA, NA, NA,
+>> +		 NA),
+>> +	PINGROUP(2, qpic_pad, wci20, qdss_tracedata_b, NA, NA, NA, NA, NA, NA),
+>> +	PINGROUP(3, qpic_pad, mac01, qdss_tracedata_b, NA, NA, NA, NA, NA, NA),
+>> +	PINGROUP(4, qpic_pad, mac01, qdss_tracedata_b, NA, NA, NA, NA, NA, NA),
+>> +	PINGROUP(5, qpic_pad4, mac21, qdss_tracedata_b, NA, NA, NA, NA, NA, NA),
+> 
+> Is there a reason to keep qpic_padN as separate functions from qpic_pad?
+> 
+  Hmm, the auto-gen scripts needs to be fixed. Will correct it.
+
+> [..]
+>> +static struct platform_driver ipq6018_pinctrl_driver = {
+>> +	.driver = {
+>> +		.name = "ipq6018-pinctrl",
+>> +		.owner = THIS_MODULE,
+> 
+> .owner is populated automagically by platform_driver_register, so please
+> omit this.
+> 
+
+ ok, missed it. will fix. 
+
+Regards,
+ Sricharan
+
+-- 
+"QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
