@@ -2,84 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD3FF3B880
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 17:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 412073B88E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 17:53:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390663AbfFJPuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 11:50:35 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:55201 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390646AbfFJPuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 11:50:35 -0400
-Received: by mail-wm1-f65.google.com with SMTP id g135so8945761wme.4;
-        Mon, 10 Jun 2019 08:50:34 -0700 (PDT)
+        id S2391292AbfFJPvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 11:51:37 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:40432 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390550AbfFJPvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 11:51:37 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w196so6584303oie.7;
+        Mon, 10 Jun 2019 08:51:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=j0cvrW0LiR2yAWHacC+paieH/BsPhO653fx0ilOqwbQ=;
-        b=XrYcjT7N66H7PZl89qVvjkYy2lcUUR+p2y5QlMqTrKSYLfpAHr+5bhPvrKUDoDW2Gn
-         gc8KQUOivmTgSCQR5PIvdxh3Np5UEb4HOX5Y/TgrcVFjLu1N/l6ZRZHcLQwZoZkFB2PK
-         dnHDV+JZ8jRZwikhp0mK3D3c9YrIoYwTbrv+XI3t6hXqkMvOg/CU3HdRVKBqqbiWsoYb
-         ZmrGKLaXtkNsJEc6GlFos05req6azeUDaSh/0lsYh1U2oaNxBegmv6xh+NlQSfkKDqss
-         qqcF/nZdT+NcxD5fD2IRb0hwvT8zPzyEN97nHCywHGtE8NnApD9T/+hYylByZ803tbq9
-         bqbA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZuHcFSp9RV6IeTzjDjOYf2cyyZ7YnVvyyWSJ347qo6A=;
+        b=Sl+8Rmb2SbYgcshM1Z0Js0gffJMpHV6iNwuBeKkftDEg6qJgrbJkm+yybg3CWqzJ2x
+         qR/7WtHww9+6woEtKc/YlVDtO0g8Y7A5kuCpvgscXSZXtgke0JyDjp7/Ew/b8W3AI/1n
+         gk/fXnfGrZlppgM50p9VnIWFn0op1rziV+e31gh6EDInrEX50Zgw9lXzNQTzACC4Jz4y
+         xuZfkn9Py55sJbkDpD6NHuD5fTNDddBbEKMWUsAunWtMuSUEU6AKzYsvxiPACEuq19TJ
+         TR+RMKGFu9vNaEkKqQAk3oVJ4ZRkCumfzKglVgjyGf5iNvXv1fklUHBgHDDTgVFNNHmA
+         0rXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j0cvrW0LiR2yAWHacC+paieH/BsPhO653fx0ilOqwbQ=;
-        b=LkyJM7Ptyd/XBfWaoPqtCtqgopS07+Epo331Ng7gcCzqHfFZpJ5WbIUBVhRFCgUo7u
-         MCUPiUu+O56UU+rZkJBXvaqdnj3ZP/Cn62z6AyCuZSxxhrlUCnpN7ZMGPIWPNtFkOYEx
-         o6U3gczVSBh3lRSOq54TSOepTxjQnPvJJARfYAfINEB1kk9yd7x4aLT6l3WxH0fQ9KYg
-         ++PS5jzF45lg/vJSrs4jWXLPXgJwwlqOO5FKfEW+TNp7rB4dYIGGKxJLMOzqVNANVmUY
-         M7aV47kLa25rj14tjANt2klsGj1yPsyRthOfcBE7iHABmSomAO6ckMejQHBF45E95WW7
-         Br+g==
-X-Gm-Message-State: APjAAAULBbIs9GAJbGSogXdn4YBVUJjTplAwQDRXFoch/BAKpow+SXcB
-        RJFbLF74A/5r8pzLVd+HbCQ=
-X-Google-Smtp-Source: APXvYqzLna+aVnK3OUUKYltUUrEa4DJqameWzsVBUOMurnw3ZFvBDcb4Rdm+t6M1JqO46Sv5jxt2fg==
-X-Received: by 2002:a7b:c751:: with SMTP id w17mr14836813wmk.127.1560181833344;
-        Mon, 10 Jun 2019 08:50:33 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133DDA40000C4C39937FBD289.dip0.t-ipconnect.de. [2003:f1:33dd:a400:c4:c399:37fb:d289])
-        by smtp.googlemail.com with ESMTPSA id z17sm9711917wru.21.2019.06.10.08.50.31
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 10 Jun 2019 08:50:32 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>, netdev@vger.kernel.org
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?q?Antoine=20T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: RE: [PATCH v2 10/11] dt-bindings: net: dwmac: Deprecate the PHY reset properties
-Date:   Mon, 10 Jun 2019 17:50:11 +0200
-Message-Id: <20190610155011.4305-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <ff6306c71a6b6ad174007f9f2823499d3093e21c.1560158667.git-series.maxime.ripard@bootlin.com>
-References: <ff6306c71a6b6ad174007f9f2823499d3093e21c.1560158667.git-series.maxime.ripard@bootlin.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZuHcFSp9RV6IeTzjDjOYf2cyyZ7YnVvyyWSJ347qo6A=;
+        b=mosc0Z4WQ2YUgEFcicolS++ZbxPUbOsXqOv3hgfZXBrFgz6RjRxbjPYClTpp3vP674
+         /mlut4Vn/qmN4ZozCl2cFn9el/bml+1OOUTet5UkHB6htHvKBQ7EyPAE8W8ET/71iFSG
+         Pcn1nkR9i2LOD0FMJCQFB0snS6yzimJbrwlROSLrOlu462FGHSR4aL+kxB7HgEHbBTmO
+         s9IhdDpIOWJ+Q/OREZ2OuopIuuR8ueCUhnElOgCPrcnOIIo7XgV6k033R/zFIm2TP87Z
+         WWdKzRoV6OBjNQLdIB5Sfq6MgqGIbvKgUcfHA5YrJE/NEM0F9VVYXX0TkXMKU+vj+8oZ
+         HuqQ==
+X-Gm-Message-State: APjAAAV2kfq6PdKeSNPDmHI82YUVqo1/L95X8h4pdEeK59QF7GOenbEg
+        jVytFcOIZMrGH4LWLl3txmXEvlRyfdNcOuVbLiw=
+X-Google-Smtp-Source: APXvYqwamDEZ2pn1KOIAFzWrcT6R7MpvRaH+7gsnVBBoMuB1pYAjxIlbqNIxs3Use8vvJu0GGPKKrdLueixgJ+eH8z4=
+X-Received: by 2002:aca:4403:: with SMTP id r3mr12815875oia.39.1560181896310;
+ Mon, 10 Jun 2019 08:51:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190609180621.7607-1-martin.blumenstingl@googlemail.com>
+ <20190609204510.GB8247@lunn.ch> <20190610114700.tymqzzax334ahtz4@flea>
+ <CAFBinCCs5pa1QmaV32Dk9rOADKGXXFpZsSK=LUk4CGWMrG5VUQ@mail.gmail.com> <20190610135109.7alkvruvw2jbtwph@flea>
+In-Reply-To: <20190610135109.7alkvruvw2jbtwph@flea>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 10 Jun 2019 17:51:25 +0200
+Message-ID: <CAFBinCAy=YR+qV=vYtAV4p5ftcR-VuYTJz3wuMY-k6PWcmbDQQ@mail.gmail.com>
+Subject: Re: [RFC next v1 0/5] stmmac: honor the GPIO flags for the PHY reset GPIO
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        peppe.cavallaro@st.com, alexandre.torgue@st.com,
+        joabreu@synopsys.com, devicetree@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Even though the DWMAC driver uses some driver specific properties, the PHY
-> core has a bunch of generic properties and can deal with them nicely.
-> 
-> Let's deprecate our specific properties.
-> 
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-I am not sure about the yaml syntax for deprecated properties but
-the description inside the .yaml file looks good to me so:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Mon, Jun 10, 2019 at 3:51 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi Martin,
+>
+> On Mon, Jun 10, 2019 at 02:31:17PM +0200, Martin Blumenstingl wrote:
+> > On Mon, Jun 10, 2019 at 1:47 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > Hi Andrew,
+> > >
+> > > On Sun, Jun 09, 2019 at 10:45:10PM +0200, Andrew Lunn wrote:
+> > > > > Patch #1 and #4 are minor cleanups which follow the boyscout rule:
+> > > > > "Always leave the campground cleaner than you found it."
+> > > >
+> > > > > I
+> > > > > am also looking for suggestions how to handle these cross-tree changes
+> > > > > (patch #2 belongs to the linux-gpio tree, patches #1, 3 and #4 should
+> > > > > go through the net-next tree. I will re-send patch #5 separately as
+> > > > > this should go through Kevin's linux-amlogic tree).
+> > > >
+> > > > Patches 1 and 4 don't seem to have and dependencies. So i would
+> > > > suggest splitting them out and submitting them to netdev for merging
+> > > > independent of the rest.
+> > >
+> > > Jumping on the occasion of that series. These properties have been
+> > > defined to deal with phy reset, while it seems that the PHY core can
+> > > now handle that pretty easily through generic properties.
+> > >
+> > > Wouldn't it make more sense to just move to that generic properties
+> > > that already deals with the flags properly?
+> > thank you for bringing this up!
+> > if anyone else (just like me) doesn't know about it, there are generic
+> > bindings defined here: [0]
+> >
+> > I just tested this on my X96 Max by defining the following properties
+> > inside the PHY node:
+> >   reset-delay-us = <10000>;
+> >   reset-assert-us = <10000>;
+> >   reset-deassert-us = <10000>;
+> >   reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+> >
+> > that means I don't need any stmmac patches which seems nice.
+>
+> I'm glad it works for you :)
+>
+> > instead I can submit a patch to mark the snps,reset-gpio properties in
+> > the dt-bindings deprecated (and refer to the generic bindings instead)
+> > what do you think?
+>
+> I already did as part of the binding reworks I did earlier today:
+> http://lists.infradead.org/pipermail/linux-arm-kernel/2019-June/658427.html
+great, thank you - you have my Reviewed-by!
