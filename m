@@ -2,123 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2FF3AD3E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 04:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A92A93AD94
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 05:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387517AbfFJCvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jun 2019 22:51:52 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:45416 "EHLO inva020.nxp.com"
+        id S2387457AbfFJDTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jun 2019 23:19:33 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:57102 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387490AbfFJCvv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 9 Jun 2019 22:51:51 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6A0951A074A;
-        Mon, 10 Jun 2019 04:51:49 +0200 (CEST)
+        id S2387400AbfFJDTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 9 Jun 2019 23:19:33 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 952AC2006C2;
+        Mon, 10 Jun 2019 05:19:30 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6833D1A0732;
-        Mon, 10 Jun 2019 04:51:34 +0200 (CEST)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 731C32006C8;
+        Mon, 10 Jun 2019 05:19:26 +0200 (CEST)
 Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8F70C40310;
-        Mon, 10 Jun 2019 10:51:18 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, corbet@lwn.net,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, catalin.marinas@arm.com, will.deacon@arm.com,
-        rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, aisheng.dong@nxp.com,
-        ulf.hansson@linaro.org, peng.fan@nxp.com,
-        mchehab+samsung@kernel.org, linux@roeck-us.net,
-        daniel.baluta@nxp.com, maxime.ripard@bootlin.com, olof@lixom.net,
-        jagan@amarulasolutions.com, horms+renesas@verge.net.au,
-        leonard.crestez@nxp.com, bjorn.andersson@linaro.org,
-        dinguyen@kernel.org, enric.balletbo@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V14 5/5] arm64: dts: imx: add i.MX8QXP thermal support
-Date:   Mon, 10 Jun 2019 10:52:54 +0800
-Message-Id: <20190610025254.23940-5-Anson.Huang@nxp.com>
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 15731402D2;
+        Mon, 10 Jun 2019 11:19:21 +0800 (SGT)
+From:   Yangbo Lu <yangbo.lu@nxp.com>
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Yangbo Lu <yangbo.lu@nxp.com>
+Subject: [PATCH 0/6] Reuse ptp_qoriq driver for dpaa2-ptp
+Date:   Mon, 10 Jun 2019 11:21:02 +0800
+Message-Id: <20190610032108.5791-1-yangbo.lu@nxp.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190610025254.23940-1-Anson.Huang@nxp.com>
-References: <20190610025254.23940-1-Anson.Huang@nxp.com>
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+Although dpaa2-ptp.c driver is a fsl_mc_driver which
+is using MC APIs for register accessing, it's same IP
+block with eTSEC/DPAA/ENETC 1588 timer.
+This patch-set is to convert to reuse ptp_qoriq driver by
+using register ioremap and dropping related MC APIs.
+However the interrupts could only be handled by MC which
+fires MSIs to ARM cores. So the interrupt enabling and
+handling still rely on MC APIs. MC APIs for interrupt
+and PPS event support are also added by this patch-set.
 
-Add i.MX8QXP CPU thermal zone support.
+Yangbo Lu (6):
+  ptp: add QorIQ PTP support for DPAA2
+  dpaa2-ptp: reuse ptp_qoriq driver
+  dt-binding: ptp_qoriq: support DPAA2 PTP compatible
+  arm64: dts: fsl: add ptp timer node for dpaa2 platforms
+  dpaa2-ptp: add interrupt support
+  MAINTAINERS: maintain DPAA2 PTP driver in QorIQ PTP entry
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No change.
----
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 37 ++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ .../devicetree/bindings/ptp/ptp-qoriq.txt          |   3 +-
+ MAINTAINERS                                        |   9 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi     |   8 +
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi     |   8 +
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |   8 +
+ drivers/net/ethernet/freescale/dpaa2/Kconfig       |   3 +-
+ drivers/net/ethernet/freescale/dpaa2/dpaa2-ptp.c   | 242 +++++++++++----------
+ drivers/net/ethernet/freescale/dpaa2/dprtc-cmd.h   |  48 +++-
+ drivers/net/ethernet/freescale/dpaa2/dprtc.c       | 191 ++++++++++++----
+ drivers/net/ethernet/freescale/dpaa2/dprtc.h       |  62 ++++--
+ drivers/ptp/Kconfig                                |   2 +-
+ 11 files changed, 386 insertions(+), 198 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index b2cb818..12044be 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/pads-imx8qxp.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -168,6 +169,11 @@
- 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
- 			timeout-sec = <60>;
- 		};
-+
-+		tsens: thermal-sensor {
-+			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
-+			#thermal-sensor-cells = <1>;
-+		};
- 	};
- 
- 	timer {
-@@ -536,4 +542,35 @@
- 			power-domains = <&pd IMX_SC_R_GPIO_7>;
- 		};
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		cpu-thermal0 {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tsens IMX_SC_R_SYSTEM>;
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <107000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+				cpu_crit0: trip1 {
-+					temperature = <127000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert0>;
-+					cooling-device =
-+						<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+
-+				};
-+			};
-+		};
-+	};
- };
 -- 
 2.7.4
 
