@@ -2,28 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 158E33B27A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 11:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0283D3B280
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 11:52:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389126AbfFJJw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 05:52:29 -0400
-Received: from sauhun.de ([88.99.104.3]:39668 "EHLO pokefinder.org"
+        id S2389144AbfFJJwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 05:52:30 -0400
+Received: from sauhun.de ([88.99.104.3]:39710 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388664AbfFJJw3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 05:52:29 -0400
+        id S2388796AbfFJJwa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 05:52:30 -0400
 Received: from localhost (p54B33062.dip0.t-ipconnect.de [84.179.48.98])
-        by pokefinder.org (Postfix) with ESMTPSA id 458282C077A;
-        Mon, 10 Jun 2019 11:52:27 +0200 (CEST)
+        by pokefinder.org (Postfix) with ESMTPSA id EC4C94A1203;
+        Mon, 10 Jun 2019 11:52:28 +0200 (CEST)
 From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
 To:     linux-i2c@vger.kernel.org
 Cc:     Peter Rosin <peda@axentia.se>,
         Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: [PATCH 0/3] treewide: simplify getting the adapter of an I2C client, part2
-Date:   Mon, 10 Jun 2019 11:51:53 +0200
-Message-Id: <20190610095157.11814-1-wsa+renesas@sang-engineering.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 3/3] of: unittest: simplify getting the adapter of a client
+Date:   Mon, 10 Jun 2019 11:51:56 +0200
+Message-Id: <20190610095157.11814-4-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.19.1
+In-Reply-To: <20190610095157.11814-1-wsa+renesas@sang-engineering.com>
+References: <20190610095157.11814-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -31,48 +34,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a small follow-up series to a larger cleanup series already
-sent:
+We have a dedicated pointer for that, so use it. Much easier to read and
+less computation involved.
 
-http://patchwork.ozlabs.org/project/linux-i2c/list/?series=112605
-("treewide: simplify getting the adapter of an I2C client")
+Reported-by: Peter Rosin <peda@axentia.se>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-These drivers use a bit different but still unnecessarily complex way to
-determine the adapter of a client. Thanks to Peter Rosin for pointing
-them out. They have been fixed manually, no need for a coccinelle script
-here. Build tested, too. From the previous cover-letter:
+Please apply to your subsystem tree.
 
-The I2C core populates the parent pointer of a client as:
-	client->dev.parent = &client->adapter->dev;
+ drivers/of/unittest.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Now take into consideration that
-	to_i2c_adapter(&adapter->dev);
-
-is a complicated way of saying 'adapter', then we can even formally
-prove that the complicated expression can be simplified by using
-client->adapter.
-
-A branch can be found here:
-
-git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/no_to_adapter
-
-Please apply the patches to the individual subsystem trees. There are no
-dependencies.
-
-Thanks and kind regards,
-
-   Wolfram
-
-Wolfram Sang (3):
-  hwmon: lm90: simplify getting the adapter of a client
-  leds: is31fl319x: simplify getting the adapter of a client
-  of: unittest: simplify getting the adapter of a client
-
- drivers/hwmon/lm90.c           | 2 +-
- drivers/leds/leds-is31fl319x.c | 2 +-
- drivers/of/unittest.c          | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 3832a5de4602..e6b175370f2e 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1946,7 +1946,7 @@ static int unittest_i2c_mux_probe(struct i2c_client *client,
+ {
+ 	int i, nchans;
+ 	struct device *dev = &client->dev;
+-	struct i2c_adapter *adap = to_i2c_adapter(dev->parent);
++	struct i2c_adapter *adap = client->adapter;
+ 	struct device_node *np = client->dev.of_node, *child;
+ 	struct i2c_mux_core *muxc;
+ 	u32 reg, max_reg;
 -- 
 2.19.1
 
