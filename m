@@ -2,109 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A86523B2BE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0B203B2EF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:20:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389001AbfFJKKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 06:10:04 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46480 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388647AbfFJKKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 06:10:04 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 03D88602F3; Mon, 10 Jun 2019 10:10:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560161403;
-        bh=oMzk0exJ+xInm/wmcPKtXW9VAu75APw0ZR5LIiqwBMA=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ZUu4FyQ4F3QEJLmauV8ESFFe6E8Wsayf9AmyCygmDWmL4yGaNIFiSk/K84j/JFl99
-         QuWVJf67fyJ/eJGBAXy/l3NDfCne5VePno+QCvl4fjHBHVId8nUfuIe72UFZespvT8
-         BqFVgkO74GArdKHGYQt3myV9/pAROEAoYExzHRkU=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.201.2.161] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sricharan@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D6A0E60265;
-        Mon, 10 Jun 2019 10:09:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560161402;
-        bh=oMzk0exJ+xInm/wmcPKtXW9VAu75APw0ZR5LIiqwBMA=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=SaLCPnR1Et/BEyNk+ZcTTxeIwo8gyJ/n2d+q5Xul05WI4YqSh0wyjjYUlXeZt+8+Z
-         +O2BI26+KyHgNgyePciF/SQ4O9PzcgvrTyBtFsV+9RRbmDVIbSqwDUzeLy3D/3kh8l
-         P7GuAlKBKloZtGxGR4J58CeiejGr35K20apQDEdE=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D6A0E60265
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
-Subject: Re: [PATCH 5/6] arm64: dts: Add ipq6018 SoC and CP01 board support
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>, agross@kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?0J/QsNCy0LXQuw==?= <be.dissent@gmail.com>
-References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org>
- <1559754961-26783-6-git-send-email-sricharan@codeaurora.org>
- <CAAd0S9DKqAgFPgLzHiCBiJgE+OmUW7ainyjM_3-RyfCoKEa51A@mail.gmail.com>
-From:   Sricharan R <sricharan@codeaurora.org>
-Message-ID: <50231fba-7212-f8b9-9313-0c79294d4cc6@codeaurora.org>
-Date:   Mon, 10 Jun 2019 15:39:56 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2389304AbfFJKTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 06:19:30 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:10211 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389291AbfFJKT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 06:19:29 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cfe2eaf0003>; Mon, 10 Jun 2019 03:19:27 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 10 Jun 2019 03:19:27 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 10 Jun 2019 03:19:27 -0700
+Received: from HQMAIL102.nvidia.com (172.18.146.10) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 10 Jun
+ 2019 10:19:27 +0000
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL102.nvidia.com
+ (172.18.146.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 10 Jun
+ 2019 10:19:26 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Mon, 10 Jun 2019 10:19:26 +0000
+Received: from nkristam-ubuntu.nvidia.com (Not Verified[10.19.65.118]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5cfe2eab0001>; Mon, 10 Jun 2019 03:19:26 -0700
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+To:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Nagarjuna Kristam <nkristam@nvidia.com>
+Subject: [Patch V4 0/8] Tegra XUSB gadget driver support
+Date:   Mon, 10 Jun 2019 15:49:01 +0530
+Message-ID: <1560161949-26031-1-git-send-email-nkristam@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <CAAd0S9DKqAgFPgLzHiCBiJgE+OmUW7ainyjM_3-RyfCoKEa51A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560161967; bh=oBEr5mcRGFrB+1v7ouq44/U7r5dUC3NPVoWuyyGNJ0Y=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=l3YvMUtaUJa5iixCNWbXnkrBk082itgLLMv62yEImzM0Nin/3Nz+2NBeQMh0wswGs
+         KxH5+Dkka3tu/0q9IdO9KnyP+7XFlWOOczDnNpXZ6wXyxTegSx1BYKgvNnKOdSuvEu
+         bYTW4zlv6Sr/M9wWyYLh91tiDIjXc31k86UfZ7ZZ1AmdE5eFGM76kmB9X/FP2gO5ws
+         zpvJmt4XJYhIGjeCUFzF8Tr+JDk40lLqsQFrNHnABBBdT2TP4KdYhYAj29sspREE0y
+         /uUkveW+0av7+aUrlow0eisUT11vPUP/HIh8Erx+OAIowtHywba6SjT53wphGE0OoS
+         QPuvv7/OT/9Bg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
+This is the fourth version of series "Tegra XUSB gadget driver support"
 
-On 6/6/2019 2:11 AM, Christian Lamparter wrote:
-> On Wed, Jun 5, 2019 at 7:16 PM Sricharan R <sricharan@codeaurora.org> wrote:
->>
->> Add initial device tree support for the Qualcomm IPQ6018 SoC and
->> CP01 evaluation board.
->>
->> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
->> Signed-off-by: Abhishek Sahu <absahu@codeaurora.org>
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->>
->> +       clocks {
->> +               sleep_clk: sleep_clk {
->> +                       compatible = "fixed-clock";
->> +                       clock-frequency = <32000>;
->> +                       #clock-cells = <0>;
->> +               };
->> +
-> Recently-ish, we ran into an issue with the clock-frequency of the sleep_clk
-> on older IPQ40XX (and IPQ806x) on the OpenWrt Github and ML.
-> From what I know, the external "32KHz" crystals have 32768 Hz, but the QSDK
-> declares them at 32000 Hz. Since you probably have access to the BOM and
-> datasheets. Can you please confirm what's the real clock frequency for
-> the IPQ6018.
-> (And maybe also for the sleep_clk of the IPQ4018 as well?).
-> 
+Patches 1-3 are phy driver changes to add support for device
+mode.
+Patches 4-7 are changes related to XUSB device mode
+controller driver.
+Patch 8 is to enable XUDC driver in defconfig
 
-What exactly is the issue that you faced ?
-Looking in to the docs, it is <32000> only on ipq6018 and ipq40xx as well.
+Test Steps(USB 2.0):
+- Enable "USB Gadget precomposed configurations" in defconfig
+- Build, flash and boot Jetson TX1
+- Connect Jetson TX1 and Ubuntu device using USB A to Micro B
+  cable
+- After boot on Jetson TX1 terminal usb0 network device should be
+  enumerated
+- Assign static ip to usb0 on Jetson TX1 and corresponding net
+  device on ubuntu
+- Run ping test and transfer test(used scp) to check data transfer
+  communication
 
-Regards,
- Sricharan
+SS mode is verified by enabling Type A port as peripheral
+
+This patch series is dependent on
+https://patchwork.kernel.org/cover/10966353/
+
+---
+v4:
+* patch 1 - no changes
+* corrected companion device search based on inputs from Thierry in patch 2
+* removed unneeded dev variable and corrected value read in
+  tegra210_utmi_port_reset function in patch 3
+* dt binding doc and dtb files are corrected for alignments.
+  Replaced extcon-usb-gpio with usb role switch.
+* Added support for USB role switch instead of extcon-usb-gpio and other minor
+  comments as suggested by Chunfeng.
+* Enabled xudc driver as module instead of part of kernel in patch 8
+---
+V3:
+* Rebased patch 1 to top of tree.
+* Fixed bug in patch 2, where xudc interrupts dont get generated if USB host
+  mode fails to probe. Moved fake port detection logic to generic xusb.c. fake
+  usb port data is updated based on soc flag need_fake_usb3_port.
+* Added extra lines whereever necessary to make code more readable in patch 3
+  and 7.
+* dt binding doc is corrected for typos and extcon references. Also added
+  details for clocks and removed xusb_ references to clock and power-domain
+  names and accordingly patch 5 is updated.
+* removed avdd-pll-utmip-supply in patch 6, as its now part of padctl driver.
+* Patch 8 has no changes.
+---
+V2:
+* Patches 1-3 are new patches in this series, which splits unified features
+  patch to speprated features and removes need of port-fake entry in DT.
+* Patch 4 is re-arragend dt-bindings patch which incorporates previous
+  patch comments to sort DT entries alphabetically, addresses name changes
+  and PM domain details added.
+* Patch 5-6 are re-arranged DT patches with major changes - sort entries
+  alphabetically, and adds clock names.
+* Patch 7 is UDC driver tegra XUSB device mode controller with major
+  changes - remove un-used module params, lockinng for device_mode flag,
+  moving un-needed info logs to debug level, making changes feature flag
+  dependent rather than SOC based macros and other error handling in probe.
+* Patch 8 has no changes.
+
+Nagarjuna Kristam (8):
+  phy: tegra: xusb: t210: add XUSB dual mode support
+  phy: tegra: xusb: t210: add usb3 port fake support
+  phy: tegra: xusb: t210: add vbus override support
+  dt-bindings: usb: Add NVIDIA Tegra XUSB device mode controller binding
+  arm64: tegra: Add xudc node for Tegra210
+  arm64: tegra: Enable xudc on Jetson TX1
+  usb: gadget: Add UDC driver for tegra XUSB device mode controller
+  arm64: defconfig: Enable tegra XUDC driver
+
+ .../devicetree/bindings/usb/nvidia,tegra-xudc.txt  |  108 +
+ arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi     |   29 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   19 +
+ arch/arm64/configs/defconfig                       |    1 +
+ drivers/phy/tegra/xusb-tegra210.c                  |  135 +-
+ drivers/phy/tegra/xusb.c                           |   87 +
+ drivers/phy/tegra/xusb.h                           |    4 +
+ drivers/usb/gadget/udc/Kconfig                     |   11 +
+ drivers/usb/gadget/udc/Makefile                    |    1 +
+ drivers/usb/gadget/udc/tegra_xudc.c                | 3808 ++++++++++++++++++++
+ include/linux/phy/tegra/xusb.h                     |    6 +-
+ 11 files changed, 4204 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+ create mode 100644 drivers/usb/gadget/udc/tegra_xudc.c
 
 -- 
-"QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+2.7.4
+
