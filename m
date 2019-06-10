@@ -2,88 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FFA13B2A1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A86523B2BE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388354AbfFJKAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 06:00:38 -0400
-Received: from foss.arm.com ([217.140.110.172]:39332 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388056AbfFJKAi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 06:00:38 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F84C344;
-        Mon, 10 Jun 2019 03:00:37 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B2E13F246;
-        Mon, 10 Jun 2019 03:02:17 -0700 (PDT)
-Date:   Mon, 10 Jun 2019 11:00:33 +0100
-From:   Andre Przywara <andre.przywara@foss.arm.com>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>
-Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
-Message-ID: <20190610110033.28d21d21@donnerap.cambridge.arm.com>
-In-Reply-To: <AM0PR04MB448168C72F1D40C1B9BEB1F788130@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <20190603083005.4304-1-peng.fan@nxp.com>
-        <20190603083005.4304-3-peng.fan@nxp.com>
-        <866db682-785a-e0a6-b394-bb65c7a694c6@gmail.com>
-        <20190606142056.68272dc0@donnerap.cambridge.arm.com>
-        <AM0PR04MB448168C72F1D40C1B9BEB1F788130@AM0PR04MB4481.eurprd04.prod.outlook.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        id S2389001AbfFJKKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 06:10:04 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:46480 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388647AbfFJKKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 06:10:04 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 03D88602F3; Mon, 10 Jun 2019 10:10:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560161403;
+        bh=oMzk0exJ+xInm/wmcPKtXW9VAu75APw0ZR5LIiqwBMA=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=ZUu4FyQ4F3QEJLmauV8ESFFe6E8Wsayf9AmyCygmDWmL4yGaNIFiSk/K84j/JFl99
+         QuWVJf67fyJ/eJGBAXy/l3NDfCne5VePno+QCvl4fjHBHVId8nUfuIe72UFZespvT8
+         BqFVgkO74GArdKHGYQt3myV9/pAROEAoYExzHRkU=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.201.2.161] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sricharan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D6A0E60265;
+        Mon, 10 Jun 2019 10:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560161402;
+        bh=oMzk0exJ+xInm/wmcPKtXW9VAu75APw0ZR5LIiqwBMA=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=SaLCPnR1Et/BEyNk+ZcTTxeIwo8gyJ/n2d+q5Xul05WI4YqSh0wyjjYUlXeZt+8+Z
+         +O2BI26+KyHgNgyePciF/SQ4O9PzcgvrTyBtFsV+9RRbmDVIbSqwDUzeLy3D/3kh8l
+         P7GuAlKBKloZtGxGR4J58CeiejGr35K20apQDEdE=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D6A0E60265
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
+Subject: Re: [PATCH 5/6] arm64: dts: Add ipq6018 SoC and CP01 board support
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>, agross@kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?0J/QsNCy0LXQuw==?= <be.dissent@gmail.com>
+References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org>
+ <1559754961-26783-6-git-send-email-sricharan@codeaurora.org>
+ <CAAd0S9DKqAgFPgLzHiCBiJgE+OmUW7ainyjM_3-RyfCoKEa51A@mail.gmail.com>
+From:   Sricharan R <sricharan@codeaurora.org>
+Message-ID: <50231fba-7212-f8b9-9313-0c79294d4cc6@codeaurora.org>
+Date:   Mon, 10 Jun 2019 15:39:56 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <CAAd0S9DKqAgFPgLzHiCBiJgE+OmUW7ainyjM_3-RyfCoKEa51A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jun 2019 01:32:49 +0000
-Peng Fan <peng.fan@nxp.com> wrote:
+Hi Christian,
 
-Hi Peng,
-
-[ ... ]
-
-> > > > +
-> > > > +	irq_count = platform_irq_count(pdev);
-> > > > +	if (irq_count == -EPROBE_DEFER)
-> > > > +		return irq_count;
-> > > > +
-> > > > +	if (irq_count && irq_count != val) {
-> > > > +		dev_err(dev, "Interrupts not match num-chans\n");  
-> > >
-> > > Interrupts property does not match \"arm,num-chans\" would be more  
-> > correct.
-> > 
-> > Given that interrupts are optional, do we have to rely on this?   
+On 6/6/2019 2:11 AM, Christian Lamparter wrote:
+> On Wed, Jun 5, 2019 at 7:16 PM Sricharan R <sricharan@codeaurora.org> wrote:
+>>
+>> Add initial device tree support for the Qualcomm IPQ6018 SoC and
+>> CP01 evaluation board.
+>>
+>> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+>> Signed-off-by: Abhishek Sahu <absahu@codeaurora.org>
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>>
+>> +       clocks {
+>> +               sleep_clk: sleep_clk {
+>> +                       compatible = "fixed-clock";
+>> +                       clock-frequency = <32000>;
+>> +                       #clock-cells = <0>;
+>> +               };
+>> +
+> Recently-ish, we ran into an issue with the clock-frequency of the sleep_clk
+> on older IPQ40XX (and IPQ806x) on the OpenWrt Github and ML.
+> From what I know, the external "32KHz" crystals have 32768 Hz, but the QSDK
+> declares them at 32000 Hz. Since you probably have access to the BOM and
+> datasheets. Can you please confirm what's the real clock frequency for
+> the IPQ6018.
+> (And maybe also for the sleep_clk of the IPQ4018 as well?).
 > 
-> If there is interrupt property, the interrupts should match channel counts.
-> 
-> Do we actually
-> > need one interrupt per channel?  
-> 
-> I thought about this, provide one interrupt for all channels.
-> But there is no good way to let interrupt handlers know which
-> channel triggers the interrupt. So I use one interrupt per channel.
 
-Yeah, I was wondering about this as well. Seems like we need this indeed.
-Just sounds wasteful, but I guess we don't expect many channels anyway,
-normally.
+What exactly is the issue that you faced ?
+Looking in to the docs, it is <32000> only on ipq6018 and ipq40xx as well.
 
-Cheers,
-Andre.
+Regards,
+ Sricharan
+
+-- 
+"QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
