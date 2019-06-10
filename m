@@ -2,64 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80EA23BDB1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 22:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2533BDD7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 22:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389339AbfFJUoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 16:44:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55024 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389331AbfFJUoh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 16:44:37 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DB090206E0;
-        Mon, 10 Jun 2019 20:44:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560199477;
-        bh=TQljNawgeS3syFsZVeamRbKXVSffVZ+/siT/mXyUdiE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=X+YK4dOZClVaFYO/qO+rDblZz00FaqAg+WXMpgVdI/ZgkXTo8x8h+ezTGxjLnJH+j
-         +HMsu2Zv+zCyBiGLKiigBtvmHBjkWaRlV0arykNeMLTw7iVNsnTeHuzMAklAJ+HXQv
-         tTYpA/sJVkYMlAuNnj1WAmgWNui6UNOu1oLsj07U=
-Received: by mail-qt1-f176.google.com with SMTP id p15so4563103qtl.3;
-        Mon, 10 Jun 2019 13:44:36 -0700 (PDT)
-X-Gm-Message-State: APjAAAXCkKhzX1M8PmI0q/ghzfSrcDDi216981TNclRbXzbyGo6zlhnI
-        euvXgeHUbA2jY+I11uqSTJnyeZ6yEnd4rI5ggA==
-X-Google-Smtp-Source: APXvYqx6sejecUTrk/D88IaH1Q9KP1//qmtoNPj2f9zntvm9PmXyt0G2QFrlQbq1rtSAVSuTS4POxPsL4m7R2LKjzI0=
-X-Received: by 2002:ac8:2ec3:: with SMTP id i3mr16077099qta.110.1560199476202;
- Mon, 10 Jun 2019 13:44:36 -0700 (PDT)
+        id S2389492AbfFJUwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 16:52:36 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:45255 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389033AbfFJUwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 16:52:36 -0400
+Received: by mail-pf1-f196.google.com with SMTP id s11so5955899pfm.12
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 13:52:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=TtEZnLcn0gJtYgNtefImovOXpRBGoVP9a9JO5/uO7mA=;
+        b=FIBlK5D4o996BrhrHtNwAumtr52YJOJulb5R9MIVRrBQ+82uLHZkW9gnZBQLTf1nBk
+         t33FwrKxeQCGeJE+eP9INkquw9PZAal/0UWz7pvRvRpqkFy9iDhy3LfFZNuHBd5zsviY
+         2dbWvNOBSwthTmZZQi/K3uwowWF5thD5Ilioo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TtEZnLcn0gJtYgNtefImovOXpRBGoVP9a9JO5/uO7mA=;
+        b=ttE1guXXQkGzVunZY1DC7+7mWyF7+qD1VHB9KhAmDzV0SxRw1DmTYycCGkrgVrTiXU
+         4sPJW4zRIE6B0U0nM0OMc8soo69RNE/qiRa063MOyl5Jp0VWfXn+fxKd036xQ3CMXILU
+         6EGpQEtXJwht31S6z6Yf5DBYtrv9xzLetr9faEsr1AKBDi63kM6+FKyHEdt+gUcKPH2o
+         DdP9dF8fyAiWCpgC6yXHVLIL9lUeYjOe6bKegQzC/dOoZUsKSZahJKWITX90YLxwxZA5
+         M20dSXcdL5RsEvhIecSi+SXz05CsxbL+3DrLRzesakI0pvMg3fUyZNlkgeQs6MDT/dRv
+         1PbQ==
+X-Gm-Message-State: APjAAAUWQDYJC/J2cKH1ZK6c6JOAImROy1F4Z+gvett6MfGQCUylUZwu
+        lRdKtLd/s4P3bydkV+VT6V8tig==
+X-Google-Smtp-Source: APXvYqw4NG+K4opJIst2h53KlxqakMJ7/NCRAA3/dd71Lr/ZKZxIVzfUqDSc18bQM52kaMEuesFGFw==
+X-Received: by 2002:a62:778d:: with SMTP id s135mr4575261pfc.204.1560199955411;
+        Mon, 10 Jun 2019 13:52:35 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id n7sm13961857pgi.54.2019.06.10.13.52.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Jun 2019 13:52:34 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 13:52:33 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Doug Anderson <dianders@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Brian Norris <briannorris@google.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190610205233.GB137143@google.com>
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
 MIME-Version: 1.0
-References: <1559577023-558-1-git-send-email-suzuki.poulose@arm.com> <1559577023-558-13-git-send-email-suzuki.poulose@arm.com>
-In-Reply-To: <1559577023-558-13-git-send-email-suzuki.poulose@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 10 Jun 2019 14:44:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLRwC6ZnSgrp_N8X-vefUEUCaAakG7Dvu034WMWzaYYZg@mail.gmail.com>
-Message-ID: <CAL_JsqLRwC6ZnSgrp_N8X-vefUEUCaAakG7Dvu034WMWzaYYZg@mail.gmail.com>
-Subject: Re: [RFC PATCH 12/57] of: platform: Use bus_find_device_by_of_node helper
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 3, 2019 at 9:51 AM Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
->
-> Switch to using the bus_find_device_by_of_node helper
->
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> ---
->  drivers/of/platform.c | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
+Hi Pavel,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Sat, Jun 08, 2019 at 11:02:26PM +0200, Pavel Machek wrote:
+> Hi!
+> 
+> > > +	 * Note that this method is based on empirical testing on different
+> > > +	 * devices with PWM of 8 and 16 bits of resolution.
+> > > +	 */
+> > > +	n = period;
+> > > +	while (n) {
+> > > +		counter += n % 2;
+> > > +		n >>= 1;
+> > > +	}
+> > 
+> > I don't quite follow the heuristics above. Are you sure the number of
+> > PWM bits can be infered from the period? What if the period value (in
+> > ns) doesn't directly correspond to a register value? And even if it
+> > did, counting the number of set bits (the above loops is a
+> > re-implementation of ffs()) doesn't really result in the dividers
+> > mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
+> > in a divider of 1, i.e. 32768 brighness levels.
+> > 
+> > On veyron minnie the period is 1000000 ns, which results in 142858
+> > levels (1000000 / 7)!
+> > 
+> > Not sure if there is a clean solution using heuristics, a DT property
+> > specifying the number of levels could be an alternative. This could
+> > also be useful to limit the number of (mostly) redundant levels, even
+> > the intended max of 4096 seems pretty high.
+> > 
+> > Another (not directly related) observation is that on minnie the
+> > actual brightness at a nominal 50% is close to 0 (duty cycle ~3%). I
+> > haven't tested with other devices, but I wonder if it would make
+> > sense to have an option to drop the bottom N% of levels, since the
+> > near 0 brightness in the lower 50% probably isn't very useful in most
+> > use cases, but maybe it looks different on other devices.
+> 
+> Eye percieves logarithm(duty cycle), mostly, and I find very low brightness
+> levels quite useful when trying to use machine in dark room.
+
+I realized that the brightness level display on Chrome OS (= my test
+device) is non-linear, and it isn't actually the lower 50% of levels
+that is near 0 brightness, but 'only' about 20%.
+
+> But yes, specifying if brightness is linear or exponential would be quite
+> useful.
+
+Agreed, this could help userspace with displaying a reasonable
+brightness level.
