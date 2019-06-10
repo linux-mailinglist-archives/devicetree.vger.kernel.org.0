@@ -2,171 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8043B967
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 18:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21EE73B9E4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 18:48:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390210AbfFJQZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 12:25:26 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:34393 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389927AbfFJQZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 12:25:26 -0400
-Received: by mail-lj1-f194.google.com with SMTP id p17so1286503ljg.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 09:25:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eipFIuppUEBChZz5jEQKJnDCMNGzgpujxoDXEsClrz0=;
-        b=GcbtoBrrxpTZ95MoI5I8PI/IWR4S1C/FKE6nwL2MNQJYCI1uPUShUb/2eNhZ09VLHr
-         ceSg3kp6GOu+D2HcrZ7XtTVUc/yl8vPCa1nV9yVOkOnsiY2EmSzZQ9I/eEdMyrbofzKe
-         7m1RSAId+c4XJqB8uAAf9noe7TGBhcN8oiXc6Rk2DzjzCF9G8TtpzUU0GYnNIACu6kkI
-         mwFOqnG/HQaThHI0C/HCE1ZF0UfQjhOmbKNkEKJxuxbUpbt9RMfIjF+hVxzUfmEyoOVf
-         eUrXyKqi9cos/KDis7qsJVzqmszRFnfpzNouAxxflgIBDlp+cG7uGzX2fgCaLuEPVseu
-         vzMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=eipFIuppUEBChZz5jEQKJnDCMNGzgpujxoDXEsClrz0=;
-        b=sNqNOoF4206ngACbJxalgMkLgyk3H51SPY2Cv1OzfkSk/F2VWW1GlrPW/bCDNrUjza
-         +DRB8yQ9LLt0EzLcLccwYo1UOtTb8UaZBof/vyC0ktLYyQVwga1gVXeCmc+kCV6ylXxX
-         KGsnG60aevCXs+4DUXTdcWLDhtGQjXbeAkk/hQLjJLzbKiH6tCswnBRbOTdTuC/u0YcH
-         /0yuWNRinxEZLS4ZQbE8h+1FDJtQyNekrnJJABL0ax1Hrou+oba5E2fhsOS+mH9FMqfz
-         fAcmTbNuILKYuZatlsOQvHT6kWHA/7EaYTRsFThPkhex/zmUEn930HG2Tzo7DsGkOHL2
-         OeQQ==
-X-Gm-Message-State: APjAAAXUFwM36WaYAeoReNYN7e+udhXvC7d23LSNU2u6/wObws+q+Psc
-        LqUBSeaN+Vo/ImKIjkIWyKGzaA==
-X-Google-Smtp-Source: APXvYqyznVsw9V2kAPwrtxirNjclrLSAsstJiifDJVxq7J/9R9usmEoDiJrJb+d2UJTKXwgwWbCvvg==
-X-Received: by 2002:a2e:9188:: with SMTP id f8mr17623754ljg.33.1560183923858;
-        Mon, 10 Jun 2019 09:25:23 -0700 (PDT)
-Received: from wasted.cogentembedded.com ([31.173.86.166])
-        by smtp.gmail.com with ESMTPSA id 24sm2516567ljs.63.2019.06.10.09.25.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 Jun 2019 09:25:23 -0700 (PDT)
-Subject: Re: [PATCH v5 4/5] dt-bindings: mtd: Add bindings for TI's AM654
- HyperBus memory controller
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mtd@lists.infradead.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190609103227.24875-1-vigneshr@ti.com>
- <20190609103227.24875-5-vigneshr@ti.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <a808ffca-02a8-14b0-3422-c0905ab212a6@cogentembedded.com>
-Date:   Mon, 10 Jun 2019 19:25:21 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        id S1727648AbfFJQsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 12:48:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53110 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726217AbfFJQsF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 12:48:05 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 18D15206C3;
+        Mon, 10 Jun 2019 16:48:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560185285;
+        bh=oFtb1o3AXLUr4k9TH9OD5ZZ8qF8S9a/ouxAXF91MYh0=;
+        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
+        b=tBcMESXBdsEGjobi+BHjlGd2RIqXKwu6aeRyd10RYmRrXjQpm69IIqrxRkhXkEUGP
+         AQyCw2PvGkD4ULELPPRFasXJIN7qpaewJiXRuwPJDsMS6aGgFogx+c/GJwb3W3C3dm
+         dVV/fDf3akooB5cM5Lom0XOdDCSitrtzKqlGPfuY=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190609103227.24875-5-vigneshr@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <048a25c0-3a2c-3906-84d4-5eb67f3ce2ef@codeaurora.org>
+References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org> <1559754961-26783-6-git-send-email-sricharan@codeaurora.org> <20190608034835.GH24059@builder> <048a25c0-3a2c-3906-84d4-5eb67f3ce2ef@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sricharan R <sricharan@codeaurora.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     robh+dt@kernel.org, sboyd@codeaurora.org, linus.walleij@linaro.org,
+        agross@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/6] arm64: dts: Add ipq6018 SoC and CP01 board support
+User-Agent: alot/0.8.1
+Date:   Mon, 10 Jun 2019 09:48:04 -0700
+Message-Id: <20190610164805.18D15206C3@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Quoting Sricharan R (2019-06-10 08:45:22)
+> On 6/8/2019 9:18 AM, Bjorn Andersson wrote:
+> > On Wed 05 Jun 10:16 PDT 2019, Sricharan R wrote:
+> >> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/d=
+ts/qcom/ipq6018.dtsi
+> >> new file mode 100644
+> >> index 0000000..79cccdd
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> >> +                    compatible =3D "fixed-clock";
+> >> +                    clock-frequency =3D <32000>;
+> >> +                    #clock-cells =3D <0>;
+> >> +            };
+> >> +
+> >> +            xo: xo {
+> >> +                    compatible =3D "fixed-clock";
+> >> +                    clock-frequency =3D <24000000>;
+> >> +                    #clock-cells =3D <0>;
+> >> +            };
+> >> +
+> >> +            bias_pll_cc_clk {
+> >=20
+> > Please give this a label and reference it from the node that uses it
+> > (regardless of the implementation matching by clock name).
+> >=20
+>  ok, in that case, so might have to remove these for now, till we add
+>  the corresponding users.
 
-On 06/09/2019 01:32 PM, Vignesh Raghavendra wrote:
+Yes, please remove them. They don't look like board clks, instead
+they're SoC level details that need to be created by some clk driver
+like GCC.
 
-> Add binding documentation for TI's HyperBus memory controller present on
-> AM654 SoC.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
-> v5:
-> Update binding example to show MMIO mux
-> Fix reg property for flash slave.
-> 
->  .../devicetree/bindings/mtd/ti,am654-hbmc.txt | 51 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt b/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
-> new file mode 100644
-> index 000000000000..c2a2c2b42a92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
-> @@ -0,0 +1,51 @@
-> +Bindings for HyperBus Memory Controller (HBMC) on TI's K3 family of SoCs
-> +
-> +Required properties:
-> +- compatible : "ti,am654-hbmc" for AM654 SoC
-> +- reg : Two entries:
-> +	First entry pointed to the register space of HBMC controller
-> +	Second entry pointing to the memory map region dedicated for
-> +	MMIO access to attached flash devices
-> +- ranges : Address translation from offset within CS to allocated MMIO
-> +	   space in SoC
-> +
-> +Optional properties:
-> +- mux-controls : phandle to the multiplexer that controls selection of
-> +		 HBMC vs OSPI inside Flash SubSystem. Default is OSPI,
-> +		 if property is absent.
-> +		 See Documentation/devicetree/bindings/mux/reg-mux.txt
-> +		 for mmio-mux binding details
-> +
-> +Example:
-> +
-> +	fss: fss@47000000 {
-
-   What's FSS?
-   Regardless of the answer, the node names should be generic, like "memory-controller@".
-
-> +		compatible = "syscon", "simple-mfd";
-
-   If it's "sycon", the nme should probably be "system-controller".
-
-> +		reg = <0x0 0x47000000 0x0 0x100>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		hbmc_mux: hbmc-mux {
-
-   So, just "multiplexor"?
-
-> +			compatible = "mmio-mux";
-> +			#mux-control-cells = <1>;
-> +			mux-reg-masks = <0x4 0x2>; /* 0: reg 0x4, bit 1 */
-> +		};
-> +
-> +		hbmc: hbmc@47034000 {
-
-   Should be named "memory-controller@47034000", according to the DT spec.
-
-> +			compatible = "ti,am654-hbmc";
-> +			reg = <0x0 0x47034000 0x0 0x100>,
-> +				<0x5 0x00000000 0x1 0x0000000>;
-> +			power-domains = <&k3_pds 55>;
-> +			#address-cells = <2>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x0 0x5 0x00000000 0x4000000>, /* CS0 - 64MB */
-> +				 <0x1 0x0 0x5 0x04000000 0x4000000>; /* CS1 - 64MB */
-> +			mux-controls = <&hbmc_mux 0>;
-> +
-> +			/* Slave flash node */
-> +			flash@0,0 {
-> +				compatible = "cypress,hyperflash", "cfi-flash";
-> +				reg = <0x0 0x0 0x4000000>;
-> +			};
-> +		};
-> +	};
-[...]
-
-MBR, Sergei
+>=20
+> >> +                    compatible =3D "fixed-clock";
+> >> +                    clock-frequency =3D <300000000>;
+> >> +                    #clock-cells =3D <0>;
+> >> +            };
+> >> +
+> >> +            bias_pll_nss_noc_clk {
+> >> +                    compatible =3D "fixed-clock";
+> >> +                    clock-frequency =3D <416500000>;
+> >> +                    #clock-cells =3D <0>;
+> >> +            };
+> >> +
