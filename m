@@ -2,109 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF0E3B29D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FFA13B2A1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388834AbfFJKAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 06:00:07 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:56332 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388056AbfFJKAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 06:00:07 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 7C75E279009
-Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
- linearly to human eye.
-To:     Pavel Machek <pavel@ucw.cz>, Matthias Kaehlcke <mka@chromium.org>
-Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
-        Doug Anderson <dianders@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Richard Purdie <rpurdie@rpsys.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Brian Norris <briannorris@google.com>,
-        Guenter Roeck <groeck@google.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20180208113032.27810-1-enric.balletbo@collabora.com>
- <20180208113032.27810-4-enric.balletbo@collabora.com>
- <20190607220947.GR40515@google.com>
- <20190608210226.GB2359@xo-6d-61-c0.localdomain>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <819ecbcd-18e3-0f6b-6121-67cb363df440@collabora.com>
-Date:   Mon, 10 Jun 2019 12:00:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2388354AbfFJKAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 06:00:38 -0400
+Received: from foss.arm.com ([217.140.110.172]:39332 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388056AbfFJKAi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 06:00:38 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F84C344;
+        Mon, 10 Jun 2019 03:00:37 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B2E13F246;
+        Mon, 10 Jun 2019 03:02:17 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 11:00:33 +0100
+From:   Andre Przywara <andre.przywara@foss.arm.com>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>
+Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+Message-ID: <20190610110033.28d21d21@donnerap.cambridge.arm.com>
+In-Reply-To: <AM0PR04MB448168C72F1D40C1B9BEB1F788130@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+        <20190603083005.4304-3-peng.fan@nxp.com>
+        <866db682-785a-e0a6-b394-bb65c7a694c6@gmail.com>
+        <20190606142056.68272dc0@donnerap.cambridge.arm.com>
+        <AM0PR04MB448168C72F1D40C1B9BEB1F788130@AM0PR04MB4481.eurprd04.prod.outlook.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190608210226.GB2359@xo-6d-61-c0.localdomain>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+On Mon, 10 Jun 2019 01:32:49 +0000
+Peng Fan <peng.fan@nxp.com> wrote:
 
-On 8/6/19 23:02, Pavel Machek wrote:
-> Hi!
+Hi Peng,
+
+[ ... ]
+
+> > > > +
+> > > > +	irq_count = platform_irq_count(pdev);
+> > > > +	if (irq_count == -EPROBE_DEFER)
+> > > > +		return irq_count;
+> > > > +
+> > > > +	if (irq_count && irq_count != val) {
+> > > > +		dev_err(dev, "Interrupts not match num-chans\n");  
+> > >
+> > > Interrupts property does not match \"arm,num-chans\" would be more  
+> > correct.
+> > 
+> > Given that interrupts are optional, do we have to rely on this?   
 > 
->>> +	 * Note that this method is based on empirical testing on different
->>> +	 * devices with PWM of 8 and 16 bits of resolution.
->>> +	 */
->>> +	n = period;
->>> +	while (n) {
->>> +		counter += n % 2;
->>> +		n >>= 1;
->>> +	}
->>
->> I don't quite follow the heuristics above. Are you sure the number of
->> PWM bits can be infered from the period? What if the period value (in
->> ns) doesn't directly correspond to a register value? And even if it
->> did, counting the number of set bits (the above loops is a
->> re-implementation of ffs()) doesn't really result in the dividers
->> mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
->> in a divider of 1, i.e. 32768 brighness levels.
->>
-
-Right, I think that only works on the cases that we only have one pwm cell, and
-looks like during my tests I did only tests on devices with one pwm cell :-(
-
-And as you point the code is broken for other cases (pwm-cells > 1)
-
->> On veyron minnie the period is 1000000 ns, which results in 142858
->> levels (1000000 / 7)!
->>
->> Not sure if there is a clean solution using heuristics, a DT property
->> specifying the number of levels could be an alternative. This could
->> also be useful to limit the number of (mostly) redundant levels, even
->> the intended max of 4096 seems pretty high.
->>
-
-Looking again looks like we _can not_ deduce the number of bits of a pwm, it is
-not exposed at all, so I think we will need to end adding a property to specify
-this. Something similar to what leds-pwm binding does, it has:
-
-max-brightness : Maximum brightness possible for the LED
-
-
-Enric
-
->> Another (not directly related) observation is that on minnie the
->> actual brightness at a nominal 50% is close to 0 (duty cycle ~3%). I
->> haven't tested with other devices, but I wonder if it would make
->> sense to have an option to drop the bottom N% of levels, since the
->> near 0 brightness in the lower 50% probably isn't very useful in most
->> use cases, but maybe it looks different on other devices.
+> If there is interrupt property, the interrupts should match channel counts.
 > 
-> Eye percieves logarithm(duty cycle), mostly, and I find very low brightness
-> levels quite useful when trying to use machine in dark room.
+> Do we actually
+> > need one interrupt per channel?  
 > 
-> But yes, specifying if brightness is linear or exponential would be quite
-> useful.
-> 									Pavel
-> 
+> I thought about this, provide one interrupt for all channels.
+> But there is no good way to let interrupt handlers know which
+> channel triggers the interrupt. So I use one interrupt per channel.
+
+Yeah, I was wondering about this as well. Seems like we need this indeed.
+Just sounds wasteful, but I guess we don't expect many channels anyway,
+normally.
+
+Cheers,
+Andre.
