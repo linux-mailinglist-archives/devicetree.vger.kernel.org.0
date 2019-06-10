@@ -2,116 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB5B63BB07
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2EFF3BB15
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387854AbfFJReo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 13:34:44 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52806 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387492AbfFJReo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 13:34:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=fevmjU5tOdpDdx3DPX7fS0fYUcE471UMXLZugj2U+0A=; b=Yw4WaYMJ6woV
-        D0rw+GApqyBqVxQfImdx/cKdLjgFoGszwaoEXW8RvIaljHqd85xMeF0uIQ722R2FFNPyEGUIMD7a7
-        a128iNv6esByzIGdu6jt65rUgh1PpuonY44OB6nJL6CZKKkBUpu76CVLfD6vRo2PZJ4kBuHMYbXwT
-        APT1Q=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1haOBp-0006FS-37; Mon, 10 Jun 2019 17:34:37 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 5F311440046; Mon, 10 Jun 2019 18:34:36 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: meson: axg-card: fix null pointer dereference in clean up" to the asoc tree
-In-Reply-To: <20190610125344.18221-1-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190610173436.5F311440046@finisterre.sirena.org.uk>
-Date:   Mon, 10 Jun 2019 18:34:36 +0100 (BST)
+        id S2388052AbfFJRgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 13:36:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32976 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387896AbfFJRgP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 13:36:15 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DE864212F5;
+        Mon, 10 Jun 2019 17:36:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560188174;
+        bh=yngxEUZsDeO9jKmEiRe01p0lStP+ET5zKpvRqAHTYfo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=y4R0V50he40BZyVZoGvfZOLeGR9Yrv9zwQ2ODQEkSLmmY6IjxWbijj/cYZaBfHcSE
+         lTrnAUVtkiTSKUcD1Kb6twXgMKRGDssIK3Vo0wnibdUaHElr7dxNcBjH4lznkTa1if
+         Xevy2XkW1wP3o9PpLrLv5c5l3Tv1RTD6EDFpzrGU=
+Received: by mail-qk1-f178.google.com with SMTP id g18so5992388qkl.3;
+        Mon, 10 Jun 2019 10:36:13 -0700 (PDT)
+X-Gm-Message-State: APjAAAXXg3nU2ZidC90s6jygqUguwjBFL9D7u8SOfV2QDNjYhboV0xVM
+        hs2EeKRFBtDGuGuhBChaocnlA5JH1LO+01BQcQ==
+X-Google-Smtp-Source: APXvYqyn/jXYaDrSMPJ5/45d6cSJ56wSyTc8w/sQmXvfhvxgcNEUwjnfzw91kiGQ4mdQCXyBdQsntduVxgoYHQwjhCY=
+X-Received: by 2002:ae9:f801:: with SMTP id x1mr14208781qkh.151.1560188173041;
+ Mon, 10 Jun 2019 10:36:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190604003218.241354-1-saravanak@google.com> <20190604003218.241354-2-saravanak@google.com>
+In-Reply-To: <20190604003218.241354-2-saravanak@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 10 Jun 2019 11:36:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
+Message-ID: <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v1 1/5] of/platform: Speed up of_find_device_by_node()
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Why are you resending this rather than replying to Frank's last
+comments on the original?
 
-   ASoC: meson: axg-card: fix null pointer dereference in clean up
-
-has been applied to the asoc tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 960f428ca0a04a59e74639571126245a3efc4bcf Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 10 Jun 2019 14:53:44 +0200
-Subject: [PATCH] ASoC: meson: axg-card: fix null pointer dereference in clean
- up
-
-When using modern dai_link style, we must first make sure the
-struct snd_soc_dai_link_component exists before accessing its members.
-
-In case of early probe deferral, some of the '.cpus' or '.codecs' may not
-have been allocated yet. Check this before calling of_node_put() on the
-structure member.
-
-Fixes: c84836d7f650 ("ASoC: meson: axg-card: use modern dai_link style")
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/meson/axg-card.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index fb03258d00ae..70bb0cbad233 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -115,9 +115,11 @@ static void axg_card_clean_references(struct axg_card *priv)
- 
- 	if (card->dai_link) {
- 		for_each_card_prelinks(card, i, link) {
--			of_node_put(link->cpus->of_node);
-+			if (link->cpus)
-+				of_node_put(link->cpus->of_node);
- 			for_each_link_codecs(link, j, codec)
--				of_node_put(codec->of_node);
-+				if (codec)
-+					of_node_put(codec->of_node);
- 		}
- 	}
- 
--- 
-2.20.1
-
+On Mon, Jun 3, 2019 at 6:32 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> Add a pointer from device tree node to the device created from it.
+> This allows us to find the device corresponding to a device tree node
+> without having to loop through all the platform devices.
+>
+> However, fallback to looping through the platform devices to handle
+> any devices that might set their own of_node.
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/of/platform.c | 20 +++++++++++++++++++-
+>  include/linux/of.h    |  3 +++
+>  2 files changed, 22 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 04ad312fd85b..1115a8d80a33 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
+>         return dev->of_node == data;
+>  }
+>
+> +static DEFINE_SPINLOCK(of_dev_lock);
+> +
+>  /**
+>   * of_find_device_by_node - Find the platform_device associated with a node
+>   * @np: Pointer to device tree node
+> @@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+>  {
+>         struct device *dev;
+>
+> -       dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
+> +       /*
+> +        * Spinlock needed to make sure np->dev doesn't get freed between NULL
+> +        * check inside and kref count increment inside get_device(). This is
+> +        * achieved by grabbing the spinlock before setting np->dev = NULL in
+> +        * of_platform_device_destroy().
+> +        */
+> +       spin_lock(&of_dev_lock);
+> +       dev = get_device(np->dev);
+> +       spin_unlock(&of_dev_lock);
+> +       if (!dev)
+> +               dev = bus_find_device(&platform_bus_type, NULL, np,
+> +                                     of_dev_node_match);
+>         return dev ? to_platform_device(dev) : NULL;
+>  }
+>  EXPORT_SYMBOL(of_find_device_by_node);
+> @@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
+>                 platform_device_put(dev);
+>                 goto err_clear_flag;
+>         }
+> +       np->dev = &dev->dev;
+>
+>         return dev;
+>
+> @@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
+>         if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
+>                 device_for_each_child(dev, NULL, of_platform_device_destroy);
+>
+> +       /* Spinlock is needed for of_find_device_by_node() to work */
+> +       spin_lock(&of_dev_lock);
+> +       dev->of_node->dev = NULL;
+> +       spin_unlock(&of_dev_lock);
+>         of_node_clear_flag(dev->of_node, OF_POPULATED);
+>         of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
+>
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 0cf857012f11..f2b4912cbca1 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -48,6 +48,8 @@ struct property {
+>  struct of_irq_controller;
+>  #endif
+>
+> +struct device;
+> +
+>  struct device_node {
+>         const char *name;
+>         phandle phandle;
+> @@ -68,6 +70,7 @@ struct device_node {
+>         unsigned int unique_id;
+>         struct of_irq_controller *irq_trans;
+>  #endif
+> +       struct device *dev;             /* Device created from this node */
+>  };
+>
+>  #define MAX_PHANDLE_ARGS 16
+> --
+> 2.22.0.rc1.257.g3120a18244-goog
+>
