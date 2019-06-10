@@ -2,190 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 440743BEC8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954DD3BECD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390083AbfFJVha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 17:37:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50266 "EHLO mail.kernel.org"
+        id S2390033AbfFJVja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 17:39:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51224 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389945AbfFJVha (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 17:37:30 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        id S2389362AbfFJVj3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 17:39:29 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0EF8E21726;
-        Mon, 10 Jun 2019 21:37:29 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 28E90212F5;
+        Mon, 10 Jun 2019 21:39:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560202649;
-        bh=hwm8BXVTPPx56RnHFISfVUzMMTFIzzDuJaCG9+g8A5k=;
+        s=default; t=1560202769;
+        bh=YsHNPUuvWnZSTEVRx05DIIQWnpsv3R1kpTgSHE7wq0s=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=laDVFiBGqi4HuwrxOrPSUFr6iNx7cckBOF3iE9QdnfxoGGGeoEPCdNKzj4QkFP23z
-         DivEeiNVuOf+3/MvBWPQIkLl98lCMMYjCwh2UZsFE3jvGNYKsVatSnUKCR5k9nVitC
-         XeSH4bYbYDfs6TfRdk6jky3jOonHiVIjO6hVzr60=
-Received: by mail-qk1-f178.google.com with SMTP id i125so6361217qkd.6;
-        Mon, 10 Jun 2019 14:37:29 -0700 (PDT)
-X-Gm-Message-State: APjAAAWvdpxndq10RMZGfwq5DWvfM9UHiB3KyKrAhU5eOQT5xagomMhL
-        bjUrDDr85qyEfa+cwVQgFEuGwyAkhQK8pQ/Z+g==
-X-Google-Smtp-Source: APXvYqygsQhHn+elnNZkh5cIWQUh8MlS+1h6UE8ebNU+fyz9UgkZS9LgE7CVDY0+GOg9rWGc9YTlLMA4WDHOl+KXPmA=
-X-Received: by 2002:a05:620a:13d1:: with SMTP id g17mr2386998qkl.121.1560202648317;
- Mon, 10 Jun 2019 14:37:28 -0700 (PDT)
+        b=u88KsF3RCV0d2tVPkny0hiTm2jwU8UGTXF3gW1z6LV5bP43rCrZh94mhKDDi2PnzI
+         rRQak1X+mbPmfRhFMIokZfP/MbEqVYmZ0bNyBcoOzrlyzBXnSzf3s0tGYMsE/oIcJl
+         SIWNhqIVS2M+kdosA1ohPWYivO/FDEmJz3yKtgtg=
+Received: by mail-qt1-f175.google.com with SMTP id j19so12097991qtr.12;
+        Mon, 10 Jun 2019 14:39:29 -0700 (PDT)
+X-Gm-Message-State: APjAAAVWDae2PybnnSi7HHZ42rFslJWGYyzPPdilQnktIHXTfrQXvjdS
+        eoVYd5uTYBWl7pDu2B8imAhrOjcEArnzJEHwfA==
+X-Google-Smtp-Source: APXvYqyFDToPtXUMK42uZxV8rPSxPwT6GhM8hEXWzA+U4oqljMTWyMBU/M82mBtDF0Syat4/kQAlIeESh+umi768++4=
+X-Received: by 2002:ac8:2ec3:: with SMTP id i3mr16235333qta.110.1560202768451;
+ Mon, 10 Jun 2019 14:39:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190605122936.11972-1-maxime.ripard@bootlin.com> <20190605122936.11972-2-maxime.ripard@bootlin.com>
-In-Reply-To: <20190605122936.11972-2-maxime.ripard@bootlin.com>
+References: <20190603113250.4115-1-maxime.ripard@bootlin.com>
+In-Reply-To: <20190603113250.4115-1-maxime.ripard@bootlin.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 10 Jun 2019 15:37:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJczoTpq=8BS5FwL3TJmitZp9e4Mh4oXcvgOMdRmoURvQ@mail.gmail.com>
-Message-ID: <CAL_JsqJczoTpq=8BS5FwL3TJmitZp9e4Mh4oXcvgOMdRmoURvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: i2c: mv64xxx: Add YAML schemas
+Date:   Mon, 10 Jun 2019 15:39:17 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLiEv-buUNTTN8ZqZjHsLN3g=VwHvEBh+8c9D57Ro+A2A@mail.gmail.com>
+Message-ID: <CAL_JsqLiEv-buUNTTN8ZqZjHsLN3g=VwHvEBh+8c9D57Ro+A2A@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: Fix vendor-prefixes YAML
 To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
+        devicetree@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Michael Tretter <m.tretter@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 5, 2019 at 6:29 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Mon, Jun 3, 2019 at 5:32 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
-> Switch the DT binding to a YAML schema to enable the DT validation.
+> Commit 8df39e16877f ("media: dt-bindings: media: Add vendor prefix for
+> allegro") introduced a new devicetree binding vendors, however with an
+> improper syntax making the resulting YAML impossible to parse. Let's fix
+> this.
 >
+> Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> Cc: Michael Tretter <m.tretter@pengutronix.de>
+> Fixes: 8df39e16877f ("media: dt-bindings: media: Add vendor prefix for allegro")
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
 > ---
->
-> Changes from v1:
->   - Fix the maintainers
-> ---
->  .../devicetree/bindings/i2c/i2c-mv64xxx.txt   |  64 -----------
->  .../bindings/i2c/marvell,mv64xxx-i2c.yaml     | 105 ++++++++++++++++++
->  2 files changed, 105 insertions(+), 64 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mv64xxx.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-> diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-> new file mode 100644
-> index 000000000000..a1c631eaeafd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/marvell,mv64xxx-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell MV64XXX I2C Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Gregory CLEMENT <gregory.clement@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: allwinner,sun4i-a10-i2c
-> +      - items:
-> +          - const: allwinner,sun7i-a20-i2c
-> +          - const: allwinner,sun4i-a10-i2c
-> +      - const: allwinner,sun6i-a31-i2c
-> +      - items:
-> +          - const: allwinner,sun8i-a23-i2c
-> +          - const: allwinner,sun6i-a31-i2c
-> +      - items:
-> +          - const: allwinner,sun8i-a83t-i2c
-> +          - const: allwinner,sun6i-a31-i2c
-> +      - items:
-> +          - const: allwinner,sun50i-a64-i2c
-> +          - const: allwinner,sun6i-a31-i2c
-> +
-> +      - const: marvell,mv64xxx-i2c
-> +      - const: marvell,mv78230-i2c
-> +      - const: marvell,mv78230-a0-i2c
-> +
-> +    description:
-> +      Only use "marvell,mv78230-a0-i2c" for a very rare, initial
-> +      version of the SoC which had broken offload support. Linux
-> +      auto-detects this and sets it appropriately.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - description: Reference clock for the I2C bus
-> +      - description: Bus clock (Only for Armada 7K/8K)
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - const: core
-> +      - const: reg
-> +    description:
-> +      Mandatory if two clocks are used (only for Armada 7k and 8k).
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - allwinner,sun4i-a10-i2c
-> +              - allwinner,sun6i-a31-i2c
-> +
-> +    then:
-> +      required:
-> +        - clocks
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: allwinner,sun6i-a31-i2c
-> +
-> +    then:
-> +      required:
-> +        - resets
-> +
-> +# FIXME: We should set it, but it would report all the generic
-> +# properties as additional properties.
-> +# additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    timer {
-
-timer?
-
-(and missing unit-address)
-
-> +      compatible = "allwinner,sun4i-a10-timer";
-> +      reg = <0x01c20c00 0x400>;
-> +      interrupts = <22>;
-> +      clocks = <&osc>;
-> +    };
-> +...
-> --
-> 2.21.0
->
+Reviewed-by: Rob Herring <robh@kernel.org>
