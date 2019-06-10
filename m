@@ -2,161 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 401C03BEF3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE6973BF05
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728666AbfFJVyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 17:54:07 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:34723 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728648AbfFJVyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 17:54:07 -0400
-Received: by mail-pl1-f193.google.com with SMTP id i2so4177947plt.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 14:54:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ilDXamFYOlEO8GWysgGDqHVYIEw5cY+v0lRtT4Q7uCA=;
-        b=M54n+YZdWMqnrmPvi6vT8IJ8mylWm76h2+jOYmOVHfsu4lCiaKMQ1fk0oTQP4ru2nY
-         ZCdqPnTKIyooUPaEM0H4AQ2XextdAG3axmuTwTqqvloFS2xJT1E3apq/5VUWy/AMUXkp
-         eSGBRMMGb678qHmrEEdTy32gFDUA4i8/fzObI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ilDXamFYOlEO8GWysgGDqHVYIEw5cY+v0lRtT4Q7uCA=;
-        b=dKu3LuZDTlEtDCLDRe6oPPTXdHf/APLbQCHFLLJMnYqBLL+AJYhlOM25EZS/XGsNhL
-         a4rLEIfD9s6b6pXSHobVvheeUrnFiJgcSWMTpXvg89VgIwfqD1iMETS1Umx0GYvvlo+N
-         5qDmSz8G2B1f4cGfvC//sbVofhXIbTJ1f7A7VaPVKBi/w4WGCz781JO+Q4GOT5UkmQ/o
-         0OtS/QNsZnNRKYN91O4XMrgpA3NetmCTSh0SXDVqKHdTgdO4ALao1xXI0ddYUxw4wLWM
-         cK3npKQ0HQvPkHty4IN6TymteCCb9V2Ts9cPlz0DT3jGl5jmMg/+I5OdRlRSPAGQTu9l
-         95OQ==
-X-Gm-Message-State: APjAAAWQ39b1lyDx1uRlji00bprPu6m0B9uvV8SeMK+LowHh6/pNcH0f
-        Ssju6v6fD0JnqjncLiiXe2Yw/A==
-X-Google-Smtp-Source: APXvYqzMm6aINKOxX2KeUbtZPTnv+Z+yfCyTSVJfFV7qUiltd8qouqT/1lMB0iF/K2lBlTNTuW1Feg==
-X-Received: by 2002:a17:902:e409:: with SMTP id ci9mr72703491plb.103.1560203646104;
-        Mon, 10 Jun 2019 14:54:06 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id u7sm11324196pgl.64.2019.06.10.14.54.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 Jun 2019 14:54:05 -0700 (PDT)
-Date:   Mon, 10 Jun 2019 14:54:03 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Doug Anderson <dianders@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Richard Purdie <rpurdie@rpsys.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Brian Norris <briannorris@google.com>,
-        Guenter Roeck <groeck@google.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
- linearly to human eye.
-Message-ID: <20190610215403.GC137143@google.com>
-References: <20180208113032.27810-1-enric.balletbo@collabora.com>
- <20180208113032.27810-4-enric.balletbo@collabora.com>
- <20190607220947.GR40515@google.com>
- <20190608210226.GB2359@xo-6d-61-c0.localdomain>
- <819ecbcd-18e3-0f6b-6121-67cb363df440@collabora.com>
- <20190610203928.GA137143@google.com>
- <c8992414-8067-f82a-55f0-74fe9c2e1b3e@collabora.com>
+        id S1728742AbfFJV5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 17:57:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726556AbfFJV5z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 17:57:55 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1EE86212F5;
+        Mon, 10 Jun 2019 21:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560203875;
+        bh=g4mY100w2qgQoqrm9iHtxlwWj9iN/wYo4Hcn8OgqS8Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fO8OzSFz3yf/+buoGxsLocyYpw/2kZwneLtrMzQ05YDjIRyc2CdUqR1PIhjOLP5x/
+         jvFdH7X9Uqd/8QErrXxULrDRJNIS7T+v9WXbPRP/d7ScW5DXaSbbrO3WHycdhZxgdR
+         lftNaJOTMYM6k3XwuF9LnSP3XL1HG4cbXSzsrReg=
+Received: by mail-qt1-f179.google.com with SMTP id i34so12170246qta.6;
+        Mon, 10 Jun 2019 14:57:55 -0700 (PDT)
+X-Gm-Message-State: APjAAAXzxoPiTvm+6mL7H3Jpr2zZNHpRNC+zKxCyWa/2Mwjny4CkyUIn
+        ooVHu/fzg5/tDZf6hAZBhaqzDL21esRdujtJsA==
+X-Google-Smtp-Source: APXvYqw1cfkjGTbC0jdIEGlyRcw4f3LBrmMrdCPBXItz9JGMvlPjCnQIatnqWLCFa+L6qVlKCb97ojLPMStDgnodVi8=
+X-Received: by 2002:a0c:8a43:: with SMTP id 3mr13015726qvu.138.1560203874386;
+ Mon, 10 Jun 2019 14:57:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <c8992414-8067-f82a-55f0-74fe9c2e1b3e@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190531063849.26142-1-manivannan.sadhasivam@linaro.org> <20190531063849.26142-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190531063849.26142-3-manivannan.sadhasivam@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 10 Jun 2019 15:57:43 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+N7NA7m+dp+zpwFeZLM6B+OwRrqZdzKkJp2TRWi_e3Mw@mail.gmail.com>
+Message-ID: <CAL_Jsq+N7NA7m+dp+zpwFeZLM6B+OwRrqZdzKkJp2TRWi_e3Mw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: arm: stm32: Convert STM32 SoC
+ bindings to DT schema
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        loic pallardy <loic.pallardy@st.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 11:02:27PM +0200, Enric Balletbo i Serra wrote:
-> Hi Matthias,
-> 
-> On 10/6/19 22:39, Matthias Kaehlcke wrote:
-> > Hi Enric
-> > 
-> > On Mon, Jun 10, 2019 at 12:00:02PM +0200, Enric Balletbo i Serra wrote:
-> >> Hi Matthias,
-> >>
-> >> On 8/6/19 23:02, Pavel Machek wrote:
-> >>> Hi!
-> >>>
-> >>>>> +	 * Note that this method is based on empirical testing on different
-> >>>>> +	 * devices with PWM of 8 and 16 bits of resolution.
-> >>>>> +	 */
-> >>>>> +	n = period;
-> >>>>> +	while (n) {
-> >>>>> +		counter += n % 2;
-> >>>>> +		n >>= 1;
-> >>>>> +	}
-> >>>>
-> >>>> I don't quite follow the heuristics above. Are you sure the number of
-> >>>> PWM bits can be infered from the period? What if the period value (in
-> >>>> ns) doesn't directly correspond to a register value? And even if it
-> >>>> did, counting the number of set bits (the above loops is a
-> >>>> re-implementation of ffs()) doesn't really result in the dividers
-> >>>> mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
-> >>>> in a divider of 1, i.e. 32768 brighness levels.
-> >>>>
-> >>
-> >> Right, I think that only works on the cases that we only have one pwm cell, and
-> >> looks like during my tests I did only tests on devices with one pwm cell :-(
-> >>
-> >> And as you point the code is broken for other cases (pwm-cells > 1)
-> >>
-> >>>> On veyron minnie the period is 1000000 ns, which results in 142858
-> >>>> levels (1000000 / 7)!
-> >>>>
-> >>>> Not sure if there is a clean solution using heuristics, a DT property
-> >>>> specifying the number of levels could be an alternative. This could
-> >>>> also be useful to limit the number of (mostly) redundant levels, even
-> >>>> the intended max of 4096 seems pretty high.
-> >>>>
-> >>
-> >> Looking again looks like we _can not_ deduce the number of bits of a pwm, it is
-> >> not exposed at all, so I think we will need to end adding a property to specify
-> >> this. Something similar to what leds-pwm binding does, it has:
-> >>
-> >> max-brightness : Maximum brightness possible for the LED
-> > 
-> > Thanks for the confirmation that I didn't just miss some clever trick.
-> > 
-> > I also think that some kind of DT property is needed, I'll try to come
-> > up with a reasonable name, keeping in mind that some devices might not
-> > want to use the entire range of levels.
-> > 
-> 
-> Note that, If I remember correctly, the original idea behind all these patches
-> was provide a default curve with enough points following the  CIE 1931 formula
-> (which describes how we perceive light). When default doesn't work for your
-> hardware, you could play and define your own curve using the
-> num-interpolated-steps property I.e:
-> 
->  brightness-levels = <0 2048 4096 8192 16384 65535>;
->  num-interpolated-steps = <2048>;
->  default-brightness-level = <4096>;
-> 
-> Or even expose all the possible levels, like you do with your chromeos kernel.
-> 
->  brightness-levels = <0 65535>;
->  num-interpolated-steps = <65535>;
->  default-brightness-level = <4096>;
-> 
-> The above should work independently of the bug found (that of course needs to be
-> fixed)
+On Fri, May 31, 2019 at 12:39 AM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> This commit converts STM32 SoC bindings to DT schema using jsonschema.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../devicetree/bindings/arm/stm32/stm32.yaml  | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.yaml
 
-Thanks for the info, indeed (keep) using a custom curve could be an
-option.
+Converting implies removal of something. The schema looks fine though.
 
-I'm learning about the corresponding user space component of Chrome OS
-as we speak. It looks like it's possible to specify the minimum
-brightness level to use, which should do the trick, also making the OS
-aware of the exponential nature of the backlight levels might help.
+>
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> new file mode 100644
+> index 000000000000..f53dc0f2d7b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> @@ -0,0 +1,29 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/stm32/stm32.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32 Platforms Device Tree Bindings
+> +
+> +maintainers:
+> +  - Alexandre Torgue <alexandre.torgue@st.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: st,stm32f429
+> +
+> +      - items:
+> +          - const: st,stm32f469
+> +
+> +      - items:
+> +          - const: st,stm32f746
+> +
+> +      - items:
+> +          - const: st,stm32h743
+> +
+> +      - items:
+> +          - const: st,stm32mp157
+> +...
+> --
+> 2.17.1
+>
