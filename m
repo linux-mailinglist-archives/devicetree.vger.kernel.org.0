@@ -2,43 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0713B205
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 11:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 158E33B27A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 11:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388430AbfFJJ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 05:26:57 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:57637 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388397AbfFJJ04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 05:26:56 -0400
-X-Originating-IP: 90.88.159.246
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 70C42E000C;
-        Mon, 10 Jun 2019 09:26:45 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?q?Antoine=20T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2 11/11] ARM: dts: sunxi: Switch to the generic PHY properties
-Date:   Mon, 10 Jun 2019 11:25:50 +0200
-Message-Id: <af3a342a6cba1dda27763c13093a8fc060946c1e.1560158667.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
-References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
+        id S2389126AbfFJJw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 05:52:29 -0400
+Received: from sauhun.de ([88.99.104.3]:39668 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388664AbfFJJw3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 05:52:29 -0400
+Received: from localhost (p54B33062.dip0.t-ipconnect.de [84.179.48.98])
+        by pokefinder.org (Postfix) with ESMTPSA id 458282C077A;
+        Mon, 10 Jun 2019 11:52:27 +0200 (CEST)
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-i2c@vger.kernel.org
+Cc:     Peter Rosin <peda@axentia.se>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: [PATCH 0/3] treewide: simplify getting the adapter of an I2C client, part2
+Date:   Mon, 10 Jun 2019 11:51:53 +0200
+Message-Id: <20190610095157.11814-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -46,112 +31,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DWMAC specific properties to manage the PHY have been superseeded by
-the generic PHY properties. Let's move to it.
+This is a small follow-up series to a larger cleanup series already
+sent:
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+http://patchwork.ozlabs.org/project/linux-i2c/list/?series=112605
+("treewide: simplify getting the adapter of an I2C client")
 
----
+These drivers use a bit different but still unnecessarily complex way to
+determine the adapter of a client. Thanks to Peter Rosin for pointing
+them out. They have been fixed manually, no need for a coccinelle script
+here. Build tested, too. From the previous cover-letter:
 
-This patch should go through arm-soc.
+The I2C core populates the parent pointer of a client as:
+	client->dev.parent = &client->adapter->dev;
 
-Changes from v1:
-  - New patch
----
- arch/arm/boot/dts/sun6i-a31-hummingbird.dts       |  6 +++---
- arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts  |  6 +++---
- arch/arm/boot/dts/sun7i-a20-hummingbird.dts       |  9 ++++-----
- arch/arm/boot/dts/sun7i-a20-olimex-som204-evb.dts |  8 ++++----
- 4 files changed, 14 insertions(+), 15 deletions(-)
+Now take into consideration that
+	to_i2c_adapter(&adapter->dev);
 
-diff --git a/arch/arm/boot/dts/sun6i-a31-hummingbird.dts b/arch/arm/boot/dts/sun6i-a31-hummingbird.dts
-index 09832b4e8fc8..2652d737fe7c 100644
---- a/arch/arm/boot/dts/sun6i-a31-hummingbird.dts
-+++ b/arch/arm/boot/dts/sun6i-a31-hummingbird.dts
-@@ -155,13 +155,13 @@
- 	pinctrl-0 = <&gmac_rgmii_pins>;
- 	phy = <&phy1>;
- 	phy-mode = "rgmii";
--	snps,reset-gpio = <&pio 0 21 GPIO_ACTIVE_HIGH>;
--	snps,reset-active-low;
--	snps,reset-delays-us = <0 10000 30000>;
- 	status = "okay";
- 
- 	phy1: ethernet-phy@1 {
- 		reg = <1>;
-+		reset-gpios = <&pio 0 21 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <30000>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts b/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts
-index 8e724c52feff..7899712400b2 100644
---- a/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts
-+++ b/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts
-@@ -95,13 +95,13 @@
- 	phy = <&phy1>;
- 	phy-mode = "rgmii";
- 	phy-supply = <&reg_dldo1>;
--	snps,reset-gpio = <&pio 0 21 GPIO_ACTIVE_HIGH>; /* PA21 */
--	snps,reset-active-low;
--	snps,reset-delays-us = <0 10000 30000>;
- 	status = "okay";
- 
- 	phy1: ethernet-phy@1 {
- 		reg = <1>;
-+		reset-gpios = <&pio 0 21 GPIO_ACTIVE_LOW>; /* PA21 */
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <30000>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/sun7i-a20-hummingbird.dts b/arch/arm/boot/dts/sun7i-a20-hummingbird.dts
-index fd0153f65685..b01d91d025ec 100644
---- a/arch/arm/boot/dts/sun7i-a20-hummingbird.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-hummingbird.dts
-@@ -103,15 +103,14 @@
- 	phy = <&phy1>;
- 	phy-mode = "rgmii";
- 	phy-supply = <&reg_gmac_vdd>;
--	/* phy reset config */
--	snps,reset-gpio = <&pio 0 17 GPIO_ACTIVE_HIGH>; /* PA17 */
--	snps,reset-active-low;
--	/* wait 1s after reset, otherwise fail to read phy id */
--	snps,reset-delays-us = <0 10000 1000000>;
- 	status = "okay";
- 
- 	phy1: ethernet-phy@1 {
- 		reg = <1>;
-+		reset-gpios = <&pio 0 17 GPIO_ACTIVE_LOW>; /* PA17 */
-+		reset-assert-us = <10000>;
-+		/* wait 1s after reset, otherwise fail to read phy id */
-+		reset-deassert-us = <1000000>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/sun7i-a20-olimex-som204-evb.dts b/arch/arm/boot/dts/sun7i-a20-olimex-som204-evb.dts
-index c34a83f666c7..ca12cee27072 100644
---- a/arch/arm/boot/dts/sun7i-a20-olimex-som204-evb.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-olimex-som204-evb.dts
-@@ -108,14 +108,14 @@
- 	phy = <&phy3>;
- 	phy-mode = "rgmii";
- 	phy-supply = <&reg_vcc3v3>;
--
--	snps,reset-gpio = <&pio 0 17 GPIO_ACTIVE_HIGH>;
--	snps,reset-active-low;
--	snps,reset-delays-us = <0 10000 1000000>;
- 	status = "okay";
- 
- 	phy3: ethernet-phy@3 {
- 		reg = <3>;
-+		reset-gpios = <&pio 0 17 GPIO_ACTIVE_LOW>; /* PA17 */
-+		reset-assert-us = <10000>;
-+		/* wait 1s after reset, otherwise fail to read phy id */
-+		reset-deassert-us = <1000000>;
- 	};
- };
- 
+is a complicated way of saying 'adapter', then we can even formally
+prove that the complicated expression can be simplified by using
+client->adapter.
+
+A branch can be found here:
+
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/no_to_adapter
+
+Please apply the patches to the individual subsystem trees. There are no
+dependencies.
+
+Thanks and kind regards,
+
+   Wolfram
+
+Wolfram Sang (3):
+  hwmon: lm90: simplify getting the adapter of a client
+  leds: is31fl319x: simplify getting the adapter of a client
+  of: unittest: simplify getting the adapter of a client
+
+ drivers/hwmon/lm90.c           | 2 +-
+ drivers/leds/leds-is31fl319x.c | 2 +-
+ drivers/of/unittest.c          | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
 -- 
-git-series 0.9.1
+2.19.1
+
