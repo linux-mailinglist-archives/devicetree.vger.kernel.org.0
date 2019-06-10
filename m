@@ -2,148 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2EFF3BB15
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 444AB3BB30
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388052AbfFJRgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 13:36:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32976 "EHLO mail.kernel.org"
+        id S2388137AbfFJRn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 13:43:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38326 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387896AbfFJRgP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 13:36:15 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        id S2387643AbfFJRn5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 13:43:57 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DE864212F5;
-        Mon, 10 Jun 2019 17:36:13 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 61277212F5;
+        Mon, 10 Jun 2019 17:43:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560188174;
-        bh=yngxEUZsDeO9jKmEiRe01p0lStP+ET5zKpvRqAHTYfo=;
+        s=default; t=1560188636;
+        bh=AZlQL9E2ROhE9dNEWLxTzeKWJPg5GnszFYOvXmJbBg8=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=y4R0V50he40BZyVZoGvfZOLeGR9Yrv9zwQ2ODQEkSLmmY6IjxWbijj/cYZaBfHcSE
-         lTrnAUVtkiTSKUcD1Kb6twXgMKRGDssIK3Vo0wnibdUaHElr7dxNcBjH4lznkTa1if
-         Xevy2XkW1wP3o9PpLrLv5c5l3Tv1RTD6EDFpzrGU=
-Received: by mail-qk1-f178.google.com with SMTP id g18so5992388qkl.3;
-        Mon, 10 Jun 2019 10:36:13 -0700 (PDT)
-X-Gm-Message-State: APjAAAXXg3nU2ZidC90s6jygqUguwjBFL9D7u8SOfV2QDNjYhboV0xVM
-        hs2EeKRFBtDGuGuhBChaocnlA5JH1LO+01BQcQ==
-X-Google-Smtp-Source: APXvYqyn/jXYaDrSMPJ5/45d6cSJ56wSyTc8w/sQmXvfhvxgcNEUwjnfzw91kiGQ4mdQCXyBdQsntduVxgoYHQwjhCY=
-X-Received: by 2002:ae9:f801:: with SMTP id x1mr14208781qkh.151.1560188173041;
- Mon, 10 Jun 2019 10:36:13 -0700 (PDT)
+        b=CrkXG5wzrMqurUflE6xs0eXDpspfh1CAZP1781AveldXZWZOfaRKic4GxAG0tqNPd
+         zh5oPa+/V/Kp6pLCYHJJyKZMrZ3Eqg6gBH2M4OqRThkgZ3hn+CODbDBqirClpMRH4H
+         F7A2m9ROQPEpCCNtsRiVUnRemEm5cXLnDw5LTiXs=
+Received: by mail-qt1-f173.google.com with SMTP id a15so11442870qtn.7;
+        Mon, 10 Jun 2019 10:43:56 -0700 (PDT)
+X-Gm-Message-State: APjAAAUg2K6unKsXNWSCcp11kmWeR2XbzYkkEmlouRSsmUmDMzLCc2O7
+        9FF5arv4OmHCSKkNfFjls8RTBr52ndtFsoCLMw==
+X-Google-Smtp-Source: APXvYqzDejCp888til0iSdGiqZLydQgb5LlMSykGZiQj0zmAnd1634cGl5crZnyD5/9LsdKeiuv6AfpNt6+njC+kFIU=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr7491168qth.136.1560188635556;
+ Mon, 10 Jun 2019 10:43:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190604003218.241354-1-saravanak@google.com> <20190604003218.241354-2-saravanak@google.com>
-In-Reply-To: <20190604003218.241354-2-saravanak@google.com>
+References: <20190604131516.13596-1-kishon@ti.com> <20190604131516.13596-24-kishon@ti.com>
+In-Reply-To: <20190604131516.13596-24-kishon@ti.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 10 Jun 2019 11:36:01 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
-Message-ID: <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v1 1/5] of/platform: Speed up of_find_device_by_node()
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+Date:   Mon, 10 Jun 2019 11:43:44 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ5gsctd7L3VOhTO1JdUqmMmSJRpos1XQyfxzmGO7wauw@mail.gmail.com>
+Message-ID: <CAL_JsqJ5gsctd7L3VOhTO1JdUqmMmSJRpos1XQyfxzmGO7wauw@mail.gmail.com>
+Subject: Re: [RFC PATCH 23/30] of/platform: Export of_platform_device_create_pdata()
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        David Collins <collinsd@codeaurora.org>,
+        Jingoo Han <jingoohan1@gmail.com>, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
+        linux-omap <linux-omap@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Why are you resending this rather than replying to Frank's last
-comments on the original?
+On Tue, Jun 4, 2019 at 7:19 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>
+> Export of_platform_device_create_pdata() to be used by drivers to
+> create child devices with the given platform data. This can be used
+> by platform specific driver to send platform data core driver. For e.g.,
+> this will be used by TI's J721E SoC specific PCIe driver to send
+> ->start_link() ops and ->is_link_up() ops to Cadence core PCIe driver.
 
-On Mon, Jun 3, 2019 at 6:32 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> Add a pointer from device tree node to the device created from it.
-> This allows us to find the device corresponding to a device tree node
-> without having to loop through all the platform devices.
->
-> However, fallback to looping through the platform devices to handle
-> any devices that might set their own of_node.
->
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/of/platform.c | 20 +++++++++++++++++++-
->  include/linux/of.h    |  3 +++
->  2 files changed, 22 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 04ad312fd85b..1115a8d80a33 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
->         return dev->of_node == data;
->  }
->
-> +static DEFINE_SPINLOCK(of_dev_lock);
-> +
->  /**
->   * of_find_device_by_node - Find the platform_device associated with a node
->   * @np: Pointer to device tree node
-> @@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
->  {
->         struct device *dev;
->
-> -       dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
-> +       /*
-> +        * Spinlock needed to make sure np->dev doesn't get freed between NULL
-> +        * check inside and kref count increment inside get_device(). This is
-> +        * achieved by grabbing the spinlock before setting np->dev = NULL in
-> +        * of_platform_device_destroy().
-> +        */
-> +       spin_lock(&of_dev_lock);
-> +       dev = get_device(np->dev);
-> +       spin_unlock(&of_dev_lock);
-> +       if (!dev)
-> +               dev = bus_find_device(&platform_bus_type, NULL, np,
-> +                                     of_dev_node_match);
->         return dev ? to_platform_device(dev) : NULL;
->  }
->  EXPORT_SYMBOL(of_find_device_by_node);
-> @@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
->                 platform_device_put(dev);
->                 goto err_clear_flag;
->         }
-> +       np->dev = &dev->dev;
->
->         return dev;
->
-> @@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
->         if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
->                 device_for_each_child(dev, NULL, of_platform_device_destroy);
->
-> +       /* Spinlock is needed for of_find_device_by_node() to work */
-> +       spin_lock(&of_dev_lock);
-> +       dev->of_node->dev = NULL;
-> +       spin_unlock(&of_dev_lock);
->         of_node_clear_flag(dev->of_node, OF_POPULATED);
->         of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
->
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 0cf857012f11..f2b4912cbca1 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -48,6 +48,8 @@ struct property {
->  struct of_irq_controller;
->  #endif
->
-> +struct device;
-> +
->  struct device_node {
->         const char *name;
->         phandle phandle;
-> @@ -68,6 +70,7 @@ struct device_node {
->         unsigned int unique_id;
->         struct of_irq_controller *irq_trans;
->  #endif
-> +       struct device *dev;             /* Device created from this node */
->  };
->
->  #define MAX_PHANDLE_ARGS 16
-> --
-> 2.22.0.rc1.257.g3120a18244-goog
->
+NAK
+
+of_platform_device_create_pdata() is purely for legacy handling of
+auxdata which is something I hope to get rid of someday. Or to put it
+another way, auxdata use is a sign of platforms not fully converted to
+DT.
+
+Rob
