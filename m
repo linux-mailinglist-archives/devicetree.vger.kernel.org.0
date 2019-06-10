@@ -2,252 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 200EB3B445
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 13:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 460B73B45F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 14:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389682AbfFJL5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 07:57:44 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38018 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389631AbfFJL5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 07:57:43 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5ABvJUP046949;
-        Mon, 10 Jun 2019 06:57:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560167839;
-        bh=7Y3wRsKJN+geLqJ0d8qLs+gltVPgxRyI0kjibKl0HS8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=LrASFVP1qE3avX1bstjeL+3QWaVm7twyzTld8wRiuOO2BYOfRngqF4OfQaK93Qbib
-         zzWBNuVB/f+6buIf1Ro6N46owPFqdW5VbRYPtza64NwwACID6G6D3HyAm5jl2lfnef
-         pV4zCZVgJMLtiWB9xxdZ5npyu/MBq2XxmpWdE0Jo=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5ABvJVT100411
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 10 Jun 2019 06:57:19 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 10
- Jun 2019 06:57:19 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 10 Jun 2019 06:57:19 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5ABvFUw005623;
-        Mon, 10 Jun 2019 06:57:15 -0500
-Subject: Re: [PATCH v7 2/6] usb:common Separated decoding functions from dwc3
- driver.
-To:     Pawel Laszczak <pawell@cadence.com>,
-        Greg KH <gregkh@linuxfoundation.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "hdegoede@redhat.com" <hdegoede@redhat.com>,
-        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jbergsagel@ti.com" <jbergsagel@ti.com>,
-        "nsekhar@ti.com" <nsekhar@ti.com>, "nm@ti.com" <nm@ti.com>,
-        Suresh Punnoose <sureshp@cadence.com>,
-        "peter.chen@nxp.com" <peter.chen@nxp.com>,
-        Jayshri Dajiram Pawar <jpawar@cadence.com>,
-        Rahul Kumar <kurahul@cadence.com>
-References: <1559729030-16390-1-git-send-email-pawell@cadence.com>
- <1559729030-16390-3-git-send-email-pawell@cadence.com>
- <20190608134008.GB11489@kroah.com>
- <BYAPR07MB4709C42303D60ABF917E22D0DD130@BYAPR07MB4709.namprd07.prod.outlook.com>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <f86b1a4a-1400-bdf7-3d01-6010f20af72e@ti.com>
-Date:   Mon, 10 Jun 2019 14:57:14 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2389417AbfFJMKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 08:10:20 -0400
+Received: from muru.com ([72.249.23.125]:52532 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389229AbfFJMKU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 08:10:20 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 85A9780CD;
+        Mon, 10 Jun 2019 12:10:40 +0000 (UTC)
+Date:   Mon, 10 Jun 2019 05:10:16 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Teresa Remmet <t.remmet@phytec.de>
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Daniel Schultz <d.schultz@phytec.de>
+Subject: Re: [PATCH 1/7] ARM: dts: am335x phytec boards: Fix cd-gpios active
+ level
+Message-ID: <20190610121016.GX5447@atomide.com>
+References: <1558704003-393769-1-git-send-email-t.remmet@phytec.de>
+ <1558704003-393769-2-git-send-email-t.remmet@phytec.de>
+ <20190610070732.GU5447@atomide.com>
 MIME-Version: 1.0
-In-Reply-To: <BYAPR07MB4709C42303D60ABF917E22D0DD130@BYAPR07MB4709.namprd07.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190610070732.GU5447@atomide.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Tony Lindgren <tony@atomide.com> [190610 07:08]:
+> * Teresa Remmet <t.remmet@phytec.de> [190524 06:20]:
+> > Active level of the mmc1 cd gpio needs to be low instead of high.
+> > Fix PCM-953 and phyBOARD-WEGA.
+> 
+> Thanks I'll pick this patch into fixes.
 
+And I'll apply the rest of the series into omap-for-v5.3/dt.
 
-On 10/06/2019 09:29, Pawel Laszczak wrote:
-> 
->> On Wed, Jun 05, 2019 at 11:03:46AM +0100, Pawel Laszczak wrote:
->>
->>> Patch moves some decoding functions from driver/usb/dwc3/debug.h driver
->>
->>> to driver/usb/common/debug.c file. These moved functions include:
->>
->>>     dwc3_decode_get_status
->>
->>>     dwc3_decode_set_clear_feature
->>
->>>     dwc3_decode_set_address
->>
->>>     dwc3_decode_get_set_descriptor
->>
->>>     dwc3_decode_get_configuration
->>
->>>     dwc3_decode_set_configuration
->>
->>>     dwc3_decode_get_intf
->>
->>>     dwc3_decode_set_intf
->>
->>>     dwc3_decode_synch_frame
->>
->>>     dwc3_decode_set_sel
->>
->>>     dwc3_decode_set_isoch_delay
->>
->>>     dwc3_decode_ctrl
->>
->>>
->>
->>> These functions are used also in inroduced cdns3 driver.
->>
->>>
->>
->>> All functions prefixes were changed from dwc3 to usb.
->>
->>> Also, function's parameters has been extended according to the name
->>
->>> of fields in standard SETUP packet.
->>
->>> Additionally, patch adds usb_decode_ctrl function to
->>
->>> include/linux/usb/ch9.h file.i
->>
->>>
->>
->>> Signed-off-by: Pawel Laszczak <pawell@cadence.com>
->>
->>> ---
->>
->>>  drivers/usb/common/Makefile |   2 +-
->>
->>>  drivers/usb/common/debug.c  | 273 ++++++++++++++++++++++++++++++++++++
->>
->>>  drivers/usb/dwc3/debug.h    | 252 ---------------------------------
->>
->>>  drivers/usb/dwc3/trace.h    |   2 +-
->>
->>>  include/linux/usb/ch9.h     |  25 ++++
->>
->>>  5 files changed, 300 insertions(+), 254 deletions(-)
->>
->>>  create mode 100644 drivers/usb/common/debug.c
->>
->>>
->>
->>> diff --git a/drivers/usb/common/Makefile b/drivers/usb/common/Makefile
->>
->>> index 0a7c45e85481..02eb01666289 100644
->>
->>> --- a/drivers/usb/common/Makefile
->>
->>> +++ b/drivers/usb/common/Makefile
->>
->>> @@ -4,7 +4,7 @@
->>
->>>  #
->>
->>>
->>
->>>  obj-$(CONFIG_USB_COMMON)	  += usb-common.o
->>
->>> -usb-common-y			  += common.o
->>
->>> +usb-common-y			  += common.o debug.o
->>
->>>  usb-common-$(CONFIG_USB_LED_TRIG) += led.o
->>
->>>
->>
->>>  obj-$(CONFIG_USB_OTG_FSM) += usb-otg-fsm.o
->>
->>> diff --git a/drivers/usb/common/debug.c b/drivers/usb/common/debug.c
->>
->>> new file mode 100644
->>
->>> index 000000000000..f7218d794aa6
->>
->>> --- /dev/null
->>
->>> +++ b/drivers/usb/common/debug.c
->>
->>> @@ -0,0 +1,273 @@
->>
->>> +// SPDX-License-Identifier: GPL-2.0
->>
->>> +/**
->>
->>> + * Common USB debugging functions
->>
->>> + *
->>
->>> + * Copyright (C) 2010-2011 Texas Instruments Incorporated - https://urldefense.proofpoint.com/v2/url?u=http-
->> 3A__www.ti.com&d=DwIBAg&c=aUq983L2pue2FqKFoP6PGHMJQyoJ7kl3s3GZ-_haXqY&r=e1OgxfvkL0qo9XO6fX1gscva-
->> w03uSYC1nIyxl89-rI&m=hCAftKt20FnC6KiCwNbVrg7WoY-WnCtUjVuast3iJSw&s=Q4qhFXl4s1P2u0s65WgkulIRgV4KZtGphj7Xjr4t6yA&e=
->>
->>> + *
->>
->>> + * Authors: Felipe Balbi <balbi@ti.com>,
->>
->>> + *	    Sebastian Andrzej Siewior <bigeasy@linutronix.de>
->>
->>> + */
->>
->>> +
->>
->>> +#ifndef __LINUX_USB_COMMON_DEBUG
->>
->>> +#define __LINUX_USB_COMMON_DEBUG
->>
->>
->>
->> Why are you doing thsi in a .c file?
->>
-> Good question, I don't know :). 
-> Was removed 
-> 
-> Also I remember that you complained about placing it in 
-> drivers/usb/common. 
-> Currently this file is used only by two drivers dwc3 and cdns3.
-> Both are USB controller drivers. Maybe it could be better to move it to:
-> drivers/gadget/udc/debug.c
-> drivers/gadget/debug.c 
-> drivers/gadget/common/debug.c
-> or
-> drivers/gadget/debug/debug.c 
-> 
-> What do you think Roger? 
+Thanks,
 
-Since they are only used by gadget code, I would opt to have it in drivers/usb/gadget/
-
-> 
-> Felipe it's also question for you. 
->  
-> 
-> Thanks,
-> Pawel
-> 
->>
->>
->> thanks,
->>
->>
->>
->> greg k-h
-> 
-
--- 
-cheers,
--roger
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Tony
