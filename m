@@ -2,76 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B213B287
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 11:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF0E3B29D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 12:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389186AbfFJJws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 05:52:48 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:46995 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388315AbfFJJws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 05:52:48 -0400
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 2FD22200018;
-        Mon, 10 Jun 2019 09:52:44 +0000 (UTC)
-Date:   Mon, 10 Jun 2019 11:52:43 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S2388834AbfFJKAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 06:00:07 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:56332 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388056AbfFJKAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 06:00:07 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 7C75E279009
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+To:     Pavel Machek <pavel@ucw.cz>, Matthias Kaehlcke <mka@chromium.org>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Doug Anderson <dianders@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v5 04/13] media: rc: sunxi: Add RXSTA bits definition
-Message-ID: <20190610095243.7xwp4xhauds22qzw@flea>
-References: <20190607231100.5894-1-peron.clem@gmail.com>
- <20190607231100.5894-5-peron.clem@gmail.com>
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Brian Norris <briannorris@google.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <819ecbcd-18e3-0f6b-6121-67cb363df440@collabora.com>
+Date:   Mon, 10 Jun 2019 12:00:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ivt2koe4dst4bk6o"
-Content-Disposition: inline
-In-Reply-To: <20190607231100.5894-5-peron.clem@gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Matthias,
 
---ivt2koe4dst4bk6o
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 8/6/19 23:02, Pavel Machek wrote:
+> Hi!
+> 
+>>> +	 * Note that this method is based on empirical testing on different
+>>> +	 * devices with PWM of 8 and 16 bits of resolution.
+>>> +	 */
+>>> +	n = period;
+>>> +	while (n) {
+>>> +		counter += n % 2;
+>>> +		n >>= 1;
+>>> +	}
+>>
+>> I don't quite follow the heuristics above. Are you sure the number of
+>> PWM bits can be infered from the period? What if the period value (in
+>> ns) doesn't directly correspond to a register value? And even if it
+>> did, counting the number of set bits (the above loops is a
+>> re-implementation of ffs()) doesn't really result in the dividers
+>> mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
+>> in a divider of 1, i.e. 32768 brighness levels.
+>>
 
-On Sat, Jun 08, 2019 at 01:10:51AM +0200, Cl=E9ment P=E9ron wrote:
-> We are using RXINT bits definition when looking at RXSTA register.
->
-> These bits are equal but it's not really proper.
->
-> Introduce the RXSTA bits and use them to have coherency.
->
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
+Right, I think that only works on the cases that we only have one pwm cell, and
+looks like during my tests I did only tests on devices with one pwm cell :-(
 
-Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
+And as you point the code is broken for other cases (pwm-cells > 1)
 
-Maxime
+>> On veyron minnie the period is 1000000 ns, which results in 142858
+>> levels (1000000 / 7)!
+>>
+>> Not sure if there is a clean solution using heuristics, a DT property
+>> specifying the number of levels could be an alternative. This could
+>> also be useful to limit the number of (mostly) redundant levels, even
+>> the intended max of 4096 seems pretty high.
+>>
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Looking again looks like we _can not_ deduce the number of bits of a pwm, it is
+not exposed at all, so I think we will need to end adding a property to specify
+this. Something similar to what leds-pwm binding does, it has:
 
---ivt2koe4dst4bk6o
-Content-Type: application/pgp-signature; name="signature.asc"
+max-brightness : Maximum brightness possible for the LED
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP4oawAKCRDj7w1vZxhR
-xczjAP9NhvNXW8RraDQEXB1eNk6zeYRoUohLhNFarH0MsVC7hQEAx0/R3cfra11q
-g8lAS+DDEk4kx5iSDIwC7EK1bfYB7Q0=
-=c9cn
------END PGP SIGNATURE-----
+Enric
 
---ivt2koe4dst4bk6o--
+>> Another (not directly related) observation is that on minnie the
+>> actual brightness at a nominal 50% is close to 0 (duty cycle ~3%). I
+>> haven't tested with other devices, but I wonder if it would make
+>> sense to have an option to drop the bottom N% of levels, since the
+>> near 0 brightness in the lower 50% probably isn't very useful in most
+>> use cases, but maybe it looks different on other devices.
+> 
+> Eye percieves logarithm(duty cycle), mostly, and I find very low brightness
+> levels quite useful when trying to use machine in dark room.
+> 
+> But yes, specifying if brightness is linear or exponential would be quite
+> useful.
+> 									Pavel
+> 
