@@ -2,129 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4153B600
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 15:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6837D3B71D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 16:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390193AbfFJNaR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Jun 2019 09:30:17 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:40074 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388833AbfFJNaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 09:30:16 -0400
-Received: by mail-it1-f193.google.com with SMTP id q14so12035796itc.5;
-        Mon, 10 Jun 2019 06:30:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FSaiN1DGIOpo9wbwPTRGmWSmcDUKGj8HneroXcSzc/M=;
-        b=GaIs0XWieSJ66GxWn7dGOQPLXZ7tYw3oqRexiLg9vFRKObgJDNyfFKayKImpVRdr6y
-         EmuTthizNWCAYXGEBmmdhfy5I8GHU9/V6DX4Wa7wUwrkkcYAXtOoI5rdnjCTHgJTva6g
-         dUvHT9fTU3knSwYtFYgIOhdYlhvQBB+Y19lhFF9ClpKBaIoWxH301Du+Jjw/W1tj90x8
-         MuFol9T+CxFPLOMzDlF7ZzAnu0YFsG9XXDQjc46l0UJgsBmmbk2izA2qFElddqsI7mF2
-         n0KovJoPPYjfZqAVsRsT0kXtAePOGc9H6t5fRZAqJ9OxJ9nHwI/1x7fl6+dKqqPHpqzm
-         nz7A==
-X-Gm-Message-State: APjAAAWQZk6NAVSZwAxL6eWs6xcTwDT53MVS/m+WxZiZjzl/rieVt1mm
-        H6qaePoVKGaVG/s4VIXvHeFZ1uMQnItOHsbrfwQ=
-X-Google-Smtp-Source: APXvYqyq4NHqWPMvbk/l889DlLgBf0SpgBNg21nvVRXHFPp/Y/5gdMDmhh1wO+sZM71UpN8V7nXXar8bbgMezmYJflM=
-X-Received: by 2002:a02:7b2d:: with SMTP id q45mr42271200jac.127.1560173415987;
- Mon, 10 Jun 2019 06:30:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521161102.29620-1-peron.clem@gmail.com> <CAAObsKD8bij1ANLqX6y11Y6mDEXiymNjrDkmHmvGWiFLKWu_FA@mail.gmail.com>
- <4ff02295-6c34-791b-49f4-6558a92ad7a3@arm.com>
-In-Reply-To: <4ff02295-6c34-791b-49f4-6558a92ad7a3@arm.com>
-From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Date:   Mon, 10 Jun 2019 15:30:03 +0200
-Message-ID: <CAAObsKB=vNr6bBomQ_hMfic8CuwZcqF_x7UJR6rSm2cG=EJAcg@mail.gmail.com>
-Subject: Re: [PATCH v6 0/6] Allwinner H6 Mali GPU support
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Will Deacon <will.deacon@arm.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Steven Price <steven.price@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        id S2403791AbfFJOTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 10:19:40 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:35856 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2390789AbfFJOTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 10:19:40 -0400
+X-Greylist: delayed 2771 seconds by postgrey-1.27 at vger.kernel.org; Mon, 10 Jun 2019 10:19:39 EDT
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id x5ADWkmM029719;
+        Mon, 10 Jun 2019 16:32:46 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 5E7F361FCC; Mon, 10 Jun 2019 16:32:46 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     olof@lixom.net, gregkh@linuxfoundation.org, arnd@arndb.de,
+        robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] soc: add NPCM LPC BPC driver support 
+Date:   Mon, 10 Jun 2019 16:32:43 +0300
+Message-Id: <20190610133245.306812-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 May 2019 at 19:38, Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 29/05/2019 16:09, Tomeu Vizoso wrote:
-> > On Tue, 21 May 2019 at 18:11, Clément Péron <peron.clem@gmail.com> wrote:
-> >>
-> > [snip]
-> >> [  345.204813] panfrost 1800000.gpu: mmu irq status=1
-> >> [  345.209617] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
-> >> 0x0000000002400400
-> >
-> >  From what I can see here, 0x0000000002400400 points to the first byte
-> > of the first submitted job descriptor.
-> >
-> > So mapping buffers for the GPU doesn't seem to be working at all on
-> > 64-bit T-760.
-> >
-> > Steven, Robin, do you have any idea of why this could be?
->
-> I tried rolling back to the old panfrost/nondrm shim, and it works fine
-> with kbase, and I also found that T-820 falls over in the exact same
-> manner, so the fact that it seemed to be common to the smaller 33-bit
-> designs rather than anything to do with the other
-> job_descriptor_size/v4/v5 complication turned out to be telling.
->
-> [ as an aside, are 64-bit jobs actually known not to work on v4 GPUs, or
-> is it just that nobody's yet observed a 64-bit blob driving one? ]
+This patch set adds LPC BIOS Post code (BPC) support for the
+Nuvoton NPCM Baseboard Management Controller (BMC).
 
-Do you know if 64-bit descriptors work on v4 GPUs with our kernel
-driver but with the DDK?
+Nuvoton BMC NPCM LPC BIOS Post Code (BPC) monitoring two
+configurable I/O addresses written by the host on the
+Low Pin Count (LPC) bus, the capture data stored in 128-word FIFO.
 
-Wonder if there something else to be fixed in the kernel for that scenario.
+NPCM BPC can support capture double words.
 
-Thanks,
+The NPCM7xx BPC driver tested on NPCM750 evaluation board.
 
-Tomeu
+NPCM BPC driver upstream process start few months ago on misc folder
+http://lkml.iu.edu/hypermail/linux/kernel/1904.2/00412.html
 
-> Long story short, it appears that 'Mali LPAE' is also lacking the start
-> level notion of VMSA, and expects a full 4-level table even for <40 bits
-> when level 0 effectively redundant. Thus walking the 3-level table that
-> io-pgtable comes back with ends up going wildly wrong. The hack below
-> seems to do the job for me; if Clément can confirm (on T-720 you'll
-> still need the userspace hack to force 32-bit jobs as well) then I think
-> I'll cook up a proper refactoring of the allocator to put things right.
->
-> Robin.
->
->
-> ----->8-----
-> diff --git a/drivers/iommu/io-pgtable-arm.c b/drivers/iommu/io-pgtable-arm.c
-> index 546968d8a349..f29da6e8dc08 100644
-> --- a/drivers/iommu/io-pgtable-arm.c
-> +++ b/drivers/iommu/io-pgtable-arm.c
-> @@ -1023,12 +1023,14 @@ arm_mali_lpae_alloc_pgtable(struct
-> io_pgtable_cfg *cfg, void *cookie)
->         iop = arm_64_lpae_alloc_pgtable_s1(cfg, cookie);
->         if (iop) {
->                 u64 mair, ttbr;
-> +               struct arm_lpae_io_pgtable *data = io_pgtable_ops_to_data(&iop->ops);
->
-> +               data->levels = 4;
->                 /* Copy values as union fields overlap */
->                 mair = cfg->arm_lpae_s1_cfg.mair[0];
->                 ttbr = cfg->arm_lpae_s1_cfg.ttbr[0];
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+The NPCM LPC BPC is similar to Aspeed LPC snoop, last 
+kernel 5.0.2 Aspeed LPC snoop driver moved from misc folder to 
+soc folder, so it seems NPCM BPC dirver should upstream to soc 
+as well.
+https://lkml.org/lkml/2019/4/22/377
+
+I have created common lpc-snoop documentation for both 
+Nuvoton and Aspeed drivers as Andrew suggested.
+Andrew Jeffery: https://patchwork.kernel.org/patch/10506269/ 
+
+I add Andrew and Rob reviewed signature because they already reviewed 
+and signed  the lpc-snoop documentation in the misc folder
+https://lkml.org/lkml/2019/4/29/998 
+
+Tomer Maimon (2):
+  dt-binding: soc: Add common LPC snoop documentation
+  soc: nuvoton: add NPCM LPC BPC driver
+
+ .../devicetree/bindings/soc/lpc/lpc-snoop.txt |  27 ++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/nuvoton/Kconfig                   |  16 +
+ drivers/soc/nuvoton/Makefile                  |   2 +
+ drivers/soc/nuvoton/npcm-lpc-bpc-snoop.c      | 387 ++++++++++++++++++
+ 6 files changed, 434 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/lpc/lpc-snoop.txt
+ create mode 100644 drivers/soc/nuvoton/Kconfig
+ create mode 100644 drivers/soc/nuvoton/Makefile
+ create mode 100644 drivers/soc/nuvoton/npcm-lpc-bpc-snoop.c
+
+-- 
+2.18.0
+
