@@ -2,103 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A8C3BB05
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB5B63BB07
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387779AbfFJReC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 13:34:02 -0400
-Received: from foss.arm.com ([217.140.110.172]:46788 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387492AbfFJReC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 13:34:02 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 940F9337;
-        Mon, 10 Jun 2019 10:34:01 -0700 (PDT)
-Received: from redmoon (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E77D3F246;
-        Mon, 10 Jun 2019 10:34:00 -0700 (PDT)
-Date:   Mon, 10 Jun 2019 18:33:54 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     thierry.reding@gmail.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 00/28] Enable Tegra PCIe root port features
-Message-ID: <20190610173354.GA12678@redmoon>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
- <b7d09498-b97e-3428-02bd-ecd7c7f3e733@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b7d09498-b97e-3428-02bd-ecd7c7f3e733@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S2387854AbfFJReo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 13:34:44 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52806 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387492AbfFJReo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 13:34:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=fevmjU5tOdpDdx3DPX7fS0fYUcE471UMXLZugj2U+0A=; b=Yw4WaYMJ6woV
+        D0rw+GApqyBqVxQfImdx/cKdLjgFoGszwaoEXW8RvIaljHqd85xMeF0uIQ722R2FFNPyEGUIMD7a7
+        a128iNv6esByzIGdu6jt65rUgh1PpuonY44OB6nJL6CZKKkBUpu76CVLfD6vRo2PZJ4kBuHMYbXwT
+        APT1Q=;
+Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1haOBp-0006FS-37; Mon, 10 Jun 2019 17:34:37 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 5F311440046; Mon, 10 Jun 2019 18:34:36 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Applied "ASoC: meson: axg-card: fix null pointer dereference in clean up" to the asoc tree
+In-Reply-To: <20190610125344.18221-1-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190610173436.5F311440046@finisterre.sirena.org.uk>
+Date:   Mon, 10 Jun 2019 18:34:36 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 10:15:07AM +0530, Manikanta Maddireddy wrote:
-> Hi Lorenzo,
-> 
-> Thierry Ack'ed most of the patches, I am planning to address the review
-> comments for remaining two patches and publish V5. If you can review the
-> series, I will consolidate both the comments and address in V5.
+The patch
 
-It will take me some time to get to this series but it is on my
-radar, start preparing v5 but wait before posting it, I should
-be able to comment shortly.
+   ASoC: meson: axg-card: fix null pointer dereference in clean up
 
-Lorenzo
+has been applied to the asoc tree at
 
-> Manikanta
-> 
-> 
-> On 16-May-19 11:22 AM, Manikanta Maddireddy wrote:
-> > This series of patches adds,
-> > - Tegra root port features like Gen2, AER, etc
-> > - Power and perf optimizations
-> > - Fixes like "power up sequence", "dev_err prints", etc
-> >
-> > This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
-> > based Jetson-TX1, T124 based Jetson-TK1 platforms, Tegra20 and Tegra30
-> > platforms.
-> >
-> > Manikanta Maddireddy (28):
-> >   soc/tegra: pmc: Export tegra_powergate_power_on()
-> >   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
-> >   PCI: tegra: Rearrange Tegra PCIe driver functions
-> >   PCI: tegra: Mask AFI_INTR in runtime suspend
-> >   PCI: tegra: Fix PCIe host power up sequence
-> >   PCI: tegra: Add PCIe Gen2 link speed support
-> >   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
-> >   PCI: tegra: Program UPHY electrical settings for Tegra210
-> >   PCI: tegra: Enable opportunistic UpdateFC and ACK
-> >   PCI: tegra: Disable AFI dynamic clock gating
-> >   PCI: tegra: Process pending DLL transactions before entering L1 or L2
-> >   PCI: tegra: Enable PCIe xclk clock clamping
-> >   PCI: tegra: Increase the deskew retry time
-> >   PCI: tegra: Add SW fixup for RAW violations
-> >   PCI: tegra: Update flow control timer frequency in Tegra210
-> >   PCI: tegra: Set target speed as Gen1 before starting LTSSM
-> >   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
-> >   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
-> >   PCI: tegra: Change PRSNT_SENSE IRQ log to debug
-> >   PCI: tegra: Use legacy IRQ for port service drivers
-> >   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
-> >   PCI: tegra: Access endpoint config only if PCIe link is up
-> >   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
-> >   arm64: tegra: Add PEX DPD states as pinctrl properties
-> >   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
-> >   PCI: Add DT binding for "reset-gpios" property
-> >   PCI: tegra: Add support for GPIO based PERST#
-> >   PCI: tegra: Change link retry log level to debug
-> >
-> >  .../bindings/pci/nvidia,tegra20-pcie.txt      |   8 +
-> >  Documentation/devicetree/bindings/pci/pci.txt |   3 +
-> >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
-> >  drivers/pci/controller/pci-tegra.c            | 615 +++++++++++++++---
-> >  drivers/soc/tegra/pmc.c                       |   1 +
-> >  5 files changed, 566 insertions(+), 80 deletions(-)
-> >
-> 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 960f428ca0a04a59e74639571126245a3efc4bcf Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 10 Jun 2019 14:53:44 +0200
+Subject: [PATCH] ASoC: meson: axg-card: fix null pointer dereference in clean
+ up
+
+When using modern dai_link style, we must first make sure the
+struct snd_soc_dai_link_component exists before accessing its members.
+
+In case of early probe deferral, some of the '.cpus' or '.codecs' may not
+have been allocated yet. Check this before calling of_node_put() on the
+structure member.
+
+Fixes: c84836d7f650 ("ASoC: meson: axg-card: use modern dai_link style")
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/meson/axg-card.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
+index fb03258d00ae..70bb0cbad233 100644
+--- a/sound/soc/meson/axg-card.c
++++ b/sound/soc/meson/axg-card.c
+@@ -115,9 +115,11 @@ static void axg_card_clean_references(struct axg_card *priv)
+ 
+ 	if (card->dai_link) {
+ 		for_each_card_prelinks(card, i, link) {
+-			of_node_put(link->cpus->of_node);
++			if (link->cpus)
++				of_node_put(link->cpus->of_node);
+ 			for_each_link_codecs(link, j, codec)
+-				of_node_put(codec->of_node);
++				if (codec)
++					of_node_put(codec->of_node);
+ 		}
+ 	}
+ 
+-- 
+2.20.1
+
