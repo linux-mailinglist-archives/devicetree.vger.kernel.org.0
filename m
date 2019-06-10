@@ -2,133 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 879083B83D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 17:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 635E23B862
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 17:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391120AbfFJPXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 11:23:44 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:43726 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390494AbfFJPXo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 11:23:44 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 71E802007F9;
-        Mon, 10 Jun 2019 17:23:41 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 64A762007F0;
-        Mon, 10 Jun 2019 17:23:41 +0200 (CEST)
-Received: from fsr-ub1864-014.ea.freescale.net (fsr-ub1864-014.ea.freescale.net [10.171.95.219])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 07A29205E4;
-        Mon, 10 Jun 2019 17:23:40 +0200 (CEST)
-From:   =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: ls1028a: add crypto node
-Date:   Mon, 10 Jun 2019 18:23:31 +0300
-Message-Id: <20190610152331.10057-1-horia.geanta@nxp.com>
-X-Mailer: git-send-email 2.17.1
+        id S2390177AbfFJPiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 11:38:06 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:38484 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390073AbfFJPiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 11:38:06 -0400
+Received: by mail-oi1-f195.google.com with SMTP id v186so6549444oie.5;
+        Mon, 10 Jun 2019 08:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=edFG4M3dfGeETqFUJO8bUxy0ZhFFaxk4UK+WX2EmVpk=;
+        b=tr47n74psbwUaDzokIi83a0EDul4HoXufAoqergp8cw1gTXSnZjV+cGD8h03KIiuB/
+         /GKkKgcPPzQrz1vap/IGM1f92iTpscPS1+iZlvbb3Gx+FccJLcztMg/t4vVBjgns1edu
+         wFjaQbvlYWu9yKTGQ4yoHMYyftnUsPVIbJiQrCVN4mPk2xlVGfw2esAijX/AnNkueseT
+         8EeOJ8vUDuigIrvTfSxgYKmF6Pf335601eCuOpReoTQE3vyDr14bFR1Rii/GGmuHxEmm
+         r+ZkIpnkRG9eqKXy3NR68wBhrj5OscYAnbSjx8Xif5QWjs7q8/WUN0NoZt2Dk1V1+R1J
+         bChQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=edFG4M3dfGeETqFUJO8bUxy0ZhFFaxk4UK+WX2EmVpk=;
+        b=uNR74OGP1y7geTmRsBZ1sTGDQvnQXPMXPld8EayyLyNQ9NbamnOLDwTF1Q83Zuwho8
+         JMCyAbhfLmP1KXk7afEE9a8JdfGwwuxG0uyr8J66R2MlAiYNpflhG4TKWdusSY3Lwdkb
+         oEtM+X6BD0SJNlT/G4YydcwfoOw/bj/9BQmnYOgPgt9XSIsz5k6sP2QTR7yVKIqxPzkC
+         /KNg15iyNm4VgTJbYoYa2a5Sq7/5GIYo5ADKVRYi57v4GsWd0wKKdUwM4gjD9DeI0asD
+         XlcLy4HuCsCVRlKZAXbn6xxfLddRl8P60b5aHxZu1tE7BP0rYsDdUCnlnKIM9as2L0Oz
+         1ckg==
+X-Gm-Message-State: APjAAAW0N3Kca+8Om368VP3VzqpYuGGKkJwlDAQxNnXJ2gMoW3JqVRG5
+        nomdeV1JcY5BkE2cWqZVHX3qOPXHH2HZzJ7jVSM=
+X-Google-Smtp-Source: APXvYqwDurkb7jM2XaijsS4ZrUTDm8znwcsGoRBRj0A7pvO0YjS1HgwVsImo15PUHZ8HcOhnKV5Bnz1zkm/YyYltd5w=
+X-Received: by 2002:aca:4ad2:: with SMTP id x201mr3462007oia.129.1560181085327;
+ Mon, 10 Jun 2019 08:38:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+References: <20190610124931.17422-1-jbrunet@baylibre.com>
+In-Reply-To: <20190610124931.17422-1-jbrunet@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 10 Jun 2019 17:37:54 +0200
+Message-ID: <CAFBinCC4g1WVFyTgQrDUcYs13HDYp7Ggn=eSQ+X=LnpEoGg--w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: g12a: sort sdio nodes correctly
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LS1028A has a SEC v5.0 compatible security engine.
+Hi Jerome,
 
-Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
----
+On Mon, Jun 10, 2019 at 2:49 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+> Fix sdio node order in the soc device tree
+good catch, thank you for fixing this!
 
-Tested with "arm-smmu.disable_bypass=0" kernel boot parameter,
-since ICID (Isolation Context ID, out of which ARM SMMU stream ID
-is derived) programming and DT fix-up support hasn't been added yet
-in U-boot.
+> Fixes: a1737347250e ("arm64: dts: meson: g12a: add SDIO controller")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
- .../boot/dts/freescale/fsl-ls1028a-qds.dts    |  1 +
- .../boot/dts/freescale/fsl-ls1028a-rdb.dts    |  1 +
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 39 +++++++++++++++++++
- 3 files changed, 41 insertions(+)
+[...]
+> +                                       sdio_pins: sdio {
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index 4ed18287e077..c9765bb4bd7f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -17,6 +17,7 @@
- 	compatible = "fsl,ls1028a-qds", "fsl,ls1028a";
- 
- 	aliases {
-+		crypto = &crypto;
- 		gpio0 = &gpio1;
- 		gpio1 = &gpio2;
- 		gpio2 = &gpio3;
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index 4a203f7da598..745ec462bfae 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -16,6 +16,7 @@
- 	compatible = "fsl,ls1028a-rdb", "fsl,ls1028a";
- 
- 	aliases {
-+		crypto = &crypto;
- 		serial0 = &duart0;
- 		serial1 = &duart1;
- 	};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index bb386dd1d1b1..0048c2610a09 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -388,6 +388,45 @@
- 				     <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		crypto: crypto@8000000 {
-+			compatible = "fsl,sec-v5.0", "fsl,sec-v4.0";
-+			fsl,sec-era = <10>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x00 0x8000000 0x100000>;
-+			reg = <0x00 0x8000000 0x0 0x100000>;
-+			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-coherent;
-+
-+			sec_jr0: jr@10000 {
-+				compatible = "fsl,sec-v5.0-job-ring",
-+					     "fsl,sec-v4.0-job-ring";
-+				reg	= <0x10000 0x10000>;
-+				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
-+			sec_jr1: jr@20000 {
-+				compatible = "fsl,sec-v5.0-job-ring",
-+					     "fsl,sec-v4.0-job-ring";
-+				reg	= <0x20000 0x10000>;
-+				interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
-+			sec_jr2: jr@30000 {
-+				compatible = "fsl,sec-v5.0-job-ring",
-+					     "fsl,sec-v4.0-job-ring";
-+				reg	= <0x30000 0x10000>;
-+				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
-+			sec_jr3: jr@40000 {
-+				compatible = "fsl,sec-v5.0-job-ring",
-+					     "fsl,sec-v4.0-job-ring";
-+				reg	= <0x40000 0x10000>;
-+				interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+		};
-+
- 		cluster1_core0_watchdog: watchdog@c000000 {
- 			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc000000 0x0 0x1000>;
--- 
-2.17.1
+[...]
+strictly speaking we're not using alphabetical sorting here
+I'm fine with it though because it's consistent with the pattern
+{sdio,emmc,sd}{,_ds,_clk,...}_pins (and thus all other definitions
+here)
 
+
+Martin
