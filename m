@@ -2,130 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DF193B521
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 14:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3873B537
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 14:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389176AbfFJMjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 08:39:01 -0400
-Received: from mail-eopbgr130057.outbound.protection.outlook.com ([40.107.13.57]:42580
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388848AbfFJMjB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 08:39:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x6YDDS76FnnAX7tfmPb+XcBAG8KMw0kWalvWiEA+O1c=;
- b=dYu6AevxYuQDE6VwHdxTyBS/EPh5wTD9SVZJ9AU/2Dx0bL/T8fyOnAgX8xHwjoqYS96T/vkELL0T4tajyPwM39IHzkwXuDmhNfxOFjfTtiC1GCU2VZ2zCecK/waG1kn/n8duVRWiFRfClIhh4U5FEyHCLcJ/jT07/ZYTLwxj1gw=
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
- VI1PR04MB3965.eurprd04.prod.outlook.com (10.171.182.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Mon, 10 Jun 2019 12:38:53 +0000
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::9577:379c:2078:19a1]) by VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::9577:379c:2078:19a1%7]) with mapi id 15.20.1965.017; Mon, 10 Jun 2019
- 12:38:53 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Abel Vesa <abelvesa@gmail.com>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Carlo Caione <ccaione@baylibre.com>
-Subject: Re: [RFC 1/2] irqchip: irq-imx-gpcv2: Add workaround for i.MX8MQ
- ERR11171
-Thread-Topic: [RFC 1/2] irqchip: irq-imx-gpcv2: Add workaround for i.MX8MQ
- ERR11171
-Thread-Index: AQHVH4ZBRgLS0j7LSki7yl4lFQVwCA==
-Date:   Mon, 10 Jun 2019 12:38:52 +0000
-Message-ID: <VI1PR04MB5055FD984F9BBA733B4D3503EE130@VI1PR04MB5055.eurprd04.prod.outlook.com>
-References: <20190610121346.15779-1-abel.vesa@nxp.com>
- <20190610121346.15779-2-abel.vesa@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [192.88.166.1]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3f54b2d9-b204-4338-e5a7-08d6eda098e1
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB3965;
-x-ms-traffictypediagnostic: VI1PR04MB3965:
-x-microsoft-antispam-prvs: <VI1PR04MB3965228D534AD46F8F67EAE4EE130@VI1PR04MB3965.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0064B3273C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(376002)(346002)(396003)(39860400002)(136003)(189003)(199004)(55016002)(6436002)(4326008)(14454004)(14444005)(256004)(7416002)(305945005)(316002)(6246003)(9686003)(33656002)(26005)(186003)(25786009)(229853002)(68736007)(53936002)(66066001)(52536014)(76176011)(6116002)(66446008)(64756008)(5660300002)(3846002)(7696005)(7736002)(102836004)(53546011)(6506007)(110136005)(54906003)(99286004)(66556008)(66476007)(478600001)(66946007)(476003)(81166006)(81156014)(8676002)(486006)(74316002)(73956011)(86362001)(8936002)(2906002)(446003)(71200400001)(71190400001)(91956017)(76116006)(44832011);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3965;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: B64whN2MxXL4leNqNExf1XZgqekDJO8u1lPlu9g0iC12FOpqQ53+NgcbZBj9pawzIog/VNYMoOxJ5EWJEL17F6IsqqK3Uq7B9bLbE1X0rSff6pvmqqgAy9B3io/jdKQ93oXS7UtOR0NVuzt0RX+H6IuLKUtzrqVFdp6SGY0N0FDoApl7i0VZUR9ue6jm2ILmhvr6SkuQUQmbYkfIUm9fgYlFKwFGl2i4VGTvCtnEI7rEo0MA52q0BhToaNZNl6u+XgC0ZghlyuVezWUTL2zAf0HpcwMCfsHEW0L945Tiu7czEuYXwLvXVEaYcyW1pnXms3SHYGi901AfFg2eYzsrBVZujxtxTq8lU7VikJySEaBhhMi0x5BUfhJAsiqGqOolqycSPnrR+fuPzZX0VOUNBZGwTjNsGVsmwIBXNgPcokM=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2389639AbfFJMtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 08:49:39 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:39578 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389474AbfFJMti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 08:49:38 -0400
+Received: by mail-wr1-f66.google.com with SMTP id x4so6394038wrt.6
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 05:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=paZ5pWp7Tw9Kqpu3mv/pxtbEqmzU7N+ABWaMNMy3HrM=;
+        b=vPytJ7dJXkP1fOwjeKYjBWk81r/Ejltc5k1ajCYbmyhnSp6Xzx9aL+/KnPEHvv843o
+         sjRZrvswUUZoTRSosIwhd6otjZoHVxoSUX9/4DkilztMtX+cJm1m3LIxQ/MEAPvK/k71
+         DyFrJBXiqtmBGr3yuiBjks4cVBPJnvj5bsR5h3pE55neZbUPHMogJhmLmFj8/0HEG+kE
+         xNTFydhLuO7A/8lOI7ZK3KSHjydcKiWn7uqHsQnV1r/YhKte5xkxWPL9XnTyug2Ae5eE
+         a+v87M/TIuZRvWOWlwZgXiVY6Y1uphLRVvZhOEGOt688wKX2E62XTu6UU6KbAN/LGHRb
+         CSsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=paZ5pWp7Tw9Kqpu3mv/pxtbEqmzU7N+ABWaMNMy3HrM=;
+        b=YpitZ1BL6j62n5qHWm1WdkkaDEKfp2otmmQC0V9NFcDu/LlH2E6yRZEnD66ITDRGDz
+         bLpK+7lWtEYiuMBxgrvfuFdhr6YsKEN88Kp8J2K0d4fYF4UlgCKG8zEyLwbp1ZldsW02
+         xXdi7Z2izFssXvgsRur7tco9NxkuLky13Tl8lbojK+FjUgz9k2fUh626z9kyBXxLavSa
+         O/EH16fNdseUYMgOKPM4UXMKznGAHc+6aWrrqSLgEYkH9srpVkJ8UEiId6lNhjjJYS7A
+         aM4544PLbeEYfsgGyWKtQ6//EvN8d/f53ap2UtAGJEfkhnsGRV692ILfDtW30qlHrBv0
+         XtmA==
+X-Gm-Message-State: APjAAAU3q8eg3mhrqHekxdas+f8xu2UxzYrdV3s+Ci2on/TS+nkz4nIi
+        ftWNGX64ev6IwCxMJBNlcVPh3w==
+X-Google-Smtp-Source: APXvYqw3xovslR/1IsJwGC2mxhAa5CikdWZnlwoZKEOVXpgVqn2wnhmDPTd/DUL87e+yhezi7pr04g==
+X-Received: by 2002:adf:9023:: with SMTP id h32mr45385160wrh.95.1560170977216;
+        Mon, 10 Jun 2019 05:49:37 -0700 (PDT)
+Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+        by smtp.googlemail.com with ESMTPSA id v24sm7550504wmj.26.2019.06.10.05.49.36
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 10 Jun 2019 05:49:36 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: g12a: sort sdio nodes correctly
+Date:   Mon, 10 Jun 2019 14:49:31 +0200
+Message-Id: <20190610124931.17422-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f54b2d9-b204-4338-e5a7-08d6eda098e1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2019 12:38:53.1317
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3965
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/10/2019 3:15 PM, Abel Vesa wrote:=0A=
-> i.MX8MQ is missing the wake_request signals from GIC to GPCv2. This indir=
-ectly=0A=
-> breaks cpuidle support due to inability to wake target cores on IPIs.=0A=
-> =0A=
-> Now, in order to fix this, we can trigger IRQ 32 (hwirq 0) to all the cor=
-es by=0A=
-> setting 12th bit in IOMUX_GPR1 register. In order to control the target c=
-ores=0A=
-> only, that is, not waking up all the cores every time, we can unmask/mask=
- the=0A=
-> IRQ 32 in the first GPC IMR register.=0A=
-> =0A=
-> Since EL3 is the one that deals with powering down/up the cores, and sinc=
-e the=0A=
-> cores wake up in EL3, EL3 should be the one to control the IMRs in this c=
-ase.=0A=
-> This implies we need to get into EL3 on every IPI to do the unmasking, le=
-aving=0A=
-> the masking to be done on the power-up sequence by the core itself.=0A=
-=0A=
-Manipulating same IMR registers in TF-A and Linux is racy so all IMR =0A=
-manipulation (set_wake etc) needs to be done through SIP calls with =0A=
-locking inside TF-A.=0A=
-=0A=
-It would make sense to have an entirely separate SIP-based =0A=
-irq-imx8mq-gpc.c driver based on what is used in NXP tree.=0A=
-=0A=
-> +	iomux_gpr =3D syscon_regmap_lookup_by_compatible("fsl,imx6q-iomuxc-gpr"=
-);=0A=
-> +	if (!IS_ERR(iomux_gpr))=0A=
-> +		regmap_update_bits(iomux_gpr, IOMUXC_GPR1, IMX6Q_GPR1_GINT,=0A=
-> +					IMX6Q_GPR1_GINT);=0A=
-=0A=
-Doesn't this initialization belong in TF-A? On boot enable the irq and =0A=
-keep it masked until somebody calls "wake".=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+Fix sdio node order in the soc device tree
+
+Fixes: a1737347250e ("arm64: dts: meson: g12a: add SDIO controller")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 73 ++++++++++-----------
+ 1 file changed, 36 insertions(+), 37 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+index 6aec4cf87350..0642e0a6c605 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -843,6 +843,29 @@
+ 						};
+ 					};
+ 
++					sdio_pins: sdio {
++						mux {
++							groups = "sdio_d0",
++								 "sdio_d1",
++								 "sdio_d2",
++								 "sdio_d3",
++								 "sdio_clk",
++								 "sdio_cmd";
++							function = "sdio";
++							bias-disable;
++							drive-strength-microamp = <4000>;
++						};
++					};
++
++					sdio_clk_gate_pins: sdio_clk_gate {
++						mux {
++							groups = "GPIOX_4";
++							function = "gpio_periphs";
++							bias-pull-down;
++							drive-strength-microamp = <4000>;
++						};
++					};
++
+ 					spdif_in_a10_pins: spdif-in-a10 {
+ 						mux {
+ 							groups = "spdif_in_a10";
+@@ -1326,30 +1349,6 @@
+ 						};
+ 					};
+ 
+-					sdio_pins: sdio {
+-						mux {
+-							groups = "sdio_d0",
+-								 "sdio_d1",
+-								 "sdio_d2",
+-								 "sdio_d3",
+-								 "sdio_cmd",
+-								 "sdio_clk";
+-							function = "sdio";
+-							bias-disable;
+-							drive-strength-microamp = <4000>;
+-						};
+-					};
+-
+-					sdio_clk_gate_pins: sdio_clk_gate {
+-						mux {
+-							groups = "GPIOX_4";
+-							function = "gpio_periphs";
+-							bias-pull-down;
+-							drive-strength-microamp = <4000>;
+-						};
+-					};
+-
+-
+ 					uart_a_pins: uart-a {
+ 						mux {
+ 							groups = "uart_a_tx",
+@@ -2316,6 +2315,19 @@
+ 			};
+ 		};
+ 
++		sd_emmc_a: sd@ffe03000 {
++			compatible = "amlogic,meson-axg-mmc";
++			reg = <0x0 0xffe03000 0x0 0x800>;
++			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
++			status = "disabled";
++			clocks = <&clkc CLKID_SD_EMMC_A>,
++				 <&clkc CLKID_SD_EMMC_A_CLK0>,
++				 <&clkc CLKID_FCLK_DIV2>;
++			clock-names = "core", "clkin0", "clkin1";
++			resets = <&reset RESET_SD_EMMC_A>;
++			amlogic,dram-access-quirk;
++		};
++
+ 		sd_emmc_b: sd@ffe05000 {
+ 			compatible = "amlogic,meson-axg-mmc";
+ 			reg = <0x0 0xffe05000 0x0 0x800>;
+@@ -2340,19 +2352,6 @@
+ 			resets = <&reset RESET_SD_EMMC_C>;
+ 		};
+ 
+-		sd_emmc_a: sd@ffe03000 {
+-			compatible = "amlogic,meson-axg-mmc";
+-			reg = <0x0 0xffe03000 0x0 0x800>;
+-			interrupts = <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
+-			status = "disabled";
+-			clocks = <&clkc CLKID_SD_EMMC_A>,
+-				 <&clkc CLKID_SD_EMMC_A_CLK0>,
+-				 <&clkc CLKID_FCLK_DIV2>;
+-			clock-names = "core", "clkin0", "clkin1";
+-			resets = <&reset RESET_SD_EMMC_A>;
+-			amlogic,dram-access-quirk;
+-		};
+-
+ 		usb: usb@ffe09000 {
+ 			status = "disabled";
+ 			compatible = "amlogic,meson-g12a-usb-ctrl";
+-- 
+2.20.1
+
