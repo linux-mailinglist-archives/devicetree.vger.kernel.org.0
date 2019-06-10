@@ -2,102 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F573B3B0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 13:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014213B3F4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 13:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389309AbfFJLCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 07:02:02 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:60568 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389191AbfFJLCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 07:02:02 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id B6F4E602F3; Mon, 10 Jun 2019 11:02:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560164521;
-        bh=mRD0HxQRl5qvKBhQoKCxAZoQjXYl9uAGRc+kOHjgp68=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=R1GOxNf+yljtjiwU+Fi0t3WEP0qcYT3squbnT1TdnJPRXEEFZ+Iw+n15K3NuOHWls
-         Xs4wSTZDnl9L2L3qUPwuS0kz6M/C7lWPAttdE0tb+QLYhhwcArsSaQDjj4G0Pjpt3X
-         YPmdskbpEQ5g9dY7dDo8H010W+42UQxkvtHJluR8=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.201.2.161] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sricharan@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3D50060271;
-        Mon, 10 Jun 2019 11:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560164519;
-        bh=mRD0HxQRl5qvKBhQoKCxAZoQjXYl9uAGRc+kOHjgp68=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=R1+9C+PIOrIaeixpPyIerEfvdehTjfet+LxQbNBKhChBEx9+0hbBLIGGCkq4NJmOB
-         qTAP9KBidpLhnp4Myb41gzmir6AKYZ7pwv9toiPDdlIOgx1EBjOXLKGe/v4kqGv66Y
-         /WSehylOGAagYmnO7UwXXof1yn2BXFrqK9lsVj78=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3D50060271
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
-Subject: Re: [PATCH 2/6] dt-bindings: qcom: Add ipq6018 bindings
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linus.walleij@linaro.org, Stephen Boyd <sboyd@kernel.org>,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, robh+dt@kernel.org,
-        linux-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org>
- <1559754961-26783-3-git-send-email-sricharan@codeaurora.org>
- <20190608032754.GD24059@builder>
-From:   Sricharan R <sricharan@codeaurora.org>
-Message-ID: <93e5b0c5-f97b-ef62-8c7f-262e80a53b49@codeaurora.org>
-Date:   Mon, 10 Jun 2019 16:31:54 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2389658AbfFJLVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 07:21:52 -0400
+Received: from foss.arm.com ([217.140.110.172]:40922 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388611AbfFJLVw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 07:21:52 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BE4AE337;
+        Mon, 10 Jun 2019 04:21:51 -0700 (PDT)
+Received: from redmoon (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 489523F557;
+        Mon, 10 Jun 2019 04:23:32 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 12:21:41 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/3] Qualcomm QCS404 PCIe support
+Message-ID: <20190610112134.GA30098@redmoon>
+References: <20190529005710.23950-1-bjorn.andersson@linaro.org>
+ <20190529163155.GA24655@redmoon>
+ <20190604113347.GA13029@centauri.ideon.se>
 MIME-Version: 1.0
-In-Reply-To: <20190608032754.GD24059@builder>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190604113347.GA13029@centauri.ideon.se>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/8/2019 8:57 AM, Bjorn Andersson wrote:
-> On Wed 05 Jun 10:15 PDT 2019, Sricharan R wrote:
+On Tue, Jun 04, 2019 at 01:33:47PM +0200, Niklas Cassel wrote:
+> On Wed, May 29, 2019 at 05:31:55PM +0100, Lorenzo Pieralisi wrote:
+> > On Tue, May 28, 2019 at 05:57:07PM -0700, Bjorn Andersson wrote:
+> > > This series adds support for the PCIe controller in the Qualcomm QCS404
+> > > platform.
+> > > 
+> > > Bjorn Andersson (3):
+> > >   PCI: qcom: Use clk_bulk API for 2.4.0 controllers
+> > >   dt-bindings: PCI: qcom: Add QCS404 to the binding
+> > >   PCI: qcom: Add QCS404 PCIe controller support
+> > > 
+> > >  .../devicetree/bindings/pci/qcom,pcie.txt     |  25 +++-
+> > >  drivers/pci/controller/dwc/pcie-qcom.c        | 113 ++++++++----------
+> > >  2 files changed, 75 insertions(+), 63 deletions(-)
+> > 
+> > Applied to pci/qcom for v5.3, thanks.
+> > 
+> > Lorenzo
 > 
->> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
->> Signed-off-by: speriaka <speriaka@codeaurora.org>
->> ---
->>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index f6316ab..7b19028 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -36,6 +36,7 @@ description: |
->>    	mdm9615
->>    	ipq8074
->>    	sdm845
->> +	ipq6018
+> Hello Lorenzo,
 > 
-> It would be nice if these lists where sorted, but as that's not the
-> case, please sort it wrt the other ipq at least.
+> I don't see these patches in linux-next.
 > 
+> It appears that only Bjorn Helgaas tree is in linux-next, and not yours.
+> 
+> I think that it makes a lot of sense for patches to cook in linux-next
+> for as long a possible.
+> 
+> Perhaps you and Bjorn Helgaas could have a shared PCI git tree?
+> Or perhaps you could add your tree to linux-next?
+> ..or some other solution :)
 
- ok.
+I ask Bjorn to pull branches into linux-next at appropriate times
+that fit our schedules, be patient and this code will be in -next
+shortly.
 
-Regards,
- Sricharan
-
-
--- 
-"QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+Lorenzo
