@@ -2,106 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8DB73B8D1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 18:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3753B8E6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 18:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390858AbfFJQA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 12:00:57 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:50639 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2389356AbfFJQA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 12:00:57 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5AFpjoA009189;
-        Mon, 10 Jun 2019 18:00:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=hL5doPAk7gz0oURE8Qq+x0YUW9RAa/CHoF+4B6z8r2k=;
- b=ENZtCi9dMus0j1k6iHnZpCQ1RX+RtshUvGAffIQ9bro55dGz1QKditKnTUFiuWS0zw8h
- JX6hS18qOmYCUfcopHomtLXHOQeMOQqY57MJ5RH/6w1rW6zRFhLRsMeHVCP9oG2V4f/Z
- LMvh1q8dwxlCthe780b4xdGec8F4Am5dUaBGNol1Xc+KZ5aAJaykZQrtv3wVL85A5Bbm
- C0p5IGHLiZc46sw+L0Gq3sj5cj6TVQGfpbUYL23tDdTC4MeosEjC8HxMUe7brT/ecanB
- GPznEItkcwq2tMWlFGO285T7SY2Pma8heSyluzp7Q7uZfU5kQNMeK4Cxg17UBJft1Dk1 0Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2t02st9vxe-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 10 Jun 2019 18:00:39 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C44BB31;
-        Mon, 10 Jun 2019 16:00:38 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9BD9A4F5B;
-        Mon, 10 Jun 2019 16:00:38 +0000 (GMT)
-Received: from [10.48.0.204] (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 10 Jun
- 2019 18:00:38 +0200
-Subject: Re: [PATCH 00/10] STM32 usart power improvements
-To:     Erwan Le Ray <erwan.leray@st.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <linux-serial@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-References: <1559638519-6128-1-git-send-email-erwan.leray@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <e6fecf4c-cb07-4cf7-099a-201b14e90a00@st.com>
-Date:   Mon, 10 Jun 2019 18:00:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2403826AbfFJQFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 12:05:07 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:44912 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391424AbfFJQFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 12:05:07 -0400
+Received: by mail-pl1-f195.google.com with SMTP id t7so1224923plr.11
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 09:05:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=I97k1/yDNx0Ud4d53tFJ+yzis1/msAxhI7LkJXdDlMI=;
+        b=VV9N9tGP8t2WAQUQ+OSK2mKKCq5hw/N4x7i7RZ590iX541DGS+qpKTG/j+IEqxn3rZ
+         H21R38eWL4cZzvIqWG7yGw0Yx4RUYnU9IA3evlNHfq6dOXsAFoXgTAcwEqrrt/75qDWv
+         1WNhWrZEc0F/+0Ap5HW9EQB8XXHjjpSbB6ID2xPX1JuBstBbT7ctDcNGOvhu80VQPrY5
+         MUkeQgFjzhu8vYi6C7HA4Rt/jmQHHLQuvUs9a4wdno0iKRSy0ijN+2sbahr1MiseeeI2
+         YTg3k9hu+cDwt1c8aDmL0YZ4s0933Hol8De084L5JSPIBTCLwUBcgcKYL4aMYP0xWafo
+         mnSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=I97k1/yDNx0Ud4d53tFJ+yzis1/msAxhI7LkJXdDlMI=;
+        b=FwBWV/Uiy7f+ohB4YAB6qjrXJQE1kLGDfu+vzpzaWqtlke9ZVLL5EftCfdSfvqph6u
+         goVXgnWnLObz/950LXyJeyC5ufyL81YXkxmmmBomj6Gxa2+XvB3G9JHT0shH2TJhEQGy
+         ieg7kKxUl5Sz+ONzeq9WWPsiYFSH1Cpkh6X4Z7FU0oAinZeDJmKMTgDX4myHePRV19Y1
+         VNjaysaNXoceOgHepihXhDWH1rsB+mikCI55TkBFiNa9bBzKpeXHJY1rkJyUy3AFbgfh
+         y8hcpzjlIVYo4ILnwsf2Qdo9GZ/ir6RBsNfVB1k1RmYcXhk4TQ+r/RwSu2K7cechgn+s
+         mbSA==
+X-Gm-Message-State: APjAAAW7oECCEjjB/xIEQOc1Q/v+wERPGbSjekw5yxSQpnTuV8wAqucS
+        gRzOtlsFd6OB9INpxXlm7K23
+X-Google-Smtp-Source: APXvYqwH/NmDelm4Qk4hvpw7av9GCUs379dTbeOaPUH87D6Xn3audTYv6l3vxIFimcWYviwc+NPV4Q==
+X-Received: by 2002:a17:902:ac1:: with SMTP id 59mr9967531plp.168.1560182706367;
+        Mon, 10 Jun 2019 09:05:06 -0700 (PDT)
+Received: from mani ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id 144sm8900066pfa.180.2019.06.10.09.05.02
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 10 Jun 2019 09:05:05 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 21:34:59 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, sboyd@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/7] dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO
+ controller binding
+Message-ID: <20190610160459.GA31461@mani>
+References: <20190608195317.6336-1-manivannan.sadhasivam@linaro.org>
+ <20190608195317.6336-3-manivannan.sadhasivam@linaro.org>
+ <5d164528-c797-5f94-f905-719d4f69542c@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <1559638519-6128-1-git-send-email-erwan.leray@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG8NODE1.st.com (10.75.127.22) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-10_07:,,
- signatures=0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5d164528-c797-5f94-f905-719d4f69542c@suse.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Erwan,
 
-On 6/4/19 10:55 AM, Erwan Le Ray wrote:
-> This series delivers power improvements for stm32-usart driver.
+Hi Andreas,
+
+On Mon, Jun 10, 2019 at 03:45:37PM +0200, Andreas Färber wrote:
+> Am 08.06.19 um 21:53 schrieb Manivannan Sadhasivam:
+> > Add devicetree binding for Actions Semi Owl SoC's SD/MMC/SDIO controller.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  .../devicetree/bindings/mmc/owl-mmc.txt       | 37 +++++++++++++++++++
+> >  1 file changed, 37 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/owl-mmc.txt
 > 
-> Bich Hemon (4):
->    dt-bindings: serial: add optional pinctrl states
->    serial: stm32: select pinctrl state in each suspend/resume function
->    ARM: dts: stm32: Update pin states for uart4 on stm32mp157c-ed1
->    ARM: dts: stm32: Update UART4 pin states on stm32mp157a-dk1
+> Rob, should this be YAML now?
 > 
-> Erwan Le Ray (6):
->    dt-bindings: serial: stm32: add wakeup option
->    serial: stm32: add pm_runtime support
->    serial: stm32: Use __maybe_unused instead of #if CONFIG_PM_SLEEP
->    serial: stm32: add support for no_console_suspend
->    ARM: dts: stm32: update uart4 pin configurations for low power
->    ARM: dts: stm32: add wakeup capability on each usart/uart on
->      stm32mp157c
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/owl-mmc.txt b/Documentation/devicetree/bindings/mmc/owl-mmc.txt
+> > new file mode 100644
+> > index 000000000000..a702f8d66cec
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mmc/owl-mmc.txt
+> > @@ -0,0 +1,37 @@
+> > +Actions Semi Owl SoCs SD/MMC/SDIO controller
+> > +
+> > +Required properties:
+> > +- compatible: should be "actions,owl-mmc"
+> > +- reg: offset and length of the register set for the device.
+> > +- interrupts: single interrupt specifier.
+> > +- clocks: single clock specifier of the controller clock.
+> > +- resets: phandle to the reset line.
+> > +- dma-names: should be "mmc".
+> > +- dmas: single DMA channel specifier
 > 
->   .../devicetree/bindings/serial/st,stm32-usart.txt  | 19 ++++-
->   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi          | 17 +++++
->   arch/arm/boot/dts/stm32mp157a-dk1.dts              |  5 +-
->   arch/arm/boot/dts/stm32mp157c-ed1.dts              |  5 +-
->   arch/arm/boot/dts/stm32mp157c.dtsi                 | 40 ++++++++--
->   drivers/tty/serial/stm32-usart.c                   | 88 ++++++++++++++++++++--
->   drivers/tty/serial/stm32-usart.h                   |  1 +
->   7 files changed, 155 insertions(+), 20 deletions(-)
+> I recall the main blocker for MMC being regulators, i.e. the I²C
+> attached multi-function PMIC. Yet I don't see any such required property
+> here, nor any patch series implementing it. Seems like this relies on
+> U-Boot having initialized SD/eMMC? Do you intend to make them optional
+> or did you want to hold off merging this one until the rest is done?
 > 
 
-I'll merge device tree part into stm32-next branch when binding part 
-will be accepted.
+Yeah, I'm planning to rely on u-boot for regulator enablement. PMIC support
+in kernel will take some time because the floating SIRQ patchset is not yet
+finished.
 
-regards
-Alex
+> > +
+> > +Optional properties:
+> > +- pinctrl-names: pinctrl state names "default" must be defined.
+> > +- pinctrl-0: phandle referencing pin configuration of the controller.
+> > +- bus-width: see mmc.txt
+> > +- cap-sd-highspeed: see mmc.txt
+> > +- cap-mmc-highspeed: see mmc.txt
+> > +- sd-uhs-sdr12: see mmc.txt
+> > +- sd-uhs-sdr25: see mmc.txt
+> > +- sd-uhs-sdr50: see mmc.txt
+> > +- non-removable: see mmc.txt
+> 
+> I'm not convinced duplicating common properties is a good idea here, in
+> particular pinctrl.
+> 
+
+Hmmm, I thought of adding the MMC properties which were supported by the SoC.
+I can remove those if needed.
+
+Thanks,
+Mani
+
+> Regards,
+> Andreas
+> 
+> > +
+> > +Example:
+> > +
+> > +		mmc0: mmc@e0330000 {
+> > +			compatible = "actions,owl-mmc";
+> > +			reg = <0x0 0xe0330000 0x0 0x4000>;
+> > +			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&cmu CLK_SD0>;
+> > +			resets = <&cmu RESET_SD0>;
+> > +			dmas = <&dma 2>;
+> > +			dma-names = "mmc";
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&mmc0_default>;
+> > +			bus-width = <4>;
+> > +			cap-sd-highspeed;
+> > +		};
+> > 
+> 
+> 
+> -- 
+> SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
+> GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
+> HRB 21284 (AG Nürnberg)
