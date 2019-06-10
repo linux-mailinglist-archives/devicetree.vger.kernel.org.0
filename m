@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D04643B7ED
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 17:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9233B80C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 17:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389674AbfFJPCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 11:02:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55828 "EHLO mail.kernel.org"
+        id S2390163AbfFJPI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 11:08:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60080 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725320AbfFJPCB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 11:02:01 -0400
+        id S2388848AbfFJPI2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 11:08:28 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8A32220859;
-        Mon, 10 Jun 2019 15:02:00 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 607F6207E0;
+        Mon, 10 Jun 2019 15:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560178920;
-        bh=OE8GdsTUm6Imy2zPdYlPLj1uy7lqP03V060qQqNy6s8=;
+        s=default; t=1560179307;
+        bh=JQYAUerPzfaXfW/oMHU3MZDXQSjGooRupBafc1MH6NY=;
         h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
-        b=09qdbjyTF0YwhwLeCe/ZJYYrjFSo7df/akOmOhnJL1Nz3+iRIEvhIDMmr6W1dCBIf
-         bE7KCXS2+R0ZyWXhbq4kpFl1epH3RXBDn+J48Pc3eOudwxKGJ4+mMIXjGfXhruxbkL
-         xuh+QFQ8z+yVqfnuBQzH1Utbh7+3X9fCqVIbXVQw=
+        b=Q/tUUYE0afU6oJyVF2D4QZaMAdxh95qUMlZE9dRkENKCn/AtnnQc4B9ofyVVQf8N2
+         IEneCiffs5lswPU7rLJA9Sf7xtG8xgdbWHuDk/ffYnQXtgItI/jrHED+FYqElZYwHz
+         s3BHFq8OvV41Ftfj39rl4otGzqKTX8zFYRXCq1zY=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190608195317.6336-2-manivannan.sadhasivam@linaro.org>
-References: <20190608195317.6336-1-manivannan.sadhasivam@linaro.org> <20190608195317.6336-2-manivannan.sadhasivam@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        afaerber@suse.de, robh+dt@kernel.org, ulf.hansson@linaro.org
+In-Reply-To: <20190608091537.GG9160@vkoul-mobl.Dlink>
+References: <20190607101234.30449-1-vkoul@kernel.org> <20190607101234.30449-2-vkoul@kernel.org> <20190607174353.31EDA208C3@mail.kernel.org> <20190608091537.GG9160@vkoul-mobl.Dlink>
+To:     Vinod Koul <vkoul@kernel.org>
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 1/7] clk: actions: Fix factor clk struct member access
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Deepak Katragadda <dkatraga@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Taniya Das <tdas@codeaurora.org>
+Subject: Re: [PATCH 2/2] clk: qcom: gcc: Add global clock controller driver for SM8150
 User-Agent: alot/0.8.1
-Date:   Mon, 10 Jun 2019 08:01:59 -0700
-Message-Id: <20190610150200.8A32220859@mail.kernel.org>
+Date:   Mon, 10 Jun 2019 08:08:26 -0700
+Message-Id: <20190610150827.607F6207E0@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Manivannan Sadhasivam (2019-06-08 12:53:11)
-> Since the helper "owl_factor_helper_round_rate" is shared between factor
-> and composite clocks, using the factor clk specific helper function
-> like "hw_to_owl_factor" to access its members will create issues when
-> called from composite clk specific code. Hence, pass the "factor_hw"
-> struct pointer directly instead of fetching it using factor clk specific
-> helpers.
+Quoting Vinod Koul (2019-06-08 02:15:37)
+> On 07-06-19, 10:43, Stephen Boyd wrote:
+> > Quoting Vinod Koul (2019-06-07 03:12:34)
+> > > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8=
+150.c
+> > > new file mode 100644
+> > > index 000000000000..1cbc884444c9
+> > > --- /dev/null
+> > > +++ b/drivers/clk/qcom/gcc-sm8150.c
+> > > +static const struct parent_map gcc_parent_map_0[] =3D {
+> > > +       { P_BI_TCXO, 0 },
+> > > +       { P_GPLL0_OUT_MAIN, 1 },
+> > > +       { P_GPLL0_OUT_EVEN, 6 },
+> > > +       { P_CORE_BI_PLL_TEST_SE, 7 },
+> > > +};
+> > > +
+> > > +static const char * const gcc_parent_names_0[] =3D {
+> >=20
+> > We have a new way of specifying clk parents now. Can you use that
+> > instead of using strings everywhere?
 >=20
-> This issue has been observed when a composite clock like "sd0_clk" tried
-> to call "owl_factor_helper_round_rate" resulting in pointer dereferencing
-> error.
+> Okay I will update, any pointers on new implementation I can look up?
 >=20
-> Fixes: 4bb78fc9744a ("clk: actions: Add factor clock support")
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
 
-I agree with Andreas on the function name. With that change you can add
-
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Not really yet. Chen-Yu is working on the Allwinner driver
+(drivers/clk/sunxi-ng/) and some work from Jeff for MSM8998 is on the
+list that you can look at.
 
