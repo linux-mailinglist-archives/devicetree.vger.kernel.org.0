@@ -2,143 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 460DE3B685
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 15:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D783B698
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 15:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390268AbfFJNzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 09:55:19 -0400
-Received: from mail-eopbgr40052.outbound.protection.outlook.com ([40.107.4.52]:28642
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2389373AbfFJNzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 09:55:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T05/Ew+18UuNR4CFUKeK+Ni99rBRcW5MWR24Ro4NT5o=;
- b=hDdlSvH1xn4O8xW3UmAMYf6gTfeauaejUpoogzFI3o9/iaWsZPQsPgW976lU5T9xtFFINKt0+pAjo1BiUL06ekleMpkEUwm0l0kxA63lmyzGsKQvBQ+kI1APS6ioj95Ci/KitmPalq497bDReI/uQu0tsI5bZLZlnv074CjPO3A=
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com (20.178.202.151) by
- AM0PR04MB5170.eurprd04.prod.outlook.com (20.177.42.11) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.17; Mon, 10 Jun 2019 13:55:15 +0000
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::5c91:9215:bcd9:49cc]) by AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::5c91:9215:bcd9:49cc%5]) with mapi id 15.20.1943.023; Mon, 10 Jun 2019
- 13:55:15 +0000
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Marc Zyngier <marc.zyngier@arm.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Abel Vesa <abelvesa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Carlo Caione <ccaione@baylibre.com>
-Subject: Re: [RFC 0/2] Add workaround for core wake-up on IPI for i.MX8MQ
-Thread-Topic: [RFC 0/2] Add workaround for core wake-up on IPI for i.MX8MQ
-Thread-Index: AQHVH4Y/3naZJOmQTkOgrNdQmlNuA6aU3y6AgAACvgCAAALCAIAABIYA
-Date:   Mon, 10 Jun 2019 13:55:15 +0000
-Message-ID: <20190610135514.xd5myavjsloos2y3@fsr-ub1664-175>
-References: <20190610121346.15779-1-abel.vesa@nxp.com>
- <20190610131921.GB14647@lakrids.cambridge.arm.com>
- <20190610132910.srd4j2gtidjeppdx@fsr-ub1664-175>
- <6f1052ea-623a-b2e8-9aa8-22aef5fab4ca@arm.com>
-In-Reply-To: <6f1052ea-623a-b2e8-9aa8-22aef5fab4ca@arm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=abel.vesa@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a85f1427-0959-495d-717d-08d6edab4412
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5170;
-x-ms-traffictypediagnostic: AM0PR04MB5170:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <AM0PR04MB517096D477F1C933C101FE24F6130@AM0PR04MB5170.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0064B3273C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(7916004)(396003)(366004)(376002)(346002)(39860400002)(136003)(43544003)(199004)(189003)(8936002)(66066001)(6306002)(45080400002)(44832011)(6506007)(102836004)(53546011)(966005)(316002)(7736002)(8676002)(4326008)(6246003)(81156014)(53936002)(26005)(186003)(446003)(7416002)(68736007)(229853002)(1076003)(6436002)(11346002)(76176011)(486006)(71200400001)(476003)(71190400001)(14454004)(81166006)(33716001)(478600001)(561944003)(25786009)(5660300002)(99286004)(86362001)(2906002)(305945005)(54906003)(3846002)(256004)(6486002)(9686003)(14444005)(66946007)(6916009)(6116002)(6512007)(73956011)(91956017)(76116006)(66556008)(66446008)(66476007)(64756008);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5170;H:AM0PR04MB5779.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: CTj2uYdBGiawLS2fzpHik7kKEWEv30whRIWCfsoFqdF3auTGOE08nN748+ddP8rGWrHQ0XeNtiKX2nrCZZhZTph00SoTJmvoGqTEJdO6rU2OHhPDpWmJFi4lBsjtF1gHnGBO3WhcDDxRGweyCEYy8A4xMx1ZJJhxswtGsIeRRO+FO6qS+CQ375E8VXcxmvDFCPtAe4fyE4wnMRcugrAKYdQ8VXNp6H/kC1kE4fNmE1hbB5sX7QO8bdUAVn0W/6bbnnNr6y1Vdje2sM1B89j9gx6euXZWrwqEyBKaDv05eCM5GcUKXqjA4BO/tqwaHw9KrO39a3SVFgaqTqHEqaDg6rsUb0brkQ/+a8mxV/NM5myzGWPUBn83sXqsxxt5/yfCFZuWz81BLU6Jvofs1FUoSYtHUkOQELnhjv+fpVQLz18=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <AFFA43130A95A345A0B17C6E6F4503EA@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S2390596AbfFJN6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 09:58:48 -0400
+Received: from mga04.intel.com ([192.55.52.120]:12365 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390587AbfFJN6s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 09:58:48 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Jun 2019 06:58:47 -0700
+X-ExtLoop1: 1
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga005.fm.intel.com with ESMTP; 10 Jun 2019 06:58:47 -0700
+Received: from achugh-mobl.amr.corp.intel.com (unknown [10.254.100.69])
+        by linux.intel.com (Postfix) with ESMTP id 6192E5800FF;
+        Mon, 10 Jun 2019 06:58:46 -0700 (PDT)
+Subject: Re: [alsa-devel] [RFC PATCH 5/6] dt-bindings: soundwire: add bindings
+ for Qcom controller
+To:     Vinod Koul <vkoul@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
+ <20190607085643.932-6-srinivas.kandagatla@linaro.org>
+ <20190610045150.GJ9160@vkoul-mobl.Dlink>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <c6829f76-f119-31d5-c3eb-506e2d50f298@linux.intel.com>
+Date:   Mon, 10 Jun 2019 08:58:55 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a85f1427-0959-495d-717d-08d6edab4412
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2019 13:55:15.5584
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: abel.vesa@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5170
+In-Reply-To: <20190610045150.GJ9160@vkoul-mobl.Dlink>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-06-10 14:39:02, Marc Zyngier wrote:
-> On 10/06/2019 14:29, Abel Vesa wrote:
-> > On 19-06-10 14:19:21, Mark Rutland wrote:
-> >> On Mon, Jun 10, 2019 at 03:13:44PM +0300, Abel Vesa wrote:
-> >>> This is another alternative for the RFC:
-> >>> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
-kml.org%2Flkml%2F2019%2F3%2F27%2F545&amp;data=3D02%7C01%7Cabel.vesa%40nxp.c=
-om%7C7cb2bda286214541bd1e08d6eda903e0%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C=
-0%7C0%7C636957707535314247&amp;sdata=3DguYqyq5ND6HzW6doFyWrR1Ry4ffWpGwtm0xD=
-Z2ufFSg%3D&amp;reserved=3D0
-> >>>
-> >>> This new workaround proposal is a little bit more hacky but more cont=
-ained
-> >>> since everything is done within the irq-imx-gpcv2 driver.
-> >>>
-> >>> Basically, it 'hijacks' the registered gic_raise_softirq __smp_cross_=
-call
-> >>> handler and registers instead a wrapper which calls in the 'hijacked'=
-=20
-> >>> handler, after that calling into EL3 which will take care of the actu=
-al
-> >>> wake up. This time, instead of expanding the PSCI ABI, we use a new v=
-endor SIP.
-> >>
-> >> IIUC from last time [1,2], this erratum affects all interrupts
-> >> targetting teh idle CPU, not just IPIs, so even if the bodge is more
-> >> self-contained, it doesn't really solve the issue, and there are still
-> >> cases where a CPU will not be woken from idle when it should be (e.g.
-> >> upon receipt of an LPI).
-> >>
-> >=20
-> > Wrong, this erratum does not affect any other type of interrupts, other
-> > than IPIs. That is because all the other interrupts go through GPC,
-> > which means the cores will wake up on any other type (again, other than=
- IPI).
->=20
-> Huh... Are you saying that LPIs and PPIs are going through the GPC, and
-> will trigger the wake-up of the core? That's not the conclusion we
-> reached last time.
->=20
 
-Hmm, I don't think that was the conclusion. Yes, Lucas was saying (IIRC)
-that if you terminate the IRQs at GIC then all the other interrupts will be
-in the same situation. But the performance improvement given by terminating
-them at GIC might not be worth it when compared to the cpuidle support.
+>> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,swr.txt b/Documentation/devicetree/bindings/soundwire/qcom,swr.txt
+>> new file mode 100644
+>> index 000000000000..eb84d0f4f36f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soundwire/qcom,swr.txt
+>> @@ -0,0 +1,62 @@
+>> +Qualcomm SoundWire Controller
+>> +
+>> +This binding describes the Qualcomm SoundWire Controller Bindings.
+>> +
+>> +Required properties:
+>> +
+>> +- compatible:		Must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
+>> +	 		example:
+>> +			"qcom,soundwire-v1.3.0"
+>> +			"qcom,soundwire-v1.5.0"
+>> +			"qcom,soundwire-v1.6.0"
+>> +- reg:			SoundWire controller address space.
+>> +- interrupts:		SoundWire controller interrupt.
+>> +- clock-names:		Must contain "iface".
+>> +- clocks:		Interface clocks needed for controller.
+>> +- #sound-dai-cells:	Must be 1 for digital audio interfaces on the controllers.
+>> +- #address-cells:	Must be 1 for SoundWire devices;
+>> +- #size-cells:		Must be <0> as SoundWire addresses have no size component.
+>> +- qcom,dout-ports: 	Must be count of data out ports
+>> +- qcom,din-ports: 	Must be count of data in ports
+> 
+> On these I think we should have specified dpn properties as specified in
+> DisCo, but then looking at spec we do not define that for master, but
+> bus seems to have it.
+> 
+> Pierre do you why master does not have dpn properties in DisCo?
 
-> 	M.
-> --=20
-> Jazz is not dead. It just smells funny...=
+Because there are no DP0 or DPn registers defined for Masters in the 
+SoundWire 1.x spec. DisCo is about specifying properties for standard 
+registers, when they are not standard vendor extensions need to come 
+into play.
+
+> 
+>> +- qcom,ports-offset1:	Must be frame offset1 of each data port.
+>> +			Out followed by In. Used for Block size calculation.
+>> +- qcom,ports-offset2: 	Must be frame offset2 of each data port.
+>> +			Out followed by In. Used for Block size calculation.
+>> +- qcom,ports-sinterval-low: Must be sample interval low of each data port.
+>> +			Out followed by In. Used for Sample Interval calculation.
+> 
+> These are software so do not belong here
+
+Not necessarily. They define the allocation expected on that link and I 
+see no problem specifying those values here. It's the moral equivalent 
+of specifying which TDM slots and the bit depth of one slot you'd use 
+for DSP_A/B.
+And if you push back, then what would be your alternate proposal on 
+where those values might be stored? This is a very specific usage of the 
+link and it makes sense to me to have the information in firmware - 
+exposed with properties - rather than hard-coded in a pretend bus 
+allocation routine in the kernel. Either the allocation is fully dynamic 
+and it's handled by the kernel or it's static and it's better to store 
+it in firmware to deal with platform-to-platform variations.
+
