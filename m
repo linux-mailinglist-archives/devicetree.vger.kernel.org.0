@@ -2,75 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37B9F3BF69
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 00:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE4533BFC3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 01:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389836AbfFJWSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 18:18:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39670 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388757AbfFJWSy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 18:18:54 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A55EF212F5
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 22:18:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560205133;
-        bh=6oBvEStZtvvcSHa/hKbHBQL0XCYfvecAsq+xsL7CezU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UqNct7SoRew3q8kG+U/4wxDUf3Uz0gRRx8FmBm1n9kH1HCOsXzLpgCA20D4rlYmf+
-         I3Qiow8v5X9KVOLpqWgBcz1xtieF0Buy2NCXaNN55sKAVvEnqtZ6fULELBAhcWPIIB
-         x/BtkjxKca9rqs7nNTp0k1/9NZYR8ymx2jfDEduQ=
-Received: by mail-qk1-f181.google.com with SMTP id s22so6414749qkj.12
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 15:18:53 -0700 (PDT)
-X-Gm-Message-State: APjAAAUOjg7Xsg0H9o2XqW7rCiq4xufjRJH/jJekV9S7umSSGapHOMQI
-        ABDE6EhpqlwyYEJYKtA1/NOFlBKausqCW16hEQ==
-X-Google-Smtp-Source: APXvYqwtK5gRog36IqvDqf3xV/jBsHyNH8quMrwPH46YRXXnXKt7aIIex6QqaZ1QtVf3YGBvRC0HBgMbjAqRP1Qggk4=
-X-Received: by 2002:a05:620a:13d1:: with SMTP id g17mr2535263qkl.121.1560205132939;
- Mon, 10 Jun 2019 15:18:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190525134140.6220-1-maxime.ripard@bootlin.com>
- <20190525134140.6220-3-maxime.ripard@bootlin.com> <20190526160600.GA1399@bogus>
- <20190528063401.7uikujzahuq4wlxm@flea>
-In-Reply-To: <20190528063401.7uikujzahuq4wlxm@flea>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 10 Jun 2019 16:18:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ=5Ahr-h8Z+ORQ4ZJJzW0R8L9TKYOC8ouka57YvNGqFw@mail.gmail.com>
-Message-ID: <CAL_JsqJ=5Ahr-h8Z+ORQ4ZJJzW0R8L9TKYOC8ouka57YvNGqFw@mail.gmail.com>
-Subject: Re: [PATCH 3/5] dt-bindings: vendor: Add a bunch of vendors
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
+        id S2390515AbfFJXMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 19:12:43 -0400
+Received: from mail-pg1-f201.google.com ([209.85.215.201]:53102 "EHLO
+        mail-pg1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390517AbfFJXMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 19:12:43 -0400
+Received: by mail-pg1-f201.google.com with SMTP id a13so7826257pgw.19
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 16:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=m4TLZqPEMkq/tS1ogLQKWFfOaA0aQt4zNnp6rjUI2w4=;
+        b=UkMEzD+09sYBsteTJ5/alXDUOxw6Tq6bBhA4ABzjkFspCkfxeNT6Q/ogiW+QlS75/f
+         RP8KOXBb1b8V3cGS28WKIVMk96e9Tw/n7uRKQ3fugHdAr1yH5uAgK9IsJeBYJ2nethye
+         uIMlEj0mXHbYBnrIquiXFy5vGOCubhs7pDPX8C72GaMAaULIBaTAfp6W/ACf03ZRu9HK
+         PFUfr8Ncln++Fms8sEvUe46lDLEZ12psNgEIKFQrCn11U8CGX40vj6gfSAX6cTwLpKF+
+         cGbpOdkYG53V4/Hz9mOp1OARhfROgx3ziTkmWHiailuNp1F5OSdRwzhN5QyZ+Xy7nJDe
+         7dPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=m4TLZqPEMkq/tS1ogLQKWFfOaA0aQt4zNnp6rjUI2w4=;
+        b=VgotzC0wguaP8tnRH7Hy6q5qyNF9JChhrC3Q0RaOaVuO2ezDmXOv5Hp+yCWS71d+Ac
+         O492sSnMoTASAS40U1nk8yuYs2zsm4qJurxVfaJnXL4bdBgkWSxiqOGkzGWMGd8UPT7s
+         VlTynGwHu28scX+QMxK+0fiowgfqVURxp44dfBPQLdPzXHm2W4nxRJxcwcPb9Q25iLxS
+         OGn3X8ZhwAYo8XB2cPPPm6Xvn6TN6d2KfDtpT17bmKu+OCuGQEtUnh5YiBqfEc4CylhH
+         SadkcwSRe2eU3SwbbeivQMl88EQxQmMjSR+8a/NGaAeogeSwPrRTYMRP3ySjViCGNa0L
+         9TVw==
+X-Gm-Message-State: APjAAAUVtb1keD7XjVJcRERv1ZHYvprSHWcVL3MYY79lXdwB1xlmUihf
+        vE+7KIQu5dHuaQ0/qR98w/ElgQv1myi3azs=
+X-Google-Smtp-Source: APXvYqzj61nHsPV2Nnz8RkGG1t3bqBBH1v4vRGcQxQnVXAszVjWtTkb2v4p79LlH8bRM5ywLvfTa3IAI7Cpo+fg=
+X-Received: by 2002:a63:364f:: with SMTP id d76mr10242426pga.147.1560208361843;
+ Mon, 10 Jun 2019 16:12:41 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 16:12:39 -0700
+In-Reply-To: <20190608054711.GZ22737@tuxbook-pro>
+Message-Id: <20190610231239.103913-1-saravanak@google.com>
+Mime-Version: 1.0
+References: <20190608054711.GZ22737@tuxbook-pro>
+X-Mailer: git-send-email 2.22.0.rc2.383.gf4fbbf30c2-goog
+Subject: [Example code] crypto: qcom-rng: Add interconnect devfreq support
+From:   Saravana Kannan <saravanak@google.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        0001-crypto-qcom-rng-Add-interconnect-dev.patch@google.com
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        vincent.guittot@linaro.org, bjorn.andersson@linaro.org,
+        amit.kucheria@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, evgreen@chromium.org,
+        sibis@codeaurora.org, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 12:34 AM Maxime Ripard
-<maxime.ripard@bootlin.com> wrote:
->
-> Hi Rob,
->
-> On Sun, May 26, 2019 at 11:06:00AM -0500, Rob Herring wrote:
-> > On Sat, 25 May 2019 15:41:38 +0200, Maxime Ripard wrote:
-> > > Add all the missing vendors used in Allwinner DTS.
-> > >
-> > > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > > ---
-> > >  .../devicetree/bindings/vendor-prefixes.yaml  | 58 +++++++++++++++++++
-> > >  1 file changed, 58 insertions(+)
-> > >
-> >
-> > Applied, thanks.
->
-> While the other patches are in your tree now, this one looks missing.
+This is just an example code and I'm not actually trying to get this
+merged.
 
-That's what I get for one foot out the door for vacation. Now fixed.
+Bjorn,
 
-Rob
+This is what the code would look like. It compiles, but I can't test it.
+I'm not sending this as part of the patch series as I'm not sure what
+the interconnects property should be set to in DT for qcom-rng device
+nor is QCOM RNG an ideal candidate for bandwidth scaling using devfreq.
+It can probably just set the bandwidth to some fixed low value like 1
+KB/s. But this is pretty much all the code one would need if they wanted
+to enable interconnect scaling for their interconnect path using
+devfreq.
+
+-Saravana
+
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+---
+ drivers/crypto/qcom-rng.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/crypto/qcom-rng.c b/drivers/crypto/qcom-rng.c
+index e54249ccc009..7a92238061ca 100644
+--- a/drivers/crypto/qcom-rng.c
++++ b/drivers/crypto/qcom-rng.c
+@@ -9,6 +9,7 @@
+ #include <linux/crypto.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
++#include <linux/interconnect.h>
+ #include <linux/platform_device.h>
+ 
+ /* Device specific register offsets */
+@@ -37,6 +38,7 @@ struct qcom_rng_ctx {
+ };
+ 
+ static struct qcom_rng *qcom_rng_dev;
++static struct icc_devfreq *icc_df;
+ 
+ static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
+ {
+@@ -186,6 +188,13 @@ static int qcom_rng_probe(struct platform_device *pdev)
+ 		qcom_rng_dev = NULL;
+ 	}
+ 
++	ret = dev_pm_opp_of_add_table_indexed(&pdev->dev, 0);
++	if (ret)
++		return ret;
++	icc_df = icc_create_devfreq(&pdev->dev, "prng-slv");
++	if (IS_ERR(icc_df))
++		return PTR_ERR(icc_df);
++
+ 	return ret;
+ }
+ 
+-- 
+2.22.0.rc2.383.gf4fbbf30c2-goog
+
