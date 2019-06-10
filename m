@@ -2,124 +2,538 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2533BDD7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 22:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05DD33BDF3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389492AbfFJUwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 16:52:36 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:45255 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389033AbfFJUwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 16:52:36 -0400
-Received: by mail-pf1-f196.google.com with SMTP id s11so5955899pfm.12
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 13:52:35 -0700 (PDT)
+        id S2389571AbfFJVBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 17:01:09 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:46918 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389560AbfFJVBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 17:01:09 -0400
+Received: by mail-qt1-f196.google.com with SMTP id h21so11974915qtn.13
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 14:01:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=TtEZnLcn0gJtYgNtefImovOXpRBGoVP9a9JO5/uO7mA=;
-        b=FIBlK5D4o996BrhrHtNwAumtr52YJOJulb5R9MIVRrBQ+82uLHZkW9gnZBQLTf1nBk
-         t33FwrKxeQCGeJE+eP9INkquw9PZAal/0UWz7pvRvRpqkFy9iDhy3LfFZNuHBd5zsviY
-         2dbWvNOBSwthTmZZQi/K3uwowWF5thD5Ilioo=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UqCgGQyZZlSxx5SgJW9SrUIoWnGDiskvMNV5Y6IzA5U=;
+        b=TnsY2gy2t8T6oJR2NI5rn0xrKFn8c83sE2FbHV4Ff7/yiofHRTC4PlxeqE0xkSP30Y
+         2dKRFGZifb57Ttg0K8kBpbpKl39O0xbA0jBuspRFuDN3YI3iPfQWVmdJH5nn9snV3lra
+         qKkENSOtOoT86TybIPkSWlcNvkyLD1dtG3oz0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TtEZnLcn0gJtYgNtefImovOXpRBGoVP9a9JO5/uO7mA=;
-        b=ttE1guXXQkGzVunZY1DC7+7mWyF7+qD1VHB9KhAmDzV0SxRw1DmTYycCGkrgVrTiXU
-         4sPJW4zRIE6B0U0nM0OMc8soo69RNE/qiRa063MOyl5Jp0VWfXn+fxKd036xQ3CMXILU
-         6EGpQEtXJwht31S6z6Yf5DBYtrv9xzLetr9faEsr1AKBDi63kM6+FKyHEdt+gUcKPH2o
-         DdP9dF8fyAiWCpgC6yXHVLIL9lUeYjOe6bKegQzC/dOoZUsKSZahJKWITX90YLxwxZA5
-         M20dSXcdL5RsEvhIecSi+SXz05CsxbL+3DrLRzesakI0pvMg3fUyZNlkgeQs6MDT/dRv
-         1PbQ==
-X-Gm-Message-State: APjAAAUWQDYJC/J2cKH1ZK6c6JOAImROy1F4Z+gvett6MfGQCUylUZwu
-        lRdKtLd/s4P3bydkV+VT6V8tig==
-X-Google-Smtp-Source: APXvYqw4NG+K4opJIst2h53KlxqakMJ7/NCRAA3/dd71Lr/ZKZxIVzfUqDSc18bQM52kaMEuesFGFw==
-X-Received: by 2002:a62:778d:: with SMTP id s135mr4575261pfc.204.1560199955411;
-        Mon, 10 Jun 2019 13:52:35 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id n7sm13961857pgi.54.2019.06.10.13.52.34
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 Jun 2019 13:52:34 -0700 (PDT)
-Date:   Mon, 10 Jun 2019 13:52:33 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Doug Anderson <dianders@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Richard Purdie <rpurdie@rpsys.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Brian Norris <briannorris@google.com>,
-        Guenter Roeck <groeck@google.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
- linearly to human eye.
-Message-ID: <20190610205233.GB137143@google.com>
-References: <20180208113032.27810-1-enric.balletbo@collabora.com>
- <20180208113032.27810-4-enric.balletbo@collabora.com>
- <20190607220947.GR40515@google.com>
- <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UqCgGQyZZlSxx5SgJW9SrUIoWnGDiskvMNV5Y6IzA5U=;
+        b=FxTacjYqKR8Xuk6EcuHl1PJ5epW2T5XF0StDj4yAIN7FFbYLjPzCsrXTZahcK8+q4/
+         rBEhLzKvbuI1cyvjOThAQir13kKvIH3XnVoQgkdOSGiGXVXnjcy2VVZZXWiD8jApJQaJ
+         S6UMhKtF2drl28XwXvjNPokhFDDa3COEhs7wvD+evyZRKbzuCgP91D/bpe20k53GWAJX
+         CQFScSy+CBAn6Uopv3YwIDqsOdOyMfiEhtuOOvqb5QTMC3CQ47pLUB2VK2KVwy5pycin
+         81b4rdiChOtEMhOJHojPc0Y5+peVwy8LbPVpJouPf7ziPmFDebHe4ORGLGErk+yMZEFW
+         I1yA==
+X-Gm-Message-State: APjAAAVzC8liOgLCenUY/7zEuvv9AU2XiH4lGzC78PDOy7ulOzMYSejq
+        8GRtxiIfooobag2k9od6hrenvUGFx+gS8ASi6EQWYw==
+X-Google-Smtp-Source: APXvYqw48s3xmxnU0Sti89BGxqH6rlI/mLADpu1pFANnjJcaFHMMf7NvGi7oEGbnHPNOpkV5DH+MmrBr4pLVvqZiDBg=
+X-Received: by 2002:ac8:1a1c:: with SMTP id v28mr58301398qtj.270.1560200468411;
+ Mon, 10 Jun 2019 14:01:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190608210226.GB2359@xo-6d-61-c0.localdomain>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1556614265-12745-1-git-send-email-henryc.chen@mediatek.com> <1556614265-12745-7-git-send-email-henryc.chen@mediatek.com>
+In-Reply-To: <1556614265-12745-7-git-send-email-henryc.chen@mediatek.com>
+From:   Ryan Case <ryandcase@chromium.org>
+Date:   Mon, 10 Jun 2019 14:00:57 -0700
+Message-ID: <CACjz--=OPx06-pLdoKv_h+y=4nSW0O7zrHM5=hPqTBvMAfmpWA@mail.gmail.com>
+Subject: Re: [RFC V2 06/11] soc: mediatek: add MT8183 dvfsrc support
+To:     Henry Chen <henryc.chen@mediatek.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+Hi Henry,
 
-On Sat, Jun 08, 2019 at 11:02:26PM +0200, Pavel Machek wrote:
-> Hi!
-> 
-> > > +	 * Note that this method is based on empirical testing on different
-> > > +	 * devices with PWM of 8 and 16 bits of resolution.
-> > > +	 */
-> > > +	n = period;
-> > > +	while (n) {
-> > > +		counter += n % 2;
-> > > +		n >>= 1;
-> > > +	}
-> > 
-> > I don't quite follow the heuristics above. Are you sure the number of
-> > PWM bits can be infered from the period? What if the period value (in
-> > ns) doesn't directly correspond to a register value? And even if it
-> > did, counting the number of set bits (the above loops is a
-> > re-implementation of ffs()) doesn't really result in the dividers
-> > mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
-> > in a divider of 1, i.e. 32768 brighness levels.
-> > 
-> > On veyron minnie the period is 1000000 ns, which results in 142858
-> > levels (1000000 / 7)!
-> > 
-> > Not sure if there is a clean solution using heuristics, a DT property
-> > specifying the number of levels could be an alternative. This could
-> > also be useful to limit the number of (mostly) redundant levels, even
-> > the intended max of 4096 seems pretty high.
-> > 
-> > Another (not directly related) observation is that on minnie the
-> > actual brightness at a nominal 50% is close to 0 (duty cycle ~3%). I
-> > haven't tested with other devices, but I wonder if it would make
-> > sense to have an option to drop the bottom N% of levels, since the
-> > near 0 brightness in the lower 50% probably isn't very useful in most
-> > use cases, but maybe it looks different on other devices.
-> 
-> Eye percieves logarithm(duty cycle), mostly, and I find very low brightness
-> levels quite useful when trying to use machine in dark room.
+On Tue, Apr 30, 2019 at 2:45 AM Henry Chen <henryc.chen@mediatek.com> wrote:
+>
+> Add dvfsrc driver for MT8183
+>
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+> ---
+>  drivers/soc/mediatek/Kconfig      |  15 ++
+>  drivers/soc/mediatek/Makefile     |   1 +
+>  drivers/soc/mediatek/mtk-dvfsrc.c | 347 ++++++++++++++++++++++++++++++++++++++
+>  include/soc/mediatek/mtk_dvfsrc.h |  22 +++
+>  4 files changed, 385 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
+>  create mode 100644 include/soc/mediatek/mtk_dvfsrc.h
+>
+> diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+> index 17bd759..2721fd6 100644
+> --- a/drivers/soc/mediatek/Kconfig
+> +++ b/drivers/soc/mediatek/Kconfig
+> @@ -24,6 +24,21 @@ config MTK_INFRACFG
+>           INFRACFG controller contains various infrastructure registers not
+>           directly associated to any device.
+>
+> +config MTK_DVFSRC
+> +       bool "MediaTek DVFSRC Support"
+> +       depends on ARCH_MEDIATEK
+> +       default ARCH_MEDIATEK
+> +       select MTK_INFRACFG
+> +       select PM_GENERIC_DOMAINS if PM
+> +       depends on MTK_SCPSYS
+> +       help
+> +         Say yes here to add support for the MediaTek DVFSRC (dynamic voltage
+> +         and frequency scaling resource collector) found
+> +         on different MediaTek SoCs. The DVFSRC is a proprietary
+> +         hardware which is used to collect all the requests from
+> +         system and turn into the decision of minimum Vcore voltage
+> +         and minimum DRAM frequency to fulfill those requests.
+> +
+>  config MTK_PMIC_WRAP
+>         tristate "MediaTek PMIC Wrapper Support"
+>         depends on RESET_CONTROLLER
+> diff --git a/drivers/soc/mediatek/Makefile b/drivers/soc/mediatek/Makefile
+> index b9dbad6..cd9d63f 100644
+> --- a/drivers/soc/mediatek/Makefile
+> +++ b/drivers/soc/mediatek/Makefile
+> @@ -1,4 +1,5 @@
+>  obj-$(CONFIG_MTK_CMDQ) += mtk-cmdq-helper.o
+> +obj-$(CONFIG_MTK_DVFSRC) += mtk-dvfsrc.o
+>  obj-$(CONFIG_MTK_INFRACFG) += mtk-infracfg.o mtk-scpsys-ext.o
+>  obj-$(CONFIG_MTK_PMIC_WRAP) += mtk-pmic-wrap.o
+>  obj-$(CONFIG_MTK_SCPSYS) += mtk-scpsys.o
+> diff --git a/drivers/soc/mediatek/mtk-dvfsrc.c b/drivers/soc/mediatek/mtk-dvfsrc.c
+> new file mode 100644
+> index 0000000..e54a654
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mtk-dvfsrc.c
+> @@ -0,0 +1,347 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2018 MediaTek Inc.
+> + */
+> +#include <linux/arm-smccc.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/notifier.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <soc/mediatek/mtk_dvfsrc.h>
+> +#include <soc/mediatek/mtk_sip.h>
+> +#include <dt-bindings/power/mt8183-power.h>
+> +#include <dt-bindings/soc/mtk,dvfsrc.h>
+> +#include <dt-bindings/soc/mtk,dvfsrc.h>
+> +#include "mtk-scpsys.h"
+> +
+> +#define DVFSRC_IDLE            0x00
+> +#define DVFSRC_GET_TARGET_LEVEL(x)     (((x) >> 0) & 0x0000ffff)
+> +#define DVFSRC_GET_CURRENT_LEVEL(x)    (((x) >> 16) & 0x0000ffff)
+> +
+> +#define MT8183_DVFSRC_OPP_LP4  0
+> +#define MT8183_DVFSRC_OPP_LP4X 1
+> +#define MT8183_DVFSRC_OPP_LP3  2
+> +
+> +struct dvfsrc_opp {
+> +       u32 vcore_opp;
+> +       u32 dram_opp;
+> +};
+> +
+> +struct dvfsrc_domain {
+> +       u32 id;
+> +       u32 state;
+> +};
+> +
+> +struct mtk_dvfsrc;
+> +struct dvfsrc_soc_data {
+> +       const int *regs;
+> +       u32 num_opp;
+> +       u32 num_domains;
+> +       const struct dvfsrc_opp **opps;
+> +       struct dvfsrc_domain *domains;
+> +       int (*get_target_level)(struct mtk_dvfsrc *dvfsrc);
+> +       int (*get_current_level)(struct mtk_dvfsrc *dvfsrc);
+> +       void (*set_dram_bw)(struct mtk_dvfsrc *dvfsrc, u64 bw);
+> +       void (*set_opp_level)(struct mtk_dvfsrc *dvfsrc, u32 level);
+> +};
+> +
+> +struct mtk_dvfsrc {
+> +       struct device *dev;
+> +       struct clk *clk_dvfsrc;
+> +       const struct dvfsrc_soc_data *dvd;
+> +       int dram_type;
+> +       void __iomem *regs;
+> +       struct mutex lock;
+> +       struct notifier_block scpsys_notifier;
+> +};
+> +
+> +static u32 dvfsrc_read(struct mtk_dvfsrc *dvfs, u32 offset)
+> +{
+> +       return readl(dvfs->regs + dvfs->dvd->regs[offset]);
+> +}
+> +
+> +static void dvfsrc_write(struct mtk_dvfsrc *dvfs, u32 offset, u32 val)
+> +{
+> +       writel(val, dvfs->regs + dvfs->dvd->regs[offset]);
+> +}
+> +
+> +enum dvfsrc_regs {
+> +       DVFSRC_SW_REQ,
+> +       DVFSRC_LEVEL,
+> +       DVFSRC_SW_BW_0,
+> +       DVFSRC_LAST,
+> +};
+> +
+> +static const int mt8183_regs[] = {
+> +       [DVFSRC_SW_REQ] =       0x4,
+> +       [DVFSRC_LEVEL] =        0xDC,
+> +       [DVFSRC_SW_BW_0] =      0x160,
+> +       [DVFSRC_LAST] =         0x308,
+> +};
+> +
+> +static bool dvfsrc_is_idle(struct mtk_dvfsrc *dvfsrc)
+> +{
+> +       if (!dvfsrc->dvd->get_target_level)
+> +               return true;
+> +
+> +       return dvfsrc->dvd->get_target_level(dvfsrc) == DVFSRC_IDLE;
+> +}
+> +
+> +static int dvfsrc_wait_for_idle(struct mtk_dvfsrc *dvfsrc)
+> +{
+> +       unsigned long timeout;
+> +
+> +       timeout = jiffies + usecs_to_jiffies(1000);
+> +
+> +       do {
+> +               if (dvfsrc_is_idle(dvfsrc))
+> +                       return 0;
+> +       } while (!time_after(jiffies, timeout));
 
-I realized that the brightness level display on Chrome OS (= my test
-device) is non-linear, and it isn't actually the lower 50% of levels
-that is near 0 brightness, but 'only' about 20%.
+This all seems like it would be better handled by readx_poll_timeout
+rather than rolling your own.
 
-> But yes, specifying if brightness is linear or exponential would be quite
-> useful.
+> +
+> +       return -ETIMEDOUT;
+> +}
+> +
+> +static int mt8183_get_target_level(struct mtk_dvfsrc *dvfsrc)
+> +{
+> +       return DVFSRC_GET_TARGET_LEVEL(dvfsrc_read(dvfsrc, DVFSRC_LEVEL));
+> +}
+> +
+> +static int mt8183_get_current_level(struct mtk_dvfsrc *dvfsrc)
+> +{
+> +       return ffs(DVFSRC_GET_CURRENT_LEVEL(dvfsrc_read(dvfsrc, DVFSRC_LEVEL)));
+> +}
+> +
+> +static void mt8183_set_dram_bw(struct mtk_dvfsrc *dvfsrc, u64 bw)
+> +{
+> +       dvfsrc_write(dvfsrc, DVFSRC_SW_BW_0, bw);
+> +}
+> +
+> +static void mt8183_set_opp_level(struct mtk_dvfsrc *dvfsrc, u32 level)
+> +{
+> +       int vcore_opp, dram_opp;
+> +       const struct dvfsrc_opp *opp;
+> +
+> +       /* translate pstate to dvfsrc level, and set it to DVFSRC HW */
+> +       opp = &dvfsrc->dvd->opps[dvfsrc->dram_type][level - 1];
+> +       vcore_opp = opp->vcore_opp;
+> +       dram_opp = opp->dram_opp;
+> +
+> +       dev_dbg(dvfsrc->dev, "vcore_opp: %d, dram_opp: %d\n",
+> +               vcore_opp, dram_opp);
+> +       dvfsrc_write(dvfsrc, DVFSRC_SW_REQ, dram_opp | vcore_opp << 2);
+> +}
+> +
+> +void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd, u64 data)
+> +{
+> +       struct mtk_dvfsrc *dvfsrc = dev_get_drvdata(dev);
+> +
+> +       dev_dbg(dvfsrc->dev, "cmd: %d, data: %llu\n", cmd, data);
+> +
+> +       mutex_lock(&dvfsrc->lock);
+> +
+> +       if (dvfsrc_wait_for_idle(dvfsrc)) {
+> +               dev_warn(dvfsrc->dev, "[%s] wait idle, last: %d -> %d\n",
+> +                        __func__, dvfsrc_read(dvfsrc, DVFSRC_LEVEL),
+> +               dvfsrc_read(dvfsrc, DVFSRC_LAST));
+> +               goto out;
+> +       }
+> +
+> +       switch (cmd) {
+> +       case MTK_DVFSRC_CMD_BW_REQUEST:
+> +               dvfsrc->dvd->set_dram_bw(dvfsrc, data);
+> +               goto out;
+> +       case MTK_DVFSRC_CMD_OPP_REQUEST:
+> +               dvfsrc->dvd->set_opp_level(dvfsrc, data);
+> +               break;
+> +       default:
+> +               dev_err(dvfsrc->dev, "unknown command: %d\n", cmd);
+> +               break;
+> +       }
+> +
+> +       if (dvfsrc_wait_for_idle(dvfsrc)) {
+> +               dev_warn(dvfsrc->dev, "[%s] wait idle, last: %d -> %d\n",
+> +                        __func__, dvfsrc_read(dvfsrc, DVFSRC_LEVEL),
+> +                        dvfsrc_read(dvfsrc, DVFSRC_LAST));
+> +               goto out;
+> +       }
+> +
+> +out:
+> +       mutex_unlock(&dvfsrc->lock);
+> +}
+> +EXPORT_SYMBOL(mtk_dvfsrc_send_request);
+> +
+> +static int dvfsrc_set_performance(struct notifier_block *b,
+> +                                 unsigned long l, void *v)
+> +{
+> +       int i, val, highest;
 
-Agreed, this could help userspace with displaying a reasonable
-brightness level.
+Variable names could be improved. "val" is only ever used to store the
+current level, would be nice to make the name more specific. Similarly
+"l" looks like it would be better as something state related.
+
+val and highest at least should be u32.
+
+> +       struct mtk_dvfsrc *dvfsrc;
+> +       struct scp_event_data *sc = v;
+> +       struct dvfsrc_domain *d;
+> +
+> +       if (sc->event_type != MTK_SCPSYS_PSTATE)
+> +               return 0;
+> +
+> +       dvfsrc = container_of(b, struct mtk_dvfsrc, scpsys_notifier);
+> +
+> +       d = dvfsrc->dvd->domains;
+> +
+> +       if (l > dvfsrc->dvd->num_opp) {
+> +               dev_err(dvfsrc->dev, "pstate out of range = %ld\n", l);
+> +               goto out;
+
+Can just return 0;
+
+> +       }
+> +
+> +       for (i = 0, highest = 0; i < dvfsrc->dvd->num_domains - 1; i++, d++) {
+
+It's not immediately clear to me why a domain is skipped (the -1).
+This is either worth a comment or it may be a bug?
+
+> +               if (sc->domain_id == d->id)
+> +                       d->state = l;
+> +               if (d->state > highest)
+> +                       highest = d->state;
+> +       }
+> +
+> +       if (highest == 0) {
+> +               dev_err(dvfsrc->dev, "domain not match\n");
+
+This text is incorrect. You're checking whether all domains had a
+state of zero, not whether you found a domain match. Is this check
+actually needed?
+
+> +               goto out;
+
+return 0;
+
+> +       }
+> +
+> +       mtk_dvfsrc_send_request(dvfsrc->dev, MTK_DVFSRC_CMD_OPP_REQUEST,
+> +                               highest);
+> +
+> +       val = dvfsrc->dvd->get_current_level(dvfsrc);
+> +
+> +       dev_dbg(dvfsrc->dev, "DVFSRC_LEVEL: %x, val: %x, DVFSRC_SW_REQ: %x\n",
+> +               dvfsrc_read(dvfsrc, DVFSRC_LEVEL), val,
+> +               dvfsrc_read(dvfsrc, DVFSRC_SW_REQ));
+
+"val:" to "current level:" or something similarly descriptive.
+
+> +
+> +       if (val < highest) {
+> +               dev_err(dvfsrc->dev, "current: %d < highest: %x\n",
+> +                       val, highest);
+
+This message isn't clear and should be more explicit. Something like
+"Current level %d < highest requested %d"
+
+> +               goto out;
+
+return 0;
+
+> +       }
+> +
+> +out:
+
+Out label no longer needed.
+
+> +       return 0;
+> +}
+> +
+> +static void pstate_notifier_register(struct mtk_dvfsrc *dvfsrc)
+> +{
+> +       dvfsrc->scpsys_notifier.notifier_call = dvfsrc_set_performance;
+> +       register_scpsys_notifier(&dvfsrc->scpsys_notifier);
+> +}
+> +
+> +static int mtk_dvfsrc_probe(struct platform_device *pdev)
+> +{
+> +       struct arm_smccc_res ares;
+> +       struct resource *res;
+> +       struct mtk_dvfsrc *dvfsrc;
+> +       int ret;
+> +
+> +       dvfsrc = devm_kzalloc(&pdev->dev, sizeof(*dvfsrc), GFP_KERNEL);
+> +       if (!dvfsrc)
+> +               return -ENOMEM;
+> +
+> +       dvfsrc->dvd = of_device_get_match_data(&pdev->dev);
+> +       dvfsrc->dev = &pdev->dev;
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       dvfsrc->regs = devm_ioremap_resource(&pdev->dev, res);
+> +       if (IS_ERR(dvfsrc->regs))
+> +               return PTR_ERR(dvfsrc->regs);
+> +
+> +       dvfsrc->clk_dvfsrc = devm_clk_get(dvfsrc->dev, "dvfsrc");
+> +       if (IS_ERR(dvfsrc->clk_dvfsrc)) {
+> +               dev_err(dvfsrc->dev, "failed to get clock: %ld\n",
+> +                       PTR_ERR(dvfsrc->clk_dvfsrc));
+> +               return PTR_ERR(dvfsrc->clk_dvfsrc);
+> +       }
+> +
+> +       ret = clk_prepare_enable(dvfsrc->clk_dvfsrc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       mutex_init(&dvfsrc->lock);
+> +
+> +       arm_smccc_smc(MTK_SIP_SPM, MTK_SIP_SPM_DVFSRC_INIT, 0, 0, 0, 0, 0, 0,
+> +                     &ares);
+> +
+> +       if (!ares.a0) {
+> +               dvfsrc->dram_type = ares.a1;
+> +       } else {
+> +               dev_err(dvfsrc->dev, "init fails: %lu\n", ares.a0);
+> +               clk_disable_unprepare(dvfsrc->clk_dvfsrc);
+> +               return ares.a0;
+> +       }
+> +
+> +       platform_set_drvdata(pdev, dvfsrc);
+> +       pstate_notifier_register(dvfsrc);
+> +
+> +       return devm_of_platform_populate(&pdev->dev);
+> +}
+> +
+> +static const struct dvfsrc_opp dvfsrc_opp_mt8183_lp4[] = {
+> +       {0, 0}, {0, 1}, {0, 2}, {1, 2},
+> +};
+> +
+> +static const struct dvfsrc_opp dvfsrc_opp_mt8183_lp3[] = {
+> +       {0, 0}, {0, 1}, {1, 1}, {1, 2},
+> +};
+> +
+> +static const struct dvfsrc_opp *dvfsrc_opp_mt8183[] = {
+> +       [MT8183_DVFSRC_OPP_LP4] = dvfsrc_opp_mt8183_lp4,
+> +       [MT8183_DVFSRC_OPP_LP4X] = dvfsrc_opp_mt8183_lp3,
+> +       [MT8183_DVFSRC_OPP_LP3] = dvfsrc_opp_mt8183_lp3,
+> +};
+> +
+> +static struct dvfsrc_domain dvfsrc_domains_mt8183[] = {
+> +       { MT8183_POWER_DOMAIN_MFG_ASYNC, 0 },
+> +       { MT8183_POWER_DOMAIN_MFG, 0 },
+> +       { MT8183_POWER_DOMAIN_CAM, 0 },
+> +       { MT8183_POWER_DOMAIN_DISP, 0 },
+> +       { MT8183_POWER_DOMAIN_ISP, 0 },
+> +       { MT8183_POWER_DOMAIN_VDEC, 0 },
+> +       { MT8183_POWER_DOMAIN_VENC, 0 },
+> +};
+> +
+> +static const struct dvfsrc_soc_data mt8183_data = {
+> +       .opps = dvfsrc_opp_mt8183,
+> +       .num_opp = ARRAY_SIZE(dvfsrc_opp_mt8183_lp4),
+> +       .regs = mt8183_regs,
+> +       .domains = dvfsrc_domains_mt8183,
+> +       .num_domains = ARRAY_SIZE(dvfsrc_domains_mt8183),
+> +       .get_target_level = mt8183_get_target_level,
+> +       .get_current_level = mt8183_get_current_level,
+> +       .set_dram_bw = mt8183_set_dram_bw,
+> +       .set_opp_level = mt8183_set_opp_level,
+> +};
+> +
+> +static int mtk_dvfsrc_remove(struct platform_device *pdev)
+> +{
+> +       struct mtk_dvfsrc *dvfsrc = platform_get_drvdata(pdev);
+> +
+> +       clk_disable_unprepare(dvfsrc->clk_dvfsrc);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id mtk_dvfsrc_of_match[] = {
+> +       {
+> +               .compatible = "mediatek,mt8183-dvfsrc",
+> +               .data = &mt8183_data,
+> +       }, {
+> +               /* sentinel */
+> +       },
+> +};
+> +
+> +static struct platform_driver mtk_dvfsrc_driver = {
+> +       .probe  = mtk_dvfsrc_probe,
+> +       .remove = mtk_dvfsrc_remove,
+> +       .driver = {
+> +               .name = "mtk-dvfsrc",
+> +               .of_match_table = of_match_ptr(mtk_dvfsrc_of_match),
+> +       },
+> +};
+> +
+> +builtin_platform_driver(mtk_dvfsrc_driver);
+> +
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("MTK DVFSRC driver");
+> diff --git a/include/soc/mediatek/mtk_dvfsrc.h b/include/soc/mediatek/mtk_dvfsrc.h
+> new file mode 100644
+> index 0000000..e759a65
+> --- /dev/null
+> +++ b/include/soc/mediatek/mtk_dvfsrc.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + *
+> + * Copyright (c) 2018 MediaTek Inc.
+> + */
+> +#ifndef __SOC_MTK_DVFSRC_H
+> +#define __SOC_MTK_DVFSRC_H
+> +
+> +#define MTK_DVFSRC_CMD_BW_REQUEST      0
+> +#define MTK_DVFSRC_CMD_OPP_REQUEST     1
+> +
+> +#if IS_ENABLED(CONFIG_MTK_DVFSRC)
+> +void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd, u64 data);
+> +
+> +#else
+> +
+> +static inline void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd,
+> +                                          u64 data)
+> +{ return -ENODEV; }
+> +
+> +#endif /* CONFIG_MTK_DVFSRC */
+> +
+> +#endif
+> --
+> 1.9.1
+>
