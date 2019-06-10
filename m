@@ -2,48 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBB33AF4D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 09:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43C6B3AFFA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 09:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387706AbfFJHHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 03:07:36 -0400
-Received: from muru.com ([72.249.23.125]:52414 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387614AbfFJHHg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 03:07:36 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id B02B3807E;
-        Mon, 10 Jun 2019 07:07:56 +0000 (UTC)
-Date:   Mon, 10 Jun 2019 00:07:32 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Teresa Remmet <t.remmet@phytec.de>
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        id S2387808AbfFJHvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 03:51:25 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:22192 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387781AbfFJHvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 03:51:25 -0400
+X-UUID: f4cdad59ad504604918513e54bbdad19-20190610
+X-UUID: f4cdad59ad504604918513e54bbdad19-20190610
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 247112446; Mon, 10 Jun 2019 15:51:15 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 10 Jun 2019 15:51:13 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 10 Jun 2019 15:51:13 +0800
+Message-ID: <1560153073.31854.6.camel@mtksdaap41>
+Subject: Re: [PATCH v4 01/14] dt-bindings: Add binding for MT2712 MIPI-CSI2
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     Stu Hsieh <stu.hsieh@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Daniel Schultz <d.schultz@phytec.de>
-Subject: Re: [PATCH 1/7] ARM: dts: am335x phytec boards: Fix cd-gpios active
- level
-Message-ID: <20190610070732.GU5447@atomide.com>
-References: <1558704003-393769-1-git-send-email-t.remmet@phytec.de>
- <1558704003-393769-2-git-send-email-t.remmet@phytec.de>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Linux Media Mailing List" <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg 
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Date:   Mon, 10 Jun 2019 15:51:13 +0800
+In-Reply-To: <CAHD77H=vuPi2Rj4Mw-CQ2=UYX7YnS8w8FpUk0QTVxNUVLWKbJg@mail.gmail.com>
+References: <1559643115-15124-1-git-send-email-stu.hsieh@mediatek.com>
+         <1559643115-15124-2-git-send-email-stu.hsieh@mediatek.com>
+         <1560134057.28527.5.camel@mtksdaap41>
+         <CAHD77H=vuPi2Rj4Mw-CQ2=UYX7YnS8w8FpUk0QTVxNUVLWKbJg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1558704003-393769-2-git-send-email-t.remmet@phytec.de>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Teresa Remmet <t.remmet@phytec.de> [190524 06:20]:
-> Active level of the mmc1 cd gpio needs to be low instead of high.
-> Fix PCM-953 and phyBOARD-WEGA.
+Hi, Tomasz:
 
-Thanks I'll pick this patch into fixes.
+On Mon, 2019-06-10 at 12:32 +0900, Tomasz Figa wrote:
+> Hi CK, Stu,
+> 
+> On Mon, Jun 10, 2019 at 11:34 AM CK Hu <ck.hu@mediatek.com> wrote:
+> >
+> > Hi, Stu:
+> >
+> > "mediatek,mt2712-mipicsi" and "mediatek,mt2712-mipicsi-common" have many
+> > common part with "mediatek,mt8183-seninf", and I've a discussion in [1],
+> > so I would like these two to be merged together.
+> >
+> > [1] https://patchwork.kernel.org/patch/10979131/
+> >
+> 
+> Thanks CK for spotting this.
+> 
+> I also noticed that the driver in fact handles two hardware blocks at
+> the same time - SenInf and CamSV. Unless the architecture is very
+> different from MT8183, I'd suggest splitting it.
+> 
+> On a general note, the MT8183 SenInf driver has received several
+> rounds of review comments already, but I couldn't find any comments
+> posted for this one.
+> 
+> Given the two aspects above and also based on my quick look at code
+> added by this series, I'd recommend adding MT2712 support on top of
+> the MT8183 series.
+
+In [1], "mediatek,mt8183-seninf" use one device to control multiple csi
+instance, so it duplicate many register definition. In [2], one
+"mediatek,mt2712-mipicsi" device control one csi instance, so there are
+multiple device and the register definition does not duplicate. You
+recommend adding MT2712 support on top of the MT8183 series, do you mean
+that "mediatek,mt2712-mipicsi" should use one device to control multiple
+csi instance and duplicate the register setting?
+
+[1] https://patchwork.kernel.org/patch/10979121/
+[2] https://patchwork.kernel.org/patch/10974573/
 
 Regards,
+CK
 
-Tony
+> 
+> Best regards,
+> Tomasz
+
+
