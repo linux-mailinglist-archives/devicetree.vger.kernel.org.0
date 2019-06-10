@@ -2,270 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1170D3BB76
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 19:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A835A3BC08
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 20:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388052AbfFJR5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 13:57:25 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:41746 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388174AbfFJR5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 13:57:25 -0400
-Received: by mail-lf1-f68.google.com with SMTP id 136so7277888lfa.8
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 10:57:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=w7LNYq90LegYhl8JEKETZX2CInF9InU6p6H+XwzSLUQ=;
-        b=RUH4yRcThZVn7Zyjif6ZYAxUy6j0clDjIXRWK0jKAO5EuHE8j66eMBFGw8dl9zh804
-         dk9HKmyGmlj9ucRM+1ifzEfbhD/QvO6eUL3HJlCXqedRmFXz9Ak3VvVtA1UiSpI9bfqP
-         raIRFrtBOIvWpgn3l0dhUeK+JQvBaok7qegy8RA2qDKH41TrfyIlUJ/4neVB3x1boS72
-         nxmfY75bdJh3l8Mxn+I9xoORqYGSUEzQuVYxwAPnzecByBmFCAEWjZpdF8Ea/NR/4tx3
-         C2X0/+Ku3DJ1eDh77TQLXGW4zANil+AuXmI3qz3pCc2/3/l7TKhRVYvKRgtpi4dp+X8e
-         jJCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=w7LNYq90LegYhl8JEKETZX2CInF9InU6p6H+XwzSLUQ=;
-        b=TrMIJDLorHGZ3HOUTzNRaAnPzJI0ZVKWYlpuc5CWtlmcDX/5grhBVixkIIzN41NI2D
-         VQZ0iYDD4gpoZn0zLqQrI1rS6iGiFVUZac1sk9HOif3mc7v7M27KvY/KW2O7uq/GdTv6
-         esm+E0dtdvv2aOL0lcoB0jukUnrWX7bkim3gvGQpKhS9NATozqLivK7NFK4ZXB8gHQ28
-         /ygCjdmA6tzlyJazpzVx6VjTlpDFPZtFfOiyiCHOxdCfpGhT1CFTU3SJxCca0vAPWDWy
-         pJ+ypYkpTEoj3jrwah3uAfmkNHREWMJlRmdk/t4DsdyFySjHp3XxEacsBMdHvv/qhld7
-         RzcA==
-X-Gm-Message-State: APjAAAV2xVychSopBXGXOJQ6ukt0ZXdkP/XJfQT0izyb4b69Dch8SBJy
-        HRPnIZ5tnlQvBFIrbxK6dPL40g==
-X-Google-Smtp-Source: APXvYqxgkqrqz+o4/aFAG4qef4L+/pAS2eHlqHU22llnCUuR5c3nRAfgYkKwP2HJYew5iQHb0XW4ZA==
-X-Received: by 2002:ac2:47fa:: with SMTP id b26mr1037662lfp.82.1560189441079;
-        Mon, 10 Jun 2019 10:57:21 -0700 (PDT)
-Received: from wasted.cogentembedded.com ([31.173.86.166])
-        by smtp.gmail.com with ESMTPSA id h18sm2114160lfc.40.2019.06.10.10.57.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 Jun 2019 10:57:20 -0700 (PDT)
-Subject: Re: [PATCH v5 3/5] mtd: Add support for HyperBus memory devices
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mtd@lists.infradead.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190609103227.24875-1-vigneshr@ti.com>
- <20190609103227.24875-4-vigneshr@ti.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <58e9608d-35ff-0436-6075-b2e4ed4b8594@cogentembedded.com>
-Date:   Mon, 10 Jun 2019 20:57:18 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        id S2388378AbfFJSvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 14:51:49 -0400
+Received: from foss.arm.com ([217.140.110.172]:47510 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387643AbfFJSvt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 14:51:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C227C337;
+        Mon, 10 Jun 2019 11:51:48 -0700 (PDT)
+Received: from ostrya.cambridge.arm.com (ostrya.cambridge.arm.com [10.1.196.129])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 511F03F246;
+        Mon, 10 Jun 2019 11:51:47 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+To:     will.deacon@arm.com
+Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        robin.murphy@arm.com, jacob.jun.pan@linux.intel.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        eric.auger@redhat.com
+Subject: [PATCH 0/8] iommu: Add auxiliary domain and PASID support to Arm SMMUv3
+Date:   Mon, 10 Jun 2019 19:47:06 +0100
+Message-Id: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190609103227.24875-4-vigneshr@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2019 01:32 PM, Vignesh Raghavendra wrote:
+Add substreams and PCI PASID support to the SMMUv3 driver. At the moment
+the driver supports a single address space per device. PASID enables
+multiple address spaces per device, up to a million in theory (1 << 20).
 
-> Cypress' HyperBus is Low Signal Count, High Performance Double Data Rate
-> Bus interface between a host system master and one or more slave
-> interfaces. HyperBus is used to connect microprocessor, microcontroller,
-> or ASIC devices with random access NOR flash memory (called HyperFlash)
-> or self refresh DRAM (called HyperRAM).
-> 
-> Its a 8-bit data bus (DQ[7:0]) with  Read-Write Data Strobe (RWDS)
-> signal and either Single-ended clock(3.0V parts) or Differential clock
-> (1.8V parts). It uses ChipSelect lines to select b/w multiple slaves.
-> At bus level, it follows a separate protocol described in HyperBus
-> specification[1].
-> 
-> HyperFlash follows CFI AMD/Fujitsu Extended Command Set (0x0002) similar
-> to that of existing parallel NORs. Since HyperBus is x8 DDR bus,
-> its equivalent to x16 parallel NOR flash wrt bits per clock cycle. But
-> HyperBus operates at >166MHz frequencies.
-> HyperRAM provides direct random read/write access to flash memory
-> array.
-> 
-> But, HyperBus memory controllers seem to abstract implementation details
-> and expose a simple MMIO interface to access connected flash.
-> 
-> Add support for registering HyperFlash devices with MTD framework. MTD
-> maps framework along with CFI chip support framework are used to support
-> communicating with flash.
-> 
-> Framework is modelled along the lines of spi-nor framework. HyperBus
-> memory controller (HBMC) drivers calls hyperbus_register_device() to
-> register a single HyperFlash device. HyperFlash core parses MMIO access
-> information from DT, sets up the map_info struct, probes CFI flash and
-> registers it with MTD framework.
-> 
-> Some HBMC masters need calibration/training sequence[3] to be carried
-> out, in order for DLL inside the controller to lock, by reading a known
-> string/pattern. This is done by repeatedly reading CFI Query
-> Identification String. Calibration needs to be done before trying to detect
-> flash as part of CFI flash probe.
-> 
-> HyperRAM is not supported at the moment.
-> 
-> HyperBus specification can be found at[1]
-> HyperFlash datasheet can be found at[2]
-> 
-> [1] https://www.cypress.com/file/213356/download
-> [2] https://www.cypress.com/file/213346/download
-> [3] http://www.ti.com/lit/ug/spruid7b/spruid7b.pdf
->     Table 12-5741. HyperFlash Access Sequence
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-[...]
-> diff --git a/drivers/mtd/hyperbus/hyperbus-core.c b/drivers/mtd/hyperbus/hyperbus-core.c
-> new file mode 100644
-> index 000000000000..df1f75e10b1a
-> --- /dev/null
-> +++ b/drivers/mtd/hyperbus/hyperbus-core.c
-> @@ -0,0 +1,191 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
-> +// Author: Vignesh Raghavendra <vigneshr@ti.com>
-> +
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mtd/hyperbus.h>
-> +#include <linux/mtd/map.h>
-> +#include <linux/mtd/mtd.h>
-> +#include <linux/mtd/cfi.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/types.h>
-> +
-> +#define HYPERBUS_CALIB_COUNT 25
+Two kernel features will make use of PASIDs, auxiliary domains (AUXD)
+and Shared Virtual Addressing (SVA). Auxiliary domains allow to program
+PASID contexts using IOMMU domains. SVA allows to bind process address
+spaces to device contexts and relieve device drivers of DMA management.
 
-   Mhm, I think I've already protested about this being #define'd here...
+Since SVA support for SMMUv3 has a lot more dependencies (new fault API,
+ASID pinning, generic bind, PRI or stall support, and so on),
+introducing PASID support to the SMMUv3 driver is easier with auxiliary
+domains.
 
-[...]
-> +int hyperbus_register_device(struct hyperbus_device *hbdev)
-> +{
-> +	const struct hyperbus_ops *ops;
-> +	struct hyperbus_ctlr *ctlr;
-> +	struct device_node *np;
-> +	struct map_info *map;
-> +	struct resource res;
-> +	struct device *dev;
-> +	int ret;
-> +
-> +	if (!hbdev || !hbdev->np || !hbdev->ctlr || !hbdev->ctlr->dev) {
-> +		pr_err("hyperbus: please fill all the necessary fields!\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	np = hbdev->np;
-> +	ctlr = hbdev->ctlr;
-> +	if (!of_device_is_compatible(np, "cypress,hyperflash"))
-> +		return -ENODEV;
-> +
-> +	hbdev->memtype = HYPERFLASH;
-> +
-> +	if (of_address_to_resource(np, 0, &res))
-> +		return -EINVAL;
+The AUXD API allows device drivers to easily test PASID support of their
+devices, although they need to allocate IOVA and pages themselves
+because the DMA API doesn't support AUXD for the moment:
 
-   Why not just propagate the error upstream (yeah, I've noticed that
-it only can be -EINVAL)?
+	iommu_dev_enable_feature(dev, IOMMU_DEV_FEAT_AUX);
+	domain = iommu_domain_alloc(dev->bus);
+	iommu_aux_attach_device(domain, dev);
+	iommu_map(domain, iova, phys_addr, size, prot);
+	pasid = iommu_aux_get_pasid(domain);
+	/* Then launch DMA with the PASID and IOVA */
 
-[...]
-> diff --git a/include/linux/mtd/hyperbus.h b/include/linux/mtd/hyperbus.h
-> new file mode 100644
-> index 000000000000..ee2eefd822c9
-> --- /dev/null
-> +++ b/include/linux/mtd/hyperbus.h
-> @@ -0,0 +1,91 @@
-> +/* SPDX-License-Identifier: GPL-2.0
-> + *
-> + * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
-> + */
-> +
-> +#ifndef __LINUX_MTD_HYPERBUS_H__
-> +#define __LINUX_MTD_HYPERBUS_H__
-> +
-> +#include <linux/mtd/map.h>
-> +
-> +enum hyperbus_memtype {
-> +	HYPERFLASH,
-> +	HYPERRAM,
-> +};
-> +
-> +/**
-> + * struct hyperbus_device - struct representing HyperBus slave device
-> + * @map: map_info struct for accessing MMIO HyperBus flash memory
-> + * @np:	pointer to HyperBus slave device node
-          ^
-   Space needed here, not tab.
+Auxiliary domains also allow to split devices into multiple contexts
+assignable to guest, with vfio-mdev.
 
-> + * @mtd: pointer to MTD struct
-> + * @ctlr: pointer to HyperBus controller struct
-> + * @memtype: type of memory device: HyperFlash or HyperRAM
-> + * @registered: flag to indicate whether device is registered with MTD core
-> + */
-> +
-> +struct hyperbus_device {
-> +	struct map_info map;
-> +	struct device_node *np;
-> +	struct mtd_info *mtd;
-> +	struct hyperbus_ctlr *ctlr;
-> +	enum hyperbus_memtype memtype;
-> +	bool registered;
-> +};
-> +
-> +/**
-> + * struct hyperbus_ops - struct representing custom HyperBus operations
-> + * @read16: read 16 bit of data, usually from register/ID-CFI space
-> + * @write16: write 16 bit of data, usually to register/ID-CFI space
+Past discussions for these patches:
+* Auxiliary domains (patch 6)
+  [RFC PATCH 0/6] Auxiliary IOMMU domains and Arm SMMUv3
+  https://www.spinics.net/lists/iommu/msg30637.html
+* SSID support for the SMMU (patches 2, 3, 4, 5, 7 and 8)
+  [PATCH v2 00/40] Shared Virtual Addressing for the IOMMU
+  https://lists.linuxfoundation.org/pipermail/iommu/2018-May/027595.html
+* I/O ASID (patch 1)
+  [PATCH v3 00/16] Shared virtual address IOMMU and VT-d support
+  https://lkml.kernel.org/lkml/1556922737-76313-4-git-send-email-jacob.jun.pan@linux.intel.com/
 
-   Usually? How to differ the register/memory transfers if both are possible?
+Jean-Philippe Brucker (8):
+  iommu: Add I/O ASID allocator
+  dt-bindings: document PASID property for IOMMU masters
+  iommu/arm-smmu-v3: Support platform SSID
+  iommu/arm-smmu-v3: Add support for Substream IDs
+  iommu/arm-smmu-v3: Add second level of context descriptor table
+  iommu/arm-smmu-v3: Support auxiliary domains
+  iommu/arm-smmu-v3: Improve add_device() error handling
+  iommu/arm-smmu-v3: Add support for PCI PASID
 
-> + * @copy_from: copy data from flash memory
-> + * @copy_to: copy data to flash memory
-> + * @calibrate: calibrate HyperBus controller
-> + */
-> +
-> +struct hyperbus_ops {
-> +	u16 (*read16)(struct hyperbus_device *hbdev, unsigned long addr);
-> +	void (*write16)(struct hyperbus_device *hbdev,
-> +			unsigned long addr, u16 val);
-> +	void (*copy_from)(struct hyperbus_device *hbdev, void *to,
-> +			  unsigned long from, ssize_t len);
-> +	void (*copy_to)(struct hyperbus_device *dev, unsigned long to,
-> +			const void *from, ssize_t len);
-> +	int (*calibrate)(struct hyperbus_device *dev);
-> +};
-> +
-> +/**
-> + * struct hyperbus_ctlr - struct representing HyperBus controller
-> + * @calibrated: flag to indicate ctlr calibration sequence is complete
-> + * @ops: HyperBus controller ops
+ .../devicetree/bindings/iommu/iommu.txt       |   6 +
+ drivers/iommu/Kconfig                         |   5 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/arm-smmu-v3.c                   | 714 ++++++++++++++++--
+ drivers/iommu/ioasid.c                        | 150 ++++
+ drivers/iommu/of_iommu.c                      |   6 +-
+ include/linux/ioasid.h                        |  49 ++
+ include/linux/iommu.h                         |   1 +
+ 8 files changed, 865 insertions(+), 67 deletions(-)
+ create mode 100644 drivers/iommu/ioasid.c
+ create mode 100644 include/linux/ioasid.h
 
-   What about @dev?
+-- 
+2.21.0
 
-> + */
-> +struct hyperbus_ctlr {
-> +	struct device *dev;
-> +	bool calibrated;
-> +
-> +	const struct hyperbus_ops *ops;
-> +};
-[...]
-
-MBR, Sergei
