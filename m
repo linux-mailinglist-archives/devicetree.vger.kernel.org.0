@@ -2,77 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD683B5BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 15:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB333B5DF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 15:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389334AbfFJNGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 09:06:10 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:41290 "EHLO vps0.lunn.ch"
+        id S2390109AbfFJNT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 09:19:26 -0400
+Received: from foss.arm.com ([217.140.110.172]:42796 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388848AbfFJNGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 09:06:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=IXqZ0CamQNSABbN4WKbG4dT+eLIR+6caKei2b9LUxqM=; b=WibeBIkoCwxn6A/navSv/fptTw
-        JDCREiicdxXHKkc7HWJFa9VD6c+X0mZaO0NIsW8PmAFxaQC1ZfNGAouGtw3PBCAYWTqSbNn/6Vylh
-        yreu1ASYZfLpueT5mRU2FojdHWFvTaHlbrqzLW22e9FRZ8tDpMw2X+WJEseCUakEBjqA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1haJzt-0006Li-5Q; Mon, 10 Jun 2019 15:06:01 +0200
-Date:   Mon, 10 Jun 2019 15:06:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Yangbo Lu <yangbo.lu@nxp.com>
-Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] ptp: add QorIQ PTP support for DPAA2
-Message-ID: <20190610130601.GD8247@lunn.ch>
-References: <20190610032108.5791-1-yangbo.lu@nxp.com>
- <20190610032108.5791-2-yangbo.lu@nxp.com>
+        id S2388848AbfFJNT0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jun 2019 09:19:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C3C0C344;
+        Mon, 10 Jun 2019 06:19:25 -0700 (PDT)
+Received: from lakrids.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A58933F557;
+        Mon, 10 Jun 2019 06:19:23 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 14:19:21 +0100
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Abel Vesa <abelvesa@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Bai Ping <ping.bai@nxp.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Carlo Caione <ccaione@baylibre.com>
+Subject: Re: [RFC 0/2] Add workaround for core wake-up on IPI for i.MX8MQ
+Message-ID: <20190610131921.GB14647@lakrids.cambridge.arm.com>
+References: <20190610121346.15779-1-abel.vesa@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190610032108.5791-2-yangbo.lu@nxp.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20190610121346.15779-1-abel.vesa@nxp.com>
+User-Agent: Mutt/1.11.1+11 (2f07cb52) (2018-12-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 11:21:03AM +0800, Yangbo Lu wrote:
-> This patch is to add QorIQ PTP support for DPAA2.
-> Although dpaa2-ptp.c driver is a fsl_mc_driver which
-> is using MC APIs for register accessing, it's same
-> IP block with eTSEC/DPAA/ENETC 1588 timer. We will
-> convert to reuse ptp_qoriq driver by using register
-> ioremap and dropping related MC APIs.
+On Mon, Jun 10, 2019 at 03:13:44PM +0300, Abel Vesa wrote:
+> This is another alternative for the RFC:
+> https://lkml.org/lkml/2019/3/27/545
 > 
-> Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
-> ---
->  drivers/ptp/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> This new workaround proposal is a little bit more hacky but more contained
+> since everything is done within the irq-imx-gpcv2 driver.
 > 
-> diff --git a/drivers/ptp/Kconfig b/drivers/ptp/Kconfig
-> index 9b8fee5..b1b454f 100644
-> --- a/drivers/ptp/Kconfig
-> +++ b/drivers/ptp/Kconfig
-> @@ -44,7 +44,7 @@ config PTP_1588_CLOCK_DTE
->  
->  config PTP_1588_CLOCK_QORIQ
->  	tristate "Freescale QorIQ 1588 timer as PTP clock"
-> -	depends on GIANFAR || FSL_DPAA_ETH || FSL_ENETC || FSL_ENETC_VF
-> +	depends on GIANFAR || FSL_DPAA_ETH || FSL_DPAA2_ETH || FSL_ENETC || FSL_ENETC_VF
->  	depends on PTP_1588_CLOCK
+> Basically, it 'hijacks' the registered gic_raise_softirq __smp_cross_call
+> handler and registers instead a wrapper which calls in the 'hijacked' 
+> handler, after that calling into EL3 which will take care of the actual
+> wake up. This time, instead of expanding the PSCI ABI, we use a new vendor SIP.
 
-Hi Yangbo
+IIUC from last time [1,2], this erratum affects all interrupts
+targetting teh idle CPU, not just IPIs, so even if the bodge is more
+self-contained, it doesn't really solve the issue, and there are still
+cases where a CPU will not be woken from idle when it should be (e.g.
+upon receipt of an LPI).
 
-Could COMPILE_TEST also be added?
+IIUC, Marc, Lorenzo, and Rafael [1,2,3] all thought that that this was
+not worthwhile. What's changed?
 
-Thanks
-	Andrew
+Thanks,
+Mark.
+
+[1] https://lkml.org/lkml/2019/3/28/197
+[2] https://lkml.org/lkml/2019/3/28/203
+[3] https://lkml.org/lkml/2019/3/28/198
+
+> 
+> I also have the patches ready for TF-A but I'll hold on to them until I see if
+> this has a chance of getting in.
+> 
+> Abel Vesa (2):
+>   irqchip: irq-imx-gpcv2: Add workaround for i.MX8MQ ERR11171
+>   arm64: dts: imx8mq: Add idle states and gpcv2 wake_request broken
+>     property
+> 
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 20 +++++++++++++++
+>  drivers/irqchip/irq-imx-gpcv2.c           | 42 +++++++++++++++++++++++++++++++
+>  2 files changed, 62 insertions(+)
+> 
+> -- 
+> 2.7.4
+> 
