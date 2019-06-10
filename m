@@ -2,212 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA553B917
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 18:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8043B967
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 18:28:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391482AbfFJQLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 12:11:36 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:33041 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389670AbfFJQLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 12:11:36 -0400
-Received: by mail-pl1-f195.google.com with SMTP id g21so3866549plq.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 09:11:35 -0700 (PDT)
+        id S2390210AbfFJQZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 12:25:26 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:34393 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389927AbfFJQZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 12:25:26 -0400
+Received: by mail-lj1-f194.google.com with SMTP id p17so1286503ljg.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 09:25:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=QET9pg+wg4oBG+Qp5Q1cj6O60aOdmHNnSi9zeIidUAw=;
-        b=UkbcdtV1H7m1I0gRKzsmcd6Znvvr4WjHTOqLxmQpJdxVjeRm7Wicg3zXZm6YupWk1j
-         cun43ZADHgOP6ggmqFg60lZfwvSO5MXKFTvFw0TRR0WfG2y9dypk517rd/2oJvXU/J5E
-         sKPo9mZF4qdBLlUNuZGELaTpcM2GyzwQVmK46iJ+kqInACxc88sScLfgvE05VFDIH4Vz
-         Bt6Ln5rCnz5Z0mBvxYns3xkVaMayygOxI55YjBX8w0hexmbY0+Ry37/8nIgI8Op41Ixn
-         3HKnTZoQzqIQo7H97TINZI6yh44gqpm6eVzlVjAKw1bRVO9fEy0dHbprol7ldHvDMvgH
-         g8QQ==
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eipFIuppUEBChZz5jEQKJnDCMNGzgpujxoDXEsClrz0=;
+        b=GcbtoBrrxpTZ95MoI5I8PI/IWR4S1C/FKE6nwL2MNQJYCI1uPUShUb/2eNhZ09VLHr
+         ceSg3kp6GOu+D2HcrZ7XtTVUc/yl8vPCa1nV9yVOkOnsiY2EmSzZQ9I/eEdMyrbofzKe
+         7m1RSAId+c4XJqB8uAAf9noe7TGBhcN8oiXc6Rk2DzjzCF9G8TtpzUU0GYnNIACu6kkI
+         mwFOqnG/HQaThHI0C/HCE1ZF0UfQjhOmbKNkEKJxuxbUpbt9RMfIjF+hVxzUfmEyoOVf
+         eUrXyKqi9cos/KDis7qsJVzqmszRFnfpzNouAxxflgIBDlp+cG7uGzX2fgCaLuEPVseu
+         vzMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=QET9pg+wg4oBG+Qp5Q1cj6O60aOdmHNnSi9zeIidUAw=;
-        b=OPbdDlzAWTRVhPc225NeK5iXOjIfOXrCaJ8s2mNtLG3oimKv7eKaKrSm59vTGCJcn4
-         JWiPIYHED2MT2p01UPlWJDtqW+/MWPSe8K00nd2URm3ThY+99K+To7gYdAcsY09OGJrt
-         WMb3bhPrkdgkusU0NOa+YkTZVsgk+XD+gJQPAqySBrltek7a2CHytW2lGs5UYhLMqfVJ
-         PgP2zF/SdRzzaXtUs/EsBGcPPGh8xIZZKLNoQ4UyVUJkVfodwpGbFy+QjjZTm4nWvCCn
-         EWt1i+keKGSJ+cl19m/Llabm3jpo88MVfWfMdkgmqDARUFsCV1MTc0f5vemO9JN2/G48
-         er4A==
-X-Gm-Message-State: APjAAAV+0eP35Pa2CUma/Ngfx25VhBdoyB1zMPUGEGZKDwA8Uehe0+NJ
-        a76z0Mdlg+gCmMfQQQOJJdwe
-X-Google-Smtp-Source: APXvYqy3Ql2jZPLLK7tXmhrVL1GGBblVr3ED1gm9qp676tSVKbCk6HseyNK9zBGjo0G0pvapjBsw8w==
-X-Received: by 2002:a17:902:d915:: with SMTP id c21mr4568605plz.335.1560183094968;
-        Mon, 10 Jun 2019 09:11:34 -0700 (PDT)
-Received: from mani ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id 26sm11070938pfi.147.2019.06.10.09.11.31
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 10 Jun 2019 09:11:34 -0700 (PDT)
-Date:   Mon, 10 Jun 2019 21:41:28 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, sboyd@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 4/7] arm64: dts: actions: Add uSD and eMMC support for
- Bubblegum96
-Message-ID: <20190610161128.GC31461@mani>
-References: <20190608195317.6336-1-manivannan.sadhasivam@linaro.org>
- <20190608195317.6336-5-manivannan.sadhasivam@linaro.org>
- <1381305a-8585-9dcf-6b43-34e852e785ab@suse.de>
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=eipFIuppUEBChZz5jEQKJnDCMNGzgpujxoDXEsClrz0=;
+        b=sNqNOoF4206ngACbJxalgMkLgyk3H51SPY2Cv1OzfkSk/F2VWW1GlrPW/bCDNrUjza
+         +DRB8yQ9LLt0EzLcLccwYo1UOtTb8UaZBof/vyC0ktLYyQVwga1gVXeCmc+kCV6ylXxX
+         KGsnG60aevCXs+4DUXTdcWLDhtGQjXbeAkk/hQLjJLzbKiH6tCswnBRbOTdTuC/u0YcH
+         /0yuWNRinxEZLS4ZQbE8h+1FDJtQyNekrnJJABL0ax1Hrou+oba5E2fhsOS+mH9FMqfz
+         fAcmTbNuILKYuZatlsOQvHT6kWHA/7EaYTRsFThPkhex/zmUEn930HG2Tzo7DsGkOHL2
+         OeQQ==
+X-Gm-Message-State: APjAAAXUFwM36WaYAeoReNYN7e+udhXvC7d23LSNU2u6/wObws+q+Psc
+        LqUBSeaN+Vo/ImKIjkIWyKGzaA==
+X-Google-Smtp-Source: APXvYqyznVsw9V2kAPwrtxirNjclrLSAsstJiifDJVxq7J/9R9usmEoDiJrJb+d2UJTKXwgwWbCvvg==
+X-Received: by 2002:a2e:9188:: with SMTP id f8mr17623754ljg.33.1560183923858;
+        Mon, 10 Jun 2019 09:25:23 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([31.173.86.166])
+        by smtp.gmail.com with ESMTPSA id 24sm2516567ljs.63.2019.06.10.09.25.22
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Jun 2019 09:25:23 -0700 (PDT)
+Subject: Re: [PATCH v5 4/5] dt-bindings: mtd: Add bindings for TI's AM654
+ HyperBus memory controller
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mtd@lists.infradead.org,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
+        devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20190609103227.24875-1-vigneshr@ti.com>
+ <20190609103227.24875-5-vigneshr@ti.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <a808ffca-02a8-14b0-3422-c0905ab212a6@cogentembedded.com>
+Date:   Mon, 10 Jun 2019 19:25:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1381305a-8585-9dcf-6b43-34e852e785ab@suse.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190609103227.24875-5-vigneshr@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello!
 
-Hi Andreas,
+On 06/09/2019 01:32 PM, Vignesh Raghavendra wrote:
 
-On Mon, Jun 10, 2019 at 04:08:26PM +0200, Andreas Färber wrote:
-> Hi Mani,
+> Add binding documentation for TI's HyperBus memory controller present on
+> AM654 SoC.
 > 
-> Am 08.06.19 um 21:53 schrieb Manivannan Sadhasivam:
-> > Add uSD and eMMC support for Bubblegum96 board based on Actions Semi
-> > Owl SoC.
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+> v5:
+> Update binding example to show MMIO mux
+> Fix reg property for flash slave.
 > 
-> What information does "based on Actions Semi Owl SoC" give us? :)
-> The board name should be unique enough - Owl is a family of SoCs,
-> "actions:" is in the subject and "s900-" is in the filename.
+>  .../devicetree/bindings/mtd/ti,am654-hbmc.txt | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt b/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
+> new file mode 100644
+> index 000000000000..c2a2c2b42a92
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
+> @@ -0,0 +1,51 @@
+> +Bindings for HyperBus Memory Controller (HBMC) on TI's K3 family of SoCs
+> +
+> +Required properties:
+> +- compatible : "ti,am654-hbmc" for AM654 SoC
+> +- reg : Two entries:
+> +	First entry pointed to the register space of HBMC controller
+> +	Second entry pointing to the memory map region dedicated for
+> +	MMIO access to attached flash devices
+> +- ranges : Address translation from offset within CS to allocated MMIO
+> +	   space in SoC
+> +
+> +Optional properties:
+> +- mux-controls : phandle to the multiplexer that controls selection of
+> +		 HBMC vs OSPI inside Flash SubSystem. Default is OSPI,
+> +		 if property is absent.
+> +		 See Documentation/devicetree/bindings/mux/reg-mux.txt
+> +		 for mmio-mux binding details
+> +
+> +Example:
+> +
+> +	fss: fss@47000000 {
 
-Makes sense!
+   What's FSS?
+   Regardless of the answer, the node names should be generic, like "memory-controller@".
 
-> > SD0 is connected to uSD slot and SD2 is connected to eMMC.
-> 
-> Suggest to add that as comments above the two nodes instead.
-> 
+> +		compatible = "syscon", "simple-mfd";
 
-Okay.
+   If it's "sycon", the nme should probably be "system-controller".
 
-> > Since there is no PMIC support added yet, fixed regulator has been
-> > used as a regulator node.
-> 
-> Fine with me - maybe add a comment and make sure it's aligned with the
-> schematics naming wrt PMIC.
-> 
+> +		reg = <0x0 0x47000000 0x0 0x100>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		hbmc_mux: hbmc-mux {
 
-Okay.
+   So, just "multiplexor"?
 
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  .../boot/dts/actions/s900-bubblegum-96.dts    | 50 +++++++++++++++++++
-> >  1 file changed, 50 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/actions/s900-bubblegum-96.dts b/arch/arm64/boot/dts/actions/s900-bubblegum-96.dts
-> > index 732daaa6e9d3..3b596d72de25 100644
-> > --- a/arch/arm64/boot/dts/actions/s900-bubblegum-96.dts
-> > +++ b/arch/arm64/boot/dts/actions/s900-bubblegum-96.dts
-> > @@ -13,6 +13,9 @@
-> >  
-> >  	aliases {
-> >  		serial5 = &uart5;
-> > +		mmc0 = &mmc0;
-> > +		mmc1 = &mmc1;
-> > +		mmc2 = &mmc2;
-> 
-> Sort them alphabetically?
-> 
+> +			compatible = "mmio-mux";
+> +			#mux-control-cells = <1>;
+> +			mux-reg-masks = <0x4 0x2>; /* 0: reg 0x4, bit 1 */
+> +		};
+> +
+> +		hbmc: hbmc@47034000 {
 
-Ack.
+   Should be named "memory-controller@47034000", according to the DT spec.
 
-> >  	};
-> >  
-> >  	chosen {
-> > @@ -23,6 +26,14 @@
-> >  		device_type = "memory";
-> >  		reg = <0x0 0x0 0x0 0x80000000>;
-> >  	};
-> > +
-> > +	reg_3p1v: regulator-3p1v {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "fixed-3.1V";
-> > +		regulator-min-microvolt = <3100000>;
-> > +		regulator-max-microvolt = <3100000>;
-> > +		regulator-always-on;
-> > +	};
-> >  };
-> >  
-> >  &i2c0 {
-> > @@ -241,6 +252,45 @@
-> >  			bias-pull-up;
-> >  		};
-> >  	};
-> > +
-> > +	mmc0_default: mmc0_default {
-> > +		pinmux {
-> > +			groups = "sd0_d0_mfp", "sd0_d1_mfp", "sd0_d2_d3_mfp",
-> > +				 "sd0_cmd_mfp", "sd0_clk_mfp";
-> > +			function = "sd0";
-> > +		};
-> > +	};
-> > +
-> > +	mmc2_default: mmc2_default {
-> > +		pinmux {
-> > +			groups = "nand0_d0_ceb3_mfp";
-> > +			function = "sd2";
-> > +		};
-> > +	};
-> 
-> Wouldn't it make more sense to move these and the below pinctrl-* to
-> s900.dtsi for sharing with other theoretical boards? I really dislike
-> the imx model where pin muxing is duplicated into each individual board.
-> 
+> +			compatible = "ti,am654-hbmc";
+> +			reg = <0x0 0x47034000 0x0 0x100>,
+> +				<0x5 0x00000000 0x1 0x0000000>;
+> +			power-domains = <&k3_pds 55>;
+> +			#address-cells = <2>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x5 0x00000000 0x4000000>, /* CS0 - 64MB */
+> +				 <0x1 0x0 0x5 0x04000000 0x4000000>; /* CS1 - 64MB */
+> +			mux-controls = <&hbmc_mux 0>;
+> +
+> +			/* Slave flash node */
+> +			flash@0,0 {
+> +				compatible = "cypress,hyperflash", "cfi-flash";
+> +				reg = <0x0 0x0 0x4000000>;
+> +			};
+> +		};
+> +	};
+[...]
 
-Matter of taste. IMO pinctrl config belongs to the board design and I don't
-wanna dump all combinations in the soc dtsi.
-
-Thanks,
-Mani
-
-> Regards,
-> Andreas
-> 
-> > +};
-> > +
-> > +&mmc0 {
-> > +	status = "okay";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&mmc0_default>;
-> > +	no-sdio;
-> > +	no-mmc;
-> > +	no-1-8-v;
-> > +	cd-gpios = <&pinctrl 120 GPIO_ACTIVE_LOW>;
-> > +	bus-width = <4>;
-> > +	vmmc-supply = <&reg_3p1v>;
-> > +	vqmmc-supply = <&reg_3p1v>;
-> > +};
-> > +
-> > +&mmc2 {
-> > +	status = "okay";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&mmc2_default>;
-> > +	no-sdio;
-> > +	no-sd;
-> > +	non-removable;
-> > +	bus-width = <8>;
-> > +	vmmc-supply = <&reg_3p1v>;
-> >  };
-> >  
-> >  &timer {
-> 
-> -- 
-> SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
-> GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
-> HRB 21284 (AG Nürnberg)
+MBR, Sergei
