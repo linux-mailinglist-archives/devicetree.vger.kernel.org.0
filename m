@@ -2,84 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 939433BEE2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 401C03BEF3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2019 23:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389627AbfFJVrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 17:47:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55264 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387661AbfFJVrM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jun 2019 17:47:12 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D499212F5;
-        Mon, 10 Jun 2019 21:47:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560203231;
-        bh=A8TOGTJuwEvDUH/d1MVUsnWqz/0g/2fFNSmp+Wiv8QI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IcBndJBr6x/GrCfOf5zp8rcKfj/TR41OBRQ/gcrB4SrrMIDF1Ny94rr/y28vbhhpg
-         Ey53NcaAnDuOIxsLaVnk5T4AaD3S6tpj0uSt1RrTIPZKX9oAZdoe1tCZB7GIVfDZPQ
-         Jd/WGPKVhIWpLau+kcCay2XV9gLLZhXsQHT3Lvco=
-Received: by mail-qt1-f181.google.com with SMTP id x2so11261378qtr.0;
-        Mon, 10 Jun 2019 14:47:11 -0700 (PDT)
-X-Gm-Message-State: APjAAAVD8GbsHMZ/bW947Mq5DVvHQ6+M3bkupGcyWqlk/4nMZ2Dx49bf
-        1qkQMzjDyw105juR/V2BJCKknAzRjL6yrAry1Q==
-X-Google-Smtp-Source: APXvYqw9ixaCWUtaCgRr6x7b/pNyEcY2V2n0Ntzbi7l3rhY966w4TpEXuCtCcBErZwa27WAPk/RTAG7YzipmNve+aho=
-X-Received: by 2002:aed:3b33:: with SMTP id p48mr54298406qte.143.1560203230912;
- Mon, 10 Jun 2019 14:47:10 -0700 (PDT)
+        id S1728666AbfFJVyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 17:54:07 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:34723 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728648AbfFJVyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 17:54:07 -0400
+Received: by mail-pl1-f193.google.com with SMTP id i2so4177947plt.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 14:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ilDXamFYOlEO8GWysgGDqHVYIEw5cY+v0lRtT4Q7uCA=;
+        b=M54n+YZdWMqnrmPvi6vT8IJ8mylWm76h2+jOYmOVHfsu4lCiaKMQ1fk0oTQP4ru2nY
+         ZCdqPnTKIyooUPaEM0H4AQ2XextdAG3axmuTwTqqvloFS2xJT1E3apq/5VUWy/AMUXkp
+         eSGBRMMGb678qHmrEEdTy32gFDUA4i8/fzObI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ilDXamFYOlEO8GWysgGDqHVYIEw5cY+v0lRtT4Q7uCA=;
+        b=dKu3LuZDTlEtDCLDRe6oPPTXdHf/APLbQCHFLLJMnYqBLL+AJYhlOM25EZS/XGsNhL
+         a4rLEIfD9s6b6pXSHobVvheeUrnFiJgcSWMTpXvg89VgIwfqD1iMETS1Umx0GYvvlo+N
+         5qDmSz8G2B1f4cGfvC//sbVofhXIbTJ1f7A7VaPVKBi/w4WGCz781JO+Q4GOT5UkmQ/o
+         0OtS/QNsZnNRKYN91O4XMrgpA3NetmCTSh0SXDVqKHdTgdO4ALao1xXI0ddYUxw4wLWM
+         cK3npKQ0HQvPkHty4IN6TymteCCb9V2Ts9cPlz0DT3jGl5jmMg/+I5OdRlRSPAGQTu9l
+         95OQ==
+X-Gm-Message-State: APjAAAWQ39b1lyDx1uRlji00bprPu6m0B9uvV8SeMK+LowHh6/pNcH0f
+        Ssju6v6fD0JnqjncLiiXe2Yw/A==
+X-Google-Smtp-Source: APXvYqzMm6aINKOxX2KeUbtZPTnv+Z+yfCyTSVJfFV7qUiltd8qouqT/1lMB0iF/K2lBlTNTuW1Feg==
+X-Received: by 2002:a17:902:e409:: with SMTP id ci9mr72703491plb.103.1560203646104;
+        Mon, 10 Jun 2019 14:54:06 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id u7sm11324196pgl.64.2019.06.10.14.54.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Jun 2019 14:54:05 -0700 (PDT)
+Date:   Mon, 10 Jun 2019 14:54:03 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Doug Anderson <dianders@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Brian Norris <briannorris@google.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190610215403.GC137143@google.com>
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+ <819ecbcd-18e3-0f6b-6121-67cb363df440@collabora.com>
+ <20190610203928.GA137143@google.com>
+ <c8992414-8067-f82a-55f0-74fe9c2e1b3e@collabora.com>
 MIME-Version: 1.0
-References: <20190602080126.31075-1-paul.walmsley@sifive.com> <20190602080126.31075-4-paul.walmsley@sifive.com>
-In-Reply-To: <20190602080126.31075-4-paul.walmsley@sifive.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 10 Jun 2019 15:46:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJd6s6ta==AoxmNXdpzWL1RytSwR2P4MOfAFSEJavbt+w@mail.gmail.com>
-Message-ID: <CAL_JsqJd6s6ta==AoxmNXdpzWL1RytSwR2P4MOfAFSEJavbt+w@mail.gmail.com>
-Subject: Re: [PATCH 3/5] dt-bindings: riscv: convert cpu binding to json-schema
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-riscv@lists.infradead.org, Paul Walmsley <paul@pwsan.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c8992414-8067-f82a-55f0-74fe9c2e1b3e@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 2, 2019 at 2:01 AM Paul Walmsley <paul.walmsley@sifive.com> wrote:
->
-> At Rob's request, we're starting to migrate our DT binding
-> documentation to json-schema YAML format.  Start by converting our cpu
-> binding documentation.  While doing so, document more properties and
-> nodes.  This includes adding binding documentation support for the E51
-> and U54 CPU cores ("harts") that are present on this SoC.  These cores
-> are described in:
->
->     https://static.dev.sifive.com/FU540-C000-v1.0.pdf
->
-> This cpus.yaml file is intended to be a starting point and to
-> evolve over time.  It passes dt-doc-validate as of the yaml-bindings
-> commit 4c79d42e9216.
->
-> This patch was originally based on the ARM json-schema binding
-> documentation as added by commit 672951cbd1b7 ("dt-bindings: arm: Convert
-> cpu binding to json-schema").
->
-> Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
-> Signed-off-by: Paul Walmsley <paul@pwsan.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-riscv@lists.infradead.org
-> ---
->  .../devicetree/bindings/riscv/cpus.yaml       | 168 ++++++++++++++++++
->  1 file changed, 168 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/cpus.yaml
+On Mon, Jun 10, 2019 at 11:02:27PM +0200, Enric Balletbo i Serra wrote:
+> Hi Matthias,
+> 
+> On 10/6/19 22:39, Matthias Kaehlcke wrote:
+> > Hi Enric
+> > 
+> > On Mon, Jun 10, 2019 at 12:00:02PM +0200, Enric Balletbo i Serra wrote:
+> >> Hi Matthias,
+> >>
+> >> On 8/6/19 23:02, Pavel Machek wrote:
+> >>> Hi!
+> >>>
+> >>>>> +	 * Note that this method is based on empirical testing on different
+> >>>>> +	 * devices with PWM of 8 and 16 bits of resolution.
+> >>>>> +	 */
+> >>>>> +	n = period;
+> >>>>> +	while (n) {
+> >>>>> +		counter += n % 2;
+> >>>>> +		n >>= 1;
+> >>>>> +	}
+> >>>>
+> >>>> I don't quite follow the heuristics above. Are you sure the number of
+> >>>> PWM bits can be infered from the period? What if the period value (in
+> >>>> ns) doesn't directly correspond to a register value? And even if it
+> >>>> did, counting the number of set bits (the above loops is a
+> >>>> re-implementation of ffs()) doesn't really result in the dividers
+> >>>> mentioned in the comment. E.g. a period of 32768 ns (0x8000) results
+> >>>> in a divider of 1, i.e. 32768 brighness levels.
+> >>>>
+> >>
+> >> Right, I think that only works on the cases that we only have one pwm cell, and
+> >> looks like during my tests I did only tests on devices with one pwm cell :-(
+> >>
+> >> And as you point the code is broken for other cases (pwm-cells > 1)
+> >>
+> >>>> On veyron minnie the period is 1000000 ns, which results in 142858
+> >>>> levels (1000000 / 7)!
+> >>>>
+> >>>> Not sure if there is a clean solution using heuristics, a DT property
+> >>>> specifying the number of levels could be an alternative. This could
+> >>>> also be useful to limit the number of (mostly) redundant levels, even
+> >>>> the intended max of 4096 seems pretty high.
+> >>>>
+> >>
+> >> Looking again looks like we _can not_ deduce the number of bits of a pwm, it is
+> >> not exposed at all, so I think we will need to end adding a property to specify
+> >> this. Something similar to what leds-pwm binding does, it has:
+> >>
+> >> max-brightness : Maximum brightness possible for the LED
+> > 
+> > Thanks for the confirmation that I didn't just miss some clever trick.
+> > 
+> > I also think that some kind of DT property is needed, I'll try to come
+> > up with a reasonable name, keeping in mind that some devices might not
+> > want to use the entire range of levels.
+> > 
+> 
+> Note that, If I remember correctly, the original idea behind all these patches
+> was provide a default curve with enough points following the  CIE 1931 formula
+> (which describes how we perceive light). When default doesn't work for your
+> hardware, you could play and define your own curve using the
+> num-interpolated-steps property I.e:
+> 
+>  brightness-levels = <0 2048 4096 8192 16384 65535>;
+>  num-interpolated-steps = <2048>;
+>  default-brightness-level = <4096>;
+> 
+> Or even expose all the possible levels, like you do with your chromeos kernel.
+> 
+>  brightness-levels = <0 65535>;
+>  num-interpolated-steps = <65535>;
+>  default-brightness-level = <4096>;
+> 
+> The above should work independently of the bug found (that of course needs to be
+> fixed)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks for the info, indeed (keep) using a custom curve could be an
+option.
+
+I'm learning about the corresponding user space component of Chrome OS
+as we speak. It looks like it's possible to specify the minimum
+brightness level to use, which should do the trick, also making the OS
+aware of the exponential nature of the backlight levels might help.
