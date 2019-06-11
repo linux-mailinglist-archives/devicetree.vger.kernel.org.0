@@ -2,123 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 545013D2C7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD693D301
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404977AbfFKQmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 12:42:32 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:33822 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405700AbfFKQmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 12:42:15 -0400
-Received: by mail-lf1-f65.google.com with SMTP id y198so9840729lfa.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 09:42:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=D9ZNAv59f40CG0/uv7rXh/uSMAgb1GDNS6rT6AHe4V0=;
-        b=MPBPbkqOsdx6Pgbk2vEFmxS5Pr880M9VCzpqIHdZhtmyBG/0cIrysoqL5qR3okl18m
-         Yewt/oQAkaKm9tdPLdgZShNqbf6GQw3NdF8b2KRS6lOnxvlHayU+ipYY+be+4ktyxrK+
-         84TKjJfHcoJBUwBhLhAhHVxHiq6UHoAkBJj9MByuCArn0WXBhxbHpBzeRjv9abYHIwIc
-         xSjPmIauD3/MkeS9lAcYpeCFVy4J/Z0cVkZqR5X0ZfH77F6PifP648MLw0cKq9vSYHD1
-         6FnoNTcmSnRHAkqM/0qe1TujvS5o9o1qs6syuDfI4Q/qQw3Awa9qUwalv2yRA3e0i4Xz
-         Sn/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=D9ZNAv59f40CG0/uv7rXh/uSMAgb1GDNS6rT6AHe4V0=;
-        b=cNm1ynDOpQWxUVhp8VkkSoO5SMyU8/nV/lYENhqDksE7GB4YxiFkZ3yFbLoHyUyGSR
-         bCn80CZT6epvLp2O03tf9WZpoCSaVRyNMYVBdfYDI0uh70VVzJf31cpX/6B02Ih6B/4c
-         O7gzs5mKsiFeoSk5Asdq96xW3K9G7K5j0QaEFW/JD050FqKVeiWIv5daIEVrFqVRbS/4
-         PMjCdS1dRY1jFWOyCHnFJ3/ht4w6E1cB6rlFilTjKb0zztRiV6ZdPMURkV3UtJP3kH1q
-         7JNCCyHZXbh7kKxDzRIWGAI+o0tzv4PrYRM73D0nqoTunNXRVD1iST9vwmVBFx7SfanT
-         yxYA==
-X-Gm-Message-State: APjAAAXYrIfLf0zB4utuGBe8yQqug22YPOvyj1vGSnYWHMYtLbBfHZTB
-        BydXHHSDb1+TpGITCFGw7hQ/iw==
-X-Google-Smtp-Source: APXvYqycwmxnoSVnWNq3Dg51LluxipGxNUXj8qojZFmb2wWWZLGvVF1+NYMNmjxgnVC8lZZnSVvJsQ==
-X-Received: by 2002:a19:f20d:: with SMTP id q13mr33978637lfh.65.1560271333633;
-        Tue, 11 Jun 2019 09:42:13 -0700 (PDT)
-Received: from localhost.localdomain ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id r14sm2616772lff.44.2019.06.11.09.42.12
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 11 Jun 2019 09:42:13 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
-        georgi.djakov@linaro.org
-Cc:     vkoul@kernel.org, evgreen@chromium.org, daidavid1@codeaurora.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 5/5] arm64: dts: qcs404: Add interconnect provider DT nodes
-Date:   Tue, 11 Jun 2019 19:41:57 +0300
-Message-Id: <20190611164157.24656-6-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190611164157.24656-1-georgi.djakov@linaro.org>
-References: <20190611164157.24656-1-georgi.djakov@linaro.org>
+        id S2404826AbfFKQwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 12:52:20 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:35092 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389757AbfFKQwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 12:52:20 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 7EA8F60A44; Tue, 11 Jun 2019 16:52:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560271938;
+        bh=EWaGYlUEtSJujntfkWWkNzZfnY+gc4hFdn9MEawiOP4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=m2CioZUe39qanfZOhd2/d8dal/I3jVR8/l4r4reFyc8TdLHfBORMaDr9wqALUZid1
+         tXv4GBBedi4ZFLoniNZB84Jz3pJncerK1B8KHYBYPZ0lwqMJ2Pm6o+sdLcalqm5fda
+         Jh5Mw12a9TpP1nz3RdfIl4YYyZs/3ttYhu6i+BJY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 49EEC60271;
+        Tue, 11 Jun 2019 16:52:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560271937;
+        bh=EWaGYlUEtSJujntfkWWkNzZfnY+gc4hFdn9MEawiOP4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=GVUgVMbHCn+CkS+MkbgWO1xjbxVXlrgAfcqcLDDPrYmv53U3DmsA9KqaY+VVMcCAX
+         LbNUFiCHvOuzzsXWd0/6RoLBMJMwiGH8pqqtxv8asl/vqenfY07xMTVVUgyX7E4/FX
+         qU+52UHW3jdR4ObZArHFdrEDpecgTRN8yqq634QI=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 11 Jun 2019 10:52:16 -0600
+From:   Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>
+To:     Dan Williams <dcbw@redhat.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
+        Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+In-Reply-To: <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+ <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+ <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+ <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+Message-ID: <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
+X-Sender: subashab@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for the network-on-chip interconnect buses found
-on qcs404-based platforms.
+> The general plan (and I believe Daniele Palmas was working on it) was
+> to eventually make qmi_wwan use rmnet rather than its internal sysfs-
+> based implementation. qmi_wwan and ipa are at essentially the same
+> level and both could utilize rmnet on top.
+> 
+> *That's* what I'd like to see. I don't want to see two different ways
+> to get QMAP packets to modem firmware from two different drivers that
+> really could use the same code.
+> 
+> Dan
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
----
+qmi_wwan is based on USB and is very different from the IPA interconnect
+though. AFAIK, they do not have much in common (apart from sending &
+receiving MAP packets from hardware).
 
-v3:
-- Updated according to the new binding: added reg property and moved under the
-  "soc" node.
-
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index ffedf9640af7..07ff592233b6 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2018, Linaro Limited
- 
-+#include <dt-bindings/interconnect/qcom,qcs404.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-qcs404.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
-@@ -411,6 +412,33 @@
- 			#interrupt-cells = <4>;
- 		};
- 
-+		bimc: interconnect@400000 {
-+			reg = <0x00400000 0x80000>;
-+			compatible = "qcom,qcs404-bimc";
-+			#interconnect-cells = <1>;
-+			clock-names = "bus_clk", "bus_a_clk";
-+			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-+				<&rpmcc RPM_SMD_BIMC_A_CLK>;
-+		};
-+
-+		pcnoc: interconnect@500000 {
-+			reg = <0x00500000 0x15080>;
-+			compatible = "qcom,qcs404-pcnoc";
-+			#interconnect-cells = <1>;
-+			clock-names = "bus_clk", "bus_a_clk";
-+			clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
-+				<&rpmcc RPM_SMD_PNOC_A_CLK>;
-+		};
-+
-+		snoc: interconnect@580000 {
-+			reg = <0x00580000 0x23080>;
-+			compatible = "qcom,qcs404-snoc";
-+			#interconnect-cells = <1>;
-+			clock-names = "bus_clk", "bus_a_clk";
-+			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-+				<&rpmcc RPM_SMD_SNOC_A_CLK>;
-+		};
-+
- 		sdcc1: sdcc@7804000 {
- 			compatible = "qcom,sdhci-msm-v5";
- 			reg = <0x07804000 0x1000>, <0x7805000 0x1000>;
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
