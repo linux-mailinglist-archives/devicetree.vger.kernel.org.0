@@ -2,110 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 26FC13D30E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8AE43D324
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:00:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390991AbfFKQzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 12:55:45 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:41037 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387610AbfFKQzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 12:55:45 -0400
-Received: by mail-lj1-f194.google.com with SMTP id s21so12388866lji.8
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 09:55:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xh2IY7LpPfFuCqJ10WrTcz/y2fuRKJsYuYIzkRCHPGA=;
-        b=vVUnEDJygjVhekQktjlLFhfyt/TULR2B1WfScNaOoGloNtpx2vfSiB+G/CX3eORLjT
-         G7uF00KbXWKOgLrCKFt2ElbyKKBj7UGNgE3qSHyMqY1a5Pa6JO/asgQ3eA4cH2tjTbLT
-         OnpX7Y6Nw5edKDsZjSnlBYS1OHSqLontrnYzE63pocD3JELJy7J5TX9sG+rAYqz6B7nH
-         o31JpQJKjJ3i6cU94KGEX+LHAhEnu1SQbIJRdRL3AFvCLg6Fs9JqU3ncjsO/6Wj/3JJs
-         8NebdMponYEqEN0JgIaeIZuEAsJNMsc0V5wQwraKtCbq1vonKbi6AjJIAE2oeW3Lo5OZ
-         /Ajg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xh2IY7LpPfFuCqJ10WrTcz/y2fuRKJsYuYIzkRCHPGA=;
-        b=BnaLSLXqgT3jhnjabLfElJ62K8ALUALuwYokubgCmDmdtsLI1wXzaabImw6mP9rtZQ
-         ETKcc3tZqCew4uEeLLi06JxQIsd9XgQlxPksBeZf7483Ykv+DAovjr2CJWYoEvzLSrt8
-         nJ3o6UP46Ucn4ZutapdtKoD/7dQKSqy69DTefbH+Em2RePWuVidA/6TEW3HZlER8J76r
-         ZE3BbA/n7kwsritXMrZyEPmfII+wYo97VJ9ct89KP2WLeKlNFRQ+TTGGBjsy/PZvYTSJ
-         rROaI2ygcjV3C4v20JPEE+E6LVGtFsbPO2IsipmKhGgkUl4yB7UpLF1xV8FA8R0Vy9fm
-         yIVA==
-X-Gm-Message-State: APjAAAXVY1OEoxOAjqn4pNHNpbunAoqsTVbEr20BIb7qBd67c/CO2bHT
-        nRaxX06bz6ZoQ8FStreenIBmLOlMoTfh9ibX5QAAiA==
-X-Google-Smtp-Source: APXvYqw34lPSRZEgkGFHqW2B5EX/1BVK1usgV7bVySIzKQ01HlDt6hTtvz7UkvAtJxHIArPRYUa8+lvbvTxpux61U8A=
-X-Received: by 2002:a2e:2411:: with SMTP id k17mr11738029ljk.136.1560272142410;
- Tue, 11 Jun 2019 09:55:42 -0700 (PDT)
+        id S2404109AbfFKRAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 13:00:06 -0400
+Received: from foss.arm.com ([217.140.110.172]:37736 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404472AbfFKRAG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 13:00:06 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88112337;
+        Tue, 11 Jun 2019 10:00:05 -0700 (PDT)
+Received: from redmoon (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7F5633F73C;
+        Tue, 11 Jun 2019 10:00:03 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 17:59:43 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCHv5 04/20] PCI: mobiveil: Remove the flag
+ MSI_FLAG_MULTI_PCI_MSI
+Message-ID: <20190611165935.GA22836@redmoon>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-5-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-References: <20180208113032.27810-1-enric.balletbo@collabora.com>
- <20180208113032.27810-4-enric.balletbo@collabora.com> <20190607220947.GR40515@google.com>
- <20190608210226.GB2359@xo-6d-61-c0.localdomain> <20190610205233.GB137143@google.com>
- <20190611104913.egsbwcedshjdy3m5@holly.lan>
-In-Reply-To: <20190611104913.egsbwcedshjdy3m5@holly.lan>
-From:   Brian Norris <briannorris@google.com>
-Date:   Tue, 11 Jun 2019 09:55:30 -0700
-Message-ID: <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
- linearly to human eye.
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>, Pavel Machek <pavel@ucw.cz>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Doug Anderson <dianders@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Richard Purdie <rpurdie@rpsys.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Guenter Roeck <groeck@google.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190412083635.33626-5-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 3:49 AM Daniel Thompson
-<daniel.thompson@linaro.org> wrote:
-> This is a long standing flaw in the backlight interfaces. AFAIK generic
-> userspaces end up with a (flawed) heuristic.
+On Fri, Apr 12, 2019 at 08:35:36AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> The current code does not support multiple MSIs, so remove
+> the corresponding flag from the msi_domain_info structure.
 
-Bingo! Would be nice if we could start to fix this long-standing flaw.
+Please explain me what's the problem before removing multi MSI
+support.
 
-> Basically devices with a narrow range of choices can be assumed to be
-> logarithmic
+Thanks,
+Lorenzo
 
-That's (almost, see below) exactly what we have.
-
-(And this is what Matthias is fighting against, now that we're
-implementing both "large number of data points" and "pre-curved" at
-the same time. We will have to either adapt the heuristic, or else
-adapt our device trees to fit the heuristic.)
-
-> Systems are coming along that allow us to animate the change of
-> brightness (part of the reason for interpolated tables is to
-> permit smooth animation rather than because the user explicitly wants
-> to set the brightness to exactly 1117).
-
-Chrome OS has done this for a long time. So "coming along" is a bit late ;)
-
-Also, I believe Chrome OS will do animation/smoothing for all tables
-(small or large) where it can: even for the small tables.
-
-> These systems are often
-> logarithmic but with a wide range of values.
-
-NB: Chrome OS happens to use a polynomial formula (exponent = 2 or
-0.5, depending on how you look at it), not logarithmic. You can see it
-in all its (non)glory here:
-
-https://chromium.googlesource.com/chromiumos/platform2/+/ee015853b227cf265491bd80ccf096b188490529/power_manager/powerd/policy/internal_backlight_controller.cc#451
-
-Regards,
-Brian
+> Fixes: 1e913e58335f ("PCI: mobiveil: Add MSI support")
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
+> ---
+> V5:
+>  - Corrected the subject.
+> 
+>  drivers/pci/controller/pcie-mobiveil.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> index 563210e731d3..a0dd337c6214 100644
+> --- a/drivers/pci/controller/pcie-mobiveil.c
+> +++ b/drivers/pci/controller/pcie-mobiveil.c
+> @@ -703,7 +703,7 @@ static struct irq_chip mobiveil_msi_irq_chip = {
+>  
+>  static struct msi_domain_info mobiveil_msi_domain_info = {
+>  	.flags	= (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS |
+> -		   MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
+> +		   MSI_FLAG_PCI_MSIX),
+>  	.chip	= &mobiveil_msi_irq_chip,
+>  };
+>  
+> -- 
+> 2.17.1
+> 
