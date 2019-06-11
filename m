@@ -2,136 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA47F41734
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B91C84173A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407752AbfFKVwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 17:52:44 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:45543 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407751AbfFKVwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:52:44 -0400
-Received: by mail-pl1-f195.google.com with SMTP id bi6so5283460plb.12
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 14:52:43 -0700 (PDT)
+        id S2389032AbfFKVyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 17:54:00 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:35132 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387764AbfFKVyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:54:00 -0400
+Received: by mail-ed1-f66.google.com with SMTP id p26so18292076edr.2;
+        Tue, 11 Jun 2019 14:53:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=android.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mSH6vjaD/nr1X2l9Lu5p2XVHT+RbgtF+8lv2TXUlGxI=;
-        b=AVWVFnz3EkCZsE+NYatD/YXB62zlYFWeSCIzuEw4yezw8A74s/W8lvaK0EgK4htQ4A
-         DQYmbuW1AAhmO758McKb+i6O5RYvzmBvYa5PLtB9fxvCCuXxpmWhi1XQkjI3DpyGf9Wb
-         tcam3xyknZvvLf4S1FjXpCBDgFpjD0do6YuMssibmei6FY8wfy6Nt0Ho1pYbvK+Fm0Q5
-         ogi9hS0UkwAy1SFW9Hg6+AIlIk1DrLcW2Rae5FOACRJSJqu2tzwzj+KuSpnWTaJAuIY0
-         uciFEij83IKIUYY8YA56k/6BXWW+sn/14KimcibOa5aT4oSlLDKslJEr1sodGjLIOn2c
-         BS5Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=enVQQiD0qEvE81kIlPzU4UOe7eV8T+/6nHsnl/OSqaE=;
+        b=uPqJo+I+2gRZvEgFHAxSICGCcvMalPcwnaQOwTZ2l/Fgcp2WFfbnz9pzM1VPxUu18L
+         PPvvbUqqkPcmpZHvBlm2qbBsdg/dcMGiS3apoX+CdZx81jm9K5RXZj2EAQCVth8/0n4k
+         nf2qPmN0hw9mKbPPDnRyyTxQ/MW9ksJqGoQlML5gUq8yIEBprrAFbiNv3CK0GJj5x34f
+         BlSKG5NOi9RAIZf7jCmYiUhP6jwGD0Uu8I7yb8ZrluH885HhqpsoQ0CVgcEpUE6VHGwP
+         4FKmBTX9sNDPMaRmPhBRmiG5+KMDjJrwiO3uLSLn3lhgjs/Iv32+MbgYroUDrv16JjbW
+         2XUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mSH6vjaD/nr1X2l9Lu5p2XVHT+RbgtF+8lv2TXUlGxI=;
-        b=nOrtc1kWxByBrI3tf8Mrv9Fw/sHuVK4eYg1jG+bq+AWQklkTu5c4+82PFEvXFmZPfV
-         yfDTV8+EgjZ4fpqHcBy6lmt0bvno75Wey97RhDAK9Kdt2konyzUxB5wgjI1eniFTmzvZ
-         HqAFEF+XylLq2MtniHITRN52fTvYMHAF2WmzY3PiVaQZTqcdHjGxH/vIhJ++aY7hLs4+
-         cyYDpDND+Yk9fNPvYT6KMPwr1hOwudWaoTY0/gdKfnkVMDQsUoa5n8J1e3eWwIO3KMMN
-         OqJwAdntBImcdbvtnkpPJq1zXom3W0gyco0H46DsbsucUX+wjubYIrHer/xRIvmjt9as
-         R4sQ==
-X-Gm-Message-State: APjAAAXuIMlobznUutsuQeOySGdIreSfS8OQGB02PI3p5KwZOSQHWYjq
-        dzSVlrOWt1d3pYeIxgfu7NFKaA==
-X-Google-Smtp-Source: APXvYqysSME+/cdv9S8P9cj2bcfPJvkEUDZsjH4vh2DbbdzUop8MSCZwew2ErpDpFIMCx2GEjV1qug==
-X-Received: by 2002:a17:902:a412:: with SMTP id p18mr9930029plq.105.1560289963457;
-        Tue, 11 Jun 2019 14:52:43 -0700 (PDT)
-Received: from localhost ([2620:0:1000:147d:bc5f:a59e:d0e2:264f])
-        by smtp.gmail.com with ESMTPSA id y22sm10173193pfm.70.2019.06.11.14.52.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=enVQQiD0qEvE81kIlPzU4UOe7eV8T+/6nHsnl/OSqaE=;
+        b=Mf/K9OAvoE0uQ/P4spG2/05AoeidfIAyuxuNPItnFrbzEuZ1rqBLhDfh3UB2jcfWeG
+         Br8dPzAH0JWHHh+wii/uCbU/B5jzATQ//i6i0FiH2e/pCiuZ3FzW/uUwOg1V1ED3C0tg
+         IBy+lmAL3ZZrm6noyFswLiiO8ti8DoCrnMNBIFXH/HG7WsyWm88kZxuzI3d2OXltySwy
+         ySABf3dlRp2Y+FoArot4qRdxK/SKljmH15yJI9vdaDjRb8/jznobpVyiYRSxq7UcfYez
+         Jsx1DKtlYszWYVbnJRNr+/n/tCbFnSA+v2b+C9LCE/KGa/JqmDE64NeWeNDguzkmRCkf
+         Hf2Q==
+X-Gm-Message-State: APjAAAVE/dJfhZGVuoJPzdAKpdKYCcPmePhb0jzRRL5+tTN934qvuQ2n
+        cKt1z5USaXqYyPum8I8vKZ4=
+X-Google-Smtp-Source: APXvYqxz2kDWi7DBQi+Y4uLa+i8+0Gq0mwrASzfFnHiXgKzerihODElkUUuJm7ZITNSJi1M7b/T2KA==
+X-Received: by 2002:a50:eb8b:: with SMTP id y11mr17934715edr.154.1560290038648;
+        Tue, 11 Jun 2019 14:53:58 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id o21sm790246edr.12.2019.06.11.14.53.55
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 14:52:42 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 14:52:42 -0700
-From:   Sandeep Patil <sspatil@android.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Tue, 11 Jun 2019 14:53:57 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Subject: Re: [RESEND PATCH v1 1/5] of/platform: Speed up
- of_find_device_by_node()
-Message-ID: <20190611215242.GE212690@google.com>
-References: <20190604003218.241354-1-saravanak@google.com>
- <20190604003218.241354-2-saravanak@google.com>
- <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
- <570474f4-8749-50fd-5f72-36648ed44653@gmail.com>
- <CAGETcx8M3YkUBZ-e2LLfrbWgnMKMMNG5cv=p8MMmBe7ZyPJ7xw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx8M3YkUBZ-e2LLfrbWgnMKMMNG5cv=p8MMmBe7ZyPJ7xw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Gregory Fong <gregory.0xf0@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/7] ARM: dts: Fix BCM7445 DTC warnings
+Date:   Tue, 11 Jun 2019 14:53:48 -0700
+Message-Id: <20190611215348.9994-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190528230134.27007-2-f.fainelli@gmail.com>
+References: <20190528230134.27007-1-f.fainelli@gmail.com> <20190528230134.27007-2-f.fainelli@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 01:56:25PM -0700, 'Saravana Kannan' via kernel-team wrote:
-> On Tue, Jun 11, 2019 at 8:18 AM Frank Rowand <frowand.list@gmail.com> wrote:
-> >
-> > Hi Saravana,
-> >
-> > On 6/10/19 10:36 AM, Rob Herring wrote:
-> > > Why are you resending this rather than replying to Frank's last
-> > > comments on the original?
-> >
-> > Adding on a different aspect...  The independent replies from three different
-> > maintainers (Rob, Mark, myself) pointed out architectural issues with the
-> > patch series.  There were also some implementation issues brought out.
-> > (Although I refrained from bringing up most of my implementation issues
-> > as they are not relevant until architecture issues are resolved.)
+On Tue, 28 May 2019 16:01:28 -0700, Florian Fainelli <f.fainelli@gmail.com> wrote:
+> Fixes a number of unit_address_vs_reg warnings:
 > 
-> Right, I'm not too worried about the implementation issues before we
-> settle on the architectural issues. Those are easy to fix.
+>   DTC     arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+> arch/arm/boot/dts/bcm7445.dtsi:66.6-225.4: Warning (unit_address_vs_reg): /rdb: node has a reg or ranges property, but no unit name
+> arch/arm/boot/dts/bcm7445.dtsi:227.21-298.4: Warning (unit_address_vs_reg): /memory_controllers: node has a reg or ranges property, but no unit name
+> arch/arm/boot/dts/bcm7445-bcm97445svmb.dts:9.9-14.4: Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
+> arch/arm/boot/dts/bcm7445.dtsi:255.10-275.5: Warning (simple_bus_reg): /memory_controllers/memc@1: simple-bus unit address format error, expected "80000"
+> arch/arm/boot/dts/bcm7445.dtsi:277.10-297.5: Warning (simple_bus_reg): /memory_controllers/memc@2: simple-bus unit address format error, expected "100000"
 > 
-> Honestly, the main points that the maintainers raised are:
-> 1) This is a configuration property and not describing the device.
-> Just use the implicit dependencies coming from existing bindings.
-> 
-> I gave a bunch of reasons for why I think it isn't an OS configuration
-> property. But even if that's not something the maintainers can agree
-> to, I gave a concrete example (cyclic dependencies between clock
-> provider hardware) where the implicit dependencies would prevent one
-> of the devices from probing till the end of time. So even if the
-> maintainers don't agree we should always look at "depends-on" to
-> decide the dependencies, we still need some means to override the
-> implicit dependencies where they don't match the real dependency. Can
-> we use depends-on as an override when the implicit dependencies aren't
-> correct?
-> 
-> 2) This doesn't need to be solved because this is just optimizing
-> probing or saving power ("we should get rid of this auto disabling"):
-> 
-> I explained why this patch series is not just about optimizing probe
-> ordering or saving power. And why we can't ignore auto disabling
-> (because it's more than just auto disabling). The kernel is currently
-> broken when trying to use modules in ARM SoCs (probably in other
-> systems/archs too, but I can't speak for those).
-> 
-> 3) Concerns about backwards compatibility
-> 
-> I pointed out why the current scheme (depends-on being the only source
-> of dependency) doesn't break compatibility. And if we go with
-> "depends-on" as an override what we could do to keep backwards
-> compatibility. Happy to hear more thoughts or discuss options.
-> 
-> 4) How the "sync_state" would work for a device that supplies multiple
-> functionalities but a limited driver.
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
 
-<snip>
-To be clear, all of above are _real_ problems that stops us from efficiently
-load device drivers as modules for Android.
-
-So, if 'depends-on' doesn't seem like the right approach and "going back to
-the drawing board" is the ask, could you please point us in the right
-direction?
-
-- ssp
+Applied to devicetree/next, thanks!
+--
+Florian
