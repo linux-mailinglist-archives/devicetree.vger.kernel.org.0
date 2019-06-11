@@ -2,126 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D134A3C3A3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 07:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A5D3C3B3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 07:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404003AbfFKFvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 01:51:13 -0400
-Received: from gate.crashing.org ([63.228.1.57]:36313 "EHLO gate.crashing.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403745AbfFKFvL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 01:51:11 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x5B5oe0m029024;
-        Tue, 11 Jun 2019 00:50:41 -0500
-Message-ID: <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     James Morse <james.morse@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Date:   Tue, 11 Jun 2019 15:50:40 +1000
-In-Reply-To: <20190608090556.GA32464@zn.tnic>
-References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
-         <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
-         <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
-         <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
-         <20190531051400.GA2275@cz.tnic>
-         <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
-         <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
-         <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
-         <20190608090556.GA32464@zn.tnic>
+        id S2391144AbfFKF7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 01:59:41 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:63325 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2390485AbfFKF7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 01:59:41 -0400
+X-UUID: 62c779248366490688a9b32f61fffd8e-20190611
+X-UUID: 62c779248366490688a9b32f61fffd8e-20190611
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1177027926; Tue, 11 Jun 2019 13:59:33 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 11 Jun
+ 2019 13:59:32 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 11 Jun 2019 13:59:31 +0800
+Message-ID: <1560232771.8487.120.camel@mhfsdcap03>
+Subject: Re: [PATCH v6 09/10] usb: roles: add USB Type-B GPIO connector
+ driver
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Nagarjuna Kristam <nkristam@nvidia.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        "Badhri Jagan Sridharan" <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yu Chen <chenyu56@huawei.com>
+Date:   Tue, 11 Jun 2019 13:59:31 +0800
+In-Reply-To: <9640aa29-bc96-ded1-e757-e885bda354a8@nvidia.com>
+References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
+         <1559115828-19146-10-git-send-email-chunfeng.yun@mediatek.com>
+         <9640aa29-bc96-ded1-e757-e885bda354a8@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2019-06-08 at 11:05 +0200, Borislav Petkov wrote:
-> On Sat, Jun 08, 2019 at 10:16:11AM +1000, Benjamin Herrenschmidt wrote:
-> > Those IP blocks don't need any SW coordination at runtime. The drivers
-> > don't share data nor communicate with each other. There is absolultely
-> > no reason to go down that path.
+On Mon, 2019-06-10 at 16:03 +0530, Nagarjuna Kristam wrote:
+> Tested-by: Nagarjuna Kristam <nkristam@nvidia.com>
 > 
-> Let me set one thing straight: the EDAC "subsystem" if you will - or
-> that pile of code which does error counting and reporting - has its
-> limitations in supporting one EDAC driver per platform. And whenever we
-> have two drivers loadable on a platform, we have to do dirty hacks like
-> 
->   301375e76432 ("EDAC: Add owner check to the x86 platform drivers")
-> 
-> What that means is, that if you need to call EDAC logging routines or
-> whatnot from two different drivers, there's no locking, no nothing. So
-> it might work or it might set your cat on fire.
+Thanks
 
-Should we fix that then instead ? What are the big issues with adding
-some basic locking ? being called from NMIs ?
-
-If the separate drivers operate on distinct counters I don't see a big
-problem there.
-
-> IOW, having multiple separate "drivers" or representations of RAS
-> functionality using EDAC facilities is something that hasn't been
-> done. Well, almost. highbank_mc_edac.c and highbank_l2_edac.c is one
-> example but they make sure they don't step on each other's toes by using
-> different EDAC pieces - a device vs a memory controller abstraction.
-
-That sounds like a reasonable requirement.
-
-> And now the moment all of a sudden you decide you want for those
-> separate "drivers" to synchronize on something, you need to do something
-> hacky like the amd_register_ecc_decoder() thing, for example, because we
-> need to call into the EDAC memory controller driver to decode a DRAM ECC
-> error properly, while the rest of the error types get decoded somewhere
-> else...
-> 
-> Then there comes the issue with code reuse - wouldn't it be great if a
-> memory controller driver can be shared between platform drivers instead of
-> copying it in both?
-> 
-> We already do that - see fsl_ddr_edac.c which gets shared between PPC
-> *and* ARM. drivers/edac/skx_common.c is another example for Intel chips.
-> 
-> Now, if you have a platform with 10 IP blocks which each have RAS
-> functionality, are you saying you'll do 10 different pieces called
-> 
-> <platform_name>_<ip_block#>_edac.c
-> 
-> ?
-> 
-> And if <next_platform> has an old IP block with the old RAS
-> functionality, you load <platform_name>_<ip_block>_edac.c on the new
-> platform too?
-
-I'n not sure why <platform_name> ...
-
-Anyway, let's get back to the specific case of our Amazon platform here
-since it's a concrete example.
-
-Hanna, can you give us a reasonably exhaustive list of how many such
-"drivers" we'll want in the EDAC subsystem and whether you envision any
-coordination requirement between them or not ?
-
-Cheers,
-Ben.
-
+> On 29-05-2019 13:13, Chunfeng Yun wrote:
+> > Due to the requirement of usb-connector.txt binding, the old way
+> > using extcon to support USB Dual-Role switch is now deprecated
+> > when use Type-B connector.
+> > This patch introduces a driver of Type-B connector which typically
+> > uses an input GPIO to detect USB ID pin, and try to replace the
+> > function provided by extcon-usb-gpio driver
+> > 
+> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > ---
+> > v6 changes:
+> >   1. get usb-role-swtich by usb_role_switch_get()
+> > 
+> > v5 changes:
+> >   1. put usb_role_switch when error happens suggested by Biju
+> >   2. don't treat bype-B connector as a virtual device suggested by Rob
+> > 
+> > v4 changes:
+> >   1. remove linux/gpio.h suggested by Linus
+> >   2. put node when error happens
+> > 
+> > v3 changes:
+> >   1. treat bype-B connector as a virtual device;
+> >   2. change file name again
+> > 
+> > v2 changes:
+> >   1. file name is changed
+> >   2. use new compatible
+> > ---
+> >  drivers/usb/roles/Kconfig           |  11 ++
+> >  drivers/usb/roles/Makefile          |   1 +
+> >  drivers/usb/roles/typeb-conn-gpio.c | 286 ++++++++++++++++++++++++++++
+> >  3 files changed, 298 insertions(+)
+> >  create mode 100644 drivers/usb/roles/typeb-conn-gpio.c
+> > 
+> > diff --git a/drivers/usb/roles/Kconfig b/drivers/usb/roles/Kconfig
+> > index f8b31aa67526..d1156e18a81a 100644
+> > --- a/drivers/usb/roles/Kconfig
+> > +++ b/drivers/usb/roles/Kconfig
+> > 
 
 
