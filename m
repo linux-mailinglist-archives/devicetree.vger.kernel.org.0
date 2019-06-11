@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F023C928
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 183F73C922
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387631AbfFKKlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 06:41:19 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:44214 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387523AbfFKKlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 06:41:02 -0400
-Received: by mail-wr1-f67.google.com with SMTP id b17so12423305wrq.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 03:41:01 -0700 (PDT)
+        id S2387657AbfFKKlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 06:41:04 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:54662 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387578AbfFKKlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 06:41:04 -0400
+Received: by mail-wm1-f66.google.com with SMTP id g135so2377347wme.4
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 03:41:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=fJU4aHR0rVsdWBrGZXQ39RDqJgxX93qjHiD8SWybkaM=;
-        b=RPRC/yHewHSIblBTN67aXej0xEEkdQgIhaXh2ybmwsLf+Cosr6xLs0PO0YCnzb4o9k
-         hlOqYHb92RjF3YMh/W5dtVSKpxn1JWJgg4bgrkWwd0QG5AP7pmR+x9UINg0gQii3+2RW
-         s/jWdAPSOCHS7BQT9tvgNRvplvmqo249sSbf4qNAGHLGchiXPe4LYcigmjeLns/Y2wC0
-         qOAwzOhQmMREdx13qIPdtFt50qam581ngygcDOwI0c9qRZDQ7kbuWZI58J1g0iiiYwaW
-         Rl7ycVEk7dq0+DngyU+xk7UQo+kQ/3liwt4BsZn//8XZxoAggzsOqjY5BRnMYPLuVhFe
-         0UcQ==
+        bh=IyhckBm8THgO1AcZvtqNCZU3xMQ1j3cGrqaXKQ6WbdI=;
+        b=OQg8KvQSnrphvOofdMTtzsvKGujUIWuYj1y2jJhYsUUJnfc5YvjQgj63rr2m+LiIt0
+         3imTNZNG8Lci6WAr050UBiTC4xMuRbvBbLj+OzRZF+ZVxes6Rnd6qJSqEi47ylZsZNTz
+         1bnnmMNh2VzawyKTFMnAQlX0NUbhTQvCyHYk+rrbOLjynzdhyjYgGudPPu2b5peh6e/W
+         WIsWRIui9pT1KXuRPLflunZh5bFKClaFLv7JiUcjVXlhis1ALkbflrNmW51Y/e651F1L
+         xhPAnH8+HBGsLGLVOsysHnb4om4QXPLAeLhS+oCmug5bI2VDO5u19U0uMJotsJxch5ak
+         Ej/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fJU4aHR0rVsdWBrGZXQ39RDqJgxX93qjHiD8SWybkaM=;
-        b=f0WEt61YngLh9pfdhaizak5wpZbMi7LmLJPfzgnOo7TQx/IjxsJ0/KRWjFHvCcLj8P
-         /Vx71HmMhyvQyzTY3O3PzRNjlKE4hM1ZgYSY7REa2sJ+mT5adoxd3Ia01K0yxk/C58tX
-         B94hAH+q0o5isa5KhlzzX8smQeN5spNzQcRx1ItH3QGudJq5iGt9Xh+b63xNF70ozemD
-         0YwxvtcE3GTVbk9NFxgjXpzcX3FbF6u/0iVwMCJ+nOAD71Ykhvw/tS+rnnaTrUELa7vJ
-         pqOiaBFP8tz1l/5MOaTdUB2e1cLAWjjAQmKI2oSCUs6tpMjbh4gxEFOyXcYYDYyfgD0V
-         WCmg==
-X-Gm-Message-State: APjAAAXea6iZhlNgkCHm8tZpm4EDy+8ZYssFkqN9tbqHe9EuQwe0zqIX
-        js9PzvAhFYVoyaxeaGne2bIO2Q==
-X-Google-Smtp-Source: APXvYqzBWw1MjNjHAKzC6fJlE0R8arif02WUl3DHjCYY6cv3RJtRVXlhZ7RHFgMENqoxZfFsJf8Plw==
-X-Received: by 2002:adf:e8cb:: with SMTP id k11mr48143892wrn.244.1560249660756;
-        Tue, 11 Jun 2019 03:41:00 -0700 (PDT)
+        bh=IyhckBm8THgO1AcZvtqNCZU3xMQ1j3cGrqaXKQ6WbdI=;
+        b=f92zX/3K5+AN2kt6D/Oq547tNzyg6SJ7IDrH6h9E51j4LTGSOmgX2R47h9Jc5u4DUM
+         w9sdTDmSReorws5hLl90Oh5tmCsiUGVP5yyKCXTNj8hAeq5bcKiCk4iDX1TpgSJ3PgJU
+         h8/kNjxM0oBnpWBO81hrTYLQSP1LPGd10RtuGeITkN2Tfoo/CROcNF7Dv4VEFTrzpUm6
+         A0ZkP1ey8Go5epaACC4uz/YoOXy+l13Cltcwe2CPfrEkb1P/Q5IwQGEz1cUybZHv4F2j
+         q8MF3r9ToVYDkuP3XiY8d9hQMUlazQhL9zKH97noTe4PSuY4IsUZnsQSFMqMywjiZ84V
+         gj7g==
+X-Gm-Message-State: APjAAAXQWnEDmtLIB9AMf083w7K5t9ALsRjkgw2iNKRQYPyINpUzSI20
+        lhRmUgmK7IavJW74sqfMHliRoQ==
+X-Google-Smtp-Source: APXvYqw7U0OrxR281JBKNtGwW3T/tVCMLH0nKEqT8RKrvVAJtAC3Jt3/37FtCPWSnQMDlSVb6GPB5Q==
+X-Received: by 2002:a1c:6242:: with SMTP id w63mr18506760wmb.161.1560249661813;
+        Tue, 11 Jun 2019 03:41:01 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id c65sm2359614wma.44.2019.06.11.03.40.59
+        by smtp.gmail.com with ESMTPSA id c65sm2359614wma.44.2019.06.11.03.41.00
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 03:41:00 -0700 (PDT)
+        Tue, 11 Jun 2019 03:41:01 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org, vkoul@kernel.org
 Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
@@ -51,9 +51,9 @@ Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         bgoswami@quicinc.com,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [RFC PATCH 2/5] soundwire: core: add device tree support for slave devices
-Date:   Tue, 11 Jun 2019 11:40:40 +0100
-Message-Id: <20190611104043.22181-3-srinivas.kandagatla@linaro.org>
+Subject: [RFC PATCH 3/5] soundwire: add module_sdw_driver helper macro
+Date:   Tue, 11 Jun 2019 11:40:41 +0100
+Message-Id: <20190611104043.22181-4-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190611104043.22181-1-srinivas.kandagatla@linaro.org>
 References: <20190611104043.22181-1-srinivas.kandagatla@linaro.org>
@@ -64,123 +64,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support to parsing device tree based
-SoundWire slave devices.
+This Helper macro is for SoundWire drivers which do not do anything special in
+module init/exit. This eliminates a lot of boilerplate. Each module may only
+use this macro once, and calling it replaces module_init() and module_exit()
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/soundwire/bus.c   |  2 +-
- drivers/soundwire/bus.h   |  1 +
- drivers/soundwire/slave.c | 54 ++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 55 insertions(+), 2 deletions(-)
+ include/linux/soundwire/sdw_type.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
-index fe745830a261..20f26cf4ba74 100644
---- a/drivers/soundwire/bus.c
-+++ b/drivers/soundwire/bus.c
-@@ -78,7 +78,7 @@ int sdw_add_bus_master(struct sdw_bus *bus)
- 	if (IS_ENABLED(CONFIG_ACPI) && ACPI_HANDLE(bus->dev))
- 		ret = sdw_acpi_find_slaves(bus);
- 	else
--		ret = -ENOTSUPP; /* No ACPI/DT so error out */
-+		ret = sdw_of_find_slaves(bus);
+diff --git a/include/linux/soundwire/sdw_type.h b/include/linux/soundwire/sdw_type.h
+index 9c756b5a0dfe..aaa7f4267c14 100644
+--- a/include/linux/soundwire/sdw_type.h
++++ b/include/linux/soundwire/sdw_type.h
+@@ -16,4 +16,15 @@ void sdw_unregister_driver(struct sdw_driver *drv);
  
- 	if (ret) {
- 		dev_err(bus->dev, "Finding slaves failed:%d\n", ret);
-diff --git a/drivers/soundwire/bus.h b/drivers/soundwire/bus.h
-index 3048ca153f22..ee46befedbd1 100644
---- a/drivers/soundwire/bus.h
-+++ b/drivers/soundwire/bus.h
-@@ -15,6 +15,7 @@ static inline int sdw_acpi_find_slaves(struct sdw_bus *bus)
- }
- #endif
+ int sdw_slave_modalias(const struct sdw_slave *slave, char *buf, size_t size);
  
-+int sdw_of_find_slaves(struct sdw_bus *bus);
- void sdw_extract_slave_id(struct sdw_bus *bus,
- 			  u64 addr, struct sdw_slave_id *id);
- 
-diff --git a/drivers/soundwire/slave.c b/drivers/soundwire/slave.c
-index f39a5815e25d..6e7f5cfeb854 100644
---- a/drivers/soundwire/slave.c
-+++ b/drivers/soundwire/slave.c
-@@ -2,6 +2,7 @@
- // Copyright(c) 2015-17 Intel Corporation.
- 
- #include <linux/acpi.h>
-+#include <linux/of.h>
- #include <linux/soundwire/sdw.h>
- #include <linux/soundwire/sdw_type.h>
- #include "bus.h"
-@@ -28,13 +29,14 @@ static int sdw_slave_add(struct sdw_bus *bus,
- 	slave->dev.parent = bus->dev;
- 	slave->dev.fwnode = fwnode;
- 
--	/* name shall be sdw:link:mfg:part:class:unique */
-+	/* name shall be sdw:link:mfg:part:class */
- 	dev_set_name(&slave->dev, "sdw:%x:%x:%x:%x:%x",
- 		     bus->link_id, id->mfg_id, id->part_id,
- 		     id->class_id, id->unique_id);
- 
- 	slave->dev.release = sdw_slave_release;
- 	slave->dev.bus = &sdw_bus_type;
-+	slave->dev.of_node = of_node_get(to_of_node(fwnode));
- 	slave->bus = bus;
- 	slave->status = SDW_SLAVE_UNATTACHED;
- 	slave->dev_num = 0;
-@@ -112,3 +114,53 @@ int sdw_acpi_find_slaves(struct sdw_bus *bus)
- }
- 
- #endif
-+
-+#if IS_ENABLED(CONFIG_OF)
-+/*
-+ * sdw_of_find_slaves() - Find Slave devices in master device tree node
-+ * @bus: SDW bus instance
++/**
++ * module_sdw_driver() - Helper macro for registering a Soundwire driver
++ * @__sdw_driver: soundwire slave driver struct
 + *
-+ * Scans Master DT node for SDW child Slave devices and registers it.
++ * Helper macro for Soundwire drivers which do not do anything special in
++ * module init/exit. This eliminates a lot of boilerplate. Each module may only
++ * use this macro once, and calling it replaces module_init() and module_exit()
 + */
-+int sdw_of_find_slaves(struct sdw_bus *bus)
-+{
-+	struct device *dev = bus->dev;
-+	struct device_node *node;
-+
-+	if (!bus->dev->of_node)
-+		return 0;
-+
-+	for_each_child_of_node(bus->dev->of_node, node) {
-+		struct sdw_slave_id id;
-+		const char *compat = NULL;
-+		int unique_id, ret;
-+		int ver, mfg_id, part_id, class_id;
-+		compat = of_get_property(node, "compatible", NULL);
-+		if (!compat)
-+			continue;
-+
-+		ret = sscanf(compat, "sdw%x,%x,%x,%x",
-+			     &ver, &mfg_id, &part_id, &class_id);
-+		if (ret != 4) {
-+			dev_err(dev, "Manf ID & Product code not found %s\n",
-+				compat);
-+			continue;
-+		}
-+
-+		ret = of_property_read_u32(node, "sdw-instance-id", &unique_id);
-+		if (ret) {
-+			dev_err(dev, "Instance id not found:%d\n", ret);
-+			continue;
-+		}
-+
-+		id.sdw_version = ver - 0xF;
-+		id.unique_id = unique_id;
-+		id.mfg_id = mfg_id;
-+		id.part_id = part_id;
-+		id.class_id = class_id;
-+		sdw_slave_add(bus, &id, of_fwnode_handle(node));
-+	}
-+	return 0;
-+}
-+
-+#endif
++#define module_sdw_driver(__sdw_driver) \
++	module_driver(__sdw_driver, sdw_register_driver, \
++			sdw_unregister_driver)
+ #endif /* __SOUNDWIRE_TYPES_H */
 -- 
 2.21.0
 
