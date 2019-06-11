@@ -2,84 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80BE63CB0A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 14:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C9103CB6C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 14:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387896AbfFKMVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 08:21:22 -0400
-Received: from mga03.intel.com ([134.134.136.65]:47451 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727413AbfFKMVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 08:21:22 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 05:21:21 -0700
-X-ExtLoop1: 1
-Received: from rrgarris-mobl1.amr.corp.intel.com (HELO [10.252.136.137]) ([10.252.136.137])
-  by orsmga003.jf.intel.com with ESMTP; 11 Jun 2019 05:21:20 -0700
-Subject: Re: [alsa-devel] [RFC PATCH 6/6] soundwire: qcom: add support for
- SoundWire controller
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org, vkoul@kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
- <20190607085643.932-7-srinivas.kandagatla@linaro.org>
- <249f9647-94d0-41d7-3b95-64c36d90f8e8@linux.intel.com>
- <40ea774c-8aa8-295d-e91e-71423b03c88d@linaro.org>
- <7269521a-ac89-3856-c18c-ffaaf64c0806@linux.intel.com>
- <462620fc-ac91-6a36-46c7-7af0080f06cb@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <0e836692-2297-4cb7-d681-76692db78a56@linux.intel.com>
-Date:   Tue, 11 Jun 2019 07:21:20 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2389341AbfFKMZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 08:25:53 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:49127 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2389224AbfFKMZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 08:25:53 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5BCLjBT023743;
+        Tue, 11 Jun 2019 14:25:37 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=aeRZHet8+3ng2HzHWI6D57uf7dMIn0WG1kjDInB0Y8s=;
+ b=Dan+flqMxX70RsesdizcgHNaFzn53siputM3LcwuJMGREEPNc33Qbupvt9zzys+yAbks
+ IsLYb3iNLbekknEGjEvsLZMzkVXW3AMJw09EKIijjzwvj2C0p/3X4E0PX8CDh9RMFhqe
+ RjJz+H8BAk7y3W86/DzalEzdOlVgPnl5WSq0j+XqAh4VdK8oYli7FrmLuJu5eAzvgyL2
+ P/al3qI5DklO4+UlVhug9bXpvf5CMHhRAzwVgMAIBOP9n4Bec61ST0kts2uiZSTy0DVm
+ DiBwj1FME+tNcvJocB/BxInTPhPrGoBYygO62qWNYwrm1nHFplRSeZfYxI/Hr7oF7rPQ lQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2t26rm9vav-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 11 Jun 2019 14:25:37 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id ADD7034;
+        Tue, 11 Jun 2019 12:25:36 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5C86A2A29;
+        Tue, 11 Jun 2019 12:25:36 +0000 (GMT)
+Received: from SAFEX1HUBCAS22.st.com (10.75.90.93) by SAFEX1HUBCAS21.st.com
+ (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 11 Jun
+ 2019 14:25:36 +0200
+Received: from localhost (10.201.23.31) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 11 Jun 2019 14:25:33
+ +0200
+From:   Erwan Le Ray <erwan.leray@st.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Alexandre Torgue" <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>
+CC:     <linux-serial@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Erwan Le Ray <erwan.leray@st.com>,
+        "Fabrice Gasnier" <fabrice.gasnier@st.com>
+Subject: [PATCH v2 00/10] STM32 usart power improvements
+Date:   Tue, 11 Jun 2019 14:25:20 +0200
+Message-ID: <1560255930-22554-1-git-send-email-erwan.leray@st.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <462620fc-ac91-6a36-46c7-7af0080f06cb@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.23.31]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-11_06:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series delivers power improvements for stm32-usart driver.
 
+Bich Hemon (4):
+  dt-bindings: serial: add optional pinctrl states
+  serial: stm32: select pinctrl state in each suspend/resume function
+  ARM: dts: stm32: Update pin states for uart4 on stm32mp157c-ed1
+  ARM: dts: stm32: Update UART4 pin states on stm32mp157a-dk1
 
-On 6/11/19 5:29 AM, Srinivas Kandagatla wrote:
-> 
-> 
-> On 10/06/2019 15:12, Pierre-Louis Bossart wrote:
->>>>> +
->>>>> +    if (dev_addr == SDW_BROADCAST_DEV_NUM) {
->>>>> +        ctrl->fifo_status = 0;
->>>>> +        ret = wait_for_completion_timeout(&ctrl->sp_cmd_comp,
->>>>> +                          msecs_to_jiffies(TIMEOUT_MS));
->>>>
->>>> This is odd. The SoundWire spec does not handle writes to a single 
->>>> device or broadcast writes differently. I don't see a clear reason 
->>>> why you would only timeout for a broadcast write.
->>>>
->>>
->>> There is danger of blocking here without timeout.
->>
->> Right, and it's fine to add a timeout. The question is why add a 
->> timeout *only* for a broadcast operation? It should be added for every 
->> transaction IMO, unless you have a reason not to do so.
->>
-> 
-> I did try this before, the issue is when we read/write registers from 
-> interrupt handler, these can be deadlocked as we will be interrupt 
-> handler waiting for another completion interrupt, which will never 
-> happen unless we return from the first interrupt.
+Erwan Le Ray (6):
+  dt-bindings: serial: stm32: add wakeup option
+  serial: stm32: add pm_runtime support
+  serial: stm32: Use __maybe_unused instead of #if CONFIG_PM_SLEEP
+  serial: stm32: add support for no_console_suspend
+  ARM: dts: stm32: update uart4 pin configurations for low power
+  ARM: dts: stm32: add wakeup capability on each usart/uart on
+    stm32mp157c
 
-I don't quite get the issue. With the Intel hardware we only deal with 
-Master registers (some of which mirror the bus state) in the handler and 
-will only modify Slave registers in the thread. All changes to Slave 
-registers will be subject to a timeout as well as a check for no 
-response or NAK. Not sure what is specific about your solution that 
-requires a different handling of commands depending on which device 
-number is used. It could very well be that you've uncovered a flaw in 
-the bus design but I still don't see how it would be Qualcomm-specific?
+ .../devicetree/bindings/serial/st,stm32-usart.txt  | 19 ++++-
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi          | 17 +++++
+ arch/arm/boot/dts/stm32mp157a-dk1.dts              |  5 +-
+ arch/arm/boot/dts/stm32mp157c-ed1.dts              |  5 +-
+ arch/arm/boot/dts/stm32mp157c.dtsi                 | 40 ++++++++--
+ drivers/tty/serial/stm32-usart.c                   | 88 ++++++++++++++++++++--
+ drivers/tty/serial/stm32-usart.h                   |  1 +
+ 7 files changed, 155 insertions(+), 20 deletions(-)
+
+-- 
+1.9.1
+
