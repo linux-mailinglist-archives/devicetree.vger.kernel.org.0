@@ -2,141 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 06D233C812
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA513C80F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:07:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404861AbfFKKHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 06:07:38 -0400
-Received: from mail-eopbgr780050.outbound.protection.outlook.com ([40.107.78.50]:4096
-        "EHLO NAM03-BY2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2404593AbfFKKHi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 06:07:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZawdMzp8XdCQtc2qbhzmbLCvc/4EHpvHDS6IQHZqEVA=;
- b=sS3tX6tQyDlC9T751u9XXnlwO/t/77D/IMUTcPeYn50wmT/zpc83FCLx6PU58AIHqFM4LLDC+VB/5cNgckumRIznEH53EIUS2DK5WpeOmDX/XEFQXkpcewlQ/BzY9UletjWU4Feu5nLt/Ob7rcWaf/oYpQUJyjuLe8/d3qhV6lA=
-Received: from MWHPR0201CA0018.namprd02.prod.outlook.com
- (2603:10b6:301:74::31) by BL0PR02MB4932.namprd02.prod.outlook.com
- (2603:10b6:208:53::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1965.17; Tue, 11 Jun
- 2019 10:07:32 +0000
-Received: from BL2NAM02FT013.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::204) by MWHPR0201CA0018.outlook.office365.com
- (2603:10b6:301:74::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.14 via Frontend
- Transport; Tue, 11 Jun 2019 10:07:32 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; arm.com; dkim=none (message not signed)
- header.d=none;arm.com; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- BL2NAM02FT013.mail.protection.outlook.com (10.152.77.19) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1965.12
- via Frontend Transport; Tue, 11 Jun 2019 10:07:31 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1hadgg-0005Qf-Uc; Tue, 11 Jun 2019 03:07:30 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1hadgb-0000TD-Qt; Tue, 11 Jun 2019 03:07:25 -0700
-Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <mnarani@xilinx.com>)
-        id 1hadgU-0000RI-2r; Tue, 11 Jun 2019 03:07:18 -0700
-Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
-        id 421C6121745; Tue, 11 Jun 2019 15:37:17 +0530 (IST)
-From:   Manish Narani <manish.narani@xilinx.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, michal.simek@xilinx.com,
-        manish.narani@xilinx.com, chanho.min@lge.com, rrichter@cavium.com,
-        leoyang.li@nxp.com, amit.kucheria@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: zynqmp: Add ZynqMP SDHCI compatible string
-Date:   Tue, 11 Jun 2019 15:37:15 +0530
-Message-Id: <1560247635-29281-1-git-send-email-manish.narani@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(136003)(39860400002)(346002)(396003)(2980300002)(189003)(199004)(26005)(36386004)(51416003)(50466002)(47776003)(186003)(2906002)(72206003)(48376002)(478600001)(4326008)(966005)(14444005)(5660300002)(356004)(103686004)(336012)(8676002)(2616005)(50226002)(6306002)(44832011)(8936002)(63266004)(70206006)(70586007)(426003)(486006)(476003)(81156014)(126002)(81166006)(305945005)(6266002)(52956003)(36756003)(106002)(42186006)(16586007)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4932;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+        id S2404249AbfFKKHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 06:07:37 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:27788 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727641AbfFKKHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 06:07:36 -0400
+X-UUID: bfe906f609b444aabed21c7d93bad1b8-20190611
+X-UUID: bfe906f609b444aabed21c7d93bad1b8-20190611
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
+        (envelope-from <frederic.chen@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 306734353; Tue, 11 Jun 2019 18:07:30 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 11 Jun 2019 18:07:28 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 11 Jun 2019 18:07:28 +0800
+Message-ID: <1560247648.23799.16.camel@mtksdccf07>
+Subject: Re: [RFC PATCH V1 6/6] platform: mtk-isp: Add Mediatek DIP driver
+From:   Frederic Chen <frederic.chen@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        <yuzhao@chromium.org>, <zwisler@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg 
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        "Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?=" 
+        <Sean.Cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
+        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
+        <christie.yu@mediatek.com>,
+        Holmes Chiou =?UTF-8?Q?=28=E9=82=B1=E6=8C=BA=29?= 
+        <holmes.chiou@mediatek.com>,
+        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
+        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
+        <jungo.lin@mediatek.com>,
+        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
+        <Rynn.Wu@mediatek.com>,
+        "Linux Media Mailing List" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        <devicetree@vger.kernel.org>, Shik Chen <shik@chromium.org>,
+        <suleiman@chromium.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>
+Date:   Tue, 11 Jun 2019 18:07:28 +0800
+In-Reply-To: <CAAFQd5CReiPOySyk-eFkgiQMDMoqB3Uhd=bcho2Qtsv74y8fmg@mail.gmail.com>
+References: <20190417104511.21514-1-frederic.chen@mediatek.com>
+         <20190417104511.21514-7-frederic.chen@mediatek.com>
+         <20190509094846.GA65444@google.com> <1558466055.15388.342.camel@mtksdccf07>
+         <1560242886.23799.13.camel@mtksdccf07>
+         <CAAFQd5CReiPOySyk-eFkgiQMDMoqB3Uhd=bcho2Qtsv74y8fmg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 95326752-72f8-442d-f54c-08d6ee549e1d
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:BL0PR02MB4932;
-X-MS-TrafficTypeDiagnostic: BL0PR02MB4932:
-X-MS-Exchange-PUrlCount: 1
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-Microsoft-Antispam-PRVS: <BL0PR02MB4932F9B04CC4457FC53CD5C9C1ED0@BL0PR02MB4932.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
-X-Forefront-PRVS: 006546F32A
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: i2NGJO1/uEDDchyyoqO8/trSl4RtuZ8ikQ0V3PxG3liqRG6EG/WKnHLM5nEqeNM2ihoYogPI+BiWnMrtjvPzG0QlwXTBct7hEeXPPBh/Vr3+CGrvyH7hWFmAtPrWXg1D+8yLU5sFomnaR9P2QiFCVBps8kTycl0U2W0sR83YDNZLxtVSn+/7OAlQyncVPZltg/SVbPpv7CSqp2cwf1vTK1vi4rgBfD9guXlOBMH9jf5EFhnSbQZ65mW3Q4Nxu/ohZw2RuIBGJfPpdIxrZBpTHNyPKVYW8Mkb0DpJpD1j0hqEMVmGdQcJJ5sfR3sDtxVcx1Jy7ssQ8oroqtlQkLsm27y8cC4Zt/NzLAMtxGLk5tLHuF8TtaxAioE47anlHyKAFNV+ex0VgQIyfKvnrU1wYuy3ofett5/qoXCcp93oJY8=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2019 10:07:31.5229
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95326752-72f8-442d-f54c-08d6ee549e1d
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4932
+X-TM-SNTS-SMTP: 5ED40D27C30423F39500EA588F8B6C4E721AD9EC0DC6044ED445B557EAC08DC62000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible string for ZynqMP SD Host Controller for its use
-in the Arasan SDHCI driver for some of the ZynqMP specific operations.
-Add required properties for the same.
+Hi Tomasz,
 
-Signed-off-by: Manish Narani <manish.narani@xilinx.com>
----
-This patch depends on the below series of patches:
-https://lkml.org/lkml/2019/6/11/286
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 9aa6734..6da5b82 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -493,21 +493,25 @@
- 		};
- 
- 		sdhci0: mmc@ff160000 {
--			compatible = "arasan,sdhci-8.9a";
-+			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
- 			status = "disabled";
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 48 4>;
- 			reg = <0x0 0xff160000 0x0 0x1000>;
- 			clock-names = "clk_xin", "clk_ahb";
-+			clock-output-names = "clk_sd0";
-+			#clock-cells = <0>;
- 		};
- 
- 		sdhci1: mmc@ff170000 {
--			compatible = "arasan,sdhci-8.9a";
-+			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
- 			status = "disabled";
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 49 4>;
- 			reg = <0x0 0xff170000 0x0 0x1000>;
- 			clock-names = "clk_xin", "clk_ahb";
-+			clock-output-names = "clk_sd1";
-+			#clock-cells = <0>;
- 		};
- 
- 		smmu: smmu@fd800000 {
--- 
-2.1.1
+On Tue, 2019-06-11 at 17:59 +0900, Tomasz Figa wrote:
+> On Tue, Jun 11, 2019 at 5:48 PM Frederic Chen
+> <frederic.chen@mediatek.com> wrote:
+> >
+> > Dear Tomasz,
+> >
+> > I'd like to elaborate more about the tuning_data.va.
+> > Would you like to give us some advice about our improvement proposal inline?
+> >
+> > Thank you very much.
+> >
+> >
+> > On Wed, 2019-05-22 at 03:14 +0800, Frederic Chen wrote:
+> > > Dear Tomasz,
+> > >
+> > > I appreciate your comment. It is very helpful for us.
+> > >
+> > >
+> > > > > diff --git a/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c b/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..54d2b5f5b802
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
+> > > > > @@ -0,0 +1,1384 @@
+> >
+> > [snip]
+> >
+> > > > > +static void dip_submit_worker(struct work_struct *work)
+> > > > > +{
+> > > > > +       struct mtk_dip_hw_submit_work *dip_submit_work =
+> > > > > +               container_of(work, struct mtk_dip_hw_submit_work, frame_work);
+> > > > > +       struct mtk_dip_hw *dip_hw = dip_submit_work->dip_hw;
+> > > > > +       struct mtk_dip_dev *dip_dev = mtk_dip_hw_to_dev(dip_hw);
+> > > > > +       struct mtk_dip_hw_work *dip_work;
+> > > > > +       struct mtk_dip_hw_subframe *buf;
+> > > > > +       u32 len, num;
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       num  = atomic_read(&dip_hw->num_composing);
+> > > > > +
+> > > > > +       mutex_lock(&dip_hw->dip_worklist.queuelock);
+> > > > > +       dip_work = list_first_entry(&dip_hw->dip_worklist.queue,
+> >
+> > [snip]
+> >
+> > > > > +
+> > > > > +       if (dip_work->frameparams.tuning_data.pa == 0) {
+> > > > > +               dev_dbg(&dip_dev->pdev->dev,
+> > > > > +                       "%s: frame_no(%d) has no tuning_data\n",
+> > > > > +                       __func__, dip_work->frameparams.frame_no);
+> > > > > +
+> > > > > +               memcpy(&dip_work->frameparams.tuning_data,
+> > > > > +                      &buf->tuning_buf, sizeof(buf->tuning_buf));
+> > > >
+> > > > Ditto.
+> > > >
+> > >
+> > > I got it.
+> > >
+> > > > > +               memset((char *)buf->tuning_buf.va, 0, DIP_TUNING_SZ);
+> > > >
+> > > > Ditto.
+> > >
+> > > I got it.
+> > >
+> > > >
+> > > > > +               /*
+> > > > > +                * When user enqueued without tuning buffer,
+> > > > > +                * it would use driver internal buffer.
+> > > > > +                * So, tuning_data.va should be 0
+> > > > > +                */
+> > > > > +               dip_work->frameparams.tuning_data.va = 0;
+> > > >
+> > > > I don't understand this. We just zeroed the buffer via this kernel VA few
+> > > > lines above, so why would it have to be set to 0?
+> > > >
+> > >
+> > > I will remove this unnecessary line.
+> > >
+> > > > > +       }
+> >
+> > After confirming the firmware part, I found that we use this field
+> > (tuning_data.va) to notify firmware if there is no tuning data from
+> > user.
+> >
+> > - frameparams.tuning_data.va is 0: use the default tuning data in
+> >                                    SCP, but we still need to pass
+> >                                    frameparams.tuning_data.pa because
+> >                                    the buffer contains some working
+> >                                    buffer required.
+> > - frameparams.tuning_data.va is not 0: the tuning data was passed from
+> >                                        the user
+> >
+> > Since we should not pass cpu addres to SCP, could I rename tuning_data.va
+> > as tuning_data.cookie, and write a constant value to indicate if SCP
+> > should use its internal default setting or not here?
+> >
+> > For example,
+> > /* SCP uses tuning data passed from userspace*/
+> > dip_work->frameparams.tuning_data.cookie = MTK_DIP_USER_TUNING_DATA;
+> >
+> > /* SCP uses internal tuning data */
+> > dip_work->frameparams.tuning_data.cookie = MTK_DIP_DEFAULT_TUNING_DATA;
+> 
+> Perhaps we could just call it "present" and set to true or false?
+> 
+
+Yes. I would like to use "present" here.
+
+Original:
+  struct img_addr {
+      u64 va; /* Used by Linux OS access */
+      u32 pa; /* Used by CM4 access */
+      u32 iova; /* Used by IOMMU HW access */
+  } __attribute__ ((__packed__));
+
+  struct img_ipi_frameparam {
+      u32 index;
+      u32 frame_no;
+      u64 timestamp;
+      u8 type;	/* enum mdp_stream_type */
+      u8 state;
+      u8 num_inputs;
+      u8 num_outputs;
+      u64 drv_data;
+      struct img_input inputs[IMG_MAX_HW_INPUTS];
+      struct img_output	outputs[IMG_MAX_HW_OUTPUTS];
+      struct img_addr tuning_data;
+      struct img_addr subfrm_data;
+      struct img_sw_addr config_data;
+      struct img_sw_addr self_data;
+  } __attribute__ ((__packed__));
+
+
+Modified:
+  struct tuning_buf {
+      u8 present;
+      u32 pa;	/* Used by CM4 access */
+      u32 iova;	/* Used by IOMMU HW access */
+  } __attribute__ ((__packed__));
+	
+  struct img_ipi_frameparam {
+      /* ... */
+      struct tuning_buf	tuning_data;
+      /* ... */
+  } __attribute__ ((__packed__));
+
+
+> Best regards,
+> Tomasz
+
+
+Sincerely,
+
+Frederic Chen
+
 
