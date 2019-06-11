@@ -2,137 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DE4C3D46B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDE03D48B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406581AbfFKRkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 13:40:55 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:32800 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406576AbfFKRkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 13:40:55 -0400
-Received: by mail-ot1-f65.google.com with SMTP id p4so9511719oti.0;
-        Tue, 11 Jun 2019 10:40:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=E6Szud1QEL0uh5kFNy/KSdJS6Ul+00nLiWCBMgcVJGg=;
-        b=NTJD9bBgB2aqvXng6wQFqVU6IsnEqUKF9FDnAglicSbnt78mJVqXqBypVAh+G+8k/e
-         V+aXdetrKDoWZolUKYEqGo40yj60xYCt1iyjQoCiMikuQ4ncwECJ/Y6AvEBR1QjUViip
-         /o5r5h36dxG91hoXPrktgDFdGGwdrvGBdyscLMYyaf6/n3AIy82MAB9mva+vG0DCCV2z
-         NZ5OGETTKD2U2ranexte6Me+wbN0tnXMKfIN2f007uk/zhqeuLYazOPb9i/Fmvb9sSuF
-         rPQTCc14us658vj2W3kEnExkEPvrchod6IKtmjWPzewnZjj9MRlY7mmr0xhuifBHf0XV
-         qMEw==
-X-Gm-Message-State: APjAAAWl/lPTJAj9JG5fsyiKZfV7fKosHmRr6Hx21rDEEAkSVHZ3G9uC
-        SYyWophzdtp142UHdakbQ4PBvso8
-X-Google-Smtp-Source: APXvYqwa/UX77db97w+uoRAGEUNsOHUDnl+71hdH+emFpgIfqCH53BgzhJbNPyn7KOeVf1soY1Sb7A==
-X-Received: by 2002:a05:6830:157:: with SMTP id j23mr17662523otp.198.1560274854241;
-        Tue, 11 Jun 2019 10:40:54 -0700 (PDT)
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com. [209.85.210.49])
-        by smtp.gmail.com with ESMTPSA id v198sm4016961oif.0.2019.06.11.10.40.53
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 10:40:53 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id l15so12693650otn.9;
-        Tue, 11 Jun 2019 10:40:53 -0700 (PDT)
-X-Received: by 2002:a05:6830:1192:: with SMTP id u18mr30452660otq.74.1560274853474;
- Tue, 11 Jun 2019 10:40:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190517045753.3709-1-ran.wang_1@nxp.com> <20190523085104.GP9261@dragon>
-In-Reply-To: <20190523085104.GP9261@dragon>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Tue, 11 Jun 2019 12:40:42 -0500
-X-Gmail-Original-Message-ID: <CADRPPNRa11z98Rw5cgApn-2ZFMSTGj-h73wZThmgp9w8dQD4iw@mail.gmail.com>
-Message-ID: <CADRPPNRa11z98Rw5cgApn-2ZFMSTGj-h73wZThmgp9w8dQD4iw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: ls1028a: Fix CPU idle fail.
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Ran Wang <ran.wang_1@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        id S2406605AbfFKRtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 13:49:53 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:36923 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405488AbfFKRtw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 13:49:52 -0400
+Received: from [167.98.27.226] (helo=ct-lt-1124.office.codethink.co.uk)
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1haktd-0001PN-DW; Tue, 11 Jun 2019 18:49:21 +0100
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Thomas Preston <thomas.preston@codethink.co.uk>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/4] ASoC: Codecs: Add TDA7802 codec
+Date:   Tue, 11 Jun 2019 18:49:05 +0100
+Message-Id: <20190611174909.12162-1-thomas.preston@codethink.co.uk>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 3:52 AM Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Fri, May 17, 2019 at 12:57:53PM +0800, Ran Wang wrote:
-> > PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
-> > indicate CPU State Type: 0 for standby, 1 for power down. In this
-> > case, we want to select standby for CPU idle feature. But current
-> > setting wrongly select power down and cause CPU SUSPEND fail every
-> > time. Need this fix.
-> >
-> > Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
-> > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
->
-> Leo, Bhaskar,
->
-> Do you guys agree with it?
+This patch series adds a driver for the ST TDA7802 amplifier.
 
-Sorry that I missed this email previously.  I agree with this change.
-CPU idle should use a low power state that could be waked up by
-interrupts and that should be PW20. And Ran is right that both PW20
-and PH20 are actually not power down state.
+Thanks,
+Thomas
 
-- Leo
+Cc: Patrick Glaser <pglaser@tesla.com>
+Cc: Rob Duncan <rduncan@tesla.com>
+Cc: Nate Case <ncase@tesla.com>
 
->
-> Shawn
->
-> > ---
-> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   18 +++++++++---------
-> >  1 files changed, 9 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > index b045812..bf7f845 100644
-> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > @@ -28,7 +28,7 @@
-> >                       enable-method = "psci";
-> >                       clocks = <&clockgen 1 0>;
-> >                       next-level-cache = <&l2>;
-> > -                     cpu-idle-states = <&CPU_PH20>;
-> > +                     cpu-idle-states = <&CPU_PW20>;
-> >               };
-> >
-> >               cpu1: cpu@1 {
-> > @@ -38,7 +38,7 @@
-> >                       enable-method = "psci";
-> >                       clocks = <&clockgen 1 0>;
-> >                       next-level-cache = <&l2>;
-> > -                     cpu-idle-states = <&CPU_PH20>;
-> > +                     cpu-idle-states = <&CPU_PW20>;
-> >               };
-> >
-> >               l2: l2-cache {
-> > @@ -53,13 +53,13 @@
-> >                */
-> >               entry-method = "arm,psci";
-> >
-> > -             CPU_PH20: cpu-ph20 {
-> > -                     compatible = "arm,idle-state";
-> > -                     idle-state-name = "PH20";
-> > -                     arm,psci-suspend-param = <0x00010000>;
-> > -                     entry-latency-us = <1000>;
-> > -                     exit-latency-us = <1000>;
-> > -                     min-residency-us = <3000>;
-> > +             CPU_PW20: cpu-pw20 {
-> > +                       compatible = "arm,idle-state";
-> > +                       idle-state-name = "PW20";
-> > +                       arm,psci-suspend-param = <0x0>;
-> > +                       entry-latency-us = <2000>;
-> > +                       exit-latency-us = <2000>;
-> > +                       min-residency-us = <6000>;
-> >               };
-> >       };
-> >
-> > --
-> > 1.7.1
-> >
+Thomas Preston (4):
+  dt-bindings: ASoC: Add TDA7802 amplifier
+  ASoC: Add codec driver for ST TDA7802
+  ASoC: tda7802: Add enable device attribute
+  ASoC: tda7802: Add speaker-test sysfs
+
+ .../devicetree/bindings/sound/tda7802.txt          |  26 +
+ sound/soc/codecs/Kconfig                           |   6 +
+ sound/soc/codecs/Makefile                          |   2 +
+ sound/soc/codecs/tda7802.c                         | 815 +++++++++++++++++++++
+ 4 files changed, 849 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/tda7802.txt
+ create mode 100644 sound/soc/codecs/tda7802.c
+
+-- 
+2.11.0
+
