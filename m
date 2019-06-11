@@ -2,78 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F320541865
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 555A941870
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:54:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391683AbfFKWt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 18:49:57 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:39125 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391232AbfFKWt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:49:57 -0400
-Received: by mail-it1-f193.google.com with SMTP id j204so7520877ite.4;
-        Tue, 11 Jun 2019 15:49:56 -0700 (PDT)
+        id S2407413AbfFKWx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 18:53:57 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:53852 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404048AbfFKWx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:53:57 -0400
+Received: by mail-it1-f195.google.com with SMTP id m187so7742084ite.3;
+        Tue, 11 Jun 2019 15:53:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/NnSGwbKcnY/7Q2s2Gevcsyo7XJDO9FOrJ4WUpJ1HFQ=;
-        b=mcwZkzaRMfcEx2kgdVXpQ0JOQ5S0bVaheiZLxCDxn9EIVkpp9l2w4SfjoLGqI3jLUv
-         D0YALaodQo3722PNenkTuC6ZLD0RiaLdlEEDGXTQbRnc5GeG5RgYBobpecL2AAf17RUC
-         I6BoMElENdwIsN+y+JhI7vJSZ+ZaDFUFjwAx5A/ZEG7+RVTjnCT48kYoZCxTghC33uip
-         rwi3fKwsTta/61hJNB2pD7iIske72X1Qy+gpVRzkYiXy0YRqREMduv8s+XkGXri1iG+r
-         y3dZeRc9aKD/FHTL0RNuREWP1YqKe+N9VbN2dauHbOTN5qBoMYpbtVath7qEbWl6s5DF
-         kPHg==
-X-Gm-Message-State: APjAAAXPJ2TP7uYkWmKet8neyIU/iqlJqkFXREKx0cncP9haXQ3m9Sy2
-        ZnIR4qUWC8EuPc0M72fDPjaLSmY=
-X-Google-Smtp-Source: APXvYqwdY0VqgKIy7eeWPn3ZJv3AdjkyxMqbBpgjo8QSwtv2zrOmnzCLT/FHfPAZdx/fsmc5KbbIEQ==
-X-Received: by 2002:a02:c6a9:: with SMTP id o9mr17897923jan.90.1560293396229;
-        Tue, 11 Jun 2019 15:49:56 -0700 (PDT)
+        bh=iQPRF6XFm/QWEVO1CPfMz0EhoIEuoqt7VcGHt4YVR3s=;
+        b=bwzgGflXOQe5eP6WP6bnPoG5hVuqBAMFGVhnt6pOL42IxfwkdGrkJ2yelJHaSdxH4y
+         2HwasSizEfRa+XO3MMNcRLehBfehIuAOJEtOiN9yNeY44ivlEJPZ1+GwSuegddB7W4DG
+         uVxChXqaTKJS2PimQ3q+lCOnBlYEOM42U/F8/MVwBXT4TKR+iJ0WjObF4Lwvo/5wjmVA
+         8LTtSQk8ZXuFhbh45kH37/uvr0rvtcfy7BLCn58JHvMtQKg8AWUEyb+ry3S/JbLnIfuZ
+         I1QoU4w+kZcm4qiH1EjfshwroZxHbsV70PZAishX0Dwuhj4F9QNxXNHYOG/dEamKmK8t
+         sWqQ==
+X-Gm-Message-State: APjAAAUPzzgSNKXjKq5GBz+1YYQqe/mIi0F0x6YYzLjpsjXNiKiw8XkG
+        etHQzX9Ag/nWai+eDyPpLQ==
+X-Google-Smtp-Source: APXvYqzoe7kqFMLzrRy1dkQxZdck05wcc6WXp2uGdqhH5bgqiTrtunhGBZNVP2Qc9VtW1KcUeh7Ffg==
+X-Received: by 2002:a24:61d7:: with SMTP id s206mr19458252itc.133.1560293636578;
+        Tue, 11 Jun 2019 15:53:56 -0700 (PDT)
 Received: from localhost (ip-174-149-252-64.englco.spcsdns.net. [174.149.252.64])
-        by smtp.gmail.com with ESMTPSA id o145sm572109itc.24.2019.06.11.15.49.54
+        by smtp.gmail.com with ESMTPSA id f4sm5155254iok.56.2019.06.11.15.53.54
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 15:49:55 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 16:49:52 -0600
+        Tue, 11 Jun 2019 15:53:55 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 16:53:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
-        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH REPOST v8 1/3] dt-bindings: i2c: extend existing opencore
- bindings.
-Message-ID: <20190611224952.GA17031@bogus>
-References: <1559369475-15374-1-git-send-email-sagar.kadam@sifive.com>
- <1559369475-15374-2-git-send-email-sagar.kadam@sifive.com>
+To:     Neal Liu <neal.liu@mediatek.com>
+Cc:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com, Crystal Guo <Crystal.Guo@mediatek.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: rng: update bindings for MediaTek
+ ARMv8 SoCs
+Message-ID: <20190611225351.GA17332@bogus>
+References: <1560162984-26104-1-git-send-email-neal.liu@mediatek.com>
+ <1560162984-26104-3-git-send-email-neal.liu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1559369475-15374-2-git-send-email-sagar.kadam@sifive.com>
+In-Reply-To: <1560162984-26104-3-git-send-email-neal.liu@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  1 Jun 2019 11:41:13 +0530, Sagar Shrikant Kadam wrote:
-> Reformatted compatibility strings to one valid combination on
-> each line.
-> Add FU540-C000 specific device tree bindings to already available
-> i2-ocores file. This device is available on
-> HiFive Unleashed Rev A00 board. Move interrupt under optional
-> property list as this can be optional.
+On Mon, Jun 10, 2019 at 06:36:23PM +0800, Neal Liu wrote:
+> Document the binding used by the MediaTek ARMv8 SoCs random
+> number generator with TrustZone enabled.
 > 
-> The FU540-C000 SoC from sifive, has an Opencore's I2C block
-> reimplementation.
-> 
-> The DT compatibility string for this IP is present in HDL and available at.
-> https://github.com/sifive/sifive-blocks/blob/master/src/main/scala/devices/i2c/I2C.scala#L73
-> 
-> Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/rng/mtk-rng.txt |   15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.txt b/Documentation/devicetree/bindings/rng/mtk-rng.txt
+> index 2bc89f1..fb3dd59 100644
+> --- a/Documentation/devicetree/bindings/rng/mtk-rng.txt
+> +++ b/Documentation/devicetree/bindings/rng/mtk-rng.txt
+> @@ -3,9 +3,13 @@ found in MediaTek SoC family
+>  
+>  Required properties:
+>  - compatible	    : Should be
+> -			"mediatek,mt7622-rng", 	"mediatek,mt7623-rng" : for MT7622
+> -			"mediatek,mt7629-rng",  "mediatek,mt7623-rng" : for MT7629
+> -			"mediatek,mt7623-rng" : for MT7623
+> +			"mediatek,mt7622-rng", "mediatek,mt7623-rng" for MT7622
+> +			"mediatek,mt7629-rng", "mediatek,mt7623-rng" for MT7629
+> +			"mediatek,mt7623-rng" for MT7623
+> +			"mediatek,mtk-sec-rng" for MediaTek ARMv8 SoCs with
+> +			security RNG
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Is there any commonality with the prior h/w? If not, make this a 
+separate binding doc.
+
+> +
+> +Optional properties:
+>  - clocks	    : list of clock specifiers, corresponding to
+>  		      entries in clock-names property;
+>  - clock-names	    : Should contain "rng" entries;
+> @@ -19,3 +23,8 @@ rng: rng@1020f000 {
+>  	clocks = <&infracfg CLK_INFRA_TRNG>;
+>  	clock-names = "rng";
+>  };
+> +
+> +/* secure RNG */
+> +hwrng: hwrng {
+> +	compatible = "mediatek,mtk-sec-rng";
+
+How does one access this? Seems like this should be part of a node for 
+firmware? What about other functions?
+
+> +};
+> -- 
+> 1.7.9.5
+> 
