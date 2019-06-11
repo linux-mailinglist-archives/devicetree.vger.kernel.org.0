@@ -2,131 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A57C03CA42
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 487663CA4A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403962AbfFKLop convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 11 Jun 2019 07:44:45 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:18126 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2403960AbfFKLop (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 07:44:45 -0400
-Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 54B027808EA8580B77F4;
-        Tue, 11 Jun 2019 19:44:32 +0800 (CST)
-Received: from localhost (10.202.226.61) by DGGEMS405-HUB.china.huawei.com
- (10.3.19.205) with Microsoft SMTP Server id 14.3.439.0; Tue, 11 Jun 2019
- 19:44:29 +0800
-Date:   Tue, 11 Jun 2019 12:44:17 +0100
-From:   Jonathan Cameron <jonathan.cameron@huawei.com>
-To:     Peter Rosin <peda@axentia.se>
-CC:     =?ISO-8859-1?Q?Myl=E8ne?= Josserand 
-        <mylene.josserand@bootlin.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v1 0/3] iio: afe: rescale: Add INFO_PROCESSED support
-Message-ID: <20190611124417.0000137a@huawei.com>
-In-Reply-To: <36890130-24ed-2200-1e8d-964612fee62d@axentia.se>
-References: <20190611095659.29845-1-mylene.josserand@bootlin.com>
-        <36890130-24ed-2200-1e8d-964612fee62d@axentia.se>
-Organization: Huawei
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S2389384AbfFKLqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 07:46:12 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:23650 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2389282AbfFKLqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 07:46:12 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5BBf8g4027845;
+        Tue, 11 Jun 2019 13:45:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=UHkKYvr07JUPpR6+O+OHG40CIbSuZZB5RoqilIve/M8=;
+ b=fklX/5a88/vDeXzr6ZnFcOeRM38ODI41A3SchpcjzGGWGWjrx9SZwOOaPv7ZUnLH6sd3
+ /AyO6eVM1Rvwq/hR4v2rSNs+9Ceo+jbDttaobt6PKt+hO2Om1iXhJgt6jYLughQu5WjS
+ udiKEopvmQIIulcLGPotoQtVUD22VWjhCmw27ULfl2w9NNW54GlZVjAvH67h4pXKZ7Gr
+ pQSm/dkuNvBsLW4RoqHjibBSoI01SyRFtPrUbNkuI35W80jmydXqfT2VDeuRNwJqsvIr
+ hBpV1U5NJJmwx2xrpUFPxGrIQeXbqRgv0sgfIs9jgF8JZoilS5dwPvjz5iFfdUMpJdsG 0A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2t26rjspev-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 11 Jun 2019 13:45:59 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A2CC434;
+        Tue, 11 Jun 2019 11:45:58 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7F0782953;
+        Tue, 11 Jun 2019 11:45:58 +0000 (GMT)
+Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 11 Jun
+ 2019 13:45:58 +0200
+Received: from localhost (10.201.23.16) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 11 Jun 2019 13:45:58
+ +0200
+From:   Olivier Moysan <olivier.moysan@st.com>
+To:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <alexandre.torgue@st.com>, <robh@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <olivier.moysan@st.com>
+Subject: [PATCH] ARM: dts: stm32: add sai id registers to stm32mp157c
+Date:   Tue, 11 Jun 2019 13:45:56 +0200
+Message-ID: <1560253556-18399-1-git-send-email-olivier.moysan@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.202.226.61]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain
+X-Originating-IP: [10.201.23.16]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-11_05:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jun 2019 11:02:14 +0000
-Peter Rosin <peda@axentia.se> wrote:
+Add identification registers to address range
+of SAI DT parent node, for stm32mp157c.
 
-> On 2019-06-11 11:56, Mylène Josserand wrote:
-> > Hello everyone,
-> > 
-> > You will find a small series that add the support of processed values
-> > for iio-rescale driver.
-> > Thanks to that, it is possible to read processed values in sysfs instead
-> > of getting only raw and scale values.
-> > 
-> > Here is an example for a 3v3 voltage reading:
-> > # cat /sys/bus/iio/devices/iio\:device1/in_voltage0_scale
-> > 3.791015625
-> > # cat /sys/bus/iio/devices/iio\:device1/in_voltage0_raw
-> > 879
-> > # cat /sys/bus/iio/devices/iio\:device1/in_voltage0_input
-> > 3332
-> > 
-> > It is also possible to read directly the processed values using iio-hwmon
-> > driver (see example in patch03):
-> > 
-> > # cat /sys/class/hwmon/hwmon0/in1_input
-> > 3328
-> > 
-> > I seperated my series in 3 patches:
-> >    - Patch01: Move the scale conversion into a function to prepare the
-> >    support of IIO_CHAN_INFO_PROCESSED.
-> >    - Patch02: Add the support of IIO_CHAN_INFO_PROCESSED.
-> >    - Patch03: Add an example of the use of hwmon and voltage-divider nodes
-> >    in device-tree.
-> > 
-> > If you have any feedbacks on it, I will be pleased to read them!  
-> 
-> 
-> The last patch about hwmon has nothing to do with this series, and
-> should be possible as-is without any code changes. No? AFAICT,
-> iio_hwmon calls iio_read_channel_processed, which calls
-> iio_convert_raw_to_processed_unlocked in case IIO_CHAN_INFO_PROCESSES
-> is not handled by the driver. Is that not working?
-> 
-> There is also libiio in userspace that provides the scale as a double
-> and makes the conversion to a processed value trivial, so the series
-> is really mostly about the convenience of having a human directly
-> seeing the processed value in sysfs. Right?
-> 
-> If that is deemed valuable, then I think it should be fixed in a
-> central location, and not individually for each and every driver.
-> 
-> Anyway, not my call, just stating my opinion, but those are the
-> reasons for me not adding a processed channel from the very beginning.
+Change-Id: I696363794fab59ba8d7869b3ffbc041dacdf28de
+Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
+---
+ arch/arm/boot/dts/stm32mp157c.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-I definitely want to fully understand the reasoning behind this proposal.
-
-My gut feeling is that it doesn't make sense a sit ends up with two
-interfaces to the same thing in userspace, which we generally want to
-avoid.
-
-It's really trivial to do the maths in userspace and often doing it in
-kernel is less accurate, or much more complex.
-
-Jonathan
-> 
-> Cheers,
-> Peter
-> 
-> > Best regards,
-> > Mylène
-> > 
-> > Mylène Josserand (3):
-> >   iio: afe: rescale: Move scale conversion to new function
-> >   iio: afe: rescale: Add support of CHAN_INFO_PROCESSED
-> >   dt-bindings: iio: afe: Add hwmon example
-> > 
-> >  .../bindings/iio/afe/voltage-divider.txt           | 24 ++++++
-> >  drivers/iio/afe/iio-rescale.c                      | 96 ++++++++++++++++------
-> >  2 files changed, 96 insertions(+), 24 deletions(-)
-> >   
-> 
-
+diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
+index e98aad37ff9e..0c4e6ebc3529 100644
+--- a/arch/arm/boot/dts/stm32mp157c.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c.dtsi
+@@ -746,7 +746,7 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x4400a000 0x400>;
+-			reg = <0x4400a000 0x4>;
++			reg = <0x4400a000 0x4>, <0x4400a3f0 0x10>;
+ 			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&rcc SAI1_R>;
+ 			status = "disabled";
+@@ -778,7 +778,7 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x4400b000 0x400>;
+-			reg = <0x4400b000 0x4>;
++			reg = <0x4400b000 0x4>, <0x4400b3f0 0x10>;
+ 			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&rcc SAI2_R>;
+ 			status = "disabled";
+@@ -809,7 +809,7 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x4400c000 0x400>;
+-			reg = <0x4400c000 0x4>;
++			reg = <0x4400c000 0x4>, <0x4400c3f0 0x10>;
+ 			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&rcc SAI3_R>;
+ 			status = "disabled";
+@@ -1164,7 +1164,7 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x50027000 0x400>;
+-			reg = <0x50027000 0x4>;
++			reg = <0x50027000 0x4>, <0x500273f0 0x10>;
+ 			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&rcc SAI4_R>;
+ 			status = "disabled";
+-- 
+2.7.4
 
