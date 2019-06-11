@@ -2,129 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 521F73CEC9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96C8C3CED4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390534AbfFKOcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 10:32:54 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:43911 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387551AbfFKOcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 10:32:54 -0400
-X-Originating-IP: 90.88.159.246
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 5C50FFF812;
-        Tue, 11 Jun 2019 14:32:45 +0000 (UTC)
-Date:   Tue, 11 Jun 2019 16:32:39 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 11/11] ARM: dts: sun8i: s3: add devicetree for Lichee
- zero plus w/ S3
-Message-ID: <20190611143239.zvganlwaiku3bs63@flea>
-References: <20190611140940.14357-1-icenowy@aosc.io>
- <20190611140940.14357-12-icenowy@aosc.io>
+        id S2388693AbfFKOfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 10:35:50 -0400
+Received: from foss.arm.com ([217.140.110.172]:34402 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388292AbfFKOfu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 10:35:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6932D337;
+        Tue, 11 Jun 2019 07:35:49 -0700 (PDT)
+Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 28CF33F557;
+        Tue, 11 Jun 2019 07:35:48 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
+To:     Jonathan Cameron <jonathan.cameron@huawei.com>
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        will.deacon@arm.com, linux-kernel@vger.kernel.org,
+        iommu@lists.linux-foundation.org, robh+dt@kernel.org,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        "jacob.jun.pan@linux.intel.com" <jacob.jun.pan@linux.intel.com>
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+ <20190610184714.6786-2-jean-philippe.brucker@arm.com>
+ <20190611103625.00001399@huawei.com>
+Message-ID: <62d1f310-0cba-4d55-0f16-68bba3c64927@arm.com>
+Date:   Tue, 11 Jun 2019 15:35:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6e3io72tcrt3erkz"
-Content-Disposition: inline
-In-Reply-To: <20190611140940.14357-12-icenowy@aosc.io>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190611103625.00001399@huawei.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/06/2019 10:36, Jonathan Cameron wrote:
+>> +/**
+>> + * ioasid_alloc - Allocate an IOASID
+>> + * @set: the IOASID set
+>> + * @min: the minimum ID (inclusive)
+>> + * @max: the maximum ID (inclusive)
+>> + * @private: data private to the caller
+>> + *
+>> + * Allocate an ID between @min and @max. The @private pointer is stored
+>> + * internally and can be retrieved with ioasid_find().
+>> + *
+>> + * Return: the allocated ID on success, or %INVALID_IOASID on failure.
+>> + */
+>> +ioasid_t ioasid_alloc(struct ioasid_set *set, ioasid_t min, ioasid_t max,
+>> +		      void *private)
+>> +{
+>> +	u32 id = INVALID_IOASID;
+>> +	struct ioasid_data *data;
+>> +
+>> +	data = kzalloc(sizeof(*data), GFP_KERNEL);
+>> +	if (!data)
+>> +		return INVALID_IOASID;
+>> +
+>> +	data->set = set;
+>> +	data->private = private;
+>> +
+>> +	if (xa_alloc(&ioasid_xa, &id, data, XA_LIMIT(min, max), GFP_KERNEL)) {
+>> +		pr_err("Failed to alloc ioasid from %d to %d\n", min, max);
+>> +		goto exit_free;
+>> +	}
+>> +	data->id = id;
+>> +
+>> +exit_free:
+> 
+> This error flow is perhaps a little more confusing than it needs to be?
+> 
+> My assumption (perhaps wrong) is that we only have an id == INVALID_IOASID
+> if the xa_alloc fails, and that we will always have such an id value if
+> it does (I'm not totally sure this second element is true in __xa_alloc).
+> 
+> If I'm missing something perhaps a comment on how else we'd get here.
 
---6e3io72tcrt3erkz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes we can simplify this:
 
-Hi,
+		return id;
+	exit_free:
+		kfree(data)
+		return INVALID_IOASID;
+	}
 
-On Tue, Jun 11, 2019 at 10:09:40PM +0800, Icenowy Zheng wrote:
-> Lichee zero plus is a core board made by Sipeed, which includes on-board
-> TF slot or SMT SD NAND, and optional SPI NOR or eMMC, a UART debug
-> header, a microUSB slot and a gold finger connector for expansion. It
-> can use either Sochip S3 or Allwinner S3L SoC.
->
-> Add the basic device tree for the core board, w/o optional onboard
-> storage, and with S3 SoC.
->
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> ---
-> New patch in v2.
->
->  arch/arm/boot/dts/Makefile                    |  1 +
->  .../boot/dts/sun8i-s3-lichee-zero-plus.dts    |  8 ++++
->  .../dts/sun8i-s3-s3l-lichee-zero-plus.dtsi    | 39 +++++++++++++++++++
->  3 files changed, 48 insertions(+)
->  create mode 100644 arch/arm/boot/dts/sun8i-s3-lichee-zero-plus.dts
->  create mode 100644 arch/arm/boot/dts/sun8i-s3-s3l-lichee-zero-plus.dtsi
->
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 5559028b770e..2b5e6a1d20ff 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1110,6 +1110,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
->  	sun8i-r16-nintendo-super-nes-classic.dtb \
->  	sun8i-r16-parrot.dtb \
->  	sun8i-r40-bananapi-m2-ultra.dtb \
-> +	sun8i-s3-lichee-zero-plus.dtb \
->  	sun8i-t3-cqa3t-bv3.dtb \
->  	sun8i-v3s-licheepi-zero.dtb \
->  	sun8i-v3s-licheepi-zero-dock.dtb \
-> diff --git a/arch/arm/boot/dts/sun8i-s3-lichee-zero-plus.dts b/arch/arm/boot/dts/sun8i-s3-lichee-zero-plus.dts
-> new file mode 100644
-> index 000000000000..7d2f6b145190
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sun8i-s3-lichee-zero-plus.dts
-> @@ -0,0 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2019 Icenowy Zheng <icenowy@aosc.io>
-> + */
-> +
-> +/dts-v1/;
-> +#include "sun8i-s3.dtsi"
-> +#include "sun8i-s3-s3l-lichee-zero-plus.dtsi"
-> diff --git a/arch/arm/boot/dts/sun8i-s3-s3l-lichee-zero-plus.dtsi b/arch/arm/boot/dts/sun8i-s3-s3l-lichee-zero-plus.dtsi
-> new file mode 100644
-> index 000000000000..bb148e796df7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sun8i-s3-s3l-lichee-zero-plus.dtsi
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2019 Icenowy Zheng <icenowy@aosc.io>
-> + */
-> +
-> +#include "sunxi-common-regulators.dtsi"
+The XA API doesn't say that @id passed to xa_alloc() won't be modified
+in case of error. It's true in the current implementation, but won't
+necessarily stay that way. On the other hand I think it's safe to expect
+@id to always be set when xa_alloc() succeeds.
 
-If possible, you should get rid of that include. What are you using it
-for?
+>> +/**
+>> + * ioasid_find - Find IOASID data
+>> + * @set: the IOASID set
+>> + * @ioasid: the IOASID to find
+>> + * @getter: function to call on the found object
+>> + *
+>> + * The optional getter function allows to take a reference to the found object
+>> + * under the rcu lock. The function can also check if the object is still valid:
+>> + * if @getter returns false, then the object is invalid and NULL is returned.
+>> + *
+>> + * If the IOASID has been allocated for this set, return the private pointer
+>> + * passed to ioasid_alloc. Private data can be NULL if not set. Return an error
+>> + * if the IOASID is not found or does not belong to the set.
+> 
+> Perhaps should make it clear that @set can be null.
 
-Maxime
+Indeed. But I'm not sure allowing @set to be NULL is such a good idea,
+because the data type associated to an ioasid depends on its set. For
+example SVA will put an mm_struct in there, and auxiliary domains use
+some structure private to the IOMMU domain.
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Jacob, could me make @set mandatory, or do you see a use for a global
+search? If @set is NULL, then callers can check if the return pointer is
+NULL, but will run into trouble if they try to dereference it.
 
---6e3io72tcrt3erkz
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>> + */
+>> +void *ioasid_find(struct ioasid_set *set, ioasid_t ioasid,
+>> +		  bool (*getter)(void *))
+>> +{
+>> +	void *priv = NULL;
+> 
+> Set in all paths, so does need to be set here.
 
------BEGIN PGP SIGNATURE-----
+Right
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP+7hwAKCRDj7w1vZxhR
-xXD5AQDzzGjJuMYqZOH2bt2UEka6SvuIrYluNOH8x3D+7GOsJAEA2rH3UjHc3GPu
-kpIKRxDM2YMRW103wJicTaDDoRvXeQc=
-=ySX5
------END PGP SIGNATURE-----
-
---6e3io72tcrt3erkz--
+Thanks,
+Jean
