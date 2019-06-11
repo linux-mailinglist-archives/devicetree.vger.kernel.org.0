@@ -2,140 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14895418A2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4C51418B6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407931AbfFKXIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 19:08:22 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43409 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407928AbfFKXIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:08:22 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i189so8363756pfg.10
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 16:08:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=vjl9Ns8qTRMKP0J+iO0hKqMC3min1EiwS3qQ6sVNS1c=;
-        b=YN/UgLNkyeTM1qoFucU0AJFUxeziYWrhUCibHWCA/qlMUN6spFPO8C0Kvv+zJFiWDC
-         zXLmuybO9JFifvUo0mmqfj9igpjzb8fqlzcAz4+Yx47Sy3EhpPa2HK9x8iDXoDHBOzRw
-         wBVo3r4//Gkv25xlprDkXizA7UxjgB+dzDQWPxtn0DwKTAGgkmLq2+RiOvUfT6vva2B1
-         WjN23HAl91P5GutP+gJ9ynAWNtTOWJm11MBQHdpYh4QY6CW5KrXtCKBLV1zqh2z6R21S
-         ++xN7LRProkA12fmgeIpexQ9SL27ncDFGksdFy/T+a3GvZ8I33Ej4FpjvxShMCxflUdd
-         7GpA==
+        id S2407090AbfFKXOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 19:14:32 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:37016 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404483AbfFKXOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:14:32 -0400
+Received: by mail-io1-f68.google.com with SMTP id e5so11395066iok.4;
+        Tue, 11 Jun 2019 16:14:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vjl9Ns8qTRMKP0J+iO0hKqMC3min1EiwS3qQ6sVNS1c=;
-        b=TdKroVBVTd+Ea95Bsd8dWRls1KklUKE6F0GFRJjRSzcTPF0NRGqMt7cNiqvz3+UYxy
-         W75YUo5XF3/uR225YpmnXZWxtGeZXrk/EIrzMLmP35yWaGGNi6UAM5ftwnitQwkpQgit
-         4EpXVlKdJ3q3IM/8g3i/SGm8hwLvPWNQR7LWOcuN0WUoAPBJgh5cQQIvkJhPe4hXFR3T
-         1jygB2gzHFvId+d0I3phzZGD2nbuOfqvfZcaJVpbrP+pHbFQtuEqCojvXoyTnt7ZhmR2
-         ANBj6r1icH7jb8470EZRerdH6TiQrJ7fRW0jmezOt15sp3tYxP8hfK2uLDkU+7ymJm9X
-         mXiw==
-X-Gm-Message-State: APjAAAWcPZ8cZuJot1I1i7XwQ1UXNdrBtEaSLC7JzUlTSmcrfPjioxtb
-        zy5SvDjOXm+pzAf8wzZvjHaczu3zfvw=
-X-Google-Smtp-Source: APXvYqynsWTp0wdQaNa3lyxkx2tbF0tlUWrRe3v1z2Eum8yVKB/bjwEiZ8XB8FqYlwWcOT8gSLV1Jg==
-X-Received: by 2002:a17:90a:25e6:: with SMTP id k93mr8367124pje.100.1560294501786;
-        Tue, 11 Jun 2019 16:08:21 -0700 (PDT)
-Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id c129sm29717844pfa.106.2019.06.11.16.08.20
+        bh=/aBNuVSKZUriWZ/QesRFRpe/CatQ5nFG4Flo57Ca7og=;
+        b=kYPVk0CdtTyL+LO372bZtevGC1OfLJkq0xMP3JI2NLRCFlMzTRduAvS1cF+nf48Lls
+         Na1aA4Ae0h+IKNUgVDWrWRqPjsjmHeor3aZ9Ib7G6UERqhm1WGOJ24Eah2yWjeV2llBL
+         7ZCxochSVYt4GmpHsEN4lweiuw2vYFwgFSdOZrifOCNBYVDb3NHnBCg/gABwtjyy/G4G
+         A3lcV4OpvtVMT71+k6BZWAJPoQsSEVHUzgjqVkIBkhj7DhZKKB5gtBKgaTQeEMB61bYY
+         aGF6/5eUuiQrt0/EbJ2zmMye0VNgxVUVzr/GKITcuS8hQ9wRqIOg0CEODA8VSFW/UfXm
+         DYog==
+X-Gm-Message-State: APjAAAUXLgcQTELhBpa9csztSQLTSEKWDzRS6t00V3GVJSd0waunZoRb
+        XNjAwQkN+ys68cOntfBa6Q==
+X-Google-Smtp-Source: APXvYqz2xuF/nmQmlAS4lGQnIm1qVqg5LZxj2mk9azk9SPNMol/s2XBeLKVU261Gt24zGJac7bjYWQ==
+X-Received: by 2002:a05:6602:50:: with SMTP id z16mr2279838ioz.302.1560294870273;
+        Tue, 11 Jun 2019 16:14:30 -0700 (PDT)
+Received: from localhost (ip-174-149-252-64.englco.spcsdns.net. [174.149.252.64])
+        by smtp.gmail.com with ESMTPSA id q79sm2054468itb.15.2019.06.11.16.14.28
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 16:08:20 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 16:08:18 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     robh+dt@kernel.org, agross@kernel.org, vkoul@kernel.org,
-        evgreen@chromium.org, daidavid1@codeaurora.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: interconnect: Add Qualcomm QCS404 DT
- bindings
-Message-ID: <20190611230818.GT4814@minitux>
-References: <20190611164157.24656-1-georgi.djakov@linaro.org>
- <20190611164157.24656-2-georgi.djakov@linaro.org>
+        Tue, 11 Jun 2019 16:14:29 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 17:14:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Eduardo Valentin <eduval@amazon.com>
+Cc:     Wolfram Sang <wsa@the-dreams.de>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        jarkko.nikula@linux.intel.com, andriy.shevchenko@intel.com,
+        brendanhiggins@google.com, Mark Rutland <mark.rutland@arm.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv7 1/3] dt-bindings: i2c: document bindings for
+ i2c-slave-mqueue
+Message-ID: <20190611231425.GA29500@bogus>
+References: <20190605164651.15991-1-eduval@amazon.com>
+ <20190605164651.15991-2-eduval@amazon.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190611164157.24656-2-georgi.djakov@linaro.org>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+In-Reply-To: <20190605164651.15991-2-eduval@amazon.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 11 Jun 09:41 PDT 2019, Georgi Djakov wrote:
-
-> The Qualcomm QCS404 platform has several buses that could be controlled
-> and tuned according to the bandwidth demand.
+On Wed, Jun 05, 2019 at 09:46:49AM -0700, Eduardo Valentin wrote:
+> Document the i2c-slave-mqueue binding by adding
+> descriptor, required properties, and example.
 > 
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Wolfram Sang <wsa@the-dreams.de>
+> Cc: linux-i2c@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Eduardo Valentin <eduval@amazon.com>
 > ---
 > 
-> v3:
-> - Add a reg property and move the interconnect nodes under the "soc" node.
+> Changes from V6 to V7:
+> - none
 > 
-> v2:
-> - No changes.
+>  .../bindings/i2c/i2c-slave-mqueue.txt         | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
 > 
->  .../bindings/interconnect/qcom,qcs404.txt     | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt b/Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
 > new file mode 100644
-> index 000000000000..14a827268dda
+> index 000000000000..eb1881a4fc0e
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> @@ -0,0 +1,46 @@
-> +Qualcomm QCS404 Network-On-Chip interconnect driver binding
-> +-----------------------------------------------------------
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-slave-mqueue.txt
+> @@ -0,0 +1,34 @@
+> +===============================================
+> +Device Tree for I2C slave message queue backend
+> +===============================================
 > +
-> +Required properties :
-> +- compatible : shall contain only one of the following:
-> +			"qcom,qcs404-bimc"
-> +			"qcom,qcs404-pcnoc"
-> +			"qcom,qcs404-snoc"
-> +- #interconnect-cells : should contain 1
+> +Some protocols over I2C/SMBus are designed for bi-directional transferring
+> +messages by using I2C Master Write protocol. This requires that both sides
+> +of the communication have slave addresses.
+
+So the address 0x10 in the example below is the address of the I2C 
+controller?
+
 > +
-> +Optional properties :
-> +reg : specifies the physical base address and size of registers
-> +clocks : list of phandles and specifiers to all interconnect bus clocks
-> +clock-names : clock names should include both "bus_clk" and "bus_a_clk"
+> +This I2C slave mqueue (message queue) is used to receive and queue
+> +messages from the remote i2c intelligent device; and it will add the target
+> +slave address (with R/W# bit is always 0) into the message at the first byte.
+> +
+> +Links
+> +----
+> +`Intelligent Platform Management Bus
+> +Communications Protocol Specification
+> +<https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmp-spec-v1.0.pdf>`_
+> +
+> +`Management Component Transport Protocol (MCTP)
+> +SMBus/I2C Transport Binding Specification
+> +<https://www.dmtf.org/sites/default/files/standards/documents/DSP0237_1.1.0.pdf>`_
+> +
+> +Required Properties:
+> +- compatible		: should be "i2c-slave-mqueue"
+
+There is no mention of mqueue (or queue) in these specs. Where does that 
+come from? Perhaps something more closely matching the protocol would be 
+better name.
+
+> +- reg			: slave address
 > +
 > +Example:
 > +
-> +soc {
-> +	...
-> +	bimc: interconnect@400000 {
-> +		reg = <0x00400000 0x80000>;
-> +		compatible = "qcom,qcs404-bimc";
-> +		#interconnect-cells = <1>;
-> +		clock-names = "bus_clk", "bus_a_clk";
-> +		clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-> +			<&rpmcc RPM_SMD_BIMC_A_CLK>;
-> +	};
-> +
-> +	pnoc: interconnect@500000 {
-> +		reg = <0x00500000 0x15080>;
-> +		compatible = "qcom,qcs404-pcnoc";
-> +		#interconnect-cells = <1>;
-> +		clock-names = "bus_clk", "bus_a_clk";
-> +		clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
-> +			<&rpmcc RPM_SMD_PNOC_A_CLK>;
-> +	};
-> +
-> +	snoc: interconnect@580000 {
-> +		reg = <0x00580000 0x23080>;
-> +		compatible = "qcom,qcs404-snoc";
-> +		#interconnect-cells = <1>;
-> +		clock-names = "bus_clk", "bus_a_clk";
-> +		clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-> +			<&rpmcc RPM_SMD_SNOC_A_CLK>;
+> +i2c {
+
+Would there be other slaves? 
+
+The common binding states 'multi-master' property should be present. 
+
+I need a more complete example.
+
+> +	slave_mqueue: i2c-slave-mqueue {
+> +		compatible = "i2c-slave-mqueue";
+> +		reg = <0x10>;
 > +	};
 > +};
+> -- 
+> 2.21.0
+> 
