@@ -2,110 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B1D3C127
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 04:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09DB43C143
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 04:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728794AbfFKCLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jun 2019 22:11:43 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:54229 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726532AbfFKCLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 22:11:43 -0400
-Received: by mail-it1-f193.google.com with SMTP id m187so2337100ite.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2019 19:11:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8RcJD0etSUKCdAftUVogv11bxbo5C0KdF/jhN26WyyA=;
-        b=OHXgU7noh57Sp/hq02aCQk7Iwul4QOdcr6UViwgqqgDaoPRzDl52iiE0cD1hek0we8
-         3IKvO+lUENBcxzsHodJAZnTuabLcoZmMcyQ9lslSwB3speirTQXPv14ltLT3sMs93Mo7
-         sDeAhjdXkOwS9iJmOSINgqPbTWdBBDqiFERi0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8RcJD0etSUKCdAftUVogv11bxbo5C0KdF/jhN26WyyA=;
-        b=SxeO782xgVixt9hAfaHm5Ed934w8IDVDhPdyo/8iXE2j8uDUXjZ7UIYE/BcGhC12cc
-         zrz5IT4dZLGiMaTdF2QLDoVPDkpym/dcUSYRyl81oKfGtvgpHnLjiwiQOq7rgVkPErSj
-         2OpSSbfazWf9HK0JwyqarlHHbWrpRrGOU+UtnOVG6AXc2Cw5pas9SGSP0JvUhwXSobYn
-         rH4zxFQm4LQl42rYepw4UDIPV6q89y0dMKoJWwsyOfgJ2vT9eHWyLGv0tLuQZpcvG3eB
-         4vrCU2DOgBHvReucz6lt1EFLxBa8LvPQDTdZY738XZnND0Qa8V7IwA17EbyDdqGPO+x1
-         4KUQ==
-X-Gm-Message-State: APjAAAVM9s/68eEJN/xnvvu5nR3X/61oYLYG0rxifJ7WTAL1+ppoQlYU
-        AAUo1z9n+qfEOCGV6bwPhKqb2Q==
-X-Google-Smtp-Source: APXvYqzXNReWPcWQtoTC/Q7rrGPSPe4wVuVRroQKGCnjVJi4KH9bhqO038VqJ1HbXbKZCJDyQffZMQ==
-X-Received: by 2002:a24:c384:: with SMTP id s126mr15705942itg.1.1560219102350;
-        Mon, 10 Jun 2019 19:11:42 -0700 (PDT)
-Received: from [172.22.22.26] (c-71-195-29-92.hsd1.mn.comcast.net. [71.195.29.92])
-        by smtp.googlemail.com with ESMTPSA id c23sm4403415iod.11.2019.06.10.19.11.40
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 Jun 2019 19:11:41 -0700 (PDT)
-Subject: Re: [PATCH v2 02/17] dt-bindings: soc: qcom: add IPA bindings
-To:     Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@linaro.org>
-Cc:     David Miller <davem@davemloft.net>, Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Evan Green <evgreen@chromium.org>,
-        Ben Chan <benchan@google.com>,
-        Eric Caruso <ejcaruso@google.com>, cpratapa@codeaurora.org,
-        syadagir@codeaurora.org, subashab@codeaurora.org,
-        abhishek.esse@gmail.com, netdev <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S2390461AbfFKChR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jun 2019 22:37:17 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:53189 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2390280AbfFKChR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jun 2019 22:37:17 -0400
+X-UUID: 2c1d25838fb1433284a40b1bbfb111c5-20190611
+X-UUID: 2c1d25838fb1433284a40b1bbfb111c5-20190611
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 141375310; Tue, 11 Jun 2019 10:37:09 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS33N1.mediatek.inc (172.27.4.75) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 11 Jun 2019 10:37:08 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 11 Jun 2019 10:37:07 +0800
+Message-ID: <1560220627.32395.1.camel@mtksdaap41>
+Subject: Re: [v4 5/7] drm/mediatek: add mt8183 dsi driver support
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Thierry Reding" <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        "Inki Dae" <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        "Sean Paul" <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        "Andy Yan" <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20190531035348.7194-1-elder@linaro.org>
- <20190531035348.7194-3-elder@linaro.org>
- <CAL_JsqLFk3=YN+V=RVxq9xWQTrPA9_0zW+eFrdXkGkCnM_sBkA@mail.gmail.com>
-From:   Alex Elder <elder@ieee.org>
-Message-ID: <bcb7f599-3c22-da27-c92b-4c1903a5ea06@ieee.org>
-Date:   Mon, 10 Jun 2019 21:11:38 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <stonea168@163.com>
+Date:   Tue, 11 Jun 2019 10:37:07 +0800
+In-Reply-To: <20190601092615.67917-6-jitao.shi@mediatek.com>
+References: <20190601092615.67917-1-jitao.shi@mediatek.com>
+         <20190601092615.67917-6-jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLFk3=YN+V=RVxq9xWQTrPA9_0zW+eFrdXkGkCnM_sBkA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/10/19 5:08 PM, Rob Herring wrote:
-> On Thu, May 30, 2019 at 9:53 PM Alex Elder <elder@linaro.org> wrote:
->>
->> Add the binding definitions for the "qcom,ipa" device tree node.
->>
->> Signed-off-by: Alex Elder <elder@linaro.org>
->> ---
->>  .../devicetree/bindings/net/qcom,ipa.yaml     | 180 ++++++++++++++++++
->>  1 file changed, 180 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/qcom,ipa.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
->> new file mode 100644
->> index 000000000000..0037fc278a61
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
->> @@ -0,0 +1,180 @@
->> +# SPDX-License-Identifier: GPL-2.0
-> 
-> New bindings are preferred to be dual GPL-2.0 and BSD-2-Clause. But
-> that's really a decision for the submitter.
+Hi, Jitao:
 
-Thanks Rob.  I'll ask Qualcomm if there's any problem
-with doing that; I presume not.  If I re-submit this
-with dual copyright, I will include your Reviewed-by
-despite the change, OK?
-
-					-Alex
-
+On Sat, 2019-06-01 at 17:26 +0800, Jitao Shi wrote:
+> Add mt8183 dsi driver data. Enable size control and
+> reg commit control.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index 18a192656a89..abf6ddec5db6 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -1225,11 +1225,19 @@ static const struct mtk_dsi_driver_data mt2701_dsi_driver_data = {
+>  	.reg_cmdq_off = 0x180,
+>  };
+>  
+> +static const struct mtk_dsi_driver_data mt8183_dsi_driver_data = {
+> +	.reg_cmdq_off = 0x200,
+> +	.has_shadow_ctl = true,
+> +	.has_size_ctl = true,
+> +};
+> +
+>  static const struct of_device_id mtk_dsi_of_match[] = {
+>  	{ .compatible = "mediatek,mt2701-dsi",
+>  	  .data = &mt2701_dsi_driver_data },
+>  	{ .compatible = "mediatek,mt8173-dsi",
+>  	  .data = &mt8173_dsi_driver_data },
+> +	{ .compatible = "mediatek,mt8183-dsi",
+
+I does not find "mediatek,mt8183-dsi" in binding document, so please
+send a patch to add this in binding document.
+
+Regards,
+CK
+
+> +	  .data = &mt8183_dsi_driver_data },
+>  	{ },
+>  };
+>  
+
 
