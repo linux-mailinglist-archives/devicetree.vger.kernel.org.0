@@ -2,75 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7FA41848
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:36:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F4141854
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:42:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407107AbfFKWfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 18:35:13 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45824 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405174AbfFKWfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:35:12 -0400
-Received: by mail-io1-f68.google.com with SMTP id e3so11296069ioc.12;
-        Tue, 11 Jun 2019 15:35:12 -0700 (PDT)
+        id S1728447AbfFKWkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 18:40:47 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:39978 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728264AbfFKWkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:40:46 -0400
+Received: by mail-it1-f193.google.com with SMTP id q14so7500592itc.5;
+        Tue, 11 Jun 2019 15:40:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NCgQwxsu0f3r4btRqej5pZhVli0wu2GBc0gKWgavRis=;
-        b=Nn7j2RkQ7LwCq7tRGrwPzOkfh0I79XGw9slQaYNAoRVNjaJLdJs7IQakHEU8aZJDgl
-         ORN60sXcuYxeQIbcvccw899YbDkzhQWTBykmehNWCSL5IGislKAlVPR8aMDHdoSWfhGA
-         U747IGH1l95gR5x+yC+rMVKqoSoV3X04B9jKiZB9PwL8vTpuU8khEpnC7WBc7wn7O3UW
-         dSG/McsLdIqowtlbv8pXXyoAgapRGz/LrMYWJIVQU/2QMzc9QMay7lRANnQD5tIO5yNb
-         y21qyzxwqbWLs0es9LmGgQX6N78wTpHBGd30Jw887uoXBBYGQWvsY4a3m5XxLGic5tgk
-         AFgw==
-X-Gm-Message-State: APjAAAVTYrVM2i5Jfc7ljuocImzytGE5XP34gK5tLfXW/EE+8U0CQy7w
-        R2YH3n9jTEGQSkOxeP43Fw==
-X-Google-Smtp-Source: APXvYqyldbzjVVfHCAHQd21SudrsdTqB9IH5YfFTe83h4l7n3V0qepl2ZRh+aD/yH4IiOo6MWE21IQ==
-X-Received: by 2002:a05:6602:2256:: with SMTP id o22mr19307948ioo.95.1560292511617;
-        Tue, 11 Jun 2019 15:35:11 -0700 (PDT)
+        bh=HI3rHUK26/S2B0LA3WlM09q3Q/jcQRPOrltE5Dys4vg=;
+        b=Dm9ERfhKIYwMTkOatw40rA3Cw/gkTrsdoub8QQTIgQZrR+NcOMaqGrrUagRiHG5ClT
+         IVIbBUNjelDB4ONk4R7S+ZTMvEqid5nSMTjTmEzBWoAAPD6WBM83iFGrRjx61x6yDdUo
+         RQpa/8YR1rhJYBMXfb7XsNumP4SiHOyvEj1B+8Ue8OswbL0U+xGtsk604y7borgK7Ub7
+         lx5P+NU+0R6yNWzU51z1//riCumr2uVnH+f6KFFB87tjC5Va8rMwTN2ccVNYiqhYLiIk
+         yh3OvcFqieJSyuTJug1h266+TezZrydNnKwA5GIVTVW+SrPaxEHNQTLhvXQ3I5O9FExl
+         L2og==
+X-Gm-Message-State: APjAAAVobYvlcbX9XPzmWR9Uoq6/2CJNhXOCCKjUgSpf+IGYEemQyTwM
+        IvleN2pb/fGhNPqL8Yy5xVj4VfQ=
+X-Google-Smtp-Source: APXvYqyYN7ZbEDoYi00MhHLqHL7FwPdCa2uF9Kv/WyYmja0MIBn3v9bIz1f2IeqAvvSfdbDWHNDRAg==
+X-Received: by 2002:a24:b303:: with SMTP id e3mr18466988itf.170.1560292845706;
+        Tue, 11 Jun 2019 15:40:45 -0700 (PDT)
 Received: from localhost (ip-174-149-252-64.englco.spcsdns.net. [174.149.252.64])
-        by smtp.gmail.com with ESMTPSA id q142sm1884761itb.17.2019.06.11.15.35.09
+        by smtp.gmail.com with ESMTPSA id p10sm5553716iob.54.2019.06.11.15.40.44
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 15:35:10 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 16:35:07 -0600
+        Tue, 11 Jun 2019 15:40:45 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 16:40:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     yibin.gong@nxp.com
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, broonie@kernel.org,
-        festevam@gmail.com, vkoul@kernel.org, dan.j.williams@intel.com,
-        u.kleine-koenig@pengutronix.de, catalin.marinas@arm.com,
-        l.stach@pengutronix.de, will.deacon@arm.com,
-        linux-spi@vger.kernel.org, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 10/15] dma: imx-sdma: add i.mx6ul/6sx compatible name
-Message-ID: <20190611223507.GA25722@bogus>
-References: <20190610081753.11422-1-yibin.gong@nxp.com>
- <20190610081753.11422-11-yibin.gong@nxp.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Pawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
+        dri-devel@lists.freedesktop.org,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        cawa.cheng@mediatek.com,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        srv_heupstream@mediatek.com, linux-kernel@vger.kernel.org,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Sean Paul <seanpaul@chromium.org>
+Subject: Re: [1/2] dt-bindngs: display: panel: Add BOE tv101wum-nl6 panel
+ bindings
+Message-ID: <20190611224041.GA407@bogus>
+References: <20190608070230.55381-1-jitao.shi@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190610081753.11422-11-yibin.gong@nxp.com>
+In-Reply-To: <20190608070230.55381-1-jitao.shi@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jun 2019 16:17:48 +0800, yibin.gong@nxp.com wrote:
-> From: Robin Gong <yibin.gong@nxp.com>
+On Sat, Jun 08, 2019 at 03:02:29PM +0800, Jitao Shi wrote:
+> Add documentation for boe tv101wum-n16 panel.
+
+Typo in the subject and checkpatch complains about trailing whitespace.
+
 > 
-> Add i.mx6ul and i.mx6sx compatible name in binding doc.
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../display/panel/boe,tv101wum-nl6.txt        | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.txt b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.txt
+> new file mode 100644
+> index 000000000000..2a84735d742d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.txt
+> @@ -0,0 +1,34 @@
+> +Boe Corporation 10.1" WUXGA TFT LCD panel
+> +
+> +Required properties:
+> +- compatible: should be "boe,tv101wum"
+> +- reg: the virtual channel number of a DSI peripheral
+> +- enable-gpios: a GPIO spec for the enable pin
+> +- pp1800-supply: core voltage supply
+> +- avdd-supply: 
+> +- avee-supply: 
+> +- backlight: phandle of the backlight device attached to the panel
+> +
+> +The device node can contain one 'port' child node with one child
+> +'endpoint' node, according to the bindings defined in
+> +media/video-interfaces.txt. This node should describe panel's video bus.
+> +
+> +Example:
+> +&dsi {
+> +	...
+> +	panel@0 {
+> +		compatible = "boe,tv101wum-nl6";
+> +		reg = <0>;
+> +		enable-gpios = <&pio 45 0>;
+> +		avdd-supply = <&ppvarn_lcd>;
+> +		avee-supply = <&ppvarp_lcd>;
+> +		pp1800-supply = <&pp1800_lcd>;
+> +		backlight = <&backlight_lcd0>;
+> +		status = "okay";
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&dsi_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> \ No newline at end of file
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
+Fix this.
