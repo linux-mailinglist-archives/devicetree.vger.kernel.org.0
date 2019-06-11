@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 604B13C7AD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 11:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54BEC3C7B3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 11:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404978AbfFKJxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 05:53:23 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:52681 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404425AbfFKJxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 05:53:23 -0400
-X-Originating-IP: 90.88.159.246
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id C88DFC000B;
-        Tue, 11 Jun 2019 09:53:17 +0000 (UTC)
-Date:   Tue, 11 Jun 2019 11:53:17 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v2 06/11] dt-bindings: net: sun4i-mdio: Convert the
- binding to a schemas
-Message-ID: <20190611095317.l55zjuomxqfvpqlo@flea>
-References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
- <664da05aaf9a7029494d72d7c536baa192672fbe.1560158667.git-series.maxime.ripard@bootlin.com>
- <20190610143730.GH28724@lunn.ch>
+        id S2404991AbfFKJyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 05:54:08 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:44541 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404425AbfFKJyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 05:54:08 -0400
+Received: by mail-qt1-f193.google.com with SMTP id x47so13702387qtk.11
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 02:54:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+38Lbr9rNUhSKar2BeR7VlIqBZLydDsxiHIDtpA/c3A=;
+        b=Z4JEhv0f3lRlQOqp16GGJPy7vo+ohK7tFrcMiCjMmz3xt4glhA5S+gKoiZ10q4U7Gq
+         kUj80uBjld/wT8KgyE/nkAdzUVxWtd1fMxSeJF/zhLirggcLf1bzM0qSEv4PyfNfF4WQ
+         yjnvzv8OZ2q6+VPAPB99Q+99/573fTz64YGzg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+38Lbr9rNUhSKar2BeR7VlIqBZLydDsxiHIDtpA/c3A=;
+        b=BB4aLlP2wOU1BxS67l3ecNk2KPU3uoLAygXiMDP0DtCYc5m9h7lyMUSIlZIsZi6Elo
+         qUZgkBo6W9svdAKqNShMQ7apOlkdDYriKI4oqURoPRP9rcVg+p8eMHyWoMlOLPLIh3hy
+         yqkQgAteGbVw/E5Tc1PRswaPTuep4bmTO2dJ9nEkh+c6yiBoqfAsYiCr5NCpCnGUUgqH
+         JIcGp3ZNs3LfuvrInmh0OECpZEhPDlImsyD3gt9G5tgzvuHFpAFsVfAmDglx8N+2ipWI
+         NdTUkeXEkJ35aq73H/H/WI8iSlthEEGXqDGmDiCULCTXDr80DnqbOpdbQaAFNd+/fkpG
+         ubnA==
+X-Gm-Message-State: APjAAAWq44GmF9RFmlbq2400T0VzcMWcXFY91ONacgx8bCknqR0A4T1m
+        ZM+eiBNBqejPSoT+t61B444uPYjuKKE=
+X-Google-Smtp-Source: APXvYqwPb/h3yaEbJlw03cR2s1nsALwMGvsuSXQhacWUWrcdYvSskYWqbY+HMR9d1fC23Ga27LIEOw==
+X-Received: by 2002:ac8:f13:: with SMTP id e19mr62643838qtk.11.1560246846773;
+        Tue, 11 Jun 2019 02:54:06 -0700 (PDT)
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com. [209.85.160.177])
+        by smtp.gmail.com with ESMTPSA id q29sm6588291qkq.77.2019.06.11.02.54.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Jun 2019 02:54:05 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id m29so13754316qtu.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 02:54:05 -0700 (PDT)
+X-Received: by 2002:ac8:28e2:: with SMTP id j31mr23670135qtj.274.1560246845373;
+ Tue, 11 Jun 2019 02:54:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nt34jhbgjztm3vnl"
-Content-Disposition: inline
-In-Reply-To: <20190610143730.GH28724@lunn.ch>
-User-Agent: NeoMutt/20180716
+References: <20190527083150.220194-1-tientzu@chromium.org> <20190527083150.220194-2-tientzu@chromium.org>
+In-Reply-To: <20190527083150.220194-2-tientzu@chromium.org>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Tue, 11 Jun 2019 17:53:54 +0800
+X-Gmail-Original-Message-ID: <CALiNf2_Kuu9agO31Wg2X4uUa0EHWYL=qG5RLQ=catn8M9XDKGQ@mail.gmail.com>
+Message-ID: <CALiNf2_Kuu9agO31Wg2X4uUa0EHWYL=qG5RLQ=catn8M9XDKGQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: serial: add documentation for Rx
+ in-band wakeup support
+To:     gregkh@linuxfoundation.org
+Cc:     changqi.hu@mediatek.com, linux-serial@vger.kernel.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+(cc-ed device tree maintainers and mailing list)
 
---nt34jhbgjztm3vnl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The second patch in this series[1] is already in tty-next[2].
 
-Hi Andrew,
+Sorry for not cc-ing device tree maintainers/mailing list at the beginning.
+I can resend this patch if needed.
 
-On Mon, Jun 10, 2019 at 04:37:30PM +0200, Andrew Lunn wrote:
-> On Mon, Jun 10, 2019 at 11:25:45AM +0200, Maxime Ripard wrote:
-> > Switch our Allwinner A10 MDIO controller binding to a YAML schema to enable
-> > the DT validation.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> Should there be a generic part to cover what is listed in:
->
-> Documentation/devicetree/bindings/net/mdio.txt
+Thanks.
 
-Thanks for pointing that out, I'll convert it as well.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nt34jhbgjztm3vnl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP96DQAKCRDj7w1vZxhR
-xemGAQDeKHYJUTJ7pEQdZKX1WZEmIhNHWPhuhjM7yYBI+DFawgEA5Hrj2kSgRSzG
-FFEkc4IqWkvbt0d584kNLqDInxO1VAY=
-=DaeR
------END PGP SIGNATURE-----
-
---nt34jhbgjztm3vnl--
+[1] https://patchwork.kernel.org/patch/10962299/
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/log/?h=tty-testing
