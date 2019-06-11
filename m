@@ -2,83 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 297973C9F7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A363CA0D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389418AbfFKL33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 07:29:29 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:29616 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2389417AbfFKL33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 07:29:29 -0400
-X-UUID: 2b5fb79c25c14d7690da9ea599494b9b-20190611
-X-UUID: 2b5fb79c25c14d7690da9ea599494b9b-20190611
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <dehui.sun@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 307684010; Tue, 11 Jun 2019 19:29:21 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 11 Jun 2019 19:29:20 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 11 Jun 2019 19:29:19 +0800
-From:   Dehui Sun <dehui.sun@mediatek.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <erin.lo@mediatek.com>,
-        <weiyi.lu@mediatek.com>, <dehui.sun@mediatek.com>
-Subject: [PATCH v1 2/2] arm64: dts: mt8183: add systimer0 device node
-Date:   Tue, 11 Jun 2019 19:28:54 +0800
-Message-ID: <1560252534-11412-3-git-send-email-dehui.sun@mediatek.com>
-X-Mailer: git-send-email 2.1.0
-In-Reply-To: <1560252534-11412-1-git-send-email-dehui.sun@mediatek.com>
-References: <1560252534-11412-1-git-send-email-dehui.sun@mediatek.com>
+        id S2389325AbfFKLbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 07:31:15 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:50507 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389464AbfFKLbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 07:31:15 -0400
+X-Originating-IP: 90.88.159.246
+Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id B79F460007;
+        Tue, 11 Jun 2019 11:31:08 +0000 (UTC)
+Date:   Tue, 11 Jun 2019 13:31:08 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev <netdev@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH v2 09/11] dt-bindings: net: sun8i-emac: Convert the
+ binding to a schemas
+Message-ID: <20190611113108.pxiia2u5skbnl2au@flea>
+References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
+ <f3f393db88b26d84a048cb71887a571611b984a2.1560158667.git-series.maxime.ripard@bootlin.com>
+ <CAL_JsqL8ARs3jQECS+E-BtZGouLYJhofM+oPpS1a3SxPORwMZA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="twpj3baugamuul24"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqL8ARs3jQECS+E-BtZGouLYJhofM+oPpS1a3SxPORwMZA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add systimer0 device node for MT8183.
 
-Signed-off-by: Dehui Sun <dehui.sun@mediatek.com>
----
-This patch is based on the following patches:
-https://patchwork.kernel.org/cover/10962385/
-https://patchwork.kernel.org/patch/10983939/
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+--twpj3baugamuul24
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index c2749c4..ac3f87d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -254,6 +254,15 @@
- 			clock-names = "spi", "wrap";
- 		};
- 
-+		systimer: systimer@10017000 {
-+			compatible = "mediatek,mt8183-timer",
-+				     "mediatek,mt6765-timer";
-+			reg = <0 0x10017000 0 0x1000>;
-+			interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_CLK13M>;
-+			clock-names = "clk13m";
-+		};
-+
- 		auxadc: auxadc@11001000 {
- 			compatible = "mediatek,mt8183-auxadc",
- 				     "mediatek,mt8173-auxadc";
--- 
-2.1.0
+Hi,
 
+On Mon, Jun 10, 2019 at 01:22:00PM -0600, Rob Herring wrote:
+> On Mon, Jun 10, 2019 at 3:26 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > +    then:
+> > +      properties:
+> > +        allwinner,tx-delay-ps:
+> > +          allOf:
+> > +            - $ref: /schemas/types.yaml#definitions/uint32
+>
+> Can drop this as anything with unit prefix has its type defined
+> already.
+
+Not for picoseconds though. I'll send a PR to dt-schema if you prefer
+to define it there.
+
+>
+> > +            - enum: [0, 100, 200, 300, 400, 500, 600, 700]
+> > +              default: 0
+> > +          description:
+> > +            External RGMII PHY TX clock delay chain value in ps.
+> > +
+> > +        allwinner,rx-delay-ps:
+> > +          allOf:
+> > +            - $ref: /schemas/types.yaml#definitions/uint32
+> > +            - enum:
+> > +                - 0
+> > +                - 100
+> > +                - 200
+> > +                - 300
+> > +                - 400
+> > +                - 500
+> > +                - 600
+> > +                - 700
+> > +                - 800
+> > +                - 900
+> > +                - 1000
+> > +                - 1100
+> > +                - 1200
+> > +                - 1300
+> > +                - 1400
+> > +                - 1500
+> > +                - 1600
+> > +                - 1700
+> > +                - 1800
+> > +                - 1900
+> > +                - 2000
+> > +                - 2100
+> > +                - 2200
+> > +                - 2300
+> > +                - 2400
+> > +                - 2500
+> > +                - 2600
+> > +                - 2700
+> > +                - 2800
+> > +                - 2900
+> > +                - 3000
+> > +                - 3100
+>
+> I think you can do
+>
+> enum: [1, 2, 3,
+>   4,  5, 6]
+>
+> Or you can do:
+>
+> minimum: 0
+> maximum: 3100
+> multipleOf: 100
+>
+> IIRC that multipleOf is a json-schema key.
+
+I really like that second syntax, thanks!
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--twpj3baugamuul24
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP+Q/AAKCRDj7w1vZxhR
+xXNCAP9Z7+EYu847+4dOo5AEj3ZOyAIpaf0cfysGi59ElDt8YgEA36E6Jv7/cOpS
+KBTjh2j/vsuGvWij3L6KlfuKURO0UwM=
+=3dqX
+-----END PGP SIGNATURE-----
+
+--twpj3baugamuul24--
