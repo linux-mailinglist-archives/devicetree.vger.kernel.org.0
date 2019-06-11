@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B99941745
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8574174B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436650AbfFKVy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 17:54:59 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:46638 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436664AbfFKVy7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:54:59 -0400
-Received: by mail-pf1-f196.google.com with SMTP id 81so8254359pfy.13;
-        Tue, 11 Jun 2019 14:54:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=dpOYw6H5sSXAWPYrrV8Oq9GrgOxO6vd6WyMoz+YDOCs=;
-        b=j8Y9LYbhdrOl8+Ff06oBDZcEbCwVSbiPnz/Vo3+FQlWIlwY64ldLMABhRyoZolgOnI
-         d3AgD5/9hFPfw2ZFH+5isLn7hWSAInBDW4nA/p8MZMwAr+A5aKj7Vwdw+Q92iCq0T/oP
-         6fDVdzIDpn6FrMfwU8wkfHPMKYo8dxtQEsYmor7ZhaxCcfuY+sfcsQVTn2I0Bgs1/cOO
-         CdOxtrI4V3pwHe8xBLgo/AdmQrk0+WhLXmK9SbBF6tVwFq8bhdacgemn83FxU9eN6S6A
-         5G5dHkOxxVzNPx2uWwZ53VxshO0dPDRnTYGY9WdDGLtMfHmX8HEUpV/jpRXb0D3QM0du
-         /nMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=dpOYw6H5sSXAWPYrrV8Oq9GrgOxO6vd6WyMoz+YDOCs=;
-        b=RtwA/5mZTfzoQSCl+H1b0Oymu9gRhGynZUqwaHo5kvxNatnNG/CtxRLQVAkU/gsqHJ
-         tCwsH6Hs8i2t2+lJa2jefIRNVVt0yRdRW/WagVzCG0A1+0lj8USedNafpu9bs4Hz5S2M
-         F+pW/ysxGz1DGDyLsxaFmwp0FQZTQgNWQtsQm8s/GKygroF+4sEIEcMmXQxgN/GI2Ofp
-         meieQoS5wlOZYdtFUOjgX1frCxi2sP7B8qDpijiqe2TV8b2tZEQRKw6glwXcMXR5HOMD
-         Y9nwixAvX/2ki3sqfg/Jk7LUir3pne/Ro2UCCV8m2uOYa1Ji9Va2hT6JaO4GGfqyHwJm
-         If0w==
-X-Gm-Message-State: APjAAAWS6RJnffTpnkcrtEKggldtG5+/PtBh8qSA+P7g60HtNH4OUfAl
-        2lrpO0f0N9th/eXDBrCNQZI=
-X-Google-Smtp-Source: APXvYqzELoAdkhlGDYwht+pWw2u8R41cpdF+7mnY62nqz2DllmtC2f3yYGikAv2dI1PmTRDtP1Fwng==
-X-Received: by 2002:a17:90a:21ac:: with SMTP id q41mr29546924pjc.31.1560290098203;
-        Tue, 11 Jun 2019 14:54:58 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id a3sm43519pje.3.2019.06.11.14.54.56
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 14:54:57 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Gregory Fong <gregory.0xf0@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/7] ARM: dts: BCM53573: Fix DTC W=1 warnings
-Date:   Tue, 11 Jun 2019 14:54:56 -0700
-Message-Id: <20190611215456.10353-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190528230134.27007-5-f.fainelli@gmail.com>
-References: <20190528230134.27007-1-f.fainelli@gmail.com> <20190528230134.27007-5-f.fainelli@gmail.com>
+        id S2436679AbfFKVzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 17:55:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40704 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2436639AbfFKVzk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 17:55:40 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8283421743;
+        Tue, 11 Jun 2019 21:55:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560290139;
+        bh=itIrCS6UbTV7i7K3wPxZGlSZjFZxEj/zzkrOrU7kDbE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0YVLQIaJohTAJMUCpWkwKmry/FYPTYij9dQAo1PIgk59uxattW8S8o23zjexP+Gg2
+         fLAVLoCTEuIPNY8aGuLS+8nhczmPT3j0UpW7oV6e2k041jQuPTr/L1w46a2ywjlHTZ
+         ByHHgwg3flMwc0Muy0MB3T4bGwue9ZbH4mbhAWhc=
+Received: by mail-qt1-f175.google.com with SMTP id h21so16441100qtn.13;
+        Tue, 11 Jun 2019 14:55:39 -0700 (PDT)
+X-Gm-Message-State: APjAAAW9vr0rMYRXq//nPIf+xH3V6Db30MtsDf/93NIa9nYQInXc9hy0
+        sAynVBAyNKzpEweM0QFLdOez7D6ojhM5ITtWdA==
+X-Google-Smtp-Source: APXvYqyPv2VyEFqCE2QAk64mlMkmylSJOYK8O4iYnfSvP7YJGPQu05IvaNFHAswddNfsGOXMpuSEIcRcFCpAUrmLIZk=
+X-Received: by 2002:a0c:8a43:: with SMTP id 3mr18151680qvu.138.1560290138676;
+ Tue, 11 Jun 2019 14:55:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <1559296800-5610-1-git-send-email-biju.das@bp.renesas.com> <1559296800-5610-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1559296800-5610-2-git-send-email-biju.das@bp.renesas.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 11 Jun 2019 15:55:26 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLvmxAt1ahaS3XAoqwR2F_eAosce-jhF74_bZuefdYybA@mail.gmail.com>
+Message-ID: <CAL_JsqLvmxAt1ahaS3XAoqwR2F_eAosce-jhF74_bZuefdYybA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/7] dt-bindings: usb: hd3ss3220 device tree binding document
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org, Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 May 2019 16:01:31 -0700, Florian Fainelli <f.fainelli@gmail.com> wrote:
-> Fix the the unit_address_vs_reg warnings and unnecessary
-> \#address-cells/#size-cells without "ranges" or child "reg" property
-> warnings.
-> 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+On Fri, May 31, 2019 at 4:07 AM Biju Das <biju.das@bp.renesas.com> wrote:
+>
+> Add device tree binding document for TI HD3SS3220 Type-C DRP port
+> controller driver.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > ---
+> v6-->V7
+>    * Removed Rob's reviewed by tag, since there is a rework
+>    * Incorporated Sergie and Shimoda-San's review comment
+>      (https://patchwork.kernel.org/patch/10944629/)
+> V5-->V6
+>   * No change.
+> V4-->V5
+>   * No Change.
+> V3-->V4
+>   * No Change.
+> V2-->V3
+>   * Added Rob's Reviewed by tag.
+> V1-->V2
+>   * Added connector node.
+>   * updated the example with connector node.
+> ---
+>  .../devicetree/bindings/usb/ti,hd3ss3220.txt       | 38 ++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
 
-Applied to devicetree/next, thanks!
---
-Florian
+Reviewed-by: Rob Herring <robh@kernel.org>
