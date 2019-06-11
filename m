@@ -2,108 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A5D3C3B3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 07:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D89123C3E0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 08:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391144AbfFKF7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 01:59:41 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:63325 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2390485AbfFKF7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 01:59:41 -0400
-X-UUID: 62c779248366490688a9b32f61fffd8e-20190611
-X-UUID: 62c779248366490688a9b32f61fffd8e-20190611
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1177027926; Tue, 11 Jun 2019 13:59:33 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 11 Jun
- 2019 13:59:32 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 11 Jun 2019 13:59:31 +0800
-Message-ID: <1560232771.8487.120.camel@mhfsdcap03>
-Subject: Re: [PATCH v6 09/10] usb: roles: add USB Type-B GPIO connector
- driver
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Nagarjuna Kristam <nkristam@nvidia.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        "Badhri Jagan Sridharan" <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yu Chen <chenyu56@huawei.com>
-Date:   Tue, 11 Jun 2019 13:59:31 +0800
-In-Reply-To: <9640aa29-bc96-ded1-e757-e885bda354a8@nvidia.com>
-References: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1559115828-19146-10-git-send-email-chunfeng.yun@mediatek.com>
-         <9640aa29-bc96-ded1-e757-e885bda354a8@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S2391214AbfFKGTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 02:19:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58044 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391197AbfFKGTI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 02:19:08 -0400
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A22E621721;
+        Tue, 11 Jun 2019 06:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560233947;
+        bh=zAg8BR5dmZHz0GhzDvxgmJ5z7bh7GV7MwQeYYOMSX8o=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=VENhbnFYbx/WXplXzFt6V2uVy6xWv2QvdsHchlMRUvn32aFmfEa/RTLFqgesbtn7a
+         5Vn2Pl8EMdrkfaVw3fIq0zfvUM0Q6FN5bAHhKFqUaH81Gaozj3UVn4jWpZz5GIRijB
+         AjncSa6k0Zf7WTR3+JgvIiX7XVVWsHhQgs7nZpTo=
+Received: by mail-lj1-f182.google.com with SMTP id s21so10340234lji.8;
+        Mon, 10 Jun 2019 23:19:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAWRQUeKrQBFhSb5QpYQmXjbsKxp+A+rPa86YWrYD4KvDXSzutjh
+        zxt1519XhpNhh1R95M7tlfyG+tx7jiWwZpVCw9k=
+X-Google-Smtp-Source: APXvYqxCFe4p5zlRmaqB4z0m9SNAEZkRno1BZHx+dIcGSMw57gobxcdysDyFElC+91e5QK0Z6gFqPQzkY5U87LkuzcY=
+X-Received: by 2002:a2e:9e83:: with SMTP id f3mr16999335ljk.47.1560233944850;
+ Mon, 10 Jun 2019 23:19:04 -0700 (PDT)
 MIME-Version: 1.0
-X-MTK:  N
+References: <CGME20190607143531eucas1p11f6b3a63068d529dae8be16abaa60ed0@eucas1p1.samsung.com>
+ <20190607143507.30286-1-l.luba@partner.samsung.com> <20190607143507.30286-9-l.luba@partner.samsung.com>
+In-Reply-To: <20190607143507.30286-9-l.luba@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 11 Jun 2019 08:18:53 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdKGG25T46d+SmES7wyQ=kAMj2jdT3GCYa+z87wpYKNEQ@mail.gmail.com>
+Message-ID: <CAJKOXPdKGG25T46d+SmES7wyQ=kAMj2jdT3GCYa+z87wpYKNEQ@mail.gmail.com>
+Subject: Re: [PATCH v9 08/13] drivers: memory: add DMC driver for Exynos5422
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, gregkh@linuxfoundation.org,
+        willy.mh.wolff.ml@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-06-10 at 16:03 +0530, Nagarjuna Kristam wrote:
-> Tested-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> 
-Thanks
+On Fri, 7 Jun 2019 at 16:35, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>
+> This patch adds driver for Exynos5422 Dynamic Memory Controller.
+> The driver provides support for dynamic frequency and voltage scaling for
+> DMC and DRAM. It supports changing timings of DRAM running with different
+> frequency. There is also an algorithm to calculate timigns based on
+> memory description provided in DT.
+> The patch also contains needed MAINTAINERS file update.
+>
+> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> ---
+>  MAINTAINERS                             |    8 +
+>  drivers/memory/samsung/Kconfig          |   17 +
+>  drivers/memory/samsung/Makefile         |    1 +
+>  drivers/memory/samsung/exynos5422-dmc.c | 1261 +++++++++++++++++++++++
+>  4 files changed, 1287 insertions(+)
+>  create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
 
-> On 29-05-2019 13:13, Chunfeng Yun wrote:
-> > Due to the requirement of usb-connector.txt binding, the old way
-> > using extcon to support USB Dual-Role switch is now deprecated
-> > when use Type-B connector.
-> > This patch introduces a driver of Type-B connector which typically
-> > uses an input GPIO to detect USB ID pin, and try to replace the
-> > function provided by extcon-usb-gpio driver
-> > 
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> > v6 changes:
-> >   1. get usb-role-swtich by usb_role_switch_get()
-> > 
-> > v5 changes:
-> >   1. put usb_role_switch when error happens suggested by Biju
-> >   2. don't treat bype-B connector as a virtual device suggested by Rob
-> > 
-> > v4 changes:
-> >   1. remove linux/gpio.h suggested by Linus
-> >   2. put node when error happens
-> > 
-> > v3 changes:
-> >   1. treat bype-B connector as a virtual device;
-> >   2. change file name again
-> > 
-> > v2 changes:
-> >   1. file name is changed
-> >   2. use new compatible
-> > ---
-> >  drivers/usb/roles/Kconfig           |  11 ++
-> >  drivers/usb/roles/Makefile          |   1 +
-> >  drivers/usb/roles/typeb-conn-gpio.c | 286 ++++++++++++++++++++++++++++
-> >  3 files changed, 298 insertions(+)
-> >  create mode 100644 drivers/usb/roles/typeb-conn-gpio.c
-> > 
-> > diff --git a/drivers/usb/roles/Kconfig b/drivers/usb/roles/Kconfig
-> > index f8b31aa67526..d1156e18a81a 100644
-> > --- a/drivers/usb/roles/Kconfig
-> > +++ b/drivers/usb/roles/Kconfig
-> > 
+(...)
 
+> +
+> +/**
+> + * exynos5_performance_counters_init() - Initializes performance DMC's counters
+> + * @dmc:       DMC for which it does the setup
+> + *
+> + * Initialization of performance counters in DMC for estimating usage.
+> + * The counter's values are used for calculation of a memory bandwidth and based
+> + * on that the governor changes the frequency.
+> + * The counters are not used when the governor is GOVERNOR_USERSPACE.
+> + */
+> +static int exynos5_performance_counters_init(struct exynos5_dmc *dmc)
+> +{
+> +       int counters_size;
+> +       int ret, i;
+> +
+> +       dmc->num_counters = devfreq_event_get_edev_count(dmc->dev);
+> +       if (dmc->num_counters < 0) {
+> +               dev_err(dmc->dev, "could not get devfreq-event counters\n");
+> +               return dmc->num_counters;
+> +       }
+> +
+> +       counters_size = sizeof(struct devfreq_event_dev) * dmc->num_counters;
+> +       dmc->counter = devm_kzalloc(dmc->dev, counters_size, GFP_KERNEL);
+> +       if (!dmc->counter)
+> +               return -ENOMEM;
+> +
+> +       for (i = 0; i < dmc->num_counters; i++) {
+> +               dmc->counter[i] =
+> +                       devfreq_event_get_edev_by_phandle(dmc->dev, i);
+> +               if (IS_ERR_OR_NULL(dmc->counter[i]))
+> +                       return -EPROBE_DEFER;
+> +       }
+> +
+> +       ret = exynos5_counters_enable_edev(dmc);
+> +       if (ret < 0) {
+> +               dev_err(dmc->dev, "could not enable event counter\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = exynos5_counters_set_event(dmc);
+> +       if (ret < 0) {
+> +               dev_err(dmc->dev, "counld not set event counter\n");
 
+Missing cleanup - edev counters disable.
+
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +/**
+> + * exynos5_dmc_set_pause_on_switching() - Controls a pause feature in DMC
+> + * @dmc:       device which is used for changing this feature
+> + * @set:       a boolean state passing enable/disable request
+> + *
+> + * There is a need of pausing DREX DMC when divider or MUX in clock tree
+> + * changes its configuration. In such situation access to the memory is blocked
+> + * in DMC automatically. This feature is used when clock frequency change
+> + * request appears and touches clock tree.
+> + */
+> +static inline int exynos5_dmc_set_pause_on_switching(struct exynos5_dmc *dmc)
+> +{
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       ret = regmap_read(dmc->clk_regmap, CDREX_PAUSE, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       val |= 1UL;
+> +       regmap_write(dmc->clk_regmap, CDREX_PAUSE, val);
+> +
+> +       return 0;
+> +}
+> +
+> +/**
+> + * exynos5_dmc_probe() - Probe function for the DMC driver
+> + * @pdev:      platform device for which the driver is going to be initialized
+> + *
+> + * Initialize basic components: clocks, regulators, performance counters, etc.
+> + * Read out product version and based on the information setup
+> + * internal structures for the controller (frequency and voltage) and for DRAM
+> + * memory parameters: timings for each operating frequency.
+> + * Register new devfreq device for controlling DVFS of the DMC.
+> + */
+> +static int exynos5_dmc_probe(struct platform_device *pdev)
+> +{
+> +       int ret = 0;
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *np = dev->of_node;
+> +       struct exynos5_dmc *dmc;
+> +       struct resource *res;
+> +
+> +       dmc = devm_kzalloc(dev, sizeof(*dmc), GFP_KERNEL);
+> +       if (!dmc)
+> +               return -ENOMEM;
+> +
+> +       mutex_init(&dmc->lock);
+> +
+> +       dmc->dev = dev;
+> +       platform_set_drvdata(pdev, dmc);
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       dmc->base_drexi0 = devm_ioremap_resource(dev, res);
+> +       if (IS_ERR(dmc->base_drexi0))
+> +               return PTR_ERR(dmc->base_drexi0);
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +       dmc->base_drexi1 = devm_ioremap_resource(dev, res);
+> +       if (IS_ERR(dmc->base_drexi1))
+> +               return PTR_ERR(dmc->base_drexi1);
+> +
+> +       dmc->clk_regmap = syscon_regmap_lookup_by_phandle(np,
+> +                               "samsung,syscon-clk");
+> +       if (IS_ERR(dmc->clk_regmap))
+> +               return PTR_ERR(dmc->clk_regmap);
+> +
+> +       ret = exynos5_init_freq_table(dmc, &exynos5_dmc_df_profile);
+> +       if (ret) {
+> +               dev_warn(dev, "couldn't initialize frequency settings\n");
+> +               return ret;
+> +       }
+> +
+> +       dmc->vdd_mif = devm_regulator_get(dev, "vdd");
+> +       if (IS_ERR(dmc->vdd_mif)) {
+> +               ret = PTR_ERR(dmc->vdd_mif);
+> +               return ret;
+> +       }
+> +
+> +       ret = exynos5_dmc_init_clks(dmc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = of_get_dram_timings(dmc);
+> +       if (ret) {
+> +               dev_warn(dev, "couldn't initialize timings settings\n");
+
+goto remove_clocks;
+
+> +               return ret;
+> +       }
+> +
+> +       ret = exynos5_performance_counters_init(dmc);
+> +       if (ret) {
+> +               dev_warn(dev, "couldn't probe performance counters\n");
+> +               goto remove_clocks;
+> +       }
+> +
+> +       ret = exynos5_dmc_set_pause_on_switching(dmc);
+> +       if (ret) {
+> +               dev_warn(dev, "couldn't get access to PAUSE register\n");
+> +               goto remove_clocks;
+
+goto err_devfreq_add;
+
+Best regards,
+Krzysztof
+
+> +       }
+> +
+> +       /*
+> +        * Setup default thresholds for the devfreq governor.
+> +        * The values are chosen based on experiments.
+> +        */
+> +       dmc->gov_data.upthreshold = 30;
+> +       dmc->gov_data.downdifferential = 5;
+> +
+> +       dmc->df = devm_devfreq_add_device(dev, &exynos5_dmc_df_profile,
+> +                                         DEVFREQ_GOV_USERSPACE,
+> +                                         &dmc->gov_data);
+> +
+> +       if (IS_ERR(dmc->df)) {
+> +               ret = PTR_ERR(dmc->df);
+> +               goto err_devfreq_add;
+> +       }
+> +
+> +       dev_info(dev, "DMC initialized\n");
+> +
+> +       return 0;
+> +
+> +err_devfreq_add:
+> +       exynos5_counters_disable_edev(dmc);
+> +remove_clocks:
+> +       clk_disable_unprepare(dmc->mout_bpll);
+> +       clk_disable_unprepare(dmc->fout_bpll);
+> +
+> +       return ret;
+> +}
+> +
+>
