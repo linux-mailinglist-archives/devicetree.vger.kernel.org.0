@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AA3F4187F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3846841891
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436953AbfFKW56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 18:57:58 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:37795 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436793AbfFKW55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:57:57 -0400
-Received: by mail-it1-f193.google.com with SMTP id x22so7585931itl.2;
-        Tue, 11 Jun 2019 15:57:57 -0700 (PDT)
+        id S2437017AbfFKXF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 19:05:58 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35433 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437015AbfFKXF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:05:58 -0400
+Received: by mail-pg1-f194.google.com with SMTP id s27so7792488pgl.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 16:05:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=OBwSPzkDdi1CMoAJXu3fdSCyBq/M09/6VhI4AMk4Xd0=;
+        b=myQGfU/fQ9FotkLvkIP5napMe/OlFIpyYMu85C1/ME8ATNL3ykv9VzsgnRpn3SiXtB
+         oK2zfgP4tp0UvDA43Eb5BnXfH2n9vFTf5ttK+jxUOAKg64WPZlvO+qYjypkNRx7fOELh
+         +/kyBy9tyGhTsyAtSsjBgdhzvl7i8qU0vwi0bKaYntUUFQFSCK1PzG8coiWfRIHEs3F7
+         mZnu+yaiZIil39fibfqN1W7CTlDjWG1/6hcssnbsnUUyZ07qAhXeSB6EJNLM4XK++Dw+
+         hRmBU2Gnj+VniTueB2pa2vhiNaHtAg4oP5sZcjecADRWjA8Nh9VCSyaq5PBegpLoen9p
+         oYgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lmkaxpGfKDXdssVFFm0WWQxz39RGTvG0gTf4Y0p48n4=;
-        b=IRzGOC3oejwfQriYuHWrZtYpDZKYb+yligduvNx5Ik98HfFxxMj76bTkIYdc8mnvW0
-         llbX2NMuRqhfVWD2oQ0WeaTC5wRNcXWE1z8q23IKrzfzDALCXCeoU2R0IYQEgOZoD8bd
-         HrOhCSW9DwuxVfXiBN3Watp1uNjRrYG5AtJgnfYfB1aC87Cul/z8eaigEtXyrnmRa8gK
-         QOXWn0HWcALwv0/Tec8lGjf7w5WLUUqX6pcXaNMXFqEOpoCPC1fy6Q6+XwY3M+O+t1Lh
-         s7/7/82iVBau3ZXkuq8L8BajgwsjFVgJWoz/2wpwfpgLrrrusXWyX61LV5NXv+UzHyOt
-         hIzw==
-X-Gm-Message-State: APjAAAWrdp70N/OGEqSCqSTUst6FzMLUxO4ePRNx4OGz3f0gcSIMq/K1
-        JHcNezvFhWrYI/DPJPvklQ==
-X-Google-Smtp-Source: APXvYqy0UyFUp0HcLidZZWaQ5Q2AZiuaGZqJRpMxMPnJHYbuAh+2deI17/ywBiA06Z4WubiGaiFzdA==
-X-Received: by 2002:a24:c3c5:: with SMTP id s188mr20349397itg.168.1560293876746;
-        Tue, 11 Jun 2019 15:57:56 -0700 (PDT)
-Received: from localhost (ip-174-149-252-64.englco.spcsdns.net. [174.149.252.64])
-        by smtp.gmail.com with ESMTPSA id r127sm2202388itr.7.2019.06.11.15.57.55
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 15:57:56 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 16:57:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kamal Dasu <kdasu.kdev@gmail.com>
-Cc:     linux-mtd@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt: bindings: mtd: brcmand: Add
- brcmnand,brcmnand-v7.3 support
-Message-ID: <20190611225753.GA29277@bogus>
-References: <1559659013-34502-1-git-send-email-kdasu.kdev@gmail.com>
- <1559659013-34502-3-git-send-email-kdasu.kdev@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=OBwSPzkDdi1CMoAJXu3fdSCyBq/M09/6VhI4AMk4Xd0=;
+        b=Ks/aHpnnx2iPERZDY69I49WM7Jb3vePXRZa1C+EMvvm0mrWU74u04Cp1XPeVfZWjNb
+         Mh6IM66gPs817rfuUGoO0Ec+2jp5x9Posuwnsx7kXzdM//5llLFCeJpw9goC9kpYFj25
+         y/NhTWkNM7puEmRGyUprBdDNl7yzMCyMrk6mEAJLmgZJh8OtXZiakIZBdUrFjqgYpfwe
+         yxw5r3gUMThNCI5IGWGpbB3epq30MRl4NYQQbaxUEEyGnxMEvyHq8d6goA5Bh71n6RnK
+         0JMMQs8pF44CdqTfcVZL1ckzmUlhCQRg8kVEQ6SXgioVi6fQ9bb+mrsWIlvFkLH0PQ21
+         MB9A==
+X-Gm-Message-State: APjAAAXqnPAcFoULUsjWVHcKfe5+8IauFzH0YU78IgMQaog7+0WdPYmW
+        V5du0feTp5XF0frNmFXv4gbdFLUgfe4=
+X-Google-Smtp-Source: APXvYqxjdj5vYjUUy2sB0u9Tk6uxU+kfxuJmVI3vHyHL5GJvrsWFCoAFGf8gZgFCMu8WEUVcxUHFCg==
+X-Received: by 2002:a17:90a:ba94:: with SMTP id t20mr15629024pjr.116.1560294357844;
+        Tue, 11 Jun 2019 16:05:57 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.googlemail.com with ESMTPSA id x5sm4327928pjp.21.2019.06.11.16.05.57
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 11 Jun 2019 16:05:57 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: meson: sei510: add sound card
+In-Reply-To: <20190524140318.17608-1-jbrunet@baylibre.com>
+References: <20190524140318.17608-1-jbrunet@baylibre.com>
+Date:   Tue, 11 Jun 2019 16:05:56 -0700
+Message-ID: <7himtb4t9n.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1559659013-34502-3-git-send-email-kdasu.kdev@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  4 Jun 2019 10:36:31 -0400, Kamal Dasu wrote:
-> Added brcm,brcmnand-v7.3 as possible compatible string to support
-> brcmnand controller v7.3.
-> 
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> This patchset adds the sound card of sei510 board.
+>
+> Note #1:
+> The patchset (build) depends on the tohdmitx ASoC patch [0] for the dt
+> bindings of the tohdmitx glue. It also (run) depends on the mpll clock
+> series [1] to get a correct clock sources.
+>
+> Note #2:
+> I would normaly prefer to use the HIFI pll dedicated to audio to provide
+> the base rate for the 48kHz audio family. HIFI pll rate precision is a
+> little bit better than the MPLL. However, the HIFI pll may sometimes,
+> rarely, take a long time to report a lock. I'm still debugging this.
+> In the mean time, let's use MPLL2 instead.
+>
+> [0]: e35f5ad6a965 ("ASoC: meson: add tohdmitx DT bindings")
+> [1]: https://lkml.kernel.org/r/20190513123115.18145-1-jbrunet@baylibre.com
+
+All dependencies are merged or queued for v5.3, so queuing this for v5.3
+also,
+
+Kevin
