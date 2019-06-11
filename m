@@ -2,109 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4276D3C736
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 11:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 676573C74B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 11:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728928AbfFKJa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 05:30:56 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:45149 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727642AbfFKJa4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 05:30:56 -0400
-Received: by mail-ed1-f65.google.com with SMTP id a14so17156333edv.12;
-        Tue, 11 Jun 2019 02:30:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=8flzYEJcuEkyJ1AH0OXfB04E7XpbRTYOxRAsuUYCYrc=;
-        b=ptUAF4qZ0rEElNWbGs61q1jTEremdphbh0Nx4KtLGD8bae4CqeZY+P5dbk4OH0s0tq
-         /eYly5UbsUQumNuD9Xk7XseyOg+JBKXRORRVDn3lRgYEveIdicPTQDhV0MBaDnvObVxG
-         D5x2tcvXgyp8BE34r8z1538j2GIJqoPkmx1R4uqpcinRDK8f8LxE+tD1SDL6SuquaFJE
-         csDAe7W1YRX6TDP5LM0a30JXGc8NzbFI3FWEGAPz2Cfh+Sp3HKjQU7X6gYpiilRQYkE9
-         2WQIIujkHyqw+vKre/pr+6XEEvIxXUc9Kn9Z2EKZ67iAsOfnIo0d5/KJJs+fXwiatk8r
-         76Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=8flzYEJcuEkyJ1AH0OXfB04E7XpbRTYOxRAsuUYCYrc=;
-        b=CHh6RZiklcLe9XMWdyt3liWMFvHg98i5JcQM+z2moWYb/I283NnSY41MZ+wQWhwGjw
-         yioAAQo70+gZOa8RP7tHNgcIoszPtGlz8lrAEnkYEqvTTG87xuswAl4Se2d+gDdxOs5R
-         zNUGPs1Zmc1qGQ/OmCc4yZjvJqRdH7jw5QWPIRUkmz39LtSn1pXZav4c7TEzPpCaSHNk
-         eoGDLg8V1FYs0qonc+DcjUO459d4e59NsNhIJctygRALqhH1yJnSBPDPWjn28+JpCB+x
-         MHo4Y2XYQq4q8t4V2FVH33WXTatPPvWHZcWHCgr+MQNRagBY2hGL6DtOJaeLM9Bwzfvn
-         aW/A==
-X-Gm-Message-State: APjAAAWegcu7obcghkXfa0CB+fX7loNpK3F64JHiUEYl1kifHUmN+L0I
-        H5LlKvFalMvpWItFgU3G46KFEk57
-X-Google-Smtp-Source: APXvYqyrbbQNFmcA4UDfTW5MCnvxlp2KccM8qJhuSQ/hMlRthhbaKxgWlE+FzpSwpEFD3LPu+p+LOA==
-X-Received: by 2002:a50:e707:: with SMTP id a7mr80066691edn.68.1560245454427;
-        Tue, 11 Jun 2019 02:30:54 -0700 (PDT)
-Received: from development1.visionsystems.de (mail.visionsystems.de. [213.209.99.202])
-        by smtp.gmail.com with ESMTPSA id l38sm200874eda.1.2019.06.11.02.30.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 02:30:53 -0700 (PDT)
-From:   yegorslists@googlemail.com
-To:     linux-omap@vger.kernel.org
-Cc:     tony@atomide.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Yegor Yefremov <yegorslists@googlemail.com>
-Subject: [PATCH] ARM: dts: am335x-baltos: Fix PHY mode for ethernet
-Date:   Tue, 11 Jun 2019 11:30:45 +0200
-Message-Id: <20190611093045.4810-1-yegorslists@googlemail.com>
-X-Mailer: git-send-email 2.17.0
+        id S2404552AbfFKJgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 05:36:43 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:18546 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2404137AbfFKJgm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 05:36:42 -0400
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 7E1052B1E12D93060B1E;
+        Tue, 11 Jun 2019 17:36:40 +0800 (CST)
+Received: from localhost (10.202.226.61) by DGGEMS412-HUB.china.huawei.com
+ (10.3.19.212) with Microsoft SMTP Server id 14.3.439.0; Tue, 11 Jun 2019
+ 17:36:35 +0800
+Date:   Tue, 11 Jun 2019 10:36:25 +0100
+From:   Jonathan Cameron <jonathan.cameron@huawei.com>
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+CC:     <will.deacon@arm.com>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <iommu@lists.linux-foundation.org>, <robh+dt@kernel.org>,
+        <robin.murphy@arm.com>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
+Message-ID: <20190611103625.00001399@huawei.com>
+In-Reply-To: <20190610184714.6786-2-jean-philippe.brucker@arm.com>
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+        <20190610184714.6786-2-jean-philippe.brucker@arm.com>
+Organization: Huawei
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; i686-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.61]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yegor Yefremov <yegorslists@googlemail.com>
+On Mon, 10 Jun 2019 19:47:07 +0100
+Jean-Philippe Brucker <jean-philippe.brucker@arm.com> wrote:
 
-The PHY must add both tx and rx delay and not only on the tx clock.
+> Some devices might support multiple DMA address spaces, in particular
+> those that have the PCI PASID feature. PASID (Process Address Space ID)
+> allows to share process address spaces with devices (SVA), partition a
+> device into VM-assignable entities (VFIO mdev) or simply provide
+> multiple DMA address space to kernel drivers. Add a global PASID
+> allocator usable by different drivers at the same time. Name it I/O ASID
+> to avoid confusion with ASIDs allocated by arch code, which are usually
+> a separate ID space.
+> 
+> The IOASID space is global. Each device can have its own PASID space,
+> but by convention the IOMMU ended up having a global PASID space, so
+> that with SVA, each mm_struct is associated to a single PASID.
+> 
+> The allocator is primarily used by IOMMU subsystem but in rare occasions
+> drivers would like to allocate PASIDs for devices that aren't managed by
+> an IOMMU, using the same ID space as IOMMU.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+> Signed-off-by: Jacob Pan <jacob.jun.pan@linux.intel.com>
+Hi,
 
-Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
----
- arch/arm/boot/dts/am335x-baltos-ir2110.dts | 2 +-
- arch/arm/boot/dts/am335x-baltos-ir3220.dts | 2 +-
- arch/arm/boot/dts/am335x-baltos-ir5221.dts | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+A few trivial comments inline.  May be more because I'm not that familiar
+with xa_array than anything else.
 
-diff --git a/arch/arm/boot/dts/am335x-baltos-ir2110.dts b/arch/arm/boot/dts/am335x-baltos-ir2110.dts
-index 2f650a736b44..f127af2afd00 100644
---- a/arch/arm/boot/dts/am335x-baltos-ir2110.dts
-+++ b/arch/arm/boot/dts/am335x-baltos-ir2110.dts
-@@ -68,7 +68,7 @@
- };
- 
- &cpsw_emac1 {
--	phy-mode = "rgmii-txid";
-+	phy-mode = "rgmii-id";
- 	dual_emac_res_vlan = <2>;
- 	phy-handle = <&phy1>;
- };
-diff --git a/arch/arm/boot/dts/am335x-baltos-ir3220.dts b/arch/arm/boot/dts/am335x-baltos-ir3220.dts
-index 1ba66d5e21e8..058d9eb96cff 100644
---- a/arch/arm/boot/dts/am335x-baltos-ir3220.dts
-+++ b/arch/arm/boot/dts/am335x-baltos-ir3220.dts
-@@ -110,7 +110,7 @@
- };
- 
- &cpsw_emac1 {
--	phy-mode = "rgmii-txid";
-+	phy-mode = "rgmii-id";
- 	dual_emac_res_vlan = <2>;
- 	phy-handle = <&phy1>;
- };
-diff --git a/arch/arm/boot/dts/am335x-baltos-ir5221.dts b/arch/arm/boot/dts/am335x-baltos-ir5221.dts
-index eed65fc0e8e6..7b99c8ed3c3a 100644
---- a/arch/arm/boot/dts/am335x-baltos-ir5221.dts
-+++ b/arch/arm/boot/dts/am335x-baltos-ir5221.dts
-@@ -128,7 +128,7 @@
- };
- 
- &cpsw_emac1 {
--	phy-mode = "rgmii-txid";
-+	phy-mode = "rgmii-id";
- 	dual_emac_res_vlan = <2>;
- 	phy-handle = <&phy1>;
- };
--- 
-2.17.0
+Jonathan
+
+> ---
+> The most recent discussion on this patch was at:
+> https://lkml.kernel.org/lkml/1556922737-76313-4-git-send-email-jacob.jun.pan@linux.intel.com/
+> I fixed it up a bit following comments in that series, and removed the
+> definitions for the custom allocator for now.
+> 
+> There also is a new version that includes the custom allocator into this
+> patch, but is currently missing the RCU fixes, at:
+> https://lore.kernel.org/lkml/1560087862-57608-13-git-send-email-jacob.jun.pan@linux.intel.com/
+> ---
+
+...
+
+> +
+> +/**
+> + * ioasid_alloc - Allocate an IOASID
+> + * @set: the IOASID set
+> + * @min: the minimum ID (inclusive)
+> + * @max: the maximum ID (inclusive)
+> + * @private: data private to the caller
+> + *
+> + * Allocate an ID between @min and @max. The @private pointer is stored
+> + * internally and can be retrieved with ioasid_find().
+> + *
+> + * Return: the allocated ID on success, or %INVALID_IOASID on failure.
+> + */
+> +ioasid_t ioasid_alloc(struct ioasid_set *set, ioasid_t min, ioasid_t max,
+> +		      void *private)
+> +{
+> +	u32 id = INVALID_IOASID;
+> +	struct ioasid_data *data;
+> +
+> +	data = kzalloc(sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return INVALID_IOASID;
+> +
+> +	data->set = set;
+> +	data->private = private;
+> +
+> +	if (xa_alloc(&ioasid_xa, &id, data, XA_LIMIT(min, max), GFP_KERNEL)) {
+> +		pr_err("Failed to alloc ioasid from %d to %d\n", min, max);
+> +		goto exit_free;
+> +	}
+> +	data->id = id;
+> +
+> +exit_free:
+
+This error flow is perhaps a little more confusing than it needs to be?
+
+My assumption (perhaps wrong) is that we only have an id == INVALID_IOASID
+if the xa_alloc fails, and that we will always have such an id value if
+it does (I'm not totally sure this second element is true in __xa_alloc).
+
+If I'm missing something perhaps a comment on how else we'd get here.
+
+> +	if (id == INVALID_IOASID) {
+> +		kfree(data);
+> +		return INVALID_IOASID;
+> +	}
+> +	return id;
+> +}
+> +EXPORT_SYMBOL_GPL(ioasid_alloc);
+> +
+> +/**
+> + * ioasid_free - Free an IOASID
+> + * @ioasid: the ID to remove
+> + */
+> +void ioasid_free(ioasid_t ioasid)
+> +{
+> +	struct ioasid_data *ioasid_data;
+> +
+> +	ioasid_data = xa_erase(&ioasid_xa, ioasid);
+> +
+> +	kfree_rcu(ioasid_data, rcu);
+> +}
+> +EXPORT_SYMBOL_GPL(ioasid_free);
+> +
+> +/**
+> + * ioasid_find - Find IOASID data
+> + * @set: the IOASID set
+> + * @ioasid: the IOASID to find
+> + * @getter: function to call on the found object
+> + *
+> + * The optional getter function allows to take a reference to the found object
+> + * under the rcu lock. The function can also check if the object is still valid:
+> + * if @getter returns false, then the object is invalid and NULL is returned.
+> + *
+> + * If the IOASID has been allocated for this set, return the private pointer
+> + * passed to ioasid_alloc. Private data can be NULL if not set. Return an error
+> + * if the IOASID is not found or does not belong to the set.
+
+Perhaps should make it clear that @set can be null.
+
+> + */
+> +void *ioasid_find(struct ioasid_set *set, ioasid_t ioasid,
+> +		  bool (*getter)(void *))
+> +{
+> +	void *priv = NULL;
+
+Set in all paths, so does need to be set here.
+
+> +	struct ioasid_data *ioasid_data;
+> +
+> +	rcu_read_lock();
+> +	ioasid_data = xa_load(&ioasid_xa, ioasid);
+> +	if (!ioasid_data) {
+> +		priv = ERR_PTR(-ENOENT);
+> +		goto unlock;
+> +	}
+> +	if (set && ioasid_data->set != set) {
+> +		/* data found but does not belong to the set */
+> +		priv = ERR_PTR(-EACCES);
+> +		goto unlock;
+> +	}
+> +	/* Now IOASID and its set is verified, we can return the private data */
+> +	priv = rcu_dereference(ioasid_data->private);
+> +	if (getter && !getter(priv))
+> +		priv = NULL;
+> +unlock:
+> +	rcu_read_unlock();
+> +
+> +	return priv;
+> +}
+> +EXPORT_SYMBOL_GPL(ioasid_find);
+> +
+> +MODULE_LICENSE("GPL");
+...
 
