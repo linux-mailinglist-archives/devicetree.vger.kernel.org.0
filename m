@@ -2,372 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B28AE3C84F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D233C812
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727641AbfFKKNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 06:13:14 -0400
-Received: from 1.mo178.mail-out.ovh.net ([178.33.251.53]:48037 "EHLO
-        1.mo178.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729048AbfFKKNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 06:13:13 -0400
-X-Greylist: delayed 573 seconds by postgrey-1.27 at vger.kernel.org; Tue, 11 Jun 2019 06:13:10 EDT
-Received: from player774.ha.ovh.net (unknown [10.108.54.38])
-        by mo178.mail-out.ovh.net (Postfix) with ESMTP id E005B6A4C3
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 12:03:35 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player774.ha.ovh.net (Postfix) with ESMTPSA id EB6756AF51B5;
-        Tue, 11 Jun 2019 10:03:16 +0000 (UTC)
-Subject: Re: [PATCH v2 2/3] media: imx7-media-csi: add i.MX6UL support
-To:     Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20190606153825.8183-1-sebastien.szymanski@armadeus.com>
- <20190606153825.8183-2-sebastien.szymanski@armadeus.com>
- <m34l4xpweh.fsf@gmail.com>
- <722336d1-c7f7-1796-95d5-7bba1fac7968@armadeus.com>
- <m3zhmo1mux.fsf@gmail.com>
-From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Openpgp: preference=signencrypt
-Message-ID: <df32fe2e-d9b1-8b09-686c-7f6970aa8e0c@armadeus.com>
-Date:   Tue, 11 Jun 2019 12:03:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2404861AbfFKKHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 06:07:38 -0400
+Received: from mail-eopbgr780050.outbound.protection.outlook.com ([40.107.78.50]:4096
+        "EHLO NAM03-BY2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2404593AbfFKKHi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 06:07:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZawdMzp8XdCQtc2qbhzmbLCvc/4EHpvHDS6IQHZqEVA=;
+ b=sS3tX6tQyDlC9T751u9XXnlwO/t/77D/IMUTcPeYn50wmT/zpc83FCLx6PU58AIHqFM4LLDC+VB/5cNgckumRIznEH53EIUS2DK5WpeOmDX/XEFQXkpcewlQ/BzY9UletjWU4Feu5nLt/Ob7rcWaf/oYpQUJyjuLe8/d3qhV6lA=
+Received: from MWHPR0201CA0018.namprd02.prod.outlook.com
+ (2603:10b6:301:74::31) by BL0PR02MB4932.namprd02.prod.outlook.com
+ (2603:10b6:208:53::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1965.17; Tue, 11 Jun
+ 2019 10:07:32 +0000
+Received: from BL2NAM02FT013.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::204) by MWHPR0201CA0018.outlook.office365.com
+ (2603:10b6:301:74::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.14 via Frontend
+ Transport; Tue, 11 Jun 2019 10:07:32 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; arm.com; dkim=none (message not signed)
+ header.d=none;arm.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ BL2NAM02FT013.mail.protection.outlook.com (10.152.77.19) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1965.12
+ via Frontend Transport; Tue, 11 Jun 2019 10:07:31 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <manish.narani@xilinx.com>)
+        id 1hadgg-0005Qf-Uc; Tue, 11 Jun 2019 03:07:30 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <manish.narani@xilinx.com>)
+        id 1hadgb-0000TD-Qt; Tue, 11 Jun 2019 03:07:25 -0700
+Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <mnarani@xilinx.com>)
+        id 1hadgU-0000RI-2r; Tue, 11 Jun 2019 03:07:18 -0700
+Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
+        id 421C6121745; Tue, 11 Jun 2019 15:37:17 +0530 (IST)
+From:   Manish Narani <manish.narani@xilinx.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, michal.simek@xilinx.com,
+        manish.narani@xilinx.com, chanho.min@lge.com, rrichter@cavium.com,
+        leoyang.li@nxp.com, amit.kucheria@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: zynqmp: Add ZynqMP SDHCI compatible string
+Date:   Tue, 11 Jun 2019 15:37:15 +0530
+Message-Id: <1560247635-29281-1-git-send-email-manish.narani@xilinx.com>
+X-Mailer: git-send-email 2.1.1
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(136003)(39860400002)(346002)(396003)(2980300002)(189003)(199004)(26005)(36386004)(51416003)(50466002)(47776003)(186003)(2906002)(72206003)(48376002)(478600001)(4326008)(966005)(14444005)(5660300002)(356004)(103686004)(336012)(8676002)(2616005)(50226002)(6306002)(44832011)(8936002)(63266004)(70206006)(70586007)(426003)(486006)(476003)(81156014)(126002)(81166006)(305945005)(6266002)(52956003)(36756003)(106002)(42186006)(16586007)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4932;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
 MIME-Version: 1.0
-In-Reply-To: <m3zhmo1mux.fsf@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 8968637183800988741
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudehhedgtdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 95326752-72f8-442d-f54c-08d6ee549e1d
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:BL0PR02MB4932;
+X-MS-TrafficTypeDiagnostic: BL0PR02MB4932:
+X-MS-Exchange-PUrlCount: 1
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-Microsoft-Antispam-PRVS: <BL0PR02MB4932F9B04CC4457FC53CD5C9C1ED0@BL0PR02MB4932.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-Forefront-PRVS: 006546F32A
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: i2NGJO1/uEDDchyyoqO8/trSl4RtuZ8ikQ0V3PxG3liqRG6EG/WKnHLM5nEqeNM2ihoYogPI+BiWnMrtjvPzG0QlwXTBct7hEeXPPBh/Vr3+CGrvyH7hWFmAtPrWXg1D+8yLU5sFomnaR9P2QiFCVBps8kTycl0U2W0sR83YDNZLxtVSn+/7OAlQyncVPZltg/SVbPpv7CSqp2cwf1vTK1vi4rgBfD9guXlOBMH9jf5EFhnSbQZ65mW3Q4Nxu/ohZw2RuIBGJfPpdIxrZBpTHNyPKVYW8Mkb0DpJpD1j0hqEMVmGdQcJJ5sfR3sDtxVcx1Jy7ssQ8oroqtlQkLsm27y8cC4Zt/NzLAMtxGLk5tLHuF8TtaxAioE47anlHyKAFNV+ex0VgQIyfKvnrU1wYuy3ofett5/qoXCcp93oJY8=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2019 10:07:31.5229
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95326752-72f8-442d-f54c-08d6ee549e1d
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4932
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/11/19 11:40 AM, Rui Miguel Silva wrote:
-> Hi Sebastien,
-> On Tue 11 Jun 2019 at 09:16, Sébastien Szymanski wrote:
->> Hi Rui,
->>
->> thanks for the review!
->>
->> On 6/10/19 12:28 PM, Rui Miguel Silva wrote:
->>> Hi Sebastien,
->>> Thanks for the patch.
->>>
->>> On Thu 06 Jun 2019 at 16:38, Sébastien Szymanski wrote:
->>>> i.MX7 and i.MX6UL/L have the same CSI controller. So add i.MX6UL/L support
->>>> to imx7-media-csi driver.
->>>>
->>>> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
->>>> ---
->>>>
->>>> Changes for v2:
->>>>  - rebase on top of linuxtv/master
->>>>  - mention i.MX6UL/L in header and Kconfig help text
->>>>  - rename csi_type to csi_soc_id
->>>>
->>>>  drivers/staging/media/imx/Kconfig          |  4 +-
->>>>  drivers/staging/media/imx/imx7-media-csi.c | 62 ++++++++++++++++------
->>>>  2 files changed, 49 insertions(+), 17 deletions(-)
->>>>
->>>> diff --git a/drivers/staging/media/imx/Kconfig b/drivers/staging/media/imx/Kconfig
->>>> index ad3d7df6bb3c..8b6dc42c39e0 100644
->>>> --- a/drivers/staging/media/imx/Kconfig
->>>> +++ b/drivers/staging/media/imx/Kconfig
->>>> @@ -22,11 +22,11 @@ config VIDEO_IMX_CSI
->>>>  	  A video4linux camera sensor interface driver for i.MX5/6.
->>>>
->>>>  config VIDEO_IMX7_CSI
->>>> -	tristate "i.MX7 Camera Sensor Interface driver"
->>>> +	tristate "i.MX6UL/L / i.MX7 Camera Sensor Interface driver"
->>>>  	depends on VIDEO_IMX_MEDIA && VIDEO_DEV && I2C
->>>>  	default y
->>>>  	help
->>>>  	  Enable support for video4linux camera sensor interface driver for
->>>> -	  i.MX7.
->>>> +	  i.MX6UL/L or i.MX7.
->>>>  endmenu
->>>>  endif
->>>> diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging/media/imx/imx7-media-csi.c
->>>> index 9101566f3f67..902bdce594cf 100644
->>>> --- a/drivers/staging/media/imx/imx7-media-csi.c
->>>> +++ b/drivers/staging/media/imx/imx7-media-csi.c
->>>> @@ -1,6 +1,6 @@
->>>>  // SPDX-License-Identifier: GPL-2.0
->>>>  /*
->>>> - * V4L2 Capture CSI Subdev for Freescale i.MX7 SOC
->>>> + * V4L2 Capture CSI Subdev for Freescale i.MX6UL/L / i.MX7 SOC
->>>>   *
->>>>   * Copyright (c) 2019 Linaro Ltd
->>>>   *
->>>> @@ -152,6 +152,11 @@
->>>>  #define CSI_CSICR18		0x48
->>>>  #define CSI_CSICR19		0x4c
->>>>
->>>> +enum csi_soc_id {
->>>> +	IMX7,
->>>> +	IMX6UL
->>>> +};
->>>> +
->>>>  struct imx7_csi {
->>>>  	struct device *dev;
->>>>  	struct v4l2_subdev sd;
->>>> @@ -191,6 +196,7 @@ struct imx7_csi {
->>>>  	bool is_init;
->>>>  	bool is_streaming;
->>>>  	bool is_csi2;
->>>> +	enum csi_soc_id soc_id;
->>>>
->>>>  	struct completion last_eof_completion;
->>>>  };
->>>> @@ -548,6 +554,14 @@ static int imx7_csi_pad_link_validate(struct v4l2_subdev *sd,
->>>>  	if (ret)
->>>>  		return ret;
->>>>
->>>> +	if (csi->soc_id == IMX6UL) {
->>>> +		mutex_lock(&csi->lock);
->>>> +		csi->is_csi2 = false;
->>>> +		mutex_unlock(&csi->lock);
->>>> +
->>>> +		return 0;
->>>> +	}
->>>> +
->>>>  	ret = imx7_csi_get_upstream_endpoint(csi, &upstream_ep, true);
->>>>  	if (ret) {
->>>>  		v4l2_err(&csi->sd, "failed to find upstream endpoint\n");
->>>> @@ -757,6 +771,7 @@ static int imx7_csi_configure(struct imx7_csi *csi)
->>>>  	struct v4l2_pix_format *out_pix = &vdev->fmt.fmt.pix;
->>>>  	__u32 in_code = csi->format_mbus[IMX7_CSI_PAD_SINK].code;
->>>>  	u32 cr1, cr18;
->>>> +	int width = out_pix->width;
->>>>
->>>>  	if (out_pix->field == V4L2_FIELD_INTERLACED) {
->>>>  		imx7_csi_deinterlace_enable(csi, true);
->>>> @@ -766,15 +781,27 @@ static int imx7_csi_configure(struct imx7_csi *csi)
->>>>  		imx7_csi_buf_stride_set(csi, 0);
->>>>  	}
->>>>
->>>> -	imx7_csi_set_imagpara(csi, out_pix->width, out_pix->height);
->>>> +	cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
->>>> +
->>>> +	if (!csi->is_csi2) {
->>>> +		if (out_pix->pixelformat == V4L2_PIX_FMT_UYVY ||
->>>> +		    out_pix->pixelformat == V4L2_PIX_FMT_YUYV)
->>>> +			width *= 2;
->>>> +
->>>> +		imx7_csi_set_imagpara(csi, width, out_pix->height);
->>>> +
->>>> +		cr18 |= (BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
->>>> +			BIT_BASEADDR_CHG_ERR_EN);
->>>> +		imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
->>>>
->>>> -	if (!csi->is_csi2)
->>>>  		return 0;
->>>> +	}
->>>> +
->>>> +	imx7_csi_set_imagpara(csi, width, out_pix->height);
->>>>
->>>>  	cr1 = imx7_csi_reg_read(csi, CSI_CSICR1);
->>>>  	cr1 &= ~BIT_GCLK_MODE;
->>>>
->>>> -	cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
->>>>  	cr18 &= BIT_MIPI_DATA_FORMAT_MASK;
->>>>  	cr18 |= BIT_DATA_FROM_MIPI;
->>>>
->>>> @@ -809,11 +836,9 @@ static void imx7_csi_enable(struct imx7_csi *csi)
->>>>  {
->>>>  	imx7_csi_sw_reset(csi);
->>>>
->>>> -	if (csi->is_csi2) {
->>>> -		imx7_csi_dmareq_rff_enable(csi);
->>>> -		imx7_csi_hw_enable_irq(csi);
->>>> -		imx7_csi_hw_enable(csi);
->>>> -	}
->>>> +	imx7_csi_dmareq_rff_enable(csi);
->>>> +	imx7_csi_hw_enable_irq(csi);
->>>> +	imx7_csi_hw_enable(csi);
->>>>  }
->>>>
->>>>  static void imx7_csi_disable(struct imx7_csi *csi)
->>>> @@ -1166,19 +1191,32 @@ static int imx7_csi_parse_endpoint(struct device *dev,
->>>>  	return fwnode_device_is_available(asd->match.fwnode) ? 0 : -EINVAL;
->>>>  }
->>>>
->>>> +static const struct of_device_id imx7_csi_of_match[] = {
->>>> +	{ .compatible = "fsl,imx7-csi", .data = (void *)IMX7 },
->>>> +	{ .compatible = "fsl,imx6ul-csi", .data = (void *)IMX6UL },
->>>
->>> looking at this again I think we can do this is a different way.
->>> Instead data being the soc_id, just set here if it is_csi2 or not.
->>>
->>> This would avoid to add a soc_id  to the struct that it really it
->>> is used only to setup the is_csi2 var. I think this will make this
->>> patch a lot simpler.
->>
->> Well, I have added this soc_id because imx7_csi_get_upstream_endpoint in
->> imx7_csi_pad_link_validate fails:
->>
->> [  366.549768] csi: failed to find upstream endpoint
->> [  366.556274] csi: pipeline start failed with -19
->>
-> 
-> I think this fails because you do not define any endpoint for the
-> csi in your board dts file. I see in patch 1/3 the setup of csi,
-> disabled, but not the endpoint connecting csi with the ov5640 in
-> your board file (see the connection between mipi imx7 and ov2680
-> in the imx7-warp.dts, or the ov5640.txt file).
+Add the new compatible string for ZynqMP SD Host Controller for its use
+in the Arasan SDHCI driver for some of the ZynqMP specific operations.
+Add required properties for the same.
 
-I actually do, in the device tree of my board I have:
+Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+---
+This patch depends on the below series of patches:
+https://lkml.org/lkml/2019/6/11/286
+---
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-&csi {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_csi>;
-	status = "okay";
-
-	port {
-		csi_ep: endpoint {
-			remote-endpoint = <&ov5640_ep>;
-			bus-type = <5>; // V4L2_FWNODE_BUS_TYPE_PARALLEL
-		};
-	};
-};
-
-and
-
-&i2c2 {
-..
-	ov5640: camera@3c {
-		...
-		port {
-                        ov5640_ep: endpoint {
-                                remote-endpoint = <&csi_ep>;
-                                bus-width = <8>;
-                                data-shift = <2>; /* lines 9:2 are used */
-                                hsync-active = <0>;
-                                vsync-active = <1>;
-                                pclk-sample = <0>;
-                        };
-                };
-	};
-};
-
-Regards,
-
-> 
-> ---
-> Cheers,
->         Rui
-> 
-> 
->>
->> My pipeline is:
->>
->> Device topology
->> - entity 1: csi (2 pads, 2 links)
->>             type V4L2 subdev subtype Unknown flags 0
->>             device node name /dev/v4l-subdev0
->>         pad0: Sink
->>                 [fmt:UYVY8_2X8/640x480 field:none colorspace:srgb
->> xfer:srgb ycbcr:601 quantization:full-range]
->>                 <- "ov5640 1-003c":0 [ENABLED]
->>         pad1: Source
->>                 [fmt:UYVY8_2X8/640x480 field:none colorspace:srgb
->> xfer:srgb ycbcr:601 quantization:full-range]
->>                 -> "csi capture":0 [ENABLED]
->>
->> - entity 4: csi capture (1 pad, 1 link)
->>             type Node subtype V4L flags 0
->>             device node name /dev/video1
->>         pad0: Sink
->>                 <- "csi":1 [ENABLED]
->>
->> - entity 10: ov5640 1-003c (1 pad, 1 link)
->>              type V4L2 subdev subtype Sensor flags 0
->>              device node name /dev/v4l-subdev1
->>         pad0: Source
->>                 [fmt:UYVY8_2X8/640x480@1/30 field:none colorspace:srgb
->> xfer:srgb ycbcr:601 quantization:full-range]
->>                 -> "csi":0 [ENABLED]
->>
->>
->> Maybe we should fix this ?
->>
->> Regards,
->>
->>>
->>>> +	{ },
->>>> +};
->>>> +MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
->>>> +
->>>>  static int imx7_csi_probe(struct platform_device *pdev)
->>>>  {
->>>>  	struct device *dev = &pdev->dev;
->>>>  	struct device_node *node = dev->of_node;
->>>>  	struct imx_media_dev *imxmd;
->>>>  	struct imx7_csi *csi;
->>>> +	const struct of_device_id *of_id;
->>>>  	int ret;
->>>>
->>>> +	of_id = of_match_node(imx7_csi_of_match, node);
->>>
->>> With the above said, here I think we can use the of_match_device?
->>>
->>> hope this makes sense also to you.
->>>
->>> Once again thanks for the patches.
->>>
->>> ---
->>> Cheers,
->>>         Rui
->>>
->>>> +	if (!of_id)
->>>> +		return -ENODEV;
->>>> +
->>>>  	csi = devm_kzalloc(&pdev->dev, sizeof(*csi), GFP_KERNEL);
->>>>  	if (!csi)
->>>>  		return -ENOMEM;
->>>>
->>>>  	csi->dev = dev;
->>>> +	csi->soc_id = (enum csi_soc_id)of_id->data;
->>>>
->>>>  	csi->mclk = devm_clk_get(&pdev->dev, "mclk");
->>>>  	if (IS_ERR(csi->mclk)) {
->>>> @@ -1294,12 +1332,6 @@ static int imx7_csi_remove(struct platform_device *pdev)
->>>>  	return 0;
->>>>  }
->>>>
->>>> -static const struct of_device_id imx7_csi_of_match[] = {
->>>> -	{ .compatible = "fsl,imx7-csi" },
->>>> -	{ },
->>>> -};
->>>> -MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
->>>> -
->>>>  static struct platform_driver imx7_csi_driver = {
->>>>  	.probe = imx7_csi_probe,
->>>>  	.remove = imx7_csi_remove,
->>>
-> 
-
-
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 9aa6734..6da5b82 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -493,21 +493,25 @@
+ 		};
+ 
+ 		sdhci0: mmc@ff160000 {
+-			compatible = "arasan,sdhci-8.9a";
++			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+ 			status = "disabled";
+ 			interrupt-parent = <&gic>;
+ 			interrupts = <0 48 4>;
+ 			reg = <0x0 0xff160000 0x0 0x1000>;
+ 			clock-names = "clk_xin", "clk_ahb";
++			clock-output-names = "clk_sd0";
++			#clock-cells = <0>;
+ 		};
+ 
+ 		sdhci1: mmc@ff170000 {
+-			compatible = "arasan,sdhci-8.9a";
++			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+ 			status = "disabled";
+ 			interrupt-parent = <&gic>;
+ 			interrupts = <0 49 4>;
+ 			reg = <0x0 0xff170000 0x0 0x1000>;
+ 			clock-names = "clk_xin", "clk_ahb";
++			clock-output-names = "clk_sd1";
++			#clock-cells = <0>;
+ 		};
+ 
+ 		smmu: smmu@fd800000 {
 -- 
-Sébastien Szymanski
-Software engineer, Armadeus Systems
-Tel: +33 (0)9 72 29 41 44
-Fax: +33 (0)9 72 28 79 26
+2.1.1
+
