@@ -2,121 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 892F2439AE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF1283D094
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 17:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732638AbfFMPP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:15:26 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:41451 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726933AbfFMNZa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 09:25:30 -0400
-X-Originating-IP: 90.88.159.246
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id B224FC0002;
-        Thu, 13 Jun 2019 13:25:15 +0000 (UTC)
-Date:   Tue, 11 Jun 2019 16:58:56 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v2 05/11] dt-bindings: net: sun4i-emac: Convert the
- binding to a schemas
-Message-ID: <20190611145856.ua2ggkn6ccww6vpp@flea>
-References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
- <d198d29119b37b2fdb700d8992b31963e98b6693.1560158667.git-series.maxime.ripard@bootlin.com>
- <20190610143139.GG28724@lunn.ch>
- <CAL_JsqJahCJcdu=+fA=ewbGezuEJ2W6uwMVxkQpdY6w+1OWVVA@mail.gmail.com>
+        id S1729294AbfFKPSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 11:18:45 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:35596 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727601AbfFKPSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 11:18:45 -0400
+Received: by mail-pf1-f196.google.com with SMTP id d126so7645994pfd.2;
+        Tue, 11 Jun 2019 08:18:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nWL90qXjUuK8w+rtJZaynRsIXMY+sEETNIVgozGcpYY=;
+        b=hvUUJzscbqBqMtPEpSRuAuTno/JL6vDZa4C3VZHRLut01wds25WxWaiXi0hBAIpkoW
+         jNcMfBqsrcp1KT/6fFkHImK4/emdBsRF+jFmEr6+pSE0WauLpXCwJpzIS5kG+A5VrGq/
+         W0eVkzBzeXBocol9+uzyekHrXBcENDbMtU/K5kDYtuza2TY+BCp1rEJ8s6XH4txjDOu4
+         yiUov03zBYKi5wZF5PIkOJqHM5skau1sl1KO2/H1KUszXuzVpHVsdnoGmCrkvTVpGqSD
+         vyn7IeTeti0gOcYDKUr3kCgRrVoSwZLFOR3mVzBfCkGxgMQVStXP26RRWD7KQ8Jizg2l
+         wCsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nWL90qXjUuK8w+rtJZaynRsIXMY+sEETNIVgozGcpYY=;
+        b=BIY+Zi3KSfyGcWOvpfAlWP5tEeuSGMS59RORMBK4XIZKiAjm8yJApUGrIp9PxshBxL
+         avwveUi3Pod2/YURksznobG8IXJ4+HqE/6Pe1zDX20dJWtPcouflxWL5xOhI3t+xNhA0
+         KHxddx7ILU7VngS5suDe6A3mAsSrS0gGXp9gkjBiYivnDqmmTmxnhV1PbHUcYPYKTt92
+         2QeAEd6nJdeMArJOrdbyRj+QaqbvW6pQwGmqUqUpckfEDjAjJKTt4U89BFDnLBFz7b0L
+         1++565bxEZlRXPtcZ1ma4ytZ6uz2Ef/IQMP26MtrDYjBZVx0Yz9I1rYdLo7xsT1KATGt
+         vvLw==
+X-Gm-Message-State: APjAAAXT4/tfBxDgnNwv+GycPyQfw5CJlmPQbB1uM4pKIvtMC9supmjF
+        ZH+yuMZesMiaBv30arsMwyY=
+X-Google-Smtp-Source: APXvYqzqf8kgGYBTPaIZ1SBTEBOIIkVoUdOeKbbH7LVXNmxiy2I3a6qFL2H3o2/OGR3G+E5S/h5toA==
+X-Received: by 2002:a63:1657:: with SMTP id 23mr19568964pgw.98.1560266324025;
+        Tue, 11 Jun 2019 08:18:44 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id d6sm12660100pgv.4.2019.06.11.08.18.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Jun 2019 08:18:43 -0700 (PDT)
+Subject: Re: [RESEND PATCH v1 1/5] of/platform: Speed up
+ of_find_device_by_node()
+To:     Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+References: <20190604003218.241354-1-saravanak@google.com>
+ <20190604003218.241354-2-saravanak@google.com>
+ <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <570474f4-8749-50fd-5f72-36648ed44653@gmail.com>
+Date:   Tue, 11 Jun 2019 08:18:41 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="akgu3rpnhcjfd75m"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJahCJcdu=+fA=ewbGezuEJ2W6uwMVxkQpdY6w+1OWVVA@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Saravana,
 
---akgu3rpnhcjfd75m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 6/10/19 10:36 AM, Rob Herring wrote:
+> Why are you resending this rather than replying to Frank's last
+> comments on the original?
 
-Hi Rob,
+Adding on a different aspect...  The independent replies from three different
+maintainers (Rob, Mark, myself) pointed out architectural issues with the
+patch series.  There were also some implementation issues brought out.
+(Although I refrained from bringing up most of my implementation issues
+as they are not relevant until architecture issues are resolved.)
 
-On Mon, Jun 10, 2019 at 12:59:29PM -0600, Rob Herring wrote:
-> On Mon, Jun 10, 2019 at 8:31 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - phy
-> > > +  - allwinner,sram
-> >
-> > Quoting ethernet.txt:
-> >
-> > - phy: the same as "phy-handle" property, not recommended for new bindings.
-> >
-> > - phy-handle: phandle, specifies a reference to a node representing a PHY
-> >   device; this property is described in the Devicetree Specification and so
-> >   preferred;
-> >
-> > Can this be expressed in Yaml? Accept phy, but give a warning. Accept
-> > phy-handle without a warning? Enforce that one or the other is
-> > present?
->
-> The common schema could have 'phy: false'. This works as long as we've
-> updated (or plan to) all the dts files to use phy-handle. The issue is
-> how far back do you need kernels to work with newer dtbs.
+When three maintainers say the architecture has issues, you should step
+back and think hard.  (Not to say maintainers are always correct...)
 
-I guess another question being raised by this is how hard do we want
-to be a deprecating things, and should the DT validation be a tool to
-enforce that validation.
+My suggestion at this point is that you need to go back to the drawing board
+and re-think how to address the use case.
 
-For example, you've used in you GPIO meta-schema false for anything
-ending with -gpio, since it's deprecated. This means that we can't
-convert any binding using a deprecated property without introducing a
-build error in the schemas, which in turn means that you'll have a lot
-of friction to support schemas, since you would have to convert your
-driver to support the new way of doing things, before being able to
-have a schema for your binding.
+-Frank
 
-And then, we need to agree on how to express the deprecation. I guess
-we could allow the deprecated keyword that will be there in the
-draft-8, instead of ad-hoc solutions?
+> 
+> On Mon, Jun 3, 2019 at 6:32 PM Saravana Kannan <saravanak@google.com> wrote:
+>>
+>> Add a pointer from device tree node to the device created from it.
+>> This allows us to find the device corresponding to a device tree node
+>> without having to loop through all the platform devices.
+>>
+>> However, fallback to looping through the platform devices to handle
+>> any devices that might set their own of_node.
+>>
+>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+>> ---
+>>  drivers/of/platform.c | 20 +++++++++++++++++++-
+>>  include/linux/of.h    |  3 +++
+>>  2 files changed, 22 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+>> index 04ad312fd85b..1115a8d80a33 100644
+>> --- a/drivers/of/platform.c
+>> +++ b/drivers/of/platform.c
+>> @@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
+>>         return dev->of_node == data;
+>>  }
+>>
+>> +static DEFINE_SPINLOCK(of_dev_lock);
+>> +
+>>  /**
+>>   * of_find_device_by_node - Find the platform_device associated with a node
+>>   * @np: Pointer to device tree node
+>> @@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+>>  {
+>>         struct device *dev;
+>>
+>> -       dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
+>> +       /*
+>> +        * Spinlock needed to make sure np->dev doesn't get freed between NULL
+>> +        * check inside and kref count increment inside get_device(). This is
+>> +        * achieved by grabbing the spinlock before setting np->dev = NULL in
+>> +        * of_platform_device_destroy().
+>> +        */
+>> +       spin_lock(&of_dev_lock);
+>> +       dev = get_device(np->dev);
+>> +       spin_unlock(&of_dev_lock);
+>> +       if (!dev)
+>> +               dev = bus_find_device(&platform_bus_type, NULL, np,
+>> +                                     of_dev_node_match);
+>>         return dev ? to_platform_device(dev) : NULL;
+>>  }
+>>  EXPORT_SYMBOL(of_find_device_by_node);
+>> @@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
+>>                 platform_device_put(dev);
+>>                 goto err_clear_flag;
+>>         }
+>> +       np->dev = &dev->dev;
+>>
+>>         return dev;
+>>
+>> @@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
+>>         if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
+>>                 device_for_each_child(dev, NULL, of_platform_device_destroy);
+>>
+>> +       /* Spinlock is needed for of_find_device_by_node() to work */
+>> +       spin_lock(&of_dev_lock);
+>> +       dev->of_node->dev = NULL;
+>> +       spin_unlock(&of_dev_lock);
+>>         of_node_clear_flag(dev->of_node, OF_POPULATED);
+>>         of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
+>>
+>> diff --git a/include/linux/of.h b/include/linux/of.h
+>> index 0cf857012f11..f2b4912cbca1 100644
+>> --- a/include/linux/of.h
+>> +++ b/include/linux/of.h
+>> @@ -48,6 +48,8 @@ struct property {
+>>  struct of_irq_controller;
+>>  #endif
+>>
+>> +struct device;
+>> +
+>>  struct device_node {
+>>         const char *name;
+>>         phandle phandle;
+>> @@ -68,6 +70,7 @@ struct device_node {
+>>         unsigned int unique_id;
+>>         struct of_irq_controller *irq_trans;
+>>  #endif
+>> +       struct device *dev;             /* Device created from this node */
+>>  };
+>>
+>>  #define MAX_PHANDLE_ARGS 16
+>> --
+>> 2.22.0.rc1.257.g3120a18244-goog
+>>
+> .
+> 
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---akgu3rpnhcjfd75m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP/BsAAKCRDj7w1vZxhR
-xU7tAQDcrE7AmbrNpKlW8XjNBwjZBTaNMJbwICwP0nzygayxHQD+MjHzz6TZnhQF
-Qm1qbD7O25WDq9BPnYW8XMjLhY6IgQE=
-=f1jE
------END PGP SIGNATURE-----
-
---akgu3rpnhcjfd75m--
