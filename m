@@ -2,201 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D843DBC2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 22:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADCAA3DBD1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 22:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406466AbfFKUUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 16:20:30 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:34545 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406254AbfFKUUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 16:20:30 -0400
-Received: by mail-ot1-f67.google.com with SMTP id z24so13215919oto.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 13:20:30 -0700 (PDT)
+        id S2406495AbfFKU3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 16:29:13 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:39286 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406296AbfFKU3N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 16:29:13 -0400
+Received: by mail-pg1-f195.google.com with SMTP id 196so7594590pgc.6
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 13:29:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ZN1SnBquRzXuf2+xQl9wQuhxCyT0k91S9YrA851zmG8=;
-        b=VLxZoJtBU3LoJ1q77LadvK1F88vWwDRzdEvQpSiAep2KDJmHOqGB6LyyBz1+4NqZwS
-         bE23W4vqqI7RcG/bLR2oxUKh45SjQJmY6xdK5oUW6cUlTobeLtUhylLStQxgIxCrauOM
-         oz8tXQmJb9Na/kMveFMGedzc4E3ybDQcWsalq5p4giGOLVqPjYaoPzIAbDiXRy6vymmD
-         2Pf11dEYFnnPL2mIWNFE9OrBoxhQDOhOVq53W7fB5TyxjOD0vOzzM+MMN5H9f3Pt2895
-         Zq1YhuNTTC9MpUCq9sOIslqpxGFntgE41HM7IyXq24xF5A7loPHYMzXbebuiRbCjnVRA
-         upzQ==
+        bh=dhnwSrdCPnvzoEVfuuVGqE83p7TnkQ5Modn2BNCoQD0=;
+        b=Pp0Hq+hd8QA6syECahlCWtYv82jhOxBm0sr+fZ9Dkk8nXtHe7nrSiSj+V8u0FaITQ7
+         84fXuzNXkrhzDQgkHPp26EjnsIzrDKXg48+xvOTrPv1gFdJxgRLOvcs0dwgoU2BGvzqE
+         Liz3+gL3rcT7wqBUJosubNY4aHZAru2eeUFG6CtPZ2mbKIzTjquHFKUIQcWXvVk4hMLI
+         7UB1amIr3aRGarnBUHse/35CwxBlRRF3qifo7BnhaOJV61RWbVqr0wA4GIowlDaA6gfT
+         pWINRb5VwbD/mtNfms9GrZfwha/4G8tSCCTtYnHFhjTrLaOGAdTroClIT1QeFCWuqloy
+         NJbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZN1SnBquRzXuf2+xQl9wQuhxCyT0k91S9YrA851zmG8=;
-        b=p7KvGFn2FxyL6j/BCXH3g5w1NG2mRosNHucbyNonXFUFR8lAIIuEKpu3NCvqDDWDvn
-         A38ntp/FPLWbLtDmwfL3ixqxh92k1Zuo6SsGHoqhTVP+qBDjW2I0GpJdymt8Q6cz928f
-         TYGDbAFWmrhaJw8culDNdKGKErupnBLofpkwStRxF8wT+NZn0dPqb17HAN+ppSS7PHQn
-         4IGwQTMVpgmz7Hyv2RAfVKrLwKRhfjGYG6pShh8crpIDF85GyXNkqI5/iIBaLP+6cC3W
-         jsUsNFr7BKmfEaBbweNnd9t/NZUbb7abGuEf5hV3YkBdFyzRJx7gk5TQcKjDjvHYOJzk
-         BrlA==
-X-Gm-Message-State: APjAAAUKcwzVnPiYILVvZdCmvB9nbcmPHMd4tXFETQRczl0jRuwWkIMb
-        s2An/2hnIqNYsNBQb54+sndMl/0ozC7dgcK/3W6GiQ==
-X-Google-Smtp-Source: APXvYqxuWlhccFyXteP6ApBz3nhtKKOKK84dG6MwtBasnRXOCw14GKlmfvRalKmCAk1tHb3kQs/MvFCapJjSAE8aCcQ=
-X-Received: by 2002:a9d:6d06:: with SMTP id o6mr35545957otp.225.1560284429523;
- Tue, 11 Jun 2019 13:20:29 -0700 (PDT)
+        bh=dhnwSrdCPnvzoEVfuuVGqE83p7TnkQ5Modn2BNCoQD0=;
+        b=QlER7Vx0Uc+YNisTOf0xNbwUEXZPZzjzLYQr10yGY5OM2cRKh4TpEYH6xkq6QAJ/rM
+         VeiSav8njRcIuKn6YlbRGbI/cWFtiyr32Ql9EGhQTWdHWv3gI8KOxq9AvPpgY/seGpxb
+         a+TE2dTfc7rN2pQqxp+Fe7+VI+jJ4uhVeXZKVG7w8HBaYnGpzcCBtExVBKPebI3+Qw6z
+         Nd8oYRvVdSylXmirsLH4H+bRpJcTq8MujJi07KLcKvxYE1QtV7e2vEkNYVLMqiOjNOIV
+         bX8fFJ01ROVCC5CCdM46LvZxtmdJ6zbPOmSGS9KxGSNA0b0JUq07ImjIhN6GkH/uYL6K
+         hX/Q==
+X-Gm-Message-State: APjAAAUHBOgajFBF3YA7a0samGpJDF28qFnIvMprM3BWxevP09JxQ9Rk
+        dqRqoAraFthxc2JljbYvG4BMuiQtCvP8R+eJWQr7hg==
+X-Google-Smtp-Source: APXvYqycBtJ32qbIn8pTyxMIAID5Xv7JTruAR7oTyIED4r622bu9rIlLgVdk0eekxjLa2OE4wVYL1Pw8y64Cqw0kRwU=
+X-Received: by 2002:a17:90a:2e89:: with SMTP id r9mr28553830pjd.117.1560284952085;
+ Tue, 11 Jun 2019 13:29:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190524010117.225219-1-saravanak@google.com> <06b479e2-e8a0-b3e8-567c-7fa0f1c5bdf6@gmail.com>
- <CAGETcx-21GEoBKhpzcsrDt3sEo-vUpwqnr3To7VbSPd8aW86Nw@mail.gmail.com>
- <d49dccee-203a-628a-8e47-191014619f6b@gmail.com> <CAGETcx-HPsxdwMfUJDUBvjpiuK9eyRCYRhqsXxiL5Q8g+YgHEg@mail.gmail.com>
- <5a3c1776-69ed-eeec-9326-8632c6bd0d58@gmail.com>
-In-Reply-To: <5a3c1776-69ed-eeec-9326-8632c6bd0d58@gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 11 Jun 2019 13:19:53 -0700
-Message-ID: <CAGETcx_kFMXTCdBVFX-VQ6mktoDe=nqYMS76QBWGdhL=+fT79Q@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] Solve postboot supplier cleanup and optimize probe ordering
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Android Kernel Team <kernel-team@android.com>
+References: <20190514221711.248228-1-brendanhiggins@google.com>
+ <20190514221711.248228-18-brendanhiggins@google.com> <20190517182254.548EA20815@mail.kernel.org>
+ <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com>
+ <20190607190047.C3E7A20868@mail.kernel.org> <20190611175830.GA236872@google.com>
+ <20190611185018.2E1C021744@mail.kernel.org>
+In-Reply-To: <20190611185018.2E1C021744@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 11 Jun 2019 13:29:01 -0700
+Message-ID: <CAFd5g47dmcHOCX41cr2v9Kaj3xa_5-PoqUPX_1=AoQLUG90NkQ@mail.gmail.com>
+Subject: Re: [PATCH v4 17/18] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Iurii Zaikin <yzaikin@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 7:56 AM Frank Rowand <frowand.list@gmail.com> wrote:
+On Tue, Jun 11, 2019 at 11:50 AM Stephen Boyd <sboyd@kernel.org> wrote:
 >
-> Hi Saravana,
->
-> On 5/24/19 9:04 PM, Saravana Kannan wrote:
-> > On Fri, May 24, 2019 at 7:40 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>
-> >> Hi Saranova,
-> >>
-> >> I'll try to address the other portions of this email that I <snipped>
-> >> in my previous replies.
-> >>
-> >>
-> >> On 5/24/19 2:53 PM, Saravana Kannan wrote:
-> >>> On Fri, May 24, 2019 at 10:49 AM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>>>
-> >>>> On 5/23/19 6:01 PM, Saravana Kannan wrote:
-> >>>>> Add a generic "depends-on" property that allows specifying mandatory
-> >>>>> functional dependencies between devices. Add device-links after the
-> >>>>> devices are created (but before they are probed) by looking at this
-> >>>>> "depends-on" property.
-> >>>>>
-> >>>>> This property is used instead of existing DT properties that specify
-> >>>>> phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
-> >>>>> is because not all resources referred to by existing DT properties are
-> >>>>> mandatory functional dependencies. Some devices/drivers might be able>>>>> to operate with reduced functionality when some of the resources
->
->
-> In your original email, you say this:
->
-> >>>>> aren't available. For example, a device could operate in polling mode
-> >>>>> if no IRQ is available, a device could skip doing power management if
-> >>>>> clock or voltage control isn't available and they are left on, etc.
->
->
-> >>>>>
-> >>>>> So, adding mandatory functional dependency links between devices by
-> >>>>> looking at referred phandles in DT properties won't work as it would
-> >>>>> prevent probing devices that could be probed. By having an explicit
-> >>>>> depends-on property, we can handle these cases correctly.
-> >>>>
-> >>>> Trying to wrap my brain around the concept, this series seems to be
-> >>>> adding the ability to declare that an apparent dependency (eg an IRQ
-> >>>> specified by a phandle) is _not_ actually a dependency.
-> >>>
-> >>> The current implementation completely ignores existing bindings for
-> >>> dependencies and so does the current tip of the kernel. So it's not
-> >>> really overriding anything. However, if I change the implementation so
-> >>> that depends-on becomes the source of truth if it exists and falls
-> >>> back to existing common bindings if "depends-on" isn't present -- then
-> >>> depends-on would truly be overriding existing bindings for
-> >>> dependencies. It depends on how we want to define the DT property.
-> >>>
-> >>>> The phandle already implies the dependency.
-> >>>
-> >>> Sure, it might imply, but it's not always true.
-> >>>
-> >>>> Creating a separate
-> >>>> depends-on property provides a method of ignoring the implied
-> >>>> dependencies.
-> >>>
-> >>> implied != true
-> >>>
->
-> I refer to your irq mode vs polled mode device example:
->
-> >>>> This is not just hardware description.  It is instead a combination
-> >>>> of hardware functionality and driver functionality.  An example
-> >>>> provided in the second paragraph of the email I am replying to
-> >>>> suggests a device could operate in polling mode if no IRQ is
-> >>>> available.  Using this example, the devicetree does not know
-> >>>> whether the driver requires the IRQ (currently an implied
-> >>>> dependency since the IRQ phandle exists).  My understanding
-> >>>> of this example is that the device node would _not_ have a
-> >>>> depends-on property for the IRQ phandle so the IRQ would be
-> >>>> optional.  But this is an attribute of the driver, not the
-> >>>> hardware.
-> >>>
-> >>
->
-> You change the subject from irq mode vs polled mode device to some
-> other type of device:
->
-> >>> Not really. The interrupt could be for "SD card plugged in". That's
-> >>> never a mandatory dependency for the SD card controller to work. So
-> >>> the IRQ provider won't be a "depends-on" in this case. But if there is
-> >>> no power supply or clock for the SD card controller, it isn't going to
-> >>> work -- so they'd be listed in the "depends-on". So, this is still
-> >>> defining the hardware and not the OS.
-> >>
->
-> I again try to get you to discuss the irq mode vs polled mode device:
->
-> >> Please comment on my observation that was based on an IRQ for a device
-> >> will polling mode vs interrupt driven mode.
-> >> You described a different
-> >> case and did not address my comment.
-> > > I thought I did reply -- not sure what part you are looking for so
-> > I'll rephrase. I was just picking the SD card controller as a concrete
-> > example of device that can work with or without an interrupt. But
-> > sure, I can call it "the device".
+> Quoting Brendan Higgins (2019-06-11 10:58:30)
+> > On Fri, Jun 07, 2019 at 12:00:47PM -0700, Stephen Boyd wrote:
+> > > Quoting Iurii Zaikin (2019-06-05 18:29:42)
+> > > > On Fri, May 17, 2019 at 11:22 AM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > > >
+> > > > > Quoting Brendan Higgins (2019-05-14 15:17:10)
+> > > > > > diff --git a/kernel/sysctl-test.c b/kernel/sysctl-test.c
+> > > > > > new file mode 100644
+> > > > > > index 0000000000000..fe0f2bae66085
+> > > > > > --- /dev/null
+> > > > > > +++ b/kernel/sysctl-test.c
+> > > > > > +
+> > > > > > +
+> > > > > > +static void sysctl_test_dointvec_happy_single_negative(struct kunit *test)
+> > > > > > +{
+> > > > > > +       struct ctl_table table = {
+> > > > > > +               .procname = "foo",
+> > > > > > +               .data           = &test_data.int_0001,
+> > > > > > +               .maxlen         = sizeof(int),
+> > > > > > +               .mode           = 0644,
+> > > > > > +               .proc_handler   = proc_dointvec,
+> > > > > > +               .extra1         = &i_zero,
+> > > > > > +               .extra2         = &i_one_hundred,
+> > > > > > +       };
+> > > > > > +       char input[] = "-9";
+> > > > > > +       size_t len = sizeof(input) - 1;
+> > > > > > +       loff_t pos = 0;
+> > > > > > +
+> > > > > > +       table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > > > > +       KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, input, &len, &pos));
+> > > > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, pos);
+> > > > > > +       KUNIT_EXPECT_EQ(test, -9, *(int *)table.data);
+> > > > >
+> > > > > Is the casting necessary? Or can the macro do a type coercion of the
+> > > > > second parameter based on the first type?
+> > > >  Data field is defined as void* so I believe casting is necessary to
+> > > > dereference it as a pointer to an array of ints. I don't think the
+> > > > macro should do any type coercion that == operator wouldn't do.
+> > > >  I did change the cast to make it more clear that it's a pointer to an
+> > > > array of ints being dereferenced.
+> > >
+> > > Ok, I still wonder if we should make KUNIT_EXPECT_EQ check the types on
+> > > both sides and cause a build warning/error if the types aren't the same.
+> > > This would be similar to our min/max macros that complain about
+> > > mismatched types in the comparisons. Then if a test developer needs to
+> > > convert one type or the other they could do so with a
+> > > KUNIT_EXPECT_EQ_T() macro that lists the types to coerce both sides to
+> > > explicitly.
 > >
+> > Do you think it would be better to do a phony compare similar to how
+> > min/max used to work prior to 4.17, or to use the new __typecheck(...)
+> > macro? This might seem like a dumb question (and maybe it is), but Iurii
+> > and I thought the former created an error message that was a bit easier
+> > to understand, whereas __typecheck is obviously superior in terms of
+> > code reuse.
+> >
+> > This is what we are thinking right now; if you don't have any complaints
+> > I will squash it into the relevant commits on the next revision:
 >
-> And the thread is so deeply nested that you are missing the original
-> point that I made.
+> Can you provide the difference in error messages and describe that in
+> the commit text? The commit message is where you "sell" the patch, so
+> being able to compare the tradeoff of having another macro to do type
+> comparisons vs. reusing the one that's there in kernel.h would be useful
+> to allay concerns that we're duplicating logic for better error
+> messages.
+
+Oh sorry, I didn't think too hard about the commit message since I
+figured it would get split up and squashed into the existing commits.
+I just wanted to get it out sooner to discuss this before I post the
+next revision (probably later this week).
+
+> Honestly, I'd prefer we just use the macros that we've developed in
+> kernel.h to do comparisons here so that we can get code reuse, but more
+> importantly so that we don't trip over problems that caused those macros
+> to be created in the first place. If the error message is bad, perhaps
+> that can be fixed with some sort of compiler directive to make the error
+> message a little more useful, i.e. compiletime_warning() thrown into
+> __typecheck() or something.
+
+That's a good point. I have no qualms sticking with __typecheck(...)
+for now; if we later feel that it is causing problems, we can always
+fix it later by supplying our own warning in the manner you suggest.
+
+Iurii, do you have any additional thoughts on this?
+
 >
-> > And yes, the device won't have a "depends-on" on the IRQ provider
-> > because the device can still work without a working (as in bound to
-> > driver) IRQ provider. Whether the driver insists on waiting on an IRQ
-> > provider or not is up to the driver and the depends-on property is NOT
-> > trying to dictate what the driver should do in this case. Does that
-> > answer your implied question?
->
-> If the device _must_ operate in irq mode to achieve the throughput
-> that is _required_ for the system to be functional then that system
-> would need a devicetree to have a "depends-on" property for the irq.
-> But another system using the same exact hardware might be able to
-> tolerate the reduced throughput of operating in polled mode.  This
-> second system would need a devicetree that does _not_ have a
-> depends-on property for that same irq, as used by that same device.
-
-Thanks for clarifying the point. I see the difference in our view points.
-
-The way I see it, on the system where the device must operate in IRQ
-mode to meet performance requirements, the DRIVER would choose to
-always -EPROBE_DEFER till it gets the IRQ. Or if it's BSD or Windows
-or whatever other theoretical OS that is trying to use the same DT
-blob, it'll follow whatever mechanism that OS provides for waiting for
-the IRQ to become available.
-On the system where not having the IRQ is okay, the DRIVER would not
-EPROBE_DEFER and just go to using polling mode.
-In both these cases I don't expect the depends-on to list the IRQ provider.
-
-I have more to say but I'll say that in the RESEND thread as a reply
-to your other email.
-
--Saravana
+> > ---
+> > From: Iurii Zaikin <yzaikin@google.com>
+> >
+> > Adds a warning message when comparing values of different types similar
+> > to what min() / max() macros do.
+> >
+> > Signed-off-by: Iurii Zaikin <yzaikin@google.com>
