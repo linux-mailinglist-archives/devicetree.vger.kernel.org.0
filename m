@@ -2,152 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A3D3CE3F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81B143CEAD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388013AbfFKONy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 10:13:54 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:44224 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388168AbfFKONy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 10:13:54 -0400
-Received: by mail-ed1-f68.google.com with SMTP id k8so20292076edr.11;
-        Tue, 11 Jun 2019 07:13:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=bcSC//GEnJPbvbaMDabVr9qAdxrn6I1NQr+LLKNMNM0=;
-        b=hxU9jsUB6Fr6NEbvbJ2gNgMGv7Bd8qYcu2TP7cnPCe2Kfzj/kgY+mHxb7JWB8Psgwy
-         m/C23PwGzFWEpJWqM0tL61as38rurN9m6VMVQiHoXh1kkCaEpjMR6eug+MNjDF80g9fG
-         zDsC3l0OcbVqgDSkrjv9RegKbON3k4iHoEeH/4KJekZ09BThnDJR48Slpm7hZLG+lJw1
-         d85KiP9DYgDHRzx3quVtOF8F+Or/HqPQjjCpRb4lttR8QI0s/W1kYfFnKUcoKHVk3N8z
-         jchVmB47g8UyFqm4g7Yrw5/TUW7oK/AX7FxVzHFa9BJlJAz/9PDmAhz3sKY0xhL6N0/d
-         qihw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=bcSC//GEnJPbvbaMDabVr9qAdxrn6I1NQr+LLKNMNM0=;
-        b=sbterHB7bNUDg/JeWqRGid6jIcfzPV062daQqnLYsD3pc+kzaTJADuaeTVhwJK0Qky
-         U9KIL5tGgwOOkWV4KvcRLHvEJPCWeLQn4Tx5ZVndWU5R8f1k9fdmdM0Vm6IPINpQ9lsC
-         69PuNJOC1PLG63ZM8QfkCBmwduHxfa52x/e9pDHlpwsu5tEMUbEo432KFvSD7zN4KfkC
-         y5rp9iDGWxwDCnehRMVG+3eYtnrkW5pGSy8RTQ2ZJ80UYLYmdyedGSv4UqOPnU2wgrV4
-         MLBBpqN/dvLv05KHmAqcCwH4J3DxP13A1DN0y13GJWCYuFIU/nQuvQa3qTEQUlEKGw9J
-         abjQ==
-X-Gm-Message-State: APjAAAVnqO5DDyzlTVG6wLdsBYkHtkGZIV5b6NX9s6AJNgz1BK6gwt4J
-        tjS/gckZf7ukvcSbGrd0vFaQ6M5g
-X-Google-Smtp-Source: APXvYqxiG2ZDCZGk35ZIL6RpeSiUWkR8y2v5sXP9L4bEHCsGGq+JuGAxIcJjZLQqpPhZcQSjemwNQg==
-X-Received: by 2002:a17:906:b315:: with SMTP id n21mr17551256ejz.312.1560262432230;
-        Tue, 11 Jun 2019 07:13:52 -0700 (PDT)
-Received: from development1.visionsystems.de (mail.visionsystems.de. [213.209.99.202])
-        by smtp.gmail.com with ESMTPSA id l2sm1579473edn.59.2019.06.11.07.13.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 07:13:51 -0700 (PDT)
-From:   yegorslists@googlemail.com
-To:     linux-omap@vger.kernel.org
-Cc:     tony@atomide.com, bcousson@baylibre.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org,
-        Yegor Yefremov <yegorslists@googlemail.com>
-Subject: [PATCH] ARM: dts: am335x-baltos: add support for MMC1 CD pin
-Date:   Tue, 11 Jun 2019 16:13:38 +0200
-Message-Id: <20190611141338.14787-1-yegorslists@googlemail.com>
-X-Mailer: git-send-email 2.17.0
+        id S2390190AbfFKO1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 10:27:49 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:35815 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390032AbfFKO1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 10:27:49 -0400
+X-Originating-IP: 90.88.159.246
+Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 1965AE0011;
+        Tue, 11 Jun 2019 14:27:40 +0000 (UTC)
+Date:   Tue, 11 Jun 2019 16:27:40 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v2 03/11] pinctrl: sunxi: v3s: introduce support for V3
+Message-ID: <20190611142740.2gqm3nxq2nl6sz7w@flea>
+References: <20190611140940.14357-1-icenowy@aosc.io>
+ <20190611140940.14357-4-icenowy@aosc.io>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ttqlhhfclj7eb7xn"
+Content-Disposition: inline
+In-Reply-To: <20190611140940.14357-4-icenowy@aosc.io>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yegor Yefremov <yegorslists@googlemail.com>
 
-Baltos 5221/3220 devices provide CD signal on GPIO2_18.
-Baltos 2110 device provides CD signal on GPIO1_15.
+--ttqlhhfclj7eb7xn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
----
- arch/arm/boot/dts/am335x-baltos-ir2110.dts | 12 ++++++++++++
- arch/arm/boot/dts/am335x-baltos-ir3220.dts | 12 ++++++++++++
- arch/arm/boot/dts/am335x-baltos-ir5221.dts | 11 +++++++++++
- 3 files changed, 35 insertions(+)
+Hi,
 
-diff --git a/arch/arm/boot/dts/am335x-baltos-ir2110.dts b/arch/arm/boot/dts/am335x-baltos-ir2110.dts
-index 2f650a736b44..984a5cb16c2c 100644
---- a/arch/arm/boot/dts/am335x-baltos-ir2110.dts
-+++ b/arch/arm/boot/dts/am335x-baltos-ir2110.dts
-@@ -33,6 +33,12 @@
- 			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_INPUT_PULLDOWN, MUX_MODE7)      /* lcd_ac_bias_en.gpio2[25] RI */
- 		>;
- 	};
-+
-+	mmc1_pins: pinmux_mmc1_pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT, MUX_MODE7)     /* MMC1 CD */
-+		>;
-+	};
- };
- 
- &uart1 {
-@@ -72,3 +78,9 @@
- 	dual_emac_res_vlan = <2>;
- 	phy-handle = <&phy1>;
- };
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	cd-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
-+};
-diff --git a/arch/arm/boot/dts/am335x-baltos-ir3220.dts b/arch/arm/boot/dts/am335x-baltos-ir3220.dts
-index 1ba66d5e21e8..37e61bfaaf44 100644
---- a/arch/arm/boot/dts/am335x-baltos-ir3220.dts
-+++ b/arch/arm/boot/dts/am335x-baltos-ir3220.dts
-@@ -54,6 +54,12 @@
- 			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKR, PIN_INPUT_PULLUP, MUX_MODE7)      /* mcasp0_aclkr.gpio3[18], INPUT_PULLDOWN | MODE7 */
- 		>;
- 	};
-+
-+	mmc1_pins: pinmux_mmc1_pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT, MUX_MODE7)     /* MMC1 CD */
-+		>;
-+	};
- };
- 
- &uart1 {
-@@ -114,3 +120,9 @@
- 	dual_emac_res_vlan = <2>;
- 	phy-handle = <&phy1>;
- };
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	cd-gpios = <&gpio2 18 GPIO_ACTIVE_LOW>;
-+};
-diff --git a/arch/arm/boot/dts/am335x-baltos-ir5221.dts b/arch/arm/boot/dts/am335x-baltos-ir5221.dts
-index eed65fc0e8e6..59580e683e79 100644
---- a/arch/arm/boot/dts/am335x-baltos-ir5221.dts
-+++ b/arch/arm/boot/dts/am335x-baltos-ir5221.dts
-@@ -63,6 +63,11 @@
- 		>;
- 	};
- 
-+	mmc1_pins: pinmux_mmc1_pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT, MUX_MODE7)     /* MMC1 CD */
-+		>;
-+	};
- };
- 
- &uart1 {
-@@ -139,3 +144,9 @@
- 
- 	status = "okay";
- };
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	cd-gpios = <&gpio2 18 GPIO_ACTIVE_LOW>;
-+};
--- 
-2.17.0
+On Tue, Jun 11, 2019 at 10:09:32PM +0800, Icenowy Zheng wrote:
+> Introduce the GPIO pins that is only available on V3 (not on V3s) to the
+> V3s pinctrl driver.
+>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> ---
+> Changes in v2:
+> - Dropped the driver rename patch and apply the changes directly on V3s
+>   driver.
+>
+>  drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c | 265 +++++++++++++++++++++-
+>  drivers/pinctrl/sunxi/pinctrl-sunxi.h     |   2 +
+>  2 files changed, 262 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c b/drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c
+> index 6704ce8e5e3d..9e82fd38cf21 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c
+> @@ -1,5 +1,5 @@
+>  /*
+> - * Allwinner V3s SoCs pinctrl driver.
+> + * Allwinner V3/V3s SoCs pinctrl driver.
+>   *
+>   * Copyright (C) 2016 Icenowy Zheng <icenowy@aosc.xyz>
+>   *
+> @@ -77,6 +77,30 @@ static const struct sunxi_desc_pin sun8i_v3s_pins[] = {
+>  		  SUNXI_FUNCTION(0x2, "i2c1"),		/* SCK */
+>  		  SUNXI_FUNCTION(0x3, "uart0"),		/* RX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 0, 9)),	/* PB_EINT9 */
+> +	SUNXI_PIN_VARIANT(SUNXI_PINCTRL_PIN(B, 10),
+> +		  PINCTRL_SUN8I_V3,
+> +		  SUNXI_FUNCTION(0x0, "gpio_in"),
+> +		  SUNXI_FUNCTION(0x1, "gpio_out"),
+> +		  SUNXI_FUNCTION(0x2, "jtag"),		/* MS */
+> +		  SUNXI_FUNCTION_IRQ_BANK(0x6, 0, 10)),	/* PB_EINT10 */
 
+The alignment should be on the parenthesis
+
+Looks good otherwise
+
+maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--ttqlhhfclj7eb7xn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP+6WwAKCRDj7w1vZxhR
+xWvDAP4sUsS8lzwwMZirLseQPv9XAS76rNYD57+nctEZGaZNQwEAvNAXDoM60OLA
+47GX+cRJkvkgdUzlpDnXxMBujGw8qAA=
+=z2T/
+-----END PGP SIGNATURE-----
+
+--ttqlhhfclj7eb7xn--
