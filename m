@@ -2,99 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A40C418FC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD58D41917
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408168AbfFKXfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 19:35:00 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:37055 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405380AbfFKXfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:35:00 -0400
-Received: by mail-it1-f193.google.com with SMTP id x22so7703874itl.2;
-        Tue, 11 Jun 2019 16:35:00 -0700 (PDT)
+        id S2408283AbfFKXkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 19:40:39 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:37021 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2408241AbfFKXkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:40:23 -0400
+Received: by mail-pl1-f194.google.com with SMTP id bh12so5784335plb.4
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 16:40:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vrcKiJncQCvJeYdovjwcGHLQkpFI9UFvyKLS0tgyyJA=;
+        b=fxr+p7sgq0hHqMWtLVWiiVUmwvCK2K9niwmP89I8eDAL9RbspWdO1Z1sQG60RUq0Jh
+         T2MZsogyjVAyLqkT3ee99gA8N013logxMHyCVkL7mI3YgQv2TKxq/hfKC0YKDOW0Tejm
+         rPOIm4epv87XbkFyGuS0bvymTWIYvDCh+1NrywAgLDi61i8nwyH0pvvPXN+tS0oTBppj
+         21RpX2SJBsR0PDumQJSP7tyvgCg+e7HUPC5gc46suhRZBioDhD1l7sO+GOgTaRyKmgCJ
+         5DYz2JA/jf2MVMgTV5F8Sm7cG6RQ5CQdljOJ1kjjHo3+2itX5/elS5w8RqMKPWEOBokX
+         zYSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=m12BEF6aoD8sKKRDjXmfbkhom6wFfuNMaUfEfaPontI=;
-        b=XY0rO2QwWDGXv8VVnDhHhvdSjjvbZijD/ov9NKzOKMub0OeJJCX9/bSZuY9+/qN6/y
-         TqtZX8bPgOv25p0uXyW6mlEgXwgB8BpRHkwp5Gq3ec1PJwgj0sGgCfX7cKNtTUNMqDMb
-         th742GGwBdnUr9TbLgmXe7asWtUE+TnrEG5Ay9ukVxO+qtGhQakkOMFB9SRVccxxz1T4
-         3zytVj7MQ+pT34uh7iZhocD8fv8yLPyK4k87ADndWLalQvC/8Kh9wXTbtrbKIN91ZvU+
-         yMkfUu41g/Tj78vV/EriqJMDQ0OIJ2fge5WNFDwguOSeWH014BXACcNIrnObrKToMo1X
-         71cw==
-X-Gm-Message-State: APjAAAVtZURezix/FJ+P86mISyFSyjY6SfeM+pKGBNWS/lK3Qy82dtJm
-        RE/3DJz5DWIbqRqWwzY39A==
-X-Google-Smtp-Source: APXvYqye7O0X80ue+IvTi1olrle0IaMnhZvFUdN3Pu38l2XXIz46k5UuwXpGJfD3KkSIfO+KTcA/TQ==
-X-Received: by 2002:a24:4754:: with SMTP id t81mr21499151itb.106.1560296099482;
-        Tue, 11 Jun 2019 16:34:59 -0700 (PDT)
-Received: from localhost (ip-174-149-252-64.englco.spcsdns.net. [174.149.252.64])
-        by smtp.gmail.com with ESMTPSA id q79sm2082456itb.15.2019.06.11.16.34.56
+        bh=vrcKiJncQCvJeYdovjwcGHLQkpFI9UFvyKLS0tgyyJA=;
+        b=ffgHbWqJOdjWedTwXITdMH32fBFxIplJdw/Qs11Hlp7+i/VjXPHztL/5ed94tcWitG
+         o5t3qL7Rk9U+oIOQrgNbySAZA8vGmBpncmJwUR524l2wzESLt/wh372FKHyjq04wi+Rg
+         giB7Yxnx3xcIhzf8JBNCyCnxMDifuGFBW3W25b/OgavWOO8Xp57t2Jtb8RXo+WvpHd+5
+         gAtERdJwadswBuCNrIBDP/6ljUDYjWISGRy3uAxRrz+BO48Y9Ab50UE4Z2n7ja11gxkE
+         AZZrT97tp2+mugYJjpZDOq1cXRCCc3EMKi4HPfo2D0KjLVY092tn2Tw7y7m8gpysO/IJ
+         qSiA==
+X-Gm-Message-State: APjAAAXGhISTlF8p9sUcMcF/UUwBViJ7wnl1tZwKYTIM3YGEeoe9mNIa
+        /t1U/oWUmXXXIZj+vOIMJ9xbBQ==
+X-Google-Smtp-Source: APXvYqwVvSeKZ9+8pgl/U+yQv0XwTRD+oXRVoAp/CkKUZM51Vh73fYHUpTMj6hpKkhxVYtdA9svC7A==
+X-Received: by 2002:a17:902:d915:: with SMTP id c21mr11863733plz.335.1560296422678;
+        Tue, 11 Jun 2019 16:40:22 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id h11sm17090333pfn.170.2019.06.11.16.40.21
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 16:34:58 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 17:34:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Kees Cook <keescook@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Subject: Re: [PATCH v5 2/3] fdt: add support for rng-seed
-Message-ID: <20190611233453.GA14130@bogus>
-References: <20190527043336.112854-1-hsinyi@chromium.org>
- <20190527043336.112854-2-hsinyi@chromium.org>
- <5ced598d.1c69fb81.dabd8.339d@mx.google.com>
- <CAJMQK-i0z1EHCMK3eTya+SmK6GD_C4Ljvb7BHvsaMWLDxxmwMg@mail.gmail.com>
+        Tue, 11 Jun 2019 16:40:22 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 16:40:20 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, vkoul@kernel.org,
+        evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] arm64: dts: qcs404: Add interconnect provider DT
+ nodes
+Message-ID: <20190611234020.GX4814@minitux>
+References: <20190611164157.24656-1-georgi.djakov@linaro.org>
+ <20190611164157.24656-6-georgi.djakov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAJMQK-i0z1EHCMK3eTya+SmK6GD_C4Ljvb7BHvsaMWLDxxmwMg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190611164157.24656-6-georgi.djakov@linaro.org>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 06:59:11PM +0800, Hsin-Yi Wang wrote:
-> On Tue, May 28, 2019 at 11:53 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Hsin-Yi Wang (2019-05-26 21:33:35)
-> > > Introducing a chosen node, rng-seed, which is an entropy that can be
-> > > passed to kernel called very early to increase initial device
-> > > randomness. Bootloader should provide this entropy and the value is
-> > > read from /chosen/rng-seed in DT.
-> > >
-> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > > ---
-> >
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> >
-> 
-> Hi Rob,
-> 
-> Is this series accepted? Or is there any other related concern?
-> 
-> If it's fine, I also have sent a patch for updating
-> schemas/chosen.yaml document.
+On Tue 11 Jun 09:41 PDT 2019, Georgi Djakov wrote:
 
-The kernel change is fine, but please put the documentation change into 
-the schema doc (in github.com/devicetree-org/dt-schema) and don't modify 
-chosen.txt.
+> Add the DT nodes for the network-on-chip interconnect buses found
+> on qcs404-based platforms.
+> 
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> ---
+> 
+> v3:
+> - Updated according to the new binding: added reg property and moved under the
+>   "soc" node.
+> 
+>  arch/arm64/boot/dts/qcom/qcs404.dtsi | 28 ++++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> index ffedf9640af7..07ff592233b6 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  // Copyright (c) 2018, Linaro Limited
+>  
+> +#include <dt-bindings/interconnect/qcom,qcs404.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,gcc-qcs404.h>
+>  #include <dt-bindings/clock/qcom,rpmcc.h>
+> @@ -411,6 +412,33 @@
+>  			#interrupt-cells = <4>;
+>  		};
+>  
+> +		bimc: interconnect@400000 {
 
-Rob
+Please maintain sort order of address, node name, label name. So this
+should go between rng@e3000 and remoteproc@b00000.
+
+Other than that:
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+> +			reg = <0x00400000 0x80000>;
+> +			compatible = "qcom,qcs404-bimc";
+> +			#interconnect-cells = <1>;
+> +			clock-names = "bus_clk", "bus_a_clk";
+> +			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
+> +				<&rpmcc RPM_SMD_BIMC_A_CLK>;
+> +		};
+> +
+> +		pcnoc: interconnect@500000 {
+> +			reg = <0x00500000 0x15080>;
+> +			compatible = "qcom,qcs404-pcnoc";
+> +			#interconnect-cells = <1>;
+> +			clock-names = "bus_clk", "bus_a_clk";
+> +			clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
+> +				<&rpmcc RPM_SMD_PNOC_A_CLK>;
+> +		};
+> +
+> +		snoc: interconnect@580000 {
+> +			reg = <0x00580000 0x23080>;
+> +			compatible = "qcom,qcs404-snoc";
+> +			#interconnect-cells = <1>;
+> +			clock-names = "bus_clk", "bus_a_clk";
+> +			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
+> +				<&rpmcc RPM_SMD_SNOC_A_CLK>;
+> +		};
+> +
+>  		sdcc1: sdcc@7804000 {
+>  			compatible = "qcom,sdhci-msm-v5";
+>  			reg = <0x07804000 0x1000>, <0x7805000 0x1000>;
