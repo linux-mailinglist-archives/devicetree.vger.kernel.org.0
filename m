@@ -2,72 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05EBF3CAFA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 14:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80BE63CB0A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 14:21:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387780AbfFKMSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 08:18:15 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:42840 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728661AbfFKMSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 08:18:15 -0400
-Received: by mail-qk1-f196.google.com with SMTP id b18so7446514qkc.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 05:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g5i49l4VfJcEzoWbFwIf3HpGCD6+/0Z2WJ63n1g5Dzs=;
-        b=lHy7l5iuNJJVbYGg8Pr0qdGaYDIgmTC+o3rhUwXxq6E9ILKH7VCOaCqdgmCNguSS67
-         vt8hDhDUDyKbztEdmsIKJkY9vPCRWlvo1bCPp2rQMKZ5aUd8ySk5+c8Jxu5mnklh0jCI
-         P+S51JBU0KBY570Wejx5bk/w9W8LJJO1ipYAE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g5i49l4VfJcEzoWbFwIf3HpGCD6+/0Z2WJ63n1g5Dzs=;
-        b=KrqzsVQGjd1DsdYKPdPVMjx1cuwpGK9Pn0LNgIHBgJ6CC4JTyupf/pbHMh5hpPlaxB
-         +RV39/Y1wpoVOiN/b76wRanXI/+oPMq073vTCC255OmDlhCDGdYkNBu2UwQKOdRkQcK+
-         oozTE/dOtkyAVklG9/BPbytkYQGMui0oWs8YOuhaNS25Y9DVkBmon01XDAa59S2NYo28
-         B4m/xeDeyZPETlK7Xk6TjYlF9QMFEINarmb8xeXNWwF6PJEjNSbz55HZ39Mey2gM5RjG
-         LL7aJYYiLLov0ODKBiATQGAWV0NHQwhFM8T8cXT7ypYWb+3K0n0J/feAyolTKM/AF/2+
-         9TKA==
-X-Gm-Message-State: APjAAAUwMyWhIWnBYdeNKSFbTDafQyRGAVl7ovj0cHG4QCLTcv28/1oD
-        +V0O4Ptu/INtaPDqMZyk9MXXCMs72HU=
-X-Google-Smtp-Source: APXvYqwXOZCW/4HP5AyX3ZyMxLOYkC5pUalwQEziynxsspH85rm9wUIJKDZRBCO3TxluNedgKVlHpA==
-X-Received: by 2002:a37:a86:: with SMTP id 128mr39783392qkk.169.1560255493948;
-        Tue, 11 Jun 2019 05:18:13 -0700 (PDT)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
-        by smtp.gmail.com with ESMTPSA id n19sm5657341qkg.58.2019.06.11.05.18.11
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 05:18:12 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id m29so14199546qtu.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 05:18:11 -0700 (PDT)
-X-Received: by 2002:ac8:7346:: with SMTP id q6mr46465019qtp.380.1560255491256;
- Tue, 11 Jun 2019 05:18:11 -0700 (PDT)
+        id S2387896AbfFKMVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 08:21:22 -0400
+Received: from mga03.intel.com ([134.134.136.65]:47451 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727413AbfFKMVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 08:21:22 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 05:21:21 -0700
+X-ExtLoop1: 1
+Received: from rrgarris-mobl1.amr.corp.intel.com (HELO [10.252.136.137]) ([10.252.136.137])
+  by orsmga003.jf.intel.com with ESMTP; 11 Jun 2019 05:21:20 -0700
+Subject: Re: [alsa-devel] [RFC PATCH 6/6] soundwire: qcom: add support for
+ SoundWire controller
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        broonie@kernel.org, vkoul@kernel.org
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
+ <20190607085643.932-7-srinivas.kandagatla@linaro.org>
+ <249f9647-94d0-41d7-3b95-64c36d90f8e8@linux.intel.com>
+ <40ea774c-8aa8-295d-e91e-71423b03c88d@linaro.org>
+ <7269521a-ac89-3856-c18c-ffaaf64c0806@linux.intel.com>
+ <462620fc-ac91-6a36-46c7-7af0080f06cb@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <0e836692-2297-4cb7-d681-76692db78a56@linux.intel.com>
+Date:   Tue, 11 Jun 2019 07:21:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190527083150.220194-1-tientzu@chromium.org> <20190527083150.220194-2-tientzu@chromium.org>
- <CALiNf2_Kuu9agO31Wg2X4uUa0EHWYL=qG5RLQ=catn8M9XDKGQ@mail.gmail.com> <20190611095752.GA24058@kroah.com>
-In-Reply-To: <20190611095752.GA24058@kroah.com>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 11 Jun 2019 20:17:59 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-79LEg+dvSqQK8kVkf99ARLwy9uLCmJNgq-vJO9r0a9g@mail.gmail.com>
-Message-ID: <CALiNf2-79LEg+dvSqQK8kVkf99ARLwy9uLCmJNgq-vJO9r0a9g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: serial: add documentation for Rx
- in-band wakeup support
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     changqi.hu@mediatek.com, linux-serial@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <462620fc-ac91-6a36-46c7-7af0080f06cb@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-resent here: https://patchwork.ozlabs.org/patch/1113768/
-sorry for the inconvenience
+
+
+On 6/11/19 5:29 AM, Srinivas Kandagatla wrote:
+> 
+> 
+> On 10/06/2019 15:12, Pierre-Louis Bossart wrote:
+>>>>> +
+>>>>> +    if (dev_addr == SDW_BROADCAST_DEV_NUM) {
+>>>>> +        ctrl->fifo_status = 0;
+>>>>> +        ret = wait_for_completion_timeout(&ctrl->sp_cmd_comp,
+>>>>> +                          msecs_to_jiffies(TIMEOUT_MS));
+>>>>
+>>>> This is odd. The SoundWire spec does not handle writes to a single 
+>>>> device or broadcast writes differently. I don't see a clear reason 
+>>>> why you would only timeout for a broadcast write.
+>>>>
+>>>
+>>> There is danger of blocking here without timeout.
+>>
+>> Right, and it's fine to add a timeout. The question is why add a 
+>> timeout *only* for a broadcast operation? It should be added for every 
+>> transaction IMO, unless you have a reason not to do so.
+>>
+> 
+> I did try this before, the issue is when we read/write registers from 
+> interrupt handler, these can be deadlocked as we will be interrupt 
+> handler waiting for another completion interrupt, which will never 
+> happen unless we return from the first interrupt.
+
+I don't quite get the issue. With the Intel hardware we only deal with 
+Master registers (some of which mirror the bus state) in the handler and 
+will only modify Slave registers in the thread. All changes to Slave 
+registers will be subject to a timeout as well as a check for no 
+response or NAK. Not sure what is specific about your solution that 
+requires a different handling of commands depending on which device 
+number is used. It could very well be that you've uncovered a flaw in 
+the bus design but I still don't see how it would be Qualcomm-specific?
