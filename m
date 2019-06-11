@@ -2,125 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EB13C9CC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06D03C9E0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:20:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389076AbfFKLOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 07:14:17 -0400
-Received: from mail-eopbgr70107.outbound.protection.outlook.com ([40.107.7.107]:43811
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388978AbfFKLOR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 07:14:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7sQclD310nOTkPwhy8lOBgoooE19a5aTWuao5/u6HHQ=;
- b=qnsfoWwVpvdTg/HOOetoBqI+JTtSJ/BHP27JBzT0jRc3CfSX4fLUvXubdIgq3M72TukX7m6Ga8nSCg4SmXtyYo6Ypg4+W49crsCH1BsdjonDy4QAtLTkXiHFeXCh0VW9woQiYd9jII1B470wAASVBh5wn0RUDQdc0mAroO3xk+E=
-Received: from DB3PR0202MB3434.eurprd02.prod.outlook.com (52.134.66.158) by
- DB3PR0202MB3498.eurprd02.prod.outlook.com (52.134.65.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Tue, 11 Jun 2019 11:14:10 +0000
-Received: from DB3PR0202MB3434.eurprd02.prod.outlook.com
- ([fe80::49ac:3a71:a3ec:d6bf]) by DB3PR0202MB3434.eurprd02.prod.outlook.com
- ([fe80::49ac:3a71:a3ec:d6bf%5]) with mapi id 15.20.1965.017; Tue, 11 Jun 2019
- 11:14:10 +0000
-From:   Peter Rosin <peda@axentia.se>
-To:     =?utf-8?B?TXlsw6huZSBKb3NzZXJhbmQ=?= <mylene.josserand@bootlin.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-CC:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v1 3/3] dt-bindings: iio: afe: Add hwmon example
-Thread-Topic: [PATCH v1 3/3] dt-bindings: iio: afe: Add hwmon example
-Thread-Index: AQHVIDwX4tMTrRc3WEShisYKDUvFgqaWTRmA
-Date:   Tue, 11 Jun 2019 11:14:10 +0000
-Message-ID: <89820e72-dcdc-67a8-b83d-5657d66d910a@axentia.se>
-References: <20190611095659.29845-1-mylene.josserand@bootlin.com>
- <20190611095659.29845-4-mylene.josserand@bootlin.com>
-In-Reply-To: <20190611095659.29845-4-mylene.josserand@bootlin.com>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+        id S2387519AbfFKLU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 07:20:26 -0400
+Received: from foss.arm.com ([217.140.110.172]:58848 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387444AbfFKLU0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 07:20:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85669344;
+        Tue, 11 Jun 2019 04:20:25 -0700 (PDT)
+Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7DBA03F557;
+        Tue, 11 Jun 2019 04:22:06 -0700 (PDT)
+Subject: Re: [PATCH v3 0/3] meson-gpio-irqc: Add support for the Meson-G12A
+ SoC
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org,
+        mark.rutland@arm.com, khilman@baylibre.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190608190411.14018-1-martin.blumenstingl@googlemail.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ Z46HaNmN2hZS/oJ69c1DI5Rcww==
+Organization: ARM Ltd
+Message-ID: <07bd74d6-0e6b-324e-20cf-00db54166b56@arm.com>
+Date:   Tue, 11 Jun 2019 12:20:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
-x-originating-ip: [213.112.138.100]
-x-clientproxiedby: HE1PR0402CA0036.eurprd04.prod.outlook.com
- (2603:10a6:7:7c::25) To DB3PR0202MB3434.eurprd02.prod.outlook.com
- (2603:10a6:8:5::30)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peda@axentia.se; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: eb5fc901-b64c-400e-efc3-08d6ee5ded90
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DB3PR0202MB3498;
-x-ms-traffictypediagnostic: DB3PR0202MB3498:
-x-microsoft-antispam-prvs: <DB3PR0202MB3498CE7B58893F21370E233FBCED0@DB3PR0202MB3498.eurprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 006546F32A
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(39830400003)(366004)(346002)(376002)(396003)(199004)(189003)(60444003)(386003)(446003)(31696002)(3846002)(68736007)(6512007)(2201001)(316002)(65956001)(53546011)(7416002)(11346002)(66946007)(65826007)(65806001)(73956011)(66066001)(6436002)(6506007)(2906002)(7736002)(486006)(31686004)(26005)(476003)(2616005)(305945005)(25786009)(53936002)(74482002)(102836004)(110136005)(54906003)(6116002)(86362001)(5660300002)(186003)(4326008)(6246003)(52116002)(76176011)(71200400001)(14454004)(6486002)(66446008)(71190400001)(229853002)(64126003)(256004)(66476007)(81166006)(81156014)(8676002)(36756003)(66556008)(58126008)(99286004)(64756008)(508600001)(2501003)(8936002);DIR:OUT;SFP:1102;SCL:1;SRVR:DB3PR0202MB3498;H:DB3PR0202MB3434.eurprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: axentia.se does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: BFlU7YVXM3S6WX2wMJ1Q0p8Cd6tTBHXedACA6UXwqMQHtoHiW3VTyfLOd4HDCYqS+y84UYhEiD1yej/R3FxeCOg33HpVwDnh/EL3TqOiP6Qq9ftHSSrGqOmWs+5JzeAv3QkfCvN77OXYIyyPV17l+1/V+uD/jYGihM96c+GXSlVaugn/US6qaM853HC6kZygkDyKDKUFfCiuf0sToMLQZL26RlCLqvLi43rwglCWJPgi1CTbSYVWGzvHftJkVuHq8Tzl4gGvDfA4/sxARBglWXHA5eh8m1uXguAzkvb1VHPjfi5WPpxryfoyPOkLh7ECRtoPSoCSsgkK0vQz4xOvQ/SPfAS3HxSStGkbHy60RP0mhjP3+1uIanKAJEFUiCU0vGW90tWztUIhPc+V2tNu1cSmw2k88TYv9MyoB8q6opw=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3AC28FDEAA023744A835DD7666AA2CD5@eurprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb5fc901-b64c-400e-efc3-08d6ee5ded90
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2019 11:14:10.6950
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: peda@axentia.se
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0202MB3498
+In-Reply-To: <20190608190411.14018-1-martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjAxOS0wNi0xMSAxMTo1NiwgTXlsw6huZSBKb3NzZXJhbmQgd3JvdGU6DQo+IFdpdGggdGhl
-IHN1cHBvcnQgb2YgQ0hBTl9JTkZPX1BST0NFU1NFRCBpbiB2b2x0YWdlLWRpdmlkZXIsDQo+IGl0
-IGlzIHBvc3NpYmxlIHRvIHJlYWQgdGhlIHByb2Nlc3NlZCB2YWx1ZXMgZGlyZWN0bHkgZnJvbSBp
-aW8ncw0KPiBzeXNmcyBlbnRyaWVzIG9yIGJ5IHVzaW5nIGlpby1od21vbi4gQWRkIGFuIGV4YW1w
-bGUgZm9yIHRoaXMgbGFzdA0KPiB1c2UgY2FzZS4NCg0KQXMgSSB3cm90ZSBpbiByZXNwb25zZSB0
-byB0aGUgY292ZXIgbGV0dGVyLCBJIHRoaW5rIGlpby1od21vbg0KY291bGQgImNvbnN1bWUiIHZv
-bHRhZ2UgZGl2aWRlcnMganVzdCBmaW5lIGJlZm9yZSBhZGRpbmcgdGhlDQpwcm9jZXNzZWQgY2hh
-bm5lbCwgYW5kIHdoaWxlIG1vcmUgZXhhbXBsZXMgbWlnaHQgYmUgZ29vZCwNCnRoZXJlIGlzIHJl
-YWxseSBubyBzcGVjaWZpYyByZWxhdGlvbiBiZXR3ZWVuIGlpby1od21vbiBhbmQNCnZvbHRhZ2Ug
-ZGl2aWRlcnMuIEFkZGluZyBpaW8taHdtb24gZXhhbXBsZXMgdG8gZWFjaCBhbmQgZXZlcnkNCmlp
-byBiaW5kaW5nIHNlZW1zIHBvaW50bGVzcy4gU28sIEkgc2VlIGxpdHRsZSByZWFzb24gdG8gYWRk
-DQpzdWNoIGV4YW1wbGVzIGhlcmUuDQoNCkJ1dCBpZiBldmVyeW9uZSBlbHNlIHdhbnRzIGl0LCBk
-b24ndCBsZXQgbWUgc3RhbmQgaW4gdGhlIHdheS4uLg0KDQpDaGVlcnMsDQpQZXRlcg0KDQo+IFNp
-Z25lZC1vZmYtYnk6IE15bMOobmUgSm9zc2VyYW5kIDxteWxlbmUuam9zc2VyYW5kQGJvb3RsaW4u
-Y29tPg0KPiAtLS0NCj4gIC4uLi9iaW5kaW5ncy9paW8vYWZlL3ZvbHRhZ2UtZGl2aWRlci50eHQg
-ICAgICAgICAgIHwgMjQgKysrKysrKysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDI0IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvaWlvL2FmZS92b2x0YWdlLWRpdmlkZXIudHh0IGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9hZmUvdm9sdGFnZS1kaXZpZGVyLnR4dA0KPiBpbmRl
-eCBiNDUyYTg0MDYxMDcuLmY3ZTFjN2NiMjc0NCAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9hZmUvdm9sdGFnZS1kaXZpZGVyLnR4dA0KPiArKysg
-Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaWlvL2FmZS92b2x0YWdlLWRpdmlk
-ZXIudHh0DQo+IEBAIC01MSwzICs1MSwyNyBAQCBzeXN2IHsNCj4gIAkJc3BpLW1heC1mcmVxdWVu
-Y3kgPSA8MTAwMDAwMD47DQo+ICAJfTsNCj4gIH07DQo+ICsNCj4gK0l0IGlzIGFsc28gcG9zc2li
-bGUgdG8gcmV0cmlldmUgdGhlIHByb2Nlc3NlZCB2YWx1ZXMgdXNpbmcgaHdtb24gbm9kZToNCj4g
-Kw0KPiArZGl2MDogZGl2MCB7DQo+ICsJY29tcGF0aWJsZSA9ICJ2b2x0YWdlLWRpdmlkZXIiOw0K
-PiArCWlvLWNoYW5uZWxzID0gPCZhZGMwIDA+OyAvKiBDaGFubmVsIDAgb2YgdGhlIEFEQyAqLw0K
-PiArCW91dHB1dC1vaG1zID0gPDQ3PjsgLyogUjIgKi8NCj4gKwlmdWxsLW9obXMgPSA8NzM+OyAv
-KiBSMSAoMjYpICsgUjIgKDQ3KSAqLw0KPiArCSNpby1jaGFubmVsLWNlbGxzID0gPDE+Ow0KPiAr
-fTsNCj4gKw0KPiArZGl2MTogZGl2MSB7DQo+ICsJY29tcGF0aWJsZSA9ICJ2b2x0YWdlLWRpdmlk
-ZXIiOw0KPiArCWlvLWNoYW5uZWxzID0gPCZhZGMwIDE+OyAvKiBDaGFubmVsIDEgb2YgdGhlIEFE
-QyAqLw0KPiArCW91dHB1dC1vaG1zID0gPDQ3PjsgLyogUjIgKi8NCj4gKwlmdWxsLW9obXMgPSA8
-MTE1PjsgLyogUjEgKDY4KSArIFIyICg0NykgKi8NCj4gKwkjaW8tY2hhbm5lbC1jZWxscyA9IDwx
-PjsNCj4gK307DQo+ICsNCj4gK2lpby1od21vbiB7DQo+ICsJY29tcGF0aWJsZSA9ICJpaW8taHdt
-b24iOw0KPiArCWlvLWNoYW5uZWxzID0gPCZkaXYwIDA+LCA8JmRpdjEgMD47DQo+ICsJaW8tY2hh
-bm5lbC1uYW1lcyA9ICIzdjMiLCAidXNiIjsNCj4gK307DQo+IA0KDQo=
+On 08/06/2019 20:04, Martin Blumenstingl wrote:
+> This series adds GPIO interrupt controller support for Meson-G12A SoCs.
+> Although the total number of pins is the same as the Meson-AXG SoC, the
+> GPIO banks and IRQ numbers are different. Add a new compatible string
+> to avoid confusion when using it.
+> 
+> I am re-sending this update because v2 looked good in my opinion (Xingyu
+> Chen did good work here) but it never made it into mainline.
+> 
+> 
+> Changes since v1 at [1]:
+> - share the device data with Meson-AXG
+> 
+> Changes since v2 at [2]:
+> - dropped "Change-Id" from patch #2
+> - added .dts patch #3 - this should go through Kevin's linux-amlogic
+>   tree. if required I can re-send it in a separate series
+> 
+> 
+> [1] https://lore.kernel.org/lkml/20181203061324.36248-1-xingyu.chen@amlogic.com
+> [2] https://lore.kernel.org/patchwork/cover/1021232/
+> 
+> 
+> Martin Blumenstingl (1):
+>   arm64: dts: meson: g12a: add the GPIO interrupt controller
+> 
+> Xingyu Chen (2):
+>   dt-bindings: interrupt-controller: New binding for Meson-G12A SoC
+>   irqchip/meson-gpio: Add support for Meson-G12A SoC
+> 
+>  .../interrupt-controller/amlogic,meson-gpio-intc.txt     | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi              | 9 +++++++++
+>  drivers/irqchip/irq-meson-gpio.c                         | 1 +
+>  3 files changed, 11 insertions(+)
+> 
+
+I've taken patches 1 and 2 into the irqchip tree. Please route patch 3
+though armsoc.
+
+Thanks,
+
+	M.
+-- 
+Jazz is not dead. It just smells funny...
