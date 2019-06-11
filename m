@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F39DA3D684
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 21:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4D43D691
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 21:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404201AbfFKTLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 15:11:42 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:37887 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404048AbfFKTLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 15:11:42 -0400
-X-Originating-IP: 37.205.120.66
-Received: from localhost (unknown [37.205.120.66])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 94AF6C0005;
-        Tue, 11 Jun 2019 19:11:32 +0000 (UTC)
-Date:   Tue, 11 Jun 2019 21:11:28 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Aisheng Dong <aisheng.dong@nxp.com>
-Cc:     Anson Huang <anson.huang@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 2/3] rtc: imx-sc: Make compatible string more generic
-Message-ID: <20190611191128.GK25472@piout.net>
-References: <20190611063333.48501-1-Anson.Huang@nxp.com>
- <20190611063333.48501-2-Anson.Huang@nxp.com>
- <AM0PR04MB4211DC4725A5FEBDC995560680ED0@AM0PR04MB4211.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM0PR04MB4211DC4725A5FEBDC995560680ED0@AM0PR04MB4211.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+        id S2405086AbfFKTTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 15:19:54 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:39090 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404789AbfFKTTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 15:19:54 -0400
+Received: by mail-pf1-f194.google.com with SMTP id j2so8040531pfe.6;
+        Tue, 11 Jun 2019 12:19:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=J/xZLDiLprAi8z9dQ/9qJB5+wewmwploxA4je19QCGk=;
+        b=n0ptaN8NAlVFDirqrMfLJYeUXgSiyaLf29Dh9YaFfz7g7LBipHlM70KT57ZKMQPpGB
+         /AVpxACi089JSUlKgJqwp6/J4lJlVFgWtDYGHTBPkWFiHGA0n+qUrDygFp7eWRrkEims
+         adE34NmdTIEPBTiNBxrRA/iH5juB2l5ulbpISEm6mZdk1Hzqj4bA2w0yG8fjNnSS9PzN
+         y9nNEaQsLDwN4Uol7pGro41rMQKFhJxj9D//pVJCr/6OOUXLm7atYkw2K4KRnDo5ZTdf
+         M4FCoHxYPXIUmL4tSih6hJDaO2mL1GnygigO2ZZkU99bN2PfAiETtQPdnn7e+FU+u0Ka
+         MLdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=J/xZLDiLprAi8z9dQ/9qJB5+wewmwploxA4je19QCGk=;
+        b=cS3VDnQeukjMugEN3RkArfcihwRwyStJbP/zsGPmFXnHHO+l6oOVDOGWHjxqi7OABa
+         A7c+0vqWEvkF8lFrmyJHCMI9nDIXRoFlilv9UDBgjJInkJwBiNVzFtQnD7PIkArjDTZA
+         NFSdJ0fQKTZm6t+PInuk7ZwCxumcIjeDh36gDwruWF4r3aPho2udHXNeskh4x8U3y3AE
+         jBuoxGdGdxapqh11iC694sTkJwwdvWeDAVa4RbKgBjZ6nSbATjsh1/rVljPgk7LRDvUN
+         aemjNuIwpeIhuqJZJnEx9WKiRK8QpnP+uCqam4Xq/oHHGUF1+/yM1vHleJwTZCO2ZKwC
+         o0HA==
+X-Gm-Message-State: APjAAAXNcl3m1E42ghW3RMR3oyyU9+ae1zSeG4deCOUGfN+XqI72x0Jz
+        73/q4/ifrtdHQQOqfQq7xVQ=
+X-Google-Smtp-Source: APXvYqzmRn16DG7bbYc+884o1bq/aK/65WwHVB908fINU8aVL18oOFnbAE7r4ioRxEXGZBjLYZg55Q==
+X-Received: by 2002:a17:90a:9bca:: with SMTP id b10mr27672945pjw.90.1560280793850;
+        Tue, 11 Jun 2019 12:19:53 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 19sm3112635pjj.8.2019.06.11.12.19.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Jun 2019 12:19:53 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, david.brown@linaro.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        marc.w.gonzalez@free.fr, jcrouse@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH v3 0/2] MSM8998 GPUCC Support
+Date:   Tue, 11 Jun 2019 12:19:49 -0700
+Message-Id: <20190611191949.14906-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/06/2019 10:57:17+0000, Aisheng Dong wrote:
-> > From: Anson.Huang@nxp.com [mailto:Anson.Huang@nxp.com]
-> > Sent: Tuesday, June 11, 2019 2:34 PM
-> > 
-> > i.MX system controller RTC driver can support all i.MX SoCs with system
-> > controller inside, this patch makes the compatible string more generic to
-> > support other i.MX SoCs with system controller inside, such as i.MX8QM etc..
-> > 
-> > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> 
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-> 
-> Regards
-> Dong Aisheng
-> 
-> > ---
-> >  drivers/rtc/rtc-imx-sc.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/rtc/rtc-imx-sc.c b/drivers/rtc/rtc-imx-sc.c index
-> > c933045..38ef3ca 100644
-> > --- a/drivers/rtc/rtc-imx-sc.c
-> > +++ b/drivers/rtc/rtc-imx-sc.c
-> > @@ -178,7 +178,7 @@ static int imx_sc_rtc_probe(struct platform_device
-> > *pdev)  }
-> > 
-> >  static const struct of_device_id imx_sc_dt_ids[] = {
-> > -	{ .compatible = "fsl,imx8qxp-sc-rtc", },
+The Adreno GPU on MSM8998 has its own clock controller, which is a
+dependency for bringing up the GPU.  This series gets the gpucc all in
+place as another step on the road to getting the GPU enabled.
 
-Don't you want to keep that compatible for backward compatibility?
+v3:
+-drop accepted DT patch
+-correct "avoid" typo
+-expand comment on why XO is required
 
-> > +	{ .compatible = "fsl,imx-sc-rtc", },
-> >  	{}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, imx_sc_dt_ids);
-> > --
-> > 2.7.4
-> 
+v2:
+-drop dead code
+
+Jeffrey Hugo (3):
+  dt-bindings: clock: Document gpucc for msm8998
+  clk: qcom: Add MSM8998 GPU Clock Controller (GPUCC) driver
+  arm64: dts: qcom: msm8998: Add gpucc node
+
+ .../devicetree/bindings/clock/qcom,gpucc.txt  |   4 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  15 +
+ drivers/clk/qcom/Kconfig                      |   8 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/gpucc-msm8998.c              | 364 ++++++++++++++++++
+ .../dt-bindings/clock/qcom,gpucc-msm8998.h    |  29 ++
+ 6 files changed, 420 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/clk/qcom/gpucc-msm8998.c
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-msm8998.h
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.17.1
+
