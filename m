@@ -2,110 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C602E3D54C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC5ED3D5B1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406831AbfFKSOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 14:14:23 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36430 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406685AbfFKSOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 14:14:23 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 348E7112D;
-        Tue, 11 Jun 2019 20:14:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1560276860;
-        bh=Qaii2hzx2ceSMkoNdcuS2j/nQYnyPQB92jJfokvbcLc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q34tb1BDgS18AJaIrFPJ2tcd64cyCIwuV4A4W3PyXhpXz31a4Th5P20rSoYdzMC3g
-         V9E+fEOf4HX5zAMW8TV6E2A7BNf+tpRMQfe/QaorFlgsi0J/Q6L5jDhk/fqgJSukIg
-         dkrp4eI4mc5guCJlPg0Uf+naGxkJtYTOfp+gx7mw=
-Date:   Tue, 11 Jun 2019 21:13:51 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Drake <michael.drake@codethink.co.uk>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@lists.codethink.co.uk,
-        Patrick Glaser <pglaser@tesla.com>, Nate Case <ncase@tesla.com>
-Subject: Re: [PATCH v1 08/11] dt-bindings: display/bridge: Add bindings for
- ti949
-Message-ID: <20190611181351.GW5016@pendragon.ideasonboard.com>
-References: <20190611140412.32151-1-michael.drake@codethink.co.uk>
- <20190611140412.32151-9-michael.drake@codethink.co.uk>
+        id S1729356AbfFKSoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 14:44:34 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:40808 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728412AbfFKSoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 14:44:34 -0400
+Received: by mail-pg1-f194.google.com with SMTP id d30so7447148pgm.7;
+        Tue, 11 Jun 2019 11:44:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VjXOm39CWa6S4I71CKU5r+mT9fayfeuZ4n9Ko6h04/Q=;
+        b=myaTjclOScSIDrJvBHbz7GqxDxIFK7e7DAfxQEM9oALn9rsTlpKt80fwIgm0KtX6V1
+         rjsp2quD64X+j4e2krEEBu98c5MfZng1DbASdGyGwJG5NVw2h8ncvSeeiM2/is5mt8Tj
+         Hl7PulNEfKL1iTcOm+BmiLv6YbI73mFN+CKOysg5B0Qajeo+mJ+3lkv/hTsDiLqP1K2X
+         E0uc27fMFfCG5CTgpAOnmzWitO8GemDOyDhaTdzt2sylNoufOgyKKIZsO/0WcWMJBXRF
+         bOI29cs4Pv20llVSyHkYaKW+KY4DlzmN8lJPePgHDnkkKHK19ZK8RN8IcjgGd4Bksfk0
+         p/6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VjXOm39CWa6S4I71CKU5r+mT9fayfeuZ4n9Ko6h04/Q=;
+        b=DGtfviaZwKHP/jH89Tru0Wsj4ev1KGVjO9XIsD4JvvwONe0/RFvN5kggNUnMZI3XNq
+         4Y1WDVMZT4yVRug5cYkrBiSxNaGloG2KF9YUjH/oWXIQjuYOFyAx3voCbz66FP2l2ztU
+         YK+pjqflDr55jhycvvnKkjK9wbC4j+MWVL9RfXSy0UoF7MU1EGZbt/D6YNtSx67pD86N
+         LvtuEaYlnb2SDFjiZ0V7l3gxl5y5Iv49E9BxRyyycA0hBeFOJVF6fL+XYS1zfjmnw45V
+         yK0uFYq4enVWefRdbPxpk0cO3tls1YhP4jvuJlxkxqwvTWqhEn3G7eKmuu/kmXZ0F7ch
+         /R9A==
+X-Gm-Message-State: APjAAAVGuf24ZkeAGJpgq4kGQcBC/vu7HLlnD/bwafbaofG2VEFI6nNO
+        JD1IvZb32aLCEw/IjleITS/bZLlpTvb/yzjvrg8=
+X-Google-Smtp-Source: APXvYqzkqeep3CqfOFDZoSRrKfSGRdBDWFEoMwtK6OFag6Wk/WDtXaVNa/EripQyuLMKoe63k5dbDPKFUOkVassx774=
+X-Received: by 2002:a63:d84a:: with SMTP id k10mr6952505pgj.74.1560278673900;
+ Tue, 11 Jun 2019 11:44:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190611140412.32151-9-michael.drake@codethink.co.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <c15a9872-4ad4-1b7e-e34f-14549b5b55eb@metux.net>
+In-Reply-To: <c15a9872-4ad4-1b7e-e34f-14549b5b55eb@metux.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 11 Jun 2019 21:44:23 +0300
+Message-ID: <CAHp75Vc_FnSaqq_Xu_Y3uXBYY=HbGsthVOAqyt4c-dH7sRGVVw@mail.gmail.com>
+Subject: Re: How to inject fwnode/oftree/acpi data by platform driver ?
+To:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Platform Driver <platform-driver-x86@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
++Cc: Heikki.
+Heikki, can you help here with swnodes?
 
-Thank you for the patch.
+On Sat, Jun 1, 2019 at 5:17 PM Enrico Weigelt, metux IT consult
+<lkml@metux.net> wrote:
+>
+> Hi folks,
+>
+>
+> I'm looking for a way to inject fwnode data from a platform driver,
+> in order to initialize generic drivers w/ board specific configuration.
+> The idea is getting rid of passing driver specific pdata structs
+> (which, IIRC, seem to be deprecated).
+>
+> An example usecase is the APUv2/3 board, which have things like gpios
+> wired to buttons and LEDs. The board can only be detected via DMI
+> string, no way to probe the platform devices - have to be initialized
+> explicitly (that's how I'm already doing it now).
+>
+> The nicest way, IMHO, would be if I could just write some piece of DTS
+> and some fancy magic all the rest under the hood. Such thing doesn't
+> seem to exist yet. Does it make sense to implement that ? How could
+> we do it ?
+>
+> Which other options do we have ?
+>
+> Or should we just leave everything as it is and stick w/ pdata structs ?
+>
+>
+> thx
+> --mtx
+>
+> --
+> Enrico Weigelt, metux IT consult
+> Free software and Linux embedded engineering
+> info@metux.net -- +49-151-27565287
 
-On Tue, Jun 11, 2019 at 03:04:09PM +0100, Michael Drake wrote:
-> Adds device tree bindings for:
-> 
->   TI DS90UB949-Q1 1080p HDMI to FPD-Link III bridge serializer
-> 
-> It supports instantiation via device tree / ACPI table.
-> 
-> The device has the compatible string "ti,ds90ub949", and
-> and allows an arrray of strings to be provided as regulator
-> names to enable for operation of the device.
 
-All the comments I made regarding the ds90ub948 DT bindings apply here
-too. Same for the comments related to the driver, they apply to the
-subsequent patches in this series.
-
-> Signed-off-by: Michael Drake <michael.drake@codethink.co.uk>
-> Cc: Patrick Glaser <pglaser@tesla.com>
-> Cc: Nate Case <ncase@tesla.com>
-> ---
->  .../bindings/display/bridge/ti,ds90ub949.txt  | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,ds90ub949.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,ds90ub949.txt b/Documentation/devicetree/bindings/display/bridge/ti,ds90ub949.txt
-> new file mode 100644
-> index 000000000000..3ba3897d5e81
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,ds90ub949.txt
-> @@ -0,0 +1,24 @@
-> +TI DS90UB949-Q1 1080p HDMI to FPD-Link III bridge serializer
-> +============================================================
-> +
-> +This is the binding for Texas Instruments DS90UB949-Q1 bridge serializer.
-> +
-> +This device supports I2C only.
-> +
-> +Required properties:
-> +
-> +- compatible: "ti,ds90ub949"
-> +
-> +Optional properties:
-> +
-> +- regulators: List of regulator name strings to enable for operation of device.
-> +
-> +Example
-> +-------
-> +
-> +ti949: ds90ub949@0 {
-> +	compatible = "ti,ds90ub949";
-> +
-> +	regulators: "vcc",
-> +	            "vcc_hdmi";
-> +};
 
 -- 
-Regards,
-
-Laurent Pinchart
+With Best Regards,
+Andy Shevchenko
