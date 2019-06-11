@@ -2,233 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 638A83CDF3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BDEE3CE6C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389253AbfFKOFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 10:05:20 -0400
-Received: from imap1.codethink.co.uk ([176.9.8.82]:55776 "EHLO
-        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390065AbfFKOFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 10:05:04 -0400
-Received: from [167.98.27.226] (helo=happy.office.codethink.co.uk)
-        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
-        id 1hahOW-0003vU-6D; Tue, 11 Jun 2019 15:05:00 +0100
-From:   Michael Drake <michael.drake@codethink.co.uk>
-To:     Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Drake <michael.drake@codethink.co.uk>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@lists.codethink.co.uk,
-        Patrick Glaser <pglaser@tesla.com>, Nate Case <ncase@tesla.com>
-Subject: [PATCH v1 11/11] ti949: Add support for configuration via device properties
-Date:   Tue, 11 Jun 2019 15:04:12 +0100
-Message-Id: <20190611140412.32151-12-michael.drake@codethink.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190611140412.32151-1-michael.drake@codethink.co.uk>
-References: <20190611140412.32151-1-michael.drake@codethink.co.uk>
+        id S2390534AbfFKOTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 10:19:45 -0400
+Received: from hermes.aosc.io ([199.195.250.187]:33450 "EHLO hermes.aosc.io"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389510AbfFKOTn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 10:19:43 -0400
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
+        by hermes.aosc.io (Postfix) with ESMTPSA id E9C69819F0;
+        Tue, 11 Jun 2019 14:10:35 +0000 (UTC)
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH v2 00/11] Support for Allwinner V3/S3L and Sochip S3
+Date:   Tue, 11 Jun 2019 22:09:29 +0800
+Message-Id: <20190611140940.14357-1-icenowy@aosc.io>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows the device to be configured for the board in
-device tree, or in ACPI tables.  The device node properties
-can provide an array of register addresses and values to be
-written to configure the device for the board.
+This patchset tries to add support for Allwinner V3/S3L and Sochip S3.
 
-The config is written to the device on probe and on PM resume.
+Allwinner V3/V3s/S3L and Sochip S3 share the same die, but with
+different package. V3 is BGA w/o co-packaged DDR, V3s is QFP w/ DDR2,
+S3L is BGA w/ DDR2 and S3 is BGA w/ DDR3. (S3 and S3L is compatible
+for pinout, but because of different DDR, DDR voltage is different
+between the two variants). Because of the pin count of V3s is
+restricted due to the package, some pins are not bound on V3s, but
+they're bound on V3/S3/S3L.
 
-Signed-off-by: Michael Drake <michael.drake@codethink.co.uk>
-Cc: Patrick Glaser <pglaser@tesla.com>
-Cc: Nate Case <ncase@tesla.com>
----
- drivers/gpu/drm/bridge/ti949.c | 120 +++++++++++++++++++++++++++++++++
- 1 file changed, 120 insertions(+)
+Currently the kernel is only prepared for the features available on V3s.
+This patchset adds the features missing on V3s for using them on
+V3/S3/S3L, and add bindings for V3/S3/S3L. It also adds a S3 SoM by
+Sipeed, called Lichee Zero Plus.
 
-diff --git a/drivers/gpu/drm/bridge/ti949.c b/drivers/gpu/drm/bridge/ti949.c
-index 04618ca5f25e..57dcecd10ace 100644
---- a/drivers/gpu/drm/bridge/ti949.c
-+++ b/drivers/gpu/drm/bridge/ti949.c
-@@ -19,6 +19,7 @@
- #include <linux/module.h>
- #include <linux/regmap.h>
- #include <linux/delay.h>
-+#include <linux/slab.h>
- #include <linux/i2c.h>
- 
- /* Number of times to try checking for device on bringup. */
-@@ -127,10 +128,22 @@ enum ti949_reg {
- 	TI949_REG_TX_ID_5                               = 0xF5,
- };
- 
-+/**
-+ * struct ti949_reg_val - ti949 register value
-+ * @addr:     The address of the register
-+ * @value:    The initial value of the register
-+ */
-+struct ti949_reg_val {
-+	u8 addr;
-+	u8 value;
-+};
-+
- /**
-  * struct ti949_ctx - ti949 driver context
-  * @i2c:         Handle for the device's i2c client.
-  * @regmap:      Handle for the device's regmap.
-+ * @config:      Array of register values loaded from device properties.
-+ * @config_len:  Number of entries in config.
-  * @reg_names:   Array of regulator names, or NULL.
-  * @regs:        Array of regulators, or NULL.
-  * @reg_count:   Number of entries in reg_names and regs arrays.
-@@ -138,6 +151,8 @@ enum ti949_reg {
- struct ti949_ctx {
- 	struct i2c_client *i2c;
- 	struct regmap *regmap;
-+	struct ti949_reg_val *config;
-+	size_t config_len;
- 	const char **reg_names;
- 	struct regulator **regs;
- 	size_t reg_count;
-@@ -214,6 +229,42 @@ static const struct regmap_config ti949_regmap_config = {
- 	.writeable_reg = ti949_writeable_reg,
- };
- 
-+static int ti949_write_sequence(
-+		struct ti949_ctx *ti949,
-+		const struct ti949_reg_val *sequence,
-+		u32 entries)
-+{
-+	int i;
-+
-+	for (i = 0; i < entries; i++) {
-+		const struct ti949_reg_val *r = sequence + i;
-+		int ret = regmap_write(ti949->regmap, r->addr, r->value);
-+
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ti949_write_config_seq(struct ti949_ctx *ti949)
-+{
-+	int ret;
-+
-+	if (ti949->config == NULL) {
-+		dev_info(&ti949->i2c->dev, "No config for ti949 device\n");
-+		return 0;
-+	}
-+
-+	ret = ti949_write_sequence(ti949, ti949->config, ti949->config_len);
-+	if (ret < 0)
-+		return ret;
-+
-+	dev_info(&ti949->i2c->dev, "Successfully configured ti949\n");
-+
-+	return ret;
-+}
-+
- static inline u8 ti949_device_address(struct ti949_ctx *ti949)
- {
- 	return ti949->i2c->addr;
-@@ -347,6 +398,12 @@ static int ti949_pm_resume(struct device *dev)
- 	if (ret != 0)
- 		return ret;
- 
-+	ret = ti949_write_config_seq(ti949);
-+	if (ret != 0)
-+		return ret;
-+
-+	/* Extend 200ms after ti949 init for display HW tolerance. */
-+	msleep(200);
- 	return 0;
- }
- 
-@@ -436,6 +493,65 @@ static int ti949_get_regulators(struct ti949_ctx *ti949)
- 	return 0;
- }
- 
-+static int ti949_get_config(struct ti949_ctx *ti949)
-+{
-+	int i;
-+	int ret;
-+	u8 *config;
-+	size_t config_len;
-+
-+	ret = device_property_read_u8_array(&ti949->i2c->dev,
-+			"config", NULL, 0);
-+	if (ret == -EINVAL ||
-+	    ret == -ENODATA ||
-+	    ret == 0) {
-+		/* "config" property was either:
-+		 *   - unset
-+		 *   - valueless
-+		 *   - set to empty list
-+		 * Not an error; continue without config.
-+		 */
-+		dev_info(&ti949->i2c->dev, "No config defined for device.\n");
-+		return 0;
-+
-+	} else if (ret < 0) {
-+		return ret;
-+	} else if (ret & 0x1) {
-+		dev_err(&ti949->i2c->dev,
-+			"Device property 'config' needs even entry count.\n");
-+		return -EINVAL;
-+	}
-+
-+	config_len = ret;
-+
-+	config = kmalloc_array(config_len, sizeof(*config), GFP_KERNEL);
-+	if (!config)
-+		return -ENOMEM;
-+
-+	ret = device_property_read_u8_array(&ti949->i2c->dev, "config",
-+			config, config_len);
-+	if (ret < 0) {
-+		kfree(config);
-+		return ret;
-+	}
-+
-+	ti949->config = devm_kmalloc_array(&ti949->i2c->dev,
-+			config_len / 2, sizeof(*ti949->config), GFP_KERNEL);
-+	if (!ti949->config) {
-+		kfree(config);
-+		return -ENOMEM;
-+	}
-+
-+	ti949->config_len = config_len / 2;
-+	for (i = 0; i < config_len; i += 2) {
-+		ti949->config[i / 2].addr = config[i];
-+		ti949->config[i / 2].value = config[i + 1];
-+	}
-+	kfree(config);
-+
-+	return 0;
-+}
-+
- static int ti949_probe(struct i2c_client *client,
- 		const struct i2c_device_id *id)
- {
-@@ -458,6 +574,10 @@ static int ti949_probe(struct i2c_client *client,
- 	if (ret != 0)
- 		return ret;
- 
-+	ret = ti949_get_config(ti949);
-+	if (ret != 0)
-+		return ret;
-+
- 	i2c_set_clientdata(client, ti949);
- 
- 	ret = ti949_pm_resume(&client->dev);
+Icenowy Zheng (11):
+  dt-bindings: pinctrl: add missing compatible string for V3s
+  dt-bindings: pinctrl: add compatible string for Allwinner V3 pinctrl
+  pinctrl: sunxi: v3s: introduce support for V3
+  clk: sunxi-ng: v3s: add the missing PLL_DDR1
+  dt-bindings: clk: sunxi-ccu: add compatible string for V3 CCU
+  clk: sunxi-ng: v3s: add Allwinner V3 support
+  dt-bindings: vendor-prefixes: add SoChip
+  ARM: sunxi: dts: s3/s3l/v3: add DTSI files for S3/S3L/V3 SoCs
+  dt-bindings: vendor-prefixes: add Sipeed
+  dt-bindings: arm: sunxi: add binding for Lichee Zero Plus core board
+  ARM: dts: sun8i: s3: add devicetree for Lichee zero plus w/ S3
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../clock/allwinner,sun4i-a10-ccu.yaml        |   1 +
+ .../pinctrl/allwinner,sunxi-pinctrl.txt       |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/sun8i-s3-lichee-zero-plus.dts    |   8 +
+ .../dts/sun8i-s3-s3l-lichee-zero-plus.dtsi    |  39 +++
+ arch/arm/boot/dts/sun8i-s3.dtsi               |   6 +
+ arch/arm/boot/dts/sun8i-s3l.dtsi              |   6 +
+ arch/arm/boot/dts/sun8i-v3.dtsi               |  14 +
+ drivers/clk/sunxi-ng/ccu-sun8i-v3s.c          | 244 +++++++++++++++-
+ drivers/clk/sunxi-ng/ccu-sun8i-v3s.h          |   6 +-
+ drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c     | 265 +++++++++++++++++-
+ drivers/pinctrl/sunxi/pinctrl-sunxi.h         |   2 +
+ include/dt-bindings/clock/sun8i-v3s-ccu.h     |   4 +
+ include/dt-bindings/reset/sun8i-v3s-ccu.h     |   3 +
+ 16 files changed, 597 insertions(+), 13 deletions(-)
+ create mode 100644 arch/arm/boot/dts/sun8i-s3-lichee-zero-plus.dts
+ create mode 100644 arch/arm/boot/dts/sun8i-s3-s3l-lichee-zero-plus.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-s3.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-s3l.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-v3.dtsi
+
 -- 
-2.20.1
+2.21.0
 
