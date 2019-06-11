@@ -2,93 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 572E73CA58
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FC83CA68
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 13:51:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389958AbfFKLrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 07:47:36 -0400
-Received: from mail.skyhub.de ([5.9.137.197]:34110 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389881AbfFKLrg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 07:47:36 -0400
-Received: from zn.tnic (p200300EC2F0A6800DC92A88D55C2D513.dip0.t-ipconnect.de [IPv6:2003:ec:2f0a:6800:dc92:a88d:55c2:d513])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 175771EC0AB5;
-        Tue, 11 Jun 2019 13:47:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1560253654;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=2R+rD8MSAKYSgEC/nrnaAjvDfTgHg5v+BpDI/EdY9g0=;
-        b=LKlN30yQvV8da4VdYifZWAZfVMF03ZFXIHMK/ruLWVQl6/izJ1i+/tNW4q0yj0SvpR+KUj
-        HOgd5bnPlymU1qAcW/Sr3zSkswMSapwRV05US6l35NMGT4WMbNe8ODNGm7qGRTL+O4MmyZ
-        ZmqhyQPUmzVSptmWaK2jeroLYQYRZrE=
-Date:   Tue, 11 Jun 2019 13:47:29 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Cc:     James Morse <james.morse@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-Message-ID: <20190611114729.GC31772@zn.tnic>
-References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
- <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
- <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
- <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
- <20190531051400.GA2275@cz.tnic>
- <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
- <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
- <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
- <20190608090556.GA32464@zn.tnic>
- <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2404112AbfFKLvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 07:51:44 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:33101 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403957AbfFKLvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 07:51:44 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hafJS-0007Ax-Hf; Tue, 11 Jun 2019 13:51:38 +0200
+Message-ID: <1560253895.13886.6.camel@pengutronix.de>
+Subject: Re: [PATCH v3 01/10] rockchip/vpu: rename from rockchip to hantro
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Date:   Tue, 11 Jun 2019 13:51:35 +0200
+In-Reply-To: <20190606170614.526d3380@collabora.com>
+References: <20190531085523.10892-1-p.zabel@pengutronix.de>
+         <20190531085523.10892-2-p.zabel@pengutronix.de>
+         <20190605132242.102fcdd2@collabora.com>
+         <20190606170614.526d3380@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 03:50:40PM +1000, Benjamin Herrenschmidt wrote:
-> Should we fix that then instead ?
+On Thu, 2019-06-06 at 17:06 +0200, Boris Brezillon wrote:
+> On Wed, 5 Jun 2019 13:22:42 +0200
+> Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> 
+> > On Fri, 31 May 2019 10:55:14 +0200
+> > Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> > 
+> > > Rename the driver and all relevant identifiers from Rockchip to Hantro,
+> > > as other Hantro IP based VPU implementations can be supported by the
+> > > same driver.
+> > > The RK3288 decoder is Hantro G1 based, the encoder is Hantro H1.
+> > > 
+> > > This patch just renames, no functional changes.
+> > > 
+> > > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > > Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+> > > ---
+> > >  MAINTAINERS                                   |   4 +-
+> > >  drivers/staging/media/Kconfig                 |   2 +-
+> > >  drivers/staging/media/Makefile                |   2 +-
+> > >  .../media/{rockchip/vpu => hantro}/Kconfig    |  11 +-
+> > >  drivers/staging/media/hantro/Makefile         |  13 +
+> > >  .../media/{rockchip/vpu => hantro}/TODO       |   0
+> > >  .../vpu/rockchip_vpu.h => hantro/hantro.h}    | 136 +++++-----
+> > >  .../hantro_drv.c}                             | 251 +++++++++---------
+> > >  .../hantro_g1_mpeg2_dec.c}                    |  55 ++--
+> > >  .../hantro_h1_jpeg_enc.c}                     |  44 +--
+> > >  drivers/staging/media/hantro/hantro_hw.h      | 102 +++++++
+> > >  .../hantro_jpeg.c}                            |  18 +-
+> > >  drivers/staging/media/hantro/hantro_jpeg.h    |  13 +
+> > >  .../hantro_mpeg2.c}                           |  14 +-
+> > >  .../hantro_v4l2.c}                            | 234 ++++++++--------
+> > >  .../hantro_v4l2.h}                            |  16 +-
+> > >  .../{rockchip/vpu => hantro}/rk3288_vpu_hw.c  |  64 ++---
+> > >  .../vpu => hantro}/rk3288_vpu_regs.h          |   2 +-
+> > >  .../{rockchip/vpu => hantro}/rk3399_vpu_hw.c  |  64 ++---
+> > >  .../vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c   |  32 +--
+> > >  .../vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c  |  37 ++-
+> > >  .../vpu => hantro}/rk3399_vpu_regs.h          |   2 +-
+> > >  drivers/staging/media/rockchip/vpu/Makefile   |  14 -
+> > >  .../media/rockchip/vpu/rockchip_vpu_hw.h      | 103 -------
+> > >  .../media/rockchip/vpu/rockchip_vpu_jpeg.h    |  14 -
+> > >  25 files changed, 616 insertions(+), 631 deletions(-)
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/Kconfig (59%)
+> > >  create mode 100644 drivers/staging/media/hantro/Makefile
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/TODO (100%)
+> > >  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu.h => hantro/hantro.h} (69%)
+> > >  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_drv.c => hantro/hantro_drv.c} (74%)
+> > >  rename drivers/staging/media/{rockchip/vpu/rk3288_vpu_hw_mpeg2_dec.c => hantro/hantro_g1_mpeg2_dec.c} (87%)
+> > >  rename drivers/staging/media/{rockchip/vpu/rk3288_vpu_hw_jpeg_enc.c => hantro/hantro_h1_jpeg_enc.c} (76%)
+> > >  create mode 100644 drivers/staging/media/hantro/hantro_hw.h
+> > >  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_jpeg.c => hantro/hantro_jpeg.c} (95%)
+> > >  create mode 100644 drivers/staging/media/hantro/hantro_jpeg.h
+> > >  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_mpeg2.c => hantro/hantro_mpeg2.c} (79%)
+> > >  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.c => hantro/hantro_v4l2.c} (69%)
+> > >  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.h => hantro/hantro_v4l2.h} (53%)
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3288_vpu_hw.c (68%)
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3288_vpu_regs.h (99%)  
+> > 
+> > Didn't notice that in my initial review, but rk3288_vpu_regs.h should
+> > be split in 2: hantro_{g1,h1}_regs.h (g1 being the decoder part and h1
+> > the encoder).
 
-Sure.
+Will do. I'll also rename the registers from V[DE]PU_REG to [GH]1_REG.
 
-> What are the big issues with adding some basic locking ? being called
-> from NMIs ?
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw.c (69%)
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c (86%)
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c (92%)
+> > >  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_regs.h (99%)  
+> > 
+> > Same here, rk3399_vpu_regs.h should be split into hantro_{g2,h2}_regs.h
+> > (I still need to make sure this is actually a g2/h2 combo we have on
+> > this SoC). That's also true for the
+> > rk3399_vpu_hw_{mpeg2_dec,jpeg_enc}.c files: they should be renamed
+> > hantro_{g2_mpeg2_dec,h2_jpeg_enc}.c
+> 
+> Sorry, I was wrong, it's not a G2/H2 combo we have, it looks like G1/H1
+> with shuffled regs/fields. The ID are 0x45142158 (for the decoder) and
+> 0x3a122158 (for the encoder). Couldn't find any reference to those IDs
+> in the hantro reference drivers.
+> 
+> Anyway, I'm working on abstracting the reg layout so we can have the
+> same base of code for both variants.
 
-That is one possible issue. I know we don't call the error decoding
-routines in NMI context on x86 but no clue about ARM.
+Ok, I'll keep this part as is for now.
 
-> If the separate drivers operate on distinct counters I don't see a big
-> problem there.
-
-Yes, and they do.
-
-> I'n not sure why <platform_name> ...
-
-Well, however you'd call it. It will be some distinct name I hope :)
-
--- 
-Regards/Gruss,
-    Boris.
-
-Good mailing practices for 400: avoid top-posting and trim the reply.
+regards
+Philipp
