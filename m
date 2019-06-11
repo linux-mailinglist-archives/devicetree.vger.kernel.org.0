@@ -2,84 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3846841891
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14895418A2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 01:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437017AbfFKXF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 19:05:58 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:35433 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437015AbfFKXF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:05:58 -0400
-Received: by mail-pg1-f194.google.com with SMTP id s27so7792488pgl.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 16:05:58 -0700 (PDT)
+        id S2407931AbfFKXIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 19:08:22 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:43409 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407928AbfFKXIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 19:08:22 -0400
+Received: by mail-pf1-f194.google.com with SMTP id i189so8363756pfg.10
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 16:08:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=OBwSPzkDdi1CMoAJXu3fdSCyBq/M09/6VhI4AMk4Xd0=;
-        b=myQGfU/fQ9FotkLvkIP5napMe/OlFIpyYMu85C1/ME8ATNL3ykv9VzsgnRpn3SiXtB
-         oK2zfgP4tp0UvDA43Eb5BnXfH2n9vFTf5ttK+jxUOAKg64WPZlvO+qYjypkNRx7fOELh
-         +/kyBy9tyGhTsyAtSsjBgdhzvl7i8qU0vwi0bKaYntUUFQFSCK1PzG8coiWfRIHEs3F7
-         mZnu+yaiZIil39fibfqN1W7CTlDjWG1/6hcssnbsnUUyZ07qAhXeSB6EJNLM4XK++Dw+
-         hRmBU2Gnj+VniTueB2pa2vhiNaHtAg4oP5sZcjecADRWjA8Nh9VCSyaq5PBegpLoen9p
-         oYgw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vjl9Ns8qTRMKP0J+iO0hKqMC3min1EiwS3qQ6sVNS1c=;
+        b=YN/UgLNkyeTM1qoFucU0AJFUxeziYWrhUCibHWCA/qlMUN6spFPO8C0Kvv+zJFiWDC
+         zXLmuybO9JFifvUo0mmqfj9igpjzb8fqlzcAz4+Yx47Sy3EhpPa2HK9x8iDXoDHBOzRw
+         wBVo3r4//Gkv25xlprDkXizA7UxjgB+dzDQWPxtn0DwKTAGgkmLq2+RiOvUfT6vva2B1
+         WjN23HAl91P5GutP+gJ9ynAWNtTOWJm11MBQHdpYh4QY6CW5KrXtCKBLV1zqh2z6R21S
+         ++xN7LRProkA12fmgeIpexQ9SL27ncDFGksdFy/T+a3GvZ8I33Ej4FpjvxShMCxflUdd
+         7GpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=OBwSPzkDdi1CMoAJXu3fdSCyBq/M09/6VhI4AMk4Xd0=;
-        b=Ks/aHpnnx2iPERZDY69I49WM7Jb3vePXRZa1C+EMvvm0mrWU74u04Cp1XPeVfZWjNb
-         Mh6IM66gPs817rfuUGoO0Ec+2jp5x9Posuwnsx7kXzdM//5llLFCeJpw9goC9kpYFj25
-         y/NhTWkNM7puEmRGyUprBdDNl7yzMCyMrk6mEAJLmgZJh8OtXZiakIZBdUrFjqgYpfwe
-         yxw5r3gUMThNCI5IGWGpbB3epq30MRl4NYQQbaxUEEyGnxMEvyHq8d6goA5Bh71n6RnK
-         0JMMQs8pF44CdqTfcVZL1ckzmUlhCQRg8kVEQ6SXgioVi6fQ9bb+mrsWIlvFkLH0PQ21
-         MB9A==
-X-Gm-Message-State: APjAAAXqnPAcFoULUsjWVHcKfe5+8IauFzH0YU78IgMQaog7+0WdPYmW
-        V5du0feTp5XF0frNmFXv4gbdFLUgfe4=
-X-Google-Smtp-Source: APXvYqxjdj5vYjUUy2sB0u9Tk6uxU+kfxuJmVI3vHyHL5GJvrsWFCoAFGf8gZgFCMu8WEUVcxUHFCg==
-X-Received: by 2002:a17:90a:ba94:: with SMTP id t20mr15629024pjr.116.1560294357844;
-        Tue, 11 Jun 2019 16:05:57 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.googlemail.com with ESMTPSA id x5sm4327928pjp.21.2019.06.11.16.05.57
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 11 Jun 2019 16:05:57 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: sei510: add sound card
-In-Reply-To: <20190524140318.17608-1-jbrunet@baylibre.com>
-References: <20190524140318.17608-1-jbrunet@baylibre.com>
-Date:   Tue, 11 Jun 2019 16:05:56 -0700
-Message-ID: <7himtb4t9n.fsf@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vjl9Ns8qTRMKP0J+iO0hKqMC3min1EiwS3qQ6sVNS1c=;
+        b=TdKroVBVTd+Ea95Bsd8dWRls1KklUKE6F0GFRJjRSzcTPF0NRGqMt7cNiqvz3+UYxy
+         W75YUo5XF3/uR225YpmnXZWxtGeZXrk/EIrzMLmP35yWaGGNi6UAM5ftwnitQwkpQgit
+         4EpXVlKdJ3q3IM/8g3i/SGm8hwLvPWNQR7LWOcuN0WUoAPBJgh5cQQIvkJhPe4hXFR3T
+         1jygB2gzHFvId+d0I3phzZGD2nbuOfqvfZcaJVpbrP+pHbFQtuEqCojvXoyTnt7ZhmR2
+         ANBj6r1icH7jb8470EZRerdH6TiQrJ7fRW0jmezOt15sp3tYxP8hfK2uLDkU+7ymJm9X
+         mXiw==
+X-Gm-Message-State: APjAAAWcPZ8cZuJot1I1i7XwQ1UXNdrBtEaSLC7JzUlTSmcrfPjioxtb
+        zy5SvDjOXm+pzAf8wzZvjHaczu3zfvw=
+X-Google-Smtp-Source: APXvYqynsWTp0wdQaNa3lyxkx2tbF0tlUWrRe3v1z2Eum8yVKB/bjwEiZ8XB8FqYlwWcOT8gSLV1Jg==
+X-Received: by 2002:a17:90a:25e6:: with SMTP id k93mr8367124pje.100.1560294501786;
+        Tue, 11 Jun 2019 16:08:21 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id c129sm29717844pfa.106.2019.06.11.16.08.20
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 11 Jun 2019 16:08:20 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 16:08:18 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, vkoul@kernel.org,
+        evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: interconnect: Add Qualcomm QCS404 DT
+ bindings
+Message-ID: <20190611230818.GT4814@minitux>
+References: <20190611164157.24656-1-georgi.djakov@linaro.org>
+ <20190611164157.24656-2-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190611164157.24656-2-georgi.djakov@linaro.org>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+On Tue 11 Jun 09:41 PDT 2019, Georgi Djakov wrote:
 
-> This patchset adds the sound card of sei510 board.
->
-> Note #1:
-> The patchset (build) depends on the tohdmitx ASoC patch [0] for the dt
-> bindings of the tohdmitx glue. It also (run) depends on the mpll clock
-> series [1] to get a correct clock sources.
->
-> Note #2:
-> I would normaly prefer to use the HIFI pll dedicated to audio to provide
-> the base rate for the 48kHz audio family. HIFI pll rate precision is a
-> little bit better than the MPLL. However, the HIFI pll may sometimes,
-> rarely, take a long time to report a lock. I'm still debugging this.
-> In the mean time, let's use MPLL2 instead.
->
-> [0]: e35f5ad6a965 ("ASoC: meson: add tohdmitx DT bindings")
-> [1]: https://lkml.kernel.org/r/20190513123115.18145-1-jbrunet@baylibre.com
+> The Qualcomm QCS404 platform has several buses that could be controlled
+> and tuned according to the bandwidth demand.
+> 
 
-All dependencies are merged or queued for v5.3, so queuing this for v5.3
-also,
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Kevin
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> ---
+> 
+> v3:
+> - Add a reg property and move the interconnect nodes under the "soc" node.
+> 
+> v2:
+> - No changes.
+> 
+>  .../bindings/interconnect/qcom,qcs404.txt     | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
+> new file mode 100644
+> index 000000000000..14a827268dda
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
+> @@ -0,0 +1,46 @@
+> +Qualcomm QCS404 Network-On-Chip interconnect driver binding
+> +-----------------------------------------------------------
+> +
+> +Required properties :
+> +- compatible : shall contain only one of the following:
+> +			"qcom,qcs404-bimc"
+> +			"qcom,qcs404-pcnoc"
+> +			"qcom,qcs404-snoc"
+> +- #interconnect-cells : should contain 1
+> +
+> +Optional properties :
+> +reg : specifies the physical base address and size of registers
+> +clocks : list of phandles and specifiers to all interconnect bus clocks
+> +clock-names : clock names should include both "bus_clk" and "bus_a_clk"
+> +
+> +Example:
+> +
+> +soc {
+> +	...
+> +	bimc: interconnect@400000 {
+> +		reg = <0x00400000 0x80000>;
+> +		compatible = "qcom,qcs404-bimc";
+> +		#interconnect-cells = <1>;
+> +		clock-names = "bus_clk", "bus_a_clk";
+> +		clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
+> +			<&rpmcc RPM_SMD_BIMC_A_CLK>;
+> +	};
+> +
+> +	pnoc: interconnect@500000 {
+> +		reg = <0x00500000 0x15080>;
+> +		compatible = "qcom,qcs404-pcnoc";
+> +		#interconnect-cells = <1>;
+> +		clock-names = "bus_clk", "bus_a_clk";
+> +		clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
+> +			<&rpmcc RPM_SMD_PNOC_A_CLK>;
+> +	};
+> +
+> +	snoc: interconnect@580000 {
+> +		reg = <0x00580000 0x23080>;
+> +		compatible = "qcom,qcs404-snoc";
+> +		#interconnect-cells = <1>;
+> +		clock-names = "bus_clk", "bus_a_clk";
+> +		clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
+> +			<&rpmcc RPM_SMD_SNOC_A_CLK>;
+> +	};
+> +};
