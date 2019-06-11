@@ -2,102 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC5ED3D5B1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1932B3D5D2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:50:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729356AbfFKSoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 14:44:34 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:40808 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728412AbfFKSoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 14:44:34 -0400
-Received: by mail-pg1-f194.google.com with SMTP id d30so7447148pgm.7;
-        Tue, 11 Jun 2019 11:44:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VjXOm39CWa6S4I71CKU5r+mT9fayfeuZ4n9Ko6h04/Q=;
-        b=myaTjclOScSIDrJvBHbz7GqxDxIFK7e7DAfxQEM9oALn9rsTlpKt80fwIgm0KtX6V1
-         rjsp2quD64X+j4e2krEEBu98c5MfZng1DbASdGyGwJG5NVw2h8ncvSeeiM2/is5mt8Tj
-         Hl7PulNEfKL1iTcOm+BmiLv6YbI73mFN+CKOysg5B0Qajeo+mJ+3lkv/hTsDiLqP1K2X
-         E0uc27fMFfCG5CTgpAOnmzWitO8GemDOyDhaTdzt2sylNoufOgyKKIZsO/0WcWMJBXRF
-         bOI29cs4Pv20llVSyHkYaKW+KY4DlzmN8lJPePgHDnkkKHK19ZK8RN8IcjgGd4Bksfk0
-         p/6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VjXOm39CWa6S4I71CKU5r+mT9fayfeuZ4n9Ko6h04/Q=;
-        b=DGtfviaZwKHP/jH89Tru0Wsj4ev1KGVjO9XIsD4JvvwONe0/RFvN5kggNUnMZI3XNq
-         4Y1WDVMZT4yVRug5cYkrBiSxNaGloG2KF9YUjH/oWXIQjuYOFyAx3voCbz66FP2l2ztU
-         YK+pjqflDr55jhycvvnKkjK9wbC4j+MWVL9RfXSy0UoF7MU1EGZbt/D6YNtSx67pD86N
-         LvtuEaYlnb2SDFjiZ0V7l3gxl5y5Iv49E9BxRyyycA0hBeFOJVF6fL+XYS1zfjmnw45V
-         yK0uFYq4enVWefRdbPxpk0cO3tls1YhP4jvuJlxkxqwvTWqhEn3G7eKmuu/kmXZ0F7ch
-         /R9A==
-X-Gm-Message-State: APjAAAVGuf24ZkeAGJpgq4kGQcBC/vu7HLlnD/bwafbaofG2VEFI6nNO
-        JD1IvZb32aLCEw/IjleITS/bZLlpTvb/yzjvrg8=
-X-Google-Smtp-Source: APXvYqzkqeep3CqfOFDZoSRrKfSGRdBDWFEoMwtK6OFag6Wk/WDtXaVNa/EripQyuLMKoe63k5dbDPKFUOkVassx774=
-X-Received: by 2002:a63:d84a:: with SMTP id k10mr6952505pgj.74.1560278673900;
- Tue, 11 Jun 2019 11:44:33 -0700 (PDT)
+        id S2392085AbfFKSuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 14:50:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33122 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389470AbfFKSuT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 14:50:19 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2E1C021744;
+        Tue, 11 Jun 2019 18:50:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560279018;
+        bh=KSPugbVcFVjo2LRDUR30DOGlfU301RbHfc51FMakphQ=;
+        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
+        b=eUcQmeuoyqCS292prTem1gEJTNrE/i4/3mRNGwiqnO3Tx9yQumA1yteW7iEE4JN1g
+         eh2ADC167gKmUCTbEgDbjScSG5xLnIHWi5uWk5SVDUlKT9arAGeIY6q58Nsi/mtoWM
+         Sissolu8Hy/cpsaYhChLTjhjFekH7GFD9BeulHFI=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <c15a9872-4ad4-1b7e-e34f-14549b5b55eb@metux.net>
-In-Reply-To: <c15a9872-4ad4-1b7e-e34f-14549b5b55eb@metux.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 11 Jun 2019 21:44:23 +0300
-Message-ID: <CAHp75Vc_FnSaqq_Xu_Y3uXBYY=HbGsthVOAqyt4c-dH7sRGVVw@mail.gmail.com>
-Subject: Re: How to inject fwnode/oftree/acpi data by platform driver ?
-To:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Platform Driver <platform-driver-x86@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190611175830.GA236872@google.com>
+References: <20190514221711.248228-1-brendanhiggins@google.com> <20190514221711.248228-18-brendanhiggins@google.com> <20190517182254.548EA20815@mail.kernel.org> <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com> <20190607190047.C3E7A20868@mail.kernel.org> <20190611175830.GA236872@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Iurii Zaikin <yzaikin@google.com>, frowand.list@gmail.com,
+        gregkh@linuxfoundation.org, jpoimboe@redhat.com,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, peterz@infradead.org, robh@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com
+Subject: Re: [PATCH v4 17/18] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
+User-Agent: alot/0.8.1
+Date:   Tue, 11 Jun 2019 11:50:17 -0700
+Message-Id: <20190611185018.2E1C021744@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Cc: Heikki.
-Heikki, can you help here with swnodes?
+Quoting Brendan Higgins (2019-06-11 10:58:30)
+> On Fri, Jun 07, 2019 at 12:00:47PM -0700, Stephen Boyd wrote:
+> > Quoting Iurii Zaikin (2019-06-05 18:29:42)
+> > > On Fri, May 17, 2019 at 11:22 AM Stephen Boyd <sboyd@kernel.org> wrot=
+e:
+> > > >
+> > > > Quoting Brendan Higgins (2019-05-14 15:17:10)
+> > > > > diff --git a/kernel/sysctl-test.c b/kernel/sysctl-test.c
+> > > > > new file mode 100644
+> > > > > index 0000000000000..fe0f2bae66085
+> > > > > --- /dev/null
+> > > > > +++ b/kernel/sysctl-test.c
+> > > > > +
+> > > > > +
+> > > > > +static void sysctl_test_dointvec_happy_single_negative(struct ku=
+nit *test)
+> > > > > +{
+> > > > > +       struct ctl_table table =3D {
+> > > > > +               .procname =3D "foo",
+> > > > > +               .data           =3D &test_data.int_0001,
+> > > > > +               .maxlen         =3D sizeof(int),
+> > > > > +               .mode           =3D 0644,
+> > > > > +               .proc_handler   =3D proc_dointvec,
+> > > > > +               .extra1         =3D &i_zero,
+> > > > > +               .extra2         =3D &i_one_hundred,
+> > > > > +       };
+> > > > > +       char input[] =3D "-9";
+> > > > > +       size_t len =3D sizeof(input) - 1;
+> > > > > +       loff_t pos =3D 0;
+> > > > > +
+> > > > > +       table.data =3D kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > > > +       KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, input, =
+&len, &pos));
+> > > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, pos);
+> > > > > +       KUNIT_EXPECT_EQ(test, -9, *(int *)table.data);
+> > > >
+> > > > Is the casting necessary? Or can the macro do a type coercion of the
+> > > > second parameter based on the first type?
+> > >  Data field is defined as void* so I believe casting is necessary to
+> > > dereference it as a pointer to an array of ints. I don't think the
+> > > macro should do any type coercion that =3D=3D operator wouldn't do.
+> > >  I did change the cast to make it more clear that it's a pointer to an
+> > > array of ints being dereferenced.
+> >=20
+> > Ok, I still wonder if we should make KUNIT_EXPECT_EQ check the types on
+> > both sides and cause a build warning/error if the types aren't the same.
+> > This would be similar to our min/max macros that complain about
+> > mismatched types in the comparisons. Then if a test developer needs to
+> > convert one type or the other they could do so with a
+> > KUNIT_EXPECT_EQ_T() macro that lists the types to coerce both sides to
+> > explicitly.
+>=20
+> Do you think it would be better to do a phony compare similar to how
+> min/max used to work prior to 4.17, or to use the new __typecheck(...)
+> macro? This might seem like a dumb question (and maybe it is), but Iurii
+> and I thought the former created an error message that was a bit easier
+> to understand, whereas __typecheck is obviously superior in terms of
+> code reuse.
+>=20
+> This is what we are thinking right now; if you don't have any complaints
+> I will squash it into the relevant commits on the next revision:
 
-On Sat, Jun 1, 2019 at 5:17 PM Enrico Weigelt, metux IT consult
-<lkml@metux.net> wrote:
->
-> Hi folks,
->
->
-> I'm looking for a way to inject fwnode data from a platform driver,
-> in order to initialize generic drivers w/ board specific configuration.
-> The idea is getting rid of passing driver specific pdata structs
-> (which, IIRC, seem to be deprecated).
->
-> An example usecase is the APUv2/3 board, which have things like gpios
-> wired to buttons and LEDs. The board can only be detected via DMI
-> string, no way to probe the platform devices - have to be initialized
-> explicitly (that's how I'm already doing it now).
->
-> The nicest way, IMHO, would be if I could just write some piece of DTS
-> and some fancy magic all the rest under the hood. Such thing doesn't
-> seem to exist yet. Does it make sense to implement that ? How could
-> we do it ?
->
-> Which other options do we have ?
->
-> Or should we just leave everything as it is and stick w/ pdata structs ?
->
->
-> thx
-> --mtx
->
-> --
-> Enrico Weigelt, metux IT consult
-> Free software and Linux embedded engineering
-> info@metux.net -- +49-151-27565287
+Can you provide the difference in error messages and describe that in
+the commit text? The commit message is where you "sell" the patch, so
+being able to compare the tradeoff of having another macro to do type
+comparisons vs. reusing the one that's there in kernel.h would be useful
+to allay concerns that we're duplicating logic for better error
+messages.
 
+Honestly, I'd prefer we just use the macros that we've developed in
+kernel.h to do comparisons here so that we can get code reuse, but more
+importantly so that we don't trip over problems that caused those macros
+to be created in the first place. If the error message is bad, perhaps
+that can be fixed with some sort of compiler directive to make the error
+message a little more useful, i.e. compiletime_warning() thrown into
+__typecheck() or something.
 
-
--- 
-With Best Regards,
-Andy Shevchenko
+> ---
+> From: Iurii Zaikin <yzaikin@google.com>
+>=20
+> Adds a warning message when comparing values of different types similar
+> to what min() / max() macros do.
+>=20
+> Signed-off-by: Iurii Zaikin <yzaikin@google.com>
