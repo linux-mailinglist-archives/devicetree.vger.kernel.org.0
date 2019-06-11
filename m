@@ -2,88 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A3E4172C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA47F41734
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407170AbfFKVwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 17:52:10 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:36382 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407165AbfFKVwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:52:10 -0400
-Received: by mail-qt1-f196.google.com with SMTP id p15so9051643qtl.3;
-        Tue, 11 Jun 2019 14:52:10 -0700 (PDT)
+        id S2407752AbfFKVwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 17:52:44 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:45543 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407751AbfFKVwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:52:44 -0400
+Received: by mail-pl1-f195.google.com with SMTP id bi6so5283460plb.12
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 14:52:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=android.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mSH6vjaD/nr1X2l9Lu5p2XVHT+RbgtF+8lv2TXUlGxI=;
+        b=AVWVFnz3EkCZsE+NYatD/YXB62zlYFWeSCIzuEw4yezw8A74s/W8lvaK0EgK4htQ4A
+         DQYmbuW1AAhmO758McKb+i6O5RYvzmBvYa5PLtB9fxvCCuXxpmWhi1XQkjI3DpyGf9Wb
+         tcam3xyknZvvLf4S1FjXpCBDgFpjD0do6YuMssibmei6FY8wfy6Nt0Ho1pYbvK+Fm0Q5
+         ogi9hS0UkwAy1SFW9Hg6+AIlIk1DrLcW2Rae5FOACRJSJqu2tzwzj+KuSpnWTaJAuIY0
+         uciFEij83IKIUYY8YA56k/6BXWW+sn/14KimcibOa5aT4oSlLDKslJEr1sodGjLIOn2c
+         BS5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3r12qJQBXAuvMT4EwoDNzavCtWYu4iRZchiufeeQkDA=;
-        b=N7kMZvLZcnBioe2//xcL1M1JtXeItOjpk+32oiPYYvkR1qcTd8UG3720klZffMZBVW
-         eyCbW5s0iv5N+NraXN/IN3BJxaIMxc5tD2DFHd2X8SHfKmssIE8hY2/48dLuk9AONPwl
-         +vQPd24NdiaUnvbfOJ1z0Mdu6wJRieu0Ae6ixAM/+cYB3EHfmA2DRG9U1P9K2kwiCObH
-         ZbUmt7uPESam5rwEesdww1EqU8q3NLU9UBJbijf6GSsd5H1gVveVzTj/Vxqj0H1UQA6p
-         +DneHyADuSaCtUPer4V7U3sk/Bj8h1IK8r+0Sn3r/PB1k0+cK+1DN9TjGyfHQRXOj5DX
-         xzOQ==
-X-Gm-Message-State: APjAAAUT3z3mCAFpflqGv0xig2ygoqF3bYTqnhEBuiVo1h0Q7rzpDE2A
-        MX7p6W7I272U4AFCh9nyone67ic=
-X-Google-Smtp-Source: APXvYqwYg7O90+eWMBJqzuTqXctWOHI40/oJ0GPlNFDUVF6CgMDfl7e03c/8RDgTcCt1Q9vjJvfAkA==
-X-Received: by 2002:a0c:b997:: with SMTP id v23mr62799346qvf.128.1560289929520;
-        Tue, 11 Jun 2019 14:52:09 -0700 (PDT)
-Received: from localhost ([64.188.179.199])
-        by smtp.gmail.com with ESMTPSA id j26sm8645067qtj.70.2019.06.11.14.52.08
+        bh=mSH6vjaD/nr1X2l9Lu5p2XVHT+RbgtF+8lv2TXUlGxI=;
+        b=nOrtc1kWxByBrI3tf8Mrv9Fw/sHuVK4eYg1jG+bq+AWQklkTu5c4+82PFEvXFmZPfV
+         yfDTV8+EgjZ4fpqHcBy6lmt0bvno75Wey97RhDAK9Kdt2konyzUxB5wgjI1eniFTmzvZ
+         HqAFEF+XylLq2MtniHITRN52fTvYMHAF2WmzY3PiVaQZTqcdHjGxH/vIhJ++aY7hLs4+
+         cyYDpDND+Yk9fNPvYT6KMPwr1hOwudWaoTY0/gdKfnkVMDQsUoa5n8J1e3eWwIO3KMMN
+         OqJwAdntBImcdbvtnkpPJq1zXom3W0gyco0H46DsbsucUX+wjubYIrHer/xRIvmjt9as
+         R4sQ==
+X-Gm-Message-State: APjAAAXuIMlobznUutsuQeOySGdIreSfS8OQGB02PI3p5KwZOSQHWYjq
+        dzSVlrOWt1d3pYeIxgfu7NFKaA==
+X-Google-Smtp-Source: APXvYqysSME+/cdv9S8P9cj2bcfPJvkEUDZsjH4vh2DbbdzUop8MSCZwew2ErpDpFIMCx2GEjV1qug==
+X-Received: by 2002:a17:902:a412:: with SMTP id p18mr9930029plq.105.1560289963457;
+        Tue, 11 Jun 2019 14:52:43 -0700 (PDT)
+Received: from localhost ([2620:0:1000:147d:bc5f:a59e:d0e2:264f])
+        by smtp.gmail.com with ESMTPSA id y22sm10173193pfm.70.2019.06.11.14.52.42
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 14:52:09 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 15:52:06 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     megous@megous.com
-Cc:     linux-sunxi@googlegroups.com,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Ondrej Jirman <megous@megous.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Tue, 11 Jun 2019 14:52:42 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 14:52:42 -0700
+From:   Sandeep Patil <sspatil@android.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v6 4/6] dt-bindings: display: hdmi-connector: Support DDC
- bus enable
-Message-ID: <20190611215206.GA17759@bogus>
-References: <20190527162237.18495-1-megous@megous.com>
- <20190527162237.18495-5-megous@megous.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+Subject: Re: [RESEND PATCH v1 1/5] of/platform: Speed up
+ of_find_device_by_node()
+Message-ID: <20190611215242.GE212690@google.com>
+References: <20190604003218.241354-1-saravanak@google.com>
+ <20190604003218.241354-2-saravanak@google.com>
+ <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
+ <570474f4-8749-50fd-5f72-36648ed44653@gmail.com>
+ <CAGETcx8M3YkUBZ-e2LLfrbWgnMKMMNG5cv=p8MMmBe7ZyPJ7xw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190527162237.18495-5-megous@megous.com>
+In-Reply-To: <CAGETcx8M3YkUBZ-e2LLfrbWgnMKMMNG5cv=p8MMmBe7ZyPJ7xw@mail.gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 May 2019 18:22:35 +0200, megous@megous.com wrote:
-> From: Ondrej Jirman <megous@megous.com>
+On Tue, Jun 11, 2019 at 01:56:25PM -0700, 'Saravana Kannan' via kernel-team wrote:
+> On Tue, Jun 11, 2019 at 8:18 AM Frank Rowand <frowand.list@gmail.com> wrote:
+> >
+> > Hi Saravana,
+> >
+> > On 6/10/19 10:36 AM, Rob Herring wrote:
+> > > Why are you resending this rather than replying to Frank's last
+> > > comments on the original?
+> >
+> > Adding on a different aspect...  The independent replies from three different
+> > maintainers (Rob, Mark, myself) pointed out architectural issues with the
+> > patch series.  There were also some implementation issues brought out.
+> > (Although I refrained from bringing up most of my implementation issues
+> > as they are not relevant until architecture issues are resolved.)
 > 
-> Some Allwinner SoC using boards (Orange Pi 3 for example) need to enable
-> on-board voltage shifting logic for the DDC bus using a gpio to be able
-> to access DDC bus. Use ddc-en-gpios property on the hdmi-connector to
-> model this.
+> Right, I'm not too worried about the implementation issues before we
+> settle on the architectural issues. Those are easy to fix.
 > 
-> Add binding documentation for optional ddc-en-gpios property.
+> Honestly, the main points that the maintainers raised are:
+> 1) This is a configuration property and not describing the device.
+> Just use the implicit dependencies coming from existing bindings.
 > 
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->  .../devicetree/bindings/display/connector/hdmi-connector.txt     | 1 +
->  1 file changed, 1 insertion(+)
+> I gave a bunch of reasons for why I think it isn't an OS configuration
+> property. But even if that's not something the maintainers can agree
+> to, I gave a concrete example (cyclic dependencies between clock
+> provider hardware) where the implicit dependencies would prevent one
+> of the devices from probing till the end of time. So even if the
+> maintainers don't agree we should always look at "depends-on" to
+> decide the dependencies, we still need some means to override the
+> implicit dependencies where they don't match the real dependency. Can
+> we use depends-on as an override when the implicit dependencies aren't
+> correct?
 > 
+> 2) This doesn't need to be solved because this is just optimizing
+> probing or saving power ("we should get rid of this auto disabling"):
+> 
+> I explained why this patch series is not just about optimizing probe
+> ordering or saving power. And why we can't ignore auto disabling
+> (because it's more than just auto disabling). The kernel is currently
+> broken when trying to use modules in ARM SoCs (probably in other
+> systems/archs too, but I can't speak for those).
+> 
+> 3) Concerns about backwards compatibility
+> 
+> I pointed out why the current scheme (depends-on being the only source
+> of dependency) doesn't break compatibility. And if we go with
+> "depends-on" as an override what we could do to keep backwards
+> compatibility. Happy to hear more thoughts or discuss options.
+> 
+> 4) How the "sync_state" would work for a device that supplies multiple
+> functionalities but a limited driver.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+<snip>
+To be clear, all of above are _real_ problems that stops us from efficiently
+load device drivers as modules for Android.
 
-If a tag was not added on purpose, please state why and what changed.
+So, if 'depends-on' doesn't seem like the right approach and "going back to
+the drawing board" is the ask, could you please point us in the right
+direction?
+
+- ssp
