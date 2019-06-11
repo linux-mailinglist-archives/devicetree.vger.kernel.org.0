@@ -2,173 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EC78417D1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD59417E8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436700AbfFKWCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 18:02:01 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:39220 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436696AbfFKWCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:02:01 -0400
-Received: by mail-vs1-f65.google.com with SMTP id n2so8963862vso.6
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 15:02:00 -0700 (PDT)
+        id S2407847AbfFKWIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 18:08:34 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:43546 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405700AbfFKWId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:08:33 -0400
+Received: by mail-pg1-f195.google.com with SMTP id f25so7712064pgv.10;
+        Tue, 11 Jun 2019 15:08:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R9aK4K+mYhxsBGuDL1wSkT9a9QdB+QJqvCcQqCRoZqk=;
-        b=jynV4LeLSkp8mY/yMLs3t4Pg5sizpYJiXBSRzIWuITTAmY09IkU049XMUREkVXni+g
-         JYmm1KjaWGlZolbGVaL1OfPnf3JRGs5E9Tzrgf9suFhpZzr0hUOGtfsAg/LWhL40oakz
-         62yF0xRTAYPtIkJav7muvoNoGgY8jAOJHKSgg=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QYmVu7Nh4W0MeolwVO7YM0xZrXFwuxo+MvNj54r5DFI=;
+        b=V04Asub/oIIrYF6+VT1L4GjZO3YN5RWi9rFd6op5qhtYOIxhky/VEe7qC+jA9AzvxB
+         +Gej/5KEJDZZzULmeSg/PrjPuiFVaZUz1V016WIUG3rbdgVCCo3tNI+DJK8nYSKEfEuo
+         T5NxA9bJ133DtUVdisHqndqY9EiwefYIuOixqHDdNou3VTaEOoeIB5pUnRFEYF4YJHSZ
+         cBGQYGE4JNMhJe5Al2BDOsw7YXDZWgAPF2TFPEny6ezfswyr0dLv3+M0EQcRu2kY31FP
+         fZkipWKbwiwql2gdcZg7buZD87uMDImR42biyjiTuWSdn7R2cFLkf6fEd9fnayCZUsFC
+         dEUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R9aK4K+mYhxsBGuDL1wSkT9a9QdB+QJqvCcQqCRoZqk=;
-        b=lvml1KgKSi7Jh7tRb/YbiiOf+q9NneHYbGTkSKvg+jTaShHE6NIfV/kcOm69HgEhC7
-         UjbIHxc3zDX2LPdIqrCCGKl4BNLDr2j4I9O3vVNmVn37PUI8IMOHuXNMcaRVjeSQc+mP
-         EFVKRhg781LZu72wBAIaHfi8ISCXxjsd89iURGtehNfgip3Aef6ffQmVo7cN2hBheqNJ
-         6mBfCZ1Dch9bjNmyy5HXtvay5OHHmd1c8ueYUhtAyNn7ymw3GWBgyrNpiyDll2EjVIgo
-         rYDCO5OPqSR+ZToDRJBYKRO4fLvz4akUrdQl3pU0eAv6JDMlgyLNm9uuZxy5mULTEoVj
-         LMtg==
-X-Gm-Message-State: APjAAAWJK6yS8SQRpFiNyVOEkoxk37amxaAL1icVBge3VjYP8rp58OJ9
-        /6RidOIuKT662vT7P9vMQqEt2Nd47zUNPvJJiDjDQQ==
-X-Google-Smtp-Source: APXvYqw0envY6zW+Lz/LpkpAKuJuPPY1ZENACuLJfRT4NvK+IVqHR36Y7gi5Vlqk+iKUf5BiCUj6/+NTISBNAEyEhIk=
-X-Received: by 2002:a67:d384:: with SMTP id b4mr9315081vsj.152.1560290519746;
- Tue, 11 Jun 2019 15:01:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-3-dbasehore@chromium.org> <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
-In-Reply-To: <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
-From:   "dbasehore ." <dbasehore@chromium.org>
-Date:   Tue, 11 Jun 2019 15:01:48 -0700
-Message-ID: <CAGAzgsoWGqf0JQPNyRFnv2xZTMxje6idce7Dy5FZzuxj30mQyw@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: display/panel: Expand rotation documentation
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=QYmVu7Nh4W0MeolwVO7YM0xZrXFwuxo+MvNj54r5DFI=;
+        b=H6G/clTwrgE5etYQsVGEDgdyVVDyqTQQ/4FPwLXk+8nAbKDbUHzqkcAWlXXK2HFu5V
+         HX64pm9lzQPHMZVI3jICD+ZSG4F16N80qtyKJrrtkkT48HM5RzY6hc0UWddazQAQZE4T
+         6K81Jp7oczS2iydithzEZTjk8Add/+GrXVVTA0wbJzrHPBGzBA5csm2/I1jVGjOEyvQl
+         e6oEwV02hnnfYmktjmTBw2HWEH13fX5RfJK2zhUdXS/CoT6kP50tIcFVRgWgsAOOGnRA
+         8RXanTGrFtOvKhRFk54SGAfWr9rX5aSspU1Al1tiDzFtyAHgf+zfo3J19m8cVAp4ROWF
+         Pg1A==
+X-Gm-Message-State: APjAAAUtaA3gWN8cqF8Ga6P/x8jvPmLL8skS1aGBf/Dv+mX75skMD5zE
+        xd/wmtjYARWXm5dxxkFQM46Xv5Ha
+X-Google-Smtp-Source: APXvYqzwkIT55bFViDlmpLpucpRSQsot83hu5okTBB5Ska5wI1ee/oDJ3I8uqTblmwQD08sTMnLXvA==
+X-Received: by 2002:a63:26c7:: with SMTP id m190mr22545113pgm.141.1560290912402;
+        Tue, 11 Jun 2019 15:08:32 -0700 (PDT)
+Received: from [10.67.49.123] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id o26sm13715272pgv.47.2019.06.11.15.08.30
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Jun 2019 15:08:31 -0700 (PDT)
+Subject: Re: [PATCH 6/7] ARM: dts: BCM5301X: Fix most DTC W=1 warnings
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Gregory Fong <gregory.0xf0@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20190528230134.27007-1-f.fainelli@gmail.com>
+ <20190528230134.27007-7-f.fainelli@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <75cc626c-743c-4bf9-7290-c9e8b5368159@gmail.com>
+Date:   Tue, 11 Jun 2019 15:08:24 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190528230134.27007-7-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 8:25 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Mon, Jun 10, 2019 at 10:03 PM Derek Basehore <dbasehore@chromium.org> wrote:
-> >
-> > This adds to the rotation documentation to explain how drivers should
-> > use the property and gives an example of the property in a devicetree
-> > node.
-> >
-> > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
-> > ---
-> >  .../bindings/display/panel/panel.txt          | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel.txt b/Documentation/devicetree/bindings/display/panel/panel.txt
-> > index e2e6867852b8..f35d62d933fc 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel.txt
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel.txt
-> > @@ -2,3 +2,35 @@ Common display properties
-> >  -------------------------
-> >
-> >  - rotation:    Display rotation in degrees counter clockwise (0,90,180,270)
-> > +
-> > +Property read from the device tree using of of_drm_get_panel_orientation
->
-> Don't put kernel specifics into bindings.
+On 5/28/19 4:01 PM, Florian Fainelli wrote:
+> Fix the bulk of the unit_address_vs_reg warnings and unnecessary
+> \#address-cells/#size-cells without "ranges" or child "reg" property
+> 
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
 
-Will remove that. I'll clean up the documentation to indicate that
-this binding creates a panel orientation property unless the rotation
-is handled in the Timing Controller on the panel if that sounds fine.
-
->
-> > +
-> > +The panel driver may apply the rotation at the TCON level, which will
->
-> What's TCON? Something Mediatek specific IIRC.
-
-The TCON is the Timing controller, which is on the panel. Every panel
-has one. I'll add to the doc that the TCON is in the panel, etc.
-
->
-> > +make the panel look like it isn't rotated to the kernel and any other
-> > +software.
-> > +
-> > +If not, a panel orientation property should be added through the SoC
-> > +vendor DRM code using the drm_connector_init_panel_orientation_property
-> > +function.
->
-> The 'rotation' property should be defined purely based on how the
-> panel is mounted relative to a device's orientation. If the display
-> pipeline has some ability to handle rotation, that's a feature of the
-> display pipeline and not the panel.
-
-This is how the panel orientation property is already handled in the
-kernel. See drivers/gpu/drm/i915/vlv_dsi.c for more details.
-
->
-> > +
-> > +Example:
->
-> This file is a collection of common properties. It shouldn't have an
-> example especially as this example is mostly non-common properties.
-
-Just copied one of our DTS entries that uses the property. I'll remove
-everything under compatible except for rotation and status.
-
->
-> > +       panel: panel@0 {
-> > +               compatible = "boe,himax8279d8p";
-> > +               reg = <0>;
-> > +               enable-gpios = <&pio 45 0>;
->
-> > +               pp33-gpios = <&pio 35 0>;
-> > +               pp18-gpios = <&pio 36 0>;
->
-> BTW, are these upstream because they look like GPIO controlled
-> supplies which we model with gpio-regulator binding typically.
-
-The boe,himax8279 driver was sent upstream, but it doesn't appear to
-be merged. I'll look into it on that thread.
-
->
-> > +               pinctrl-names = "default", "state_3300mv", "state_1800mv";
-> > +               pinctrl-0 = <&panel_pins_default>;
-> > +               pinctrl-1 = <&panel_pins_3300mv>;
-> > +               pinctrl-2 = <&panel_pins_1800mv>;
-> > +               backlight = <&backlight_lcd0>;
-> > +               rotation = <180>;
-> > +               status = "okay";
-> > +
-> > +               port {
-> > +                       panel_in: endpoint {
-> > +                               remote-endpoint = <&dsi_out>;
-> > +                       };
-> > +               };
-> > +       };
-> > --
-> > 2.22.0.rc2.383.gf4fbbf30c2-goog
-> >
+Applied to devicetree/next, thanks!
+-- 
+Florian
