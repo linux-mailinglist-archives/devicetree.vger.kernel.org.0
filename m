@@ -2,125 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CAE13D546
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57C493D537
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406884AbfFKSMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 14:12:02 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36380 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406851AbfFKSMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 14:12:01 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D91041031;
-        Tue, 11 Jun 2019 20:11:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1560276720;
-        bh=3URVGJMkojHdz0AK8/MsWlGeE84oCMlsn1bjeK37hp0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BGo5QaYfk/rE48eqvrFabjZ+rp8Vh2vmiTd2/+OaRiPdLF23veCE7jvUgtW6GBBGb
-         xwH0L5OAn3w8ITiNa4Xzt9R+ZfvdxIfR8fmGnHuE0nYwDHdhfxz2qV22esm8gm88aT
-         Ola/4bgITvHPvGgbN0TpuVKIsGIudAXpM5MtRW+8=
-Date:   Tue, 11 Jun 2019 21:11:44 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Drake <michael.drake@codethink.co.uk>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@lists.codethink.co.uk,
-        Patrick Glaser <pglaser@tesla.com>, Nate Case <ncase@tesla.com>
-Subject: Re: [PATCH v1 07/11] ti948: Add sysfs node for alive attribute
-Message-ID: <20190611181144.GV5016@pendragon.ideasonboard.com>
-References: <20190611140412.32151-1-michael.drake@codethink.co.uk>
- <20190611140412.32151-8-michael.drake@codethink.co.uk>
+        id S2406808AbfFKSKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 14:10:34 -0400
+Received: from mga04.intel.com ([192.55.52.120]:44341 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406685AbfFKSKe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 14:10:34 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 11:10:25 -0700
+X-ExtLoop1: 1
+Received: from jacob-builder.jf.intel.com (HELO jacob-builder) ([10.7.199.155])
+  by orsmga007.jf.intel.com with ESMTP; 11 Jun 2019 11:10:25 -0700
+Date:   Tue, 11 Jun 2019 11:13:33 -0700
+From:   Jacob Pan <jacob.jun.pan@linux.intel.com>
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Cc:     Jonathan Cameron <jonathan.cameron@huawei.com>,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        will.deacon@arm.com, linux-kernel@vger.kernel.org,
+        iommu@lists.linux-foundation.org, robh+dt@kernel.org,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        jacob.jun.pan@linux.intel.com
+Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
+Message-ID: <20190611111333.425ce809@jacob-builder>
+In-Reply-To: <62d1f310-0cba-4d55-0f16-68bba3c64927@arm.com>
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+        <20190610184714.6786-2-jean-philippe.brucker@arm.com>
+        <20190611103625.00001399@huawei.com>
+        <62d1f310-0cba-4d55-0f16-68bba3c64927@arm.com>
+Organization: OTC
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190611140412.32151-8-michael.drake@codethink.co.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+On Tue, 11 Jun 2019 15:35:22 +0100
+Jean-Philippe Brucker <jean-philippe.brucker@arm.com> wrote:
 
-Thank you for the patch.
-
-On Tue, Jun 11, 2019 at 03:04:08PM +0100, Michael Drake wrote:
-> This may be used by userspace to determine the state
-> of the device.
-
-Why is this needed ? Userspace shouldn't even be aware that this device
-exists.
-
-> Signed-off-by: Michael Drake <michael.drake@codethink.co.uk>
-> Cc: Patrick Glaser <pglaser@tesla.com>
-> Cc: Nate Case <ncase@tesla.com>
-> ---
->  drivers/gpu/drm/bridge/ti948.c | 28 ++++++++++++++++++++++++++--
->  1 file changed, 26 insertions(+), 2 deletions(-)
+> On 11/06/2019 10:36, Jonathan Cameron wrote:
+> >> +/**
+> >> + * ioasid_alloc - Allocate an IOASID
+> >> + * @set: the IOASID set
+> >> + * @min: the minimum ID (inclusive)
+> >> + * @max: the maximum ID (inclusive)
+> >> + * @private: data private to the caller
+> >> + *
+> >> + * Allocate an ID between @min and @max. The @private pointer is
+> >> stored
+> >> + * internally and can be retrieved with ioasid_find().
+> >> + *
+> >> + * Return: the allocated ID on success, or %INVALID_IOASID on
+> >> failure.
+> >> + */
+> >> +ioasid_t ioasid_alloc(struct ioasid_set *set, ioasid_t min,
+> >> ioasid_t max,
+> >> +		      void *private)
+> >> +{
+> >> +	u32 id = INVALID_IOASID;
+> >> +	struct ioasid_data *data;
+> >> +
+> >> +	data = kzalloc(sizeof(*data), GFP_KERNEL);
+> >> +	if (!data)
+> >> +		return INVALID_IOASID;
+> >> +
+> >> +	data->set = set;
+> >> +	data->private = private;
+> >> +
+> >> +	if (xa_alloc(&ioasid_xa, &id, data, XA_LIMIT(min, max),
+> >> GFP_KERNEL)) {
+> >> +		pr_err("Failed to alloc ioasid from %d to %d\n",
+> >> min, max);
+> >> +		goto exit_free;
+> >> +	}
+> >> +	data->id = id;
+> >> +
+> >> +exit_free:  
+> > 
+> > This error flow is perhaps a little more confusing than it needs to
+> > be?
+> > 
+> > My assumption (perhaps wrong) is that we only have an id ==
+> > INVALID_IOASID if the xa_alloc fails, and that we will always have
+> > such an id value if it does (I'm not totally sure this second
+> > element is true in __xa_alloc).
+> > 
+> > If I'm missing something perhaps a comment on how else we'd get
+> > here.  
 > 
-> diff --git a/drivers/gpu/drm/bridge/ti948.c b/drivers/gpu/drm/bridge/ti948.c
-> index b5c766711c4b..b624eaeabb43 100644
-> --- a/drivers/gpu/drm/bridge/ti948.c
-> +++ b/drivers/gpu/drm/bridge/ti948.c
-> @@ -412,6 +412,16 @@ static void ti948_alive_check(struct work_struct *work)
->  	schedule_delayed_work(&ti948->alive_check, TI948_ALIVE_CHECK_DELAY);
->  }
->  
-> +static ssize_t alive_show(struct device *dev,
-> +		struct device_attribute *attr, char *buf)
-> +{
-> +	struct ti948_ctx *ti948 = ti948_ctx_from_dev(dev);
-> +
-> +	return scnprintf(buf, PAGE_SIZE, "%u\n", (unsigned int)ti948->alive);
-> +}
-> +
-> +static DEVICE_ATTR_RO(alive);
-> +
->  static int ti948_pm_resume(struct device *dev)
->  {
->  	struct ti948_ctx *ti948 = ti948_ctx_from_dev(dev);
-> @@ -614,17 +624,31 @@ static int ti948_probe(struct i2c_client *client,
->  
->  	i2c_set_clientdata(client, ti948);
->  
-> +	ret = device_create_file(&client->dev, &dev_attr_alive);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Could not create alive attr\n");
-> +		return ret;
-> +	}
-> +
->  	ret = ti948_pm_resume(&client->dev);
-> -	if (ret != 0)
-> -		return -EPROBE_DEFER;
-> +	if (ret != 0) {
-> +		ret = -EPROBE_DEFER;
-> +		goto error;
-> +	}
->  
->  	dev_info(&ti948->i2c->dev, "End probe (addr: %x)\n", ti948->i2c->addr);
->  
->  	return 0;
-> +
-> +error:
-> +	device_remove_file(&client->dev, &dev_attr_alive);
-> +	return ret;
->  }
->  
->  static int ti948_remove(struct i2c_client *client)
->  {
-> +	device_remove_file(&client->dev, &dev_attr_alive);
-> +
->  	return ti948_pm_suspend(&client->dev);
->  }
->  
+> Yes we can simplify this:
+> 
+> 		return id;
+> 	exit_free:
+> 		kfree(data)
+> 		return INVALID_IOASID;
+> 	}
+> 
+> The XA API doesn't say that @id passed to xa_alloc() won't be modified
+> in case of error. It's true in the current implementation, but won't
+> necessarily stay that way. On the other hand I think it's safe to
+> expect @id to always be set when xa_alloc() succeeds.
+> 
+the flow with custom allocator is slightly different, but you are right
+I can simplify it as you suggested.
+Jonathan, I will add you to the cc list in next version. If you could
+also review the current version, it would be greatly appreciated.
 
--- 
-Regards,
+https://lore.kernel.org/lkml/1560087862-57608-13-git-send-email-jacob.jun.pan@linux.intel.com/
 
-Laurent Pinchart
+> >> +/**
+> >> + * ioasid_find - Find IOASID data
+> >> + * @set: the IOASID set
+> >> + * @ioasid: the IOASID to find
+> >> + * @getter: function to call on the found object
+> >> + *
+> >> + * The optional getter function allows to take a reference to the
+> >> found object
+> >> + * under the rcu lock. The function can also check if the object
+> >> is still valid:
+> >> + * if @getter returns false, then the object is invalid and NULL
+> >> is returned.
+> >> + *
+> >> + * If the IOASID has been allocated for this set, return the
+> >> private pointer
+> >> + * passed to ioasid_alloc. Private data can be NULL if not set.
+> >> Return an error
+> >> + * if the IOASID is not found or does not belong to the set.  
+> > 
+> > Perhaps should make it clear that @set can be null.  
+> 
+> Indeed. But I'm not sure allowing @set to be NULL is such a good idea,
+> because the data type associated to an ioasid depends on its set. For
+> example SVA will put an mm_struct in there, and auxiliary domains use
+> some structure private to the IOMMU domain.
+> 
+I am not sure we need to count on @set to decipher data type. Whoever
+does the allocation and owns the IOASID should knows its own data type.
+My thought was that @set is only used to group IDs, permission check
+etc.
+
+> Jacob, could me make @set mandatory, or do you see a use for a global
+> search? If @set is NULL, then callers can check if the return pointer
+> is NULL, but will run into trouble if they try to dereference it.
+> 
+A global search use case can be for PRQ. IOMMU driver gets a IOASID
+(first interrupt then retrieve from a queue), it has no idea which
+@set it belongs to. But the data types are the same for all IOASIDs
+used by the IOMMU.
+If @set is NULL, the search does not check set match. It is separate
+from return pointer. Sorry i am not seeing the problems here.
+
+> >   
+> >> + */
+> >> +void *ioasid_find(struct ioasid_set *set, ioasid_t ioasid,
+> >> +		  bool (*getter)(void *))
+> >> +{
+> >> +	void *priv = NULL;  
+> > 
+> > Set in all paths, so does need to be set here.  
+> 
+> Right
+> 
+> Thanks,
+> Jean
+
+[Jacob Pan]
