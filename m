@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB273C8A5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D81E73C851
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 12:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405370AbfFKKTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 06:19:07 -0400
-Received: from mail-ed1-f49.google.com ([209.85.208.49]:42874 "EHLO
-        mail-ed1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405104AbfFKKTH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 06:19:07 -0400
-Received: by mail-ed1-f49.google.com with SMTP id z25so19245500edq.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 03:19:06 -0700 (PDT)
+        id S2405241AbfFKKNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 06:13:24 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:33387 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405234AbfFKKNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 06:13:23 -0400
+Received: by mail-ed1-f67.google.com with SMTP id h9so19253630edr.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 03:13:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=c8jnMiv81FwEUDuhouV41YRUAtMXDx9VCwEGz+YrJoE=;
-        b=NM4NN/J7d9ru8kd3dn7OtVQIZ0cawvdRGuCDqIkNkZMD8Ez/odI0RulfUMhxKDaWQg
-         T4oSh/0nKy4M7wpOstzpi3+Gsqe/9d2tghUe8nzifFPlv2s5t4e2dU/mC3rydpUTxSeK
-         G43KHW5c1W6w8DW2R0xGyThcHmBk8WMIZIcig=
+        bh=X0C5tQts1L+LXt2Q6k9c6ouRJcr990w6/a3NoyIORNQ=;
+        b=hMSEhr1Ibx3hCZ1fwXTjoT0WNF47kP/wJklo2hoCJz1xUYosHQcyhZduBi4ldMd4u5
+         E1DFtj7cgLW/CRLILv3exZPt3kEXlkD3pLqVUz+QF2sMXilMvWtC3DtptVfHdjGIuxi2
+         y8sVqaA5Phb46+tnfHdR/Z1k05JiQ36ou7x8Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=c8jnMiv81FwEUDuhouV41YRUAtMXDx9VCwEGz+YrJoE=;
-        b=ec9UVHCsXpTNAN0i/VXE/c+48TyZVkYNpsqIk1b+VOKewCvWG21vJMvMHOJaqQjQYc
-         sg10PPLfSPF0AQ+4WuR8XIxbo0FNXX7QtPY3IqGTzhnBOen2UVgD13L2c1P3r9oF9LzT
-         w2mobxFGYH/Vfh+0t3BHrMFae0adxjQCLnR/FF7WEg7a1NFKz4rflkLYy0H2Mrg2VWJH
-         WKwnNrwy9FVveJt73uHfPJmsQg2g5uEhOXZ0a3k9NHD7b8QculFxKDlzzFXHN0Zrmhok
-         9D+7yEMvbGUNz6eAFa0fca6NljFStfpZSWetpMMAeEEGA//a5bytWQELaIeZM3T9QgDd
-         9x5g==
-X-Gm-Message-State: APjAAAVfttRJ6fZyBSBDbW+iiEc2yMOnSgh4yRJYWTSVKsKiahfe7Ioj
-        RUExKPv35NJj7KngC3f8go5pbVrzi2TPHg==
-X-Google-Smtp-Source: APXvYqyUbcNc73p2NCcoX17LDzesIu1rRkY1F5u6Ek502XB0Ufy4x+m03dB5yyTupcoKgpcfFVVCuA==
-X-Received: by 2002:a17:906:49cf:: with SMTP id w15mr10495799ejv.68.1560248345579;
-        Tue, 11 Jun 2019 03:19:05 -0700 (PDT)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com. [209.85.221.50])
-        by smtp.gmail.com with ESMTPSA id r12sm2452117eda.39.2019.06.11.03.19.05
+        bh=X0C5tQts1L+LXt2Q6k9c6ouRJcr990w6/a3NoyIORNQ=;
+        b=diuPGX6Cw9tlBhBv9JU2v0qycNtHrkDcDtD/EOw+acTHu93fAGCvEmyUFPlvLX1QV8
+         FUQeNDPdYOtb5CikteT5rRav7OKOCig8iQeudm2GqH8qkzrlEeNbVNPWSeRPU9upFX2R
+         WJicyAxJn5prClK/PSwu0df9IgwuZUTk6KNA2EcSi/+1Mt6moeTYDLDLOnaRmxwnoFP3
+         ansTKVobbXX5PPQSeyh4qerZ9//J7VSj2qjLh64zgv7mA10+vsRenUw7L7+d2jB7A5k7
+         4e3XHdpGh4smMoWpG5VqEjIcVFic3nXhCkaALDsMseUNFu17kToOAUzGoZGa9zcnOO04
+         d0YA==
+X-Gm-Message-State: APjAAAWxZlXy8bJEkJCn37JuvfE/uJeEDN0OQSz3NFyGH3VmuTw/UrQC
+        UMb5nY5XGF+x2NGwFu3wMHxRzt37SCSl5g==
+X-Google-Smtp-Source: APXvYqwSQFFQ5LttITVxq+OoZ0tQMSdSNlAA/76F5Dts48S0FU8Tckbmxe+Dz6zkh61AjrsS1plX8w==
+X-Received: by 2002:a50:a7a5:: with SMTP id i34mr79230897edc.294.1560248000970;
+        Tue, 11 Jun 2019 03:13:20 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id y11sm3657322edj.96.2019.06.11.03.13.18
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 03:19:05 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id p13so2265437wru.10
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 03:19:05 -0700 (PDT)
-X-Received: by 2002:adf:f246:: with SMTP id b6mr554368wrp.92.1560247928904;
- Tue, 11 Jun 2019 03:12:08 -0700 (PDT)
+        Tue, 11 Jun 2019 03:13:19 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id d18so12335464wrs.5
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 03:13:18 -0700 (PDT)
+X-Received: by 2002:a5d:514d:: with SMTP id u13mr32683805wrt.77.1560247997738;
+ Tue, 11 Jun 2019 03:13:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190516032332.56844-1-daoyuan.huang@mediatek.com>
- <20190516032332.56844-5-daoyuan.huang@mediatek.com> <20190604112039.GA12168@chromium.org>
- <1560244803.15624.6.camel@mtksdccf07>
-In-Reply-To: <1560244803.15624.6.camel@mtksdccf07>
+References: <20190417104511.21514-1-frederic.chen@mediatek.com>
+ <20190417104511.21514-7-frederic.chen@mediatek.com> <20190509094846.GA65444@google.com>
+ <1558466055.15388.342.camel@mtksdccf07> <1560242886.23799.13.camel@mtksdccf07>
+ <CAAFQd5CReiPOySyk-eFkgiQMDMoqB3Uhd=bcho2Qtsv74y8fmg@mail.gmail.com> <1560247648.23799.16.camel@mtksdccf07>
+In-Reply-To: <1560247648.23799.16.camel@mtksdccf07>
 From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Tue, 11 Jun 2019 19:11:57 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5BmSrkRmQFuiGz5RcBP01Ae32w6EhtP0n3cO7Pki=9Rng@mail.gmail.com>
-Message-ID: <CAAFQd5BmSrkRmQFuiGz5RcBP01Ae32w6EhtP0n3cO7Pki=9Rng@mail.gmail.com>
-Subject: Re: [RFC v2 4/4] media: platform: mtk-mdp3: Add Mediatek MDP3 driver
-To:     Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>
-Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+Date:   Tue, 11 Jun 2019 19:13:06 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5Ai2JmwY+_inA-WkE1rKhTOyvJeLM8XG3E6BsYCrp4pnw@mail.gmail.com>
+Message-ID: <CAAFQd5Ai2JmwY+_inA-WkE1rKhTOyvJeLM8XG3E6BsYCrp4pnw@mail.gmail.com>
+Subject: Re: [RFC PATCH V1 6/6] platform: mtk-isp: Add Mediatek DIP driver
+To:     Frederic Chen <frederic.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
         yuzhao@chromium.org, zwisler@chromium.org,
         "moderated list:ARM/Mediatek SoC support" 
@@ -73,38 +71,170 @@ Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
         <christie.yu@mediatek.com>,
         =?UTF-8?B?SG9sbWVzIENoaW91ICjpgrHmjLop?= 
         <holmes.chiou@mediatek.com>,
-        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
-        <frederic.chen@mediatek.com>,
         Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
         =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
         =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
         Linux Media Mailing List <linux-media@vger.kernel.org>,
         srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+        devicetree@vger.kernel.org, Shik Chen <shik@chromium.org>,
+        suleiman@chromium.org,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daoyuan,
-
-On Tue, Jun 11, 2019 at 6:20 PM Daoyuan Huang
-<daoyuan.huang@mediatek.com> wrote:
+On Tue, Jun 11, 2019 at 7:07 PM Frederic Chen
+<frederic.chen@mediatek.com> wrote:
 >
-> hi Tomasz:
+> Hi Tomasz,
 >
-> Thanks for your review comments, the corresponding modification
-> & explanation is under preparation, will update soon.
 >
-> Thanks.
+> On Tue, 2019-06-11 at 17:59 +0900, Tomasz Figa wrote:
+> > On Tue, Jun 11, 2019 at 5:48 PM Frederic Chen
+> > <frederic.chen@mediatek.com> wrote:
+> > >
+> > > Dear Tomasz,
+> > >
+> > > I'd like to elaborate more about the tuning_data.va.
+> > > Would you like to give us some advice about our improvement proposal inline?
+> > >
+> > > Thank you very much.
+> > >
+> > >
+> > > On Wed, 2019-05-22 at 03:14 +0800, Frederic Chen wrote:
+> > > > Dear Tomasz,
+> > > >
+> > > > I appreciate your comment. It is very helpful for us.
+> > > >
+> > > >
+> > > > > > diff --git a/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c b/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..54d2b5f5b802
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
+> > > > > > @@ -0,0 +1,1384 @@
+> > >
+> > > [snip]
+> > >
+> > > > > > +static void dip_submit_worker(struct work_struct *work)
+> > > > > > +{
+> > > > > > +       struct mtk_dip_hw_submit_work *dip_submit_work =
+> > > > > > +               container_of(work, struct mtk_dip_hw_submit_work, frame_work);
+> > > > > > +       struct mtk_dip_hw *dip_hw = dip_submit_work->dip_hw;
+> > > > > > +       struct mtk_dip_dev *dip_dev = mtk_dip_hw_to_dev(dip_hw);
+> > > > > > +       struct mtk_dip_hw_work *dip_work;
+> > > > > > +       struct mtk_dip_hw_subframe *buf;
+> > > > > > +       u32 len, num;
+> > > > > > +       int ret;
+> > > > > > +
+> > > > > > +       num  = atomic_read(&dip_hw->num_composing);
+> > > > > > +
+> > > > > > +       mutex_lock(&dip_hw->dip_worklist.queuelock);
+> > > > > > +       dip_work = list_first_entry(&dip_hw->dip_worklist.queue,
+> > >
+> > > [snip]
+> > >
+> > > > > > +
+> > > > > > +       if (dip_work->frameparams.tuning_data.pa == 0) {
+> > > > > > +               dev_dbg(&dip_dev->pdev->dev,
+> > > > > > +                       "%s: frame_no(%d) has no tuning_data\n",
+> > > > > > +                       __func__, dip_work->frameparams.frame_no);
+> > > > > > +
+> > > > > > +               memcpy(&dip_work->frameparams.tuning_data,
+> > > > > > +                      &buf->tuning_buf, sizeof(buf->tuning_buf));
+> > > > >
+> > > > > Ditto.
+> > > > >
+> > > >
+> > > > I got it.
+> > > >
+> > > > > > +               memset((char *)buf->tuning_buf.va, 0, DIP_TUNING_SZ);
+> > > > >
+> > > > > Ditto.
+> > > >
+> > > > I got it.
+> > > >
+> > > > >
+> > > > > > +               /*
+> > > > > > +                * When user enqueued without tuning buffer,
+> > > > > > +                * it would use driver internal buffer.
+> > > > > > +                * So, tuning_data.va should be 0
+> > > > > > +                */
+> > > > > > +               dip_work->frameparams.tuning_data.va = 0;
+> > > > >
+> > > > > I don't understand this. We just zeroed the buffer via this kernel VA few
+> > > > > lines above, so why would it have to be set to 0?
+> > > > >
+> > > >
+> > > > I will remove this unnecessary line.
+> > > >
+> > > > > > +       }
+> > >
+> > > After confirming the firmware part, I found that we use this field
+> > > (tuning_data.va) to notify firmware if there is no tuning data from
+> > > user.
+> > >
+> > > - frameparams.tuning_data.va is 0: use the default tuning data in
+> > >                                    SCP, but we still need to pass
+> > >                                    frameparams.tuning_data.pa because
+> > >                                    the buffer contains some working
+> > >                                    buffer required.
+> > > - frameparams.tuning_data.va is not 0: the tuning data was passed from
+> > >                                        the user
+> > >
+> > > Since we should not pass cpu addres to SCP, could I rename tuning_data.va
+> > > as tuning_data.cookie, and write a constant value to indicate if SCP
+> > > should use its internal default setting or not here?
+> > >
+> > > For example,
+> > > /* SCP uses tuning data passed from userspace*/
+> > > dip_work->frameparams.tuning_data.cookie = MTK_DIP_USER_TUNING_DATA;
+> > >
+> > > /* SCP uses internal tuning data */
+> > > dip_work->frameparams.tuning_data.cookie = MTK_DIP_DEFAULT_TUNING_DATA;
+> >
+> > Perhaps we could just call it "present" and set to true or false?
+> >
+>
+> Yes. I would like to use "present" here.
+>
+> Original:
+>   struct img_addr {
+>       u64 va; /* Used by Linux OS access */
+>       u32 pa; /* Used by CM4 access */
+>       u32 iova; /* Used by IOMMU HW access */
+>   } __attribute__ ((__packed__));
+>
+>   struct img_ipi_frameparam {
+>       u32 index;
+>       u32 frame_no;
+>       u64 timestamp;
+>       u8 type;  /* enum mdp_stream_type */
+>       u8 state;
+>       u8 num_inputs;
+>       u8 num_outputs;
+>       u64 drv_data;
+>       struct img_input inputs[IMG_MAX_HW_INPUTS];
+>       struct img_output outputs[IMG_MAX_HW_OUTPUTS];
+>       struct img_addr tuning_data;
+>       struct img_addr subfrm_data;
+>       struct img_sw_addr config_data;
+>       struct img_sw_addr self_data;
+>   } __attribute__ ((__packed__));
+>
+>
+> Modified:
+>   struct tuning_buf {
+>       u8 present;
 
-Thanks.
+I'd make this u32 to keep the other fields aligned.
 
-Note that Alexandre may already be reviewing the rest of this patch,
-so I'd consult with him if sending a next revision or waiting for his
-review is preferred.
+>       u32 pa;   /* Used by CM4 access */
+>       u32 iova; /* Used by IOMMU HW access */
+>   } __attribute__ ((__packed__));
 
 Best regards,
 Tomasz
