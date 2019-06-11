@@ -2,96 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 025854181F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E59041825
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:30:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390623AbfFKW0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 18:26:18 -0400
-Received: from gate.crashing.org ([63.228.1.57]:56267 "EHLO gate.crashing.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389575AbfFKW0S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 18:26:18 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x5BMPqDC020637;
-        Tue, 11 Jun 2019 17:25:53 -0500
-Message-ID: <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     James Morse <james.morse@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Date:   Wed, 12 Jun 2019 08:25:52 +1000
-In-Reply-To: <20190611115651.GD31772@zn.tnic>
-References: <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
-         <DB09EE2A-7397-4063-B925-66658D0105A5@alien8.de>
-         <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
-         <20190531051400.GA2275@cz.tnic>
-         <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
-         <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
-         <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
-         <20190608090556.GA32464@zn.tnic>
-         <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
-         <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
-         <20190611115651.GD31772@zn.tnic>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S2392095AbfFKWaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 18:30:23 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:33062 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392092AbfFKWaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:30:22 -0400
+Received: by mail-pf1-f195.google.com with SMTP id x15so8351500pfq.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 15:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=3nJbbRKlTPYM1woarvu6grRc9TzO5KmCP13nZ/PCJ6c=;
+        b=AkAgROt9atHwV3xoI9VjaZrzZaaO5howAWh2priY04W1eiUwPse4i9GNmq6QF62bfM
+         MjEIEYGjhwP96quM3HMtr3Th7Fkvo1GgNOmUIQgHXmbm147RCQC4UZxj1RlLETex3AUi
+         Ks7ioq3D9bjZkjE4COgReB+rkRk03RcrgiW1E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3nJbbRKlTPYM1woarvu6grRc9TzO5KmCP13nZ/PCJ6c=;
+        b=nJy/JZMXfcG0V4BVMKm1jPapjCT2Uw1Sw7zx1lScB6vvqF4beEuZ9xG5odzoZSHMeD
+         dzJyrAusVvUvfEFdwSUS5Ch4Dzuj7N4DnS8U0dglzFp0R+n2uUKXi/U4oO6HiwXpFM/C
+         9AoFm1/avAsrkMzp42XlXIKNjhEqhhx4dd0BaGNB3v/XbmIGMK5Kdt5EBK6QPrMRh1fV
+         7rlii647niHyzpMRNQAiahdxJmtqAiMfDdMJNXam+PSklNnRNPfje2s3UaGYNBYCIWvQ
+         xJuWTFCeNpP+oi5g6bMmXiv8gjMvnq4sJGD50LdAj1Cbj3M/B2Kalu9mfHZErJt+1D02
+         cWZA==
+X-Gm-Message-State: APjAAAVWAzNY00of4U4B5IpAPcy1EYMLXkdC0LQPVb4FStm6rD/UxoI+
+        +gWBRbXbh/OM3ufG+Ac/KS9rqw==
+X-Google-Smtp-Source: APXvYqzPGqvHJEEW8KGadINzmMV1t9wKDJZxZqs3Q4ilQ1+NwSxiG1GZwT6wk/dEzb5udw5jUepoxQ==
+X-Received: by 2002:a17:90a:2488:: with SMTP id i8mr28582703pje.123.1560292222289;
+        Tue, 11 Jun 2019 15:30:22 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id a13sm8937301pgh.6.2019.06.11.15.30.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Jun 2019 15:30:20 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 15:30:19 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Brian Norris <briannorris@google.com>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Doug Anderson <dianders@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190611223019.GH137143@google.com>
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+ <20190610205233.GB137143@google.com>
+ <20190611104913.egsbwcedshjdy3m5@holly.lan>
+ <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-11 at 13:56 +0200, Borislav Petkov wrote:
-> On Tue, Jun 11, 2019 at 05:21:39PM +1000, Benjamin Herrenschmidt wrote:
-> > So looking again ... all the registration/removal of edac devices seem
-> > to already be protected by mutexes, so that's not a problem.
-> > 
-> > Tell me more about what specific races you think we might have here,
-> > I'm not sure I follow...
+On Tue, Jun 11, 2019 at 09:55:30AM -0700, Brian Norris wrote:
+> On Tue, Jun 11, 2019 at 3:49 AM Daniel Thompson
+> <daniel.thompson@linaro.org> wrote:
+> > This is a long standing flaw in the backlight interfaces. AFAIK generic
+> > userspaces end up with a (flawed) heuristic.
 > 
-> Well, as I said "it might work or it might set your cat on fire." For
-> example, one of the error logging paths is edac_mc_handle_error() and
-> that thing mostly operates using the *mci pointer which should be ok
-> but then it calls the "trace_mc_event" tracepoint and I'd suppose that
-> tracepoints can do lockless but I'm not sure.
+> Bingo! Would be nice if we could start to fix this long-standing flaw.
 
-Yes, we would be in a world of pain already if tracepoints couldn't
-handle concurrency :-)
+Agreed!
 
-> So what needs to happen is for paths which weren't called by multiple
-> EDAC agents in parallel but need to get called in parallel now due to
-> ARM drivers wanting to do that, to get audited that they're safe.
+How could a fix look like, a sysfs attribute? Would a boolean value
+like 'logarithmic_scale' or 'linear_scale' be enough or could more
+granularity be needed?
 
-That's the thing, I don't think we have such path. We are talking about
-having separate L1/L2 vs. MC drivers, they don't overlap.
-
-> Situation is easy if you have one platform driver where you can
-> synchronize things in the driver but since you guys need to do separate
-> drivers for whatever reason, then that would need to be done prior.
-> 
-> Makes more sense?
-
-Sort-of... I still don't see a race in what we propose but I might be
-missing something subtle. We are talking about two drivers for two
-different IP blocks updating different counters etc...
-
-Cheers,
-Ben.
-
-
+The new attribute could be optional (it only exists if explicitly
+specified by the driver) or be set to a default based on a heuristic
+if not specified and be 'fixed' on a case by case basis. The latter
+might violate "don't break userspace" though, so I'm not sure it's a
+good idea.
