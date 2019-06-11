@@ -2,117 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB1923D32F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E80B3D37E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404947AbfFKRB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 13:01:27 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:46353 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404868AbfFKRB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 13:01:27 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 81so7790040pfy.13
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 10:01:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=D/6K52cqkgjun9QL50SRby3oaZewpSvBQVwA1lCewfo=;
-        b=XtFdaHCTpTDf0qQhQfuAjHKGqAns0vrUqrQg02/8jVmR8p0ZzKKlHKnR9VJJBokSNm
-         ZgAQrr+A/h9J30599wfzOGisk8Qu8DlWAbSCBG5dzc6KA8829UtBGHKxwnkcRV2MXxbW
-         ILseuhOSbtocL+Hw4Y3nT83V4Ab6Y2qlkb2SU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=D/6K52cqkgjun9QL50SRby3oaZewpSvBQVwA1lCewfo=;
-        b=Wj5Y4UnVBGushTg7xZALtSHfaMGmJ57HdQiZy+WS0D+VuVJ6Fa9wywA4F2dyUEYEEN
-         VXdebFN9nxQ/XYuMRhIFVCHYdY2lu6mZmjgTqGV1dj2TYmMSpRYUg21O0afPSb2QTCYj
-         WNk91aVQQfpFnbafM5hLjrytB0WTEVAFZ4c/SyQ1EANmyLW16+KqymxWbwtvrJ+F1XSL
-         jxlUBZZmfQW/08k0gFIOtQKEorzKyrLG3nfePfp374PSFDV1brO+1804htb6IEZm/jkw
-         Uu9Cd6OmbLZ+jNqwpMGxN73xmgV4CbKsJmJmvIcslv1vWcBwDFzPF74pWApz2Uj1CAfo
-         YBLw==
-X-Gm-Message-State: APjAAAXe5WbFBlARb+m+5eKAtJsuSi55YKPtSJZzt+sEjjRdpEHSjXUx
-        aLg9MDENC/sbvXHOIcQQ8NISfA==
-X-Google-Smtp-Source: APXvYqwqnW/JGe6b0ykApW2Df5C6hfjZci1Q+jK6X2Ei83loTkx83Y/j5N8snl0nAtPHXvq5b2N3cg==
-X-Received: by 2002:a63:4e10:: with SMTP id c16mr20869964pgb.214.1560272486514;
-        Tue, 11 Jun 2019 10:01:26 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id p1sm5962781pff.74.2019.06.11.10.01.25
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 10:01:25 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 10:01:23 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH 2/2] backlight: pwm_bl: Get number of brightness levels
- for CIE 1931 from the device tree
-Message-ID: <20190611170123.GD137143@google.com>
-References: <20190610233739.29477-1-mka@chromium.org>
- <20190610233739.29477-2-mka@chromium.org>
- <20190611153314.cj6j6l4kcl4kk4t2@holly.lan>
+        id S2405442AbfFKRHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 13:07:45 -0400
+Received: from mga17.intel.com ([192.55.52.151]:18244 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405345AbfFKRHp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 13:07:45 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 10:07:44 -0700
+X-ExtLoop1: 1
+Received: from jacob-builder.jf.intel.com (HELO jacob-builder) ([10.7.199.155])
+  by orsmga006.jf.intel.com with ESMTP; 11 Jun 2019 10:07:44 -0700
+Date:   Tue, 11 Jun 2019 10:10:52 -0700
+From:   Jacob Pan <jacob.jun.pan@linux.intel.com>
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        will.deacon@arm.com, linux-kernel@vger.kernel.org,
+        iommu@lists.linux-foundation.org, robh+dt@kernel.org,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        jacob.jun.pan@linux.intel.com
+Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
+Message-ID: <20190611101052.35af46df@jacob-builder>
+In-Reply-To: <95292b47-4cf4-5fd9-b096-1cb016e2264f@arm.com>
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+        <20190610184714.6786-2-jean-philippe.brucker@arm.com>
+        <20190611052626.20bed59a@jacob-builder>
+        <95292b47-4cf4-5fd9-b096-1cb016e2264f@arm.com>
+Organization: OTC
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190611153314.cj6j6l4kcl4kk4t2@holly.lan>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+On Tue, 11 Jun 2019 15:37:42 +0100
+Jean-Philippe Brucker <jean-philippe.brucker@arm.com> wrote:
 
-On Tue, Jun 11, 2019 at 04:33:14PM +0100, Daniel Thompson wrote:
-> On Mon, Jun 10, 2019 at 04:37:39PM -0700, Matthias Kaehlcke wrote:
-> > Commit 88ba95bedb79 ("backlight: pwm_bl: Compute brightness of LED
-> > linearly to human eye") uses pwm_period / hweight32(pwm_period) as
-> > as heuristic to determine the number of brightness levels when the DT
-> > doesn't provide a brightness level table. This heuristic is broken
-> > and can result in excessively large brightness tables.
-> > 
-> > Instead of using the heuristic try to retrieve the number of
-> > brightness levels from the device tree (property 'max-brightness'
-> > + 1). If the value is not specified use a default of 256 levels.
+> On 11/06/2019 13:26, Jacob Pan wrote:
+> >> +/**
+> >> + * ioasid_set_data - Set private data for an allocated ioasid
+> >> + * @ioasid: the ID to set data
+> >> + * @data:   the private data
+> >> + *
+> >> + * For IOASID that is already allocated, private data can be set
+> >> + * via this API. Future lookup can be done via ioasid_find.
+> >> + */
+> >> +int ioasid_set_data(ioasid_t ioasid, void *data)
+> >> +{
+> >> +	struct ioasid_data *ioasid_data;
+> >> +	int ret = 0;
+> >> +
+> >> +	xa_lock(&ioasid_xa);  
+> > Just wondering if this is necessary, since xa_load is under
+> > rcu_read_lock and we are not changing anything internal to xa. For
+> > custom allocator I still need to have the mutex against allocator
+> > removal.  
 > 
-> I'll look at the code tomorrow but why 256?
+> I think we do need this because of a possible race with ioasid_free():
 > 
-> To me it feels simultaneously too big for a simple 8-bit PWM and too
-> small for animated backlight effects.
+>          CPU1                      CPU2
+>   ioasid_free(ioasid)     ioasid_set_data(ioasid, foo)
+>                             data = xa_load(...)
+>     xa_erase(...)
+>     kfree_rcu(data)           (no RCU lock held)
+>     ...free(data)
+>                             data->private = foo;
+> 
+make sense, thanks for explaining.
 
-I agree there is no one-size-fits-it-all default, 256 seemed like a
-possible compromise.
+> The issue is theoretical at the moment because no users do this, but
+> I'd be more comfortable taking the xa_lock, which prevents a
+> concurrent xa_erase()+free(). (I commented on your v3 but you might
+> have missed it)
+> 
+Did you reply to my v3? I did not see it. I only saw your comments about
+v3 in your commit message.
 
-> I certainly agree that an override could be useful but I'm not clear why
-> deriving a default based on the period is bogus (and the description is
-> merely concerned about uselessly big tables).
+> >> +	ioasid_data = xa_load(&ioasid_xa, ioasid);
+> >> +	if (ioasid_data)
+> >> +		rcu_assign_pointer(ioasid_data->private, data);  
+> > it is good to publish and have barrier here. But I just wonder even
+> > for weakly ordered machine, this pointer update is quite far away
+> > from its data update.  
+> 
+> I don't know, it could be right before calling ioasid_set_data():
+> 
+> 	mydata = kzalloc(sizeof(*mydata));
+> 	mydata->ops = &my_ops;			(1)
+> 	ioasid_set_data(ioasid, mydata);
+> 		... /* no write barrier here */
+> 		data->private = mydata;		(2)
+> 
+> And then another thread calls ioasid_find():
+> 
+> 	mydata = ioasid_find(ioasid);
+> 	if (mydata)
+> 		mydata->ops->do_something();
+> 
+> On a weakly ordered machine, this thread could observe the pointer
+> assignment (2) before the ops assignment (1), and dereference NULL.
+> Using rcu_assign_pointer() should fix that
+> 
+I agree it is better to have the barrier. Just thought there is already
+a rcu_read_lock() in xa_load() in between. rcu_read_lock() may have
+barrier in some case but better not count on it. No issues here. I will
+integrate this in the next version.
 
-Maybe it's not necessarily bogus, but the current heuristic that
-counts the number of set bits (hweight()) in the period certainly is.
+> Thanks,
+> Jean
 
-IIUC the period provides a clue about the PWM resolution, because it
-would be hard/impossible to accomodate the high resolution in shorter
-periods.
-
-> /*
->  * Once we have 4096 levels there's little point going much higher...
->  * neither interactive sliders nor animation benefits from having
->  * more values in the table.
->  */
-> max_brightness = min(DIV_ROUND_UP(period, ffs(period), 4096);
-
-I was also considering something along these lines, but wasn't sure
-if there is indeed a relation between the period and the PWM
-resolution. I take your suggestion as a confirmation :)
+[Jacob Pan]
