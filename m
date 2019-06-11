@@ -2,188 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4F13C664
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 10:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4BCA3C69A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 10:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391402AbfFKIsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 04:48:11 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:11437 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2391273AbfFKIsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 04:48:11 -0400
-X-UUID: 6571d7cae7254b0aac08865429bde460-20190611
-X-UUID: 6571d7cae7254b0aac08865429bde460-20190611
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <frederic.chen@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1043744316; Tue, 11 Jun 2019 16:48:07 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 11 Jun 2019 16:48:05 +0800
-Received: from [172.21.84.99] (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 11 Jun 2019 16:48:06 +0800
-Message-ID: <1560242886.23799.13.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V1 6/6] platform: mtk-isp: Add Mediatek DIP driver
-From:   Frederic Chen <frederic.chen@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     <matthias.bgg@gmail.com>, <mchehab@kernel.org>,
-        <yuzhao@chromium.org>, <zwisler@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <Sean.Cheng@mediatek.com>,
-        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
-        <holmes.chiou@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
-        <jungo.lin@mediatek.com>, <Rynn.Wu@mediatek.com>,
-        <linux-media@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <devicetree@vger.kernel.org>, <shik@chromium.org>,
-        <suleiman@chromium.org>,
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        <hans.verkuil@cisco.com>
-Date:   Tue, 11 Jun 2019 16:48:06 +0800
-In-Reply-To: <1558466055.15388.342.camel@mtksdccf07>
-References: <20190417104511.21514-1-frederic.chen@mediatek.com>
-         <20190417104511.21514-7-frederic.chen@mediatek.com>
-         <20190509094846.GA65444@google.com> <1558466055.15388.342.camel@mtksdccf07>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S2403879AbfFKIx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 04:53:59 -0400
+Received: from mga03.intel.com ([134.134.136.65]:36451 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2403836AbfFKIx6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 04:53:58 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 01:53:58 -0700
+X-ExtLoop1: 1
+Received: from kuha.fi.intel.com ([10.237.72.189])
+  by fmsmga001.fm.intel.com with SMTP; 11 Jun 2019 01:53:53 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 11 Jun 2019 11:53:52 +0300
+Date:   Tue, 11 Jun 2019 11:53:52 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Pawel Laszczak <pawell@cadence.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "rogerq@ti.com" <rogerq@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jbergsagel@ti.com" <jbergsagel@ti.com>,
+        "nsekhar@ti.com" <nsekhar@ti.com>, "nm@ti.com" <nm@ti.com>,
+        Suresh Punnoose <sureshp@cadence.com>,
+        "peter.chen@nxp.com" <peter.chen@nxp.com>,
+        Jayshri Dajiram Pawar <jpawar@cadence.com>,
+        Rahul Kumar <kurahul@cadence.com>
+Subject: Re: [PATCH v7 5/6] usb:cdns3 Add Cadence USB3 DRD Driver
+Message-ID: <20190611085352.GA27627@kuha.fi.intel.com>
+References: <1559729030-16390-1-git-send-email-pawell@cadence.com>
+ <1559729030-16390-6-git-send-email-pawell@cadence.com>
+ <20190607101602.GD10298@kuha.fi.intel.com>
+ <BYAPR07MB4709F32FF0C6DAE8905703C7DD130@BYAPR07MB4709.namprd07.prod.outlook.com>
 MIME-Version: 1.0
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BYAPR07MB4709F32FF0C6DAE8905703C7DD130@BYAPR07MB4709.namprd07.prod.outlook.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Tomasz,
+Hi Pawel,
 
-I'd like to elaborate more about the tuning_data.va.
-Would you like to give us some advice about our improvement proposal inline?
-
-Thank you very much.
-
-
-On Wed, 2019-05-22 at 03:14 +0800, Frederic Chen wrote:
-> Dear Tomasz,
+On Mon, Jun 10, 2019 at 06:33:29AM +0000, Pawel Laszczak wrote:
+> >> +static ssize_t cdns3_mode_write(struct file *file,
+> >> +				const char __user *ubuf,
+> >> +				size_t count, loff_t *ppos)
+> >> +{
+> >> +	struct seq_file	 *s = file->private_data;
+> >> +	struct cdns3 *cdns = s->private;
+> >> +	u32 mode = USB_DR_MODE_UNKNOWN;
+> >> +	char buf[32];
+> >> +	int ret = 0;
+> >
+> >        int ret;
+> >
+> >> +	if (copy_from_user(&buf, ubuf, min_t(size_t, sizeof(buf) - 1, count)))
+> >> +		return -EFAULT;
+> >
+> >                return -EINVAL;
 > 
-> I appreciate your comment. It is very helpful for us.
+> Why? I've checked in some place in kernel and after copy_from_user are used EFAULT.
+> I think that EINVAL is better but I wanted be  consistent with the rest of kernel. 
 > 
-> 
-> > > diff --git a/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c b/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
-> > > new file mode 100644
-> > > index 000000000000..54d2b5f5b802
-> > > --- /dev/null
-> > > +++ b/drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
-> > > @@ -0,0 +1,1384 @@
+> Is there any explanation for this ?
 
-[snip]
+No. You are correct. EFAULT seems to be used with copy_from_user().
 
-> > > +static void dip_submit_worker(struct work_struct *work)
-> > > +{
-> > > +       struct mtk_dip_hw_submit_work *dip_submit_work =
-> > > +               container_of(work, struct mtk_dip_hw_submit_work, frame_work);
-> > > +       struct mtk_dip_hw *dip_hw = dip_submit_work->dip_hw;
-> > > +       struct mtk_dip_dev *dip_dev = mtk_dip_hw_to_dev(dip_hw);
-> > > +       struct mtk_dip_hw_work *dip_work;
-> > > +       struct mtk_dip_hw_subframe *buf;
-> > > +       u32 len, num;
-> > > +       int ret;
-> > > +
-> > > +       num  = atomic_read(&dip_hw->num_composing);
-> > > +
-> > > +       mutex_lock(&dip_hw->dip_worklist.queuelock);
-> > > +       dip_work = list_first_entry(&dip_hw->dip_worklist.queue,
+thanks,
 
-[snip]
-
-> > > +
-> > > +       if (dip_work->frameparams.tuning_data.pa == 0) {
-> > > +               dev_dbg(&dip_dev->pdev->dev,
-> > > +                       "%s: frame_no(%d) has no tuning_data\n",
-> > > +                       __func__, dip_work->frameparams.frame_no);
-> > > +
-> > > +               memcpy(&dip_work->frameparams.tuning_data,
-> > > +                      &buf->tuning_buf, sizeof(buf->tuning_buf));
-> > 
-> > Ditto.
-> > 
-> 
-> I got it.
-> 
-> > > +               memset((char *)buf->tuning_buf.va, 0, DIP_TUNING_SZ);
-> > 
-> > Ditto.
-> 
-> I got it.
-> 
-> > 
-> > > +               /*
-> > > +                * When user enqueued without tuning buffer,
-> > > +                * it would use driver internal buffer.
-> > > +                * So, tuning_data.va should be 0
-> > > +                */
-> > > +               dip_work->frameparams.tuning_data.va = 0;
-> > 
-> > I don't understand this. We just zeroed the buffer via this kernel VA few
-> > lines above, so why would it have to be set to 0?
-> > 
-> 
-> I will remove this unnecessary line.
-> 
-> > > +       }
-
-After confirming the firmware part, I found that we use this field
-(tuning_data.va) to notify firmware if there is no tuning data from
-user.
-
-- frameparams.tuning_data.va is 0: use the default tuning data in
-				   SCP, but we still need to pass
-				   frameparams.tuning_data.pa because
-				   the buffer contains some working
-				   buffer required.
-- frameparams.tuning_data.va is not 0: the tuning data was passed from
-				       the user
-
-Since we should not pass cpu addres to SCP, could I rename tuning_data.va
-as tuning_data.cookie, and write a constant value to indicate if SCP
-should use its internal default setting or not here?
-
-For example,
-/* SCP uses tuning data passed from userspace*/
-dip_work->frameparams.tuning_data.cookie = MTK_DIP_USER_TUNING_DATA;
-
-/* SCP uses internal tuning data */
-dip_work->frameparams.tuning_data.cookie = MTK_DIP_DEFAULT_TUNING_DATA;
-
-
-> > > +
-> > > +       dip_work->frameparams.drv_data = (u64)dip_hw;
-> > 
-> > Passing kernel pointers to firmware?
-> 
-> I will remove this line.
-> 
-> > 
-> > > +       dip_work->frameparams.state = FRAME_STATE_COMPOSING;
-> > > +
-> > > +       memcpy((void *)buf->frameparam.va, &dip_work->frameparams,
-> > > +              sizeof(dip_work->frameparams));
-> > 
-> > There shouldn't be a need to type cast the pointer.
-> > 
-> 
-> I will fix it.
-> 
-> > > +
-> > > +       dip_send(dip_hw->vpu_pdev, SCP_IPI_DIP_FRAME,
-> > > +                (void *)&dip_work->frameparams,
-> > 
-
-[snip]
-
-
-Sincerely,
-
-Frederic Chen
-
-
-
+-- 
+heikki
