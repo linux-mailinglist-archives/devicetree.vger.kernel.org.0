@@ -2,98 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E59041825
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E7FA41848
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 00:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392095AbfFKWaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 18:30:23 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:33062 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392092AbfFKWaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:30:22 -0400
-Received: by mail-pf1-f195.google.com with SMTP id x15so8351500pfq.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 15:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3nJbbRKlTPYM1woarvu6grRc9TzO5KmCP13nZ/PCJ6c=;
-        b=AkAgROt9atHwV3xoI9VjaZrzZaaO5howAWh2priY04W1eiUwPse4i9GNmq6QF62bfM
-         MjEIEYGjhwP96quM3HMtr3Th7Fkvo1GgNOmUIQgHXmbm147RCQC4UZxj1RlLETex3AUi
-         Ks7ioq3D9bjZkjE4COgReB+rkRk03RcrgiW1E=
+        id S2407107AbfFKWfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 18:35:13 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:45824 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405174AbfFKWfM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 18:35:12 -0400
+Received: by mail-io1-f68.google.com with SMTP id e3so11296069ioc.12;
+        Tue, 11 Jun 2019 15:35:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3nJbbRKlTPYM1woarvu6grRc9TzO5KmCP13nZ/PCJ6c=;
-        b=nJy/JZMXfcG0V4BVMKm1jPapjCT2Uw1Sw7zx1lScB6vvqF4beEuZ9xG5odzoZSHMeD
-         dzJyrAusVvUvfEFdwSUS5Ch4Dzuj7N4DnS8U0dglzFp0R+n2uUKXi/U4oO6HiwXpFM/C
-         9AoFm1/avAsrkMzp42XlXIKNjhEqhhx4dd0BaGNB3v/XbmIGMK5Kdt5EBK6QPrMRh1fV
-         7rlii647niHyzpMRNQAiahdxJmtqAiMfDdMJNXam+PSklNnRNPfje2s3UaGYNBYCIWvQ
-         xJuWTFCeNpP+oi5g6bMmXiv8gjMvnq4sJGD50LdAj1Cbj3M/B2Kalu9mfHZErJt+1D02
-         cWZA==
-X-Gm-Message-State: APjAAAVWAzNY00of4U4B5IpAPcy1EYMLXkdC0LQPVb4FStm6rD/UxoI+
-        +gWBRbXbh/OM3ufG+Ac/KS9rqw==
-X-Google-Smtp-Source: APXvYqzPGqvHJEEW8KGadINzmMV1t9wKDJZxZqs3Q4ilQ1+NwSxiG1GZwT6wk/dEzb5udw5jUepoxQ==
-X-Received: by 2002:a17:90a:2488:: with SMTP id i8mr28582703pje.123.1560292222289;
-        Tue, 11 Jun 2019 15:30:22 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id a13sm8937301pgh.6.2019.06.11.15.30.20
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 11 Jun 2019 15:30:20 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 15:30:19 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Brian Norris <briannorris@google.com>
-Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Doug Anderson <dianders@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Richard Purdie <rpurdie@rpsys.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Guenter Roeck <groeck@google.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        kernel@collabora.com
-Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
- linearly to human eye.
-Message-ID: <20190611223019.GH137143@google.com>
-References: <20180208113032.27810-1-enric.balletbo@collabora.com>
- <20180208113032.27810-4-enric.balletbo@collabora.com>
- <20190607220947.GR40515@google.com>
- <20190608210226.GB2359@xo-6d-61-c0.localdomain>
- <20190610205233.GB137143@google.com>
- <20190611104913.egsbwcedshjdy3m5@holly.lan>
- <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+        bh=NCgQwxsu0f3r4btRqej5pZhVli0wu2GBc0gKWgavRis=;
+        b=Nn7j2RkQ7LwCq7tRGrwPzOkfh0I79XGw9slQaYNAoRVNjaJLdJs7IQakHEU8aZJDgl
+         ORN60sXcuYxeQIbcvccw899YbDkzhQWTBykmehNWCSL5IGislKAlVPR8aMDHdoSWfhGA
+         U747IGH1l95gR5x+yC+rMVKqoSoV3X04B9jKiZB9PwL8vTpuU8khEpnC7WBc7wn7O3UW
+         dSG/McsLdIqowtlbv8pXXyoAgapRGz/LrMYWJIVQU/2QMzc9QMay7lRANnQD5tIO5yNb
+         y21qyzxwqbWLs0es9LmGgQX6N78wTpHBGd30Jw887uoXBBYGQWvsY4a3m5XxLGic5tgk
+         AFgw==
+X-Gm-Message-State: APjAAAVTYrVM2i5Jfc7ljuocImzytGE5XP34gK5tLfXW/EE+8U0CQy7w
+        R2YH3n9jTEGQSkOxeP43Fw==
+X-Google-Smtp-Source: APXvYqyldbzjVVfHCAHQd21SudrsdTqB9IH5YfFTe83h4l7n3V0qepl2ZRh+aD/yH4IiOo6MWE21IQ==
+X-Received: by 2002:a05:6602:2256:: with SMTP id o22mr19307948ioo.95.1560292511617;
+        Tue, 11 Jun 2019 15:35:11 -0700 (PDT)
+Received: from localhost (ip-174-149-252-64.englco.spcsdns.net. [174.149.252.64])
+        by smtp.gmail.com with ESMTPSA id q142sm1884761itb.17.2019.06.11.15.35.09
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 11 Jun 2019 15:35:10 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 16:35:07 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     yibin.gong@nxp.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, broonie@kernel.org,
+        festevam@gmail.com, vkoul@kernel.org, dan.j.williams@intel.com,
+        u.kleine-koenig@pengutronix.de, catalin.marinas@arm.com,
+        l.stach@pengutronix.de, will.deacon@arm.com,
+        linux-spi@vger.kernel.org, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 10/15] dma: imx-sdma: add i.mx6ul/6sx compatible name
+Message-ID: <20190611223507.GA25722@bogus>
+References: <20190610081753.11422-1-yibin.gong@nxp.com>
+ <20190610081753.11422-11-yibin.gong@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+In-Reply-To: <20190610081753.11422-11-yibin.gong@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 09:55:30AM -0700, Brian Norris wrote:
-> On Tue, Jun 11, 2019 at 3:49 AM Daniel Thompson
-> <daniel.thompson@linaro.org> wrote:
-> > This is a long standing flaw in the backlight interfaces. AFAIK generic
-> > userspaces end up with a (flawed) heuristic.
+On Mon, 10 Jun 2019 16:17:48 +0800, yibin.gong@nxp.com wrote:
+> From: Robin Gong <yibin.gong@nxp.com>
 > 
-> Bingo! Would be nice if we could start to fix this long-standing flaw.
+> Add i.mx6ul and i.mx6sx compatible name in binding doc.
+> 
+> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Agreed!
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-How could a fix look like, a sysfs attribute? Would a boolean value
-like 'logarithmic_scale' or 'linear_scale' be enough or could more
-granularity be needed?
-
-The new attribute could be optional (it only exists if explicitly
-specified by the driver) or be set to a default based on a heuristic
-if not specified and be 'fixed' on a case by case basis. The latter
-might violate "don't break userspace" though, so I'm not sure it's a
-good idea.
+If a tag was not added on purpose, please state why and what changed.
