@@ -2,121 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E80B3D37E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCF53D3C6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405442AbfFKRHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 13:07:45 -0400
-Received: from mga17.intel.com ([192.55.52.151]:18244 "EHLO mga17.intel.com"
+        id S2405891AbfFKRRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 13:17:38 -0400
+Received: from foss.arm.com ([217.140.110.172]:38422 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405345AbfFKRHp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 13:07:45 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 10:07:44 -0700
-X-ExtLoop1: 1
-Received: from jacob-builder.jf.intel.com (HELO jacob-builder) ([10.7.199.155])
-  by orsmga006.jf.intel.com with ESMTP; 11 Jun 2019 10:07:44 -0700
-Date:   Tue, 11 Jun 2019 10:10:52 -0700
-From:   Jacob Pan <jacob.jun.pan@linux.intel.com>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        will.deacon@arm.com, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org, robh+dt@kernel.org,
-        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        jacob.jun.pan@linux.intel.com
-Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
-Message-ID: <20190611101052.35af46df@jacob-builder>
-In-Reply-To: <95292b47-4cf4-5fd9-b096-1cb016e2264f@arm.com>
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
-        <20190610184714.6786-2-jean-philippe.brucker@arm.com>
-        <20190611052626.20bed59a@jacob-builder>
-        <95292b47-4cf4-5fd9-b096-1cb016e2264f@arm.com>
-Organization: OTC
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S2405778AbfFKRRi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 13:17:38 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BD400346;
+        Tue, 11 Jun 2019 10:17:37 -0700 (PDT)
+Received: from redmoon (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BAB1C3F73C;
+        Tue, 11 Jun 2019 10:17:35 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 18:17:33 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>, bhelgaas@google.com
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCHv5 16/20] PCI: mobiveil: Add link up condition check
+Message-ID: <20190611171733.GB22836@redmoon>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-17-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190412083635.33626-17-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jun 2019 15:37:42 +0100
-Jean-Philippe Brucker <jean-philippe.brucker@arm.com> wrote:
+NB: Please trim the CC list and keep it to concerned maintainers.
 
-> On 11/06/2019 13:26, Jacob Pan wrote:
-> >> +/**
-> >> + * ioasid_set_data - Set private data for an allocated ioasid
-> >> + * @ioasid: the ID to set data
-> >> + * @data:   the private data
-> >> + *
-> >> + * For IOASID that is already allocated, private data can be set
-> >> + * via this API. Future lookup can be done via ioasid_find.
-> >> + */
-> >> +int ioasid_set_data(ioasid_t ioasid, void *data)
-> >> +{
-> >> +	struct ioasid_data *ioasid_data;
-> >> +	int ret = 0;
-> >> +
-> >> +	xa_lock(&ioasid_xa);  
-> > Just wondering if this is necessary, since xa_load is under
-> > rcu_read_lock and we are not changing anything internal to xa. For
-> > custom allocator I still need to have the mutex against allocator
-> > removal.  
+On Fri, Apr 12, 2019 at 08:36:48AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 > 
-> I think we do need this because of a possible race with ioasid_free():
+> Avoid to issue CFG transactions to link partner when the PCIe
+> link is not up.
 > 
->          CPU1                      CPU2
->   ioasid_free(ioasid)     ioasid_set_data(ioasid, foo)
->                             data = xa_load(...)
->     xa_erase(...)
->     kfree_rcu(data)           (no RCU lock held)
->     ...free(data)
->                             data->private = foo;
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> ---
+> V5:
+>  - Corrected the subject.
 > 
-make sense, thanks for explaining.
+>  drivers/pci/controller/pcie-mobiveil.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> index 621852078caf..1ee3ea2570c0 100644
+> --- a/drivers/pci/controller/pcie-mobiveil.c
+> +++ b/drivers/pci/controller/pcie-mobiveil.c
+> @@ -283,6 +283,10 @@ static bool mobiveil_pcie_valid_device(struct pci_bus *bus, unsigned int devfn)
+>  {
+>  	struct mobiveil_pcie *pcie = bus->sysdata;
+>  
+> +	/* If there is no link, then there is no device */
+> +	if (bus->number > pcie->root_bus_nr && !mobiveil_pcie_link_up(pcie))
 
-> The issue is theoretical at the moment because no users do this, but
-> I'd be more comfortable taking the xa_lock, which prevents a
-> concurrent xa_erase()+free(). (I commented on your v3 but you might
-> have missed it)
-> 
-Did you reply to my v3? I did not see it. I only saw your comments about
-v3 in your commit message.
+I think Bjorn mentioned this a million times already, eg:
 
-> >> +	ioasid_data = xa_load(&ioasid_xa, ioasid);
-> >> +	if (ioasid_data)
-> >> +		rcu_assign_pointer(ioasid_data->private, data);  
-> > it is good to publish and have barrier here. But I just wonder even
-> > for weakly ordered machine, this pointer update is quite far away
-> > from its data update.  
-> 
-> I don't know, it could be right before calling ioasid_set_data():
-> 
-> 	mydata = kzalloc(sizeof(*mydata));
-> 	mydata->ops = &my_ops;			(1)
-> 	ioasid_set_data(ioasid, mydata);
-> 		... /* no write barrier here */
-> 		data->private = mydata;		(2)
-> 
-> And then another thread calls ioasid_find():
-> 
-> 	mydata = ioasid_find(ioasid);
-> 	if (mydata)
-> 		mydata->ops->do_something();
-> 
-> On a weakly ordered machine, this thread could observe the pointer
-> assignment (2) before the ops assignment (1), and dereference NULL.
-> Using rcu_assign_pointer() should fix that
-> 
-I agree it is better to have the barrier. Just thought there is already
-a rcu_read_lock() in xa_load() in between. rcu_read_lock() may have
-barrier in some case but better not count on it. No issues here. I will
-integrate this in the next version.
+https://lore.kernel.org/linux-pci/20190411201535.GS256045@google.com/
 
-> Thanks,
-> Jean
+this is racy and gives a false sense of robustness. We have code in the
+kernel that checks the link but adding more seems silly to me, so I am
+inclined to drop this patch.
 
-[Jacob Pan]
+Lorenzo
+
+> +		return false;
+> +
+>  	/* Only one device down on each root port */
+>  	if ((bus->number == pcie->root_bus_nr) && (devfn > 0))
+>  		return false;
+> -- 
+> 2.17.1
+> 
