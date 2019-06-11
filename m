@@ -2,141 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB013CDC3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 15:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A3D3CE3F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391492AbfFKN5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 09:57:19 -0400
-Received: from mga14.intel.com ([192.55.52.115]:42646 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387835AbfFKN5S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 09:57:18 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Jun 2019 06:57:18 -0700
-X-ExtLoop1: 1
-Received: from marshy.an.intel.com (HELO [10.122.105.159]) ([10.122.105.159])
-  by orsmga003.jf.intel.com with ESMTP; 11 Jun 2019 06:57:16 -0700
-Subject: Re: A potential broken at platform driver?
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Romain Izard <romain.izard.pro@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, dinguyen@kernel.org, atull@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        sen.li@intel.com, Richard Gong <richard.gong@intel.com>
-References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
- <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
- <20190528232224.GA29225@kroah.com>
- <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
- <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
- <20190603180255.GA18054@kroah.com> <20190604103241.GA4097@5WDYG62>
- <20190604142803.GA28355@kroah.com>
- <e3adbd00-e500-70af-1c27-e4c064486561@linux.intel.com>
- <20190604170310.GC14605@kroah.com>
-From:   Richard Gong <richard.gong@linux.intel.com>
-Message-ID: <f484ce9f-a86e-ce33-686b-b42dc293beb8@linux.intel.com>
-Date:   Tue, 11 Jun 2019 09:10:05 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <20190604170310.GC14605@kroah.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S2388013AbfFKONy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 10:13:54 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:44224 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388168AbfFKONy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 10:13:54 -0400
+Received: by mail-ed1-f68.google.com with SMTP id k8so20292076edr.11;
+        Tue, 11 Jun 2019 07:13:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=bcSC//GEnJPbvbaMDabVr9qAdxrn6I1NQr+LLKNMNM0=;
+        b=hxU9jsUB6Fr6NEbvbJ2gNgMGv7Bd8qYcu2TP7cnPCe2Kfzj/kgY+mHxb7JWB8Psgwy
+         m/C23PwGzFWEpJWqM0tL61as38rurN9m6VMVQiHoXh1kkCaEpjMR6eug+MNjDF80g9fG
+         zDsC3l0OcbVqgDSkrjv9RegKbON3k4iHoEeH/4KJekZ09BThnDJR48Slpm7hZLG+lJw1
+         d85KiP9DYgDHRzx3quVtOF8F+Or/HqPQjjCpRb4lttR8QI0s/W1kYfFnKUcoKHVk3N8z
+         jchVmB47g8UyFqm4g7Yrw5/TUW7oK/AX7FxVzHFa9BJlJAz/9PDmAhz3sKY0xhL6N0/d
+         qihw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=bcSC//GEnJPbvbaMDabVr9qAdxrn6I1NQr+LLKNMNM0=;
+        b=sbterHB7bNUDg/JeWqRGid6jIcfzPV062daQqnLYsD3pc+kzaTJADuaeTVhwJK0Qky
+         U9KIL5tGgwOOkWV4KvcRLHvEJPCWeLQn4Tx5ZVndWU5R8f1k9fdmdM0Vm6IPINpQ9lsC
+         69PuNJOC1PLG63ZM8QfkCBmwduHxfa52x/e9pDHlpwsu5tEMUbEo432KFvSD7zN4KfkC
+         y5rp9iDGWxwDCnehRMVG+3eYtnrkW5pGSy8RTQ2ZJ80UYLYmdyedGSv4UqOPnU2wgrV4
+         MLBBpqN/dvLv05KHmAqcCwH4J3DxP13A1DN0y13GJWCYuFIU/nQuvQa3qTEQUlEKGw9J
+         abjQ==
+X-Gm-Message-State: APjAAAVnqO5DDyzlTVG6wLdsBYkHtkGZIV5b6NX9s6AJNgz1BK6gwt4J
+        tjS/gckZf7ukvcSbGrd0vFaQ6M5g
+X-Google-Smtp-Source: APXvYqxiG2ZDCZGk35ZIL6RpeSiUWkR8y2v5sXP9L4bEHCsGGq+JuGAxIcJjZLQqpPhZcQSjemwNQg==
+X-Received: by 2002:a17:906:b315:: with SMTP id n21mr17551256ejz.312.1560262432230;
+        Tue, 11 Jun 2019 07:13:52 -0700 (PDT)
+Received: from development1.visionsystems.de (mail.visionsystems.de. [213.209.99.202])
+        by smtp.gmail.com with ESMTPSA id l2sm1579473edn.59.2019.06.11.07.13.51
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Jun 2019 07:13:51 -0700 (PDT)
+From:   yegorslists@googlemail.com
+To:     linux-omap@vger.kernel.org
+Cc:     tony@atomide.com, bcousson@baylibre.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        Yegor Yefremov <yegorslists@googlemail.com>
+Subject: [PATCH] ARM: dts: am335x-baltos: add support for MMC1 CD pin
+Date:   Tue, 11 Jun 2019 16:13:38 +0200
+Message-Id: <20190611141338.14787-1-yegorslists@googlemail.com>
+X-Mailer: git-send-email 2.17.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Yegor Yefremov <yegorslists@googlemail.com>
 
-Hi Greg,
+Baltos 5221/3220 devices provide CD signal on GPIO2_18.
+Baltos 2110 device provides CD signal on GPIO1_15.
 
-On 6/4/19 12:03 PM, Greg KH wrote:
-> On Tue, Jun 04, 2019 at 11:13:02AM -0500, Richard Gong wrote:
->>
->> Hi Greg,
->>
->> On 6/4/19 9:28 AM, Greg KH wrote:
->>> On Tue, Jun 04, 2019 at 12:33:03PM +0200, Romain Izard wrote:
->>>> On Mon, Jun 03, 2019 at 08:02:55PM +0200, Greg KH wrote:
->>>>>> @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
->>>>>>    	.remove = stratix10_rsu_remove,
->>>>>>    	.driver = {
->>>>>>    		.name = "stratix10-rsu",
->>>>>> -		.groups = rsu_groups,
->>>>>> +//		.groups = rsu_groups,
->>>>>
->>>>> Are you sure this is the correct pointer?  I think that might be
->>>>> pointing to the driver's attributes, not the device's attributes.
->>>>>
->>>>> If platform drivers do not have a way to register groups properly, then
->>>>> that really needs to be fixed, as trying to register it by yourself as
->>>>> you are doing, is ripe for racing with userspace.
->>>> This is a very common issue with platform drivers, and it seems to me that
->>>> it is not possible to add device attributes when binding a device to a
->>>> driver without entering the race condition.
->>>>
->>>> My understanding is the following one:
->>>>
->>>> The root cause is that the device has already been created and reported
->>>> to the userspace with a KOBJ_ADD uevent before the device and the driver
->>>> are bound together. On receiving this event, userspace will react, and
->>>> it will try to read the device's attributes. In parallel the kernel will
->>>> try to find a matching driver. If a driver is found, the kernel will
->>>> call the probe function from the driver with the device as a parameter,
->>>> and if successful a KOBJ_BIND uevent will be sent to userspace, but this
->>>> is a recent addition.
->>>>
->>>> Unfortunately, not all created devices will be bound to a driver, and the
->>>> existing udev code relies on KOBJ_ADD uevents rather than KOBJ_BIND uevents.
->>>> If new per-device attributes have been added to the device during the
->>>> binding stage userspace may or may not see them, depending on when userspace
->>>> tries to read the device's attributes.
->>>>
->>>> I have this possible workaround, but I do not know if it is a good solution:
->>>>
->>>> When binding the device and the driver together, create a new device as a
->>>> child to the current device, and fill its "groups" member to point to the
->>>> per-device attributes' group. As the device will be created with all the
->>>> attributes, it will not be affected by the race issues. The functions
->>>> handling the attributes will need to be modified to use the parents of their
->>>> "device" parameter, instead of the device itself. Additionnaly, the sysfs
->>>> location of the attributes will be different, as the child device will show
->>>> up in the sysfs path. But for a newly introduced device this will not be
->>>> a problem.
->>>>
->>>> Is this a good compromise ?
->>>
->>> Not really.  You just want the attributes on the platform device itself.
->>>
->>> Given the horrible hack that platform devices are today, what's one more
->>> hack!
->>>
->>> Here's a patch below of what should probably be done here.  Richard, can
->>> you change your code to use the new dev_groups pointer in the struct
->>> platform_driver and this patch and let me know if that works or not?
->>>
->>> Note, I've only compiled this code, not tested it...
->>>
->>
->> Your patch works.
->>
->> Many thanks for your help!
-> 
-> Nice!
-> 
-> I guess I need to turn it into a real patch now.  Let me do that tonight
-> and see if I can convert some existing drivers to use it as well...
-> 
+Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
+---
+ arch/arm/boot/dts/am335x-baltos-ir2110.dts | 12 ++++++++++++
+ arch/arm/boot/dts/am335x-baltos-ir3220.dts | 12 ++++++++++++
+ arch/arm/boot/dts/am335x-baltos-ir5221.dts | 11 +++++++++++
+ 3 files changed, 35 insertions(+)
 
-Sorry for asking.
+diff --git a/arch/arm/boot/dts/am335x-baltos-ir2110.dts b/arch/arm/boot/dts/am335x-baltos-ir2110.dts
+index 2f650a736b44..984a5cb16c2c 100644
+--- a/arch/arm/boot/dts/am335x-baltos-ir2110.dts
++++ b/arch/arm/boot/dts/am335x-baltos-ir2110.dts
+@@ -33,6 +33,12 @@
+ 			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_INPUT_PULLDOWN, MUX_MODE7)      /* lcd_ac_bias_en.gpio2[25] RI */
+ 		>;
+ 	};
++
++	mmc1_pins: pinmux_mmc1_pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT, MUX_MODE7)     /* MMC1 CD */
++		>;
++	};
+ };
+ 
+ &uart1 {
+@@ -72,3 +78,9 @@
+ 	dual_emac_res_vlan = <2>;
+ 	phy-handle = <&phy1>;
+ };
++
++&mmc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc1_pins>;
++	cd-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
++};
+diff --git a/arch/arm/boot/dts/am335x-baltos-ir3220.dts b/arch/arm/boot/dts/am335x-baltos-ir3220.dts
+index 1ba66d5e21e8..37e61bfaaf44 100644
+--- a/arch/arm/boot/dts/am335x-baltos-ir3220.dts
++++ b/arch/arm/boot/dts/am335x-baltos-ir3220.dts
+@@ -54,6 +54,12 @@
+ 			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKR, PIN_INPUT_PULLUP, MUX_MODE7)      /* mcasp0_aclkr.gpio3[18], INPUT_PULLDOWN | MODE7 */
+ 		>;
+ 	};
++
++	mmc1_pins: pinmux_mmc1_pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT, MUX_MODE7)     /* MMC1 CD */
++		>;
++	};
+ };
+ 
+ &uart1 {
+@@ -114,3 +120,9 @@
+ 	dual_emac_res_vlan = <2>;
+ 	phy-handle = <&phy1>;
+ };
++
++&mmc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc1_pins>;
++	cd-gpios = <&gpio2 18 GPIO_ACTIVE_LOW>;
++};
+diff --git a/arch/arm/boot/dts/am335x-baltos-ir5221.dts b/arch/arm/boot/dts/am335x-baltos-ir5221.dts
+index eed65fc0e8e6..59580e683e79 100644
+--- a/arch/arm/boot/dts/am335x-baltos-ir5221.dts
++++ b/arch/arm/boot/dts/am335x-baltos-ir5221.dts
+@@ -63,6 +63,11 @@
+ 		>;
+ 	};
+ 
++	mmc1_pins: pinmux_mmc1_pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT, MUX_MODE7)     /* MMC1 CD */
++		>;
++	};
+ };
+ 
+ &uart1 {
+@@ -139,3 +144,9 @@
+ 
+ 	status = "okay";
+ };
++
++&mmc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc1_pins>;
++	cd-gpios = <&gpio2 18 GPIO_ACTIVE_LOW>;
++};
+-- 
+2.17.0
 
-I haven't seen your patch, did you release that?
-
-Regards,
-Richard
-
-> thanks,
-> 
-> greg k-h
-> 
