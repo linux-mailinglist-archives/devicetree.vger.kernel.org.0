@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD693D301
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26FC13D30E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404826AbfFKQwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 12:52:20 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:35092 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389757AbfFKQwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 12:52:20 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 7EA8F60A44; Tue, 11 Jun 2019 16:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560271938;
-        bh=EWaGYlUEtSJujntfkWWkNzZfnY+gc4hFdn9MEawiOP4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=m2CioZUe39qanfZOhd2/d8dal/I3jVR8/l4r4reFyc8TdLHfBORMaDr9wqALUZid1
-         tXv4GBBedi4ZFLoniNZB84Jz3pJncerK1B8KHYBYPZ0lwqMJ2Pm6o+sdLcalqm5fda
-         Jh5Mw12a9TpP1nz3RdfIl4YYyZs/3ttYhu6i+BJY=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 49EEC60271;
-        Tue, 11 Jun 2019 16:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560271937;
-        bh=EWaGYlUEtSJujntfkWWkNzZfnY+gc4hFdn9MEawiOP4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=GVUgVMbHCn+CkS+MkbgWO1xjbxVXlrgAfcqcLDDPrYmv53U3DmsA9KqaY+VVMcCAX
-         LbNUFiCHvOuzzsXWd0/6RoLBMJMwiGH8pqqtxv8asl/vqenfY07xMTVVUgyX7E4/FX
-         qU+52UHW3jdR4ObZArHFdrEDpecgTRN8yqq634QI=
+        id S2390991AbfFKQzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 12:55:45 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:41037 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387610AbfFKQzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 12:55:45 -0400
+Received: by mail-lj1-f194.google.com with SMTP id s21so12388866lji.8
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 09:55:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xh2IY7LpPfFuCqJ10WrTcz/y2fuRKJsYuYIzkRCHPGA=;
+        b=vVUnEDJygjVhekQktjlLFhfyt/TULR2B1WfScNaOoGloNtpx2vfSiB+G/CX3eORLjT
+         G7uF00KbXWKOgLrCKFt2ElbyKKBj7UGNgE3qSHyMqY1a5Pa6JO/asgQ3eA4cH2tjTbLT
+         OnpX7Y6Nw5edKDsZjSnlBYS1OHSqLontrnYzE63pocD3JELJy7J5TX9sG+rAYqz6B7nH
+         o31JpQJKjJ3i6cU94KGEX+LHAhEnu1SQbIJRdRL3AFvCLg6Fs9JqU3ncjsO/6Wj/3JJs
+         8NebdMponYEqEN0JgIaeIZuEAsJNMsc0V5wQwraKtCbq1vonKbi6AjJIAE2oeW3Lo5OZ
+         /Ajg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xh2IY7LpPfFuCqJ10WrTcz/y2fuRKJsYuYIzkRCHPGA=;
+        b=BnaLSLXqgT3jhnjabLfElJ62K8ALUALuwYokubgCmDmdtsLI1wXzaabImw6mP9rtZQ
+         ETKcc3tZqCew4uEeLLi06JxQIsd9XgQlxPksBeZf7483Ykv+DAovjr2CJWYoEvzLSrt8
+         nJ3o6UP46Ucn4ZutapdtKoD/7dQKSqy69DTefbH+Em2RePWuVidA/6TEW3HZlER8J76r
+         ZE3BbA/n7kwsritXMrZyEPmfII+wYo97VJ9ct89KP2WLeKlNFRQ+TTGGBjsy/PZvYTSJ
+         rROaI2ygcjV3C4v20JPEE+E6LVGtFsbPO2IsipmKhGgkUl4yB7UpLF1xV8FA8R0Vy9fm
+         yIVA==
+X-Gm-Message-State: APjAAAXVY1OEoxOAjqn4pNHNpbunAoqsTVbEr20BIb7qBd67c/CO2bHT
+        nRaxX06bz6ZoQ8FStreenIBmLOlMoTfh9ibX5QAAiA==
+X-Google-Smtp-Source: APXvYqw34lPSRZEgkGFHqW2B5EX/1BVK1usgV7bVySIzKQ01HlDt6hTtvz7UkvAtJxHIArPRYUa8+lvbvTxpux61U8A=
+X-Received: by 2002:a2e:2411:: with SMTP id k17mr11738029ljk.136.1560272142410;
+ Tue, 11 Jun 2019 09:55:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 11 Jun 2019 10:52:16 -0600
-From:   Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>
-To:     Dan Williams <dcbw@redhat.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
-        Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        syadagir@codeaurora.org
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-In-Reply-To: <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
- <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
- <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
- <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
-Message-ID: <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
-X-Sender: subashab@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com> <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain> <20190610205233.GB137143@google.com>
+ <20190611104913.egsbwcedshjdy3m5@holly.lan>
+In-Reply-To: <20190611104913.egsbwcedshjdy3m5@holly.lan>
+From:   Brian Norris <briannorris@google.com>
+Date:   Tue, 11 Jun 2019 09:55:30 -0700
+Message-ID: <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, Pavel Machek <pavel@ucw.cz>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Doug Anderson <dianders@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The general plan (and I believe Daniele Palmas was working on it) was
-> to eventually make qmi_wwan use rmnet rather than its internal sysfs-
-> based implementation. qmi_wwan and ipa are at essentially the same
-> level and both could utilize rmnet on top.
-> 
-> *That's* what I'd like to see. I don't want to see two different ways
-> to get QMAP packets to modem firmware from two different drivers that
-> really could use the same code.
-> 
-> Dan
+On Tue, Jun 11, 2019 at 3:49 AM Daniel Thompson
+<daniel.thompson@linaro.org> wrote:
+> This is a long standing flaw in the backlight interfaces. AFAIK generic
+> userspaces end up with a (flawed) heuristic.
 
-qmi_wwan is based on USB and is very different from the IPA interconnect
-though. AFAIK, they do not have much in common (apart from sending &
-receiving MAP packets from hardware).
+Bingo! Would be nice if we could start to fix this long-standing flaw.
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> Basically devices with a narrow range of choices can be assumed to be
+> logarithmic
+
+That's (almost, see below) exactly what we have.
+
+(And this is what Matthias is fighting against, now that we're
+implementing both "large number of data points" and "pre-curved" at
+the same time. We will have to either adapt the heuristic, or else
+adapt our device trees to fit the heuristic.)
+
+> Systems are coming along that allow us to animate the change of
+> brightness (part of the reason for interpolated tables is to
+> permit smooth animation rather than because the user explicitly wants
+> to set the brightness to exactly 1117).
+
+Chrome OS has done this for a long time. So "coming along" is a bit late ;)
+
+Also, I believe Chrome OS will do animation/smoothing for all tables
+(small or large) where it can: even for the small tables.
+
+> These systems are often
+> logarithmic but with a wide range of values.
+
+NB: Chrome OS happens to use a polynomial formula (exponent = 2 or
+0.5, depending on how you look at it), not logarithmic. You can see it
+in all its (non)glory here:
+
+https://chromium.googlesource.com/chromiumos/platform2/+/ee015853b227cf265491bd80ccf096b188490529/power_manager/powerd/policy/internal_backlight_controller.cc#451
+
+Regards,
+Brian
