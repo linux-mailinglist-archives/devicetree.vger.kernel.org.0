@@ -2,127 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE0F3C772
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 11:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 604B13C7AD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 11:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403752AbfFKJma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 05:42:30 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:55520 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2391206AbfFKJma (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 05:42:30 -0400
-Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id DE189CF4700FAD13C19D;
-        Tue, 11 Jun 2019 17:42:27 +0800 (CST)
-Received: from localhost (10.202.226.61) by DGGEMS401-HUB.china.huawei.com
- (10.3.19.201) with Microsoft SMTP Server id 14.3.439.0; Tue, 11 Jun 2019
- 17:42:26 +0800
-Date:   Tue, 11 Jun 2019 10:42:14 +0100
-From:   Jonathan Cameron <jonathan.cameron@huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-CC:     <will.deacon@arm.com>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <iommu@lists.linux-foundation.org>, <robh+dt@kernel.org>,
-        <robin.murphy@arm.com>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 3/8] iommu/arm-smmu-v3: Support platform SSID
-Message-ID: <20190611104214.00001f2c@huawei.com>
-In-Reply-To: <20190610184714.6786-4-jean-philippe.brucker@arm.com>
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
-        <20190610184714.6786-4-jean-philippe.brucker@arm.com>
-Organization: Huawei
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S2404978AbfFKJxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 05:53:23 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:52681 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404425AbfFKJxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 05:53:23 -0400
+X-Originating-IP: 90.88.159.246
+Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id C88DFC000B;
+        Tue, 11 Jun 2019 09:53:17 +0000 (UTC)
+Date:   Tue, 11 Jun 2019 11:53:17 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH v2 06/11] dt-bindings: net: sun4i-mdio: Convert the
+ binding to a schemas
+Message-ID: <20190611095317.l55zjuomxqfvpqlo@flea>
+References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
+ <664da05aaf9a7029494d72d7c536baa192672fbe.1560158667.git-series.maxime.ripard@bootlin.com>
+ <20190610143730.GH28724@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.61]
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nt34jhbgjztm3vnl"
+Content-Disposition: inline
+In-Reply-To: <20190610143730.GH28724@lunn.ch>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jun 2019 19:47:09 +0100
-Jean-Philippe Brucker <jean-philippe.brucker@arm.com> wrote:
 
-> For platform devices that support SubstreamID (SSID), firmware provides
-> the number of supported SSID bits. Restrict it to what the SMMU supports
-> and cache it into master->ssid_bits.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+--nt34jhbgjztm3vnl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Missing kernel-doc.
+Hi Andrew,
 
-Thanks,
+On Mon, Jun 10, 2019 at 04:37:30PM +0200, Andrew Lunn wrote:
+> On Mon, Jun 10, 2019 at 11:25:45AM +0200, Maxime Ripard wrote:
+> > Switch our Allwinner A10 MDIO controller binding to a YAML schema to enable
+> > the DT validation.
+> >
+> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+>
+> Should there be a generic part to cover what is listed in:
+>
+> Documentation/devicetree/bindings/net/mdio.txt
 
-Jonathan
+Thanks for pointing that out, I'll convert it as well.
 
-> ---
->  drivers/iommu/arm-smmu-v3.c | 11 +++++++++++
->  drivers/iommu/of_iommu.c    |  6 +++++-
->  include/linux/iommu.h       |  1 +
->  3 files changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
-> index 4d5a694f02c2..3254f473e681 100644
-> --- a/drivers/iommu/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm-smmu-v3.c
-> @@ -604,6 +604,7 @@ struct arm_smmu_master {
->  	struct list_head		domain_head;
->  	u32				*sids;
->  	unsigned int			num_sids;
-> +	unsigned int			ssid_bits;
->  	bool				ats_enabled		:1;
->  };
->  
-> @@ -2097,6 +2098,16 @@ static int arm_smmu_add_device(struct device *dev)
->  		}
->  	}
->  
-> +	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
-> +
-> +	/*
-> +	 * If the SMMU doesn't support 2-stage CD, limit the linear
-> +	 * tables to a reasonable number of contexts, let's say
-> +	 * 64kB / sizeof(ctx_desc) = 1024 = 2^10
-> +	 */
-> +	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
-> +		master->ssid_bits = min(master->ssid_bits, 10U);
-> +
->  	group = iommu_group_get_for_dev(dev);
->  	if (!IS_ERR(group)) {
->  		iommu_group_put(group);
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index f04a6df65eb8..04f4f6b95d82 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -206,8 +206,12 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
->  			if (err)
->  				break;
->  		}
-> -	}
->  
-> +		fwspec = dev_iommu_fwspec_get(dev);
-> +		if (!err && fwspec)
-> +			of_property_read_u32(master_np, "pasid-num-bits",
-> +					     &fwspec->num_pasid_bits);
-> +	}
->  
->  	/*
->  	 * Two success conditions can be represented by non-negative err here:
-> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-> index 519e40fb23ce..b91df613385f 100644
-> --- a/include/linux/iommu.h
-> +++ b/include/linux/iommu.h
-> @@ -536,6 +536,7 @@ struct iommu_fwspec {
->  	struct fwnode_handle	*iommu_fwnode;
->  	void			*iommu_priv;
->  	u32			flags;
-> +	u32			num_pasid_bits;
+Maxime
 
-This structure has kernel doc so you need to add something for this.
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
->  	unsigned int		num_ids;
->  	u32			ids[1];
->  };
+--nt34jhbgjztm3vnl
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXP96DQAKCRDj7w1vZxhR
+xemGAQDeKHYJUTJ7pEQdZKX1WZEmIhNHWPhuhjM7yYBI+DFawgEA5Hrj2kSgRSzG
+FFEkc4IqWkvbt0d584kNLqDInxO1VAY=
+=DaeR
+-----END PGP SIGNATURE-----
+
+--nt34jhbgjztm3vnl--
