@@ -2,110 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A8EB4170B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2B9C41729
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 23:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404846AbfFKVlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 17:41:07 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:45813 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404005AbfFKVlG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:41:06 -0400
-Received: by mail-lj1-f193.google.com with SMTP id m23so13111476lje.12;
-        Tue, 11 Jun 2019 14:41:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3ii1oya7iM4Av9Rw52ktXKCBjEV+f23dDHXfRcuKC7U=;
-        b=tDpq1FPh+8DoAEFemXdFgNmDrzuVv7HGs7bDdX0R9e3N1l3s9MVEGOQ5pryKvmwcbc
-         OUT9v/DYKJ4pSzu/37eK6FUyNNXM3gCClZFQnjYRNVjKWbBM5O7Ek7i7xrKjBz7cGwjt
-         RN+1YHuMwvnWKElb5PrcetXueToyb+Vu/Nfmy7BVXshrF77WMUJ6q8jrSY6PjiwoH/bL
-         HUUQDm8NYRZEofJrRjX7eK99zGFmbUFj1qAP0zcpM0wDC++KxbneuxugHM8AZ6kEO6HC
-         Qrkx+g3DrsHDMivJ3D6yuAE9+7qkSVAbK4Q5ACEJwtRmKD0pYMXYKo7LLe0DMdAxZdEt
-         37pw==
+        id S2388744AbfFKVvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 17:51:25 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:43338 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387764AbfFKVvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 17:51:25 -0400
+Received: by mail-qt1-f193.google.com with SMTP id z24so3241821qtj.10;
+        Tue, 11 Jun 2019 14:51:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3ii1oya7iM4Av9Rw52ktXKCBjEV+f23dDHXfRcuKC7U=;
-        b=PoDlVWBV3d2q6D0HMPuFFYsdwxakK6lGkuCbPvFThyGYwdUXBMMu6KOjG7zz6pkHFK
-         e6R10C1y6Al0PmvUXEZb8/NnjReMItM3uS8cRjVYIEXtaLxwYNllrwwUHxhSHHOQ5dKm
-         EfWVgJvSi9sG1bZL/S5R+x2FIhDCuesq97F6uRkMIDt/qPKrJ94gj/xVNmsZnsAssvUt
-         SQfbrfz9Tn1tCXbVkNS3zBQaQrXlPhR1FbK4eKDxG2Vcbz39HpFnP6j43IZSDeW+qg70
-         q+LiKaBWYmoJNicJBUxXWpznLmIC1EfwXvXvyST9/rDUUj6Q4QPnF+2ALmK4+bfDusvg
-         jVdA==
-X-Gm-Message-State: APjAAAU+ddTPkxhn63XLY15SbTdU+ggZQleSjgK9AIlZMBBrYakFAw3o
-        dSZlLzlHDdU8vyrEmt/hVN7XkwSI1iMn1A==
-X-Google-Smtp-Source: APXvYqwpbdaBbT64OJKC3t9fsLS0BFJ1owt5dbrSWV35mRrRMwtNVEd1E9+KBDaYKDDjJry0MrJTJQ==
-X-Received: by 2002:a2e:751c:: with SMTP id q28mr16897532ljc.178.1560289264111;
-        Tue, 11 Jun 2019 14:41:04 -0700 (PDT)
-Received: from localhost.localdomain (80-248-250-227.cust.suomicom.net. [80.248.250.227])
-        by smtp.gmail.com with ESMTPSA id o187sm2695914lfa.88.2019.06.11.14.41.02
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7TWYrDDzfkQtKv9+OVgy+qU0N7iuCHIvNR6+Puv9gzk=;
+        b=t+CCjQ/Pno8etKWdXdq1tHmV9jJCkiK3vjVL3NDXl+m6Ao0EojqQ5DX62gOGUvo7Si
+         4KcCrSA1IFdsgnyMdbnoKccTIZZEPw0BEjViBiYsbuqDWRyoZH18IDfAmEd4XW8Yd8Tn
+         lznWPMz0TeM6xb9eBzO8/j/brznEyaxJZAkzIlCE6bmcdPAM8Fde1XmAfqZiknFJ4Eea
+         6A5L7zeKP3yRQb4lNPyC53A4AE51rTlf0k8PyWIRWOyBpOGBPX1XIINprQ1xYLxHnTTu
+         97ljUN11XLZRJ4G7Ht3dg3TaQFK0bqIdcqBPICESTFdhm1fT4pKHLVqXYgTt+QWULmXX
+         8q5Q==
+X-Gm-Message-State: APjAAAVQVPmGd+giTO9948yVDdwRtq6+8BTkEzTSWD248V2KBMxXMp7Y
+        N0yxc5WdMIsX88I/S6vQuQ==
+X-Google-Smtp-Source: APXvYqw41EKa1vDT4YG9KxPTlR+OKZ8vNQM/geD9FeXtMv78BxIbs6gCj41LNOzCA2dBvc4h3ZRhEg==
+X-Received: by 2002:ac8:2bbd:: with SMTP id m58mr67089312qtm.225.1560289884437;
+        Tue, 11 Jun 2019 14:51:24 -0700 (PDT)
+Received: from localhost ([64.188.179.199])
+        by smtp.gmail.com with ESMTPSA id r5sm1914028qkc.42.2019.06.11.14.51.23
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 14:41:03 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Dan Williams <dan.j.williams@intel.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v4] arm64: dts: allwinner: h6: Add DMA node
-Date:   Tue, 11 Jun 2019 23:40:55 +0200
-Message-Id: <20190611214055.25613-1-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        Tue, 11 Jun 2019 14:51:23 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 15:51:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 7/9] dt: bindings: lp50xx: Introduce the lp50xx family
+ of RGB drivers
+Message-ID: <20190611215121.GA14337@bogus>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-8-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190523190820.29375-8-dmurphy@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jernej Skrabec <jernej.skrabec@siol.net>
+On Thu, May 23, 2019 at 02:08:18PM -0500, Dan Murphy wrote:
+> Introduce the bindings for the Texas Instruments LP5036, LP5030, LP5024 and
+> LP5018 RGB LED device driver.  The LP5036/30/24/18 can control RGB LEDs
+> individually or as part of a control bank group.  These devices have the ability
+> to adjust the mixing control for the RGB LEDs to obtain different colors
+> independent of the overall brightness of the LED grouping.
+> 
+> Datasheet:
+> http://www.ti.com/lit/ds/symlink/lp5024.pdf
+> http://www.ti.com/lit/ds/symlink/lp5036.pdf
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>  .../devicetree/bindings/leds/leds-lp50xx.txt  | 142 ++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-lp50xx.txt
 
-H6 has DMA controller which supports 16 channels.
-
-Add a node for it.
-
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
-
-Changes since v3:
- - Rebase on top of sunxi/for-next
- - Sort by physical address
-
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index b9a7dc8d2a40..7628a7c83096 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -203,6 +203,18 @@
- 			#reset-cells = <1>;
- 		};
- 
-+		dma: dma-controller@3002000 {
-+			compatible = "allwinner,sun50i-h6-dma";
-+			reg = <0x03002000 0x1000>;
-+			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_DMA>, <&ccu CLK_MBUS_DMA>;
-+			clock-names = "bus", "mbus";
-+			dma-channels = <16>;
-+			dma-requests = <46>;
-+			resets = <&ccu RST_BUS_DMA>;
-+			#dma-cells = <1>;
-+		};
-+
- 		sid: sid@3006000 {
- 			compatible = "allwinner,sun50i-h6-sid";
- 			reg = <0x03006000 0x400>;
--- 
-2.20.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
