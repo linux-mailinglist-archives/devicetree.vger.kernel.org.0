@@ -2,231 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D25353D1C6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A8343D2AB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 18:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391503AbfFKQIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 12:08:46 -0400
-Received: from mail-eopbgr790045.outbound.protection.outlook.com ([40.107.79.45]:57165
-        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2391474AbfFKQIp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 12:08:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=micron.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a+jgxQFFBIc7gNBrsosdoX6A+SVQRPB0FawYEKAddtA=;
- b=b1/AIrMiXtCvyI5wzaCEPYZvxHiPrpxR2IsQ8HJcw5j1XCkNmIUNA0jqq+AnJbYCwtJ79fru4Q4icOM3qlln98NRQKE4BKnOtNLSMKHpXNpT1mQdPADlod25nMGt/BuAr77EfKxGgYZOIJRr2GyoEx1B/mBJmvOEqur7NCAwyZk=
-Received: from BN7PR08MB5684.namprd08.prod.outlook.com (20.176.31.141) by
- BN7PR08MB4817.namprd08.prod.outlook.com (20.176.27.202) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.10; Tue, 11 Jun 2019 16:08:41 +0000
-Received: from BN7PR08MB5684.namprd08.prod.outlook.com
- ([fe80::499a:3dda:4c08:f586]) by BN7PR08MB5684.namprd08.prod.outlook.com
- ([fe80::499a:3dda:4c08:f586%5]) with mapi id 15.20.1965.017; Tue, 11 Jun 2019
- 16:08:41 +0000
-From:   "Bean Huo (beanhuo)" <beanhuo@micron.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>
-CC:     Andy Gross <agross@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
-Subject: RE: [EXT] [PATCH v3 2/3] scsi: ufs-qcom: Implement device_reset vops
-Thread-Topic: [EXT] [PATCH v3 2/3] scsi: ufs-qcom: Implement device_reset vops
-Thread-Index: AQHVHbe9gqV+6xhol06/1xHsxtXml6aWopCw
-Date:   Tue, 11 Jun 2019 16:08:41 +0000
-Message-ID: <BN7PR08MB56848AB3CC413CBEC211130EDBED0@BN7PR08MB5684.namprd08.prod.outlook.com>
-References: <20190608050450.12056-1-bjorn.andersson@linaro.org>
- <20190608050450.12056-3-bjorn.andersson@linaro.org>
-In-Reply-To: <20190608050450.12056-3-bjorn.andersson@linaro.org>
-Accept-Language: en-150, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=beanhuo@micron.com; 
-x-originating-ip: [165.225.80.131]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cc887df5-1339-4115-8f2d-08d6ee871243
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BN7PR08MB4817;
-x-ms-traffictypediagnostic: BN7PR08MB4817:|BN7PR08MB4817:
-x-microsoft-antispam-prvs: <BN7PR08MB481710C9622C93EC81FA8324DBED0@BN7PR08MB4817.namprd08.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 006546F32A
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(136003)(376002)(39860400002)(366004)(346002)(13464003)(199004)(189003)(8936002)(229853002)(99286004)(6506007)(55236004)(102836004)(66556008)(66476007)(64756008)(66946007)(66446008)(73956011)(76176011)(71190400001)(3846002)(6436002)(54906003)(110136005)(68736007)(7696005)(76116006)(74316002)(7416002)(14454004)(6116002)(33656002)(71200400001)(256004)(14444005)(5024004)(478600001)(26005)(186003)(2906002)(476003)(486006)(446003)(11346002)(316002)(4326008)(55016002)(5660300002)(7736002)(305945005)(25786009)(6246003)(81166006)(53936002)(8676002)(66066001)(81156014)(52536014)(9686003)(86362001);DIR:OUT;SFP:1101;SCL:1;SRVR:BN7PR08MB4817;H:BN7PR08MB5684.namprd08.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: micron.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: iIg7KALhJLdm2TeFYjDDOodD5A3OJ93m5bpp0vrfILUy3C8yfWzehQuQnvETCxUCPW+Uk4WQsbwBszLoAX150IfA32anCo3x89+6tyTEyUjuyNnWJRk+lqxv/6gl5ZhEixjFn4nYT2lJiq9/ELC20n1ZHUir4XEJO/mpCZT4DFyA3Ax9YEwib96AfgkNu7YFIxDsOAqLKAwwMga6EiWNb1nYRhFTemMhy144nRl1YHF+QgABg6ub/XEYNQ+vnNRxnAJszDjlcafLfVgVyYDH3FNwWsDW8vWIuRZAFDQ8rLsPmY0tMO2OsE6FUUGpUJ4ip6yHmALzprPP0yKCOjyC07wz9hBBsnAwqQtDrW8tE0HiMrkeX2sORpQO2iywgET0buOq4qaHzj0+pAMD1efhTmPdKYYseAGoxrlEouJVD6s=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2391962AbfFKQmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 12:42:07 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:43929 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390558AbfFKQmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 12:42:07 -0400
+Received: by mail-lf1-f65.google.com with SMTP id j29so9812048lfk.10
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 09:42:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Vh/p30irgSD9xffiE9oewWj7mUanYFsIl2djx+XobXY=;
+        b=HC8AWtBBddfq3ja6eieAy2clA5L9ShGX6GyMrlQqv6G8p7YcQh6KXu6TZKJ6loUu8e
+         uebZxIXw7Eer6dDh/YOVEkNczX7wjuQP390PWjZ4DtdMN3fZufuQO2zlu3FCWh0C6xQy
+         zpr6YKhTIPYo6vBOPhE+ioXDgmlj5Uoh5PTtyaD8qNpHNLFMCJX/xSqGih3W7hjfGGWB
+         oZu60TB9cXE61ntew4y5uKq8HyXYeXeJa+lQu+YFnHp3McpHYA8VbNB2rW0YwOxKfu60
+         5BNOW9NXWkoFP4lqNwXOKu7APUdh+YsQJ1IJ0anWyS+KbTDPiO9KBTYuoCENpwZkD5/Y
+         UEtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Vh/p30irgSD9xffiE9oewWj7mUanYFsIl2djx+XobXY=;
+        b=BAro20d4UnEtEgWFr7wTWV6ZxuSxRjsaeLdG3pb/NOVTCwBDOBvXbvPxvmK6H8dETi
+         h8XSaeBegBCPLl6lJXstIHc7Y0bGhqG7KpD0J19OdpZxKvMSPfX1ijyh1dW3DSK/8URA
+         EcF3zHghOTBXbgsKqrcu9aKDMtxWQAsegKieSEd1m5RlLFrx6e0c/SLJL6YMdD2B5ifJ
+         /sxYlrAQ765GL3LaXMwJV91kRJRpqXaWedh6sQlEE55ZsO3/hOoF7l72EtASKIsj455c
+         feexCL0aPS5ZvdBvIXoX4885TxUy3zPygoJ87oq+vC8HZORu+gzYKHkNCWcaOMidRfK7
+         ks1Q==
+X-Gm-Message-State: APjAAAW1d0Iqrc+wFdm9kW1RehdHnGCVhMTDnLTA0O+I2JgghkV440Pd
+        /soXlZ7pJR6UrPQ9awRlNKFTGw==
+X-Google-Smtp-Source: APXvYqwxOIBJiSaoAZMSvSTjGBejLmme0GxMq3dDw3qX0/Zrv2BRLPzn5wPLhEGH5OEVByUqEgvSbg==
+X-Received: by 2002:ac2:43cf:: with SMTP id u15mr37488341lfl.188.1560271325298;
+        Tue, 11 Jun 2019 09:42:05 -0700 (PDT)
+Received: from localhost.localdomain ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id r14sm2616772lff.44.2019.06.11.09.42.03
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 11 Jun 2019 09:42:04 -0700 (PDT)
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
+        georgi.djakov@linaro.org
+Cc:     vkoul@kernel.org, evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v3 0/5] Add QCS404 interconnect provider driver
+Date:   Tue, 11 Jun 2019 19:41:52 +0300
+Message-Id: <20190611164157.24656-1-georgi.djakov@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-OriginatorOrg: micron.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc887df5-1339-4115-8f2d-08d6ee871243
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2019 16:08:41.1888
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f38a5ecd-2813-4862-b11b-ac1d563c806f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: beanhuo@micron.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR08MB4817
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bjorn
-This HW reset is dedicated to QUALCOMM based platform case.
-how about adding a SW reset as to be default reset routine if platform does=
-n't support HW reset?
+Add drivers to support scaling of the on-chip interconnects on QCS404-based
+platforms. Also add the necessary device-tree nodes, so that the driver for
+each NoC can probe and register as interconnect-provider.
 
->-----Original Message-----
->From: linux-scsi-owner@vger.kernel.org <linux-scsi-owner@vger.kernel.org>
->On Behalf Of Bjorn Andersson
->Sent: Saturday, June 8, 2019 7:05 AM
->To: Rob Herring <robh+dt@kernel.org>; Mark Rutland
-><mark.rutland@arm.com>; Alim Akhtar <alim.akhtar@samsung.com>; Avri
->Altman <avri.altman@wdc.com>; Pedro Sousa
-><pedrom.sousa@synopsys.com>; James E.J. Bottomley <jejb@linux.ibm.com>;
->Martin K. Petersen <martin.petersen@oracle.com>
->Cc: Andy Gross <agross@kernel.org>; devicetree@vger.kernel.org; linux-
->kernel@vger.kernel.org; linux-arm-msm@vger.kernel.org; linux-
->scsi@vger.kernel.org
->Subject: [EXT] [PATCH v3 2/3] scsi: ufs-qcom: Implement device_reset vops
->
->The UFS_RESET pin on Qualcomm SoCs are controlled by TLMM and exposed
->through the GPIO framework. Acquire the device-reset GPIO and use this to
->implement the device_reset vops, to allow resetting the attached memory.
->
->Based on downstream support implemented by Subhash Jadavani
-><subhashj@codeaurora.org>.
->
->Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->---
->
->Changes since v2:
->- Moved implementation to Qualcomm driver
->
-> .../devicetree/bindings/ufs/ufshcd-pltfrm.txt |  2 ++
-> drivers/scsi/ufs/ufs-qcom.c                   | 32 +++++++++++++++++++
-> drivers/scsi/ufs/ufs-qcom.h                   |  4 +++
-> 3 files changed, 38 insertions(+)
->
->diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->index a74720486ee2..d562d8b4919c 100644
->--- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->+++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->@@ -54,6 +54,8 @@ Optional properties:
-> 			  PHY reset from the UFS controller.
-> - resets            : reset node register
-> - reset-names       : describe reset node register, the "rst" corresponds=
- to
->reset the whole UFS IP.
->+- device-reset-gpios	: A phandle and gpio specifier denoting the GPIO
->connected
->+			  to the RESET pin of the UFS memory device.
->
-> Note: If above properties are not defined it can be assumed that the supp=
-ly
->regulators or clocks are always on.
->diff --git a/drivers/scsi/ufs/ufs-qcom.c b/drivers/scsi/ufs/ufs-qcom.c ind=
-ex
->ea7219407309..efaf57ba618a 100644
->--- a/drivers/scsi/ufs/ufs-qcom.c
->+++ b/drivers/scsi/ufs/ufs-qcom.c
->@@ -16,6 +16,7 @@
-> #include <linux/of.h>
-> #include <linux/platform_device.h>
-> #include <linux/phy/phy.h>
->+#include <linux/gpio/consumer.h>
-> #include <linux/reset-controller.h>
->
-> #include "ufshcd.h"
->@@ -1141,6 +1142,15 @@ static int ufs_qcom_init(struct ufs_hba *hba)
-> 		goto out_variant_clear;
-> 	}
->
->+	host->device_reset =3D devm_gpiod_get_optional(dev, "device-reset",
->+						     GPIOD_OUT_HIGH);
->+	if (IS_ERR(host->device_reset)) {
->+		err =3D PTR_ERR(host->device_reset);
->+		if (err !=3D -EPROBE_DEFER)
->+			dev_err(dev, "failed to acquire reset gpio: %d\n", err);
->+		goto out_variant_clear;
->+	}
->+
-> 	err =3D ufs_qcom_bus_register(host);
-> 	if (err)
-> 		goto out_variant_clear;
->@@ -1546,6 +1556,27 @@ static void ufs_qcom_dump_dbg_regs(struct
->ufs_hba *hba)
-> 	usleep_range(1000, 1100);
-> }
->
->+/**
->+ * ufs_qcom_device_reset() - toggle the (optional) device reset line
->+ * @hba: per-adapter instance
->+ *
->+ * Toggles the (optional) reset line to reset the attached device.
->+ */
->+static void ufs_qcom_device_reset(struct ufs_hba *hba) {
->+	struct ufs_qcom_host *host =3D ufshcd_get_variant(hba);
->+
->+	/*
->+	 * The UFS device shall detect reset pulses of 1us, sleep for 10us to
->+	 * be on the safe side.
->+	 */
->+	gpiod_set_value_cansleep(host->device_reset, 1);
->+	usleep_range(10, 15);
->+
->+	gpiod_set_value_cansleep(host->device_reset, 0);
->+	usleep_range(10, 15);
->+}
->+
-> /**
->  * struct ufs_hba_qcom_vops - UFS QCOM specific variant operations
->  *
->@@ -1566,6 +1597,7 @@ static struct ufs_hba_variant_ops
->ufs_hba_qcom_vops =3D {
-> 	.suspend		=3D ufs_qcom_suspend,
-> 	.resume			=3D ufs_qcom_resume,
-> 	.dbg_register_dump	=3D ufs_qcom_dump_dbg_regs,
->+	.device_reset		=3D ufs_qcom_device_reset,
-> };
->
-> /**
->diff --git a/drivers/scsi/ufs/ufs-qcom.h b/drivers/scsi/ufs/ufs-qcom.h ind=
-ex
->68a880185752..b96ffb6804e4 100644
->--- a/drivers/scsi/ufs/ufs-qcom.h
->+++ b/drivers/scsi/ufs/ufs-qcom.h
->@@ -204,6 +204,8 @@ struct ufs_qcom_testbus {
-> 	u8 select_minor;
-> };
->
->+struct gpio_desc;
->+
-> struct ufs_qcom_host {
-> 	/*
-> 	 * Set this capability if host controller supports the QUniPro mode
->@@ -241,6 +243,8 @@ struct ufs_qcom_host {
-> 	struct ufs_qcom_testbus testbus;
->
-> 	struct reset_controller_dev rcdev;
->+
->+	struct gpio_desc *device_reset;
-> };
->
-> static inline u32
->--
->2.18.0
+v3:
+- Drop the patch introducing the qcom,qos DT property.
+- Add two new patches to create an interconnect proxy device. This device is
+  part of the RPM hardware and handles the communication of the bus bandwidth
+  requests.
+- Add a DT reg property and move the interconnect nodes under the "soc" node.
+
+v2: https://lore.kernel.org/lkml/20190415104357.5305-1-georgi.djakov@linaro.org/
+- Use the clk_bulk API. (Bjorn)
+- Move the port IDs into the provider file. (Bjorn)
+- Use ARRAY_SIZE in the macro to automagically count the num_links. (Bjorn)
+- Improve code readability. (Bjorn)
+- Add patch [4/4] introducing a qcom,qos DT property to represent the link to
+  the MMIO QoS registers HW block.
+
+v1: https://lore.kernel.org/lkml/20190405035446.31886-1-georgi.djakov@linaro.org/
+
+Bjorn Andersson (1):
+  interconnect: qcom: Add QCS404 interconnect provider driver
+
+Georgi Djakov (4):
+  dt-bindings: interconnect: Add Qualcomm QCS404 DT bindings
+  soc: qcom: smd-rpm: Create RPM interconnect proxy child device
+  interconnect: qcom: Add interconnect SMD over SMD driver
+  arm64: dts: qcs404: Add interconnect provider DT nodes
+
+ .../bindings/interconnect/qcom,qcs404.txt     |  46 ++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  28 +
+ drivers/interconnect/qcom/Kconfig             |  17 +
+ drivers/interconnect/qcom/Makefile            |   4 +
+ drivers/interconnect/qcom/qcs404.c            | 539 ++++++++++++++++++
+ drivers/interconnect/qcom/smd-rpm.c           |  72 +++
+ drivers/interconnect/qcom/smd-rpm.h           |  15 +
+ drivers/soc/qcom/smd-rpm.c                    |  17 +-
+ .../dt-bindings/interconnect/qcom,qcs404.h    |  88 +++
+ 9 files changed, 825 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
+ create mode 100644 drivers/interconnect/qcom/qcs404.c
+ create mode 100644 drivers/interconnect/qcom/smd-rpm.c
+ create mode 100644 drivers/interconnect/qcom/smd-rpm.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,qcs404.h
 
