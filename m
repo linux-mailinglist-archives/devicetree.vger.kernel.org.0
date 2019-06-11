@@ -2,237 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1833D4BA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 19:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 078493D4E3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 20:03:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406715AbfFKR6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 13:58:38 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:37808 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406628AbfFKR6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 13:58:37 -0400
-Received: by mail-pl1-f193.google.com with SMTP id bh12so5441663plb.4
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 10:58:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ezWWyHmFr3D52R1hMjM3lFqjTF5qDUt/Gz8+w6Ybeeg=;
-        b=NXabX8VKhqlLINuoMQHbinmJIUbVH0BN+gV3EBZfeU2WCiSZGaL5z1BBk/58lNpSLk
-         6OZS/QBr9Xcqp8FLP0aoFzarQalnNz5o/W4LmU3plkkiz8px1w/b14QGZtx/LpELMViT
-         Cq0zGOdkG0bUXDxO/omwJpd2ykSJkUq6SnLNsOdyke4UAJxvvy6sJ2KCrvAjbWxYUAfv
-         mNi2NE/pq7hdDfUErhLVHQrN935jeqQID0v5d+Q6AZHeXiOFfmRa4pwDvFIRPShgom9k
-         +iiaBa56wRxxqOBXtYUg69RYV0vztcjvfpfAUcRMjGUqaocx9uX+ixG798K/4fglHZBe
-         neug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ezWWyHmFr3D52R1hMjM3lFqjTF5qDUt/Gz8+w6Ybeeg=;
-        b=IzgiSDDznwRq5QpH4UqWLCPDSfaKa1W/Cdjw0RPRdZd00+7IR/ETPHs6zcMSOL8jwE
-         rm7Ube7q/UqhlOxRftDJOafWF7WWviU9eBcZ77JNvurIqgl202cBYB6r6D377Tcm79KM
-         6zd7CqLCWcv9avB9hcWlonGslNK0n9/GTmplejbU2wCTw185KHo3zBipt1m+TiPI0ORJ
-         RIhE+Qji/VEkCKkQUGNgKZjwpNx8u9QPlh3/VjyKLuTkYwsBZEXCVFYl4HjOsizHLyRV
-         GE1TWonkJWMw4fS9KeJHh25uN3Lw84POSCQmk4vg0xy9fWkvTIKxdww+La3PdPjzD3sm
-         rykw==
-X-Gm-Message-State: APjAAAWHN1cSuvrPG1rG5CUfrvugyNP5BAPP2H5cDstL3QQGiGdWQj73
-        G5xv/UEuiawBDizLozMqSOmL1Q==
-X-Google-Smtp-Source: APXvYqxLhXRMoy3niXLUf+3yjcR+oYOqDZdO4IrAaXbVjtaTgohrWX6P7B3Tnf00xa75XTTIUTknBA==
-X-Received: by 2002:a17:902:3341:: with SMTP id a59mr47725400plc.186.1560275916197;
-        Tue, 11 Jun 2019 10:58:36 -0700 (PDT)
-Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
-        by smtp.gmail.com with ESMTPSA id s64sm13222982pfb.160.2019.06.11.10.58.34
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 11 Jun 2019 10:58:35 -0700 (PDT)
-Date:   Tue, 11 Jun 2019 10:58:30 -0700
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Iurii Zaikin <yzaikin@google.com>, frowand.list@gmail.com,
-        gregkh@linuxfoundation.org, jpoimboe@redhat.com,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, peterz@infradead.org, robh@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-Subject: Re: [PATCH v4 17/18] kernel/sysctl-test: Add null pointer test for
- sysctl.c:proc_dointvec()
-Message-ID: <20190611175830.GA236872@google.com>
-References: <20190514221711.248228-1-brendanhiggins@google.com>
- <20190514221711.248228-18-brendanhiggins@google.com>
- <20190517182254.548EA20815@mail.kernel.org>
- <CAAXuY3p4qhKVsSpQ44_kQeGDMfg7OuFLgFyxhcFWS3yf-5A_7g@mail.gmail.com>
- <20190607190047.C3E7A20868@mail.kernel.org>
+        id S2406729AbfFKSDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 14:03:34 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:36220 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406723AbfFKSDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 14:03:33 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 28BD32AF;
+        Tue, 11 Jun 2019 20:03:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1560276211;
+        bh=exWMQpzVUcVHbArclfchPQA20MY/zWqw3zj3LWT3EWw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EWcXliNyKKtOO/SjPheM3h6upHk9ZqRoe9SojrbSZElysefFhoOiKK5BZxyrCCuMe
+         rQ9suCr4VtdEkkjJ3d5hcTBZ7Z7FZW/rwIo1IzOpdQEjQGbw5HaA60UMBus69bF5gB
+         BB9xoqtbaPqC+Naa6cZlwUpaEucDEGxLJRs43PNI=
+Date:   Tue, 11 Jun 2019 21:03:16 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michael Drake <michael.drake@codethink.co.uk>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@lists.codethink.co.uk,
+        Patrick Glaser <pglaser@tesla.com>, Nate Case <ncase@tesla.com>
+Subject: Re: [PATCH v1 01/11] dt-bindings: display/bridge: Add bindings for
+ ti948
+Message-ID: <20190611180316.GS5016@pendragon.ideasonboard.com>
+References: <20190611140412.32151-1-michael.drake@codethink.co.uk>
+ <20190611140412.32151-2-michael.drake@codethink.co.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190607190047.C3E7A20868@mail.kernel.org>
+In-Reply-To: <20190611140412.32151-2-michael.drake@codethink.co.uk>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 07, 2019 at 12:00:47PM -0700, Stephen Boyd wrote:
-> Quoting Iurii Zaikin (2019-06-05 18:29:42)
-> > On Fri, May 17, 2019 at 11:22 AM Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > Quoting Brendan Higgins (2019-05-14 15:17:10)
-> > > > diff --git a/kernel/sysctl-test.c b/kernel/sysctl-test.c
-> > > > new file mode 100644
-> > > > index 0000000000000..fe0f2bae66085
-> > > > --- /dev/null
-> > > > +++ b/kernel/sysctl-test.c
-> > > > +
-> > > > +
-> > > > +static void sysctl_test_dointvec_happy_single_negative(struct kunit *test)
-> > > > +{
-> > > > +       struct ctl_table table = {
-> > > > +               .procname = "foo",
-> > > > +               .data           = &test_data.int_0001,
-> > > > +               .maxlen         = sizeof(int),
-> > > > +               .mode           = 0644,
-> > > > +               .proc_handler   = proc_dointvec,
-> > > > +               .extra1         = &i_zero,
-> > > > +               .extra2         = &i_one_hundred,
-> > > > +       };
-> > > > +       char input[] = "-9";
-> > > > +       size_t len = sizeof(input) - 1;
-> > > > +       loff_t pos = 0;
-> > > > +
-> > > > +       table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
-> > > > +       KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, input, &len, &pos));
-> > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
-> > > > +       KUNIT_EXPECT_EQ(test, sizeof(input) - 1, pos);
-> > > > +       KUNIT_EXPECT_EQ(test, -9, *(int *)table.data);
-> > >
-> > > Is the casting necessary? Or can the macro do a type coercion of the
-> > > second parameter based on the first type?
-> >  Data field is defined as void* so I believe casting is necessary to
-> > dereference it as a pointer to an array of ints. I don't think the
-> > macro should do any type coercion that == operator wouldn't do.
-> >  I did change the cast to make it more clear that it's a pointer to an
-> > array of ints being dereferenced.
+Hi Michael,
+
+Thank you for the patch.
+
+On Tue, Jun 11, 2019 at 03:04:02PM +0100, Michael Drake wrote:
+> Adds device tree bindings for:
 > 
-> Ok, I still wonder if we should make KUNIT_EXPECT_EQ check the types on
-> both sides and cause a build warning/error if the types aren't the same.
-> This would be similar to our min/max macros that complain about
-> mismatched types in the comparisons. Then if a test developer needs to
-> convert one type or the other they could do so with a
-> KUNIT_EXPECT_EQ_T() macro that lists the types to coerce both sides to
-> explicitly.
+>   TI DS90UB948-Q1 2K FPD-Link III to OpenLDI Deserializer
+> 
+> The device has the compatible string "ti,ds90ub948", and
+> and allows an arrray of strings to be provided as regulator
 
-Do you think it would be better to do a phony compare similar to how
-min/max used to work prior to 4.17, or to use the new __typecheck(...)
-macro? This might seem like a dumb question (and maybe it is), but Iurii
-and I thought the former created an error message that was a bit easier
-to understand, whereas __typecheck is obviously superior in terms of
-code reuse.
+s/arrray/array/
 
-This is what we are thinking right now; if you don't have any complaints
-I will squash it into the relevant commits on the next revision:
----
-From: Iurii Zaikin <yzaikin@google.com>
+> names to enable for operation of the device.
+> 
+> Signed-off-by: Michael Drake <michael.drake@codethink.co.uk>
+> Cc: Patrick Glaser <pglaser@tesla.com>
+> Cc: Nate Case <ncase@tesla.com>
+> ---
+>  .../bindings/display/bridge/ti,ds90ub948.txt  | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt b/Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt
+> new file mode 100644
+> index 000000000000..f9e86cb22900
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt
+> @@ -0,0 +1,24 @@
+> +TI DS90UB948-Q1 2K FPD-Link III to OpenLDI Deserializer
+> +=======================================================
+> +
+> +This is the binding for Texas Instruments DS90UB948-Q1 bridge deserializer.
+> +
+> +This device supports I2C only.
 
-Adds a warning message when comparing values of different types similar
-to what min() / max() macros do.
+Then the DT node should be a child of its I2C controller, and have a reg
+property.
 
-Signed-off-by: Iurii Zaikin <yzaikin@google.com>
----
- include/kunit/test.h | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+> +
+> +Required properties:
+> +
+> +- compatible: "ti,ds90ub948"
+> +
+> +Optional properties:
+> +
+> +- regulators: List of regulator name strings to enable for operation of device.
 
-diff --git a/include/kunit/test.h b/include/kunit/test.h
-index 511c9e85401a6..791e22fba5620 100644
---- a/include/kunit/test.h
-+++ b/include/kunit/test.h
-@@ -335,6 +335,13 @@ void __printf(3, 4) kunit_printk(const char *level,
- #define kunit_err(test, fmt, ...) \
- 		kunit_printk(KERN_ERR, test, fmt, ##__VA_ARGS__)
- 
-+/*
-+ * 'Unnecessary' cast serves to generate a compile-time warning in case
-+ * of comparing incompatible types. Inspired by include/linux/kernel.h
-+ */
-+#define __kunit_typecheck(lhs, rhs) \
-+	((void) (&(lhs) == &(rhs)))
-+
- static inline struct kunit_stream *kunit_expect_start(struct kunit *test,
- 						      const char *file,
- 						      const char *line)
-@@ -514,6 +521,7 @@ static inline void kunit_expect_ptr_binary(struct kunit *test,
- #define KUNIT_EXPECT_BINARY(test, left, condition, right) do {		       \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_expect_binary(test,					       \
- 			    (long long) __left, #left,			       \
- 			    (long long) __right, #right,		       \
-@@ -524,6 +532,7 @@ static inline void kunit_expect_ptr_binary(struct kunit *test,
- #define KUNIT_EXPECT_BINARY_MSG(test, left, condition, right, fmt, ...) do {   \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_expect_binary_msg(test,					       \
- 				(long long) __left, #left,		       \
- 				(long long) __right, #right,		       \
-@@ -538,6 +547,7 @@ static inline void kunit_expect_ptr_binary(struct kunit *test,
- #define KUNIT_EXPECT_PTR_BINARY(test, left, condition, right) do {	       \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_expect_ptr_binary(test,					       \
- 			    (void *) __left, #left,			       \
- 			    (void *) __right, #right,			       \
-@@ -553,6 +563,7 @@ static inline void kunit_expect_ptr_binary(struct kunit *test,
- 				    ...) do {				       \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_expect_ptr_binary_msg(test,				       \
- 				    (void *) __left, #left,		       \
- 				    (void *) __right, #right,		       \
-@@ -1013,6 +1024,7 @@ static inline void kunit_assert_ptr_binary(struct kunit *test,
- #define KUNIT_ASSERT_BINARY(test, left, condition, right) do {		       \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_assert_binary(test,					       \
- 			    (long long) __left, #left,			       \
- 			    (long long) __right, #right,		       \
-@@ -1023,6 +1035,7 @@ static inline void kunit_assert_ptr_binary(struct kunit *test,
- #define KUNIT_ASSERT_BINARY_MSG(test, left, condition, right, fmt, ...) do {   \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_assert_binary_msg(test,					       \
- 				(long long) __left, #left,		       \
- 				(long long) __right, #right,		       \
-@@ -1037,6 +1050,7 @@ static inline void kunit_assert_ptr_binary(struct kunit *test,
- #define KUNIT_ASSERT_PTR_BINARY(test, left, condition, right) do {	       \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_assert_ptr_binary(test,					       \
- 				(void *) __left, #left,			       \
- 				(void *) __right, #right,		       \
-@@ -1051,6 +1065,7 @@ static inline void kunit_assert_ptr_binary(struct kunit *test,
- 				    fmt, ...) do {			       \
- 	typeof(left) __left = (left);					       \
- 	typeof(right) __right = (right);				       \
-+	__kunit_typecheck(__left, __right);				       \
- 	kunit_assert_ptr_binary_msg(test,				       \
- 				    (void *) __left, #left,		       \
- 				    (void *) __right, #right,		       \
+There's a standard binding for regulators, using *-supply properties.
+Please use them.
+
+You should also use the OF graph DT bindings to model the data
+connections.
+
+> +
+> +Example
+> +-------
+> +
+> +ti948: ds90ub948@0 {
+> +	compatible = "ti,ds90ub948";
+> +
+> +	regulators: "vcc",
+> +	            "vcc_disp";
+> +};
+
 -- 
-2.22.0.rc2.383.gf4fbbf30c2-goog
+Regards,
 
+Laurent Pinchart
