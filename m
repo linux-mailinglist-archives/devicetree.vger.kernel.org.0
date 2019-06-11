@@ -2,103 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E77F33CEEE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5489A3CF66
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 16:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390998AbfFKOiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 10:38:10 -0400
-Received: from foss.arm.com ([217.140.110.172]:34570 "EHLO foss.arm.com"
+        id S2389454AbfFKOuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 10:50:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47350 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387486AbfFKOiJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 10:38:09 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 35FBD337;
-        Tue, 11 Jun 2019 07:38:09 -0700 (PDT)
-Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0C1583F557;
-        Tue, 11 Jun 2019 07:38:07 -0700 (PDT)
-Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
-To:     Jacob Pan <jacob.jun.pan@linux.intel.com>
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        will.deacon@arm.com, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org, robh+dt@kernel.org,
-        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
- <20190610184714.6786-2-jean-philippe.brucker@arm.com>
- <20190611052626.20bed59a@jacob-builder>
-From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Message-ID: <95292b47-4cf4-5fd9-b096-1cb016e2264f@arm.com>
-Date:   Tue, 11 Jun 2019 15:37:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2388362AbfFKOuu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 10:50:50 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA6BD2089E;
+        Tue, 11 Jun 2019 14:50:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560264649;
+        bh=MpYPAaIV13S2Yylnp2EyZ431PTaW/WjP6IAwHXeD6IY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ReLwKN5pZRc7uGT6tVskU8kc0sdNJCY1Vees7AqtPNFwL1R7wczuGjJknKJazUkuf
+         Q+ovaZh+VQPHMBeChWR8c2NtMA4B3UKDWZh7FptmE3s7uAtmdq5INuouQ8bIoKctoc
+         pzqV5z9FKyvOPMVFc9Kam+7v1hTM3NHsgDELh6aQ=
+Received: by mail-qt1-f172.google.com with SMTP id h21so14812926qtn.13;
+        Tue, 11 Jun 2019 07:50:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAVNFlviLNzyv6R71A+wGff0vTa3ImlHHLDdQ2H/8evP/jKkwH4Q
+        T21/JX3Yo/Sw4yWXYAs12bRhAL83bD8ceFG4aw==
+X-Google-Smtp-Source: APXvYqyJUBDtqhRg65MZJLGpagrESYWGxQEF/Opjh/WxDQ0lr19H2G/og3yzhLmg7b7P0Cv1k8sNGFJrHhVtjcNM90U=
+X-Received: by 2002:ac8:2ec3:: with SMTP id i3mr19914156qta.110.1560264648991;
+ Tue, 11 Jun 2019 07:50:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190611052626.20bed59a@jacob-builder>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190605122936.11972-1-maxime.ripard@bootlin.com>
+ <CAL_JsqKC7uP0J14A8_CvPhbZkoSRNWSpS1ee+Q4sG013jY=JeQ@mail.gmail.com> <20190611090641.byr6mpywkfmbhrbk@flea>
+In-Reply-To: <20190611090641.byr6mpywkfmbhrbk@flea>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 11 Jun 2019 08:50:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL3cua3u2gNTzHEdgFU0On5J9ziPZeFNiTpu5HS=SJoDA@mail.gmail.com>
+Message-ID: <CAL_JsqL3cua3u2gNTzHEdgFU0On5J9ziPZeFNiTpu5HS=SJoDA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: sun6i-p2wi: Add YAML schemas
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Wolfram Sang <wsa@the-dreams.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/06/2019 13:26, Jacob Pan wrote:
->> +/**
->> + * ioasid_set_data - Set private data for an allocated ioasid
->> + * @ioasid: the ID to set data
->> + * @data:   the private data
->> + *
->> + * For IOASID that is already allocated, private data can be set
->> + * via this API. Future lookup can be done via ioasid_find.
->> + */
->> +int ioasid_set_data(ioasid_t ioasid, void *data)
->> +{
->> +	struct ioasid_data *ioasid_data;
->> +	int ret = 0;
->> +
->> +	xa_lock(&ioasid_xa);
-> Just wondering if this is necessary, since xa_load is under
-> rcu_read_lock and we are not changing anything internal to xa. For
-> custom allocator I still need to have the mutex against allocator
-> removal.
+On Tue, Jun 11, 2019 at 3:06 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, Jun 10, 2019 at 03:34:18PM -0600, Rob Herring wrote:
+> > On Wed, Jun 5, 2019 at 6:29 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > +properties:
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 0
+> >
+> > These 2 are covered by i2c-controller.yaml, right?
+>
+> Indeed, I've removed them.
+>
+> > > +examples:
+> > > +  - |
+> > > +    p2wi@1f03400 {
+> >
+> > i2c@...
+> >
+> > That should fail on the schema (I need to get the schema checking of
+> > examples finished.)
+>
+> That would be great :) The compilation of the examples alone already
+> caught a good number of examples that weren't even compiling.
 
-I think we do need this because of a possible race with ioasid_free():
+I'm primarily waiting on a dtc change to be accepted[1]. Feel free to
+review/ack.
 
-         CPU1                      CPU2
-  ioasid_free(ioasid)     ioasid_set_data(ioasid, foo)
-                            data = xa_load(...)
-    xa_erase(...)
-    kfree_rcu(data)           (no RCU lock held)
-    ...free(data)
-                            data->private = foo;
+> Speaking of examples, one thing that would be great too would be to
+> allow the usage of our C headers. It's not supported at the moment,
+> and this often ends up with an example that is less readable than the
+> actual DT.
 
-The issue is theoretical at the moment because no users do this, but I'd
-be more comfortable taking the xa_lock, which prevents a concurrent
-xa_erase()+free(). (I commented on your v3 but you might have missed it)
+It should be. You just have to add them. See
+Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml for
+example.
 
->> +	ioasid_data = xa_load(&ioasid_xa, ioasid);
->> +	if (ioasid_data)
->> +		rcu_assign_pointer(ioasid_data->private, data);
-> it is good to publish and have barrier here. But I just wonder even for
-> weakly ordered machine, this pointer update is quite far away from its
-> data update.
+Maybe the common interrupt and gpio ones should be added by default.
 
-I don't know, it could be right before calling ioasid_set_data():
+Rob
 
-	mydata = kzalloc(sizeof(*mydata));
-	mydata->ops = &my_ops;			(1)
-	ioasid_set_data(ioasid, mydata);
-		... /* no write barrier here */
-		data->private = mydata;		(2)
-
-And then another thread calls ioasid_find():
-
-	mydata = ioasid_find(ioasid);
-	if (mydata)
-		mydata->ops->do_something();
-
-On a weakly ordered machine, this thread could observe the pointer
-assignment (2) before the ops assignment (1), and dereference NULL.
-Using rcu_assign_pointer() should fix that
-
-Thanks,
-Jean
+[1] https://www.spinics.net/lists/devicetree-compiler/msg02709.html
