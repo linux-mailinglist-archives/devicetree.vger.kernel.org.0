@@ -2,143 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E3D03D0BC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 17:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB163D0DC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 17:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404915AbfFKPZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 11:25:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57090 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404914AbfFKPZv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 11:25:51 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 096C12175B;
-        Tue, 11 Jun 2019 15:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560266750;
-        bh=d/VaFO2GopJ/soJKDMYISKQ69HFRcP7EG77tPBICDJk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CdshHLDgJ7Z/1d5LTs2sVuwWCODL2x/qXUFAMEQPKZm794Tm7ad0pFwve7BIfoo62
-         4WDI7usTGjFy11bRMh+JpMTO5ZOpdW4p4qrqu8N+4vInTl3LBXaRd+8FMIxGt33wcR
-         dracVjyhFWQwwtHdPHeCNubvSPz6pWMOO7QqSbIQ=
-Received: by mail-qt1-f173.google.com with SMTP id x2so14119711qtr.0;
-        Tue, 11 Jun 2019 08:25:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAUt1VyCPDS7csClK3rBa+ptPGd0IZFSzOGVilRwnQCh22/ntpa7
-        mt/Nneh4KOfFyyPreX3VBEZRhmKqnI6nqpvKCw==
-X-Google-Smtp-Source: APXvYqzPjuRg7gzez7BpTEniSzx8damxLOxBNc/30j7Wqsby4Sg0SN/ftQhCVmvj52vSz6sLfP6GnUjon1dfQkvHQ3o=
-X-Received: by 2002:a05:6214:248:: with SMTP id k8mr29740285qvt.200.1560266749174;
- Tue, 11 Jun 2019 08:25:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190611040350.90064-1-dbasehore@chromium.org> <20190611040350.90064-3-dbasehore@chromium.org>
-In-Reply-To: <20190611040350.90064-3-dbasehore@chromium.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 11 Jun 2019 09:25:37 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
-Message-ID: <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: display/panel: Expand rotation documentation
-To:     Derek Basehore <dbasehore@chromium.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S2404960AbfFKPdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 11:33:20 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:39329 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404963AbfFKPdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jun 2019 11:33:19 -0400
+Received: by mail-wm1-f66.google.com with SMTP id z23so3416148wma.4
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 08:33:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=FmwHZkaa1R0JoHSUEfjn8cTTt9MbvZmF4XV1+i5dOJs=;
+        b=ANnVaIBDr6Rb5Xsy1nMlf077F1PNYlhLezpJGfv7aBrYbK22g3kJp6XwGIux1Kh8n6
+         V7ZOcLfjxLSjhmpy9ZfRr4eDyLiQxBKFVgdMtC9ojjT3tceGUlFRWriQP3cOyOQA2vlm
+         GMYqOabbuikmafaZWNZ8njzM1O0vfh4ZLrt7JRPZjPr+TQH8N6d9O3Q7NxhbTFMXtEdP
+         Jl1/zTxFFKlLoH999beuymasml+5nggdIFRQs6ud2BqCAb8h+uro7JnWsTuLOJIN3EOP
+         VmEbBti4O3KodEQEXhxcn/8dUFgrxd+cgGJpJf3A8AR3428B8ltO2mTuZ+qYNQhW0Afl
+         8ITg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=FmwHZkaa1R0JoHSUEfjn8cTTt9MbvZmF4XV1+i5dOJs=;
+        b=mt2QFCH79lO1sWATchIVma0v5HtMBmyTou9IAvQJ/koAD3WlWyyZvGel4bPh60fARB
+         TQTxl4pO+KgoeZmlfj7V+C6hGk+bTLb/jlmLT4DiATV3nUhTP81DH+Vy3iH5EKmZzaZB
+         tldbBS5XZvSeobzHemPBJvDCGij47GscaDW+UyKsa4uoFJbd9T3x4VHgQmu4+2WDdwjg
+         BTr1scx8dK4U/cWS4euLB5pECM1WKgdviAc+Kg2C+G/HxJudDIshyoOmBuuSQyj754B0
+         ru0mUsPIALYySJ8uQSy4TWylhI4qIdCenTXTd2IFvZ1H+OxT+AzWxIVzM79MvqlSI00q
+         gkGQ==
+X-Gm-Message-State: APjAAAVo02rirB8WNBguIcUmbFTmtOHs+rso1H8hFi4oTXjpyI4FWvbo
+        wXVF6N8IqRMkQEtyLf0WA/aWVw==
+X-Google-Smtp-Source: APXvYqydNj7AmRzG+3Qq8PgQaX6j7i/7O6nhWJxUKhU1e4OKdBd242MaaJf6tFbi0H/lTqVYqTGtUA==
+X-Received: by 2002:a7b:c455:: with SMTP id l21mr18854700wmi.114.1560267196506;
+        Tue, 11 Jun 2019 08:33:16 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id u25sm3379121wmc.3.2019.06.11.08.33.15
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 11 Jun 2019 08:33:15 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 16:33:14 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH 2/2] backlight: pwm_bl: Get number of brightness levels
+ for CIE 1931 from the device tree
+Message-ID: <20190611153314.cj6j6l4kcl4kk4t2@holly.lan>
+References: <20190610233739.29477-1-mka@chromium.org>
+ <20190610233739.29477-2-mka@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190610233739.29477-2-mka@chromium.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 10:03 PM Derek Basehore <dbasehore@chromium.org> wrote:
->
-> This adds to the rotation documentation to explain how drivers should
-> use the property and gives an example of the property in a devicetree
-> node.
->
-> Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+On Mon, Jun 10, 2019 at 04:37:39PM -0700, Matthias Kaehlcke wrote:
+> Commit 88ba95bedb79 ("backlight: pwm_bl: Compute brightness of LED
+> linearly to human eye") uses pwm_period / hweight32(pwm_period) as
+> as heuristic to determine the number of brightness levels when the DT
+> doesn't provide a brightness level table. This heuristic is broken
+> and can result in excessively large brightness tables.
+> 
+> Instead of using the heuristic try to retrieve the number of
+> brightness levels from the device tree (property 'max-brightness'
+> + 1). If the value is not specified use a default of 256 levels.
+
+I'll look at the code tomorrow but why 256?
+
+To me it feels simultaneously too big for a simple 8-bit PWM and too
+small for animated backlight effects.
+
+I certainly agree that an override could be useful but I'm not clear why
+deriving a default based on the period is bogus (and the description is
+merely concerned about uselessly big tables).
+
+/*
+ * Once we have 4096 levels there's little point going much higher...
+ * neither interactive sliders nor animation benefits from having
+ * more values in the table.
+ */
+max_brightness = min(DIV_ROUND_UP(period, ffs(period), 4096);
+
+
+Daniel.
+
+> 
+> Fixes: 88ba95bedb79 ("backlight: pwm_bl: Compute brightness of LED linearly to human eye")
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  .../bindings/display/panel/panel.txt          | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel.txt b/Documentation/devicetree/bindings/display/panel/panel.txt
-> index e2e6867852b8..f35d62d933fc 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel.txt
-> +++ b/Documentation/devicetree/bindings/display/panel/panel.txt
-> @@ -2,3 +2,35 @@ Common display properties
->  -------------------------
->
->  - rotation:    Display rotation in degrees counter clockwise (0,90,180,270)
+>  drivers/video/backlight/pwm_bl.c | 59 ++++++++++++--------------------
+>  1 file changed, 21 insertions(+), 38 deletions(-)
+> 
+> diff --git a/drivers/video/backlight/pwm_bl.c b/drivers/video/backlight/pwm_bl.c
+> index fb45f866b923..2913cbe9cfcb 100644
+> --- a/drivers/video/backlight/pwm_bl.c
+> +++ b/drivers/video/backlight/pwm_bl.c
+> @@ -194,38 +194,19 @@ int pwm_backlight_brightness_default(struct device *dev,
+>  				     struct platform_pwm_backlight_data *data,
+>  				     unsigned int period)
+>  {
+> -	unsigned int counter = 0;
+> -	unsigned int i, n;
+> +	unsigned int i;
+> +	unsigned int nlevels = data->max_brightness + 1;
+>  	u64 retval;
+>  
+> -	/*
+> -	 * Count the number of bits needed to represent the period number. The
+> -	 * number of bits is used to calculate the number of levels used for the
+> -	 * brightness-levels table, the purpose of this calculation is have a
+> -	 * pre-computed table with enough levels to get linear brightness
+> -	 * perception. The period is divided by the number of bits so for a
+> -	 * 8-bit PWM we have 255 / 8 = 32 brightness levels or for a 16-bit PWM
+> -	 * we have 65535 / 16 = 4096 brightness levels.
+> -	 *
+> -	 * Note that this method is based on empirical testing on different
+> -	 * devices with PWM of 8 and 16 bits of resolution.
+> -	 */
+> -	n = period;
+> -	while (n) {
+> -		counter += n % 2;
+> -		n >>= 1;
+> -	}
+> -
+> -	data->max_brightness = DIV_ROUND_UP(period, counter);
+> -	data->levels = devm_kcalloc(dev, data->max_brightness,
+> +	data->levels = devm_kcalloc(dev, nlevels,
+>  				    sizeof(*data->levels), GFP_KERNEL);
+>  	if (!data->levels)
+>  		return -ENOMEM;
+>  
+>  	/* Fill the table using the cie1931 algorithm */
+> -	for (i = 0; i < data->max_brightness; i++) {
+> +	for (i = 0; i < nlevels; i++) {
+>  		retval = cie1931((i * PWM_LUMINANCE_SCALE) /
+> -				 data->max_brightness, PWM_LUMINANCE_SCALE) *
+> +				 nlevels, PWM_LUMINANCE_SCALE) *
+>  				 period;
+>  		retval = DIV_ROUND_CLOSEST_ULL(retval, PWM_LUMINANCE_SCALE);
+>  		if (retval > UINT_MAX)
+> @@ -233,8 +214,7 @@ int pwm_backlight_brightness_default(struct device *dev,
+>  		data->levels[i] = (unsigned int)retval;
+>  	}
+>  
+> -	data->dft_brightness = data->max_brightness / 2;
+> -	data->max_brightness--;
+> +	data->dft_brightness = nlevels / 2;
+>  
+>  	return 0;
+>  }
+> @@ -272,8 +252,13 @@ static int pwm_backlight_parse_dt(struct device *dev,
+>  	 * set a default table of brightness levels will be used.
+>  	 */
+>  	prop = of_find_property(node, "brightness-levels", &length);
+> -	if (!prop)
+> +	if (!prop) {
+> +		if (of_property_read_u32(node, "max-brightness",
+> +					 &data->max_brightness))
+> +			data->max_brightness = 255;
 > +
-> +Property read from the device tree using of of_drm_get_panel_orientation
-
-Don't put kernel specifics into bindings.
-
-> +
-> +The panel driver may apply the rotation at the TCON level, which will
-
-What's TCON? Something Mediatek specific IIRC.
-
-> +make the panel look like it isn't rotated to the kernel and any other
-> +software.
-> +
-> +If not, a panel orientation property should be added through the SoC
-> +vendor DRM code using the drm_connector_init_panel_orientation_property
-> +function.
-
-The 'rotation' property should be defined purely based on how the
-panel is mounted relative to a device's orientation. If the display
-pipeline has some ability to handle rotation, that's a feature of the
-display pipeline and not the panel.
-
-> +
-> +Example:
-
-This file is a collection of common properties. It shouldn't have an
-example especially as this example is mostly non-common properties.
-
-> +       panel: panel@0 {
-> +               compatible = "boe,himax8279d8p";
-> +               reg = <0>;
-> +               enable-gpios = <&pio 45 0>;
-
-> +               pp33-gpios = <&pio 35 0>;
-> +               pp18-gpios = <&pio 36 0>;
-
-BTW, are these upstream because they look like GPIO controlled
-supplies which we model with gpio-regulator binding typically.
-
-> +               pinctrl-names = "default", "state_3300mv", "state_1800mv";
-> +               pinctrl-0 = <&panel_pins_default>;
-> +               pinctrl-1 = <&panel_pins_3300mv>;
-> +               pinctrl-2 = <&panel_pins_1800mv>;
-> +               backlight = <&backlight_lcd0>;
-> +               rotation = <180>;
-> +               status = "okay";
-> +
-> +               port {
-> +                       panel_in: endpoint {
-> +                               remote-endpoint = <&dsi_out>;
-> +                       };
-> +               };
-> +       };
-> --
+>  		return 0;
+> +	}
+>  
+>  	data->max_brightness = length / sizeof(u32);
+>  
+> @@ -565,13 +550,10 @@ static int pwm_backlight_probe(struct platform_device *pdev)
+>  
+>  			pb->levels = data->levels;
+>  		}
+> -	} else if (!data->max_brightness) {
+> +	} else if (node) {
+>  		/*
+> -		 * If no brightness levels are provided and max_brightness is
+> -		 * not set, use the default brightness table. For the DT case,
+> -		 * max_brightness is set to 0 when brightness levels is not
+> -		 * specified. For the non-DT case, max_brightness is usually
+> -		 * set to some value.
+> +		 * If no brightness levels are provided use the default
+> +		 * brightness table.
+>  		 */
+>  
+>  		/* Get the PWM period (in nanoseconds) */
+> @@ -591,12 +573,13 @@ static int pwm_backlight_probe(struct platform_device *pdev)
+>  
+>  			pb->levels = data->levels;
+>  		}
+> -	} else {
+> -		/*
+> -		 * That only happens for the non-DT case, where platform data
+> -		 * sets the max_brightness value.
+> -		 */
+> +	} else if (data->max_brightness) {
+> +		/* non-DT case, max_brightness value set in platform data. */
+>  		pb->scale = data->max_brightness;
+> +	} else {
+> +		dev_err(&pdev->dev, "max brightness is not specified\n");
+> +		ret = -EINVAL;
+> +		goto err_alloc;
+>  	}
+>  
+>  	pb->lth_brightness = data->lth_brightness * (state.period / pb->scale);
+> -- 
 > 2.22.0.rc2.383.gf4fbbf30c2-goog
->
+> 
