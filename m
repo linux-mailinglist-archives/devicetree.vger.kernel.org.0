@@ -2,139 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E63973D0EB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 17:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC443D146
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2019 17:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405001AbfFKPev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 11:34:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59856 "EHLO mail.kernel.org"
+        id S2391691AbfFKPrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jun 2019 11:47:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34312 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404969AbfFKPev (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 11:34:51 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2389302AbfFKPrK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jun 2019 11:47:10 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AFB5F21721;
-        Tue, 11 Jun 2019 15:34:49 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 11BDC2080A;
+        Tue, 11 Jun 2019 15:47:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560267290;
-        bh=wR34BLaRRYbezeEUO4eD9UiznAWkJ3tQ4WgnQL2ElU8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jptSNKRCpUbk4IVCkDdvcqm6TZMZcLEdSYvHjeCj+Rg5wq9i4Odd8F95PVjEvnjPb
-         ro5NHVHDodLFX76iFntwTMVsI0kc/JTX9eF2wKK1QmDfThdNXKEc8GYt7oXu1FJfjX
-         r+gKJH6MFtoiBYm/Olu+vPKfC7fVnce/A7gFD4Cc=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     dmaengine@vger.kernel.org
-Cc:     dinguyen@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        vkoul@kernel.org, geert@linux-m68k.org, devicetree@vger.kernel.org
-Subject: [PATCHv2 2/2] dmagengine: pl330: add code to get reset property
-Date:   Tue, 11 Jun 2019 10:34:33 -0500
-Message-Id: <20190611153433.22129-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
-In-Reply-To: <20190611153433.22129-1-dinguyen@kernel.org>
-References: <20190611153433.22129-1-dinguyen@kernel.org>
+        s=default; t=1560268029;
+        bh=ODzIca1G6HwE9DpSxb7ddhUfILHkfcmRba/4rBqVBxQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e3yDQiYkifbMrkWt69XVzkQEu4k3E4TzQ+jgCbNCKbq3tFTul7bQtdb/ivvMASCIo
+         D2mWwf5Ja3ceey3cJW0djsE08rHo0qdxViwzpPcbvxzwfEMBWvI9klRn7dfe5Cu8NB
+         PopmPDk+qxIOQXhJWAo78I+DLxkacSjMXgngNke4=
+Date:   Tue, 11 Jun 2019 17:47:06 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Richard Gong <richard.gong@linux.intel.com>
+Cc:     Romain Izard <romain.izard.pro@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, dinguyen@kernel.org, atull@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        sen.li@intel.com, Richard Gong <richard.gong@intel.com>
+Subject: Re: A potential broken at platform driver?
+Message-ID: <20190611154706.GE5706@kroah.com>
+References: <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+ <20190528232224.GA29225@kroah.com>
+ <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
+ <b608d657-9d8c-9307-9290-2f6b052a71a9@linux.intel.com>
+ <20190603180255.GA18054@kroah.com>
+ <20190604103241.GA4097@5WDYG62>
+ <20190604142803.GA28355@kroah.com>
+ <e3adbd00-e500-70af-1c27-e4c064486561@linux.intel.com>
+ <20190604170310.GC14605@kroah.com>
+ <f484ce9f-a86e-ce33-686b-b42dc293beb8@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f484ce9f-a86e-ce33-686b-b42dc293beb8@linux.intel.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DMA controller on some SoCs can be held in reset, and thus requires
-the reset signal(s) to deasserted. Most SoCs will have just one reset
-signal, but there are others, i.e. Arria10/Stratix10 will have an
-additional reset signal, referred to as the OCP.
+On Tue, Jun 11, 2019 at 09:10:05AM -0500, Richard Gong wrote:
+> 
+> Hi Greg,
+> 
+> On 6/4/19 12:03 PM, Greg KH wrote:
+> > On Tue, Jun 04, 2019 at 11:13:02AM -0500, Richard Gong wrote:
+> > > 
+> > > Hi Greg,
+> > > 
+> > > On 6/4/19 9:28 AM, Greg KH wrote:
+> > > > On Tue, Jun 04, 2019 at 12:33:03PM +0200, Romain Izard wrote:
+> > > > > On Mon, Jun 03, 2019 at 08:02:55PM +0200, Greg KH wrote:
+> > > > > > > @@ -394,7 +432,7 @@ static struct platform_driver stratix10_rsu_driver = {
+> > > > > > >    	.remove = stratix10_rsu_remove,
+> > > > > > >    	.driver = {
+> > > > > > >    		.name = "stratix10-rsu",
+> > > > > > > -		.groups = rsu_groups,
+> > > > > > > +//		.groups = rsu_groups,
+> > > > > > 
+> > > > > > Are you sure this is the correct pointer?  I think that might be
+> > > > > > pointing to the driver's attributes, not the device's attributes.
+> > > > > > 
+> > > > > > If platform drivers do not have a way to register groups properly, then
+> > > > > > that really needs to be fixed, as trying to register it by yourself as
+> > > > > > you are doing, is ripe for racing with userspace.
+> > > > > This is a very common issue with platform drivers, and it seems to me that
+> > > > > it is not possible to add device attributes when binding a device to a
+> > > > > driver without entering the race condition.
+> > > > > 
+> > > > > My understanding is the following one:
+> > > > > 
+> > > > > The root cause is that the device has already been created and reported
+> > > > > to the userspace with a KOBJ_ADD uevent before the device and the driver
+> > > > > are bound together. On receiving this event, userspace will react, and
+> > > > > it will try to read the device's attributes. In parallel the kernel will
+> > > > > try to find a matching driver. If a driver is found, the kernel will
+> > > > > call the probe function from the driver with the device as a parameter,
+> > > > > and if successful a KOBJ_BIND uevent will be sent to userspace, but this
+> > > > > is a recent addition.
+> > > > > 
+> > > > > Unfortunately, not all created devices will be bound to a driver, and the
+> > > > > existing udev code relies on KOBJ_ADD uevents rather than KOBJ_BIND uevents.
+> > > > > If new per-device attributes have been added to the device during the
+> > > > > binding stage userspace may or may not see them, depending on when userspace
+> > > > > tries to read the device's attributes.
+> > > > > 
+> > > > > I have this possible workaround, but I do not know if it is a good solution:
+> > > > > 
+> > > > > When binding the device and the driver together, create a new device as a
+> > > > > child to the current device, and fill its "groups" member to point to the
+> > > > > per-device attributes' group. As the device will be created with all the
+> > > > > attributes, it will not be affected by the race issues. The functions
+> > > > > handling the attributes will need to be modified to use the parents of their
+> > > > > "device" parameter, instead of the device itself. Additionnaly, the sysfs
+> > > > > location of the attributes will be different, as the child device will show
+> > > > > up in the sysfs path. But for a newly introduced device this will not be
+> > > > > a problem.
+> > > > > 
+> > > > > Is this a good compromise ?
+> > > > 
+> > > > Not really.  You just want the attributes on the platform device itself.
+> > > > 
+> > > > Given the horrible hack that platform devices are today, what's one more
+> > > > hack!
+> > > > 
+> > > > Here's a patch below of what should probably be done here.  Richard, can
+> > > > you change your code to use the new dev_groups pointer in the struct
+> > > > platform_driver and this patch and let me know if that works or not?
+> > > > 
+> > > > Note, I've only compiled this code, not tested it...
+> > > > 
+> > > 
+> > > Your patch works.
+> > > 
+> > > Many thanks for your help!
+> > 
+> > Nice!
+> > 
+> > I guess I need to turn it into a real patch now.  Let me do that tonight
+> > and see if I can convert some existing drivers to use it as well...
+> > 
+> 
+> Sorry for asking.
+> 
+> I haven't seen your patch, did you release that?
+> 
 
-Add code to get the reset property from the device tree for deassert and
-assert.
+I didn't post it yet, sorry.  I started on cleaning up the whole kernel
+tree, to show users of the new groups, and then got side-tracked.  The
+code is in a public branch, I'll clean it up this week and send it off,
+hopefully I'll have time over the next few days...
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v2: Update error handling and messages when pointers to the reset controller is
-    not found.
----
- drivers/dma/pl330.c | 40 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+thanks,
 
-diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
-index 6e6837214210..5208c6a80a39 100644
---- a/drivers/dma/pl330.c
-+++ b/drivers/dma/pl330.c
-@@ -29,6 +29,7 @@
- #include <linux/err.h>
- #include <linux/pm_runtime.h>
- #include <linux/bug.h>
-+#include <linux/reset.h>
- 
- #include "dmaengine.h"
- #define PL330_MAX_CHAN		8
-@@ -500,6 +501,9 @@ struct pl330_dmac {
- 	unsigned int num_peripherals;
- 	struct dma_pl330_chan *peripherals; /* keep at end */
- 	int quirks;
-+
-+	struct reset_control	*rstc;
-+	struct reset_control	*rstc_ocp;
- };
- 
- static struct pl330_of_quirks {
-@@ -3028,6 +3032,32 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
- 
- 	amba_set_drvdata(adev, pl330);
- 
-+	pl330->rstc = devm_reset_control_get_optional(&adev->dev, "dma");
-+	if (IS_ERR(pl330->rstc)) {
-+		if (PTR_ERR(pl330->rstc) != -EPROBE_DEFER)
-+			dev_err(&adev->dev, "Failed to get reset!\n");
-+		return PTR_ERR(pl330->rstc);
-+	} else {
-+		ret = reset_control_deassert(pl330->rstc);
-+		if (ret) {
-+			dev_err(&adev->dev, "Couldn't deassert the device from reset!\n");
-+			return ret;
-+		}
-+	}
-+
-+	pl330->rstc_ocp = devm_reset_control_get_optional(&adev->dev, "dma-ocp");
-+	if (IS_ERR(pl330->rstc_ocp)) {
-+		if (PTR_ERR(pl330->rstc_ocp) != -EPROBE_DEFER)
-+			dev_err(&adev->dev, "Failed to get OCP reset!\n");
-+		return PTR_ERR(pl330->rstc_ocp);
-+	} else {
-+		ret = reset_control_deassert(pl330->rstc_ocp);
-+		if (ret) {
-+			dev_err(&adev->dev, "Couldn't deassert the device from OCP reset!\n");
-+			return ret;
-+		}
-+	}
-+
- 	for (i = 0; i < AMBA_NR_IRQS; i++) {
- 		irq = adev->irq[i];
- 		if (irq) {
-@@ -3168,6 +3198,11 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
- probe_err2:
- 	pl330_del(pl330);
- 
-+	if (pl330->rstc_ocp)
-+		reset_control_assert(pl330->rstc_ocp);
-+
-+	if (pl330->rstc)
-+		reset_control_assert(pl330->rstc);
- 	return ret;
- }
- 
-@@ -3206,6 +3241,11 @@ static int pl330_remove(struct amba_device *adev)
- 
- 	pl330_del(pl330);
- 
-+	if (pl330->rstc_ocp)
-+		reset_control_assert(pl330->rstc_ocp);
-+
-+	if (pl330->rstc)
-+		reset_control_assert(pl330->rstc);
- 	return 0;
- }
- 
--- 
-2.20.0
-
+greg k-h
