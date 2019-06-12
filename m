@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2E24497C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 843DA44972
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393595AbfFMRRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 13:17:37 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:38705 "EHLO
+        id S1728893AbfFMRR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 13:17:26 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:38811 "EHLO
         asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727836AbfFLVSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 17:18:16 -0400
+        with ESMTP id S1728432AbfFLVVA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 17:21:00 -0400
 Received: from ravnborg.org (unknown [158.248.194.18])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 187362001E;
-        Wed, 12 Jun 2019 23:18:09 +0200 (CEST)
-Date:   Wed, 12 Jun 2019 23:18:07 +0200
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 0A53D20021;
+        Wed, 12 Jun 2019 23:20:56 +0200 (CEST)
+Date:   Wed, 12 Jun 2019 23:20:54 +0200
 From:   Sam Ravnborg <sam@ravnborg.org>
 To:     Derek Basehore <dbasehore@chromium.org>
 Cc:     linux-kernel@vger.kernel.org,
@@ -39,7 +39,7 @@ Cc:     linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Subject: Re: [PATCH 1/5] drm/panel: Add helper for reading DT rotation
-Message-ID: <20190612211807.GA13155@ravnborg.org>
+Message-ID: <20190612212054.GB13155@ravnborg.org>
 References: <20190611040350.90064-1-dbasehore@chromium.org>
  <20190611040350.90064-2-dbasehore@chromium.org>
 MIME-Version: 1.0
@@ -51,8 +51,7 @@ X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
         a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
         a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=cm27Pg_UAAAA:8
-        a=Ikd4Dj_1AAAA:8 a=t_KA93f0VNsUmkpjo_oA:9 a=CjuIK1q_8ugA:10
-        a=xmb-EsYY8bH0VWELuYED:22
+        a=PWvNCjwUpEQzod5d7NgA:9 a=CjuIK1q_8ugA:10 a=xmb-EsYY8bH0VWELuYED:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -84,9 +83,6 @@ On Mon, Jun 10, 2019 at 09:03:46PM -0700, Derek Basehore wrote:
 > + * device tree node
 > + * @np: device tree node of the panel
 > + * @orientation: orientation enum to be filled in
-The comment says "enum" but the type used is an int.
-Why not use enum drm_panel_orientation?
-
 > + *
 > + * Looks up the rotation of a panel in the device tree. The rotation in the
 > + * device tree is counter clockwise.
@@ -94,76 +90,14 @@ Why not use enum drm_panel_orientation?
 > + * Return: 0 when a valid rotation value (0, 90, 180, or 270) is read or the
 > + * rotation property doesn't exist. -EERROR otherwise.
 > + */
-Initially I read -EEROOR as a specific error code.
-But I gues the semantic is to say that a negative error code is returned
-if something was wrong.
-As we do not use the "-EERROR" syntax anywhere else in drm, please
-reword like we do in other places.
-
-
-Also - it is worth to mention that the rotation returned is
-DRM_MODE_PANEL_ORIENTATION_UNKNOWN if the property is not specified.
-I wonder if this is correct, as no property could also been
-interpretated as DRM_MODE_PANEL_ORIENTATION_NORMAL.
-And in most cases the roation property is optional, so one could
-assume that no property equals 0 degree.
-
-
-	Sam
-
 > +int of_drm_get_panel_orientation(const struct device_node *np, int *orientation)
 > +{
 > +	int rotation, ret;
 > +
 > +	ret = of_property_read_u32(np, "rotation", &rotation);
-> +	if (ret == -EINVAL) {
-> +		/* Don't return an error if there's no rotation property. */
-> +		*orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
-> +		return 0;
-> +	}
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (rotation == 0)
-> +		*orientation = DRM_MODE_PANEL_ORIENTATION_NORMAL;
-> +	else if (rotation == 90)
-> +		*orientation = DRM_MODE_PANEL_ORIENTATION_RIGHT_UP;
-> +	else if (rotation == 180)
-> +		*orientation = DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP;
-> +	else if (rotation == 270)
-> +		*orientation = DRM_MODE_PANEL_ORIENTATION_LEFT_UP;
-> +	else
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(of_drm_get_panel_orientation);
->  #endif
->  
->  MODULE_AUTHOR("Thierry Reding <treding@nvidia.com>");
-> diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
-> index 8c738c0e6e9f..13631b2efbaa 100644
-> --- a/include/drm/drm_panel.h
-> +++ b/include/drm/drm_panel.h
-> @@ -197,11 +197,18 @@ int drm_panel_detach(struct drm_panel *panel);
->  
->  #if defined(CONFIG_OF) && defined(CONFIG_DRM_PANEL)
->  struct drm_panel *of_drm_find_panel(const struct device_node *np);
-> +int of_drm_get_panel_orientation(const struct device_node *np,
-> +				 int *orientation);
->  #else
->  static inline struct drm_panel *of_drm_find_panel(const struct device_node *np)
->  {
->  	return ERR_PTR(-ENODEV);
->  }
-> +int of_drm_get_panel_orientation(const struct device_node *np,
-> +				 int *orientation)
-> +{
-> +	return -ENODEV;
-> +}
->  #endif
->  
->  #endif
-> -- 
-> 2.22.0.rc2.383.gf4fbbf30c2-goog
+
+I just noticed that everywhere this code talks about orientation,
+but the property that it reads are rotation.
+To my best understanding these are not the same.
+
+	Sam
