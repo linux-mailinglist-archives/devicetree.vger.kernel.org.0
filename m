@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F09E0422E9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 12:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEDEE42314
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 12:54:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407547AbfFLKqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 06:46:22 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:45926 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407373AbfFLKqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 06:46:22 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5CAkKJ3043859;
-        Wed, 12 Jun 2019 05:46:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560336380;
-        bh=rCT9l5IB5WSu/R5x7AxJQaWq6nyaViKh5rnaJFmCr/M=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cYE4SOdVysL5JEHSNnno25M76Oa5XuwIig9vWinB4Gj4JLeuOnQ9fvGspfoOzSEv3
-         9zVhGYLfBmdovfjOdbN2A61xDw6XepUPq/st9Sb32JLfda2wXsNgrqBcjoVXOLWTAD
-         ycqlBkrNzycWaIyAOP1O53gLrmGEfcjOTvqpnBkY=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5CAkKS4057190
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 Jun 2019 05:46:20 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 12
- Jun 2019 05:46:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 12 Jun 2019 05:46:20 -0500
-Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5CAkHX3058786;
-        Wed, 12 Jun 2019 05:46:18 -0500
-Subject: Re: [PATCH v2 3/3] regulator: lp87565: Add 4-phase lp87561 regulator
- support
-To:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>
-CC:     <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <t-kristo@ti.com>
-References: <20190516043218.8222-1-j-keerthy@ti.com>
- <20190516043218.8222-4-j-keerthy@ti.com>
- <20190522153528.GG8582@sirena.org.uk>
- <1712197d-7d43-38a8-efde-11b99537eae9@ti.com>
- <20190528132755.GK2456@sirena.org.uk>
- <e68d9939-a56a-b3c5-7f6d-e5783e16a6de@ti.com>
- <20190608195159.GA5316@sirena.org.uk> <20190610054822.GE4797@dell>
-From:   Keerthy <j-keerthy@ti.com>
-Message-ID: <c58ef6cd-893e-c20f-f437-e0343aa83fea@ti.com>
-Date:   Wed, 12 Jun 2019 16:17:03 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2407280AbfFLKyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 06:54:18 -0400
+Received: from foss.arm.com ([217.140.110.172]:50176 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406068AbfFLKyS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 06:54:18 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0017028;
+        Wed, 12 Jun 2019 03:54:17 -0700 (PDT)
+Received: from redmoon (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B18973F246;
+        Wed, 12 Jun 2019 03:55:57 -0700 (PDT)
+Date:   Wed, 12 Jun 2019 11:54:10 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Marc Zyngier <marc.zyngier@arm.com>
+Cc:     "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCHv5 04/20] PCI: mobiveil: Remove the flag
+ MSI_FLAG_MULTI_PCI_MSI
+Message-ID: <20190612105410.GA9918@redmoon>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-5-Zhiqiang.Hou@nxp.com>
+ <20190611165935.GA22836@redmoon>
+ <3b883516-1d63-1504-bdc9-22ac9c6f2d46@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20190610054822.GE4797@dell>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3b883516-1d63-1504-bdc9-22ac9c6f2d46@arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/06/19 11:18 AM, Lee Jones wrote:
-> On Sat, 08 Jun 2019, Mark Brown wrote:
+On Tue, Jun 11, 2019 at 06:29:49PM +0100, Marc Zyngier wrote:
+> On 11/06/2019 17:59, Lorenzo Pieralisi wrote:
+> > On Fri, Apr 12, 2019 at 08:35:36AM +0000, Z.q. Hou wrote:
+> >> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> >>
+> >> The current code does not support multiple MSIs, so remove
+> >> the corresponding flag from the msi_domain_info structure.
+> > 
+> > Please explain me what's the problem before removing multi MSI
+> > support.
 > 
->> On Sat, Jun 08, 2019 at 09:26:31AM +0530, keerthy wrote:
->>
->>> mfd patches are on linux-next already. Hope you can pull this one now that
->>> dependencies are met.
->>
->> Someone will need to send me a copy of the patch, if I acked it I was
->> expecting it to go in with the MFD changes.
+> The reason seems to be the following code in the allocator:
 > 
-> There is/was no need for that.  Patches are built-time orthogonal.
-
-Sorry i am still not clear. Should i resend this patch?
-
+>         WARN_ON(nr_irqs != 1);
+>         mutex_lock(&msi->lock);
 > 
+>         bit = find_first_zero_bit(msi->msi_irq_in_use, msi->num_of_vectors);
+>         if (bit >= msi->num_of_vectors) {
+>                 mutex_unlock(&msi->lock);
+>                 return -ENOSPC;
+>         }
+> 
+>         set_bit(bit, msi->msi_irq_in_use);
+> 
+> So instead of fixing the allocator, the author prefers disabling
+> the feature. I'm not sure whether that is an acceptable outcome...
+
+:) No it is not that's why I asked and I am waiting for an answer.
+
+Lorenzo
