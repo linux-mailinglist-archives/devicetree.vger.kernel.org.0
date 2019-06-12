@@ -2,106 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 993AC42FBF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 21:13:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E6D343013
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 21:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbfFLTNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 15:13:30 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46820 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726167AbfFLTNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 15:13:30 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 4223E60DAB; Wed, 12 Jun 2019 19:13:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560366809;
-        bh=rrkZxoygQH/v8ARsngpOhTOqBfIXl3bsffCMyVrCKKk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Y18tx6kCTxYem8FPyJNz4qiHS4UMXhrMMiyFCrcOraJbw+Wt81jTeMhL+RA7zg93J
-         oP8m7JS4FHFGSrNW5CuJyQ93fjm94NAl1p3hAGn43wHkFrhwmHnE1UxTpTBlole7gO
-         7LmUPTsPnB3hEVBAExw/+ONzzH0HLH8CpeJQ4qRI=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from jhugo-perf-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jhugo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1AABF60237;
-        Wed, 12 Jun 2019 19:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560366806;
-        bh=rrkZxoygQH/v8ARsngpOhTOqBfIXl3bsffCMyVrCKKk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GBXD1+MzabYYY7BF/e1ARNeIFI3TKAWvUR/yH3QyDIf93mU/DRxqs8h+U+kEpKI/G
-         ESGvxRLNelvL4ShdfbrpwbFjNCWKm7qPRmpCNf7vDNmfrbMtC9So9mh6VUWFiaHxtk
-         IJObXCF7DmmBZo/b4ax8Q3gsQwcoj//emHu0aPY8=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1AABF60237
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
-From:   Jeffrey Hugo <jhugo@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     marc.w.gonzalez@free.fr, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jeffrey Hugo <jhugo@codeaurora.org>
-Subject: [PATCH v5 6/6] arm64: dts: qcom: msm8998: Add mmcc node
-Date:   Wed, 12 Jun 2019 13:13:17 -0600
-Message-Id: <1560366797-6155-1-git-send-email-jhugo@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1560366600-5826-1-git-send-email-jhugo@codeaurora.org>
-References: <1560366600-5826-1-git-send-email-jhugo@codeaurora.org>
+        id S1728521AbfFLT2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 15:28:19 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41635 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728577AbfFLT0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 15:26:46 -0400
+Received: by mail-pf1-f194.google.com with SMTP id m30so9734393pff.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 12:26:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=JGTJNpxtoSxf9cQjifYgXwRhQ7ZHC2LuIfFDHnbUz+Q=;
+        b=jkCOi89f8z4k6wMOAeyYKznf4Y62pis19MeQNmtA7Jh53MHFibTLDJ9TYgKVn+f5kD
+         fLUDfVGDMuu4aWcnxDzxbp07lL+Lz51Iy00qrEIJCzXdYG49TZOl7ZAvAbf9jiUmmh/V
+         ih3U2U6lZeAoQ/pfzf5gNEqmoDoWlcBOwlo+E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=JGTJNpxtoSxf9cQjifYgXwRhQ7ZHC2LuIfFDHnbUz+Q=;
+        b=GhrVtHyxm2yyDfrj5HZ3k2H76sG6Gry5QBJssOcwybKX8rjITYY+rP3wtlYxJDsOJx
+         auEu0ROTSFrgu6OXlO/5F7fQRJYinyJrdRL4Es6UX7+QnaONaBXG1fYW3WkNwp/mvRxR
+         7YEg9zS+7xvKBA0w58di2/qpiZDWq4twl84SK6wNc6GH76KTDqcr7LtFaN/qTcf9TZhi
+         I8pFvLLI0ESWGR/qjbynhr8Gz1hN0bUe7e8MHr18mJEJdjapTdjhCIrJZxLp2W5OtwL7
+         LJ0wYeZUP8HpA9lr2predGKDJVkLzNFhYHvDrcVWch3b70pWkNAnlY1Kgqn9FCS9QM3c
+         LatQ==
+X-Gm-Message-State: APjAAAW2XGbgHlwUDT3v2Dk+AgYujRRyNRU3dBgaUyh+dE4oeE6tw1cL
+        Q+CjoWn21gXeNikaTCg0AYFDJw==
+X-Google-Smtp-Source: APXvYqzXNaVC/oJkIo+F4M5Yj007p4G4RNdM/LCI3g6mVncptMolQVeByev0CceqM+5WvJuPiF17VA==
+X-Received: by 2002:a62:5306:: with SMTP id h6mr89297716pfb.29.1560367605628;
+        Wed, 12 Jun 2019 12:26:45 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id e26sm326416pfn.94.2019.06.12.12.26.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 12 Jun 2019 12:26:44 -0700 (PDT)
+Date:   Wed, 12 Jun 2019 12:26:42 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Brian Norris <briannorris@google.com>, Pavel Machek <pavel@ucw.cz>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Doug Anderson <dianders@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190612192642.GK137143@google.com>
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+ <20190610205233.GB137143@google.com>
+ <20190611104913.egsbwcedshjdy3m5@holly.lan>
+ <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+ <20190611223019.GH137143@google.com>
+ <20190612110325.xdn3q2aod52oalge@holly.lan>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190612110325.xdn3q2aod52oalge@holly.lan>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MSM8998 Multimedia Clock Controller DT node.
+Hi Daniel,
 
-Signed-off-by: Jeffrey Hugo <jhugo@codeaurora.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On Wed, Jun 12, 2019 at 12:03:25PM +0100, Daniel Thompson wrote:
+> On Tue, Jun 11, 2019 at 03:30:19PM -0700, Matthias Kaehlcke wrote:
+> > On Tue, Jun 11, 2019 at 09:55:30AM -0700, Brian Norris wrote:
+> > > On Tue, Jun 11, 2019 at 3:49 AM Daniel Thompson
+> > > <daniel.thompson@linaro.org> wrote:
+> > > > This is a long standing flaw in the backlight interfaces. AFAIK generic
+> > > > userspaces end up with a (flawed) heuristic.
+> > > 
+> > > Bingo! Would be nice if we could start to fix this long-standing flaw.
+> > 
+> > Agreed!
+> > 
+> > How could a fix look like, a sysfs attribute? Would a boolean value
+> > like 'logarithmic_scale' or 'linear_scale' be enough or could more
+> > granularity be needed?
+> 
+> Certainly "linear" (this device will work more or less correctly if the
+> userspace applies perceptual curves). Not sure about logarithmic since
+> what is actually useful is something that is "perceptually linear"
+> (logarithmic is merely a way to approximate that).
+> 
+> I do wonder about a compatible string like most-detailed to
+> least-detailed description. This for a PWM with the auto-generated
+> tables we'd see something like:
+> 
+> cie-1991,perceptual,non-linear
+> 
+> For something that is non-linear but we are not sure what its tables are
+> we can offer just "non-linear".
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 9c88801..856c8ec 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -3,6 +3,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-msm8998.h>
-+#include <dt-bindings/clock/qcom,mmcc-msm8998.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -1066,6 +1067,19 @@
- 			status = "disabled";
- 		};
- 
-+		mmcc: clock-controller@c8c0000 {
-+			compatible = "qcom,mmcc-msm8998";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			reg = <0x0c8c0000 0x40000>;
-+
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+				 <&gcc GPLL0_OUT_MAIN>;
-+			clock-names = "xo",
-+				      "gpll0";
-+		};
-+
- 		timer@17920000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--- 
-Qualcomm Datacenter Technologies as an affiliate of Qualcomm Technologies, Inc.
-Qualcomm Technologies, Inc. is a member of the
-Code Aurora Forum, a Linux Foundation Collaborative Project.
+Thanks for the feedback!
 
+It seems clear that we want a string for the added flexibility. I can
+work on a patch with the compatible string like description you
+suggested and we can discuss in the review if we want to go with that
+or prefer something else.
+
+> > The new attribute could be optional (it only exists if explicitly
+> > specified by the driver) or be set to a default based on a heuristic
+> > if not specified and be 'fixed' on a case by case basis. The latter
+> > might violate "don't break userspace" though, so I'm not sure it's a
+> > good idea.
+> 
+> I think we should avoid any heuristic! There are several drivers and we
+> may not be able to work through all of them and make the correct
+> decision.
+
+Agreed
+
+> Instead one valid value for the sysfs should be "unknown" and this be
+> the default for drivers we have not analysed (this also makes it easy to
+> introduce change here).
+
+An "unknown" value sounds good, it allows userspace to just do what it
+did/would hace done before this attribute existed.
+
+> We should only set the property to something else for drivers that have
+> been reviewed.
+> 
+> There could be a special case for pwm_bl.c in that I'm prepared to
+> assume that the hardware components downstream of the PWM have a
+> roughly linear response and that if the user provided tables that their
+> function is to provide a perceptually comfortable response.
+
+Unfortunately this isn't universally true :(
+
+At least several Chrome OS devices use a linear brightness scale and
+userspace does the transformation in the animated slider. A quick
+'git grep -A10 brightness-levels arch' suggests that there are
+multiple other devices/platforms using a linear scale.
+
+We could treat devices with a predefined brightness table as
+"unknown", unless there is a (new optional) DT property that indicates
+the type of the scale.
+
+Cheers
+
+Matthias
