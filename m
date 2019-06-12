@@ -2,97 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4AD41F0B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6489541F0D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:29:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436841AbfFLI2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 04:28:14 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:45443 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406941AbfFLI2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:28:10 -0400
-Received: by mail-lf1-f65.google.com with SMTP id u10so11364658lfm.12;
-        Wed, 12 Jun 2019 01:28:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IvEvKOGpjQ6W7eOyaSJKs0PMC1VigjvzNX7sGSsbvC8=;
-        b=AIn7mtHpkSJOXUp6F62Xc8yzFXTLQR5sI8g2ZRWnPtKB72qxtV8axGUCiMAQ/xn8p0
-         VpsuQ7Lj4Vf5QnT5pApymLCu9ctXiM9oxVveqCHQ5xIX5WwXLFXvzbYipYF0cUyLYjW9
-         opbF6xY83DGpxdPfUpCE79b8wHbIdd1L2NkVxuYXwOX0TBVi605X38Tlja0gpqr8Aya8
-         TT2GgS8OK+Q0kcL5tBizV9faWE+7XftfSNH35QVI+IEsfkqZy/Ch64koeOvy2AWKdqFK
-         +uEl9FBpTgPqbFm7KCDUT+v2p5RfHwZnKr1cQ5cNzIclpILUesOW1LoaBQv93cpe3u2A
-         2OPg==
-X-Gm-Message-State: APjAAAXEIKEI/s2bL1qmiixbI8jsUS1mRfAd9nRLlE3/4EL+/KFsTWhn
-        cU2rXitFzF5XSdfcRHvfb2o6haDkkyOuZ5t8HqU=
-X-Google-Smtp-Source: APXvYqyVFUJ0I1/uoOBVVsFgAyTr3HP7Tl6c4VG1jMehe1meHU+T8bjoCmLxiN9i4in5f6cgRMhLgw8mN5NJoPYV3Vk=
-X-Received: by 2002:a19:4a49:: with SMTP id x70mr2923747lfa.151.1560328088644;
- Wed, 12 Jun 2019 01:28:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 Jun 2019 10:27:56 +0200
-Message-ID: <CAMuHMdXv91Tt+78zLJj6pHFj9XrEJJbWOf-kzBPRbcw=h+iDHg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
+        id S2406941AbfFLI3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 04:29:54 -0400
+Received: from gate.crashing.org ([63.228.1.57]:59839 "EHLO gate.crashing.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405127AbfFLI3y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 04:29:54 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x5C8TQFV008979;
+        Wed, 12 Jun 2019 03:29:28 -0500
+Message-ID: <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     Borislav Petkov <bp@alien8.de>, James Morse <james.morse@arm.com>
+Cc:     "Hawa, Hanna" <hhhawa@amazon.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+Date:   Wed, 12 Jun 2019 18:29:26 +1000
+In-Reply-To: <20190612034813.GA32652@zn.tnic>
+References: <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
+         <20190531051400.GA2275@cz.tnic>
+         <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
+         <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
+         <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
+         <20190608090556.GA32464@zn.tnic>
+         <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
+         <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
+         <20190611115651.GD31772@zn.tnic>
+         <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
+         <20190612034813.GA32652@zn.tnic>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+On Wed, 2019-06-12 at 05:48 +0200, Borislav Petkov wrote:
+> On Wed, Jun 12, 2019 at 08:25:52AM +1000, Benjamin Herrenschmidt wrote:
+> > Yes, we would be in a world of pain already if tracepoints couldn't
+> > handle concurrency :-)
+> 
+> Right, lockless buffer and the whole shebang :)
 
-On Fri, Jun 7, 2019 at 10:14 AM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
-> This patch adds uSD and eMMC support to the HiHope RZ/G2M
-> board.
+Yup.
+
+> > Sort-of... I still don't see a race in what we propose but I might be
+> > missing something subtle. We are talking about two drivers for two
+> > different IP blocks updating different counters etc...
+> 
+> If you do only *that* you should be fine. That should technically be ok.
+
+Yes, that' the point.
+
+> I still think, though, that the sensible thing to do is have one
+> platform driver which concentrates all RAS functionality. 
+
+I tend to disagree here. We've been down that rabbit hole in the past
+and we (Linux in general) are trying to move away from that sort of
+"platform" overarching driver as much as possible.
+
+> It is the
+> more sensible design and takes care of potential EDAC shortcomings and
+> the need to communicate between the different logging functionality,
+> as in, for example, "I had so many errors, lemme go and increase DRAM
+> scrubber frequency." For example. And all the other advantages of having
+> everything in a single driver.
+
+This is a policy. It should either belong to userspace, or be in some
+generic RAS code in the kernel, there's no reason why these can't be
+abstracted. Also in your specific example, it could be entirely local
+to the MC EDAC / DRAM controller path, we could have a generic way for
+EDAC to advertise that a given memory channel is giving lots of errors
+and have memory controller drivers listen to it but usually the EDAC MC
+driver *is* the only thing that looks like a MC driver to begin with,
+so again, pretty much no overlap with L1/L2 caches RAS or PCIe RAS
+etc...
+
+> And x86 already does that - we even have a single driver for all AMD
+> platforms - amd64_edac. Intel has a couple but there's still a lot of
+> sharing.
+
+Unless I'm mistaken, that amd64 EDAC is just an MC one... but I only
+had a cursory glance at the code.
+
+> But apparently ARM folks want to have one driver per IP block. And we
+> have this discussion each time a new vendor decides to upstream its
+> driver. And there's no shortage of vendors in ARM-land trying to do
+> that.
+
+For good reasons :-)
+
+> James and I have tried to come up with a nice scheme to make that work
+> on ARM and he has an example prototype here:
+> 
+> http://www.linux-arm.org/git?p=linux-jm.git;a=shortlog;h=refs/heads/edac_dummy/v1
 >
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> to show how it could look like.
+> 
+> But I'm slowly growing a serious aversion against having this very same
+> discussion each time an ARM vendor sends a driver. And that happens
+> pretty often nowadays.
 
-Thanks for your patch!
+Maybe because what you are promoting might not be the right path
+here... seriously, there's a reason why all vendors want to go down
+that path and in this case I don't think they are wrong.
 
-> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+This isn't about just another ARM vendor, in fact I'm rather new to the
+whole ARM thing, I used to maintain arch/powerpc :-) The point is what
+you are trying to push for goes against everything we've been trying to
+do in Linux when it comes to splitting drivers to individual IP blocks.
 
-> +&sdhi3 {
-> +       pinctrl-0 = <&sdhi3_pins>;
-> +       pinctrl-1 = <&sdhi3_pins>;
-> +       pinctrl-names = "default", "state_uhs";
-> +
-> +       vmmc-supply = <&reg_3p3v>;
-> +       vqmmc-supply = <&reg_1p8v>;
-> +       bus-width = <8>;
-> +       mmc-hs200-1_8v;
+Yes, in *some* cases coordination will be needed in which case there
+are ways to do that that don't necessarily involve matching a driver to
+the root of the DT, and a pseudo-device is in fact a very reasonable
+way to do it, it was a common practice in IEEE1275 before I invented
+the FDT, and we do that for a number of other things already.
 
-Does the eMMC support HS400, too?
+Cheers,
+Ben.
 
-> +       non-removable;
-> +       fixed-emmc-driver-type = <1>;
-> +       status = "okay";
-> +};
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
