@@ -2,117 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B224292B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:30:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B864295B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437736AbfFLO3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 10:29:47 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:33736 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437399AbfFLO3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 10:29:47 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3A02961795; Wed, 12 Jun 2019 14:29:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560349786;
-        bh=2Oiz7arDHtcsbqJ5qurHIFsnbQjEzk7WOOl4kBSHdr4=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=H3bVY9VINfmcsDU+Nvxdu9FSmyf8DmLum+Woq+cWB010tBej6zfw5hNgH1ubrnnmr
-         9u20fq1dv181uxe2RGgPN3UPe36GzMSlHORgtNnVPmts6dCMpmxkR1l6SnDCwlUdMi
-         +frHGk8hXTIoopnxE8Di6PTq1otntW2E4Y1O1UXg=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.226.58.28] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jhugo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B603661795;
-        Wed, 12 Jun 2019 14:29:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560349784;
-        bh=2Oiz7arDHtcsbqJ5qurHIFsnbQjEzk7WOOl4kBSHdr4=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=TMF+IA/JNP7TGUt4oK6PzyzIlIkKk01X82x73NaflUjs4WU5GpDNr+PS18JDi/qCn
-         D8HcBqsfM5qP0oRNjLnNR7n8QO7agdMqRP3qFpods57JWHd8byvqbM0sZYZn89hZuk
-         ls1QG+T86h2A8rRtmLxJR8noBS+CjbMuE0+Whl6c=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B603661795
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
-Subject: Re: [PATCH v5 2/3] HID: quirks: Refactor ELAN 400 and 401 handling
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     benjamin.tissoires@redhat.com, jikos@kernel.org,
-        bjorn.andersson@linaro.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, agross@kernel.org,
-        david.brown@linaro.org, hdegoede@redhat.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190606161055.47089-1-jeffrey.l.hugo@gmail.com>
- <20190606161322.47192-1-jeffrey.l.hugo@gmail.com>
- <20190612003507.GG143729@dtor-ws>
-From:   Jeffrey Hugo <jhugo@codeaurora.org>
-Message-ID: <2282f3e1-e76a-4fe7-d447-51d9a4bee2de@codeaurora.org>
-Date:   Wed, 12 Jun 2019 08:29:43 -0600
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1731701AbfFLOdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 10:33:55 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:47004 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731689AbfFLOdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 10:33:54 -0400
+Received: by mail-wr1-f66.google.com with SMTP id n4so17133305wrw.13
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 07:33:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=5tpURbYw8ulSj4zNIAnwRv+mqsPvaMs89zHgCbwUorE=;
+        b=pc3Q4WLwtyH/QqKBdbPVUglaSmeArsffZq21ZXYXzU0DRnR35+sY3tdGWBuagK0cZI
+         wtd9n32LtCybJZK7GO1zh3tHmEwZHbWLSXmR2OOndJ9BVl9Gf5gPTc8tuRnaESo4WFrl
+         lJlwyoVwN+S3JZ2O69BZoIUYNXBtDaFza1rrCroi5ISfOyaJRSe83xxkFeXAZUAsn0wE
+         v89G7hLfRq6vxIPrlUc39q8Jq1j8+rYvCGITvtOAt5G8RjwVJkfvFbPAgYOEfCJQMODw
+         mCcpaR4WPIwz31PgpOt3n3lOPHHz/aUkTS5liQDjdAbSnFydljdrrcrQ4SCJOqpB+exu
+         08mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=5tpURbYw8ulSj4zNIAnwRv+mqsPvaMs89zHgCbwUorE=;
+        b=rIUUhfaBj6JyrRWi+MTNx9MG+ZvQg7e8aG8LtaVMyVvFrEZdqQO9OpJPPJze+cDaS4
+         7yt8ycX8JZOaug6m7FAN4AWBCAvR8AUthk8HEoWetKFcathLoK+0LPuajUj4W7aFxnqT
+         TWHFTqabHJBhmNC0YD135f9eXvKqF/jEz9uHrCnQEgqcAKqUgpMbdByvPeySi2JGFSQv
+         k1lqKWz5k4Xp/N0sJfx/Oigmi+fuokZmxPKzjEavLPCyZU1dT7b9fOAX/xl7NgOoRszW
+         JAhSHtYdsyt0+bGyGcOiniTvydKNM7S4JgEZEtqqeT1rYvlOHrN9qBGmRAVNSHg9Gx+C
+         hyhQ==
+X-Gm-Message-State: APjAAAXbONb+YqwSWOe30r25toYbGqVLtL4e+9YSmdzkXhuvX7F93X8U
+        owKlDy71vAg3g6ArO1ejz2txLw==
+X-Google-Smtp-Source: APXvYqy3YGHWLFgs7/wW/TUEjrur0gU36dxTuCSlAFVwP2jci8YFavbg0zMWnihd20zFriRbKLVnCA==
+X-Received: by 2002:adf:de8b:: with SMTP id w11mr31381985wrl.134.1560350032633;
+        Wed, 12 Jun 2019 07:33:52 -0700 (PDT)
+Received: from dell ([185.80.132.160])
+        by smtp.gmail.com with ESMTPSA id w67sm264912wma.24.2019.06.12.07.33.51
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 12 Jun 2019 07:33:51 -0700 (PDT)
+Date:   Wed, 12 Jun 2019 15:33:50 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     Mark Brown <broonie@kernel.org>, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, t-kristo@ti.com
+Subject: Re: [PATCH v2 3/3] regulator: lp87565: Add 4-phase lp87561 regulator
+ support
+Message-ID: <20190612143350.GB4660@dell>
+References: <20190516043218.8222-1-j-keerthy@ti.com>
+ <20190516043218.8222-4-j-keerthy@ti.com>
+ <20190522153528.GG8582@sirena.org.uk>
+ <1712197d-7d43-38a8-efde-11b99537eae9@ti.com>
+ <20190528132755.GK2456@sirena.org.uk>
+ <e68d9939-a56a-b3c5-7f6d-e5783e16a6de@ti.com>
+ <20190608195159.GA5316@sirena.org.uk>
+ <20190610054822.GE4797@dell>
+ <c58ef6cd-893e-c20f-f437-e0343aa83fea@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20190612003507.GG143729@dtor-ws>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c58ef6cd-893e-c20f-f437-e0343aa83fea@ti.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/11/2019 6:35 PM, Dmitry Torokhov wrote:
-> On Thu, Jun 06, 2019 at 09:13:22AM -0700, Jeffrey Hugo wrote:
->> There needs to be coordination between hid-quirks and the elan_i2c driver
->> about which devices are handled by what drivers.  Currently, both use
->> whitelists, which results in valid devices being unhandled by default,
->> when they should not be rejected by hid-quirks.  This is quickly becoming
->> an issue.
->>
->> Since elan_i2c has a maintained whitelist of what devices it will handle,
->> use that to implement a blacklist in hid-quirks so that only the devices
->> that need to be handled by elan_i2c get rejected by hid-quirks, and
->> everything else is handled by default.  The downside is the whitelist and
->> blacklist need to be kept in sync.
->>
->> Suggested-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
->> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
->> ---
->>   drivers/hid/hid-quirks.c | 78 ++++++++++++++++++++++++++++++++++------
->>   1 file changed, 67 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/hid/hid-quirks.c b/drivers/hid/hid-quirks.c
->> index e5ca6fe2ca57..edebd0700e3d 100644
->> --- a/drivers/hid/hid-quirks.c
->> +++ b/drivers/hid/hid-quirks.c
->> @@ -912,8 +912,66 @@ static const struct hid_device_id hid_mouse_ignore_list[] = {
->>   	{ }
->>   };
->>   
->> +/*
->> + * List of device names that elan_i2c is handling and HID should ignore.  Must
->> + * be kept in sync with elan_i2c
->> + */
->> +static const char *hid_elan_i2c_ignore[] = {
+On Wed, 12 Jun 2019, Keerthy wrote:
+
 > 
-> If this is a copy of elan whitelist, then, if we do not want to bother
-> with sharing it in object form (as a elan-i2c-ids module), can we at
-> least move it into include/linux/input/elan-i2c-ids.h and consume from
-> hid-quirks.c?
+> 
+> On 10/06/19 11:18 AM, Lee Jones wrote:
+> > On Sat, 08 Jun 2019, Mark Brown wrote:
+> > 
+> > > On Sat, Jun 08, 2019 at 09:26:31AM +0530, keerthy wrote:
+> > > 
+> > > > mfd patches are on linux-next already. Hope you can pull this one now that
+> > > > dependencies are met.
+> > > 
+> > > Someone will need to send me a copy of the patch, if I acked it I was
+> > > expecting it to go in with the MFD changes.
+> > 
+> > There is/was no need for that.  Patches are built-time orthogonal.
+> 
+> Sorry i am still not clear. Should i resend this patch?
 
-I can put it in a shared header file, however elan-i2c and hid-quirks
-would need to be updated in the same change to prevent a breakage, but
-that would seem to violate a concern Benjamin brought up in v4 given
-that elan-i2c is maintained in your input tree, and hid-quirks is
-maintained in his hid tree.
+Yes.  It sounds like Mark no longer has the patch to apply.
 
-Are you ok with the elan-i2c changes going through Benjamin's hid tree?
-
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
