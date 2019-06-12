@@ -2,434 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9677141E5F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DAF241E5A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731619AbfFLHz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 03:55:28 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43212 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725938AbfFLHz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 03:55:28 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i189so9146625pfg.10
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 00:55:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dX8ayxbG6dv3ymS6EHBWk6+IbbfEAXYHv1SHsYeWqgY=;
-        b=yvSF1zZk6pvNg3yFSmYEkBkETtB1a1JUR6L7bc1OTd/8jnUDx8NpWPT+rMvSSxmler
-         bAa3EkGpAMX/kK/42QdaOAs0fZoppiIq5RbF0NdfvKZt4tu/cVvpB2NmsQiv2TIp1YAs
-         bjHEbIPH1T2yhCQTobs8pQpHJxCYgZBQTuiFdLJLs6N/bv9MHC3LstILSi7dH+SvrUZN
-         IuVUCuEC2db48RsElxYwBeIbSM2kqmPsNIeImGzlgPuaOjFnqMARqk6e62uk42LsUiwb
-         vCWlA3zMDijl5Kz44kxGMPxD+BtjOJ6TOffTTsj/BwA+6v90GgDJRTnuDUMWnEzqvYbb
-         +ylA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dX8ayxbG6dv3ymS6EHBWk6+IbbfEAXYHv1SHsYeWqgY=;
-        b=dhlxmOBKdORD+eokkaabxX/+UODXPL/HavFk1psk8rNoVrYFbs6tdB0iPP8kKJyrnw
-         ONb2iNFQxYlF9yEl8RSVT4bQx8KbNOBaegaHU9E21FAIOXSKSc7zuB+SUy13xZuDnJfP
-         N2ugrZ/Wzlm105p4DQ7HItqhq3YIpcRExAW+h95R6I6MIyfEcMfoRdaFR93k54XPgXH6
-         xOm73Tlk6/rOFpWf8VJv1cqDXAZeO9u7+ywNzOyoyKRI5jmA0n8lbhISPTG/9xqr1kPj
-         XJ9LDIQ7YUO1R4tUQMxrg8EiW/Uul7wTaLxLQ8l/h9Wb5QajhbctnI8yN3I6bv02gMww
-         skLQ==
-X-Gm-Message-State: APjAAAXQ/voGK9cCoXZlBddCB1j/UShJZlWlkQsmfDLPYqbHOOZspPAr
-        UWndUs+NFsQkd9BUInqS2Naf
-X-Google-Smtp-Source: APXvYqy9brcyJa9cOLqSc4S85FGB54wo9ovBp6MNXHxx9AHNw51a1v1EA4T5P76BseRnHvE/D7bdwg==
-X-Received: by 2002:a65:668e:: with SMTP id b14mr19917390pgw.407.1560326126600;
-        Wed, 12 Jun 2019 00:55:26 -0700 (PDT)
-Received: from localhost.localdomain ([2409:4072:894:d456:15b5:9ca9:e3ec:c06a])
-        by smtp.gmail.com with ESMTPSA id b15sm16846399pfi.141.2019.06.12.00.55.21
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 12 Jun 2019 00:55:26 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
-        robh+dt@kernel.org
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loic.pallardy@st.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v4 4/4] ARM: dts: Add Avenger96 devicetree support based on STM32MP157A
-Date:   Wed, 12 Jun 2019 13:24:51 +0530
-Message-Id: <20190612075451.8643-5-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190612075451.8643-1-manivannan.sadhasivam@linaro.org>
-References: <20190612075451.8643-1-manivannan.sadhasivam@linaro.org>
+        id S2436656AbfFLHzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 03:55:14 -0400
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:55213 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2408167AbfFLHzM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 03:55:12 -0400
+Received: from [192.168.2.10] ([46.9.252.75])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id ay65hAbrKbiAgay68hBlId; Wed, 12 Jun 2019 09:55:09 +0200
+Subject: Re: [PATCH v4 00/10] Rename Rockchip VPU driver to Hantro, add
+ initial i.MX8M support
+To:     Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20190611125058.13470-1-p.zabel@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <aa108619-2c1b-56af-0db7-cf27b3e66c29@xs4all.nl>
+Date:   Wed, 12 Jun 2019 09:55:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190611125058.13470-1-p.zabel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfAPQ1yT8+Np0v1hldk2rlEAbki/8ILM8Jlt/HNUEhfl3IaVZ3knb9iZSm2LJKLWdnJOCu82lrvc9xsSZd23hEcJoaHlaRD8OmqpGsfz4uqkNBE5POAOP
+ /bufMZJuv/CMblFauVzNjOTTQOG7521r+8zjTWkmTYqJJJDN4PtH03PlWEpmqyEtYfXRq/CZ9JjNj16RdJRNdyRObngXoAG3w0vz+9S1mTjd6GrMDFWdTvve
+ v4RYPsIas5/HuWOYbOZrBbvvWeZiMM3zYcXhV4FhpN8gkCUd+Y+eG9JqhDfDJqOVuLiVw6JmDm97w0YsnOxDtbwoT3V5rmMn3ZQzEpNXiujEZCVc74kB1KAO
+ E8fgBsNHysvc/iiS6G2F30N/NVenUj5Ihgauz8cMHWNz4nZD/iu19A7ZWB4uZ2MOHo7MNbdif5uGDPIplVUXs1DoVYMEsA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree support for Avenger96 board based on STM32MP157A MPU
-from ST Micro. This board is one of the 96Boards Consumer Edition board
-from Arrow Electronics and has the following features:
+On 6/11/19 2:50 PM, Philipp Zabel wrote:
+> There are several other SoCs that contain Hantro IP based VPUs, such as
+> NXP i.MX8MQ (Hantro G1 and G2) and i.MX8MM (Hantro G1, G2, and H1). To
+> maximize code sharing, add initial support for these SoCs to the
+> Rockchip VPU driver, after renaming it to Hantro VPU.
+> 
+> This series is based on the br-v5.3g tag, commit e568d2cc1ef6
+> ("rockchip/vpu: Add support for MPEG-2 decoding on RK3288") with
+> https://patchwork.linuxtv.org/patch/56402/ ("rockchip/vpu: Add support
+> for MPEG-2 decoding on RK3328") applied on top. It supports MPEG-2
+> decoding on i.MX8MQ. MPEG-2 decoding and JPEG encoding on i.MX8MM may
+> or may not work, I don't have the hardware to test.
+> 
+> Changes since v3:
+>  - Split rk3288_vpu_regs.h into hantro_g1_regs.h and hantro_h1_regs.h,
+>    rename VDPU register defines to G1 and VEPU register defines to H1.
+>  - Make Rockchip / i.MX8M support configurable.
+>  - Keep staging/media Kconfig in alphabetic order.
+>  - Rename bases to reg_bases
+>  - Move dynamic clocks before i.MX8M support.
 
-SoC: STM32MP157AAC
-PMIC: STPMIC1A
-RAM: 1024 Mbyte @ 533MHz
-Storage: eMMC v4.51: 8 Gbyte
-         microSD Socket: UHS-1 v3.01
-Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
-Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
-          Bluetooth®v4.2 (BR/EDR/BLE)
-USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
-Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
-LED: 4x User LED, 1x WiFi LED, 1x BT LED
+Can you please rebase this on top of the media_tree master? This series
+doesn't apply there.
 
-More information about this board can be found in 96Boards website:
-https://www.96boards.org/product/avenger96/
+I'd like to get this rename series in asap since keeping this out-of-tree
+is a pain.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm/boot/dts/Makefile                  |   1 +
- arch/arm/boot/dts/stm32mp157a-avenger96.dts | 321 ++++++++++++++++++++
- 2 files changed, 322 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157a-avenger96.dts
+It looks in good shape in general.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index dab2914fa293..918c85c227b5 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -975,6 +975,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32746g-eval.dtb \
- 	stm32h743i-eval.dtb \
- 	stm32h743i-disco.dtb \
-+	stm32mp157a-avenger96.dtb \
- 	stm32mp157a-dk1.dtb \
- 	stm32mp157c-dk2.dtb \
- 	stm32mp157c-ed1.dtb \
-diff --git a/arch/arm/boot/dts/stm32mp157a-avenger96.dts b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-new file mode 100644
-index 000000000000..9d00be78010f
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-@@ -0,0 +1,321 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Linaro Ltd 2019 - All Rights Reserved
-+ * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp157c.dtsi"
-+#include "stm32mp157-pinctrl.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/mfd/st,stpmic1.h>
-+
-+/ {
-+	model = "Arrow Electronics STM32MP157A Avenger96 board";
-+	compatible = "arrow,stm32mp157a-avenger96", "st,stm32mp157";
-+
-+	aliases {
-+		ethernet0 = &ethernet0;
-+		mmc0 = &sdmmc1;
-+		serial0 = &uart4;
-+		serial1 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@c0000000 {
-+		device_type = "memory";
-+		reg = <0xc0000000 0x40000000>;
-+	};
-+
-+	led {
-+		compatible = "gpio-leds";
-+		led1 {
-+			label = "green:user1";
-+			gpios = <&gpioz 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "off";
-+		};
-+
-+		led2 {
-+			label = "green:user2";
-+			gpios = <&gpiof 3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc0";
-+			default-state = "off";
-+		};
-+
-+		led3 {
-+			label = "green:user3";
-+			gpios = <&gpiog 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc1";
-+			default-state = "off";
-+		};
-+
-+		led4 {
-+			label = "green:user3";
-+			gpios = <&gpiog 1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+			default-state = "off";
-+			panic-indicator;
-+		};
-+
-+		led5 {
-+			label = "yellow:wifi";
-+			gpios = <&gpioz 3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+
-+		led6 {
-+			label = "blue:bt";
-+			gpios = <&gpioz 6 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "bluetooth-power";
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&ethernet0 {
-+	status = "okay";
-+	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-+	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
-+	pinctrl-names = "default", "sleep";
-+	phy-mode = "rgmii";
-+	max-speed = <1000>;
-+	phy-handle = <&phy0>;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0: ethernet-phy@7 {
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins_b>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+};
-+
-+&i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins_b1 &i2c2_pins_b2>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4_pins_a>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	pmic: stpmic@33 {
-+		compatible = "st,stpmic1";
-+		reg = <0x33>;
-+		interrupts-extended = <&exti 55 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		status = "okay";
-+
-+		st,main-control-register = <0x04>;
-+		st,vin-control-register = <0xc0>;
-+		st,usb-control-register = <0x30>;
-+
-+		regulators {
-+			compatible = "st,stpmic1-regulators";
-+
-+			ldo1-supply = <&v3v3>;
-+			ldo2-supply = <&v3v3>;
-+			ldo3-supply = <&vdd_ddr>;
-+			ldo5-supply = <&v3v3>;
-+			ldo6-supply = <&v3v3>;
-+			pwr_sw1-supply = <&bst_out>;
-+			pwr_sw2-supply = <&bst_out>;
-+
-+			vddcore: buck1 {
-+				regulator-name = "vddcore";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd_ddr: buck2 {
-+				regulator-name = "vdd_ddr";
-+				regulator-min-microvolt = <1350000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd: buck3 {
-+				regulator-name = "vdd";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				st,mask_reset;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			v3v3: buck4 {
-+				regulator-name = "v3v3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+				regulator-initial-mode = <0>;
-+			};
-+
-+			vdda: ldo1 {
-+				regulator-name = "vdda";
-+				regulator-min-microvolt = <2900000>;
-+				regulator-max-microvolt = <2900000>;
-+				interrupts = <IT_CURLIM_LDO1 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			v2v8: ldo2 {
-+				regulator-name = "v2v8";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				interrupts = <IT_CURLIM_LDO2 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			vtt_ddr: ldo3 {
-+				regulator-name = "vtt_ddr";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd_usb: ldo4 {
-+				regulator-name = "vdd_usb";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				interrupts = <IT_CURLIM_LDO4 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			vdd_sd: ldo5 {
-+				regulator-name = "vdd_sd";
-+				regulator-min-microvolt = <2900000>;
-+				regulator-max-microvolt = <2900000>;
-+				interrupts = <IT_CURLIM_LDO5 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-boot-on;
-+			};
-+
-+			v1v8: ldo6 {
-+				regulator-name = "v1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				interrupts = <IT_CURLIM_LDO6 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-enable-ramp-delay = <300000>;
-+			};
-+
-+			vref_ddr: vref_ddr {
-+				regulator-name = "vref_ddr";
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+			};
-+
-+			bst_out: boost {
-+				regulator-name = "bst_out";
-+				interrupts = <IT_OCP_BOOST 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			vbus_otg: pwr_sw1 {
-+				regulator-name = "vbus_otg";
-+				interrupts = <IT_OCP_OTG 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-active-discharge;
-+			};
-+
-+			vbus_sw: pwr_sw2 {
-+				regulator-name = "vbus_sw";
-+				interrupts = <IT_OCP_SWOUT 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-active-discharge;
-+			};
-+		};
-+
-+		onkey {
-+			compatible = "st,stpmic1-onkey";
-+			interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 1>;
-+			interrupt-names = "onkey-falling", "onkey-rising";
-+			status = "okay";
-+		};
-+
-+		watchdog {
-+			compatible = "st,stpmic1-wdt";
-+			status = "disabled";
-+		};
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&rng1 {
-+	status = "okay";
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_dir_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	broken-cd;
-+	st,sig-dir;
-+	st,neg-edge;
-+	st,use-ckin;
-+	bus-width = <4>;
-+	vmmc-supply = <&vdd_sd>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	/* On Low speed expansion header */
-+	label = "LS-UART1";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart4_pins_b>;
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	/* On Low speed expansion header */
-+	label = "LS-UART0";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart7_pins_a>;
-+	status = "okay";
-+};
--- 
-2.17.1
+Regards,
+
+	Hans
+
+> 
+> regards
+> Philipp
+> 
+> Philipp Zabel (10):
+>   rockchip/vpu: rename from rockchip to hantro
+>   media: hantro: print video device name in addition to device node
+>   media: hantro: add PM runtime resume callback
+>   media: hantro: make irq names configurable
+>   media: hantro: add support for named register ranges
+>   media: hantro: add support for separate control block
+>   media: hantro: allow arbitrary number of clocks
+>   media: dt-bindings: Document i.MX8MQ and i.MX8MM VPU bindings
+>   media: hantro: add initial i.MX8MQ support
+>   media: hantro: add initial i.MX8MM support (untested)
+> 
+>  .../devicetree/bindings/media/imx8m-vpu.txt   |  56 +++
+>  MAINTAINERS                                   |   4 +-
+>  drivers/staging/media/Kconfig                 |   4 +-
+>  drivers/staging/media/Makefile                |   2 +-
+>  drivers/staging/media/hantro/Kconfig          |  31 ++
+>  drivers/staging/media/hantro/Makefile         |  18 +
+>  .../media/{rockchip/vpu => hantro}/TODO       |   0
+>  .../vpu/rockchip_vpu.h => hantro/hantro.h}    | 167 ++++---
+>  .../hantro_drv.c}                             | 335 ++++++-------
+>  .../media/hantro/hantro_g1_mpeg2_dec.c        | 260 ++++++++++
+>  drivers/staging/media/hantro/hantro_g1_regs.h | 301 ++++++++++++
+>  .../staging/media/hantro/hantro_h1_jpeg_enc.c | 125 +++++
+>  drivers/staging/media/hantro/hantro_h1_regs.h | 154 ++++++
+>  drivers/staging/media/hantro/hantro_hw.h      | 104 ++++
+>  .../hantro_jpeg.c}                            |  18 +-
+>  drivers/staging/media/hantro/hantro_jpeg.h    |  13 +
+>  .../hantro_mpeg2.c}                           |  14 +-
+>  .../hantro_v4l2.c}                            | 234 +++++----
+>  .../hantro_v4l2.h}                            |  16 +-
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 311 ++++++++++++
+>  drivers/staging/media/hantro/rk3288_vpu_hw.c  | 187 ++++++++
+>  .../{rockchip/vpu => hantro}/rk3399_vpu_hw.c  |  92 ++--
+>  .../vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c   |  32 +-
+>  .../vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c  |  37 +-
+>  .../vpu => hantro}/rk3399_vpu_regs.h          |   2 +-
+>  drivers/staging/media/rockchip/vpu/Kconfig    |  14 -
+>  drivers/staging/media/rockchip/vpu/Makefile   |  14 -
+>  .../media/rockchip/vpu/rk3288_vpu_hw.c        | 177 -------
+>  .../rockchip/vpu/rk3288_vpu_hw_jpeg_enc.c     | 125 -----
+>  .../rockchip/vpu/rk3288_vpu_hw_mpeg2_dec.c    | 261 -----------
+>  .../media/rockchip/vpu/rk3288_vpu_regs.h      | 443 ------------------
+>  .../media/rockchip/vpu/rockchip_vpu_hw.h      | 103 ----
+>  .../media/rockchip/vpu/rockchip_vpu_jpeg.h    |  14 -
+>  33 files changed, 2061 insertions(+), 1607 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/imx8m-vpu.txt
+>  create mode 100644 drivers/staging/media/hantro/Kconfig
+>  create mode 100644 drivers/staging/media/hantro/Makefile
+>  rename drivers/staging/media/{rockchip/vpu => hantro}/TODO (100%)
+>  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu.h => hantro/hantro.h} (66%)
+>  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_drv.c => hantro/hantro_drv.c} (69%)
+>  create mode 100644 drivers/staging/media/hantro/hantro_g1_mpeg2_dec.c
+>  create mode 100644 drivers/staging/media/hantro/hantro_g1_regs.h
+>  create mode 100644 drivers/staging/media/hantro/hantro_h1_jpeg_enc.c
+>  create mode 100644 drivers/staging/media/hantro/hantro_h1_regs.h
+>  create mode 100644 drivers/staging/media/hantro/hantro_hw.h
+>  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_jpeg.c => hantro/hantro_jpeg.c} (95%)
+>  create mode 100644 drivers/staging/media/hantro/hantro_jpeg.h
+>  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_mpeg2.c => hantro/hantro_mpeg2.c} (79%)
+>  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.c => hantro/hantro_v4l2.c} (69%)
+>  rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.h => hantro/hantro_v4l2.h} (53%)
+>  create mode 100644 drivers/staging/media/hantro/imx8m_vpu_hw.c
+>  create mode 100644 drivers/staging/media/hantro/rk3288_vpu_hw.c
+>  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw.c (62%)
+>  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c (86%)
+>  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c (92%)
+>  rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_regs.h (99%)
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/Kconfig
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/Makefile
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/rk3288_vpu_hw.c
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/rk3288_vpu_hw_jpeg_enc.c
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/rk3288_vpu_hw_mpeg2_dec.c
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/rk3288_vpu_regs.h
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_hw.h
+>  delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_jpeg.h
+> 
 
