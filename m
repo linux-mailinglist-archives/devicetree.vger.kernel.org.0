@@ -2,71 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ED1741E41
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A8C41E52
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405233AbfFLHwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 03:52:19 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:34998 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726568AbfFLHwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 03:52:18 -0400
-Received: by mail-lj1-f195.google.com with SMTP id x25so9617374ljh.2;
-        Wed, 12 Jun 2019 00:52:17 -0700 (PDT)
+        id S1731570AbfFLHzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 03:55:04 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:34471 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731382AbfFLHzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 03:55:04 -0400
+Received: by mail-pg1-f196.google.com with SMTP id p10so2624700pgn.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 00:55:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=t/zZQ82E/N4gFFsCTmRZdYbvd54D5nSgY4uOp2BfUg4=;
+        b=JMuYTPILm5oCrO9h51xNSn+tS6CagMc0yZFGqpOBe60q4o0BGqiouryTqq5e1OMzHD
+         rPPNZ6vtqqgXRNsjRVtnkphRfkUPh+ageRVwawW3Zb9/JzbfLx2+gbG/Q05yndF8bg80
+         fdkSyEiFKeDP8Zg8eMMFLl4Xygesmch6UQi95PqTzgRYLLjzZCkfdxLcdEBzGvaufIuM
+         mcjHpczgaPIKv5/CQL1z9f3shXhEdLul5A9x2m0C5DeWaO8pItHJXx2sKOUZ/3wzfyQz
+         tO9WxRv1cwUSO9K7qfKf6uCA5ogtyUUpa4CaHtiviKvqDF28bKJZ/M9N7zW914ZOfNaF
+         a9qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sHAiVBtI4wTRr/mIaxFBqtCpECcSlQ7YSDG2J1NlBOE=;
-        b=uSUiwkbSkpAx9D2wqxReGVfnlLBU5wqk2FDoGu1/Q13WdnLKhQFliQWPFz7enbEw7M
-         EJG0QokvF5S/l0I8sFeX071cudNfY4xZ+bvrRJl85xrDlsLEQkoAqg0CsuUvB6GD2gwh
-         tfIFd5+th6na0GqBcNvfg6vZe5X1XVWZ6Y4PmCh2UjDEIqICD1X3Ihm7bNb7w6GhnLjT
-         FLQcqNyo1m5L5xC8+HUD+Fvzn/xVNVnDjOx5eftLdbV5/yZr6Me94HVLbpf2bgAXjzME
-         5FgAe9/8bGkzdKjZzSPXmCDOunOGP2YDZorngLJqi9Ls/8XY0ES+ojECqJa4NLMbOahp
-         9x5g==
-X-Gm-Message-State: APjAAAXub8NgLAGOJbo5XuPeTHHF8/DkGENUr/nHB8TrqK8pn897dFWW
-        PjG3169LIGXYZ9/y1hRhxkJ4j/hrGt4TJe6aFOQ=
-X-Google-Smtp-Source: APXvYqyvS1HtmoeUVU1qWAovQA9z2SrohqY0mW414kk/CrLu86gLlSpsg1lYfW4xpd516YTxz/WXuYe6YPfVc7afNec=
-X-Received: by 2002:a2e:2b8d:: with SMTP id r13mr31669052ljr.145.1560325936859;
- Wed, 12 Jun 2019 00:52:16 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=t/zZQ82E/N4gFFsCTmRZdYbvd54D5nSgY4uOp2BfUg4=;
+        b=a/FzEm/MYYF4up/Ji3uv/cvXCNgXs9xAB+8D+ScM4psxVWSOCtQRQI1Rb7absq02y5
+         2/Iiusc3F6zHesGojP/Y9+3KpEjwqDMBjpyhrjH+TN+PoSX95FRC6mnawXTPjpbpRW4R
+         fg9Bm4djwV5DjwtLVeKRtb2U3RRpEQ6qwbbHmfjHeGXme/5uAsXYpYnGO51sG2oYQdq8
+         eIRiSlaRUj4dTjdn0MxJD8268W6Q3fb+cflFEa1K/DJyHjbsEXbei1MLXGeBqUugvdlp
+         cFVA62uFTki9EHoPyL9lF9GXhRdefZrXntkzFtEtkY8qK7tBu3T4U2L6qo8RD0cmxIhU
+         cpXQ==
+X-Gm-Message-State: APjAAAX7yxj84WuaUiFjz2QwfOz44gIS4Sa10yvnoA1opqJQ8GJm3pzw
+        l/ZW28sIIsMOztFaR485ZkVt
+X-Google-Smtp-Source: APXvYqyhsNDJVnEra02+JvmqkHRHXuSl223Vx4mOQwGbwFeFfO1wG9ZHDU3uBEIjt7IKjmaKTRH8Uw==
+X-Received: by 2002:a17:90b:8d6:: with SMTP id ds22mr31537248pjb.143.1560326103017;
+        Wed, 12 Jun 2019 00:55:03 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4072:894:d456:15b5:9ca9:e3ec:c06a])
+        by smtp.gmail.com with ESMTPSA id b15sm16846399pfi.141.2019.06.12.00.54.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 12 Jun 2019 00:55:02 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        robh+dt@kernel.org
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loic.pallardy@st.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v4 0/4] Add Avenger96 board support
+Date:   Wed, 12 Jun 2019 13:24:47 +0530
+Message-Id: <20190612075451.8643-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <1559891016-56157-1-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1559891016-56157-1-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 Jun 2019 09:52:04 +0200
-Message-ID: <CAMuHMdW3GxjF-MPRDkJorLpAzPKSNx3bE+sHAGgUHrV1d9pD0w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: rcar: Add device tree support for r8a774a1
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 7, 2019 at 9:08 AM Biju Das <biju.das@bp.renesas.com> wrote:
-> Add PCIe support for the RZ/G2M (a.k.a. R8A774A1).
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+Hello,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This patchset adds Avenger96 board support. This board is one of the
+Consumer Edition boards of the 96Boards family from Arrow Electronics
+featuring STM32MP157A MPU and has the following features:
 
-Gr{oetje,eeting}s,
+SoC: STM32MP157AAC
+PMIC: STPMIC1A
+RAM: 1024 Mbyte @ 533MHz
+Storage: eMMC v4.51: 8 Gbyte
+         microSD Socket: UHS-1 v3.01
+Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
+Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
+          Bluetooth®v4.2 (BR/EDR/BLE)
+USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
+Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
+LED: 4x User LED, 1x WiFi LED, 1x BT LED
 
-                        Geert
+More information about this board can be found in 96Boards website:
+https://www.96boards.org/product/avenger96/
+
+Thanks,
+Mani
+
+Changes in v4
+
+* Deleted the old stm32.txt binding
+* Added Rob's Reviewed-by tag
+
+Changes in v3:
+
+* Converted STM32 platform bindings to DT schema
+
+Changes in v2:
+
+As per Alex's review:
+
+* Fixed I2C2 pinctrl node
+* Sorted the avenger96 dtb in alphabetical order
+* Added device-type property to memory node
+
+Manivannan Sadhasivam (4):
+  ARM: dts: stm32mp157: Add missing pinctrl definitions
+  dt-bindings: arm: stm32: Convert STM32 SoC bindings to DT schema
+  dt-bindings: arm: stm32: Document Avenger96 devicetree binding
+  ARM: dts: Add Avenger96 devicetree support based on STM32MP157A
+
+ .../devicetree/bindings/arm/stm32/stm32.txt   |  10 -
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |  31 ++
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi     |  75 ++++
+ arch/arm/boot/dts/stm32mp157a-avenger96.dts   | 321 ++++++++++++++++++
+ 5 files changed, 428 insertions(+), 10 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-avenger96.dts
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
