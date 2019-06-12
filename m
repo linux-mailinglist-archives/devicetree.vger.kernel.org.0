@@ -2,107 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F134243B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 13:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E9442497
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 13:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407064AbfFLLmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 07:42:33 -0400
-Received: from casper.infradead.org ([85.118.1.10]:58138 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405753AbfFLLmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 07:42:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=bwcoiqvF2SoNHiwEbIFT93eXz9rwnHVmrzehb7eUxsc=; b=YYw1CK+HomH1bUQdmOFtr1LLKo
-        nrI2pdZN1vJJdQLLReKvjE3gL7yk3BQbgk0EU5kvhYjFeSQ8AThy/qMchnF7lwPMA1vpKALnA4dIN
-        01Nb2u1tOwdct1BpWL4ME+XvkeFN581/KnIZSaTeDgl3AUzKZzYXIjjVgEHTueO9gr6Evdd72hqab
-        4/hL8rJUI/Got9CYd0zzpnEOojiS3ake9Qpn1JHduKs5utZTX0ePgiJB8SFrMdw0T1uFIVzH2kDhH
-        eYtn8yJ0G9qRHi5H8iMjCv5kBFLJhmIjmxjtNprdsFixXVJE7/5e07m7FbaPn+NxMb/LF/heEHWX9
-        72SZQ56g==;
-Received: from 177.41.119.178.dynamic.adsl.gvt.net.br ([177.41.119.178] helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hb1e0-0001Dc-CP; Wed, 12 Jun 2019 11:42:20 +0000
-Date:   Wed, 12 Jun 2019 08:42:13 -0300
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        James Morse <james.morse@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        id S2438395AbfFLLpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 07:45:23 -0400
+Received: from mail-eopbgr30070.outbound.protection.outlook.com ([40.107.3.70]:58948
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2438385AbfFLLpW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 07:45:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jTGv+xX4LM3gIAgfgklMFQRdQrCyRfepe2LtoLcwn10=;
+ b=VXwy9h0aJ8IQ5+l8RJIWDbJDMUvbadL6M4qHwr37YCLQOC7zAOVSWOP+ttixFfs2toP30t499aenkyWZg4PTCeCGuoyfqlTwpXQVRIkOKVrE/4niPufzdORCf7yL68BnMSdfOhD0JwRPYYUJhMCbuJcp8hTEzH2XXpeHjBW03ks=
+Received: from VI1PR0402MB3485.eurprd04.prod.outlook.com (52.134.3.153) by
+ VI1PR0402MB3615.eurprd04.prod.outlook.com (52.134.7.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.14; Wed, 12 Jun 2019 11:45:18 +0000
+Received: from VI1PR0402MB3485.eurprd04.prod.outlook.com
+ ([fe80::ccaf:f4a1:704a:e745]) by VI1PR0402MB3485.eurprd04.prod.outlook.com
+ ([fe80::ccaf:f4a1:704a:e745%4]) with mapi id 15.20.1987.012; Wed, 12 Jun 2019
+ 11:45:18 +0000
+From:   Horia Geanta <horia.geanta@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-Message-ID: <20190612084213.4fb9e054@coco.lan>
-In-Reply-To: <20190612110039.GH32652@zn.tnic>
-References: <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
-        <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
-        <20190608090556.GA32464@zn.tnic>
-        <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
-        <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
-        <20190611115651.GD31772@zn.tnic>
-        <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
-        <20190612034813.GA32652@zn.tnic>
-        <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
-        <20190612074242.53a4cf56@coco.lan>
-        <20190612110039.GH32652@zn.tnic>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx7ulp: add crypto support
+Thread-Topic: [PATCH] ARM: dts: imx7ulp: add crypto support
+Thread-Index: AQHVHD5HxT1VnrKm20mxf/1ryD4CPA==
+Date:   Wed, 12 Jun 2019 11:45:18 +0000
+Message-ID: <VI1PR0402MB3485A573518D60A573BA55C298EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+References: <20190606080255.25504-1-horia.geanta@nxp.com>
+ <20190612103926.GE11086@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=horia.geanta@nxp.com; 
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 29aeb5b6-26bc-4d3f-d758-08d6ef2b7152
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB3615;
+x-ms-traffictypediagnostic: VI1PR0402MB3615:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <VI1PR0402MB361523311C68FD2707C44CEB98EC0@VI1PR0402MB3615.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0066D63CE6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(396003)(346002)(366004)(136003)(39860400002)(199004)(189003)(5660300002)(14454004)(478600001)(66476007)(8936002)(4326008)(66556008)(81166006)(966005)(8676002)(66946007)(81156014)(9686003)(2906002)(55016002)(71190400001)(76116006)(6116002)(305945005)(6436002)(3846002)(53936002)(86362001)(26005)(25786009)(66446008)(73956011)(6306002)(186003)(6916009)(6246003)(7736002)(52536014)(102836004)(14444005)(7696005)(476003)(446003)(68736007)(71200400001)(33656002)(44832011)(64756008)(486006)(53546011)(54906003)(99286004)(256004)(229853002)(66066001)(74316002)(6506007)(76176011)(316002)(7416002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3615;H:VI1PR0402MB3485.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: N6JF9H3tcPI6lNnadyCcfvFpql5wVS+TjQXIWCw/rnZ1Qg0t8EbyhoawVfzb9TXdPUITfWr9b6vmT0josa/AFsoYWwZ6kX3bGjUOgYv8o01ILstK/yOcyN3LLC5L6ldLe+IgSpcxH/627I+8iXoWHlyhtADoKvjFSXvMvEDiQn3Bs8+JRcpnhlFuu21BqzeZO0ri1VMktKj9KFUWtuHjC6FkkCL5i6TcegpSH/Ve8sG/KzfIZfqk6RJQmnrcypOO0O2jPZ6qH/SoNVXikTPKbJjytsOfE5bYPymgvtE9PGhURPT4pnOA7pxB9Sv6USUgeDEGaXeA8BsHFL/OLWa+4tV3qIYNX0eClNRZb9c6/VMtStHOoPxf4D7WzlYF1iCHOzwcTFRRuyhIuGYQkNp3FYdqgIhLXXlV+IhKad7b01A=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29aeb5b6-26bc-4d3f-d758-08d6ef2b7152
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 11:45:18.1981
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: horia.geanta@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3615
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Wed, 12 Jun 2019 13:00:39 +0200
-Borislav Petkov <bp@alien8.de> escreveu:
-
-> On Wed, Jun 12, 2019 at 07:42:42AM -0300, Mauro Carvalho Chehab wrote:
-> > That's said, from the admin PoV, it makes sense to have a single
-> > daemon that collect errors from all error sources and take the
-> > needed actions.  
-> 
-> Doing recovery actions in userspace is too flaky. Daemon can get killed
-> at any point in time and there are error types where you want to do
-> recovery *before* you return to userspace.
-
-Yeah, some actions would work a lot better at Kernelspace. Yet, some
-actions would work a lot better if implemented on userspace.
-
-For example, a server with multiple network interfaces may re-route
-the traffic to a backup interface if the main one has too many errors.
-
-This can easily be done on userspace.
-
-> Yes, we do have different error reporting facilities but I still think
-> that concentrating all the error information needed in order to do
-> proper recovery action is the better approach here. And make that part
-> of the kernel so that it is robust. Userspace can still configure it and
-> so on.
-
-If the error reporting facilities are for the same hardware "group"
-(like the machine's memory controllers), I agree with you: it makes
-sense to have a single driver. 
-
-If they are for completely independent hardware then implementing
-as separate drivers would work equally well, with the advantage of
-making easier to maintain and make it generic enough to support
-different vendors using the same IP block.
-
-Thanks,
-Mauro
+On 6/12/2019 1:40 PM, Shawn Guo wrote:=0A=
+> On Thu, Jun 06, 2019 at 11:02:55AM +0300, Horia Geant=E3 wrote:=0A=
+>> From: Iuliana Prodan <iuliana.prodan@nxp.com>=0A=
+>>=0A=
+>> Add crypto node in device tree for CAAM support.=0A=
+>>=0A=
+>> Noteworthy is that on 7ulp the interrupt line is shared=0A=
+>> between the two job rings.=0A=
+>>=0A=
+>> Signed-off-by: Iuliana Prodan <iuliana.prodan@nxp.com>=0A=
+>> Signed-off-by: Franck LENORMAND <franck.lenormand@nxp.com>=0A=
+>> Signed-off-by: Horia Geant=E3 <horia.geanta@nxp.com>=0A=
+>> ---=0A=
+>>=0A=
+>> I've just realized that this patch should be merged through the crypto t=
+ree,=0A=
+>> else bisectability could be affected due to cryptodev-2.6=0A=
+>> commit 385cfc84a5a8 ("crypto: caam - disable some clock checks for iMX7U=
+LP")=0A=
+>> ( https://patchwork.kernel.org/patch/10970017/ )=0A=
+>> which should come first.=0A=
+> =0A=
+> I'm not sure I follow it.  This is a new device added to imx7ulp DT.=0A=
+> It's never worked before on imx7ulp.  How would it affect git bisect?=0A=
+> =0A=
+Driver corresponding to this device (drivers/crypto/caam) has to be updated=
+=0A=
+before adding the node in DT.=0A=
+Is there any guarantee wrt. merge order of the crypto and DT trees?=0A=
+=0A=
+Thanks,=0A=
+Horia=0A=
