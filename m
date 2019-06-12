@@ -2,108 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E9441EC5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476A641ED3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726970AbfFLIOj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Jun 2019 04:14:39 -0400
-Received: from mail-oln040092070048.outbound.protection.outlook.com ([40.92.70.48]:16115
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726964AbfFLIOj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 04:14:39 -0400
-Received: from AM5EUR03FT043.eop-EUR03.prod.protection.outlook.com
- (10.152.16.57) by AM5EUR03HT204.eop-EUR03.prod.protection.outlook.com
- (10.152.17.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1987.11; Wed, 12 Jun
- 2019 08:14:35 +0000
-Received: from VI1PR03MB4206.eurprd03.prod.outlook.com (10.152.16.58) by
- AM5EUR03FT043.mail.protection.outlook.com (10.152.17.43) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.1987.11 via Frontend Transport; Wed, 12 Jun 2019 08:14:35 +0000
-Received: from VI1PR03MB4206.eurprd03.prod.outlook.com
- ([fe80::fdae:4944:7c73:c26a]) by VI1PR03MB4206.eurprd03.prod.outlook.com
- ([fe80::fdae:4944:7c73:c26a%6]) with mapi id 15.20.1965.017; Wed, 12 Jun 2019
- 08:14:35 +0000
-From:   Jonas Karlman <jonas@kwiboo.se>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v4 01/10] rockchip/vpu: rename from rockchip to hantro
-Thread-Topic: [PATCH v4 01/10] rockchip/vpu: rename from rockchip to hantro
-Thread-Index: AQHVIFRbGoCHsJf8IkGLeTHhG1rCtqaXrRCA
-Date:   Wed, 12 Jun 2019 08:14:35 +0000
-Message-ID: <VI1PR03MB4206D849E9815A7704D175DBACEC0@VI1PR03MB4206.eurprd03.prod.outlook.com>
-References: <20190611125058.13470-1-p.zabel@pengutronix.de>
- <20190611125058.13470-2-p.zabel@pengutronix.de>
-In-Reply-To: <20190611125058.13470-2-p.zabel@pengutronix.de>
-Accept-Language: sv-SE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HE1PR05CA0330.eurprd05.prod.outlook.com
- (2603:10a6:7:92::25) To VI1PR03MB4206.eurprd03.prod.outlook.com
- (2603:10a6:803:51::23)
-x-incomingtopheadermarker: OriginalChecksum:F077A972336752237EA7D711791E507884C3CEB2DC857673B74F76420D506E2B;UpperCasedChecksum:815F9DBF105655533DBE57BAB14E8874D8EFD7380F44F790A6E9ED05F6488A20;SizeAsReceived:7805;Count:49
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn:  [jH4/czjv7aUOVPjARuTfuYSr8CGfbRmH]
-x-microsoft-original-message-id: <188f6a9c-10bc-31a5-9211-eac76bbd6a0c@kwiboo.se>
-x-ms-publictraffictype: Email
-x-incomingheadercount: 49
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322404)(2017031323274)(2017031324274)(1601125500)(1603101475)(1701031045);SRVR:AM5EUR03HT204;
-x-ms-traffictypediagnostic: AM5EUR03HT204:
-x-microsoft-antispam-message-info: Q/Ezrjg7q/mVcCNLQoGXsK2bZWKXerHJynuXrtRgl5M+bHCGvHvp2r9NBrzMFF4OyvVZsyFLlCv0DUv2GAqfOFSEdamQBEBDDmo0hShpxhsyPp3bUvjGQp7ws/egR+FcgVxsTY0hzWcNdZZ9aQ6XmD8LlUzPD/rhehXmtz9qIutTXeOWzbXpHqZamQim5J+G
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <F606E14485471A42A1448980D7AB16B7@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: 8BIT
+        id S1730934AbfFLIQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 04:16:42 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:35820 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730868AbfFLIQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:16:42 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190612081640euoutp0203b887a3dfb294fc2bfd569442110ea6~nZYD-mDgx0232802328euoutp027
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 08:16:40 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190612081640euoutp0203b887a3dfb294fc2bfd569442110ea6~nZYD-mDgx0232802328euoutp027
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1560327400;
+        bh=PWdb377o0rER7E11sck9S6AwPDJeCROTCX+Ce5iaBhg=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=rqqV6hwRtsZr3pMKSHZLKMOzb69tEi2HDVq0T/SileIHlwTTeaxoILHgNsK5t5AhC
+         sPh25ynt/cAcLHl6zwbf/5kN1PeO8jQxODkA4GoDejvKd7FSwyVBaWvy/m0vU7R0aS
+         SJLwbFDpH5BWS4xFjZIIk4aaRjmC4ah/kRGzuqms=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190612081639eucas1p13c5abc807f9673acb6e5e6bcb9e0a729~nZYDQXeWy0358603586eucas1p1s;
+        Wed, 12 Jun 2019 08:16:39 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 76.23.04377.7E4B00D5; Wed, 12
+        Jun 2019 09:16:39 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190612081639eucas1p142d77338598e9f08936f2cd7cd789ec5~nZYChiO7s0358603586eucas1p1r;
+        Wed, 12 Jun 2019 08:16:39 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190612081638eusmtrp163fe6b8fce83e69a682fce03661d98e8~nZYCSimvv0940709407eusmtrp1D;
+        Wed, 12 Jun 2019 08:16:38 +0000 (GMT)
+X-AuditID: cbfec7f4-113ff70000001119-c2-5d00b4e7dccc
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 54.CD.04140.6E4B00D5; Wed, 12
+        Jun 2019 09:16:38 +0100 (BST)
+Received: from [106.120.51.74] (unknown [106.120.51.74]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190612081638eusmtip29b466797963a373670843704ae62f10e~nZYBjrKm01710717107eusmtip2i;
+        Wed, 12 Jun 2019 08:16:37 +0000 (GMT)
+Subject: Re: [PATCH v2 6/7] dt-bindings: Add ANX6345 DP/eDP transmitter
+ binding
+To:     Torsten Duwe <duwe@lst.de>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Harald Geyer <harald@ccbib.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+From:   Andrzej Hajda <a.hajda@samsung.com>
+Message-ID: <354de37d-57bb-6b06-c81a-a2081ea4f222@samsung.com>
+Date:   Wed, 12 Jun 2019 10:16:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9aff9dc2-68b0-4cb7-7fce-08d6ef0e0161
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 08:14:35.5888
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR03HT204
+In-Reply-To: <20190604122305.07B9068B05@newverein.lst.de>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0iTYRj1/W77lGbvZuWDJdXKHxlpRcEbWST140O6WNGFTGrlh0rbik3t
+        TnaxvFKaYc40UyOxhTYvy3VXaZk5s+xiUa6yOxalCQtzOb9J/jvnPOd5n3Pg5WllIRfAx+sS
+        RL1OrVFxPkzdPWfbrE81XtGzL9+YQrLszRRJufcREVddNk3ON9lZ0vH7B0f6Ox5Q5GhpJUdq
+        rK0s6b3whiJp2WUyYn7/jCVPrOc4cvF5O0UcX24jknKzSUZeV7UiUm0+QxOntYghzoY2aomf
+        UOocpARTkQkJRab9wofGbzKhILmdEareXWaFm/3FjFBvfD2kpeazgrkijRO+2+0ywdLvYIXb
+        hSaZ0JVho4TqskPC9c5kLlKxyScsRtTEJ4n60MVbfeIcV0uoXXfH7znsLGKTkQunI28e8Dxw
+        lvyk0pEPr8TlCJpKXUgifQgGMjM8pBeB69cHemQl/e4Xz8olBPnNaZxEehBkPWxBbpcfXg2X
+        mh/K3INxuJGB3JMPWDehcQqC4upexu3i8Az4W93JubEcLwbTjyvDOoODoOD+s2F9PN4IffVm
+        JHkU0JzfPeTheW+8AJ6+i3fLNJ4Mlp5ztIT94WX3eUqK+oKH2s+hEl4GFw5f9+h+8NVWI5Pw
+        JGg5nclI+BB0lR+j3TkBpyKorar3dF4IjbZ21n2XHspcafW8GQ6vjj4dlgH7wosehRTBF3Lq
+        8mhJlkPqcaXkngpdrbWeB/3h4qPf3CmkMo7qZRxVxjiqjPH/3WLEVCB/MdGgjRUNc3Xi7hCD
+        WmtI1MWGbN+pNaOhT9syaOu7hqwD2xoQ5pFqjPxOnmuzklUnGfZqGxDwtGqcfO4Or2ilPEa9
+        d5+o37lFn6gRDQ1oIs+o/OX7vRxRShyrThB3iOIuUT8ypXjvgGTEz1oYsihMV1VesZw6lbQ8
+        qjIwMxfHjO1ozOl20XGbEsM73h4ZiJy/0vKnUNFtiyh5daJpzczggNC3RxzR675Pt6YGzvDK
+        nR3U+mTJHkuepfjs2qUHxQ1lN/hV2LjlsSai62WJvS0jWHFrdVZdUEqU5vOB6WGftCvWTHCt
+        T28rLcuZpmIMceo5wbTeoP4H7/wXZbADAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRjHfc9tR3N22rS9CGGMwhI6tpn5LtSiqA4ZZfSh8oId9ORE52pn
+        WhbhVIRcBu1DVLPmncAWmVqWUuYUTfOSZZZdzEqDISpRSQPTNlfgtx//5/d/4IGHxmX1ZDCd
+        kW0UDNl8lpLyI54vdI9t+tbkk7x54SeLLg30YKi46xtAiw8sOCrvHCDR8K9ZCs0N92KoqPou
+        hZpa+kn0o3IMQyWWGglq+DpColctNyhU+2YIQ+PONoCKH3dK0Mf6foAaG67gyNViI5DLMYjt
+        kHPVrgWMs9vsgLPZz3GTHVMSrsw0RHD1X26T3OO5CoJ7ZP3ozi5cJ7mGuhKKmxkYkHDNc+Mk
+        13bTLuE+XezGuMaafK511ETFr0pgow36HKOwVqsXjTHKRBVSsyoNYtVbNKwqIip5mzpSGR4b
+        nSZkZeQKhvDY46x2/F4VdrI96EyBy0aawCJjBr40ZLZAc7sTMwM/WsbUAlhY30V6BwrYWj6N
+        e1kO50fMlFeacks225IkZw7BWz19Es8gkOkmoHn22tIqnCkGcL7UKfFYMqYVwNHfcg9TzEb4
+        p3GU8rCUiYX22TuEhwlmPSx7NrKUBzFHYVmLifA6q2DP9Qk307Qvo4Gvv2R4YpwJhfO2l7iX
+        Q2Dz9I1/rIDvJsqxy0BmXda2LqtYl1WsyyoVgKgDgUKOqEvXiWpW5HViTnY6m6rXNQD3tzzo
+        cjU9BOaZww7A0EDpL316dTFJRvK5Yp7OASCNKwOl6kyfZJk0jc87Kxj0KYacLEF0gEj3bRY8
+        OChV7/69bGOKKlIVhTSqqIioiK1IqZBeYNqTZEw6bxQyBeGkYPjfw2jfYBNA06OJhvgD6vt3
+        via0rwwrUCjWvE1zZn439xXGTuvlyvNxbMJqq84nxLz9YBEfohFPmfYeLn7fu1Pe2vFi39bq
+        ibix0tAT+9bdjrF8lj+5ix1TTxY5pTv4Pb2stk4+6O93xLHhTfjusfDodysWayabqq4EnNr/
+        odKxK+CQ4J9/2qIkRC2vCsMNIv8X4rr5UkMDAAA=
+X-CMS-MailID: 20190612081639eucas1p142d77338598e9f08936f2cd7cd789ec5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190604122333epcas2p2f2c750e19a363901c83abb83354f55d4
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190604122333epcas2p2f2c750e19a363901c83abb83354f55d4
+References: <20190604122150.29D6468B05@newverein.lst.de>
+        <CGME20190604122333epcas2p2f2c750e19a363901c83abb83354f55d4@epcas2p2.samsung.com>
+        <20190604122305.07B9068B05@newverein.lst.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-06-11 14:50, Philipp Zabel wrote:
-> Rename the driver and all relevant identifiers from Rockchip to Hantro,
-> as other Hantro IP based VPU implementations can be supported by the
-> same driver.
-> The RK3288 decoder is Hantro G1 based, the encoder is Hantro H1.
-
-The RK3288 has two VPU blocks that is described as a VPU combo in the datasheet,
-VPU1 (the G1) and a HEVC decoder (not sharing the Hantro G2 hw regs).
-Similarly the RK3399 has two VPU blocks, VPU2 based on G1 but with regs/fields re-ranged
-and the RKVDPU (new generation of the HEVC block found in RK3288).
-
-How can we expose these secondary blocks once rockchip vpu driver has transitioned
-into a hantro driver? Should a new rockchip vpu driver be created for the HEVC/RKVDEC blocks?
-
-Regards,
-Jonas
-
+On 04.06.2019 14:23, Torsten Duwe wrote:
+> The anx6345 is an ultra-low power DisplayPort/eDP transmitter designed
+> for portable devices.
 >
-> This patch just renames, no functional changes.
+> Add a binding document for it.
 >
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Torsten Duwe <duwe@suse.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
-> Changes since v3 [1]:
->  - Split rk3288_vpu_regs.h into hantro_g1_regs.h and hantro_h1_regs.h,
->    rename VDPU register defines to G1 and VEPU register defines to H1.
->  - Make Rockchip support configurable.
->  - Keep staging/media Kconfig in alphabetic order.
+>  .../devicetree/bindings/display/bridge/anx6345.txt | 57 ++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/anx6345.txt
 >
-[snip]
+> diff --git a/Documentation/devicetree/bindings/display/bridge/anx6345.txt b/Documentation/devicetree/bindings/display/bridge/anx6345.txt
+> new file mode 100644
+> index 000000000000..bd63f6ac107e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/anx6345.txt
+> @@ -0,0 +1,57 @@
+> +Analogix ANX6345 eDP Transmitter
+> +--------------------------------
+> +
+> +The ANX6345 is an ultra-low power Full-HD eDP transmitter designed for
+> +portable devices.
+> +
+> +Required properties:
+> +
+> + - compatible		: "analogix,anx6345"
+> + - reg			: I2C address of the device
+> + - reset-gpios		: Which GPIO to use for reset
+
+
+You have not specified it's active state, since in driver's code you
+named it RESETN I guess it should be active low.
+
+
+> + - dvdd12-supply	: Regulator for 1.2V digital core power.
+> + - dvdd25-supply	: Regulator for 2.5V digital core power.
+> + - Video port for LVTTL input, using the DT bindings defined in [1].
+
+
+Please assign port number for input (I guess 0).
+
+
+> +
+> +Optional properties:
+> +
+> + - Video port for eDP output (panel or connector) using the DT bindings
+> +   defined in [1].
+
+
+Shouldn't it be also required?
+
+
+Regards
+
+Andrzej
+
+
+> +
+> +[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +Example:
+> +
+> +anx6345: anx6345@38 {
+> +	compatible = "analogix,anx6345";
+> +	reg = <0x38>;
+> +	reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
+> +	dvdd25-supply = <&reg_dldo2>;
+> +	dvdd12-supply = <&reg_fldo1>;
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		anx6345_in: port@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +			anx6345_in_tcon0: endpoint@0 {
+> +				reg = <0>;
+> +				remote-endpoint = <&tcon0_out_anx6345>;
+> +			};
+> +		};
+> +
+> +		anx6345_out: port@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +
+> +			anx6345_out_panel: endpoint@0 {
+> +				reg = <0>;
+> +				remote-endpoint = <&panel_in_edp>;
+> +			};
+> +		};
+> +	};
+> +};
+
+
