@@ -2,132 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93BA94235B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 13:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 477B642364
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 13:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407276AbfFLLCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 07:02:17 -0400
-Received: from mail-eopbgr1410125.outbound.protection.outlook.com ([40.107.141.125]:56565
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2406154AbfFLLCR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 07:02:17 -0400
+        id S2408383AbfFLLDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 07:03:35 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38691 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2408424AbfFLLDe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 07:03:34 -0400
+Received: by mail-wr1-f66.google.com with SMTP id d18so16397164wrs.5
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 04:03:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nv5q1vMEkrJgZwEcOn0TFzybJ8868g0BWKO3vIOwxoI=;
- b=L9qMqpnEoNtIMQjrUYMdPCCJ4vP47yFWvn/EwY2eZTaaULoY0e8EJVx2MDyz93M2Sc0TaoKv8xAtyTyVyZ2sxskLKu5RsvSbyw5YPbOhnMK9ludItEq8jbeERNvJ7GgtnOC7RjjbrDQHSy3M8erV0DSiqFL+2tNO6JiJh3EvQUI=
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
- TY1PR01MB1577.jpnprd01.prod.outlook.com (52.133.162.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.11; Wed, 12 Jun 2019 11:02:12 +0000
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1987.010; Wed, 12 Jun 2019
- 11:02:12 +0000
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Wolfram Sang <wsa@the-dreams.de>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Simon Horman <horms@verge.net.au>,
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=fKEuXpKhwW6QYirKkEZUMz7KKtRy+gRE2kTuvjwe5Og=;
+        b=RDAvMiYL1/E12jVZRrvjScX/Ri1mztuZtwe0YjXLDoQGwJ9hsU9dFZTKzXhD6yrfAF
+         +vEPWD7W9C5F6bo8JKZBpBtEEDDsNrJ9BVvdiyOwNe+1OHwDE7+ylO2qqSI7KbSbM9bx
+         jdVCxvg4AKjGJ/Fjr53LH24cus/xugKFsCWba7KrOcHFzBhgwOhCWINDQ1wbVrY7OQyU
+         u/UBe878vavY48j4914n3YRLR28cDacRENJaFiMgeEIpJz5lpyZp9gAfovlXUsyR5wjr
+         MWMd4r+tDMlwHQ73jQuuohiLcBUV1aIw655M30SX/uocU5kw5+1XTSlofcoBzjy3TvBp
+         ry1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=fKEuXpKhwW6QYirKkEZUMz7KKtRy+gRE2kTuvjwe5Og=;
+        b=nY+aMQdN2kEzTOgp1+vKnAY/XMMiqCGYSkOS9Ty8HuxI9cVRBNhdJ1Jyw0SO4odgkK
+         8i1XFG2GELMga86A9xrqIq/tC/ksiUFpqL2gQXMdfhgmr0jidMsBi9p5J+v3Rqj2PIFd
+         EwoVH+dqjejpzUtPJr90jz6LrtWc/6n00BlRCKpEFIwQ4wXgFBCD1e3s5OmOXtpPvPWD
+         ROxYnGpZA/M1Sjk3a6/snwDuGWLO1LBgqJA40kVB4109vNQ2ygu3CddOUrXruIDcglXd
+         62HoTDlnn0bs+jdMgh/aACjU8p7FN0CzrSJ2TOVJKlnnL93JOhxLjqCBhjAvSZntIACa
+         DOiQ==
+X-Gm-Message-State: APjAAAXtB/1XQey1BsQdIjKkp8kbk3+m5CxEXn0CxH33I9iTHFp3F8vf
+        J0Xax4L2sMzIW7RanOC+y/aIBQ==
+X-Google-Smtp-Source: APXvYqz9I7iqIVvewoxRxb2oZe1pv8KmSN3qpUEh/9sDe+JKW7LsnC39cGT3KhS/4+zBqXYPYzFNtg==
+X-Received: by 2002:a5d:53ca:: with SMTP id a10mr41666584wrw.131.1560337412723;
+        Wed, 12 Jun 2019 04:03:32 -0700 (PDT)
+Received: from holly.lan ([185.80.132.160])
+        by smtp.gmail.com with ESMTPSA id j132sm7583807wmj.21.2019.06.12.04.03.31
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 12 Jun 2019 04:03:31 -0700 (PDT)
+Date:   Wed, 12 Jun 2019 12:03:25 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Brian Norris <briannorris@google.com>, Pavel Machek <pavel@ucw.cz>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Doug Anderson <dianders@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: RE: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
-Thread-Topic: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
-Thread-Index: AQHVHQkEF65BtXynz0KAWAQHwuh89aaXt2YAgAAAWKCAABVNAIAAACxQgAAILACAAAn9MA==
-Date:   Wed, 12 Jun 2019 11:02:11 +0000
-Message-ID: <TY1PR01MB1770B85D549CD20C963620E6C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-References: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <CAMuHMdXv91Tt+78zLJj6pHFj9XrEJJbWOf-kzBPRbcw=h+iDHg@mail.gmail.com>
- <TY1PR01MB1770E7346A27FB36658142E1C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190612094524.GA2153@kunai>
- <TY1PR01MB17707726AF6BF3EE5408D5CDC0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190612101516.xrlvqw7cls7eiv4u@ninjato>
-In-Reply-To: <20190612101516.xrlvqw7cls7eiv4u@ninjato>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8f4197c5-a86a-4de9-2adc-08d6ef256bcb
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1577;
-x-ms-traffictypediagnostic: TY1PR01MB1577:
-x-microsoft-antispam-prvs: <TY1PR01MB1577312DB59A70B662C4EEB2C0EC0@TY1PR01MB1577.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0066D63CE6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(366004)(346002)(136003)(396003)(39860400002)(53484002)(469094003)(189003)(199004)(53936002)(6246003)(4326008)(66066001)(25786009)(6116002)(316002)(3846002)(478600001)(14454004)(33656002)(8676002)(66446008)(64756008)(71200400001)(71190400001)(186003)(81166006)(76116006)(54906003)(81156014)(73956011)(66946007)(66556008)(26005)(66476007)(99286004)(86362001)(7736002)(53546011)(6506007)(305945005)(486006)(476003)(102836004)(256004)(74316002)(11346002)(446003)(68736007)(14444005)(44832011)(7696005)(5660300002)(76176011)(55016002)(52536014)(2906002)(229853002)(8936002)(6916009)(9686003)(7416002)(6436002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1577;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: wGZ+Y/FG/6em+TFZ4Y+YsIOAj7v/j4RKMmqD+1N26984nTwz9f9LurjPkVGgq7HmnIau13Uau+dMwYOyzlUCDpLII2K48kesnQwRp4pp8DLxjuPtoGXde4o2xaS0JEN+rNiuhIOr5kJcO37opwKArDOMx/GEzmy6+JZH+X/RIs7Ejf6GWBXJdQN7QCHBIhgx1oLdtsiwGZln1VkOUAS3QmPmKDqsrOIoJXnPtY2bjFq7tcU8HWcL1c62VvJz5deKV/CbhDiA8iLqRqK+EP7GgQsRHSrDifbsIgk3q2L0f5LnoVanoxD4SueZmLizJpQD5O4hfeHNO7WlIe8fpCz8R6Pu/wlY+D5pjiS23ZZm33FDIALs7Bncw3t82KnRsY74Rc+Sa7eSSiezmF+zk7I/NXHG6XLc0P6sKQwHyWyQWxk=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190612110325.xdn3q2aod52oalge@holly.lan>
+References: <20180208113032.27810-1-enric.balletbo@collabora.com>
+ <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+ <20190610205233.GB137143@google.com>
+ <20190611104913.egsbwcedshjdy3m5@holly.lan>
+ <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+ <20190611223019.GH137143@google.com>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f4197c5-a86a-4de9-2adc-08d6ef256bcb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 11:02:11.9669
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1577
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190611223019.GH137143@google.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Wolfram,
+On Tue, Jun 11, 2019 at 03:30:19PM -0700, Matthias Kaehlcke wrote:
+> On Tue, Jun 11, 2019 at 09:55:30AM -0700, Brian Norris wrote:
+> > On Tue, Jun 11, 2019 at 3:49 AM Daniel Thompson
+> > <daniel.thompson@linaro.org> wrote:
+> > > This is a long standing flaw in the backlight interfaces. AFAIK generic
+> > > userspaces end up with a (flawed) heuristic.
+> > 
+> > Bingo! Would be nice if we could start to fix this long-standing flaw.
+> 
+> Agreed!
+> 
+> How could a fix look like, a sysfs attribute? Would a boolean value
+> like 'logarithmic_scale' or 'linear_scale' be enough or could more
+> granularity be needed?
 
-Thank you for your feedback!
+Certainly "linear" (this device will work more or less correctly if the
+userspace applies perceptual curves). Not sure about logarithmic since
+what is actually useful is something that is "perceptually linear"
+(logarithmic is merely a way to approximate that).
 
-> From: Wolfram Sang <wsa@the-dreams.de>
-> Sent: 12 June 2019 11:15
-> Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
->=20
->=20
-> > File arch/arm64/boot/dts/renesas/hihope-common.dtsi contains common
-> > definitions for the mother boards for both flavours (including the
-> > eMMC). My understanding is that R-Car M3-N does support HS400, hence
-> > the need for the property here.
->=20
-> I won't be super strict here, yet I think it is more elegant to add the
-> HS400 properties to the board DTS files, not the dtsi. I mean we could
-> add them to the SoC dtsi otherwise.
+I do wonder about a compatible string like most-detailed to
+least-detailed description. This for a PWM with the auto-generated
+tables we'd see something like:
 
-We will give both approaches a shot in due time, once the relevant HW
-will be available, but I do wonder why we need to make a distinction in the=
- DT
-when we have a quirk in the driver (the real problem is that HS400 doesn't =
-work
-only on some revisions of the RZ/G2M chip, do we need to create different .=
-dtsi for
-different revisions of the same SoC? Or perhaps different versions of the s=
-ame board
-dts?)? We could simply put a comment in the DT once we add the compatibilit=
-y of the
-eMMC with HS400, something like:
-"HS400 won't work on RZ/G2M rev=3D1.2"
-and let the driver handle the difference between revisions of the SoC, this=
- would keep
-things as compact as they possibly can be, as well as simplify design and m=
-aintenance.
+cie-1991,perceptual,non-linear
 
-I hope this helps.
+For something that is non-linear but we are not sure what its tables are
+we can offer just "non-linear".
 
-Thanks,
-Fab
+> 
+> The new attribute could be optional (it only exists if explicitly
+> specified by the driver) or be set to a default based on a heuristic
+> if not specified and be 'fixed' on a case by case basis. The latter
+> might violate "don't break userspace" though, so I'm not sure it's a
+> good idea.
+
+I think we should avoid any heuristic! There are several drivers and we
+may not be able to work through all of them and make the correct
+decision.
+
+Instead one valid value for the sysfs should be "unknown" and this be
+the default for drivers we have not analysed (this also makes it easy to
+introduce change here).
+
+We should only set the property to something else for drivers that have
+been reviewed.
+
+There could be a special case for pwm_bl.c in that I'm prepared to
+assume that the hardware components downstream of the PWM have a
+roughly linear response and that if the user provided tables that their
+function is to provide a perceptually comfortable response.
 
 
-
+Daniel.
