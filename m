@@ -2,68 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F8F41EF1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4AD41F0B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730984AbfFLIXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 04:23:21 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44406 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730856AbfFLIXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:23:21 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 270E4263A20;
-        Wed, 12 Jun 2019 09:23:20 +0100 (BST)
-Date:   Wed, 12 Jun 2019 10:23:16 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Jonas Karlman <jonas@kwiboo.se>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v4 01/10] rockchip/vpu: rename from rockchip to hantro
-Message-ID: <20190612102316.271e8d27@collabora.com>
-In-Reply-To: <VI1PR03MB4206D849E9815A7704D175DBACEC0@VI1PR03MB4206.eurprd03.prod.outlook.com>
-References: <20190611125058.13470-1-p.zabel@pengutronix.de>
-        <20190611125058.13470-2-p.zabel@pengutronix.de>
-        <VI1PR03MB4206D849E9815A7704D175DBACEC0@VI1PR03MB4206.eurprd03.prod.outlook.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2436841AbfFLI2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 04:28:14 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:45443 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406941AbfFLI2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:28:10 -0400
+Received: by mail-lf1-f65.google.com with SMTP id u10so11364658lfm.12;
+        Wed, 12 Jun 2019 01:28:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IvEvKOGpjQ6W7eOyaSJKs0PMC1VigjvzNX7sGSsbvC8=;
+        b=AIn7mtHpkSJOXUp6F62Xc8yzFXTLQR5sI8g2ZRWnPtKB72qxtV8axGUCiMAQ/xn8p0
+         VpsuQ7Lj4Vf5QnT5pApymLCu9ctXiM9oxVveqCHQ5xIX5WwXLFXvzbYipYF0cUyLYjW9
+         opbF6xY83DGpxdPfUpCE79b8wHbIdd1L2NkVxuYXwOX0TBVi605X38Tlja0gpqr8Aya8
+         TT2GgS8OK+Q0kcL5tBizV9faWE+7XftfSNH35QVI+IEsfkqZy/Ch64koeOvy2AWKdqFK
+         +uEl9FBpTgPqbFm7KCDUT+v2p5RfHwZnKr1cQ5cNzIclpILUesOW1LoaBQv93cpe3u2A
+         2OPg==
+X-Gm-Message-State: APjAAAXEIKEI/s2bL1qmiixbI8jsUS1mRfAd9nRLlE3/4EL+/KFsTWhn
+        cU2rXitFzF5XSdfcRHvfb2o6haDkkyOuZ5t8HqU=
+X-Google-Smtp-Source: APXvYqyVFUJ0I1/uoOBVVsFgAyTr3HP7Tl6c4VG1jMehe1meHU+T8bjoCmLxiN9i4in5f6cgRMhLgw8mN5NJoPYV3Vk=
+X-Received: by 2002:a19:4a49:: with SMTP id x70mr2923747lfa.151.1560328088644;
+ Wed, 12 Jun 2019 01:28:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 12 Jun 2019 10:27:56 +0200
+Message-ID: <CAMuHMdXv91Tt+78zLJj6pHFj9XrEJJbWOf-kzBPRbcw=h+iDHg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jun 2019 08:14:35 +0000
-Jonas Karlman <jonas@kwiboo.se> wrote:
+Hi Fabrizio,
 
-> On 2019-06-11 14:50, Philipp Zabel wrote:
-> > Rename the driver and all relevant identifiers from Rockchip to Hantro,
-> > as other Hantro IP based VPU implementations can be supported by the
-> > same driver.
-> > The RK3288 decoder is Hantro G1 based, the encoder is Hantro H1.  
-> 
-> The RK3288 has two VPU blocks that is described as a VPU combo in the datasheet,
-> VPU1 (the G1) and a HEVC decoder (not sharing the Hantro G2 hw regs).
-> Similarly the RK3399 has two VPU blocks, VPU2 based on G1 but with regs/fields re-ranged
-> and the RKVDPU (new generation of the HEVC block found in RK3288).
-> 
-> How can we expose these secondary blocks once rockchip vpu driver has transitioned
-> into a hantro driver? Should a new rockchip vpu driver be created for the HEVC/RKVDEC blocks?
+On Fri, Jun 7, 2019 at 10:14 AM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> This patch adds uSD and eMMC support to the HiHope RZ/G2M
+> board.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Yes, if those are not Hantro IPs a new driver should be created. I'm
-currently working on providing generic m2m helpers for stateless codecs
-to limit the code duplication incurred by this split. The good thing is
-that it should also help shrink the code of the cedrus driver (and more
-generally all stateless codec drivers).
+Thanks for your patch!
 
+> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+
+> +&sdhi3 {
+> +       pinctrl-0 = <&sdhi3_pins>;
+> +       pinctrl-1 = <&sdhi3_pins>;
+> +       pinctrl-names = "default", "state_uhs";
+> +
+> +       vmmc-supply = <&reg_3p3v>;
+> +       vqmmc-supply = <&reg_1p8v>;
+> +       bus-width = <8>;
+> +       mmc-hs200-1_8v;
+
+Does the eMMC support HS400, too?
+
+> +       non-removable;
+> +       fixed-emmc-driver-type = <1>;
+> +       status = "okay";
+> +};
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
