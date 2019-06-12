@@ -2,102 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD4D425F7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8F842605
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407720AbfFLMfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 08:35:44 -0400
-Received: from smtp-fw-9101.amazon.com ([207.171.184.25]:42821 "EHLO
-        smtp-fw-9101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407663AbfFLMfo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:35:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1560342943; x=1591878943;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=VFn/gI6zgNUuVhHVrpgAggjKM4seBCL+904wneHHRAg=;
-  b=ver4vcTBWLqgucpl4hGD6Omd/SYV7YzjgxmbCXwD4nID0STSHE5ZOat+
-   3ga/e671+3UoOeOLrxAQKuV9aYuEqndtgqOenJXbmE1WJztgYYAqdfGsc
-   m/sm/68Gz7sw+dn4TN5tpVV2BKTBwzM7uzRB5GUs/L1FKRzv9wB1+ebgi
-   I=;
-X-IronPort-AV: E=Sophos;i="5.62,365,1554768000"; 
-   d="scan'208";a="809976184"
-Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1e-27fb8269.us-east-1.amazon.com) ([10.47.22.38])
-  by smtp-border-fw-out-9101.sea19.amazon.com with ESMTP; 12 Jun 2019 12:35:40 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
-        by email-inbound-relay-1e-27fb8269.us-east-1.amazon.com (Postfix) with ESMTPS id E7ECDA1B8C;
-        Wed, 12 Jun 2019 12:35:36 +0000 (UTC)
-Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
- EX13MTAUEB001.ant.amazon.com (10.43.60.129) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 12 Jun 2019 12:35:36 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (10.43.60.96) by
- EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 12 Jun 2019 12:35:35 +0000
-Received: from [10.107.3.21] (10.107.3.21) by mail-relay.amazon.com
- (10.43.60.129) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
- Transport; Wed, 12 Jun 2019 12:35:32 +0000
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-To:     Borislav Petkov <bp@alien8.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-References: <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
- <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
- <20190611115651.GD31772@zn.tnic>
- <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
- <20190612034813.GA32652@zn.tnic>
- <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
- <20190612074242.53a4cf56@coco.lan> <20190612110039.GH32652@zn.tnic>
- <20190612084213.4fb9e054@coco.lan>
- <7705227ea831793cc9e45af32e0da8f5547cb14d.camel@kernel.crashing.org>
- <20190612122504.GI32652@zn.tnic>
-From:   "Hawa, Hanna" <hhhawa@amazon.com>
-Message-ID: <6911a79a-bcd7-03e1-1c90-2adb88aaa1db@amazon.com>
-Date:   Wed, 12 Jun 2019 15:35:31 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+        id S2407867AbfFLMgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 08:36:54 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:17513 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405938AbfFLMgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:36:54 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d00f1e40000>; Wed, 12 Jun 2019 05:36:53 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Wed, 12 Jun 2019 05:36:52 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Wed, 12 Jun 2019 05:36:52 -0700
+Received: from [10.21.132.143] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 12 Jun
+ 2019 12:36:49 +0000
+Subject: Re: [PATCH v2 1/2] arm64: tegra: add ACONNECT, ADMA and AGIC nodes
+To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1560243406-2535-1-git-send-email-spujar@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <1f2020ae-12f3-2ad1-c844-b4b7885d41f9@nvidia.com>
+Date:   Wed, 12 Jun 2019 13:36:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190612122504.GI32652@zn.tnic>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <1560243406-2535-1-git-send-email-spujar@nvidia.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560343013; bh=l/KPUA8SA1zZ0jib8qJ2prVlUEp09ihngQ3+RWqn+j0=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=XCK8nLrxKZJM0vFDsRjUUSHFB2qrYL58qNKiKWkXI0dApwyz88s4wcB6ZQ9a+tXIG
+         wbO9BN/RHYDqYCJhT184/D4UiKy7Lod5dHbuG4zWVkvOleH3E21BLN+QllMyVn1ZiS
+         3/UwiCssSnEhbJivKwaZD3bD+0g1XPVYBUI8PlD24fA53LfyR3g3FfYjpT4PjwEgew
+         bVwK0X1AHHj4zLpZZsqoYKy0QWw0G4w1KaETAA6RbxcfvuQsB/F8JgY0kuylK3eRZb
+         ZqYppAvHFWVucKaduEXk0UxI0aw1p3uJhpvXV5st8wH8cY+YRwizCDs/ViuwpojsvY
+         tCakX2O0Koj4g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
 
+On 11/06/2019 09:56, Sameer Pujar wrote:
+> Add DT nodes for following devices on Tegra186 and Tegra194
+>  * ACONNECT
+>  * ADMA
+>  * AGIC
 > 
-> Yap, I think we're in agreement here. I believe the important question
-> is whether you need to get error information from multiple sources
-> together in order to do proper recovery or doing it per error source
-> suffices.
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 68 ++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 68 ++++++++++++++++++++++++++++++++
+>  2 files changed, 136 insertions(+)
 > 
-> And I think the actual use cases could/should dictate our
-> drivers/orchestrators design.
-> 
-> Thus my question how you guys are planning on tying all that error info
-> the drivers report, into the whole system design?
-We have daemon script that collects correctable/uncorrectable errors 
-from EDAC sysfs and reports to Amazon service that allow us to take 
-action on specific error thresholds.
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> index 426ac0b..ccd902b 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> @@ -1295,4 +1295,72 @@
+>  				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+>  		interrupt-parent = <&gic>;
+>  	};
+> +
+> +	aconnect@2a41000 {
+> +		compatible = "nvidia,tegra210-aconnect";
+> +		clocks = <&bpmp TEGRA186_CLK_APE>,
+> +			 <&bpmp TEGRA186_CLK_APB2APE>;
+> +		clock-names = "ape", "apb2ape";
+> +		power-domains = <&bpmp TEGRA186_POWER_DOMAIN_AUD>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x02930000 0x0 0x02930000 0x50000
+> +			  0x02a41000 0x0 0x02a41000 0x3000>;
 
-Thanks,
-Hanna
-> 
+We only need one address range here that covers the entire APE.
+
+> +		status = "disabled";
+> +
+> +		dma-controller@2930000 {
+> +			compatible = "nvidia,tegra186-adma";
+> +			reg = <0x02930000 0x50000>;
+> +			interrupt-parent = <&agic>;
+> +			interrupts =  <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			clocks = <&bpmp TEGRA186_CLK_AHUB>;
+> +			clock-names = "d_audio";
+> +			status = "disabled";
+> +		};
+> +
+> +		agic: agic@2a41000 {
+> +			compatible = "nvidia,tegra210-agic";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			reg = <0x02a41000 0x1000>,
+> +			      <0x02a41000 0x2000>;
+
+These addresses should not overlap.
+
+Cheers
+Jon
+
+-- 
+nvpublic
