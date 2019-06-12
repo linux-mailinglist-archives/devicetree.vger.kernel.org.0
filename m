@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30EDE41AD3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 05:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8ED941AE4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 06:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407186AbfFLDsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jun 2019 23:48:23 -0400
-Received: from mail.skyhub.de ([5.9.137.197]:52586 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2407061AbfFLDsW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jun 2019 23:48:22 -0400
-Received: from zn.tnic (p200300EC2F0A680098854F45E2A0A47F.dip0.t-ipconnect.de [IPv6:2003:ec:2f0a:6800:9885:4f45:e2a0:a47f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B4D1C1EC01AD;
-        Wed, 12 Jun 2019 05:48:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1560311300;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=J1N1vI6eyDVtjlL+ZshOlH/0wAtVw2YVqy7wYoH0usQ=;
-        b=QukZpvZs6Q/q1XtjMMV2DJy8T8vdHnSMai/7i7ER9R2aJv1H0B+Durxvgx90070ANE8Ckk
-        RLdLhGXAFm1/6cbSsR3YiQ/slQq9Gp34Q0Fm/sva9NXybvOZaWTqEah1RuxY8ctl6Ny5wK
-        R+B8a35EGnwK+rKVfQiT5FBVW1u1aPY=
-Date:   Wed, 12 Jun 2019 05:48:14 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        James Morse <james.morse@arm.com>
-Cc:     "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-Message-ID: <20190612034813.GA32652@zn.tnic>
-References: <bfbc12fb68eea9d8d4cc257c213393fd4e92c33a.camel@amazon.com>
- <20190531051400.GA2275@cz.tnic>
- <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
- <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
- <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
- <20190608090556.GA32464@zn.tnic>
- <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
- <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
- <20190611115651.GD31772@zn.tnic>
- <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
+        id S1726007AbfFLEDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 00:03:03 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:16842 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725280AbfFLEDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 00:03:03 -0400
+X-UUID: fc6ce90485e84dd9b89e82f2c271838d-20190612
+X-UUID: fc6ce90485e84dd9b89e82f2c271838d-20190612
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 812905548; Wed, 12 Jun 2019 12:02:55 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 12 Jun 2019 12:02:54 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 12 Jun 2019 12:02:54 +0800
+Message-ID: <1560312174.20601.6.camel@mtkswgap22>
+Subject: Re: [PATCH v3 2/3] dt-bindings: rng: update bindings for MediaTek
+ ARMv8 SoCs
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        Crystal Guo <Crystal.Guo@mediatek.com>
+Date:   Wed, 12 Jun 2019 12:02:54 +0800
+In-Reply-To: <20190611225351.GA17332@bogus>
+References: <1560162984-26104-1-git-send-email-neal.liu@mediatek.com>
+         <1560162984-26104-3-git-send-email-neal.liu@mediatek.com>
+         <20190611225351.GA17332@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 08:25:52AM +1000, Benjamin Herrenschmidt wrote:
-> Yes, we would be in a world of pain already if tracepoints couldn't
-> handle concurrency :-)
+On Tue, 2019-06-11 at 16:53 -0600, Rob Herring wrote:
+> On Mon, Jun 10, 2019 at 06:36:23PM +0800, Neal Liu wrote:
+> > Document the binding used by the MediaTek ARMv8 SoCs random
+> > number generator with TrustZone enabled.
+> > 
+> > Signed-off-by: Neal Liu <neal.liu@mediatek.com>
+> > ---
+> >  Documentation/devicetree/bindings/rng/mtk-rng.txt |   15 ++++++++++++---
+> >  1 file changed, 12 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.txt b/Documentation/devicetree/bindings/rng/mtk-rng.txt
+> > index 2bc89f1..fb3dd59 100644
+> > --- a/Documentation/devicetree/bindings/rng/mtk-rng.txt
+> > +++ b/Documentation/devicetree/bindings/rng/mtk-rng.txt
+> > @@ -3,9 +3,13 @@ found in MediaTek SoC family
+> >  
+> >  Required properties:
+> >  - compatible	    : Should be
+> > -			"mediatek,mt7622-rng", 	"mediatek,mt7623-rng" : for MT7622
+> > -			"mediatek,mt7629-rng",  "mediatek,mt7623-rng" : for MT7629
+> > -			"mediatek,mt7623-rng" : for MT7623
+> > +			"mediatek,mt7622-rng", "mediatek,mt7623-rng" for MT7622
+> > +			"mediatek,mt7629-rng", "mediatek,mt7623-rng" for MT7629
+> > +			"mediatek,mt7623-rng" for MT7623
+> > +			"mediatek,mtk-sec-rng" for MediaTek ARMv8 SoCs with
+> > +			security RNG
+> 
+> Is there any commonality with the prior h/w? If not, make this a 
+> separate binding doc.
 
-Right, lockless buffer and the whole shebang :)
+There are less common with the prior h/w... I had been thinking about
+make new binding doc. Since your suggestion, I'll make one.
 
-> Sort-of... I still don't see a race in what we propose but I might be
-> missing something subtle. We are talking about two drivers for two
-> different IP blocks updating different counters etc...
+> 
+> > +
+> > +Optional properties:
+> >  - clocks	    : list of clock specifiers, corresponding to
+> >  		      entries in clock-names property;
+> >  - clock-names	    : Should contain "rng" entries;
+> > @@ -19,3 +23,8 @@ rng: rng@1020f000 {
+> >  	clocks = <&infracfg CLK_INFRA_TRNG>;
+> >  	clock-names = "rng";
+> >  };
+> > +
+> > +/* secure RNG */
+> > +hwrng: hwrng {
+> > +	compatible = "mediatek,mtk-sec-rng";
+> 
+> How does one access this? Seems like this should be part of a node for 
+> firmware? What about other functions?
 
-If you do only *that* you should be fine. That should technically be ok.
+Yes, We move all hw register & clock control access to the ATF by smc.
 
-I still think, though, that the sensible thing to do is have one
-platform driver which concentrates all RAS functionality. It is the
-more sensible design and takes care of potential EDAC shortcomings and
-the need to communicate between the different logging functionality,
-as in, for example, "I had so many errors, lemme go and increase DRAM
-scrubber frequency." For example. And all the other advantages of having
-everything in a single driver.
+> 
+> > +};
+> > -- 
+> > 1.7.9.5
+> > 
 
-And x86 already does that - we even have a single driver for all AMD
-platforms - amd64_edac. Intel has a couple but there's still a lot of
-sharing.
 
-But apparently ARM folks want to have one driver per IP block. And we
-have this discussion each time a new vendor decides to upstream its
-driver. And there's no shortage of vendors in ARM-land trying to do
-that.
-
-James and I have tried to come up with a nice scheme to make that work
-on ARM and he has an example prototype here:
-
-http://www.linux-arm.org/git?p=linux-jm.git;a=shortlog;h=refs/heads/edac_dummy/v1
-
-to show how it could look like.
-
-But I'm slowly growing a serious aversion against having this very same
-discussion each time an ARM vendor sends a driver. And that happens
-pretty often nowadays.
-
--- 
-Regards/Gruss,
-    Boris.
-
-Good mailing practices for 400: avoid top-posting and trim the reply.
