@@ -2,132 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CDD941E30
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:47:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ED1741E41
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726660AbfFLHrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 03:47:31 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:39812 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729377AbfFLHra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 03:47:30 -0400
-Received: by mail-pl1-f193.google.com with SMTP id b7so1239204pls.6
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 00:47:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=RTEvowjVOZ1tt6yW3tt8znN/f0k1q7mGY13SshYdHu0=;
-        b=ev+kVdsEuZay+u/9fs+NWPIBWNJyQcyQ6Ur5EFF5tKrCyVYcgNizj2gLPu5bxid0Hz
-         tPLF7jTePnup5KqcxVjCHful3j9gTdvqX+Qriam8LVoek6qX29ezGElZwt6zYBEcb2SN
-         Q37YLJtAP03GlRDoXXFwr55GafpU0rlhDZGhQcl3SWX6gJA9KQpqiKwUOmlIGxRiYosn
-         dr9HK/RZVUvizdrr5OpBpHn4ChblEUXYJHENQsSph+PYnec44Z2CFtv0zFRptfx7TiLd
-         S7/PaXMj+7j/nP3bEQCPT+x48srxZ2LXHIsDlMch7Ni6dFdgIfKRdUiOcsa/OwOyp9cP
-         OrJg==
+        id S2405233AbfFLHwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 03:52:19 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:34998 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726568AbfFLHwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 03:52:18 -0400
+Received: by mail-lj1-f195.google.com with SMTP id x25so9617374ljh.2;
+        Wed, 12 Jun 2019 00:52:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RTEvowjVOZ1tt6yW3tt8znN/f0k1q7mGY13SshYdHu0=;
-        b=k4PYarWCigMKIkIahzlxXFJBV7rj0xlicMBBhcDXT1PNnS75eRsxe+7IAMEl7wnDRi
-         PTGrV37uqWEsmyO3xiA7vVMaXNlOO0x+Wakc9EwiDtMVPk3HfoxPV6VF+7v4QQRsdO8G
-         Jj+7CzXcO4DpA6K646pKzh0TNHBLqInp25pdJkUahNckbYXrnZslIFn/ZRHpEcENopg0
-         dFbhLveaR8lpAqS01BREBHjvZHTJLSwwm/z0IpP4AtFMBdlhW8qf1HxtwNzwcZBg2zzO
-         nYIMkKfQNBojqb52GpdaZf4Mx15ZoutJIBhk2nTuRN3IWU0Z8ak9LaM1ONQiIw4Ya2OI
-         mO2A==
-X-Gm-Message-State: APjAAAVDQa0JK26FzZRWwcJsqmDmhT5Ofy0APBeYOwvVsl1u7Ypft5IK
-        RwPbXytc1X4HRBcWgVuaOn29
-X-Google-Smtp-Source: APXvYqxdFNwHHUupAjw3XvuIJ/ZVdpM65R2uvHP1jCdfRej7cyXAdncrWoLq1ppn8UtyJYh5XGiOKw==
-X-Received: by 2002:a17:902:968b:: with SMTP id n11mr43028455plp.120.1560325649660;
-        Wed, 12 Jun 2019 00:47:29 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:894:d456:15b5:9ca9:e3ec:c06a])
-        by smtp.gmail.com with ESMTPSA id v5sm16896474pfm.22.2019.06.12.00.47.23
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 12 Jun 2019 00:47:28 -0700 (PDT)
-Date:   Wed, 12 Jun 2019 13:17:20 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        loic pallardy <loic.pallardy@st.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: arm: stm32: Convert STM32 SoC
- bindings to DT schema
-Message-ID: <20190612074720.GA5513@Mani-XPS-13-9360>
-References: <20190531063849.26142-1-manivannan.sadhasivam@linaro.org>
- <20190531063849.26142-3-manivannan.sadhasivam@linaro.org>
- <CAL_Jsq+N7NA7m+dp+zpwFeZLM6B+OwRrqZdzKkJp2TRWi_e3Mw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sHAiVBtI4wTRr/mIaxFBqtCpECcSlQ7YSDG2J1NlBOE=;
+        b=uSUiwkbSkpAx9D2wqxReGVfnlLBU5wqk2FDoGu1/Q13WdnLKhQFliQWPFz7enbEw7M
+         EJG0QokvF5S/l0I8sFeX071cudNfY4xZ+bvrRJl85xrDlsLEQkoAqg0CsuUvB6GD2gwh
+         tfIFd5+th6na0GqBcNvfg6vZe5X1XVWZ6Y4PmCh2UjDEIqICD1X3Ihm7bNb7w6GhnLjT
+         FLQcqNyo1m5L5xC8+HUD+Fvzn/xVNVnDjOx5eftLdbV5/yZr6Me94HVLbpf2bgAXjzME
+         5FgAe9/8bGkzdKjZzSPXmCDOunOGP2YDZorngLJqi9Ls/8XY0ES+ojECqJa4NLMbOahp
+         9x5g==
+X-Gm-Message-State: APjAAAXub8NgLAGOJbo5XuPeTHHF8/DkGENUr/nHB8TrqK8pn897dFWW
+        PjG3169LIGXYZ9/y1hRhxkJ4j/hrGt4TJe6aFOQ=
+X-Google-Smtp-Source: APXvYqyvS1HtmoeUVU1qWAovQA9z2SrohqY0mW414kk/CrLu86gLlSpsg1lYfW4xpd516YTxz/WXuYe6YPfVc7afNec=
+X-Received: by 2002:a2e:2b8d:: with SMTP id r13mr31669052ljr.145.1560325936859;
+ Wed, 12 Jun 2019 00:52:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+N7NA7m+dp+zpwFeZLM6B+OwRrqZdzKkJp2TRWi_e3Mw@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <1559891016-56157-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1559891016-56157-1-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 12 Jun 2019 09:52:04 +0200
+Message-ID: <CAMuHMdW3GxjF-MPRDkJorLpAzPKSNx3bE+sHAGgUHrV1d9pD0w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: rcar: Add device tree support for r8a774a1
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, Jun 7, 2019 at 9:08 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add PCIe support for the RZ/G2M (a.k.a. R8A774A1).
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-On Mon, Jun 10, 2019 at 03:57:43PM -0600, Rob Herring wrote:
-> On Fri, May 31, 2019 at 12:39 AM Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
-> >
-> > This commit converts STM32 SoC bindings to DT schema using jsonschema.
-> >
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  .../devicetree/bindings/arm/stm32/stm32.yaml  | 29 +++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> 
-> Converting implies removal of something. The schema looks fine though.
-> 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Ah, sorry. I forgot to delete the .txt file. Will do it in next revision.
+Gr{oetje,eeting}s,
 
-Thanks,
-Mani
+                        Geert
 
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> > new file mode 100644
-> > index 000000000000..f53dc0f2d7b3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> > @@ -0,0 +1,29 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/stm32/stm32.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: STMicroelectronics STM32 Platforms Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Alexandre Torgue <alexandre.torgue@st.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: st,stm32f429
-> > +
-> > +      - items:
-> > +          - const: st,stm32f469
-> > +
-> > +      - items:
-> > +          - const: st,stm32f746
-> > +
-> > +      - items:
-> > +          - const: st,stm32h743
-> > +
-> > +      - items:
-> > +          - const: st,stm32mp157
-> > +...
-> > --
-> > 2.17.1
-> >
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
