@@ -2,120 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D7D439A2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DEEF42B1C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 17:39:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732234AbfFMPPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:15:08 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:41001 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732231AbfFMN0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 09:26:06 -0400
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id F29BB20000D;
-        Thu, 13 Jun 2019 13:26:01 +0000 (UTC)
-Date:   Wed, 12 Jun 2019 17:38:18 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
+        id S1727419AbfFLPix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 11:38:53 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:55506 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726829AbfFLPiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 11:38:52 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id D684A60312; Wed, 12 Jun 2019 15:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560353931;
+        bh=jo5xwzUkOXexvviKPM6NFNmRQs5GnOMsMW7FYO6sJ00=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Nt7sd7cZDHTP1ZD9BGLhpg5rSQFdvUK1R2mXkRYJL0U5w1JoCvtR0q/ezvfDFcguR
+         v+sth8LZmLK/T5mYzGlxiOli7B6WvVQacdXZq/gcVvXUFmAyfs5pDpdm5G04OEVHp1
+         +0+PzOfZriOjnXhHw9ba88bitXd41PRgS6n+a6bM=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.226.58.28] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jhugo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5D3A4602F3;
+        Wed, 12 Jun 2019 15:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560353930;
+        bh=jo5xwzUkOXexvviKPM6NFNmRQs5GnOMsMW7FYO6sJ00=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=I8Hju8KJNFAyrfSlI3R59XQCdY9ihtqyUcwtNqUKPb95ly8WzJGcN12ELC8YgP2mB
+         KtTLMuPpeSgMIsiPD5Nv32DIRd4XdrXpRTke6G4KcxZl72wgMXQ2Vsoy/wdlVc069m
+         1fNeCLC0pOkSVCHPuS/ymcijn+tTp8u+gt1ZXfo4=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5D3A4602F3
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
+Subject: Re: [PATCH v5 2/3] HID: quirks: Refactor ELAN 400 and 401 handling
+To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: sun6i-p2wi: Add YAML schemas
-Message-ID: <20190612153818.q5xj5su33krlignu@flea>
-References: <20190605122936.11972-1-maxime.ripard@bootlin.com>
- <CAL_JsqKC7uP0J14A8_CvPhbZkoSRNWSpS1ee+Q4sG013jY=JeQ@mail.gmail.com>
- <20190611090641.byr6mpywkfmbhrbk@flea>
- <CAL_JsqL3cua3u2gNTzHEdgFU0On5J9ziPZeFNiTpu5HS=SJoDA@mail.gmail.com>
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20190606161055.47089-1-jeffrey.l.hugo@gmail.com>
+ <20190606161322.47192-1-jeffrey.l.hugo@gmail.com>
+ <20190612003507.GG143729@dtor-ws>
+ <nycvar.YFH.7.76.1906121644160.27227@cbobk.fhfr.pm>
+ <CAKdAkRQOxTX51rhodoFyYpwi85pk8apvWjCLLX5Sw6NTH=j1kA@mail.gmail.com>
+ <CAO-hwJKDxu0Bxxjd9reAojHODQTnW1POmifBCVsnjt8+CT4rmw@mail.gmail.com>
+From:   Jeffrey Hugo <jhugo@codeaurora.org>
+Message-ID: <13ffac55-7760-9dda-8c80-d15283cf8f92@codeaurora.org>
+Date:   Wed, 12 Jun 2019 09:38:48 -0600
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jqnskoivfbu5krfp"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqL3cua3u2gNTzHEdgFU0On5J9ziPZeFNiTpu5HS=SJoDA@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <CAO-hwJKDxu0Bxxjd9reAojHODQTnW1POmifBCVsnjt8+CT4rmw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 6/12/2019 9:21 AM, Benjamin Tissoires wrote:
+> On Wed, Jun 12, 2019 at 5:14 PM Dmitry Torokhov
+> <dmitry.torokhov@gmail.com> wrote:
+>>
+>> On Wed, Jun 12, 2019 at 7:45 AM Jiri Kosina <jikos@kernel.org> wrote:
+>>>
+>>> On Tue, 11 Jun 2019, Dmitry Torokhov wrote:
+>>>
+>>>>> +static const char *hid_elan_i2c_ignore[] = {
+>>>>
+>>>> If this is a copy of elan whitelist, then, if we do not want to bother
+>>>> with sharing it in object form (as a elan-i2c-ids module), can we at
+>>>> least move it into include/linux/input/elan-i2c-ids.h and consume from
+>>>> hid-quirks.c?
+>>>
+>>> Let's just not duplicate it in both objects. Why not properly export it
+>>> from hid_quirks?
+>>
+>> Strictly speaking Elan does not depend on HID; exporting it from
+>> quirks would mean adding this dependency. This also mean that you
+>> can't make Elan built-in while keeping HID as a module (I think this
+>> at least used to be config on some Chromebooks).
+>>
+> 
+> I also think it would me things cleaner to have the list of devices in elan_i2c.
+> If we put the list of devices supported by elan_i2c in a header, and
+> have HID read this .h file directly, there will be no runtime
+> dependency.
+> 
+> I am sure we can work something out to remove Jeffrey's fears.
 
---jqnskoivfbu5krfp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Works for me.  I plan to have the next rev posted by the end of the week.
 
-Hi,
-
-On Tue, Jun 11, 2019 at 08:50:37AM -0600, Rob Herring wrote:
-> On Tue, Jun 11, 2019 at 3:06 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Mon, Jun 10, 2019 at 03:34:18PM -0600, Rob Herring wrote:
-> > > On Wed, Jun 5, 2019 at 6:29 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > +properties:
-> > > > +  "#address-cells":
-> > > > +    const: 1
-> > > > +
-> > > > +  "#size-cells":
-> > > > +    const: 0
-> > >
-> > > These 2 are covered by i2c-controller.yaml, right?
-> >
-> > Indeed, I've removed them.
-> >
-> > > > +examples:
-> > > > +  - |
-> > > > +    p2wi@1f03400 {
-> > >
-> > > i2c@...
-> > >
-> > > That should fail on the schema (I need to get the schema checking of
-> > > examples finished.)
-> >
-> > That would be great :) The compilation of the examples alone already
-> > caught a good number of examples that weren't even compiling.
->
-> I'm primarily waiting on a dtc change to be accepted[1]. Feel free to
-> review/ack.
-
-I guess it's too late now :)
-
-> > Speaking of examples, one thing that would be great too would be to
-> > allow the usage of our C headers. It's not supported at the moment,
-> > and this often ends up with an example that is less readable than the
-> > actual DT.
->
-> It should be. You just have to add them. See
-> Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml for
-> example.
-
-Hmmm, I'm pretty sure I tried this before. I'll try again.
-
-> Maybe the common interrupt and gpio ones should be added by default.
-
-I guess so, yeah. The GIC too is pretty common
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---jqnskoivfbu5krfp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQEcaQAKCRDj7w1vZxhR
-xWTgAP9WB+1aXtMSPMtLHzMJKOV6r1RNowdkygnwiE+cBDkvOAD7BDqmviqSzzZt
-6saIUD3M+DBgvkUTsko4s0nJ4Wp+1AQ=
-=GewT
------END PGP SIGNATURE-----
-
---jqnskoivfbu5krfp--
