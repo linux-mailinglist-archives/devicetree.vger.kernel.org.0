@@ -2,135 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B18D4255C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 887484256C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:20:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438757AbfFLMSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 08:18:02 -0400
-Received: from mail.kmu-office.ch ([178.209.48.109]:54316 "EHLO
-        mail.kmu-office.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438756AbfFLMSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:18:02 -0400
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
-        by mail.kmu-office.ch (Postfix) with ESMTPSA id 64E305C2176;
-        Wed, 12 Jun 2019 14:17:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-        t=1560341879;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=/KH0/i4R3MFhchQ0T0snADnLYDTs7aFotX1/6SeWxhU=;
-        b=FjNDRYeX/PtHXdcW9e8GNSv42F0BHqkcPhNorsrgHPuy03m/dRNJKTlY+psz48RUEnd+3f
-        IEZBG5raooHHVy+i6B9P20h+EOukDGaEO2c79N5grBB3+iHhyu4IqX4DacTYiRX148NKjY
-        LrYiKoroQEosDlrg9KqsL9bPJ/rFJa0=
+        id S2438793AbfFLMU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 08:20:29 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:39734 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2438796AbfFLMUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:20:25 -0400
+Received: from penelope.horms.nl (ip4dab7138.direct-adsl.nl [77.171.113.56])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id F038E25AEA9;
+        Wed, 12 Jun 2019 22:20:22 +1000 (AEST)
+Received: by penelope.horms.nl (Postfix, from userid 7100)
+        id E8276E21FE5; Wed, 12 Jun 2019 14:20:20 +0200 (CEST)
+Date:   Wed, 12 Jun 2019 14:20:20 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
+Message-ID: <20190612122020.sgp5q427ilh6bbbg@verge.net.au>
+References: <1557429622-31676-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <TY1PR01MB1770D2AAF2ED748575CA4CBFC0100@TY1PR01MB1770.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 12 Jun 2019 14:17:59 +0200
-From:   Stefan Agner <stefan@agner.ch>
-To:     Igor Opaniuk <igor.opaniuk@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        marcel@ziswiler.com, marcel.ziswiler@toradex.com
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ull-colibri: enable UHS-I for USDHC1
-In-Reply-To: <20190606090612.16685-1-igor.opaniuk@gmail.com>
-References: <20190606090612.16685-1-igor.opaniuk@gmail.com>
-Message-ID: <3b84f3cc6cd5399f25ebd8e1c8559c58@agner.ch>
-X-Sender: stefan@agner.ch
-User-Agent: Roundcube Webmail/1.3.7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY1PR01MB1770D2AAF2ED748575CA4CBFC0100@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06.06.2019 11:06, Igor Opaniuk wrote:
-> From: Igor Opaniuk <igor.opaniuk@toradex.com>
-> 
-> Allows to use the SD interface at a higher speed mode if the card
-> supports it. For this the signaling voltage is switched from 3.3V to
-> 1.8V under the usdhc1's drivers control.
-> 
-> Signed-off-by: Igor Opaniuk <igor.opaniuk@toradex.com>
-> ---
->  arch/arm/boot/dts/imx6ul.dtsi                  |  4 ++++
->  arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi | 11 +++++++++--
->  arch/arm/boot/dts/imx6ull-colibri.dtsi         |  6 ++++++
->  3 files changed, 19 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-> index fc388b84bf22..91a0ced44e27 100644
-> --- a/arch/arm/boot/dts/imx6ul.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> @@ -857,6 +857,8 @@
->  					 <&clks IMX6UL_CLK_USDHC1>,
->  					 <&clks IMX6UL_CLK_USDHC1>;
->  				clock-names = "ipg", "ahb", "per";
-> +				fsl,tuning-step= <2>;
-> +				fsl,tuning-start-tap = <20>;
->  				bus-width = <4>;
->  				status = "disabled";
->  			};
-> @@ -870,6 +872,8 @@
->  					 <&clks IMX6UL_CLK_USDHC2>;
->  				clock-names = "ipg", "ahb", "per";
->  				bus-width = <4>;
-> +				fsl,tuning-step= <2>;
-> +				fsl,tuning-start-tap = <20>;
->  				status = "disabled";
->  			};
->  
-> diff --git a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> index 006690ea98c0..7dc7770cf52c 100644
-> --- a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> +++ b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> @@ -145,13 +145,20 @@
->  };
->  
->  &usdhc1 {
-> -	pinctrl-names = "default";
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
->  	pinctrl-0 = <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_cd>;
-> -	no-1-8-v;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz &pinctrl_snvs_usdhc1_cd>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_100mhz &pinctrl_snvs_usdhc1_cd>;
+Dave,
 
-Should that not be pinctrl_usdhc1_200mhz?
+are you comfortable with me taking these patches
+through the renesas tree? Or perhaps should they be reposted
+to you for inclusion in net-next?
 
---
-Stefan
+They have been stuck for a long time now.
 
-> +	pinctrl-3 = <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_sleep_cd>;
->  	cd-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
->  	disable-wp;
->  	wakeup-source;
->  	keep-power-in-suspend;
->  	vmmc-supply = <&reg_3v3>;
-> +	vqmmc-supply = <&reg_sd1_vmmc>;
-> +	sd-uhs-sdr12;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
->  	status = "okay";
->  };
-> diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> index 9ad1da159768..d56728f03c35 100644
-> --- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> +++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> @@ -545,6 +545,12 @@
->  		>;
->  	};
->  
-> +	pinctrl_snvs_usdhc1_sleep_cd: snvs-usdhc1-cd-grp-slp {
-> +		fsl,pins = <
-> +			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x0
-> +		>;
-> +	};
-> +
->  	pinctrl_snvs_wifi_pdn: snvs-wifi-pdn-grp {
->  		fsl,pins = <
->  			MX6ULL_PAD_BOOT_MODE1__GPIO5_IO11	0x14
+On Fri, Jun 07, 2019 at 10:02:13AM +0000, Fabrizio Castro wrote:
+> Dear All,
+> 
+> These patches have been around for a very long time now, is anybody willing to take them?
+> 
+> Cheers,
+> Fab
+> 
+> > From: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> > Sent: 09 May 2019 20:20
+> > Subject: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
+> > 
+> > Dear All,
+> > 
+> > I am reposting some CAN and CANFD related dt-bindings changes for
+> > Renesas' R-Car and RZ/G devices that have been originally sent
+> > end of last year and beginning of this year.
+> > 
+> > Thanks,
+> > Fab
+> > 
+> > Fabrizio Castro (3):
+> >   dt-bindings: can: rcar_can: Fix RZ/G2 CAN clocks
+> >   dt-bindings: can: rcar_can: Add r8a774c0 support
+> >   dt-bindings: can: rcar_canfd: document r8a774c0 support
+> > 
+> > Marek Vasut (2):
+> >   dt-bindings: can: rcar_canfd: document r8a77965 support
+> >   dt-bindings: can: rcar_canfd: document r8a77990 support
+> > 
+> >  Documentation/devicetree/bindings/net/can/rcar_can.txt   | 13 ++++---------
+> >  Documentation/devicetree/bindings/net/can/rcar_canfd.txt | 16 ++++++++++------
+> >  2 files changed, 14 insertions(+), 15 deletions(-)
+> > 
+> > --
+> > 2.7.4
+> 
