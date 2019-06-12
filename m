@@ -2,133 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B662C4297C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13C4E429AD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731624AbfFLOhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 10:37:20 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:54291 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731564AbfFLOhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 10:37:20 -0400
-Received: by mail-wm1-f68.google.com with SMTP id g135so6844301wme.4
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 07:37:18 -0700 (PDT)
+        id S1732089AbfFLOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 10:44:38 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:36922 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727846AbfFLOoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 10:44:38 -0400
+Received: by mail-pf1-f193.google.com with SMTP id 19so8966322pfa.4
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 07:44:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=VplAio+sVK07Pjxzj2QfGPoBuAFyvNhZScCOrRSlmOg=;
-        b=nVP3PUMAQmhGKeeuGgz8Msy+BotU4EfAKloaSSbTZS/04Dv1nuQy5HM0flUpAJLf63
-         hCvO2BkTA/nIGw0uvr+0sO0iOkzgeqVQiOyCzm7Vt0Gnn45NZzOEqpcP/JB3mA/A2l8d
-         XYlGjAQ2GlDNrEWBXb0IWGfTXw2N9a8dlCkI4jO0DddDbtBEULqP80gmxATKN+RYXHfE
-         jIQ2aanTGu4ukWHT2RpirFhCZgua9zVcBffn3W8f9ZFIqjICLfpDVP/6OXMjYPO4p32p
-         QQIPBhP89gQidkHFDWA4pOyE29eGsMUDqsGh6YArjEFESsrizbL0wnGiS0im0p8NI3PV
-         zTLw==
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:to:from:cc:subject:user-agent:date;
+        bh=bn95yZEQkFdm8IUCbmAacr/m8l86WxEth291aVhdSlM=;
+        b=IFX91dVs/IB2uQK3729zPrJd1Knz4V7aZ3QpOygS7GTDRBVhMj7KbxcyEvtjveJJR1
+         FXZzSv8Kt22j9edDD5+tQeVuKivqBejTI61b0MqQYaxytVcPL75KotXQ6tlJj2UeUYG6
+         wmvi++xeRnLF6l4+9zP3EmyJCLQ4PU2nvxyJw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=VplAio+sVK07Pjxzj2QfGPoBuAFyvNhZScCOrRSlmOg=;
-        b=a3TB8r/fwxGhDPZ/t2Uxrha3cX3gWI1724kKCKJt4hyGHBHruagW/a4Kjo2SMh4FKx
-         L+5JkMWS3xdfYJd8+P0KBm3eN01HjCd8nclyNz9/ZzlxXBGfs1I9AMWgUQFanVmTFpSQ
-         UwXV8bb1dA2c+AwiIDLwaGQJ+fomhZErKIORtzfMQ5u8pf0b0y5J5dtl0dJkzUHzyLbs
-         NGt84Og++BQAEKUXbK82ZoKNjc/61+0itdemoN19JmSv1A+rTnoszC4gRT+ZdACNJH03
-         ASykSLUE2e9o7+Pi9nk6zY6ghVHjL3W1poxqm0KN5IGyn/eANRLre6mIJ7t/DgRjU1Rj
-         FhZg==
-X-Gm-Message-State: APjAAAUPnHGck2zV29kNVpeMshNIyB9I1/Af6EDpzniJt2mTFSacysxu
-        AIleJelyyb5blKkWA/EjSIGSSw==
-X-Google-Smtp-Source: APXvYqyXpn/hJQn+QAdkpG+PAOIVfZytwEwBa6XdlVWbIPJzEymxH5QfmHeEMsWdDJ8I8TFh442WNg==
-X-Received: by 2002:a1c:a541:: with SMTP id o62mr3196842wme.84.1560350238120;
-        Wed, 12 Jun 2019 07:37:18 -0700 (PDT)
-Received: from dell ([185.80.132.160])
-        by smtp.gmail.com with ESMTPSA id j7sm24764543wru.54.2019.06.12.07.37.17
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 12 Jun 2019 07:37:17 -0700 (PDT)
-Date:   Wed, 12 Jun 2019 15:37:15 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jeffrey Hugo <jhugo@codeaurora.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        benjamin.tissoires@redhat.com, jikos@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, agross@kernel.org, david.brown@linaro.org,
-        hdegoede@redhat.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] HID: quirks: Refactor ELAN 400 and 401 handling
-Message-ID: <20190612143715.GC4660@dell>
-References: <20190606161055.47089-1-jeffrey.l.hugo@gmail.com>
- <20190606161322.47192-1-jeffrey.l.hugo@gmail.com>
- <20190612003507.GG143729@dtor-ws>
- <2282f3e1-e76a-4fe7-d447-51d9a4bee2de@codeaurora.org>
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:to:from:cc:subject
+         :user-agent:date;
+        bh=bn95yZEQkFdm8IUCbmAacr/m8l86WxEth291aVhdSlM=;
+        b=qtiDNTSMqMlYJFbnHEZIIIHFKB+AQSJX0dUYFHfs5pw/nl3XVzlmwLXJ0yR+xAVN1d
+         mTOu9X/YOUVKjWz3FZm2J79IdaRihGLqxnm48VFC6XudknZTBeRqoCTCELEZQGELrmdS
+         L77Wyvm1nv4thhrRY1+aTFobxyg+1EqwJHb7fi2aZ7nSD8IZygdyCC47hArmjh++Y/qn
+         Kw+6g6nlYtrk9Gj17nt+Q6BUNMIJqBIry18dMrcf0mfvuHmy6ncwfl1tL3ocnoj6YahM
+         4URr/FelUX7Ds4E//2eIuKCWgJjPL1tGhIaCfAgAbV6he+EYrsfJJ62+nYveI7pljR0d
+         dWZw==
+X-Gm-Message-State: APjAAAW0nmDMEsz8wNA7AWx2cGwmgTeQRojqo4/8IcJnwkulghQVD6de
+        CegZhb5OPZ1kzbUnRE3zhCiRjg==
+X-Google-Smtp-Source: APXvYqw1pRLfvl+MD405r1Flh6E/r+OXWy06xK5xfjFjE5fHv/YEJIPlfXeLmPTH94Oncwk11xcypA==
+X-Received: by 2002:a62:5487:: with SMTP id i129mr82578482pfb.68.1560350677533;
+        Wed, 12 Jun 2019 07:44:37 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id c133sm21450858pfb.111.2019.06.12.07.44.36
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 12 Jun 2019 07:44:37 -0700 (PDT)
+Message-ID: <5d010fd5.1c69fb81.e7b77.87ae@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2282f3e1-e76a-4fe7-d447-51d9a4bee2de@codeaurora.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190612010011.90185-1-wangkefeng.wang@huawei.com>
+References: <20190612010011.90185-1-wangkefeng.wang@huawei.com>
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH next] of/fdt: Fix defined but not used compiler warning
+User-Agent: alot/0.8.1
+Date:   Wed, 12 Jun 2019 07:44:36 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jun 2019, Jeffrey Hugo wrote:
+Quoting Kefeng Wang (2019-06-11 18:00:11)
+> When CONFIG_OF_EARLY_FLATTREE is disabled, there is a compiler warning,
+>=20
+> drivers/of/fdt.c:129:19: warning: =E2=80=98of_fdt_match=E2=80=99 defined =
+but not used [-Wunused-function]
+>  static int __init of_fdt_match(const void *blob, unsigned long node,
+>=20
+> Move of_fdt_match() and of_fdt_is_compatible() under CONFIG_OF_EARLY_FLAT=
+TREE
+> to fix it.
+>=20
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+> ---
 
-> On 6/11/2019 6:35 PM, Dmitry Torokhov wrote:
-> > On Thu, Jun 06, 2019 at 09:13:22AM -0700, Jeffrey Hugo wrote:
-> > > There needs to be coordination between hid-quirks and the elan_i2c driver
-> > > about which devices are handled by what drivers.  Currently, both use
-> > > whitelists, which results in valid devices being unhandled by default,
-> > > when they should not be rejected by hid-quirks.  This is quickly becoming
-> > > an issue.
-> > > 
-> > > Since elan_i2c has a maintained whitelist of what devices it will handle,
-> > > use that to implement a blacklist in hid-quirks so that only the devices
-> > > that need to be handled by elan_i2c get rejected by hid-quirks, and
-> > > everything else is handled by default.  The downside is the whitelist and
-> > > blacklist need to be kept in sync.
-> > > 
-> > > Suggested-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> > > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-> > > ---
-> > >   drivers/hid/hid-quirks.c | 78 ++++++++++++++++++++++++++++++++++------
-> > >   1 file changed, 67 insertions(+), 11 deletions(-)
-> > > 
-> > > diff --git a/drivers/hid/hid-quirks.c b/drivers/hid/hid-quirks.c
-> > > index e5ca6fe2ca57..edebd0700e3d 100644
-> > > --- a/drivers/hid/hid-quirks.c
-> > > +++ b/drivers/hid/hid-quirks.c
-> > > @@ -912,8 +912,66 @@ static const struct hid_device_id hid_mouse_ignore_list[] = {
-> > >   	{ }
-> > >   };
-> > > +/*
-> > > + * List of device names that elan_i2c is handling and HID should ignore.  Must
-> > > + * be kept in sync with elan_i2c
-> > > + */
-> > > +static const char *hid_elan_i2c_ignore[] = {
-> > 
-> > If this is a copy of elan whitelist, then, if we do not want to bother
-> > with sharing it in object form (as a elan-i2c-ids module), can we at
-> > least move it into include/linux/input/elan-i2c-ids.h and consume from
-> > hid-quirks.c?
-> 
-> I can put it in a shared header file, however elan-i2c and hid-quirks
-> would need to be updated in the same change to prevent a breakage, but
-> that would seem to violate a concern Benjamin brought up in v4 given
-> that elan-i2c is maintained in your input tree, and hid-quirks is
-> maintained in his hid tree.
-> 
-> Are you ok with the elan-i2c changes going through Benjamin's hid tree?
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-We co-ordinate cross-subsystem merges all the time.  That is never a
-reason to not do the 'right thing (tm)'.  If this information can be
-held in a single, central place, without the need for constant
-re-alignment, I'm all for it.
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
