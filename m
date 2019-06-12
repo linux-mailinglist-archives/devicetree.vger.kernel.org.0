@@ -2,127 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F76E42702
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 15:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9608242716
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 15:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732184AbfFLNIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 09:08:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:53052 "EHLO foss.arm.com"
+        id S2439344AbfFLNK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 09:10:58 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:48586 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728322AbfFLNIV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 09:08:21 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8F4528;
-        Wed, 12 Jun 2019 06:08:20 -0700 (PDT)
-Received: from redmoon (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9EF2E3F557;
-        Wed, 12 Jun 2019 06:08:18 -0700 (PDT)
-Date:   Wed, 12 Jun 2019 14:08:13 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+        id S2439328AbfFLNK5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 09:10:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Zzc6GI7lGEPaQXGvlamBcEyrm5Fho0Vz0zqRdDP5hq0=; b=QQ0PwDAeuICS/1pKrFIl9qqFCV
+        DVvk65aiWdgNZKve6NvZEweANaJXywqmPwYKrmAVNEvtvFwEVTj7E+J2FualB+Tb+98QSaZKGqZgO
+        pc0lw2PM0jUsWWW9P6hUqGY37Dc4KXe0Ps3dd4cQbhHZq5gx9+yKnAXHrTjlMkvVm/1o=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hb31d-0004Fu-AP; Wed, 12 Jun 2019 15:10:49 +0200
+Date:   Wed, 12 Jun 2019 15:10:49 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Y.b. Lu" <yangbo.lu@nxp.com>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv5 04/20] PCI: mobiveil: Remove the flag
- MSI_FLAG_MULTI_PCI_MSI
-Message-ID: <20190612130813.GA15747@redmoon>
-References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
- <20190412083635.33626-5-Zhiqiang.Hou@nxp.com>
- <20190611165935.GA22836@redmoon>
- <AM0PR04MB67383023B81AEB33DAF9C35584EC0@AM0PR04MB6738.eurprd04.prod.outlook.com>
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/6] ptp: add QorIQ PTP support for DPAA2
+Message-ID: <20190612131049.GC23615@lunn.ch>
+References: <20190610032108.5791-1-yangbo.lu@nxp.com>
+ <20190610032108.5791-2-yangbo.lu@nxp.com>
+ <20190610130601.GD8247@lunn.ch>
+ <VI1PR0401MB2237247525AB5DB5B5F275A8F8EC0@VI1PR0401MB2237.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM0PR04MB67383023B81AEB33DAF9C35584EC0@AM0PR04MB6738.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <VI1PR0401MB2237247525AB5DB5B5F275A8F8EC0@VI1PR0401MB2237.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 11:34:51AM +0000, Z.q. Hou wrote:
-> Hi Lorenzo,
-> 
-> Thanks a lot for your comments!
-> 
-> > -----Original Message-----
-> > From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> > Sent: 2019年6月12日 1:00
-> > To: Z.q. Hou <zhiqiang.hou@nxp.com>
-> > Cc: linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
-> > l.subrahmanya@mobiveil.co.in; shawnguo@kernel.org; Leo Li
-> > <leoyang.li@nxp.com>; catalin.marinas@arm.com; will.deacon@arm.com;
-> > Mingkai Hu <mingkai.hu@nxp.com>; M.h. Lian <minghuan.lian@nxp.com>;
-> > Xiaowei Bao <xiaowei.bao@nxp.com>
-> > Subject: Re: [PATCHv5 04/20] PCI: mobiveil: Remove the flag
-> > MSI_FLAG_MULTI_PCI_MSI
-> > 
-> > On Fri, Apr 12, 2019 at 08:35:36AM +0000, Z.q. Hou wrote:
-> > > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > > diff --git a/drivers/ptp/Kconfig b/drivers/ptp/Kconfig index
+> > > 9b8fee5..b1b454f 100644
+> > > --- a/drivers/ptp/Kconfig
+> > > +++ b/drivers/ptp/Kconfig
+> > > @@ -44,7 +44,7 @@ config PTP_1588_CLOCK_DTE
 > > >
-> > > The current code does not support multiple MSIs, so remove the
-> > > corresponding flag from the msi_domain_info structure.
+> > >  config PTP_1588_CLOCK_QORIQ
+> > >  	tristate "Freescale QorIQ 1588 timer as PTP clock"
+> > > -	depends on GIANFAR || FSL_DPAA_ETH || FSL_ENETC || FSL_ENETC_VF
+> > > +	depends on GIANFAR || FSL_DPAA_ETH || FSL_DPAA2_ETH ||
+> > FSL_ENETC ||
+> > > +FSL_ENETC_VF
+> > >  	depends on PTP_1588_CLOCK
 > > 
-> > Please explain me what's the problem before removing multi MSI support.
+> > Hi Yangbo
+> > 
+> > Could COMPILE_TEST also be added?
 > 
-> NXP LX2 PCIe use the GIC-ITS instead of Mobiveil IP internal MSI
-> controller, so, I didn't encounter problem.
+> [Y.b. Lu] COMPILE_TEST is usually for other ARCHs build coverage.
+> Do you want me to append it after these Ethernet driver dependencies?
 
-Well, you sent a patch to fix an issue, explain me the issue you
-are fixing then, aka what have you sent this patch for ?
+Hii Y.b. Lu
 
-Lorenzo
+Normally, drivers like this should be able to compile independent of
+the MAC driver. So you should be able to add COMPILE_TEST here.
 
-> Subbu, did you test with Endpoint supporting multi MSI?
-> 
-> Thanks,
-> Zhiqiang
-> 
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> > > Fixes: 1e913e58335f ("PCI: mobiveil: Add MSI support")
-> > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > > Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
-> > > ---
-> > > V5:
-> > >  - Corrected the subject.
-> > >
-> > >  drivers/pci/controller/pcie-mobiveil.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/pci/controller/pcie-mobiveil.c
-> > > b/drivers/pci/controller/pcie-mobiveil.c
-> > > index 563210e731d3..a0dd337c6214 100644
-> > > --- a/drivers/pci/controller/pcie-mobiveil.c
-> > > +++ b/drivers/pci/controller/pcie-mobiveil.c
-> > > @@ -703,7 +703,7 @@ static struct irq_chip mobiveil_msi_irq_chip = {
-> > >
-> > >  static struct msi_domain_info mobiveil_msi_domain_info = {
-> > >  	.flags	= (MSI_FLAG_USE_DEF_DOM_OPS |
-> > MSI_FLAG_USE_DEF_CHIP_OPS |
-> > > -		   MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
-> > > +		   MSI_FLAG_PCI_MSIX),
-> > >  	.chip	= &mobiveil_msi_irq_chip,
-> > >  };
-> > >
-> > > --
-> > > 2.17.1
-> > >
+    Andrew
