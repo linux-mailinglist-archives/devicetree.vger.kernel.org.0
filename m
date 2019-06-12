@@ -2,91 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2860E41DA2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 864E841DDA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 09:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731466AbfFLHZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 03:25:42 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:3938 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729080AbfFLHZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 03:25:40 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5C7LXNM032480;
-        Wed, 12 Jun 2019 09:25:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=mscPIPZ3FaNG1fi5inSmP9H7jFv8oBUHJnCQ3UPmBlE=;
- b=acMmyrCwj6N46GmEph6JwKd35yXOV71CZZlDPjJ3TYyG1LfBriKSz6H3Xg4mT0QTNJIc
- apRV1Lq8OdtXeYqfkWxEb0HF8pMi5+OWtd+bQdEPw73+D9J/ni1zFRFdkDEpRiDebMcv
- O9Mfsqf6ut9ZcQ4w3iXhazPoTKSNjqFxHQSRPAaoApScRlWo/3yPL+oV0cfO6J8okujh
- sEivAA8CaZggmlbBfIBKOuenOH/yIvQAZBpfKPF6kCT9yJF+d6q4kmPSadddkKynUEHr
- joqgQCjfL2Rtz5LdK9DtnS6JP8bhipdawayoBuvgDipL1leC18zifKehN5GiZJkr1SV2 1w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2t2f8bukdj-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Wed, 12 Jun 2019 09:25:04 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 798D63D;
-        Wed, 12 Jun 2019 07:25:03 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0C0C7164B;
-        Wed, 12 Jun 2019 07:25:03 +0000 (GMT)
-Received: from localhost (10.75.127.48) by SFHDAG5NODE3.st.com (10.75.127.15)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 12 Jun 2019 09:25:02
- +0200
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>, <alexandre.torgue@st.com>
-CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <lars@metafoo.de>, <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
-        <fabrice.gasnier@st.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        id S1726826AbfFLHfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 03:35:53 -0400
+Received: from foss.arm.com ([217.140.110.172]:46516 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726778AbfFLHfx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 03:35:53 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 741552B;
+        Wed, 12 Jun 2019 00:35:47 -0700 (PDT)
+Received: from big-swifty.misterjones.org (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B636F3F246;
+        Wed, 12 Jun 2019 00:35:42 -0700 (PDT)
+Date:   Wed, 12 Jun 2019 08:35:41 +0100
+Message-ID: <86ftofgss2.wl-marc.zyngier@arm.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     Leonard Crestez <leonard.crestez@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Abel Vesa <abelvesa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] ARM: dts: stm32: add ADC analog switches syscfg on stm32mp157c
-Date:   Wed, 12 Jun 2019 09:24:36 +0200
-Message-ID: <1560324276-681-4-git-send-email-fabrice.gasnier@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560324276-681-1-git-send-email-fabrice.gasnier@st.com>
-References: <1560324276-681-1-git-send-email-fabrice.gasnier@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG6NODE3.st.com (10.75.127.18) To SFHDAG5NODE3.st.com
- (10.75.127.15)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-12_04:,,
- signatures=0
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Carlo Caione <ccaione@baylibre.com>
+Subject: Re: [RFC 0/2] Add workaround for core wake-up on IPI for i.MX8MQ
+In-Reply-To: <alpine.DEB.2.21.1906120913090.2214@nanos.tec.linutronix.de>
+References: <20190610121346.15779-1-abel.vesa@nxp.com>
+        <20190610131921.GB14647@lakrids.cambridge.arm.com>
+        <20190610132910.srd4j2gtidjeppdx@fsr-ub1664-175>
+        <6f1052ea-623a-b2e8-9aa8-22aef5fab4ca@arm.com>
+        <20190610135514.xd5myavjsloos2y3@fsr-ub1664-175>
+        <7b86aa90-6d64-589c-f11e-d2ee6ab3fd54@arm.com>
+        <VI1PR04MB5055A808A08A1C47784E4332EE130@VI1PR04MB5055.eurprd04.prod.outlook.com>
+        <alpine.DEB.2.21.1906120913090.2214@nanos.tec.linutronix.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+Organization: ARM Ltd
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On stm32mp157c, the ADC inputs are multiplexed with analog switches which
-have reduced performances when their supply is below 2.7V (vdda by
-default).
-Add syscfg registers that can be used on stm32mp157c, to get full ADC
-analog performances.
+On Wed, 12 Jun 2019 08:14:16 +0100,
+Thomas Gleixner <tglx@linutronix.de> wrote:
+> On Mon, 10 Jun 2019, Leonard Crestez wrote:
+> > On 6/10/2019 5:08 PM, Marc Zyngier wrote:
+> > > Nobody is talking about performance here. It is strictly about
+> > > correctness, and what I read about this system is that it cannot
+> > > reliably use cpuidle.
+> > My argument was that it's fine if PPIs and LPIs are broken as long as 
+> > they're not used:
+> > 
+> >   * PPIs are only used for local timer which is not used for wakeup.
+> 
+> Huch? The timer has to bring the CPU out of idle as any other
+> interrupt.
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
----
- arch/arm/boot/dts/stm32mp157c.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+They use a separate hack for that, pretending that the timer is
+stopped during idle (it isn't), and setup a broadcast timer when
+entering idle. That timer uses an interrupt that can wake-up the
+target CPU, and all is well in the world. Sort of.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
-index 2afeee6..64d71c9 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -856,6 +856,7 @@
- 			clocks = <&rcc ADC12>, <&rcc ADC12_K>;
- 			clock-names = "bus", "adc";
- 			interrupt-controller;
-+			st,syscfg = <&syscfg>;
- 			#interrupt-cells = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+Of course, this breaks as PPIs are not only used by the timer, but
+also by a number of other HW bits (PMU, GIC, guest and hypervisor
+timers), and they don't have corresponding hacks to back them up.
+
+Thanks,
+
+	M.
+
 -- 
-2.7.4
-
+Jazz is not dead, it just smells funny.
