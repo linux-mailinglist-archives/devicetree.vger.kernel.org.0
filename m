@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 908D7425E9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD4D425F7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438947AbfFLMdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 08:33:08 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:35292 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436787AbfFLMdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:33:08 -0400
-Received: by mail-ed1-f68.google.com with SMTP id p26so21464360edr.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 05:33:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/9+BscyBSG8LtxRtL3bsLVsuCvjxfppgNJUSn3pi0BA=;
-        b=Sq/bR87pkvJR3vN8qr3kbF1Xm4ddGIA9gqKd0hjad2QtHpcybUOal6FoE9eyS+WhoC
-         BB8K7psWiezVXR/fIpBn1aqlr7vRypp99D7//qWH7TACoI61lZuoFmdu3+DSAo00alwf
-         ScBIYgxlkHh8HK2pFmCCTpQEuG+YReGCAaiZcRf6pjAsEtd/ucW4PxMH0YrlAhkt5jrV
-         bfuOhO1bcPLJJVg0sTe83a52SkTbBbYLoNWoBp2S+ZiFbQs/Bgo1AyoCMINS5WpQLZFP
-         d3mZVe0rFFU2EW6TBGN76D3yBcP7VWrtDyJIy7W+cgbeLVrGoRXoZTp/UwXj2o8zcKeX
-         F6bQ==
-X-Gm-Message-State: APjAAAWa4KNQeNOPRCEoIG3J3AlZ0l2ZgeqY942GQx37WauirFdA/UBq
-        lwCYNwvVetHGCAopS/quHi1BzQ==
-X-Google-Smtp-Source: APXvYqwH+EIsTHqwWN3f9HxFMK99PgTbuqj4T1Pw/EUS2brCmPFSeeUdToS6/AutI5NLtTDk9/MaKw==
-X-Received: by 2002:a50:b561:: with SMTP id z30mr32633599edd.87.1560342787019;
-        Wed, 12 Jun 2019 05:33:07 -0700 (PDT)
-Received: from shalem.localdomain (84-106-84-65.cable.dynamic.v4.ziggo.nl. [84.106.84.65])
-        by smtp.gmail.com with ESMTPSA id c21sm2784931ejk.79.2019.06.12.05.33.05
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 12 Jun 2019 05:33:06 -0700 (PDT)
-Subject: Re: [PATCH 4/5] drm/connector: Split out orientation quirk detection
-To:     "dbasehore ." <dbasehore@chromium.org>
-Cc:     Jani Nikula <jani.nikula@linux.intel.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-5-dbasehore@chromium.org> <87zhmoy270.fsf@intel.com>
- <01636500-0be5-acf8-5f93-a57383bf4b20@redhat.com>
- <CAGAzgsoxpsft-vmVOuKSAbLJqR-EZvcceLpMeWkz6ikJEKGJHg@mail.gmail.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <fe774952-6fd5-b4ec-56c9-32fd30546313@redhat.com>
-Date:   Wed, 12 Jun 2019 14:33:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2407720AbfFLMfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 08:35:44 -0400
+Received: from smtp-fw-9101.amazon.com ([207.171.184.25]:42821 "EHLO
+        smtp-fw-9101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407663AbfFLMfo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:35:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1560342943; x=1591878943;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=VFn/gI6zgNUuVhHVrpgAggjKM4seBCL+904wneHHRAg=;
+  b=ver4vcTBWLqgucpl4hGD6Omd/SYV7YzjgxmbCXwD4nID0STSHE5ZOat+
+   3ga/e671+3UoOeOLrxAQKuV9aYuEqndtgqOenJXbmE1WJztgYYAqdfGsc
+   m/sm/68Gz7sw+dn4TN5tpVV2BKTBwzM7uzRB5GUs/L1FKRzv9wB1+ebgi
+   I=;
+X-IronPort-AV: E=Sophos;i="5.62,365,1554768000"; 
+   d="scan'208";a="809976184"
+Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1e-27fb8269.us-east-1.amazon.com) ([10.47.22.38])
+  by smtp-border-fw-out-9101.sea19.amazon.com with ESMTP; 12 Jun 2019 12:35:40 +0000
+Received: from EX13MTAUEB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
+        by email-inbound-relay-1e-27fb8269.us-east-1.amazon.com (Postfix) with ESMTPS id E7ECDA1B8C;
+        Wed, 12 Jun 2019 12:35:36 +0000 (UTC)
+Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
+ EX13MTAUEB001.ant.amazon.com (10.43.60.129) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 12 Jun 2019 12:35:36 +0000
+Received: from EX13MTAUEB001.ant.amazon.com (10.43.60.96) by
+ EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 12 Jun 2019 12:35:35 +0000
+Received: from [10.107.3.21] (10.107.3.21) by mail-relay.amazon.com
+ (10.43.60.129) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
+ Transport; Wed, 12 Jun 2019 12:35:32 +0000
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+To:     Borislav Petkov <bp@alien8.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+References: <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
+ <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
+ <20190611115651.GD31772@zn.tnic>
+ <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
+ <20190612034813.GA32652@zn.tnic>
+ <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
+ <20190612074242.53a4cf56@coco.lan> <20190612110039.GH32652@zn.tnic>
+ <20190612084213.4fb9e054@coco.lan>
+ <7705227ea831793cc9e45af32e0da8f5547cb14d.camel@kernel.crashing.org>
+ <20190612122504.GI32652@zn.tnic>
+From:   "Hawa, Hanna" <hhhawa@amazon.com>
+Message-ID: <6911a79a-bcd7-03e1-1c90-2adb88aaa1db@amazon.com>
+Date:   Wed, 12 Jun 2019 15:35:31 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAGAzgsoxpsft-vmVOuKSAbLJqR-EZvcceLpMeWkz6ikJEKGJHg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20190612122504.GI32652@zn.tnic>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
@@ -79,74 +81,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Boris,
 
-On 12-06-19 02:16, dbasehore . wrote:
-> On Tue, Jun 11, 2019 at 1:54 AM Hans de Goede <hdegoede@redhat.com> wrote:
->>
->> Hi,
->>
->> On 11-06-19 10:08, Jani Nikula wrote:
->>> On Mon, 10 Jun 2019, Derek Basehore <dbasehore@chromium.org> wrote:
->>>> This removes the orientation quirk detection from the code to add
->>>> an orientation property to a panel. This is used only for legacy x86
->>>> systems, yet we'd like to start using this on devicetree systems where
->>>> quirk detection like this is not needed.
->>>
->>> Not needed, but no harm done either, right?
->>>
->>> I guess I'll defer judgement on this to Hans and Ville (Cc'd).
->>
->> Hmm, I'm not big fan of this change. It adds code duplication and as
->> other models with the same issue using a different driver or panel-type
->> show up we will get more code duplication.
->>
->> Also I'm not convinced that devicetree based platforms will not need
->> this. The whole devicetree as an ABI thing, which means that all
->> devicetree bindings need to be set in stone before things are merged
->> into the mainline, is done solely so that we can get vendors to ship
->> hardware with the dtb files included in the firmware.
 > 
-> We've posted fixes to the devicetree well after the initial merge into
-> mainline before, so I don't see what you mean about the bindings being
-> set in stone.
-
-That was just me repeating the official party line about devicetree.
-
-> I also don't really see the point. The devicetree is in
-> the kernel. If there's some setting in the devicetree that we want to
-> change, it's effectively the same to make the change in the devicetree
-> versus some quirk setting. The only difference seems to be that making
-> the change in the devicetree is cleaner.
-
-I agree with you that devicetree in practice is easy to update after
-shipping. But at least whenever I tried to get new bindings reviewed
-I was always told that I was not allowed to count on that.
-
->> I'm 100% sure that there is e.g. ARM hardware out there which uses
->> non upright mounted LCD panels (I used to have a few Allwinner
->> tablets which did this). And given my experience with the quality
->> of firmware bundled tables like ACPI tables I'm quite sure that
->> if we ever move to firmware included dtb files that we will need
->> quirks for those too.
+> Yap, I think we're in agreement here. I believe the important question
+> is whether you need to get error information from multiple sources
+> together in order to do proper recovery or doing it per error source
+> suffices.
 > 
-> Is there a timeline to start using firmware bundled tables?
-
-Nope, as I said "if we ever move to ...".
-
-> Since the
-> quirk code only uses DMI, it will need to be changed anyways for
-> firmware bundled devicetree files anyways.
+> And I think the actual use cases could/should dictate our
+> drivers/orchestrators design.
 > 
-> We could consolidate the duplicated code into another function that
-> calls drm_get_panel_orientation_quirks too. The only reason it's like
-> it is is because I initially only had the call to
-> drm_get_panel_orientation_quirk once in the code.
+> Thus my question how you guys are planning on tying all that error info
+> the drivers report, into the whole system design?
+We have daemon script that collects correctable/uncorrectable errors 
+from EDAC sysfs and reports to Amazon service that allow us to take 
+action on specific error thresholds.
 
-Yes if you can add a new helper for the current callers, then
-I'm fine with dropping the quirk handling from
-drm_connector_init_panel_orientation_property()
-
-Regards,
-
-Hans
+Thanks,
+Hanna
+> 
