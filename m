@@ -2,91 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E76D41F13
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F28F41F1B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407298AbfFLIac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 04:30:32 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44462 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405127AbfFLIac (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:30:32 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 30DD72808F4;
-        Wed, 12 Jun 2019 09:30:31 +0100 (BST)
-Date:   Wed, 12 Jun 2019 10:30:28 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v4 00/10] Rename Rockchip VPU driver to Hantro, add
- initial i.MX8M support
-Message-ID: <20190612103028.47b8e129@collabora.com>
-In-Reply-To: <d6a0007c-72b9-f45d-2f4c-736dd1214dbd@xs4all.nl>
-References: <20190611125058.13470-1-p.zabel@pengutronix.de>
-        <aa108619-2c1b-56af-0db7-cf27b3e66c29@xs4all.nl>
-        <d6a0007c-72b9-f45d-2f4c-736dd1214dbd@xs4all.nl>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2437137AbfFLIbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 04:31:23 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:36388 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436884AbfFLIbW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:31:22 -0400
+Received: by mail-qk1-f196.google.com with SMTP id g18so9555246qkl.3;
+        Wed, 12 Jun 2019 01:31:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=amZ8LRkQPQSX4K2c2VzVofPEOqqTn0oph48teP/8EWw=;
+        b=VD5qLWTYWv+L7e6yfJW8Kaz9zQdZRP/sMVMq06ZM8Zh2G3apPD4RIILtqYyikGaHv1
+         X3PtEeZ/fcnTSsk82rDWx9RtuB5yDPBk57JTtaMWt+/kfD5tMwPuCotZnmW/ZFOlfY0X
+         zj0i7b4slxmGVo2VsOP7MzTnFmTqleFhdilUe89oIYSVc1hh5TbahMQkXJhuIWTYKtPR
+         +FKGf1IPWpaF6i8Ds6CWoU9HqhZL8XEK5xjorY+qbTNQajRI6txkWy9+N9MEFqJc1qrw
+         iP5DQs3MZz7CSttsimkQd/mqu9ltO4pzcm83F0HyDp8wjvn8NLCLRiI/lm0BexOuB4If
+         3E8A==
+X-Gm-Message-State: APjAAAX5tpD6Dn4obJQ9j41caeywxH7voSnQIFi0tlRrGo/G5XH/jWqx
+        rCl7xxxTtnOK8ANhNXiglIGfH3wSP5NuYMyQ2Sg=
+X-Google-Smtp-Source: APXvYqw8M9NVS5FWEo9c/CfCQavp0lk2HRFD2/V+fVHJmBJioytq8q6qxeJpvv/aHiDmMVt0v3DO6nTZszcSwl8ZWJY=
+X-Received: by 2002:a05:620a:35e:: with SMTP id t30mr64863407qkm.14.1560328281195;
+ Wed, 12 Jun 2019 01:31:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+ <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+ <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+ <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+ <36bca57c999f611353fd9741c55bb2a7@codeaurora.org> <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+In-Reply-To: <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 12 Jun 2019 10:31:04 +0200
+Message-ID: <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+To:     Dan Williams <dcbw@redhat.com>
+Cc:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
+        Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jun 2019 10:00:45 +0200
-Hans Verkuil <hverkuil@xs4all.nl> wrote:
+On Tue, Jun 11, 2019 at 7:23 PM Dan Williams <dcbw@redhat.com> wrote:
+> On Tue, 2019-06-11 at 10:52 -0600, Subash Abhinov Kasiviswanathan wrote:
+>
+> rmnet should handle muxing the QMAP, QoS, and aggregation and pass the
+> resulting packet to the lower layer. That lower layer could be IPA or
+> qmi_wwan, which in turn passes that QMAP packet to USB or GSI or
+> whatever. This is typically how Linux handles clean abstractions
+> between different protocol layers in drivers.
+>
+> Similar to some WiFi drivers (drivers/net/wireless/marvell/libertas for
+> example) where the same firmware interface can be accessed via PCI,
+> SDIO, USB, SPI, etc. The bus-specific code is self-contained and does
+> not creep into the upper more generic parts.
 
-> On 6/12/19 9:55 AM, Hans Verkuil wrote:
-> > On 6/11/19 2:50 PM, Philipp Zabel wrote:  
-> >> There are several other SoCs that contain Hantro IP based VPUs, such as
-> >> NXP i.MX8MQ (Hantro G1 and G2) and i.MX8MM (Hantro G1, G2, and H1). To
-> >> maximize code sharing, add initial support for these SoCs to the
-> >> Rockchip VPU driver, after renaming it to Hantro VPU.
-> >>
-> >> This series is based on the br-v5.3g tag, commit e568d2cc1ef6
-> >> ("rockchip/vpu: Add support for MPEG-2 decoding on RK3288") with
-> >> https://patchwork.linuxtv.org/patch/56402/ ("rockchip/vpu: Add support
-> >> for MPEG-2 decoding on RK3328") applied on top. It supports MPEG-2
-> >> decoding on i.MX8MQ. MPEG-2 decoding and JPEG encoding on i.MX8MM may
-> >> or may not work, I don't have the hardware to test.
-> >>
-> >> Changes since v3:
-> >>  - Split rk3288_vpu_regs.h into hantro_g1_regs.h and hantro_h1_regs.h,
-> >>    rename VDPU register defines to G1 and VEPU register defines to H1.
-> >>  - Make Rockchip / i.MX8M support configurable.
-> >>  - Keep staging/media Kconfig in alphabetic order.
-> >>  - Rename bases to reg_bases
-> >>  - Move dynamic clocks before i.MX8M support.  
-> > 
-> > Can you please rebase this on top of the media_tree master? This series
-> > doesn't apply there.
-> > 
-> > I'd like to get this rename series in asap since keeping this out-of-tree
-> > is a pain.
-> > 
-> > It looks in good shape in general.  
-> 
-> In fact, I would like to hold off on applying any other rockchip patches
-> until this is in (and that means any pending rockchip patches probably
-> need rebasing).
+Yes, I think that is a good model. In case of libertas, we have multiple
+layers inheritence from the basic device (slightly different in the
+implementation,
+but that is how it should be):
 
-Ack. Actually, Ezequiel and I are waiting for this series to land
-before sending new patches, so that'd be nice to have at least patches
-1 to 7 applied really soon.
+struct if_cs_card { /* pcmcia specific */
+     struct lbs_private {  /* libertas specific */
+           struct wireless_dev { /* 802.11 specific */
+                  struct net_device {
+                        struct device {
+                              ...
+                        };
+                        ...
+                  };
+                  ...
+           };
+           ...
+      };
+      ...
+};
 
-> 
-> So if a v5 applies cleanly and doesn't throw up new sparse/smatch issues,
-> then I'll take it.
+The outer structure gets allocated when probing the hardware specific
+driver, and everything below it is implemented as direct function calls
+into the more generic code, or as function pointers into the more specific
+code.
 
-Great!
+The current rmnet model is different in that by design the upper layer
+(rmnet) and the lower layer (qmi_wwan, ipa, ...) are kept independent in
+both directions, i.e. ipa has (almost) no knowledge of rmnet, and just
+has pointers to the other net_device:
+
+       ipa_device
+           net_device
+
+       rmnet_port
+           net_device
+
+I understand that the rmnet model was intended to provide a cleaner
+abstraction, but it's not how we normally structure subsystems in
+Linux, and moving to a model more like how wireless_dev works
+would improve both readability and performance, as you describe
+it, it would be more like (ignoring for now the need for multiple
+connections):
+
+   ipa_dev
+        rmnet_dev
+               wwan_dev
+                      net_device
+
+Where each layer is a specialization of the next. Note: this is a
+common change when moving from proprietary code to upstream
+code. If a driver module is designed to live out of tree, there
+is a strong incentive to limit the number of interfaces it uses,
+but when it gets merged, it becomes much more flexible, as
+an internal interface between wwan_dev and the hardware driver(s)
+can be easily changed by modifying all drivers at once.
+
+       Arnd
