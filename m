@@ -2,104 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3781042B8B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 17:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CE6442BA8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 18:02:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440357AbfFLP7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 11:59:33 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44160 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438056AbfFLP7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 11:59:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=F4hBM2hnudeTw3rmBj2H/vr2wvVOT3QCsFB/lvau9Gc=; b=uqWfxXgcMiTw
-        X3AY60kodtH7UiiyRr8zVSRRMMe+Psd5GnL8JcvB0NmMNaVe1wX+VUSU+VYBjKA6RE8brRnk9mZRx
-        2A9e0liTKkyGumR9rRKLzInOhI0faJd1eQViAJUfMyRItaRvALFsmTLgIos/ROtJyUIquAyTgsNcZ
-        1vcQg=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hb5eq-000367-DK; Wed, 12 Jun 2019 15:59:28 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 970D7440049; Wed, 12 Jun 2019 16:59:27 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, jsarha@ti.com, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        misael.lopez@ti.com, robh+dt@kernel.org
-Subject: Applied "bindings: sound: davinci-mcasp: Add support for optional auxclk-fs-ratio" to the asoc tree
-In-Reply-To: <20190611122941.10708-2-peter.ujfalusi@ti.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190612155927.970D7440049@finisterre.sirena.org.uk>
-Date:   Wed, 12 Jun 2019 16:59:27 +0100 (BST)
+        id S2407093AbfFLQCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 12:02:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56268 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406982AbfFLQCQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 12:02:16 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8F2E621734;
+        Wed, 12 Jun 2019 16:02:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560355335;
+        bh=metd6bfdlEBpzQ+ceKHY3yudA9GwzpuxQi/0AJYZuR8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oM3YEkg5JFAtr+dxqlSmKGC5DoRVFr9YH8llHwQvbj05188iWTHOHyZTwGZTihjdy
+         RUNponKwURuc7jhnmsN26O1yJsqqQcx79O4t7KN6p4MD6sap6D2o60q/3o2le1RtJp
+         keYYthQbmm5nwIkUSPxFQCOA3VGMLOOB8nQdAgas=
+Received: by mail-qk1-f180.google.com with SMTP id w187so10614100qkb.11;
+        Wed, 12 Jun 2019 09:02:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAX/JPwcOIn5gPDkwYemvK+dhwYMnIysM0kwzAutoXwX31L6rfJl
+        4m5mlZJ2sae85wB2jd4uCxZ7rIEHhOQ6OLIelA==
+X-Google-Smtp-Source: APXvYqybvPsqmqFny7a/JtFlhcTlJvlaZutyfLURiANi3yYx5Ws3TiRMG/YwRYEOIfUSRlyBWiQ9Ld6YtcnmxxUqqK4=
+X-Received: by 2002:a37:a6c9:: with SMTP id p192mr68957195qke.184.1560355333838;
+ Wed, 12 Jun 2019 09:02:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190612075451.8643-1-manivannan.sadhasivam@linaro.org> <20190612075451.8643-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190612075451.8643-3-manivannan.sadhasivam@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 12 Jun 2019 10:02:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLRTK=7Ch7V-WA07_zxWMNGXmRH7=1TRR9m-zY7h_-YYQ@mail.gmail.com>
+Message-ID: <CAL_JsqLRTK=7Ch7V-WA07_zxWMNGXmRH7=1TRR9m-zY7h_-YYQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: arm: stm32: Convert STM32 SoC
+ bindings to DT schema
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        loic pallardy <loic.pallardy@st.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Wed, Jun 12, 2019 at 1:55 AM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> This commit converts STM32 SoC bindings to DT schema using jsonschema.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../devicetree/bindings/arm/stm32/stm32.txt   | 10 -------
+>  .../devicetree/bindings/arm/stm32/stm32.yaml  | 29 +++++++++++++++++++
+>  2 files changed, 29 insertions(+), 10 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/stm32/stm32.yaml
 
-   bindings: sound: davinci-mcasp: Add support for optional auxclk-fs-ratio
-
-has been applied to the asoc tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From b7e47f48f1197c24f5347327afc2a4f7f6da9ca5 Mon Sep 17 00:00:00 2001
-From: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Date: Tue, 11 Jun 2019 15:29:40 +0300
-Subject: [PATCH] bindings: sound: davinci-mcasp: Add support for optional
- auxclk-fs-ratio
-
-When McASP is bus master it's reference clock (AUXCLK) might not be a
-static clock, but running at a specific FS ratio.
-
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/sound/davinci-mcasp-audio.txt          | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-index a58f79f5345c..c483dcec01f8 100644
---- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-+++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-@@ -44,6 +44,9 @@ Optional properties:
-   		 please refer to pinctrl-bindings.txt
- - fck_parent : Should contain a valid clock name which will be used as parent
- 	       for the McASP fck
-+- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
-+		   and FS rate if applicable:
-+		   AUCLK rate = auxclk-fs-ratio * FS rate
- 
- Optional GPIO support:
- If any McASP pin need to be used as GPIO then the McASP node must have:
--- 
-2.20.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
