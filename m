@@ -2,110 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3E8425AC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61B34425B5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726941AbfFLM1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 08:27:11 -0400
-Received: from mx2.suse.de ([195.135.220.15]:48006 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727249AbfFLM1L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 08:27:11 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id D2A1EAE12;
-        Wed, 12 Jun 2019 12:27:09 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     "David S. Miller" <davem@davemloft.net>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        id S2407222AbfFLM1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 08:27:46 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:40138 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407161AbfFLM1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:27:46 -0400
+Received: from penelope.horms.nl (ip4dab7138.direct-adsl.nl [77.171.113.56])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 25AC125AD60;
+        Wed, 12 Jun 2019 22:27:44 +1000 (AEST)
+Received: by penelope.horms.nl (Postfix, from userid 7100)
+        id 122BBE21FE5; Wed, 12 Jun 2019 14:27:42 +0200 (CEST)
+Date:   Wed, 12 Jun 2019 14:27:42 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: net: wiznet: add w5x00 support
-Date:   Wed, 12 Jun 2019 14:25:27 +0200
-Message-Id: <20190612122526.14332-2-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190612122526.14332-1-nsaenzjulienne@suse.de>
-References: <20190612122526.14332-1-nsaenzjulienne@suse.de>
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Subject: Re: [PATCH 3/6] arm64: dts: renesas: r8a774a1: Add CMT device nodes
+Message-ID: <20190612122741.ucaig7fj3r73raq3@verge.net.au>
+References: <1560258401-9517-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1560258401-9517-4-git-send-email-fabrizio.castro@bp.renesas.com>
+ <CAMuHMdWx6opBuDeLv35E2dK3BDLrqd=3D_9PaK8FbpBEHvRFDQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWx6opBuDeLv35E2dK3BDLrqd=3D_9PaK8FbpBEHvRFDQ@mail.gmail.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Wiznet's w5x00 series of SPI interfaced Ethernet chips.
+On Wed, Jun 12, 2019 at 09:02:11AM +0200, Geert Uytterhoeven wrote:
+> On Tue, Jun 11, 2019 at 3:07 PM Fabrizio Castro
+> <fabrizio.castro@bp.renesas.com> wrote:
+> > This patch adds the CMT[0123] device tree nodes to the
+> > r8a774a1 SoC specific DT.
+> >
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Based on the bindings for microchip,enc28j60.
+Thanks,
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
-
-Changes since v1:
-  - one compatible sting per line
-  - use correct 'ethenet@0' phandle name
-
- .../devicetree/bindings/net/wiznet,w5x00.txt  | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/wiznet,w5x00.txt
-
-diff --git a/Documentation/devicetree/bindings/net/wiznet,w5x00.txt b/Documentation/devicetree/bindings/net/wiznet,w5x00.txt
-new file mode 100644
-index 000000000000..901946dea3de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wiznet,w5x00.txt
-@@ -0,0 +1,51 @@
-+* Wiznet w5x00
-+
-+This is a standalone 10/100 MBit Ethernet controller with SPI interface.
-+
-+For each device connected to a SPI bus, define a child node within
-+the SPI master node.
-+
-+Required properties:
-+- compatible: Should be one of the following strings:
-+	      "wiznet,w5100"
-+	      "wiznet,w5200"
-+	      "wiznet,w5500"
-+- reg: Specify the SPI chip select the chip is wired to.
-+- interrupts: Specify the interrupt index within the interrupt controller (referred
-+              to above in interrupt-parent) and interrupt type. w5x00 natively
-+              generates falling edge interrupts, however, additional board logic
-+              might invert the signal.
-+- pinctrl-names: List of assigned state names, see pinctrl binding documentation.
-+- pinctrl-0: List of phandles to configure the GPIO pin used as interrupt line,
-+             see also generic and your platform specific pinctrl binding
-+             documentation.
-+
-+Optional properties:
-+- spi-max-frequency: Maximum frequency of the SPI bus when accessing the w5500.
-+  According to the w5500 datasheet, the chip allows a maximum of 80 MHz, however,
-+  board designs may need to limit this value.
-+- local-mac-address: See ethernet.txt in the same directory.
-+
-+
-+Example (for Raspberry Pi with pin control stuff for GPIO irq):
-+
-+&spi {
-+	ethernet@0: w5500@0 {
-+		compatible = "wiznet,w5500";
-+		reg = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&eth1_pins>;
-+		interrupt-parent = <&gpio>;
-+		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-+		spi-max-frequency = <30000000>;
-+	};
-+};
-+
-+&gpio {
-+	eth1_pins: eth1_pins {
-+		brcm,pins = <25>;
-+		brcm,function = <0>; /* in */
-+		brcm,pull = <0>; /* none */
-+	};
-+};
-+
--- 
-2.21.0
-
+applied for inclusion in v5.3.
