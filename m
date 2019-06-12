@@ -2,118 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4BA41BC0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 07:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23F9C41BE4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 08:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730782AbfFLF4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 01:56:02 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:34952 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730695AbfFLF4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 01:56:01 -0400
-X-UUID: 64847a9f3a504d1c88cde0d4f142c093-20190612
-X-UUID: 64847a9f3a504d1c88cde0d4f142c093-20190612
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1279344623; Wed, 12 Jun 2019 13:55:51 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 12 Jun 2019 13:55:49 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 12 Jun 2019 13:55:48 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jumin Li <jumin.li@mediatek.com>
-Subject: [PATCH 5/5] usb: xhci-mtk: add an optional xhci_ck clock
-Date:   Wed, 12 Jun 2019 13:55:21 +0800
-Message-ID: <41bb0198ef2a4059685a8736b54c88487864a517.1560246390.git.chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <5e06482a0be15476c7b5825f155accf98275afa8.1560246390.git.chunfeng.yun@mediatek.com>
-References: <5e06482a0be15476c7b5825f155accf98275afa8.1560246390.git.chunfeng.yun@mediatek.com>
+        id S1730827AbfFLF71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 01:59:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48390 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725772AbfFLF71 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 01:59:27 -0400
+Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AFE1B20874;
+        Wed, 12 Jun 2019 05:59:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560319167;
+        bh=y0GfY+y9VR7izi112hwbvMEf+VlmMN+F47SVGBkjEbY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gIodPh/U/eeUkTAxbwFMw2vdA5nsdog5wlLZQqt+gJP62mOqm3/DCWTBxbdkrCvtU
+         rZa3nvMCzy307Z7COtGMYMRZimXotIp1CrrasZJdgvwXKAccXVioKlEugrtw7vo607
+         fAdN3alVk+3Oj9JcWCNe95FGs0Q3Fs2SmS+K2sks=
+Date:   Wed, 12 Jun 2019 13:58:53 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: ls1028a: Fix CPU idle fail.
+Message-ID: <20190612054716.GA11086@dragon>
+References: <20190517045753.3709-1-ran.wang_1@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190517045753.3709-1-ran.wang_1@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some SoCs may have an optional clock xhci_ck (125M or 200M), it
-usually uses the same PLL as sys_ck, so support it.
+On Fri, May 17, 2019 at 12:57:53PM +0800, Ran Wang wrote:
+> PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
+> indicate CPU State Type: 0 for standby, 1 for power down. In this
+> case, we want to select standby for CPU idle feature. But current
+> setting wrongly select power down and cause CPU SUSPEND fail every
+> time. Need this fix.
+> 
+> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
- drivers/usb/host/xhci-mtk.c | 13 +++++++++++++
- drivers/usb/host/xhci-mtk.h |  1 +
- 2 files changed, 14 insertions(+)
-
-diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
-index 026fe18972d3..b18a6baef204 100644
---- a/drivers/usb/host/xhci-mtk.c
-+++ b/drivers/usb/host/xhci-mtk.c
-@@ -216,6 +216,10 @@ static int xhci_mtk_clks_get(struct xhci_hcd_mtk *mtk)
- 		return PTR_ERR(mtk->sys_clk);
- 	}
- 
-+	mtk->xhci_clk = devm_clk_get_optional(dev, "xhci_ck");
-+	if (IS_ERR(mtk->xhci_clk))
-+		return PTR_ERR(mtk->xhci_clk);
-+
- 	mtk->ref_clk = devm_clk_get_optional(dev, "ref_ck");
- 	if (IS_ERR(mtk->ref_clk))
- 		return PTR_ERR(mtk->ref_clk);
-@@ -244,6 +248,12 @@ static int xhci_mtk_clks_enable(struct xhci_hcd_mtk *mtk)
- 		goto sys_clk_err;
- 	}
- 
-+	ret = clk_prepare_enable(mtk->xhci_clk);
-+	if (ret) {
-+		dev_err(mtk->dev, "failed to enable xhci_clk\n");
-+		goto xhci_clk_err;
-+	}
-+
- 	ret = clk_prepare_enable(mtk->mcu_clk);
- 	if (ret) {
- 		dev_err(mtk->dev, "failed to enable mcu_clk\n");
-@@ -261,6 +271,8 @@ static int xhci_mtk_clks_enable(struct xhci_hcd_mtk *mtk)
- dma_clk_err:
- 	clk_disable_unprepare(mtk->mcu_clk);
- mcu_clk_err:
-+	clk_disable_unprepare(mtk->xhci_clk);
-+xhci_clk_err:
- 	clk_disable_unprepare(mtk->sys_clk);
- sys_clk_err:
- 	clk_disable_unprepare(mtk->ref_clk);
-@@ -272,6 +284,7 @@ static void xhci_mtk_clks_disable(struct xhci_hcd_mtk *mtk)
- {
- 	clk_disable_unprepare(mtk->dma_clk);
- 	clk_disable_unprepare(mtk->mcu_clk);
-+	clk_disable_unprepare(mtk->xhci_clk);
- 	clk_disable_unprepare(mtk->sys_clk);
- 	clk_disable_unprepare(mtk->ref_clk);
- }
-diff --git a/drivers/usb/host/xhci-mtk.h b/drivers/usb/host/xhci-mtk.h
-index 8be8c5f7ff62..5ac458b7d2e0 100644
---- a/drivers/usb/host/xhci-mtk.h
-+++ b/drivers/usb/host/xhci-mtk.h
-@@ -139,6 +139,7 @@ struct xhci_hcd_mtk {
- 	struct regulator *vusb33;
- 	struct regulator *vbus;
- 	struct clk *sys_clk;	/* sys and mac clock */
-+	struct clk *xhci_clk;
- 	struct clk *ref_clk;
- 	struct clk *mcu_clk;
- 	struct clk *dma_clk;
--- 
-2.21.0
-
+Applied, thanks.
