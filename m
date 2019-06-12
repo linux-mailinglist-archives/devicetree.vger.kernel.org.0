@@ -2,207 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC79421DF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 12:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F77F421E9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 12:03:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731829AbfFLKA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 06:00:27 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:46805 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726878AbfFLKA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 06:00:27 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190612100025euoutp02959df42e1c327bda7db3aa4c6f7f199f~naypT0_7P2689526895euoutp02R
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 10:00:25 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190612100025euoutp02959df42e1c327bda7db3aa4c6f7f199f~naypT0_7P2689526895euoutp02R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1560333625;
-        bh=+95owVZmp1Gj8EZQw0Lxjw/FhUz68n4Zw/5vSmcwGH4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=R2INQf1yPpWuqEpZ37skedlp2MnXQzgf1fPL6FhLNu/puWWYEVKqXR12NurATDQaU
-         tu9rr4JzC1fpUN0LXmBZ/kKSXPn2hZ0NiSy0T/0VcpnbaftQjuqknE0Jp9yV5Vm2v3
-         bLNcIJG0pEiAcdnMghSot7zp8yDy8EpsarXBWFEI=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190612100024eucas1p2f3595f8f18cd4c97a371232b05b72f01~nayoTr9J82796727967eucas1p2N;
-        Wed, 12 Jun 2019 10:00:24 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id CF.43.04377.83DC00D5; Wed, 12
-        Jun 2019 11:00:24 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190612100023eucas1p26e1f39a703337d41ec8d28fdac7db277~naynehX3P2796727967eucas1p2M;
-        Wed, 12 Jun 2019 10:00:23 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190612100023eusmtrp13c6005fd4dad96f0cef04f8a2cb66b5b~naynPinYP0608606086eusmtrp1u;
-        Wed, 12 Jun 2019 10:00:23 +0000 (GMT)
-X-AuditID: cbfec7f4-12dff70000001119-05-5d00cd389b9d
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 25.9C.04140.73DC00D5; Wed, 12
-        Jun 2019 11:00:23 +0100 (BST)
-Received: from [106.120.51.74] (unknown [106.120.51.74]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190612100022eusmtip29b340996d9997b176a6add45d8922e9e~naymgAZbt1110211102eusmtip2n;
-        Wed, 12 Jun 2019 10:00:22 +0000 (GMT)
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345
- bridge on Teres-I
-To:     Torsten Duwe <duwe@lst.de>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Harald Geyer <harald@ccbib.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1731841AbfFLKDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 06:03:20 -0400
+Received: from mail-eopbgr1400124.outbound.protection.outlook.com ([40.107.140.124]:47506
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731837AbfFLKDU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 06:03:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=THHuJLvNQTH1zUFyFJNJT5KEQhoP3/d/LSZqqivMfGI=;
+ b=TfOtTqJEljgOiM2bG9Ky6y1mx4eAteC0l1vcA1Wlp8TC5bek01Nu8UlCXaoo86jE0bdxaUUv/KsqCMDQZlgGwB6qHr7xSwCcpsgft7smIyPvllT+DdQHExjohpqryIyYMmBjKPUycy59RQfwYq/LlqcrNEv9DRxuHyjtJ4llwE0=
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
+ TY1PR01MB1500.jpnprd01.prod.outlook.com (52.133.162.14) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.14; Wed, 12 Jun 2019 10:03:16 +0000
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1987.010; Wed, 12 Jun 2019
+ 10:03:16 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Simon Horman <horms@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-From:   Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
-Date:   Wed, 12 Jun 2019 12:00:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <20190607094030.GA12373@lst.de>
-Content-Transfer-Encoding: 7bit
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: RE: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+Thread-Topic: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+Thread-Index: AQHVHQkEF65BtXynz0KAWAQHwuh89aaXt2YAgAAAWKCAABVNAIAAACxQ
+Date:   Wed, 12 Jun 2019 10:03:16 +0000
+Message-ID: <TY1PR01MB17707726AF6BF3EE5408D5CDC0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+References: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <CAMuHMdXv91Tt+78zLJj6pHFj9XrEJJbWOf-kzBPRbcw=h+iDHg@mail.gmail.com>
+ <TY1PR01MB1770E7346A27FB36658142E1C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+ <20190612094524.GA2153@kunai>
+In-Reply-To: <20190612094524.GA2153@kunai>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SWUwTURTlzU5jdVpArktcmmjirsSPFxeiRpPxz/jhbrTqCAZasAPusY3I
-        otRoNYpUqBiKmkqEFARaAiUFQUGqRFyQKMQtbijRtlojKGU08nfuuefcd07yOFJdyIzn9ujT
-        RINem6xhFFRVc+j+HNwesXX+oJnGp3x3CZzZ/Bbh31UWEl9u8tG4M/CFwcHOVgJnFJcxuNLd
-        TuNvV14Q+ITFzmLnq8c0fuguYHDJkw4C9773IJxZ18Ti5+XtCFc4z5M45LZROOS9TyyLEopD
-        g4RQaitFgq30sPCm8SMrXDJ1UEL5yxu0UBcsogSX9fkQl5NPC07HCUb47POxQnWwlxY8haWs
-        0JPbQggVdqNQ22Vi1qg2KZbsEpP37BMN8+K3KxIf9tWhVPuEAzZzgDWh7zEnUSQH/ELoeVzG
-        nkQKTs1fRxC45yflwY/A96OZkIdvCLIabPQ/y6PMQiQvriFoLTYx8tCH4GLBTTasiuI3wWlP
-        3pCd46L51dBfOT2sIflqGo7VDAxfYvgZMFDRxYSxko+Hd3YLEcYUPw066sM5IrkYfgP4XU4k
-        a1RwN/81FcaR/GwIXAwN3yH5yVDdV0DKOBaevb48HBv4Tg48GQ2kHHslZDm6GRlHwYeWSlbG
-        E6HtnJmSsRF6rh8nZXMOglvlrr/mxdDY0kGH25BDqcvc82R6Ofzs9w7TwI+Gp30qOcNoOFuV
-        R8q0EnKy1LJ6KvS03/p7MBZKHgSYM0hjHdHMOqKNdUQb6/93ixDlQLFiuqRLEKU4vbh/rqTV
-        Sen6hLk7U3RONPRp2wZb/DXI/WuHF/Ec0oxSNuT93qKmtfukgzovAo7URCvjkiK2qpW7tAcP
-        iYaUbYb0ZFHyogkcpYlVHo7o3azmE7RpYpIopoqGf1uCixxvQuqJOxaOO2JZteit52vG2Dcr
-        LEsb711IVTWZ3R8Vpnhf94cUe//P3KIHUz7FTGnYEnAVz8q9c0NSGatbb6dmd+Wf0SdduOQf
-        U6sLrs/hNcGSnY6a/Y6kta7zocS9X6dm0xvXtcXtNhd9j/a8PEAtn/Xs0JErR8Wr0QPG+uxF
-        R39MMsZrKClRu2AmaZC0fwDl2tdzsAMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTYRTHe+7brtbgbio+rA/FaIVhqztbe5SaUQS3D0EQRVlmyy6aui12
-        p2ZCDUqq9UKjN5s6DSdaDhxOtCZmLVMsNjN7s8xELRLThJqxsGy6Ar/9OOf/45wDh8alblJG
-        HzWYeZNBlyenoolnf7oG12j8i9LXXb+xGF0KdGOopPMzQLPNNhxVdgRI9DL4jULTL59i6HR1
-        A4WavH4Sfb89iKHzNqcINY68JlGft5xCNW96MTQ01g5QSVuHCH1w+wHyNF7HUcjrIFDI14Nt
-        juGqQ38wzuVwAc7hKuY+PR4XcWWWXoJzD9eTXNt0FcHdt38I187dIrnGu+cpbjIQEHEt00Mk
-        117hEnEfL3RhnMd5imvtt1A7JWnKjSZjvplfnm0UzJvk+1mkUrLJSKlan6xkkzTpKSq1fK12
-        4xE+72gBb1qrPaTM7ptoA8ecS487LgZFFvAzzgqiaMish69KKoAVRNNSpgbAs3emyEgjHrZW
-        TuARjoEzr61UJDQO4D3HkGiuEcOkweftp8Mhmo5ltsOpppVzGZxpJeHl+itEROjGoWfSi80J
-        FJMAf3v6qTkWM1r4xWmbrxOMAvY++DE/LY7ZC8u8FiKSkcDuW6PzHMUkwmBpaH47nFkFZxwv
-        8Agvgy0T5f84Hr4brcSuAKl9gW5foNgXKPYFShUg7oJYPl/QZ+kFlVLQ6YV8Q5Yy06hvBOFv
-        ae4MNd0D1sldPsDQQL5E/PDm7AEpqSsQivQ+AGlcHitW5S5Kl4qP6IpO8CZjhik/jxd8QB0+
-        zobL4jKN4d8zmDNYNatByawmSZO0AcnjxeeYRwekTJbOzOfy/DHe9N/D6CiZBei2oR3SnoHC
-        0MjlaIW+MBrNlOIrYF3OYqZgtKNy+W53ArblGW661lmmLt9XXG3sGs65+iQ0+9unOFjasO6w
-        itb6v444fW9/Bd2BFH2q5Hste4aSST71WMYyBEXAmXqy9z3YMpDjXJm5Yk+qZ3ttXkKXaGui
-        a3A4xdJeX9ctJ4RsHbsaNwm6v9efuIxDAwAA
-X-CMS-MailID: 20190612100023eucas1p26e1f39a703337d41ec8d28fdac7db277
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752
-References: <20190604122150.29D6468B05@newverein.lst.de>
-        <20190604122308.98D4868B20@newverein.lst.de>
-        <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
-        <20190605101317.GA9345@lst.de> <20190605120237.ekmytfxcwbjaqy3x@flea>
-        <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
-        <20190607062802.m5wslx3imiqooq5a@flea>
-        <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
-        <20190607094030.GA12373@lst.de>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 13b08dc3-230c-46f4-159d-08d6ef1d3088
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1500;
+x-ms-traffictypediagnostic: TY1PR01MB1500:
+x-microsoft-antispam-prvs: <TY1PR01MB150063964E286AE9555459BBC0EC0@TY1PR01MB1500.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0066D63CE6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(366004)(396003)(136003)(346002)(39860400002)(189003)(199004)(8936002)(55016002)(11346002)(446003)(186003)(81156014)(102836004)(26005)(478600001)(9686003)(6116002)(64756008)(8676002)(486006)(44832011)(2906002)(76116006)(7696005)(305945005)(256004)(6506007)(476003)(3846002)(73956011)(66946007)(81166006)(6436002)(25786009)(66446008)(7736002)(66556008)(76176011)(86362001)(66476007)(33656002)(6246003)(7416002)(229853002)(68736007)(99286004)(54906003)(316002)(6916009)(74316002)(52536014)(66066001)(5660300002)(53546011)(53936002)(4326008)(71190400001)(14454004)(71200400001);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1500;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 0Nqf9pVhY4CQW55yJyDNHHj2OW/KPVigBgNdba89t4abbLiTJ8GzJHSLke/3ko3nGYvlgWk18VRodylldpiFWPp3CYnbdFLXuasmh3ViVwowm2ttaG+vK3FnUEidjG9Xe2LlJSYJe+co8FopdMXUzIGYrwf6vPs4JVPo5wNSgZ2IBP69vRj5IC2SqhRiR1MCmSGzfSXSQpSGv9qKf6sqO0IomCopAJyIVlL6uo9pU368yyFKePJ0PQ4VZzktmxc31PZlpNqSJ14WUtzEefasFdt/lWP3jwmak4wRxU7ZzYuZ9qjEqL80nJh5F/TGFbkXwQhMF/BTGQiV0SoKoxAJmnyiqOETruuNji8gi5gowNObVYkor5/KXtcKKC//B252QQz6OKJjlFmPxIAkQlczb9FU/EKmqtAUngVUDM4oWa4=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13b08dc3-230c-46f4-159d-08d6ef1d3088
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 10:03:16.4869
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1500
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.06.2019 11:40, Torsten Duwe wrote:
-> On Fri, Jun 07, 2019 at 08:28:02AM +0200, Maxime Ripard wrote:
->> On Thu, Jun 06, 2019 at 03:59:27PM +0200, Harald Geyer wrote:
->>> If think valid compatible properties would be:
->>> compatible = "innolux,n116bge", "simple-panel";
->>> compatible = "edp-connector", "simple-panel";
->> A connector isn't a panel.
->>
->>> compatible = "innolux,n116bge", "edp-connector", "simple-panel";
->> And the innolux,n116bge is certainly not a connector either.
->>
->>> compatible = "edp-connector", "innolux,n116bge", "simple-panel";
->>>
->>> I can't make up my mind which one I prefere. However neither of these
->>> variants requires actually implmenting an edp-connector driver.
->> No-one asked to do an edp-connector driver. You should use it in your
->> DT, but if you want to have some code in your driver that parses the
->> DT directly, I'm totally fine with that.
-> I must admit I fail to understand what that extra node would be good for.
-> Logically, the eDP far side is connected to the well-known n116bge.
-> Inside the laptop case it might as well be a flat ribbon cable or
-> soldered directly.
-> In good intention, that's all I wanted to express in the DT. I don't
-> know whether the relevant mechanical dimensions of the panel and the
-> connector are standardised, so whether one could in theory assemble it
-> with a different panel than the one it came with.
->
-> OTOH, as I checked during the discussion with anarsoul, the panel's
-> supply voltage is permanently connected to the main 3.3V rail.
-> We already agreed that the eDP output port must not neccessarily be
-> specified, this setup is a good example why: because the panel is
-> always powered, the anx6345 can always pull valid EDID data from it
-> so at this stage there's no need for any OS driver to reach beyond
-> the bridge. IIRC even the backlight got switched off for the blank
-> screen without.
->
-> All I wanted to say is that "there's usually an n116bge behind it";
-> but this is mostly redundant.
->
-> So, shall we just drop the output port specification (along with the
-> panel node) in order to get one step further?
+Hello Wolfram,
 
+Thank you for the feedback!
 
-I am not sure if I understand whole discussion here, but I also do not
-understand whole edp-connector thing.
+> From: Wolfram Sang <wsa@the-dreams.de>
+> Sent: 12 June 2019 10:45
+> Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+>=20
+>=20
+> > I was thinking about sending a follow-up patch to list hs400 here
+> > after Wolfram's patch appears in a RC, would that be okay with you?
+>=20
+> Do we need that? The *board* does not handle HS400, so why add the
+> property?
 
-According to VESA[1] eDP is "Internal display interface" - there is no
-external connector for eDP, the way it is connected is integrator's
-decision, but it is fixed - ie end user do not plug/unplug it.
+The SoC the design currently comes with doesn't handle HS400, but they may =
+replace that
+in the future with one that is based off R-Car M3-W version 3.0 (which does=
+ support HS400).
+Also, the HiHope will come in two flavours, the HiHope RZ/G2M (the flavour =
+we are currently
+adding support for), and the HiHope RZ/G2N (sporting an RZ/G2N, which is ba=
+sed off R-Car M3-N).
+File arch/arm64/boot/dts/renesas/hihope-common.dtsi contains common definit=
+ions for the
+mother boards for both flavours (including the eMMC). My understanding is t=
+hat R-Car M3-N does
+support HS400, hence the need for the property here.
 
-If I remember correctly in some boards eDP is connected to some DP
-connector (odroid xu3 if I remember correctly), but this is non-standard
-hack, and for this case in bindings there should be rather dp-connector
-not edp-connector.
+Thanks,
+Fab
 
-[1]:
-https://www.vesa.org/wp-content/uploads/2010/12/DisplayPort-DevCon-Presentation-eDP-Dec-2010-v3.pdf
-
-
-Regards
-
-Andrzej
-
-
->
->> I guess you should describe why do you think it's "clear", because I'm
->> not sure this is obvious for everyone here. eDP allows to discover
->> which device is on the other side and its supported timings, just like
->> HDMI for example (or regular DP, for that matter). Would you think
->> it's clearly preferable to ship a DT with the DP/HDMI monitor
->> connected on the other side exposed as a panel as well?
-> Well, as I wrote: "in good intention". That's the panel that comes with
-> the kit but it is very well detected automatically, just like you describe.
->
-> So, just leave it out?
->
-> 	Torsten
->
->
->
+>=20
+> Similar setting would be an I2C device which can do 400kHz but the board
+> layout doesn't allow for such speeds, so we are limited to 100kHz.
+>=20
+> Or?
 
