@@ -2,168 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA43E448CA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDCA44479E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:01:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729290AbfFMRLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 13:11:09 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:42000 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729110AbfFLWUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 18:20:47 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 6E3A760A42; Wed, 12 Jun 2019 22:20:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560378045;
-        bh=TyBZfve1UAcUIxJVv/pwvffuVJYpSGzvXxE0yFWh3tQ=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=YlGK7G627dyWti5JtzgoOdpbTyy6JowipOj+zmhU8d8NGj4nv7QHD41sx6C4vtKVt
-         0mQ2PCj+A4bBWmLPJL4cwQPzmmGUa3LKn36MgW3GimqzV6UsMJ899f84/f7OqHj6qh
-         LgBA/KL3espizB7k2z7o65run4g2kO0is2Jvlk+k=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.226.58.28] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jhugo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 182C360741;
-        Wed, 12 Jun 2019 22:20:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560378044;
-        bh=TyBZfve1UAcUIxJVv/pwvffuVJYpSGzvXxE0yFWh3tQ=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=SrGaRP2rWnakJm4aMI31oVfz1S1KFvJSVNvmgEM9FJcV8znU2qyyCftSl5O0vT7V7
-         aBPEf3HFFYWVakNjuu9F3cTiGzw8pfcoNkDyHn39fxE0HDkdfcLSPZdu2OHr3zOTO1
-         jT2hvH+scjfclQcwuHQ4liVONIIYVligoVrM9cRs=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 182C360741
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
-Subject: Re: Re: [PATCH v6 2/5] HID: quirks: Refactor ELAN 400 and 401
- handling
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     benjamin.tissoires@redhat.com, jikos@kernel.org,
-        hdegoede@redhat.com, bjorn.andersson@linaro.org, agross@kernel.org,
-        lee.jones@linaro.org, xnox@ubuntu.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190612212604.32089-1-jeffrey.l.hugo@gmail.com>
- <20190612212721.32195-1-jeffrey.l.hugo@gmail.com>
- <20190612214636.GA40779@dtor-ws>
-From:   Jeffrey Hugo <jhugo@codeaurora.org>
-Message-ID: <84e7d83f-e133-0281-612a-94d8c4319040@codeaurora.org>
-Date:   Wed, 12 Jun 2019 16:20:42 -0600
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <20190612214636.GA40779@dtor-ws>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+        id S1729914AbfFMRA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 13:00:58 -0400
+Received: from gate.crashing.org ([63.228.1.57]:42212 "EHLO gate.crashing.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729754AbfFLXyx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 19:54:53 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x5CNsIen016686;
+        Wed, 12 Jun 2019 18:54:19 -0500
+Message-ID: <2a53690aa81a406b9a6290f70e47470d0f698f00.camel@kernel.crashing.org>
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     James Morse <james.morse@arm.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+Date:   Thu, 13 Jun 2019 09:54:18 +1000
+In-Reply-To: <20190612104238.GG32652@zn.tnic>
+References: <ce01a2bc-7973-5978-b033-a6bdc61b9d4b@amazon.com>
+         <32431fa2-2285-6c41-ce32-09630205bb54@arm.com>
+         <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
+         <20190608090556.GA32464@zn.tnic>
+         <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
+         <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
+         <20190611115651.GD31772@zn.tnic>
+         <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
+         <20190612034813.GA32652@zn.tnic>
+         <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
+         <20190612104238.GG32652@zn.tnic>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/12/2019 3:46 PM, Dmitry Torokhov wrote:
-> On Wed, Jun 12, 2019 at 02:27:21PM -0700, Jeffrey Hugo wrote:
->> There needs to be coordination between hid-quirks and the elan_i2c driver
->> about which devices are handled by what drivers.  Currently, both use
->> whitelists, which results in valid devices being unhandled by default,
->> when they should not be rejected by hid-quirks.  This is quickly becoming
->> an issue.
->>
->> Since elan_i2c has a maintained whitelist of what devices it will handle,
->> which is now in a header file that hid-quirks can access, use that to
->> implement a blacklist in hid-quirks so that only the devices that need to
->> be handled by elan_i2c get rejected by hid-quirks, and everything else is
->> handled by default.
->>
->> Suggested-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
->> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
->> ---
->>   drivers/hid/hid-quirks.c | 27 ++++++++++++++++-----------
->>   1 file changed, 16 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/hid/hid-quirks.c b/drivers/hid/hid-quirks.c
->> index e5ca6fe2ca57..bd81bb090222 100644
->> --- a/drivers/hid/hid-quirks.c
->> +++ b/drivers/hid/hid-quirks.c
->> @@ -16,6 +16,7 @@
->>   #include <linux/export.h>
->>   #include <linux/slab.h>
->>   #include <linux/mutex.h>
->> +#include <linux/input/elan-i2c-ids.h>
->>   
->>   #include "hid-ids.h"
->>   
->> @@ -914,6 +915,8 @@ static const struct hid_device_id hid_mouse_ignore_list[] = {
->>   
->>   bool hid_ignore(struct hid_device *hdev)
->>   {
->> +	int i;
->> +
->>   	if (hdev->quirks & HID_QUIRK_NO_IGNORE)
->>   		return false;
->>   	if (hdev->quirks & HID_QUIRK_IGNORE)
->> @@ -978,18 +981,20 @@ bool hid_ignore(struct hid_device *hdev)
->>   		break;
->>   	case USB_VENDOR_ID_ELAN:
->>   		/*
->> -		 * Many Elan devices have a product id of 0x0401 and are handled
->> -		 * by the elan_i2c input driver. But the ACPI HID ELAN0800 dev
->> -		 * is not (and cannot be) handled by that driver ->
->> -		 * Ignore all 0x0401 devs except for the ELAN0800 dev.
->> +		 * Blacklist of everything that gets handled by the elan_i2c
->> +		 * input driver.  This avoids disabling valid touchpads and
->> +		 * other ELAN devices.
->>   		 */
->> -		if (hdev->product == 0x0401 &&
->> -		    strncmp(hdev->name, "ELAN0800", 8) != 0)
->> -			return true;
->> -		/* Same with product id 0x0400 */
->> -		if (hdev->product == 0x0400 &&
->> -		    strncmp(hdev->name, "QTEC0001", 8) != 0)
->> -			return true;
->> +		if ((hdev->product == 0x0401 || hdev->product == 0x0400)) {
->> +			for (i = 0; strlen(elan_acpi_id[i].id); ++i)
->> +				if (!strncmp(hdev->name, elan_acpi_id[i].id,
->> +					     strlen(elan_acpi_id[i].id)))
->> +					return true;
->> +			for (i = 0; strlen(elan_of_match[i].name); ++i)
->> +				if (!strncmp(hdev->name, elan_of_match[i].name,
->> +					     strlen(elan_of_match[i].name)))
->> +					return true;
+On Wed, 2019-06-12 at 12:42 +0200, Borislav Petkov wrote:
+> On Wed, Jun 12, 2019 at 06:29:26PM +1000, Benjamin Herrenschmidt wrote:
+> > I tend to disagree here. We've been down that rabbit hole in the past
+> > and we (Linux in general) are trying to move away from that sort of
+> > "platform" overarching driver as much as possible.
 > 
-> Do we really need to blacklist the OF case here? I thought that in ACPI
-> case we have clashes as HID gets matched by elan_i2c and CID is matched
-> by i2c-hid, but I do not believe we'll run into the same situation on OF
-> systems.
+> Why is a "platform" driver like that so bad?
 
-I think its the safer approach.
+It tends to be a slippery slope. Also in the ARM world, most SoC tend
+to re-use IP blocks, so you get a lot of code duplication, bug fixed in
+one and not the other etc...
 
-On an OF system, such as patch 3 in the series, the "hid-over-i2c" will 
-end up running through this (kind of the whole reason why this series 
-exists).  The vendor and product ids will still match, so we'll end up 
-going through the lists to see if the hdev->name (the compatible string) 
-will match the blacklist.  "hid-over-i2c" won't match the blacklist, but 
-if there is a more specific compatible, it might.
+I don't necessarily mind having a "platform" component that handles
+policies in case where userspace is really not an option, but it
+shouldn't be doing it by containing the actual drivers for the
+individual IP block error collection. It could however "use" them via
+in-kernel APIs.
 
-In that case, not matching OF would work, however how it could break 
-today is if both "hid-over-i2c" and "elan,ekth3000" were listed for the 
-same device, and elan_i2c was not compiled.  In that case, if we skip 
-the OF part of the black list, hid-quirks will not reject the device, 
-and you'll probably have some odd behavior instead of the obvious "the 
-device doesn't work because the correct driver isn't present" behavior.
+> > This is a policy. It should either belong to userspace,
+> 
+> For some errors you can't do userspace as it is too late for it - you
+> wanna address that before you return to it.
 
-While that scenario might be far fetched since having both 
-"hid-over-i2c" and "elan,ekth3000" probably violates the OF bindings, 
-its still safer to include the OF case in the blacklist against future 
-scenarios.
+Those are rare. At the end of the day, if you have a UE on memory, it's
+a matter of luck. It could have hit your kernel as well. You get lucky
+it only hit userspace but you can't make a general statement you "can't
+trust userspace".
+
+Cache errors tend to be the kind that tend to have to be addressed
+immediately, but even then, that's often local to some architecture
+machine check handling, not even in EDAC.
+
+Do you have a concrete example of a type of error that
+
+ - Must be addressed in the kernel
+
+ - Relies on coordinating drivers for more than one IP block
+
+?
+
+Even then though, my argument would be that the right way to do that,
+assuming that's even platform specific, would be to have then the
+"platform RAS driver" just layout on top of the individual EDAC drivers
+and consume their output. Not contain the drivers themselves.
+
+> > or be in some generic RAS code in the kernel, there's no reason why
+> > these can't be abstracted.
+> 
+> Yes, we have this drivers/ras/cec.c thing which collects correctable
+> DRAM errors on x86. :-)
+
+Using machine checks, not EDAC. It's completely orghogonal at this
+point at least.
+
+That said, it would make sense to have an EDAC API to match that
+address back into a DIMM location and give user an informational
+message about failures happening on that DIMM. But that could be done
+via core EDAC MC APIs.
+
+Here too, no need for having an over-arching platform driver.
+
+> > Also in your specific example, it could be entirely local to the MC
+> > EDAC / DRAM controller path, we could have a generic way for EDAC to
+> > advertise that a given memory channel is giving lots of errors and
+> > have memory controller drivers listen to it but usually the EDAC MC
+> > driver *is* the only thing that looks like a MC driver to begin with,
+> > 
+> > so again, pretty much no overlap with L1/L2 caches RAS or PCIe RAS
+> > etc...
+> > 
+> > Unless I'm mistaken, that amd64 EDAC is just an MC one... but I only
+> > had a cursory glance at the code.
+> 
+> EDAC has historically been concentrating on DRAM errors as that is
+> what people have been paying attention to. But it isn't limited to
+> DRAM errors - there is some basic PCI errors functionality behind
+> edac_pci_create_generic_ctl() which polls for PCI parity errors.
+
+Right, somebody whacked the PCI stuff in the same driver. So what ?
+There's no coordination here not particular reason it has to be so.
+Those PCI bits could have moved to a sepatate driver easily. Maybe they
+didn't bcs they didn't have a good way to probe the two separately via
+ACPI ? I don't know. But it doesn't matter nor does it affect the
+situation with ARM.
+
+That said, x86 platforms tend to be less diverse in their selection of
+IP blocks, and tend to have more integrated chipsets where the
+distinction between the memory controller and PCI may be a bit less
+obvious. This isn't the case on ARM.
+
+I still think that doesn't prove or disprove anything.
+
+> So it still makes sense to me to have a single driver which takes care
+> of all things RAS for a platform. You just load one driver and it does
+> it all, including recovery actions.
+
+Why ? Because one or two historical drivers mix MC and PCI then "it
+makes sense" to do that for everybody ?
+
+And then you have 20 platforms and 20 drivers, with 50% or more code
+duplication, bugs fixed in one and not the other, gratuituous behaviour
+differences to confuse users etc... No. that doesn't make sense.
+
+> > Maybe because what you are promoting might not be the right path
+> > here... seriously, there's a reason why all vendors want to go down
+> > that path and in this case I don't think they are wrong.
+> > 
+> > This isn't about just another ARM vendor, in fact I'm rather new to the
+> > whole ARM thing, I used to maintain arch/powerpc :-)
+> 
+> What happened? :-P
+
+Long story :-) I handed it over to mpe a while ago, I left IBM earlire
+this year.
+
+> > The point is what you are trying to push for goes against everything
+> > we've been trying to do in Linux when it comes to splitting drivers to
+> > individual IP blocks.
+> 
+> Please do explain why is a driver-per-IP-block better and please don't
+> give me the DT argument - I've heard that one more than enough now.
+
+I have no idea what "the DT argument" is, and that's from the guy who
+created the FDT....
+
+I have difficulties understanding how you cannot see that having re-
+usable single drivers for a single piece of HW makes sense. If anything
+in term of avoiding duplication, bitrot, bugs being fixed in some and
+not others, etc etc... It also means more eyes on a given piece of code
+which is a good thing.
+
+Also you "have heard more than enough" is again a sign that a whole lot
+of people are trying to tell you something that you seem to refuse to
+hear. Whatever that "DT argument" is, did you just ignore it or had
+some good and solid arguments of your own to refute it ?
+
+> Like, for example, how do you deal with the case where you have a
+> platform which has a bunch of IP blocks with RAS functionality and they
+> all have a separate driver. Now, you want to do recovery and failover
+> actions depending on certain error count from a certain group of IP
+> blocks.
+>
+> You export those counts through sysfs from the separate drivers and you
+> have a userspace agent doing that policy?
+
+So mostly yes. Works fine for POWER9 :-) That said, you'll have to be
+more precise, because so far this is very hypothetical.
+
+> That cannot always fly because recovery actions for some errors need to
+> happen before we return to userspace - i.e., memory-failure.c types of
+> scenarios.
+
+How come ? Most memory failure type scenario tend to be handled via
+MCEs anyway and don't go through EDAC. Additionally, if they do, that
+can generally be constrained to the MC driver. But even then, what kind
+should be handled "before we return to userspace" ?
+
+However, if we want to create some overall policy then we should create
+some in-kernel APIs so that your magic "platform driver" can talk to
+the indidual EDAC drivers (or get notifed by them).
+
+Mangling everything together is definitely NOT the way to go here.
+
+However, what I see above is a lot of hand waving and hypothetical
+examples, nothing really concrete.
+
+> You add another "counting" layer which is yet another driver which
+> collects those errors and applies policy actions?
+
+No. Individual drivers count and report. Not sure what you mean here.
+
+> But then that layer needs to be made generic enough to be shared by the
+> other EDAC IP block drivers, otherwise every platform would need its own
+> counter layer driver. Which basically puts the problem somewhere else
+> but doesn't make it go away.
+
+Not sure what you mean by a "counter layer driver"...
+
+> Another way I'm not thinking of at the moment?
+> 
+> A single driver solves that problem as it has all the required
+> information in one place and deals with it then and there.
+
+We could also have the entire BSP of a platform as one giant driver
+that does all the RAS, netowrking, serial, and video .. why not ? That
+would make your policies a lot easier :-) Not seriously I really fail
+to see your points, and it looks like I'm not the only one.
+
+> I hear you that platform drivers are frowned upon but connecting it all
+> in one place for such purposes makes sense to me in this particular
+> case.
+
+What makes some amount of sense *if necessary* (and I yet have to be
+convinced it is) is to have the platform policy driver use internal
+kernel APIs to communicate with the individual IP block drivers via
+something reasonably standard.
+
+But even then, I yet have to see an actual need for this.
+
+> Btw, what is your final goal with these drivers? Dump decoded error
+> information in dmesg? Or something more sophisticated?
+
+I'll let Hanna respond to that one.
+
+Cheers,
+Ben.
 
 
