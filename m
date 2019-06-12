@@ -2,72 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CD0042C68
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 18:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D0A42C90
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 18:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440319AbfFLQeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 12:34:11 -0400
-Received: from mail-it1-f176.google.com ([209.85.166.176]:36706 "EHLO
-        mail-it1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437983AbfFLQeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 12:34:11 -0400
-Received: by mail-it1-f176.google.com with SMTP id r135so11619389ith.1;
-        Wed, 12 Jun 2019 09:34:10 -0700 (PDT)
+        id S2436495AbfFLQpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 12:45:18 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:42983 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2438189AbfFLQpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 12:45:18 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q10so9979401pff.9;
+        Wed, 12 Jun 2019 09:45:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hZCvV7cQZNCXBtTHIkCdgNG0kspEVIGlXIe1tEdoftI=;
-        b=K4PtkffJIk+TE/PjxWZEP5nN8FkQHPgXAGeT3uxWRKzGQ4EbBsFVAZo//Ps8v9/9lR
-         01Me35dSGJijOLOkBOdFkRMMHCXY3Jb8EbVhHYzUhpwigqZHHUlqkuKqozzOeAPg59sv
-         uhI2ma5g7nmvdqsM90Vz+irqdn9EeA6mjdCrgt3Av9D+ohHT9bgsdLviUupvenzKsXLO
-         K58G87lqMGxakjom677RMKy2RnOcEUVyx4l+v+0XcplTBFvpe9a0iwxrz72BoM86e3ph
-         NUX6wMsWVYgn/9Cv6txMGYIxMiOTT1dyMA9VtKyvCMIRRoaLTcZ1ClztUkmodfWdu+wH
-         xeCg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=fNvoo3jeONRzL15DraIOpBMS3MEeB4hQcXGlzhydowM=;
+        b=OfmTKTRM/7n0gDgqKGUSB0C+9NVD8ZEdO9Z67WXxmY8dIrWdw0RNbatSWgrwGjL9ra
+         WijuqSzEmWz8ZdPEUvZT9CIchBvAlEPt07S+ZAHjICpgyS4uZ1Lzw114fD8sfXkIkwxP
+         hBYvS2mYFvLGNRFa4sNdtZ6l8c7AM9vLorKvkdxUT90O8jezIqYC8lL2jGEYZLUyzm9Q
+         ypNkcB6Jrh73VMJw2IVL7m3rHaIKow8+7NGRD1JWct8VRnusxhz9826UVMepKOgXINa8
+         CVw+ByZWuifCtDE5N/dm07UVyHjtO2VTcN7ax+Feqte+X0A1IiQpgqqP4BnH1HVuKkMV
+         BeYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hZCvV7cQZNCXBtTHIkCdgNG0kspEVIGlXIe1tEdoftI=;
-        b=WmSmI9qnLbyFkGbwEN7fWrSZaMV17DlBysqr3qv0/hL5VEhsW5h1xJquKIIgfH1Wt7
-         WTX92mzoS1LkkL58j36DsyoNR4vpIEFdREFbu2SF+V9MfpTKRlHmDgl1u5BoS8NvABUi
-         ckns9Eop8yiaMRQw/CptPFiqWzg9g4AMxGfGbGHeyzfRRGw0qv2ckN+a3q51YGmySbXJ
-         AWIIJZ1tlnVwEi0kqp8VJHeGBTtvwrr6k/Yxng1yDDgFsteEBCmsg9JH/xGjrjGnpKFM
-         BtUkQlDD9pQP5eeqSzYT0yfxmoSG8WU/dmcoP1FcWEXHWiugNIVJlCNGYNrIjZtQuIkg
-         bYpQ==
-X-Gm-Message-State: APjAAAUvUhGZLSr0+hyJaxa1W0/TOHw3Wvl5K4byMjXtxYFhOB4aXgUn
-        VAgrwtX5Wm8CNrKj3y5NduA0FNPw8DUFLuz3+dM=
-X-Google-Smtp-Source: APXvYqxZh+o05jcOyHqNSKk8Ivk+tjl4Knc4o8YOtYWoSJKwFDgIF7OFeSVxDyD/mGUxk6569iAyD5s0t7IzvUZzteM=
-X-Received: by 2002:a24:cf46:: with SMTP id y67mr19345396itf.105.1560357250240;
- Wed, 12 Jun 2019 09:34:10 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=fNvoo3jeONRzL15DraIOpBMS3MEeB4hQcXGlzhydowM=;
+        b=Ih7rKLHHTZqzVSELC7qV/I/i15C4ka6xOXXZAm3Hxf0Mbm/4QrFFeVz9DAOSYOVaN3
+         +5YgF0uTLlo4U42wzWsx0zVk3NYP4vfaZkmC0PWk4Uny87qpS+FlAyPe2H6u2tHjpiBB
+         9wMlithWQVcb38pcIeW9aYaVemVz0MBJ53drfUwhE+mo3VxGdxTY8XorpXjaGtgSU+rC
+         nQl8Y0eW3zuukyC08Ff851/VZ9j/+IghhD0XJ2Da1s+znurnQbITHyWELNqNUu/Zkw+e
+         YH07hrkhGfoyFW9GZYa27+0y1x99UvDHy6r4wrN2X45cCy1AUFhGY5orUZHFPWgewltX
+         PW3g==
+X-Gm-Message-State: APjAAAW4p3PMTwto5goXDIhldSXZHuqISxz3wLmhtb3O62qLgYRynd+C
+        AFipseeZQCHe+rmbcnAMKYg=
+X-Google-Smtp-Source: APXvYqx7Ipw6PLwyfx3ectN1oUHB36RBBmTAE8CVBXQTEt2JN6+uHKYxjX27DfozZYflDtR1NTAeHQ==
+X-Received: by 2002:a63:9142:: with SMTP id l63mr8466305pge.185.1560357917167;
+        Wed, 12 Jun 2019 09:45:17 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id a192sm110855pfa.84.2019.06.12.09.45.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 12 Jun 2019 09:45:16 -0700 (PDT)
+Subject: Re: [PATCH next] of/fdt: Fix defined but not used compiler warning
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>
+References: <20190612010011.90185-1-wangkefeng.wang@huawei.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <0702fa2d-1952-e9fc-8e17-a93f3b90a958@gmail.com>
+Date:   Wed, 12 Jun 2019 09:45:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190612162816.31713-1-tiny.windzz@gmail.com>
-In-Reply-To: <20190612162816.31713-1-tiny.windzz@gmail.com>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Thu, 13 Jun 2019 00:33:58 +0800
-Message-ID: <CAEExFWt+8NKj4EYvQ10KoeUX8ej6Pm1gLgyVtozwMRSYC-p-Sg@mail.gmail.com>
-Subject: Re: [RESEND, PATCH v4 0/2] cpufreq: Add sunxi nvmem based CPU scaling driver
-To:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        David Miller <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com
-Cc:     Linux PM <linux-pm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190612010011.90185-1-wangkefeng.wang@huawei.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-@Rob: Could you please review it?
+Hi Kefeng,
+
+If Rob agrees, I'd like to see one more change in this patch.
+
+Since the only caller of of_fdt_match() is of_flat_dt_match(),
+can you move the body of of_fdt_match() into  of_flat_dt_match()
+and eliminate of_fdt_match()?
+
+(Noting that of_flat_dt_match() consists only of the call to
+of_fdt_match().)
+
+-Frank
+
+
+On 6/11/19 6:00 PM, Kefeng Wang wrote:
+> When CONFIG_OF_EARLY_FLATTREE is disabled, there is a compiler warning,
+> 
+> drivers/of/fdt.c:129:19: warning: ‘of_fdt_match’ defined but not used [-Wunused-function]
+>  static int __init of_fdt_match(const void *blob, unsigned long node,
+> 
+> Move of_fdt_match() and of_fdt_is_compatible() under CONFIG_OF_EARLY_FLATTREE
+> to fix it.
+> 
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+> ---
+>  drivers/of/fdt.c | 106 +++++++++++++++++++++++------------------------
+>  1 file changed, 53 insertions(+), 53 deletions(-)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 3d36b5afd9bd..d6afd5b22940 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -78,38 +78,6 @@ void __init of_fdt_limit_memory(int limit)
+>  	}
+>  }
+>  
+> -/**
+> - * of_fdt_is_compatible - Return true if given node from the given blob has
+> - * compat in its compatible list
+> - * @blob: A device tree blob
+> - * @node: node to test
+> - * @compat: compatible string to compare with compatible list.
+> - *
+> - * On match, returns a non-zero value with smaller values returned for more
+> - * specific compatible values.
+> - */
+> -static int of_fdt_is_compatible(const void *blob,
+> -		      unsigned long node, const char *compat)
+> -{
+> -	const char *cp;
+> -	int cplen;
+> -	unsigned long l, score = 0;
+> -
+> -	cp = fdt_getprop(blob, node, "compatible", &cplen);
+> -	if (cp == NULL)
+> -		return 0;
+> -	while (cplen > 0) {
+> -		score++;
+> -		if (of_compat_cmp(cp, compat, strlen(compat)) == 0)
+> -			return score;
+> -		l = strlen(cp) + 1;
+> -		cp += l;
+> -		cplen -= l;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  static bool of_fdt_device_is_available(const void *blob, unsigned long node)
+>  {
+>  	const char *status = fdt_getprop(blob, node, "status", NULL);
+> @@ -123,27 +91,6 @@ static bool of_fdt_device_is_available(const void *blob, unsigned long node)
+>  	return false;
+>  }
+>  
+> -/**
+> - * of_fdt_match - Return true if node matches a list of compatible values
+> - */
+> -static int __init of_fdt_match(const void *blob, unsigned long node,> -			       const char *const *compat)
+> -{
+> -	unsigned int tmp, score = 0;
+> -
+> -	if (!compat)
+> -		return 0;
+> -
+> -	while (*compat) {
+> -		tmp = of_fdt_is_compatible(blob, node, *compat);
+> -		if (tmp && (score == 0 || (tmp < score)))
+> -			score = tmp;
+> -		compat++;
+> -	}
+> -
+> -	return score;
+> -}
+> -
+>  static void *unflatten_dt_alloc(void **mem, unsigned long size,
+>  				       unsigned long align)
+>  {
+> @@ -764,6 +711,59 @@ const void *__init of_get_flat_dt_prop(unsigned long node, const char *name,
+>  	return fdt_getprop(initial_boot_params, node, name, size);
+>  }
+>  
+> +/**
+> + * of_fdt_is_compatible - Return true if given node from the given blob has
+> + * compat in its compatible list
+> + * @blob: A device tree blob
+> + * @node: node to test
+> + * @compat: compatible string to compare with compatible list.
+> + *
+> + * On match, returns a non-zero value with smaller values returned for more
+> + * specific compatible values.
+> + */
+> +static int of_fdt_is_compatible(const void *blob,
+> +		      unsigned long node, const char *compat)
+> +{
+> +	const char *cp;
+> +	int cplen;
+> +	unsigned long l, score = 0;
+> +
+> +	cp = fdt_getprop(blob, node, "compatible", &cplen);
+> +	if (cp == NULL)
+> +		return 0;
+> +	while (cplen > 0) {
+> +		score++;
+> +		if (of_compat_cmp(cp, compat, strlen(compat)) == 0)
+> +			return score;
+> +		l = strlen(cp) + 1;
+> +		cp += l;
+> +		cplen -= l;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * of_fdt_match - Return true if node matches a list of compatible values
+> + */
+> +static int __init of_fdt_match(const void *blob, unsigned long node,
+> +			       const char *const *compat)
+> +{
+> +	unsigned int tmp, score = 0;
+> +
+> +	if (!compat)
+> +		return 0;
+> +
+> +	while (*compat) {
+> +		tmp = of_fdt_is_compatible(blob, node, *compat);
+> +		if (tmp && (score == 0 || (tmp < score)))
+> +			score = tmp;
+> +		compat++;
+> +	}
+> +
+> +	return score;
+> +}
+> +
+>  /**
+>   * of_flat_dt_is_compatible - Return true if given node has compat in compatible list
+>   * @node: node to test
+> 
+
