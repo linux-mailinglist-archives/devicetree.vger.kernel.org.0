@@ -2,160 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C896439A9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5508742ACE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 17:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732742AbfFMPPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:15:15 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:57299 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732226AbfFMNZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 09:25:54 -0400
-X-Originating-IP: 90.88.159.246
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 1CBDAE0008;
-        Thu, 13 Jun 2019 13:25:40 +0000 (UTC)
-Date:   Wed, 12 Jun 2019 17:20:22 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Torsten Duwe <duwe@lst.de>, Harald Geyer <harald@ccbib.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-Message-ID: <20190612152022.c3cfhp4cauhzhfyr@flea>
-References: <20190604122150.29D6468B05@newverein.lst.de>
- <20190604122308.98D4868B20@newverein.lst.de>
- <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
- <20190605101317.GA9345@lst.de>
- <20190605120237.ekmytfxcwbjaqy3x@flea>
- <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
- <20190607062802.m5wslx3imiqooq5a@flea>
- <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
- <20190607094030.GA12373@lst.de>
- <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
+        id S1729106AbfFLPVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 11:21:17 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:33474 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726454AbfFLPVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 11:21:17 -0400
+Received: by mail-qt1-f195.google.com with SMTP id x2so18027429qtr.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2019 08:21:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gMRaFc3/hEiSi70Ix5/f3einSpUu2nV4TVmJ7D/hed4=;
+        b=Tv2Z3pbmOwHlgtrYTiibW8m9XKJPoHJ5lxIhEeqi5Uy98XwTjM7guEJWwNaxAfSRRx
+         ayPQVXodB7bvub7zYQS6jU6MzX4+WnhlQCWwO206AjP32j//nrNcH7OBut5lcxxzH0Uw
+         XvsVks57zesgVpwhGFcC60GAXXW1gFdWRXTvzbLOfXZDNgol8yjrd3xCTlBD01Z3HggK
+         rruu7ob6IOxiYDcSJoxWwYOqHkek9J1sRm7oup16CzBhEpcC/WJsJ/XHbvUu3FqIDvOb
+         PQF3t8raPwAeZyr2nnQTTVQellosNdDBnf+arwN8KDedS0qPsW4GrNT8+dAYElsp1hxK
+         Kvlg==
+X-Gm-Message-State: APjAAAUK4SC7RY6gDrhq7L4nBOwROS4B7gnukeEf82tVws71hLg/ZctG
+        Dap9Tph/xl1X3TE5Ik3CeOp6ovGkOgV53xs004E8RQ==
+X-Google-Smtp-Source: APXvYqxHbmq550GcVIRTXA5tocwW+ku4/cuYE4oFs0POCYRKMQzp1djocUEawn+SEa0+NCVlpuDhdB86iHxSww+zPq0=
+X-Received: by 2002:ac8:303c:: with SMTP id f57mr71183256qte.294.1560352876572;
+ Wed, 12 Jun 2019 08:21:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="kbzg5qkkfku6tqsr"
-Content-Disposition: inline
-In-Reply-To: <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
-User-Agent: NeoMutt/20180716
+References: <20190606161055.47089-1-jeffrey.l.hugo@gmail.com>
+ <20190606161322.47192-1-jeffrey.l.hugo@gmail.com> <20190612003507.GG143729@dtor-ws>
+ <nycvar.YFH.7.76.1906121644160.27227@cbobk.fhfr.pm> <CAKdAkRQOxTX51rhodoFyYpwi85pk8apvWjCLLX5Sw6NTH=j1kA@mail.gmail.com>
+In-Reply-To: <CAKdAkRQOxTX51rhodoFyYpwi85pk8apvWjCLLX5Sw6NTH=j1kA@mail.gmail.com>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Wed, 12 Jun 2019 17:21:04 +0200
+Message-ID: <CAO-hwJKDxu0Bxxjd9reAojHODQTnW1POmifBCVsnjt8+CT4rmw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] HID: quirks: Refactor ELAN 400 and 401 handling
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---kbzg5qkkfku6tqsr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Jun 12, 2019 at 12:00:21PM +0200, Andrzej Hajda wrote:
-> On 07.06.2019 11:40, Torsten Duwe wrote:
-> > On Fri, Jun 07, 2019 at 08:28:02AM +0200, Maxime Ripard wrote:
-> >> On Thu, Jun 06, 2019 at 03:59:27PM +0200, Harald Geyer wrote:
-> >>> If think valid compatible properties would be:
-> >>> compatible =3D "innolux,n116bge", "simple-panel";
-> >>> compatible =3D "edp-connector", "simple-panel";
-> >> A connector isn't a panel.
-> >>
-> >>> compatible =3D "innolux,n116bge", "edp-connector", "simple-panel";
-> >> And the innolux,n116bge is certainly not a connector either.
-> >>
-> >>> compatible =3D "edp-connector", "innolux,n116bge", "simple-panel";
-> >>>
-> >>> I can't make up my mind which one I prefere. However neither of these
-> >>> variants requires actually implmenting an edp-connector driver.
-> >> No-one asked to do an edp-connector driver. You should use it in your
-> >> DT, but if you want to have some code in your driver that parses the
-> >> DT directly, I'm totally fine with that.
-> > I must admit I fail to understand what that extra node would be good fo=
-r.
-> > Logically, the eDP far side is connected to the well-known n116bge.
-> > Inside the laptop case it might as well be a flat ribbon cable or
-> > soldered directly.
-> > In good intention, that's all I wanted to express in the DT. I don't
-> > know whether the relevant mechanical dimensions of the panel and the
-> > connector are standardised, so whether one could in theory assemble it
-> > with a different panel than the one it came with.
-> >
-> > OTOH, as I checked during the discussion with anarsoul, the panel's
-> > supply voltage is permanently connected to the main 3.3V rail.
-> > We already agreed that the eDP output port must not neccessarily be
-> > specified, this setup is a good example why: because the panel is
-> > always powered, the anx6345 can always pull valid EDID data from it
-> > so at this stage there's no need for any OS driver to reach beyond
-> > the bridge. IIRC even the backlight got switched off for the blank
-> > screen without.
-> >
-> > All I wanted to say is that "there's usually an n116bge behind it";
-> > but this is mostly redundant.
-> >
-> > So, shall we just drop the output port specification (along with the
-> > panel node) in order to get one step further?
+On Wed, Jun 12, 2019 at 5:14 PM Dmitry Torokhov
+<dmitry.torokhov@gmail.com> wrote:
 >
-> I am not sure if I understand whole discussion here, but I also do not
-> understand whole edp-connector thing.
+> On Wed, Jun 12, 2019 at 7:45 AM Jiri Kosina <jikos@kernel.org> wrote:
+> >
+> > On Tue, 11 Jun 2019, Dmitry Torokhov wrote:
+> >
+> > > > +static const char *hid_elan_i2c_ignore[] = {
+> > >
+> > > If this is a copy of elan whitelist, then, if we do not want to bother
+> > > with sharing it in object form (as a elan-i2c-ids module), can we at
+> > > least move it into include/linux/input/elan-i2c-ids.h and consume from
+> > > hid-quirks.c?
+> >
+> > Let's just not duplicate it in both objects. Why not properly export it
+> > from hid_quirks?
+>
+> Strictly speaking Elan does not depend on HID; exporting it from
+> quirks would mean adding this dependency. This also mean that you
+> can't make Elan built-in while keeping HID as a module (I think this
+> at least used to be config on some Chromebooks).
+>
 
-The context is this one:
-https://patchwork.freedesktop.org/patch/257352/?series=3D51182&rev=3D1
-https://patchwork.freedesktop.org/patch/283012/?series=3D56163&rev=3D1
-https://patchwork.freedesktop.org/patch/286468/?series=3D56776&rev=3D2
+I also think it would me things cleaner to have the list of devices in elan_i2c.
+If we put the list of devices supported by elan_i2c in a header, and
+have HID read this .h file directly, there will be no runtime
+dependency.
 
-TL;DR: This bridge is being used on ARM laptops that can come with
-different eDP panels. Some of these panels require a regulator to be
-enabled for the panel to work, and this is obviously something that
-should be in the DT.
+I am sure we can work something out to remove Jeffrey's fears.
 
-However, we can't really describe the panel itself, since the vendor
-uses several of them and just relies on the eDP bus to do its job at
-retrieving the EDIDs. A generic panel isn't really working either
-since that would mean having a generic behaviour for all the panels
-connected to that bus, which isn't there either.
-
-The connector allows to expose this nicely.
-
-> According to VESA[1] eDP is "Internal display interface" - there is no
-> external connector for eDP, the way it is connected is integrator's
-> decision, but it is fixed - ie end user do not plug/unplug it.
-
-I'm not sure if you mean DRM or DT connector here though. In DRM,
-we're doing this all the time for panels. I'm literaly typing this
-=66rom a laptop that has a screen with an eDP connector.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---kbzg5qkkfku6tqsr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQEYNgAKCRDj7w1vZxhR
-xagZAP9+AZ8uzanMLNIT15MfMeCtszC85MU2JHwDCbzueao68wD/WPbzy8s2BkPf
-pRPeI1xiny1h0ObfHZ8o1OdpRlKPHQg=
-=nu8d
------END PGP SIGNATURE-----
-
---kbzg5qkkfku6tqsr--
+Cheers,
+Benjamin
