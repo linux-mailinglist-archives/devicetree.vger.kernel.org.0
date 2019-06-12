@@ -2,105 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC2741BF7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 08:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC2241C3E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 08:31:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbfFLGGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 02:06:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55010 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726538AbfFLGGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 02:06:10 -0400
-Received: from dragon (li1264-180.members.linode.com [45.79.165.180])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 03BE920874;
-        Wed, 12 Jun 2019 06:05:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560319569;
-        bh=VfQ07jf+Hvyl2Wul02CQ8cO773IXE5obZTrK/DXI6+w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wChXuwCQvpHKTywuj+8QXCvsWOJYw5/uwCjAXSqo+OnErMV3FxNQHWS+XdVnXxDah
-         aaO9ImYPZJIVnGv5x4nKgWV2mr27lFg5n9fdD475NNidm3I7R/LcyJOQbwKsN3Br5U
-         mu9UAPuLmO22DvoKPegV/B+HmNXa5QBUk/Ys0meg=
-Date:   Wed, 12 Jun 2019 14:05:29 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Aisheng Dong <aisheng.dong@nxp.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Anson Huang <anson.huang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Sascha Hauer <kernel@pengutronix.de>,
+        id S1731120AbfFLGbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 02:31:01 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:37668 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726010AbfFLGbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 02:31:00 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 19so8183314pfa.4
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2019 23:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gRU97u8F3heZwksD5NXw0YJFqwH/QRlGkCsX4mDvygU=;
+        b=uUFu1DVciMRXhSOTU5k0VpTZdcd+0DQP7nnLOmG5vdfT08Q7T6XA80IVAoo4PK1rMI
+         CnyREE5R0Ndvi+TKKM2GKivx0VqpJGt4Qg/xcyJ3kx2cp19q3U2GjCuGTBTN7TsBsKpx
+         xi2oIGkfHotbx8ybVO7pYyrn/voiHo5O/CEH5t3tZlqE/MIN6oGzmVFB6t6LERYyHkmK
+         co8psl8W6TjG036PEe5As8Gq4e4pTaWw+JaOXM45k9RUk+3f2TwzachJrM1Eoj1uR0Wl
+         kONgrevcnbqhCUzCbM+8kFCL9IHt1a/sN6IHDzWjRyP1mDdSxiNsyO5PNJczNvk5ZUQH
+         fTyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gRU97u8F3heZwksD5NXw0YJFqwH/QRlGkCsX4mDvygU=;
+        b=ALjko5GNrDxJBdLlOkorkyvV6rqzGTfhPE6ksKwzAUFNmRn1so7qDQA+P++QmvFFLr
+         2xsXhsWTT8u3lxkIABax97dB8vXxt5RlHhg7B+tIOmAq7NIcOh74jpZqci9WP7gBFnvj
+         iZyqja8QeQks5OUUaKxgaIEdbqi2GZ0mmzJkrkmvUp4OFUbUSXC2guDJKzVJIYe58ZIv
+         53OsEKMmuItKJCbXG7SMCmP+0UXKzQDR39cvW3TRyz0bZJQblbebrvKD3/8cmY2p9mKS
+         Z6H1d22TZe/jvfyoKUd7UQavBuw0x3XVqpC25K/NQN5esFJg0zNSKOc6uEXiWQt8blCt
+         sJ8w==
+X-Gm-Message-State: APjAAAVeaF2ylTrmFL29D45zsJssUIUUmYfi2j4cXQaMG9pmR5N+im1z
+        +szBXNivQ8z+QnRlx6KFDo2GZQ==
+X-Google-Smtp-Source: APXvYqyqeocc93w7xNJCHOiQGj0GObB6w9hjNxSzx+wtommrrEgQn6nhVSqyv7l1OkxpaA85zCP5Mg==
+X-Received: by 2002:a62:5387:: with SMTP id h129mr86969334pfb.6.1560321059827;
+        Tue, 11 Jun 2019 23:30:59 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id l38sm4124385pje.12.2019.06.11.23.30.58
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 11 Jun 2019 23:30:59 -0700 (PDT)
+Date:   Tue, 11 Jun 2019 23:31:43 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     "Bean Huo (beanhuo)" <beanhuo@micron.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Olof Johansson <olof@lixom.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Andy Gross <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/3] dt-bindings: imx: Add pinctrl binding doc for i.MX8MN
-Message-ID: <20190612060522.GB11086@dragon>
-References: <20190530030546.9224-1-Anson.Huang@nxp.com>
- <CACRpkdY-35o378Ka+4bgeSPjmq6P8DM872sgTxq2X3dDP9XZHQ@mail.gmail.com>
- <AM0PR04MB421171336B9206D02FF6514080ED0@AM0PR04MB4211.eurprd04.prod.outlook.com>
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>
+Subject: Re: [EXT] [PATCH v3 2/3] scsi: ufs-qcom: Implement device_reset vops
+Message-ID: <20190612063143.GD22737@tuxbook-pro>
+References: <20190608050450.12056-1-bjorn.andersson@linaro.org>
+ <20190608050450.12056-3-bjorn.andersson@linaro.org>
+ <BN7PR08MB56848AB3CC413CBEC211130EDBED0@BN7PR08MB5684.namprd08.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM0PR04MB421171336B9206D02FF6514080ED0@AM0PR04MB4211.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <BN7PR08MB56848AB3CC413CBEC211130EDBED0@BN7PR08MB5684.namprd08.prod.outlook.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 10:00:36AM +0000, Aisheng Dong wrote:
-> > From: Linus Walleij [mailto:linus.walleij@linaro.org]
-> > Sent: Saturday, June 8, 2019 5:04 AM
-> > 
-> > On Thu, May 30, 2019 at 5:04 AM <Anson.Huang@nxp.com> wrote:
-> > 
-> > > From: Anson Huang <Anson.Huang@nxp.com>
-> > >
-> > > Add binding doc for i.MX8MN pinctrl driver.
-> > >
-> > > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> > 
-> > Looks mostly OK to me, but I'd like the maintainers to review, so Dong et al
-> > please look at this!
-> > 
-> > > +Required properties:
-> > > +- compatible: "fsl,imx8mn-iomuxc"
-> > 
-> > So should this not be "nxp,imx8mn-iomuxc"
-> > or "nxp,freescale-imx8mn-iomuxc" or something these days? The vendor name
-> > is nxp is it not.
-> > 
-> > I was complaining to the DT maintainers at one point that these companies
-> > seem to buy each other left and right so this vendor nomenclature is dubious,
-> > but I guess at least it should reflect the vendor that produced the chip or
-> > something.
-> > 
-> > If everyone is happy with "fsl,*" I will not complain though.
-> > (i.e. if the maintainers ACK it.)
+On Tue 11 Jun 09:08 PDT 2019, Bean Huo (beanhuo) wrote:
+
+> Hi, Bjorn
+> This HW reset is dedicated to QUALCOMM based platform case.
+> how about adding a SW reset as to be default reset routine if platform doesn't support HW reset?
 > 
-> We preferred to keep "fsl,*" for Freescale i.MX product line according to last discussion.
-> And we already did this way for most i.MX devices.
 
-+1
+Can you please advice how I perform such software reset?
 
-We do not see serious problem with 'fsl' prefix, so would rather stay
-with it.
+Regards,
+Bjorn
 
-Shawn
+> >-----Original Message-----
+> >From: linux-scsi-owner@vger.kernel.org <linux-scsi-owner@vger.kernel.org>
+> >On Behalf Of Bjorn Andersson
+> >Sent: Saturday, June 8, 2019 7:05 AM
+> >To: Rob Herring <robh+dt@kernel.org>; Mark Rutland
+> ><mark.rutland@arm.com>; Alim Akhtar <alim.akhtar@samsung.com>; Avri
+> >Altman <avri.altman@wdc.com>; Pedro Sousa
+> ><pedrom.sousa@synopsys.com>; James E.J. Bottomley <jejb@linux.ibm.com>;
+> >Martin K. Petersen <martin.petersen@oracle.com>
+> >Cc: Andy Gross <agross@kernel.org>; devicetree@vger.kernel.org; linux-
+> >kernel@vger.kernel.org; linux-arm-msm@vger.kernel.org; linux-
+> >scsi@vger.kernel.org
+> >Subject: [EXT] [PATCH v3 2/3] scsi: ufs-qcom: Implement device_reset vops
+> >
+> >The UFS_RESET pin on Qualcomm SoCs are controlled by TLMM and exposed
+> >through the GPIO framework. Acquire the device-reset GPIO and use this to
+> >implement the device_reset vops, to allow resetting the attached memory.
+> >
+> >Based on downstream support implemented by Subhash Jadavani
+> ><subhashj@codeaurora.org>.
+> >
+> >Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >---
+> >
+> >Changes since v2:
+> >- Moved implementation to Qualcomm driver
+> >
+> > .../devicetree/bindings/ufs/ufshcd-pltfrm.txt |  2 ++
+> > drivers/scsi/ufs/ufs-qcom.c                   | 32 +++++++++++++++++++
+> > drivers/scsi/ufs/ufs-qcom.h                   |  4 +++
+> > 3 files changed, 38 insertions(+)
+> >
+> >diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+> >b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+> >index a74720486ee2..d562d8b4919c 100644
+> >--- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+> >+++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+> >@@ -54,6 +54,8 @@ Optional properties:
+> > 			  PHY reset from the UFS controller.
+> > - resets            : reset node register
+> > - reset-names       : describe reset node register, the "rst" corresponds to
+> >reset the whole UFS IP.
+> >+- device-reset-gpios	: A phandle and gpio specifier denoting the GPIO
+> >connected
+> >+			  to the RESET pin of the UFS memory device.
+> >
+> > Note: If above properties are not defined it can be assumed that the supply
+> >regulators or clocks are always on.
+> >diff --git a/drivers/scsi/ufs/ufs-qcom.c b/drivers/scsi/ufs/ufs-qcom.c index
+> >ea7219407309..efaf57ba618a 100644
+> >--- a/drivers/scsi/ufs/ufs-qcom.c
+> >+++ b/drivers/scsi/ufs/ufs-qcom.c
+> >@@ -16,6 +16,7 @@
+> > #include <linux/of.h>
+> > #include <linux/platform_device.h>
+> > #include <linux/phy/phy.h>
+> >+#include <linux/gpio/consumer.h>
+> > #include <linux/reset-controller.h>
+> >
+> > #include "ufshcd.h"
+> >@@ -1141,6 +1142,15 @@ static int ufs_qcom_init(struct ufs_hba *hba)
+> > 		goto out_variant_clear;
+> > 	}
+> >
+> >+	host->device_reset = devm_gpiod_get_optional(dev, "device-reset",
+> >+						     GPIOD_OUT_HIGH);
+> >+	if (IS_ERR(host->device_reset)) {
+> >+		err = PTR_ERR(host->device_reset);
+> >+		if (err != -EPROBE_DEFER)
+> >+			dev_err(dev, "failed to acquire reset gpio: %d\n", err);
+> >+		goto out_variant_clear;
+> >+	}
+> >+
+> > 	err = ufs_qcom_bus_register(host);
+> > 	if (err)
+> > 		goto out_variant_clear;
+> >@@ -1546,6 +1556,27 @@ static void ufs_qcom_dump_dbg_regs(struct
+> >ufs_hba *hba)
+> > 	usleep_range(1000, 1100);
+> > }
+> >
+> >+/**
+> >+ * ufs_qcom_device_reset() - toggle the (optional) device reset line
+> >+ * @hba: per-adapter instance
+> >+ *
+> >+ * Toggles the (optional) reset line to reset the attached device.
+> >+ */
+> >+static void ufs_qcom_device_reset(struct ufs_hba *hba) {
+> >+	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+> >+
+> >+	/*
+> >+	 * The UFS device shall detect reset pulses of 1us, sleep for 10us to
+> >+	 * be on the safe side.
+> >+	 */
+> >+	gpiod_set_value_cansleep(host->device_reset, 1);
+> >+	usleep_range(10, 15);
+> >+
+> >+	gpiod_set_value_cansleep(host->device_reset, 0);
+> >+	usleep_range(10, 15);
+> >+}
+> >+
+> > /**
+> >  * struct ufs_hba_qcom_vops - UFS QCOM specific variant operations
+> >  *
+> >@@ -1566,6 +1597,7 @@ static struct ufs_hba_variant_ops
+> >ufs_hba_qcom_vops = {
+> > 	.suspend		= ufs_qcom_suspend,
+> > 	.resume			= ufs_qcom_resume,
+> > 	.dbg_register_dump	= ufs_qcom_dump_dbg_regs,
+> >+	.device_reset		= ufs_qcom_device_reset,
+> > };
+> >
+> > /**
+> >diff --git a/drivers/scsi/ufs/ufs-qcom.h b/drivers/scsi/ufs/ufs-qcom.h index
+> >68a880185752..b96ffb6804e4 100644
+> >--- a/drivers/scsi/ufs/ufs-qcom.h
+> >+++ b/drivers/scsi/ufs/ufs-qcom.h
+> >@@ -204,6 +204,8 @@ struct ufs_qcom_testbus {
+> > 	u8 select_minor;
+> > };
+> >
+> >+struct gpio_desc;
+> >+
+> > struct ufs_qcom_host {
+> > 	/*
+> > 	 * Set this capability if host controller supports the QUniPro mode
+> >@@ -241,6 +243,8 @@ struct ufs_qcom_host {
+> > 	struct ufs_qcom_testbus testbus;
+> >
+> > 	struct reset_controller_dev rcdev;
+> >+
+> >+	struct gpio_desc *device_reset;
+> > };
+> >
+> > static inline u32
+> >--
+> >2.18.0
+> 
