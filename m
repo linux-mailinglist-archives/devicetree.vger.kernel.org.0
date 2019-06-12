@@ -2,95 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7AC41EE9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F8F41EF1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408601AbfFLIUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 04:20:53 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:33639 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404384AbfFLIUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:20:52 -0400
-Received: by mail-ua1-f67.google.com with SMTP id f20so5596568ual.0;
-        Wed, 12 Jun 2019 01:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ybvN6sVNB0HsC9fuhfWLcMT3o1VtdzgctfkIIPGr7rs=;
-        b=FY+HAegkbKvwhji5dPWIctT+eCc/3CQZ3IxdR6AixcRxUiLo8OJRW04d6c9Nk/cS+J
-         CllGFRNQmGWbZRqFoZioTwCEkD/77sUCfLDkh7+zhLiApjlEtVDYoo0zYjoWQ/Oul9Rq
-         qDZoeJhLDkkoZR4vj1PjGYMvtBnd4myQtFDPwIVMdjiojoXzgU9KmEniC0n3AE+kzKdF
-         D1xRepleDGLrn9gM2OvfgU8x1PNlEKpAnM0RG68zhzAgcxn0d3Bwwa0hDoDe4iZbSOWW
-         8AaruT5X1nFFFvd/pk87kW/1YfFpUDj08q0x0DzhNRRPxpSAX3/auj3ERJl/BcA5+mhg
-         EUoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ybvN6sVNB0HsC9fuhfWLcMT3o1VtdzgctfkIIPGr7rs=;
-        b=AG1YGRwUsynQiIvktlnArooCmwLQCrYA5GOKqhkAtPjF0kXKIb2LpX68O3+I6Aphz8
-         sfSSRqv/9OiCWTAF8RCvN+vtLE/bdvgck6y0jMDTO2Up0EB0mrVD0a9dtrRRGaK3CdAd
-         CMsG/YdSISLU2lK/mg+B3gNsMB0GVyu/fGu4J/aIjB+pqmVld9L01LHI5W74+bgz9bsM
-         oQdOaWFN1kS3BagofM7mzYMCjDS8Qf4WbbkCX9tg+PGXpMmn18sgPxChJI7/LU1frLUf
-         lYmplBcdPbxz9Fw3vH554VbpFMiheiNiBaSCkMhki4V+FHF9+TOJ307sShUvZQBwoHtf
-         0xiw==
-X-Gm-Message-State: APjAAAW60Wut4DkGfcFR4LXgb/E5cbBB7g2BHq0rIxnF/sQ/vt02Woma
-        xhX2YIIZXirMBY5d6CUx6x7ZuVV7i31mKaHqA3hM6sBV
-X-Google-Smtp-Source: APXvYqysZ8g9WLWyZgh6SikGp5P774Pu0gepJoBxs+LwbPb0WTNU3mCFEpZs+WbUWr2XHGxsGORiDNFn4W5nLmzWRcw=
-X-Received: by 2002:ab0:4744:: with SMTP id i4mr5899076uac.63.1560327650984;
- Wed, 12 Jun 2019 01:20:50 -0700 (PDT)
+        id S1730984AbfFLIXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 04:23:21 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:44406 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730856AbfFLIXV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:23:21 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 270E4263A20;
+        Wed, 12 Jun 2019 09:23:20 +0100 (BST)
+Date:   Wed, 12 Jun 2019 10:23:16 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Jonas Karlman <jonas@kwiboo.se>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v4 01/10] rockchip/vpu: rename from rockchip to hantro
+Message-ID: <20190612102316.271e8d27@collabora.com>
+In-Reply-To: <VI1PR03MB4206D849E9815A7704D175DBACEC0@VI1PR03MB4206.eurprd03.prod.outlook.com>
+References: <20190611125058.13470-1-p.zabel@pengutronix.de>
+        <20190611125058.13470-2-p.zabel@pengutronix.de>
+        <VI1PR03MB4206D849E9815A7704D175DBACEC0@VI1PR03MB4206.eurprd03.prod.outlook.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20190611093045.4810-1-yegorslists@googlemail.com> <20190612080421.GC5447@atomide.com>
-In-Reply-To: <20190612080421.GC5447@atomide.com>
-From:   Yegor Yefremov <yegorslists@googlemail.com>
-Date:   Wed, 12 Jun 2019 10:20:27 +0200
-Message-ID: <CAGm1_kufcx3siXKc6EtFJhLQ_K+V7MgVtvZuXeN2YikkPcufmg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: am335x-baltos: Fix PHY mode for ethernet
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-omap@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, peter.ujfalusi@ti.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
+On Wed, 12 Jun 2019 08:14:35 +0000
+Jonas Karlman <jonas@kwiboo.se> wrote:
 
-On Wed, Jun 12, 2019 at 10:04 AM Tony Lindgren <tony@atomide.com> wrote:
->
-> Hi,
->
-> * yegorslists@googlemail.com <yegorslists@googlemail.com> [190611 02:31]:
-> > From: Yegor Yefremov <yegorslists@googlemail.com>
-> >
-> > The PHY must add both tx and rx delay and not only on the tx clock.
->
-> As we're close to -rc5, I applied this against v5.2-rc1 and merged into
-> omap-for-v5.3/dt as it seems it's optional or has been broken for a while
-> with no fixes tag. After it hits the mainline kernel during the merge
-> window you can request it be applied into the stable trees as needed.
->
-> However, if this is urgent, let me know what regression it fixes and
-> I'll merge it into my fixes branch too.
+> On 2019-06-11 14:50, Philipp Zabel wrote:
+> > Rename the driver and all relevant identifiers from Rockchip to Hantro,
+> > as other Hantro IP based VPU implementations can be supported by the
+> > same driver.
+> > The RK3288 decoder is Hantro G1 based, the encoder is Hantro H1.  
+> 
+> The RK3288 has two VPU blocks that is described as a VPU combo in the datasheet,
+> VPU1 (the G1) and a HEVC decoder (not sharing the Hantro G2 hw regs).
+> Similarly the RK3399 has two VPU blocks, VPU2 based on G1 but with regs/fields re-ranged
+> and the RKVDPU (new generation of the HEVC block found in RK3288).
+> 
+> How can we expose these secondary blocks once rockchip vpu driver has transitioned
+> into a hantro driver? Should a new rockchip vpu driver be created for the HEVC/RKVDEC blocks?
 
-This is the same fix as 759c962d3c9bb1a60e3b4b780daa66ee6d4be13a:
+Yes, if those are not Hantro IPs a new driver should be created. I'm
+currently working on providing generic m2m helpers for stateless codecs
+to limit the code duplication incurred by this split. The good thing is
+that it should also help shrink the code of the cedrus driver (and more
+generally all stateless codec drivers).
 
-    ARM: dts: am335x-evmsk: Fix PHY mode for ethernet
-
-    The PHY must add both tx and rx delay and not only on the tx clock.
-    The board uses AR8031_AL1A PHY where the rx delay is enabled by default,
-    the tx dealy is disabled.
-
-    The reason why rgmii-txid worked because the rx delay was not disabled by
-    the driver so essentially we ended up with rgmii-id PHY mode.
-
-It seems to be working in 4.19. So I think kernels 5.0, 5.1 are the
-first to be affected. Without this patch eth1 is not working on Baltos
-devices.
-
-Thanks.
-
-Best regards,
-Yegor
