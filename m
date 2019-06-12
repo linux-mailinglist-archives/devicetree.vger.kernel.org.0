@@ -2,176 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8AE442694
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98409426D0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 14:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439286AbfFLMtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 08:49:25 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:42795 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439235AbfFLMtR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 08:49:17 -0400
-Received: by mail-ed1-f68.google.com with SMTP id z25so25567473edq.9;
-        Wed, 12 Jun 2019 05:49:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DjdxsQABmfK1WPNklnYNFmVAbkT5O5+cSSTNMpg6oUc=;
-        b=iWWcW//lap4DHEyJrA1Sl2TUhOIB7DPFDIWTr9DG8KDrvKpkdWzOoKJJAm0JXgV4hI
-         xpzVsa0Fx1UKfJ8kRh95QMRBD9HVtr3QNWW+DMb6IM8S15tOIqSAg40+NZx4fa8KGSm5
-         AukZlLpx8ZITFjeCypSdnMnRMlvGTchYw3NkuRMyjAAge+smAfIZiI+NbxH4uKfxzNC3
-         vkn0k1D/mZyneKnPhzPelu3FXc0K1AmMLrW9F/UpIxB6sB1y7K1o4dHKn6Eeb8Nyw/Bo
-         v/qV0ApNiqcMT7Qa1KsDcawoEXkMQgh4Nx+MuPYkfIK6iQBn/xFpFcMILVBxNIbOtuaN
-         mmew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DjdxsQABmfK1WPNklnYNFmVAbkT5O5+cSSTNMpg6oUc=;
-        b=ihQ3y+dUb9PfwOTOXBMdWB28NHwkjbGbqBJWGak7ZwrbYDyf+yetAZ5TsQC3dBO1nY
-         IEh2i3lsaEVw6ICrMXp2hCgDfllGWF9mPwAB0D4iiW3COUqS7e1Tg/++aJoXsbDV5PXg
-         bGhJqR24Cxg7aphkoLrECNP51l/wD82fqLF+rtY9HTJZeOuOX3dGIYjOvXiaH1EGunWB
-         WDqc4xZzeLzaUPZlMi6nzEPNZfHCEOEw/aAZ3gOEobeTfpuyjzjcTD2e6hsl04F29U/E
-         7i/Dziq1Im2Za236Ia0MCtL3JTn4maG1ZsyI0sWGctS81WrS4iscuLog1HHMD/DrkoM6
-         R42A==
-X-Gm-Message-State: APjAAAXaN3KpS6XRFUyGEdcRnDP+lDa5c4ZKNUvgqM7rbKnL7nKesRtA
-        TfcCpQH0gpAqPNKpMDgPu0z2MkODhZwY8eubvX4=
-X-Google-Smtp-Source: APXvYqwzPSHRjKrf/iW4ZovRxWbXKd8s+2QANDut49hAcIR5dxKoAQpg5uf97WL9Vcr46DHFfN4VvGBcBWS58XxzvSA=
-X-Received: by 2002:a50:ba09:: with SMTP id g9mr68765111edc.172.1560343754476;
- Wed, 12 Jun 2019 05:49:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190606090612.16685-1-igor.opaniuk@gmail.com> <3b84f3cc6cd5399f25ebd8e1c8559c58@agner.ch>
-In-Reply-To: <3b84f3cc6cd5399f25ebd8e1c8559c58@agner.ch>
-From:   Igor Opaniuk <igor.opaniuk@gmail.com>
-Date:   Wed, 12 Jun 2019 15:49:03 +0300
-Message-ID: <CAByghJZJzFN9c9V-o=SV0z07++RPqsB0R8MTsovbtLr3vqJgyw@mail.gmail.com>
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ull-colibri: enable UHS-I for USDHC1
-To:     Stefan Agner <stefan@agner.ch>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Marcel Ziswiler <marcel@ziswiler.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S2439239AbfFLM7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 08:59:12 -0400
+Received: from mail-eopbgr80041.outbound.protection.outlook.com ([40.107.8.41]:24910
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2436788AbfFLM7M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 08:59:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0eiQuoLaZMrZTZA1bkozm43LvfgCp82ZwQs4JVcHA4c=;
+ b=HPPgo62U67pC4rgBuQC0QkiDTRL5fFhMDPqU0p65fVsvB8swhEpP1sRqixS2COz/MbTwzhKT0NLdmoCF6IUUIya9YcuefRuK1NW6AupLAkpe0QwMazfqoXIzAl/Z577Iv2oCVKkb73+hoxugIucu6fJGOhT6D0bQnLMULxspP2s=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB4274.eurprd04.prod.outlook.com (52.134.124.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11; Wed, 12 Jun 2019 12:59:05 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6090:1f0b:b85b:8015]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6090:1f0b:b85b:8015%3]) with mapi id 15.20.1965.017; Wed, 12 Jun 2019
+ 12:59:05 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>
+Subject: RE: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+Thread-Topic: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+Thread-Index: AQHVGeZUO66GnquMY06cfK/cKOI4kaaKICEAgASBagCABYFsIIAD5WUg
+Date:   Wed, 12 Jun 2019 12:59:04 +0000
+Message-ID: <AM0PR04MB4481617CD1DFA9C01470B38E88EC0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+ <20190603083005.4304-3-peng.fan@nxp.com>
+ <866db682-785a-e0a6-b394-bb65c7a694c6@gmail.com>
+ <20190606142056.68272dc0@donnerap.cambridge.arm.com>
+ <AM0PR04MB448168C72F1D40C1B9BEB1F788130@AM0PR04MB4481.eurprd04.prod.outlook.com>
+In-Reply-To: <AM0PR04MB448168C72F1D40C1B9BEB1F788130@AM0PR04MB4481.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-originating-ip: [119.31.174.68]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 72fb6e7b-9b8b-4987-b9a9-08d6ef35bff4
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4274;
+x-ms-traffictypediagnostic: AM0PR04MB4274:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <AM0PR04MB4274385572B36F198C23E43488EC0@AM0PR04MB4274.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 0066D63CE6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(39860400002)(366004)(136003)(396003)(199004)(189003)(476003)(446003)(11346002)(64756008)(71190400001)(71200400001)(66446008)(3846002)(66556008)(44832011)(66946007)(66476007)(478600001)(86362001)(45080400002)(76116006)(6116002)(316002)(966005)(5660300002)(54906003)(186003)(110136005)(256004)(486006)(52536014)(73956011)(14454004)(26005)(2906002)(76176011)(53546011)(102836004)(66066001)(4326008)(99286004)(25786009)(7696005)(6506007)(55016002)(68736007)(6246003)(9686003)(53936002)(7736002)(305945005)(15650500001)(81166006)(81156014)(8936002)(6306002)(229853002)(74316002)(6436002)(7416002)(8676002)(33656002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4274;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: dtjCJnEaVEIVSWTvakMBHc8UGnf56MyGwlZ3OessdL7fr6HqVfUduW01fsOLkHkU9EZn+6Vgdst3yfUrvpgNci6wN2EhXZQemEe8fzoW0TPdBY6RRVwBDSXx0oNpLZq+EYi4RyZNBjZMcxgNSeT8sCtqZnryWkC2tHeDIPoeq1zbOuhUf6RGKaOlUnBG309PPc3fsKurdhvhK9sHHQZQQ0BfqPy8K2PUSGr/TLxTorTbaqkfN8+0XYnomA446i8w6arhXYsDziB3GCXC4LzDiAHKRbYcsxai8ANZ7MyczBjOtlyOAuy8zuCpTf8PamjctK1B8tX8dkR68gE9o7sDTbOGD1RJhzzk8tUyngY3GcRw5mnzbd4ZMe83F3eOcS7PBRBd79hKFrO6NUKIesU8TCPJUAyHKoe4eK1PnrzXx5o=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72fb6e7b-9b8b-4987-b9a9-08d6ef35bff4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 12:59:05.1665
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4274
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+Hi Andre,
 
-On Wed, Jun 12, 2019 at 3:17 PM Stefan Agner <stefan@agner.ch> wrote:
->
-> On 06.06.2019 11:06, Igor Opaniuk wrote:
-> > From: Igor Opaniuk <igor.opaniuk@toradex.com>
+> Subject: RE: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+>=20
+> Hi Andre,
+> > Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
 > >
-> > Allows to use the SD interface at a higher speed mode if the card
-> > supports it. For this the signaling voltage is switched from 3.3V to
-> > 1.8V under the usdhc1's drivers control.
+> > On Mon, 3 Jun 2019 09:32:42 -0700
+> > Florian Fainelli <f.fainelli@gmail.com> wrote:
 > >
-> > Signed-off-by: Igor Opaniuk <igor.opaniuk@toradex.com>
-> > ---
-> >  arch/arm/boot/dts/imx6ul.dtsi                  |  4 ++++
-> >  arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi | 11 +++++++++--
-> >  arch/arm/boot/dts/imx6ull-colibri.dtsi         |  6 ++++++
-> >  3 files changed, 19 insertions(+), 2 deletions(-)
+> > Hi,
 > >
-> > diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.d=
-tsi
-> > index fc388b84bf22..91a0ced44e27 100644
-> > --- a/arch/arm/boot/dts/imx6ul.dtsi
-> > +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> > @@ -857,6 +857,8 @@
-> >                                        <&clks IMX6UL_CLK_USDHC1>,
-> >                                        <&clks IMX6UL_CLK_USDHC1>;
-> >                               clock-names =3D "ipg", "ahb", "per";
-> > +                             fsl,tuning-step=3D <2>;
-> > +                             fsl,tuning-start-tap =3D <20>;
-> >                               bus-width =3D <4>;
-> >                               status =3D "disabled";
-> >                       };
-> > @@ -870,6 +872,8 @@
-> >                                        <&clks IMX6UL_CLK_USDHC2>;
-> >                               clock-names =3D "ipg", "ahb", "per";
-> >                               bus-width =3D <4>;
-> > +                             fsl,tuning-step=3D <2>;
-> > +                             fsl,tuning-start-tap =3D <20>;
-> >                               status =3D "disabled";
-> >                       };
+> > > On 6/3/19 1:30 AM, peng.fan@nxp.com wrote:
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > >
+> > > > This mailbox driver implements a mailbox which signals transmitted
+> > > > data via an ARM smc (secure monitor call) instruction. The mailbox
+> > > > receiver is implemented in firmware and can synchronously return
+> > > > data when it returns execution to the non-secure world again.
+> > > > An asynchronous receive path is not implemented.
+> > > > This allows the usage of a mailbox to trigger firmware actions on
+> > > > SoCs which either don't have a separate management processor or on
+> > > > which such a core is not available. A user of this mailbox could
+> > > > be the SCP interface.
+> > > >
+> > > > Modified from Andre Przywara's v2 patch
+> > > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+F
+> > > > lo
+> > > >
 > >
-> > diff --git a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> > b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> > index 006690ea98c0..7dc7770cf52c 100644
-> > --- a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> > +++ b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-> > @@ -145,13 +145,20 @@
-> >  };
+> re.kernel.org%2Fpatchwork%2Fpatch%2F812999%2F&amp;data=3D02%7C01%
+> > 7Cpen
+> > > >
 > >
-> >  &usdhc1 {
-> > -     pinctrl-names =3D "default";
-> > +     pinctrl-names =3D "default", "state_100mhz", "state_200mhz", "sle=
-ep";
-> >       pinctrl-0 =3D <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_cd>;
-> > -     no-1-8-v;
-> > +     pinctrl-1 =3D <&pinctrl_usdhc1_100mhz &pinctrl_snvs_usdhc1_cd>;
-> > +     pinctrl-2 =3D <&pinctrl_usdhc1_100mhz &pinctrl_snvs_usdhc1_cd>;
->
-> Should that not be pinctrl_usdhc1_200mhz?
->
-
-Correct, thanks for pointing this out.
-Taking into account that the patch was already accepted by Shawn, will
-send another to fix this typo ASAP (added to my todo list).
-
-Thanks
-
-> --
-> Stefan
->
-> > +     pinctrl-3 =3D <&pinctrl_usdhc1 &pinctrl_snvs_usdhc1_sleep_cd>;
-> >       cd-gpios =3D <&gpio5 0 GPIO_ACTIVE_LOW>;
-> >       disable-wp;
-> >       wakeup-source;
-> >       keep-power-in-suspend;
-> >       vmmc-supply =3D <&reg_3v3>;
-> > +     vqmmc-supply =3D <&reg_sd1_vmmc>;
-> > +     sd-uhs-sdr12;
-> > +     sd-uhs-sdr25;
-> > +     sd-uhs-sdr50;
-> > +     sd-uhs-sdr104;
-> >       status =3D "okay";
-> >  };
-> > diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > index 9ad1da159768..d56728f03c35 100644
-> > --- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > +++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > @@ -545,6 +545,12 @@
-> >               >;
-> >       };
+> g.fan%40nxp.com%7C15c4180b8fe5405d3de808d6ea81d5f1%7C686ea1d3bc
+> > 2b4c6
+> > > >
+> > fa92cd99c5c301635%7C0%7C0%7C636954240720601454&amp;sdata=3D1Cp
+> > WSgTH7lF
+> > > > cBKxJnLeIDw%2FDAQJJO%2FVypV1LUU1BRQA%3D&amp;reserved=3D0
+> > > >
+> > > > Cc: Andre Przywara <andre.przywara@arm.com>
+> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > >
+> > > [snip]
+> > >
+> > > +#define ARM_SMC_MBOX_USB_IRQ	BIT(1)
+> > >
+> > > That flag appears unused.
+> > >
+> > > > +static int arm_smc_mbox_probe(struct platform_device *pdev) {
+> > > > +	struct device *dev =3D &pdev->dev;
+> > > > +	struct mbox_controller *mbox;
+> > > > +	struct arm_smc_chan_data *chan_data;
+> > > > +	const char *method;
+> > > > +	bool use_hvc =3D false;
+> > > > +	int ret, irq_count, i;
+> > > > +	u32 val;
+> > > > +
+> > > > +	if (!of_property_read_u32(dev->of_node, "arm,num-chans", &val)) {
+> > > > +		if (val < 1 || val > INT_MAX) {
+> > > > +			dev_err(dev, "invalid arm,num-chans value %u
+> > of %pOFn\n", val,
+> > > > +pdev->dev.of_node);
 > >
-> > +     pinctrl_snvs_usdhc1_sleep_cd: snvs-usdhc1-cd-grp-slp {
-> > +             fsl,pins =3D <
-> > +                     MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00     0x0
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_snvs_wifi_pdn: snvs-wifi-pdn-grp {
-> >               fsl,pins =3D <
-> >                       MX6ULL_PAD_BOOT_MODE1__GPIO5_IO11       0x14
+> > Isn't the of_node parameter redundant, because dev_err() already takes
+> > care of that?
+>=20
+> I'll remove that.
+>=20
+> >
+> > > > +			return -EINVAL;
+> > > > +		}
+> > > > +	}
+> > >
+> > > Should not the upper bound check be done against UINT_MAX since val
+> > > is an unsigned int?
+> >
+> > But wouldn't that be somewhat pointless, given that val is a u32? So I
+> > guess we could just condense this down to:
+> > ...
+> > 		if (!val) {
+> > ...
+>=20
+> make sense.
+>=20
+> >
+> > > > +
+> > > > +	irq_count =3D platform_irq_count(pdev);
+> > > > +	if (irq_count =3D=3D -EPROBE_DEFER)
+> > > > +		return irq_count;
+> > > > +
+> > > > +	if (irq_count && irq_count !=3D val) {
+> > > > +		dev_err(dev, "Interrupts not match num-chans\n");
+> > >
+> > > Interrupts property does not match \"arm,num-chans\" would be more
+> > correct.
+> >
+> > Given that interrupts are optional, do we have to rely on this?
+>=20
+> If there is interrupt property, the interrupts should match channel count=
+s.
+>=20
+> Do we actually
+> > need one interrupt per channel?
+>=20
+> I thought about this, provide one interrupt for all channels.
+> But there is no good way to let interrupt handlers know which channel
+> triggers the interrupt. So I use one interrupt per channel.
+>=20
+> >
+> > > > +		return -EINVAL;
+> > > > +	}
+> > > > +
+> > > > +	if (!of_property_read_string(dev->of_node, "method", &method)) {
+> > > > +		if (!strcmp("hvc", method)) {
+> > > > +			use_hvc =3D true;
+> > > > +		} else if (!strcmp("smc", method)) {
+> > > > +			use_hvc =3D false;
+> > > > +		} else {
+> > > > +			dev_warn(dev, "invalid \"method\" property: %s\n",
+> > > > +				 method);
+> > > > +
+> > > > +			return -EINVAL;
+> > > > +		}
+> > >
+> > > Having at least one method specified does not seem to be checked
+> > > later on in the code, so if I omitted to specify that property, we
+> > > would still register the mailbox and default to use "smc" since the
+> > > ARM_SMC_MBOX_USE_HVC flag would not be set, would not we want to
+> > make
+> > > sure that we do have in fact a valid method specified given the
+> > > binding documents that property as mandatory?
+> > >
+> > > [snip]
+> > >
+> > > > +	mbox->txdone_poll =3D false;
+> > > > +	mbox->txdone_irq =3D false;
+> > > > +	mbox->ops =3D &arm_smc_mbox_chan_ops;
+> > > > +	mbox->dev =3D dev;
+> > > > +
+> > > > +	ret =3D mbox_controller_register(mbox);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	platform_set_drvdata(pdev, mbox);
+> > >
+> > > I would move this above mbox_controller_register() that way there is
+> > > no room for race conditions in case another part of the driver
+> > > expects to have pdev->dev.drvdata set before the mbox controller is
+> registered.
+> > > Since you use devm_* functions for everything, you may even remove
+> > > that call.
+> > >
+> > > [snip]
+> > >
+> > > > +#ifndef _LINUX_ARM_SMC_MAILBOX_H_ #define
+> > > > +_LINUX_ARM_SMC_MAILBOX_H_
+> > > > +
+> > > > +struct arm_smccc_mbox_cmd {
+> > > > +	unsigned long a0, a1, a2, a3, a4, a5, a6, a7; };
+> > >
+> > > Do you expect this to be used by other in-kernel users? If so, it
+> > > might be good to document how a0 can have a special meaning and be
+> > > used as a substitute for the function_id?
+> >
+> > I don't think we should really expose this outside of the driver. From
+> > a mailbox point of view this is just the payload, transported according=
+ to the
+> SMCCC.
+> > Also using "long" here sounds somewhat troublesome.
 
+Long on ARM64 is 64bit, and 32bit on ARM32, so I use long.
+Do you forsee any issues?
 
+> >
+> > Also, looking at the SMCCC, I only see six parameters in addition to
+> > the function identifier. Shall we reflect this here?
 
---=20
-Best regards - Freundliche Gr=C3=BCsse - Meilleures salutations
+a0 is used as function id, not no arm,func-ids provided in dts. a1-a7 are
+also passed to smc.
+If arm,func-ids is provided, a0 will be omitted just for consistency as abo=
+ve.
 
-Igor Opaniuk
+You mean write comments in the code for it?
 
-mailto: igor.opaniuk@gmail.com
-skype: igor.opanyuk
-+380 (93) 836 40 67
-http://ua.linkedin.com/in/iopaniuk
+Thanks,
+Peng.
+
+>=20
+> I could move it to driver code. Jassi, do you have any comments?
+>=20
+> Thanks,
+> Peng.
+>=20
+> >
+> > Cheers,
+> > Andre.
+
