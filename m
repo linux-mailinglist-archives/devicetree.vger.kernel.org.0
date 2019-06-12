@@ -2,90 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EF194282B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 15:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3797C42846
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409241AbfFLN53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 09:57:29 -0400
-Received: from michel.telenet-ops.be ([195.130.137.88]:59328 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409240AbfFLN53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 09:57:29 -0400
-Received: from ramsan ([84.194.111.163])
-        by michel.telenet-ops.be with bizsmtp
-        id PpxR2000l3XaVaC06pxRkQ; Wed, 12 Jun 2019 15:57:26 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1hb3kj-0002XP-G1; Wed, 12 Jun 2019 15:57:25 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1hb3kj-00056E-Ds; Wed, 12 Jun 2019 15:57:25 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S2439541AbfFLOAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 10:00:13 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:56396 "EHLO deadmen.hmeau.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2439517AbfFLOAM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 10:00:12 -0400
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
+        id 1hb3nB-0008FY-7x; Wed, 12 Jun 2019 21:59:57 +0800
+Received: from herbert by gondobar with local (Exim 4.89)
+        (envelope-from <herbert@gondor.apana.org.au>)
+        id 1hb3n6-0000yf-Ll; Wed, 12 Jun 2019 21:59:52 +0800
+Date:   Wed, 12 Jun 2019 21:59:52 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Horia Geanta <horia.geanta@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v3] dt-bindings: display: renesas: du: Document optional reset properties
-Date:   Wed, 12 Jun 2019 15:57:23 +0200
-Message-Id: <20190612135723.19561-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        Mark Rutland <mark.rutland@arm.com>,
+        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx7ulp: add crypto support
+Message-ID: <20190612135952.ds6zzh7ppahiuodd@gondor.apana.org.au>
+References: <20190606080255.25504-1-horia.geanta@nxp.com>
+ <20190612103926.GE11086@dragon>
+ <VI1PR0402MB3485A573518D60A573BA55C298EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612130602.GH11086@dragon>
+ <VI1PR0402MB348596BF52CE43B5D4CD534798EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612132600.GI11086@dragon>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190612132600.GI11086@dragon>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the optional properties for describing module resets, to
-support resetting display channels on R-Car Gen2 and Gen3.
+On Wed, Jun 12, 2019 at 09:26:02PM +0800, Shawn Guo wrote:
+>
+> Yes, it happens from time to time depending on maintainer's style. I'm
+> fine with the DT changes going through other subsystem tree, if the
+> subsystem maintainer wants to and is willing to take the risk of merge
+> conflict between his tree and arm-soc tree.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
-v3:
-  - Add Acked-by,
-  - Drop LVDS resets, as LVDS is now covered by a separate binding,
-  - Update the example.
+I have no problems with potential merge conflicts.
 
-v2:
-  - s/phandles/phandle/.
----
- .../devicetree/bindings/display/renesas,du.txt         | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/renesas,du.txt b/Documentation/devicetree/bindings/display/renesas,du.txt
-index aedb22b4d1613d1f..87e5fb2ce75e103f 100644
---- a/Documentation/devicetree/bindings/display/renesas,du.txt
-+++ b/Documentation/devicetree/bindings/display/renesas,du.txt
-@@ -44,6 +44,14 @@ Required Properties:
-     instance that serves the DU channel, and the channel index identifies the
-     LIF instance in that VSP.
- 
-+Optional properties:
-+  - resets: A list of phandle + reset-specifier pairs, one for each entry in
-+    the reset-names property.
-+  - reset-names: Names of the resets. This property is model-dependent.
-+    - R8A779[0123456] use one reset for a group of one or more successive
-+      channels. The resets must be named "du.x" with "x" being the numerical
-+      index of the lowest channel in the group.
-+
- Required nodes:
- 
- The connections to the DU output video ports are modeled using the OF graph
-@@ -88,6 +96,8 @@ Example: R8A7795 (R-Car H3) ES2.0 DU
- 			 <&cpg CPG_MOD 722>,
- 			 <&cpg CPG_MOD 721>;
- 		clock-names = "du.0", "du.1", "du.2", "du.3";
-+		resets = <&cpg 724>, <&cpg 722>;
-+		reset-names = "du.0", "du.2";
- 		vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd0 1>;
- 
- 		ports {
+Cheers,
 -- 
-2.17.1
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
