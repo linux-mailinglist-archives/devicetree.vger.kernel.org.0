@@ -2,302 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A58784234C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 13:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BA94235B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 13:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436472AbfFLLB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 07:01:28 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:38544 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438197AbfFLLB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 07:01:27 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id C997560721; Wed, 12 Jun 2019 11:01:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560337285;
-        bh=ltqfI4RkOEUV7BgoL5B9tJXKToql82i45Sir7z66Kr8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GsGcM1K5ZGRDPtuAUrvb2BQ/ZyZ2d1z4Vkfm+YW2nsq7+Y4gKyVhQ45R9rFHctbwN
-         x4zfG0twIW2bmKD736zap1Rn1lJTIGWT+VnykTpz7uFkdY8Mf3/PW7SLr7AeQr+ain
-         VII7fPOQptBebzKcdW7k+Mzqz2CC8IcOScEEXCC8=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from blr-ubuntu-288.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: nishakumari@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9378060A97;
-        Wed, 12 Jun 2019 11:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560337282;
-        bh=ltqfI4RkOEUV7BgoL5B9tJXKToql82i45Sir7z66Kr8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Q1lh4C+h7nCIXvvYlbUgtm3L29/boMcrjStskoWFptp3NctVpyTbgPoUFICuwd0s7
-         FfyfTMzi6RV7NZ6B4B+hU/jmvMRicWYG65ot9DsJiZd5I75pdYQzv3dYJqwwgi6PxS
-         73Ebglke3OxEVo9YACbhW6tgm36DVYnUft3pz/fw=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9378060A97
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=nishakumari@codeaurora.org
-From:   Nisha Kumari <nishakumari@codeaurora.org>
-To:     bjorn.andersson@linaro.org, broonie@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org
-Cc:     lgirdwood@gmail.com, mark.rutland@arm.com, david.brown@linaro.org,
-        linux-kernel@vger.kernel.org, kgunda@codeaurora.org,
-        rnayak@codeaurora.org, Nisha Kumari <nishakumari@codeaurora.org>
-Subject: [PATCH 4/4] regulator: adding interrupt handling in labibb regulator
-Date:   Wed, 12 Jun 2019 16:30:52 +0530
-Message-Id: <1560337252-27193-5-git-send-email-nishakumari@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1560337252-27193-1-git-send-email-nishakumari@codeaurora.org>
-References: <1560337252-27193-1-git-send-email-nishakumari@codeaurora.org>
+        id S2407276AbfFLLCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 07:02:17 -0400
+Received: from mail-eopbgr1410125.outbound.protection.outlook.com ([40.107.141.125]:56565
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2406154AbfFLLCR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 07:02:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nv5q1vMEkrJgZwEcOn0TFzybJ8868g0BWKO3vIOwxoI=;
+ b=L9qMqpnEoNtIMQjrUYMdPCCJ4vP47yFWvn/EwY2eZTaaULoY0e8EJVx2MDyz93M2Sc0TaoKv8xAtyTyVyZ2sxskLKu5RsvSbyw5YPbOhnMK9ludItEq8jbeERNvJ7GgtnOC7RjjbrDQHSy3M8erV0DSiqFL+2tNO6JiJh3EvQUI=
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
+ TY1PR01MB1577.jpnprd01.prod.outlook.com (52.133.162.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11; Wed, 12 Jun 2019 11:02:12 +0000
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1987.010; Wed, 12 Jun 2019
+ 11:02:12 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Simon Horman <horms@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: RE: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+Thread-Topic: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+Thread-Index: AQHVHQkEF65BtXynz0KAWAQHwuh89aaXt2YAgAAAWKCAABVNAIAAACxQgAAILACAAAn9MA==
+Date:   Wed, 12 Jun 2019 11:02:11 +0000
+Message-ID: <TY1PR01MB1770B85D549CD20C963620E6C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+References: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <CAMuHMdXv91Tt+78zLJj6pHFj9XrEJJbWOf-kzBPRbcw=h+iDHg@mail.gmail.com>
+ <TY1PR01MB1770E7346A27FB36658142E1C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+ <20190612094524.GA2153@kunai>
+ <TY1PR01MB17707726AF6BF3EE5408D5CDC0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+ <20190612101516.xrlvqw7cls7eiv4u@ninjato>
+In-Reply-To: <20190612101516.xrlvqw7cls7eiv4u@ninjato>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8f4197c5-a86a-4de9-2adc-08d6ef256bcb
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1577;
+x-ms-traffictypediagnostic: TY1PR01MB1577:
+x-microsoft-antispam-prvs: <TY1PR01MB1577312DB59A70B662C4EEB2C0EC0@TY1PR01MB1577.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0066D63CE6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(366004)(346002)(136003)(396003)(39860400002)(53484002)(469094003)(189003)(199004)(53936002)(6246003)(4326008)(66066001)(25786009)(6116002)(316002)(3846002)(478600001)(14454004)(33656002)(8676002)(66446008)(64756008)(71200400001)(71190400001)(186003)(81166006)(76116006)(54906003)(81156014)(73956011)(66946007)(66556008)(26005)(66476007)(99286004)(86362001)(7736002)(53546011)(6506007)(305945005)(486006)(476003)(102836004)(256004)(74316002)(11346002)(446003)(68736007)(14444005)(44832011)(7696005)(5660300002)(76176011)(55016002)(52536014)(2906002)(229853002)(8936002)(6916009)(9686003)(7416002)(6436002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1577;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: wGZ+Y/FG/6em+TFZ4Y+YsIOAj7v/j4RKMmqD+1N26984nTwz9f9LurjPkVGgq7HmnIau13Uau+dMwYOyzlUCDpLII2K48kesnQwRp4pp8DLxjuPtoGXde4o2xaS0JEN+rNiuhIOr5kJcO37opwKArDOMx/GEzmy6+JZH+X/RIs7Ejf6GWBXJdQN7QCHBIhgx1oLdtsiwGZln1VkOUAS3QmPmKDqsrOIoJXnPtY2bjFq7tcU8HWcL1c62VvJz5deKV/CbhDiA8iLqRqK+EP7GgQsRHSrDifbsIgk3q2L0f5LnoVanoxD4SueZmLizJpQD5O4hfeHNO7WlIe8fpCz8R6Pu/wlY+D5pjiS23ZZm33FDIALs7Bncw3t82KnRsY74Rc+Sa7eSSiezmF+zk7I/NXHG6XLc0P6sKQwHyWyQWxk=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f4197c5-a86a-4de9-2adc-08d6ef256bcb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 11:02:11.9669
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1577
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds short circuit interrupt handling and recovery.
+Hello Wolfram,
 
-Signed-off-by: Nisha Kumari <nishakumari@codeaurora.org>
----
- drivers/regulator/qcom-labibb-regulator.c | 161 ++++++++++++++++++++++++++++++
- 1 file changed, 161 insertions(+)
+Thank you for your feedback!
 
-diff --git a/drivers/regulator/qcom-labibb-regulator.c b/drivers/regulator/qcom-labibb-regulator.c
-index 0c68883..04fc9512 100644
---- a/drivers/regulator/qcom-labibb-regulator.c
-+++ b/drivers/regulator/qcom-labibb-regulator.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2019, The Linux Foundation. All rights reserved.
- 
-+#include <linux/interrupt.h>
- #include <linux/module.h>
- #include <linux/of_irq.h>
- #include <linux/platform_device.h>
-@@ -16,22 +17,28 @@
- #define REG_LAB_ENABLE_CTL		0x46
- #define LAB_STATUS1_VREG_OK_BIT		BIT(7)
- #define LAB_ENABLE_CTL_EN		BIT(7)
-+#define LAB_STATUS1_SC_DETECT_BIT	BIT(6)
- 
- #define REG_IBB_STATUS1			0x08
- #define REG_IBB_ENABLE_CTL		0x46
- #define IBB_STATUS1_VREG_OK_BIT		BIT(7)
- #define IBB_ENABLE_CTL_MASK		(BIT(7) | BIT(6))
- #define IBB_CONTROL_ENABLE		BIT(7)
-+#define IBB_STATUS1_SC_DETECT_BIT	BIT(6)
- 
- #define POWER_DELAY			8000
-+#define POLLING_SCP_DONE_COUNT		2
-+#define POLLING_SCP_DONE_INTERVAL_MS	5
- 
- struct lab_regulator {
- 	struct regulator_dev		*rdev;
-+	int				lab_sc_irq;
- 	int				vreg_enabled;
- };
- 
- struct ibb_regulator {
- 	struct regulator_dev		*rdev;
-+	int				ibb_sc_irq;
- 	int				vreg_enabled;
- };
- 
-@@ -288,6 +295,112 @@ static int qcom_ibb_regulator_is_enabled(struct regulator_dev *rdev)
- 	.owner = THIS_MODULE,
- };
- 
-+static void labibb_sc_err_recovery_work(void *_labibb)
-+{
-+	int ret;
-+	struct qcom_labibb *labibb = (struct qcom_labibb *)_labibb;
-+
-+	labibb->ibb_vreg.vreg_enabled = 0;
-+	labibb->lab_vreg.vreg_enabled = 0;
-+
-+	ret = qcom_ibb_regulator_enable(labibb->lab_vreg.rdev);
-+	if (ret < 0) {
-+		dev_err(labibb->dev,
-+			"Interrupt recovery not possible as IBB enable failed");
-+		return;
-+	}
-+
-+	ret = qcom_lab_regulator_enable(labibb->ibb_vreg.rdev);
-+	if (ret < 0) {
-+		dev_err(labibb->dev,
-+			"Interrupt recovery not possible as LAB enable failed");
-+		ret = qcom_ibb_regulator_disable(labibb->lab_vreg.rdev);
-+		if (ret < 0)
-+			dev_err(labibb->dev, "IBB disable failed");
-+		return;
-+	}
-+	dev_info(labibb->dev, "Interrupt recovery done");
-+}
-+
-+static irqreturn_t labibb_sc_err_handler(int irq, void *_labibb)
-+{
-+	int ret, count;
-+	u16 reg;
-+	u8 sc_err_mask, val;
-+	char *str;
-+	struct qcom_labibb *labibb = (struct qcom_labibb *)_labibb;
-+	bool in_sc_err, lab_en, ibb_en, scp_done = false;
-+
-+	if (irq == labibb->lab_vreg.lab_sc_irq) {
-+		reg = labibb->lab_base + REG_LAB_STATUS1;
-+		sc_err_mask = LAB_STATUS1_SC_DETECT_BIT;
-+		str = "LAB";
-+	} else if (irq == labibb->ibb_vreg.ibb_sc_irq) {
-+		reg = labibb->ibb_base + REG_IBB_STATUS1;
-+		sc_err_mask = IBB_STATUS1_SC_DETECT_BIT;
-+		str = "IBB";
-+	} else {
-+		return IRQ_HANDLED;
-+	}
-+
-+	ret = qcom_labibb_read(labibb, reg, &val, 1);
-+	if (ret < 0) {
-+		dev_err(labibb->dev, "Read failed, ret=%d\n", ret);
-+		return IRQ_HANDLED;
-+	}
-+	dev_dbg(labibb->dev, "%s SC error triggered! %s_STATUS1 = %d\n",
-+		str, str, val);
-+
-+	in_sc_err = !!(val & sc_err_mask);
-+
-+	/*
-+	 * The SC(short circuit) fault would trigger PBS(Portable Batch
-+	 * System) to disable regulators for protection. This would
-+	 * cause the SC_DETECT status being cleared so that it's not
-+	 * able to get the SC fault status.
-+	 * Check if LAB/IBB regulators are enabled in the driver but
-+	 * disabled in hardware, this means a SC fault had happened
-+	 * and SCP handling is completed by PBS.
-+	 */
-+	if (!in_sc_err) {
-+		count = POLLING_SCP_DONE_COUNT;
-+		do {
-+			reg = labibb->lab_base + REG_LAB_ENABLE_CTL;
-+			ret = qcom_labibb_read(labibb, reg, &val, 1);
-+			if (ret < 0) {
-+				dev_err(labibb->dev,
-+					"Read failed, ret=%d\n", ret);
-+				return IRQ_HANDLED;
-+			}
-+			lab_en = !!(val & LAB_ENABLE_CTL_EN);
-+
-+			reg = labibb->ibb_base + REG_IBB_ENABLE_CTL;
-+			ret = qcom_labibb_read(labibb, reg, &val, 1);
-+			if (ret < 0) {
-+				dev_err(labibb->dev,
-+					"Read failed, ret=%d\n", ret);
-+				return IRQ_HANDLED;
-+			}
-+			ibb_en = !!(val & IBB_CONTROL_ENABLE);
-+			if (lab_en || ibb_en)
-+				msleep(POLLING_SCP_DONE_INTERVAL_MS);
-+			else
-+				break;
-+		} while ((lab_en || ibb_en) && count--);
-+
-+		if (labibb->lab_vreg.vreg_enabled &&
-+		    labibb->ibb_vreg.vreg_enabled && !lab_en && !ibb_en) {
-+			dev_dbg(labibb->dev, "LAB/IBB has been disabled by SCP\n");
-+			scp_done = true;
-+		}
-+	}
-+
-+	if (in_sc_err || scp_done)
-+		labibb_sc_err_recovery_work(labibb);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static int register_lab_regulator(struct qcom_labibb *labibb,
- 				  struct device_node *of_node)
- {
-@@ -295,6 +408,20 @@ static int register_lab_regulator(struct qcom_labibb *labibb,
- 	struct regulator_init_data *init_data;
- 	struct regulator_config cfg = {};
- 
-+	(labibb->lab_vreg.lab_sc_irq > 0) {
-+		ret = devm_request_threaded_irq(labibb->dev,
-+						labibb->lab_vreg.lab_sc_irq,
-+						NULL, labibb_sc_err_handler,
-+						IRQF_ONESHOT |
-+						IRQF_TRIGGER_RISING,
-+						"lab-sc-err", labibb);
-+		if (ret) {
-+			dev_err(labibb->dev, "Failed to register 'lab-sc-err' irq ret=%d\n",
-+				ret);
-+			return ret;
-+		}
-+	}
-+
- 	cfg.dev = labibb->dev;
- 	cfg.driver_data = labibb;
- 	cfg.of_node = of_node;
-@@ -326,6 +453,20 @@ static int register_ibb_regulator(struct qcom_labibb *labibb,
- 	struct regulator_init_data *init_data;
- 	struct regulator_config cfg = {};
- 
-+	if (labibb->ibb_vreg.ibb_sc_irq > 0) {
-+		ret = devm_request_threaded_irq(labibb->dev,
-+						labibb->ibb_vreg.ibb_sc_irq,
-+						NULL, labibb_sc_err_handler,
-+						IRQF_ONESHOT |
-+						IRQF_TRIGGER_RISING,
-+						"ibb-sc-err", labibb);
-+		if (ret) {
-+			dev_err(labibb->dev, "Failed to register 'ibb-sc-err' irq ret=%d\n",
-+				ret);
-+			return ret;
-+		}
-+	}
-+
- 	cfg.dev = labibb->dev;
- 	cfg.driver_data = labibb;
- 	cfg.of_node = of_node;
-@@ -390,6 +531,16 @@ static int qcom_labibb_regulator_probe(struct platform_device *pdev)
- 		switch (type) {
- 		case QCOM_LAB_TYPE:
- 			labibb->lab_base = base;
-+
-+			labibb->lab_vreg.lab_sc_irq = -EINVAL;
-+			ret = of_irq_get_byname(child, "lab-sc-err");
-+			if (ret < 0)
-+				dev_dbg(labibb->dev,
-+					"Unable to get lab-sc-err, ret = %d\n",
-+					ret);
-+			else
-+				labibb->lab_vreg.lab_sc_irq = ret;
-+
- 			ret = register_lab_regulator(labibb, child);
- 			if (ret < 0) {
- 				dev_err(labibb->dev,
-@@ -400,6 +551,16 @@ static int qcom_labibb_regulator_probe(struct platform_device *pdev)
- 
- 		case QCOM_IBB_TYPE:
- 			labibb->ibb_base = base;
-+
-+			labibb->ibb_vreg.ibb_sc_irq = -EINVAL;
-+			ret = of_irq_get_byname(child, "ibb-sc-err");
-+			if (ret < 0)
-+				dev_dbg(labibb->dev,
-+					"Unable to get ibb-sc-err, ret = %d\n",
-+					ret);
-+			else
-+				labibb->ibb_vreg.ibb_sc_irq = ret;
-+
- 			ret = register_ibb_regulator(labibb, child);
- 			if (ret < 0) {
- 				dev_err(labibb->dev,
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> From: Wolfram Sang <wsa@the-dreams.de>
+> Sent: 12 June 2019 11:15
+> Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
+>=20
+>=20
+> > File arch/arm64/boot/dts/renesas/hihope-common.dtsi contains common
+> > definitions for the mother boards for both flavours (including the
+> > eMMC). My understanding is that R-Car M3-N does support HS400, hence
+> > the need for the property here.
+>=20
+> I won't be super strict here, yet I think it is more elegant to add the
+> HS400 properties to the board DTS files, not the dtsi. I mean we could
+> add them to the SoC dtsi otherwise.
+
+We will give both approaches a shot in due time, once the relevant HW
+will be available, but I do wonder why we need to make a distinction in the=
+ DT
+when we have a quirk in the driver (the real problem is that HS400 doesn't =
+work
+only on some revisions of the RZ/G2M chip, do we need to create different .=
+dtsi for
+different revisions of the same SoC? Or perhaps different versions of the s=
+ame board
+dts?)? We could simply put a comment in the DT once we add the compatibilit=
+y of the
+eMMC with HS400, something like:
+"HS400 won't work on RZ/G2M rev=3D1.2"
+and let the driver handle the difference between revisions of the SoC, this=
+ would keep
+things as compact as they possibly can be, as well as simplify design and m=
+aintenance.
+
+I hope this helps.
+
+Thanks,
+Fab
+
+
 
