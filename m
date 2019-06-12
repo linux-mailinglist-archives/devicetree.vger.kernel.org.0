@@ -2,97 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE21B439A3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B490A42B88
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 17:59:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732542AbfFMPPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:15:08 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:50109 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732234AbfFMN0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 09:26:11 -0400
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id C73C020000C;
-        Thu, 13 Jun 2019 13:26:08 +0000 (UTC)
-Date:   Wed, 12 Jun 2019 17:48:27 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: vendor: Escape single quote
-Message-ID: <20190612154827.ykrxtuv2q7uxmwoj@flea>
-References: <20190525134140.6220-1-maxime.ripard@bootlin.com>
- <CAL_JsqK829bfc4VX1hmYRuLYWQXaixAgSwU2N7veA41vfxLXvw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ojdig4ufr3fvpwhg"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK829bfc4VX1hmYRuLYWQXaixAgSwU2N7veA41vfxLXvw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+        id S2438050AbfFLP7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 11:59:32 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44130 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2438038AbfFLP7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 11:59:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=YA2MYBNBMatcq9Mz5KnNb8V+dC8ifZ7eYiCOOwL6tbo=; b=lz9BXByn6KgX
+        Eutanqm/JEhXdOmdzvZvsoooBh6ZUcu94QNmg8Ibi05s02nTg3zGQvw4lUNqzgfV5wnBoIaJMkYkY
+        /DbaHmcGaONCxNJH4e21H6w6/bV0hroU40xOE6biJPyPjx6FqY4lwQqkBk1hTvG6F4uXkrGyWFvfm
+        zsi70=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hb5ep-000366-NJ; Wed, 12 Jun 2019 15:59:27 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 04CC7440046; Wed, 12 Jun 2019 16:59:26 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, jsarha@ti.com, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        misael.lopez@ti.com, robh+dt@kernel.org
+Subject: Applied "ASoC: ti: davinci-mcasp: Support for auxclk-fs-ratio" to the asoc tree
+In-Reply-To: <20190611122941.10708-3-peter.ujfalusi@ti.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190612155927.04CC7440046@finisterre.sirena.org.uk>
+Date:   Wed, 12 Jun 2019 16:59:26 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The patch
 
---ojdig4ufr3fvpwhg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+   ASoC: ti: davinci-mcasp: Support for auxclk-fs-ratio
 
-Hi,
+has been applied to the asoc tree at
 
-On Tue, Jun 11, 2019 at 03:18:51PM -0600, Rob Herring wrote:
-> On Sat, May 25, 2019 at 7:41 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > Single quotes need to be escaped in YAML, make sure it's the case.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 19cc3240a445..ec53162e900d 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -672,7 +672,7 @@ patternProperties:
-> >    "^plantower,.*":
-> >      description: Plantower Co., Ltd
-> >    "^plathome,.*":
-> > -    description: Plat'Home Co., Ltd.
-> > +    description: Plat\'Home Co., Ltd.
->
-> Actually, I think this isn't necessary. Where was this causing a
-> problem? Only in single quoted strings do you have to escape a single
-> quote and it is done with 2 single quotes rather than a backslash.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
 
-I guess I misread the YAML spec though... Sorry.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-> However, to maintain a json compatible subset of yaml, maybe we do
-> need it.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you don't want it anymore, I guess we can drop or revert it.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Maxime
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks,
+Mark
 
---ojdig4ufr3fvpwhg
-Content-Type: application/pgp-signature; name="signature.asc"
+From 764958f2b5239cbf174e70cad4c3f19a8c1081ba Mon Sep 17 00:00:00 2001
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Date: Tue, 11 Jun 2019 15:29:41 +0300
+Subject: [PATCH] ASoC: ti: davinci-mcasp: Support for auxclk-fs-ratio
 
------BEGIN PGP SIGNATURE-----
+When McASP is bus master and it's AUXCLK clock is not static, but it is
+a multiple of the frame sync the constraint rules should take it account
+when validating possible stream formats.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQEeywAKCRDj7w1vZxhR
-xbQTAP9aeBEzFtsrAUI/WlTsmFq1tfkJJNyS0XOvprvVnIF4vwEA/8L4kV9E7v0K
-/oXbZNPQojz/la/iqD91nAmsPXcDtQg=
-=Y1ER
------END PGP SIGNATURE-----
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/ti/davinci-mcasp.c | 52 ++++++++++++++++++++++++++++++------
+ 1 file changed, 44 insertions(+), 8 deletions(-)
 
---ojdig4ufr3fvpwhg--
+diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
+index 9fbc759fdefe..a8378d223a9e 100644
+--- a/sound/soc/ti/davinci-mcasp.c
++++ b/sound/soc/ti/davinci-mcasp.c
+@@ -100,6 +100,7 @@ struct davinci_mcasp {
+ 
+ 	int	sysclk_freq;
+ 	bool	bclk_master;
++	u32	auxclk_fs_ratio;
+ 
+ 	unsigned long pdir; /* Pin direction bitfield */
+ 
+@@ -1064,13 +1065,13 @@ static int mcasp_dit_hw_param(struct davinci_mcasp *mcasp,
+ }
+ 
+ static int davinci_mcasp_calc_clk_div(struct davinci_mcasp *mcasp,
++				      unsigned int sysclk_freq,
+ 				      unsigned int bclk_freq, bool set)
+ {
+-	int error_ppm;
+-	unsigned int sysclk_freq = mcasp->sysclk_freq;
+ 	u32 reg = mcasp_get_reg(mcasp, DAVINCI_MCASP_AHCLKXCTL_REG);
+ 	int div = sysclk_freq / bclk_freq;
+ 	int rem = sysclk_freq % bclk_freq;
++	int error_ppm;
+ 	int aux_div = 1;
+ 
+ 	if (div > (ACLKXDIV_MASK + 1)) {
+@@ -1175,7 +1176,8 @@ static int davinci_mcasp_hw_params(struct snd_pcm_substream *substream,
+ 		if (mcasp->slot_width)
+ 			sbits = mcasp->slot_width;
+ 
+-		davinci_mcasp_calc_clk_div(mcasp, rate * sbits * slots, true);
++		davinci_mcasp_calc_clk_div(mcasp, mcasp->sysclk_freq,
++					   rate * sbits * slots, true);
+ 	}
+ 
+ 	ret = mcasp_common_hw_param(mcasp, substream->stream,
+@@ -1282,12 +1284,19 @@ static int davinci_mcasp_hw_rule_rate(struct snd_pcm_hw_params *params,
+ 
+ 	for (i = 0; i < ARRAY_SIZE(davinci_mcasp_dai_rates); i++) {
+ 		if (snd_interval_test(ri, davinci_mcasp_dai_rates[i])) {
+-			uint bclk_freq = sbits*slots*
+-				davinci_mcasp_dai_rates[i];
++			uint bclk_freq = sbits * slots *
++					 davinci_mcasp_dai_rates[i];
++			unsigned int sysclk_freq;
+ 			int ppm;
+ 
+-			ppm = davinci_mcasp_calc_clk_div(rd->mcasp, bclk_freq,
+-							 false);
++			if (rd->mcasp->auxclk_fs_ratio)
++				sysclk_freq =  davinci_mcasp_dai_rates[i] *
++					       rd->mcasp->auxclk_fs_ratio;
++			else
++				sysclk_freq = rd->mcasp->sysclk_freq;
++
++			ppm = davinci_mcasp_calc_clk_div(rd->mcasp, sysclk_freq,
++							 bclk_freq, false);
+ 			if (abs(ppm) < DAVINCI_MAX_RATE_ERROR_PPM) {
+ 				if (range.empty) {
+ 					range.min = davinci_mcasp_dai_rates[i];
+@@ -1321,12 +1330,19 @@ static int davinci_mcasp_hw_rule_format(struct snd_pcm_hw_params *params,
+ 	for (i = 0; i <= SNDRV_PCM_FORMAT_LAST; i++) {
+ 		if (snd_mask_test(fmt, i)) {
+ 			uint sbits = snd_pcm_format_width(i);
++			unsigned int sysclk_freq;
+ 			int ppm;
+ 
++			if (rd->mcasp->auxclk_fs_ratio)
++				sysclk_freq =  rate *
++					       rd->mcasp->auxclk_fs_ratio;
++			else
++				sysclk_freq = rd->mcasp->sysclk_freq;
++
+ 			if (rd->mcasp->slot_width)
+ 				sbits = rd->mcasp->slot_width;
+ 
+-			ppm = davinci_mcasp_calc_clk_div(rd->mcasp,
++			ppm = davinci_mcasp_calc_clk_div(rd->mcasp, sysclk_freq,
+ 							 sbits * slots * rate,
+ 							 false);
+ 			if (abs(ppm) < DAVINCI_MAX_RATE_ERROR_PPM) {
+@@ -1991,6 +2007,22 @@ static inline int davinci_mcasp_init_gpiochip(struct davinci_mcasp *mcasp)
+ }
+ #endif /* CONFIG_GPIOLIB */
+ 
++static int davinci_mcasp_get_dt_params(struct davinci_mcasp *mcasp)
++{
++	struct device_node *np = mcasp->dev->of_node;
++	int ret;
++	u32 val;
++
++	if (!np)
++		return 0;
++
++	ret = of_property_read_u32(np, "auxclk-fs-ratio", &val);
++	if (ret >= 0)
++		mcasp->auxclk_fs_ratio = val;
++
++	return 0;
++}
++
+ static int davinci_mcasp_probe(struct platform_device *pdev)
+ {
+ 	struct snd_dmaengine_dai_dma_data *dma_data;
+@@ -2224,6 +2256,10 @@ static int davinci_mcasp_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err;
+ 
++	ret = davinci_mcasp_get_dt_params(mcasp);
++	if (ret)
++		return -EINVAL;
++
+ 	ret = devm_snd_soc_register_component(&pdev->dev,
+ 					&davinci_mcasp_component,
+ 					&davinci_mcasp_dai[pdata->op_mode], 1);
+-- 
+2.20.1
+
