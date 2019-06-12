@@ -2,85 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E7B42142
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 11:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DA0B4214B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 11:46:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437453AbfFLJp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 05:45:27 -0400
-Received: from sauhun.de ([88.99.104.3]:57876 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727677AbfFLJp1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 05:45:27 -0400
-Received: from localhost (p5486CACA.dip0.t-ipconnect.de [84.134.202.202])
-        by pokefinder.org (Postfix) with ESMTPSA id 321F22C54BC;
-        Wed, 12 Jun 2019 11:45:25 +0200 (CEST)
-Date:   Wed, 12 Jun 2019 11:45:24 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add uSD and eMMC
-Message-ID: <20190612094524.GA2153@kunai>
-References: <1559895251-13931-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <CAMuHMdXv91Tt+78zLJj6pHFj9XrEJJbWOf-kzBPRbcw=h+iDHg@mail.gmail.com>
- <TY1PR01MB1770E7346A27FB36658142E1C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/04w6evG8XlLl3ft"
-Content-Disposition: inline
-In-Reply-To: <TY1PR01MB1770E7346A27FB36658142E1C0EC0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2437687AbfFLJqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 05:46:39 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:42323 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437339AbfFLJqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 05:46:39 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hazq1-0006Rv-6G; Wed, 12 Jun 2019 11:46:37 +0200
+Message-ID: <1560332796.5160.3.camel@pengutronix.de>
+Subject: Re: [PATCH v4 00/10] Rename Rockchip VPU driver to Hantro, add
+ initial i.MX8M support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        kernel@pengutronix.de, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Date:   Wed, 12 Jun 2019 11:46:36 +0200
+In-Reply-To: <d6a0007c-72b9-f45d-2f4c-736dd1214dbd@xs4all.nl>
+References: <20190611125058.13470-1-p.zabel@pengutronix.de>
+         <aa108619-2c1b-56af-0db7-cf27b3e66c29@xs4all.nl>
+         <d6a0007c-72b9-f45d-2f4c-736dd1214dbd@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 2019-06-12 at 10:00 +0200, Hans Verkuil wrote:
+> On 6/12/19 9:55 AM, Hans Verkuil wrote:
+> > On 6/11/19 2:50 PM, Philipp Zabel wrote:
+> > > There are several other SoCs that contain Hantro IP based VPUs, such as
+> > > NXP i.MX8MQ (Hantro G1 and G2) and i.MX8MM (Hantro G1, G2, and H1). To
+> > > maximize code sharing, add initial support for these SoCs to the
+> > > Rockchip VPU driver, after renaming it to Hantro VPU.
+> > > 
+> > > This series is based on the br-v5.3g tag, commit e568d2cc1ef6
+> > > ("rockchip/vpu: Add support for MPEG-2 decoding on RK3288") with
+> > > https://patchwork.linuxtv.org/patch/56402/ ("rockchip/vpu: Add support
+> > > for MPEG-2 decoding on RK3328") applied on top. It supports MPEG-2
+> > > decoding on i.MX8MQ. MPEG-2 decoding and JPEG encoding on i.MX8MM may
+> > > or may not work, I don't have the hardware to test.
+> > > 
+> > > Changes since v3:
+> > >  - Split rk3288_vpu_regs.h into hantro_g1_regs.h and hantro_h1_regs.h,
+> > >    rename VDPU register defines to G1 and VEPU register defines to H1.
+> > >  - Make Rockchip / i.MX8M support configurable.
+> > >  - Keep staging/media Kconfig in alphabetic order.
+> > >  - Rename bases to reg_bases
+> > >  - Move dynamic clocks before i.MX8M support.
+> > 
+> > Can you please rebase this on top of the media_tree master? This series
+> > doesn't apply there.
+> > 
+> > I'd like to get this rename series in asap since keeping this out-of-tree
+> > is a pain.
+> > 
+> > It looks in good shape in general.
+> 
+> In fact, I would like to hold off on applying any other rockchip patches
+> until this is in (and that means any pending rockchip patches probably
+> need rebasing).
+> 
+> So if a v5 applies cleanly and doesn't throw up new sparse/smatch issues,
+> then I'll take it.
 
---/04w6evG8XlLl3ft
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I've rebased onto media-tree master, checked sparse/smatch, and resent.
+The RK3328 patch is pulled out from under it and sent separately on top
+of the series.
 
-
-> I was thinking about sending a follow-up patch to list hs400 here
-> after Wolfram's patch appears in a RC, would that be okay with you?
-
-Do we need that? The *board* does not handle HS400, so why add the
-property?
-
-Similar setting would be an I2C device which can do 400kHz but the board
-layout doesn't allow for such speeds, so we are limited to 100kHz.
-
-Or?
-
-
---/04w6evG8XlLl3ft
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0AybAACgkQFA3kzBSg
-KbaxpA//Se3AHxL90CgEfPjioPpqrYagiEHKorJuwyrhOD3PEjRzbRCU/FyoqbiY
-tOyEEG2O3uLfsPWTa54rof1qqtwYp4b+QGRcJCsDnC1JcyfMb7HQG+XbUdlSKihP
-ylLdcXWJiTXMeiqkmkDtO6Fb1OhrNI71yKurPNpzC5NKbKW2bHU9uzQZAaKvPIrF
-Js72+Qhfwhzg1KSdeM/dytxctWpyWAoN7TiHQZyfSokyFXB5Twmw3bFXEj+jkszN
-eG4T1lNsPf4G7KrA7YmiDgL/n2a2TV8ogQMFP9g4IW5IGIQRn1Lg+PcsOze1DHQ+
-vLkg7Ijcje+8pPuLQLzgQ1h0dHLP7wc+93TRMvdCUHdsbSL0ZyNgvRncFBKKKchQ
-5OihAJvfbKhvJ+zPovoZP14unAOvt0uNt1hPaw+63grFiOt5rVHH8rJ4uO9deYpw
-Yg6dfX4Q40d1N8Bz/c72oDkmD3hXK9hmXgaA2BZXDdNGciOhBnTDUg4wmoHomLHX
-u6vm+bO68/Km3Vis5qDiVw/AFOlorKDrDd9ETtxQTcFD2Up/A3Hrdff3aJ4mGjqx
-nY1wTFjUmalwKUnvGxtRph97fQxwiRP01CignGBvESUlghWcGm6EhtT1PYFDb27N
-L1rytT2efbKVBWSfMWgX0c6ulrCwdG1s1iBOMJ4lpTtEZz6jhT8=
-=0C6z
------END PGP SIGNATURE-----
-
---/04w6evG8XlLl3ft--
+regards
+Philipp
