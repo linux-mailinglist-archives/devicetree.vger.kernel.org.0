@@ -2,119 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D8C41E7C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:01:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BF2841E84
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 10:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729640AbfFLIBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 04:01:24 -0400
-Received: from mga09.intel.com ([134.134.136.24]:29902 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726554AbfFLIBY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 04:01:24 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Jun 2019 01:01:22 -0700
-X-ExtLoop1: 1
-Received: from kuha.fi.intel.com ([10.237.72.189])
-  by fmsmga001.fm.intel.com with SMTP; 12 Jun 2019 01:01:19 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 12 Jun 2019 11:01:18 +0300
-Date:   Wed, 12 Jun 2019 11:01:18 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <lkml@metux.net>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Platform Driver <platform-driver-x86@vger.kernel.org>
-Subject: Re: How to inject fwnode/oftree/acpi data by platform driver ?
-Message-ID: <20190612080118.GA18301@kuha.fi.intel.com>
-References: <c15a9872-4ad4-1b7e-e34f-14549b5b55eb@metux.net>
- <CAHp75Vc_FnSaqq_Xu_Y3uXBYY=HbGsthVOAqyt4c-dH7sRGVVw@mail.gmail.com>
+        id S1729832AbfFLICB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 04:02:01 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:39886 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726554AbfFLICB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 04:02:01 -0400
+Received: by mail-lf1-f65.google.com with SMTP id p24so11325039lfo.6;
+        Wed, 12 Jun 2019 01:02:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8LosHHTjAwV+4Djrd//UJ/Q3yldXFuNnn7/cWvIsKiQ=;
+        b=oujpLQJWunf9u9f5NkULtgbmW+OL87sVfU8sTaQRfHeh/no24GuKvFCDLH5jBNetQJ
+         TweV+m+o5hTOQlAS12GFk/z5OzA8iw6gDozoOxeNP0TwpFeIuOAd3md3oaxzpN9uEXhr
+         WOrTdQPVCH6+WQtia4knGTlBEVcSWlRzHyTPNWWsB1/tcvlMOLa2GBenNiT8cyrZAQf3
+         1guGkFkPCbCvr1fGES92vmIY9znXKYldCJPECusPWc7uUQpjz4KA4gCPb1p7mYoPnSoh
+         lTRJlPIucojESKuAxp+ehLdZ9zTLehjKrlSzawDIUvzGjo0pWmwFo51KyIkdG0ch2gQc
+         /L5Q==
+X-Gm-Message-State: APjAAAXtFUSt7PyBoyjSChzGIBkfhf1lli1phY6f5lt5XT1mEH4Vp/Ku
+        JDZwppc28oObWjE+bFrE0JqLyzRybbKtCMweTmA=
+X-Google-Smtp-Source: APXvYqzC8pg5oCZfcldvnzIlLitvtxhsxYALMEGRnCXjMcbv7MpzwINApI1czo3DzFKsOuQLJ8kJd8pbEWVbpt4rYMA=
+X-Received: by 2002:ac2:597c:: with SMTP id h28mr1484442lfp.90.1560326519466;
+ Wed, 12 Jun 2019 01:01:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vc_FnSaqq_Xu_Y3uXBYY=HbGsthVOAqyt4c-dH7sRGVVw@mail.gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <1559891639-62529-1-git-send-email-biju.das@bp.renesas.com> <1559891639-62529-3-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1559891639-62529-3-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 12 Jun 2019 10:01:45 +0200
+Message-ID: <CAMuHMdUdVPm=EHYyNS-QaycrKc3f21uOA-rtmf2jb6Kf=z3vUw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: hihope-common: Declare pcie bus clock
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jun 7, 2019 at 9:18 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Declare pcie bus clock, since it is generated on the HiHope RZ/G2M main
+> board.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-On Tue, Jun 11, 2019 at 09:44:23PM +0300, Andy Shevchenko wrote:
-> +Cc: Heikki.
-> Heikki, can you help here with swnodes?
-> 
-> On Sat, Jun 1, 2019 at 5:17 PM Enrico Weigelt, metux IT consult
-> <lkml@metux.net> wrote:
-> >
-> > Hi folks,
-> >
-> >
-> > I'm looking for a way to inject fwnode data from a platform driver,
-> > in order to initialize generic drivers w/ board specific configuration.
-> > The idea is getting rid of passing driver specific pdata structs
-> > (which, IIRC, seem to be deprecated).
-> >
-> > An example usecase is the APUv2/3 board, which have things like gpios
-> > wired to buttons and LEDs. The board can only be detected via DMI
-> > string, no way to probe the platform devices - have to be initialized
-> > explicitly (that's how I'm already doing it now).
-> >
-> > The nicest way, IMHO, would be if I could just write some piece of DTS
-> > and some fancy magic all the rest under the hood. Such thing doesn't
-> > seem to exist yet. Does it make sense to implement that ? How could
-> > we do it ?
-> >
-> > Which other options do we have ?
-> >
-> > Or should we just leave everything as it is and stick w/ pdata structs ?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-The software nodes (drivers/base/swnode.c) were designed to supply
-fwnodes that describe devices in the same way DT does. The goal I had
-with the software nodes was exaclty to get rid of pdata, so they do
-sound like the thing you are looking for. If you check Rafael's latest
-linux-next branch [1], drivers/platform/x86/intel_cht_int33fe.c can be
-used as an example how to use the software nodes.
+Gr{oetje,eeting}s,
 
-I think it's time to add documentation for the software nodes to the
-kernel, but I'll list here the features the software nodes have:
-
-- The software nodes are created independently from device entries.
-- Software nodes support hierarchy. Every software node has a pointer
-  to a parent software node.
-- Software nodes can have device properties.
-- Software nodes can have reference pointers to other software nodes
-  (outside of the hierarchy).
-
-Creating the software nodes from static description (struct
-software_node - available from Linux kernel v5.3 onwards) is
-straightforward. Once you have them, when you create your device
-entries (struct device), you can associate a software node with a
-device just like like any other fwnode:
-
-        device_initialize(&my_dev);
-        my_dev.parent = parent;
-        my_dev.fwnode = software_node_fwnode(&my_node);
-        ...
-        device_add(&my_device);
-
-After that, you can access all the information the software nodes
-supply to the device by using fwnode_* APIs from your driver, just
-like with ACPI or DT. Basically the entire fwnode_* API is now
-supported with softwarw nodes, except the device graph (fwnode_graph*)
-API.
-
-One final note. The hardware description must always primarily come
-from the system firmware. You only use software nodes if it's too
-late to influence what goes to the ACPI tables, or if using DTS is not
-an option.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/log/?h=linux-next
-
-thanks,
+                        Geert
 
 -- 
-heikki
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
