@@ -2,73 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CAA428D5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94784428B9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 16:22:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437400AbfFLOZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 10:25:51 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:53203 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2437334AbfFLOZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 10:25:51 -0400
-X-IronPort-AV: E=Sophos;i="5.62,366,1554735600"; 
-   d="scan'208";a="18291154"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 12 Jun 2019 23:25:50 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2B2EB400967E;
-        Wed, 12 Jun 2019 23:25:47 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: r8a774a1: Add dynamic power coefficient
-Date:   Wed, 12 Jun 2019 15:20:55 +0100
-Message-Id: <1560349255-26336-5-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560349255-26336-1-git-send-email-biju.das@bp.renesas.com>
-References: <1560349255-26336-1-git-send-email-biju.das@bp.renesas.com>
+        id S2409319AbfFLOWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 10:22:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2409256AbfFLOWE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 10:22:04 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3D58F215EA;
+        Wed, 12 Jun 2019 14:22:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560349322;
+        bh=8glz7AmBO0JhEGxDCeCC/4jlvlq7LvO/BtjTKEKPa+g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BI41ewj+sEPz8R+55rL+2UgXxTn7lZ9FqMdtjFaCUEFzV5VV2B4GWdNiebkFGSP/4
+         2gg5u9na02DA6sdVJYixUmRNooL0CWdYQsI7jv429uiXpBQze9FvGsVFpwMtP/6BjW
+         rUd2NMjqFwb+r5QLC8ayDuIdBZZDWHjYSxJsBATs=
+Date:   Wed, 12 Jun 2019 16:21:59 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Sandeep Patil <sspatil@android.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+Subject: Re: [RESEND PATCH v1 1/5] of/platform: Speed up
+ of_find_device_by_node()
+Message-ID: <20190612142159.GA11563@kroah.com>
+References: <20190604003218.241354-1-saravanak@google.com>
+ <20190604003218.241354-2-saravanak@google.com>
+ <CAL_JsqLWfNUJm23x+doJDwyuMLOvqWAnLKGQYcgVct-AyWb9LQ@mail.gmail.com>
+ <570474f4-8749-50fd-5f72-36648ed44653@gmail.com>
+ <CAGETcx8M3YkUBZ-e2LLfrbWgnMKMMNG5cv=p8MMmBe7ZyPJ7xw@mail.gmail.com>
+ <20190611215242.GE212690@google.com>
+ <CAL_Jsq+V9QUBpzmPyYjWe93-06-mpU=5JmUqvf-QsnuLxPnmUA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+V9QUBpzmPyYjWe93-06-mpU=5JmUqvf-QsnuLxPnmUA@mail.gmail.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the dynamic power coefficient of A57 and A53 CPUs.
+On Wed, Jun 12, 2019 at 07:53:39AM -0600, Rob Herring wrote:
+> On Tue, Jun 11, 2019 at 3:52 PM Sandeep Patil <sspatil@android.com> wrote:
+> >
+> > On Tue, Jun 11, 2019 at 01:56:25PM -0700, 'Saravana Kannan' via kernel-team wrote:
+> > > On Tue, Jun 11, 2019 at 8:18 AM Frank Rowand <frowand.list@gmail.com> wrote:
+> > > >
+> > > > Hi Saravana,
+> > > >
+> > > > On 6/10/19 10:36 AM, Rob Herring wrote:
+> > > > > Why are you resending this rather than replying to Frank's last
+> > > > > comments on the original?
+> > > >
+> > > > Adding on a different aspect...  The independent replies from three different
+> > > > maintainers (Rob, Mark, myself) pointed out architectural issues with the
+> > > > patch series.  There were also some implementation issues brought out.
+> > > > (Although I refrained from bringing up most of my implementation issues
+> > > > as they are not relevant until architecture issues are resolved.)
+> > >
+> > > Right, I'm not too worried about the implementation issues before we
+> > > settle on the architectural issues. Those are easy to fix.
+> > >
+> > > Honestly, the main points that the maintainers raised are:
+> > > 1) This is a configuration property and not describing the device.
+> > > Just use the implicit dependencies coming from existing bindings.
+> > >
+> > > I gave a bunch of reasons for why I think it isn't an OS configuration
+> > > property. But even if that's not something the maintainers can agree
+> > > to, I gave a concrete example (cyclic dependencies between clock
+> > > provider hardware) where the implicit dependencies would prevent one
+> > > of the devices from probing till the end of time. So even if the
+> > > maintainers don't agree we should always look at "depends-on" to
+> > > decide the dependencies, we still need some means to override the
+> > > implicit dependencies where they don't match the real dependency. Can
+> > > we use depends-on as an override when the implicit dependencies aren't
+> > > correct?
+> > >
+> > > 2) This doesn't need to be solved because this is just optimizing
+> > > probing or saving power ("we should get rid of this auto disabling"):
+> > >
+> > > I explained why this patch series is not just about optimizing probe
+> > > ordering or saving power. And why we can't ignore auto disabling
+> > > (because it's more than just auto disabling). The kernel is currently
+> > > broken when trying to use modules in ARM SoCs (probably in other
+> > > systems/archs too, but I can't speak for those).
+> > >
+> > > 3) Concerns about backwards compatibility
+> > >
+> > > I pointed out why the current scheme (depends-on being the only source
+> > > of dependency) doesn't break compatibility. And if we go with
+> > > "depends-on" as an override what we could do to keep backwards
+> > > compatibility. Happy to hear more thoughts or discuss options.
+> > >
+> > > 4) How the "sync_state" would work for a device that supplies multiple
+> > > functionalities but a limited driver.
+> >
+> > <snip>
+> > To be clear, all of above are _real_ problems that stops us from efficiently
+> > load device drivers as modules for Android.
+> >
+> > So, if 'depends-on' doesn't seem like the right approach and "going back to
+> > the drawing board" is the ask, could you please point us in the right
+> > direction?
+> 
+> Use the dependencies which are already there in DT. That's clocks,
+> pinctrl, regulators, interrupts, gpio at a minimum. I'm simply not
+> going to accept duplicating all those dependencies in DT. The downside
+> for the kernel is you have to address these one by one and can't have
+> a generic property the driver core code can parse. After that's in
+> place, then maybe we can consider handling any additional dependencies
+> not already captured in DT. Once all that is in place, we can probably
+> sort device and/or driver lists to optimize the probe order (maybe the
+> driver core already does that now?).
+> 
+> Get rid of the auto disabling of clocks and regulators in
+> late_initcall. It's simply not a valid marker that boot is done when
+> modules are involved. We probably can't get rid of it as lot's of
+> platforms rely on that, so it will have to be opt out. Make it the
+> platform's responsibility for ensuring a consistent state.
+> 
+> Perhaps we need a 'boot done' or 'stop deferring probe' trigger from
+> userspace in order to make progress if dependencies are missing.
 
-Based on work by Gaku Inami <gaku.inami.xw@bp.renesas.com> and others.
+People have tried to do this multiple times, and you never really know
+when "boot is done" due to busses that have discoverable devices and
+async probing of other busses.
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+You do know "something" when you pivot to a new boot disk, and when you
+try to load init, but given initramfs and the fact that modules are
+usually included on them, that's not really a good indication that
+anything is "finished".
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-index 6f52451..addf74c 100644
---- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-@@ -135,6 +135,7 @@
- 			power-domains = <&sysc R8A774A1_PD_CA57_CPU0>;
- 			next-level-cache = <&L2_CA57>;
- 			enable-method = "psci";
-+			dynamic-power-coefficient = <854>;
- 			clocks = <&cpg CPG_CORE R8A774A1_CLK_Z>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			capacity-dmips-mhz = <1024>;
-@@ -162,6 +163,7 @@
- 			next-level-cache = <&L2_CA53>;
- 			enable-method = "psci";
- 			#cooling-cells = <2>;
-+			dynamic-power-coefficient = <277>;
- 			clocks = <&cpg CPG_CORE R8A774A1_CLK_Z2>;
- 			operating-points-v2 = <&cluster1_opp>;
- 			capacity-dmips-mhz = <560>;
--- 
-2.7.4
+I don't want userspace to be responsible for telling the kernel, "hey
+you should be finished now!", as that's an async notification that is
+going to be ripe for problems.
 
+I really like the "depends-on" information, as it shows a topology that
+DT doesn't seem to be able to show today, yet we rely on it in the
+kernel with the whole deferred probing mess.  To me, there doesn't seem
+to be any other way to properly "know" this.
+
+> Or
+> maybe just some timeout would be sufficient. I think this is probably
+> more useful for development than in a shipping product. Even if you
+> could fallback to polling mode instead of interrupts for example, I
+> doubt you would want to in a product.
+
+timeouts suck.  And do not work for shipping products.  I want a device
+with 100 modules that relys on DT to be able to boot just as fast as a
+laptop with 100 modules that has all of the needed dependancies
+described today in their bus topologies, because they used sane hardware
+(i.e. PCI and ACPI).  Why hurt embedded people just because their
+hardware relies on a system where you have to loop for long periods of
+time because DT can not show the topology correctly?
+
+> You should also keep in mind that everything needed for a console has
+> to be built in. Maybe Android can say the console isn't needed, but in
+> general we can't.
+
+What does a console have to do with any of this?
+
+confused,
+
+greg k-h
