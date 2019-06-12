@@ -2,154 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B1DA42157
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 11:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 960724217D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 11:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437315AbfFLJsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 05:48:55 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:35540 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726636AbfFLJsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 05:48:55 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 91AE96020A; Wed, 12 Jun 2019 09:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560332934;
-        bh=A5Q4nuwELYGPEsPIrnbKYM/7ycbeZUO8bLNEPplxKP4=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=EOISpQmtkRdbP7TYk/oMunKmp9D5WZQeue2/qI4s4fUHYLUI2np6EqiJXzsbCgxiI
-         +hNvMzvf3ZF8drF3xRrGeAofXI6+ZWWZW7qYJwLWiBMKSkrFBPd0C+w7HbGchpwv0R
-         9P7NXjypaMLC8dvkbdxUeaI9hoycPiMEQVDG1IuE=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.201.2.161] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sricharan@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3C82E6020A;
-        Wed, 12 Jun 2019 09:48:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560332933;
-        bh=A5Q4nuwELYGPEsPIrnbKYM/7ycbeZUO8bLNEPplxKP4=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=jUP7os4jcFN03veZ3Wr9rOflWS/Gv9t7t/DDs3/Phz04lxOI1I1IYZhP8GWkeKVLf
-         HwdmFVVwUwBkfujUQfRazwZlcnCSsh3JK/jcPiN7azOgsylP/3i5ZIk0LEfhyTemIo
-         AQ9C0FuhgdNv7w0foiPlGo4DXg4QIWDSUXVx6D30=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3C82E6020A
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
-Subject: Re: [PATCH 5/6] arm64: dts: Add ipq6018 SoC and CP01 board support
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>, agross@kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?0J/QsNCy0LXQuw==?= <be.dissent@gmail.com>
-References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org>
- <CAAd0S9DKqAgFPgLzHiCBiJgE+OmUW7ainyjM_3-RyfCoKEa51A@mail.gmail.com>
- <50231fba-7212-f8b9-9313-0c79294d4cc6@codeaurora.org>
- <4056907.DrFocau5Ix@debian64>
-From:   Sricharan R <sricharan@codeaurora.org>
-Message-ID: <1a00e8c8-d07c-3b02-8ea5-6d5f3e2c7b1a@codeaurora.org>
-Date:   Wed, 12 Jun 2019 15:18:48 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S2437751AbfFLJxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 05:53:50 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:9780 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437415AbfFLJxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 05:53:50 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d00cbac0000>; Wed, 12 Jun 2019 02:53:48 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Wed, 12 Jun 2019 02:53:48 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Wed, 12 Jun 2019 02:53:48 -0700
+Received: from HQMAIL108.nvidia.com (172.18.146.13) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 12 Jun
+ 2019 09:53:47 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL108.nvidia.com
+ (172.18.146.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 12 Jun 2019 09:53:47 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d00cba60000>; Wed, 12 Jun 2019 02:53:47 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
+CC:     <digetx@gmail.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V10 00/15] Add Tegra194 PCIe support
+Date:   Wed, 12 Jun 2019 15:23:24 +0530
+Message-ID: <20190612095339.20118-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <4056907.DrFocau5Ix@debian64>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560333228; bh=JfamhRA20oZzEkTjy936/o74LKXeMkDTW9dCNpa7+lc=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=OcmDNKhun6erXNgBkLTJDTsh3rVOpcXPNUUYwkwe7vs9siH+Upg40xtmFKZZgP6Gr
+         Fr19OmqsllYEdvMrArbNpUikyoxdOgACk5Qz8tW3iHeg+ulzAOs37g3DF1NIluz9Ie
+         XWu6fN75pmuFYcyjWzGEOPV/hpXA4vcFcriKflqs4uZS94eFtqiKP9/2LSvD34WESD
+         BHII/INZSBDRYYdew4vi/h7DVuqkgo5q0Eqdrwh4X6W+iStGsN6H+oJv6cST9XRy4N
+         oCfEEHUquGSBRi0VRxMQKSR74660/kTB+AUjzzPuabyw4SmeqUeaDs6j3i+Npdx0zQ
+         4YW0CtLpiLmaw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
+Tegra194 has six PCIe controllers based on Synopsys DesignWare core.
+There are two Universal PHY (UPHY) blocks with each supporting 12(HSIO:
+Hisg Speed IO) and 8(NVHS: NVIDIA High Speed) lanes respectively.
+Controllers:0~4 use UPHY lanes from HSIO brick whereas Controller:5 uses
+UPHY lanes from NVHS brick. Lane mapping in HSIO UPHY brick to each PCIe
+controller (0~4) is controlled in XBAR module by BPMP-FW. Since PCIe
+core has PIPE interface, a glue module called PIPE-to-UPHY (P2U) is used
+to connect each UPHY lane (applicable to both HSIO and NVHS UPHY bricks)
+to PCIe controller
+This patch series
+- Adds support for P2U PHY driver
+- Adds support for PCIe host controller
+- Adds device tree nodes each PCIe controllers
+- Enables nodes applicable to p2972-0000 platform
+- Adds helper APIs in Designware core driver to get capability regs offset
+- Adds defines for new feature registers of PCIe spec revision 4
+- Makes changes in DesignWare core driver to get Tegra194 PCIe working
 
-On 6/10/2019 5:45 PM, Christian Lamparter wrote:
-> On Monday, June 10, 2019 12:09:56 PM CEST Sricharan R wrote:
->> Hi Christian,
->>
->> On 6/6/2019 2:11 AM, Christian Lamparter wrote:
->>> On Wed, Jun 5, 2019 at 7:16 PM Sricharan R <sricharan@codeaurora.org> wrote:
->>>>
->>>> Add initial device tree support for the Qualcomm IPQ6018 SoC and
->>>> CP01 evaluation board.
->>>>
->>>> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
->>>> Signed-off-by: Abhishek Sahu <absahu@codeaurora.org>
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->>>>
->>>> +       clocks {
->>>> +               sleep_clk: sleep_clk {
->>>> +                       compatible = "fixed-clock";
->>>> +                       clock-frequency = <32000>;
->>>> +                       #clock-cells = <0>;
->>>> +               };
->>>> +
->>> Recently-ish, we ran into an issue with the clock-frequency of the sleep_clk
->>> on older IPQ40XX (and IPQ806x) on the OpenWrt Github and ML.
->>> From what I know, the external "32KHz" crystals have 32768 Hz, but the QSDK
->>> declares them at 32000 Hz. Since you probably have access to the BOM and
->>> datasheets. Can you please confirm what's the real clock frequency for
->>> the IPQ6018.
->>> (And maybe also for the sleep_clk of the IPQ4018 as well?).
->>>
->>
->> What exactly is the issue that you faced ?
->> Looking in to the docs, it is <32000> only on ipq6018 and ipq40xx as well.
-> 
-> We need just a confirmation.
-> 
-> Then again, Currently the qcom-ipq4019.dtsi is using 32768 Hz.
-> 
-> |		sleep_clk: sleep_clk {
-> |			compatible = "fixed-clock";
-> |			clock-frequency = <32768>;
-> |			#clock-cells = <0>;
-> |		};
-> 
-> <https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/qcom-ipq4019.dtsi#L144>
-> 
-> Which makes sense, because all previous Qualcomm Atheros MIPS and the
-> future IPQ8072 SoCs have been either using or deriving a 32768 Hz clock.
-> 
-> For example: The AR9344 derives the clock from the 25MHz/40MHz external
-> oscillator. This is explained in "8.16.9 Derived RTC Clock (DERIVED_RTC_CLK)".
-> Which mentions that the "32KHz" clock interval is 30.5 usec / 30.48 usec
-> depending whenever the external reference crystal has 40MHz or 25MHz.
-> (1/30.5usec = 32.7868852 kilohertz!). The QCA9558 datasheet says the same
-> in "10.19.11 Derived RTC Clock". 
-> 
-> For IPQ8072: I point to the post by Sven Eckelmann on the OpenWrt ML:
-> <http://lists.infradead.org/pipermail/openwrt-devel/2019-May/017131.html>
-> "I was only able to verify for IPQ8072 that it had a 32.768 KHz
-> sleep clock." 
-> 
-> So this is pretty much "why there is an issue", it's confusing.
-> Is possible can you please look if there are (fixed) divisors values
-> listed in the documentation or the registers and bits that the values
-> are stored in? Because then we could just calculate it. 
-> 
+Testing done on P2972-0000 platform
+- Able to get PCIe link up with on-board Marvel eSATA controller
+- Able to get PCIe link up with NVMe cards connected to M.2 Key-M slot
+- Able to do data transfers with both SATA drives and NVMe cards
 
-Really sorry for the confusion. So looking little more, SLEEP_CLK is derived
-from an external 38.4MHZ crystal, it is 32.768 KHZ. Somehow the
-clk freq plan etc seems to mention them only as .032 MHZ and misses
-out. That means i will correct the patch for 32768 and probably the
-ipq8074.dtsi as well
+Note
+- Enabling x8 slot on P2972-0000 platform requires pinmux driver for Tegra194.
+  It is being worked on currently and hence Controller:5 (i.e. x8 slot) is
+  disabled in this patch series. A future patch series would enable this.
+- This series is based on top of the following series
+  Jisheng's patches to add support to .remove() in Designware sub-system
+  https://patchwork.kernel.org/project/linux-pci/list/?series=98559
+  (Jisheng's patches are now accepted and applied for v5.2)
+  My patches made on top of Jisheng's patches to export various symbols
+  https://patchwork.kernel.org/project/linux-pci/list/?series=101259
 
-Regards,
-  Sricharan
+Changes since [v9]:
+* Used _relaxed() versions of readl() & writel()
 
+Changes since [v8]:
+* Made the drivers dependent on ARCH_TEGRA_194_SOC directly
+* Addressed review comments from Dmitry
+
+Changes since [v7]:
+* Changed P2U driver file name from pcie-p2u-tegra194.c to phy-tegra194-p2u.c
+* Addressed review comments from Thierry and Rob
+
+Changes since [v6]:
+* Took care of review comments from Rob
+* Added a quirk to disable MSI for root ports
+* Removed using pcie_pme_disable_msi() API in host controller driver
+
+Changes since [v5]:
+* Removed patch that exports pcie_bus_config symbol
+* Took care of review comments from Thierry and Rob
+
+Changes since [v4]:
+* Removed redundant APIs in pcie-designware-ep.c file after moving them
+  to pcie-designware.c file based on Bjorn's review comments
+
+Changes since [v3]:
+* Rebased on top of linux-next top of the tree
+* Addressed Gustavo's comments and added his Ack for some of the changes.
+
+Changes since [v2]:
+* Addressed review comments from Thierry
+
+Changes since [v1]:
+* Addressed review comments from Bjorn, Thierry, Jonathan, Rob & Kishon
+* Added more patches in v2 series
+
+Vidya Sagar (15):
+  PCI: Add #defines for some of PCIe spec r4.0 features
+  PCI: Disable MSI for Tegra194 root port
+  PCI: dwc: Perform dbi regs write lock towards the end
+  PCI: dwc: Move config space capability search API
+  PCI: dwc: Add ext config space capability search API
+  dt-bindings: PCI: designware: Add binding for CDM register check
+  PCI: dwc: Add support to enable CDM register check
+  dt-bindings: Add PCIe supports-clkreq property
+  dt-bindings: PCI: tegra: Add device tree support for Tegra194
+  dt-bindings: PHY: P2U: Add Tegra194 P2U block
+  arm64: tegra: Add P2U and PCIe controller nodes to Tegra194 DT
+  arm64: tegra: Enable PCIe slots in P2972-0000 board
+  phy: tegra: Add PCIe PIPE2UPHY support
+  PCI: tegra: Add Tegra194 PCIe support
+  arm64: Add Tegra194 PCIe driver to defconfig
+
+ .../bindings/pci/designware-pcie.txt          |    5 +
+ .../bindings/pci/nvidia,tegra194-pcie.txt     |  155 ++
+ Documentation/devicetree/bindings/pci/pci.txt |    5 +
+ .../bindings/phy/phy-tegra194-p2u.txt         |   28 +
+ .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |    2 +-
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts   |   41 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  437 +++++
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/pci/controller/dwc/Kconfig            |   10 +
+ drivers/pci/controller/dwc/Makefile           |    1 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |   37 +-
+ .../pci/controller/dwc/pcie-designware-host.c |   14 +-
+ drivers/pci/controller/dwc/pcie-designware.c  |   87 +
+ drivers/pci/controller/dwc/pcie-designware.h  |   12 +
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 1635 +++++++++++++++++
+ drivers/pci/quirks.c                          |   23 +
+ drivers/phy/tegra/Kconfig                     |    7 +
+ drivers/phy/tegra/Makefile                    |    1 +
+ drivers/phy/tegra/phy-tegra194-p2u.c          |  120 ++
+ include/uapi/linux/pci_regs.h                 |   22 +-
+ 20 files changed, 2600 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+ create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+ create mode 100644 drivers/phy/tegra/phy-tegra194-p2u.c
 
 -- 
-"QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
+
