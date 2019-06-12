@@ -2,79 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9608242716
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 15:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D11542748
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 15:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439344AbfFLNK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 09:10:58 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:48586 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2439328AbfFLNK5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 09:10:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=Zzc6GI7lGEPaQXGvlamBcEyrm5Fho0Vz0zqRdDP5hq0=; b=QQ0PwDAeuICS/1pKrFIl9qqFCV
-        DVvk65aiWdgNZKve6NvZEweANaJXywqmPwYKrmAVNEvtvFwEVTj7E+J2FualB+Tb+98QSaZKGqZgO
-        pc0lw2PM0jUsWWW9P6hUqGY37Dc4KXe0Ps3dd4cQbhHZq5gx9+yKnAXHrTjlMkvVm/1o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hb31d-0004Fu-AP; Wed, 12 Jun 2019 15:10:49 +0200
-Date:   Wed, 12 Jun 2019 15:10:49 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Y.b. Lu" <yangbo.lu@nxp.com>
-Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Richard Cochran <richardcochran@gmail.com>,
+        id S2437527AbfFLNPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 09:15:51 -0400
+Received: from mail-eopbgr30085.outbound.protection.outlook.com ([40.107.3.85]:38241
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2437484AbfFLNPv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 09:15:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WXdIHPpuSjDheyPgihf3Q7vYaDMAM59wyvzLKc7MtHk=;
+ b=PWMgHjMgAKCSU8dx/dSoYG/IYECgOllH386KQWzHOqqAcFAc60y4NZCZNo+B39m+NatK+e3Se/HFUu/SGSn8Cy/rnoZhurgjy/BNuClFt6ZQLQ9VdDtEJx0F+W+TOPKouFNDEqIDpM8U9CSMjfza7zvRRFv4GRFJNX/CptHZ9VQ=
+Received: from VI1PR0402MB3485.eurprd04.prod.outlook.com (52.134.3.153) by
+ VI1PR0402MB2877.eurprd04.prod.outlook.com (10.175.23.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11; Wed, 12 Jun 2019 13:15:46 +0000
+Received: from VI1PR0402MB3485.eurprd04.prod.outlook.com
+ ([fe80::ccaf:f4a1:704a:e745]) by VI1PR0402MB3485.eurprd04.prod.outlook.com
+ ([fe80::ccaf:f4a1:704a:e745%4]) with mapi id 15.20.1987.012; Wed, 12 Jun 2019
+ 13:15:46 +0000
+From:   Horia Geanta <horia.geanta@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/6] ptp: add QorIQ PTP support for DPAA2
-Message-ID: <20190612131049.GC23615@lunn.ch>
-References: <20190610032108.5791-1-yangbo.lu@nxp.com>
- <20190610032108.5791-2-yangbo.lu@nxp.com>
- <20190610130601.GD8247@lunn.ch>
- <VI1PR0401MB2237247525AB5DB5B5F275A8F8EC0@VI1PR0401MB2237.eurprd04.prod.outlook.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx7ulp: add crypto support
+Thread-Topic: [PATCH] ARM: dts: imx7ulp: add crypto support
+Thread-Index: AQHVHD5HxT1VnrKm20mxf/1ryD4CPA==
+Date:   Wed, 12 Jun 2019 13:15:46 +0000
+Message-ID: <VI1PR0402MB348596BF52CE43B5D4CD534798EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+References: <20190606080255.25504-1-horia.geanta@nxp.com>
+ <20190612103926.GE11086@dragon>
+ <VI1PR0402MB3485A573518D60A573BA55C298EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612130602.GH11086@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=horia.geanta@nxp.com; 
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2ef5e611-3773-4889-3fa7-08d6ef3814ac
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR0402MB2877;
+x-ms-traffictypediagnostic: VI1PR0402MB2877:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <VI1PR0402MB2877041CF702412A516A242298EC0@VI1PR0402MB2877.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0066D63CE6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(366004)(346002)(39860400002)(396003)(376002)(189003)(199004)(99286004)(6436002)(305945005)(76176011)(446003)(316002)(7416002)(74316002)(7696005)(6116002)(73956011)(76116006)(66946007)(4326008)(229853002)(64756008)(66476007)(66556008)(66446008)(14444005)(2906002)(6916009)(6246003)(66066001)(256004)(3846002)(71200400001)(71190400001)(8936002)(25786009)(8676002)(53546011)(6506007)(81166006)(81156014)(966005)(68736007)(52536014)(33656002)(102836004)(478600001)(5660300002)(44832011)(54906003)(14454004)(86362001)(9686003)(6306002)(186003)(476003)(26005)(7736002)(55016002)(53936002)(486006);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB2877;H:VI1PR0402MB3485.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: G8XmBXCZJGn40PLT3TZJCE4KySzicfIQZv03UcS7DZbS8tYhWE8SWc/GN03xHePvSIUUz2q5aZLqWSsMGrCemtLCPYxok0GrBf5KgRLuULv2lTweYVvONuUskvr29W3WFEWhTXzGpdduzVelnfX9MtoxDuH7Lu12GPXK+NVy2twzWk8ZbkYs5XHoHGBz7bpV3i7GFsJ8W6fumlSe/0/EMTApNVaTSO/jeg2qzYo2GmftuvSmoPfxOexw5npNQILPoVn7v5awn8Ozytyt0huVD05mQBFy+xSsLJUMUjUJXBMwggFWNyhyKJH2nbj5Dgk1qc93hw73eYd05GJGR4QyjPU4i0fjogtfc8cv/udh4Pf9b3CaOWhbhJCIxN6xMYlUpcaij35RzJD5KVHqPL46mGFzmRRVPXN4p9cHLn62vHM=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VI1PR0401MB2237247525AB5DB5B5F275A8F8EC0@VI1PR0401MB2237.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ef5e611-3773-4889-3fa7-08d6ef3814ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2019 13:15:46.2354
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: horia.geanta@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2877
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > diff --git a/drivers/ptp/Kconfig b/drivers/ptp/Kconfig index
-> > > 9b8fee5..b1b454f 100644
-> > > --- a/drivers/ptp/Kconfig
-> > > +++ b/drivers/ptp/Kconfig
-> > > @@ -44,7 +44,7 @@ config PTP_1588_CLOCK_DTE
-> > >
-> > >  config PTP_1588_CLOCK_QORIQ
-> > >  	tristate "Freescale QorIQ 1588 timer as PTP clock"
-> > > -	depends on GIANFAR || FSL_DPAA_ETH || FSL_ENETC || FSL_ENETC_VF
-> > > +	depends on GIANFAR || FSL_DPAA_ETH || FSL_DPAA2_ETH ||
-> > FSL_ENETC ||
-> > > +FSL_ENETC_VF
-> > >  	depends on PTP_1588_CLOCK
-> > 
-> > Hi Yangbo
-> > 
-> > Could COMPILE_TEST also be added?
-> 
-> [Y.b. Lu] COMPILE_TEST is usually for other ARCHs build coverage.
-> Do you want me to append it after these Ethernet driver dependencies?
-
-Hii Y.b. Lu
-
-Normally, drivers like this should be able to compile independent of
-the MAC driver. So you should be able to add COMPILE_TEST here.
-
-    Andrew
+On 6/12/2019 4:06 PM, Shawn Guo wrote:=0A=
+> On Wed, Jun 12, 2019 at 11:45:18AM +0000, Horia Geanta wrote:=0A=
+>> On 6/12/2019 1:40 PM, Shawn Guo wrote:=0A=
+>>> On Thu, Jun 06, 2019 at 11:02:55AM +0300, Horia Geant=E3 wrote:=0A=
+>>>> From: Iuliana Prodan <iuliana.prodan@nxp.com>=0A=
+>>>>=0A=
+>>>> Add crypto node in device tree for CAAM support.=0A=
+>>>>=0A=
+>>>> Noteworthy is that on 7ulp the interrupt line is shared=0A=
+>>>> between the two job rings.=0A=
+>>>>=0A=
+>>>> Signed-off-by: Iuliana Prodan <iuliana.prodan@nxp.com>=0A=
+>>>> Signed-off-by: Franck LENORMAND <franck.lenormand@nxp.com>=0A=
+>>>> Signed-off-by: Horia Geant=E3 <horia.geanta@nxp.com>=0A=
+>>>> ---=0A=
+>>>>=0A=
+>>>> I've just realized that this patch should be merged through the crypto=
+ tree,=0A=
+>>>> else bisectability could be affected due to cryptodev-2.6=0A=
+>>>> commit 385cfc84a5a8 ("crypto: caam - disable some clock checks for iMX=
+7ULP")=0A=
+>>>> ( https://patchwork.kernel.org/patch/10970017/ )=0A=
+>>>> which should come first.=0A=
+>>>=0A=
+>>> I'm not sure I follow it.  This is a new device added to imx7ulp DT.=0A=
+>>> It's never worked before on imx7ulp.  How would it affect git bisect?=
+=0A=
+>>>=0A=
+>> Driver corresponding to this device (drivers/crypto/caam) has to be upda=
+ted=0A=
+>> before adding the node in DT.=0A=
+>> Is there any guarantee wrt. merge order of the crypto and DT trees?=0A=
+> =0A=
+> Do not merge DT changes until driver part hits mainline.=0A=
+> =0A=
+That would mean driver changes would be merged in v5.3 and DT node in v5.4.=
+=0A=
+=0A=
+Would going through the crypto tree with this patch be such a big issue?=0A=
+I don't think it's the first time (relatively small) DT patches=0A=
+are merged via other trees.=0A=
+=0A=
+Thanks,=0A=
+Horia=0A=
