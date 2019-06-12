@@ -2,86 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8FC641B79
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 07:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8563D41BB4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2019 07:55:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729846AbfFLFKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jun 2019 01:10:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51250 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725958AbfFLFKe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 01:10:34 -0400
-Received: from localhost (unknown [106.200.205.167])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 174A32086A;
-        Wed, 12 Jun 2019 05:10:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560316233;
-        bh=nNjKAxSLRS5Wjiv8q+eu2ijlG5c33+pSJg4RaD8PxrA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BIui0OQqALdAHPyilX/7/gKaWBcm80sNz4iluadBIGiCO4PvyOxQUogUIMybCxNDO
-         ymaLV5apKyngtuMFhzPRcMSFRTaYsf+QNJXppTCr34BfMpHMk01Cr1YblkhlpOCAhu
-         R1m6hdfRTBroOOGyOFQ2qAXwNsFOrzWsXkQDgNb4=
-Date:   Wed, 12 Jun 2019 10:37:25 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Deepak Katragadda <dkatraga@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Taniya Das <tdas@codeaurora.org>
-Subject: Re: [PATCH 2/2] clk: qcom: gcc: Add global clock controller driver
- for SM8150
-Message-ID: <20190612050725.GA9160@vkoul-mobl.Dlink>
-References: <20190607101234.30449-1-vkoul@kernel.org>
- <20190607101234.30449-2-vkoul@kernel.org>
- <20190607174353.31EDA208C3@mail.kernel.org>
- <20190608091537.GG9160@vkoul-mobl.Dlink>
- <20190610150827.607F6207E0@mail.kernel.org>
+        id S1730708AbfFLFzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jun 2019 01:55:50 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:63763 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725601AbfFLFzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 01:55:50 -0400
+X-UUID: db192daf4e4c4231aab5289b95b197ca-20190612
+X-UUID: db192daf4e4c4231aab5289b95b197ca-20190612
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 565738570; Wed, 12 Jun 2019 13:55:40 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 12 Jun 2019 13:55:37 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 12 Jun 2019 13:55:31 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Jumin Li <jumin.li@mediatek.com>
+Subject: [PATCH 1/5] dt-bindings: usb: mtu3: fix typo of DMA clock name
+Date:   Wed, 12 Jun 2019 13:55:17 +0800
+Message-ID: <5e06482a0be15476c7b5825f155accf98275afa8.1560246390.git.chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190610150827.607F6207E0@mail.kernel.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-06-19, 08:08, Stephen Boyd wrote:
-> Quoting Vinod Koul (2019-06-08 02:15:37)
-> > On 07-06-19, 10:43, Stephen Boyd wrote:
-> > > Quoting Vinod Koul (2019-06-07 03:12:34)
-> > > > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
-> > > > new file mode 100644
-> > > > index 000000000000..1cbc884444c9
-> > > > --- /dev/null
-> > > > +++ b/drivers/clk/qcom/gcc-sm8150.c
-> > > > +static const struct parent_map gcc_parent_map_0[] = {
-> > > > +       { P_BI_TCXO, 0 },
-> > > > +       { P_GPLL0_OUT_MAIN, 1 },
-> > > > +       { P_GPLL0_OUT_EVEN, 6 },
-> > > > +       { P_CORE_BI_PLL_TEST_SE, 7 },
-> > > > +};
-> > > > +
-> > > > +static const char * const gcc_parent_names_0[] = {
-> > > 
-> > > We have a new way of specifying clk parents now. Can you use that
-> > > instead of using strings everywhere?
-> > 
-> > Okay I will update, any pointers on new implementation I can look up?
-> > 
-> 
-> Not really yet. Chen-Yu is working on the Allwinner driver
-> (drivers/clk/sunxi-ng/) and some work from Jeff for MSM8998 is on the
-> list that you can look at.
+Fix typo of dma_ck
 
-Thanks for the pointer, I have done the conversion and will post the
-update in v2
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+ Documentation/devicetree/bindings/usb/mediatek,mtu3.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
+index 3382b5cb471d..5d740e9d4525 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
+@@ -16,7 +16,7 @@ Required properties:
+ 	entry in clock-names
+  - clock-names : must contain "sys_ck" for clock of controller,
+ 	the following clocks are optional:
+-	"ref_ck", "mcu_ck" and "dam_ck";
++	"ref_ck", "mcu_ck" and "dma_ck";
+  - phys : see usb-hcd.txt in the current directory
+  - dr_mode : should be one of "host", "peripheral" or "otg",
+ 	refer to usb/generic.txt
 -- 
-~Vinod
+2.21.0
+
