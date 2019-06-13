@@ -2,84 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DC4E44AE2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4D7144AF0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:43:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727487AbfFMSkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 14:40:25 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:50618 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbfFMSkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:40:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=t2/Vc/q/GlaihJsCwFZdn2XBcJoMXN52dRYqrNUXbTk=; b=j6aytOY5Yv8Yr3ftg88JL/wah
-        I3f0CBRWklwgpuBqfviXwZS7ohvVt6dZ5LX37vBXYId9R7KutDFvLrU+EIJzHKXtoYHb6tl4Ex8wI
-        jNqecSjMKtmjFiHWGv6Dj5lNGkVlNDWSoPt7eNhDi5b1cNZJz5CAfqECqBCLZug5t0su8=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hbUe6-0005On-0A; Thu, 13 Jun 2019 18:40:22 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 64A31440046; Thu, 13 Jun 2019 19:40:21 +0100 (BST)
-Date:   Thu, 13 Jun 2019 19:40:21 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     lgirdwood@gmail.com, agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, jorge.ramirez-ortiz@linaro.org,
-        niklas.cassel@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] drivers: regulator: qcom_spmi: enable linear
- range info
-Message-ID: <20190613184021.GT5316@sirena.org.uk>
-References: <20190606184842.39484-1-jeffrey.l.hugo@gmail.com>
- <20190606184923.39537-1-jeffrey.l.hugo@gmail.com>
+        id S1727375AbfFMSn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 14:43:27 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:34084 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfFMSn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:43:27 -0400
+Received: by mail-qk1-f195.google.com with SMTP id t8so65497qkt.1;
+        Thu, 13 Jun 2019 11:43:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=NcR/8SWBfRQzzMiD/zvgVxR7YrRjbw8pG/CMmNHs2cg=;
+        b=YlY8eWoFM4EWnURqyiKqUeMlq3f041NgKcf1ORHxQ+9C0j0tthys3w5wG1bTeOPxXM
+         4llGIoenOXcS1Vj9j6DXuH1ipPkTs3SOvfwkdn29YOjw+Vr7vOHb7KnHffeutTgrgNDc
+         KC2Jn0DLZKjL2HWfRNkZNAAk89BlSJLcdv47dpMWxYjXG9LWMuiUnQa3JBVbMDwtBjlE
+         IhF+w/a1svB0SJd8DvRZNjfZMTApsboitzA76CsgCk7thw8DGF3HSQZ47R3SeGbCl+/y
+         Te51yGrKzE4ztcbtC41b5fqQPf7ibr3tL1Xxq8R7wKEvCOVZX/3kmObOHFtEtoXgTP+j
+         vUoQ==
+X-Gm-Message-State: APjAAAVGYcBHq4YgypUmvZSwUtF3qUoV2NOI3Z5FpE9LfTBgPb+cWFqS
+        TTPmGm6C/AmaS/OfJBLZ4w==
+X-Google-Smtp-Source: APXvYqzOykNZ+yOjvFYDrp5id4HZ0PDwD2Ol+Jy2xY+WA4FXykBA2wVI1v/kaQWi3VCgBPbrJGXj/w==
+X-Received: by 2002:a37:b044:: with SMTP id z65mr71813835qke.294.1560451406096;
+        Thu, 13 Jun 2019 11:43:26 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id x2sm214491qkc.92.2019.06.13.11.43.25
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 13 Jun 2019 11:43:25 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 12:43:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     vkoul@kernel.org, nm@ti.com, ssantosh@kernel.org,
+        dan.j.williams@intel.com, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
+        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com
+Subject: Re: [PATCH 10/16] dmaengine: ti: New driver for K3 UDMA - split#1:
+ defines, structs, io func
+Message-ID: <20190613184324.GA26206@bogus>
+References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
+ <20190506123456.6777-11-peter.ujfalusi@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tRcR9GoWqjXrt11v"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190606184923.39537-1-jeffrey.l.hugo@gmail.com>
-X-Cookie: Editing is a rewording activity.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190506123456.6777-11-peter.ujfalusi@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 06, 2019 at 03:34:50PM +0300, Peter Ujfalusi wrote:
+> Split patch for review containing: defines, structs, io and low level
+> functions and interrupt callbacks.
 
---tRcR9GoWqjXrt11v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not a useful comment for upstream.
 
-On Thu, Jun 06, 2019 at 11:49:23AM -0700, Jeffrey Hugo wrote:
-> From: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
->=20
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> 
+> DMA driver for
+> Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P)
+> 
+> The UDMA-P is intended to perform similar (but significantly upgraded) functions
+> as the packet-oriented DMA used on previous SoC devices. The UDMA-P module
+> supports the transmission and reception of various packet types. The UDMA-P is
+> architected to facilitate the segmentation and reassembly of SoC DMA data
+> structure compliant packets to/from smaller data blocks that are natively
+> compatible with the specific requirements of each connected peripheral. Multiple
+> Tx and Rx channels are provided within the DMA which allow multiple segmentation
+> or reassembly operations to be ongoing. The DMA controller maintains state
+> information for each of the channels which allows packet segmentation and
+> reassembly operations to be time division multiplexed between channels in order
+> to share the underlying DMA hardware. An external DMA scheduler is used to
+> control the ordering and rate at which this multiplexing occurs for Transmit
+> operations. The ordering and rate of Receive operations is indirectly controlled
+> by the order in which blocks are pushed into the DMA on the Rx PSI-L interface.
+> 
+> The UDMA-P also supports acting as both a UTC and UDMA-C for its internal
+> channels. Channels in the UDMA-P can be configured to be either Packet-Based or
+> Third-Party channels on a channel by channel basis.
+> 
+> The initial driver supports:
+> - MEM_TO_MEM (TR mode)
+> - DEV_TO_MEM (Packet / TR mode)
+> - MEM_TO_DEV (Packet / TR mode)
+> - Cyclic (Packet / TR mode)
+> - Metadata for descriptors
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  drivers/dma/ti/k3-udma.c          | 1008 +++++++++++++++++++++++++++++
+>  drivers/dma/ti/k3-udma.h          |  129 ++++
+>  include/dt-bindings/dma/k3-udma.h |   26 +
 
-Please use subject lines matching the style for the subsystem.  This
-makes it easier for people to identify relevant patches.
+This belongs in the binding patch.
 
---tRcR9GoWqjXrt11v
-Content-Type: application/pgp-signature; name="signature.asc"
+>  3 files changed, 1163 insertions(+)
+>  create mode 100644 drivers/dma/ti/k3-udma.c
+>  create mode 100644 drivers/dma/ti/k3-udma.h
+>  create mode 100644 include/dt-bindings/dma/k3-udma.h
 
------BEGIN PGP SIGNATURE-----
+> diff --git a/include/dt-bindings/dma/k3-udma.h b/include/dt-bindings/dma/k3-udma.h
+> new file mode 100644
+> index 000000000000..89ba6a9d4a8f
+> --- /dev/null
+> +++ b/include/dt-bindings/dma/k3-udma.h
+> @@ -0,0 +1,26 @@
+> +#ifndef __DT_TI_UDMA_H
+> +#define __DT_TI_UDMA_H
+> +
+> +#define UDMA_TR_MODE		0
+> +#define UDMA_PKT_MODE		1
+> +
+> +#define UDMA_DIR_TX		0
+> +#define UDMA_DIR_RX		1
+> +
+> +#define PSIL_STATIC_TR_NONE	0
+> +#define PSIL_STATIC_TR_XY	1
+> +#define PSIL_STATIC_TR_MCAN	2
+> +
+> +#define UDMA_PDMA_TR_XY(id)				\
+> +	ti,psil-config##id {				\
+> +		linux,udma-mode = <UDMA_TR_MODE>;	\
+> +		statictr-type = <PSIL_STATIC_TR_XY>;	\
+> +	}
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0CmJQACgkQJNaLcl1U
-h9Ahywf+PzmqBut8uqKJcwRB5GhEE/ja3bqrcVbbgZGMo9jgh3NlGBd1xhCjnT7B
-C7rWgMGl8IkSs6871omjtoMd+oUUN71u263yIqbB8TlcB4iHMJClXET/2GMK0xZb
-YINX6pN+iKs2M097dGHBFOLEsVnWF6P9Qk286okJE308HdaPHYopjMbpvaxoObR/
-o0Q58ziZ2r9Cz2lIux8y1vfh4aliq+Vdkzv7kkLpLNo4UZ3vOK37ZISo2Ur/pRDE
-t2NxWi3pwdJrCttqy11GJulo6F8Es1p+MQccN2ve2T7DekndPP9fuhX+1XYjgj9G
-ekVpT2ORE+6wnxpps1nVEZS4hP5nvQ==
-=totN
------END PGP SIGNATURE-----
+We don't accept this kind of complex macros in dts files. It obfuscates 
+reading dts files.
 
---tRcR9GoWqjXrt11v--
+Rob
