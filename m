@@ -2,129 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C9DA43AD7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:24:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F0543AEA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389320AbfFMPYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:24:08 -0400
-Received: from foss.arm.com ([217.140.110.172]:42462 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389298AbfFMPYI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 11:24:08 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E47D03EF;
-        Thu, 13 Jun 2019 08:24:07 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 90FD23F718;
-        Thu, 13 Jun 2019 08:24:06 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 16:24:04 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
-Message-ID: <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
- <20190516055307.25737-28-mmaddireddy@nvidia.com>
- <20190604132233.GT16519@ulmo>
+        id S1727146AbfFMPYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:24:46 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:32946 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727231AbfFMPYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:24:34 -0400
+Received: by mail-pg1-f193.google.com with SMTP id k187so10649416pga.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 08:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=UhkxS9OzbQDJW8EmelqSilqPcjj3tM4tLTV73e7d2yw=;
+        b=dzKFboS9GO1hDmlm9GccLJ3JLpjQDc/PCv8UzpB/mtMxyIqA2B4c0jEhTsRq3dS+Pw
+         3OH3S9ZWwN191V8aO4SrYk/U+ugTOq3+d3oBnBYUHH3ZMNikRQARD079yVR+1lrb4pjJ
+         YZg4HDp0qFkB3nAuRt9UVPV322Ne054lKEyvyeaFZISy6fxVTXPHHiZ/5B7XQRz2Df74
+         NfAYxnn5RWzPJE0+S1KQA4WGD/FTIOtrHEZzPHA6Va87X7vkY2nn/vWh6XqDReVbAzyR
+         F7hQkH0TOTOYgwCIls/RcI0yYQtfJkQ7wAoRnNIq0AZSxD/N7z9IoysNJSo0ZaxrUY9Q
+         EQYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=UhkxS9OzbQDJW8EmelqSilqPcjj3tM4tLTV73e7d2yw=;
+        b=TOEpUSkS6NchdvDkjq1nADviqhb139hwK+XpVGzkQ/SZpKCo9hKHpddNLL7DSNG4S+
+         LEL0u+B/0BWrVYTC5jK+VrandT1xLUszEbs5iIeUU7O6fR09ISrOQY0/1jz9rTwPHfO9
+         EYHH1xqpFM7DozFfIR7HxTV+Hr6WUM6mVBPMCSoEaoF1nOa1m6wEbQdufqyuTEy/uuPu
+         bDyIHbcMCrTU1otOeNJzwkcqet24tbKhwcM0XNaLPqvnr5zN8sp04SXa1dvV1d2nZE+L
+         Z41/vn3fCTPvu2lplllia3BuJl7ILFLzSsS9DX/e8elBuTo7hjl3ecSILuW6dXa3np7b
+         2RCQ==
+X-Gm-Message-State: APjAAAWcgCHFq2fabVq7pE758BOcs3/mDCc/xW0KaHcd8pB9LJxRW5yJ
+        09LNTW+Wq+j29f5C3rAZ87/F0Q==
+X-Google-Smtp-Source: APXvYqxMD0WyAu536v6hFZOJpJWEQhXFLgxLRnrqc2RoymF6h5pR+QF0Lh6Ev5dKcm9cjbMfXygFkA==
+X-Received: by 2002:a17:90a:f498:: with SMTP id bx24mr6275180pjb.91.1560439473353;
+        Thu, 13 Jun 2019 08:24:33 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id a13sm119140pgl.84.2019.06.13.08.24.32
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 13 Jun 2019 08:24:32 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 08:24:30 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] drivers: regulator: qcom_spmi: Refactor
+ get_mode/set_mode
+Message-ID: <20190613152430.GC6792@builder>
+References: <20190613142157.8674-1-jeffrey.l.hugo@gmail.com>
+ <20190613142239.8779-1-jeffrey.l.hugo@gmail.com>
+ <20190613151209.GB6792@builder>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190604132233.GT16519@ulmo>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190613151209.GB6792@builder>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 03:22:33PM +0200, Thierry Reding wrote:
+On Thu 13 Jun 08:12 PDT 2019, Bjorn Andersson wrote:
 
-[...]
-
-> > +	} else {
-> > +		value = afi_readl(port->pcie, ctrl);
-> > +		value &= ~AFI_PEX_CTRL_RST;
-> > +		afi_writel(port->pcie, value, ctrl);
-> > +	}
-> >  
-> >  	usleep_range(1000, 2000);
-> >  
-> > -	value = afi_readl(port->pcie, ctrl);
-> > -	value |= AFI_PEX_CTRL_RST;
-> > -	afi_writel(port->pcie, value, ctrl);
-> > +	if (port->reset_gpiod) {
-> > +		gpiod_set_value(port->reset_gpiod, 1);
+> On Thu 13 Jun 07:22 PDT 2019, Jeffrey Hugo wrote:
 > 
-> After this the port should be functional, right? I think it'd be better
-> to reverse the logic here and move the polarity of the GPIO into device
-> tree. gpiod_set_value() takes care of inverting the level internally if
-> the GPIO is marked as low-active in DT.
-> 
-> The end result is obviously the same, but it makes the usage much
-> clearer. If somebody want to write a DT for their board, they will look
-> at the schematics and see a low-active reset line and may be tempted to
-> describe it as such in DT, but with your current code that would be
-> exactly the wrong way around.
+> > spmi_regulator_common_get_mode and spmi_regulator_common_set_mode use
+> > multi-level ifs which mirror a switch statement.  Refactor to use a switch
+> > statement to make the code flow more clear.
+> > 
+> > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> > ---
+> >  drivers/regulator/qcom_spmi-regulator.c | 28 ++++++++++++++++---------
+> >  1 file changed, 18 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/regulator/qcom_spmi-regulator.c b/drivers/regulator/qcom_spmi-regulator.c
+> > index fd55438c25d6..1c18fe5969b5 100644
+> > --- a/drivers/regulator/qcom_spmi-regulator.c
+> > +++ b/drivers/regulator/qcom_spmi-regulator.c
+> > @@ -911,13 +911,14 @@ static unsigned int spmi_regulator_common_get_mode(struct regulator_dev *rdev)
+> >  
+> >  	spmi_vreg_read(vreg, SPMI_COMMON_REG_MODE, &reg, 1);
+> >  
+> > -	if (reg & SPMI_COMMON_MODE_HPM_MASK)
 
-I agree with Thierry here, you should change the logic.
+Sorry, didn't see the & here. Don't you need to mask out the mode bits
+before turning this into a switch?
 
-Question: what's the advantage of adding GPIO reset support if that's
-architected already in port registers ? I am pretty sure there is a
-reason behind it (and forgive me the dumb question) and I would like to
-have it written in the commit log.
-
-Thanks,
-Lorenzo
-
-> > +	} else {
-> > +		value = afi_readl(port->pcie, ctrl);
-> > +		value |= AFI_PEX_CTRL_RST;
-> > +		afi_writel(port->pcie, value, ctrl);
+> > +	switch (reg) {
+> > +	case SPMI_COMMON_MODE_HPM_MASK:
+> >  		return REGULATOR_MODE_NORMAL;
+> > -
+> > -	if (reg & SPMI_COMMON_MODE_AUTO_MASK)
+> > +	case SPMI_COMMON_MODE_AUTO_MASK:
+> >  		return REGULATOR_MODE_FAST;
+> > -
+> > -	return REGULATOR_MODE_IDLE;
+> > +	default:
+> > +		return REGULATOR_MODE_IDLE;
 > > +	}
 > >  }
 > >  
-> >  static void tegra_pcie_enable_rp_features(struct tegra_pcie_port *port)
-> > @@ -2238,6 +2249,7 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
-> >  		struct tegra_pcie_port *rp;
-> >  		unsigned int index;
-> >  		u32 value;
-> > +		char *label;
+> >  static int
+> > @@ -925,12 +926,19 @@ spmi_regulator_common_set_mode(struct regulator_dev *rdev, unsigned int mode)
+> >  {
+> >  	struct spmi_regulator *vreg = rdev_get_drvdata(rdev);
+> >  	u8 mask = SPMI_COMMON_MODE_HPM_MASK | SPMI_COMMON_MODE_AUTO_MASK;
+> > -	u8 val = 0;
+> > +	u8 val;
 > >  
-> >  		err = of_pci_get_devfn(port);
-> >  		if (err < 0) {
-> > @@ -2296,6 +2308,23 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
-> >  		if (IS_ERR(rp->base))
-> >  			return PTR_ERR(rp->base);
+> > -	if (mode == REGULATOR_MODE_NORMAL)
+> > +	switch (mode) {
+> > +	case REGULATOR_MODE_NORMAL:
+> >  		val = SPMI_COMMON_MODE_HPM_MASK;
+> > -	else if (mode == REGULATOR_MODE_FAST)
+> > +		break;
+> > +	case REGULATOR_MODE_FAST:
+> >  		val = SPMI_COMMON_MODE_AUTO_MASK;
+> > +		break;
+> > +	default:
+> > +		val = 0;
+> > +		break;
+> > +	}
+> 
+> For this part:
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > >  
-> > +		label = kasprintf(GFP_KERNEL, "pex-reset-%u", index);
+> >  	return spmi_vreg_update_bits(vreg, SPMI_COMMON_REG_MODE, val, mask);
+> >  }
+> > @@ -1834,9 +1842,9 @@ static int qcom_spmi_regulator_probe(struct platform_device *pdev)
+> >  			}
+> >  		}
+> >  
+> > -		if (vreg->logical_type == SPMI_REGULATOR_LOGICAL_TYPE_HFS430) {
 > 
-> devm_kasprintf()?
+> Squash this into patch 1.
 > 
-> Thierry
+> Regards,
+> Bjorn
 > 
-> > +		if (!label) {
-> > +			dev_err(dev, "failed to create reset GPIO label\n");
-> > +			return -ENOMEM;
-> > +		}
-> > +
-> > +		rp->reset_gpiod = devm_gpiod_get_from_of_node(dev, port,
-> > +							      "reset-gpios", 0,
-> > +							      GPIOD_OUT_LOW,
-> > +							      label);
-> > +		kfree(label);
-> > +		if (IS_ERR(rp->reset_gpiod)) {
-> > +			err = PTR_ERR(rp->reset_gpiod);
-> > +			dev_err(dev, "failed to get reset GPIO: %d\n", err);
-> > +			return err;
-> > +		}
-> > +
-> >  		list_add_tail(&rp->list, &pcie->ports);
-> >  	}
+> > +		if (vreg->set_points->count == 1) {
+> >  			/* since there is only one range */
+> > -			range = spmi_regulator_find_range(vreg);
+> > +			range = vreg->set_points->range;
+> >  			vreg->desc.uV_step = range->step_uV;
+> >  		}
 > >  
 > > -- 
 > > 2.17.1
 > > 
-
-
