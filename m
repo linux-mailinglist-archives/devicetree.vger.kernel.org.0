@@ -2,128 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D46CD43970
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9DA43AD7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732333AbfFMPNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:13:52 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:43632 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388386AbfFMPNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:13:37 -0400
-Received: by mail-lj1-f193.google.com with SMTP id 16so18887358ljv.10
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 08:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3sc3DlT2aHgDUBPzbdNbG/lF95Cth+rPWMq4ZM26quY=;
-        b=eEpipQxFUi5JXVuC+9r5W5Dtcce8K9zV/fB94gGq3bd6eQw119DSEiWZNKIRc9Ggbg
-         9YkACR96hRoi/t4EMMWKn59rKmzvTqlvEGtS/hoKOX4346Z8QFShpMQOGKLF15Qym6vi
-         RFbjxmk+c7eGQa9IcwTKduCmZe3IZ0+aZ+Y0ucR3sVrEoZFQEHBsVHN0wSo34QRnnFJz
-         XPar90/oJgWgoN3g3Bspp5lDSu3Sojz64UcSqw+lp8UtjB7cgP2b/Su4IlxjwHfzCDGz
-         S4ndeRvLm8bl9KXUvsw6o/S0aqWezgDQzusmXWAbrmR6lWHEQzLMayKxfh/zMR2HyjuP
-         +EtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3sc3DlT2aHgDUBPzbdNbG/lF95Cth+rPWMq4ZM26quY=;
-        b=A7uemHcY2viIcI4fI30s+OdNl8iTvnK0eo7LwbDCNMvOHQPCHOrzPnFptE/QfuDfXa
-         v/rijAiio/UbjJKfygrqC5Tc/KceUWT4RYfmGC0PZ0GigUSi9FXGQQDzxzxCVAoSTgo1
-         BrMaRBKAAotgnMRj+k0YX011lLPbRoB8XdBFT+/EmWX94LSa5lrU15s0Ev6i4AYwdsTk
-         LI1JcfoXOJklQXZSjRXbT+c95BFDAXCvwGXQ3OPWjnBuScTT9BUXz3sa0XsefU09ZOxm
-         q6GGoXJ6XvAfQ3C7oYwOkUV5TFPlD4a1yiisPqMoeuGOXvidUpR8C86VLWGQ50ExVYiE
-         p86g==
-X-Gm-Message-State: APjAAAXEqIWkFpLuQkUQ/9D8jQpXCwXZQqUzYIAfvOnyl5RHH3acKBM7
-        i5mQTLtqa20BtGT6nJ2bBkH6SfcatRw=
-X-Google-Smtp-Source: APXvYqzusDCujmFK4AzstrHu0895D+ENcdhXdXlWYYdL7SR9aGRx+EF4RNcKjHie1X+EbB9DngrWRQ==
-X-Received: by 2002:a2e:5b5b:: with SMTP id p88mr38323127ljb.192.1560438815349;
-        Thu, 13 Jun 2019 08:13:35 -0700 (PDT)
-Received: from localhost.localdomain ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id k4sm42923ljj.41.2019.06.13.08.13.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 13 Jun 2019 08:13:34 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
-        georgi.djakov@linaro.org
-Cc:     vkoul@kernel.org, evgreen@chromium.org, daidavid1@codeaurora.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 5/5] arm64: dts: qcs404: Add interconnect provider DT nodes
-Date:   Thu, 13 Jun 2019 18:13:23 +0300
-Message-Id: <20190613151323.10850-6-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190613151323.10850-1-georgi.djakov@linaro.org>
-References: <20190613151323.10850-1-georgi.djakov@linaro.org>
+        id S2389320AbfFMPYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:24:08 -0400
+Received: from foss.arm.com ([217.140.110.172]:42462 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389298AbfFMPYI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 11:24:08 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E47D03EF;
+        Thu, 13 Jun 2019 08:24:07 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 90FD23F718;
+        Thu, 13 Jun 2019 08:24:06 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 16:24:04 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
+Message-ID: <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-28-mmaddireddy@nvidia.com>
+ <20190604132233.GT16519@ulmo>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190604132233.GT16519@ulmo>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for the network-on-chip interconnect buses found
-on qcs404-based platforms.
+On Tue, Jun 04, 2019 at 03:22:33PM +0200, Thierry Reding wrote:
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
----
+[...]
 
-v4:
-- Insert the NoC DT nodes after rng@ to keep the nodes sorted by address.
-- Pick Bjorn's r-b.
+> > +	} else {
+> > +		value = afi_readl(port->pcie, ctrl);
+> > +		value &= ~AFI_PEX_CTRL_RST;
+> > +		afi_writel(port->pcie, value, ctrl);
+> > +	}
+> >  
+> >  	usleep_range(1000, 2000);
+> >  
+> > -	value = afi_readl(port->pcie, ctrl);
+> > -	value |= AFI_PEX_CTRL_RST;
+> > -	afi_writel(port->pcie, value, ctrl);
+> > +	if (port->reset_gpiod) {
+> > +		gpiod_set_value(port->reset_gpiod, 1);
+> 
+> After this the port should be functional, right? I think it'd be better
+> to reverse the logic here and move the polarity of the GPIO into device
+> tree. gpiod_set_value() takes care of inverting the level internally if
+> the GPIO is marked as low-active in DT.
+> 
+> The end result is obviously the same, but it makes the usage much
+> clearer. If somebody want to write a DT for their board, they will look
+> at the schematics and see a low-active reset line and may be tempted to
+> describe it as such in DT, but with your current code that would be
+> exactly the wrong way around.
 
-v3:
-- Update according to the new binding: add reg property and moved under the
-  "soc" node.
+I agree with Thierry here, you should change the logic.
 
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Question: what's the advantage of adding GPIO reset support if that's
+architected already in port registers ? I am pretty sure there is a
+reason behind it (and forgive me the dumb question) and I would like to
+have it written in the commit log.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index ffedf9640af7..da1dbf515bd9 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2018, Linaro Limited
- 
-+#include <dt-bindings/interconnect/qcom,qcs404.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-qcs404.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
-@@ -266,6 +267,33 @@
- 			clock-names = "core";
- 		};
- 
-+		bimc: interconnect@400000 {
-+			reg = <0x00400000 0x80000>;
-+			compatible = "qcom,qcs404-bimc";
-+			#interconnect-cells = <1>;
-+			clock-names = "bus_clk", "bus_a_clk";
-+			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-+				<&rpmcc RPM_SMD_BIMC_A_CLK>;
-+		};
-+
-+		pcnoc: interconnect@500000 {
-+			reg = <0x00500000 0x15080>;
-+			compatible = "qcom,qcs404-pcnoc";
-+			#interconnect-cells = <1>;
-+			clock-names = "bus_clk", "bus_a_clk";
-+			clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
-+				<&rpmcc RPM_SMD_PNOC_A_CLK>;
-+		};
-+
-+		snoc: interconnect@580000 {
-+			reg = <0x00580000 0x23080>;
-+			compatible = "qcom,qcs404-snoc";
-+			#interconnect-cells = <1>;
-+			clock-names = "bus_clk", "bus_a_clk";
-+			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-+				<&rpmcc RPM_SMD_SNOC_A_CLK>;
-+		};
-+
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,qcs404-pinctrl";
- 			reg = <0x01000000 0x200000>,
+Thanks,
+Lorenzo
+
+> > +	} else {
+> > +		value = afi_readl(port->pcie, ctrl);
+> > +		value |= AFI_PEX_CTRL_RST;
+> > +		afi_writel(port->pcie, value, ctrl);
+> > +	}
+> >  }
+> >  
+> >  static void tegra_pcie_enable_rp_features(struct tegra_pcie_port *port)
+> > @@ -2238,6 +2249,7 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
+> >  		struct tegra_pcie_port *rp;
+> >  		unsigned int index;
+> >  		u32 value;
+> > +		char *label;
+> >  
+> >  		err = of_pci_get_devfn(port);
+> >  		if (err < 0) {
+> > @@ -2296,6 +2308,23 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
+> >  		if (IS_ERR(rp->base))
+> >  			return PTR_ERR(rp->base);
+> >  
+> > +		label = kasprintf(GFP_KERNEL, "pex-reset-%u", index);
+> 
+> devm_kasprintf()?
+> 
+> Thierry
+> 
+> > +		if (!label) {
+> > +			dev_err(dev, "failed to create reset GPIO label\n");
+> > +			return -ENOMEM;
+> > +		}
+> > +
+> > +		rp->reset_gpiod = devm_gpiod_get_from_of_node(dev, port,
+> > +							      "reset-gpios", 0,
+> > +							      GPIOD_OUT_LOW,
+> > +							      label);
+> > +		kfree(label);
+> > +		if (IS_ERR(rp->reset_gpiod)) {
+> > +			err = PTR_ERR(rp->reset_gpiod);
+> > +			dev_err(dev, "failed to get reset GPIO: %d\n", err);
+> > +			return err;
+> > +		}
+> > +
+> >  		list_add_tail(&rp->list, &pcie->ports);
+> >  	}
+> >  
+> > -- 
+> > 2.17.1
+> > 
+
+
