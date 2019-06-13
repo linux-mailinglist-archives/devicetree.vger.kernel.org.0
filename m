@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DE44479D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F264544745
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729848AbfFMRAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 13:00:49 -0400
-Received: from gate.crashing.org ([63.228.1.57]:49148 "EHLO gate.crashing.org"
+        id S1729892AbfFMQ6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:58:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53208 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729763AbfFLX56 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 19:57:58 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x5CNvXVL016754;
-        Wed, 12 Jun 2019 18:57:34 -0500
-Message-ID: <28912f8d0a39de519653472a3686fbd7317d18d3.camel@kernel.crashing.org>
-Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
-From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        id S1729886AbfFMArs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 20:47:48 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E0644215EA;
+        Thu, 13 Jun 2019 00:47:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560386868;
+        bh=4lclOnf/sfAPyFXVi/HGPDJVKp6DvLHCXDKLDcqvQaU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Apd1/9RvRe5RRMZS7XQ5mBXWsp+u6fbo99Qa+k24pfkJ/rDYjokzMyqi2R02tYu1U
+         mgmuZuNYIIQgcl/+J3WTW0OGIJYhv4veu1KwtcdtxW3zcTFlr1GggxJDg5cBz95zlI
+         xTfzNH3Q9tNXDAlBIzzqKKbubumC1q/twZiOPTBc=
+Date:   Thu, 13 Jun 2019 08:47:10 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+Cc:     Horia Geanta <horia.geanta@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-Date:   Thu, 13 Jun 2019 09:57:33 +1000
-In-Reply-To: <20190612122504.GI32652@zn.tnic>
-References: <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
-         <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
-         <20190611115651.GD31772@zn.tnic>
-         <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
-         <20190612034813.GA32652@zn.tnic>
-         <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
-         <20190612074242.53a4cf56@coco.lan> <20190612110039.GH32652@zn.tnic>
-         <20190612084213.4fb9e054@coco.lan>
-         <7705227ea831793cc9e45af32e0da8f5547cb14d.camel@kernel.crashing.org>
-         <20190612122504.GI32652@zn.tnic>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx7ulp: add crypto support
+Message-ID: <20190613004709.GB20747@dragon>
+References: <20190606080255.25504-1-horia.geanta@nxp.com>
+ <20190612103926.GE11086@dragon>
+ <VI1PR0402MB3485A573518D60A573BA55C298EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612130602.GH11086@dragon>
+ <VI1PR0402MB348596BF52CE43B5D4CD534798EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612132600.GI11086@dragon>
+ <20190612135952.ds6zzh7ppahiuodd@gondor.apana.org.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190612135952.ds6zzh7ppahiuodd@gondor.apana.org.au>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-06-12 at 14:25 +0200, Borislav Petkov wrote:
-> > But for the main case that really needs to be in the kernel, which is
-> > DRAM, the recovery can usually be contained to the MC driver anyway.
+On Wed, Jun 12, 2019 at 09:59:52PM +0800, Herbert Xu wrote:
+> On Wed, Jun 12, 2019 at 09:26:02PM +0800, Shawn Guo wrote:
+> >
+> > Yes, it happens from time to time depending on maintainer's style. I'm
+> > fine with the DT changes going through other subsystem tree, if the
+> > subsystem maintainer wants to and is willing to take the risk of merge
+> > conflict between his tree and arm-soc tree.
 > 
-> Right, if that is enough to handle the error properly.
-> 
-> The memory-failure.c example I gave before is the error reporting
-> mechanism (x86 MCA) calling into the mm subsystem to poison and isolate
-> page frames which are known to contain errors. So you have two things
-> talking to each other.
+> I have no problems with potential merge conflicts.
 
-And none of them is an EDAC driver...
+Then feel free to take it:
 
-I mean yes, the network drivers talk to the network stack, or even the
-memory allocator :-)
-
-I still don't see how that requires a big platform coordinator...
-
-Ben.
-
-
+Acked-by: Shawn Guo <shawnguo@kernel.org>
