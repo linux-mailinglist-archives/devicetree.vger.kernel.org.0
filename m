@@ -2,75 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C26543C73
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B7D43BC3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728300AbfFMPf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:35:26 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:34868 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727646AbfFMKXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 06:23:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
-        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=CdLBRYvVCv2xx4Vg1tCPu4Ijl4wJSy52l8LQrHW+nC8=; b=GSsdZ1Y5MZw/OjXYzrBWk48S8
-        R7BngR9n5IYQ9US97kiU0fNOPMhtuX1EDvR/dZQQYus890Vb1LJa+GY/UGV0MZnKIG1s8xhjFoVwO
-        nepPgfFS1rpqCZ+pP7LT2Ca6spc/tENjWg2gPP7CSrjyLLBqZKVTWLI+Flqy73mz+P2WsEi6w/SHv
-        p008o3wO1/FshcgdBxInZS7VUJEJ2UtVED0XKqoqvg+QqW+GXB4CjYd4LGhYPzhZETwskmb/IYCWe
-        LqvcoCRGSvssbMEgwQGAuoS+usllbHwlHSGyZQTJM2JREUrd2iaHWgzlSEN0jaLuePc4fS0kjEA4E
-        UNrwtyj0g==;
-Received: from 201.86.169.251.dynamic.adsl.gvt.net.br ([201.86.169.251] helo=bombadil.infradead.org)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hbMt9-0005fa-93; Thu, 13 Jun 2019 10:23:23 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
-        (envelope-from <mchehab@bombadil.infradead.org>)
-        id 1hbMt7-0005lq-9g; Thu, 13 Jun 2019 07:23:21 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728624AbfFMPbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:31:19 -0400
+Received: from 6.mo7.mail-out.ovh.net ([188.165.39.218]:55976 "EHLO
+        6.mo7.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728611AbfFMLCW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 07:02:22 -0400
+Received: from player779.ha.ovh.net (unknown [10.108.42.167])
+        by mo7.mail-out.ovh.net (Postfix) with ESMTP id E0426120EDB
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 12:24:06 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player779.ha.ovh.net (Postfix) with ESMTPSA id 219876B09E0C;
+        Thu, 13 Jun 2019 10:23:56 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt: leds-lm36274.txt: fix a broken reference to ti-lmu.txt
-Date:   Thu, 13 Jun 2019 07:23:15 -0300
-Message-Id: <79b9bf3388eb231da77c6a804862d21339262d0a.1560421387.git.mchehab+samsung@kernel.org>
-X-Mailer: git-send-email 2.21.0
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH v2 1/1] ARM: dts: imx6ul: Add PXP node
+Date:   Thu, 13 Jun 2019 12:23:55 +0200
+Message-Id: <20190613102355.20580-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.19.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 2613776635584075004
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudehledgvdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There's a typo there:
-	ti_lmu.txt -> ti-lmu.txt
+Add PXP node for i.MX6UL/L SoC.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 ---
- Documentation/devicetree/bindings/leds/leds-lm36274.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-lm36274.txt b/Documentation/devicetree/bindings/leds/leds-lm36274.txt
-index 456a589c65f0..39c230d59a4d 100644
---- a/Documentation/devicetree/bindings/leds/leds-lm36274.txt
-+++ b/Documentation/devicetree/bindings/leds/leds-lm36274.txt
-@@ -6,7 +6,7 @@ up to 29V total output voltage. The 11-bit LED current is programmable via
- the I2C bus and/or controlled via a logic level PWM input from 60 uA to 30 mA.
+Changes for v2:
+ - remove status property
  
- Parent device properties are documented in
--Documentation/devicetree/bindings/mfd/ti_lmu.txt
-+Documentation/devicetree/bindings/mfd/ti-lmu.txt
+ arch/arm/boot/dts/imx6ul.dtsi  | 8 ++++++++
+ arch/arm/boot/dts/imx6ull.dtsi | 6 ++++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index f10012de5eb6..751caaca85c6 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -971,6 +971,14 @@
+ 				status = "disabled";
+ 			};
  
- Regulator properties are documented in
- Documentation/devicetree/bindings/regulator/lm363x-regulator.txt
++			pxp: pxp@21cc000 {
++				compatible = "fsl,imx6ul-pxp";
++				reg = <0x021cc000 0x4000>;
++				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clks IMX6UL_CLK_PXP>;
++				clock-names = "axi";
++			};
++
+ 			qspi: spi@21e0000 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/imx6ull.dtsi b/arch/arm/boot/dts/imx6ull.dtsi
+index 22e4a307fa59..b017e925bd87 100644
+--- a/arch/arm/boot/dts/imx6ull.dtsi
++++ b/arch/arm/boot/dts/imx6ull.dtsi
+@@ -34,6 +34,12 @@
+ 	compatible = "fsl,imx6ull-ocotp", "syscon";
+ };
+ 
++&pxp {
++	compatible = "fsl,imx6ull-pxp";
++	interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++		     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++};
++
+ &usdhc1 {
+ 	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
+ };
 -- 
-2.21.0
+2.19.2
 
