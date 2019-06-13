@@ -2,102 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BBE6449AB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7693B449BC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728479AbfFMR1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 13:27:41 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41150 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727230AbfFMR1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 13:27:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=sPVppO9PYS7G7+nG5fnc2Y8BpX0OMOqRo5fudgsdyI8=; b=LIBmv87usk9CI4nn9Mh/gwFFh
-        XZAUCoQrVaJbsKgf2zvtHjLnp8vCvAk40PE2YNdN9I7v3nemx5q2sXiC5YUC//rnV/hYcZILDwcAv
-        jyzt6kGMTNY7t19AMXd5h3VnrxWc8TEzXNSdzPpghXyoI/rK6xZo3REeWhQ4gHNVgKmCo=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hbTVi-0005Kl-Lo; Thu, 13 Jun 2019 17:27:38 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 28A15440046; Thu, 13 Jun 2019 18:27:38 +0100 (BST)
-Date:   Thu, 13 Jun 2019 18:27:38 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nisha Kumari <nishakumari@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, lgirdwood@gmail.com, mark.rutland@arm.com,
-        david.brown@linaro.org, linux-kernel@vger.kernel.org,
-        kgunda@codeaurora.org, rnayak@codeaurora.org
-Subject: Re: [PATCH 4/4] regulator: adding interrupt handling in labibb
- regulator
-Message-ID: <20190613172738.GO5316@sirena.org.uk>
-References: <1560337252-27193-1-git-send-email-nishakumari@codeaurora.org>
- <1560337252-27193-5-git-send-email-nishakumari@codeaurora.org>
+        id S1725852AbfFMRco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 13:32:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34480 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725825AbfFMRco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 13:32:44 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 540BC218FC;
+        Thu, 13 Jun 2019 17:32:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560447163;
+        bh=Z9+nxGUJArxeFNYRLc7IZW2T3WdcyvPDoWI9vdbOCxs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=PS5kC4e73Tv2xsIzb5MWZQ9bzHBAklZop5cN4+cyF5arB+Vn5FbzZ2fgmpJcKv7gO
+         eGC+3fD3AqJbh7v46e3A0F9+quva2hYH3aB99ktr2A9pBGHLSOdwY5ODN9Kkxc01uZ
+         ErQYE9mGDWs8yus4piR5x1SKr32Vxm8ZVwHa3U5s=
+Received: by mail-qk1-f178.google.com with SMTP id r6so13307572qkc.0;
+        Thu, 13 Jun 2019 10:32:43 -0700 (PDT)
+X-Gm-Message-State: APjAAAXUkNCdMZ3psPLdGVnmTzpx5vGJCFDPbVC9/msEe7q96wTC4kEW
+        9Ybxi/XaBHQZ/V791eXx8UTFrM8kQ9NlZ5Bd0Q==
+X-Google-Smtp-Source: APXvYqyQf5z98o/AaM03N71A5iiVUyUqY3CW7taVTqWxgwcOdoed18snklLHmhUZo6pOY3PC3itTfd1UgNrr739MpLY=
+X-Received: by 2002:a37:a6c9:: with SMTP id p192mr74202516qke.184.1560447162583;
+ Thu, 13 Jun 2019 10:32:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="V7BlxAaPrdhzdIM1"
-Content-Disposition: inline
-In-Reply-To: <1560337252-27193-5-git-send-email-nishakumari@codeaurora.org>
-X-Cookie: Editing is a rewording activity.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
+ <d198d29119b37b2fdb700d8992b31963e98b6693.1560158667.git-series.maxime.ripard@bootlin.com>
+ <20190610143139.GG28724@lunn.ch> <CAL_JsqJahCJcdu=+fA=ewbGezuEJ2W6uwMVxkQpdY6w+1OWVVA@mail.gmail.com>
+ <20190611145856.ua2ggkn6ccww6vpp@flea>
+In-Reply-To: <20190611145856.ua2ggkn6ccww6vpp@flea>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 13 Jun 2019 11:32:30 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+KwH-j8f+r+fWhMuqJPWcHdBQau+nUz3NRAXYTpsyuvg@mail.gmail.com>
+Message-ID: <CAL_Jsq+KwH-j8f+r+fWhMuqJPWcHdBQau+nUz3NRAXYTpsyuvg@mail.gmail.com>
+Subject: Re: [PATCH v2 05/11] dt-bindings: net: sun4i-emac: Convert the
+ binding to a schemas
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev <netdev@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 13, 2019 at 7:25 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, Jun 10, 2019 at 12:59:29PM -0600, Rob Herring wrote:
+> > On Mon, Jun 10, 2019 at 8:31 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> > >
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - interrupts
+> > > > +  - clocks
+> > > > +  - phy
+> > > > +  - allwinner,sram
+> > >
+> > > Quoting ethernet.txt:
+> > >
+> > > - phy: the same as "phy-handle" property, not recommended for new bindings.
+> > >
+> > > - phy-handle: phandle, specifies a reference to a node representing a PHY
+> > >   device; this property is described in the Devicetree Specification and so
+> > >   preferred;
+> > >
+> > > Can this be expressed in Yaml? Accept phy, but give a warning. Accept
+> > > phy-handle without a warning? Enforce that one or the other is
+> > > present?
+> >
+> > The common schema could have 'phy: false'. This works as long as we've
+> > updated (or plan to) all the dts files to use phy-handle. The issue is
+> > how far back do you need kernels to work with newer dtbs.
+>
+> I guess another question being raised by this is how hard do we want
+> to be a deprecating things, and should the DT validation be a tool to
+> enforce that validation.
+>
+> For example, you've used in you GPIO meta-schema false for anything
+> ending with -gpio, since it's deprecated. This means that we can't
+> convert any binding using a deprecated property without introducing a
+> build error in the schemas, which in turn means that you'll have a lot
+> of friction to support schemas, since you would have to convert your
+> driver to support the new way of doing things, before being able to
+> have a schema for your binding.
 
---V7BlxAaPrdhzdIM1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I've err'ed on the stricter side. We may need to back off on some
+things to get to warning free builds. Really, I'd like to have levels
+to separate checks for existing bindings, new bindings, and pedantic
+checks.
 
-On Wed, Jun 12, 2019 at 04:30:52PM +0530, Nisha Kumari wrote:
+For '-gpio', we may be okay because the suffix is handled in the GPIO
+core. It should be safe to update the binding to use the preferred
+form.
 
-> +static void labibb_sc_err_recovery_work(void *_labibb)
-> +{
-> +	int ret;
-> +	struct qcom_labibb *labibb = (struct qcom_labibb *)_labibb;
-> +
-> +	labibb->ibb_vreg.vreg_enabled = 0;
-> +	labibb->lab_vreg.vreg_enabled = 0;
-> +
-> +	ret = qcom_ibb_regulator_enable(labibb->lab_vreg.rdev);
+> And then, we need to agree on how to express the deprecation. I guess
+> we could allow the deprecated keyword that will be there in the
+> draft-8, instead of ad-hoc solutions?
 
-The driver should *never* enable the regulator itself, it should only do
-this if the core told it to.
+Oh, nice! I hadn't seen that. Seems like we should use that. We can
+start even without draft-8 support because unknown keywords are
+ignored (though we probably have to add it to our meta-schema). Then
+at some point we can add a 'disallow deprecated' flag to the tool.
 
-> +	/*
-> +	 * The SC(short circuit) fault would trigger PBS(Portable Batch
-> +	 * System) to disable regulators for protection. This would
-> +	 * cause the SC_DETECT status being cleared so that it's not
-> +	 * able to get the SC fault status.
-> +	 * Check if LAB/IBB regulators are enabled in the driver but
-> +	 * disabled in hardware, this means a SC fault had happened
-> +	 * and SCP handling is completed by PBS.
-> +	 */
-
-Let the core worry about this, the driver should just report the problem
-to the core like all other devices do (and this driver doesn't...).
-
---V7BlxAaPrdhzdIM1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0Ch4kACgkQJNaLcl1U
-h9BvEQf/egUOCfKsMM6vyB+zbx/sZSo/l7Ffx+LPqI7wPhEmnDgX59uXuxu3/nDK
-EU5U6q+g3lQxoiREaEnB1vQWdvdEHsd9Y9qfnMHzSfEbER7ZEGtRSuk78eBHKk05
-f7p/STXzlhQ3clp9CcTMwKTaiESaCxGklC1031veOsUAAB/uSy93WrJh7lPLU35T
-aVnjxgP3LVsN63YWUKyTh6F47zfbpPBbht3+qKhae5XNLdAK/OLjUt08US41eOHy
-I3Ujlv94syz1hjB2kigh2Y0AUE7k2GEcW0pGjmOzGHm57Tw0dybGSDB2WnOOAnej
-6plATXwprN3ILhOMtPpDFGusXGGefA==
-=lIxx
------END PGP SIGNATURE-----
-
---V7BlxAaPrdhzdIM1--
+Rob
