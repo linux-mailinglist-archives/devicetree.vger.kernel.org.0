@@ -2,292 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F392443AE2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA7E43A5C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:21:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732180AbfFMPYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:24:31 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:45044 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731713AbfFMMOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 08:14:37 -0400
-Received: by mail-lf1-f65.google.com with SMTP id r15so14888791lfm.11;
-        Thu, 13 Jun 2019 05:14:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Di51b04bROtCX/vuM0wVqtGuQS1eHeWTyN72NZcfLpI=;
-        b=ueZi6C9BckqIlGM9iOCyBVB/ob1mEPQQTEbO4hF0ltPPZ+zczG4ZT8Ce/4iUWi7aKx
-         BtE3HaG4HFWrGaO4fH14CVa+al4wdbPhiRf7YRoBiGmM/YA/RNrjdB2IbykgMjsxb4Ax
-         fjltvV2mUrXX6WgmWs5LXa9phBp4LYUZFR+3R5B2cVFv1/8pxpVuRZ8f1p14SxkurgY1
-         nE+WVZFVq3yZY3DExW5hM6SJZ76kjMmCmpMfgqvenYHe0v3UinsJj41aqxgxjqXv1SjR
-         wkL922OC6EEQOmKLCX45W8CZOK8cmq3vpOVhKNMOHrBFY6akrOiAsqA3tsglyqQzpMc5
-         E/RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Di51b04bROtCX/vuM0wVqtGuQS1eHeWTyN72NZcfLpI=;
-        b=N3miRoCVDK0UbDUHmDQdWOR42ZtQNn6L+rK0Bcsl/j1w2P+O6PUkGzv/JAEZ/SR37B
-         oZ84++pO8qy3nVNrPs+t2Sb7KOkpToMRSZoXskC+8SvamQiub+oF8EBQkK0dUlGdzyzT
-         R2Dfhoe2XD6/VwXC+gwq/58juxwPNOrf9nQXrfFsSqnFRZTu7krm/R7Y/6J0qoJfrbDP
-         6VYJLn58da6q73ohOmiSl+2j8v2wIorhocGHDip1Z+33LQIfaT4D5xvdfUUzyN6dbLWf
-         q40zX7hFm8f1Z/7zvJ8e5BM+hk6578LlJaIlRI5q4GCV64o/tvTECyBvgoX5V/fZc4kg
-         fSgg==
-X-Gm-Message-State: APjAAAXOyK8A7DfJiMebh36cM5giq2gZg53mULVufwOJDmOU3iWD/CM8
-        XaIFaBxJxGTTiaFVe+JXCjDkZTHC
-X-Google-Smtp-Source: APXvYqzUTRSIUmi6E6J8xTlzxDOIGnHtfLC3lcEsJusM8CQrI3hBqsHFcNFaS71aOXiZXgh2DQVf5w==
-X-Received: by 2002:ac2:499b:: with SMTP id f27mr19467015lfl.88.1560428073517;
-        Thu, 13 Jun 2019 05:14:33 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
-        by smtp.googlemail.com with ESMTPSA id i5sm566913lfo.55.2019.06.13.05.14.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 13 Jun 2019 05:14:32 -0700 (PDT)
-Subject: Re: [PATCH v3 1/8] clk: tegra20/30: Add custom EMC clock
- implementation
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190524172353.29087-1-digetx@gmail.com>
- <20190524172353.29087-2-digetx@gmail.com>
- <20190613104945.GJ29894@pdeschrijver-desktop.Nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <9c4af080-89d1-84a3-d909-b5595b8a6959@gmail.com>
-Date:   Thu, 13 Jun 2019 15:14:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1732017AbfFMPUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:20:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34812 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732015AbfFMMwG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 08:52:06 -0400
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8B79F217F5;
+        Thu, 13 Jun 2019 12:52:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560430325;
+        bh=hGTL0UDB9YcWjm74Ir6wQQkX+JwdFyiJOCXF2M+5evU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=wTbq5CEloa5SHhkjgeBYGYhL8+3cX1A9KNfN+w4wcEsou4uoK3R8GYYknSIbC0XIw
+         yMulQoFX7Op9+tmF1uisRQ1zdrMdT6oHMrM5jwVwc6ZR0HX/6KT6sJuFaqhby7RTL4
+         hoqPqr8M2vylF39fcb7bXFgXZLZDkOMCY3ZSYu+A=
+Received: by mail-qt1-f174.google.com with SMTP id z24so9121577qtj.10;
+        Thu, 13 Jun 2019 05:52:05 -0700 (PDT)
+X-Gm-Message-State: APjAAAUZdZeBp7EFAIhRQCVQ3CEwI66QPvqMbp/wqw8y7ssY8VH5oBhV
+        /7KDepjn2vLfHDRQO8BxR/1RuS0VkvSJpb/c7Q==
+X-Google-Smtp-Source: APXvYqyQSf3AAUre27+KCK29BAV13oivw2pUie02NLqVC7Y0PandMlDUCad0+vn9k1QO92NFUsbnlgd0BItkrNEdFVo=
+X-Received: by 2002:a0c:b786:: with SMTP id l6mr3426471qve.148.1560430324645;
+ Thu, 13 Jun 2019 05:52:04 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190613104945.GJ29894@pdeschrijver-desktop.Nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190611040350.90064-1-dbasehore@chromium.org>
+ <20190611040350.90064-3-dbasehore@chromium.org> <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
+ <CAGAzgsoWGqf0JQPNyRFnv2xZTMxje6idce7Dy5FZzuxj30mQyw@mail.gmail.com>
+In-Reply-To: <CAGAzgsoWGqf0JQPNyRFnv2xZTMxje6idce7Dy5FZzuxj30mQyw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 13 Jun 2019 06:51:52 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+9K764hFT6GG=4paumGaxOUbnts4VJvTZ9a8Y-YPWdhg@mail.gmail.com>
+Message-ID: <CAL_Jsq+9K764hFT6GG=4paumGaxOUbnts4VJvTZ9a8Y-YPWdhg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: display/panel: Expand rotation documentation
+To:     "dbasehore ." <dbasehore@chromium.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-13.06.2019 13:49, Peter De Schrijver пишет:
-> On Fri, May 24, 2019 at 08:23:46PM +0300, Dmitry Osipenko wrote:
->> A proper External Memory Controller clock rounding and parent selection
->> functionality is required by the EMC drivers. It is not available using
->> the generic clock implementation, hence add a custom one. The clock rate
->> rounding shall be done by the EMC drivers because they have information
->> about available memory timings, so the drivers will have to register a
->> callback that will round the requested rate. EMC clock users won't be able
->> to request EMC clock by getting -EPROBE_DEFER until EMC driver is probed
->> and the callback is set up. The functionality is somewhat similar to the
->> clk-emc.c which serves Tegra124+ SoC's, the later HW generations support
->> more parent clock sources and the HW configuration and integration with
->> the EMC drivers differs a tad from the older gens, hence it's not really
->> worth to try to squash everything into a single source file.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  drivers/clk/tegra/Makefile          |   2 +
->>  drivers/clk/tegra/clk-tegra20-emc.c | 299 ++++++++++++++++++++++++++++
->>  drivers/clk/tegra/clk-tegra20.c     |  55 ++---
->>  drivers/clk/tegra/clk-tegra30.c     |  38 +++-
->>  drivers/clk/tegra/clk.h             |   6 +
->>  include/linux/clk/tegra.h           |  14 ++
->>  6 files changed, 362 insertions(+), 52 deletions(-)
->>  create mode 100644 drivers/clk/tegra/clk-tegra20-emc.c
->>
->> diff --git a/drivers/clk/tegra/Makefile b/drivers/clk/tegra/Makefile
->> index 4812e45c2214..df966ca06788 100644
->> --- a/drivers/clk/tegra/Makefile
->> +++ b/drivers/clk/tegra/Makefile
->> @@ -17,7 +17,9 @@ obj-y					+= clk-tegra-fixed.o
->>  obj-y					+= clk-tegra-super-gen4.o
->>  obj-$(CONFIG_TEGRA_CLK_EMC)		+= clk-emc.o
->>  obj-$(CONFIG_ARCH_TEGRA_2x_SOC)         += clk-tegra20.o
->> +obj-$(CONFIG_ARCH_TEGRA_2x_SOC)		+= clk-tegra20-emc.o
->>  obj-$(CONFIG_ARCH_TEGRA_3x_SOC)         += clk-tegra30.o
->> +obj-$(CONFIG_ARCH_TEGRA_3x_SOC)		+= clk-tegra20-emc.o
->>  obj-$(CONFIG_ARCH_TEGRA_114_SOC)	+= clk-tegra114.o
->>  obj-$(CONFIG_ARCH_TEGRA_124_SOC)	+= clk-tegra124.o
->>  obj-$(CONFIG_TEGRA_CLK_DFLL)		+= clk-tegra124-dfll-fcpu.o
->> diff --git a/drivers/clk/tegra/clk-tegra20-emc.c b/drivers/clk/tegra/clk-tegra20-emc.c
->> new file mode 100644
->> index 000000000000..d971b5425ce3
->> --- /dev/null
->> +++ b/drivers/clk/tegra/clk-tegra20-emc.c
->> @@ -0,0 +1,299 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +#include <linux/bits.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/clk/tegra.h>
->> +#include <linux/err.h>
->> +#include <linux/io.h>
->> +#include <linux/kernel.h>
->> +#include <linux/slab.h>
->> +
->> +#include "clk.h"
->> +
->> +#define CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK	GENMASK(7, 0)
->> +#define CLK_SOURCE_EMC_2X_CLK_SRC_MASK		GENMASK(31, 30)
->> +#define CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT		30
->> +
->> +#define MC_EMC_SAME_FREQ	BIT(16)
->> +#define USE_PLLM_UD		BIT(29)
->> +
->> +#define EMC_SRC_PLL_M		0
->> +#define EMC_SRC_PLL_C		1
->> +#define EMC_SRC_PLL_P		2
->> +#define EMC_SRC_CLK_M		3
->> +
->> +static const char * const emc_parent_clk_names[] = {
->> +	"pll_m", "pll_c", "pll_p", "clk_m",
->> +};
->> +
->> +struct tegra_clk_emc {
->> +	struct clk_hw hw;
->> +	void __iomem *reg;
->> +	bool mc_same_freq;
->> +	bool want_low_jitter;
->> +
->> +	tegra20_clk_emc_round_cb *round_cb;
->> +	void *cb_arg;
->> +};
->> +
->> +static inline struct tegra_clk_emc *to_tegra_clk_emc(struct clk_hw *hw)
->> +{
->> +	return container_of(hw, struct tegra_clk_emc, hw);
->> +}
->> +
->> +static unsigned long emc_recalc_rate(struct clk_hw *hw,
->> +				     unsigned long parent_rate)
->> +{
->> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
->> +	u32 val, div;
->> +
->> +	val = readl_relaxed(emc->reg);
->> +	div = val & CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
->> +
->> +	return DIV_ROUND_UP(parent_rate * 2, div + 2);
->> +}
->> +
->> +static u8 emc_get_parent(struct clk_hw *hw)
->> +{
->> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
->> +
->> +	return readl_relaxed(emc->reg) >> CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
->> +}
->> +
->> +static int emc_set_parent(struct clk_hw *hw, u8 index)
->> +{
->> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
->> +	u32 val, div;
->> +
->> +	val = readl_relaxed(emc->reg);
->> +	val &= ~CLK_SOURCE_EMC_2X_CLK_SRC_MASK;
->> +	val |= index << CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
->> +
->> +	div = val & CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
->> +
->> +	if (index == EMC_SRC_PLL_M && div == 0 && emc->want_low_jitter)
->> +		val |= USE_PLLM_UD;
->> +	else
->> +		val &= ~USE_PLLM_UD;
->> +
->> +	if (emc->mc_same_freq)
->> +		val |= MC_EMC_SAME_FREQ;
->> +	else
->> +		val &= ~MC_EMC_SAME_FREQ;
->> +
->> +	writel_relaxed(val, emc->reg);
->> +
-> 
-> I think technically you need a fence_udelay(1) here, but in practice
-> this is probably not needed because you will poll some EMC register for
-> the frequency completion anyway. Maybe add a comment about this?
-> 
->> +	return 0;
->> +}
->> +
->> +static int emc_set_rate(struct clk_hw *hw, unsigned long rate,
->> +			unsigned long parent_rate)
->> +{
->> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
->> +	unsigned int index;
->> +	u32 val, div;
->> +
->> +	div = div_frac_get(rate, parent_rate, 8, 1, 0);
->> +
->> +	val = readl_relaxed(emc->reg);
->> +	val &= ~CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
->> +	val |= div;
->> +
->> +	index = val >> CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
->> +
->> +	if (index == EMC_SRC_PLL_M && div == 0 && emc->want_low_jitter)
->> +		val |= USE_PLLM_UD;
->> +	else
->> +		val &= ~USE_PLLM_UD;
->> +
->> +	if (emc->mc_same_freq)
->> +		val |= MC_EMC_SAME_FREQ;
->> +	else
->> +		val &= ~MC_EMC_SAME_FREQ;
->> +
->> +	writel_relaxed(val, emc->reg);
->> +
-> 
-> Same here.
-> 
->> +	return 0;
->> +}
->> +
->> +static int emc_set_rate_and_parent(struct clk_hw *hw,
->> +				   unsigned long rate,
->> +				   unsigned long parent_rate,
->> +				   u8 index)
->> +{
->> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
->> +	u32 val, div;
->> +
->> +	div = div_frac_get(rate, parent_rate, 8, 1, 0);
->> +
->> +	val = readl_relaxed(emc->reg);
->> +
->> +	val &= ~CLK_SOURCE_EMC_2X_CLK_SRC_MASK;
->> +	val |= index << CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
->> +
->> +	val &= ~CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
->> +	val |= div;
->> +
->> +	if (index == EMC_SRC_PLL_M && div == 0 && emc->want_low_jitter)
->> +		val |= USE_PLLM_UD;
->> +	else
->> +		val &= ~USE_PLLM_UD;
->> +
->> +	if (emc->mc_same_freq)
->> +		val |= MC_EMC_SAME_FREQ;
->> +	else
->> +		val &= ~MC_EMC_SAME_FREQ;
->> +
->> +	writel_relaxed(val, emc->reg);
->> +
-> 
-> And here.
-> 
->> +	return 0;
->> +}
-> 
-> Peter.
-> 
+On Tue, Jun 11, 2019 at 4:02 PM dbasehore . <dbasehore@chromium.org> wrote:
+>
+> On Tue, Jun 11, 2019 at 8:25 AM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Mon, Jun 10, 2019 at 10:03 PM Derek Basehore <dbasehore@chromium.org> wrote:
+> > >
+> > > This adds to the rotation documentation to explain how drivers should
+> > > use the property and gives an example of the property in a devicetree
+> > > node.
+> > >
+> > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > > ---
+> > >  .../bindings/display/panel/panel.txt          | 32 +++++++++++++++++++
+> > >  1 file changed, 32 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/panel.txt b/Documentation/devicetree/bindings/display/panel/panel.txt
+> > > index e2e6867852b8..f35d62d933fc 100644
+> > > --- a/Documentation/devicetree/bindings/display/panel/panel.txt
+> > > +++ b/Documentation/devicetree/bindings/display/panel/panel.txt
+> > > @@ -2,3 +2,35 @@ Common display properties
+> > >  -------------------------
+> > >
+> > >  - rotation:    Display rotation in degrees counter clockwise (0,90,180,270)
+> > > +
+> > > +Property read from the device tree using of of_drm_get_panel_orientation
+> >
+> > Don't put kernel specifics into bindings.
+>
+> Will remove that. I'll clean up the documentation to indicate that
+> this binding creates a panel orientation property unless the rotation
+> is handled in the Timing Controller on the panel if that sounds fine.
 
-Thank you very much for the feedback! Indeed, it will be a bit more
-robust to add fence_udelay() since one microsecond is practically
-nothing and then it will be a part of the clk-change awaiting anyway
-(note that EMC driver waits for the interrupt event and doesn't poll the
-status), we also don't really care about the EMC rate-change performance
-much because it won't happen frequently.
+Even if the timing ctrlr handles it, don't you still need to know what
+the native orientation is?
+
+> > > +
+> > > +The panel driver may apply the rotation at the TCON level, which will
+> >
+> > What's TCON? Something Mediatek specific IIRC.
+>
+> The TCON is the Timing controller, which is on the panel. Every panel
+> has one. I'll add to the doc that the TCON is in the panel, etc.
+>
+> >
+> > > +make the panel look like it isn't rotated to the kernel and any other
+> > > +software.
+> > > +
+> > > +If not, a panel orientation property should be added through the SoC
+> > > +vendor DRM code using the drm_connector_init_panel_orientation_property
+> > > +function.
+> >
+> > The 'rotation' property should be defined purely based on how the
+> > panel is mounted relative to a device's orientation. If the display
+> > pipeline has some ability to handle rotation, that's a feature of the
+> > display pipeline and not the panel.
+>
+> This is how the panel orientation property is already handled in the
+> kernel. See drivers/gpu/drm/i915/vlv_dsi.c for more details.
+
+The point is your description is all about the kernel. This is a
+binding which is not kernel specific.
+
+> > > +
+> > > +Example:
+> >
+> > This file is a collection of common properties. It shouldn't have an
+> > example especially as this example is mostly non-common properties.
+>
+> Just copied one of our DTS entries that uses the property. I'll remove
+> everything under compatible except for rotation and status.
+
+Just remove the example or add what you want to the "boe,himax8279d8p"
+binding doc. We are moving towards examples being compiled and
+validated, so incomplete ones won't work.
+
+Rob
