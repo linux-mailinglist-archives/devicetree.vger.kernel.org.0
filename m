@@ -2,14 +2,14 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8382044B9D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 21:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB9144BAA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 21:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726837AbfFMTGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 15:06:15 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37734 "EHLO
+        id S1727639AbfFMTGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 15:06:31 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37800 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbfFMTGP (ORCPT
+        with ESMTP id S1726705AbfFMTGP (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 15:06:15 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
@@ -17,17 +17,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=8jJl8VZ4I6jak2R3cVTa4dr3b/FXaZA6ihC8BpRzKRI=; b=jbeeXD19yNAO
-        99Uqe88Riw+/sN6QGMXYe9sO1xy1AbKd6vLsFeLg+XMx6VWL6OpLz5jJ3tVysFmK/NHJ1Rg+4aZWi
-        iErxXjc2O7MG/ZS5n01C8UpjuvPzIuPLeajbpFxvfZRQ/HY2T50lX+ludpNCNsFJLRSVYYE7jZb20
-        jvNwE=;
+        List-Archive; bh=WSE7yNQsm03MTgTQi5FtnSUc0fzbzrQUr5rqxoBdVH8=; b=AamoX4xlwYcc
+        ZZBIkG1hCjPmLRzhBT2o7ySKVarvQXFSnAFkYn0FA2iIWQK12NOjPAo02X5GiGIQW7R2oZSFYzcYd
+        /l0PdVH/4jyfSEKhDh+wwHi3yHw2ToGDUFRTc70I82U0PWHyqjgo0Wh5rjS3PVue5GNaqNkM9qnkM
+        +b9Og=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hbV34-0005SU-HS; Thu, 13 Jun 2019 19:06:10 +0000
+        id 1hbV35-0005Sg-Mf; Thu, 13 Jun 2019 19:06:11 +0000
 Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 10949440046; Thu, 13 Jun 2019 20:06:10 +0100 (BST)
+        id 3AA0B440046; Thu, 13 Jun 2019 20:06:11 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
@@ -35,11 +35,11 @@ Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         Liam Girdwood <lgirdwood@gmail.com>,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: meson: axg-tdm: consistently use SND_SOC_DAIFMT defines" to the asoc tree
-In-Reply-To: <20190613114233.21130-5-jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: axg-tdm: fix sample clock inversion" to the asoc tree
+In-Reply-To: <20190613114233.21130-4-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190613190610.10949440046@finisterre.sirena.org.uk>
-Date:   Thu, 13 Jun 2019 20:06:09 +0100 (BST)
+Message-Id: <20190613190611.3AA0B440046@finisterre.sirena.org.uk>
+Date:   Thu, 13 Jun 2019 20:06:11 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -47,11 +47,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: meson: axg-tdm: consistently use SND_SOC_DAIFMT defines
+   ASoC: meson: axg-tdm: fix sample clock inversion
 
 has been applied to the asoc tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.2
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
@@ -72,36 +72,38 @@ to this mail.
 Thanks,
 Mark
 
-From 05113483fd300d7a4605a726770e7255e29f1ac7 Mon Sep 17 00:00:00 2001
+From cb36ff785e868992e96e8b9e5a0c2822b680a9e2 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 13 Jun 2019 13:42:33 +0200
-Subject: [PATCH] ASoC: meson: axg-tdm: consistently use SND_SOC_DAIFMT defines
+Date: Thu, 13 Jun 2019 13:42:32 +0200
+Subject: [PATCH] ASoC: meson: axg-tdm: fix sample clock inversion
 
-There a mix of SND_SOC_DAIFMT_ and SND_SOC_DAI_FORMAT_ in
-axg-tdm-interface.c. Even, if this is currently the same thing, lets use
-the same group consistently.
+The content of SND_SOC_DAIFMT_FORMAT_MASK is a number, not a bitfield,
+so the test to check if the format is i2s is wrong. Because of this the
+clock setting may be wrong. For example, the sample clock gets inverted
+in DSP B mode, when it should not.
 
+Fix the lrclk invert helper function
+
+Fixes: 1a11d88f499c ("ASoC: meson: add tdm formatter base driver")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/axg-tdm-interface.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ sound/soc/meson/axg-tdm.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
-index 585ce030b79b..d51f3344be7c 100644
---- a/sound/soc/meson/axg-tdm-interface.c
-+++ b/sound/soc/meson/axg-tdm-interface.c
-@@ -306,8 +306,8 @@ static int axg_tdm_iface_hw_params(struct snd_pcm_substream *substream,
- 		}
- 		break;
+diff --git a/sound/soc/meson/axg-tdm.h b/sound/soc/meson/axg-tdm.h
+index e578b6f40a07..5774ce0916d4 100644
+--- a/sound/soc/meson/axg-tdm.h
++++ b/sound/soc/meson/axg-tdm.h
+@@ -40,7 +40,7 @@ struct axg_tdm_iface {
  
--	case SND_SOC_DAI_FORMAT_DSP_A:
--	case SND_SOC_DAI_FORMAT_DSP_B:
-+	case SND_SOC_DAIFMT_DSP_A:
-+	case SND_SOC_DAIFMT_DSP_B:
- 		break;
+ static inline bool axg_tdm_lrclk_invert(unsigned int fmt)
+ {
+-	return (fmt & SND_SOC_DAIFMT_I2S) ^
++	return ((fmt & SND_SOC_DAIFMT_FORMAT_MASK) == SND_SOC_DAIFMT_I2S) ^
+ 		!!(fmt & (SND_SOC_DAIFMT_IB_IF | SND_SOC_DAIFMT_NB_IF));
+ }
  
- 	default:
 -- 
 2.20.1
 
