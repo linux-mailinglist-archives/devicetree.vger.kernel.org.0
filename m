@@ -2,107 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A595944828
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A774744831
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729485AbfFMREu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 13:04:50 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:34275 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729478AbfFMREu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 13:04:50 -0400
-Received: by mail-pf1-f193.google.com with SMTP id c85so12237221pfc.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 10:04:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EnPkPuY0upC8b7jCW297iBQZhVtXmFo88c6fyE9w1Gc=;
-        b=h2WsuVwVp36pqc7BZuctAOn63cTvP51Hw5w3oBdwJeES1hkGgRdqnS1YcuZ9P6YTA6
-         fql65HAXNTeXWN/IB5NZAanRhhSXXwsapVsfFEZSfBcTFjPiLTlKYxZaHQxK19qDxyG3
-         BhxVvxEucyUVpsqCwKw2P5XM3VM2gap37ZMYMnrGGSrxaSF3DE2CZSL374Gl4xDUFwhn
-         37Ckn0WqGBuSFv+XOeqwbZjPy2lVp/nEzM1f8s8zr42ZUemBl7XcEfwbWdf6xtatu0kj
-         h4OI3FyHV6L39toMChIwFos8XNcAu7LekDrbld3atSp0grnI9lm6Ztoq4HR9aHcEzzVB
-         +jIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EnPkPuY0upC8b7jCW297iBQZhVtXmFo88c6fyE9w1Gc=;
-        b=FRE3YLLVDJ0vNxTqgYvU+zSePVc7gotmMDW5DLv9GrcP7v+5eQcJXnWZ2E7bqaeeUW
-         o/OV1OF9w5DqA+xeRzxLZ2GnGg3kRNJftyo3+Xi2kYd/6UrbNzSBYyX5JbJvgFUnsOoJ
-         GqvTjTN/+ZrEse5ZvNKJXLa75tLG5zixpkdfqEek4W8CdrrG7AJqWLnfTjcNLiTE91rc
-         4/36N8nWQeuY8QB1fbmVAPHEPCMPq1oKN+x/x8YMax7qsQDyccQiwC2tVtVmPylbLmOR
-         h3a3G77Yrto7oBq3O461OS8nGlJf0CPE0G0dMT3A9vhwfaZzT0xzPnA+koQViBM24oAj
-         EoPQ==
-X-Gm-Message-State: APjAAAVvYVuF/z9NRtuVvuxsZh2QHETI2idhObAenKEkNpEDCCNaXiF9
-        sWR0zEs5890dC4iSxe1+IDY/C4wEiE+SXjS7NjmrrUCq
-X-Google-Smtp-Source: APXvYqxcMn+Xp7KK1rDTtjbiF/s9/qMAS0Od0rblM/JIyaXggdbRc5s5/qqZIPwozR39yiq+kN0sCF0Q4lr+B/T1BU4=
-X-Received: by 2002:a63:158:: with SMTP id 85mr32252700pgb.101.1560445489065;
- Thu, 13 Jun 2019 10:04:49 -0700 (PDT)
+        id S1732647AbfFMRFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 13:05:21 -0400
+Received: from foss.arm.com ([217.140.110.172]:47566 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729463AbfFMRFT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 13:05:19 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4346E3EF;
+        Thu, 13 Jun 2019 10:05:18 -0700 (PDT)
+Received: from [10.1.196.105] (eglon.cambridge.arm.com [10.1.196.105])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E835E3F694;
+        Thu, 13 Jun 2019 10:05:15 -0700 (PDT)
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+To:     "Hawa, Hanna" <hhhawa@amazon.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, bp@alien8.de,
+        mchehab@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, nicolas.ferre@microchip.com,
+        paulmck@linux.ibm.com, dwmw@amazon.co.uk, benh@amazon.com,
+        ronenk@amazon.com, talel@amazon.com, jonnyc@amazon.com,
+        hanochu@amazon.com, linux-edac@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1559211329-13098-1-git-send-email-hhhawa@amazon.com>
+ <1559211329-13098-3-git-send-email-hhhawa@amazon.com>
+ <3129ed19-0259-d227-0cff-e9f165ce5964@arm.com>
+ <4514bfa2-68b2-2074-b817-2f5037650c4e@amazon.com>
+From:   James Morse <james.morse@arm.com>
+Message-ID: <fdc3b458-96eb-1734-c294-2463f37f2244@arm.com>
+Date:   Thu, 13 Jun 2019 18:05:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <1556736193-29411-1-git-send-email-Frank.Li@nxp.com>
- <1556736193-29411-2-git-send-email-Frank.Li@nxp.com> <20190613112320.GA18966@fuggles.cambridge.arm.com>
-In-Reply-To: <20190613112320.GA18966@fuggles.cambridge.arm.com>
-From:   Zhi Li <lznuaa@gmail.com>
-Date:   Thu, 13 Jun 2019 12:04:37 -0500
-Message-ID: <CAHrpEqRZ0YL9SFk6o7iebJ+diJVMTtyba_9GtujL7H7e4G8qQA@mail.gmail.com>
-Subject: Re: [PATCH V12 2/4] drivers/perf: imx_ddr: Add ddr performance
- counter support
-To:     Will Deacon <will.deacon@arm.com>
-Cc:     Frank Li <frank.li@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <4514bfa2-68b2-2074-b817-2f5037650c4e@amazon.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 6:23 AM Will Deacon <will.deacon@arm.com> wrote:
->
-> On Wed, May 01, 2019 at 06:43:29PM +0000, Frank Li wrote:
-> > Add ddr performance monitor support for iMX8QXP
-> >
-> > There are 4 counters for ddr perfomance events.
-> > counter 0 is dedicated for cycles.
-> > you choose any up to 3 no cycles events.
-> >
-> > for example:
-> >
-> > perf stat -a -e imx8_ddr0/read-cycles/,imx8_ddr0/write-cycles/,imx8_ddr0/precharge/ ls
-> > perf stat -a -e imx8_ddr0/cycles/,imx8_ddr0/read-access/,imx8_ddr0/write-access/ ls
->
-> I've pushed patches 1, 2 and 4 out with some minor tweaks to:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-next/perf
->
-> I'll leave the actual .dts change to go via the soc tree, since last time
-> I took one of those it just resulted in conflicts.
->
-> Frank, Andrey: Please could you try to run the perf fuzzer on this before
-> it lands in mainline? It has a good track record of finding nasty PMU driver
-> bugs, but it obviously requires access to hardware which implements the PMU:
->
-> http://web.eece.maine.edu/~vweaver/projects/perf_events/fuzzer/
+Hi Hawa,
 
-Okay, how long should be run generally?
-I need make sure it can pass without my patches at our platform.
+On 11/06/2019 20:56, Hawa, Hanna wrote:
+> James Morse wrote:
+>> Hawa, Hanna wrote:
+>>> +    edac_device_handle_ce(edac_dev, 0, 0, "L2 Error");
+>>
+>> How do we know this was corrected?
+>>
+>> 6.4.8 "Error Correction Code" has "Double-bit ECC errors set the fatal bit." in a
+>> paragraph talking about the L1 memory system.
 
-Best regards
-Frank Li
+> I'll check fatal field to check if it's uncorrected/corrected.
 
->
-> Cheers,
->
-> Will
+
+>>> +    edac_printk(KERN_CRIT, DRV_NAME, "CPU%d L1 %serror detected\n",
+>>> +            cpu, (fatal) ? "Fatal " : "");
+>>> +    edac_printk(KERN_CRIT, DRV_NAME, "RAMID=");
+>>> +
+>>> +    switch (ramid) {
+>>> +    case ARM_CA57_L1_I_TAG_RAM:
+>>> +        pr_cont("'L1-I Tag RAM' index=%d way=%d", index, way);
+>>> +        break;
+>>> +    case ARM_CA57_L1_I_DATA_RAM:
+>>> +        pr_cont("'L1-I Data RAM' index=%d bank= %d", index, way);
+>>> +        break;
+>>
+>> Is index/way information really useful? I can't replace way-3 on the system, nor can I
+>> stop it being used. If its useless, I'd rather we don't bother parsing and printing it out.
+
+> I'll remove the index/way information, and keep CPUMERRSR_EL1 value print (who want this
+> information can parse the value and get the index/bank status)
+
+Good idea, just print it raw.
+
+
+>>> +    pr_cont(", repeat=%d, other=%d (CPUMERRSR_EL1=0x%llx)\n", repeat, other,
+>>> +        val);
+>>
+>> 'other' here is another error, but we don't know the ramid.
+>> 'repeat' is another error for the same ramid.
+>>
+>> Could we still feed this stuff into edac? This would make the counters accurate if the
+>> polling frequency isn't quite fast enough.
+
+> There is no API in EDAC to increase the counters, I can increase by accessing the
+> ce_count/ue_count from edac_device_ctl_info/edac_device_instance structures if it's okay..
+
+Ah, sorry, I was thinking of the edac_mc_handle_error(), which has an error_count parameter.
+
+(I wouldn't go poking in the structures directly).
+
+
+>>> +static void al_a57_edac_l2merrsr(void *arg)
+>>> +{
+>>
+>>> +    edac_device_handle_ce(edac_dev, 0, 0, "L2 Error");
+>>
+>> How do we know this is corrected?
+
+>> If looks like L2CTLR_EL1[20] might force fatal 1/0 to map to uncorrected/corrected. Is
+>> this what you are depending on here?
+
+> No - not on this. Reporting all the errors as corrected seems to be bad.
+> 
+> Can i be depends on fatal field?
+
+That is described as "set to 1 on the first memory error that caused a Data Abort". I
+assume this is one of the parity-error external-aborts.
+
+If the repeat counter shows, say, 2, and fatal is set, you only know that at least one of
+these errors caused an abort. But it could have been all three. The repeat counter only
+matches against the RAMID and friends, otherwise the error is counted in 'other'.
+
+I don't think there is a right thing to do here, (other than increase the scrubbing
+frequency). As you can only feed one error into edac at a time then:
+
+> if (fatal)
+>     edac_device_handle_ue(edac_dev, 0, 0, "L2 Error");
+> else
+>     edac_device_handle_ce(edac_dev, 0, 0, "L2 Error");
+
+seems reasonable. You're reporting the most severe, and 'other/repeat' counter values just
+go missing.
+
+
+> How can L2CTLR_EL1[20] force fatal?
+
+I don't think it can, on a second reading, it looks to be even more complicated than I
+thought! That bit is described as disabling forwarding of uncorrected data, but it looks
+like the uncorrected data never actually reaches the other end. (I'm unsure what 'flush'
+means in this context.)
+I was looking for reasons you could 'know' that any reported error was corrected. This was
+just a bad suggestion!
+
+
+>> (it would be good to have a list of integration-time and firmware dependencies this driver
+>> has, for the next person who tries to enable it on their system and complains it doesn't
+>> work for them)
+
+> Where can i add such information?
+
+The mailing list archive is good enough. I'll ask about any obvious dependency I spot from
+the TRM, (e.g. that list at the top of my first reply). If you know of anything weird
+please call it out.
+
+
+>>> +    pr_cont(", cpuid/way=%d, repeat=%d, other=%d (L2MERRSR_EL1=0x%llx)\n",
+>>> +        way, repeat, other, val);
+>>
+>> cpuid could be useful if you can map it back to the cpu number linux has.
+>> If you can spot that cpu-7 is experiencing more errors than it should, you can leave it
+>> offline.
+>>
+>> To do this you'd need to map each L2MERRSR_EL1's '0-3' range back to the CPUs they
+>> actually are. The gic's 'ppi-partitions' does this with phandles, e.g.
+>> Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml. You could add a
+>> similar shaped thing to the l2-cacheX node in the DT, (or in your edac node, but it is a
+>> property of the cache integration).
+
+> As in L1 prints, I'll remove non-relevant prints.
+
+Fair enough.
+
+
+>>> +    /*
+>>> +     * Use get_online_cpus/put_online_cpus to prevent the online CPU map
+>>> +     * changing while reads the L1/L2 error status
+>>
+>> For walking the list of offline cpus, this makes sense. But you schedule work without
+>> waiting, it may get run after you drop the cpus_read_lock()...,
+
+> Will update the smp_call_function_single() call function to wait.
+
+
+>>> +    for_each_online_cpu(cpu) {
+>>> +        /* Check L1 errors */
+>>> +        smp_call_function_single(cpu, al_a57_edac_cpumerrsr, edac_dev,
+>>> +                     0);
+>>
+>> As you aren't testing for big/little, wouldn't on_each_cpu() here be simpler?
+
+> Could be simpler for L1, how can be implemented for L2?
+
+You'd need bitmasks for each cluster to feed to smp_call_function_any().
+
+
+>>> +        cluster = topology_physical_package_id(cpu);
+>>
+>> Hmm, I'm not sure cluster==package is guaranteed to be true forever.
+>>
+>> If you describe the L2MERRSR_EL1 cpu mapping in your DT you could use that. Otherwise
+>> pulling out the DT using something like the arch code's parse_cluster().
+
+> I rely on that it's alpine SoC specific driver.
+
+... and that the topology code hasn't changed to really know what a package is:
+https://lore.kernel.org/lkml/20190529211340.17087-2-atish.patra@wdc.com/T/#u
+
+As what you really want to know is 'same L2?', and you're holding the cpu_read_lock(),
+would struct cacheinfo's shared_cpu_map be a better fit?
+
+This would be done by something like a cpu-mask of cache:shared_cpu_map's for the L2's
+you've visited. It removes the dependency on package==L2, and insulates you from the
+cpu-numbering not being exactly as you expect.
+
+
+>>> +        if (cluster != last_cluster) {
+>>> +            smp_call_function_single(cpu, al_a57_edac_l2merrsr,
+>>> +                         edac_dev, 0);
+>>> +            last_cluster = cluster;
+>>> +        }
+>>
+>> Here you depend on the CPUs being listed in cluster-order in the DT. I'm fairly sure the
+>> numbering is arbitrary: On my Juno 0,3,4,5 are the A53 cluster, and 1,2 are the A57
+>> cluster.
+>>
+>> If 1,3,5 were cluster-a and 2,4,6 were cluster-b, you would end up calling
+>> al_a57_edac_l2merrsr() for each cpu. As you don't wait, they could race.
+>>
+>> If you can get a cpu-mask for each cluster, smp_call_function_any() would to the
+>> pick-one-online-cpu work for you.
+
+> Again, I rely on that it's alpine SoC specific driver.
+> How can I get cpu-mask for each cluster? from DT?
+
+Its not cluster you want, its the L2. Cacheinfo has this for online CPUs, and you're
+already holding the cpus_read_lock().
+
+
+>>> +static int al_a57_edac_remove(struct platform_device *pdev)
+>>> +{
+>>> +    struct edac_device_ctl_info *edac_dev = platform_get_drvdata(pdev);
+>>> +
+>>> +    edac_device_del_device(edac_dev->dev);
+>>> +    edac_device_free_ctl_info(edac_dev);
+>>
+>> Your poll function schedule work on other CPUs and didn't wait, is it possible
+>> al_a57_edac_l2merrsr() is still using this memory when you free it?
+
+> This will be okay, after using wait in smp_call_function_single().
+
+Yup.
+
+
+Thanks,
+
+James
