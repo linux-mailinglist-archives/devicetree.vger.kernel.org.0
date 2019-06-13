@@ -2,141 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF68F44427
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09E3A443C8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726092AbfFMQfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:35:12 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:37098 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730732AbfFMHpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 03:45:12 -0400
-X-UUID: 24f7185cfd0b495fabdabdc1f2ca9ce8-20190613
-X-UUID: 24f7185cfd0b495fabdabdc1f2ca9ce8-20190613
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 666765796; Thu, 13 Jun 2019 15:45:04 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 13 Jun 2019 15:45:03 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 13 Jun 2019 15:45:03 +0800
-Message-ID: <1560411902.27582.0.camel@mtksdaap41>
-Subject: Re: [PATCH v3, 09/27] drm/mediatek: add mutex sof register offset
- into ddp private data
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <yongqiang.niu@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 13 Jun 2019 15:45:02 +0800
-In-Reply-To: <1559734986-7379-10-git-send-email-yongqiang.niu@mediatek.com>
-References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1559734986-7379-10-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1730863AbfFMQcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:32:11 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:39160 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730861AbfFMIUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 04:20:42 -0400
+Received: by mail-ed1-f65.google.com with SMTP id m10so29940815edv.6
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 01:20:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JlRxJCwiPwkUyH7EE3nyXqgO0XVluxp/0ZdmWf9P5Z0=;
+        b=RsNUrK+UEn6zsAOC9w9pM7uhwHxwQMGD+8t/Un0aIPb541XG2VU7OTMQe7tJ/AYugG
+         G3FTQ65psDJrM6tPTQKU2rOXirC03jEhQDBtSNCzKL3RlSh+B4h4RysAzf/GD6k/xBvY
+         5d4Mj8gKd6ko8kFxspCeqeasrIc8irCflYt1E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JlRxJCwiPwkUyH7EE3nyXqgO0XVluxp/0ZdmWf9P5Z0=;
+        b=c+axPjTMMV5UXyIiQ0K9ZUfAM8YU5NmLLvXmxjPvXLmyYUxv7U6WY71i6gI+apCAVZ
+         uQMF0eMt4Ahd6EbQr9+NEIqenr/w7nmOLM6Oz7Y3sCPk+ptPEJfBhlgXUqrRue3U5rg3
+         HP5zPRAnGPZKsY1f7MdHQiY2FO1e9N+vAhH3clrGzFwYMe61uAgXfjcTVyPi++Mw/n4R
+         DpOwEp3g9v/7jRN2pyyPRF4b4w6fzckQQB/odQ6m7CKdV5ZgxobtnZ/W4pOH8z9r/ZtS
+         32eAP1OW3OuX0+/oX8yfat5NmHv5/GJakwuXssfG6ZYIutXxsr8vj1/dJBpzdS/5M2NG
+         GW2A==
+X-Gm-Message-State: APjAAAXi6fdVNvK9EvJUAB2NK8raJawWEzHfE2cCOJGRmC1UhBODmtP3
+        6/5WOyzLQEIUjBLUDdmktzrbSdXILBcuGoUFkJ7FnQ==
+X-Google-Smtp-Source: APXvYqxy4qqaJLhUmiQHMs45thTIqa/dGytvJgClVC9B5jpzBc/xWQ86XsED1JEqZnHBmphRLW0uSlK+Ywh5heGNQts=
+X-Received: by 2002:a50:b561:: with SMTP id z30mr38225104edd.87.1560414039622;
+ Thu, 13 Jun 2019 01:20:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com> <1560169080-27134-17-git-send-email-yong.wu@mediatek.com>
+In-Reply-To: <1560169080-27134-17-git-send-email-yong.wu@mediatek.com>
+From:   Pi-Hsun Shih <pihsun@chromium.org>
+Date:   Thu, 13 Jun 2019 16:20:03 +0800
+Message-ID: <CANdKZ0emRPcTcL7Yq5nLH5z2_9fBuuczKehA8oEi0b+je15RPg@mail.gmail.com>
+Subject: Re: [PATCH v7 16/21] memory: mtk-smi: Add bus_sel for mt8183
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        Will Deacon <will.deacon@arm.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, srv_heupstream@mediatek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, yingjoe.chen@mediatek.com,
+        youlin.pei@mediatek.com, Nicolas Boichat <drinkcat@chromium.org>,
+        anan.sun@mediatek.com, Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+(Sorry for the possibly double-posting, my last mail got rejected by
+some mailing lists.)
 
-On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> 
-> mutex sof register offset will be private data of ddp
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> index e1a510f..717609d 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> @@ -42,12 +42,13 @@
->  #define DISP_REG_CONFIG_DPI_SEL			0x064
->  
->  #define MT2701_DISP_MUTEX0_MOD0			0x2c
-> +#define MT2701_DISP_MUTEX0_SOF0			0x2c
+Hi,
+When I tested this patch series (Based on linux 5.2.0-rc2, and with
+various other patch series about MT8183) with lockdep enabled, and I'm
+seeing the following lockdep warning on boot.
 
-0x30?
+By bisecting the commits, the first commit that introduce this warning
+is this patch. The warning also doesn't appear if
+https://lore.kernel.org/patchwork/patch/1086582/ and
+https://lore.kernel.org/patchwork/patch/1086583/ are not applied.
 
-Regards,
-CK
+Do anyone have idea on why this is happening, or any suggestion on
+which part I should be digging into to figure this out? Thanks.
 
->  
->  #define DISP_REG_MUTEX_EN(n)			(0x20 + 0x20 * (n))
->  #define DISP_REG_MUTEX(n)			(0x24 + 0x20 * (n))
->  #define DISP_REG_MUTEX_RST(n)			(0x28 + 0x20 * (n))
->  #define DISP_REG_MUTEX_MOD(mutex_mod_reg, n)	(mutex_mod_reg + 0x20 * (n))
-> -#define DISP_REG_MUTEX_SOF(n)			(0x30 + 0x20 * (n))
-> +#define DISP_REG_MUTEX_SOF(mutex_sof_reg, n)	(mutex_sof_reg + 0x20 * (n))
->  #define DISP_REG_MUTEX_MOD2(n)			(0x34 + 0x20 * (n))
->  
->  #define INT_MUTEX				BIT(1)
-> @@ -164,6 +165,7 @@ struct mtk_ddp_data {
->  	const unsigned int *mutex_mod;
->  	const unsigned int *mutex_sof;
->  	const unsigned int mutex_mod_reg;
-> +	const unsigned int mutex_sof_reg;
->  };
->  
->  struct mtk_ddp {
-> @@ -235,18 +237,21 @@ struct mtk_ddp {
->  	.mutex_mod = mt2701_mutex_mod,
->  	.mutex_sof = mt2712_mutex_sof,
->  	.mutex_mod_reg = MT2701_DISP_MUTEX0_MOD0,
-> +	.mutex_sof_reg = MT2701_DISP_MUTEX0_SOF0,
->  };
->  
->  static const struct mtk_ddp_data mt2712_ddp_driver_data = {
->  	.mutex_mod = mt2712_mutex_mod,
->  	.mutex_sof = mt2712_mutex_sof,
->  	.mutex_mod_reg = MT2701_DISP_MUTEX0_MOD0,
-> +	.mutex_sof_reg = MT2701_DISP_MUTEX0_SOF0,
->  };
->  
->  static const struct mtk_ddp_data mt8173_ddp_driver_data = {
->  	.mutex_mod = mt8173_mutex_mod,
->  	.mutex_sof = mt2712_mutex_sof,
->  	.mutex_mod_reg = MT2701_DISP_MUTEX0_MOD0,
-> +	.mutex_sof_reg = MT2701_DISP_MUTEX0_SOF0,
->  };
->  
->  static unsigned int mtk_ddp_mout_en(enum mtk_ddp_comp_id cur,
-> @@ -528,7 +533,8 @@ void mtk_disp_mutex_add_comp(struct mtk_disp_mutex *mutex,
->  	}
->  
->  	writel_relaxed(ddp->data->mutex_sof[sof_id],
-> -		       ddp->regs + DISP_REG_MUTEX_SOF(mutex->id));
-> +		       ddp->regs +
-> +		       DISP_REG_MUTEX_SOF(ddp->data->mutex_sof_reg, mutex->id));
->  }
->  
->  void mtk_disp_mutex_remove_comp(struct mtk_disp_mutex *mutex,
-> @@ -550,7 +556,8 @@ void mtk_disp_mutex_remove_comp(struct mtk_disp_mutex *mutex,
->  	case DDP_COMPONENT_DPI1:
->  		writel_relaxed(MUTEX_SOF_SINGLE_MODE,
->  			       ddp->regs +
-> -			       DISP_REG_MUTEX_SOF(mutex->id));
-> +			       DISP_REG_MUTEX_SOF(ddp->data->mutex_sof_reg,
-> +						  mutex->id));
->  		break;
->  	default:
->  		if (ddp->data->mutex_mod[id] < 32) {
+[    4.664194] ======================================================
+[    4.670368] WARNING: possible circular locking dependency detected
+[    4.676545] 5.2.0-rc2-next-20190528-44527-g6c94b6475c04 #20 Tainted: G S
+[    4.684539] ------------------------------------------------------
+[    4.690714] kworker/4:1/51 is trying to acquire lock:
+[    4.695760] (____ptrval____) (regulator_list_mutex){+.+.},
+at:regulator_lock_dependent+0xdc/0x6c4
+[    4.704732]
+[    4.704732] but task is already holding lock:
+[    4.710556] (____ptrval____) (&genpd->mlock/1){+.+.},
+at:genpd_lock_nested_mtx+0x24/0x30
+[    4.718740]
+[    4.718740] which lock already depends on the new lock.
+[    4.718740]
+[    4.726908]
+[    4.726908] the existing dependency chain (in reverse order) is:
+[    4.734382]
+[    4.734382] -> #4 (&genpd->mlock/1){+.+.}:
+[    4.739963]        __mutex_lock_common+0x1a0/0x1fe8
+[    4.744836]        mutex_lock_nested+0x40/0x50
+[    4.749275]        genpd_lock_nested_mtx+0x24/0x30
+[    4.754063]        genpd_add_subdomain+0x150/0x524
+[    4.758850]        pm_genpd_add_subdomain+0x3c/0x5c
+[    4.763723]        scpsys_probe+0x520/0xe78
+[    4.767902]        platform_drv_probe+0xf4/0x134
+[    4.772517]        really_probe+0x214/0x4dc
+[    4.776696]        driver_probe_device+0xcc/0x1d4
+[    4.781396]        __device_attach_driver+0x10c/0x180
+[    4.786442]        bus_for_each_drv+0x124/0x184
+[    4.790968]        __device_attach+0x1c0/0x2d8
+[    4.795407]        device_initial_probe+0x20/0x2c
+[    4.800106]        bus_probe_device+0x80/0x16c
+[    4.804546]        deferred_probe_work_func+0x120/0x168
+[    4.809767]        process_one_work+0x858/0x1208
+[    4.814379]        worker_thread+0x9ec/0xcb8
+[    4.818644]        kthread+0x2b8/0x2d0
+[    4.822391]        ret_from_fork+0x10/0x18
+[    4.826480]
+[    4.826480] -> #3 (&genpd->mlock){+.+.}:
+[    4.831880]        __mutex_lock_common+0x1a0/0x1fe8
+[    4.836752]        mutex_lock_nested+0x40/0x50
+[    4.841190]        genpd_lock_mtx+0x20/0x2c
+[    4.845369]        genpd_runtime_resume+0x140/0x434
+[    4.850241]        __rpm_callback+0xb0/0x1e4
+[    4.854506]        rpm_callback+0x54/0x1a8
+[    4.858597]        rpm_resume+0xc6c/0x10c4
+[    4.862689]        __pm_runtime_resume+0xb4/0x124
+[    4.867387]        device_link_add+0x598/0x8d0
+[    4.871829]        mtk_smi_larb_probe+0x2b0/0x340
+[    4.876528]        platform_drv_probe+0xf4/0x134
+[    4.881141]        really_probe+0x214/0x4dc
+[    4.885320]        driver_probe_device+0xcc/0x1d4
+[    4.890020]        __device_attach_driver+0x10c/0x180
+[    4.895066]        bus_for_each_drv+0x124/0x184
+[    4.899591]        __device_attach+0x1c0/0x2d8
+[    4.904031]        device_initial_probe+0x20/0x2c
+[    4.908730]        bus_probe_device+0x80/0x16c
+[    4.913169]        deferred_probe_work_func+0x120/0x168
+[    4.918387]        process_one_work+0x858/0x1208
+[    4.923000]        worker_thread+0x9ec/0xcb8
+[    4.927264]        kthread+0x2b8/0x2d0
+[    4.931009]        ret_from_fork+0x10/0x18
+[    4.935098]
+[    4.935098] -> #2 (dpm_list_mtx){+.+.}:
+[    4.940412]        __mutex_lock_common+0x1a0/0x1fe8
+[    4.945284]        mutex_lock_nested+0x40/0x50
+[    4.949722]        device_pm_lock+0x1c/0x24
+[    4.953900]        device_link_add+0x98/0x8d0
+[    4.958252]        _regulator_get+0x3f0/0x504
+[    4.962606]        _devm_regulator_get+0x58/0xb8
+[    4.967218]        devm_regulator_get+0x28/0x34
+[    4.971746]        pwm_backlight_probe+0x61c/0x1b90
+[    4.976617]        platform_drv_probe+0xf4/0x134
+[    4.981230]        really_probe+0x214/0x4dc
+[    4.985409]        driver_probe_device+0xcc/0x1d4
+[    4.990108]        device_driver_attach+0xe4/0x104
+[    4.994894]        __driver_attach+0x134/0x14c
+[    4.999333]        bus_for_each_dev+0x120/0x180
+[    5.003859]        driver_attach+0x48/0x54
+[    5.007950]        bus_add_driver+0x2ac/0x44c
+[    5.012303]        driver_register+0x160/0x288
+[    5.016742]        __platform_driver_register+0xcc/0xdc
+[    5.021964]        pwm_backlight_driver_init+0x1c/0x24
+[    5.027097]        do_one_initcall+0x38c/0x994
+[    5.031536]        do_initcall_level+0x3a4/0x4b8
+[    5.036148]        do_basic_setup+0x84/0xa0
+[    5.036153]        kernel_init_freeable+0x23c/0x324
+[    5.036158]        kernel_init+0x14/0x110
+[    5.036164]        ret_from_fork+0x10/0x18
+[    5.036166]
+[    5.036166] -> #1 (device_links_lock){+.+.}:
+[    5.065905]        __mutex_lock_common+0x1a0/0x1fe8
+[    5.070777]        mutex_lock_nested+0x40/0x50
+[    5.075215]        device_link_remove+0x40/0xe0
+[    5.079740]        _regulator_put+0x104/0x2d8
+[    5.084093]        regulator_put+0x30/0x44
+[    5.088184]        devm_regulator_release+0x38/0x44
+[    5.093056]        release_nodes+0x604/0x670
+[    5.097320]        devres_release_all+0x70/0x8c
+[    5.101846]        really_probe+0x270/0x4dc
+[    5.106024]        driver_probe_device+0xcc/0x1d4
+[    5.110724]        device_driver_attach+0xe4/0x104
+[    5.115510]        __driver_attach+0x134/0x14c
+[    5.119949]        bus_for_each_dev+0x120/0x180
+[    5.124474]        driver_attach+0x48/0x54
+[    5.128566]        bus_add_driver+0x2ac/0x44c
+[    5.132919]        driver_register+0x160/0x288
+[    5.137357]        __platform_driver_register+0xcc/0xdc
+[    5.142576]        pwm_backlight_driver_init+0x1c/0x24
+[    5.147708]        do_one_initcall+0x38c/0x994
+[    5.152146]        do_initcall_level+0x3a4/0x4b8
+[    5.156758]        do_basic_setup+0x84/0xa0
+[    5.160936]        kernel_init_freeable+0x23c/0x324
+[    5.165807]        kernel_init+0x14/0x110
+[    5.169813]        ret_from_fork+0x10/0x18
+[    5.173901]
+[    5.173901] -> #0 (regulator_list_mutex){+.+.}:
+[    5.179910]        lock_acquire+0x350/0x4d4
+[    5.184088]        __mutex_lock_common+0x1a0/0x1fe8
+[    5.184095]        mutex_lock_nested+0x40/0x50
+[    5.197475]        regulator_lock_dependent+0xdc/0x6c4
+[    5.197482]        regulator_disable+0xa0/0x138
+[    5.197487]        scpsys_power_off+0x38c/0x4bc
+[    5.197495]        genpd_power_off+0x3d8/0x6a0
+[    5.209399]        genpd_power_off+0x530/0x6a0
+[    5.209406]        genpd_power_off_work_fn+0x74/0xc0
+[    5.209411]        process_one_work+0x858/0x1208
+[    5.209419]        worker_thread+0x9ec/0xcb8
+[    5.219067]        kthread+0x2b8/0x2d0
+[    5.219073]        ret_from_fork+0x10/0x18
+[    5.219077]
+[    5.219077] other info that might help us debug this:
+[    5.219077]
+[    5.219080] Chain exists of:
+[    5.219080]   regulator_list_mutex --> &genpd->mlock --> &genpd->mlock/1
+[    5.219080]
+[    5.228039]  Possible unsafe locking scenario:
+[    5.228039]
+[    5.228042]        CPU0                    CPU1
+[    5.228046]        ----                    ----
+[    5.228048]   lock(&genpd->mlock/1);
+[    5.228058]                                lock(&genpd->mlock);
+[    5.311647]                                lock(&genpd->mlock/1);
+[    5.317736]   lock(regulator_list_mutex);
+[    5.321742]
+[    5.321742]  *** DEADLOCK ***
+[    5.321742]
+[    5.327655] 4 locks held by kworker/4:1/51:
+[    5.331831]  #0: (____ptrval____) ((wq_completion)pm){+.+.},
+at:process_one_work+0x57c/0x1208
+[    5.340444]  #1: (____ptrval____)
+((work_completion)(&genpd->power_off_work)){+.+.},
+at:process_one_work+0x5b8/0x1208
+[    5.351139]  #2: (____ptrval____) (&genpd->mlock){+.+.},
+at:genpd_lock_mtx+0x20/0x2c
+[    5.358970]  #3: (____ptrval____) (&genpd->mlock/1){+.+.},
+at:genpd_lock_nested_mtx+0x24/0x30
+[    5.367584]
+[    5.367584] stack backtrace:
+[    5.371939] CPU: 4 PID: 51 Comm: kworker/4:1 Tainted: G S
+     5.2.0-rc2-next-20190528-44527-g6c94b6475c04 #20
+[    5.382809] Workqueue: pm genpd_power_off_work_fn
+[    5.382816] Call trace:
+[    5.382822]  dump_backtrace+0x0/0x2c0
+[    5.382830]  show_stack+0x20/0x2c
+[    5.409174]  dump_stack+0x10c/0x17c
+[    5.412659]  print_circular_bug+0x42c/0x4d0
+[    5.416838]  __lock_acquire+0x4c88/0x5484
+[    5.420843]  lock_acquire+0x350/0x4d4
+[    5.424500]  __mutex_lock_common+0x1a0/0x1fe8
+[    5.428851]  mutex_lock_nested+0x40/0x50
+[    5.432770]  regulator_lock_dependent+0xdc/0x6c4
+[    5.437383]  regulator_disable+0xa0/0x138
+[    5.441389]  scpsys_power_off+0x38c/0x4bc
+[    5.445393]  genpd_power_off+0x3d8/0x6a0
+[    5.449310]  genpd_power_off+0x530/0x6a0
+[    5.453229]  genpd_power_off_work_fn+0x74/0xc0
+[    5.457667]  process_one_work+0x858/0x1208
+[    5.461758]  worker_thread+0x9ec/0xcb8
+[    5.465503]  kthread+0x2b8/0x2d0
+[    5.468727]  ret_from_fork+0x10/0x18
 
-
+On Mon, Jun 10, 2019 at 8:21 PM Yong Wu <yong.wu@mediatek.com> wrote:
+> ...
+> +       } else {
+> +               res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +               common->base = devm_ioremap_resource(dev, res);
+> +               if (IS_ERR(common->base))
+> +                       return PTR_ERR(common->base);
+>         }
+>         pm_runtime_enable(dev);
+>         platform_set_drvdata(pdev, common);
