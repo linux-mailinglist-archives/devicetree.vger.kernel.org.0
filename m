@@ -2,76 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC0144C2A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 21:33:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7759144CC4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 21:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727895AbfFMTds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 15:33:48 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:35876 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726370AbfFMTds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 15:33:48 -0400
-Received: by mail-pg1-f196.google.com with SMTP id f21so92252pgi.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 12:33:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=do2ZI6AB84f51HhCgs64o/OwEByfbyhqfdO3MCEI11w=;
-        b=uKaZA9Zxh7dZs0jS87LP/3uLU+Xx4ZfnKYpIumrpHzc+bsYNKjAsjwm4dlWaYMbD7m
-         22QjRog6LAoPdR2/G1bQojmdqmL4Ntx9Jz/So2VnLCauxnDP6oA2oTkF7we+4p5fvcQy
-         L0ON+ARGO7XZkiS8Pea48mu09SaNhyc4seHQmMiy+mnMxifwi9tYmShnOy5Sh09gfHD2
-         Edp/RI1qtnwPJ9vZy5skTF9m7Dx953HC5jThN3FXUXTfmQBXXQtMOhciWDqUygwJ47kG
-         2jkywOogcNcI+F+lVU1S2RSHBfR8H4GzBGvhWiJHfjKZdX0ERpswZ9sqhboY1N1i+tZJ
-         A+rg==
+        id S1729029AbfFMT7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 15:59:06 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:34713 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728981AbfFMT7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 15:59:06 -0400
+Received: by mail-qt1-f193.google.com with SMTP id m29so24066803qtu.1;
+        Thu, 13 Jun 2019 12:59:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=do2ZI6AB84f51HhCgs64o/OwEByfbyhqfdO3MCEI11w=;
-        b=Ekfe10X4/fiaZ6nttkbMb/5yWgrgPuWgnLL5v8y29ktJ6HwkucDzbtRLO8X4HxiqeB
-         7AqyElwHqFbyd52ny/aNaZIAO6B0yQgT3BfmDLuaxMnn0h9NWb9Q+QmioZkl24PcjESt
-         BTXRGYuNROiD5WZA8FuswVm8Ex04NiiwzUTeGAWt+U+LkcZJTh9mBsNEDdm5cZ5pZzEW
-         ptAb2uUCJQTLeEYnh4Cgmzq4e5zr1hmhyu/a+EO9xsLtMQX2FYuQIMJ974P7NctxdHoO
-         qzdUP4uLRsmUYuCury23gQ1aaQ236AmTVClZSKDZuDwy8v0uCZxt+Cj3pBf9pXDLbw0z
-         l6Dw==
-X-Gm-Message-State: APjAAAUa3Lo083tILa/sOBl8DAG/ZVjQ4BbAUOTibUhGT4G87j83WRMR
-        /m4fZnmzZzIvpl/2Oz6coC6d8w==
-X-Google-Smtp-Source: APXvYqxQMYR4H3vojZQSKEgSWAnX0V+23fNF0VDvBBd/zGvF3dlCJJBIKHc8Mt23k45dhtm2gAwWwg==
-X-Received: by 2002:a63:2d0:: with SMTP id 199mr31768286pgc.188.1560454427686;
-        Thu, 13 Jun 2019 12:33:47 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.googlemail.com with ESMTPSA id 135sm469175pfb.137.2019.06.13.12.33.46
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 13 Jun 2019 12:33:47 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: sei510: add sound card
-In-Reply-To: <20190524140318.17608-1-jbrunet@baylibre.com>
-References: <20190524140318.17608-1-jbrunet@baylibre.com>
-Date:   Thu, 13 Jun 2019 12:33:46 -0700
-Message-ID: <7hh88t46w5.fsf@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mABGHTQ4GLxORx7oxP2Dku+ogME6hgTlBgqCUM3jgVM=;
+        b=gZrMvojA/ZEydTjdebiAKmAvpVcdkr/28s5E5+ZvBsZM8oZ9S3iUnBG/xGzBYO1A46
+         uvvGPFaSwk5Iq6TtdLADyURX0nYfrSZGJDzSGQhsVUPk4Yv8UVk89o8T0cTASz4JtYFW
+         matpzJSqhDH+w7csmZTA5VWGYsbLQRLYfxXfqaQMI6Gp5N8OeAau5/6mkeAYwDMvgwwt
+         liCxhsslAwipidCKga2K5cZaNj54Bcj15yDCqWc/4fs8hx/dyWCMWYaQFfZVMWjyV6Fm
+         Pjg2lKo5ild9cKNxLnNl6SWhICfieKV/HNriQ/lQozHk2fVUSAilhQmcyeZnKoAFGY+S
+         u3nQ==
+X-Gm-Message-State: APjAAAWLcFzxMxLxlxIH5V7Yd4hkZ5Jzm8WaZUVVGREWTlhPPm6tDRMi
+        g3WNhw+t69XVcvzLTLlzzg==
+X-Google-Smtp-Source: APXvYqwyWBDaFVyAkanoZ+1z164tB8nWMUvp9oZM0IcqpT3ialpFjN8XMhTphktzom9B4B87tNVOng==
+X-Received: by 2002:aed:218b:: with SMTP id l11mr57399228qtc.66.1560455944697;
+        Thu, 13 Jun 2019 12:59:04 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id f20sm233551qkh.15.2019.06.13.12.59.03
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 13 Jun 2019 12:59:04 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 13:59:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     allen <allen.chen@ite.com.tw>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
+        Johan Hovold <johan@kernel.org>,
+        Nickey Yang <nickey.yang@rock-chips.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Ben Whitten <ben.whitten@gmail.com>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: Add binding for IT6505.
+Message-ID: <20190613195903.GA23650@bogus>
+References: <1557307985-21228-1-git-send-email-allen.chen@ite.com.tw>
+ <1557307985-21228-2-git-send-email-allen.chen@ite.com.tw>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557307985-21228-2-git-send-email-allen.chen@ite.com.tw>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+On Wed, May 08, 2019 at 05:31:56PM +0800, allen wrote:
+> From: Allen Chen <allen.chen@ite.com.tw>
+> 
+> Add a DT binding documentation for IT6505.
+> 
+> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+> 
+> ---
+>  .../bindings/display/bridge/ite,it6505.txt         | 30 ++++++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.txt        |  1 +
+>  2 files changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+> new file mode 100644
+> index 0000000..c3506ac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+> @@ -0,0 +1,30 @@
+> +iTE it6505 DP bridge bindings
+> +
+> +Required properties:
+> +        - compatible: "ite,it6505"
+> +        - reg: i2c address of the bridge
+> +        - ovdd-supply: I/O voltage
+> +        - pwr18-supply: Core voltage
+> +        - interrupts: interrupt specifier of INT pin
+> +        - reset-gpios: gpio specifier of RESET pin
+> +
+> +Example:
+> +	it6505dptx: it6505dptx@5c {
+> +                compatible = "ite,it6505";
+> +                status = "okay";
+> +                interrupt-parent = <&pio>;
+> +                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
+> +                reg = <0x5c>;
+> +                pinctrl-names = "default";
+> +                pinctrl-0 = <&it6505_pins>;
+> +                ovdd-supply = <&mt6358_vsim1_reg>;
+> +                pwr18-supply = <&it6505_pp18_reg>;
+> +                reset-gpios = <&pio 179 1>;
+> +                hpd-gpios = <&pio 9 0>;
 
-> This patchset adds the sound card of sei510 board.
->
-> Note #1:
-> The patchset (build) depends on the tohdmitx ASoC patch [0] for the dt
-> bindings of the tohdmitx glue. It also (run) depends on the mpll clock
-> series [1] to get a correct clock sources.
+HPD would be part of the connector, not this bridge chip if a GPIO is 
+used.
 
-Queuing this for v5.3, but it's pending a stable tag/branch from ASoC
-maintainers.  If that doesn't work out, I'll queue it up after v5.3-rc1.
+> +                extcon = <&usbc_extcon>;
 
-Thanks,
+This should use the usb-connector binding if this is a Type C connector. 
+Or it should have a dp-connector node connection if just a DP connector.
 
-Kevin
+
+> +                port {
+> +                        it6505_in: endpoint {
+> +                                remote-endpoint = <&dpi_out>;
+> +                        };
+> +                };
+> +        };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> index 2c3fc51..c088646 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> @@ -184,6 +184,7 @@ iom	Iomega Corporation
+>  isee	ISEE 2007 S.L.
+>  isil	Intersil
+>  issi	Integrated Silicon Solutions Inc.
+> +ite	iTE Tech. Inc.
+
+This file is a schema now, so you'll have to update this.
+
+>  itead	ITEAD Intelligent Systems Co.Ltd
+>  iwave  iWave Systems Technologies Pvt. Ltd.
+>  jdi	Japan Display Inc.
+> -- 
+> 1.9.1
+> 
