@@ -2,118 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FEE1446DA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19321446CE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:55:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726296AbfFMQzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:55:02 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:16043 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730039AbfFMC3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jun 2019 22:29:32 -0400
-X-UUID: 867ce32a0efa4adbb4aa85a95fc70afe-20190613
-X-UUID: 867ce32a0efa4adbb4aa85a95fc70afe-20190613
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 756120508; Thu, 13 Jun 2019 10:29:23 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 13 Jun
- 2019 10:29:22 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 13 Jun 2019 10:29:21 +0800
-Message-ID: <1560392961.12217.7.camel@mhfsdcap03>
-Subject: Re: [PATCH 2/2] i3c: master: Add driver for MediaTek IP
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-CC:     <bbrezillon@kernel.org>, <devicetree@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <gregkh@linuxfoundation.org>, <xinping.qian@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <liguo.zhang@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <linux-i3c@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 13 Jun 2019 10:29:21 +0800
-In-Reply-To: <20190611142849.43f6d1e4@collabora.com>
-References: <1559533863-10292-1-git-send-email-qii.wang@mediatek.com>
-         <1559533863-10292-3-git-send-email-qii.wang@mediatek.com>
-         <20190604095858.38ed9a28@collabora.com>
-                <1559651200.5871.2.camel@mhfsdcap03> <1560255922.12217.3.camel@mhfsdcap03>
-         <20190611142849.43f6d1e4@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1730240AbfFMQyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:54:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58240 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730042AbfFMCcy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 22:32:54 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4FAEB20B7C;
+        Thu, 13 Jun 2019 02:32:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560393173;
+        bh=LnrX3QbNG16Vax5M8OMl2q8+jnztx7pr7pXC+2mnaZI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BkL5smRT+h3GoqgDWmluADRt99F7Fl0wrw6zjCw6urH6/AoBRpCRzdp9k7AwcBbRh
+         PYW5oWl2uwPkuz64lENGfVt6+dBFbUe03pVSrOqRfiq78oak7qtr8UA/9zIiwyMTvY
+         UzyklPgJSCvK8Zk/m+4zLUx5t03xbTYIdSMH8nPM=
+Date:   Thu, 13 Jun 2019 10:32:16 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oliver Graute <oliver.graute@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, narmstrong@baylibre.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv3 2/2] ARM: dts: Add support for i.MX6 UltraLite DART
+ Variscite Customboard
+Message-ID: <20190613023210.GE20747@dragon>
+References: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
+ <1559839624-12286-3-git-send-email-oliver.graute@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1559839624-12286-3-git-send-email-oliver.graute@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-11 at 14:28 +0200, Boris Brezillon wrote:
-> On Tue, 11 Jun 2019 20:25:22 +0800
-> Qii Wang <qii.wang@mediatek.com> wrote:
+On Thu, Jun 06, 2019 at 06:47:02PM +0200, Oliver Graute wrote:
+> This patch adds DeviceTree Bindings for the i.MX6 UltraLite DART NAND/WIFI
+
+It's device tree source, not bindings.
+
 > 
-> > On Tue, 2019-06-04 at 20:26 +0800, Qii Wang wrote:
-> > > On Tue, 2019-06-04 at 09:58 +0200, Boris Brezillon wrote:  
-> > > > On Mon, 3 Jun 2019 11:51:03 +0800
-> > > > Qii Wang <qii.wang@mediatek.com> wrote:
-> > > > 
-> > > >   
-> > > > > +static int mtk_i3c_master_probe(struct platform_device *pdev)
-> > > > > +{
-> > > > > +	struct device *dev = &pdev->dev;
-> > > > > +	struct mtk_i3c_master *master;
-> > > > > +	struct resource *res;
-> > > > > +	int ret, irqnr;
-> > > > > +
-> > > > > +	master = devm_kzalloc(dev, sizeof(*master), GFP_KERNEL);
-> > > > > +	if (!master)
-> > > > > +		return -ENOMEM;
-> > > > > +
-> > > > > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "main");
-> > > > > +	master->regs = devm_ioremap_resource(dev, res);
-> > > > > +	if (IS_ERR(master->regs))
-> > > > > +		return PTR_ERR(master->regs);
-> > > > > +
-> > > > > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dma");
-> > > > > +	master->dma_regs = devm_ioremap_resource(dev, res);
-> > > > > +	if (IS_ERR(master->dma_regs))
-> > > > > +		return PTR_ERR(master->dma_regs);
-> > > > > +
-> > > > > +	irqnr = platform_get_irq(pdev, 0);
-> > > > > +	if (irqnr < 0)
-> > > > > +		return irqnr;
-> > > > > +
-> > > > > +	ret = devm_request_irq(dev, irqnr, mtk_i3c_master_irq,
-> > > > > +			       IRQF_TRIGGER_NONE, DRV_NAME, master);
-> > > > > +	if (ret < 0) {
-> > > > > +		dev_err(dev, "Request I3C IRQ %d fail\n", irqnr);
-> > > > > +		return ret;
-> > > > > +	}
-> > > > > +
-> > > > > +	ret = of_property_read_u32(pdev->dev.of_node, "clock-div",
-> > > > > +				   &master->clk_src_div);  
-> > > > 
-> > > > You say in one comment that this clock divider is fixed in HW but might
-> > > > change on a per-SoC basis. If that's the case, you should get rid of
-> > > > this clock-div prop and attach the divider to the compatible (using an
-> > > > mtk_i3c_master_variant struct that contains a divider field).
-> > > >   
-> > > 
-> > > ok, I will attach the divider to the compatible.
-> > >   
-> > I have rechecked your comment, maybe I have misunderstood what you mean.
-> > "clock-div" changes according to i2c source clock, different project may
-> > change i2c source clock, The previous dt-binding may be misleading, I
-> > will modify it.
+> Signed-off-by: Oliver Graute <oliver.graute@gmail.com>
+> ---
+>  arch/arm/boot/dts/Makefile                      |   1 +
+>  arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts | 209 ++++++++++++++++++++++++
+>  2 files changed, 210 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
 > 
-> Is it fixed or configurable? Maybe it should be modeled as a clk
-> driver. What's for sure is that we shouldn't have this divider defined
-> in the DT.
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 5559028..7f03ab5 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -577,6 +577,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>  	imx6ul-tx6ul-0010.dtb \
+>  	imx6ul-tx6ul-0011.dtb \
+>  	imx6ul-tx6ul-mainboard.dtb \
+> +	imx6ul-var-6ulcustomboard.dtb \
+>  	imx6ull-14x14-evk.dtb \
+>  	imx6ull-colibri-eval-v3.dtb \
+>  	imx6ull-colibri-wifi-eval-v3.dtb \
+> diff --git a/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+> new file mode 100644
+> index 0000000..80b860a
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+> @@ -0,0 +1,209 @@
+> +// SPDX-License-Identifier: (GPL-2.0)
+> +/*
+> + * Support for Variscite DART-6UL Module
+> + *
+> + * Copyright (C) 2015 Freescale Semiconductor, Inc.
+> + * Copyright (C) 2015-2016 Variscite Ltd. - http://www.variscite.com
+> + * Copyright (C) 2018-2019 Oliver Graute <oliver.graute@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include "imx6ul-imx6ull-var-dart-common.dtsi"
+> +
+> +/ {
+> +	model = "Variscite i.MX6 UltraLite Carrier-board";
+> +	compatible = "fsl,6ulcustomboard", "fsl,imx6ul";
 
-ok, I have let the clk driver handle it, and remove it in DT and i3c
-driver. Thanks!
+The compatible should be documented.
 
+> +
+> +	backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm1 0 20000>;
+> +		brightness-levels = <0 4 8 16 32 64 128 255>;
+> +		default-brightness-level = <6>;
+> +		status = "okay";
 
+Unnecessary 'status'.
+
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		user {
+> +			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_BACK>;
+> +			gpio-key,wakeup;
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		d16_led {
+
+We prefer to use hyphen than underscore in node name.
+
+> +			gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "wm8731audio";
+> +		simple-audio-card,widgets =
+> +			"Headphone", "Headphone Jack",
+> +			"Line", "Line Jack",
+> +			"Microphone", "Mic Jack";
+> +		simple-audio-card,routing =
+> +			"Headphone Jack", "RHPOUT",
+> +			"Headphone Jack", "LHPOUT",
+> +			"LLINEIN", "Line Jack",
+> +			"RLINEIN", "Line Jack",
+> +			"MICIN", "Mic Bias",
+> +			"Mic Bias", "Mic Jack";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,bitclock-master = <&sound_master>;
+> +		simple-audio-card,frame-master = <&sound_master>;
+> +
+> +		sound_master: simple-audio-card,cpu {
+> +				sound-dai = <&sai2>;
+> +		};
+> +	};
+> +};
+> +
+> +&can1 {
+> +	status = "okay";
+> +};
+> +
+> +&can2 {
+> +	status = "okay";
+> +};
+> +
+> +&gpc {
+> +	fsl,cpu_pupscr_sw2iso = <0x2>;
+> +	fsl,cpu_pupscr_sw = <0x1>;
+> +	fsl,cpu_pdnscr_iso2sw = <0x1>;
+> +	fsl,cpu_pdnscr_iso = <0x1>;
+> +	fsl,ldo-bypass = <0>; /* DCDC, ldo-enable */
+
+All these are bindings from vendor tree?
+
+> +};
+> +
+> +&fec1 {
+> +	status = "okay";
+
+We prefer to put 'status' at the end of property list.
+
+> +	phy-mode = "rgmii";
+> +	phy-reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+> +	phy-handle = <&ethphy0>;
+> +};
+> +
+> +&fec2 {
+> +	status = "okay";
+> +	phy-mode = "rgmii";
+> +	phy-reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+> +	phy-handle = <&ethphy1>;
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	clock_frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	status = "okay";
+> +
+> +	wm8731: codec@1a {
+
+audio-codec for node name.
+
+> +		#sound-dai-cells = <0>;
+> +		compatible = "wlf,wm8731";
+> +		reg = <0x1a>;
+> +		clocks = <&clks IMX6UL_CLK_SAI2>;
+> +		clock-names = "mclk";
+> +	};
+> +
+> +	touchscreen@38 {
+> +		compatible = "edt,edt-ft5x06";
+> +		reg = <0x38>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <4 0>;
+> +		touchscreen-size-x = <800>;
+> +		touchscreen-size-y = <480>;
+> +		touchscreen-inverted-x;
+> +		touchscreen-inverted-y;
+> +	};
+> +
+> +	rtc@68 {
+> +		compatible = "dallas,ds1337";
+> +		reg = <0x68>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rtc>;
+> +		interrupt-parent = <&gpio5>;
+> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+> +	};
+> +};
+> +
+> +&lcdif {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_lcdif_dat
+> +		     &pinctrl_lcdif_ctrl>;
+> +	display = <&display0>;
+> +	status = "okay";
+> +
+> +	display0: display {
+
+Have a look at:
+
+https://www.spinics.net/lists/arm-kernel/msg727550.html
+
+Also, can we use new bindings documented in bindings/display/mxsfb.txt?
+
+> +		bits-per-pixel = <16>;
+> +		bus-width = <24>;
+> +
+> +		display-timings {
+> +			native-mode = <&timing0>;
+> +			timing0: timing0 {
+> +				clock-frequency =<35000000>;
+> +				hactive = <800>;
+> +				vactive = <480>;
+> +				hfront-porch = <40>;
+> +				hback-porch = <40>;
+> +				hsync-len = <48>;
+> +				vback-porch = <29>;
+> +				vfront-porch = <13>;
+> +				vsync-len = <3>;
+> +				hsync-active = <0>;
+> +				vsync-active = <0>;
+> +				de-active = <1>;
+> +				pixelclk-active = <0>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pwm1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +};
+> +
+> +&usbotg1 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usbotg2 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_hog_1>;
+
+Isn't imx6ul-imx6ull-var-dart-common.dtsi already having these them?
+
+> +	imx6ul-evk {
+> +
+
+This container node shouldn't be needed.
+
+Shawn
+
+> +		pinctrl_rtc: rtcgrp {
+> +			fsl,pins = <
+> +				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x1b0b0
+> +			>;
+> +		};
+> +	};
+> +};
+> -- 
+> 2.7.4
+> 
