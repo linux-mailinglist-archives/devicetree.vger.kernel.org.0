@@ -2,141 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A95C44D04
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 22:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A33B844D0D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 22:09:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727323AbfFMUIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 16:08:18 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:39199 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726551AbfFMUIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 16:08:18 -0400
-Received: by mail-qt1-f196.google.com with SMTP id i34so24069632qta.6;
-        Thu, 13 Jun 2019 13:08:17 -0700 (PDT)
+        id S1729501AbfFMUJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 16:09:38 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:43525 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729483AbfFMUJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 16:09:38 -0400
+Received: by mail-qt1-f193.google.com with SMTP id z24so10862234qtj.10;
+        Thu, 13 Jun 2019 13:09:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=UwChhjSzjeOfvvnEfR7YJU7oQ/qodwbm5JIdXsqXlRo=;
-        b=civSKFH0kxQmDhv/mbgH20UxiBrqbBEeP5oyYx2nz3ka23nYb7o0rXiZZYu35rzCg/
-         2cMBLKTD7v+aHYHJBd52+l8X9jONcCSYxcPQ843bmwPPZZQwcY0/VJvCCiTVVpH0Yfc3
-         2rIOsAGvaKNvePV06dPtI8mk7trY2Qm8ZYR173HxqLQNCI2h8YKfLkimog9dXbAVrp8h
-         53tzJR3mpcsnHFUr2uimJVosqFykVeSHE1/sh3iYdbBZeaxIBWeRc7nWsem6cCReXlAe
-         1Aa70YB1Jb88KtgEPersUsfGQxszsE/WHy+1ZwzIoPIQOdpPHxmarrSLCHjy40YcTzbp
-         Rw3A==
-X-Gm-Message-State: APjAAAUY4HwsSdHDYJc/+8JDzUQ0BDbzT0fPBd866+icqiLdHlvR6VhQ
-        ooWFsXXcDgAbWEysuCj5zw==
-X-Google-Smtp-Source: APXvYqxlMoVZh97RRGXb4sVgHdetYuU+vA47kS1FGVMnu6eGCEIfvRk5fRpKmQ3WZnBR9tg5KwicmA==
-X-Received: by 2002:a0c:d91b:: with SMTP id p27mr5042508qvj.236.1560456496941;
-        Thu, 13 Jun 2019 13:08:16 -0700 (PDT)
+        bh=EsoRqTCzQK8XeT4CpX6/tA1R/n5u3cPoinlZbGIMxfg=;
+        b=XDg8fn1AlUSzoRQ5Ycyjdrx2aMC/FuVRtv74/9kcNzJNCh7qfpzdIDO5Z2vllWTGQE
+         v5FwdYLjLWbomL5PwX3w+p0G6iTm/ucZSb0ps23gUmUFRzdklhfE5YxROLcL07aCXwnT
+         +gWESIm6VMnxOKPYB3CdnR5XnUL/yHsrsrg1R2y4plD6aJWRChVkbnhkO+sGulstoGQh
+         iZeL7wX5bau33xw+a1F1fd8cg+LTzLCVLvCuGheDVJmRYWh3YohmXfVgJDzymNTU5dUz
+         9lQA6HU4vAe4Gn2O+lfe5JlmQWl4bQ7ylCK2qViX4ow2OBk303YyzGtDcePfi2Wjjweq
+         oX6g==
+X-Gm-Message-State: APjAAAXlbZc34UQK//B8LK11NNh1b5Um/2ZT80CoiRuk5KSwNhH73/T/
+        dFne+0j02CqP4sv6MXCy1A==
+X-Google-Smtp-Source: APXvYqwBj3qKm7jFPhoNU8lB+im0laB+BDLfUfdNdKNo4biXs7z8jC8txvk0mfb+BZ6IseYD9aYagw==
+X-Received: by 2002:a0c:d24d:: with SMTP id o13mr5132746qvh.86.1560456577255;
+        Thu, 13 Jun 2019 13:09:37 -0700 (PDT)
 Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id j62sm248574qte.89.2019.06.13.13.08.15
+        by smtp.gmail.com with ESMTPSA id u19sm459747qka.35.2019.06.13.13.09.36
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 13:08:16 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 14:08:13 -0600
+        Thu, 13 Jun 2019 13:09:36 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 14:09:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>
-Subject: Re: [v1 1/4] dt-bindings: display: Add DT bindings for LS1028A
- HDP-TX PHY.
-Message-ID: <20190613200813.GA895@bogus>
-References: <20190508103703.40885-1-wen.he_1@nxp.com>
+To:     Michael Grzeschik <m.grzeschik@pengutronix.de>
+Cc:     Tristram.Ha@microchip.com, kernel@pengutronix.de,
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC 3/3] dt-bindings: net: dsa: document additional Microchip
+ KSZ8863 family switches
+Message-ID: <20190613200935.GA16851@bogus>
+References: <20190508211330.19328-1-m.grzeschik@pengutronix.de>
+ <20190508211330.19328-4-m.grzeschik@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190508103703.40885-1-wen.he_1@nxp.com>
+In-Reply-To: <20190508211330.19328-4-m.grzeschik@pengutronix.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 08, 2019 at 10:35:25AM +0000, Wen He wrote:
-> Add DT bindings documentmation for the HDP-TX PHY controller. The describes
-> which could be found on NXP Layerscape ls1028a platform.
-
-Drop the hard stop (.) from the subject.
-
+On Wed, May 08, 2019 at 11:13:30PM +0200, Michael Grzeschik wrote:
+> Document additional Microchip KSZ8863 family switches.
 > 
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
+> Show how KSZ8863 switch should be configured as the host port is port 3.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
 > ---
->  .../devicetree/bindings/display/fsl,hdp.txt   | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/fsl,hdp.txt
+>  .../devicetree/bindings/net/dsa/ksz.txt       | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/fsl,hdp.txt b/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> new file mode 100644
-> index 000000000000..36b5687a1261
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> @@ -0,0 +1,56 @@
-> +NXP Layerscpae ls1028a HDP-TX PHY Controller
-> +============================================
-> +
-> +The following bindings describe the Cadence HDP TX PHY on ls1028a that
-> +offer multi-protocol support of standars such as eDP and Displayport,
-> +supports for 25-600MHz pixel clock and up to 4k2k at 60MHz resolution.
-> +The HDP transmitter is a Cadence HDP TX controller IP with a companion
-> +PHY IP.
+> diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
+> index e7db7268fd0fd..4ac576e1cc34e 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
+> +++ b/Documentation/devicetree/bindings/net/dsa/ksz.txt
+> @@ -5,6 +5,8 @@ Required properties:
+>  
+>  - compatible: For external switch chips, compatible string must be exactly one
+>    of the following:
+> +  - "microchip,ksz8863"
+> +  - "microchip,ksz8873"
+>    - "microchip,ksz9477"
+>    - "microchip,ksz9897"
+>    - "microchip,ksz9896"
+> @@ -31,6 +33,48 @@ Ethernet switch connected via SPI to the host, CPU port wired to eth0:
+>  		};
+>  	};
+>  
+> +	mdio0: mdio-gpio {
 
-I'm confused. This binding covers both blocks or is just one of them?
+Does this example show something new? Examples don't need to instantiate 
+every possible option.
 
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_mdio_1>;
+> +		compatible = "virtual,mdio-gpio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		gpios = <&gpio1 31 0 &gpio1 22 0>;
 > +
-> +Required properties:
-> +  - compatible:   Should be "fsl,ls1028a-dp" for ls1028a.
-> +  - reg:          Physical base address and size of the block of registers used
-> +  by the processor.
-> +  - interrupts:   HDP hotplug in/out detect interrupt number
-> +  - clocks:       A list of phandle + clock-specifier pairs, one for each entry
-> +  in 'clock-names'
-> +  - clock-names:  A list of clock names. It should contain:
-> +      - "clk_ipg": inter-Integrated circuit clock
-> +      - "clk_core": for the Main Display TX controller clock
-> +      - "clk_pxl": for the pixel clock feeding the output PLL of the processor
-> +      - "clk_pxl_mux": for the high PerfPLL bypass clock
-> +      - "clk_pxl_link": for the link rate pixel clock
-> +      - "clk_apb": for the APB interface clock
-> +      - "clk_vif": for the Video pixel clock
-
-The 'clk_' part is redundant.
-
+> +		ksz8863@3 {
+> +			compatible = "microchip,ksz8863";
+> +			interrupt-parrent = <&gpio3>;
+> +			interrupt = <30 IRQ_TYPE_LEVEL_HIGH>;
+> +			reg = <0>;
 > +
-> +Required sub-nodes:
-> +  - port: The HDP connection to an encoder output port. The connection
-> +    is modelled using the OF graph bindings specified in
-> +    Documentation/devicetree/bindings/graph.txt
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
 > +
+> +				ports@0 {
+> +					reg = <0>;
+> +					label = "lan1";
+> +				};
 > +
-> +Example:
+> +				ports@1 {
+> +					reg = <1>;
+> +					label = "lan2";
+> +				};
 > +
-> +/ {
-> +        ...
+> +				ports@2 {
+> +					reg = <2>;
+> +					label = "cpu";
+> +					ethernet = <&eth0>;
 > +
-> +	hdp: display@f200000 {
-> +                compatible = "fsl,ls1028a-dp";
-> +		reg = <0x0 0xf1f0000 0x0 0xffff>,
-> +		    <0x0 0xf200000 0x0 0xfffff>;
-> +                interrupts = <0 221 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&sysclk>, <&hdpclk>, <&dpclk>,
-> +                         <&dpclk>, <&dpclk>, <&pclk>, <&dpclk>;
-> +		clock-names = "clk_ipg", "clk_core", "clk_pxl",
-> +                              "clk_pxl_mux", "clk_pxl_link", "clk_apb",
-> +                              "clk_vif";
-> +
-> +		port {
-> +			dp1_output: endpoint {
-> +				remote-endpoint = <&dp0_input>;
+> +					fixed-link {
+> +						speed = <100>;
+> +						full-duplex;
+> +					};
+> +				};
 > +			};
 > +		};
-> +        };
+> +	};
 > +
-> +        ...
-> +};
+>  	spi1: spi@f8008000 {
+>  		pinctrl-0 = <&pinctrl_spi_ksz>;
+>  		cs-gpios = <&pioC 25 0>;
 > -- 
-> 2.17.1
+> 2.20.1
 > 
