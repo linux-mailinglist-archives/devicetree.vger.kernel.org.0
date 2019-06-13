@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8928644FB6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 01:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A2944FC2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 01:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726429AbfFMXA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 19:00:59 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:43610 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726296AbfFMXA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 19:00:58 -0400
-Received: by mail-qt1-f193.google.com with SMTP id z24so350767qtj.10;
-        Thu, 13 Jun 2019 16:00:58 -0700 (PDT)
+        id S1726980AbfFMXDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 19:03:48 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:44327 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725842AbfFMXDs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 19:03:48 -0400
+Received: by mail-qt1-f194.google.com with SMTP id x47so353931qtk.11;
+        Thu, 13 Jun 2019 16:03:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=G79DWXHKgxClAySaL1um3UbwoRauIDKIz2yJHIv30Gg=;
-        b=qeqSo8GoNLE+dKxQc0f4MEpZMTcLL9+LP7UBBJiYrAhyuFsDpW5l0ouqOjP/UEFT5C
-         c0JKQn/kqkWJyaOC651hFs8lKhX1WO9L3XYgQM0JVwXZaY36/9OKYnMvepduKLuVYP0v
-         srjk89QueGX4aKA28IJ3bC1BUlCYXyRMlNFPLVPgZv/w7dJXRYxe6yk4zfnZ/eImJzKW
-         YtmiYczWGuhVYkAgluJRTgHZ0npRfgoyLgEGMYASeGndk1YS39RtmPtGeQPd356h/RPP
-         cbWtcT2tgPywR0OcV8LImOqlJGLj1WTaHXbN4GyIfgAMrc76Zd3jtR0i64NhgzNEIOT0
-         W/WA==
-X-Gm-Message-State: APjAAAVLsqPaGd0fmWALH8fTj7DpInaaGmzLgV8kiBvBdGTiypDahXdE
-        zxUiVqSaU5JyWUXOiJIRUQ==
-X-Google-Smtp-Source: APXvYqwO8MrRxA4IbLmzYlI+M/YrQOnAWJYgHuPsnvehk+Nb8nAc5Jq4q/qt4ywjdBg+E8zmH8NyaQ==
-X-Received: by 2002:a0c:aff8:: with SMTP id t53mr5602907qvc.47.1560466857634;
-        Thu, 13 Jun 2019 16:00:57 -0700 (PDT)
+        bh=Any9+xhgAdf8Tj2YQiAeCpNAF5TdMk3cjHofJsaCPp8=;
+        b=RBsd/kD11P6KMzthnpJYN124DqyUcnl14xQjo8w8DhgSxQCaSa1KfRkLTv6xfwoN7L
+         +Wyuv3i4nojZgm3Fjl7Ay26ybwidM3+eWLBdZmIyz8/C/Tloy/uJ1mxRUce4/SS8HY81
+         iPO8ikaKZ+xuSOS75Es6d5ZNwK028IuumI7JbmefRGirhaz5dR+ttgu2Rqx6MtE5R5ZV
+         HeV27BlkBL9oRJ1eD7tY0Gn54VkvF5aKWO73zY4gR6PWhdKnDf/4RQlCNJy8Yhzs13e4
+         f/7uNNHSwGVxnlGxFew0GXcAD9CQDdEPreekXS0tPhqD797OGf0V6lfiYSBd0kBLX4MY
+         nFHg==
+X-Gm-Message-State: APjAAAVcZTids1H2cYrguE4/a0sxWOyu1lQH3K1sGiDgnJ72RTn6hq/a
+        4DZAkrAtYXAUNhbGCuvsow==
+X-Google-Smtp-Source: APXvYqwP6BVE4QQ6PLKz0SdGsY6PHtqwDv2ToI4H2dca/xQK2tVqH95A1g32hz8XmVu9TPpzIdEW+A==
+X-Received: by 2002:ac8:4919:: with SMTP id e25mr9443342qtq.214.1560467026455;
+        Thu, 13 Jun 2019 16:03:46 -0700 (PDT)
 Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id n5sm655080qta.29.2019.06.13.16.00.56
+        by smtp.gmail.com with ESMTPSA id i17sm508437qkl.71.2019.06.13.16.03.45
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 16:00:56 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 17:00:55 -0600
+        Thu, 13 Jun 2019 16:03:45 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 17:03:44 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
-Message-ID: <20190613230055.GA19296@bogus>
-References: <20190520032020.7920-1-peng.fan@nxp.com>
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: Re: [PATCH v4 2/3] Documentation: dt: binding: fsl: Add
+ 'little-endian' and update Chassis define
+Message-ID: <20190613230344.GA6005@bogus>
+References: <20190520095238.29210-1-ran.wang_1@nxp.com>
+ <20190520095238.29210-2-ran.wang_1@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190520032020.7920-1-peng.fan@nxp.com>
+In-Reply-To: <20190520095238.29210-2-ran.wang_1@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 03:06:35AM +0000, Peng Fan wrote:
-> Introduce fusable-node property for i.MX OCOTP driver.
-> The property will only be used by Firmware(eg. U-Boot) to
-> runtime disable the nodes.
+On Mon, 20 May 2019 17:52:37 +0800, Ran Wang wrote:
+> By default, QorIQ SoC's RCPM register block is Big Endian. But
+> there are some exceptions, such as LS1088A and LS2088A, are Little
+> Endian. So add this optional property to help identify them.
 > 
-> Take i.MX6ULL for example, there are several parts that only
-> have limited modules enabled controlled by OCOTP fuse. It is
-> not flexible to provide several dts for the serval parts, instead
-> we could provide one device tree and let Firmware to runtime disable
-> the device tree nodes for those modules that are disable(fused).
+> Actually LS2021A and other Layerscapes won't totally follow Chassis
+> 2.1, so separate them from powerpc SoC.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 > ---
+> Change in v4:
+> 	- Adjust indectation of 'ls1021a, ls1012a, ls1043a, ls1046a'.
 > 
-> Currently NXP vendor use U-Boot to set status to disabled for devices
-> that could not function,
-> https://source.codeaurora.org/external/imx/uboot-imx/tree/arch/arm/mach-imx/mx6/module_fuse.c?h=imx_v2018.03_4.14.98_2.0.0_ga#n149
-> But this approach is will not work if kernel dts node path changed.
+> Change in v3:
+> 	- None.
+> 
+> Change in v2:
+> 	- None.
+> 
+>  Documentation/devicetree/bindings/soc/fsl/rcpm.txt |    8 +++++++-
+>  1 files changed, 7 insertions(+), 1 deletions(-)
+> 
 
-Why would the path change? The DT should be stable.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
