@@ -2,86 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DB53449D6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DA3449D7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 19:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728413AbfFMRol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 13:44:41 -0400
-Received: from foss.arm.com ([217.140.110.172]:48366 "EHLO foss.arm.com"
+        id S1728605AbfFMRor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 13:44:47 -0400
+Received: from foss.arm.com ([217.140.110.172]:48380 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728172AbfFMRol (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 13:44:41 -0400
+        id S1727412AbfFMRor (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 13:44:47 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6041E367;
-        Thu, 13 Jun 2019 10:44:40 -0700 (PDT)
-Received: from fuggles.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A52BF3F694;
-        Thu, 13 Jun 2019 10:44:38 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 18:44:36 +0100
-From:   Will Deacon <will.deacon@arm.com>
-To:     Zhi Li <lznuaa@gmail.com>
-Cc:     Frank Li <frank.li@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH V12 2/4] drivers/perf: imx_ddr: Add ddr performance
- counter support
-Message-ID: <20190613174436.GG18966@fuggles.cambridge.arm.com>
-References: <1556736193-29411-1-git-send-email-Frank.Li@nxp.com>
- <1556736193-29411-2-git-send-email-Frank.Li@nxp.com>
- <20190613112320.GA18966@fuggles.cambridge.arm.com>
- <CAHrpEqRZ0YL9SFk6o7iebJ+diJVMTtyba_9GtujL7H7e4G8qQA@mail.gmail.com>
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 98C4B367;
+        Thu, 13 Jun 2019 10:44:46 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6E8633F694;
+        Thu, 13 Jun 2019 10:44:44 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: Update DWC3 modules on RK3399 SoCs
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Randy Li <ayaka@soulik.info>, linux-kernel@vger.kernel.org,
+        Vicente Bergas <vicencb@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Tony Xie <tony.xie@rock-chips.com>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+References: <20190613162745.12195-1-enric.balletbo@collabora.com>
+ <40d2260f-3925-acdc-eb02-8abb972f1056@arm.com>
+ <a685fef9-8f45-700c-17d6-59d792fca092@collabora.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <a3050da7-9b99-c6fd-ee06-f65503f1ae87@arm.com>
+Date:   Thu, 13 Jun 2019 18:44:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHrpEqRZ0YL9SFk6o7iebJ+diJVMTtyba_9GtujL7H7e4G8qQA@mail.gmail.com>
-User-Agent: Mutt/1.11.1+86 (6f28e57d73f2) ()
+In-Reply-To: <a685fef9-8f45-700c-17d6-59d792fca092@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 12:04:37PM -0500, Zhi Li wrote:
-> On Thu, Jun 13, 2019 at 6:23 AM Will Deacon <will.deacon@arm.com> wrote:
-> >
-> > On Wed, May 01, 2019 at 06:43:29PM +0000, Frank Li wrote:
-> > > Add ddr performance monitor support for iMX8QXP
-> > >
-> > > There are 4 counters for ddr perfomance events.
-> > > counter 0 is dedicated for cycles.
-> > > you choose any up to 3 no cycles events.
-> > >
-> > > for example:
-> > >
-> > > perf stat -a -e imx8_ddr0/read-cycles/,imx8_ddr0/write-cycles/,imx8_ddr0/precharge/ ls
-> > > perf stat -a -e imx8_ddr0/cycles/,imx8_ddr0/read-access/,imx8_ddr0/write-access/ ls
-> >
-> > I've pushed patches 1, 2 and 4 out with some minor tweaks to:
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-next/perf
-> >
-> > I'll leave the actual .dts change to go via the soc tree, since last time
-> > I took one of those it just resulted in conflicts.
-> >
-> > Frank, Andrey: Please could you try to run the perf fuzzer on this before
-> > it lands in mainline? It has a good track record of finding nasty PMU driver
-> > bugs, but it obviously requires access to hardware which implements the PMU:
-> >
-> > http://web.eece.maine.edu/~vweaver/projects/perf_events/fuzzer/
+On 13/06/2019 18:20, Enric Balletbo i Serra wrote:
+> Hi Robin,
 > 
-> Okay, how long should be run generally?
-> I need make sure it can pass without my patches at our platform.
+> On 13/6/19 18:56, Robin Murphy wrote:
+>> On 13/06/2019 17:27, Enric Balletbo i Serra wrote:
+>>> As per binding documentation [1], the DWC3 core should have the "ref",
+>>> "bus_early" and "suspend" clocks. As explained in the binding, those
+>>> clocks are required for new platforms but not for existing platforms
+>>> before commit fe8abf332b8f ("usb: dwc3: support clocks and resets for
+>>> DWC3 core").
+>>>
+>>> However, as those clocks are really treated as required, this ends with
+>>> having some annoying messages when the "rockchip,rk3399-dwc3" is used:
+>>>
+>>> [    1.724107] dwc3 fe800000.dwc3: Failed to get clk 'ref': -2
+>>> [    1.731893] dwc3 fe900000.dwc3: Failed to get clk 'ref': -2
+>>> [    2.495937] dwc3 fe800000.dwc3: Failed to get clk 'ref': -2
+>>> [    2.647239] dwc3 fe900000.dwc3: Failed to get clk 'ref': -2
+>>>
+>>> In order to remove those annoying messages, update the DWC3 hardware
+>>> module node and add all the required clocks. With this change, both, the
+>>> glue node and the DWC3 core node, have the clocks defined, but that's
+>>> not really a problem and there isn't a side effect on do this. So, we
+>>> can get rid of the annoying get clk error messages.
+>>
+>> Can we not just move these clocks entirely from the glue layer to the core
+>> layer? That didn't seem to break when I tried it, although I'll admit my
+>> 'testing' was no more than booting and mounting a USB 3.0 flash drive, no
+>> suspend or anything fancy.
+>>
+> 
+> AFAICT usb doesn't break, but we won't break backward compability then? (/me
+> still doesn't know when backward compability is really important or not)
 
-As you long as you can really, but if it survives a few hours that's usually
-a good sign. Overnight is even better.
+Ah, fair point - I was imagining the glue layer's heavy-handed "turn 
+everything on" approach potentially interfering with the core layer's 
+ability to exert finer-grained control of the clocks it knows more 
+about, but the "old kernel, new DT" situation might indeed be a problem. 
+I guess that's Heiko's call in the end. Plus I'm no CCF expert so my 
+concern might be unfounded anyway.
 
-Will
+>> My own attempt to shut up these errors got sidetracked into c0c61471ef86 ("usb:
+>> dwc3: of-simple: Convert to bulk clk API"), then apparently stalled :)
+>>
+> 
+> There was any off the record discussion and stalled or simply you didn't get
+> feedback?
+
+More that the 3399 board got put away in a freak "tidying the kitchen" 
+incident, and I've just had too many other things on the go since :)
+
+Robin.
+
+> 
+> I'll take a look.
+> 
+> Thanks,
+> ~ Enric
+> 
+>> Robin.
+>>
+>>>
+>>> [1] Documentation/devicetree/bindings/usb/dwc3.txt
+>>>
+>>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>>> ---
+>>>
+>>>    arch/arm64/boot/dts/rockchip/rk3399.dtsi | 6 ++++++
+>>>    1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> index 196ac9b78076..a15348d185ce 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> @@ -414,6 +414,9 @@
+>>>                compatible = "snps,dwc3";
+>>>                reg = <0x0 0xfe800000 0x0 0x100000>;
+>>>                interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +            clocks = <&cru SCLK_USB3OTG0_REF>, <&cru ACLK_USB3OTG0>,
+>>> +                 <&cru SCLK_USB3OTG0_SUSPEND>;
+>>> +            clock-names = "ref", "bus_early", "suspend";
+>>>                dr_mode = "otg";
+>>>                phys = <&u2phy0_otg>, <&tcphy0_usb3>;
+>>>                phy-names = "usb2-phy", "usb3-phy";
+>>> @@ -447,6 +450,9 @@
+>>>                compatible = "snps,dwc3";
+>>>                reg = <0x0 0xfe900000 0x0 0x100000>;
+>>>                interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +            clocks = <&cru SCLK_USB3OTG1_REF>, <&cru ACLK_USB3OTG1>,
+>>> +                 <&cru SCLK_USB3OTG1_SUSPEND>;
+>>> +            clock-names = "ref", "bus_early", "suspend";
+>>>                dr_mode = "otg";
+>>>                phys = <&u2phy1_otg>, <&tcphy1_usb3>;
+>>>                phy-names = "usb2-phy", "usb3-phy";
+>>>
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
