@@ -2,101 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DC8E446A9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74DD84470F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392756AbfFMQxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:53:42 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38010 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730181AbfFMQxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 12:53:40 -0400
-Received: by mail-wm1-f66.google.com with SMTP id s15so10872187wmj.3;
-        Thu, 13 Jun 2019 09:53:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=B4FVqXBYoVQEIlsaX3zo8xQpS0bIMFHHRYcbxji5ppI=;
-        b=me63D8Re60mBfgiq6Kee2NUjBCG98fgeGSRsfH3vxcwb8vIT6ICqH9hfDHG3uCN2RV
-         yqg6QpJ0+77dyda0uRpdwiy+07DqAE2FmtNwtB3h+BLNEpfdiY1zJCXns/gOiRyU+SU9
-         OE5T81jLnDrTha8UcAIF3z9RYJpqh0Wm+a2I7r9r2sXRYyE159/ebq9hTaD5Wf4JYPZK
-         a/IwJJQNoOfpp+DJIM9MdEbsLaPdG0zE7jEQZN9YEmF0k2l47NjRGQnWMOAW4s3nLp7p
-         32rYX4nGkZNZX8m8fmGPbbRaYiVjrNNgFiV+jwphYCBh7rItDKv3c6YZInVz7L+rAt9e
-         Sfdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=B4FVqXBYoVQEIlsaX3zo8xQpS0bIMFHHRYcbxji5ppI=;
-        b=mb1fZDQWBHdp8Rrspfo3xKsIkoIQsEHXEHogBg6HGcZkRM3gy5NLRL2q2J72MTu9AH
-         WpDxUPv39hxphTlYYCxeGe8Zs+0Vjm2p/fhb/u2f8gpjBAm9RM6ZLMNY3aXnvVUI/BFg
-         l5yVrjPzqEiql3wiWDfQeSGw11jSU/xI2AQAM+gffYIqlFZJITms3Y/NX8dgMhShher2
-         61z3De72DbM5B98QdInmKNtZN1ft3TEGJ1AR/xERuAsjOzHYGMzrwxqHha58nexw6eOV
-         JnXpc19mC3iRC/nfxUaUqk7FeW6aqS5HH43z/ZLCot5qh1dm0AuZRq5ubblsfsOmQRD0
-         w+oQ==
-X-Gm-Message-State: APjAAAVCGJRbMJC7zhyHFSJeVagUcQn+rBITSEPbPQCbwqx941rWVrvy
-        0L1CHt8WREYW4rCHSR7hyIU=
-X-Google-Smtp-Source: APXvYqwlIwdg4httjAD2WhScp/mZNYmeTVDW8BWPi42Xi+V0Pbu745HNjkaIzfO+P4ZOX+1h2omj9g==
-X-Received: by 2002:a1c:808b:: with SMTP id b133mr4285413wmd.160.1560444818376;
-        Thu, 13 Jun 2019 09:53:38 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id c16sm103779wrr.53.2019.06.13.09.53.37
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 09:53:37 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] arm64: tegra: Add ID EEPROM for Jetson TX1 Developer Kit
-Date:   Thu, 13 Jun 2019 18:53:31 +0200
-Message-Id: <20190613165331.8689-4-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190613165331.8689-1-thierry.reding@gmail.com>
-References: <20190613165331.8689-1-thierry.reding@gmail.com>
+        id S1730255AbfFMQ4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:56:53 -0400
+Received: from foss.arm.com ([217.140.110.172]:47186 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730001AbfFMQ4x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 12:56:53 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C32D367;
+        Thu, 13 Jun 2019 09:56:52 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A1293F694;
+        Thu, 13 Jun 2019 09:56:49 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: Update DWC3 modules on RK3399 SoCs
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        linux-rockchip@lists.infradead.org,
+        Tony Xie <tony.xie@rock-chips.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Randy Li <ayaka@soulik.info>, linux-kernel@vger.kernel.org,
+        Vicente Bergas <vicencb@gmail.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Christoph Muellner <christoph.muellner@theobroma-systems.com>
+References: <20190613162745.12195-1-enric.balletbo@collabora.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <40d2260f-3925-acdc-eb02-8abb972f1056@arm.com>
+Date:   Thu, 13 Jun 2019 17:56:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190613162745.12195-1-enric.balletbo@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On 13/06/2019 17:27, Enric Balletbo i Serra wrote:
+> As per binding documentation [1], the DWC3 core should have the "ref",
+> "bus_early" and "suspend" clocks. As explained in the binding, those
+> clocks are required for new platforms but not for existing platforms
+> before commit fe8abf332b8f ("usb: dwc3: support clocks and resets for
+> DWC3 core").
+> 
+> However, as those clocks are really treated as required, this ends with
+> having some annoying messages when the "rockchip,rk3399-dwc3" is used:
+> 
+> [    1.724107] dwc3 fe800000.dwc3: Failed to get clk 'ref': -2
+> [    1.731893] dwc3 fe900000.dwc3: Failed to get clk 'ref': -2
+> [    2.495937] dwc3 fe800000.dwc3: Failed to get clk 'ref': -2
+> [    2.647239] dwc3 fe900000.dwc3: Failed to get clk 'ref': -2
+> 
+> In order to remove those annoying messages, update the DWC3 hardware
+> module node and add all the required clocks. With this change, both, the
+> glue node and the DWC3 core node, have the clocks defined, but that's
+> not really a problem and there isn't a side effect on do this. So, we
+> can get rid of the annoying get clk error messages.
 
-There is an ID EEPROM on the Jetson TX1 carrier board, part of the
-Jetson TX1 Developer Kit, that exposes information that can be used to
-identify the carrier board. Add the device tree node so that operating
-systems can access this EEPROM.
+Can we not just move these clocks entirely from the glue layer to the 
+core layer? That didn't seem to break when I tried it, although I'll 
+admit my 'testing' was no more than booting and mounting a USB 3.0 flash 
+drive, no suspend or anything fancy.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+My own attempt to shut up these errors got sidetracked into c0c61471ef86 
+("usb: dwc3: of-simple: Convert to bulk clk API"), then apparently 
+stalled :)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-index 5a57396b5948..a3cafe39ba4c 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-@@ -79,6 +79,19 @@
- 		};
- 	};
- 
-+	i2c@7000c500 {
-+		/* carrier board ID EEPROM */
-+		eeprom@57 {
-+			compatible = "atmel,24c02";
-+			reg = <0x57>;
-+
-+			address-bits = <8>;
-+			page-size = <8>;
-+			size = <256>;
-+			read-only;
-+		};
-+	};
-+
- 	clock@70110000 {
- 		status = "okay";
- 
--- 
-2.21.0
+Robin.
 
+> 
+> [1] Documentation/devicetree/bindings/usb/dwc3.txt
+> 
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> ---
+> 
+>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> index 196ac9b78076..a15348d185ce 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -414,6 +414,9 @@
+>   			compatible = "snps,dwc3";
+>   			reg = <0x0 0xfe800000 0x0 0x100000>;
+>   			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&cru SCLK_USB3OTG0_REF>, <&cru ACLK_USB3OTG0>,
+> +				 <&cru SCLK_USB3OTG0_SUSPEND>;
+> +			clock-names = "ref", "bus_early", "suspend";
+>   			dr_mode = "otg";
+>   			phys = <&u2phy0_otg>, <&tcphy0_usb3>;
+>   			phy-names = "usb2-phy", "usb3-phy";
+> @@ -447,6 +450,9 @@
+>   			compatible = "snps,dwc3";
+>   			reg = <0x0 0xfe900000 0x0 0x100000>;
+>   			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&cru SCLK_USB3OTG1_REF>, <&cru ACLK_USB3OTG1>,
+> +				 <&cru SCLK_USB3OTG1_SUSPEND>;
+> +			clock-names = "ref", "bus_early", "suspend";
+>   			dr_mode = "otg";
+>   			phys = <&u2phy1_otg>, <&tcphy1_usb3>;
+>   			phy-names = "usb2-phy", "usb3-phy";
+> 
