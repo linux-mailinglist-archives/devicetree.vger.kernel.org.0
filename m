@@ -2,157 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBDAB43CC4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3278343D2F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727208AbfFMPhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:37:50 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:43694 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732619AbfFMPht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:37:49 -0400
-Received: by mail-io1-f66.google.com with SMTP id k20so17874871ios.10;
-        Thu, 13 Jun 2019 08:37:49 -0700 (PDT)
+        id S1732616AbfFMPkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:40:06 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:33428 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387794AbfFMPkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:40:05 -0400
+Received: by mail-pg1-f195.google.com with SMTP id k187so10671826pga.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 08:40:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5i3fllaM3zGVPRCjpemlXnZ90CuYrEwzTiEoElVhFe8=;
-        b=Opg/Cz53GyZCtD8gdSvINfrJq82ClNEH2vJpIYLZbDB0mFJSOBPNRSnMuvc/ETy/u7
-         3YSWspqqmO5FLQQeR1kCnj+/U4ZHiJsRiCJRNMNw1L0SF2wJHkafnoo29cUd6kie8j30
-         5cyuXzzbbW2FEKDfoz7nPqdZ5xYVR8xXomfI9tUNAvmNdPLMvBspKsVE1PSfi4WSUW7m
-         9OGHjF5Ed29skI3yLFbkvr9rhcWepSFeBIx63dE4dhB1orw7jkqAPJhyJ9Lo/9yM96oq
-         B9pdy6+hEleo9Fbds6FkIa+8+xYNaINnWxBFiYG74h+rQS1l1Hkdvg2cnxXoieNejmna
-         j2mg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=BtWWHY6GZ+irdemUSJWfYrXBvNRLu0hF7sjwfuTufnI=;
+        b=aNrHcY49yqaTJyE6Q+tcq+ByCZETc9h8PDkWq0+W++gEKy7j2NPlZU6hV1EbcwU5JD
+         syMpCXwkWs5TvSjhBj0dlJ8OXOaPSIsvf+OeD+GtfT3U268ILHAHQv/IX5IenGtrARRe
+         mw+Ixy3ns7L4JoriCdM9WDixKKSjBC1QwWOzr04uPPGdniZZ20O9mJrXgTFfJEgih5Gq
+         xsZhXhsh3x6OiapwDDjUOYQy93/jGkxq9tl2mVQ9P8CLhEp+jPdJrfN163CeRm/3rsoz
+         TFjq6hvlCZNEg2z5CsU7QsTd45nxBa2cAmJybVe9j+wsW1GqeFwLtlvc1VgptDh06dal
+         us+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5i3fllaM3zGVPRCjpemlXnZ90CuYrEwzTiEoElVhFe8=;
-        b=AG77fa0gpED2GrZZelJP35nnYpFduYMOQVQ5R6egnc1nfiSlxxsm7oz3evsoGOqSaZ
-         X8fwtvyUzg5x5zuhRdLlLVBg8OifZO2Ytp7y8+yfCmVDorC6pGU9H1o3MRriZ4izObk9
-         oqoi+pYwwWh/G4bExw4NcQgJFbAKcdQJL97SJgpJoWnoVYuLdo9oO0FJr01cmAxJsB8H
-         aVW2p9mA5eMvaI9uo1l0mru/L29ONkA0jCnliSU6KgBAjiVywLdB4pf7lmlV7gA2JePC
-         XGlWHrukOhzO4jrwPqyotGim7FjuMr++nuJkRlEkPLrqSxhuBbo+RiwFVBHHZWaKYGMO
-         MJ9g==
-X-Gm-Message-State: APjAAAUOy5XDJjf4OdwyzATII34LyCQWscjwQ3c+9jpP+G1m4oXigU90
-        sMeHpYFBBk0dAbhfm9niSLYn8QZD7IKIcLB55Uk=
-X-Google-Smtp-Source: APXvYqwfUacV62ukDncawPLzKOEtROrJgrS0BIzPwynxnGl7fBiV1KhINj78l/YVKnvaiUlBeEdXQsYQ2XfmhId0Zac=
-X-Received: by 2002:a02:c50a:: with SMTP id s10mr30311468jam.106.1560440268724;
- Thu, 13 Jun 2019 08:37:48 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BtWWHY6GZ+irdemUSJWfYrXBvNRLu0hF7sjwfuTufnI=;
+        b=GMOcrV/iTW/lMKqmXPfFM7nrSephc8LGhDTIvniJVUMS3NpC/dkp+4F0VZwfje8puZ
+         AbjBB71NW6RWIt3P9v8TqPijZcFSTgVjEY/Jkoh7nnDEC0Akxs0+fr0mzAI3Um3iJljs
+         pmjUrB0hQL7a5WiOAgDJIpBz0Q+NEFgnt22WFuRXE140WvVfWPMPJkjtYpelkJeav66z
+         VZ+TNjy/xUMx697qSpN6ppG2s4QhHabSVdte5PeSW5/TerMz/SbEe1kZva3q8Oi7hnoI
+         8Z4YbRzVnbTh/V/ez2NP3VnRRpKDX1kLds63KM9mt9ALTSYSLgRjkaJSK4xsNC4l25ev
+         GROA==
+X-Gm-Message-State: APjAAAVhvA3I4wl6vUeHGL1sBYB4mDKQ9I46Mw/89NbcQ/uAPC/Z65zV
+        GISyPB8Ar64GMMN+PxHGrALHTw==
+X-Google-Smtp-Source: APXvYqxpwqyIFRk1hDuFYbqTrSYVOaA6be2OguON7QeZLUcNj0n7XkLaM6Wv3ud0JFfz6qT8pE7nUw==
+X-Received: by 2002:aa7:8083:: with SMTP id v3mr15241596pff.69.1560440405094;
+        Thu, 13 Jun 2019 08:40:05 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id u20sm54807pfm.145.2019.06.13.08.40.04
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 13 Jun 2019 08:40:04 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 08:40:02 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, vkoul@kernel.org,
+        evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] soc: qcom: smd-rpm: Create RPM interconnect proxy
+ child device
+Message-ID: <20190613154002.GH6792@builder>
+References: <20190613151323.10850-1-georgi.djakov@linaro.org>
+ <20190613151323.10850-3-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-References: <20190613142157.8674-1-jeffrey.l.hugo@gmail.com>
- <20190613142239.8779-1-jeffrey.l.hugo@gmail.com> <20190613151209.GB6792@builder>
- <20190613152430.GC6792@builder>
-In-Reply-To: <20190613152430.GC6792@builder>
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Date:   Thu, 13 Jun 2019 09:37:38 -0600
-Message-ID: <CAOCk7NpLz-6kM2X=HOh4ZcEw4bzhKcjd=8664HX43w1V+ffeag@mail.gmail.com>
-Subject: Re: [PATCH v3 2/7] drivers: regulator: qcom_spmi: Refactor get_mode/set_mode
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190613151323.10850-3-georgi.djakov@linaro.org>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 9:24 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Thu 13 Jun 08:12 PDT 2019, Bjorn Andersson wrote:
->
-> > On Thu 13 Jun 07:22 PDT 2019, Jeffrey Hugo wrote:
-> >
-> > > spmi_regulator_common_get_mode and spmi_regulator_common_set_mode use
-> > > multi-level ifs which mirror a switch statement.  Refactor to use a switch
-> > > statement to make the code flow more clear.
-> > >
-> > > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-> > > ---
-> > >  drivers/regulator/qcom_spmi-regulator.c | 28 ++++++++++++++++---------
-> > >  1 file changed, 18 insertions(+), 10 deletions(-)
-> > >
-> > > diff --git a/drivers/regulator/qcom_spmi-regulator.c b/drivers/regulator/qcom_spmi-regulator.c
-> > > index fd55438c25d6..1c18fe5969b5 100644
-> > > --- a/drivers/regulator/qcom_spmi-regulator.c
-> > > +++ b/drivers/regulator/qcom_spmi-regulator.c
-> > > @@ -911,13 +911,14 @@ static unsigned int spmi_regulator_common_get_mode(struct regulator_dev *rdev)
-> > >
-> > >     spmi_vreg_read(vreg, SPMI_COMMON_REG_MODE, &reg, 1);
-> > >
-> > > -   if (reg & SPMI_COMMON_MODE_HPM_MASK)
->
-> Sorry, didn't see the & here. Don't you need to mask out the mode bits
-> before turning this into a switch?
+On Thu 13 Jun 08:13 PDT 2019, Georgi Djakov wrote:
 
-Ah.  Yes.  I read the documentation wrong when doing this.  Will fix.
+> Register a platform device to handle the communication of bus bandwidth
+> requests with the remote processor. The interconnect proxy device is part
+> of this remote processor (RPM) hardware. Let's create a icc-smd-rpm proxy
+> child device to represent the bus throughput functionality that is provided
+> by the RPM.
+> 
 
->
-> > > +   switch (reg) {
-> > > +   case SPMI_COMMON_MODE_HPM_MASK:
-> > >             return REGULATOR_MODE_NORMAL;
-> > > -
-> > > -   if (reg & SPMI_COMMON_MODE_AUTO_MASK)
-> > > +   case SPMI_COMMON_MODE_AUTO_MASK:
-> > >             return REGULATOR_MODE_FAST;
-> > > -
-> > > -   return REGULATOR_MODE_IDLE;
-> > > +   default:
-> > > +           return REGULATOR_MODE_IDLE;
-> > > +   }
-> > >  }
-> > >
-> > >  static int
-> > > @@ -925,12 +926,19 @@ spmi_regulator_common_set_mode(struct regulator_dev *rdev, unsigned int mode)
-> > >  {
-> > >     struct spmi_regulator *vreg = rdev_get_drvdata(rdev);
-> > >     u8 mask = SPMI_COMMON_MODE_HPM_MASK | SPMI_COMMON_MODE_AUTO_MASK;
-> > > -   u8 val = 0;
-> > > +   u8 val;
-> > >
-> > > -   if (mode == REGULATOR_MODE_NORMAL)
-> > > +   switch (mode) {
-> > > +   case REGULATOR_MODE_NORMAL:
-> > >             val = SPMI_COMMON_MODE_HPM_MASK;
-> > > -   else if (mode == REGULATOR_MODE_FAST)
-> > > +           break;
-> > > +   case REGULATOR_MODE_FAST:
-> > >             val = SPMI_COMMON_MODE_AUTO_MASK;
-> > > +           break;
-> > > +   default:
-> > > +           val = 0;
-> > > +           break;
-> > > +   }
-> >
-> > For this part:
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > >
-> > >     return spmi_vreg_update_bits(vreg, SPMI_COMMON_REG_MODE, val, mask);
-> > >  }
-> > > @@ -1834,9 +1842,9 @@ static int qcom_spmi_regulator_probe(struct platform_device *pdev)
-> > >                     }
-> > >             }
-> > >
-> > > -           if (vreg->logical_type == SPMI_REGULATOR_LOGICAL_TYPE_HFS430) {
-> >
-> > Squash this into patch 1.
-> >
-> > Regards,
-> > Bjorn
-> >
-> > > +           if (vreg->set_points->count == 1) {
-> > >                     /* since there is only one range */
-> > > -                   range = spmi_regulator_find_range(vreg);
-> > > +                   range = vreg->set_points->range;
-> > >                     vreg->desc.uV_step = range->step_uV;
-> > >             }
-> > >
-> > > --
-> > > 2.17.1
-> > >
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> ---
+> 
+> v4:
+> - Return error if platform_device_register_data() fails
+> - Remove platform_set_drvdata() on the child device.
+> 
+> v3:
+> - New patch.
+> 
+>  drivers/soc/qcom/smd-rpm.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
+> index fa9dd12b5e39..34cdd638a6c1 100644
+> --- a/drivers/soc/qcom/smd-rpm.c
+> +++ b/drivers/soc/qcom/smd-rpm.c
+> @@ -19,12 +19,14 @@
+>  /**
+>   * struct qcom_smd_rpm - state of the rpm device driver
+>   * @rpm_channel:	reference to the smd channel
+> + * @icc:		interconnect proxy device
+>   * @ack:		completion for acks
+>   * @lock:		mutual exclusion around the send/complete pair
+>   * @ack_status:		result of the rpm request
+>   */
+>  struct qcom_smd_rpm {
+>  	struct rpmsg_endpoint *rpm_channel;
+> +	struct platform_device *icc;
+>  	struct device *dev;
+>  
+>  	struct completion ack;
+> @@ -193,6 +195,7 @@ static int qcom_smd_rpm_callback(struct rpmsg_device *rpdev,
+>  static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+>  {
+>  	struct qcom_smd_rpm *rpm;
+> +	int ret;
+>  
+>  	rpm = devm_kzalloc(&rpdev->dev, sizeof(*rpm), GFP_KERNEL);
+>  	if (!rpm)
+> @@ -205,11 +208,23 @@ static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+>  	rpm->rpm_channel = rpdev->ept;
+>  	dev_set_drvdata(&rpdev->dev, rpm);
+>  
+> -	return of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
+> +	rpm->icc = platform_device_register_data(&rpdev->dev, "icc_smd_rpm", -1,
+> +						 NULL, 0);
+> +	if (IS_ERR(rpm->icc))
+> +		return PTR_ERR(rpm->icc);
+> +
+> +	ret = of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
+> +	if (ret)
+> +		platform_device_unregister(rpm->icc);
+> +
+> +	return ret;
+>  }
+>  
+>  static void qcom_smd_rpm_remove(struct rpmsg_device *rpdev)
+>  {
+> +	struct qcom_smd_rpm *rpm = dev_get_drvdata(&rpdev->dev);
+> +
+> +	platform_device_unregister(rpm->icc);
+>  	of_platform_depopulate(&rpdev->dev);
+>  }
+>  
