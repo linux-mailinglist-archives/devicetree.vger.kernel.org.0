@@ -2,146 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA7E43A5C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3876843A54
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:20:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732017AbfFMPUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:20:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34812 "EHLO mail.kernel.org"
+        id S1732113AbfFMPUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:20:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35796 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732015AbfFMMwG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 08:52:06 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        id S1732107AbfFMMym (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 08:54:42 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8B79F217F5;
-        Thu, 13 Jun 2019 12:52:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E14622173C;
+        Thu, 13 Jun 2019 12:54:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560430325;
-        bh=hGTL0UDB9YcWjm74Ir6wQQkX+JwdFyiJOCXF2M+5evU=;
+        s=default; t=1560430482;
+        bh=+dpcx+t3gqsrdkSAF32yzocQzxMx51ogbHZjaUxs06g=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=wTbq5CEloa5SHhkjgeBYGYhL8+3cX1A9KNfN+w4wcEsou4uoK3R8GYYknSIbC0XIw
-         yMulQoFX7Op9+tmF1uisRQ1zdrMdT6oHMrM5jwVwc6ZR0HX/6KT6sJuFaqhby7RTL4
-         hoqPqr8M2vylF39fcb7bXFgXZLZDkOMCY3ZSYu+A=
-Received: by mail-qt1-f174.google.com with SMTP id z24so9121577qtj.10;
-        Thu, 13 Jun 2019 05:52:05 -0700 (PDT)
-X-Gm-Message-State: APjAAAUZdZeBp7EFAIhRQCVQ3CEwI66QPvqMbp/wqw8y7ssY8VH5oBhV
-        /7KDepjn2vLfHDRQO8BxR/1RuS0VkvSJpb/c7Q==
-X-Google-Smtp-Source: APXvYqyQSf3AAUre27+KCK29BAV13oivw2pUie02NLqVC7Y0PandMlDUCad0+vn9k1QO92NFUsbnlgd0BItkrNEdFVo=
-X-Received: by 2002:a0c:b786:: with SMTP id l6mr3426471qve.148.1560430324645;
- Thu, 13 Jun 2019 05:52:04 -0700 (PDT)
+        b=UC8yBn2wHn5Q7MOC0f1Y/gBNFscwOv67bdYXMtHV4JMJO3xgYA58rEUWsbazZQVwX
+         VYpP9uAQ33ZZFVpKlTVRw0WPvfqYG4lStUureizyJTVqwMKIHfVxFH8pqdbYtBxtoT
+         gKnW0cbyeN6v+RfYVSfhsVKFQpKqrRfOjJMXcCHs=
+Received: by mail-qt1-f179.google.com with SMTP id a15so22353003qtn.7;
+        Thu, 13 Jun 2019 05:54:41 -0700 (PDT)
+X-Gm-Message-State: APjAAAX+ajDU2chIp88Vc6tMds5g7OPK5p0IhTLEuf+sZG4rt9ABl7VC
+        AWiuMjrpPYHjjodz1TY01MOEH5wHYtKa6epy7Q==
+X-Google-Smtp-Source: APXvYqzMa0Uyb0Z+rWRg4l/d54XGw039fVYUrrOI8A8Wr/WbXB3zrEmuYPzH+FK2dGun9qwWEQm+TE/ODK7+RcwR90Q=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr22297842qth.136.1560430481170;
+ Thu, 13 Jun 2019 05:54:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-3-dbasehore@chromium.org> <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
- <CAGAzgsoWGqf0JQPNyRFnv2xZTMxje6idce7Dy5FZzuxj30mQyw@mail.gmail.com>
-In-Reply-To: <CAGAzgsoWGqf0JQPNyRFnv2xZTMxje6idce7Dy5FZzuxj30mQyw@mail.gmail.com>
+References: <20190613051344.1170-1-Anson.Huang@nxp.com> <20190613051344.1170-4-Anson.Huang@nxp.com>
+In-Reply-To: <20190613051344.1170-4-Anson.Huang@nxp.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 13 Jun 2019 06:51:52 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+9K764hFT6GG=4paumGaxOUbnts4VJvTZ9a8Y-YPWdhg@mail.gmail.com>
-Message-ID: <CAL_Jsq+9K764hFT6GG=4paumGaxOUbnts4VJvTZ9a8Y-YPWdhg@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: display/panel: Expand rotation documentation
-To:     "dbasehore ." <dbasehore@chromium.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
+Date:   Thu, 13 Jun 2019 06:54:29 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKQgQ=+4xt41_2X3ddsO=rt4u--MJ28+p=is33c1=0DQg@mail.gmail.com>
+Message-ID: <CAL_JsqKQgQ=+4xt41_2X3ddsO=rt4u--MJ28+p=is33c1=0DQg@mail.gmail.com>
+Subject: Re: [PATCH V3 4/4] dt-bindings: arm: imx: Add the soc binding for i.MX8MQ
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <Michal.Vokac@ysoft.com>,
+        =?UTF-8?B?TWFyZWsgVmHFoXV0?= <marex@denx.de>,
+        Yang-Leo Li <leoyang.li@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Bai Ping <ping.bai@nxp.com>,
+        Pankaj Bansal <pankaj.bansal@nxp.com>,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
         devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+        NXP Linux Team <Linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 4:02 PM dbasehore . <dbasehore@chromium.org> wrote:
+On Wed, Jun 12, 2019 at 11:12 PM <Anson.Huang@nxp.com> wrote:
 >
-> On Tue, Jun 11, 2019 at 8:25 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Mon, Jun 10, 2019 at 10:03 PM Derek Basehore <dbasehore@chromium.org> wrote:
-> > >
-> > > This adds to the rotation documentation to explain how drivers should
-> > > use the property and gives an example of the property in a devicetree
-> > > node.
-> > >
-> > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
-> > > ---
-> > >  .../bindings/display/panel/panel.txt          | 32 +++++++++++++++++++
-> > >  1 file changed, 32 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/panel.txt b/Documentation/devicetree/bindings/display/panel/panel.txt
-> > > index e2e6867852b8..f35d62d933fc 100644
-> > > --- a/Documentation/devicetree/bindings/display/panel/panel.txt
-> > > +++ b/Documentation/devicetree/bindings/display/panel/panel.txt
-> > > @@ -2,3 +2,35 @@ Common display properties
-> > >  -------------------------
-> > >
-> > >  - rotation:    Display rotation in degrees counter clockwise (0,90,180,270)
-> > > +
-> > > +Property read from the device tree using of of_drm_get_panel_orientation
-> >
-> > Don't put kernel specifics into bindings.
+> From: Anson Huang <Anson.Huang@nxp.com>
 >
-> Will remove that. I'll clean up the documentation to indicate that
-> this binding creates a panel orientation property unless the rotation
-> is handled in the Timing Controller on the panel if that sounds fine.
-
-Even if the timing ctrlr handles it, don't you still need to know what
-the native orientation is?
-
-> > > +
-> > > +The panel driver may apply the rotation at the TCON level, which will
-> >
-> > What's TCON? Something Mediatek specific IIRC.
+> This patch adds the soc & board binding for i.MX8MQ.
 >
-> The TCON is the Timing controller, which is on the panel. Every panel
-> has one. I'll add to the doc that the TCON is in the panel, etc.
->
-> >
-> > > +make the panel look like it isn't rotated to the kernel and any other
-> > > +software.
-> > > +
-> > > +If not, a panel orientation property should be added through the SoC
-> > > +vendor DRM code using the drm_connector_init_panel_orientation_property
-> > > +function.
-> >
-> > The 'rotation' property should be defined purely based on how the
-> > panel is mounted relative to a device's orientation. If the display
-> > pipeline has some ability to handle rotation, that's a feature of the
-> > display pipeline and not the panel.
->
-> This is how the panel orientation property is already handled in the
-> kernel. See drivers/gpu/drm/i915/vlv_dsi.c for more details.
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+> New patch, as I just found i.MX8MQ SoC & board binding is missed, so add this patch
+> based on i.MX8MN binding, so put it in same series to avoid dependency issue.
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-The point is your description is all about the kernel. This is a
-binding which is not kernel specific.
-
-> > > +
-> > > +Example:
-> >
-> > This file is a collection of common properties. It shouldn't have an
-> > example especially as this example is mostly non-common properties.
->
-> Just copied one of our DTS entries that uses the property. I'll remove
-> everything under compatible except for rotation and status.
-
-Just remove the example or add what you want to the "boe,himax8279d8p"
-binding doc. We are moving towards examples being compiled and
-validated, so incomplete ones won't work.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
