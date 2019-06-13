@@ -2,132 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4628644421
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA0144632
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:50:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728083AbfFMQfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:35:00 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36798 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730744AbfFMQe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 12:34:56 -0400
-Received: by mail-wm1-f67.google.com with SMTP id u8so10815747wmm.1;
-        Thu, 13 Jun 2019 09:34:55 -0700 (PDT)
+        id S1728692AbfFMQtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:49:51 -0400
+Received: from mail-bgr052100135044.outbound.protection.outlook.com ([52.100.135.44]:36628
+        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726455AbfFMQtv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 12:49:51 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=HzzbYgkXL3nx7rZNrWYRPJ9FH3eafUuwvWKYEt4rTNY=;
-        b=EhGkyDzsyQVM4Y/94UxftsVuA8EG6DZPJt0ubfaHzbDr7060e2AlkRN8Zc/vD4NDL4
-         Rm2I07fxy+hjZLoiXHVtvVsdQlDzDGew4048qmTDkC0KvtFywEOnqbG7yjSTHZz32gJ7
-         z6lz5r5uDFsMQpL/RwT6OHB1szHoIpbZC7ACtuFr+8I59Haa6hu4tRdqkRIaKL4ffoos
-         VbIjS3s6oZzhB68MHlgMpEw5oO4ANjp5e2BqrWgUn0w9zGoYUnKTVB/l8sf6CQMHK9o8
-         unty7DjXCoDCbcPwqA8q2yBIKhYeKg7l49QAIp30nEzBU8XuiVXkfexqQRQ8Qq19Dbkj
-         hhnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=HzzbYgkXL3nx7rZNrWYRPJ9FH3eafUuwvWKYEt4rTNY=;
-        b=oFXvAgHIPi71m//tbpC1nflRKnRQVSUpvccdBqvOuY1t5qXArYXdlS58PZmcqyE8sA
-         IYSwVM1hbeQM9Ktkt71RGBG/JJNpR0QGHVYkTPV3Ki56TFE0WQeYB2elb4/jvTRsPVpE
-         BMT+Ac+V/SYHL+fhyG9QoZpoCvUtzLEfhKhcYF1JUj3RPuD7CD+/EIUloWuBdNY5zgGM
-         /JFnT8MMxbWy/0k/3DIcev6U9rQSyPwg1DezshffLXsHgbu/0ZEqMdkh4R1zp0xMc5sV
-         1m+5x3O5lL60dUZvRoBIFC9+fiEw59T904ZXoO9E9vr8OoFYIL8uq4NaGnDl7SbLpC15
-         jb2A==
-X-Gm-Message-State: APjAAAVofWdITNGmR9TJtl5dT1VfHTkf8YYAO2rhSkSL/0+rkrNg9WZp
-        K6SF/wvoIlLBvnrhyHkzD/g=
-X-Google-Smtp-Source: APXvYqzOLxHsCwuM6OpMKUGm47fWsof6HuxDcJQf5F/i/8IP53t/xc7LYVZx3n1KnRMnhi0CbPro6g==
-X-Received: by 2002:a1c:e3c1:: with SMTP id a184mr4173350wmh.24.1560443694373;
-        Thu, 13 Jun 2019 09:34:54 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id u5sm470875wmc.32.2019.06.13.09.34.53
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 09:34:53 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 18:34:52 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Stephen Warren <swarren@wwwdotorg.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] arm64: tegra: Add ethernet alias on Jetson TX1
-Message-ID: <20190613163452.GA3258@ulmo>
-References: <20190613161517.2837-1-thierry.reding@gmail.com>
- <04a355c8-a4ae-9275-a85a-791ce5c1b34c@wwwdotorg.org>
+ d=livehood.onmicrosoft.com; s=selector2-livehood-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+ b=q2A2MeUnDq0iwD6w13jDAfZn/MOC5AQWdrKDOTdbJK7/nvGbra0uRIKhdWGzLocJFhxTWRa99YpUwENKHDQnJu+grdEIHy0dxUKIcM9nyta73Pox8RBCxNFXx7Fq5uXdtpOK7uLXSWD8uJqdku/AuCZ+wyFdT5D64Dgsw8LMqnA=
+Received: from BLUPR01MB325.prod.exchangelabs.com (10.141.76.139) by
+ BLUPR01MB327.prod.exchangelabs.com (10.141.76.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1965.15; Thu, 13 Jun 2019 16:49:49 +0000
+Received: from BLUPR01MB325.prod.exchangelabs.com
+ ([fe80::7808:c69f:fec7:30a9]) by BLUPR01MB325.prod.exchangelabs.com
+ ([fe80::7808:c69f:fec7:30a9%2]) with mapi id 15.20.1987.012; Thu, 13 Jun 2019
+ 16:49:49 +0000
+From:   "Fitzgerald, Daniel" <df13@hood.edu>
+To:     "Fitzgerald, Daniel" <df13@hood.edu>
+Subject: =?iso-8859-1?Q?Ben=F6tigen_Sie_Finanzen?=
+Thread-Topic: =?iso-8859-1?Q?Ben=F6tigen_Sie_Finanzen?=
+Thread-Index: AQHVIggDmJIPx0e9uUCabR/2QsEP1g==
+Date:   Thu, 13 Jun 2019 16:49:48 +0000
+Message-ID: <BLUPR01MB325CA1028E4C15F10620590ACEF0@BLUPR01MB325.prod.exchangelabs.com>
+Reply-To: "info@tivolifinancialloan.com" <info@tivolifinancialloan.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BMXPR01CA0086.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:54::26) To BLUPR01MB325.prod.exchangelabs.com
+ (2a01:111:e400:881::11)
+authentication-results: spf=none (sender IP is ) smtp.mailfrom=df13@hood.edu; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [117.97.244.108]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6241b1a4-5aa6-42e2-9185-08d6f01f25a0
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BLUPR01MB327;
+x-ms-traffictypediagnostic: BLUPR01MB327:
+validate-mailflow-outside: TRUE
+x-microsoft-antispam-prvs: <BLUPR01MB3277D44515231F4DEE24624ACEF0@BLUPR01MB327.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1728;
+x-forefront-prvs: 0067A8BA2A
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(346002)(396003)(39860400002)(366004)(376002)(199004)(189003)(55016002)(486006)(75432002)(5003540100004)(2906002)(52116002)(386003)(2171002)(7416002)(71200400001)(224303003)(52536014)(102836004)(14454004)(7696005)(476003)(305945005)(53936002)(6200100001)(6506007)(73894003)(4270600006)(66806009)(71190400001)(88552002)(478600001)(621065002)(6436002)(316002)(786003)(3846002)(66556008)(26005)(66066001)(9686003)(8936002)(66946007)(73956011)(86362001)(6116002)(74316002)(186003)(7736002)(66476007)(43066004)(64756008)(99286004)(6862004)(66446008)(68736007)(33656002)(25786009)(256004)(81166006)(8796002)(81156014)(88722002);DIR:OUT;SFP:1501;SCL:1;SRVR:BLUPR01MB327;H:BLUPR01MB325.prod.exchangelabs.com;FPR:;SPF:None;LANG:de;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: hood.edu does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: exDNdtwJdq6VWAI4s6D2UMalOwgLHXm6H9r+8iY5VkEcTjQ9OMUvM2/tjk0Rcmfj2PnwTdWtACStmMSvamLaFD4ttSHlAD9rKTx4QOHtqWwkpVusGSnzGgKm5nEUt6LWB803W7wz2Qs1+s/qjI1CXJFIASG7ovQcV4xSs+JrrRZgdXw0QHVz3TkMOUz+Eee4yJQLCeHEQ/J5NX57VCHiHOHborytbuEzdJfsvsWCvj/tpK0YIQ0HlV8sRNmZk9lw3EJ07CviaBNl7sFoTL/HGv15eNm6JinhQehUKp/6Xeg=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <C43C3BD607B0584F8CFF3CDEE32169DA@prod.exchangelabs.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7AUc2qLy4jB3hD7Z"
-Content-Disposition: inline
-In-Reply-To: <04a355c8-a4ae-9275-a85a-791ce5c1b34c@wwwdotorg.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+X-OriginatorOrg: hood.edu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6241b1a4-5aa6-42e2-9185-08d6f01f25a0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2019 16:49:48.9609
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a661a969-6db1-4168-a18c-04d87566e044
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: df13@hood.edu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR01MB327
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---7AUc2qLy4jB3hD7Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jun 13, 2019 at 10:22:23AM -0600, Stephen Warren wrote:
-> On 6/13/19 10:15 AM, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Adding this alias for the Ethernet interface on Jetson TX1 allows the
-> > bootloader to pass the MAC address to the Linux kernel.
->=20
-> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm6=
-4/boot/dts/nvidia/tegra210-p2597.dtsi
->=20
-> > +	aliases {
-> > +		ethernet =3D "/usb@70090000/ethernet@1";
-> > +	};
->=20
-> Don't aliases require an ID in the property name, i.e shouldn't this be
-> "ethernet0" rather than just "ethernet"? This is a bit more obvious in the
-> TX2 patch where sdhci0, sdhci1, and serial0 are shown in the diff context.
-
-I don't think there's a requirement for aliases to have an ID. The IDs,
-in the cases that I'm aware of, are used to fix the index given to the
-controllers in Linux (which is sometimes abused to get fixed numbering
-that can be hardcoded, rather than having a more robust way to look up
-the right hardware block).
-
-U-Boot has a comment somewhere about ethernet being equivalent to
-ethernet0 and it treats them the same way, if I remember correctly.
-
-As for upstream Linux, there does indeed seem to be a slight tendency
-towards ethernet0, though it's pretty well mixed. 32-bit ARM is mostly
-balanced, whereas 64-bit ARM uses ethernet0 almost exclusively. Maybe
-this means that recently there's been a push to standardize on always
-adding the index?
-
-> Patch should probably be CC'd to some/all of ARM/DT/... mailing lists?
-
-Oops... I meant to include those. Added now.
-
-Thierry
-
---7AUc2qLy4jB3hD7Z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0CeygACgkQ3SOs138+
-s6FZGRAAie3WvvLA3MldS9O2cqq/CUfmWuGxbWSyjTIhIRx49f0S1nHj0WJdYOzA
-EP7RUHDgqUwJDqkFsNjyZNU7fatwgd784WjL2vXUKZFf5PX04507kzZQvtDvW6g/
-ARzahv1N/zU6YvTtLWGC7jgKRa6e8IltBQPIUYEURFamv3i+N+05oLz1xI22Nj3s
-b/UAOncXztcR5tlE2Uusk+Avz+uHva6oNYB6WLyIlB+VZMdlUDruMA1n4uy/QZGH
-ejkZOt3KteED40l5jQDxocBtqcJmudxE1HHMUsQh8Gz3JUtXK/l+ofks6DXgJ3H6
-1ht2S3FoYJUETcV4GU8g1a8oeyuRGQ2yax8rHTBCiVIwBrlvc0b82wXYVOftPFtD
-hCur2A/UqlNS3CYSOsE1GuazVNrFPMuqk9qCs1XU0rnw9QioTkUt305vuxCwFoH1
-oVFXQGajdXMiTu4QfTtoolCWAugCQLT2W3YFW1qKJ20egvCkvvTQFvz0MX4Q3wGP
-m1KD2eo+xCyWFetwLCZzl6yjaDOlzhqctWmVEhxZjV0Vl/C04KklxrD46gohgqzj
-fY6TDnjFHVM64MVy8c55OA3PniCv1aQ1brf54eUdlTWp4MS6R3+4zYBP+X5MF3Vb
-LQq624SnGItBbllLT+aoKhq0b8uUYszPiYImjX4VmsMqr+O6Q84=
-=LHm4
------END PGP SIGNATURE-----
-
---7AUc2qLy4jB3hD7Z--
