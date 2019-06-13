@@ -2,164 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13E0444DAA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 22:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C533B44DF2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 22:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728801AbfFMUkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 16:40:42 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57582 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726490AbfFMUkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 16:40:42 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5DKeUoq096121;
-        Thu, 13 Jun 2019 15:40:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560458430;
-        bh=FysKhzbKOR7uj5LpXOJJioOxhLSk0M4xDu0X02P9DxY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=NfHR0+7sPDQvmtmzgY2D2NVhY+63nsSu9wwwe3vSb0JbciESg2oXlXYIHzC5J4sOq
-         hU/72SzuVKOXt4UKJMETuPSWgkaCbflX/RwDgCkJBbNGDMr+DvXb+VcgX3wKg81Lz7
-         d9ClHKQal5ZgK6a8ekKyYih680QWQweMbpdt550I=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5DKeU0M091536
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 13 Jun 2019 15:40:30 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 13
- Jun 2019 15:40:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 13 Jun 2019 15:40:29 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5DKeRrZ120151;
-        Thu, 13 Jun 2019 15:40:27 -0500
-Subject: Re: [PATCH 10/16] dmaengine: ti: New driver for K3 UDMA - split#1:
- defines, structs, io func
-To:     Rob Herring <robh@kernel.org>
-CC:     <vkoul@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
-        <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <t-kristo@ti.com>, <tony@atomide.com>
-References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
- <20190506123456.6777-11-peter.ujfalusi@ti.com> <20190613184324.GA26206@bogus>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <7229677c-29c5-8c1f-2218-ff51ed57b8d0@ti.com>
-Date:   Thu, 13 Jun 2019 23:40:59 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1728543AbfFMU7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 16:59:34 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:38238 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbfFMU7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 16:59:34 -0400
+Received: by mail-qk1-f196.google.com with SMTP id a27so319832qkk.5;
+        Thu, 13 Jun 2019 13:59:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8gS1dRlTY9NF+DtZtqCgP0hW6HfTe3z8OAdjlpLy23g=;
+        b=O+nUy6mlM1Acb1uaXMUi/UQ3OSQC2PRTJt4JPYscNf+uCfMxsyEt2/fWzy4rJSqoOb
+         nJjZHuof4++QM0Unq+bxy4lsjwi+Ro7ZRnebFqw//Pf237DPh4qfZMbfaAA+gZBnH4PZ
+         XYPYCEU6z9u0pCwkzS6l0yWNpPrH6tQDwPDKCjVBDRj9m3wv9AirYbq5q1d4PGX5g2w/
+         ZLi48FXGU2NxMJ800WA74HCxTZCdDjMnTsgIGaOqulE7TyQaRWTJ4mZMimal+KhG77gL
+         Bl1FXLxX5MhUu5uVNegRktKKYsgEG/kUhUtoFQ4ADWeRRAuOYyGWYHk+ur0DJsviWNf6
+         xltA==
+X-Gm-Message-State: APjAAAX1ZGdE6xetIlwMdVNZ8I8Speyk8xiJT47FAq7G9tU2mHhrK3Bs
+        b3U96fWgJcE2l6HobAAqqg==
+X-Google-Smtp-Source: APXvYqwDgSwF2dSbUU9DX5FRctIU1tJHSsxmp68E6P2oHV84xkfNE37T6Ih+B8DDpnB0ICrYTBnkTA==
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr233325qke.223.1560459572884;
+        Thu, 13 Jun 2019 13:59:32 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id a11sm431020qkn.26.2019.06.13.13.59.31
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 13 Jun 2019 13:59:31 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 14:59:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
+        lorenzo.pieralisi@arm.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
+        mingkai.hu@nxp.com, roy.zang@nxp.com, kstewart@linuxfoundation.org,
+        pombredanne@nexb.com, shawn.lin@rock-chips.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pci: layerscape-pci: add compatible
+ strings "fsl,ls1028a-pcie"
+Message-ID: <20190613205930.GA9003@bogus>
+References: <20190515072747.39941-1-xiaowei.bao@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20190613184324.GA26206@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190515072747.39941-1-xiaowei.bao@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
-
-On 13/06/2019 21.43, Rob Herring wrote:
-> On Mon, May 06, 2019 at 03:34:50PM +0300, Peter Ujfalusi wrote:
->> Split patch for review containing: defines, structs, io and low level
->> functions and interrupt callbacks.
+On Wed, 15 May 2019 15:27:45 +0800, Xiaowei Bao wrote:
+> Add the PCIe compatible string for LS1028A
 > 
-> Not a useful comment for upstream.
-
-Vinod asked me to split the patch to smaller pieces for review. This is
-just a short note on what this part covers. The real commit message
-follows under.
-
->> DMA driver for
->> Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P)
->>
->> The UDMA-P is intended to perform similar (but significantly upgraded) functions
->> as the packet-oriented DMA used on previous SoC devices. The UDMA-P module
->> supports the transmission and reception of various packet types. The UDMA-P is
->> architected to facilitate the segmentation and reassembly of SoC DMA data
->> structure compliant packets to/from smaller data blocks that are natively
->> compatible with the specific requirements of each connected peripheral. Multiple
->> Tx and Rx channels are provided within the DMA which allow multiple segmentation
->> or reassembly operations to be ongoing. The DMA controller maintains state
->> information for each of the channels which allows packet segmentation and
->> reassembly operations to be time division multiplexed between channels in order
->> to share the underlying DMA hardware. An external DMA scheduler is used to
->> control the ordering and rate at which this multiplexing occurs for Transmit
->> operations. The ordering and rate of Receive operations is indirectly controlled
->> by the order in which blocks are pushed into the DMA on the Rx PSI-L interface.
->>
->> The UDMA-P also supports acting as both a UTC and UDMA-C for its internal
->> channels. Channels in the UDMA-P can be configured to be either Packet-Based or
->> Third-Party channels on a channel by channel basis.
->>
->> The initial driver supports:
->> - MEM_TO_MEM (TR mode)
->> - DEV_TO_MEM (Packet / TR mode)
->> - MEM_TO_DEV (Packet / TR mode)
->> - Cyclic (Packet / TR mode)
->> - Metadata for descriptors
->>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> ---
->>  drivers/dma/ti/k3-udma.c          | 1008 +++++++++++++++++++++++++++++
->>  drivers/dma/ti/k3-udma.h          |  129 ++++
->>  include/dt-bindings/dma/k3-udma.h |   26 +
+> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> ---
+>  .../devicetree/bindings/pci/layerscape-pci.txt     |    1 +
+>  1 files changed, 1 insertions(+), 0 deletions(-)
 > 
-> This belongs in the binding patch.
 
-OK, I'll move it.
-
-> 
->>  3 files changed, 1163 insertions(+)
->>  create mode 100644 drivers/dma/ti/k3-udma.c
->>  create mode 100644 drivers/dma/ti/k3-udma.h
->>  create mode 100644 include/dt-bindings/dma/k3-udma.h
-> 
->> diff --git a/include/dt-bindings/dma/k3-udma.h b/include/dt-bindings/dma/k3-udma.h
->> new file mode 100644
->> index 000000000000..89ba6a9d4a8f
->> --- /dev/null
->> +++ b/include/dt-bindings/dma/k3-udma.h
->> @@ -0,0 +1,26 @@
->> +#ifndef __DT_TI_UDMA_H
->> +#define __DT_TI_UDMA_H
->> +
->> +#define UDMA_TR_MODE		0
->> +#define UDMA_PKT_MODE		1
->> +
->> +#define UDMA_DIR_TX		0
->> +#define UDMA_DIR_RX		1
->> +
->> +#define PSIL_STATIC_TR_NONE	0
->> +#define PSIL_STATIC_TR_XY	1
->> +#define PSIL_STATIC_TR_MCAN	2
->> +
->> +#define UDMA_PDMA_TR_XY(id)				\
->> +	ti,psil-config##id {				\
->> +		linux,udma-mode = <UDMA_TR_MODE>;	\
->> +		statictr-type = <PSIL_STATIC_TR_XY>;	\
->> +	}
-> 
-> We don't accept this kind of complex macros in dts files. It obfuscates 
-> reading dts files.
-
-I see. I agree that it obfuscates things as you need to look it up in
-the header, but as I mentioned regarding to patch 9 we have PDMAs with
-22 threads needing 22 psil-config section for the threads. It makes the
-reading of the DT a bit hard and also error prone when you populate things.
-
-But I can drop the macro and write all psil-config0...22
-
-Hrm, so we have 23 threads in some PDMA...
-
-Thanks,
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Reviewed-by: Rob Herring <robh@kernel.org>
