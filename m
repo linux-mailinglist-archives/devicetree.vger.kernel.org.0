@@ -2,328 +2,684 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8A7B43D96
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5452E43E24
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731901AbfFMPm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:42:57 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:37473 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726773AbfFMPm4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:42:56 -0400
-Received: by mail-wr1-f66.google.com with SMTP id v14so21300822wrr.4;
-        Thu, 13 Jun 2019 08:42:53 -0700 (PDT)
+        id S1728409AbfFMPrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:47:52 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44682 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387673AbfFMPrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:47:47 -0400
+Received: by mail-pg1-f193.google.com with SMTP id n2so11166926pgp.11
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 08:47:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=FUFVfwBXI3N5Wz0CJsOE4Pfaq0/8R/vg4ijb39bmJA0=;
-        b=HBTytAjS2nc0g4t40ucqEhhtshVzSXbrQhrHAoOH6T1IkzmnwTBf5MDyZCpDVUdVee
-         rO1Gzu+ymaF0f58jSPguZz1LX3mwTfbeE0dbNzoWqoMeFbU/PJLI5ydEE58CwGwb8kd3
-         BeN/vGEnlE3d4mBYbqe/nK0b8nPSP+TJ1AwMjnZHgdzoka8lASRixDpUIy8Cw5ACUgM3
-         4VSj3GxCCkOP7SNTY+gY6LkoYFN0JlXAvjfLBxSxsWDmaCj7YsoXYGoKcxuefpcbEX/e
-         mrXJAFZzWgbgkFqkCqTkeNU4FU7p5T+cZ8oPh70SDY+cvYP60coo+MZxcjXwX4STN90L
-         sMbg==
+        bh=Ca0JHYwontm6AjUd3No0Ya1jrpKl6zy83TqjIkNpr8g=;
+        b=wM1/01fAKkEMV+IGNrh1LmZ6ReYrHqvTVYwSwvYBkp5YFyUiMAWEP7C6OP9Ms7BcT3
+         qWeBqRFmGqtlIqd4J6LQWkDUaXGqBgSclsWnm0qHB1j2IibiyXK8pDcKfzqTdEmp/7qL
+         X4yJssMwOcfSD7RujzF+Fkcf0Q4/lln3Hh7T7koxvLXuvYXbTDSwDC/rBlb2jLsMzhkF
+         TdMJFC1Yo/u1SdPxwrkj0OEp5aiECw2LiYq7u5K+nDGcI+wehjLe9EbUsxx8L33HL7Vg
+         LCW91mOS7jdjXihvfdqH4ef8PFT4Z1U6sJleWnAlDGhEQk9fOTWILfjH3jSCYhXBhOkN
+         PA6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FUFVfwBXI3N5Wz0CJsOE4Pfaq0/8R/vg4ijb39bmJA0=;
-        b=saXjRQ/fv1nzcB9ZY1Aar5A0qKpSvVu6XUUim0L4fq1ub2IcBS+xNo92bTpEkihr39
-         vhKwfkl6HGVrZ8DNtul+1zWk3ey4WQ98dpLlXfC4c70gGTzX9xTORasepWhsllgQ4+Dc
-         cbSA1mS0/TqSv9OxXa989FW74fp31UAIg5lHK8TvXtNjWA39WJ2CftFiKveTmWWm2A43
-         irEIU/yVBK0svHsjY4Oxa+fdGnrtq6NtQZN+Dlxi6EdnDDRiq3opZAY300o5Ta250l0S
-         wCSwRRhoU7hYLQGxtaMz/80+8NlmoBqMBli6zMJPw1n7HH+n4JJsBYv8Ilhu3+O+4H/I
-         9tTA==
-X-Gm-Message-State: APjAAAVMXZ2jaojQVUqT0AzmSDtIhm5YK9y7VutIC6i+H0qSTfa+V3ns
-        lsRjBh2A9/NiGMbLkqUCqS4=
-X-Google-Smtp-Source: APXvYqzuKixJrz6a310KH1kBwCs8OlhNCKmsO3vfrDSjYkDeL3bOXuio18YBPQL06kbxZ3AIEFX0Jw==
-X-Received: by 2002:adf:8044:: with SMTP id 62mr12842408wrk.20.1560440572688;
-        Thu, 13 Jun 2019 08:42:52 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id h90sm59310wrh.15.2019.06.13.08.42.51
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 08:42:52 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 17:42:50 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 22/28] PCI: tegra: Access endpoint config only if PCIe
- link is up
-Message-ID: <20190613154250.GA32713@ulmo>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
- <20190516055307.25737-23-mmaddireddy@nvidia.com>
- <20190604131436.GS16519@ulmo>
- <09bcc121-eaca-3866-d0ef-7806503e883f@nvidia.com>
- <ca34eb24-8696-576f-26bc-8d6141f81a41@nvidia.com>
- <20190613143946.GA30445@e121166-lin.cambridge.arm.com>
+        bh=Ca0JHYwontm6AjUd3No0Ya1jrpKl6zy83TqjIkNpr8g=;
+        b=KkbcF5IAqlC3AiqVXTJnZzj8rXrHcBrmk6OpHiYaQfFMQakyUTlSSs+uGowInGa6aq
+         Hmv4OTCp1fsLGRZfFDk/Gni5CWdlbA4sUh9IELslhoq4vw25JHk3Fcd4CLEYD1gC3/cY
+         baWeuwS/DdV8pi4SuM1F79Atj63WF05WVlVX1UxQ9LCkJEWNDk6vSUuNT6fRWnkdCOl7
+         ZarqwZenqOGpWH9r4VZpHc3LmfHFWuRvqrkSai0y6eXmLi6fbiuW7XxBIRHuMkRKo3Dw
+         a87PWzkHG59hXUuOh/C1pysc7Q6anwDphbC6tqs5u9TbRY38PxpxKJg0GBTmOG4Wun3X
+         YuJg==
+X-Gm-Message-State: APjAAAX7z/Ged7s84xf/sBxK1pdP36DOmVtQGhQRSNpYfJ0kn6pX+9ij
+        E09kcvl1Rl959pjsLX5ATshFYQ==
+X-Google-Smtp-Source: APXvYqyCVVgKq3L1tVyxmkP3Gzhdhrqnl07JFeBX6txd5309u+3lZKkXnJ4d/1WGrFmPBcrJeeTzXA==
+X-Received: by 2002:a65:5203:: with SMTP id o3mr31091824pgp.379.1560440865907;
+        Thu, 13 Jun 2019 08:47:45 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id v4sm94558pff.45.2019.06.13.08.47.44
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 13 Jun 2019 08:47:45 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 08:47:43 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, vkoul@kernel.org,
+        evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 4/5] interconnect: qcom: Add QCS404 interconnect
+ provider driver
+Message-ID: <20190613154743.GJ6792@builder>
+References: <20190613151323.10850-1-georgi.djakov@linaro.org>
+ <20190613151323.10850-5-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Nq2Wo0NMKNjxTN9z"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190613143946.GA30445@e121166-lin.cambridge.arm.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <20190613151323.10850-5-georgi.djakov@linaro.org>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu 13 Jun 08:13 PDT 2019, Georgi Djakov wrote:
 
---Nq2Wo0NMKNjxTN9z
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Add driver for the interconnect buses found in Qualcomm QCS404-based
+> platforms. The topology consists of three NoCs that are controlled by
+> a remote processor. This remote processor collects the aggregated
+> bandwidth for each master-slave pairs.
+> 
 
-On Thu, Jun 13, 2019 at 03:39:46PM +0100, Lorenzo Pieralisi wrote:
-> On Mon, Jun 10, 2019 at 10:08:16AM +0530, Manikanta Maddireddy wrote:
-> >=20
-> >=20
-> > On 04-Jun-19 7:40 PM, Manikanta Maddireddy wrote:
-> > >
-> > > On 04-Jun-19 6:44 PM, Thierry Reding wrote:
-> > >> On Thu, May 16, 2019 at 11:23:01AM +0530, Manikanta Maddireddy wrote:
-> > >>> Few endpoints like Wi-Fi supports power on/off and to leverage that
-> > >>> root port must support hot-plug and hot-unplug. Tegra PCIe doesn't
-> > >>> support hot-plug and hot-unplug, however it supports endpoint power
-> > >>> on/off feature as follows,
-> > >>>  - Power off sequence:
-> > >>>    - Transition of PCIe link to L2
-> > >>>    - Power off endpoint
-> > >>>    - Leave root port in power up state with the link in L2
-> > >>>  - Power on sequence:
-> > >>>    - Power on endpoint
-> > >>>    - Apply hot reset to get PCIe link up
-> > >>>
-> > >>> PCIe client driver stops accessing PCIe endpoint config and BAR reg=
-isters
-> > >>> after endpoint is powered off. However, software applications like =
-x11
-> > >>> server or lspci can access endpoint config registers in which case
-> > >>> host controller raises "response decoding" errors. To avoid this sc=
-enario,
-> > >>> add PCIe link up check in config read and write callback functions =
-before
-> > >>> accessing endpoint config registers.
-> > >>>
-> > >>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> > >>> ---
-> > >>> V4: No change
-> > >>>
-> > >>> V3: Update the commit log with explanation for the need of this pat=
-ch
-> > >>>
-> > >>> V2: Change tegra_pcie_link_status() to tegra_pcie_link_up()
-> > >>>
-> > >>>  drivers/pci/controller/pci-tegra.c | 38 ++++++++++++++++++++++++++=
-++++
-> > >>>  1 file changed, 38 insertions(+)
-> > >> This still doesn't look right to me conceptually. If somebody wants =
-to
-> > >> access the PCI devices after the kernel has powered them off, why ca=
-n't
-> > >> we just power the devices back on so that we allow userspace to prop=
-erly
-> > >> access the devices?
-> > > 1. WiFi devices provides power-off feature for power saving in mobile=
-s.
-> > > When WiFi is turned off we shouldn't power on the HW back without user
-> > > turning it back on.
-> > > 2. When ever user process tries to access config space, it'll end up
-> > > in these functions. We cannot have is_powered_on check in config read=
-/write
-> > > callbacks.
-> > > 3. WiFi power on/off is device specific feature, we shouldn't handle =
-it
-> > > in PCI subsystem or host controller driver.
-> > >
-> > >> Or if that's not what we want, shouldn't we add something to the core
-> > >> PCI infrastructure to let us deal with this? It seems like this is s=
-ome
-> > >> general problem that would apply to every PCI device and host bridge
-> > >> driver. Having each driver implement this logic separately doesn't s=
-eem
-> > >> like a good idea to me.
-> > >>
-> > >> Thierry
-> > > This should be handled by hotplug feature, whenever endpoint is power=
-ed-off/
-> > > removed from the slot, hot unplug event should take care of it. Unfor=
-tunately
-> > > Tegra PCIe doesn't support hotplug feature.
-> > >
-> > > Manikanta
-> >=20
-> > Hi Bjorn,
-> >=20
-> > I thought about your comment in
-> > https://patchwork.ozlabs.org/patch/1084204/ again.  What if I add link
-> > up check in tegra_pcie_isr() and make "response decoding error" as
-> > debug print? EP Config access will happen when link is down, but
-> > "Response decoding error" print comes only if debug log is enabled.
-> > This way we can avoid race issue in config accessors and we get prints
-> > when debug logs are enabled.
->=20
-> I still do not see what you are actually solving. This patch should
-> be dropped.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-The problem that Manikanta is trying to solve here occurs in this
-situation (Manikanta, correct me if I've got this wrong): on some
-setups, a WiFi module connected over PCI will toggle a power GPIO as
-part of runtime suspend. This effectively causes the module to disappear
-=66rom the PCI bus (i.e. it can no longer be accessed until the power GPIO
-is toggled again).
-
-This is fine from a kernel point of view because the kernel keeps track
-of what devices are suspended. However, userspace will occasionally try
-to read the configuration space access of all devices, and since it
-doesn't have any knowledge about the suspend state of these devices, it
-doesn't know which ones to leave alone. I think this happens when the
-X.Org server is running.
-
-One thing that Manikanta and I had discussed was that perhaps the device
-should be hot-unplugged when it goes into this low-power state. However,
-we don't support hotplug on Tegra210 where this is needed, so we'd need
-some sort of software-induced hot-unplug. However, this low power state
-is entered when the WiFi interface is taken down (i.e. ip link set dev
-<interface> down). If we were to remove the PCI device in that case, it
-means that the interface goes away completely, which is completely
-unexpected from a user's perspective. After all, taking a link down and
-up may be something that scripts are doing all the time. They'd fall
-over if after taking the interface down, the interface completely
-disappears.
-
-It's also not entirely clear to me how we get the device back onto the
-bus again after it is in low power. If we hot-unplug the device, then
-the driver will be unbound. Presumably the driver is what's controlling
-the power GPIO, so there won't be any entity that can be used to bring
-the chip back to life. Unless we deal with that power GPIO elsewhere
-(rfkill switch perhaps?).
-
-Perhaps one other way to deal with this would be to track the suspend
-state of devices and then have the code that implements the PCI access
-=66rom userspace refuse accesses to devices that are asleep. I suppose
-this is somewhat of an odd use-case because traditionally I guess PCI
-devices never power down to a state where their configuration space can
-no longer be accessed. At least that's what would explain why this has
-never been an issue before. Or perhaps it has?
-
-The last resort would be to just never put the WiFi chip into that low
-power mode, though I'm not exactly sure what that means for the power
-consumption on the affected systems.
-
-Manikanta, can you fill in some of the blanks above?
-
-Thierry
-
-> > Thierry,
-> > Please share your inputs as well.
-> >=20
-> > Manikanta
-> > =C2=A0
-> >=20
-> > >>> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/contr=
-oller/pci-tegra.c
-> > >>> index d20c88a79e00..33f4dfab9e35 100644
-> > >>> --- a/drivers/pci/controller/pci-tegra.c
-> > >>> +++ b/drivers/pci/controller/pci-tegra.c
-> > >>> @@ -428,6 +428,14 @@ static inline u32 pads_readl(struct tegra_pcie=
- *pcie, unsigned long offset)
-> > >>>  	return readl(pcie->pads + offset);
-> > >>>  }
-> > >>> =20
-> > >>> +static bool tegra_pcie_link_up(struct tegra_pcie_port *port)
-> > >>> +{
-> > >>> +	u32 value;
-> > >>> +
-> > >>> +	value =3D readl(port->base + RP_LINK_CONTROL_STATUS);
-> > >>> +	return !!(value & RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE);
-> > >>> +}
-> > >>> +
-> > >>>  /*
-> > >>>   * The configuration space mapping on Tegra is somewhat similar to=
- the ECAM
-> > >>>   * defined by PCIe. However it deviates a bit in how the 4 bits fo=
-r extended
-> > >>> @@ -493,20 +501,50 @@ static void __iomem *tegra_pcie_map_bus(struc=
-t pci_bus *bus,
-> > >>>  static int tegra_pcie_config_read(struct pci_bus *bus, unsigned in=
-t devfn,
-> > >>>  				  int where, int size, u32 *value)
-> > >>>  {
-> > >>> +	struct tegra_pcie *pcie =3D bus->sysdata;
-> > >>> +	struct pci_dev *bridge;
-> > >>> +	struct tegra_pcie_port *port;
-> > >>> +
-> > >>>  	if (bus->number =3D=3D 0)
-> > >>>  		return pci_generic_config_read32(bus, devfn, where, size,
-> > >>>  						 value);
-> > >>> =20
-> > >>> +	bridge =3D pcie_find_root_port(bus->self);
-> > >>> +
-> > >>> +	list_for_each_entry(port, &pcie->ports, list)
-> > >>> +		if (port->index + 1 =3D=3D PCI_SLOT(bridge->devfn))
-> > >>> +			break;
-> > >>> +
-> > >>> +	/* If there is no link, then there is no device */
-> > >>> +	if (!tegra_pcie_link_up(port)) {
-> > >>> +		*value =3D 0xffffffff;
-> > >>> +		return PCIBIOS_DEVICE_NOT_FOUND;
-> > >>> +	}
-> > >>> +
-> > >>>  	return pci_generic_config_read(bus, devfn, where, size, value);
-> > >>>  }
-> > >>> =20
-> > >>>  static int tegra_pcie_config_write(struct pci_bus *bus, unsigned i=
-nt devfn,
-> > >>>  				   int where, int size, u32 value)
-> > >>>  {
-> > >>> +	struct tegra_pcie *pcie =3D bus->sysdata;
-> > >>> +	struct tegra_pcie_port *port;
-> > >>> +	struct pci_dev *bridge;
-> > >>> +
-> > >>>  	if (bus->number =3D=3D 0)
-> > >>>  		return pci_generic_config_write32(bus, devfn, where, size,
-> > >>>  						  value);
-> > >>> =20
-> > >>> +	bridge =3D pcie_find_root_port(bus->self);
-> > >>> +
-> > >>> +	list_for_each_entry(port, &pcie->ports, list)
-> > >>> +		if (port->index + 1 =3D=3D PCI_SLOT(bridge->devfn))
-> > >>> +			break;
-> > >>> +
-> > >>> +	/* If there is no link, then there is no device */
-> > >>> +	if (!tegra_pcie_link_up(port))
-> > >>> +		return PCIBIOS_DEVICE_NOT_FOUND;
-> > >>> +
-> > >>>  	return pci_generic_config_write(bus, devfn, where, size, value);
-> > >>>  }
-> > >>> =20
-> > >>> --=20
-> > >>> 2.17.1
-> > >>>
-> >=20
-
---Nq2Wo0NMKNjxTN9z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0CbvcACgkQ3SOs138+
-s6ExVBAAk+6yFjYB7w0KW66h8QsLTBo1BrdF83BlyPEMbSCnUX7mzuBsAY8eazoy
-zE0l3/W6eDqEQmQXZsTTtzdCtASHpXh+5ky0g/gwo0Rjnc6oXpRvMaYcGsAgtU5y
-pVVwWWPYtC8AYnptNlq02f2AP9cLNmvf2tl7GIabW2S+0toO+rFmXjG+Hu1RV6kP
-1tUtt27CRIZGT4JOjkN9tRMjqo6hQdNcFV2/jBuSf26H0Fmz7NfiPcsv0siXBeuy
-4Fze+vltRj3zZMN3UtOH5w8oz8SiHSniImODA+5/YlIQLmT6YkGB6bM24h+EFQ+I
-0XUbpqAY4ZAlXrA595mU1Jmz/0iTwoWpPgb8QrEQ8qmT17YwMjLW9yyq0sr+/GtH
-hs039AZWEmonizXOu7uVpZxReN9o7qC6wJLOSnchrMm2dGGivY+bwCXy7guGrfSV
-aMtmOZz7C3GS8bnQtrlFil+JVvaIm11QSR38IdP2yIb8ph/jev9uG+7XcUIr6kUh
-D2IiF93OZC0HdDiAblGZ64XrvKL8g5GHKKjnKZ6wdQUEcc0llqQM/oFviMfMi4P7
-EtJ4jmjst7yLb/tw9Cx7l39zI0Ktx5Vm0NbNYrsaTe1swrh5RH/twp7EEvcvzJC0
-p71EACgN+cfpJFtF6snoKY2MwVPyyoI64dMMjLSejk64OaaBSkE=
-=eUoe
------END PGP SIGNATURE-----
-
---Nq2Wo0NMKNjxTN9z--
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> ---
+> 
+> v4:
+> - Select INTERCONNECT_QCOM_SMD_RPM from this driver.
+> - Move the DT header to the dt-bindings patch.
+> - Move this patch later in the series.
+> 
+> v3:
+> - Convert the #defines into enum. (Bjorn)
+> - Move the rpm-smd part into a separate interconnect proxy driver.
+> 
+> v2:
+> - Use the clk_bulk API. (Bjorn)
+> - Move the port IDs into the provider file. (Bjorn)
+> - Use ARRAY_SIZE in the macro to automagically count the num_links. (Bjorn)
+> - Improve code readability. (Bjorn)
+> 
+> 
+>  drivers/interconnect/qcom/Kconfig  |   9 +
+>  drivers/interconnect/qcom/Makefile |   2 +
+>  drivers/interconnect/qcom/qcs404.c | 539 +++++++++++++++++++++++++++++
+>  3 files changed, 550 insertions(+)
+>  create mode 100644 drivers/interconnect/qcom/qcs404.c
+> 
+> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> index 03fd67173494..339e8f10d4f3 100644
+> --- a/drivers/interconnect/qcom/Kconfig
+> +++ b/drivers/interconnect/qcom/Kconfig
+> @@ -5,6 +5,15 @@ config INTERCONNECT_QCOM
+>  	help
+>  	  Support for Qualcomm's Network-on-Chip interconnect hardware.
+>  
+> +config INTERCONNECT_QCOM_QCS404
+> +	tristate "Qualcomm QCS404 interconnect driver"
+> +	depends on INTERCONNECT_QCOM
+> +	depends on QCOM_SMD_RPM || COMPILE_TEST
+> +	select INTERCONNECT_QCOM_SMD_RPM
+> +	help
+> +	  This is a driver for the Qualcomm Network-on-Chip on qcs404-based
+> +	  platforms.
+> +
+>  config INTERCONNECT_QCOM_SDM845
+>  	tristate "Qualcomm SDM845 interconnect driver"
+>  	depends on INTERCONNECT_QCOM
+> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+> index a600cf6cc272..67dafb783dec 100644
+> --- a/drivers/interconnect/qcom/Makefile
+> +++ b/drivers/interconnect/qcom/Makefile
+> @@ -1,7 +1,9 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  
+> +qnoc-qcs404-objs			:= qcs404.o
+>  qnoc-sdm845-objs			:= sdm845.o
+>  icc-smd-rpm-objs			:= smd-rpm.o
+>  
+> +obj-$(CONFIG_INTERCONNECT_QCOM_QCS404) += qnoc-qcs404.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) += qnoc-sdm845.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+> diff --git a/drivers/interconnect/qcom/qcs404.c b/drivers/interconnect/qcom/qcs404.c
+> new file mode 100644
+> index 000000000000..99be0928e2ad
+> --- /dev/null
+> +++ b/drivers/interconnect/qcom/qcs404.c
+> @@ -0,0 +1,539 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2019 Linaro Ltd
+> + */
+> +
+> +#include <dt-bindings/interconnect/qcom,qcs404.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/interconnect-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#include "smd-rpm.h"
+> +
+> +#define RPM_BUS_MASTER_REQ	0x73616d62
+> +#define RPM_BUS_SLAVE_REQ	0x766c7362
+> +
+> +enum {
+> +	QCS404_MASTER_AMPSS_M0 = 1,
+> +	QCS404_MASTER_GRAPHICS_3D,
+> +	QCS404_MASTER_MDP_PORT0,
+> +	QCS404_SNOC_BIMC_1_MAS,
+> +	QCS404_MASTER_TCU_0,
+> +	QCS404_MASTER_SPDM,
+> +	QCS404_MASTER_BLSP_1,
+> +	QCS404_MASTER_BLSP_2,
+> +	QCS404_MASTER_XM_USB_HS1,
+> +	QCS404_MASTER_CRYPTO_CORE0,
+> +	QCS404_MASTER_SDCC_1,
+> +	QCS404_MASTER_SDCC_2,
+> +	QCS404_SNOC_PNOC_MAS,
+> +	QCS404_MASTER_QPIC,
+> +	QCS404_MASTER_QDSS_BAM,
+> +	QCS404_BIMC_SNOC_MAS,
+> +	QCS404_PNOC_SNOC_MAS,
+> +	QCS404_MASTER_QDSS_ETR,
+> +	QCS404_MASTER_EMAC,
+> +	QCS404_MASTER_PCIE,
+> +	QCS404_MASTER_USB3,
+> +	QCS404_PNOC_INT_0,
+> +	QCS404_PNOC_INT_2,
+> +	QCS404_PNOC_INT_3,
+> +	QCS404_PNOC_SLV_0,
+> +	QCS404_PNOC_SLV_1,
+> +	QCS404_PNOC_SLV_2,
+> +	QCS404_PNOC_SLV_3,
+> +	QCS404_PNOC_SLV_4,
+> +	QCS404_PNOC_SLV_6,
+> +	QCS404_PNOC_SLV_7,
+> +	QCS404_PNOC_SLV_8,
+> +	QCS404_PNOC_SLV_9,
+> +	QCS404_PNOC_SLV_10,
+> +	QCS404_PNOC_SLV_11,
+> +	QCS404_SNOC_QDSS_INT,
+> +	QCS404_SNOC_INT_0,
+> +	QCS404_SNOC_INT_1,
+> +	QCS404_SNOC_INT_2,
+> +	QCS404_SLAVE_EBI_CH0,
+> +	QCS404_BIMC_SNOC_SLV,
+> +	QCS404_SLAVE_SPDM_WRAPPER,
+> +	QCS404_SLAVE_PDM,
+> +	QCS404_SLAVE_PRNG,
+> +	QCS404_SLAVE_TCSR,
+> +	QCS404_SLAVE_SNOC_CFG,
+> +	QCS404_SLAVE_MESSAGE_RAM,
+> +	QCS404_SLAVE_DISPLAY_CFG,
+> +	QCS404_SLAVE_GRAPHICS_3D_CFG,
+> +	QCS404_SLAVE_BLSP_1,
+> +	QCS404_SLAVE_TLMM_NORTH,
+> +	QCS404_SLAVE_PCIE_1,
+> +	QCS404_SLAVE_EMAC_CFG,
+> +	QCS404_SLAVE_BLSP_2,
+> +	QCS404_SLAVE_TLMM_EAST,
+> +	QCS404_SLAVE_TCU,
+> +	QCS404_SLAVE_PMIC_ARB,
+> +	QCS404_SLAVE_SDCC_1,
+> +	QCS404_SLAVE_SDCC_2,
+> +	QCS404_SLAVE_TLMM_SOUTH,
+> +	QCS404_SLAVE_USB_HS,
+> +	QCS404_SLAVE_USB3,
+> +	QCS404_SLAVE_CRYPTO_0_CFG,
+> +	QCS404_PNOC_SNOC_SLV,
+> +	QCS404_SLAVE_APPSS,
+> +	QCS404_SLAVE_WCSS,
+> +	QCS404_SNOC_BIMC_1_SLV,
+> +	QCS404_SLAVE_OCIMEM,
+> +	QCS404_SNOC_PNOC_SLV,
+> +	QCS404_SLAVE_QDSS_STM,
+> +	QCS404_SLAVE_CATS_128,
+> +	QCS404_SLAVE_OCMEM_64,
+> +	QCS404_SLAVE_LPASS,
+> +};
+> +
+> +#define to_qcom_provider(_provider) \
+> +	container_of(_provider, struct qcom_icc_provider, provider)
+> +
+> +static const struct clk_bulk_data bus_clocks[] = {
+> +	{ .id = "bus_clk" },
+> +	{ .id = "bus_a_clk" },
+> +};
+> +
+> +/**
+> + * struct qcom_icc_provider - Qualcomm specific interconnect provider
+> + * @provider: generic interconnect provider
+> + * @bus_clks: the clk_bulk_data table of bus clocks
+> + * @num_clks: the total number of clk_bulk_data entries
+> + */
+> +struct qcom_icc_provider {
+> +	struct icc_provider provider;
+> +	struct clk_bulk_data *bus_clks;
+> +	int num_clks;
+> +};
+> +
+> +#define QCS404_MAX_LINKS	12
+> +
+> +/**
+> + * struct qcom_icc_node - Qualcomm specific interconnect nodes
+> + * @name: the node name used in debugfs
+> + * @id: a unique node identifier
+> + * @links: an array of nodes where we can go next while traversing
+> + * @num_links: the total number of @links
+> + * @buswidth: width of the interconnect between a node and the bus (bytes)
+> + * @mas_rpm_id:	RPM id for devices that are bus masters
+> + * @slv_rpm_id:	RPM id for devices that are bus slaves
+> + * @rate: current bus clock rate in Hz
+> + */
+> +struct qcom_icc_node {
+> +	unsigned char *name;
+> +	u16 id;
+> +	u16 links[QCS404_MAX_LINKS];
+> +	u16 num_links;
+> +	u16 buswidth;
+> +	int mas_rpm_id;
+> +	int slv_rpm_id;
+> +	u64 rate;
+> +};
+> +
+> +struct qcom_icc_desc {
+> +	struct qcom_icc_node **nodes;
+> +	size_t num_nodes;
+> +};
+> +
+> +#define DEFINE_QNODE(_name, _id, _buswidth, _mas_rpm_id, _slv_rpm_id,	\
+> +		     ...)						\
+> +		static struct qcom_icc_node _name = {			\
+> +		.name = #_name,						\
+> +		.id = _id,						\
+> +		.buswidth = _buswidth,					\
+> +		.mas_rpm_id = _mas_rpm_id,				\
+> +		.slv_rpm_id = _slv_rpm_id,				\
+> +		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
+> +		.links = { __VA_ARGS__ },				\
+> +	}
+> +
+> +DEFINE_QNODE(mas_apps_proc, QCS404_MASTER_AMPSS_M0, 8, 0, -1, QCS404_SLAVE_EBI_CH0, QCS404_BIMC_SNOC_SLV);
+> +DEFINE_QNODE(mas_oxili, QCS404_MASTER_GRAPHICS_3D, 8, 6, -1, QCS404_SLAVE_EBI_CH0, QCS404_BIMC_SNOC_SLV);
+> +DEFINE_QNODE(mas_mdp, QCS404_MASTER_MDP_PORT0, 8, 8, -1, QCS404_SLAVE_EBI_CH0, QCS404_BIMC_SNOC_SLV);
+> +DEFINE_QNODE(mas_snoc_bimc_1, QCS404_SNOC_BIMC_1_MAS, 8, 76, -1, QCS404_SLAVE_EBI_CH0);
+> +DEFINE_QNODE(mas_tcu_0, QCS404_MASTER_TCU_0, 8, -1, -1, QCS404_SLAVE_EBI_CH0, QCS404_BIMC_SNOC_SLV);
+> +DEFINE_QNODE(mas_spdm, QCS404_MASTER_SPDM, 4, -1, -1, QCS404_PNOC_INT_3);
+> +DEFINE_QNODE(mas_blsp_1, QCS404_MASTER_BLSP_1, 4, 41, -1, QCS404_PNOC_INT_3);
+> +DEFINE_QNODE(mas_blsp_2, QCS404_MASTER_BLSP_2, 4, 39, -1, QCS404_PNOC_INT_3);
+> +DEFINE_QNODE(mas_xi_usb_hs1, QCS404_MASTER_XM_USB_HS1, 8, 138, -1, QCS404_PNOC_INT_0);
+> +DEFINE_QNODE(mas_crypto, QCS404_MASTER_CRYPTO_CORE0, 8, 23, -1, QCS404_PNOC_SNOC_SLV, QCS404_PNOC_INT_2);
+> +DEFINE_QNODE(mas_sdcc_1, QCS404_MASTER_SDCC_1, 8, 33, -1, QCS404_PNOC_INT_0);
+> +DEFINE_QNODE(mas_sdcc_2, QCS404_MASTER_SDCC_2, 8, 35, -1, QCS404_PNOC_INT_0);
+> +DEFINE_QNODE(mas_snoc_pcnoc, QCS404_SNOC_PNOC_MAS, 8, 77, -1, QCS404_PNOC_INT_2);
+> +DEFINE_QNODE(mas_qpic, QCS404_MASTER_QPIC, 4, -1, -1, QCS404_PNOC_INT_0);
+> +DEFINE_QNODE(mas_qdss_bam, QCS404_MASTER_QDSS_BAM, 4, -1, -1, QCS404_SNOC_QDSS_INT);
+> +DEFINE_QNODE(mas_bimc_snoc, QCS404_BIMC_SNOC_MAS, 8, 21, -1, QCS404_SLAVE_OCMEM_64, QCS404_SLAVE_CATS_128, QCS404_SNOC_INT_0, QCS404_SNOC_INT_1);
+> +DEFINE_QNODE(mas_pcnoc_snoc, QCS404_PNOC_SNOC_MAS, 8, 29, -1, QCS404_SNOC_BIMC_1_SLV, QCS404_SNOC_INT_2, QCS404_SNOC_INT_0);
+> +DEFINE_QNODE(mas_qdss_etr, QCS404_MASTER_QDSS_ETR, 8, -1, -1, QCS404_SNOC_QDSS_INT);
+> +DEFINE_QNODE(mas_emac, QCS404_MASTER_EMAC, 8, -1, -1, QCS404_SNOC_BIMC_1_SLV, QCS404_SNOC_INT_1);
+> +DEFINE_QNODE(mas_pcie, QCS404_MASTER_PCIE, 8, -1, -1, QCS404_SNOC_BIMC_1_SLV, QCS404_SNOC_INT_1);
+> +DEFINE_QNODE(mas_usb3, QCS404_MASTER_USB3, 8, -1, -1, QCS404_SNOC_BIMC_1_SLV, QCS404_SNOC_INT_1);
+> +DEFINE_QNODE(pcnoc_int_0, QCS404_PNOC_INT_0, 8, 85, 114, QCS404_PNOC_SNOC_SLV, QCS404_PNOC_INT_2);
+> +DEFINE_QNODE(pcnoc_int_2, QCS404_PNOC_INT_2, 8, 124, 184, QCS404_PNOC_SLV_10, QCS404_SLAVE_TCU, QCS404_PNOC_SLV_11, QCS404_PNOC_SLV_2, QCS404_PNOC_SLV_3, QCS404_PNOC_SLV_0, QCS404_PNOC_SLV_1, QCS404_PNOC_SLV_6, QCS404_PNOC_SLV_7, QCS404_PNOC_SLV_4, QCS404_PNOC_SLV_8, QCS404_PNOC_SLV_9);
+> +DEFINE_QNODE(pcnoc_int_3, QCS404_PNOC_INT_3, 8, 125, 185, QCS404_PNOC_SNOC_SLV);
+> +DEFINE_QNODE(pcnoc_s_0, QCS404_PNOC_SLV_0, 4, 89, 118, QCS404_SLAVE_PRNG, QCS404_SLAVE_SPDM_WRAPPER, QCS404_SLAVE_PDM);
+> +DEFINE_QNODE(pcnoc_s_1, QCS404_PNOC_SLV_1, 4, 90, 119, QCS404_SLAVE_TCSR);
+> +DEFINE_QNODE(pcnoc_s_2, QCS404_PNOC_SLV_2, 4, -1, -1, QCS404_SLAVE_GRAPHICS_3D_CFG);
+> +DEFINE_QNODE(pcnoc_s_3, QCS404_PNOC_SLV_3, 4, 92, 121, QCS404_SLAVE_MESSAGE_RAM);
+> +DEFINE_QNODE(pcnoc_s_4, QCS404_PNOC_SLV_4, 4, 93, 122, QCS404_SLAVE_SNOC_CFG);
+> +DEFINE_QNODE(pcnoc_s_6, QCS404_PNOC_SLV_6, 4, 94, 123, QCS404_SLAVE_BLSP_1, QCS404_SLAVE_TLMM_NORTH, QCS404_SLAVE_EMAC_CFG);
+> +DEFINE_QNODE(pcnoc_s_7, QCS404_PNOC_SLV_7, 4, 95, 124, QCS404_SLAVE_TLMM_SOUTH, QCS404_SLAVE_DISPLAY_CFG, QCS404_SLAVE_SDCC_1, QCS404_SLAVE_PCIE_1, QCS404_SLAVE_SDCC_2);
+> +DEFINE_QNODE(pcnoc_s_8, QCS404_PNOC_SLV_8, 4, 96, 125, QCS404_SLAVE_CRYPTO_0_CFG);
+> +DEFINE_QNODE(pcnoc_s_9, QCS404_PNOC_SLV_9, 4, 97, 126, QCS404_SLAVE_BLSP_2, QCS404_SLAVE_TLMM_EAST, QCS404_SLAVE_PMIC_ARB);
+> +DEFINE_QNODE(pcnoc_s_10, QCS404_PNOC_SLV_10, 4, 157, -1, QCS404_SLAVE_USB_HS);
+> +DEFINE_QNODE(pcnoc_s_11, QCS404_PNOC_SLV_11, 4, 158, 246, QCS404_SLAVE_USB3);
+> +DEFINE_QNODE(qdss_int, QCS404_SNOC_QDSS_INT, 8, -1, -1, QCS404_SNOC_BIMC_1_SLV, QCS404_SNOC_INT_1);
+> +DEFINE_QNODE(snoc_int_0, QCS404_SNOC_INT_0, 8, 99, 130, QCS404_SLAVE_LPASS, QCS404_SLAVE_APPSS, QCS404_SLAVE_WCSS);
+> +DEFINE_QNODE(snoc_int_1, QCS404_SNOC_INT_1, 8, 100, 131, QCS404_SNOC_PNOC_SLV, QCS404_SNOC_INT_2);
+> +DEFINE_QNODE(snoc_int_2, QCS404_SNOC_INT_2, 8, 134, 197, QCS404_SLAVE_QDSS_STM, QCS404_SLAVE_OCIMEM);
+> +DEFINE_QNODE(slv_ebi, QCS404_SLAVE_EBI_CH0, 8, -1, 0, 0);
+> +DEFINE_QNODE(slv_bimc_snoc, QCS404_BIMC_SNOC_SLV, 8, -1, 2, QCS404_BIMC_SNOC_MAS);
+> +DEFINE_QNODE(slv_spdm, QCS404_SLAVE_SPDM_WRAPPER, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_pdm, QCS404_SLAVE_PDM, 4, -1, 41, 0);
+> +DEFINE_QNODE(slv_prng, QCS404_SLAVE_PRNG, 4, -1, 44, 0);
+> +DEFINE_QNODE(slv_tcsr, QCS404_SLAVE_TCSR, 4, -1, 50, 0);
+> +DEFINE_QNODE(slv_snoc_cfg, QCS404_SLAVE_SNOC_CFG, 4, -1, 70, 0);
+> +DEFINE_QNODE(slv_message_ram, QCS404_SLAVE_MESSAGE_RAM, 4, -1, 55, 0);
+> +DEFINE_QNODE(slv_disp_ss_cfg, QCS404_SLAVE_DISPLAY_CFG, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_gpu_cfg, QCS404_SLAVE_GRAPHICS_3D_CFG, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_blsp_1, QCS404_SLAVE_BLSP_1, 4, -1, 39, 0);
+> +DEFINE_QNODE(slv_tlmm_north, QCS404_SLAVE_TLMM_NORTH, 4, -1, 214, 0);
+> +DEFINE_QNODE(slv_pcie, QCS404_SLAVE_PCIE_1, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_ethernet, QCS404_SLAVE_EMAC_CFG, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_blsp_2, QCS404_SLAVE_BLSP_2, 4, -1, 37, 0);
+> +DEFINE_QNODE(slv_tlmm_east, QCS404_SLAVE_TLMM_EAST, 4, -1, 213, 0);
+> +DEFINE_QNODE(slv_tcu, QCS404_SLAVE_TCU, 8, -1, -1, 0);
+> +DEFINE_QNODE(slv_pmic_arb, QCS404_SLAVE_PMIC_ARB, 4, -1, 59, 0);
+> +DEFINE_QNODE(slv_sdcc_1, QCS404_SLAVE_SDCC_1, 4, -1, 31, 0);
+> +DEFINE_QNODE(slv_sdcc_2, QCS404_SLAVE_SDCC_2, 4, -1, 33, 0);
+> +DEFINE_QNODE(slv_tlmm_south, QCS404_SLAVE_TLMM_SOUTH, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_usb_hs, QCS404_SLAVE_USB_HS, 4, -1, 40, 0);
+> +DEFINE_QNODE(slv_usb3, QCS404_SLAVE_USB3, 4, -1, 22, 0);
+> +DEFINE_QNODE(slv_crypto_0_cfg, QCS404_SLAVE_CRYPTO_0_CFG, 4, -1, 52, 0);
+> +DEFINE_QNODE(slv_pcnoc_snoc, QCS404_PNOC_SNOC_SLV, 8, -1, 45, QCS404_PNOC_SNOC_MAS);
+> +DEFINE_QNODE(slv_kpss_ahb, QCS404_SLAVE_APPSS, 4, -1, -1, 0);
+> +DEFINE_QNODE(slv_wcss, QCS404_SLAVE_WCSS, 4, -1, 23, 0);
+> +DEFINE_QNODE(slv_snoc_bimc_1, QCS404_SNOC_BIMC_1_SLV, 8, -1, 104, QCS404_SNOC_BIMC_1_MAS);
+> +DEFINE_QNODE(slv_imem, QCS404_SLAVE_OCIMEM, 8, -1, 26, 0);
+> +DEFINE_QNODE(slv_snoc_pcnoc, QCS404_SNOC_PNOC_SLV, 8, -1, 28, QCS404_SNOC_PNOC_MAS);
+> +DEFINE_QNODE(slv_qdss_stm, QCS404_SLAVE_QDSS_STM, 4, -1, 30, 0);
+> +DEFINE_QNODE(slv_cats_0, QCS404_SLAVE_CATS_128, 16, -1, -1, 0);
+> +DEFINE_QNODE(slv_cats_1, QCS404_SLAVE_OCMEM_64, 8, -1, -1, 0);
+> +DEFINE_QNODE(slv_lpass, QCS404_SLAVE_LPASS, 4, -1, -1, 0);
+> +
+> +static struct qcom_icc_node *qcs404_bimc_nodes[] = {
+> +	[MASTER_AMPSS_M0] = &mas_apps_proc,
+> +	[MASTER_OXILI] = &mas_oxili,
+> +	[MASTER_MDP_PORT0] = &mas_mdp,
+> +	[MASTER_SNOC_BIMC_1] = &mas_snoc_bimc_1,
+> +	[MASTER_TCU_0] = &mas_tcu_0,
+> +	[SLAVE_EBI_CH0] = &slv_ebi,
+> +	[SLAVE_BIMC_SNOC] = &slv_bimc_snoc,
+> +};
+> +
+> +static struct qcom_icc_desc qcs404_bimc = {
+> +	.nodes = qcs404_bimc_nodes,
+> +	.num_nodes = ARRAY_SIZE(qcs404_bimc_nodes),
+> +};
+> +
+> +static struct qcom_icc_node *qcs404_pcnoc_nodes[] = {
+> +	[MASTER_SPDM] = &mas_spdm,
+> +	[MASTER_BLSP_1] = &mas_blsp_1,
+> +	[MASTER_BLSP_2] = &mas_blsp_2,
+> +	[MASTER_XI_USB_HS1] = &mas_xi_usb_hs1,
+> +	[MASTER_CRYPT0] = &mas_crypto,
+> +	[MASTER_SDCC_1] = &mas_sdcc_1,
+> +	[MASTER_SDCC_2] = &mas_sdcc_2,
+> +	[MASTER_SNOC_PCNOC] = &mas_snoc_pcnoc,
+> +	[MASTER_QPIC] = &mas_qpic,
+> +	[PCNOC_INT_0] = &pcnoc_int_0,
+> +	[PCNOC_INT_2] = &pcnoc_int_2,
+> +	[PCNOC_INT_3] = &pcnoc_int_3,
+> +	[PCNOC_S_0] = &pcnoc_s_0,
+> +	[PCNOC_S_1] = &pcnoc_s_1,
+> +	[PCNOC_S_2] = &pcnoc_s_2,
+> +	[PCNOC_S_3] = &pcnoc_s_3,
+> +	[PCNOC_S_4] = &pcnoc_s_4,
+> +	[PCNOC_S_6] = &pcnoc_s_6,
+> +	[PCNOC_S_7] = &pcnoc_s_7,
+> +	[PCNOC_S_8] = &pcnoc_s_8,
+> +	[PCNOC_S_9] = &pcnoc_s_9,
+> +	[PCNOC_S_10] = &pcnoc_s_10,
+> +	[PCNOC_S_11] = &pcnoc_s_11,
+> +	[SLAVE_SPDM] = &slv_spdm,
+> +	[SLAVE_PDM] = &slv_pdm,
+> +	[SLAVE_PRNG] = &slv_prng,
+> +	[SLAVE_TCSR] = &slv_tcsr,
+> +	[SLAVE_SNOC_CFG] = &slv_snoc_cfg,
+> +	[SLAVE_MESSAGE_RAM] = &slv_message_ram,
+> +	[SLAVE_DISP_SS_CFG] = &slv_disp_ss_cfg,
+> +	[SLAVE_GPU_CFG] = &slv_gpu_cfg,
+> +	[SLAVE_BLSP_1] = &slv_blsp_1,
+> +	[SLAVE_BLSP_2] = &slv_blsp_2,
+> +	[SLAVE_TLMM_NORTH] = &slv_tlmm_north,
+> +	[SLAVE_PCIE] = &slv_pcie,
+> +	[SLAVE_ETHERNET] = &slv_ethernet,
+> +	[SLAVE_TLMM_EAST] = &slv_tlmm_east,
+> +	[SLAVE_TCU] = &slv_tcu,
+> +	[SLAVE_PMIC_ARB] = &slv_pmic_arb,
+> +	[SLAVE_SDCC_1] = &slv_sdcc_1,
+> +	[SLAVE_SDCC_2] = &slv_sdcc_2,
+> +	[SLAVE_TLMM_SOUTH] = &slv_tlmm_south,
+> +	[SLAVE_USB_HS] = &slv_usb_hs,
+> +	[SLAVE_USB3] = &slv_usb3,
+> +	[SLAVE_CRYPTO_0_CFG] = &slv_crypto_0_cfg,
+> +	[SLAVE_PCNOC_SNOC] = &slv_pcnoc_snoc,
+> +};
+> +
+> +static struct qcom_icc_desc qcs404_pcnoc = {
+> +	.nodes = qcs404_pcnoc_nodes,
+> +	.num_nodes = ARRAY_SIZE(qcs404_pcnoc_nodes),
+> +};
+> +
+> +static struct qcom_icc_node *qcs404_snoc_nodes[] = {
+> +	[MASTER_QDSS_BAM] = &mas_qdss_bam,
+> +	[MASTER_BIMC_SNOC] = &mas_bimc_snoc,
+> +	[MASTER_PCNOC_SNOC] = &mas_pcnoc_snoc,
+> +	[MASTER_QDSS_ETR] = &mas_qdss_etr,
+> +	[MASTER_EMAC] = &mas_emac,
+> +	[MASTER_PCIE] = &mas_pcie,
+> +	[MASTER_USB3] = &mas_usb3,
+> +	[QDSS_INT] = &qdss_int,
+> +	[SNOC_INT_0] = &snoc_int_0,
+> +	[SNOC_INT_1] = &snoc_int_1,
+> +	[SNOC_INT_2] = &snoc_int_2,
+> +	[SLAVE_KPSS_AHB] = &slv_kpss_ahb,
+> +	[SLAVE_WCSS] = &slv_wcss,
+> +	[SLAVE_SNOC_BIMC_1] = &slv_snoc_bimc_1,
+> +	[SLAVE_IMEM] = &slv_imem,
+> +	[SLAVE_SNOC_PCNOC] = &slv_snoc_pcnoc,
+> +	[SLAVE_QDSS_STM] = &slv_qdss_stm,
+> +	[SLAVE_CATS_0] = &slv_cats_0,
+> +	[SLAVE_CATS_1] = &slv_cats_1,
+> +	[SLAVE_LPASS] = &slv_lpass,
+> +};
+> +
+> +static struct qcom_icc_desc qcs404_snoc = {
+> +	.nodes = qcs404_snoc_nodes,
+> +	.num_nodes = ARRAY_SIZE(qcs404_snoc_nodes),
+> +};
+> +
+> +static int qcom_icc_aggregate(struct icc_node *node, u32 avg_bw, u32 peak_bw,
+> +			      u32 *agg_avg, u32 *agg_peak)
+> +{
+> +	*agg_avg += avg_bw;
+> +	*agg_peak = max(*agg_peak, peak_bw);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	struct qcom_icc_provider *qp;
+> +	struct qcom_icc_node *qn;
+> +	struct icc_provider *provider;
+> +	struct icc_node *n;
+> +	u64 sum_bw;
+> +	u64 max_peak_bw;
+> +	u64 rate;
+> +	u32 agg_avg = 0;
+> +	u32 agg_peak = 0;
+> +	int ret, i;
+> +
+> +	qn = src->data;
+> +	provider = src->provider;
+> +	qp = to_qcom_provider(provider);
+> +
+> +	list_for_each_entry(n, &provider->nodes, node_list)
+> +		qcom_icc_aggregate(n, n->avg_bw, n->peak_bw,
+> +				   &agg_avg, &agg_peak);
+> +
+> +	sum_bw = icc_units_to_bps(agg_avg);
+> +	max_peak_bw = icc_units_to_bps(agg_peak);
+> +
+> +	/* send bandwidth request message to the RPM processor */
+> +	if (qn->mas_rpm_id != -1) {
+> +		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
+> +					    RPM_BUS_MASTER_REQ,
+> +					    qn->mas_rpm_id,
+> +					    sum_bw);
+> +		if (ret) {
+> +			pr_err("qcom_icc_rpm_smd_send mas %d error %d\n",
+> +			       qn->mas_rpm_id, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	if (qn->slv_rpm_id != -1) {
+> +		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
+> +					    RPM_BUS_SLAVE_REQ,
+> +					    qn->slv_rpm_id,
+> +					    sum_bw);
+> +		if (ret) {
+> +			pr_err("qcom_icc_rpm_smd_send slv error %d\n",
+> +			       ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	rate = max(sum_bw, max_peak_bw);
+> +
+> +	do_div(rate, qn->buswidth);
+> +
+> +	if (qn->rate == rate)
+> +		return 0;
+> +
+> +	for (i = 0; i < qp->num_clks; i++) {
+> +		ret = clk_set_rate(qp->bus_clks[i].clk, rate);
+> +		if (ret) {
+> +			pr_err("%s clk_set_rate error: %d\n",
+> +			       qp->bus_clks[i].id, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	qn->rate = rate;
+> +
+> +	return 0;
+> +}
+> +
+> +static int qnoc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct qcom_icc_desc *desc;
+> +	struct icc_onecell_data *data;
+> +	struct icc_provider *provider;
+> +	struct qcom_icc_node **qnodes;
+> +	struct qcom_icc_provider *qp;
+> +	struct icc_node *node;
+> +	size_t num_nodes, i;
+> +	int ret;
+> +
+> +	/* wait for the RPM proxy */
+> +	if (!qcom_icc_rpm_smd_available())
+> +		return -EPROBE_DEFER;
+> +
+> +	desc = of_device_get_match_data(dev);
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	qnodes = desc->nodes;
+> +	num_nodes = desc->num_nodes;
+> +
+> +	qp = devm_kzalloc(dev, sizeof(*qp), GFP_KERNEL);
+> +	if (!qp)
+> +		return -ENOMEM;
+> +
+> +	data = devm_kcalloc(dev, num_nodes, sizeof(*node), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	qp->bus_clks = devm_kmemdup(dev, bus_clocks, sizeof(bus_clocks),
+> +				    GFP_KERNEL);
+> +	if (!qp->bus_clks)
+> +		return -ENOMEM;
+> +
+> +	qp->num_clks = ARRAY_SIZE(bus_clocks);
+> +	ret = devm_clk_bulk_get(dev, qp->num_clks, qp->bus_clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_bulk_prepare_enable(qp->num_clks, qp->bus_clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	provider = &qp->provider;
+> +	INIT_LIST_HEAD(&provider->nodes);
+> +	provider->dev = dev;
+> +	provider->set = qcom_icc_set;
+> +	provider->aggregate = qcom_icc_aggregate;
+> +	provider->xlate = of_icc_xlate_onecell;
+> +	provider->data = data;
+> +
+> +	ret = icc_provider_add(provider);
+> +	if (ret) {
+> +		dev_err(dev, "error adding interconnect provider: %d\n", ret);
+> +		clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < num_nodes; i++) {
+> +		size_t j;
+> +
+> +		node = icc_node_create(qnodes[i]->id);
+> +		if (IS_ERR(node)) {
+> +			ret = PTR_ERR(node);
+> +			goto err;
+> +		}
+> +
+> +		node->name = qnodes[i]->name;
+> +		node->data = qnodes[i];
+> +		icc_node_add(node, provider);
+> +
+> +		dev_dbg(dev, "registered node %s\n", node->name);
+> +
+> +		/* populate links */
+> +		for (j = 0; j < qnodes[i]->num_links; j++)
+> +			icc_link_create(node, qnodes[i]->links[j]);
+> +
+> +		data->nodes[i] = node;
+> +	}
+> +	data->num_nodes = num_nodes;
+> +
+> +	platform_set_drvdata(pdev, qp);
+> +
+> +	return 0;
+> +err:
+> +	list_for_each_entry(node, &provider->nodes, node_list) {
+> +		icc_node_del(node);
+> +		icc_node_destroy(node->id);
+> +	}
+> +	clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> +	icc_provider_del(provider);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qnoc_remove(struct platform_device *pdev)
+> +{
+> +	struct qcom_icc_provider *qp = platform_get_drvdata(pdev);
+> +	struct icc_provider *provider = &qp->provider;
+> +	struct icc_node *n;
+> +
+> +	list_for_each_entry(n, &provider->nodes, node_list) {
+> +		icc_node_del(n);
+> +		icc_node_destroy(n->id);
+> +	}
+> +	clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> +
+> +	return icc_provider_del(provider);
+> +}
+> +
+> +static const struct of_device_id qcs404_noc_of_match[] = {
+> +	{ .compatible = "qcom,qcs404-bimc", .data = &qcs404_bimc },
+> +	{ .compatible = "qcom,qcs404-pcnoc", .data = &qcs404_pcnoc },
+> +	{ .compatible = "qcom,qcs404-snoc", .data = &qcs404_snoc },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, qcs404_noc_of_match);
+> +
+> +static struct platform_driver qcs404_noc_driver = {
+> +	.probe = qnoc_probe,
+> +	.remove = qnoc_remove,
+> +	.driver = {
+> +		.name = "qnoc-qcs404",
+> +		.of_match_table = qcs404_noc_of_match,
+> +	},
+> +};
+> +module_platform_driver(qcs404_noc_driver);
+> +MODULE_DESCRIPTION("Qualcomm QCS404 NoC driver");
+> +MODULE_LICENSE("GPL v2");
