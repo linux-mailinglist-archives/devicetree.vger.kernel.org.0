@@ -2,167 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E0C443EF4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 977314399A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389604AbfFMPyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:54:05 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:37835 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731578AbfFMIzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 04:55:46 -0400
-Received: by mail-qk1-f194.google.com with SMTP id d15so12221535qkl.4
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 01:55:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EbsOELQCvto0Fo9I2AuJ/Y7svHsBZcOWHg1RzxD+F5w=;
-        b=OAos17WDkMEMPc1zyiEv9khW2L28ThJocwVOXc2m8qCISB7VUvQRerbvZmt39EIQ25
-         a6wZL/wBjZ3lPGbC0m+W1HaoX/jHhwypMh6cP1Dt8RwK26IWBWPR2AIaHi/w/NmYmSbv
-         4H5PA3PtbURCt2jbtT9fSX3PE6pMwoW9FuLSsFJL1Dw5cOBLAcYSlFgnAtOJ0s19tvzg
-         ZPC118NqcmVBMCZKekyJKb/VHyA+EkLMgH7DXk8mw8KFW0Q04Pr8V0ACtCzDV/jNGTNI
-         UeR+W5EtjzZwZpXZsC3ZrCwGR0wRoN0l2VB2HxveYRTKy1MzKv6CDXcwRMk6upxZLiRl
-         5Xuw==
-X-Gm-Message-State: APjAAAWlvjFfUU7P/pyFK5UqjYR4/Yj1YhSu4Pg2B/ip2pgOosCVsYzy
-        u1937xzg+lgCgv//hTSZSQtK8U+2srLKKmLT2UO+fQ==
-X-Google-Smtp-Source: APXvYqzj78vh0ZV37F1d7+jB5lITaJMY5BUoqTd1zQhUK7GP/qiI4GL+OEOfawaB6HDtVc7YSfEfR01C+IbSyXcwyV4=
-X-Received: by 2002:a37:ea16:: with SMTP id t22mr70882953qkj.337.1560416144985;
- Thu, 13 Jun 2019 01:55:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190612212604.32089-1-jeffrey.l.hugo@gmail.com>
- <20190612212721.32195-1-jeffrey.l.hugo@gmail.com> <20190612214636.GA40779@dtor-ws>
- <84e7d83f-e133-0281-612a-94d8c4319040@codeaurora.org>
-In-Reply-To: <84e7d83f-e133-0281-612a-94d8c4319040@codeaurora.org>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Thu, 13 Jun 2019 10:55:31 +0200
-Message-ID: <CAO-hwJJUivfzFj-Downqt8nY3iTwF8-oq_iBqs1Dxyx92HdYPw@mail.gmail.com>
-Subject: Re: Re: [PATCH v6 2/5] HID: quirks: Refactor ELAN 400 and 401 handling
-To:     Jeffrey Hugo <jhugo@codeaurora.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Jiri Kosina <jikos@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, xnox@ubuntu.com,
+        id S1732243AbfFMPO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:14:57 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:36177 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732240AbfFMN0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 09:26:25 -0400
+Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id C267620001E;
+        Thu, 13 Jun 2019 13:26:21 +0000 (UTC)
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: nvmem: Add YAML schemas for the generic NVMEM bindings
+Date:   Thu, 13 Jun 2019 10:57:11 +0200
+Message-Id: <20190613085712.22241-1-maxime.ripard@bootlin.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 12:20 AM Jeffrey Hugo <jhugo@codeaurora.org> wrote:
->
-> On 6/12/2019 3:46 PM, Dmitry Torokhov wrote:
-> > On Wed, Jun 12, 2019 at 02:27:21PM -0700, Jeffrey Hugo wrote:
-> >> There needs to be coordination between hid-quirks and the elan_i2c driver
-> >> about which devices are handled by what drivers.  Currently, both use
-> >> whitelists, which results in valid devices being unhandled by default,
-> >> when they should not be rejected by hid-quirks.  This is quickly becoming
-> >> an issue.
-> >>
-> >> Since elan_i2c has a maintained whitelist of what devices it will handle,
-> >> which is now in a header file that hid-quirks can access, use that to
-> >> implement a blacklist in hid-quirks so that only the devices that need to
-> >> be handled by elan_i2c get rejected by hid-quirks, and everything else is
-> >> handled by default.
-> >>
-> >> Suggested-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> >> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-> >> ---
-> >>   drivers/hid/hid-quirks.c | 27 ++++++++++++++++-----------
-> >>   1 file changed, 16 insertions(+), 11 deletions(-)
-> >>
-> >> diff --git a/drivers/hid/hid-quirks.c b/drivers/hid/hid-quirks.c
-> >> index e5ca6fe2ca57..bd81bb090222 100644
-> >> --- a/drivers/hid/hid-quirks.c
-> >> +++ b/drivers/hid/hid-quirks.c
-> >> @@ -16,6 +16,7 @@
-> >>   #include <linux/export.h>
-> >>   #include <linux/slab.h>
-> >>   #include <linux/mutex.h>
-> >> +#include <linux/input/elan-i2c-ids.h>
-> >>
-> >>   #include "hid-ids.h"
-> >>
-> >> @@ -914,6 +915,8 @@ static const struct hid_device_id hid_mouse_ignore_list[] = {
-> >>
-> >>   bool hid_ignore(struct hid_device *hdev)
-> >>   {
-> >> +    int i;
-> >> +
-> >>      if (hdev->quirks & HID_QUIRK_NO_IGNORE)
-> >>              return false;
-> >>      if (hdev->quirks & HID_QUIRK_IGNORE)
-> >> @@ -978,18 +981,20 @@ bool hid_ignore(struct hid_device *hdev)
-> >>              break;
-> >>      case USB_VENDOR_ID_ELAN:
-> >>              /*
-> >> -             * Many Elan devices have a product id of 0x0401 and are handled
-> >> -             * by the elan_i2c input driver. But the ACPI HID ELAN0800 dev
-> >> -             * is not (and cannot be) handled by that driver ->
-> >> -             * Ignore all 0x0401 devs except for the ELAN0800 dev.
-> >> +             * Blacklist of everything that gets handled by the elan_i2c
-> >> +             * input driver.  This avoids disabling valid touchpads and
-> >> +             * other ELAN devices.
-> >>               */
-> >> -            if (hdev->product == 0x0401 &&
-> >> -                strncmp(hdev->name, "ELAN0800", 8) != 0)
-> >> -                    return true;
-> >> -            /* Same with product id 0x0400 */
-> >> -            if (hdev->product == 0x0400 &&
-> >> -                strncmp(hdev->name, "QTEC0001", 8) != 0)
-> >> -                    return true;
-> >> +            if ((hdev->product == 0x0401 || hdev->product == 0x0400)) {
-> >> +                    for (i = 0; strlen(elan_acpi_id[i].id); ++i)
-> >> +                            if (!strncmp(hdev->name, elan_acpi_id[i].id,
-> >> +                                         strlen(elan_acpi_id[i].id)))
-> >> +                                    return true;
-> >> +                    for (i = 0; strlen(elan_of_match[i].name); ++i)
-> >> +                            if (!strncmp(hdev->name, elan_of_match[i].name,
-> >> +                                         strlen(elan_of_match[i].name)))
-> >> +                                    return true;
-> >
-> > Do we really need to blacklist the OF case here? I thought that in ACPI
-> > case we have clashes as HID gets matched by elan_i2c and CID is matched
-> > by i2c-hid, but I do not believe we'll run into the same situation on OF
-> > systems.
->
-> I think its the safer approach.
->
-> On an OF system, such as patch 3 in the series, the "hid-over-i2c" will
-> end up running through this (kind of the whole reason why this series
-> exists).  The vendor and product ids will still match, so we'll end up
-> going through the lists to see if the hdev->name (the compatible string)
-> will match the blacklist.  "hid-over-i2c" won't match the blacklist, but
-> if there is a more specific compatible, it might.
->
-> In that case, not matching OF would work, however how it could break
-> today is if both "hid-over-i2c" and "elan,ekth3000" were listed for the
-> same device, and elan_i2c was not compiled.  In that case, if we skip
-> the OF part of the black list, hid-quirks will not reject the device,
-> and you'll probably have some odd behavior instead of the obvious "the
-> device doesn't work because the correct driver isn't present" behavior.
->
-> While that scenario might be far fetched since having both
-> "hid-over-i2c" and "elan,ekth3000" probably violates the OF bindings,
-> its still safer to include the OF case in the blacklist against future
-> scenarios.
->
->
+The nvmem providers and consumers have a bunch of generic properties that
+are needed in a device tree. Add a YAML schemas for those.
 
-Dmitry, if you are happy with Jeffrey's answer, feel free to take this
-through your tree and add:
-Acked-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+---
+ .../bindings/nvmem/nvmem-consumer.yaml        | 45 +++++++++
+ .../devicetree/bindings/nvmem/nvmem.txt       | 81 +---------------
+ .../devicetree/bindings/nvmem/nvmem.yaml      | 93 +++++++++++++++++++
+ 3 files changed, 139 insertions(+), 80 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+ create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem.yaml
 
-I don't expect any major conflicts given on where the code is located.
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+new file mode 100644
+index 000000000000..c48b74733b68
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/nvmem-consumer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVMEM (Non Volatile Memory) Consumer Device Tree Bindings
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++select: true
++
++properties:
++  nvmem:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      List of phandle to the nvmem providers.
++
++  nvmem-cells:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      List of phandle to the nvmem data cells.
++
++  nvmem-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description:
++      Names for the each nvmem provider.
++
++  nvmem-cell-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description:
++      Names for each nvmem-cells specified.
++
++dependencies:
++  nvmem-names: [ nvmem ]
++  nvmem-cell-names: [ nvmem-cells ]
++
++examples:
++  - |
++    tsens {
++        /* ... */
++        nvmem-cells = <&tsens_calibration>;
++        nvmem-cell-names = "calibration";
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.txt b/Documentation/devicetree/bindings/nvmem/nvmem.txt
+index fd06c09b822b..46a7ef485e24 100644
+--- a/Documentation/devicetree/bindings/nvmem/nvmem.txt
++++ b/Documentation/devicetree/bindings/nvmem/nvmem.txt
+@@ -1,80 +1 @@
+-= NVMEM(Non Volatile Memory) Data Device Tree Bindings =
+-
+-This binding is intended to represent the location of hardware
+-configuration data stored in NVMEMs like eeprom, efuses and so on.
+-
+-On a significant proportion of boards, the manufacturer has stored
+-some data on NVMEM, for the OS to be able to retrieve these information
+-and act upon it. Obviously, the OS has to know about where to retrieve
+-these data from, and where they are stored on the storage device.
+-
+-This document is here to document this.
+-
+-= Data providers =
+-Contains bindings specific to provider drivers and data cells as children
+-of this node.
+-
+-Optional properties:
+- read-only: Mark the provider as read only.
+-
+-= Data cells =
+-These are the child nodes of the provider which contain data cell
+-information like offset and size in nvmem provider.
+-
+-Required properties:
+-reg:	specifies the offset in byte within the storage device.
+-
+-Optional properties:
+-
+-bits:	Is pair of bit location and number of bits, which specifies offset
+-	in bit and number of bits within the address range specified by reg property.
+-	Offset takes values from 0-7.
+-
+-For example:
+-
+-	/* Provider */
+-	qfprom: qfprom@700000 {
+-		...
+-
+-		/* Data cells */
+-		tsens_calibration: calib@404 {
+-			reg = <0x404 0x10>;
+-		};
+-
+-		tsens_calibration_bckp: calib_bckp@504 {
+-			reg = <0x504 0x11>;
+-			bits = <6 128>
+-		};
+-
+-		pvs_version: pvs-version@6 {
+-			reg = <0x6 0x2>
+-			bits = <7 2>
+-		};
+-
+-		speed_bin: speed-bin@c{
+-			reg = <0xc 0x1>;
+-			bits = <2 3>;
+-
+-		};
+-		...
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells/providers.
+-
+-Required-properties:
+-nvmem-cells: list of phandle to the nvmem data cells.
+-nvmem-cell-names: names for the each nvmem-cells specified. Required if
+-	nvmem-cells is used.
+-
+-Optional-properties:
+-nvmem	: list of phandles to nvmem providers.
+-nvmem-names: names for the each nvmem provider. required if nvmem is used.
+-
+-For example:
+-
+-	tsens {
+-		...
+-		nvmem-cells = <&tsens_calibration>;
+-		nvmem-cell-names = "calibration";
+-	};
++This file has been moved to nvmem.yaml and nvmem-consumer.yaml.
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+new file mode 100644
+index 000000000000..65ef2dbbb2a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/nvmem.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVMEM (Non Volatile Memory) Device Tree Bindings
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description: |
++  This binding is intended to represent the location of hardware
++  configuration data stored in NVMEMs like eeprom, efuses and so on.
++
++  On a significant proportion of boards, the manufacturer has stored
++  some data on NVMEM, for the OS to be able to retrieve these
++  information and act upon it. Obviously, the OS has to know about
++  where to retrieve these data from, and where they are stored on the
++  storage device.
++
++properties:
++  $nodename:
++    pattern: "^(eeprom|efuse|nvram)(@.*|-[0-9a-f])*$"
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  read-only:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Mark the provider as read only.
++
++patternProperties:
++  "^.*@[0-9a-f]+$":
++    type: object
++
++    properties:
++      reg:
++        maxItems: 1
++        description:
++          Offset and size in bytes within the storage device.
++
++      bits:
++        maxItems: 1
++        items:
++          items:
++            - minimum: 0
++              maximum: 7
++              description:
++                Offset in bit within the address range specified by reg.
++            - minimum: 1
++              description:
++                Size in bit within the address range specified by reg.
++
++    required:
++      - reg
++
++    additionalProperties: false
++
++examples:
++  - |
++      qfprom: qfprom@700000 {
++          #address-cells = <1>;
++          #size-cells = <1>;
++
++          /* ... */
++
++          /* Data cells */
++          tsens_calibration: calib@404 {
++              reg = <0x404 0x10>;
++          };
++
++          tsens_calibration_bckp: calib_bckp@504 {
++              reg = <0x504 0x11>;
++              bits = <6 128>;
++          };
++
++          pvs_version: pvs-version@6 {
++              reg = <0x6 0x2>;
++              bits = <7 2>;
++          };
++
++          speed_bin: speed-bin@c{
++              reg = <0xc 0x1>;
++              bits = <2 3>;
++          };
++      };
++
++...
+-- 
+2.21.0
 
-Cheers,
-Benjamin
