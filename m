@@ -2,70 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C533B44DF2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 22:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42B3F44DFB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 23:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728543AbfFMU7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 16:59:34 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:38238 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725747AbfFMU7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 16:59:34 -0400
-Received: by mail-qk1-f196.google.com with SMTP id a27so319832qkk.5;
-        Thu, 13 Jun 2019 13:59:33 -0700 (PDT)
+        id S1730262AbfFMVAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 17:00:39 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:43539 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727274AbfFMVAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 17:00:39 -0400
+Received: by mail-ua1-f68.google.com with SMTP id o2so83143uae.10
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 14:00:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ANvjNrcE6QQq73dnlL+mZyHS0xmMxjzetcJMdK2W1jQ=;
+        b=CXaGzb143DooLWuwJbQV6crBWgqXBWrbK4+440tGPl1wKAyG8snXREUHW1cU4JZmsm
+         FByj4Hbh/N7MYr7J1mbnB5t09OsVMCB1N4NOkq7QEs9SD5IFkvvlk2kM4aqXonR4pgZ7
+         0hbbny8wK43pD9gCj8eWhwnzsqv2xTicEtM7Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8gS1dRlTY9NF+DtZtqCgP0hW6HfTe3z8OAdjlpLy23g=;
-        b=O+nUy6mlM1Acb1uaXMUi/UQ3OSQC2PRTJt4JPYscNf+uCfMxsyEt2/fWzy4rJSqoOb
-         nJjZHuof4++QM0Unq+bxy4lsjwi+Ro7ZRnebFqw//Pf237DPh4qfZMbfaAA+gZBnH4PZ
-         XYPYCEU6z9u0pCwkzS6l0yWNpPrH6tQDwPDKCjVBDRj9m3wv9AirYbq5q1d4PGX5g2w/
-         ZLi48FXGU2NxMJ800WA74HCxTZCdDjMnTsgIGaOqulE7TyQaRWTJ4mZMimal+KhG77gL
-         Bl1FXLxX5MhUu5uVNegRktKKYsgEG/kUhUtoFQ4ADWeRRAuOYyGWYHk+ur0DJsviWNf6
-         xltA==
-X-Gm-Message-State: APjAAAX1ZGdE6xetIlwMdVNZ8I8Speyk8xiJT47FAq7G9tU2mHhrK3Bs
-        b3U96fWgJcE2l6HobAAqqg==
-X-Google-Smtp-Source: APXvYqwDgSwF2dSbUU9DX5FRctIU1tJHSsxmp68E6P2oHV84xkfNE37T6Ih+B8DDpnB0ICrYTBnkTA==
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr233325qke.223.1560459572884;
-        Thu, 13 Jun 2019 13:59:32 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id a11sm431020qkn.26.2019.06.13.13.59.31
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 13:59:31 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 14:59:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
-        lorenzo.pieralisi@arm.com, arnd@arndb.de,
-        gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
-        mingkai.hu@nxp.com, roy.zang@nxp.com, kstewart@linuxfoundation.org,
-        pombredanne@nexb.com, shawn.lin@rock-chips.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pci: layerscape-pci: add compatible
- strings "fsl,ls1028a-pcie"
-Message-ID: <20190613205930.GA9003@bogus>
-References: <20190515072747.39941-1-xiaowei.bao@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ANvjNrcE6QQq73dnlL+mZyHS0xmMxjzetcJMdK2W1jQ=;
+        b=RSZC++xq99RoPjAFFJbmg+0BH4PBKOt0FJ19xHB3aF3Ou08HwD5xjSXjzLMRnuYdJ1
+         6FTbHTYxGtOctZ7f327jPLQVoC9L9bO7CWPIWiwYasBj76K97Zg9SMYWKXObayj1mNHZ
+         UEbVXNBxYRl+WSQseSaxGayT/btxYkLy9qjKnNnrAXQT49F3cJr1VPidwPpOd18LQdTy
+         arbQMSkkvyV33h8XwYkFUJVjATe1uROchhTcriqaq64H2E0yB9YtZMnEq1tZQAPtezAH
+         MQeS/qsUeJJHPXMi8fsWHJvSy9TiqCFVEbOCIDjkFev0kvlNwE7hM2R+ZjFytwrpmztm
+         b+2w==
+X-Gm-Message-State: APjAAAUHbTZmRRYsOoGIbXfrdtJFNHpiiCJq/mUvkEBitPG25doiWXpU
+        lqt1ArOON/KWsrPju37SFBtl/cnXN+ENfJvQh24baQ==
+X-Google-Smtp-Source: APXvYqzlG0QFlUSsjLJYtq2bSsXOqJPxL2qmav8y+XGpEorpyChcZ6aWL5jxAoS7c6ipQTO+UOtbuYWiPAgZ4BuXj/Q=
+X-Received: by 2002:ab0:3d2:: with SMTP id 76mr17494821uau.12.1560459637540;
+ Thu, 13 Jun 2019 14:00:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190515072747.39941-1-xiaowei.bao@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190611040350.90064-1-dbasehore@chromium.org>
+ <20190611040350.90064-3-dbasehore@chromium.org> <CAL_JsqLM1CikZ8+NPjLk2CEW-z9vPynZpVG20x0jsa7hVq0LvA@mail.gmail.com>
+ <CAGAzgsoWGqf0JQPNyRFnv2xZTMxje6idce7Dy5FZzuxj30mQyw@mail.gmail.com> <CAL_Jsq+9K764hFT6GG=4paumGaxOUbnts4VJvTZ9a8Y-YPWdhg@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+9K764hFT6GG=4paumGaxOUbnts4VJvTZ9a8Y-YPWdhg@mail.gmail.com>
+From:   "dbasehore ." <dbasehore@chromium.org>
+Date:   Thu, 13 Jun 2019 14:00:26 -0700
+Message-ID: <CAGAzgsrNhumP2DEOff34cZ3UY=CV-EG1RM06Uf_tX3gdUMeSQg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: display/panel: Expand rotation documentation
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 May 2019 15:27:45 +0800, Xiaowei Bao wrote:
-> Add the PCIe compatible string for LS1028A
-> 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> ---
->  .../devicetree/bindings/pci/layerscape-pci.txt     |    1 +
->  1 files changed, 1 insertions(+), 0 deletions(-)
-> 
+On Thu, Jun 13, 2019 at 5:52 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Tue, Jun 11, 2019 at 4:02 PM dbasehore . <dbasehore@chromium.org> wrote:
+> >
+> > On Tue, Jun 11, 2019 at 8:25 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > On Mon, Jun 10, 2019 at 10:03 PM Derek Basehore <dbasehore@chromium.org> wrote:
+> > > >
+> > > > This adds to the rotation documentation to explain how drivers should
+> > > > use the property and gives an example of the property in a devicetree
+> > > > node.
+> > > >
+> > > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > > > ---
+> > > >  .../bindings/display/panel/panel.txt          | 32 +++++++++++++++++++
+> > > >  1 file changed, 32 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/panel/panel.txt b/Documentation/devicetree/bindings/display/panel/panel.txt
+> > > > index e2e6867852b8..f35d62d933fc 100644
+> > > > --- a/Documentation/devicetree/bindings/display/panel/panel.txt
+> > > > +++ b/Documentation/devicetree/bindings/display/panel/panel.txt
+> > > > @@ -2,3 +2,35 @@ Common display properties
+> > > >  -------------------------
+> > > >
+> > > >  - rotation:    Display rotation in degrees counter clockwise (0,90,180,270)
+> > > > +
+> > > > +Property read from the device tree using of of_drm_get_panel_orientation
+> > >
+> > > Don't put kernel specifics into bindings.
+> >
+> > Will remove that. I'll clean up the documentation to indicate that
+> > this binding creates a panel orientation property unless the rotation
+> > is handled in the Timing Controller on the panel if that sounds fine.
+>
+> Even if the timing ctrlr handles it, don't you still need to know what
+> the native orientation is?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Not really. For all intents and purposes, the orientation of the panel
+has changed.
+
+>
+> > > > +
+> > > > +The panel driver may apply the rotation at the TCON level, which will
+> > >
+> > > What's TCON? Something Mediatek specific IIRC.
+> >
+> > The TCON is the Timing controller, which is on the panel. Every panel
+> > has one. I'll add to the doc that the TCON is in the panel, etc.
+> >
+> > >
+> > > > +make the panel look like it isn't rotated to the kernel and any other
+> > > > +software.
+> > > > +
+> > > > +If not, a panel orientation property should be added through the SoC
+> > > > +vendor DRM code using the drm_connector_init_panel_orientation_property
+> > > > +function.
+> > >
+> > > The 'rotation' property should be defined purely based on how the
+> > > panel is mounted relative to a device's orientation. If the display
+> > > pipeline has some ability to handle rotation, that's a feature of the
+> > > display pipeline and not the panel.
+> >
+> > This is how the panel orientation property is already handled in the
+> > kernel. See drivers/gpu/drm/i915/vlv_dsi.c for more details.
+>
+> The point is your description is all about the kernel. This is a
+> binding which is not kernel specific.
+
+Ah, I see. I thought you were saying what the implementation should be.
+
+>
+> > > > +
+> > > > +Example:
+> > >
+> > > This file is a collection of common properties. It shouldn't have an
+> > > example especially as this example is mostly non-common properties.
+> >
+> > Just copied one of our DTS entries that uses the property. I'll remove
+> > everything under compatible except for rotation and status.
+>
+> Just remove the example or add what you want to the "boe,himax8279d8p"
+> binding doc. We are moving towards examples being compiled and
+> validated, so incomplete ones won't work.
+
+Ok, will do.
+
+>
+> Rob
+
+Thanks for the quick reviews.
