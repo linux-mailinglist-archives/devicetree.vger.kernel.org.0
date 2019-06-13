@@ -2,273 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB9043BE4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC97943BB1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728507AbfFMPcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:32:19 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:6058 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728488AbfFMKtw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 06:49:52 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d022a4c0000>; Thu, 13 Jun 2019 03:49:49 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Thu, 13 Jun 2019 03:49:49 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Thu, 13 Jun 2019 03:49:49 -0700
-Received: from tbergstrom-lnx.Nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
- 2019 10:49:48 +0000
-Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
-        id D21EA428B8; Thu, 13 Jun 2019 13:49:45 +0300 (EEST)
-Date:   Thu, 13 Jun 2019 13:49:45 +0300
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "Prashant Gaikwad" <pgaikwad@nvidia.com>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/8] clk: tegra20/30: Add custom EMC clock
- implementation
-Message-ID: <20190613104945.GJ29894@pdeschrijver-desktop.Nvidia.com>
-References: <20190524172353.29087-1-digetx@gmail.com>
- <20190524172353.29087-2-digetx@gmail.com>
+        id S1728237AbfFMPar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:30:47 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:35535 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728667AbfFMLJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 07:09:14 -0400
+Received: by mail-wm1-f67.google.com with SMTP id c6so9691894wml.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 04:09:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DB2ymoMUDc6KVKZd31hZLwNlwKiWHLGwTThu+RNF8Pw=;
+        b=NKNfBrS3w1T+MzUAyWsWKKnkqjXhfCQWp4viwIcR2G4X3HXuCScV0Ib7cTIugkm4up
+         RaUBuzrS3VquYgjUQXxKH4zYX63mlqATkLxSholHDkrUc+zw8jgkZiKyuFeggN4UFOe7
+         OxZo8c1eSGq+vCm+Yg6R8h+FVEwIjZDlTsRBWF3sMxvlD2HZ5nCumB5/YakwqBXulMvg
+         UD+n7H14NB+Dk3XU5QofIOsso9yAEqRwy2ZZzWPEZXDcE3agXilEwFnI8qVya3+TQVtz
+         JJyhU0LXQXlvFWx08y1xsh9u9U6e7Blx/jcOHaDerqf8QFGQqrJ58pjwbU3YqkefXe36
+         601w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=DB2ymoMUDc6KVKZd31hZLwNlwKiWHLGwTThu+RNF8Pw=;
+        b=SgZR/AImbj75vlXRlJCwPLkAlQDcIxrlY4ri6XoSfgWLD4tP+KFzfZ28wMpakwIkjF
+         psBb7reQ4WpYO1Z2n0sSEIKEbUGQLroTlGoW01DIIMYlYXYqQWVrhe+syNaAcYtyvFKO
+         wQaMkyBTSBItZKI5Nco981VTtRR/AXOcoJYj5nGRiZ3BXCApXaKdoQwuQnDFHmSlGeDY
+         uZeBFkFC5tOQmXpaYJLJXmFAm1FJQd6JeqrszSdcfJBC37W4ZC9V7mK2D78Jh94MTyr6
+         a3uTQ10HLOBLGLLuh8TP0q1tcJjByJz/f7q5y1QyaNVtFGgd7uu6Z5QjcDfGxqgTMWYV
+         S6rA==
+X-Gm-Message-State: APjAAAU6lONBbthOPaGMK+7FUlWGug8QFjvCvfNFB587U3pja5ozlFH6
+        HkqTWQCJEIbXhRGY4Kvz5rVsyw==
+X-Google-Smtp-Source: APXvYqzxwXUvpJu+eTgSRHDqK5JGjU8X0kpO9Gv/9ntBMljsVPhU15lFTS4qww9Baz7A+LqxxJIL1w==
+X-Received: by 2002:a1c:c003:: with SMTP id q3mr3300657wmf.42.1560424150892;
+        Thu, 13 Jun 2019 04:09:10 -0700 (PDT)
+Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
+        by smtp.googlemail.com with ESMTPSA id x17sm3139429wrq.64.2019.06.13.04.09.08
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Jun 2019 04:09:09 -0700 (PDT)
+Subject: Re: [PATCH repost] dt-bindings: timer: renesas, cmt: Document
+ r8a779{5|65|90} CMT support
+To:     Simon Horman <horms@verge.net.au>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-renesas-soc@vger.kernel.org
+Cc:     Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Cao Van Dong <cv-dong@jinso.co.jp>
+References: <20190509122949.23256-1-horms+renesas@verge.net.au>
+ <20190613101219.vx4ht6dixxu7fioi@verge.net.au>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <7171405c-4647-173f-2883-c7a281e998ea@linaro.org>
+Date:   Thu, 13 Jun 2019 13:09:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190524172353.29087-2-digetx@gmail.com>
-X-NVConfidentiality: public
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560422990; bh=Svkffrzg9Qo8t+19JaPU6eSSVSlhSnK0UJSc2PwhXqY=;
-        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
-         MIME-Version:Content-Type:Content-Disposition:In-Reply-To:
-         X-NVConfidentiality:User-Agent:X-Originating-IP:X-ClientProxiedBy;
-        b=UKErXfoZX8fBeo8pJphs+pXKPN/qUdnPdhh3imY7LG5sN8OAz+LuncRLyMAgLSEdt
-         wXQIkM6Juzou5eZVAnilQQl2n9g5wqfZSIVDQdCGi4j14pK3cOGRaW1tdrQyXQP75l
-         s+hDhqTcpPsOTx/5fBqSWlc4eJaXuT4sOb6FgGWXzMfq3KJJYuwSZX7vMbr3BM7Ce0
-         Pt5kOtXEh5OyxULRG7WwJE2owokAKwPX3txvXSjQUJZnsZbVMNtrHLh6gcCFZeP8Nf
-         CXVAc4Ok5n/txeHnjhD/4sskTMEcISpcQeGRM/FRjq13Ipx3VSqlVcQ05w3BZKoGKo
-         1LsvbSMAeamCA==
+In-Reply-To: <20190613101219.vx4ht6dixxu7fioi@verge.net.au>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 08:23:46PM +0300, Dmitry Osipenko wrote:
-> A proper External Memory Controller clock rounding and parent selection
-> functionality is required by the EMC drivers. It is not available using
-> the generic clock implementation, hence add a custom one. The clock rate
-> rounding shall be done by the EMC drivers because they have information
-> about available memory timings, so the drivers will have to register a
-> callback that will round the requested rate. EMC clock users won't be able
-> to request EMC clock by getting -EPROBE_DEFER until EMC driver is probed
-> and the callback is set up. The functionality is somewhat similar to the
-> clk-emc.c which serves Tegra124+ SoC's, the later HW generations support
-> more parent clock sources and the HW configuration and integration with
-> the EMC drivers differs a tad from the older gens, hence it's not really
-> worth to try to squash everything into a single source file.
+On 13/06/2019 12:12, Simon Horman wrote:
+> On Thu, May 09, 2019 at 02:29:49PM +0200, Simon Horman wrote:
+>> From: Cao Van Dong <cv-dong@jinso.co.jp>
+>>
+>> Document SoC specific bindings for R-Car H3/M3-N/E3 SoCs.
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/clk/tegra/Makefile          |   2 +
->  drivers/clk/tegra/clk-tegra20-emc.c | 299 ++++++++++++++++++++++++++++
->  drivers/clk/tegra/clk-tegra20.c     |  55 ++---
->  drivers/clk/tegra/clk-tegra30.c     |  38 +++-
->  drivers/clk/tegra/clk.h             |   6 +
->  include/linux/clk/tegra.h           |  14 ++
->  6 files changed, 362 insertions(+), 52 deletions(-)
->  create mode 100644 drivers/clk/tegra/clk-tegra20-emc.c
+> Hi Daniel and Thomas,
 > 
-> diff --git a/drivers/clk/tegra/Makefile b/drivers/clk/tegra/Makefile
-> index 4812e45c2214..df966ca06788 100644
-> --- a/drivers/clk/tegra/Makefile
-> +++ b/drivers/clk/tegra/Makefile
-> @@ -17,7 +17,9 @@ obj-y					+= clk-tegra-fixed.o
->  obj-y					+= clk-tegra-super-gen4.o
->  obj-$(CONFIG_TEGRA_CLK_EMC)		+= clk-emc.o
->  obj-$(CONFIG_ARCH_TEGRA_2x_SOC)         += clk-tegra20.o
-> +obj-$(CONFIG_ARCH_TEGRA_2x_SOC)		+= clk-tegra20-emc.o
->  obj-$(CONFIG_ARCH_TEGRA_3x_SOC)         += clk-tegra30.o
-> +obj-$(CONFIG_ARCH_TEGRA_3x_SOC)		+= clk-tegra20-emc.o
->  obj-$(CONFIG_ARCH_TEGRA_114_SOC)	+= clk-tegra114.o
->  obj-$(CONFIG_ARCH_TEGRA_124_SOC)	+= clk-tegra124.o
->  obj-$(CONFIG_TEGRA_CLK_DFLL)		+= clk-tegra124-dfll-fcpu.o
-> diff --git a/drivers/clk/tegra/clk-tegra20-emc.c b/drivers/clk/tegra/clk-tegra20-emc.c
-> new file mode 100644
-> index 000000000000..d971b5425ce3
-> --- /dev/null
-> +++ b/drivers/clk/tegra/clk-tegra20-emc.c
-> @@ -0,0 +1,299 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/bits.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/clk/tegra.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/slab.h>
-> +
-> +#include "clk.h"
-> +
-> +#define CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK	GENMASK(7, 0)
-> +#define CLK_SOURCE_EMC_2X_CLK_SRC_MASK		GENMASK(31, 30)
-> +#define CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT		30
-> +
-> +#define MC_EMC_SAME_FREQ	BIT(16)
-> +#define USE_PLLM_UD		BIT(29)
-> +
-> +#define EMC_SRC_PLL_M		0
-> +#define EMC_SRC_PLL_C		1
-> +#define EMC_SRC_PLL_P		2
-> +#define EMC_SRC_CLK_M		3
-> +
-> +static const char * const emc_parent_clk_names[] = {
-> +	"pll_m", "pll_c", "pll_p", "clk_m",
-> +};
-> +
-> +struct tegra_clk_emc {
-> +	struct clk_hw hw;
-> +	void __iomem *reg;
-> +	bool mc_same_freq;
-> +	bool want_low_jitter;
-> +
-> +	tegra20_clk_emc_round_cb *round_cb;
-> +	void *cb_arg;
-> +};
-> +
-> +static inline struct tegra_clk_emc *to_tegra_clk_emc(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct tegra_clk_emc, hw);
-> +}
-> +
-> +static unsigned long emc_recalc_rate(struct clk_hw *hw,
-> +				     unsigned long parent_rate)
-> +{
-> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
-> +	u32 val, div;
-> +
-> +	val = readl_relaxed(emc->reg);
-> +	div = val & CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
-> +
-> +	return DIV_ROUND_UP(parent_rate * 2, div + 2);
-> +}
-> +
-> +static u8 emc_get_parent(struct clk_hw *hw)
-> +{
-> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
-> +
-> +	return readl_relaxed(emc->reg) >> CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
-> +}
-> +
-> +static int emc_set_parent(struct clk_hw *hw, u8 index)
-> +{
-> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
-> +	u32 val, div;
-> +
-> +	val = readl_relaxed(emc->reg);
-> +	val &= ~CLK_SOURCE_EMC_2X_CLK_SRC_MASK;
-> +	val |= index << CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
-> +
-> +	div = val & CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
-> +
-> +	if (index == EMC_SRC_PLL_M && div == 0 && emc->want_low_jitter)
-> +		val |= USE_PLLM_UD;
-> +	else
-> +		val &= ~USE_PLLM_UD;
-> +
-> +	if (emc->mc_same_freq)
-> +		val |= MC_EMC_SAME_FREQ;
-> +	else
-> +		val &= ~MC_EMC_SAME_FREQ;
-> +
-> +	writel_relaxed(val, emc->reg);
-> +
+> would you object to me taking this patch through the renesas tree.
+> It has been outstanding for some time now.
 
-I think technically you need a fence_udelay(1) here, but in practice
-this is probably not needed because you will poll some EMC register for
-the frequency completion anyway. Maybe add a comment about this?
+Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-> +	return 0;
-> +}
-> +
-> +static int emc_set_rate(struct clk_hw *hw, unsigned long rate,
-> +			unsigned long parent_rate)
-> +{
-> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
-> +	unsigned int index;
-> +	u32 val, div;
-> +
-> +	div = div_frac_get(rate, parent_rate, 8, 1, 0);
-> +
-> +	val = readl_relaxed(emc->reg);
-> +	val &= ~CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
-> +	val |= div;
-> +
-> +	index = val >> CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
-> +
-> +	if (index == EMC_SRC_PLL_M && div == 0 && emc->want_low_jitter)
-> +		val |= USE_PLLM_UD;
-> +	else
-> +		val &= ~USE_PLLM_UD;
-> +
-> +	if (emc->mc_same_freq)
-> +		val |= MC_EMC_SAME_FREQ;
-> +	else
-> +		val &= ~MC_EMC_SAME_FREQ;
-> +
-> +	writel_relaxed(val, emc->reg);
-> +
 
-Same here.
+>> Signed-off-by: Cao Van Dong <cv-dong@jinso.co.jp>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+>> ---
+>>  Documentation/devicetree/bindings/timer/renesas,cmt.txt | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.txt b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+>> index c0594450e9ef..c5220bcd852b 100644
+>> --- a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+>> +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+>> @@ -42,12 +42,18 @@ Required Properties:
+>>      - "renesas,r8a7793-cmt1" for the 48-bit CMT1 device included in r8a7793.
+>>      - "renesas,r8a7794-cmt0" for the 32-bit CMT0 device included in r8a7794.
+>>      - "renesas,r8a7794-cmt1" for the 48-bit CMT1 device included in r8a7794.
+>> +    - "renesas,r8a7795-cmt0" for the 32-bit CMT0 device included in r8a7795.
+>> +    - "renesas,r8a7795-cmt1" for the 48-bit CMT1 device included in r8a7795.
+>>      - "renesas,r8a7796-cmt0" for the 32-bit CMT0 device included in r8a7796.
+>>      - "renesas,r8a7796-cmt1" for the 48-bit CMT1 device included in r8a7796.
+>> +    - "renesas,r8a77965-cmt0" for the 32-bit CMT0 device included in r8a77965.
+>> +    - "renesas,r8a77965-cmt1" for the 48-bit CMT1 device included in r8a77965.
+>>      - "renesas,r8a77970-cmt0" for the 32-bit CMT0 device included in r8a77970.
+>>      - "renesas,r8a77970-cmt1" for the 48-bit CMT1 device included in r8a77970.
+>>      - "renesas,r8a77980-cmt0" for the 32-bit CMT0 device included in r8a77980.
+>>      - "renesas,r8a77980-cmt1" for the 48-bit CMT1 device included in r8a77980.
+>> +    - "renesas,r8a77990-cmt0" for the 32-bit CMT0 device included in r8a77990.
+>> +    - "renesas,r8a77990-cmt1" for the 48-bit CMT1 device included in r8a77990.
+>>  
+>>      - "renesas,rcar-gen2-cmt0" for 32-bit CMT0 devices included in R-Car Gen2
+>>  		and RZ/G1.
+>> -- 
+>> 2.11.0
+>>
 
-> +	return 0;
-> +}
-> +
-> +static int emc_set_rate_and_parent(struct clk_hw *hw,
-> +				   unsigned long rate,
-> +				   unsigned long parent_rate,
-> +				   u8 index)
-> +{
-> +	struct tegra_clk_emc *emc = to_tegra_clk_emc(hw);
-> +	u32 val, div;
-> +
-> +	div = div_frac_get(rate, parent_rate, 8, 1, 0);
-> +
-> +	val = readl_relaxed(emc->reg);
-> +
-> +	val &= ~CLK_SOURCE_EMC_2X_CLK_SRC_MASK;
-> +	val |= index << CLK_SOURCE_EMC_2X_CLK_SRC_SHIFT;
-> +
-> +	val &= ~CLK_SOURCE_EMC_2X_CLK_DIVISOR_MASK;
-> +	val |= div;
-> +
-> +	if (index == EMC_SRC_PLL_M && div == 0 && emc->want_low_jitter)
-> +		val |= USE_PLLM_UD;
-> +	else
-> +		val &= ~USE_PLLM_UD;
-> +
-> +	if (emc->mc_same_freq)
-> +		val |= MC_EMC_SAME_FREQ;
-> +	else
-> +		val &= ~MC_EMC_SAME_FREQ;
-> +
-> +	writel_relaxed(val, emc->reg);
-> +
 
-And here.
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-> +	return 0;
-> +}
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-Peter.
