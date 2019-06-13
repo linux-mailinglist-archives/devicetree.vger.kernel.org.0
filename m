@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 128D744B1B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D9744B30
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726893AbfFMSvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 14:51:41 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41338 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725838AbfFMSvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:51:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=AoGVTpO9zrb+1lSUsvcK/kqe1TkrIDM1OzuifM0MG0U=; b=OkUzokA5JOaF9gqrT7UHxscsl
-        x/RbwO++AjM1cPG8ubPFKMxiWTkecrOJ1+dZ5FURuOCDSD6MBr45g1tjf/V4u07vJRnNK1tUahczJ
-        W21wqeZAnEjcBYvj21LGo7dpAPjqTgcpw7OnJ/DzQHgL0LNWT0TT7zy1ntTYSB6lf+UMU=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hbUoz-0005QJ-1f; Thu, 13 Jun 2019 18:51:37 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 8C75E440046; Thu, 13 Jun 2019 19:51:36 +0100 (BST)
-Date:   Thu, 13 Jun 2019 19:51:36 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     lgirdwood@gmail.com, agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, jorge.ramirez-ortiz@linaro.org,
-        niklas.cassel@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] drivers: regulator: qcom_spmi: enable linear
- range info
-Message-ID: <20190613185136.GW5316@sirena.org.uk>
-References: <20190606184842.39484-1-jeffrey.l.hugo@gmail.com>
- <20190606184923.39537-1-jeffrey.l.hugo@gmail.com>
+        id S1729463AbfFMSxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 14:53:47 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:43572 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729236AbfFMSxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:53:47 -0400
+Received: by mail-pl1-f196.google.com with SMTP id cl9so8506136plb.10
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 11:53:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F8d7m1DDnqH/bUU0S136tJmuahNrjwjbhZ2wXcmIkdw=;
+        b=XYnYivhjrL8PvMkvcXOzIdoB8lf1mxtbUYycZaEG3qDzZOBTZW8NEM4v6Fq3KNpMR1
+         V9M4+v2ssLCBbmr5ZhabNGscBCasuvkwnhUqZ54hKPn1YDbi6BS99GW/25z7RJoSLomS
+         zMZ0+g/bDTm+xsqCnr1Clt8/yhkTCEp0Kf8g8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F8d7m1DDnqH/bUU0S136tJmuahNrjwjbhZ2wXcmIkdw=;
+        b=an9c8wAEIqWYn9TUOpI/WwdO4HQub/ZQAn9XDTPp/Js9ywaWPm2hPu66b0WhLwbrwS
+         aK+xEuniT77aKJSPv/tRT9HO6ckQbA+jYNsyIFANrHw1IJxaOntlyhqIgE8YAu/8+Dwx
+         V+KGwQaoU0aVt7P7Evk5zRg3bqKiG3q1mDjdOK0/5lVbGBrZa+VdQLmRIGx6pkEDLT6w
+         MTcZhgjtN6qYgk8e2S9GzcNKA9I+hdOpzlO0lpK8EHtpZBqWkwBLpEmpx8pHbwZJMswO
+         2D5eX7W/7YH1Q0+1k+PK8HhXuwlN73iIFsFjZExGBazzmVgVlIr0tUzbbR8bqnuSbRO3
+         +LZA==
+X-Gm-Message-State: APjAAAUxhfL3AlGJzcOj7nfPWhsM3rVfUkAw7QqcjfzCVusvdKesQlYk
+        cTYSgEDCn+G6XD+H/dC5N4pnNg==
+X-Google-Smtp-Source: APXvYqxKp7XuhbcSPIGuqB4Br4J+FEyezdRc8LcQCzcSqRvzjXK5pGpx+EH6W3hDqkSMxv54g7UEGQ==
+X-Received: by 2002:a17:902:a5c5:: with SMTP id t5mr90864681plq.288.1560452026080;
+        Thu, 13 Jun 2019 11:53:46 -0700 (PDT)
+Received: from localhost.localdomain ([115.97.180.18])
+        by smtp.gmail.com with ESMTPSA id p43sm946314pjp.4.2019.06.13.11.53.40
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Jun 2019 11:53:45 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 0/9] drm/sun4i: Allwinner R40 MIPI-DSI support
+Date:   Fri, 14 Jun 2019 00:22:32 +0530
+Message-Id: <20190613185241.22800-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ahZICQ7iXVM/oLYH"
-Content-Disposition: inline
-In-Reply-To: <20190606184923.39537-1-jeffrey.l.hugo@gmail.com>
-X-Cookie: Editing is a rewording activity.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is initial version for supporting MIPI-DSI on Allwinner R40.
 
---ahZICQ7iXVM/oLYH
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The controller look similar like, Allwinnwe A64 so it has
+dependencies with A64 MIPI DSI changes, DSI fixes and R40 pwm 
+driver [1] [2] [3] 
 
-On Thu, Jun 06, 2019 at 11:49:23AM -0700, Jeffrey Hugo wrote:
+PLL-MIPI, dclk divders logic bpp/lanes are properly work for R40,
+like A31, A64.
 
-> +		if (vreg->logical_type =3D=3D SPMI_REGULATOR_LOGICAL_TYPE_HFS430) {
-> +			/* since there is only one range */
-> +			range =3D spmi_regulator_find_range(vreg);
-> +			vreg->desc.uV_step =3D range->step_uV;
-> +		}
+patch 1, 2: TCON LCD support
 
-This doesn't build for me:
+patch 3, 4: Use clock index macros instead of numbers
 
-drivers/regulator/qcom_spmi-regulator.c: In function =E2=80=98qcom_spmi_reg=
-ulator_probe=E2=80=99:
-drivers/regulator/qcom_spmi-regulator.c:1837:29: error: =E2=80=98SPMI_REGUL=
-ATOR_LOGICAL_TYPE_HFS430=E2=80=99 undeclared (first use in this function); =
-did you mean =E2=80=98SPMI_REGULATOR_LOGICAL_TYPE_FTSMPS=E2=80=99?
-   if (vreg->logical_type =3D=3D SPMI_REGULATOR_LOGICAL_TYPE_HFS430) {
-                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                             SPMI_REGULATOR_LOGICAL_TYPE_FTSMPS
-drivers/regulator/qcom_spmi-regulator.c:1837:29: note: each undeclared iden=
-tifier is reported only once for each function it appears in
+patch 5: Add tcon top lcd clocking
 
---ahZICQ7iXVM/oLYH
-Content-Type: application/pgp-signature; name="signature.asc"
+patch 6, 7: Add dt-bindings for r40 dsi, dphy
 
------BEGIN PGP SIGNATURE-----
+patch 8: Add R40 MIPI DSI pipeline
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0CmzcACgkQJNaLcl1U
-h9BLcAf+LbREmfxXdirC6a4pyidOidMHVXvJ5RSlum+DW3aj56vF/aXiYyZm9d2C
-4I+6WFnpU6GIbsNXcYPRkng30IZO5++Da8NPRPyYhcmBs+pJhpQjlPiPg6UK2/iB
-AmsQStemH0Zi1crGMEeLU/nYREfZpTnS9GXH4r5SMvja5EigTEKfSqlhoWl5hoJd
-INPx2zNjnBP21hVt0aUs+uEj2xiAuwMrN8VtHT152T51jVofsIxXZYBXtmSFKdLJ
-9nkFy36LT6YA2gso7Caw+ku3SYPfXgkPu7YdOjnlFOp5sDC2dX7nlKeAZwiphDcU
-IgFxUVv32eyNOS7wxahaxSq/ypFIPg==
-=u3Lf
------END PGP SIGNATURE-----
+patch 9: Overlay patch to test it on BPI-M2U
 
---ahZICQ7iXVM/oLYH--
+[1] https://patchwork.freedesktop.org/series/61310/
+[2] https://patchwork.freedesktop.org/series/60847/ 
+[3] https://lore.kernel.org/patchwork/cover/862766/ 
+
+Jagan Teki (9):
+  dt-bindings: display: Add TCON LCD compatible for R40
+  drm/sun4i: tcon: Add TCON LCD support for R40
+  ARM: dts: sun8i: r40: Use tcon top clock index macros
+  drm/sun4i: tcon_top: Use clock name index macros
+  ARM: dts: sun8i: r40: Add TCON TOP LCD clocking
+  dt-bindings: sun6i-dsi: Add R40 MIPI-DSI compatible (w/ A64 fallback)
+  dt-bindings: sun6i-dsi: Add R40 DPHY compatible (w/ A31 fallback)
+  ARM: dts: sun8i: r40: Add MIPI DSI pipeline
+  [DO NOT MERGE] ARM: dts: sun8i-r40: bananapi-m2-ultra: Enable Bananapi S070WV20-CT16 DSI panel
+
+ .../bindings/display/sunxi/sun4i-drm.txt      |  1 +
+ .../bindings/display/sunxi/sun6i-dsi.txt      |  2 +
+ .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 36 ++++++++
+ arch/arm/boot/dts/sun8i-r40.dtsi              | 84 +++++++++++++++++--
+ drivers/gpu/drm/sun4i/sun4i_tcon.c            |  7 ++
+ drivers/gpu/drm/sun4i/sun8i_tcon_top.c        | 13 +--
+ include/dt-bindings/clock/sun8i-tcon-top.h    |  2 +-
+ 7 files changed, 134 insertions(+), 11 deletions(-)
+
+-- 
+2.18.0.321.gffc6fa0e3
+
