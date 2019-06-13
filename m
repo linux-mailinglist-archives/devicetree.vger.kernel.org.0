@@ -2,77 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B61D444FB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E604441D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388721AbfFMQk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:40:56 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:50050 "EHLO deadmen.hmeau.com"
+        id S1731756AbfFMQey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:34:54 -0400
+Received: from mail.skyhub.de ([5.9.137.197]:55032 "EHLO mail.skyhub.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730569AbfFMG4u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 02:56:50 -0400
-Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
-        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
-        id 1hbJf4-0006EI-Qa; Thu, 13 Jun 2019 14:56:38 +0800
-Received: from herbert by gondobar with local (Exim 4.89)
-        (envelope-from <herbert@gondor.apana.org.au>)
-        id 1hbJf0-00055K-Vu; Thu, 13 Jun 2019 14:56:35 +0800
-Date:   Thu, 13 Jun 2019 14:56:34 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Horia Geanta <horia.geanta@nxp.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Aymen Sghaier <aymen.sghaier@nxp.com>,
-        Iuliana Prodan <iuliana.prodan@nxp.com>,
-        Franck Lenormand <franck.lenormand@nxp.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
+        id S1730746AbfFMHrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 03:47:17 -0400
+Received: from zn.tnic (p4FED33E6.dip0.t-ipconnect.de [79.237.51.230])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 41E811EC0467;
+        Thu, 13 Jun 2019 09:47:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1560412035;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=cLB+4gRke9C3b3E7syS14drpp+imhytrTs84H2cq9QA=;
+        b=EuWG6v2v9iwz/FPBTrezV2bIJ67quXws3z4Ak4mdc40Tguqu7d/8Wh4Mwn6do7y4ZLCCPe
+        rMVMT//1awaGZ8QuWP6Nop4PcSac6TPtYoQFWFPQpUjMSkeGY1GoKQKQT0NChLNqK08ZeT
+        oBMn1cwYRyY7P8z6+XauL4qptEUOVmA=
+Date:   Thu, 13 Jun 2019 09:44:57 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc:     James Morse <james.morse@arm.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: imx7ulp: add crypto support
-Message-ID: <20190613065634.alck5wads6toe7uk@gondor.apana.org.au>
-References: <20190606080255.25504-1-horia.geanta@nxp.com>
- <20190612103926.GE11086@dragon>
- <VI1PR0402MB3485A573518D60A573BA55C298EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
- <20190612130602.GH11086@dragon>
- <VI1PR0402MB348596BF52CE43B5D4CD534798EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
- <20190612132600.GI11086@dragon>
- <20190612135952.ds6zzh7ppahiuodd@gondor.apana.org.au>
- <20190613004709.GB20747@dragon>
+        "Shenhar, Talel" <talel@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "Hanoch, Uri" <hanochu@amazon.com>
+Subject: Re: [PATCH 2/2] edac: add support for Amazon's Annapurna Labs EDAC
+Message-ID: <20190613074457.GB11598@zn.tnic>
+References: <9a2aaf4a9545ed30568a0613e64bc3f57f047799.camel@kernel.crashing.org>
+ <20190608090556.GA32464@zn.tnic>
+ <1ae5e7a3464f9d8e16b112cd371957ea20472864.camel@kernel.crashing.org>
+ <68446361fd1e742b284555b96b638fe6b5218b8b.camel@kernel.crashing.org>
+ <20190611115651.GD31772@zn.tnic>
+ <6df5a17bb1c900dc69b991171e55632f40d9426f.camel@kernel.crashing.org>
+ <20190612034813.GA32652@zn.tnic>
+ <08bd58dc0045670223f8d3bbc8be774505bd3ddf.camel@kernel.crashing.org>
+ <20190612104238.GG32652@zn.tnic>
+ <2a53690aa81a406b9a6290f70e47470d0f698f00.camel@kernel.crashing.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190613004709.GB20747@dragon>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <2a53690aa81a406b9a6290f70e47470d0f698f00.camel@kernel.crashing.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 08:47:10AM +0800, Shawn Guo wrote:
-> On Wed, Jun 12, 2019 at 09:59:52PM +0800, Herbert Xu wrote:
-> > On Wed, Jun 12, 2019 at 09:26:02PM +0800, Shawn Guo wrote:
-> > >
-> > > Yes, it happens from time to time depending on maintainer's style. I'm
-> > > fine with the DT changes going through other subsystem tree, if the
-> > > subsystem maintainer wants to and is willing to take the risk of merge
-> > > conflict between his tree and arm-soc tree.
-> > 
-> > I have no problems with potential merge conflicts.
-> 
-> Then feel free to take it:
-> 
-> Acked-by: Shawn Guo <shawnguo@kernel.org>
+On Thu, Jun 13, 2019 at 09:54:18AM +1000, Benjamin Herrenschmidt wrote:
+> It tends to be a slippery slope. Also in the ARM world, most SoC tend
+> to re-use IP blocks, so you get a lot of code duplication, bug fixed in
+> one and not the other etc...
 
-Patch applied.  Thanks.
+Yes, I'd like to be able to reuse EDAC drivers if they're for single IP
+blocks and those IP blocks get integrated by multiple vendors.
+
+> I don't necessarily mind having a "platform" component that handles
+> policies in case where userspace is really not an option, but it
+> shouldn't be doing it by containing the actual drivers for the
+> individual IP block error collection. It could however "use" them via
+> in-kernel APIs.
+
+Ok, sounds good.
+
+> Those are rare. At the end of the day, if you have a UE on memory, it's
+> a matter of luck. It could have hit your kernel as well. You get lucky
+> it only hit userspace but you can't make a general statement you "can't
+> trust userspace".
+
+I'm not saying that - I'm saying that if we're going to do a
+comprehensive solution we better address all possible error severities
+with adequate handling.
+
+> Cache errors tend to be the kind that tend to have to be addressed
+> immediately, but even then, that's often local to some architecture
+> machine check handling, not even in EDAC.
+
+That's true.
+
+> Do you have a concrete example of a type of error that
+> 
+>  - Must be addressed in the kernel
+> 
+>  - Relies on coordinating drivers for more than one IP block
+> 
+> ?
+
+My usual example at the end of the #MC handler on x86, do_machine_check():
+
+        /* Fault was in user mode and we need to take some action */
+        if ((m.cs & 3) == 3) {
+                ist_begin_non_atomic(regs);
+                local_irq_enable();
+
+                if (kill_it || do_memory_failure(&m))
+                        force_sig(SIGBUS, current);
+
+we try to poison and if we fail or have to kill the process anyway, off
+it goes.
+
+Yes, this is not talking to EDAC drivers yet but is exemplary for a more
+involved recovery action.
+
+> Even then though, my argument would be that the right way to do that,
+> assuming that's even platform specific, would be to have then the
+> "platform RAS driver" just layout on top of the individual EDAC drivers
+> and consume their output. Not contain the drivers themselves.
+
+Ok, that's a fair point and I like the design of that.
+
+> Using machine checks, not EDAC. It's completely orghogonal at this
+> point at least.
+
+No, it is using errors reported through the Machine Check Architecture.
+EDAC uses the same DRAM error reports. They all come from MCA on x86. It
+is a whole notifier chain which gets to see those errors but they all
+come from MCA.
+
+PCI errors get reported differently, of course.
+
+EDAC is just a semi-dumb layer around some of those error reporting
+mechanisms.
+
+> That said, it would make sense to have an EDAC API to match that
+> address back into a DIMM location and give user an informational
+> message about failures happening on that DIMM. But that could be done
+> via core EDAC MC APIs.
+
+That's what the EDAC drivers on x86 do. All of them :-)
+
+> Here too, no need for having an over-arching platform driver.
+
+Yes, the EDAC drivers which implement all the memory controller
+functionality, already do that mapping back. Or at least try to. There's
+firmware doing that on x86 too but that's a different story.
+
+<will reply to the rest later in another mail as this one is becoming
+too big anyway>.
+
+Thx.
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Regards/Gruss,
+    Boris.
+
+Good mailing practices for 400: avoid top-posting and trim the reply.
