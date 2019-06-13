@@ -2,234 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35CAC43C00
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F4343C74
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732233AbfFMPdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:33:21 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:44343 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728414AbfFMPdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:33:20 -0400
-Received: by mail-pg1-f195.google.com with SMTP id n2so11146621pgp.11
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 08:33:19 -0700 (PDT)
+        id S1727129AbfFMPgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:36:05 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:34691 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731971AbfFMPf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:35:28 -0400
+Received: by mail-io1-f68.google.com with SMTP id k8so17886380iot.1;
+        Thu, 13 Jun 2019 08:35:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=7C1f1C5uhHgrsCyslhIHxZEDisNbcyzQwjds3pYprRw=;
-        b=N7sbRlvDX4SDO0+K68ItEnXY8fSYiXCSdNUVA+g9o87sdLJRL+xldFdZ3LctZFLO/9
-         47vQYKlqGpknu37lJnhmLR38SUFk2uCG7Ps5L/Q5aCtNeMZczF+LVPKKPDbW8VaeL7WI
-         CZtN6dN09nfE6hSRbkEzbIv9Xts6tolEHB6biiE/P463ykfCrMw99cdLHSs5Pv6Zgrnm
-         OdoqqlAkgHd0Nz5cwRyl3M+81Szrrqxn6cRe+Y1g0ke1swc/KpTVLF3qrcnHGPgv0B+B
-         DoZVWM0gAsQUjHuBGO0fdY4CSffZ2oRPq2et87I3Eo5NCgcms1xPZLWNsD04qcleRH6D
-         TjMg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aF7WfJBqic6Edz88lRv/0CL+oI9ZSIdnX+8VgBOn3LM=;
+        b=YFFG03ILxrBxA6EZc7HJyHTcZQG8lYtS0piFG6RoKFTL9WaRyzxFvfEfAYIJhj/ftv
+         9ExuTCWv50qCckQUHlJWT2UsUYTEATiFrwqXse8mop93NQaSCaMjFPtYLHL53CS1iBdu
+         FSSVPGtnBTxP4GW8ocS4dqqaF8GUvpBrzW2/4wt80dCCxcvClhxqJh5SbP92pc3pYdQl
+         jlJmooBJcmedVvhBjo+Q5iscUzsWXs4DECS3/+7zXE3IHqrut20IQRp4C0HcFKIYAcT7
+         4RLMs3kfUprhpOWBGSDxx6PuB5IH+dkxMni5cJQm3aX/POi0LH+cq45V7JYf6aWa4T1L
+         TnxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7C1f1C5uhHgrsCyslhIHxZEDisNbcyzQwjds3pYprRw=;
-        b=SPfy0Eu11zRWk3EqaRaIQhf9/6B6bLF0gME5YgCjbRhXoJsC8TX86N11huw5rhTGdF
-         EPfzjVK4ucZNjir7Zc5aU2RlChklU11leJxwSA/SzVVa2CyJUFir94wbZbiOqSXdy983
-         +VXVn9CpHLT+xzRrW4XW9qY2A5A4cVZyUyNh90NmJuppp377HhAfUbAWYKAp0f9YKnPV
-         pB0BQ8xhVQsBKNlMLGLjefiB9Zm0IhHnQeSPidoTiYhGC1QDsGmvpAYHLsBDn8E+vd2d
-         A0S67pYiBeIiZx3cidApWci0mUQ5gU99H/Ov25kufRLDAwbFFRZu7RTwfIOpuKXSdhOX
-         IvDg==
-X-Gm-Message-State: APjAAAVk5TjAzlTdowFobCjEFVQE5L/Tiurp2IBSAh6DWK62MUyMtpf/
-        kujoHWbCgSvAlgXrC0h13cwQJg==
-X-Google-Smtp-Source: APXvYqyA/IMQ4v74PvaT1O81Pu4QVkZmpbfKJ38ReyWVQDkM5h8Bqq0eH6icu1+9y/fCF4fE6m2u9A==
-X-Received: by 2002:a63:fc61:: with SMTP id r33mr31334396pgk.294.1560439999108;
-        Thu, 13 Jun 2019 08:33:19 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id l1sm170783pgj.67.2019.06.13.08.33.18
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 13 Jun 2019 08:33:18 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 08:33:16 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
-Subject: Re: [PATCH v3 7/7] drivers: regulator: qcom: add PMS405 SPMI
- regulator
-Message-ID: <20190613153316.GE6792@builder>
-References: <20190613142157.8674-1-jeffrey.l.hugo@gmail.com>
- <20190613142425.9036-1-jeffrey.l.hugo@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aF7WfJBqic6Edz88lRv/0CL+oI9ZSIdnX+8VgBOn3LM=;
+        b=cwC3Bk0V8cUVTlb5qC7wk5kq7I3t9CVr4PqsCr8WSUiLGBZ/8WL/kMB4qdyIKVzRdH
+         buJk1mKOFiQE6rRZFCCqpaPDj3OvnID4rpzBnr8aQ/WhlTk7rAouXapnq0psqZVA3dI6
+         s69WzM4VGxKNAnjXKZBOrI3R1QjfFFdzhCc0zyFVrci/GhM0kWzCgai47baHISfAB5hu
+         C2MoXb5GmagXRFwL7t9WkcwxMrVuUFpv5UQmEHS+clEkEOVNTy8fgcl9Hr2EMdKeUR4p
+         F243oO+9HFJzBpmgeIBaowsoc8vsm5TIJb9+YfhiwuEWyw6dqtOsUOTHz4hRwnQ5icaL
+         sNNw==
+X-Gm-Message-State: APjAAAVljhOXp1qUwGhi/DMT7gFGRuHPtw4DlJ+98KZ/RWtwyTPuT8mk
+        6uLnARmf8hUPjByjS0T7cC9rr6wVLiMAECQhkNs=
+X-Google-Smtp-Source: APXvYqzEXd8Sr1aUseL+zTWDc5Ak4NVxezALw+LIg0QIm0xSXFjXqsm8USdWkhi9CiqHsaqRen64MfMyW8gnwFYF5X4=
+X-Received: by 2002:a5d:9047:: with SMTP id v7mr36860549ioq.18.1560440127125;
+ Thu, 13 Jun 2019 08:35:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190613142425.9036-1-jeffrey.l.hugo@gmail.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+References: <20190525181329.18657-1-tiny.windzz@gmail.com> <20190525181329.18657-2-tiny.windzz@gmail.com>
+ <20190527122752.uc7q6zkjti3zag4q@flea> <CAEExFWtxEB67Pv-8x4ry=tZcJjOD6Kxydq_YB73Gox25VmQn7A@mail.gmail.com>
+ <20190612154325.m6z7xsxlpdq4wkxv@flea>
+In-Reply-To: <20190612154325.m6z7xsxlpdq4wkxv@flea>
+From:   Frank Lee <tiny.windzz@gmail.com>
+Date:   Thu, 13 Jun 2019 23:35:15 +0800
+Message-ID: <CAEExFWskAsNquULKBLtBFUOosNpks8L6aUhw-+cF=oZ0aghAtQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] thermal: sun8i: add thermal driver for h6
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        David Miller <davem@davemloft.net>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        paulmck@linux.ibm.com, Linux PM <linux-pm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 13 Jun 07:24 PDT 2019, Jeffrey Hugo wrote:
+On Thu, Jun 13, 2019 at 9:26 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Fri, Jun 07, 2019 at 09:34:44PM +0800, Frank Lee wrote:
+> > On Mon, May 27, 2019 at 8:27 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > +     ret = devm_request_threaded_irq(dev, irq, NULL,
+> > > > +                                     tmdev->chip->irq_thread,
+> > > > +                                     IRQF_ONESHOT, "ths", tmdev);
+> > > > +     if (ret)
+> > > > +             return ret;
+> > >
+> > > Is there any particular reason to use a threaded interrupt?
+> >
+> > Just to improve real-time.
+>
+> What do you mean by real-time here? If anything, that will increase
+> the latency of the interrupts here.
+>
+> And in preempt-rt, regular top-half interrupts will be forced into a
+> threaded interrupt anyway.
+>
+> > > > +static int sun8i_ths_remove(struct platform_device *pdev)
+> > > > +{
+> > > > +     struct ths_device *tmdev = platform_get_drvdata(pdev);
+> > > > +
+> > > > +     clk_disable_unprepare(tmdev->bus_clk);
+> > >
+> > > I know that we discussed that already, but I'm not sure why you switch
+> > > back to a regular call to regmap_init_mmio, while regmap_init_mmio_clk
+> > > will take care of enabling and disabling the bus clock for you?
+> >
+> > It seems that regmap_init_mmio_clk just get clk and prepare clk
+> > but no enable.
+>
+> At init time, yes. But it will enable it only when you access the
+> registers, which is what you want anyway.
 
-> From: Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
-> 
-> The PMS405 has 5 HFSMPS and 13 LDO regulators,
-> 
-> This commit adds support for one of the 5 HFSMPS regulators (s3) to
-> the spmi regulator driver.
-> 
-> The PMIC HFSMPS 430 regulators have 8 mV step size and a voltage
-> control scheme consisting of two  8-bit registers defining a 16-bit
-> voltage set point in units of millivolts
-> 
-> S3 controls the cpu voltages (s3 is a buck regulator of type HFS430);
-> it is therefore required so we can enable voltage scaling for safely
-> running cpufreq.
-> 
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-> ---
->  drivers/regulator/qcom_spmi-regulator.c | 41 +++++++++++++++++++++++--
->  1 file changed, 38 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/regulator/qcom_spmi-regulator.c b/drivers/regulator/qcom_spmi-regulator.c
-> index c7880c1d4bcd..975655e787fe 100644
-> --- a/drivers/regulator/qcom_spmi-regulator.c
-> +++ b/drivers/regulator/qcom_spmi-regulator.c
-> @@ -105,6 +105,7 @@ enum spmi_regulator_logical_type {
->  	SPMI_REGULATOR_LOGICAL_TYPE_ULT_HO_SMPS,
->  	SPMI_REGULATOR_LOGICAL_TYPE_ULT_LDO,
->  	SPMI_REGULATOR_LOGICAL_TYPE_FTSMPS426,
-> +	SPMI_REGULATOR_LOGICAL_TYPE_HFS430,
->  };
->  
->  enum spmi_regulator_type {
-> @@ -157,6 +158,7 @@ enum spmi_regulator_subtype {
->  	SPMI_REGULATOR_SUBTYPE_ULT_HF_CTL2	= 0x0e,
->  	SPMI_REGULATOR_SUBTYPE_ULT_HF_CTL3	= 0x0f,
->  	SPMI_REGULATOR_SUBTYPE_ULT_HF_CTL4	= 0x10,
-> +	SPMI_REGULATOR_SUBTYPE_HFS430		= 0x0a,
->  };
->  
->  enum spmi_common_regulator_registers {
-> @@ -302,6 +304,8 @@ enum spmi_common_control_register_index {
->  /* Clock rate in kHz of the FTSMPS426 regulator reference clock. */
->  #define SPMI_FTSMPS426_CLOCK_RATE		4800
->  
-> +#define SPMI_HFS430_CLOCK_RATE			1600
-> +
->  /* Minimum voltage stepper delay for each step. */
->  #define SPMI_FTSMPS426_STEP_DELAY		2
->  
-> @@ -515,6 +519,10 @@ static struct spmi_voltage_range ult_pldo_ranges[] = {
->  	SPMI_VOLTAGE_RANGE(0, 1750000, 1750000, 3337500, 3337500, 12500),
->  };
->  
-> +static struct spmi_voltage_range hfs430_ranges[] = {
-> +	SPMI_VOLTAGE_RANGE(0, 320000, 320000, 2040000, 2040000, 8000),
-> +};
-> +
->  static DEFINE_SPMI_SET_POINTS(pldo);
->  static DEFINE_SPMI_SET_POINTS(nldo1);
->  static DEFINE_SPMI_SET_POINTS(nldo2);
-> @@ -530,6 +538,7 @@ static DEFINE_SPMI_SET_POINTS(ult_lo_smps);
->  static DEFINE_SPMI_SET_POINTS(ult_ho_smps);
->  static DEFINE_SPMI_SET_POINTS(ult_nldo);
->  static DEFINE_SPMI_SET_POINTS(ult_pldo);
-> +static DEFINE_SPMI_SET_POINTS(hfs430);
->  
->  static inline int spmi_vreg_read(struct spmi_regulator *vreg, u16 addr, u8 *buf,
->  				 int len)
-> @@ -1397,12 +1406,24 @@ static struct regulator_ops spmi_ftsmps426_ops = {
->  	.set_pull_down		= spmi_regulator_common_set_pull_down,
->  };
->  
-> +static struct regulator_ops spmi_hfs430_ops = {
-> +	/* always on regulators */
-> +	.set_voltage_sel	= spmi_regulator_ftsmps426_set_voltage,
-> +	.set_voltage_time_sel	= spmi_regulator_set_voltage_time_sel,
-> +	.get_voltage		= spmi_regulator_ftsmps426_get_voltage,
-> +	.map_voltage		= spmi_regulator_single_map_voltage,
-> +	.list_voltage		= spmi_regulator_common_list_voltage,
-> +	.set_mode		= spmi_regulator_ftsmps426_set_mode,
-> +	.get_mode		= spmi_regulator_ftsmps426_get_mode,
-> +};
-> +
->  /* Maximum possible digital major revision value */
->  #define INF 0xFF
->  
->  static const struct spmi_regulator_mapping supported_regulators[] = {
->  	/*           type subtype dig_min dig_max ltype ops setpoints hpm_min */
->  	SPMI_VREG(BUCK,  GP_CTL,   0, INF, SMPS,   smps,   smps,   100000),
-> +	SPMI_VREG(BUCK,  HFS430,   0, INF, HFS430, hfs430, hfs430,  10000),
->  	SPMI_VREG(LDO,   N300,     0, INF, LDO,    ldo,    nldo1,   10000),
->  	SPMI_VREG(LDO,   N600,     0,   0, LDO,    ldo,    nldo2,   10000),
->  	SPMI_VREG(LDO,   N1200,    0,   0, LDO,    ldo,    nldo2,   10000),
-> @@ -1570,7 +1591,8 @@ static int spmi_regulator_init_slew_rate(struct spmi_regulator *vreg)
->  	return ret;
->  }
->  
-> -static int spmi_regulator_init_slew_rate_ftsmps426(struct spmi_regulator *vreg)
-> +static int spmi_regulator_init_slew_rate_ftsmps426(struct spmi_regulator *vreg,
-> +						   int clock_rate)
->  {
->  	int ret;
->  	u8 reg = 0;
-> @@ -1587,7 +1609,7 @@ static int spmi_regulator_init_slew_rate_ftsmps426(struct spmi_regulator *vreg)
->  	delay >>= SPMI_FTSMPS426_STEP_CTRL_DELAY_SHIFT;
->  
->  	/* slew_rate has units of uV/us */
-> -	slew_rate = SPMI_FTSMPS426_CLOCK_RATE * range->step_uV;
-> +	slew_rate = clock_rate * range->step_uV;
->  	slew_rate /= 1000 * (SPMI_FTSMPS426_STEP_DELAY << delay);
->  	slew_rate *= SPMI_FTSMPS426_STEP_MARGIN_NUM;
->  	slew_rate /= SPMI_FTSMPS426_STEP_MARGIN_DEN;
-> @@ -1739,7 +1761,14 @@ static int spmi_regulator_of_parse(struct device_node *node,
->  			return ret;
->  		break;
->  	case SPMI_REGULATOR_LOGICAL_TYPE_FTSMPS426:
-> -		ret = spmi_regulator_init_slew_rate_ftsmps426(vreg);
-> +		ret = spmi_regulator_init_slew_rate_ftsmps426(vreg,
-> +						SPMI_FTSMPS426_CLOCK_RATE);
-> +		if (ret)
-> +			return ret;
-> +		break;
-> +	case SPMI_REGULATOR_LOGICAL_TYPE_HFS430:
-> +		ret = spmi_regulator_init_slew_rate_ftsmps426(vreg,
-> +							SPMI_HFS430_CLOCK_RATE);
->  		if (ret)
->  			return ret;
->  		break;
-> @@ -1907,6 +1936,11 @@ static const struct spmi_regulator_data pm8005_regulators[] = {
->  	{ }
->  };
->  
-> +static const struct spmi_regulator_data pms405_regulators[] = {
-> +	{ "s3", 0x1a00, }, /* supply name in the dts only */
+But after accessing the register, it turns the clock off, which
+affects the ad conversion and the occurrence of the interrupt.
 
-Not sure what this comment is trying to say. The third element here
-should be the string that is used to find the supply as specified in DT.
-For s3 this is "vdd_s3".
+In addition, when resuming from suspend, we need to enable
+the clock, so I think it is necessary to have a clock pointer.
 
+Yangtao
 
-So please drop the comment and make this:
-	{ "s3", 0x1a00, "s3" },
-
-Regards,
-Bjorn
-
-> +	{ }
-> +};
-> +
->  static const struct of_device_id qcom_spmi_regulator_match[] = {
->  	{ .compatible = "qcom,pm8005-regulators", .data = &pm8005_regulators },
->  	{ .compatible = "qcom,pm8841-regulators", .data = &pm8841_regulators },
-> @@ -1914,6 +1948,7 @@ static const struct of_device_id qcom_spmi_regulator_match[] = {
->  	{ .compatible = "qcom,pm8941-regulators", .data = &pm8941_regulators },
->  	{ .compatible = "qcom,pm8994-regulators", .data = &pm8994_regulators },
->  	{ .compatible = "qcom,pmi8994-regulators", .data = &pmi8994_regulators },
-> +	{ .compatible = "qcom,pms405-regulators", .data = &pms405_regulators },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, qcom_spmi_regulator_match);
-> -- 
-> 2.17.1
-> 
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
