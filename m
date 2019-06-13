@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3FF2445C5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B61D444FB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730281AbfFMQqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:46:39 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:53048 "EHLO inva021.nxp.com"
+        id S2388721AbfFMQk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:40:56 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:50050 "EHLO deadmen.hmeau.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730292AbfFMFMT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 01:12:19 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8F21B200DDF;
-        Thu, 13 Jun 2019 07:12:17 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 95284200381;
-        Thu, 13 Jun 2019 07:12:07 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3C20F402CA;
-        Thu, 13 Jun 2019 13:11:55 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
-        Michal.Vokac@ysoft.com, marex@denx.de, leoyang.li@nxp.com,
-        aisheng.dong@nxp.com, l.stach@pengutronix.de, ping.bai@nxp.com,
-        pankaj.bansal@nxp.com, bhaskar.upadhaya@nxp.com,
-        pramod.kumar_1@nxp.com, vabhav.sharma@nxp.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V3 4/4] dt-bindings: arm: imx: Add the soc binding for i.MX8MQ
-Date:   Thu, 13 Jun 2019 13:13:44 +0800
-Message-Id: <20190613051344.1170-4-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190613051344.1170-1-Anson.Huang@nxp.com>
-References: <20190613051344.1170-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1730569AbfFMG4u (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 02:56:50 -0400
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
+        id 1hbJf4-0006EI-Qa; Thu, 13 Jun 2019 14:56:38 +0800
+Received: from herbert by gondobar with local (Exim 4.89)
+        (envelope-from <herbert@gondor.apana.org.au>)
+        id 1hbJf0-00055K-Vu; Thu, 13 Jun 2019 14:56:35 +0800
+Date:   Thu, 13 Jun 2019 14:56:34 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Horia Geanta <horia.geanta@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>,
+        Franck Lenormand <franck.lenormand@nxp.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx7ulp: add crypto support
+Message-ID: <20190613065634.alck5wads6toe7uk@gondor.apana.org.au>
+References: <20190606080255.25504-1-horia.geanta@nxp.com>
+ <20190612103926.GE11086@dragon>
+ <VI1PR0402MB3485A573518D60A573BA55C298EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612130602.GH11086@dragon>
+ <VI1PR0402MB348596BF52CE43B5D4CD534798EC0@VI1PR0402MB3485.eurprd04.prod.outlook.com>
+ <20190612132600.GI11086@dragon>
+ <20190612135952.ds6zzh7ppahiuodd@gondor.apana.org.au>
+ <20190613004709.GB20747@dragon>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190613004709.GB20747@dragon>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On Thu, Jun 13, 2019 at 08:47:10AM +0800, Shawn Guo wrote:
+> On Wed, Jun 12, 2019 at 09:59:52PM +0800, Herbert Xu wrote:
+> > On Wed, Jun 12, 2019 at 09:26:02PM +0800, Shawn Guo wrote:
+> > >
+> > > Yes, it happens from time to time depending on maintainer's style. I'm
+> > > fine with the DT changes going through other subsystem tree, if the
+> > > subsystem maintainer wants to and is willing to take the risk of merge
+> > > conflict between his tree and arm-soc tree.
+> > 
+> > I have no problems with potential merge conflicts.
+> 
+> Then feel free to take it:
+> 
+> Acked-by: Shawn Guo <shawnguo@kernel.org>
 
-This patch adds the soc & board binding for i.MX8MQ.
-
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-New patch, as I just found i.MX8MQ SoC & board binding is missed, so add this patch
-based on i.MX8MN binding, so put it in same series to avoid dependency issue.
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index b35abb1..f944df8 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -183,6 +183,12 @@ properties:
-               - fsl,imx8mn-ddr4-evk            # i.MX8MN DDR4 EVK Board
-           - const: fsl,imx8mn
- 
-+      - description: i.MX8MQ based Boards
-+        items:
-+          - enum:
-+              - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-+          - const: fsl,imx8mq
-+
-       - description: i.MX8QXP based Boards
-         items:
-           - enum:
+Patch applied.  Thanks.
 -- 
-2.7.4
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
