@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3876843A54
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C53D43A27
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:19:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732113AbfFMPUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:20:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35796 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732107AbfFMMym (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 08:54:42 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E14622173C;
-        Thu, 13 Jun 2019 12:54:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560430482;
-        bh=+dpcx+t3gqsrdkSAF32yzocQzxMx51ogbHZjaUxs06g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UC8yBn2wHn5Q7MOC0f1Y/gBNFscwOv67bdYXMtHV4JMJO3xgYA58rEUWsbazZQVwX
-         VYpP9uAQ33ZZFVpKlTVRw0WPvfqYG4lStUureizyJTVqwMKIHfVxFH8pqdbYtBxtoT
-         gKnW0cbyeN6v+RfYVSfhsVKFQpKqrRfOjJMXcCHs=
-Received: by mail-qt1-f179.google.com with SMTP id a15so22353003qtn.7;
-        Thu, 13 Jun 2019 05:54:41 -0700 (PDT)
-X-Gm-Message-State: APjAAAX+ajDU2chIp88Vc6tMds5g7OPK5p0IhTLEuf+sZG4rt9ABl7VC
-        AWiuMjrpPYHjjodz1TY01MOEH5wHYtKa6epy7Q==
-X-Google-Smtp-Source: APXvYqzMa0Uyb0Z+rWRg4l/d54XGw039fVYUrrOI8A8Wr/WbXB3zrEmuYPzH+FK2dGun9qwWEQm+TE/ODK7+RcwR90Q=
-X-Received: by 2002:aed:3fb0:: with SMTP id s45mr22297842qth.136.1560430481170;
- Thu, 13 Jun 2019 05:54:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190613051344.1170-1-Anson.Huang@nxp.com> <20190613051344.1170-4-Anson.Huang@nxp.com>
-In-Reply-To: <20190613051344.1170-4-Anson.Huang@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 13 Jun 2019 06:54:29 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKQgQ=+4xt41_2X3ddsO=rt4u--MJ28+p=is33c1=0DQg@mail.gmail.com>
-Message-ID: <CAL_JsqKQgQ=+4xt41_2X3ddsO=rt4u--MJ28+p=is33c1=0DQg@mail.gmail.com>
-Subject: Re: [PATCH V3 4/4] dt-bindings: arm: imx: Add the soc binding for i.MX8MQ
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <Michal.Vokac@ysoft.com>,
-        =?UTF-8?B?TWFyZWsgVmHFoXV0?= <marex@denx.de>,
-        Yang-Leo Li <leoyang.li@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Bai Ping <ping.bai@nxp.com>,
-        Pankaj Bansal <pankaj.bansal@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Pramod Kumar <pramod.kumar_1@nxp.com>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1733079AbfFMPTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:19:06 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:39380 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1732141AbfFMNCW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 09:02:22 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5DCuqlD015993;
+        Thu, 13 Jun 2019 15:02:08 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=Dn/GSx8oOSdqicVsHAm1fovUZXgcL2YgME4MVY/Qjls=;
+ b=p2IjvnhiN/FcNRbhaIg1lhrdvfWacg0fAHNZsSLbHECrbVZ+DKSOAZHrDmSfGyeGbXTz
+ cbulaWATzSgherwadBy2cvsyIcGcn0HOr/dJr5/BbQXQcPMQ/m2MUT3WoKmzsIR1qNC1
+ HTDu/W0jH7vSHEdtIjtvdRQnq8vEuCapW9IeRhn4orunu2XSaz7pVmzPUcukjR8mVyxa
+ ox2Y0H/mHPtYpawdV5uOL7yTyjjzAM+e2TICpftmQb6QSATdKH6kCjv10WM9KCi26EWM
+ 0GJtfsjIHqUkRpiVWzKC9QIvFeu4SwaxIc67s0qgq/3zthgCSlNTEs2RhWlp1ZPTFeFX 2g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2t2gxebr13-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Thu, 13 Jun 2019 15:02:08 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 91CA534;
+        Thu, 13 Jun 2019 13:02:04 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5FCD72AC5;
+        Thu, 13 Jun 2019 13:02:04 +0000 (GMT)
+Received: from [10.48.0.237] (10.75.127.45) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 13 Jun
+ 2019 15:02:03 +0200
+Subject: Re: [PATCH V3 0/3] mmc: mmci: add busy detect for stm32 sdmmc variant
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <1559577325-19266-1-git-send-email-ludovic.Barre@st.com>
+From:   Ludovic BARRE <ludovic.barre@st.com>
+Message-ID: <5b7e1ae5-c97e-5a21-fc3e-7cc328087f04@st.com>
+Date:   Thu, 13 Jun 2019 15:02:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <1559577325-19266-1-git-send-email-ludovic.Barre@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-13_08:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 11:12 PM <Anson.Huang@nxp.com> wrote:
->
-> From: Anson Huang <Anson.Huang@nxp.com>
->
-> This patch adds the soc & board binding for i.MX8MQ.
->
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> New patch, as I just found i.MX8MQ SoC & board binding is missed, so add this patch
-> based on i.MX8MN binding, so put it in same series to avoid dependency issue.
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+hi Ulf
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Just a "gentleman ping" about this series.
+I know you are busy, it's just to be sure you do not forget me :-)
+
+Regards
+Ludo
+
+On 6/3/19 5:55 PM, Ludovic Barre wrote:
+> From: Ludovic Barre <ludovic.barre@st.com>
+> 
+> This patch series adds busy detect for stm32 sdmmc variant.
+> Some adaptations are required:
+> -Clear busy status bit if busy_detect_flag and busy_detect_mask are
+>   different.
+> -Add hardware busy timeout with MMCIDATATIMER register.
+> 
+> V3:
+> -rebase on latest mmc next
+> -replace re-read by status parameter.
+> 
+> V2:
+> -mmci_cmd_irq cleanup in separate patch.
+> -simplify the busy_detect_flag exclude
+> -replace sdmmc specific comment in
+> "mmc: mmci: avoid fake busy polling in mmci_irq"
+> to focus on common behavior
+> 
+> Ludovic Barre (3):
+>    mmc: mmci: fix read status for busy detect
+>    mmc: mmci: add hardware busy timeout feature
+>    mmc: mmci: add busy detect for stm32 sdmmc variant
+> 
+>   drivers/mmc/host/mmci.c | 49 +++++++++++++++++++++++++++++++++++++++++--------
+>   drivers/mmc/host/mmci.h |  3 +++
+>   2 files changed, 44 insertions(+), 8 deletions(-)
+> 
