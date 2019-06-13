@@ -2,73 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56C1543775
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 16:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6F3437E6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732640AbfFMO67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 10:58:59 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:49069 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732614AbfFMOyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 10:54:51 -0400
-X-Originating-IP: 90.88.159.246
-Received: from localhost (aaubervilliers-681-1-40-246.w90-88.abo.wanadoo.fr [90.88.159.246])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 28485240010;
-        Thu, 13 Jun 2019 14:54:45 +0000 (UTC)
-Date:   Thu, 13 Jun 2019 16:54:45 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: Check the examples against the schemas
-Message-ID: <20190613145445.n5i6rkhgddwtjbyo@flea>
-References: <20190613144210.22181-1-robh@kernel.org>
- <20190613144210.22181-2-robh@kernel.org>
+        id S1733128AbfFMPCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:02:01 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:6732 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733035AbfFMPCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:02:00 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d0265670002>; Thu, 13 Jun 2019 08:01:59 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 13 Jun 2019 08:01:59 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 13 Jun 2019 08:01:59 -0700
+Received: from [10.21.132.148] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
+ 2019 15:01:57 +0000
+Subject: Re: [PATCH v5 1/2] arm64: tegra: add ACONNECT, ADMA and AGIC nodes
+To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1560422477-11242-1-git-send-email-spujar@nvidia.com>
+ <3f1ebc62-1498-f26c-9044-8634242fc61e@nvidia.com>
+ <9c5dbfc5-122b-2049-fdad-7ffeab6a9ec9@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <97303572-48d5-3da6-6e60-51056c82b7fd@nvidia.com>
+Date:   Thu, 13 Jun 2019 16:01:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="f65q35kf44uwfpr2"
-Content-Disposition: inline
-In-Reply-To: <20190613144210.22181-2-robh@kernel.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <9c5dbfc5-122b-2049-fdad-7ffeab6a9ec9@nvidia.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560438119; bh=gAeYNrokAD9Q2kca+yWScB3sbyQIxjUJco5GbiuobI8=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=SjLLkrxl12fk5dLATa9X7QQSsJB3mKzVLXzocYLZAsRb8Ujbfjn/O4TUsCommW+Kx
+         0YUlZl0V+wMcHqzns4QKM7Iq138xtW0mMSSNcpkv208Ar6pPe38/av3wWkNPr0WEAn
+         n1MYFRryF3pRteSTg2InXvl7Kh5VGLDdEKdTx0RYDrfRxlI89kdh1RxkxipItU0xHY
+         Cl1zvUWTOpp3Yn212zxZbVEiaK84V2oiciohoeLcQ5MbgjxKPqQAT1Mvw2S2Lp0OEG
+         dfMe6sGJ4dpo/6uJtrqt3GGEsxDMM6JWdaiXqNc1/YmeS4hxFuk+By6vz45gQuzhWI
+         OletykY5rHcIQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---f65q35kf44uwfpr2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 13/06/2019 15:43, Sameer Pujar wrote:
+>=20
+> On 6/13/2019 7:39 PM, Jon Hunter wrote:
+>> On 13/06/2019 11:41, Sameer Pujar wrote:
+>>> Add DT nodes for following devices on Tegra186 and Tegra194
+>>> =C2=A0 * ACONNECT
+>>> =C2=A0 * ADMA
+>>> =C2=A0 * AGIC
+>>>
+>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>>> ---
+>>> =C2=A0 changes from previous revision
+>>> =C2=A0=C2=A0 * fixed size value for ranges property in aconnect
+>>>
+>>> =C2=A0 arch/arm64/boot/dts/nvidia/tegra186.dtsi | 67
+>>> ++++++++++++++++++++++++++++++++
+>>> =C2=A0 arch/arm64/boot/dts/nvidia/tegra194.dtsi | 67
+>>> ++++++++++++++++++++++++++++++++
+>>> =C2=A0 2 files changed, 134 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+>>> b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+>>> index 426ac0b..5e9fe7e 100644
+>>> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+>>> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+>>> @@ -1295,4 +1295,71 @@
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_=
+LOW)>;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupt-parent=
+ =3D <&gic>;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 aconnect {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "nvidia,tegr=
+a210-aconnect";
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&bpmp TEGRA186_=
+CLK_APE>,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 <&bpmp TEGRA186_CLK_APB2APE>;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "ape", "apb=
+2ape";
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 power-domains =3D <&bpmp TE=
+GRA186_POWER_DOMAIN_AUD>;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <1>;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ranges =3D <0x02900000 0x0 =
+0x02900000 0x200000>;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-controller@2930000 {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 com=
+patible =3D "nvidia,tegra186-adma";
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg=
+ =3D <0x02930000 0x50000>;
+>> Sorry but I have been double checking these register addresses and I
+>> wonder if this should be a length of 0x10000. The 0x50000 includes all
+>> the ranges where the registers are paged, so I don't think that this is
+>> correct including these.
+> Is it because we don't have virtualization support yet?
 
-On Thu, Jun 13, 2019 at 08:42:10AM -0600, Rob Herring wrote:
-> Currently, the binding examples are just built with dtc. dtc recently
-> gained the support necessary to output the examples in YAML format
-> (commit 87963ee20693 ("livetree: add missing type markers in generated
-> overlay properties"). Now just switch the output format and the examples
-> will be checked against the schema.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Yes those are for virtulisation, but I don't believe we need them here.
 
-For both,
+> and isn't the range 0x10000 covers only global register space, don't we
+> want to include page1 ADMA channel registers. In that case it would be
+> 0x20000.
 
-Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
+Yes, 0x20000 is correct indeed
 
-Maxime
+Cheers
+Jon
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---f65q35kf44uwfpr2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQJjtQAKCRDj7w1vZxhR
-xZxpAQD+Csm6NW6xs3F9ECciXe4YWZlf4NupGE7IECk8c3fZuQEA9vcBhpmeD2UQ
-Izl4nblyUMI9q0W1ucyY7sxH36PYfQY=
-=jiUn
------END PGP SIGNATURE-----
-
---f65q35kf44uwfpr2--
+--=20
+nvpublic
