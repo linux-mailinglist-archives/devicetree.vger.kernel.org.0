@@ -2,119 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C6043E95
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD6843E4A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732423AbfFMPvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:51:50 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:15429 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731654AbfFMJLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 05:11:08 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d02132b0000>; Thu, 13 Jun 2019 02:11:07 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 13 Jun 2019 02:11:07 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 13 Jun 2019 02:11:07 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL108.nvidia.com
- (172.18.146.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
- 2019 09:11:06 +0000
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
- 2019 09:11:06 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Thu, 13 Jun 2019 09:11:06 +0000
-Received: from linux.nvidia.com (Not Verified[10.24.34.185]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d0213280000>; Thu, 13 Jun 2019 02:11:06 -0700
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH v3 2/2] arm64: tegra: enable ACONNECT, ADMA and AGIC
-Date:   Thu, 13 Jun 2019 14:40:53 +0530
-Message-ID: <1560417053-2966-2-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560417053-2966-1-git-send-email-spujar@nvidia.com>
-References: <1560417053-2966-1-git-send-email-spujar@nvidia.com>
+        id S1726486AbfFMPsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:48:43 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:39370 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731730AbfFMJSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 05:18:37 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id B89B925B7FA;
+        Thu, 13 Jun 2019 19:18:34 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id B35A2940483; Thu, 13 Jun 2019 11:18:32 +0200 (CEST)
+Date:   Thu, 13 Jun 2019 11:18:32 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ulrich Hecht <uli+renesas@fpond.eu>
+Subject: Re: [PATCH v2] dt-bindings: rcar-{csi2,vin}: Rename bindings
+ documentation files
+Message-ID: <20190613091832.77g2ltnvd5o2hndh@verge.net.au>
+References: <20190612211241.1455-1-niklas.soderlund+renesas@ragnatech.se>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560417067; bh=13+0cSwopl1Sxe+pUYtpwZjyS/pU8FJ+NU50iOgIpYA=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:MIME-Version:Content-Type;
-        b=rwvPf8GddSEN5gqmvdfmfsHiOdTQyB+87EXqRms8Zc2od5PgHzXwR9lgXEC//dxwa
-         ivXRbFwl8J7urKVauFe/Wf6xIE6gIAj67/UbxRTuCjA7eg0xC/hwzZEsuXCa2O960n
-         o0STiXgpScXwPxsc01bS5e02lyqCf04AeppFe7T8LPRTCMrv+eVYEasyGHX1I9MJ08
-         yALbOgNRMKkFK3il/HYyViDA3ks2PBGEg6C4FQlOjo7n+E8PZ9kyop6AnOQAiSrZ7P
-         DVOEqi3nsuHnQuPJYmP81GbZpXo/bY2trBwx4uoe5Ozn0PF6GW+9vuX2jXpaKbgX8K
-         pf8QEq+JtkDYw==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190612211241.1455-1-niklas.soderlund+renesas@ragnatech.se>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable ACONNECT, ADMA and AGIC devices for following platforms
-  * Jetson TX2
-  * Jetson Xavier
+On Wed, Jun 12, 2019 at 11:12:41PM +0200, Niklas Söderlund wrote:
+> Renesas media binding documentation files uses a naming schema of
+> 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
+> pattern.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
 
-Verified driver probe path and devices get registered fine.
 
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
----
- changes in current revision - None
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
 
- arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ++++++++++++
- arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 12 ++++++++++++
- 2 files changed, 24 insertions(+)
+I wonder if, as a follow-up, renesas-wdt.txt and
+renesas-memory-controllers.txt should get similar treatment.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-index 5102de1..b818355 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-@@ -298,4 +298,16 @@
- 			vin-supply = <&vdd_5v0_sys>;
- 		};
- 	};
-+
-+	aconnect@2a41000 {
-+		status = "okay";
-+
-+		dma-controller@2930000 {
-+			status = "okay";
-+		};
-+
-+		agic@2a41000 {
-+			status = "okay";
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index 6e6df65..d1cc028 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -167,4 +167,16 @@
- 			};
- 		};
- 	};
-+
-+	aconnect@2a41000 {
-+		status = "okay";
-+
-+		dma-controller@2930000 {
-+			status = "okay";
-+		};
-+
-+		agic@2a41000 {
-+			status = "okay";
-+		};
-+	};
- };
--- 
-2.7.4
 
+> ---
+>  .../media/{renesas,rcar-csi2.txt => renesas,csi2.txt}         | 0
+>  .../bindings/media/{rcar_vin.txt => renesas,vin.txt}          | 0
+>  MAINTAINERS                                                   | 4 ++--
+>  3 files changed, 2 insertions(+), 2 deletions(-)
+>  rename Documentation/devicetree/bindings/media/{renesas,rcar-csi2.txt => renesas,csi2.txt} (100%)
+>  rename Documentation/devicetree/bindings/media/{rcar_vin.txt => renesas,vin.txt} (100%)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt b/Documentation/devicetree/bindings/media/renesas,csi2.txt
+> similarity index 100%
+> rename from Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+> rename to Documentation/devicetree/bindings/media/renesas,csi2.txt
+> diff --git a/Documentation/devicetree/bindings/media/rcar_vin.txt b/Documentation/devicetree/bindings/media/renesas,vin.txt
+> similarity index 100%
+> rename from Documentation/devicetree/bindings/media/rcar_vin.txt
+> rename to Documentation/devicetree/bindings/media/renesas,vin.txt
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6a3bac28ebb47830..a0d21ff13c8e8989 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9807,8 +9807,8 @@ L:	linux-media@vger.kernel.org
+>  L:	linux-renesas-soc@vger.kernel.org
+>  T:	git git://linuxtv.org/media_tree.git
+>  S:	Supported
+> -F:	Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+> -F:	Documentation/devicetree/bindings/media/rcar_vin.txt
+> +F:	Documentation/devicetree/bindings/media/renesas,csi2.txt
+> +F:	Documentation/devicetree/bindings/media/renesas,vin.txt
+>  F:	drivers/media/platform/rcar-vin/
+>  
+>  MEDIA DRIVERS FOR RENESAS - VSP1
+> -- 
+> 2.21.0
+> 
