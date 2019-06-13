@@ -2,66 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4DBE44A4C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C07D44A68
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727149AbfFMSHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 14:07:37 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:38873 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725889AbfFMSHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:07:36 -0400
-Received: by mail-qt1-f193.google.com with SMTP id n11so21496702qtl.5;
-        Thu, 13 Jun 2019 11:07:36 -0700 (PDT)
+        id S1727266AbfFMSJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 14:09:33 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:43988 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727116AbfFMSJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:09:33 -0400
+Received: by mail-pf1-f193.google.com with SMTP id i189so12309123pfg.10
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 11:09:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kxoc9uaFTrXitgGYEWP1umI8D3nYTFG7/XndbmYY6a0=;
+        b=nFQ4EkckPxw0WF0MFLIMBWkPAPG+G/Am9yz3ZWwP3J+255TSNgezoU085vQrU4CYJc
+         BUTYSLyr8z9cPfE3d216HI5JKug0qawJ4t5hsdHfXZyDmyukCy2JV60La7QzJQZpiL8c
+         qMUnTB2Q9imqjjbDI7O9sqLnY9/oaSeV4LM2E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Oj9KR+T1fOqKQ4FESSVm1jnPwC60Lm44k4F4XEoSR9o=;
-        b=Sul5XNJ8VYOzBBN660uHAjDRKi0A+HhQhyMksgpIYFjnGdNFxkNW96wIBK/q3eCnYn
-         4bJlURsf/gV5mL9gNjoyvCRB1C9Gt/B/Bxcil1hO/s8MgPgpXzGJoExoAwxdPypjv3JH
-         0lWmeflYMJ6nZSha0Namvh6SFeZosihilDkaCmizF+K86sCmXcDyLe5jX6B2a2WTufNw
-         7C64lb+hDe+jPfTfsXFaInLHGdjR60WFS20jel9bgjABbFFPRSHs5dCLyF2pZMqjNMdT
-         SYePBGeyUds1BfTHCd8MyK56gcq6IZExGQWaaky8fL01FFuOhkHNbrsSewuka+rLu9xr
-         sL5Q==
-X-Gm-Message-State: APjAAAVxVVNd5JQ/OTmUszKfqBNJIrsDx4GNFU/VfrGNtpxsU/A3CcFi
-        LfCEgrHcx30Uqsh0Z8yLKkbmdpg=
-X-Google-Smtp-Source: APXvYqyUp5hOsDZfLIs3lS90BPkWO4yBBGNdYOYbR9C7XHV9gSGJlFFkMIKIt+hKrpXob3c5vDNzQQ==
-X-Received: by 2002:a0c:d1f0:: with SMTP id k45mr4787080qvh.69.1560449255707;
-        Thu, 13 Jun 2019 11:07:35 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id x10sm264965qtc.34.2019.06.13.11.07.34
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kxoc9uaFTrXitgGYEWP1umI8D3nYTFG7/XndbmYY6a0=;
+        b=SpO8bfF8f0ddTiY/1gakAZbTFeizLMFCjZA8Qf7CsD498qDQ0dZPUXjxXeWcFLazu7
+         7k0Tv6kNkcmOpuX5ycwtBCVC8UCLIyt3mRNofIbLnmmaJmWzcLE1/2Xih3/QEsAuvFDN
+         gXzY3U0GyYMF0WePI9C1hzLeowrf7bop6YYHqwMICOPMCfLmzHM8pEvs7lIZuQ/hXaed
+         IprGVzIqKvvyc2Aac7Zntg8QYpeg1Dk31AjNpdsT6lm/eJqmNhKYDgXKOvIMCRkyoQrO
+         KAxeiAr+MyQafINrl3fdxZZITZU65YOrG9KekmvH5OyJdzS18PFD5yMvBtIUTvqge4cc
+         wOCw==
+X-Gm-Message-State: APjAAAV1+5bLB8z2c0UaZIwquf9rpBORQX3iafMdAqzXZvq4ArEFq6lD
+        NA5ybw/PLx+H69KzztgPwMnUfg==
+X-Google-Smtp-Source: APXvYqxbswxJpCXA0mUnDfPLybphcnLW3OQWcfcV2c3w4Dhlexa68Sj6OQyYRUkDZU2Xd8Mtu2574w==
+X-Received: by 2002:a63:1a5e:: with SMTP id a30mr30997431pgm.433.1560449372553;
+        Thu, 13 Jun 2019 11:09:32 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id b15sm454449pff.31.2019.06.13.11.09.31
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 11:07:35 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 12:07:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Peng Ma <peng.ma@nxp.com>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        mark.rutland@arm.com, leoyang.li@nxp.com, dan.j.williams@intel.com,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Peng Ma <peng.ma@nxp.com>
-Subject: Re: [PATCH 4/4] dt-bindings: fsl-qdma: Add LS1028A qDMA bindings
-Message-ID: <20190613180734.GA3178@bogus>
-References: <20190506090344.37784-1-peng.ma@nxp.com>
- <20190506090344.37784-4-peng.ma@nxp.com>
+        Thu, 13 Jun 2019 11:09:32 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Peter Huewe <peterhuewe@gmx.de>,
+        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-integrity@vger.kernel.org,
+        Andrey Pronin <apronin@chromium.org>,
+        devicetree@vger.kernel.org, Duncan Laurie <dlaurie@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Subject: [PATCH 0/8] tpm: Add driver for cr50
+Date:   Thu, 13 Jun 2019 11:09:23 -0700
+Message-Id: <20190613180931.65445-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.22.0.rc2.383.gf4fbbf30c2-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190506090344.37784-4-peng.ma@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  6 May 2019 09:03:44 +0000, Peng Ma wrote:
-> Add LS1028A qDMA controller bindings to fsl-qdma bindings.
-> 
-> Signed-off-by: Peng Ma <peng.ma@nxp.com>
-> ---
->  Documentation/devicetree/bindings/dma/fsl-qdma.txt |    1 +
->  1 files changed, 1 insertions(+), 0 deletions(-)
-> 
+This patch series adds support for the the H1 secure microcontroller
+running cr50 firmware found on various recent Chromebooks. This driver
+is necessary to boot into a ChromeOS userspace environment. It
+implements support for several functions, including TPM-like
+functionality, and supports SPI and I2C interfaces.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The last time this was series sent looks to be [1]. I've looked over the
+patches and review comments and tried to address any feedback that
+Andrey didn't address (really minor things like newlines). The first
+three patches add a couple pre-requisite core changes so that the
+drivers can be merged. The last two patches add some sysfs attributes
+and make symlinks so that ChromeOS userspace works.
+
+[1] https://lkml.kernel.org/r/1469757314-116169-1-git-send-email-apronin@chromium.org
+
+Andrey Pronin (7):
+  tpm: block messages while suspended
+  tpm_tis_core: add optional max xfer size check
+  tpm_tis_spi: add max xfer size
+  dt-bindings: tpm: document properties for cr50
+  tpm: add driver for cr50 on SPI
+  tpm: add sysfs attributes for tpm2
+  tpm: add legacy sysfs attributes for tpm2
+
+Duncan Laurie (1):
+  tpm: Add driver for cr50 on I2C
+
+ .../bindings/security/tpm/cr50_spi.txt        |  19 +
+ drivers/char/tpm/Kconfig                      |  26 +
+ drivers/char/tpm/Makefile                     |   3 +
+ drivers/char/tpm/cr50.c                       |  39 +
+ drivers/char/tpm/cr50.h                       |  30 +
+ drivers/char/tpm/cr50_i2c.c                   | 704 ++++++++++++++++++
+ drivers/char/tpm/cr50_spi.c                   | 450 +++++++++++
+ drivers/char/tpm/tpm-chip.c                   |   4 +-
+ drivers/char/tpm/tpm-interface.c              |  16 +-
+ drivers/char/tpm/tpm-sysfs.c                  | 138 +++-
+ drivers/char/tpm/tpm.h                        |  29 +-
+ drivers/char/tpm/tpm_tis_core.c               |   9 +-
+ drivers/char/tpm/tpm_tis_core.h               |   1 +
+ drivers/char/tpm/tpm_tis_spi.c                |   1 +
+ include/linux/tpm.h                           |   2 +
+ 15 files changed, 1455 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/cr50_spi.txt
+ create mode 100644 drivers/char/tpm/cr50.c
+ create mode 100644 drivers/char/tpm/cr50.h
+ create mode 100644 drivers/char/tpm/cr50_i2c.c
+ create mode 100644 drivers/char/tpm/cr50_spi.c
+
+
+base-commit: f2c7c76c5d0a443053e94adb9f0918fa2fb85c3a
+-- 
+Sent by a computer through tubes
+
