@@ -2,77 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBBE343B77
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0E943B4B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729143AbfFMP3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:29:34 -0400
-Received: from foss.arm.com ([217.140.110.172]:38518 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728865AbfFMLX1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 07:23:27 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9C0D7367;
-        Thu, 13 Jun 2019 04:23:26 -0700 (PDT)
-Received: from fuggles.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 496F13F694;
-        Thu, 13 Jun 2019 04:25:08 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 12:23:20 +0100
-From:   Will Deacon <will.deacon@arm.com>
-To:     Frank Li <frank.li@nxp.com>
-Cc:     "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lznuaa@gmail.com" <lznuaa@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH V12 2/4] drivers/perf: imx_ddr: Add ddr performance
- counter support
-Message-ID: <20190613112320.GA18966@fuggles.cambridge.arm.com>
-References: <1556736193-29411-1-git-send-email-Frank.Li@nxp.com>
- <1556736193-29411-2-git-send-email-Frank.Li@nxp.com>
+        id S1729518AbfFMP1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:27:45 -0400
+Received: from 10.mo5.mail-out.ovh.net ([46.105.52.148]:43320 "EHLO
+        10.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729003AbfFMLep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 07:34:45 -0400
+Received: from player728.ha.ovh.net (unknown [10.109.143.225])
+        by mo5.mail-out.ovh.net (Postfix) with ESMTP id 8DD8A23E798
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 13:34:43 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player728.ha.ovh.net (Postfix) with ESMTPSA id 7FFDA6B6DE10;
+        Thu, 13 Jun 2019 11:34:32 +0000 (UTC)
+Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: Add PXP node
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+References: <20190606164642.11539-1-sebastien.szymanski@armadeus.com>
+ <20190612172103.gat3yrub2iyurai5@pengutronix.de>
+From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Openpgp: preference=signencrypt
+Message-ID: <6802e25d-f12b-28e3-d975-7f21fe002a35@armadeus.com>
+Date:   Thu, 13 Jun 2019 13:34:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1556736193-29411-2-git-send-email-Frank.Li@nxp.com>
-User-Agent: Mutt/1.11.1+86 (6f28e57d73f2) ()
+In-Reply-To: <20190612172103.gat3yrub2iyurai5@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 3806386112924832978
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudehledggedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 01, 2019 at 06:43:29PM +0000, Frank Li wrote:
-> Add ddr performance monitor support for iMX8QXP
+Hi Marco,
+
+On 6/12/19 7:21 PM, Marco Felsch wrote:
+> Hi Sébastien,
 > 
-> There are 4 counters for ddr perfomance events.
-> counter 0 is dedicated for cycles.
-> you choose any up to 3 no cycles events.
+> On 19-06-06 18:46, Sébastien Szymanski wrote:
+>> Add PXP node for i.MX6UL/L SoC.
+>>
+>> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+>> ---
+>>  arch/arm/boot/dts/imx6ul.dtsi  | 9 +++++++++
+>>  arch/arm/boot/dts/imx6ull.dtsi | 6 ++++++
+>>  2 files changed, 15 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+>> index f10012de5eb6..a3c005373ae1 100644
+>> --- a/arch/arm/boot/dts/imx6ul.dtsi
+>> +++ b/arch/arm/boot/dts/imx6ul.dtsi
+>> @@ -971,6 +971,15 @@
+>>  				status = "disabled";
+>>  			};
+>>  
+>> +			pxp: pxp@21cc000 {
+>> +				compatible = "fsl,imx6ul-pxp";
+>> +				reg = <0x021cc000 0x4000>;
+>> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+>> +				clocks = <&clks IMX6UL_CLK_PXP>;
+>> +				clock-names = "axi";
+>> +				status = "disabled";
 > 
-> for example:
+> Can you drop the status line because its a platform device and isn't
+> removeable.
+
+Ok, done. thanks!
+
+Regards,
+
 > 
-> perf stat -a -e imx8_ddr0/read-cycles/,imx8_ddr0/write-cycles/,imx8_ddr0/precharge/ ls
-> perf stat -a -e imx8_ddr0/cycles/,imx8_ddr0/read-access/,imx8_ddr0/write-access/ ls
+>> +			};
+>> +
+>>  			qspi: spi@21e0000 {
+>>  				#address-cells = <1>;
+>>  				#size-cells = <0>;
+>> diff --git a/arch/arm/boot/dts/imx6ull.dtsi b/arch/arm/boot/dts/imx6ull.dtsi
+>> index 22e4a307fa59..b017e925bd87 100644
+>> --- a/arch/arm/boot/dts/imx6ull.dtsi
+>> +++ b/arch/arm/boot/dts/imx6ull.dtsi
+>> @@ -34,6 +34,12 @@
+>>  	compatible = "fsl,imx6ull-ocotp", "syscon";
+>>  };
+>>  
+>> +&pxp {
+>> +	compatible = "fsl,imx6ull-pxp";
+>> +	interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+>> +		     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
+>> +};
+>> +
+>>  &usdhc1 {
+>>  	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
+>>  };
+>> -- 
+>> 2.19.2
+>>
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
-I've pushed patches 1, 2 and 4 out with some minor tweaks to:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-next/perf
-
-I'll leave the actual .dts change to go via the soc tree, since last time
-I took one of those it just resulted in conflicts.
-
-Frank, Andrey: Please could you try to run the perf fuzzer on this before
-it lands in mainline? It has a good track record of finding nasty PMU driver
-bugs, but it obviously requires access to hardware which implements the PMU:
-
-http://web.eece.maine.edu/~vweaver/projects/perf_events/fuzzer/
-
-Cheers,
-
-Will
+-- 
+Sébastien Szymanski
+Software engineer, Armadeus Systems
+Tel: +33 (0)9 72 29 41 44
+Fax: +33 (0)9 72 28 79 26
