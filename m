@@ -2,60 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29DF443E1D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF17443DF0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:46:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731934AbfFMPri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:47:38 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:39764 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731751AbfFMJ0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 05:26:42 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id A335925B7FA;
-        Thu, 13 Jun 2019 19:26:39 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 91846940483; Thu, 13 Jun 2019 11:26:37 +0200 (CEST)
-Date:   Thu, 13 Jun 2019 11:26:37 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     David Miller <davem@davemloft.net>
-Cc:     fabrizio.castro@bp.renesas.com, wg@grandegger.com,
-        mkl@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        geert+renesas@glider.be, Chris.Paterson2@renesas.com,
-        biju.das@bp.renesas.com, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
-Message-ID: <20190613092635.ztm4k34o5jrxmadd@verge.net.au>
-References: <1557429622-31676-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <TY1PR01MB1770D2AAF2ED748575CA4CBFC0100@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190612122020.sgp5q427ilh6bbbg@verge.net.au>
- <20190612.094908.1957141510166169801.davem@davemloft.net>
+        id S1728300AbfFMPq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:46:26 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:17146 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731789AbfFMJm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 05:42:57 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d021a9f0000>; Thu, 13 Jun 2019 02:42:55 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 13 Jun 2019 02:42:55 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 13 Jun 2019 02:42:55 -0700
+Received: from [10.21.132.148] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
+ 2019 09:42:53 +0000
+Subject: Re: [PATCH v3 1/2] arm64: tegra: add ACONNECT, ADMA and AGIC nodes
+To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1560417053-2966-1-git-send-email-spujar@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <8a71e670-7943-6bce-ba61-3f020fd9450d@nvidia.com>
+Date:   Thu, 13 Jun 2019 10:42:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190612.094908.1957141510166169801.davem@davemloft.net>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <1560417053-2966-1-git-send-email-spujar@nvidia.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560418975; bh=NXHlTe3GaS+Cy5onlPwUV0gn1UM6F+0x2c5imipRZvo=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=L/Zq2yHgLKt0kM4/qRYcmL28PCijfoXShKeeU7UnR9fh0fOf3V1rH9Ye1R7oL3zmI
+         Xbbkp+BFBb4UfWqQ8kr5l1RgcPAmLMFW0bqafXnf2IgmwyJqvEJZEfKFguZVW7rrG0
+         +Bhg4AANFJPH+eX4x32pkt9EJcokxjB+7VHChVbAOKIRknk49SfyflTKWX6B3LffCS
+         ibib2hNQWASNeiuOwbCBwUjAH+lJbcgpNEki6qCtWL1m83ww3/dXDhVdpUG7EVVprq
+         IEzdI9/J884aAP2jw8apMeTCUyhHzUnm3x5RS84CiumO6ZRyYoliVmkdBT11sMmBSo
+         OMbBF4k2sO44Q==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 09:49:08AM -0700, David Miller wrote:
-> From: Simon Horman <horms@verge.net.au>
-> Date: Wed, 12 Jun 2019 14:20:20 +0200
-> 
-> > are you comfortable with me taking these patches
-> > through the renesas tree? Or perhaps should they be reposted
-> > to you for inclusion in net-next?
-> > 
-> > They have been stuck for a long time now.
-> 
-> They can go through the renesas tree, no problem.
-> 
-> Acked-by: David S. Miller <davem@davemloft.net>
 
-Thanks Dave,
+On 13/06/2019 10:10, Sameer Pujar wrote:
+> Add DT nodes for following devices on Tegra186 and Tegra194
+>  * ACONNECT
+>  * ADMA
+>  * AGIC
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  changes in current revision
+>   * use single address range for all APE modules
+>   * fix address range for agic
+> 
+>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 67 ++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 67 ++++++++++++++++++++++++++++++++
+>  2 files changed, 134 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> index 426ac0b..b4d735e 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> @@ -1295,4 +1295,71 @@
+>  				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+>  		interrupt-parent = <&gic>;
+>  	};
+> +
+> +	aconnect@2a41000 {
 
-I have applied these to the renesas tree for inclusion in v5.3.
+This address does not look correct. This appears to be the address of
+the AGIC. I think it should be 2900000, however, I also wonder if we
+should even bother with an address for the aconnect as this is just a
+bus and we don't specific a 'reg' property.
+
+> +		compatible = "nvidia,tegra210-aconnect";
+> +		clocks = <&bpmp TEGRA186_CLK_APE>,
+> +			 <&bpmp TEGRA186_CLK_APB2APE>;
+> +		clock-names = "ape", "apb2ape";
+> +		power-domains = <&bpmp TEGRA186_POWER_DOMAIN_AUD>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x02900000 0x0 0x02900000 0x1FFFFF>;
+
+This should be 0x1fffff.
+
+> +		status = "disabled";
+> +
+> +		dma-controller@2930000 {
+> +			compatible = "nvidia,tegra186-adma";
+> +			reg = <0x02930000 0x50000>;
+> +			interrupt-parent = <&agic>;
+> +			interrupts =  <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+> +				      <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			clocks = <&bpmp TEGRA186_CLK_AHUB>;
+> +			clock-names = "d_audio";
+> +			status = "disabled";
+> +		};
+> +
+> +		agic: agic@2a41000 {
+
+I think that this should also be "agic: interrupt-controller@xxxx" to
+conform with standard names. Sorry the Tegra210 version is not the best
+reference!
+
+Cheers
+Jon
+
+-- 
+nvpublic
