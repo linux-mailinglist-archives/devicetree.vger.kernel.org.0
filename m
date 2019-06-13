@@ -2,128 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0E943B4B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2DC943B36
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:27:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729518AbfFMP1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:27:45 -0400
-Received: from 10.mo5.mail-out.ovh.net ([46.105.52.148]:43320 "EHLO
-        10.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729003AbfFMLep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 07:34:45 -0400
-Received: from player728.ha.ovh.net (unknown [10.109.143.225])
-        by mo5.mail-out.ovh.net (Postfix) with ESMTP id 8DD8A23E798
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 13:34:43 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player728.ha.ovh.net (Postfix) with ESMTPSA id 7FFDA6B6DE10;
-        Thu, 13 Jun 2019 11:34:32 +0000 (UTC)
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: Add PXP node
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-References: <20190606164642.11539-1-sebastien.szymanski@armadeus.com>
- <20190612172103.gat3yrub2iyurai5@pengutronix.de>
-From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Openpgp: preference=signencrypt
-Message-ID: <6802e25d-f12b-28e3-d975-7f21fe002a35@armadeus.com>
-Date:   Thu, 13 Jun 2019 13:34:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727100AbfFMP1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:27:04 -0400
+Received: from mail-wr1-f42.google.com ([209.85.221.42]:45772 "EHLO
+        mail-wr1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729086AbfFMLml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 07:42:41 -0400
+Received: by mail-wr1-f42.google.com with SMTP id f9so20372987wre.12
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 04:42:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M0ZsHoiBuMTfOtADEzvR2C+3smzJtpOELu9NU33cfes=;
+        b=JX7JAnlpC/5ro2x6Z+UAAbgxEG6zPqcxepO1yDEMKgXmun2iUYPZZfOtSXWXCup0J2
+         zQ5Xe7sW3kEQ+83pe2ATBIcTRs1j6rTohOJedQT7LPzqQVJqqWw4cqOIqPrUC+oAYMRk
+         lRLwy91wlqN1FX84m0R+znr/UC86Lr5yuqkcyi3aApJz65ybTrTPXb09MIBe+bXscuAB
+         +i1cKAAKpK0cdVBUcEeMUL7sAZ0AusGK2aTVK03bSsf1eKp3xeWyvOtSra0UCKR+22Uf
+         Cg/Trn/YM21oupZfSfYVEdr7taJjnDZ1a1IJQ+bQ0wAaKtLMgSdqPzI8AVk+MWDmcIsV
+         t6PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M0ZsHoiBuMTfOtADEzvR2C+3smzJtpOELu9NU33cfes=;
+        b=PR+tLWh/VmsgeWiEqtS+ugdsvlIgu1NRnY48MwIPytUqfdRa6PsB5rY/vf8giYmWOE
+         yJdGXELBGfy51NgRYth7xdk9Q9BX5hnmtUAoSjIqvwC0ISS+2s+qqJHgaB+WC8+MzZo5
+         Ka9do5tqsI1Q48oGJe30EDvCfgDBI0AXjTrA7WPZnumynMTBWSk7BFmLPdtqiwcOW+wb
+         czaMX2xNqPS2loLXpn5k8jGTzk8N1q4v8smKz+MgDm/a+M6qnZyBsMAjGihzhM5GS6x8
+         iJb8moWQqnwx7lYOqJE7FrpN+CEkYCXnxtgiCSSXAunGXrWyjkYDplU5ygvTUPFqZbyb
+         EuFQ==
+X-Gm-Message-State: APjAAAW5VaSFLzHH47qKBkV+Y9RDzHCATqUaFxgwH4SBVCxIsxTrKDM3
+        zucOQZ3Mu08VS2BN3aTdpobGwA==
+X-Google-Smtp-Source: APXvYqxsB0lJVQCFeg50GG0zAhStyAzrsN1OVM00ronb52Gz/5ZCc1kOTBrm5qHA0vi5//v9WpyGEg==
+X-Received: by 2002:a5d:624c:: with SMTP id m12mr41557303wrv.354.1560426159084;
+        Thu, 13 Jun 2019 04:42:39 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id b5sm2598490wru.69.2019.06.13.04.42.38
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 13 Jun 2019 04:42:38 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH 0/4] ASoC: meson: axg-tdm: i2s format fixups
+Date:   Thu, 13 Jun 2019 13:42:29 +0200
+Message-Id: <20190613114233.21130-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190612172103.gat3yrub2iyurai5@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 3806386112924832978
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudehledggedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+The patchset fixes a few mistakes regarding the format on the i2s bus
+on the Amlogic axg tdm drivers.
 
-On 6/12/19 7:21 PM, Marco Felsch wrote:
-> Hi Sébastien,
-> 
-> On 19-06-06 18:46, Sébastien Szymanski wrote:
->> Add PXP node for i.MX6UL/L SoC.
->>
->> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
->> ---
->>  arch/arm/boot/dts/imx6ul.dtsi  | 9 +++++++++
->>  arch/arm/boot/dts/imx6ull.dtsi | 6 ++++++
->>  2 files changed, 15 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
->> index f10012de5eb6..a3c005373ae1 100644
->> --- a/arch/arm/boot/dts/imx6ul.dtsi
->> +++ b/arch/arm/boot/dts/imx6ul.dtsi
->> @@ -971,6 +971,15 @@
->>  				status = "disabled";
->>  			};
->>  
->> +			pxp: pxp@21cc000 {
->> +				compatible = "fsl,imx6ul-pxp";
->> +				reg = <0x021cc000 0x4000>;
->> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->> +				clocks = <&clks IMX6UL_CLK_PXP>;
->> +				clock-names = "axi";
->> +				status = "disabled";
-> 
-> Can you drop the status line because its a platform device and isn't
-> removeable.
+Jerome Brunet (4):
+  ASoC: meson: axg-tdmin: right_j is not supported
+  ASoC: meson: axg-tdmout: right_j is not supported
+  ASoC: meson: axg-tdm: fix sample clock inversion
+  ASoC: meson: axg-tdm: consistently use SND_SOC_DAIFMT defines
 
-Ok, done. thanks!
-
-Regards,
-
-> 
->> +			};
->> +
->>  			qspi: spi@21e0000 {
->>  				#address-cells = <1>;
->>  				#size-cells = <0>;
->> diff --git a/arch/arm/boot/dts/imx6ull.dtsi b/arch/arm/boot/dts/imx6ull.dtsi
->> index 22e4a307fa59..b017e925bd87 100644
->> --- a/arch/arm/boot/dts/imx6ull.dtsi
->> +++ b/arch/arm/boot/dts/imx6ull.dtsi
->> @@ -34,6 +34,12 @@
->>  	compatible = "fsl,imx6ull-ocotp", "syscon";
->>  };
->>  
->> +&pxp {
->> +	compatible = "fsl,imx6ull-pxp";
->> +	interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->> +		     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
->> +};
->> +
->>  &usdhc1 {
->>  	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
->>  };
->> -- 
->> 2.19.2
->>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-
+ sound/soc/meson/axg-tdm-interface.c | 4 ++--
+ sound/soc/meson/axg-tdm.h           | 2 +-
+ sound/soc/meson/axg-tdmin.c         | 1 -
+ sound/soc/meson/axg-tdmout.c        | 1 -
+ 4 files changed, 3 insertions(+), 5 deletions(-)
 
 -- 
-Sébastien Szymanski
-Software engineer, Armadeus Systems
-Tel: +33 (0)9 72 29 41 44
-Fax: +33 (0)9 72 28 79 26
+2.20.1
+
