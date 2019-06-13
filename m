@@ -2,74 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F2444A5C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB89A44A79
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728878AbfFMSJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 14:09:45 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:38246 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728830AbfFMSJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:09:42 -0400
-Received: by mail-qt1-f195.google.com with SMTP id n11so21504828qtl.5;
-        Thu, 13 Jun 2019 11:09:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=byG1DV+SoKVQRZ27UyZDVXVCyKyLBhM0+1OWg3TXATI=;
-        b=ICc6e6ayMI4tJQpDEv6T+ULFWUsJcvMuR3iLKrePyaOiSQWYTNL9UgQQbZ73xUi31X
-         KQtWufxTRqVfSDH/BPwAP4dtTHi7eU4aXcwAlXyHFprNQpmZaWe8B8AzeqKIV4N9LTvI
-         VG08nz+q0t75yMKBtEARa7jrnRrboCj/ogGyITd0jNEVwTz7lmhWBFeNkrinzouuXQ/a
-         9vUUHFUuCXgNhv022NU9Z1WKBySeufSM8Axo31HE/rEJshTv9E07XlRMtkdwHzJKq711
-         o9cy07Jp8A0rqtJOkGNM9LtZPm/eNfKQ2XI6fqyLdKLyCTuYw7GQjLjDVGDj1HVZgQBI
-         M4ig==
-X-Gm-Message-State: APjAAAV6V7LYGJBoNgWPOo4xPvLNkOQ1RD5/bg/tHY1ahwPKlAGA2YAk
-        TqOtFi8ku7psyUJ+6ow4Ow==
-X-Google-Smtp-Source: APXvYqyEaSvDNTf8H7iXKdq/akmJoa4ONV459oM3gCr7ZXgwysR2Do7HLe/sAVmwb/5+dG6pTTj5OA==
-X-Received: by 2002:a0c:9214:: with SMTP id a20mr4763658qva.195.1560449381341;
-        Thu, 13 Jun 2019 11:09:41 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id w30sm230529qtb.28.2019.06.13.11.09.40
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 13 Jun 2019 11:09:40 -0700 (PDT)
-Date:   Thu, 13 Jun 2019 12:09:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        ssantosh@kernel.org, dan.j.williams@intel.com,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        grygorii.strashko@ti.com, lokeshvutla@ti.com, t-kristo@ti.com,
-        tony@atomide.com
-Subject: Re: [PATCH 02/16] bindings: soc: ti: add documentation for k3 ringacc
-Message-ID: <20190613180939.GA6840@bogus>
-References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
- <20190506123456.6777-3-peter.ujfalusi@ti.com>
+        id S1726922AbfFMSPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 14:15:48 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37318 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbfFMSPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:15:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=urMa43C+0jgItqUyKJ9OgJ7uvJ3NBZiThEq7mP6kNFo=; b=fS9qeQP9mDtbwyTQps7xsg8TY
+        Xi5vuZ820jGy9LW6yXfnIKJ/QIfObCgPNLzwy7yiszNFR1GrkwXIe5coL5ZTRb2Dv5FR4SAJVJnHs
+        eYtFB45+9apT1zy91xxZCBO99lRTwGbLggEPjQuISbkZ1S0RKNZw1/ohoFLPwPqzqvLc0=;
+Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hbUFI-0005Ms-0T; Thu, 13 Jun 2019 18:14:44 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 6007A440046; Thu, 13 Jun 2019 19:14:43 +0100 (BST)
+Date:   Thu, 13 Jun 2019 19:14:43 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Thomas Preston <thomas.preston@codethink.co.uk>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/4] ASoC: tda7802: Add enable device attribute
+Message-ID: <20190613181443.GQ5316@sirena.org.uk>
+References: <20190611174909.12162-1-thomas.preston@codethink.co.uk>
+ <20190611174909.12162-4-thomas.preston@codethink.co.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uRjmd8ppyyws0Tml"
 Content-Disposition: inline
-In-Reply-To: <20190506123456.6777-3-peter.ujfalusi@ti.com>
+In-Reply-To: <20190611174909.12162-4-thomas.preston@codethink.co.uk>
+X-Cookie: Editing is a rewording activity.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 May 2019 15:34:42 +0300, Peter Ujfalusi wrote:
-> From: Grygorii Strashko <grygorii.strashko@ti.com>
-> 
-> The Ring Accelerator (RINGACC or RA) provides hardware acceleration to
-> enable straightforward passing of work between a producer and a consumer.
-> There is one RINGACC module per NAVSS on TI AM65x SoCs.
-> 
-> This patch introduces RINGACC device tree bindings.
-> 
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> ---
->  .../devicetree/bindings/soc/ti/k3-ringacc.txt | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--uRjmd8ppyyws0Tml
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Jun 11, 2019 at 06:49:08PM +0100, Thomas Preston wrote:
+> Add a device attribute to control the enable regulator. Write 1 to
+> enable, 0 to disable (ref-count minus one), or -1 to force disable the
+> physical pin.
+
+> To disable a set of amplifiers wired to the same enable gpio, each
+> device must be disabled. For example:
+
+> 	echo 0 > /sys/devices/.../device:00/enable
+> 	echo 0 > /sys/devices/.../device:01/enable
+
+This is adding a new ABI completely outstide the standard ALSA and power
+management frameworks and ABIs with no explanation as to why or
+integration with the rest of the driver.  This is obviously not in the
+slightest bit OK.  If there's something missing from the frameworks
+extend the frameworks, don't just ignore them.
+
+--uRjmd8ppyyws0Tml
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0CkpIACgkQJNaLcl1U
+h9BS2Qf/eUVj90LcvztgsSKTKJesxl0D3bt7RMK299c2vYLHkirE0vtrBBYdi4Pl
+FJ8puURfuyztbRnoMYrmvkGzoB+kCtwXLSxo2i1Mi6NSlQfnwwg0aoE9RHuB0oOD
+/2hT/ekihe5UadF/JGir89imbhQob5EDyVVzjEgyWULQ4ITpkAw8wiaIcF3GNrjY
+yFLb/wBrR+BM4SXfJKc+SmWy+xt1btn93sWuiaU7SMS86bIEbT1h0w4vQ1p3v2+/
+qjopN+wN8BrUnWRHi7xBR4eocG6hGN9+z6/Xkhr2XL8E0tyaDly5TMDZomOPYAif
+beljIAen1oDtCE4MOp25DYHPAJUmzg==
+=ioNi
+-----END PGP SIGNATURE-----
+
+--uRjmd8ppyyws0Tml--
