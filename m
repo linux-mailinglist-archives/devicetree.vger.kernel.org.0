@@ -2,206 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EECE443C99
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBAE43CA7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728195AbfFMPgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:36:24 -0400
-Received: from outgoing2.flk.host-h.net ([188.40.0.84]:39967 "EHLO
-        outgoing2.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727157AbfFMKRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 06:17:43 -0400
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-        by antispam3-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.89)
-        (envelope-from <justin.swartz@risingedge.co.za>)
-        id 1hbMnb-0004gv-Eh; Thu, 13 Jun 2019 12:17:40 +0200
-Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
-        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.84_2)
-        (envelope-from <justin.swartz@risingedge.co.za>)
-        id 1hbMna-0003Pi-J5; Thu, 13 Jun 2019 12:17:38 +0200
-From:   Justin Swartz <justin.swartz@risingedge.co.za>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: rockchip: add display nodes for rk322x
-Date:   Thu, 13 Jun 2019 10:13:04 +0000
-Message-Id: <20190613101305.30491-1-justin.swartz@risingedge.co.za>
-X-Mailer: git-send-email 2.11.0
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear (ClamAV 0.100.3/25478/Wed Jun 12 10:14:54 2019)
-X-Originating-IP: 188.40.1.173
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.0014064279395)
-X-Recommended-Action: accept
-X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0aEcKiGOen0TgGQo14QTNxSpSDasLI4SayDByyq9LIhVm8Lp0RDH9p9e
- zSXjVPBY3UTNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
- mAX8Bxy/iUu0ThNZg0jxJtcVJProrT987X1VDPOqN+OoDzRTdku7DidYUZdNf38Sp7Of4wP429AA
- f49baR+f3He7jw4SoVhmTJ/3eP9ORQWVx8ds1M4qmk3/bYr2p8zbg4Paoa3pNVQ0zl7t/+UfQLYB
- qEPnp1U88kqVD8AM2G81dFO0E3gi+MOI1foZYzDggRXhpvoPtF3cVkniFXU3qJSqpdJudO6+rkiw
- E5i8Wl78Q18OeOfsy4h7jF1Uv9lnibl3vcBqVmvQB4A18aeE+j/fKO/vV3jpic9houk2mH6eQvWp
- DWTULXV1jJ5bfceEJeNruLKdflVX7oFNsdHVhnpudkCyIg6Nob+f0OfCg2lBMt3xu9nbye2CdJLN
- jSo1M+TSg3TNDI3/M5s9/ot3ko3rrae7IifWc6pL546YUVQwaYLh3di89W/ji5iahyCgJgyv93tC
- 61cbiLYl3RCqADG/Ryndzp4OfbK7c6EqHwlqvaI+zok/BsKQK4gft4+8sY8CNaDDoRMm0CGce/fp
- WUXurEbGCiZ0ePvZjCuJdbYb9IXfYGRpVS/0hA4Mwkg/wxsjmSXwdCAtc5U5IMGqr3wBwEeX6Ai5
- 5FPRpzhbYqsuNEW45+y/2kiUpWy9c957+6R4kroQiAThpzOdFqFvbdRuq0FZjQOwDKXnhaC6dkwF
- 9ybSMhHO+IPM0C985aNe1vwE2plJLdOGZ2rsAWflnmUXwJv1R9bnj+xoJG4VhUotTJ0/e5GmrorL
- FK/ZMMaOhB24kmiXsKh2uc6NbILRjdK3JtbOY4V5u4SqNrbdxyGLEIoLEuuC4P/fyEEgA3CnflZn
- bjDB2+RGRgaXth2/9YEbMsGSn6owqJN0kS7MUpAEhFoAxikOdx3ALFboD0vMokt+4lO8Qp33tUy6
- u+yS6WEpzRkYYh+Rxc/2mS1yCppcnKmI4dLjaezH/hFXJzwJWw42swm4bO6gacpMpzJ5RNWFoIkg
- vLC7uMZSLKkLPlzqsPnNmrTFfBI+gCHkFgyh9jAE9PwtDurXCCybWAnihjA708Lg3Y2gXyaf+rIt
- vvthbyiMZOAfvJjwL84MO4Vozqbzv/NmqBexmg1oMlu3UCyNNO7qENlLqkRemjF1A1q3g0ZrubFa
- n/xi+AGXOIO97ttnHrPmGyC6rR21+9c=
-X-Report-Abuse-To: spam@antispammaster.host-h.net
+        id S1728949AbfFMPg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:36:56 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:16433 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727066AbfFMKQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 06:16:33 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d02227e0000>; Thu, 13 Jun 2019 03:16:30 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 13 Jun 2019 03:16:30 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 13 Jun 2019 03:16:30 -0700
+Received: from HQMAIL112.nvidia.com (172.18.146.18) by HQMAIL108.nvidia.com
+ (172.18.146.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
+ 2019 10:16:30 +0000
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL112.nvidia.com
+ (172.18.146.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 13 Jun
+ 2019 10:16:30 +0000
+Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Thu, 13 Jun 2019 10:16:30 +0000
+Received: from linux.nvidia.com (Not Verified[10.24.34.185]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d02227c0000>; Thu, 13 Jun 2019 03:16:30 -0700
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v4 1/2] arm64: tegra: add ACONNECT, ADMA and AGIC nodes
+Date:   Thu, 13 Jun 2019 15:46:11 +0530
+Message-ID: <1560420972-22350-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560420990; bh=9c7yqiehVPBF0gU8twCaup2E2H4w3JuhvGV1X2GVlCU=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         MIME-Version:Content-Type;
+        b=K6EBvzH+bvA2GdIjtkVvyMLDKjKUQGlru5RmPCgeEfWCT5mxr29UDkhnXkCBmBedB
+         4Rqsa4Y8mcbMi7/rRw3W3om1Wv1OsFQy2QEmCMm69NF6GOBzf3uvBaiAR8zvFCuZ4H
+         Xm8n9YBkN0q0Pfr0QNpXKm+NuyY3b2s3gLpKXzVrDEu8d6IbU8kAlgNffhbzpe2rhO
+         NQMl8fBcZsmgGMEPpppP8XhpQ2yunXoGnfBAzOlxjDH0+r6pMVYFME+3bZjnqIV6/u
+         COuFKcjJSdD9yaN/DBU6Vzhto87wCTVrmyZFSQwISZG9kIq3KbjOqFb8rgslXfS8Sy
+         N7xUJoCFtV5IA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add display_subsystem, hdmi_phy, vop, and hdmi device nodes plus
-a few hdmi pinctrl entries to allow for HDMI output.
+Add DT nodes for following devices on Tegra186 and Tegra194
+ * ACONNECT
+ * ADMA
+ * AGIC
 
-Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+Signed-off-by: Sameer Pujar <spujar@nvidia.com>
 ---
- arch/arm/boot/dts/rk322x.dtsi | 83 ++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 82 insertions(+), 1 deletion(-)
+ changes in current revision
+  * node names changed for aconnect and agic
+  * size value updated for ranges property in aconnect node
 
-diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
-index da102fff96a2..7eb883eec126 100644
---- a/arch/arm/boot/dts/rk322x.dtsi
-+++ b/arch/arm/boot/dts/rk322x.dtsi
-@@ -143,6 +143,11 @@
- 		#clock-cells = <0>;
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi | 67 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 67 ++++++++++++++++++++++++++++++++
+ 2 files changed, 134 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+index 426ac0b..017fddd 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+@@ -1295,4 +1295,71 @@
+ 				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 		interrupt-parent = <&gic>;
  	};
- 
-+	display_subsystem: display-subsystem {
-+		compatible = "rockchip,display-subsystem";
-+		ports = <&vop_out>;
-+	};
 +
- 	i2s1: i2s1@100b0000 {
- 		compatible = "rockchip,rk3228-i2s", "rockchip,rk3066-i2s";
- 		reg = <0x100b0000 0x4000>;
-@@ -529,6 +534,17 @@
- 		status = "disabled";
- 	};
- 
-+	hdmi_phy: hdmi-phy@12030000 {
-+		compatible = "rockchip,rk3228-hdmi-phy";
-+		reg = <0x12030000 0x10000>;
-+		clocks = <&cru PCLK_HDMI_PHY>, <&xin24m>, <&cru DCLK_HDMI_PHY>;
-+		clock-names = "sysclk", "refoclk", "refpclk";
-+		#clock-cells = <0>;
-+		clock-output-names = "hdmiphy_phy";
-+		#phy-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	gpu: gpu@20000000 {
- 		compatible = "rockchip,rk3228-mali", "arm,mali-400";
- 		reg = <0x20000000 0x10000>;
-@@ -572,6 +588,28 @@
- 		status = "disabled";
- 	};
- 
-+	vop: vop@20050000 {
-+		compatible = "rockchip,rk3228-vop";
-+		reg = <0x20050000 0x1ffc>;
-+		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_VOP>, <&cru DCLK_VOP>, <&cru HCLK_VOP>;
-+		clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
-+		resets = <&cru SRST_VOP_A>, <&cru SRST_VOP_H>, <&cru SRST_VOP_D>;
-+		reset-names = "axi", "ahb", "dclk";
-+		iommus = <&vop_mmu>;
++	aconnect {
++		compatible = "nvidia,tegra210-aconnect";
++		clocks = <&bpmp TEGRA186_CLK_APE>,
++			 <&bpmp TEGRA186_CLK_APB2APE>;
++		clock-names = "ape", "apb2ape";
++		power-domains = <&bpmp TEGRA186_POWER_DOMAIN_AUD>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x02900000 0x0 0x02900000 0x1fffff>;
 +		status = "disabled";
 +
-+		vop_out: port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++		dma-controller@2930000 {
++			compatible = "nvidia,tegra186-adma";
++			reg = <0x02930000 0x50000>;
++			interrupt-parent = <&agic>;
++			interrupts =  <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			clocks = <&bpmp TEGRA186_CLK_AHUB>;
++			clock-names = "d_audio";
++			status = "disabled";
++		};
 +
-+			vop_out_hdmi: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&hdmi_in_vop>;
-+			};
++		agic: interrupt-controller@2a41000 {
++			compatible = "nvidia,tegra210-agic";
++			#interrupt-cells = <3>;
++			interrupt-controller;
++			reg = <0x02a41000 0x1000>,
++			      <0x02a42000 0x2000>;
++			interrupts = <GIC_SPI 145
++				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++			clocks = <&bpmp TEGRA186_CLK_APE>;
++			clock-names = "clk";
++			status = "disabled";
 +		};
 +	};
+ };
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index c77ca21..06608d8 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -1054,4 +1054,71 @@
+ 				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 		interrupt-parent = <&gic>;
+ 	};
 +
- 	vop_mmu: iommu@20053f00 {
- 		compatible = "rockchip,iommu";
- 		reg = <0x20053f00 0x100>;
-@@ -579,7 +617,7 @@
- 		interrupt-names = "vop_mmu";
- 		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
- 		clock-names = "aclk", "iface";
--		iommu-cells = <0>;
-+		#iommu-cells = <0>;
- 		status = "disabled";
- 	};
- 
-@@ -594,6 +632,34 @@
- 		status = "disabled";
- 	};
- 
-+	hdmi: hdmi@200a0000 {
-+		compatible = "rockchip,rk3228-dw-hdmi";
-+		reg = <0x200a0000 0x20000>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru SCLK_HDMI_HDCP>, <&cru PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_CEC>;
-+		clock-names = "isfr", "iahb", "cec";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmii2c_xfer &hdmi_hpd &hdmi_cec>;
-+		resets = <&cru SRST_HDMI_P>;
-+		reset-names = "hdmi";
-+		phys = <&hdmi_phy>;
-+		phy-names = "hdmi";
-+		rockchip,grf = <&grf>;
++	aconnect {
++		compatible = "nvidia,tegra210-aconnect";
++		clocks = <&bpmp TEGRA194_CLK_APE>,
++			 <&bpmp TEGRA194_CLK_APB2APE>;
++		clock-names = "ape", "apb2ape";
++		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_AUD>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x02900000 0x0 0x02900000 0x1fffff>;
 +		status = "disabled";
 +
-+		ports {
-+			hdmi_in: port {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				hdmi_in_vop: endpoint@0 {
-+					reg = <0>;
-+					remote-endpoint = <&vop_out_hdmi>;
-+				};
-+			};
++		dma-controller@2930000 {
++			compatible = "nvidia,tegra186-adma";
++			reg = <0x02930000 0x50000>;
++			interrupt-parent = <&agic>;
++			interrupts =  <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
++				      <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			clocks = <&bpmp TEGRA194_CLK_AHUB>;
++			clock-names = "d_audio";
++			status = "disabled";
++		};
++
++		agic: interrupt-controller@2a41000 {
++			compatible = "nvidia,tegra210-agic";
++			#interrupt-cells = <3>;
++			interrupt-controller;
++			reg = <0x02a41000 0x1000>,
++			      <0x02a42000 0x2000>;
++			interrupts = <GIC_SPI 145
++				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++			clocks = <&bpmp TEGRA194_CLK_APE>;
++			clock-names = "clk";
++			status = "disabled";
 +		};
 +	};
-+
- 	sdmmc: dwmmc@30000000 {
- 		compatible = "rockchip,rk3228-dw-mshc", "rockchip,rk3288-dw-mshc";
- 		reg = <0x30000000 0x4000>;
-@@ -922,6 +988,21 @@
- 			};
- 		};
- 
-+		hdmi {
-+			hdmi_hpd: hdmi-hpd {
-+				rockchip,pins = <0 RK_PB7 1 &pcfg_pull_down>;
-+			};
-+
-+			hdmii2c_xfer: hdmii2c-xfer {
-+				rockchip,pins = <0 RK_PA6 2 &pcfg_pull_none>,
-+						<0 RK_PA7 2 &pcfg_pull_none>;
-+			};
-+
-+			hdmi_cec: hdmi-cec {
-+				rockchip,pins = <0 RK_PC4 1 &pcfg_pull_none>;
-+			};
-+		};
-+
- 		i2c0 {
- 			i2c0_xfer: i2c0-xfer {
- 				rockchip,pins = <0 RK_PA0 1 &pcfg_pull_none>,
+ };
 -- 
-2.11.0
+2.7.4
 
