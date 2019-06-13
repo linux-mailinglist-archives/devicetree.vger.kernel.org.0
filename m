@@ -2,102 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1AA744F26
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 00:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9514344F55
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 00:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726011AbfFMWcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 18:32:10 -0400
-Received: from smtprelay0116.hostedemail.com ([216.40.44.116]:46495 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725616AbfFMWcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 18:32:10 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay06.hostedemail.com (Postfix) with ESMTP id 0234B1822408D;
-        Thu, 13 Jun 2019 22:32:08 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 10,1,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2194:2199:2393:2559:2562:2691:2716:2828:3138:3139:3140:3141:3142:3352:3622:3865:3867:3871:3872:4321:5007:6742:7901:7974:9036:10004:10400:10450:10455:10848:10967:11026:11232:11473:11657:11658:11914:12043:12296:12438:12740:12760:12895:13069:13311:13357:13439:14659:14721:19904:19999:21080:21325:21451:21627:30045:30054:30091,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:26,LUA_SUMMARY:none
-X-HE-Tag: bells74_f85ac43e0702
-X-Filterd-Recvd-Size: 3034
-Received: from XPS-9350 (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
-        (Authenticated sender: joe@perches.com)
-        by omf15.hostedemail.com (Postfix) with ESMTPA;
-        Thu, 13 Jun 2019 22:31:46 +0000 (UTC)
-Message-ID: <39e6c0f7d7529da9906a17450a8bcdf416297520.camel@perches.com>
-Subject: Re: [PATCH 2/2] media: v4l: xilinx: Add Xilinx UHD-SDI Rx Subsystem
- driver
-From:   Joe Perches <joe@perches.com>
-To:     Hyun Kwon <hyun.kwon@xilinx.com>,
-        Vishal Sagar <vishal.sagar@xilinx.com>
-Cc:     Hyun Kwon <hyunk@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727483AbfFMWjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 18:39:49 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:32983 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727024AbfFMWjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 18:39:48 -0400
+Received: by mail-qt1-f196.google.com with SMTP id x2so366294qtr.0;
+        Thu, 13 Jun 2019 15:39:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=bCHJc/RYQOHT8KIIL8NnCGZBh/2T41LitjB/YOWB1/4=;
+        b=UDiWmucC39NOFi3/dIsit95KBy8HJENqc0ZZRVsjXis/fC5NCFUjhKhtcRTicgs2uB
+         ++1JljC+yn5tbqt49QA8uKFEHe4g5HkxcyjKIhfILIq2AStHN6J33EDLCYJgfxwMYTBQ
+         TaF3UKoFyZ+blkbMEqOhIklQ9tt7tk22v/5G3J04T2sXz6NfR3Vt6plpNGqnZU1ppCBr
+         Gu+IcJEGWHGnAX5g9y0uvQTJ+rx8lyOXZUjW8ta8h7ANLqzuT9iZ4oybtcNQadIGR9Af
+         Ed0++CDBCNNS+e47pQF4nVv4tFjdx3bK+3YJDDUbDum3FnLdlfMOMVAAoq3f9EfODcka
+         GQKA==
+X-Gm-Message-State: APjAAAUbh2rJwyhcTsBy9H6eYbBQcB2Ea7ZAjflh8oRXEvoWLcV+f5/D
+        UoUBF56IxMucSOscBURGEw==
+X-Google-Smtp-Source: APXvYqzFn/C8biXE88xDpBCccLlZIsNQzH0RGUaWMgWYLwdhGFaFjJgxaPQy9hUWHHluUnKM2YMbqA==
+X-Received: by 2002:a0c:b036:: with SMTP id k51mr5598377qvc.103.1560465587282;
+        Thu, 13 Jun 2019 15:39:47 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id v72sm594399qkb.0.2019.06.13.15.39.46
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 13 Jun 2019 15:39:46 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 16:39:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dinesh Kumar <dineshk@xilinx.com>,
-        Sandip Kothari <sandipk@xilinx.com>
-Date:   Thu, 13 Jun 2019 15:31:44 -0700
-In-Reply-To: <20190613220507.GA2473@smtp.xilinx.com>
-References: <1559656556-79174-1-git-send-email-vishal.sagar@xilinx.com>
-         <1559656556-79174-3-git-send-email-vishal.sagar@xilinx.com>
-         <20190613220507.GA2473@smtp.xilinx.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.30.5-0ubuntu0.18.10.1 
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [RFC PATCH v2 1/4] dt-bindings: input: Add support for the
+ MPR121 without interrupt line
+Message-ID: <20190613223945.GA938@bogus>
+References: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
+ <1558098773-47416-2-git-send-email-michal.vokac@ysoft.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1558098773-47416-2-git-send-email-michal.vokac@ysoft.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-06-13 at 15:05 -0700, Hyun Kwon wrote:
-> On Tue, 2019-06-04 at 06:55:56 -0700, Vishal Sagar wrote:
+On Fri, May 17, 2019 at 03:12:50PM +0200, Michal Vokáč wrote:
+> Normally, the MPR121 controller uses separate interrupt line to notify
+> the I2C host that a key was touched/released. To support platforms that
+> can not use the interrupt line, polling of the MPR121 registers can be
+> used.
 
-trivia:
+'separate' from what?
 
-> > diff --git a/drivers/media/platform/xilinx/xilinx-sdirxss.c b/drivers/media/platform/xilinx/xilinx-sdirxss.c
-[]
-> > +static int xsdirx_get_stream_properties(struct xsdirxss_state *state)
-> > +{
-[]
-> > +	if (valid & XSDIRX_ST352_VALID_DS1_MASK) {
-> > +		payload = xsdirxss_read(core, XSDIRX_ST352_DS1_REG);
-> > +		byte1 = (payload >> XST352_PAYLOAD_BYTE1_SHIFT) &
-> > +				XST352_PAYLOAD_BYTE_MASK;
-
-Is XST352_PAYLOAD_BYTE_MASK correct ?
-Should it be XST352_PAYLOAD_BYTE1_MASK ?
-
-> > +		active_luma = (payload & XST352_BYTE3_ACT_LUMA_COUNT_MASK) >>
-> > +				XST352_BYTE3_ACT_LUMA_COUNT_OFFSET;
-> > +		pic_type = (payload & XST352_BYTE2_PIC_TYPE_MASK) >>
-> > +				XST352_BYTE2_PIC_TYPE_OFFSET;
-> > +		framerate = (payload >> XST352_BYTE2_FPS_SHIFT) &
-> > +				XST352_BYTE2_FPS_MASK;
-> > +		tscan = (payload & XST352_BYTE2_TS_TYPE_MASK) >>
-> > +				XST352_BYTE2_TS_TYPE_OFFSET;
 > 
-> Please align consistently throughout the patch. I believe the checkpatch
-> --strict warns on these.
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> ---
+> Changes since v1:
+> - Document the polled binding in the original file, do not create a new one.
+>   (Rob)
+> 
+>  Documentation/devicetree/bindings/input/mpr121-touchkey.txt | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/mpr121-touchkey.txt b/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+> index b7c61ee5841b..97f55273d473 100644
+> --- a/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+> +++ b/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+> @@ -1,9 +1,14 @@
+> -* Freescale MPR121 Controllor
+> +* Freescale MPR121 Controller
+>  
+>  Required Properties:
+> -- compatible:		Should be "fsl,mpr121-touchkey"
+> +- compatible:		Should be one of:
+> +			- "fsl,mpr121-touchkey" - MPR121 with interrupt line
+> +			- "fsl,mpr121-touchkey-polled" - MPR121 with polling
+>  - reg:			The I2C slave address of the device.
+>  - interrupts:		The interrupt number to the cpu.
+> +			In case of "fsl,mpr121-touchkey-polled" the interrupt
+> +			line is not used and hence the interrupts property is
+> +			not required.
 
-I believe not.
+Absence of the interrupts property is enough to determine polled mode 
+and you don't need a separate compatible string.
 
-Another possibility would be to use a macro like:
-
-#define mask_and_shift(val, type)	\
-	((val) & (XST352_ ## type ## _MASK)) >> (XST352_ ## type ## _OFFSET))
-
-> > +		sampling = (payload & XST352_BYTE3_COLOR_FORMAT_MASK) >>
-> > +			   XST352_BYTE3_COLOR_FORMAT_OFFSET;
-
-So these could be something like:
-
-		sampling = mask_and_shift(payload, BYTE3_COLOR_FORMAT);
-
-
+>  - vdd-supply:		Phandle to the Vdd power supply.
+>  - linux,keycodes:	Specifies an array of numeric keycode values to
+>  			be used for reporting button presses. The array can
+> -- 
+> 2.1.4
+> 
