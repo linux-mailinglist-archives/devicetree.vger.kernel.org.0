@@ -2,122 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F4343C74
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7504243C93
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727129AbfFMPgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:36:05 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:34691 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731971AbfFMPf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:35:28 -0400
-Received: by mail-io1-f68.google.com with SMTP id k8so17886380iot.1;
-        Thu, 13 Jun 2019 08:35:27 -0700 (PDT)
+        id S1727182AbfFMPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:36:38 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:34082 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728378AbfFMPgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 11:36:36 -0400
+Received: by mail-pf1-f194.google.com with SMTP id c85so12093177pfc.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 08:36:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aF7WfJBqic6Edz88lRv/0CL+oI9ZSIdnX+8VgBOn3LM=;
-        b=YFFG03ILxrBxA6EZc7HJyHTcZQG8lYtS0piFG6RoKFTL9WaRyzxFvfEfAYIJhj/ftv
-         9ExuTCWv50qCckQUHlJWT2UsUYTEATiFrwqXse8mop93NQaSCaMjFPtYLHL53CS1iBdu
-         FSSVPGtnBTxP4GW8ocS4dqqaF8GUvpBrzW2/4wt80dCCxcvClhxqJh5SbP92pc3pYdQl
-         jlJmooBJcmedVvhBjo+Q5iscUzsWXs4DECS3/+7zXE3IHqrut20IQRp4C0HcFKIYAcT7
-         4RLMs3kfUprhpOWBGSDxx6PuB5IH+dkxMni5cJQm3aX/POi0LH+cq45V7JYf6aWa4T1L
-         TnxQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=dIxmbqoHolBJ5JcAhkZwY20MNsxdVQHEXSvHFfDlnuo=;
+        b=T1xzSsA9CWPyw7MWBoY1BkfuWJPaojXzqycfSspyble27NyBTeDRkcyEZlH3+A5O3T
+         Z6NEGv0WS/CcB1j1VNYkJchhJJ9R9qZXDRNePgDjSugQ1t0q8105sxVsOZRxc+TLwaqs
+         7kV//PH0M1EB4KS7oeLAVuKDggdnPQjpP8SIC2JqHFNKJG42LdxB9rFX6PDVXIKLsRT0
+         6ULmpK6ETnJzaxuVhH0qZBw3k4cP2Za66kFl4eSE8OeQt0XCpjtZUKr+pjRA8J0H0usm
+         QCJAafRqj3DAkuKtPOiLbmIvPRSGJTbM3N4gy3M8+ZeF1U2doaNJUOH0OO+R0Rz64xah
+         d8oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aF7WfJBqic6Edz88lRv/0CL+oI9ZSIdnX+8VgBOn3LM=;
-        b=cwC3Bk0V8cUVTlb5qC7wk5kq7I3t9CVr4PqsCr8WSUiLGBZ/8WL/kMB4qdyIKVzRdH
-         buJk1mKOFiQE6rRZFCCqpaPDj3OvnID4rpzBnr8aQ/WhlTk7rAouXapnq0psqZVA3dI6
-         s69WzM4VGxKNAnjXKZBOrI3R1QjfFFdzhCc0zyFVrci/GhM0kWzCgai47baHISfAB5hu
-         C2MoXb5GmagXRFwL7t9WkcwxMrVuUFpv5UQmEHS+clEkEOVNTy8fgcl9Hr2EMdKeUR4p
-         F243oO+9HFJzBpmgeIBaowsoc8vsm5TIJb9+YfhiwuEWyw6dqtOsUOTHz4hRwnQ5icaL
-         sNNw==
-X-Gm-Message-State: APjAAAVljhOXp1qUwGhi/DMT7gFGRuHPtw4DlJ+98KZ/RWtwyTPuT8mk
-        6uLnARmf8hUPjByjS0T7cC9rr6wVLiMAECQhkNs=
-X-Google-Smtp-Source: APXvYqzEXd8Sr1aUseL+zTWDc5Ak4NVxezALw+LIg0QIm0xSXFjXqsm8USdWkhi9CiqHsaqRen64MfMyW8gnwFYF5X4=
-X-Received: by 2002:a5d:9047:: with SMTP id v7mr36860549ioq.18.1560440127125;
- Thu, 13 Jun 2019 08:35:27 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=dIxmbqoHolBJ5JcAhkZwY20MNsxdVQHEXSvHFfDlnuo=;
+        b=YQ+sy0EGI8KKoT6ZrSaOhWhzMAZLdcnUrjmpGowbVMtZgLDh2pV036G/+R5JZ7T9Sc
+         sGXhp5A5E1VvG/ze7X7vGLJQHM0BPy381yo/dmCFPYO+0Fd4Zu/iGJit3l79xlacD1Ib
+         dmm/7Cr2YEAzHfb+kYpLTVKS5nbgrW1iMCzOXQZWwE4V5CB3H6EAeDSUISKpk5pSh/Lg
+         ZoAbNSpL401sstd4rPyZHKIegnSEY3bTQo7sOjR9fizE5uRfZR9+wWpHNt7bFssfVsOl
+         l5UZHb4ANzS+EXWE1s3Tc0xCFZA8cx0rk1FoycX7RaXXvsRyaJpxEaEpx65twDuoysoq
+         mqiQ==
+X-Gm-Message-State: APjAAAXJ7P9Oh8Mp0+13o08XpQjFkBm3IDwp+T2xBC5aXuzKB8uYrLHb
+        0R/fWzIlUSHFdNhbWZMx3ZEiww==
+X-Google-Smtp-Source: APXvYqzi2uLTJsw+edMFJq+DNQyvGd0PcsK9UYvnv+v8xA1dRESupytCXLoyfUCnalLWUD65g6ISdQ==
+X-Received: by 2002:a63:52:: with SMTP id 79mr30999563pga.381.1560440195944;
+        Thu, 13 Jun 2019 08:36:35 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id t13sm276008pjo.13.2019.06.13.08.36.35
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 13 Jun 2019 08:36:35 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 08:36:33 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Subject: Re: [PATCH v3 6/7] dt-bindings: qcom_spmi: Document pms405 support
+Message-ID: <20190613153633.GF6792@builder>
+References: <20190613142157.8674-1-jeffrey.l.hugo@gmail.com>
+ <20190613142416.8985-1-jeffrey.l.hugo@gmail.com>
 MIME-Version: 1.0
-References: <20190525181329.18657-1-tiny.windzz@gmail.com> <20190525181329.18657-2-tiny.windzz@gmail.com>
- <20190527122752.uc7q6zkjti3zag4q@flea> <CAEExFWtxEB67Pv-8x4ry=tZcJjOD6Kxydq_YB73Gox25VmQn7A@mail.gmail.com>
- <20190612154325.m6z7xsxlpdq4wkxv@flea>
-In-Reply-To: <20190612154325.m6z7xsxlpdq4wkxv@flea>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Thu, 13 Jun 2019 23:35:15 +0800
-Message-ID: <CAEExFWskAsNquULKBLtBFUOosNpks8L6aUhw-+cF=oZ0aghAtQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] thermal: sun8i: add thermal driver for h6
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        David Miller <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com, Linux PM <linux-pm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190613142416.8985-1-jeffrey.l.hugo@gmail.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 9:26 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> On Fri, Jun 07, 2019 at 09:34:44PM +0800, Frank Lee wrote:
-> > On Mon, May 27, 2019 at 8:27 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > +     ret = devm_request_threaded_irq(dev, irq, NULL,
-> > > > +                                     tmdev->chip->irq_thread,
-> > > > +                                     IRQF_ONESHOT, "ths", tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > >
-> > > Is there any particular reason to use a threaded interrupt?
-> >
-> > Just to improve real-time.
->
-> What do you mean by real-time here? If anything, that will increase
-> the latency of the interrupts here.
->
-> And in preempt-rt, regular top-half interrupts will be forced into a
-> threaded interrupt anyway.
->
-> > > > +static int sun8i_ths_remove(struct platform_device *pdev)
-> > > > +{
-> > > > +     struct ths_device *tmdev = platform_get_drvdata(pdev);
-> > > > +
-> > > > +     clk_disable_unprepare(tmdev->bus_clk);
-> > >
-> > > I know that we discussed that already, but I'm not sure why you switch
-> > > back to a regular call to regmap_init_mmio, while regmap_init_mmio_clk
-> > > will take care of enabling and disabling the bus clock for you?
-> >
-> > It seems that regmap_init_mmio_clk just get clk and prepare clk
-> > but no enable.
->
-> At init time, yes. But it will enable it only when you access the
-> registers, which is what you want anyway.
+On Thu 13 Jun 07:24 PDT 2019, Jeffrey Hugo wrote:
 
-But after accessing the register, it turns the clock off, which
-affects the ad conversion and the occurrence of the interrupt.
+> From: Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+> 
+> The PMS405 supports 5 SMPS and 13 LDO regulators.
+> 
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> ---
+>  .../regulator/qcom,spmi-regulator.txt         | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
+> index ba94bc2d407a..19cffb239094 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
+> @@ -10,6 +10,7 @@ Qualcomm SPMI Regulators
+>  			"qcom,pm8941-regulators"
+>  			"qcom,pm8994-regulators"
+>  			"qcom,pmi8994-regulators"
+> +			"qcom,pms405-regulators"
+>  
+>  - interrupts:
+>  	Usage: optional
+> @@ -111,6 +112,29 @@ Qualcomm SPMI Regulators
+>  	Definition: Reference to regulator supplying the input pin, as
+>  		    described in the data sheet.
+>  
+> +- vdd_s1-supply:
+> +- vdd_s2-supply:
+> +- vdd_s3-supply:
+> +- vdd_s4-supply:
+> +- vdd_s5-supply:
+> +- vdd_l1-supply:
+> +- vdd_l2-supply:
+> +- vdd_l3-supply:
+> +- vdd_l4-supply:
+> +- vdd_l5-supply:
+> +- vdd_l6-supply:
+> +- vdd_l7-supply:
+> +- vdd_l8-supply:
+> +- vdd_l9-supply:
+> +- vdd_l10-supply:
+> +- vdd_l11-supply:
+> +- vdd_l12-supply:
+> +- vdd_l13-supply:
 
-In addition, when resuming from suspend, we need to enable
-the clock, so I think it is necessary to have a clock pointer.
+No, the supply pins are as follows:
 
-Yangtao
+- vdd_l1_l2-supply:
+- vdd_l3_l8-supply:
+- vdd_l4-supply:
+- vdd_l5_l6-supply:
+- vdd_l10_l11_l12_l13-supply:
+- vdd_l7-supply:
+- vdd_l9-supply:
+- vdd_s1-supply:
+- vdd_s2-supply:
+- vdd_s3-supply:
+- vdd_s4-supply:
+- vdd_s5-supply:
 
->
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+
+Regards,
+Bjorn
+
+> +	Usage: optional (pms405 only)
+> +	Value type: <phandle>
+> +	Definition: Reference to regulator supplying the input pin, as
+> +		    described in the data sheet.
+> +
+>  - qcom,saw-reg:
+>  	Usage: optional
+>  	Value type: <phandle>
+> -- 
+> 2.17.1
+> 
