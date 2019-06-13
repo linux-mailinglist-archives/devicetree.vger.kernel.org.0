@@ -2,111 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 892B543A05
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4D5439F7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 17:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387933AbfFMPSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 11:18:00 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:34861 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732168AbfFMNOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 09:14:24 -0400
-Received: by mail-vs1-f66.google.com with SMTP id u124so12593258vsu.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 06:14:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CR4I31iRpJNzMeDmL877t0ARvDi8UmH6xTDgLBUKOEU=;
-        b=ELoOMPni1y0S2Eeu4CKg+k17whALIizetT7cvmiVzng2ASoWY/zEf4QCF5Q4OCkG4r
-         lLSK1k41lMROJ+CxzlSyxs4V908CnVex3CA8jzK+NeJYcm9x2tEsn3yAQP+XWphKFejP
-         JnPcJGVuzsD2hPED5Rx4zSlBDEMa4cgvvknreVnW5pBkqU20fs0btRzAemvxo5UuMhXw
-         g5QinFv6WnqFTkUUnCvRl6n9kN9cK8l6xbWlCP4F+wdmQWWeftsL/0JGcradgEWeJSzp
-         QWxvGdPrSOdP1tTXeg1zxynQFa/LfRm4TmZHofWD2iwya+qc8IzJc2B3hZq6Tq0/OBz1
-         lEYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CR4I31iRpJNzMeDmL877t0ARvDi8UmH6xTDgLBUKOEU=;
-        b=JV0iEBNCl1I49cW/BXU0hF1sZQMg+HbPGWgV2+uuexEmVPvxfe5Ox7TmGtf54mSoIq
-         g75W4OEhV7mbpa+mcfb5nM3NjB9+ZS9emZxGeaM3l4J36SuKVQnkWR9Qyqu5qgUEO2ga
-         69z6KS1O7S7kilsLthFILESc4BL6RUoSQfsOWuz2oApTGnYl9zdqeVhYnoQmuTBHxses
-         tcF5ADDreV3YDoaXHmE0dGu79zXRumCSDvvdhFDLYFlatNBVSDy1qkjGfQXhp2jsO5ce
-         V/DzzZ2EkTy06FmR9KeLdnyz/y2SQLhD6ewabelLynd+p4/+1oWaj8G+QsN/GUEhKObz
-         pl6w==
-X-Gm-Message-State: APjAAAWk0dv6IgQME+1fZmNlN4P99rVuIQ0Wx5nYKqfb9iFKevSTPXYC
-        3cnqfouTlO9R4FFhI+dVGmI+XZ7KQ4AVHZF25Cp2fw==
-X-Google-Smtp-Source: APXvYqwbXxtKhJhPoMfm6hW9bmujkyqa7UqRJRkTixkWhWXjnp1ugr9ACSLRfaX8ICyv+pkIWZG5c6+bqjRTtP+mu6A=
-X-Received: by 2002:a67:ee5b:: with SMTP id g27mr15041407vsp.165.1560431662796;
- Thu, 13 Jun 2019 06:14:22 -0700 (PDT)
+        id S2388715AbfFMPRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 11:17:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732179AbfFMNTv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 09:19:51 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A31EE217D7;
+        Thu, 13 Jun 2019 13:19:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560431989;
+        bh=tiOM6s1e3Yxb9Buj5nqBgGoEmTjuEMI0MPr9x1nrxwg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KSVrU877UOAyC6Zkr+pIM6BK1VRggfQ++RYMYuGtj8JbaIYyQOIBRZk/+/i42W6p4
+         kE1k0xgZ5EY2fiXXUP0XZViozP+qTwhDmIn3YHBViqS30J37Qx3IwRNCUqOgn8PAGs
+         D5dzPOyuTcUrzm5l3WmGukhzsH6KF44Cd/BpM3KE=
+Received: by mail-qk1-f170.google.com with SMTP id g18so12708195qkl.3;
+        Thu, 13 Jun 2019 06:19:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAUmKojIFn7lazvq9P+oDP0XoRJn2evwcT+ZmPW0W005cwaM0oXc
+        NeFv/x+nzZq0TPtsvSurbHQNNohj3vqj/vUV6Q==
+X-Google-Smtp-Source: APXvYqy4HLIEZMTKtHpWWUtJQ72uNV0Rwv6pVblqYItO2sXmSU2d/lB94Van4E7i3A34NFCBlMZMyjmpFcFsMo7Njvw=
+X-Received: by 2002:a37:a6c9:: with SMTP id p192mr73052442qke.184.1560431988769;
+ Thu, 13 Jun 2019 06:19:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <1559577325-19266-1-git-send-email-ludovic.Barre@st.com> <5b7e1ae5-c97e-5a21-fc3e-7cc328087f04@st.com>
-In-Reply-To: <5b7e1ae5-c97e-5a21-fc3e-7cc328087f04@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 13 Jun 2019 15:13:46 +0200
-Message-ID: <CAPDyKFrULRk=cHzVodU9aa6LDX9ip-VPHNwG7QXhmNZrMpPjGw@mail.gmail.com>
-Subject: Re: [PATCH V3 0/3] mmc: mmci: add busy detect for stm32 sdmmc variant
-To:     Ludovic BARRE <ludovic.barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
+References: <20190604003218.241354-1-saravanak@google.com> <095b631b-155d-483e-5ffb-3a04b0db0245@gmail.com>
+In-Reply-To: <095b631b-155d-483e-5ffb-3a04b0db0245@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 13 Jun 2019 07:19:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLFTfAN5UZ8yy+z5fAXBa83JU0FGVDKzpu7pMLi10jvZQ@mail.gmail.com>
+Message-ID: <CAL_JsqLFTfAN5UZ8yy+z5fAXBa83JU0FGVDKzpu7pMLi10jvZQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and
+ optimize probe ordering
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jun 2019 at 15:02, Ludovic BARRE <ludovic.barre@st.com> wrote:
+On Wed, Jun 12, 2019 at 3:21 PM Frank Rowand <frowand.list@gmail.com> wrote:
 >
-> hi Ulf
+> Adding cc: David Collins
 >
-> Just a "gentleman ping" about this series.
-> I know you are busy, it's just to be sure you do not forget me :-)
+> Plus my comments below.
+>
+> On 6/3/19 5:32 PM, Saravana Kannan wrote:
+> > Add a generic "depends-on" property that allows specifying mandatory
+> > functional dependencies between devices. Add device-links after the
+> > devices are created (but before they are probed) by looking at this
+> > "depends-on" property.
+> >
+> > This property is used instead of existing DT properties that specify
+> > phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
+> > is because not all resources referred to by existing DT properties are
+> > mandatory functional dependencies. Some devices/drivers might be able
+> > to operate with reduced functionality when some of the resources
+> > aren't available. For example, a device could operate in polling mode
+> > if no IRQ is available, a device could skip doing power management if
+> > clock or voltage control isn't available and they are left on, etc.
+> >
+> > So, adding mandatory functional dependency links between devices by
+> > looking at referred phandles in DT properties won't work as it would
+> > prevent probing devices that could be probed. By having an explicit
+> > depends-on property, we can handle these cases correctly.
+> >
+> > Having functional dependencies explicitly called out in DT and
+> > automatically added before the devices are probed, provides the
+> > following benefits:
+> >
+> > - Optimizes device probe order and avoids the useless work of
+> >   attempting probes of devices that will not probe successfully
+> >   (because their suppliers aren't present or haven't probed yet).
+> >
+> >   For example, in a commonly available mobile SoC, registering just
+> >   one consumer device's driver at an initcall level earlier than the
+> >   supplier device's driver causes 11 failed probe attempts before the
+> >   consumer device probes successfully. This was with a kernel with all
+> >   the drivers statically compiled in. This problem gets a lot worse if
+> >   all the drivers are loaded as modules without direct symbol
+> >   dependencies.
+> >
+> > - Supplier devices like clock providers, regulators providers, etc
+> >   need to keep the resources they provide active and at a particular
+> >   state(s) during boot up even if their current set of consumers don't
+> >   request the resource to be active. This is because the rest of the
+> >   consumers might not have probed yet and turning off the resource
+> >   before all the consumers have probed could lead to a hang or
+> >   undesired user experience.
+> >
+> >   Some frameworks (Eg: regulator) handle this today by turning off
+> >   "unused" resources at late_initcall_sync and hoping all the devices
+> >   have probed by then. This is not a valid assumption for systems with
+> >   loadable modules. Other frameworks (Eg: clock) just don't handle
+> >   this due to the lack of a clear signal for when they can turn off
+> >   resources. This leads to downstream hacks to handle cases like this
+> >   that can easily be solved in the upstream kernel.
+> >
+> >   By linking devices before they are probed, we give suppliers a clear
+> >   count of the number of dependent consumers. Once all of the
+> >   consumers are active, the suppliers can turn off the unused
+> >   resources without making assumptions about the number of consumers.
+> >
+> > By default we just add device-links to track "driver presence" (probe
+> > succeeded) of the supplier device. If any other functionality provided
+> > by device-links are needed, it is left to the consumer/supplier
+> > devices to change the link when they probe.
+> >
+> >
+> > Saravana Kannan (5):
+> >   of/platform: Speed up of_find_device_by_node()
+> >   driver core: Add device links support for pending links to suppliers
+> >   dt-bindings: Add depends-on property
+> >   of/platform: Add functional dependency link from "depends-on" property
+> >   driver core: Add sync_state driver/bus callback
+> >
+> >  .../devicetree/bindings/depends-on.txt        |  26 +++++
+> >  drivers/base/core.c                           | 106 ++++++++++++++++++
+> >  drivers/of/platform.c                         |  75 ++++++++++++-
+> >  include/linux/device.h                        |  24 ++++
+> >  include/linux/of.h                            |   3 +
+> >  5 files changed, 233 insertions(+), 1 deletion(-)
+> >  create mode 100644 Documentation/devicetree/bindings/depends-on.txt
+> >
+>
+>
+> I don't think the above description adequately describes one key problem
+> that the patch set addresses.
+>
+> David Collins described the problem in an email late in the thread of
+> the first submission of this series.  Instead of providing a link to
+> that email, I am going to fully copy it here:
+>
+> On 5/31/19 4:27 PM, David Collins wrote:
+> > Hello Saravana,
+> >
+> > On 5/23/19 6:01 PM, Saravana Kannan wrote:
+> > ...
+> >> Having functional dependencies explicitly called out in DT and
+> >> automatically added before the devices are probed, provides the
+> >> following benefits:
+> > ...
+> >> - Supplier devices like clock providers, regulators providers, etc
+> >>   need to keep the resources they provide active and at a particular
+> >>   state(s) during boot up even if their current set of consumers don't
+> >>   request the resource to be active. This is because the rest of the
+> >>   consumers might not have probed yet and turning off the resource
+> >>   before all the consumers have probed could lead to a hang or
+> >>   undesired user experience.
+> > This benefit provided by the sync_state() callback function introduced in
+> > this series gives us a mechanism to solve a specific problem encountered
+> > on Qualcomm Technologies, Inc. (QTI) boards when booting with drivers
+> > compiled as modules.  QTI boards have a regulator that powers the PHYs for
+> > display, camera, USB, UFS, and PCIe.  When these boards boot up, the boot
+> > loader enables this regulator along with other resources in order to
+> > display a splash screen image.  The regulator must remain enabled until
+> > the Linux display driver has probed and made a request with the regulator
+> > framework to keep the regulator enabled.  If the regulator is disabled
+> > prematurely, then the screen image is corrupted and the display hardware
+> > enters a bad state.
+> >
+> > We have observed that when the camera driver probes before the display
+> > driver, it performs this sequence: regulator_enable(), camera register IO,
+> > regulator_disable().  Since it is the first consumer of the shared
+> > regulator, the regulator is physically disabled (even though display
+> > hardware still requires it to be enabled).  We have solved this problem
+> > when compiling drivers statically with a downstream regulator
+> > proxy-consumer driver.  This proxy-consumer is able to make an enable
+> > request for the shared regulator before any other consumer.  It then
+> > removes its request at late_initcall_sync.
+> >
+> > Unfortunately, when drivers are compiled as modules instead of compiled
+> > statically into the kernel image, late_initcall_sync is not a meaningful
+> > marker of driver probe completion.  This means that our existing proxy
+> > voting system will not work when drivers are compiled as modules.  The
+> > sync_state() callback resolves this issue by providing a notification that
+> > is guaranteed to arrive only after all consumers of the shared regulator
+> > have probed.
+> >
+> > QTI boards have other cases of shared resources such as bus bandwidth
+> > which must remain at least at a level set by boot loaders in order to
+> > properly support hardware blocks that are enabled before the Linux kernel
+> > starts booting.
+> >
+> > Take care,
+> > David
+> >
+>
+> To paraphrase, the problem is:
+>
+>    - bootloader enables a regulator for display
+>    - during Linux boot camera driver probes:
+>       * enable the regulator also used for display
+>       * disable the regulator
+>          + screen image is corrupted
+>          + display hardware enters bad state
+>    - later during Linux boot display driver probes:
+>       * enable the regulator, but too late
+>
+> So the problem is an ordering dependency between the camera driver probe
+> and the display driver probe.
+>
+> Or alternatively the problem could be seen as: the bootloader has enabled
+> a regulator for a device that the bootloader is aware of, but has not
+> communicated to the Linux regulator framework that the device requires
+> the regulator to remain enabled.
 
-Thanks! I started briefly to review, but got distracted again. I will
-come to it, but it just seems to take more time than it should, my
-apologies.
+The bootloader should have communicated this information via the
+'simple-framebuffer' binding. The problem is I think we don't have any
+mechanism to ensure the simple-fb driver probes before other drivers
+(other than it's dependencies). Well, there are initcall levels, but
+I'd really like to get rid of any reliance on that. Anything that
+relies on initcall level ordering is not going to work as module
+unless userspace also ensures the ordering.
 
-Br
-Uffe
+The other case I've heard of is the serial port's clock getting
+disabled and killing the earlycon as we assume the bootloader left
+serial port dependencies configured.
 
->
-> Regards
-> Ludo
->
-> On 6/3/19 5:55 PM, Ludovic Barre wrote:
-> > From: Ludovic Barre <ludovic.barre@st.com>
-> >
-> > This patch series adds busy detect for stm32 sdmmc variant.
-> > Some adaptations are required:
-> > -Clear busy status bit if busy_detect_flag and busy_detect_mask are
-> >   different.
-> > -Add hardware busy timeout with MMCIDATATIMER register.
-> >
-> > V3:
-> > -rebase on latest mmc next
-> > -replace re-read by status parameter.
-> >
-> > V2:
-> > -mmci_cmd_irq cleanup in separate patch.
-> > -simplify the busy_detect_flag exclude
-> > -replace sdmmc specific comment in
-> > "mmc: mmci: avoid fake busy polling in mmci_irq"
-> > to focus on common behavior
-> >
-> > Ludovic Barre (3):
-> >    mmc: mmci: fix read status for busy detect
-> >    mmc: mmci: add hardware busy timeout feature
-> >    mmc: mmci: add busy detect for stm32 sdmmc variant
-> >
-> >   drivers/mmc/host/mmci.c | 49 +++++++++++++++++++++++++++++++++++++++++--------
-> >   drivers/mmc/host/mmci.h |  3 +++
-> >   2 files changed, 44 insertions(+), 8 deletions(-)
-> >
+> Thinking about the problem this way could lead to an entirely different
+> solution.
+
+I think the ordering issue is orthogonal to using modules. We need
+some way to prioritize probing of some devices. IMO, just prioritizing
+the 'stdout-path' device and 'simple-framebuffer' if present solves
+this. I don't think we need a general solution in this case. The may
+be a few other cases, but I think these are the exception. The state
+from the bootloader (and don't forget about kexec) needs to be well
+defined and minimal.
+
+Rob
