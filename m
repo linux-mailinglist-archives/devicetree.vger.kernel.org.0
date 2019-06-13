@@ -2,66 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAAFB44726
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC9F44701
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 18:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393156AbfFMQ5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 12:57:25 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:56294 "EHLO inva020.nxp.com"
+        id S1729971AbfFMQ4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 12:56:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42376 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729922AbfFMBBD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jun 2019 21:01:03 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C392D1A0E14;
-        Thu, 13 Jun 2019 03:01:01 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E60AB1A0E1A;
-        Thu, 13 Jun 2019 03:00:54 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 411CD402E6;
-        Thu, 13 Jun 2019 09:00:46 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
-        baruch@tkos.co.il, daniel.baluta@nxp.com, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH] arm64: dts: imx8mq-evk: Enable SNVS power key
-Date:   Thu, 13 Jun 2019 09:02:27 +0800
-Message-Id: <20190613010227.46860-1-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1729970AbfFMBjJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jun 2019 21:39:09 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 59E1520B7C;
+        Thu, 13 Jun 2019 01:39:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560389948;
+        bh=E3BVSamBEJXWxz5OabhY2ueDy3SNwdh0BFD9+FBsprM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rxQ1w6A2RQZRn7b7ecknRx0Tz6fy2EaASij1/HQZci8yLHrzeuqzCkPKS2yn9QJEN
+         nK8YNrAuZ2hBU4KK+VbD874D5qOGlu97wBEGAwClolQhR8FDBmoSBTZWEWX4arbYZ2
+         +Y/MTKIdfKPfrpKHr7UTrB2d2B5BCjattasT3JrQ=
+Date:   Thu, 13 Jun 2019 09:38:32 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oliver Graute <oliver.graute@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, narmstrong@baylibre.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv3 0/2] Variscite DART-6UL SoM support
+Message-ID: <20190613013830.GC20747@dragon>
+References: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On Thu, Jun 06, 2019 at 06:47:00PM +0200, Oliver Graute wrote:
+> Need feedback to the following patches which adds support for a DART-6UL Board
+> 
+> Product Page: https://www.variscite.com/product/evaluation-kits/dart-6ul-kits
+> 
+> Oliver Graute (2):
+>   ARM: dts: imx6ul: Add Variscite DART-6UL SoM support
+>   ARM: dts: Add support for i.MX6 UltraLite DART Variscite Customboard
 
-Enable SNVS power key for i.MX8MQ EVK board.
+It's already v3?  I did not find previous versions.  What's changed
+since previous versions?
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Shawn
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-index b2038be..e3df9b8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-@@ -242,6 +242,10 @@
- 	power-supply = <&sw1a_reg>;
- };
- 
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
--- 
-2.7.4
-
+> 
+>  arch/arm/boot/dts/Makefile                         |   1 +
+>  .../boot/dts/imx6ul-imx6ull-var-dart-common.dtsi   | 458 +++++++++++++++++++++
+>  arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts    | 209 ++++++++++
+>  3 files changed, 668 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ul-imx6ull-var-dart-common.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+> 
+> -- 
+> 2.7.4
+> 
