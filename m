@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D9744B30
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C31944B57
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2019 20:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729463AbfFMSxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 14:53:47 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:43572 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729236AbfFMSxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:53:47 -0400
-Received: by mail-pl1-f196.google.com with SMTP id cl9so8506136plb.10
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 11:53:46 -0700 (PDT)
+        id S1729535AbfFMSxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 14:53:55 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:34709 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729518AbfFMSxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 14:53:52 -0400
+Received: by mail-pf1-f196.google.com with SMTP id c85so12400853pfc.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 11:53:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F8d7m1DDnqH/bUU0S136tJmuahNrjwjbhZ2wXcmIkdw=;
-        b=XYnYivhjrL8PvMkvcXOzIdoB8lf1mxtbUYycZaEG3qDzZOBTZW8NEM4v6Fq3KNpMR1
-         V9M4+v2ssLCBbmr5ZhabNGscBCasuvkwnhUqZ54hKPn1YDbi6BS99GW/25z7RJoSLomS
-         zMZ0+g/bDTm+xsqCnr1Clt8/yhkTCEp0Kf8g8=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=T43YpeB6KPwzAeP2AJF/MUSVY3ntDzP4uFwV6vk6NQg=;
+        b=j9mr7D0Q6WW70PaeAtZuQL8G13f13pQs9IWPwKl+tPlMpbbUYNHSA7/2znZNRp4i6f
+         xuPGM5N8BaXMZD4k9kcCOJvheE6bxtkD9vhqrtzOQlUR2aj++rY26vh/QPKy1Nx4sSA1
+         k6tcIi7x5mhhp3NQyTlU98pZFu5OqX4r0AHls=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F8d7m1DDnqH/bUU0S136tJmuahNrjwjbhZ2wXcmIkdw=;
-        b=an9c8wAEIqWYn9TUOpI/WwdO4HQub/ZQAn9XDTPp/Js9ywaWPm2hPu66b0WhLwbrwS
-         aK+xEuniT77aKJSPv/tRT9HO6ckQbA+jYNsyIFANrHw1IJxaOntlyhqIgE8YAu/8+Dwx
-         V+KGwQaoU0aVt7P7Evk5zRg3bqKiG3q1mDjdOK0/5lVbGBrZa+VdQLmRIGx6pkEDLT6w
-         MTcZhgjtN6qYgk8e2S9GzcNKA9I+hdOpzlO0lpK8EHtpZBqWkwBLpEmpx8pHbwZJMswO
-         2D5eX7W/7YH1Q0+1k+PK8HhXuwlN73iIFsFjZExGBazzmVgVlIr0tUzbbR8bqnuSbRO3
-         +LZA==
-X-Gm-Message-State: APjAAAUxhfL3AlGJzcOj7nfPWhsM3rVfUkAw7QqcjfzCVusvdKesQlYk
-        cTYSgEDCn+G6XD+H/dC5N4pnNg==
-X-Google-Smtp-Source: APXvYqxKp7XuhbcSPIGuqB4Br4J+FEyezdRc8LcQCzcSqRvzjXK5pGpx+EH6W3hDqkSMxv54g7UEGQ==
-X-Received: by 2002:a17:902:a5c5:: with SMTP id t5mr90864681plq.288.1560452026080;
-        Thu, 13 Jun 2019 11:53:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=T43YpeB6KPwzAeP2AJF/MUSVY3ntDzP4uFwV6vk6NQg=;
+        b=IieLoEcVJMflIS+UE1pmKcGwUCtRsznHD/Gf+KZaGXNyG6t6XqnJgdiifqIkX+c1Ub
+         MGdn4+UoqNuFicN/BW97dZd//f4qSyg3qZdZcTpOKUfqncl7flXMssdDNUwNKtoTn2Wh
+         6t6KiH+Ex2ywKG+9iuqTgS7Z/aR5TTS8xxqe5kPBiP2WP7UWOoCVsVlGiA3w31dtob6A
+         nxFcf3vFC2TSCYwSuby5vYiTInYJfxK0TCJ7ZNzu/q2RhVrUIXLOkkXTGzC9Mdn6dKnz
+         Wdl9F4VbRMIkynEJ2LKHRjpjpqV1fQnHVlAR6hjrsiUYIWmvHma2dnBt+Sh+1DyLOCS6
+         LwGA==
+X-Gm-Message-State: APjAAAW642v/PbZRdhJA4V+8W563qOjXCCr4C5D6Di4R/5q3wCboNpap
+        SzNrBh41p4vXl5PPZiUPqkvMkA==
+X-Google-Smtp-Source: APXvYqyVfFXF+RWaOpNVOg11XNoCvv+xPHrf1CT9JUGH0iqGtinHj2ErGGLnXkVZWEBC2hZlm3HTDg==
+X-Received: by 2002:a63:d008:: with SMTP id z8mr32305004pgf.335.1560452031872;
+        Thu, 13 Jun 2019 11:53:51 -0700 (PDT)
 Received: from localhost.localdomain ([115.97.180.18])
-        by smtp.gmail.com with ESMTPSA id p43sm946314pjp.4.2019.06.13.11.53.40
+        by smtp.gmail.com with ESMTPSA id p43sm946314pjp.4.2019.06.13.11.53.46
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 13 Jun 2019 11:53:45 -0700 (PDT)
+        Thu, 13 Jun 2019 11:53:51 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Maxime Ripard <maxime.ripard@bootlin.com>,
         David Airlie <airlied@linux.ie>,
@@ -51,11 +51,15 @@ To:     Maxime Ripard <maxime.ripard@bootlin.com>,
         Jernej Skrabec <jernej.skrabec@siol.net>
 Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
         linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 0/9] drm/sun4i: Allwinner R40 MIPI-DSI support
-Date:   Fri, 14 Jun 2019 00:22:32 +0530
-Message-Id: <20190613185241.22800-1-jagan@amarulasolutions.com>
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH 1/9] dt-bindings: display: Add TCON LCD compatible for R40
+Date:   Fri, 14 Jun 2019 00:22:33 +0530
+Message-Id: <20190613185241.22800-2-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+In-Reply-To: <20190613185241.22800-1-jagan@amarulasolutions.com>
+References: <20190613185241.22800-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -63,51 +67,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is initial version for supporting MIPI-DSI on Allwinner R40.
+Like TCON TV0, TV1 allwinner R40 has TCON LCD0, LCD1 which
+are managed via TCON TOP.
 
-The controller look similar like, Allwinnwe A64 so it has
-dependencies with A64 MIPI DSI changes, DSI fixes and R40 pwm 
-driver [1] [2] [3] 
+Add tcon lcd compatible R40, the same compatible can handle
+TCON LCD0, LCD1.
 
-PLL-MIPI, dclk divders logic bpp/lanes are properly work for R40,
-like A31, A64.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-patch 1, 2: TCON LCD support
-
-patch 3, 4: Use clock index macros instead of numbers
-
-patch 5: Add tcon top lcd clocking
-
-patch 6, 7: Add dt-bindings for r40 dsi, dphy
-
-patch 8: Add R40 MIPI DSI pipeline
-
-patch 9: Overlay patch to test it on BPI-M2U
-
-[1] https://patchwork.freedesktop.org/series/61310/
-[2] https://patchwork.freedesktop.org/series/60847/ 
-[3] https://lore.kernel.org/patchwork/cover/862766/ 
-
-Jagan Teki (9):
-  dt-bindings: display: Add TCON LCD compatible for R40
-  drm/sun4i: tcon: Add TCON LCD support for R40
-  ARM: dts: sun8i: r40: Use tcon top clock index macros
-  drm/sun4i: tcon_top: Use clock name index macros
-  ARM: dts: sun8i: r40: Add TCON TOP LCD clocking
-  dt-bindings: sun6i-dsi: Add R40 MIPI-DSI compatible (w/ A64 fallback)
-  dt-bindings: sun6i-dsi: Add R40 DPHY compatible (w/ A31 fallback)
-  ARM: dts: sun8i: r40: Add MIPI DSI pipeline
-  [DO NOT MERGE] ARM: dts: sun8i-r40: bananapi-m2-ultra: Enable Bananapi S070WV20-CT16 DSI panel
-
- .../bindings/display/sunxi/sun4i-drm.txt      |  1 +
- .../bindings/display/sunxi/sun6i-dsi.txt      |  2 +
- .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 36 ++++++++
- arch/arm/boot/dts/sun8i-r40.dtsi              | 84 +++++++++++++++++--
- drivers/gpu/drm/sun4i/sun4i_tcon.c            |  7 ++
- drivers/gpu/drm/sun4i/sun8i_tcon_top.c        | 13 +--
- include/dt-bindings/clock/sun8i-tcon-top.h    |  2 +-
- 7 files changed, 134 insertions(+), 11 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt b/Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt
+index 31ab72cba3d4..9e9c7f934202 100644
+--- a/Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt
++++ b/Documentation/devicetree/bindings/display/sunxi/sun4i-drm.txt
+@@ -160,6 +160,7 @@ Required properties:
+    * allwinner,sun8i-a33-tcon
+    * allwinner,sun8i-a83t-tcon-lcd
+    * allwinner,sun8i-a83t-tcon-tv
++   * allwinner,sun8i-r40-tcon-lcd
+    * allwinner,sun8i-r40-tcon-tv
+    * allwinner,sun8i-v3s-tcon
+    * allwinner,sun9i-a80-tcon-lcd
 -- 
 2.18.0.321.gffc6fa0e3
 
