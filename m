@@ -2,154 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1864593E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99B0145947
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:51:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727198AbfFNJua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 05:50:30 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:38404 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726900AbfFNJua (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 05:50:30 -0400
-Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hbiqn-0004Fn-2b; Fri, 14 Jun 2019 11:50:25 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     "Leonidas P. Papadakos" <papadakospan@gmail.com>
-Cc:     itdaniher@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on rk3328
-Date:   Fri, 14 Jun 2019 11:50:24 +0200
-Message-ID: <5657669.4RvfzeBcXs@phil>
-In-Reply-To: <1559821340.1384.0@gmail.com>
-References: <20190605235714.22432-1-papadakospan@gmail.com> <3485393.4UdOu2YNQE@phil> <1559821340.1384.0@gmail.com>
+        id S1727110AbfFNJuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 05:50:54 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:38133 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726900AbfFNJuy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 05:50:54 -0400
+X-Originating-IP: 90.88.23.150
+Received: from localhost (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id F1BB4C0008;
+        Fri, 14 Jun 2019 09:50:48 +0000 (UTC)
+Date:   Fri, 14 Jun 2019 11:50:48 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev <netdev@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH v2 05/11] dt-bindings: net: sun4i-emac: Convert the
+ binding to a schemas
+Message-ID: <20190614095048.j2xwdsucucbakkl2@flea>
+References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
+ <d198d29119b37b2fdb700d8992b31963e98b6693.1560158667.git-series.maxime.ripard@bootlin.com>
+ <20190610143139.GG28724@lunn.ch>
+ <CAL_JsqJahCJcdu=+fA=ewbGezuEJ2W6uwMVxkQpdY6w+1OWVVA@mail.gmail.com>
+ <20190611145856.ua2ggkn6ccww6vpp@flea>
+ <CAL_Jsq+KwH-j8f+r+fWhMuqJPWcHdBQau+nUz3NRAXYTpsyuvg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="arfnxch5fo5pq4gp"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+KwH-j8f+r+fWhMuqJPWcHdBQau+nUz3NRAXYTpsyuvg@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Am Donnerstag, 6. Juni 2019, 13:42:20 CEST schrieb Leonidas P. Papadakos:
-> 
-> Hi,
-> > 
-> > Am Donnerstag, 6. Juni 2019, 01:57:13 CEST schrieb Leonidas P. 
-> > Papadakos:
-> >>  From: <itdaniher@gmail.com>
-> > 
-> > Why is the From different from the Signed-off-by? Would also need a 
-> > full name.
-> > If the patch is from you, please just use the same From as for the 
-> > Signed-off-by.
-> > 
-> 
-> I mistakenly though this was the way to credit someone for a patch, but 
-> it seems to be different.
-> I'll Cc: the author of this patch
+--arfnxch5fo5pq4gp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Were you able yet to take a look at the clock-patches I Cc'ed you on
-and look at reworking your patch accrodingly?
+Hi Rob,
 
+On Thu, Jun 13, 2019 at 11:32:30AM -0600, Rob Herring wrote:
+> On Thu, Jun 13, 2019 at 7:25 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > On Mon, Jun 10, 2019 at 12:59:29PM -0600, Rob Herring wrote:
+> > > On Mon, Jun 10, 2019 at 8:31 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> > > >
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +  - interrupts
+> > > > > +  - clocks
+> > > > > +  - phy
+> > > > > +  - allwinner,sram
+> > > >
+> > > > Quoting ethernet.txt:
+> > > >
+> > > > - phy: the same as "phy-handle" property, not recommended for new bindings.
+> > > >
+> > > > - phy-handle: phandle, specifies a reference to a node representing a PHY
+> > > >   device; this property is described in the Devicetree Specification and so
+> > > >   preferred;
+> > > >
+> > > > Can this be expressed in Yaml? Accept phy, but give a warning. Accept
+> > > > phy-handle without a warning? Enforce that one or the other is
+> > > > present?
+> > >
+> > > The common schema could have 'phy: false'. This works as long as we've
+> > > updated (or plan to) all the dts files to use phy-handle. The issue is
+> > > how far back do you need kernels to work with newer dtbs.
+> >
+> > I guess another question being raised by this is how hard do we want
+> > to be a deprecating things, and should the DT validation be a tool to
+> > enforce that validation.
+> >
+> > For example, you've used in you GPIO meta-schema false for anything
+> > ending with -gpio, since it's deprecated. This means that we can't
+> > convert any binding using a deprecated property without introducing a
+> > build error in the schemas, which in turn means that you'll have a lot
+> > of friction to support schemas, since you would have to convert your
+> > driver to support the new way of doing things, before being able to
+> > have a schema for your binding.
+>
+> I've err'ed on the stricter side. We may need to back off on some
+> things to get to warning free builds. Really, I'd like to have levels
+> to separate checks for existing bindings, new bindings, and pedantic
+> checks.
 
-Thanks
-Heiko
+That would be awesome. Do you have a plan for that already though? I
+can't really think of a way to implement it at the moment.
 
-> 
-> >> 
-> >>  Following the discussion here:
-> >>  https://github.com/rockchip-linux/kernel/issues/123
-> >> 
-> >>  it can be seen that these are the changes needed to enable the use 
-> >> of the hardware watchdog in the rk3328 SoC.
-> >> 
-> >>  This is in line with past changes for the rk3288:
-> >>  
-> >> http://lists.infradead.org/pipermail/linux-rockchip/2015-January/002314.html
-> >> 
-> >>  Signed-off-by: Leonidas P. Papadakos <papadakospan@gmail.com>
-> >>  ---
-> >>   drivers/clk/rockchip/clk-rk3328.c      | 9 +++++++++
-> >>   include/dt-bindings/clock/rk3328-cru.h | 1 +
-> >>   2 files changed, 10 insertions(+)
-> >> 
-> >>  diff --git a/drivers/clk/rockchip/clk-rk3328.c 
-> >> b/drivers/clk/rockchip/clk-rk3328.c
-> >>  index 076b9777a..546ee0ab7 100644
-> >>  --- a/drivers/clk/rockchip/clk-rk3328.c
-> >>  +++ b/drivers/clk/rockchip/clk-rk3328.c
-> >>  @@ -876,6 +876,8 @@ static const char *const 
-> >> rk3328_critical_clocks[] __initconst = {
-> >> 
-> >>   static void __init rk3328_clk_init(struct device_node *np)
-> >>   {
-> >>  +	struct clk *clk;
-> >>  +
-> >>   	struct rockchip_clk_provider *ctx;
-> >>   	void __iomem *reg_base;
-> >> 
-> >>  @@ -892,6 +894,13 @@ static void __init rk3328_clk_init(struct 
-> >> device_node *np)
-> >>   		return;
-> >>   	}
-> >> 
-> >>  +	clk = clk_register_fixed_factor(NULL, "pclk_wdt", "pclk_bus", 0, 
-> >> 1, 1);
-> >>  +	if (IS_ERR(clk))
-> >>  +		pr_warn("%s: could not register clock pclk_wdt: %ld\n",
-> >>  +			__func__, PTR_ERR(clk));
-> >>  +	else
-> >>  +		rockchip_clk_add_lookup(ctx, clk, PCLK_WDT);
-> >>  +
-> > 
-> > I've just Cc'ed you on 2 patches adding a SGRF_GATE clock-type. Please
-> > use that as base for you rk3328-wdt-clock, so that we don't introduce 
-> > more
-> > boilderplate code.
-> > 
-> > 
-> >>   	rockchip_clk_register_plls(ctx, rk3328_pll_clks,
-> >>   				   ARRAY_SIZE(rk3328_pll_clks),
-> >>   				   RK3328_GRF_SOC_STATUS0);
-> > 
-> >>  diff --git a/include/dt-bindings/clock/rk3328-cru.h 
-> >> b/include/dt-bindings/clock/rk3328-cru.h
-> >>  index afb811340..555b4ff66 100644
-> >>  --- a/include/dt-bindings/clock/rk3328-cru.h
-> >>  +++ b/include/dt-bindings/clock/rk3328-cru.h
-> >>  @@ -164,6 +164,7 @@
-> >>   #define PCLK_DCF		233
-> >>   #define PCLK_SARADC		234
-> >>   #define PCLK_ACODECPHY		235
-> >>  +#define PCLK_WDT		236
-> >> 
-> >>   /* hclk gates */
-> >>   #define HCLK_PERI		308
-> > 
-> > please split the addition of the clock-id into a separate patch only 
-> > adding
-> > said id.
-> > 
-> > 
-> > Thanks
-> > Heiko
-> > 
-> 
-> I know less than him on this, but I want the feedback to be visible in 
-> the Cc:
-> 
-> 
-> 
+> For '-gpio', we may be okay because the suffix is handled in the GPIO
+> core. It should be safe to update the binding to use the preferred
+> form.
 
+It might require a bit of work though in drivers, since the fallback
+is only handled if you're using the gpiod API, and not the legacy one.
 
+> > And then, we need to agree on how to express the deprecation. I guess
+> > we could allow the deprecated keyword that will be there in the
+> > draft-8, instead of ad-hoc solutions?
+>
+> Oh, nice! I hadn't seen that. Seems like we should use that. We can
+> start even without draft-8 support because unknown keywords are
+> ignored (though we probably have to add it to our meta-schema). Then
+> at some point we can add a 'disallow deprecated' flag to the tool.
 
+So, in the generic ethernet binding, we would have:
 
+properties:
+  phy-handle:
+    $ref: /schemas/types.yaml#definitions/phandle
+    description:
+      Specifies a reference to a node representing a PHY device.
+
+  phy:
+    $ref: "#/properties/phy-handle"
+    deprecated: true
+
+  phy-device:
+    $ref: "#/properties/phy-handle"
+    deprecated: true
+
+Does that sound good?
+
+Now, how do we handle the case above, in the device specific binding?
+We just require the non-deprecated one, or the three?
+
+Thanks!
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--arfnxch5fo5pq4gp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQNt+AAKCRDj7w1vZxhR
+xc/rAP9oYo3RLFWNkmJJDZDeoHTXzgtXwUn55miw6RmHtD9HuQEAvRCq1//X+pH0
+3IHUv+mhhSTrjKtCcpuBHvJv5oWybg4=
+=S27r
+-----END PGP SIGNATURE-----
+
+--arfnxch5fo5pq4gp--
