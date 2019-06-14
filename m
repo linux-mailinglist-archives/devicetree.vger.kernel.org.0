@@ -2,132 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E57D945FDE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA24A46016
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728218AbfFNOCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 10:02:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:34692 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728034AbfFNOCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 10:02:21 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 59C9728;
-        Fri, 14 Jun 2019 07:02:20 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8EFF3F718;
-        Fri, 14 Jun 2019 07:02:17 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Fix multiple thermal zones
- conflict in rk3399.dtsi
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-kernel@vger.kernel.org, edubezval@gmail.com,
-        manivannan.sadhasivam@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Randy Li <ayaka@soulik.info>,
-        Tony Xie <tony.xie@rock-chips.com>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>, dianders@chromium.org
-References: <20190604165802.7338-1-daniel.lezcano@linaro.org>
- <5188064.YWmxIpmbGp@phil> <55b9018e-672e-522b-d0a0-c5655be0f353@linaro.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <e5a4f850-27e0-cad3-04bd-6c004fca2b81@arm.com>
-Date:   Fri, 14 Jun 2019 15:02:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728310AbfFNOJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 10:09:09 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:37311 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727382AbfFNOJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 10:09:09 -0400
+Received: by mail-ed1-f66.google.com with SMTP id w13so3711520eds.4;
+        Fri, 14 Jun 2019 07:09:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GQTbMofHx6ihnY6hv/q/Pjtwumkc7ogl2iTrngkVtvc=;
+        b=V0fqh/ToYT65uEuFt6uNfdklxYbXJW90bygOIQrCOe1G5s+fy3oUGD74h+NjAMMeB3
+         BBZHRgx1vzsnOGS/nstZAzpBV7gMG0ZqrG/36RAfHZAgQocOeBa+sTuLgU3VgU2uZDx/
+         Ffc98er/pmLyyxcYbLRUsx5q+p08rd6mpMEXDvxojsXq52XzYDiIBVtGRLUo3ITFouNL
+         M176HRXmPGUyjFRBy8Od7R31GNWv1JpggyPfrQuUSA2puNj7aoLcdfFpOkJQ1unGJQKM
+         ufptnveFLuUASMzZsWdjoRvGXL0xkEoz9+krC3mBJgiKGhYisySboo8jK/71mutI3Sd9
+         jK6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GQTbMofHx6ihnY6hv/q/Pjtwumkc7ogl2iTrngkVtvc=;
+        b=GXV9zdCp0xNYIXemUahFfhLV2jbDmg9afQAFzQe1GnWCMg+owRdkgTT3xj3foekTLO
+         hReEpc4a7wcVtdPDyYsaeWoSqJvce8KlIVcvaK+Uv64iJ3w//5b83jNkA1SsSHLvU1ET
+         qZjiXHhnywXO4xTgQw8rbpVBiRi5SP5Ko0Nt7ELmb1U0vvg1fJtUOu7JsOEW6nQC+yu2
+         X+kl3JCaZy0IuVi2YRxqp1RxhXBjyxRhsOh+kEgkvjaNukOGeoZe1dfoF3rg+lg/Uizf
+         0nn7LJlv0a7XmJchnhUlJp02Vdk4rykJBlXI8FY564ZYx09TCQp1k0ttz+WYPpObs+DV
+         lUIg==
+X-Gm-Message-State: APjAAAXCRCBbY1zJoo00o1UjkGvSxV74oj/6XcL8OOT2DaaVnlvIJ4nd
+        hhCR/GsQYbF8odAECSryHp/UNAJPXFCy/3TgHsI=
+X-Google-Smtp-Source: APXvYqxLabx2dayIi0z0mrk5mYOCWKcsBoXZf+gdfmFIbIEppEoh4K9PusScfsC/Ujb/OusUUWU5Okr0/cgVa9nC+zE=
+X-Received: by 2002:a17:906:583:: with SMTP id 3mr14648315ejn.278.1560521346837;
+ Fri, 14 Jun 2019 07:09:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <55b9018e-672e-522b-d0a0-c5655be0f353@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20190612212604.32089-1-jeffrey.l.hugo@gmail.com>
+ <20190612212748.32246-1-jeffrey.l.hugo@gmail.com> <CAF6AEGvAkCqNXg-NwxfpYJteWs6hfBnOb0yJN6vQOnmMck-HDQ@mail.gmail.com>
+In-Reply-To: <CAF6AEGvAkCqNXg-NwxfpYJteWs6hfBnOb0yJN6vQOnmMck-HDQ@mail.gmail.com>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Fri, 14 Jun 2019 07:08:52 -0700
+Message-ID: <CAF6AEGtUjxuL3y5pyzKz5HJV7KyXmKxmVxqcm3DraAKvkB0xmw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/5] arm64: dts: qcom: Add Lenovo Miix 630
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, agross@kernel.org,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>, jikos@kernel.org,
+        Hans de Goede <hdegoede@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>, xnox@ubuntu.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2019 14:03, Daniel Lezcano wrote:
-> On 14/06/2019 11:35, Heiko Stuebner wrote:
->> Hi Daniel,
->>
->> Am Dienstag, 4. Juni 2019, 18:57:57 CEST schrieb Daniel Lezcano:
->>> Currently the common thermal zones definitions for the rk3399 assumes
->>> multiple thermal zones are supported by the governors. This is not the
->>> case and each thermal zone has its own governor instance acting
->>> individually without collaboration with other governors.
->>>
->>> As the cooling device for the CPU and the GPU thermal zones is the
->>> same, each governors take different decisions for the same cooling
->>> device leading to conflicting instructions and an erratic behavior.
->>>
->>> As the cooling-maps is about to become an optional property, let's
->>> remove the cpu cooling device map from the GPU thermal zone.
->>>
->>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->>> ---
->>>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 9 ---------
->>>   1 file changed, 9 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>> index 196ac9b78076..e1357e0f60f7 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>> @@ -821,15 +821,6 @@
->>>   					type = "critical";
->>>   				};
->>>   			};
->>> -
->>> -			cooling-maps {
->>> -				map0 {
->>> -					trip = <&gpu_alert0>;
->>> -					cooling-device =
->>> -						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>> -						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>> -				};
->>> -			};
->>>   		};
->>>   	};
->>
->> my knowledge of the thermal framework is not that big, but what about the
->> rk3399-devices which further detail the cooling-maps like rk3399-gru-kevin
->> and the rk3399-nanopc-t4 with its fan-handling in the cooling-maps?
-> 
-> The rk3399-gru-kevin is correct.
-> 
-> The rk3399-nanopc-t4 is not correct because the cpu and the gpu are
-> sharing the same cooling device (the fan). There are different
-> configurations:
-> 
-> 1. The cpu cooling device for the CPU and the fan for the GPU
-> 
-> 2. Different trip points on the CPU thermal zone, eg. one to for the CPU
-> cooling device and another one for the fan.
-> 
-> There are some variant for the above. If this board is not on battery,
-> you may want to give priority to the throughput, so activate the fan
-> first and then cool down the CPU. Or if you are on battery, you may want
-> to invert the trip points.
-> 
-> In any case, it is not possible to share the same cooling device for
-> different thermal zones.
+On Fri, Jun 14, 2019 at 6:44 AM Rob Clark <robdclark@gmail.com> wrote:
+>
+> On Thu, Jun 13, 2019 at 10:17 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
+> >
+> > This adds the initial DT for the Lenovo Miix 630 laptop.  Supported
+> > functionality includes USB (host), microSD-card, keyboard, and trackpad.
+> >
+> > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> > ---
+>
+> [snip]
+>
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> > new file mode 100644
+> > index 000000000000..407c6a32911c
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> > @@ -0,0 +1,30 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/* Copyright (c) 2019, Jeffrey Hugo. All rights reserved. */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "msm8998-clamshell.dtsi"
+> > +
+> > +/ {
+> > +       model = "Lenovo Miix 630";
+> > +       compatible = "lenovo,miix-630", "qcom,msm8998";
+> > +};
+>
+>
+> So, I'm not sure if there is some precedent for this (but maybe we
+> haven't really had this problem before).. but as I mentioned on
+> #arch64-laptops, I think we should put vendor/product/board-id strings
+> from SMBIOS table in the dts files.  That could be used by grub to
+> find the correct dtb file to load in a generic way.  (Ie, look for a
+> match of all three strings, and maybe fallback to a match on just
+> vendor+product??)
+>
+> At any rate, how the strings are used can be refined later.  But I
+> think we should include the strings from the beginning for anything
+> that is booting via UEFI.  It's perhaps more useful than the
+> compatible string.
+>
 
-OK, thanks for the clarification. I'll get my board set up again to 
-figure out the best fix for rk3399-nanopc-t4 (FWIW most users are 
-probably just using passive cooling or a plain DC fan anyway). You might 
-want to raise this issue with the maintainers of 
-arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi, since the 
-everything-shared-by-everything approach in there was what I used as a 
-reference.
 
-Robin.
+perhaps something like:
+
+   dmi-compatible = "LENOVO 81JL/LNVNB161216", "LENOVO 81JL";
+
+??
+
+(well, those are the strings from my yoga c630, not sure what they are
+on the miix 630.. but you get the idea)
+
+BR,
+-R
