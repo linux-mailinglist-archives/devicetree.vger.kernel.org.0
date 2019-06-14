@@ -2,261 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0DF45F87
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:50:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCCB245F71
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:50:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728422AbfFNNrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 09:47:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42668 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727898AbfFNNrm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 09:47:42 -0400
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4E0C82173C;
-        Fri, 14 Jun 2019 13:47:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560520060;
-        bh=WFBozKxYqQEonoT4h0aSSk2Zmh1qoKLPSOxNH5ODZ9M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FYatgmTAcCkPXky//dCZs0Trtr0rqG3p6svkCrePUqAi+M5Zzof+VnnjbQd4DR5cY
-         F6fS1cw7CnN9t1nUhYjjU6/8V/qpntZ/Dz/qWbUpSz3c6X8Fpd6vLOVJH7cK+H2z6m
-         hS0cPX/f5+oyqjr+ea1I1ByLWAJGXcHI4XIQdr8A=
-Received: by mail-lf1-f54.google.com with SMTP id a25so1801070lfg.2;
-        Fri, 14 Jun 2019 06:47:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAUML4FTNlvb5fXPUnkbZGqGCDJLRRKJ2cMxvns/7EhTQOzsT+We
-        RZ/WqCO3UGTCLSnkr7MJQxjQCoHHdkoj9AbS0QU=
-X-Google-Smtp-Source: APXvYqx2ZETgwnfahYusNzjsSqNLovsXo1qYbm72cWLYRguPHT5ZcoKjFKqSKIXCs8HuPhTbNDMgWwrAtYJVmJPaVGI=
-X-Received: by 2002:ac2:4891:: with SMTP id x17mr12871311lfc.60.1560520058567;
- Fri, 14 Jun 2019 06:47:38 -0700 (PDT)
+        id S1728912AbfFNNuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 09:50:16 -0400
+Received: from mail-eopbgr150072.outbound.protection.outlook.com ([40.107.15.72]:35591
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728182AbfFNNuP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 09:50:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FBIioesIuLp0QB7Oka03l4Du5E/SXG5X+2PTItoXJxg=;
+ b=jGcbkePR59rX5MNWj2qmnehJ57rqk3boIVX5TYXFQIz8Y9aDM5du4Xcu5gwZfLM2yOgshJV8ubsFGkDKWTMUdj/FLi/lWenhSqRgkjYCQiMI5rI4iibY05IauE1mI6aJ9S2hueNE+MG4VNGqYp6aAMmceQAZgoFT7NJbWwESFEg=
+Received: from VI1PR04MB5967.eurprd04.prod.outlook.com (20.178.123.141) by
+ VI1PR04MB4478.eurprd04.prod.outlook.com (20.177.53.222) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.13; Fri, 14 Jun 2019 13:50:12 +0000
+Received: from VI1PR04MB5967.eurprd04.prod.outlook.com
+ ([fe80::3dd4:5031:dc06:1fd7]) by VI1PR04MB5967.eurprd04.prod.outlook.com
+ ([fe80::3dd4:5031:dc06:1fd7%7]) with mapi id 15.20.1965.018; Fri, 14 Jun 2019
+ 13:50:12 +0000
+From:   Robert Chiras <robert.chiras@nxp.com>
+To:     "festevam@gmail.com" <festevam@gmail.com>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "sam@ravnborg.org" <sam@ravnborg.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "airlied@linux.ie" <airlied@linux.ie>
+Subject: Re: [EXT] Re: [PATCH 2/2] drm/panel: Add support for Raydium RM67191
+ panel driver
+Thread-Topic: [EXT] Re: [PATCH 2/2] drm/panel: Add support for Raydium RM67191
+ panel driver
+Thread-Index: AQHVIqdzFTZPTbEojEKDO3NY8aRErKabE9mAgAARJ4CAAAL7gIAAAuGA
+Date:   Fri, 14 Jun 2019 13:50:12 +0000
+Message-ID: <1560520211.9328.41.camel@nxp.com>
+References: <1560513063-24995-1-git-send-email-robert.chiras@nxp.com>
+         <1560513063-24995-3-git-send-email-robert.chiras@nxp.com>
+         <CAOMZO5BAborMvk=4cgreWKX6rJjK-237me98dM1dDV53oUnExQ@mail.gmail.com>
+         <1560518953.9328.31.camel@nxp.com>
+         <CAOMZO5DcvKQPDhP468VSCfQkFy-7roKBkw7uqXxTMn9PTTgS+A@mail.gmail.com>
+In-Reply-To: <CAOMZO5DcvKQPDhP468VSCfQkFy-7roKBkw7uqXxTMn9PTTgS+A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=robert.chiras@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 31f6b76c-8377-44a4-9406-08d6f0cf38dc
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4478;
+x-ms-traffictypediagnostic: VI1PR04MB4478:
+x-microsoft-antispam-prvs: <VI1PR04MB4478306BC725240DFDF5358FE3EE0@VI1PR04MB4478.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 0068C7E410
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(136003)(346002)(376002)(366004)(39860400002)(199004)(189003)(229853002)(36756003)(6916009)(86362001)(25786009)(6486002)(54906003)(1411001)(68736007)(2351001)(14444005)(6246003)(316002)(103116003)(2906002)(186003)(305945005)(7416002)(7736002)(256004)(66066001)(1361003)(4326008)(6436002)(3846002)(476003)(66946007)(8936002)(73956011)(71200400001)(11346002)(64756008)(2616005)(66556008)(66476007)(66446008)(486006)(6512007)(53546011)(6506007)(76116006)(102836004)(76176011)(8676002)(44832011)(6116002)(478600001)(1730700003)(81166006)(446003)(71190400001)(26005)(53936002)(4744005)(5660300002)(50226002)(5640700003)(14454004)(2501003)(99286004)(81156014)(99106002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4478;H:VI1PR04MB5967.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ccZTdIHeTAVSoEfMTGscJhkjNGi6NdFIppIr89Q4c3u2CO+pRPoaPJcP6IDTO7cWJ1IxH8o7v+NruyQdGE8U0YVlstSVm3YiH0gUTocXK0UJLJXIHPnzwWlrenQTw79lqzHnGr8k5QaeHIPh0sWW8HBgjW1phAAUR4+jd101KwcN4R/Lu8rdIk6s5MV/iD2f2oWFWfUJXYwkv0WbZSdBNOzHjnxrTOYELC3b1v3BE4uPftkTuW1J1OWVv/dBZFQmKGiuv4MVBgyhbe1FWNPnHFkwcYJLYvpVmPHYlf9aGOlhq6ompDJ6bvF5MbgkSAmi9fQwnSTgB8fbQE+rAxSZn7g0Yudv58AObLhAhJyz2K/2QSvJ1cFXjmpMPBsZIQIDjRWkj60Sf9nKe7xzDUZu/Nx4laLz458WfCyK3xR0wus=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AFE0FA3EDFCE8F479938F2D5F10DD015@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <CGME20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9@eucas1p1.samsung.com>
- <20190614095309.24100-1-l.luba@partner.samsung.com> <20190614095309.24100-9-l.luba@partner.samsung.com>
-In-Reply-To: <20190614095309.24100-9-l.luba@partner.samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 14 Jun 2019 15:47:27 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdjXhfcNRL-XMS6K1jrUQoqoNHXGirjXoeoL4GyXzarpg@mail.gmail.com>
-Message-ID: <CAJKOXPdjXhfcNRL-XMS6K1jrUQoqoNHXGirjXoeoL4GyXzarpg@mail.gmail.com>
-Subject: Re: [PATCH v10 08/13] drivers: memory: add DMC driver for Exynos5422
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, gregkh@linuxfoundation.org,
-        willy.mh.wolff.ml@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31f6b76c-8377-44a4-9406-08d6f0cf38dc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2019 13:50:12.0811
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: robert.chiras@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4478
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jun 2019 at 11:53, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
-> This patch adds driver for Exynos5422 Dynamic Memory Controller.
-> The driver provides support for dynamic frequency and voltage scaling for
-> DMC and DRAM. It supports changing timings of DRAM running with different
-> frequency. There is also an algorithm to calculate timigns based on
-> memory description provided in DT.
-> The patch also contains needed MAINTAINERS file update.
->
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  MAINTAINERS                             |    8 +
->  drivers/memory/samsung/Kconfig          |   17 +
->  drivers/memory/samsung/Makefile         |    1 +
->  drivers/memory/samsung/exynos5422-dmc.c | 1262 +++++++++++++++++++++++
->  4 files changed, 1288 insertions(+)
->  create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 57f496cff999..6ffccfd95351 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3470,6 +3470,14 @@ S:       Maintained
->  F:     drivers/devfreq/exynos-bus.c
->  F:     Documentation/devicetree/bindings/devfreq/exynos-bus.txt
->
-> +DMC FREQUENCY DRIVER FOR SAMSUNG EXYNOS5422
-> +M:     Lukasz Luba <l.luba@partner.samsung.com>
-> +L:     linux-pm@vger.kernel.org
-> +L:     linux-samsung-soc@vger.kernel.org
-> +S:     Maintained
-> +F:     drivers/memory/samsung/exynos5422-dmc.c
-> +F:     Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> +
->  BUSLOGIC SCSI DRIVER
->  M:     Khalid Aziz <khalid@gonehiking.org>
->  L:     linux-scsi@vger.kernel.org
-> diff --git a/drivers/memory/samsung/Kconfig b/drivers/memory/samsung/Kconfig
-> index 79ce7ea58903..c93baa029654 100644
-> --- a/drivers/memory/samsung/Kconfig
-> +++ b/drivers/memory/samsung/Kconfig
-> @@ -5,6 +5,23 @@ config SAMSUNG_MC
->           Support for the Memory Controller (MC) devices found on
->           Samsung Exynos SoCs.
->
-> +config ARM_EXYNOS5422_DMC
-> +       tristate "ARM EXYNOS5422 Dynamic Memory Controller driver"
-> +       depends on ARCH_EXYNOS
-> +       select DDR
-> +       select PM_DEVFREQ
-> +       select DEVFREQ_GOV_SIMPLE_ONDEMAND
-> +       select DEVFREQ_GOV_USERSPACE
-> +       select PM_DEVFREQ_EVENT
-> +       select PM_OPP
-> +       help
-> +         This adds driver for Exynos5422 DMC (Dynamic Memory Controller).
-> +         The driver provides support for Dynamic Voltage and Frequency Scaling in
-> +         DMC and DRAM. It also supports changing timings of DRAM running with
-> +         different frequency. The timings are calculated based on DT memory
-> +         information.
-> +
-> +
->  if SAMSUNG_MC
->
->  config EXYNOS_SROM
-> diff --git a/drivers/memory/samsung/Makefile b/drivers/memory/samsung/Makefile
-> index 00587be66211..4f6e4383bab7 100644
-> --- a/drivers/memory/samsung/Makefile
-> +++ b/drivers/memory/samsung/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_ARM_EXYNOS5422_DMC)       += exynos5422-dmc.o
->  obj-$(CONFIG_EXYNOS_SROM)      += exynos-srom.o
-> diff --git a/drivers/memory/samsung/exynos5422-dmc.c b/drivers/memory/samsung/exynos5422-dmc.c
-> new file mode 100644
-> index 000000000000..b397efe0da57
-> --- /dev/null
-> +++ b/drivers/memory/samsung/exynos5422-dmc.c
-> @@ -0,0 +1,1262 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2019 Samsung Electronics Co., Ltd.
-> + * Author: Lukasz Luba <l.luba@partner.samsung.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/devfreq.h>
-> +#include <linux/devfreq-event.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_opp.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +#include <memory/jedec_ddr.h>
-> +#include "../of_memory.h"
-> +
-> +#define EXYNOS5_DREXI_TIMINGAREF               (0x0030)
-> +#define EXYNOS5_DREXI_TIMINGROW0               (0x0034)
-> +#define EXYNOS5_DREXI_TIMINGDATA0              (0x0038)
-> +#define EXYNOS5_DREXI_TIMINGPOWER0             (0x003C)
-> +#define EXYNOS5_DREXI_TIMINGROW1               (0x00E4)
-> +#define EXYNOS5_DREXI_TIMINGDATA1              (0x00E8)
-> +#define EXYNOS5_DREXI_TIMINGPOWER1             (0x00EC)
-> +#define CDREX_PAUSE                            (0x2091c)
-> +#define CDREX_LPDDR3PHY_CON3                   (0x20a20)
-> +#define EXYNOS5_TIMING_SET_SWI                 (1UL << 28)
-> +#define USE_MX_MSPLL_TIMINGS                   (1)
-> +#define USE_BPLL_TIMINGS                       (0)
-> +#define EXYNOS5_AREF_NORMAL                    (0x2e)
-> +
-> +/**
-> + * struct dmc_opp_table - Operating level desciption
-> + *
-> + * Covers frequency and voltage settings of the DMC operating mode.
-> + */
-> +struct dmc_opp_table {
-> +       u32 freq_hz;
-> +       u32 volt_uv;
-> +};
-> +
-> +/**
-> + * struct exynos5_dmc - main structure describing DMC device
-> + *
-> + * The main structure for the Dynamic Memory Controller which covers clocks,
-> + * memory regions, HW information, parameters and current operating mode.
-> + */
-> +struct exynos5_dmc {
-> +       struct device *dev;
-> +       struct devfreq *df;
-> +       struct devfreq_simple_ondemand_data gov_data;
-> +       void __iomem *base_drexi0;
-> +       void __iomem *base_drexi1;
-> +       struct regmap *clk_regmap;
-> +       struct mutex lock;
-> +       unsigned long curr_rate;
-> +       unsigned long curr_volt;
-> +       unsigned long bypass_rate;
-> +       struct dmc_opp_table *opp;
-> +       struct dmc_opp_table opp_bypass;
-> +       int opp_count;
-> +       u32 timings_arr_size;
-> +       u32 *timing_row;
-> +       u32 *timing_data;
-> +       u32 *timing_power;
-> +       const struct lpddr3_timings *timings;
-> +       const struct lpddr3_min_tck *min_tck;
-> +       u32 bypass_timing_row;
-> +       u32 bypass_timing_data;
-> +       u32 bypass_timing_power;
-> +       struct regulator *vdd_mif;
-> +       struct clk *fout_spll;
-> +       struct clk *fout_bpll;
-> +       struct clk *mout_spll;
-> +       struct clk *mout_bpll;
-> +       struct clk *mout_mclk_cdrex;
-> +       struct clk *mout_mx_mspll_ccore;
-> +       struct clk *mx_mspll_ccore_phy;
-> +       struct clk *mout_mx_mspll_ccore_phy;
-> +       struct devfreq_event_dev **counter;
-> +       int num_counters;
-> +};
-> +
-> +#define TIMING_FIELD(t_name, t_bit_beg, t_bit_end) \
-> +       { .name = t_name, .bit_beg = t_bit_beg, .bit_end = t_bit_end }
-> +
-> +#define TIMING_VAL(timing_array, id, t_val)                    \
-> +({                                                             \
-> +               u32 __val;                              \
-> +               __val = t_val << timing_array[id].bit_beg;      \
-> +               __val;                                          \
-> +})
-> +
-> +#define TIMING_VAL2REG(timing, t_val)                  \
-> +({                                                             \
-> +               u32 __val;                              \
-> +               __val = t_val << timing->bit_beg;       \
-> +               __val;                                          \
-> +})
-> +
-> +#define TIMING_REG2VAL(reg, timing)                    \
-
-It seems that only some of these defines are used. Please clean them up.
-You have also a lot of checkpatch --strict suggestions:
-    CHECK: Macro argument 'reg' may be better as '(reg)' to avoid
-precedence issues
-which seems to be valid.
-
-While at it please also fix few other --strict errors:
-CHECK: Please don't use multiple blank lines
-CHECK: Alignment should match open parenthesis
-CHECK: Prefer using the BIT macro
-CHECK: struct mutex definition without comment
-
-Best regards,
-Krzysztof
+T24gVmksIDIwMTktMDYtMTQgYXQgMTA6MzkgLTAzMDAsIEZhYmlvIEVzdGV2YW0gd3JvdGU6DQo+
+IENhdXRpb246IEVYVCBFbWFpbA0KPiANCj4gT24gRnJpLCBKdW4gMTQsIDIwMTkgYXQgMTA6Mjkg
+QU0gUm9iZXJ0IENoaXJhcyA8cm9iZXJ0LmNoaXJhc0BueHAuY29tDQo+ID4gd3JvdGU6DQo+IA0K
+PiA+IA0KPiA+IFRoZSBHUElPIGlzIGFjdGl2ZSBoaWdoLCBhbmQgdGhlIGFib3ZlIHNlcXVlbmNl
+IHdhcyByZWNlaXZlZCBmcm9tDQo+ID4gdGhlDQo+ID4gcGFuZWwgdmVuZG9yIGluIHRoZSBmb2xs
+b3dpbmcgZm9ybToNCj4gPiDCoMKgwqDCoMKgwqDCoMKgU0VUX1JFU0VUX1BJTigxKTsNCj4gPiDC
+oMKgwqDCoMKgwqDCoMKgTURFTEFZKDEwKTsNCj4gPiDCoMKgwqDCoMKgwqDCoMKgU0VUX1JFU0VU
+X1BJTigwKTsNCj4gPiDCoMKgwqDCoMKgwqDCoMKgTURFTEFZKDUpOw0KPiA+IMKgwqDCoMKgwqDC
+oMKgwqBTRVRfUkVTRVRfUElOKDEpOw0KPiA+IMKgwqDCoMKgwqDCoMKgwqBNREVMQVkoMjApOw0K
+PiA+IEkgZ290IHJpZCBvZiB0aGUgZmlyc3QgdHJhbnNpdGlvbiB0byBoaWdoIHNpbmNlIHNlZW1l
+ZCByZWR1bmRhbnQuDQo+ID4gQWxzbywgYWNjb3JkaW5nIHRvIHRoZSBtYW51YWwgcmVmZXJlbmNl
+LCB0aGUgUlNUQiBwaW4gbmVlZHMgdG8gYmUNCj4gPiBhY3RpdmUgaGlnaCB3aGlsZSBvcGVyYXRp
+bmcgdGhlIGRpc3BsYXkuDQo+IFRoYXQncyBleGFjdGx5IG15IHBvaW50IDotKQ0KPiANCj4gSW4g
+bm9ybWFsIG9wZXJhdGlvbiB0aGUgR1BJTyByZXNldCBuZWVkcyB0byBiZSBoaWdoLg0KPiANCj4g
+RHVyaW5nIHJlc2V0IHRoZSBHUElPIHJlc2V0IG5lZWRzIHRvIGJlIGxvdy4sIHdoaWNoIG1lYW5z
+IHRoYXQgdGhlDQo+IEdQSU8gcmVzZXQgaXMgImFjdGl2ZSBsb3ciLg0KPiANCj4gU28geW91IHNo
+b3VsZCBpbnZlcnQgYm90aCB0aGUgZHRzIGFuZCB0aGUgZHJpdmVyIHRvIGJlaGF2ZSBjb3JyZWN0
+bHkuDQpOb3cgSSBnZXQgaXQuIFRoYW5rcyEgSSB3aWxsIHVwZGF0ZSB0aGUgZHRzIGFuZCBkcml2
+ZXIgZm9yIHRoZSBncGlvLg==
