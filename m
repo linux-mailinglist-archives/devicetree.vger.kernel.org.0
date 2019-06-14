@@ -2,82 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BAA44599B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A2E459C2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 12:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727352AbfFNJyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 05:54:23 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:37358 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726482AbfFNJyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 05:54:23 -0400
-Received: by mail-wr1-f66.google.com with SMTP id v14so1845907wrr.4;
-        Fri, 14 Jun 2019 02:54:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=LWEB8ckSGavXUOifK/FNIHz754vMT8jwdxRqtMwH6kE=;
-        b=G7LRvmk3POU+NfRGqqYuCSJMz3UH106Tx4DzVHDT00eqoT1JMmhdt419m+q4PA4cWA
-         GqS1td5Y02NnWmca3NBhGZ5RBdkUD+ftxMiA9ng1vLPGpejuSv9CL3XQd33bCsAaSHNJ
-         GKYUb/ViSQxYFVPB3UYyAgTmuWyXk2zxoMZDwM40Xh6np86G664ZmIzHrfKP2ZdGc1/c
-         /OeckQtPvyK2glURjFGggu9hCmnZqO5K8PgMK9VwNdO0QevYdQjgZ54kMy/kFwEgnDRJ
-         6O95dLwZSw6adB/ygzgxQJ2XGUMzjxktFd5atTerYJWKce7h6hL1A7DcdxzcOwhgPg5U
-         8Z4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=LWEB8ckSGavXUOifK/FNIHz754vMT8jwdxRqtMwH6kE=;
-        b=K6/bNTMK4mNrBKks9mzGkMSgyNlw1M5Cq/9F57YfqwSddGbqhRkrU8SfIBiCDPKFks
-         Py3XfSzunJJkhIKSvi8sdSaRzmcqDGvag6hQHvImWqvyrgb7g2xF/LW/VPdKSzLbwPLn
-         2h1J6UTAdNmEyKjL0GlkHsVJNv23hYv6g8aHHH8CF5zUX08aw9MoHPwcetL3APAbgl81
-         p7O5w/zrgcBcXsor+rVFSBdEgyTb5EboVyDKCMXXtzA+UCragisVQ3p9W2XAgKJcjQtS
-         /In8DNZbbHLn3dF3jmO6KjTtYNnVzZeFkTVusPu1dZ+kvNMBnDTaEv+kOtW7nq2FvdpP
-         3T+A==
-X-Gm-Message-State: APjAAAVm19H9GxNZ1zr3IlcCAWkAv6tFq9qTcTViUI6fo+3r7CI5Lbrs
-        QTBed0HW3tE1SRa1glZKb50/bzli9Gc=
-X-Google-Smtp-Source: APXvYqzB7aNgd0DaRCc0E3obAyX4lpX8BdOe5J7ACbuWSLX34+034VaK+l8Z/815LR4vBxwXv2kD4w==
-X-Received: by 2002:adf:f3c7:: with SMTP id g7mr62795063wrp.133.1560506061675;
-        Fri, 14 Jun 2019 02:54:21 -0700 (PDT)
-Received: from X555LD ([2a02:85f:51e:5d00:f1ab:2da6:d378:d0de])
-        by smtp.gmail.com with ESMTPSA id h84sm3825923wmf.43.2019.06.14.02.54.17
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 02:54:21 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 12:54:14 +0300
-From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
-Subject: Re: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on
- rk3328
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     itdaniher@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        id S1726905AbfFNKA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 06:00:27 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:56833 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726767AbfFNKA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 06:00:26 -0400
+X-Originating-IP: 37.177.88.254
+Received: from uno.localdomain (unknown [37.177.88.254])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id CD4C9C0002;
+        Fri, 14 Jun 2019 10:00:20 +0000 (UTC)
+Date:   Fri, 14 Jun 2019 12:01:33 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-media@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Message-Id: <1560506054.1367.0@gmail.com>
-In-Reply-To: <5657669.4RvfzeBcXs@phil>
-References: <20190605235714.22432-1-papadakospan@gmail.com>
-        <3485393.4UdOu2YNQE@phil> <1559821340.1384.0@gmail.com>
-        <5657669.4RvfzeBcXs@phil>
-X-Mailer: geary/3.32.1
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        James Cameron <quozl@laptop.org>, Pavel Machek <pavel@ucw.cz>,
+        Libin Yang <lbyang@marvell.com>,
+        Albert Wang <twang13@marvell.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH v5 03/10] [media] marvell-ccic: don't generate EOF on
+ parallel bus
+Message-ID: <20190614100133.euxhdaktlemnd2ep@uno.localdomain>
+References: <20190505140031.9636-1-lkundrak@v3.sk>
+ <20190505140031.9636-4-lkundrak@v3.sk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="mmzrrql2dydy5u5w"
+Content-Disposition: inline
+In-Reply-To: <20190505140031.9636-4-lkundrak@v3.sk>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-> Were you able yet to take a look at the clock-patches I Cc'ed you on
-> and look at reworking your patch accrodingly?
-> 
-> 
-> Thanks
-> Heiko
-> 
-My time is limited due to exams, and I have no knowledge on how the clk 
-stuff works, but I'll read up when I have the time. The patched you 
-CCed me on is certainly helpful in this regard
+--mmzrrql2dydy5u5w
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
+Hi Lubomir,
 
+On Sun, May 05, 2019 at 04:00:24PM +0200, Lubomir Rintel wrote:
+> The commit 05fed81625bf ("[media] marvell-ccic: add MIPI support for
+> marvell-ccic driver") that claimed to add CSI2 turned on C0_EOF_VSYNC for
+> parallel bus without a very good explanation.
+>
+> That broke camera on OLPC XO-1.75 which precisely uses a sensor on a
+> parallel bus. Revert that chunk.
+>
+> Tested on an OLPC XO-1.75.
+>
+> Fixes: 05fed81625bf755cc67c5864cdfd18b69ea828d1
+
+Use the proper fixes format here
+Fixes: 05fed81625bf ("[media] marvell-ccic: add MIPI support for marvell-ccic driver")
+
+I have this simple entry in my git config:
+
+[pretty]
+	fixes = Fixes: %h (\"%s\")
+
+With
+        abbrev=12
+
+in the [core] section.
+
+You can now
+$git show 05fed81625bf755cc67c5864cdfd18b69ea828d1 --pretty=fixes
+
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> ---
+>  drivers/media/platform/marvell-ccic/mcam-core.c | 6 ------
+>  1 file changed, 6 deletions(-)
+>
+> diff --git a/drivers/media/platform/marvell-ccic/mcam-core.c b/drivers/media/platform/marvell-ccic/mcam-core.c
+> index d97f39bde9bd6..d24e5b7a3bc52 100644
+> --- a/drivers/media/platform/marvell-ccic/mcam-core.c
+> +++ b/drivers/media/platform/marvell-ccic/mcam-core.c
+> @@ -792,12 +792,6 @@ static void mcam_ctlr_image(struct mcam_camera *cam)
+>  	 * Make sure it knows we want to use hsync/vsync.
+>  	 */
+>  	mcam_reg_write_mask(cam, REG_CTRL0, C0_SIF_HVSYNC, C0_SIFM_MASK);
+> -	/*
+> -	 * This field controls the generation of EOF(DVP only)
+> -	 */
+> -	if (cam->bus_type != V4L2_MBUS_CSI2_DPHY)
+> -		mcam_reg_set_bit(cam, REG_CTRL0,
+> -				C0_EOF_VSYNC | C0_VEDGE_CTRL);
+
+This change seems in facts unrelated to the original patch. As you
+remove all usages of C0_EOF_VSYNC and C0_VEDGE_CTRL you can drop their
+definition in mcam-core.h.
+
+As I've said, the change seems unrelated to CSI-2 support and could
+probably be salfey dropped, but pay attention, you're also dropping
+C0_VEDGE_CTRL, which seems to enable VSYNC detection on the signal
+falling edge. Is this intentional ?
+
+Thanks
+   j
+
+>  }
+>
+>
+> --
+> 2.21.0
+>
+
+--mmzrrql2dydy5u5w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl0DcH0ACgkQcjQGjxah
+VjyxcRAAoBs1nLSqKz9dDuh1ExoER+gBlhUSp11xMqI770WvPzLLiSgVImxYpd3f
+JfLjOEzypnmiitZ8+V6+erHY0uTNnQaVgeaZpkLSe+uLBNqxzcMioFWoxBEgPDSq
+Uo1GYLMJ/bXEb2gmgH2/5EOjLME6fGyOlsUbU//ft0eAvOmS8qTA3z1cmvpRfume
+a+e2qav1MUXZ5EoImgWSSjn6YS8Epr96uKWg+lmoYzUaSuFJ8MvY7dc9Cq+yn5lz
+EVDCHkA7JMvfA6j1sbiPMwN+kB1QCKp8c2+IfQFQAo2A/M7MyYOl9oz45YOkqNKL
+Ub6olMo3EN6ZRePt2ooFLOuUJNLwnbgB4g4TQ8QlNW1dMrT0D2eRZw01sw6Sh6Qu
+xqmfrf9Jgjei1epV1/8KPNBUOTs/tr/AJGn00SSgpd/TcSnXTguPGZbkhvxs/1Un
+8A2pF8y1pR8l3FDbGkwWg1HzcbReyVrPmpTG2F+Z72SGAVsDDmOfapRi9++1owNf
+DTNjRshLw2fjmjFvrTgdyKEPJ7ENv1I57CLC7OdkdPf4uISeXfvuMkU2OIgP5j9x
+3Wf2WGumaR8U1uMQy98V5JYJzA+pNKhgzSlK6TWQQDCdpUt+LwlWFVjv4LmT1EQ/
+BnSdMDXuA1rBQ32TtrBIqVk9oDOrk51uXGuo5c48wz7htS8Tu4M=
+=DOfD
+-----END PGP SIGNATURE-----
+
+--mmzrrql2dydy5u5w--
