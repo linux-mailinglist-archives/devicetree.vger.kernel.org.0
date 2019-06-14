@@ -2,162 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1878146384
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 17:59:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32B4467D8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 20:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725869AbfFNP7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 11:59:44 -0400
-Received: from foss.arm.com ([217.140.110.172]:37120 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725801AbfFNP7o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 11:59:44 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5026828;
-        Fri, 14 Jun 2019 08:59:41 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D03963F718;
-        Fri, 14 Jun 2019 08:59:39 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 16:59:34 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
-Message-ID: <20190614155934.GA28253@e121166-lin.cambridge.arm.com>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
- <20190516055307.25737-28-mmaddireddy@nvidia.com>
- <20190604132233.GT16519@ulmo>
- <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
- <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
- <20190614143222.GB23116@e121166-lin.cambridge.arm.com>
- <1508173d-0ecc-f498-6ab2-78a718086b35@nvidia.com>
- <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
- <20190614152304.GK15526@ulmo>
+        id S1725868AbfFNSsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 14:48:09 -0400
+Received: from outgoing19.flk.host-h.net ([197.242.87.53]:48335 "EHLO
+        outgoing19.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725809AbfFNSsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 14:48:09 -0400
+X-Greylist: delayed 8702 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 Jun 2019 14:48:08 EDT
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam5-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1hboyi-0002i4-Tv; Fri, 14 Jun 2019 18:23:02 +0200
+Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
+        by www31.flk1.host-h.net with esmtpa (Exim 4.84_2)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1hboye-0007ST-Gf; Fri, 14 Jun 2019 18:22:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190614152304.GK15526@ulmo>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 14 Jun 2019 18:22:55 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: rockchip: add display nodes for rk322x
+Organization: Rising Edge Consulting (Pty) Ltd.
+In-Reply-To: <1854794.0zkvb3x0FP@phil>
+References: <20190613101305.30491-1-justin.swartz@risingedge.co.za>
+ <1854794.0zkvb3x0FP@phil>
+Message-ID: <9e2b1e26bedfd30e9295d64865819c99@risingedge.co.za>
+X-Sender: justin.swartz@risingedge.co.za
+User-Agent: Roundcube Webmail/1.2.3
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear (ClamAV 0.100.3/25480/Fri Jun 14 10:12:45 2019)
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.05)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0aEcKiGOen0TgGQo14QTNxSpSDasLI4SayDByyq9LIhVr0JQmSUYAAuW
+ O3sRX9p2S0TNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0jxJtcVJProrT987X1VDPOqN+OoDzRTdku7DidYUZdNf38Sp7Of4wP429AA
+ f49baR+f3He7jw4SoVhmTJ/3eP9ORQWVx8ds1M4qmk3/bYr2p8zbg4Paoa3pNVQ0zl7t/+UfQLYB
+ qEPnp1U88kqVD8AM2G81dFO0E3gi+MOI1foZYzDggRXhpvoPtF3cVkniFXU3qJSqpdJudO6+rkiw
+ E5i8Wl78Q18OeOfsy4h7jF1Uv9lnibl3vcBqVmvQB4A18ad0DLTuA47GFMxRMKMMweQrmH6eQvWp
+ DWTULXV1jJ5bfceEJeNruLKdflVX7oFNsdEJmBWjbvtlAwK809YKuz/mg2lBMt3xu9nbye2CdJLN
+ jSo1M+TSg3TNDI3/M5s9/ot3ko3rrae7IifWc6pL546YUVQwaYLh3di89W/ji5iahyCgJgyv93tC
+ 61cbiLYl3RCqADG/Ryndzp4OfbK7c6EqHwlqvaI+zok/BsKQK4gft4+8sY8CNaDDoRMm0CGce/eR
+ NtlfJySsZ2eS9qGTagUdlCnL4IjEaJi/Te03jgZkriNJs+0XIAXn1Ie+HcHl8lOi8gnN+VQO0b1v
+ xxohqsS9Q4vjfJZCa/7ru+hcV3qy2r6xT6/ToAAJ7pkQGcMvuOIaxlHt0+FCc1pvcmHgLAF+EhY3
+ a9HVLrEqCQymRpkPmbqFsDBc6VdTgr76BrtpImVjH1OXbaW1Jv61sDnMyufskMA9nxtZ9pIksMRC
+ ciEOsBpiAOoh+1qN2rbgvDZlJzPY/RdmiK0Zdwcq7WqJxp4Gp2qnVW06BkjrfxpqPrbH09M+m4Wp
+ RRDP6YzwkAPgQJbWosiwuQOYUcnYOSO7mW1OBrz96gclqEeyvm/wFZzBrxWl4RF0S4vtpJPL5i9k
+ NMFAXPUoooAOejJ9oJ3w7xlWZuM7jUXIESohoO51xWmU8epLuQ6AlI64+tPy8xM9qWPEX9Stl4rj
+ MDcWV8dcwmItP+eLAc3RVz4KjqXB2lFLCYn9TDvfbJbimDcSbTO4QszeNHk15VolAGHS5rCXQKDy
+ G9IFICpfYwbtmVFtzX/1jFBp21i62SsUn3KsaNY+4eSGHfTOXf670dxTbCnoHvieMS+4ayUpOtEh
+ dxekWDmK9g==
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 05:23:04PM +0200, Thierry Reding wrote:
-> On Fri, Jun 14, 2019 at 03:50:23PM +0100, Lorenzo Pieralisi wrote:
-> > On Fri, Jun 14, 2019 at 08:08:26PM +0530, Manikanta Maddireddy wrote:
-> > > 
-> > > 
-> > > On 14-Jun-19 8:02 PM, Lorenzo Pieralisi wrote:
-> > > > On Fri, Jun 14, 2019 at 04:07:35PM +0530, Manikanta Maddireddy wrote:
-> > > >>
-> > > >> On 13-Jun-19 8:54 PM, Lorenzo Pieralisi wrote:
-> > > >>> On Tue, Jun 04, 2019 at 03:22:33PM +0200, Thierry Reding wrote:
-> > > >>>
-> > > >>> [...]
-> > > >>>
-> > > >>>>> +	} else {
-> > > >>>>> +		value = afi_readl(port->pcie, ctrl);
-> > > >>>>> +		value &= ~AFI_PEX_CTRL_RST;
-> > > >>>>> +		afi_writel(port->pcie, value, ctrl);
-> > > >>>>> +	}
-> > > >>>>>  
-> > > >>>>>  	usleep_range(1000, 2000);
-> > > >>>>>  
-> > > >>>>> -	value = afi_readl(port->pcie, ctrl);
-> > > >>>>> -	value |= AFI_PEX_CTRL_RST;
-> > > >>>>> -	afi_writel(port->pcie, value, ctrl);
-> > > >>>>> +	if (port->reset_gpiod) {
-> > > >>>>> +		gpiod_set_value(port->reset_gpiod, 1);
-> > > >>>> After this the port should be functional, right? I think it'd be better
-> > > >>>> to reverse the logic here and move the polarity of the GPIO into device
-> > > >>>> tree. gpiod_set_value() takes care of inverting the level internally if
-> > > >>>> the GPIO is marked as low-active in DT.
-> > > >>>>
-> > > >>>> The end result is obviously the same, but it makes the usage much
-> > > >>>> clearer. If somebody want to write a DT for their board, they will look
-> > > >>>> at the schematics and see a low-active reset line and may be tempted to
-> > > >>>> describe it as such in DT, but with your current code that would be
-> > > >>>> exactly the wrong way around.
-> > > >>> I agree with Thierry here, you should change the logic.
-> > > >>>
-> > > >>> Question: what's the advantage of adding GPIO reset support if that's
-> > > >>> architected already in port registers ? I am pretty sure there is a
-> > > >>> reason behind it (and forgive me the dumb question) and I would like to
-> > > >>> have it written in the commit log.
-> > > >>>
-> > > >>> Thanks,
-> > > >>> Lorenzo
-> > > >> Each PCIe controller has a dedicated SFIO pin to support PERST#
-> > > >> signal. Port register can control only this particular SFIO pin.
-> > > >> However, in one of the Nvidia platform, instead of using PCIe SFIO
-> > > >> pin, different gpio is routed PCIe slot. This happened because of a
-> > > >> confusion in IO ball naming convention. To support this particular
-> > > >> platform, driver has provide gpio support. I will update the commit
-> > > >> log in V5.
-> > > > What happens on that platform where you trigger reset through a port
-> > > > register with :
-> > > >
-> > > > value = afi_readl(port->pcie, ctrl);
-> > > > value |= AFI_PEX_CTRL_RST;
-> > > > afi_writel(port->pcie, value, ctrl);
-> > > >
-> > > > (imagine the DT is not updated for instance or on current
-> > > > mainline) ?
-> > > >
-> > > > Lorenzo
-> > > 
-> > > Lets take an example of PCIe controller-0, SFIO ball name which is
-> > > controlled by the port-0 register is PEX_L0_RST. It will deassert
-> > > PEX_L0_RST SFIO line but it doesn't go to PCIe slot, so fundamental
-> > > reset(PERST# deassert) is not applied to the endpoint connected to
-> > > that slot.
-> > 
-> > That's the point I am making, if the reset is not applied nothing
-> > will work (provided PEX_L0_RST does not do any damage either).
-> > 
-> > For the platform in question you should make reset-gpios mandatory and
-> > fail if not present (instead of toggling the wrong reset line) there is
-> > no chance the driver can work without that property AFAICS.
+Hi Heiko,
+
+On 2019-06-14 11:15, Heiko Stuebner wrote:
+
+> Hi Justin,
 > 
-> I'm not sure I understand what you're proposing here. Are you suggesting
-> that we put a check in the driver to see if we're running on a specific
-> board and then fail if the reset-gpios are not there?
+> Am Donnerstag, 13. Juni 2019, 12:13:04 CEST schrieb Justin Swartz:
+> 
+>> Add display_subsystem, hdmi_phy, vop, and hdmi device nodes plus
+>> a few hdmi pinctrl entries to allow for HDMI output.
+>> 
+>> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+> 
+> Overall looks good, but in combination with the clock-patch you posted,
+> I'd really prefer if we could try a slightly different approach.
+> 
+> Hard register-level settings in the clock driver look bad and tend to
+> cause problems later on, so I've adapted things a bit in [0] (untested)
+> and would be glad if you could give it a try on actual hardware.
 
-I am just trying to understand what this patch does. By reading it again
-it looks like it makes GPIO PERST# reset mandatory for all platforms
-supported by this driver (because if the driver does not grab an handle
-to the GPIO tegra_pcie_parse_dt() fails), if I read the code correctly,
-apologies if not.
+I can confirm that your approach works properly here.
 
-Which makes me question the check:
+> The hdmiphy itself is a clock-provider for its pll and therefore the
+> assigned-clock* properties into the hdmi controller, as the phy needs
+> to probe before trying to set clocks.
+> But in theory this should achieve the same result of reparenting the
+> system's hdmiphy clock to the actual output of the phy-pll.
+> 
+> I've also moved the iommu-cells fix to a separate commit.
+> 
+> Please test, thanks
+> Heiko
+> 
+> [0] https://github.com/mmind/linux-rockchip/commits/wip/rk3229-hdmi
 
-	if (port->reset_gpiod) {
-		gpiod_set_value(port->reset_gpiod, 0);
-
-in tegra_pcie_port_reset(), if we are there port->reset_gpiod can't be
-NULL or I am missing something and also make:
-
-	} else {
-		value = afi_readl(port->pcie, ctrl);
-		value &= ~AFI_PEX_CTRL_RST;
-		afi_writel(port->pcie, value, ctrl);
-	}
-
-path dead code.
-
-Is this GPIO based #PERST a per-platform requirement or you want
-to update the driver to always use GPIO based #PERST ?
-
-And if it is a per-platform requirement I assume that a missing
-DT property describing the GPIO #PERST should cause a probe failure,
-not a fallback to port registers reset (which may have unintended
-consequences).
-
-From the commit log it is not clear what this patch does and for what
-reason it does it but it should be, let's define it here and update the
-log accordingly for everyone's benefit.
-
-Lorenzo
+Thanks
+Justin
