@@ -2,269 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C22145407
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 07:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25BFF4541B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 07:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725822AbfFNFeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 01:34:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43666 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725767AbfFNFeC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 01:34:02 -0400
-Received: from localhost.localdomain (unknown [106.201.34.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BB6B420851;
-        Fri, 14 Jun 2019 05:33:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560490440;
-        bh=pmyEUymsgyJLoNYN8vLhokGG1BoLoPROfaGcr2lIkcI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=leViKsHqg6vb3BeieTu+jwREHTuuiuAd2EvWdF7EqwoBXUBPVvM5Vzf55mm/BShWn
-         358QGXvyPtS9PkGY1G6xuV519h5OtXtkaGJEB6mrHdA1c0uvNEo0byKkMIoPS29EOj
-         yw1vzVzBEU+J9leShnblsCAOf4U4wtyTlhVmNF6s=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Prasad Sodagudi <psodagud@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Isaac J . Manjarres" <isaacm@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SM8150 pinctrl binding
-Date:   Fri, 14 Jun 2019 11:00:31 +0530
-Message-Id: <20190614053032.24208-1-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1725846AbfFNFkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 01:40:45 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:5232 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725801AbfFNFkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 01:40:45 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d03335b0000>; Thu, 13 Jun 2019 22:40:43 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 13 Jun 2019 22:40:42 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 13 Jun 2019 22:40:42 -0700
+Received: from [10.24.193.7] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 14 Jun
+ 2019 05:40:39 +0000
+Subject: Re: [Patch V4 4/8] dt-bindings: usb: Add NVIDIA Tegra XUSB device
+ mode controller binding
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1560161949-26031-1-git-send-email-nkristam@nvidia.com>
+ <1560161949-26031-5-git-send-email-nkristam@nvidia.com>
+ <1560238989.8487.122.camel@mhfsdcap03>
+X-Nvconfidentiality: public
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+Message-ID: <faab4699-399c-4f7c-46b9-ca269ed44646@nvidia.com>
+Date:   Fri, 14 Jun 2019 11:11:48 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1560238989.8487.122.camel@mhfsdcap03>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560490843; bh=QBIwruv6Sh8OVrcr71kjkqdADiTqmj6mOy+xQ9viGbo=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=nPBbkUNVVZYqd+LOFLo5RO3OzyKkXrC5auCMRku2WdSICwLfOK8ahYAMswUbRzQix
+         KNZMjV4Z535keQILcvgWP4ROYHAMVPrDnhEk0kXTR2Rg0dIlH2QzMdlHEAvNMA12fG
+         85Pj5CNJ8LGrRRy7bqvPQCYcXPi1cYsJVtAsz51+oUoBTwn17D8B2Gjo67pC1Dz3aJ
+         EaFgR2DVMV5fPaFVt8rh1DSvtRtwRBcmHg8jDBhiDA1jzEtXOMvKd+ri9UERdT8odK
+         8vjbgeTnqD097hDR/s8xuT3khx6CAJxjffIR7vaXwhvFHY1FJ/pPZ3VrxWp7ooySsY
+         lpFFg411Cq94w==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Prasad Sodagudi <psodagud@codeaurora.org>
 
-Add the binding for the TLMM pinctrl block found in the SM8150 platform.
 
-Signed-off-by: Prasad Sodagudi <psodagud@codeaurora.org>
-Signed-off-by: Isaac J. Manjarres <isaacm@codeaurora.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- .../bindings/pinctrl/qcom,sm8150-pinctrl      | 200 ++++++++++++++++++
- 1 file changed, 200 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl
+On 11-06-2019 13:13, Chunfeng Yun wrote:
+> On Mon, 2019-06-10 at 15:49 +0530, Nagarjuna Kristam wrote:
+>> Add device-tree binding documentation for the XUSB device mode controller
+>> present on Tegra210 SoC. This controller supports the USB 3.0
+>> specification.
+>>
+>> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+>> Reviewed-by: JC Kuo <jckuo@nvidia.com>
+>> ---
+>>  .../devicetree/bindings/usb/nvidia,tegra-xudc.txt  | 108 +++++++++++++++++++++
+>>  1 file changed, 108 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>> new file mode 100644
+>> index 0000000..cde4e11
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>> @@ -0,0 +1,108 @@
+>> +Device tree binding for NVIDIA Tegra XUSB device mode controller (XUDC)
+>> +=======================================================================
+>> +
+>> +The Tegra XUDC controller supports both USB 2.0 HighSpeed/FullSpeed and
+>> +USB 3.0 SuperSpeed protocols.
+>> +
+>> +Required properties:
+>> +--------------------
+>> +- compatible: For Tegra210, must contain "nvidia,tegra210-xudc".
+>> +- reg: Must contain the base and length of the XUSB device registers, XUSB device
+>> +  PCI Config registers and XUSB device controller registers.
+>> +- reg-names: Must include all the register names needed for the driver
+> add names list?
+> 
+Will update.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl
-new file mode 100644
-index 000000000000..4f21d18b0be2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl
-@@ -0,0 +1,200 @@
-+Qualcomm SM8150 TLMM block
-+
-+This binding describes the Top Level Mode Multiplexer block found in the
-+QCS404 platform.
-+
-+- compatible:
-+	Usage: required
-+	Value type: <string>
-+	Definition: must be "qcom,sm8150-pinctrl"
-+
-+- reg:
-+	Usage: required
-+	Value type: <prop-encoded-array>
-+	Definition: the base address and size of the north, south , west
-+		    and east TLMM tiles.
-+
-+- reg-names:
-+	Usage: required
-+	Value type: <prop-encoded-array>
-+	Defintiion: names for the cells of reg, must contain "north", "south"
-+		    "west" and "east".
-+
-+- interrupts:
-+	Usage: required
-+	Value type: <prop-encoded-array>
-+	Definition: should specify the TLMM summary IRQ.
-+
-+- interrupt-controller:
-+	Usage: required
-+	Value type: <none>
-+	Definition: identifies this node as an interrupt controller
-+
-+- #interrupt-cells:
-+	Usage: required
-+	Value type: <u32>
-+	Definition: must be 2. Specifying the pin number and flags, as defined
-+		    in <dt-bindings/interrupt-controller/irq.h>
-+
-+- gpio-controller:
-+	Usage: required
-+	Value type: <none>
-+	Definition: identifies this node as a gpio controller
-+
-+- #gpio-cells:
-+	Usage: required
-+	Value type: <u32>
-+	Definition: must be 2. Specifying the pin number and flags, as defined
-+		    in <dt-bindings/gpio/gpio.h>
-+
-+Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
-+a general description of GPIO and interrupt bindings.
-+
-+Please refer to pinctrl-bindings.txt in this directory for details of the
-+common pinctrl bindings used by client devices, including the meaning of the
-+phrase "pin configuration node".
-+
-+The pin configuration nodes act as a container for an arbitrary number of
-+subnodes. Each of these subnodes represents some desired configuration for a
-+pin, a group, or a list of pins or groups. This configuration can include the
-+mux function to select on those pin(s)/group(s), and various pin configuration
-+parameters, such as pull-up, drive strength, etc.
-+
-+
-+PIN CONFIGURATION NODES:
-+
-+The name of each subnode is not important; all subnodes should be enumerated
-+and processed purely based on their content.
-+
-+Each subnode only affects those parameters that are explicitly listed. In
-+other words, a subnode that lists a mux function but no pin configuration
-+parameters implies no information about any pin configuration parameters.
-+Similarly, a pin subnode that describes a pullup parameter implies no
-+information about e.g. the mux function.
-+
-+
-+The following generic properties as defined in pinctrl-bindings.txt are valid
-+to specify in a pin configuration subnode:
-+
-+- pins:
-+	Usage: required
-+	Value type: <string-array>
-+	Definition: List of gpio pins affected by the properties specified in
-+		    this subnode.
-+
-+		    Valid pins are:
-+		      gpio0-gpio149
-+		        Supports mux, bias and drive-strength
-+
-+		      sdc1_clk, sdc1_cmd, sdc1_data sdc2_clk, sdc2_cmd,
-+		      sdc2_data sdc1_rclk
-+		        Supports bias and drive-strength
-+
-+		      ufs_reset
-+		        Supports bias and drive-strength
-+
-+- function:
-+	Usage: required
-+	Value type: <string>
-+	Definition: Specify the alternative function to be configured for the
-+		    specified pins. Functions are only valid for gpio pins.
-+		    Valid values are:
-+
-+		    blsp_uart1, blsp_spi1, blsp_i2c1, blsp_uim1, atest_tsens,
-+		    bimc_dte1, dac_calib0, blsp_spi8, blsp_uart8, blsp_uim8,
-+		    qdss_cti_trig_out_b, bimc_dte0, dac_calib1, qdss_cti_trig_in_b,
-+		    dac_calib2, atest_tsens2, atest_usb1, blsp_spi10, blsp_uart10,
-+		    blsp_uim10, atest_bbrx1, atest_usb13, atest_bbrx0, atest_usb12,
-+		    mdp_vsync, edp_lcd, blsp_i2c10, atest_gpsadc1, atest_usb11,
-+		    atest_gpsadc0, edp_hot, atest_usb10, m_voc, dac_gpio, atest_char,
-+		    cam_mclk, pll_bypassnl, qdss_stm7, blsp_i2c8, qdss_tracedata_b,
-+		    pll_reset, qdss_stm6, qdss_stm5, qdss_stm4, atest_usb2, cci_i2c,
-+		    qdss_stm3, dac_calib3, atest_usb23, atest_char3, dac_calib4,
-+		    qdss_stm2, atest_usb22, atest_char2, qdss_stm1, dac_calib5,
-+		    atest_usb21, atest_char1, dbg_out, qdss_stm0, dac_calib6,
-+		    atest_usb20, atest_char0, dac_calib10, qdss_stm10,
-+		    qdss_cti_trig_in_a, cci_timer4, blsp_spi6, blsp_uart6, blsp_uim6,
-+		    blsp2_spi, qdss_stm9, qdss_cti_trig_out_a, dac_calib11,
-+		    qdss_stm8, cci_timer0, qdss_stm13, dac_calib7, cci_timer1,
-+		    qdss_stm12, dac_calib8, cci_timer2, blsp1_spi, qdss_stm11,
-+		    dac_calib9, cci_timer3, cci_async, dac_calib12, blsp_i2c6,
-+		    qdss_tracectl_a, dac_calib13, qdss_traceclk_a, dac_calib14,
-+		    dac_calib15, hdmi_rcv, dac_calib16, hdmi_cec, pwr_modem,
-+		    dac_calib17, hdmi_ddc, pwr_nav, dac_calib18, pwr_crypto,
-+		    dac_calib19, hdmi_hot, dac_calib20, dac_calib21, pci_e0,
-+		    dac_calib22, dac_calib23, dac_calib24, tsif1_sync, dac_calib25,
-+		    sd_write, tsif1_error, blsp_spi2, blsp_uart2, blsp_uim2,
-+		    qdss_cti, blsp_i2c2, blsp_spi3, blsp_uart3, blsp_uim3, blsp_i2c3,
-+		    uim3, blsp_spi9, blsp_uart9, blsp_uim9, blsp10_spi, blsp_i2c9,
-+		    blsp_spi7, blsp_uart7, blsp_uim7, qdss_tracedata_a, blsp_i2c7,
-+		    qua_mi2s, gcc_gp1_clk_a, ssc_irq, uim4, blsp_spi11, blsp_uart11,
-+		    blsp_uim11, gcc_gp2_clk_a, gcc_gp3_clk_a, blsp_i2c11, cri_trng0,
-+		    cri_trng1, cri_trng, qdss_stm18, pri_mi2s, qdss_stm17, blsp_spi4,
-+		    blsp_uart4, blsp_uim4, qdss_stm16, qdss_stm15, blsp_i2c4,
-+		    qdss_stm14, dac_calib26, spkr_i2s, audio_ref, lpass_slimbus,
-+		    isense_dbg, tsense_pwm1, tsense_pwm2, btfm_slimbus, ter_mi2s,
-+		    qdss_stm22, qdss_stm21, qdss_stm20, qdss_stm19, gcc_gp1_clk_b,
-+		    sec_mi2s, blsp_spi5, blsp_uart5, blsp_uim5, gcc_gp2_clk_b,
-+		    gcc_gp3_clk_b, blsp_i2c5, blsp_spi12, blsp_uart12, blsp_uim12,
-+		    qdss_stm25, qdss_stm31, blsp_i2c12, qdss_stm30, qdss_stm29,
-+		    tsif1_clk, qdss_stm28, tsif1_en, tsif1_data, sdc4_cmd, qdss_stm27,
-+		    qdss_traceclk_b, tsif2_error, sdc43, vfr_1, qdss_stm26, tsif2_clk,
-+		    sdc4_clk, qdss_stm24, tsif2_en, sdc42, qdss_stm23, qdss_tracectl_b,
-+		    sd_card, tsif2_data, sdc41, tsif2_sync, sdc40, mdp_vsync_p_b,
-+		    ldo_en, mdp_vsync_s_b, ldo_update, blsp11_uart_tx_b, blsp11_uart_rx_b,
-+		    blsp11_i2c_sda_b, prng_rosc, blsp11_i2c_scl_b, uim2, uim1, uim_batt,
-+		    pci_e2, pa_indicator, adsp_ext, ddr_bist, qdss_tracedata_11,
-+		    qdss_tracedata_12, modem_tsync, nav_dr, nav_pps, pci_e1, gsm_tx,
-+		    qspi_cs, ssbi2, ssbi1, mss_lte, qspi_clk, qspi0, qspi1, qspi2, qspi3,
-+		    gpio
-+
-+- bias-disable:
-+	Usage: optional
-+	Value type: <none>
-+	Definition: The specified pins should be configued as no pull.
-+
-+- bias-pull-down:
-+	Usage: optional
-+	Value type: <none>
-+	Definition: The specified pins should be configued as pull down.
-+
-+- bias-pull-up:
-+	Usage: optional
-+	Value type: <none>
-+	Definition: The specified pins should be configued as pull up.
-+
-+- output-high:
-+	Usage: optional
-+	Value type: <none>
-+	Definition: The specified pins are configured in output mode, driven
-+		    high.
-+		    Not valid for sdc pins.
-+
-+- output-low:
-+	Usage: optional
-+	Value type: <none>
-+	Definition: The specified pins are configured in output mode, driven
-+		    low.
-+		    Not valid for sdc pins.
-+
-+- drive-strength:
-+	Usage: optional
-+	Value type: <u32>
-+	Definition: Selects the drive strength for the specified pins, in mA.
-+		    Valid values are: 2, 4, 6, 8, 10, 12, 14 and 16
-+
-+Example:
-+
-+	tlmm: pinctrl@3000000 {
-+		compatible = "qcom,sm8150-pinctrl";
-+		reg = <0x03100000 0x300000>,
-+		      <0x03500000 0x300000>,
-+		      <0x03900000 0x300000>,
-+		      <0x03D00000 0x300000>;
-+		reg-names = "west", "east", "north", "south";
-+		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+	};
--- 
-2.20.1
-
+-Nagarjuna
+>> +- interrupts: Must contain the XUSB device interrupt.
+>> +- clocks: Must contain an entry for all clocks used.
+>> +  See ../clock/clock-bindings.txt for details.
+>> +- clock-names: Must include the following entries:
+>> +   - dev: Clock to enable core XUSB dev clock.
+>> +   - ss: Clock to enable XUSB super speed clock.
+>> +   - ss_src: Clock to enable XUSB super speed dev clock.
+>> +   - hs_src: Clock to enable XUSB high speed dev clock.
+>> +   - fs_src: Clock to enable XUSB full speed dev clock.
+>> +- nvidia,xusb-padctl: phandle to the XUSB pad controller that is used to
+>> +  configure the USB pads used by the XUDC controller.
+>> +- power-domains: A list of PM domain specifiers that reference each power-domain
+>> +  used by the XUSB device mode controller. This list must comprise of a specifier
+>> +  for the XUSBA and XUSBB power-domains. See ../power/power_domain.txt and
+>> +  ../arm/tegra/nvidia,tegra20-pmc.txt for details.
+>> +- power-domain-names: A list of names that represent each of the specifiers in
+>> +  the 'power-domains' property. Must include 'ss' and 'dev'.
+>> +- phys: Must contain an entry for each entry in phy-names.
+>> +  See ../phy/phy-bindings.txt for details.
+>> +- phy-names: Should include an entry for each PHY used by the controller.
+>> +  Names must be "usb2", and "usb3" if support SuperSpeed device mode.
+>> +  - "usb3" phy, SuperSpeed (SSTX+/SSTX-/SSRX+/SSRX-) data lines.
+>> +  - "usb2" phy, USB 2.0 (D+/D-) data lines.
+>> +
+>> +For Tegra210:
+>> +- avddio-usb-supply: PCIe/USB3 analog logic power supply. Must supply 1.05 V.
+>> +- hvdd-usb-supply: USB controller power supply. Must supply 3.3 V.
+>> +
+>> +
+>> +Optional properties:
+>> +--------------------
+>> +- usb-role-switch: boolean property to indicate use of USB Role Switch driver.
+>> +
+>> +Sub-nodes:
+>> +----------
+>> +- The port would be added as subnode if use "usb-role-switch" property.
+>> +  see graph.txt.
+>> +
+>> +Example:
+>> +--------
+>> +	pmc: pmc@7000e400 {
+>> +		compatible = "nvidia,tegra210-pmc";
+>> +		reg = <0x0 0x7000e400 0x0 0x400>;
+>> +		clocks = <&tegra_car TEGRA210_CLK_PCLK>, <&clk32k_in>;
+>> +		clock-names = "pclk", "clk32k_in";
+>> +
+>> +		powergates {
+>> +			pd_xusbss: xusba {
+>> +				clocks = <&tegra_car TEGRA210_CLK_XUSB_SS>;
+>> +				resets = <&tegra_car 156>;
+>> +				#power-domain-cells = <0>;
+>> +			};
+>> +
+>> +			pd_xusbdev: xusbb {
+>> +				clocks = <&tegra_car TEGRA210_CLK_XUSB_DEV>;
+>> +				resets = <&tegra_car 95>;
+>> +				#power-domain-cells = <0>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	xudc@700d0000 {
+>> +		compatible = "nvidia,tegra210-xudc";
+>> +		reg = <0x0 0x700d0000 0x0 0x8000>,
+>> +		      <0x0 0x700d8000 0x0 0x1000>,
+>> +		      <0x0 0x700d9000 0x0 0x1000>;
+>> +		reg-names = "base", "fpci", "ipfs";
+>> +
+>> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +		clocks = <&tegra_car TEGRA210_CLK_XUSB_DEV>,
+>> +			 <&tegra_car TEGRA210_CLK_XUSB_SS>,
+>> +			 <&tegra_car TEGRA210_CLK_XUSB_SSP_SRC>,
+>> +			 <&tegra_car TEGRA210_CLK_XUSB_HS_SRC>,
+>> +			 <&tegra_car TEGRA210_CLK_XUSB_FS_SRC>;
+>> +		clock-names = "dev", "ss", "ss_src", "hs_src", "fs_src";
+>> +
+>> +		power-domains = <&pd_xusbdev>, <&pd_xusbss>;
+>> +		power-domain-names = "dev", "ss";
+>> +
+>> +		nvidia,xusb-padctl = <&padctl>;
+>> +
+>> +		phys = <&{/padctl@7009f000/pads/usb2/lanes/usb2-0}>;
+>> +		phy-names = "usb2;
+>> +
+>> +		avddio-usb-supply = <&vdd_pex_1v05>;
+>> +		hvdd-usb-supply = <&vdd_3v3_sys>;
+>> +
+>> +		usb-role-switch;
+>> +		port {
+>> +			usb_role_switch: endpoint@0 {
+>> +				remote-endpoint = <&bconn_ep>;
+>> +			};
+>> +		};
+>> +
+>> +	};
+> 
+> 
