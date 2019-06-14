@@ -2,104 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93F7B4682A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3232B4683A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726262AbfFNTeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 15:34:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57368 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725891AbfFNTeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 15:34:01 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8E23B21841;
-        Fri, 14 Jun 2019 19:34:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560540840;
-        bh=wr/eQtEE3iJnSa7E2kL4Ek/lqk/4ET90JhWlyFdrqq0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0VCrY966gCCbSU1OJoxYKikS7uV+UyvKh6Z+YKdA6Rt/18nh2oN2rQbw3D8LAqsHQ
-         3dnyI/DMTGBZEApZZ+vU+DpxXEh01cja6RZLot4/z/r2sm8Wss1aCnqWEC01av87uo
-         P3Nmz7VbabNaWzgyAbzG7n5/VnrkMbMkzX9WZD0Y=
-Received: by mail-qt1-f179.google.com with SMTP id a15so3814620qtn.7;
-        Fri, 14 Jun 2019 12:34:00 -0700 (PDT)
-X-Gm-Message-State: APjAAAVFPEAX/8KpblyXeWsUcgUyuQm9fHzihptmQ3iklSRZKlN32Pce
-        dIAGlGV605s0yLa46VBeK7G9YGsqVVvb3Uw9zA==
-X-Google-Smtp-Source: APXvYqzx09ZX/6kOckWH3iuQjTw8fyB3cWhkcStX8rrUjI+l5U1sNeJAvM7cBDu9l2+/8g404HycvsxHlfGJ34QW0fU=
-X-Received: by 2002:a0c:b786:: with SMTP id l6mr9951642qve.148.1560540839834;
- Fri, 14 Jun 2019 12:33:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190517153223.7650-1-robh@kernel.org> <20190613224435.GA32572@bogus>
- <20190614170450.GA29654@Mani-XPS-13-9360> <5946467c-7674-de2b-a657-627cf3be42df@suse.de>
-In-Reply-To: <5946467c-7674-de2b-a657-627cf3be42df@suse.de>
+        id S1726083AbfFNTnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 15:43:05 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:36124 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726047AbfFNTnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:43:05 -0400
+Received: by mail-qk1-f193.google.com with SMTP id g18so2457223qkl.3;
+        Fri, 14 Jun 2019 12:43:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Mp8xTO5oNN7LboeBKHyfl41RYppmWJR4foCIg2c5W1s=;
+        b=EknriUybNYqed1WZbFQUVevwq9svztvZ5srHJWTyzGaVziLtsMRxKcU3vTz/pjaW3r
+         +35JiogVtbuYw949qB00IoYJTC5u2keANjmtyYjciEFa1k7cEmsAL7PoD/5Q+o5DmQY3
+         niBkCA4DC1LbZLHzKhGmprq2Yf4b/7C1D//B4wqObTcY3fVrsicXTbZy1qqSCVff0ak9
+         mmjFQXkd8ys2tSecgoZ1ZeFTVN2PU8XEUJMofv3v1A9OPd9Mx9/P8FR+nx77UsapKUkk
+         Jxez95537JEhb8QrJu5ylw5OTBrxeidl6XL6++yxIWc1kjEyn1+xuYVtTAxdhczzQ5jB
+         KhRw==
+X-Gm-Message-State: APjAAAUbCJQ8ttv1ejc9tby4u2YEy/7Pf8Jyy41XN7loUdo2gfKtdf7y
+        XZMb4YL75QHUSPzk2uY5ag==
+X-Google-Smtp-Source: APXvYqz0aEx4FDJ3gg/LvUzydLqr7NaukJPecyN5OsnEwsUCU0LY+1pAYvSd5Ebr1tqcYxuiJF4DxA==
+X-Received: by 2002:ae9:c106:: with SMTP id z6mr57253623qki.285.1560541383979;
+        Fri, 14 Jun 2019 12:43:03 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id j141sm2430766qke.28.2019.06.14.12.43.03
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 14 Jun 2019 12:43:03 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 13:43:02 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 14 Jun 2019 13:33:47 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJoQDkqZO_4XdaQymVW0cJDXVmAPh3uieRkBjoUXeWE1w@mail.gmail.com>
-Message-ID: <CAL_JsqJoQDkqZO_4XdaQymVW0cJDXVmAPh3uieRkBjoUXeWE1w@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: arm: Convert Actions Semi bindings to jsonschema
-To:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To:     Renato Lui Geh <renatogeh@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        knaack.h@gmx.de, pmeerw@pmeerw.net, gregkh@linuxfoundation.org,
+        stefan.popa@analog.com, alexandru.Ardelean@analog.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org, kernel-usp@googlegroups.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add adi,ad7780.yaml binding
+Message-ID: <20190614194302.GA18613@bogus>
+References: <cover.1558746978.git.renatogeh@gmail.com>
+ <2426649b2d8224ae72e7706bcb8c4f2c44c581d2.1558746978.git.renatogeh@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <2426649b2d8224ae72e7706bcb8c4f2c44c581d2.1558746978.git.renatogeh@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 11:07 AM Andreas F=C3=A4rber <afaerber@suse.de> wro=
-te:
->
-> Am 14.06.19 um 19:04 schrieb Manivannan Sadhasivam:
-> > On Thu, Jun 13, 2019 at 04:44:35PM -0600, Rob Herring wrote:
-> >> On Fri, May 17, 2019 at 10:32:23AM -0500, Rob Herring wrote:
-> >>> Convert Actions Semi SoC bindings to DT schema format using json-sche=
-ma.
-> >>>
-> >>> Cc: "Andreas F=C3=A4rber" <afaerber@suse.de>
-> >>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >>> Cc: Mark Rutland <mark.rutland@arm.com>
-> >>> Cc: linux-arm-kernel@lists.infradead.org
-> >>> Cc: devicetree@vger.kernel.org
-> >>> Signed-off-by: Rob Herring <robh@kernel.org>
-> >>> ---
-> >>> v3:
-> >>> - update MAINTAINERS
-> >>>
-> >>>  .../devicetree/bindings/arm/actions.txt       | 56 -----------------=
---
-> >>>  .../devicetree/bindings/arm/actions.yaml      | 38 +++++++++++++
-> >>>  MAINTAINERS                                   |  2 +-
-> >>>  3 files changed, 39 insertions(+), 57 deletions(-)
-> >>>  delete mode 100644 Documentation/devicetree/bindings/arm/actions.txt
-> >>>  create mode 100644 Documentation/devicetree/bindings/arm/actions.yam=
-l
-> >>
-> >> Ping. Please apply or modify this how you'd prefer. I'm not going to
-> >> keep respinning this.
-> >>
-> >
-> > Sorry for that Rob.
->
-> Well, it was simply not clear whether we were supposed to or not. :)
+On Fri, 24 May 2019 22:26:30 -0300, Renato Lui Geh wrote:
+> This patch adds a YAML binding for the Analog Devices AD7780/1 and
+> AD7170/1 analog-to-digital converters.
+> 
+> Signed-off-by: Renato Lui Geh <renatogeh@gmail.com>
+> ---
+> Changes in v2:
+>  - vref-supply to avdd-supply
+>  - remove avdd-supply from required list
+>  - include adc block in an spi block
+> 
+>  .../bindings/iio/adc/adi,ad7780.txt           | 48 ----------
+>  .../bindings/iio/adc/adi,ad7780.yaml          | 87 +++++++++++++++++++
+>  2 files changed, 87 insertions(+), 48 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
+> 
 
-I thought 'To' you and a single patch should be clear enough.
-
-> > Andreas, are you going to take this patch? Else I'll pick it up (If you
-> > want me to do the PR for next cycle)
->
-> I had checked that all previous changes to the .txt file were by myself,
-> so I would prefer if we not license it under GPLv2-only but under the
-> same dual-license (MIT/GPLv2+) as the DTs. That modification would need
-> Rob's approval then.
-
-That's fine and dual license is preferred. Can you adjust that when
-applying. Note that the preference for schema is (GPL-2.0 OR
-BSD-2-Clause), but MIT/GPLv2+ is fine by me.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
