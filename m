@@ -2,132 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B38DE4577D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 10:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C515245784
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 10:31:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726432AbfFNIaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 04:30:10 -0400
-Received: from mail-yb1-f195.google.com ([209.85.219.195]:41870 "EHLO
-        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726259AbfFNIaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 04:30:09 -0400
-Received: by mail-yb1-f195.google.com with SMTP id d2so748719ybh.8;
-        Fri, 14 Jun 2019 01:30:09 -0700 (PDT)
+        id S1726278AbfFNIbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 04:31:38 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:41395 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725907AbfFNIbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 04:31:38 -0400
+Received: by mail-qt1-f195.google.com with SMTP id 33so1523859qtr.8
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 01:31:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=nzVcHF0m70Fw+qIor/h4e6MpGLGe8ekBloVHLUtwVtM=;
-        b=kuqPHbm9jWzSzqRNBz098asTFfYK0VOUq+5FpWwWh3z6y8vIzdmbN4jHIJT1AKnoi/
-         DWqmluxBy1qkR88hqRC53qsxCflNkUKxWdV/XJ+otdmaBVNKEhJKgPO/l/0OD20U8e0Y
-         bL18x5wplBC6K9lv1VPa0S79QMnytw+QJaqrDviiMez0vOzpXEyuaK6QX44UzUKqUlbv
-         6U5c49IHHv5j6vz6z/nBYcvi5hClp7cbL8V9YAc7xQYfPRjq+zYk9v7LGVDhqSb0ONq9
-         CWtHyWSJP1CIWjUPA3IKWfYLb/YGMREJSNsm/MDsMt6zWBzVzQPSWlUEEXqGM2cnGFW3
-         OSwg==
+         :cc;
+        bh=WFDrQf4njTwrCLjFsRfgBfcro7/dqMXuf3KcCnlG7eU=;
+        b=i23VuOuZ0hfuRp/LswwKqj7gDp6Tlmafsj4Mm0OMRl4Vx/LbKVjew4IdJyh3RXRsBS
+         oJ/pXT42q4cyS1GSeDiksQD1bOpT84+3YUseJco/7CZjfBO5lFktZvECavHicuyZdmvD
+         u7U+7MQWSzNnpAJaO1w7qNqlIB/B345yxOQ8k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=nzVcHF0m70Fw+qIor/h4e6MpGLGe8ekBloVHLUtwVtM=;
-        b=oxv/fyg2g799wjbAF52dDDTYWrrk8LEjYrcvFCy/OMGO8DoQ3GE2KCsDsPlTp2XcRF
-         OW5JcZF5u9kPtcub83O5EVjV32WKsjKw8bjG8SRn3O4bvWYJoH3MVFdl3ymqsLoLPQyc
-         gMgroKmFGP2xAhjQe0HwOa+s8AiWeAm2FwZtBCCjJKbjSJ+Dmekv7ycUav34awmT712h
-         4LI6X/pl8Iwljt5PUIzXWWAW5fOhLYEuLEzy8DYpZ4KP/YIX0RoDpYfQXTrWEFl9yXwh
-         pv1SoO/RGsMiTqhV8RlRRnWfjUJaaL9xeUDTUX2LDdqtzlV8TDV+P8dBxbU6/ATttrj6
-         8qPw==
-X-Gm-Message-State: APjAAAWmxqGSY9BeKa6nhJiOp/Gulu3u9r10hqFAYw177X3rMZ3Skb9S
-        LdSKdn5LUmKBMXcPz3XV5rt4PR0k5GZhD1pVraU=
-X-Google-Smtp-Source: APXvYqy2kxodppWZiVypCM4BCxN56xAjgKw4jxOCVlJIgXRgaBJbPrms6UcdTL2C9gu+ZsfB0hqWyMivsi8hKhOyo9s=
-X-Received: by 2002:a25:ca8d:: with SMTP id a135mr42871828ybg.438.1560501008839;
- Fri, 14 Jun 2019 01:30:08 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=WFDrQf4njTwrCLjFsRfgBfcro7/dqMXuf3KcCnlG7eU=;
+        b=TDgs7lrvmLOql2CdfMnLX1Osew1WmML5mp66IOA4Et3dqjyNkpP3MK5T4rTcahpygh
+         fLQLM+ngvV/khH//p3pCq1aZOAMu36amd1O7p3AbM0C3GBXyMznKxzvMDqRHu286vkVd
+         P6moHJUgVh05x5iKNPSBqW0LLWkjRwVlMJiPKwhR/CjeFFHIgEwq6SwYRvQUBmRGHzkt
+         cUsQsm+ytQM5McNw/Gk90Sl+OonX077Kw1R70HUnImSA4G+xUzZADFE06GeGS1WDZ6Q8
+         Y20pQvSBw7o311Nt/ytpgyrCmYJi+zGx2I+zoFYNno3yVV5DE3uELxloMEtyUV8ITH8G
+         CAfg==
+X-Gm-Message-State: APjAAAWTrsi6lsVfS5sWzv5PZbF1JrVVwN8/4gl05X/bxJlzp45NE3/B
+        1k8YkmNl2PUoGppp3ZpkeT911y7H9ZhV8q78+sDayw==
+X-Google-Smtp-Source: APXvYqwJxz2R9C2u4+JZCsLN1H0xVaea7YSFUZIYK7HKRBDxLRfIPlaG5zng2MeCFRi/Ky0Kb1OnwOXd9vUp1mXjvOw=
+X-Received: by 2002:ac8:279b:: with SMTP id w27mr7486636qtw.159.1560501096909;
+ Fri, 14 Jun 2019 01:31:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190527200627.8635-1-peron.clem@gmail.com>
-In-Reply-To: <20190527200627.8635-1-peron.clem@gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Fri, 14 Jun 2019 10:29:57 +0200
-Message-ID: <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+References: <20190612085349.21243-1-bibby.hsieh@mediatek.com> <20190612085349.21243-12-bibby.hsieh@mediatek.com>
+In-Reply-To: <20190612085349.21243-12-bibby.hsieh@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Fri, 14 Jun 2019 16:31:26 +0800
+Message-ID: <CANMq1KDWOr8f6nx7CS9Z_0OCwZFSTxaAT=333xXE-R5FJfEyfg@mail.gmail.com>
+Subject: Re: [PATCH v8 11/12] soc: mediatek: cmdq: add cmdq_dev_get_client_reg function
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>,
+        Daniel Kurtz <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        YT Shen <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>, ginny.chen@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jun 12, 2019 at 4:53 PM Bibby Hsieh <bibby.hsieh@mediatek.com> wrote:
+>
+> GCE cannot know the register base address, this function
+> can help cmdq client to get the cmdq_client_reg structure.
+>
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-cmdq-helper.c | 24 ++++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-cmdq.h  | 20 ++++++++++++++++++++
+>  2 files changed, 44 insertions(+)
+>
+> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> index 70ad4d806fac..fac4d33fd520 100644
+> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> @@ -27,6 +27,30 @@ struct cmdq_instruction {
+>         u8 op;
+>  };
+>
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +                           struct cmdq_client_reg *client_reg, int idx)
+> +{
+> +       struct of_phandle_args spec;
+> +
+> +       if (!client_reg)
+> +               return -EINVAL;
+> +
+> +       if (of_parse_phandle_with_args(dev->of_node, "mediatek,gce-client-reg",
+> +                                      "#subsys-cells", idx, &spec)) {
+> +               dev_err(dev, "can't parse gce-client-reg property (%d)", idx);
+> +
+> +               return -EINVAL;
+> +       }
+> +
+> +       client_reg->subsys = spec.args[0];
+> +       client_reg->offset = spec.args[1];
+> +       client_reg->size = spec.args[2];
+> +       of_node_put(spec.np);
+> +
+> +       return 0;
+> +}
+> +EXPORT_SYMBOL(cmdq_dev_get_client_reg);
+> +
+>  static void cmdq_client_timeout(struct timer_list *t)
+>  {
+>         struct cmdq_client *client = from_timer(client, t, timer);
+> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
+> index a345870a6d10..2e2a2274c231 100644
+> --- a/include/linux/soc/mediatek/mtk-cmdq.h
+> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
+> @@ -15,6 +15,12 @@
+>
+>  struct cmdq_pkt;
+>
+> +struct cmdq_client_reg {
+> +       u8 subsys;
+> +       u16 offset;
+> +       u16 size;
+> +};
+> +
+>  struct cmdq_client {
+>         spinlock_t lock;
+>         u32 pkt_cnt;
+> @@ -142,4 +148,18 @@ int cmdq_pkt_flush_async(struct cmdq_pkt *pkt, cmdq_async_flush_cb cb,
+>   */
+>  int cmdq_pkt_flush(struct cmdq_pkt *pkt);
+>
+> +/**
+> + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device node of CMDQ client
 
-On Mon, 27 May 2019 at 22:10, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com=
-> wrote:
->
-> *H6 DMA support IS REQUIRED*
+Minor nit: this line is over 80 chars.
 
-DMA has been merged, so this series can be merge when ASoC maintainers
-have reviewed it.
-
-Regards,
-Cl=C3=A9ment
-
->
-> Allwinner H6 SoC has a SPDIF controller called One Wire Audio (OWA) which
-> is different from the previous H3 generation and not compatible.
->
-> Difference are an increase of fifo sizes, some memory mapping are differe=
-nt
-> and there is now the possibility to output the master clock on a pin.
->
-> Actually all these features are unused and only a bit for flushing the TX
-> fifo is required.
->
-> Also this series requires the DMA working on H6, a first version has been
-> submitted by Jernej =C5=A0krabec[1] but has not been accepted yet.
->
-> [1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=3D=
-89011
->
-> Changes since v3:
->  - rename reg_fctl_ftx to val_fctl_ftx
->  - rebase this series on sound-next
->  - fix dt-bindings due to change in sound-next
->  - change node name sound_spdif to sound-spdif
->
-> Changes since v2:
->  - Split quirks and H6 support patch
->  - Add specific section for quirks comment
->
-> Changes since v1:
->  - Remove H3 compatible
->  - Add TX fifo bit flush quirks
->  - Add H6 bindings in SPDIF driver
->
-> Cl=C3=A9ment P=C3=A9ron (7):
->   dt-bindings: sound: sun4i-spdif: Add Allwinner H6 compatible
->   ASoC: sun4i-spdif: Move quirks to the top
->   ASoC: sun4i-spdif: Add TX fifo bit flush quirks
->   ASoC: sun4i-spdif: Add support for H6 SoC
->   arm64: dts: allwinner: Add SPDIF node for Allwinner H6
->   arm64: dts: allwinner: h6: Enable SPDIF for Beelink GS1
->   arm64: defconfig: Enable Sun4i SPDIF module
->
->  .../sound/allwinner,sun4i-a10-spdif.yaml      |  1 +
->  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 38 ++++++++++++++
->  arch/arm64/configs/defconfig                  |  1 +
->  sound/soc/sunxi/sun4i-spdif.c                 | 49 ++++++++++++++++---
->  5 files changed, 87 insertions(+), 6 deletions(-)
->
+> + * @dev:       device of CMDQ mailbox clienti
+> + * @client_reg: CMDQ client reg pointer
+> + * @idx:       the index of desired reg
+> + *
+> + * Return: 0 for success; else the error code is returned
+> + *
+> + * Help CMDQ client pasing the cmdq client reg
+> + * from the device node of CMDQ client.
+> + */
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +                           struct cmdq_client_reg *client_reg, int idx);
+> +
+>  #endif /* __MTK_CMDQ_H__ */
 > --
-> 2.20.1
+> 2.18.0
 >
