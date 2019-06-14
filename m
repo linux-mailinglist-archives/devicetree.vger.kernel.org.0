@@ -2,82 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C5E46BD8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 23:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C10F146BFE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 23:40:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726071AbfFNV1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 17:27:17 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:41097 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725809AbfFNV1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 17:27:17 -0400
-Received: by mail-wr1-f68.google.com with SMTP id c2so3915574wrm.8
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 14:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=Uc2f6CQXrYqQEI1IDSyVk4ypG7EglesOk7GUtbp0rYQ=;
-        b=lmIVJ76ozWQkcY0V1jkobL62yLQMvrEWL08HGyPohsnZKsfkecN4dl/mbRE3VsX3yh
-         OiRDzXUTpYRaowIhTahm22tj7biPfwRU3KX9mcP/aqps/pDy77iPhuSqMcRALQEK6LRp
-         RfWLZlrd8uHqxRtk9bbnJpALqxBuGbO0cVbh/CmSkD+8D7nXNNmpdxGb8DOcXe0BrCz1
-         Z+UUK1SMwiKXybyodFl3PXip69MgA+BRYHhSaNloCfTNv7PS3lx968IYT8Zcf0IH3eVH
-         ZrGg0AhI8p+0vTDvW6LHwVSpJI7LhRKFG9WI0hkZOeqkmthJKAbr4knM443MVcvMsfT5
-         fm0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=Uc2f6CQXrYqQEI1IDSyVk4ypG7EglesOk7GUtbp0rYQ=;
-        b=NpTezy/ERK1d1UKDgUzeboZeLGytJfrkPduPdxLGhQgeV5UiLkRoCj20T2YKo3+lM5
-         CYio/cvPJvcOwuGSPh3eiYHP440tWCTKrHtwIc1klbg4rB1/K2qmlNVcm6d1E4PFYpKf
-         S8AW/rFUq11Qx9BRdzS9nrM7S6CYellJ6PIu+V9Au5sNIpIRhQe7d+gbYZfiPXXWe1V8
-         T3x5rZMozK3DvcHYTyof7s/lxUH32BTYS38gLeePeCTZifbcLJqZ2p7HYbBOAq8OXCl4
-         HeeRJOtIE4KzTL6dtOkmNQsg64v88gcE0zRHwaJGNfmsEDnvi9Ijo+cCCDQjnceZbgYg
-         HZeQ==
-X-Gm-Message-State: APjAAAXqLJbIR+Zc6JOzkivHCQJTjRtgSXokqN2RqggxXy/KJZjAmojC
-        P5KDBMKS1pof7NES/JhWhXc=
-X-Google-Smtp-Source: APXvYqwHIKIzJh16kp2/Ta+Cp14JGaM4ketsZocnKsCF7KMCunIdRIWs8bJiBwtvJUYTHx3baFU4/g==
-X-Received: by 2002:a5d:5303:: with SMTP id e3mr2160114wrv.239.1560547635129;
-        Fri, 14 Jun 2019 14:27:15 -0700 (PDT)
-Received: from X555LD ([2a02:85f:51e:5d00:f1ab:2da6:d378:d0de])
-        by smtp.gmail.com with ESMTPSA id x16sm2940166wmj.4.2019.06.14.14.27.13
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 14:27:14 -0700 (PDT)
-Date:   Sat, 15 Jun 2019 00:27:11 +0300
-From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii
- performance.
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Jose Abreu <jose.abreu@synopsys.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Message-Id: <1560547631.1367.4@gmail.com>
-In-Reply-To: <CAMdYzYorvWr1YhmFKaMQUCditjop5AZp4d1tO79XsVr7m7HrMw@mail.gmail.com>
-References: <20190607123731.8737-1-pgwipeout@gmail.com>
-        <1559912295.22520.0@gmail.com>
-        <CAMdYzYorvWr1YhmFKaMQUCditjop5AZp4d1tO79XsVr7m7HrMw@mail.gmail.com>
-X-Mailer: geary/3.32.1
+        id S1726294AbfFNVkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 17:40:10 -0400
+Received: from sauhun.de ([88.99.104.3]:57478 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725809AbfFNVkJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 17:40:09 -0400
+Received: from localhost (p5486CF81.dip0.t-ipconnect.de [84.134.207.129])
+        by pokefinder.org (Postfix) with ESMTPSA id AA8282CF690;
+        Fri, 14 Jun 2019 23:40:06 +0200 (CEST)
+Date:   Fri, 14 Jun 2019 23:40:05 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Stefan Roese <sr@denx.de>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Jan Breuer <jan.breuer@jaybee.cz>,
+        John Crispin <john@phrozen.org>,
+        =?utf-8?B?UmVuw6k=?= van Dorst <opensource@vdorst.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH 2/2 v3] i2c: mt7621: Add MediaTek MT7621/7628/7688 I2C
+ driver
+Message-ID: <20190614214005.GK17899@ninjato>
+References: <20190604113407.8948-1-sr@denx.de>
+ <20190604113407.8948-2-sr@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZG5hGh9V5E9QzVHS"
+Content-Disposition: inline
+In-Reply-To: <20190604113407.8948-2-sr@denx.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--ZG5hGh9V5E9QzVHS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> The big change was actually snps,aal.
-> As per the TRM, DMA channels not address aligned have severe
-> limitations, if they work at all.
-> 
-> Setting the DMA ops as address aligned fixed my 30mbps TX issue when
-> combined with your snps,txpbl = <0x4>.
+Hi Stefan,
 
-Honestly, I don't notice any difference either way with aal. So what 
-happens without it? If You only use the 0x4 txpbl and having removed 
-thresh dma mode, (2 things then) do you get bad tx?
+On Tue, Jun 04, 2019 at 01:34:07PM +0200, Stefan Roese wrote:
+> This patch adds a driver for the I2C controller found on the MediaTek
+> MT7621/7628/7688 SoC's. The base version of this driver was done by
+> Steven Liu (according to the copyright and MODULE_AUTHOR lines). It
+> can be found in the OpenWRT repositories (v4.14 at the time I looked).
+>=20
+> The base driver had many issues, which are disccussed here:
+>=20
+> https://en.forum.labs.mediatek.com/t/openwrt-15-05-loads-non-working-i2c-=
+kernel-module-for-mt7688/1286/3
+>=20
+> From this link an enhanced driver version (complete rewrite, mayor
+> changes: support clock stretching, repeated start, ACK handling and
+> unlimited message length) from Jan Breuer can be found here:
+>=20
+> https://gist.github.com/j123b567/9b555b635c2b4069d716b24198546954
+>=20
+> This patch now adds this enhanced I2C driver to mainline.
+>=20
+> Changes by Stefan Roese for upstreaming:
+> - Add devicetree bindings
+> - checkpatch clean
+> - Use module_platform_driver()
+> - Minor cosmetic enhancements
+> - Removed IO warpped functions
+> - Use readl_relaxed_poll_timeout() and drop poll_down_timeout()
+> - Removed superfluous barrier() in mtk_i2c_reset()
+> - Use i2c_8bit_addr_from_msg()
+> - Added I2C_FUNC_PROTOCOL_MANGLING
+> - Removed adap->class =3D I2C_CLASS_HWMON | I2C_CLASS_SPD;
+>=20
+> Signed-off-by: Stefan Roese <sr@denx.de>
+
+Mostly good, really minor nits left.
+
+> +config I2C_MT7621
+> +	tristate "MT7621/MT7628 I2C Controller"
+> +	depends on (RALINK && (SOC_MT7620 || SOC_MT7621)) || COMPILE_TEST
+> +	select OF_I2C
+
+OF_I2C is gone since 2013. Didn't Kconfig complain?
+
+> +
+> +#define MT76XX_I2C_INPUT_CLOCK	40000000
+
+Add a comment here explaining that this is a temporary solution until
+proper clock support is added?
+
+> +	ret =3D readl_relaxed_poll_timeout(i2c->base + REG_SM0CTL1_REG,
+> +					 val, !(val & SM0CTL1_TRI),
+> +					 10, TIMEOUT_MS * 1000);
+
+Yay, much better.
+
+> +	if (i2c->bus_freq =3D=3D 0) {
+> +		dev_warn(i2c->dev,
+> +			 "clock-frequency 0 not supported, using 1\n");
+> +		i2c->bus_freq =3D 1;
+> +	}
+
+A bus frequency of 1 Hz does neither make much sense. -EINVAL because
+there is surely something broken then?
+
+> +MODULE_AUTHOR("Steven Liu <steven_liu@mediatek.com>");
+
+His address is known to be broken!
+
+Regards,
+
+   Wolfram
 
 
+--ZG5hGh9V5E9QzVHS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0EFDUACgkQFA3kzBSg
+KbaYmA/+Pk6EKiOklBWcrEM5rmp8OdZhk8Ay7VVs38Pb1pA/qvkrfmDt8EIFdFoB
+ysgnrGUCARrMMYfU1xxOay5C2ZedQq0hT8y+aB5YVYRE+cOL54Y76YmzvH4+0/Qf
+16za7WVLKalegbM216SHbh+uitHY8JMB/Lwl1AwCyK75ZTZRwLfsmqFSPXqkwaG/
+q3hSVWSRAx7z4dELYAbKfgwPwhJ7G9uFq7bn3mNFXWZ0tMv/MN3FZFmNEvhGWwry
+ZQC9zCUstll30i/BaELNqlFTlGKN2JWPLlS+DQSbcFd2CwzS/x/m5ddS2C35KU5X
+vWrOJCPmAnxrioR45zYfEtqaKJTuXY+tf52BPolrIRpYef8Boa0T+uEhKe+yYNRW
+ohc6AOxW8ocRiS/+ZyWldY6QPUnEAj1mjd0D92QoiR4nF9xjYJxnfkNVZ6OvWkn/
+9Atr1jSExJpnxqXDKAQHmMBjwK2WVPkSwIz4wHDi/yBi2xYQzQZxZqHRRwO5cHA5
+t5463LR4f1wDFzl3N3V7cxH+aapBUueRLlpeRmzal6RwNfwPNExPklwZS0iiz/32
+VbocpSRk6SV7iOIQW/NhJZpWOV6GrpTBwZ2PLM/Ff8oQ7mb+YzaSb82zzTVMgS8S
+MJ/7b8ZxR4gEtSM/7q4/i+ttK4BFGqn7jCtIm6Cd8eZ2WOCo1T8=
+=uD5t
+-----END PGP SIGNATURE-----
+
+--ZG5hGh9V5E9QzVHS--
