@@ -2,159 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3652246312
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 17:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1878146384
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 17:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726480AbfFNPjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 11:39:05 -0400
-Received: from foss.arm.com ([217.140.110.172]:36890 "EHLO foss.arm.com"
+        id S1725869AbfFNP7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 11:59:44 -0400
+Received: from foss.arm.com ([217.140.110.172]:37120 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725780AbfFNPjF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 11:39:05 -0400
+        id S1725801AbfFNP7o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 11:59:44 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 84DED28;
-        Fri, 14 Jun 2019 08:39:04 -0700 (PDT)
-Received: from [10.1.196.105] (eglon.cambridge.arm.com [10.1.196.105])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E22873F718;
-        Fri, 14 Jun 2019 08:39:02 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] EDAC: add EDAC driver for DMC520
-To:     "Lei Wang (BSP)" <Wang.Lei@microsoft.com>,
-        Lei Wang <leiwang_git@outlook.com>
-Cc:     "bp@alien8.de" <bp@alien8.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        Rui Zhao <ruizhao@outlook.com>,
-        Rui Zhao <ruizhao@microsoft.com>,
-        Hang Li <hangl@microsoft.com>,
-        Sasha Levin <Alexander.Levin@microsoft.com>
-References: <CY1PR0401MB1244FDD9E720C9D9C1F41FEE860A0@CY1PR0401MB1244.namprd04.prod.outlook.com>
- <b1e360bc-2329-3f8b-3c93-65380f62d6fd@arm.com>
- <BYAPR21MB131946E0B469E74D6054C33390EF0@BYAPR21MB1319.namprd21.prod.outlook.com>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <2ca1143b-3251-7a40-5c8f-6c13f445562f@arm.com>
-Date:   Fri, 14 Jun 2019 16:39:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5026828;
+        Fri, 14 Jun 2019 08:59:41 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D03963F718;
+        Fri, 14 Jun 2019 08:59:39 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 16:59:34 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
+Message-ID: <20190614155934.GA28253@e121166-lin.cambridge.arm.com>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-28-mmaddireddy@nvidia.com>
+ <20190604132233.GT16519@ulmo>
+ <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
+ <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
+ <20190614143222.GB23116@e121166-lin.cambridge.arm.com>
+ <1508173d-0ecc-f498-6ab2-78a718086b35@nvidia.com>
+ <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
+ <20190614152304.GK15526@ulmo>
 MIME-Version: 1.0
-In-Reply-To: <BYAPR21MB131946E0B469E74D6054C33390EF0@BYAPR21MB1319.namprd21.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190614152304.GK15526@ulmo>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lei,
-
-On 13/06/2019 19:31, Lei Wang (BSP) wrote:
-> Please see inline(tagged with [Lei]) below. Thanks!
-
-Please don't do this. Top posting is discouraged[0]. Creating a reply treasure hunt is
-even worse!
-
-You probably need to change your mail client as your mail is also arriving base64 encoded.
-To the maintainer's scripts its going to look like this:
-https://lore.kernel.org/lkml/BYAPR21MB131946E0B469E74D6054C33390EF0@BYAPR21MB1319.namprd21.prod.outlook.com/raw
-
-
-> -----Original Message-----
-> From: James Morse <james.morse@arm.com> 
-> On 16/05/2019 03:55, Lei Wang wrote:
->> New driver supports error detection and correction on the devices with ARM DMC-520 memory controller.
+On Fri, Jun 14, 2019 at 05:23:04PM +0200, Thierry Reding wrote:
+> On Fri, Jun 14, 2019 at 03:50:23PM +0100, Lorenzo Pieralisi wrote:
+> > On Fri, Jun 14, 2019 at 08:08:26PM +0530, Manikanta Maddireddy wrote:
+> > > 
+> > > 
+> > > On 14-Jun-19 8:02 PM, Lorenzo Pieralisi wrote:
+> > > > On Fri, Jun 14, 2019 at 04:07:35PM +0530, Manikanta Maddireddy wrote:
+> > > >>
+> > > >> On 13-Jun-19 8:54 PM, Lorenzo Pieralisi wrote:
+> > > >>> On Tue, Jun 04, 2019 at 03:22:33PM +0200, Thierry Reding wrote:
+> > > >>>
+> > > >>> [...]
+> > > >>>
+> > > >>>>> +	} else {
+> > > >>>>> +		value = afi_readl(port->pcie, ctrl);
+> > > >>>>> +		value &= ~AFI_PEX_CTRL_RST;
+> > > >>>>> +		afi_writel(port->pcie, value, ctrl);
+> > > >>>>> +	}
+> > > >>>>>  
+> > > >>>>>  	usleep_range(1000, 2000);
+> > > >>>>>  
+> > > >>>>> -	value = afi_readl(port->pcie, ctrl);
+> > > >>>>> -	value |= AFI_PEX_CTRL_RST;
+> > > >>>>> -	afi_writel(port->pcie, value, ctrl);
+> > > >>>>> +	if (port->reset_gpiod) {
+> > > >>>>> +		gpiod_set_value(port->reset_gpiod, 1);
+> > > >>>> After this the port should be functional, right? I think it'd be better
+> > > >>>> to reverse the logic here and move the polarity of the GPIO into device
+> > > >>>> tree. gpiod_set_value() takes care of inverting the level internally if
+> > > >>>> the GPIO is marked as low-active in DT.
+> > > >>>>
+> > > >>>> The end result is obviously the same, but it makes the usage much
+> > > >>>> clearer. If somebody want to write a DT for their board, they will look
+> > > >>>> at the schematics and see a low-active reset line and may be tempted to
+> > > >>>> describe it as such in DT, but with your current code that would be
+> > > >>>> exactly the wrong way around.
+> > > >>> I agree with Thierry here, you should change the logic.
+> > > >>>
+> > > >>> Question: what's the advantage of adding GPIO reset support if that's
+> > > >>> architected already in port registers ? I am pretty sure there is a
+> > > >>> reason behind it (and forgive me the dumb question) and I would like to
+> > > >>> have it written in the commit log.
+> > > >>>
+> > > >>> Thanks,
+> > > >>> Lorenzo
+> > > >> Each PCIe controller has a dedicated SFIO pin to support PERST#
+> > > >> signal. Port register can control only this particular SFIO pin.
+> > > >> However, in one of the Nvidia platform, instead of using PCIe SFIO
+> > > >> pin, different gpio is routed PCIe slot. This happened because of a
+> > > >> confusion in IO ball naming convention. To support this particular
+> > > >> platform, driver has provide gpio support. I will update the commit
+> > > >> log in V5.
+> > > > What happens on that platform where you trigger reset through a port
+> > > > register with :
+> > > >
+> > > > value = afi_readl(port->pcie, ctrl);
+> > > > value |= AFI_PEX_CTRL_RST;
+> > > > afi_writel(port->pcie, value, ctrl);
+> > > >
+> > > > (imagine the DT is not updated for instance or on current
+> > > > mainline) ?
+> > > >
+> > > > Lorenzo
+> > > 
+> > > Lets take an example of PCIe controller-0, SFIO ball name which is
+> > > controlled by the port-0 register is PEX_L0_RST. It will deassert
+> > > PEX_L0_RST SFIO line but it doesn't go to PCIe slot, so fundamental
+> > > reset(PERST# deassert) is not applied to the endpoint connected to
+> > > that slot.
+> > 
+> > That's the point I am making, if the reset is not applied nothing
+> > will work (provided PEX_L0_RST does not do any damage either).
+> > 
+> > For the platform in question you should make reset-gpios mandatory and
+> > fail if not present (instead of toggling the wrong reset line) there is
+> > no chance the driver can work without that property AFAICS.
 > 
->> diff --git a/MAINTAINERS b/MAINTAINERS index 7d1246b..23894ac 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -5573,6 +5573,12 @@ F:	Documentation/driver-api/edac.rst
->>  F:	drivers/edac/
->>  F:	include/linux/edac.h
->>  
->> +EDAC-DMC520
->> +M:	Rui Zhao <ruizhao@microsoft.com>
->> +L:	linux-edac@vger.kernel.org
->> +S:	Supported
->> +F:	drivers/edac/dmc520_edac.c
-> 
-> Hmm, you're listing someone else as maintainer of this driver.
-> I think we'd need to see an Ack from Rui Zhao...
-> 
-> This patch was previously posted by Rui Zhao, this version has your changes and you as author. (But how you arrange the attribution is up to the two of you...)
-> [Lei] And Rui and I sync-ed up on this code and this patch was after addressing his feedbacks and his Ack.
+> I'm not sure I understand what you're proposing here. Are you suggesting
+> that we put a check in the driver to see if we're running on a specific
+> board and then fail if the reset-gpios are not there?
 
-And Rui commented that you should be listed as maintainer:
-https://lore.kernel.org/lkml/CY4PR21MB0279BB0E40B86CEA485CF19AB3010@CY4PR21MB0279.namprd21.prod.outlook.com/T/#u
+I am just trying to understand what this patch does. By reading it again
+it looks like it makes GPIO PERST# reset mandatory for all platforms
+supported by this driver (because if the driver does not grab an handle
+to the GPIO tegra_pcie_parse_dt() fails), if I read the code correctly,
+apologies if not.
 
-Please don't add someone else!
+Which makes me question the check:
 
+	if (port->reset_gpiod) {
+		gpiod_set_value(port->reset_gpiod, 0);
 
->> diff --git a/drivers/edac/dmc520_edac.c b/drivers/edac/dmc520_edac.c 
->> new file mode 100644 index 0000000..c81bfcc
->> --- /dev/null
->> +++ b/drivers/edac/dmc520_edac.c
+in tegra_pcie_port_reset(), if we are there port->reset_gpiod can't be
+NULL or I am missing something and also make:
 
->> +static void dmc520_handle_dram_ecc_errors(struct mem_ctl_info *mci,
->> +					  bool is_ce)
->> +{
->> +	struct ecc_error_info info;
->> +	struct dmc520_edac *edac;
->> +	u32 cnt;
->> +	char message[EDAC_MSG_BUF_SIZE];
->> +
->> +	edac = mci->pvt_info;
->> +	dmc520_get_dram_ecc_error_info(edac, is_ce, &info);
->> +
->> +	cnt = dmc520_get_dram_ecc_error_count(edac, is_ce);
->> +
->> +	if (cnt > 0) {
->> +		snprintf(message, ARRAY_SIZE(message),
->> +			 "rank:%d bank:%d row:%d col:%d",
->> +			 info.rank, info.bank,
->> +			 info.row, info.col);
->> +
->> +		edac_mc_handle_error((is_ce ? HW_EVENT_ERR_CORRECTED :
->> +				     HW_EVENT_ERR_UNCORRECTED),
->> +				     mci, cnt, 0, 0, 0, info.rank, -1, -1,
->> +				     message, "");
-> 
-> Because you have multiple interrupts, you can be calling edac_mc_handle_error() in
-> parallel on different CPUs, for the same mci.
-> 
-> edac_mc_handle_error() packs all these arguments into mci->error_desc, so two CPUs will
-> stomp over each other's values.
-> 
-> Please add a spinlock in 'struct dmc520_edac' to prevent this.
-> 
-> [Lei] This round of patch moved away from using mci->error_desc, and the message is on stack now. 
+	} else {
+		value = afi_readl(port->pcie, ctrl);
+		value &= ~AFI_PEX_CTRL_RST;
+		afi_writel(port->pcie, value, ctrl);
+	}
 
-It's not just the message buffer this is a problem for. You call edac_mc_handle_error(),
-you can call it with the same mci on two different CPUs, at the same time.
+path dead code.
 
-> edac_mc_handle_error() packs all these arguments into mci->error_desc, so two CPUs will
-> stomp over each other's values.
+Is this GPIO based #PERST a per-platform requirement or you want
+to update the driver to always use GPIO based #PERST ?
 
-From drivers/edac/edac_mc.c::edac_mc_handle_error():
-|	struct edac_raw_error_desc *e = &mci->error_desc;
-[...]
-|	e->error_count = error_count;
-|	e->top_layer = top_layer;
-|	e->mid_layer = mid_layer;
-|	e->low_layer = low_layer;
-|	e->page_frame_number = page_frame_number;
-|	e->offset_in_page = offset_in_page;
-|	e->syndrome = syndrome;
-|	e->msg = msg;
-|	e->other_detail = other_detail;
+And if it is a per-platform requirement I assume that a missing
+DT property describing the GPIO #PERST should cause a probe failure,
+not a fallback to port registers reset (which may have unintended
+consequences).
 
-If this happens one two CPUs at the same time, e->msg could point to the other CPU's stack.
+From the commit log it is not clear what this patch does and for what
+reason it does it but it should be, let's define it here and update the
+log accordingly for everyone's benefit.
 
-
-Thanks,
-
-James
-
-[0] The best summary I found after a quick search is:
-https://kernelnewbies.org/PatchCulture 's 'Email etiquette.'
+Lorenzo
