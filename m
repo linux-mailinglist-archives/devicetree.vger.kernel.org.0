@@ -2,97 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2494D4686F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0404687D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725825AbfFNT7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 15:59:03 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:33556 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725802AbfFNT7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:59:02 -0400
-Received: by mail-qk1-f193.google.com with SMTP id r6so2506931qkc.0;
-        Fri, 14 Jun 2019 12:59:02 -0700 (PDT)
+        id S1726030AbfFNUAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 16:00:54 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:46809 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726028AbfFNUAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 16:00:54 -0400
+Received: by mail-qt1-f195.google.com with SMTP id h21so3860915qtn.13;
+        Fri, 14 Jun 2019 13:00:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IcWQ3nUu6wDRqVLHzhh+VTAVjRsVzEs3WULUbQdSftE=;
-        b=gVpMqUfhg+l+E3FlZVrNsv90/tzJU30DSlPnBjjn8ZAQeu7yt/VSbk75eXPbq5Gcdw
-         PWs1bvkSmix0o9Iga7WWhROCMBmSagg+QBCFoII7RAMt1yWl1MP65G9yxgOD6Rck7hB1
-         Zihgp5TOOAKi0Ylk64DrA84FNbQJqJr05EpyIWa5eCutAiJCUnGTBAuFaW3X9/kq2m29
-         3pO1JQ3l4lNQZkS5wiTDmAmeVMByteTgaPiBR47viX3IIGrOy8NbI0TsqGUEqVOiE75+
-         qmXtZl0xfxKvT/A3bcKg5faZNwJf1fnsafxypS8bg8/P1xPMEJddZ2kVh4KjsFi5NNC+
-         QSAw==
-X-Gm-Message-State: APjAAAW4YNvMZc9wBjK9F3MxMIFls26sYPo83acdrakh7fEIVyL8XWhk
-        SJzGr+5qxdMqCwZAI+Z1pA==
-X-Google-Smtp-Source: APXvYqyk8IwZQr0mZ1bMoaexPygoPzGBZsm9VSpkhzYAu5lt4tEHYQkRVCIGsRQtJGcj5wWV/i5dPg==
-X-Received: by 2002:ae9:ec14:: with SMTP id h20mr76892548qkg.254.1560542341748;
-        Fri, 14 Jun 2019 12:59:01 -0700 (PDT)
+        bh=eB18U3DxOdsmPtgK5EfLEq54rx6Rwk5ZlbGeYQvoBGc=;
+        b=KtqKU+s08mqzhyZAa8BDozcKDmJFAZQUonOKllQKkQh0ValzFgsAMsO4bvOZaMEBJ1
+         OPmpUA+80detOo3LsefNMlGi59pXbEgS+66Ufmy22xv+P0f5b2vWrHzSUsNBHHNBxr1P
+         yEjoahwORtYzoRJJutw8lrm09AhKMX6b1be3oEhykC+siAK8rPUV0Gk93mcTqsW16HjO
+         n0Vri6HC/Aduj07EL0XevfpdWVJGlzZ+4nByv778urlZUkBvEbEAiT1HAxpnhEs56dvh
+         n2Ev1dU1H7o3fc9MvFCJIkPYSi25q8KSDbv7kAdg/zWS1sI27/xm6CtsLDC8+e1B5paR
+         sWCA==
+X-Gm-Message-State: APjAAAXhjIfKz3YeqIA/Vaj8FeZdBv5Uv3sEuDnAYN5r3r7UgE8bK1ul
+        gvhSiO0SwrZbZgU8YDc1bw==
+X-Google-Smtp-Source: APXvYqzW+x16AqmtwTMocoooXQV8wwZ0g2afvcGwk5AwhPvYq70dh12nNiLJH569SFP7sRSoYwKl4Q==
+X-Received: by 2002:a0c:afa4:: with SMTP id s33mr9531897qvc.194.1560542453169;
+        Fri, 14 Jun 2019 13:00:53 -0700 (PDT)
 Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id a16sm1572801qtj.9.2019.06.14.12.59.00
+        by smtp.gmail.com with ESMTPSA id a11sm2039583qkn.26.2019.06.14.13.00.52
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 12:59:01 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 13:58:59 -0600
+        Fri, 14 Jun 2019 13:00:52 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 14:00:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Leif Middelschulte <leif.middelschulte@klsmartin.com>
-Cc:     dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, mark.rutland@arm.com
-Subject: Re: [PATCH 09/10] dt-bindings: input: touchscreen: stmpe: add
- tracking index
-Message-ID: <20190614195859.GA6351@bogus>
-References: <20190527160736.30569-1-leif.middelschulte@klsmartin.com>
- <20190527161938.31871-1-leif.middelschulte@klsmartin.com>
- <20190527161938.31871-5-leif.middelschulte@klsmartin.com>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "timur@kernel.org" <timur@kernel.org>,
+        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: Re: [PATCH 2/3] dt-bindings: sound: Clarify the usage of clocks in
+ SAI
+Message-ID: <20190614200051.GA12858@bogus>
+References: <20190528132034.3908-1-daniel.baluta@nxp.com>
+ <20190528132034.3908-3-daniel.baluta@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190527161938.31871-5-leif.middelschulte@klsmartin.com>
+In-Reply-To: <20190528132034.3908-3-daniel.baluta@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 27, 2019 at 06:19:37PM +0200, Leif Middelschulte wrote:
-> The tracking index is a "minimum" distance two touch
-> points need to have in order for the second to be valid.
-> This adds the corresponding binding property documentation.
+On Tue, 28 May 2019 13:21:01 +0000, Daniel Baluta wrote:
+> SAI might have up to 4 clock sources selected by an internal
+> CLK mux.
 > 
-> Signed-off-by: Leif Middelschulte <leif.middelschulte@klsmartin.com>
+> On imx6/7 mclk0/mclk1 are the same, while on imx8 mclk0 and
+> mclk1 are coming from different sources.
+> 
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 > ---
->  .../bindings/input/touchscreen/stmpe.txt          | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  Documentation/devicetree/bindings/sound/fsl-sai.txt | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt b/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-> index 09d2d4f288cc..8696af35a7b8 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-> @@ -42,6 +42,21 @@ Optional properties:
->  				The given window also affects the value range (limits) set
->  				within the input subsystem which, in turn, affects
->  				the input resolution calculation on both axes.
-> +- st,tracking-index	: Minimal distance between the current touch position and the previous
-> +				touch position. If the distance is shorter than the tracking
-> +				index, it is discarded. The tracking is calculated by summation
-> +				of the horizontal and vertical movement.
-> +				If pressure reporting is enabled (X/Y/Z), an increase in pressure
-> +				override the movement tracking and report the new data set, even
-> +				if X/Y is within the previous tracking index.
-> +				0 -> disabled
-> +				1 -> 4
-> +				4 -> 8
-> +				3 -> 16
-> +				4 -> 32
-> +				5 -> 64
-> +				6 -> 92
-> +				7 -> 127
 
-This is what touchscreen-fuzz-x/y is for.
-
->  - touchscreen-inverted-x: X axis is inverted (boolean)
->  - touchscreen-inverted-y: Y axis is inverted (boolean)
->  - touchscreen-swapped-x-y: X and Y axis are swapped (boolean)
-> -- 
-> 2.21.0
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
