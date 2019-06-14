@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3232B4683A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4C0846845
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726083AbfFNTnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 15:43:05 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:36124 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726047AbfFNTnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:43:05 -0400
-Received: by mail-qk1-f193.google.com with SMTP id g18so2457223qkl.3;
-        Fri, 14 Jun 2019 12:43:04 -0700 (PDT)
+        id S1725889AbfFNTrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 15:47:12 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:33107 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbfFNTrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:47:12 -0400
+Received: by mail-wm1-f67.google.com with SMTP id h19so140408wme.0;
+        Fri, 14 Jun 2019 12:47:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:subject:to:cc:message-id:in-reply-to:references
+         :mime-version;
+        bh=w7hWwTYJqqdtzNOgI2SlOoDpVDK4IVNaEZYhxTxW1ms=;
+        b=E7NvstzZwUvIUkg8f3C5Owi9vBiTS+92/z/pEcuqA6hibXdSEb2sDw6Dn53Jj3fVrZ
+         9K8Fp+1yWBowk4sbqNrKo/vC0yR//ZOlgCMTv09SH1iYKSr19Ea01b0EZu+tIflSlf8n
+         KgT8Dk1suYc5/O0WG+rjESkWTjh0N6eJPOEGD90G5Ry9UzbHCMwkmFZ5W8MTIXcacMzE
+         ZAorz2dWJpYNBIqNV/uTnimyE7hot3tGiDdpaaWoouPoCOju6iP1CMUMpFzOQnxi5oN7
+         tyCTvUWST16V1kTGb+k4uY/SPK9bFqGJujeR6sWOZcicH0dtS1Iw2Nr5inoQOE0kjz4b
+         0Sdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Mp8xTO5oNN7LboeBKHyfl41RYppmWJR4foCIg2c5W1s=;
-        b=EknriUybNYqed1WZbFQUVevwq9svztvZ5srHJWTyzGaVziLtsMRxKcU3vTz/pjaW3r
-         +35JiogVtbuYw949qB00IoYJTC5u2keANjmtyYjciEFa1k7cEmsAL7PoD/5Q+o5DmQY3
-         niBkCA4DC1LbZLHzKhGmprq2Yf4b/7C1D//B4wqObTcY3fVrsicXTbZy1qqSCVff0ak9
-         mmjFQXkd8ys2tSecgoZ1ZeFTVN2PU8XEUJMofv3v1A9OPd9Mx9/P8FR+nx77UsapKUkk
-         Jxez95537JEhb8QrJu5ylw5OTBrxeidl6XL6++yxIWc1kjEyn1+xuYVtTAxdhczzQ5jB
-         KhRw==
-X-Gm-Message-State: APjAAAUbCJQ8ttv1ejc9tby4u2YEy/7Pf8Jyy41XN7loUdo2gfKtdf7y
-        XZMb4YL75QHUSPzk2uY5ag==
-X-Google-Smtp-Source: APXvYqz0aEx4FDJ3gg/LvUzydLqr7NaukJPecyN5OsnEwsUCU0LY+1pAYvSd5Ebr1tqcYxuiJF4DxA==
-X-Received: by 2002:ae9:c106:: with SMTP id z6mr57253623qki.285.1560541383979;
-        Fri, 14 Jun 2019 12:43:03 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id j141sm2430766qke.28.2019.06.14.12.43.03
+        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
+         :references:mime-version;
+        bh=w7hWwTYJqqdtzNOgI2SlOoDpVDK4IVNaEZYhxTxW1ms=;
+        b=CiO0JaX1Wk2xsJBPInqjvfthAmzTSQ2P8+SagfZd5QrgJ6/U0u1tMswfyGv36I2qc+
+         LqVA+TsHvktR3zVipd71gAFfmT7JMAhiMseWPKO0CR12u3xu5a7cLnO6Cs3HopJG2RT1
+         ojbuA7x/CkkFkj2B3vNjulDFFdGroc42qhN/UfKlnFJGvfupzdYdBy+0AtkULFDaiPcj
+         9ivzEQdECZUC1nPg5SoUx+CMKaYGc/vDFJj2S4l9SQJH0l9KHweC0VamxePTHn7D+Cha
+         TzGbQqW++e98ayTj9iuqTEKzenAG1yJD12hu0oRmWYarwdQMQUh1Jgax2H/LGj7D3v8C
+         egPg==
+X-Gm-Message-State: APjAAAWSFc2GwT7WplcTpVUzoKlkUUwzSizKTH4RhcW+3UnF/QEhDjEP
+        6kxwTtxnzTCFoU6DdyZhx18=
+X-Google-Smtp-Source: APXvYqw+/lotMGB1kmoHtHxy2mEXLLxX8UP1pU2bI/ymsVBaIhukGMPveKI+vAdOPbMWJLLKawenZg==
+X-Received: by 2002:a1c:3d41:: with SMTP id k62mr8215153wma.61.1560541630216;
+        Fri, 14 Jun 2019 12:47:10 -0700 (PDT)
+Received: from X555LD ([2a02:85f:51e:5d00:f1ab:2da6:d378:d0de])
+        by smtp.gmail.com with ESMTPSA id 139sm4385668wmb.19.2019.06.14.12.47.07
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 12:43:03 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 13:43:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Renato Lui Geh <renatogeh@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        knaack.h@gmx.de, pmeerw@pmeerw.net, gregkh@linuxfoundation.org,
-        stefan.popa@analog.com, alexandru.Ardelean@analog.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-iio@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org, kernel-usp@googlegroups.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add adi,ad7780.yaml binding
-Message-ID: <20190614194302.GA18613@bogus>
-References: <cover.1558746978.git.renatogeh@gmail.com>
- <2426649b2d8224ae72e7706bcb8c4f2c44c581d2.1558746978.git.renatogeh@gmail.com>
+        Fri, 14 Jun 2019 12:47:09 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 22:47:06 +0300
+From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
+Subject: Re: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on
+ rk3328
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     itdaniher@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Message-Id: <1560541626.1367.2@gmail.com>
+In-Reply-To: <2207770.HSO279VB62@phil>
+References: <20190605235714.22432-1-papadakospan@gmail.com>
+        <5657669.4RvfzeBcXs@phil> <1560506054.1367.0@gmail.com>
+        <2207770.HSO279VB62@phil>
+X-Mailer: geary/3.32.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <2426649b2d8224ae72e7706bcb8c4f2c44c581d2.1558746978.git.renatogeh@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 May 2019 22:26:30 -0300, Renato Lui Geh wrote:
-> This patch adds a YAML binding for the Analog Devices AD7780/1 and
-> AD7170/1 analog-to-digital converters.
+
+ok. I have tested the conversion on the platforms I did convert there,
+> so I'll just apply the 2 patches later on.
 > 
-> Signed-off-by: Renato Lui Geh <renatogeh@gmail.com>
-> ---
-> Changes in v2:
->  - vref-supply to avdd-supply
->  - remove avdd-supply from required list
->  - include adc block in an spi block
+> Should I wait on you respinning the rk3328 watchdog patch, or just
+> add the rk3328 watchdog pclk myself?
 > 
->  .../bindings/iio/adc/adi,ad7780.txt           | 48 ----------
->  .../bindings/iio/adc/adi,ad7780.yaml          | 87 +++++++++++++++++++
->  2 files changed, 87 insertions(+), 48 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
+> 
+> Heiko
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Would be awesome if you added it yourself. You seem to understand this 
+a lot better.
+
+Also, I checked out the patch you CCed me on and I'm happy to see that 
+the reused code has been replaced with a single unified macro. So much 
+tidier.
+
+As far as I understand then, it's a case of adding the pclk id, the 
+sgrf thing and enable it in the dts. Cool!
+Hoping to see it in 5.3
+
+
