@@ -2,123 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA24A46016
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2E1246036
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728310AbfFNOJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 10:09:09 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:37311 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727382AbfFNOJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 10:09:09 -0400
-Received: by mail-ed1-f66.google.com with SMTP id w13so3711520eds.4;
-        Fri, 14 Jun 2019 07:09:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GQTbMofHx6ihnY6hv/q/Pjtwumkc7ogl2iTrngkVtvc=;
-        b=V0fqh/ToYT65uEuFt6uNfdklxYbXJW90bygOIQrCOe1G5s+fy3oUGD74h+NjAMMeB3
-         BBZHRgx1vzsnOGS/nstZAzpBV7gMG0ZqrG/36RAfHZAgQocOeBa+sTuLgU3VgU2uZDx/
-         Ffc98er/pmLyyxcYbLRUsx5q+p08rd6mpMEXDvxojsXq52XzYDiIBVtGRLUo3ITFouNL
-         M176HRXmPGUyjFRBy8Od7R31GNWv1JpggyPfrQuUSA2puNj7aoLcdfFpOkJQ1unGJQKM
-         ufptnveFLuUASMzZsWdjoRvGXL0xkEoz9+krC3mBJgiKGhYisySboo8jK/71mutI3Sd9
-         jK6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GQTbMofHx6ihnY6hv/q/Pjtwumkc7ogl2iTrngkVtvc=;
-        b=GXV9zdCp0xNYIXemUahFfhLV2jbDmg9afQAFzQe1GnWCMg+owRdkgTT3xj3foekTLO
-         hReEpc4a7wcVtdPDyYsaeWoSqJvce8KlIVcvaK+Uv64iJ3w//5b83jNkA1SsSHLvU1ET
-         qZjiXHhnywXO4xTgQw8rbpVBiRi5SP5Ko0Nt7ELmb1U0vvg1fJtUOu7JsOEW6nQC+yu2
-         X+kl3JCaZy0IuVi2YRxqp1RxhXBjyxRhsOh+kEgkvjaNukOGeoZe1dfoF3rg+lg/Uizf
-         0nn7LJlv0a7XmJchnhUlJp02Vdk4rykJBlXI8FY564ZYx09TCQp1k0ttz+WYPpObs+DV
-         lUIg==
-X-Gm-Message-State: APjAAAXCRCBbY1zJoo00o1UjkGvSxV74oj/6XcL8OOT2DaaVnlvIJ4nd
-        hhCR/GsQYbF8odAECSryHp/UNAJPXFCy/3TgHsI=
-X-Google-Smtp-Source: APXvYqxLabx2dayIi0z0mrk5mYOCWKcsBoXZf+gdfmFIbIEppEoh4K9PusScfsC/Ujb/OusUUWU5Okr0/cgVa9nC+zE=
-X-Received: by 2002:a17:906:583:: with SMTP id 3mr14648315ejn.278.1560521346837;
- Fri, 14 Jun 2019 07:09:06 -0700 (PDT)
+        id S1728741AbfFNOL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 10:11:29 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:38485 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728227AbfFNOL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 10:11:29 -0400
+X-Originating-IP: 90.88.23.150
+Received: from dell-desktop.home (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
+        (Authenticated sender: mylene.josserand@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id C3AD04001E;
+        Fri, 14 Jun 2019 14:11:17 +0000 (UTC)
+From:   =?UTF-8?q?Myl=C3=A8ne=20Josserand?= <mylene.josserand@bootlin.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mylene.josserand@bootlin.com,
+        thomas.petazzoni@bootlin.com
+Subject: [PATCH v1] tty: serial: max310x: Add optional reset gpio
+Date:   Fri, 14 Jun 2019 16:11:12 +0200
+Message-Id: <20190614141112.29962-1-mylene.josserand@bootlin.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-References: <20190612212604.32089-1-jeffrey.l.hugo@gmail.com>
- <20190612212748.32246-1-jeffrey.l.hugo@gmail.com> <CAF6AEGvAkCqNXg-NwxfpYJteWs6hfBnOb0yJN6vQOnmMck-HDQ@mail.gmail.com>
-In-Reply-To: <CAF6AEGvAkCqNXg-NwxfpYJteWs6hfBnOb0yJN6vQOnmMck-HDQ@mail.gmail.com>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Fri, 14 Jun 2019 07:08:52 -0700
-Message-ID: <CAF6AEGtUjxuL3y5pyzKz5HJV7KyXmKxmVxqcm3DraAKvkB0xmw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/5] arm64: dts: qcom: Add Lenovo Miix 630
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, agross@kernel.org,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>, jikos@kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Lee Jones <lee.jones@linaro.org>, xnox@ubuntu.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 6:44 AM Rob Clark <robdclark@gmail.com> wrote:
->
-> On Thu, Jun 13, 2019 at 10:17 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
-> >
-> > This adds the initial DT for the Lenovo Miix 630 laptop.  Supported
-> > functionality includes USB (host), microSD-card, keyboard, and trackpad.
-> >
-> > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-> > ---
->
-> [snip]
->
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
-> > new file mode 100644
-> > index 000000000000..407c6a32911c
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
-> > @@ -0,0 +1,30 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/* Copyright (c) 2019, Jeffrey Hugo. All rights reserved. */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "msm8998-clamshell.dtsi"
-> > +
-> > +/ {
-> > +       model = "Lenovo Miix 630";
-> > +       compatible = "lenovo,miix-630", "qcom,msm8998";
-> > +};
->
->
-> So, I'm not sure if there is some precedent for this (but maybe we
-> haven't really had this problem before).. but as I mentioned on
-> #arch64-laptops, I think we should put vendor/product/board-id strings
-> from SMBIOS table in the dts files.  That could be used by grub to
-> find the correct dtb file to load in a generic way.  (Ie, look for a
-> match of all three strings, and maybe fallback to a match on just
-> vendor+product??)
->
-> At any rate, how the strings are used can be refined later.  But I
-> think we should include the strings from the beginning for anything
-> that is booting via UEFI.  It's perhaps more useful than the
-> compatible string.
->
+Add the possibility to use a gpio as reset.
 
+Signed-off-by: Mylène Josserand <mylene.josserand@bootlin.com>
+---
+ Documentation/devicetree/bindings/serial/maxim,max310x.txt | 1 +
+ drivers/tty/serial/max310x.c                               | 7 +++++++
+ 2 files changed, 8 insertions(+)
 
-perhaps something like:
+diff --git a/Documentation/devicetree/bindings/serial/maxim,max310x.txt b/Documentation/devicetree/bindings/serial/maxim,max310x.txt
+index 79e10a05a96a..1d7d8a0b4260 100644
+--- a/Documentation/devicetree/bindings/serial/maxim,max310x.txt
++++ b/Documentation/devicetree/bindings/serial/maxim,max310x.txt
+@@ -15,6 +15,7 @@ Required properties:
+   "osc" if an external clock source is used.
+ 
+ Optional properties:
++- reset-gpios: Gpio to use for reset.
+ - gpio-controller: Marks the device node as a GPIO controller.
+ - #gpio-cells: Should be two. The first cell is the GPIO number and
+   the second cell is used to specify the GPIO polarity:
+diff --git a/drivers/tty/serial/max310x.c b/drivers/tty/serial/max310x.c
+index e5aebbf5f302..d056fa2eed1b 100644
+--- a/drivers/tty/serial/max310x.c
++++ b/drivers/tty/serial/max310x.c
+@@ -14,6 +14,7 @@
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/gpio/driver.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+@@ -1413,12 +1414,18 @@ static int max310x_spi_probe(struct spi_device *spi)
+ 		return ret;
+ 
+ 	if (spi->dev.of_node) {
++		struct gpio_desc *reset_gpio;
+ 		const struct of_device_id *of_id =
+ 			of_match_device(max310x_dt_ids, &spi->dev);
+ 		if (!of_id)
+ 			return -ENODEV;
+ 
+ 		devtype = (struct max310x_devtype *)of_id->data;
++		reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset",
++						     GPIOD_OUT_HIGH);
++		if (IS_ERR(reset_gpio))
++			return PTR_ERR(reset_gpio);
++		gpiod_set_value_cansleep(reset_gpio, 0);
+ 	} else {
+ 		const struct spi_device_id *id_entry = spi_get_device_id(spi);
+ 
+-- 
+2.11.0
 
-   dmi-compatible = "LENOVO 81JL/LNVNB161216", "LENOVO 81JL";
-
-??
-
-(well, those are the strings from my yoga c630, not sure what they are
-on the miix 630.. but you get the idea)
-
-BR,
--R
