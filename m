@@ -2,67 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E87E946541
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:00:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CCA4654D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725808AbfFNRAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 13:00:37 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:44360 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725801AbfFNRAh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:00:37 -0400
-Received: by mail-qt1-f195.google.com with SMTP id x47so3239273qtk.11;
-        Fri, 14 Jun 2019 10:00:36 -0700 (PDT)
+        id S1726213AbfFNRE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 13:04:59 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:41799 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726185AbfFNRE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:04:59 -0400
+Received: by mail-pg1-f194.google.com with SMTP id 83so1881162pgg.8
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 10:04:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=GRNhWBdNTilur/4Qu0VKxMp8RHH2Xu/iee1oWBanHcQ=;
+        b=Qnx/fCIVfWiWASj1BfPRmpagCrJESCLnbzOnBc+UHuB7cHWif0IVEz9Scq1PY4sOPa
+         LYsNN2IgRPUMtrZYbx4LxU6tScbnCsCWPDXg65TkQ1LzaWJ7mMsI+pnfUBAdU/vmxW5K
+         XU6T/Ku592e7S9+k0xRE5vsFZxS04ZzR/EY/pjIGGs0iSxzw1rbdWZOYaTCPM2jqJ4Qg
+         nbqVm2/XlJY3x1/5lmX4rDO3jNiPEnKC9n3rz0YEiW4Rasx3YTPVGbCwCd4txEMzqu8p
+         Iqo9+V9U/472EEGlT2arMhZDYMBQkiA33FRYpciTYnUb6ok6MYm3syLElTOzoVzKykSL
+         lMPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1eI9x8aqHa2g6lRAb8xIaUpLrr30zti0UHmU+FDhYtY=;
-        b=pmb/45gKucIk2xGPGaDtYIsNIRQxKDuQ0s0m19ZddNEm/0nUMKPP4kO6xuqX1zQn+H
-         IA6zufiYT/7har24Wkyj5y1f05ZhugH+yAjeQ188uSsDy9737l1zE7WMD+M6RkVMpP9f
-         jnTpUqOZPUtopu16gyP3yoSucZHah1bdpMHpjMQhdFZIWOgaT+/V1CwP+sfiY61x3uOv
-         IF/1w8aLVyh9/7tcO0MDwwk0LkHqVfoSuihgzTOWE3HUzrFRNnnj9nVyl0aqcxMPhHZr
-         ckL+dD4XAiAX5NDJPPC/xziqkmM3PbOupZxN5x+zuL6ysRt/cdWHvU4OOKuCOTYfAFuE
-         IH2A==
-X-Gm-Message-State: APjAAAVVjAxVhAffn1Ogx/8HL3XXlriRqaq+exAheFTAkNmeFRaSDcCO
-        HzR9Ig7t8L+iUzvPO5808Q==
-X-Google-Smtp-Source: APXvYqwZrdYRPp5o9112ectPkp5A8tin2+VsST5o2plnaFhhOgISNCAl7ax/5gjW4QbLlrcgKJnHpw==
-X-Received: by 2002:ac8:2cfc:: with SMTP id 57mr80288786qtx.194.1560531635897;
-        Fri, 14 Jun 2019 10:00:35 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id d3sm1536126qti.40.2019.06.14.10.00.35
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 10:00:35 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 11:00:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>
-Subject: Re: [PATCH v3 4/9] dt-bindings: leds: Add multicolor ID to the color
- ID  list
-Message-ID: <20190614170034.GA7789@bogus>
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-5-dmurphy@ti.com>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=GRNhWBdNTilur/4Qu0VKxMp8RHH2Xu/iee1oWBanHcQ=;
+        b=qRFts072UuGvt1li1yX4m1ZP4lKSCwO/8D+Y120dJ/xo+Yb0Qr99xJ7VVwuI79pFgt
+         UE4kTA3JfvZlJjgcFpeZv7FRdkrlYsNYSVe/IpHS4McdPrvUoXUmLqq6tIFDJQHuH1/l
+         L0+KDDDWSUWIyeIbHvdzzPPYygt/GgttUj0iMFmwRzOr/5f0vzB9H3KOkdoqCqShWIFU
+         QH27hcowMkPHZdpf8eFVWjcnFMJniwmsx+KET65DfDIDrCWoCbOjWBOVQq0mR/+K22JP
+         YlV1MEvMrMPblAjEDR0fh3pqsGfpdH5fPBfvp4AUOGbfdMWsdUTuzMRllpkgaSThxYJQ
+         C04w==
+X-Gm-Message-State: APjAAAWUO4Kcc6HEKBwN9y8prrDAMkdCpgiDjr00+eFaH4O5EDJraNO5
+        rm6vvX/BOkmxqARH0HRL9+Pm
+X-Google-Smtp-Source: APXvYqydptQgfMZN2eXp0DabgkT3g1XVFZjDoA9VlZwMca7DYvYxnhdTYKAHeYylQKIGsw2h9X4FtA==
+X-Received: by 2002:a62:1515:: with SMTP id 21mr21874961pfv.100.1560531898101;
+        Fri, 14 Jun 2019 10:04:58 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6298:46a1:bdd9:1134:3bdd:7ab4])
+        by smtp.gmail.com with ESMTPSA id n1sm3061706pgv.15.2019.06.14.10.04.53
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 14 Jun 2019 10:04:57 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 22:34:50 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: arm: Convert Actions Semi bindings to
+ jsonschema
+Message-ID: <20190614170450.GA29654@Mani-XPS-13-9360>
+References: <20190517153223.7650-1-robh@kernel.org>
+ <20190613224435.GA32572@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190523190820.29375-5-dmurphy@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190613224435.GA32572@bogus>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 May 2019 14:08:15 -0500, Dan Murphy wrote:
-> Add a new color ID that is declared as MULTICOLOR as with the
-> multicolor framework declaring a definitive color is not accurate
-> as the node can contain multiple colors.
+On Thu, Jun 13, 2019 at 04:44:35PM -0600, Rob Herring wrote:
+> On Fri, May 17, 2019 at 10:32:23AM -0500, Rob Herring wrote:
+> > Convert Actions Semi SoC bindings to DT schema format using json-schema.
+> > 
+> > Cc: "Andreas Färber" <afaerber@suse.de>
+> > Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > v3:
+> > - update MAINTAINERS
+> > 
+> >  .../devicetree/bindings/arm/actions.txt       | 56 -------------------
+> >  .../devicetree/bindings/arm/actions.yaml      | 38 +++++++++++++
+> >  MAINTAINERS                                   |  2 +-
+> >  3 files changed, 39 insertions(+), 57 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/arm/actions.txt
+> >  create mode 100644 Documentation/devicetree/bindings/arm/actions.yaml
 > 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->  include/dt-bindings/leds/common.h | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> Ping. Please apply or modify this how you'd prefer. I'm not going to 
+> keep respinning this.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Sorry for that Rob.
+
+Andreas, are you going to take this patch? Else I'll pick it up (If you
+want me to do the PR for next cycle)
+
+Thanks,
+Mani
+
+> Rob
