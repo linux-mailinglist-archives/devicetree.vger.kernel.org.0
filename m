@@ -2,162 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5173D45A85
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 12:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B058E45AAF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 12:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727074AbfFNKiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 06:38:09 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:13632 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726545AbfFNKiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 06:38:08 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d03790e0000>; Fri, 14 Jun 2019 03:38:06 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Fri, 14 Jun 2019 03:38:06 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Fri, 14 Jun 2019 03:38:06 -0700
-Received: from [10.24.192.32] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 14 Jun
- 2019 10:38:03 +0000
-Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        id S1727124AbfFNKjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 06:39:41 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:39200 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727315AbfFNKjl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 06:39:41 -0400
+Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hbjcK-0004XL-Mp; Fri, 14 Jun 2019 12:39:32 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Douglas Anderson <dianders@chromium.org>,
         Thierry Reding <thierry.reding@gmail.com>
-CC:     <bhelgaas@google.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
-        <vidyas@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
- <20190516055307.25737-28-mmaddireddy@nvidia.com>
- <20190604132233.GT16519@ulmo>
- <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
-Date:   Fri, 14 Jun 2019 16:07:35 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+Cc:     Sean Paul <seanpaul@chromium.org>,
+        linux-rockchip@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Enric =?ISO-8859-1?Q?Balletb=F2?= <enric.balletbo@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, mka@chromium.org,
+        devicetree@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v5 0/7] drm/panel: simple: Add mode support to devicetree
+Date:   Fri, 14 Jun 2019 12:39:31 +0200
+Message-ID: <1584725.WvTV0KElQL@phil>
+In-Reply-To: <20190401171724.215780-1-dianders@chromium.org>
+References: <20190401171724.215780-1-dianders@chromium.org>
 MIME-Version: 1.0
-In-Reply-To: <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560508686; bh=UOMLox4uj3389xDl/DbaieWFaryVwUlWe0oUPgQgLt0=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=dQZ45c0O4LVg9UXxDNrI9eadt+AwkC3Lq63tyS6YMf5aRc3LOwMOK8xuY5UeRX2kg
-         XWm/uWe7izmvKQK3we6enXQTAFT/bOTehT0coQBFKloOEfH8NDSYGXHl4uwro3vQuJ
-         rN7pMiOokxtwqATwGVr0W53LTyH5yq3MAUjZLtHZ0QoPQvWr/kB9B1D8kTbS22hppJ
-         iR97P2UF2lCzAR1jJ5MXnGkpV50AD8qtd4+WaXFcD4uaLT5jyGlVPM+2+qeWXT1YX2
-         IkowJJ+CbZcoAmRXjfuxs5KSDKNyPejFxGWcP5Xi7xqmRB0/jCLcMVwll38RPW3lKS
-         zy6Xav5JYZfsg==
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Montag, 1. April 2019, 19:17:17 CEST schrieb Douglas Anderson:
+> I'm reviving Sean Paul's old patchset to get mode support in device
+> tree.  The cover letter for his v3 is at:
+> https://lists.freedesktop.org/archives/dri-devel/2018-February/165162.html
+> 
+> No code is different between v4 and v5, just commit messages and text
+> in the bindings.
+> 
+> I've pulled together the patches that didn't land in v3, addressed
+> outstanding feedback, and reposted.  Atop them I've added patches for
+> rk3288-veyron-chromebook (used for jaq, jerry, mighty, speedy) and
+> rk3288-veryon-minnie.
+> 
+> Please let me know how they look.
+> 
+> In general I have added people to the whole series who I think would
+> like the whole series and then let get_maintainer pick extra people it
+> thinks are relevant to each individual patch.  If I see you respond to
+> any of the patches in the series, though, I'll add you to the whole
+> series Cc list next time.
+
+sadly it looks like the panel-simple parts haven't made it into
+drm-misc yet and the conversation on patch 1/7 seems to have stalled
+after Doug's replies.
+
+Thierry, do you have an opinion on these?
 
 
-On 13-Jun-19 8:54 PM, Lorenzo Pieralisi wrote:
-> On Tue, Jun 04, 2019 at 03:22:33PM +0200, Thierry Reding wrote:
->
-> [...]
->
->>> +	} else {
->>> +		value = afi_readl(port->pcie, ctrl);
->>> +		value &= ~AFI_PEX_CTRL_RST;
->>> +		afi_writel(port->pcie, value, ctrl);
->>> +	}
->>>  
->>>  	usleep_range(1000, 2000);
->>>  
->>> -	value = afi_readl(port->pcie, ctrl);
->>> -	value |= AFI_PEX_CTRL_RST;
->>> -	afi_writel(port->pcie, value, ctrl);
->>> +	if (port->reset_gpiod) {
->>> +		gpiod_set_value(port->reset_gpiod, 1);
->> After this the port should be functional, right? I think it'd be better
->> to reverse the logic here and move the polarity of the GPIO into device
->> tree. gpiod_set_value() takes care of inverting the level internally if
->> the GPIO is marked as low-active in DT.
->>
->> The end result is obviously the same, but it makes the usage much
->> clearer. If somebody want to write a DT for their board, they will look
->> at the schematics and see a low-active reset line and may be tempted to
->> describe it as such in DT, but with your current code that would be
->> exactly the wrong way around.
-> I agree with Thierry here, you should change the logic.
->
-> Question: what's the advantage of adding GPIO reset support if that's
-> architected already in port registers ? I am pretty sure there is a
-> reason behind it (and forgive me the dumb question) and I would like to
-> have it written in the commit log.
->
-> Thanks,
-> Lorenzo
+Thanks
+Heiko
 
-Each PCIe controller has a dedicated SFIO pin to support PERST# signal. Port register
-can control only this particular SFIO pin. However, in one of the Nvidia platform,
-instead of using PCIe SFIO pin, different gpio is routed PCIe slot. This happened
-because of a confusion in IO ball naming convention. To support this particular
-platform, driver has provide gpio support. I will update the commit log in V5.
+> Changes in v5:
+> - Removed bit about OS may ignore (Rob/Ezequiel)
+> - Added Heiko's Tested-by
+> - It's not just jerry, it's most rk3288 Chromebooks (Heiko)
+> 
+> Changes in v4:
+> - Simplify desc. for when override should be used (Thierry/Laurent)
+> - Removed Rob H review since it's been a year and wording changed
+> - Don't add mode from timing if override was specified (Thierry)
+> - Add warning if timing and fixed mode was specified (Thierry)
+> - Don't add fixed mode if timing was specified (Thierry)
+> - Refactor/rename a bit to avoid extra indentation from "if" tests
+> - i should be unsigned (Thierry)
+> - Add annoying WARN_ONs for some cases (Thierry)
+> - Simplify 'No display_timing found' handling (Thierry)
+> - Rename to panel_simple_parse_override_mode() (Thierry)
+> - Rebase to top of Heiko's tree
+> - Converted changelog to after-the-cut for non-DRM change.
+> - display_timing for Innolux n116bge new for v4.
+> - display_timing for AUO b101ean01 new for v4.
+> - rk3288-veyron-jerry patch new for v4.
+> - rk3288-veyron-minnie patch new for v4.
+> 
+> Changes in v3:
+> - Go back to using the timing subnode directly, but rename to
+>   panel-timing (Rob)
+> - No longer parse display-timings subnode, use panel-timing (Rob)
+> - Unwrap the timing from display-timings and rename panel-timing (Rob)
+> 
+> Changes in v2:
+> - Split out the binding into a new patch (Rob)
+> - display-timings is a new section (Rob)
+> - Use the full display-timings subnode instead of picking the timing
+>   out (Rob/Thierry)
+> - Parse the full display-timings node (using the native-mode) (Rob)
+> - Wrap the timing in display-timings node to match binding (Rob/Thierry)
+> 
+> Douglas Anderson (4):
+>   drm/panel: simple: Use display_timing for Innolux n116bge
+>   drm/panel: simple: Use display_timing for AUO b101ean01
+>   ARM: dts: rockchip: Specify rk3288-veyron-chromebook's display timings
+>   ARM: dts: rockchip: Specify rk3288-veyron-minnie's display timings
+> 
+> Sean Paul (3):
+>   dt-bindings: Add panel-timing subnode to simple-panel
+>   drm/panel: simple: Add ability to override typical timing
+>   arm64: dts: rockchip: Specify override mode for kevin panel
+> 
+>  .../bindings/display/panel/simple-panel.txt   |  22 +++
+>  .../boot/dts/rk3288-veyron-chromebook.dtsi    |  14 ++
+>  arch/arm/boot/dts/rk3288-veyron-minnie.dts    |  14 ++
+>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  14 ++
+>  drivers/gpu/drm/panel/panel-simple.c          | 171 ++++++++++++++----
+>  5 files changed, 203 insertions(+), 32 deletions(-)
+> 
+> 
 
-Manikanta
 
->
->>> +	} else {
->>> +		value = afi_readl(port->pcie, ctrl);
->>> +		value |= AFI_PEX_CTRL_RST;
->>> +		afi_writel(port->pcie, value, ctrl);
->>> +	}
->>>  }
->>>  
->>>  static void tegra_pcie_enable_rp_features(struct tegra_pcie_port *port)
->>> @@ -2238,6 +2249,7 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
->>>  		struct tegra_pcie_port *rp;
->>>  		unsigned int index;
->>>  		u32 value;
->>> +		char *label;
->>>  
->>>  		err = of_pci_get_devfn(port);
->>>  		if (err < 0) {
->>> @@ -2296,6 +2308,23 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
->>>  		if (IS_ERR(rp->base))
->>>  			return PTR_ERR(rp->base);
->>>  
->>> +		label = kasprintf(GFP_KERNEL, "pex-reset-%u", index);
->> devm_kasprintf()?
->>
->> Thierry
->>
->>> +		if (!label) {
->>> +			dev_err(dev, "failed to create reset GPIO label\n");
->>> +			return -ENOMEM;
->>> +		}
->>> +
->>> +		rp->reset_gpiod = devm_gpiod_get_from_of_node(dev, port,
->>> +							      "reset-gpios", 0,
->>> +							      GPIOD_OUT_LOW,
->>> +							      label);
->>> +		kfree(label);
->>> +		if (IS_ERR(rp->reset_gpiod)) {
->>> +			err = PTR_ERR(rp->reset_gpiod);
->>> +			dev_err(dev, "failed to get reset GPIO: %d\n", err);
->>> +			return err;
->>> +		}
->>> +
->>>  		list_add_tail(&rp->list, &pcie->ports);
->>>  	}
->>>  
->>> -- 
->>> 2.17.1
->>>
->
+
 
