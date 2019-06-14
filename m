@@ -2,156 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C588E45E80
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B2445E87
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727827AbfFNNkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 09:40:07 -0400
-Received: from mail-eopbgr130040.outbound.protection.outlook.com ([40.107.13.40]:4262
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728033AbfFNNkG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 09:40:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5jIk0Lp9x2Q9How3PqWJkOTCigNCQFn3MBJEQQGrQbY=;
- b=EyuS/ynDBBae3avflUifCUpxAl33XyaGbshsh1B8HGF6N6vk8iRwOx/ZcPDX6W9os/FongfypWbD4vidLe5qdsBca9JLKz4nblcq/aIJl6Ns5NwRc6JNF6edXnAdLlUTyNX2Dm4bIgdG/OVwB3xglvHFiIdbT8LQZbLCuE153oY=
-Received: from VI1PR04MB5967.eurprd04.prod.outlook.com (20.178.123.141) by
- VI1PR04MB6286.eurprd04.prod.outlook.com (20.179.27.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.12; Fri, 14 Jun 2019 13:40:00 +0000
-Received: from VI1PR04MB5967.eurprd04.prod.outlook.com
- ([fe80::3dd4:5031:dc06:1fd7]) by VI1PR04MB5967.eurprd04.prod.outlook.com
- ([fe80::3dd4:5031:dc06:1fd7%7]) with mapi id 15.20.1965.018; Fri, 14 Jun 2019
- 13:40:00 +0000
-From:   Robert Chiras <robert.chiras@nxp.com>
-To:     "festevam@gmail.com" <festevam@gmail.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "airlied@linux.ie" <airlied@linux.ie>
-Subject: Re: [EXT] Re: [PATCH 1/2] dt-bindings: display: panel: Add support
- for Raydium RM67191 panel
-Thread-Topic: [EXT] Re: [PATCH 1/2] dt-bindings: display: panel: Add support
- for Raydium RM67191 panel
-Thread-Index: AQHVIqdz2BzR314q5U6h7v5gaZm/aKabHM8AgAALM4A=
-Date:   Fri, 14 Jun 2019 13:40:00 +0000
-Message-ID: <1560519599.9328.40.camel@nxp.com>
-References: <1560513063-24995-1-git-send-email-robert.chiras@nxp.com>
-         <1560513063-24995-2-git-send-email-robert.chiras@nxp.com>
-         <CAOMZO5AMBr0TZip_PRBRPkMZ-d-kVeEOB4-rMTtcfcYtjLrLqw@mail.gmail.com>
-In-Reply-To: <CAOMZO5AMBr0TZip_PRBRPkMZ-d-kVeEOB4-rMTtcfcYtjLrLqw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=robert.chiras@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0d17519c-3b73-4165-3a24-08d6f0cdcc49
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB6286;
-x-ms-traffictypediagnostic: VI1PR04MB6286:
-x-microsoft-antispam-prvs: <VI1PR04MB628634B0AE5F9B4E5D4965C5E3EE0@VI1PR04MB6286.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0068C7E410
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(136003)(346002)(376002)(366004)(39860400002)(189003)(199004)(6916009)(11346002)(476003)(2351001)(2616005)(446003)(6486002)(44832011)(486006)(73956011)(1730700003)(5640700003)(86362001)(81166006)(6436002)(68736007)(229853002)(8676002)(1411001)(81156014)(4326008)(76116006)(7416002)(71200400001)(14444005)(25786009)(256004)(6512007)(53936002)(6246003)(71190400001)(102836004)(26005)(5660300002)(66476007)(66446008)(64756008)(66556008)(3846002)(53546011)(76176011)(6506007)(66946007)(2501003)(50226002)(8936002)(1361003)(54906003)(316002)(186003)(99286004)(36756003)(103116003)(7736002)(305945005)(66066001)(6116002)(2906002)(14454004)(478600001)(99106002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB6286;H:VI1PR04MB5967.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: hOkP248igM3vFEB7NrCZSHC+ftLXPLeTBoKn/FLgtt0tGRH4EJkA/X6kRciXsvK2evRgC6QR+KMqjM3bD8SWPXLhDzOX9GCf9slqSnWIO6YrgSTNp2BHly61crUGL1wpPSG7Dxr4LUq8Q+gyso3JKXuT6fCM/G6izMy/mJdjM2TWi59bUW3t1SoVmNBX9HygQu0Px0Cgz1rj5J5+U0bQ711dTZ10XzYBjEFZtxFHIaUF5+f77h5owu3UEvCKspBwTg8kxxmmfG1DearHrxRNIBM98VUXXXrrRIu1yuJyAr0AhnO2MI3EUg0zNhBvSs2GkMTBC26pZtdsM0Yp+FJ2GLunZCUCaSAgYYeNVQ0Pflf/fyRpuESh+z3PIpEc5ZltYGV8UpZ9Ryxao4A14ufGX7X1gKr+7ishsXuvjhwgi1U=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A18DBB5F78197446B9957E0EF041D354@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1728304AbfFNNk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 09:40:59 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:42893 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728067AbfFNNk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 09:40:59 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190614134057euoutp02304985422417155983cc5584ae86a102~oFFxTa8iO0747007470euoutp02M
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 13:40:57 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190614134057euoutp02304985422417155983cc5584ae86a102~oFFxTa8iO0747007470euoutp02M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1560519657;
+        bh=+ZzNZVpTuLGrOOQoRV7Ief94EdVHmVGQucnOC6c/nP0=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=Trfs0DuMSl21QJlyU9ckjlqR8CFqBM3V6byuRgPvNfVj6laK49jhlP2qQXOb8FFBR
+         AIIVegDkZk981BicJaayTP4dkHG3bU9MVOlfpMOL40W6Svw94iOx9indofxoVKWBS0
+         6S+aeeLEYn1cEMqqb1F6MBM4SmAfCy+tE+MBEr00=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190614134056eucas1p1f027afb1e1ee5936d02bd3e470ef5b26~oFFwgE7yf2597425974eucas1p1h;
+        Fri, 14 Jun 2019 13:40:56 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 9D.22.04298.8E3A30D5; Fri, 14
+        Jun 2019 14:40:56 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190614134055eucas1p16bbd29a62be6825394efb3b635182019~oFFvlXRvG3190831908eucas1p1E;
+        Fri, 14 Jun 2019 13:40:55 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190614134055eusmtrp16d5f32edc3d1360d84dcda5e43addbdb~oFFvVgrBl1787017870eusmtrp1A;
+        Fri, 14 Jun 2019 13:40:55 +0000 (GMT)
+X-AuditID: cbfec7f2-f13ff700000010ca-7c-5d03a3e877dd
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 6E.6C.04146.7E3A30D5; Fri, 14
+        Jun 2019 14:40:55 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190614134054eusmtip2e7741234ae8ace93d169fd44129e8334~oFFugLp_T2169921699eusmtip2J;
+        Fri, 14 Jun 2019 13:40:54 +0000 (GMT)
+Subject: Re: [PATCH v10 08/13] drivers: memory: add DMC driver for
+ Exynos5422
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, gregkh@linuxfoundation.org,
+        willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <6f86228d-8409-a835-20ba-ad20464379dd@partner.samsung.com>
+Date:   Fri, 14 Jun 2019 15:40:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d17519c-3b73-4165-3a24-08d6f0cdcc49
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2019 13:40:00.4127
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: robert.chiras@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6286
+In-Reply-To: <CAJKOXPehO2pKrTKMO4YRwDMaPPngmeWG9WF=kMuBG+=P1ix3NA@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0yNcRjH/c577XDq54SexbSdaWgTbTa/Yc197zLX2dxmHLyrplOcV5H6
+        I0zRFRWnQ3KWScfl5EjJDm1dnJw4CYtp0o2MQrot1PT2Zvrv83yf7/N7nu/24yltEuvLh0ce
+        Fo2R+ggdq6ZLngzWzfucT+1acN3sR+6abAx509vBkLwqN0NudrchcjLfxpJMV66KPEsxkIy2
+        rxSpqyviyPMTnRzpTm1iyKuHl1nSk1aFiKnusYrcrnrPkXrXatJ4/AZLKjuTGDLccJcm5a9D
+        SONvT9Jf04qWTRP6+87Twve3pzjhUkI9LZSZ33OC3XqGFcpzb3FC2slvrJBebEXCvdo4occ+
+        c6N6h3rpfjEiPEY0zg/eow7raDx0sEZ39EdrH52A3L7JyIMHvBDMP1rYZKTmtfgGgsftnbRS
+        9CL42GxjlKIHQXdOP/NvpNJl4mTW4gIEz5IFxdSFYLg6G8kNb7wBHAXVlMxT8Fx4MzQw+hKF
+        sxlwDLhHFvI8iwPhgfWQ7NHgNdCU90slM439YcDyZ3R2Kt4GvWV2pHgmw9OcdlpmD7wJ7KaG
+        UT+FfeBde94Y+0Fp12VK3gXYwUNWZxmrXL0KGlJaaYW94YuzmFN4BtRmpo7pEiSkWZDC8dCW
+        kTvmWQKVznpGvpkaCWN7OF+Rl0O6pUUly4A94W3XZOUETzhfcpFSZA2cTtQq7jlQnPpCpfA0
+        KLh1gTuLdOZxwczjwpjHhTH/33sV0VbkI0ZLhlBRCooUjwRKeoMUHRkauC/KYEcj37N22Pnz
+        Aep7ubcCYR7pJmlM6dQuLaOPkWINFQh4SjdFc2XJiKTZr489JhqjdhujI0SpAk3naZ2PJm5C
+        804tDtUfFg+I4kHR+K+r4j18E9C5wdzls03rbZZZMdvTretPV3tUxs8pnvXFObFQa11xM37Q
+        3yev41vpuy2FW1/G1i/c7DV1aVG+xVnkNbQYz+PXTUwNyFkbUvuqt+lSzrWWz8as4HstFr84
+        h9FdMmHx5sTgqItsRvanO1eaXfGabY8WhYVmxiTpd1gLs9j7DtfK8g9uHS2F6YMCKKOk/ws+
+        OqLwmgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJKsWRmVeSWpSXmKPExsVy+t/xe7rPFzPHGvRdkrPYOGM9q8X1L89Z
+        LeYfOcdqsfrjY0aL5sXr2Swmn5rLZHGmO9ei//FrZovz5zewW5xtesNu8bHnHqvF5V1z2Cw+
+        9x5htJhxfh+Txdojd9ktLp5ytbjduILN4vCbdlaLf9c2sljsv+Jlcfs3n8W3E48YHcQ8vn2d
+        xOLx/kYru8fshossHjtn3WX32LSqk81j/9w17B69ze/YPPq2rGL02Hy62uPzJrkArig9m6L8
+        0pJUhYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07m5TUnMyy1CJ9uwS9jOe3CwtOKFV8
+        ePSVpYHxnFQXIyeHhICJxOFTM9hBbCGBpYwSGz6EQ8TFJCbt284OYQtL/LnWxdbFyAVU85pR
+        ou/WCyCHg0NYwFdi93FxkBoRAU2J63+/s4LUMAtMZZWY8Pw01NAJTBLHdsWB1LMJ6EnsWFUI
+        EuYVcJO4N/8XE4jNIqAq8X3hH2YQW1QgQmL2rgYWiBpBiZMzn4DZnAKBEptmXAOrZxYwk5i3
+        +SEzhC0ucevJfKi4vMT2t3OYJzAKzULSPgtJyywkLbOQtCxgZFnFKJJaWpybnltsqFecmFtc
+        mpeul5yfu4kRmCy2Hfu5eQfjpY3BhxgFOBiVeHhn9DHHCrEmlhVX5h5ilOBgVhLhnWcNFOJN
+        SaysSi3Kjy8qzUktPsRoCvTcRGYp0eR8YCLLK4k3NDU0t7A0NDc2NzazUBLn7RA4GCMkkJ5Y
+        kpqdmlqQWgTTx8TBKdXA2OicoMT9dhcTjwyvqe+aNh3LRp11fXejNiyMnL79vOPjy1zX+NVL
+        y0OzLsbIZGex1mi0eFx03hiX1rx9ZSnTq1Jj7nynRz0x+1/zPtf2r4tWb7V5d3Sj+yHbaptC
+        JS5F1kVTDqRfnLn+Zjj7nl3GS+JL7Y61nNn3WESmcMuqKebrYmZ5hd5TYinOSDTUYi4qTgQA
+        gD6NvywDAAA=
+X-CMS-MailID: 20190614134055eucas1p16bbd29a62be6825394efb3b635182019
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9
+References: <CGME20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9@eucas1p1.samsung.com>
+        <20190614095309.24100-1-l.luba@partner.samsung.com>
+        <20190614095309.24100-9-l.luba@partner.samsung.com>
+        <CAJKOXPehO2pKrTKMO4YRwDMaPPngmeWG9WF=kMuBG+=P1ix3NA@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRmFiaW8sDQoNCk9uIFZpLCAyMDE5LTA2LTE0IGF0IDA5OjU5IC0wMzAwLCBGYWJpbyBFc3Rl
-dmFtIHdyb3RlOg0KPiBPbiBGcmksIEp1biAxNCwgMjAxOSBhdCA4OjUzIEFNIFJvYmVydCBDaGly
-YXMgPHJvYmVydC5jaGlyYXNAbnhwLmNvbT4NCj4gd3JvdGU6DQo+ID4gDQo+ID4gDQo+ID4gQWRk
-IGR0LWJpbmRpbmdzIGRvY3VtZW50YXRpb24gZm9yIFJheWRpdW0gUk02NzE5MSBEU0kgcGFuZWwu
-DQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogUm9iZXJ0IENoaXJhcyA8cm9iZXJ0LmNoaXJhc0Bu
-eHAuY29tPg0KPiA+IC0tLQ0KPiA+IMKgLi4uL2JpbmRpbmdzL2Rpc3BsYXkvcGFuZWwvcmF5ZGl1
-bSxybTY3MTkxLnR4dMKgwqDCoMKgwqB8IDQyDQo+ID4gKysrKysrKysrKysrKysrKysrKysrKw0K
-PiA+IMKgMSBmaWxlIGNoYW5nZWQsIDQyIGluc2VydGlvbnMoKykNCj4gPiDCoGNyZWF0ZSBtb2Rl
-IDEwMDY0NA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L3Bh
-bmVsL3JheWRpdW0scm02NzE5MS50eHQNCj4gPiANCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9wYW5lbC9yYXlkaXVtLHJtNjcx
-OTEudA0KPiA+IHh0DQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlz
-cGxheS9wYW5lbC9yYXlkaXVtLHJtNjcxOTEudA0KPiA+IHh0DQo+ID4gbmV3IGZpbGUgbW9kZSAx
-MDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwLi41YTYyNjhkDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+
-ICsrKw0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcGFu
-ZWwvcmF5ZGl1bSxybTY3MTkxLnQNCj4gPiB4dA0KPiA+IEBAIC0wLDAgKzEsNDIgQEANCj4gPiAr
-UmF5ZGl1bSBSTTY3MTcxIE9MRUQgTENEIHBhbmVsIHdpdGggTUlQSS1EU0kgcHJvdG9jb2wNCj4g
-PiArDQo+ID4gK1JlcXVpcmVkIHByb3BlcnRpZXM6DQo+ID4gKy0gY29tcGF0aWJsZTrCoMKgwqDC
-oMKgwqDCoMKgwqDCoCJyYXlkaXVtLHJtNjcxOTEiDQo+ID4gKy0gcmVnOsKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqB2aXJ0dWFsIGNoYW5uZWwgZm9yIE1JUEktRFNJIHByb3RvY29s
-DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtdXN0
-IGJlIDwwPg0KPiA+ICstIGRzaS1sYW5lczrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbnVtYmVyIG9m
-IERTSSBsYW5lcyB0byBiZSB1c2VkDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBtdXN0IGJlIDwzPiBvciA8ND4NCj4gPiArLSBwb3J0OsKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW5wdXQgcG9ydCBub2RlIHdpdGggZW5kcG9pbnQgZGVm
-aW5pdGlvbiBhcw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgZGVmaW5lZCBpbg0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9n
-cmFwaC50eHQ7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqB0aGUgaW5wdXQgcG9ydCBzaG91bGQgYmUgY29ubmVjdGVkIHRvIGENCj4gPiBNSVBJLURT
-SSBkZXZpY2UNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoGRyaXZlcg0KPiA+ICsNCj4gPiArT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiArLSByZXNl
-dC1ncGlvOsKgwqDCoMKgwqDCoMKgwqDCoMKgYSBHUElPIHNwZWMgZm9yIHRoZSBSU1RfQiBHUElP
-IHBpbg0KPiByZXNldC1ncGlvcyAod2l0aCB0aGUgcyBpbiB0aGUgZW5kKSBpcyB0aGUgcmVjb21t
-ZW5kYXRpb24uDQo+IA0KPiA+IA0KPiA+ICstIGRpc3BsYXktdGltaW5nczrCoMKgwqDCoMKgdGlt
-aW5ncyBmb3IgdGhlIGNvbm5lY3RlZCBwYW5lbCBhY2NvcmRpbmcNCj4gPiB0byBbMV0NCj4gVGhp
-cyBpcyBub3QgbmVlZGVkLg0KV2VsbCwgSSBrbm93IHRoYXQgdGhlIHBhbmVsIHRpbWluZ3MgYXJl
-IGFscmVhZHkgaGFyZC1jb2RlZCBpbnRvIHRoZQ0KZHJpdmVyLCBidXQgb24gODUwRCwgd2UgaGF2
-ZSB0d28gZGlzcGxheSBjb250cm9sbGVyczogZUxDRERJRiBhbmQgRENTUy4NCldoaWxlIGVMQ0RJ
-RiB3b3JrcyBqdXN0IGZpbmUgd2l0aCB0aGUgZGlzcGxheS10aW1pbmdzIHJlY2VpdmVkIChhbmQN
-CnVuZG9jdW1lbnRlZCkgZnJvbSBwYW5lbCB2ZW5kb3IsIHdpdGggRENTUyB3ZSBoYWQgc29tZSBp
-c3N1ZXMgYW5kIHdlDQpoYWQgdG8gdHdlYWsgdGhlIGRpc3BsYXktdGltaW5ncy4gVGhpcyBpcyB3
-aHkgSSBhZGRlZCB0aGlzIHByb3BlcnR5LA0KZm9yIGEgc3BlY2lhbCBjYXNlIHdoZXJlIHdlIGhh
-dmUgdG8gdXNlIGRpZmZlcmVudCB0aW1pbmdzIHdpdGhvdXQNCmNoYW5naW5nIHRoZSBkcml2ZXIg
-KGp1c3QgYSBkaWZmZXJlbnQgZHRiIGZpbGUpLiBEbyB5b3UgdGhpbmsgdGhpcyBpcyBhDQpiYWQg
-cHJhY3RpY2U/IElmIHllcywgdGhlbiB3aGF0IG1lY2hhbmlzbSBvZiBkb2luZyB0aGF0IGRvIHlv
-dQ0KcmVjb21tZW5kPw0KPiANCj4gPiANCj4gPiArLSB2aWRlby1tb2RlOsKgwqDCoMKgwqDCoMKg
-wqDCoMKgMCAtIGJ1cnN0LW1vZGUNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoDEgLSBub24tYnVyc3Qgd2l0aCBzeW5jIGV2ZW50DQo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAyIC0gbm9uLWJ1cnN0IHdp
-dGggc3luYyBwdWxzZQ0KPiA+ICsNCj4gPiArWzFdOiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3MvZGlzcGxheS9kaXNwbGF5LXRpbWluZy50eHQNCj4gVGhpcyBwYXRoIGRvZXMgbm90
-IGV4aXN0Lg0KUmlnaHQuIFdpbGwgdXBkYXRlIHRoZSBwYXRoLg0KPiANCj4gQWxzbywgY291bGQg
-eW91IHRyeSB0byBhbGlnbiB0aGVzZSBiaW5kaW5ncyB3aXRoIHRoZSBvbmUgZnJvbQ0KPiByYXlk
-aXVtLHJtNjgyMDA/DQo+IA0KPiBUaGVyZSBhcmUgcG93ZXItc3VwcGx5IGFuZCBiYWNrbGlnaHQg
-b3B0aW9uYWwgcHJvcGVydGllcyB0aGVyZSwgd2hpY2gNCj4gc2VlbSB1c2VmdWwuDQpUaGlzIHBh
-bmVsIGlzIE9MRUQsIHdoaWxlIHRoZSBybTY4MjAwIGlzIExDRCAoZnJvbSB3aGF0IEkndmUgbm90
-aWNlZCkuDQpNZWFuaW5nIHRoaXMgcGFuZWwgYmFja2xpZ3RoIGlzIGFsc28gY29udHJvbGxlZCBi
-eSB0aGUgRFNJIGNvbnRyb2xsZXIsDQpub3QgYnkgYSBzZXBhcmF0ZSBiYWNrbGlnaHQgTEVEIGRy
-aXZlci4NCkkgd2lsbCBjb25zaWRlciwgaW5zdGVhZCwgYWRkaW5nIHN1cHBvcnQgZm9yIGEgcG93
-ZXItc3VwcGx5IChpZg0KcG9zc2libGUpLg0KPiANCj4gPiANCj4gPiArDQo+ID4gK0V4YW1wbGU6
-DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoHBhbmVsQDAgew0KPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInJheWRpdW0scm02NzE5MSI7DQo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwwPjsNCj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgcGluY3RybC0wID0gPCZwaW5jdHJsX21pcGlfZHNpXzBfMV9lbj47
-DQo+IFlvdSBzaG91bGQgYWxzbyBwYXNzIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7IGlmIHlv
-dSB1c2UgcGluY3RybC0wLg0KVGhhbmtzLiBXaWxsIGRvIHRoYXQNCj4gDQo+ID4gDQo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlc2V0LWdwaW8gPSA8JmdwaW8xIDcgR1BJT19B
-Q1RJVkVfSElHSD47DQo+IFNob3VsZCBiZSBhY3RpdmUgbG93Lg0KQnV0LCB0aGUgR1BJTyBpcyBh
-Y3RpdmUgaGlnaC4=
+Hi Krzysztof,
+
+On 6/14/19 2:58 PM, Krzysztof Kozlowski wrote:
+> On Fri, 14 Jun 2019 at 11:53, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>> This patch adds driver for Exynos5422 Dynamic Memory Controller.
+>> The driver provides support for dynamic frequency and voltage scaling for
+>> DMC and DRAM. It supports changing timings of DRAM running with different
+>> frequency. There is also an algorithm to calculate timigns based on
+>> memory description provided in DT.
+>> The patch also contains needed MAINTAINERS file update.
+>>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   MAINTAINERS                             |    8 +
+>>   drivers/memory/samsung/Kconfig          |   17 +
+>>   drivers/memory/samsung/Makefile         |    1 +
+>>   drivers/memory/samsung/exynos5422-dmc.c | 1262 +++++++++++++++++++++++
+>>   4 files changed, 1288 insertions(+)
+>>   create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 57f496cff999..6ffccfd95351 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -3470,6 +3470,14 @@ S:       Maintained
+>>   F:     drivers/devfreq/exynos-bus.c
+>>   F:     Documentation/devicetree/bindings/devfreq/exynos-bus.txt
+>>
+>> +DMC FREQUENCY DRIVER FOR SAMSUNG EXYNOS5422
+> 
+> Eh, more comments from my side.
+> "For the hard of thinking, this list is meant to remain in alphabetical order."
+OK
+> 
+>> +M:     Lukasz Luba <l.luba@partner.samsung.com>
+>> +L:     linux-pm@vger.kernel.org
+>> +L:     linux-samsung-soc@vger.kernel.org
+>> +S:     Maintained
+>> +F:     drivers/memory/samsung/exynos5422-dmc.c
+>> +F:     Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> +
+>>   BUSLOGIC SCSI DRIVER
+>>   M:     Khalid Aziz <khalid@gonehiking.org>
+>>   L:     linux-scsi@vger.kernel.org
+>> diff --git a/drivers/memory/samsung/Kconfig b/drivers/memory/samsung/Kconfig
+>> index 79ce7ea58903..c93baa029654 100644
+>> --- a/drivers/memory/samsung/Kconfig
+>> +++ b/drivers/memory/samsung/Kconfig
+>> @@ -5,6 +5,23 @@ config SAMSUNG_MC
+>>            Support for the Memory Controller (MC) devices found on
+>>            Samsung Exynos SoCs.
+>>
+>> +config ARM_EXYNOS5422_DMC
+> 
+> Why you added prefix of ARM to CONFIG think none of other Exynos
+> Kconfig options follow such convention (except devfreq).
+In the previous versions the driver was in drivers/devfreq/,
+that's why they have this prefix.
+> 
+>> +       tristate "ARM EXYNOS5422 Dynamic Memory Controller driver"
+>> +       depends on ARCH_EXYNOS
+>> +       select DDR
+> 
+> In general select should be used only for non-visible symbols and DDR
+> is visible. Use depends.
+OK
+> 
+>> +       select PM_DEVFREQ
+> 
+> This definitely cannot be select. You do not select entire subsystem
+> because some similar driver was chosen.
+So I will use depends int this case
+> 
+>> +       select DEVFREQ_GOV_SIMPLE_ONDEMAND
+>> +       select DEVFREQ_GOV_USERSPACE
+> 
+> I think only simple_ondemand is needed. Is userspace governor
+> necessary for working? Or actually maybe both could be skipped?
+> 
+Actually we can skip both governors from here.
+
+>> +       select PM_DEVFREQ_EVENT
+> 
+> Again, depends.
+OK
+
+There are these 4 options which the driver depends on:
+         depends on ARCH_EXYNOS
+         depends on DDR
+         depends on PM_DEVFREQ
+         depends on PM_DEVFREQ_EVENT
+
+Should I merged them into one, two lines? like below:
+a)
+depends on (ARCH_EXYNOS && DDR && PM_DEVFREQ && PM_DEVFREQ_EVENT)
+b) grouped into two sets
+depends on (ARCH_EXYNOS && DDR)
+depends on (PM_DEVFREQ && PM_DEVFREQ_EVENT)
+c) grouped by pm_devfreq only
+depends on ARCH_EXYNOS
+depends on DDR
+depends on (PM_DEVFREQ && PM_DEVFREQ_EVENT)
+
+> 
+>> +       select PM_OPP
+This option can be used here IIUC
+>> +       help
+>> +         This adds driver for Exynos5422 DMC (Dynamic Memory Controller).
+>> +         The driver provides support for Dynamic Voltage and Frequency Scaling in
+>> +         DMC and DRAM. It also supports changing timings of DRAM running with
+>> +         different frequency. The timings are calculated based on DT memory
+>> +         information.
+>> +
+>> +
+>>   if SAMSUNG_MC
+> 
+> Why this is outside of SAMSUNG_MC?
+Good question, I will move it below this 'if' statement.
+
+Regards,
+Lukasz
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
