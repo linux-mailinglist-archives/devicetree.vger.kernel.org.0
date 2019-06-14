@@ -2,107 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2576745C24
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 14:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3B445C33
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 14:10:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727531AbfFNMGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 08:06:38 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:46202 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727217AbfFNMGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 08:06:38 -0400
-Received: by mail-io1-f65.google.com with SMTP id i10so5054993iol.13
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 05:06:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dV/TN56tvtkshednW+FR3TYUMeR7LNkhJIJyPcztGuQ=;
-        b=ZcN2e49mct35/m0fC0Bk4nbq0vVLZywYLxKLRo2uHlF5EhUnLtkkIv355WOKHFKGgb
-         J01Wq8pOvuHMiwJThf2Ejb05s3co10a3TNB8r+QvphUXGbk5Uh7rpEB7QSCE8XU4sE1I
-         2zCGaCefXOtG5SsSDzfDmE7oQrrECjcqoTUow=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dV/TN56tvtkshednW+FR3TYUMeR7LNkhJIJyPcztGuQ=;
-        b=HGODQRs/NITPNy5l9TNGp1o5HHMML4XJcz6tPsucfCkJCL/OEJleOZuAUkAa7FJGHl
-         Rdvn4wNZp+3iPcWEwh3+JzbY7S1OyquAIzX3sXFpOs52/bvKTmuAvrUfLYGuYPtLX7om
-         xYmfZMM0mTLOSNuY5LQB8ecvPsPGwgdGLRC3j0rBvvxDZsHZI3H4f/7ki4+D19ypbM+G
-         J/lhY94w4q+zQKn6GDYtCsfjVzHHocPjbzj8T/GT+FJK2tEb3N2P9PQlwd9CUOtJSTMp
-         2uSQwWTHYeqYV8jnkQnQLiBLxXqxcf+lEahdXY43NF5955HnZCTUmvyQIqyCfGWmv6/z
-         KAtA==
-X-Gm-Message-State: APjAAAVzNxunFixwPbGmu0vN8SXgd+5BOkvs8fnOA87dC+uE5ryJLKcI
-        cI0JTNYhwVTsV8QGiqYPJHlgNeXhu3qr157O0dAxuw==
-X-Google-Smtp-Source: APXvYqzd3RL+iPjapmaxAdyvWMQJF7lG1MDH2O7AA77mNOJAARM4fauuhUSG4Vu+ikv2M3ZUTkZw+Wyq92aI3r6eLBo=
-X-Received: by 2002:a6b:5115:: with SMTP id f21mr5692335iob.173.1560513997259;
- Fri, 14 Jun 2019 05:06:37 -0700 (PDT)
+        id S1727546AbfFNMKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 08:10:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46508 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727217AbfFNMKB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 08:10:01 -0400
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 22B7B21744;
+        Fri, 14 Jun 2019 12:10:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560514200;
+        bh=8IHr1gLtD4hNqNX6dX49R4OHXx8RZC0mKA9co1k7r0Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GRFjtJqWs4Od0DofHFi5X08sv06mdK/RmdUQr3mBnKJYdS1uNW9H4VEWsGocmZl0v
+         v1vpqtasZs0f8s3yZu9IfMLakCLgDLMo69noidjS1RrEHnUd7pc5tH2LiItKAtlX7t
+         cf46L8Z+/cakYobSvceGWddDvqsGgClDTdNe5i3s=
+Received: by mail-lj1-f182.google.com with SMTP id a21so2149304ljh.7;
+        Fri, 14 Jun 2019 05:10:00 -0700 (PDT)
+X-Gm-Message-State: APjAAAXuRuf/qP/Ly5dy4rses5L3NEosCNqWhNi8vnn/9Bud/hmMuit+
+        xgY+CgcHnSeHQ8Z6atijndIqMUTVq76hkEM4xEI=
+X-Google-Smtp-Source: APXvYqwY1vJUmcClY7DiOhpKQac9810LonMaVqUAY+cbDTalTdSgVuGq1lXMJRDJ3zZvhaS6+/qwdx4Tw6yJNS0UFq0=
+X-Received: by 2002:a2e:94c9:: with SMTP id r9mr4914536ljh.210.1560514198446;
+ Fri, 14 Jun 2019 05:09:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190613185241.22800-1-jagan@amarulasolutions.com>
- <20190613185241.22800-3-jagan@amarulasolutions.com> <CAGb2v65xuXc4C1jOyM1GbEFVDam5P-6NN0ZhtzwzA7qU5F3nJQ@mail.gmail.com>
- <CAGb2v67DY534hXrx2H4jnZXA7jJS7sq2UwYCqw1iAgyLKdNzgA@mail.gmail.com>
- <CAMty3ZBc-AqbNGZCxRhOPw46iMvEZxoq1oATA46=K29gRYi4Sg@mail.gmail.com> <CAGb2v6466QSF1wJ_wJsVwAgHsnLXD9GAwbPQtXcTDq4aqAeEfQ@mail.gmail.com>
-In-Reply-To: <CAGb2v6466QSF1wJ_wJsVwAgHsnLXD9GAwbPQtXcTDq4aqAeEfQ@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Fri, 14 Jun 2019 17:36:26 +0530
-Message-ID: <CAMty3ZC39yQs+_Cytp25xJO9Da0FWkC9g1VwYmzQZSGNoWc-yw@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 2/9] drm/sun4i: tcon: Add TCON LCD support
- for R40
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
+References: <CGME20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9@eucas1p1.samsung.com>
+ <20190614095309.24100-1-l.luba@partner.samsung.com> <20190614095309.24100-9-l.luba@partner.samsung.com>
+In-Reply-To: <20190614095309.24100-9-l.luba@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 14 Jun 2019 14:09:47 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPf=N28g850Q67z2sA5-KtkmqTuYLDcR0E_q1gSa17wWWw@mail.gmail.com>
+Message-ID: <CAJKOXPf=N28g850Q67z2sA5-KtkmqTuYLDcR0E_q1gSa17wWWw@mail.gmail.com>
+Subject: Re: [PATCH v10 08/13] drivers: memory: add DMC driver for Exynos5422
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, gregkh@linuxfoundation.org,
+        willy.mh.wolff.ml@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 4:32 PM Chen-Yu Tsai <wens@csie.org> wrote:
+On Fri, 14 Jun 2019 at 11:53, Lukasz Luba <l.luba@partner.samsung.com> wrote:
 >
-> On Fri, Jun 14, 2019 at 6:56 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> >
-> > On Fri, Jun 14, 2019 at 9:05 AM Chen-Yu Tsai <wens@csie.org> wrote:
-> > >
-> > > On Fri, Jun 14, 2019 at 11:19 AM Chen-Yu Tsai <wens@csie.org> wrote:
-> > > >
-> > > > On Fri, Jun 14, 2019 at 2:53 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > > > >
-> > > > > TCON LCD0, LCD1 in allwinner R40, are used for managing
-> > > > > LCD interfaces like RGB, LVDS and DSI.
-> > > > >
-> > > > > Like TCON TV0, TV1 these LCD0, LCD1 are also managed via
-> > > > > tcon top.
-> > > > >
-> > > > > Add support for it, in tcon driver.
-> > > > >
-> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > >
-> > > > Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-> > >
-> > > I take that back.
-> > >
-> > > The TCON output muxing (which selects whether TCON LCD or TCON TV
-> > > outputs to the GPIO pins)
-> > > is not supported yet. Please at least add TODO notes, or ideally,
-> >
-> > Are you referring about port selection? it is support in
-> > sun8i_tcon_top_de_config.
+> This patch adds driver for Exynos5422 Dynamic Memory Controller.
+> The driver provides support for dynamic frequency and voltage scaling for
+> DMC and DRAM. It supports changing timings of DRAM running with different
+> frequency. There is also an algorithm to calculate timigns based on
+> memory description provided in DT.
+> The patch also contains needed MAINTAINERS file update.
 >
-> No. That's supported as you already pointed out. That only selects
-> which mixer outputs to which TCON.
->
-> I'm talking about the GPIOD and GPIOH bits, which select which of
-> LCD or TV TCON outputs to the LCD function pins. Keep in mind that
-> the TV TCON's H/V SYNC signals are used in combination with the
-> TV encoder RGB outputs for VGA.
+> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> ---
+>  MAINTAINERS                             |    8 +
+>  drivers/memory/samsung/Kconfig          |   17 +
+>  drivers/memory/samsung/Makefile         |    1 +
+>  drivers/memory/samsung/exynos5422-dmc.c | 1262 +++++++++++++++++++++++
+>  4 files changed, 1288 insertions(+)
+>  create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
 
-Got it, so do I need to add TODO on sun8i_r40_lcd_quirks struct?
+Looks good to me. I think there is no dedicated maintainer for
+drivers/memory subsystem so I can take it through samsung-soc tree
+(just like in case of drivers/memory/samsung/exynos-srom.c). Are
+everyone OK with it?
+
+Best regards,
+Krzysztof
