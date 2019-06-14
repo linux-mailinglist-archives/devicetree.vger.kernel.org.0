@@ -2,51 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99B0145947
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD7B45939
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727110AbfFNJuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 05:50:54 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:38133 "EHLO
+        id S1727110AbfFNJuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 05:50:01 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:52005 "EHLO
         relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726900AbfFNJuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 05:50:54 -0400
-X-Originating-IP: 90.88.23.150
-Received: from localhost (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id F1BB4C0008;
-        Fri, 14 Jun 2019 09:50:48 +0000 (UTC)
-Date:   Fri, 14 Jun 2019 11:50:48 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v2 05/11] dt-bindings: net: sun4i-emac: Convert the
- binding to a schemas
-Message-ID: <20190614095048.j2xwdsucucbakkl2@flea>
-References: <91618c7e9a5497462afa74c6d8a947f709f54331.1560158667.git-series.maxime.ripard@bootlin.com>
- <d198d29119b37b2fdb700d8992b31963e98b6693.1560158667.git-series.maxime.ripard@bootlin.com>
- <20190610143139.GG28724@lunn.ch>
- <CAL_JsqJahCJcdu=+fA=ewbGezuEJ2W6uwMVxkQpdY6w+1OWVVA@mail.gmail.com>
- <20190611145856.ua2ggkn6ccww6vpp@flea>
- <CAL_Jsq+KwH-j8f+r+fWhMuqJPWcHdBQau+nUz3NRAXYTpsyuvg@mail.gmail.com>
+        with ESMTP id S1726900AbfFNJuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 05:50:01 -0400
+X-Originating-IP: 37.177.88.254
+Received: from uno.localdomain (unknown [37.177.88.254])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2184FC000A;
+        Fri, 14 Jun 2019 09:49:45 +0000 (UTC)
+Date:   Fri, 14 Jun 2019 11:50:58 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-media@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        James Cameron <quozl@laptop.org>, Pavel Machek <pavel@ucw.cz>,
+        Libin Yang <lbyang@marvell.com>,
+        Albert Wang <twang13@marvell.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH v5 01/10] media: dt-bindings: marvell,mmp2-ccic: Add
+ Marvell MMP2 camera
+Message-ID: <20190614094921.tf4nqgszhg7pxzft@uno.localdomain>
+References: <20190505140031.9636-1-lkundrak@v3.sk>
+ <20190505140031.9636-2-lkundrak@v3.sk>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="arfnxch5fo5pq4gp"
+        protocol="application/pgp-signature"; boundary="kj5s4had2x4icus2"
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+KwH-j8f+r+fWhMuqJPWcHdBQau+nUz3NRAXYTpsyuvg@mail.gmail.com>
+In-Reply-To: <20190505140031.9636-2-lkundrak@v3.sk>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -54,115 +45,123 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---arfnxch5fo5pq4gp
-Content-Type: text/plain; charset=us-ascii
+--kj5s4had2x4icus2
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-Hi Rob,
+Hi Lubomir,
 
-On Thu, Jun 13, 2019 at 11:32:30AM -0600, Rob Herring wrote:
-> On Thu, Jun 13, 2019 at 7:25 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > On Mon, Jun 10, 2019 at 12:59:29PM -0600, Rob Herring wrote:
-> > > On Mon, Jun 10, 2019 at 8:31 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> > > >
-> > > > > +required:
-> > > > > +  - compatible
-> > > > > +  - reg
-> > > > > +  - interrupts
-> > > > > +  - clocks
-> > > > > +  - phy
-> > > > > +  - allwinner,sram
-> > > >
-> > > > Quoting ethernet.txt:
-> > > >
-> > > > - phy: the same as "phy-handle" property, not recommended for new bindings.
-> > > >
-> > > > - phy-handle: phandle, specifies a reference to a node representing a PHY
-> > > >   device; this property is described in the Devicetree Specification and so
-> > > >   preferred;
-> > > >
-> > > > Can this be expressed in Yaml? Accept phy, but give a warning. Accept
-> > > > phy-handle without a warning? Enforce that one or the other is
-> > > > present?
-> > >
-> > > The common schema could have 'phy: false'. This works as long as we've
-> > > updated (or plan to) all the dts files to use phy-handle. The issue is
-> > > how far back do you need kernels to work with newer dtbs.
-> >
-> > I guess another question being raised by this is how hard do we want
-> > to be a deprecating things, and should the DT validation be a tool to
-> > enforce that validation.
-> >
-> > For example, you've used in you GPIO meta-schema false for anything
-> > ending with -gpio, since it's deprecated. This means that we can't
-> > convert any binding using a deprecated property without introducing a
-> > build error in the schemas, which in turn means that you'll have a lot
-> > of friction to support schemas, since you would have to convert your
-> > driver to support the new way of doing things, before being able to
-> > have a schema for your binding.
+On Sun, May 05, 2019 at 04:00:22PM +0200, Lubomir Rintel wrote:
+> Add Marvell MMP2 camera host interface.
 >
-> I've err'ed on the stricter side. We may need to back off on some
-> things to get to warning free builds. Really, I'd like to have levels
-> to separate checks for existing bindings, new bindings, and pedantic
-> checks.
-
-That would be awesome. Do you have a plan for that already though? I
-can't really think of a way to implement it at the moment.
-
-> For '-gpio', we may be okay because the suffix is handled in the GPIO
-> core. It should be safe to update the binding to use the preferred
-> form.
-
-It might require a bit of work though in drivers, since the fallback
-is only handled if you're using the gpiod API, and not the legacy one.
-
-> > And then, we need to agree on how to express the deprecation. I guess
-> > we could allow the deprecated keyword that will be there in the
-> > draft-8, instead of ad-hoc solutions?
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
 >
-> Oh, nice! I hadn't seen that. Seems like we should use that. We can
-> start even without draft-8 support because unknown keywords are
-> ignored (though we probably have to add it to our meta-schema). Then
-> at some point we can add a 'disallow deprecated' flag to the tool.
+> ---
+> Changes since v4:
+> - s/Nust/Must/
+> - Documented required endpoint properties; bus-type, hsync-active,
+>   vsync-active and pclk-sample.
+>
+> Changes since v3:
+> - Dropped the video-interfaces.txt reference
+> - Clarify "clocks", "clock-names" and "clock-output-names" descriptions
+> - Refer to other documentation by full path
+>
+> Changes since v2:
+> - Added #clock-cells, clock-names, port
+>
+>  .../bindings/media/marvell,mmp2-ccic.txt      | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/marvell,mmp2-ccic.txt
+>
+> diff --git a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.txt b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.txt
+> new file mode 100644
+> index 0000000000000..7ec2c8c8a3b98
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.txt
+> @@ -0,0 +1,50 @@
+> +Marvell MMP2 camera host interface
+> +
+> +Required properties:
+> + - compatible: Should be "marvell,mmp2-ccic".
+> + - reg: Register base and size.
+> + - interrupts: The interrupt number.
+> + - #clock-cells: Must be 0.
+> +
+> +Optional properties:
+> + - clocks: Reference to the input clock as specified by
+> +           Documentation/devicetree/bindings/clock/clock-bindings.txt.
+> + - clock-names: Names of the clocks used; "axi" for the AXI bus interface,
+> +                "func" for the peripheral clock and "phy" for the parallel
+> +                video bus interface.
+> + - clock-output-names: Optional clock source for sensors. Shall be "mclk".
+> +
+> +Required subnodes:
+> + - port: The parallel bus interface port with a single endpoint linked to
+> +         the sensor's endpoint as described in
+> +         Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+> +Required endpoint properties:
+> + - bus-type: data bus type, <5> or <6> for Parallel or Bt.656 respectively
+> + - pclk-sample: pixel clock polarity
+> + - hsync-active: horizontal synchronization polarity (only required for
+> +   parallel bus)
+> + - vsync-active: vertical synchronization polarity (only required for
+> +   parallel bus)
 
-So, in the generic ethernet binding, we would have:
+Minor nit: if you don't want to specify what maps to 0/1 in the
+properties, could you add "as defined in video-interfaces.txt" after
+each property?
 
-properties:
-  phy-handle:
-    $ref: /schemas/types.yaml#definitions/phandle
-    description:
-      Specifies a reference to a node representing a PHY device.
+Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
 
-  phy:
-    $ref: "#/properties/phy-handle"
-    deprecated: true
+Thanks
+  j
 
-  phy-device:
-    $ref: "#/properties/phy-handle"
-    deprecated: true
+> +
+> +Example:
+> +
+> +	camera0: camera@d420a000 {
+> +		compatible = "marvell,mmp2-ccic";
+> +		reg = <0xd420a000 0x800>;
+> +		interrupts = <42>;
+> +		clocks = <&soc_clocks MMP2_CLK_CCIC0>;
+> +		clock-names = "axi";
+> +		#clock-cells = <0>;
+> +		clock-output-names = "mclk";
+> +
+> +		port {
+> +			camera0_0: endpoint {
+> +				remote-endpoint = <&ov7670_0>;
+> +                                bus-type = <5>;      /* Parallel */
+> +                                hsync-active = <1>;  /* Active high */
+> +                                vsync-active = <1>;  /* Active high */
+> +                                pclk-sample = <0>;   /* Falling */
+> +			};
+> +		};
+> +	};
+> --
+> 2.21.0
+>
 
-Does that sound good?
-
-Now, how do we handle the case above, in the device specific binding?
-We just require the non-deprecated one, or the three?
-
-Thanks!
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---arfnxch5fo5pq4gp
+--kj5s4had2x4icus2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQNt+AAKCRDj7w1vZxhR
-xc/rAP9oYo3RLFWNkmJJDZDeoHTXzgtXwUn55miw6RmHtD9HuQEAvRCq1//X+pH0
-3IHUv+mhhSTrjKtCcpuBHvJv5oWybg4=
-=S27r
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl0DbgIACgkQcjQGjxah
+Vjyzcg//clH4UtRYjsI86mItIoXCvJcGZTdFoZ/gLPd5Di9SslN9R2iMjN3VAY2f
+48IBTCCE9shwey6dCHak6yLlgvlH2DUaXG6o9E7t92ryxnYt3ydTEG4Jtq6X97MU
+xNRHPWcdBxpt3UNFUgkPol2iXX9mjltw9QhR+SNb2pBrOwHfU3JXQI1tTWvUkw8S
+7M1ajKUW3/fAVhaOKWKTfwU5Tov0IZaDBXLS7wRuQ5CI06ebk//yCjy/2dNTE1q4
+EWoXD/Fl/S0Z7nAmtn2eQG3H2ezlkIrEIi0wZXckgBOXHUe8D+8pqQE8Q6PQeFhA
+CxVXquKIa7MQfqY1Mybu7Wa9o99Xt0Jjaxtfp9Sy+mEb4gABA2WALwFn2SOscJbY
+YdN2wJmbr7+cwJ1720dDEA21/Vwc95S/UEiZji3BxnU+oEFOL1NUbxlDS6E8HMfp
+F0R7xUrCkjU1bcTfigzOJ/uGC4Mnm/vbgft18mK+uZSj4U6+sDvfMNYGMSLFzjmK
+7nA+8uOALWCoji7VMU+nlqAmxxxw7LL/T/mD8GA2n3S+wW2VIPZA2G6z3Xt59HYw
+neZJXsk/JaamauA4iIRAHi1nnOVSPVO2O0BE16tO+ALL/r7HJxUzgwjExmkEQHu6
+5lrtTA1XVqxWPndB0ODL/YTtzROZ5r7mCKC0uSVAMz8LEb1mggY=
+=ENUC
 -----END PGP SIGNATURE-----
 
---arfnxch5fo5pq4gp--
+--kj5s4had2x4icus2--
