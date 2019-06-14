@@ -2,80 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A31345A91
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 12:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE4945ACF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 12:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727394AbfFNKjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 06:39:20 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:55840 "EHLO inva020.nxp.com"
+        id S1727168AbfFNKoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 06:44:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:59374 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727387AbfFNKjT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 06:39:19 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 24EC01A0631;
-        Fri, 14 Jun 2019 12:39:18 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 999711A062F;
-        Fri, 14 Jun 2019 12:39:13 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 81D1E4031C;
-        Fri, 14 Jun 2019 18:39:07 +0800 (SGT)
-From:   Yangbo Lu <yangbo.lu@nxp.com>
-To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Yangbo Lu <yangbo.lu@nxp.com>
-Subject: [v2, 6/6] MAINTAINERS: maintain DPAA2 PTP driver in QorIQ PTP entry
-Date:   Fri, 14 Jun 2019 18:40:55 +0800
-Message-Id: <20190614104055.43998-7-yangbo.lu@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190614104055.43998-1-yangbo.lu@nxp.com>
-References: <20190614104055.43998-1-yangbo.lu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727018AbfFNKoP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 06:44:15 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A7262B;
+        Fri, 14 Jun 2019 03:44:14 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D936F3F246;
+        Fri, 14 Jun 2019 03:45:55 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 11:43:59 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
+Cc:     "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCHv5 10/20] PCI: mobiveil: Fix the INTx process errors
+Message-ID: <20190614104351.GA29955@e121166-lin.cambridge.arm.com>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-11-Zhiqiang.Hou@nxp.com>
+ <20190612150819.GD15747@redmoon>
+ <CAKnKUHFMH6=ox=qdaUR1kNEhETDCVyu3jQZEj+taEbbMRBRuYA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKnKUHFMH6=ox=qdaUR1kNEhETDCVyu3jQZEj+taEbbMRBRuYA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Maintain DPAA2 PTP driver in QorIQ PTP entry.
+On Fri, Jun 14, 2019 at 12:38:51PM +0530, Karthikeyan Mitran wrote:
+> Hi Lorenzo and Hou Zhiqiang
+>  PAB_INTP_AMBA_MISC_STAT does have other status in the higher bits, it
+> should have been masked before checking for the status
 
-Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
----
-Changes for v2:
-	- None.
----
- MAINTAINERS | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+You are the maintainer for this driver, so if there is something to be
+changed you must post a patch to that extent, I do not understand what
+the above means, write the code to fix it, I won't do it.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b70d5d5..b1f2207 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4922,13 +4922,6 @@ L:	linux-kernel@vger.kernel.org
- S:	Maintained
- F:	drivers/staging/fsl-dpaa2/ethsw
- 
--DPAA2 PTP CLOCK DRIVER
--M:	Yangbo Lu <yangbo.lu@nxp.com>
--L:	netdev@vger.kernel.org
--S:	Maintained
--F:	drivers/net/ethernet/freescale/dpaa2/dpaa2-ptp*
--F:	drivers/net/ethernet/freescale/dpaa2/dprtc*
--
- DPT_I2O SCSI RAID DRIVER
- M:	Adaptec OEM Raid Solutions <aacraid@microsemi.com>
- L:	linux-scsi@vger.kernel.org
-@@ -6371,6 +6364,8 @@ FREESCALE QORIQ PTP CLOCK DRIVER
- M:	Yangbo Lu <yangbo.lu@nxp.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	drivers/net/ethernet/freescale/dpaa2/dpaa2-ptp*
-+F:	drivers/net/ethernet/freescale/dpaa2/dprtc*
- F:	drivers/net/ethernet/freescale/enetc/enetc_ptp.c
- F:	drivers/ptp/ptp_qoriq.c
- F:	drivers/ptp/ptp_qoriq_debugfs.c
--- 
-2.7.4
+I am getting a bit annoyed with this Mobiveil driver so either you guys
+sort this out or I will have to remove it from the kernel.
 
+> Acked-by: Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
+
+Ok I assume this means you tested it but according to what you
+say above, are there still issues with this code path ? Should
+we update the patch ?
+
+Moreover:
+
+https://kernelnewbies.org/PatchCulture
+
+Please read it and never top-post.
+
+Thanks,
+Lorenzo
+
+> On Wed, Jun 12, 2019 at 8:38 PM Lorenzo Pieralisi
+> <lorenzo.pieralisi@arm.com> wrote:
+> >
+> > On Fri, Apr 12, 2019 at 08:36:12AM +0000, Z.q. Hou wrote:
+> > > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > >
+> > > In the loop block, there is not code to update the loop key,
+> > > this patch updates the loop key by re-read the INTx status
+> > > register.
+> > >
+> > > This patch also add the clearing of the handled INTx status.
+> > >
+> > > Note: Need MV to test this fix.
+> >
+> > This means INTX were never tested and current code handling them is,
+> > AFAICS, an infinite loop which is very very bad.
+> >
+> > This is a gross bug and must be fixed as soon as possible.
+> >
+> > I want Karthikeyan ACK and Tested-by on this patch.
+> >
+> > Lorenzo
+> >
+> > > Fixes: 9af6bcb11e12 ("PCI: mobiveil: Add Mobiveil PCIe Host Bridge IP driver")
+> > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > > Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
+> > > Reviewed-by: Subrahmanya Lingappa <l.subrahmanya@mobiveil.co.in>
+> > > ---
+> > > V5:
+> > >  - Corrected and retouched the subject and changelog.
+> > >
+> > >  drivers/pci/controller/pcie-mobiveil.c | 13 +++++++++----
+> > >  1 file changed, 9 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> > > index 4ba458474e42..78e575e71f4d 100644
+> > > --- a/drivers/pci/controller/pcie-mobiveil.c
+> > > +++ b/drivers/pci/controller/pcie-mobiveil.c
+> > > @@ -361,6 +361,7 @@ static void mobiveil_pcie_isr(struct irq_desc *desc)
+> > >       /* Handle INTx */
+> > >       if (intr_status & PAB_INTP_INTX_MASK) {
+> > >               shifted_status = csr_readl(pcie, PAB_INTP_AMBA_MISC_STAT);
+> > > +             shifted_status &= PAB_INTP_INTX_MASK;
+> > >               shifted_status >>= PAB_INTX_START;
+> > >               do {
+> > >                       for_each_set_bit(bit, &shifted_status, PCI_NUM_INTX) {
+> > > @@ -372,12 +373,16 @@ static void mobiveil_pcie_isr(struct irq_desc *desc)
+> > >                                       dev_err_ratelimited(dev, "unexpected IRQ, INT%d\n",
+> > >                                                           bit);
+> > >
+> > > -                             /* clear interrupt */
+> > > -                             csr_writel(pcie,
+> > > -                                        shifted_status << PAB_INTX_START,
+> > > +                             /* clear interrupt handled */
+> > > +                             csr_writel(pcie, 1 << (PAB_INTX_START + bit),
+> > >                                          PAB_INTP_AMBA_MISC_STAT);
+> > >                       }
+> > > -             } while ((shifted_status >> PAB_INTX_START) != 0);
+> > > +
+> > > +                     shifted_status = csr_readl(pcie,
+> > > +                                                PAB_INTP_AMBA_MISC_STAT);
+> > > +                     shifted_status &= PAB_INTP_INTX_MASK;
+> > > +                     shifted_status >>= PAB_INTX_START;
+> > > +             } while (shifted_status != 0);
+> > >       }
+> > >
+> > >       /* read extra MSI status register */
+> > > --
+> > > 2.17.1
+> > >
+> 
+> 
+> 
+> -- 
+> Thanks,
+> Regards,
+> Karthikeyan Mitran
+> 
+> -- 
+> Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any 
+> attachments, is for the sole use of the intended recipient(s) and may 
+> contain proprietary confidential or privileged information or otherwise be 
+> protected by law. Any unauthorized review, use, disclosure or distribution 
+> is prohibited. If you are not the intended recipient, please notify the 
+> sender and destroy all copies and the original message.
