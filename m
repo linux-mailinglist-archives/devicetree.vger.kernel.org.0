@@ -2,68 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E281C458C1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E1B458E0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727073AbfFNJeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 05:34:18 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49382 "EHLO inva020.nxp.com"
+        id S1726479AbfFNJiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 05:38:07 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:38138 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727058AbfFNJeO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 05:34:14 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id F0C521A0610;
-        Fri, 14 Jun 2019 11:34:12 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A7EDB1A0606;
-        Fri, 14 Jun 2019 11:34:07 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C670F40319;
-        Fri, 14 Jun 2019 17:33:59 +0800 (SGT)
-From:   Peter Chen <peter.chen@nxp.com>
-To:     balbi@kernel.org, shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, aisheng.dong@nxp.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, chunfeng.yun@mediatek.com,
-        Peter Chen <peter.chen@nxp.com>
-Subject: [PATCH v4 8/8] usb: chipidea: imx: "fsl,usbphy" phandle is not mandatory now
-Date:   Fri, 14 Jun 2019 17:35:44 +0800
-Message-Id: <20190614093544.11730-9-peter.chen@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190614093544.11730-1-peter.chen@nxp.com>
-References: <20190614093544.11730-1-peter.chen@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726083AbfFNJiH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 05:38:07 -0400
+Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hbiep-00049y-Ms; Fri, 14 Jun 2019 11:38:03 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH v2] ARM: dts: rockchip: Configure BT_HOST_WAKE as wake-up signal on veyron
+Date:   Fri, 14 Jun 2019 11:38:03 +0200
+Message-ID: <8216847.YA7l6QMt1s@phil>
+In-Reply-To: <20190610235144.34261-1-mka@chromium.org>
+References: <20190610235144.34261-1-mka@chromium.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the chipidea common code support get the USB PHY phandle from
-"phys", the glue layer is not mandatory to get the "fsl,usbphy" phandle
-any more.
+Am Dienstag, 11. Juni 2019, 01:51:44 CEST schrieb Matthias Kaehlcke:
+> From: Doug Anderson <dianders@chromium.org>
+> 
+> This enables wake up on Bluetooth activity when the device is
+> suspended. The BT_HOST_WAKE signal is only connected on devices
+> with BT module that are connected through UART.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 
-Signed-off-by: Peter Chen <peter.chen@nxp.com>
----
- drivers/usb/chipidea/ci_hdrc_imx.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+applied for 5.3
 
-diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
-index a76708501236..b5abfe89190c 100644
---- a/drivers/usb/chipidea/ci_hdrc_imx.c
-+++ b/drivers/usb/chipidea/ci_hdrc_imx.c
-@@ -398,8 +398,9 @@ static int ci_hdrc_imx_probe(struct platform_device *pdev)
- 		ret = PTR_ERR(data->phy);
- 		/* Return -EINVAL if no usbphy is available */
- 		if (ret == -ENODEV)
--			ret = -EINVAL;
--		goto err_clk;
-+			data->phy = NULL;
-+		else
-+			goto err_clk;
- 	}
- 
- 	pdata.usb_phy = data->phy;
--- 
-2.14.1
+Thanks
+Heiko
+
 
