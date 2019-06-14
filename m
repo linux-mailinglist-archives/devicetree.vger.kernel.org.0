@@ -2,116 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 996B445123
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 03:21:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F4A451D8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 04:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726028AbfFNBVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 21:21:23 -0400
-Received: from mail-eopbgr80057.outbound.protection.outlook.com ([40.107.8.57]:6976
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725616AbfFNBVX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jun 2019 21:21:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5YmwdtJs4Wqng2BX4vdSF2RAU6KnfAhsdC4DrddbwPQ=;
- b=SqK3aqqXoA0UdNdsjpANn+K9ZfRrtdCvyhoZocvFXhhh0ZNF436LB26nnCSiNDjrDSzRlybmyp6a/LwYYwaxhpuxyYmBZZbcv15rYc17LWV4shOhWvJuNke3cG40R7lMpviAPPCVX5nTpZr4X+zMrCme74d2sdNzBZSRa71eaUI=
-Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
- AM5PR04MB3012.eurprd04.prod.outlook.com (10.173.254.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.15; Fri, 14 Jun 2019 01:21:18 +0000
-Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
- ([fe80::38dc:f8e6:b29a:54c6]) by AM5PR04MB3299.eurprd04.prod.outlook.com
- ([fe80::38dc:f8e6:b29a:54c6%6]) with mapi id 15.20.1965.018; Fri, 14 Jun 2019
- 01:21:18 +0000
-From:   Xiaowei Bao <xiaowei.bao@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        "kstewart@linuxfoundation.org" <kstewart@linuxfoundation.org>,
-        "pombredanne@nexb.com" <pombredanne@nexb.com>,
-        "shawn.lin@rock-chips.com" <shawn.lin@rock-chips.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1726259AbfFNC0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 22:26:43 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:47019 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726283AbfFNC0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 22:26:43 -0400
+X-UUID: c99698b1d3e04bd8a8ead6e2c9b27021-20190614
+X-UUID: c99698b1d3e04bd8a8ead6e2c9b27021-20190614
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1399065455; Fri, 14 Jun 2019 10:26:35 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 14 Jun 2019 10:26:34 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 14 Jun 2019 10:26:34 +0800
+Message-ID: <1560479194.16718.5.camel@mtksdaap41>
+Subject: Re: [PATCH v3, 10/27] drm/mediatek: split DISP_REG_CONFIG_DSI_SEL
+ setting into another use case
+From:   CK Hu <ck.hu@mediatek.com>
+To:     <yongqiang.niu@mediatek.com>, <bibby.hsieh@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: RE: [EXT] Re: [PATCH 1/3] dt-bindings: pci: layerscape-pci: add
- compatible strings "fsl,ls1028a-pcie"
-Thread-Topic: [EXT] Re: [PATCH 1/3] dt-bindings: pci: layerscape-pci: add
- compatible strings "fsl,ls1028a-pcie"
-Thread-Index: AQHVCvDaGb043xOzIkucXDyWoGqpkKaaP+cAgABI/RA=
-Date:   Fri, 14 Jun 2019 01:21:18 +0000
-Message-ID: <AM5PR04MB329999D245D9C549C9631F71F5EE0@AM5PR04MB3299.eurprd04.prod.outlook.com>
-References: <20190515072747.39941-1-xiaowei.bao@nxp.com>
- <20190613205930.GA9003@bogus>
-In-Reply-To: <20190613205930.GA9003@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=xiaowei.bao@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 65504fd2-86e9-474d-5e9e-08d6f0669a3f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM5PR04MB3012;
-x-ms-traffictypediagnostic: AM5PR04MB3012:
-x-microsoft-antispam-prvs: <AM5PR04MB3012962ABAACD15A6520AAD4F5EE0@AM5PR04MB3012.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2331;
-x-forefront-prvs: 0068C7E410
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(39860400002)(136003)(366004)(346002)(376002)(189003)(199004)(13464003)(53936002)(186003)(6116002)(99286004)(7696005)(6506007)(8936002)(64756008)(81166006)(76176011)(4326008)(81156014)(229853002)(68736007)(26005)(33656002)(256004)(25786009)(71190400001)(71200400001)(5660300002)(8676002)(52536014)(6246003)(53546011)(3846002)(102836004)(478600001)(486006)(446003)(14454004)(66066001)(74316002)(44832011)(476003)(54906003)(86362001)(7736002)(55016002)(76116006)(66446008)(2906002)(6916009)(11346002)(66476007)(305945005)(66556008)(9686003)(7416002)(73956011)(316002)(6436002)(66946007)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3012;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: XywbbYQYOoMMXW7eH45eu/VkPdRGxDpmnStIGRG5ilOmNSE6EO5SSDtLf/KgXhibzzOvQ1T+/gkmCWiVYY9/dUDpuC4JZ2zrt5zEKxatUKG4//OlB3hRqS+nYJTuAvxLibaSITeuLKx0eLzTrwxJXSL7qthJZNlJAO0UIJJgNsmAPODuND8rw+tNnh/1p0no5qTh6JZBSMaphO4dRUz4BcEz8jyo7rlDsiy2Ho7erPAzaq2/1aEF/4shj5YUq8fMdnGIppi/KOG+dOTC2kbNSV4OaEWue5V08fNN6xW/fueLv9OY0tssSZ3Zt/DKdRGcXIFv9s4Gm+6Rm6cDxYZGe0tsJDgq/cTsl2+WZ/qM3rCGFQPB4SFx9zflbb2sMAoyR2033sDiNGKexTI9JX0R1Pv5m+tB6no4o92TNs5o4Vg=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        <linux-mediatek@lists.infradead.org>
+Date:   Fri, 14 Jun 2019 10:26:34 +0800
+In-Reply-To: <1559734986-7379-11-git-send-email-yongqiang.niu@mediatek.com>
+References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1559734986-7379-11-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65504fd2-86e9-474d-5e9e-08d6f0669a3f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2019 01:21:18.2229
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xiaowei.bao@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3012
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUm9iIEhlcnJpbmcgPHJv
-YmhAa2VybmVsLm9yZz4NCj4gU2VudDogMjAxOcTqNtTCMTTI1SA1OjAwDQo+IFRvOiBYaWFvd2Vp
-IEJhbyA8eGlhb3dlaS5iYW9AbnhwLmNvbT4NCj4gQ2M6IGJoZWxnYWFzQGdvb2dsZS5jb207IHJv
-YmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207DQo+IHNoYXduZ3VvQGtlcm5l
-bC5vcmc7IExlbyBMaSA8bGVveWFuZy5saUBueHAuY29tPjsga2lzaG9uQHRpLmNvbTsNCj4gbG9y
-ZW56by5waWVyYWxpc2lAYXJtLmNvbTsgYXJuZEBhcm5kYi5kZTsgZ3JlZ2toQGxpbnV4Zm91bmRh
-dGlvbi5vcmc7DQo+IE0uaC4gTGlhbiA8bWluZ2h1YW4ubGlhbkBueHAuY29tPjsgTWluZ2thaSBI
-dSA8bWluZ2thaS5odUBueHAuY29tPjsNCj4gUm95IFphbmcgPHJveS56YW5nQG54cC5jb20+OyBr
-c3Rld2FydEBsaW51eGZvdW5kYXRpb24ub3JnOw0KPiBwb21icmVkYW5uZUBuZXhiLmNvbTsgc2hh
-d24ubGluQHJvY2stY2hpcHMuY29tOw0KPiBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOyBkZXZp
-Y2V0cmVlQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsg
-bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOw0KPiBsaW51eHBwYy1kZXZAbGlz
-dHMub3psYWJzLm9yZzsgWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQo+IFN1Ympl
-Y3Q6IFtFWFRdIFJlOiBbUEFUQ0ggMS8zXSBkdC1iaW5kaW5nczogcGNpOiBsYXllcnNjYXBlLXBj
-aTogYWRkDQo+IGNvbXBhdGlibGUgc3RyaW5ncyAiZnNsLGxzMTAyOGEtcGNpZSINCj4gDQo+IENh
-dXRpb246IEVYVCBFbWFpbA0KPiANCj4gT24gV2VkLCAxNSBNYXkgMjAxOSAxNToyNzo0NSArMDgw
-MCwgWGlhb3dlaSBCYW8gd3JvdGU6DQo+ID4gQWRkIHRoZSBQQ0llIGNvbXBhdGlibGUgc3RyaW5n
-IGZvciBMUzEwMjhBDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBYaWFvd2VpIEJhbyA8eGlhb3dl
-aS5iYW9AbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvcGNp
-L2xheWVyc2NhcGUtcGNpLnR4dCAgICAgfCAgICAxICsNCj4gPiAgMSBmaWxlcyBjaGFuZ2VkLCAx
-IGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pDQo+ID4NCj4gDQo+IFJldmlld2VkLWJ5OiBS
-b2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KW1hpYW93ZWkgQmFvXSB0aGFua3MgYSBsb3Qg
-Zm9yIHlvdXIgcmV2aWV3Lg0K
++Bibby:
+
+Hi, Yongqiang:
+
+On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> Here is two modifition in this patch:
+> 1.bls->dpi0 and rdma1->dsi are differen usecase,
+> Split DISP_REG_CONFIG_DSI_SEL setting into anther usecase
+> 2.remove DISP_REG_CONFIG_DPI_SEL setting, DPI_SEL_IN_BLS is 0 and
+> this is same with hardware defautl setting,
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> index 717609d..1bbabe6 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> @@ -401,10 +401,9 @@ static void mtk_ddp_sout_sel(void __iomem *config_regs,
+>  	} else if (cur == DDP_COMPONENT_BLS && next == DDP_COMPONENT_DPI0) {
+>  		writel_relaxed(BLS_TO_DPI_RDMA1_TO_DSI,
+>  			       config_regs + DISP_REG_CONFIG_OUT_SEL);
+
+You move 2 register setting out of the path from BLS to DPI0, does this
+path still work? Please make sure that all modification could work on
+all supported SoC.
+
+Regards,
+CK
+
+> +	} else if (cur == DDP_COMPONENT_RDMA1 && next == DDP_COMPONENT_DSI0) {
+>  		writel_relaxed(DSI_SEL_IN_RDMA,
+>  			       config_regs + DISP_REG_CONFIG_DSI_SEL);
+> -		writel_relaxed(DPI_SEL_IN_BLS,
+> -			       config_regs + DISP_REG_CONFIG_DPI_SEL);
+>  	}
+>  }
+>  
+
+
