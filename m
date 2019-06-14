@@ -2,96 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB5A74650A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A9846525
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725808AbfFNQx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 12:53:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:38198 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725801AbfFNQx5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 12:53:57 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C10C028;
-        Fri, 14 Jun 2019 09:53:56 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6D45B3F694;
-        Fri, 14 Jun 2019 09:53:55 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 17:53:53 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>, bhelgaas@google.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
-Message-ID: <20190614165353.GB30511@e121166-lin.cambridge.arm.com>
-References: <20190516055307.25737-28-mmaddireddy@nvidia.com>
- <20190604132233.GT16519@ulmo>
- <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
- <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
- <20190614143222.GB23116@e121166-lin.cambridge.arm.com>
- <1508173d-0ecc-f498-6ab2-78a718086b35@nvidia.com>
- <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
- <20190614152304.GK15526@ulmo>
- <20190614155934.GA28253@e121166-lin.cambridge.arm.com>
- <51e4ae62-f842-1d2f-fbca-0b2063dd53a6@nvidia.com>
+        id S1725999AbfFNQ4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 12:56:06 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:33716 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725908AbfFNQ4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:56:06 -0400
+Received: by mail-qt1-f195.google.com with SMTP id x2so3289459qtr.0;
+        Fri, 14 Jun 2019 09:56:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BW1xnYGWg+aoTF/Yaq1jahB+G0s53KZIsKdfCRLCS5M=;
+        b=uEcut09jaC8j2kkKPZHvfItobvM10u4m8o7PXc3kPe53zLrKIwZgef4flM1Q2WMvCM
+         POMvGSd3RQbWDAr8wCPe5McULBFXGaLIMa/3XcPxCFq7wP+kvH2qsQulicYQD87g+94D
+         iXDKOvCQpOs0O6/r+JodqTQzHXFT55EkpSA/SdOT8r/PY34fAjmEQtP5GiiziKasI2w1
+         RS/Bn78K2F6SpuUZqpsw3Rk5G7nxBBfc9qDc8gTdzniSU1QYroUr+s2NuglNhb8rW4+f
+         mSbCPUQd+iCTJpfCc8F+kQkv3k/RgZ+33/jri3WahNqCZGy6XaV0RLA8x26ZyWPISc2N
+         dGpw==
+X-Gm-Message-State: APjAAAXs6T0heDj96KQViNvIYlYO8WBuHSVsb6epLxP6iaqmi/oyRF5c
+        ioNVut3KbNVmitkSkGrMNA==
+X-Google-Smtp-Source: APXvYqwKw7gEikdDCeeVBg/sr7wzmaN+sPvOXjG11rUJ9NjiqHre30+rVmiZbgs/Z8FdHdOZJiRV0g==
+X-Received: by 2002:ac8:70d1:: with SMTP id g17mr37959971qtp.124.1560531365401;
+        Fri, 14 Jun 2019 09:56:05 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id e63sm1697857qkd.57.2019.06.14.09.56.04
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 14 Jun 2019 09:56:04 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 10:56:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     dongchun.zhu@mediatek.com, mchehab@kernel.org,
+        mark.rutland@arm.com, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, menghui.lin@mediatek.com,
+        shengnan.wang@mediatek.com
+Subject: Re: [PATCH 3/3] media: dt-bindings: media: i2c: Add bindings for
+ ov02a10
+Message-ID: <20190614165603.GA30462@bogus>
+References: <20190523102204.24112-1-dongchun.zhu@mediatek.com>
+ <20190523102204.24112-4-dongchun.zhu@mediatek.com>
+ <20190531161658.2y2amfngbhfbllj7@valkosipuli.retiisi.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <51e4ae62-f842-1d2f-fbca-0b2063dd53a6@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190531161658.2y2amfngbhfbllj7@valkosipuli.retiisi.org.uk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 10:00:49PM +0530, Manikanta Maddireddy wrote:
-
-[...]
-
-> GPIO based PERST# is per-platform requirement.
-> If DT prop is not present, then devm_gpiod_get_from_of_node() returns
-> NULL gpio_desc.
+On Fri, May 31, 2019 at 07:16:58PM +0300, Sakari Ailus wrote:
+> Hi Dongchun,
 > 
-> struct gpio_desc *gpiod_get_from_of_node(struct device_node *node,
->                                          const char *propname, int index,
->                                          enum gpiod_flags dflags,
->                                          const char *label)
-> {
->         struct gpio_desc *desc;
->         unsigned long lflags = 0;
->         enum of_gpio_flags flags;
->         bool active_low = false;
->         bool single_ended = false;
->         bool open_drain = false;
->         bool transitory = false;
->         int ret;
+> Thanks for the patch.
 > 
->         desc = of_get_named_gpiod_flags(node, propname,
->                                         index, &flags);
+> On Thu, May 23, 2019 at 06:22:04PM +0800, dongchun.zhu@mediatek.com wrote:
+> > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > 
+> > Add device tree binding documentation for the OV02A10 CMOS image sensor.
+> > 
+> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/ov02a10.txt      | 43 ++++++++++++++++++++++
+> >  1 file changed, 43 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov02a10.txt b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > new file mode 100644
+> > index 0000000..fdc2904
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > @@ -0,0 +1,43 @@
+> > +* Omnivision OV02A10 MIPI CSI-2 sensor
+> > +
+> > +Required Properties:
+> > +- compatible: shall be "ovti,ov02a10"
+> > +- clocks: reference to the xvclk input clock
+> > +- clock-names: shall be "xvclk"
+> > +- avdd-supply: Analog voltage supply, 2.8 volts
+> > +- dovdd-supply: Digital I/O voltage supply, 1.8 volts
+> > +- dvdd-supply: Digital core voltage supply, 1.8 volts
+> > +- reset-gpios: Low active reset gpio
+> > +
+> > +The device node shall contain one 'port' child node with an
+> > +'endpoint' subnode for its digital output video port,
+> > +in accordance with the video interface bindings defined in
+> > +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > +The endpoint optional property 'data-lanes' shall be "<1>".
 > 
->         if (!desc || IS_ERR(desc)) {
-> */* If it is not there, just return NULL */****if (PTR_ERR(desc) == -ENOENT)****return NULL;*
->                 return desc;
->         }
-> 	...
+> If the sensor only supports a single lane configuration (one lane), you can
+> omit that property altogether. Is that the only possible configuration for
+> the sensor?
 > 
-> }
+> Please also wrap the text at 80 characters, not 65 or so.
+> 
+> > +
+> > +Example:
+> > +&i2c4 {
+> > +	sensor_sub: sensor_sub {
+> 
+> camera-sensor@3d {
+> 
+> > +		compatible = "ovti,ov02a10";
+> > +		reg = <0x3d>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&camera_pins_cam1_mclk_on>;
+> > +
+> > +		clocks = <&topckgen CLK_TOP_MUX_CAMTG2>,
+> > +			<&topckgen CLK_TOP_UNIVP_192M_D8>;
+> > +		clock-names = "xvclk", "freq_mux";
+> > +
+> > +		avdd-supply = <&mt6358_vcama1_reg>;
+> > +		dvdd-supply = <&mt6358_vcn18_reg>;
+> > +		dovdd-supply = <&mt6358_vcamio_reg>;
+> > +		pwdn-gpios = <&pio 107 1>;
+> > +		reset-gpios = <&pio 109 1>;
+> > +
+> > +		port@0 {
 
-Ok. My point then is that you have no way to enforce this requirement on
-platforms that actually need it, I do not even know if there is a
-way you can do it (I was thinking along the lines of using a
-compatible string to detect whether the GPIO #PERST reset is mandatory)
-but maybe this is not even a SOC property.
+Also, drop the unit-address as there is no 'reg' property. Building your 
+dts file will 'W=1' will tell you this.
 
-Maybe what I am asking is overkill, I just wanted to understand.
-
-I was just asking a question to understand how you handle the case
-where a GPIO pin definition is missing in DT for a platform that
-actually needs it, the driver will probe but nothing will work.
-
-It would be good to describe this and capture it in the commit log.
-
-Thanks,
-Lorenzo
+> > +		   ov02a10_core: endpoint {
+> > +		       remote-endpoint = <&ov02a10_0>;
+> > +			   data-lanes = <1>;
+> > +		   };
+> 
+> Tabs for indentation, please.
+> 
+> > +		};
+> > +	};
+> > +};
+> 
+> -- 
+> Kind regards,
+> 
+> Sakari Ailus
