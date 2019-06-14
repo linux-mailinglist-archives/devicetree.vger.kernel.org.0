@@ -2,140 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C10F146BFE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 23:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 847C146C80
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 00:45:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726294AbfFNVkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 17:40:10 -0400
-Received: from sauhun.de ([88.99.104.3]:57478 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725809AbfFNVkJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 17:40:09 -0400
-Received: from localhost (p5486CF81.dip0.t-ipconnect.de [84.134.207.129])
-        by pokefinder.org (Postfix) with ESMTPSA id AA8282CF690;
-        Fri, 14 Jun 2019 23:40:06 +0200 (CEST)
-Date:   Fri, 14 Jun 2019 23:40:05 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Stefan Roese <sr@denx.de>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        Jan Breuer <jan.breuer@jaybee.cz>,
-        John Crispin <john@phrozen.org>,
-        =?utf-8?B?UmVuw6k=?= van Dorst <opensource@vdorst.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH 2/2 v3] i2c: mt7621: Add MediaTek MT7621/7628/7688 I2C
- driver
-Message-ID: <20190614214005.GK17899@ninjato>
-References: <20190604113407.8948-1-sr@denx.de>
- <20190604113407.8948-2-sr@denx.de>
+        id S1726297AbfFNWpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 18:45:44 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:39086 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbfFNWpo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 18:45:44 -0400
+Received: by mail-pf1-f193.google.com with SMTP id j2so2234977pfe.6
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 15:45:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CmE6N4JKzhXb5lHoVXsuD5qj8tmeCrMDzU4ePEIWm0Y=;
+        b=E73CaugswLEoSnRUob/BsIpit8Tpx/hMYrnG1PMqIuPtY3H8B5BMGazNT5uoypDBWx
+         osOLOrWmYS78KuZdurwrMG5aU1Y229O/IYHb/YcPh8YQIb9gbtbFQLqx5utdsF24L0cP
+         CMPNavVjwHgO3gIr+WTWuV2HWsmZ2/Og89tlk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CmE6N4JKzhXb5lHoVXsuD5qj8tmeCrMDzU4ePEIWm0Y=;
+        b=bPf2w3s6UPPv0CMvCToQldDH6QY6e9V0b448m+YwPVQynhTAZv8aqI/Twid0SH2c4U
+         qQuSNnmj1FAojubEEEv+qqJXlsOGZcI/SqUhQl15j2sjdH8B36L9nmQPfPo3W83zGQZe
+         nbs+2fJ32fcO1C+e3tHSb2QC7i8adVQwmBLI7to43QtS04egUz2H32eCaVeneyvw87k0
+         jKQqeiDnZqmNqCQHEfjusI4p8f3oVesBcFPaPu1aCx4MDbFwefSzYXgGoExxNfKcWaWg
+         w0rYTtYRSERCWxv6Wlck85CQvTNgQlOrV+1A7smpQhEisyFiM4jjjSFr7mb2g3XtaF7j
+         +5kQ==
+X-Gm-Message-State: APjAAAX2efW+WWEs/Flma2N3Pj/p1FBLC0zPdBhRC4tw2/vS3LcG6U8U
+        blvdM7mgTy3p01GrUe0W53Z5Lg==
+X-Google-Smtp-Source: APXvYqyN12JRzQIV0hm4tLUoGW9KOz1B4YaxPa5FrSR+r+v1H8arhpYH9PjobRBRAWHrn53K5WiajQ==
+X-Received: by 2002:a17:90a:37ac:: with SMTP id v41mr12841194pjb.6.1560552344085;
+        Fri, 14 Jun 2019 15:45:44 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id x129sm4099537pfb.29.2019.06.14.15.45.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 14 Jun 2019 15:45:43 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH] Revert "ARM: dts: rockchip: set PWM delay backlight settings for Minnie"
+Date:   Fri, 14 Jun 2019 15:45:33 -0700
+Message-Id: <20190614224533.169881-1-mka@chromium.org>
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZG5hGh9V5E9QzVHS"
-Content-Disposition: inline
-In-Reply-To: <20190604113407.8948-2-sr@denx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
 
---ZG5hGh9V5E9QzVHS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+According to the commit message the AUO B101EAN01 panel on minnie
+requires a PWM delay of 200 ms, however this is not what the
+datasheet says. The datasheet mentions a *max* delay of 200 ms
+for T2 ("delay from LCDVDD to black video generation") and T3
+("delay from LCDVDD to HPD high"), which aren't related to the
+PWM. The backlight power sequence does not specify min/max
+constraints for T15 (time from PWM on to BL enable) or T16
+(time from BL disable to PWM off).
 
-Hi Stefan,
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+Enric, if you think I misinterpreted the datasheet please holler!
+---
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-On Tue, Jun 04, 2019 at 01:34:07PM +0200, Stefan Roese wrote:
-> This patch adds a driver for the I2C controller found on the MediaTek
-> MT7621/7628/7688 SoC's. The base version of this driver was done by
-> Steven Liu (according to the copyright and MODULE_AUTHOR lines). It
-> can be found in the OpenWRT repositories (v4.14 at the time I looked).
->=20
-> The base driver had many issues, which are disccussed here:
->=20
-> https://en.forum.labs.mediatek.com/t/openwrt-15-05-loads-non-working-i2c-=
-kernel-module-for-mt7688/1286/3
->=20
-> From this link an enhanced driver version (complete rewrite, mayor
-> changes: support clock stretching, repeated start, ACK handling and
-> unlimited message length) from Jan Breuer can be found here:
->=20
-> https://gist.github.com/j123b567/9b555b635c2b4069d716b24198546954
->=20
-> This patch now adds this enhanced I2C driver to mainline.
->=20
-> Changes by Stefan Roese for upstreaming:
-> - Add devicetree bindings
-> - checkpatch clean
-> - Use module_platform_driver()
-> - Minor cosmetic enhancements
-> - Removed IO warpped functions
-> - Use readl_relaxed_poll_timeout() and drop poll_down_timeout()
-> - Removed superfluous barrier() in mtk_i2c_reset()
-> - Use i2c_8bit_addr_from_msg()
-> - Added I2C_FUNC_PROTOCOL_MANGLING
-> - Removed adap->class =3D I2C_CLASS_HWMON | I2C_CLASS_SPD;
->=20
-> Signed-off-by: Stefan Roese <sr@denx.de>
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index 468a1818545d..28cbe07f96ec 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -86,8 +86,6 @@
+ 			240 241 242 243 244 245 246 247
+ 			248 249 250 251 252 253 254 255>;
+ 	power-supply = <&backlight_regulator>;
+-	post-pwm-on-delay-ms = <200>;
+-	pwm-off-delay-ms = <200>;
+ };
+ 
+ &emmc {
+-- 
+2.22.0.410.gd8fdbe21b5-goog
 
-Mostly good, really minor nits left.
-
-> +config I2C_MT7621
-> +	tristate "MT7621/MT7628 I2C Controller"
-> +	depends on (RALINK && (SOC_MT7620 || SOC_MT7621)) || COMPILE_TEST
-> +	select OF_I2C
-
-OF_I2C is gone since 2013. Didn't Kconfig complain?
-
-> +
-> +#define MT76XX_I2C_INPUT_CLOCK	40000000
-
-Add a comment here explaining that this is a temporary solution until
-proper clock support is added?
-
-> +	ret =3D readl_relaxed_poll_timeout(i2c->base + REG_SM0CTL1_REG,
-> +					 val, !(val & SM0CTL1_TRI),
-> +					 10, TIMEOUT_MS * 1000);
-
-Yay, much better.
-
-> +	if (i2c->bus_freq =3D=3D 0) {
-> +		dev_warn(i2c->dev,
-> +			 "clock-frequency 0 not supported, using 1\n");
-> +		i2c->bus_freq =3D 1;
-> +	}
-
-A bus frequency of 1 Hz does neither make much sense. -EINVAL because
-there is surely something broken then?
-
-> +MODULE_AUTHOR("Steven Liu <steven_liu@mediatek.com>");
-
-His address is known to be broken!
-
-Regards,
-
-   Wolfram
-
-
---ZG5hGh9V5E9QzVHS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0EFDUACgkQFA3kzBSg
-KbaYmA/+Pk6EKiOklBWcrEM5rmp8OdZhk8Ay7VVs38Pb1pA/qvkrfmDt8EIFdFoB
-ysgnrGUCARrMMYfU1xxOay5C2ZedQq0hT8y+aB5YVYRE+cOL54Y76YmzvH4+0/Qf
-16za7WVLKalegbM216SHbh+uitHY8JMB/Lwl1AwCyK75ZTZRwLfsmqFSPXqkwaG/
-q3hSVWSRAx7z4dELYAbKfgwPwhJ7G9uFq7bn3mNFXWZ0tMv/MN3FZFmNEvhGWwry
-ZQC9zCUstll30i/BaELNqlFTlGKN2JWPLlS+DQSbcFd2CwzS/x/m5ddS2C35KU5X
-vWrOJCPmAnxrioR45zYfEtqaKJTuXY+tf52BPolrIRpYef8Boa0T+uEhKe+yYNRW
-ohc6AOxW8ocRiS/+ZyWldY6QPUnEAj1mjd0D92QoiR4nF9xjYJxnfkNVZ6OvWkn/
-9Atr1jSExJpnxqXDKAQHmMBjwK2WVPkSwIz4wHDi/yBi2xYQzQZxZqHRRwO5cHA5
-t5463LR4f1wDFzl3N3V7cxH+aapBUueRLlpeRmzal6RwNfwPNExPklwZS0iiz/32
-VbocpSRk6SV7iOIQW/NhJZpWOV6GrpTBwZ2PLM/Ff8oQ7mb+YzaSb82zzTVMgS8S
-MJ/7b8ZxR4gEtSM/7q4/i+ttK4BFGqn7jCtIm6Cd8eZ2WOCo1T8=
-=uD5t
------END PGP SIGNATURE-----
-
---ZG5hGh9V5E9QzVHS--
