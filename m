@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C1B45AFD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 12:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB28845B0C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 13:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727083AbfFNK4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 06:56:42 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45979 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727054AbfFNK4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 06:56:42 -0400
-Received: by mail-io1-f68.google.com with SMTP id e3so4661147ioc.12
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 03:56:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=06iI6z4cthU4ce66OeHWQkRCnmuFyEIHHZ9Es1yn3sc=;
-        b=ooZzfFJD2u9j2LussEGHFOPOfLBkJ+BU0GJHPBhgAJ/vkF6JbiQbi3Z9LCSduATYrm
-         pmqk7dvkdE04MoEJvLFEsmWLKI31BrB0lbpcgBa7PmY2Pqee615LcMhMjtdzFAWkeAol
-         te7vdgYxjdEddafQhiDTatljo0z/1a5LRul94=
+        id S1727183AbfFNLCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 07:02:34 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:39674 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727168AbfFNLCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 07:02:34 -0400
+Received: by mail-ed1-f67.google.com with SMTP id m10so2914558edv.6;
+        Fri, 14 Jun 2019 04:02:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=06iI6z4cthU4ce66OeHWQkRCnmuFyEIHHZ9Es1yn3sc=;
-        b=jBYK3gxA5OJYPlHjY2f46c157n3R4RwOH2x/pSKfQ5Q5F0hYEIwOOXQFSf0hiMV/Cc
-         E+nLLRLrM2kKvAuJ7GknaaZ9mVhdJt+6X7RxHXVTzDIjbkr1qO8r9D6JOk9K2vdjpWUR
-         CahiUrv/cKXzRtaXlE2zYvHRQDBtYi118tAtut3PUvhNwL3wYXqUBUQTDshL6/kohgQE
-         F+tNajyVHUDye9zM2CHDFmUlTi+CSD9TLsGdNipTedoGDbXx5XV/bfxUmKJwzrSjQG6y
-         MDeYABGDLKEE34rkgDMUx6clSonqH0wv8EJ4bTA8aMDEU+ok4tFNI1OymvSlux5yei2R
-         8EkA==
-X-Gm-Message-State: APjAAAXc5kTcKf31w35X0N1mYJkTqzrQ9e19e+7kkpZd3sQ6Ux7+pINB
-        RUbUI4W7kiERsHyZMFVyJfzom0xQetoBUbp1YSv7fa4PPzo=
-X-Google-Smtp-Source: APXvYqwkcIwVPtfblhejh6xHVBtwFYzc9v3JjBjZavec/51f+nlxxqOghRWbuFOJBMDNowUmrcO58Fw+cwukMr5fTSU=
-X-Received: by 2002:a05:6602:2253:: with SMTP id o19mr14463706ioo.297.1560509801785;
- Fri, 14 Jun 2019 03:56:41 -0700 (PDT)
+        bh=L90M1yJRaEbJvP50zlp+g8JncxyhlOF+tsQgaXRymkc=;
+        b=KBq6Hqu3T1ZsCKgQkIqQhXwYXs71219YICJwOKi+vOL3T7Uhm2dBVm/fpoxul+O7Wq
+         2j7XAE8WJ0Itcns0kUzzLuOdP/lgotrEiM+G5cIwB6uVLV6YigK1ih+zV3CJSaGhMNO3
+         htxB5a4l9WN0vpzTeVpfWKcmxxo+tDUmpkP6W1K3xWgCgzOWFGPuCEsw9zN46IMSqOTI
+         uDD//oWtmnvqKjm+nKJtY84OioSq1mi24LyELUy4Wx2QJGluCStIBbaO8dhSBqagiuXW
+         WmdlnMY9GT0fVZdcRiwLenbr0+mkakY4Y3DjwT1J6Ae0md4wDrfeJLpT1YkwL5mtosTd
+         KUnw==
+X-Gm-Message-State: APjAAAUX7QgIxAAYPVhcj0DnCf8xHahMkgb7I2rE+c9psBcLZykyfZFB
+        8D6drOXhyRDuUC+vXBQuYNJnK+E9AD8=
+X-Google-Smtp-Source: APXvYqyuFtXUCDQvwr66Ih64AQc43cDHtJjSbYhIWePDVG/9PGD95hlO2lP2sGlr8NPEQ4M8iqJztg==
+X-Received: by 2002:a17:906:7c92:: with SMTP id w18mr55710134ejo.116.1560510152279;
+        Fri, 14 Jun 2019 04:02:32 -0700 (PDT)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
+        by smtp.gmail.com with ESMTPSA id d44sm787079eda.75.2019.06.14.04.02.31
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 14 Jun 2019 04:02:31 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id s3so1896266wms.2;
+        Fri, 14 Jun 2019 04:02:31 -0700 (PDT)
+X-Received: by 2002:a1c:c545:: with SMTP id v66mr7776405wmf.51.1560510151032;
+ Fri, 14 Jun 2019 04:02:31 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190613185241.22800-1-jagan@amarulasolutions.com>
  <20190613185241.22800-3-jagan@amarulasolutions.com> <CAGb2v65xuXc4C1jOyM1GbEFVDam5P-6NN0ZhtzwzA7qU5F3nJQ@mail.gmail.com>
- <CAGb2v67DY534hXrx2H4jnZXA7jJS7sq2UwYCqw1iAgyLKdNzgA@mail.gmail.com>
-In-Reply-To: <CAGb2v67DY534hXrx2H4jnZXA7jJS7sq2UwYCqw1iAgyLKdNzgA@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Fri, 14 Jun 2019 16:26:30 +0530
-Message-ID: <CAMty3ZBc-AqbNGZCxRhOPw46iMvEZxoq1oATA46=K29gRYi4Sg@mail.gmail.com>
+ <CAGb2v67DY534hXrx2H4jnZXA7jJS7sq2UwYCqw1iAgyLKdNzgA@mail.gmail.com> <CAMty3ZBc-AqbNGZCxRhOPw46iMvEZxoq1oATA46=K29gRYi4Sg@mail.gmail.com>
+In-Reply-To: <CAMty3ZBc-AqbNGZCxRhOPw46iMvEZxoq1oATA46=K29gRYi4Sg@mail.gmail.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Fri, 14 Jun 2019 19:02:18 +0800
+X-Gmail-Original-Message-ID: <CAGb2v6466QSF1wJ_wJsVwAgHsnLXD9GAwbPQtXcTDq4aqAeEfQ@mail.gmail.com>
+Message-ID: <CAGb2v6466QSF1wJ_wJsVwAgHsnLXD9GAwbPQtXcTDq4aqAeEfQ@mail.gmail.com>
 Subject: Re: [linux-sunxi] [PATCH 2/9] drm/sun4i: tcon: Add TCON LCD support
  for R40
-To:     Chen-Yu Tsai <wens@csie.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
 Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -65,29 +66,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 9:05 AM Chen-Yu Tsai <wens@csie.org> wrote:
+On Fri, Jun 14, 2019 at 6:56 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> On Fri, Jun 14, 2019 at 11:19 AM Chen-Yu Tsai <wens@csie.org> wrote:
+> On Fri, Jun 14, 2019 at 9:05 AM Chen-Yu Tsai <wens@csie.org> wrote:
 > >
-> > On Fri, Jun 14, 2019 at 2:53 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > On Fri, Jun 14, 2019 at 11:19 AM Chen-Yu Tsai <wens@csie.org> wrote:
 > > >
-> > > TCON LCD0, LCD1 in allwinner R40, are used for managing
-> > > LCD interfaces like RGB, LVDS and DSI.
+> > > On Fri, Jun 14, 2019 at 2:53 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > > >
+> > > > TCON LCD0, LCD1 in allwinner R40, are used for managing
+> > > > LCD interfaces like RGB, LVDS and DSI.
+> > > >
+> > > > Like TCON TV0, TV1 these LCD0, LCD1 are also managed via
+> > > > tcon top.
+> > > >
+> > > > Add support for it, in tcon driver.
+> > > >
+> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > > >
-> > > Like TCON TV0, TV1 these LCD0, LCD1 are also managed via
-> > > tcon top.
-> > >
-> > > Add support for it, in tcon driver.
-> > >
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 > >
-> > Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+> > I take that back.
+> >
+> > The TCON output muxing (which selects whether TCON LCD or TCON TV
+> > outputs to the GPIO pins)
+> > is not supported yet. Please at least add TODO notes, or ideally,
 >
-> I take that back.
->
-> The TCON output muxing (which selects whether TCON LCD or TCON TV
-> outputs to the GPIO pins)
-> is not supported yet. Please at least add TODO notes, or ideally,
+> Are you referring about port selection? it is support in
+> sun8i_tcon_top_de_config.
 
-Are you referring about port selection? it is support in
-sun8i_tcon_top_de_config.
+No. That's supported as you already pointed out. That only selects
+which mixer outputs to which TCON.
+
+I'm talking about the GPIOD and GPIOH bits, which select which of
+LCD or TV TCON outputs to the LCD function pins. Keep in mind that
+the TV TCON's H/V SYNC signals are used in combination with the
+TV encoder RGB outputs for VGA.
+
+ChenYu
