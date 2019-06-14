@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E40F46733
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 20:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CDB546739
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 20:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725886AbfFNSMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 14:12:38 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:39820 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725802AbfFNSMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 14:12:38 -0400
-Received: by mail-pl1-f193.google.com with SMTP id b7so1326129pls.6
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 11:12:37 -0700 (PDT)
+        id S1725825AbfFNSNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 14:13:15 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:39686 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725808AbfFNSNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 14:13:15 -0400
+Received: by mail-pf1-f194.google.com with SMTP id j2so1916614pfe.6
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 11:13:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=message-id:mime-version:content-transfer-encoding:in-reply-to
          :references:to:from:subject:cc:user-agent:date;
-        bh=ScI87c0IlyAE4jve6HhJl87g8VW2jGMqM1x+hPj+aK4=;
-        b=QWAqqTMajs/XZNhqs6M7SHMK0Vph4q8kiNiYzc74G7ZO/RNh4key5pn13WMRBtEX1X
-         AAQX0gnsntNJzdMwktj7O8ph/WnIPp1JEOab3RHbCzN3Qd9OBSBOBdU524+ULyLfVB0/
-         ofIM0+OkjC5qOQAiggLyxuXOR3JXrI1aDZnS0=
+        bh=ZLVDWUWwWY4MpQ/fxABhQErt5/T/sQKzxrLl0+83gd0=;
+        b=F/ZB6ORavFWyfK9TSla7/HqOfq2c2l0pz5qJuy3jEPcr17gJLZgyiFcEiReWczZ4bi
+         f9ONz8SUO9N76h1XRciw/qHw+mWnSHHTiG9dg/RyWE2MMARvWcv+Dn6aEfA+HuZpomSK
+         p3L4+/pudF2hA5CGZXA3FcqShuGYAY3jI5KKE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:mime-version
          :content-transfer-encoding:in-reply-to:references:to:from:subject:cc
          :user-agent:date;
-        bh=ScI87c0IlyAE4jve6HhJl87g8VW2jGMqM1x+hPj+aK4=;
-        b=pBv1GrOQP2sK4BcA2a7wYgUCrthRT9UjbeNlBNyjgceFPCY0J/xws2HZAs45QqzY30
-         fVDkJHO9glNrC4N2Av9D4gkdrKzYxRju4bkPt65HZSCu1nq+2QpHK8nkum3M/P2Zvh5e
-         QREuMINp+j7UKc4wX8Xhzmifmyt94cTsoxPvKxcYDJB/ucFxBvfRiJMU4kHOmVBMgi8x
-         Oj+zc+jI+OJHtwZU28ZeULanqeqAE8wadxXu6qiZ4ZoegxlQaBoR+6vlc7Ven9blzSbA
-         xP2zC0UXc7I55ChIrGe8OwEPu1NONOhNpesVj+fTR4TEvntE9qIMgr7f8NZSgIswHpVS
-         3gpQ==
-X-Gm-Message-State: APjAAAVRBCrDSeOzi3KTmG21y/2LZK0+ejyZElQ31WHFMLl9XCR/02Ad
-        saYxiJVHiX4mltGcGgY8U8iXeA==
-X-Google-Smtp-Source: APXvYqxHj8VADlpF2bda26NGYbtU+zSPrYY7vRhzkruDiV7jwCROz0D4JYe3qNdSl1UeO/wmCq5KMg==
-X-Received: by 2002:a17:902:15c5:: with SMTP id a5mr96105932plh.39.1560535957521;
-        Fri, 14 Jun 2019 11:12:37 -0700 (PDT)
+        bh=ZLVDWUWwWY4MpQ/fxABhQErt5/T/sQKzxrLl0+83gd0=;
+        b=t2TK6FMMZu/eG+zRgWvpQasElHsi3pJOx2/42VRae5bdnbt6IKiHVf+yYDglaVyTRM
+         sU49fRCu1QmXGQEhLmdGoNhDQwC8MAFwPHF9vsZXhhSpkY1dVsIbACEKDeXZCiWhM3Tf
+         tlWMJcV94dscgzt7P67/k/FUybhqxR6IgKD7ubgOmNkFik/0MmJjO50RvWBiSlVKYAyo
+         gPyq5MYf8H9G538osLiQHsAdgYYlcuA8SniwEbfSL+tm6+0gA8DEO99qBni4W/i3YYmv
+         XEUNRWok6aL2GTUqnhXI1SvGpjm8xcwpyhOsJqsdb5OY7p9uOejKOFKSNtR2QBMQ0tv+
+         B1zg==
+X-Gm-Message-State: APjAAAUEsD155+UDRXjIz1R0M9zHQ56p7Y/RAEiM65zUfE1EgE72nuGo
+        XbIWzHVvF+B6zXvijuxbOq1E6w==
+X-Google-Smtp-Source: APXvYqwhGwL7yshptV+gRwCd63XpWKvE0KUQQrTCSKiIt6r0u4yc69kfnzZn5k0V6NZrfaFRfW4W1Q==
+X-Received: by 2002:a63:e44c:: with SMTP id i12mr11731959pgk.297.1560535994544;
+        Fri, 14 Jun 2019 11:13:14 -0700 (PDT)
 Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id a3sm4154500pje.3.2019.06.14.11.12.36
+        by smtp.gmail.com with ESMTPSA id e22sm3590678pgb.9.2019.06.14.11.13.13
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 11:12:36 -0700 (PDT)
-Message-ID: <5d03e394.1c69fb81.f028c.bffb@mx.google.com>
+        Fri, 14 Jun 2019 11:13:14 -0700 (PDT)
+Message-ID: <5d03e3ba.1c69fb81.9c2c8.aa89@mx.google.com>
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190613232613.GH22901@ziepe.ca>
-References: <20190613180931.65445-1-swboyd@chromium.org> <20190613180931.65445-2-swboyd@chromium.org> <20190613232613.GH22901@ziepe.ca>
-To:     Jason Gunthorpe <jgg@ziepe.ca>
+In-Reply-To: <20190614152700.GE11241@linux.intel.com>
+References: <20190613180931.65445-1-swboyd@chromium.org> <20190613180931.65445-2-swboyd@chromium.org> <20190614152700.GE11241@linux.intel.com>
+To:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 Subject: Re: [PATCH 1/8] tpm: block messages while suspended
 Cc:     Peter Huewe <peterhuewe@gmx.de>,
-        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
         Andrey Pronin <apronin@chromium.org>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
+        Arnd Bergmann <arnd@arndb.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
         Duncan Laurie <dlaurie@chromium.org>,
         Guenter Roeck <groeck@chromium.org>
 User-Agent: alot/0.8.1
-Date:   Fri, 14 Jun 2019 11:12:36 -0700
+Date:   Fri, 14 Jun 2019 11:13:13 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jason Gunthorpe (2019-06-13 16:26:13)
+Quoting Jarkko Sakkinen (2019-06-14 08:27:00)
 > On Thu, Jun 13, 2019 at 11:09:24AM -0700, Stephen Boyd wrote:
-> > From: Andrey Pronin <apronin@chromium.org>
-> >=20
-> > Other drivers or userspace may initiate sending a message to the tpm
-> > while the device itself and the controller of the bus it is on are
-> > suspended. That may break the bus driver logic.
-> > Block sending messages while the device is suspended.
-> >=20
-> > Signed-off-by: Andrey Pronin <apronin@chromium.org>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> >=20
-> > I don't think this was ever posted before.
+> > diff --git a/include/linux/tpm.h b/include/linux/tpm.h
+> > index 1b5436b213a2..48df005228d0 100644
+> > --- a/include/linux/tpm.h
+> > +++ b/include/linux/tpm.h
+> > @@ -132,6 +132,8 @@ struct tpm_chip {
+> >       int dev_num;            /* /dev/tpm# */
+> >       unsigned long is_open;  /* only one allowed */
+> > =20
+> > +     unsigned long is_suspended;
+> > +
+> >       char hwrng_name[64];
+> >       struct hwrng hwrng;
 >=20
-> Use a real lock.
+> I think it would better idea to have a bitmask of some sort that
+> would have bits for 'open' and 'suspended'.
 >=20
 
-To make sure the bit is tested under a lock so that suspend/resume can't
-update the bit in parallel?
+Sure. I can combine is_open and is_suspended into some sort of 'unsigned
+long flags' member and then have #define TPM_IS_OPEN 0 and #define
+TPM_IS_SUSPENDED 1 defines?
 
