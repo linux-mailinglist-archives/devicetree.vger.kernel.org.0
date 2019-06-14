@@ -2,104 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCA046956
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 353D446951
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:33:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726843AbfFNUbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 16:31:55 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:45392 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726047AbfFNUbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 16:31:55 -0400
-Received: by mail-pf1-f196.google.com with SMTP id r1so2074385pfq.12;
-        Fri, 14 Jun 2019 13:31:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AtSiqk5nC9LJRg1jpcdANXdpq0IBjpFzpPAT20QKwLs=;
-        b=D9Zi0GLfXAxnK/1KAzAoqvnxrpDfxQcd8uc+ubVdKQ8OWuZFEibKd2qRjzla+7IFNS
-         Q0jYmMOKetE6GkCPQSOh1Px3ZltrpfqKqD4nw/byc6+q4sDy9zWbPkXB0jfy0q1IshZt
-         Dbvv2CUtzxO24ht5eBCHUlSqX9cW/hndKnXLLRKl9o1rfIhaYqDAKrmASX1w2High6cv
-         hLJzPEwnHLsK2w2GSL7UIwCthVhtCjb6QXAjl2/SUr9wfuPN9ga76ohI6viKZpEdzCL0
-         L7J5XP/W+JurJSnwUPDddLZE7080G/vEk45SeYWimus+OdZg/7hvF2Ukr//3/uHwM3WZ
-         zerA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AtSiqk5nC9LJRg1jpcdANXdpq0IBjpFzpPAT20QKwLs=;
-        b=Uyv/e/fmNh13PNiuRhxIV3nk+GF7KPWOQOC+9aiduViLbAIIO+9gyVnwp9NYoT6TY0
-         wpCFs4FtLsNzNj1mwCbJh1DNGtzHDE9DCYs2sfEbqEA/Ra6g8/ZQ1kQeb9p+jbKtbXu+
-         vL/ObQr0xEamEM242ocOvsHCRclS3gytJLX1RfWzBp14alG1A04xnbWvcrkSBnchsgdJ
-         YgLZgw8eivFh1ZhkTm9004kiDF3TADu9dMvsL2zPiB5yclQhtVHoy/09pnQ8rSVqeFVV
-         J3kk6FWzdrhSssUOzruttO/dZ1/b+x7/IYokoY4E2WMkOwg8k8AYKIFC4d49R9lRy9pA
-         9hzA==
-X-Gm-Message-State: APjAAAXjGg5Dlt0L70+GcwJmtfIw4qxbeheZCspNi5nXQxrCY3yuFlVN
-        Z12GVo1murTKPPw/iPbupTI=
-X-Google-Smtp-Source: APXvYqzGVKsRY/HKe8P6drib97plaMeKe2fpFoiPvoa234LjxzhsrXYVgV3vx4vgJagc9QCCwyR/rA==
-X-Received: by 2002:a17:90a:b00b:: with SMTP id x11mr13055151pjq.120.1560544314155;
-        Fri, 14 Jun 2019 13:31:54 -0700 (PDT)
-Received: from localhost.localdomain ([162.251.69.147])
-        by smtp.gmail.com with ESMTPSA id 188sm5189016pfe.30.2019.06.14.13.31.52
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 13:31:53 -0700 (PDT)
-From:   Joseph Kogut <joseph.kogut@gmail.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
-        krzk@kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Joseph Kogut <joseph.kogut@gmail.com>
-Subject: [PATCH 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-Date:   Fri, 14 Jun 2019 13:31:44 -0700
-Message-Id: <20190614203144.3850-2-joseph.kogut@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190614203144.3850-1-joseph.kogut@gmail.com>
-References: <20190614203144.3850-1-joseph.kogut@gmail.com>
+        id S1728174AbfFNUbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 16:31:48 -0400
+Received: from sauhun.de ([88.99.104.3]:56706 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727206AbfFNUbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 16:31:47 -0400
+Received: from localhost (p5486CF81.dip0.t-ipconnect.de [84.134.207.129])
+        by pokefinder.org (Postfix) with ESMTPSA id E6D7B2CF690;
+        Fri, 14 Jun 2019 22:31:44 +0200 (CEST)
+Date:   Fri, 14 Jun 2019 22:31:44 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, Alan Tull <atull@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jiri Slaby <jslaby@suse.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-fpga@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-spi@vger.kernel.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Moritz Fischer <mdf@kernel.org>, Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thor Thayer <thor.thayer@linux.intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Joe Perches <joe@perches.com>
+Subject: Re: [PATCH v2 06/28] drivers: Add generic helper to match by of_node
+Message-ID: <20190614203144.GB7991@kunai>
+References: <1560534863-15115-1-git-send-email-suzuki.poulose@arm.com>
+ <1560534863-15115-7-git-send-email-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="EuxKj2iCbKjpUGkD"
+Content-Disposition: inline
+In-Reply-To: <1560534863-15115-7-git-send-email-suzuki.poulose@arm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree node for mali gpu on Odroid XU3 SoCs.
 
-Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
----
- .../boot/dts/exynos5422-odroidxu3-common.dtsi  | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+--EuxKj2iCbKjpUGkD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-index 93a48f2dda49..1f2ae19d01af 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-@@ -48,6 +48,24 @@
- 		cooling-levels = <0 130 170 230>;
- 	};
- 
-+	gpu: gpu@11800000 {
-+		compatible = "samsung,exynos-mali", "arm,mali-t628";
-+		reg = <0x11800000 0x5000>;
-+		interrupts = <0 117 0>,
-+			     <0 219 0>,
-+			     <0 74  0>;
-+		interrupt-names = "gpu", "job", "mmu";
-+		clocks = <&clock CLK_G3D>,
-+			 <&clock CLK_DOUT_ACLK_G3D>,
-+			 <&clock CLK_FOUT_VPLL>;
-+		mali-supply = <&buck4_reg>;
-+		operating-points = <
-+			/* KHz  uV   */
-+			600000  1150000
-+			177000  812500
-+		>;
-+	};
-+
- 	thermal-zones {
- 		cpu0_thermal: cpu0-thermal {
- 			thermal-sensors = <&tmu_cpu0 0>;
--- 
-2.22.0
+> +
+> +int device_match_of_node(struct device *dev, const void *np)
+> +{
+> +	return dev->of_node == np;
+> +}
+> +EXPORT_SYMBOL_GPL(device_match_of_node);
 
+Is it an option to 'static inline' this simple function in the header,
+saving the EXPORT?
+
+
+--EuxKj2iCbKjpUGkD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0EBDAACgkQFA3kzBSg
+KbZQeg/+MjmzU/IJj8oHfL4ndVmHrnLSPM/0OA0J/USTiS12dT9fwVXWkkaLZlRR
+cZkTt2QJ3UkAf+rbhooH8c/uo56rhY/LLFM7CT+4b360BZ1CYaVT8ttPRYSs5jtC
+CV9vMHwMl1kI1vAg5uSMb0EIjR/0dEl4Q8ol4MYMYqR7fusVx+qGRnVPW9zePbEI
+x3F/0woDahhQj0i12ETLSl2ONa8A54M1BgmOHRdcbfrdEnuUnyb0gmnKJDuQu7pz
+MDYW2ILMYPOewsH3DJSHpH7HuzgDTjqlgmWIBlKn0EbpgMT2UqyuoxHJ1lkOh4yk
+llNaipn5AyS6IbodA4F5TZu2NHJkPhwUgfCy9rXUG5/IGYPq43f9DjLNEzNqHhMI
+4nZi5EGx6o8Y5641xf3hZxRjDqu610k19RX3QSOXZxLoOQ9+CSFEwfXxIVDgD11o
+B4NMXI6cD3cddQgHfSyUNKDCn9lNMLk7uqbuXnAGEbreQ5InjVBgeZ3O59mDaVrW
+1qR3/yup3CR/nOLPdfzR2E4yiwTAKc+B4Vo52DP8X6OnQR/u/05CCTKHaeh8SOjT
+uP31ar1Au18BDkCxNuw4NijvDnIGAjqTO/0GLV2m5ViWAeq1nAMpIoCIiR6dhMpK
+naLg0mc136SskefQhRyOrVOmm7rLHV9oQmzG7Lb8maF3BNuStsk=
+=CJt5
+-----END PGP SIGNATURE-----
+
+--EuxKj2iCbKjpUGkD--
