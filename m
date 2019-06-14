@@ -2,92 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4C0846845
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B86246849
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725889AbfFNTrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 15:47:12 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33107 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725802AbfFNTrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:47:12 -0400
-Received: by mail-wm1-f67.google.com with SMTP id h19so140408wme.0;
-        Fri, 14 Jun 2019 12:47:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=w7hWwTYJqqdtzNOgI2SlOoDpVDK4IVNaEZYhxTxW1ms=;
-        b=E7NvstzZwUvIUkg8f3C5Owi9vBiTS+92/z/pEcuqA6hibXdSEb2sDw6Dn53Jj3fVrZ
-         9K8Fp+1yWBowk4sbqNrKo/vC0yR//ZOlgCMTv09SH1iYKSr19Ea01b0EZu+tIflSlf8n
-         KgT8Dk1suYc5/O0WG+rjESkWTjh0N6eJPOEGD90G5Ry9UzbHCMwkmFZ5W8MTIXcacMzE
-         ZAorz2dWJpYNBIqNV/uTnimyE7hot3tGiDdpaaWoouPoCOju6iP1CMUMpFzOQnxi5oN7
-         tyCTvUWST16V1kTGb+k4uY/SPK9bFqGJujeR6sWOZcicH0dtS1Iw2Nr5inoQOE0kjz4b
-         0Sdw==
+        id S1725889AbfFNTsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 15:48:21 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:43869 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbfFNTsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:48:21 -0400
+Received: by mail-qt1-f196.google.com with SMTP id z24so3833320qtj.10;
+        Fri, 14 Jun 2019 12:48:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=w7hWwTYJqqdtzNOgI2SlOoDpVDK4IVNaEZYhxTxW1ms=;
-        b=CiO0JaX1Wk2xsJBPInqjvfthAmzTSQ2P8+SagfZd5QrgJ6/U0u1tMswfyGv36I2qc+
-         LqVA+TsHvktR3zVipd71gAFfmT7JMAhiMseWPKO0CR12u3xu5a7cLnO6Cs3HopJG2RT1
-         ojbuA7x/CkkFkj2B3vNjulDFFdGroc42qhN/UfKlnFJGvfupzdYdBy+0AtkULFDaiPcj
-         9ivzEQdECZUC1nPg5SoUx+CMKaYGc/vDFJj2S4l9SQJH0l9KHweC0VamxePTHn7D+Cha
-         TzGbQqW++e98ayTj9iuqTEKzenAG1yJD12hu0oRmWYarwdQMQUh1Jgax2H/LGj7D3v8C
-         egPg==
-X-Gm-Message-State: APjAAAWSFc2GwT7WplcTpVUzoKlkUUwzSizKTH4RhcW+3UnF/QEhDjEP
-        6kxwTtxnzTCFoU6DdyZhx18=
-X-Google-Smtp-Source: APXvYqw+/lotMGB1kmoHtHxy2mEXLLxX8UP1pU2bI/ymsVBaIhukGMPveKI+vAdOPbMWJLLKawenZg==
-X-Received: by 2002:a1c:3d41:: with SMTP id k62mr8215153wma.61.1560541630216;
-        Fri, 14 Jun 2019 12:47:10 -0700 (PDT)
-Received: from X555LD ([2a02:85f:51e:5d00:f1ab:2da6:d378:d0de])
-        by smtp.gmail.com with ESMTPSA id 139sm4385668wmb.19.2019.06.14.12.47.07
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DTGoqwiweSV6aeoF5XhZdEP/I2kRjVOKyDX4TOs6e8Q=;
+        b=XFhzltiN6JAbI+sy0zoU+1OjY+PkjtRwoB7WWxlSek7mIdA8zYGTaC9qnMle/uC9oo
+         AScdT+0vzHQ5qoDf3+OaVeicO3frOvH1ZcVCwvi0TePf/xx4+m2Mky3NMpLP6eZYBrEX
+         iQSfZ0+GqCbrfQQW+wcgsa71AwBx+3YPY0GAJtJM0s9z1B4BoZ2rEx4xYrl4Zg5uwQm1
+         /DRs85lJIh4AqUHuKwhbkUX1QHQhpWyr+ZrW1BHXmsz+CnFQI8bXTz4re64ZCCFZbl+Y
+         5ttFl6Zbhae7zx8gGBUhIs3QhilJS2PcecZnlhe8gFVbzIMJ6w1XrCx/rk8AtlC+6GXk
+         tWpw==
+X-Gm-Message-State: APjAAAUjE0uR7oGZyE9u8qxIRLI6+QZ27QbIjMmLVgUSYx2At8Qn9qdb
+        CFLHRPYiA6/zowRQwj+tvg==
+X-Google-Smtp-Source: APXvYqxyumh5JC93QWAZwXi8bX94Ds4TbWmpcIrpYq7YqS0rxdhfLuMKOXx6WhiNp6ruOkDa/7R9sw==
+X-Received: by 2002:ac8:2379:: with SMTP id b54mr22088712qtb.168.1560541699846;
+        Fri, 14 Jun 2019 12:48:19 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id t29sm2564313qtt.42.2019.06.14.12.48.19
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 12:47:09 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 22:47:06 +0300
-From:   "Leonidas P. Papadakos" <papadakospan@gmail.com>
-Subject: Re: [PATCH 1/2] clk: rockchip: add clock for the watchdog pclk on
- rk3328
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     itdaniher@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Message-Id: <1560541626.1367.2@gmail.com>
-In-Reply-To: <2207770.HSO279VB62@phil>
-References: <20190605235714.22432-1-papadakospan@gmail.com>
-        <5657669.4RvfzeBcXs@phil> <1560506054.1367.0@gmail.com>
-        <2207770.HSO279VB62@phil>
-X-Mailer: geary/3.32.1
+        Fri, 14 Jun 2019 12:48:19 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 13:48:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Leif Middelschulte <leif.middelschulte@klsmartin.com>
+Cc:     dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, mark.rutland@arm.com
+Subject: Re: [PATCH 01/10] dt-bindings: input: touchscreen: stmpe: add touch
+ window configuration
+Message-ID: <20190614194818.GA22146@bogus>
+References: <20190527160736.30569-1-leif.middelschulte@klsmartin.com>
+ <20190527160736.30569-2-leif.middelschulte@klsmartin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190527160736.30569-2-leif.middelschulte@klsmartin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 27, 2019 at 06:07:27PM +0200, Leif Middelschulte wrote:
+> The STMPE811 is able to only monitor a subwindow of the
+> entire screen. Touches outside of this window are neglected.
+> This change adds the corresponding documentation.
 
-ok. I have tested the conversion on the platforms I did convert there,
-> so I'll just apply the 2 patches later on.
+Unless you are trying to just filter out the edge values which I think 
+we already have properties for, wouldn't this be something the user 
+may want to adjust/move at runtime?
+
 > 
-> Should I wait on you respinning the rk3328 watchdog patch, or just
-> add the rk3328 watchdog pclk myself?
+> Signed-off-by: Leif Middelschulte <leif.middelschulte@klsmartin.com>
+> ---
+>  .../devicetree/bindings/input/touchscreen/stmpe.txt      | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt b/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
+> index c549924603d2..04962e2e1ad0 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
+> @@ -33,6 +33,13 @@ Optional properties:
+>  - st,i-drive		: current limit value of the touchscreen drivers
+>  				0 -> 20 mA (typical 35mA max)
+>  				1 -> 50 mA (typical 80 mA max)
+> +- st,window-tracking	: An u12 array that allows to pre-set a sub-window in the touchscreen.
+
+u16?
+
+> +				Any touch position that is outside the sub-window is discarded
+> +				(top-right x, top-right y, bottom-left x, bottom-left y).
+> +				The given window also affects the value range (limits) set
+> +				within the input subsystem which, in turn, affects
+> +				the input resolution calculation on both axes.
+> +
+>  
+>  Optional properties common with MFD (deprecated):
+>   - st,sample-time	: ADC conversion time in number of clock.
+> @@ -101,6 +108,8 @@ stmpe811@41 {
+>  		 * current limit value
+>  		 */
+>  		st,i-drive = <1>;
+> +		/* enable entire window */
+> +		st,window-tracking = /bits/ 16 <4095 4095 0 0>;
+>  	};
+>  	stmpe_adc {
+>  		compatible = "st,stmpe-adc";
+> -- 
+> 2.21.0
 > 
-> Heiko
-> 
-
-Would be awesome if you added it yourself. You seem to understand this 
-a lot better.
-
-Also, I checked out the patch you CCed me on and I'm happy to see that 
-the reused code has been replaced with a single unified macro. So much 
-tidier.
-
-As far as I understand then, it's a case of adding the pclk id, the 
-sgrf thing and enable it in the dts. Cool!
-Hoping to see it in 5.3
-
-
