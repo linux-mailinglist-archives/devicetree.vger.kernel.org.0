@@ -2,246 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B2445E87
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E80245EA2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728304AbfFNNk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 09:40:59 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:42893 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728067AbfFNNk7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 09:40:59 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190614134057euoutp02304985422417155983cc5584ae86a102~oFFxTa8iO0747007470euoutp02M
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 13:40:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190614134057euoutp02304985422417155983cc5584ae86a102~oFFxTa8iO0747007470euoutp02M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1560519657;
-        bh=+ZzNZVpTuLGrOOQoRV7Ief94EdVHmVGQucnOC6c/nP0=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Trfs0DuMSl21QJlyU9ckjlqR8CFqBM3V6byuRgPvNfVj6laK49jhlP2qQXOb8FFBR
-         AIIVegDkZk981BicJaayTP4dkHG3bU9MVOlfpMOL40W6Svw94iOx9indofxoVKWBS0
-         6S+aeeLEYn1cEMqqb1F6MBM4SmAfCy+tE+MBEr00=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190614134056eucas1p1f027afb1e1ee5936d02bd3e470ef5b26~oFFwgE7yf2597425974eucas1p1h;
-        Fri, 14 Jun 2019 13:40:56 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 9D.22.04298.8E3A30D5; Fri, 14
-        Jun 2019 14:40:56 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190614134055eucas1p16bbd29a62be6825394efb3b635182019~oFFvlXRvG3190831908eucas1p1E;
-        Fri, 14 Jun 2019 13:40:55 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190614134055eusmtrp16d5f32edc3d1360d84dcda5e43addbdb~oFFvVgrBl1787017870eusmtrp1A;
-        Fri, 14 Jun 2019 13:40:55 +0000 (GMT)
-X-AuditID: cbfec7f2-f13ff700000010ca-7c-5d03a3e877dd
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 6E.6C.04146.7E3A30D5; Fri, 14
-        Jun 2019 14:40:55 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190614134054eusmtip2e7741234ae8ace93d169fd44129e8334~oFFugLp_T2169921699eusmtip2J;
-        Fri, 14 Jun 2019 13:40:54 +0000 (GMT)
-Subject: Re: [PATCH v10 08/13] drivers: memory: add DMC driver for
- Exynos5422
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, gregkh@linuxfoundation.org,
-        willy.mh.wolff.ml@gmail.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <6f86228d-8409-a835-20ba-ad20464379dd@partner.samsung.com>
-Date:   Fri, 14 Jun 2019 15:40:53 +0200
+        id S1728127AbfFNNmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 09:42:54 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:35216 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728033AbfFNNmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 09:42:53 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EDgjcU015726;
+        Fri, 14 Jun 2019 08:42:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1560519765;
+        bh=JTrKAS5DxBlxyr/RUcG7xCZZCkjwEovfo2qd+cpbq7o=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=HEpkw3CrAA6B+lRcszpV93/Y16UTfxTK16V1R8rSpRtlNuPfp4MuPbeje6tJaOzv5
+         fLdJFQ9otRoony+Lme3E13MenSQy4LEqEfVsXt7mou3/cYyqI1RR0wYBEpi47ZEC48
+         vJVGouhBNOuc0lWGVRF9c2Y/XVhzbzCnR+kY2Cn8=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EDgjTi018675
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 14 Jun 2019 08:42:45 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 14
+ Jun 2019 08:42:45 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 14 Jun 2019 08:42:45 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EDggeV100780;
+        Fri, 14 Jun 2019 08:42:43 -0500
+Subject: Re: [PATCH 09/16] dt-bindings: dma: ti: Add document for K3 UDMA
+To:     Rob Herring <robh@kernel.org>
+CC:     Vinod <vkoul@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, Tony Lindgren <tony@atomide.com>
+References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
+ <20190506123456.6777-10-peter.ujfalusi@ti.com> <20190613181626.GA7039@bogus>
+ <e0d6a264-96b5-31a6-e70b-3b1c2d863988@ti.com>
+ <CAL_JsqJNMkKL_FubZfjKY6jLebMetmgR24EoendHoPM2ckrUQA@mail.gmail.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <e811d674-b79f-4da8-c632-c7a90844b6c5@ti.com>
+Date:   Fri, 14 Jun 2019 16:43:15 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.7.0
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPehO2pKrTKMO4YRwDMaPPngmeWG9WF=kMuBG+=P1ix3NA@mail.gmail.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0yNcRjH/c577XDq54SexbSdaWgTbTa/Yc197zLX2dxmHLyrplOcV5H6
-        I0zRFRWnQ3KWScfl5EjJDm1dnJw4CYtp0o2MQrot1PT2Zvrv83yf7/N7nu/24yltEuvLh0ce
-        Fo2R+ggdq6ZLngzWzfucT+1acN3sR+6abAx509vBkLwqN0NudrchcjLfxpJMV66KPEsxkIy2
-        rxSpqyviyPMTnRzpTm1iyKuHl1nSk1aFiKnusYrcrnrPkXrXatJ4/AZLKjuTGDLccJcm5a9D
-        SONvT9Jf04qWTRP6+87Twve3pzjhUkI9LZSZ33OC3XqGFcpzb3FC2slvrJBebEXCvdo4occ+
-        c6N6h3rpfjEiPEY0zg/eow7raDx0sEZ39EdrH52A3L7JyIMHvBDMP1rYZKTmtfgGgsftnbRS
-        9CL42GxjlKIHQXdOP/NvpNJl4mTW4gIEz5IFxdSFYLg6G8kNb7wBHAXVlMxT8Fx4MzQw+hKF
-        sxlwDLhHFvI8iwPhgfWQ7NHgNdCU90slM439YcDyZ3R2Kt4GvWV2pHgmw9OcdlpmD7wJ7KaG
-        UT+FfeBde94Y+0Fp12VK3gXYwUNWZxmrXL0KGlJaaYW94YuzmFN4BtRmpo7pEiSkWZDC8dCW
-        kTvmWQKVznpGvpkaCWN7OF+Rl0O6pUUly4A94W3XZOUETzhfcpFSZA2cTtQq7jlQnPpCpfA0
-        KLh1gTuLdOZxwczjwpjHhTH/33sV0VbkI0ZLhlBRCooUjwRKeoMUHRkauC/KYEcj37N22Pnz
-        Aep7ubcCYR7pJmlM6dQuLaOPkWINFQh4SjdFc2XJiKTZr489JhqjdhujI0SpAk3naZ2PJm5C
-        804tDtUfFg+I4kHR+K+r4j18E9C5wdzls03rbZZZMdvTretPV3tUxs8pnvXFObFQa11xM37Q
-        3yev41vpuy2FW1/G1i/c7DV1aVG+xVnkNbQYz+PXTUwNyFkbUvuqt+lSzrWWz8as4HstFr84
-        h9FdMmHx5sTgqItsRvanO1eaXfGabY8WhYVmxiTpd1gLs9j7DtfK8g9uHS2F6YMCKKOk/ws+
-        OqLwmgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJKsWRmVeSWpSXmKPExsVy+t/xe7rPFzPHGvRdkrPYOGM9q8X1L89Z
-        LeYfOcdqsfrjY0aL5sXr2Swmn5rLZHGmO9ei//FrZovz5zewW5xtesNu8bHnHqvF5V1z2Cw+
-        9x5htJhxfh+Txdojd9ktLp5ytbjduILN4vCbdlaLf9c2sljsv+Jlcfs3n8W3E48YHcQ8vn2d
-        xOLx/kYru8fshossHjtn3WX32LSqk81j/9w17B69ze/YPPq2rGL02Hy62uPzJrkArig9m6L8
-        0pJUhYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07m5TUnMyy1CJ9uwS9jOe3CwtOKFV8
-        ePSVpYHxnFQXIyeHhICJxOFTM9hBbCGBpYwSGz6EQ8TFJCbt284OYQtL/LnWxdbFyAVU85pR
-        ou/WCyCHg0NYwFdi93FxkBoRAU2J63+/s4LUMAtMZZWY8Pw01NAJTBLHdsWB1LMJ6EnsWFUI
-        EuYVcJO4N/8XE4jNIqAq8X3hH2YQW1QgQmL2rgYWiBpBiZMzn4DZnAKBEptmXAOrZxYwk5i3
-        +SEzhC0ucevJfKi4vMT2t3OYJzAKzULSPgtJyywkLbOQtCxgZFnFKJJaWpybnltsqFecmFtc
-        mpeul5yfu4kRmCy2Hfu5eQfjpY3BhxgFOBiVeHhn9DHHCrEmlhVX5h5ilOBgVhLhnWcNFOJN
-        SaysSi3Kjy8qzUktPsRoCvTcRGYp0eR8YCLLK4k3NDU0t7A0NDc2NzazUBLn7RA4GCMkkJ5Y
-        kpqdmlqQWgTTx8TBKdXA2OicoMT9dhcTjwyvqe+aNh3LRp11fXejNiyMnL79vOPjy1zX+NVL
-        y0OzLsbIZGex1mi0eFx03hiX1rx9ZSnTq1Jj7nynRz0x+1/zPtf2r4tWb7V5d3Sj+yHbaptC
-        JS5F1kVTDqRfnLn+Zjj7nl3GS+JL7Y61nNn3WESmcMuqKebrYmZ5hd5TYinOSDTUYi4qTgQA
-        gD6NvywDAAA=
-X-CMS-MailID: 20190614134055eucas1p16bbd29a62be6825394efb3b635182019
-X-Msg-Generator: CA
+In-Reply-To: <CAL_JsqJNMkKL_FubZfjKY6jLebMetmgR24EoendHoPM2ckrUQA@mail.gmail.com>
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9
-References: <CGME20190614095327eucas1p19b6e522efa15c8fd21c51f3900e376e9@eucas1p1.samsung.com>
-        <20190614095309.24100-1-l.luba@partner.samsung.com>
-        <20190614095309.24100-9-l.luba@partner.samsung.com>
-        <CAJKOXPehO2pKrTKMO4YRwDMaPPngmeWG9WF=kMuBG+=P1ix3NA@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 6/14/19 2:58 PM, Krzysztof Kozlowski wrote:
-> On Fri, 14 Jun 2019 at 11:53, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+On 14/06/2019 16.20, Rob Herring wrote:
+> On Thu, Jun 13, 2019 at 2:33 PM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
 >>
->> This patch adds driver for Exynos5422 Dynamic Memory Controller.
->> The driver provides support for dynamic frequency and voltage scaling for
->> DMC and DRAM. It supports changing timings of DRAM running with different
->> frequency. There is also an algorithm to calculate timigns based on
->> memory description provided in DT.
->> The patch also contains needed MAINTAINERS file update.
+>> Rob,
 >>
->> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->> ---
->>   MAINTAINERS                             |    8 +
->>   drivers/memory/samsung/Kconfig          |   17 +
->>   drivers/memory/samsung/Makefile         |    1 +
->>   drivers/memory/samsung/exynos5422-dmc.c | 1262 +++++++++++++++++++++++
->>   4 files changed, 1288 insertions(+)
->>   create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
+>> On 13/06/2019 21.16, Rob Herring wrote:
+>>>> +Remote PSI-L endpoint
+>>>> +
+>>>> +Required properties:
+>>>> +--------------------
+>>>> +- ti,psil-base:             PSI-L thread ID base of the endpoint
+>>>> +
+>>>> +Within the PSI-L endpoint node thread configuration subnodes must present with:
+>>>> +ti,psil-configX naming convention, where X is the thread ID offset.
+>>>
+>>> Don't use vendor prefixes on node names.
 >>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 57f496cff999..6ffccfd95351 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -3470,6 +3470,14 @@ S:       Maintained
->>   F:     drivers/devfreq/exynos-bus.c
->>   F:     Documentation/devicetree/bindings/devfreq/exynos-bus.txt
+>> OK.
 >>
->> +DMC FREQUENCY DRIVER FOR SAMSUNG EXYNOS5422
-> 
-> Eh, more comments from my side.
-> "For the hard of thinking, this list is meant to remain in alphabetical order."
-OK
-> 
->> +M:     Lukasz Luba <l.luba@partner.samsung.com>
->> +L:     linux-pm@vger.kernel.org
->> +L:     linux-samsung-soc@vger.kernel.org
->> +S:     Maintained
->> +F:     drivers/memory/samsung/exynos5422-dmc.c
->> +F:     Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->> +
->>   BUSLOGIC SCSI DRIVER
->>   M:     Khalid Aziz <khalid@gonehiking.org>
->>   L:     linux-scsi@vger.kernel.org
->> diff --git a/drivers/memory/samsung/Kconfig b/drivers/memory/samsung/Kconfig
->> index 79ce7ea58903..c93baa029654 100644
->> --- a/drivers/memory/samsung/Kconfig
->> +++ b/drivers/memory/samsung/Kconfig
->> @@ -5,6 +5,23 @@ config SAMSUNG_MC
->>            Support for the Memory Controller (MC) devices found on
->>            Samsung Exynos SoCs.
+>>>> +
+>>>> +Configuration node Required properties:
+>>>> +--------------------
+>>>> +- linux,udma-mode:  Channel mode, can be:
+>>>> +                    - UDMA_PKT_MODE: for Packet mode channels (peripherals)
+>>>> +                    - UDMA_TR_MODE: for Third-Party mode
+>>>
+>>> This is hardly a common linux thing. What determines the value here.
 >>
->> +config ARM_EXYNOS5422_DMC
+>> Unfortunately it is.
 > 
-> Why you added prefix of ARM to CONFIG think none of other Exynos
-> Kconfig options follow such convention (except devfreq).
-In the previous versions the driver was in drivers/devfreq/,
-that's why they have this prefix.
-> 
->> +       tristate "ARM EXYNOS5422 Dynamic Memory Controller driver"
->> +       depends on ARCH_EXYNOS
->> +       select DDR
-> 
-> In general select should be used only for non-visible symbols and DDR
-> is visible. Use depends.
-OK
-> 
->> +       select PM_DEVFREQ
-> 
-> This definitely cannot be select. You do not select entire subsystem
-> because some similar driver was chosen.
-So I will use depends int this case
-> 
->> +       select DEVFREQ_GOV_SIMPLE_ONDEMAND
->> +       select DEVFREQ_GOV_USERSPACE
-> 
-> I think only simple_ondemand is needed. Is userspace governor
-> necessary for working? Or actually maybe both could be skipped?
-> 
-Actually we can skip both governors from here.
+> No, it's a feature of your h/w and in no way is something linux
+> defined which is the point of 'linux' prefix.
 
->> +       select PM_DEVFREQ_EVENT
-> 
-> Again, depends.
-OK
+The channel can be either Packet or TR mode. The HW is really flexible
+on this (and on other things as well).
+It just happens that Linux need to use specific channels in a specific mode.
 
-There are these 4 options which the driver depends on:
-         depends on ARCH_EXYNOS
-         depends on DDR
-         depends on PM_DEVFREQ
-         depends on PM_DEVFREQ_EVENT
+Would it help if we assume that all channels are used in Packet mode,
+but we have linux,tr-mode bool to indicate that the given channel in
+Linux need to be used in TR mode.
 
-Should I merged them into one, two lines? like below:
-a)
-depends on (ARCH_EXYNOS && DDR && PM_DEVFREQ && PM_DEVFREQ_EVENT)
-b) grouped into two sets
-depends on (ARCH_EXYNOS && DDR)
-depends on (PM_DEVFREQ && PM_DEVFREQ_EVENT)
-c) grouped by pm_devfreq only
-depends on ARCH_EXYNOS
-depends on DDR
-depends on (PM_DEVFREQ && PM_DEVFREQ_EVENT)
+>> Each channel can be configured to Packet or TR mode. For some
+>> peripherals it is true that they only support packet mode, these are the
+>> newer PSI-L native peripherals.
+>> For these channels a udma-mode property would be correct.
+>>
+>> But we have legacy peripherals as well and they are serviced by PDMA
+>> (which is a native peripheral designed to talk to the given legacy IP).
+>> We can use either packet or TR mode in UDMAP to talk to PDMAs, it is in
+>> most cases clear what to use, but for example for audio (McASP) channels
+>> Linux is using TR channel because we need cyclic DMA while for example
+>> RTOS is using Packet mode as it fits their needs better.
+>>
+>> Here I need to prefix the udma-mode with linux as the mode is used by
+>> Linux, but other OS might opt to use different channel mode.
+> 
+> So you'd need <os>,udma-mode? That doesn't work... If the setting is
+> per OS, then it belongs in the OS because the same dtb should work
+> across OS's.
 
-> 
->> +       select PM_OPP
-This option can be used here IIUC
->> +       help
->> +         This adds driver for Exynos5422 DMC (Dynamic Memory Controller).
->> +         The driver provides support for Dynamic Voltage and Frequency Scaling in
->> +         DMC and DRAM. It also supports changing timings of DRAM running with
->> +         different frequency. The timings are calculated based on DT memory
->> +         information.
->> +
->> +
->>   if SAMSUNG_MC
-> 
-> Why this is outside of SAMSUNG_MC?
-Good question, I will move it below this 'if' statement.
+So I should have a table for the thread IDs in the DMA driver and mark
+channels as TR or Packet in there for Linux use?
+Or just an array which would mark the non packet PSI-L thread IDs?
 
-Regards,
-Lukasz
+I still prefer to have this coming via DT as a Linux parameter as other
+OS is free to ignore the linux,udma-mode, but as I said there are
+certain channels which must be used in Linux in certain mode while
+others in different mode.
+
+>> The reason why this needs to be in the DT is that when the channel is
+>> requested we need to configure the mode and it can not be swapped
+>> runtime easily between Packet and TR mode.
 > 
-> Best regards,
-> Krzysztof
-> 
-> 
+> So when the client makes the channel request, why doesn't it specify the mode?
+
+This is UDMAP internal information on what type of Descriptors the
+channel will expect and how it is going to dispatch the work.
+
+Packet and TR mode at the end does the same thing, but in a completely
+different way.
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
