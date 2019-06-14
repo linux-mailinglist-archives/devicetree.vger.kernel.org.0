@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6001B464CA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A1EB464E2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726705AbfFNQp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 12:45:59 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:32810 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726658AbfFNQp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:45:59 -0400
-Received: by mail-qt1-f195.google.com with SMTP id x2so3252507qtr.0;
-        Fri, 14 Jun 2019 09:45:58 -0700 (PDT)
+        id S1726129AbfFNQrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 12:47:06 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:43188 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbfFNQrG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:47:06 -0400
+Received: by mail-qk1-f193.google.com with SMTP id m14so2065369qka.10;
+        Fri, 14 Jun 2019 09:47:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tkF76/YWyBi2DNFHRTKUkXkyJ1fsnWPr1qR9pgyZkc0=;
-        b=Mku7dyw/bXMHmtwe4LUJnaWM8TvuklyT+rjoYtjSN8wpTxJdYq7SJkCeF4kaaoIO62
-         tFmVNrisEtRJBDWvPW5Q7OSR2cJueYZ+Hvza7y93BFD6lrGtzOit+X2MR/KziHN7ztY0
-         K/S6s1e/+ps7PfELjDUe8WGL3w+XydtLc0pw1x2AgU2bE6abGAK1uxRDNmHV/aSXTXWs
-         0Y92+CallBlu+mgN8klmGIOZDadLCEloE7kQ6CMocRrxR/3dOp5kqVubP1IK+TXxCSip
-         /pvHC83V6vhFNHcvzJRf9c6SAuzfkllWyAY7mTdqHk88iooefBZm1sLLarK9+2PDccOV
-         1YOg==
-X-Gm-Message-State: APjAAAUqsJNU5b4SVF0/ncWEPQwd5kyQI22pfdh5I4q0BZS6zNpgQOri
-        X8VQ+Wcd2nfpJnmbIYOA9w==
-X-Google-Smtp-Source: APXvYqzeZjnaIMhoekYjI1KAjGSgD0u8xfYWVwEDuon+Prg33JgQL/mvg90QKAMLqnJN9uLyklsNNw==
-X-Received: by 2002:a0c:ae5a:: with SMTP id z26mr9212014qvc.65.1560530757901;
-        Fri, 14 Jun 2019 09:45:57 -0700 (PDT)
+        bh=IOo1pvRWjmacOSCq3ogqjxZuWWdGzC13ArgyKbSDaEM=;
+        b=pIgqRVu/5opph7p8aRo9Y1JBiXGzTFmXQS7AOCqWN7MuJ9BxdXsrK3IhqV0mF9CC/b
+         zbwmhJCBAd7My2fRWcHHedV/BTzjJHBFuqQysr1KPvLyquszP8PwMLC8Nazk4YKmcHhS
+         3732X4UcxbO+2wflc7vy/I1qi+HdJRhR45bK/2wAt1LXkepUs6YxjAVZS2XrE7EIKAbB
+         emRN14Rbu9dtwZ3upM8vXuKBm5KMnctL8CIrcaRsN7Um34E+aXy5CN9xt7cRfZ9l9DIa
+         +Mg2VqLChBJhWfoXqz1cojTki1EefYj3Zm3KfCP9es/7g/SqWjQsCuHzX/ZFEQeDORoU
+         9C1w==
+X-Gm-Message-State: APjAAAUG8ZM1owNy9eh15xxXvCBNyMB1uLiMgScj+/wX1PFyL9TPcC0O
+        4CgeBcOLOb/buc0nmc+fTw==
+X-Google-Smtp-Source: APXvYqwI93cayeCpqkq1zgPJZnyXYH8EbxpzVgERa0diD8d8GwuLWqKf0sVGvoLXazEVSJSYS9lgBg==
+X-Received: by 2002:a37:d8e:: with SMTP id 136mr63465224qkn.259.1560530825285;
+        Fri, 14 Jun 2019 09:47:05 -0700 (PDT)
 Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id e8sm1819685qkn.95.2019.06.14.09.45.56
+        by smtp.gmail.com with ESMTPSA id j184sm1878283qkc.65.2019.06.14.09.47.04
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 09:45:57 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 10:45:55 -0600
+        Fri, 14 Jun 2019 09:47:04 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 10:47:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Justin Swartz <justin.swartz@risingedge.co.za>
+Cc:     Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Justin Swartz <justin.swartz@risingedge.co.za>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>
-Subject: Re: [PATCH 2/6] dt-bindings: serial: 8250_omap: Add compatible for
- J721E UART controller
-Message-ID: <20190614164555.GA18636@bogus>
-References: <20190522161921.20750-1-nm@ti.com>
- <20190522161921.20750-3-nm@ti.com>
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/rockchip: dw_hdmi: add basic rk3228 support
+Message-ID: <20190614164702.GA20322@bogus>
+References: <20190522224631.25164-1-justin.swartz@risingedge.co.za>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190522161921.20750-3-nm@ti.com>
+In-Reply-To: <20190522224631.25164-1-justin.swartz@risingedge.co.za>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019 11:19:17 -0500, Nishanth Menon wrote:
-> J721e uses a UART controller that is compatible with AM654 UART.
-> Introduce a specific compatible to help handle the differences if
-> necessary.
+On Wed, 22 May 2019 22:46:29 +0000, Justin Swartz wrote:
+> Like the RK3328, RK322x SoCs offer a Synopsis DesignWare HDMI transmitter
+> and an Innosilicon HDMI PHY.
 > 
-> Cc: Sekhar Nori <nsekhar@ti.com>
-> Cc: Vignesh R <vigneshr@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Add a new dw_hdmi_plat_data struct, rk3228_hdmi_drv_data.
+> Assign a set of mostly generic rk3228_hdmi_phy_ops functions.
+> Add dw_hdmi_rk3228_setup_hpd() to enable the HDMI HPD and DDC lines.
+> 
+> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
 > ---
-> NOTE:
->  - If Greg is ok, we can pick up the uart compatibility via the k3 tree,
->    else, I can spawn it off the series into it's own patch, but it
->    seemed better in a logical order.
-> 
->  Documentation/devicetree/bindings/serial/omap_serial.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/display/rockchip/dw_hdmi-rockchip.txt |  1 +
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 53 ++++++++++++++++++++++
+>  2 files changed, 54 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
