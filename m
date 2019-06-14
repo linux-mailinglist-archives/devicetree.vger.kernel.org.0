@@ -2,102 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCF5461A9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCD7461B5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:53:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728272AbfFNOwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 10:52:05 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:45021 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727560AbfFNOwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 10:52:05 -0400
-X-Originating-IP: 90.88.23.150
-Received: from localhost (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 9853AFF807;
-        Fri, 14 Jun 2019 14:51:58 +0000 (UTC)
-Date:   Fri, 14 Jun 2019 16:51:58 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     =?utf-8?Q?Myl=C3=A8ne?= Josserand <mylene.josserand@bootlin.com>
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com
-Subject: Re: [PATCH v1] Input: rotary-encoder - Add gpio as push button
-Message-ID: <20190614145158.ic5n4jauzigvcpru@flea>
-References: <20190614133651.28396-1-mylene.josserand@bootlin.com>
+        id S1728516AbfFNOxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 10:53:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42414 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728272AbfFNOxG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 10:53:06 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E35872173C;
+        Fri, 14 Jun 2019 14:53:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560523985;
+        bh=xXLXuR+L8hhQa1ErD+u0rcoh9h0mBsxWabprP9kW9MI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=wk/1a4shWxNb0N1kY/k/UaqXtQEShtWb2wrMVi6jUYzhWtd/6z8tKQrLCEehTBjkV
+         R2+kOEa/LD4aQEKDgGDxy2BNF5fk8xXRdVl7rjbHpb6Iy8bSon9qs9Rvs7em8b86ro
+         WWbH3PUw3t8OP6hKhg8PNzM0SLcRKPAcSRepSB6E=
+Received: by mail-qk1-f173.google.com with SMTP id s22so1807517qkj.12;
+        Fri, 14 Jun 2019 07:53:04 -0700 (PDT)
+X-Gm-Message-State: APjAAAUHuY/WPABBbVO8I889v6MQt93RYcq4+x9bfNvEbhI7aZuUtWKC
+        Ch8VopGzF/kHt4YjCHyEhVBL2HG0LrZZRQq11g==
+X-Google-Smtp-Source: APXvYqzCzbjmjEqoh/p0P1ONf9SWsDRWOXpqAjANf0PIAA9ZEPQPgEKQ4Fa+P/aQgf5tr5TAK/wuQsBfgtzZ/HtFS+4=
+X-Received: by 2002:a05:620a:13d1:: with SMTP id g17mr21296388qkl.121.1560523984156;
+ Fri, 14 Jun 2019 07:53:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zhhrocqtd54h66wd"
-Content-Disposition: inline
-In-Reply-To: <20190614133651.28396-1-mylene.josserand@bootlin.com>
-User-Agent: NeoMutt/20180716
+References: <20190614081650.11880-1-daniel.baluta@nxp.com> <20190614081650.11880-3-daniel.baluta@nxp.com>
+In-Reply-To: <20190614081650.11880-3-daniel.baluta@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 14 Jun 2019 08:52:51 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJKgMB1PNA33gmFju4AQTc2WaSBoOGQExVaGd9LZRmk_g@mail.gmail.com>
+Message-ID: <CAL_JsqJKgMB1PNA33gmFju4AQTc2WaSBoOGQExVaGd9LZRmk_g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: Add DSP IPC binding support
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Daniel Baluta <daniel.baluta@gmail.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---zhhrocqtd54h66wd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Mylene,
-
-On Fri, Jun 14, 2019 at 03:36:51PM +0200, Myl=E8ne Josserand wrote:
-> Add the support of a gpio that can be defined as a push button.
-> Thanks to that, it is possible to emit a keycode in case of a
-> "push" event, if the rotary supports that.
+On Fri, Jun 14, 2019 at 2:15 AM <daniel.baluta@nxp.com> wrote:
 >
-> The keycode to emit is defined using "linux,code" property
-> (such as in gpio-keys).
+> From: Daniel Baluta <daniel.baluta@nxp.com>
 >
-> Signed-off-by: Myl=E8ne Josserand <mylene.josserand@bootlin.com>
+> DSP IPC is the layer that allows the Host CPU to communicate
+> with DSP firmware.
+> DSP is part of some i.MX8 boards (e.g i.MX8QM, i.MX8QXP)
+>
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 > ---
->  .../devicetree/bindings/input/rotary-encoder.txt   |  5 +++
->  drivers/input/misc/rotary_encoder.c                | 50 ++++++++++++++++=
-++++++
->  2 files changed, 55 insertions(+)
+>  .../bindings/arm/freescale/fsl,dsp.yaml       | 43 +++++++++++++++++++
+
+bindings/dsp/...
+
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,dsp.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.txt b=
-/Documentation/devicetree/bindings/input/rotary-encoder.txt
-> index a644408b33b8..1cfce5d0b5c4 100644
-> --- a/Documentation/devicetree/bindings/input/rotary-encoder.txt
-> +++ b/Documentation/devicetree/bindings/input/rotary-encoder.txt
-> @@ -22,6 +22,9 @@ Optional properties:
->  - wakeup-source: Boolean, rotary encoder can wake up the system.
->  - rotary-encoder,encoding: String, the method used to encode steps.
->    Supported are "gray" (the default and more common) and "binary".
-> +- push-gpio: a gpio to be used as a detection of a push from the rotary.
+> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,dsp.yaml b/Documentation/devicetree/bindings/arm/freescale/fsl,dsp.yaml
+> new file mode 100644
+> index 000000000000..16d9df1d397b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,dsp.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-According to Documentation/devicetree/bindings/gpio/gpio.txt, GPIO
-properties with a -gpio suffix are now deprecated in favor of the
--gpios suffix.
+The preference is to dual license new bindings: GPL-2.0 OR BSD-2-Clause
 
-> +- linux,code: keycode to emit with the push-gpio of this rotary encoder.
-> +  Required property in case "push-gpio"'s one is used.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/freescale/fsl,dsp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX IPC DSP driver
 
-I guess we should make it clear in the property name that it's the
-keycode emitted at push. Otherwise, it will be ambiguous between the
-rotary itself, or the button.
+This isn't a driver.
 
-Maxime
+> +
+> +maintainers:
+> +  - Daniel Baluta <daniel.baluta@nxp.com>
+> +
+> +description: |
+> +  IPC communication layer between Host CPU and DSP on NXP i.MX8 platforms
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx-dsp
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+You can have a fallback, but it needs SoC specific compatible(s).
 
---zhhrocqtd54h66wd
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  mboxes:
+> +    description:
+> +      List of phandle of 2 MU channels for TXDB, 2 MU channels for RXDB
+> +      (see mailbox/fsl,mu.txt)
+> +    maxItems: 1
 
------BEGIN PGP SIGNATURE-----
+Should be 4?
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQO0jQAKCRDj7w1vZxhR
-xfa/APwNihQsA19qm8pkGRWL3Qlt9LOqUvcojAJKnBgw5Ey79gD/an1E5acjkg+i
-vYdRBFvAGVoRBhf+EhuKBQMgH/N2mww=
-=iSqL
------END PGP SIGNATURE-----
+> +
+> +  mbox-names
+> +    description:
+> +      Mailboxes names
+> +    allOf:
+> +      - $ref: "/schemas/types.yaml#/definitions/string"
 
---zhhrocqtd54h66wd--
+No need for this, '*-names' already has a defined type.
+
+> +      - enum: [ "txdb0", "txdb1", "rxdb0", "rxdb1" ]
+
+Should be an 'items' list with 4 entries?
+
+> +required:
+> +  - compatible
+> +  - mboxes
+> +  - mbox-names
+
+This seems incomplete. How does one boot the DSP? Load firmware? No
+resources that Linux has to manage. Shared memory?
+
+> +
+> +examples:
+> +  - |
+> +    dsp {
+> +      compatbile = "fsl,imx-dsp";
+> +      mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
+> +      mboxes = <&lsio_mu13 2 0 &lsio_mu13 2 1 &lsio_mu13 3 0 &lsio_mu13 3 1>;
+
+mboxes = <&lsio_mu13 2 0>, <&lsio_mu13 2 1>, <&lsio_mu13 3 0>, <&lsio_mu13 3 1>;
+
+> +    };
+> --
+> 2.17.1
+>
