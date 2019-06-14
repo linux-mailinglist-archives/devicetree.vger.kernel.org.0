@@ -2,105 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 654A046A23
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894B946A91
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727183AbfFNUg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 16:36:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36758 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727131AbfFNUg6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 16:36:58 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A6B0E21881;
-        Fri, 14 Jun 2019 20:36:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560544617;
-        bh=BMo9z7ktz9HuAZSsZMrvij5s/QTJTao6137g4UhlIgs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vWedKb+jbEbTSmw49dIs6fTCJMj1eNLfzV8lZhNRiHHoNikTzq2f3wdnIMZkVCQyL
-         knYe1cDPqn1d10QezlNcqa/UafNrHuBUfY7wb2TBsdKdscj2QcfL0si88DVa5eR8xe
-         an96ZnAgozIFPA2aIN/tmAjrRvruXjj6fWhglrLM=
-Received: by mail-qt1-f175.google.com with SMTP id y57so4049194qtk.4;
-        Fri, 14 Jun 2019 13:36:57 -0700 (PDT)
-X-Gm-Message-State: APjAAAVsG14ub8MW2Ej7ZVWH/jtE+G8uSJfvW54jTvn3g8kfHopL4ewN
-        BD8k7alFN/himm5udj/Ni9NnxSfhGpOAEnIIBw==
-X-Google-Smtp-Source: APXvYqyWRzWEZ0HIsQNXaYvRLs4N5ZiA6PSR36infTnI62eYz0wn0LN3U9LzbcQ569w7rU4GDgO6FBTD8OY61VcRQO8=
-X-Received: by 2002:a0c:b627:: with SMTP id f39mr10202928qve.72.1560544616863;
- Fri, 14 Jun 2019 13:36:56 -0700 (PDT)
+        id S1727166AbfFNUiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 16:38:14 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:35826 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727289AbfFNUhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 16:37:19 -0400
+Received: by mail-pg1-f196.google.com with SMTP id s27so2173433pgl.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 13:37:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6vrmhhZaEzM19h9Zlx4Mo9l21Q8Z/1tpB8JbdgO/6Q0=;
+        b=Wx04VyZXSi7uEkn+qcquHj3EoBnN4m9FX9vJIgJ6cgeChrc10QLuaKpp7+rGSiDvGN
+         Sk53gojxneIiAZ8hn+pPpC6+ljGcvOasLCV6lMxQw1+3d6Tp7bsi0XiXzlyoQRZ2r0b1
+         rCNafT3ZKZUrDMLDEKZq4H1mERd0VafFAJUpw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6vrmhhZaEzM19h9Zlx4Mo9l21Q8Z/1tpB8JbdgO/6Q0=;
+        b=dDSu/S3FpLC92XXoQA6GbhuoTigOG1oYnQtNOsCVrvW+EIBz+/IQKU1VOqNMtDROby
+         7gfYS4Jb1sD4nKIcg49PK7I9VdFocSGzsC0YzNnhx7ldF2Z587Gq/S9JBFfk9M3/WAvp
+         JOHC010BRldWATpqLAAWYZGIwFtmoL7QkdC5x1mhv6n03/EU+OacyXPqosHrYxDRCYH+
+         rsaufHFpcQai+P/HxPvUJqcMQ1+YKkyFctSsj21roBcqUJ1cgeOzXFpBhvnj4shXo6dc
+         kLfLiEV4GcVsFsn1w2WAbmXG0bwhDib4o66rjIOssZMo07KvR5CmdI220PS0HLmg5CJv
+         +b6A==
+X-Gm-Message-State: APjAAAVryscAy+kZWJoJ1BW1bAusosCgdmdhZYocZu+OXxbR2RlD5+aM
+        G/lnJKrxf8N1lIAzgQbqwuUDbA==
+X-Google-Smtp-Source: APXvYqzfpvXhgutGtT3dFx0GfX5kTtc8h04BE0rk7Qac+K8Ljsdx6ZzVsIxdzlj/CBTPmUiseBZrxw==
+X-Received: by 2002:a63:6005:: with SMTP id u5mr28274041pgb.123.1560544639097;
+        Fri, 14 Jun 2019 13:37:19 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id x5sm3673187pjp.21.2019.06.14.13.37.18
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 14 Jun 2019 13:37:18 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Dan Williams <dan.j.williams@intel.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Subject: [PATCH v2 0/5] Read-only memremap()
+Date:   Fri, 14 Jun 2019 13:37:12 -0700
+Message-Id: <20190614203717.75479-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 MIME-Version: 1.0
-References: <20190614203144.3850-1-joseph.kogut@gmail.com> <20190614203144.3850-2-joseph.kogut@gmail.com>
-In-Reply-To: <20190614203144.3850-2-joseph.kogut@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 14 Jun 2019 14:36:45 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJjqCRU2a9sfMimTJoMQnR6CjqAqjHRAxyaebWAad299g@mail.gmail.com>
-Message-ID: <CAL_JsqJjqCRU2a9sfMimTJoMQnR6CjqAqjHRAxyaebWAad299g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-To:     Joseph Kogut <joseph.kogut@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 2:31 PM Joseph Kogut <joseph.kogut@gmail.com> wrote:
->
-> Add device tree node for mali gpu on Odroid XU3 SoCs.
->
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> ---
->  .../boot/dts/exynos5422-odroidxu3-common.dtsi  | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> index 93a48f2dda49..1f2ae19d01af 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> @@ -48,6 +48,24 @@
->                 cooling-levels = <0 130 170 230>;
->         };
->
-> +       gpu: gpu@11800000 {
-> +               compatible = "samsung,exynos-mali", "arm,mali-t628";
-> +               reg = <0x11800000 0x5000>;
-> +               interrupts = <0 117 0>,
-> +                            <0 219 0>,
-> +                            <0 74  0>;
-> +               interrupt-names = "gpu", "job", "mmu";
+This patch series implements a read-only version of memremap() via
+a new MEMREMAP_RO flag. If this is passed in the mapping call, we'll
+try to map the memory region as read-only if it doesn't intersect
+with an existing mapping. Otherwise, we'll try to fallback to other
+flags to try to map the memory that way.
 
-Please use the order defined in the binding doc.
+The main use case I have is to map the command-db memory region on
+Qualcomm devices with a read-only mapping. It's already a const marked
+pointer and the API returns const pointers as well, so this series makes
+sure that even stray writes can't modify the memory. To get there we
+introduce a devm version of memremap() for a reserved memory region, add
+a memremap() flag, and implement support for that flag on arm64.
 
-> +               clocks = <&clock CLK_G3D>,
-> +                        <&clock CLK_DOUT_ACLK_G3D>,
-> +                        <&clock CLK_FOUT_VPLL>;
+Changes from v1:
+ * Picked up tags and rebased to v5.2-rc3
 
-The binding doc says a single clock.
+Cc: Evan Green <evgreen@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Will Deacon <will.deacon@arm.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
 
-> +               mali-supply = <&buck4_reg>;
-> +               operating-points = <
+Stephen Boyd (5):
+  reserved_mem: Add a devm_memremap_reserved_mem() API
+  soc: qcom: cmd-db: Migrate to devm_memremap_reserved_mem()
+  memremap: Add support for read-only memory mappings
+  arm64: Add support for arch_memremap_ro()
+  soc: qcom: cmd-db: Map with read-only mappings
 
-The binding doc says operating-points-v2.
+ arch/arm64/include/asm/io.h     |  1 +
+ drivers/of/of_reserved_mem.c    | 45 +++++++++++++++++++++++++++++++++
+ drivers/soc/qcom/cmd-db.c       | 14 +++-------
+ include/linux/io.h              |  1 +
+ include/linux/of_reserved_mem.h |  6 +++++
+ kernel/iomem.c                  | 15 +++++++++--
+ 6 files changed, 70 insertions(+), 12 deletions(-)
 
-> +                       /* KHz  uV   */
-> +                       600000  1150000
-> +                       177000  812500
-> +               >;
-> +       };
-> +
->         thermal-zones {
->                 cpu0_thermal: cpu0-thermal {
->                         thermal-sensors = <&tmu_cpu0 0>;
-> --
-> 2.22.0
->
+
+base-commit: f2c7c76c5d0a443053e94adb9f0918fa2fb85c3a
+-- 
+Sent by a computer through tubes
+
