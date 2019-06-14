@@ -2,76 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E9C467EA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 20:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B094467FB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 21:02:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725889AbfFNSzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 14:55:52 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43047 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725809AbfFNSzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 14:55:52 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i189so1962193pfg.10;
-        Fri, 14 Jun 2019 11:55:51 -0700 (PDT)
+        id S1725972AbfFNTCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 15:02:33 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:41558 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725809AbfFNTCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 15:02:32 -0400
+Received: by mail-pg1-f195.google.com with SMTP id 83so2039319pgg.8;
+        Fri, 14 Jun 2019 12:02:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=D+syJ3SL1nuOH0xkteKH/buQWr95V/F3KATaumHZy1s=;
-        b=EHS50QbzkjLT+Av6pFw2E5h+1zENcT2G8i6ylRVNrq0XFeaMWA/gSlbC2Ls+b6py+u
-         fgSidofKxz+j5YRAhtPdVPiWCE8b76ajZVccTXvu3yphAsTqFZeZx51ZdFfh0eSwEUUb
-         wBSu+RAdVMGiJeYPf3hCtY2yFQlU6UPuw60EdqSq3s76dKJWKvH9ed6cmxkXkc2Muss9
-         trhUvrXlenEj+M0DrsCHQg/oiw58pcdLsWdDHj6JedT8vsc7duWGbGrJ9A28o0I/ruUt
-         UZI4aknr5pBhWgWZKDRKFK/V10NXFGuVXCi/5fJ88QVw6dhKADcWjHNYcWgs27vHj68N
-         jQAg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=fIRh2XHogKOPzGlSMAfw0Y3R1r0WmYblJh7xr9zVEVM=;
+        b=Kwr5imp1sJTDpaaM8ydTfG4xZ3PQB4I2YwQP92gtlJPjp+0ir+jnIGIh/kISuAyuId
+         P0lUpzcW3H2YCFEWjyzrc2tL9dwGF/sb6aT53hdGH2IFP1CrbWmc2HNJHWbXb7UBVRy+
+         hnZSbIbzuOwZ5VDeCXeJO4UU+qjD8Jm11L/j1Oj+PvgapNlr/FJHOKwxaSLTFN0PXFbh
+         FwnNYlRxm5Gqg7ZOCc4HG/+l6PGbDnbRMgjY39WD1H4b+Gqk3XBsR87Wmc+Y3wyYtcSi
+         jlE+8oS7hWoZaOo6jdUZqfJlqeqc/0i/igvoI17t1D/abAuJR2DISsHfKG1ND7pkXeYU
+         mjHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=D+syJ3SL1nuOH0xkteKH/buQWr95V/F3KATaumHZy1s=;
-        b=nbJjNyjxVRVXxouXTA6loWkBgQgrHaDHX1R4tU6QdFWFPaWlrKD12W7uYSVXg6FPyK
-         PdHetiIPS8gUuY8k6ZEjQCt9RaOaG/yEvkQ2UPlHqmq6MIepzbg/LpojM/OVD5USaY+v
-         731sfby10vwkIq72LG+mZFS+DhbnpauS0OBOrgRHL34pk5m0M+5KxDUVezaRdiecwlNt
-         P4V7D1BAlhpcWDYe95/8Oy/unkPnVWc9+70zqtqxt9Q15K1hzLQCdpMV3h6AVTh8zRFy
-         jmSblLsKfATqxkc2X3RjLTKnKnMJLpGF5AcCAOkVT+GR5AgXQhl54nq+moKZXZClYh4/
-         tyVw==
-X-Gm-Message-State: APjAAAX9hcTX1QkQGa2n/TISymeHpVWf00R2yrPZ2jVESW80yJBmuZeB
-        EVqh0iEtUWbvAO/2/FlubwM=
-X-Google-Smtp-Source: APXvYqwkcDuQH9liqXyWK1uKCKA4RPQF+zphrhMUb0LCRFkGimnSjaDuvjeLe1QCeWyGaARVQ6YKLA==
-X-Received: by 2002:a63:e317:: with SMTP id f23mr23202775pgh.142.1560538551555;
-        Fri, 14 Jun 2019 11:55:51 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=fIRh2XHogKOPzGlSMAfw0Y3R1r0WmYblJh7xr9zVEVM=;
+        b=BIWUbvzfro0EGN7k+42h1C5VYvElcMw/8O/l7I0VfLx7c7bs8jlgd4VMl80S6NAFvt
+         UrjmtfQVmy28ulUU9ibp5uusB5eUXhX4t3HDnfbdEtrHtrm0PuEs6/9BFuoUyj+me5Xg
+         7Gq/zpheHc+cyfR9LYkOyRFu2/V8zwVE8qJ7Gd+z+lXgys43IWradw6BGB0tLJ1yNXcR
+         qFujMNpPdGYHCBUdc/1kl+V/t2d96hgxEScxTnT+om3uyrP6+f40/x5IRn50oZB/ko1T
+         JLD7Q1T+YCCzw6u2xfOH3rW0cdcNP6ghvRbbMwC8bHqeM2t0Edy14IYlJHpASum3jRs7
+         RnSg==
+X-Gm-Message-State: APjAAAUUy86t4UZhiCQLY9VpYnajmlovSfHAa5IjALvT8hCrsUOP/wXf
+        Fji3o8eTghkf5GFc45sNXFBECkZh
+X-Google-Smtp-Source: APXvYqxqU2TQ1aZVb8lHhD8nMe+2Zh0ButW4PhfN5GiSP/wc0SrsCnxeNKFnBk5L6Fx2LidQ8OE7fQ==
+X-Received: by 2002:a17:90a:c481:: with SMTP id j1mr12504510pjt.96.1560538952188;
+        Fri, 14 Jun 2019 12:02:32 -0700 (PDT)
 Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id c26sm1225267pfr.71.2019.06.14.11.55.50
+        by smtp.gmail.com with ESMTPSA id s15sm4503208pfd.183.2019.06.14.12.02.30
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 14 Jun 2019 11:55:51 -0700 (PDT)
+        Fri, 14 Jun 2019 12:02:31 -0700 (PDT)
 From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        mark.rutland@arm.com, thierry.reding@gmail.com, sam@ravnborg.org,
-        bjorn.andersson@linaro.org, dri-devel@lists.freedesktop.org,
+To:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        mark.rutland@arm.com, thierry.reding@gmail.com, sam@ravnborg.org
+Cc:     bjorn.andersson@linaro.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: [PATCH 0/2] MSM8998 MTP Display
-Date:   Fri, 14 Jun 2019 11:55:47 -0700
-Message-Id: <20190614185547.34518-1-jeffrey.l.hugo@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: display: truly: Add MSM8998 MTP panel
+Date:   Fri, 14 Jun 2019 12:02:20 -0700
+Message-Id: <20190614190220.34568-1-jeffrey.l.hugo@gmail.com>
 X-Mailer: git-send-email 2.17.1
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <20190614185547.34518-1-jeffrey.l.hugo@gmail.com>
+References: <20190614185547.34518-1-jeffrey.l.hugo@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since we are trying to get the GPU and display hardware in the SoC
-supported, it would be nice to be able to put the output on the
-integrated panel for the reference platform.  To do so, we need support
-in the Truly driver to support the specific panel variant for the
-MSM8998 MTP.  This series adds taht support.
+The MSM8998 MTP uses the Truly display driver for its panel, but the
+configuration differs slightly from the existing SDM845.  Add a compatible
+to account for the differences.
 
-Jeffrey Hugo (2):
-  dt-bindings: display: truly: Add MSM8998 MTP panel
-  drm/panel: truly: Add MSM8998 MTP support
+Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+---
+ .../devicetree/bindings/display/truly,nt35597.txt          | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
- .../bindings/display/truly,nt35597.txt        |   7 +-
- drivers/gpu/drm/panel/panel-truly-nt35597.c   | 149 +++++++++++++-----
- 2 files changed, 116 insertions(+), 40 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/truly,nt35597.txt b/Documentation/devicetree/bindings/display/truly,nt35597.txt
+index f39c77ee36ea..fda36c1ad3c3 100644
+--- a/Documentation/devicetree/bindings/display/truly,nt35597.txt
++++ b/Documentation/devicetree/bindings/display/truly,nt35597.txt
+@@ -1,10 +1,11 @@
+ Truly model NT35597 DSI display driver
+ 
+-The Truly NT35597 is a generic display driver, currently only configured
+-for use in the 2K display on the Qualcomm SDM845 MTP board.
++The Truly NT35597 is a generic display driver used for the Qualcomm reference
++platforms.
+ 
+ Required properties:
+-- compatible: should be "truly,nt35597-2K-display"
++- compatible: should be "truly,nt35597-2K-display" (SDM845)
++	      "truly,nt35597-wqhd-cmd-dsc-display" (MSM8998)
+ - vdda-supply: phandle of the regulator that provides the supply voltage
+   Power IC supply
+ - vdispp-supply: phandle of the regulator that provides the supply voltage
 -- 
 2.17.1
 
