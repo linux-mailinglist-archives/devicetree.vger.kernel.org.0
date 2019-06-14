@@ -2,622 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27C8F4622E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 17:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54FE7464DB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:46:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725837AbfFNPK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 11:10:26 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:36811 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725825AbfFNPK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 11:10:26 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 081442002E;
-        Fri, 14 Jun 2019 17:10:19 +0200 (CEST)
-Date:   Fri, 14 Jun 2019 17:10:18 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726072AbfFNQqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 12:46:24 -0400
+Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:35010 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725869AbfFNQqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 12:46:23 -0400
+X-Greylist: delayed 5550 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 Jun 2019 12:46:22 EDT
+Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
+        by mx0a-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5EF3R82019686;
+        Fri, 14 Jun 2019 08:13:29 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=proofpoint;
+ bh=EvtLGW0QPy8bCBPyv9XjVufr+PVjVP0YmApk8hR39II=;
+ b=RacRPZB6foCOx40nQWGMJgoji2r+YILZGdqquwKm+yzz6Hb0g1LNX5FLYoO7zospny/R
+ zCQaNFFTWIEfjHELdl4rvLCeOID+9DI9lMq37ytAzbptlBax5ksSrTE4LIrB3SApwkG0
+ i4dXH1pTOn+w1c1MCc/Za6nVknMYcWTICorsfGpQJuemwiGwUiZXYgjR87NQjHAXYneX
+ pNi7ka3cLTY+e2v9aXc6TMvr2JLBHKZR4WgAbi1yJn9hx2E6FayswH8wXv9UO1sXi8ld
+ Cu5n5g0TAI4DjkCqT6P+qso/SLVEKJ2ZB9fWkPXM33gWS05bq5Hkuj58rTqAAOJKqRjK RA== 
+Authentication-Results: cadence.com;
+        spf=pass smtp.mailfrom=piotrs@cadence.com
+Received: from nam01-by2-obe.outbound.protection.outlook.com (mail-by2nam01lp2052.outbound.protection.outlook.com [104.47.34.52])
+        by mx0a-0014ca01.pphosted.com with ESMTP id 2t33th1w81-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 14 Jun 2019 08:13:28 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EvtLGW0QPy8bCBPyv9XjVufr+PVjVP0YmApk8hR39II=;
+ b=pbKdAEYb2zPzfzWa9Cx9LSrn9xFCdlBIGZfRZPFcwC5C1eHVxWDcQZsVaPaQBTOu7rKnYpfV5KvjIxOBSjBe1BtYNP01TAHIe66CcseSovpotMc6En4OqKPnbPq6ufHXvRxyWUoR1vsidrmPzwiihawkkZlxsInvXLy2DEk2cng=
+Received: from BN8PR07CA0003.namprd07.prod.outlook.com (2603:10b6:408:ac::16)
+ by BY5PR07MB6966.namprd07.prod.outlook.com (2603:10b6:a03:1e7::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1987.11; Fri, 14 Jun
+ 2019 15:13:26 +0000
+Received: from CO1NAM05FT039.eop-nam05.prod.protection.outlook.com
+ (2a01:111:f400:7e50::205) by BN8PR07CA0003.outlook.office365.com
+ (2603:10b6:408:ac::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.12 via Frontend
+ Transport; Fri, 14 Jun 2019 15:13:25 +0000
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ cadence.com discourages use of 199.43.4.28 as permitted sender)
+Received: from rmmaillnx1.cadence.com (199.43.4.28) by
+ CO1NAM05FT039.mail.protection.outlook.com (10.152.96.152) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2008.7 via Frontend Transport; Fri, 14 Jun 2019 15:13:23 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by rmmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id x5EFDIUh009921
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Fri, 14 Jun 2019 11:13:20 -0400
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Fri, 14 Jun 2019 17:13:17 +0200
+Received: from lvlogina.cadence.com (10.165.176.102) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Fri, 14 Jun 2019 17:13:17 +0200
+Received: from lvlogina.cadence.com (localhost.localdomain [127.0.0.1])
+        by lvlogina.cadence.com (8.14.4/8.14.4) with ESMTP id x5EFDH45006464;
+        Fri, 14 Jun 2019 16:13:17 +0100
+Received: (from piotrs@localhost)
+        by lvlogina.cadence.com (8.14.4/8.14.4/Submit) id x5EFDGen006413;
+        Fri, 14 Jun 2019 16:13:16 +0100
+From:   Piotr Sroka <piotrs@cadence.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     David Woodhouse <dwmw2@infradead.org>,
+        BrianNorris <computersforpeace@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        "Marek Vasut" <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH 2/2] drm/panel: Add support for Raydium RM67191 panel
- driver
-Message-ID: <20190614151018.GA28829@ravnborg.org>
-References: <1560513063-24995-1-git-send-email-robert.chiras@nxp.com>
- <1560513063-24995-3-git-send-email-robert.chiras@nxp.com>
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Piotr Sroka <piotrs@cadence.com>
+Subject: [v3 2/2] dt-bindings: nand: Add Cadence NAND controller driver
+Date:   Fri, 14 Jun 2019 16:13:01 +0100
+Message-ID: <20190614151301.5371-1-piotrs@cadence.com>
+X-Mailer: git-send-email 2.15.0
+In-Reply-To: <20190614150956.31244-1-piotrs@cadence.com>
+References: <20190614150956.31244-1-piotrs@cadence.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1560513063-24995-3-git-send-email-robert.chiras@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=8AirrxEcAAAA:8
-        a=mzydPrOCeu2ZGRC9EbsA:9 a=CjuIK1q_8ugA:10 a=ST-jHhOKWsTCqRlWije3:22
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:199.43.4.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(979002)(396003)(39850400004)(136003)(346002)(376002)(2980300002)(36092001)(199004)(189003)(6916009)(50466002)(70206006)(86362001)(305945005)(107886003)(5660300002)(4326008)(70586007)(50226002)(8676002)(81156014)(81166006)(8936002)(1076003)(87636003)(26005)(51416003)(26826003)(478600001)(53936002)(186003)(76176011)(126002)(2906002)(2351001)(48376002)(76130400001)(2616005)(476003)(11346002)(446003)(426003)(36756003)(486006)(7416002)(336012)(16586007)(316002)(42186006)(54906003)(69596002)(6666004)(356004)(47776003)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR07MB6966;H:rmmaillnx1.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:ErrorRetry;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 97527be1-c8bc-473b-3c44-08d6f0dad802
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);SRVR:BY5PR07MB6966;
+X-MS-TrafficTypeDiagnostic: BY5PR07MB6966:
+X-Microsoft-Antispam-PRVS: <BY5PR07MB6966525A36486F1ECDC92F76DDEE0@BY5PR07MB6966.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-Forefront-PRVS: 0068C7E410
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: oJMaZHg3xjt//VC+Kb+oCN+Yiizz2yYoWvq5054qWCtYS8Azy1UWZh9hX4R0LU14YpatpIcEExBqMVtY09ndFwPcPxB/PyDlyMV2D4XD+ifo8qklMnFEsjSyapmtObGtJxwf9RnzxmzgzLUuoog/gBegQql5r35nzXN/Gtr7uRr+SesC4Fj/btD07E4bj2BoBYCrp+RbvwX5ggrFUf/t+EvEY1IN9NbtmYJKerGK/DI5CHil7gelcEaoLSCD6ZuGjBAEc6NZ1k/FEzxxCAq82zx3+78amPRap57at9ZEYCHW2ndR3wSOebvpqfEo7A30WsOM11AwbQtgd/ASspy2fduaeT4BCn+HCBHSyW012QESMSW3W35UunTDFqcwAX0iMqa86gx3FM9ZIm/QPIX56B198Tm5ADFuZWvKKZkCTrA=
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2019 15:13:23.2542
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97527be1-c8bc-473b-3c44-08d6f0dad802
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[199.43.4.28];Helo=[rmmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR07MB6966
+X-Proofpoint-SPF-Result: pass
+X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
+ include:mktomail.com include:spf-0014ca01.pphosted.com
+ include:spf.protection.outlook.com include:auth.msgapp.com
+ include:spf.mandrillapp.com ~all
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-14_07:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
+ priorityscore=1501 malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0
+ spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=958 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1906140125
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert.
+Signed-off-by: Piotr Sroka <piotrs@cadence.com>
+---
+Changes for v3:
+- add unit suffix for board_delay 
+- move child description to proper place
+- remove prefix cadence_ for reg and sdma fields
+Changes for v2:
+- remove chip dependends parameters from dts bindings
+- add names for register ranges in dts bindings
+- add generic bindings to describe NAND chip representation
+---
+ .../bindings/mtd/cadence-nand-controller.txt       | 51 ++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
 
-On top of the feedback from Fabio here is a bit more.
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+new file mode 100644
+index 000000000000..e485b87075bd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+@@ -0,0 +1,51 @@
++* Cadence NAND controller
++
++Required properties:
++  - compatible : "cdns,hpnfc"
++  - reg : Contains two entries, each of which is a tuple consisting of a
++	  physical address and length. The first entry is the address and
++	  length of the controller register set. The second entry is the
++	  address and length of the Slave DMA data port.
++  - reg-names: should contain "reg" and "sdma"
++  - interrupts : The interrupt number.
++  - clocks: phandle of the controller core clock (nf_clk).
++
++Optional properties:
++  - dmas: shall reference DMA channel associated to the NAND controller
++  - cdns,board-delay_ps : Estimated Board delay. The value includes the total
++    round trip delay for the signals and is used for deciding on values
++    associated with data read capture. The example formula for SDR mode is
++    the following:
++    board_delay = RE#PAD_delay + PCB trace to device + PCB trace from device
++    + DQ PAD delay
++
++Children nodes represent the available NAND chips.
++
++Required properties of NAND chips:
++  - reg: shall contain the native Chip Select ids from 0 to max supported by
++    the cadence nand flash controller
++
++
++See Documentation/devicetree/bindings/mtd/nand.txt for more details on
++generic bindings.
++
++Example:
++
++nand_controller: nand-controller @60000000 {
++
++	  compatible = "cdns,hpnfc";
++	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
++	  reg-names = "reg", "sdma";
++	  clocks = <&nf_clk>;
++	  cdns,board-delay_ps = <4830>;
++	  interrupts = <2 0>;
++	  nand@0 {
++	      reg = <0>;
++	      label = "nand-1";
++	  };
++	  nand@1 {
++	      reg = <1>;
++	      label = "nand-2";
++	  };
++
++};
+-- 
+2.15.0
 
-> +
-> +#include <drm/drmP.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_panel.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <video/mipi_display.h>
-> +#include <video/of_videomode.h>
-> +#include <video/videomode.h>
-
-Divide include up in block in following order:
-
-#include <linux/*>
-
-#include <video/*>
-
-#incude <drm/*>
-
-Within each block sort alphabetically.
-Do not use the deprecated drmP.h - replace it with the necessary
-includes.
-Use an empty line between each include block.
-
-> +
-> +/* Write Manufacture Command Set Control */
-> +#define WRMAUCCTR 0xFE
-> +
-> +/* Manufacturer Command Set pages (CMD2) */
-> +struct cmd_set_entry {
-> +	u8 cmd;
-> +	u8 param;
-> +};
-> +
-> +/*
-> + * There is no description in the Reference Manual about these commands.
-> + * We received them from vendor, so just use them as is.
-> + */
-> +static const struct cmd_set_entry manufacturer_cmd_set[] = {
-> +	{0xFE, 0x0B},
-> +	{0x28, 0x40},
-> +	{0x29, 0x4F},
-...
-> +	{0x51, 0x04},
-> +};
-> +
-> +static const u32 rad_bus_formats[] = {
-> +	MEDIA_BUS_FMT_RGB888_1X24,
-> +	MEDIA_BUS_FMT_RGB666_1X18,
-> +	MEDIA_BUS_FMT_RGB565_1X16,
-> +};
-> +
-> +struct rad_panel {
-> +	struct drm_panel base;
-In the other raydium driver we name this "panel", which is a more
-descriptive name.
-
-> +	struct mipi_dsi_device *dsi;
-> +
-> +	struct gpio_desc *reset;
-> +	struct backlight_device *backlight;
-> +
-> +	bool prepared;
-> +	bool enabled;
-> +
-> +	struct videomode vm;
-> +	u32 width_mm;
-> +	u32 height_mm;
-> +};
-> +
-> +static int rad_panel_prepare(struct drm_panel *panel)
-> +{
-> +	struct rad_panel *rad = to_rad_panel(panel);
-> +
-> +	if (rad->prepared)
-> +		return 0;
-> +
-> +	if (rad->reset) {
-> +		gpiod_set_value(rad->reset, 0);
-> +		usleep_range(5000, 10000);
-> +		gpiod_set_value(rad->reset, 1);
-> +		usleep_range(20000, 25000);
-> +	}
-> +
-> +	rad->prepared = true;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rad_panel_unprepare(struct drm_panel *panel)
-> +{
-> +	struct rad_panel *rad = to_rad_panel(panel);
-> +	struct device *dev = &rad->dsi->dev;
-> +
-> +	if (!rad->prepared)
-> +		return 0;
-> +
-> +	if (rad->enabled) {
-> +		DRM_DEV_ERROR(dev, "Panel still enabled!\n");
-> +		return -EPERM;
-> +	}
-This seems like overkill, what should trigger this?
-
-> +
-> +	if (rad->reset) {
-> +		gpiod_set_value(rad->reset, 0);
-> +		usleep_range(15000, 17000);
-> +		gpiod_set_value(rad->reset, 1);
-> +	}
-> +
-> +	rad->prepared = false;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rad_panel_enable(struct drm_panel *panel)
-> +{
-> +	struct rad_panel *rad = to_rad_panel(panel);
-> +	struct mipi_dsi_device *dsi = rad->dsi;
-> +	struct device *dev = &dsi->dev;
-> +	int color_format = color_format_from_dsi_format(dsi->format);
-> +	u16 brightness;
-> +	int ret;
-> +
-> +	if (rad->enabled)
-> +		return 0;
-> +
-> +	if (!rad->prepared) {
-> +		DRM_DEV_ERROR(dev, "Panel not prepared!\n");
-> +		return -EPERM;
-> +	}
-Seems like overkill.
-
-> +
-> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +	ret = rad_panel_push_cmd_list(dsi);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to send MCS (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +
-> +	/* Select User Command Set table (CMD1) */
-> +	ret = mipi_dsi_generic_write(dsi, (u8[]){ WRMAUCCTR, 0x00 }, 2);
-> +	if (ret < 0)
-> +		goto fail;
-> +
-> +	/* Software reset */
-> +	ret = mipi_dsi_dcs_soft_reset(dsi);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to do Software Reset (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +
-> +	usleep_range(15000, 17000);
-> +
-> +	/* Set DSI mode */
-> +	ret = mipi_dsi_generic_write(dsi, (u8[]){ 0xC2, 0x0B }, 2);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set DSI mode (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +	/* Set tear ON */
-> +	ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set tear ON (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +	/* Set tear scanline */
-> +	ret = mipi_dsi_dcs_set_tear_scanline(dsi, 0x380);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set tear scanline (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +	/* Set pixel format */
-> +	ret = mipi_dsi_dcs_set_pixel_format(dsi, color_format);
-> +	DRM_DEV_DEBUG_DRIVER(dev, "Interface color format set to 0x%x\n",
-> +			     color_format);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set pixel format (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +	/* Set display brightness */
-> +	brightness = rad->backlight->props.brightness;
-> +	ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set display brightness (%d)\n",
-> +			      ret);
-> +		goto fail;
-> +	}
-brightness is written to again when you enable backlight below.
-Seems redundant to do so twice.
-
-
-> +	/* Exit sleep mode */
-> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to exit sleep mode (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +
-> +	usleep_range(5000, 10000);
-> +
-> +	ret = mipi_dsi_dcs_set_display_on(dsi);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set display ON (%d)\n", ret);
-> +		goto fail;
-> +	}
-> +
-> +	backlight_enable(rad->backlight);
-> +
-> +	rad->enabled = true;
-> +
-> +	return 0;
-> +
-> +fail:
-> +	if (rad->reset)
-> +		gpiod_set_value(rad->reset, 0);
-> +
-> +	return ret;
-> +}
-> +
-> +static int rad_panel_disable(struct drm_panel *panel)
-> +{
-> +	struct rad_panel *rad = to_rad_panel(panel);
-> +	struct mipi_dsi_device *dsi = rad->dsi;
-> +	struct device *dev = &dsi->dev;
-> +	int ret;
-> +
-> +	if (!rad->enabled)
-> +		return 0;
-> +
-> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +	backlight_disable(rad->backlight);
-> +
-> +	usleep_range(10000, 15000);
-> +
-> +	ret = mipi_dsi_dcs_set_display_off(dsi);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set display OFF (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	usleep_range(5000, 10000);
-> +
-> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to enter sleep mode (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	rad->enabled = false;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rad_panel_get_modes(struct drm_panel *panel)
-> +{
-> +	struct rad_panel *rad = to_rad_panel(panel);
-> +	struct device *dev = &rad->dsi->dev;
-> +	struct drm_connector *connector = panel->connector;
-> +	struct drm_display_mode *mode;
-> +	u32 *bus_flags = &connector->display_info.bus_flags;
-> +	int ret;
-> +
-> +	mode = drm_mode_create(connector->dev);
-> +	if (!mode) {
-> +		DRM_DEV_ERROR(dev, "Failed to create display mode!\n");
-> +		return 0;
-> +	}
-> +
-> +	drm_display_mode_from_videomode(&rad->vm, mode);
-> +	mode->width_mm = rad->width_mm;
-> +	mode->height_mm = rad->height_mm;
-> +	connector->display_info.width_mm = rad->width_mm;
-> +	connector->display_info.height_mm = rad->height_mm;
-> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-> +
-> +	if (rad->vm.flags & DISPLAY_FLAGS_DE_HIGH)
-> +		*bus_flags |= DRM_BUS_FLAG_DE_HIGH;
-> +	if (rad->vm.flags & DISPLAY_FLAGS_DE_LOW)
-> +		*bus_flags |= DRM_BUS_FLAG_DE_LOW;
-> +	if (rad->vm.flags & DISPLAY_FLAGS_PIXDATA_NEGEDGE)
-> +		*bus_flags |= DRM_BUS_FLAG_PIXDATA_NEGEDGE;
-> +	if (rad->vm.flags & DISPLAY_FLAGS_PIXDATA_POSEDGE)
-> +		*bus_flags |= DRM_BUS_FLAG_PIXDATA_POSEDGE;
-> +
-> +	ret = drm_display_info_set_bus_formats(&connector->display_info,
-> +					       rad_bus_formats,
-> +					       ARRAY_SIZE(rad_bus_formats));
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_mode_probed_add(panel->connector, mode);
-> +
-> +	return 1;
-> +}
-> +
-> +static int rad_bl_get_brightness(struct backlight_device *bl)
-> +{
-> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
-> +	struct rad_panel *rad = mipi_dsi_get_drvdata(dsi);
-> +	struct device *dev = &dsi->dev;
-> +	u16 brightness;
-> +	int ret;
-> +
-> +	if (!rad->prepared)
-> +		return 0;
-> +
-> +	DRM_DEV_DEBUG_DRIVER(dev, "\n");
-> +
-> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> +
-> +	ret = mipi_dsi_dcs_get_display_brightness(dsi, &brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	bl->props.brightness = brightness;
-> +
-> +	return brightness & 0xff;
-> +}
-> +
-> +static int rad_bl_update_status(struct backlight_device *bl)
-> +{
-> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
-> +	struct rad_panel *rad = mipi_dsi_get_drvdata(dsi);
-> +	struct device *dev = &dsi->dev;
-> +	int ret = 0;
-> +
-> +	if (!rad->prepared)
-> +		return 0;
-> +
-> +	DRM_DEV_DEBUG_DRIVER(dev, "New brightness: %d\n", bl->props.brightness);
-> +
-> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> +
-> +	ret = mipi_dsi_dcs_set_display_brightness(dsi, bl->props.brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct backlight_ops rad_bl_ops = {
-> +	.update_status = rad_bl_update_status,
-> +	.get_brightness = rad_bl_get_brightness,
-> +};
-> +
-> +static const struct drm_panel_funcs rad_panel_funcs = {
-> +	.prepare = rad_panel_prepare,
-> +	.unprepare = rad_panel_unprepare,
-> +	.enable = rad_panel_enable,
-> +	.disable = rad_panel_disable,
-> +	.get_modes = rad_panel_get_modes,
-> +};
-> +
-> +/*
-> + * The clock might range from 66MHz (30Hz refresh rate)
-> + * to 132MHz (60Hz refresh rate)
-> + */
-> +static const struct display_timing rad_default_timing = {
-> +	.pixelclock = { 66000000, 132000000, 132000000 },
-> +	.hactive = { 1080, 1080, 1080 },
-> +	.hfront_porch = { 20, 20, 20 },
-> +	.hsync_len = { 2, 2, 2 },
-> +	.hback_porch = { 34, 34, 34 },
-> +	.vactive = { 1920, 1920, 1920 },
-> +	.vfront_porch = { 10, 10, 10 },
-> +	.vsync_len = { 2, 2, 2 },
-> +	.vback_porch = { 4, 4, 4 },
-> +	.flags = DISPLAY_FLAGS_HSYNC_LOW |
-> +		 DISPLAY_FLAGS_VSYNC_LOW |
-> +		 DISPLAY_FLAGS_DE_LOW |
-> +		 DISPLAY_FLAGS_PIXDATA_NEGEDGE,
-> +};
-> +
-> +static int rad_panel_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct device *dev = &dsi->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *timings;
-> +	struct rad_panel *panel;
-> +	struct backlight_properties bl_props;
-> +	int ret;
-> +	u32 video_mode;
-> +
-> +	panel = devm_kzalloc(&dsi->dev, sizeof(*panel), GFP_KERNEL);
-> +	if (!panel)
-> +		return -ENOMEM;
-> +
-> +	mipi_dsi_set_drvdata(dsi, panel);
-> +
-> +	panel->dsi = dsi;
-> +
-> +	dsi->format = MIPI_DSI_FMT_RGB888;
-> +	dsi->mode_flags =  MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_VIDEO |
-> +			   MIPI_DSI_CLOCK_NON_CONTINUOUS;
-> +
-> +	ret = of_property_read_u32(np, "video-mode", &video_mode);
-> +	if (!ret) {
-> +		switch (video_mode) {
-> +		case 0:
-> +			/* burst mode */
-> +			dsi->mode_flags |= MIPI_DSI_MODE_VIDEO_BURST;
-> +			break;
-> +		case 1:
-> +			/* non-burst mode with sync event */
-> +			break;
-> +		case 2:
-> +			/* non-burst mode with sync pulse */
-> +			dsi->mode_flags |= MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
-> +			break;
-> +		default:
-> +			dev_warn(dev, "invalid video mode %d\n", video_mode);
-> +			break;
-> +		}
-> +	}
-> +
-> +	ret = of_property_read_u32(np, "dsi-lanes", &dsi->lanes);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to get dsi-lanes property (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * 'display-timings' is optional, so verify if the node is present
-> +	 * before calling of_get_videomode so we won't get console error
-> +	 * messages
-> +	 */
-> +	timings = of_get_child_by_name(np, "display-timings");
-> +	if (timings) {
-> +		of_node_put(timings);
-> +		ret = of_get_videomode(np, &panel->vm, 0);
-> +	} else {
-> +		videomode_from_timing(&rad_default_timing, &panel->vm);
-> +	}
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	of_property_read_u32(np, "width-mm", &panel->width_mm);
-> +	of_property_read_u32(np, "height-mm", &panel->height_mm);
-> +
-> +	panel->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> +
-> +	if (IS_ERR(panel->reset))
-> +		panel->reset = NULL;
-> +	else
-> +		gpiod_set_value(panel->reset, 0);
-> +
-> +	memset(&bl_props, 0, sizeof(bl_props));
-> +	bl_props.type = BACKLIGHT_RAW;
-> +	bl_props.brightness = 255;
-> +	bl_props.max_brightness = 255;
-> +
-> +	panel->backlight = devm_backlight_device_register(dev, dev_name(dev),
-> +							  dev, dsi,
-> +							  &rad_bl_ops,
-> +							  &bl_props);
-> +	if (IS_ERR(panel->backlight)) {
-> +		ret = PTR_ERR(panel->backlight);
-> +		dev_err(dev, "Failed to register backlight (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	drm_panel_init(&panel->base);
-> +	panel->base.funcs = &rad_panel_funcs;
-> +	panel->base.dev = dev;
-> +	dev_set_drvdata(dev, panel);
-> +
-> +	ret = drm_panel_add(&panel->base);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = mipi_dsi_attach(dsi);
-> +	if (ret < 0)
-> +		drm_panel_remove(&panel->base);
-> +
-> +	return ret;
-> +}
-> +
-> +static int rad_panel_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct rad_panel *rad = mipi_dsi_get_drvdata(dsi);
-> +	struct device *dev = &dsi->dev;
-> +	int ret;
-> +
-> +	ret = mipi_dsi_detach(dsi);
-> +	if (ret < 0)
-> +		DRM_DEV_ERROR(dev, "Failed to detach from host (%d)\n",
-> +			      ret);
-> +
-> +	drm_panel_remove(&rad->base);
-> +
-> +	return 0;
-> +}
-> +
-> +static void rad_panel_shutdown(struct mipi_dsi_device *dsi)
-> +{
-> +	struct rad_panel *rad = mipi_dsi_get_drvdata(dsi);
-> +
-> +	rad_panel_disable(&rad->base);
-> +	rad_panel_unprepare(&rad->base);
-> +}
-> +
-> +#ifdef CONFIG_PM
-> +static int rad_panel_suspend(struct device *dev)
-> +{
-> +	struct rad_panel *rad = dev_get_drvdata(dev);
-> +
-> +	if (!rad->reset)
-> +		return 0;
-> +
-> +	devm_gpiod_put(dev, rad->reset);
-> +	rad->reset = NULL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rad_panel_resume(struct device *dev)
-> +{
-> +	struct rad_panel *rad = dev_get_drvdata(dev);
-> +
-> +	if (rad->reset)
-> +		return 0;
-> +
-> +	rad->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(rad->reset))
-> +		rad->reset = NULL;
-> +
-> +	return PTR_ERR_OR_ZERO(rad->reset);
-> +}
-> +
-> +#endif
-No other panels have suspend/resume.
-Is it relevant?
-
-
-> +
-> +static const struct dev_pm_ops rad_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(rad_panel_suspend, rad_panel_resume, NULL)
-> +	SET_SYSTEM_SLEEP_PM_OPS(rad_panel_suspend, rad_panel_resume)
-> +};
-> +
-> +static const struct of_device_id rad_of_match[] = {
-> +	{ .compatible = "raydium,rm67191", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, rad_of_match);
-> +
-> +static struct mipi_dsi_driver rad_panel_driver = {
-> +	.driver = {
-> +		.name = "panel-raydium-rm67191",
-> +		.of_match_table = rad_of_match,
-> +		.pm	= &rad_pm_ops,
-> +	},
-> +	.probe = rad_panel_probe,
-> +	.remove = rad_panel_remove,
-> +	.shutdown = rad_panel_shutdown,
-> +};
-> +module_mipi_dsi_driver(rad_panel_driver);
-> +
-> +MODULE_AUTHOR("Robert Chiras <robert.chiras@nxp.com>");
-> +MODULE_DESCRIPTION("DRM Driver for Raydium RM67191 MIPI DSI panel");
-> +MODULE_LICENSE("GPL v2");
-
-
-	Sam
