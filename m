@@ -2,138 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3808E465AD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 678A8465E5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbfFNRXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 13:23:46 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:19637 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726103AbfFNRXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:23:46 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d03d8210001>; Fri, 14 Jun 2019 10:23:45 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 14 Jun 2019 10:23:45 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 14 Jun 2019 10:23:45 -0700
-Received: from [10.24.192.32] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 14 Jun
- 2019 17:23:42 +0000
-Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     Thierry Reding <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <vidyas@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20190516055307.25737-28-mmaddireddy@nvidia.com>
- <20190604132233.GT16519@ulmo>
- <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
- <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
- <20190614143222.GB23116@e121166-lin.cambridge.arm.com>
- <1508173d-0ecc-f498-6ab2-78a718086b35@nvidia.com>
- <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
- <20190614152304.GK15526@ulmo>
- <20190614155934.GA28253@e121166-lin.cambridge.arm.com>
- <51e4ae62-f842-1d2f-fbca-0b2063dd53a6@nvidia.com>
- <20190614165353.GB30511@e121166-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <1c662f82-8329-5e1b-58bf-b2fe1643adb0@nvidia.com>
-Date:   Fri, 14 Jun 2019 22:53:13 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726325AbfFNRkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 13:40:40 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:34414 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726184AbfFNRkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:40:40 -0400
+Received: by mail-qt1-f193.google.com with SMTP id m29so3450033qtu.1;
+        Fri, 14 Jun 2019 10:40:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wPpnwqyMUwz4SjcLvux0hAtQhIO7tvhlsaBTqk5BtFQ=;
+        b=aeOLEXhAUBlKVEX6xUuNUcJiPqFBUt5wPo1E48xyyyjUYISE1QJIkjclf1ZplcQKXb
+         vNPYaWwouLzTrQ7LLxf2RH9dZTbHxQkHc8TcblDcwyHB8bqllXKhDZ29SEeNsAmCx+QB
+         se+XSIZwk4niInJsxsgKnA86AehhoONbwz5NhrvnqFpBcOnM7XTFvtNarcZuLnGu3HNE
+         tYrX45x1j5CR6annID1xEvRXrpe7FNAPnfUo35d9Jv4fbqZvvDCzBtptqW+78+VIgtV+
+         49B/FhEP0FpUZQBQai68BEwBbXu8vWq95JJCN4/Hfc/lbXhE1X79ajyhe+LGotePXWNu
+         yr4A==
+X-Gm-Message-State: APjAAAV/46fiPy+TqHknOpcS53CptU1fxPptDgjGvUG4S7DTytTl3LyV
+        88TWhS1wlfzFM0LEW3cyDQ==
+X-Google-Smtp-Source: APXvYqxo44A52mZTtb6SOTHwe53kddQe2wYjOh2ybh83i+aLF200ttNmY0LQpx9l952MRTesaOIZBw==
+X-Received: by 2002:ad4:43e3:: with SMTP id f3mr9527578qvu.108.1560534039177;
+        Fri, 14 Jun 2019 10:40:39 -0700 (PDT)
+Received: from localhost ([64.188.179.243])
+        by smtp.gmail.com with ESMTPSA id f25sm2592067qta.81.2019.06.14.10.40.37
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 14 Jun 2019 10:40:38 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 11:40:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH v2 4/6] dt-bindings: display: bridge: Add ICN6211
+ MIPI-DSI to RGB converter bridge
+Message-ID: <20190614174036.GA31068@bogus>
+References: <20190524104317.20287-1-jagan@amarulasolutions.com>
+ <20190524104317.20287-2-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-In-Reply-To: <20190614165353.GB30511@e121166-lin.cambridge.arm.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560533025; bh=3CBnkFdGS4UTonodjsvkHODIWZ6WFboQ59T/RqSru8Y=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=lmaxOTZvROR0MfaPsBg4jLsAOYnOe6ahzTDz6xEqF3tenMe+bSiEBLsPIu+qLN7sS
-         8QLBswT36O2eRT8dv3JWcWeEoPONNFz8iO6MsDkXxvp9QLTfXvQHdElUAj+02ANkGk
-         7U31LaaPBXuoBhM0CNdW/Ik3v8Qz/I+qGs3RZSgrbVAJHnd+/s2OhfDYq3nafB5C37
-         dWFHsPdc0ERWk/M/y+tM2/In7lw1HIYNDh8CICQXJ8dt3bG/8gd9u+KLJuWtrAy+QC
-         49aKTa8Z4x2zBXxIce1igYzZQFWYXi5BE8PS51YctELQ29+vreQIMgPCktswU7WgIs
-         a+1FIsxkL9p+A==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190524104317.20287-2-jagan@amarulasolutions.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 24, 2019 at 04:13:15PM +0530, Jagan Teki wrote:
+> ICN6211 is MIPI-DSI/RGB converter bridge from chipone.
+> It has a flexible configuration of MIPI DSI signal input
+> and produce RGB565, RGB666, RGB888 output format.
+> 
+> Add dt-bingings for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  .../display/bridge/chipone,icn6211.txt        | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.txt b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.txt
+> new file mode 100644
+> index 000000000000..53a9848ef8b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.txt
+> @@ -0,0 +1,78 @@
+> +Chipone ICN6211 MIPI-DSI to RGB Converter Bridge
+> +
+> +ICN6211 is MIPI-DSI/RGB converter bridge from chipone.
+> +It has a flexible configuration of MIPI DSI signal input
+> +and produce RGB565, RGB666, RGB888 output format.
+> +
+> +Required properties for RGB:
+> +- compatible: must be "chipone,icn6211"
+> +- reg: the virtual channel number of a DSI peripheral
+> +- reset-gpios: a GPIO phandle for the reset pin
+> +
+> +The device node can contain following 'port' child nodes,
+> +according to the OF graph bindings defined in [1]:
+> +  0: DSI Input, not required, if the bridge is DSI controlled
+> +  1: RGB Output, mandatory
+> +
+> +[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +Example:
+> +
+> +	panel {
+> +		compatible = "bananapi,s070wv20-ct16", "simple-panel";
 
+'simple-panel' is not a valid compatible string.
 
-On 14-Jun-19 10:23 PM, Lorenzo Pieralisi wrote:
-> On Fri, Jun 14, 2019 at 10:00:49PM +0530, Manikanta Maddireddy wrote:
->
-> [...]
->
->> GPIO based PERST# is per-platform requirement.
->> If DT prop is not present, then devm_gpiod_get_from_of_node() returns
->> NULL gpio_desc.
->>
->> struct gpio_desc *gpiod_get_from_of_node(struct device_node *node,
->>                                          const char *propname, int index,
->>                                          enum gpiod_flags dflags,
->>                                          const char *label)
->> {
->>         struct gpio_desc *desc;
->>         unsigned long lflags = 0;
->>         enum of_gpio_flags flags;
->>         bool active_low = false;
->>         bool single_ended = false;
->>         bool open_drain = false;
->>         bool transitory = false;
->>         int ret;
->>
->>         desc = of_get_named_gpiod_flags(node, propname,
->>                                         index, &flags);
->>
->>         if (!desc || IS_ERR(desc)) {
->> */* If it is not there, just return NULL */****if (PTR_ERR(desc) == -ENOENT)****return NULL;*
->>                 return desc;
->>         }
->> 	...
->>
->> }
-> Ok. My point then is that you have no way to enforce this requirement on
-> platforms that actually need it, I do not even know if there is a
-> way you can do it (I was thinking along the lines of using a
-> compatible string to detect whether the GPIO #PERST reset is mandatory)
-> but maybe this is not even a SOC property.
->
-> Maybe what I am asking is overkill, I just wanted to understand.
->
-> I was just asking a question to understand how you handle the case
-> where a GPIO pin definition is missing in DT for a platform that
-> actually needs it, the driver will probe but nothing will work.
->
-> It would be good to describe this and capture it in the commit log.
->
-> Thanks,
-> Lorenzo
-
-I can't think of a easy way to enforce this requirement. As you said
-compatible string is per SOC, so we can't use it for a platform.
-This issue is present on only one platform, so it is hard to miss the
-DT property. That is the reason for publishing this patch with out this
-enforcement in driver.
-
-I thought for changing PERST# to GPIO for all platform, but testing is
-a tedious job. Also I don't have Tegra20 and Tegra30 platforms.
-
-Do you want me to drop the patch or update the limitation in the commit
-log?
-
-Manikanta
-
-
+> +		enable-gpios = <&pio 1 7 GPIO_ACTIVE_HIGH>; /* LCD-PWR-EN: PB7 */
+> +		backlight = <&backlight>;
+> +
+> +		port {
+> +			panel_out_bridge: endpoint {
+> +				remote-endpoint = <&bridge_out_panel>;
+> +			};
+> +		};
+> +	};
+> +
+> +&dsi {
+> +	vcc-dsi-supply = <&reg_dcdc1>;		/* VCC-DSI */
+> +	status = "okay";
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		dsi_out: port@0 {
+> +			reg = <0>;
+> +
+> +			dsi_out_bridge: endpoint {
+> +				remote-endpoint = <&bridge_out_dsi>;
+> +			};
+> +		};
+> +	};
+> +
+> +	bridge@0 {
+> +		compatible = "chipone,icn6211";
+> +		reg = <0>;
+> +		reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* LCD-RST: PL5 */
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			bridge_in: port@0 {
+> +				reg = <0>;
+> +
+> +				bridge_out_dsi: endpoint {
+> +					remote-endpoint = <&dsi_out_bridge>;
+> +				};
+> +			};
+> +
+> +			bridge_out: port@1 {
+> +				reg = <1>;
+> +
+> +				bridge_out_panel: endpoint {
+> +					remote-endpoint = <&panel_out_bridge>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> -- 
+> 2.18.0.321.gffc6fa0e3
+> 
