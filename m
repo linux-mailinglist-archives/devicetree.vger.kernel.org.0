@@ -2,201 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54FE7464DB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A070146296
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 17:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbfFNQqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 12:46:24 -0400
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:35010 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725869AbfFNQqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 12:46:23 -0400
-X-Greylist: delayed 5550 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 Jun 2019 12:46:22 EDT
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5EF3R82019686;
-        Fri, 14 Jun 2019 08:13:29 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=proofpoint;
- bh=EvtLGW0QPy8bCBPyv9XjVufr+PVjVP0YmApk8hR39II=;
- b=RacRPZB6foCOx40nQWGMJgoji2r+YILZGdqquwKm+yzz6Hb0g1LNX5FLYoO7zospny/R
- zCQaNFFTWIEfjHELdl4rvLCeOID+9DI9lMq37ytAzbptlBax5ksSrTE4LIrB3SApwkG0
- i4dXH1pTOn+w1c1MCc/Za6nVknMYcWTICorsfGpQJuemwiGwUiZXYgjR87NQjHAXYneX
- pNi7ka3cLTY+e2v9aXc6TMvr2JLBHKZR4WgAbi1yJn9hx2E6FayswH8wXv9UO1sXi8ld
- Cu5n5g0TAI4DjkCqT6P+qso/SLVEKJ2ZB9fWkPXM33gWS05bq5Hkuj58rTqAAOJKqRjK RA== 
-Authentication-Results: cadence.com;
-        spf=pass smtp.mailfrom=piotrs@cadence.com
-Received: from nam01-by2-obe.outbound.protection.outlook.com (mail-by2nam01lp2052.outbound.protection.outlook.com [104.47.34.52])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 2t33th1w81-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Jun 2019 08:13:28 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EvtLGW0QPy8bCBPyv9XjVufr+PVjVP0YmApk8hR39II=;
- b=pbKdAEYb2zPzfzWa9Cx9LSrn9xFCdlBIGZfRZPFcwC5C1eHVxWDcQZsVaPaQBTOu7rKnYpfV5KvjIxOBSjBe1BtYNP01TAHIe66CcseSovpotMc6En4OqKPnbPq6ufHXvRxyWUoR1vsidrmPzwiihawkkZlxsInvXLy2DEk2cng=
-Received: from BN8PR07CA0003.namprd07.prod.outlook.com (2603:10b6:408:ac::16)
- by BY5PR07MB6966.namprd07.prod.outlook.com (2603:10b6:a03:1e7::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1987.11; Fri, 14 Jun
- 2019 15:13:26 +0000
-Received: from CO1NAM05FT039.eop-nam05.prod.protection.outlook.com
- (2a01:111:f400:7e50::205) by BN8PR07CA0003.outlook.office365.com
- (2603:10b6:408:ac::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.12 via Frontend
- Transport; Fri, 14 Jun 2019 15:13:25 +0000
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- cadence.com discourages use of 199.43.4.28 as permitted sender)
-Received: from rmmaillnx1.cadence.com (199.43.4.28) by
- CO1NAM05FT039.mail.protection.outlook.com (10.152.96.152) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2008.7 via Frontend Transport; Fri, 14 Jun 2019 15:13:23 +0000
-Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
-        by rmmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id x5EFDIUh009921
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Fri, 14 Jun 2019 11:13:20 -0400
-X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
-Received: from maileu3.global.cadence.com (10.160.88.99) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3; Fri, 14 Jun 2019 17:13:17 +0200
-Received: from lvlogina.cadence.com (10.165.176.102) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3 via Frontend Transport; Fri, 14 Jun 2019 17:13:17 +0200
-Received: from lvlogina.cadence.com (localhost.localdomain [127.0.0.1])
-        by lvlogina.cadence.com (8.14.4/8.14.4) with ESMTP id x5EFDH45006464;
-        Fri, 14 Jun 2019 16:13:17 +0100
-Received: (from piotrs@localhost)
-        by lvlogina.cadence.com (8.14.4/8.14.4/Submit) id x5EFDGen006413;
-        Fri, 14 Jun 2019 16:13:16 +0100
-From:   Piotr Sroka <piotrs@cadence.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     David Woodhouse <dwmw2@infradead.org>,
-        BrianNorris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        "Marek Vasut" <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Piotr Sroka <piotrs@cadence.com>
-Subject: [v3 2/2] dt-bindings: nand: Add Cadence NAND controller driver
-Date:   Fri, 14 Jun 2019 16:13:01 +0100
-Message-ID: <20190614151301.5371-1-piotrs@cadence.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20190614150956.31244-1-piotrs@cadence.com>
-References: <20190614150956.31244-1-piotrs@cadence.com>
+        id S1725985AbfFNPXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 11:23:10 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:53406 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbfFNPXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 11:23:10 -0400
+Received: by mail-wm1-f65.google.com with SMTP id x15so2781592wmj.3;
+        Fri, 14 Jun 2019 08:23:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=bCsIQkHts/WGN8UBpWhd/+xj5TSD+Bur2KRjDgtvffs=;
+        b=oO2X+W9uAsJjUGStbkGRtQjX1SfgVtB0SbNkl+gnNF7KWTkyd6/VxCmxC7tosMy5Ie
+         xtF+p11nkjefX6KDObAa6yjyfzTZ1VFGJYe3t3D0x7sX+u8YkRzzHft0CwJuL4QC7aOl
+         A8XibhY3qDwxt7kc9M+jYpC+V0v/qq/KfNmbUGcM59p3K0UpKQUljAL1M6TMUB4QeJVA
+         gx0jr93i72vm4hrZ4451EAUnTXRuUbQU8tdtKWQx0geFJlVLCGmzJ09MjaU6WmiHhqrI
+         /SlUsRSgHuBbKpUTtockIZ9Wla7J/1htQLJ1WCHEm4Fpw9r6egX2TxB20MTd2yjH5IaR
+         hH3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bCsIQkHts/WGN8UBpWhd/+xj5TSD+Bur2KRjDgtvffs=;
+        b=aayWM06SDetAZef+8v0UUkClIw2teUJxnOVi2pBSoThnVTHU+dBtXXYwan9BcOS7So
+         6yp+tjanenwPTQJsOHQ8cJP/GeyusjioVcCNuBJFuPBLifNIRNajcmGAyakGotol0XJU
+         J/s4i7lhMd6g+omqxe9U1nqOqBR2y2vX29LHjVVM84buFhmGv34/serRo7+Ip6HAowIB
+         4ThS+r63nZz4DlJaNUgcxrgbPoFGGwpBLRSYvGJsTgpSThdg20yezuuBKLn38Y0+yIZT
+         7Cn/whPTJx8T+Pw3XttpfnYetNHRS9f3CDUaKY00HPvSWO6jWhBqNRzcbQ9Pm/vmD4Kv
+         KYbw==
+X-Gm-Message-State: APjAAAVQ3Pios9Ck8kEFirQ9DMeJS4ktxPGMqGydF5vdYnvo83ewrs6a
+        Wt554ChHP924uwjheGvKovU=
+X-Google-Smtp-Source: APXvYqzLWzJW/ljpcqiYy+u+u5SOMjYfo17C4C5REFiIwlQi8MiUwMqc2pKURX+tY+8+VdbINem8xQ==
+X-Received: by 2002:a7b:cae9:: with SMTP id t9mr8400305wml.126.1560525787124;
+        Fri, 14 Jun 2019 08:23:07 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id w67sm5577665wma.24.2019.06.14.08.23.06
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 14 Jun 2019 08:23:06 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 17:23:04 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
+Message-ID: <20190614152304.GK15526@ulmo>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-28-mmaddireddy@nvidia.com>
+ <20190604132233.GT16519@ulmo>
+ <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
+ <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
+ <20190614143222.GB23116@e121166-lin.cambridge.arm.com>
+ <1508173d-0ecc-f498-6ab2-78a718086b35@nvidia.com>
+ <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-OrganizationHeadersPreserved: maileu3.global.cadence.com
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:199.43.4.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(979002)(396003)(39850400004)(136003)(346002)(376002)(2980300002)(36092001)(199004)(189003)(6916009)(50466002)(70206006)(86362001)(305945005)(107886003)(5660300002)(4326008)(70586007)(50226002)(8676002)(81156014)(81166006)(8936002)(1076003)(87636003)(26005)(51416003)(26826003)(478600001)(53936002)(186003)(76176011)(126002)(2906002)(2351001)(48376002)(76130400001)(2616005)(476003)(11346002)(446003)(426003)(36756003)(486006)(7416002)(336012)(16586007)(316002)(42186006)(54906003)(69596002)(6666004)(356004)(47776003)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR07MB6966;H:rmmaillnx1.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:ErrorRetry;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 97527be1-c8bc-473b-3c44-08d6f0dad802
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);SRVR:BY5PR07MB6966;
-X-MS-TrafficTypeDiagnostic: BY5PR07MB6966:
-X-Microsoft-Antispam-PRVS: <BY5PR07MB6966525A36486F1ECDC92F76DDEE0@BY5PR07MB6966.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
-X-Forefront-PRVS: 0068C7E410
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: oJMaZHg3xjt//VC+Kb+oCN+Yiizz2yYoWvq5054qWCtYS8Azy1UWZh9hX4R0LU14YpatpIcEExBqMVtY09ndFwPcPxB/PyDlyMV2D4XD+ifo8qklMnFEsjSyapmtObGtJxwf9RnzxmzgzLUuoog/gBegQql5r35nzXN/Gtr7uRr+SesC4Fj/btD07E4bj2BoBYCrp+RbvwX5ggrFUf/t+EvEY1IN9NbtmYJKerGK/DI5CHil7gelcEaoLSCD6ZuGjBAEc6NZ1k/FEzxxCAq82zx3+78amPRap57at9ZEYCHW2ndR3wSOebvpqfEo7A30WsOM11AwbQtgd/ASspy2fduaeT4BCn+HCBHSyW012QESMSW3W35UunTDFqcwAX0iMqa86gx3FM9ZIm/QPIX56B198Tm5ADFuZWvKKZkCTrA=
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2019 15:13:23.2542
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97527be1-c8bc-473b-3c44-08d6f0dad802
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[199.43.4.28];Helo=[rmmaillnx1.cadence.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR07MB6966
-X-Proofpoint-SPF-Result: pass
-X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
- include:mktomail.com include:spf-0014ca01.pphosted.com
- include:spf.protection.outlook.com include:auth.msgapp.com
- include:spf.mandrillapp.com ~all
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-14_07:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
- priorityscore=1501 malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0
- spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=958 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1906140125
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cEobB2knsyc5ebfU"
+Content-Disposition: inline
+In-Reply-To: <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Piotr Sroka <piotrs@cadence.com>
----
-Changes for v3:
-- add unit suffix for board_delay 
-- move child description to proper place
-- remove prefix cadence_ for reg and sdma fields
-Changes for v2:
-- remove chip dependends parameters from dts bindings
-- add names for register ranges in dts bindings
-- add generic bindings to describe NAND chip representation
----
- .../bindings/mtd/cadence-nand-controller.txt       | 51 ++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
 
-diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-new file mode 100644
-index 000000000000..e485b87075bd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-@@ -0,0 +1,51 @@
-+* Cadence NAND controller
-+
-+Required properties:
-+  - compatible : "cdns,hpnfc"
-+  - reg : Contains two entries, each of which is a tuple consisting of a
-+	  physical address and length. The first entry is the address and
-+	  length of the controller register set. The second entry is the
-+	  address and length of the Slave DMA data port.
-+  - reg-names: should contain "reg" and "sdma"
-+  - interrupts : The interrupt number.
-+  - clocks: phandle of the controller core clock (nf_clk).
-+
-+Optional properties:
-+  - dmas: shall reference DMA channel associated to the NAND controller
-+  - cdns,board-delay_ps : Estimated Board delay. The value includes the total
-+    round trip delay for the signals and is used for deciding on values
-+    associated with data read capture. The example formula for SDR mode is
-+    the following:
-+    board_delay = RE#PAD_delay + PCB trace to device + PCB trace from device
-+    + DQ PAD delay
-+
-+Children nodes represent the available NAND chips.
-+
-+Required properties of NAND chips:
-+  - reg: shall contain the native Chip Select ids from 0 to max supported by
-+    the cadence nand flash controller
-+
-+
-+See Documentation/devicetree/bindings/mtd/nand.txt for more details on
-+generic bindings.
-+
-+Example:
-+
-+nand_controller: nand-controller @60000000 {
-+
-+	  compatible = "cdns,hpnfc";
-+	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
-+	  reg-names = "reg", "sdma";
-+	  clocks = <&nf_clk>;
-+	  cdns,board-delay_ps = <4830>;
-+	  interrupts = <2 0>;
-+	  nand@0 {
-+	      reg = <0>;
-+	      label = "nand-1";
-+	  };
-+	  nand@1 {
-+	      reg = <1>;
-+	      label = "nand-2";
-+	  };
-+
-+};
--- 
-2.15.0
+--cEobB2knsyc5ebfU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Jun 14, 2019 at 03:50:23PM +0100, Lorenzo Pieralisi wrote:
+> On Fri, Jun 14, 2019 at 08:08:26PM +0530, Manikanta Maddireddy wrote:
+> >=20
+> >=20
+> > On 14-Jun-19 8:02 PM, Lorenzo Pieralisi wrote:
+> > > On Fri, Jun 14, 2019 at 04:07:35PM +0530, Manikanta Maddireddy wrote:
+> > >>
+> > >> On 13-Jun-19 8:54 PM, Lorenzo Pieralisi wrote:
+> > >>> On Tue, Jun 04, 2019 at 03:22:33PM +0200, Thierry Reding wrote:
+> > >>>
+> > >>> [...]
+> > >>>
+> > >>>>> +	} else {
+> > >>>>> +		value =3D afi_readl(port->pcie, ctrl);
+> > >>>>> +		value &=3D ~AFI_PEX_CTRL_RST;
+> > >>>>> +		afi_writel(port->pcie, value, ctrl);
+> > >>>>> +	}
+> > >>>>> =20
+> > >>>>>  	usleep_range(1000, 2000);
+> > >>>>> =20
+> > >>>>> -	value =3D afi_readl(port->pcie, ctrl);
+> > >>>>> -	value |=3D AFI_PEX_CTRL_RST;
+> > >>>>> -	afi_writel(port->pcie, value, ctrl);
+> > >>>>> +	if (port->reset_gpiod) {
+> > >>>>> +		gpiod_set_value(port->reset_gpiod, 1);
+> > >>>> After this the port should be functional, right? I think it'd be b=
+etter
+> > >>>> to reverse the logic here and move the polarity of the GPIO into d=
+evice
+> > >>>> tree. gpiod_set_value() takes care of inverting the level internal=
+ly if
+> > >>>> the GPIO is marked as low-active in DT.
+> > >>>>
+> > >>>> The end result is obviously the same, but it makes the usage much
+> > >>>> clearer. If somebody want to write a DT for their board, they will=
+ look
+> > >>>> at the schematics and see a low-active reset line and may be tempt=
+ed to
+> > >>>> describe it as such in DT, but with your current code that would be
+> > >>>> exactly the wrong way around.
+> > >>> I agree with Thierry here, you should change the logic.
+> > >>>
+> > >>> Question: what's the advantage of adding GPIO reset support if that=
+'s
+> > >>> architected already in port registers ? I am pretty sure there is a
+> > >>> reason behind it (and forgive me the dumb question) and I would lik=
+e to
+> > >>> have it written in the commit log.
+> > >>>
+> > >>> Thanks,
+> > >>> Lorenzo
+> > >> Each PCIe controller has a dedicated SFIO pin to support PERST#
+> > >> signal. Port register can control only this particular SFIO pin.
+> > >> However, in one of the Nvidia platform, instead of using PCIe SFIO
+> > >> pin, different gpio is routed PCIe slot. This happened because of a
+> > >> confusion in IO ball naming convention. To support this particular
+> > >> platform, driver has provide gpio support. I will update the commit
+> > >> log in V5.
+> > > What happens on that platform where you trigger reset through a port
+> > > register with :
+> > >
+> > > value =3D afi_readl(port->pcie, ctrl);
+> > > value |=3D AFI_PEX_CTRL_RST;
+> > > afi_writel(port->pcie, value, ctrl);
+> > >
+> > > (imagine the DT is not updated for instance or on current
+> > > mainline) ?
+> > >
+> > > Lorenzo
+> >=20
+> > Lets take an example of PCIe controller-0, SFIO ball name which is
+> > controlled by the port-0 register is PEX_L0_RST. It will deassert
+> > PEX_L0_RST SFIO line but it doesn't go to PCIe slot, so fundamental
+> > reset(PERST# deassert) is not applied to the endpoint connected to
+> > that slot.
+>=20
+> That's the point I am making, if the reset is not applied nothing
+> will work (provided PEX_L0_RST does not do any damage either).
+>=20
+> For the platform in question you should make reset-gpios mandatory and
+> fail if not present (instead of toggling the wrong reset line) there is
+> no chance the driver can work without that property AFAICS.
+
+I'm not sure I understand what you're proposing here. Are you suggesting
+that we put a check in the driver to see if we're running on a specific
+board and then fail if the reset-gpios are not there?
+
+Thierry
+
+--cEobB2knsyc5ebfU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0Du9YACgkQ3SOs138+
+s6HbbxAAhZP/PrlezAF2+SWVXXEizqiwWsERJwH8MJqbzsUkAkYXXr+07Xd4VNLS
+Hz+7Vg7jopAplEICym/ryuOM8AssVpCpZW3rCZK6s5MfKPdejD5fQ0ISBkTxGUB3
++g/bYtqxe//zvP99f5gJH9B94GLGgWg5K/xPTME+0g4ymeqLtR6ZlFXcbn4FrYNv
+R1uI2vIo6HhldniwelxDZRrt4BsRe9XggfFqd1y/9UDfxFmhdUhRJtglp9o3CJl8
+9rkPqC15Jul39FxsqaqPKilgn2emBinYUJAM6ty9oEQYh9XPe+CBMtoTg8Idm5zz
+8SZ85itpeTSyguGlwsmuaQHxq6V79GqGW9MoI7Imf1sQQheMZEPId5Tk5+FoAw3S
+YLKpIcI/sr1aYGvULe0qB5COzKQulmgbbLMZ1gQ9r4hQzIDR0cLE41LXkB+UMoDM
+5Tj8xrTuKBqYcMsqLCZQ1ZiI/zlupH7jPn1I4j9oleEaEv1NBMCXclPUhtD2v9EW
+5C25/MT7axcvJOfXTFszJCmbHE88ybSLJkGvCM52QoEXkIVfFjwSCRVcMYotTqMm
+lQivd80PayTYR1TP2KwYsjR3RyqVSb0b9NE2TNO9qEHU3UU6QIP9PHfABHibd0/x
+4laNBy09J1Q88exwSstLI+irvxaLDTmiSMUuVk7epOmU4KPNpZI=
+=yRTH
+-----END PGP SIGNATURE-----
+
+--cEobB2knsyc5ebfU--
