@@ -2,100 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9EBC458D1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22C1C458AE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:34:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726826AbfFNJfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 05:35:40 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:38044 "EHLO gloria.sntech.de"
+        id S1726900AbfFNJeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 05:34:04 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:53844 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726083AbfFNJfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 05:35:40 -0400
-Received: from we0305.dip.tu-dresden.de ([141.76.177.49] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hbicI-00048J-FR; Fri, 14 Jun 2019 11:35:26 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, edubezval@gmail.com,
-        manivannan.sadhasivam@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Randy Li <ayaka@soulik.info>,
-        Tony Xie <tony.xie@rock-chips.com>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>, dianders@chromium.org,
-        robin.murphy@arm.com
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Fix multiple thermal zones conflict in rk3399.dtsi
-Date:   Fri, 14 Jun 2019 11:35:25 +0200
-Message-ID: <5188064.YWmxIpmbGp@phil>
-In-Reply-To: <20190604165802.7338-1-daniel.lezcano@linaro.org>
-References: <20190604165802.7338-1-daniel.lezcano@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S1726083AbfFNJeE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 05:34:04 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D2506200E5F;
+        Fri, 14 Jun 2019 11:34:01 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 92B65200E53;
+        Fri, 14 Jun 2019 11:33:56 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C56E2402A0;
+        Fri, 14 Jun 2019 17:33:49 +0800 (SGT)
+From:   Peter Chen <peter.chen@nxp.com>
+To:     balbi@kernel.org, shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, aisheng.dong@nxp.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, chunfeng.yun@mediatek.com,
+        Peter Chen <peter.chen@nxp.com>
+Subject: [PATCH v4 0/8] Add imx7ulp USBOTG1 support
+Date:   Fri, 14 Jun 2019 17:35:36 +0800
+Message-Id: <20190614093544.11730-1-peter.chen@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Changes for v4:
+- Delete the oldest compatible for usbotg1, usbmisc and usbphy.
+[Patch 6/8]
 
-Am Dienstag, 4. Juni 2019, 18:57:57 CEST schrieb Daniel Lezcano:
-> Currently the common thermal zones definitions for the rk3399 assumes
-> multiple thermal zones are supported by the governors. This is not the
-> case and each thermal zone has its own governor instance acting
-> individually without collaboration with other governors.
-> 
-> As the cooling device for the CPU and the GPU thermal zones is the
-> same, each governors take different decisions for the same cooling
-> device leading to conflicting instructions and an erratic behavior.
-> 
-> As the cooling-maps is about to become an optional property, let's
-> remove the cpu cooling device map from the GPU thermal zone.
-> 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 9 ---------
->  1 file changed, 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index 196ac9b78076..e1357e0f60f7 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -821,15 +821,6 @@
->  					type = "critical";
->  				};
->  			};
-> -
-> -			cooling-maps {
-> -				map0 {
-> -					trip = <&gpu_alert0>;
-> -					cooling-device =
-> -						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> -						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> -				};
-> -			};
->  		};
->  	};
+Changes for v3:
+- Using readl_poll_timeout to replace private function. [Patch 2/8]
+- Add more commit log for new flag CI_HDRC_PMQOS. [Patch 5/8]
+- Move 'compatible' at the beginning of propeties. [Patch 6/8]
 
-my knowledge of the thermal framework is not that big, but what about the
-rk3399-devices which further detail the cooling-maps like rk3399-gru-kevin
-and the rk3399-nanopc-t4 with its fan-handling in the cooling-maps?
+Changes for v2:
+- Use common 'phys' property [Patch 6/8]
+- Add the last patch that "fsl,usbphy" phandle is not mandatory now
+[Patch 8/8]
+- Add Reviewed-by from Rob.
 
 
-Heiko
+There is a dual-role USB controller at imx7ulp, we add support for it
+in this patch set, and the dual-role function is tested at imx7ulp-evk
+board.
 
+Thanks.
+
+Peter Chen (8):
+  doc: dt-binding: mxs-usb-phy: add compatible for 7ulp
+  usb: phy: phy-mxs-usb: add imx7ulp support
+  doc: dt-binding: ci-hdrc-usb2: add compatible string for imx7ulp
+  doc: dt-binding: usbmisc-imx: add compatible string for imx7ulp
+  usb: chipidea: imx: add imx7ulp support
+  ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+  ARM: dts: imx7ulp-evk: enable USBOTG1 support
+  usb: chipidea: imx: "fsl,usbphy" phandle is not mandatory now
+
+ .../devicetree/bindings/phy/mxs-usb-phy.txt        |  1 +
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt       |  1 +
+ .../devicetree/bindings/usb/usbmisc-imx.txt        |  1 +
+ arch/arm/boot/dts/imx7ulp-evk.dts                  | 35 +++++++++++
+ arch/arm/boot/dts/imx7ulp.dtsi                     | 28 +++++++++
+ drivers/usb/chipidea/ci_hdrc_imx.c                 | 33 ++++++++++-
+ drivers/usb/chipidea/usbmisc_imx.c                 |  4 ++
+ drivers/usb/phy/phy-mxs-usb.c                      | 67 +++++++++++++++++++++-
+ include/linux/usb/chipidea.h                       |  1 +
+ 9 files changed, 167 insertions(+), 4 deletions(-)
+
+-- 
+2.14.1
 
