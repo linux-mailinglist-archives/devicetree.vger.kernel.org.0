@@ -2,93 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 18EFC45328
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 05:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2734E45335
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 06:04:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725868AbfFNDzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 23:55:46 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:58930 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725838AbfFNDzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 23:55:46 -0400
-X-UUID: 0247b3bdad94423384cd99e839ad574f-20190614
-X-UUID: 0247b3bdad94423384cd99e839ad574f-20190614
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 2064053008; Fri, 14 Jun 2019 11:55:39 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 14 Jun 2019 11:55:37 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 14 Jun 2019 11:55:37 +0800
-Message-ID: <1560484537.16718.14.camel@mtksdaap41>
-Subject: Re: [PATCH v3, 15/27] drm/mediatek: add component OVL_2L1
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <yongqiang.niu@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Fri, 14 Jun 2019 11:55:37 +0800
-In-Reply-To: <1559734986-7379-16-git-send-email-yongqiang.niu@mediatek.com>
-References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1559734986-7379-16-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1725826AbfFNEEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 00:04:37 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:33525 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725774AbfFNEEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 00:04:37 -0400
+Received: by mail-pl1-f194.google.com with SMTP id c14so432278plo.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 21:04:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=082jHmlkjhAh9IaesAziT6qv866KrYluo7FPcaARnBI=;
+        b=dRK6J7+JL1mDleO5i0AEvED6xGKT1Z2ZzWolFQimSWfA9AxSgg1Jsvw8+Vc+nL1lI1
+         3G+qaiMYOXPJQsfdCnQynGy6ffboDMbkJCjy8uhc6tkJMPHn7Wq0tw9pje6BAQbtONlV
+         GAXWF5LELTA75E3tsSNJfB9FOfMuVigafVaD6oG6Nm7yk2yH/BEabvEpa35UCE4cWowQ
+         H4MMDI2ZiGoVG+3/0vhZuiCygLm1gTeTBcQQsdfjeOewVsc+Nvc6onajggsmDqe9IEYT
+         /fbItZ5GsntxotXFAQzEfu/q5+XPm41g5qSpOwMBKAi7TggWRj+UoY07LvpxN8WQw3C1
+         NBHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=082jHmlkjhAh9IaesAziT6qv866KrYluo7FPcaARnBI=;
+        b=oK5PoRD+BYPsr14T0ZVjhc6iS/1P1wnr1nuRkZzbjRulRK+BcDqy20LoXmKzVUks/T
+         pHtLyJxz4Rj6lCI22QPZf6M1O8ONMKtIZ2x3etOliujYTCWdJC8vd7kFtRwyKyGOYHjb
+         QRk53sHnaJUe++d8167lLAdJy/i5SOolKr1GXieBZBjL54ZI8U1RcIJGTGBjrBzWpNfB
+         XgGBQ6Nm+q+7yjCe+XdosJiKkCieb4qP7WPvQyvrt7PS3+Jf6/6JYeYOaOugHyyBDq/I
+         +PMigheqtKr3Uv1ZDcWqjMJfLUoVnAZKOjvZpDGhHVw2HT0t3dEbQRrL8k/6WDCH8XWA
+         597A==
+X-Gm-Message-State: APjAAAVyHHPzdHIZeD+U1jWnfWFIndjWB4uMu5fWgUnoCbOQppVc20h1
+        0lfJvlKisWF7otxH6mB3Hefp8g==
+X-Google-Smtp-Source: APXvYqwGsFpWofl9vL6LfAjmRMNFnjycFiWNIAapWNnWiOW+6oPOAJjd+EKpPBPWOXACVFe7ktebvQ==
+X-Received: by 2002:a17:902:76c6:: with SMTP id j6mr66236784plt.263.1560485075890;
+        Thu, 13 Jun 2019 21:04:35 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id k11sm1111403pfi.168.2019.06.13.21.04.33
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 13 Jun 2019 21:04:34 -0700 (PDT)
+Date:   Thu, 13 Jun 2019 21:05:20 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, will.deacon@arm.com,
+        robin.murphy@arm.com, joro@8bytes.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        david.brown@linaro.org
+Subject: Re: [PATCH v3 3/4] iommu/arm-smmu: Add support to handle Qcom's
+ wait-for-safe logic
+Message-ID: <20190614040520.GK22737@tuxbook-pro>
+References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
+ <20190612071554.13573-4-vivek.gautam@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190612071554.13573-4-vivek.gautam@codeaurora.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+On Wed 12 Jun 00:15 PDT 2019, Vivek Gautam wrote:
 
-On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Qcom's implementation of arm,mmu-500 adds a WAIT-FOR-SAFE logic
+> to address under-performance issues in real-time clients, such as
+> Display, and Camera.
+> On receiving an invalidation requests, the SMMU forwards SAFE request
+> to these clients and waits for SAFE ack signal from real-time clients.
+> The SAFE signal from such clients is used to qualify the start of
+> invalidation.
+> This logic is controlled by chicken bits, one for each - MDP (display),
+> IFE0, and IFE1 (camera), that can be accessed only from secure software
+> on sdm845.
 > 
-> This patch add component OVL_2L1
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
+> This configuration, however, degrades the performance of non-real time
+> clients, such as USB, and UFS etc. This happens because, with wait-for-safe
+> logic enabled the hardware tries to throttle non-real time clients while
+> waiting for SAFE ack signals from real-time clients.
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> On MTP sdm845 devices, with wait-for-safe logic enabled at the boot time
+> by the bootloaders we see degraded performance of USB and UFS when kernel
+> enables the smmu stage-1 translations for these clients.
+> Turn off this wait-for-safe logic from the kernel gets us back the perf
+> of USB and UFS devices until we re-visit this when we start seeing perf
+> issues on display/camera on upstream supported SDM845 platforms.
+> 
+> Now, different bootloaders with their access control policies allow this
+> register access differently through secure monitor calls -
+> 1) With one we can issue io-read/write secure monitor call (qcom-scm)
+>    to update the register, while,
+> 2) With other, such as one on MTP sdm845 we should use the specific
+>    qcom-scm command to send request to do the complete register
+>    configuration.
+> Adding a separate device tree flag for arm-smmu to identify which
+> firmware configuration of the two mentioned above we use.
+> Not adding code change to allow type-(1) bootloaders to toggle the
+> safe using io-read/write qcom-scm call.
+> 
+> This change is inspired by the downstream change from Patrick Daly
+> to address performance issues with display and camera by handling
+> this wait-for-safe within separte io-pagetable ops to do TLB
+> maintenance. So a big thanks to him for the change.
+> 
+> Without this change the UFS reads are pretty slow:
+> $ time dd if=/dev/sda of=/dev/zero bs=1048576 count=10 conv=sync
+> 10+0 records in
+> 10+0 records out
+> 10485760 bytes (10.0MB) copied, 22.394903 seconds, 457.2KB/s
+> real    0m 22.39s
+> user    0m 0.00s
+> sys     0m 0.01s
+> 
+> With this change they are back to rock!
+> $ time dd if=/dev/sda of=/dev/zero bs=1048576 count=300 conv=sync
+> 300+0 records in
+> 300+0 records out
+> 314572800 bytes (300.0MB) copied, 1.030541 seconds, 291.1MB/s
+> real    0m 1.03s
+> user    0m 0.00s
+> sys     0m 0.54s
+> 
+> Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
 > ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 1 +
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h | 1 +
->  2 files changed, 2 insertions(+)
+>  drivers/iommu/arm-smmu.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> index 8094926..5a0ec0f 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -268,6 +268,7 @@ struct mtk_ddp_comp_match {
->  	[DDP_COMPONENT_OVL0]	= { MTK_DISP_OVL,	0, NULL },
->  	[DDP_COMPONENT_OVL1]	= { MTK_DISP_OVL,	1, NULL },
->  	[DDP_COMPONENT_OVL_2L0]	= { MTK_DISP_OVL_2L,	0, NULL },
-> +	[DDP_COMPONENT_OVL_2L1]	= { MTK_DISP_OVL_2L,	1, NULL },
->  	[DDP_COMPONENT_PWM0]	= { MTK_DISP_PWM,	0, NULL },
->  	[DDP_COMPONENT_PWM1]	= { MTK_DISP_PWM,	1, NULL },
->  	[DDP_COMPONENT_PWM2]	= { MTK_DISP_PWM,	2, NULL },
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> index a81c322..d7ef480 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> @@ -60,6 +60,7 @@ enum mtk_ddp_comp_id {
->  	DDP_COMPONENT_OD1,
->  	DDP_COMPONENT_OVL0,
->  	DDP_COMPONENT_OVL_2L0,
-> +	DDP_COMPONENT_OVL_2L1,
->  	DDP_COMPONENT_OVL1,
->  	DDP_COMPONENT_PWM0,
->  	DDP_COMPONENT_PWM1,
+> diff --git a/drivers/iommu/arm-smmu.c b/drivers/iommu/arm-smmu.c
+> index 0ad086da399c..3c3ad43eda97 100644
+> --- a/drivers/iommu/arm-smmu.c
+> +++ b/drivers/iommu/arm-smmu.c
+> @@ -39,6 +39,7 @@
+>  #include <linux/pci.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/qcom_scm.h>
+>  #include <linux/slab.h>
+>  #include <linux/spinlock.h>
+>  
+> @@ -177,6 +178,7 @@ struct arm_smmu_device {
+>  	u32				features;
+>  
+>  #define ARM_SMMU_OPT_SECURE_CFG_ACCESS (1 << 0)
+> +#define ARM_SMMU_OPT_QCOM_FW_IMPL_SAFE_ERRATA (1 << 1)
+>  	u32				options;
+>  	enum arm_smmu_arch_version	version;
+>  	enum arm_smmu_implementation	model;
+> @@ -262,6 +264,7 @@ static bool using_legacy_binding, using_generic_binding;
+>  
+>  static struct arm_smmu_option_prop arm_smmu_options[] = {
+>  	{ ARM_SMMU_OPT_SECURE_CFG_ACCESS, "calxeda,smmu-secure-config-access" },
+> +	{ ARM_SMMU_OPT_QCOM_FW_IMPL_SAFE_ERRATA, "qcom,smmu-500-fw-impl-safe-errata" },
 
+This should be added to the DT binding as well.
 
+>  	{ 0, NULL},
+>  };
+>  
+> @@ -2292,6 +2295,19 @@ static int arm_smmu_device_probe(struct platform_device *pdev)
+>  	arm_smmu_device_reset(smmu);
+>  	arm_smmu_test_smr_masks(smmu);
+>  
+> +	/*
+> +	 * To address performance degradation in non-real time clients,
+> +	 * such as USB and UFS, turn off wait-for-safe on sdm845 platforms,
+> +	 * such as MTP, whose firmwares implement corresponding secure monitor
+> +	 * call handlers.
+> +	 */
+> +	if (of_device_is_compatible(smmu->dev->of_node, "qcom,sdm845-smmu-500") &&
+> +	    smmu->options & ARM_SMMU_OPT_QCOM_FW_IMPL_SAFE_ERRATA) {
+> +		err = qcom_scm_qsmmu500_wait_safe_toggle(0);
+> +		if (err)
+> +			dev_warn(dev, "Failed to turn off SAFE logic\n");
+> +	}
+> +
+
+This looks good, I presume at some point we can profile things and
+review if it's worth toggling this on the fly, but given that this is
+conditioned on smmu->options that should be an implementation detail..
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
+>  	/*
+>  	 * We want to avoid touching dev->power.lock in fastpaths unless
+>  	 * it's really going to do something useful - pm_runtime_enabled()
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
