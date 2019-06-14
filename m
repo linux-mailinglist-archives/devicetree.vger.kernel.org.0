@@ -2,103 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 48CCA4654D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D434655C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726213AbfFNRE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 13:04:59 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:41799 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726185AbfFNRE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:04:59 -0400
-Received: by mail-pg1-f194.google.com with SMTP id 83so1881162pgg.8
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 10:04:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=GRNhWBdNTilur/4Qu0VKxMp8RHH2Xu/iee1oWBanHcQ=;
-        b=Qnx/fCIVfWiWASj1BfPRmpagCrJESCLnbzOnBc+UHuB7cHWif0IVEz9Scq1PY4sOPa
-         LYsNN2IgRPUMtrZYbx4LxU6tScbnCsCWPDXg65TkQ1LzaWJ7mMsI+pnfUBAdU/vmxW5K
-         XU6T/Ku592e7S9+k0xRE5vsFZxS04ZzR/EY/pjIGGs0iSxzw1rbdWZOYaTCPM2jqJ4Qg
-         nbqVm2/XlJY3x1/5lmX4rDO3jNiPEnKC9n3rz0YEiW4Rasx3YTPVGbCwCd4txEMzqu8p
-         Iqo9+V9U/472EEGlT2arMhZDYMBQkiA33FRYpciTYnUb6ok6MYm3syLElTOzoVzKykSL
-         lMPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=GRNhWBdNTilur/4Qu0VKxMp8RHH2Xu/iee1oWBanHcQ=;
-        b=qRFts072UuGvt1li1yX4m1ZP4lKSCwO/8D+Y120dJ/xo+Yb0Qr99xJ7VVwuI79pFgt
-         UE4kTA3JfvZlJjgcFpeZv7FRdkrlYsNYSVe/IpHS4McdPrvUoXUmLqq6tIFDJQHuH1/l
-         L0+KDDDWSUWIyeIbHvdzzPPYygt/GgttUj0iMFmwRzOr/5f0vzB9H3KOkdoqCqShWIFU
-         QH27hcowMkPHZdpf8eFVWjcnFMJniwmsx+KET65DfDIDrCWoCbOjWBOVQq0mR/+K22JP
-         YlV1MEvMrMPblAjEDR0fh3pqsGfpdH5fPBfvp4AUOGbfdMWsdUTuzMRllpkgaSThxYJQ
-         C04w==
-X-Gm-Message-State: APjAAAWUO4Kcc6HEKBwN9y8prrDAMkdCpgiDjr00+eFaH4O5EDJraNO5
-        rm6vvX/BOkmxqARH0HRL9+Pm
-X-Google-Smtp-Source: APXvYqydptQgfMZN2eXp0DabgkT3g1XVFZjDoA9VlZwMca7DYvYxnhdTYKAHeYylQKIGsw2h9X4FtA==
-X-Received: by 2002:a62:1515:: with SMTP id 21mr21874961pfv.100.1560531898101;
-        Fri, 14 Jun 2019 10:04:58 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:6298:46a1:bdd9:1134:3bdd:7ab4])
-        by smtp.gmail.com with ESMTPSA id n1sm3061706pgv.15.2019.06.14.10.04.53
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 14 Jun 2019 10:04:57 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 22:34:50 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+        id S1725985AbfFNRHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 13:07:46 -0400
+Received: from mx2.suse.de ([195.135.220.15]:44526 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726028AbfFNRHq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 13:07:46 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 28740AF10;
+        Fri, 14 Jun 2019 17:07:45 +0000 (UTC)
 Subject: Re: [PATCH v3] dt-bindings: arm: Convert Actions Semi bindings to
  jsonschema
-Message-ID: <20190614170450.GA29654@Mani-XPS-13-9360>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 References: <20190517153223.7650-1-robh@kernel.org>
- <20190613224435.GA32572@bogus>
+ <20190613224435.GA32572@bogus> <20190614170450.GA29654@Mani-XPS-13-9360>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Openpgp: preference=signencrypt
+Organization: SUSE Linux GmbH
+Message-ID: <5946467c-7674-de2b-a657-627cf3be42df@suse.de>
+Date:   Fri, 14 Jun 2019 19:07:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <20190614170450.GA29654@Mani-XPS-13-9360>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190613224435.GA32572@bogus>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 04:44:35PM -0600, Rob Herring wrote:
-> On Fri, May 17, 2019 at 10:32:23AM -0500, Rob Herring wrote:
-> > Convert Actions Semi SoC bindings to DT schema format using json-schema.
-> > 
-> > Cc: "Andreas F�rber" <afaerber@suse.de>
-> > Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > Cc: Mark Rutland <mark.rutland@arm.com>
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > v3:
-> > - update MAINTAINERS
-> > 
-> >  .../devicetree/bindings/arm/actions.txt       | 56 -------------------
-> >  .../devicetree/bindings/arm/actions.yaml      | 38 +++++++++++++
-> >  MAINTAINERS                                   |  2 +-
-> >  3 files changed, 39 insertions(+), 57 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/actions.txt
-> >  create mode 100644 Documentation/devicetree/bindings/arm/actions.yaml
+Am 14.06.19 um 19:04 schrieb Manivannan Sadhasivam:
+> On Thu, Jun 13, 2019 at 04:44:35PM -0600, Rob Herring wrote:
+>> On Fri, May 17, 2019 at 10:32:23AM -0500, Rob Herring wrote:
+>>> Convert Actions Semi SoC bindings to DT schema format using json-schema.
+>>>
+>>> Cc: "Andreas Färber" <afaerber@suse.de>
+>>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>> Cc: Mark Rutland <mark.rutland@arm.com>
+>>> Cc: linux-arm-kernel@lists.infradead.org
+>>> Cc: devicetree@vger.kernel.org
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>> v3:
+>>> - update MAINTAINERS
+>>>
+>>>  .../devicetree/bindings/arm/actions.txt       | 56 -------------------
+>>>  .../devicetree/bindings/arm/actions.yaml      | 38 +++++++++++++
+>>>  MAINTAINERS                                   |  2 +-
+>>>  3 files changed, 39 insertions(+), 57 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/arm/actions.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/actions.yaml
+>>
+>> Ping. Please apply or modify this how you'd prefer. I'm not going to 
+>> keep respinning this.
+>>
 > 
-> Ping. Please apply or modify this how you'd prefer. I'm not going to 
-> keep respinning this.
-> 
+> Sorry for that Rob.
 
-Sorry for that Rob.
+Well, it was simply not clear whether we were supposed to or not. :)
 
-Andreas, are you going to take this patch? Else I'll pick it up (If you
-want me to do the PR for next cycle)
+> Andreas, are you going to take this patch? Else I'll pick it up (If you
+> want me to do the PR for next cycle)
 
-Thanks,
-Mani
+I had checked that all previous changes to the .txt file were by myself,
+so I would prefer if we not license it under GPLv2-only but under the
+same dual-license (MIT/GPLv2+) as the DTs. That modification would need
+Rob's approval then.
 
-> Rob
+Regards,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
+HRB 21284 (AG Nürnberg)
