@@ -2,85 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D8845044
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 01:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4AF4508F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 02:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727244AbfFMXoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 19:44:16 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:43571 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726349AbfFMXoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 19:44:16 -0400
-Received: by mail-qk1-f193.google.com with SMTP id m14so538300qka.10
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 16:44:15 -0700 (PDT)
+        id S1725867AbfFNAcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 20:32:33 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:39999 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725807AbfFNAcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 20:32:33 -0400
+Received: by mail-vs1-f67.google.com with SMTP id a186so668356vsd.7
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 17:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=g7boi3vIUx+9iLfyXXamOfQB8s0GSBsw2SREXSk/vlM=;
-        b=emZLjWchW4yBbvfCDUkBSh+PMxU2nC0uySIYouuKeH8jZf2+RRP8ORxRUq1c6G48EN
-         +oHXZrktnDWBXJqV2rN9cm3ZvuGMBEk7YP0CKWc4YtEIJwADZwHzqu/igyrvA9v/Uvzt
-         L/nBIyN7XddpFYAcAyiv1xG3NJ2Iboey1ghH0jDUEmFVAxdPNXK0AMh2sPf9F1ukKc8S
-         8opxqT0sSGnCjepFZcoqio0o1pgzAK2jh6CpmqL7Xi23deKnNyftEqdQc2e0MrQLMsHm
-         gWBwj2rQ1FAJhaYnS0z3lhbJxMd+BLp6Pz+QAaJnPCDUvFIak47UU+whMDqDl6hXOVHg
-         +Sag==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5o5a2UNvqnt2IqG/d30r1Z1PI+lkRFVIZCDDvP3GRa4=;
+        b=QSPL5o2oBNVzptcEqAin35G0xLo0WWvgdOOO2+lJQerKfjKIYK/6oBSgxbDxGyOeXK
+         xc1Z2RyR8khlsHj7h/56FHn401h/hL1ihSqJACQe/klR228W7RgTufBtib0cQQpfqY5/
+         S4NO2rnjTaZdsxN6OkMcnGXhGm9ft7LyISYAE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=g7boi3vIUx+9iLfyXXamOfQB8s0GSBsw2SREXSk/vlM=;
-        b=liQPQEBH/Ru7SSiGOc3LGu9Zr9OVo4VIKCdhbDoWFiTZo//RviXNS1KkNiavw+QhhN
-         xKFp+2j48wbDyBnN8fk1nLYI8dlIslCY2xnVdMZo70Evj34li+aHK7yD+fb5TB+fkXYO
-         c80SQHz9Hdvh935xOmqegZCQ/9/uDw8FsV0KEfSOhLkYo6KCpDt0HC1UuB0hWpOhu1Tl
-         5HZz5C/WVQDDNUbiYx+SGFM6Nbjx6MHv8giXhj0Tr1UdT7diN/nwShpEGxfXg8rO8rSJ
-         NbY9ZocnWBrX9kJiza15+Vg+vqSOhBx8s7TyhcjdrCt9wi0xUOTELOQMl7r3kJr4TPhu
-         mlCA==
-X-Gm-Message-State: APjAAAXAxWt2oAyUEOacbxFBadizQfd+2GaB57d30AQqe/zAFFJZgKV5
-        0Nz5sfl1PqRJE5HQfmgMFVUvhg==
-X-Google-Smtp-Source: APXvYqzpAVv1otDo0HQ91FihHrQL4EDya0tUX64BUv1oNZ7452dV5IuWwxGreImebgvLDtbAkimNtQ==
-X-Received: by 2002:a37:795:: with SMTP id 143mr74274310qkh.140.1560469455479;
-        Thu, 13 Jun 2019 16:44:15 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-156-34-55-100.dhcp-dynamic.fibreop.ns.bellaliant.net. [156.34.55.100])
-        by smtp.gmail.com with ESMTPSA id g2sm652872qkb.80.2019.06.13.16.44.15
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 13 Jun 2019 16:44:15 -0700 (PDT)
-Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
-        (envelope-from <jgg@ziepe.ca>)
-        id 1hbZOA-00018T-LK; Thu, 13 Jun 2019 20:44:14 -0300
-Date:   Thu, 13 Jun 2019 20:44:14 -0300
-From:   Jason Gunthorpe <jgg@ziepe.ca>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Peter Huewe <peterhuewe@gmx.de>,
-        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        Andrey Pronin <apronin@chromium.org>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
-        Duncan Laurie <dlaurie@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Subject: Re: [PATCH 8/8] tpm: add legacy sysfs attributes for tpm2
-Message-ID: <20190613234414.GJ22901@ziepe.ca>
-References: <20190613180931.65445-1-swboyd@chromium.org>
- <20190613180931.65445-9-swboyd@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5o5a2UNvqnt2IqG/d30r1Z1PI+lkRFVIZCDDvP3GRa4=;
+        b=ffo0PvVrvnZshir0bKPJ2PEF1fU1FQX9VQy1QRE2WHNITlVfxaMwEOEJhPugUwf64d
+         VNwbQ8QixAPwlXlSD7gCPpGgy/COqDpDIy9taPKG2iaQejQfS9VJ0ltaVicvpsNpmqJS
+         jC0CU+2GLY6Qm4DJeVwTwrxCQAlxhafdVUmqlqkvKQ9w4V9iZ1sJ623lkTpZpAV9ixyn
+         Jj+4DE+J6/8b7OY1ZNr9KM0UhoyMMhKF8y2xSFmrRK9slyQApxFiYSh/2bLRfTxYhHE1
+         PimfB6vlkwSutIQqrSKuLBEN2Kjgc6lxCZvQvgF6mP/RhhY609OWeDcVAC7nwpboKBmX
+         r88A==
+X-Gm-Message-State: APjAAAVWlo8o15rVZUQ9WOJlFlPGg2/Ud7GCFUsn/28GI1quT/zHhpw1
+        1rtYblBrXgE8dZoRgRiJP18EhzhRHeF7iWu8iZWQ5A==
+X-Google-Smtp-Source: APXvYqyFuFyDZEX0VGqPH3v35EIiUK6ftc8JlgTdYuQL9iHMbG0bt8E4uHg/PoKRrVKv16C9BEZM1mqeIvYNB77SyX0=
+X-Received: by 2002:a67:d384:: with SMTP id b4mr18708468vsj.152.1560472352531;
+ Thu, 13 Jun 2019 17:32:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190613180931.65445-9-swboyd@chromium.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190611040350.90064-1-dbasehore@chromium.org>
+ <20190611040350.90064-2-dbasehore@chromium.org> <20190612212054.GB13155@ravnborg.org>
+In-Reply-To: <20190612212054.GB13155@ravnborg.org>
+From:   "dbasehore ." <dbasehore@chromium.org>
+Date:   Thu, 13 Jun 2019 17:32:21 -0700
+Message-ID: <CAGAzgspS_cSDYDUTgApK4R814r3gZk63oe+CdtqDuiXrTG5JdA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] drm/panel: Add helper for reading DT rotation
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 11:09:31AM -0700, Stephen Boyd wrote:
-> From: Andrey Pronin <apronin@chromium.org>
-> 
-> Userland scripts and tests rely on certain sysfs attributes
-> present in the familiar location:
-> /sys/class/tpm/tpm0/device/enabled
-> /sys/class/tpm/tpm0/device/owned
+On Wed, Jun 12, 2019 at 2:20 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Derek.
+>
+> On Mon, Jun 10, 2019 at 09:03:46PM -0700, Derek Basehore wrote:
+> > This adds a helper function for reading the rotation (panel
+> > orientation) from the device tree.
+> >
+> > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > ---
+> >  drivers/gpu/drm/drm_panel.c | 41 +++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_panel.h     |  7 +++++++
+> >  2 files changed, 48 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+> > index dbd5b873e8f2..3b689ce4a51a 100644
+> > --- a/drivers/gpu/drm/drm_panel.c
+> > +++ b/drivers/gpu/drm/drm_panel.c
+> > @@ -172,6 +172,47 @@ struct drm_panel *of_drm_find_panel(const struct device_node *np)
+> >       return ERR_PTR(-EPROBE_DEFER);
+> >  }
+> >  EXPORT_SYMBOL(of_drm_find_panel);
+> > +
+> > +/**
+> > + * of_drm_get_panel_orientation - look up the rotation of the panel using a
+> > + * device tree node
+> > + * @np: device tree node of the panel
+> > + * @orientation: orientation enum to be filled in
+> > + *
+> > + * Looks up the rotation of a panel in the device tree. The rotation in the
+> > + * device tree is counter clockwise.
+> > + *
+> > + * Return: 0 when a valid rotation value (0, 90, 180, or 270) is read or the
+> > + * rotation property doesn't exist. -EERROR otherwise.
+> > + */
+> > +int of_drm_get_panel_orientation(const struct device_node *np, int *orientation)
+> > +{
+> > +     int rotation, ret;
+> > +
+> > +     ret = of_property_read_u32(np, "rotation", &rotation);
+>
+> I just noticed that everywhere this code talks about orientation,
+> but the property that it reads are rotation.
+> To my best understanding these are not the same.
 
-no, we are expecting TPM2 userspace to use the new names and
-locations. TPM2 is already not compatible with TPM1
+This is because both were previously defined in the kernel. Rotation
+was defined as a binding in the devicetree for panels (which is where
+we wanted to put this property) and orientation already exists as a
+DRM property.
 
-Jason
+If we want to change one, I would suggest the rotation binding since
+it doesn't have any upstream users yet.
+
+>
+>         Sam
