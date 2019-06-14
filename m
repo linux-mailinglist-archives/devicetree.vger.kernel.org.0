@@ -2,86 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D434655C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 417AA46587
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbfFNRHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 13:07:46 -0400
-Received: from mx2.suse.de ([195.135.220.15]:44526 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726028AbfFNRHq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 13:07:46 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 28740AF10;
-        Fri, 14 Jun 2019 17:07:45 +0000 (UTC)
-Subject: Re: [PATCH v3] dt-bindings: arm: Convert Actions Semi bindings to
- jsonschema
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20190517153223.7650-1-robh@kernel.org>
- <20190613224435.GA32572@bogus> <20190614170450.GA29654@Mani-XPS-13-9360>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Openpgp: preference=signencrypt
-Organization: SUSE Linux GmbH
-Message-ID: <5946467c-7674-de2b-a657-627cf3be42df@suse.de>
-Date:   Fri, 14 Jun 2019 19:07:44 +0200
+        id S1725991AbfFNRS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 13:18:29 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52054 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbfFNRS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:18:29 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EHIM4R037139;
+        Fri, 14 Jun 2019 12:18:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1560532702;
+        bh=YAV8kjvzmhIpBEXNbXi91uV4TOTMlxj3RoDfsxqvjxc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=S0xtbz3Pjsku+utgwQC8CujKspUPPAbgZ2n5yNl/cxxhwnpbE52D3j2ZUR1QptsqD
+         E+ID6s8BNntwCCLhbE8DiSpTu8keWtZRMIiOV3SXBlMYkxSiD2dz3CZTBroSnqF1CG
+         yHK1KiYG0JKg8XtHg4SRVdDlTBQivHhRvkN/3jYs=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EHIMwL064473
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 14 Jun 2019 12:18:22 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 14
+ Jun 2019 12:18:22 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 14 Jun 2019 12:18:22 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EHILSv019322;
+        Fri, 14 Jun 2019 12:18:21 -0500
+Subject: Re: [PATCH v3 2/9] dt: bindings: Add multicolor class dt bindings
+ documention
+To:     Rob Herring <robh@kernel.org>
+CC:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-3-dmurphy@ti.com> <20190614170011.GA3277@bogus>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <c234361e-f5f7-f8d7-18c6-9cc8ef74ac99@ti.com>
+Date:   Fri, 14 Jun 2019 12:18:21 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190614170450.GA29654@Mani-XPS-13-9360>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190614170011.GA3277@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 14.06.19 um 19:04 schrieb Manivannan Sadhasivam:
-> On Thu, Jun 13, 2019 at 04:44:35PM -0600, Rob Herring wrote:
->> On Fri, May 17, 2019 at 10:32:23AM -0500, Rob Herring wrote:
->>> Convert Actions Semi SoC bindings to DT schema format using json-schema.
->>>
->>> Cc: "Andreas Färber" <afaerber@suse.de>
->>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> Cc: Mark Rutland <mark.rutland@arm.com>
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: devicetree@vger.kernel.org
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>> v3:
->>> - update MAINTAINERS
->>>
->>>  .../devicetree/bindings/arm/actions.txt       | 56 -------------------
->>>  .../devicetree/bindings/arm/actions.yaml      | 38 +++++++++++++
->>>  MAINTAINERS                                   |  2 +-
->>>  3 files changed, 39 insertions(+), 57 deletions(-)
->>>  delete mode 100644 Documentation/devicetree/bindings/arm/actions.txt
->>>  create mode 100644 Documentation/devicetree/bindings/arm/actions.yaml
+Rob
+
+Thanks for the review
+
+On 6/14/19 12:00 PM, Rob Herring wrote:
+> On Thu, May 23, 2019 at 02:08:13PM -0500, Dan Murphy wrote:
+>> Add DT bindings for the LEDs multicolor class framework.
 >>
->> Ping. Please apply or modify this how you'd prefer. I'm not going to 
->> keep respinning this.
+>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>> ---
+>>   .../bindings/leds/leds-class-multicolor.txt   | 97 +++++++++++++++++++
+>>   1 file changed, 97 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
 >>
-> 
-> Sorry for that Rob.
+>> diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt b/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+>> new file mode 100644
+>> index 000000000000..e2a2ce3279cb
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+>> @@ -0,0 +1,97 @@
+>> +* Multicolor LED properties
+>> +
+>> +Multicolor LEDs can consist of a RGB, RGBW or a RGBA LED clusters.  These devices
+>> +can be grouped together and also provide a modeling mechanism so that the
+>> +cluster LEDs can vary in hue and intensity to produce a wide range of colors.
+>> +
+>> +The nodes and properties defined in this document are unique to the multicolor
+>> +LED class.  Common LED nodes and properties are inherited from the common.txt
+>> +within this documentation directory.
+>> +
+>> +Required LED Child properties:
+>> +	- color : For multicolor LED support this property should be defined as
+>> +		  LED_COLOR_ID_MULTI and further definition can be found in
+>> +		  include/linux/leds/common.h.
+>> +
+>> +led-controller@30 {
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +	compatible = "ti,lp5024";
+>> +	reg = <0x29>;
+>> +
+>> +	multi-led@4 {
+> Typically we sort by address order.
 
-Well, it was simply not clear whether we were supposed to or not. :)
+These are not addresses these end up being the "module" number that the 
+LEDs below are associated to.
 
-> Andreas, are you going to take this patch? Else I'll pick it up (If you
-> want me to do the PR for next cycle)
 
-I had checked that all previous changes to the .txt file were by myself,
-so I would prefer if we not license it under GPLv2-only but under the
-same dual-license (MIT/GPLv2+) as the DTs. That modification would need
-Rob's approval then.
+>
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		reg = <4>;
+>> +		color = <LED_COLOR_ID_MULTI>;
+>> +		function = LED_FUNCTION_ACTIVITY;
+>> +
+>> +		led@12 {
+>> +			reg = <12>;
+>> +			color = <LED_COLOR_ID_RED>;
+>> +		};
+>> +
+>> +		led@13 {
+>> +			reg = <13>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +		};
+>> +
+>> +		led@14 {
+>> +			reg = <14>;
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +		};
+>> +	};
+>> +
+>> +	/* Only support RGB no model defined */
+> I don't understand this comment.
 
-Regards,
-Andreas
+Artifact can be removed
 
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
-HRB 21284 (AG Nürnberg)
+
+>
+>> +	multi-led@1 {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		reg = <1>;
+>> +		color = <LED_COLOR_ID_MULTI>;
+>> +		function = LED_FUNCTION_;
+> ??
+
+I meant to change that but missed it in the example.
+
+Dan
+
+
+>
+>> +
+>> +
+>> +		led@3 {
+>> +			reg = <3>;
+>> +			color = <LED_COLOR_ID_RED>;
+>> +		};
+>> +
+>> +		led@4 {
+>> +			reg = <4>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +		};
+>> +
+>> +		led@5 {
+>> +			reg = <5>;
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +		};
+>> +	};
+>> +
+>> +	multi-led@2 {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		color = <LED_COLOR_ID_MULTI>;
+>> +		function = LED_FUNCTION_ACTIVITY;
+>> +		reg = <2>;
+>> +		ti,led-bank = <2 3 5>;
+>> +
+>> +		led@6 {
+>> +			reg = <0x6>;
+>> +			color = <LED_COLOR_ID_RED>;
+>> +			led-sources = <6 9 15>;
+>> +		};
+>> +
+>> +		led@7 {
+>> +			reg = <0x7>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			led-sources = <7 10 16>;
+>> +		};
+>> +
+>> +		led@8 {
+>> +			reg = <0x8>;
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +			led-sources = <8 11 17>;
+>> +		};
+>> +	};
+>> +
+>> +};
+>> -- 
+>> 2.21.0.5.gaeb582a983
+>>
