@@ -2,75 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A1EB464E2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF21F46503
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726129AbfFNQrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 12:47:06 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:43188 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725889AbfFNQrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:47:06 -0400
-Received: by mail-qk1-f193.google.com with SMTP id m14so2065369qka.10;
-        Fri, 14 Jun 2019 09:47:05 -0700 (PDT)
+        id S1725814AbfFNQwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 12:52:17 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:45321 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbfFNQwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:52:16 -0400
+Received: by mail-io1-f65.google.com with SMTP id e3so7105522ioc.12;
+        Fri, 14 Jun 2019 09:52:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VHBN9wFTEuXJLZJuvq9UKo9jUBkumDESCB/tRtHAcUw=;
+        b=OhkHV/C4uU7RQc1Ui4CvCg/LHrGATRYkRt59YooC0i5ZKpFaFLbdQns18vlCSUvPcN
+         UTeUSi7QYJiqW53NN0GqsQ/1lMgigmmvGa5R7FZXafZCB+waf9R/LYpCEhIaQaxm044v
+         uxOTQ4gPLhGA+hZ011/3lVzns6nemdjjREA+zScAKE6/S0wdEHeKi51jLQJPlPT8H+2a
+         SLgebRCfYgbyQ8oZMnHBbscTkB3XAYwJdkG5rZvwC+3ef3fhiNjcl9Q5y1RMdK1m4v7i
+         G0zMx8dujRl7YbRkxTXUD6AdxAOuqsrCoLzE+7rp7xTiEzsotkXGynhmaJq7ooq6aiTS
+         nH2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IOo1pvRWjmacOSCq3ogqjxZuWWdGzC13ArgyKbSDaEM=;
-        b=pIgqRVu/5opph7p8aRo9Y1JBiXGzTFmXQS7AOCqWN7MuJ9BxdXsrK3IhqV0mF9CC/b
-         zbwmhJCBAd7My2fRWcHHedV/BTzjJHBFuqQysr1KPvLyquszP8PwMLC8Nazk4YKmcHhS
-         3732X4UcxbO+2wflc7vy/I1qi+HdJRhR45bK/2wAt1LXkepUs6YxjAVZS2XrE7EIKAbB
-         emRN14Rbu9dtwZ3upM8vXuKBm5KMnctL8CIrcaRsN7Um34E+aXy5CN9xt7cRfZ9l9DIa
-         +Mg2VqLChBJhWfoXqz1cojTki1EefYj3Zm3KfCP9es/7g/SqWjQsCuHzX/ZFEQeDORoU
-         9C1w==
-X-Gm-Message-State: APjAAAUG8ZM1owNy9eh15xxXvCBNyMB1uLiMgScj+/wX1PFyL9TPcC0O
-        4CgeBcOLOb/buc0nmc+fTw==
-X-Google-Smtp-Source: APXvYqwI93cayeCpqkq1zgPJZnyXYH8EbxpzVgERa0diD8d8GwuLWqKf0sVGvoLXazEVSJSYS9lgBg==
-X-Received: by 2002:a37:d8e:: with SMTP id 136mr63465224qkn.259.1560530825285;
-        Fri, 14 Jun 2019 09:47:05 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id j184sm1878283qkc.65.2019.06.14.09.47.04
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 09:47:04 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 10:47:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Justin Swartz <justin.swartz@risingedge.co.za>
-Cc:     Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Justin Swartz <justin.swartz@risingedge.co.za>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/rockchip: dw_hdmi: add basic rk3228 support
-Message-ID: <20190614164702.GA20322@bogus>
-References: <20190522224631.25164-1-justin.swartz@risingedge.co.za>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VHBN9wFTEuXJLZJuvq9UKo9jUBkumDESCB/tRtHAcUw=;
+        b=cVwKIauymgliRKqsA97XX5bD+kyHtWgDBbvXR92PkXcR3mvl9d43iSsy+9vd/uCROB
+         r2c9F0wRRyucYnbakf76yEehHYEF1rsAGXIGGY0zYv5/2WGEljZLkrhiAylf7Sjn0xrx
+         cGiZSO+Y3eXaDPcHbh0PSAGZCBYLecy65hxXmCHmR7+0OXwtDcnyWtLSqrs62nU1ePS6
+         XAVDeo5BpqKPRung+TqD9hVDjjmPLaW54rbnS6QROilk2nYuLZse5kcfht/cC0iYrhdh
+         RDrKbu1hsE+L3yAWFK3n4BrjeMYsVqo6ezmQ7MWuog6Lwci/waj/WcN4JdvjzCUuMlbP
+         qPmw==
+X-Gm-Message-State: APjAAAVHpIRj3M0mS4JUHEQbz9O8PpW7mkrPzMbZB7NWpc2QvdJu0bCr
+        /zspJLTg9vY1d/Fbnf0s+90q4uJ1DiN02UMb0qc=
+X-Google-Smtp-Source: APXvYqw9IMOjvY8adpddV4q2iTxL7Wp/MrsOOO+GABMLEPFjmiFgpFagZAwQjnbkYEOV3VzYE4p0azX40JCtdTWVQ18=
+X-Received: by 2002:a02:3b62:: with SMTP id i34mr62410188jaf.91.1560531135880;
+ Fri, 14 Jun 2019 09:52:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190522224631.25164-1-justin.swartz@risingedge.co.za>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190614080317.16850-1-andrew.smirnov@gmail.com>
+In-Reply-To: <20190614080317.16850-1-andrew.smirnov@gmail.com>
+From:   Andrey Smirnov <andrew.smirnov@gmail.com>
+Date:   Fri, 14 Jun 2019 09:52:04 -0700
+Message-ID: <CAHQ1cqFcbs5feFzSjrwMWyNsSphuQy487_wsvRY_BKnS=x4b=w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: Add ZII support for ZII i.MX7 RMU2 board
+To:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Chris Healy <cphealy@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Bob Langer <Bob.Langer@zii.aero>,
+        Liang Pan <Liang.Pan@zii.aero>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019 22:46:29 +0000, Justin Swartz wrote:
-> Like the RK3328, RK322x SoCs offer a Synopsis DesignWare HDMI transmitter
-> and an Innosilicon HDMI PHY.
-> 
-> Add a new dw_hdmi_plat_data struct, rk3228_hdmi_drv_data.
-> Assign a set of mostly generic rk3228_hdmi_phy_ops functions.
-> Add dw_hdmi_rk3228_setup_hpd() to enable the HDMI HPD and DDC lines.
-> 
-> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+On Fri, Jun 14, 2019 at 1:03 AM Andrey Smirnov <andrew.smirnov@gmail.com> wrote:
+>
+> Add support for ZII's i.MX7 based Remote Modem Unit 2 (RMU2) board.
+>
+> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Chris Healy <cphealy@gmail.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Bob Langer <Bob.Langer@zii.aero>
+> Cc: Liang Pan <Liang.Pan@zii.aero>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
 > ---
->  .../bindings/display/rockchip/dw_hdmi-rockchip.txt |  1 +
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 53 ++++++++++++++++++++++
->  2 files changed, 54 insertions(+)
-> 
+>  arch/arm/boot/dts/Makefile           |   1 +
+>  arch/arm/boot/dts/imx7d-zii-rmu2.dts | 358 +++++++++++++++++++++++++++
+>  2 files changed, 359 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx7d-zii-rmu2.dts
+>
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 5559028b770e..516e2912236d 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -593,6 +593,7 @@ dtb-$(CONFIG_SOC_IMX7D) += \
+>         imx7d-sdb.dtb \
+>         imx7d-sdb-reva.dtb \
+>         imx7d-sdb-sht11.dtb \
+> +       imx7d-zii-rmu2.dtb \
+>         imx7d-zii-rpu2.dtb \
+>         imx7s-colibri-eval-v3.dtb \
+>         imx7s-mba7.dtb \
+> diff --git a/arch/arm/boot/dts/imx7d-zii-rmu2.dts b/arch/arm/boot/dts/imx7d-zii-rmu2.dts
+> new file mode 100644
+> index 000000000000..10fdafe5e0e4
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx7d-zii-rmu2.dts
+> @@ -0,0 +1,358 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Device tree file for ZII's RMU2 board
+> + *
+> + * RMU - Remote Modem Unit
+> + *
+> + * Copyright (C) 2019 Zodiac Inflight Innovations
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/thermal/thermal.h>
+> +#include "imx7d.dtsi"
+> +
+> +/ {
+> +       model = "ZII RMU2 Board";
+> +       compatible = "zii,imx7d-rmu2", "fsl,imx7d";
+> +
+> +       chosen {
+> +               stdout-path = &uart2;
+> +       };
+> +
+> +       gpio-leds {
+> +               compatible = "gpio-leds";
+> +               pinctrl-0 = <&pinctrl_leds_debug>;
+> +               pinctrl-names = "default";
+> +
+> +               debug {
+> +                       label = "zii:green:debug1";
+> +                       gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
+> +                       linux,default-trigger = "heartbeat";
+> +               };
+> +       };
+> +};
+> +
+> +&cpu0 {
+> +       arm-supply = <&sw1a_reg>;
+> +};
+> +
+> +&ecspi1 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_ecspi1>;
+> +       cs-gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+> +       status = "okay";
+> +
+> +       flash@0 {
+> +               compatible = "jedec,spi-nor";
+> +               spi-max-frequency = <20000000>;
+> +               reg = <0>;
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +       };
+> +};
+> +
+> +&fec1 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_enet1>;
+> +       assigned-clocks = <&clks IMX7D_ENET1_TIME_ROOT_SRC>,
+> +                         <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
+> +       assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+> +       assigned-clock-rates = <0>, <100000000>;
+> +       phy-mode = "rgmii";
+> +       phy-handle = <&fec1_phy>;
+> +       status = "okay";
+> +
+> +       mdio {
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Ugh, missed
+
+#address-cells = <1>;
+#size-cells = <0>;
+
+here. Will fix in v2.
+
+Thanks,
+Andrey Smirnov
