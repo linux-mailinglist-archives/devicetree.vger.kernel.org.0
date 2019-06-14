@@ -2,79 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF0745FD6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E57D945FDE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728049AbfFNOBL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 14 Jun 2019 10:01:11 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:41382 "EHLO gloria.sntech.de"
+        id S1728218AbfFNOCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 10:02:21 -0400
+Received: from foss.arm.com ([217.140.110.172]:34692 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727922AbfFNOBL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 10:01:11 -0400
-Received: from ip5f5a6320.dynamic.kabel-deutschland.de ([95.90.99.32] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hbmlN-0005Zq-MY; Fri, 14 Jun 2019 16:01:05 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Nick Xie <xieqinick@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        nick@khadas.com
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add support for Khadas Edge/Edge-V/Captain boards
-Date:   Fri, 14 Jun 2019 16:01:05 +0200
-Message-ID: <1719008.LxYQEzyXAE@diego>
-In-Reply-To: <CAP4nuTUQZRG9yV1Bz2hpe10K3CrWhVWf_YYBnMs3O1KyahhrMw@mail.gmail.com>
-References: <1559035267-1884-1-git-send-email-xieqinick@gmail.com> <4566563.QzcLDyM7tj@phil> <CAP4nuTUQZRG9yV1Bz2hpe10K3CrWhVWf_YYBnMs3O1KyahhrMw@mail.gmail.com>
+        id S1728034AbfFNOCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 10:02:21 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 59C9728;
+        Fri, 14 Jun 2019 07:02:20 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8EFF3F718;
+        Fri, 14 Jun 2019 07:02:17 -0700 (PDT)
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Fix multiple thermal zones
+ conflict in rk3399.dtsi
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-kernel@vger.kernel.org, edubezval@gmail.com,
+        manivannan.sadhasivam@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
+        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Randy Li <ayaka@soulik.info>,
+        Tony Xie <tony.xie@rock-chips.com>,
+        Vicente Bergas <vicencb@gmail.com>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>, dianders@chromium.org
+References: <20190604165802.7338-1-daniel.lezcano@linaro.org>
+ <5188064.YWmxIpmbGp@phil> <55b9018e-672e-522b-d0a0-c5655be0f353@linaro.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <e5a4f850-27e0-cad3-04bd-6c004fca2b81@arm.com>
+Date:   Fri, 14 Jun 2019 15:02:16 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <55b9018e-672e-522b-d0a0-c5655be0f353@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nick,
-
-Am Freitag, 14. Juni 2019, 15:32:11 CEST schrieb Nick Xie:
-> Thanks, I'll check them out.
+On 14/06/2019 14:03, Daniel Lezcano wrote:
+> On 14/06/2019 11:35, Heiko Stuebner wrote:
+>> Hi Daniel,
+>>
+>> Am Dienstag, 4. Juni 2019, 18:57:57 CEST schrieb Daniel Lezcano:
+>>> Currently the common thermal zones definitions for the rk3399 assumes
+>>> multiple thermal zones are supported by the governors. This is not the
+>>> case and each thermal zone has its own governor instance acting
+>>> individually without collaboration with other governors.
+>>>
+>>> As the cooling device for the CPU and the GPU thermal zones is the
+>>> same, each governors take different decisions for the same cooling
+>>> device leading to conflicting instructions and an erratic behavior.
+>>>
+>>> As the cooling-maps is about to become an optional property, let's
+>>> remove the cpu cooling device map from the GPU thermal zone.
+>>>
+>>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 9 ---------
+>>>   1 file changed, 9 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> index 196ac9b78076..e1357e0f60f7 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>>> @@ -821,15 +821,6 @@
+>>>   					type = "critical";
+>>>   				};
+>>>   			};
+>>> -
+>>> -			cooling-maps {
+>>> -				map0 {
+>>> -					trip = <&gpu_alert0>;
+>>> -					cooling-device =
+>>> -						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>> -						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>> -				};
+>>> -			};
+>>>   		};
+>>>   	};
+>>
+>> my knowledge of the thermal framework is not that big, but what about the
+>> rk3399-devices which further detail the cooling-maps like rk3399-gru-kevin
+>> and the rk3399-nanopc-t4 with its fan-handling in the cooling-maps?
 > 
-> But there is a small typo:
-> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/tree/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi?h=v5.3-armsoc/dts64&id=910249897d13beaa0b46069e27139024cd77e916#n299
+> The rk3399-gru-kevin is correct.
 > 
-> *22 (GPIO1_C6)* should be *RK_PC6* NOT *RK_PD6*.
-
-thanks for double-checking ... I've updated the commit to use the right gpio now.
-
-Heiko
-
+> The rk3399-nanopc-t4 is not correct because the cpu and the gpu are
+> sharing the same cooling device (the fan). There are different
+> configurations:
 > 
-> Heiko Stuebner <heiko@sntech.de> 于2019年6月14日周五 下午7:32写道：
+> 1. The cpu cooling device for the CPU and the fan for the GPU
 > 
-> > Am Montag, 10. Juni 2019, 09:57:53 CEST schrieb xieqinick@gmail.com:
-> > > From: Nick Xie <nick@khadas.com>
-> > >
-> > > Add devicetree support for Khadas Edge/Edge-V/Captain boards.
-> > > Khadas Edge is an expandable Rockchip RK3399 board with goldfinger.
-> > > Khadas Captain is the carrier board for Khadas Edge.
-> > > Khadas Edge-V is a Khadas VIM form factor Rockchip RK3399 board.
-> > >
-> > > Signed-off-by: Nick Xie <nick@khadas.com>
-> >
-> > applied for 5.3 after doing some style-fixes to the edge.dtsi
-> > (2 missing gpio constants, some newlines and sdio-regulator
-> > references were missing "<..>")
-> >
-> > Please double-check the result
-> >
-> >
-> > Thanks
-> > Heiko
-> >
-> >
-> >
+> 2. Different trip points on the CPU thermal zone, eg. one to for the CPU
+> cooling device and another one for the fan.
+> 
+> There are some variant for the above. If this board is not on battery,
+> you may want to give priority to the throughput, so activate the fan
+> first and then cool down the CPU. Or if you are on battery, you may want
+> to invert the trip points.
+> 
+> In any case, it is not possible to share the same cooling device for
+> different thermal zones.
 
+OK, thanks for the clarification. I'll get my board set up again to 
+figure out the best fix for rk3399-nanopc-t4 (FWIW most users are 
+probably just using passive cooling or a plain DC fan anyway). You might 
+want to raise this issue with the maintainers of 
+arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi, since the 
+everything-shared-by-everything approach in there was what I used as a 
+reference.
 
-
-
+Robin.
