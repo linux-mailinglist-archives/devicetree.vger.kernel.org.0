@@ -2,161 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 032FA450C1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 02:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D01EB4511B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 03:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727068AbfFNAgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 20:36:46 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:42297 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726318AbfFNAgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 20:36:46 -0400
-Received: by mail-vs1-f67.google.com with SMTP id 190so670845vsf.9
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2019 17:36:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kvz44rB7tgJ0lFfHfKXCBCgyFSEqMN4h+J2Mv3vvphI=;
-        b=YRTBrlE2LA8uxN3PfDev4WOSZ4TCRgathqM3/1KwUpGO755YbZ7mnN+QeS3kbrUx+m
-         Z4HBVjV4H2pV1hTuQOtYcKJkpVd8+sXJdy4ASJAr8xzPotDqIxxySu2jgYytgEpTQ0vq
-         Bl7zFudutTrWJYi7GuLOXu6X27Uc6/ypFvM9Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kvz44rB7tgJ0lFfHfKXCBCgyFSEqMN4h+J2Mv3vvphI=;
-        b=H6jsfdDvyBdN6q0it9RLrhdACTLUgANZekw+9m4V2WKUtWdR7BrZuj3n8qVtW3I+CO
-         cdgbnw2qy9AZpKYKKQMnhu2QR+qUKFLDnT/Dk30jn82NZqubXX8+xaKx1EDRmvbRJunc
-         MElPm6x55IaBaM6ZLtow7t7OeZqQ7edd7kEiQwTfbooJpSfU8s8ehOayU7OetdCMctb8
-         dYRUK5Y8nelO+X+29YVJVHenh+xrNiSw8N3NWu4QmhyvFM2bD/q43SxjSh4R+c4leeaN
-         jUaY5mXNCweh8CLKDBmPZIlQ7PqzbBV2Au+UYdxbJlSHlZJUNYPmJWELH5tESns3Ylw7
-         CTaA==
-X-Gm-Message-State: APjAAAVIc+0YfkAQ0s9siKlbR3vODjwLU+AAn95loG23ppdxCEuABIrI
-        3HwM9cUoDkOxog4dHuEA+EyhFLg/bzWqPaiwOx6m8g==
-X-Google-Smtp-Source: APXvYqwTL6POXul88bkWpISrGlVLaKAoVDJaFXMv89Ef1GdZT2k2cGQZJDTzBLr/6j7plsyb3Poj9HWMfiJa4fFKTHk=
-X-Received: by 2002:a67:ea42:: with SMTP id r2mr40062385vso.207.1560472604694;
- Thu, 13 Jun 2019 17:36:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-5-dbasehore@chromium.org> <87zhmoy270.fsf@intel.com>
- <01636500-0be5-acf8-5f93-a57383bf4b20@redhat.com> <CAGAzgsoxpsft-vmVOuKSAbLJqR-EZvcceLpMeWkz6ikJEKGJHg@mail.gmail.com>
- <fe774952-6fd5-b4ec-56c9-32fd30546313@redhat.com>
-In-Reply-To: <fe774952-6fd5-b4ec-56c9-32fd30546313@redhat.com>
-From:   "dbasehore ." <dbasehore@chromium.org>
-Date:   Thu, 13 Jun 2019 17:36:33 -0700
-Message-ID: <CAGAzgsrYAaHTuxpt2rQAVbCtx_fCZAd99hX19H4V4h6ZyHwbkw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] drm/connector: Split out orientation quirk detection
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     Jani Nikula <jani.nikula@linux.intel.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1726028AbfFNBT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 21:19:27 -0400
+Received: from mail-eopbgr30059.outbound.protection.outlook.com ([40.107.3.59]:65470
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725616AbfFNBT0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jun 2019 21:19:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jXTU5iglnJrpZWNNHbPsjDUZTOhk1/ltTjfbfExQW8g=;
+ b=oMOR7NZmLMjo2HsJztty7b0BdAkGpIPqRuqTLF8092vPXRgsz6t924jpziA59MlPLo9muThqQFLqA3qQJoZ/k6VHDTO09AcVBJKDnu9HN3Crn+Ci9Q7Cz2ICaytT/a3JqIy7H1z5ZCJKjc6gEK/V9LOsNF3N9aVo+BU5eviAToY=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB6210.eurprd04.prod.outlook.com (20.179.33.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11; Fri, 14 Jun 2019 01:19:23 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6090:1f0b:b85b:8015]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6090:1f0b:b85b:8015%3]) with mapi id 15.20.1965.017; Fri, 14 Jun 2019
+ 01:19:23 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
+Thread-Topic: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
+Thread-Index: AQHVDrkIcB6j+hDf/kC51b4HJvSviKaaWkOAgAAkkhA=
+Date:   Fri, 14 Jun 2019 01:19:22 +0000
+Message-ID: <AM0PR04MB4481288D0D1B8DA704FEF82B88EE0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <20190520032020.7920-1-peng.fan@nxp.com>
+ <20190613230055.GA19296@bogus>
+In-Reply-To: <20190613230055.GA19296@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 761aecd4-e36c-4c9c-f86b-08d6f066557b
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6210;
+x-ms-traffictypediagnostic: AM0PR04MB6210:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <AM0PR04MB621072CB798FE86C7CC558AC88EE0@AM0PR04MB6210.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-forefront-prvs: 0068C7E410
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(366004)(376002)(39860400002)(346002)(396003)(199004)(189003)(68736007)(74316002)(6436002)(229853002)(55016002)(446003)(102836004)(14444005)(6306002)(26005)(6506007)(11346002)(476003)(86362001)(2906002)(486006)(44832011)(66066001)(6916009)(4326008)(9686003)(76176011)(305945005)(25786009)(53936002)(7736002)(8936002)(256004)(478600001)(76116006)(73956011)(33656002)(316002)(52536014)(7416002)(14454004)(6246003)(6116002)(8676002)(54906003)(71190400001)(71200400001)(966005)(81166006)(186003)(81156014)(3846002)(66556008)(66446008)(66946007)(7696005)(66476007)(45080400002)(64756008)(99286004)(5660300002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6210;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: pmwpbjBoOhWhGzNz/tNnbxtffYrouy9B/70hn0lgZPXN+FEXJ46/jhDQZbQxuVyfn3ytT15osbhBICM6LvvBhC1FWceZZaGyacH3bDRVe64Wyx6EEbR75mouM8/XoG5W0Jq2N2zEdpmafTiGdDEPjgSPqKTxvpKrAn4vBqGSvpeKJlckk/hwHWhWbIcZEUdhlJFpk3wBZSAPbofvfDSKxzFSCupGw17aPOSJuq4pVAjvnTA4D7ig+LN1O8/ggeui6xQdl/dmHedlNw6MrfAYANRNLQDIg7zBvQo022ktF/MSBoMCNfxdAJt1wITkYewCd3hth9JSL8I7xeUN26dfF4qTJDYqdIBsj9BlMX4D4GTC4IiSdsoAIz84K9djZMJwak7OGKcrEDriYXGIvMwkWwayKu0KDPYXsTUqyuexf0g=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 761aecd4-e36c-4c9c-f86b-08d6f066557b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2019 01:19:22.9593
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6210
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 5:33 AM Hans de Goede <hdegoede@redhat.com> wrote:
->
-> Hi,
->
-> On 12-06-19 02:16, dbasehore . wrote:
-> > On Tue, Jun 11, 2019 at 1:54 AM Hans de Goede <hdegoede@redhat.com> wrote:
-> >>
-> >> Hi,
-> >>
-> >> On 11-06-19 10:08, Jani Nikula wrote:
-> >>> On Mon, 10 Jun 2019, Derek Basehore <dbasehore@chromium.org> wrote:
-> >>>> This removes the orientation quirk detection from the code to add
-> >>>> an orientation property to a panel. This is used only for legacy x86
-> >>>> systems, yet we'd like to start using this on devicetree systems where
-> >>>> quirk detection like this is not needed.
-> >>>
-> >>> Not needed, but no harm done either, right?
-> >>>
-> >>> I guess I'll defer judgement on this to Hans and Ville (Cc'd).
-> >>
-> >> Hmm, I'm not big fan of this change. It adds code duplication and as
-> >> other models with the same issue using a different driver or panel-type
-> >> show up we will get more code duplication.
-> >>
-> >> Also I'm not convinced that devicetree based platforms will not need
-> >> this. The whole devicetree as an ABI thing, which means that all
-> >> devicetree bindings need to be set in stone before things are merged
-> >> into the mainline, is done solely so that we can get vendors to ship
-> >> hardware with the dtb files included in the firmware.
-> >
-> > We've posted fixes to the devicetree well after the initial merge into
-> > mainline before, so I don't see what you mean about the bindings being
-> > set in stone.
->
-> That was just me repeating the official party line about devicetree.
->
-> > I also don't really see the point. The devicetree is in
-> > the kernel. If there's some setting in the devicetree that we want to
-> > change, it's effectively the same to make the change in the devicetree
-> > versus some quirk setting. The only difference seems to be that making
-> > the change in the devicetree is cleaner.
->
-> I agree with you that devicetree in practice is easy to update after
-> shipping. But at least whenever I tried to get new bindings reviewed
-> I was always told that I was not allowed to count on that.
->
-> >> I'm 100% sure that there is e.g. ARM hardware out there which uses
-> >> non upright mounted LCD panels (I used to have a few Allwinner
-> >> tablets which did this). And given my experience with the quality
-> >> of firmware bundled tables like ACPI tables I'm quite sure that
-> >> if we ever move to firmware included dtb files that we will need
-> >> quirks for those too.
-> >
-> > Is there a timeline to start using firmware bundled tables?
->
-> Nope, as I said "if we ever move to ...".
->
-> > Since the
-> > quirk code only uses DMI, it will need to be changed anyways for
-> > firmware bundled devicetree files anyways.
-> >
-> > We could consolidate the duplicated code into another function that
-> > calls drm_get_panel_orientation_quirks too. The only reason it's like
-> > it is is because I initially only had the call to
-> > drm_get_panel_orientation_quirk once in the code.
->
-> Yes if you can add a new helper for the current callers, then
-> I'm fine with dropping the quirk handling from
-> drm_connector_init_panel_orientation_property()
->
+Hi Rob,
 
-Ok, it sounds like having a special callback for quirks in the panel
-orientation property is the best way to go. The handles the duplicate
-code and devicetree bundles. If we need to fix something that's
-specified in a devicetree, and we aren't willing to change it, we can
-write the quirk code for that later.
+> Subject: Re: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
+>=20
+> On Mon, May 20, 2019 at 03:06:35AM +0000, Peng Fan wrote:
+> > Introduce fusable-node property for i.MX OCOTP driver.
+> > The property will only be used by Firmware(eg. U-Boot) to runtime
+> > disable the nodes.
+> >
+> > Take i.MX6ULL for example, there are several parts that only have
+> > limited modules enabled controlled by OCOTP fuse. It is not flexible
+> > to provide several dts for the serval parts, instead we could provide
+> > one device tree and let Firmware to runtime disable the device tree
+> > nodes for those modules that are disable(fused).
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >
+> > Currently NXP vendor use U-Boot to set status to disabled for devices
+> > that could not function,
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fsou=
+r
+> >
+> ce.codeaurora.org%2Fexternal%2Fimx%2Fuboot-imx%2Ftree%2Farch%2Far
+> m%2Fm
+> >
+> ach-imx%2Fmx6%2Fmodule_fuse.c%3Fh%3Dimx_v2018.03_4.14.98_2.0.0_g
+> a%23n1
+> >
+> 49&amp;data=3D02%7C01%7Cpeng.fan%40nxp.com%7Ceb74876c943c4471d7f
+> f08d6f05
+> >
+> 2fffb%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63696063660
+> 6051306&
+> >
+> amp;sdata=3DMrjCP0ufBu3uTb1ehTEu2g5eSQuYcho4UxuR9KUFEOA%3D&amp;
+> reserved=3D
+> > 0 But this approach is will not work if kernel dts node path changed.
+>=20
+> Why would the path change? The DT should be stable.
 
-> Regards,
->
-> Hans
+It changes sometimes, such as
+efb9adb27475 ("ARM: dts: imx6ul: Remove leading zeroes from unit addresses"=
+),
 
-Thanks for the feedback
+in bootloader, we are using node path, so if the node name changes, the boo=
+tloader
+will fail to disable the node.
+
+Thanks,
+Peng.
+
+>=20
+> Rob
