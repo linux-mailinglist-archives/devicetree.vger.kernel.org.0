@@ -2,86 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C47A46983
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8A0F46955
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 22:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727517AbfFNUaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 16:30:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53194 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727495AbfFNUaU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 16:30:20 -0400
-Received: from sasha-vm.mshome.net (unknown [131.107.159.134])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BA07221851;
-        Fri, 14 Jun 2019 20:30:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560544219;
-        bh=9OXucFdFEJyjkGzQ1m2CR757d22Ftz0mneQ19j/3lvY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=1y3MHoiqut1o6vo+y47a8HwkhFIqfjY0/daYIrH3mP41e5mFrCgm+gv2cqNzAIxnr
-         1l3NsvdLhsnwCDPDZC0BLhBQdQk7uYUyflNkabEFPMUoqIRHKG3KwEu5l/fPId6b2D
-         /wSsuV74bLML4I6yrc4Hm3vcrmjyaDKpiZmvlenE=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jose Abreu <joabreu@synopsys.com>,
-        Joao Pinto <jpinto@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Vineet Gupta <vgupta@synopsys.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-snps-arc@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.14 03/27] ARC: [plat-hsdk]: Add missing FIFO size entry in GMAC node
-Date:   Fri, 14 Jun 2019 16:29:52 -0400
-Message-Id: <20190614203018.27686-3-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190614203018.27686-1-sashal@kernel.org>
-References: <20190614203018.27686-1-sashal@kernel.org>
+        id S1726968AbfFNUbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 16:31:53 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:45003 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726953AbfFNUbw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 16:31:52 -0400
+Received: by mail-pl1-f194.google.com with SMTP id t7so1442477plr.11;
+        Fri, 14 Jun 2019 13:31:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8o+2bmk3JHw3bcscvg5i4csgQd4Cy57o3YZ91vrIQhk=;
+        b=fmawliYbYe9RXgjYQw83JcEt3qnDc3a9Nr/dyRNlHVBsgPGykJOXH3w4C6Eu8DUyrl
+         CrVaRFJv6oVjd8TD6dc/eUa7oEIvf83UPAFA5Q4p1A3H4Wds8oD+aKkPZAZ4GAloWSXF
+         lkcOfoeKV9tkQsnV6TZGx4twjlJ657SfhMJThGkxwoqTmSl42l3+NQmlYoAwVd6LQCPI
+         H310JzrVEUHkQYzmyWSIsaIQQrQdSBYWq3oxxJz4A54WeHv/5W2NdVQQByL9alDO0mVr
+         DOsXQMJrpoV352/sQafvE8ReOUVpCrOQxC7VUWjKJbQC9TYzmOxWI8JDfDcweI/Lbyqq
+         1p1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8o+2bmk3JHw3bcscvg5i4csgQd4Cy57o3YZ91vrIQhk=;
+        b=TgFPplICSayyVyBtpX45iBAsznDnvse8xixRe5ULP4DAnC9tyXbg0THEkblXVqouh8
+         ZLkEy0W0Zd88wFsfZMLgWl5iT9Vub0pi6KbYNLXi30sKe3NJt1mGjTBW5Dbkb/+Lhj/L
+         DpcqPEgeNqfQC5/6k4Bg6AosVtWtX9VVvq5R4FnBfpFIQ5JLJ0tIeg6pkhHNiQOrB128
+         UJyYySMhjjRppKVcRF+/e7U06lS0/3T2VGEBXFflbaDz/VZzrMFsD3Ggy+DARXImoy6D
+         d5HBlK4G/nr81h+nPJu4CeJhZLKlQem6C7gpmqmYg+pSIywRYI0JJ+e3zIFJZ4rB46zo
+         R+Iw==
+X-Gm-Message-State: APjAAAVFYyx3lG5xaEpo4AhQ38cg0Anf/fwI+2ygPK996E7RI5X0bNkU
+        hokPzStd4cKbF8J4DLVww/k=
+X-Google-Smtp-Source: APXvYqz8fXZMHh678m38GXZ7cOMf9Jew7ASJ24aKHKsv3zkzKPKgQG0N0NmX7eCgd61B1rxu1Qc+Kg==
+X-Received: by 2002:a17:902:8203:: with SMTP id x3mr11439487pln.304.1560544311481;
+        Fri, 14 Jun 2019 13:31:51 -0700 (PDT)
+Received: from localhost.localdomain ([162.251.69.147])
+        by smtp.gmail.com with ESMTPSA id 188sm5189016pfe.30.2019.06.14.13.31.50
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 14 Jun 2019 13:31:50 -0700 (PDT)
+From:   Joseph Kogut <joseph.kogut@gmail.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
+        krzk@kernel.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Joseph Kogut <joseph.kogut@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: gpu: add Exynos Mali vendor specifics
+Date:   Fri, 14 Jun 2019 13:31:43 -0700
+Message-Id: <20190614203144.3850-1-joseph.kogut@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jose Abreu <joabreu@synopsys.com>
+Document vendor specific compatible string for Mali gpus on Exynos SoCs.
 
-[ Upstream commit 4c70850aeb2e40016722cd1abd43c679666d3ca0 ]
-
-Add the binding for RX/TX fifo size of GMAC node.
-
-Cc: Joao Pinto <jpinto@synopsys.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Vineet Gupta <vgupta@synopsys.com>
-Tested-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Acked-by: Alexey Brodkin <abrodkin@synopsys.com>
-Signed-off-by: Jose Abreu <joabreu@synopsys.com>
-Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
 ---
- arch/arc/boot/dts/hsdk.dts | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
-index c033ae45fe42..57d81c6aa379 100644
---- a/arch/arc/boot/dts/hsdk.dts
-+++ b/arch/arc/boot/dts/hsdk.dts
-@@ -170,6 +170,9 @@
- 			resets = <&cgu_rst HSDK_ETH_RESET>;
- 			reset-names = "stmmaceth";
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+index 1b1a74129141..a9704c736d07 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+@@ -18,6 +18,7 @@ Required properties:
+     + "amlogic,meson-gxm-mali"
+     + "rockchip,rk3288-mali"
+     + "rockchip,rk3399-mali"
++    + "samsung,exynos-mali"
  
-+			tx-fifo-depth = <4096>;
-+			rx-fifo-depth = <4096>;
-+
- 			mdio {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
+ - reg : Physical base address of the device and length of the register area.
+ 
 -- 
-2.20.1
+2.22.0
 
