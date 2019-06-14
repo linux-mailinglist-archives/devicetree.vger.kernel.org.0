@@ -2,76 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A10946530
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C416A4653F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 19:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbfFNQ52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 12:57:28 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:34175 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725801AbfFNQ52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:57:28 -0400
-Received: by mail-qt1-f193.google.com with SMTP id m29so3287566qtu.1;
-        Fri, 14 Jun 2019 09:57:27 -0700 (PDT)
+        id S1725908AbfFNRAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 13:00:14 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:46575 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbfFNRAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 13:00:14 -0400
+Received: by mail-qt1-f195.google.com with SMTP id h21so3213660qtn.13;
+        Fri, 14 Jun 2019 10:00:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=kuAEv/PlG/wLUd5sE7CBGEhgBQkunbAzlunVIqZV/qs=;
-        b=IhTXspyw4NA6GWCH0hQu+YoTfNm0PqsKuvlY4OrTBhlTPZSBjCxgkEvZCPNcF+a8Da
-         VsAq92zV6hfPu26qYYTTmtpV8jo7KmgYUjSVFnyKMiy08ypirlOuK247ldsvu/VprX+W
-         WdJ+/0XnfLmwElsdxw1jnuK5Cq/dA5z8hXdL8lwLgpcLguVXtOTUIvyZZjp1fuiPNeNR
-         sDaDwdzwnQQ3ciDdwQnELNKvZlqm2KaWNSDFpQ3um8L8K2vgvp0Pm/ua1WerS9HiAxO3
-         nWFogAsphkwH3tVDoE3rKU1wrj7mbc4AVa3t5h3+gCqwpEIE0bGiDw6hFBPBB3lu911S
-         7K3Q==
-X-Gm-Message-State: APjAAAU1+L97SrkKTlHziMLiZn5ju3zCn7AC4lgWehSPMVwMidch52Dj
-        3ZLL/oHmdpFkIurH/0gZng==
-X-Google-Smtp-Source: APXvYqxkCzR6nUY+HgvZWIHjhjgEC1kMxIXehNr9VUSu1DnVOQd08FOUe0jGEMuy2YJFBFjI6vNo/g==
-X-Received: by 2002:a0c:8b54:: with SMTP id d20mr9239221qvc.1.1560531446638;
-        Fri, 14 Jun 2019 09:57:26 -0700 (PDT)
+        bh=GS1hGa817xEQ00srJV+PzwKtWWnIbCX8xB7ozEQ8PeA=;
+        b=SziVNEb96Y3NHG5cI0sUpDirBmajlOGfVjSelfia2mBJeWUCqYrFvZxyvJh29lzVCl
+         p4xWul+tbDIZtMisiTiewevPEegV/feRwVn9TgwL3Ai3RvoSxjCielu5i88b+G1GDt8X
+         ZodO9PdmCGZxds27W5QpIC1Dd4CnQW6Mrs0fH8B+mCq+KiIgz6uiNWsWVsBCb8r9Kcg8
+         V7youdprjCTzgarBP9KZAUEsmmm/GTqkaLD4o56BcUxcKle5N7ZYi/oJ7RjNAv13kJmU
+         jA1EN4KGDB3c3p1d74U/CV1Mkv9CZtiArWHfxj+5tMaNjPQS8CS91bH2gk7l+H9OtzTi
+         hDEw==
+X-Gm-Message-State: APjAAAWwK2iMm10cml1uYqzRrF18oNGnKVWdHjHTmDIrjv7S2Y7DU45h
+        67Hrwkam/Ut2LFN0mmjka3q/OnwUEg==
+X-Google-Smtp-Source: APXvYqypc0vhDImV9CKnXnk341O4whOdSmNRzr7Vv8pyHogbMsYPOsNoVDRfEVwUDByeZtQNRMKJfg==
+X-Received: by 2002:ac8:1087:: with SMTP id a7mr67129150qtj.141.1560531613016;
+        Fri, 14 Jun 2019 10:00:13 -0700 (PDT)
 Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id f189sm1925498qkj.13.2019.06.14.09.57.25
+        by smtp.gmail.com with ESMTPSA id j141sm2139542qke.28.2019.06.14.10.00.12
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 09:57:26 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 10:57:24 -0600
+        Fri, 14 Jun 2019 10:00:12 -0700 (PDT)
+Date:   Fri, 14 Jun 2019 11:00:11 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] soc: qcom: apr: Don't use reg for domain id
-Message-ID: <20190614165724.GA3083@bogus>
-References: <20190523150153.13136-1-bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v3 2/9] dt: bindings: Add multicolor class dt bindings
+ documention
+Message-ID: <20190614170011.GA3277@bogus>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-3-dmurphy@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190523150153.13136-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20190523190820.29375-3-dmurphy@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 May 2019 08:01:53 -0700, Bjorn Andersson wrote:
-> The reg property represents the address and size on the bus that a
-> device lives, but for APR the parent is a rpmsg bus, which does not have
-> numerical addresses. Simply defining #address/#size-cells to 1 and 0,
-> respectively, to silence the compiler is not an appropriate solution.
+On Thu, May 23, 2019 at 02:08:13PM -0500, Dan Murphy wrote:
+> Add DT bindings for the LEDs multicolor class framework.
 > 
-> Replace the use of "reg" with an APR specific property.
-> 
-> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
 > ---
+>  .../bindings/leds/leds-class-multicolor.txt   | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
 > 
-> Changes since v1:
-> - Fixed example to match change
-> 
->  Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt | 6 +++---
->  drivers/soc/qcom/apr.c                                  | 2 +-
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt b/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+> new file mode 100644
+> index 000000000000..e2a2ce3279cb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+> @@ -0,0 +1,97 @@
+> +* Multicolor LED properties
+> +
+> +Multicolor LEDs can consist of a RGB, RGBW or a RGBA LED clusters.  These devices
+> +can be grouped together and also provide a modeling mechanism so that the
+> +cluster LEDs can vary in hue and intensity to produce a wide range of colors.
+> +
+> +The nodes and properties defined in this document are unique to the multicolor
+> +LED class.  Common LED nodes and properties are inherited from the common.txt
+> +within this documentation directory.
+> +
+> +Required LED Child properties:
+> +	- color : For multicolor LED support this property should be defined as
+> +		  LED_COLOR_ID_MULTI and further definition can be found in
+> +		  include/linux/leds/common.h.
+> +
+> +led-controller@30 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	compatible = "ti,lp5024";
+> +	reg = <0x29>;
+> +
+> +	multi-led@4 {
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Typically we sort by address order.
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <4>;
+> +		color = <LED_COLOR_ID_MULTI>;
+> +		function = LED_FUNCTION_ACTIVITY;
+> +
+> +		led@12 {
+> +			reg = <12>;
+> +			color = <LED_COLOR_ID_RED>;
+> +		};
+> +
+> +		led@13 {
+> +			reg = <13>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +
+> +		led@14 {
+> +			reg = <14>;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +		};
+> +	};
+> +
+> +	/* Only support RGB no model defined */
+
+I don't understand this comment.
+
+> +	multi-led@1 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <1>;
+> +		color = <LED_COLOR_ID_MULTI>;
+> +		function = LED_FUNCTION_;
+
+??
+
+> +
+> +
+> +		led@3 {
+> +			reg = <3>;
+> +			color = <LED_COLOR_ID_RED>;
+> +		};
+> +
+> +		led@4 {
+> +			reg = <4>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +
+> +		led@5 {
+> +			reg = <5>;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +		};
+> +	};
+> +
+> +	multi-led@2 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		color = <LED_COLOR_ID_MULTI>;
+> +		function = LED_FUNCTION_ACTIVITY;
+> +		reg = <2>;
+> +		ti,led-bank = <2 3 5>;
+> +
+> +		led@6 {
+> +			reg = <0x6>;
+> +			color = <LED_COLOR_ID_RED>;
+> +			led-sources = <6 9 15>;
+> +		};
+> +
+> +		led@7 {
+> +			reg = <0x7>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			led-sources = <7 10 16>;
+> +		};
+> +
+> +		led@8 {
+> +			reg = <0x8>;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			led-sources = <8 11 17>;
+> +		};
+> +	};
+> +
+> +};
+> -- 
+> 2.21.0.5.gaeb582a983
+> 
