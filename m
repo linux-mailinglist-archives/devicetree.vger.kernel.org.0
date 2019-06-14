@@ -2,81 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7031D45F9D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 15:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF0745FD6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 16:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728340AbfFNNxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 09:53:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47246 "EHLO mail.kernel.org"
+        id S1728049AbfFNOBL convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 14 Jun 2019 10:01:11 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:41382 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727587AbfFNNxl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jun 2019 09:53:41 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6F51F2173C;
-        Fri, 14 Jun 2019 13:53:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560520420;
-        bh=iN+BVC7Js+mX3MoobKi+DcEa7AcS0a2jYmhECn22uIc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nbrN0WLSp6HT8EFxw2suvzAGJ2y4ugHSkmg9mi2F8dAUG/6+tN4RQD5uINI4GbA//
-         X/MP8Dp6bgwd8NofNxmADhmut+aJJrUxzj31HIFSUzLPozkCFFxmQMQK3p8uKLZ649
-         VmTupy0ZsiK3VwZ868voFn2Lzfg+71Q1DBn4ft7Y=
-Received: by mail-qt1-f181.google.com with SMTP id x47so2483798qtk.11;
-        Fri, 14 Jun 2019 06:53:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAVO9BJPVMn9a+1phflmyBCaynYYNEIV8ZOmTHkDi/BZY1Lwnvly
-        2F9kq+3Nj5zM4XcsyrfhBRNA63DAhSo/SFw+Mw==
-X-Google-Smtp-Source: APXvYqxTD8kzLZOkPVP2CAljRyH/HAP/N5Lx3hq13DLW9NmQXLYZ+UmFKpgn9wwUIR0Y4foZTDrn8V2n23JvB6/KT/E=
-X-Received: by 2002:a0c:acef:: with SMTP id n44mr8626569qvc.39.1560520419707;
- Fri, 14 Jun 2019 06:53:39 -0700 (PDT)
+        id S1727922AbfFNOBL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 10:01:11 -0400
+Received: from ip5f5a6320.dynamic.kabel-deutschland.de ([95.90.99.32] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hbmlN-0005Zq-MY; Fri, 14 Jun 2019 16:01:05 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Nick Xie <xieqinick@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        nick@khadas.com
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add support for Khadas Edge/Edge-V/Captain boards
+Date:   Fri, 14 Jun 2019 16:01:05 +0200
+Message-ID: <1719008.LxYQEzyXAE@diego>
+In-Reply-To: <CAP4nuTUQZRG9yV1Bz2hpe10K3CrWhVWf_YYBnMs3O1KyahhrMw@mail.gmail.com>
+References: <1559035267-1884-1-git-send-email-xieqinick@gmail.com> <4566563.QzcLDyM7tj@phil> <CAP4nuTUQZRG9yV1Bz2hpe10K3CrWhVWf_YYBnMs3O1KyahhrMw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190612010011.90185-1-wangkefeng.wang@huawei.com>
- <0702fa2d-1952-e9fc-8e17-a93f3b90a958@gmail.com> <CAL_JsqKsjK237W+-Yz4McxSZG=Gd3Pfp2JtgMnfAqiNRUcCg1g@mail.gmail.com>
- <41acc800-1ab8-c715-2674-c1204d546b4f@gmail.com>
-In-Reply-To: <41acc800-1ab8-c715-2674-c1204d546b4f@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 14 Jun 2019 07:53:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+EVO9OiEK5bidywgKsfOCK+BgWvKehCNonqogegRfikA@mail.gmail.com>
-Message-ID: <CAL_Jsq+EVO9OiEK5bidywgKsfOCK+BgWvKehCNonqogegRfikA@mail.gmail.com>
-Subject: Re: [PATCH next] of/fdt: Fix defined but not used compiler warning
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>
+Content-Transfer-Encoding: 8BIT
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 12:29 PM Frank Rowand <frowand.list@gmail.com> wrote:
->
-> On 6/12/19 10:00 AM, Rob Herring wrote:
-> > On Wed, Jun 12, 2019 at 10:45 AM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>
-> >> Hi Kefeng,
-> >>
-> >> If Rob agrees, I'd like to see one more change in this patch.
-> >>
-> >> Since the only caller of of_fdt_match() is of_flat_dt_match(),
-> >> can you move the body of of_fdt_match() into  of_flat_dt_match()
-> >> and eliminate of_fdt_match()?
+Hi Nick,
+
+Am Freitag, 14. Juni 2019, 15:32:11 CEST schrieb Nick Xie:
+> Thanks, I'll check them out.
+> 
+> But there is a small typo:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/tree/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi?h=v5.3-armsoc/dts64&id=910249897d13beaa0b46069e27139024cd77e916#n299
+> 
+> *22 (GPIO1_C6)* should be *RK_PC6* NOT *RK_PD6*.
+
+thanks for double-checking ... I've updated the commit to use the right gpio now.
+
+Heiko
+
+> 
+> Heiko Stuebner <heiko@sntech.de> 于2019年6月14日周五 下午7:32写道：
+> 
+> > Am Montag, 10. Juni 2019, 09:57:53 CEST schrieb xieqinick@gmail.com:
+> > > From: Nick Xie <nick@khadas.com>
+> > >
+> > > Add devicetree support for Khadas Edge/Edge-V/Captain boards.
+> > > Khadas Edge is an expandable Rockchip RK3399 board with goldfinger.
+> > > Khadas Captain is the carrier board for Khadas Edge.
+> > > Khadas Edge-V is a Khadas VIM form factor Rockchip RK3399 board.
+> > >
+> > > Signed-off-by: Nick Xie <nick@khadas.com>
 > >
-> > That's fine as long as we think there's never any use for of_fdt_match
-> > after init? Fixup of nodes in an overlay for example.
->
-> We can always re-expose the functionality as of_fdt_match() in the future
-> if the need arises.  But Stephen's recent patch was moving in the opposite
-> direction, removing of_fdt_match() from the header file and making it
-> static.
+> > applied for 5.3 after doing some style-fixes to the edge.dtsi
+> > (2 missing gpio constants, some newlines and sdio-regulator
+> > references were missing "<..>")
+> >
+> > Please double-check the result
+> >
+> >
+> > Thanks
+> > Heiko
+> >
+> >
+> >
 
-Yes, we can, but it is just churn if we think it is likely needed.
 
-OTOH, we probably want users to just use libfdt API directly and
-should add this to libfdt if needed.
 
-So yes, please implement Frank's suggestion.
 
-Rob
