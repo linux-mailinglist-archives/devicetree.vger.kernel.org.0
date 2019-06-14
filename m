@@ -2,88 +2,416 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 784BF45814
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B9545839
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 11:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726202AbfFNJBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 05:01:14 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:52026 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725812AbfFNJBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 05:01:14 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id DD6BB60A24; Fri, 14 Jun 2019 09:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560502873;
-        bh=CEPg9SjCJWxoxlllbshGhQypKWjlbh7i11o4DsbvNb8=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=a5x7Q5fEklM2XCBFzFCzeUDk6RONP1hA4PTtFOSpxG+YS+p3xX5WKE0iTFtwCxOMA
-         e1Vcm7dU6HmZ+xwhfQKLSnaPRTG1N4V+O9hbORhifHiA1WCBYyBfLPfp5ysGUVTZ8S
-         nu1VTCR7vgBS8T2CkCMGQJP8VJ+wKuV50Y0k9PR8=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.128.120] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id F0BDE60254;
-        Fri, 14 Jun 2019 09:01:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560502872;
-        bh=CEPg9SjCJWxoxlllbshGhQypKWjlbh7i11o4DsbvNb8=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=dTdmPSgyegTwDKNrKINqZdX5vcdA0AXS/1DcJM5O/+fOp4+IeiuZ5LJiENp/7V6MW
-         wHjQBVtsCVlk3u0dQMgAki0dfAGQoXUlDjcaP56Mg99dpzbhYZBEJvpEQIv4Gn71tR
-         TKTbvwRRBxNU/eLIeiyk0vAWO8tqZUihWnSTLYdg=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org F0BDE60254
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
-Subject: Re: [PATCH v3 4/4] arm64: dts/sdm845: Enable FW implemented safe
- sequence handler on MTP
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, will.deacon@arm.com,
-        robin.murphy@arm.com, joro@8bytes.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        david.brown@linaro.org
-References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
- <20190612071554.13573-5-vivek.gautam@codeaurora.org>
- <20190614040659.GL22737@tuxbook-pro>
-From:   Vivek Gautam <vivek.gautam@codeaurora.org>
-Message-ID: <eaa8abc7-07a1-9c52-685c-25883cba67b9@codeaurora.org>
-Date:   Fri, 14 Jun 2019 14:31:07 +0530
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726975AbfFNJIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 05:08:30 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57091 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726719AbfFNJI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 05:08:29 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1hbiC0-0005HQ-NT; Fri, 14 Jun 2019 11:08:16 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1hbiBz-0001J6-Ji; Fri, 14 Jun 2019 11:08:15 +0200
+Date:   Fri, 14 Jun 2019 11:08:15 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     daniel.baluta@nxp.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, shengjiu.wang@nxp.com,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        daniel.baluta@gmail.com, anson.huang@nxp.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] firmware: imx: Add DSP IPC protocol driver
+Message-ID: <20190614090815.lb2vnncqnom3fgu2@pengutronix.de>
+References: <20190614081650.11880-1-daniel.baluta@nxp.com>
+ <20190614081650.11880-2-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20190614040659.GL22737@tuxbook-pro>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190614081650.11880-2-daniel.baluta@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:44:09 up 27 days, 15:02, 49 users,  load average: 0.03, 0.16,
+ 0.24
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Daniel,
 
+please, see my review inline.
 
-On 6/14/2019 9:36 AM, Bjorn Andersson wrote:
-> On Wed 12 Jun 00:15 PDT 2019, Vivek Gautam wrote:
->
->> Indicate on MTP SDM845 that firmware implements handler to
->> TLB invalidate erratum SCM call where SAFE sequence is toggled
->> to achieve optimum performance on real-time clients, such as
->> display and camera.
->>
->> Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Fri, Jun 14, 2019 at 04:16:49PM +0800, daniel.baluta@nxp.com wrote:
+> From: Daniel Baluta <daniel.baluta@nxp.com>
+> 
+> Some of i.MX8 processors (e.g i.MX8QM, i.MX8QXP) contain
+> the Tensilica HiFi4 DSP for advanced pre- and post-audio
+> processing.
+> 
+> The communication between Host CPU and DSP firmware is
+> taking place using a shared memory area for message passing
+> and a dedicated Messaging Unit for notifications.
+> 
+> DSP IPC protocol driver offers a doorbell interface using
+> imx-mailbox API.
+> 
+> We use 4 MU channels (2 x TXDB, 2 x RXDB) to implement a
+> request-reply protocol.
+> 
+> Connection 0 (txdb0, rxdb0):
+>         - Host writes messasge to shared memory [SHMEM]
+> 	- Host sends a request [MU]
+> 	- DSP handles request [SHMEM]
+> 	- DSP sends reply [MU]
+> 
+> Connection 1 (txdb1, rxdb1):
+> 	- DSP writes a message to shared memory [SHMEM]
+> 	- DSP sends a request [MU]
+> 	- Host handles request [SHMEM]
+> 	- Host sends reply [MU]
+> 
+> The protocol driver will be used by a Host client to
+> communicate with the DSP. First client will be the i.MX8
+> part from Sound Open Firmware infrastructure.
+> 
+> The protocol drivers offers the following interface:
+> 
+> On Tx:
+>    - imx_dsp_ring_doorbell, will be called to notify the DSP
+>    that it needs to handle a request.
+> 
+> On Rx:
+>    - clients need to provide two callbacks:
+> 	.handle_reply
+> 	.handle_request
+>   - the callbacks will be used by the protocol driver on
+>     notification arrival from DSP.
+> 
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+>  drivers/firmware/imx/Kconfig     |  11 ++
+>  drivers/firmware/imx/Makefile    |   1 +
+>  drivers/firmware/imx/imx-dsp.c   | 167 +++++++++++++++++++++++++++++++
+>  include/linux/firmware/imx/dsp.h |  61 +++++++++++
+>  4 files changed, 240 insertions(+)
+>  create mode 100644 drivers/firmware/imx/imx-dsp.c
+>  create mode 100644 include/linux/firmware/imx/dsp.h
+> 
+> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
+> index 42b566f8903f..383996b679a8 100644
+> --- a/drivers/firmware/imx/Kconfig
+> +++ b/drivers/firmware/imx/Kconfig
+> @@ -1,4 +1,15 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> +config IMX_DSP
+> +	bool "IMX DSP Protocol driver"
+> +	depends on IMX_MBOX
+> +	help
+> +	  This enables DSP IPC protocol between host CPU (Linux)
+> +	  and the firmware running on DSP.
+> +	  DSP exists on some i.MX8 processors (e.g i.MX8QM, i.MX8QXP).
+> +
+> +          It acts like a doorbell. Client might use shared memory to
+> +	  exchange information with DSP side.
+> +
+>  config IMX_SCU
+>  	bool "IMX SCU Protocol driver"
+>  	depends on IMX_MBOX
+> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
+> index 802c4ad8e8f9..08bc9ddfbdfb 100644
+> --- a/drivers/firmware/imx/Makefile
+> +++ b/drivers/firmware/imx/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
+>  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o
+>  obj-$(CONFIG_IMX_SCU_PD)	+= scu-pd.o
+> diff --git a/drivers/firmware/imx/imx-dsp.c b/drivers/firmware/imx/imx-dsp.c
+> new file mode 100644
+> index 000000000000..953fd364ad76
+> --- /dev/null
+> +++ b/drivers/firmware/imx/imx-dsp.c
+> @@ -0,0 +1,167 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2018 NXP
+> + *  Author: Daniel Baluta <daniel.baluta@nxp.com>
+> + *
+> + * Implementation of the DSP IPC interface (host side)
+> + */
+> +
+> +#include <linux/firmware/imx/dsp.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mailbox_client.h>
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +static struct imx_dsp_ipc *imx_dsp_handle;
+> +
+> +/*
+> + * Get the default handle used by DSP
+> + */
+> +int imx_dsp_get_handle(struct imx_dsp_ipc **ipc)
+> +{
+> +	if (!imx_dsp_handle)
+> +		return -EPROBE_DEFER;
+> +
+> +	*ipc = imx_dsp_handle;
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(imx_dsp_get_handle);
 
-Thanks Bjorn for reviewing this.
+Please, extract needed device or handle form device tree. The consumer
+should pars own device tree node and get the phandle to the dsp node.
 
-Best regards
-Vivek
+> +void imx_dsp_set_data(struct imx_dsp_ipc *ipc, void *data)
+> +{
+> +	if (!ipc)
+> +		return;
+> +
+> +	ipc->private_data = data;
+> +}
+> +EXPORT_SYMBOL(imx_dsp_set_data);
+> +
+> +void *imx_dsp_get_data(struct imx_dsp_ipc *ipc)
+> +{
+> +	if (!ipc)
+> +		return NULL;
+> +
+> +	return ipc->private_data;
+> +}
+> +EXPORT_SYMBOL(imx_dsp_get_data);
+> +
+> +/*
+> + * imx_dsp_ring_doorbell - triggers an interrupt on the other side (DSP)
+> + *
+> + * @dsp: DSP IPC handle
+> + * @chan_idx: index of the channel where to trigger the interrupt
+> + *
+> + * Returns non-negative value for success, negative value for error
+> + */
+> +int imx_dsp_ring_doorbell(struct imx_dsp_ipc *ipc, unsigned int idx)
+> +{
+> +	int ret;
+> +	struct imx_dsp_chan *dsp_chan;
+> +
+> +	if (idx > DSP_MU_CHAN_NUM)
+> +		return -EINVAL;
 
-[snip]
+On this test idx may overflow. DSP_MU_CHAN_NUM is 4, means idx can be:
+0, 1, 2, 3. In you case idx == 4 is allowed, so the caller will be able
+to corrupt the rest of imx_dsp_ipc struct.
+
+> +	dsp_chan = &ipc->chans[idx];
+> +	ret = mbox_send_message(dsp_chan->ch, NULL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(imx_dsp_ring_doorbell);
+> +
+> +/*
+> + * imx_dsp_handle_rx - rx callback used by imx mailbox
+> + *
+> + * @c: mbox client
+> + * @msg: message received
+> + *
+> + * Users of DSP IPC will need to privde handle_reply and handle_request
+> + * callbacks.
+> + */
+> +static void imx_dsp_handle_rx(struct mbox_client *c, void *msg)
+> +{
+> +	struct imx_dsp_chan *chan = container_of(c, struct imx_dsp_chan, cl);
+> +
+> +	if (chan->idx == 0) {
+> +		chan->ipc->ops->handle_reply(chan->ipc);
+> +	} else {
+> +		chan->ipc->ops->handle_request(chan->ipc);
+> +		imx_dsp_ring_doorbell(chan->ipc, 1);
+> +	}
+> +}
+> +
+> +static int imx_dsp_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct imx_dsp_ipc *dsp_ipc;
+> +	struct imx_dsp_chan *dsp_chan;
+> +	struct mbox_client *cl;
+> +	char *chan_name;
+> +	int ret;
+> +	int i;
+> +
+> +	dsp_ipc = devm_kzalloc(dev, sizeof(*dsp_ipc), GFP_KERNEL);
+> +	if (!dsp_ipc)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < DSP_MU_CHAN_NUM; i++) {
+> +		if (i < 2)
+> +			chan_name = kasprintf(GFP_KERNEL, "txdb%d", i);
+> +		else
+> +			chan_name = kasprintf(GFP_KERNEL, "rxdb%d", i - 2);
+> +
+> +		if (!chan_name)
+> +			return -ENOMEM;
+> +
+> +		dsp_chan = &dsp_ipc->chans[i];
+> +		cl = &dsp_chan->cl;
+> +		cl->dev = dev;
+> +		cl->tx_block = false;
+> +		cl->knows_txdone = true;
+> +		cl->rx_callback = imx_dsp_handle_rx;
+> +
+> +		dsp_chan->ipc = dsp_ipc;
+> +		dsp_chan->idx = i % 2;
+> +		dsp_chan->ch = mbox_request_channel_byname(cl, chan_name);
+> +		if (IS_ERR(dsp_chan->ch)) {
+> +			ret = PTR_ERR(dsp_chan->ch);
+> +			if (ret != -EPROBE_DEFER)
+> +				dev_err(dev, "Failed to request mbox chan %s ret %d\n",
+> +					chan_name, ret);
+> +			return ret;
+
+On the error you will leak the memory previously allocated chan_name.
+And you should call mbox_free_channel() for each previously registered
+channel in this loop. 
+
+> +		}
+> +
+> +		dev_dbg(dev, "request mbox chan %s\n", chan_name);
+> +		/* chan_name is not used anymore by framework */
+> +		kfree(chan_name);
+> +	}
+> +
+> +	dsp_ipc->dev = dev;
+> +
+> +	imx_dsp_handle = dsp_ipc;
+
+bad idea. What happens if multiple dsp nodes are registered in the
+device tree?
+
+> +	dev_info(dev, "NXP i.MX DSP IPC initialized\n");
+> +
+> +	return devm_of_platform_populate(dev);
+> +}
+> +
+> +static const struct of_device_id imx_dsp_match[] = {
+> +	{ .compatible = "fsl,imx-dsp", },
+
+i would prefer to have chip name in the compatible. For example
+fsl,imx8qm-dsp. Soon or later we will need to define some quirks
+for on or another chip.
+
+> +	{ /* Sentinel */ }
+> +};
+> +
+> +static struct platform_driver imx_dsp_driver = {
+> +	.driver = {
+> +		.name = "imx-dsp",
+> +		.of_match_table = imx_dsp_match,
+> +	},
+> +	.probe = imx_dsp_probe,
+> +};
+> +builtin_platform_driver(imx_dsp_driver);
+> +
+> +MODULE_AUTHOR("Daniel Baluta <daniel.baluta@nxp.com>");
+> +MODULE_DESCRIPTION("IMX DSP IPC protocol driver");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/include/linux/firmware/imx/dsp.h b/include/linux/firmware/imx/dsp.h
+> new file mode 100644
+> index 000000000000..75637d8fab34
+> --- /dev/null
+> +++ b/include/linux/firmware/imx/dsp.h
+> @@ -0,0 +1,61 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/*
+> + * Copyright 2018 NXP
+> + *
+> + * Header file for the DSP IPC implementation
+> + */
+> +
+> +#ifndef _IMX_DSP_IPC_H
+> +#define _IMX_DSP_IPC_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +#include <linux/mailbox_client.h>
+> +
+> +#define DSP_MU_CHAN_NUM		4
+> +
+> +struct imx_dsp_chan {
+> +	struct imx_dsp_ipc *ipc;
+> +	struct mbox_client cl;
+> +	struct mbox_chan *ch;
+> +	int idx;
+> +};
+> +
+> +struct imx_dsp_ops {
+> +	void (*handle_reply)(struct imx_dsp_ipc *ipc);
+> +	void (*handle_request)(struct imx_dsp_ipc *ipc);
+> +};
+> +
+> +struct imx_dsp_ipc {
+> +	/* Host <-> DSP communication uses 2 txdb and 2 rxdb channels */
+> +	struct imx_dsp_chan chans[DSP_MU_CHAN_NUM];
+> +	struct device *dev;
+> +	struct imx_dsp_ops *ops;
+> +	void *private_data;
+> +};
+> +
+> +#if IS_ENABLED(CONFIG_IMX_DSP)
+> +
+> +int imx_dsp_ring_doorbell(struct imx_dsp_ipc *dsp, unsigned int chan_idx);
+> +int imx_dsp_get_handle(struct imx_dsp_ipc **ipc);
+> +void imx_dsp_set_data(struct imx_dsp_ipc *ipc, void *data);
+> +void *imx_dsp_get_data(struct imx_dsp_ipc *ipc);
+> +
+> +#else
+> +
+> +static inline int imx_dsp_get_handle(struct imx_dsp_ipc **ipc)
+> +{
+> +	return -EIO;
+
+please, use -ENOTSUPP instead.
+
+> +}
+> +
+> +static inline int imx_dsp_ring_doorbell(struct imx_dsp_ipc *ipc,
+> +					unsigned int chan_idx)
+> +{
+> +	return -EIO;
+> +}
+> +
+> +void imx_dsp_set_data(struct imx_dsp_ipc *ipc, void *data) { }
+> +void *imx_dsp_get_data(struct imx_dsp_ipc *ipc) { return NULL; }
+> +
+> +#endif
+> +#endif /* _IMX_DSP_IPC_H */
+> -- 
+> 2.17.1
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
