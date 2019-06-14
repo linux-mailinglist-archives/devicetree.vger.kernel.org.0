@@ -2,98 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C4346488
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB2B4648A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 18:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725814AbfFNQmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 12:42:25 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:45757 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725808AbfFNQmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:42:25 -0400
-Received: by mail-qk1-f194.google.com with SMTP id s22so2053768qkj.12
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 09:42:25 -0700 (PDT)
+        id S1725859AbfFNQnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 12:43:40 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:46530 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725837AbfFNQnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 12:43:40 -0400
+Received: by mail-pf1-f195.google.com with SMTP id 81so1775390pfy.13
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 09:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YB8tvQ/A4LBfMdy9uXKQQ4D0KlkqxcG44woQEGvz30s=;
+        b=qYxsx+A6S9zLLNTdR52vMXSYNC4esdZSFUMNrOleaGkevIAAzDbqGuI9GvOfXHTW0t
+         K6MWIOyfG3XEJvM8gDFnZbOcCzjNuRKhwawvyODHKOUMtD9GlufynwBgS84+Dr6eR6EN
+         zVUtAhESJK8BH/wZD1lA5elxAzgdFRasq3A6U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LvCoDYGzGpZHWNqqXDyj7tZ68K9QYgLtd6i/LSuZlTg=;
-        b=XXBSZfGyOTKE9BsbFQBuNfQwVQgClJSYClYOU6ByrrsGO7hk3alSpc7P3c8/QAsP+n
-         kruTCr1qAeJ97ScPCodetCapVUhT2eiM0ArOtstD/khK4by7WJrG9bWIX3nOhecUbwnY
-         Pmhi41UjKvR+SPzZHD4jFYpmo7uQdw7P5xdLinuSIYozNiJ2QO+fTYdgeyu49/qlqhs9
-         mokzisWU6rlixJCHqL2G3w+uGcxunA6UKDsguyfOJBd5pq9PTCWyJUoKgKj1O7zoXvS9
-         Zn1t9JZtIcZsPSBTp/QOC+sOJJQ+PxnL5gsK1cVpRM7Y7v5HbU4yNgD3u9nLdNWVbhMO
-         14yw==
-X-Gm-Message-State: APjAAAWU1+uWCvmZ4gh1x742uaAdv3Yr7QFleeHgP2b5xm6f1T3My5CS
-        e3Zml1Gd1sLzbEnQWh4OsA==
-X-Google-Smtp-Source: APXvYqxkjDZsM8wtlEDOhdkqswk52LRk6i4Tm9NDsqj3lu7WW63BnoOCyD1SGGrdI5t/apU2U7gULA==
-X-Received: by 2002:a37:47d6:: with SMTP id u205mr11996243qka.214.1560530544550;
-        Fri, 14 Jun 2019 09:42:24 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id l6sm1882553qkf.83.2019.06.14.09.42.23
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 09:42:23 -0700 (PDT)
-Date:   Fri, 14 Jun 2019 10:42:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Angus Ainslie <angus@akkea.ca>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: mfd: Document short/long press
- duration for bd718x7
-Message-ID: <20190614164222.GA30277@bogus>
-References: <cover.1558471150.git.leonard.crestez@nxp.com>
- <ec750ff0021c942b3c477e1cc7dc35f957600c96.1558471150.git.leonard.crestez@nxp.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YB8tvQ/A4LBfMdy9uXKQQ4D0KlkqxcG44woQEGvz30s=;
+        b=fMa+C5hcOu/d5lcJZNnc7piMq27eXuQZb3XE9HkvWl1NpEqYRvW0sNwoPnAQCPtH6Z
+         dIOzBN5FBvScwH4u1lc7lC5/4cNVXbiFL4FJmperivNQOE10J7O7EsfBKtX2wfwMiUxi
+         voIVy8gFY7raj9GvCqu0XSTA/G4p0wTwaMSCw5+Kby9jE1bEKx5RqLNYDydUwSTHeQBq
+         pBXQfn8ZX1wMdtKS7YTB/QsfrruqdtWhJjeWtob07dSUHcEQ1A6bK8MDPPZsygrkyjcT
+         dyXz1uf50WiEiwf/Et+37b/GC+RMEvElwkqWZs3wwjDNef6S2puwd2RonRVKcvnbw58W
+         1JIg==
+X-Gm-Message-State: APjAAAWOyt5XmQpQDgDNdEAb+YAfBr5PQzo3ct7XgWy9QOcuu6Kmg3MA
+        /GvLQqazxT5gsAl9WrE5Q3gI4A==
+X-Google-Smtp-Source: APXvYqwYXdTXpfDhGmQt8us4MjMKgpbr+c5sCD+q4V7paAN4sFr9nfOElG4ad8gQmXlIHo+aNGcOGQ==
+X-Received: by 2002:aa7:8c0f:: with SMTP id c15mr73672184pfd.113.1560530619784;
+        Fri, 14 Jun 2019 09:43:39 -0700 (PDT)
+Received: from localhost.localdomain ([115.97.180.18])
+        by smtp.gmail.com with ESMTPSA id 85sm1639583pfv.130.2019.06.14.09.43.33
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 14 Jun 2019 09:43:38 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v2 0/9] drm/sun4i: Allwinner R40 MIPI-DSI support
+Date:   Fri, 14 Jun 2019 22:13:15 +0530
+Message-Id: <20190614164324.9427-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ec750ff0021c942b3c477e1cc7dc35f957600c96.1558471150.git.leonard.crestez@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 21, 2019 at 08:41:13PM +0000, Leonard Crestez wrote:
-> These values can be overwritten at probe time.
-> 
-> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
-> Acked-By: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
->  .../devicetree/bindings/mfd/rohm,bd71837-pmic.txt         | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.txt b/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.txt
-> index d5f68ac78d15..3649c1191432 100644
-> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.txt
-> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.txt
-> @@ -36,10 +36,18 @@ switched power state to SNVS. If reset is done via READY state the power
->  outputs will be returned to HW control by OTP loading. Thus the reset
->  target state is set to READY by default. If SNVS state is used the boot
->  crucial regulators must have the regulator-always-on and regulator-boot-on
->  properties set in regulator node.
->  
-> +- rohm,short-press-ms	: Short press duration in milliseconds
-> +- rohm,long-press-ms	: Long press duration in milliseconds
-> +
-> +Configure the "short press" and "long press" timers for the power button.
-> +Values are rounded to what hardware supports (500ms multiple for short and
-> +1000ms multiple for long). If these properties are not present the existing
-> +configuration (from bootloader or OTP) is not touched.
+This is v2 version for supporting MIPI-DSI on Allwinner R40 from
+initial version[4].
 
-We already have a standard property 'power-off-time-sec' for at least 
-part of this assuming 'long' or 'short' causes a power off. 'long' and 
-'short' don't describe anything useful. The action should be described.
+The controller look similar like, Allwinnwe A64 so it has
+dependencies with A64 MIPI DSI changes, DSI fixes and R40 pwm 
+driver [1] [2] [3]. 
 
-Rob
+PLL-MIPI, dclk divders logic bpp/lanes are properly work for R40,
+like A31, A64.
+
+Changes for v2:
+- drop tcon top lcd clock patch
+- add TODO text while adding tcon lcd support
+- add patch for registering tcon top clock gates in probe
+- change tcon-ch0 in tcon_lcd0 to CLK_TCON_LCD0
+- change mod clock in dphy to tcon_top with index 3 
+
+[1] https://patchwork.freedesktop.org/series/61310/
+[2] https://patchwork.freedesktop.org/series/60847/ 
+[3] https://lore.kernel.org/patchwork/cover/862766/ 
+[4] https://patchwork.freedesktop.org/series/62062/
+
+Any inputs?
+Jagan.
+
+Jagan Teki (9):
+  dt-bindings: display: Add TCON LCD compatible for R40
+  drm/sun4i: tcon: Add TCON LCD support for R40
+  ARM: dts: sun8i: r40: Use tcon top clock index macros
+  drm/sun4i: tcon_top: Use clock name index macros
+  drm/sun4i: tcon_top: Register clock gates in probe
+  dt-bindings: sun6i-dsi: Add R40 MIPI-DSI compatible (w/ A64 fallback)
+  dt-bindings: sun6i-dsi: Add R40 DPHY compatible (w/ A31 fallback)
+  ARM: dts: sun8i: r40: Add MIPI DSI pipeline
+  [DO NOT MERGE] ARM: dts: sun8i-r40: bananapi-m2-ultra: Enable Bananapi S070WV20-CT16 DSI panel
+
+ .../bindings/display/sunxi/sun4i-drm.txt      |   1 +
+ .../bindings/display/sunxi/sun6i-dsi.txt      |   2 +
+ .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  |  36 ++++++
+ arch/arm/boot/dts/sun8i-r40.dtsi              |  78 ++++++++++++-
+ drivers/gpu/drm/sun4i/sun4i_tcon.c            |   8 ++
+ drivers/gpu/drm/sun4i/sun8i_tcon_top.c        | 103 ++++++++++--------
+ 6 files changed, 178 insertions(+), 50 deletions(-)
+
+-- 
+2.18.0.321.gffc6fa0e3
+
