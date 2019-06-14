@@ -2,91 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA70745305
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 05:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5644530C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2019 05:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725775AbfFNDfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jun 2019 23:35:12 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:35026 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725616AbfFNDfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 23:35:12 -0400
-Received: by mail-ed1-f65.google.com with SMTP id p26so1391895edr.2;
-        Thu, 13 Jun 2019 20:35:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h5X0bylW7cnZXlc8waXhJ/q/kNkLK/1K8QN94+coOFM=;
-        b=HoMLm1sI+abrc9ngyGIkfX93s2SC7q9Z7m7/LUtI19TypMcL0hSQPNeWuWnhzj64SM
-         yQgqp/9o/r/bBBsQJ/8N+XpYJsy+P3kLfVccrrWGIEKUs9qJdVbhgjHDxNYpzOysGoy/
-         mDsgQD91sueog8ixD/eRdpD3DoNJc4Fe4ST1dvQkrf80xqk+F/FkFboGYszuIk7+FNLs
-         u8L28QoDnWuunSjHkUMsJRd4UM4QXhiR3mK61cFBb2uLGHCpq5BLOALtHPuh+PEs7yfi
-         L9cQ7cvu7sGiJGf4MGnAt4kY8DEcYyR/JdZq7eVNz5QYoYWwVKAdDdzY9aI1dR2RwXT2
-         gWUQ==
-X-Gm-Message-State: APjAAAUKQPJS2u7ow2irz4UYL+gxNkmSI+dcKi7p7mrzZVE38GM4rC5E
-        kbhZin01S8HWn5BqoDntMq9Cm/xapy4=
-X-Google-Smtp-Source: APXvYqwuCiURIA/FEBO8t18uh8Wp15E+xhYHlpu+1sQMUUU9bAbIsMjVfOpuBC5Qow3Uw24Epu2z2w==
-X-Received: by 2002:a17:906:3e8d:: with SMTP id a13mr15385478ejj.71.1560483310227;
-        Thu, 13 Jun 2019 20:35:10 -0700 (PDT)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
-        by smtp.gmail.com with ESMTPSA id r14sm485940edd.0.2019.06.13.20.35.09
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 13 Jun 2019 20:35:09 -0700 (PDT)
-Received: by mail-wr1-f48.google.com with SMTP id d18so901674wrs.5;
-        Thu, 13 Jun 2019 20:35:09 -0700 (PDT)
-X-Received: by 2002:adf:fc85:: with SMTP id g5mr62068736wrr.324.1560483309487;
- Thu, 13 Jun 2019 20:35:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190613185241.22800-1-jagan@amarulasolutions.com>
- <20190613185241.22800-3-jagan@amarulasolutions.com> <CAGb2v65xuXc4C1jOyM1GbEFVDam5P-6NN0ZhtzwzA7qU5F3nJQ@mail.gmail.com>
-In-Reply-To: <CAGb2v65xuXc4C1jOyM1GbEFVDam5P-6NN0ZhtzwzA7qU5F3nJQ@mail.gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 14 Jun 2019 11:34:57 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67DY534hXrx2H4jnZXA7jJS7sq2UwYCqw1iAgyLKdNzgA@mail.gmail.com>
-Message-ID: <CAGb2v67DY534hXrx2H4jnZXA7jJS7sq2UwYCqw1iAgyLKdNzgA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 2/9] drm/sun4i: tcon: Add TCON LCD support
- for R40
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula@amarulasolutions.com
+        id S1725775AbfFNDmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jun 2019 23:42:51 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:23152 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725616AbfFNDmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jun 2019 23:42:51 -0400
+X-UUID: df532dbf28cb4d60bd19eaf78937139c-20190614
+X-UUID: df532dbf28cb4d60bd19eaf78937139c-20190614
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 2143418753; Fri, 14 Jun 2019 11:42:43 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 14 Jun 2019 11:42:40 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 14 Jun 2019 11:42:39 +0800
+Message-ID: <1560483759.16718.12.camel@mtksdaap41>
+Subject: Re: [PATCH v3, 13/27] drm/mediatek: add ddp component CCORR
+From:   CK Hu <ck.hu@mediatek.com>
+To:     <yongqiang.niu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Fri, 14 Jun 2019 11:42:39 +0800
+In-Reply-To: <1559734986-7379-14-git-send-email-yongqiang.niu@mediatek.com>
+References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1559734986-7379-14-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 11:19 AM Chen-Yu Tsai <wens@csie.org> wrote:
->
-> On Fri, Jun 14, 2019 at 2:53 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> >
-> > TCON LCD0, LCD1 in allwinner R40, are used for managing
-> > LCD interfaces like RGB, LVDS and DSI.
-> >
-> > Like TCON TV0, TV1 these LCD0, LCD1 are also managed via
-> > tcon top.
-> >
-> > Add support for it, in tcon driver.
-> >
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
->
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+Hi, Yongqiang:
 
-I take that back.
+On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> This patch add ddp component CCORR
 
-The TCON output muxing (which selects whether TCON LCD or TCON TV
-outputs to the GPIO pins)
-is not supported yet. Please at least add TODO notes, or ideally,
-block RGB output from
-being used.
+This patch is identical to v2, and I've give a 'Reviewed-by' for v2 [1],
+so you should keep this 'Reviewed-by' tag in this patch, so I still give
+you a
 
-ChenYu
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
+[1] https://patchwork.kernel.org/patch/10872697/
+
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 32 +++++++++++++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |  2 ++
+>  2 files changed, 34 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> index 54ca794..310c0b9 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -41,6 +41,12 @@
+>  #define DISP_AAL_EN				0x0000
+>  #define DISP_AAL_SIZE				0x0030
+>  
+> +#define DISP_CCORR_EN				0x0000
+> +#define CCORR_EN				BIT(0)
+> +#define DISP_CCORR_CFG				0x0020
+> +#define CCORR_RELAY_MODE			BIT(0)
+> +#define DISP_CCORR_SIZE				0x0030
+> +
+>  #define DISP_GAMMA_EN				0x0000
+>  #define DISP_GAMMA_CFG				0x0020
+>  #define DISP_GAMMA_SIZE				0x0030
+> @@ -131,6 +137,24 @@ static void mtk_aal_stop(struct mtk_ddp_comp *comp)
+>  	writel_relaxed(0x0, comp->regs + DISP_AAL_EN);
+>  }
+>  
+> +static void mtk_ccorr_config(struct mtk_ddp_comp *comp, unsigned int w,
+> +			     unsigned int h, unsigned int vrefresh,
+> +			     unsigned int bpc)
+> +{
+> +	writel(h << 16 | w, comp->regs + DISP_CCORR_SIZE);
+> +	writel(CCORR_RELAY_MODE, comp->regs + DISP_CCORR_CFG);
+> +}
+> +
+> +static void mtk_ccorr_start(struct mtk_ddp_comp *comp)
+> +{
+> +	writel(CCORR_EN, comp->regs + DISP_CCORR_EN);
+> +}
+> +
+> +static void mtk_ccorr_stop(struct mtk_ddp_comp *comp)
+> +{
+> +	writel_relaxed(0x0, comp->regs + DISP_CCORR_EN);
+> +}
+> +
+>  static void mtk_gamma_config(struct mtk_ddp_comp *comp, unsigned int w,
+>  			     unsigned int h, unsigned int vrefresh,
+>  			     unsigned int bpc)
+> @@ -179,6 +203,12 @@ static void mtk_gamma_set(struct mtk_ddp_comp *comp,
+>  	.stop = mtk_aal_stop,
+>  };
+>  
+> +static const struct mtk_ddp_comp_funcs ddp_ccorr = {
+> +	.config = mtk_ccorr_config,
+> +	.start = mtk_ccorr_start,
+> +	.stop = mtk_ccorr_stop,
+> +};
+> +
+>  static const struct mtk_ddp_comp_funcs ddp_gamma = {
+>  	.gamma_set = mtk_gamma_set,
+>  	.config = mtk_gamma_config,
+> @@ -200,6 +230,7 @@ static void mtk_gamma_set(struct mtk_ddp_comp *comp,
+>  	[MTK_DISP_RDMA] = "rdma",
+>  	[MTK_DISP_WDMA] = "wdma",
+>  	[MTK_DISP_COLOR] = "color",
+> +	[MTK_DISP_CCORR] = "ccorr",
+>  	[MTK_DISP_AAL] = "aal",
+>  	[MTK_DISP_GAMMA] = "gamma",
+>  	[MTK_DISP_UFOE] = "ufoe",
+> @@ -221,6 +252,7 @@ struct mtk_ddp_comp_match {
+>  	[DDP_COMPONENT_AAL0]	= { MTK_DISP_AAL,	0, &ddp_aal },
+>  	[DDP_COMPONENT_AAL1]	= { MTK_DISP_AAL,	1, &ddp_aal },
+>  	[DDP_COMPONENT_BLS]	= { MTK_DISP_BLS,	0, NULL },
+> +	[DDP_COMPONENT_CCORR]	= { MTK_DISP_CCORR,	0, &ddp_ccorr },
+>  	[DDP_COMPONENT_COLOR0]	= { MTK_DISP_COLOR,	0, NULL },
+>  	[DDP_COMPONENT_COLOR1]	= { MTK_DISP_COLOR,	1, NULL },
+>  	[DDP_COMPONENT_DPI0]	= { MTK_DPI,		0, NULL },
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> index 8399229..87ef290 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> @@ -28,6 +28,7 @@ enum mtk_ddp_comp_type {
+>  	MTK_DISP_RDMA,
+>  	MTK_DISP_WDMA,
+>  	MTK_DISP_COLOR,
+> +	MTK_DISP_CCORR,
+>  	MTK_DISP_AAL,
+>  	MTK_DISP_GAMMA,
+>  	MTK_DISP_UFOE,
+> @@ -44,6 +45,7 @@ enum mtk_ddp_comp_id {
+>  	DDP_COMPONENT_AAL0,
+>  	DDP_COMPONENT_AAL1,
+>  	DDP_COMPONENT_BLS,
+> +	DDP_COMPONENT_CCORR,
+>  	DDP_COMPONENT_COLOR0,
+>  	DDP_COMPONENT_COLOR1,
+>  	DDP_COMPONENT_DPI0,
+
+
