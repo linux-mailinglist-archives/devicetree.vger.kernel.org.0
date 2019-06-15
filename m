@@ -2,135 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9C9146FE4
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 14:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7A0D47027
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 15:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbfFOM1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jun 2019 08:27:47 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:38686 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbfFOM1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jun 2019 08:27:47 -0400
-Received: by mail-qt1-f193.google.com with SMTP id n11so5651293qtl.5
-        for <devicetree@vger.kernel.org>; Sat, 15 Jun 2019 05:27:47 -0700 (PDT)
+        id S1726236AbfFONYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jun 2019 09:24:32 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:35411 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725944AbfFONYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jun 2019 09:24:32 -0400
+Received: by mail-wr1-f67.google.com with SMTP id m3so5297593wrv.2
+        for <devicetree@vger.kernel.org>; Sat, 15 Jun 2019 06:24:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=QUdqxVBPq9imgdnJQFYvha+M4qxrrCavKMcvFwAngs0=;
-        b=UDpts2Za5LSrbJ/yfgjWjZhBeaGNbJ1yfqFAGTWkQ1DigQwdh9DGMeM9GU7DWUrbzq
-         QAyru1WMZHQbpkmrJm0umxi1tiwp/kDh+JCmKedyXKKX5A3cyohbGF68U26bTm2S7APh
-         YoY/miuENg9XcmcP7XlownN58xlST9RI8Nj7n74y9FNy2jugYHkDY8LRwgd131vR1Cxe
-         0kduedLzbzsVRNFl/ZNJWbe6keStlaR+fJWvKIS48Yy7AOZ+D0IiYCj6zJ848cFI/1mG
-         Cc5hRAgoM6xQGq60CyyDJm2Iwph6nU9v7y1ARG+vNCiwF6z0xr0z3CktK0VHFFTd6S7t
-         tAXw==
+        bh=Vz/q3yDMdsUzgeQCzBXnpHKRw3aqbJ8VhrbofM0uGw8=;
+        b=hrZAMjX8YAKjXxrPN9i4Ujy9ygbBRPJb7TBLpsXbIqdZpmx97Burm7sDohZe3gWnGF
+         TpUVrUBYaelBUWac1wtnJih7fFCi36VlNHA0e3nFzUJuiQJhTe3pYWGswTK5rzHW85KD
+         qcptH5g/EkwFUCv47c9uRFBpc2NGsez4A3/aBJnlybU95E2aY8F8DXzaB2vsTLfFwVA5
+         PLa+dFmYzjuHdJSjcWWeO7ysyhLn1TnxbLMmP7Avh6u1ZqdeErA1Fodt6pOIMQ8DJJXB
+         8rIChl80ANLmmnIjLwfoHD9EAhoiyDqlcExmWgSZNc2v2Du1hU+2obs+6DOufaJlTpLa
+         iZgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=QUdqxVBPq9imgdnJQFYvha+M4qxrrCavKMcvFwAngs0=;
-        b=t/17YyIb3RWBFeUXzaVQueN57M7AjsyDWfAGmj1KrNPzNETPs8eWRLyO/lC16I8HwD
-         RSyoqV2FD5WehAEJNg4pSDgM7cUzjfrbBwCraOQeCr7upU67Y8eE/H/wtu0DVX6/pz4T
-         N0SIVht4K+VJKzzTkPDngjo4WP8JtrAzcYDlufl6WGSJ+WSEQ6iPCCRLy7knflTwmaT0
-         6zhZIYQNSVXabKaPEJ3Q1ym0CWDTTjtqlvfPZqUVdtzZsAhOfZ+7kVU+FjuHaFUmzzMg
-         t559HSqe7gSsCLxSA8W7xuk2OZ2I1l3wrqDuIr/QyV2aPuowbyqcymBRmXZmq1Fkoivb
-         qpLA==
-X-Gm-Message-State: APjAAAVJSA71SQpH/vf0/BmUvSzxZgknOl/tmhdQCf8c1FDgN/Tbfkia
-        lfSXuh9qiUbGpJNYf8JxTOA=
-X-Google-Smtp-Source: APXvYqxwct+cSu4cP4kyX4tb45S7fuhMl4vL0jeGlfeQbusi3lOjRa5CzRWC9r6WbJm1Rs2CmtOzAw==
-X-Received: by 2002:ac8:3637:: with SMTP id m52mr71369587qtb.238.1560601666518;
-        Sat, 15 Jun 2019 05:27:46 -0700 (PDT)
-Received: from ?IPv6:2601:153:900:ebb:d1e6:5a48:e4d5:c6a6? ([2601:153:900:ebb:d1e6:5a48:e4d5:c6a6])
-        by smtp.gmail.com with ESMTPSA id t197sm2776531qke.2.2019.06.15.05.27.45
+        bh=Vz/q3yDMdsUzgeQCzBXnpHKRw3aqbJ8VhrbofM0uGw8=;
+        b=SWPwKA6XucAZrcRgpf/SMzRUUZ3rdqLo3+VnRp+NLR3dsilGiVb/I8i0wgF5v6o+IS
+         vEJGI9RLc5kTPrBFxvaFQl+xDuJEuKW86FZ2bkBse3P0J1a5+zTlFTtXfI8KGASqvPtx
+         U/OUI9N4TxHVm2j0CsOfX1xvHvQ2KIyOIFXSoNdphkCKN1P1TrijS5ARV5kZf25eRvCw
+         EITDh3MAIN74fcBMrdy9inu99/TJOzbqUus+5y+tHybtHxWT8Cx2e8RNoSor9IY6RBdi
+         STyUz+tKehV/yBCe164h4c8BgCcFYrfJETtnYqcdQU9q5rLlkJH8oMS04wg8FI0H9oDJ
+         MGGA==
+X-Gm-Message-State: APjAAAX7uXfaHPc8Xea/h1ISBbJSbT9Ce+7QhcpysupIpqhhZnebly3U
+        atAYhmx+L4wseaa/b2TJCLHytA==
+X-Google-Smtp-Source: APXvYqzT26v+cM8CuCpyQsf55a1zh1osMb6x36j5wWGQDXrAaSY2Q/a3yv9uJOPSOvdp22hdne9ejA==
+X-Received: by 2002:a5d:4286:: with SMTP id k6mr6384669wrq.151.1560605069518;
+        Sat, 15 Jun 2019 06:24:29 -0700 (PDT)
+Received: from [192.168.86.29] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id x16sm6168247wmj.4.2019.06.15.06.24.25
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 15 Jun 2019 05:27:46 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: rockchip: set TX PBL for rk3328-roc-cc gmac
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     "Leonidas P. Papadakos" <papadakospan@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jose Abreu <jose.abreu@synopsys.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20190417210059.26262-1-papadakospan@gmail.com>
- <1555938803.1241.1@gmail.com>
- <8ded737d-1fd5-3609-ca2e-cfeba63b2d95@gmail.com> <1619091.6MGD9gV0do@phil>
-From:   Peter Geis <pgwipeout@gmail.com>
-Message-ID: <4210ab8d-291c-8c44-3c39-6a1849a73874@gmail.com>
-Date:   Sat, 15 Jun 2019 08:27:47 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Sat, 15 Jun 2019 06:24:28 -0700 (PDT)
+Subject: Re: [alsa-devel] [RFC PATCH 6/6] soundwire: qcom: add support for
+ SoundWire controller
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        broonie@kernel.org, vkoul@kernel.org
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
+ <20190607085643.932-7-srinivas.kandagatla@linaro.org>
+ <249f9647-94d0-41d7-3b95-64c36d90f8e8@linux.intel.com>
+ <40ea774c-8aa8-295d-e91e-71423b03c88d@linaro.org>
+ <7269521a-ac89-3856-c18c-ffaaf64c0806@linux.intel.com>
+ <462620fc-ac91-6a36-46c7-7af0080f06cb@linaro.org>
+ <0e836692-2297-4cb7-d681-76692db78a56@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <d3ccd866-7bc5-9635-4bb4-6b0765f89835@linaro.org>
+Date:   Sat, 15 Jun 2019 14:24:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <1619091.6MGD9gV0do@phil>
+In-Reply-To: <0e836692-2297-4cb7-d681-76692db78a56@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/14/2019 5:26 AM, Heiko Stuebner wrote:
-> Hi,
+
+
+On 11/06/2019 13:21, Pierre-Louis Bossart wrote:
 > 
-> Am Donnerstag, 23. Mai 2019, 02:00:27 CEST schrieb Peter Geis:
+> 
+> On 6/11/19 5:29 AM, Srinivas Kandagatla wrote:
 >>
->> On 4/22/2019 9:13 AM, Leonidas P. Papadakos wrote:
+>>
+>> On 10/06/2019 15:12, Pierre-Louis Bossart wrote:
+>>>>>> +
+>>>>>> +    if (dev_addr == SDW_BROADCAST_DEV_NUM) {
+>>>>>> +        ctrl->fifo_status = 0;
+>>>>>> +        ret = wait_for_completion_timeout(&ctrl->sp_cmd_comp,
+>>>>>> +                          msecs_to_jiffies(TIMEOUT_MS));
+>>>>>
+>>>>> This is odd. The SoundWire spec does not handle writes to a single 
+>>>>> device or broadcast writes differently. I don't see a clear reason 
+>>>>> why you would only timeout for a broadcast write.
+>>>>>
+>>>>
+>>>> There is danger of blocking here without timeout.
 >>>
->>> Indeed, at least with that first patch users won't have a crappy
->>> experience by default (ssh lags and the like)
+>>> Right, and it's fine to add a timeout. The question is why add a 
+>>> timeout *only* for a broadcast operation? It should be added for 
+>>> every transaction IMO, unless you have a reason not to do so.
 >>>
->>>
 >>
->> I apologize for taking so long at this, but I wanted to make sure I had
->> it right.
->>
->> So far I've found a few things that seem to help, and would like y'all
->> to test them when you get the chance.
->>
->> Adding snps,aal (configures DMA for address alignment) appears to make a
->> massive improvement to stability, although the the snps,txpbl = <0x4> is
->> still necessary for this to work.
->>
->> Second, I added snps,rxpbl = <0x4> as well, which seems to help with my
->> RX issues a bit.
->> The biggest improvement with these two settings is more stable transmit
->> and receive.
->> Currently I'm getting about 800mbps on tx and 400 mbps on rx.
->>
->> Please test when you get the chance and provide feedback.
+>> I did try this before, the issue is when we read/write registers from 
+>> interrupt handler, these can be deadlocked as we will be interrupt 
+>> handler waiting for another completion interrupt, which will never 
+>> happen unless we return from the first interrupt.
 > 
-> I have to confess I lost track of the multitude of patches touching
-> the gmac on rk3328 and their long mail threads in terms of which
-> to pick up and which are considered superseeded.
-> 
-> So I'd really appreciate if you could resend the patches that matter
-> and provide relevant Tested-by, Reviewed-by, etc tags from involved
-> people that actually were able to test patches
-> 
-> Thanks
-> Heiko
-> 
-> 
+> I don't quite get the issue. With the Intel hardware we only deal with 
+> Master registers (some of which mirror the bus state) in the handler and 
+> will only modify Slave registers in the thread. All changes to Slave 
+> registers will be subject to a timeout as well as a check for no 
+> response or NAK. Not sure what is specific about your solution that 
+> requires a different handling of commands depending on which device 
+> number is used. It could very well be that you've uncovered a flaw in 
+> the bus design but I still don't see how it would be Qualcomm-specific?
 
-Good Morning Heiko,
-
-Here's a quick catch-up for you:
-Currently we use thresh dma mode to allow rgmii to work, but this has 
-performance limitations.
-Leonidas submitted the txpbl 0x4 patch, which works well for his board 
-but my board has very poor performance with.
-I submitted a new patch that combined txpbl 0x4 with aal dma mode, which 
-fixes my issue and seems to work well for Leonidas.
-
-That patch is under [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc 
-rgmii performance.
-I'd like more people to test it prior to submitting it to replace thresh 
-dma mode.
-
-If we get a few more tests without regression, I'll resubmit it with 
-Tested-by tags for inclusion.
+Sorry It took bit more time for digging up the issue which I faced 
+previously to answer this query. This is now fixed and v2 patchset has 
+same handling for all the slave registers read/writes with no special 
+casing.
 
 Thanks,
-Peter
+srini
