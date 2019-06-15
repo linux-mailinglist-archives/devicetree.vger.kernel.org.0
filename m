@@ -2,188 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC3746EDF
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 09:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCEF46F29
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 11:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726289AbfFOHzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jun 2019 03:55:16 -0400
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:55339 "EHLO
-        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726073AbfFOHzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 15 Jun 2019 03:55:16 -0400
-Received: from [IPv6:2001:983:e9a7:1:cc45:ac5:3048:e495] ([IPv6:2001:983:e9a7:1:cc45:ac5:3048:e495])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id c3WlhgdJD5qKac3WnhPwkl; Sat, 15 Jun 2019 09:55:14 +0200
-Subject: Re: [PATCH 2/2] media: v4l: xilinx: Add Xilinx UHD-SDI Rx Subsystem
- driver
-To:     Vishal Sagar <vsagar@xilinx.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dinesh Kumar <dineshk@xilinx.com>,
-        Sandip Kothari <sandipk@xilinx.com>,
-        Vishal Sagar <vishal.sagar@xilinx.com>,
-        Hyun Kwon <hyunk@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-References: <1559656556-79174-1-git-send-email-vishal.sagar@xilinx.com>
- <1559656556-79174-3-git-send-email-vishal.sagar@xilinx.com>
- <023cf8a6-6fbc-6425-8bca-798045d39e02@xs4all.nl>
- <CH2PR02MB608838E59840F73F00534198A7EE0@CH2PR02MB6088.namprd02.prod.outlook.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <740f44cb-24af-72c4-f227-5323efcee8ac@xs4all.nl>
-Date:   Sat, 15 Jun 2019 09:55:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726530AbfFOJEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jun 2019 05:04:02 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:40089 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726525AbfFOJEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jun 2019 05:04:02 -0400
+Received: by mail-lj1-f193.google.com with SMTP id a21so4693930ljh.7
+        for <devicetree@vger.kernel.org>; Sat, 15 Jun 2019 02:04:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q5mZQFP+g8hphwb9WUWDqOBMM/numzNM18neebO4nCQ=;
+        b=TKvbOvDCyXJ7QIhcAjzEBO/B5MJDBLcr6FovRgkpJYKud0J03MwhgTKTPkOjZi26OC
+         w6y0buREBCG1c6uq3sPlr77/VjQzLCdgOghG9e/c5s8gS7g/L8AX8h3zdyE+oqlMe0uv
+         2/GRYJIjEEw2aJ4tyvQAEzY/28rSFifUCYqKdX7G5G54vtZtwYTTTOaFWdOHS5oGYvQv
+         w2sSVk7v/eZ/A5398oS0IY0/1qbcCYh0myKtRbJiNTvH4Rit3O8EVbfHFV6g1ix5jfjS
+         ZS37CpScGQAeZSnQbIEHHqB3Pszv3fXHApUsSgg2x4SylV0uNWfh/9b/xGFGZDs3KNsl
+         1xeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=q5mZQFP+g8hphwb9WUWDqOBMM/numzNM18neebO4nCQ=;
+        b=GV171XPOCLGmFVRjddYxz7rpkM2Fj3QGW3syIO+8EuIW6RJmSJJFeLGDvq3GHNa0cv
+         601NvKS6c5AShiQPW1lsYC+8Wx62blNaiaFESVfSOnHRNUiSNrsR8KdRv/Agc6qoUUhh
+         LwIMe6kYkQ+wLrJUm8icHsGCITAOmg6w+S/fpVBITquLxUrsd3f9wIHqA0Js4pGmbiRK
+         7uStBl/DRQZvRZujGVtE2Ffgg2riE4iZanIdrpmW7qhbDB+iw02T4RmKzfeFk0zHye5s
+         qp4pOxPwDg+pArVkJmhWTdeyheCCNyg/IMGa58Bqvpik2dZa60JchRn6p2nl53vtDz8T
+         C68w==
+X-Gm-Message-State: APjAAAWB2rZwHsTCMy3prs+MGIpvrD8jpu04dIKhJrb+bW4JWHIpYplq
+        yBUgoIjD7IlagPpY42HkzwXdGA==
+X-Google-Smtp-Source: APXvYqyPpxOV0FFgM82A++kc//QU4qjulO9oJY1P3TU1+ZG9i72C0q6wCY8EH7wur3qGZzMBXEUqUg==
+X-Received: by 2002:a2e:1510:: with SMTP id s16mr24630515ljd.19.1560589440559;
+        Sat, 15 Jun 2019 02:04:00 -0700 (PDT)
+Received: from [192.168.0.199] ([31.173.84.132])
+        by smtp.gmail.com with ESMTPSA id l25sm814819lfk.57.2019.06.15.02.03.59
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 15 Jun 2019 02:04:00 -0700 (PDT)
+Subject: Re: [PATCH v4 6/8] ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+To:     Peter Chen <peter.chen@nxp.com>, balbi@kernel.org,
+        shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, aisheng.dong@nxp.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, chunfeng.yun@mediatek.com
+References: <20190614093544.11730-1-peter.chen@nxp.com>
+ <20190614093544.11730-7-peter.chen@nxp.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <0dbf01f9-7c5c-ce0b-4feb-378c9147f15a@cogentembedded.com>
+Date:   Sat, 15 Jun 2019 12:03:47 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <CH2PR02MB608838E59840F73F00534198A7EE0@CH2PR02MB6088.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190614093544.11730-7-peter.chen@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfAsC5PMZ8rglwk1Ln0NBxUik+NocyMzfkLqG9ItL3zhGeHIW586gxQPKdVqf6cp4ZknHUY9NF5494m8FXBSeoY6VDGXThHxNSk9Wp6kUMRRI/e30tgdA
- Q/ZVvxjJb5XGywkOvxUasG0hL4oyVh420nobCJVo2SjOQPure8fE7dkZjUvoRv9LvLiHZYdOY/HXqps74GJ/rupfOyoaagzky+1n3DXgOrp8Scy94mFQ+PrW
- DCca7zKX3mxkDCXP0dyYQrPwqoc1mvM8vLzwf/J0j0aWjSP/YmX1lS3uYgHN4dT1OWzEu1ICvCnSHq0JmvwL+2sAzuiCuzfbmnlI3OnJoXyo6YIXZos9I9/g
- pXlebfgJyCdDg5zmDk2ORiUC6QRIREepMM3roJLQext0iTx4TsrkTt1cc4m8IszBJ972dYYuAbnY8OBMrHqluCtXgMh+B8gQ2zk6NvCH6vkBpx2d0MUkRt/D
- 12/wwfTvwbutqRMNWpUS2c3emBbzKX6OXPX30RUGMzuzb64U3ukfoI5jQD/0bImqxGC02n57KTNqGCSI6XVUfYyjyoYCERkJ01un1VRPVrD37DcH5WpkjBnM
- Y3AKcHPcS3/l8m2tteO2od/uqCVFsAvm+0rZNAe546jGTmh1kbG22nASDdd1lQaGEhZU+OSKCRyi9yD8noQD4CYOw6BDPFEhQ9LrR1z1YbvoZiTqdjaj6XOE
- DLE0x54joRR/CpeNDHxYeoxSSpdNN7dKdMYeUkJI5dVe/Xcx8QkN7/iL2WUNAqfdOycrJPAqgv4=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/14/19 1:44 PM, Vishal Sagar wrote:
-> Hi Hans,
-> 
-> Thanks for reviewing this patch.
-> 
->> -----Original Message-----
->> From: Hans Verkuil [mailto:hverkuil@xs4all.nl]
->> Sent: Wednesday, June 05, 2019 6:28 PM
->> To: Vishal Sagar <vishal.sagar@xilinx.com>; Hyun Kwon <hyunk@xilinx.com>;
->> Laurent Pinchart <laurent.pinchart@ideasonboard.com>; Mauro Carvalho
->> Chehab <mchehab@kernel.org>; Michal Simek <michals@xilinx.com>; Rob
->> Herring <robh+dt@kernel.org>; Mark Rutland <mark.rutland@arm.com>
->> Cc: linux-kernel@vger.kernel.org; linux-media@vger.kernel.org; linux-arm-
->> kernel@lists.infradead.org; devicetree@vger.kernel.org; Dinesh Kumar
->> <dineshk@xilinx.com>; Sandip Kothari <sandipk@xilinx.com>
->> Subject: Re: [PATCH 2/2] media: v4l: xilinx: Add Xilinx UHD-SDI Rx Subsystem
->> driver
->>
->> EXTERNAL EMAIL
->>
->> On 6/4/19 3:55 PM, Vishal Sagar wrote:
->>> The Xilinx UHD-SDI Rx subsystem soft IP is used to capture native SDI
->>> streams from SDI sources like SDI broadcast equipment like cameras and
->>> mixers. This block outputs either native SDI, native video or
->>> AXI4-Stream compliant data stream for further processing. Please refer
->>> to PG290 for details.
->>>
->>> The driver is used to configure the IP to add framer, search for
->>> specific modes, get the detected mode, stream parameters, errors, etc.
->>> It also generates events for video lock/unlock, bridge over/under flow.
->>>
->>> The driver supports only 10 bpc YUV 422 media bus format. It also
->>> decodes the stream parameters based on the ST352 packet embedded in the
->>> stream. In case the ST352 packet isn't present in the stream, the core's
->>> detected properties are used to set stream properties.
->>>
->>> The driver currently supports only the AXI4-Stream configuration.
->>>
->>> Signed-off-by: Vishal Sagar <vishal.sagar@xilinx.com>
->>> ---
->>>  drivers/media/platform/xilinx/Kconfig          |   11 +
->>>  drivers/media/platform/xilinx/Makefile         |    1 +
->>>  drivers/media/platform/xilinx/xilinx-sdirxss.c | 1846
->> ++++++++++++++++++++++++
->>>  include/uapi/linux/xilinx-sdirxss.h            |   63 +
->>>  include/uapi/linux/xilinx-v4l2-controls.h      |   30 +
->>>  include/uapi/linux/xilinx-v4l2-events.h        |    9 +
+On 14.06.2019 12:35, Peter Chen wrote:
 
-<snip>
-
->> I am concerned about this driver: I see that none of the *_dv_timings callbacks
->> are implemented. I would expect to see that for a video receiver. There is also
->> no g_input_status implemented.
->>
->> Take a look at another SDI driver: drivers/media/spi/gs1662.c
->>
+> Add imx7ulp USBOTG1 support.
 > 
-> I had a look at the gs1662 driver for the dv_timings callbacks. The gs1662 driver
-> requires the timings because it is a SDI Transmitter. 
+> Signed-off-by: Peter Chen <peter.chen@nxp.com>
+> ---
+>   arch/arm/boot/dts/imx7ulp.dtsi | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
 > 
-> Here the timings are not required as the IP block generates a AXI4 Stream.
-> I think it may be required only in case of native / parallel video being outputted
-> as the output stream needs timing information to be decoded.
-> 
-> Please feel free to correct my understanding if wrong.
-> 
-> In the current driver, the input stream properties like width, height, frame rate,
-> progressive/interlaced  are determined from the ST352 packet payload or from the
-> properties detected by the core.
-> 
-> See the xsdirx_get_stream_properties() for details.
+> diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
+> index fca6e50f37c8..5115e47715c3 100644
+> --- a/arch/arm/boot/dts/imx7ulp.dtsi
+> +++ b/arch/arm/boot/dts/imx7ulp.dtsi
+> @@ -30,6 +30,7 @@
+>   		serial1 = &lpuart5;
+>   		serial2 = &lpuart6;
+>   		serial3 = &lpuart7;
+> +		usbphy0 = &usbphy1;
 
-You're wrong. In xsdirx_get_stream_properties() you set the format information.
-But you can't just change that: if the video resolution changes, then that means
-that userspace needs to be informed that it has changed at the source, it has to
-find and set the new timings, update the formats, possibly reallocate memory for
-the buffers, update other parts of the video pipeline with the new resolution etc.
+    Is that really needed?
 
-The one thing you cannot do is just pass on the new resolution and hope that the
-video pipeline can handle it all.
+[...]
+> @@ -133,6 +134,33 @@
+[...]
+> +		usbphy1: usbphy@0x40350000 {
 
-The right sequence of events is:
+    Name it "usb-phy@40350000" please.
 
-1) When a change is detected at the source the driver sends the SOURCE_CHANGE
-event and either stops transmitting to the video pipeline or keeps sending the
-old resolution (some devices have a freewheeling mode where they can do that).
-
-2) Userspace sees the event, calls QUERY_DV_TIMINGS to find a new timings (if
-any), usually stops streaming, and calls S_DV_TIMINGS to set the detected timings:
-at that point the driver can configure the output towards the video pipeline with
-the new timings. Userspace reallocates buffers and resumes streaming with the new
-resolution.
-
-Note that G_DV_TIMINGS returns the last configured timings, not the detected
-timings: only QUERY_DV_TIMINGS does that.
-
-In other words: userspace has to retain control of the full pipeline.
-
-Regards,
-
-	Hans
-
-> 
->> Some of the controls you add in this driver can likely be dropped. Especially
->> those controls that are not specific to the Xilinx implementation but are
->> generic for any SDI receiver, should be looked at closely: those are
->> candidates for becoming standard controls.
-> 
-> I don't know how other SDI Receiver devices function.
-> So I am assuming all these controls are Xilinx specific implementations.
-> 
->>
->> But the documentation above is simply insufficient for me to tell what is
->> SDI specific and what is implementation specific.
->>
-> 
-> I will add more documentation for these controls.
-> 
->> Also, I'm no SDI expert, certainly not for the UHD-SDI.
->>
->> Regards,
->>
->>         Hans
-> 
-> Regards
-> Vishal Sagar
+> +			compatible = "fsl,imx7ulp-usbphy", "fsl,imx6ul-usbphy";
+> +			reg = <0x40350000 0x1000>;
+> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&pcc2 IMX7ULP_CLK_USB_PHY>;
+> +			#phy-cells = <0>;
+> +		};
+> +
+>   		usdhc0: mmc@40370000 {
+>   			compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
+>   			reg = <0x40370000 0x10000>;
 > 
 
+MBR, Sergei
