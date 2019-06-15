@@ -2,195 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA5E46D46
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 02:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A5D46D6F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 03:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726133AbfFOAoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 20:44:37 -0400
-Received: from mail-ua1-f68.google.com ([209.85.222.68]:37653 "EHLO
-        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725972AbfFOAoh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 20:44:37 -0400
-Received: by mail-ua1-f68.google.com with SMTP id z13so1583999uaa.4
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 17:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Hqhu3iKjp8F7B0PNppJXXZGMbjFkFcAKAjlOSHZGpCw=;
-        b=BtucgTmjUbw04kv6gLtiH5nn5+UMipRd1oqlFsMTR2xCAp7dX7SUmOFAn+CiWX1/b0
-         hhfIE8TVXUaoZx+P37dcbybW/6oDUCNAojfJQ3XVpYGMNP//S4/I38oQKNIvywS47Ah3
-         eIKb/hDcaVeqiHgUKu6Oac7LI+kqGw2jXUavc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Hqhu3iKjp8F7B0PNppJXXZGMbjFkFcAKAjlOSHZGpCw=;
-        b=tULO40IW8lzxCuM2xfcwIQp+eFon0DbH6FUnPI7rerw+Gju0r7yFAmuU91hSpXxGg9
-         dWYgYa39YtSjCa6oajx/y9bXOWm27Bisvt7jabLKWsSMiu5bMK4xDAL+jD//tYao14LD
-         Pm9AuzEuATxElX23FOoYWqEhWe09FDJgWj/o7OOzcMAfT3aa+bXPMwaRpyik9g7wVhog
-         LDsNOB7aTwgFCiK6UDfxYGsuwPVuqYGA+ulgC6leIqND8wHVjJt+a6dSxzXGgjzci+eD
-         Vn27LlRTBFQIc8Hx5iABclGYzybAV4i04uO4Z5a62qpZLadXUAsRvqP0rfOgvC90V+uA
-         jv6g==
-X-Gm-Message-State: APjAAAVVCfI2ADmh+hvJV/fMVCgot1Xyz+91I5Xt1KKPf1OjpSRWYWEU
-        v9pNHe8p7e+6rb9mGBtDV2khE0a3+pdU9GeNwM3elA==
-X-Google-Smtp-Source: APXvYqzjiaDBlFO8bdV4IvvtCzZkmZFMZ8APcuYtyha2wtOhOiLtK7BKGsOv/u0x5QU1iMYswss+zrH9W2lUt/K8C88=
-X-Received: by 2002:a9f:31a2:: with SMTP id v31mr1811971uad.15.1560559475175;
- Fri, 14 Jun 2019 17:44:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-2-dbasehore@chromium.org> <20190612211807.GA13155@ravnborg.org>
- <CAGAzgsqgbr5rWpyWB1H_66=kxBRb7kw4wE7h34TJfE7eJ1mSQQ@mail.gmail.com>
-In-Reply-To: <CAGAzgsqgbr5rWpyWB1H_66=kxBRb7kw4wE7h34TJfE7eJ1mSQQ@mail.gmail.com>
-From:   "dbasehore ." <dbasehore@chromium.org>
-Date:   Fri, 14 Jun 2019 17:44:24 -0700
-Message-ID: <CAGAzgsqv8qYM-+_4bPLHtyiaox2jFLMMka8n1Wnk-q5LVPKqDg@mail.gmail.com>
-Subject: Re: [PATCH 1/5] drm/panel: Add helper for reading DT rotation
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1725972AbfFOBOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 21:14:36 -0400
+Received: from mail-eopbgr70057.outbound.protection.outlook.com ([40.107.7.57]:14660
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725942AbfFOBOf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jun 2019 21:14:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2o9r19ElmknWT/DGekY4AI4zXOQdJ5bAS0pWjfy73Ro=;
+ b=kixVMxTgLjMAgOEbQn/PVxCQmiqkDkS5PGshzACqWZHhI79ySR6P+2THH8TvXrrtT96wDzikfeQO/7JB9eNbruZM1Vw6SEPiveVUG2sfUiDfJXUhpButMfMLS6M0UHj4R3Bv0n9mia9/NnLkZk4k77p3UB+sI7cDK9WsDJVHsyY=
+Received: from AM0PR04MB6738.eurprd04.prod.outlook.com (20.179.253.203) by
+ AM0PR04MB5043.eurprd04.prod.outlook.com (20.177.40.148) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.13; Sat, 15 Jun 2019 01:13:48 +0000
+Received: from AM0PR04MB6738.eurprd04.prod.outlook.com
+ ([fe80::f41f:5455:d0b3:2527]) by AM0PR04MB6738.eurprd04.prod.outlook.com
+ ([fe80::f41f:5455:d0b3:2527%4]) with mapi id 15.20.1987.013; Sat, 15 Jun 2019
+ 01:13:48 +0000
+From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: RE: [PATCHv5 19/20] PCI: mobiveil: Add 8-bit and 16-bit register
+ accessors
+Thread-Topic: [PATCHv5 19/20] PCI: mobiveil: Add 8-bit and 16-bit register
+ accessors
+Thread-Index: AQHU8Qro+GZR0qQ8kEqE4mrq0ZGBSKaYanwAgAPhqdA=
+Date:   Sat, 15 Jun 2019 01:13:48 +0000
+Message-ID: <AM0PR04MB673802CE0891BC898B61EBA384E90@AM0PR04MB6738.eurprd04.prod.outlook.com>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-20-Zhiqiang.Hou@nxp.com>
+ <20190612135400.GB15747@redmoon>
+In-Reply-To: <20190612135400.GB15747@redmoon>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=zhiqiang.hou@nxp.com; 
+x-originating-ip: [27.186.246.136]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 885aab02-da50-4d5c-0893-08d6f12eb8b6
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5043;
+x-ms-traffictypediagnostic: AM0PR04MB5043:
+x-microsoft-antispam-prvs: <AM0PR04MB50435ED13A44273A5A4B196984E90@AM0PR04MB5043.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1728;
+x-forefront-prvs: 0069246B74
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(39860400002)(396003)(366004)(136003)(13464003)(54534003)(189003)(199004)(53546011)(229853002)(33656002)(6506007)(9686003)(76176011)(74316002)(71190400001)(71200400001)(7736002)(55016002)(68736007)(53936002)(478600001)(99286004)(7696005)(476003)(6116002)(3846002)(305945005)(486006)(6436002)(446003)(11346002)(2906002)(5660300002)(6246003)(25786009)(26005)(4326008)(54906003)(66446008)(64756008)(66946007)(66556008)(102836004)(7416002)(73956011)(6916009)(66476007)(316002)(76116006)(52536014)(186003)(81156014)(8676002)(86362001)(8936002)(81166006)(66066001)(14454004)(256004);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5043;H:AM0PR04MB6738.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Pyd5ytsRbfVDHMEAEPTKn8ZL6u1IC1LiOt2z3ap3oKSEwZXpArBDK2HUYAiTIyiVsb2FhgNbQ/KwzsEg0ICEEqqFB+Jb6uHoyeDWBPGEX6das6OHuZPsYYLBr47rHrtmS6j1PZQPus7D2vdyMmxRwwpSnN/qcUbrVAiFa79CP+eABudGgAKq4oCLeblgNHBW3n5brsaOPOL74ueFnHs8i77pD8NVAbIEEGLkJkDTL3geKBcZ1UuqGvE0nUuaBKqVT56adNkXADxVFxW1x+5HksoCo9R0brwzsHf8uzRKvsSFpasPjU3bOU3wIKBDf/lxJaNoIjPoXU6g31HInZKdOthjbHuoxJfIJn0WulSWTIaKRrCojqLcoVbk5QrULDfni7ALtQk10yb4Tol4lstr8D7DIehzGGSA4X0MbtqU5W4=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 885aab02-da50-4d5c-0893-08d6f12eb8b6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2019 01:13:48.7931
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zhiqiang.hou@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5043
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 5:43 PM dbasehore . <dbasehore@chromium.org> wrote:
->
-> On Wed, Jun 12, 2019 at 2:18 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> >
-> > Hi Derek.
-> >
-> > On Mon, Jun 10, 2019 at 09:03:46PM -0700, Derek Basehore wrote:
-> > > This adds a helper function for reading the rotation (panel
-> > > orientation) from the device tree.
-> > >
-> > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
-> > > ---
-> > >  drivers/gpu/drm/drm_panel.c | 41 +++++++++++++++++++++++++++++++++++++
-> > >  include/drm/drm_panel.h     |  7 +++++++
-> > >  2 files changed, 48 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-> > > index dbd5b873e8f2..3b689ce4a51a 100644
-> > > --- a/drivers/gpu/drm/drm_panel.c
-> > > +++ b/drivers/gpu/drm/drm_panel.c
-> > > @@ -172,6 +172,47 @@ struct drm_panel *of_drm_find_panel(const struct device_node *np)
-> > >       return ERR_PTR(-EPROBE_DEFER);
-> > >  }
-> > >  EXPORT_SYMBOL(of_drm_find_panel);
-> > > +
-> > > +/**
-> > > + * of_drm_get_panel_orientation - look up the rotation of the panel using a
-> > > + * device tree node
-> > > + * @np: device tree node of the panel
-> > > + * @orientation: orientation enum to be filled in
-> > The comment says "enum" but the type used is an int.
-> > Why not use enum drm_panel_orientation?
-> >
->
-> The binding is just an int value, but I can change it to the enum.
-
-Oops, I see what happened here. The way I wrote it should actually use the enum
-
->
-> > > + *
-> > > + * Looks up the rotation of a panel in the device tree. The rotation in the
-> > > + * device tree is counter clockwise.
-> > > + *
-> > > + * Return: 0 when a valid rotation value (0, 90, 180, or 270) is read or the
-> > > + * rotation property doesn't exist. -EERROR otherwise.
-> > > + */
-> > Initially I read -EEROOR as a specific error code.
-> > But I gues the semantic is to say that a negative error code is returned
-> > if something was wrong.
-> > As we do not use the "-EERROR" syntax anywhere else in drm, please
-> > reword like we do in other places.
-> >
-> >
-> > Also - it is worth to mention that the rotation returned is
-> > DRM_MODE_PANEL_ORIENTATION_UNKNOWN if the property is not specified.
-> > I wonder if this is correct, as no property could also been
-> > interpretated as DRM_MODE_PANEL_ORIENTATION_NORMAL.
-> > And in most cases the roation property is optional, so one could
-> > assume that no property equals 0 degree.
-> >
-> >
-> >         Sam
-> >
-> > > +int of_drm_get_panel_orientation(const struct device_node *np, int *orientation)
-> > > +{
-> > > +     int rotation, ret;
-> > > +
-> > > +     ret = of_property_read_u32(np, "rotation", &rotation);
-> > > +     if (ret == -EINVAL) {
-> > > +             /* Don't return an error if there's no rotation property. */
-> > > +             *orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
-> > > +             return 0;
-> > > +     }
-> > > +
-> > > +     if (ret < 0)
-> > > +             return ret;
-> > > +
-> > > +     if (rotation == 0)
-> > > +             *orientation = DRM_MODE_PANEL_ORIENTATION_NORMAL;
-> > > +     else if (rotation == 90)
-> > > +             *orientation = DRM_MODE_PANEL_ORIENTATION_RIGHT_UP;
-> > > +     else if (rotation == 180)
-> > > +             *orientation = DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP;
-> > > +     else if (rotation == 270)
-> > > +             *orientation = DRM_MODE_PANEL_ORIENTATION_LEFT_UP;
-> > > +     else
-> > > +             return -EINVAL;
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +EXPORT_SYMBOL(of_drm_get_panel_orientation);
-> > >  #endif
-> > >
-> > >  MODULE_AUTHOR("Thierry Reding <treding@nvidia.com>");
-> > > diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
-> > > index 8c738c0e6e9f..13631b2efbaa 100644
-> > > --- a/include/drm/drm_panel.h
-> > > +++ b/include/drm/drm_panel.h
-> > > @@ -197,11 +197,18 @@ int drm_panel_detach(struct drm_panel *panel);
-> > >
-> > >  #if defined(CONFIG_OF) && defined(CONFIG_DRM_PANEL)
-> > >  struct drm_panel *of_drm_find_panel(const struct device_node *np);
-> > > +int of_drm_get_panel_orientation(const struct device_node *np,
-> > > +                              int *orientation);
-> > >  #else
-> > >  static inline struct drm_panel *of_drm_find_panel(const struct device_node *np)
-> > >  {
-> > >       return ERR_PTR(-ENODEV);
-> > >  }
-> > > +int of_drm_get_panel_orientation(const struct device_node *np,
-> > > +                              int *orientation)
-> > > +{
-> > > +     return -ENODEV;
-> > > +}
-> > >  #endif
-> > >
-> > >  #endif
-> > > --
-> > > 2.22.0.rc2.383.gf4fbbf30c2-goog
+SGkgTG9yZW56bywNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMb3Jl
+bnpvIFBpZXJhbGlzaSBbbWFpbHRvOmxvcmVuem8ucGllcmFsaXNpQGFybS5jb21dDQo+IFNlbnQ6
+IDIwMTnE6jbUwjEyyNUgMjE6NTQNCj4gVG86IFoucS4gSG91IDx6aGlxaWFuZy5ob3VAbnhwLmNv
+bT4NCj4gQ2M6IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJuZWxAbGlz
+dHMuaW5mcmFkZWFkLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtl
+cm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGJoZWxnYWFzQGdvb2dsZS5jb207IHJvYmgrZHRAa2Vy
+bmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207DQo+IGwuc3VicmFobWFueWFAbW9iaXZlaWwu
+Y28uaW47IHNoYXduZ3VvQGtlcm5lbC5vcmc7IExlbyBMaQ0KPiA8bGVveWFuZy5saUBueHAuY29t
+PjsgY2F0YWxpbi5tYXJpbmFzQGFybS5jb207IHdpbGwuZGVhY29uQGFybS5jb207DQo+IE1pbmdr
+YWkgSHUgPG1pbmdrYWkuaHVAbnhwLmNvbT47IE0uaC4gTGlhbiA8bWluZ2h1YW4ubGlhbkBueHAu
+Y29tPjsNCj4gWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQo+IFN1YmplY3Q6IFJl
+OiBbUEFUQ0h2NSAxOS8yMF0gUENJOiBtb2JpdmVpbDogQWRkIDgtYml0IGFuZCAxNi1iaXQgcmVn
+aXN0ZXINCj4gYWNjZXNzb3JzDQo+IA0KPiBPbiBGcmksIEFwciAxMiwgMjAxOSBhdCAwODozNzow
+NUFNICswMDAwLCBaLnEuIEhvdSB3cm90ZToNCj4gPiBGcm9tOiBIb3UgWmhpcWlhbmcgPFpoaXFp
+YW5nLkhvdUBueHAuY29tPg0KPiA+DQo+ID4gVGhlcmUgYXJlIHNvbWUgOC1iaXQgYW5kIDE2LWJp
+dCByZWdpc3RlcnMgaW4gUENJZSBjb25maWd1cmF0aW9uIHNwYWNlLA0KPiA+IHNvIGFkZCBhY2Nl
+c3NvcnMgZm9yIHRoZW0uDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBIb3UgWmhpcWlhbmcgPFpo
+aXFpYW5nLkhvdUBueHAuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBNaW5naHVhbiBMaWFuIDxNaW5n
+aHVhbi5MaWFuQG54cC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IFN1YnJhaG1hbnlhIExpbmdhcHBh
+IDxsLnN1YnJhaG1hbnlhQG1vYml2ZWlsLmNvLmluPg0KPiA+IC0tLQ0KPiA+IFY1Og0KPiA+ICAt
+IENvcnJlY3RlZCBhbmQgcmV0b3VjaGVkIHRoZSBzdWJqZWN0IGFuZCBjaGFuZ2Vsb2cuDQo+ID4g
+IC0gTm8gZnVuY3Rpb25hbGl0eSBjaGFuZ2UuDQo+ID4NCj4gPiAgZHJpdmVycy9wY2kvY29udHJv
+bGxlci9wY2llLW1vYml2ZWlsLmMgfCAyMCArKysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZp
+bGUgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tb2JpdmVpbC5jDQo+ID4gYi9kcml2ZXJzL3BjaS9jb250
+cm9sbGVyL3BjaWUtbW9iaXZlaWwuYw0KPiA+IGluZGV4IDQxMWU5Nzc5ZGExMi4uNDU2YWRmZWUz
+OTNjIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tb2JpdmVp
+bC5jDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1vYml2ZWlsLmMNCj4g
+PiBAQCAtMjY4LDExICsyNjgsMzEgQEAgc3RhdGljIHUzMiBjc3JfcmVhZGwoc3RydWN0IG1vYml2
+ZWlsX3BjaWUgKnBjaWUsDQo+IHUzMiBvZmYpDQo+ID4gIAlyZXR1cm4gY3NyX3JlYWQocGNpZSwg
+b2ZmLCAweDQpOw0KPiA+ICB9DQo+ID4NCj4gPiArc3RhdGljIHUzMiBjc3JfcmVhZHcoc3RydWN0
+IG1vYml2ZWlsX3BjaWUgKnBjaWUsIHUzMiBvZmYpIHsNCj4gPiArCXJldHVybiBjc3JfcmVhZChw
+Y2llLCBvZmYsIDB4Mik7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB1MzIgY3NyX3JlYWRi
+KHN0cnVjdCBtb2JpdmVpbF9wY2llICpwY2llLCB1MzIgb2ZmKSB7DQo+ID4gKwlyZXR1cm4gY3Ny
+X3JlYWQocGNpZSwgb2ZmLCAweDEpOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICBzdGF0aWMgdm9pZCBj
+c3Jfd3JpdGVsKHN0cnVjdCBtb2JpdmVpbF9wY2llICpwY2llLCB1MzIgdmFsLCB1MzIgb2ZmKQ0K
+PiA+IHsNCj4gPiAgCWNzcl93cml0ZShwY2llLCB2YWwsIG9mZiwgMHg0KTsNCj4gPiAgfQ0KPiA+
+DQo+ID4gK3N0YXRpYyB2b2lkIGNzcl93cml0ZXcoc3RydWN0IG1vYml2ZWlsX3BjaWUgKnBjaWUs
+IHUzMiB2YWwsIHUzMiBvZmYpDQo+ID4gK3sNCj4gPiArCWNzcl93cml0ZShwY2llLCB2YWwsIG9m
+ZiwgMHgyKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgY3NyX3dyaXRlYihzdHJ1
+Y3QgbW9iaXZlaWxfcGNpZSAqcGNpZSwgdTMyIHZhbCwgdTMyIG9mZikNCj4gPiArew0KPiA+ICsJ
+Y3NyX3dyaXRlKHBjaWUsIHZhbCwgb2ZmLCAweDEpOw0KPiA+ICt9DQo+ID4gKw0KPiANCj4gVGhl
+eSBhcmUgbm90IHVzZWQgc28geW91IHNob3VsZCBkcm9wIHRoaXMgcGF0Y2guDQoNCk5YUCBMYXll
+cnNjYXBlIFBDSWUgR2VuNCBjb250cm9sbGVyIGRyaXZlciB3aWxsIHVzZSB0aGVtLCBzbyBkb24n
+dCBkcm9wIGl0Lg0KDQpUaGFua3MsDQpaaGlxaWFuZw0KDQo+IA0KPiBMb3JlbnpvDQo+IA0KPiA+
+ICBzdGF0aWMgYm9vbCBtb2JpdmVpbF9wY2llX2xpbmtfdXAoc3RydWN0IG1vYml2ZWlsX3BjaWUg
+KnBjaWUpICB7DQo+ID4gIAlyZXR1cm4gKGNzcl9yZWFkbChwY2llLCBMVFNTTV9TVEFUVVMpICYN
+Cj4gPiAtLQ0KPiA+IDIuMTcuMQ0KPiA+DQo=
