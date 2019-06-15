@@ -2,119 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D02E646D0B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 01:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4051246D3F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 02:43:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726274AbfFNX5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jun 2019 19:57:25 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:39954 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726219AbfFNX5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 19:57:25 -0400
-Received: by mail-pg1-f194.google.com with SMTP id d30so2378464pgm.7;
-        Fri, 14 Jun 2019 16:57:24 -0700 (PDT)
+        id S1725809AbfFOAnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jun 2019 20:43:22 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:36859 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726262AbfFOAnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jun 2019 20:43:22 -0400
+Received: by mail-vs1-f68.google.com with SMTP id l20so2872234vsp.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2019 17:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Q98iyrGWjD0YwRuDYJj8GlFuZI5lhh67IlCxLlcXVmA=;
-        b=az4+ReQKjM03dCR9+sthGLa8hV6BEVyYvuQMen+YsB1zbfPZOFNzYKf0GShH4ZCZS+
-         P/UQ2GFUHlXbGsNrgtUtha8IXW6yFHeO8kYRq5l4M5Tf3VnsRhKP6t41roofEg183KwJ
-         qcVI7Yy/HA05K+92MFGmlZ++5Ei8RYEH7xK5m8rR7k0JYd+OBiQb4gKw2teTgZhNG4gC
-         d1JoH2zx9Se0ucEanJre1Xly3wEkE+654I4uDeGthvjNv3PsoI7DtjGzNUn28+Ca4fBW
-         ymnKkrmJNHjOMHXuyzVMEh9mHo3eZusiyJd+JGS7RFwyFeGOgS9ayIUTlv2td2c8QwTR
-         G2jg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l6kNs3vEbtZJz4gwMNE28MUy8volKIouYnWugvC1QNU=;
+        b=TJKsD2z1z6LHWkhgoQw49uj/KvYdTS4zbFAkQsUSVUQ3JEk20zJgrxRzVBZUGXky+U
+         05mj3xF2RM3pjz4JVDJMHlBOWviTHw/Ksu/cCWRuiKqbTVSm3IQC/+NKQaFD89Z7owt4
+         inHctQiUqxK3dyWeKKUR0/v4aWFYvh8U5FlKo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Q98iyrGWjD0YwRuDYJj8GlFuZI5lhh67IlCxLlcXVmA=;
-        b=Zp9CbMkmPuVY+sSaqFL6bMFVEb+JQyVxSwPI73mpW5/VNjQ0MmuhrJktMg3xtvcPEx
-         /F/2RBIQeSXcihy+TgfzoyIDCzm18eNMrDT/ul+vxeYLR7qj55d6REffiqSDEscjtJso
-         1XS2BS/nJD2GxioKgyJKr4AO5aT14ePu6thOnU6oBP4dk6qnfsf0H8kfPlfG70GorIaS
-         YUIMiE5WOtZJh+KU562vkXmVGIM0osc7aQ5QSIW2RwDLbeZmkXyP4y4F5sKRxd4fy//l
-         wS1J5oCi8HOyE1GOYMjt7UfivxUtRwC9WsIJsqy0gmGJhodSS0IIoJvX/4cTtsjzdH1M
-         9NKQ==
-X-Gm-Message-State: APjAAAVQxu2pR/tBWxB+rWP6jWpUYlH/an3qPElhU9k579TxlI0u2LAY
-        lDNlr52Hey8o+ejwxL3B5hI=
-X-Google-Smtp-Source: APXvYqxO5LbnNpF6nCUM1ozAuY8tYMdG9Okq6hVZoCa6Hp0axEd8QmubSP09VeQeaaXyZ4HpN9e32w==
-X-Received: by 2002:a62:ee05:: with SMTP id e5mr99169656pfi.117.1560556644477;
-        Fri, 14 Jun 2019 16:57:24 -0700 (PDT)
-Received: from localhost.localdomain ([162.251.69.147])
-        by smtp.gmail.com with ESMTPSA id z13sm3777831pfa.123.2019.06.14.16.57.23
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 14 Jun 2019 16:57:23 -0700 (PDT)
-From:   Joseph Kogut <joseph.kogut@gmail.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
-        krzk@kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Joseph Kogut <joseph.kogut@gmail.com>
-Subject: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-Date:   Fri, 14 Jun 2019 16:57:19 -0700
-Message-Id: <20190614235719.8134-1-joseph.kogut@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190614203144.3850-2-joseph.kogut@gmail.com>
-References: <20190614203144.3850-2-joseph.kogut@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l6kNs3vEbtZJz4gwMNE28MUy8volKIouYnWugvC1QNU=;
+        b=hOsUsOPU+bjUxZunALa/Uhr3oy+CWrafbDdGkpCg1YcT7EcxYEocWndRTmUHdwGG6Y
+         Q6oXh+HoHm4jOjTzbO6fS6lbwLGNoV2UsrjDgkiZOyDpyJCMThbofnFqcLrjTntpL+YP
+         y0sDEipQeqAcNDB5F/w1w++KfD4xu2M07uL77v0ZQCslKtKmDuMuU+4K2M1WpVNeoyK/
+         t0jP02kZgrJ6AQh2kqItAn3mQGs/NPV+QwB1EctS4224r5hOgvFg/a+rIVzMZ+nnTIHz
+         B9ZZbrLnoj4p0M0P07xn33h7dNc95rKEoY/mohpLHhH+IVKdO3BthiCqYUYLCMmNK9WS
+         25Yg==
+X-Gm-Message-State: APjAAAXv2P6qjLldl2MYCMo2qIiYjNcdiWrZ9riSlYbeBUoStgA4HtnA
+        odYazCHnjrusJ578XeGtfDiaTnxKVa5/KxARZw6n2w==
+X-Google-Smtp-Source: APXvYqyINzqLgoly97nAXbatYBIej847145lvC8l1Nj5Kjy8R4NBcmHdKvzptibuPr0Xq13NWsmWUIGgZWXDsSkN+Eo=
+X-Received: by 2002:a67:7d13:: with SMTP id y19mr35490665vsc.232.1560559400933;
+ Fri, 14 Jun 2019 17:43:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190611040350.90064-1-dbasehore@chromium.org>
+ <20190611040350.90064-2-dbasehore@chromium.org> <20190612211807.GA13155@ravnborg.org>
+In-Reply-To: <20190612211807.GA13155@ravnborg.org>
+From:   "dbasehore ." <dbasehore@chromium.org>
+Date:   Fri, 14 Jun 2019 17:43:09 -0700
+Message-ID: <CAGAzgsqgbr5rWpyWB1H_66=kxBRb7kw4wE7h34TJfE7eJ1mSQQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] drm/panel: Add helper for reading DT rotation
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree node for mali gpu on Odroid XU3 SoCs.
+On Wed, Jun 12, 2019 at 2:18 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Derek.
+>
+> On Mon, Jun 10, 2019 at 09:03:46PM -0700, Derek Basehore wrote:
+> > This adds a helper function for reading the rotation (panel
+> > orientation) from the device tree.
+> >
+> > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > ---
+> >  drivers/gpu/drm/drm_panel.c | 41 +++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_panel.h     |  7 +++++++
+> >  2 files changed, 48 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+> > index dbd5b873e8f2..3b689ce4a51a 100644
+> > --- a/drivers/gpu/drm/drm_panel.c
+> > +++ b/drivers/gpu/drm/drm_panel.c
+> > @@ -172,6 +172,47 @@ struct drm_panel *of_drm_find_panel(const struct device_node *np)
+> >       return ERR_PTR(-EPROBE_DEFER);
+> >  }
+> >  EXPORT_SYMBOL(of_drm_find_panel);
+> > +
+> > +/**
+> > + * of_drm_get_panel_orientation - look up the rotation of the panel using a
+> > + * device tree node
+> > + * @np: device tree node of the panel
+> > + * @orientation: orientation enum to be filled in
+> The comment says "enum" but the type used is an int.
+> Why not use enum drm_panel_orientation?
+>
 
-Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
----
+The binding is just an int value, but I can change it to the enum.
 
-Changes v1 -> v2:
-- Use interrupt name ordering from binding doc
-- Specify a single clock for GPU node
-- Add gpu opp table
-- Fix warnings from IRQ_TYPE_NONE
-
- .../boot/dts/exynos5422-odroidxu3-common.dtsi | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-index 93a48f2dda49..b8a4246e3b37 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-@@ -48,6 +48,32 @@
- 		cooling-levels = <0 130 170 230>;
- 	};
-
-+	gpu: gpu@11800000 {
-+		compatible = "samsung,exynos-mali", "arm,mali-t628";
-+		reg = <0x11800000 0x5000>;
-+		interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "job", "mmu", "gpu";
-+		clocks = <&clock CLK_G3D>;
-+		mali-supply = <&buck4_reg>;
-+		operating-points-v2 = <&gpu_opp_table>;
-+	};
-+
-+	gpu_opp_table: gpu-opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-177000000 {
-+			opp-hz = /bits/ 64 <117000000>;
-+			opp-microvolt = <812500>;
-+		};
-+
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <1150000>;
-+		};
-+	};
-+
- 	thermal-zones {
- 		cpu0_thermal: cpu0-thermal {
- 			thermal-sensors = <&tmu_cpu0 0>;
---
-2.22.0
-
+> > + *
+> > + * Looks up the rotation of a panel in the device tree. The rotation in the
+> > + * device tree is counter clockwise.
+> > + *
+> > + * Return: 0 when a valid rotation value (0, 90, 180, or 270) is read or the
+> > + * rotation property doesn't exist. -EERROR otherwise.
+> > + */
+> Initially I read -EEROOR as a specific error code.
+> But I gues the semantic is to say that a negative error code is returned
+> if something was wrong.
+> As we do not use the "-EERROR" syntax anywhere else in drm, please
+> reword like we do in other places.
+>
+>
+> Also - it is worth to mention that the rotation returned is
+> DRM_MODE_PANEL_ORIENTATION_UNKNOWN if the property is not specified.
+> I wonder if this is correct, as no property could also been
+> interpretated as DRM_MODE_PANEL_ORIENTATION_NORMAL.
+> And in most cases the roation property is optional, so one could
+> assume that no property equals 0 degree.
+>
+>
+>         Sam
+>
+> > +int of_drm_get_panel_orientation(const struct device_node *np, int *orientation)
+> > +{
+> > +     int rotation, ret;
+> > +
+> > +     ret = of_property_read_u32(np, "rotation", &rotation);
+> > +     if (ret == -EINVAL) {
+> > +             /* Don't return an error if there's no rotation property. */
+> > +             *orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
+> > +             return 0;
+> > +     }
+> > +
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     if (rotation == 0)
+> > +             *orientation = DRM_MODE_PANEL_ORIENTATION_NORMAL;
+> > +     else if (rotation == 90)
+> > +             *orientation = DRM_MODE_PANEL_ORIENTATION_RIGHT_UP;
+> > +     else if (rotation == 180)
+> > +             *orientation = DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP;
+> > +     else if (rotation == 270)
+> > +             *orientation = DRM_MODE_PANEL_ORIENTATION_LEFT_UP;
+> > +     else
+> > +             return -EINVAL;
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(of_drm_get_panel_orientation);
+> >  #endif
+> >
+> >  MODULE_AUTHOR("Thierry Reding <treding@nvidia.com>");
+> > diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
+> > index 8c738c0e6e9f..13631b2efbaa 100644
+> > --- a/include/drm/drm_panel.h
+> > +++ b/include/drm/drm_panel.h
+> > @@ -197,11 +197,18 @@ int drm_panel_detach(struct drm_panel *panel);
+> >
+> >  #if defined(CONFIG_OF) && defined(CONFIG_DRM_PANEL)
+> >  struct drm_panel *of_drm_find_panel(const struct device_node *np);
+> > +int of_drm_get_panel_orientation(const struct device_node *np,
+> > +                              int *orientation);
+> >  #else
+> >  static inline struct drm_panel *of_drm_find_panel(const struct device_node *np)
+> >  {
+> >       return ERR_PTR(-ENODEV);
+> >  }
+> > +int of_drm_get_panel_orientation(const struct device_node *np,
+> > +                              int *orientation)
+> > +{
+> > +     return -ENODEV;
+> > +}
+> >  #endif
+> >
+> >  #endif
+> > --
+> > 2.22.0.rc2.383.gf4fbbf30c2-goog
