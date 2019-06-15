@@ -2,123 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7A0D47027
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 15:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C094702E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2019 15:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726236AbfFONYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jun 2019 09:24:32 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35411 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725944AbfFONYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jun 2019 09:24:32 -0400
-Received: by mail-wr1-f67.google.com with SMTP id m3so5297593wrv.2
-        for <devicetree@vger.kernel.org>; Sat, 15 Jun 2019 06:24:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Vz/q3yDMdsUzgeQCzBXnpHKRw3aqbJ8VhrbofM0uGw8=;
-        b=hrZAMjX8YAKjXxrPN9i4Ujy9ygbBRPJb7TBLpsXbIqdZpmx97Burm7sDohZe3gWnGF
-         TpUVrUBYaelBUWac1wtnJih7fFCi36VlNHA0e3nFzUJuiQJhTe3pYWGswTK5rzHW85KD
-         qcptH5g/EkwFUCv47c9uRFBpc2NGsez4A3/aBJnlybU95E2aY8F8DXzaB2vsTLfFwVA5
-         PLa+dFmYzjuHdJSjcWWeO7ysyhLn1TnxbLMmP7Avh6u1ZqdeErA1Fodt6pOIMQ8DJJXB
-         8rIChl80ANLmmnIjLwfoHD9EAhoiyDqlcExmWgSZNc2v2Du1hU+2obs+6DOufaJlTpLa
-         iZgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Vz/q3yDMdsUzgeQCzBXnpHKRw3aqbJ8VhrbofM0uGw8=;
-        b=SWPwKA6XucAZrcRgpf/SMzRUUZ3rdqLo3+VnRp+NLR3dsilGiVb/I8i0wgF5v6o+IS
-         vEJGI9RLc5kTPrBFxvaFQl+xDuJEuKW86FZ2bkBse3P0J1a5+zTlFTtXfI8KGASqvPtx
-         U/OUI9N4TxHVm2j0CsOfX1xvHvQ2KIyOIFXSoNdphkCKN1P1TrijS5ARV5kZf25eRvCw
-         EITDh3MAIN74fcBMrdy9inu99/TJOzbqUus+5y+tHybtHxWT8Cx2e8RNoSor9IY6RBdi
-         STyUz+tKehV/yBCe164h4c8BgCcFYrfJETtnYqcdQU9q5rLlkJH8oMS04wg8FI0H9oDJ
-         MGGA==
-X-Gm-Message-State: APjAAAX7uXfaHPc8Xea/h1ISBbJSbT9Ce+7QhcpysupIpqhhZnebly3U
-        atAYhmx+L4wseaa/b2TJCLHytA==
-X-Google-Smtp-Source: APXvYqzT26v+cM8CuCpyQsf55a1zh1osMb6x36j5wWGQDXrAaSY2Q/a3yv9uJOPSOvdp22hdne9ejA==
-X-Received: by 2002:a5d:4286:: with SMTP id k6mr6384669wrq.151.1560605069518;
-        Sat, 15 Jun 2019 06:24:29 -0700 (PDT)
-Received: from [192.168.86.29] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id x16sm6168247wmj.4.2019.06.15.06.24.25
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 15 Jun 2019 06:24:28 -0700 (PDT)
-Subject: Re: [alsa-devel] [RFC PATCH 6/6] soundwire: qcom: add support for
- SoundWire controller
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        broonie@kernel.org, vkoul@kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190607085643.932-1-srinivas.kandagatla@linaro.org>
- <20190607085643.932-7-srinivas.kandagatla@linaro.org>
- <249f9647-94d0-41d7-3b95-64c36d90f8e8@linux.intel.com>
- <40ea774c-8aa8-295d-e91e-71423b03c88d@linaro.org>
- <7269521a-ac89-3856-c18c-ffaaf64c0806@linux.intel.com>
- <462620fc-ac91-6a36-46c7-7af0080f06cb@linaro.org>
- <0e836692-2297-4cb7-d681-76692db78a56@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <d3ccd866-7bc5-9635-4bb4-6b0765f89835@linaro.org>
-Date:   Sat, 15 Jun 2019 14:24:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <0e836692-2297-4cb7-d681-76692db78a56@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1726512AbfFONcP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 15 Jun 2019 09:32:15 -0400
+Received: from mail-oln040092066084.outbound.protection.outlook.com ([40.92.66.84]:31069
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726366AbfFONcP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Jun 2019 09:32:15 -0400
+Received: from HE1EUR01FT047.eop-EUR01.prod.protection.outlook.com
+ (10.152.0.60) by HE1EUR01HT230.eop-EUR01.prod.protection.outlook.com
+ (10.152.0.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1987.11; Sat, 15 Jun
+ 2019 13:32:12 +0000
+Received: from VI1PR03MB4206.eurprd03.prod.outlook.com (10.152.0.56) by
+ HE1EUR01FT047.mail.protection.outlook.com (10.152.1.5) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11 via Frontend Transport; Sat, 15 Jun 2019 13:32:11 +0000
+Received: from VI1PR03MB4206.eurprd03.prod.outlook.com
+ ([fe80::fdae:4944:7c73:c26a]) by VI1PR03MB4206.eurprd03.prod.outlook.com
+ ([fe80::fdae:4944:7c73:c26a%6]) with mapi id 15.20.1987.013; Sat, 15 Jun 2019
+ 13:32:11 +0000
+From:   Jonas Karlman <jonas@kwiboo.se>
+To:     Peter Geis <pgwipeout@gmail.com>,
+        "Leonidas P. Papadakos" <papadakospan@gmail.com>
+CC:     Jose Abreu <jose.abreu@synopsys.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii
+ performance.
+Thread-Topic: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii
+ performance.
+Thread-Index: AQHVHS3xSW3k3OH4HkS23g+pNq5rrKaQJvuAgACqTgCACuQ1gIAA92IAgAAWOQA=
+Date:   Sat, 15 Jun 2019 13:32:11 +0000
+Message-ID: <VI1PR03MB420672DCCFF8BE2161F67A88ACE90@VI1PR03MB4206.eurprd03.prod.outlook.com>
+References: <20190607123731.8737-1-pgwipeout@gmail.com>
+ <1559912295.22520.0@gmail.com>
+ <CAMdYzYorvWr1YhmFKaMQUCditjop5AZp4d1tO79XsVr7m7HrMw@mail.gmail.com>
+ <1560547631.1367.4@gmail.com>
+ <71dc10a5-1024-d849-336e-476d183e5f46@gmail.com>
+In-Reply-To: <71dc10a5-1024-d849-336e-476d183e5f46@gmail.com>
+Accept-Language: sv-SE, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HE1PR0502CA0012.eurprd05.prod.outlook.com
+ (2603:10a6:3:e3::22) To VI1PR03MB4206.eurprd03.prod.outlook.com
+ (2603:10a6:803:51::23)
+x-incomingtopheadermarker: OriginalChecksum:573E1ADEE52DFC612CA64EE6F6E5BA166805CFE4A4FD04A45DC3F979C6C491AC;UpperCasedChecksum:FA724A734FF6C722AB376478982D028B78929CE10C655297378604D28AA5DE82;SizeAsReceived:7990;Count:49
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn:  [Twh0QfI+6+pk+T4rm4or7IAJZd+ZObJ8]
+x-microsoft-original-message-id: <e5800844-626e-0e17-aff2-913e56c3f265@kwiboo.se>
+x-ms-publictraffictype: Email
+x-incomingheadercount: 49
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);SRVR:HE1EUR01HT230;
+x-ms-traffictypediagnostic: HE1EUR01HT230:
+x-microsoft-antispam-message-info: t3s+Xi7LVBriJtTkKiXuLbeTRxtdK1GNgeOIp9N8Ja5CDMHEZBeshbBFft09As4RD/tpMw0wkgVKD/2selqNbxWE7BAlcXdFfJtRC85C0qI7rZ2q49joFWEMb2RyQ0Rwfu2LxRfhzkS35QND0yBCy0uRoduCIiq/jJRiy240Pp6NhHtP3g3FjYKDlYh0sX5C
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <AC1B4905A1B48D4C8A4666AF55652EB0@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: 8BIT
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 252744fa-1993-4c2b-5f81-08d6f195dee4
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2019 13:32:11.8379
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR01HT230
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/06/2019 13:21, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 6/11/19 5:29 AM, Srinivas Kandagatla wrote:
+On 2019-06-15 14:12, Peter Geis wrote:
+>
+> On 6/14/2019 5:27 PM, Leonidas P. Papadakos wrote:
 >>
->>
->> On 10/06/2019 15:12, Pierre-Louis Bossart wrote:
->>>>>> +
->>>>>> +    if (dev_addr == SDW_BROADCAST_DEV_NUM) {
->>>>>> +        ctrl->fifo_status = 0;
->>>>>> +        ret = wait_for_completion_timeout(&ctrl->sp_cmd_comp,
->>>>>> +                          msecs_to_jiffies(TIMEOUT_MS));
->>>>>
->>>>> This is odd. The SoundWire spec does not handle writes to a single 
->>>>> device or broadcast writes differently. I don't see a clear reason 
->>>>> why you would only timeout for a broadcast write.
->>>>>
->>>>
->>>> There is danger of blocking here without timeout.
+>>> The big change was actually snps,aal.
+>>> As per the TRM, DMA channels not address aligned have severe
+>>> limitations, if they work at all.
 >>>
->>> Right, and it's fine to add a timeout. The question is why add a 
->>> timeout *only* for a broadcast operation? It should be added for 
->>> every transaction IMO, unless you have a reason not to do so.
->>>
+>>> Setting the DMA ops as address aligned fixed my 30mbps TX issue when
+>>> combined with your snps,txpbl = <0x4>.
+>> Honestly, I don't notice any difference either way with aal. So what 
+>> happens without it? If You only use the 0x4 txpbl and having removed 
+>> thresh dma mode, (2 things then) do you get bad tx?
 >>
->> I did try this before, the issue is when we read/write registers from 
->> interrupt handler, these can be deadlocked as we will be interrupt 
->> handler waiting for another completion interrupt, which will never 
->> happen unless we return from the first interrupt.
-> 
-> I don't quite get the issue. With the Intel hardware we only deal with 
-> Master registers (some of which mirror the bus state) in the handler and 
-> will only modify Slave registers in the thread. All changes to Slave 
-> registers will be subject to a timeout as well as a check for no 
-> response or NAK. Not sure what is specific about your solution that 
-> requires a different handling of commands depending on which device 
-> number is used. It could very well be that you've uncovered a flaw in 
-> the bus design but I still don't see how it would be Qualcomm-specific?
+>>
+> I'm unsure why, but I think there might be small variations in the 
+> different boards (Firefly, Libre).
+> On my board (Libre) with just 0x4 txpbl and thresh dma removed I get a 
+> whopping 30mbps.
+>
+> Adding aal brought it up to 900 mbps.
+>
+> I also had stability issues on rx, where it would bounce between 200 and 
+> 400 mbps, which adding 0x4 rxpbl helped.
+> I still haven't been able to get rx above 400mpbs though.
+>
+> It's definitely the MTU issue, since setting the max mtu to 1496 fixes 
+> most problems.
+>
+> I have to wonder if the pl330 in the rk3328 is bugged, since all of the 
+> hardware that misbehaves (usb3, mmc, rgmii) require the dma engine.
+>
+> If this works as a valid replacement for thresh dma mode, then I can 
+> submit it for merging.
+> I would like a few more people to test it first.
+>
+> Anyone else with a rk3328-roc-cc board that can test this patch?
+>
 
-Sorry It took bit more time for digging up the issue which I faced 
-previously to answer this query. This is now fixed and v2 patchset has 
-same handling for all the slave registers read/writes with no special 
-casing.
+I will try to run some tests using this patch on my different rk3328 devices tomorrow.
+One thing I have noticed is that when vdd_logic is less then 1.05v the network connection gets super slow.
 
-Thanks,
-srini
+Earlier I tried to use devfreq and an opp table for gpu, but that caused vdd_logic to use lower voltage.
+I have since then run gpu driver without devfreq/opp table and vdd_logic is using default 1.1v.
+My board seems much more stable using default 1.1v for vdd_logic.
+
+Regards,
+Jonas
