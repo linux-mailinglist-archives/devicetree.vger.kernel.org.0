@@ -2,355 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9586047629
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2019 19:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F32034763C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2019 19:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726411AbfFPRrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jun 2019 13:47:45 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35681 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726069AbfFPRrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 13:47:45 -0400
-Received: by mail-wm1-f65.google.com with SMTP id c6so6756291wml.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 10:47:42 -0700 (PDT)
+        id S1727357AbfFPRwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jun 2019 13:52:46 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:42212 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727313AbfFPRwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 13:52:46 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q10so4358934pff.9
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 10:52:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=k32GHXPQOSojycs+3f1EfADUcN8SPLsNXB1pAx3700A=;
-        b=sZSXQ40il31HHkyUY7WfPrQ7A+Inu3+pL1PjJ+s8M4b64bquu2O5Xczr17R5UXUvUm
-         keuqbIAe+ZjxGaA6AHzWuPhr7GEGzBOouYg2RE6pa6LJAShUc+zjo8ObdqsL+Nhgggon
-         Ysw+1pq9ZEH97fggUQAvgga0fxc1p0gIp+Our0fNJ3nXfUrdCvjm+N90uYrpVVuFqrjr
-         UYD/XPMdKTituDG0Zp+udUAskJPCDA5j9E8jmEdk+RFNbf1RFO+WoOzSjvQqEoTE2k6Y
-         zoKfJR3L108H+5TgB8wZ45srKfZQnI55tFoiZ23S/JCEPiYYqx8+Qv4VjV6v//La3hFh
-         x98w==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=JSCuClmggpz8Xfy1dDZDwdk/cubpXsrLwAGotENzbKs=;
+        b=CAzgrNFEKMdQpKgdGp/nqhCidH9CG88O48QbLwiUEoSO86bgyNCfkCi4c1YmJGcr3t
+         9reAJ4a2fc6dhF0UHSHKxMYzlUqJrqFv3TPCvSGp3FNu5mdaA3/FrgxOyi3pt+JqQBHa
+         BJWVMOtI436ml6J3QkvvtOWPX8wVlmjVT1exTobvGdN5Lcx/X4u2TRmCIs5IL77TK2AE
+         eplwcT0cqZlwMZPSwtKUM0UCEF6a5mG9GNQEwMUt1rM9sy3dFvTg3VkAEIdYXhg414Mm
+         zpCaoqI/KoFao5GFJn1dlLJwgzYOSbHmQsaALDZ/U0paTEoWHmjZamXoJsV11Z2BzOQP
+         CgXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=k32GHXPQOSojycs+3f1EfADUcN8SPLsNXB1pAx3700A=;
-        b=G3OZrlHnFTkY+j/9/lpVHqzK8crOjAUPlD/veesLZq78IkAO724CFVMnQ0h8ZpgkFD
-         cfyc+oZO4bZRfXm4DquG72spzBGWTM0hZ+L94HqjMBY6sMC18xEnclER6da2QhoXJ7jA
-         Ds4gha/rrXiYUEF2WXsSofwXankZgofvANFi+AqU9Db18g3qCuvTfxXB3EJoMuHBZzaA
-         3IFn9r5zV2MSKfdtH5Tt96HWXjCqjw0rO1sXP2fdwORbSyavk5pKeYapGYnbWahCu3ia
-         9S5LcsbORYlxJmiaLxNgeemZvOatGhEjBBzDKzCGopf4D+gOZvuwgP5jiQEFLo2Owze1
-         SUGg==
-X-Gm-Message-State: APjAAAUMWoodgPUiJ6fmASnNJsEIxPVGk8vUqdgY205S0UzOGinc1ar7
-        9tQv4jVBTpFuzdaNpKTCranOcw==
-X-Google-Smtp-Source: APXvYqzUqWaPTHh0BJXtzSYmaLlaxeU16DnJpdyLhtS63jKadI3LwAnHD8/A6Z+pcYq2Y/Vn3NOMpw==
-X-Received: by 2002:a1c:2e0a:: with SMTP id u10mr16672537wmu.92.1560707261532;
-        Sun, 16 Jun 2019 10:47:41 -0700 (PDT)
-Received: from [192.168.0.41] (44.64.130.77.rev.sfr.net. [77.130.64.44])
-        by smtp.googlemail.com with ESMTPSA id o126sm4060798wmo.1.2019.06.16.10.47.39
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 16 Jun 2019 10:47:40 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Fix multiple thermal zones
- conflict in rk3399.dtsi
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        edubezval@gmail.com, manivannan.sadhasivam@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Randy Li <ayaka@soulik.info>,
-        Tony Xie <tony.xie@rock-chips.com>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>, dianders@chromium.org,
-        Kukjin Kim <kgene@kernel.org>
-References: <20190604165802.7338-1-daniel.lezcano@linaro.org>
- <5188064.YWmxIpmbGp@phil> <55b9018e-672e-522b-d0a0-c5655be0f353@linaro.org>
- <e5a4f850-27e0-cad3-04bd-6c004fca2b81@arm.com>
- <9bf85c22-f1ba-3dbc-0b67-17e124484fa1@linaro.org>
- <20190616093127.GC3826@kozik-lap>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <55da0654-ce67-b843-5ca4-37f63577b102@linaro.org>
-Date:   Sun, 16 Jun 2019 19:47:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=JSCuClmggpz8Xfy1dDZDwdk/cubpXsrLwAGotENzbKs=;
+        b=eChBURzgyt0St0LdPIVCaPVeBAw1Z+IC3uUJMCB+8MJ2LiGFUGWIL/L/3a66BvJieG
+         mK/hPuqeBbWsfTAoS1TE4KmB7ItaTcneP3HP5pqwfSQ4B0nnnihI0mPBs8eC+b+gIrNe
+         q8pWekytSX6JA+1XHXF6cRG0E/kkU3TLPa5+JTDZ/O84iE6h9Tu5Gpy1NPAXcwXDTO5f
+         DyBIb1RHrP30H4vCpfH9/TB/XE+aQWZTrvzZBcVmq9DCWmbgNGcEwAPQsat7A1t5BzEz
+         XDRk5MnfLFPGAdvPhVorll2oSLTDEEsV4MDAwvF3r7dz54kPUBAB6gCcANgedi6e/iuf
+         2JXg==
+X-Gm-Message-State: APjAAAVuXhAQSe7TRB41omt2bvWaPw5/XoJkSyOQ50ATRsjS3Tof6Pjb
+        6O63CAg7Qrg++uj1iR5D9UK/3Q==
+X-Google-Smtp-Source: APXvYqzBrAgp10q9l+iA/huCnFxShpqf46svP3+PCfO0K562mdIaJ33xStj1QgDq0AwmzgkwOWBoCA==
+X-Received: by 2002:a17:90a:af8e:: with SMTP id w14mr22577232pjq.89.1560707565526;
+        Sun, 16 Jun 2019 10:52:45 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id u5sm8716191pgp.19.2019.06.16.10.52.44
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sun, 16 Jun 2019 10:52:44 -0700 (PDT)
+Date:   Sun, 16 Jun 2019 10:53:32 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     agross@kernel.org, david.brown@linaro.org, robdclark@gmail.com,
+        sean@poorly.run, robh+dt@kernel.org, airlied@linux.ie,
+        daniel@ffwll.ch, mark.rutland@arm.com, jonathan@marek.ca,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/6] firmware: qcom: scm: add support to restore secure
+ config
+Message-ID: <20190616175332.GQ22737@tuxbook-pro>
+References: <20190616132930.6942-1-masneyb@onstation.org>
+ <20190616132930.6942-4-masneyb@onstation.org>
 MIME-Version: 1.0
-In-Reply-To: <20190616093127.GC3826@kozik-lap>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190616132930.6942-4-masneyb@onstation.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2019 11:31, Krzysztof Kozlowski wrote:
-> On Fri, Jun 14, 2019 at 04:30:13PM +0200, Daniel Lezcano wrote:
->> On 14/06/2019 16:02, Robin Murphy wrote:
->>> On 14/06/2019 14:03, Daniel Lezcano wrote:
->>>> On 14/06/2019 11:35, Heiko Stuebner wrote:
->>>>> Hi Daniel,
->>>>>
->>>>> Am Dienstag, 4. Juni 2019, 18:57:57 CEST schrieb Daniel Lezcano:
->>>>>> Currently the common thermal zones definitions for the rk3399 assumes
->>>>>> multiple thermal zones are supported by the governors. This is not the
->>>>>> case and each thermal zone has its own governor instance acting
->>>>>> individually without collaboration with other governors.
->>>>>>
->>>>>> As the cooling device for the CPU and the GPU thermal zones is the
->>>>>> same, each governors take different decisions for the same cooling
->>>>>> device leading to conflicting instructions and an erratic behavior.
->>>>>>
->>>>>> As the cooling-maps is about to become an optional property, let's
->>>>>> remove the cpu cooling device map from the GPU thermal zone.
->>>>>>
->>>>>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->>>>>> ---
->>>>>>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 9 ---------
->>>>>>   1 file changed, 9 deletions(-)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>>>>> b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>>>>> index 196ac9b78076..e1357e0f60f7 100644
->>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->>>>>> @@ -821,15 +821,6 @@
->>>>>>                       type = "critical";
->>>>>>                   };
->>>>>>               };
->>>>>> -
->>>>>> -            cooling-maps {
->>>>>> -                map0 {
->>>>>> -                    trip = <&gpu_alert0>;
->>>>>> -                    cooling-device =
->>>>>> -                        <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>>>> -                        <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>>>> -                };
->>>>>> -            };
->>>>>>           };
->>>>>>       };
->>>>>
->>>>> my knowledge of the thermal framework is not that big, but what about
->>>>> the
->>>>> rk3399-devices which further detail the cooling-maps like
->>>>> rk3399-gru-kevin
->>>>> and the rk3399-nanopc-t4 with its fan-handling in the cooling-maps?
->>>>
->>>> The rk3399-gru-kevin is correct.
->>>>
->>>> The rk3399-nanopc-t4 is not correct because the cpu and the gpu are
->>>> sharing the same cooling device (the fan). There are different
->>>> configurations:
->>>>
->>>> 1. The cpu cooling device for the CPU and the fan for the GPU
->>>>
->>>> 2. Different trip points on the CPU thermal zone, eg. one to for the CPU
->>>> cooling device and another one for the fan.
->>>>
->>>> There are some variant for the above. If this board is not on battery,
->>>> you may want to give priority to the throughput, so activate the fan
->>>> first and then cool down the CPU. Or if you are on battery, you may want
->>>> to invert the trip points.
->>>>
->>>> In any case, it is not possible to share the same cooling device for
->>>> different thermal zones.
->>>
->>> OK, thanks for the clarification. I'll get my board set up again to
->>> figure out the best fix for rk3399-nanopc-t4 (FWIW most users are
->>> probably just using passive cooling or a plain DC fan anyway). You might
->>> want to raise this issue with the maintainers of
->>> arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi, since the
->>> everything-shared-by-everything approach in there was what I used as a
->>> reference.
->>
->> Cc'ed: Kukjin Kim and Krzysztof Kozlowski
->>
->> Easy :)
->>
+On Sun 16 Jun 06:29 PDT 2019, Brian Masney wrote:
+
+> From: Rob Clark <robdclark@gmail.com>
 > 
-> Assuming that all trip-points are the same between thermal zones, I
-> understand that solution could be to have one thermal zone with thermal
-> multiple sensors (some time ago bindings did not support it) and all
-> cooling devices? Then only one governor would be assigned?
+> Add support to restore the secure configuration that is needed by the
+> On Chip MEMory (OCMEM) that is present on some Snapdragon devices.
+> 
+> Signed-off-by: Rob Clark <robdclark@gmail.com>
+> [masneyb@onstation.org: ported to latest kernel; minor reformatting.]
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
 
-The multiple sensors, multiple thermal zones and governors dealing with
-different group of them is not implemented [yet]. Basically, you can
-consider there is a 1:1 relationship between each of them.
+This went upstream for 64-bit with config abbreviated cfg, so please
+implement __qcom_scm_restore_sec_cfg() for 32-bit and add the defines
+instead.
 
- one thermal zone = one sensor = one cooling device
+Regards,
+Bjorn
 
-Given the configuration and the hardware, it would make sense to create
-one thermal zone per cluster.
-
-There is one clock line per cluster. It is possible to create two CPU
-cooling devices, one for each cluster.
-
-IMO, the fan definition is correct except it should be assigned to one
-thermal zone only.
-
-One configuration could be:
-
-thermal-zones {
-	little-thermal-zone: little-thermal-zone {
-		thermal-sensors = <&tmu_cpu0 0>;
-                polling-delay-passive = <250>;
-                polling-delay = <0>;
-
-		trips {
-			ltz_alert0: ltz-alert-0 {
-				temperature = <50000>;
-				hysteresis = <5000>;
-                        	type = "active";
-			};
-
-			ltz_alert1: cpu-alert-1 {
-				temperature = <60000>;
-				hysteresis = <5000>;
-				type = "active";
-			};
-
-			ltz_alert2: ltz-alert-2 {
-				temperature = <70000>;
-				hysteresis = <5000>;
-				type = "active";
-			};
-
-			ltz_alert3: ltz-alert-3 {
-				temperature = <75000>;
-				hysteresis = <10000>;
-				type = "passive";
-			};
-
-			ltz_crit0: ltz-crit-0 {
-				temperature = <120000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
-		};
-
-		cooling-maps {
-			map0 {
-				trip = <&ltz_alert0>;
-				cooling-device = <&fan0 0 1>;
-			};
-
-			map1 {
-				trip = <&ltz_alert1>;
-				cooling-device = <&fan0 1 2>;
-			};
-
-			map2 {
-				trip = <&ltz_alert2>;
-				cooling-device = <&fan0 2 3>;
-			};
-
-			map3 {
-				trip = <&ltz_alert3>;
-				cooling-device = <&cpu0
-						THERMAL_NO_LIMIT
-						THERMAL_NO_LIMIT>,
-
-						 <&cpu1
-						THERMAL_NO_LIMIT
-						THERMAL_NO_LIMIT>,
-
-						 <&cpu2
-						THERMAL_NO_LIMIT
-						THERMAL_NO_LIMIT>,
-
-						 <&cpu3
-						THERMAL_NO_LIMIT
-						THERMAL_NO_LIMIT>,
-			};
-		};
-	};
-
-	big-thermal-zone: big-thermal-zone {
-
-		/* The same as little, except the sensor and the cpu
-		  cooling &cpu4, &cpu5, &cpu6, &cpu7 */
-
-	};
-};
-
-
-That said, the idle injection cooling device is for the moment being
-developed and that would be a good opportunity to test a real per cpu
-cooling device as the exynos5422 has a per core sensor.
-
-
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+> ---
+> Rob's last version of this patch:
+> https://patchwork.kernel.org/patch/7340701/
+> 
+>  drivers/firmware/qcom_scm-32.c | 21 +++++++++++++++++++++
+>  drivers/firmware/qcom_scm-64.c |  6 ++++++
+>  drivers/firmware/qcom_scm.c    | 23 +++++++++++++++++++++++
+>  drivers/firmware/qcom_scm.h    |  6 ++++++
+>  include/linux/qcom_scm.h       | 13 +++++++++++++
+>  5 files changed, 69 insertions(+)
+> 
+> diff --git a/drivers/firmware/qcom_scm-32.c b/drivers/firmware/qcom_scm-32.c
+> index 215061c581e1..089b47124933 100644
+> --- a/drivers/firmware/qcom_scm-32.c
+> +++ b/drivers/firmware/qcom_scm-32.c
+> @@ -442,6 +442,27 @@ int __qcom_scm_hdcp_req(struct device *dev, struct qcom_scm_hdcp_req *req,
+>  		req, req_cnt * sizeof(*req), resp, sizeof(*resp));
+>  }
+>  
+> +int __qcom_scm_restore_sec_config(struct device *dev, u32 sec_id,
+> +				  u32 ctx_bank_num)
+> +{
+> +	struct msm_scm_sec_cfg {
+> +		__le32 id;
+> +		__le32 ctx_bank_num;
+> +	} cfg;
+> +	int ret, scm_ret = 0;
+> +
+> +	cfg.id = cpu_to_le32(sec_id);
+> +	cfg.ctx_bank_num = cpu_to_le32(sec_id);
+> +
+> +	ret = qcom_scm_call(dev, QCOM_SCM_MP_SVC, QCOM_SCM_MP_RESTORE_SEC_CFG,
+> +			    &cfg, sizeof(cfg), &scm_ret, sizeof(scm_ret));
+> +
+> +	if (ret || scm_ret)
+> +		return ret ? ret : -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+>  void __qcom_scm_init(void)
+>  {
+>  }
+> diff --git a/drivers/firmware/qcom_scm-64.c b/drivers/firmware/qcom_scm-64.c
+> index 91d5ad7cf58b..b6b78da7f9c9 100644
+> --- a/drivers/firmware/qcom_scm-64.c
+> +++ b/drivers/firmware/qcom_scm-64.c
+> @@ -241,6 +241,12 @@ int __qcom_scm_hdcp_req(struct device *dev, struct qcom_scm_hdcp_req *req,
+>  	return ret;
+>  }
+>  
+> +int __qcom_scm_restore_sec_config(struct device *dev, u32 sec_id,
+> +				  u32 ctx_bank_num)
+> +{
+> +	return -ENOTSUPP;
+> +}
+> +
+>  void __qcom_scm_init(void)
+>  {
+>  	u64 cmd;
+> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+> index 2ddc118dba1b..5495ef994c5d 100644
+> --- a/drivers/firmware/qcom_scm.c
+> +++ b/drivers/firmware/qcom_scm.c
+> @@ -170,6 +170,29 @@ int qcom_scm_hdcp_req(struct qcom_scm_hdcp_req *req, u32 req_cnt, u32 *resp)
+>  }
+>  EXPORT_SYMBOL(qcom_scm_hdcp_req);
+>  
+> +/**
+> + * qcom_scm_restore_sec_config_available() - Check if secure environment
+> + * supports restore security config interface.
+> + *
+> + * Return true if restore-cfg interface is supported, false if not.
+> + */
+> +bool qcom_scm_restore_sec_config_available(void)
+> +{
+> +	return __qcom_scm_is_call_available(__scm->dev, QCOM_SCM_MP_SVC,
+> +					    QCOM_SCM_MP_RESTORE_SEC_CFG);
+> +}
+> +EXPORT_SYMBOL(qcom_scm_restore_sec_config_available);
+> +
+> +/**
+> + * qcom_scm_restore_sec_config() - call restore-cfg interface
+> + */
+> +int qcom_scm_restore_sec_config(struct device *dev,
+> +				enum qcom_scm_sec_dev_id sec_id)
+> +{
+> +	return __qcom_scm_restore_sec_config(dev, sec_id, 0);
+> +}
+> +EXPORT_SYMBOL(qcom_scm_restore_sec_config);
+> +
+>  /**
+>   * qcom_scm_pas_supported() - Check if the peripheral authentication service is
+>   *			      available for the given peripherial
+> diff --git a/drivers/firmware/qcom_scm.h b/drivers/firmware/qcom_scm.h
+> index 99506bd873c0..bccc7d10c5c2 100644
+> --- a/drivers/firmware/qcom_scm.h
+> +++ b/drivers/firmware/qcom_scm.h
+> @@ -42,6 +42,12 @@ extern int __qcom_scm_hdcp_req(struct device *dev,
+>  
+>  extern void __qcom_scm_init(void);
+>  
+> +#define QCOM_SCM_MP_SVC			0xc
+> +#define QCOM_SCM_MP_RESTORE_SEC_CFG	0x2
+> +
+> +extern int __qcom_scm_restore_sec_config(struct device *dev, u32 sec_id,
+> +					 u32 ctx_bank_num);
+> +
+>  #define QCOM_SCM_SVC_PIL		0x2
+>  #define QCOM_SCM_PAS_INIT_IMAGE_CMD	0x1
+>  #define QCOM_SCM_PAS_MEM_SETUP_CMD	0x2
+> diff --git a/include/linux/qcom_scm.h b/include/linux/qcom_scm.h
+> index 3f12cc77fb58..b5c0afaca955 100644
+> --- a/include/linux/qcom_scm.h
+> +++ b/include/linux/qcom_scm.h
+> @@ -24,6 +24,16 @@ struct qcom_scm_vmperm {
+>  	int perm;
+>  };
+>  
+> +enum qcom_scm_sec_dev_id {
+> +	QCOM_SCM_MDSS_DEV_ID	= 1,
+> +	QCOM_SCM_OCMEM_DEV_ID	= 5,
+> +	QCOM_SCM_PCIE0_DEV_ID	= 11,
+> +	QCOM_SCM_PCIE1_DEV_ID	= 12,
+> +	QCOM_SCM_GFX_DEV_ID	= 18,
+> +	QCOM_SCM_UFS_DEV_ID	= 19,
+> +	QCOM_SCM_ICE_DEV_ID	= 20,
+> +};
+> +
+>  #define QCOM_SCM_VMID_HLOS       0x3
+>  #define QCOM_SCM_VMID_MSS_MSA    0xF
+>  #define QCOM_SCM_VMID_WLAN       0x18
+> @@ -41,6 +51,9 @@ extern bool qcom_scm_is_available(void);
+>  extern bool qcom_scm_hdcp_available(void);
+>  extern int qcom_scm_hdcp_req(struct qcom_scm_hdcp_req *req, u32 req_cnt,
+>  			     u32 *resp);
+> +extern bool qcom_scm_restore_sec_config_available(void);
+> +extern int qcom_scm_restore_sec_config(struct device *dev,
+> +				       enum qcom_scm_sec_dev_id sec_id);
+>  extern bool qcom_scm_pas_supported(u32 peripheral);
+>  extern int qcom_scm_pas_init_image(u32 peripheral, const void *metadata,
+>  				   size_t size);
+> -- 
+> 2.20.1
+> 
