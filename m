@@ -2,241 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42EE147350
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2019 07:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B2AF473BC
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2019 10:16:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725821AbfFPFbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jun 2019 01:31:36 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:32818 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725773AbfFPFbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 01:31:36 -0400
-Received: by mail-ed1-f65.google.com with SMTP id i11so10393456edq.0;
-        Sat, 15 Jun 2019 22:31:34 -0700 (PDT)
+        id S1726069AbfFPIQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jun 2019 04:16:02 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38611 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725865AbfFPIQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 04:16:02 -0400
+Received: by mail-wr1-f66.google.com with SMTP id d18so6634371wrs.5;
+        Sun, 16 Jun 2019 01:16:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nVwk/ziTyLZE6Zw80YoRGbaeC4ieFbAxfmOC6bCL8pk=;
-        b=RuBPsgZHQ5VTC16pjlUVTU0dwK+VoWf2GoQLMcdRjZ5oAAwHAUGP8VhcJyYGhjLWwt
-         LXoLYd2w09KnSPC6WMuvflDZGA9Ae9luSd5xdRW0rTQ3rV9xEz7FHF1hV/x4z4P4Ox/t
-         RB6UiP7pU6aQcFpKW84kxxWXX+RpnW+pPleGlricYOxB9xeNAwK8gCJjIx8LhYZmPIst
-         e7Sgwbw2JnjkWWmBY6f7rD9j9pV52cIcdk3qzfprkr3Etl2jGlqvSDSIlXhwuwPMdE2n
-         fOroLn6CJyXOGaguFtiorQQnC80C8qVR7iPfdyGfK2TFLiFiNnzRZXKhMa3UFGAsMibf
-         2I7g==
-X-Gm-Message-State: APjAAAVBwt3DKIKUbQipX/FDZiBN/zsjcUJhF7Qp5Dbu5knH/UJxoNar
-        B3PlvE6056qA+e2NO0T7fFUN4CJY5KQ=
-X-Google-Smtp-Source: APXvYqxOOF51A6akSq1bcjWY3DXBOSxKbxBc1FTjufmgG+SL0T0YuZ4qlB1rVu+iFoQB5SfCiHvw8Q==
-X-Received: by 2002:a17:906:6a87:: with SMTP id p7mr70251290ejr.277.1560663093093;
-        Sat, 15 Jun 2019 22:31:33 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id ay25sm1498094ejb.26.2019.06.15.22.31.32
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Sat, 15 Jun 2019 22:31:32 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id k11so6447900wrl.1;
-        Sat, 15 Jun 2019 22:31:32 -0700 (PDT)
-X-Received: by 2002:adf:f946:: with SMTP id q6mr18780972wrr.109.1560663091964;
- Sat, 15 Jun 2019 22:31:31 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=01Gsa3Id8CMAcrAm2eou8d6m+tKtF0p1DTjOg5KEKlc=;
+        b=Syaie4cpCwCBuHUvYJ6GEywssGYuQmA0eCTRo49sjPzP1s1F4rIXyXytsMbOU6Rgjw
+         vzVyShorQcGhbzM7zqJX+xy4K10FSO7oVVpA3RESokXigy4ogrFeCGF5Sx7lNBgfX1Jh
+         Y7lGmezGP7fZx5huK+60gZYoOYiVmxPIXaAxAgl2QTZbKRPw4Ng6lXOFEV4L3sS16Wxv
+         3c5W5hCn9mmiykre64VWLAD84MrACfgU0pdY0h1qlMOnpigK9dCMyZHdSs6AyUlD3qQE
+         SiYvsqQUv9KM9JdcVyeXQl+jYSX0CsaxElx5ype/3pVA5mp9tw+Ww5qSh24ugOQYy9as
+         4R7g==
+X-Gm-Message-State: APjAAAVE1ax5pSJTGE/49VY/p9Y0uiSqvajQ7tQqfX7ZPufZPR5fwGcT
+        TbdaiaQOpGGM8uKpHotZ0kk=
+X-Google-Smtp-Source: APXvYqxATaOreJ64gZqKr1ZADSyl6aWSJgWFB9oHlNrQXSSjWVT8raTQwwJaAcjxe+B8VCxFKoLukw==
+X-Received: by 2002:a05:6000:112:: with SMTP id o18mr5271656wrx.153.1560672960065;
+        Sun, 16 Jun 2019 01:16:00 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.186])
+        by smtp.googlemail.com with ESMTPSA id z5sm6781677wrh.16.2019.06.16.01.15.58
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 16 Jun 2019 01:15:59 -0700 (PDT)
+Date:   Sun, 16 Jun 2019 10:15:57 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Joseph Kogut <joseph.kogut@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
+        airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: add Exynos Mali vendor specifics
+Message-ID: <20190616081557.GA3826@kozik-lap>
+References: <20190614203144.3850-1-joseph.kogut@gmail.com>
 MIME-Version: 1.0
-References: <20190614164324.9427-1-jagan@amarulasolutions.com> <20190614164324.9427-6-jagan@amarulasolutions.com>
-In-Reply-To: <20190614164324.9427-6-jagan@amarulasolutions.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Sun, 16 Jun 2019 13:31:19 +0800
-X-Gmail-Original-Message-ID: <CAGb2v669MprYgy2wc_a7Kz8VpzzNGZxDxsj0z_Ujx5bV25+AWQ@mail.gmail.com>
-Message-ID: <CAGb2v669MprYgy2wc_a7Kz8VpzzNGZxDxsj0z_Ujx5bV25+AWQ@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v2 5/9] drm/sun4i: tcon_top: Register clock
- gates in probe
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190614203144.3850-1-joseph.kogut@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 15, 2019 at 12:44 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> TCON TOP have clock gates for TV0, TV1, dsi and right
-> now these are register during bind call.
->
-> Of which, dsi clock gate would required during DPHY probe
-> but same can miss to get since tcon top is not bound at
-> that time.
->
-> To solve, this circular dependency move the clock gate
-> registration from bind to probe so-that DPHY can get the
-> dsi gate clock on time.
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+On Fri, Jun 14, 2019 at 01:31:43PM -0700, Joseph Kogut wrote:
+> Document vendor specific compatible string for Mali gpus on Exynos SoCs.
+> 
+> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
 > ---
->  drivers/gpu/drm/sun4i/sun8i_tcon_top.c | 94 ++++++++++++++------------
->  1 file changed, 49 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
-> index 465e9b0cdfee..a8978b3fe851 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
-> @@ -124,7 +124,53 @@ static struct clk_hw *sun8i_tcon_top_register_gate(struct device *dev,
->  static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
->                                void *data)
->  {
-> -       struct platform_device *pdev = to_platform_device(dev);
-> +       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
-> +       int ret;
-> +
-> +       ret = reset_control_deassert(tcon_top->rst);
-> +       if (ret) {
-> +               dev_err(dev, "Could not deassert ctrl reset control\n");
-> +               return ret;
-> +       }
-> +
-> +       ret = clk_prepare_enable(tcon_top->bus);
-> +       if (ret) {
-> +               dev_err(dev, "Could not enable bus clock\n");
-> +               goto err_assert_reset;
-> +       }
+>  Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+> index 1b1a74129141..a9704c736d07 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+> @@ -18,6 +18,7 @@ Required properties:
+>      + "amlogic,meson-gxm-mali"
+>      + "rockchip,rk3288-mali"
+>      + "rockchip,rk3399-mali"
+> +    + "samsung,exynos-mali"
 
-You have to de-assert the reset control and enable the clock before the
-clocks it provides are registered. Otherwise a consumer may come in and
-ask for the provided clock to be enabled, but since the TCON TOP's own
-reset and clock are still disabled, you can't actually access the registers
-that controls the provided clock.
+Are there any driver differences for Exynos? If not then why adding
+another compatible?
 
-> +
-> +       return 0;
-> +
-> +err_assert_reset:
-> +       reset_control_assert(tcon_top->rst);
-> +
-> +       return ret;
-> +}
-> +
-> +static void sun8i_tcon_top_unbind(struct device *dev, struct device *master,
-> +                                 void *data)
-> +{
-> +       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
-> +       struct clk_hw_onecell_data *clk_data = tcon_top->clk_data;
-> +       int i;
-> +
-> +       of_clk_del_provider(dev->of_node);
-> +       for (i = 0; i < CLK_NUM; i++)
-> +               if (clk_data->hws[i])
-> +                       clk_hw_unregister_gate(clk_data->hws[i]);
+Best regards,
+Krzysztof
 
-And this should be in the remove function.
-
-So instead, just move _everything_ to the probe and remove functions,
-and provide empty bind/unbind functions so the component system still
-works.
-
-ChenYu
-
-> +
-> +       clk_disable_unprepare(tcon_top->bus);
-> +       reset_control_assert(tcon_top->rst);
-> +}
-> +
-> +static const struct component_ops sun8i_tcon_top_ops = {
-> +       .bind   = sun8i_tcon_top_bind,
-> +       .unbind = sun8i_tcon_top_unbind,
-> +};
-> +
-> +static int sun8i_tcon_top_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
->         struct clk_hw_onecell_data *clk_data;
->         struct sun8i_tcon_top *tcon_top;
->         const struct sun8i_tcon_top_quirks *quirks;
-> @@ -132,7 +178,7 @@ static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
->         void __iomem *regs;
->         int ret, i;
->
-> -       quirks = of_device_get_match_data(&pdev->dev);
-> +       quirks = of_device_get_match_data(dev);
->
->         tcon_top = devm_kzalloc(dev, sizeof(*tcon_top), GFP_KERNEL);
->         if (!tcon_top)
-> @@ -164,18 +210,6 @@ static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
->         if (IS_ERR(regs))
->                 return PTR_ERR(regs);
->
-> -       ret = reset_control_deassert(tcon_top->rst);
-> -       if (ret) {
-> -               dev_err(dev, "Could not deassert ctrl reset control\n");
-> -               return ret;
-> -       }
-> -
-> -       ret = clk_prepare_enable(tcon_top->bus);
-> -       if (ret) {
-> -               dev_err(dev, "Could not enable bus clock\n");
-> -               goto err_assert_reset;
-> -       }
-> -
->         /*
->          * At least on H6, some registers have some bits set by default
->          * which may cause issues. Clear them here.
-> @@ -226,45 +260,15 @@ static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
->
->         dev_set_drvdata(dev, tcon_top);
->
-> -       return 0;
-> +       return component_add(dev, &sun8i_tcon_top_ops);
->
->  err_unregister_gates:
->         for (i = 0; i < CLK_NUM; i++)
->                 if (!IS_ERR_OR_NULL(clk_data->hws[i]))
->                         clk_hw_unregister_gate(clk_data->hws[i]);
-> -       clk_disable_unprepare(tcon_top->bus);
-> -err_assert_reset:
-> -       reset_control_assert(tcon_top->rst);
-> -
->         return ret;
->  }
->
-> -static void sun8i_tcon_top_unbind(struct device *dev, struct device *master,
-> -                                 void *data)
-> -{
-> -       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
-> -       struct clk_hw_onecell_data *clk_data = tcon_top->clk_data;
-> -       int i;
-> -
-> -       of_clk_del_provider(dev->of_node);
-> -       for (i = 0; i < CLK_NUM; i++)
-> -               if (clk_data->hws[i])
-> -                       clk_hw_unregister_gate(clk_data->hws[i]);
-> -
-> -       clk_disable_unprepare(tcon_top->bus);
-> -       reset_control_assert(tcon_top->rst);
-> -}
-> -
-> -static const struct component_ops sun8i_tcon_top_ops = {
-> -       .bind   = sun8i_tcon_top_bind,
-> -       .unbind = sun8i_tcon_top_unbind,
-> -};
-> -
-> -static int sun8i_tcon_top_probe(struct platform_device *pdev)
-> -{
-> -       return component_add(&pdev->dev, &sun8i_tcon_top_ops);
-> -}
-> -
->  static int sun8i_tcon_top_remove(struct platform_device *pdev)
->  {
->         component_del(&pdev->dev, &sun8i_tcon_top_ops);
-> --
-> 2.18.0.321.gffc6fa0e3
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190614164324.9427-6-jagan%40amarulasolutions.com.
-> For more options, visit https://groups.google.com/d/optout.
+>  
+>  - reg : Physical base address of the device and length of the register area.
+>  
+> -- 
+> 2.22.0
+> 
