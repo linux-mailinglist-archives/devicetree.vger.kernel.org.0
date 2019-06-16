@@ -2,185 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1641F47671
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2019 20:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C3DB47681
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2019 20:55:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727313AbfFPSkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jun 2019 14:40:06 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:43598 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725947AbfFPSkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 14:40:05 -0400
-Received: by mail-pl1-f194.google.com with SMTP id cl9so3129589plb.10
-        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 11:40:05 -0700 (PDT)
+        id S1727215AbfFPSzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jun 2019 14:55:51 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:44237 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726085AbfFPSzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 14:55:51 -0400
+Received: by mail-pl1-f193.google.com with SMTP id t7so3140637plr.11
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 11:55:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=btKkF8Mqx8IA5i++C7IxPWIDPO0GeHSWef12pSEOb0Q=;
-        b=S1pC/wj1+zqmYBm3MeXf98LuztUeNJukN2stfm0fz+lPUcAFyoMrCqM8L9Cz1icXyM
-         wwu2DWcJJ0Jns1MCuFv8F+OBnvecCbkIBnl1d3biaMPSDT1141BqEnKC+62bBAxyDJhj
-         IvmsgH2VWZ7XxqdDGlu3pPex0srTtBbO8G+jr0CsNB+PCNS1xTFqIeE7VkkOyJsmKa6i
-         7r3zMb883RzTj2rBPfF+A/0CdpWixtmF9t9RRx/bADUBh2HSmueAq28QzWaPXlS24QRy
-         LuYAcpIaJ1xAqqNWNJE9QS8tEUULdnRGZavqBv+pnlo/W90Pr09q50r0jb2hRGkDSIxE
-         4HUg==
+        bh=nByq7PxBYO/HndonaLBb5oHmEIAYGRGMS68VxuzBGRk=;
+        b=giYKqR3uuQzsw5eaDqiRp2acTNqFnPZNGfkvdyqIK6e9DdG1wdGpT2902CyfnnL0+V
+         gQV/aJZxaJ766T6k8+tdS9q6HW3KDh1ON4bIkNDME3gU/wcQzaLxtbC5DMFeOI1oZA7/
+         Vi0T1Efpctouh5bCEQWcjjTvLDLMvGyKAezVaGE0pIjmDJJSB0vQjP13WPB3uxVAWzXH
+         grHH4ruo8iX4GTXQYV3nWBhGHy6qSq59TnG7lWUepXuSUDu3hKnm1vR0eqdKeHDvECRh
+         Fqgyr2FnnzfW15sdK1rzgQS07lJkkV4w1FTg2PGUDgsQC3e1j+2LJ8eKpFLS9INoLzW+
+         0c5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=btKkF8Mqx8IA5i++C7IxPWIDPO0GeHSWef12pSEOb0Q=;
-        b=QGOnFkGwKXLycslWsH9jXts0Q4vvbPcgJb5BVXOPVXqvg0VYo2PlC0I96qlBtpa07m
-         o5Ehnow5tHAN6D8XWJrbPJgA4kjm3KhlG3OJpQC8yfyBDpem69Ot70lDFO/oUNiFFAaD
-         oR7986iE6qDPK+WIBHAdttk3DqMT3asGPOuNjTEyxAX7grE6V4NNKnu/22XgCuclb9f7
-         lX60nwXyt6gVmPWyaq+w6TEYBmzK4lstMS1De18yOkAn7IPGdPqZo+SdF5ukUBZ3BX4Y
-         MajBxWKiJXK//3hbT3CT649g2vR5pWCXVAEw5eTQu4DxjgYENKHmwlpJWRQ8m+8kHerC
-         Ikhw==
-X-Gm-Message-State: APjAAAWJSoSC/qDevV6NFq2K247OogwtIZxM/4DErzC5HYgHA7BM1IAl
-        XB0jd4Yjx+R2WMNy6hrEFhXAKA==
-X-Google-Smtp-Source: APXvYqzOGRcA+Tq/jrany4OPqM6WGc3SeKBY+5M8G9CwOBF5iVJP761Y0EuPoqMABGSP+jkZQAiohQ==
-X-Received: by 2002:a17:902:205:: with SMTP id 5mr97285945plc.165.1560710405032;
-        Sun, 16 Jun 2019 11:40:05 -0700 (PDT)
+        bh=nByq7PxBYO/HndonaLBb5oHmEIAYGRGMS68VxuzBGRk=;
+        b=lF3rwtCLyLOgTnIN3f+fpMjeLWX9rM9wvniDtCJU4MsFYzrMuAhhkNQO7toMll+X+O
+         l9IoTbPln/lC2lPIvmkPLcsblxpWs6W2eW5i4iSKs8b95zaRLNQqHSIz7aICYzUeecif
+         mqOR9egGbIhnRO1h6pScrl56RHeuMLz4k8gObz98AwqykuGhh5mjG++gJKvrPHuRRMhP
+         6mEzmS/IlDkmhmhzuMKXbZe6IkvxHohhIxJ3+5p1iw9yKzDX92QFG3DgjIlVPChlrF6U
+         Fs0HjWOaWIrCCi+HP8QQ4RKbuCE2v7Pk9i+OsQ2pTb/ueyLq+8Z/psBUO2UEtX70uw4X
+         c82Q==
+X-Gm-Message-State: APjAAAU3MsMzzbHcjaf1K57tUtxpmf5ZNna7s5r97XglhNSyPN4VkKJU
+        L0Hjaq6Jn4/6ieq+xd/la58BKg==
+X-Google-Smtp-Source: APXvYqzUHZZlZnoW14+Duy31K1F+WZSjH7lpsaz63YuG6cjBQRIqHcMWMDFgTS9Bd5mK9+hjxuMVbg==
+X-Received: by 2002:a17:902:24c:: with SMTP id 70mr103472422plc.2.1560711350661;
+        Sun, 16 Jun 2019 11:55:50 -0700 (PDT)
 Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id e6sm8544314pfi.42.2019.06.16.11.40.03
+        by smtp.gmail.com with ESMTPSA id m41sm12325765pje.18.2019.06.16.11.55.49
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sun, 16 Jun 2019 11:40:04 -0700 (PDT)
-Date:   Sun, 16 Jun 2019 11:40:51 -0700
+        Sun, 16 Jun 2019 11:55:49 -0700 (PDT)
+Date:   Sun, 16 Jun 2019 11:56:37 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     agross@kernel.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux@armlinux.org.uk,
-        linus.walleij@linaro.org, frank.rowand@sony.com,
-        miquel.raynal@bootlin.com, absahu@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: msm8974-hammerhead: add touchscreen
- support
-Message-ID: <20190616184051.GC31088@tuxbook-pro>
-References: <20190603010455.17060-1-masneyb@onstation.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        John Stultz <john.stultz@linaro.org>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] reset: qcom-pon: Add support for gen2 pon
+Message-ID: <20190616185637.GE31088@tuxbook-pro>
+References: <20190614231451.45998-1-john.stultz@linaro.org>
+ <20190614231451.45998-2-john.stultz@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190603010455.17060-1-masneyb@onstation.org>
+In-Reply-To: <20190614231451.45998-2-john.stultz@linaro.org>
 User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 02 Jun 18:04 PDT 2019, Brian Masney wrote:
+On Fri 14 Jun 16:14 PDT 2019, John Stultz wrote:
 
-> From: Jonathan Marek <jonathan@marek.ca>
+> Add support for gen2 pon register so "reboot bootloader" can
+> work on pixel3 and db845.
 > 
-> Add support for the Synaptics RMI4 touchscreen that is found on the
-> Nexus 5.
+> Cc: Andy Gross <agross@kernel.org>
+> Cc: David Brown <david.brown@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Amit Pundir <amit.pundir@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
 > 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
 
-Applied for 5.3
+Sebastian, please take the first two patches through your tree and we'll
+pick the dts patch through arm-soc.
 
-PS. Please use a --cover-letter when sending multiple patches.
-
-Thanks,
+Regards,
 Bjorn
 
+> v2:
+> * Split out dts changes into separate path
+> * Minor cleanups and remove unused variables
 > ---
-> This is to be applied on top of the display patch series:
-> https://lore.kernel.org/lkml/20190531094619.31704-1-masneyb@onstation.org/
+>  drivers/power/reset/qcom-pon.c | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
 > 
->  .../qcom-msm8974-lge-nexus5-hammerhead.dts    | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> index c92ea01e3918..06c33bd71620 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> @@ -280,6 +280,16 @@
->  			};
->  		};
+> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+> index 3fa1642d4c543..22a743a0bf28c 100644
+> --- a/drivers/power/reset/qcom-pon.c
+> +++ b/drivers/power/reset/qcom-pon.c
+> @@ -14,11 +14,15 @@
 >  
-> +		i2c2_pins: i2c2 {
-> +			mux {
-> +				pins = "gpio6", "gpio7";
-> +				function = "blsp_i2c2";
-> +
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +		};
-> +
->  		i2c3_pins: i2c3 {
->  			mux {
->  				pins = "gpio10", "gpio11";
-> @@ -326,6 +336,25 @@
->  				bias-disable;
->  			};
->  		};
-> +
-> +		touch_pin: touch {
-> +			int {
-> +				pins = "gpio5";
-> +				function = "gpio";
-> +
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +				input-enable;
-> +			};
-> +
-> +			reset {
-> +				pins = "gpio8";
-> +				function = "gpio";
-> +
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +		};
->  	};
+>  #define PON_SOFT_RB_SPARE		0x8f
 >  
->  	sdhci@f9824900 {
-> @@ -468,6 +497,41 @@
->  		};
->  	};
+> +#define GEN1_REASON_SHIFT		2
+> +#define GEN2_REASON_SHIFT		1
+> +
+>  struct pm8916_pon {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+>  	u32 baseaddr;
+>  	struct reboot_mode_driver reboot_mode;
+> +	long reason_shift;
+>  };
 >  
-> +	i2c@f9924000 {
-> +		status = "ok";
-> +
-> +		clock-frequency = <355000>;
-> +		qcom,src-freq = <50000000>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&i2c2_pins>;
-> +
-> +		synaptics@70 {
-> +			compatible = "syna,rmi4-i2c";
-> +			reg = <0x70>;
-> +
-> +			interrupts-extended = <&msmgpio 5 IRQ_TYPE_EDGE_FALLING>;
-> +			vdd-supply = <&pm8941_l22>;
-> +			vio-supply = <&pm8941_lvs3>;
-> +
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&touch_pin>;
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			rmi4-f01@1 {
-> +				reg = <0x1>;
-> +				syna,nosleep-mode = <1>;
-> +			};
-> +
-> +			rmi4-f12@12 {
-> +				reg = <0x12>;
-> +				syna,sensor-type = <1>;
-> +			};
-> +		};
-> +	};
-> +
->  	i2c@f9925000 {
->  		status = "ok";
->  		pinctrl-names = "default";
+>  static int pm8916_reboot_mode_write(struct reboot_mode_driver *reboot,
+> @@ -30,7 +34,7 @@ static int pm8916_reboot_mode_write(struct reboot_mode_driver *reboot,
+>  
+>  	ret = regmap_update_bits(pon->regmap,
+>  				 pon->baseaddr + PON_SOFT_RB_SPARE,
+> -				 0xfc, magic << 2);
+> +				 0xfc, magic << pon->reason_shift);
+>  	if (ret < 0)
+>  		dev_err(pon->dev, "update reboot mode bits failed\n");
+>  
+> @@ -60,6 +64,7 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+>  		return error;
+>  
+>  	pon->reboot_mode.dev = &pdev->dev;
+> +	pon->reason_shift = (long)of_device_get_match_data(&pdev->dev);
+>  	pon->reboot_mode.write = pm8916_reboot_mode_write;
+>  	error = devm_reboot_mode_register(&pdev->dev, &pon->reboot_mode);
+>  	if (error) {
+> @@ -73,8 +78,9 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id pm8916_pon_id_table[] = {
+> -	{ .compatible = "qcom,pm8916-pon" },
+> -	{ .compatible = "qcom,pms405-pon" },
+> +	{ .compatible = "qcom,pm8916-pon", .data = (void *)GEN1_REASON_SHIFT },
+> +	{ .compatible = "qcom,pms405-pon", .data = (void *)GEN1_REASON_SHIFT },
+> +	{ .compatible = "qcom,pm8998-pon", .data = (void *)GEN2_REASON_SHIFT },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, pm8916_pon_id_table);
 > -- 
-> 2.20.1
+> 2.17.1
 > 
