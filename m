@@ -2,419 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B40D049146
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 22:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B414915B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 22:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726733AbfFQUYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 16:24:42 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:35922 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726343AbfFQUYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 16:24:42 -0400
-Received: by mail-qk1-f196.google.com with SMTP id g18so7082670qkl.3;
-        Mon, 17 Jun 2019 13:24:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+yFGBWiYYs+LRkIy/wEHXx34ZrsVoCh+Sm8uDRzMJKA=;
-        b=TOeWRd/oiVW3hkcYmJmRYFoHKp7KO8dIHOSJ9n6th96EEnyBEiON0X0rS6Z9pKqQlT
-         mJeElW64yRqFa6R3CiLe/KXDcswstqYl3vLux1TJSIFVtK4nRfu/B6H7mQMK/cSDBjR2
-         OBH4VZvpe6cw1tki6XbYnXPxVKtiT0J0xO4ZOiOBRU+KwACWbxKRLHKJp2MH3xKKBan0
-         ehiGyvp6bdkGKRnGs+uGypNKwci9oYxsJ+SqYikg7qzEYe2iILBSbjgo4CruRvXvrtpN
-         EsWTr8x2Uf57CMLivVHptnZc/S02pxoF8R83YC095r4Q22RiBkcukQ60SIiqKOiA5zce
-         i/AQ==
-X-Gm-Message-State: APjAAAVoXH4aClRv+6kUaDSX1FSxZ6uFuTYTvrzYMAj8DDyDJ1wa3nA3
-        Ld5xDXwZ3ATj8XK939AucPA7SnM=
-X-Google-Smtp-Source: APXvYqym4tiaaaEKC75gTYvTvLTaUbQ3HkBwng9/q1W7bDpnlzdEEMOfGQfJIlO/lDSdMeniGNyLzg==
-X-Received: by 2002:a37:ef18:: with SMTP id j24mr89726609qkk.293.1560803080754;
-        Mon, 17 Jun 2019 13:24:40 -0700 (PDT)
-Received: from localhost.localdomain ([64.188.179.192])
-        by smtp.googlemail.com with ESMTPSA id p31sm2084119qtk.55.2019.06.17.13.24.39
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 17 Jun 2019 13:24:40 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Will Deacon <will@kernel.org>
-Subject: [PATCH] dt-bindings: arm: Convert PSCI binding to json-schema
-Date:   Mon, 17 Jun 2019 14:22:38 -0600
-Message-Id: <20190617202238.29042-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1726741AbfFQUaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 16:30:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52580 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726023AbfFQUaL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 16:30:11 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0ACB120861;
+        Mon, 17 Jun 2019 20:30:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560803410;
+        bh=wWT1OPFjU06mBl7O6HfsS8gMclhi0OwwNHVpelr67DA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pWP4RRuQm+5pI7ktuNnOd5aoMBBARWwR6QdtoEEx+lbJCbjl+EQdFWuDuG5yCh/m4
+         jg2Z5WpeNCpGHZ0RhWYIwOqctmNTCl2IdQYx1/FBLYHaR9+jYQ9IinDHET1gXIY/NG
+         pp72N3eN2spRV0s4bTZn/Fr7I/1iV4/gbDwZ1h1k=
+Date:   Mon, 17 Jun 2019 22:30:08 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Mark Brown <broonie@kernel.org>, lee.jones@linaro.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        thomas.liau@actions-semi.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
+Message-ID: <20190617203008.GB8381@kroah.com>
+References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
+ <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
+ <20190617163015.GD5316@sirena.org.uk>
+ <20190617163413.GA16152@Mani-XPS-13-9360>
+ <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the PSCI binding to use DT schema format.
+On Mon, Jun 17, 2019 at 06:38:53PM +0200, Andreas F�rber wrote:
+> Hi,
+> 
+> Am 17.06.19 um 18:34 schrieb Manivannan Sadhasivam:
+> > On Mon, Jun 17, 2019 at 05:30:15PM +0100, Mark Brown wrote:
+> >> On Mon, Jun 17, 2019 at 09:20:10PM +0530, Manivannan Sadhasivam wrote:
+> >>
+> >>> +++ b/drivers/regulator/atc260x-regulator.c
+> >>> @@ -0,0 +1,389 @@
+> >>> +// SPDX-License-Identifier: GPL-2.0+
+> >>> +/*
+> >>> + * Regulator driver for ATC260x PMICs
+> >>
+> >> Please make the entire comment a C++ one so this looks more intentional.
+> 
+> No, this is intentional and the official style requested by GregKH.
 
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Note that I didn't make cpu_suspend required for arm,psci as some 
-platforms didn't have that and the spec isn't clear if optional or 
-required. One board (artpec6-devboard.dts) also doesn't implement 
-cpu_off.
+Mark likes them all to be // at the top of the file.
 
-There's also 1 board (mt8173-evb.dts) that claims 0.1, 0.2, and 1.0
-compatibility. I guess that's valid, but not really clear in the binding
-doc. If we want to just allow any combination of versions, the schema
-for compatible could be simplified a bit.
+I only required that the SPDX line be that way.
 
+Mark can ask for more if he wants to :)
 
- Documentation/arm64/booting.txt               |   2 +-
- .../devicetree/bindings/arm/arm-boards        |   2 +-
- .../devicetree/bindings/arm/idle-states.txt   |   2 +-
- .../devicetree/bindings/arm/psci.txt          | 111 ------------
- .../devicetree/bindings/arm/psci.yaml         | 163 ++++++++++++++++++
- .../translations/zh_CN/arm64/booting.txt      |   2 +-
- 6 files changed, 167 insertions(+), 115 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/psci.txt
- create mode 100644 Documentation/devicetree/bindings/arm/psci.yaml
+thanks,
 
-diff --git a/Documentation/arm64/booting.txt b/Documentation/arm64/booting.txt
-index fbab7e21d116..1a87dee739db 100644
---- a/Documentation/arm64/booting.txt
-+++ b/Documentation/arm64/booting.txt
-@@ -257,7 +257,7 @@ following manner:
-   processors") to bring CPUs into the kernel.
- 
-   The device tree should contain a 'psci' node, as described in
--  Documentation/devicetree/bindings/arm/psci.txt.
-+  Documentation/devicetree/bindings/arm/psci.yaml.
- 
- - Secondary CPU general-purpose register settings
-   x0 = 0 (reserved for future use)
-diff --git a/Documentation/devicetree/bindings/arm/arm-boards b/Documentation/devicetree/bindings/arm/arm-boards
-index abff8d834a6a..6758ece324b1 100644
---- a/Documentation/devicetree/bindings/arm/arm-boards
-+++ b/Documentation/devicetree/bindings/arm/arm-boards
-@@ -197,7 +197,7 @@ Required nodes:
- The description for the board must include:
-    - a "psci" node describing the boot method used for the secondary CPUs.
-      A detailed description of the bindings used for "psci" nodes is present
--     in the psci.txt file.
-+     in the psci.yaml file.
-    - a "cpus" node describing the available cores and their associated
-      "enable-method"s. For more details see cpus.txt file.
- 
-diff --git a/Documentation/devicetree/bindings/arm/idle-states.txt b/Documentation/devicetree/bindings/arm/idle-states.txt
-index 3bdbe675b9e6..326f29b270ad 100644
---- a/Documentation/devicetree/bindings/arm/idle-states.txt
-+++ b/Documentation/devicetree/bindings/arm/idle-states.txt
-@@ -691,7 +691,7 @@ cpus {
-     Documentation/devicetree/bindings/arm/cpus.yaml
- 
- [2] ARM Linux Kernel documentation - PSCI bindings
--    Documentation/devicetree/bindings/arm/psci.txt
-+    Documentation/devicetree/bindings/arm/psci.yaml
- 
- [3] ARM Server Base System Architecture (SBSA)
-     http://infocenter.arm.com/help/index.jsp
-diff --git a/Documentation/devicetree/bindings/arm/psci.txt b/Documentation/devicetree/bindings/arm/psci.txt
-deleted file mode 100644
-index a2c4f1d52492..000000000000
---- a/Documentation/devicetree/bindings/arm/psci.txt
-+++ /dev/null
-@@ -1,111 +0,0 @@
--* Power State Coordination Interface (PSCI)
--
--Firmware implementing the PSCI functions described in ARM document number
--ARM DEN 0022A ("Power State Coordination Interface System Software on ARM
--processors") can be used by Linux to initiate various CPU-centric power
--operations.
--
--Issue A of the specification describes functions for CPU suspend, hotplug
--and migration of secure software.
--
--Functions are invoked by trapping to the privilege level of the PSCI
--firmware (specified as part of the binding below) and passing arguments
--in a manner similar to that specified by AAPCS:
--
--	 r0		=> 32-bit Function ID / return value
--	{r1 - r3}	=> Parameters
--
--Note that the immediate field of the trapping instruction must be set
--to #0.
--
--
--Main node required properties:
--
-- - compatible    : should contain at least one of:
--
--     * "arm,psci"     : For implementations complying to PSCI versions prior
--			to 0.2.
--			For these cases function IDs must be provided.
--
--     * "arm,psci-0.2" : For implementations complying to PSCI 0.2.
--			Function IDs are not required and should be ignored by
--			an OS with PSCI 0.2 support, but are permitted to be
--			present for compatibility with existing software when
--			"arm,psci" is later in the compatible list.
--
--     * "arm,psci-1.0" : For implementations complying to PSCI 1.0.
--			PSCI 1.0 is backward compatible with PSCI 0.2 with
--			minor specification updates, as defined in the PSCI
--			specification[2].
--
-- - method        : The method of calling the PSCI firmware. Permitted
--                   values are:
--
--                   "smc" : SMC #0, with the register assignments specified
--		           in this binding.
--
--                   "hvc" : HVC #0, with the register assignments specified
--		           in this binding.
--
--Main node optional properties:
--
-- - cpu_suspend   : Function ID for CPU_SUSPEND operation
--
-- - cpu_off       : Function ID for CPU_OFF operation
--
-- - cpu_on        : Function ID for CPU_ON operation
--
-- - migrate       : Function ID for MIGRATE operation
--
--Device tree nodes that require usage of PSCI CPU_SUSPEND function (ie idle
--state nodes, as per bindings in [1]) must specify the following properties:
--
--- arm,psci-suspend-param
--		Usage: Required for state nodes[1] if the corresponding
--                       idle-states node entry-method property is set
--                       to "psci".
--		Value type: <u32>
--		Definition: power_state parameter to pass to the PSCI
--			    suspend call.
--
--Example:
--
--Case 1: PSCI v0.1 only.
--
--	psci {
--		compatible	= "arm,psci";
--		method		= "smc";
--		cpu_suspend	= <0x95c10000>;
--		cpu_off		= <0x95c10001>;
--		cpu_on		= <0x95c10002>;
--		migrate		= <0x95c10003>;
--	};
--
--Case 2: PSCI v0.2 only
--
--	psci {
--		compatible	= "arm,psci-0.2";
--		method		= "smc";
--	};
--
--Case 3: PSCI v0.2 and PSCI v0.1.
--
--	A DTB may provide IDs for use by kernels without PSCI 0.2 support,
--	enabling firmware and hypervisors to support existing and new kernels.
--	These IDs will be ignored by kernels with PSCI 0.2 support, which will
--	use the standard PSCI 0.2 IDs exclusively.
--
--	psci {
--		compatible = "arm,psci-0.2", "arm,psci";
--		method = "hvc";
--
--		cpu_on = < arbitrary value >;
--		cpu_off = < arbitrary value >;
--
--		...
--	};
--
--[1] Kernel documentation - ARM idle states bindings
--    Documentation/devicetree/bindings/arm/idle-states.txt
--[2] Power State Coordination Interface (PSCI) specification
--    http://infocenter.arm.com/help/topic/com.arm.doc.den0022c/DEN0022C_Power_State_Coordination_Interface.pdf
-diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
-new file mode 100644
-index 000000000000..7abdf58b335e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/psci.yaml
-@@ -0,0 +1,163 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/psci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Power State Coordination Interface (PSCI)
-+
-+maintainers:
-+  - Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-+
-+description: |+
-+  Firmware implementing the PSCI functions described in ARM document number
-+  ARM DEN 0022A ("Power State Coordination Interface System Software on ARM
-+  processors") can be used by Linux to initiate various CPU-centric power
-+  operations.
-+
-+  Issue A of the specification describes functions for CPU suspend, hotplug
-+  and migration of secure software.
-+
-+  Functions are invoked by trapping to the privilege level of the PSCI
-+  firmware (specified as part of the binding below) and passing arguments
-+  in a manner similar to that specified by AAPCS:
-+
-+     r0       => 32-bit Function ID / return value
-+    {r1 - r3}	=> Parameters
-+
-+  Note that the immediate field of the trapping instruction must be set
-+  to #0.
-+
-+  [2] Power State Coordination Interface (PSCI) specification
-+    http://infocenter.arm.com/help/topic/com.arm.doc.den0022c/DEN0022C_Power_State_Coordination_Interface.pdf
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description:
-+          For implementations complying to PSCI versions prior to 0.2.
-+        const: arm,psci
-+
-+      - description:
-+          For implementations complying to PSCI 0.2.
-+        const: arm,psci-0.2
-+
-+      - description:
-+          For implementations complying to PSCI 0.2.
-+          Function IDs are not required and should be ignored by an OS with
-+          PSCI 0.2 support, but are permitted to be present for compatibility
-+          with existing software when "arm,psci" is later in the compatible
-+          list.
-+        items:
-+          - const: arm,psci-0.2
-+          - const: arm,psci
-+
-+      - description:
-+          For implementations complying to PSCI 1.0.
-+        const: arm,psci-1.0
-+
-+      - description:
-+          For implementations complying to PSCI 1.0.
-+          PSCI 1.0 is backward compatible with PSCI 0.2 with minor
-+          specification updates, as defined in the PSCI specification[2].
-+        items:
-+          - const: arm,psci-1.0
-+          - const: arm,psci-0.2
-+
-+  method:
-+    description: The method of calling the PSCI firmware.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/string-array
-+      - enum:
-+          # SMC #0, with the register assignments specified in this binding.
-+          - smc
-+          # HVC #0, with the register assignments specified in this binding.
-+          - hvc
-+
-+  cpu_suspend:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Function ID for CPU_SUSPEND operation
-+
-+  cpu_off:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Function ID for CPU_OFF operation
-+
-+  cpu_on:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Function ID for CPU_ON operation
-+
-+  migrate:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Function ID for MIGRATE operation
-+
-+  arm,psci-suspend-param:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      power_state parameter to pass to the PSCI suspend call.
-+
-+      Device tree nodes that require usage of PSCI CPU_SUSPEND function (ie
-+      idle state nodes with entry-method property is set to "psci", as per
-+      bindings in [1]) must specify this property.
-+
-+      [1] Kernel documentation - ARM idle states bindings
-+        Documentation/devicetree/bindings/arm/idle-states.txt
-+
-+
-+required:
-+  - compatible
-+  - method
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: arm,psci
-+    then:
-+      required:
-+        - cpu_off
-+        - cpu_on
-+
-+examples:
-+  - |+
-+
-+    // Case 1: PSCI v0.1 only.
-+
-+    psci {
-+      compatible      = "arm,psci";
-+      method          = "smc";
-+      cpu_suspend     = <0x95c10000>;
-+      cpu_off         = <0x95c10001>;
-+      cpu_on          = <0x95c10002>;
-+      migrate         = <0x95c10003>;
-+    };
-+
-+  - |+
-+
-+    // Case 2: PSCI v0.2 only
-+
-+    psci {
-+      compatible      = "arm,psci-0.2";
-+      method          = "smc";
-+    };
-+
-+
-+  - |+
-+
-+    // Case 3: PSCI v0.2 and PSCI v0.1.
-+
-+    /*
-+     * A DTB may provide IDs for use by kernels without PSCI 0.2 support,
-+     * enabling firmware and hypervisors to support existing and new kernels.
-+     * These IDs will be ignored by kernels with PSCI 0.2 support, which will
-+     * use the standard PSCI 0.2 IDs exclusively.
-+     */
-+
-+    psci {
-+      compatible = "arm,psci-0.2", "arm,psci";
-+      method = "hvc";
-+
-+      cpu_on = <0x95c10002>;
-+      cpu_off = <0x95c10001>;
-+    };
-+...
-diff --git a/Documentation/translations/zh_CN/arm64/booting.txt b/Documentation/translations/zh_CN/arm64/booting.txt
-index c1dd968c5ee9..c84f2accb173 100644
---- a/Documentation/translations/zh_CN/arm64/booting.txt
-+++ b/Documentation/translations/zh_CN/arm64/booting.txt
-@@ -236,7 +236,7 @@ AArch64 内核当前没有提供自解压代码，因此如果使用了压缩内
-   *译者注: ARM DEN 0022A 已更新到 ARM DEN 0022C。
- 
-   设备树必须包含一个 ‘psci’ 节点，请参考以下文档：
--  Documentation/devicetree/bindings/arm/psci.txt
-+  Documentation/devicetree/bindings/arm/psci.yaml
- 
- 
- - 辅助 CPU 通用寄存器设置
--- 
-2.20.1
-
+greg k-h
