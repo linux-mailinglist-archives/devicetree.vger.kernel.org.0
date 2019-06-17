@@ -2,105 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D97747D91
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 10:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81EC247DAF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 10:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727465AbfFQIux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 04:50:53 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:2200 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725826AbfFQIuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 04:50:52 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5H8faGH018088;
-        Mon, 17 Jun 2019 10:50:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=mKq6aXRt6yPdvv0WN1RsD2U79XJ8Gb1nUEC8uornMGc=;
- b=lXEL++QNAZxVCrBJMcQ3hfh4I5HKtmd5STDTD4YVF6nQjaTCtoEimMpUIUr9lyJhj9v0
- fEMxnPguKtPsD9ZLF6qf3K6Ct6/OkTIaYttCe3EgOljrxllyJoBeoN8517uSjrWWh7ty
- Ior/IDc/F4EM7Ni0o6/bw0kmUP9iE5nz+x0UWtQWIx4bgkkkRjE4YcTAbEY6tC317Xx+
- UWypLPYJZLEL7tVt5VEZVn/V/A0plkgXhZbRJgdUJ08bg/fL25kNA1AdVMMBfkg0yBN1
- D5SL7os/TCvcKZLzdy3zhXGVoGbaroguwZUa9Sr4gMGaPPD7PCdENpgCDZj9FOKOmxkW mQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2t4p519f5m-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 17 Jun 2019 10:50:33 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 737F538;
-        Mon, 17 Jun 2019 08:50:32 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4133D246F;
-        Mon, 17 Jun 2019 08:50:32 +0000 (GMT)
-Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 17 Jun
- 2019 10:50:31 +0200
-Received: from localhost (10.201.22.222) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 17 Jun 2019 10:50:31
- +0200
-From:   Christophe Roullier <christophe.roullier@st.com>
-To:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
-        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <christophe.roullier@st.com>, <andrew@lunn.ch>
-Subject: [PATCH  1/1] ARM: dts: stm32: replace rgmii mode with rgmii-id on stm32mp15 boards
-Date:   Mon, 17 Jun 2019 10:50:18 +0200
-Message-ID: <20190617085018.20352-2-christophe.roullier@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190617085018.20352-1-christophe.roullier@st.com>
-References: <20190617085018.20352-1-christophe.roullier@st.com>
+        id S1727536AbfFQI4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 04:56:54 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:33470 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727022AbfFQI4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 04:56:53 -0400
+Received: by mail-ed1-f66.google.com with SMTP id i11so15078510edq.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 01:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=nYP7nwkWft+3uUp9e25ZuOw9THhDw1ggRk0lkiQT8jk=;
+        b=lAOFLfNpOvUuTJG1ReESb/ZnQ/2/zpkokfGcQ2pm7U3B/ryQAyyBLNSwP+NaSwRoqS
+         U9lIIWVsfLkHWjYKJNX9okgatDFpPrHcqGu5rwGnoQigsqMslV09MLZojcrsVT7jgDyX
+         nrXyhqJ9ZHGZRUS7ihpHWC4mZHqlD9wRoW57gXBHyhQhSYKH6mkGgHi9aXZFwCbmvxKs
+         JVPkRYWJ6lr3YwDp2RVZWtnfBrbdFjWztay7Az2zA/5ZG15yTbT8JyJVWMbNm0djowcr
+         so84g4+chJssDRGKjlNSz5ubvVvDAAEsGAN4CXgcqf8mslLPgg9lphass99teg01v2X9
+         nGXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=nYP7nwkWft+3uUp9e25ZuOw9THhDw1ggRk0lkiQT8jk=;
+        b=R1w3V71G71mC1F7iE3ywleTjwRyMJwxWR9xg/9Zz55d5yHa1BF4rmlNxN9mCnA9Ks9
+         D481Yu9UEp9qFBydjaLbgiyaQEbCtyJYUm+ETBl7bABOYl+cSqUfNCGwPrE59ZqS5WXP
+         nGPfWU0GtcyUF78CUiGWlwhqpeP2v5NhTt0WHeEjvN3GK+4i67UDsOSZ+reUXvQe/Itc
+         mW9qQqKefiPJnGabhoYg0BMjCPc+ogda5mDiU0oGmcVYlOqffDtZTZ3AyuDATX1vDUVu
+         my5RaeIxxeEu7b/suA2WkN/0UQkm/3GCS9k0MtomE604MVAE/dFPlIk1nchxts/zTC2w
+         14nQ==
+X-Gm-Message-State: APjAAAVhtoulKPRZ3FtzI3F5um9nRR/N7QuO16zcPYwUsYPpx1GD/v9E
+        r52nVXgWJc+5vnlSGxX+Y5VXfQ==
+X-Google-Smtp-Source: APXvYqwylTBcYALz6DItF8lNeiu/bxiKZNfUEzJ2MwvfkvNg59Cyc/65bONS/5J26iZtM3yzFUyF6w==
+X-Received: by 2002:a17:906:1181:: with SMTP id n1mr63614604eja.177.1560761812064;
+        Mon, 17 Jun 2019 01:56:52 -0700 (PDT)
+Received: from localhost ([81.92.102.43])
+        by smtp.gmail.com with ESMTPSA id a3sm3394908edr.48.2019.06.17.01.56.51
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 17 Jun 2019 01:56:51 -0700 (PDT)
+Date:   Mon, 17 Jun 2019 01:56:50 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Yash Shah <yash.shah@sifive.com>
+cc:     davem@davemloft.net, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, nicolas.ferre@microchip.com,
+        palmer@sifive.com, aou@eecs.berkeley.edu, ynezz@true.cz,
+        sachin.ghadi@sifive.com
+Subject: Re: [PATCH v2 1/2] macb: bindings doc: add sifive fu540-c000
+ binding
+In-Reply-To: <1560745167-9866-2-git-send-email-yash.shah@sifive.com>
+Message-ID: <alpine.DEB.2.21.9999.1906170154280.19994@viisi.sifive.com>
+References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com> <1560745167-9866-2-git-send-email-yash.shah@sifive.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.22.222]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-17_05:,,
- signatures=0
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On disco and eval board, Tx and Rx delay are applied (pull-up of 4.7k
-put on VDD) so which correspond to RGMII-ID mode with internal RX and TX
-delays provided by the PHY, the MAC should not add the RX or TX delays
-in this case
+On Mon, 17 Jun 2019, Yash Shah wrote:
 
-Signed-off-by: Christophe Roullier <christophe.roullier@st.com>
----
- arch/arm/boot/dts/stm32mp157a-dk1.dts | 2 +-
- arch/arm/boot/dts/stm32mp157c-ev1.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+> Add the compatibility string documentation for SiFive FU540-C0000
+> interface.
+> On the FU540, this driver also needs to read and write registers in a
+> management IP block that monitors or drives boundary signals for the
+> GEMGXL IP block that are not directly mapped to GEMGXL registers.
+> Therefore, add additional range to "reg" property for SiFive GEMGXL
+> management IP registers.
+> 
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-index 098dbfb06b61..2c105740dfad 100644
---- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-@@ -51,7 +51,7 @@
- 	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
- 	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
- 	pinctrl-names = "default", "sleep";
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	max-speed = <1000>;
- 	phy-handle = <&phy0>;
- 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-index b6aca40b9b90..ab1393caf799 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-@@ -79,7 +79,7 @@
- 	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
- 	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
- 	pinctrl-names = "default", "sleep";
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	max-speed = <1000>;
- 	phy-handle = <&phy0>;
- 
--- 
-2.17.1
+Reviewed-by: Paul Walmsley <paul.walmsley@sifive.com>
 
+
+- Paul
