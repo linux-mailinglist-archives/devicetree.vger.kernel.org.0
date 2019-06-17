@@ -2,72 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FEF347FF7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 636C848063
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727377AbfFQKsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 06:48:01 -0400
-Received: from sauhun.de ([88.99.104.3]:56072 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726039AbfFQKsB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 06:48:01 -0400
-Received: from localhost (p5486CE69.dip0.t-ipconnect.de [84.134.206.105])
-        by pokefinder.org (Postfix) with ESMTPSA id 68F2B2C35BF;
-        Mon, 17 Jun 2019 12:47:59 +0200 (CEST)
-Date:   Mon, 17 Jun 2019 12:47:59 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Stefan Roese <sr@denx.de>
-Cc:     linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2 v4] dt-bindings: i2c: i2c-mt7621: Add bindings for
- MediaTek MT7621/28/88 I2C
-Message-ID: <20190617104759.GG3502@kunai>
-References: <20190617083117.1690-1-sr@denx.de>
- <20190617101113.GE3502@kunai>
- <20190617101412.GF3502@kunai>
- <8f80a12e-2427-df85-39ec-5402f415e444@denx.de>
+        id S1726622AbfFQLPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 07:15:45 -0400
+Received: from mail-ua1-f67.google.com ([209.85.222.67]:42499 "EHLO
+        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727777AbfFQLPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:15:41 -0400
+Received: by mail-ua1-f67.google.com with SMTP id a97so3272928uaa.9
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 04:15:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BOF08Kd8gvLLYtfWI0cYTkenEuQri7zpLz/JSt4v/xU=;
+        b=MrRsLl9iUyiGYQSxAwc33dWM+RzxbM3wFsTH5CBlrji4IGCyYk4yvEI4xS/tT1pecu
+         phYWdunoDqyMQqR070S4GpgR9DOPQLjoFadBG8NVfMYy952a4K6CGQndKArGugLNxFep
+         /yHSIvX6Q3G2+rMDf9N/s//pJ7cnuLDlt7eWetwok+6pEJY18i0rTWiotZpQf02W6IZc
+         yRAfTukTRHU9G+fRfKa7f+u46zlVnABmyX61MjigfFm3xNJMsMVtZwS5r2N+dpbqvvyd
+         K4zaHdnkj/LsUC+egcdnik73LxiuKJ+GFV4wzuUg4x1vyWMNMN07WJWZNmqb5iTHlF1L
+         qvMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BOF08Kd8gvLLYtfWI0cYTkenEuQri7zpLz/JSt4v/xU=;
+        b=EcHXSQISVdf8d+G4ypVOtoN8rYEi/USPNjPCp42Svx+X6v7sYcT+6jxGcHVkQ8oASC
+         +XUP438OItCpRdxsaSXXQlP9+0g8AlcXdWhrImtD/zoqhLudL6UHnKPJHxJ2CmVhvv60
+         p3p0sME7wp+XK3rX6J5cUFgXB3iNpu7wxL6tk9Dc324dOaQuPLT1RTyKV0DWYZv+FGZk
+         qE5ausgRmM2eQlff64lyd6EdVCZUui7bdeU2xMJTp0QH+A277eA/YsTyGkLE6MOjNcI6
+         0ojNdoUNrW49SwMy8jns48U01KEgMVZlfI4OvSrwpceXGbBxuAnn0iZKCbNvkVPVk75V
+         aBsQ==
+X-Gm-Message-State: APjAAAUcBhRLNLCU450fGmI7XUPTo0Zem0R5I1rRLhWDY6B0YSA7uXDC
+        DaNMvoiK5mU5ZBfIkT3/iOlnwMC7ufe7K35v0btTQA==
+X-Google-Smtp-Source: APXvYqxv6PbqDpP2z9ZJaq9ci5jvEg3N87A4/Iy7u5CfHBbTDRRzt5ZE8iMU00CAEVVAIhmuBcVjHxA+PnfMsn6ngA4=
+X-Received: by 2002:ab0:60ad:: with SMTP id f13mr8692794uam.129.1560770139986;
+ Mon, 17 Jun 2019 04:15:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Fnm8lRGFTVS/3GuM"
-Content-Disposition: inline
-In-Reply-To: <8f80a12e-2427-df85-39ec-5402f415e444@denx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1560247011-26369-1-git-send-email-manish.narani@xilinx.com> <1560247011-26369-4-git-send-email-manish.narani@xilinx.com>
+In-Reply-To: <1560247011-26369-4-git-send-email-manish.narani@xilinx.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 17 Jun 2019 13:15:03 +0200
+Message-ID: <CAPDyKFrJwpwUUX_q2kcR9QY_fv9Lgos+ixPmU6JMeJVqJAiFpg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] mmc: sdhci-of-arasan: Add support for ZynqMP Platform
+ Tap Delays Setup
+To:     Manish Narani <manish.narani@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Adrian Hunter <adrian.hunter@intel.com>, rajan.vaja@xilinx.com,
+        jolly.shah@xilinx.com, nava.manne@xilinx.com,
+        Olof Johansson <olof@lixom.net>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 11 Jun 2019 at 11:57, Manish Narani <manish.narani@xilinx.com> wrote:
+>
+> Apart from taps set by auto tuning, ZynqMP platform has feature to set
+> the tap values manually. Add support to read tap delay values from
+> DT and set the same in HW via ZynqMP SoC framework. Reading Tap
+> Delays from DT is optional, if the property is not available in DT the
+> driver will use the pre-defined Tap Delay Values.
+>
+> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> ---
+>  drivers/mmc/host/sdhci-of-arasan.c | 173 ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 172 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
+> index b12abf9..7af6cec 100644
+> --- a/drivers/mmc/host/sdhci-of-arasan.c
+> +++ b/drivers/mmc/host/sdhci-of-arasan.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/regmap.h>
+>  #include <linux/of.h>
+> +#include <linux/firmware/xlnx-zynqmp.h>
+>
+>  #include "cqhci.h"
+>  #include "sdhci-pltfm.h"
+> @@ -32,6 +33,10 @@
+>
+>  #define PHY_CLK_TOO_SLOW_HZ            400000
+>
+> +/* Default settings for ZynqMP Tap Delays */
+> +#define ZYNQMP_ITAP_DELAYS {0, 0x15, 0x15, 0, 0x15, 0, 0, 0x3D, 0x12, 0, 0}
+> +#define ZYNQMP_OTAP_DELAYS {0, 0x5, 0x6, 0, 0x5, 0x3, 0x3, 0x4, 0x6, 0x3, 0}
+> +
+>  /*
+>   * On some SoCs the syscon area has a feature where the upper 16-bits of
+>   * each 32-bit register act as a write mask for the lower 16-bits.  This allows
+> @@ -81,6 +86,7 @@ struct sdhci_arasan_soc_ctl_map {
+>   * @sdcardclk:         Pointer to normal 'struct clock' for sdcardclk_hw.
+>   * @soc_ctl_base:      Pointer to regmap for syscon for soc_ctl registers.
+>   * @soc_ctl_map:       Map to get offsets into soc_ctl registers.
+> + * @of_data:           Platform specific runtime data storage pointer
+>   */
+>  struct sdhci_arasan_data {
+>         struct sdhci_host *host;
+> @@ -101,6 +107,15 @@ struct sdhci_arasan_data {
+>  /* Controller immediately reports SDHCI_CLOCK_INT_STABLE after enabling the
+>   * internal clock even when the clock isn't stable */
+>  #define SDHCI_ARASAN_QUIRK_CLOCK_UNSTABLE BIT(1)
+> +
+> +       void *of_data;
+> +};
+> +
+> +struct sdhci_arasan_zynqmp_data {
+> +       void (*set_tap_delay)(struct sdhci_host *host);
+> +       const struct zynqmp_eemi_ops *eemi_ops;
+> +       u8 tapdly[MMC_TIMING_MMC_HS400 + 1][2]; /* [0] for input delay, */
+> +                                               /* [1] for output delay */
+>  };
 
---Fnm8lRGFTVS/3GuM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Please use two different structs, one for the clock provider data and
+one for the mmc variant/platform data. This makes the code more
+readable.
 
+In regards to the mmc data part, I suggest to drop the
+->set_tap_delay() callback, but rather use a boolean flag to indicate
+whether clock phases needs to be changed for the variant. Potentially
+that could even be skipped and instead call clk_set_phase()
+unconditionally, as the clock core deals fine with clock providers
+that doesn't support the ->set_phase() callback.
 
-> This probably should be moved to DT but would like to do this at a
-> later time (if time permits).
+[...]
 
-OK, thanks for the heads up.
+Otherwise this looks good to me!
 
+When it comes to patch1, I need an ack from Michal to pick it up.
 
---Fnm8lRGFTVS/3GuM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0Hb9sACgkQFA3kzBSg
-KbaFOw/+J5400ToYA6Vp2LCW+Us/43ljetFZKDUtLlX/4u6oVm5lMj93LdF9DfGk
-KCpaWM0PWYjovn18KFsEXxcRm4B3sNSKT6qXB7N7TCv3HVdFm5C7lQQcEiATCVPQ
-1uLqfBS6L+8yGOHHJ76ySYZvUGByNGP0/ku/4MnSH7qOp50Rt4vci/8KY6n99F9f
-CBdeU9cQ8Bdi3inRtftXGxhRHVup95eIi6tWsbGjsxpKCIWauLHq7EBW6F/o1Sam
-BU9D5E0O2hD+JcPxTuC7sXkDmIFHOBGhzJtCTbT+IWL94zIUvVtbA3qOvp5ifeKL
-n1tH05VRV5jTY4MnLPx8T25aAz33Rf2U5bzmdp2bsWXmPmotVjadE8SGLsZ9UrtW
-J4ynjxhKLbdWc6tpEjqNoPye7MypJaygm3T75S02OVexSwAZpmEuYipHna8iGjvv
-wOuaPUO5VWcTW4T7Y8R8mRghcddvkxgItp63kpKEzt43AS3xaf/q/hJB18W9oPMt
-DaUuYMBmDQJfV38Z+jm7yAzHrVKlaQN/tCnng+1uZrz3OBWzz+6ZLnGKOpQUzU1z
-9FESDXC2SJfSITxyMWiarbzkWqia26CWwSI38qaum6z0uBhrbZoC5nJr3EMUCUKN
-YLP0Gy5wi3pQqvSSBGMf/9S8AIPqdVnCcp4CZBdMMReHL4Z6Xtc=
-=d7+G
------END PGP SIGNATURE-----
-
---Fnm8lRGFTVS/3GuM--
+Kind regards
+Uffe
