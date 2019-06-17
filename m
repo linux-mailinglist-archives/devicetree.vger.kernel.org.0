@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1AE4893A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC63648920
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:38:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726509AbfFQQsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 12:48:14 -0400
-Received: from mga14.intel.com ([192.55.52.115]:21781 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726121AbfFQQsN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 12:48:13 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Jun 2019 09:38:44 -0700
-X-ExtLoop1: 1
-Received: from rameshr1-mobl.gar.corp.intel.com (HELO localhost) ([10.252.60.156])
-  by fmsmga004.fm.intel.com with ESMTP; 17 Jun 2019 09:38:42 -0700
-Date:   Mon, 17 Jun 2019 19:38:36 +0300
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Peter Huewe <peterhuewe@gmx.de>,
-        Andrey Pronin <apronin@chromium.org>,
-        linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
-        Duncan Laurie <dlaurie@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Subject: Re: [PATCH 1/8] tpm: block messages while suspended
-Message-ID: <20190617163810.GA9427@linux.intel.com>
-References: <20190613180931.65445-1-swboyd@chromium.org>
- <20190613180931.65445-2-swboyd@chromium.org>
- <20190614152700.GE11241@linux.intel.com>
- <5d03e3ba.1c69fb81.9c2c8.aa89@mx.google.com>
+        id S1726005AbfFQQi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 12:38:56 -0400
+Received: from mx2.suse.de ([195.135.220.15]:60244 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725863AbfFQQiz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 12:38:55 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 8CE35AE54;
+        Mon, 17 Jun 2019 16:38:54 +0000 (UTC)
+Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     lee.jones@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        thomas.liau@actions-semi.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
+ <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
+ <20190617163015.GD5316@sirena.org.uk>
+ <20190617163413.GA16152@Mani-XPS-13-9360>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Openpgp: preference=signencrypt
+Organization: SUSE Linux GmbH
+Message-ID: <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
+Date:   Mon, 17 Jun 2019 18:38:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5d03e3ba.1c69fb81.9c2c8.aa89@mx.google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190617163413.GA16152@Mani-XPS-13-9360>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 11:13:13AM -0700, Stephen Boyd wrote:
-> Quoting Jarkko Sakkinen (2019-06-14 08:27:00)
-> > On Thu, Jun 13, 2019 at 11:09:24AM -0700, Stephen Boyd wrote:
-> > > diff --git a/include/linux/tpm.h b/include/linux/tpm.h
-> > > index 1b5436b213a2..48df005228d0 100644
-> > > --- a/include/linux/tpm.h
-> > > +++ b/include/linux/tpm.h
-> > > @@ -132,6 +132,8 @@ struct tpm_chip {
-> > >       int dev_num;            /* /dev/tpm# */
-> > >       unsigned long is_open;  /* only one allowed */
-> > >  
-> > > +     unsigned long is_suspended;
-> > > +
-> > >       char hwrng_name[64];
-> > >       struct hwrng hwrng;
-> > 
-> > I think it would better idea to have a bitmask of some sort that
-> > would have bits for 'open' and 'suspended'.
-> > 
-> 
-> Sure. I can combine is_open and is_suspended into some sort of 'unsigned
-> long flags' member and then have #define TPM_IS_OPEN 0 and #define
-> TPM_IS_SUSPENDED 1 defines?
+Hi,
 
-Sounds sustainable.
+Am 17.06.19 um 18:34 schrieb Manivannan Sadhasivam:
+> On Mon, Jun 17, 2019 at 05:30:15PM +0100, Mark Brown wrote:
+>> On Mon, Jun 17, 2019 at 09:20:10PM +0530, Manivannan Sadhasivam wrote:
+>>
+>>> +++ b/drivers/regulator/atc260x-regulator.c
+>>> @@ -0,0 +1,389 @@
+>>> +// SPDX-License-Identifier: GPL-2.0+
+>>> +/*
+>>> + * Regulator driver for ATC260x PMICs
+>>
+>> Please make the entire comment a C++ one so this looks more intentional.
 
-/Jarkko
+No, this is intentional and the official style requested by GregKH.
+
+He suggested I patch the SPDX documentation to make this clearer, but I
+did not find time for this yet (and am not the one making this rule).
+
+Regards,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
+HRB 21284 (AG Nürnberg)
