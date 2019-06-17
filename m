@@ -2,94 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CF6747F4A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D94C747F55
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727678AbfFQKIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 06:08:30 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52770 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726960AbfFQKIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 06:08:30 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 5D84F263992
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: set PWM delay backlight
- settings for Minnie"
-To:     Pavel Machek <pavel@ucw.cz>, Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-References: <20190614224533.169881-1-mka@chromium.org>
- <20190616154143.GA28583@atrey.karlin.mff.cuni.cz>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <c88619de-45f4-9ba7-cfdc-0cedb764f6f4@collabora.com>
-Date:   Mon, 17 Jun 2019 12:08:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1727733AbfFQKLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 06:11:15 -0400
+Received: from sauhun.de ([88.99.104.3]:55598 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726960AbfFQKLP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 06:11:15 -0400
+Received: from localhost (p5486CE69.dip0.t-ipconnect.de [84.134.206.105])
+        by pokefinder.org (Postfix) with ESMTPSA id 5E9652C35BF;
+        Mon, 17 Jun 2019 12:11:13 +0200 (CEST)
+Date:   Mon, 17 Jun 2019 12:11:13 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Stefan Roese <sr@denx.de>
+Cc:     linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2 v4] dt-bindings: i2c: i2c-mt7621: Add bindings for
+ MediaTek MT7621/28/88 I2C
+Message-ID: <20190617101113.GE3502@kunai>
+References: <20190617083117.1690-1-sr@denx.de>
 MIME-Version: 1.0
-In-Reply-To: <20190616154143.GA28583@atrey.karlin.mff.cuni.cz>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="CGDBiGfvSTbxKZlW"
+Content-Disposition: inline
+In-Reply-To: <20190617083117.1690-1-sr@denx.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 16/6/19 17:41, Pavel Machek wrote:
-> Hi!
-> 
->> This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
->>
->> According to the commit message the AUO B101EAN01 panel on minnie
->> requires a PWM delay of 200 ms, however this is not what the
->> datasheet says. The datasheet mentions a *max* delay of 200 ms
->> for T2 ("delay from LCDVDD to black video generation") and T3
->> ("delay from LCDVDD to HPD high"), which aren't related to the
->> PWM. The backlight power sequence does not specify min/max
->> constraints for T15 (time from PWM on to BL enable) or T16
->> (time from BL disable to PWM off).
->>
+--CGDBiGfvSTbxKZlW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hmm, clearly we are not looking at the same datasheet, because in the one I have
-I don't see any reference to T15/T16 or LCDVDD. And, I assume I am probably
-wrong because you might have better access to the specific panel specs for minnie.
+On Mon, Jun 17, 2019 at 10:31:16AM +0200, Stefan Roese wrote:
+> Add bindings for the I2C controller that can be found in the MediaTek
+> MT7621/7628/7688 SoCs.
+>=20
+> Signed-off-by: Stefan Roese <sr@denx.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-I looked at my archive and the datasheet I have is similar to this [1]. In page
-21, Section 6.5 Power ON/OFF Sequence, there are two delays T3 and T4, it is
-*min* time between the pwm signal and the bl_en and it is 200 ms. That's the
-delay the patch was adding.
+CCing the DT mailing list.
 
-[1] http://www.yslcd.com.tw/docs/product/B101EAN01.1.pdf
+> ---
+> v4:
+> - No change
+>=20
+> v3:
+> - New patch
+>=20
+>  .../devicetree/bindings/i2c/i2c-mt7621.txt    | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt7621.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt7621.txt b/Docum=
+entation/devicetree/bindings/i2c/i2c-mt7621.txt
+> new file mode 100644
+> index 000000000000..bc36f0eb94cd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt7621.txt
+> @@ -0,0 +1,25 @@
+> +MediaTek MT7621/MT7628 I2C master controller
+> +
+> +Required properties:
+> +
+> +- compatible: Should be one of the following:
+> +  - "mediatek,mt7621-i2c": for MT7621/MT7628/MT7688 platforms
+> +- #address-cells: should be 1.
+> +- #size-cells: should be 0.
+> +- reg: Address and length of the register set for the device
+> +- resets: phandle to the reset controller asserting this device in
+> +          reset
+> +  See ../reset/reset.txt for details.
+> +
+> +Optional properties :
+> +
+> +Example:
+> +
+> +i2c: i2c@900 {
+> +	compatible =3D "mediatek,mt7621-i2c";
+> +	reg =3D <0x900 0x100>;
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <0>;
+> +	resets =3D <&rstctrl 16>;
+> +	reset-names =3D "i2c";
+> +};
+> --=20
+> 2.22.0
+>=20
 
->> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
->> ---
->> Enric, if you think I misinterpreted the datasheet please holler!
-> 
-> Was this tested? Was previous patch tested?
-> 
+--CGDBiGfvSTbxKZlW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-IIRC, It was tested measuring the backlight power on timing (although I am not
-sure if I tested this on minnie or another board with better access to the pins)
+-----BEGIN PGP SIGNATURE-----
 
-> Does patch being reverted actually break anything? If so, cc stable?
-> 
-> 								Pavel
-> 								
-> 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0HZ0AACgkQFA3kzBSg
+KbaDww//acLBksHIUwrMGAgzn21geWRQD/wlHJaHLwChUscVu61DKax4AdpMDcAi
++L368hOOO5NFF9GkveFrD/tkh7DJBMaF71KhRApCxVHNMcC/q5peVLyWd+sJ3Dmn
+X1Ki8pv3LDishTmlacr1jI9QTzdecuaudu3B6uD2wtEditG/CdxjDhnvMJ9Ewbhs
+08cbMmv5eNEzOCBa6ZphPqepkx6RPMlWgVj8H5m2OGxlygIQoC1/92lVMGG34YL4
+H9g7t5MkMIJH3DIYtM501bbZtDV6woTI1EVd6gfLJgr8I0wZeWBBfViJanWzIvOb
+jz3HlDForT8W1NS8CsSX0UY7kT+RTS66gnQfZrOMHfYy6reUuJtJ5t7zFU9Lx7KG
+oCQP4cMSN/3jxqzHlGht8C+71Gn5BvjDUuRBdL68g4wHJKhnDc1fMGaj6KOerC0j
+911rxNoblwOruiHYBqVlojWU2XY+JhsiJ0OCUN5V8pqIr5yX2q6q8U/jStJ+T1nG
+HRftQM/awc+oolhfUeN5nyiXoshj6n4rDLXZDuPLOSKE7CJPG/nvg0Oh+l4bMOt3
+qm3nM/B9llp3JrwVJ3I8Y2AskvW8QDzYY10CVvuP9WRVKiPCy3DKmrOHJiSjG11P
+1kL86p8063/RXDU8TBrUz43/UVj0Fn4C2Hwo/M8qA6Ek4QJ5mCg=
+=FMtm
+-----END PGP SIGNATURE-----
 
-Probably will not break anything, I don't remember the reverted patch as a fix
-of any specific issue. IIRC it was more a fear to be out of specs but I'll not
-be surprised if the datasheet lies and this delay is not needed at all.
-
-Matthias, are you reverting this to solve any problem? Could you share your
-datasheet?
-
-Thanks,
-~Enric
+--CGDBiGfvSTbxKZlW--
