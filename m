@@ -2,93 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65332484C6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E464C48506
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726028AbfFQOBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 10:01:17 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:47396 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbfFQOBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:01:17 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id A54F580265; Mon, 17 Jun 2019 16:01:04 +0200 (CEST)
-Date:   Mon, 17 Jun 2019 16:01:14 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
+        id S1726427AbfFQOO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 10:14:28 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36689 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726292AbfFQOO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:14:28 -0400
+Received: by mail-io1-f66.google.com with SMTP id h6so21537632ioh.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 07:14:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=JohzNFDqmktDG38rF4I6wEqhVEhI+kZN53amqkDtO9w=;
+        b=iLTj9CW1lG44z6zG4g72qDio7OVGQ1qANRuf1odp+rHFRdGUwpC/crqtmZviZTJjha
+         UtbuW0PlSUt3tPiVOOOGTLydHXo9gGuO4n6AjAd9Ui2JaV31NFPjV2LvjHM7Lc94hAj3
+         2NoQNsPbAu20BCZqt728HIJTa2HSnRFbDzZ5I8vHPDybVf1pkrTRlkIQTt7rthVHXrAM
+         lHS78Ey4P/EiXWCuhSzCFdoxrAgtO7jORwoA76aPcjYfK1cFsylabCMWL2k6C+IUbYR4
+         GFg6aCzi53pHsNhbAN3fRtSC15Up6LfUVSf/tWR82B4diNQ+xrqBZiH+dX91u+09QU+k
+         cDxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=JohzNFDqmktDG38rF4I6wEqhVEhI+kZN53amqkDtO9w=;
+        b=qAfnMaSwVzswGcSZ13MA2Aqy6LLEO4ZUSpjsqpqLCC9wX+jwEqzr6Hj6U0F1X0zpWV
+         n0OYUpKOHIRrVHXLUOLhS9QQq0zBilMQ29I1QPv3LJyCzNmCelUBAPy8CVkWQXOsfnhj
+         KDJMfh9pjda6Eu07HQnc+d5TwCQrYB59CIdsvbCZSNPvcEReJ2ty1piP5LGV6Kta+Uy1
+         pnqnG7NuqXa1GW3G72X1juQxo6SYOnZinZ/n6qAOMXv93Xf1UOopK/wHWAyvmU7M1lbS
+         fQGXxxLz4leunNriF89bJjXNCxTVcZ0FUegcgvo5YEg3C1+G0TQlU/kmDGiRzjqXSu1z
+         4yLg==
+X-Gm-Message-State: APjAAAUgvfAyXAsIK+NmUcxqufTzfwElWXSY5hCz5hVxhKDVX/0uRdXM
+        9jp9x0TT3AhRklQRGUN6wu/bZg==
+X-Google-Smtp-Source: APXvYqzNuUBfwfuXW1mSryelHWlKsBM9fYoJ3JGS5e7VGKacU4dkepDULY1G4gM/fW95GIKtGZpt+Q==
+X-Received: by 2002:a6b:fb02:: with SMTP id h2mr14476535iog.289.1560780867625;
+        Mon, 17 Jun 2019 07:14:27 -0700 (PDT)
+Received: from [192.168.1.196] ([216.160.37.230])
+        by smtp.gmail.com with ESMTPSA id c2sm8811901iok.53.2019.06.17.07.14.26
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jun 2019 07:14:27 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
+From:   Troy Benjegerdes <troy.benjegerdes@sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>
+Date:   Mon, 17 Jun 2019 09:14:25 -0500
+Cc:     Andreas Schwab <schwab@suse.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v16 1/3] arm64: dts: fsl: librem5: Add a device tree for
- the Librem5 devkit
-Message-ID: <20190617140114.GA26140@amd>
-References: <20190617135215.550-1-angus@akkea.ca>
- <20190617135215.550-2-angus@akkea.ca>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="azLHFNyN32YCQGCU"
-Content-Disposition: inline
-In-Reply-To: <20190617135215.550-2-angus@akkea.ca>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        netdev@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        nicolas.ferre@microchip.com,
+        Sachin Ghadi <sachin.ghadi@sifive.com>,
+        Yash Shah <yash.shah@sifive.com>, robh+dt@kernel.org,
+        ynezz@true.cz, linux-riscv@lists.infradead.org,
+        davem@davemloft.net, Jim Jacobsen <jamez@wit.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <F48A4F7F-0B0D-4191-91AD-DC51686D1E78@sifive.com>
+References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
+ <mvmtvco62k9.fsf@suse.de>
+ <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com>
+ <mvmpnnc5y49.fsf@suse.de>
+ <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com>
+ <mvmh88o5xi5.fsf@suse.de>
+ <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+X-Mailer: Apple Mail (2.3445.9.1)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---azLHFNyN32YCQGCU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon 2019-06-17 07:52:13, Angus Ainslie (Purism) wrote:
-> This is for the development kit board for the Librem 5. The current level
-> of support yields a working console and is able to boot userspace from
-> the network or eMMC.
+> On Jun 17, 2019, at 6:34 AM, Paul Walmsley <paul.walmsley@sifive.com> =
+wrote:
 >=20
-> Additional subsystems that are active :
+> On Mon, 17 Jun 2019, Andreas Schwab wrote:
 >=20
-> - Both USB ports
-> - SD card socket
-> - WiFi usdhc
-> - WWAN modem
-> - GNSS
-> - GPIO keys
-> - LEDs
-> - gyro
-> - magnetometer
-> - touchscreen
-> - pwm
-> - backlight
-> - haptic motor
+>> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
+>>=20
+>>> On Mon, 17 Jun 2019, Andreas Schwab wrote:
+>>>=20
+>>>> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
+>>>>=20
+>>>>> Looks to me that it shouldn't have an impact unless the DT string =
+is=20
+>>>>> present, and even then, the impact might simply be that the MACB =
+driver=20
+>>>>> may not work?
+>>>>=20
+>>>> If the macb driver doesn't work you have an unusable system, of =
+course.
+>>>=20
+>>> Why?
+>>=20
+>> Because a system is useless without network.
 >=20
-> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> =46rom an upstream Linux point of view, Yash's patches should be an=20
+> improvement over the current mainline kernel situation, since there's=20=
 
-Reviewed-by: Pavel Machek <pavel@ucw.cz>
-
-
+> currently no upstream support for the (SiFive-specific) TX clock =
+switch=20
+> register.  With the right DT data, and a bootloader that handles the =
+PHY=20
+> reset, I think networking should work after his patches are upstream =
 --=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+> although I myself haven't tried this yet.
+>=20
 
---azLHFNyN32YCQGCU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Have we documented this tx clock switch register in something with a
+direct URL link (rather than a PDF)?
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+I=E2=80=99d like to update freedom-u-sdk (or yocto) to create bootable =
+images
+with a working U-boot (upstream or not, I don=E2=80=99t care, as long as =
+it works),
+and what I have right now is the old legacy HiFive U-boot[1] and a 4.19
+kernel with a bunch of extra patches.
 
-iEYEARECAAYFAl0HnSoACgkQMOfwapXb+vJOGgCgi4UVHEckeZdZZeAkOxWfWI5z
-EcgAn2c/wl0vMJH3MIZWhH8So2axxskQ
-=DbDK
------END PGP SIGNATURE-----
+The legacy M-mode U-boot handles the phy reset already, and I=E2=80=99ve =
+been
+able to load upstream S-mode uboot as a payload via TFTP, and then=20
+load and boot a 4.19 kernel.=20
 
---azLHFNyN32YCQGCU--
+It would be nice to get this all working with 5.x, however there are =
+still
+several missing pieces to really have it work well.
+
+
+[1] https://github.com/sifive/HiFive_U-Boot=
