@@ -2,83 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B2B7485FB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E4C148623
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:54:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728057AbfFQOuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 10:50:11 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:58548 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726151AbfFQOuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:50:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=dOh7uqmpibaT0Zdj+4oa5qbvYvKyLSBAYkLGdLcNmp8=; b=eI2PXv12FX3MW1F6+JjHTul2N4
-        qqVHcYdNubVBXXsXfjcdHFyBTAmIBvP6bFH80JbUNMFNXImMmlbloxpgkK9V0RSBAdiamEgpkJH4Y
-        +AsZPxLQwHuC3LQgeuh7hO0ojGv1lWy4p4AQ24zTxhZ/DMR4RjjGIXRZpJNWvAqfadLTeAiUaYfmc
-        w07VywUS4G08YQFiLpAKFt37sI+2ZHpjc6tVcwV/cELApastnr/gO9ZT3gPTiBz5d09GIq9/6bx2x
-        L0m4G781jVk9y4Q1AlgEBkou39/0Jlg8gBVzFF2jhu6zASLOK2/4Mve4KZEy2omFNcHzAqZSAx203
-        KQhnCMuA==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([2002:4e20:1eda:1:222:68ff:fe15:37dd]:34836 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.90_1)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1hcsxH-0004PG-KM; Mon, 17 Jun 2019 15:49:55 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.82_1-5b7a7c0-XX)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1hcsxH-0007Vv-0l; Mon, 17 Jun 2019 15:49:55 +0100
-From:   Russell King <rmk+kernel@armlinux.org.uk>
-To:     Gregory Clement <gregory.clement@bootlin.com>
-Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: marvell: add missing #interrupt-cells property
+        id S1728217AbfFQOyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 10:54:13 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40366 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728030AbfFQOyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:54:13 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5HEs3KJ120379;
+        Mon, 17 Jun 2019 09:54:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1560783243;
+        bh=xwLELKAKVPK0ob/NFwW368OT2nHjADb1LSHxV+OFJ/g=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=b3g0GV31MT5a/Z6iySiibUxDA7mLW49F3ndHSi0Q6LcEbcw4PiWnu6Ki/y7JWpnIP
+         SkgFsXb2rD+HN1P8DCuuncK1e2pUS8IZVuerjsWcNBbCDXeAMEuUtGpvM4n/zwZlYy
+         RA/a1xUZvMBVFG1USyCJmtmmkh2I/Fo72rkjWbgE=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5HEs3T8053409
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Jun 2019 09:54:03 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 17
+ Jun 2019 09:54:02 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 17 Jun 2019 09:54:02 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5HEs0TE100179;
+        Mon, 17 Jun 2019 09:54:01 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add MSMC RAM ranges in
+ interconnect node
+To:     Nishanth Menon <nm@ti.com>, Suman Anna <s-anna@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Roger Quadros <rogerq@ti.com>
+References: <20190529211344.18014-1-s-anna@ti.com>
+ <20190530104903.ldcmkunjnk7a5y3c@akan>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <3c53679c-4246-43e1-e6d6-2e1c7db201d7@ti.com>
+Date:   Mon, 17 Jun 2019 17:54:00 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1hcsxH-0007Vv-0l@rmk-PC.armlinux.org.uk>
-Date:   Mon, 17 Jun 2019 15:49:55 +0100
+In-Reply-To: <20190530104903.ldcmkunjnk7a5y3c@akan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GPIO interrupt controllers are missing their required
-#interrupt-cells property, which prevents GPIO interrupts being
-specified in DT.
+On 30/05/2019 13:49, Nishanth Menon wrote:
+> On 16:13-20190529, Suman Anna wrote:
+>> From: Roger Quadros <rogerq@ti.com>
+>>
+>> Add the MSCM RAM address space to the ranges property of the cbass_main
+>> interconnect node so that the addresses can be translated properly.
+>>
+>> This fixes the probe failure in the sram driver for the MSMC RAM node.
+>>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> ---
+>>
+>> The following error message is seen without this:
+>> [    0.480261] sram interconnect@100000:sram@70000000: found no memory resource
+>> [    0.487497] sram: probe of interconnect@100000:sram@70000000 failed with error -22
+>>
+>> regards
+>> Suman
+>>
+>>   arch/arm64/boot/dts/ti/k3-am65.dtsi | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>> index 50f4be2047a9..68b3f954f1d1 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>> @@ -68,6 +68,7 @@
+>>   			 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /* serdes */
+>>   			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
+>>   			 <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>, /* MAIN NAVSS */
+>> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00200000>, /* MSMC SRAM */
+>>   			 /* MCUSS Range */
+>>   			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+>>   			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00900100>,
+>> -- 
+>> 2.21.0
+>>
+> 
+> Arrgh.. Nice catch. Thanks. We should consider pulling this in as part
+> of early rc fixes please.
+> 
+> Acked-by: Nishanth Menon <nm@ti.com>
 
-Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
----
- arch/arm64/boot/dts/marvell/armada-cp110.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Hmm, what is the failure this causes, except the probe message? SRAM 
+driver obviously won't work but is it used for anything at the moment 
+anyways?
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp110.dtsi b/arch/arm64/boot/dts/marvell/armada-cp110.dtsi
-index 4d6e4a097f72..f71afb1de18f 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp110.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp110.dtsi
-@@ -238,6 +238,7 @@
- 					<85 IRQ_TYPE_LEVEL_HIGH>,
- 					<84 IRQ_TYPE_LEVEL_HIGH>,
- 					<83 IRQ_TYPE_LEVEL_HIGH>;
-+				#interrupt-cells = <2>;
- 				status = "disabled";
- 			};
- 
-@@ -253,6 +254,7 @@
- 					<81 IRQ_TYPE_LEVEL_HIGH>,
- 					<80 IRQ_TYPE_LEVEL_HIGH>,
- 					<79 IRQ_TYPE_LEVEL_HIGH>;
-+				#interrupt-cells = <2>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.7.4
+I would rather queue this towards 5.3.
 
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
