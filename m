@@ -2,80 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5AA47F31
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CECD47F3C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728219AbfFQKFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 06:05:09 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:42165 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728217AbfFQKFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 06:05:09 -0400
-Received: by mail-ed1-f68.google.com with SMTP id z25so15296115edq.9
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 03:05:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=VGA9c22y9jIlHDQMx4uvOibs7sOik31ZYkHYuUn6B2A=;
-        b=JyNz3YrQXeZQihiVS68RHnnLZ6o5UO46RUXYmjIXxMarXHjp3quUe0sTP89h2RU8qd
-         t9xqv9wTj260UdX5wH35ZuuOvUBtisoit/qwfK5Kgpmzpzqi1hm9ICfiSCaa6aeOrD/O
-         fnDMZPUTZVNhS3eCTNHUSRvBTwqgFi5qzNsMPubsWuJaAZyy/bf3WT0jpYzk5F3cpjGJ
-         VbGYngxQwu3kBOwmupErYz+LZog68KzmNfkuKtjTK6pxTOoD474ZOc4ZxGlZV/+5UV+C
-         b3tIuf1NKkxfHiXsESOMMHBxCIMFfYJ0qDfMiA9QurTcSwBttbk/tx5IZROKrZGAFOrw
-         XN3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=VGA9c22y9jIlHDQMx4uvOibs7sOik31ZYkHYuUn6B2A=;
-        b=evJaQAK5OEKWKIddz90pIiVbMoCwg514fIxWc7ciDM7iLSO+VGjs0wUl4vwbJxb88M
-         wdAK/TAsplyuZ6IGsf7XR71m+EqmNDDVFmfuCFmnInxJJz6+w/7F0YCMv5rhgnO60/+9
-         0eeJAT2KIRLIZY1gwvNjMKKdFQScOcD/d8yI17U7oYBifMAJxBCgoYLXLu2ss0r+Vrdd
-         5PvlCmknxd8qQLXwGOgwRF9RqEUj9cG28pt9ioLT5iDQXl15EQDpHbObbKDdwLDG534r
-         vkz4mMn/gITbwEvb/nZRskUOc4C8xmb8mq0obLyahqD1RH+JHi90aJWQH/R9YnR/jumV
-         dKkg==
-X-Gm-Message-State: APjAAAXNP0zUL8dRcxONHSnLTFeEYwUvnxfYdRv0/mxRLPNBr9sN3yv8
-        mf63EQYLF0gRf7bWv3rwp9+1og==
-X-Google-Smtp-Source: APXvYqxgX3WrGXoEnt9ZLFi/AcNRTFEhFUprMEbyI8apql360t1iTkxRuRY3ryohJKMoEwBxTzhyYw==
-X-Received: by 2002:a50:b962:: with SMTP id m89mr53812367ede.104.1560765907918;
-        Mon, 17 Jun 2019 03:05:07 -0700 (PDT)
-Received: from localhost ([81.92.102.43])
-        by smtp.gmail.com with ESMTPSA id m3sm3433752edi.33.2019.06.17.03.05.07
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 17 Jun 2019 03:05:07 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 03:05:06 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Andreas Schwab <schwab@suse.de>
-cc:     Yash Shah <yash.shah@sifive.com>, davem@davemloft.net,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, palmer@sifive.com,
-        aou@eecs.berkeley.edu, ynezz@true.cz, sachin.ghadi@sifive.com
-Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
-In-Reply-To: <mvmpnnc5y49.fsf@suse.de>
-Message-ID: <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com>
-References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com> <mvmtvco62k9.fsf@suse.de> <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com> <mvmpnnc5y49.fsf@suse.de>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1728028AbfFQKGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 06:06:13 -0400
+Received: from sauhun.de ([88.99.104.3]:55484 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727989AbfFQKGN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 06:06:13 -0400
+Received: from localhost (p5486CE69.dip0.t-ipconnect.de [84.134.206.105])
+        by pokefinder.org (Postfix) with ESMTPSA id 8A67A2C35BF;
+        Mon, 17 Jun 2019 12:06:11 +0200 (CEST)
+Date:   Mon, 17 Jun 2019 12:06:11 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, atull@kernel.org, andrew@lunn.ch,
+        daniel@ffwll.ch, airlied@linux.ie, davem@davemloft.net,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        f.fainelli@gmail.com, frowand.list@gmail.com, hkallweit1@gmail.com,
+        jslaby@suse.com, jonathanh@nvidia.com, lee.jones@linaro.org,
+        lgirdwood@gmail.com, linux-fpga@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, broonie@kernel.org,
+        mathieu.poirier@linaro.org, maxime.ripard@bootlin.com,
+        mdf@kernel.org, peda@axentia.se, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, thierry.reding@gmail.com,
+        thor.thayer@linux.intel.com, ulf.hansson@linaro.org,
+        joe@perches.com
+Subject: Re: [PATCH v2 06/28] drivers: Add generic helper to match by of_node
+Message-ID: <20190617100611.GB3502@kunai>
+References: <1560534863-15115-1-git-send-email-suzuki.poulose@arm.com>
+ <1560534863-15115-7-git-send-email-suzuki.poulose@arm.com>
+ <20190614203144.GB7991@kunai>
+ <d050ae69-52ee-b32d-2bc0-708b408f3bd4@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7ZAtKRhVyVSsbBD2"
+Content-Disposition: inline
+In-Reply-To: <d050ae69-52ee-b32d-2bc0-708b408f3bd4@arm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jun 2019, Andreas Schwab wrote:
 
-> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
-> 
-> > Looks to me that it shouldn't have an impact unless the DT string is 
-> > present, and even then, the impact might simply be that the MACB driver 
-> > may not work?
-> 
-> If the macb driver doesn't work you have an unusable system, of course.
+--7ZAtKRhVyVSsbBD2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Why?
 
-- Paul
+> > Is it an option to 'static inline' this simple function in the header,
+> > saving the EXPORT?
+> >=20
+>=20
+> No.
+
+OK, thanks for the explanation!
+
+
+--7ZAtKRhVyVSsbBD2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0HZhMACgkQFA3kzBSg
+Kbbl3A/+LFTwA3gh8PCif9bJi4Ywry/gCg7cCVuGAw1ZhH5h29SAhoONggyXvO8N
+XvGR09Q0NYX1CpAogNTRqTtpOKSudrSozBdFRxKlNCuACTghf1AdboPKq+pM2Zos
++Q75BJMykwO00W+5ghmbztldccufXFjjwXzDwdBq5zNjtVf3yne4h1wWAubXItsQ
+LMaf+2X6WrAPfIPVvBbtV33cG/1f8l7GemdTJj02Z+5+u1NH4L1e00WP+rxqj0Q7
+nYMFIFYfjfqHBkhAltu6bx/gqqORuDfQ6DQ/vl/qyXVHY6WcYIzUde/NpnVSjAX/
+e6d3JrHaEHw7qBEH+39w54dQr4fRii9mUOF9keTO7OSfQnAAva1QQyERtAhPj7EA
+I2X/qEU6ncbQJK91mxlelKLbD+WuJUcqahDM0tQ07nQ2lz6zwVpBQzn3VNZiXxh1
+KAJFCCaWJRGp0P1JZMwnVbmMSeFoPWJx5fXweNoQXdgz/4yy2VpTh7AdvWFCOl9+
+u5N+YWIn6gygP5kUJuDevsLDTzyodTVxi3zvYaaFM+2eIF2nT8a0AI2HPzmR3G1R
+xlNjF3xnwWLlW/0g11vgj9PPAnKgNazMZflNXIbPSRZjHZzh6+C/GYnxlDXf5N3V
+tFjRbBS861rgNrq+zJv9HqLqlF7opQ3x7jAh8LwHdpF/Z95yDW0=
+=hDM+
+-----END PGP SIGNATURE-----
+
+--7ZAtKRhVyVSsbBD2--
