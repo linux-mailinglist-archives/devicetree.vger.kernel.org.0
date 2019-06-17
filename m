@@ -2,168 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D598047EFD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 11:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A291447F11
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727190AbfFQJ71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 05:59:27 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:33904 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727545AbfFQJ71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 05:59:27 -0400
-Received: by mail-ed1-f68.google.com with SMTP id s49so15336106edb.1;
-        Mon, 17 Jun 2019 02:59:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Wk42T0Kn41hpMrw8onVz67gqbj9VTIvDZYpdkjVC3LU=;
-        b=HU2MhpCmFH5rFufEQWs7TJVnqXhA0pjjf7dg+aA8fqfagnr2AjBGI2ajPOwzvETN41
-         V5dlBx4pzhMJp4Y43GlmUc82x9F7ALUraweFErUOcRtBf5zJ6yeF9fxkomlsuXO+EXW8
-         lbaGX2Phztf+jdf0nemS3K8WapKXbR/Zg7LHQpthCxvDZ0hzj0uv3SiFPegCa5vi5jDl
-         yAyi49xqkLqv372JylnnOHwPCeDy0ecDR5uWMtlQ25gnRC0e5cbvy4JngL3diuYtSaLH
-         nz91frpKfAHMbZF4UTasneQ2fRP0hwF2MUmi35FtdggciKK6n9ulkuE2BM8vplTXFpFw
-         3F2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Wk42T0Kn41hpMrw8onVz67gqbj9VTIvDZYpdkjVC3LU=;
-        b=pUcu/8o05BsAjVNyGKefgV/bGsF/+p6vrueaaSwLEd9jpXZUlEkev2U1TAF0FrPEah
-         0NH5hpfFXerKdj39LIBBR1noYxnuKCvm0Xf6VXrRorNTOctn9ddbtgO7zq6WriePJTj6
-         J9WtT1GxYggJMEUJtajSDgr9DoCAWIKSDm8W6dTXaRqRLTqa3Z3uDrioJLr0C4FWly1a
-         lc3pZJ25JBKZEWXVjkD7L3GPD5B2zZmat4TFcnZM3qBwLf32z+Xa2B2Ag+M3CRl3skuD
-         nKuOv1fxo+h4TNi1VGy1aCoGnIkR1bCopY0ZSc7oU5L06Sk1EsBwOwdm8Lyhy+q6nWxc
-         jBDw==
-X-Gm-Message-State: APjAAAUT6OsAW7HVMydZLwMbGnAoY/MTg66216Bw9hadleCzIBWZiY15
-        S//3si6AoZigIzjX5gkNVTg=
-X-Google-Smtp-Source: APXvYqyxo+9xluvpBbZCqFC3HASFesyzzpYZWPZbzIX1BjzUO5MO4hxfTHOP3fjHpxYmNS0/vPOJSQ==
-X-Received: by 2002:a17:906:2acf:: with SMTP id m15mr94428745eje.31.1560765564160;
-        Mon, 17 Jun 2019 02:59:24 -0700 (PDT)
-Received: from ziggy.stardust ([37.223.140.27])
-        by smtp.gmail.com with ESMTPSA id u26sm3458355edf.91.2019.06.17.02.59.22
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 17 Jun 2019 02:59:23 -0700 (PDT)
-Subject: Re: [PATCH v7 09/21] iommu/mediatek: Refine protect memory definition
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Evan Green <evgreen@chromium.org>, Tomasz Figa <tfiga@google.com>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, yingjoe.chen@mediatek.com,
-        youlin.pei@mediatek.com, Nicolas Boichat <drinkcat@chromium.org>,
-        anan.sun@mediatek.com, Matthias Kaehlcke <mka@chromium.org>
-References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com>
- <1560169080-27134-10-git-send-email-yong.wu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- jrHWeQEI2ucSKsNa8FllDmG/fQ==
-Message-ID: <d5bf7ef9-d6dd-2e09-5ad8-e72a26dd3880@gmail.com>
-Date:   Mon, 17 Jun 2019 11:59:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727782AbfFQKCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 06:02:14 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:3331 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726708AbfFQKCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 06:02:14 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d0765220002>; Mon, 17 Jun 2019 03:02:10 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 17 Jun 2019 03:02:10 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 17 Jun 2019 03:02:10 -0700
+Received: from [10.24.192.33] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 17 Jun
+ 2019 10:02:07 +0000
+Subject: Re: [PATCH V4 22/28] PCI: tegra: Access endpoint config only if PCIe
+ link is up
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     <bhelgaas@google.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
+        <vidyas@nvidia.com>, <linux-tegra@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-23-mmaddireddy@nvidia.com>
+ <20190604131436.GS16519@ulmo>
+ <09bcc121-eaca-3866-d0ef-7806503e883f@nvidia.com>
+ <ca34eb24-8696-576f-26bc-8d6141f81a41@nvidia.com>
+ <20190613143946.GA30445@e121166-lin.cambridge.arm.com>
+ <20190613154250.GA32713@ulmo>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <a523a19c-fdfa-01f7-6f6d-2ca367a10a50@nvidia.com>
+Date:   Mon, 17 Jun 2019 15:31:38 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <1560169080-27134-10-git-send-email-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190613154250.GA32713@ulmo>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560765730; bh=N+VAy2swHiKc3i3+6+QVz4R51don4+1RmrioRr9col0=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=UgFFOxROJjd3c/QJ5CRRrGU25PSiLqCr3lcdufuJEd7xrLofn/MTZC/Pe5jOTAWe8
+         eNp/CDXrJIFN/GdtgSlTsomuS9TbjQ2adUfh8LmfDtZksF+C+c07oJlMLEiHwBeGjI
+         sKI/JU0blAvjqLyEBEwfHpYBZmzqdjDy9gynT/8BksV6MMpln4Hqi9FvKOdnN226dc
+         z6iAOoXRqiVnsCIZOCF+NFg9Ih8Db8JLla5corcA+8UqVtzLlXLcRnWIZUOkeqT3X1
+         I36UahHZJQruVzYvMWfnooSm5hjTTkPZDBQ50EWOp7w7Vt/9yU43OZGQRW7Boq0TQ9
+         9Wyh8lkj4dYpw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -171,53 +69,260 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/06/2019 14:17, Yong Wu wrote:
-> The protect memory setting is a little different in the different SoCs.
-> In the register REG_MMU_CTRL_REG(0x110), the TF_PROT(translation fault
-> protect) shift bit is normally 4 while it shift 5 bits only in the
-> mt8173. This patch delete the complex MACRO and use a common if-else
-> instead.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> Reviewed-by: Evan Green <evgreen@chromium.org>
+On 13-Jun-19 9:12 PM, Thierry Reding wrote:
+> On Thu, Jun 13, 2019 at 03:39:46PM +0100, Lorenzo Pieralisi wrote:
+>> On Mon, Jun 10, 2019 at 10:08:16AM +0530, Manikanta Maddireddy wrote:
+>>>
+>>> On 04-Jun-19 7:40 PM, Manikanta Maddireddy wrote:
+>>>> On 04-Jun-19 6:44 PM, Thierry Reding wrote:
+>>>>> On Thu, May 16, 2019 at 11:23:01AM +0530, Manikanta Maddireddy wrote:
+>>>>>> Few endpoints like Wi-Fi supports power on/off and to leverage that
+>>>>>> root port must support hot-plug and hot-unplug. Tegra PCIe doesn't
+>>>>>> support hot-plug and hot-unplug, however it supports endpoint power
+>>>>>> on/off feature as follows,
+>>>>>>  - Power off sequence:
+>>>>>>    - Transition of PCIe link to L2
+>>>>>>    - Power off endpoint
+>>>>>>    - Leave root port in power up state with the link in L2
+>>>>>>  - Power on sequence:
+>>>>>>    - Power on endpoint
+>>>>>>    - Apply hot reset to get PCIe link up
+>>>>>>
+>>>>>> PCIe client driver stops accessing PCIe endpoint config and BAR regi=
+sters
+>>>>>> after endpoint is powered off. However, software applications like x=
+11
+>>>>>> server or lspci can access endpoint config registers in which case
+>>>>>> host controller raises "response decoding" errors. To avoid this sce=
+nario,
+>>>>>> add PCIe link up check in config read and write callback functions b=
+efore
+>>>>>> accessing endpoint config registers.
+>>>>>>
+>>>>>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>>>>>> ---
+>>>>>> V4: No change
+>>>>>>
+>>>>>> V3: Update the commit log with explanation for the need of this patc=
+h
+>>>>>>
+>>>>>> V2: Change tegra_pcie_link_status() to tegra_pcie_link_up()
+>>>>>>
+>>>>>>  drivers/pci/controller/pci-tegra.c | 38 +++++++++++++++++++++++++++=
++++
+>>>>>>  1 file changed, 38 insertions(+)
+>>>>> This still doesn't look right to me conceptually. If somebody wants t=
+o
+>>>>> access the PCI devices after the kernel has powered them off, why can=
+'t
+>>>>> we just power the devices back on so that we allow userspace to prope=
+rly
+>>>>> access the devices?
+>>>> 1. WiFi devices provides power-off feature for power saving in mobiles=
+.
+>>>> When WiFi is turned off we shouldn't power on the HW back without user
+>>>> turning it back on.
+>>>> 2. When ever user process tries to access config space, it'll end up
+>>>> in these functions. We cannot have is_powered_on check in config read/=
+write
+>>>> callbacks.
+>>>> 3. WiFi power on/off is device specific feature, we shouldn't handle i=
+t
+>>>> in PCI subsystem or host controller driver.
+>>>>
+>>>>> Or if that's not what we want, shouldn't we add something to the core
+>>>>> PCI infrastructure to let us deal with this? It seems like this is so=
+me
+>>>>> general problem that would apply to every PCI device and host bridge
+>>>>> driver. Having each driver implement this logic separately doesn't se=
+em
+>>>>> like a good idea to me.
+>>>>>
+>>>>> Thierry
+>>>> This should be handled by hotplug feature, whenever endpoint is powere=
+d-off/
+>>>> removed from the slot, hot unplug event should take care of it. Unfort=
+unately
+>>>> Tegra PCIe doesn't support hotplug feature.
+>>>>
+>>>> Manikanta
+>>> Hi Bjorn,
+>>>
+>>> I thought about your comment in
+>>> https://patchwork.ozlabs.org/patch/1084204/ again.  What if I add link
+>>> up check in tegra_pcie_isr() and make "response decoding error" as
+>>> debug print? EP Config access will happen when link is down, but
+>>> "Response decoding error" print comes only if debug log is enabled.
+>>> This way we can avoid race issue in config accessors and we get prints
+>>> when debug logs are enabled.
+>> I still do not see what you are actually solving. This patch should
+>> be dropped.
+> The problem that Manikanta is trying to solve here occurs in this
+> situation (Manikanta, correct me if I've got this wrong): on some
+> setups, a WiFi module connected over PCI will toggle a power GPIO as
+> part of runtime suspend. This effectively causes the module to disappear
+> from the PCI bus (i.e. it can no longer be accessed until the power GPIO
+> is toggled again).
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+GPIO is toggled as part of WiFi on/off, can be triggered from network manag=
+er UI.
 
-> ---
->  drivers/iommu/mtk_iommu.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index ad838b9..d38dfa2 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -52,12 +52,9 @@
->  #define REG_MMU_DCM_DIS				0x050
->  
->  #define REG_MMU_CTRL_REG			0x110
-> +#define F_MMU_TF_PROT_TO_PROGRAM_ADDR		(2 << 4)
->  #define F_MMU_PREFETCH_RT_REPLACE_MOD		BIT(4)
-> -#define F_MMU_TF_PROTECT_SEL_SHIFT(data) \
-> -	((data)->plat_data->m4u_plat == M4U_MT2712 ? 4 : 5)
-> -/* It's named by F_MMU_TF_PROT_SEL in mt2712. */
-> -#define F_MMU_TF_PROTECT_SEL(prot, data) \
-> -	(((prot) & 0x3) << F_MMU_TF_PROTECT_SEL_SHIFT(data))
-> +#define F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173	(2 << 5)
->  
->  #define REG_MMU_IVRP_PADDR			0x114
->  
-> @@ -519,9 +516,11 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
->  		return ret;
->  	}
->  
-> -	regval = F_MMU_TF_PROTECT_SEL(2, data);
->  	if (data->plat_data->m4u_plat == M4U_MT8173)
-> -		regval |= F_MMU_PREFETCH_RT_REPLACE_MOD;
-> +		regval = F_MMU_PREFETCH_RT_REPLACE_MOD |
-> +			 F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173;
-> +	else
-> +		regval = F_MMU_TF_PROT_TO_PROGRAM_ADDR;
->  	writel_relaxed(regval, data->base + REG_MMU_CTRL_REG);
->  
->  	regval = F_L2_MULIT_HIT_EN |
-> 
+>
+> This is fine from a kernel point of view because the kernel keeps track
+> of what devices are suspended. However, userspace will occasionally try
+> to read the configuration space access of all devices, and since it
+> doesn't have any knowledge about the suspend state of these devices, it
+> doesn't know which ones to leave alone. I think this happens when the
+> X.Org server is running.
+
+This is fine from a kernel point of view because PCI client driver
+doesn't initiate any PCIe transaction until network interface
+is up during WiFi on.
+
+>
+> One thing that Manikanta and I had discussed was that perhaps the device
+> should be hot-unplugged when it goes into this low-power state. However,
+> we don't support hotplug on Tegra210 where this is needed, so we'd need
+> some sort of software-induced hot-unplug. However, this low power state
+> is entered when the WiFi interface is taken down (i.e. ip link set dev
+> <interface> down). If we were to remove the PCI device in that case, it
+> means that the interface goes away completely, which is completely
+> unexpected from a user's perspective. After all, taking a link down and
+> up may be something that scripts are doing all the time. They'd fall
+> over if after taking the interface down, the interface completely
+> disappears.
+>
+> It's also not entirely clear to me how we get the device back onto the
+> bus again after it is in low power. If we hot-unplug the device, then
+> the driver will be unbound. Presumably the driver is what's controlling
+> the power GPIO, so there won't be any entity that can be used to bring
+> the chip back to life. Unless we deal with that power GPIO elsewhere
+> (rfkill switch perhaps?).
+
+Correct, rfkill switch should handle the GPIO.
+Sequence will be,
+ - WiFi ON
+   - rfkill switch enables the WiFi GPIO
+   - Tegra PCIe receives hot plug event
+   - Tegra PCIe hot plug driver rescans PCI bus and enumerates the device
+   - PCI client driver is probed, which will create network interface
+ - WiFi OFF
+   - rfkill switch disables the WiFi GPIO
+   - Tegra PCIe receives hot unplug event
+   - Tegra PCIe hot plug driver removes PCI devices under the bus
+   - PCI client driver remove is executed, which will remove network interf=
+ace
+
+We don't need current patch in this case because PCI device is not present
+in the PCI hierarchy, so there cannot be EP config access with link down.
+However Tegra doesn't support hot plug and unplug events. I am not sure
+if we have any software based hot plug event trigger.
+
+I will drop current patch and pursue if above sequence can be
+implemented for Tegra.
+
+Manikanta
+
+>
+> Perhaps one other way to deal with this would be to track the suspend
+> state of devices and then have the code that implements the PCI access
+> from userspace refuse accesses to devices that are asleep. I suppose
+> this is somewhat of an odd use-case because traditionally I guess PCI
+> devices never power down to a state where their configuration space can
+> no longer be accessed. At least that's what would explain why this has
+> never been an issue before. Or perhaps it has?
+>
+> The last resort would be to just never put the WiFi chip into that low
+> power mode, though I'm not exactly sure what that means for the power
+> consumption on the affected systems.
+>
+> Manikanta, can you fill in some of the blanks above?
+>
+> Thierry
+>>> Thierry,
+>>> Please share your inputs as well.
+>>>
+>>> Manikanta
+>>> =C2=A0
+>>>
+>>>>>> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/contro=
+ller/pci-tegra.c
+>>>>>> index d20c88a79e00..33f4dfab9e35 100644
+>>>>>> --- a/drivers/pci/controller/pci-tegra.c
+>>>>>> +++ b/drivers/pci/controller/pci-tegra.c
+>>>>>> @@ -428,6 +428,14 @@ static inline u32 pads_readl(struct tegra_pcie =
+*pcie, unsigned long offset)
+>>>>>>  	return readl(pcie->pads + offset);
+>>>>>>  }
+>>>>>> =20
+>>>>>> +static bool tegra_pcie_link_up(struct tegra_pcie_port *port)
+>>>>>> +{
+>>>>>> +	u32 value;
+>>>>>> +
+>>>>>> +	value =3D readl(port->base + RP_LINK_CONTROL_STATUS);
+>>>>>> +	return !!(value & RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE);
+>>>>>> +}
+>>>>>> +
+>>>>>>  /*
+>>>>>>   * The configuration space mapping on Tegra is somewhat similar to =
+the ECAM
+>>>>>>   * defined by PCIe. However it deviates a bit in how the 4 bits for=
+ extended
+>>>>>> @@ -493,20 +501,50 @@ static void __iomem *tegra_pcie_map_bus(struct=
+ pci_bus *bus,
+>>>>>>  static int tegra_pcie_config_read(struct pci_bus *bus, unsigned int=
+ devfn,
+>>>>>>  				  int where, int size, u32 *value)
+>>>>>>  {
+>>>>>> +	struct tegra_pcie *pcie =3D bus->sysdata;
+>>>>>> +	struct pci_dev *bridge;
+>>>>>> +	struct tegra_pcie_port *port;
+>>>>>> +
+>>>>>>  	if (bus->number =3D=3D 0)
+>>>>>>  		return pci_generic_config_read32(bus, devfn, where, size,
+>>>>>>  						 value);
+>>>>>> =20
+>>>>>> +	bridge =3D pcie_find_root_port(bus->self);
+>>>>>> +
+>>>>>> +	list_for_each_entry(port, &pcie->ports, list)
+>>>>>> +		if (port->index + 1 =3D=3D PCI_SLOT(bridge->devfn))
+>>>>>> +			break;
+>>>>>> +
+>>>>>> +	/* If there is no link, then there is no device */
+>>>>>> +	if (!tegra_pcie_link_up(port)) {
+>>>>>> +		*value =3D 0xffffffff;
+>>>>>> +		return PCIBIOS_DEVICE_NOT_FOUND;
+>>>>>> +	}
+>>>>>> +
+>>>>>>  	return pci_generic_config_read(bus, devfn, where, size, value);
+>>>>>>  }
+>>>>>> =20
+>>>>>>  static int tegra_pcie_config_write(struct pci_bus *bus, unsigned in=
+t devfn,
+>>>>>>  				   int where, int size, u32 value)
+>>>>>>  {
+>>>>>> +	struct tegra_pcie *pcie =3D bus->sysdata;
+>>>>>> +	struct tegra_pcie_port *port;
+>>>>>> +	struct pci_dev *bridge;
+>>>>>> +
+>>>>>>  	if (bus->number =3D=3D 0)
+>>>>>>  		return pci_generic_config_write32(bus, devfn, where, size,
+>>>>>>  						  value);
+>>>>>> =20
+>>>>>> +	bridge =3D pcie_find_root_port(bus->self);
+>>>>>> +
+>>>>>> +	list_for_each_entry(port, &pcie->ports, list)
+>>>>>> +		if (port->index + 1 =3D=3D PCI_SLOT(bridge->devfn))
+>>>>>> +			break;
+>>>>>> +
+>>>>>> +	/* If there is no link, then there is no device */
+>>>>>> +	if (!tegra_pcie_link_up(port))
+>>>>>> +		return PCIBIOS_DEVICE_NOT_FOUND;
+>>>>>> +
+>>>>>>  	return pci_generic_config_write(bus, devfn, where, size, value);
+>>>>>>  }
+>>>>>> =20
+>>>>>> --=20
+>>>>>> 2.17.1
+>>>>>>
+
