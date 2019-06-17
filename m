@@ -2,144 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5296747E68
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 11:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3197447E6D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 11:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728085AbfFQJ3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 05:29:06 -0400
-Received: from foss.arm.com ([217.140.110.172]:42972 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728036AbfFQJ3G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 05:29:06 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EA6A1344;
-        Mon, 17 Jun 2019 02:29:05 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E76ED3F246;
-        Mon, 17 Jun 2019 02:29:03 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 10:29:01 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv5 19/20] PCI: mobiveil: Add 8-bit and 16-bit register
- accessors
-Message-ID: <20190617092901.GB18020@e121166-lin.cambridge.arm.com>
-References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
- <20190412083635.33626-20-Zhiqiang.Hou@nxp.com>
- <20190612135400.GB15747@redmoon>
- <AM0PR04MB673802CE0891BC898B61EBA384E90@AM0PR04MB6738.eurprd04.prod.outlook.com>
+        id S1727545AbfFQJaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 05:30:30 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:37536 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfFQJa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 05:30:29 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id A000825B7A8;
+        Mon, 17 Jun 2019 19:30:27 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id A3D6F94024A; Mon, 17 Jun 2019 11:30:25 +0200 (CEST)
+Date:   Mon, 17 Jun 2019 11:30:25 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: can: rcar_canfd: document r8a774a1
+ support
+Message-ID: <20190617093023.nhvrvujg52gcglko@verge.net.au>
+References: <1560513214-28031-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1560513214-28031-2-git-send-email-fabrizio.castro@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM0PR04MB673802CE0891BC898B61EBA384E90@AM0PR04MB6738.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1560513214-28031-2-git-send-email-fabrizio.castro@bp.renesas.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 15, 2019 at 01:13:48AM +0000, Z.q. Hou wrote:
-> Hi Lorenzo,
+On Fri, Jun 14, 2019 at 12:53:29PM +0100, Fabrizio Castro wrote:
+> Document the support for rcar_canfd on R8A774A1 SoC devices.
 > 
-> > -----Original Message-----
-> > From: Lorenzo Pieralisi [mailto:lorenzo.pieralisi@arm.com]
-> > Sent: 2019年6月12日 21:54
-> > To: Z.q. Hou <zhiqiang.hou@nxp.com>
-> > Cc: linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
-> > l.subrahmanya@mobiveil.co.in; shawnguo@kernel.org; Leo Li
-> > <leoyang.li@nxp.com>; catalin.marinas@arm.com; will.deacon@arm.com;
-> > Mingkai Hu <mingkai.hu@nxp.com>; M.h. Lian <minghuan.lian@nxp.com>;
-> > Xiaowei Bao <xiaowei.bao@nxp.com>
-> > Subject: Re: [PATCHv5 19/20] PCI: mobiveil: Add 8-bit and 16-bit register
-> > accessors
-> > 
-> > On Fri, Apr 12, 2019 at 08:37:05AM +0000, Z.q. Hou wrote:
-> > > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > >
-> > > There are some 8-bit and 16-bit registers in PCIe configuration space,
-> > > so add accessors for them.
-> > >
-> > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > > Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
-> > > Reviewed-by: Subrahmanya Lingappa <l.subrahmanya@mobiveil.co.in>
-> > > ---
-> > > V5:
-> > >  - Corrected and retouched the subject and changelog.
-> > >  - No functionality change.
-> > >
-> > >  drivers/pci/controller/pcie-mobiveil.c | 20 ++++++++++++++++++++
-> > >  1 file changed, 20 insertions(+)
-> > >
-> > > diff --git a/drivers/pci/controller/pcie-mobiveil.c
-> > > b/drivers/pci/controller/pcie-mobiveil.c
-> > > index 411e9779da12..456adfee393c 100644
-> > > --- a/drivers/pci/controller/pcie-mobiveil.c
-> > > +++ b/drivers/pci/controller/pcie-mobiveil.c
-> > > @@ -268,11 +268,31 @@ static u32 csr_readl(struct mobiveil_pcie *pcie,
-> > u32 off)
-> > >  	return csr_read(pcie, off, 0x4);
-> > >  }
-> > >
-> > > +static u32 csr_readw(struct mobiveil_pcie *pcie, u32 off) {
-> > > +	return csr_read(pcie, off, 0x2);
-> > > +}
-> > > +
-> > > +static u32 csr_readb(struct mobiveil_pcie *pcie, u32 off) {
-> > > +	return csr_read(pcie, off, 0x1);
-> > > +}
-> > > +
-> > >  static void csr_writel(struct mobiveil_pcie *pcie, u32 val, u32 off)
-> > > {
-> > >  	csr_write(pcie, val, off, 0x4);
-> > >  }
-> > >
-> > > +static void csr_writew(struct mobiveil_pcie *pcie, u32 val, u32 off)
-> > > +{
-> > > +	csr_write(pcie, val, off, 0x2);
-> > > +}
-> > > +
-> > > +static void csr_writeb(struct mobiveil_pcie *pcie, u32 val, u32 off)
-> > > +{
-> > > +	csr_write(pcie, val, off, 0x1);
-> > > +}
-> > > +
-> > 
-> > They are not used so you should drop this patch.
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+> ---
+> Hello Simon,
 > 
-> NXP Layerscape PCIe Gen4 controller driver will use them, so don't
-> drop it.
+> I think it would make more sense if this patch went through you as it
+> sits on series:
+> https://lkml.org/lkml/2019/5/9/941
+> 
+> Do you think that's doable?
 
-You add functions when they are needed, so drop this patch and
-squash it to the patch that use these functions.
+That seems reasonable to me.
 
-Lorenzo
+Dave are you happy with me taking this, and 2/6, through
+the renesas tree?
 
+> 
 > Thanks,
-> Zhiqiang
+> Fab
 > 
-> > 
-> > Lorenzo
-> > 
-> > >  static bool mobiveil_pcie_link_up(struct mobiveil_pcie *pcie)  {
-> > >  	return (csr_readl(pcie, LTSSM_STATUS) &
-> > > --
-> > > 2.17.1
-> > >
+>  Documentation/devicetree/bindings/net/can/rcar_canfd.txt | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/rcar_canfd.txt b/Documentation/devicetree/bindings/net/can/rcar_canfd.txt
+> index 32f051f..00afaff 100644
+> --- a/Documentation/devicetree/bindings/net/can/rcar_canfd.txt
+> +++ b/Documentation/devicetree/bindings/net/can/rcar_canfd.txt
+> @@ -4,6 +4,7 @@ Renesas R-Car CAN FD controller Device Tree Bindings
+>  Required properties:
+>  - compatible: Must contain one or more of the following:
+>    - "renesas,rcar-gen3-canfd" for R-Car Gen3 and RZ/G2 compatible controllers.
+> +  - "renesas,r8a774a1-canfd" for R8A774A1 (RZ/G2M) compatible controller.
+>    - "renesas,r8a774c0-canfd" for R8A774C0 (RZ/G2E) compatible controller.
+>    - "renesas,r8a7795-canfd" for R8A7795 (R-Car H3) compatible controller.
+>    - "renesas,r8a7796-canfd" for R8A7796 (R-Car M3-W) compatible controller.
+> @@ -32,10 +33,10 @@ enable/disable the respective channel.
+>  Required properties for "renesas,r8a774c0-canfd", "renesas,r8a7795-canfd",
+>  "renesas,r8a7796-canfd", "renesas,r8a77965-canfd", and "renesas,r8a77990-canfd"
+>  compatible:
+> -In R8A774C0, R8A7795, R8A7796, R8A77965, and R8A77990 SoCs, canfd clock is a
+> -div6 clock and can be used by both CAN and CAN FD controller at the same time.
+> -It needs to be scaled to maximum frequency if any of these controllers use it.
+> -This is done using the below properties:
+> +In R8A774A1, R8A774C0, R8A7795, R8A7796, R8A77965, and R8A77990 SoCs, canfd
+> +clock is a div6 clock and can be used by both CAN and CAN FD controller at the
+> +same time. It needs to be scaled to maximum frequency if any of these
+> +controllers use it. This is done using the below properties:
+>  
+>  - assigned-clocks: phandle of canfd clock.
+>  - assigned-clock-rates: maximum frequency of this clock.
+> -- 
+> 2.7.4
+> 
