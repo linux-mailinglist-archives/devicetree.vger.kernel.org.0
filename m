@@ -2,86 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CECD47F3C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3E7147F49
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 12:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728028AbfFQKGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 06:06:13 -0400
-Received: from sauhun.de ([88.99.104.3]:55484 "EHLO pokefinder.org"
+        id S1728196AbfFQKHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 06:07:33 -0400
+Received: from foss.arm.com ([217.140.110.172]:44122 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727989AbfFQKGN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 06:06:13 -0400
-Received: from localhost (p5486CE69.dip0.t-ipconnect.de [84.134.206.105])
-        by pokefinder.org (Postfix) with ESMTPSA id 8A67A2C35BF;
-        Mon, 17 Jun 2019 12:06:11 +0200 (CEST)
-Date:   Mon, 17 Jun 2019 12:06:11 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, atull@kernel.org, andrew@lunn.ch,
-        daniel@ffwll.ch, airlied@linux.ie, davem@davemloft.net,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        f.fainelli@gmail.com, frowand.list@gmail.com, hkallweit1@gmail.com,
-        jslaby@suse.com, jonathanh@nvidia.com, lee.jones@linaro.org,
-        lgirdwood@gmail.com, linux-fpga@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, broonie@kernel.org,
-        mathieu.poirier@linaro.org, maxime.ripard@bootlin.com,
-        mdf@kernel.org, peda@axentia.se, robh+dt@kernel.org,
-        srinivas.kandagatla@linaro.org, thierry.reding@gmail.com,
-        thor.thayer@linux.intel.com, ulf.hansson@linaro.org,
-        joe@perches.com
-Subject: Re: [PATCH v2 06/28] drivers: Add generic helper to match by of_node
-Message-ID: <20190617100611.GB3502@kunai>
+        id S1727678AbfFQKHc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 06:07:32 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B7DD344;
+        Mon, 17 Jun 2019 03:07:32 -0700 (PDT)
+Received: from [10.1.196.93] (en101.cambridge.arm.com [10.1.196.93])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 10E9C3F246;
+        Mon, 17 Jun 2019 03:09:16 -0700 (PDT)
+Subject: Re: [PATCH v2 00/28] drivers: Consolidate device lookup helpers
+To:     joe@perches.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org, rafael@kernel.org
 References: <1560534863-15115-1-git-send-email-suzuki.poulose@arm.com>
- <1560534863-15115-7-git-send-email-suzuki.poulose@arm.com>
- <20190614203144.GB7991@kunai>
- <d050ae69-52ee-b32d-2bc0-708b408f3bd4@arm.com>
+ <3aa6d42db4b64c625b8461ee7d442f3f1830e8c3.camel@perches.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <c6813d08-b70b-f153-a651-94d1bcaa5522@arm.com>
+Date:   Mon, 17 Jun 2019 11:07:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7ZAtKRhVyVSsbBD2"
-Content-Disposition: inline
-In-Reply-To: <d050ae69-52ee-b32d-2bc0-708b408f3bd4@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <3aa6d42db4b64c625b8461ee7d442f3f1830e8c3.camel@perches.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Cc: Greg, Rafael
 
---7ZAtKRhVyVSsbBD2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Joe,
 
+On 14/06/2019 19:24, Joe Perches wrote:
+> (dropping the very long cc list just cc'ing LKML and devicetree)
+> 
+> On Fri, 2019-06-14 at 18:53 +0100, Suzuki K Poulose wrote:
+>> We have device iterators to find a particular device matching a criteria
+>> for a given bus/class/driver. i.e, {bus,class,driver}_find_device() APIs.
+>> The matching criteria is a function pointer for the APIs. Often the lookup
+>> is based on a generic property of a device (e.g, name, fwnode, of node pointer
+>> or device type) rather than a driver specific information. However, each driver
+>> writes up its own "match" function, spilling the similar match functions all
+>> over the driver subsystems.
+>>
+>> Additionally the prototype for the "match" functions accepted by the above APIs
+>> have a minute difference which prevents us otherwise sharing the match functions.
+>> i.e,
+>> 	int (*match)(struct device *dev, void *data) for {bus/driver}_find_device()
+>> 	  vs
+>> 	int (*match)(struct device *dev, const void *) for class_find_device()
+>>
+> 
+> As you are doing treewide conversions, perhaps using
+> 
+> 	bool (*match)(...)
+> 
+> is a more sensible api.
 
-> > Is it an option to 'static inline' this simple function in the header,
-> > saving the EXPORT?
-> >=20
->=20
-> No.
+I agree that it is more suitable api. However, that would need much more
+conversions for the existing "class_find_device()" , which are not touched by
+the series and would make this series even more bigger. With that said, I
+am fine with implementing the suggestion if Greg/Rafael thinks that is fine.
 
-OK, thanks for the explanation!
+>> Changes since v1:
+>>   - Drop start parameter for *_find_device_by_devt().
+>>   - Fix build warnings for s390
+>>   - Add *_find_device_by_acpi_dev() wrappers.
+>>   - Group wrappers and the consumers into single patch, reducing
+>>     the total patches to 28 from 57. (Rafael).
+>>   - Better description for acpi cleanup patch.
+>>   - Added tags from v1.
+> 
+> Below this is a _very_ long list of cc:'s.
 
+Unfortunately, yes.
 
---7ZAtKRhVyVSsbBD2
-Content-Type: application/pgp-signature; name="signature.asc"
+> If the list is generated using scripts/get_maintainer.pl
+> perhaps it is more sensible to add --nogit --nogit-fallback
 
------BEGIN PGP SIGNATURE-----
+Yes, and trimmed manually a bit to remove the "commit-signers".
+I have tried to keep only the maintainers/reviewers/supporters.
+Thanks for the option, I will give that a try.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0HZhMACgkQFA3kzBSg
-Kbbl3A/+LFTwA3gh8PCif9bJi4Ywry/gCg7cCVuGAw1ZhH5h29SAhoONggyXvO8N
-XvGR09Q0NYX1CpAogNTRqTtpOKSudrSozBdFRxKlNCuACTghf1AdboPKq+pM2Zos
-+Q75BJMykwO00W+5ghmbztldccufXFjjwXzDwdBq5zNjtVf3yne4h1wWAubXItsQ
-LMaf+2X6WrAPfIPVvBbtV33cG/1f8l7GemdTJj02Z+5+u1NH4L1e00WP+rxqj0Q7
-nYMFIFYfjfqHBkhAltu6bx/gqqORuDfQ6DQ/vl/qyXVHY6WcYIzUde/NpnVSjAX/
-e6d3JrHaEHw7qBEH+39w54dQr4fRii9mUOF9keTO7OSfQnAAva1QQyERtAhPj7EA
-I2X/qEU6ncbQJK91mxlelKLbD+WuJUcqahDM0tQ07nQ2lz6zwVpBQzn3VNZiXxh1
-KAJFCCaWJRGp0P1JZMwnVbmMSeFoPWJx5fXweNoQXdgz/4yy2VpTh7AdvWFCOl9+
-u5N+YWIn6gygP5kUJuDevsLDTzyodTVxi3zvYaaFM+2eIF2nT8a0AI2HPzmR3G1R
-xlNjF3xnwWLlW/0g11vgj9PPAnKgNazMZflNXIbPSRZjHZzh6+C/GYnxlDXf5N3V
-tFjRbBS861rgNrq+zJv9HqLqlF7opQ3x7jAh8LwHdpF/Z95yDW0=
-=hDM+
------END PGP SIGNATURE-----
+> to its arguments to cc actual maintainers and avoid people
+> that have submitted cleanup style patches to various files.
+> 
 
---7ZAtKRhVyVSsbBD2--
+Cheers
+Suzuki
