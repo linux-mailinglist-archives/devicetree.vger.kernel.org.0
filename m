@@ -2,93 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E44C0491DD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 23:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B0C49463
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 23:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727419AbfFQVAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 17:00:43 -0400
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:51323 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727145AbfFQVAn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 17:00:43 -0400
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A3317886BF;
-        Tue, 18 Jun 2019 09:00:41 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1560805241;
-        bh=GTADMuzdK/ZS3g8VOZ9XtxpUP/TjXPNtpzO+owLF9lQ=;
-        h=From:To:CC:Subject:Date:References;
-        b=AoT2VV+BGgHwvP21C9mhXWKBNIbQBsSXM4ydqI8gyQCpqxkmnhCjnAz4pBa51NqN3
-         wtlT06hKqcbWp6OB0rUuxzRpwmhWh0bPkU0TekxSeuW7EguafGtkrte1rmv7Rmq7ob
-         qldqNwTpwLZhHTCNzRC0SRLw9rNDYiCmts9bJ+il+BnRfMr8BkAwMcgamggj6mFXwt
-         5wdOFZL58X5Zv+mmMm0/x3zaXiIPraiXdBv7sRGgDLYFk1PEyr2Vik30iGqjkZqQoA
-         8T0bjITcmOA2Y2frdhW/PTuJD9EonKYzdd0PItWNHaiHpecYYZTYh6rCjcgEyZnmBQ
-         MzcL6LG61HF3w==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B5d07ff7a0000>; Tue, 18 Jun 2019 09:00:42 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1156.6; Tue, 18 Jun 2019 09:00:41 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1156.000; Tue, 18 Jun 2019 09:00:41 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "jason@lakedaemon.net" <jason@lakedaemon.net>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: clock: mvebu: Add compatible string for
- 98dx1135 core clock
-Thread-Topic: [PATCH 2/4] dt-bindings: clock: mvebu: Add compatible string for
- 98dx1135 core clock
-Thread-Index: AQHVJPQWO1K5IrBk6023sLSGAZWOmQ==
-Date:   Mon, 17 Jun 2019 21:00:41 +0000
-Message-ID: <52f0fe4f276e4088ac7ad47bc761722e@svr-chch-ex1.atlnz.lc>
-References: <20190617100432.13037-1-chris.packham@alliedtelesis.co.nz>
- <20190617100432.13037-3-chris.packham@alliedtelesis.co.nz>
- <20190617170931.GG17551@lunn.ch>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [2001:df5:b000:22:3a2c:4aff:fe70:2b02]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1728464AbfFQViE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 17:38:04 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:35281 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728547AbfFQVTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 17:19:00 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j19so11248468otq.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 14:18:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Lx3ZMGHHpL+zr0i6JCDXuAYbsW7y/9/U7aquyGvQmdw=;
+        b=oi3DqvlifzsIlUwRqtSh/XOR4epmR17QT/xTfqWF6CFI1QSHOuPEi9PRIGjxAqQMeW
+         PvrSDET6xZ/4y2Ktkzxnn9ohvraXas1BQNawYXjGWZdiDSE7pS47zVBIMkvuw62lkGih
+         vesOix3gdPkfxMNeXsHpw8YsB47clVXOXJfsrAo1nFWXbzIzG0/H2sc2moRU9EaZOtie
+         tp64TxNKwKMG7XlBeQvAgkrUSHP3i/aB/SNNQfOU1sFCsgL+0OWCKS4CsSVmYLPcN1wy
+         KFRHfMssPCam5ZONYyZTeBpO8CnjUVaD6qKR7DWId5YbvhTVfUHoY7s9teKqbua/++0r
+         rAzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Lx3ZMGHHpL+zr0i6JCDXuAYbsW7y/9/U7aquyGvQmdw=;
+        b=eOTPibZOKypJMjvL5x48XcJdQ+Y4SpMheEW9Ct5XX3Jpapf1dl+GEHjpQ0u7xVz4K6
+         XsMnIW16f2QLTa2ESdKA0ZNwy+uu9FzY2LyZRPx75qNBQzkgfwTUQ9bYliSiusiqASCI
+         nhzrXn/XKgz0vtdtmLcmqshEt4t470n4ovpGM9vZbvpw12EI3p797Vtj6rq33Spmfs53
+         VjLeGHW34BNSFlwRKvAeiHgJ5CufRlMpc8qewY2XeFbCB0UoADLvAENWqK0fPSxkBjhT
+         f99hVGuCEvTc4GBZkgYmzZW1qlU8/fcc+hHoSEXIgn6azooE25P/AH0zjTnM+gUPtCQC
+         HUkA==
+X-Gm-Message-State: APjAAAUuyEqjzx8ef2PcOOBXtt6jKHuBHj3+OF5D8z95ge4B7LSmARqo
+        BxPwbr9tW9zHlJDnrF+W6qVJTjVKvJVdnBSiPiAohQ==
+X-Google-Smtp-Source: APXvYqx+n7PVXUHXlfGbnhTJpJHw8ZcgJkSRIzcYPpqw0RtkzqWTWL+uTvnbD6uj4WKEkEx8P9eyU9HdkLCl39r63F8=
+X-Received: by 2002:a9d:6201:: with SMTP id g1mr2577934otj.195.1560806339322;
+ Mon, 17 Jun 2019 14:18:59 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190614041733.120807-1-saravanak@google.com> <20190614041733.120807-12-saravanak@google.com>
+ <5dc6c820-ead8-d0dc-44de-4d13f86df042@linaro.org>
+In-Reply-To: <5dc6c820-ead8-d0dc-44de-4d13f86df042@linaro.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 17 Jun 2019 14:18:23 -0700
+Message-ID: <CAGETcx-xU9i1FJB5JecUoyZEfWpD8f+o9bC3SQmb-=3fLVbmQw@mail.gmail.com>
+Subject: Re: [PATCH v2 11/11] interconnect: Add devfreq support
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        amit.kucheria@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, evgreen@chromium.org,
+        sibis@codeaurora.org,
+        Android Kernel Team <kernel-team@android.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,=0A=
-=0A=
-On 18/06/19 5:09 AM, Andrew Lunn wrote:=0A=
-> On Mon, Jun 17, 2019 at 10:04:30PM +1200, Chris Packham wrote:=0A=
->> Add compatible string for the core clock on the 98dx1135 switch with=0A=
->> integrated CPU.=0A=
-> =0A=
-> Hi Chris=0A=
-> =0A=
-> Should there be a list of provider IDs and clock names?=0A=
-> =0A=
-=0A=
-That list would be the same as the Kirkwood/Dove. I thought about adding =
-=0A=
-it but decided not to to avoid unnecessary duplication. One compromise =0A=
-would be to change "for 98dx1135 SoC core clocks" to "for Kirkwood =0A=
-98dx1135 SoC" which would fit with the MV88f6180 line above and make it =0A=
-clear that it falls into the kirkwood bucket.=0A=
+On Mon, Jun 17, 2019 at 8:44 AM Georgi Djakov <georgi.djakov@linaro.org> wrote:
+>
+> Hi Saravana,
+>
+> On 6/14/19 07:17, Saravana Kannan wrote:
+> > Add a icc_create_devfreq() and icc_remove_devfreq() to create and remove
+> > devfreq devices for interconnect paths. A driver can create/remove devfreq
+> > devices for the interconnects needed for its device by calling these APIs.
+> > This would allow various devfreq governors to work with interconnect paths
+> > and the device driver itself doesn't have to actively manage the bandwidth
+> > votes for the interconnects.
+>
+> Thanks for the patches, but creating devfreq devices for each interconnect path
+> seems odd to me - at least for consumers that already use a governor.
+
+Each governor instance always handles one "frequency" (more like
+performance) domain at a time. So if a consumer is already using a
+governor to scale the hardware block, then using another governor to
+scale the interconnect performance points is the right way to go about
+it. In fact, that's exactly what devfreq passive governor's
+documentation even says it's meant for. That's also what cpufreq does
+for each cluster/CPU frequency domain too.
+
+> So for DDR
+> scaling for example, are you suggesting that we add a devfreq device from the
+> cpufreq driver in order to scale the interconnect between CPU<->DDR?
+
+Yes in general. Although, CPUs are a special case because CPUs don't
+go through devfreq. So passive governor as it stands today won't work.
+CPU<->DDR scaling might need a separate governor (unlikely) or some
+changes to the passive governor that I'm happy to work on once we
+settle this for general devices like GPU, etc. But the DT format for
+CPUs will be identical to GPUs or any other device.
+
+> Also if the
+> GPU is already using devfreq, should we add a devfreq per each interconnect
+> path? What would be the benefit in this case - using different governors for
+> bandwidth scaling maybe?
+
+When saying "separate/different governors" in this email, I mean both
+different instance of the same governor logic with different tunables
+AND actually different algorithms/governor logic entirely.
+
+The heuristics to use for each interconnect path might be (more like,
+will be) different based on hardware characteristics (Eg: what voltage
+domains the interconnect is sitting on) and what interconnect
+information is available (Eg: Just busy time vs bandwidth count vs no
+information etc) -- so having separate governors for each interconnect
+path makes a lot of sense. It also allows userspace to control the
+policy for scaling each of those paths based on product use cases.
+
+For example, when the GPU is just doing simple UI rendering, userspace
+can use the max_freq sysfs file for the devfreq device to disallow high
+bandwidth OPPs on the GPU<->DDR path, but those higher OPPs could be
+allowed by userspace when the GPU is used for games. Having devfreq
+device for each interconnect path also make it easy to debug
+performance issues -- you can independently change the votes for each
+path to figure out what is causing the bottleneck, etc.
+
+Adding a devfreq device for interconnect voting with a few lines gives
+all these features "for free".
+
+This doesn't mean all users of interconnect framework NEED to use
+devfreq for interconnect. They might do it simply based on
+calculations based on the use case (Eg: display driver from display
+resolution). But if they are trying to use any kind of
+algorithm/heuristics, writing it as a devfreq governor should be
+encouraged.
+
+Also want to point out that BW OPPs also work for drivers that don't
+use devfreq at all. The interconnect-opp-table just lists the
+meaningful OPP leveld for the path and the device driver can pick one
+entry from the table based on the use case.
+
+Thanks,
+Saravana
