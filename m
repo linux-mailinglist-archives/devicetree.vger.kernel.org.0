@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C524C477D6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 04:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E5D47867
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 05:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727328AbfFQCBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jun 2019 22:01:53 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:18921 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727322AbfFQCBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 22:01:53 -0400
-X-UUID: 4de6393a8e0f4e1e8ad7e81b66a42026-20190617
-X-UUID: 4de6393a8e0f4e1e8ad7e81b66a42026-20190617
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        id S1727551AbfFQDGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jun 2019 23:06:14 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:8652 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727383AbfFQDGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 23:06:14 -0400
+X-UUID: 0b2b5341301845fbaedf068b07628bff-20190617
+X-UUID: 0b2b5341301845fbaedf068b07628bff-20190617
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1834233125; Mon, 17 Jun 2019 10:01:31 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+        with ESMTP id 924756873; Mon, 17 Jun 2019 11:06:05 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
  MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 17 Jun 2019 10:01:29 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ 15.0.1395.4; Mon, 17 Jun 2019 11:06:03 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 17 Jun 2019 10:01:29 +0800
-Message-ID: <1560736889.25168.0.camel@mtksdaap41>
-Subject: Re: [PATCH v3, 19/27] drm/mediatek: add function to background
- color input select for ovl/ovl_2l direct link
+ Transport; Mon, 17 Jun 2019 11:06:03 +0800
+Message-ID: <1560740762.25168.3.camel@mtksdaap41>
+Subject: Re: [PATCH v3, 26/27] drm/mediatek: add clock property check before
+ get it
 From:   CK Hu <ck.hu@mediatek.com>
 To:     <yongqiang.niu@mediatek.com>
 CC:     Philipp Zabel <p.zabel@pengutronix.de>,
@@ -37,10 +37,10 @@ CC:     Philipp Zabel <p.zabel@pengutronix.de>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>
-Date:   Mon, 17 Jun 2019 10:01:29 +0800
-In-Reply-To: <1559734986-7379-20-git-send-email-yongqiang.niu@mediatek.com>
+Date:   Mon, 17 Jun 2019 11:06:02 +0800
+In-Reply-To: <1559734986-7379-27-git-send-email-yongqiang.niu@mediatek.com>
 References: <1559734986-7379-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1559734986-7379-20-git-send-email-yongqiang.niu@mediatek.com>
+         <1559734986-7379-27-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
@@ -53,58 +53,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi, Yongqiang:
 
-On Wed, 2019-06-05 at 19:42 +0800, yongqiang.niu@mediatek.com wrote:
+On Wed, 2019-06-05 at 19:43 +0800, yongqiang.niu@mediatek.com wrote:
 > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> This patch add function to background color input select for ovl/ovl_2l direct link
-> for ovl/ovl_2l direct link usecase, we need set background color
-> input select for these hardware.
-> this is preparation patch for ovl/ovl_2l usecase
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> index 158c1e5..aa1e183 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> @@ -92,6 +92,9 @@ struct mtk_ddp_comp_funcs {
->  			     struct mtk_plane_state *state);
->  	void (*gamma_set)(struct mtk_ddp_comp *comp,
->  			  struct drm_crtc_state *state);
-> +	void (*bgclr_in_on)(struct mtk_ddp_comp *comp,
-> +			    enum mtk_ddp_comp_id prev);
+> This patch add clock property check before get it
 
-prev is useless, so remove it.
+In the binding document [1], clock is required property. In this patch,
+you change it to optional property. I think you should change the
+binding document and describe _WHY_ do you do this.
+
+[1]
+https://www.kernel.org/doc/Documentation/devicetree/bindings/display/mediatek/mediatek%2Cdisp.txt
 
 Regards,
 CK
 
-> +	void (*bgclr_in_off)(struct mtk_ddp_comp *comp);
->  };
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> index 9986c61..28274d2 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> @@ -689,10 +689,12 @@ static int mtk_ddp_probe(struct platform_device *pdev)
+>  	for (i = 0; i < 10; i++)
+>  		ddp->mutex[i].id = i;
 >  
->  struct mtk_ddp_comp {
-> @@ -173,6 +176,19 @@ static inline void mtk_ddp_gamma_set(struct mtk_ddp_comp *comp,
->  		comp->funcs->gamma_set(comp, state);
->  }
+> -	ddp->clk = devm_clk_get(dev, NULL);
+> -	if (IS_ERR(ddp->clk)) {
+> -		dev_err(dev, "Failed to get clock\n");
+> -		return PTR_ERR(ddp->clk);
+> +	if (of_find_property(dev->of_node, "clocks", &i)) {
+> +		ddp->clk = devm_clk_get(dev, NULL);
+> +		if (IS_ERR(ddp->clk)) {
+> +			dev_err(dev, "Failed to get clock\n");
+> +			return PTR_ERR(ddp->clk);
+> +		}
+>  	}
 >  
-> +static inline void mtk_ddp_comp_bgclr_in_on(struct mtk_ddp_comp *comp,
-> +					    enum mtk_ddp_comp_id prev)
-> +{
-> +	if (comp->funcs && comp->funcs->bgclr_in_on)
-> +		comp->funcs->bgclr_in_on(comp, prev);
-> +}
-> +
-> +static inline void mtk_ddp_comp_bgclr_in_off(struct mtk_ddp_comp *comp)
-> +{
-> +	if (comp->funcs && comp->funcs->bgclr_in_off)
-> +		comp->funcs->bgclr_in_off(comp);
-> +}
-> +
->  int mtk_ddp_comp_get_id(struct device_node *node,
->  			enum mtk_ddp_comp_type comp_type);
->  int mtk_ddp_comp_init(struct device *dev, struct device_node *comp_node,
+>  	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
 
