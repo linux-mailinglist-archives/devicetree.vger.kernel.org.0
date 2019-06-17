@@ -2,85 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8FDA494BC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 00:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07002494FE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 00:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727102AbfFQWGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 18:06:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726776AbfFQWGp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 18:06:45 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D01E72063F;
-        Mon, 17 Jun 2019 22:06:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560809204;
-        bh=1JsNZwhNkO0kTZcSPtRFxPGFWoSJ54GPBuKfdAJwxrc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZUTmevJ6tL/g+/RFMAphBIpHgG6pPxCOpnpryx2BmPwfKsHAg1w9C6Tk3vzcR/WBv
-         bqAy4XjRX56vANJcuGABufyQKSV96dYyqEF7UUVIrD2jdeN7W2xyRzvvX200DQgTfu
-         k2gkUOC9Z/cBVpsS2USRh/GFplpOK6VggtryOFN0=
-Received: by mail-qt1-f175.google.com with SMTP id x47so12767251qtk.11;
-        Mon, 17 Jun 2019 15:06:44 -0700 (PDT)
-X-Gm-Message-State: APjAAAXI4UXKaUqdd2CrtYOuk3+bm0/7iz+Xef4hm58DR30yOK3uH+kp
-        AWsvo4Z5nAKv6MQhb8yUd6le6O/tDLa4YPZmXw==
-X-Google-Smtp-Source: APXvYqxlH9tPhbZNNJkrT85aR9svIHlNTL+sG99zdJoKOt8Ty1YrE3qm/ShFbczH/rR++XU8qWfC4jV3flp5vTydqXs=
-X-Received: by 2002:a05:6214:248:: with SMTP id k8mr23820532qvt.200.1560809204093;
- Mon, 17 Jun 2019 15:06:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190614203144.3850-1-joseph.kogut@gmail.com> <20190616081557.GA3826@kozik-lap>
-In-Reply-To: <20190616081557.GA3826@kozik-lap>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 Jun 2019 16:06:31 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+bq2PXA5LSjCmsy=hJq=+S4XK2JrvHct+xM+1HT+=-SQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+bq2PXA5LSjCmsy=hJq=+S4XK2JrvHct+xM+1HT+=-SQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpu: add Exynos Mali vendor specifics
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Joseph Kogut <joseph.kogut@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726733AbfFQWQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 18:16:51 -0400
+Received: from mail-pl1-f177.google.com ([209.85.214.177]:38232 "EHLO
+        mail-pl1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726116AbfFQWQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 18:16:50 -0400
+Received: by mail-pl1-f177.google.com with SMTP id f97so4765332plb.5;
+        Mon, 17 Jun 2019 15:16:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=RPNj7ShabpMoFkMl8hXYCQ7Om75Kbzpx9KYyRLhZGG8=;
+        b=DVGF2NKBlE04Yj2Nxv1vDt5w2mixVbF3kAxDrAWcPNbQ4cLiOxa3MBkvZi0bCCPwqj
+         BONS/lOiWgXPd235YxEUL8obNhUqsnY+A/zJNLonOwZ3IoYOksG1BV5KPMskiQrVaAmy
+         oJ3lU7zDoBpTZp9nMJTODniB53HmQ1K5NytM0v01EvyWj3lzsO8SE8lV8cUovBeMENtt
+         /8Gt/QKHtNzAvip20rhkF2XkfWVKjjaFyqp/CkcD3UKc6vgdJPzjXFkIRsQMHXr8ETil
+         F+wVkhKl3LIPz/RBzRgutsj7Gr1xQNXDsd28GdJTzutysda0vyBLuVB45DT12QovtHDl
+         QdBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=RPNj7ShabpMoFkMl8hXYCQ7Om75Kbzpx9KYyRLhZGG8=;
+        b=CtSVHhGulo0u4br3M20KxoecmjnEQckXssViZ1/J4XNUQ5wtxLGVcyb7BaLkZP2lPq
+         hH8UH+xx0PP263nMJxCrVTMllhh8EOcN2Sjw86jjnFRJ2rKf51cJrQYay+aDLYei08en
+         x3yFoY3lwIQVn2jwR5TWXWy0QIAOOsNruMcFloyOpXGvO2zpTWRYsfzuLszuVdFYrs9v
+         UzSQn/UOvLxQ71k8j/1kvOiTu6DgPIpVjxtfCom0ZyWGQC30dCZ8HTfXC9Y3nnHukdUk
+         5NhqxVNISkMOFMdhXVI1bKALfcseaGy9XKuMQOIBOc2Mb4hrkwIY75WgsdYfztDq8W7x
+         cH0w==
+X-Gm-Message-State: APjAAAUona71BLX7BqlfILGEXzWxwBUdSul2Mj1B0GpRAAGz3NBQfw9E
+        hAhY080b6qJawgBRdgXJiWIld4Q4xV4=
+X-Google-Smtp-Source: APXvYqz/gKAwbHUzFU1vea3F3sPxdXUfv/oq0nZ509+gBNUW7dnCQuqHzgpJ7PKdgQ4iUCvqmi6Qgw==
+X-Received: by 2002:a17:902:aa95:: with SMTP id d21mr3436765plr.185.1560809809699;
+        Mon, 17 Jun 2019 15:16:49 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id f3sm254444pjo.31.2019.06.17.15.16.49
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 17 Jun 2019 15:16:49 -0700 (PDT)
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     thierry.reding@gmail.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: tegra: Add INA3221 channel info for Jetson TX2
+Date:   Mon, 17 Jun 2019 15:16:59 -0700
+Message-Id: <20190617221659.25366-1-nicoleotsuka@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 16, 2019 at 2:16 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Fri, Jun 14, 2019 at 01:31:43PM -0700, Joseph Kogut wrote:
-> > Document vendor specific compatible string for Mali gpus on Exynos SoCs.
-> >
-> > Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
-> > index 1b1a74129141..a9704c736d07 100644
-> > --- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
-> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
-> > @@ -18,6 +18,7 @@ Required properties:
-> >      + "amlogic,meson-gxm-mali"
-> >      + "rockchip,rk3288-mali"
-> >      + "rockchip,rk3399-mali"
-> > +    + "samsung,exynos-mali"
->
-> Are there any driver differences for Exynos? If not then why adding
-> another compatible?
+There are four INA3221 chips on the Jetson TX2 (p3310 + p2771).
+And each INA3221 chip has three input channels to monitor power.
 
-Wrong question. Are there any hardware differences? (Trick question
-because difference compared to what?)
+So this patch adds these 12 channels to the DT of Jetson TX2, by
+following the DT binding of INA3221 and official documents from
+https://developer.nvidia.com/embedded/downloads
 
-Really, this shouldn't be 'exynos', but per SoC. But I'll leave it to
-the Samsung folks to decide how specific it should be.
+tegra186-p3310:
+https://developer.nvidia.com/embedded/dlc/jetson-tx2-series-modules-oem-product-design-guide
 
-Rob
+tegra186-p2771-0000:
+http://developer.nvidia.com/embedded/dlc/jetson-tx1-tx2-developer-kit-carrier-board-spec-20180618
+
+Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+---
+ .../boot/dts/nvidia/tegra186-p2771-0000.dts   | 40 +++++++++++++++++++
+ .../arm64/boot/dts/nvidia/tegra186-p3310.dtsi | 40 +++++++++++++++++++
+ 2 files changed, 80 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
+index ab6648c72ad5..9df4782c90f3 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
+@@ -14,11 +14,51 @@
+ 		power-monitor@42 {
+ 			compatible = "ti,ina3221";
+ 			reg = <0x42>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			channel@0 {
++				reg = <0x0>;
++				label = "VDD_MUX";
++				shunt-resistor-micro-ohms = <20000>;
++			};
++
++			channel@1 {
++				reg = <0x1>;
++				label = "VDD_5V0_IO_SYS";
++				shunt-resistor-micro-ohms = <5000>;
++			};
++
++			channel@2 {
++				reg = <0x2>;
++				label = "VDD_3V3_SYS";
++				shunt-resistor-micro-ohms = <10000>;
++			};
+ 		};
+ 
+ 		power-monitor@43 {
+ 			compatible = "ti,ina3221";
+ 			reg = <0x43>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			channel@0 {
++				reg = <0x0>;
++				label = "VDD_3V3_IO_SLP";
++				shunt-resistor-micro-ohms = <10000>;
++			};
++
++			channel@1 {
++				reg = <0x1>;
++				label = "VDD_1V8_IO";
++				shunt-resistor-micro-ohms = <10000>;
++			};
++
++			channel@2 {
++				reg = <0x2>;
++				label = "VDD_M2_IN";
++				shunt-resistor-micro-ohms = <10000>;
++			};
+ 		};
+ 
+ 		exp1: gpio@74 {
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
+index 4bbee83d9943..5e18acf5cfad 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
+@@ -67,11 +67,51 @@
+ 		power-monitor@40 {
+ 			compatible = "ti,ina3221";
+ 			reg = <0x40>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			channel@0 {
++				reg = <0x0>;
++				label = "VDD_SYS_GPU";
++				shunt-resistor-micro-ohms = <10000>;
++			};
++
++			channel@1 {
++				reg = <0x1>;
++				label = "VDD_SYS_SOC";
++				shunt-resistor-micro-ohms = <10000>;
++			};
++
++			channel@2 {
++				reg = <0x2>;
++				label = "VDD_3V8_WIFI";
++				shunt-resistor-micro-ohms = <10000>;
++			};
+ 		};
+ 
+ 		power-monitor@41 {
+ 			compatible = "ti,ina3221";
+ 			reg = <0x41>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			channel@0 {
++				reg = <0x0>;
++				label = "VDD_IN";
++				shunt-resistor-micro-ohms = <5000>;
++			};
++
++			channel@1 {
++				reg = <0x1>;
++				label = "VDD_SYS_CPU";
++				shunt-resistor-micro-ohms = <10000>;
++			};
++
++			channel@2 {
++				reg = <0x2>;
++				label = "VDD_5V0_DDR";
++				shunt-resistor-micro-ohms = <10000>;
++			};
+ 		};
+ 	};
+ 
+-- 
+2.17.1
+
