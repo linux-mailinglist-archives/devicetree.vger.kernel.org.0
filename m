@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB584480C7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D71D480EF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725826AbfFQLeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 07:34:31 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:38028 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725763AbfFQLeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:34:31 -0400
-Received: by mail-ed1-f67.google.com with SMTP id r12so13496275edo.5
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 04:34:30 -0700 (PDT)
+        id S1726674AbfFQLfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 07:35:41 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:38497 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726173AbfFQLfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:35:40 -0400
+Received: by mail-vs1-f65.google.com with SMTP id k9so5874431vso.5
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 04:35:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=9vPSLa5+XLyQJw19zpdaml7fRJQhxguAtOgI7YT73oo=;
-        b=YaXNNhpEEHuGAVVYKiFjcIjtnlRn+SX4KK6cHn4Pg7lywkMBTaTfMWwp9ZftE10ZTr
-         nuJ/UU47huRRPPSztqkz4DT7OKeZiKaT3eRLIl1roljXdiZqjxVtFlg3kLPfsMBLX4Un
-         7ceatCqEab2IpD+LDjdjSxFc3CPR7yAI7ByqoRuTM6zTdeKEHebGRoQcAkX8h/0DLvtx
-         mU1LmYOU6smRlrahMdW/qJObnQsEC/dU3qrlVLLrj1wviK4LfngoI/syjUqsbWjuk/se
-         mN/ZqzvXU79WwIu8OvQHKDBC0nfBXRps1lnFQdEllgWHSwdSXd1mJ+KOqrNNWMbWO75W
-         khiQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Oarxy7p2A8M3e32Cd3ZGKiQh3eZMCQGravoCB5ouj68=;
+        b=JnWxiIKJnHT6irJrl0SZV7N86mxeB7Jog5bebll+L/jQV3DuM2fXmD5S85vgPJAYI4
+         xp+XPND9LYJ24EcwVkhr5CbRgW2AQ83dPZ5s3Qxr8RIwzSsgy/pJpKTu3JSn4w9wXSQh
+         zRkHooSvQLAR1gJgYp4uv6e2+fZ6pb16OOdtveCojyGEJ4S6PF1d14oFNEY9wgy+XVsI
+         lAF6/UPGt1H8OdgAcCw/BPfa60GC1X4Anw7X9uXrHcPasGBWUuBkaFCgCaYGBQ3/XIAB
+         1Z+XkOSQ9252AzTMwiKYPnTo1JVJveshNtwKTiFEnNlEmN+PxsOVxotew2kAaQtc1/y3
+         FKJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=9vPSLa5+XLyQJw19zpdaml7fRJQhxguAtOgI7YT73oo=;
-        b=KF1bKWCwkBep8qVh4BpSTN/jCQCLFSLqQcUh39plxx/JMWT76f6r8ROfEMd1fMV0nO
-         nRz3Rrb2qEV+oO0IOaiSTdkZzV+K+K0xfCDZej2dKYT2qh3ScRxohmo8vq86eN8jUrLP
-         OkNSdpTbEqtRDUc43CPskrVbs8I3aMdyr0neIqRvFCQgaEiOtdhnVHE5DYYI2YSvyNlP
-         69zB2OR+b32UnyvmSjtaZRuzFVu3/zXHA6j3ejfwp7+LYuRigBOBTduujPHKWeyupMgN
-         GGH9fS+oCnHjSJrmu/J/nkldcUzGrjqbXY9h4zKC8ngLVz3G7/SpxTAOefp4SsNntLs1
-         XpBA==
-X-Gm-Message-State: APjAAAXjJvKY35PPt8OKMEpGiXtAtJoEFlM+TAzJAHk6HMJKlKyJbaFd
-        N6NXDjop+a0EhyS4fI/BFRsZKQ==
-X-Google-Smtp-Source: APXvYqw1q+5ssz4QySIjZc498AMwl614ceV96qiEMFWPDNSLJ7oh7ctcvwS8zNJc5j4OHthaIvZI/Q==
-X-Received: by 2002:a50:d0d6:: with SMTP id g22mr46189168edf.250.1560771269879;
-        Mon, 17 Jun 2019 04:34:29 -0700 (PDT)
-Received: from localhost ([81.92.102.43])
-        by smtp.gmail.com with ESMTPSA id s5sm3434216edh.3.2019.06.17.04.34.29
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 17 Jun 2019 04:34:29 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 04:34:28 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Andreas Schwab <schwab@suse.de>
-cc:     Yash Shah <yash.shah@sifive.com>, davem@davemloft.net,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, palmer@sifive.com,
-        aou@eecs.berkeley.edu, ynezz@true.cz, sachin.ghadi@sifive.com
-Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
-In-Reply-To: <mvmh88o5xi5.fsf@suse.de>
-Message-ID: <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>
-References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com> <mvmtvco62k9.fsf@suse.de> <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com> <mvmpnnc5y49.fsf@suse.de> <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com>
- <mvmh88o5xi5.fsf@suse.de>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Oarxy7p2A8M3e32Cd3ZGKiQh3eZMCQGravoCB5ouj68=;
+        b=kJL9EZTNLliKp3lPvYXqC5pGGAJeLBZdMRMqLiAJP0fY89YhVVhK3f8pZLDKGmHtf6
+         6vSzvAHGIX/qm+00roJK9UcMg73zTVo/Boi7ABvFInADMYsGZmNsWBIqYg2p1FoTjUhA
+         ZKanHaTeX8RTNQuTsqYt8rRV7QFWBY4YGrFdPs7SLFGx+12SSrazW5zI3aFwkyXQmEO6
+         vCCi5mQQVYGU8LedGTOYVRgJVDnBj2OPgp/uJPUrNzQFjwyHp5GMooTMyEzQAAdMNsou
+         LXVfL85bHPg5FhX0YLLaWGC6/1rbJ1t7zvCWRv5r0xlkBtQdOGkCclqJq3AXRVArqH2y
+         AKMw==
+X-Gm-Message-State: APjAAAWtbkIJKsBNhM3gEu7pL4ph9Yht3v16Vo2ZG6MQtEHt1HrPvJz6
+        lbNLT5JESsc1B2DtjfUxX1h1U9VEcQ50mv2GQx/cjQ==
+X-Google-Smtp-Source: APXvYqwcHEVwhj3FTseMM1MQYfqpoVrbYJpW+a7vzqtz0JpcbL/XOQHVC14jXXzahRuLm4BZ4JoZKMxnEhMY0YILz0A=
+X-Received: by 2002:a67:ed8b:: with SMTP id d11mr60218560vsp.35.1560771339760;
+ Mon, 17 Jun 2019 04:35:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+References: <20190604060914.10886-1-faiz_abbas@ti.com>
+In-Reply-To: <20190604060914.10886-1-faiz_abbas@ti.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 17 Jun 2019 13:35:03 +0200
+Message-ID: <CAPDyKFqt9N+Hn-VhEr0ANv3zXLGyjCDEDiBgEx8FpLFBBzT0EA@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add Support for MMC in J721E
+To:     Faiz Abbas <faiz_abbas@ti.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jun 2019, Andreas Schwab wrote:
+On Tue, 4 Jun 2019 at 08:09, Faiz Abbas <faiz_abbas@ti.com> wrote:
+>
+> The following patches add driver support for MMC SDHCI interfaces on
+> TI's J721E devices. The 8 bit and 4 bit instances have phys which are
+> different from the am65x interfaces as well as different from each
+> other which leads to 3 different compatibles and a bunch of flags for
+> indicating the differences.
+>
+> Depends on Nishanth's initial J721E patches here:
+> https://lore.kernel.org/patchwork/cover/1077382/
+>
+> Also depends on my fixes for AM65x driver here:
+> https://lore.kernel.org/patchwork/cover/1079924/
+>
+> Tested with: j721e-evm and am65x-evm.
+>
+> DT patches will be added in a separate series.
+>
+> Faiz Abbas (4):
+>   dt-bindings: mmc: sdhci-am654: Document bindings for the host
+>     controllers on TI's J721E devices.
+>   mmc: sdhci_am654: Add Support for 8 bit IP on J721E
+>   mmc: sdhci_am654: Add Support for 4 bit IP on J721E
+>   arm64: defconfig: Add config for MMC on AM65x and J721E devices
+>
+>  .../devicetree/bindings/mmc/sdhci-am654.txt   |   9 +-
+>  arch/arm64/configs/defconfig                  |   1 +
+>  drivers/mmc/host/sdhci_am654.c                | 257 +++++++++++++-----
+>  3 files changed, 204 insertions(+), 63 deletions(-)
+>
+> --
+> 2.19.2
+>
 
-> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
-> 
-> > On Mon, 17 Jun 2019, Andreas Schwab wrote:
-> >
-> >> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
-> >> 
-> >> > Looks to me that it shouldn't have an impact unless the DT string is 
-> >> > present, and even then, the impact might simply be that the MACB driver 
-> >> > may not work?
-> >> 
-> >> If the macb driver doesn't work you have an unusable system, of course.
-> >
-> > Why?
-> 
-> Because a system is useless without network.
+Patch 1->3 applied for next, patch is for arm-soc, thanks!
 
-From an upstream Linux point of view, Yash's patches should be an 
-improvement over the current mainline kernel situation, since there's 
-currently no upstream support for the (SiFive-specific) TX clock switch 
-register.  With the right DT data, and a bootloader that handles the PHY 
-reset, I think networking should work after his patches are upstream -- 
-although I myself haven't tried this yet.
-
-
-- Paul
+Kind regards
+Uffe
