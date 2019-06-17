@@ -2,89 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0807486A9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 17:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D74486B5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 17:12:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727850AbfFQPKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 11:10:11 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:33614 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727999AbfFQPKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 11:10:11 -0400
-Received: by mail-pl1-f196.google.com with SMTP id c14so4226920plo.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 08:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:to:from:subject:cc:user-agent:date;
-        bh=RrNEZkQt5HKoUfzRadgZa2XIFWt7gGNYEFg83I4dzHg=;
-        b=Ky0OhGyFU/8wdxd/wWoxfATOJXQA4oQm20lG4MLzYkk08eKB19NfpVHAK06+y3k/P9
-         Xu9XX3nfykiU6HkQdwBM9bz9QJ/ekFK15dya0gpRCL+FVayr8jsgCikYQc2Wo4KZnXqY
-         AF2EyiM8qv+WBCaoyXS93RlzrCj3eY+O/R4Vg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:to:from:subject:cc
-         :user-agent:date;
-        bh=RrNEZkQt5HKoUfzRadgZa2XIFWt7gGNYEFg83I4dzHg=;
-        b=i+eT/mqh02M2JCDLG3vovS80vGFVibiEgfFY8YKxCVV1u2yTuukajoeo9TEQ14SfZN
-         dDpZryu2Uuos+GvQ7FtXG1V39WLjpi0oyIb2NaRNE/WtHie43JWjz+Eapj/Y3ELafFYr
-         kA1yZUAAayJNiyMUufm7wLlamTQlu6FDodgEOcAmzLsabTih1SlTi7Mkaf3CTLMAqdXZ
-         3X6ZbTK3utC40EIBtPbkVcQADEGmtNg9LNAkm5cZdArCOgcwzG9mulKJ12R7d9Mwh5pN
-         CjjhI5GYS0ObfWaSXto/5hwWoQiOf16JNvAAIpC6aR2D2Zic5q9jTXH0OS4XUTSLt+0H
-         jHXg==
-X-Gm-Message-State: APjAAAWD9j3s5t3XbleZLaXNf63JhecrWJoFljgJos+GDpme0W9lh1b0
-        7XOHEpwfcmpE7SeB8wTrolfK3asgOZ0=
-X-Google-Smtp-Source: APXvYqylFmQKmBTKyHsSy1Ps5/Nh3sNrn1DbSH0wex7/W/BGfi9v5C7IT0RxX6UfE1Njsz5KtJUlkg==
-X-Received: by 2002:a17:902:760a:: with SMTP id k10mr88282143pll.83.1560784210920;
-        Mon, 17 Jun 2019 08:10:10 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id g5sm10125082pjt.14.2019.06.17.08.10.09
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 17 Jun 2019 08:10:09 -0700 (PDT)
-Message-ID: <5d07ad51.1c69fb81.25c8.f3a0@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1726215AbfFQPMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 11:12:39 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:59652 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726091AbfFQPMj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 11:12:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=gFDqpMSmeHyT6ITB2jLJUyTPILStKOxXOJUQOVeCQ4M=; b=V7ezCG0OtfQrRMFQi9VmWFChY
+        57H1ODyRgfh98JattwiP7pVmEdRt7aldBFcweXrFq5R4luw1yxhugQQQE3KPAnI0pyHNM8cpoAMof
+        tbH/qmrhYuvbJLjKrQJSaUq+P280I9cq6292wEUlRWr6UQmnbtUkfKvcYGfD8bPvNiyBY=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hctJD-0001v2-FU; Mon, 17 Jun 2019 15:12:35 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id C74DD440046; Mon, 17 Jun 2019 16:12:34 +0100 (BST)
+Date:   Mon, 17 Jun 2019 16:12:34 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] PM8005 and PMS405 regulator support
+Message-ID: <20190617151234.GV5316@sirena.org.uk>
+References: <20190613212436.6940-1-jeffrey.l.hugo@gmail.com>
+ <20190617145853.GT5316@sirena.org.uk>
+ <CAOCk7NrSBjbyJ3YJoF22i9ysxVTw38SvsaSi9JwVrj7W8er24A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190615030343.96524-1-wangkefeng.wang@huawei.com>
-References: <20190612010011.90185-1-wangkefeng.wang@huawei.com> <20190615030343.96524-1-wangkefeng.wang@huawei.com>
-To:     Kefeng Wang <wangkefeng.wang@huawei.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH next v2] of/fdt: Fix defined but not used compiler warning
-Cc:     Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>
-User-Agent: alot/0.8.1
-Date:   Mon, 17 Jun 2019 08:10:08 -0700
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="m5R8f+g8StfRwQ/I"
+Content-Disposition: inline
+In-Reply-To: <CAOCk7NrSBjbyJ3YJoF22i9ysxVTw38SvsaSi9JwVrj7W8er24A@mail.gmail.com>
+X-Cookie: Editing is a rewording activity.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Kefeng Wang (2019-06-14 20:03:43)
-> When CONFIG_OF_EARLY_FLATTREE is disabled, there is a compiler
-> warning,
->=20
-> drivers/of/fdt.c:129:19: warning: =E2=80=98of_fdt_match=E2=80=99 defined =
-but not used [-Wunused-function]
->  static int __init of_fdt_match(const void *blob, unsigned long node,
->=20
-> Since the only caller of of_fdt_match() is of_flat_dt_match(),
-> let's move the body of of_fdt_match() into of_flat_dt_match()
-> and eliminate of_fdt_match().
->=20
-> Meanwhile, move of_fdt_is_compatible() under CONFIG_OF_EARLY_FLATTREE,
-> as all callers are over there.
->=20
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
-> ---
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+--m5R8f+g8StfRwQ/I
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Arnd sent something similar now too.
+On Mon, Jun 17, 2019 at 09:04:23AM -0600, Jeffrey Hugo wrote:
 
+> Are you ok to proceed in the review, or do you want a repost?
+
+You should already have some review comments.
+
+--m5R8f+g8StfRwQ/I
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0HreEACgkQJNaLcl1U
+h9CHTwgAgY/kBE0OcbbnXxZ4z6u8NtNVTaMA2j9N2m8jgf5gQhWnF0k9oQ43mj3E
+Tm//b3mQr4h8hGwft0OQFGXFSfAtCzVyxgTn7FevnxhUZ73b38ZXm5ME6vElJnod
+LdZlycPDtZO8HViyuWC01+2NFg93TPBWdoxblbohqMlkozXhmEoHkh9tO8ZA7Rfo
+wEeHDJ0uNphiKu3e5gIiV9vyva4aoNTKSsJYXZ8FfUglIzzG3mXtuQF6VROA6BHT
+tLNIgxJD+r6jnqhZjyKjuD35zk2TfqtyQzcuKAq+wfle74xypBCIvOyTsBFF6Pw1
+offiQ5cHCTOdT/bjFetjABUmqwAmpg==
+=Rw6d
+-----END PGP SIGNATURE-----
+
+--m5R8f+g8StfRwQ/I--
