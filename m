@@ -2,89 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E4A47EEE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 11:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9988847EFB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 11:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726636AbfFQJ6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 05:58:23 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:34787 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727545AbfFQJ6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 05:58:23 -0400
-Received: by mail-ed1-f68.google.com with SMTP id s49so15332371edb.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 02:58:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=k/FkMrNeRTkozEqierq2rmbV5zRaMHg6J2eVIWl4duU=;
-        b=GztjFeCgsx2WVQQlaCXYbhcPsiu/7YqqR997H6U3zan9rYs0xa6xFeiRivc/RtwM4x
-         b/Q9XQ210Gv+8E+J7NDLQUrKd2naU4exI1G+xlsKnjxh/RGc/6gcZqi2NpV2DfMZRC5K
-         uidbnB9l/Kn69qIo4+cWA4rb4+B2Fbf4QJ/WAvydPHIP2SHKcIj6K6yDJx+lbjldoNwQ
-         UP6mmVLBfZ9zo0ukP6Krhe016u7ATMe7UCtiXsIHvD6jCTsMINZu9tNSxpgXv2A5W3EG
-         yp6OIeyJeWq7Gzf4F/jGva/OHSnuOxtAeQ0eLKUmMQ9+PLwB9QJyd3EX1UeD+D7wl7ni
-         xSCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=k/FkMrNeRTkozEqierq2rmbV5zRaMHg6J2eVIWl4duU=;
-        b=VFm6vPkqoDgKFHWIHuLdRUyatO9xrrC9FyzF+munS5Ts8i+5ynLupJzYTMr1/cZ45a
-         ei7l2ENW6lFprPO4YZ/Io0O5rvBCjWQ+upRZzxaj3Bbn0EW+LNbU9InFUrcJULm4R+3B
-         zlpdabfm9Cvlh5zti13R600HZX22uqWr5aCCouolKMJ8KJJrfv+DLctxA4w8A/U917HJ
-         k9mvFsjAiVKUHwNgT+tohhakDHWpe/2x6JuvXw3yQPyVcyyzV1lEKqLh1smgNO6XbUyf
-         83yf3PxJ7rElTQE3j2BeghRmt9Z/TzX3p20S053Y/NIIAatH+DOLVUYFXvCBCT/aE+HS
-         +Q6g==
-X-Gm-Message-State: APjAAAWdN0wtNkNfnFcbKbWbSUWz/XYH1FyBX1+vIg955U459EG77v2e
-        Jf28CEPEwsAIOP5SiIwoVsRkVg==
-X-Google-Smtp-Source: APXvYqzzFOn2TYEUiWfO5QA45ng6P677kxEghJAuKXYs/UNNAuPRaE//NwSmVe/Dj1EArVjJXXbs+A==
-X-Received: by 2002:a50:ad45:: with SMTP id z5mr95083437edc.21.1560765501430;
-        Mon, 17 Jun 2019 02:58:21 -0700 (PDT)
-Received: from localhost ([81.92.102.43])
-        by smtp.gmail.com with ESMTPSA id d5sm2095575ejk.71.2019.06.17.02.58.20
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 17 Jun 2019 02:58:20 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 02:58:20 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Yash Shah <yash.shah@sifive.com>
-cc:     Andreas Schwab <schwab@suse.de>, davem@davemloft.net,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, palmer@sifive.com,
-        aou@eecs.berkeley.edu, ynezz@true.cz, sachin.ghadi@sifive.com
-Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
-In-Reply-To: <mvmtvco62k9.fsf@suse.de>
-Message-ID: <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com>
-References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com> <mvmtvco62k9.fsf@suse.de>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1728033AbfFQJ7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 05:59:10 -0400
+Received: from foss.arm.com ([217.140.110.172]:43798 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727693AbfFQJ7K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 05:59:10 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B6CDE344;
+        Mon, 17 Jun 2019 02:59:09 -0700 (PDT)
+Received: from [10.1.196.93] (en101.cambridge.arm.com [10.1.196.93])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 015A23F246;
+        Mon, 17 Jun 2019 03:00:50 -0700 (PDT)
+Subject: Re: [PATCH v2 06/28] drivers: Add generic helper to match by of_node
+To:     wsa@the-dreams.de
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, atull@kernel.org, andrew@lunn.ch,
+        daniel@ffwll.ch, airlied@linux.ie, davem@davemloft.net,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        f.fainelli@gmail.com, frowand.list@gmail.com, hkallweit1@gmail.com,
+        jslaby@suse.com, jonathanh@nvidia.com, lee.jones@linaro.org,
+        lgirdwood@gmail.com, linux-fpga@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, broonie@kernel.org,
+        mathieu.poirier@linaro.org, maxime.ripard@bootlin.com,
+        mdf@kernel.org, peda@axentia.se, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, thierry.reding@gmail.com,
+        thor.thayer@linux.intel.com, ulf.hansson@linaro.org,
+        joe@perches.com
+References: <1560534863-15115-1-git-send-email-suzuki.poulose@arm.com>
+ <1560534863-15115-7-git-send-email-suzuki.poulose@arm.com>
+ <20190614203144.GB7991@kunai>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <d050ae69-52ee-b32d-2bc0-708b408f3bd4@arm.com>
+Date:   Mon, 17 Jun 2019 10:59:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190614203144.GB7991@kunai>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yash,
+Hi
 
-On Mon, 17 Jun 2019, Andreas Schwab wrote:
-
-> On Jun 17 2019, Yash Shah <yash.shah@sifive.com> wrote:
+On 14/06/2019 21:31, Wolfram Sang wrote:
+>> +
+>> +int device_match_of_node(struct device *dev, const void *np)
+>> +{
+>> +	return dev->of_node == np;
+>> +}
+>> +EXPORT_SYMBOL_GPL(device_match_of_node);
 > 
-> > - Add "MACB_SIFIVE_FU540" in Kconfig to support SiFive FU540 in macb
-> >   driver. This is needed because on FU540, the macb driver depends on
-> >   SiFive GPIO driver.
+> Is it an option to 'static inline' this simple function in the header,
+> saving the EXPORT?
 > 
-> This of course requires that the GPIO driver is upstreamed first.
 
-What's the impact of enabling CONFIG_MACB_SIFIVE_FU540 when the GPIO 
-driver isn't present?  (After modifying the Kconfig "depends" line 
-appropriately.)
+No. This is supposed to be passed on as a call back function pointer
+for the APIs. Having it as a static inline, would simply replicate
+the same function through the driver subsystems, which is one of the
+issues that series is trying to solve. Also, by having them exported,
+we can convert the new specialized device lookup functions,
+*_find_device_by_<property> to be static inlines.
 
-Looks to me that it shouldn't have an impact unless the DT string is 
-present, and even then, the impact might simply be that the MACB driver 
-may not work?
-
-
-- Paul
+Suzuki
