@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E464C48506
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 092FD4852E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726427AbfFQOO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 10:14:28 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:36689 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726292AbfFQOO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:14:28 -0400
-Received: by mail-io1-f66.google.com with SMTP id h6so21537632ioh.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 07:14:28 -0700 (PDT)
+        id S1726362AbfFQOUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 10:20:35 -0400
+Received: from mail-ed1-f51.google.com ([209.85.208.51]:34041 "EHLO
+        mail-ed1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726489AbfFQOUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:20:35 -0400
+Received: by mail-ed1-f51.google.com with SMTP id s49so16466487edb.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 07:20:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=JohzNFDqmktDG38rF4I6wEqhVEhI+kZN53amqkDtO9w=;
-        b=iLTj9CW1lG44z6zG4g72qDio7OVGQ1qANRuf1odp+rHFRdGUwpC/crqtmZviZTJjha
-         UtbuW0PlSUt3tPiVOOOGTLydHXo9gGuO4n6AjAd9Ui2JaV31NFPjV2LvjHM7Lc94hAj3
-         2NoQNsPbAu20BCZqt728HIJTa2HSnRFbDzZ5I8vHPDybVf1pkrTRlkIQTt7rthVHXrAM
-         lHS78Ey4P/EiXWCuhSzCFdoxrAgtO7jORwoA76aPcjYfK1cFsylabCMWL2k6C+IUbYR4
-         GFg6aCzi53pHsNhbAN3fRtSC15Up6LfUVSf/tWR82B4diNQ+xrqBZiH+dX91u+09QU+k
-         cDxA==
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=lPDqMdPEKR2PzqaGXWoGDd7T5h4jBpHExcweaLaSSK0=;
+        b=Iay63UGcYlvzI9g3XDbohxpgexk9t4pKF6mBC7NJEA0o2i/h7b/F3pyRiN7Ztb5yhg
+         IGbfDCuvvjULm7skN4POwuaHWx33fxSiMI7qeoYiZf+H4tqbmlcbZc1tb396Gn9C+r0j
+         wLA9hWmoRSXQE1p8DWJnjWib2J/4Kaz2VWSVHI688WdK0no2cBvovBdcdntWCHAxQ946
+         z2JoMRtEJvhNYoUFUu3ZKtlUkW3DiKCMs5jrJfXK1Cqn2Xs4IjIEY8K6M8szn+ozlS1c
+         EZYkDBaWPauhcR4yqdZ4NLQpUqF7pdJSAhwbay0oiAGr8k3TfraHW12LWhIdIN34y+0A
+         xU1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=JohzNFDqmktDG38rF4I6wEqhVEhI+kZN53amqkDtO9w=;
-        b=qAfnMaSwVzswGcSZ13MA2Aqy6LLEO4ZUSpjsqpqLCC9wX+jwEqzr6Hj6U0F1X0zpWV
-         n0OYUpKOHIRrVHXLUOLhS9QQq0zBilMQ29I1QPv3LJyCzNmCelUBAPy8CVkWQXOsfnhj
-         KDJMfh9pjda6Eu07HQnc+d5TwCQrYB59CIdsvbCZSNPvcEReJ2ty1piP5LGV6Kta+Uy1
-         pnqnG7NuqXa1GW3G72X1juQxo6SYOnZinZ/n6qAOMXv93Xf1UOopK/wHWAyvmU7M1lbS
-         fQGXxxLz4leunNriF89bJjXNCxTVcZ0FUegcgvo5YEg3C1+G0TQlU/kmDGiRzjqXSu1z
-         4yLg==
-X-Gm-Message-State: APjAAAUgvfAyXAsIK+NmUcxqufTzfwElWXSY5hCz5hVxhKDVX/0uRdXM
-        9jp9x0TT3AhRklQRGUN6wu/bZg==
-X-Google-Smtp-Source: APXvYqzNuUBfwfuXW1mSryelHWlKsBM9fYoJ3JGS5e7VGKacU4dkepDULY1G4gM/fW95GIKtGZpt+Q==
-X-Received: by 2002:a6b:fb02:: with SMTP id h2mr14476535iog.289.1560780867625;
-        Mon, 17 Jun 2019 07:14:27 -0700 (PDT)
-Received: from [192.168.1.196] ([216.160.37.230])
-        by smtp.gmail.com with ESMTPSA id c2sm8811901iok.53.2019.06.17.07.14.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 17 Jun 2019 07:14:27 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
-From:   Troy Benjegerdes <troy.benjegerdes@sifive.com>
-In-Reply-To: <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>
-Date:   Mon, 17 Jun 2019 09:14:25 -0500
-Cc:     Andreas Schwab <schwab@suse.de>,
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=lPDqMdPEKR2PzqaGXWoGDd7T5h4jBpHExcweaLaSSK0=;
+        b=o963NNwo45RkfrxxCwPGusdNnUT40EsEnI3KwxewcYphqa2w7ghPvFtcYPpk/8CI8r
+         b7RvS8fVZCQEBQaZezrRWroY0Wh5CyhfhoSPmdlO1tZNr+tBmy7f/wXI19j6LA7c5ZOt
+         E8iI8pliq8RqXTpm29IbNJTmpZ0R9/uThzfuOHv/B08yDoe3bqRpwVTAer1oMUxjS0BS
+         m9i3Rze+Ar9CyE6ryhlpnEQ21fV1jPY4ulXXX7TtB7IKzzo54CgS58pvTUBGOCXnL3tI
+         lBJDKIsyF7+gG4KgxO+eR5qO4Smj7yxkGOj2Yj5F0cfbTbLFNDCzBebb39SWVFqE50PX
+         qpdA==
+X-Gm-Message-State: APjAAAXgfNt1GOKrff0CjX3BLMERRDUlU6314MWgm1V5fmwFXWgWeDsv
+        ZBeeCRsbBqgCkSfPDjeDLrJPvA==
+X-Google-Smtp-Source: APXvYqyNGHMS9Mr0hlgx8DUwk8VB/wUtnm/TqHyh3muEpDOB7qL1OTl8vAIIxlvfK0LsosNfRT+dCw==
+X-Received: by 2002:a50:95ae:: with SMTP id w43mr90466777eda.115.1560781232849;
+        Mon, 17 Jun 2019 07:20:32 -0700 (PDT)
+Received: from localhost ([81.92.102.43])
+        by smtp.gmail.com with ESMTPSA id w27sm2071922edw.63.2019.06.17.07.20.31
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 17 Jun 2019 07:20:32 -0700 (PDT)
+Date:   Mon, 17 Jun 2019 07:20:31 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Troy Benjegerdes <troy.benjegerdes@sifive.com>
+cc:     Andreas Schwab <schwab@suse.de>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
         netdev@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>,
@@ -61,78 +58,32 @@ Cc:     Andreas Schwab <schwab@suse.de>,
         Yash Shah <yash.shah@sifive.com>, robh+dt@kernel.org,
         ynezz@true.cz, linux-riscv@lists.infradead.org,
         davem@davemloft.net, Jim Jacobsen <jamez@wit.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F48A4F7F-0B0D-4191-91AD-DC51686D1E78@sifive.com>
-References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
- <mvmtvco62k9.fsf@suse.de>
- <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com>
- <mvmpnnc5y49.fsf@suse.de>
- <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com>
- <mvmh88o5xi5.fsf@suse.de>
- <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
+In-Reply-To: <F48A4F7F-0B0D-4191-91AD-DC51686D1E78@sifive.com>
+Message-ID: <alpine.DEB.2.21.9999.1906170715350.32654@viisi.sifive.com>
+References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com> <mvmtvco62k9.fsf@suse.de> <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com> <mvmpnnc5y49.fsf@suse.de> <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com> <mvmh88o5xi5.fsf@suse.de>
+ <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com> <F48A4F7F-0B0D-4191-91AD-DC51686D1E78@sifive.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 17 Jun 2019, Troy Benjegerdes wrote:
+
+> Have we documented this tx clock switch register in something with a
+> direct URL link (rather than a PDF)?
+
+The SiFive FU540 user manual PDF is the canonical public reference:
+
+https://static.dev.sifive.com/FU540-C000-v1.0.pdf
+
+This practice aligns with other SoC vendors, who also release PDFs.
+
+The relevant Ethernet documentation, including register maps, is in 
+Chapter 19.
 
 
-> On Jun 17, 2019, at 6:34 AM, Paul Walmsley <paul.walmsley@sifive.com> =
-wrote:
->=20
-> On Mon, 17 Jun 2019, Andreas Schwab wrote:
->=20
->> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
->>=20
->>> On Mon, 17 Jun 2019, Andreas Schwab wrote:
->>>=20
->>>> On Jun 17 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
->>>>=20
->>>>> Looks to me that it shouldn't have an impact unless the DT string =
-is=20
->>>>> present, and even then, the impact might simply be that the MACB =
-driver=20
->>>>> may not work?
->>>>=20
->>>> If the macb driver doesn't work you have an unusable system, of =
-course.
->>>=20
->>> Why?
->>=20
->> Because a system is useless without network.
->=20
-> =46rom an upstream Linux point of view, Yash's patches should be an=20
-> improvement over the current mainline kernel situation, since there's=20=
-
-> currently no upstream support for the (SiFive-specific) TX clock =
-switch=20
-> register.  With the right DT data, and a bootloader that handles the =
-PHY=20
-> reset, I think networking should work after his patches are upstream =
---=20
-> although I myself haven't tried this yet.
->=20
-
-Have we documented this tx clock switch register in something with a
-direct URL link (rather than a PDF)?
-
-I=E2=80=99d like to update freedom-u-sdk (or yocto) to create bootable =
-images
-with a working U-boot (upstream or not, I don=E2=80=99t care, as long as =
-it works),
-and what I have right now is the old legacy HiFive U-boot[1] and a 4.19
-kernel with a bunch of extra patches.
-
-The legacy M-mode U-boot handles the phy reset already, and I=E2=80=99ve =
-been
-able to load upstream S-mode uboot as a payload via TFTP, and then=20
-load and boot a 4.19 kernel.=20
-
-It would be nice to get this all working with 5.x, however there are =
-still
-several missing pieces to really have it work well.
-
-
-[1] https://github.com/sifive/HiFive_U-Boot=
+- Paul
