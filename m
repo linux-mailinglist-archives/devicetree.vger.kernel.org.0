@@ -2,105 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A7B48558
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7774856D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:30:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728281AbfFQO2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 10:28:02 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53880 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbfFQO2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:28:01 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5HERvpF067026;
-        Mon, 17 Jun 2019 09:27:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560781677;
-        bh=qu4EIJzsqvFnFCLTxt7GEkoeq2YaEXRCexOLDNeMZ9c=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=GEd9PaIjP1JfTWpr2FxG12RuW1y2L4JsrovbAMJnv4q9BQhVjrMqTEt1YvMJbY/mF
-         RI0G9Y8vWbE2AE7PTkP7t4c3PayqywTgD7vzT1/Q6l41Uda8T4pRGSftKxCKV1Qt05
-         XtLmMwYl1cyJM3O7S1YiEMtmWbhOPi31ZLPviwwA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5HERvgB022277
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Jun 2019 09:27:57 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 17
- Jun 2019 09:27:55 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 17 Jun 2019 09:27:55 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5HERqXT061958;
-        Mon, 17 Jun 2019 09:27:53 -0500
-Subject: Re: [RFC RESEND PATCH v2 1/4] dt-bindings: gpio: davinci: Add k3
- am654 compatible
-To:     keerthy <j-keerthy@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     ext Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20190606095620.6211-1-j-keerthy@ti.com>
- <20190606095620.6211-2-j-keerthy@ti.com>
- <CACRpkdY-yK3+uZvq1Xk7qJ2Nd7mgRkQ9C22AYO4AiZP5Cs719w@mail.gmail.com>
- <bcaf05c2-e4a2-8fe6-50f8-9df603d65a21@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <1b2bf190-4474-fd65-8a6b-58d2539c1b10@ti.com>
-Date:   Mon, 17 Jun 2019 17:27:51 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728293AbfFQOaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 10:30:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726028AbfFQOaB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 10:30:01 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A025821670;
+        Mon, 17 Jun 2019 14:30:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560781800;
+        bh=qDifSuqcxzKT2mPFaeywjNnbb7wpS1XjMQUY4VjP95s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ftWeEUcZLQyXIz69qGsxcV2k+8X5HWs0TvIl0HUP/iGfydDi7z72q5tq23j5gcIMU
+         gBI4ri54fv5RFQCp50ZhqEflChHkcPdy3qDEZtZrLVD59ElSh6jFwgHv9QKP6e8Cbs
+         g7a2mHo9VpiDU/ajh1Oe0Bhtk9F5EGJffhgeVVNY=
+Received: by mail-qt1-f173.google.com with SMTP id p15so10932235qtl.3;
+        Mon, 17 Jun 2019 07:30:00 -0700 (PDT)
+X-Gm-Message-State: APjAAAVSOH3haT4LP6KGGmspmjCBbxAhttpMNF8G8JXnxBrE7g7j3JiW
+        GCRaRfMTHSkX8WPaT9iC6x2rbaqCn+yhxOlnrw==
+X-Google-Smtp-Source: APXvYqyASK26LQzwRomt6iiD2y9sCFeTHLV/m8OIpqVyW9ojtFBBNp5iBGmT/mAjUDht+/goKLmPF8B9/cU/9xrQDis=
+X-Received: by 2002:a0c:acef:: with SMTP id n44mr22338717qvc.39.1560781799779;
+ Mon, 17 Jun 2019 07:29:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <bcaf05c2-e4a2-8fe6-50f8-9df603d65a21@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190616132930.6942-1-masneyb@onstation.org> <20190616132930.6942-2-masneyb@onstation.org>
+In-Reply-To: <20190616132930.6942-2-masneyb@onstation.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 17 Jun 2019 08:29:48 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ0y7_RPs-qK4thVen6nUVdFbikcwsmmun9tHsVSccQag@mail.gmail.com>
+Message-ID: <CAL_JsqJ0y7_RPs-qK4thVen6nUVdFbikcwsmmun9tHsVSccQag@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: soc: qcom: add On Chip MEMory (OCMEM) bindings
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2019 06:51, keerthy wrote:
-> 
-> 
-> On 6/8/2019 4:09 AM, Linus Walleij wrote:
->> On Thu, Jun 6, 2019 at 11:55 AM Keerthy <j-keerthy@ti.com> wrote:
->>
->>> The patch adds k3 am654 compatible, specific properties and
->>> an example.
->>>
->>> Signed-off-by: Keerthy <j-keerthy@ti.com>
->>
->> Patch applied with the three others, so now all
->> GPIO changes are in tree.
->>
->> Please funnel all the DTS changes through ARM SoC.
-> 
-> Thank you Linus!
-> 
-> Tero,
-> 
-> Could you pull the dts changes on top of intr dts patches.
+On Sun, Jun 16, 2019 at 7:29 AM Brian Masney <masneyb@onstation.org> wrote:
+>
+> Add device tree bindings for the On Chip Memory (OCMEM) that is present
+> on some Qualcomm Snapdragon SoCs.
+>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
+> ---
+>  .../bindings/soc/qcom/qcom,ocmem.yaml         | 66 +++++++++++++++++++
 
-Queued patches #2...#4 towards 5.3, thanks.
+.../bindings/sram/
 
--Tero
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml
+> new file mode 100644
+> index 000000000000..5e3ae6311a16
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/qcom,ocmem.yaml#
 
-> 
-> Regards,
-> Keerthy
->>
->> Yours,
->> Linus Walleij
->>
+schemas/sram/
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: On Chip Memory (OCMEM) that is present on some Qualcomm Snapdragon SoCs.
+> +
+> +maintainers:
+> +  - Brian Masney <masneyb@onstation.org>
+> +
+> +description: |
+> +  The On Chip Memory (OCMEM) allocator allows various clients to allocate memory
+
+Is there something in the h/w that's an allocator? That's typically a
+s/w thing that has nothing to do with h/w description.
+
+> +  from OCMEM based on performance, latency and power requirements. This is
+> +  typically used by the GPU, camera/video, and audio components on some
+> +  Snapdragon SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,ocmem-msm8974
+
+What Bjorn said...
+
+> +
+> +  reg:
+> +    items:
+> +      - description: Control registers
+> +      - description: OCMEM address range
+> +
+> +  reg-names:
+> +    items:
+> +      - const: ocmem_ctrl_physical
+> +      - const: ocmem_physical
+
+'ctrl' and 'mem' would be sufficient.
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: Core clock
+> +      - description: Interface clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: iface
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/clock/qcom,rpmcc.h>
+> +      #include <dt-bindings/clock/qcom,mmcc-msm8974.h>
+> +
+> +      ocmem: ocmem@fdd00000 {
+> +        compatible = "qcom,ocmem-msm8974";
+> +
+> +        reg = <0xfdd00000 0x2000>,
+> +               <0xfec00000 0x180000>;
+> +        reg-names = "ocmem_ctrl_physical",
+> +                    "ocmem_physical";
+> +
+> +        clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
+> +                  <&mmcc OCMEMCX_OCMEMNOC_CLK>;
+> +        clock-names = "core",
+> +                      "iface";
+> +      };
+> --
+> 2.20.1
+>
