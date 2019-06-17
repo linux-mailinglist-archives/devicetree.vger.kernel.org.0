@@ -2,167 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF277480A9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 400FC480AC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727810AbfFQL3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 07:29:00 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:40282 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725681AbfFQL3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:29:00 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1hcpoX-0003Tn-Jd; Mon, 17 Jun 2019 13:28:41 +0200
-Message-ID: <066e9b39f937586f0f922abf801351553ec2ba1d.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
-        Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        Dan Williams <dcbw@redhat.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        syadagir@codeaurora.org
-Date:   Mon, 17 Jun 2019 13:28:39 +0200
-In-Reply-To: <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com> (sfid-20190611_135708_651569_0097B773)
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
-         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
-         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
-         (sfid-20190611_135708_651569_0097B773)
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-2.fc28) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S1728022AbfFQL3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 07:29:20 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38645 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725681AbfFQL3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:29:20 -0400
+Received: by mail-wm1-f68.google.com with SMTP id s15so8704601wmj.3;
+        Mon, 17 Jun 2019 04:29:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=zInznW5XB3al197T1sq8vjBfz4p8KHr/nGuuPKy2mak=;
+        b=No6Tm8NfeG8g1EFBno88rynsnyh2O+OXBPLGXuURiqs9wJ51njnV3SblYzzkMMDLrT
+         ptZCtGQGbO8KIebyfOrdBh5uVGwWreHUknhpyBtOf/N2I5u+qEBh3xvjD2xoCMpEImh/
+         bpOKrbpKiZXaapPYEyD/EdMzC8QfME37uTOFjFTDFL1FI4uqiZTCDrFojeGRY2nMP4n7
+         chsXCG35piY+yugnykILw5NGOtnroyNhOGOCXAqACJe1Nrzi2/tHXJYKy1PU4M1JMWtl
+         SYOmMz3gh9d3yYNf296q/ypHkti2hu+CZkqm6eLdkJQ/M6rMCWjJS6U2CMudRORwxVzW
+         sCyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zInznW5XB3al197T1sq8vjBfz4p8KHr/nGuuPKy2mak=;
+        b=awoTVgpEdusHMJG6f38GqCNrb7yIfavR4VBZms2kXLFHtAuE7Vv9PiTWdKZ8FAZ7hz
+         teZZ95yQXrjkRS2Nqj3e+dqw8tOqODw6l/ApRw7DMSEfJ9Jn9ImvIlzN2JM4l81bdzJ1
+         iqSZ0ZzEKzV2/Xc2vxWvl7e2br5WOaPQExY26JDnXYjV+12eqjBeIeptMPWnn8ZnV7xF
+         bcOXY6ZkyVJ2pi8zGXe+80kHOSil4cHPRhyzpqQOzz/lj6MXtd3EPPtYtby79XTPlDdA
+         QYVN0FpMoDqCLyYqeeF4fquV7m5aBXhTVAeG9RQK0jSSUtmE2oI6hH4R2BHwi0x1eSWk
+         wObQ==
+X-Gm-Message-State: APjAAAU7OIZMKvuN20VjuKWWg4AfRCXS4UEE4A0Fmm2Tp8k4XRQ8Fq2A
+        GE/0YhZO1V0GnlG2ACtUNdA=
+X-Google-Smtp-Source: APXvYqwqq9pTtsZAbFZvdtacLouUBouVJbrFR2nB9oUOZ506lLwdOjuVPACIkE93T67bnl2niCQYlg==
+X-Received: by 2002:a1c:e3c1:: with SMTP id a184mr17029440wmh.24.1560770956696;
+        Mon, 17 Jun 2019 04:29:16 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id y17sm20436146wrg.18.2019.06.17.04.29.15
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 17 Jun 2019 04:29:16 -0700 (PDT)
+Date:   Mon, 17 Jun 2019 13:29:15 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 27/28] PCI: tegra: Add support for GPIO based PERST#
+Message-ID: <20190617112915.GJ508@ulmo>
+References: <20190613152404.GB30445@e121166-lin.cambridge.arm.com>
+ <cb2dd446-1275-7179-33ac-e5c237d81da6@nvidia.com>
+ <20190614143222.GB23116@e121166-lin.cambridge.arm.com>
+ <1508173d-0ecc-f498-6ab2-78a718086b35@nvidia.com>
+ <20190614145023.GA24588@e121166-lin.cambridge.arm.com>
+ <20190614152304.GK15526@ulmo>
+ <20190614155934.GA28253@e121166-lin.cambridge.arm.com>
+ <51e4ae62-f842-1d2f-fbca-0b2063dd53a6@nvidia.com>
+ <20190614165353.GB30511@e121166-lin.cambridge.arm.com>
+ <1c662f82-8329-5e1b-58bf-b2fe1643adb0@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="oplxJGu+Ee5xywIT"
+Content-Disposition: inline
+In-Reply-To: <1c662f82-8329-5e1b-58bf-b2fe1643adb0@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-11 at 13:56 +0200, Arnd Bergmann wrote:
-> On Tue, Jun 11, 2019 at 10:12 AM Johannes Berg
-> <johannes@sipsolutions.net> wrote:
-> 
-> > > As I've made clear before, my work on this has been focused on the IPA transport,
-> > > and some of this higher-level LTE architecture is new to me.  But it
-> > > seems pretty clear that an abstracted WWAN subsystem is a good plan,
-> > > because these devices represent a superset of what a "normal" netdev
-> > > implements.
-> > 
-> > I'm not sure I'd actually call it a superset. By themselves, these
-> > netdevs are actually completely useless to the network stack, AFAICT.
-> > Therefore, the overlap with netdevs you can really use with the network
-> > stack is pretty small?
-> 
-> I think Alex meant the concept of having a type of netdev with a generic
-> user space interface for wwan and similar to a wlan device, as I understood
-> you had suggested as well, as opposed to a stacked device as in
-> rmnet or those drivers it seems to be modeled after (vlan, ip tunnel, ...)/.
 
-I guess. It is indeed currently modelled after the stacked devices, but
-those regular netdevs are inherently useful by themselves, you don't
-*have* to tunnel or use VLANs after all.
+--oplxJGu+Ee5xywIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-With rmnet, the underlying netdev *isn't* useful by itself, because
-you're always forced to have the stacked rmnet device on top.
+On Fri, Jun 14, 2019 at 10:53:13PM +0530, Manikanta Maddireddy wrote:
+>=20
+>=20
+> On 14-Jun-19 10:23 PM, Lorenzo Pieralisi wrote:
+> > On Fri, Jun 14, 2019 at 10:00:49PM +0530, Manikanta Maddireddy wrote:
+> >
+> > [...]
+> >
+> >> GPIO based PERST# is per-platform requirement.
+> >> If DT prop is not present, then devm_gpiod_get_from_of_node() returns
+> >> NULL gpio_desc.
+> >>
+> >> struct gpio_desc *gpiod_get_from_of_node(struct device_node *node,
+> >>                                          const char *propname, int ind=
+ex,
+> >>                                          enum gpiod_flags dflags,
+> >>                                          const char *label)
+> >> {
+> >>         struct gpio_desc *desc;
+> >>         unsigned long lflags =3D 0;
+> >>         enum of_gpio_flags flags;
+> >>         bool active_low =3D false;
+> >>         bool single_ended =3D false;
+> >>         bool open_drain =3D false;
+> >>         bool transitory =3D false;
+> >>         int ret;
+> >>
+> >>         desc =3D of_get_named_gpiod_flags(node, propname,
+> >>                                         index, &flags);
+> >>
+> >>         if (!desc || IS_ERR(desc)) {
+> >> */* If it is not there, just return NULL */****if (PTR_ERR(desc) =3D=
+=3D -ENOENT)****return NULL;*
+> >>                 return desc;
+> >>         }
+> >> 	...
+> >>
+> >> }
+> > Ok. My point then is that you have no way to enforce this requirement on
+> > platforms that actually need it, I do not even know if there is a
+> > way you can do it (I was thinking along the lines of using a
+> > compatible string to detect whether the GPIO #PERST reset is mandatory)
+> > but maybe this is not even a SOC property.
+> >
+> > Maybe what I am asking is overkill, I just wanted to understand.
+> >
+> > I was just asking a question to understand how you handle the case
+> > where a GPIO pin definition is missing in DT for a platform that
+> > actually needs it, the driver will probe but nothing will work.
+> >
+> > It would be good to describe this and capture it in the commit log.
+> >
+> > Thanks,
+> > Lorenzo
+>=20
+> I can't think of a easy way to enforce this requirement. As you said
+> compatible string is per SOC, so we can't use it for a platform.
+> This issue is present on only one platform, so it is hard to miss the
+> DT property. That is the reason for publishing this patch with out this
+> enforcement in driver.
+>=20
+> I thought for changing PERST# to GPIO for all platform, but testing is
+> a tedious job. Also I don't have Tegra20 and Tegra30 platforms.
 
+Yeah, let's not go that way. The standard way to do this is to use the
+SFIO and let the PCIe controller and driver handle this. It's working
+just fine on all platforms currently supported upstream. Using direct
+GPIO for PERST# is a workaround, so let's not proliferate unless it is
+absolutely necessary.
 
-> > > HOWEVER I disagree with your suggestion that the IPA code should
-> > > not be committed until after that is all sorted out.  In part it's
-> > > for selfish reasons, but I think there are legitimate reasons to
-> > > commit IPA now *knowing* that it will need to be adapted to fit
-> > > into the generic model that gets defined and developed.  Here
-> > > are some reasons why.
-> > 
-> > I can't really argue with those, though I would point out that the
-> > converse also holds - if we commit to this now, then we will have to
-> > actually keep the API offered by IPA/rmnet today, so we cannot actually
-> > remove the netdev again, even if we do migrate it to offer support for a
-> > WWAN framework in the future.
-> 
-> Right. The interface to support rmnet might be simple enough to keep
-> next to what becomes the generic interface, but it will always continue
-> to be an annoyance.
+With an updated commit message, this is:
 
-Not easily, because fundamentally it requires an underlying netdev to
-have an ifindex, so it wouldn't just be another API to keep around
-(which I'd classify as an annoyance) but also a whole separate netdev
-that's exposed by this IPA driver, for basically this purpose only.
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-> > I dunno if it really has to be months. I think we can cobble something
-> > together relatively quickly that addresses the needs of IPA more
-> > specifically, and then extend later?
-> > 
-> > But OTOH it may make sense to take a more paced approach and think
-> > about the details more carefully than we have over in the other thread so far.
-> 
-> I would hope that as soon as we can agree on a general approach, it
-> would also be possible to merge a minimal implementation into the kernel
-> along with IPA. Alex already mentioned that IPA in its current state does
-> not actually support more than one data channel, so the necessary
-> setup for it becomes even simpler.
+--oplxJGu+Ee5xywIT
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Interesting, I'm not even sure how the driver can stop multiple channels
-in the rmnet model?
+-----BEGIN PGP SIGNATURE-----
 
-> At the moment, the rmnet configuration in include/uapi/linux/if_link.h
-> is almost trivial, with the three pieces of information needed being
-> an IFLA_LINK to point to the real device (not needed if there is only
-> one device per channel, instead of two), the IFLA_RMNET_MUX_ID
-> setting the ID of the muxing channel (not needed if there is only
-> one channel ?), a way to specify software bridging between channels
-> (not useful if there is only one channel) 
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0HeYoACgkQ3SOs138+
+s6G0nRAAgKnFuXyJDoo/u5v4QZYdt2+LjR6wTQy8xKnpzWKMfreKOPGz9QR1IdUa
+StL8QnOskvVuh1O/4B6ZFwvvMRiUQoq6mte3+4IpWi3MaU6a/epy0N+735ZVDPgZ
+fKWYwOoD3o5JopBYFebaV5IhoHH7/6q2tBNpJkucCqfCcqPpqYRzdEWKG+i37ziX
+WFyN36SUZUfgqsZWXVRoB5phzhR5VphAtbKLWCTI+ArfZoWm6q3nBxohR9JqkgA4
+xfPdH462j7X7hR8TSYaCD4f0jNBoTy57DWqKJJIiSHsGLVCRgQZRKsmNUq+PvPrY
+2hb/XwV3HBnv/FkVAWg/ucfUbqHiBwLXQIURyy356myw9A7odL0eT1MaDLgBAL2s
+DtNwScb89tURkjOtqVxmsA6Er+WKMY3JkZVmstHbC5721x8aXBIKg5aORa6C7qLb
+yiX93VVaXn3rdBJrFY7yJFf6AO5WsALLCaNJA7pPXl09El9Ot8SpgtkzZL2pE1va
+iCy4xvpksM0U3RXqWr7w+WJ1GEoFiYZ5CBiixrW1hjOr9wX7bDzbd4msKpN8ZEVZ
+dHP8spkCroHrV2Aqi4JxXsLGZkWFL4Blb+Bo0pqMEFquqm4gbC6KuHR6mxOdUp4v
+399gKcAandmaSpmH5Dj2T2AmKzHdtIga+lgCIAjZ+swD8ti69aU=
+=7qvv
+-----END PGP SIGNATURE-----
 
-I think the MUX ID is something we *would* want, and we'd probably want
-a channel type as well, so as to not paint ourselves into a corner where
-the default ends up being whatever IPA supports right now.
-
-The software bridging is very questionable to start with, I'd advocate
-not supporting that at all but adding tracepoints or similar if needed
-for debugging instead.
-
-
-> and a few flags that I assume
-> must match the remote end:
-> 
-> #define RMNET_FLAGS_INGRESS_DEAGGREGATION         (1U << 0)
-> #define RMNET_FLAGS_INGRESS_MAP_COMMANDS          (1U << 1)
-> #define RMNET_FLAGS_INGRESS_MAP_CKSUMV4           (1U << 2)
-> #define RMNET_FLAGS_EGRESS_MAP_CKSUMV4            (1U << 3)
-
-I don't really know about these.
-
-> > If true though, then I think this would be the killer argument *in
-> > favour* of *not* merging this - because that would mean we *don't* have
-> > to actually keep the rmnet API around for all foreseeable future.
-> 
-> I would agree with that. From the code I can see no other driver
-> including the rmnet protocol header (see the discussion about moving
-> the header to include/linux in order to merge ipa), and I don't see
-> any other driver referencing ETH_P_MAP either. My understanding
-> is that any driver used by rmnet would require both, but they are
-> all out-of-tree at the moment.
-
-I guess that would mean we have more work to do here, but it also means
-we don't have to support these interfaces forever.
-
-I'm not *entirely* convinced though. rmnet in itself doesn't really seem
-to require anything from the underlying netdev, so if there's a driver
-that just blindly passes things through to the hardware expecting the
-right configuration, we wouldn't really see it this way?
-
-OTOH, such a driver would probably blow up completely if somebody tried
-to use it without rmnet on top, and so it would at least have to check
-for ETH_P_MAP?
-
-johannes
-
+--oplxJGu+Ee5xywIT--
