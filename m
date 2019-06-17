@@ -2,136 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 043E548FBB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 21:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3E648FBE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 21:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727633AbfFQTlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 15:41:36 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:35226 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726343AbfFQTlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 15:41:36 -0400
-Received: by mail-io1-f65.google.com with SMTP id m24so24054553ioo.2;
-        Mon, 17 Jun 2019 12:41:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kuonsa3KXFAridQ676+AFjPR2pT/Cdpp/TweqCbNkSU=;
-        b=CPKNA4hdd2vC+wYkxIO+suC9TJcNOD/Ya3GpfzbUB6tc6lajE3INgjt+Ejt0mAxaKK
-         JH+L5izRbqEJPKgo2t+/8SdblytLDjc0LaWdJbMoemTvvt9PTDGEAQ7/B05me2fsu4c3
-         zTSXFHyw4szqAYdvU9XJsD031RHnejAaveZyzw+OvQ7MkvDSPT8KaRLZE5YHt/MXtmQ9
-         RMAx3mmylGj4qUL+RvYWFaybranRHlPMUZ4EwdgQVS6nCLKKvIuv3ubRt//JyVTVeCGI
-         /r1Ypu/dVzzCtAq9Of9NhkHcJa9qCF3N0RWm8QJUOIcMM2GY2c2exRy0D4xAUhh6BEsy
-         ZMAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kuonsa3KXFAridQ676+AFjPR2pT/Cdpp/TweqCbNkSU=;
-        b=CHtymy2dH8CqWAVQRXP4bm09uxKQqlMuOWZvYr4Qz2BTBPtSo1BLXN0PENvaI/DFHV
-         CWCPSUOkk5HQsQQs889I8ePWeO5Z4PJxvcJGWZq99owx3OVYiAOSbw8yFUAhYPdP9Dos
-         KyNOqu3eUbjCO2lkcGtX0rr8lUtMswvt00dGtvjoGGsE6H/dycOcSQftgLpcaK4ipy//
-         6+LPET0SnMIUZUopK5nguoz7ZfUQHduCRkrLHQFcM0P5bABPYb+/FPgN4kj6B9dlgSeq
-         efbVIFEO7MHRCzVEgO4de2JVHMQ/DoMOPTZSWJho1sHs0h3PNkJqtXncYLTVynQcfR10
-         U2vg==
-X-Gm-Message-State: APjAAAXcnhXDbb2Yk1P6WL18++QfkGJRr89bLgu2Ap1rseJYBax8eAsK
-        Rn1xb819+nIfUbiMqowGx4XWfdPyt2gi9Y4bDllI+w==
-X-Google-Smtp-Source: APXvYqxn4uYEJZW+Ai1tR6hrY/Ls40bEQ8kqJynfNnuBjCnf4nyOESAcFILwBMuXACkLxmgQZ4Wr8/XH5J6oj31zr3o=
-X-Received: by 2002:a6b:e615:: with SMTP id g21mr18973869ioh.178.1560800495498;
- Mon, 17 Jun 2019 12:41:35 -0700 (PDT)
+        id S1727462AbfFQTmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 15:42:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33466 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726026AbfFQTmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 15:42:31 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5HJgQhb014546;
+        Mon, 17 Jun 2019 14:42:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1560800546;
+        bh=OXjiS+8UpF2zY/61W6xFfGT6Jb8eSjrF0tnxlXIhGpI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=LArX8aBJp/5jwJJ0zcvOANjmJJgDDxPXINd+/m79fJ6Jy+KwLIdhFogW2vSiahtmA
+         xxv+fFkw/23U9IU349WmEeQNpX1OQcFpEKIMJ64kl+krU/OBH/Di5UCTgsnWz5NW/K
+         SNLsoOpGijZjUE+xkM8tN3YOodQvnk/iKhGY22XU=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5HJgQXB084710
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Jun 2019 14:42:26 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 17
+ Jun 2019 14:42:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 17 Jun 2019 14:42:25 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5HJgNvD058998;
+        Mon, 17 Jun 2019 14:42:24 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add MSMC RAM ranges in
+ interconnect node
+To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Roger Quadros <rogerq@ti.com>
+References: <20190529211344.18014-1-s-anna@ti.com>
+ <20190530104903.ldcmkunjnk7a5y3c@akan>
+ <3c53679c-4246-43e1-e6d6-2e1c7db201d7@ti.com>
+ <b1f7aa31-4f3b-b9d9-6951-092f3a87d078@ti.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <ac862030-6843-2906-3823-8e93da1b22da@ti.com>
+Date:   Mon, 17 Jun 2019 22:42:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190613212436.6940-1-jeffrey.l.hugo@gmail.com>
- <20190613212553.10541-1-jeffrey.l.hugo@gmail.com> <20190613212553.10541-2-jeffrey.l.hugo@gmail.com>
- <20190617150502.GU5316@sirena.org.uk> <CAOCk7NrwYezbVyLKOZdxgGRVemKtBmHKP+fSO0a2p3bCPNdW3w@mail.gmail.com>
- <20190617160358.GC5316@sirena.org.uk> <CAOCk7Nrnd7yJQ=0pO64iT+RfmsKfJW0x0RhrmSLkO_brFqZ2+Q@mail.gmail.com>
- <20190617183757.GH5316@sirena.org.uk> <CAOCk7NpbZwAreGpVCvF2yFBDJKbAxBZ23oncfF_SyEwoiC2+PQ@mail.gmail.com>
- <20190617192413.GI5316@sirena.org.uk>
-In-Reply-To: <20190617192413.GI5316@sirena.org.uk>
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Date:   Mon, 17 Jun 2019 13:41:24 -0600
-Message-ID: <CAOCk7NpwMzhbbvwp-vy3TvbadTHqxqVau6yfds+pSOPG=2Qb7g@mail.gmail.com>
-Subject: Re: [PATCH v4 4/7] regulator: qcom_spmi: Add support for PM8005
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <b1f7aa31-4f3b-b9d9-6951-092f3a87d078@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 17, 2019 at 1:24 PM Mark Brown <broonie@kernel.org> wrote:
->
-> On Mon, Jun 17, 2019 at 01:06:42PM -0600, Jeffrey Hugo wrote:
-> > On Mon, Jun 17, 2019 at 12:37 PM Mark Brown <broonie@kernel.org> wrote:
->
-> > > Something really weird is going on with the word wrapping in your mail,
-> > > it looks like you're writing lines longer than 80 characters (120?) and
-> > > they're getting a newline added in the middle of the line to wrap them
-> > > without reflowing the paragraph.
->
-> > Doh.  Hopefully this one is better.
->
-> Yes, thanks!  Though now it's off-list :/
+On 17/06/2019 18:53, Suman Anna wrote:
+> On 6/17/19 9:54 AM, Tero Kristo wrote:
+>> On 30/05/2019 13:49, Nishanth Menon wrote:
+>>> On 16:13-20190529, Suman Anna wrote:
+>>>> From: Roger Quadros <rogerq@ti.com>
+>>>>
+>>>> Add the MSCM RAM address space to the ranges property of the cbass_main
+>>>> interconnect node so that the addresses can be translated properly.
+>>>>
+>>>> This fixes the probe failure in the sram driver for the MSMC RAM node.
+>>>>
+>>>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>>>> ---
+>>>>
+>>>> The following error message is seen without this:
+>>>> [    0.480261] sram interconnect@100000:sram@70000000: found no
+>>>> memory resource
+>>>> [    0.487497] sram: probe of interconnect@100000:sram@70000000
+>>>> failed with error -22
+>>>>
+>>>> regards
+>>>> Suman
+>>>>
+>>>>    arch/arm64/boot/dts/ti/k3-am65.dtsi | 1 +
+>>>>    1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>>>> b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>>>> index 50f4be2047a9..68b3f954f1d1 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+>>>> @@ -68,6 +68,7 @@
+>>>>                 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /*
+>>>> serdes */
+>>>>                 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /*
+>>>> Most peripherals */
+>>>>                 <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>, /*
+>>>> MAIN NAVSS */
+>>>> +             <0x00 0x70000000 0x00 0x70000000 0x00 0x00200000>, /*
+>>>> MSMC SRAM */
+>>>>                 /* MCUSS Range */
+>>>>                 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+>>>>                 <0x00 0x40200000 0x00 0x40200000 0x00 0x00900100>,
+>>>> -- 
+>>>> 2.21.0
+>>>>
+>>>
+>>> Arrgh.. Nice catch. Thanks. We should consider pulling this in as part
+>>> of early rc fixes please.
+>>>
+>>> Acked-by: Nishanth Menon <nm@ti.com>
+>>
+>> Hmm, what is the failure this causes, except the probe message? SRAM
+>> driver obviously won't work but is it used for anything at the moment
+>> anyways?
+>>
+>> I would rather queue this towards 5.3.
+> 
+> OK, I am fine either way.
+> 
+> regards
+> Suman
+> 
 
-Doh.  Added everyone back.
+Ok thanks, queued towards 5.3.
 
->
-> > > Well, it doesn't *have* to be the raw register value, more accurately
-> > > it's some token which is useful for passing to and from the hardware;
-> > > The documentation such as it
-> > > is is in the documentation of the list_voltage() operation (which is
-> > > what defines the selector values for a given driver).
->
-> > Ok, so this one bit -
-> > Selectors range from zero to one less than regulator_desc.n_voltages.
-> > Voltages may be reported in any order.
->
-> Yes.
->
-> > So, I understand that.  Its an indexing of the supported voltages.
-> > From my perspective, that has nothing to do with hardware.  Its just a
-> > remapping of the values to a different set.  Voltages X, Y, and Z map
-> > to 0, 1, and 2.  Its a token so that the driver and the framework can
-> > use a common value.
->
-> > I really think we are on the same page here, its just I was getting
-> > confused by how you were describing it in your replies.
->
-> Yes, I was just coming from the perspective that for almost all hardware
-> the selectors are chosen to be the values that are in the bitfield that
-> the hardware uses to specify the voltage since that's the most common
-> thing and tends to make things simpler for people, it's also the primary
-> place where the concept came from.
->
-> > > Your idea of very basic implementations is how the overwhelming majority
-> > > of hardware is implemented.  Regulators with register maps will tend to
-> > > just have a bitfield where you set the voltage with each valid value in
-> > > that bitfield mapped to a single voltage, the exceptions tend to use
-> > > direct voltage values instead (and not support enumeration at all).
->
-> > > Looking at the driver I think it's got what the helpers are terming
-> > > pickable linear ranges (naming is hard) and could use those helpers.
->
-> > I'm pretty sure Stephen Boyd and Bjorn just investigated that a few
-> > weeks ago, and came to the conclusion that it can't because of things
-> > like the hardware really wants to stay in the same range if at all
-> > possible, which is not behavior the pickable linear ranges seems to
-> > support.
->
-> Sounds like it just needs a custom map_voltage() function?  Though
-> thinking about it it's possibly worth just making the standard map try
-> to keep things in the same range as that will if nothing else reduce the
-> number of I/O operations.  Probably also reduce glitches if there's
-> overlapping ranges.
+That basically saves me one pull-request. :)
 
-I didn't think so when I was paying attention to their discussion.
-However maybe I missed something.  I think I'll take another look.
-Might make for a nice cleanup, but if its just in the driver, or if it
-involves updating the framework, it seems to be outside scope for this
-series of changes.
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
