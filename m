@@ -2,124 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C46748625
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 595E94864F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727467AbfFQOy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 10:54:29 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:50121 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726631AbfFQOy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:54:29 -0400
-Received: from localhost (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id C497C240018;
-        Mon, 17 Jun 2019 14:54:20 +0000 (UTC)
-Date:   Mon, 17 Jun 2019 16:54:20 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v2 5/9] drm/sun4i: tcon_top: Register
- clock gates in probe
-Message-ID: <20190617145420.e7yfrmmhdhift5id@flea>
-References: <20190614164324.9427-1-jagan@amarulasolutions.com>
- <20190614164324.9427-6-jagan@amarulasolutions.com>
- <20190617114503.pclqsf6bo3ih47nt@flea>
- <CAGb2v66RU=m0iA9VoBiYbake+mDoiiGcd5gGGXvNCBjhY2n+Dw@mail.gmail.com>
+        id S1728134AbfFQO7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 10:59:25 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:44090 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727783AbfFQO7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:59:25 -0400
+Received: by mail-vk1-f196.google.com with SMTP id w186so2112123vkd.11
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 07:59:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VeDj455KpUjyGeFAvU/iNT8gTzAGIt+VE2V1K3FogGo=;
+        b=x2rtsNq8v/D8WowlfZi68S9op6AgNbvw20AEk01oXwgbgkkIqGoh7yUHC2b/x+Fpks
+         hklTr4vyJFfnu46NYXoNF6cujUaH2nJQMgSndZx6YhVWpyXQREM/XIlZFWsCPzzqbYiZ
+         d9i05TZWygp+RIske9k1qLrWcaQAd/Qz+aN1n8KuXzvzWd2HFoqGQgZsdgg5slwtqKvh
+         pPhE+uUNLhxtsRLRSEVjSrQiG5JEQ60sNKYn0vQTydYe4bzRPTx6iuUywg9Zsu/SsUjU
+         fWFjgza4amZzX20SY1DLOo9T5LBGUNCZv8ErViIL7AVqDk5W7UW8sqW9LT4snHzVQcPl
+         Y31w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VeDj455KpUjyGeFAvU/iNT8gTzAGIt+VE2V1K3FogGo=;
+        b=tEpbOQgVogoDcELrhWYObLaXTS96XA51a39o8ogk5rPtvCttRTZf6C1Nnbh+uBxRYM
+         t6lqHcSEJmhOvssomvys4W6LbvbJPV7pSl6CyYEGpIviYPrlHWruuc3pbp5khg3t/ogb
+         AoDih/J3mORi9Wp0MYt2saftLIx/uRGwC8dLt/IWFYxV3Cypr1QhFIU4lsnJmxW+LJ+/
+         H7w6mqeFciHHcFWL3I80tnfxX3WOkIgDEdWgsdAWE3K614knEnlc7oRM/0jWDWJwV66P
+         HB4T+YvYOWXdK/zotHUXo9PGQeiagKdKWEgAny00UXhyx0ukc9GYMeXJ2jnwjGgfeyQ1
+         7Spw==
+X-Gm-Message-State: APjAAAU1h97W///h6OJsjf3xizK3dWXE66cSOPYn5FYURNQrLMTcIaB5
+        +IeodaJWm+4bOFhpYaZJjA3WvHikCcWwpW4jBiCxGQ==
+X-Google-Smtp-Source: APXvYqx84xD50NIMODd6WRKKp6Two4nx8BrixlFjO5oD+vW8e0fmtGE84cRELHAfY18BaMIh0MTDpgLtd01jmw7jVCA=
+X-Received: by 2002:a1f:8744:: with SMTP id j65mr43978757vkd.17.1560783563932;
+ Mon, 17 Jun 2019 07:59:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jzvxnzdlcqa2ksrf"
-Content-Disposition: inline
-In-Reply-To: <CAGb2v66RU=m0iA9VoBiYbake+mDoiiGcd5gGGXvNCBjhY2n+Dw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+References: <1560247011-26369-1-git-send-email-manish.narani@xilinx.com>
+ <1560247011-26369-4-git-send-email-manish.narani@xilinx.com>
+ <CAPDyKFrJwpwUUX_q2kcR9QY_fv9Lgos+ixPmU6JMeJVqJAiFpg@mail.gmail.com>
+ <5feac3fb-bef3-b7d1-57d6-81e115e1f555@xilinx.com> <CAPDyKFp_ZvSjFp2FGonzGsnc9xPyZ7qOCaRnX1SimBxLpfz9-Q@mail.gmail.com>
+ <948514a0-e310-75fd-e8a8-6ef8bb14e41f@xilinx.com>
+In-Reply-To: <948514a0-e310-75fd-e8a8-6ef8bb14e41f@xilinx.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 17 Jun 2019 16:58:47 +0200
+Message-ID: <CAPDyKFp6O8rPZDZS4iKJam2+tXeen_ZMOXKw=WVzJNpBXcSc9g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] mmc: sdhci-of-arasan: Add support for ZynqMP Platform
+ Tap Delays Setup
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Manish Narani <manish.narani@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Adrian Hunter <adrian.hunter@intel.com>, rajan.vaja@xilinx.com,
+        jolly.shah@xilinx.com, nava.manne@xilinx.com,
+        Olof Johansson <olof@lixom.net>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+[...]
 
---jzvxnzdlcqa2ksrf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Jun 17, 2019 at 09:01:33PM +0800, Chen-Yu Tsai wrote:
-> On Mon, Jun 17, 2019 at 7:45 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >>
+> >>
+> >>> In regards to the mmc data part, I suggest to drop the
+> >>> ->set_tap_delay() callback, but rather use a boolean flag to indicate
+> >>> whether clock phases needs to be changed for the variant. Potentially
+> >>> that could even be skipped and instead call clk_set_phase()
+> >>> unconditionally, as the clock core deals fine with clock providers
+> >>> that doesn't support the ->set_phase() callback.
+> >>
+> >> In connection to another version of this driver for latest Xilinx chip
+> >> it would be better to keep set_tap_delay callback in the driver. The
+> >> reason is that new chip/ip is capable to setup tap delays directly
+> >> without asking firmware to do it. That's why for versal IP there is a
+> >> need to call different setup_tap_delay function.
 > >
-> > On Fri, Jun 14, 2019 at 10:13:20PM +0530, Jagan Teki wrote:
-> > > TCON TOP have clock gates for TV0, TV1, dsi and right
-> > > now these are register during bind call.
-> > >
-> > > Of which, dsi clock gate would required during DPHY probe
-> > > but same can miss to get since tcon top is not bound at
-> > > that time.
-> > >
-> > > To solve, this circular dependency move the clock gate
-> > > registration from bind to probe so-that DPHY can get the
-> > > dsi gate clock on time.
+> > The ->set_tap_delay() callback is for ZyncMp pointing to
+> > sdhci_arasan_zynqmp_set_tap_delay(). This function calls the
+> > clk_set_phase() API.
 > >
-> > It's not really clear to me what the circular dependency is?
-> >
-> > if you have a chain that is:
-> >
-> > tcon-top +-> DSI
-> >          +-> D-PHY
-> >
-> > There's no loop, right?
+> > What does ->set_tap_delay() do for the latest version?
 >
-> Looking at how the DTSI patch structures things (without going into
-> whether it is correct or accurate):
->
-> The D-PHY is not part of the component graph. However it requests
-> the DSI gate clock from the TCON-TOP.
->
-> The TCON-TOP driver, in its current form, only registers the clocks
-> it provides at component bind time. Thus the D-PHY can't successfully
-> probe until the TCON-TOP has been bound.
->
-> The DSI interface requires the D-PHY to bind. It will return -EPROBE_DEFER
-> if it cannot request it. This in turn goes into the error path of
-> component_bind_all, which unbinds all previous components.
->
-> So it's actually
->
->     D-PHY -> TCON-TOP -> DSI
->       ^                   |
->       |--------------------
->
-> I've not checked, but I suspect there's no possibility of having other
-> drivers probe (to deal with deferred probing) within component_bind_all.
-> Otherwise we shouldn't run into this weird circular dependency issue.
->
+> There is different set of default tap delays which should be programmed
+> and it is done just via writing to registers which are the part of
+> controller address space.
 
-Ah, yes, that makes sense. It should be cleraer in the commit log then.
+Okay, I see.
 
-Thanks!
-Maxime
+Not sure what makes most sense to do here, but it sounds to me like
+another ->set_phase() callback should be implemented for the clock
+provider. In other words, calling clk_set_phase() should continue to
+works just fine for this case as well. If it turns out to be
+inconvenient, we can always add the ->set_tap_delay() at a later point
+when it makes more sense.
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+[...]
 
---jzvxnzdlcqa2ksrf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQepmwAKCRDj7w1vZxhR
-xYw9AQDHLFtmVu3MFQ1SBBQaIYnHJKObnT7QFiGqQdKlvtmJPQEAnVAr+0qvuMbJ
-nxfnMe/iGRf/aI9F/dseertWbl3c1AQ=
-=Vhms
------END PGP SIGNATURE-----
-
---jzvxnzdlcqa2ksrf--
+Kind regards
+Uffe
