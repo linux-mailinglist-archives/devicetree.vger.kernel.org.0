@@ -2,61 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F77E48267
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 14:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F0848294
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 14:37:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727620AbfFQM3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 08:29:01 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:35114 "EHLO
+        id S1726243AbfFQMfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 08:35:05 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:36460 "EHLO
         mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728039AbfFQM2T (ORCPT
+        by vger.kernel.org with ESMTP id S1725962AbfFQMfF (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 08:28:19 -0400
+        Mon, 17 Jun 2019 08:35:05 -0400
 Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5HCLCqf009408;
-        Mon, 17 Jun 2019 14:28:07 +0200
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5HCVDen016387;
+        Mon, 17 Jun 2019 14:34:51 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
  references : from : message-id : date : mime-version : in-reply-to :
  content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=E9NXlEGXNnvQZ3RULpw4oSl2qhYRA7pqUq0NxFi2maM=;
- b=Xn3sBMkfKYiuf6tnzB0nw/OrQ40k70XSyR3NVXIQ0Tyf8cgYlIClW771t+KqxiHkmQ7J
- Sl3H+GM6khJ7nB8zFPqU5RKM2siZIzdyCvSVaD5aKjcSSHjRcnbjam5zH5mCB9XunpMO
- drxsAYB1f4oqSBPcsHMCIIWdBf1e47fdq6Q+Vvx6dIJOXt5GJI7mRoDWbx42/zhySbHj
- n02S3xT2j0qnnBLjypHU37Nx73VwNIkVgTozZ9Efpyinwz+CThn65YlcQzo38Bq1KwUr
- OVjJM2CQXCXAbHWjBFf+SbrmMOQqBAQGJHB1ILAFIZNc85414UIu0s/PM+LfPiiOVVGT pg== 
+ bh=Bf2mCAHJCk8x6Ixnh6dSc1NHiHAHnvfKgorvDCTAyto=;
+ b=fxfACKVNj9ccB9QXV/rSwNlnRBZyRuirF8gZAmOWFdFkcnq/QNamAG9mKqjxUkRygFJl
+ eMmtdQLPH+8oEhDel/Onx9vbwaJx2o1EQsx0Pe6fgP0nbCHpQ4PfJzmFHGJZ1kdpo80a
+ A7S7/wYgYt/BFcgUl7t7Hxg8kZ4ZIfR5WWgZZoln7Qs86Su6Yu4cT9GG8zx9BKeVrC5w
+ rzsGAqNSbL4Srh7uM94Dzb3sq7sti9Kox5HCfi0kxNN4QX4IwXZphIa3p1cFIRsd0tzf
+ VHT184Cw3OkzKtp3NtnbqURzo2mUDKpfcz2p1qWBBbKSZozQFJtoi6QoUZKwsqAaXc1H mg== 
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2t4qjhte0v-1
+        by mx08-00178001.pphosted.com with ESMTP id 2t4qjhtf0b-1
         (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 17 Jun 2019 14:28:07 +0200
+        Mon, 17 Jun 2019 14:34:51 +0200
 Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 935DB3A;
-        Mon, 17 Jun 2019 12:28:06 +0000 (GMT)
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 916DE34;
+        Mon, 17 Jun 2019 12:34:50 +0000 (GMT)
 Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 69B6829A9;
-        Mon, 17 Jun 2019 12:28:06 +0000 (GMT)
-Received: from [10.48.0.204] (10.75.127.50) by SFHDAG3NODE2.st.com
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 673C029CD;
+        Mon, 17 Jun 2019 12:34:50 +0000 (GMT)
+Received: from [10.48.0.204] (10.75.127.48) by SFHDAG3NODE2.st.com
  (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 17 Jun
- 2019 14:28:05 +0200
-Subject: Re: [PATCH v4 0/4] Add Avenger96 board support
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <mcoquelin.stm32@gmail.com>, <robh+dt@kernel.org>
+ 2019 14:34:49 +0200
+Subject: Re: [PATCH 1/1] ARM: dts: stm32: replace rgmii mode with rgmii-id on
+ stm32mp15 boards
+To:     Christophe Roullier <christophe.roullier@st.com>,
+        <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
+        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <peppe.cavallaro@st.com>
 CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <loic.pallardy@st.com>
-References: <20190612075451.8643-1-manivannan.sadhasivam@linaro.org>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <andrew@lunn.ch>
+References: <20190617085018.20352-1-christophe.roullier@st.com>
+ <20190617085018.20352-2-christophe.roullier@st.com>
 From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <e34e8160-d16e-bf18-e7c3-240098908df2@st.com>
-Date:   Mon, 17 Jun 2019 14:28:04 +0200
+Message-ID: <c53808dd-f1d2-2865-7d45-fa2ca875b95a@st.com>
+Date:   Mon, 17 Jun 2019 14:34:49 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190612075451.8643-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190617085018.20352-2-christophe.roullier@st.com>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG8NODE1.st.com (10.75.127.22) To SFHDAG3NODE2.st.com
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG3NODE2.st.com
  (10.75.127.8)
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-17_06:,,
  signatures=0
@@ -65,43 +69,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani,
+Hi Christophe
 
-On 6/12/19 9:54 AM, Manivannan Sadhasivam wrote:
-> Hello,
+On 6/17/19 10:50 AM, Christophe Roullier wrote:
+> On disco and eval board, Tx and Rx delay are applied (pull-up of 4.7k
+> put on VDD) so which correspond to RGMII-ID mode with internal RX and TX
+> delays provided by the PHY, the MAC should not add the RX or TX delays
+> in this case
 > 
-> This patchset adds Avenger96 board support. This board is one of the
-> Consumer Edition boards of the 96Boards family from Arrow Electronics
-> featuring STM32MP157A MPU and has the following features:
+> Signed-off-by: Christophe Roullier <christophe.roullier@st.com>
+> ---
+>   arch/arm/boot/dts/stm32mp157a-dk1.dts | 2 +-
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> SoC: STM32MP157AAC
-> PMIC: STPMIC1A
-> RAM: 1024 Mbyte @ 533MHz
-> Storage: eMMC v4.51: 8 Gbyte
->           microSD Socket: UHS-1 v3.01
-> Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
-> Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
->            Bluetooth®v4.2 (BR/EDR/BLE)
-> USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
-> Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
-> LED: 4x User LED, 1x WiFi LED, 1x BT LED
-> 
-> More information about this board can be found in 96Boards website:
-> https://www.96boards.org/product/avenger96/
-> 
-> Thanks,
-> Mani
+> diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+> index 098dbfb06b61..2c105740dfad 100644
+> --- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+> @@ -51,7 +51,7 @@
+>   	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+>   	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
+>   	pinctrl-names = "default", "sleep";
+> -	phy-mode = "rgmii";
+> +	phy-mode = "rgmii-id";
+>   	max-speed = <1000>;
+>   	phy-handle = <&phy0>;
+>   
+> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> index b6aca40b9b90..ab1393caf799 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> @@ -79,7 +79,7 @@
+>   	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+>   	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
+>   	pinctrl-names = "default", "sleep";
+> -	phy-mode = "rgmii";
+> +	phy-mode = "rgmii-id";
+>   	max-speed = <1000>;
+>   	phy-handle = <&phy0>;
+>   
 > 
 
-Thanks to extend the stm32 family!
-I just format commit message title for device tree patches ("ARM: dts: 
-stm32 ...").
+Applied on stm32-next.
 
-Rob, I took also the dt-binding patches.
-
-Series applied on stm32-next.
-
-Regards
+Thanks.
 Alex
-
-
