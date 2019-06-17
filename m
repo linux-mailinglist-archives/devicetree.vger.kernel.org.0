@@ -2,118 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1896248DBF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 21:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A24348F0A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 21:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726774AbfFQTQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 15:16:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35184 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725829AbfFQTQp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 15:16:45 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A46FA20B1F;
-        Mon, 17 Jun 2019 19:16:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560799004;
-        bh=Gt19uq+qmreWDS4gPNgKL+i/1lZeWJVrbTndQXm88hA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ygI4mXZ4FK/DIAC0x67TCpM/GLGF7iIf6vOaeEfsnPSMNoQfK28rgck+5RB2qRpEO
-         CMsaZVg4ehzf/O4mj+wCZIvyxGeQNNkRPycGzlVa9w80eY/UyXxP7tixjhKDXtQyHL
-         YyRUpu5ryCwzuA+MoSUQrA/vBH4C2sSnqAWyYbSw=
-Received: by mail-qt1-f181.google.com with SMTP id d17so7213538qtj.8;
-        Mon, 17 Jun 2019 12:16:44 -0700 (PDT)
-X-Gm-Message-State: APjAAAVPXSIBBYhHq+yZ/0IOHNrkufAqR0Jlb7EdhPldrrbeHIX2l8mP
-        NWwCmfRrPhMgQ9dMCkT0ju4zQmE51eOuV+qHEw==
-X-Google-Smtp-Source: APXvYqyVZbh0PlMogbVhE0NULb2YNLy3fCj6PKe8704XokjeEqmm6eZIegjHmk/tzMvMCwl9xNlf5j9cXMv6fjsBPAU=
-X-Received: by 2002:ac8:368a:: with SMTP id a10mr13618835qtc.143.1560799003868;
- Mon, 17 Jun 2019 12:16:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190614203144.3850-2-joseph.kogut@gmail.com> <20190614235719.8134-1-joseph.kogut@gmail.com>
-In-Reply-To: <20190614235719.8134-1-joseph.kogut@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 Jun 2019 13:16:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKasi4m7xU2AF1YQk-Tp0Z6=qh51LgTpb=xiZ9g6A3HvA@mail.gmail.com>
-Message-ID: <CAL_JsqKasi4m7xU2AF1YQk-Tp0Z6=qh51LgTpb=xiZ9g6A3HvA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-To:     Joseph Kogut <joseph.kogut@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726830AbfFQT35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 15:29:57 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38469 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726928AbfFQT35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 15:29:57 -0400
+Received: by mail-wr1-f66.google.com with SMTP id d18so11275568wrs.5
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 12:29:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=+faE7f2i5p9Exif1Tqt8gr1N97noY/QwTIkSkdvT3og=;
+        b=bkgOc2/3ZUHCQSxFhp6RqNALsLKkn4tZVsorTRiDz7F3zc3bQNADsPmg82zVowvcZJ
+         p42/8gSGuUzolct0ah3c6bnkOCgs+kXl9gnviB8mmoqexielke/sCZJ3utz7f7QpI9UM
+         JrNWLHi8YsNpZFFs9zC7pApEVclq21iVyoY+QJhTnfNBHVbq72VDY8XbJ3ztLDXkQ1cq
+         wuV5Dl6OA8QDybIHh193Gm0dea7yQrrKMTdQItwYgepNffLLuFpoxT284OYmKzeiWUY3
+         c53hiU2XvpjpHLz2gQEvcNoGoGYlsvG4FCyYxZ9/GvD1Bfx8z9WgRBG3yNlwfKl9zoFB
+         3ugw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=+faE7f2i5p9Exif1Tqt8gr1N97noY/QwTIkSkdvT3og=;
+        b=jgrpEtZqKl1YrpJbfoEoBgmeAklPg76bHRGDdxl+Vah37zVeCmxbeN2gbg4KC5RlyV
+         cR8jytSUWJKBZzj6Qqeq/2NXJhoUDdxRYP6FK79bdpxdTipviDFEwNuWArABzq7egJRc
+         XsdpBCTehBcAZJjbj/gnC+4981dEgG+s1HH87AX8VasRReNA1IY4sWcig7bWntVO5Fkk
+         6bFgrs6EndK8FopqL12ez00AhYdkbhxHuDKjBQn7afktgJTQDMtoIO7GsaDVG0sH8xZK
+         43lSTO70pMBGVt3vGY3Q5ZU+yBpjt8rNa7Saas1gRTeSHey02+nt/GwETjxvnAzsVFpy
+         YuPQ==
+X-Gm-Message-State: APjAAAXGOzlnl4+pc+trlrr/awBFfPUPiETJ8yEazBtxidhsRUS3IdSt
+        PyCex7a9QSHZzMzewh00+bSaHzTWPRIhLQ==
+X-Google-Smtp-Source: APXvYqyH0bOBhea4+sw3VkCF82H7R+OQIXS9OUZ21Ftc6szY5AP5ukvB6GwAFBNv0VgCDCQyTYIy4w==
+X-Received: by 2002:a5d:494d:: with SMTP id r13mr25518129wrs.152.1560799794897;
+        Mon, 17 Jun 2019 12:29:54 -0700 (PDT)
+Received: from loys-ubuntu-BY1835A49200471.thefacebook.com (cust-west-pareq2-46-193-13-130.wb.wifirst.net. [46.193.13.130])
+        by smtp.googlemail.com with ESMTPSA id u18sm9412034wrr.11.2019.06.17.12.29.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 17 Jun 2019 12:29:54 -0700 (PDT)
+From:   Loys Ollivier <lollivier@baylibre.com>
+To:     Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     Loys Ollivier <lollivier@baylibre.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 0/3] riscv: add SOC_SIFIVE config for SiFive specific resource
+Date:   Mon, 17 Jun 2019 21:29:47 +0200
+Message-Id: <1560799790-20287-1-git-send-email-lollivier@baylibre.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 5:57 PM Joseph Kogut <joseph.kogut@gmail.com> wrote:
->
-> Add device tree node for mali gpu on Odroid XU3 SoCs.
->
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> ---
->
-> Changes v1 -> v2:
-> - Use interrupt name ordering from binding doc
-> - Specify a single clock for GPU node
-> - Add gpu opp table
-> - Fix warnings from IRQ_TYPE_NONE
->
->  .../boot/dts/exynos5422-odroidxu3-common.dtsi | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> index 93a48f2dda49..b8a4246e3b37 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> @@ -48,6 +48,32 @@
->                 cooling-levels = <0 130 170 230>;
->         };
->
-> +       gpu: gpu@11800000 {
-> +               compatible = "samsung,exynos-mali", "arm,mali-t628";
-> +               reg = <0x11800000 0x5000>;
-> +               interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
-> +                            <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-> +               interrupt-names = "job", "mmu", "gpu";
-> +               clocks = <&clock CLK_G3D>;
-> +               mali-supply = <&buck4_reg>;
-> +               operating-points-v2 = <&gpu_opp_table>;
-> +       };
-> +
-> +       gpu_opp_table: gpu-opp-table {
+Hello,
 
-Not really a new problem in this file, but you are mixing nodes with
-and without an address and really the gpu node should be under a
-simple-bus node.
+Following is a patch series that adds a SOC_SIFIVE config.
+The purpose of this config is to group all the code specific to the SiFive
+architecture such as device tree and platform drivers.
 
-If the OPP is only for the GPU, I'd make it a child of the gpu node instead.
+The initial thought/discussion came from [0].
 
-> +               compatible = "operating-points-v2";
-> +
-> +               opp-177000000 {
-> +                       opp-hz = /bits/ 64 <117000000>;
-> +                       opp-microvolt = <812500>;
-> +               };
-> +
-> +               opp-600000000 {
-> +                       opp-hz = /bits/ 64 <600000000>;
-> +                       opp-microvolt = <1150000>;
-> +               };
-> +       };
-> +
->         thermal-zones {
->                 cpu0_thermal: cpu0-thermal {
->                         thermal-sensors = <&tmu_cpu0 0>;
-> --
-> 2.22.0
->
+[0] https://lore.kernel.org/linux-riscv/20190602080500.31700-1-paul.walmsley@sifive.com/
+
+Loys Ollivier (3):
+  arch: riscv: add config option for building SiFive's SoC resource
+  riscv: select SiFive platform drivers with SOC_SIFIVE
+  riscv: defconfig: enable SOC_SIFIVE
+
+ arch/riscv/Kconfig                  |  2 ++
+ arch/riscv/Kconfig.socs             | 13 +++++++++++++
+ arch/riscv/boot/dts/sifive/Makefile |  2 +-
+ arch/riscv/configs/defconfig        |  6 +-----
+ 4 files changed, 17 insertions(+), 6 deletions(-)
+ create mode 100644 arch/riscv/Kconfig.socs
+
+-- 
+2.7.4
+
