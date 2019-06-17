@@ -2,91 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D99C48A03
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 19:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06BB148A53
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 19:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726200AbfFQRYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 13:24:23 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:38950 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726005AbfFQRYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 13:24:23 -0400
-Received: by mail-pg1-f196.google.com with SMTP id 196so6190766pgc.6
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 10:24:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Y6eoqXX48AC4b/1BAfJLRGGO77bOmgiz3VWkyz5cuoM=;
-        b=Dta4DitzBZvBuK5H9Se3nxho4a24pUGIATMd0wHa75FwvPasTJvbM/I1q0oxKeGAeY
-         BqNWqe3+jb7xxqttxLcpBw9aMVYMSOUfC2VkJboI8Gk6PgC/9xRNVPgU6tw7ztyN3dVq
-         bgx4SU/jTTNPruE2mjcROWKwDV4dWB5sFRnsuX0kOhVEohKody22hP0TNkzrVD9ig7x/
-         cpbOQAExjqshadJTyCHfoULi9MnbKTskDw8Q/IG1RsUXq0HAU5pcz2gS/8zc0xXQolWD
-         WDCi4m6h8lmeZrxFXWpriphaiMjU7sjwrzHKiXaGcmT2ljuunpIpeTeQFYdZtfREIE2p
-         /yvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Y6eoqXX48AC4b/1BAfJLRGGO77bOmgiz3VWkyz5cuoM=;
-        b=Ldvv4DoR3YtOYh04ZteJ8Kv4VaJfu3tXWkd1NOX0AjP2EsBPTUWcdNWrkXX97l9hNp
-         LbMf9jmyzXJBog5Q8Xm6GdDMttOIuDjJ/UP+lTEx+AeG/mx9gBQnt7VX77f4nTxdhzhs
-         DPU/579H2QxfK5X9o5MqTY28tIluHZbBiE0MHgVc8YVCPHIqYNW8pdHqdpOSgfo8Nr4u
-         VQfQADLtoma1yOZPTRBH+ScNN+Xrmdv3uegxnI/5E3ooQbM+dVfBXbggUqAtZFuIbc+k
-         lh3dTmE16ucUXEjq3X9slRHqQXlKLNX96Y5u7pKHoGf4w4wRKtYh/tvMekOGCmMF55B9
-         UNhA==
-X-Gm-Message-State: APjAAAVWWcfE+sCtfC5CuJBq6yP57JlkIVRHi5WqqZ5KO0sr+rStXwcm
-        z5bw8TvvSeopns5gY8ZOi6wa
-X-Google-Smtp-Source: APXvYqwjw0cYF4PF9C19Mmd/+R+HHKi/qreGcmQqREBD6uZbrofk4ANRNg3hPIdexnhf5sRkSWb9Iw==
-X-Received: by 2002:a63:d458:: with SMTP id i24mr40457671pgj.171.1560792261503;
-        Mon, 17 Jun 2019 10:24:21 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:629b:c246:9431:2a24:7932:6dba])
-        by smtp.gmail.com with ESMTPSA id e22sm12717838pgb.9.2019.06.17.10.24.15
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 17 Jun 2019 10:24:20 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 22:54:13 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lee.jones@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        afaerber@suse.de, linux-actions@lists.infradead.org,
-        linux-kernel@vger.kernel.org, thomas.liau@actions-semi.com,
-        devicetree@vger.kernel.org, linus.walleij@linaro.org
-Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
-Message-ID: <20190617172413.GB16152@Mani-XPS-13-9360>
-References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
- <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
- <20190617163015.GD5316@sirena.org.uk>
- <20190617163413.GA16152@Mani-XPS-13-9360>
- <20190617170356.GG5316@sirena.org.uk>
+        id S1726384AbfFQRkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 13:40:00 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:11855 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725995AbfFQRkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 13:40:00 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d07d06f0000>; Mon, 17 Jun 2019 10:39:59 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 17 Jun 2019 10:39:59 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 17 Jun 2019 10:39:59 -0700
+Received: from HQMAIL108.nvidia.com (172.18.146.13) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 17 Jun
+ 2019 17:39:59 +0000
+Received: from manikanta-bm2.nvidia.com (10.124.1.5) by HQMAIL108.nvidia.com
+ (172.18.146.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Mon, 17 Jun 2019 17:39:56 +0000
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+To:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jonathanh@nvidia.com>, <lorenzo.pieralisi@arm.com>,
+        <vidyas@nvidia.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Subject: [PATCH V5 00/27] Enable Tegra PCIe root port features
+Date:   Mon, 17 Jun 2019 23:09:25 +0530
+Message-ID: <20190617173952.29363-1-mmaddireddy@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190617170356.GG5316@sirena.org.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560793199; bh=AFwexSjyhhn7GVD5rx+PHy1hmiAibOJXCELueKHRenQ=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=hYOk7/u4si46nz0U/crFDgAcKTrACcWGUVANNC+3TvpWfUhu8Z2AKYRvjJOEXRFxS
+         MaGNaT9zZk2ZJFFY9/gmq39q2QPdYaDnc4q6zKWmjlqJJP1ckm8e02brRd/EexxhpM
+         3jYkRcTYC4/4gvp2Fj0Q/cliN+DlEWhztPnhqRvCs4JVrnKYT4MbljPnvM5JIlrMDt
+         wCFeOu00VFmwQ14hlzengisorloBCJVwVAfDVzsy8AmdKntIUwsdlqmPcrsSofW1I9
+         pVyGXURLiXE26JIDzK7THYDDbgOsJBsSXtJhMow65Cs36Nx3oIPk9t8OMYIULrbBGp
+         06GMTc118MsFA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 17, 2019 at 06:03:56PM +0100, Mark Brown wrote:
-> On Mon, Jun 17, 2019 at 10:04:13PM +0530, Manivannan Sadhasivam wrote:
-> 
-> > > > + * Copyright (C) 2019 Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> > > You definitely didn't assign copyright to your employer?
-> 
-> > Yeah, that was intentional. This work is not part of Linaro working hours and
-> > falls into my spare time works where I'm trying to complete the upstream support
-> > for Actions Semi Owl series SoCs and target boards which I'm co-maintaining
-> > (sort of)...
-> 
-> OK...  seems very weird to use your work address for developing on
-> products closely associated with your employer in non-work time.
+This series of patches adds,
+- Tegra root port features like Gen2, AER, etc
+- Power and perf optimizations
+- Fixes like "power up sequence", "dev_err prints", etc
 
-Agree. I was trying to setup my kernel.org mail address with git for
-unofficial works like this but haven't done with it yet :/
+This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
+based Jetson-TX1, T124 based Jetson-TK1, Tegra20 and Tegra30 platforms.
 
-Regards,
-Mani
+Changes from v4 to v5:
+ - Patch [V4, 4/28]: Added blank line before block style comment
+ - Patch [V4, 22/28]: "Access endpoint config only if PCIe link is up"
+patch is dropped
+ - Patch [V4, 27/28]:
+* Updated reset gpio toggle logic to reflect active low usage
+* Replaced kasprintf() with devm_kasprintf()
+* Updated commit message with more information.
 
+Changes from v3 to v4:
+ - Patch [V3,27/29] is dropped
+ - Patch [V3,28/29]: devm_gpiod_get_from_of_node() is directly used in
+   pci-tegra driver instead of of_get_pci* wrapper function defined in
+   Patch [V3,27/29].
+
+Manikanta Maddireddy (27):
+  soc/tegra: pmc: Export tegra_powergate_power_on()
+  PCI: tegra: Handle failure cases in tegra_pcie_power_on()
+  PCI: tegra: Rearrange Tegra PCIe driver functions
+  PCI: tegra: Mask AFI_INTR in runtime suspend
+  PCI: tegra: Fix PCIe host power up sequence
+  PCI: tegra: Add PCIe Gen2 link speed support
+  PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
+  PCI: tegra: Program UPHY electrical settings for Tegra210
+  PCI: tegra: Enable opportunistic UpdateFC and ACK
+  PCI: tegra: Disable AFI dynamic clock gating
+  PCI: tegra: Process pending DLL transactions before entering L1 or L2
+  PCI: tegra: Enable PCIe xclk clock clamping
+  PCI: tegra: Increase the deskew retry time
+  PCI: tegra: Add SW fixup for RAW violations
+  PCI: tegra: Update flow control timer frequency in Tegra210
+  PCI: tegra: Set target speed as Gen1 before starting LTSSM
+  PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
+  PCI: tegra: Program AFI_CACHE* registers only for Tegra20
+  PCI: tegra: Change PRSNT_SENSE IRQ log to debug
+  PCI: tegra: Use legacy IRQ for port service drivers
+  PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
+  dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
+  arm64: tegra: Add PEX DPD states as pinctrl properties
+  PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
+  PCI: Add DT binding for "reset-gpios" property
+  PCI: tegra: Add support for GPIO based PERST#
+  PCI: tegra: Change link retry log level to debug
+
+ .../bindings/pci/nvidia,tegra20-pcie.txt      |   8 +
+ Documentation/devicetree/bindings/pci/pci.txt |   3 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
+ drivers/pci/controller/pci-tegra.c            | 582 +++++++++++++++---
+ drivers/soc/tegra/pmc.c                       |   1 +
+ 5 files changed, 533 insertions(+), 80 deletions(-)
+
+-- 
+2.17.1
 
