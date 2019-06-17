@@ -2,107 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 370BE488AD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A71488BC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727121AbfFQQQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 12:16:30 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:35943 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726822AbfFQQQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 12:16:30 -0400
-Received: by mail-pf1-f194.google.com with SMTP id r7so5958754pfl.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 09:16:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zvibPhwENQ3qc2un3M/Q6u9vfA61QDqGf+AvuS+Jre0=;
-        b=ZoqSWmU/lQLp0AxiYiOl4DnE8lGbhiLm4TaGaplykVD8NJT3wL2fFNQtVZ1rhnDefR
-         BaZR79IvfuOD5CsEX5Gw7fbGTcYyajcJl9kBZ4M7KE9N1zgzsiE4tOPQV7Ij2cCHZ82h
-         EeOCnc0aOXf5zaqOyTsOM7HB6gCUwOMLTttbg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zvibPhwENQ3qc2un3M/Q6u9vfA61QDqGf+AvuS+Jre0=;
-        b=MFdT0Q60W3SxubJBO4DzBkMf63ogzf8aLWYojHEuQk002m0cUt+ECmBRFoSmVSQb/o
-         CsITWogzSCcWbO93hMiS5jFrlozJ7gfYulYcqF0eClp8T277qfbK2nBDQx0oB5X9ML6f
-         thKREUOOHupdvY/GnhdDwtetoyP2eMy+79F+W3ox04wHtWRLUZJWS3K42z3tnFgW8Mmv
-         EnCifLj/vxj98UkNaILiIVDTEpBE5qlRKCrRAmACxiVb1HCXBNlxK5KrmS85GAQeaGAJ
-         bgX1OQx0GzQDrUTBhtNsuqpZvvTK7EnCg9XFSBzYiKoAzvv1/HFkjtfFhrQ6PR+fan4n
-         9gFw==
-X-Gm-Message-State: APjAAAVih2cPbTCUi1YdSFmvfWVvWLMDVn/DhKL99aFQUHRaEacmtzTx
-        u01tw/8Z8M0TbU21ODM/fv24cQ==
-X-Google-Smtp-Source: APXvYqw3rc3Tet3QBs9yulULj2UwlZKr/1RY50orF99rzSnjjv2kEBXdw1GPW8ggnZq5hpDRRJ/YNg==
-X-Received: by 2002:a17:90a:b908:: with SMTP id p8mr26903360pjr.94.1560788189915;
-        Mon, 17 Jun 2019 09:16:29 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id d12sm12846713pfd.96.2019.06.17.09.16.29
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 17 Jun 2019 09:16:29 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 09:16:25 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: set PWM delay backlight
- settings for Minnie"
-Message-ID: <20190617161625.GR137143@google.com>
-References: <20190614224533.169881-1-mka@chromium.org>
- <20190616154143.GA28583@atrey.karlin.mff.cuni.cz>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190616154143.GA28583@atrey.karlin.mff.cuni.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727738AbfFQQVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 12:21:46 -0400
+Received: from conuserg-12.nifty.com ([210.131.2.79]:45807 "EHLO
+        conuserg-12.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727639AbfFQQVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 12:21:46 -0400
+Received: from grover.flets-west.jp (softbank126125154139.bbtec.net [126.125.154.139]) (authenticated)
+        by conuserg-12.nifty.com with ESMTP id x5HGLP0a021960;
+        Tue, 18 Jun 2019 01:21:25 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-12.nifty.com x5HGLP0a021960
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1560788485;
+        bh=9Vm4Ynh/kWZgI3KQqSGTAag3aRK8FA3tSa76sSISXdg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jlmJDnmTI2akcO5J5J7XjrMV/pUBRF9GNH/gFAbyIFLtAgoE54PZSNIudD6klV6po
+         rnTCSBjGYlM33MilC4g/ejVOspJx9Cc4ArKA355ftACfIhH5W/9UVFfgahxbFsTApk
+         /FNz+ovCbmWvhVNviUlHRSdi+3w4aUBT3SKr12RmdSM9a3ufyBiO00YZP9Q0AxBpAk
+         X1rvtGKkXjnJvwdUM0kc/41GV5OXoCkbldysAMk+ga1VdX0RTgt7KBz7LX3Xy2eVM2
+         4ZPf1Pl+cPCEHZ7w/VQVE9IdcVRJaZDSoEeDzU+qLniBcD+gVfxxuP26FxsYM2oWLY
+         W2jXJYRBR8c4w==
+X-Nifty-SrcIP: [126.125.154.139]
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH] libfdt: reduce the number of headers included from libfdt_env.h
+Date:   Tue, 18 Jun 2019 01:21:23 +0900
+Message-Id: <20190617162123.24920-1-yamada.masahiro@socionext.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+Currently, libfdt_env.h includes <linux/kernel.h> just for INT_MAX.
 
-On Sun, Jun 16, 2019 at 05:41:43PM +0200, Pavel Machek wrote:
-> Hi!
-> 
-> > This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
-> > 
-> > According to the commit message the AUO B101EAN01 panel on minnie
-> > requires a PWM delay of 200 ms, however this is not what the
-> > datasheet says. The datasheet mentions a *max* delay of 200 ms
-> > for T2 ("delay from LCDVDD to black video generation") and T3
-> > ("delay from LCDVDD to HPD high"), which aren't related to the
-> > PWM. The backlight power sequence does not specify min/max
-> > constraints for T15 (time from PWM on to BL enable) or T16
-> > (time from BL disable to PWM off).
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Enric, if you think I misinterpreted the datasheet please holler!
-> 
-> Was this tested?
+<linux/kernel.h> pulls in a lots of broat.
 
-I performed limited manually testing.
+Thanks to commit 54d50897d544 ("linux/kernel.h: split *_MAX and *_MIN
+macros into <linux/limits.h>"), <linux/kernel.h> can be replaced with
+<linux/limits.h>.
 
-minnie ships with the Chrome OS 3.14 downstream, which doesn't include
-this delay, to my knowledge there are no open display related bugs for
-minnie. One could argue that a the configuration without the delay was
-widely field tested
+This saves including dozens of headers.
 
-> Does patch being reverted actually break anything?
+Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+---
 
-To my knowledge it doesn't really break anything, however there is a
-short user perceptible delay between switching on the LCD and
-switching on the backlight. It's not the end of the world, but if it's
-not actually needed better avoid it.
+ include/linux/libfdt_env.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> If so, cc stable?
+diff --git a/include/linux/libfdt_env.h b/include/linux/libfdt_env.h
+index edb0f0c30904..2231eb855e8f 100644
+--- a/include/linux/libfdt_env.h
++++ b/include/linux/libfdt_env.h
+@@ -2,7 +2,7 @@
+ #ifndef LIBFDT_ENV_H
+ #define LIBFDT_ENV_H
+ 
+-#include <linux/kernel.h>	/* For INT_MAX */
++#include <linux/limits.h>	/* For INT_MAX */
+ #include <linux/string.h>
+ 
+ #include <asm/byteorder.h>
+-- 
+2.17.1
 
-I guess this is an edge case, were you could go either way. I'm fine
-with respinning and cc-ing stable.
