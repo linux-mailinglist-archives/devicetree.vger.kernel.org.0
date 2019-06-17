@@ -2,97 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A604447CCE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 10:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8145247CEB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 10:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728044AbfFQI2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 04:28:14 -0400
-Received: from mail-yw1-f73.google.com ([209.85.161.73]:38111 "EHLO
-        mail-yw1-f73.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728037AbfFQI2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 04:28:07 -0400
-Received: by mail-yw1-f73.google.com with SMTP id p76so11559132ywg.5
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 01:28:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=EsSBOAivkaHwi6D12Cv8eKMrxsdP+T6KPHsvwbMQYm0=;
-        b=C7EmzIa5t1p3To0eH+Btt+UKnk2zWoDCRcHlxDDez+EJGzuX5/OCX+VtE4f/+IBxBU
-         mGEeX0YKVsmTpTHqWxwdvH8hqIG3FELhUYhSlXikfd0094SnjH2SPp0dcm0R005htjts
-         6D/xP0jMwTBwY1jE9/ZxkY0+RYLVqYuSTLbgUEKmyJPUnfix1cU3MelrOVMNgQTKcGe9
-         cFGgfxb8WDzOX4wGL98vqfITN9oZvAZ6ZQuIixRxb8VtiucW8A40EeqqX9/1t6jRhzWX
-         B1r5Tw0xfFTV6bdsPqlvoEcQ0Y0C9kM0VAB1WtVyge15d2r4CngkCHzpB/WflMNr6YDF
-         mQ0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=EsSBOAivkaHwi6D12Cv8eKMrxsdP+T6KPHsvwbMQYm0=;
-        b=maZ53pcrp+iuzC37Gp4AlVejfy2erXru5VIHrZYc/EE9zx0zRYjKirXe/YWTX12STX
-         /x0amGvmeObFHzve4/kDAoW5ry1z9abheGDI6T7sEmAoYj0TE27v0dexUHASoiajgGKr
-         /940otrTMKn3mNAqU+g2Y6+EglHjb9kS06YWc9wlaBYr8Rhp8ebOB2beytHAEISoSinA
-         VBzqk3W9cRN+V3hWdV/iRjBcV105KkGTpGPrbSLLYQ2V4n0Nj2MfbMkAPxXCpA8sUBL1
-         zzQSKvaQY9fYt5rmcP0V7eRM7q8j4HXA4NR1Q6jxgTDoK36kBpCDDPH0ghNXU23CsiGW
-         x54w==
-X-Gm-Message-State: APjAAAVS2L96ZsvmDotaHvF9DzFVkCJZqzrN7oaoUjVPPdEJH/NiBoeA
-        OEikgwBxuxrUQ061bp12DF4dXuBfAq+4PQBRF2UffA==
-X-Google-Smtp-Source: APXvYqygaxiZVfos+CJ+dORKXgXbsd4xQo+Oa0IXMYwFW3jHO/QMUCpEYOoJXhDPIYS8TyQgU0luKfcb92R2UWUxnJ1x6Q==
-X-Received: by 2002:a25:7642:: with SMTP id r63mr57620375ybc.253.1560760086697;
- Mon, 17 Jun 2019 01:28:06 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 01:26:13 -0700
-In-Reply-To: <20190617082613.109131-1-brendanhiggins@google.com>
-Message-Id: <20190617082613.109131-19-brendanhiggins@google.com>
-Mime-Version: 1.0
-References: <20190617082613.109131-1-brendanhiggins@google.com>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
-Subject: [PATCH v5 18/18] MAINTAINERS: add proc sysctl KUnit test to PROC
- SYSCTL section
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727715AbfFQI2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 04:28:37 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:34522 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726005AbfFQI1H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 04:27:07 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 755A825AED3;
+        Mon, 17 Jun 2019 18:27:05 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 74D4194024A; Mon, 17 Jun 2019 10:27:03 +0200 (CEST)
+Date:   Mon, 17 Jun 2019 10:27:03 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Subject: Re: [PATCH 0/4] Enhance Thermal support
+Message-ID: <20190617082703.kf3pw5u7ndnrixut@verge.net.au>
+References: <1560349255-26336-1-git-send-email-biju.das@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1560349255-26336-1-git-send-email-biju.das@bp.renesas.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for the new proc sysctl KUnit test to the PROC SYSCTL section.
++ Niklas
 
-Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, Jun 12, 2019 at 03:20:51PM +0100, Biju Das wrote:
+> This series aims to enhance thermal support by adding cpu-map,
+> capacity-dmips-mhz,thermal zone to support IPA and also adding 
+> dynamic power coefficients.
+> 
+> For CPU capacity-dmips-mhz calculation
+> -------------------------------------
+> dhrystone cross complied using the command [1].
+> [1] $CC -O3 -DTIME -fno-inline -fno-builtin-printf -Wno-implicit -march=armv8-a dhry_1.c dhry_2.c -o exe-dry
+> 
+> dhrystone is executed(with a loop value of 80000000) and took the average value for 5 iterations
+> of CA57 and CA53.
+> 
+> IPA testing
+> ----------
+> 
+> 1)Enable THERMAL_WRITABLE_TRIPS and THERMAL_STATISTICS in kernel
+> 
+> 2) Check the current  temperature(36.5 C) and check the cooling stats on device0 and device 1
+> 
+> Execute the below applications on an ssh session
+> 
+> 3) while true; do touch pic-`date +%s`.jpg;done &  will give almost 0.5 C jump on each instance
+> 
+> 4) Executing dhrystone will give 3-4 C jump(runs through the benchmark: 800000000)
+> 
+> 5) Now the current temperature is around 46.0 C and there is no change in cooling stats on device0 and device 1
+> 
+> 6) Now change the passive trip temperature to 42 C, At this time CPUFreq started kicking in trying to limit the temperature, which you can see through the cooling stats on device0 and device1. You can see the system trying to maintain the temperature around 42 C.
+> 
+> 7)  Without changing the load, Now change  the passive trip temperature to 100 C, the temperature rises back to 46 C again.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f3fb3fc30853e..05cd8ffd33c8f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12718,6 +12718,7 @@ S:	Maintained
- F:	fs/proc/proc_sysctl.c
- F:	include/linux/sysctl.h
- F:	kernel/sysctl.c
-+F:	kernel/sysctl-test.c
- F:	tools/testing/selftests/sysctl/
- 
- PS3 NETWORK SUPPORT
--- 
-2.22.0.410.gd8fdbe21b5-goog
+...
 
+Thanks,
+
+This looks fine to me but I will wait to see if there are other reviews
+before applying.
+
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
