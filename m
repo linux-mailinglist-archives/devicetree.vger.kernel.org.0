@@ -2,240 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC34A48FCD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 21:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE8B3490BC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 22:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727285AbfFQTpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 15:45:54 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:39897 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725839AbfFQTpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 15:45:54 -0400
-Received: by mail-lf1-f65.google.com with SMTP id p24so7452379lfo.6
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 12:45:52 -0700 (PDT)
+        id S1727439AbfFQUDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 16:03:18 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:42971 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726568AbfFQUDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 16:03:18 -0400
+Received: by mail-pl1-f196.google.com with SMTP id ay6so2349987plb.9
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 13:03:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Pin+t3SQw4xphykuXVSln0ZpS8PlkIhkvTYeC1W+arw=;
-        b=t3M9pwV5Nc2mU7uNt2Gvnyp5rug6s3gMOzSQhkbioeWsXDWGEqmXc6aaf3JVQnyynE
-         39nqYCpdi6HwURW17MD79yYSW2tbCLpJ1q5lmBFV7s/6ICNjwvhTn5pZNy6i5e7k72Mv
-         0EKw0i5EuazD6hktrnZTwjneWPeVMBkPYwKj7x3dB+DvHtQTzxPM9CPPJnDyx65FMlTr
-         GF2EbWcgE/4M7bNuTTOKC3fkfc5gvFmiQBwxhHB1iOZa5cA1k4h57MHY6mr1BUw/lnaD
-         sVG2heZ3+n7uX+iaIKkYj0QyROYLRWrbsWrOsnGpaNKVH3JHolf6DNjxdknje470eix7
-         rHKQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+6f59ZFOs1PSocx1cXbKIlzxOSpO4grS25QzNht0IBo=;
+        b=HAUdFKJJhiMKymZJQB2BDPSJoE/iyuSm4Zoz28SB10+kykqiY9fWV8m3ZhHifNYLQ0
+         gianVGa6NRSwnraiQxQPnn47Y8vu2BUM9Ii2feCs9YyJI3a1/UdASYpWOtlBtcDsOoCE
+         4wNhyON7emBZtf6bZmyiPF2newLP+1pJGDKwE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Pin+t3SQw4xphykuXVSln0ZpS8PlkIhkvTYeC1W+arw=;
-        b=t1fn/hSWzLmnT4fFbvlH9sVIkIjPLqNIuIvd5G8rbTg+BrK3yhBaFDHLfooXBeZCLl
-         Iq8OAJdSaHgw0+p8lyOT4UNAsZY8r9hwHK3VGvqsVnfCTLbHk7qx5tTodFeYMwPOlf3A
-         BonxZ78He7tTvZZuP4JioV+xgpCf4ABFK3HxnEBTmJ2RZ7ve68fQXao8FyOiKC9+FNJI
-         3AhahN32YeFCAdYdvd5J9ylEdX5OgXUoYP5TmyCPwQI/LQ/WUxN+fsyu+IROE+/hPlWk
-         OYLBuvK5GWaUHrKOQxUMaqJ9GegFd+FlUHpsP/g+bfk8XMLu+0yNLsiPIZ332sAuQG20
-         gGLg==
-X-Gm-Message-State: APjAAAXO1oIzyKL8VZvzuTnh2TnAyazd7WJh57Ic3pqKyvQWi97PuRPn
-        kaqpa4j0gDs1ZmmgVG8GGi94Gw==
-X-Google-Smtp-Source: APXvYqwnv9Uovhd1yzWG0Ky0E4Kuv0bMMTtpTFsQwdEAhIBty2VzHQTpmW1NoXnrE45jznhlWWBRCw==
-X-Received: by 2002:a19:5007:: with SMTP id e7mr60037319lfb.76.1560800751924;
-        Mon, 17 Jun 2019 12:45:51 -0700 (PDT)
-Received: from wasted.cogentembedded.com ([31.173.80.15])
-        by smtp.gmail.com with ESMTPSA id z83sm2231722ljb.73.2019.06.17.12.45.46
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+6f59ZFOs1PSocx1cXbKIlzxOSpO4grS25QzNht0IBo=;
+        b=C8/p+zLZt4j6USaMwPQkhnO7IOhb2xfMTLCqL6eQTFyUUTIL61H4FEVf2UTcorruIX
+         HyKyRXOIRHKDsOHSQ001ALxRFNPa0tksiixiejKEFTYUIjeFiQKj563RL5wHJS3Ffixv
+         ERrCES9qyiL0IQmpDR8L0vHZ38ZVGJTcCLJPb/uRquNkW9LNXxbusIrWhaJgf0GXHccC
+         j1Zi1AkzjjtN3UwowTbLKsh7l81rOfiepckj+i9dzkPi+YjMfcmCH3v+zU0t1y0Myqv/
+         GgiiDWFMHHdsJmwmMlMsSJpbWDoosOfd6L0Ggv5JFEIm4302ticrfbZd5NbVly5rdjWR
+         D/RQ==
+X-Gm-Message-State: APjAAAUw4WmmtJWxuXP7CsVCA53G2zt31KPp4G+BiZVTeI6QyUGWMJsE
+        mMdu/BT+x2uVZu44WMWfS/my2Q==
+X-Google-Smtp-Source: APXvYqwHSEuRqTDvpMokDsWAY4XbioaGwEV5S7azKc4M2N6fF8IpbDcv8EnRsu1EG2Q/oxRkJNkzXw==
+X-Received: by 2002:a17:902:8c83:: with SMTP id t3mr82969184plo.93.1560801797840;
+        Mon, 17 Jun 2019 13:03:17 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id a3sm13221952pfo.49.2019.06.17.13.03.16
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 17 Jun 2019 12:45:51 -0700 (PDT)
-Subject: Re: [PATCH v5 3/5] mtd: Add support for HyperBus memory devices
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mtd@lists.infradead.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190609103227.24875-1-vigneshr@ti.com>
- <20190609103227.24875-4-vigneshr@ti.com>
- <58e9608d-35ff-0436-6075-b2e4ed4b8594@cogentembedded.com>
- <f47d4d57-afb2-3b39-fae9-3ed740a2b8a6@ti.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <9dbd8132-ce8f-9ce7-ddf5-d9826e2a1be1@cogentembedded.com>
-Date:   Mon, 17 Jun 2019 22:45:45 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        Mon, 17 Jun 2019 13:03:16 -0700 (PDT)
+Date:   Mon, 17 Jun 2019 13:03:14 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Brian Norris <briannorris@google.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Doug Anderson <dianders@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Guenter Roeck <groeck@google.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alexandru Stan <amstan@google.com>, linux-leds@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 3/4] backlight: pwm_bl: compute brightness of LED
+ linearly to human eye.
+Message-ID: <20190617200314.GT137143@google.com>
+References: <20180208113032.27810-4-enric.balletbo@collabora.com>
+ <20190607220947.GR40515@google.com>
+ <20190608210226.GB2359@xo-6d-61-c0.localdomain>
+ <20190610205233.GB137143@google.com>
+ <20190611104913.egsbwcedshjdy3m5@holly.lan>
+ <CA+ASDXOq7KQ+f4KMh0gaC9hvXaxBDdsbiJxiTbeOJ9ZVaeNJag@mail.gmail.com>
+ <20190611223019.GH137143@google.com>
+ <20190612110325.xdn3q2aod52oalge@holly.lan>
+ <20190612192642.GK137143@google.com>
+ <20190617130150.GA21113@amd>
 MIME-Version: 1.0
-In-Reply-To: <f47d4d57-afb2-3b39-fae9-3ed740a2b8a6@ti.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <20190617130150.GA21113@amd>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Hi Pavel,
 
-On 06/11/2019 02:57 PM, Vignesh Raghavendra wrote:
-
->>> Cypress' HyperBus is Low Signal Count, High Performance Double Data Rate
->>> Bus interface between a host system master and one or more slave
->>> interfaces. HyperBus is used to connect microprocessor, microcontroller,
->>> or ASIC devices with random access NOR flash memory (called HyperFlash)
->>> or self refresh DRAM (called HyperRAM).
->>>
->>> Its a 8-bit data bus (DQ[7:0]) with  Read-Write Data Strobe (RWDS)
->>> signal and either Single-ended clock(3.0V parts) or Differential clock
->>> (1.8V parts). It uses ChipSelect lines to select b/w multiple slaves.
->>> At bus level, it follows a separate protocol described in HyperBus
->>> specification[1].
->>>
->>> HyperFlash follows CFI AMD/Fujitsu Extended Command Set (0x0002) similar
->>> to that of existing parallel NORs. Since HyperBus is x8 DDR bus,
->>> its equivalent to x16 parallel NOR flash wrt bits per clock cycle. But
->>> HyperBus operates at >166MHz frequencies.
->>> HyperRAM provides direct random read/write access to flash memory
->>> array.
->>>
->>> But, HyperBus memory controllers seem to abstract implementation details
->>> and expose a simple MMIO interface to access connected flash.
->>>
->>> Add support for registering HyperFlash devices with MTD framework. MTD
->>> maps framework along with CFI chip support framework are used to support
->>> communicating with flash.
->>>
->>> Framework is modelled along the lines of spi-nor framework. HyperBus
->>> memory controller (HBMC) drivers calls hyperbus_register_device() to
->>> register a single HyperFlash device. HyperFlash core parses MMIO access
->>> information from DT, sets up the map_info struct, probes CFI flash and
->>> registers it with MTD framework.
->>>
->>> Some HBMC masters need calibration/training sequence[3] to be carried
->>> out, in order for DLL inside the controller to lock, by reading a known
->>> string/pattern. This is done by repeatedly reading CFI Query
->>> Identification String. Calibration needs to be done before trying to detect
->>> flash as part of CFI flash probe.
->>>
->>> HyperRAM is not supported at the moment.
->>>
->>> HyperBus specification can be found at[1]
->>> HyperFlash datasheet can be found at[2]
->>>
->>> [1] https://www.cypress.com/file/213356/download
->>> [2] https://www.cypress.com/file/213346/download
->>> [3] http://www.ti.com/lit/ug/spruid7b/spruid7b.pdf
->>>     Table 12-5741. HyperFlash Access Sequence
->>>
->>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> [...]
->>> diff --git a/drivers/mtd/hyperbus/hyperbus-core.c b/drivers/mtd/hyperbus/hyperbus-core.c
->>> new file mode 100644
->>> index 000000000000..df1f75e10b1a
->>> --- /dev/null
->>> +++ b/drivers/mtd/hyperbus/hyperbus-core.c
->>> @@ -0,0 +1,191 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +//
->>> +// Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
->>> +// Author: Vignesh Raghavendra <vigneshr@ti.com>
->>> +
->>> +#include <linux/err.h>
->>> +#include <linux/kernel.h>
->>> +#include <linux/module.h>
->>> +#include <linux/mtd/hyperbus.h>
->>> +#include <linux/mtd/map.h>
->>> +#include <linux/mtd/mtd.h>
->>> +#include <linux/mtd/cfi.h>
->>> +#include <linux/of.h>
->>> +#include <linux/of_address.h>
->>> +#include <linux/types.h>
->>> +
->>> +#define HYPERBUS_CALIB_COUNT 25
->>
->>    Mhm, I think I've already protested about this being #define'd here...
+On Mon, Jun 17, 2019 at 03:01:51PM +0200, Pavel Machek wrote:
+> Hi!
 > 
-> I thought you had agreed that default optional calibration routine can
-> be part of core code and thus this #define.
+> > > Certainly "linear" (this device will work more or less correctly if the
+> > > userspace applies perceptual curves). Not sure about logarithmic since
+> > > what is actually useful is something that is "perceptually linear"
+> > > (logarithmic is merely a way to approximate that).
+> > > 
+> > > I do wonder about a compatible string like most-detailed to
+> > > least-detailed description. This for a PWM with the auto-generated
+> > > tables we'd see something like:
+> > > 
+> > > cie-1991,perceptual,non-linear
+> > > 
+> > > For something that is non-linear but we are not sure what its tables are
+> > > we can offer just "non-linear".
+> > 
+> > Thanks for the feedback!
+> > 
+> > It seems clear that we want a string for the added flexibility. I can
+> > work on a patch with the compatible string like description you
+> > suggested and we can discuss in the review if we want to go with that
+> > or prefer something else.
 > 
-> Anyways, what is your preference here? Drop the constant and use a local
-> variable in hyperbus_calibrate()?
-> Or are you suggesting to move hyperbus_calibrate() TI's specific driver?
+> Compatible-like string seems overly complicated.
 
-   I'm just not comfortable with the common HF code using quite an arbitrary
-constant...
+I see the merit in the sense that it allows to provide more precision
+for if userspace wants/needs it, without requiring userspace to know all
+possible (future) options. If userspace wants to keep things simple it
+can just check for check for "s == 'non-linear'" and
+"s.ends_with(',non-linear')"
 
->> [...]
->>> diff --git a/include/linux/mtd/hyperbus.h b/include/linux/mtd/hyperbus.h
->>> new file mode 100644
->>> index 000000000000..ee2eefd822c9
->>> --- /dev/null
->>> +++ b/include/linux/mtd/hyperbus.h
->>> @@ -0,0 +1,91 @@
-[...]
->>> + * @mtd: pointer to MTD struct
->>> + * @ctlr: pointer to HyperBus controller struct
->>> + * @memtype: type of memory device: HyperFlash or HyperRAM
->>> + * @registered: flag to indicate whether device is registered with MTD core
->>> + */
->>> +
->>> +struct hyperbus_device {
->>> +	struct map_info map;
->>> +	struct device_node *np;
->>> +	struct mtd_info *mtd;
->>> +	struct hyperbus_ctlr *ctlr;
->>> +	enum hyperbus_memtype memtype;
->>> +	bool registered;
->>> +};
->>> +
->>> +/**
->>> + * struct hyperbus_ops - struct representing custom HyperBus operations
->>> + * @read16: read 16 bit of data, usually from register/ID-CFI space
->>> + * @write16: write 16 bit of data, usually to register/ID-CFI space
->>
->>    Usually? How to differ the register/memory transfers if both are possible?
+In any case, I posted a first version of the patch:
 
-> CFI + map framework does not provide a way to differentiate b/w reg
-> access vs memory access. read16()/write16() is used to either access
-> registers or for sending various cmds like lock/unlock etc or for
-> programming a single word.
-> For regular read/writes copy_from() and copy_to() are used.
+https://lore.kernel.org/patchwork/patch/1088760/
 
-   In my case only copy_from() would exist -- no proper acceleration for
-writes...
+Maybe best to center the discussion there?
 
-> Looking at HyperBus protocol, controllers would not need to
-> differentiate b/w registers vs memory transfers for HyperFlash devices.
-> So, I think I can drop read16/write16 and redirect these calls to
-> copy_from()/copy_to()
-
-   Doubt it, frankly speaking.
-
-> I mainly added these functions keeping HyperRAM in mind. Idea was
-> drivers would look at hyperbus_device->memtype and set to register
-> access mode for HyperRAM in case of write16()/read16(). Looks like the
-> interface is not intuitive enough
-> So, will drop these and add it back when adding HyperRAM support.
+> > > Instead one valid value for the sysfs should be "unknown" and this be
+> > > the default for drivers we have not analysed (this also makes it easy to
+> > > introduce change here).
+> > 
+> > An "unknown" value sounds good, it allows userspace to just do what it
+> > did/would hace done before this attribute existed.
 > 
-> Does that work for your HW as well?
+> What about simply not presenting the attribute when we don't have the
+> information?
 
-   Don't think so...
+I'm open to either, I mentioned it earlier and Daniel seemed to prefer
+the 'unknown' value so I went with it in the first version (it's also
+slightly less code).
 
-   However, my HyperFlash driver could make use of the following #define's in
-the HyperBus header:
+Cheers
 
-#define HF_CMD_CA47		BIT(7)	/* Read */
-#define HF_CMD_CA46		BIT(6)	/* Register space */
-#define HF_CMD_CA45		BIT(5)	/* Linear burst */
-
-#define HF_CMD_READ_REG		(HF_CMD_CA47 | HF_CMD_CA46)
-#define HF_CMD_READ_MEM		HF_CMD_CA47
-#define HF_CMD_WRITE_REG	HF_CMD_CA46
-#define HF_CMD_WRITE_MEM	0
-
-MBR, Sergei
+Matthias
