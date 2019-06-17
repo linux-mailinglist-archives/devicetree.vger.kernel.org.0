@@ -2,71 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC63648920
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BF9C48959
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726005AbfFQQi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 12:38:56 -0400
-Received: from mx2.suse.de ([195.135.220.15]:60244 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725863AbfFQQiz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 12:38:55 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 8CE35AE54;
-        Mon, 17 Jun 2019 16:38:54 +0000 (UTC)
-Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     lee.jones@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        id S1727833AbfFQQyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 12:54:10 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:32824 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727296AbfFQQyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 12:54:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=jzwy6sc+pd0RPmHAI4fwhk46ytVWeFT3FR8ECvwsaPQ=; b=oKpYDBqMUYHtZxOybCyzxMGa9
+        lXmE2ZPIQzEDm+fDIJTDAyVYmoWUxV2D3W/KT30SnefyxOvP0738Q/9VH3Y7uZOyaVmh9Ew5kYq6m
+        xUgW6biBfyDi/29nPCsOe7YOJlHkt4nQfLMGt1aLEFyhdrKqT+HcTk68In68hkovt+/d4=;
+Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hcutN-0002En-Fv; Mon, 17 Jun 2019 16:54:01 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id C6CC2440046; Mon, 17 Jun 2019 17:54:00 +0100 (BST)
+Date:   Mon, 17 Jun 2019 17:54:00 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        lee.jones@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
         linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
         thomas.liau@actions-semi.com, devicetree@vger.kernel.org,
         linus.walleij@linaro.org,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
+Message-ID: <20190617165400.GE5316@sirena.org.uk>
 References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
  <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
  <20190617163015.GD5316@sirena.org.uk>
  <20190617163413.GA16152@Mani-XPS-13-9360>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Openpgp: preference=signencrypt
-Organization: SUSE Linux GmbH
-Message-ID: <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
-Date:   Mon, 17 Jun 2019 18:38:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20190617163413.GA16152@Mani-XPS-13-9360>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eT+isKliMkztK06K"
+Content-Disposition: inline
+In-Reply-To: <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
+X-Cookie: Editing is a rewording activity.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Am 17.06.19 um 18:34 schrieb Manivannan Sadhasivam:
-> On Mon, Jun 17, 2019 at 05:30:15PM +0100, Mark Brown wrote:
->> On Mon, Jun 17, 2019 at 09:20:10PM +0530, Manivannan Sadhasivam wrote:
->>
->>> +++ b/drivers/regulator/atc260x-regulator.c
->>> @@ -0,0 +1,389 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +/*
->>> + * Regulator driver for ATC260x PMICs
->>
->> Please make the entire comment a C++ one so this looks more intentional.
+--eT+isKliMkztK06K
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No, this is intentional and the official style requested by GregKH.
+On Mon, Jun 17, 2019 at 06:38:53PM +0200, Andreas F=E4rber wrote:
+> Am 17.06.19 um 18:34 schrieb Manivannan Sadhasivam:
+> > On Mon, Jun 17, 2019 at 05:30:15PM +0100, Mark Brown wrote:
 
-He suggested I patch the SPDX documentation to make this clearer, but I
-did not find time for this yet (and am not the one making this rule).
+> >>> @@ -0,0 +1,389 @@
+> >>> +// SPDX-License-Identifier: GPL-2.0+
+> >>> +/*
+> >>> + * Regulator driver for ATC260x PMICs
 
-Regards,
-Andreas
+> >> Please make the entire comment a C++ one so this looks more intentiona=
+l.
 
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
-HRB 21284 (AG Nürnberg)
+> No, this is intentional and the official style requested by GregKH.
+
+The important bit for the tools is the first line, the rest of it the
+tools don't care about.
+
+> He suggested I patch the SPDX documentation to make this clearer, but I
+> did not find time for this yet (and am not the one making this rule).
+
+The other regulator API files are all the way I suggest...
+
+--eT+isKliMkztK06K
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0HxacACgkQJNaLcl1U
+h9Ajxwf+Nb+pLbzQmwjNKosrH3fv70fMfbz4cH0bwwpA8IfE8kkDkD8+R5xM2XEE
+IjWs97/+dLz9ZKKOW+ueil9ySOIs9xXMfYfCCKEY97KMa+v8MCpmS0GPXpVszCwW
+r9LrLC8CXddWKroaUloEE+zoNvz3vCA6jbuIxV30hFa4qKELfxlq7PdVm+jnUTKy
+0F9rLO6/cGJ1kxg1wSHvhYagG3aDAyD7hDv9qfrFR9OyPc487ePeBpnOWDddVc1Z
+mGjV9yM7xxUXpb1kkHVn9Ug/3j7b/CHxJc0OAYnVHzQPrbJ8rtt61jCx9owFuXO9
+CwcUmE7kPQ3qijmR6SEvlJcL5TVAUA==
+=RJ5C
+-----END PGP SIGNATURE-----
+
+--eT+isKliMkztK06K--
