@@ -2,77 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B414915B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 22:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37F4C4919B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 22:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726741AbfFQUaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 16:30:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52580 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726023AbfFQUaL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 16:30:11 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0ACB120861;
-        Mon, 17 Jun 2019 20:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560803410;
-        bh=wWT1OPFjU06mBl7O6HfsS8gMclhi0OwwNHVpelr67DA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pWP4RRuQm+5pI7ktuNnOd5aoMBBARWwR6QdtoEEx+lbJCbjl+EQdFWuDuG5yCh/m4
-         jg2Z5WpeNCpGHZ0RhWYIwOqctmNTCl2IdQYx1/FBLYHaR9+jYQ9IinDHET1gXIY/NG
-         pp72N3eN2spRV0s4bTZn/Fr7I/1iV4/gbDwZ1h1k=
-Date:   Mon, 17 Jun 2019 22:30:08 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Mark Brown <broonie@kernel.org>, lee.jones@linaro.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        thomas.liau@actions-semi.com, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org
-Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
-Message-ID: <20190617203008.GB8381@kroah.com>
-References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
- <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
- <20190617163015.GD5316@sirena.org.uk>
- <20190617163413.GA16152@Mani-XPS-13-9360>
- <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
+        id S1728328AbfFQUq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 16:46:27 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:33399 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726677AbfFQUq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 16:46:27 -0400
+Received: by mail-qk1-f193.google.com with SMTP id r6so7144610qkc.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 13:46:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GiyA82DDyFUCVpZ6pfq2uLrTXX3TvWsIIdVhQLD5cEw=;
+        b=KOrRimXtnuZ9zaTa0NnCCczttHAY48WNEcK5/Rc3dXE/adPXq+X8e7JTzA7eo4ODtB
+         t6Z0uX95I/ucadrjlBthannY9DorwAF1IamgHUMcNDxwp/J0oORGZvHLaftasFVApW1W
+         dhRBtlfvAmTD2fXQttNk945Slb202GnygRF270tg0Va7wJHol0NbucH6ldKHah2w4aK6
+         8rx08cVu98EGRl1NsuaK00riJWXEoBHsupORVko2xcQytW+93IVFj0+/5ybhXWDvXfrr
+         zTSIhR/otRiFcvonunjNp5JhAuHX+IxBr2V0+KeOyrWLU7jTUozBpfQQ6SMVVlSxXDa8
+         brdA==
+X-Gm-Message-State: APjAAAVqChEN82U7B1EK3h2jdoHcel4CPYfq90Xt6i75iORYWUrQi/Z8
+        /lnlCBkGW8meH+CsZoKayAA7LlU=
+X-Google-Smtp-Source: APXvYqyoXU8mBMLTPzc122V2PWEPrBeyXKzYMcHaCampaAHBCffdwJ3yttCNeHjs3buXED16lpvuJQ==
+X-Received: by 2002:a37:87c5:: with SMTP id j188mr69134935qkd.106.1560804385727;
+        Mon, 17 Jun 2019 13:46:25 -0700 (PDT)
+Received: from localhost.localdomain ([64.188.179.192])
+        by smtp.googlemail.com with ESMTPSA id i48sm6124263qte.93.2019.06.17.13.46.24
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 17 Jun 2019 13:46:25 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Jan Tuerk <jan.tuerk@emtrion.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH] dt-bindings: arm: Move Emtrion i.MX6 board bindings to schema
+Date:   Mon, 17 Jun 2019 14:44:23 -0600
+Message-Id: <20190617204423.2880-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a38d26d1-213c-31ef-9cc7-1d4bdda4ceab@suse.de>
-User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 17, 2019 at 06:38:53PM +0200, Andreas Färber wrote:
-> Hi,
-> 
-> Am 17.06.19 um 18:34 schrieb Manivannan Sadhasivam:
-> > On Mon, Jun 17, 2019 at 05:30:15PM +0100, Mark Brown wrote:
-> >> On Mon, Jun 17, 2019 at 09:20:10PM +0530, Manivannan Sadhasivam wrote:
-> >>
-> >>> +++ b/drivers/regulator/atc260x-regulator.c
-> >>> @@ -0,0 +1,389 @@
-> >>> +// SPDX-License-Identifier: GPL-2.0+
-> >>> +/*
-> >>> + * Regulator driver for ATC260x PMICs
-> >>
-> >> Please make the entire comment a C++ one so this looks more intentional.
-> 
-> No, this is intentional and the official style requested by GregKH.
+The Emtrion board bindings landed when the i.MX board/SoC bindings were
+being converted to DT schema. Add them to the schema and remove the
+separate file.
 
-Mark likes them all to be // at the top of the file.
+Cc: Jan Tuerk <jan.tuerk@emtrion.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/emtrion.txt | 12 ------------
+ Documentation/devicetree/bindings/arm/fsl.yaml    |  4 ++++
+ 2 files changed, 4 insertions(+), 12 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/emtrion.txt
 
-I only required that the SPDX line be that way.
+diff --git a/Documentation/devicetree/bindings/arm/emtrion.txt b/Documentation/devicetree/bindings/arm/emtrion.txt
+deleted file mode 100644
+index 83329aefc483..000000000000
+--- a/Documentation/devicetree/bindings/arm/emtrion.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-Emtrion Devicetree Bindings
+-===========================
+-
+-emCON Series:
+--------------
+-
+-Required root node properties
+-	- compatible:
+-	- "emtrion,emcon-mx6", "fsl,imx6q"; 		: emCON-MX6D or emCON-MX6Q SoM
+-	- "emtrion,emcon-mx6-avari", "fsl,imx6q";	: emCON-MX6D or emCON-MX6Q SoM on Avari Base
+-	- "emtrion,emcon-mx6", "fsl,imx6dl"; 		: emCON-MX6S or emCON-MX6DL SoM
+-	- "emtrion,emcon-mx6-avari", "fsl,imx6dl";	: emCON-MX6S or emCON-MX6DL SoM on Avari Base
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 407138ebc0d0..fbeb56345b35 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -80,6 +80,8 @@ properties:
+       - description: i.MX6Q based Boards
+         items:
+           - enum:
++              - emtrion,emcon-mx6         # emCON-MX6D or emCON-MX6Q SoM
++              - emtrion,emcon-mx6-avari   # emCON-MX6D or emCON-MX6Q SoM on Avari Base
+               - fsl,imx6q-arm2
+               - fsl,imx6q-sabreauto
+               - fsl,imx6q-sabrelite
+@@ -99,6 +101,8 @@ properties:
+         items:
+           - enum:
+               - eckelmann,imx6dl-ci4x10
++              - emtrion,emcon-mx6         # emCON-MX6S or emCON-MX6DL SoM
++              - emtrion,emcon-mx6-avari   # emCON-MX6S or emCON-MX6DL SoM on Avari Base
+               - fsl,imx6dl-sabreauto      # i.MX6 DualLite/Solo SABRE Automotive Board
+               - fsl,imx6dl-sabresd        # i.MX6 DualLite SABRE Smart Device Board
+               - technologic,imx6dl-ts4900
+-- 
+2.20.1
 
-Mark can ask for more if he wants to :)
-
-thanks,
-
-greg k-h
