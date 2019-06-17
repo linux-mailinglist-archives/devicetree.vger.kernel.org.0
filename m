@@ -2,96 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D81AE487B5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 17:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86165487C9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 17:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726331AbfFQPpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 11:45:00 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57644 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726292AbfFQPpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 11:45:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=abiEFLdLM5bKoC/xwI6l9zjIRnj1imHHSsabySegASw=; b=i//avOnePiyWK6TuEr3iyKH7N
-        Vyr9zfFf7bxM/t3PagBBpsFQIpDOrzQvlSXRhGZUhbEP9w7CPDf1E+zoKd+oVh2kCDz0MerBHg/Hq
-        dQ91xgIWxzdc0b2nOjUqQUm5+WKtYFXE6i6CwzLb+ORBGLn6/pw54lLIn3rNPIKVW+Z3U=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hctoV-00023a-SV; Mon, 17 Jun 2019 15:44:56 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 3E942440046; Mon, 17 Jun 2019 16:44:55 +0100 (BST)
-Date:   Mon, 17 Jun 2019 16:44:55 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/8] regulator: core: Don't attach generic coupler to
- Tegra SoC regulators
-Message-ID: <20190617154455.GA5316@sirena.org.uk>
-References: <20190603235904.19097-1-digetx@gmail.com>
- <20190603235904.19097-7-digetx@gmail.com>
+        id S1728128AbfFQPrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 11:47:46 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:57850 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727833AbfFQPrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 11:47:46 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5HFlN1h043664;
+        Mon, 17 Jun 2019 10:47:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1560786443;
+        bh=UqzhKdCvFhtNpUr5vFdw+6v6fHvR90i1hNildl+b+9s=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=NARiwjCy3syAuulADRz6Lykk68iTE2lZIoiDk6E7W9V7Qg6HXFhTxbv7P1oKTAtck
+         3tI0r1c1eIGH2sQB8SEDbhDNHg9dHsxFTjeNc6Z9FgDqtpIYcjEAu3S2dRl6jv2dAR
+         eM83QjPhhrGrtcUUm2A8t4+2mjIk2vFODDkLvnzs=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5HFlNfw076253
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Jun 2019 10:47:23 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 17
+ Jun 2019 10:47:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 17 Jun 2019 10:47:22 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5HFlMXS023695;
+        Mon, 17 Jun 2019 10:47:22 -0500
+Date:   Mon, 17 Jun 2019 10:46:14 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-serial@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Tero Kristo <t-kristo@ti.com>
+Subject: Re: [PATCH 1/6] dt-bindings: arm: ti: Add bindings for J721E SoC
+Message-ID: <20190617154614.wlbh6dtj54brkt67@kahuna>
+References: <20190522161921.20750-1-nm@ti.com>
+ <20190522161921.20750-2-nm@ti.com>
+ <20190614164526.GA14925@bogus>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="27E2kr7c9faIxYHh"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20190603235904.19097-7-digetx@gmail.com>
-X-Cookie: Editing is a rewording activity.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190614164526.GA14925@bogus>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10:45-20190614, Rob Herring wrote:
+> On Wed, May 22, 2019 at 11:19:16AM -0500, Nishanth Menon wrote:
+> > The J721E SoC belongs to the K3 Multicore SoC architecture platform,
+> > providing advanced system integration to enable lower system costs
+> > of automotive applications such as infotainment, cluster, premium
+> > Audio, Gateway, industrial and a range of broad market applications.
+> > This SoC is designed around reducing the system cost by eliminating
+> > the need of an external system MCU and is targeted towards ASIL-B/C
+> > certification/requirements in addition to allowing complex software
+> > and system use-cases.
+> > 
+> > Some highlights of this SoC are:
+> > * Dual Cortex-A72s in a single cluster, three clusters of lockstep
+> >   capable dual Cortex-R5F MCUs, Deep-learning Matrix Multiply Accelerator(MMA),
+> >   C7x floating point Vector DSP, Two C66x floating point DSPs.
+> > * 3D GPU PowerVR Rogue 8XE GE8430
+> > * Vision Processing Accelerator (VPAC) with image signal processor and Depth
+> >   and Motion Processing Accelerator (DMPAC)
+> > * Two Gigabit Industrial Communication Subsystems (ICSSG), each with dual
+> >   PRUs and dual RTUs
+> > * Two CSI2.0 4L RX plus one CSI2.0 4L TX, one eDP/DP, One DSI Tx, and
+> >   up to two DPI interfaces.
+> > * Integrated Ethernet switch supporting up to a total of 8 external ports in
+> >   addition to legacy Ethernet switch of up to 2 ports.
+> > * System MMU (SMMU) Version 3.0 and advanced virtualisation
+> >   capabilities.
+> > * Upto 4 PCIe-GEN3 controllers, 2 USB3.0 Dual-role device subsystems,
+> >   16 MCANs, 12 McASP, eMMC and SD, UFS, OSPI/HyperBus memory controller, QSPI,
+> >   I3C and I2C, eCAP/eQEP, eHRPWM, MLB among other peripherals.
+> > * Two hardware accelerator block containing AES/DES/SHA/MD5 called SA2UL
+> >   management.
+> > * Configurable L3 Cache and IO-coherent architecture with high data throughput
+> >   capable distributed DMA architecture under NAVSS
+> > * Centralized System Controller for Security, Power, and Resource
+> >   Management (DMSC)
+> > 
+> > See J721E Technical Reference Manual (SPRUIL1, May 2019)
+> > for further details: http://www.ti.com/lit/pdf/spruil1
+> > 
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/ti/k3.txt | 3 +++
+> >  1 file changed, 3 insertions(+)
+> 
+> Okay for now, but please convert K3 and other TI SoCs to schema soon.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
---27E2kr7c9faIxYHh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Tue, Jun 04, 2019 at 02:59:02AM +0300, Dmitry Osipenko wrote:
-
->  static int generic_coupler_attach(struct regulator_coupler *coupler,
->  				  struct regulator_dev *rdev)
->  {
-> +	/*
-> +	 * Generic coupler isn't suitable for NVIVIA Tegra SoC's, at least
-> +	 * for now. Hence filter out the unwanted regulators as they shall be
-> +	 * managed by a platform-specific coupler.
-> +	 */
-> +	if (of_property_read_bool(rdev->dev.of_node, "tegra-core-regulator") ||
-> +	    of_property_read_bool(rdev->dev.of_node, "tegra-rtc-regulator") ||
-> +	    of_property_read_bool(rdev->dev.of_node, "tegra-cpu-regulator"))
-> +		return -EPERM;
-> +
-
-I'm having a hard time loving this as it requires explicit DT changes
-for implementation.  I'm thinking that since the couplers are going to
-need to be built in it'd be better to make sure that any custom ones get
-registered first and then only bind the generic coupler to anything they
-reject.
-
---27E2kr7c9faIxYHh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0HtXYACgkQJNaLcl1U
-h9Cs2gf/S5a8DWJTtoEHbG3ws7VHQpSeAm4iqr2UgbzOBEkdCHLdjK0r2Iu3LU2l
-KpNbc46t5ZXSQjLIuQ3apaG1mBvinvL5AAX93z4uxez5NAnREGp6NbbP2Ph0bfBe
-BMNr3a8K1FBZdaqi2lUjFJS1ZWaUB2Npz32XrgD4Cmhlw+y1Rrl7NPT9HztYaCa5
-Jc7shPryXFXmczy12EARskXg2bcLlQ/Ne92dHRXKZEn2hMwW/1ehTNHadMHHBLjT
-bikjaqGSNIvd9LlxcbzpBvukrgCaaT8ENLHPCVmeB3gag3n55alTU5ZnUIhpAXyp
-eaXOfvK5Zmo08r+D59q1tU61z1s0JA==
-=ZHI+
------END PGP SIGNATURE-----
-
---27E2kr7c9faIxYHh--
+Thanks Rob. Will do the change to rst soon (hopefully post in the 5.3 window).
+-- 
+Regards,
+Nishanth Menon
