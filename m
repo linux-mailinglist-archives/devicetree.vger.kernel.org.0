@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E66F9487C1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 17:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E77E3487D2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 17:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726292AbfFQPqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 11:46:36 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:60368 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727833AbfFQPqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 11:46:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=9Emq1pboyPe/UZLHCXOnK/ar1hwcXo4FTF0JW91caew=; b=Y3+H7PZARZ9/sYRXYFuCKBaf5
-        NEt30hHVrxwBvX0I3oIPRZcceTaSTRoVntTTajxc3V+LSezrhmNt1Ka7ENceU8QW+VJObuvw2oIjK
-        Vj+JBN+Q4OhT3N3NTQxRF21A0vn13bhtoQ6q1OcDmnfTSXbvZqA5bPPsQtGkqf3Njx3g4=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hctq4-00024B-Pd; Mon, 17 Jun 2019 15:46:32 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 596F6440046; Mon, 17 Jun 2019 16:46:32 +0100 (BST)
-Date:   Mon, 17 Jun 2019 16:46:32 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] soc/tegra: regulators: Add regulators coupler for
- Tegra20
-Message-ID: <20190617154632.GB5316@sirena.org.uk>
-References: <20190603235904.19097-1-digetx@gmail.com>
- <20190603235904.19097-8-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="039oG8jMepJcyEBX"
-Content-Disposition: inline
-In-Reply-To: <20190603235904.19097-8-digetx@gmail.com>
-X-Cookie: Editing is a rewording activity.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1728279AbfFQPua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 11:50:30 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:42960 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726286AbfFQPu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 11:50:29 -0400
+Received: by mail-pg1-f195.google.com with SMTP id l19so6033599pgh.9
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 08:50:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=+OUu5AC1XwEziNl7f2ObgXI6EJ5Z9lyfvlo4eWVagcU=;
+        b=ISCeUeI6xBkfCbqRsJ5hWj2ky7KLyS5Hxv+dAGBv9LfG6T8joklmRkz/DGgZ8Wr6pU
+         nV1z0yejTv+d7GgQL49ysUJX5AyfcfGY/UlEnA7vxXUAQgrgUA7ojdmn0cwgZREC3xql
+         fIN0GXBxoAY03Fdw5i2ZrYNPowSKBDHD74DaCUwpv/lbVKD1ai0n/LqaDpetWr7RjdPx
+         UvShSP1Ih3+GkTviWGhyjIJsYKOZMu6Wf2n5MRHa/mibVbnckXOKfGUhxLbl7kYz+pLd
+         Tx3SLkVSWTEkyC6GkpKsKjCOr4FciJsM8B5cJ4pJmN2AhfQ+Exf8C58jXIBGsXEvfy9T
+         iLQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=+OUu5AC1XwEziNl7f2ObgXI6EJ5Z9lyfvlo4eWVagcU=;
+        b=rCFZhzHmVxYlep+tQxPgc07RyvMvEW5AYMO7SpcifgeUMQpm3WFpnZ5T0T0XSd4puz
+         cw2W0HZxPthvFdy461+EV1YBK0jLz0atPYwcb4P6NdUlk53gwho47ufvm2aVRM7G7uZB
+         /N4BOqN9RN0C39X2ANUVx0plPruF5BP6ScdaKuwL2CVWiz8oA4e1ZvNb7SHar62UQ3ts
+         +YgfIEz/huyZw3LMK4LaZZQQTajyqwAsbcSL2tSsaBhosEA4fZZ/O34JcAbOyAj+pOwR
+         zujYg/IvBU0gHP9Sc/d3MbQ8R97eFSguIJKnxbOlhmvLxvaastDxsGMm6s94uc+ppjYv
+         urnA==
+X-Gm-Message-State: APjAAAWzlZcSWfBiFTdrU4ADBlcCzdHjM24gjX9ruwcWHsMQ16asODjP
+        +KAeE1TwINyOMRuKD5+kiMou
+X-Google-Smtp-Source: APXvYqxhRVxSfwiE75iq8WYRByIXfkCZs+a89yfUsZH1N0GqbnvIBgo9g3IOMi9CcY/kejjNVhUwIQ==
+X-Received: by 2002:a65:5a42:: with SMTP id z2mr50893750pgs.421.1560786629007;
+        Mon, 17 Jun 2019 08:50:29 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4072:629b:c246:9431:2a24:7932:6dba])
+        by smtp.gmail.com with ESMTPSA id n2sm11023603pff.104.2019.06.17.08.50.22
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jun 2019 08:50:28 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     lee.jones@linaro.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org
+Cc:     afaerber@suse.de, linux-actions@lists.infradead.org,
+        linux-kernel@vger.kernel.org, thomas.liau@actions-semi.com,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/4] Add MFD/Regulator support for ATC260x PMICs
+Date:   Mon, 17 Jun 2019 21:20:07 +0530
+Message-Id: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---039oG8jMepJcyEBX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This patchset adds MFD core and Regulator support for Actions Semi ATC260x
+PMICs. ATC260x series PMICs integrates Audio Codec, Power management,
+Clock generation, and GPIO controller blocks. There are 3 variants of this
+PMIC series exist today:
 
-On Tue, Jun 04, 2019 at 02:59:03AM +0300, Dmitry Osipenko wrote:
+ATC2603A
+ATC2603C
+ATC2609A
 
-> +config SOC_TEGRA20_VOLTAGE_COUPLER
-> +	bool "Voltage scaling support for Tegra20 SoC's"
+This patchset adds only ATC2609A PMIC support with regulator functionality.
+Regulator driver supports 4 DC-DC converters and 10 LDO regulators.
 
-SoCs
+This series has been tested on 96Boards Bubblegum96 board integrating
+ATC2609A. Since the board support depends on the SIRQ driver (being reviewed),
+I haven't added any dts changes for now!
 
-> +	depends on ARCH_TEGRA_2x_SOC
+Thanks,
+Mani
 
-Can we have an || COMPILE_TEST here please?
+Manivannan Sadhasivam (4):
+  dt-bindings: mfd: Add Actions Semi ATC260x PMIC binding
+  mfd: Add initial MFD driver for ATC260x PMICs
+  regulator: Add regulator driver for ATC260x PMICs
+  MAINTAINERS: Add entry for ATC260x PMIC
 
-> +++ b/drivers/soc/tegra/regulators-tegra20.c
-> @@ -0,0 +1,348 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Voltage regulators coupling resolver for NVIDIA Tegra20
-> + *
-> + * Copyright (C) 2019 GRATE-DRIVER project
+ .../devicetree/bindings/mfd/atc260x.txt       | 162 ++++++++
+ MAINTAINERS                                   |   9 +
+ drivers/mfd/Kconfig                           |  22 +
+ drivers/mfd/Makefile                          |   7 +
+ drivers/mfd/atc2609a-helpers.c                |  91 ++++
+ drivers/mfd/atc260x-core.c                    |  85 ++++
+ drivers/mfd/atc260x-i2c.c                     |  98 +++++
+ drivers/mfd/atc260x.h                         |  22 +
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/atc260x-regulator.c         | 389 ++++++++++++++++++
+ include/linux/mfd/atc260x/atc2609a_regs.h     | 228 ++++++++++
+ include/linux/mfd/atc260x/core.h              |  64 +++
+ 13 files changed, 1186 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/atc260x.txt
+ create mode 100644 drivers/mfd/atc2609a-helpers.c
+ create mode 100644 drivers/mfd/atc260x-core.c
+ create mode 100644 drivers/mfd/atc260x-i2c.c
+ create mode 100644 drivers/mfd/atc260x.h
+ create mode 100644 drivers/regulator/atc260x-regulator.c
+ create mode 100644 include/linux/mfd/atc260x/atc2609a_regs.h
+ create mode 100644 include/linux/mfd/atc260x/core.h
 
-Please make the entire comment a C++ one so things look more
-intentional.
+-- 
+2.17.1
 
---039oG8jMepJcyEBX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0HtdcACgkQJNaLcl1U
-h9B0cgf+PFAOtZrfNkd5ty3QOvOIs+A0kjwXoqrJYQMgIIObO7EI9+RipxKuoDae
-UUlOrx4BRvIRGTDJWwvHFNF2ADWvfMPCtdqX67ZA3drCWiPgEGUIJHbIiEXPIt19
-IYBhcnbKGPfpeRTtOWXGfwwOpA+tWgluz5bvmKPLDYkZ8m8MuSkxy4YIWuXEk5+x
-Cgy9CvTfWlk2kZm+a0MocWRlKbTLy7Y499xLXDwBTvSC94Ci0Jp8BGmKR7oJwu45
-cbgEnnXUvOURfP+vhjuh5id+SNXUqFz1tKI9aoXKef/t6EIkvlDiBcDZ+40MSbyD
-SG+VI65FbmXV73iCH+VAQG0Jv+6wjA==
-=eKZo
------END PGP SIGNATURE-----
-
---039oG8jMepJcyEBX--
