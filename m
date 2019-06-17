@@ -2,95 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B744E4846E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 15:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4554F48494
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 15:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727678AbfFQNr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 09:47:56 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:42566 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727594AbfFQNr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 09:47:56 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5HDllBo011598;
-        Mon, 17 Jun 2019 08:47:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560779267;
-        bh=t1KAotzGb16F2+YW609QwX/IexDUFZIor3j/XUDLU9I=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=VGDMPQ8T1wa25BRTfbCxoFN1bT3M8KVCDBobeTCnxdm6jOtXHYvWWrGNPaZYbAjnM
-         T/SytxkHNOfp1LIKO4nvrxU6oqoP5XGQju4DIWxfEgjaKM4oPBDruG38fki7tQfwdg
-         yE9UDoE3X/cnS5STAM2GrWfgecgTbbGAtrAVakHw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5HDllQj110909
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Jun 2019 08:47:47 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 17
- Jun 2019 08:47:46 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 17 Jun 2019 08:47:46 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5HDlkFV106459;
-        Mon, 17 Jun 2019 08:47:46 -0500
-Subject: Re: [PATCH v3 0/9] Multicolor Framework update
-To:     Pavel Machek <pavel@ucw.cz>, Alexander Dahl <ada@thorsis.com>
-CC:     <linux-leds@vger.kernel.org>, <jacek.anaszewski@gmail.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20190523190820.29375-1-dmurphy@ti.com> <55737098.K72IVJ5cDM@ada>
- <20190616154934.GC24837@xo-6d-61-c0.localdomain>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <2a540277-01e3-abb6-f19f-6d52671ae4ce@ti.com>
-Date:   Mon, 17 Jun 2019 08:47:46 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <20190616154934.GC24837@xo-6d-61-c0.localdomain>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726509AbfFQNwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 09:52:36 -0400
+Received: from node.akkea.ca ([192.155.83.177]:54964 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727900AbfFQNwg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 09:52:36 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by node.akkea.ca (Postfix) with ESMTP id A95604E2050;
+        Mon, 17 Jun 2019 13:52:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1560779555; bh=/rmfFWYlDMpMcCLQsn2AZKLe0UX7Zspxgjz3g0JAjTc=;
+        h=From:To:Cc:Subject:Date;
+        b=mFOcPsU//xyaTt77VMGE4tcmVzFrOnvr/FIYRxyjKaOU2aBsUJVVO/QYVXjBafN3o
+         Y+4idlCeXlwcSJy09HqKEbrneGvoc7R8bH84TR5S370UA/bqM4BNjQq0fYJ3ol0Bey
+         lYwJTw18nd7lPYuDciiKLVr26GC1k7lasp9Gz2H0=
+X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
+Received: from node.akkea.ca ([127.0.0.1])
+        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 6MkXKjCxyr74; Mon, 17 Jun 2019 13:52:35 +0000 (UTC)
+Received: from localhost.localdomain (198-48-167-13.cpe.pppoe.ca [198.48.167.13])
+        by node.akkea.ca (Postfix) with ESMTPSA id F26FB4E204B;
+        Mon, 17 Jun 2019 13:52:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1560779555; bh=/rmfFWYlDMpMcCLQsn2AZKLe0UX7Zspxgjz3g0JAjTc=;
+        h=From:To:Cc:Subject:Date;
+        b=mFOcPsU//xyaTt77VMGE4tcmVzFrOnvr/FIYRxyjKaOU2aBsUJVVO/QYVXjBafN3o
+         Y+4idlCeXlwcSJy09HqKEbrneGvoc7R8bH84TR5S370UA/bqM4BNjQq0fYJ3ol0Bey
+         lYwJTw18nd7lPYuDciiKLVr26GC1k7lasp9Gz2H0=
+From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
+To:     angus.ainslie@puri.sm
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, pavel@ucw.cz
+Subject: [PATCH v16 0/3] Add support for the Purism Librem5 devkit
+Date:   Mon, 17 Jun 2019 07:52:12 -0600
+Message-Id: <20190617135215.550-1-angus@akkea.ca>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
+The Librem5 devkit is based on the imx8mq from NXP. This is a default
+devicetree to boot the board to a command prompt.
 
-On 6/16/19 10:49 AM, Pavel Machek wrote:
-> Hi!
->
->> Am Donnerstag, 23. Mai 2019, 14:08:11 CEST schrieb Dan Murphy:
->>>    leds: multicolor: Add sysfs interface definition
->>>    dt: bindings: Add multicolor class dt bindings documention
->>>    documention: leds: Add multicolor class documentation
->>>    dt-bindings: leds: Add multicolor ID to the color ID  list
->>>    leds: Add multicolor ID to the color ID list
->>>    leds: multicolor: Introduce a multicolor class definition
->>>    dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers
->>>    leds: lp50xx: Add the LP50XX family of the RGB LED driver
->>>    leds: Update the lp55xx to use the multi color framework
->> While not having much experience with the implementation of the LED subsystem,
->> I've had a short look at those. Curious question: would it be possible to take
->> three gpio-leds and group those together to one multicolor-led? I know at
->> least one board, where things are wired up like this, see e.g.
->> at91-sama5d27_som1_ek.dts
-> Probably could be done, but is not really a good match. Multicolor was meant for
-> LEDs with many brightness levels.
+Changes since v15:
 
-Well that is one aspect of the MC FW.  The other aspect was to collate 
-cluster RGB modules into a single
+Update the ti,minimum-sys-voltage for the PMIC.
 
-LED node as that RGB cluster would inherently display a functional color 
-(ie RGB battery LED, multi-color
+Changes since v14:
 
-notification LEDs, Multicolor LED keyboards...)
+Add regulator-always-on for the SNVS regulators.
+Added pgc nodes.
+Fixed charger pre-current.
 
-Dan
+Changes since v13:
 
+Moved haptic motor from pwm-led to gpio-vibrator.
+Cleaned up regulator node naming.
+Whitescpace cleanup.
+Re-indent pinmux stanzas.
+Drop pwm2 node.
+Drop MAINTAINERS patch.
 
-> 									Pavel
+Changes since v12:
+
+Updated patch to vendor-prefixes.yaml.
+Dropped always on from regulators.
+
+Changes since v11:
+
+Added reviewed-by tags.
+Fixed subject typo.
+
+Changes since v10:
+
+Moved MAINTAINERS entry to "ARM/FREESCALE IMX" section
+
+Changes since v9:
+
+Added a MAINTAINERS entry for arm64 imx devicetree files.
+
+Changes since v8:
+
+Fixed license comment.
+Changed regulators to all lower case.
+Changed clock frequency for NXP errata e7805.
+Dropped blank line.
+
+Changes since v7:
+
+More regulators always on for USB.
+Add vbus regulator.
+Drop vbat regulator.
+Replace legacy "gpio-key,wakeup" with "wakeup-source".
+Add vbus-supply to get rid of warning
+imx8mq-usb-phy 382f0040.usb-phy: 382f0040.usb-phy supply vbus not found,
+using dummy regulator
+
+Changes since v6:
+
+Dropped unused regulators.
+Fix regulator phandles case.
+Dropped extra whitespace.
+
+Changes since v5:
+
+Added reviewed-by tags.
+Moved USB port links to USB controller node.
+
+Changes since v4:
+
+Compiled against linux-next next-20190415.
+Added imx8mq to the arm yaml file.
+Re-arrange regulator nodes to drop undefined supplies.
+Additional ordering for aesthetics.
+Split some long lines.
+Added lots of blank lines.
+Moved pinctl muxes to where they are used.
+Cleaned out reg defintions from regulator nodes.
+
+Changes since v3:
+
+Freshly sorted and pressed nodes.
+Change the backlight to an interpolated scale.
+Dropped i2c2.
+Dropped devkit version number to match debian MR.
+
+Changes since v2:
+
+Fixed incorrect phy-supply for the fsl-fec.
+Dropped unused regulator property.
+Fixup Makefile for linux-next.
+
+Changes since v1:
+
+Dropped config file.
+Updated the board compatible label.
+Changed node names to follow naming conventions.
+Added a more complete regulator hierachy.
+Removed unused nodes.
+Removed unknown devices.
+Fixed comment style.
+Dropped undocumented properties.
+
+Angus Ainslie (Purism) (3):
+  arm64: dts: fsl: librem5: Add a device tree for the Librem5 devkit
+  dt-bindings: Add an entry for Purism SPC
+  dt-bindings: arm: fsl: Add the imx8mq boards
+
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mq-librem5-devkit.dts   | 806 ++++++++++++++++++
+ 4 files changed, 816 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+
+-- 
+2.17.1
+
