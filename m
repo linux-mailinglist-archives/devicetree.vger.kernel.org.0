@@ -2,75 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF254481A2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 14:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A50BB481DE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 14:22:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726005AbfFQMOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 08:14:38 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:41648 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbfFQMOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 08:14:38 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1hcqWl-0004e6-Eg; Mon, 17 Jun 2019 14:14:23 +0200
-Message-ID: <583907409fad854bd3c18be688ec2724ad7a60e9.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
-        Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        Dan Williams <dcbw@redhat.com>,
+        id S1727523AbfFQMWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 08:22:07 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:41746 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727432AbfFQMWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 08:22:06 -0400
+Received: by mail-vs1-f65.google.com with SMTP id 2so2808703vso.8
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 05:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=inGSDUfgy12MnV2jo2D4Nubdqwd8cc039JMXj9GTRrA=;
+        b=BaY/Mw4ucNOLlZG6021hvYu+v8OFPCGaf5W2OANB6XPbg0UqT/cgAB3AravOtr3BEF
+         yUGEhb38oekQt0UrrCBEpZgcUST8GsaDeV4pe+g7KoeJlRnXUAyDklVTAS8hGgTZTVnY
+         A7ZsBtlltgi8+h1kaTi80I2Kbpf6jzD/DnljX9n76hZJmsVDNxJRQTcOl2TKSU6F5crE
+         SyA8FgL2RvuBCgYHXHZgDLkut1yb6DaP09n2as2TT836YKODLrQ0ewzsz86A5EIXw8YI
+         NjiHJywpoahWsy5SzgYUhCKomVxgX2YyRex2O/fOhOQlTT+Ub10tpaDPZmfd+2GCDERS
+         +T5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=inGSDUfgy12MnV2jo2D4Nubdqwd8cc039JMXj9GTRrA=;
+        b=qY64hjO+ZNdCCTUT9KDtv/JoSbBQxuFbE2Z/6amH7zP3t1gj8Ij/Ra65J3gRL2Rbr4
+         tlQCvU/TMYOz6tsGdUWQASEZ8wbXRkPYSGajUN07eGKsn8f8f9qB77e0a9yNdQmTb5E+
+         PBT2CF//vOeFkCnmoyhP3wFZwZhdOhwfDRHEYNulq6jyqgqWfN0XJCH+a9YU1unXngKO
+         sX0OtARUotix5VtURciZpBD7B2c/e0C70W1p7k96bqytgvh3eUJqIw9YkVxJOjCTGxfE
+         +kVVYLO0/0axZ8m1FOdyJKQ6wMHtxFnqDpZ2C3bKZxUMZF8rp+dixPDZnQ0u9HmQP4Wa
+         bL1g==
+X-Gm-Message-State: APjAAAV1Z61KgtMN7btv7zm77Ymr8HS4czqDj1OSGquAkFo+yLMuP0Pf
+        VDVi+5HVHgioelhbONKuSOhV9AETFZRk7REGpaG1WQ==
+X-Google-Smtp-Source: APXvYqwvsX2qorPP589qYvilkHLdtcwg2ZCmDdhmhV70oupOdc+lud+k/srIUL3u3WxMmegbWHGCs6qQXzT1ePDp16s=
+X-Received: by 2002:a67:3254:: with SMTP id y81mr20750067vsy.34.1560774125745;
+ Mon, 17 Jun 2019 05:22:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <1560247011-26369-1-git-send-email-manish.narani@xilinx.com>
+ <1560247011-26369-4-git-send-email-manish.narani@xilinx.com>
+ <CAPDyKFrJwpwUUX_q2kcR9QY_fv9Lgos+ixPmU6JMeJVqJAiFpg@mail.gmail.com> <5feac3fb-bef3-b7d1-57d6-81e115e1f555@xilinx.com>
+In-Reply-To: <5feac3fb-bef3-b7d1-57d6-81e115e1f555@xilinx.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 17 Jun 2019 14:21:28 +0200
+Message-ID: <CAPDyKFp_ZvSjFp2FGonzGsnc9xPyZ7qOCaRnX1SimBxLpfz9-Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] mmc: sdhci-of-arasan: Add support for ZynqMP Platform
+ Tap Delays Setup
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Manish Narani <manish.narani@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Adrian Hunter <adrian.hunter@intel.com>, rajan.vaja@xilinx.com,
+        jolly.shah@xilinx.com, nava.manne@xilinx.com,
+        Olof Johansson <olof@lixom.net>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        syadagir@codeaurora.org
-Date:   Mon, 17 Jun 2019 14:14:21 +0200
-In-Reply-To: <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com> (sfid-20190611_135708_651569_0097B773)
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
-         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
-         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
-         (sfid-20190611_135708_651569_0097B773)
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-2.fc28) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-11 at 13:56 +0200, Arnd Bergmann wrote:
+On Mon, 17 Jun 2019 at 13:28, Michal Simek <michal.simek@xilinx.com> wrote:
+>
+> Hi,
+>
+> On 17. 06. 19 13:15, Ulf Hansson wrote:
+> > On Tue, 11 Jun 2019 at 11:57, Manish Narani <manish.narani@xilinx.com> wrote:
+> >>
+> >> Apart from taps set by auto tuning, ZynqMP platform has feature to set
+> >> the tap values manually. Add support to read tap delay values from
+> >> DT and set the same in HW via ZynqMP SoC framework. Reading Tap
+> >> Delays from DT is optional, if the property is not available in DT the
+> >> driver will use the pre-defined Tap Delay Values.
+> >>
+> >> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> >> ---
+> >>  drivers/mmc/host/sdhci-of-arasan.c | 173 ++++++++++++++++++++++++++++++++++++-
+> >>  1 file changed, 172 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
+> >> index b12abf9..7af6cec 100644
+> >> --- a/drivers/mmc/host/sdhci-of-arasan.c
+> >> +++ b/drivers/mmc/host/sdhci-of-arasan.c
+> >> @@ -22,6 +22,7 @@
+> >>  #include <linux/phy/phy.h>
+> >>  #include <linux/regmap.h>
+> >>  #include <linux/of.h>
+> >> +#include <linux/firmware/xlnx-zynqmp.h>
+> >>
+> >>  #include "cqhci.h"
+> >>  #include "sdhci-pltfm.h"
+> >> @@ -32,6 +33,10 @@
+> >>
+> >>  #define PHY_CLK_TOO_SLOW_HZ            400000
+> >>
+> >> +/* Default settings for ZynqMP Tap Delays */
+> >> +#define ZYNQMP_ITAP_DELAYS {0, 0x15, 0x15, 0, 0x15, 0, 0, 0x3D, 0x12, 0, 0}
+> >> +#define ZYNQMP_OTAP_DELAYS {0, 0x5, 0x6, 0, 0x5, 0x3, 0x3, 0x4, 0x6, 0x3, 0}
+> >> +
+> >>  /*
+> >>   * On some SoCs the syscon area has a feature where the upper 16-bits of
+> >>   * each 32-bit register act as a write mask for the lower 16-bits.  This allows
+> >> @@ -81,6 +86,7 @@ struct sdhci_arasan_soc_ctl_map {
+> >>   * @sdcardclk:         Pointer to normal 'struct clock' for sdcardclk_hw.
+> >>   * @soc_ctl_base:      Pointer to regmap for syscon for soc_ctl registers.
+> >>   * @soc_ctl_map:       Map to get offsets into soc_ctl registers.
+> >> + * @of_data:           Platform specific runtime data storage pointer
+> >>   */
+> >>  struct sdhci_arasan_data {
+> >>         struct sdhci_host *host;
+> >> @@ -101,6 +107,15 @@ struct sdhci_arasan_data {
+> >>  /* Controller immediately reports SDHCI_CLOCK_INT_STABLE after enabling the
+> >>   * internal clock even when the clock isn't stable */
+> >>  #define SDHCI_ARASAN_QUIRK_CLOCK_UNSTABLE BIT(1)
+> >> +
+> >> +       void *of_data;
+> >> +};
+> >> +
+> >> +struct sdhci_arasan_zynqmp_data {
+> >> +       void (*set_tap_delay)(struct sdhci_host *host);
+> >> +       const struct zynqmp_eemi_ops *eemi_ops;
+> >> +       u8 tapdly[MMC_TIMING_MMC_HS400 + 1][2]; /* [0] for input delay, */
+> >> +                                               /* [1] for output delay */
+> >>  };
+> >
+> > Please use two different structs, one for the clock provider data and
+> > one for the mmc variant/platform data. This makes the code more
+> > readable.
+>
+> Origin version before sending that out was using two fields.
+> +       u32 itapdly[MMC_TIMING_MMC_HS400 + 1];
+> +       u32 otapdly[MMC_TIMING_MMC_HS400 + 1];
+>
+> I did asked for putting it together to two dimensional array for
+> improving readability of this code. The reason was that you need to take
+> care about input/output together.
+> One thing I was also suggesting was to use instead of 2 just enum values
+> to specify IN=0/OUT/MAX to improve readability of this.
+> Do you think that using enum should be enough?
 
-[...]
+Not sure I understand what you suggest here, sorry. I have no problem
+with the enums.
 
-Looking at the flags again,
+The important point I am trying to make here, is that we should split
+the clock provider data and the mmc variant data, simply because those
+doesn't really belong to each each other.
 
-> #define RMNET_FLAGS_INGRESS_DEAGGREGATION         (1U << 0)
+Something like this:
 
-This one I'm not sure I understand - seems weird to have such a
-fundamental thing as a *configuration* on the channel.
+struct sdhci_arasan_zynqmp_data {
+         bool tap_delays;
+         u8 tapdly[MMC_TIMING_MMC_HS400 + 1][2]; /* [0] for input
+delay, [1] for output delay */
+         + other variant specific data one may want to put here
+}
 
-> #define RMNET_FLAGS_INGRESS_MAP_COMMANDS          (1U << 1)
+These are just regular mmc OF data that are parsed as any other
+property of the mmc device.
 
-Similar here? If you have flow control you probably want to use it?
+The "const struct zynqmp_eemi_ops *eemi_ops; should then be moved into
+a clock provider specific struct, which is assigned when calling
+sdhci_arasan_register_sdclk. I understand that all the clock data is
+folded into struct sdhci_arasan_data today, but I think that should be
+moved into a "sub-struct" for the clock specifics.
 
-> #define RMNET_FLAGS_INGRESS_MAP_CKSUMV4           (1U << 2)
+Moreover, when registering the clock, we should convert from using
+devm_clk_register() into devm_clk_hw_register() as the first one is
+now deprecated.
 
-This again looks like a hardware specific feature (ipv4 checksum)? Not
-sure why this is set by userspace.
+>
+>
+> > In regards to the mmc data part, I suggest to drop the
+> > ->set_tap_delay() callback, but rather use a boolean flag to indicate
+> > whether clock phases needs to be changed for the variant. Potentially
+> > that could even be skipped and instead call clk_set_phase()
+> > unconditionally, as the clock core deals fine with clock providers
+> > that doesn't support the ->set_phase() callback.
+>
+> In connection to another version of this driver for latest Xilinx chip
+> it would be better to keep set_tap_delay callback in the driver. The
+> reason is that new chip/ip is capable to setup tap delays directly
+> without asking firmware to do it. That's why for versal IP there is a
+> need to call different setup_tap_delay function.
 
-> #define RMNET_FLAGS_EGRESS_MAP_CKSUMV4            (1U << 3)
+The ->set_tap_delay() callback is for ZyncMp pointing to
+sdhci_arasan_zynqmp_set_tap_delay(). This function calls the
+clk_set_phase() API.
 
-This could be set with ethtool instead, I suppose.
+What does ->set_tap_delay() do for the latest version?
 
-johannes
+>
+> >
+> > [...]
+> >
+> > Otherwise this looks good to me!
+> >
+> > When it comes to patch1, I need an ack from Michal to pick it up.
+>
+> I am waiting till Rob ack dt binding and then I wanted to talk to you if
+> you want to take it with 1/3 or if you want me to take all of them via
+> my tree.
+> In previous releases I was taking them via my tree because there were
+> several subsystem changing firmware interface. In this cycle there are
+> just small changes to firmware interface that's why taking it via your
+> tree shouldn't be a problem too.
 
+Okay, then let's target this via my mmc tree this time.
+
+Kind regards
+Uffe
