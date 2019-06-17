@@ -2,95 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5151A48AA9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 19:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8633C48C08
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 20:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728683AbfFQRla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 13:41:30 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:12038 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbfFQRla (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 13:41:30 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d07d0c90002>; Mon, 17 Jun 2019 10:41:29 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 17 Jun 2019 10:41:29 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 17 Jun 2019 10:41:29 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL103.nvidia.com
- (172.20.187.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 17 Jun
- 2019 17:41:29 +0000
-Received: from HQMAIL108.nvidia.com (172.18.146.13) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 17 Jun
- 2019 17:41:29 +0000
-Received: from manikanta-bm2.nvidia.com (10.124.1.5) by HQMAIL108.nvidia.com
- (172.18.146.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Mon, 17 Jun 2019 17:41:25 +0000
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-To:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <lorenzo.pieralisi@arm.com>,
-        <vidyas@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Subject: [PATCH V5 27/27] PCI: tegra: Change link retry log level to debug
-Date:   Mon, 17 Jun 2019 23:09:52 +0530
-Message-ID: <20190617173952.29363-28-mmaddireddy@nvidia.com>
+        id S1725926AbfFQSgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 14:36:51 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:45842 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725844AbfFQSgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 14:36:50 -0400
+Received: by mail-pf1-f195.google.com with SMTP id r1so6134406pfq.12;
+        Mon, 17 Jun 2019 11:36:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=LKGeNlPZwIGVNZZsS9uYLIodxN+fkjvFRMre01BWKLg=;
+        b=RRJM6381xq6M0GpIu/gfVDCailz8RcvtlHMPnWE8WwYag1fHjW13rFxzw0CbXmwyZU
+         y1X5Ovp/uCXCMC4nm+fmGkjfO8CsEY8xPZ/hWcihO+jCtgZLBmlHRCyQqr4qyY6r0P+2
+         PtOf3StZ7r09RdG1XVGr0aUH/ylCUi13eS7Ykgmsm+Q6h1xQ0MY39v27A4xA2S9px6Os
+         jC7DGXDFVcatK/e/qfkwAtifPNh2mN1wUslDh9b2nKKiAdZtCKlHJXhUGQsLgvCweN7m
+         PKYMnUKggWmUHs6KzSfkdgrJ3jnDIIefWfcPidclO7nOgyOuErxQsbLwfvbeNiweySQP
+         4A/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=LKGeNlPZwIGVNZZsS9uYLIodxN+fkjvFRMre01BWKLg=;
+        b=kfDQ6+OU9BjRLHrnaJZgzYMCZpau/TpeYUxQL3mlPYOmA7rS4bzZU+OqUfoH3xZG7d
+         YvK72rIPodzLPJJyVInHoF0wyzaV5SIU04CJ+X8PsmMvffur9A5+ZHxnDe/3jBt4i/Bi
+         xbAEjd4/ImjNkiBnXfEFekxmIlkafmzWue3nj8BD6fGu+Yj4GuAeDqcViUMccQ0AHBvq
+         AC2W7y+aldcahUxkyDMGXKgnUuP4OMHWDrujcQKVkjBmQf29WgmKAtowum/BnC0OQ9LJ
+         84iivVqBo37lPfy3CX/nYhOS8fwhXoGsWaaaYxnnGParOx9UO+jns/+1pMPE4l++SHuD
+         4imQ==
+X-Gm-Message-State: APjAAAV8nNx9o+xDpca9qZXcZVw00CbKVKZwgTnYFn1Oj69gFzBkG/7z
+        aEGPytuol2NxCAli5mZc7Fa1Obsh
+X-Google-Smtp-Source: APXvYqyjy89E8tz6+xKj6FtuzHozyTb/rdTmJNYjxAKF9KzFUQVJZImITEuwiEwSuqcRVbLhOh8HXA==
+X-Received: by 2002:a62:a511:: with SMTP id v17mr112104356pfm.129.1560796608695;
+        Mon, 17 Jun 2019 11:36:48 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 137sm13010823pfz.116.2019.06.17.11.36.46
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jun 2019 11:36:48 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH v5 0/5] PM8005 and PMS405 regulator support
+Date:   Mon, 17 Jun 2019 11:36:43 -0700
+Message-Id: <20190617183643.13449-1-jeffrey.l.hugo@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190617173952.29363-1-mmaddireddy@nvidia.com>
-References: <20190617173952.29363-1-mmaddireddy@nvidia.com>
-X-NVConfidentiality: public
-MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560793289; bh=h+ALh4VYR7/sq/2F4QenUUpb2Ni490+vQwaFA/iAICM=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=RkjomgiGG/pIAR7PSbtmPd1JD2WiEOhM1LAas4qhbHHs7bFJ9x+lSZA54lfjZOTbS
-         cmFFsKUGRMthWkb4ufI3AgZ99UDWo2z5Z0wfmFnNCY9AqumIke+r23AozHQf0Vr95Y
-         BcO87E3Ief1852VCopTGxzJx+/FyG6OSa8NoqJwo9gZgBoHlfybFnzcmPiiUF9xkFw
-         oxkbVP6ODEHWC5La6XvsiYtSn8g/0ZKsNNwjOXfvsDcHR8y1mdRFg2wer+PrNdHIMf
-         IdaxV2qZGvT4P98eB3ZsJ8dVoXQ+0pQrR3UiEem5I1DwBivWGj1d53vMjq7tiDSWcn
-         UdJDbQOZLBzvg==
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver checks for link up three times before giving up, each retry attempt
-is printed as an error. Letting users know that PCIe link is down and in the
-process of being brought up again is for debug, not an error condition.
+The MSM8998 MTP reference platform supplies VDD_GFX from s1 of the
+pm8005 PMIC.  VDD_GFX is needed to turn on the GPU.  As we are looking
+to bring up the GPU, add the support for pm8005 and wire up s1 in a
+basic manner so that we have this dependency out of the way and can
+focus on enabling the GPU driver.
 
-Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Acked-by: Thierry Reding <treding@nvidia.com>
----
-V5: No change
+The s3 regulator of PMS405 is used for voltage scaling of the CPU on
+QCS404.
 
-V4: No change
+Both PMICs are very similar in design, so add the base support with one,
+and trivially add the support for the other on top.
 
-V3: Changed dev_err to dev_dbg
+v5:
+-drop accepted changes
+-.get_voltage -> .get_voltage_sel
+-made set_mode be 1:1 between API and hw
 
-V2: Updated commit log
+v4:
+-fix the linear range change to use the correct implementation
+-mask out the non-mode bits when reading the hardware reg
+-correct the pms405 supply pins listing
+-correct the pms405 s3 supply name in the match struct
+-correct subject names to be more aligned with the subsystem history
 
- drivers/pci/controller/pci-tegra.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v3:
+-Allow PMS405 regulators to be enabled and disabled, instead of the
+outdated "always on" concept
 
-diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-index 2e55d64a0428..629397bb5daa 100644
---- a/drivers/pci/controller/pci-tegra.c
-+++ b/drivers/pci/controller/pci-tegra.c
-@@ -2338,7 +2338,7 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
- 		} while (--timeout);
- 
- 		if (!timeout) {
--			dev_err(dev, "link %u down, retrying\n", port->index);
-+			dev_dbg(dev, "link %u down, retrying\n", port->index);
- 			goto retry;
- 		}
- 
+v2:
+-Perform if statement cleanups per review discussion
+-Pull in linear range support since its related, and simple
+-Rework the PM8005 to minimize special cases in the driver
+-"common2" is now ftsmps426 since that design first implemented it
+-Reworked the PMS405 changes on top, since they are related to pm8005
+and trivial
+
+Jeffrey Hugo (3):
+  dt-bindings: qcom_spmi: Document PM8005 regulators
+  regulator: qcom_spmi: Add support for PM8005
+  arm64: dts: msm8998-mtp: Add pm8005_s1 regulator
+
+Jorge Ramirez (2):
+  dt-bindings: qcom_spmi: Document pms405 support
+  regulator: qcom_spmi: add PMS405 SPMI regulator
+
+ .../regulator/qcom,spmi-regulator.txt         |  22 ++
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi     |  17 ++
+ drivers/regulator/qcom_spmi-regulator.c       | 213 ++++++++++++++++++
+ 3 files changed, 252 insertions(+)
+
 -- 
 2.17.1
 
