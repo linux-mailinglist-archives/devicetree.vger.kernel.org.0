@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6022A478CE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 05:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA9647908
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 06:20:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727675AbfFQDnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jun 2019 23:43:04 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:32958 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727515AbfFQDnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 23:43:04 -0400
-Received: by mail-pg1-f194.google.com with SMTP id k187so4979490pga.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 20:43:03 -0700 (PDT)
+        id S1726285AbfFQET4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 00:19:56 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:33741 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbfFQETz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 00:19:55 -0400
+Received: by mail-pg1-f193.google.com with SMTP id k187so5029153pga.0
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 21:19:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=taZZTmqZDJ/thPE/pxrihvxmQccJO4Nc9IvueiEvDBc=;
-        b=LizGSr8PfLFiYmns24CLOA6uq9rPTN5J9LMubsnAbQe9RV6tkwJrBNTXdptYXq5mw6
-         2vnAvivFmjogvwYbXezf+fKUXJcvI0ecCe2WwoN+nfbyRhMIXvBOmBsgZXZt3TBt/2fj
-         2bHdNuQrZjAK3MXJeXs7UjYdTfWqIl3/vAdFohqW2i07pgBld5KNgDuU+Y7o/0NxgqMZ
-         7Oh3ewUcSgElC1cHriL60uKCNP919CvPmoBjHYgMoQydxVUWR5Og1bbD6uU7nkS8isH4
-         /0119BZ4/nBZy7YDTKG+phwyoX7Ze8Npbz4FRbVFGK964mxOh8Yds774GqIya6KgN5uK
-         zQsg==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=PzMic+UPAsRVZkkITfxZ+ge6idfcXfDdmr2qhDqY6n4=;
+        b=WV5CpTWuXXki19nzu6N9H4WFS+1qFX4Zn9NZINa28o8wbNhwpfTRfiK1GElM4cY1Tr
+         OXwKzfSGQ693mK5rBKum59OYO2Y/KE/N3/CBYGMGAj2tEkmmhL2LEVCNVp/ToqEwDUpt
+         uIvKHLfQOxOAuR7Aym33NV5f0w8cK331vvlJ4Ixgw8MGbYMfFxzaBdERtR2DZ/VfG7ge
+         BnpyGAvqcm9fWzqaXzH0aPqEWuOuWJNrwKmsTg/IPnitfm8/ic0u/w7uhRaak9ZVuScn
+         H9pzpxSllmqXDtktC9e9QljAfuQV1BovQlbSOoJ4vnQCVmVOuOEp+6Ee3qRwTEoj1ylE
+         gyDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=taZZTmqZDJ/thPE/pxrihvxmQccJO4Nc9IvueiEvDBc=;
-        b=qh2oPLW8LxIl9ZxJp4W6LsVt+MAYdvPQp9myQyi31gyHXUNc3uyNCk9UaUmwWQ8zwO
-         9RwYuiZkA+0c0CoXI+Xad4iwor86Z+dLEKFaPk87Qfp8n4d9jn9PqYlW6TAGIotHhiZZ
-         dNVVL0tt4R7k0Ad6LA0kvtER+QacKzblZvUho9S5qDIHLYDQcctRrECd8j9ZYWDTky1e
-         KYiLWzHM+ExUgqjiZKWkKv6aHAFVnsF1MN2MNdJb3ReOL5FVJnxMOojFh7ixS3r+o77t
-         bjDkJ5w3FK2T0x8WvKTdTX0GnLhiJACYhHKaRpAO/VhMreB+TSFhmcMs3int7twaXlYw
-         LC6g==
-X-Gm-Message-State: APjAAAVHXpoGZ/Ab0UAhAyYurbZpQL3BbS/shJPW8rVyf9rowsE6ZSjS
-        D84UqFni3WV0FR9BoZXwGRBcOQ==
-X-Google-Smtp-Source: APXvYqxi14hXWZ21/68Cghl+12pHyJ8hnJvsh96H3bdcGwm+nFCpyQijLNQF3h2LfUM4gAlDChUV4A==
-X-Received: by 2002:aa7:9ad2:: with SMTP id x18mr31710822pfp.192.1560742983352;
-        Sun, 16 Jun 2019 20:43:03 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id f7sm8791031pfd.43.2019.06.16.20.43.02
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sun, 16 Jun 2019 20:43:02 -0700 (PDT)
-Date:   Sun, 16 Jun 2019 20:43:51 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     agross@kernel.org, david.brown@linaro.org, robdclark@gmail.com,
-        sean@poorly.run, robh+dt@kernel.org, airlied@linux.ie,
-        daniel@ffwll.ch, mark.rutland@arm.com, jonathan@marek.ca,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/6] drm/msm/gpu: add ocmem init/cleanup functions
-Message-ID: <20190617034351.GA750@tuxbook-pro>
-References: <20190616132930.6942-1-masneyb@onstation.org>
- <20190616132930.6942-7-masneyb@onstation.org>
- <20190616180633.GS22737@tuxbook-pro>
- <20190617001851.GA19038@onstation.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190617001851.GA19038@onstation.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=PzMic+UPAsRVZkkITfxZ+ge6idfcXfDdmr2qhDqY6n4=;
+        b=o2GxnWZhH9bU/6BIlLLc9zVoNilcsLxjpLB8osE1scWS/C2CUQ17WxS5fulu2tffkh
+         uHyGphLhwlheoFiK+RHu4+vidpZRb/JnpSj9HmLGOldt3Gdvam297wxYMDlkVj/jPfgI
+         QlpEdBbLqCZbd3X1hP5HOYAx3uJM8zqPeMVbP/TdRd6saSWZ0HF1Gd/CnZ03BofCaO71
+         jDuT1q7KRvekCDfAi0gdvrIBEGnup1tJNMaQEwklvfp03xRIlVQcOG0XBUG0lR9eIxkt
+         bH655XQHXIoev2qGJI43T7F5MKRFv1ck/V/3iI04xZLNm/cpcbMhtq+dLQMYlmBpFhpM
+         EUmw==
+X-Gm-Message-State: APjAAAX5R4SfB+UBVQTCbrJz3xu71eFEt24ko/jlH9A3YpyP8YwBnTFU
+        8U/L1dns4f34uLFWwd9WHXKYlg==
+X-Google-Smtp-Source: APXvYqxku2gBiJg02TLyfOFVgeYhsUcEMfbEDv7QwSe2WVsfh8XaKgPFs07+kEEOLES3+KCMvShowg==
+X-Received: by 2002:a63:5c16:: with SMTP id q22mr15119353pgb.200.1560745194961;
+        Sun, 16 Jun 2019 21:19:54 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id e184sm14485615pfa.169.2019.06.16.21.19.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 16 Jun 2019 21:19:54 -0700 (PDT)
+From:   Yash Shah <yash.shah@sifive.com>
+To:     davem@davemloft.net, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        nicolas.ferre@microchip.com, palmer@sifive.com,
+        aou@eecs.berkeley.edu, paul.walmsley@sifive.com, ynezz@true.cz,
+        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
+Date:   Mon, 17 Jun 2019 09:49:25 +0530
+Message-Id: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 16 Jun 17:18 PDT 2019, Brian Masney wrote:
+On FU540, the management IP block is tightly coupled with the Cadence
+MACB IP block. It manages many of the boundary signals from the MACB IP
+This patchset controls the tx_clk input signal to the MACB IP. It
+switches between the local TX clock (125MHz) and PHY TX clocks. This
+is necessary to toggle between 1Gb and 100/10Mb speeds.
 
-> Hi Bjorn,
-> 
-> On Sun, Jun 16, 2019 at 11:06:33AM -0700, Bjorn Andersson wrote:
-> > > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> > > index 6f7f4114afcf..e0a9409c8a32 100644
-> > > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> > > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> > > @@ -29,6 +29,10 @@
-> > >  #include "msm_gem.h"
-> > >  #include "msm_mmu.h"
-> > >  
-> > > +#ifdef CONFIG_QCOM_OCMEM
-> > > +#  include <soc/qcom/ocmem.h>
-> > > +#endif
-> > 
-> > This file exists (after the previous patch), so no need to make its
-> > inclusion conditional.
-> > 
-> > > +
-> > >  static bool zap_available = true;
-> > >  
-> > >  static int zap_shader_load_mdt(struct msm_gpu *gpu, const char *fwname,
-> > > @@ -897,6 +901,43 @@ static int adreno_get_pwrlevels(struct device *dev,
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-> > > +			  struct adreno_ocmem *adreno_ocmem)
-> > > +{
-> > > +#ifdef CONFIG_QCOM_OCMEM
-> > 
-> > No need to make this conditional.
-> 
-> I have these #ifdefs for the a5xx and a6xx GPUs that don't have ocmem
-> in the SoC. Without the #ifdefs, those systems would need to have the
-> ocmem driver in their kernel.
-> 
+Future patches may add support for monitoring or controlling other IP
+boundary signals.
 
-In order to provide the means for compiling a kernel for a[56]xx without
-having to compile ocmem you should move these #ifdef to the ocmem
-header file and provide static inline dummies for the case when it's
-not.
+This patchset is mostly based on work done by
+Wesley Terpstra <wesley@sifive.com>
 
-(and use #if IS_ENABLED(CONFIG_FOO))
+This patchset is based on Linux v5.2-rc1 and tested on HiFive Unleashed
+board with additional board related patches needed for testing can be
+found at dev/yashs/ethernet branch of:
+https://github.com/yashshah7/riscv-linux.git
 
-Don't forget to add
-	depends on QCOM_OCMEM || QCOM_OCMEM=n
+Change History:
+V2:
+- Change compatible string from "cdns,fu540-macb" to "sifive,fu540-macb"
+- Add "MACB_SIFIVE_FU540" in Kconfig to support SiFive FU540 in macb
+  driver. This is needed because on FU540, the macb driver depends on
+  SiFive GPIO driver.
+- Avoid writing the result of a comparison to a register.
+- Fix the issue of probe fail on reloading the module reported by:
+  Andreas Schwab <schwab@suse.de>
 
-to the DRM_MSM config option, to allow the driver pair to be selected in
-all possible ways.
+Yash Shah (2):
+  macb: bindings doc: add sifive fu540-c000 binding
+  macb: Add support for SiFive FU540-C000
 
-> Thanks for the quick review on the patch set!
-> 
+ Documentation/devicetree/bindings/net/macb.txt |   3 +
+ drivers/net/ethernet/cadence/Kconfig           |   6 ++
+ drivers/net/ethernet/cadence/macb_main.c       | 129 +++++++++++++++++++++++++
+ 3 files changed, 138 insertions(+)
 
-Regards,
-Bjorn
+-- 
+1.9.1
+
