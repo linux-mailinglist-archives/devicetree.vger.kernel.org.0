@@ -2,76 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D20744857B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 046E448582
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 16:34:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbfFQOcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 10:32:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56314 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725995AbfFQOcP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 10:32:15 -0400
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D606208E4;
-        Mon, 17 Jun 2019 14:32:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560781935;
-        bh=YVeXqhOTacEiBNpdGFxeX6iKuMZYINJ5rCe1iWJz0vE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LUUhyHLo9MgYHOLj0zjchSniPPEa++duHCyqMUsC+2KQR5L9XBR8YInRUgb0snjWB
-         iy15bMQkEZKLg0uYhznWWOuMC0fTsmusuLUw4keDRmkKstb5StB3z39WZksfDBi5Yc
-         oA50f3IAbzHY1Wp6Dtivua5rdlaAkT0sPt7ewcWY=
-Received: by mail-qk1-f175.google.com with SMTP id p144so6249589qke.11;
-        Mon, 17 Jun 2019 07:32:15 -0700 (PDT)
-X-Gm-Message-State: APjAAAUroXL+NiyZv/sk6To4lDnzchwgVUMeVgiPaF0qsxcvfOjxDyAN
-        4srZ6CaYEO0ZOPHTTodYnRNR5EMx2ERUmSZiZg==
-X-Google-Smtp-Source: APXvYqzypWzH9+FR9vkOBKVJHu+Un0gXYkhnqI88qXB3NL4H9/fIbTzA62+ik8Z0kWUIMebLB0X+tfIaTGYexkCkI1o=
-X-Received: by 2002:a05:620a:5b1:: with SMTP id q17mr23213999qkq.174.1560781934347;
- Mon, 17 Jun 2019 07:32:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190614080317.16850-1-andrew.smirnov@gmail.com> <20190614080317.16850-2-andrew.smirnov@gmail.com>
-In-Reply-To: <20190614080317.16850-2-andrew.smirnov@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 17 Jun 2019 08:32:02 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKqh-iuTk-P7NH2BfEnmnwdB8yMumCd-KeoszCbBNjy7Q@mail.gmail.com>
-Message-ID: <CAL_JsqKqh-iuTk-P7NH2BfEnmnwdB8yMumCd-KeoszCbBNjy7Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: Add support for ZII i.MX7 RMU2 board
-To:     Andrey Smirnov <andrew.smirnov@gmail.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chris Healy <cphealy@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Bob Langer <Bob.Langer@zii.aero>,
-        Liang Pan <Liang.Pan@zii.aero>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1727253AbfFQOdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 10:33:42 -0400
+Received: from michel.telenet-ops.be ([195.130.137.88]:35986 "EHLO
+        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728047AbfFQOdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 10:33:41 -0400
+Received: from ramsan ([84.194.111.163])
+        by michel.telenet-ops.be with bizsmtp
+        id RqZQ200023XaVaC06qZQyw; Mon, 17 Jun 2019 16:33:34 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1hcshH-0002Hv-01; Mon, 17 Jun 2019 16:33:23 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1hcshG-000190-V2; Mon, 17 Jun 2019 16:33:22 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: Add missing newline at end of file
+Date:   Mon, 17 Jun 2019 16:33:22 +0200
+Message-Id: <20190617143322.4332-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 2:03 AM Andrey Smirnov <andrew.smirnov@gmail.com> wrote:
->
-> Add support for ZII i.MX7 RMU2 board.
->
-> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Chris Healy <cphealy@gmail.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Bob Langer <Bob.Langer@zii.aero>
-> Cc: Liang Pan <Liang.Pan@zii.aero>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+"git diff" says:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+    \ No newline at end of file
+
+after modifying the files.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt      | 2 +-
+ .../devicetree/bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt     | 2 +-
+ Documentation/devicetree/bindings/regulator/pv88060.txt         | 2 +-
+ Documentation/devicetree/bindings/sound/cs42l73.txt             | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+index 3538a214fff156d4..352f5e9c759bc3f5 100644
+--- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
++++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+@@ -36,4 +36,4 @@ Example:
+             kcs_chan = <2>;
+             status = "disabled";
+         };
+-    };
+\ No newline at end of file
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt
+index 83f4bbac94bb19db..a1264cc8660dcd59 100644
+--- a/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt
++++ b/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt
+@@ -213,4 +213,4 @@ pinctrl: pinctrl@f0800000 {
+ 		groups = "clkreq";
+ 		function = "clkreq";
+ 	};
+-};
+\ No newline at end of file
++};
+diff --git a/Documentation/devicetree/bindings/regulator/pv88060.txt b/Documentation/devicetree/bindings/regulator/pv88060.txt
+index 10a6dadc008eb38d..6a7c8a92fdb0bf1c 100644
+--- a/Documentation/devicetree/bindings/regulator/pv88060.txt
++++ b/Documentation/devicetree/bindings/regulator/pv88060.txt
+@@ -121,4 +121,4 @@ Example
+ 				regulator-max-microvolt = <5000000>;
+ 			};
+ 		};
+-	};
+\ No newline at end of file
++	};
+diff --git a/Documentation/devicetree/bindings/sound/cs42l73.txt b/Documentation/devicetree/bindings/sound/cs42l73.txt
+index 80ae910dbf6c3880..47b868b5ab011470 100644
+--- a/Documentation/devicetree/bindings/sound/cs42l73.txt
++++ b/Documentation/devicetree/bindings/sound/cs42l73.txt
+@@ -19,4 +19,4 @@ codec: cs42l73@4a {
+ 	reg = <0x4a>;
+ 	reset_gpio = <&gpio 10 0>;
+ 	chgfreq = <0x05>;
+-};
+\ No newline at end of file
++};
+-- 
+2.17.1
+
