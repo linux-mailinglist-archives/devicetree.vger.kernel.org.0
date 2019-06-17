@@ -2,96 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 315684890A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E4F48917
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726292AbfFQQeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 12:34:21 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:43035 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726248AbfFQQeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 12:34:21 -0400
-Received: by mail-pg1-f194.google.com with SMTP id f25so6102102pgv.10
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 09:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ebkO1wyJElJAHhkYmwNP4KJfNQGU6gGWQjT69uRMtpY=;
-        b=hFo756otAjIObcVe8/HRn/qZUyB6hF98qOkrhqiNuAHJARyd2c/tEBuji44b5i3WLU
-         ZOohDVCX9y4s+FjGAlSl/BqCiWlR6elBk3gRt4KfqwnXMIv6wKBtYkFP6pp8fj+OcDLN
-         Z/qsrRJ/zJXBJ2Wbjbh7VXWHUMcYctewkEbku5xlfwbs6HOR9HM/gYRpHqEGANYW25nr
-         501fAtA0ETXTXCz3ZOEVHhMh68b0pN6xv9cjtCwJPE+imnLh+FW1aRTI9ncCXK8LTp2j
-         8g7JsFIZx+RPHIdSwZVku8lAR4Pt5JNAcvcyK6qUQc3jBUMsVso41Q/MEln/52XeEmDE
-         D5mQ==
+        id S1727417AbfFQQgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 12:36:40 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42092 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725863AbfFQQgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 12:36:39 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x17so10694125wrl.9;
+        Mon, 17 Jun 2019 09:36:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ebkO1wyJElJAHhkYmwNP4KJfNQGU6gGWQjT69uRMtpY=;
-        b=QGIkhE2SFm+9DkMmqLON5KpogvmxiYM2olCsMFyHfmMNpiEAWelLvIuhcpH4gdHugN
-         AhZSh88voNa2F3DqdGeZcZBb2i1zD13yXrtPw3jPa3yoWsUG6Yg3PVvIR3+6ynJgXmTY
-         e40G96+QY7XqBvlHUS8miYzuk5IFDrlVed3i9af160gDrPG47mjyjKt0HYFpH1kAfkCa
-         zRfq1u2x/Qn5RQp/fpANh3lTCHEw3EISoGjriU6pdHfZo0FIAB2ya2IxwuGlA8fPUw1Z
-         irnAH/z8++SBfv+klPB+km2e+B+jgWmC8JsgXnmOimTA6/S8Sw/scdpglfA4XOohX6ju
-         ecbg==
-X-Gm-Message-State: APjAAAWAQ5ANLDgdGJqTtEpqmeZjSmAiqlK5DJA6qoItzWsJbfKJFs3S
-        WaA7lG/TUaylR9IZGEhE9+NX
-X-Google-Smtp-Source: APXvYqzEOK55wn6wxv3xLz9QGXsTulkPtopaTMHSWzG0osIiTAA5EDU7cMDDPQr6I7aKH7BBeZ6riA==
-X-Received: by 2002:a63:b24:: with SMTP id 36mr50408245pgl.439.1560789260492;
-        Mon, 17 Jun 2019 09:34:20 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:629b:c246:9431:2a24:7932:6dba])
-        by smtp.gmail.com with ESMTPSA id t4sm10401632pjq.19.2019.06.17.09.34.15
+        bh=8Oy70J7E+pU3L/OYvURWRN5oF2aMwufMYC8uJSROz60=;
+        b=TqlIQb7Hadv0say64Ko+LlDAQzMYglr6LpSy720xyDi3qpNOPIrhgmib3pag75S/iX
+         40LKrqS/q6L7DdEci2yQPw1eYa3wJjvnKXeIdedU2CJOUOCxssxZHfcxGcXuTNWDGSMG
+         8hxg9hQj3lWLOSomwZr1z1lMaQFfcDzPt4gBiIwz6sVV1CJHB/BYAga+O1BB+CA3pA/d
+         sJp5Xmnu0iMH5sC8drRxpHhNwNSI0+s2uEGPbWfvrpMfASCNmmqedIL6VD6fd6Yg5PEO
+         NfC+9H2hMJjvRbz0ZDnjrBNCMpLQmkSB8eEpVk4/kVgORzHut4RtWICZgdu13nStfQLV
+         BTgQ==
+X-Gm-Message-State: APjAAAV4WlcPfb4RC1ToYBI3nm38OsUdg8B6ODh8WFR1HZNSQnUk8YDB
+        dCYWdI5QQxKyG1ZJ6zWf1ZY=
+X-Google-Smtp-Source: APXvYqydGfrS7r/3YJw8wv4J3mDqQdGECHHJ0dsY/h1rw5+NOYNtFdSPKiuX989ub5GjygD6pPlUhg==
+X-Received: by 2002:adf:e3cc:: with SMTP id k12mr20423649wrm.159.1560789397834;
+        Mon, 17 Jun 2019 09:36:37 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.186])
+        by smtp.googlemail.com with ESMTPSA id e11sm12061602wrc.9.2019.06.17.09.36.36
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 17 Jun 2019 09:34:19 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 22:04:13 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lee.jones@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        afaerber@suse.de, linux-actions@lists.infradead.org,
-        linux-kernel@vger.kernel.org, thomas.liau@actions-semi.com,
-        devicetree@vger.kernel.org, linus.walleij@linaro.org
-Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
-Message-ID: <20190617163413.GA16152@Mani-XPS-13-9360>
-References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
- <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
- <20190617163015.GD5316@sirena.org.uk>
+        Mon, 17 Jun 2019 09:36:37 -0700 (PDT)
+Date:   Mon, 17 Jun 2019 18:36:34 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Joseph Kogut <joseph.kogut@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
+        airlied@linux.ie, Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
+Message-ID: <20190617163634.GA16941@kozik-lap>
+References: <20190614203144.3850-2-joseph.kogut@gmail.com>
+ <20190614235719.8134-1-joseph.kogut@gmail.com>
+ <20190616085928.GB3826@kozik-lap>
+ <CAMWSM7j8dtsS4d-hOc3Sk6OJHs+SiGC9tEaZBEmO0VKmtJguKw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190617163015.GD5316@sirena.org.uk>
+In-Reply-To: <CAMWSM7j8dtsS4d-hOc3Sk6OJHs+SiGC9tEaZBEmO0VKmtJguKw@mail.gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
-
-On Mon, Jun 17, 2019 at 05:30:15PM +0100, Mark Brown wrote:
-> On Mon, Jun 17, 2019 at 09:20:10PM +0530, Manivannan Sadhasivam wrote:
+On Mon, Jun 17, 2019 at 09:15:23AM -0700, Joseph Kogut wrote:
+> Hi Krzysztof,
 > 
-> > +++ b/drivers/regulator/atc260x-regulator.c
-> > @@ -0,0 +1,389 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Regulator driver for ATC260x PMICs
+> Thanks for the review.
 > 
-> Please make the entire comment a C++ one so this looks more intentional.
+> On Sun, Jun 16, 2019 at 1:59 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On Fri, Jun 14, 2019 at 04:57:19PM -0700, Joseph Kogut wrote:
+> > > Add device tree node for mali gpu on Odroid XU3 SoCs.
+> > >
+> > > Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+> > > ---
+> > >
+> > > Changes v1 -> v2:
+> > > - Use interrupt name ordering from binding doc
+> > > - Specify a single clock for GPU node
+> > > - Add gpu opp table
+> > > - Fix warnings from IRQ_TYPE_NONE
+> > >
+> > >  .../boot/dts/exynos5422-odroidxu3-common.dtsi | 26 +++++++++++++++++++
+> >
+> > This should go to exynos5422-odroid-core.dtsi instead, because it is
+> > common to entire Odroid Exynos5422 family (not only XU3 family).
+> >
+> > >  1 file changed, 26 insertions(+)
+> > >
+> > > diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> > > index 93a48f2dda49..b8a4246e3b37 100644
+> > > --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> > > +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> > > @@ -48,6 +48,32 @@
+> > >               cooling-levels = <0 130 170 230>;
+> > >       };
+> > >
+> > > +     gpu: gpu@11800000 {
+> > > +             compatible = "samsung,exynos-mali", "arm,mali-t628";
+> >
+> > This is common to all Exynos542x chips so it should go to
+> > exynos5420.dtsi. Here you would need to only enable it and provide
+> > regulator.
+> >
 > 
+> To clarify, which pieces are specific to the Odroid Exynos 5422
+> family, and which are common to the entire Exynos 542x family? I'm
+> thinking the gpu node is common to the 542x family, including the
+> interrupts and clock, and the regulator and opp table are specific to
+> the Odroid 5422?
 
-Okay.
+Opp table depends - it might common to Exynos542x (as all use the same
+Mali) or specific to boards (because there is Odroid XU3 Lite with
+Exynos5422 working on lower frequencies).
 
-> > + * Copyright (C) 2019 Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+So far the CPU and all bus OPP tables were put in exynos5420.dtsi so I
+guess this can go there as well.
+
+For the rest of properties you were correct.
+
 > 
-> You definitely didn't assign copyright to your employer?
+> > Probably this should be also associated with tmu_gpu as a cooling device
+> > (if Mali registers a cooling device...). Otherwise the tmu_gpu is not
+> > really used for it.
+> >
+> 
+> We have two operating performance points for the GPU, but I'm not sure
+> at what temperature we should trip the lower opp. Looking at the trip
+> temperatures for the CPU, we have four alerts, and one critical trip.
+> The highest alert is 85 C, would it be reasonable to trigger the lower
+> GPU opp at this temperature? Should it trigger sooner?
 
-Yeah, that was intentional. This work is not part of Linaro working hours and
-falls into my spare time works where I'm trying to complete the upstream support
-for Actions Semi Owl series SoCs and target boards which I'm co-maintaining
-(sort of)...
+The highest trip point is 120 C and it is critical. In general I would
+follow the CPU trip points (so fan should start working at 50 degrees).
+Unless you have some other data about recommended trip points. Useful is
+vendor kernel (from Samsung, from Hard Kernel).
 
-Thanks,
-Mani
+> 
+> > > +             reg = <0x11800000 0x5000>;
+> > > +             interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                          <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
+> > > +                          <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
+> > > +             interrupt-names = "job", "mmu", "gpu";
+> > > +             clocks = <&clock CLK_G3D>;
+> > > +             mali-supply = <&buck4_reg>;
+> >
+> > Please check if always-on property could be removed from buck4.
+> 
+> I've checked, and this property can be removed safely.
+> 
+> > Also, what about LDO27? It should be used as well (maybe through
+> > vendor-specific properties which would justify the need of new vendor
+> > compatible).
+> >
+> 
+> I'm unsure how LDO27 is used, can you elaborate?
+
+It is supplying the VDD_G3DS (with a note "SRAM power"). I do not have
+any more data on it. However I did not check in vendor kernel for it.
+
+Best regards,
+Krzysztof
 
 
+> 
+> Best,
+> Joseph
