@@ -2,33 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D77648882
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE5644887F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 18:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726669AbfFQQOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728036AbfFQQOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 17 Jun 2019 12:14:44 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:53249 "EHLO
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:54027 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727404AbfFQQOo (ORCPT
+        with ESMTP id S1726005AbfFQQOo (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 12:14:44 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hcuHI-0000aF-F0; Mon, 17 Jun 2019 18:14:40 +0200
+        id 1hcuHI-0000aG-F0; Mon, 17 Jun 2019 18:14:40 +0200
 Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hcuHH-0000va-CG; Mon, 17 Jun 2019 18:14:39 +0200
+        id 1hcuHH-0000vc-D3; Mon, 17 Jun 2019 18:14:39 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     robh+dt@kernel.org, shawnguo@kernel.org, linux-imx@nxp.com
 Cc:     devicetree@vger.kernel.org, Gilles.Buloz@kontron.com,
         frieder.schrempf@kontron.de, thomas.schaefer@kontron.com,
         Stefan.Nickl@kontron.com, Michael.Brunner@kontron.com,
         kernel@pengutronix.de, festevam@gmail.com, plaes@plaes.org
-Subject: [PATCH v2 0/3] Add Support for Kontron SMARC-sAMX6i
-Date:   Mon, 17 Jun 2019 18:14:29 +0200
-Message-Id: <20190617161432.32268-1-m.felsch@pengutronix.de>
+Subject: [PATCH v2 1/3] dt-bindings: add Kontron vendor prefix
+Date:   Mon, 17 Jun 2019 18:14:30 +0200
+Message-Id: <20190617161432.32268-2-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190617161432.32268-1-m.felsch@pengutronix.de>
+References: <20190617161432.32268-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
@@ -40,32 +42,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Kontron is a leading embedded computer supplier. More information can be
+found on: https://www.kontron.de/
 
-this v2 covers the feedback made on my v1 [1]. Patch 3-17 are now
-squashed into one patch.
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+v2:
+ - convert from vendor-prefixes.txt to vendor-prefixes.yaml
 
-[1] https://www.spinics.net/lists/devicetree/msg287251.html
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Marco Felsch (1):
-  dt-bindings: add Kontron vendor prefix
-
-Michael Grzeschik (1):
-  ARM: dts: imx6qdl-kontron-samx6i: add Kontron SMARC SoM Support
-
-Priit Laes (1):
-  ARM: dts: imx6qdl-kontron-samx6i: Add iMX6-based Kontron SMARC-sAMX6i
-    module
-
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/imx6dl-kontron-samx6i.dtsi  |  12 +
- arch/arm/boot/dts/imx6q-kontron-samx6i.dtsi   |  36 +
- arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 815 ++++++++++++++++++
- 4 files changed, 865 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-kontron-samx6i.dtsi
- create mode 100644 arch/arm/boot/dts/imx6q-kontron-samx6i.dtsi
- create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 33a65a45e319..9163c5eadd2e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -449,6 +449,8 @@ patternProperties:
+     description: Rakuten Kobo Inc.
+   "^koe,.*":
+     description: Kaohsiung Opto-Electronics Inc.
++  "^kontron,.*":
++    description: Kontron S&T AG
+   "^kosagi,.*":
+     description: Sutajio Ko-Usagi PTE Ltd.
+   "^kyo,.*":
 -- 
 2.20.1
 
