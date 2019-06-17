@@ -2,139 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCF6F482F8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 14:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2958548325
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 14:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726674AbfFQMuM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Jun 2019 08:50:12 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:41657 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725973AbfFQMuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 08:50:12 -0400
-X-Originating-IP: 90.88.23.150
-Received: from xps13 (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 7F0EC40005;
-        Mon, 17 Jun 2019 12:50:05 +0000 (UTC)
-Date:   Mon, 17 Jun 2019 14:50:04 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S1727958AbfFQMw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 08:52:59 -0400
+Received: from mga01.intel.com ([192.55.52.88]:13071 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727763AbfFQMw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 08:52:59 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Jun 2019 05:52:58 -0700
+X-ExtLoop1: 1
+Received: from pipin.fi.intel.com (HELO pipin) ([10.237.72.175])
+  by orsmga006.jf.intel.com with ESMTP; 17 Jun 2019 05:52:56 -0700
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Ran Wang <ran.wang_1@nxp.com>, Rob Herring <robh+dt@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list\:DESIGNWARE USB3 DRD IP DRIVER" 
+        <linux-usb@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] clk: mvebu: armada-37xx-periph: change
- suspend/resume time
-Message-ID: <20190617145004.7b11988f@xps13>
-In-Reply-To: <CAErSpo7fimH5QhHTLsF2ASyPqstkw7Zibe3CYB=KXTYBOh-4GQ@mail.gmail.com>
-References: <20190521130357.20803-1-miquel.raynal@bootlin.com>
-        <20190521130357.20803-3-miquel.raynal@bootlin.com>
-        <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
-        <20190527154610.6d4d5eff@xps13>
-        <CAErSpo7fimH5QhHTLsF2ASyPqstkw7Zibe3CYB=KXTYBOh-4GQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        "devicetree\@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>
+Subject: RE: [PATCH] usb: dwc3: Enable the USB snooping
+In-Reply-To: <AM5PR0402MB2865D0F0E2B4F65C86D051F8F1140@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20171115060459.45375-1-ran.wang_1@nxp.com> <87ineb9b5v.fsf@linux.intel.com> <VI1PR04MB1504776EF3D4D8C374F0C069F1290@VI1PR04MB1504.eurprd04.prod.outlook.com> <87shdfet90.fsf@linux.intel.com> <AM5PR0402MB28654EBE2D431CC2F8061CF8F11E0@AM5PR0402MB2865.eurprd04.prod.outlook.com> <87k1eaanjw.fsf@linux.intel.com> <AM5PR0402MB2865F3735D808E1BC9F67968F1180@AM5PR0402MB2865.eurprd04.prod.outlook.com> <AM5PR0402MB2865D0F0E2B4F65C86D051F8F1140@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+Date:   Mon, 17 Jun 2019 15:52:52 +0300
+Message-ID: <87o92wgyqj.fsf@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-Bjorn Helgaas <bhelgaas@google.com> wrote on Tue, 4 Jun 2019 15:52:31
--0500:
-
-> On Mon, May 27, 2019 at 8:46 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> >
-> > Hi Bjorn,
-> >
-> > Thanks for the feedback.
-> >
-> > Bjorn Helgaas <bhelgaas@google.com> wrote on Tue, 21 May 2019 17:43:05
-> > -0500:
-> >  
-> > > From: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > Date: Tue, May 21, 2019 at 8:04 AM
-> > > To: Michael Turquette, Stephen Boyd, Rob Herring, Mark Rutland
-> > > Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>, Thomas
-> > > Petazzoni, Antoine Tenart, Gregory Clement, Maxime Chevallier, Nadav
-> > > Haklai, Bjorn Helgaas, Rafael J . Wysocki, <linux-pm@vger.kernel.org>,
-> > > Miquel Raynal
-> > >  
-> > > > Armada 3700 PCIe IP relies on the PCIe clock managed by this
-> > > > driver. For reasons related to the PCI core's organization when
-> > > > suspending/resuming, PCI host controller drivers must reconfigure
-> > > > their register at suspend_noirq()/resume_noirq() which happens after
-> > > > suspend()/suspend_late() and before resume_early()/resume().  
-> > >
-> > > "For reasons related to the PCI core's organization" manages to
-> > > suggest that this change wouldn't be needed if only the PCI core did
-> > > something differently, without actually being specific about what it
-> > > would need to do differently.
-> > >
-> > > Is there something the PCI core could do better to make this easier?
-> > > Or is it just something like "the PCI core needs to access registers
-> > > after suspend_late()"?  You mention the host controller, but of course
-> > > that's not itself a PCI device, so the PCI core doesn't have much to
-> > > do with it directly.  
-> >
-> > Actually, if I understand correctly the below commit [1] and the core
-> > [2] & [3], PCI device fixups can happen at any time, including at the
-> > _noirq phase where, obviously, the PCI controller must be already
-> > setup.
-> >
-> > I don't think changing this behavior is a viable solution and I would
-> > not see it as a "PCI core could do better" alternative.
-> >
-> > ---8<---
-> >
-> > [1]
-> > commit ab14d45ea58eae67c739e4ba01871cae7b6c4586
-> > Author: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-> > Date:   Tue Mar 17 15:55:45 2015 +0100
-> >
-> >     PCI: mvebu: Add suspend/resume support
-> >
-> >     Add suspend/resume support for the mvebu PCIe host driver.  Without
-> >     this commit, the system will panic at resume time when PCIe devices
-> >     are connected.
-> >
-> >     Note that we have to use the ->suspend_noirq() and ->resume_noirq()
-> >     hooks, because at resume time, the PCI fixups are done at  
-> >     ->resume_noirq() time, so the PCIe controller has to be ready at  
-> >     this point.
-> >
-> >     Signed-off-by: Thomas Petazzoni
-> >     <thomas.petazzoni@free-electrons.com> Signed-off-by: Bjorn Helgaas
-> >     <bhelgaas@google.com> Acked-by: Jason Cooper <jason@lakedaemon.net>
-> >
-> > [2] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L1181
-> > [3] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L522
-> >  
-> > --->8---  
-> >  
-> > >
-> > > s/register/registers/ ?  
-> >
-> > Indeed. I would like to sort out the above technical point before
-> > sending a v3 with this typo corrected.  
-> 
-> I don't have anything more to contribute here; just wanted to make
-> sure this wasn't working around a fixable problem in PCI.
-
-Great! Would you mind adding a A-b/R-b tag then?
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
 
-Thanks,
-Miquèl
+Hi,
+
+Ran Wang <ran.wang_1@nxp.com> writes:
+> Hi Felipe,
+>
+> On Thursday, May 30, 2019 17:09, Ran Wang wrote:
+>>=20
+>> <snip>
+>> > >> >> >  /* Global Debug Queue/FIFO Space Available Register */
+>> > >> >> >  #define DWC3_GDBGFIFOSPACE_NUM(n)	((n) & 0x1f)
+>> > >> >> >  #define DWC3_GDBGFIFOSPACE_TYPE(n)	(((n) << 5) & 0x1e0)
+>> > >> >> > @@ -859,6 +867,7 @@ struct dwc3_scratchpad_array {
+>> > >> >> >   * 	3	- Reserved
+>> > >> >> >   * @imod_interval: set the interrupt moderation interval in 2=
+50ns
+>> > >> >> >   *                 increments or 0 to disable.
+>> > >> >> > + * @dma_coherent: set if enable dma-coherent.
+>> > >> >>
+>> > >> >> you're not enabling dma coherency, you're enabling cache snoopin=
+g.
+>> > >> >> And this property should describe that. Also, keep in mind that
+>> > >> >> different devices may want different cache types for each of
+>> > >> >> those fields, so your property would have to be a lot more
+>> > >> >> complex. Something
+>> > like:
+>> > >> >>
+>> > >> >> 	snps,cache-type =3D <foobar "cacheable">, <baz "cacheable">, ...
+>> > >> >>
+>> > >> >> Then driver would have to parse this properly to setup GSBUSCFG0.
+>> > >
+>> > > According to the DesignWare Cores SuperSpeed USB 3.0 Controller
+>> > > Databook (v2.60a), it has described Type Bit Assignments for all
+>> > > supported
+>> > master bus type:
+>> > > AHB, AXI3, AXI4 and Native. I found the bit definition are different
+>> > > among
+>> > them.
+>> > > So, for the example you gave above, feel a little bit confused.
+>> > > Did you mean:
+>> > >     snps,cache-type =3D <DATA_RD  "write allocate">, <DESC_RD
+>> > > "cacheable">, <DATA_WR  "bufferable">, <DESC_WR  "read allocate">
+>> >
+>> > yeah, something like that.
+>>=20
+>> I think DATA_RD  should be a macro, right? So, where I can put its defin=
+e?
+>> Create a dwc3.h in include/dt-bindings/usb/ ?
+>
+> Could you please give me some advice here? I'd like to prepare next versi=
+on patch after
+> getting this settled.
+>
+>> Another question about this remain open is: DWC3 data book's Table 6-5 C=
+ache
+>> Type Bit Assignments show that bits definition will differ per MBUS_TYPE=
+s as
+>> below:
+>> ----------------------------------------------------------------
+>>  MBUS_TYPE| bit[3]       |bit[2]       |bit[1]     |bit[0]
+>>  ----------------------------------------------------------------
+>>  AHB      |Cacheable     |Bufferable   |Privilegge |Data
+>>  AXI3     |Write Allocate|Read Allocate|Cacheable  |Bufferable
+>>  AXI4     |Allocate Other|Allocate     |Modifiable |Bufferable
+>>  AXI4     |Other Allocate|Allocate     |Modifiable |Bufferable
+>>  Native   |Same as AXI   |Same as AXI  |Same as AXI|Same as AXI
+>>  ----------------------------------------------------------------
+>>  Note: The AHB, AXI3, AXI4, and PCIe busses use different names for cert=
+ain
+>>  signals, which have the same meaning:
+>>    Bufferable =3D Posted
+>>    Cacheable =3D Modifiable =3D Snoop (negation of No Snoop)
+>>=20
+>> For Layerscape SoCs, MBUS_TYPE is AXI3. So I am not sure how to use
+>> snps,cache-type =3D <DATA_RD  "write allocate">, to cover all MBUS_TYPE?
+>> (you can notice that AHB and AXI3's cacheable are on different bit) Or I=
+ just need
+>> to handle AXI3 case?
+>
+> Also on this open. Thank you in advance.
+
+You could pass two strings and let the driver process them. Something
+like:
+
+	snps,cache_type =3D <"data_wr" "write allocate">, <"desc_rd" "cacheable">.=
+..
+
+And so on. The only thing missing is for the mbus_type to be known by
+the driver. Is that something we can figure out on any of the HWPARAMS
+registers or does it have to be told explicitly?
+
+Another option would be to pass a string followed by one hex digit for
+the bits:
+
+	snps,cache_type =3D <"data_wr" 0x8>, <"desc_rd" 0x2>...;
+
+Then we don't need to describe mbus_type since the bits are what matters.
+
+Rob, any comments?
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl0HjSQACgkQzL64meEa
+mQbg7g/+Lx8yM+keMyEm6/45HFbt8dj+svzOYxh0bbIrId4/UkgiphoH7tOEvT/m
+daGDtnccJ8ec6pGl1gHMweog+R7WEkFjf43hBoJjjGWqExeeNDaP6cKD60v2fU2v
+fpDbfEs4Y5HKxxaBu65MmRwBbtAg+O0ZXEC2RY5jan9GE/HbuqD5xorbRCtIdo1r
+a5f5CgMUgIglqJiQ+r9dH2M3BjlCBl+2h9YHs0IuLN9+wtRmE9V82s+b1egjot/N
+fsp9eB/YCCpuvsw38pis00SyN2KiYB1TSBYKFplZon9j1dPrUomP7dg6CUlp+UGf
+T3jlokigmXQKNK7vrBjm76fdtTAKLEuXLnVGMxFM+sn/vh95bVamyS6MNYTY/XdA
+q/0KA4Z3tpPXIF0jDV4H92sKt2qXfDjj0vt8oSpWMB4yLOpkKQtvOcpRqd3AYsbD
++xvIOipBs6dtdp6wpvmK7BbobggCUxAObAYiJI4FoaqZbWWWnzd2piXWH5bAGkIp
+u14xAKyE7Nz20RuARpD+TchfbeAZUnrTF+PJ6LcRNshiGoPWBrRT2oCYjqN9XcE7
+K8sd6hxcXXwA4vPmo3faq4s1oiq/ACZWJPeGwCyF4yB+Y7b/I2aEicVSbOV49aiC
+j6yHlveZA9Z/GX8hVlxmkKLdhR5Uki6HP8wG5Bn2dlBK6tA2Kvk=
+=7tqt
+-----END PGP SIGNATURE-----
+--=-=-=--
