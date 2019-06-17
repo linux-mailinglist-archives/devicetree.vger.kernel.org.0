@@ -2,99 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D71D480EF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0754D48102
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 13:39:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726674AbfFQLfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 07:35:41 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:38497 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726173AbfFQLfk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:35:40 -0400
-Received: by mail-vs1-f65.google.com with SMTP id k9so5874431vso.5
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 04:35:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Oarxy7p2A8M3e32Cd3ZGKiQh3eZMCQGravoCB5ouj68=;
-        b=JnWxiIKJnHT6irJrl0SZV7N86mxeB7Jog5bebll+L/jQV3DuM2fXmD5S85vgPJAYI4
-         xp+XPND9LYJ24EcwVkhr5CbRgW2AQ83dPZ5s3Qxr8RIwzSsgy/pJpKTu3JSn4w9wXSQh
-         zRkHooSvQLAR1gJgYp4uv6e2+fZ6pb16OOdtveCojyGEJ4S6PF1d14oFNEY9wgy+XVsI
-         lAF6/UPGt1H8OdgAcCw/BPfa60GC1X4Anw7X9uXrHcPasGBWUuBkaFCgCaYGBQ3/XIAB
-         1Z+XkOSQ9252AzTMwiKYPnTo1JVJveshNtwKTiFEnNlEmN+PxsOVxotew2kAaQtc1/y3
-         FKJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Oarxy7p2A8M3e32Cd3ZGKiQh3eZMCQGravoCB5ouj68=;
-        b=kJL9EZTNLliKp3lPvYXqC5pGGAJeLBZdMRMqLiAJP0fY89YhVVhK3f8pZLDKGmHtf6
-         6vSzvAHGIX/qm+00roJK9UcMg73zTVo/Boi7ABvFInADMYsGZmNsWBIqYg2p1FoTjUhA
-         ZKanHaTeX8RTNQuTsqYt8rRV7QFWBY4YGrFdPs7SLFGx+12SSrazW5zI3aFwkyXQmEO6
-         vCCi5mQQVYGU8LedGTOYVRgJVDnBj2OPgp/uJPUrNzQFjwyHp5GMooTMyEzQAAdMNsou
-         LXVfL85bHPg5FhX0YLLaWGC6/1rbJ1t7zvCWRv5r0xlkBtQdOGkCclqJq3AXRVArqH2y
-         AKMw==
-X-Gm-Message-State: APjAAAWtbkIJKsBNhM3gEu7pL4ph9Yht3v16Vo2ZG6MQtEHt1HrPvJz6
-        lbNLT5JESsc1B2DtjfUxX1h1U9VEcQ50mv2GQx/cjQ==
-X-Google-Smtp-Source: APXvYqwcHEVwhj3FTseMM1MQYfqpoVrbYJpW+a7vzqtz0JpcbL/XOQHVC14jXXzahRuLm4BZ4JoZKMxnEhMY0YILz0A=
-X-Received: by 2002:a67:ed8b:: with SMTP id d11mr60218560vsp.35.1560771339760;
- Mon, 17 Jun 2019 04:35:39 -0700 (PDT)
+        id S1725827AbfFQLjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 07:39:18 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:9415 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725810AbfFQLjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 07:39:18 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d077be50000>; Mon, 17 Jun 2019 04:39:17 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Mon, 17 Jun 2019 04:39:17 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Mon, 17 Jun 2019 04:39:17 -0700
+Received: from [10.24.192.33] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 17 Jun
+ 2019 11:39:14 +0000
+Subject: Re: [PATCH V4 26/28] PCI: Add DT binding for "reset-gpios" property
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <bhelgaas@google.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
+        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-27-mmaddireddy@nvidia.com> <20190617113038.GK508@ulmo>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <bc6a3de8-89b0-41a8-006e-0db85fbb4d4d@nvidia.com>
+Date:   Mon, 17 Jun 2019 17:08:45 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190604060914.10886-1-faiz_abbas@ti.com>
-In-Reply-To: <20190604060914.10886-1-faiz_abbas@ti.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 17 Jun 2019 13:35:03 +0200
-Message-ID: <CAPDyKFqt9N+Hn-VhEr0ANv3zXLGyjCDEDiBgEx8FpLFBBzT0EA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add Support for MMC in J721E
-To:     Faiz Abbas <faiz_abbas@ti.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190617113038.GK508@ulmo>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560771557; bh=ILp6LOiI3Dxw0ENn5jtgndqoLvRyJ01HjrvcVbb4CL4=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=V8y+elGVZ24mYQRILlEF590P5XxQ/5NVaNCJ2tnRGVLMux2r0955+jUZhtO19n1OK
+         lz6TAW1Zf62BuBPXcSzEbrQpRl1yvqMOfMKG7/vpEkFQk64bNJL12+v+O2gdpY6Lsp
+         5c6qx0pJlyOyTCtzpk8VhKJwUT7J2vdHdZ1EuZErPV4S+19YKWCbhn8hhzHP4JNlQM
+         v1bGFEcnKWwNHKnzMFaSnN12wWo2bjifuERB5M7gK87Ebzpz17s+FDznPPpbg45XaO
+         RlJG0Z4QU5+xRe3DgA8HM6iUd6FQFzLEsiixpMY9/x20Amw5gH4tGFuWKOxbv45wLK
+         HxAPBolpFh3zg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Jun 2019 at 08:09, Faiz Abbas <faiz_abbas@ti.com> wrote:
->
-> The following patches add driver support for MMC SDHCI interfaces on
-> TI's J721E devices. The 8 bit and 4 bit instances have phys which are
-> different from the am65x interfaces as well as different from each
-> other which leads to 3 different compatibles and a bunch of flags for
-> indicating the differences.
->
-> Depends on Nishanth's initial J721E patches here:
-> https://lore.kernel.org/patchwork/cover/1077382/
->
-> Also depends on my fixes for AM65x driver here:
-> https://lore.kernel.org/patchwork/cover/1079924/
->
-> Tested with: j721e-evm and am65x-evm.
->
-> DT patches will be added in a separate series.
->
-> Faiz Abbas (4):
->   dt-bindings: mmc: sdhci-am654: Document bindings for the host
->     controllers on TI's J721E devices.
->   mmc: sdhci_am654: Add Support for 8 bit IP on J721E
->   mmc: sdhci_am654: Add Support for 4 bit IP on J721E
->   arm64: defconfig: Add config for MMC on AM65x and J721E devices
->
->  .../devicetree/bindings/mmc/sdhci-am654.txt   |   9 +-
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/mmc/host/sdhci_am654.c                | 257 +++++++++++++-----
->  3 files changed, 204 insertions(+), 63 deletions(-)
->
-> --
-> 2.19.2
->
 
-Patch 1->3 applied for next, patch is for arm-soc, thanks!
 
-Kind regards
-Uffe
+On 17-Jun-19 5:00 PM, Thierry Reding wrote:
+> On Thu, May 16, 2019 at 11:23:05AM +0530, Manikanta Maddireddy wrote:
+>> Add DT binding for "reset-gpios" property which supports GPIO based PERST#
+>> signal.
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Acked-by: Thierry Reding <treding@nvidia.com>
+>> ---
+>> V4: No change
+>>
+>> V3: Moved to common pci binding doc
+>>
+>> V2: Using standard "reset-gpio" property
+>>
+>>  Documentation/devicetree/bindings/pci/pci.txt | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
+>> index c77981c5dd18..79124898aa5b 100644
+>> --- a/Documentation/devicetree/bindings/pci/pci.txt
+>> +++ b/Documentation/devicetree/bindings/pci/pci.txt
+>> @@ -24,3 +24,6 @@ driver implementation may support the following properties:
+>>     unsupported link speed, for instance, trying to do training for
+>>     unsupported link speed, etc.  Must be '4' for gen4, '3' for gen3, '2'
+>>     for gen2, and '1' for gen1. Any other values are invalid.
+>> +- reset-gpios:
+>> +   If present this property specifies PERST# GPIO. Host drivers can parse the
+>> +   GPIO and apply fundamental reset to endpoints.
+> As mentioned in patch 27/28, maybe mention here that this is only a
+> workaround for bad board designs and that it shouldn't be necessary in
+> the majority of cases.
+>
+> Thierry
+
+This is common DT binding doc, I cannot add Tegra specific here.
+reset-gpios is common DT prop, so Rob asked me to add it in common file.
+
+Manikanta 
+
