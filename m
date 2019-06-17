@@ -2,101 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4C5F4774C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 01:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC9E44777A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 02:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727498AbfFPXgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jun 2019 19:36:36 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:39467 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727544AbfFPXgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jun 2019 19:36:18 -0400
-Received: by mail-lf1-f67.google.com with SMTP id p24so5144339lfo.6;
-        Sun, 16 Jun 2019 16:36:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/LoNLOLC4v22fCk8MRxYZiVyFU9l44MdyNDw1bDmHwQ=;
-        b=m2yYGjNriXkaj18ueVpnD4vnoouUICdAj4mYFBxnqWOZGiwAaR5Bs62vrnNjku/2vP
-         X67mpJWA+Abgp3FLwUmzC4yHD/IIBAci1l5sCvSuG+RQj1QTQ4TBNADrYYOoJbkuKhZB
-         w56N3l17SwypZ6jd/tRs51e+XOyJr/UyXacC/6cZkB715iKmYAC2qQq3oVJZ2CdMIM8/
-         xiqV/zALHGyJE0dADZZDSa2AGYqQoRM85PqPwEFDpRKyfwFdjgM1tJGkTjxbivOYl5Bv
-         YlTMe6qRuDuKUcifzd1nvbQtVzFmLd8jB2MlIK4Zi0M+rUhN188PdRy25B6MGy6lxBzE
-         +wYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/LoNLOLC4v22fCk8MRxYZiVyFU9l44MdyNDw1bDmHwQ=;
-        b=JldVCg+NoqVj19IuB9My4zeUyA0WRDy70zx1prCZJ8lQANPP9hwpJMMqssyuW5GhZ9
-         Bm/7kbbNLkehqyoNb1KPPEwuvFNqGQL9ZTK0fOpcVXyyWk9G4o0rfz8eZE5XiA0Qf48U
-         nueNDBNzMIhTjLSClEweKB9E+XPi6xxzAvaBcGT266WBSfOOx5PCrazRHRsJBZXyQ3US
-         eDJHLAhY+CHd2OHt9eeRy8YsPcxc8OcOvfbF6bl0bs7FJyKoCkgH8O7+Yh62+MBKg9Ui
-         qMd/ph65XVD9hQl4IxY6fn6m/pxO4cmvu8wCfC+lLbKT1OMSgEtOPMqI1tqEyFvSBmsp
-         Hclw==
-X-Gm-Message-State: APjAAAVgmEFqD1DjY82Pzm8FkI72eO5uDmxu5DpoUFO8CC/skRLTVs5D
-        7zyPTx4gWklVHPKwsVfiSHw=
-X-Google-Smtp-Source: APXvYqzrZ4HrWxTmGdAtjCWvopnaULhASTi++CVRUtOFAy27Rd4qfCGCV/jA8t8SLbcC9nAlQ6DX4A==
-X-Received: by 2002:ac2:5212:: with SMTP id a18mr46653296lfl.50.1560728176194;
-        Sun, 16 Jun 2019 16:36:16 -0700 (PDT)
-Received: from localhost.localdomain (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
-        by smtp.gmail.com with ESMTPSA id q4sm2008377lje.99.2019.06.16.16.36.15
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 16 Jun 2019 16:36:15 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 10/10] ARM: dts: tegra30: Add External Memory Controller node
-Date:   Mon, 17 Jun 2019 02:35:51 +0300
-Message-Id: <20190616233551.6838-11-digetx@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190616233551.6838-1-digetx@gmail.com>
-References: <20190616233551.6838-1-digetx@gmail.com>
+        id S1727464AbfFQASy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jun 2019 20:18:54 -0400
+Received: from onstation.org ([52.200.56.107]:54760 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727322AbfFQASx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 Jun 2019 20:18:53 -0400
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 523DC3E956;
+        Mon, 17 Jun 2019 00:18:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1560730732;
+        bh=wqA8kfgeU/wUimDPIjCQxIw3A0hNMdWnQpZyfBayxSU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k8G3nAUTxcqNgWImzT7xSUUpvFWnN0uIXQY0GSCS5P4TBF3nLsLWog4BZA6HedlLN
+         Fe1ps7X05QlQkibypgS1bULvBX066jBkqIn5KG3pWVgoIPG/ZtMEiovQ63Ur8yjS8J
+         aVmk4fijaFoLxcWSZedSPwER1/S1LOwGaFbjs4oY=
+Date:   Sun, 16 Jun 2019 20:18:51 -0400
+From:   Brian Masney <masneyb@onstation.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, david.brown@linaro.org, robdclark@gmail.com,
+        sean@poorly.run, robh+dt@kernel.org, airlied@linux.ie,
+        daniel@ffwll.ch, mark.rutland@arm.com, jonathan@marek.ca,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 6/6] drm/msm/gpu: add ocmem init/cleanup functions
+Message-ID: <20190617001851.GA19038@onstation.org>
+References: <20190616132930.6942-1-masneyb@onstation.org>
+ <20190616132930.6942-7-masneyb@onstation.org>
+ <20190616180633.GS22737@tuxbook-pro>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190616180633.GS22737@tuxbook-pro>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add External Memory Controller node to the device-tree.
+Hi Bjorn,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra30.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On Sun, Jun 16, 2019 at 11:06:33AM -0700, Bjorn Andersson wrote:
+> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> > index 6f7f4114afcf..e0a9409c8a32 100644
+> > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> > @@ -29,6 +29,10 @@
+> >  #include "msm_gem.h"
+> >  #include "msm_mmu.h"
+> >  
+> > +#ifdef CONFIG_QCOM_OCMEM
+> > +#  include <soc/qcom/ocmem.h>
+> > +#endif
+> 
+> This file exists (after the previous patch), so no need to make its
+> inclusion conditional.
+> 
+> > +
+> >  static bool zap_available = true;
+> >  
+> >  static int zap_shader_load_mdt(struct msm_gpu *gpu, const char *fwname,
+> > @@ -897,6 +901,43 @@ static int adreno_get_pwrlevels(struct device *dev,
+> >  	return 0;
+> >  }
+> >  
+> > +int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
+> > +			  struct adreno_ocmem *adreno_ocmem)
+> > +{
+> > +#ifdef CONFIG_QCOM_OCMEM
+> 
+> No need to make this conditional.
 
-diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
-index e074258d4518..92c4aeafab29 100644
---- a/arch/arm/boot/dts/tegra30.dtsi
-+++ b/arch/arm/boot/dts/tegra30.dtsi
-@@ -732,6 +732,17 @@
- 		#reset-cells = <1>;
- 	};
- 
-+	memory-controller@7000f400 {
-+		compatible = "nvidia,tegra30-emc";
-+		reg = <0x7000f400 0x400>;
-+		interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&tegra_car TEGRA30_CLK_EMC>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nvidia,memory-controller = <&mc>;
-+	};
-+
- 	fuse@7000f800 {
- 		compatible = "nvidia,tegra30-efuse";
- 		reg = <0x7000f800 0x400>;
--- 
-2.22.0
+I have these #ifdefs for the a5xx and a6xx GPUs that don't have ocmem
+in the SoC. Without the #ifdefs, those systems would need to have the
+ocmem driver in their kernel.
 
+Thanks for the quick review on the patch set!
+
+Brian
