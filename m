@@ -2,189 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8196447960
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 06:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C712247977
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2019 06:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbfFQEas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 00:30:48 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:55028 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbfFQEar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 00:30:47 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5H4U4rh055473;
-        Sun, 16 Jun 2019 23:30:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560745804;
-        bh=ESKXVh9Sq512lPIqthTXEUClTEi6OelQzFKQgNFQ7wM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=O+3RFtA3fdfmaj1j/OEZXoOysP1/tfUlSMyvZiC8PYnbYhSaaPvf++0OJeSmhd+uA
-         FkMWyld0BDwQiHM1SjnHuwUiSV+LHs5tgvIbPZgqMbLIyHSavD+G8oXUxetR+Gj8dY
-         GFqQuKTY1NyJxqD4amy7labW3TVRrE+zNWnedBio=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5H4U4E4103253
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 16 Jun 2019 23:30:04 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Sun, 16
- Jun 2019 23:30:03 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Sun, 16 Jun 2019 23:30:03 -0500
-Received: from [172.24.190.89] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5H4TvCq010286;
-        Sun, 16 Jun 2019 23:29:58 -0500
-Subject: Re: [PATCH v5 4/5] dt-bindings: mtd: Add bindings for TI's AM654
- HyperBus memory controller
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-mtd@lists.infradead.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        <devicetree@vger.kernel.org>, Mason Yang <masonccyang@mxic.com.tw>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20190609103227.24875-1-vigneshr@ti.com>
- <20190609103227.24875-5-vigneshr@ti.com>
- <a808ffca-02a8-14b0-3422-c0905ab212a6@cogentembedded.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <7c7828b9-bcfd-6156-3ddb-cbdde5956675@ti.com>
-Date:   Mon, 17 Jun 2019 10:00:45 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726147AbfFQEnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 00:43:43 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:45373 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726070AbfFQEnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 00:43:43 -0400
+Received: by mail-lf1-f66.google.com with SMTP id u10so5429405lfm.12
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2019 21:43:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QZYnY2hIUSm+INHACfGV3NJI8hXeyeTw8tvqjhCF464=;
+        b=MMXvlchVs2Zgrzft62CDXTNlgYLYUhsdEmF5yBBfIzjcxXwgu+TFNl4ZoIwXwi/Cp5
+         GZyWocmV8KqP7vfrpu1KZsUdWgrLDSd0gdy43lJi+LlqepOvPg3LRwzIW8VKsHP3Zyex
+         nUl+DAZfb/HRyNan1Ndv+uAdskNAK0QOUFJS1qq8hxxYXWax7O1+84TlV70C14ekBJq6
+         2Ld/EPFBUYKfF5DBrHjTwoqqpQ8o2NWQU/A8PIF+9etcSJjrhDveAIUKfa2rAObbsj+p
+         xspUXSK+ZWwcak0Pe7L+Kb0TaWtpxbwnsJoIEHGhu7U1B34r930XYyfs5qAAq3I80GEW
+         ESfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QZYnY2hIUSm+INHACfGV3NJI8hXeyeTw8tvqjhCF464=;
+        b=uNwRWTJRL59w5INcqrbJFsIbWf7T+jTHeaTW1j2yBNxlJnIaKXG1AsC5cNlzIPGth1
+         MbS+Q1ZI771LBBy9ktYWZJ63PIFgZTJDLYApxMw/hvfHCgf2oNxVvC9iKL4HL7MNfv6G
+         OOR3l4QSlso12dkMD36nu+/IodMWbPV72qwucrjdbPf2wwnpgAQ/Qhw/c2PmlJmJfRuH
+         O/5HLhS2ZYxRgArWpTVwqT7G577YAcb+8tbuuXnuZLhLR1AthqMdtAWOtjBMtW0Kylwn
+         T7wjSMlDOaV1VclrOOVw5Km3DG4BNdughb766ist7hgXEfwBH+r3pAAmFuIjQQHVW5FE
+         D+zQ==
+X-Gm-Message-State: APjAAAVOiQhE3xUUjqFQYyT5jApG/6jM7qNVjPNEd5T88t7XCQRQcgC2
+        uPZ0c37H5Wr7Jp6NOOcwrkW0b3c17XGx2HZ7xSPXyw==
+X-Google-Smtp-Source: APXvYqx5atfcvuI00s9Z4mXLRo48akZO/SgAq0T1wCjD9YxY4YsnaLJCxKSL3H3msuEwih+R7uGarFUy+Wtgrp1SkuE=
+X-Received: by 2002:a19:5046:: with SMTP id z6mr6335117lfj.185.1560746621318;
+ Sun, 16 Jun 2019 21:43:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <a808ffca-02a8-14b0-3422-c0905ab212a6@cogentembedded.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Mon, 17 Jun 2019 10:13:05 +0530
+Message-ID: <CAJ2_jOH2X6+CcNCruxX0aeCzPnjcGuv-X1Q4eESsY6PyW1LViA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
+To:     David Miller <davem@davemloft.net>, devicetree@vger.kernel.org,
+        netdev <netdev@vger.kernel.org>, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        =?UTF-8?Q?Petr_=C5=A0tetiar?= <ynezz@true.cz>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Jun 17, 2019 at 9:49 AM Yash Shah <yash.shah@sifive.com> wrote:
+>
+> On FU540, the management IP block is tightly coupled with the Cadence
+> MACB IP block. It manages many of the boundary signals from the MACB IP
+> This patchset controls the tx_clk input signal to the MACB IP. It
+> switches between the local TX clock (125MHz) and PHY TX clocks. This
+> is necessary to toggle between 1Gb and 100/10Mb speeds.
+>
+> Future patches may add support for monitoring or controlling other IP
+> boundary signals.
+>
+> This patchset is mostly based on work done by
+> Wesley Terpstra <wesley@sifive.com>
+>
+> This patchset is based on Linux v5.2-rc1 and tested on HiFive Unleashed
+> board with additional board related patches needed for testing can be
+> found at dev/yashs/ethernet branch of:
 
-On 10/06/19 9:55 PM, Sergei Shtylyov wrote:
-> Hello!
-> 
-> On 06/09/2019 01:32 PM, Vignesh Raghavendra wrote:
-> 
->> Add binding documentation for TI's HyperBus memory controller present on
->> AM654 SoC.
->>
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> ---
->> v5:
->> Update binding example to show MMIO mux
->> Fix reg property for flash slave.
->>
->>  .../devicetree/bindings/mtd/ti,am654-hbmc.txt | 51 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  2 files changed, 52 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt b/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
->> new file mode 100644
->> index 000000000000..c2a2c2b42a92
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
->> @@ -0,0 +1,51 @@
->> +Bindings for HyperBus Memory Controller (HBMC) on TI's K3 family of SoCs
->> +
->> +Required properties:
->> +- compatible : "ti,am654-hbmc" for AM654 SoC
->> +- reg : Two entries:
->> +	First entry pointed to the register space of HBMC controller
->> +	Second entry pointing to the memory map region dedicated for
->> +	MMIO access to attached flash devices
->> +- ranges : Address translation from offset within CS to allocated MMIO
->> +	   space in SoC
->> +
->> +Optional properties:
->> +- mux-controls : phandle to the multiplexer that controls selection of
->> +		 HBMC vs OSPI inside Flash SubSystem. Default is OSPI,
->> +		 if property is absent.
->> +		 See Documentation/devicetree/bindings/mux/reg-mux.txt
->> +		 for mmio-mux binding details
->> +
->> +Example:
->> +
->> +	fss: fss@47000000 {
-> 
->    What's FSS?
+Correction in branch name: dev/yashs/ethernet_v2
 
-Flash SubSystem (FSS). Will highlight that in mux control definition above
-
->    Regardless of the answer, the node names should be generic, like "memory-controller@".
-> 
->> +		compatible = "syscon", "simple-mfd";
-> 
->    If it's "sycon", the nme should probably be "system-controller".
-
-FSS is like a subchip that has all Flash controllers like Octal SPI
-controllers and HyperBus controller within it. Some of their controls
-are in the below address range. So I think its more closer to
-"system-controller"
-
-> 
->> +		reg = <0x0 0x47000000 0x0 0x100>;
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		hbmc_mux: hbmc-mux {
-> 
->    So, just "multiplexor"?
-
-Ok
-
-> 
->> +			compatible = "mmio-mux";
->> +			#mux-control-cells = <1>;
->> +			mux-reg-masks = <0x4 0x2>; /* 0: reg 0x4, bit 1 */
->> +		};
->> +
->> +		hbmc: hbmc@47034000 {
-> 
->    Should be named "memory-controller@47034000", according to the DT spec.
-
-IMO, since HyperBus is a bus protocol and has a specification, I think
-its should have a separate generic name like SPI etc.
-
-I will change this to "hyperbus@47034000" to common name of spec.
-
-> 
->> +			compatible = "ti,am654-hbmc";
->> +			reg = <0x0 0x47034000 0x0 0x100>,
->> +				<0x5 0x00000000 0x1 0x0000000>;
->> +			power-domains = <&k3_pds 55>;
->> +			#address-cells = <2>;
->> +			#size-cells = <1>;
->> +			ranges = <0x0 0x0 0x5 0x00000000 0x4000000>, /* CS0 - 64MB */
->> +				 <0x1 0x0 0x5 0x04000000 0x4000000>; /* CS1 - 64MB */
->> +			mux-controls = <&hbmc_mux 0>;
->> +
->> +			/* Slave flash node */
->> +			flash@0,0 {
->> +				compatible = "cypress,hyperflash", "cfi-flash";
->> +				reg = <0x0 0x0 0x4000000>;
->> +			};
->> +		};
->> +	};
-> [...]
-> 
-> MBR, Sergei
-> 
-
--- 
-Regards
-Vignesh
+> https://github.com/yashshah7/riscv-linux.git
+>
+> Change History:
+> V2:
+> - Change compatible string from "cdns,fu540-macb" to "sifive,fu540-macb"
+> - Add "MACB_SIFIVE_FU540" in Kconfig to support SiFive FU540 in macb
+>   driver. This is needed because on FU540, the macb driver depends on
+>   SiFive GPIO driver.
+> - Avoid writing the result of a comparison to a register.
+> - Fix the issue of probe fail on reloading the module reported by:
+>   Andreas Schwab <schwab@suse.de>
+>
+> Yash Shah (2):
+>   macb: bindings doc: add sifive fu540-c000 binding
+>   macb: Add support for SiFive FU540-C000
+>
+>  Documentation/devicetree/bindings/net/macb.txt |   3 +
+>  drivers/net/ethernet/cadence/Kconfig           |   6 ++
+>  drivers/net/ethernet/cadence/macb_main.c       | 129 +++++++++++++++++++++++++
+>  3 files changed, 138 insertions(+)
+>
+> --
+> 1.9.1
+>
