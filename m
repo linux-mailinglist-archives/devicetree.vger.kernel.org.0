@@ -2,96 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CD5F4AA2B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06D24AA3C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730197AbfFRSph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 14:45:37 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:40829 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730176AbfFRSpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:45:36 -0400
-Received: by mail-pl1-f196.google.com with SMTP id a93so6083537pla.7
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 11:45:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jQCPKFxQyeSljUm6aB/gqdIOd3dtcUj6g8UhIWN1Is8=;
-        b=eTLQc07PucKs+X7BOPweNGE+V+Q9FmEWSs8OWmT7a5cmubwmy2LVuja1aiT3ZV4mYe
-         AYCQ1hHwNCGgGe2HNK41ICyUFLMpjAswoA9BVxN2YzEGiQPBBscEQoZyQKGhIb+JoUAp
-         BHwZBRhCBo6lonJBzzgVZ9OHHuP8THWAtX7Cw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jQCPKFxQyeSljUm6aB/gqdIOd3dtcUj6g8UhIWN1Is8=;
-        b=GXo6hAebRzyEQvZJeUbMIiR4BWSDCJKLZqepFPm7MQJwnMBP0KonVK7ZVQhGoKdKSA
-         c9aVplGUcDLpVarKsuqBJdSIhIK7HCVBR0Q7rY/j49Nf69Htr6uaWbbvMT2ys/RUJXbv
-         XnrAA7Sydg5SM22PrH06T7wmXPWMfGok5w4rILDE0/dvdsU+uicdxMbyyN6JsGPzdGmc
-         EsxDgLxpwzESbAUwZKM8oBVRDqyZuFXcockFhO6cMn+cwAouVmwJAk7+aa6XiV0B1VPn
-         uRQJzVmomii36yW3hOrCWHBudlfQpgprz+hsZuoxdYR5lRtYV+VK2E9EaBGLmevjVkhw
-         wfYw==
-X-Gm-Message-State: APjAAAUy1EwR6I9toKOOr3RBT8ecHL9UUpJr5Yrr4nVKfBZvOmDXzLRk
-        Pu9UCKlH8avB2r9qFfiviyawVLqFe4k=
-X-Google-Smtp-Source: APXvYqzdyMQm5ebsWKiLT9a2PALu7WQE/3ZGEacfk5lHvzhAmUbdQoYOrxUvz1QdNdOGzC4K4Ppfkw==
-X-Received: by 2002:a17:902:e282:: with SMTP id cf2mr93052072plb.301.1560883536360;
-        Tue, 18 Jun 2019 11:45:36 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id g1sm847758pjx.22.2019.06.18.11.45.35
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 11:45:35 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2] Revert "ARM: dts: rockchip: set PWM delay backlight settings for Minnie"
-Date:   Tue, 18 Jun 2019 11:45:31 -0700
-Message-Id: <20190618184531.1137-1-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1730176AbfFRStA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 14:49:00 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:45808 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729642AbfFRStA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:49:00 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1hdJ9q-0004lc-GY; Tue, 18 Jun 2019 20:48:38 +0200
+Message-ID: <967604dd8d466a99b865649174f8b9cd34b2560e.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Alex Elder <elder@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
+        Dan Williams <dcbw@redhat.com>
+Cc:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Date:   Tue, 18 Jun 2019 20:48:33 +0200
+In-Reply-To: <850eed1d-0fec-c396-6e91-b5f1f8440ded@linaro.org> (sfid-20190618_172042_951332_21BBC6A6)
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+         <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+         <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
+         <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+         <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+         <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
+         <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
+         <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+         <e6ba8a9063e63506c0b88a70418d74ca4efe85cd.camel@sipsolutions.net>
+         <850eed1d-0fec-c396-6e91-b5f1f8440ded@linaro.org>
+         (sfid-20190618_172042_951332_21BBC6A6)
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-2.fc28) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
+Just to add to Dan's response, I think he's captured our discussions and
+thoughts well.
 
-The commit assumes that the minnie panel is a AUO B101EAN01.1 (LVDS
-interface), however it is a AUO B101EAN01.8 (eDP interface). The eDP
-panel doesn't need the 200 ms delay.
+> First, a few terms (correct or improve as you like):
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
-Changes in v2:
-- updated commit message with details about the source of the
-  confusion
-- added Enric's "Reviewed-by" tag
----
- arch/arm/boot/dts/rk3288-veyron-minnie.dts | 2 --
- 1 file changed, 2 deletions(-)
+Thanks for defining, we don't do that nearly often enough.
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-index 468a1818545d..28cbe07f96ec 100644
---- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-@@ -86,8 +86,6 @@
- 			240 241 242 243 244 245 246 247
- 			248 249 250 251 252 253 254 255>;
- 	power-supply = <&backlight_regulator>;
--	post-pwm-on-delay-ms = <200>;
--	pwm-off-delay-ms = <200>;
- };
- 
- &emmc {
--- 
-2.22.0.410.gd8fdbe21b5-goog
+> - WWAN device is a hardware device (like IPA) that presents a
+>   connection between AP and modem, and presents an interface
+>   that allows the use of that connection to be managed.
+
+Yes. But I was actually thinking of a "wwan_dev" to be a separate
+structure, not *directly* owned by a single driver and used to represent
+the hardware like a (hypothetical) "struct ipa_dev".
+
+> - WWAN netdevice represents a Linux network interface, with its
+>   operations and queues, etc., but implements a standardized
+>   set of WWAN-specific operations.  It represents a logical
+> ' channel whose data is multiplexed over the WWAN device.
+
+I'm not sure I'd asy it has much WWAN-specific operations? But yeah, I
+guess it might.
+
+> - WWAN channel is a user space abstraction that corresponds
+>   with a WWAN netdevice (but I'm not clear on all the ways
+>   they differ or interact).
+
+As Dan said, this could be a different abstraction than a netdevice,
+like a TTY, etc.
+
+> - The WWAN core is kernel code that presents abstractions
+>   for WWAN devices and netdevices, so they can be managed
+>   in a generic way.  It is for configuration and communication
+>   and is not at all involved in the data path.
+> 
+> You're saying that the WWAN driver space calls wwan_add()
+> to register itself as a new WWAN device.
+
+Assuming it knows that it is in fact a WWAN device, like IPA.
+
+> You're also saying that a WWAN device "attaches" a WWAN
+> netdevice, which is basically notifying the WWAN core
+> that the new netdev/channel is available for use.
+> - I trust that a "tentative" attachement is necessary.  But
+>   I'm not sure what makes it transition into becoming a
+>   "real" one, or how that event gets communicated.
+
+I think Dan explained this one well. This wasn't actually on my radar
+until he pointed it out.
+
+Really this only exists with USB devices that appear as multiple
+functions (ethernet, tty, ...) but still represent a single WWAN device,
+with each function not necessarily being aware of that since it's just a
+function driver.
+
+Hopefully at least one of the function drivers will be able to figure it
+out, and then we can combine all of the functions into the WWAN device
+abstraction.
+
+[snip - Dan's explanations are great]
+
+Dan also said:
+
+> > I read "attach" here as simply associating an existing netdev with the
+> > "parent" WWAN device. A purely Linux operation that is only book-
+> > keeping and may not have any interaction with the modem. 
+
+Now I'm replying out of thread, but yes, that's what I had in mind. What
+I meant by attaching (in this case) is just that you actually mark that
+it is (or might be, if tentatively attached) part of a WWAN device.
+
+> - Are there any attributes that are only optionally supported,
+>   and if so, how are the supported ones communicated?
+
+As Dan said, good point. I hadn't really considered that for now. I sort
+of know that we need it, but for the sake of simplicity decided to elide
+it for now. I'm just not sure what really are needed, and netlink
+attributes make adding them (and discovering the valid ones) pretty easy
+in the future, when a need arises.
+
+> - Which WWAN channel attributes must be set *before* the
+>   channel is activated, and can't be changed?  Are there any
+>   that can be changed dynamically?
+
+It's a good question. I threw a "u32 pdn" in there, but I'm not actually
+sure that's what you *really* need?
+
+Maybe the modem and userspace just agree on some arbitrary "session
+identifier"? Dan mentions "MUX ID" or "MBIM Session ID", maybe there
+really is no good general term for this and we should just call it a
+"session identifier" and agree that it depends on the control protocol
+(MBIM vs. QMI vs. ...)?
+
+> And while the whole point of this is to make things generic,
+> it might be nice to have a way to implement a new feature
+> before it can be "standardized".
+
+Not sure I understand this?
+
+FWIW, I actually came to this because we want to upstream a driver for
+an Intel modem, but ... can't really make up our mind on whether or not
+to use VLAN tags, something like rmnet (but we obviously cannot use
+rmnet, so that'd be another vendor specific interface like rmnet), or
+sysfs, or any of the other methods we have today ... :-)
+
+johannes
 
