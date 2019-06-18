@@ -2,265 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D41949D2F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:29:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC13049D45
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:30:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729364AbfFRJ3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 05:29:14 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:53240 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729281AbfFRJ3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 05:29:14 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5I9SluM084482;
-        Tue, 18 Jun 2019 04:28:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560850127;
-        bh=G4NCZAwKvUnj7jiVQLLRmZfgikSoySB6V4LhHOQjcZ4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=eV5VNW2xs2S57Esbwm33tRv1wZ7hDuAzML2Q1fBWapfpTvAPwku9geL9afzsomP/v
-         jUX7COdkuCIxZX1QMIe7zZOQpz1+DzUGJCb6m1KJcGkDx5HEZFZEKGscT7aI5bUqCO
-         0Ptvk2WklcQOnhmB9vFAdAyAz4hjvf0ChkQLJYPY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5I9SljF042756
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Jun 2019 04:28:47 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 18
- Jun 2019 04:28:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 18 Jun 2019 04:28:46 -0500
-Received: from a0132425.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5I9SJS2067156;
-        Tue, 18 Jun 2019 04:28:42 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-mtd@lists.infradead.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        <devicetree@vger.kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Mason Yang <masonccyang@mxic.com.tw>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 5/5] mtd: hyperbus: Add driver for TI's HyperBus memory controller
-Date:   Tue, 18 Jun 2019 14:59:01 +0530
-Message-ID: <20190618092901.31764-6-vigneshr@ti.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190618092901.31764-1-vigneshr@ti.com>
-References: <20190618092901.31764-1-vigneshr@ti.com>
+        id S1729540AbfFRJao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 05:30:44 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:35413 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726330AbfFRJao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 05:30:44 -0400
+Received: by mail-lj1-f195.google.com with SMTP id x25so2783951ljh.2;
+        Tue, 18 Jun 2019 02:30:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hwSDkScSTH1y8sb3aftSeN21vZ+s3ceMmS61Z1eIWFg=;
+        b=IOehSmarBYtYG0PESpyQ5pXtttvQrv4cn6RnKaUml6NcUFPgEnZ4p3s2+KnQTzJ5R3
+         njsVw+Y0UqiN7ZYQ9IHfdpFDjgdeBLHUgR8KWGgaogvXcwIxgED0Nlubsugg2ilIXMmp
+         LzvBrVxbwvIH6HluvcTtnKciuadwIa/tXeug4lhRfKjC9jb5ij6QI8OEhkrqipUQ9t/2
+         OY9x9adFYgZ2syqQBqOkk2zHp/iX9DgKNT+R6mveMP1Y6+3B6b4DPwpF4vE5rNmrtOTG
+         i+J3zUHmBHsf3vPOqECQaFMvbWw7cRLntoCAwekfKL3lOX3Mxs0rJXmy8tRMQMXVQUfk
+         rzug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hwSDkScSTH1y8sb3aftSeN21vZ+s3ceMmS61Z1eIWFg=;
+        b=d4UVfACq/+0fGUiaxR/KdzQ5mhrXfQgyYW0WFXq1i1QV+k+Pg40JjZX+4/qDJTcDYN
+         WuV+bRWTd0Pn+xueI+MRkg6FcMq3ibUnBVIoWuZi4DwevQavY4+Yci067LqmfcFbWyGy
+         YpNYUTJT4DPmAeW3REVSdE301XaQu7b9YB6jgGC0LM7GI1H+K4IASUOooyjE5qVDZJty
+         Q1iLGSWGtmqzl5LB3WtS5ndWOWFdILZ8u4DIpXszYiZz42rkvvq0vdsV+Waz3bZXEfkR
+         Lo5hoyGrpfkMaqM5fKsQrNTtpqFus1QLvD+4UNfJyzEMdKJdCx/OEr6E0mRDYsHd9KQ2
+         Ldlw==
+X-Gm-Message-State: APjAAAVbxrKuMAB3Ct7kxKaRpGshaIBKIKzKa5uzBW62gO8Bx+firXpu
+        KtgRKh8076uSwIxPsoHY+ih/NmAK
+X-Google-Smtp-Source: APXvYqzuLpP3JYktzxazLNNIsazSiiqdNS4Ctr1RcL4eCpoQTgI0mNPjSHZa1/yoASQxaOiRlZjddw==
+X-Received: by 2002:a2e:4794:: with SMTP id u142mr16247893lja.222.1560850240997;
+        Tue, 18 Jun 2019 02:30:40 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.googlemail.com with ESMTPSA id r17sm1306703ljb.77.2019.06.18.02.30.39
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 02:30:40 -0700 (PDT)
+Subject: Re: [PATCH V3 02/17] pinctrl: tegra: add suspend and resume support
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com,
+        Stephen Warren <swarren@wwwdotorg.org>
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <1560843991-24123-1-git-send-email-skomatineni@nvidia.com>
+ <1560843991-24123-3-git-send-email-skomatineni@nvidia.com>
+ <7706a287-44b7-3ad6-37ff-47e97172a798@gmail.com>
+Message-ID: <a23ffbae-dd85-c023-7aae-3b81e0b17ebc@gmail.com>
+Date:   Tue, 18 Jun 2019 12:30:39 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
+In-Reply-To: <7706a287-44b7-3ad6-37ff-47e97172a798@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for HyperBus memory controller on TI's AM654 SoC. Programming
-IP is pretty simple and provides direct memory mapped access to
-connected Flash devices.
+18.06.2019 12:22, Dmitry Osipenko пишет:
+> 18.06.2019 10:46, Sowjanya Komatineni пишет:
+>> This patch adds suspend and resume support for Tegra pinctrl driver
+>> and registers them to syscore so the pinmux settings are restored
+>> before the devices resume.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>  drivers/pinctrl/tegra/pinctrl-tegra.c    | 62 ++++++++++++++++++++++++++++++++
+>>  drivers/pinctrl/tegra/pinctrl-tegra.h    |  5 +++
+>>  drivers/pinctrl/tegra/pinctrl-tegra114.c |  1 +
+>>  drivers/pinctrl/tegra/pinctrl-tegra124.c |  1 +
+>>  drivers/pinctrl/tegra/pinctrl-tegra20.c  |  1 +
+>>  drivers/pinctrl/tegra/pinctrl-tegra210.c | 13 +++++++
+>>  drivers/pinctrl/tegra/pinctrl-tegra30.c  |  1 +
+>>  7 files changed, 84 insertions(+)
+>>
+>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c b/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> index 34596b246578..ceced30d8bd1 100644
+>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> @@ -20,11 +20,16 @@
+>>  #include <linux/pinctrl/pinmux.h>
+>>  #include <linux/pinctrl/pinconf.h>
+>>  #include <linux/slab.h>
+>> +#include <linux/syscore_ops.h>
+>>  
+>>  #include "../core.h"
+>>  #include "../pinctrl-utils.h"
+>>  #include "pinctrl-tegra.h"
+>>  
+>> +#define EMMC2_PAD_CFGPADCTRL_0			0x1c8
+>> +#define EMMC4_PAD_CFGPADCTRL_0			0x1e0
+>> +#define EMMC_DPD_PARKING			(0x1fff << 14)
+>> +
+>>  static inline u32 pmx_readl(struct tegra_pmx *pmx, u32 bank, u32 reg)
+>>  {
+>>  	return readl(pmx->regs[bank] + reg);
+>> @@ -619,6 +624,48 @@ static void tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
+>>  			pmx_writel(pmx, val, g->mux_bank, g->mux_reg);
+>>  		}
+>>  	}
+>> +
+>> +	if (pmx->soc->has_park_padcfg) {
+>> +		val = pmx_readl(pmx, 0, EMMC2_PAD_CFGPADCTRL_0);
+>> +		val &= ~EMMC_DPD_PARKING;
+>> +		pmx_writel(pmx, val, 0, EMMC2_PAD_CFGPADCTRL_0);
+>> +
+>> +		val = pmx_readl(pmx, 0, EMMC4_PAD_CFGPADCTRL_0);
+>> +		val &= ~EMMC_DPD_PARKING;
+>> +		pmx_writel(pmx, val, 0, EMMC4_PAD_CFGPADCTRL_0);
+>> +	}
+>> +}
+> 
+> Is there any reason why parked_bit can't be changed to parked_bitmask like I was
+> asking in a comment to v2?
+> 
+> I suppose that it's more preferable to keep pinctrl-tegra.c platform-agnostic for
+> consistency when possible, hence adding platform specifics here should be discouraged.
+> And then the parked_bitmask will also result in a proper hardware description in the code.
+> 
 
-Add basic support for the IP without DMA. Second chipSelect is not
-supported for now.
+I'm now also vaguely recalling that Stephen Warren had some kind of a "code generator"
+for the pinctrl drivers. So I guess all those tables were auto-generated initially.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
-v6: Move calibration routine here from core.
-
- drivers/mtd/hyperbus/Kconfig      |  12 +++
- drivers/mtd/hyperbus/Makefile     |   1 +
- drivers/mtd/hyperbus/hbmc-am654.c | 141 ++++++++++++++++++++++++++++++
- 3 files changed, 154 insertions(+)
- create mode 100644 drivers/mtd/hyperbus/hbmc-am654.c
-
-diff --git a/drivers/mtd/hyperbus/Kconfig b/drivers/mtd/hyperbus/Kconfig
-index 98147e28caa0..cff6bbd226f5 100644
---- a/drivers/mtd/hyperbus/Kconfig
-+++ b/drivers/mtd/hyperbus/Kconfig
-@@ -9,3 +9,15 @@ menuconfig MTD_HYPERBUS
- 	  the HyperBus Controller driver to communicate with
- 	  HyperFlash. See Cypress HyperBus specification for more
- 	  details
-+
-+if MTD_HYPERBUS
-+
-+config HBMC_AM654
-+	tristate "HyperBus controller driver for AM65x SoC"
-+	select MULTIPLEXER
-+	select MUX_MMIO
-+	help
-+	 This is the driver for HyperBus controller on TI's AM65x and
-+	 other SoCs
-+
-+endif # MTD_HYPERBUS
-diff --git a/drivers/mtd/hyperbus/Makefile b/drivers/mtd/hyperbus/Makefile
-index ca61dedd730d..8a936e066f48 100644
---- a/drivers/mtd/hyperbus/Makefile
-+++ b/drivers/mtd/hyperbus/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_MTD_HYPERBUS)	+= hyperbus-core.o
-+obj-$(CONFIG_HBMC_AM654)	+= hbmc-am654.o
-diff --git a/drivers/mtd/hyperbus/hbmc-am654.c b/drivers/mtd/hyperbus/hbmc-am654.c
-new file mode 100644
-index 000000000000..ca3fe198169e
---- /dev/null
-+++ b/drivers/mtd/hyperbus/hbmc-am654.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
-+// Author: Vignesh Raghavendra <vigneshr@ti.com>
-+
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mtd/cfi.h>
-+#include <linux/mtd/hyperbus.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/types.h>
-+
-+#define AM654_HBMC_CALIB_COUNT 25
-+
-+struct am654_hbmc_priv {
-+	struct hyperbus_ctlr ctlr;
-+	struct hyperbus_device hbdev;
-+};
-+
-+static int am654_hbmc_calibrate(struct hyperbus_device *hbdev)
-+{
-+	struct map_info *map = &hbdev->map;
-+	struct cfi_private cfi;
-+	int count = AM654_HBMC_CALIB_COUNT;
-+	int pass_count = 0;
-+	int ret;
-+
-+	cfi.interleave = 1;
-+	cfi.device_type = CFI_DEVICETYPE_X16;
-+	cfi_send_gen_cmd(0xF0, 0, 0, map, &cfi, cfi.device_type, NULL);
-+	cfi_send_gen_cmd(0x98, 0x55, 0, map, &cfi, cfi.device_type, NULL);
-+
-+	while (count--) {
-+		ret = cfi_qry_present(map, 0, &cfi);
-+		if (ret)
-+			pass_count++;
-+		else
-+			pass_count = 0;
-+		if (pass_count == 5)
-+			break;
-+	}
-+
-+	cfi_qry_mode_off(0, map, &cfi);
-+
-+	return ret;
-+}
-+
-+static const struct hyperbus_ops am654_hbmc_ops = {
-+	.calibrate = am654_hbmc_calibrate,
-+};
-+
-+static int am654_hbmc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct am654_hbmc_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	if (of_property_read_bool(dev->of_node, "mux-controls")) {
-+		struct mux_control *control = devm_mux_control_get(dev, NULL);
-+
-+		if (IS_ERR(control))
-+			return PTR_ERR(control);
-+
-+		ret = mux_control_select(control, 1);
-+		if (ret) {
-+			dev_err(dev, "Failed to select HBMC mux\n");
-+			return ret;
-+		}
-+	}
-+
-+	pm_runtime_enable(dev);
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0) {
-+		pm_runtime_put_noidle(dev);
-+		goto disable_pm;
-+	}
-+
-+	priv->ctlr.dev = dev;
-+	priv->ctlr.ops = &am654_hbmc_ops;
-+	priv->hbdev.ctlr = &priv->ctlr;
-+	priv->hbdev.np = of_get_next_child(dev->of_node, NULL);
-+	ret = hyperbus_register_device(&priv->hbdev);
-+	if (ret) {
-+		dev_err(dev, "failed to register controller\n");
-+		pm_runtime_put_sync(&pdev->dev);
-+		goto disable_pm;
-+	}
-+
-+	return 0;
-+disable_pm:
-+	pm_runtime_disable(dev);
-+	return ret;
-+}
-+
-+static int am654_hbmc_remove(struct platform_device *pdev)
-+{
-+	struct am654_hbmc_priv *priv = platform_get_drvdata(pdev);
-+	int ret;
-+
-+	ret = hyperbus_unregister_device(&priv->hbdev);
-+	pm_runtime_put_sync(&pdev->dev);
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id am654_hbmc_dt_ids[] = {
-+	{
-+		.compatible = "ti,am654-hbmc",
-+	},
-+	{ /* end of table */ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, am654_hbmc_dt_ids);
-+
-+static struct platform_driver am654_hbmc_platform_driver = {
-+	.probe = am654_hbmc_probe,
-+	.remove = am654_hbmc_remove,
-+	.driver = {
-+		.name = "hbmc-am654",
-+		.of_match_table = am654_hbmc_dt_ids,
-+	},
-+};
-+
-+module_platform_driver(am654_hbmc_platform_driver);
-+
-+MODULE_DESCRIPTION("HBMC driver for AM654 SoC");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:hbmc-am654");
-+MODULE_AUTHOR("Vignesh Raghavendra <vigneshr@ti.com>");
--- 
-2.21.0
-
+Stephen, maybe you could adjust the generator to take into account the bitmask (of
+course if that's a part of the generated code) and then re-gen it all for Sowjanya?
