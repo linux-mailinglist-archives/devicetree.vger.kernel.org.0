@@ -2,104 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 971E94A4D2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 17:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB10B4A511
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 17:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728905AbfFRPKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 11:10:34 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:46267 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727097AbfFRPKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 11:10:34 -0400
-Received: by mail-lj1-f195.google.com with SMTP id v24so13487389ljg.13;
-        Tue, 18 Jun 2019 08:10:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dqHa7v+zRz/0tP12kNuD3++mOq4qacpMRNqcsvo74fg=;
-        b=Pr/F3sRzK/jhhCm7XPrSEuuKZHKSIKPQmPRDk6F/8LA+Z/e4vyZ2bH2SJyuYxMFJ1E
-         R81HjPo8ZgjI+DYmVpDgEM2VBEoZWys2yIcP7Y08jCWzS7gaAZ2W6floTPZVdcSWXVyV
-         GnzDETA1vgE7HQEqb8m8Wcf0zU5XHoBDZulaNZi7XauD+zCOCRsYdUmhER/rLeM3ZvZy
-         nfQXct45IbJ7AX5qnS5+VC3iM7EnVgtNXh/eXI+o3FIp8LCEiCtIOh1MdEzzq6u4wtm/
-         tuuJYd/IuJOdcIAy8zHa0+xUC0rnbRpSeMiT/ga4aqNArON9MBXSCLUgujIiEAI0birG
-         BzKA==
-X-Gm-Message-State: APjAAAWIKSbYDC6D6klWGRbXZpjYksv2lkllj+IAuFxsTkycwAShmhMd
-        VycTBzWY53W2QSCQAHC5Ae8aJXXqEJ8HoKVt4/A=
-X-Google-Smtp-Source: APXvYqw1fdB/y1vZFxbdUmlNShYTaVT+8vEn2zAimF9nYv/bG9SWMVnXfSvmGlQtqPX6Gn/G2Rj4SW8LQvkAUlL1OZk=
-X-Received: by 2002:a2e:9a87:: with SMTP id p7mr14854442lji.133.1560870632312;
- Tue, 18 Jun 2019 08:10:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 18 Jun 2019 17:10:19 +0200
-Message-ID: <CAMuHMdU8oag+1oNa_jS=v99W05=8SRLhdoZdCusmeVf1VZbarQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Simon Horman <horms@verge.net.au>,
+        id S1728982AbfFRPTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 11:19:22 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:16408 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728572AbfFRPTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 11:19:22 -0400
+X-IronPort-AV: E=Sophos;i="5.62,389,1554735600"; 
+   d="scan'208";a="18981207"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 19 Jun 2019 00:19:20 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 89C474006C69;
+        Wed, 19 Jun 2019 00:19:16 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Simon Horman <horms@verge.net.au>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
         Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH 0/3] Add HDMI support to HiHope RZ/G2M
+Date:   Tue, 18 Jun 2019 16:18:36 +0100
+Message-Id: <1560871119-16570-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+Dear All,
 
-On Fri, Jun 14, 2019 at 3:17 PM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
-> This patch adds LEDs support to the HiHope RZ/G2[MN] Main Board
-> common device tree.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+this series adds HDMI support to the HiHope RZ/G2M board.
 
-Thanks for your patch!
+Thanks,
+Fab
 
-> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> @@ -17,6 +17,30 @@
->                 stdout-path = "serial0:115200n8";
->         };
->
-> +       leds {
-> +               compatible = "gpio-leds";
-> +
-> +               led0 {
-> +                       gpios = <&gpio6 11 GPIO_ACTIVE_HIGH>;
-> +                       label = "LED0";
+Fabrizio Castro (3):
+  dt-bindings: display: renesas: Add r8a774a1 support
+  arm64: dts: renesas: r8a774a1: Add HDMI encoder instance
+  arm64: dts: renesas: hihope-common: Add HDMI support
 
-There's no need for a label property, if it matches the node name
-(applies to all four LEDs).
-
-Note that this GPIO is shared with a switch, like on Salvator-X(S) and
-ULCB.  As currently Linux cannot handle both, describing the LED
-precludes adding the switch later.
-(applies to the first 3 LEDs).
-
-> +               led3 {
-> +                       gpios = <&gpio0  0 GPIO_ACTIVE_HIGH>;
-> +                       label = "LED3";
-> +               };
-
-I cannot find LED3. According to the schematics GP0_0 == CS0n is used
-as the chipselect for the LVDS switch?
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/display/bridge/renesas,dw-hdmi.txt    |  4 +-
+ arch/arm64/boot/dts/renesas/hihope-common.dtsi     | 62 ++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a774a1.dtsi          | 32 +++++++++++
+ 3 files changed, 97 insertions(+), 1 deletion(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.7.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
