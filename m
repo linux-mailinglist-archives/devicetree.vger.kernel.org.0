@@ -2,59 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 142874A252
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC4044A25B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729281AbfFRNfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 09:35:08 -0400
-Received: from node.akkea.ca ([192.155.83.177]:36114 "EHLO node.akkea.ca"
+        id S1726518AbfFRNgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 09:36:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:41510 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727584AbfFRNfI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 09:35:08 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id 5C7B94E204B; Tue, 18 Jun 2019 13:35:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1560864907; bh=MT3CFRKGsj2MeUNMuZZstm1cs/HxYQ6CLk7N8FsW6TI=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=cshrEHKb8VA/3+BRVSbDe8LRiQ3m8Gb1GY0AphCO3iN90JSKdZIR1ZsNebFRTP9hp
-         9lo0Y+2Q/S94BSR+QCMRKwRvGpLBwDZbIsaSLPNgzCyg0z1OzBOVL5jVb++h4k2W+3
-         FieyPybvjGZ0EsbJRzg0FTsX0H/fH/eMp1KTu4xA=
-To:     Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v16 0/3] Add support for the Purism Librem5 devkit
-X-PHP-Originating-Script: 1000:rcube.php
+        id S1725919AbfFRNgA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 09:36:00 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C2E42B;
+        Tue, 18 Jun 2019 06:35:59 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CAA443F718;
+        Tue, 18 Jun 2019 06:35:57 -0700 (PDT)
+Date:   Tue, 18 Jun 2019 14:35:55 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     bhelgaas@google.com, thierry.reding@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, jonathanh@nvidia.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V5 20/27] PCI: tegra: Use legacy IRQ for port service
+ drivers
+Message-ID: <20190618133555.GB9002@e121166-lin.cambridge.arm.com>
+References: <20190617173952.29363-1-mmaddireddy@nvidia.com>
+ <20190617173952.29363-21-mmaddireddy@nvidia.com>
+ <8a8746f8-3e0f-c724-761e-8bc47b2cc3b6@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 18 Jun 2019 07:35:07 -0600
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, pavel@ucw.cz
-In-Reply-To: <20190618132009.GF1959@dragon>
-References: <20190617135215.550-1-angus@akkea.ca>
- <20190618132009.GF1959@dragon>
-Message-ID: <a4f077a86cbf6fa38b8d4c8079226abe@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8a8746f8-3e0f-c724-761e-8bc47b2cc3b6@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-06-18 07:20, Shawn Guo wrote:
-> On Mon, Jun 17, 2019 at 07:52:12AM -0600, Angus Ainslie (Purism) wrote:
->> Angus Ainslie (Purism) (3):
->>   arm64: dts: fsl: librem5: Add a device tree for the Librem5 devkit
->>   dt-bindings: Add an entry for Purism SPC
->>   dt-bindings: arm: fsl: Add the imx8mq boards
+On Tue, Jun 18, 2019 at 11:17:49AM +0530, Manikanta Maddireddy wrote:
 > 
-> Applied all, thanks.
+> 
+> On 17-Jun-19 11:09 PM, Manikanta Maddireddy wrote:
+> > Tegra signals PCIe services like AER, PME, etc. over legacy IRQ line.
+> > By default, service drivers register interrupt routine over MSI IRQ line.
+> > Use pcie_pme_disable_msi() function to disable MSI for service drivers.
+> >
+> > PME and AER interrupts registered to MSI without this change,
+> > cat /proc/interrupts | grep -i pci
+> > 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
+> > 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
+> > 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
+> >
+> > PME and AER interrupts registered to legacy IRQ with this change,
+> > cat /proc/interrupts | grep -i pci
+> > 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
+> > 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
+> >
+> > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> > Acked-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > V5: No change
+> >
+> > V4: No change
+> >
+> > V3: Corrected typo in commit log
+> >
+> > V2: No change
+> >
+> >  drivers/pci/controller/pci-tegra.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+> > index 73d5a8841405..9429c0c6a1f3 100644
+> > --- a/drivers/pci/controller/pci-tegra.c
+> > +++ b/drivers/pci/controller/pci-tegra.c
+> > @@ -41,6 +41,7 @@
+> >  #include <soc/tegra/pmc.h>
+> >  
+> >  #include "../pci.h"
+> > +#include "../pcie/portdrv.h"
+> >  
+> >  #define INT_PCI_MSI_NR (8 * 32)
+> >  
+> > @@ -2725,6 +2726,9 @@ static int tegra_pcie_probe(struct platform_device *pdev)
+> >  		goto put_resources;
+> >  	}
+> >  
+> > +	/* Switch to legacy IRQ for PCIe services like AER, PME*/
+> > +	pcie_pme_disable_msi();
+> > +
+> >  	pm_runtime_enable(pcie->dev);
+> >  	err = pm_runtime_get_sync(pcie->dev);
+> >  	if (err) {
+> 
+> Hi Lorenzo,
+> 
+> I forgot to address Bjorn's comment here, I will correct this in V6.
+> Let me know if I can publish it today or you want me to wait until
+> you look into other patches.
 
-Thanks Shawn !
+It should be fine to post v6 but please pay attention next time, it has
+been a while since this patch should have been updated.
 
+Lorenzo
