@@ -2,143 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B844A1AA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EB3D4A1B9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:09:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726047AbfFRNHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 09:07:13 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:37451 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725913AbfFRNHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 09:07:13 -0400
-Received: by mail-lj1-f193.google.com with SMTP id 131so13075321ljf.4;
-        Tue, 18 Jun 2019 06:07:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4BbuGY1jCiWptbJxHFe5JdIU4v7Wn/UJnE8dJB2nkfo=;
-        b=B20phqOFwYhx1Kn0p8mnG+js200ZY4xJXygDlXeRZ6vHQCiX07R0KrJKuENzZ6nCP6
-         BALmFaNWnhPKKfoqHgWvUa1cpAY5J4paM9bnrvD0M+mK8dJuTW+dwAzQPicfvOydJuV2
-         KYSf8LhI+1fusVVOq0vR8PuT5XI2HR19kZ0X+zz/oX3AittoCXUpFuZ5g7+XRxdP6poP
-         hHVhLgHIBLth3/p8MVDv1AyEPaRKHpGhDBO5Agkw6uo/00JvyvPRLKLNQe9w2XGipEgg
-         DG5v3vaicBB6cJP7qLf/396hqNLq0uril0YzdoCwmeMA9wttCxyPQwwMvqX2PBKayWmM
-         +bTg==
-X-Gm-Message-State: APjAAAV8iE8t0ZCGnsOjxbIPRrdEHhI3lFXUBTDO1ktWSqXFQEFlYjyR
-        AnXlCCqbqVUd6BSjsn7P1FftyOhJwjV4zUjE1ls=
-X-Google-Smtp-Source: APXvYqxddLRHYzAJqfjM0OT62TXvWFK9gCVwwnTv0PdwKEtv+rAxHqQp+LPf7LPv15p2pefMZBO0CJN7ZWdjhS6oUOw=
-X-Received: by 2002:a2e:9a87:: with SMTP id p7mr14493869lji.133.1560863230065;
- Tue, 18 Jun 2019 06:07:10 -0700 (PDT)
+        id S1727097AbfFRNJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 09:09:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34556 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725955AbfFRNJt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 09:09:49 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A7B972084D;
+        Tue, 18 Jun 2019 13:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560863388;
+        bh=f9SHC6ue1dvc84vpVLaqwcu3AML1Htt1R+Utuud1GTE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rPKYFxhGfJdxNynwSUcJvOSB2VvmorxMuALt8f5OBtdiSNMe5kb/Fw86etHgDOW9S
+         xnU+h29Vb1rNycsM+/Wy3zybYASLnmCa3xaECrAwDCPoHvW7f8MDvjc+3QaQ2bTO8A
+         aMijB6RtLVioPsjacen7t8s5XPORJLq6Aqs6T6ck=
+Date:   Tue, 18 Jun 2019 21:08:44 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Peng Ma <peng.ma@nxp.com>
+Cc:     vkoul@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        leoyang.li@nxp.com, dan.j.williams@intel.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 4/4] dt-bindings: fsl-qdma: Add LS1028A qDMA bindings
+Message-ID: <20190618130843.GB1959@dragon>
+References: <20190506090344.37784-1-peng.ma@nxp.com>
+ <20190506090344.37784-4-peng.ma@nxp.com>
 MIME-Version: 1.0
-References: <156076216767.4736.16337667537984218274.sendpatchset@octo> <156076224112.4736.5038116002723317642.sendpatchset@octo>
-In-Reply-To: <156076224112.4736.5038116002723317642.sendpatchset@octo>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 18 Jun 2019 15:06:57 +0200
-Message-ID: <CAMuHMdWvfdYvS3255SmY_VSGzYkXxSGDOGWd+dS2XyE8u80S-w@mail.gmail.com>
-Subject: Re: [PATCH 8/8] dt-bindings: timer: renesas, cmt: Update R-Car Gen3
- CMT1 usage
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190506090344.37784-4-peng.ma@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Magnus,
+On Mon, May 06, 2019 at 09:03:44AM +0000, Peng Ma wrote:
+> Add LS1028A qDMA controller bindings to fsl-qdma bindings.
+> 
+> Signed-off-by: Peng Ma <peng.ma@nxp.com>
 
-On Mon, Jun 17, 2019 at 11:02 AM Magnus Damm <magnus.damm@gmail.com> wrote:
-> From: Magnus Damm <damm+renesas@opensource.se>
->
-> The R-Car Gen3 SoCs so far come with a total for 4 on-chip CMT devices:
->  - CMT0
->  - CMT1
->  - CMT2
->  - CMT3
->
-> CMT0 includes two rather basic 32-bit timer channels. The rest of the on-chip
-> CMT devices support 48-bit counters and have 8 channels each.
->
-> Based on the data sheet information "CMT2/3 are exactly same as CMT1"
-> it seems that CMT2 and CMT3 now use the CMT1 compat string in the DTSI.
->
-> Clarify this in the DT binding documentation by describing R-Car Gen3 and
-> RZ/G2 CMT1 as "48-bit CMT devices".
->
-> Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> --- 0014/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> +++ work/Documentation/devicetree/bindings/timer/renesas,cmt.txt        2019-06-17 14:07:46.502422801 +0900
-
-> @@ -42,34 +42,34 @@ Required Properties:
->      - "renesas,r8a7794-cmt0" for the 32-bit CMT0 device included in r8a7794.
->      - "renesas,r8a7794-cmt1" for the 48-bit CMT1 device included in r8a7794.
->      - "renesas,r8a7795-cmt0" for the 32-bit CMT0 device included in r8a7795.
-> -    - "renesas,r8a7795-cmt1" for the 48-bit CMT1 device included in r8a7795.
-> +    - "renesas,r8a7795-cmt1" for the 48-bit CMT devices included in r8a7795.
->      - "renesas,r8a7796-cmt0" for the 32-bit CMT0 device included in r8a7796.
-> -    - "renesas,r8a7796-cmt1" for the 48-bit CMT1 device included in r8a7796.
-> +    - "renesas,r8a7796-cmt1" for the 48-bit CMT devices included in r8a7796.
->      - "renesas,r8a77965-cmt0" for the 32-bit CMT0 device included in r8a77965.
-> -    - "renesas,r8a77965-cmt1" for the 48-bit CMT1 device included in r8a77965.
-> +    - "renesas,r8a77965-cmt1" for the 48-bit CMT devices included in r8a77965.
->      - "renesas,r8a77970-cmt0" for the 32-bit CMT0 device included in r8a77970.
-> -    - "renesas,r8a77970-cmt1" for the 48-bit CMT1 device included in r8a77970.
-> +    - "renesas,r8a77970-cmt1" for the 48-bit CMT devices included in r8a77970.
->      - "renesas,r8a77980-cmt0" for the 32-bit CMT0 device included in r8a77980.
-> -    - "renesas,r8a77980-cmt1" for the 48-bit CMT1 device included in r8a77980.
-> +    - "renesas,r8a77980-cmt1" for the 48-bit CMT devices included in r8a77980.
->      - "renesas,r8a77990-cmt0" for the 32-bit CMT0 device included in r8a77990.
-> -    - "renesas,r8a77990-cmt1" for the 48-bit CMT1 device included in r8a77990.
-> +    - "renesas,r8a77990-cmt1" for the 48-bit CMT devices included in r8a77990.
->      - "renesas,r8a77995-cmt0" for the 32-bit CMT0 device included in r8a77995.
-> -    - "renesas,r8a77995-cmt1" for the 48-bit CMT1 device included in r8a77995.
-> +    - "renesas,r8a77995-cmt1" for the 48-bit CMT devices included in r8a77995.
->      - "renesas,sh73a0-cmt0" for the 32-bit CMT0 device included in sh73a0.
->      - "renesas,sh73a0-cmt1" for the 48-bit CMT1 device included in sh73a0.
->      - "renesas,sh73a0-cmt2" for the 32-bit CMT2 device included in sh73a0.
->      - "renesas,sh73a0-cmt3" for the 32-bit CMT3 device included in sh73a0.
->      - "renesas,sh73a0-cmt4" for the 32-bit CMT4 device included in sh73a0.
->
-> -    - "renesas,rcar-gen2-cmt0" for 32-bit CMT0 devices included in R-Car Gen2
-> +    - "renesas,rcar-gen2-cmt0" for 32-bit CMT0 device included in R-Car Gen2
-
-I think plural was fine here, though, as it applies to the whole family.
-If you disagree, you should probably add a "the".
-
->                 and RZ/G1.
-> -    - "renesas,rcar-gen2-cmt1" for 48-bit CMT1 devices included in R-Car Gen2
-> +    - "renesas,rcar-gen2-cmt1" for 48-bit CMT1 device included in R-Car Gen2
-
-Likewise.
-
->                 and RZ/G1.
->                 These are fallbacks for r8a73a4, R-Car Gen2 and RZ/G1 entries
->                 listed above.
-> -    - "renesas,rcar-gen3-cmt0" for 32-bit CMT0 devices included in R-Car Gen3
-> +    - "renesas,rcar-gen3-cmt0" for 32-bit CMT0 device included in R-Car Gen3
-
-Likewise.
-
->                 and RZ/G2.
-> -    - "renesas,rcar-gen3-cmt1" for 48-bit CMT1 devices included in R-Car Gen3
-> +    - "renesas,rcar-gen3-cmt1" for 48-bit CMT devices included in R-Car Gen3
->                 and RZ/G2.
->                 These are fallbacks for R-Car Gen3 and RZ/G2 entries listed
->                 above.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Applied, thanks.
