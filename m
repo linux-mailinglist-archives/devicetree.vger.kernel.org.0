@@ -2,93 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9768D49B27
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 689B349B41
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729226AbfFRHrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:47:22 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:9740 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729251AbfFRHrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:47:22 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0897080000>; Tue, 18 Jun 2019 00:47:20 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 18 Jun 2019 00:47:21 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 18 Jun 2019 00:47:21 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL104.nvidia.com
- (172.18.146.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 18 Jun
- 2019 07:47:20 +0000
-Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 18 Jun 2019 07:47:20 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.168.217]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d0897060003>; Tue, 18 Jun 2019 00:47:20 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
-        <stefan@agner.ch>, <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>, <skomatineni@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <digetx@gmail.com>, <devicetree@vger.kernel.org>
-Subject: [PATCH V3 17/17] arm64: dts: tegra210-p2180: Jetson TX1 SC7 timings
-Date:   Tue, 18 Jun 2019 00:46:31 -0700
-Message-ID: <1560843991-24123-18-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560843991-24123-1-git-send-email-skomatineni@nvidia.com>
-References: <1560843991-24123-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1729111AbfFRHrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:47:03 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:32781 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726047AbfFRHrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:47:02 -0400
+Received: by mail-io1-f67.google.com with SMTP id u13so27690900iop.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:47:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vxKYkLgA5MVuzsXMSMGfzla77yJINMaSigfo4ssAuus=;
+        b=RjIbAgrDl9/qI0Gii7VVzjfDkkA4UNrDQYVufYwYf/7w9vv+rUari1Sq1mvxZKpVXv
+         HaIXkNWo7j6M5sCPdtYLiEMFaEoOc1VdJf/4sMfMFzLfEb8cS2GpcVmxlv3o5DgQrlIr
+         /0peXvokP7Oc2S5VY+81T7ibHogSkES0k5wnA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vxKYkLgA5MVuzsXMSMGfzla77yJINMaSigfo4ssAuus=;
+        b=B77SQrC71wD3LLNQlix9xhCO0uKnSqqV97Dl4kJUzilABYjXHFbPKI6B1oo9QTmnEY
+         PkWkHr7srCmQLSpC9gT0Y4IadkxqZOdbiG0JUBsdyKPdRCMwETvFt0H0vP/HSGk37Btt
+         LTuixmyNw6UjeXADhuMmdEpg+K5hTeyAJRe9Ft75nUa/QNM0E2qOlq+BSJga1MTLKarP
+         1AzMoCoqBcIJMy3nbdtg5W9v9Nwk4SOVBlWoFCHhVZy6epfCm8r/k7wUXg4wQ2ijQOsr
+         zTDLm/Ht1McgotRY3c1TULuu19na66rIeKKkpkEpR1oiquNGHZ0EpaSxnJvP+ZCbL6DO
+         ynaQ==
+X-Gm-Message-State: APjAAAXBGbBRqWMeWuXMX77lZnM8QvEsqz0FbhsB5LBThCYtiScDmMVI
+        T+hcF0X4CwAvLsw3zkZPhnshz1qUjTUctWRBZoby4A==
+X-Google-Smtp-Source: APXvYqycTbdlGgVagVEKSPFXn3d5LsyT9I6EZwTdqQk/dkFhmrBl6uOW3Kl4M+fU023lwzcVYQVx/JhGLarll+uzkVY=
+X-Received: by 2002:a02:380c:: with SMTP id b12mr67109907jaa.85.1560844021305;
+ Tue, 18 Jun 2019 00:47:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560844041; bh=Vsp36/vqBLGzaHV4U5nFiJBH5J5qqVmQ31C7uPAHcPk=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=rKHUB+HqOYKLOeLs3gxU+2VJICl873Ak0DxOzwmFxJZtt4Rp0tDiqJwLoQAf2qHEe
-         bFfkRful2dQCxQoJuqpkTKOVj4/yD2dC6WT7xi8zRhobYnUS4uKcOa+Yzn3ey5QgUc
-         iSSNhOqqtjMwLwlrTl3kgmE/K7AW0VcJil7Z6O5Rspqz0LKi9ChNJwkIvBaYQMxG8F
-         +/yJ75T4Rigjpd8SWCxauF8IkDj+H9CfO3QTSOjKyE1FXg0TBAwt3gCM/rxMHKBkGq
-         kl71f1CHD6tzP7ABi5ojSXQHJQ1cZBpvdEve42/MNE67nkDNUDldpsob1DTwJxfo4X
-         Z88pVPot5Alnw==
+References: <20190614164324.9427-1-jagan@amarulasolutions.com>
+ <20190614164324.9427-6-jagan@amarulasolutions.com> <20190617114503.pclqsf6bo3ih47nt@flea>
+ <CAGb2v66RU=m0iA9VoBiYbake+mDoiiGcd5gGGXvNCBjhY2n+Dw@mail.gmail.com>
+ <CAMty3ZA0J+2fSRwX+tS-waJDLMyTOf6UY_1pHjXe0qOk5QuzrQ@mail.gmail.com> <CAGb2v64htYr+iRUnLx0hKkqCtYa0GbzZJEvb-ViyJFAYzU1sig@mail.gmail.com>
+In-Reply-To: <CAGb2v64htYr+iRUnLx0hKkqCtYa0GbzZJEvb-ViyJFAYzU1sig@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 18 Jun 2019 13:16:50 +0530
+Message-ID: <CAMty3ZBDjNa+Sso4hmKxXOg_LT8giNYQAuJCgjZW8AeVQhAtyQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] Re: [PATCH v2 5/9] drm/sun4i: tcon_top: Register
+ clock gates in probe
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch has Jetson TX1 platform specific SC7 timing configuration
-in device tree.
+On Tue, Jun 18, 2019 at 12:53 PM Chen-Yu Tsai <wens@csie.org> wrote:
+>
+> On Tue, Jun 18, 2019 at 3:12 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > On Mon, Jun 17, 2019 at 6:31 PM Chen-Yu Tsai <wens@csie.org> wrote:
+> > >
+> > > On Mon, Jun 17, 2019 at 7:45 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > >
+> > > > On Fri, Jun 14, 2019 at 10:13:20PM +0530, Jagan Teki wrote:
+> > > > > TCON TOP have clock gates for TV0, TV1, dsi and right
+> > > > > now these are register during bind call.
+> > > > >
+> > > > > Of which, dsi clock gate would required during DPHY probe
+> > > > > but same can miss to get since tcon top is not bound at
+> > > > > that time.
+> > > > >
+> > > > > To solve, this circular dependency move the clock gate
+> > > > > registration from bind to probe so-that DPHY can get the
+> > > > > dsi gate clock on time.
+> > > >
+> > > > It's not really clear to me what the circular dependency is?
+> > > >
+> > > > if you have a chain that is:
+> > > >
+> > > > tcon-top +-> DSI
+> > > >          +-> D-PHY
+> > > >
+> > > > There's no loop, right?
+> > >
+> > > Looking at how the DTSI patch structures things (without going into
+> > > whether it is correct or accurate):
+> > >
+> > > The D-PHY is not part of the component graph. However it requests
+> > > the DSI gate clock from the TCON-TOP.
+> > >
+> > > The TCON-TOP driver, in its current form, only registers the clocks
+> > > it provides at component bind time. Thus the D-PHY can't successfully
+> > > probe until the TCON-TOP has been bound.
+> > >
+> > > The DSI interface requires the D-PHY to bind. It will return -EPROBE_DEFER
+> > > if it cannot request it. This in turn goes into the error path of
+> > > component_bind_all, which unbinds all previous components.
+> > >
+> > > So it's actually
+> > >
+> > >     D-PHY -> TCON-TOP -> DSI
+> > >       ^                   |
+> > >       |--------------------
+> > >
+> > > I've not checked, but I suspect there's no possibility of having other
+> > > drivers probe (to deal with deferred probing) within component_bind_all.
+> > > Otherwise we shouldn't run into this weird circular dependency issue.
+> > >
+> > > So the question for Jagan is that is this indeed the case? Does this
+> > > patch solve it, or at least work around it.
+> >
+> > Yes, this is what I was mentioned in initial version, since the "dsi"
+> > gate in tcon top is registering during bind, the dphy of dsi
+> > controller won't get the associated clock for "mod" so it is keep on
+> > returning -EPROBE_DEFER. By moving the clock gate registration to
+> > probe, everything bound as expected.
+>
+> I believe you failed to mention the DSI block, which is the part that
+> completes the circular dependency. Don't expect others to have full
+> awareness of the context. You have to provide it in your commit log.
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-index e8654061ce03..f7c9332085f8 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-@@ -279,6 +279,13 @@
- 
- 	pmc@7000e400 {
- 		nvidia,invert-interrupt;
-+		nvidia,suspend-mode = <0>;
-+		nvidia,cpu-pwr-good-time = <0>;
-+		nvidia,cpu-pwr-off-time = <0>;
-+		nvidia,core-pwr-good-time = <4587 3876>;
-+		nvidia,core-pwr-off-time = <39065>;
-+		nvidia,core-power-req-active-high;
-+		nvidia,sys-clock-req-active-high;
- 	};
- 
- 	/* eMMC */
--- 
-2.7.4
-
+I have mentioned DPHY and yes it is possible to give more information
+will update in next version, no problem. thanks for mentioning that.
