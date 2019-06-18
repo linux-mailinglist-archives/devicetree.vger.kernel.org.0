@@ -2,204 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC78C49974
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 08:53:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB57849997
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 08:57:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726640AbfFRGxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 02:53:55 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59098 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726007AbfFRGxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 02:53:54 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E20A426D931;
-        Tue, 18 Jun 2019 07:14:39 +0100 (BST)
-Date:   Tue, 18 Jun 2019 08:14:36 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     masonccyang@mxic.com.tw
-Cc:     "Miquel Raynal" <miquel.raynal@bootlin.com>, bbrezillon@kernel.org,
-        broonie@kernel.org, christophe.kerello@st.com,
-        computersforpeace@gmail.com, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, geert@linux-m68k.org, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, marcel.ziswiler@toradex.com,
-        marek.vasut@gmail.com, mark.rutland@arm.com, paul.burton@mips.com,
-        richard@nod.at, robh+dt@kernel.org, stefan@agner.ch,
-        zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
- controller
-Message-ID: <20190618081436.5d488320@collabora.com>
-In-Reply-To: <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
-        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
-        <20190512151820.4f2dd9da@xps13>
-        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
-        <20190520142333.390091d5@xps13>
-        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
-        <20190527144250.71908bd9@xps13>
-        <OFE923A8E5.50375C30-ON48258409.0009AE1B-48258409.00119767@mxic.com.tw>
-        <20190617143510.4ded5728@xps13>
-        <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1728833AbfFRG5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 02:57:41 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:11119 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728817AbfFRG5k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 02:57:40 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d0881f80000>; Mon, 17 Jun 2019 23:17:28 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 17 Jun 2019 23:17:28 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 17 Jun 2019 23:17:28 -0700
+Received: from [10.24.193.7] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 18 Jun
+ 2019 06:17:26 +0000
+Subject: Re: [Patch V3 4/8] dt-bindings: usb: Add NVIDIA Tegra XUSB device
+ mode controller binding
+To:     Rob Herring <robh@kernel.org>
+CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <mark.rutland@arm.com>, <linux-tegra@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
+ <1557988772-15406-5-git-send-email-nkristam@nvidia.com>
+ <20190613213209.GA27327@bogus>
+X-Nvconfidentiality: public
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+Message-ID: <7b4e52cc-8e25-ac0a-99e4-6e9705741b74@nvidia.com>
+Date:   Tue, 18 Jun 2019 11:48:36 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190613213209.GA27327@bogus>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560838648; bh=W5qSrFsU+0cihIEXCv+34HOOIKLTxkvpxWE5NXLmZd0=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=YohMhObUvfhShPexDhjjYsNUXwfwuc5MkkHLa1XYHlUakKw8w7AqR1YBy/hI6p/Qj
+         X8Barg5UF7UMwRbJ2YfKe2dT28GgqSSNrxhd4hXZJNKcaWkXaMqk1sH1CePHcvReMq
+         RcqbvRfBBjF4AX7eguNvy59Oj1IbhahQEt4EB4Mx5wqjN0dWe9o12CjF1a5nzRCb1+
+         2xPTPdhOh56jRhLqm88So66Zc4/f6lmzyV+wdgfzCyCP+PE9PahDrKZb0qSDRE1SOk
+         GhSHaBrolLXsvK0qNG61HHZvBDblbF/N47XFlx5hzCcvUEm5VbKacC8HtYCyu53+Xy
+         7ps3xxg3SWDdg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
 
-On Tue, 18 Jun 2019 09:24:14 +0800
-masonccyang@mxic.com.tw wrote:
 
-> Hi Miquel,
+On 14-06-2019 03:02, Rob Herring wrote:
+> On Thu, May 16, 2019 at 12:09:28PM +0530, Nagarjuna Kristam wrote:
+>> Add device-tree binding documentation for the XUSB device mode controller
+>> present on Tegra210 SoC. This controller supports the USB 3.0
+>> specification.
+>>
+>> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+>> ---
+>>  .../devicetree/bindings/usb/nvidia,tegra-xudc.txt  | 101 +++++++++++++++++++++
+>>  1 file changed, 101 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>> new file mode 100644
+>> index 0000000..d78b436
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>> @@ -0,0 +1,101 @@
+>> +Device tree binding for NVIDIA Tegra XUSB device mode controller (XUDC)
+>> +=======================================================================
+>> +
+>> +The Tegra XUDC controller supports both USB 2.0 HighSpeed/FullSpeed and
+>> +USB 3.0 SuperSpeed protocols.
+>> +
+>> +Required properties:
+>> +--------------------
+>> +- compatible: For Tegra210, must contain "nvidia,tegra210-xudc".
+>> +- reg: Must contain the base and length of the XUSB device registers, XUSB device
+>> +  PCI Config registers and XUSB device controller registers.
+>> +- interrupts: Must contain the XUSB device interrupt.
+>> +- clocks: Must contain an entry for all clocks used.
+>> +  See ../clock/clock-bindings.txt for details.
+>> +- clock-names: Must include the following entries:
+>> +   - dev: Clock to enable core XUSB dev clock.
+>> +   - ss: Clock to enable XUSB super speed clock.
+>> +   - ss_src: Clock to enable XUSB super speed dev clock.
+>> +   - hs_src: Clock to enable XUSB high Speed dev clock.
+>> +   - fs_src: Clock to enable XUSB full Speed dev clock.
+>> +- nvidia,xusb-padctl: phandle to the XUSB pad controller that is used to
+>> +  configure the USB pads used by the XUDC controller.
+>> +- power-domains: A list of PM domain specifiers that reference each power-domain
+>> +  used by the XUSB device mode controller. This list must comprise of a specifier
+>> +  for the XUSBA and XUSBB power-domains. See ../power/power_domain.txt and
+>> +  ../arm/tegra/nvidia,tegra20-pmc.txt for details.
+>> +- power-domain-names: A list of names that represent each of the specifiers in
+>> +  the 'power-domains' property. Must include 'ss' and 'dev'.
+>> +
+>> +For Tegra210:
+>> +- avddio-usb-supply: PCIe/USB3 analog logic power supply. Must supply 1.05 V.
 > 
-> >   
-> > > > > > > > > +static void mxic_nand_select_chip(struct nand_chip *chip,   
-> int 
-> > >   
-> > > > > chipnr)   
-> > > > > > > > 
-> > > > > > > > _select_target() is preferred now   
-> > > > > > > 
-> > > > > > > Do you mean I implement mxic_nand_select_target() to control   
-> #CS ?
-> > > > > > > 
-> > > > > > > If so, I need to call mxic_nand_select_target( ) to control   
-> #CS ON
-> > > > > > > and then #CS OFF in _exec_op() due to nand_select_target()<in    
+> Wouldn't an analog supply belong in the phy node?
 > 
-> > > > > nand_base,c>   
-> > > > > > > is still calling chip->legacy.select_chip ?   
-> > > > > > 
-> > > > > > You must forget about the ->select_chip() callback. Now it   
-> should be
-> > > > > > handled directly from the controller driver. Please have a look   
-> at 
-> > > the  
-> > > > > > commit pointed against the marvell_nand.c driver.   
-> > > > > 
-> > > > > I have no Marvell NFC datasheet and have one question.
-> > > > > 
-> > > > > In marvell_nand.c, there is no xxx_deselect_target() or 
-> > > > > something like that doing #CS OFF.
-> > > > > marvell_nfc_select_target() seems always to make one of chip or   
-> die
-> > > > > #CS keep low.
-> > > > > 
-> > > > > Is it right ?   
-> > > > 
-> > > > Yes, AFAIR there is no "de-assert" mechanism in this controller.
-> > > >   
-> > > > > 
-> > > > > How to make all #CS keep high for NAND to enter 
-> > > > > low-power standby mode if driver don't use "legacy.select_chip()"   
-> ? 
-> > > > 
-> > > > See commit 02b4a52604a4 ("mtd: rawnand: Make ->select_chip()   
-> optional
-> > > > when ->exec_op() is implemented") which states:
-> > > > 
-> > > >         "When [->select_chip() is] not implemented, the core is   
-> assuming
-> > > >    the CS line is automatically asserted/deasserted by the driver   
-> > > >    ->exec_op() implementation."   
-> > > > 
-> > > > Of course, the above is right only when the controller driver   
-> supports
-> > > > the ->exec_op() interface.   
-> > > 
-> > > Currently, it seems that we will get the incorrect data and error
-> > > operation due to CS in error toggling if CS line is controlled in   
-> > > ->exec_op().   
-> > 
-> > Most of the chips today are CS-don't-care, which chip are you using?  
+
+This is USB controller power supply and hence added it part of controller driver node.
+Will correct documentation accordingly.
+
+>> +- hvdd-usb-supply: USB controller power supply. Must supply 3.3 V.
+>> +
+>> +- phys: Must contain an entry for each entry in phy-names.
+>> +  See ../phy/phy-bindings.txt for details.
+>> +- phy-names: Should include an entry for each PHY used by the controller.
+>> +  Names must be "usb2", and "usb3" if support SuperSpeed device mode.
+>> +  - "usb3" phy, SuperSpeed (SSTX+/SSTX-/SSRX+/SSRX-) data lines.
+>> +  - "usb2" phy, USB 2.0 (D+/D-) data lines.
+>> +
+>> +- extcon: Must contains an extcon entry which detects USB VBUS pin.
+>> +  See ../extcon/extcon-usb-gpio.txt for details.
 > 
-> I think CS-don't-care means read-write operation for NAND device to reside
-> on the same memory bus as other Flash or SRAM devices. Other devices on 
-> the 
-> memory bus can then be accessed while the NAND Flash is busy with internal 
+> Use the usb-connector binding for new bindings.
 > 
-> operations. This capability is very important for designs that require 
-> multiple
-> NAND Flash devices on the same bus.
 
-Yes, we know what CS-dont-care mean, what we want to know is whether
-your chip supports that or not. And if it supports it, I don't
-understand why you have a problem when asserting/de-asserting on each
-->exec_op() call.
-
-> 
-> > 
-> > Is this behavior publicly documented?
-> >   
-> 
-> CS# pin goes High enter standby mode to reduce power consumption,
-> i.e,. standby mode w/ CS# keep High, standby current: 10 uA (Typ for 3.3V 
-> NAND)
->         otherwise, current is more than 1 mA.
-> i.e,. page read current, 25 mA (Typ for 3.3V NAND)
-
-That's not what we were looking for. We want to know what happens when
-the CS line is de-asserted in the middle of a NAND operation (like read
-param page). I'd expect the NAND to retain its state so that the
-operation can be resumed when the CS line is asserted again. If that's
-not the case that means the NAND is not really CS-dont-care compliant.
-
->  
-> 
-> > Is this LPM mode always activated?
-> >   
-> > > i.e,. 
-> > > 
-> > > 1) In nand_onfi_detect() to call nand_exec_op() twice by 
-> > > nand_read_param_page_op() and annd_read_data_op()
-> > > 
-> > > 2) In nand_write_page_xxx to call nand_exec_op() many times by
-> > > nand_prog_page_begin_op(), nand_write_data_op() and 
-> > > nand_prog_page_end_op().
-> > > 
-> > > 
-> > > Should we consider to add a CS line controller in struct   
-> nand_controller
-> > > i.e,.
-> > > 
-> > > struct nand_controller {
-> > >          struct mutex lock;
-> > >          const struct nand_controller_ops *ops;
-> > > +          void (*select_chip)(struct nand_chip *chip, int cs);
-> > > };
-> > > 
-> > > to replace legacy.select_chip() ?
-> > >   
-> > 
-> > No, if really needed, we could add a "macro op done" flag in the nand
-> > operation structure.
-> >   
-> 
-> Is this "macron op done" flag good for multiple NAND devices on
-> the same bus ?
-
-It's completely orthogonal to the multi-chip feature, so yes, it should
-work just fine.
-
-> 
-> Any other way to control CS# pin? if user application is really
-> care of power consumption, i.e,. loT.
-
-No, the user is not in control of the CS pin, only the driver can do
-that.
-
-Can you please point us to the datasheet of the NAND you're testing, or
-something close enough?
+already taken care in V4 series of this patch.
 
 Thanks,
-
-Boris
+Nagarjuna
+>> +
+>> +Example:
+>> +--------
+>> +	pmc: pmc@7000e400 {
+>> +		compatible = "nvidia,tegra210-pmc";
+>> +		reg = <0x0 0x7000e400 0x0 0x400>;
+>> +		clocks = <&tegra_car TEGRA210_CLK_PCLK>, <&clk32k_in>;
+>> +		clock-names = "pclk", "clk32k_in";
+>> +
+>> +		powergates {
+>> +			pd_xusbss: xusba {
+>> +				clocks = <&tegra_car TEGRA210_CLK_XUSB_SS>;
+>> +				resets = <&tegra_car TEGRA210_CLK_XUSB_SS>;
+>> +				#power-domain-cells = <0>;
+>> +			};
+>> +
+>> +			pd_xusbdev: xusbb {
+>> +				clocks = <&tegra_car TEGRA210_CLK_XUSB_DEV>;
+>> +				resets = <&tegra_car 95>;
+>> +				#power-domain-cells = <0>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	xudc@700d0000 {
+>> +		compatible = "nvidia,tegra210-xudc";
+>> +		reg = <0x0 0x700d0000 0x0 0x8000>,
+>> +			<0x0 0x700d8000 0x0 0x1000>,
+>> +			<0x0 0x700d9000 0x0 0x1000>;
+>> +
+>> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +		clocks = <&tegra_car TEGRA210_CLK_XUSB_DEV>,
+>> +			<&tegra_car TEGRA210_CLK_XUSB_SS>,
+>> +			<&tegra_car TEGRA210_CLK_XUSB_SSP_SRC>,
+>> +			<&tegra_car TEGRA210_CLK_XUSB_HS_SRC>,
+>> +			<&tegra_car TEGRA210_CLK_XUSB_FS_SRC>;
+>> +		clock-names = "dev", "ss", "ss_src",
+>> +			      "hs_src", "fs_src";
+>> +
+>> +		power-domains = <&pd_xusbdev>, <&pd_xusbss>;
+>> +		power-domain-names = "dev", "ss";
+>> +
+>> +		nvidia,xusb-padctl = <&padctl>;
+>> +
+>> +		phys = <&{/padctl@7009f000/pads/usb2/lanes/usb2-0}>;
+>> +		phy-names = "usb2;
+>> +
+>> +		avddio-usb-supply = <&vdd_pex_1v05>;
+>> +		hvdd-usb-supply = <&vdd_3v3_sys>;
+>> +
+>> +		extcon = <&extcon_usb>;
+>> +	};
+>> +
+>> +	extcon_usb: extcon_vbus {
+>> +		compatible = "linux,extcon-usb-gpio";
+>> +		vbus-gpio = <&gpio TEGRA_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
+>> +	};
+>> +
+>> -- 
+>> 2.7.4
+>>
