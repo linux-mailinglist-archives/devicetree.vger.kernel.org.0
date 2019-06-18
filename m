@@ -2,52 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86ABA49985
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 08:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4856499C0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725970AbfFRGzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 02:55:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58194 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725955AbfFRGzi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 02:55:38 -0400
-Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 06F8820665;
-        Tue, 18 Jun 2019 06:55:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560840937;
-        bh=4yU2ni5pgqRgXsFw8Zoge5yRVrNEQlv+sD3OY4wEo6E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eKveZUJAOzxm9DGywEBLIP0l8d41IOCBd6CKoGmwTnJLNJEj1g+gNALjWCvI/iRYr
-         OCMr1WrA4dJTqwgoMBikA939CBeOJxGdb4Ssoy27Hwu1tmkUydTU3qW/3uwRkensrc
-         cqKlBlwZnETzllTMxomzKP7oSsHcA8pTg8d3P2fE=
-Date:   Tue, 18 Jun 2019 14:54:47 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        id S1726091AbfFRHDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:03:12 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:41474 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726037AbfFRHDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:03:12 -0400
+X-UUID: e9ff0065f9b342c9b5853322474eb434-20190618
+X-UUID: e9ff0065f9b342c9b5853322474eb434-20190618
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 2080643755; Tue, 18 Jun 2019 15:03:03 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 18 Jun 2019 15:03:02 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 18 Jun 2019 15:03:02 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: ls1028a: add crypto node
-Message-ID: <20190618065446.GC29881@dragon>
-References: <20190610152331.10057-1-horia.geanta@nxp.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: PM / AVS: SVS: Introduce SVS engine
+Date:   Tue, 18 Jun 2019 15:02:56 +0800
+Message-ID: <20190618070258.11520-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190610152331.10057-1-horia.geanta@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 06:23:31PM +0300, Horia Geantă wrote:
-> LS1028A has a SEC v5.0 compatible security engine.
-> 
-> Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
+SVS driver use OPP adjust event in [1] to update
+OPP table voltage part.
 
-Applied, thanks.
+[1] https://patchwork.kernel.org/patch/10946069/
+
+changes since v1:
+- Add svs subnodes description in binding documents
+- Set svs_cpu_little & svs_cci vmin to 0x18 to meet cpufreq
+and cci software architecture.
+
+Roger Lu (2):
+  dt-bindings: soc: add mtk svs dt-bindings
+  PM / AVS: SVS: Introduce SVS engine
+
+ .../devicetree/bindings/power/mtk-svs.txt     |   88 +
+ drivers/power/avs/Kconfig                     |   10 +
+ drivers/power/avs/Makefile                    |    1 +
+ drivers/power/avs/mtk_svs.c                   | 2086 +++++++++++++++++
+ include/linux/power/mtk_svs.h                 |   23 +
+ 5 files changed, 2208 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/mtk-svs.txt
+ create mode 100644 drivers/power/avs/mtk_svs.c
+ create mode 100644 include/linux/power/mtk_svs.h
+
+
