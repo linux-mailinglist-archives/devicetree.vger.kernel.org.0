@@ -2,106 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 968DB4A978
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E7C4A9AC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:20:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729349AbfFRSIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 14:08:55 -0400
-Received: from foss.arm.com ([217.140.110.172]:53354 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729337AbfFRSIz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 14:08:55 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 91FB9344;
-        Tue, 18 Jun 2019 11:08:54 -0700 (PDT)
-Received: from fuggles.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2194F3F738;
-        Tue, 18 Jun 2019 11:08:53 -0700 (PDT)
-Date:   Tue, 18 Jun 2019 19:08:51 +0100
-From:   Will Deacon <will.deacon@arm.com>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        robin.murphy@arm.com, jacob.jun.pan@linux.intel.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        eric.auger@redhat.com
-Subject: Re: [PATCH 3/8] iommu/arm-smmu-v3: Support platform SSID
-Message-ID: <20190618180851.GK4270@fuggles.cambridge.arm.com>
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
- <20190610184714.6786-4-jean-philippe.brucker@arm.com>
+        id S1730311AbfFRSUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 14:20:02 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:55870 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727616AbfFRSUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:20:02 -0400
+Received: by mail-wm1-f68.google.com with SMTP id a15so4340196wmj.5;
+        Tue, 18 Jun 2019 11:20:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=+LXVMvTFUwJBFpEvMsN842aQOTnTAKRmXA9B+zSWFu8=;
+        b=OShX/vFCgI01v/2ZPXl4IXL+jfeOD5h+TbQGuiF52KcrJ1AA2yfvVby+cL8Z0KgX16
+         gj1RiuBzUDJPVU6vw3DvO9L43/gTwg0lUUQKndfF9a1iDQHO4TdPl6UzNTK/y1or09F/
+         h/JgDtbgGqRYudVzAE1t0shiOpDoU4y+mkIkWS1Od9fxa7jthMUWWL1BdXcir5yVRYs3
+         wLe9/eXeDxfmD8fTGDmcYzpEZPNszIrZiKczsTT6gyEyOFGhiRDSmXlZNIU7XT8VDor8
+         hLdX9LFILYBRVh3T4Foq5O8A/0edEf6UWABMkUUtC+s5tAH0kNVy7a5GnXDGvepBJgtH
+         74Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+LXVMvTFUwJBFpEvMsN842aQOTnTAKRmXA9B+zSWFu8=;
+        b=rQGapxZgkadEjdTbkLRo+ZP25VZaWKXTJW5hKHpLvOXwm9YHV+BF8ulEpOPmaTKIos
+         sHOrcC9TGJ+VML2Wrd1K8tsGQzheebEMf81pP8nwhff3WXUv84I2HbW1tOrEkDuBxaMG
+         V0rvdRPqjpHAWyUyc9DWbR5RiAGRju2M+CI/EZ0ALL0aWQS1mkyV3mHCDRSP0fhuaD4a
+         okrVjL4/4qkoP0kCcxEOTougX1yjqMJP4OF8IkYjSV3huZPSuSy1w5o7od4G296oXtno
+         6b+vTywH4lTsWDrxDOKp5MVjCg+t7tR14OElQr7AKMiW3zDjO+w1PbEFlv9ddWt+McSJ
+         cPPA==
+X-Gm-Message-State: APjAAAVr6Kx4PSXI28VbFsAMeRrljTrYRaD4DAYLS2MyZxRG5sYjNNsS
+        pL/zFjP03Voc/PA6+CG2aOf6Sa4J
+X-Google-Smtp-Source: APXvYqxUaMolRXclPnR0KaiziF+EYmITD5riBMvMMQv7sc5eyYlugNXjXDa1LFTokW4BkCmyr8bm5w==
+X-Received: by 2002:a1c:acc8:: with SMTP id v191mr4808911wme.177.1560882000147;
+        Tue, 18 Jun 2019 11:20:00 -0700 (PDT)
+Received: from [192.168.1.17] (dqd9.neoplus.adsl.tpnet.pl. [83.24.163.9])
+        by smtp.gmail.com with ESMTPSA id s12sm3321599wmh.34.2019.06.18.11.19.58
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 11:19:59 -0700 (PDT)
+Subject: Re: [PATCH v3 2/9] dt: bindings: Add multicolor class dt bindings
+ documention
+To:     Rob Herring <robh@kernel.org>, Dan Murphy <dmurphy@ti.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-3-dmurphy@ti.com> <20190614170011.GA3277@bogus>
+ <c234361e-f5f7-f8d7-18c6-9cc8ef74ac99@ti.com>
+ <CAL_JsqK7u1xXNmwtHjUd7Z5ewHd9_d51quH4zMXxEd63egd28w@mail.gmail.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <afc7f11f-7f8d-7680-aef3-58c26e8b34fa@gmail.com>
+Date:   Tue, 18 Jun 2019 20:19:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190610184714.6786-4-jean-philippe.brucker@arm.com>
-User-Agent: Mutt/1.11.1+86 (6f28e57d73f2) ()
+In-Reply-To: <CAL_JsqK7u1xXNmwtHjUd7Z5ewHd9_d51quH4zMXxEd63egd28w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 07:47:09PM +0100, Jean-Philippe Brucker wrote:
-> For platform devices that support SubstreamID (SSID), firmware provides
-> the number of supported SSID bits. Restrict it to what the SMMU supports
-> and cache it into master->ssid_bits.
+On 6/18/19 5:36 PM, Rob Herring wrote:
+> On Fri, Jun 14, 2019 at 11:18 AM Dan Murphy <dmurphy@ti.com> wrote:
+>>
+>> Rob
+>>
+>> Thanks for the review
+>>
+>> On 6/14/19 12:00 PM, Rob Herring wrote:
+>>> On Thu, May 23, 2019 at 02:08:13PM -0500, Dan Murphy wrote:
+>>>> Add DT bindings for the LEDs multicolor class framework.
+>>>>
+>>>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>>>> ---
+>>>>    .../bindings/leds/leds-class-multicolor.txt   | 97 +++++++++++++++++++
+>>>>    1 file changed, 97 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt b/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+>>>> new file mode 100644
+>>>> index 000000000000..e2a2ce3279cb
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+>>>> @@ -0,0 +1,97 @@
+>>>> +* Multicolor LED properties
+>>>> +
+>>>> +Multicolor LEDs can consist of a RGB, RGBW or a RGBA LED clusters.  These devices
+>>>> +can be grouped together and also provide a modeling mechanism so that the
+>>>> +cluster LEDs can vary in hue and intensity to produce a wide range of colors.
+>>>> +
+>>>> +The nodes and properties defined in this document are unique to the multicolor
+>>>> +LED class.  Common LED nodes and properties are inherited from the common.txt
+>>>> +within this documentation directory.
+>>>> +
+>>>> +Required LED Child properties:
+>>>> +    - color : For multicolor LED support this property should be defined as
+>>>> +              LED_COLOR_ID_MULTI and further definition can be found in
+>>>> +              include/linux/leds/common.h.
+>>>> +
+>>>> +led-controller@30 {
+>>>> +    #address-cells = <1>;
+>>>> +    #size-cells = <0>;
+>>>> +    compatible = "ti,lp5024";
+>>>> +    reg = <0x29>;
+>>>> +
+>>>> +    multi-led@4 {
+>>> Typically we sort by address order.
+>>
+>> These are not addresses these end up being the "module" number that the
+>> LEDs below are associated to.
 > 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-> ---
->  drivers/iommu/arm-smmu-v3.c | 11 +++++++++++
->  drivers/iommu/of_iommu.c    |  6 +++++-
->  include/linux/iommu.h       |  1 +
->  3 files changed, 17 insertions(+), 1 deletion(-)
+> 'reg' (and the unit-address) is an address in the sense that is how
+> you identify a device or sub-device. It doesn't matter what type of
+> 'address' it is, DT practice is to sort node in unit-address numerical
+> order.
 > 
-> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
-> index 4d5a694f02c2..3254f473e681 100644
-> --- a/drivers/iommu/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm-smmu-v3.c
-> @@ -604,6 +604,7 @@ struct arm_smmu_master {
->  	struct list_head		domain_head;
->  	u32				*sids;
->  	unsigned int			num_sids;
-> +	unsigned int			ssid_bits;
->  	bool				ats_enabled		:1;
->  };
->  
-> @@ -2097,6 +2098,16 @@ static int arm_smmu_add_device(struct device *dev)
->  		}
->  	}
->  
-> +	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
-> +
-> +	/*
-> +	 * If the SMMU doesn't support 2-stage CD, limit the linear
-> +	 * tables to a reasonable number of contexts, let's say
-> +	 * 64kB / sizeof(ctx_desc) = 1024 = 2^10
-> +	 */
-> +	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
-> +		master->ssid_bits = min(master->ssid_bits, 10U);
+> 'module' is a h/w thing, right? A bank or instance within the device?
+> If not, using 'reg' here is not appropriate.
 
-Please introduce a #define for the 10, so that it is computed in the way
-you describe in the comment (a bit like we do for things like queue sizes).
+In this case reg represents LEDn_BRIGHTNESS register which controls
+a group of three LEDs. The thing is that those registers' addresses
+start from 0x07, i.e. the formula for calculating the RGB LED module
+address is: LEDn_BRIGHTNESS = 0x07 + n.
 
-> +
->  	group = iommu_group_get_for_dev(dev);
->  	if (!IS_ERR(group)) {
->  		iommu_group_put(group);
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index f04a6df65eb8..04f4f6b95d82 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -206,8 +206,12 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
->  			if (err)
->  				break;
->  		}
-> -	}
->  
-> +		fwspec = dev_iommu_fwspec_get(dev);
-> +		if (!err && fwspec)
-> +			of_property_read_u32(master_np, "pasid-num-bits",
-> +					     &fwspec->num_pasid_bits);
-> +	}
+ From the above it seems that we should have multi-led@7 and reg = 0x07
+for LED0_BRIGHTNESS register governing the brightness of RGB LED
+module 0, right?
 
-Hmm. Do you know if there's anything in ACPI for this?
+And regarding sorting by address order I think that Rob was asking for
+placing whole multi-led@4 sub-node after multi-led@2 (here sticking to
+the numeration from the patch).
 
-Otherwise, patch looks fine. Thanks.
-
-Will
+-- 
+Best regards,
+Jacek Anaszewski
