@@ -2,150 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0856C4A7C8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 19:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0074A7F6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 19:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729832AbfFRRB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 13:01:57 -0400
-Received: from mga01.intel.com ([192.55.52.88]:31480 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729319AbfFRRB5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 13:01:57 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Jun 2019 10:01:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,389,1557212400"; 
-   d="scan'208";a="334915185"
-Received: from jacob-builder.jf.intel.com (HELO jacob-builder) ([10.7.199.155])
-  by orsmga005.jf.intel.com with ESMTP; 18 Jun 2019 10:01:56 -0700
-Date:   Tue, 18 Jun 2019 10:05:08 -0700
-From:   Jacob Pan <jacob.jun.pan@linux.intel.com>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Cc:     Jonathan Cameron <jonathan.cameron@huawei.com>,
-        Mark Rutland <Mark.Rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Will Deacon <Will.Deacon@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        jacob.jun.pan@linux.intel.com
-Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
-Message-ID: <20190618100508.7835780f@jacob-builder>
-In-Reply-To: <13e19d8c-8918-a3bb-f398-2ac41c71d307@arm.com>
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
-        <20190610184714.6786-2-jean-philippe.brucker@arm.com>
-        <20190611103625.00001399@huawei.com>
-        <62d1f310-0cba-4d55-0f16-68bba3c64927@arm.com>
-        <20190611111333.425ce809@jacob-builder>
-        <13e19d8c-8918-a3bb-f398-2ac41c71d307@arm.com>
-Organization: OTC
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S1729209AbfFRRO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 13:14:58 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:56688 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728572AbfFRRO6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 13:14:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=AdqmnS+jSpXufXG/3VyMe7oXq2Nu3sE27Csk/wuPMmo=; b=vzHqAUcrGvyva+Zzs0Ak9hl0Q
+        BNC3mnAzNrkLx7pN8lWManuEj9IIkjgOla9PZEROf99WTOwnQp2LUzqJkH+8aReTf8A4nD9nTd/PY
+        TP7X+SCxKsD66mx7O/iWWTBbR9KW0Elo/ZyczZ+/Ntht/hRi+kCnqULszXYpz1MzwJGRY=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hdHh8-0005Fb-Am; Tue, 18 Jun 2019 17:14:54 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id B1519440046; Tue, 18 Jun 2019 18:14:53 +0100 (BST)
+Date:   Tue, 18 Jun 2019 18:14:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] soc/tegra: regulators: Add regulators coupler for
+ Tegra20
+Message-ID: <20190618171453.GO5316@sirena.org.uk>
+References: <20190603235904.19097-1-digetx@gmail.com>
+ <20190603235904.19097-8-digetx@gmail.com>
+ <20190617154632.GB5316@sirena.org.uk>
+ <2308e5da-a8fd-a0e6-f98c-0931a30baf14@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="e890kymSckUvwzhr"
+Content-Disposition: inline
+In-Reply-To: <2308e5da-a8fd-a0e6-f98c-0931a30baf14@gmail.com>
+X-Cookie: Editing is a rewording activity.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jun 2019 15:22:20 +0100
-Jean-Philippe Brucker <jean-philippe.brucker@arm.com> wrote:
 
-> On 11/06/2019 19:13, Jacob Pan wrote:
-> >>>> +/**
-> >>>> + * ioasid_find - Find IOASID data
-> >>>> + * @set: the IOASID set
-> >>>> + * @ioasid: the IOASID to find
-> >>>> + * @getter: function to call on the found object
-> >>>> + *
-> >>>> + * The optional getter function allows to take a reference to
-> >>>> the found object
-> >>>> + * under the rcu lock. The function can also check if the object
-> >>>> is still valid:
-> >>>> + * if @getter returns false, then the object is invalid and NULL
-> >>>> is returned.
-> >>>> + *
-> >>>> + * If the IOASID has been allocated for this set, return the
-> >>>> private pointer
-> >>>> + * passed to ioasid_alloc. Private data can be NULL if not set.
-> >>>> Return an error
-> >>>> + * if the IOASID is not found or does not belong to the set.    
-> >>>
-> >>> Perhaps should make it clear that @set can be null.    
-> >>
-> >> Indeed. But I'm not sure allowing @set to be NULL is such a good
-> >> idea, because the data type associated to an ioasid depends on its
-> >> set. For example SVA will put an mm_struct in there, and auxiliary
-> >> domains use some structure private to the IOMMU domain.
-> >>  
-> > I am not sure we need to count on @set to decipher data type.
-> > Whoever does the allocation and owns the IOASID should knows its
-> > own data type. My thought was that @set is only used to group IDs,
-> > permission check etc.
-> >   
-> >> Jacob, could me make @set mandatory, or do you see a use for a
-> >> global search? If @set is NULL, then callers can check if the
-> >> return pointer is NULL, but will run into trouble if they try to
-> >> dereference it. 
-> > A global search use case can be for PRQ. IOMMU driver gets a IOASID
-> > (first interrupt then retrieve from a queue), it has no idea which
-> > @set it belongs to. But the data types are the same for all IOASIDs
-> > used by the IOMMU.  
-> 
-> They aren't when we use a generic SVA handler. Following a call to
-> iommu_sva_bind_device(), iommu-sva.c allocates an IOASID and store an
-> mm_struct. If auxiliary domains are also enabled for the device,
-> following a call to iommu_aux_attach_device() the IOMMU driver
-> allocates an IOASID and stores some private object.
-> 
-> Now for example the IOMMU driver receives a PPR and calls
-> ioasid_find() with @set = NULL. ioasid_find() may return either an
-> mm_struct or a private object, and the driver cannot know which it is
-> so the returned value is unusable.
-I think we might have a misunderstanding of what ioasid_set is. Or i
-have misused your original intention for it:) So my understanding of an
-ioasid_set is to identify a sub set of IOASIDs that
-1. shares the same data type
-2. belongs to the same permission group, owner.
+--e890kymSckUvwzhr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Our usage is #2., we put a mm_struct as the set to do permission
-check. E.g VFIO can check guest PASID ownership based on QEMU process
-mm. This will make sure IOASID allocated by one guest can only be used
-by the same guest.
+On Tue, Jun 18, 2019 at 07:52:06PM +0300, Dmitry Osipenko wrote:
+> 17.06.2019 18:46, Mark Brown =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
 
-For IOASID used for sva bind, let it be native or guest sva, we always
-have the same data type. Therefore, when page request handler gets
-called to search with ioasid_find(), it knows its data type. An
-additional flag will tell if it is a guest bind or native bind.
+> >> +// SPDX-License-Identifier: GPL-2.0+
+> >> +/*
+> >> + * Voltage regulators coupling resolver for NVIDIA Tegra20
+> >> + *
+> >> + * Copyright (C) 2019 GRATE-DRIVER project
 
-I was under the assumption that aux domain and its IOASID is a 1:1
-mapping, there is no need for a search. Or even it needs to search, it
-will be searched by the same caller that did the allocation, therefore
-it knows what private data type is.
+> > Please make the entire comment a C++ one so things look more
+> > intentional.
 
-In addition, aux domain is used for request w/o PASID. And PPR for
-request w/o PASID is not to be supported. So there would not be a need
-to search from page request handler.
+> This is actually a correct SPDX comment style for the source files, accor=
+dingly to
+> checkpatch. While the C++ style should be used for header files only. I'm=
+ not
+> following the SPDX effort much, don't know from where these SPDX-style ru=
+les are
+> coming from.
 
-Now if we take the above assumption away, and use ioasid_set strictly
-to differentiate the data types (Usage #1). Then I agree we can get
-rid of NULL set and global search.
+The SPDX bit is fine, what I'm saying is make the rest of the comment
+also be a C++ comment.
 
-That would require we converge on the generic sva_bind for both
-native and guest. The additional implication is that VFIO layer has to
-be SVA struct aware in order to sanitize the mm_struct for guest bind.
-i.e. check guest ownership by using QEMU process mm. Whereas we have
-today, VFIO just use IOASID set as mm to check ownership, no need to
-know the type.
+--e890kymSckUvwzhr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Can we keep the NULL set for now and remove it __after__ we converge on
-the sva bind flows?
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0JHAwACgkQJNaLcl1U
+h9Adkgf7BRUN7vDJiY8PukrNZjKDCtqOwtshsNBH1cFOzUQKpciz9amzrYfVfsc/
+6ov8uf5yZSf9hI5bDdTc50dUt0/OgO9GzicotrEEFigksUYoiXRGdSxw3KdbUZt/
+oUlj1kMfYyPuMJAlfjhUENenMFLjdy+cVMh3eLInBpAgb05vqVA5iVQe7TIhhEoG
+SnEYnQhnoYhlfWW5QedRHVJqT2Q2plD1D1etkNDJ8mLnkthpp41qltl3CCWQB7Du
+8PyUAEdj2c2ghozukM/G462I9un6VMh+umO3j49Ub9bhc/aZMI0XE1v/y+G7EI3G
+R02wzbvVGiTHnJxbj4Tpf/W4wwFAdQ==
+=Dc/q
+-----END PGP SIGNATURE-----
 
-Jacob
+--e890kymSckUvwzhr--
