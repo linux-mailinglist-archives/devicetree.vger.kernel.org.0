@@ -2,132 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E21E649A75
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:23:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A81449A91
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727159AbfFRHX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:23:56 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:44626 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbfFRHX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:23:56 -0400
-Received: by mail-ed1-f67.google.com with SMTP id k8so20111397edr.11;
-        Tue, 18 Jun 2019 00:23:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qCmSq7/dX8Bi0Rr7j3EyPomsJ3SBkWb71qFb9BFHhSE=;
-        b=B9qz21nWB/btW1lVC4eiZcXqxFe4OMokumsyvum5S0Ipz+yS32BwMDQXZvpNqNUsCC
-         0azEK9UycqgMo9rtn54s0/wstgeMpQ/3jGksWeGPzHB5K1sccq3pc7cahRUVi6UgZQW9
-         Pee8AW+WVkKtM2dpvXcXKgcfJfb+CZQ5nnkmoIvKI49zCLl5RxidDQ6shF5VBU6QIoFw
-         A1WWBPDDC2P3BYgNwfAV2B/E2xHU62iKsPhbgRT+1IaH0qAvtQKvW/XlxUQtXlGmWiBR
-         sF295LerkXho3GF886yV1Ufg3bRx5e6m2L1nqyvOHg/KiBLbtPY/xJ9i/Nv4+kbQAfEr
-         43jw==
-X-Gm-Message-State: APjAAAUGZ/GqfGqWSsm58ltfFavtF//y8LnjGyO5cIvP5UWTxyhqzfhO
-        s+sWHdT5BpahufvcVMk8AAUSqRoqTMk=
-X-Google-Smtp-Source: APXvYqz8Lr3h2GkkvEjz6Op9fiq0cVORydxuf+FbIbmToxbrgtGG9LAdaHb0cx/un4PILzSZR79OfQ==
-X-Received: by 2002:a50:b7bc:: with SMTP id h57mr123835886ede.77.1560842634181;
-        Tue, 18 Jun 2019 00:23:54 -0700 (PDT)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
-        by smtp.gmail.com with ESMTPSA id w35sm1957440edd.32.2019.06.18.00.23.53
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 00:23:53 -0700 (PDT)
-Received: by mail-wm1-f54.google.com with SMTP id a15so1962183wmj.5;
-        Tue, 18 Jun 2019 00:23:53 -0700 (PDT)
-X-Received: by 2002:a1c:f512:: with SMTP id t18mr1991013wmh.47.1560842633421;
- Tue, 18 Jun 2019 00:23:53 -0700 (PDT)
+        id S1726643AbfFRH3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:29:07 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59258 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbfFRH3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:29:07 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6B5CB260C4A;
+        Tue, 18 Jun 2019 08:29:04 +0100 (BST)
+Date:   Tue, 18 Jun 2019 09:29:01 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     masonccyang@mxic.com.tw
+Cc:     "Miquel Raynal" <miquel.raynal@bootlin.com>, bbrezillon@kernel.org,
+        broonie@kernel.org, christophe.kerello@st.com,
+        computersforpeace@gmail.com, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, geert@linux-m68k.org, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, marcel.ziswiler@toradex.com,
+        marek.vasut@gmail.com, mark.rutland@arm.com, paul.burton@mips.com,
+        richard@nod.at, robh+dt@kernel.org, stefan@agner.ch,
+        zhengxunli@mxic.com.tw
+Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
+ controller
+Message-ID: <20190618092901.3bdd9f61@collabora.com>
+In-Reply-To: <20190618081436.5d488320@collabora.com>
+References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
+        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
+        <20190512151820.4f2dd9da@xps13>
+        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
+        <20190520142333.390091d5@xps13>
+        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
+        <20190527144250.71908bd9@xps13>
+        <OFE923A8E5.50375C30-ON48258409.0009AE1B-48258409.00119767@mxic.com.tw>
+        <20190617143510.4ded5728@xps13>
+        <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw>
+        <20190618081436.5d488320@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20190614164324.9427-1-jagan@amarulasolutions.com>
- <20190614164324.9427-6-jagan@amarulasolutions.com> <20190617114503.pclqsf6bo3ih47nt@flea>
- <CAGb2v66RU=m0iA9VoBiYbake+mDoiiGcd5gGGXvNCBjhY2n+Dw@mail.gmail.com> <CAMty3ZA0J+2fSRwX+tS-waJDLMyTOf6UY_1pHjXe0qOk5QuzrQ@mail.gmail.com>
-In-Reply-To: <CAMty3ZA0J+2fSRwX+tS-waJDLMyTOf6UY_1pHjXe0qOk5QuzrQ@mail.gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Tue, 18 Jun 2019 15:23:41 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64htYr+iRUnLx0hKkqCtYa0GbzZJEvb-ViyJFAYzU1sig@mail.gmail.com>
-Message-ID: <CAGb2v64htYr+iRUnLx0hKkqCtYa0GbzZJEvb-ViyJFAYzU1sig@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v2 5/9] drm/sun4i: tcon_top: Register
- clock gates in probe
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 3:12 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> On Mon, Jun 17, 2019 at 6:31 PM Chen-Yu Tsai <wens@csie.org> wrote:
-> >
-> > On Mon, Jun 17, 2019 at 7:45 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > On Fri, Jun 14, 2019 at 10:13:20PM +0530, Jagan Teki wrote:
-> > > > TCON TOP have clock gates for TV0, TV1, dsi and right
-> > > > now these are register during bind call.
-> > > >
-> > > > Of which, dsi clock gate would required during DPHY probe
-> > > > but same can miss to get since tcon top is not bound at
-> > > > that time.
-> > > >
-> > > > To solve, this circular dependency move the clock gate
-> > > > registration from bind to probe so-that DPHY can get the
-> > > > dsi gate clock on time.
-> > >
-> > > It's not really clear to me what the circular dependency is?
-> > >
-> > > if you have a chain that is:
-> > >
-> > > tcon-top +-> DSI
-> > >          +-> D-PHY
-> > >
-> > > There's no loop, right?
-> >
-> > Looking at how the DTSI patch structures things (without going into
-> > whether it is correct or accurate):
-> >
-> > The D-PHY is not part of the component graph. However it requests
-> > the DSI gate clock from the TCON-TOP.
-> >
-> > The TCON-TOP driver, in its current form, only registers the clocks
-> > it provides at component bind time. Thus the D-PHY can't successfully
-> > probe until the TCON-TOP has been bound.
-> >
-> > The DSI interface requires the D-PHY to bind. It will return -EPROBE_DEFER
-> > if it cannot request it. This in turn goes into the error path of
-> > component_bind_all, which unbinds all previous components.
-> >
-> > So it's actually
-> >
-> >     D-PHY -> TCON-TOP -> DSI
-> >       ^                   |
-> >       |--------------------
-> >
-> > I've not checked, but I suspect there's no possibility of having other
-> > drivers probe (to deal with deferred probing) within component_bind_all.
-> > Otherwise we shouldn't run into this weird circular dependency issue.
-> >
-> > So the question for Jagan is that is this indeed the case? Does this
-> > patch solve it, or at least work around it.
->
-> Yes, this is what I was mentioned in initial version, since the "dsi"
-> gate in tcon top is registering during bind, the dphy of dsi
-> controller won't get the associated clock for "mod" so it is keep on
-> returning -EPROBE_DEFER. By moving the clock gate registration to
-> probe, everything bound as expected.
+On Tue, 18 Jun 2019 08:14:36 +0200
+Boris Brezillon <boris.brezillon@collabora.com> wrote:
 
-I believe you failed to mention the DSI block, which is the part that
-completes the circular dependency. Don't expect others to have full
-awareness of the context. You have to provide it in your commit log.
+> > > > > > 
+> > > > > > How to make all #CS keep high for NAND to enter 
+> > > > > > low-power standby mode if driver don't use "legacy.select_chip()"     
+> > ?   
+> > > > > 
+> > > > > See commit 02b4a52604a4 ("mtd: rawnand: Make ->select_chip()     
+> > optional  
+> > > > > when ->exec_op() is implemented") which states:
+> > > > > 
+> > > > >         "When [->select_chip() is] not implemented, the core is     
+> > assuming  
+> > > > >    the CS line is automatically asserted/deasserted by the driver     
+> > > > >    ->exec_op() implementation."     
+> > > > > 
+> > > > > Of course, the above is right only when the controller driver     
+> > supports  
+> > > > > the ->exec_op() interface.     
+> > > > 
+> > > > Currently, it seems that we will get the incorrect data and error
+> > > > operation due to CS in error toggling if CS line is controlled in     
+> > > > ->exec_op().     
 
-ChenYu
+Oh, and please provide the modifications you added on top of this patch.
+Right now we're speculating on what you've done which is definitely not
+an efficient way to debug this sort of issues.
