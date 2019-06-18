@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBDE4A6D1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E52FF4A6D6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729809AbfFRQ0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 12:26:52 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:38707 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729327AbfFRQ0v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:26:51 -0400
-Received: by mail-qt1-f195.google.com with SMTP id n11so16061784qtl.5;
-        Tue, 18 Jun 2019 09:26:51 -0700 (PDT)
+        id S1729327AbfFRQ1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 12:27:13 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:36559 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729308AbfFRQ1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:27:13 -0400
+Received: by mail-lf1-f67.google.com with SMTP id q26so9799498lfc.3;
+        Tue, 18 Jun 2019 09:27:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=REVlNnHgsxxtrnRVJcK1dH+P9nh4ar/FfEMg7w0Qpd0=;
+        b=IY/Id4HO7ampe58gGhhmNuUi6Lb+7e1swZEK3Mjh55ZXpTAeppucaBOWtMDGv+6/if
+         esex+rXKkSwK/ptGmnxnm4pnm90+lSVML7jZ9IqU/MT8SbbdN5EIduZ8exjcxijWVc6g
+         rUX9dHQI2kDfNt571LNXW1Slt23WZxMXWuxmmpH9eh1BskCMMGx63sg7D1oagSEUdQQ0
+         CLh4Gh+H7mBWVqx9y9Gs6uoXpOW4o1FdcAjWFU/XsMHq2XC8QQPZ2r8vTt8dAMKMpfb1
+         QowO7JV2kCwnJhsvmIpGgRrLa9E90hD1QuoPx984H8S0dhrVRJJSddAH1UFOX1wj1VQC
+         9/pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=U4eue9QD2pPeVeT2ai/iFEEFKk30Y43OtLfqYls/35g=;
-        b=QagC7sW2bP/MUt5RWlCOg9RwanF047NS3Fxmsmc18LrlD0Sa0izH8axZtcjB30+LKa
-         hlr1db+5X7V6P5xy0HqHuMUPfZ2Kmyfswm+8a5SS5MJR9wQDfm4SrZUlC8XVxcgPgWBC
-         IaYRYYMkP6xP6lPXk/86DDK2aPpvpnyS2ehhy9fKxRw1WMEI6hpd3302+QxFCTyNqgNZ
-         TqebdJctCE1dmPe1iiRb7Fg5lHdTMKUj9eCEsUju2dgOLKMcn43XvdValwzjWaxMJdhc
-         ZXx+laY/VRDZ0gdAb1AbAlNDl/+UsD0o55tl08QF4MKXyzA0v1gmJmIH88IncqC4aqZ0
-         5GiA==
-X-Gm-Message-State: APjAAAWa5vlAmCboCFC2rE8i9bXT2q442bFCJMVI33VwMW54IQWUaMcM
-        emyb0QPYvaY5cU6U+M8kFKQomSU=
-X-Google-Smtp-Source: APXvYqzzE34RMcgJY4arI8Ax7Qc+Kv32GC1vmCbW+uqEcP5YgCl0IgU3X47Rkrvutw6NRZBCeT6n8g==
-X-Received: by 2002:aed:3e3d:: with SMTP id l58mr51774215qtf.382.1560875210544;
-        Tue, 18 Jun 2019 09:26:50 -0700 (PDT)
-Received: from localhost.localdomain ([64.188.179.192])
-        by smtp.googlemail.com with ESMTPSA id a139sm8936713qkb.48.2019.06.18.09.26.49
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 18 Jun 2019 09:26:50 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: qcom: Add missing schema for IPQ4019 boards
-Date:   Tue, 18 Jun 2019 10:26:49 -0600
-Message-Id: <20190618162649.5901-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        bh=REVlNnHgsxxtrnRVJcK1dH+P9nh4ar/FfEMg7w0Qpd0=;
+        b=saknnV2NWVhbxNu1oWDzHep3IkOfJWetKtL1ZR3AmGHX8XVlqaV6SfjpQf1IGswMyY
+         +/gvCydLQ8N50d++Fm0340qQKO5nXSoSyj13uX6tWah6Zdcx14dJP3YLGRrhDOpJVrHQ
+         FJ7ZAfq/GbYftPf3WDWVxBbiFmXnncNtGsQU6QUArttyhVfLPCboaBii/XKQ69Skoo0g
+         uj2KLaItB8RQsed4v7ycqMQZ1XxGVMzLa1ZgYbbGFUD36dQzINlsD4S6vXZ1k6B33cgj
+         6+Zep8Spo0n8NM/KtNr9n5686dFZMDDLc150KPxIuxAI8FQFlfdmwTgtag5LAOU1Skrp
+         npDQ==
+X-Gm-Message-State: APjAAAWVNv1DAgSuPIjmxpQqFTm4KP6Ydpl2JrcsRM/zqebjvmRfUQ4P
+        uRX0BVVli4hCNla2qdD42lSfnJp1
+X-Google-Smtp-Source: APXvYqyDGAL4Pm+/zw3qJcxh6hhA6+zLJOo5w840grHNTulAvDw9l1c/oqnWP4xzeHiAFIY7AhVdyQ==
+X-Received: by 2002:ac2:46d5:: with SMTP id p21mr11745258lfo.133.1560875230790;
+        Tue, 18 Jun 2019 09:27:10 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.googlemail.com with ESMTPSA id z12sm2287618lfe.2.2019.06.18.09.27.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 09:27:10 -0700 (PDT)
+Subject: Re: [PATCH v2 2/8] regulator: core: Parse max-spread value per
+ regulator couple
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190603235904.19097-1-digetx@gmail.com>
+ <20190603235904.19097-3-digetx@gmail.com>
+ <20190617152514.GY5316@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a3917cf4-6090-2c47-f8f6-c25db52662e0@gmail.com>
+Date:   Tue, 18 Jun 2019 19:27:09 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
+In-Reply-To: <20190617152514.GY5316@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The board bindings for IPQ4019 are undocumented. Add the missing bindings
-to the schema.
+17.06.2019 18:25, Mark Brown пишет:
+> On Tue, Jun 04, 2019 at 02:58:58AM +0300, Dmitry Osipenko wrote:
+> 
+>> +#include <linux/regulator/driver.h>
+>>  #include <linux/regulator/consumer.h>
+>>  #include <linux/suspend.h>
+>>  
+>> @@ -156,7 +157,7 @@ struct regulation_constraints {
+>>  	int system_load;
+>>  
+>>  	/* used for coupled regulators */
+>> -	int max_spread;
+>> +	int max_spread[MAX_COUPLED];
+> 
+> I'd rather move MAX_COUPLED into a separate header than include driver.h
+> so we've got a bit more compile time sepration.
+> 
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: David Brown <david.brown@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Note that this doesn't match the dts files as they don't use both 
-compatible strings, just the board string. They need to be fixed.
-
- Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 04867577306a..54ef6b6b9189 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -119,6 +119,11 @@ properties:
-           - const: qcom,msm8996-mtp
- 
-       - items:
-+          - enum:
-+              - qcom,ipq4019-ap-dk04.1-c3
-+              - qcom,ipq4019-ap-dk07.1-c1
-+              - qcom,ipq4019-ap-dk07.1-c2
-+              - qcom,ipq4019-dk04.1-c1
-           - const: qcom,ipq4019
- 
-       - items:
--- 
-2.20.1
-
+I'll address this in the next revision.
