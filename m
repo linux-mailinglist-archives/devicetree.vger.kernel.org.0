@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A0074A7F6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 19:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC0394A824
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 19:19:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729209AbfFRRO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 13:14:58 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:56688 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728572AbfFRRO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 13:14:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=AdqmnS+jSpXufXG/3VyMe7oXq2Nu3sE27Csk/wuPMmo=; b=vzHqAUcrGvyva+Zzs0Ak9hl0Q
-        BNC3mnAzNrkLx7pN8lWManuEj9IIkjgOla9PZEROf99WTOwnQp2LUzqJkH+8aReTf8A4nD9nTd/PY
-        TP7X+SCxKsD66mx7O/iWWTBbR9KW0Elo/ZyczZ+/Ntht/hRi+kCnqULszXYpz1MzwJGRY=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hdHh8-0005Fb-Am; Tue, 18 Jun 2019 17:14:54 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id B1519440046; Tue, 18 Jun 2019 18:14:53 +0100 (BST)
-Date:   Tue, 18 Jun 2019 18:14:53 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
+        id S1729455AbfFRRTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 13:19:09 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:37015 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728572AbfFRRTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 13:19:09 -0400
+Received: by mail-lf1-f68.google.com with SMTP id d11so9911106lfb.4;
+        Tue, 18 Jun 2019 10:19:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=FtHDj9Tfcen/+u/bZK7GRRsh71fKJ+0OXIcYDtNSl6s=;
+        b=gzC4HxOLPhizo5fmOnj3WKbpXxtLUwhx0SLOGzL3XIfIc+Cu0JzMbgpJMAdbbZ7uXP
+         beZl2uyuctH6nvT+fRMHx1CxTEmISEyCIxpoKAzvK4iUIXDOlGNTwBVbycdXWFicy1eq
+         739hygZNBTEJIg7XMn+yDmnNlnqfWX4cxyA7jz0autdYa/kh50ow2KggJqSqVPUCcFA0
+         NpM6702A9WqVJfCsl72iu0VtnB3zWyp32t4R4I4NgAtfe93oMpNVD/JwrQRe+6cIazx/
+         Mc0fuTZvwiVL5ynmn1X8CX03Z28wxkVuXpRldpQF+IIE8KtB9nxJyce4B9mLLGT3IBtO
+         RP7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FtHDj9Tfcen/+u/bZK7GRRsh71fKJ+0OXIcYDtNSl6s=;
+        b=PhMBHALYzHGTFRUcVuQMtwoV0HmjFugXN2TAhgG4VvTSEIZSlD8eTaSHCcSZ3PVi7h
+         nPyawsukcVKfYPA7YauX7cv1PbcRA4m7gYDVvLuISvH/AWgu1Eo+uFhs3eTYybLM8mea
+         tNxFSh2YEmGxADGJNgx+sC8PBHoOvyCQpuH7LQsn9YVTzgnrTB1zJMzkBUfzKxk436m5
+         /k9L1m5RHounv+wLwJ3V8KYZccrqx3e3AKaOuOGdJ+9t8KIS8epKfKLxaVKCXRPBAZ8B
+         CrD4ZNeCpSLBYhU5t/9aWaG1s/AktaJBEBLxYTwdZZ2Xc3INRFCfG/5asUd5Xb+GTn3U
+         Ay1Q==
+X-Gm-Message-State: APjAAAX1WZffdjr1c0pyivMnvlFwgnOtL6Kqtc7nAwJy17pn1gTabEqc
+        aSgCjnGZbu/xUVckoWJ/eqtdzj8x
+X-Google-Smtp-Source: APXvYqwBvTr5CNyY7fy4r40iUI1XUZv1qTlgGyNEdwQU4eqRPLmyGGPIAKeOFd1PtHBbKFmCo35zew==
+X-Received: by 2002:ac2:5212:: with SMTP id a18mr52325935lfl.50.1560878346452;
+        Tue, 18 Jun 2019 10:19:06 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.googlemail.com with ESMTPSA id e12sm2274715lfb.66.2019.06.18.10.19.05
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 10:19:05 -0700 (PDT)
+Subject: Re: [PATCH v2 7/8] soc/tegra: regulators: Add regulators coupler for
+ Tegra20
+To:     Mark Brown <broonie@kernel.org>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Jonathan Hunter <jonathanh@nvidia.com>,
         Peter De Schrijver <pdeschrijver@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] soc/tegra: regulators: Add regulators coupler for
- Tegra20
-Message-ID: <20190618171453.GO5316@sirena.org.uk>
 References: <20190603235904.19097-1-digetx@gmail.com>
  <20190603235904.19097-8-digetx@gmail.com>
  <20190617154632.GB5316@sirena.org.uk>
  <2308e5da-a8fd-a0e6-f98c-0931a30baf14@gmail.com>
+ <20190618171453.GO5316@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <bb84db4c-4d11-3199-ce96-3cd7c70ba911@gmail.com>
+Date:   Tue, 18 Jun 2019 20:19:05 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="e890kymSckUvwzhr"
-Content-Disposition: inline
-In-Reply-To: <2308e5da-a8fd-a0e6-f98c-0931a30baf14@gmail.com>
-X-Cookie: Editing is a rewording activity.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190618171453.GO5316@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+18.06.2019 20:14, Mark Brown пишет:
+> On Tue, Jun 18, 2019 at 07:52:06PM +0300, Dmitry Osipenko wrote:
+>> 17.06.2019 18:46, Mark Brown пишет:
+> 
+>>>> +// SPDX-License-Identifier: GPL-2.0+
+>>>> +/*
+>>>> + * Voltage regulators coupling resolver for NVIDIA Tegra20
+>>>> + *
+>>>> + * Copyright (C) 2019 GRATE-DRIVER project
+> 
+>>> Please make the entire comment a C++ one so things look more
+>>> intentional.
+> 
+>> This is actually a correct SPDX comment style for the source files, accordingly to
+>> checkpatch. While the C++ style should be used for header files only. I'm not
+>> following the SPDX effort much, don't know from where these SPDX-style rules are
+>> coming from.
+> 
+> The SPDX bit is fine, what I'm saying is make the rest of the comment
+> also be a C++ comment.
+> 
 
---e890kymSckUvwzhr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jun 18, 2019 at 07:52:06PM +0300, Dmitry Osipenko wrote:
-> 17.06.2019 18:46, Mark Brown =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-
-> >> +// SPDX-License-Identifier: GPL-2.0+
-> >> +/*
-> >> + * Voltage regulators coupling resolver for NVIDIA Tegra20
-> >> + *
-> >> + * Copyright (C) 2019 GRATE-DRIVER project
-
-> > Please make the entire comment a C++ one so things look more
-> > intentional.
-
-> This is actually a correct SPDX comment style for the source files, accor=
-dingly to
-> checkpatch. While the C++ style should be used for header files only. I'm=
- not
-> following the SPDX effort much, don't know from where these SPDX-style ru=
-les are
-> coming from.
-
-The SPDX bit is fine, what I'm saying is make the rest of the comment
-also be a C++ comment.
-
---e890kymSckUvwzhr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0JHAwACgkQJNaLcl1U
-h9Adkgf7BRUN7vDJiY8PukrNZjKDCtqOwtshsNBH1cFOzUQKpciz9amzrYfVfsc/
-6ov8uf5yZSf9hI5bDdTc50dUt0/OgO9GzicotrEEFigksUYoiXRGdSxw3KdbUZt/
-oUlj1kMfYyPuMJAlfjhUENenMFLjdy+cVMh3eLInBpAgb05vqVA5iVQe7TIhhEoG
-SnEYnQhnoYhlfWW5QedRHVJqT2Q2plD1D1etkNDJ8mLnkthpp41qltl3CCWQB7Du
-8PyUAEdj2c2ghozukM/G462I9un6VMh+umO3j49Ub9bhc/aZMI0XE1v/y+G7EI3G
-R02wzbvVGiTHnJxbj4Tpf/W4wwFAdQ==
-=Dc/q
------END PGP SIGNATURE-----
-
---e890kymSckUvwzhr--
+Ah, I just realized that the "// " is the C++ comment style and not C. I can turn it
+all into the C++, no problems.
