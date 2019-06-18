@@ -2,91 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9754973A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 04:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A9AA4975B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 04:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726047AbfFRCCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 22:02:02 -0400
-Received: from onstation.org ([52.200.56.107]:59492 "EHLO onstation.org"
+        id S1727105AbfFRCQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jun 2019 22:16:58 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:37808 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725829AbfFRCCC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jun 2019 22:02:02 -0400
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 0C3023E916;
-        Tue, 18 Jun 2019 02:02:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1560823321;
-        bh=JAWG9OebQfPvktQPpG6CYIPS1YvD0jFqxngPc+1oXh0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=juvZIEO1ymL2g7Jtys0xxTB1t19QT09rup43fCpXdYFr6bCbyJBitiaIrSHNDk8wR
-         CUzBw6eaEuGGrDDOPMGa2ye3ldmqNo69eYto/gQn+jYwizJuYyjjHIcmZcnhYOOUCn
-         zovvDMmI33/DtSu/zaNekWu9n62mDeu56yeiwzlg=
-Date:   Mon, 17 Jun 2019 22:02:00 -0400
-From:   Brian Masney <masneyb@onstation.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>, robdclark@gmail.com
-Cc:     agross@kernel.org, david.brown@linaro.org, sean@poorly.run,
-        robh+dt@kernel.org, airlied@linux.ie, daniel@ffwll.ch,
-        mark.rutland@arm.com, jonathan@marek.ca,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/6] soc: qcom: add OCMEM driver
-Message-ID: <20190618020200.GB22330@onstation.org>
-References: <20190616132930.6942-1-masneyb@onstation.org>
- <20190616132930.6942-6-masneyb@onstation.org>
- <20190616174106.GO22737@tuxbook-pro>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190616174106.GO22737@tuxbook-pro>
+        id S1726047AbfFRCQ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jun 2019 22:16:57 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CAC3D1A0DD0;
+        Tue, 18 Jun 2019 04:16:55 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 342261A001B;
+        Tue, 18 Jun 2019 04:16:40 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 66FB9402A0;
+        Tue, 18 Jun 2019 10:16:26 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, corbet@lwn.net,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, catalin.marinas@arm.com, will.deacon@arm.com,
+        rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, aisheng.dong@nxp.com,
+        ulf.hansson@linaro.org, peng.fan@nxp.com,
+        mchehab+samsung@kernel.org, linux@roeck-us.net,
+        daniel.baluta@nxp.com, maxime.ripard@bootlin.com,
+        horms+renesas@verge.net.au, olof@lixom.net,
+        jagan@amarulasolutions.com, bjorn.andersson@linaro.org,
+        leonard.crestez@nxp.com, dinguyen@kernel.org,
+        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V15 1/5] dt-bindings: fsl: scu: add thermal binding
+Date:   Tue, 18 Jun 2019 10:18:16 +0800
+Message-Id: <20190618021820.14885-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob Clark,
+From: Anson Huang <Anson.Huang@nxp.com>
 
-On Sun, Jun 16, 2019 at 10:41:06AM -0700, Bjorn Andersson wrote:
-> > diff --git a/drivers/soc/qcom/ocmem.xml.h b/drivers/soc/qcom/ocmem.xml.h
-> 
-> I would prefer that these lived at the top of the c file, rather than
-> being generated.
+NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
+system controller, the system controller is in charge of system
+power, clock and thermal sensors etc. management, Linux kernel
+has to communicate with system controller via MU (message unit)
+IPC to get temperature from thermal sensors, this patch adds
+binding doc for i.MX system controller thermal driver.
 
-I think it would be nice to make this change as well.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+---
+No change.
+---
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt        | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Rob C: Your original file ocmem.xml.h was licensed under the MIT
-license. I just wanted confirmation from you that it's OK to put
-the contents of that file into ocmem.c which has the GPL 2.0 only
-SPDX license tag. This will relicense the work. I imagine it's not
-an issue but I just wanted to get confirmation so there is no
-ambiguity regarding the licensing in the future.
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index a575e42..fc3844e 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -155,6 +155,17 @@ Required properties:
+ Optional properties:
+ - timeout-sec: contains the watchdog timeout in seconds.
+ 
++Thermal bindings based on SCU Message Protocol
++------------------------------------------------------------
++
++Required properties:
++- compatible:			Should be :
++				  "fsl,imx8qxp-sc-thermal"
++				followed by "fsl,imx-sc-thermal";
++
++- #thermal-sensor-cells:	See Documentation/devicetree/bindings/thermal/thermal.txt
++				for a description.
++
+ Example (imx8qxp):
+ -------------
+ aliases {
+@@ -222,6 +233,11 @@ firmware {
+ 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
+ 			timeout-sec = <60>;
+ 		};
++
++		tsens: thermal-sensor {
++			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
++			#thermal-sensor-cells = <1>;
++		};
+ 	};
+ };
+ 
+-- 
+2.7.4
 
-Brian
-
-
-> 
-> > new file mode 100644
-> > index 000000000000..b4bfb85d1e33
-> > --- /dev/null
-> > +++ b/drivers/soc/qcom/ocmem.xml.h
-> > @@ -0,0 +1,86 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +
-> > +#ifndef OCMEM_XML
-> > +#define OCMEM_XML
-> > +
-> > +/* Autogenerated file, DO NOT EDIT manually!
-> > +
-> > +This file was generated by the rules-ng-ng headergen tool in this git repository:
-> > +http://github.com/freedreno/envytools/
-> > +git clone https://github.com/freedreno/envytools.git
-> > +
-> > +The rules-ng-ng source files this header was generated from are:
-> > +- /home/robclark/src/freedreno/envytools/rnndb/adreno/ocmem.xml         (   1773 bytes, from 2015-09-24 17:30:00)
-> > +
-> > +Copyright (C) 2013-2015 by the following authors:
-> > +- Rob Clark <robdclark@gmail.com> (robclark)
-> > +*/
