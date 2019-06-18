@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D381849AD1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6906949AD3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbfFRHlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:41:55 -0400
-Received: from mail-wm1-f98.google.com ([209.85.128.98]:52462 "EHLO
-        mail-wm1-f98.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726023AbfFRHlz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:41:55 -0400
-Received: by mail-wm1-f98.google.com with SMTP id s3so2035280wms.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:41:54 -0700 (PDT)
+        id S1729045AbfFRHl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:41:57 -0400
+Received: from mail-wr1-f99.google.com ([209.85.221.99]:35348 "EHLO
+        mail-wr1-f99.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728889AbfFRHl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:41:56 -0400
+Received: by mail-wr1-f99.google.com with SMTP id m3so12767986wrv.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:41:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=okoko.fi; s=okoko;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=uaCCOwT6FdYmvMhllu/QeWwGRVseqHgvjzdBnHOd69M=;
-        b=Pfg9Ih+86S3Xtc3Q3MbPoD1yKZf5q9ftjSxkHMFON5uo0EZlqN43AwurFcKUty7P9w
-         oKJWvmQbND30gnRuRugdhgCYJVX/nNysALrdP7FDYbwlnWxdlrXHQFhWpS0P1sFwUorl
-         LQkN+f3DEabIIVpNYWzasblfkpToaGaIedkas=
+        bh=0PrSR+jN+SJngU5g9VL57RLfBmPfgfrprow1ZhWuEaU=;
+        b=XbZMhCy9PwEALPH0NPGJdcZHF9zS0XOpOR8x3PSFQlEjCQ6Gz4bo2b0Z/DVboYMNYL
+         bawh0DCI+ryYkeLPaXzxB8PkLFsPGYTd04hm54Pli6Hu9JocehoOAo5PJihEnCP9lOXk
+         FkcVPkHXMltxhZ2+oh+mgoHbT57SZMkX/prR0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=uaCCOwT6FdYmvMhllu/QeWwGRVseqHgvjzdBnHOd69M=;
-        b=tIK875cGuXsCO0cc/PgUGlCxCOfmDK6l7A0RV7yHO1c7y4+9rZRvO2LXwkT+G6tTXE
-         ZMpquqixO6+lSK1BCe7w61J3buLf8AcDaYzr7PfqtBWAw2wH0JQ+ecB02hxwTIIhKjpf
-         a3n1v+BN7kbB2DtxwCEMSSI23z9S7mQd1bs+4+FdDfr5bBF1Sojas0ukuStuWeLZScBo
-         dWPAFZlIoPUUaWSJ+8VWmxPzp4aC3JRaVAZdMDZPeiua2vhIkmVIfXI9m1nWVkQf0otR
-         xo9HKXRMEucJyVrM0pn/NtOVu3ndvoE1bYp+Rq7w/wzG29iVPAdl/nK/8LEGKuPlqqN6
-         tE3g==
-X-Gm-Message-State: APjAAAUDwxO89i18szsVj7zuhNRB8ZJDnK0/vlcTgc6qa4+c+ijQJqtz
-        SP9Lp9ZiZ8uVmeL2PeSAJOwHVsQylANNAalD/8ARfkuRlWtG/w==
-X-Google-Smtp-Source: APXvYqwVYysIgOjHK+Kva6RmxGWI0gn5iUhuZshGHTaWhSUakRHcy5t1o7CtKGKWq2sYfpNRq6WDuIHsIVt2
-X-Received: by 2002:a1c:448b:: with SMTP id r133mr2204309wma.114.1560843713987;
-        Tue, 18 Jun 2019 00:41:53 -0700 (PDT)
+        bh=0PrSR+jN+SJngU5g9VL57RLfBmPfgfrprow1ZhWuEaU=;
+        b=h9U2J+DzwXBVKJE9B2GCDFUycR0qJBs5yEthtsg6vk02vuyzY1TU4+ejTOAO3pEwO+
+         yA4yQrM2UIjPEmuL6vPAws5cK8I1W0hOfvAgT4NxnbMFTzRNlcWb04OJKDbfMLUom+zY
+         vs9h8mzshv2vALIzpsOpW7RFAZg1sNllI8zunGVXIv7iJhqzdAGWWfBqJ9XGLqoprbz3
+         8n3WysfEvuCwbffB6IbiI8db+RTdrjzg9kV7KbwpIOY6ZFb1dveBbicP4Ri0io1S89rr
+         FV7/4u7/F6bEp6NjaLrIWryNIsRrEbCaF9ilnXkL9ybWILRgAU/FGkirvLaizxgvMFiU
+         HgEA==
+X-Gm-Message-State: APjAAAWXyEbOlhoawmHfI6aJh26ucx5ruEjNXNnkqqY5e6OfjRxYLgcD
+        dVNFkOaK3elJykQ4ECOa/ierN1rIWGUFn1yPw1uLzSjcsLL1Rg==
+X-Google-Smtp-Source: APXvYqzLg7eWFSh4aDeAY+p0mLGpxFDGnAoM7uLRTr9Z17I85OAZshKEtrRGTEUMuiUDdNcm1goZ80zuNSHH
+X-Received: by 2002:a5d:5702:: with SMTP id a2mr37285683wrv.89.1560843714771;
+        Tue, 18 Jun 2019 00:41:54 -0700 (PDT)
 Received: from localhost.localdomain (46-163-209-30.blcnet.fi. [46.163.209.30])
-        by smtp-relay.gmail.com with ESMTPS id l18sm212063wrn.66.2019.06.18.00.41.53
+        by smtp-relay.gmail.com with ESMTPS id l18sm212063wrn.66.2019.06.18.00.41.54
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 18 Jun 2019 00:41:53 -0700 (PDT)
+        Tue, 18 Jun 2019 00:41:54 -0700 (PDT)
 X-Relaying-Domain: okoko.fi
 From:   Marko Kohtala <marko.kohtala@okoko.fi>
 To:     linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org,
@@ -51,9 +51,9 @@ Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
         David Airlie <airlied@linux.ie>,
         =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
         Marko Kohtala <marko.kohtala@okoko.fi>
-Subject: [PATCH 4/6] video: ssd1307fb: Handle width and height that are not multiple of 8
-Date:   Tue, 18 Jun 2019 10:41:09 +0300
-Message-Id: <20190618074111.9309-5-marko.kohtala@okoko.fi>
+Subject: [PATCH 5/6] dt-bindings: display: ssd1307fb: Add initialization properties
+Date:   Tue, 18 Jun 2019 10:41:10 +0300
+Message-Id: <20190618074111.9309-6-marko.kohtala@okoko.fi>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190618074111.9309-1-marko.kohtala@okoko.fi>
 References: <20190618074111.9309-1-marko.kohtala@okoko.fi>
@@ -62,102 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some displays have dimensions that are not multiple of eight, for example
-height of 36, but the driver divided the dimensions by 8. Defining display
-to the next multiple of 8 is not good as then the display registers get
-configured to dimensions that do not match. This contradicts intructions
-by some display manufacturers.
-
-Use DIV_ROUND_UP to multiple of 8 when needed so correct values can be
-used.
-
-The ssd1307fb_update_display bit reordering receives a simplification in
-the process.
+Document new bindings for adapting ssd1307fb driver to new displays.
 
 Signed-off-by: Marko Kohtala <marko.kohtala@okoko.fi>
 ---
- drivers/video/fbdev/ssd1307fb.c | 30 +++++++++++++++++-------------
- 1 file changed, 17 insertions(+), 13 deletions(-)
+ .../devicetree/bindings/display/ssd1307fb.txt          | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/video/fbdev/ssd1307fb.c b/drivers/video/fbdev/ssd1307fb.c
-index 86f2b79f3ed5..4f4a1b99d17d 100644
---- a/drivers/video/fbdev/ssd1307fb.c
-+++ b/drivers/video/fbdev/ssd1307fb.c
-@@ -151,10 +151,11 @@ static void ssd1307fb_update_display(struct ssd1307fb_par *par)
- {
- 	struct ssd1307fb_array *array;
- 	u8 *vmem = par->info->screen_buffer;
-+	unsigned int line_length = par->info->fix.line_length;
-+	unsigned int pages = DIV_ROUND_UP(par->height, 8);
- 	int i, j, k;
+diff --git a/Documentation/devicetree/bindings/display/ssd1307fb.txt b/Documentation/devicetree/bindings/display/ssd1307fb.txt
+index b67f8caa212c..27333b9551b3 100644
+--- a/Documentation/devicetree/bindings/display/ssd1307fb.txt
++++ b/Documentation/devicetree/bindings/display/ssd1307fb.txt
+@@ -27,6 +27,15 @@ Optional properties:
+   - solomon,prechargep2: Length of precharge period (phase 2) in clock cycles.
+                          This needs to be the higher, the higher the capacitance
+                          of the OLED's pixels is
++  - solomon,dclk-div: Clock divisor 1 to 16
++  - solomon,dclk-frq: Clock frequency 0 to 15, higher value means higher
++                      frequency
++  - solomon,lookup-table: 8 bit value array of current drive pulse widths for
++                          BANK0, and colors A, B, and C. Each value in range
++                          of 31 to 63 for pulse widths of 32 to 64. Color D
++                          is always width 64.
++  - solomon,area-color-enable: Display uses color mode
++  - solomon,low-power. Display runs in low power mode
  
--	array = ssd1307fb_alloc_array(par->width * par->height / 8,
--				      SSD1307FB_DATA);
-+	array = ssd1307fb_alloc_array(par->width * pages, SSD1307FB_DATA);
- 	if (!array)
- 		return;
+ [0]: Documentation/devicetree/bindings/pwm/pwm.txt
  
-@@ -187,22 +188,24 @@ static void ssd1307fb_update_display(struct ssd1307fb_par *par)
- 	 *  (5) A4 B4 C4 D4 E4 F4 G4 H4
- 	 */
- 
--	for (i = 0; i < (par->height / 8); i++) {
-+	for (i = 0; i < pages; i++) {
- 		for (j = 0; j < par->width; j++) {
-+			int m = 8;
- 			u32 array_idx = i * par->width + j;
- 			array->data[array_idx] = 0;
--			for (k = 0; k < 8; k++) {
--				u32 page_length = par->width * i;
--				u32 index = page_length + (par->width * k + j) / 8;
--				u8 byte = *(vmem + index);
--				u8 bit = byte & (1 << (j % 8));
--				bit = bit >> (j % 8);
-+			/* Last page may be partial */
-+			if (i + 1 == pages && par->height % 8)
-+				m = par->height % 8;
-+			for (k = 0; k < m; k++) {
-+				u8 byte = vmem[(8 * i + k) * line_length +
-+					       j / 8];
-+				u8 bit = (byte >> (j % 8)) & 1;
- 				array->data[array_idx] |= bit << k;
- 			}
- 		}
- 	}
- 
--	ssd1307fb_write_array(par->client, array, par->width * par->height / 8);
-+	ssd1307fb_write_array(par->client, array, par->width * pages);
- 	kfree(array);
- }
- 
-@@ -438,7 +441,8 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
- 		return ret;
- 
- 	ret = ssd1307fb_write_cmd(par->client,
--				  par->page_offset + (par->height / 8) - 1);
-+				  par->page_offset +
-+				  DIV_ROUND_UP(par->height, 8) - 1);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -618,7 +622,7 @@ static int ssd1307fb_probe(struct i2c_client *client,
- 	par->dclk_div = par->device_info->default_dclk_div;
- 	par->dclk_frq = par->device_info->default_dclk_frq;
- 
--	vmem_size = par->width * par->height / 8;
-+	vmem_size = DIV_ROUND_UP(par->width, 8) * par->height;
- 
- 	vmem = (void *)__get_free_pages(GFP_KERNEL | __GFP_ZERO,
- 					get_order(vmem_size));
-@@ -641,7 +645,7 @@ static int ssd1307fb_probe(struct i2c_client *client,
- 
- 	info->fbops = &ssd1307fb_ops;
- 	info->fix = ssd1307fb_fix;
--	info->fix.line_length = par->width / 8;
-+	info->fix.line_length = DIV_ROUND_UP(par->width, 8);
- 	info->fbdefio = ssd1307fb_defio;
- 
- 	info->var = ssd1307fb_var;
+@@ -46,4 +55,5 @@ ssd1306: oled@3c {
+         solomon,com-lrremap;
+         solomon,com-invdir;
+         solomon,com-offset = <32>;
++        solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
+ };
 -- 
 2.17.1
 
