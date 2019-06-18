@@ -2,119 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 764F3497C5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 05:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B02497E9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 06:04:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726215AbfFRD0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jun 2019 23:26:18 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:44744 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725829AbfFRD0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jun 2019 23:26:18 -0400
-Received: by mail-ed1-f68.google.com with SMTP id k8so19311392edr.11
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 20:26:17 -0700 (PDT)
+        id S1726181AbfFREEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 00:04:40 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:45178 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726158AbfFREEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 00:04:40 -0400
+Received: by mail-lj1-f196.google.com with SMTP id m23so11524999lje.12
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 21:04:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=QB8lwnfAWM5eSh/acU+B5HKYIehkA7mV7O4FwPzcexo=;
-        b=ULNdvw8+tq8QeUnFaQePLqg1iryaaYp/aWw9fGLemPYhJkDQ2H5XhjVIbUsBgZd64F
-         61o+JYMVnvgUgyC2GM30u6jjijf/A+ftp23F81RdhJ6D/jXzJERTFZQtARcBDdkleqUm
-         eSS18Q1TKM1uvznC79K30CCQx89bqEa2ol9lykGFnO2MgthvqOpwwdQlIaF9soPy+4eF
-         JjRf8fu6RYvl3V91iXvxVZWnUOBsUx2Y413J/6USyWI3DJBU5uVxOTO3zdofWGkN+zPM
-         NZTnFSpl1IBQtE31RIDo+sedqJJ1JRgx6wCpeaKFcOVy9par13mVHGq1nrg8fik0S7v6
-         NqCw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sJLmkVwnPans9/iuFpcwnbTM7EUsIIBXDTl8TGQaxjk=;
+        b=fNNVvfjLstujPCDm6U22v9kUb8V+ystPZzxjPsEpjTbMtRt6UZtFM3QfkWDyzAQMIW
+         E6KfxvJkYCAiMigfxeNfkJbvlgJdvzEEfyDNXcSQ4hGpsd9Yv0PN3VCeG9Syybma3zAA
+         YweVCf2jDX7KE7OToEgZ3Hm86et1Zzc1wT1rS2GKgDnXDs7wUV3rbSDjUKshW4DDBFiv
+         WiW8rczljYaGap+qcx/bFr34QWpznmS62Lv9HHybuJDuuqKHqJD4Khp833m98/pUJhJR
+         z/Wi3GOSjsiZFAWusKz/vCsNsKbGzD11ktzwf/VoHCT35CeFpX/vlTnPTD2hFmBTUNJt
+         WypA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=QB8lwnfAWM5eSh/acU+B5HKYIehkA7mV7O4FwPzcexo=;
-        b=QVBphFLOQKc7uGNOfWiPNJMUZNmLFpviLppJsc2EJVxuSeyOTInpn8KuAg4mVt1UFn
-         SsPZSuVsWmE7DBKJE+uLI/n6ZWCnWRZV/Ww4ZsoGLPplppL0Zo3jmjLnJTdVEabQb1tN
-         KrESGQv9m/mZmi7UtAU59EQ8QydsgBBE+9HxAPWqGiCSHy/80oDf4AcnJ99fgrKPuICz
-         wNmHzi+olf/V6CE6DeEjYs3cIT3zfYwAMPZj1BP2gbuvTdTvmIDQsfo6SEtqJenA6Q14
-         ToNO6GPOl1CPP/5LLgXuC0kDYw0xckzWpkgA57MvCMtaseCqFTPlM9dEszpBOza9pGEM
-         5q9Q==
-X-Gm-Message-State: APjAAAXdYvvScfFLBJjHy7GgjN5/ggmOdL27TIkQiGRm6crNfpvVAK4p
-        hjXfOj+SZi3HDtHuZ/Z2aYUEQg==
-X-Google-Smtp-Source: APXvYqxL2/de9bApOM2UVDgl9BgIS/9w1EYyRUg0PCwWi1lKmzkg9zrpNro5VMkplRIqrlo+htLQGA==
-X-Received: by 2002:a50:b962:: with SMTP id m89mr58857595ede.104.1560828376089;
-        Mon, 17 Jun 2019 20:26:16 -0700 (PDT)
-Received: from localhost ([81.92.102.43])
-        by smtp.gmail.com with ESMTPSA id d1sm1800559ejc.72.2019.06.17.20.26.15
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 17 Jun 2019 20:26:15 -0700 (PDT)
-Date:   Mon, 17 Jun 2019 20:26:14 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Alistair Francis <Alistair.Francis@wdc.com>
-cc:     "troy.benjegerdes@sifive.com" <troy.benjegerdes@sifive.com>,
-        "jamez@wit.com" <jamez@wit.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "schwab@suse.de" <schwab@suse.de>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "sachin.ghadi@sifive.com" <sachin.ghadi@sifive.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "ynezz@true.cz" <ynezz@true.cz>,
-        "palmer@sifive.com" <palmer@sifive.com>,
-        "yash.shah@sifive.com" <yash.shah@sifive.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
-In-Reply-To: <d2836a90b92f3522a398d57ab8555d08956a0d1f.camel@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1906172019040.15057@viisi.sifive.com>
-References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>  <mvmtvco62k9.fsf@suse.de>  <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com>  <mvmpnnc5y49.fsf@suse.de>  <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com> 
- <mvmh88o5xi5.fsf@suse.de>  <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>  <F48A4F7F-0B0D-4191-91AD-DC51686D1E78@sifive.com> <d2836a90b92f3522a398d57ab8555d08956a0d1f.camel@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sJLmkVwnPans9/iuFpcwnbTM7EUsIIBXDTl8TGQaxjk=;
+        b=HgldA14RQOQX1uJ0VtGTWdqt70u/Y6YXSsYrdn3hPDWqmpgVA70doUXYDbbx6rZ+WJ
+         c1FaeROKlx+nI5TQhC91EfKzVqNAhpR3OZgzIbqv8MdPPcF9puVvpebK7sckCelhu2yS
+         yGKjjQ+hwKLB+DLZKYebZ39sl5iVs6ok0JO/HCoFMPVvCTQ0SR5Wlltv9hFlAdtpT1bM
+         vt2/vxybPtIr6Y+hwfdp47QKQamwFx9t9Xf8hiRsKY3LnSbIwbW26rVPHreQmWCWlFfW
+         mSrpfBPMvmnu3lskPnqOareLQBss5L8zGKB2DMmogVkWeBSnstTLvCqG0LhpwCkGnjM2
+         ZrnQ==
+X-Gm-Message-State: APjAAAW3MN4XFP3f76irC399vr/RIdOsNs/GpGlI8sDvAYr+ZzLMvEbq
+        1ztf5d3wNhbCNpbL4SntMxTPqh8qtbKmvC6U7WgRuw==
+X-Google-Smtp-Source: APXvYqzHxAVSyFWFoE5KWadzgd5NrlnSBkdcYDfnoz898BtjOkb8yWEu0/Ss3PN8knMcABE84pxCcZt3rdAD2rwB66w=
+X-Received: by 2002:a2e:b047:: with SMTP id d7mr13909677ljl.8.1560830679001;
+ Mon, 17 Jun 2019 21:04:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1540646092-1560828374=:15057"
+References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
+ <1560745167-9866-3-git-send-email-yash.shah@sifive.com> <20190617155834.GK25211@lunn.ch>
+In-Reply-To: <20190617155834.GK25211@lunn.ch>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Tue, 18 Jun 2019 09:34:02 +0530
+Message-ID: <CAJ2_jOEm1+HFewpvq6fdoHaTtghpnxkkz9LWTz3-xWJAtYp8-g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] macb: Add support for SiFive FU540-C000
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     David Miller <davem@davemloft.net>, devicetree@vger.kernel.org,
+        netdev <netdev@vger.kernel.org>, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        =?UTF-8?Q?Petr_=C5=A0tetiar?= <ynezz@true.cz>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Mon, Jun 17, 2019 at 9:28 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Jun 17, 2019 at 09:49:27AM +0530, Yash Shah wrote:
+...
+> >  static const struct macb_config at91sam9260_config = {
+> >       .caps = MACB_CAPS_USRIO_HAS_CLKEN | MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII,
+> >       .clk_init = macb_clk_init,
+> > @@ -3992,6 +4112,9 @@ static int at91ether_init(struct platform_device *pdev)
+> >       { .compatible = "cdns,emac", .data = &emac_config },
+> >       { .compatible = "cdns,zynqmp-gem", .data = &zynqmp_config},
+> >       { .compatible = "cdns,zynq-gem", .data = &zynq_config },
+> > +#ifdef CONFIG_MACB_SIFIVE_FU540
+> > +     { .compatible = "sifive,fu540-macb", .data = &fu540_c000_config },
+> > +#endif
+>
+> This #ifdef should not be needed.
+>
+> >       { /* sentinel */ }
+> >  };
+> >  MODULE_DEVICE_TABLE(of, macb_dt_ids);
+> > @@ -4199,6 +4322,9 @@ static int macb_probe(struct platform_device *pdev)
+> >
+> >  err_disable_clocks:
+> >       clk_disable_unprepare(tx_clk);
+> > +#ifdef CONFIG_MACB_SIFIVE_FU540
+> > +     clk_unregister(tx_clk);
+> > +#endif
+>
+> So long as tx_clk is NULL, you can call clk_unregister(). So please
+> remove the #ifdef.
+>
+>
+> >       clk_disable_unprepare(hclk);
+> >       clk_disable_unprepare(pclk);
+> >       clk_disable_unprepare(rx_clk);
+> > @@ -4233,6 +4359,9 @@ static int macb_remove(struct platform_device *pdev)
+> >               pm_runtime_dont_use_autosuspend(&pdev->dev);
+> >               if (!pm_runtime_suspended(&pdev->dev)) {
+> >                       clk_disable_unprepare(bp->tx_clk);
+> > +#ifdef CONFIG_MACB_SIFIVE_FU540
+> > +                     clk_unregister(bp->tx_clk);
+> > +#endif
+>
+> Same here.
+>
+> In general try to avoid #ifdef in C code.
 
---8323329-1540646092-1560828374=:15057
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Will remove all the #ifdef in v3.
+Thanks for your comments.
 
-On Mon, 17 Jun 2019, Alistair Francis wrote:
-
-> > The legacy M-mode U-boot handles the phy reset already, and I=E2=80=99v=
-e been
-> > able to load upstream S-mode uboot as a payload via TFTP, and then=20
-> > load and boot a 4.19 kernel.=20
-> >=20
-> > It would be nice to get this all working with 5.x, however there are
-> > still
-> > several missing pieces to really have it work well.
->=20
-> Let me know what is still missing/doesn't work and I can add it. At the
-> moment the only known issue I know of is a missing SD card driver in U-
-> Boot.
-
-The DT data has changed between the non-upstream data that people=20
-developed against previously, vs. the DT data that just went upstream=20
-here:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D72296bde4f4207566872ee355950a59cbc29f852
-
-and
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3Dc35f1b87fc595807ff15d2834d241f9771497205
-
-So Upstream U-Boot is going to need several patches to get things working=
-=20
-again.  Clock identifiers and Ethernet are two known areas.
-
-
-- Paul
---8323329-1540646092-1560828374=:15057--
+- Yash
