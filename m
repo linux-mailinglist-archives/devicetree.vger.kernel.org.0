@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41AFA4AD81
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 23:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4CEF4AD74
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 23:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730556AbfFRVnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 17:43:31 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:35874 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729982AbfFRVna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 17:43:30 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 5B2E8285674
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-rockchip@lists.infradead.org,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
+        id S1730412AbfFRVlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 17:41:35 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:55378 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730176AbfFRVlf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 17:41:35 -0400
+Received: by mail-wm1-f67.google.com with SMTP id a15so4856663wmj.5
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 14:41:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=npjnmaSr2vkCmDXoz3+FiT+jLOxPrHd/kPwcRCCzYl4=;
+        b=oeNyLCilPkITLmXVFaDVzdrf/aLDJjiKitNEZaENhh0M8+Z+FgTWcVTe3mvprvIMmZ
+         kVDAXDElMa+5FkusYyYQg0ZDapkRSnri4u8NuDbzt8OFV6ctmH/yrMbKetHVjwInbqni
+         RGNkgOHbdzojbDhs3HnKRB84CKYsunDDcNAgi5zqsOjOJ5n4V4G16PQ4v9V864qKKF5I
+         g5FAOLo9bt0kjeixgYLexM4fiYyXsMWLmSR20ETaAb3XZLCrd2xKlA94AWpVJbO/pBwP
+         6SAvTW0tN5x9kMA2BmeoKxidSrlTWWtzTSynsZqvwoB5t6QtUt+9DlCBaiaVDDTPLmlY
+         t5OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=npjnmaSr2vkCmDXoz3+FiT+jLOxPrHd/kPwcRCCzYl4=;
+        b=D9sYtijfK7hDv16EX08tA7idHfhll2f6CpiZtEjpHJ5+SsvWArTLu+Ei8skSOQHDom
+         69sEsniveTzQ39304qeclRDs6WrJz3spoo8aOy2m93hyvciA/ywSAnE9mqt+CLO5s4q/
+         i0QsH2ZPMrXYtmU+ZyiRylKKZD7NpMpnnjTUevFzGUUtAktV5PZDHzPKjW5lgrlrEPIn
+         /6O+3TVXIP5IxAQENvEHKweA50EzLT2LE7nWXOYrHblCOvIisgAgZHYN4smFSNhhkbcA
+         E5oi4i6rN+JDsr8Im/Aovh4sR0wEnbR1UKTFzNLsPpbG1wTwlgIfw+kY7Pf4DLcfblzp
+         GZ1Q==
+X-Gm-Message-State: APjAAAVTCftj+odw9MUk/BEELBOS2pg8ULaulXvhY8EDU1NrbQnskVDc
+        c9MDhGKZnoZRyOgX3qNMn1mNjQ==
+X-Google-Smtp-Source: APXvYqzriXXa80Q7KkVfSb96pNBw5Q2jgBhKV3KaX+d4NgOHn6hjzmn39dYZ9VMJZ+4IgzakHn7xRg==
+X-Received: by 2002:a1c:9cd1:: with SMTP id f200mr5010451wme.157.1560894093099;
+        Tue, 18 Jun 2019 14:41:33 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id o20sm19019027wrh.8.2019.06.18.14.41.32
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 14:41:32 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Correct apr-domain property
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     David Brown <david.brown@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH 3/3] ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
-Date:   Tue, 18 Jun 2019 18:34:06 -0300
-Message-Id: <20190618213406.7667-4-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190618213406.7667-1-ezequiel@collabora.com>
-References: <20190618213406.7667-1-ezequiel@collabora.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190618052547.32376-1-bjorn.andersson@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <b0036d9f-eec1-7531-545f-67b651ded729@linaro.org>
+Date:   Tue, 18 Jun 2019 22:41:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190618052547.32376-1-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RK3288 SoC VOPs have optional support Gamma LUT setting,
-which requires specifying the Gamma LUT address in the devicetree.
 
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
- arch/arm/boot/dts/rk3288.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index aa017abf4f42..dd40c189b1f0 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -1025,7 +1025,8 @@
- 
- 	vopb: vop@ff930000 {
- 		compatible = "rockchip,rk3288-vop";
--		reg = <0x0 0xff930000 0x0 0x19c>;
-+		reg = <0x0 0xff930000 0x0 0x19c>, <0x0 0xff931000 0x0 0x1000>;
-+		reg-names = "base", "lut";
- 		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_VOP0>, <&cru DCLK_VOP0>, <&cru HCLK_VOP0>;
- 		clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
-@@ -1075,7 +1076,8 @@
- 
- 	vopl: vop@ff940000 {
- 		compatible = "rockchip,rk3288-vop";
--		reg = <0x0 0xff940000 0x0 0x19c>;
-+		reg = <0x0 0xff940000 0x0 0x19c>, <0x0 0xff941000 0x0 0x1000>;
-+		reg-names = "base", "lut";
- 		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_VOP1>, <&cru DCLK_VOP1>, <&cru HCLK_VOP1>;
- 		clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
--- 
-2.20.1
-
+On 18/06/2019 06:25, Bjorn Andersson wrote:
+> The domain specifier was changed from using "reg" to "qcom,apr-domain",
+> update the dts accordingly.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+LGTM
+Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
