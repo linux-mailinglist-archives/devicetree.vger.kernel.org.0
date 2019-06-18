@@ -2,186 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 55FE24AB8C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 22:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7AB4AB92
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 22:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730341AbfFRUS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 16:18:59 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:38654 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730176AbfFRUS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 16:18:59 -0400
-Received: by mail-wm1-f68.google.com with SMTP id s15so4557084wmj.3;
-        Tue, 18 Jun 2019 13:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LTMdBP8eCUfHjffwbb75FXDn3anqE4Gx9Xs6BmZvRK4=;
-        b=PUXgpcZPRsO9lRHA4KBsCleQ6lOorgPUrU1TbIh57xC/sGQKKDDOHjf1Og4r0T8PS3
-         4FfSGLxiKCQCnLWeOyz0+c86/6FMTGN15JmfgeTESNaDSLbgZ7F5FZi1kzI3ajLKLtw2
-         DEyItfEeTzojaeEGTTVLxf1UtJ6iOR2DuaoRx6Beigh51xKc0IbKjvE/GNRtuHEzTDDC
-         A3bA60KzjBJfAv4iQ2ydEp9Qs4ofjbiBxumAskwSn4HOSQbGjH0h11WHc3v1AFTsd368
-         PKTIX8FhEsJ3rqzXoy+heHkSsVjcRQAQV0nPENg3+euHl3apWsHwM/aJ99Wlf5fM5Fj2
-         bv3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LTMdBP8eCUfHjffwbb75FXDn3anqE4Gx9Xs6BmZvRK4=;
-        b=cyO3S1dxdBfUd14lbNYHSGAGMXcZVafS3YswxdV+6Jw/uOgzHH+ABDjFF9mVZ7gKJq
-         qvUcfSUylg/VzYwKIVj/Dcerb625xRgxr/Dv+qs3VmxAtVBvTc5xUVPlj8pgnapKB/mA
-         oQ7fu6yX2+Zo9zdnE/3YvjYG1p12yvyE5XI3xn78PxB8PqkRC5wxjKTOOVpUhzdxWliV
-         4VJoU7+oB5968aizxf/qJpgQu8DrXaFEvNyeeZdBZn2kKy2TOP46/unf6NL2uOZ19oPi
-         Ak2Pt7clpiCDTP7HK/PCV6wNxtQ8RROzltDaifakQy5SByLbcE89VTM/4sOb174xvEYV
-         ygLw==
-X-Gm-Message-State: APjAAAXJIackY6NCmruS2hO7EKa+NbOHk671nTgpKz/npocKJ1aOz1QV
-        DsY2PsvOyBLD3FGTw+tKRjmewFtpEemURGE4EVQ=
-X-Google-Smtp-Source: APXvYqz1tLKUdFmkDYrn9GXuqjoehYxC5kr689Ke/bt0PzSYLe7IGleSGeQWVzCscTngOGlquK82tRYJAViCEDOCqHg=
-X-Received: by 2002:a7b:c051:: with SMTP id u17mr3115442wmc.25.1560889136270;
- Tue, 18 Jun 2019 13:18:56 -0700 (PDT)
+        id S1730358AbfFRUWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 16:22:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47932 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729961AbfFRUWv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 16:22:51 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D3FB521479;
+        Tue, 18 Jun 2019 20:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560889370;
+        bh=wxfkFUvlWwSzclJIifv04kWQfo423I3PSoSFued6BFE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rQnmLx4oyLJFzI2gHXYZzEZ+dyifC/qB1Z/Z6A3eL09zfcZvlAgQDpmv48INK3DTl
+         HravmwwoY2CzeLr9Yi2mwo53TfQy7n7QV14K1hgad85qYd0j8zhAz/rPYNUK6tHm4H
+         aGq/JVZNVvLYSeGFQmYe/uez4rl2P7vzWOL3YhKQ=
+Received: by mail-qt1-f169.google.com with SMTP id w17so10674016qto.10;
+        Tue, 18 Jun 2019 13:22:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAUgfZ9O/i5N02LqW1GNfjoAdLeg8k0UNCd1T9i6LORT+hM+kLk6
+        BeI078isJmrMn52BDFWvG1JJ+iVjSDTKZbDVOg==
+X-Google-Smtp-Source: APXvYqyaYZdyU75vrLYz7F8KjcRIk4qbW7GNvaf0PzyOfAyduE/UQs47mo5PrsLrH1gZEyRv1TI7g3FSh5Ik+wsow4w=
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr100915416qtb.224.1560889369080;
+ Tue, 18 Jun 2019 13:22:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190604123257.2920-1-daniel.baluta@nxp.com> <20190604123257.2920-3-daniel.baluta@nxp.com>
-In-Reply-To: <20190604123257.2920-3-daniel.baluta@nxp.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Tue, 18 Jun 2019 23:18:44 +0300
-Message-ID: <CAEnQRZDhh-NiYhS6=t=URqA0Yn4=HdL2xXCci_AmqdUgU=8kkw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm-evk: Enable audio codec wm8524
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>
+References: <20190524162229.9185-1-linus.walleij@linaro.org>
+ <CAL_Jsq+bZsJ+SBiJa2hzXU9RkTNBhDk_Uv_Fk6V6DqRGh-xPRg@mail.gmail.com> <CACRpkdbkwTtS2ofpxkZLERW-b+4=d7m9qiPXGT+iMemn9zZE1A@mail.gmail.com>
+In-Reply-To: <CACRpkdbkwTtS2ofpxkZLERW-b+4=d7m9qiPXGT+iMemn9zZE1A@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 18 Jun 2019 14:22:36 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+qwmA1hHRj73B1uf0WY76waK7M96Ndj1RSKHuAi1v=Cw@mail.gmail.com>
+Message-ID: <CAL_Jsq+qwmA1hHRj73B1uf0WY76waK7M96Ndj1RSKHuAi1v=Cw@mail.gmail.com>
+Subject: Re: [PATCH 7/8] net: ethernet: ixp4xx: Add DT bindings
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     netdev <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Shawn,
+On Tue, Jun 18, 2019 at 1:44 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Fri, May 24, 2019 at 9:41 PM Rob Herring <robh@kernel.org> wrote:
+>
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +    description: Ethernet MMIO address range
+> > > +
+> > > +  queue-rx:
+> > > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > > +    maxItems: 1
+> >
+> > This doesn't actually do what you think it is doing. A $ref plus
+> > additional constraints need to be under an 'allOf' list.
+> >
+> > > +    description: phandle to the RX queue on the NPE
+> >
+> > But this is a phandle plus 1 cell, right?
+> >
+> > - allOf:
+> >     - $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> >     - items:
+> >         - items:
+> >             - description: phandle to the RX queue on the NPE
+> >             - description: whatever the cell contains
+> >               enum: [ 1, 2, 3, 4 ] # any constraints you can put on the cell
+> >
+> > This implicitly says you have 1 of a phandle + 1 cell.
+> >
+> > I need to add this to example-schema.yaml...
+>
+> I just can't get this right :(
+>
+> I have this:
+>
+>   queue-rx:
+>     - allOf:
 
-Care to have a look at this? git send-email should correctly work now.
+Properties take a schema/object/dict or boolean. You are making
+queue-rx a list. Drop the '-'.
 
-Let me know if you want me to resend
+>       - $ref: '/schemas/types.yaml#/definitions/phandle-array'
+>       - items:
+>         - items:
+>           - description: phandle to the RX queue on the NPE
+>           - description: index of the NPE engine RX queue to use
+>             enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+>
+> I get this from dt_binding_check:
+>
+>   CHKDT   Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+> Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml:
+> properties:queue-rx: [{'allOf': [{'$ref':
+> '/schemas/types.yaml#/definitions/phandle-array'}, {'items':
+> [{'items': [{'description': 'phandle to the RX queue on the NPE'},
+> {'description': 'index of the NPE engine RX queue to use', 'enum': [0,
+> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}]}]}]}] is not of type 'object',
+> 'boolean'
+> make[3]: *** [../Documentation/devicetree/bindings/Makefile:12:
+> Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.example.dts]
+> Error 1
+>
+> Hm .... I just can't figure out what this recursive parsing thingie means...
+> I tried to update the pip3 repo but no cigar.
 
-On Tue, Jun 4, 2019 at 3:34 PM <daniel.baluta@nxp.com> wrote:
->
-> From: Daniel Baluta <daniel.baluta@nxp.com>
->
-> i.MX8MM has one wm8524 audio codec connected with
-> SAI3 digital audio interface.
->
-> This patch uses simple-card machine driver in order
-> to enable wm8524 codec.
->
-> We need to set:
->         * SAI3 pinctrl configuration
->         * codec reset gpio pinctrl configuration
->         * clock hierarchy
->         * codec node
->         * simple-card configuration
->
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 55 ++++++++++++++++++++
->  1 file changed, 55 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> index f8ff0a4b8961..7d2ec0326659 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> @@ -37,6 +37,37 @@
->                 gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
->                 enable-active-high;
->         };
-> +
-> +       wm8524: audio-codec {
-> +               #sound-dai-cells = <0>;
-> +               compatible = "wlf,wm8524";
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_gpio_wlf>;
-> +               wlf,mute-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
-> +       };
-> +
-> +       sound-wm8524 {
-> +               compatible = "simple-audio-card";
-> +               simple-audio-card,name = "wm8524-audio";
-> +               simple-audio-card,format = "i2s";
-> +               simple-audio-card,frame-master = <&cpudai>;
-> +               simple-audio-card,bitclock-master = <&cpudai>;
-> +               simple-audio-card,widgets =
-> +                       "Line", "Left Line Out Jack",
-> +                       "Line", "Right Line Out Jack";
-> +               simple-audio-card,routing =
-> +                       "Left Line Out Jack", "LINEVOUTL",
-> +                       "Right Line Out Jack", "LINEVOUTR";
-> +
-> +               cpudai: simple-audio-card,cpu {
-> +                       sound-dai = <&sai3>;
-> +               };
-> +
-> +               simple-audio-card,codec {
-> +                       sound-dai = <&wm8524>;
-> +                       clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
-> +               };
-> +       };
->  };
->
->  &A53_0 {
-> @@ -65,6 +96,15 @@
->         };
->  };
->
-> +&sai3 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_sai3>;
-> +       assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
-> +       assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +       assigned-clock-rates = <24576000>;
-> +       status = "okay";
-> +};
-> +
->  &uart2 { /* console */
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_uart2>;
-> @@ -242,6 +282,12 @@
->                 >;
->         };
->
-> +       pinctrl_gpio_wlf: gpiowlfgrp {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_I2C4_SDA_GPIO5_IO21        0xd6
-> +               >;
-> +       };
-> +
->         pinctrl_i2c1: i2c1grp {
->                 fsl,pins = <
->                         MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL                  0x400001c3
-> @@ -261,6 +307,15 @@
->                 >;
->         };
->
-> +       pinctrl_sai3: sai3grp {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC     0xd6
-> +                       MX8MM_IOMUXC_SAI3_TXC_SAI3_TX_BCLK      0xd6
-> +                       MX8MM_IOMUXC_SAI3_MCLK_SAI3_MCLK        0xd6
-> +                       MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0     0xd6
-> +               >;
-> +       };
-> +
->         pinctrl_uart2: uart2grp {
->                 fsl,pins = <
->                         MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-> --
-> 2.17.1
->
+What do you mean pip didn't work?
+
+Rob
