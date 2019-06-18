@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 689B349B41
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B07A349B87
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729111AbfFRHrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:47:03 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:32781 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726047AbfFRHrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:47:02 -0400
-Received: by mail-io1-f67.google.com with SMTP id u13so27690900iop.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:47:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vxKYkLgA5MVuzsXMSMGfzla77yJINMaSigfo4ssAuus=;
-        b=RjIbAgrDl9/qI0Gii7VVzjfDkkA4UNrDQYVufYwYf/7w9vv+rUari1Sq1mvxZKpVXv
-         HaIXkNWo7j6M5sCPdtYLiEMFaEoOc1VdJf/4sMfMFzLfEb8cS2GpcVmxlv3o5DgQrlIr
-         /0peXvokP7Oc2S5VY+81T7ibHogSkES0k5wnA=
+        id S1726037AbfFRHxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:53:30 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:39650 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726047AbfFRHxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:53:30 -0400
+Received: by mail-ed1-f67.google.com with SMTP id m10so20283832edv.6;
+        Tue, 18 Jun 2019 00:53:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vxKYkLgA5MVuzsXMSMGfzla77yJINMaSigfo4ssAuus=;
-        b=B77SQrC71wD3LLNQlix9xhCO0uKnSqqV97Dl4kJUzilABYjXHFbPKI6B1oo9QTmnEY
-         PkWkHr7srCmQLSpC9gT0Y4IadkxqZOdbiG0JUBsdyKPdRCMwETvFt0H0vP/HSGk37Btt
-         LTuixmyNw6UjeXADhuMmdEpg+K5hTeyAJRe9Ft75nUa/QNM0E2qOlq+BSJga1MTLKarP
-         1AzMoCoqBcIJMy3nbdtg5W9v9Nwk4SOVBlWoFCHhVZy6epfCm8r/k7wUXg4wQ2ijQOsr
-         zTDLm/Ht1McgotRY3c1TULuu19na66rIeKKkpkEpR1oiquNGHZ0EpaSxnJvP+ZCbL6DO
-         ynaQ==
-X-Gm-Message-State: APjAAAXBGbBRqWMeWuXMX77lZnM8QvEsqz0FbhsB5LBThCYtiScDmMVI
-        T+hcF0X4CwAvLsw3zkZPhnshz1qUjTUctWRBZoby4A==
-X-Google-Smtp-Source: APXvYqycTbdlGgVagVEKSPFXn3d5LsyT9I6EZwTdqQk/dkFhmrBl6uOW3Kl4M+fU023lwzcVYQVx/JhGLarll+uzkVY=
-X-Received: by 2002:a02:380c:: with SMTP id b12mr67109907jaa.85.1560844021305;
- Tue, 18 Jun 2019 00:47:01 -0700 (PDT)
+        bh=0J/MexkclOSTdAkeUoYoJIrIiMyfAXFCNVHplhB1QO0=;
+        b=N7lFA3+DtaB6AGTvqJJvEwImAk0B98nRIIRBA6J7d2OLujHs9bG48Iwhpnb2ad5tW2
+         UBunluhqTHcuqSX3UkVzrDAC2+10eedrr5HssE/LvxvyLbgTJtUzBYRS7hZJrQcm8o3k
+         55u49dyn9/e/xGhQFVxKij2fQvuxx164yYwR4RJlfDF22fMxvrNkIY4UMEiaKKHdWuLI
+         WB6BtrfHuUOcB2pi9uErE+ybdVe4xjC66VcseKGcvPcn6P4ReHfnjWxs2cwrYle6c6q3
+         uIcQM7raHEjeonVYWurvucocMZ6EyCFNpv8Qp4evTgxJicaex3G/N6if8eDJO7iJt4Tl
+         258w==
+X-Gm-Message-State: APjAAAXpGIzjgxUGqUQklO+eE5+luRqx2qGFDfKQ4t6CgiE1FhakLCah
+        KeD3vbPiH0HJEWH6rTD1IvmE/UXwZ0c=
+X-Google-Smtp-Source: APXvYqyEtVHLva8IWUnpTjfO13Yd2RyDZfN74KKSQzuUxbxaMcfBX/qeS+xRkwOwNfVoPLiZJJZxRw==
+X-Received: by 2002:a17:906:76c8:: with SMTP id q8mr95507671ejn.229.1560844406640;
+        Tue, 18 Jun 2019 00:53:26 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
+        by smtp.gmail.com with ESMTPSA id z12sm1802953edq.57.2019.06.18.00.53.25
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 00:53:26 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id n4so4699862wrs.3;
+        Tue, 18 Jun 2019 00:53:25 -0700 (PDT)
+X-Received: by 2002:adf:fc85:: with SMTP id g5mr80026097wrr.324.1560844405369;
+ Tue, 18 Jun 2019 00:53:25 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190614164324.9427-1-jagan@amarulasolutions.com>
- <20190614164324.9427-6-jagan@amarulasolutions.com> <20190617114503.pclqsf6bo3ih47nt@flea>
- <CAGb2v66RU=m0iA9VoBiYbake+mDoiiGcd5gGGXvNCBjhY2n+Dw@mail.gmail.com>
- <CAMty3ZA0J+2fSRwX+tS-waJDLMyTOf6UY_1pHjXe0qOk5QuzrQ@mail.gmail.com> <CAGb2v64htYr+iRUnLx0hKkqCtYa0GbzZJEvb-ViyJFAYzU1sig@mail.gmail.com>
-In-Reply-To: <CAGb2v64htYr+iRUnLx0hKkqCtYa0GbzZJEvb-ViyJFAYzU1sig@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 18 Jun 2019 13:16:50 +0530
-Message-ID: <CAMty3ZBDjNa+Sso4hmKxXOg_LT8giNYQAuJCgjZW8AeVQhAtyQ@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v2 5/9] drm/sun4i: tcon_top: Register
- clock gates in probe
-To:     Chen-Yu Tsai <wens@csie.org>
+ <20190614164324.9427-6-jagan@amarulasolutions.com> <CAGb2v669MprYgy2wc_a7Kz8VpzzNGZxDxsj0z_Ujx5bV25+AWQ@mail.gmail.com>
+ <CAMty3ZDRYBPKrGQxAZoB+trFiDLJ5BxDfNUOnPzgd+UWcpwCoQ@mail.gmail.com>
+ <CAGb2v67uNhie9mb2-m04FGEi4Z7q7TYChOogGj2HgmSmEo4Arg@mail.gmail.com> <CAMty3ZBUrGEi+e62sFe7GkXinK3q076sGLwpEVz67qeoV+1ZeA@mail.gmail.com>
+In-Reply-To: <CAMty3ZBUrGEi+e62sFe7GkXinK3q076sGLwpEVz67qeoV+1ZeA@mail.gmail.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Tue, 18 Jun 2019 15:53:14 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65YRVSv2mFfE2e=vqDOSu4Nie_oLQ-qpaDsTWKJwf-aeA@mail.gmail.com>
+Message-ID: <CAGb2v65YRVSv2mFfE2e=vqDOSu4Nie_oLQ-qpaDsTWKJwf-aeA@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v2 5/9] drm/sun4i: tcon_top: Register clock
+ gates in probe
+To:     Jagan Teki <jagan@amarulasolutions.com>
 Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -66,15 +67,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 12:53 PM Chen-Yu Tsai <wens@csie.org> wrote:
+On Tue, Jun 18, 2019 at 3:45 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> On Tue, Jun 18, 2019 at 3:12 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> On Tue, Jun 18, 2019 at 12:49 PM Chen-Yu Tsai <wens@csie.org> wrote:
 > >
-> > On Mon, Jun 17, 2019 at 6:31 PM Chen-Yu Tsai <wens@csie.org> wrote:
+> > On Mon, Jun 17, 2019 at 6:30 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 > > >
-> > > On Mon, Jun 17, 2019 at 7:45 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > On Sun, Jun 16, 2019 at 11:01 AM Chen-Yu Tsai <wens@csie.org> wrote:
 > > > >
-> > > > On Fri, Jun 14, 2019 at 10:13:20PM +0530, Jagan Teki wrote:
+> > > > On Sat, Jun 15, 2019 at 12:44 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > > > >
 > > > > > TCON TOP have clock gates for TV0, TV1, dsi and right
 > > > > > now these are register during bind call.
 > > > > >
@@ -85,52 +87,151 @@ On Tue, Jun 18, 2019 at 12:53 PM Chen-Yu Tsai <wens@csie.org> wrote:
 > > > > > To solve, this circular dependency move the clock gate
 > > > > > registration from bind to probe so-that DPHY can get the
 > > > > > dsi gate clock on time.
+> > > > >
+> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/sun4i/sun8i_tcon_top.c | 94 ++++++++++++++------------
+> > > > >  1 file changed, 49 insertions(+), 45 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > > > index 465e9b0cdfee..a8978b3fe851 100644
+> > > > > --- a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > > > +++ b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > > > @@ -124,7 +124,53 @@ static struct clk_hw *sun8i_tcon_top_register_gate(struct device *dev,
+> > > > >  static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
+> > > > >                                void *data)
+> > > > >  {
+> > > > > -       struct platform_device *pdev = to_platform_device(dev);
+> > > > > +       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       ret = reset_control_deassert(tcon_top->rst);
+> > > > > +       if (ret) {
+> > > > > +               dev_err(dev, "Could not deassert ctrl reset control\n");
+> > > > > +               return ret;
+> > > > > +       }
+> > > > > +
+> > > > > +       ret = clk_prepare_enable(tcon_top->bus);
+> > > > > +       if (ret) {
+> > > > > +               dev_err(dev, "Could not enable bus clock\n");
+> > > > > +               goto err_assert_reset;
+> > > > > +       }
 > > > >
-> > > > It's not really clear to me what the circular dependency is?
-> > > >
-> > > > if you have a chain that is:
-> > > >
-> > > > tcon-top +-> DSI
-> > > >          +-> D-PHY
-> > > >
-> > > > There's no loop, right?
+> > > > You have to de-assert the reset control and enable the clock before the
+> > > > clocks it provides are registered. Otherwise a consumer may come in and
+> > > > ask for the provided clock to be enabled, but since the TCON TOP's own
+> > > > reset and clock are still disabled, you can't actually access the registers
+> > > > that controls the provided clock.
 > > >
-> > > Looking at how the DTSI patch structures things (without going into
-> > > whether it is correct or accurate):
-> > >
-> > > The D-PHY is not part of the component graph. However it requests
-> > > the DSI gate clock from the TCON-TOP.
-> > >
-> > > The TCON-TOP driver, in its current form, only registers the clocks
-> > > it provides at component bind time. Thus the D-PHY can't successfully
-> > > probe until the TCON-TOP has been bound.
-> > >
-> > > The DSI interface requires the D-PHY to bind. It will return -EPROBE_DEFER
-> > > if it cannot request it. This in turn goes into the error path of
-> > > component_bind_all, which unbinds all previous components.
-> > >
-> > > So it's actually
-> > >
-> > >     D-PHY -> TCON-TOP -> DSI
-> > >       ^                   |
-> > >       |--------------------
-> > >
-> > > I've not checked, but I suspect there's no possibility of having other
-> > > drivers probe (to deal with deferred probing) within component_bind_all.
-> > > Otherwise we shouldn't run into this weird circular dependency issue.
-> > >
-> > > So the question for Jagan is that is this indeed the case? Does this
-> > > patch solve it, or at least work around it.
+> > > These rst and bus are common reset and bus clocks not tcon top clocks
+> > > that are trying to register here. ie reason I have not moved it in
+> > > top.
 > >
-> > Yes, this is what I was mentioned in initial version, since the "dsi"
-> > gate in tcon top is registering during bind, the dphy of dsi
-> > controller won't get the associated clock for "mod" so it is keep on
-> > returning -EPROBE_DEFER. By moving the clock gate registration to
-> > probe, everything bound as expected.
+> > And you're sure that toggling bits in the TCON TOP block doesn't require
+> > the reset to be de-asserted and the bus clock enabled?
+> >
+> > Somehow I doubt that.
+> >
+> > Once the driver register the clocks it provides, they absolutely must work.
+> > They can't only work after the bind phase when the reset gets de-asserted
+> > and the bus clock enabled. Or you should provide proper error reporting
+> > in the clock ops. I doubt you want to go that way either.
 >
-> I believe you failed to mention the DSI block, which is the part that
-> completes the circular dependency. Don't expect others to have full
-> awareness of the context. You have to provide it in your commit log.
+> Why would they won't work after bind phase? unlike tcon top gates,
+> these reset, and bus are common like  what we have in other DE block
+> so enable them in bind won't be an issue as per as I understand. let
+> me know if you want me to check in other directions.
 
-I have mentioned DPHY and yes it is possible to give more information
-will update in next version, no problem. thanks for mentioning that.
+You misunderstood. When you moved the clock registering parts to the probe
+phase, but didn't move the clock enable and reset de-assert parts to go with,
+the clock ops will not work as expected between probe and bind time.
+
+Simple way to verify it: Just use devmem to disable the TCON TOP bus gate
+and/or assert its reset control. Then try to toggle any of the bits in the
+TCON TOP block and see if it works, or if the bits stick.
+
+Whether another driver actually does so is not the question. It is just bad
+implementation.
+
+> Log:
+> [    1.381410] sun6i-mipi-dsi 1ca0000.dsi: Attached panel s070wv20-ct16-icn62
+> [    1.398405] sun4i-drm display-engine: bound 1100000.mixer (ops 0xc074ce64)
+> [    1.407134] sun4i-drm display-engine: bound 1200000.mixer (ops 0xc074ce64)
+> [    1.414043] sun4i-drm display-engine: bound 1c70000.tcon-top (ops 0xc0750e80)
+> [    1.421407] sun4i_dclk_recalc_rate: val = 1, rate = 297000000
+> [    1.427358] sun4i-drm display-engine: No panel or bridge found...
+> RGB output disabled
+> [    1.435217] sun4i-drm display-engine: bound 1c71000.lcd-controller
+> (ops 0xc0749594)
+> [    1.442891] 0.0 drm_connector_init
+> [    1.446294] 0. -1066106880-1-0 (null)
+> [    1.449965] 0.1 drm_connector_init
+> [    1.453368] 0.2 drm_connector_init
+> [    1.456768] 1. drm_connector_init
+> [    1.460094] 2. drm_connector_init
+> [    1.463413] drm_connector_init: connector name = DSI-1
+> [    1.468560] sun4i-drm display-engine: bound 1ca0000.dsi (ops 0xc074c0e4)
+> [    1.475272] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+> [    1.481892] [drm] No driver support for vblank timestamp query.
+> [    1.488240] [drm] Initialized sun4i-drm 1.0.0 20150629 for
+> display-engine on minor 0
+> [    1.497996] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+> [    1.498106] ideal = 1800000, rounded = 180000000
+> [    1.498111] sun4i_dclk_round_rate: div = 6 rate = 29700000
+> [    1.498116] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+> [    1.498154] ideal = 1800000, rounded = 180000000
+> [    1.498158] sun4i_dclk_round_rate: div = 6 rate = 29700000
+> [    1.498217] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+> [    1.498251] rate = 178200000
+> [    1.498253] parent_rate = 297000000
+> [    1.498256] reg = 0x80c00000
+> [    1.498259] _nkm.n = 3, nkm->n.offset = 0x1, nkm->n.shift = 8
+> [    1.498262] _nkm.k = 2, nkm->k.offset = 0x1, nkm->k.shift = 4
+> [    1.498265] _nkm.m = 10, nkm->m.offset = 0x1, nkm->m.shift = 0
+> [    1.499594] sun4i_dclk_set_rate div 6
+> [    1.499603] sun4i_dclk_recalc_rate: val = 6, rate = 29700000
+> [    1.499680] sun6i_dsi_get_video_start_delay: delay = 513
+> [    1.499687] sun6i_dsi_setup_inst_loop: delay = 49
+> [    1.499706] hsa = 134, hbp = 114, hfp = 114, hblk = 2630, vblk = 0
+> [    1.509103] mmc0: host does not support reading read-only switch,
+> assuming write-enable
+> [    1.512693] mmc0: new high speed SDHC card at address 4001
+> [    1.513723] mmcblk0: mmc0:4001 R04GS 3.71 GiB
+> [    1.515577]  mmcblk0: p1 p2
+> [    1.658838] mmc2: new DDR MMC card at address 0001
+> [    1.659934] mmcblk2: mmc2:0001 8WPD3R 7.28 GiB
+> [    1.660657] mmcblk2boot0: mmc2:0001 8WPD3R partition 1 4.00 MiB
+> [    1.661387] mmcblk2boot1: mmc2:0001 8WPD3R partition 2 4.00 MiB
+> [    1.819586] TYPE#0x23, BYTE0#0x7a00, BYTE1#0xc10000
+> [    1.849570] TYPE#0x23, BYTE0#0x2000, BYTE1#0x200000
+> [    1.879569] TYPE#0x23, BYTE0#0x2100, BYTE1#0xe00000
+> [    1.909580] TYPE#0x23, BYTE0#0x2200, BYTE1#0x130000
+> [    1.939569] TYPE#0x23, BYTE0#0x2300, BYTE1#0x280000
+> [    1.969569] TYPE#0x23, BYTE0#0x2400, BYTE1#0x300000
+> [    1.999569] TYPE#0x23, BYTE0#0x2500, BYTE1#0x280000
+> [    2.029569] TYPE#0x23, BYTE0#0x2600, BYTE1#0x0
+> [    2.059569] TYPE#0x23, BYTE0#0x2700, BYTE1#0xd0000
+> [    2.089598] TYPE#0x23, BYTE0#0x2800, BYTE1#0x30000
+> [    2.119579] TYPE#0x23, BYTE0#0x2900, BYTE1#0x1d0000
+> [    2.149569] TYPE#0x23, BYTE0#0x3400, BYTE1#0x800000
+> [    2.179569] TYPE#0x23, BYTE0#0x3600, BYTE1#0x280000
+> [    2.209569] TYPE#0x23, BYTE0#0xb500, BYTE1#0xa00000
+> [    2.239569] TYPE#0x23, BYTE0#0x5c00, BYTE1#0xff0000
+> [    2.269569] TYPE#0x23, BYTE0#0x2a00, BYTE1#0x10000
+> [    2.299569] TYPE#0x23, BYTE0#0x5600, BYTE1#0x920000
+> [    2.329578] TYPE#0x23, BYTE0#0x6b00, BYTE1#0x710000
+> [    2.359569] TYPE#0x23, BYTE0#0x6900, BYTE1#0x2b0000
+> [    2.389569] TYPE#0x23, BYTE0#0x1000, BYTE1#0x400000
+> [    2.419569] TYPE#0x23, BYTE0#0x1100, BYTE1#0x980000
+> [    2.449569] TYPE#0x23, BYTE0#0xb600, BYTE1#0x200000
+> [    2.479569] TYPE#0x23, BYTE0#0x5100, BYTE1#0x200000
+> [    2.509569] TYPE#0x23, BYTE0#0x900, BYTE1#0x100000
+> [    2.679570] TYPE#0x5, BYTE0#0x2900, BYTE1#0x940000
+> [    2.767213] Console: switching to colour frame buffer device 100x30
+> [    3.144604] sun4i-drm display-engine: fb0: sun4i-drmdrmfb frame buffer device
+>
+> --
+> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/CAMty3ZBUrGEi%2Be62sFe7GkXinK3q076sGLwpEVz67qeoV%2B1ZeA%40mail.gmail.com.
+> For more options, visit https://groups.google.com/d/optout.
