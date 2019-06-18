@@ -2,141 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C23B74A4AA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 971E94A4D2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 17:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729135AbfFRO7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 10:59:49 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:38910 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729042AbfFRO7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 10:59:49 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id AFB44634C7B;
-        Tue, 18 Jun 2019 17:59:22 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.89)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1hdFZy-0000tJ-LA; Tue, 18 Jun 2019 17:59:22 +0300
-Date:   Tue, 18 Jun 2019 17:59:22 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Vishal Sagar <vsagar@xilinx.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Vishal Sagar <vishal.sagar@xilinx.com>,
-        Hyun Kwon <hyunk@xilinx.com>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dinesh Kumar <dineshk@xilinx.com>,
-        Sandip Kothari <sandipk@xilinx.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v8 2/2] media: v4l: xilinx: Add Xilinx MIPI CSI-2 Rx
- Subsystem driver
-Message-ID: <20190618145922.sq4jovxoz2khs3tq@valkosipuli.retiisi.org.uk>
-References: <1559555971-193235-1-git-send-email-vishal.sagar@xilinx.com>
- <1559555971-193235-3-git-send-email-vishal.sagar@xilinx.com>
- <20190605124851.xr2hmgyoe46q6xud@kekkonen.localdomain>
- <CH2PR02MB60889F3BF23FD96BF11053A2A7100@CH2PR02MB6088.namprd02.prod.outlook.com>
+        id S1728905AbfFRPKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 11:10:34 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:46267 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727097AbfFRPKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 11:10:34 -0400
+Received: by mail-lj1-f195.google.com with SMTP id v24so13487389ljg.13;
+        Tue, 18 Jun 2019 08:10:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dqHa7v+zRz/0tP12kNuD3++mOq4qacpMRNqcsvo74fg=;
+        b=Pr/F3sRzK/jhhCm7XPrSEuuKZHKSIKPQmPRDk6F/8LA+Z/e4vyZ2bH2SJyuYxMFJ1E
+         R81HjPo8ZgjI+DYmVpDgEM2VBEoZWys2yIcP7Y08jCWzS7gaAZ2W6floTPZVdcSWXVyV
+         GnzDETA1vgE7HQEqb8m8Wcf0zU5XHoBDZulaNZi7XauD+zCOCRsYdUmhER/rLeM3ZvZy
+         nfQXct45IbJ7AX5qnS5+VC3iM7EnVgtNXh/eXI+o3FIp8LCEiCtIOh1MdEzzq6u4wtm/
+         tuuJYd/IuJOdcIAy8zHa0+xUC0rnbRpSeMiT/ga4aqNArON9MBXSCLUgujIiEAI0birG
+         BzKA==
+X-Gm-Message-State: APjAAAWIKSbYDC6D6klWGRbXZpjYksv2lkllj+IAuFxsTkycwAShmhMd
+        VycTBzWY53W2QSCQAHC5Ae8aJXXqEJ8HoKVt4/A=
+X-Google-Smtp-Source: APXvYqw1fdB/y1vZFxbdUmlNShYTaVT+8vEn2zAimF9nYv/bG9SWMVnXfSvmGlQtqPX6Gn/G2Rj4SW8LQvkAUlL1OZk=
+X-Received: by 2002:a2e:9a87:: with SMTP id p7mr14854442lji.133.1560870632312;
+ Tue, 18 Jun 2019 08:10:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CH2PR02MB60889F3BF23FD96BF11053A2A7100@CH2PR02MB6088.namprd02.prod.outlook.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 18 Jun 2019 17:10:19 +0200
+Message-ID: <CAMuHMdU8oag+1oNa_jS=v99W05=8SRLhdoZdCusmeVf1VZbarQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vishal,
+Hi Fabrizio,
 
-On Fri, Jun 07, 2019 at 07:11:47AM +0000, Vishal Sagar wrote:
-...
-> > > +/**
-> > > + * xcsi2rxss_s_ctrl - This is used to set the Xilinx MIPI CSI-2 V4L2 controls
-> > > + * @ctrl: V4L2 control to be set
-> > > + *
-> > > + * This function is used to set the V4L2 controls for the Xilinx MIPI
-> > > + * CSI-2 Rx Subsystem. It is used to set the active lanes in the system.
-> > > + * The event counters can be reset.
-> > > + *
-> > > + * Return: 0 on success, errors otherwise
-> > > + */
-> > > +static int xcsi2rxss_s_ctrl(struct v4l2_ctrl *ctrl)
-> > > +{
-> > > +     struct xcsi2rxss_state *xcsi2rxss =
-> > > +             container_of(ctrl->handler, struct xcsi2rxss_state,
-> > > +                          ctrl_handler);
-> > > +     struct xcsi2rxss_core *core = &xcsi2rxss->core;
-> > > +     int ret = 0;
-> > > +
-> > > +     mutex_lock(&xcsi2rxss->lock);
-> > > +
-> > > +     switch (ctrl->id) {
-> > > +     case V4L2_CID_XILINX_MIPICSISS_ACT_LANES:
-> > > +             /*
-> > > +              * This will be called only when "Enable Active Lanes" parameter
-> > > +              * is set in design
-> > > +              */
-> > 
-> > You generally get the number of lanes from firmware. There's no need to add
-> > a control for it. 
-> > 
-> 
-> I don't understand what firmware means here. There is no other code running.
-> I don't see how to modify the number of lanes apart from using v4l control.
+On Fri, Jun 14, 2019 at 3:17 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> This patch adds LEDs support to the HiHope RZ/G2[MN] Main Board
+> common device tree.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-It's not the user that provides this information. Again, if you want this
-feature right from the time the driver is merged to mainline, then rebase
-the set on top of Jacopo's frame descriptor set. But it may take a while.
+Thanks for your patch!
 
-> 
-> > > +             if (core->enable_active_lanes) {
-> > > +                     u32 active_lanes;
-> > > +
-> > > +                     xcsi2rxss_clr_and_set(core, XCSI_PCR_OFFSET,
-> > > +                                           XCSI_PCR_ACTLANES_MASK,
-> > > +                                           ctrl->val - 1);
-> > > +                     /*
-> > > +                      * This delay is to allow the value to reflect as write
-> > > +                      * and read paths are different.
-> > > +                      */
-> > > +                     udelay(1);
-> > > +                     active_lanes = xcsi2rxss_read(core, XCSI_PCR_OFFSET);
-> > > +                     active_lanes &= XCSI_PCR_ACTLANES_MASK;
-> > > +                     active_lanes++;
-> > > +                     if (active_lanes != ctrl->val)
-> > > +                             dev_info(core->dev, "RxByteClkHS absent\n");
-> > > +                     dev_dbg(core->dev, "active lanes = %d\n", ctrl->val);
-> > > +             } else {
-> > > +                     ret = -EINVAL;
-> > > +             }
-> > > +             break;
-> > > +     case V4L2_CID_XILINX_MIPICSISS_RESET_COUNTERS:
-> > > +             xcsi2rxss_reset_event_counters(xcsi2rxss);
-> > > +             break;
-> > > +     default:
-> > > +             ret = -EINVAL;
-> > > +             break;
-> > > +     }
-> > > +
-> > > +     mutex_unlock(&xcsi2rxss->lock);
-> > > +
-> > > +     return ret;
-> > > +}
+> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> @@ -17,6 +17,30 @@
+>                 stdout-path = "serial0:115200n8";
+>         };
+>
+> +       leds {
+> +               compatible = "gpio-leds";
+> +
+> +               led0 {
+> +                       gpios = <&gpio6 11 GPIO_ACTIVE_HIGH>;
+> +                       label = "LED0";
+
+There's no need for a label property, if it matches the node name
+(applies to all four LEDs).
+
+Note that this GPIO is shared with a switch, like on Salvator-X(S) and
+ULCB.  As currently Linux cannot handle both, describing the LED
+precludes adding the switch later.
+(applies to the first 3 LEDs).
+
+> +               led3 {
+> +                       gpios = <&gpio0  0 GPIO_ACTIVE_HIGH>;
+> +                       label = "LED3";
+> +               };
+
+I cannot find LED3. According to the schematics GP0_0 == CS0n is used
+as the chipselect for the LVDS switch?
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Regards,
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
