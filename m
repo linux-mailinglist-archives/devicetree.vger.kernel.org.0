@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB444A9E2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBACF4A9F8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730368AbfFRSdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 14:33:25 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:47536 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730326AbfFRSdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:33:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=sJ1/yFnBoKTboXWrZrp0z327Jb8us3etQDsMDSr/xWA=; b=UUWWrbjBHjzS
-        NvuSUGoCX5thvmDc4uE7WHy2gDb9QsfA4WD3pxSzMdSbukghUC/MBcb3XsLpunFQr9eOFVu/n8lPb
-        G4GHATQLxc3GmSEif98KtLdO2X/s2VsYVKMBpW3I89NdESP4iz0BVlxXQluHotG7dF8r0Yffgk5NA
-        IFBX0=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hdIv3-0005L8-Q4; Tue, 18 Jun 2019 18:33:21 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 4C87F440046; Tue, 18 Jun 2019 19:33:21 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>, mark.rutland@arm.com,
-        robh+dt@kernel.org
-Subject: Applied "dt-bindings: qcom_spmi: Document PM8005 regulators" to the regulator tree
-In-Reply-To: <20190617183716.13501-1-jeffrey.l.hugo@gmail.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190618183321.4C87F440046@finisterre.sirena.org.uk>
-Date:   Tue, 18 Jun 2019 19:33:21 +0100 (BST)
+        id S1730213AbfFRSe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 14:34:59 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:37860 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730200AbfFRSe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:34:59 -0400
+Received: by mail-pf1-f194.google.com with SMTP id 19so8153960pfa.4
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 11:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=6kNZlMyc+BT+bVh0V15w4cgbur+weciC7/ZsAv2IV7U=;
+        b=bm7i7c5f2/GAPKW27PQz1CiDRmYmVVba0JO3/GX7R8G+fkjmqzIIjlSd4nI38HMNiO
+         JG+isnGj0iq6Ofd/6L/6Az0kLFKN3KBe+DUwfNJZrmXGBX8SDqz9yFi5xBVYZhRXZvx8
+         pJQsKXZRSuhhm6WH3KSC1QPvrSbAjRWmtJKOA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6kNZlMyc+BT+bVh0V15w4cgbur+weciC7/ZsAv2IV7U=;
+        b=Ea0Zc/Lr/ZDxcaiBzhIcpOU4MBTiJCf4WItVa33R6XzkNJxCyRkdIFuSd3EbuwSX4X
+         wBLSaWSDy5L/9a0MhrESXiwL04NDVBQ47d11psqBVNMm5oIqF5Z1h9a72Kzp3Dkril3+
+         aePoljNTZm6K2TQ3tNgjcQopLwBAVGLgI0YxncYQMrKAkOn0zK84s4BhSnsV90ItCKhu
+         9qo2gfKlffVCLCNzpSTIlRdaOePC9F15b53NkmIgd7Hv+DUHA2AO/a8ETjWoGczlUz9q
+         eQdSsi5MtaCMD/Hal0mrLbplbkRG7k09p2Fu0hgWzF8ZjCi2ti/XUt/vY66sAP3vHW8/
+         gJ4Q==
+X-Gm-Message-State: APjAAAUsNI2p1QTrpRxmT7rufJadsvD88ZXmKGjSYWXlKrcd0tpZpAnw
+        LlnkP2u42J5owWq1QiUqp4c1tA==
+X-Google-Smtp-Source: APXvYqy+QvRjs4Drmi2FUQIv8wv4fenqIqrDebMofryze6kGt+JsmRV9NB16VTZPs4PMvqJusTHJsA==
+X-Received: by 2002:a65:654f:: with SMTP id a15mr3860571pgw.73.1560882898990;
+        Tue, 18 Jun 2019 11:34:58 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id e16sm22768169pga.11.2019.06.18.11.34.58
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 11:34:58 -0700 (PDT)
+Date:   Tue, 18 Jun 2019 11:34:55 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH] Revert "ARM: dts: rockchip: set PWM delay backlight
+ settings for Minnie"
+Message-ID: <20190618183455.GU137143@google.com>
+References: <20190614224533.169881-1-mka@chromium.org>
+ <45f94c6a-5bd7-92b0-d23f-ae7e0481935f@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <45f94c6a-5bd7-92b0-d23f-ae7e0481935f@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Hi Enric,
 
-   dt-bindings: qcom_spmi: Document PM8005 regulators
+On Tue, Jun 18, 2019 at 10:21:52AM +0200, Enric Balletbo i Serra wrote:
+> Hi Matthias,
+> 
+> On 15/6/19 0:45, Matthias Kaehlcke wrote:
+> > This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
+> > 
+> > According to the commit message the AUO B101EAN01 panel on minnie
+> > requires a PWM delay of 200 ms, however this is not what the
+> > datasheet says. The datasheet mentions a *max* delay of 200 ms
+> > for T2 ("delay from LCDVDD to black video generation") and T3
+> > ("delay from LCDVDD to HPD high"), which aren't related to the
+> > PWM. The backlight power sequence does not specify min/max
+> > constraints for T15 (time from PWM on to BL enable) or T16
+> > (time from BL disable to PWM off).
+> > 
+> 
+> Could you point from where the confusion comes from? I think will be helpful for
+> the record. B101EAN01.8 vs B101EAN01.1
 
-has been applied to the regulator tree at
+sounds good
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.3
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> 
+> With the above added:
+> 
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 4fe0676b04edc5032ffdc3fed00b670e1cfef049 Mon Sep 17 00:00:00 2001
-From: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Date: Mon, 17 Jun 2019 11:37:16 -0700
-Subject: [PATCH] dt-bindings: qcom_spmi: Document PM8005 regulators
-
-Document the dt bindings for the PM8005 regulators which are usually used
-for VDD of standalone blocks on a SoC like the GPU.
-
-Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/regulator/qcom,spmi-regulator.txt     | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
-index 406f2e570c50..ba94bc2d407a 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
-+++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
-@@ -4,6 +4,7 @@ Qualcomm SPMI Regulators
- 	Usage: required
- 	Value type: <string>
- 	Definition: must be one of:
-+			"qcom,pm8005-regulators"
- 			"qcom,pm8841-regulators"
- 			"qcom,pm8916-regulators"
- 			"qcom,pm8941-regulators"
-@@ -120,6 +121,9 @@ The regulator node houses sub-nodes for each regulator within the device. Each
- sub-node is identified using the node's name, with valid values listed for each
- of the PMICs below.
- 
-+pm8005:
-+	s1, s2, s3, s4
-+
- pm8841:
- 	s1, s2, s3, s4, s5, s6, s7, s8
- 
--- 
-2.20.1
-
+Thanks!
