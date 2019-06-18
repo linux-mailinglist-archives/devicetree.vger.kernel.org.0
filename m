@@ -2,150 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98FFE4994E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 08:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E4C4998D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 08:57:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726088AbfFRGuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 02:50:13 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33176 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725900AbfFRGuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 02:50:13 -0400
-Received: by mail-wr1-f68.google.com with SMTP id n9so12627832wru.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2019 23:50:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2qhMEjTGxN0dhDss7cc7zfKbD1VT4IQism6fVgX1NpE=;
-        b=dvsdqA01/pZ+815FjjW8tFL5UWf7khLLQ82Ejhqn6TxNO1tCDktEgPtkMa4HNv7OLR
-         1U39nh2EFsrtSmlNZcgDcq/9sa+nGn3SUOMpDbfIAp95GzajjL3XI+3GbjB5ULFzEoSH
-         IwACWh8kuOmwu5jEKWjMzofeGDXqP9safEXyJXu8ve2REW9BQaUclrQL8parNOK0OQjD
-         B3wkQTkyxFJk8UmfoMVdfQg+Tn/UTwLgckw83gJpr19cDBf/Gz90iGpXy7nsEYrqDA2m
-         eZwEj4HpXDoxWiOrmV6yaBfhp8pBtJeFO0hOjxV5cmt7gkv5WG1rUgP3mWcFMvMsVNL0
-         dfKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2qhMEjTGxN0dhDss7cc7zfKbD1VT4IQism6fVgX1NpE=;
-        b=hpPks8pZuRFjrKJtTvLIPSCSb1LfYxq4yVK0Khj/2nYfEwE3IAfYxkAYCmBYAxQ6jm
-         lriGm046YCfRMkEulFbt7BvWqAg/mo3XX2P+3lptHSIhqA1zRNTUoWzNoMdNKYCJHY5j
-         6GLj8xmW7i3XJX0ALneGiPxezCKbsc2c7zGy5tpYjHhNR6KoCJAihaiWAQ0oOBhGTiFt
-         DMyLyLw3BmcAjhSClbbN/lre2YuBY8yYxSIGWZ3zd4SEk/3/2uS3DC4WxjCGvjtN9Pnq
-         YUSHGpK9s+3ro7O4OTePHBRs7b8pZ9T3V2J2OPAENdguod+n1zUXfYa5nc5lYbQhBwuU
-         KohQ==
-X-Gm-Message-State: APjAAAUu1HlZlVSufcvdiNfpeHMmtdU6ppXAeBzDuwlwyDRkdT1zRCVO
-        +pViEahGzBEOoR4w4RMkrIxtrYDwZ8AIpdWqrNrtwoy9
-X-Google-Smtp-Source: APXvYqyc9odfP5kl53sVaAJSFZ9kxou4Lg+4NAUEX3RWJa1eraarQrRn5NVyE6c41JtA+QlG76Va2MCtJMEgh2C9gYE=
-X-Received: by 2002:a5d:4b43:: with SMTP id w3mr14892373wrs.166.1560838760111;
- Mon, 17 Jun 2019 23:19:20 -0700 (PDT)
+        id S1726579AbfFRG5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 02:57:14 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:58622 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726037AbfFRG5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 02:57:14 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 1CA5C60A97; Tue, 18 Jun 2019 06:21:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560838887;
+        bh=P/SMdVYW3xpmJ2Q4KDX7a1RxqgZ4fB6O25+9ELAvFv0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=exxVVQS+DhZ5lgqd7XyoOG1zaCEUC/LF0+kvf2iP9swzn+vt7RaDl5vk+MjNy5FVD
+         Ywygtpymi0g3f/p8CYiJMYOAcY9EfXXu/jxVldroqNQuBgzUbbolEzAz2sD6g4s9Ui
+         RtotTSPWpJgS/yqsOd4zjZ5W8Apn+1lzzs4mH1M0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.43.187] (unknown [223.227.13.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: nishakumari@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6F87F6086B;
+        Tue, 18 Jun 2019 06:21:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1560838886;
+        bh=P/SMdVYW3xpmJ2Q4KDX7a1RxqgZ4fB6O25+9ELAvFv0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=NPm9hCzmuhyKVsZyn8hbkcX8YSJ5pi/gvp/pg1kQ1XCgDqKhoF6TnknfiYu+X9+C0
+         c3/hb6Rs3IPpsotqxQdniYDwfRJN68XpMx1re/CV6XWNCYx3c6tWIQSoL6O7VNcHcI
+         4hISthxJq6LvGrmfFCoedZ6kCkdqorNJ7x+9KqsU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6F87F6086B
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=nishakumari@codeaurora.org
+Subject: Re: [PATCH 3/4] regulator: Add labibb driver
+To:     Mark Brown <broonie@kernel.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, lgirdwood@gmail.com, mark.rutland@arm.com,
+        david.brown@linaro.org, linux-kernel@vger.kernel.org,
+        kgunda@codeaurora.org, rnayak@codeaurora.org
+References: <1560337252-27193-1-git-send-email-nishakumari@codeaurora.org>
+ <1560337252-27193-4-git-send-email-nishakumari@codeaurora.org>
+ <20190613172518.GN5316@sirena.org.uk>
+From:   Nisha Kumari <nishakumari@codeaurora.org>
+Message-ID: <577d6e90-0bed-ff2e-32dc-e64c3118458f@codeaurora.org>
+Date:   Tue, 18 Jun 2019 11:51:18 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com> <1560169080-27134-15-git-send-email-yong.wu@mediatek.com>
-In-Reply-To: <1560169080-27134-15-git-send-email-yong.wu@mediatek.com>
-From:   Tomasz Figa <tfiga@google.com>
-Date:   Tue, 18 Jun 2019 15:19:07 +0900
-Message-ID: <CAAFQd5A5GUn1Zq1xF2_2V0MReNPd5bra2F=nquvodSAZUua5AQ@mail.gmail.com>
-Subject: Re: [PATCH v7 14/21] iommu/mediatek: Add mmu1 support
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <yingjoe.chen@mediatek.com>, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        Matthias Kaehlcke <mka@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190613172518.GN5316@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 9:21 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> Normally the M4U HW connect EMI with smi. the diagram is like below:
->               EMI
->                |
->               M4U
->                |
->             smi-common
->                |
->        -----------------
->        |    |    |     |    ...
->     larb0 larb1  larb2 larb3
->
-> Actually there are 2 mmu cells in the M4U HW, like this diagram:
->
->               EMI
->            ---------
->             |     |
->            mmu0  mmu1     <- M4U
->             |     |
->            ---------
->                |
->             smi-common
->                |
->        -----------------
->        |    |    |     |    ...
->     larb0 larb1  larb2 larb3
->
-> This patch add support for mmu1. In order to get better performance,
-> we could adjust some larbs go to mmu1 while the others still go to
-> mmu0. This is controlled by a SMI COMMON register SMI_BUS_SEL(0x220).
->
-> mt2712, mt8173 and mt8183 M4U HW all have 2 mmu cells. the default
-> value of that register is 0 which means all the larbs go to mmu0
-> defaultly.
->
-> This is a preparing patch for adjusting SMI_BUS_SEL for mt8183.
->
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> Reviewed-by: Evan Green <evgreen@chromium.org>
-> ---
->  drivers/iommu/mtk_iommu.c | 46 +++++++++++++++++++++++++++++-----------------
->  1 file changed, 29 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 3a14301..ec4ce74 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -72,26 +72,32 @@
->  #define F_INT_CLR_BIT                          BIT(12)
->
->  #define REG_MMU_INT_MAIN_CONTROL               0x124
-> -#define F_INT_TRANSLATION_FAULT                        BIT(0)
-> -#define F_INT_MAIN_MULTI_HIT_FAULT             BIT(1)
-> -#define F_INT_INVALID_PA_FAULT                 BIT(2)
-> -#define F_INT_ENTRY_REPLACEMENT_FAULT          BIT(3)
-> -#define F_INT_TLB_MISS_FAULT                   BIT(4)
-> -#define F_INT_MISS_TRANSACTION_FIFO_FAULT      BIT(5)
-> -#define F_INT_PRETETCH_TRANSATION_FIFO_FAULT   BIT(6)
-> +                                               /* mmu0 | mmu1 */
-> +#define F_INT_TRANSLATION_FAULT                        (BIT(0) | BIT(7))
-> +#define F_INT_MAIN_MULTI_HIT_FAULT             (BIT(1) | BIT(8))
-> +#define F_INT_INVALID_PA_FAULT                 (BIT(2) | BIT(9))
-> +#define F_INT_ENTRY_REPLACEMENT_FAULT          (BIT(3) | BIT(10))
-> +#define F_INT_TLB_MISS_FAULT                   (BIT(4) | BIT(11))
-> +#define F_INT_MISS_TRANSACTION_FIFO_FAULT      (BIT(5) | BIT(12))
-> +#define F_INT_PRETETCH_TRANSATION_FIFO_FAULT   (BIT(6) | BIT(13))
 
-If there are two IOMMUs, shouldn't we have two driver instances handle
-them, instead of making the driver combine them two internally?
-
-And, what is even more important from security point of view actually,
-have two separate page tables (aka IOMMU groups) for them?
-
-Best regards,
-Tomasz
+On 6/13/2019 10:55 PM, Mark Brown wrote:
+> On Wed, Jun 12, 2019 at 04:30:51PM +0530, Nisha Kumari wrote:
+>
+>> +static int qcom_labibb_read(struct qcom_labibb *labibb, u16 address,
+>> +			    u8 *val, int count)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = regmap_bulk_read(labibb->regmap, address, val, count);
+>> +	if (ret < 0)
+>> +		dev_err(labibb->dev, "spmi read failed ret=%d\n", ret);
+>> +
+>> +	return ret;
+>> +}
+> This (and the write function) are utterly trivial wrappers around the
+> corresponding regmap functions...
+Yeah, i will use the regmap functions directly wherever required
+>
+>> +static int qcom_labibb_masked_write(struct qcom_labibb *labibb, u16 address,
+>> +				    u8 mask, u8 val)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = regmap_update_bits(labibb->regmap, address, mask, val);
+>> +	if (ret < 0)
+>> +		dev_err(labibb->dev, "spmi write failed: ret=%d\n", ret);
+>> +
+>> +	return ret;
+>> +}
+> ...as is this but it changes the name for some reason.
+Yeah, i will use the regmap functions directly wherever required
+>
+>> +static int qcom_enable_ibb(struct qcom_labibb *labibb, bool enable)
+>> +{
+>> +	int ret;
+>> +	u8 val = enable ? IBB_CONTROL_ENABLE : 0;
+> Please write normal conditional statements, it makes things easier to
+> read.  Though this function is so trivial it seems better to just inline
+> it into the callers.
+Sure, I will do that
+>
+>> +static int qcom_lab_regulator_enable(struct regulator_dev *rdev)
+>> +{
+>> +	int ret;
+>> +	u8 val;
+>> +	struct qcom_labibb *labibb  = rdev_get_drvdata(rdev);
+>> +
+>> +	val = LAB_ENABLE_CTL_EN;
+>> +	ret = qcom_labibb_write(labibb,
+>> +				labibb->lab_base + REG_LAB_ENABLE_CTL,
+>> +				&val, 1);
+> Why not just use regmap_write()?  It'd be clearer.
+Sure, I will do that
+>
+>> +	labibb->lab_vreg.vreg_enabled = 1;
+> What function does this serve?  It never seems to be read.
+Its used in next patch for handling interrupts
+>
+>> +	ret = qcom_labibb_write(labibb,
+>> +				labibb->lab_base + REG_LAB_ENABLE_CTL,
+>> +				&val, 1);
+>> +	if (ret < 0) {
+>> +		dev_err(labibb->dev, "Write register failed ret = %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +	/* after this delay, lab should get disabled */
+>> +	usleep_range(POWER_DELAY, POWER_DELAY + 100);
+>> +
+>> +	ret = qcom_labibb_read(labibb, labibb->lab_base +
+>> +			       REG_LAB_STATUS1, &val, 1);
+>> +	if (ret < 0) {
+>> +		dev_err(labibb->dev, "Read register failed ret = %d\n", ret);
+>> +		return ret;
+>> +	}
+> I'm not clear that these status checks are actually a good idea, and if
+> they are it feels like they should be factored out into the framework -
+> these are just regular enable or disable followed by the usual dead
+> reckoning delay for completion and then a get_status() call to confirm
+> if the operation worked.  That's not at all driver specific so if it's
+> useful the core should do it for all regulators with status readback and
+> if you didn't do it you could use the standard regmap helpers for these
+> operations.
+Sure, I will do that
+>
+>> +static int qcom_lab_regulator_is_enabled(struct regulator_dev *rdev)
+>> +{
+>> +	int ret;
+>> +	u8 val;
+>> +	struct qcom_labibb *labibb  = rdev_get_drvdata(rdev);
+>> +
+>> +	ret = qcom_labibb_read(labibb, labibb->lab_base +
+>> +			       REG_LAB_STATUS1, &val, 1);
+>> +	if (ret < 0) {
+>> +		dev_err(labibb->dev, "Read register failed ret = %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return val & LAB_STATUS1_VREG_OK_BIT;
+>> +}
+> Please use the standard helper for this, and this is a get_status()
+> operation not an is_enabled() - it checks if the regulator is working,
+> not what status was requested.
+ok
+>
+>> +	while (retries--) {
+>> +		/* Wait for a small period before reading IBB_STATUS1 */
+>> +		usleep_range(POWER_DELAY, POWER_DELAY + 100);
+>> +
+>> +		ret = qcom_labibb_read(labibb, labibb->ibb_base +
+>> +				       REG_IBB_STATUS1, &val, 1);
+>> +		if (ret < 0) {
+>> +			dev_err(labibb->dev,
+>> +				"Read register failed ret = %d\n", ret);
+>> +			return ret;
+>> +		}
+>> +
+>> +		if (val & IBB_STATUS1_VREG_OK_BIT) {
+>> +			labibb->ibb_vreg.vreg_enabled = 1;
+>> +			return 0;
+>> +		}
+>> +	}
+> This is doing more than the other regulator was but it's not clear why -
+> is it just that the delays are different for the two regulators?
+LAB regulator comes up in first try, so we did not added much delay in 
+that like IBB. Planning to make equal no of retries for both in next 
+patch so that code can be reused.
+>
+>> +static int register_lab_regulator(struct qcom_labibb *labibb,
+>> +				  struct device_node *of_node)
+>> +{
+>> +	int ret = 0;
+>> +	struct regulator_init_data *init_data;
+>> +	struct regulator_config cfg = {};
+>> +
+>> +	cfg.dev = labibb->dev;
+>> +	cfg.driver_data = labibb;
+>> +	cfg.of_node = of_node;
+>> +	init_data =
+>> +		of_get_regulator_init_data(labibb->dev,
+>> +					   of_node, &lab_desc);
+>> +	if (!init_data) {
+>> +		dev_err(labibb->dev,
+>> +			"unable to get init data for LAB\n");
+>> +		return -ENOMEM;
+>> +	}
+> The core will parse the DT for you.
+ok
