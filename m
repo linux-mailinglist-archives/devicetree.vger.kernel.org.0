@@ -2,55 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF46949A67
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA2A49A53
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725913AbfFRHWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:22:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725963AbfFRHWl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 03:22:41 -0400
-Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 18BCD20673;
-        Tue, 18 Jun 2019 07:22:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560842561;
-        bh=3xjzZ7MvLMWn2Bw0AvLVoKhAWyPcHguGkP43zNfeZRc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=v9KXiixtlAq+Ftzhu1YMXH0tO3neacl2rbkNQP0sWYopDI+VV61OovzzLDsnkaceh
-         iovmBXs0pwBrBZTQUvmVXForXQaVB0cnPD2IrlTvs4xxMxpCGxwDOTKJQB+6bx9nKV
-         M+SVNmMqASztJbQ1L11o+TK6TSfpb8eY+YX3rZPc=
-Date:   Tue, 18 Jun 2019 15:18:30 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/1] ARM: dts: imx6ul: Add PXP node
-Message-ID: <20190618071827.GH29881@dragon>
-References: <20190613102355.20580-1-sebastien.szymanski@armadeus.com>
+        id S1725900AbfFRHT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:19:59 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:43060 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbfFRHT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:19:58 -0400
+Received: by mail-ed1-f68.google.com with SMTP id e3so20067246edr.10;
+        Tue, 18 Jun 2019 00:19:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lGRhkqGQodehH6nOoVQY2z539WKIaQS1uhzFQI2YTfU=;
+        b=WzKsDHIEFHczbq/J2T/YOkqRNTa36biQLm6LHr/8Jwt+JTl5zG66QuilQfQdV9TqiT
+         VG7eVTaaaXk1BM/XLK6oif4DoJ+LqW5GXJ+YUiwNdHHLDXp19EnLNHdi8jHGGS6FlSLb
+         ULn+dLPxqFDS3KggbLqMyvPMM2CGju/CJidJNDb1o4jq/8FfZE2siDMrLMa3BMp2HMhk
+         EUrTHaRGOQkR6ddUaOd9ldBkGqMKOlkI0Oz0eJ3Ela14yu9F7KYoR0Fbdq88vUzT+MiF
+         CFDACafRCF8RHbyMrqu/QmJHLDKBMFmVcb4xTYcfS1UT/a4OdFeKvATMmWOiiU7D1khL
+         Y9XQ==
+X-Gm-Message-State: APjAAAUgsiK4su2d4/VwIdUwLc+3+l0i8UKDWt2IDZwHPVvOVIj/bqBT
+        yhfjm6CrKWjC4mUGMnOMzy4MoC/C40s=
+X-Google-Smtp-Source: APXvYqzcG3APtYOZnBeiAD13Yn7O3Vg7wtLwG5Gu4gHTUzOTigqxXsownapKhFF24hrU8g0psCUEOQ==
+X-Received: by 2002:a50:cac1:: with SMTP id f1mr121475009edi.97.1560842396545;
+        Tue, 18 Jun 2019 00:19:56 -0700 (PDT)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com. [209.85.221.54])
+        by smtp.gmail.com with ESMTPSA id a9sm4608267edc.44.2019.06.18.00.19.55
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 00:19:55 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id k11so12700785wrl.1;
+        Tue, 18 Jun 2019 00:19:55 -0700 (PDT)
+X-Received: by 2002:adf:fc85:: with SMTP id g5mr79869381wrr.324.1560842394887;
+ Tue, 18 Jun 2019 00:19:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190613102355.20580-1-sebastien.szymanski@armadeus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <20190614164324.9427-1-jagan@amarulasolutions.com>
+ <20190614164324.9427-6-jagan@amarulasolutions.com> <CAGb2v669MprYgy2wc_a7Kz8VpzzNGZxDxsj0z_Ujx5bV25+AWQ@mail.gmail.com>
+ <CAMty3ZDRYBPKrGQxAZoB+trFiDLJ5BxDfNUOnPzgd+UWcpwCoQ@mail.gmail.com>
+In-Reply-To: <CAMty3ZDRYBPKrGQxAZoB+trFiDLJ5BxDfNUOnPzgd+UWcpwCoQ@mail.gmail.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Tue, 18 Jun 2019 15:19:43 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67uNhie9mb2-m04FGEi4Z7q7TYChOogGj2HgmSmEo4Arg@mail.gmail.com>
+Message-ID: <CAGb2v67uNhie9mb2-m04FGEi4Z7q7TYChOogGj2HgmSmEo4Arg@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v2 5/9] drm/sun4i: tcon_top: Register clock
+ gates in probe
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 12:23:55PM +0200, Sébastien Szymanski wrote:
-> Add PXP node for i.MX6UL/L SoC.
-> 
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+On Mon, Jun 17, 2019 at 6:30 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> On Sun, Jun 16, 2019 at 11:01 AM Chen-Yu Tsai <wens@csie.org> wrote:
+> >
+> > On Sat, Jun 15, 2019 at 12:44 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > >
+> > > TCON TOP have clock gates for TV0, TV1, dsi and right
+> > > now these are register during bind call.
+> > >
+> > > Of which, dsi clock gate would required during DPHY probe
+> > > but same can miss to get since tcon top is not bound at
+> > > that time.
+> > >
+> > > To solve, this circular dependency move the clock gate
+> > > registration from bind to probe so-that DPHY can get the
+> > > dsi gate clock on time.
+> > >
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > ---
+> > >  drivers/gpu/drm/sun4i/sun8i_tcon_top.c | 94 ++++++++++++++------------
+> > >  1 file changed, 49 insertions(+), 45 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > index 465e9b0cdfee..a8978b3fe851 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > @@ -124,7 +124,53 @@ static struct clk_hw *sun8i_tcon_top_register_gate(struct device *dev,
+> > >  static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
+> > >                                void *data)
+> > >  {
+> > > -       struct platform_device *pdev = to_platform_device(dev);
+> > > +       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
+> > > +       int ret;
+> > > +
+> > > +       ret = reset_control_deassert(tcon_top->rst);
+> > > +       if (ret) {
+> > > +               dev_err(dev, "Could not deassert ctrl reset control\n");
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       ret = clk_prepare_enable(tcon_top->bus);
+> > > +       if (ret) {
+> > > +               dev_err(dev, "Could not enable bus clock\n");
+> > > +               goto err_assert_reset;
+> > > +       }
+> >
+> > You have to de-assert the reset control and enable the clock before the
+> > clocks it provides are registered. Otherwise a consumer may come in and
+> > ask for the provided clock to be enabled, but since the TCON TOP's own
+> > reset and clock are still disabled, you can't actually access the registers
+> > that controls the provided clock.
+>
+> These rst and bus are common reset and bus clocks not tcon top clocks
+> that are trying to register here. ie reason I have not moved it in
+> top.
 
-Applied, thanks.
+And you're sure that toggling bits in the TCON TOP block doesn't require
+the reset to be de-asserted and the bus clock enabled?
+
+Somehow I doubt that.
+
+Once the driver register the clocks it provides, they absolutely must work.
+They can't only work after the bind phase when the reset gets de-asserted
+and the bus clock enabled. Or you should provide proper error reporting
+in the clock ops. I doubt you want to go that way either.
+
+ChenYu
