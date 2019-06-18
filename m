@@ -2,83 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2444AA22
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CD5F4AA2B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729922AbfFRSoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 14:44:55 -0400
-Received: from smtprelay0102.hostedemail.com ([216.40.44.102]:36329 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729642AbfFRSoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 14:44:55 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay02.hostedemail.com (Postfix) with ESMTP id A58883AA7;
-        Tue, 18 Jun 2019 18:44:52 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1537:1566:1593:1594:1711:1714:1730:1747:1777:1792:2110:2393:2559:2562:2828:3138:3139:3140:3141:3142:3622:3865:3866:3868:3870:3872:3874:4321:5007:6742:6743:8784:10004:10400:10848:11232:11658:11914:12048:12555:12740:12760:12895:13069:13255:13311:13357:13439:14659:21080:21451:21627,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:28,LUA_SUMMARY:none
-X-HE-Tag: beds50_4715d8d57491f
-X-Filterd-Recvd-Size: 2402
-Received: from XPS-9350 (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
-        (Authenticated sender: joe@perches.com)
-        by omf15.hostedemail.com (Postfix) with ESMTPA;
-        Tue, 18 Jun 2019 18:44:48 +0000 (UTC)
-Message-ID: <1d206e92d9882865c11016d315f8edcd4344cbb8.camel@perches.com>
-Subject: Re: [PATCH v2 1/4] staging: media: tegra-vde: Remove BIT() macro
- from UAPI header
-From:   Joe Perches <joe@perches.com>
-To:     Johannes Berg <johannes@sipsolutions.net>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org, Alexei Starovoitov <ast@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Martin KaFai Lau <kafai@fb.com>,
-        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jamal Hadi Salim <jhs@mojatatu.com>,
-        Cong Wang <xiyou.wangcong@gmail.com>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <jakub.kicinski@netronome.com>,
-        Jesper Dangaard Brouer <hawk@kernel.org>,
-        John Fastabend <john.fastabend@gmail.com>
-Date:   Tue, 18 Jun 2019 11:44:47 -0700
-In-Reply-To: <e5b8756590260b4d6a26cf9f02deb9d157cfca83.camel@sipsolutions.net>
-References: <20190618161458.20499-1-digetx@gmail.com>
-         <20190618161458.20499-5-digetx@gmail.com>
-         <26cd63896d6930385b4f770e305f0782a455a688.camel@perches.com>
-         <e5b8756590260b4d6a26cf9f02deb9d157cfca83.camel@sipsolutions.net>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.30.5-0ubuntu0.18.10.1 
+        id S1730197AbfFRSph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 14:45:37 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:40829 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730176AbfFRSpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:45:36 -0400
+Received: by mail-pl1-f196.google.com with SMTP id a93so6083537pla.7
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 11:45:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jQCPKFxQyeSljUm6aB/gqdIOd3dtcUj6g8UhIWN1Is8=;
+        b=eTLQc07PucKs+X7BOPweNGE+V+Q9FmEWSs8OWmT7a5cmubwmy2LVuja1aiT3ZV4mYe
+         AYCQ1hHwNCGgGe2HNK41ICyUFLMpjAswoA9BVxN2YzEGiQPBBscEQoZyQKGhIb+JoUAp
+         BHwZBRhCBo6lonJBzzgVZ9OHHuP8THWAtX7Cw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jQCPKFxQyeSljUm6aB/gqdIOd3dtcUj6g8UhIWN1Is8=;
+        b=GXo6hAebRzyEQvZJeUbMIiR4BWSDCJKLZqepFPm7MQJwnMBP0KonVK7ZVQhGoKdKSA
+         c9aVplGUcDLpVarKsuqBJdSIhIK7HCVBR0Q7rY/j49Nf69Htr6uaWbbvMT2ys/RUJXbv
+         XnrAA7Sydg5SM22PrH06T7wmXPWMfGok5w4rILDE0/dvdsU+uicdxMbyyN6JsGPzdGmc
+         EsxDgLxpwzESbAUwZKM8oBVRDqyZuFXcockFhO6cMn+cwAouVmwJAk7+aa6XiV0B1VPn
+         uRQJzVmomii36yW3hOrCWHBudlfQpgprz+hsZuoxdYR5lRtYV+VK2E9EaBGLmevjVkhw
+         wfYw==
+X-Gm-Message-State: APjAAAUy1EwR6I9toKOOr3RBT8ecHL9UUpJr5Yrr4nVKfBZvOmDXzLRk
+        Pu9UCKlH8avB2r9qFfiviyawVLqFe4k=
+X-Google-Smtp-Source: APXvYqzdyMQm5ebsWKiLT9a2PALu7WQE/3ZGEacfk5lHvzhAmUbdQoYOrxUvz1QdNdOGzC4K4Ppfkw==
+X-Received: by 2002:a17:902:e282:: with SMTP id cf2mr93052072plb.301.1560883536360;
+        Tue, 18 Jun 2019 11:45:36 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id g1sm847758pjx.22.2019.06.18.11.45.35
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 11:45:35 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v2] Revert "ARM: dts: rockchip: set PWM delay backlight settings for Minnie"
+Date:   Tue, 18 Jun 2019 11:45:31 -0700
+Message-Id: <20190618184531.1137-1-mka@chromium.org>
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-18 at 20:37 +0200, Johannes Berg wrote:
-> On Tue, 2019-06-18 at 11:23 -0700, Joe Perches wrote:
-> > include/uapi/linux/nl80211.h: * bitmask of BIT(NL80211_BAND_*) as described in %enum
-> > 
-> > 
-> That's a comment :P
+This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
 
-That's true and that's nice.
+The commit assumes that the minnie panel is a AUO B101EAN01.1 (LVDS
+interface), however it is a AUO B101EAN01.8 (eDP interface). The eDP
+panel doesn't need the 200 ms delay.
 
-It was a casual grep and the comment should
-probably be improved anyway.
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
+Changes in v2:
+- updated commit message with details about the source of the
+  confusion
+- added Enric's "Reviewed-by" tag
+---
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-<insert appropriate emoji here>
-
-cheers, Joe
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index 468a1818545d..28cbe07f96ec 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -86,8 +86,6 @@
+ 			240 241 242 243 244 245 246 247
+ 			248 249 250 251 252 253 254 255>;
+ 	power-supply = <&backlight_regulator>;
+-	post-pwm-on-delay-ms = <200>;
+-	pwm-off-delay-ms = <200>;
+ };
+ 
+ &emmc {
+-- 
+2.22.0.410.gd8fdbe21b5-goog
 
