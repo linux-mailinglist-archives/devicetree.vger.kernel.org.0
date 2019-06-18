@@ -2,206 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32A9749E4C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 12:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ADFD49E58
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 12:38:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729127AbfFRKeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 06:34:19 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:35125 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729110AbfFRKeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 06:34:19 -0400
-Received: by mail-io1-f66.google.com with SMTP id m24so28660898ioo.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 03:34:18 -0700 (PDT)
+        id S1729135AbfFRKi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 06:38:26 -0400
+Received: from mail-eopbgr1410139.outbound.protection.outlook.com ([40.107.141.139]:48590
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725934AbfFRKi0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 06:38:26 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wpQoG1Wc0XjuCAWhAB/s5GQOkrEUqtdWSybZNMgnLQo=;
-        b=E1YxsQwklgb6VllZvWHSagrfUhBjoGsarhcjZOymEGPZQ99/5hS/nnHF84NGch8SZV
-         CLBAmR5tEXQud+tNxydBa5d9QFQ4l+rZD4kUaGIymeyuVR9+deirqszWB2Id6vl1aXzU
-         h6lw+s3ddlsDTKeC3GqGCMfI2FE4dJ3eSRuLY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wpQoG1Wc0XjuCAWhAB/s5GQOkrEUqtdWSybZNMgnLQo=;
-        b=qaXwJimIwnNNds/qehojloGT6lQATYNAoFiraEdUSCKGl7df2UzJsPmXtN+Qx03hP7
-         ZbY5euR6BvRGVVYDRrYIW+BSACENM7qM20BW6JHvffNl4H5re4rs7b++dnyF9UiGF/I7
-         q6SndQSkKAmZcoEO4A0hzrfMYQ5DHsCvxDDWScpTpnvX7L/lKi7cVVwvequvtM504EY9
-         oWJaEcKnwoj3ORB1LN0JuMZvTcQFsa0QeuuY4/DDF4Q+vAGSl/OUlQ8dCHFRpBzqLlTB
-         ZaNBxL0rJWyIpar4cjlsw/0f2sYqW6kbdF/JSAWJ7ZBdkTpoO4m78Mjup2BoyPQU6dOZ
-         OZNA==
-X-Gm-Message-State: APjAAAXuqe+MvAwOxTr2Hi0rBkUIVQLK8SI/Trbokch0+S+pS7Pk4tAz
-        NcMv5DHSfmrCQ/dNfe1QfGmyq4pXThJrbxr+DT6ubA==
-X-Google-Smtp-Source: APXvYqzO0nEX3fm1soaUqMo2bDslLyQffr3PNruZK0DCUBUy/ns1rEi9fPAESKSl/J4H4H1lmzd5kNngA/KmgcxyfnQ=
-X-Received: by 2002:a5d:9ad6:: with SMTP id x22mr4603238ion.136.1560854058150;
- Tue, 18 Jun 2019 03:34:18 -0700 (PDT)
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eWUE79LtzrYBAdATtIG058Ea266tx7k6sPBODrY69Pw=;
+ b=bsY49N5F+AlzGkba2JALZeZ94+oxEsBVscuCu6ueDnq4YJrsrtbErikF1MDlmFqjp+Vj5Qhi/cFprYPlzms40w58UfIVTNnqbiGXjgVY2ssIlxQoLF1RgGMer8KmKGIWo9u2cKEktdPNhzivx5/dtzqsOjug609CN1DlGwuucLU=
+Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
+ OSBPR01MB2343.jpnprd01.prod.outlook.com (52.134.252.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.15; Tue, 18 Jun 2019 10:38:21 +0000
+Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
+ ([fe80::451a:14a0:aa81:1b54]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
+ ([fe80::451a:14a0:aa81:1b54%7]) with mapi id 15.20.1987.014; Tue, 18 Jun 2019
+ 10:38:21 +0000
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Simon Horman <horms@verge.net.au>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: PCI: rcar: Add device tree support for
+ r8a774a1
+Thread-Topic: [PATCH] dt-bindings: PCI: rcar: Add device tree support for
+ r8a774a1
+Thread-Index: AQHVHP/I/iv2mgFRykWCEYuyY80u+qabZALCgAXlAgA=
+Date:   Tue, 18 Jun 2019 10:38:21 +0000
+Message-ID: <OSBPR01MB2103F1D063171E45B4E5034DB8EA0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+References: <1559891016-56157-1-git-send-email-biju.das@bp.renesas.com>
+ <20190612114629.wpazihf5ea3g4wjn@verge.net.au>
+ <20190614163351.GA30511@e121166-lin.cambridge.arm.com>
+In-Reply-To: <20190614163351.GA30511@e121166-lin.cambridge.arm.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=biju.das@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ff88d6b2-55ac-4f17-0aae-08d6f3d915d5
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB2343;
+x-ms-traffictypediagnostic: OSBPR01MB2343:
+x-microsoft-antispam-prvs: <OSBPR01MB234364B336B04FC747586774B8EA0@OSBPR01MB2343.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3044;
+x-forefront-prvs: 007271867D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(366004)(39860400002)(136003)(346002)(376002)(189003)(199004)(51914003)(64756008)(66066001)(66946007)(66556008)(66476007)(6436002)(76116006)(66446008)(44832011)(5660300002)(73956011)(52536014)(229853002)(2906002)(102836004)(99286004)(71190400001)(7696005)(6506007)(9686003)(14454004)(55016002)(71200400001)(305945005)(74316002)(76176011)(68736007)(110136005)(26005)(486006)(11346002)(54906003)(478600001)(316002)(7736002)(25786009)(6246003)(186003)(53936002)(86362001)(446003)(4326008)(6116002)(81156014)(8936002)(33656002)(81166006)(476003)(3846002)(8676002)(256004)(138113003)(98903001);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB2343;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: BnSJdefGL8Oh7naX6/oXg3AONd/t91wTUW5sccuDSsbRy7e3HW9nGTiknyPMDupOOKOT93F18Rti6Mfv0OSYsM/hAIeDerA0L6VAVR84WW1SpY4Z3cEDQACUZwIsiLbnCF4qs9G0A1UGgDk0SJxA4OrrNeUSSS5quMlJ4/s59DaiGwfBJPqyIxLBiqpUM54V41In8/bj0cTcQm9FneO2PgnM9+9joF0P3unk/38+gt+9LUytuLF1qaa6y0zo1p0aIONSTLXCQmtasrI/qJfPxKuqqIyyOo+vPWOBMNQKaF3cY6UI2EQ1MuvVYVK6RFtFv+M5fWegvoya4F8QqlrNplu3FsxSRq4+f8YxzYsN0qg6pBz217P5nvfLxtWQKfSnlhOyA/Lua/SWxsigWvpp1azooIPgZZgaQtYwUwWwFdY=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20190614164324.9427-1-jagan@amarulasolutions.com>
- <20190614164324.9427-6-jagan@amarulasolutions.com> <CAGb2v669MprYgy2wc_a7Kz8VpzzNGZxDxsj0z_Ujx5bV25+AWQ@mail.gmail.com>
- <CAMty3ZDRYBPKrGQxAZoB+trFiDLJ5BxDfNUOnPzgd+UWcpwCoQ@mail.gmail.com>
- <CAGb2v67uNhie9mb2-m04FGEi4Z7q7TYChOogGj2HgmSmEo4Arg@mail.gmail.com>
- <CAMty3ZBUrGEi+e62sFe7GkXinK3q076sGLwpEVz67qeoV+1ZeA@mail.gmail.com> <CAGb2v65YRVSv2mFfE2e=vqDOSu4Nie_oLQ-qpaDsTWKJwf-aeA@mail.gmail.com>
-In-Reply-To: <CAGb2v65YRVSv2mFfE2e=vqDOSu4Nie_oLQ-qpaDsTWKJwf-aeA@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 18 Jun 2019 16:04:06 +0530
-Message-ID: <CAMty3ZA+hV_X0-=b83M3rDUhX=+g5RNC6EU-DzAS_pbvwc54FA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v2 5/9] drm/sun4i: tcon_top: Register clock
- gates in probe
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff88d6b2-55ac-4f17-0aae-08d6f3d915d5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2019 10:38:21.8030
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: biju.das@bp.renesas.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2343
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 1:23 PM Chen-Yu Tsai <wens@csie.org> wrote:
->
-> On Tue, Jun 18, 2019 at 3:45 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+Hello Lorenzo and Simon,
+
+Thanks for the feedback.
+
+> Subject: Re: [PATCH] dt-bindings: PCI: rcar: Add device tree support for
+> r8a774a1
+>=20
+> On Wed, Jun 12, 2019 at 01:46:29PM +0200, Simon Horman wrote:
+> > On Fri, Jun 07, 2019 at 08:03:36AM +0100, Biju Das wrote:
+> > > Add PCIe support for the RZ/G2M (a.k.a. R8A774A1).
+> > >
+> > > Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > >
-> > On Tue, Jun 18, 2019 at 12:49 PM Chen-Yu Tsai <wens@csie.org> wrote:
+> > Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+>=20
+> Should I pick this up and send it via the PCI tree ?
+>=20
+> Just let me know please, thanks.
+
+Simon,=20
+What do you think ?
+
+Regards,
+Biju
+
+>=20
+> > > ---
+> > >  Documentation/devicetree/bindings/pci/rcar-pci.txt | 1 +
+> > >  1 file changed, 1 insertion(+)
 > > >
-> > > On Mon, Jun 17, 2019 at 6:30 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > > >
-> > > > On Sun, Jun 16, 2019 at 11:01 AM Chen-Yu Tsai <wens@csie.org> wrote:
-> > > > >
-> > > > > On Sat, Jun 15, 2019 at 12:44 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > > > > >
-> > > > > > TCON TOP have clock gates for TV0, TV1, dsi and right
-> > > > > > now these are register during bind call.
-> > > > > >
-> > > > > > Of which, dsi clock gate would required during DPHY probe
-> > > > > > but same can miss to get since tcon top is not bound at
-> > > > > > that time.
-> > > > > >
-> > > > > > To solve, this circular dependency move the clock gate
-> > > > > > registration from bind to probe so-that DPHY can get the
-> > > > > > dsi gate clock on time.
-> > > > > >
-> > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/sun4i/sun8i_tcon_top.c | 94 ++++++++++++++------------
-> > > > > >  1 file changed, 49 insertions(+), 45 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
-> > > > > > index 465e9b0cdfee..a8978b3fe851 100644
-> > > > > > --- a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
-> > > > > > +++ b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
-> > > > > > @@ -124,7 +124,53 @@ static struct clk_hw *sun8i_tcon_top_register_gate(struct device *dev,
-> > > > > >  static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
-> > > > > >                                void *data)
-> > > > > >  {
-> > > > > > -       struct platform_device *pdev = to_platform_device(dev);
-> > > > > > +       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
-> > > > > > +       int ret;
-> > > > > > +
-> > > > > > +       ret = reset_control_deassert(tcon_top->rst);
-> > > > > > +       if (ret) {
-> > > > > > +               dev_err(dev, "Could not deassert ctrl reset control\n");
-> > > > > > +               return ret;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       ret = clk_prepare_enable(tcon_top->bus);
-> > > > > > +       if (ret) {
-> > > > > > +               dev_err(dev, "Could not enable bus clock\n");
-> > > > > > +               goto err_assert_reset;
-> > > > > > +       }
-> > > > >
-> > > > > You have to de-assert the reset control and enable the clock before the
-> > > > > clocks it provides are registered. Otherwise a consumer may come in and
-> > > > > ask for the provided clock to be enabled, but since the TCON TOP's own
-> > > > > reset and clock are still disabled, you can't actually access the registers
-> > > > > that controls the provided clock.
-> > > >
-> > > > These rst and bus are common reset and bus clocks not tcon top clocks
-> > > > that are trying to register here. ie reason I have not moved it in
-> > > > top.
+> > > diff --git a/Documentation/devicetree/bindings/pci/rcar-pci.txt
+> b/Documentation/devicetree/bindings/pci/rcar-pci.txt
+> > > index 6904882..45bba9f 100644
+> > > --- a/Documentation/devicetree/bindings/pci/rcar-pci.txt
+> > > +++ b/Documentation/devicetree/bindings/pci/rcar-pci.txt
+> > > @@ -3,6 +3,7 @@
+> > >  Required properties:
+> > >  compatible: "renesas,pcie-r8a7743" for the R8A7743 SoC;
+> > >  	    "renesas,pcie-r8a7744" for the R8A7744 SoC;
+> > > +	    "renesas,pcie-r8a774a1" for the R8A774A1 SoC;
+> > >  	    "renesas,pcie-r8a774c0" for the R8A774C0 SoC;
+> > >  	    "renesas,pcie-r8a7779" for the R8A7779 SoC;
+> > >  	    "renesas,pcie-r8a7790" for the R8A7790 SoC;
+> > > --
+> > > 2.7.4
 > > >
-> > > And you're sure that toggling bits in the TCON TOP block doesn't require
-> > > the reset to be de-asserted and the bus clock enabled?
-> > >
-> > > Somehow I doubt that.
-> > >
-> > > Once the driver register the clocks it provides, they absolutely must work.
-> > > They can't only work after the bind phase when the reset gets de-asserted
-> > > and the bus clock enabled. Or you should provide proper error reporting
-> > > in the clock ops. I doubt you want to go that way either.
-> >
-> > Why would they won't work after bind phase? unlike tcon top gates,
-> > these reset, and bus are common like  what we have in other DE block
-> > so enable them in bind won't be an issue as per as I understand. let
-> > me know if you want me to check in other directions.
->
-> You misunderstood. When you moved the clock registering parts to the probe
-> phase, but didn't move the clock enable and reset de-assert parts to go with,
-> the clock ops will not work as expected between probe and bind time.
-
-If I understand correctly, I have moved tcon clock gates, not the bus
-clock or the reset. Both have independent enablement phase, the bus
-clock is enable in tcon top bind and the clock gate ("dsi") enable in
-init call of phy_ops. is both bus clock and clock gates are same and
-related that is what you are saying?
-
->
-> Simple way to verify it: Just use devmem to disable the TCON TOP bus gate
-> and/or assert its reset control. Then try to toggle any of the bits in the
-> TCON TOP block and see if it works, or if the bits stick.
-
-Yes I have verified "dsi" gate enablement before via devmem. Below is
-the bus, reset disablement and re-enablement and result is similar for
-the reset, bus clock in bind and even in probe.
-
-00. get the existing value
-
-# devmem 0x1c70020
-0x00010000
-# devmem 0x1c20064
-0x44021000
-# devmem 0x1c202c4
-0x44021000
-
-01: disable bus, and assert reset
-
-# devmem 0x1c20064 32 0x4021000
-# devmem 0x1c202c4 32 0x4021000
-# devmem 0x1c20064
-0x04021000
-# devmem 0x1c202c4
-0x04021000
-# devmem 0x1c70020
-0x00000000
-
-02: enable bus, and dessert reset
-
-# devmem 0x1c20064 32 0x44021000
-# devmem 0x1c202c4 32 0x44021000
-# devmem 0x1c20064
-0x44021000
-# devmem 0x1c202c4
-0x44021000
-# devmem 0x1c70020
-0x00000000
-
-03: enable gate
-
-# devmem 0x1c70020 32 0x00010000
-# devmem 0x1c70020
-0x00010000
-
->
-> Whether another driver actually does so is not the question. It is just bad
-> implementation.
-
-Not sure, I understand this.
