@@ -2,259 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 510B449AD7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 923AD49AFD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729065AbfFRHl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:41:58 -0400
-Received: from mail-wr1-f100.google.com ([209.85.221.100]:36369 "EHLO
-        mail-wr1-f100.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728917AbfFRHl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:41:58 -0400
-Received: by mail-wr1-f100.google.com with SMTP id n4so4662620wrs.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:41:56 -0700 (PDT)
+        id S1726181AbfFRHpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:45:18 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:46621 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725913AbfFRHpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:45:17 -0400
+Received: by mail-io1-f65.google.com with SMTP id i10so27452030iol.13
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:45:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=okoko.fi; s=okoko;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=rNkk0KsbO3YcUF9ymJ/Izy+/IeIKEUGythTLywp5Ihs=;
-        b=NpcJqVJ7oMwCHKq+K8XtNKFwzz/R4irs1neyzPkukpQlNYfqk2jXuCPYslO9Vbtia1
-         JGSC72YgcwPtuvPeMMLK/JyeNzFLssUmOFSR9ZTaoKXz9yFfgrgNtYgjoz6jfBI1Ol90
-         3NZeKgHz4geTHcmiwj/VFOnOfmm6DpVODx9eg=
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dQqEptmFMn730dBdlfdZE5hfmCUjibyWj8InCcloaNs=;
+        b=MfDgk6etw4chByCnzSmLfZ7llzAeulK2GpSmW+7DA2IBZjUuWL2ufVTiTaV7NYpOd+
+         jMxvYFrND5tmQ3xXeCWVUhXj025QeiE51+OQzoSc1p1OkNqarPpM4AOdbRiqF10PB6ff
+         8VzpF3OKMVy6H/S/JeuqRH4f5bgYOY7lucqiQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=rNkk0KsbO3YcUF9ymJ/Izy+/IeIKEUGythTLywp5Ihs=;
-        b=jcgM+A8vSPdSM8J+KgSSgvO1trTK+MjJONhsr8edw2MtF5ogAlOcOHWGs2zcB+u2tO
-         WtHRfFiQpDy4QhxyV0XD63n8/GjxWAaRau30fSr7guxyQtUJOvICAGl4tQP26/wjfT7C
-         QC4iP5aZ50O3//zOx9O5GtMRdSCEKYNTUamp7jwYhuGZSdlf1DAl1HJmuTUvnGkZ+5LS
-         9ioiJjiXsDYos+5v8wD/O2zqqNjrEeLJiHaKlTmJG5xBJzW+AYtunHu7BeeWXkhEAKih
-         wqjpOp5hxnkRW8/GnY0cmrx8LqJu0DU1zzsb18toJtfVgEncXytrbkNlNs1CJBSulrGZ
-         wBgg==
-X-Gm-Message-State: APjAAAUre2n7l8mxH18ZBN2UR05NUm+gzGJStLbWhuFjLAfFQ2A8fEnQ
-        YsRJW99r27ide6g9/CJUNtyCwCBo34BwkupqN/b6gWgp3ToGCQ==
-X-Google-Smtp-Source: APXvYqzAuwJZzHjJO+VMYRz/onGA03PFgeWDiSBswwI4SsuQTJYCfILB3zo1KrRCnyTMFgUxJOpzvnc+lfbZ
-X-Received: by 2002:a5d:6449:: with SMTP id d9mr23754483wrw.192.1560843715707;
-        Tue, 18 Jun 2019 00:41:55 -0700 (PDT)
-Received: from localhost.localdomain (46-163-209-30.blcnet.fi. [46.163.209.30])
-        by smtp-relay.gmail.com with ESMTPS id l18sm212063wrn.66.2019.06.18.00.41.54
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 18 Jun 2019 00:41:55 -0700 (PDT)
-X-Relaying-Domain: okoko.fi
-From:   Marko Kohtala <marko.kohtala@okoko.fi>
-To:     linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dQqEptmFMn730dBdlfdZE5hfmCUjibyWj8InCcloaNs=;
+        b=n6YM462Hd2sNfpoAoYicRm68vz3BPq2GFvmMDDh8nSENMS1vGkwr7UJFfv4SksWi1Z
+         p3x20rPy5cBSvFDQZVBAI3w0oOqTWoRbu8earPn0gUmhoRnEZI3y7H3As9josDZlsQA2
+         755sYJCEn2CY5jsJExljFXN7/YxoajduaTZAF2UaskYlvcHDtbIo8n9vK9GCnCOhr0TR
+         gfDrO1OMYGdELrgWiQbmegsWtwcnYrEsvtHp6RAdJSApVdIxtbVyUzggzl1A76xWyfrP
+         hHOOxWICdVIqhNs7JW5oNn9wdw3Pw7MOMcViF9wAvOdRZFe9NalS8HsW5PgWuuwYDUkp
+         6VRw==
+X-Gm-Message-State: APjAAAUhbIqPcTfC+yKBj29dUsOewbS+ZqdEo1mwaUWgI53q5xRsa85o
+        vLm+QP/rbTWK1dAmGUwJ5t/2gz6rTLo7gGEEZopX5w==
+X-Google-Smtp-Source: APXvYqyvktP/j2ktRs2L7A7DqzWRVBY7ntZAc1VkFuycTLk+XHuqq0XrUBKdNC6vWDRQ6yfhZtCyg1RT6Svxk9v73DA=
+X-Received: by 2002:a02:bb08:: with SMTP id y8mr29064230jan.51.1560843916539;
+ Tue, 18 Jun 2019 00:45:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190614164324.9427-1-jagan@amarulasolutions.com>
+ <20190614164324.9427-6-jagan@amarulasolutions.com> <CAGb2v669MprYgy2wc_a7Kz8VpzzNGZxDxsj0z_Ujx5bV25+AWQ@mail.gmail.com>
+ <CAMty3ZDRYBPKrGQxAZoB+trFiDLJ5BxDfNUOnPzgd+UWcpwCoQ@mail.gmail.com> <CAGb2v67uNhie9mb2-m04FGEi4Z7q7TYChOogGj2HgmSmEo4Arg@mail.gmail.com>
+In-Reply-To: <CAGb2v67uNhie9mb2-m04FGEi4Z7q7TYChOogGj2HgmSmEo4Arg@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 18 Jun 2019 13:15:05 +0530
+Message-ID: <CAMty3ZBUrGEi+e62sFe7GkXinK3q076sGLwpEVz67qeoV+1ZeA@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v2 5/9] drm/sun4i: tcon_top: Register clock
+ gates in probe
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
         David Airlie <airlied@linux.ie>,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
-        Marko Kohtala <marko.kohtala@okoko.fi>
-Subject: [PATCH 6/6] video: ssd1307fb: Add devicetree configuration of display setup
-Date:   Tue, 18 Jun 2019 10:41:11 +0300
-Message-Id: <20190618074111.9309-7-marko.kohtala@okoko.fi>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190618074111.9309-1-marko.kohtala@okoko.fi>
-References: <20190618074111.9309-1-marko.kohtala@okoko.fi>
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Various displays have differences that only mean initializing the display
-driver IC with different fixed register values. Defining these in
-devicetree offers easier way to adapt the driver to new displays than
-requiring a patch to the kernel.
+On Tue, Jun 18, 2019 at 12:49 PM Chen-Yu Tsai <wens@csie.org> wrote:
+>
+> On Mon, Jun 17, 2019 at 6:30 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > On Sun, Jun 16, 2019 at 11:01 AM Chen-Yu Tsai <wens@csie.org> wrote:
+> > >
+> > > On Sat, Jun 15, 2019 at 12:44 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > > >
+> > > > TCON TOP have clock gates for TV0, TV1, dsi and right
+> > > > now these are register during bind call.
+> > > >
+> > > > Of which, dsi clock gate would required during DPHY probe
+> > > > but same can miss to get since tcon top is not bound at
+> > > > that time.
+> > > >
+> > > > To solve, this circular dependency move the clock gate
+> > > > registration from bind to probe so-that DPHY can get the
+> > > > dsi gate clock on time.
+> > > >
+> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > ---
+> > > >  drivers/gpu/drm/sun4i/sun8i_tcon_top.c | 94 ++++++++++++++------------
+> > > >  1 file changed, 49 insertions(+), 45 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > > index 465e9b0cdfee..a8978b3fe851 100644
+> > > > --- a/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > > +++ b/drivers/gpu/drm/sun4i/sun8i_tcon_top.c
+> > > > @@ -124,7 +124,53 @@ static struct clk_hw *sun8i_tcon_top_register_gate(struct device *dev,
+> > > >  static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
+> > > >                                void *data)
+> > > >  {
+> > > > -       struct platform_device *pdev = to_platform_device(dev);
+> > > > +       struct sun8i_tcon_top *tcon_top = dev_get_drvdata(dev);
+> > > > +       int ret;
+> > > > +
+> > > > +       ret = reset_control_deassert(tcon_top->rst);
+> > > > +       if (ret) {
+> > > > +               dev_err(dev, "Could not deassert ctrl reset control\n");
+> > > > +               return ret;
+> > > > +       }
+> > > > +
+> > > > +       ret = clk_prepare_enable(tcon_top->bus);
+> > > > +       if (ret) {
+> > > > +               dev_err(dev, "Could not enable bus clock\n");
+> > > > +               goto err_assert_reset;
+> > > > +       }
+> > >
+> > > You have to de-assert the reset control and enable the clock before the
+> > > clocks it provides are registered. Otherwise a consumer may come in and
+> > > ask for the provided clock to be enabled, but since the TCON TOP's own
+> > > reset and clock are still disabled, you can't actually access the registers
+> > > that controls the provided clock.
+> >
+> > These rst and bus are common reset and bus clocks not tcon top clocks
+> > that are trying to register here. ie reason I have not moved it in
+> > top.
+>
+> And you're sure that toggling bits in the TCON TOP block doesn't require
+> the reset to be de-asserted and the bus clock enabled?
+>
+> Somehow I doubt that.
+>
+> Once the driver register the clocks it provides, they absolutely must work.
+> They can't only work after the bind phase when the reset gets de-asserted
+> and the bus clock enabled. Or you should provide proper error reporting
+> in the clock ops. I doubt you want to go that way either.
 
-This adds devicetree properties needed to make the initialization match
-the example setup as offered by Densitron for their 128x36 display.
+Why would they won't work after bind phase? unlike tcon top gates,
+these reset, and bus are common like  what we have in other DE block
+so enable them in bind won't be an issue as per as I understand. let
+me know if you want me to check in other directions.
 
-It also makes some old one bit parameter handling a little cleaner.
-
-Signed-off-by: Marko Kohtala <marko.kohtala@okoko.fi>
----
- drivers/video/fbdev/ssd1307fb.c | 80 ++++++++++++++++++++++++++-------
- 1 file changed, 64 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/video/fbdev/ssd1307fb.c b/drivers/video/fbdev/ssd1307fb.c
-index 4f4a1b99d17d..fca1e91d03d9 100644
---- a/drivers/video/fbdev/ssd1307fb.c
-+++ b/drivers/video/fbdev/ssd1307fb.c
-@@ -29,6 +29,7 @@
- #define SSD1307FB_SET_COL_RANGE		0x21
- #define SSD1307FB_SET_PAGE_RANGE	0x22
- #define SSD1307FB_CONTRAST		0x81
-+#define SSD1307FB_SET_LOOKUP_TABLE	0x91
- #define	SSD1307FB_CHARGE_PUMP		0x8d
- #define SSD1307FB_SEG_REMAP_ON		0xa1
- #define SSD1307FB_DISPLAY_OFF		0xae
-@@ -37,6 +38,7 @@
- #define SSD1307FB_START_PAGE_ADDRESS	0xb0
- #define SSD1307FB_SET_DISPLAY_OFFSET	0xd3
- #define	SSD1307FB_SET_CLOCK_FREQ	0xd5
-+#define	SSD1307FB_SET_AREA_COLOR_MODE	0xd8
- #define	SSD1307FB_SET_PRECHARGE_PERIOD	0xd9
- #define	SSD1307FB_SET_COM_PINS_CONFIG	0xda
- #define	SSD1307FB_SET_VCOMH		0xdb
-@@ -59,10 +61,14 @@ struct ssd1307fb_deviceinfo {
- };
- 
- struct ssd1307fb_par {
--	u32 com_invdir;
--	u32 com_lrremap;
-+	unsigned area_color_enable : 1;
-+	unsigned com_invdir : 1;
-+	unsigned com_lrremap : 1;
-+	unsigned com_seq : 1;
-+	unsigned lookup_table_set : 1;
-+	unsigned low_power : 1;
-+	unsigned seg_remap : 1;
- 	u32 com_offset;
--	u32 com_seq;
- 	u32 contrast;
- 	u32 dclk_div;
- 	u32 dclk_frq;
-@@ -70,6 +76,7 @@ struct ssd1307fb_par {
- 	struct i2c_client *client;
- 	u32 height;
- 	struct fb_info *info;
-+	u8 lookup_table[4];
- 	u32 page_offset;
- 	u32 prechargep1;
- 	u32 prechargep2;
-@@ -77,7 +84,6 @@ struct ssd1307fb_par {
- 	u32 pwm_period;
- 	struct gpio_desc *reset;
- 	struct regulator *vbat_reg;
--	u32 seg_remap;
- 	u32 vcomh;
- 	u32 width;
- };
-@@ -99,6 +105,9 @@ static const struct fb_fix_screeninfo ssd1307fb_fix = {
- 
- static const struct fb_var_screeninfo ssd1307fb_var = {
- 	.bits_per_pixel	= 1,
-+	.red = { .length = 1 },
-+	.green = { .length = 1 },
-+	.blue = { .length = 1 },
- };
- 
- static struct ssd1307fb_array *ssd1307fb_alloc_array(u32 len, u8 type)
-@@ -335,7 +344,7 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
- 	}
- 
- 	/* Set COM direction */
--	com_invdir = 0xc0 | (par->com_invdir & 0x1) << 3;
-+	com_invdir = 0xc0 | par->com_invdir << 3;
- 	ret = ssd1307fb_write_cmd(par->client,  com_invdir);
- 	if (ret < 0)
- 		return ret;
-@@ -368,6 +377,22 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
- 	if (ret < 0)
- 		return ret;
- 
-+	/* Set Set Area Color Mode ON/OFF & Low Power Display Mode */
-+	if (par->area_color_enable || par->low_power) {
-+		u32 mode;
-+
-+		ret = ssd1307fb_write_cmd(par->client,
-+					  SSD1307FB_SET_AREA_COLOR_MODE);
-+		if (ret < 0)
-+			return ret;
-+
-+		mode = (par->area_color_enable ? 0x30 : 0) |
-+			(par->low_power ? 5 : 0);
-+		ret = ssd1307fb_write_cmd(par->client, mode);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	/* Set precharge period in number of ticks from the internal clock */
- 	ret = ssd1307fb_write_cmd(par->client, SSD1307FB_SET_PRECHARGE_PERIOD);
- 	if (ret < 0)
-@@ -383,8 +408,7 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
- 	if (ret < 0)
- 		return ret;
- 
--	compins = 0x02 | !(par->com_seq & 0x1) << 4
--				   | (par->com_lrremap & 0x1) << 5;
-+	compins = 0x02 | !par->com_seq << 4 | par->com_lrremap << 5;
- 	ret = ssd1307fb_write_cmd(par->client, compins);
- 	if (ret < 0)
- 		return ret;
-@@ -408,6 +432,28 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
- 	if (ret < 0)
- 		return ret;
- 
-+	/* Set lookup table */
-+	if (par->lookup_table_set) {
-+		int i;
-+
-+		ret = ssd1307fb_write_cmd(par->client,
-+					  SSD1307FB_SET_LOOKUP_TABLE);
-+		if (ret < 0)
-+			return ret;
-+
-+		for (i = 0; i < ARRAY_SIZE(par->lookup_table); ++i) {
-+			u8 val = par->lookup_table[i];
-+
-+			if (val < 31 || val > 63)
-+				dev_warn(&par->client->dev,
-+					"lookup table index %d value out of range 31 <= %d <= 63\n",
-+					i, val);
-+			ret = ssd1307fb_write_cmd(par->client, val);
-+			if (ret < 0)
-+				return ret;
-+		}
-+	}
-+
- 	/* Switch to horizontal addressing mode */
- 	ret = ssd1307fb_write_cmd(par->client, SSD1307FB_SET_ADDRESS_MODE);
- 	if (ret < 0)
-@@ -610,17 +656,26 @@ static int ssd1307fb_probe(struct i2c_client *client,
- 	if (of_property_read_u32(node, "solomon,prechargep2", &par->prechargep2))
- 		par->prechargep2 = 2;
- 
-+	if (!of_property_read_u8_array(node, "solomon,lookup-table",
-+		par->lookup_table, ARRAY_SIZE(par->lookup_table)))
-+		par->lookup_table_set = 1;
-+
- 	par->seg_remap = !of_property_read_bool(node, "solomon,segment-no-remap");
- 	par->com_seq = of_property_read_bool(node, "solomon,com-seq");
- 	par->com_lrremap = of_property_read_bool(node, "solomon,com-lrremap");
- 	par->com_invdir = of_property_read_bool(node, "solomon,com-invdir");
-+	par->area_color_enable =
-+		of_property_read_bool(node, "solomon,area-color-enable");
-+	par->low_power = of_property_read_bool(node, "solomon,low-power");
- 
- 	par->contrast = 127;
- 	par->vcomh = par->device_info->default_vcomh;
- 
- 	/* Setup display timing */
--	par->dclk_div = par->device_info->default_dclk_div;
--	par->dclk_frq = par->device_info->default_dclk_frq;
-+	if (of_property_read_u32(node, "solomon,dclk-div", &par->dclk_div))
-+		par->dclk_div = par->device_info->default_dclk_div;
-+	if (of_property_read_u32(node, "solomon,dclk-frq", &par->dclk_frq))
-+		par->dclk_frq = par->device_info->default_dclk_frq;
- 
- 	vmem_size = DIV_ROUND_UP(par->width, 8) * par->height;
- 
-@@ -654,13 +709,6 @@ static int ssd1307fb_probe(struct i2c_client *client,
- 	info->var.yres = par->height;
- 	info->var.yres_virtual = par->height;
- 
--	info->var.red.length = 1;
--	info->var.red.offset = 0;
--	info->var.green.length = 1;
--	info->var.green.offset = 0;
--	info->var.blue.length = 1;
--	info->var.blue.offset = 0;
--
- 	info->screen_buffer = vmem;
- 	info->fix.smem_start = __pa(vmem);
- 	info->fix.smem_len = vmem_size;
--- 
-2.17.1
-
+Log:
+[    1.381410] sun6i-mipi-dsi 1ca0000.dsi: Attached panel s070wv20-ct16-icn62
+[    1.398405] sun4i-drm display-engine: bound 1100000.mixer (ops 0xc074ce64)
+[    1.407134] sun4i-drm display-engine: bound 1200000.mixer (ops 0xc074ce64)
+[    1.414043] sun4i-drm display-engine: bound 1c70000.tcon-top (ops 0xc0750e80)
+[    1.421407] sun4i_dclk_recalc_rate: val = 1, rate = 297000000
+[    1.427358] sun4i-drm display-engine: No panel or bridge found...
+RGB output disabled
+[    1.435217] sun4i-drm display-engine: bound 1c71000.lcd-controller
+(ops 0xc0749594)
+[    1.442891] 0.0 drm_connector_init
+[    1.446294] 0. -1066106880-1-0 (null)
+[    1.449965] 0.1 drm_connector_init
+[    1.453368] 0.2 drm_connector_init
+[    1.456768] 1. drm_connector_init
+[    1.460094] 2. drm_connector_init
+[    1.463413] drm_connector_init: connector name = DSI-1
+[    1.468560] sun4i-drm display-engine: bound 1ca0000.dsi (ops 0xc074c0e4)
+[    1.475272] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.481892] [drm] No driver support for vblank timestamp query.
+[    1.488240] [drm] Initialized sun4i-drm 1.0.0 20150629 for
+display-engine on minor 0
+[    1.497996] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+[    1.498106] ideal = 1800000, rounded = 180000000
+[    1.498111] sun4i_dclk_round_rate: div = 6 rate = 29700000
+[    1.498116] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+[    1.498154] ideal = 1800000, rounded = 180000000
+[    1.498158] sun4i_dclk_round_rate: div = 6 rate = 29700000
+[    1.498217] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+[    1.498251] rate = 178200000
+[    1.498253] parent_rate = 297000000
+[    1.498256] reg = 0x80c00000
+[    1.498259] _nkm.n = 3, nkm->n.offset = 0x1, nkm->n.shift = 8
+[    1.498262] _nkm.k = 2, nkm->k.offset = 0x1, nkm->k.shift = 4
+[    1.498265] _nkm.m = 10, nkm->m.offset = 0x1, nkm->m.shift = 0
+[    1.499594] sun4i_dclk_set_rate div 6
+[    1.499603] sun4i_dclk_recalc_rate: val = 6, rate = 29700000
+[    1.499680] sun6i_dsi_get_video_start_delay: delay = 513
+[    1.499687] sun6i_dsi_setup_inst_loop: delay = 49
+[    1.499706] hsa = 134, hbp = 114, hfp = 114, hblk = 2630, vblk = 0
+[    1.509103] mmc0: host does not support reading read-only switch,
+assuming write-enable
+[    1.512693] mmc0: new high speed SDHC card at address 4001
+[    1.513723] mmcblk0: mmc0:4001 R04GS 3.71 GiB
+[    1.515577]  mmcblk0: p1 p2
+[    1.658838] mmc2: new DDR MMC card at address 0001
+[    1.659934] mmcblk2: mmc2:0001 8WPD3R 7.28 GiB
+[    1.660657] mmcblk2boot0: mmc2:0001 8WPD3R partition 1 4.00 MiB
+[    1.661387] mmcblk2boot1: mmc2:0001 8WPD3R partition 2 4.00 MiB
+[    1.819586] TYPE#0x23, BYTE0#0x7a00, BYTE1#0xc10000
+[    1.849570] TYPE#0x23, BYTE0#0x2000, BYTE1#0x200000
+[    1.879569] TYPE#0x23, BYTE0#0x2100, BYTE1#0xe00000
+[    1.909580] TYPE#0x23, BYTE0#0x2200, BYTE1#0x130000
+[    1.939569] TYPE#0x23, BYTE0#0x2300, BYTE1#0x280000
+[    1.969569] TYPE#0x23, BYTE0#0x2400, BYTE1#0x300000
+[    1.999569] TYPE#0x23, BYTE0#0x2500, BYTE1#0x280000
+[    2.029569] TYPE#0x23, BYTE0#0x2600, BYTE1#0x0
+[    2.059569] TYPE#0x23, BYTE0#0x2700, BYTE1#0xd0000
+[    2.089598] TYPE#0x23, BYTE0#0x2800, BYTE1#0x30000
+[    2.119579] TYPE#0x23, BYTE0#0x2900, BYTE1#0x1d0000
+[    2.149569] TYPE#0x23, BYTE0#0x3400, BYTE1#0x800000
+[    2.179569] TYPE#0x23, BYTE0#0x3600, BYTE1#0x280000
+[    2.209569] TYPE#0x23, BYTE0#0xb500, BYTE1#0xa00000
+[    2.239569] TYPE#0x23, BYTE0#0x5c00, BYTE1#0xff0000
+[    2.269569] TYPE#0x23, BYTE0#0x2a00, BYTE1#0x10000
+[    2.299569] TYPE#0x23, BYTE0#0x5600, BYTE1#0x920000
+[    2.329578] TYPE#0x23, BYTE0#0x6b00, BYTE1#0x710000
+[    2.359569] TYPE#0x23, BYTE0#0x6900, BYTE1#0x2b0000
+[    2.389569] TYPE#0x23, BYTE0#0x1000, BYTE1#0x400000
+[    2.419569] TYPE#0x23, BYTE0#0x1100, BYTE1#0x980000
+[    2.449569] TYPE#0x23, BYTE0#0xb600, BYTE1#0x200000
+[    2.479569] TYPE#0x23, BYTE0#0x5100, BYTE1#0x200000
+[    2.509569] TYPE#0x23, BYTE0#0x900, BYTE1#0x100000
+[    2.679570] TYPE#0x5, BYTE0#0x2900, BYTE1#0x940000
+[    2.767213] Console: switching to colour frame buffer device 100x30
+[    3.144604] sun4i-drm display-engine: fb0: sun4i-drmdrmfb frame buffer device
