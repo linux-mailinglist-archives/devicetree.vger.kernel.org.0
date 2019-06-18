@@ -2,81 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7EE4A73E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DD214A743
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729550AbfFRQn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 12:43:29 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:35140 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729319AbfFRQn3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:43:29 -0400
-Received: by mail-lj1-f196.google.com with SMTP id x25so255750ljh.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 09:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=PmUtOKbwJ4eVMkOuhlC0uRgI+GJZ2DiFmkatq42aofs=;
-        b=noVIkCDp4DXaUXUJYjJsp7quJyO98EaXAo/9wvAq8keNzIId4a9i4vKnUA+Re+11e4
-         ShXLX4ryoM3/+LkuRIOHVHN19KrnICnrAVN4bOzj7AlcbMIee5zkGx2Ta4hGaQjL+cpQ
-         tlt0BRnfrvcixg4/oRl3z93KcWQxj+yDXiBTLO/gQw8l9N7YzNjGuePC0Dr0PV3YgJyd
-         gddC3zY8TcfVDpIamLrJUlaPXdo8Zj1XVl3xdhA1oy0pLS5P0lgiKJwmpGs+CR7/4JDJ
-         rsfYyDjudEYOhLB8CxtNOHeMciHQ6jcxfIoa0OOFSuZys1Vw5I1EmvaJLfne7nvioDKh
-         6Ydw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=PmUtOKbwJ4eVMkOuhlC0uRgI+GJZ2DiFmkatq42aofs=;
-        b=VIGYUAPMkkd6vUaLQ1wiRnBa3UillrJ19z993PUhufQZNCQLxx/v391zU35LpBIWWM
-         r4W+ie5qy22eebNc5vouiW89PK72NtOkZUQG3/Per4SxdI4NJkTBm9wlymy36hbyYuQ5
-         cwOUpLFxUUxBzbhZjvmpRN5U25We/GiBRCvdMleoQcx/uLH1PUwlXklo2hYtY+YUIEkA
-         ZNZJrO7T0srSWB4hQISeNyYcf51VQNLAc4turNFQBuDHjTbjN0BnHd4RVaDPtEahu2gS
-         wPqJTMzm3bCzprkzH2DPwcTxcAa8TQq7tg49pj5xcaHp5FXs/1XRhtDmJ/sTPYCOxKJ2
-         RWuQ==
-X-Gm-Message-State: APjAAAVpsOV5NYBLX0v4nsSQXG6RCtx1DuBjWzD04vJwB20G3Q8hG6kc
-        g7X44xZ4OhbCQJpE3dVLH/sJIgZHxc5A8nOfzAw=
-X-Google-Smtp-Source: APXvYqzttCfZEG77i5UhIYcLtVQf6CIc14p1/0gQIwvbf6Qaa3h5awAgK1rwzNrkpz9/uVFGrZM9qO/N3/XXZUSQ4UU=
-X-Received: by 2002:a2e:5d1:: with SMTP id 200mr45338385ljf.10.1560876207427;
- Tue, 18 Jun 2019 09:43:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190618155834.15545-1-sebastien.szymanski@armadeus.com>
-In-Reply-To: <20190618155834.15545-1-sebastien.szymanski@armadeus.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 18 Jun 2019 13:43:38 -0300
-Message-ID: <CAOMZO5AJbO11Cprr1Pd1qmdWahSVJm5C_-8Y8Y0hWgPK2a=AmA@mail.gmail.com>
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: fix PWM[1-4] interrupts
-To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        id S1729732AbfFRQn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 12:43:58 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:55646 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729319AbfFRQn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:43:58 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 682CFD5;
+        Tue, 18 Jun 2019 18:43:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1560876235;
+        bh=1xUkCuv94g7S9J2o8wEGgwE4uKHhIma2x2Q1OFT9Qyg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J5LcKgHqPwLOD0UM3Av3Op3KWpF67JJo7Leut0KuPYT6BKqek14fzSlOn+YS3Lz1I
+         luR9eq/GHmEC3A8vHiHnS7FwZTvTxnYQ9DqIa45Z1Ni49gSedGVNsaOSbKcahh5LAb
+         JC8PnOUhGQ38hgYF6gC+QokLScepNYpTJP01W4t4=
+Date:   Tue, 18 Jun 2019 19:43:38 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: renesas: Add r8a774a1 support
+Message-ID: <20190618164338.GG21105@pendragon.ideasonboard.com>
+References: <1560871119-16570-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1560871119-16570-2-git-send-email-fabrizio.castro@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1560871119-16570-2-git-send-email-fabrizio.castro@bp.renesas.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi S=C3=A9bastien,
+Hi Fabrizio,
 
-On Tue, Jun 18, 2019 at 12:58 PM S=C3=A9bastien Szymanski
-<sebastien.szymanski@armadeus.com> wrote:
->
-> According to the i.MX6UL/L RM, table 3.1 "ARM Cortex A7 domain interrupt
-> summary", the interrupts for the PWM[1-4] go from 83 to 86.
->
-> Fixes: b9901fe84f02 ("ARM: dts: imx6ul: add pwm[1-4] nodes")
-> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
->
+Thank you for the patch.
 
-Good catch:
+On Tue, Jun 18, 2019 at 04:18:37PM +0100, Fabrizio Castro wrote:
+> Document RZ/G2M (R8A774A1) SoC bindings.
+> 
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+I don't have pending changes for this file for this kernel release. As
+your series contains DT changes, I'm fine if this patch gets merged
+through the ARM SoC tree along with the rest. Otherwise please let me
+know if I should handle it myself.
+
+> ---
+>  Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+> index a41d280..db68041 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+> @@ -12,10 +12,12 @@ following device-specific properties.
+>  Required properties:
+>  
+>  - compatible : Shall contain one or more of
+> +  - "renesas,r8a774a1-hdmi" for R8A774A1 (RZ/G2M) compatible HDMI TX
+>    - "renesas,r8a7795-hdmi" for R8A7795 (R-Car H3) compatible HDMI TX
+>    - "renesas,r8a7796-hdmi" for R8A7796 (R-Car M3-W) compatible HDMI TX
+>    - "renesas,r8a77965-hdmi" for R8A77965 (R-Car M3-N) compatible HDMI TX
+> -  - "renesas,rcar-gen3-hdmi" for the generic R-Car Gen3 compatible HDMI TX
+> +  - "renesas,rcar-gen3-hdmi" for the generic R-Car Gen3 and RZ/G2 compatible
+> +			     HDMI TX
+>  
+>      When compatible with generic versions, nodes must list the SoC-specific
+>      version corresponding to the platform first, followed by the
+
+-- 
+Regards,
+
+Laurent Pinchart
