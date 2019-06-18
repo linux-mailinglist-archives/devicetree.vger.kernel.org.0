@@ -2,84 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D3674A6C0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC1D4A6C5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729902AbfFRQZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 12:25:29 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:36798 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729884AbfFRQZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:25:29 -0400
-Received: by mail-qk1-f195.google.com with SMTP id g18so8977921qkl.3;
-        Tue, 18 Jun 2019 09:25:29 -0700 (PDT)
+        id S1729319AbfFRQZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 12:25:50 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:44430 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729295AbfFRQZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:25:50 -0400
+Received: by mail-lj1-f196.google.com with SMTP id k18so139546ljc.11;
+        Tue, 18 Jun 2019 09:25:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aWbCD8GTr6CtvHS0OInn6v/N+gapK0DJLyamEDwpKj4=;
+        b=VJtYtneeXLFnE2Kgv8v9aKFOEvUb8xxc/1PCBD8efOOP50gl/24SIlGDQHYLAaIseE
+         XEjc4+xIiUKxYrcyxSL9H7IC7+DAxCyTbjGysv3Un0GvwpQYqb7ftjCmtVhy80fMXVQI
+         YlPtC1n/ckzTi7nwNaiaolzxT6s9UaGbRRvIRCL7SAYFwuEYz5iyBxgZxg24BbYoX5FL
+         9YbUaeHnrrXAqy+v/1JevuLwffDzTGBZTkhFJKogxgC5bm05Wj8DdJh4PaXxOZ72KgiF
+         xdP7VFh1dlQ6msfBBCS+ZeLoc1BMU/EAMOKjS60BSooTpx8Al5iBwcPKTf2e0p1U7YHA
+         3jgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Qkdcu7zHGx1AY6tHr0CBTbe0qNt7my9OtsBaqe2MQWM=;
-        b=uNjqHCqD2eIpRqjP37uw7VQ7Mty1l7px1SpXk03OeXnn+aS3t9O8amdEVeFbxubsuW
-         nXeuwIkQQE4waPA5BeM4c5Bhbf9MA3ZWYSuRRVgzKaKwXo6TKW1FyZhGs4r22Yx+JDcu
-         MG0g6NnGI3GYF36z3+AEnQ+7b4emuH7cl9ugmmXpKh+81t0+nW0KSop41737qmfPlcps
-         i6aaCoEZxMDWykTKSDYTk8FSRysMPdm7OLcZo25+lPycv6xaTreFkm4qh9aRbxu+pwOw
-         TRF0CDjG4HZVClezrVq6dpUizxco/LPoDfDDSp5Z0UbeoNJ3FSRw0MXR9PDv2Nm+ibIv
-         GFaQ==
-X-Gm-Message-State: APjAAAXkhwP+ljI8C59uDvrSaAp/8QbWA+TugSNtgKO1g/Xan2+GSHNo
-        f9qOVy+mya1pFFgRtl5mpCP54hA=
-X-Google-Smtp-Source: APXvYqwuAbO1paeBPbqwfu+B52ifzwL0iehCq7FfPuyuo/qXSaUN6It5MurZgLsKEIOUqaeFh8M1HQ==
-X-Received: by 2002:ae9:c10c:: with SMTP id z12mr42178896qki.110.1560875128305;
-        Tue, 18 Jun 2019 09:25:28 -0700 (PDT)
-Received: from localhost.localdomain ([64.188.179.192])
-        by smtp.googlemail.com with ESMTPSA id n5sm9518671qta.29.2019.06.18.09.25.26
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 18 Jun 2019 09:25:27 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: qcom: Add missing schema for MSM8974
-Date:   Tue, 18 Jun 2019 10:25:25 -0600
-Message-Id: <20190618162525.5038-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        bh=aWbCD8GTr6CtvHS0OInn6v/N+gapK0DJLyamEDwpKj4=;
+        b=SWaWtrVhLxG4xA4pnK0pmvM02cHG6Svvrxd0By7QT14ZHvirjyGoWenp96kv0aMpU6
+         CmCzlsa6rxTEQ7DtcfZtdrIc4GrcJ6WnxonImE38jFk3pouN05nebDznE1RUEXW9gcTT
+         jOzTFQTRUnSPrbxOcSx1wKBi6A34/ing5yBvUrT56xWcesjSXwXIeZ0lXlkBcJNrtPvp
+         dCaSscWPuDWD5N6MJaOSU3SS4CFF0n+uOJNRtXuyHvSBsccTUq4HCyISGGbRM/Fu9cno
+         u0Eyc88Cnm1+DMXOHovdfo/rPRDINjMtxOmvoou2aVhZeRCNMR8N4WhM0Gx9Anco94qd
+         8HGw==
+X-Gm-Message-State: APjAAAVDcoPPk+sED9kkKI+Pk1zgGi8R0ISL0yCqU78eQbWgkkLFHN1v
+        wDMFyByyqK95kWiXQPOxgpcQE35M
+X-Google-Smtp-Source: APXvYqzG2iTDPApqIc4jJGIBCo6+Ymm2Bv7Wobc3Cy6YTnyO4a/BGln0f6FiaOQMI6BNKcyIXRy5zA==
+X-Received: by 2002:a2e:8944:: with SMTP id b4mr22426619ljk.154.1560875147346;
+        Tue, 18 Jun 2019 09:25:47 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.googlemail.com with ESMTPSA id q1sm2277023lfc.79.2019.06.18.09.25.46
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 09:25:46 -0700 (PDT)
+Subject: Re: [PATCH v2 1/8] regulator: core: Introduce API for regulators
+ coupling customization
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190603235904.19097-1-digetx@gmail.com>
+ <20190603235904.19097-2-digetx@gmail.com>
+ <20190617152340.GX5316@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <df8a9f20-5e44-a7aa-13db-c3ba7cbacab1@gmail.com>
+Date:   Tue, 18 Jun 2019 19:25:45 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
+In-Reply-To: <20190617152340.GX5316@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SoC/board bindings for MSM8974 are undocumented. Add the missing
-bindings to the schema.
+17.06.2019 18:23, Mark Brown пишет:
+> On Tue, Jun 04, 2019 at 02:58:57AM +0300, Dmitry Osipenko wrote:
+>> Right now regulator core supports only one type of regulators coupling,
+>> the "voltage max-spread" which keeps voltages of coupled regulators in a
+>> given range from each other. A more sophisticated coupling may be required
+>> in practice, one example is the NVIDIA Tegra SoC's which besides the
+>> max-spreading have other restrictions that must be adhered. Introduce API
+>> that allow platforms to provide their own customized coupling algorithms.
+> 
+> So, I don't completely hate this and I'm not sure there's any good
+> solutions here...
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: David Brown <david.brown@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks!
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index f6316ab66385..04867577306a 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -101,6 +101,15 @@ properties:
-               - qcom,msm8960-cdp
-           - const: qcom,msm8960
- 
-+      - items:
-+          - enum:
-+              - fairphone,fp2
-+              - lge,hammerhead
-+              - sony,xperia-amami
-+              - sony,xperia-castor
-+              - sony,xperia-honami
-+          - const: qcom,msm8974
-+
-       - items:
-           - const: qcom,msm8916-mtp/1
-           - const: qcom,msm8916-mtp
--- 
-2.20.1
+>> + * @balance_voltage: Callback invoked when voltage of a coupled regulator is
+>> + *                   changing. The callee should perform voltage balancing
+>> + *                   and change voltage of the coupled regulators.
+> 
+> Some documentation on what the context for calling this is (locking and
+> so on) and how it should do the adjustments it wants to do would be
+> good.
+> 
 
+Okay, I'll extend the doc.
