@@ -2,144 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB12849E80
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 12:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DBDD49E94
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 12:49:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729110AbfFRKqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 06:46:37 -0400
-Received: from foss.arm.com ([217.140.110.172]:34262 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729098AbfFRKqh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 06:46:37 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3D835344;
-        Tue, 18 Jun 2019 03:46:36 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 22E4D3F246;
-        Tue, 18 Jun 2019 03:48:17 -0700 (PDT)
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: Amazon's
- Annapurna Labs FIC
-To:     Talel Shenhar <talel@amazon.com>, nicolas.ferre@microchip.com,
-        jason@lakedaemon.net, mark.rutland@arm.com,
-        mchehab+samsung@kernel.org, robh+dt@kernel.org,
-        davem@davemloft.net, shawn.lin@rock-chips.com, tglx@linutronix.de,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org
-Cc:     dwmw@amazon.co.uk, benh@kernel.crashing.org, jonnyc@amazon.com,
-        hhhawa@amazon.com, ronenk@amazon.com, hanochu@amazon.com,
-        barakw@amazon.com
-References: <1560155683-29584-1-git-send-email-talel@amazon.com>
- <1560155683-29584-2-git-send-email-talel@amazon.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
- Z46HaNmN2hZS/oJ69c1DI5Rcww==
-Organization: ARM Ltd
-Message-ID: <8181b95c-2ddb-0c54-4f2a-8938260fcc5b@arm.com>
-Date:   Tue, 18 Jun 2019 11:46:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1729336AbfFRKtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 06:49:25 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:33157 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729369AbfFRKtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 06:49:23 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n9so13452258wru.0;
+        Tue, 18 Jun 2019 03:49:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=JE8RQaiAr0Z2eARC+Cm0bFIvlUVoIV3pxeRrd6DbvIo=;
+        b=Ul9fYxuL82J90Hi/W+Sr/ipNh7LBYBaTroA+1UvfwsdtKgJ+KHOibTtOkazvkc3ywW
+         rur8qSELFmpKmuib2LTkBZBqaqNcyRSm2xSS6ROUg9k6QaAvwFeqCiO+yEeBQ8bh0h3X
+         wlXqCZP1dsJYHZpqTnv0TMq97+5LaHfDwWMR2eudoDKyXL57jpR3+Fveh1NbPC+UPV+a
+         tdBO3GMscgRB5/TTvVC2phCXwGek8HPiPaxWXSdhpaw6qVGqveplt3Z2Z/7+J3zEozJo
+         Jv/PrV4OZN/kJeRAoH1Ubqn+bb8zQvPhnsb0uzHztEy/VxGYM/x7USFgt47Pd0VINVMv
+         8uPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=JE8RQaiAr0Z2eARC+Cm0bFIvlUVoIV3pxeRrd6DbvIo=;
+        b=QcNt7bF8VRYG4N0PSLp4CIjfKg37+C6AQjYX8QmRk4UVrP8AQiH4WuNgYwi/o8Is0g
+         D7prba4olSGpoOiJJhW5rgCUd1RptnGNGcS+s4kXobnqZnyQsihVtI+VvfIw/HRL0RNa
+         76OK0XUhwGhO8mwHx4tntrSBVTMWnfQN+EnSU+/dUivwmpPx5d5f4FyFq/sNwunvxUdx
+         5kjsQIWjgiXJM91kRixdk7g7+lxO7AYX5kvo31wPC4P6nxAh/aPaPBtILQ2ChLlC5kJx
+         2CkyPyoJRtHX99uZ/9IOZqm7ZRy5oZHsZjvJJ9g5+vOyYs3aDse/n1QgL/9BSKClQM7n
+         I+sA==
+X-Gm-Message-State: APjAAAVnr3cK/s75Lowe2YVtoyyYEthd2IbI9LyyVWv55HxLiRE0v0bu
+        oQNkp7qGgrq23eFa1KjVdJQ=
+X-Google-Smtp-Source: APXvYqxU3b7dJYqXOhT95bBhqf4VXLQCeU9w8l5nocTrDwPKiUhlNpSae8bueYTDkHUuk1CnjVqK1A==
+X-Received: by 2002:adf:ce8f:: with SMTP id r15mr69551595wrn.122.1560854960962;
+        Tue, 18 Jun 2019 03:49:20 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id u25sm1476883wmc.3.2019.06.18.03.49.19
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 18 Jun 2019 03:49:19 -0700 (PDT)
+Date:   Tue, 18 Jun 2019 12:49:18 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        linux-wireless@vger.kernel.org
+Subject: Re: [PATCH V4 22/28] PCI: tegra: Access endpoint config only if PCIe
+ link is up
+Message-ID: <20190618104918.GA28892@ulmo>
+References: <20190516055307.25737-23-mmaddireddy@nvidia.com>
+ <20190604131436.GS16519@ulmo>
+ <09bcc121-eaca-3866-d0ef-7806503e883f@nvidia.com>
+ <ca34eb24-8696-576f-26bc-8d6141f81a41@nvidia.com>
+ <20190613143946.GA30445@e121166-lin.cambridge.arm.com>
+ <20190613154250.GA32713@ulmo>
+ <a523a19c-fdfa-01f7-6f6d-2ca367a10a50@nvidia.com>
+ <20190617114745.GL508@ulmo>
+ <20190617193024.GC13533@google.com>
+ <a7e0472d-f4a7-ed63-836a-b5e8b1360645@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <1560155683-29584-2-git-send-email-talel@amazon.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="k+w/mQv8wyuph6w0"
+Content-Disposition: inline
+In-Reply-To: <a7e0472d-f4a7-ed63-836a-b5e8b1360645@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2019 09:34, Talel Shenhar wrote:
-> Document Amazon's Annapurna Labs Fabric Interrupt Controller SoC binding.
-> 
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
-> ---
->  .../interrupt-controller/amazon,al-fic.txt         | 29 ++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt b/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-> new file mode 100644
-> index 0000000..4e82fd5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-> @@ -0,0 +1,29 @@
-> +Amazon's Annapurna Labs Fabric Interrupt Controller
-> +
-> +Required properties:
-> +
-> +- compatible: should be "amazon,al-fic"
-> +- reg: physical base address and size of the registers
-> +- interrupt-controller: identifies the node as an interrupt controller
-> +- #interrupt-cells: must be 2.
-> +  First cell defines the index of the interrupt within the controller.
-> +  Second cell is used to specify the trigger type and must be one of the
-> +  following:
-> +    - bits[3:0] trigger type and level flags
-> +	1 = low-to-high edge triggered
-> +	4 = active high level-sensitive
-> +- interrupt-parent: specifies the parent interrupt controller.
-> +- interrupts: describes which input line in the interrupt parent, this
-> +  fic's output is connected to. This field property depends on the parent's
-> +  binding
-> +
-> +Example:
-> +
-> +amazon_fic: interrupt-controller@0xfd8a8500 {
-> +	compatible = "amazon,al-fic";
-> +	interrupt-controller;
-> +	#interrupt-cells = <2>;
-> +	reg = <0x0 0xfd8a8500 0x0 0x1000>;
-> +	interrupt-parent = <&gic>;
-> +	interrupts = <GIC_SPI 0x0 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> 
 
-Rob, are you OK with this DT binding?
+--k+w/mQv8wyuph6w0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+On Tue, Jun 18, 2019 at 11:06:44AM +0530, Manikanta Maddireddy wrote:
+>=20
+> On 18-Jun-19 1:00 AM, Bjorn Helgaas wrote:
+> > [+cc Rafael, linux-pm, in case they have insights on how rfkill works]
+> >
+> > On Mon, Jun 17, 2019 at 01:47:45PM +0200, Thierry Reding wrote:
+> >> On Mon, Jun 17, 2019 at 03:31:38PM +0530, Manikanta Maddireddy wrote:
+> >>> On 13-Jun-19 9:12 PM, Thierry Reding wrote:
+> >>>> On Thu, Jun 13, 2019 at 03:39:46PM +0100, Lorenzo Pieralisi wrote:
+> >>>>> On Mon, Jun 10, 2019 at 10:08:16AM +0530, Manikanta Maddireddy wrot=
+e:
+> >>>>>> On 04-Jun-19 7:40 PM, Manikanta Maddireddy wrote:
+> >>>>>>> On 04-Jun-19 6:44 PM, Thierry Reding wrote:
+> >>>>>>>> On Thu, May 16, 2019 at 11:23:01AM +0530, Manikanta Maddireddy w=
+rote:
+> >>>>>>>>> Few endpoints like Wi-Fi supports power on/off and to leverage =
+that
+> >>>>>>>>> root port must support hot-plug and hot-unplug. Tegra PCIe does=
+n't
+> >>>>>>>>> support hot-plug and hot-unplug, however it supports endpoint p=
+ower
+> >>>>>>>>> on/off feature as follows,
+> >>>>>>>>>  - Power off sequence:
+> >>>>>>>>>    - Transition of PCIe link to L2
+> >>>>>>>>>    - Power off endpoint
+> >>>>>>>>>    - Leave root port in power up state with the link in L2
+> >>>>>>>>>  - Power on sequence:
+> >>>>>>>>>    - Power on endpoint
+> >>>>>>>>>    - Apply hot reset to get PCIe link up
+> >>>>>>>>>
+> >>>>>>>>> PCIe client driver stops accessing PCIe endpoint config and
+> >>>>>>>>> BAR registers after endpoint is powered off. However,
+> >>>>>>>>> software applications like x11 server or lspci can access
+> >>>>>>>>> endpoint config registers in which case host controller
+> >>>>>>>>> raises "response decoding" errors. To avoid this scenario,
+> >>>>>>>>> add PCIe link up check in config read and write callback
+> >>>>>>>>> functions before accessing endpoint config registers.
+> >>>>>>>>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> >>>>>>>>> ---
+> >>>>>>>>> V4: No change
+> >>>>>>>>>
+> >>>>>>>>> V3: Update the commit log with explanation for the need of this=
+ patch
+> >>>>>>>>>
+> >>>>>>>>> V2: Change tegra_pcie_link_status() to tegra_pcie_link_up()
+> >>>>>>>>>
+> >>>>>>>>>  drivers/pci/controller/pci-tegra.c | 38 ++++++++++++++++++++++=
+++++++++
+> >>>>>>>>>  1 file changed, 38 insertions(+)
+> >>>>>>>> This still doesn't look right to me conceptually. If
+> >>>>>>>> somebody wants to access the PCI devices after the kernel
+> >>>>>>>> has powered them off, why can't we just power the devices
+> >>>>>>>> back on so that we allow userspace to properly access the
+> >>>>>>>> devices?
+> >>>>>>> 1. WiFi devices provides power-off feature for power saving
+> >>>>>>> in mobiles.  When WiFi is turned off we shouldn't power on
+> >>>>>>> the HW back without user turning it back on.
+> >>>>>>> 2. When ever user process tries to access config space, it'll
+> >>>>>>> end up in these functions. We cannot have is_powered_on check
+> >>>>>>> in config read/write callbacks.
+> >>>>>>> 3. WiFi power on/off is device specific feature, we shouldn't
+> >>>>>>> handle it in PCI subsystem or host controller driver.
+> >>>>>>>> Or if that's not what we want, shouldn't we add something to
+> >>>>>>>> the core PCI infrastructure to let us deal with this? It
+> >>>>>>>> seems like this is some general problem that would apply to
+> >>>>>>>> every PCI device and host bridge driver. Having each driver
+> >>>>>>>> implement this logic separately doesn't seem like a good
+> >>>>>>>> idea to me.
+> >>>>>>> This should be handled by hotplug feature, whenever endpoint
+> >>>>>>> is powered-off/ removed from the slot, hot unplug event
+> >>>>>>> should take care of it. Unfortunately Tegra PCIe doesn't
+> >>>>>>> support hotplug feature.
+> >>>>>> I thought about your comment in
+> >>>>>> https://patchwork.ozlabs.org/patch/1084204/ again.  What if I
+> >>>>>> add link up check in tegra_pcie_isr() and make "response
+> >>>>>> decoding error" as debug print? EP Config access will happen
+> >>>>>> when link is down, but "Response decoding error" print comes
+> >>>>>> only if debug log is enabled.  This way we can avoid race
+> >>>>>> issue in config accessors and we get prints when debug logs
+> >>>>>> are enabled.
+> >>>> The problem that Manikanta is trying to solve here occurs in
+> >>>> this situation (Manikanta, correct me if I've got this wrong):
+> >>>> on some setups, a WiFi module connected over PCI will toggle a
+> >>>> power GPIO as part of runtime suspend. This effectively causes
+> >>>> the module to disappear from the PCI bus (i.e. it can no longer
+> >>>> be accessed until the power GPIO is toggled again).
+> >>> GPIO is toggled as part of WiFi on/off, can be triggered from
+> >>> network manager UI.
+> >>>> This is fine from a kernel point of view because the kernel keeps tr=
+ack
+> >>>> of what devices are suspended. However, userspace will occasionally =
+try
+> >>>> to read the configuration space access of all devices, and since it
+> >>>> doesn't have any knowledge about the suspend state of these devices,=
+ it
+> >>>> doesn't know which ones to leave alone. I think this happens when the
+> >>>> X.Org server is running.
+> >>> This is fine from a kernel point of view because PCI client driver
+> >>> doesn't initiate any PCIe transaction until network interface
+> >>> is up during WiFi on.
+> >>>
+> >>>> One thing that Manikanta and I had discussed was that perhaps
+> >>>> the device should be hot-unplugged when it goes into this
+> >>>> low-power state. However, we don't support hotplug on Tegra210
+> >>>> where this is needed, so we'd need some sort of software-induced
+> >>>> hot-unplug. However, this low power state is entered when the
+> >>>> WiFi interface is taken down (i.e. ip link set dev <interface>
+> >>>> down). If we were to remove the PCI device in that case, it
+> >>>> means that the interface goes away completely, which is
+> >>>> completely unexpected from a user's perspective. After all,
+> >>>> taking a link down and up may be something that scripts are
+> >>>> doing all the time. They'd fall over if after taking the
+> >>>> interface down, the interface completely disappears.
+> >>>> It's also not entirely clear to me how we get the device back
+> >>>> onto the bus again after it is in low power. If we hot-unplug
+> >>>> the device, then the driver will be unbound. Presumably the
+> >>>> driver is what's controlling the power GPIO, so there won't be
+> >>>> any entity that can be used to bring the chip back to life.
+> >>>> Unless we deal with that power GPIO elsewhere (rfkill switch
+> >>>> perhaps?).
+> >>> Correct, rfkill switch should handle the GPIO.
+> >>> Sequence will be,
+> >>>  - WiFi ON
+> >>>    - rfkill switch enables the WiFi GPIO
+> >>>    - Tegra PCIe receives hot plug event
+> >>>    - Tegra PCIe hot plug driver rescans PCI bus and enumerates the de=
+vice
+> >>>    - PCI client driver is probed, which will create network interface
+> >>>  - WiFi OFF
+> >>>    - rfkill switch disables the WiFi GPIO
+> >>>    - Tegra PCIe receives hot unplug event
+> >>>    - Tegra PCIe hot plug driver removes PCI devices under the bus
+> >>>    - PCI client driver remove is executed, which will remove
+> >>>      network interface
+> >>> We don't need current patch in this case because PCI device is not
+> >>> present in the PCI hierarchy, so there cannot be EP config access
+> >>> with link down.  However Tegra doesn't support hot plug and unplug
+> >>> events. I am not sure if we have any software based hot plug event
+> >>> trigger.
+> >>> I will drop current patch and pursue if above sequence can be
+> >>> implemented for Tegra.
+> >> I just recalled that we have these messages in the kernel log:
+> >>
+> >> 	# dmesg | grep tegra-pcie
+> >> 	[    1.055761] tegra-pcie 1003000.pcie: 4x1, 1x1 configuration
+> >> 	[    2.745764] tegra-pcie 1003000.pcie: 4x1, 1x1 configuration
+> >> 	[    2.753073] tegra-pcie 1003000.pcie: probing port 0, using 4 lanes
+> >> 	[    2.761334] tegra-pcie 1003000.pcie: Slot present pin change, sign=
+ature: 00000008
+> >> 	[    3.177607] tegra-pcie 1003000.pcie: link 0 down, retrying
+> >> 	[    3.585605] tegra-pcie 1003000.pcie: link 0 down, retrying
+> >> 	[    3.993606] tegra-pcie 1003000.pcie: link 0 down, retrying
+> >> 	[    4.001214] tegra-pcie 1003000.pcie: link 0 down, ignoring
+> >> 	[    4.006733] tegra-pcie 1003000.pcie: probing port 1, using 1 lanes
+> >> 	[    4.015042] tegra-pcie 1003000.pcie: Slot present pin change, sign=
+ature: 00000000
+> >> 	[    4.031177] tegra-pcie 1003000.pcie: PCI host bridge to bus 0000:00
+> >>
+> >> These "slot present pin change" message do look a lot like hotplug
+> >> related messages. Could we perhaps use those to our advantage for this
+> >> case? Do you see these when you run on the platform where WiFi is
+> >> enabled/disabled using rfkill?
+> >>
+> >> Given that rfkill is completely decoupled from PCI, I don't see how we
+> >> would trigger any software-based hotplug mechanism. Perhaps one thing
+> >> that we could do is the equivalent of this:
+> >>
+> >> 	# echo 1 > /sys/bus/pci/rescan
+> >>
+> >> from some script that's perhaps tied to the rfkill somehow. I'm not su=
+re
+> >> if that's possible, or generic enough.
+> > How does rfkill work?  It sounds like it completely removes power from
+> > the wifi device, putting it in D3cold.  Is there any software
+> > notification other than the "Slot present pin change" (which looks
+> > like a Tegra-specific thing)?
+> >
+> > If the device is in D3cold, it won't respond to any PCI transactions,
+> > and there's no standard PCI mechanism to wake it up.  Probably the
+> > cleanest way to handle this is to make it a hot-unplug.
+> >
+> > If this were an ACPI system, the rfkill might be visible as some sort
+> > of ACPI power management event, and there might be a corresponding way
+> > for software to bring the device back to D0 temporarily.  That would
+> > make lspci and X config reads work.  But I don't think this system has
+> > ACPI.
+>=20
+> "Slot present pin change" interrupt is triggered based on the programming
+> of PRSNT_MAP bit field in PCIE2_RP_PRIV_MISC controller register and
+> they are not triggered when EP is hot plugged/unplugged. Tegra PCIe
+> controller doesn't have capability to detect EP hot plug and unplug.
+> Consider that WiFi off equivalent to SW aware EP hot unplug event.
+>=20
+> The rfkill subsystem provides a generic interface for disabling any radio
+> transmitter in the system. WiFi M.2 form factor cards provide W_DISABLE
+> GPIO to control the radio transmitter and I have seen some cards provide
+> control to turn off complete chip through this GPIO. Here we are talking
+> about second case where device is put in D3cold state. This GPIO can be
+> registered to rfkill subsystem and rfkill commands (like "rfkill unblock
+> wifi") can be used to turn on radio transmitter during WiFi on.
 
-	M.
--- 
-Jazz is not dead. It just smells funny...
+Perhaps what we need here is some sort of mechanism to make rfkill and
+the PCI host controller interoperate? I could imagine for example that
+the PCI host controller would get a new "rfkill" property in device
+tree that points at the rfkill device via phandle.
+
+The driver could then get a reference to it using something like:
+
+	rfkill =3D rfkill_get(dev);
+	if (IS_ERR(rfkill)) {
+		...
+	}
+
+and register for notification:
+
+	err =3D rfkill_subscribe(rfkill, callback);
+	if (err < 0) {
+		...
+	}
+
+rfkill_unsubscribe() and rfkill_put() would then be used upon driver
+unload to detach from the rfkill.
+
+I noticed that there's an rfkill-gpio driver (net/rfkill/rfkill-gpio.c)
+that already does pretty much everything that we need, except that it
+doesn't support DT yet, but I suspect that that's pretty easy to add.
+
+Johannes, any thoughts on this. In a nutshell what we're trying to solve
+here is devices that get removed from/added to PCI based on an rfkill-
+type of device. The difference to other implementations is that we have
+no way of detecting when the device has gone away (PCI hotplug does not
+work). So we'd need some software-triggered mechanism to let the PCI
+host controller know when the device is presumably going away or being
+added back, so that the PCI bus can be rescanned and the PCI device
+removed or added at that point).
+
+Thierry
+
+--k+w/mQv8wyuph6w0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0IwasACgkQ3SOs138+
+s6Fj7g/9G1lRG58MJ4zqkZ7tkSvqarrt5PbzS2K77o2stFw98TVVcV3dBRpXrmEX
+yCFrjgYCB7pnS6QKFAN6ndfJ22fw2akOkoEq0EkBNjoYDzbDRM4NObfULPJC0Kdt
+hiPy23Sj+RtgsSzAR9nXhZoP2zw0DRKCWJ2F5w5N9WDtDnWgqx8WJkmPDc7wKGP0
+hLXw6R1b9T//DkFMTwzOZQUqQLh+TAm/UShLnLTWreOZ7XI14WoKWDLIir9TaRf+
+YnMXLi+hq1PoIjtD4fABcZPzpUu2xqXgGW44/YJjXmMZN/zbrqbhCeUQ6CDpAdpg
+4wQS20iznWMy6YL3RJrSHOJjJMmUp25z2skwXMIzf6hyWfn57I0oht5fNZaQA5Rm
++N3Y/BB/fJiRfVWzjfjO1XZywi9c6E8JESGz3Kgm5i+DeS17XmSFOh0r7GnnxM5n
+kqrQQPTy22DHHKkdv5mx/bRRiXIjGMA8fFNWVf6cO6p6b1lwJigt3ZuPqtBJQ/Qn
+KCHrxRPnlsve6Bi5Y3s3mV8UscEz4wck2vGbSQYrsnTJuep2n4tOh7C0UnnNIrG7
+Tn02jbRalxlr25xCOW7NtjgWrfsMhYZb3NFmKTGWjmo92qQN1VGX0TXBr3if8XnW
+SblTI1h1iRUIVAQo+1yRDiJNIijbYesMCFI1qnwPlmksXNbNitY=
+=wxfs
+-----END PGP SIGNATURE-----
+
+--k+w/mQv8wyuph6w0--
