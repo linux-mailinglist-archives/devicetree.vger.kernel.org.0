@@ -2,100 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44F204AAF2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 21:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78CA74AAF7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 21:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730314AbfFRTRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 15:17:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45246 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730261AbfFRTRx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 15:17:53 -0400
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 979D821655;
-        Tue, 18 Jun 2019 19:17:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560885471;
-        bh=ZWSK86V7NI7b40wV2ulvMwUX6gfBoaYFIEZv+jaBbAQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=N3cQP/TQIfiQCkE4SosugroCeeMv81f7VN+IJUTKMSRSZMMv3XrX1pMK+oXUXAN1N
-         6CeFt24hrYcRNSlnvsHwxnAjf2tvrQtodqrDzONLzIGY/M3lXRra5QYKzpLDUiIwPA
-         nXWGebBJV66EJxreKLS8y/V4S+qnQAnFUKrV3UuA=
-Received: by mail-lf1-f49.google.com with SMTP id q26so10178552lfc.3;
-        Tue, 18 Jun 2019 12:17:51 -0700 (PDT)
-X-Gm-Message-State: APjAAAXiKR0g+O20E0ZeCd9kX5aV0nmh3F/MhFCYdYA1ZxM8wKRYEmBO
-        XDyoF1VZUbOc1JxnUErFg3BFWvHVE4I8QWO0I3A=
-X-Google-Smtp-Source: APXvYqzPJjXzgwHiYzzytAPPYZZVCa+SGp9n9sKYmF0r/LKdiMln5BTA1yn7nIrb6RGQBDcCjSOtkT5IHe2Wvc8o4Es=
-X-Received: by 2002:a19:e308:: with SMTP id a8mr1782969lfh.69.1560885469745;
- Tue, 18 Jun 2019 12:17:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190614203144.3850-2-joseph.kogut@gmail.com> <20190614235719.8134-1-joseph.kogut@gmail.com>
- <20190616085928.GB3826@kozik-lap> <CAMWSM7j8dtsS4d-hOc3Sk6OJHs+SiGC9tEaZBEmO0VKmtJguKw@mail.gmail.com>
- <20190617163634.GA16941@kozik-lap> <CAMWSM7ibdtSGJfNwsYXGXMEkWJTG9Gd-PCd6nPS0bLPd5v+4rA@mail.gmail.com>
-In-Reply-To: <CAMWSM7ibdtSGJfNwsYXGXMEkWJTG9Gd-PCd6nPS0bLPd5v+4rA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 18 Jun 2019 21:17:38 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeODKo+nNTfmk9z1DaULrJMyNzuspBbFXXEkFqJ2hHYuw@mail.gmail.com>
-Message-ID: <CAJKOXPeODKo+nNTfmk9z1DaULrJMyNzuspBbFXXEkFqJ2hHYuw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-To:     Joseph Kogut <joseph.kogut@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
-        airlied@linux.ie, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
+        id S1730261AbfFRTWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 15:22:31 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:46278 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727386AbfFRTWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 15:22:31 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1hdJgO-0005LX-Ie; Tue, 18 Jun 2019 21:22:16 +0200
+Message-ID: <b90977f94df020986c6bb490e7fd0262603726b0.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Alex Elder <elder@linaro.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        Dan Williams <dcbw@redhat.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        syadagir@codeaurora.org
+Date:   Tue, 18 Jun 2019 21:22:14 +0200
+In-Reply-To: <31c2c94c-c6d3-595b-c138-faa54d0bfc00@linaro.org> (sfid-20190618_160100_881541_6AD64A3C)
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+         <583907409fad854bd3c18be688ec2724ad7a60e9.camel@sipsolutions.net>
+         <31c2c94c-c6d3-595b-c138-faa54d0bfc00@linaro.org>
+         (sfid-20190618_160100_881541_6AD64A3C)
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-2.fc28) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jun 2019 at 19:42, Joseph Kogut <joseph.kogut@gmail.com> wrote:
-> > >
-> > > > > +             reg = <0x11800000 0x5000>;
-> > > > > +             interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > +                          <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
-> > > > > +                          <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +             interrupt-names = "job", "mmu", "gpu";
-> > > > > +             clocks = <&clock CLK_G3D>;
-> > > > > +             mali-supply = <&buck4_reg>;
-> > > >
-> > > > Please check if always-on property could be removed from buck4.
-> > >
-> > > I've checked, and this property can be removed safely.
-> > >
-> > > > Also, what about LDO27? It should be used as well (maybe through
-> > > > vendor-specific properties which would justify the need of new vendor
-> > > > compatible).
-> > > >
-> > >
-> > > I'm unsure how LDO27 is used, can you elaborate?
-> >
-> > It is supplying the VDD_G3DS (with a note "SRAM power"). I do not have
-> > any more data on it. However I did not check in vendor kernel for it.
-> >
->
-> After checking (a fork of) the vendor sources [1], it seems to me that
-> this regulator is used for memory voltage related to Samsung's
-> Adaptive Supply Voltage, for which there is a pending patchset [2].
->
-> This seems to me to be out of the scope of this patchset, could you confirm?
->
-> [1] https://github.com/kumajaya/android_kernel_samsung_universal5422/blob/ad41104d43e6470f8d4880d65b259dc7b903cc0d/arch/arm/mach-exynos/asv-exynos5422.c#L1052
-> [2] https://lwn.net/Articles/784958/
+On Tue, 2019-06-18 at 09:00 -0500, Alex Elder wrote:
 
-Hi,
+> Deaggregation is a connection property, not a channel property.
 
-Indeed the vendor sources suggest that voltage scaling of this
-regulator depends on ASV, not on frequency. However still the
-regulator is there in the hardware so it should be in the bindings as
-well (specific to Exynos). I guess the driver should also enable it
-but this is separate topic (adding per-platform quirks to Panfrost
-driver). Putting it to bindings also follows advice from line 12:
-https://elixir.bootlin.com/linux/v5.2-rc5/source/Documentation/devicetree/bindings/writing-bindings.txt#L12
+That'd make sense, yes.
 
-Best regards,
-Krzysztof
+> And it looks like that's exactly how it's used in the rmnet
+> driver.  
+
+Yeah, I think you're right. I got confused by the whole use of "port"
+there, but it seems like "port" actually refers to the underlying
+netdev.
+
+Which is really strange too, btw, because you configure the "port" to
+agg/non-agg when you add a new channel to it ... So it seems like it's
+part of the channel configuration, when it's not!
+
+Anyway, I think for now we could probably live with not having this
+configurable for the IPA driver, and if it *does* need to be
+configurable, it seems like it should be a driver configuration, not a
+channel configuration - so something like a debugfs hook if you really
+just need to play with it for performance testing, or a module
+parameter, or something else?
+
+Or even, in the WWAN framework, a knob that we provide there for the
+WWAN device, rather than for the (newly created) channel.
+
+> The hardware is capable of aggregating QMAP packets
+> arriving on a connection into a single buffer, so this provides
+> a way of requesting it do that.
+> 
+> > > #define RMNET_FLAGS_INGRESS_MAP_COMMANDS          (1U << 1)
+> > 
+> > Similar here? If you have flow control you probably want to use it?
+> 
+> I agree with that, though perhaps there are cases where it
+> is pointless, or can't be supported, so one might want to
+> simply *not* implement/advertise the feature.  I don't know.
+
+Sure, but then that's likely something the driver would need to know,
+not necessarily userspace?
+
+johannes
+
