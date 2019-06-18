@@ -2,74 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5207C4A37D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A5F14A3B2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726248AbfFROK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 10:10:27 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:44719 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725919AbfFROK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 10:10:26 -0400
-Received: by mail-qk1-f195.google.com with SMTP id p144so8593588qke.11;
-        Tue, 18 Jun 2019 07:10:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ymzVRv+HbWASk9IbK9IR5jfXe4p30txsWn7MI2aWfko=;
-        b=DOOWp3vW4HwawykDQ1Pi4PSzyzJfFkgUpAfvf3igvw4gXZF41Mzo4LPMBc/wFuOxyj
-         E/2KT3DTrrLJ+sEeEXDFA7EpBmwI5jBOS/TYM08CsTGFQmWSFxaTueKQlgqylOxWgWe3
-         Spj7JsDpBU3rvPrzEO93Nexo0Zc1GM34St7cdpKA9YwHEiFGhEclq3L9+GpgFxO+LKRu
-         svzvOg+fZ9PFaxV67ZYcGW2o7+SkUt9jyOy3GhjF8vt/X+2nhdSJuSizZyF4CXe5R2Bt
-         4kmgX36oU8/3yA9m3KUBn/M2PaLTWftzs/4MXiei4dNijc5WKT/ZAdYmmsUUmEjsEePq
-         dfbg==
-X-Gm-Message-State: APjAAAWncFOW1ieSn3+JMmOVhYFVZn6YzLJ0qtz2gPRxP3p2Pa/Z1d7Q
-        FWVUbVEXcn3EF5gZ/a4XtQ==
-X-Google-Smtp-Source: APXvYqzTd+SUScnI+raBK375orxhwOZtIjBl7LTQ+SrdOuzX+fB6KoQ7w06WVT6SBK2QaP+LwnqcBg==
-X-Received: by 2002:a37:9ece:: with SMTP id h197mr75339469qke.50.1560867025673;
-        Tue, 18 Jun 2019 07:10:25 -0700 (PDT)
-Received: from localhost ([64.188.179.192])
-        by smtp.gmail.com with ESMTPSA id s11sm9602685qte.49.2019.06.18.07.10.24
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 18 Jun 2019 07:10:25 -0700 (PDT)
-Date:   Tue, 18 Jun 2019 08:10:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Mark Rutland <mark.rutland@arm.com>, openbmc@lists.ozlabs.org,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] dt-bindings: Add missing newline at end of file
-Message-ID: <20190618141023.GA20154@bogus>
-References: <20190617143322.4332-1-geert+renesas@glider.be>
+        id S1729174AbfFROSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 10:18:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47182 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729135AbfFROSq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 10:18:46 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0261021655;
+        Tue, 18 Jun 2019 14:18:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560867525;
+        bh=fmH1HS1i21FXBrdGVVcYis11lRtY96O6Nq7hw7xpuXc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JoDrQk3MgbRvSeO+7rtnkhiCNb09N7doFTHOV7WnAsndUpzx+LxFKG5zn2RpjsgeQ
+         E8wiAS1v58NskYQsv3sgTFHkFapWDgDYH7WE/SoMd4gryGJpNbrOGyIeLHGGkAnMwt
+         FEOhMsVWLZ4cKFsLpkBHVVq21MDiyEMW+ocxBnLQ=
+Received: by mail-qt1-f180.google.com with SMTP id j19so15450389qtr.12;
+        Tue, 18 Jun 2019 07:18:44 -0700 (PDT)
+X-Gm-Message-State: APjAAAVxz8j81r1x0ALQQzFqFqOaqzSxZ5UzMOZqHbNtcVnmkzFNRxH+
+        1XcRERm1QOm0hpIpJPFb8aZ6Bk/Nb9cvgBeZrw==
+X-Google-Smtp-Source: APXvYqxqXrhBkfwz+CkmpI6Dnza5Sqa7IVWFgp1FgSWrNioXxep7UkwWRLPmku5uTgQa9FsH0l163BNzQrHu5CpPAQs=
+X-Received: by 2002:aed:3f10:: with SMTP id p16mr35442573qtf.110.1560867524199;
+ Tue, 18 Jun 2019 07:18:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190617143322.4332-1-geert+renesas@glider.be>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190614203144.3850-2-joseph.kogut@gmail.com> <20190614235719.8134-1-joseph.kogut@gmail.com>
+ <CAJKOXPc-Xztou+xyibb8YZtfz20q3kzr_gTBoE=R3q_CSk9kzQ@mail.gmail.com>
+In-Reply-To: <CAJKOXPc-Xztou+xyibb8YZtfz20q3kzr_gTBoE=R3q_CSk9kzQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 18 Jun 2019 08:18:32 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+8s3iNUy5ZCtWW5k-0sa51CR0xdv3Gh_sR=jsVtLmTdQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+8s3iNUy5ZCtWW5k-0sa51CR0xdv3Gh_sR=jsVtLmTdQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Joseph Kogut <joseph.kogut@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jun 2019 16:33:22 +0200, Geert Uytterhoeven wrote:
-> "git diff" says:
-> 
->     \ No newline at end of file
-> 
-> after modifying the files.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt      | 2 +-
->  .../devicetree/bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt     | 2 +-
->  Documentation/devicetree/bindings/regulator/pv88060.txt         | 2 +-
->  Documentation/devicetree/bindings/sound/cs42l73.txt             | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
+On Tue, Jun 18, 2019 at 3:27 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Sat, 15 Jun 2019 at 01:57, Joseph Kogut <joseph.kogut@gmail.com> wrote:
+> >
+> > Add device tree node for mali gpu on Odroid XU3 SoCs.
+> >
+> > Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+> > ---
+> >
+> > Changes v1 -> v2:
+> > - Use interrupt name ordering from binding doc
+> > - Specify a single clock for GPU node
+> > - Add gpu opp table
+> > - Fix warnings from IRQ_TYPE_NONE
+> >
+> >  .../boot/dts/exynos5422-odroidxu3-common.dtsi | 26 +++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> > index 93a48f2dda49..b8a4246e3b37 100644
+> > --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> > +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> > @@ -48,6 +48,32 @@
+> >                 cooling-levels = <0 130 170 230>;
+> >         };
+> >
+> > +       gpu: gpu@11800000 {
+> > +               compatible = "samsung,exynos-mali", "arm,mali-t628";
+> > +               reg = <0x11800000 0x5000>;
+> > +               interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
+> > +                            <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
+> > +                            <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
+> > +               interrupt-names = "job", "mmu", "gpu";
+> > +               clocks = <&clock CLK_G3D>;
+> > +               mali-supply = <&buck4_reg>;
+> > +               operating-points-v2 = <&gpu_opp_table>;
+> > +       };
+> > +
+> > +       gpu_opp_table: gpu-opp-table {
+>
+> One more thing - use "opp_table" as node name (generic class of node,
+> matches style with other tables).
 
-Applied, thanks.
+'opp-table' as convention is using '-' rather than '_'.
 
 Rob
