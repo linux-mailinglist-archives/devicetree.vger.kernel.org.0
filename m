@@ -2,96 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBACF4A9F8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE4F34AA06
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 20:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730213AbfFRSe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 14:34:59 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:37860 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730200AbfFRSe7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:34:59 -0400
-Received: by mail-pf1-f194.google.com with SMTP id 19so8153960pfa.4
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 11:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6kNZlMyc+BT+bVh0V15w4cgbur+weciC7/ZsAv2IV7U=;
-        b=bm7i7c5f2/GAPKW27PQz1CiDRmYmVVba0JO3/GX7R8G+fkjmqzIIjlSd4nI38HMNiO
-         JG+isnGj0iq6Ofd/6L/6Az0kLFKN3KBe+DUwfNJZrmXGBX8SDqz9yFi5xBVYZhRXZvx8
-         pJQsKXZRSuhhm6WH3KSC1QPvrSbAjRWmtJKOA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6kNZlMyc+BT+bVh0V15w4cgbur+weciC7/ZsAv2IV7U=;
-        b=Ea0Zc/Lr/ZDxcaiBzhIcpOU4MBTiJCf4WItVa33R6XzkNJxCyRkdIFuSd3EbuwSX4X
-         wBLSaWSDy5L/9a0MhrESXiwL04NDVBQ47d11psqBVNMm5oIqF5Z1h9a72Kzp3Dkril3+
-         aePoljNTZm6K2TQ3tNgjcQopLwBAVGLgI0YxncYQMrKAkOn0zK84s4BhSnsV90ItCKhu
-         9qo2gfKlffVCLCNzpSTIlRdaOePC9F15b53NkmIgd7Hv+DUHA2AO/a8ETjWoGczlUz9q
-         eQdSsi5MtaCMD/Hal0mrLbplbkRG7k09p2Fu0hgWzF8ZjCi2ti/XUt/vY66sAP3vHW8/
-         gJ4Q==
-X-Gm-Message-State: APjAAAUsNI2p1QTrpRxmT7rufJadsvD88ZXmKGjSYWXlKrcd0tpZpAnw
-        LlnkP2u42J5owWq1QiUqp4c1tA==
-X-Google-Smtp-Source: APXvYqy+QvRjs4Drmi2FUQIv8wv4fenqIqrDebMofryze6kGt+JsmRV9NB16VTZPs4PMvqJusTHJsA==
-X-Received: by 2002:a65:654f:: with SMTP id a15mr3860571pgw.73.1560882898990;
-        Tue, 18 Jun 2019 11:34:58 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id e16sm22768169pga.11.2019.06.18.11.34.58
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 11:34:58 -0700 (PDT)
-Date:   Tue, 18 Jun 2019 11:34:55 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        id S1730069AbfFRShm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 14:37:42 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:45598 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729900AbfFRShm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 14:37:42 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1hdIz3-0004YC-56; Tue, 18 Jun 2019 20:37:29 +0200
+Message-ID: <e5b8756590260b4d6a26cf9f02deb9d157cfca83.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 1/4] staging: media: tegra-vde: Remove BIT() macro
+ from UAPI header
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Joe Perches <joe@perches.com>, Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org, Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Martin KaFai Lau <kafai@fb.com>,
+        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jamal Hadi Salim <jhs@mojatatu.com>,
+        Cong Wang <xiyou.wangcong@gmail.com>,
+        Jiri Pirko <jiri@resnulli.us>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: set PWM delay backlight
- settings for Minnie"
-Message-ID: <20190618183455.GU137143@google.com>
-References: <20190614224533.169881-1-mka@chromium.org>
- <45f94c6a-5bd7-92b0-d23f-ae7e0481935f@collabora.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <45f94c6a-5bd7-92b0-d23f-ae7e0481935f@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <jakub.kicinski@netronome.com>,
+        Jesper Dangaard Brouer <hawk@kernel.org>,
+        John Fastabend <john.fastabend@gmail.com>
+Date:   Tue, 18 Jun 2019 20:37:23 +0200
+In-Reply-To: <26cd63896d6930385b4f770e305f0782a455a688.camel@perches.com>
+References: <20190618161458.20499-1-digetx@gmail.com>
+         <20190618161458.20499-5-digetx@gmail.com>
+         <26cd63896d6930385b4f770e305f0782a455a688.camel@perches.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-2.fc28) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Enric,
-
-On Tue, Jun 18, 2019 at 10:21:52AM +0200, Enric Balletbo i Serra wrote:
-> Hi Matthias,
+On Tue, 2019-06-18 at 11:23 -0700, Joe Perches wrote:
 > 
-> On 15/6/19 0:45, Matthias Kaehlcke wrote:
-> > This reverts commit 288ceb85b505c19abe1895df068dda5ed20cf482.
-> > 
-> > According to the commit message the AUO B101EAN01 panel on minnie
-> > requires a PWM delay of 200 ms, however this is not what the
-> > datasheet says. The datasheet mentions a *max* delay of 200 ms
-> > for T2 ("delay from LCDVDD to black video generation") and T3
-> > ("delay from LCDVDD to HPD high"), which aren't related to the
-> > PWM. The backlight power sequence does not specify min/max
-> > constraints for T15 (time from PWM on to BL enable) or T16
-> > (time from BL disable to PWM off).
-> > 
+> include/uapi/linux/nl80211.h: * bitmask of BIT(NL80211_BAND_*) as described in %enum
 > 
-> Could you point from where the confusion comes from? I think will be helpful for
-> the record. B101EAN01.8 vs B101EAN01.1
-
-sounds good
-
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > 
-> With the above added:
-> 
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+That's a comment :P
 
-Thanks!
+johannes
+
