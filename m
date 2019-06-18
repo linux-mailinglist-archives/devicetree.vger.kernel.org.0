@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5F14A3B2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97BB64A3CD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729174AbfFROSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 10:18:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47182 "EHLO mail.kernel.org"
+        id S1728575AbfFROWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 10:22:51 -0400
+Received: from foss.arm.com ([217.140.110.172]:43642 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729135AbfFROSq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 10:18:46 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0261021655;
-        Tue, 18 Jun 2019 14:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560867525;
-        bh=fmH1HS1i21FXBrdGVVcYis11lRtY96O6Nq7hw7xpuXc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JoDrQk3MgbRvSeO+7rtnkhiCNb09N7doFTHOV7WnAsndUpzx+LxFKG5zn2RpjsgeQ
-         E8wiAS1v58NskYQsv3sgTFHkFapWDgDYH7WE/SoMd4gryGJpNbrOGyIeLHGGkAnMwt
-         FEOhMsVWLZ4cKFsLpkBHVVq21MDiyEMW+ocxBnLQ=
-Received: by mail-qt1-f180.google.com with SMTP id j19so15450389qtr.12;
-        Tue, 18 Jun 2019 07:18:44 -0700 (PDT)
-X-Gm-Message-State: APjAAAVxz8j81r1x0ALQQzFqFqOaqzSxZ5UzMOZqHbNtcVnmkzFNRxH+
-        1XcRERm1QOm0hpIpJPFb8aZ6Bk/Nb9cvgBeZrw==
-X-Google-Smtp-Source: APXvYqxqXrhBkfwz+CkmpI6Dnza5Sqa7IVWFgp1FgSWrNioXxep7UkwWRLPmku5uTgQa9FsH0l163BNzQrHu5CpPAQs=
-X-Received: by 2002:aed:3f10:: with SMTP id p16mr35442573qtf.110.1560867524199;
- Tue, 18 Jun 2019 07:18:44 -0700 (PDT)
+        id S1726248AbfFROWu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 10:22:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC3BD2B;
+        Tue, 18 Jun 2019 07:22:49 -0700 (PDT)
+Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AC35F3F718;
+        Tue, 18 Jun 2019 07:22:48 -0700 (PDT)
+Subject: Re: [PATCH 1/8] iommu: Add I/O ASID allocator
+To:     Jacob Pan <jacob.jun.pan@linux.intel.com>
+Cc:     Jonathan Cameron <jonathan.cameron@huawei.com>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Will Deacon <Will.Deacon@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+ <20190610184714.6786-2-jean-philippe.brucker@arm.com>
+ <20190611103625.00001399@huawei.com>
+ <62d1f310-0cba-4d55-0f16-68bba3c64927@arm.com>
+ <20190611111333.425ce809@jacob-builder>
+From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Message-ID: <13e19d8c-8918-a3bb-f398-2ac41c71d307@arm.com>
+Date:   Tue, 18 Jun 2019 15:22:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190614203144.3850-2-joseph.kogut@gmail.com> <20190614235719.8134-1-joseph.kogut@gmail.com>
- <CAJKOXPc-Xztou+xyibb8YZtfz20q3kzr_gTBoE=R3q_CSk9kzQ@mail.gmail.com>
-In-Reply-To: <CAJKOXPc-Xztou+xyibb8YZtfz20q3kzr_gTBoE=R3q_CSk9kzQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 18 Jun 2019 08:18:32 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+8s3iNUy5ZCtWW5k-0sa51CR0xdv3Gh_sR=jsVtLmTdQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+8s3iNUy5ZCtWW5k-0sa51CR0xdv3Gh_sR=jsVtLmTdQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joseph Kogut <joseph.kogut@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190611111333.425ce809@jacob-builder>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 3:27 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Sat, 15 Jun 2019 at 01:57, Joseph Kogut <joseph.kogut@gmail.com> wrote:
-> >
-> > Add device tree node for mali gpu on Odroid XU3 SoCs.
-> >
-> > Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> > ---
-> >
-> > Changes v1 -> v2:
-> > - Use interrupt name ordering from binding doc
-> > - Specify a single clock for GPU node
-> > - Add gpu opp table
-> > - Fix warnings from IRQ_TYPE_NONE
-> >
-> >  .../boot/dts/exynos5422-odroidxu3-common.dtsi | 26 +++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> > index 93a48f2dda49..b8a4246e3b37 100644
-> > --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> > +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> > @@ -48,6 +48,32 @@
-> >                 cooling-levels = <0 130 170 230>;
-> >         };
-> >
-> > +       gpu: gpu@11800000 {
-> > +               compatible = "samsung,exynos-mali", "arm,mali-t628";
-> > +               reg = <0x11800000 0x5000>;
-> > +               interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-> > +                            <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
-> > +                            <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-> > +               interrupt-names = "job", "mmu", "gpu";
-> > +               clocks = <&clock CLK_G3D>;
-> > +               mali-supply = <&buck4_reg>;
-> > +               operating-points-v2 = <&gpu_opp_table>;
-> > +       };
-> > +
-> > +       gpu_opp_table: gpu-opp-table {
->
-> One more thing - use "opp_table" as node name (generic class of node,
-> matches style with other tables).
+On 11/06/2019 19:13, Jacob Pan wrote:
+>>>> +/**
+>>>> + * ioasid_find - Find IOASID data
+>>>> + * @set: the IOASID set
+>>>> + * @ioasid: the IOASID to find
+>>>> + * @getter: function to call on the found object
+>>>> + *
+>>>> + * The optional getter function allows to take a reference to the
+>>>> found object
+>>>> + * under the rcu lock. The function can also check if the object
+>>>> is still valid:
+>>>> + * if @getter returns false, then the object is invalid and NULL
+>>>> is returned.
+>>>> + *
+>>>> + * If the IOASID has been allocated for this set, return the
+>>>> private pointer
+>>>> + * passed to ioasid_alloc. Private data can be NULL if not set.
+>>>> Return an error
+>>>> + * if the IOASID is not found or does not belong to the set.  
+>>>
+>>> Perhaps should make it clear that @set can be null.  
+>>
+>> Indeed. But I'm not sure allowing @set to be NULL is such a good idea,
+>> because the data type associated to an ioasid depends on its set. For
+>> example SVA will put an mm_struct in there, and auxiliary domains use
+>> some structure private to the IOMMU domain.
+>>
+> I am not sure we need to count on @set to decipher data type. Whoever
+> does the allocation and owns the IOASID should knows its own data type.
+> My thought was that @set is only used to group IDs, permission check
+> etc.
+> 
+>> Jacob, could me make @set mandatory, or do you see a use for a global
+>> search? If @set is NULL, then callers can check if the return pointer
+>> is NULL, but will run into trouble if they try to dereference it.
+>>
+> A global search use case can be for PRQ. IOMMU driver gets a IOASID
+> (first interrupt then retrieve from a queue), it has no idea which
+> @set it belongs to. But the data types are the same for all IOASIDs
+> used by the IOMMU.
 
-'opp-table' as convention is using '-' rather than '_'.
+They aren't when we use a generic SVA handler. Following a call to
+iommu_sva_bind_device(), iommu-sva.c allocates an IOASID and store an
+mm_struct. If auxiliary domains are also enabled for the device,
+following a call to iommu_aux_attach_device() the IOMMU driver allocates
+an IOASID and stores some private object.
 
-Rob
+Now for example the IOMMU driver receives a PPR and calls ioasid_find()
+with @set = NULL. ioasid_find() may return either an mm_struct or a
+private object, and the driver cannot know which it is so the returned
+value is unusable.
+
+Thanks,
+Jean
