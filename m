@@ -2,168 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 763774A364
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102C54A378
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:09:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726047AbfFROF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 10:05:58 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45712 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728845AbfFROFz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 10:05:55 -0400
-Received: by mail-wr1-f65.google.com with SMTP id f9so14090514wre.12
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 07:05:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8qHqhUTLPLAeUp/D+WrLyXnpz1H1Jll7QCXTM4rdBnU=;
-        b=djkt6tnmuZedsgQ4v+Rua7yfQcRyCI0RbFda0KhvSR/oADzdiA/209ohNfhcVRf8d6
-         lBE9K/fJZ8A/ZxP0jl48u8DqygtjLk6pPcX8AUimocdYXLXQw2RJnr38R2XKwe/o6X9N
-         ZOamdY9l71DGHUPX8V3uIZCrEbLY+wqRqK7B1FvRUTZM/MkMpzxXqA7hgrkn5Vv+p3o/
-         2i+Q5LM8XfqFHVaM1HEQ/GwNCw/9/FMpfSh9bxU2w3XRUBG016B+1xnhdb43B8UsSRqy
-         +fvmLZDCETQ8DJLKlkJh49O4rQZNrKvjfVhSeSVPO8KLHJgxbRRnFB65V8aEhN9ws1tS
-         SjiQ==
+        id S1729163AbfFROJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 10:09:52 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:42262 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726248AbfFROJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 10:09:52 -0400
+Received: by mail-qt1-f193.google.com with SMTP id s15so15418887qtk.9;
+        Tue, 18 Jun 2019 07:09:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8qHqhUTLPLAeUp/D+WrLyXnpz1H1Jll7QCXTM4rdBnU=;
-        b=ih+fncc5GBbVuKPR2y5MgSgCCIQjkggOwBgsX1QG5YZsGa1lF87YTCNdMIhAlJpQdd
-         rDF3+/DbPfjD/vpNjjNCLy03jifVekH1GV/BYEwQfOCmCXaflUhM9GPbJBOHZSvcNF+8
-         ei5ECR+jlPW9oDjrDQE2ChZ37GmBvBcIgsxsNPRNiBs6AA2AHNlm5cgdjZvmCTRefjNe
-         Jugl7ksT+Ge7cbA55AVmiAjbz3opg1c9RN5ojPlnyvJGjrMPKjq1laQ2Hr636w/mVJlg
-         JuZHNE0zCoOCwfMMjWJw7yVJcO2XG6dRWCjUO5PIFz+GZAk1QUWjiiyFwllGnHriI6BD
-         DnzQ==
-X-Gm-Message-State: APjAAAVCd0aBKJRT2RFM6KdmfzRDuuyDVgEuIqK7gLCMgSpvpRbziZb1
-        ydzxx1IxvCjPFtExe89HsKc61Ig3ROlp1G5L1+Ghbg==
-X-Google-Smtp-Source: APXvYqweODXawSwtgymTZRrJNdMT45q8SqezxZPypJ8zBOLy843m58QTD1p0JxHjbascNuxyphfbzEeuTcKrS6urlOY=
-X-Received: by 2002:adf:90c3:: with SMTP id i61mr63288158wri.48.1560866751639;
- Tue, 18 Jun 2019 07:05:51 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=GyQ7NHmIrnNmBSgVyVESd2wNXZg9DCHFi2yId0sHyBk=;
+        b=PdPzkB6/dua425wtW3F0dvMUs/GCYBeQX5UxO6oDjU+MUc5yjhLO7zMX9SnVYRbO45
+         T/D5kA30TBE9IQc3hdZw8lBsNKbVnSGzP0xrA2jMIS3a5AdFb/12kBs4BcQL4YuYCV+B
+         ztvqAfdeCI7lK6hVkpaOq+EkAw1w2kIEODIyWj8d9Yoxu8VzhQj7pZuzsK8f5sQVAkuF
+         FwBBLkTMLCn5ViyShaKslUMSZ75UmpPJics44VHeEdrh+Fya6F67S2Worla+a9KkTUD7
+         uJwHVQFiMBo2vsUHGImwRjnf7PwOMQb9ge+M8c3CVYaNsmaaxDuMdaKVric7cR3ya95j
+         eTCA==
+X-Gm-Message-State: APjAAAXS+Sn+qJ8QcNxudDxI+YMD0uTiVndhf34CHVNmW0d2VkXb8Ny2
+        8Znie1Cq8fDFaybT6It5iQ==
+X-Google-Smtp-Source: APXvYqy9m96oP9T8hp2Tshk/w80pIqjMUf7CXez4snhNRdVA9CnKuTOFT+BYdJIoAUJv31L+/KSzPw==
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr99042910qtb.224.1560866990989;
+        Tue, 18 Jun 2019 07:09:50 -0700 (PDT)
+Received: from localhost ([64.188.179.192])
+        by smtp.gmail.com with ESMTPSA id x10sm10883256qtc.34.2019.06.18.07.09.49
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 18 Jun 2019 07:09:50 -0700 (PDT)
+Date:   Tue, 18 Jun 2019 08:09:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH next v2] of/fdt: Fix defined but not used compiler warning
+Message-ID: <20190618140948.GA18305@bogus>
+References: <20190612010011.90185-1-wangkefeng.wang@huawei.com>
+ <20190615030343.96524-1-wangkefeng.wang@huawei.com>
 MIME-Version: 1.0
-References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com>
- <1560169080-27134-15-git-send-email-yong.wu@mediatek.com> <CAAFQd5A5GUn1Zq1xF2_2V0MReNPd5bra2F=nquvodSAZUua5AQ@mail.gmail.com>
- <1560859743.8082.23.camel@mhfsdcap03>
-In-Reply-To: <1560859743.8082.23.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@google.com>
-Date:   Tue, 18 Jun 2019 23:05:39 +0900
-Message-ID: <CAAFQd5B8MiMA_OCUJ5HRmC5SA2772HF-rBGK0aZcKoWscOzOog@mail.gmail.com>
-Subject: Re: [PATCH v7 14/21] iommu/mediatek: Add mmu1 support
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     youlin.pei@mediatek.com, devicetree@vger.kernel.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <yingjoe.chen@mediatek.com>, anan.sun@mediatek.com,
-        Robin Murphy <robin.murphy@arm.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190615030343.96524-1-wangkefeng.wang@huawei.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 9:09 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Tue, 2019-06-18 at 15:19 +0900, Tomasz Figa wrote:
-> > On Mon, Jun 10, 2019 at 9:21 PM Yong Wu <yong.wu@mediatek.com> wrote:
-> > >
-> > > Normally the M4U HW connect EMI with smi. the diagram is like below:
-> > >               EMI
-> > >                |
-> > >               M4U
-> > >                |
-> > >             smi-common
-> > >                |
-> > >        -----------------
-> > >        |    |    |     |    ...
-> > >     larb0 larb1  larb2 larb3
-> > >
-> > > Actually there are 2 mmu cells in the M4U HW, like this diagram:
-> > >
-> > >               EMI
-> > >            ---------
-> > >             |     |
-> > >            mmu0  mmu1     <- M4U
-> > >             |     |
-> > >            ---------
-> > >                |
-> > >             smi-common
-> > >                |
-> > >        -----------------
-> > >        |    |    |     |    ...
-> > >     larb0 larb1  larb2 larb3
-> > >
-> > > This patch add support for mmu1. In order to get better performance,
-> > > we could adjust some larbs go to mmu1 while the others still go to
-> > > mmu0. This is controlled by a SMI COMMON register SMI_BUS_SEL(0x220).
-> > >
-> > > mt2712, mt8173 and mt8183 M4U HW all have 2 mmu cells. the default
-> > > value of that register is 0 which means all the larbs go to mmu0
-> > > defaultly.
-> > >
-> > > This is a preparing patch for adjusting SMI_BUS_SEL for mt8183.
-> > >
-> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > Reviewed-by: Evan Green <evgreen@chromium.org>
-> > > ---
-> > >  drivers/iommu/mtk_iommu.c | 46 +++++++++++++++++++++++++++++-----------------
-> > >  1 file changed, 29 insertions(+), 17 deletions(-)
-> > >
-> > > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> > > index 3a14301..ec4ce74 100644
-> > > --- a/drivers/iommu/mtk_iommu.c
-> > > +++ b/drivers/iommu/mtk_iommu.c
-> > > @@ -72,26 +72,32 @@
-> > >  #define F_INT_CLR_BIT                          BIT(12)
-> > >
-> > >  #define REG_MMU_INT_MAIN_CONTROL               0x124
-> > > -#define F_INT_TRANSLATION_FAULT                        BIT(0)
-> > > -#define F_INT_MAIN_MULTI_HIT_FAULT             BIT(1)
-> > > -#define F_INT_INVALID_PA_FAULT                 BIT(2)
-> > > -#define F_INT_ENTRY_REPLACEMENT_FAULT          BIT(3)
-> > > -#define F_INT_TLB_MISS_FAULT                   BIT(4)
-> > > -#define F_INT_MISS_TRANSACTION_FIFO_FAULT      BIT(5)
-> > > -#define F_INT_PRETETCH_TRANSATION_FIFO_FAULT   BIT(6)
-> > > +                                               /* mmu0 | mmu1 */
-> > > +#define F_INT_TRANSLATION_FAULT                        (BIT(0) | BIT(7))
-> > > +#define F_INT_MAIN_MULTI_HIT_FAULT             (BIT(1) | BIT(8))
-> > > +#define F_INT_INVALID_PA_FAULT                 (BIT(2) | BIT(9))
-> > > +#define F_INT_ENTRY_REPLACEMENT_FAULT          (BIT(3) | BIT(10))
-> > > +#define F_INT_TLB_MISS_FAULT                   (BIT(4) | BIT(11))
-> > > +#define F_INT_MISS_TRANSACTION_FIFO_FAULT      (BIT(5) | BIT(12))
-> > > +#define F_INT_PRETETCH_TRANSATION_FIFO_FAULT   (BIT(6) | BIT(13))
-> >
-> > If there are two IOMMUs, shouldn't we have two driver instances handle
-> > them, instead of making the driver combine them two internally?
->
-> Actually it means only one IOMMU(M4U) HW here. Each a M4U HW has two
-> small iommu cells which have independent MTLB. As the diagram above, M4U
-> contain mmu0 and mmu1.
->
-> MT8173 and MT8183 have only one M4U HW while MT2712 have 2 M4U HWs(two
-> driver instances).
->
-> >
-> > And, what is even more important from security point of view actually,
-> > have two separate page tables (aka IOMMU groups) for them?
->
-> Each a IOMMU(M4U) have its own pagetable, thus, mt8183 have only one
-> pagetable while mt2712 have two.
+On Sat, 15 Jun 2019 11:03:43 +0800, Kefeng Wang wrote:
+> When CONFIG_OF_EARLY_FLATTREE is disabled, there is a compiler
+> warning,
+> 
+> drivers/of/fdt.c:129:19: warning: ‘of_fdt_match’ defined but not used [-Wunused-function]
+>  static int __init of_fdt_match(const void *blob, unsigned long node,
+> 
+> Since the only caller of of_fdt_match() is of_flat_dt_match(),
+> let's move the body of of_fdt_match() into of_flat_dt_match()
+> and eliminate of_fdt_match().
+> 
+> Meanwhile, move of_fdt_is_compatible() under CONFIG_OF_EARLY_FLATTREE,
+> as all callers are over there.
+> 
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+> ---
+> v2:
+> -Move the body of of_fdt_match() into of_flat_dt_match(), suggested by Frank.
+> 
+>  drivers/of/fdt.c | 99 ++++++++++++++++++++++--------------------------
+>  1 file changed, 45 insertions(+), 54 deletions(-)
+> 
 
-I see, thanks for clarifying.
+Applied, thanks.
 
-Best regards,
-Tomasz
+Rob
