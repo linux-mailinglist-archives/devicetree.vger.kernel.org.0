@@ -2,139 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DB1B4A336
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABF214A348
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 16:04:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729622AbfFROBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 10:01:00 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:36325 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729589AbfFROBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 10:01:00 -0400
-Received: by mail-io1-f68.google.com with SMTP id h6so30087639ioh.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 07:00:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=T08//zG45sCSOuqyl+ULwBSrl0f1cak1EG68a6PEKJ8=;
-        b=DCfVfJ+4RhCLmqXG1I+bfNn3kR7BJa6paHvS14hZvfHAQIpw8sApKrLm4OOwt55yRX
-         pUar7QENZ5rVi3vx5xBpoFxAeP7AAkq93rBdji27/dyohyKc32Ip9YAXESCu0LZLO+U+
-         QNLBbnsHtVHcCKHo465UicQL3IhBbM1bwr713lG8frsOCsMS9C1QyL5GZ16MgqszmYrZ
-         Ag/3p1Kqo7TzdO6dBp14GtnIgZA0QhDBM7NfUSf1RZGe1gAl4i0TtLlhUXiXblQHoR5o
-         dlI9cWo5/AWnl4H4pUUbTDN3/cZY2D9M3uCuUQZGsKY2bqlmwj2g8YJMDzWpESxnTyeN
-         yrGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=T08//zG45sCSOuqyl+ULwBSrl0f1cak1EG68a6PEKJ8=;
-        b=LOAtI8vYSklEULtIBUQK3Eutdjlse86jnbPg07EOugr1z1I9w3Kxb+n1gNyo0RPoOa
-         5wiL6FsQgmz3LUxXVbElFaKUW9ND8sj5VbRyC54i8BGyNKyQ+GZ8h9wlzVn6/COnYI7d
-         K2CVbD8ucikqQUkpmVvOhSTU+ZFwmG2f1K6z6rLUs+jB2RfoStzZYWd9c2x/T9px6n5p
-         xCv70iV3gVIJDf3877z1TVe6p4iA3e5dLry6Y/okFJHNhoqD/+NaV4tq2pwSSA3X170B
-         ymIiJr3X2yKYMYXaoEbTIOcMATeSszONo2fRyWLVC6zscsA5ISzdW0F0H0LTz4TsYm8f
-         a3Xg==
-X-Gm-Message-State: APjAAAWhdyh2yZN39/l8i0ZSiOWhyfGsmSAjFq2VsSDinUQRlF+A+I5q
-        q7RYsASBHSjNUo8WMgp6sepi7A==
-X-Google-Smtp-Source: APXvYqyeM5LvRvVxTEQ8tVA4GnMVkdsL650S6irQ2mz0DzREgjKLrfiwAVj0tKHMvYligiNiFkETlQ==
-X-Received: by 2002:a02:9143:: with SMTP id b3mr2339682jag.12.1560866459394;
-        Tue, 18 Jun 2019 07:00:59 -0700 (PDT)
-Received: from [172.22.22.26] (c-71-195-29-92.hsd1.mn.comcast.net. [71.195.29.92])
-        by smtp.googlemail.com with ESMTPSA id x22sm14207341iob.84.2019.06.18.07.00.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 07:00:58 -0700 (PDT)
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Johannes Berg <johannes@sipsolutions.net>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        Dan Williams <dcbw@redhat.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        syadagir@codeaurora.org
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
- <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
- <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
- <583907409fad854bd3c18be688ec2724ad7a60e9.camel@sipsolutions.net>
-From:   Alex Elder <elder@linaro.org>
-Message-ID: <31c2c94c-c6d3-595b-c138-faa54d0bfc00@linaro.org>
-Date:   Tue, 18 Jun 2019 09:00:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727584AbfFROE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 10:04:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41266 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726047AbfFROE1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 10:04:27 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BCDFE21655
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 14:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560866666;
+        bh=RMo3dveCqEw2/IPM/6BRVp4ytVeD64jFkOa/WMbSHno=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=16cbd61xfUvIO2YxuI17Ra8Gy4fogV4eaNkPqTMKU1OvFeMgcw247sK7wWoU1iUqU
+         3CRfL5c9akJqQe/8c+Vt0OzZMlCDYsdZUpQdeGT/UubuvrC9UJQQ3weuDTq7q1zDG+
+         lJvUa5XKjIIdFETun92wQkLf7hSMwR/+anbIEB38=
+Received: by mail-qt1-f181.google.com with SMTP id x47so15376161qtk.11
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 07:04:26 -0700 (PDT)
+X-Gm-Message-State: APjAAAWR5VxAFPj50mxy2L03TPvrHzWwB1nxjOdu7Nw51qhDXobitOr5
+        0uFgyB35ENRTDCAXC0ZBVGD4t9DvDfhwFnJpLg==
+X-Google-Smtp-Source: APXvYqzOrUa96+8O3bfJW7/DbJXbcxEL9dnV8/sduRy2rK1nFsWFMYPJ4rHyJRojrU5jOop/AERTxM9sUOtrhr2hT7A=
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr99007875qtb.224.1560866665973;
+ Tue, 18 Jun 2019 07:04:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <583907409fad854bd3c18be688ec2724ad7a60e9.camel@sipsolutions.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190617161432.32268-1-m.felsch@pengutronix.de> <20190617161432.32268-2-m.felsch@pengutronix.de>
+In-Reply-To: <20190617161432.32268-2-m.felsch@pengutronix.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 18 Jun 2019 08:04:13 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLrm5cRh=uVs9rmfaoL97XFbRjJeCtP7w-si4i7jxfkhg@mail.gmail.com>
+Message-ID: <CAL_JsqLrm5cRh=uVs9rmfaoL97XFbRjJeCtP7w-si4i7jxfkhg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: add Kontron vendor prefix
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Gilles.Buloz@kontron.com,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        thomas.schaefer@kontron.com, Stefan.Nickl@kontron.com,
+        Michael.Brunner@kontron.com, Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Priit Laes <plaes@plaes.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/17/19 7:14 AM, Johannes Berg wrote:
-> On Tue, 2019-06-11 at 13:56 +0200, Arnd Bergmann wrote:
-> 
-> [...]
-> 
-> Looking at the flags again,
+On Mon, Jun 17, 2019 at 10:14 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
+>
+> Kontron is a leading embedded computer supplier. More information can be
+> found on: https://www.kontron.de/
+>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> v2:
+>  - convert from vendor-prefixes.txt to vendor-prefixes.yaml
+>
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-I sort of talked about this in my message a little earlier, but I
-now see I was partially mistaken.  I thought these flags were
-used in messages but they're real device ("port") configuration
-flags.
+I applied this one to avoid any merge conflicts as there's a few
+changes in vendor-prefixes.yaml.
 
->> #define RMNET_FLAGS_INGRESS_DEAGGREGATION         (1U << 0)
-> 
-> This one I'm not sure I understand - seems weird to have such a
-> fundamental thing as a *configuration* on the channel.
-
-Let me use the term "connection" to refer to the single pathway
-that carries data between the AP and modem.  And "channel" to
-refer to one of several multiplexed data streams carried over
-that connection.  (If there's better terminology, please say
-so; I just want to be clear in what I'm talking about.)
-
-Deaggregation is a connection property, not a channel property.
-And it looks like that's exactly how it's used in the rmnet
-driver.  The hardware is capable of aggregating QMAP packets
-arriving on a connection into a single buffer, so this provides
-a way of requesting it do that.
-
->> #define RMNET_FLAGS_INGRESS_MAP_COMMANDS          (1U << 1)
-> 
-> Similar here? If you have flow control you probably want to use it?
-
-I agree with that, though perhaps there are cases where it
-is pointless, or can't be supported, so one might want to
-simply *not* implement/advertise the feature.  I don't know.
-
->> #define RMNET_FLAGS_INGRESS_MAP_CKSUMV4           (1U << 2)
-> 
-> This again looks like a hardware specific feature (ipv4 checksum)? Not
-> sure why this is set by userspace.
-> 
->> #define RMNET_FLAGS_EGRESS_MAP_CKSUMV4            (1U << 3)
-> 
-> This could be set with ethtool instead, I suppose.
-
-As I said in my earlier message, I think I concur about this.
-I think the IPA driver could easily hide the checksum offload
-capability, and if it can truly be controlled as needed
-using existing methods there's no need to encumber the
-WWAN framework with it.
-
-					-Alex
-
-
-> johannes
-> 
-
+Rob
