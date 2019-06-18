@@ -2,84 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A81449A91
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6690049A9C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbfFRH3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:29:07 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59258 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbfFRH3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:29:07 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6B5CB260C4A;
-        Tue, 18 Jun 2019 08:29:04 +0100 (BST)
-Date:   Tue, 18 Jun 2019 09:29:01 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     masonccyang@mxic.com.tw
-Cc:     "Miquel Raynal" <miquel.raynal@bootlin.com>, bbrezillon@kernel.org,
-        broonie@kernel.org, christophe.kerello@st.com,
-        computersforpeace@gmail.com, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, geert@linux-m68k.org, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, marcel.ziswiler@toradex.com,
-        marek.vasut@gmail.com, mark.rutland@arm.com, paul.burton@mips.com,
-        richard@nod.at, robh+dt@kernel.org, stefan@agner.ch,
-        zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
- controller
-Message-ID: <20190618092901.3bdd9f61@collabora.com>
-In-Reply-To: <20190618081436.5d488320@collabora.com>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
-        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
-        <20190512151820.4f2dd9da@xps13>
-        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
-        <20190520142333.390091d5@xps13>
-        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
-        <20190527144250.71908bd9@xps13>
-        <OFE923A8E5.50375C30-ON48258409.0009AE1B-48258409.00119767@mxic.com.tw>
-        <20190617143510.4ded5728@xps13>
-        <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw>
-        <20190618081436.5d488320@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726095AbfFRHay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:30:54 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:37506 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbfFRHay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:30:54 -0400
+Received: by mail-lj1-f196.google.com with SMTP id 131so12039233ljf.4
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:30:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=lzMoIK1vee4P4mPO/slx2A6Tsr0AJjn4J96SipEBO/M=;
+        b=o2QI4NVMdxH3WE0Sv7g2Wd2KSi1zyz1KrSd63ZH1h0e9j819uRnJyUWyNiNgg7eNOB
+         4wtbLPamVk2ak7wVfJsi8cJyYYqLe/r2yx4Ez+0w9ptwxP/5sQqZFd6imrNDOmvpTJtI
+         rYj0Lc3ob4OdqCPaRunnvn1hXl6ypYjoufx0iAYz9U7FgkK5/sc+gI6tTplCkkpnrjGp
+         bZLlACnOnh0hfNRgBgvZbWYVhzEm3KU0y7wdsrPchbuE9P11+bbRgtD2fUxcQ1i3Iazn
+         RW4WSRUDBhJZTWYQxy++MQN0EHKTU/9W8VaJdpzO/1FxzIDr2ilPBqkOjp+zRz8vx18c
+         QQDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=lzMoIK1vee4P4mPO/slx2A6Tsr0AJjn4J96SipEBO/M=;
+        b=BTR9iziHv1pb/agu9L8USwN/jZaVyzYnDSx7IdMc7c9Y5KzagQLz1y501xZXLITbf2
+         qgKmvXg29QFcs+bgZIDvirY+t2zuePUl0+9mCu5tBhF2pkISY7+sRjQEyZePRjPVAl8K
+         HbGVBAQIOnP8XSHjAyrcg+riYL7TiW0BxL96wowgDqrmBqYvzfFyCx1dQ8nSqBTix74K
+         pZtWlaF6/WX/vahdmfjQegipulUXSKoS50Z8LIkG2aIO2hfTMOocnfqRVCjtx63bAtRN
+         t55+Yl9HG5XMK7s0eYFVmWxHRLrxlDVpPHQLGWN/dYaBDf6thxDvKLVranZN66rraffX
+         +shw==
+X-Gm-Message-State: APjAAAXpSzgErLQ4gAHJaB1e8NygVPywI4hAyAV4gYK+FH7TzWOSHelq
+        DgPVP5degrQ58gGP6Tks2vuhfw==
+X-Google-Smtp-Source: APXvYqwGExLOK04QgdAg8HF247qc6qSalgLXbN68WY9cjm5Unagl1DuNFRQCTUcc1/cSOLB4c3Q+yw==
+X-Received: by 2002:a2e:824f:: with SMTP id j15mr4508805ljh.117.1560843052049;
+        Tue, 18 Jun 2019 00:30:52 -0700 (PDT)
+Received: from localhost (89-233-230-99.cust.bredband2.com. [89.233.230.99])
+        by smtp.gmail.com with ESMTPSA id z17sm2477188ljc.37.2019.06.18.00.30.51
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 18 Jun 2019 00:30:51 -0700 (PDT)
+Date:   Tue, 18 Jun 2019 09:30:50 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: watchdog: Rename bindings documentation file
+Message-ID: <20190618073050.GA28646@bigcity.dyn.berto.se>
+References: <20190617090953.8770-1-horms+renesas@verge.net.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190617090953.8770-1-horms+renesas@verge.net.au>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jun 2019 08:14:36 +0200
-Boris Brezillon <boris.brezillon@collabora.com> wrote:
+Hi Simon,
 
-> > > > > > 
-> > > > > > How to make all #CS keep high for NAND to enter 
-> > > > > > low-power standby mode if driver don't use "legacy.select_chip()"     
-> > ?   
-> > > > > 
-> > > > > See commit 02b4a52604a4 ("mtd: rawnand: Make ->select_chip()     
-> > optional  
-> > > > > when ->exec_op() is implemented") which states:
-> > > > > 
-> > > > >         "When [->select_chip() is] not implemented, the core is     
-> > assuming  
-> > > > >    the CS line is automatically asserted/deasserted by the driver     
-> > > > >    ->exec_op() implementation."     
-> > > > > 
-> > > > > Of course, the above is right only when the controller driver     
-> > supports  
-> > > > > the ->exec_op() interface.     
-> > > > 
-> > > > Currently, it seems that we will get the incorrect data and error
-> > > > operation due to CS in error toggling if CS line is controlled in     
-> > > > ->exec_op().     
+Thanks for your work.
 
-Oh, and please provide the modifications you added on top of this patch.
-Right now we're speculating on what you've done which is definitely not
-an efficient way to debug this sort of issues.
+On 2019-06-17 11:09:53 +0200, Simon Horman wrote:
+> For consistency with the naming of (most) other documentation files for DT
+> bindings for Renesas IP blocks rename the Renesas WDT documentation file
+> from renesas-wdt.txt to renesas,wdt.txt.
+> 
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> ---
+>  .../devicetree/bindings/watchdog/{renesas-wdt.txt => renesas,wdt.txt}     | 0
+>  1 file changed, 0 insertions(+), 0 deletions(-)
+>  rename Documentation/devicetree/bindings/watchdog/{renesas-wdt.txt => renesas,wdt.txt} (100%)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/renesas-wdt.txt b/Documentation/devicetree/bindings/watchdog/renesas,wdt.txt
+> similarity index 100%
+> rename from Documentation/devicetree/bindings/watchdog/renesas-wdt.txt
+> rename to Documentation/devicetree/bindings/watchdog/renesas,wdt.txt
+> -- 
+> 2.11.0
+> 
+
+-- 
+Regards,
+Niklas Söderlund
