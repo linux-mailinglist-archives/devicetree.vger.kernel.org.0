@@ -2,120 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7AB4AB92
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 22:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DCD4ABB8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 22:25:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730358AbfFRUWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 16:22:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47932 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729961AbfFRUWv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 16:22:51 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D3FB521479;
-        Tue, 18 Jun 2019 20:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560889370;
-        bh=wxfkFUvlWwSzclJIifv04kWQfo423I3PSoSFued6BFE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rQnmLx4oyLJFzI2gHXYZzEZ+dyifC/qB1Z/Z6A3eL09zfcZvlAgQDpmv48INK3DTl
-         HravmwwoY2CzeLr9Yi2mwo53TfQy7n7QV14K1hgad85qYd0j8zhAz/rPYNUK6tHm4H
-         aGq/JVZNVvLYSeGFQmYe/uez4rl2P7vzWOL3YhKQ=
-Received: by mail-qt1-f169.google.com with SMTP id w17so10674016qto.10;
-        Tue, 18 Jun 2019 13:22:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAUgfZ9O/i5N02LqW1GNfjoAdLeg8k0UNCd1T9i6LORT+hM+kLk6
-        BeI078isJmrMn52BDFWvG1JJ+iVjSDTKZbDVOg==
-X-Google-Smtp-Source: APXvYqyaYZdyU75vrLYz7F8KjcRIk4qbW7GNvaf0PzyOfAyduE/UQs47mo5PrsLrH1gZEyRv1TI7g3FSh5Ik+wsow4w=
-X-Received: by 2002:ac8:3908:: with SMTP id s8mr100915416qtb.224.1560889369080;
- Tue, 18 Jun 2019 13:22:49 -0700 (PDT)
+        id S1730670AbfFRUZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 16:25:26 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:44547 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725909AbfFRUZZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 16:25:25 -0400
+Received: by mail-qk1-f194.google.com with SMTP id p144so9435086qke.11;
+        Tue, 18 Jun 2019 13:25:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+J13HW6Ql7AVbYnId9Z2QZkxRcrcMv8VFcAxxJspMsw=;
+        b=m+HxYuSmzA49hIX2C0R/5k+lHUKTIv1oK6hQCco3oEPOdHPlkqevF72yM+yYin7kua
+         QzrAxnvVqHxxjWLAbb3t56f7b8EC4dkXbCIx7AOuMRYf+gQzgU0FA42UoJ/BddGOIWrU
+         XYBbLaRsmrdKpe9RwQ72o0TKKEZOTT5cAZM5o9kzYniijBjFp3F+SKk3x/Istrhyf0OC
+         bazZli+kqlvHDv4zh3JqtKHnNb364yPF7y5OQawsRysIarus7HGQ44iLbukMiA47Kxoy
+         wGCux6njKAkW+nCyx9U1Oab1OGdGexPnBZHE65mwdTKY+/LAo0cKGdUQExLg+s7ck9gH
+         BPvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+J13HW6Ql7AVbYnId9Z2QZkxRcrcMv8VFcAxxJspMsw=;
+        b=XTYCNFqU7xy/JRtdbLTT4MsGPzvy0PhBMCEyStyWlG4CD7gb+njpkHS17/IGv6vcoz
+         8MIaSbNDM6YY8QJwgVoHXkJDks0NksUxR24Hvi67BqxsCE7MI233jW45FdIdXaoovgKk
+         +OCyPFLR7NXzs61Pqe1zg1VMKAcJfrD2SuOkoEqKWCR7m0biW+lwwqJ/FpcpoynzxC0w
+         FBmSoDsBhfdXh2cQMbqTCHk5PX5vr6t73/KNJDtHEQLc4PYaTBnOye0tvqEHKUqRjMpN
+         zI1VWZ8DmEajghjclZEk0sG+5OEberWe9vx9NYXdYvGNsXEfDW+TIO+xcw5waFDbh0sg
+         91Hg==
+X-Gm-Message-State: APjAAAVlxZsS4ByVuFrnSFtr9ANsM0AzTTM1O/gzYrDbx71b9GSpVaUa
+        PuyLKLtIJnzaZpXSZC3h6D4=
+X-Google-Smtp-Source: APXvYqxNDvLChkQUBiXIko0dDMbNastU/9GEX6agttSnnnTf19sIWCx8uUHQaJTRlVcJjODqD+0iUg==
+X-Received: by 2002:a05:620a:10b2:: with SMTP id h18mr30836066qkk.14.1560889524900;
+        Tue, 18 Jun 2019 13:25:24 -0700 (PDT)
+Received: from localhost ([2601:184:4780:7861:5010:5849:d76d:b714])
+        by smtp.gmail.com with ESMTPSA id r17sm9594246qtf.26.2019.06.18.13.25.24
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 18 Jun 2019 13:25:24 -0700 (PDT)
+From:   Rob Clark <robdclark@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-arm-msm@vger.kernel.org, Sean Paul <seanpaul@chromium.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Jayant Shekhar <jshekhar@codeaurora.org>,
+        Sravanthi Kollukuduru <skolluku@codeaurora.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 3/5] dt-bindings: msm/disp: Introduce interconnect bindings for MDSS on SDM845
+Date:   Tue, 18 Jun 2019 13:24:11 -0700
+Message-Id: <20190618202425.15259-4-robdclark@gmail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190618202425.15259-1-robdclark@gmail.com>
+References: <20190618202425.15259-1-robdclark@gmail.com>
 MIME-Version: 1.0
-References: <20190524162229.9185-1-linus.walleij@linaro.org>
- <CAL_Jsq+bZsJ+SBiJa2hzXU9RkTNBhDk_Uv_Fk6V6DqRGh-xPRg@mail.gmail.com> <CACRpkdbkwTtS2ofpxkZLERW-b+4=d7m9qiPXGT+iMemn9zZE1A@mail.gmail.com>
-In-Reply-To: <CACRpkdbkwTtS2ofpxkZLERW-b+4=d7m9qiPXGT+iMemn9zZE1A@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 18 Jun 2019 14:22:36 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+qwmA1hHRj73B1uf0WY76waK7M96Ndj1RSKHuAi1v=Cw@mail.gmail.com>
-Message-ID: <CAL_Jsq+qwmA1hHRj73B1uf0WY76waK7M96Ndj1RSKHuAi1v=Cw@mail.gmail.com>
-Subject: Re: [PATCH 7/8] net: ethernet: ixp4xx: Add DT bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     netdev <netdev@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 1:44 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Fri, May 24, 2019 at 9:41 PM Rob Herring <robh@kernel.org> wrote:
->
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +    description: Ethernet MMIO address range
-> > > +
-> > > +  queue-rx:
-> > > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> > > +    maxItems: 1
-> >
-> > This doesn't actually do what you think it is doing. A $ref plus
-> > additional constraints need to be under an 'allOf' list.
-> >
-> > > +    description: phandle to the RX queue on the NPE
-> >
-> > But this is a phandle plus 1 cell, right?
-> >
-> > - allOf:
-> >     - $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> >     - items:
-> >         - items:
-> >             - description: phandle to the RX queue on the NPE
-> >             - description: whatever the cell contains
-> >               enum: [ 1, 2, 3, 4 ] # any constraints you can put on the cell
-> >
-> > This implicitly says you have 1 of a phandle + 1 cell.
-> >
-> > I need to add this to example-schema.yaml...
->
-> I just can't get this right :(
->
-> I have this:
->
->   queue-rx:
->     - allOf:
+From: Jayant Shekhar <jshekhar@codeaurora.org>
 
-Properties take a schema/object/dict or boolean. You are making
-queue-rx a list. Drop the '-'.
+Add interconnect properties such as interconnect provider specifier
+, the edge source and destination ports which are required by the
+interconnect API to configure interconnect path for MDSS.
 
->       - $ref: '/schemas/types.yaml#/definitions/phandle-array'
->       - items:
->         - items:
->           - description: phandle to the RX queue on the NPE
->           - description: index of the NPE engine RX queue to use
->             enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
->
-> I get this from dt_binding_check:
->
->   CHKDT   Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-> Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml:
-> properties:queue-rx: [{'allOf': [{'$ref':
-> '/schemas/types.yaml#/definitions/phandle-array'}, {'items':
-> [{'items': [{'description': 'phandle to the RX queue on the NPE'},
-> {'description': 'index of the NPE engine RX queue to use', 'enum': [0,
-> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}]}]}]}] is not of type 'object',
-> 'boolean'
-> make[3]: *** [../Documentation/devicetree/bindings/Makefile:12:
-> Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.example.dts]
-> Error 1
->
-> Hm .... I just can't figure out what this recursive parsing thingie means...
-> I tried to update the pip3 repo but no cigar.
+Changes in v2:
+	- None
 
-What do you mean pip didn't work?
+Changes in v3:
+	- Remove common property definitions (Rob Herring)
 
-Rob
+Changes in v4:
+	- Use port macros and change port string names (Georgi Djakov)
+
+Changes in v5-v7:
+	- None
+
+Signed-off-by: Sravanthi Kollukuduru <skolluku@codeaurora.org>
+Signed-off-by: Jayant Shekhar <jshekhar@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+---
+ Documentation/devicetree/bindings/display/msm/dpu.txt | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu.txt b/Documentation/devicetree/bindings/display/msm/dpu.txt
+index ad2e8830324e..a61dd40f3792 100644
+--- a/Documentation/devicetree/bindings/display/msm/dpu.txt
++++ b/Documentation/devicetree/bindings/display/msm/dpu.txt
+@@ -28,6 +28,11 @@ Required properties:
+ - #address-cells: number of address cells for the MDSS children. Should be 1.
+ - #size-cells: Should be 1.
+ - ranges: parent bus address space is the same as the child bus address space.
++- interconnects : interconnect path specifier for MDSS according to
++  Documentation/devicetree/bindings/interconnect/interconnect.txt. Should be
++  2 paths corresponding to 2 AXI ports.
++- interconnect-names : MDSS will have 2 port names to differentiate between the
++  2 interconnect paths defined with interconnect specifier.
+ 
+ Optional properties:
+ - assigned-clocks: list of clock specifiers for clocks needing rate assignment
+@@ -86,6 +91,11 @@ Example:
+ 		interrupt-controller;
+ 		#interrupt-cells = <1>;
+ 
++		interconnects = <&rsc_hlos MASTER_MDP0 &rsc_hlos SLAVE_EBI1>,
++				<&rsc_hlos MASTER_MDP1 &rsc_hlos SLAVE_EBI1>;
++
++		interconnect-names = "mdp0-mem", "mdp1-mem";
++
+ 		iommus = <&apps_iommu 0>;
+ 
+ 		#address-cells = <2>;
+-- 
+2.20.1
+
