@@ -2,80 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CEF4AD74
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 23:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E92ED4AD89
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 23:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730412AbfFRVlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 17:41:35 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:55378 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730176AbfFRVlf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 17:41:35 -0400
-Received: by mail-wm1-f67.google.com with SMTP id a15so4856663wmj.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 14:41:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=npjnmaSr2vkCmDXoz3+FiT+jLOxPrHd/kPwcRCCzYl4=;
-        b=oeNyLCilPkITLmXVFaDVzdrf/aLDJjiKitNEZaENhh0M8+Z+FgTWcVTe3mvprvIMmZ
-         kVDAXDElMa+5FkusYyYQg0ZDapkRSnri4u8NuDbzt8OFV6ctmH/yrMbKetHVjwInbqni
-         RGNkgOHbdzojbDhs3HnKRB84CKYsunDDcNAgi5zqsOjOJ5n4V4G16PQ4v9V864qKKF5I
-         g5FAOLo9bt0kjeixgYLexM4fiYyXsMWLmSR20ETaAb3XZLCrd2xKlA94AWpVJbO/pBwP
-         6SAvTW0tN5x9kMA2BmeoKxidSrlTWWtzTSynsZqvwoB5t6QtUt+9DlCBaiaVDDTPLmlY
-         t5OA==
+        id S1730176AbfFRVrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 17:47:35 -0400
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:43559 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729982AbfFRVre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 17:47:34 -0400
+Received: by mail-ua1-f65.google.com with SMTP id o2so7584166uae.10;
+        Tue, 18 Jun 2019 14:47:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=npjnmaSr2vkCmDXoz3+FiT+jLOxPrHd/kPwcRCCzYl4=;
-        b=D9sYtijfK7hDv16EX08tA7idHfhll2f6CpiZtEjpHJ5+SsvWArTLu+Ei8skSOQHDom
-         69sEsniveTzQ39304qeclRDs6WrJz3spoo8aOy2m93hyvciA/ywSAnE9mqt+CLO5s4q/
-         i0QsH2ZPMrXYtmU+ZyiRylKKZD7NpMpnnjTUevFzGUUtAktV5PZDHzPKjW5lgrlrEPIn
-         /6O+3TVXIP5IxAQENvEHKweA50EzLT2LE7nWXOYrHblCOvIisgAgZHYN4smFSNhhkbcA
-         E5oi4i6rN+JDsr8Im/Aovh4sR0wEnbR1UKTFzNLsPpbG1wTwlgIfw+kY7Pf4DLcfblzp
-         GZ1Q==
-X-Gm-Message-State: APjAAAVTCftj+odw9MUk/BEELBOS2pg8ULaulXvhY8EDU1NrbQnskVDc
-        c9MDhGKZnoZRyOgX3qNMn1mNjQ==
-X-Google-Smtp-Source: APXvYqzriXXa80Q7KkVfSb96pNBw5Q2jgBhKV3KaX+d4NgOHn6hjzmn39dYZ9VMJZ+4IgzakHn7xRg==
-X-Received: by 2002:a1c:9cd1:: with SMTP id f200mr5010451wme.157.1560894093099;
-        Tue, 18 Jun 2019 14:41:33 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id o20sm19019027wrh.8.2019.06.18.14.41.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 14:41:32 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Correct apr-domain property
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     David Brown <david.brown@linaro.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=I0RWfX7/brWCQJZlmTP4b1pf0cVwk5bUjTnCrdF8UAY=;
+        b=cUXKUiQ935N3nlS6kFzB0TCzb78U/V078a6zAg8F82mDBMaMZoPg24ItFFb8STlRVS
+         F0qSgwpTj19HwCLZuQ5/VqymocKDL9fmNtXngjG4hw9y/LiEtjX/racQ8UdhvRXcbUUu
+         oYHz8JQ9FFwRGHsOXSB8+ZYOd3MJA6lJQrBLQdJZMzOtSWW6H9hAyOiZwv9UfhPQzpUs
+         0Jqzmn2jcRfg7Fa9Lx5xfMz3wUM/GW7AZv9cFgzmVk3fosTWXsiqx5iz2A0i2yswVRQg
+         7alXD9gi3PqGitRKAd9lsc5rc3Y/SIFoGkm3Mu+T5cS3uPGa1SXHgL2d6Qi8ImVl3p3g
+         ZMFQ==
+X-Gm-Message-State: APjAAAX2jRINuruQlVgUrOa1WZ/ZQS84rlABKMfZ+NTTTavUoL97atj3
+        kLzVFQr7S/StsmNNsiDuu47/1925KSo0reKl+kg=
+X-Google-Smtp-Source: APXvYqxuHJvBUgcTAIF7H6uuKf/TgeRQI8Gc97Xr2WBYZISyfbVN7S7r7p3sI20JELN7OjPaH4dM5N25VHb2Dddyzm8=
+X-Received: by 2002:a9f:31a2:: with SMTP id v31mr12191937uad.15.1560894453845;
+ Tue, 18 Jun 2019 14:47:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190618213406.7667-1-ezequiel@collabora.com> <20190618213406.7667-3-ezequiel@collabora.com>
+In-Reply-To: <20190618213406.7667-3-ezequiel@collabora.com>
+From:   Ilia Mirkin <imirkin@alum.mit.edu>
+Date:   Tue, 18 Jun 2019 17:47:22 -0400
+Message-ID: <CAKb7UvgvY0tJDV9A=4+8=iqraziyt8SGF-QrX=M8jz+R+5JC=A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] drm/rockchip: Add optional support for CRTC gamma LUT
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-rockchip@lists.infradead.org,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190618052547.32376-1-bjorn.andersson@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <b0036d9f-eec1-7531-545f-67b651ded729@linaro.org>
-Date:   Tue, 18 Jun 2019 22:41:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190618052547.32376-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 18/06/2019 06:25, Bjorn Andersson wrote:
-> The domain specifier was changed from using "reg" to "qcom,apr-domain",
-> update the dts accordingly.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Tue, Jun 18, 2019 at 5:43 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
+>
+> Add an optional CRTC gamma LUT support, and enable it on RK3288.
+> This is currently enabled via a separate address resource,
+> which needs to be specified in the devicetree.
+>
+> The address resource is required because on some SoCs, such as
+> RK3288, the LUT address is after the MMU address, and the latter
+> is supported by a different driver. This prevents the DRM driver
+> from requesting an entire register space.
+>
+> The current implementation works for RGB 10-bit tables, as that
+> is what seems to work on RK3288.
+>
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
 > ---
-LGTM
-Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Changes from RFC:
+> * Request (an optional) address resource for the LUT.
+> * Drop support for RK3399, which doesn't seem to work
+>   out of the box and needs more research.
+> * Support pass-thru setting when GAMMA_LUT is NULL.
+> * Add a check for the gamma size, as suggested by Ilia.
+> * Move gamma setting to atomic_commit_tail, as pointed
+>   out by Jacopo/Laurent, is the correct way.
+> ---
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> index 12ed5265a90b..5b6edbe2673f 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> +static void vop_crtc_gamma_set(struct vop *vop, struct drm_crtc *crtc,
+> +                              struct drm_crtc_state *old_state)
+> +{
+> +       int idle, ret, i;
+> +
+> +       spin_lock(&vop->reg_lock);
+> +       VOP_REG_SET(vop, common, dsp_lut_en, 0);
+> +       vop_cfg_done(vop);
+> +       spin_unlock(&vop->reg_lock);
+> +
+> +       ret = readx_poll_timeout(vop_dsp_lut_is_enable, vop,
+> +                          idle, !idle, 5, 30 * 1000);
+> +       if (ret)
+> +               return;
+> +
+> +       spin_lock(&vop->reg_lock);
+> +
+> +       if (crtc->state->gamma_lut) {
+> +               if (!old_state->gamma_lut || (crtc->state->gamma_lut->base.id !=
+> +                                             old_state->gamma_lut->base.id))
+> +                       vop_crtc_write_gamma_lut(vop, crtc);
+> +       } else {
+> +               for (i = 0; i < crtc->gamma_size; i++) {
+> +                       u32 word;
+> +
+> +                       word = (i << 20) | (i << 10) | i;
+> +                       writel(word, vop->lut_regs + i * 4);
+> +               }
+
+Note - I'm not in any way familiar with the hardware, so take with a
+grain of salt --
+
+Could you just leave dsp_lut_en turned off in this case?
+
+Cheers,
+
+  -ilia
+
+> +       }
+> +
+> +       VOP_REG_SET(vop, common, dsp_lut_en, 1);
+> +       vop_cfg_done(vop);
+> +       spin_unlock(&vop->reg_lock);
+> +}
