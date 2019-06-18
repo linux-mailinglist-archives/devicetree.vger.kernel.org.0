@@ -2,82 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD2B49BA9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 10:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4110549BCB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 10:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726275AbfFRICC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 04:02:02 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:1575 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725913AbfFRICB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 04:02:01 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d089a790001>; Tue, 18 Jun 2019 01:02:01 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 18 Jun 2019 01:02:00 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 18 Jun 2019 01:02:00 -0700
-Received: from [10.19.108.127] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 18 Jun
- 2019 08:01:58 +0000
-Subject: Re: [PATCH 8/8] xhci: tegra: enable ELPG for runtime/system PM
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <pdeschrijver@nvidia.com>, <afrid@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>,
-        <skomatineni@nvidia.com>
-References: <20190614074824.22023-1-jckuo@nvidia.com>
- <20190614074824.22023-4-jckuo@nvidia.com> <20190618063322.GA10079@kroah.com>
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <40374770-912a-f4fb-a90e-ea0bccceaad0@nvidia.com>
-Date:   Tue, 18 Jun 2019 16:01:56 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1728840AbfFRINa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 04:13:30 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:34035 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726091AbfFRIN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 04:13:29 -0400
+Received: by mail-wr1-f68.google.com with SMTP id k11so12880045wrl.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 01:13:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=06HNdPNgDbi2f1j2ONuEOl1EHxJYMZdY3r9dArsvaPQ=;
+        b=osrgXa++2Q+19SyQ1z7d1ONbADxeD3tCbVl2v95iwqfC2jN8JrzlBbSbotWm1ib1eH
+         k7pfiV8Atc1w84Uk1cJi29Cb/UH0z9GWMSdfcZVUWHhC1pWzLNZPt7jAEYRWVNgNRFJP
+         NqTDPRy3PAzP5J5RLPVLnNb322kTOi6Lsx7CDeIoXEPdV3UjpG1pw2m4vzq6tihzWGKg
+         9iJ7ltctXwXheg7nvUO2gp+tSjBbWlAAjX8rUnmWm8D+us+OU94WWgzoJc7Wpb2fspXj
+         4OfKrLEbehWaBOkEwT7wILE7J8EufELTCIawMLqMicz4oyI0EF2xahSvlbEdMWsufMqb
+         n9ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=06HNdPNgDbi2f1j2ONuEOl1EHxJYMZdY3r9dArsvaPQ=;
+        b=tYAC5Em8zaSxEbNCg7GutOmiisG18TkOnPJieECnbqcatqwKA8RZB+QiZyKXtE4L7w
+         b3or+getq0fLwS8+6/iruA4lzQcUury2xCKT8QWU1TuoeIfW4j3btpHEN+273X9pLJvb
+         g/jXVkaLos7+RvoGHp4tseQ4cYGXfENlHFbU4AqwrsvFotUbu+kOgE8qqQoEuv9O//MT
+         5PQIEuHX358jCL+La8vqpjcnxwymv7N4jXKeegYWKt70h/+ZJ8SQ5LYLmgBm4011KMVY
+         eaND5e+uG+YagDgcDIVF8djfIDRPl5KTrgvDDuk/gIWnILlKMVrNjx0QYu7ziNeCgAJp
+         d3oA==
+X-Gm-Message-State: APjAAAUJDM86i2mOIA6Z+4rP0xrpjK09YJ2BaXeQYp54fK9/DM7EJ93L
+        PVKEA4mYJNjdbmyeCKeg+W9m6Q==
+X-Google-Smtp-Source: APXvYqzwXi+RbIPkFmf4CacE1T+w7xAM0/5ckvB5TE8zDrHsOAfEV+IgJ4W1J07pX0Aa83hlfmc9WQ==
+X-Received: by 2002:adf:f6cb:: with SMTP id y11mr3195081wrp.245.1560845606659;
+        Tue, 18 Jun 2019 01:13:26 -0700 (PDT)
+Received: from dell ([2.27.35.243])
+        by smtp.gmail.com with ESMTPSA id v204sm1871127wma.20.2019.06.18.01.13.25
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 18 Jun 2019 01:13:26 -0700 (PDT)
+Date:   Tue, 18 Jun 2019 09:13:24 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        lgirdwood@gmail.com, robh+dt@kernel.org, afaerber@suse.de,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        thomas.liau@actions-semi.com, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+Subject: Re: [PATCH 3/4] regulator: Add regulator driver for ATC260x PMICs
+Message-ID: <20190618081324.GK16364@dell>
+References: <20190617155011.15376-1-manivannan.sadhasivam@linaro.org>
+ <20190617155011.15376-4-manivannan.sadhasivam@linaro.org>
+ <20190617163015.GD5316@sirena.org.uk>
+ <20190617163413.GA16152@Mani-XPS-13-9360>
+ <20190617170356.GG5316@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20190618063322.GA10079@kroah.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560844921; bh=3GuncUlSKsmI7x4+GNsDMFUCN+OQrxFC5HqZFPYlDTY=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=jPMFJxJkktr8WRnqP5+WJZhP21Mr0hogE0BtWvVyX2SdS4Z/mN3ypNmL09fXVBpmb
-         YBIV4FvBoW7s9ZmMF2jnRZakCo/1ofmZ1TZp7ytb9qxr2l40R8857t0y/p0wfZLSV0
-         0SEms/JkyxlMaJgzmtHRtosG1X059APRIa18nXInoItYdUaTC1r+M0nrnV6/tLs2Kv
-         OZTt/XhtWnggY5cq9Y0ZLpUOhxyan1ZiuRFES23WDPnQUTPXiDEDIJRMotRa9FgrNx
-         7Ku0Th4hh0cZEidZcT7TpN/tSIuipU52cfSpg5b1W2qAz05bexT0hDF91qSCnPMYhT
-         M8yQNOXcN7OXw==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190617170356.GG5316@sirena.org.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
-Code cleanup was done but I forgot the "NEED CLEANUP" in the commit comment. Sorry for that. I will wait for review comments to come and fix the commit message together with code improvements.
+On Mon, 17 Jun 2019, Mark Brown wrote:
 
-Thanks,
-JC
+> On Mon, Jun 17, 2019 at 10:04:13PM +0530, Manivannan Sadhasivam wrote:
+> 
+> > > > + * Copyright (C) 2019 Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> 
+> > > You definitely didn't assign copyright to your employer?
+> 
+> > Yeah, that was intentional. This work is not part of Linaro working hours and
+> > falls into my spare time works where I'm trying to complete the upstream support
+> > for Actions Semi Owl series SoCs and target boards which I'm co-maintaining
+> > (sort of)...
+> 
+> OK...  seems very weird to use your work address for developing on
+> products closely associated with your employer in non-work time.
 
-On 6/18/19 2:33 PM, Greg KH wrote:
-> On Fri, Jun 14, 2019 at 03:48:24PM +0800, JC Kuo wrote:
->> This commit enables XUSB host controller ELPG for runtime and system
->> power management.
->>
->> NEED CLEANUP.
-> 
-> Odd kernel changelog comment...
-> 
-> Please cleanup when you resend. :)
-> 
-> thanks,
-> 
-> greg k-h
-> 
+I use my Linaro address for everything.  So long as the work is of the
+required standard, I cannot see anyone having reservations.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
