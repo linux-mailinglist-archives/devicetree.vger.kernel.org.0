@@ -2,135 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C62E749D5D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87A4149E47
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 12:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729253AbfFRJc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 05:32:59 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:43553 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729470AbfFRJc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 05:32:59 -0400
-Received: by mail-wr1-f66.google.com with SMTP id p13so13116046wru.10
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 02:32:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=6krmeNN+08w4aZmGNN3h+dlYsILeKrK5WU7Jp0wdoWs=;
-        b=NdnjhosXFrDiWKVkMzKrfuNnC4Dzu8CXW0FOJhJgeETdUkVYW1kmRX9Y2dF0JenWQo
-         jXIjUlYZgbzF8baHW5adsWSgLUVfRGFI26MuHrwvDUsVgjh8Bn9D4vD7SozM9cWf7Yiz
-         3P4oG3EoIiDEJ9k+bI6a6BkrbvV17DLryVwE/Oug5eOUnm2aM583waVttWPa8TjvrtKq
-         y+1RovbIJ8UE55anfWKi0ffEjhAsMvYbmPXiedZ9ogzxQSX9ChNvHXBQMoPD7P+rEVFq
-         wNQQpMKkIsMoSt6aSRQ1LwSEidwNtCwvdMA5jnNc9IeiwzqKcm/hPLypyIfVRHnjErGh
-         jNjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=6krmeNN+08w4aZmGNN3h+dlYsILeKrK5WU7Jp0wdoWs=;
-        b=ErVKL+DA9DcMSuv6Z+b19jobJbZG4wO0D+zNYoi7KIHMagkA3AM2wDWejJoINw33LX
-         wGHr4HwIJ5BPIEIpgu/UpIYADcm/G3XuILDezEwIU3ucb1IZ+zoOG5CuUNUaRPV+zg/j
-         eCqcolbwfR0O4VLQ1gDQCjgbUusC9CKVb66RehHkVxUNXWwvcLAheqQv1x/KzUx1AOAK
-         Y/DSG9YfQL4EfGfokxXcSWSpuVr3hflNcrKm3Y4VTloMP7OEJsPSM4ZMZww4as64ttvu
-         v49gWptz1YmeOh88siWHQbkQRKtHp9UbbzqXKuNf9IGRjDVoFISL65LOKhrWQ3+O9USY
-         am8A==
-X-Gm-Message-State: APjAAAUDsiF3a9HKAkGQVyTAoQuLpXv5rbmvAQxix2l9j+mfZ9DCdyqw
-        RqqlyjZRtjIqk703lLpmdXVcDx2TYik1f3J1CwWWzA==
-X-Google-Smtp-Source: APXvYqxfA11Cj/P5t6E/BwCz45TMQgwxpNrmhfXt/Bmj7bhfEVrZJwXNGi1EQ8ZdkuGkvuFyNbjpm0TLE/b5BEGT9mU=
-X-Received: by 2002:a5d:4e50:: with SMTP id r16mr29230086wrt.227.1560850376836;
- Tue, 18 Jun 2019 02:32:56 -0700 (PDT)
+        id S1729230AbfFRKbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 06:31:23 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:51448 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725934AbfFRKbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 06:31:23 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 7D3DF25AED3;
+        Tue, 18 Jun 2019 20:31:21 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 609FC9408C4; Tue, 18 Jun 2019 12:31:19 +0200 (CEST)
+Date:   Tue, 18 Jun 2019 12:31:19 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Magnus Damm <magnus.damm@gmail.com>
+Cc:     devicetree@vger.kernel.org, mark.rutland@arm.com,
+        linux-renesas-soc@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH 0/8] dt-bindings: timer: renesas, cmt: Various updates
+Message-ID: <20190618103118.xsgc5fp5d76itdwc@verge.net.au>
+References: <156076216767.4736.16337667537984218274.sendpatchset@octo>
 MIME-Version: 1.0
-References: <1560745167-9866-1-git-send-email-yash.shah@sifive.com>
- <mvmtvco62k9.fsf@suse.de> <alpine.DEB.2.21.9999.1906170252410.19994@viisi.sifive.com>
- <mvmpnnc5y49.fsf@suse.de> <alpine.DEB.2.21.9999.1906170305020.19994@viisi.sifive.com>
- <mvmh88o5xi5.fsf@suse.de> <alpine.DEB.2.21.9999.1906170419010.19994@viisi.sifive.com>
- <F48A4F7F-0B0D-4191-91AD-DC51686D1E78@sifive.com> <d2836a90b92f3522a398d57ab8555d08956a0d1f.camel@wdc.com>
- <alpine.DEB.2.21.9999.1906172019040.15057@viisi.sifive.com>
-In-Reply-To: <alpine.DEB.2.21.9999.1906172019040.15057@viisi.sifive.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 18 Jun 2019 15:02:45 +0530
-Message-ID: <CAAhSdy3zODw=JFaN=2F4K5-umihJDivLO8J8LBdkFkuZgzu41Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add macb support for SiFive FU540-C000
-To:     Paul Walmsley <paul.walmsley@sifive.com>,
-        "palmer@sifive.com" <palmer@sifive.com>
-Cc:     Alistair Francis <Alistair.Francis@wdc.com>,
-        "troy.benjegerdes@sifive.com" <troy.benjegerdes@sifive.com>,
-        "jamez@wit.com" <jamez@wit.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "schwab@suse.de" <schwab@suse.de>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "sachin.ghadi@sifive.com" <sachin.ghadi@sifive.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "ynezz@true.cz" <ynezz@true.cz>,
-        "yash.shah@sifive.com" <yash.shah@sifive.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Bin Meng <bmeng.cn@gmail.com>,
-        Lukas Auer <lukas.auer@aisec.fraunhofer.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <156076216767.4736.16337667537984218274.sendpatchset@octo>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 8:56 AM Paul Walmsley <paul.walmsley@sifive.com> wr=
-ote:
->
-> On Mon, 17 Jun 2019, Alistair Francis wrote:
->
-> > > The legacy M-mode U-boot handles the phy reset already, and I=E2=80=
-=99ve been
-> > > able to load upstream S-mode uboot as a payload via TFTP, and then
-> > > load and boot a 4.19 kernel.
-> > >
-> > > It would be nice to get this all working with 5.x, however there are
-> > > still
-> > > several missing pieces to really have it work well.
-> >
-> > Let me know what is still missing/doesn't work and I can add it. At the
-> > moment the only known issue I know of is a missing SD card driver in U-
-> > Boot.
->
-> The DT data has changed between the non-upstream data that people
-> developed against previously, vs. the DT data that just went upstream
-> here:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
-/?id=3D72296bde4f4207566872ee355950a59cbc29f852
->
-> and
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
-/?id=3Dc35f1b87fc595807ff15d2834d241f9771497205
->
-> So Upstream U-Boot is going to need several patches to get things working
-> again.  Clock identifiers and Ethernet are two known areas.
+On Mon, Jun 17, 2019 at 06:02:47PM +0900, Magnus Damm wrote:
+> dt-bindings: timer: renesas, cmt: Various updates
+> 
+> [PATCH 1/8] dt-bindings: timer: renesas, cmt: Add CMT0234 to sh73a0 and r8a7740
+> [PATCH 2/8] dt-bindings: timer: renesas, cmt: Update CMT1 on sh73a0 and r8a7740
+> [PATCH 3/8] dt-bindings: timer: renesas, cmt: Add CMT0 and CMT1 to r8a7792
+> [PATCH 4/8] dt-bindings: timer: renesas, cmt: Add CMT0 and CMT1 to r8a7795
+> [PATCH 5/8] dt-bindings: timer: renesas, cmt: Add CMT0 and CMT1 to r8a77965
+> [PATCH 6/8] dt-bindings: timer: renesas, cmt: Add CMT0 and CMT1 to r8a77990
+> [PATCH 7/8] dt-bindings: timer: renesas, cmt: Add CMT0 and CMT1 to r8a77995
+> [PATCH 8/8] dt-bindings: timer: renesas, cmt: Update R-Car Gen3 CMT1 usage
+> 
+> This series collect the following rather trivial DT binding changes:
+> - Add 32-bit CMT0234 and convert CMT1 DT binding on sh73a0 and r8a7740.
+> - Add documentation for the CMT on the R-Car Gen2 V2H (r8a7792) SoC.
+> - Add missing R-Car Gen3 DT bindings for H3, M3-N, E3 an D3.
+> - Update the R-Car Gen3 description to reflect current usage.
+> 
+> Please see each individual patch for more information.
+> 
+> Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
 
-Done.
+Hi Magnus,
 
-I just send-out few patches to fix U-Boot SiFive Clock driver.
+I think this series should include the Clocksource maintainers as
+recipients:
 
-The U-Boot SiFive Clock driver fix series can be found in
-riscv_unleashed_clk_sync_v1 branch of:
-https://github.com/avpatel/u-boot.git
+Daniel Lezcano <daniel.lezcano@linaro.org>
+Thomas Gleixner <tglx@linutronix.de>
 
-Users will also require OpenSBI DTB fix which can be found
-in sifive_unleashed_dtb_fix_v1 branch of:
-https://github.com/avpatel/opensbi.git
+And LKML for good measure.
 
-With above fixes, we can now use same DTB for both U-Boot
-and Linux kernel (5.2-rc1). Although, users are free to pass a
-different DTB to Linux kernel via TFTP.
-
-I have tested SiFive serial and Cadance MACB ethernet on
-both U-Boot and Linux (5.2-rc1)
-
-Regards,
-Anup
