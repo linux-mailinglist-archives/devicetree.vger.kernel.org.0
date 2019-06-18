@@ -2,89 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6524A289
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6C04A29D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:45:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729087AbfFRNle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 09:41:34 -0400
-Received: from sauhun.de ([88.99.104.3]:40424 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728905AbfFRNle (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 09:41:34 -0400
-Received: from localhost (p5486CE06.dip0.t-ipconnect.de [84.134.206.6])
-        by pokefinder.org (Postfix) with ESMTPSA id 95E122C047A;
-        Tue, 18 Jun 2019 15:41:30 +0200 (CEST)
-Date:   Tue, 18 Jun 2019 15:41:30 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Will Deacon <will.deacon@arm.com>, devicetree@vger.kernel.org,
-        intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH] docs: fix some broken references due to txt->rst renames
-Message-ID: <20190618134130.GA4516@kunai>
-References: <6f09587b7678f2fb378d736f45a02ffa9412cc99.1560864716.git.mchehab+samsung@kernel.org>
+        id S1729291AbfFRNpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 09:45:32 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:38816 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728881AbfFRNpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 09:45:30 -0400
+Received: by mail-io1-f65.google.com with SMTP id j6so263861ioa.5
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 06:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hHqioTBNjt9iAW7qsAj1MGA0jRkZED+ks43d8hU4AUM=;
+        b=Sk5StRbjsbnBAuhfxRS127eSuO0NA5YWh3g4z9tOiefCQ1z+Ubf3xfmsxAhhCo38FA
+         z5W9dd2EvNPvugQe3QUWUsf4YtQc+P4rfpxnJ6kBJSGHTENt98o61nLZv6EcUCSTYEEz
+         lFRqme0FKc3mFpnkwE1nGxzrwuT/wiofrhIebgKe4LTTRF8G1cLg+Ewtasmbtz167egZ
+         IprHZRwVaaHkY9vhlchdmBIBxU1Fb+PUPCyuK4RYMl3q/oHghyp9QcOW3Ws+PlN1pq7l
+         l7o3NhNS7PbzSgB4Ec2mMoFaUStJ51saMFflVrGLvoCXLoTHzIHIAGiNV0sJF/1/agna
+         Hw+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hHqioTBNjt9iAW7qsAj1MGA0jRkZED+ks43d8hU4AUM=;
+        b=Mgft15uouGsZ6KX0gc18Tq54XkGWyQkpN4IJhv6p6LSjyDlhjbOJ3w0YBFemcOLSf5
+         twR5z8Fdq4l1znBgC93mFjGvRclHNubtmT4zj/GDUaWGRJvdC9SSVdzcDJIsBy9Y5sqE
+         OmOYnhNpRfl6BmAPC0pwZiDh38l2EVLFQ3VG9K+ATLJfKEy+HaYiI3P1BkKzA8q9PTla
+         4AbPurVO/3wsM/sP5txPuQEOzyxVLPF1ZT3DLIuqMcWEkuZGayvXRooC9FUThgWHJHV/
+         DUNBKL69/ZR7Bj9WD+KCt1KqkiMdEF4nB+40ZX9Xa4rij8z4ZPFWjwompZHvkjWQ0Fb2
+         7amQ==
+X-Gm-Message-State: APjAAAWj5au1A8JxqkWhztB54PUdCtcI7ezH5+1+LkcAJcJM81hrKBFP
+        Dx0rv4z7c8S1c/3VntN7igCV0A==
+X-Google-Smtp-Source: APXvYqzDaPCQOJP7+b9QX44U1hmNssHvCj4ype2sBXXK8UTxAOGdESYkJaFCoFZ9cNzAPD4R0LmyCw==
+X-Received: by 2002:a02:9143:: with SMTP id b3mr2252458jag.12.1560865529214;
+        Tue, 18 Jun 2019 06:45:29 -0700 (PDT)
+Received: from [172.22.22.26] (c-71-195-29-92.hsd1.mn.comcast.net. [71.195.29.92])
+        by smtp.googlemail.com with ESMTPSA id x13sm11920449ioj.18.2019.06.18.06.45.26
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jun 2019 06:45:28 -0700 (PDT)
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+To:     Johannes Berg <johannes@sipsolutions.net>,
+        Arnd Bergmann <arnd@arndb.de>, Dan Williams <dcbw@redhat.com>
+Cc:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+ <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+ <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+ <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+ <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
+ <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+ <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+ <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
+ <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
+ <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+From:   Alex Elder <elder@linaro.org>
+Message-ID: <d533b708-c97a-710d-1138-3ae79107f209@linaro.org>
+Date:   Tue, 18 Jun 2019 08:45:26 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="d6Gm4EdcadzBjdND"
-Content-Disposition: inline
-In-Reply-To: <6f09587b7678f2fb378d736f45a02ffa9412cc99.1560864716.git.mchehab+samsung@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 6/17/19 6:42 AM, Johannes Berg wrote:
+> On Wed, 2019-06-12 at 17:06 +0200, Arnd Bergmann wrote:
+>> On Wed, Jun 12, 2019 at 4:28 PM Dan Williams <dcbw@redhat.com> wrote:
+>>> On Wed, 2019-06-12 at 10:31 +0200, Arnd Bergmann wrote:
+>>>> On Tue, Jun 11, 2019 at 7:23 PM Dan Williams <dcbw@redhat.com> wrote:
+>>>
+>>> I was trying to make the point that rmnet doesn't need to care about
+>>> how the QMAP packets get to the device itself; it can be pretty generic
+>>> so that it can be used by IPA/qmi_wwan/rmnet_smd/etc.
+>>
+>> rmnet at the moment is completely generic in that regard already,
+>> however it is implemented as a tunnel driver talking to another
+>> device rather than an abstraction layer below that driver.
+> 
+> It doesn't really actually *do* much other than muck with the headers a
+> small amount, but even that isn't really much.
+> 
+> You can probably implement that far more efficiently on some devices
+> where you have a semi-decent DMA engine that at least supports S/G.
 
---d6Gm4EdcadzBjdND
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+If it had a well-defined way of creating new channels to be
+multiplexed over the connection to the modem, the IPA driver
+(rather than the rmnet driver) could present network interfaces
+for each and perform the multiplexing.  As I think Arnd
+suggested, this could at least partially be done with library
+code (to be shared with other "back-end" interfaces) rather
+than using a layered driver.  This applies to aggregation,
+channel flow control, and checksum offload as well.
 
-On Tue, Jun 18, 2019 at 10:33:58AM -0300, Mauro Carvalho Chehab wrote:
-> There are three left-overs from the recent file renames,
-> probably due to some other conflicting patch.
->=20
-> Fix them.
->=20
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+But I'm only familiar with IPA; I don't know whether the above
+statements make any sense for other "back-end" drivers.
 
-Thanks!
+>>>> I understand that the rmnet model was intended to provide a cleaner
+>>>> abstraction, but it's not how we normally structure subsystems in
+>>>> Linux, and moving to a model more like how wireless_dev works
+>>>> would improve both readability and performance, as you describe
+>>>> it, it would be more like (ignoring for now the need for multiple
+>>>> connections):
+>>>>
+>>>>    ipa_dev
+>>>>         rmnet_dev
+>>>>                wwan_dev
+>>>>                       net_device
+>>>
+>>> Perhaps I'm assuming too much from this diagram but this shows a 1:1
+>>> between wwan_dev and "lower" devices.
+> 
+> I guess the fuller picture would be something like
+> 
+> ipa_dev
+> 	rmnet_dev
+> 		wwan_dev
+> 			net_device*
+> 
+> (i.e. with multiple net_devices)
+> 
+>>> What Johannes is proposing (IIRC) is something a bit looser where a
+>>> wwan_dev does not necessarily provide netdev itself, but is instead the
+>>> central point that various channels (control, data, gps, sim card, etc)
+>>> register with. That way the wwan_dev can provide an overall view of the
+>>> WWAN device to userspace, and userspace can talk to the wwan_dev to ask
+>>> the lower drivers (ipa, rmnet, etc) to create new channels (netdev,
+>>> tty, otherwise) when the control channel has told the modem firmware to
+>>> expect one.
+> 
+> Yeah, that's more what I had in mind after all our discussions (will
+> continue this below).
 
-Acked-by: Wolfram Sang <wsa@the-dreams.de>
+This is great.  The start of a more concrete discussion of the
+pieces that are missing...
 
+>> Right, as I noted above, I simplified it a bit. We probably want to
+>> have multiple net_device instances for an ipa_dev, so there has
+>> to be a 1:n relationship instead of 1:1 at one of the intermediate
+>> levels, but it's not obvious which level that should be.
+>>
+>> In theory we could even have a single net_device instance correspond
+>> to the ipa_dev, but then have multiple IP addresses bound to it,
+>> so each IP address corresponds to a channel/queue/napi_struct,
+>> but the user visible object remains a single device.
+> 
+> I don't think this latter (multiple IP addresses) works well - you want
+> a hardware specific header ("ETH_P_MAP") to carry the channel ID,
+> without looking up the IP address and all that.
 
---d6Gm4EdcadzBjdND
-Content-Type: application/pgp-signature; name="signature.asc"
+I agree with this.  It's not just multiple IP addresses for
+an interface, it really is multiplexed--with channel ids.
+It's another addressing parameter orthogonal to the IP space.
 
------BEGIN PGP SIGNATURE-----
+> But anyway, as I alluded to above, I had something like this in mind:
+> 
+> driver_dev
+>   struct device *dev (USB, PCI, ...)
+>   net_device NA
+>   net_device NB
+>   tty TA
+>  ...
+> 
+> (I'm cutting out the rmnet layer here for now)
+> 
+> while having a separate that just links all the pieces together:
+> 
+> wwan_device W
+>   ---> dev
+>   ---> NA
+>   ---> NB
+>   ---> TA
+> 
+> So the driver is still responsible for creating the netdevs (or can of
+> course delegate that to an "rmnet" library), but then all it also does
+> is register the netdevs with the WWAN core like
+> 
+> 	wwan_add_netdev(dev, NA)
+> 
+> and the WWAN core would allocate the wwan_device W for this.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0I6gIACgkQFA3kzBSg
-KbYPmw//S9ererLqN6V1mN1Ixbn0CfKZGd1MAB4a/0PZiXPpCngdRfAog04KBXjI
-xYSX76wEzxv0+SiwU8kElhD15w/9Vjm9vZ8SCYRv2xBSE7W3xd+fv2gDAQf+pb2p
-bHJ5pTs8PRCqJcVLmZirsJ2vvOA1C6NYmb9Sjb4hH4u4+i9fqc0RKjOrO2OZCHx2
-3T6xcu0INuJm1RNX0gHHk06mGjfMUm6unYYHJkOMeup4HTUqDmYvX4U1g/3sIAIy
-kOPwW1ggkEJDebdxyc1uNft0yZKznjx7iOkP/p6wacCUI56jmCMniAt36f76OV8L
-C9Bks/dr9tp4M3z0Jbxa9oJWhc+e8KA/WNgXXnyCCDVg1idhaGgWkW59S05Spu0H
-PgprhEo5QYdT1GvEO28eP+kuFKi7HN5VvOJy794jFkjOPH0A9HK/f1CXmjp9cv3V
-nZhMOzohbh18AXwOG3T4eF9gL3u0WsPK2EH35oFjxH7ty6tmV5CkpVBgzWH1EBxq
-K44uWCs6H6SX3e0Cq5FRgGdvjlpFwQZT4Hbf3IfmukTzurdCi9YSPI228IdLmCPa
-uncvdbThBK4o/O6ndCqx04bEmPEUJdzcYuBlqi38lTonwzN4jvOyabM65Mt/HhW7
-4sy6hg/cLkPuX8tBpKWJoT13jqVTjRvjnxemkSq06yAmOznSxs4=
-=lZcZ
------END PGP SIGNATURE-----
+That would be nice.  I believe you're saying that (in my case)
+the IPA driver creates and owns the netdevices.
 
---d6Gm4EdcadzBjdND--
+But I think the IPA driver would register with the WWAN core as
+a "provider," and then the WWAN core would subsequently request
+that it instantiate netdevices to represent channels on demand
+(rather than registering them).
+
+> That way, the drivers can concentrate on providing all the necessary
+> bits, and - crucially - even *different* drivers can end up linking to
+> the same wwan_device. For example, if you have a modem that has a multi-
+> function USB device, then an ethernet driver might create the netdev and
+> a tty driver might create the control channel, but if they both agree on
+> using the right "struct device" instance, you can still get the correct
+> wwan_device out of it all.
+> 
+> And, in fact, some should then be
+> 
+> 	wwan_maybe_add_netdev(dev, N)
+> 
+> because the ethernet driver may not know if it attached to a modem or
+> not, but if the control channel also attaches it's a modem for sure,
+> with that ethernet channel attached to it.
+> 
+> Additionally, I'm thinking API such as
+> 
+> 	wwan_add(dev, &ops, opsdata)
+> 
+> that doesn't automatically attach any channels, but provides "ops" to
+> the core to create appropriate channels. I think this latter would be
+> something for IPA/rmnet to use, perhaps for rmnet to offer the right ops
+> structure.
+
+Yes, that's more like what I meant above.  I see you're thinking
+as you write...
+
+					-Alex
+> 
+> johannes
+> 
+
