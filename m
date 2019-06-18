@@ -2,268 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F253649AB5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B2749ACB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 09:41:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725970AbfFRHiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 03:38:13 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53728 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725900AbfFRHiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:38:13 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5I7bf3L051003;
-        Tue, 18 Jun 2019 02:37:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1560843461;
-        bh=4bfEc87X2lfeLbz5EXurKhL9OniFY8iKEuWeIQ7XcOA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=mXZmfTww9Gi7bddiTlC/pqFabddbRDzMz/A+AtPdQX5elNaK55cvlZH+Nm32284Jd
-         Fi/6QuG9Cut0o9OGtay5awonlySP2tfXSnBr999qNeE6tZgobyxokWLyKfq1hRa0eQ
-         hkBcHZxNPaC7QD4HAt1xDJsoPycSbs6N3wNLqdlo=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5I7bfHu037012
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Jun 2019 02:37:41 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 18
- Jun 2019 02:37:41 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 18 Jun 2019 02:37:40 -0500
-Received: from [172.24.190.89] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5I7barM105813;
-        Tue, 18 Jun 2019 02:37:37 -0500
-Subject: Re: [PATCH v5 3/5] mtd: Add support for HyperBus memory devices
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-mtd@lists.infradead.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        <devicetree@vger.kernel.org>, Mason Yang <masonccyang@mxic.com.tw>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20190609103227.24875-1-vigneshr@ti.com>
- <20190609103227.24875-4-vigneshr@ti.com>
- <58e9608d-35ff-0436-6075-b2e4ed4b8594@cogentembedded.com>
- <f47d4d57-afb2-3b39-fae9-3ed740a2b8a6@ti.com>
- <9dbd8132-ce8f-9ce7-ddf5-d9826e2a1be1@cogentembedded.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <b1df7b11-15d3-e707-c1d4-ab69741e52f4@ti.com>
-Date:   Tue, 18 Jun 2019 13:08:21 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <9dbd8132-ce8f-9ce7-ddf5-d9826e2a1be1@cogentembedded.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726543AbfFRHlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 03:41:53 -0400
+Received: from mail-wr1-f100.google.com ([209.85.221.100]:37370 "EHLO
+        mail-wr1-f100.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725913AbfFRHlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 03:41:53 -0400
+Received: by mail-wr1-f100.google.com with SMTP id v14so12757908wrr.4
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 00:41:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=okoko.fi; s=okoko;
+        h=from:to:cc:subject:date:message-id;
+        bh=TcaLpkr7BrB6h5k/fFe5VxsiPI+n9NLSNDwWnvmzuGA=;
+        b=f00Dh/O46hmUfacv++d2NLddEDx10ZY8ZiTRN4baj57YhzsMxlrzWtI3dBq00FvxP3
+         v7vxxqBoSCmY3KE3mJhBfQTNl9JiYsZ5CCo4Mmg0R6+uQ8pekPTaXBvMRzarzV01JC6R
+         PpaoUu81imcci5U35+0rUahFy84wYPR+lYSOQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=TcaLpkr7BrB6h5k/fFe5VxsiPI+n9NLSNDwWnvmzuGA=;
+        b=NJ82leHoMx9p1gpDGXNm5HHrR/T3RqUeiu8V4nhViO5ik/Yvzb77i0ZWFLy/cWNuuW
+         nLFm78TyxX6AMERfSpRtK3Kyn0itpVDA5PFRzgOzo979zAeeip5xx+MGCrdc6MKbxKhh
+         6+HdZ6rorckV0l651J8kVOQrPaqcvjNSE/TMswd70xgDEQwGevfQDhwjuV4BTOWor9pC
+         2mY/PeW36vHmAFFM45OucMhqeUn2mkkqysCGeLegrPZFvctvWHYz5wvUAeqQ5Bj44XqE
+         8lvpXBbhFv/HQEwcJ7YVfH0iYvy3MSj6bFHCvKTH88eI6lbhz0YfZt1Bnn6WOddkhE9x
+         MTjw==
+X-Gm-Message-State: APjAAAWvgkteTbJy8ZAF4SMCIEP01Wg75HcanuUYy0z/+LaNRktOmKGr
+        +U/IXUFvlJdmNSDLX4wYzw5goRqy1NyTe4kazJVn8zn8/UYTLQ==
+X-Google-Smtp-Source: APXvYqzow8GoPJC+En04+NCBYrUu0w+fEr5jV/VXyg8XMEXtqBhw1OEsNThbpc9r0JizrrVw2kts9Y2dzEZ6
+X-Received: by 2002:a5d:5607:: with SMTP id l7mr50973455wrv.228.1560843710723;
+        Tue, 18 Jun 2019 00:41:50 -0700 (PDT)
+Received: from localhost.localdomain (46-163-209-30.blcnet.fi. [46.163.209.30])
+        by smtp-relay.gmail.com with ESMTPS id l18sm212063wrn.66.2019.06.18.00.41.49
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 18 Jun 2019 00:41:50 -0700 (PDT)
+X-Relaying-Domain: okoko.fi
+From:   Marko Kohtala <marko.kohtala@okoko.fi>
+To:     linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
+        Marko Kohtala <marko.kohtala@okoko.fi>
+Subject: [PATCH 0/6] video: ssd1307fb: Support more displays
+Date:   Tue, 18 Jun 2019 10:41:05 +0300
+Message-Id: <20190618074111.9309-1-marko.kohtala@okoko.fi>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The kernel driver for ssd1307fb did not allow for all proper
+initialization for a Densitron 128x36 display. The trend in the driver
+has been to add devicetree properties for the controller initialization
+and these patches continue on that trend.
 
+There also were some sparse and Coccinelle errors.
 
-On 18/06/19 1:15 AM, Sergei Shtylyov wrote:
-> Hello!
-> 
-> On 06/11/2019 02:57 PM, Vignesh Raghavendra wrote:
-> 
->>>> Cypress' HyperBus is Low Signal Count, High Performance Double Data Rate
->>>> Bus interface between a host system master and one or more slave
->>>> interfaces. HyperBus is used to connect microprocessor, microcontroller,
->>>> or ASIC devices with random access NOR flash memory (called HyperFlash)
->>>> or self refresh DRAM (called HyperRAM).
->>>>
->>>> Its a 8-bit data bus (DQ[7:0]) with  Read-Write Data Strobe (RWDS)
->>>> signal and either Single-ended clock(3.0V parts) or Differential clock
->>>> (1.8V parts). It uses ChipSelect lines to select b/w multiple slaves.
->>>> At bus level, it follows a separate protocol described in HyperBus
->>>> specification[1].
->>>>
->>>> HyperFlash follows CFI AMD/Fujitsu Extended Command Set (0x0002) similar
->>>> to that of existing parallel NORs. Since HyperBus is x8 DDR bus,
->>>> its equivalent to x16 parallel NOR flash wrt bits per clock cycle. But
->>>> HyperBus operates at >166MHz frequencies.
->>>> HyperRAM provides direct random read/write access to flash memory
->>>> array.
->>>>
->>>> But, HyperBus memory controllers seem to abstract implementation details
->>>> and expose a simple MMIO interface to access connected flash.
->>>>
->>>> Add support for registering HyperFlash devices with MTD framework. MTD
->>>> maps framework along with CFI chip support framework are used to support
->>>> communicating with flash.
->>>>
->>>> Framework is modelled along the lines of spi-nor framework. HyperBus
->>>> memory controller (HBMC) drivers calls hyperbus_register_device() to
->>>> register a single HyperFlash device. HyperFlash core parses MMIO access
->>>> information from DT, sets up the map_info struct, probes CFI flash and
->>>> registers it with MTD framework.
->>>>
->>>> Some HBMC masters need calibration/training sequence[3] to be carried
->>>> out, in order for DLL inside the controller to lock, by reading a known
->>>> string/pattern. This is done by repeatedly reading CFI Query
->>>> Identification String. Calibration needs to be done before trying to detect
->>>> flash as part of CFI flash probe.
->>>>
->>>> HyperRAM is not supported at the moment.
->>>>
->>>> HyperBus specification can be found at[1]
->>>> HyperFlash datasheet can be found at[2]
->>>>
->>>> [1] https://www.cypress.com/file/213356/download
->>>> [2] https://www.cypress.com/file/213346/download
->>>> [3] http://www.ti.com/lit/ug/spruid7b/spruid7b.pdf
->>>>     Table 12-5741. HyperFlash Access Sequence
->>>>
->>>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->>> [...]
->>>> diff --git a/drivers/mtd/hyperbus/hyperbus-core.c b/drivers/mtd/hyperbus/hyperbus-core.c
->>>> new file mode 100644
->>>> index 000000000000..df1f75e10b1a
->>>> --- /dev/null
->>>> +++ b/drivers/mtd/hyperbus/hyperbus-core.c
->>>> @@ -0,0 +1,191 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +//
->>>> +// Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
->>>> +// Author: Vignesh Raghavendra <vigneshr@ti.com>
->>>> +
->>>> +#include <linux/err.h>
->>>> +#include <linux/kernel.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/mtd/hyperbus.h>
->>>> +#include <linux/mtd/map.h>
->>>> +#include <linux/mtd/mtd.h>
->>>> +#include <linux/mtd/cfi.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/of_address.h>
->>>> +#include <linux/types.h>
->>>> +
->>>> +#define HYPERBUS_CALIB_COUNT 25
->>>
->>>    Mhm, I think I've already protested about this being #define'd here...
->>
->> I thought you had agreed that default optional calibration routine can
->> be part of core code and thus this #define.
->>
->> Anyways, what is your preference here? Drop the constant and use a local
->> variable in hyperbus_calibrate()?
->> Or are you suggesting to move hyperbus_calibrate() TI's specific driver?
-> 
->    I'm just not comfortable with the common HF code using quite an arbitrary
-> constant...
-> 
+A small bug causing scrolling on display updates with nonzero page_offset
+was a bit surprising. It would seem the driver has only been used with
+page_offset set to zero. Bug has been there since commit
+301bc0675b677a98475187050d56cd2b39ff0acf ("video: ssd1307fb: Make use of
+horizontal addressing mode").
 
-Ok, I will move the code over to TI driver. We can always bring it back
-to core code if more drivers need it.
+Marko Kohtala (6):
+  video: ssd1307fb: Use screen_buffer instead of screen_base
+  video: ssd1307fb: Remove unneeded semicolons
+  video: ssd1307fb: Start page range at page_offset
+  video: ssd1307fb: Handle width and height that are not multiple of 8
+  dt-bindings: display: ssd1307fb: Add initialization properties
+  video: ssd1307fb: Add devicetree configuration of display setup
 
->>> [...]
->>>> diff --git a/include/linux/mtd/hyperbus.h b/include/linux/mtd/hyperbus.h
->>>> new file mode 100644
->>>> index 000000000000..ee2eefd822c9
->>>> --- /dev/null
->>>> +++ b/include/linux/mtd/hyperbus.h
->>>> @@ -0,0 +1,91 @@
-> [...]
->>>> + * @mtd: pointer to MTD struct
->>>> + * @ctlr: pointer to HyperBus controller struct
->>>> + * @memtype: type of memory device: HyperFlash or HyperRAM
->>>> + * @registered: flag to indicate whether device is registered with MTD core
->>>> + */
->>>> +
->>>> +struct hyperbus_device {
->>>> +	struct map_info map;
->>>> +	struct device_node *np;
->>>> +	struct mtd_info *mtd;
->>>> +	struct hyperbus_ctlr *ctlr;
->>>> +	enum hyperbus_memtype memtype;
->>>> +	bool registered;
->>>> +};
->>>> +
->>>> +/**
->>>> + * struct hyperbus_ops - struct representing custom HyperBus operations
->>>> + * @read16: read 16 bit of data, usually from register/ID-CFI space
->>>> + * @write16: write 16 bit of data, usually to register/ID-CFI space
->>>
->>>    Usually? How to differ the register/memory transfers if both are possible?
-> 
->> CFI + map framework does not provide a way to differentiate b/w reg
->> access vs memory access. read16()/write16() is used to either access
->> registers or for sending various cmds like lock/unlock etc or for
->> programming a single word.
->> For regular read/writes copy_from() and copy_to() are used.
-> 
->    In my case only copy_from() would exist -- no proper acceleration for
-> writes...
-> 
-
-Actually copy_to() is not used by cfi_cmdset_0002.c, its always
-write16() that used to program flash.
-This is something I want to extend support to, so as to use DMA for
-writes as well because I see that writes seem extremely slow at least on
-my platform.
-
->> Looking at HyperBus protocol, controllers would not need to
->> differentiate b/w registers vs memory transfers for HyperFlash devices.
->> So, I think I can drop read16/write16 and redirect these calls to
->> copy_from()/copy_to()
-> 
->    Doubt it, frankly speaking.
-
-Sorry for confusion, as I said above, we do need to keep write16().
-Also, copy_to maps to memcpy_toio in case of simple_map which may not
-use 16 bit IO accessors. So write16() cannot be mapped to copy_to()
-
-So we need at least write16(), copy_from() and mostly copy_to() (for
-accelerating writes). So, lets keep this simple and have all map ops
-including read16() as is.
-
-
-> 
->> I mainly added these functions keeping HyperRAM in mind. Idea was
->> drivers would look at hyperbus_device->memtype and set to register
->> access mode for HyperRAM in case of write16()/read16(). Looks like the
->> interface is not intuitive enough
->> So, will drop these and add it back when adding HyperRAM support.
->>
->> Does that work for your HW as well?
-> 
->    Don't think so...
-> 
->    However, my HyperFlash driver could make use of the following #define's in
-> the HyperBus header:
-> 
-> #define HF_CMD_CA47		BIT(7)	/* Read */
-> #define HF_CMD_CA46		BIT(6)	/* Register space */
-> #define HF_CMD_CA45		BIT(5)	/* Linear burst */
-> 
-> #define HF_CMD_READ_REG		(HF_CMD_CA47 | HF_CMD_CA46)
-
-This will come into play for HyperRAM, not a care about for HyperFlash
-
-> #define HF_CMD_READ_MEM		HF_CMD_CA47
-
-For HyperFlash, this would be the only bit that needs to be set for read
-along with HF_CMD_CA45 for linear burst.
-
-> #define HF_CMD_WRITE_REG	HF_CMD_CA46
-> #define HF_CMD_WRITE_MEM	0
-> 
-> MBR, Sergei
-> 
+ .../devicetree/bindings/display/ssd1307fb.txt |  10 ++
+ drivers/video/fbdev/ssd1307fb.c               | 130 ++++++++++++------
+ 2 files changed, 101 insertions(+), 39 deletions(-)
 
 -- 
-Regards
-Vignesh
+2.17.1
+
