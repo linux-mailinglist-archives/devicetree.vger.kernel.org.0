@@ -2,114 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9B049D1D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7400E49D36
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729233AbfFRJ1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 05:27:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57970 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729207AbfFRJ1M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 05:27:12 -0400
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6935F2085A;
-        Tue, 18 Jun 2019 09:27:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560850031;
-        bh=3d0WB2FWSq617HwBgtInbOFcIijY2d0ifcR6Ea00qN8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ImqAUIsomz+S+K3RJ1At8naHxBQ5VKVZ7zN2BeD/fqyI+PN1PHJnllocUrPWLqL9R
-         4RJoVrM+vEJSIBAnQ89brETmsQokQSFSKDVLkqSdOszPh70zYhR+Ki5IN1H8jvO2tV
-         LgI2Q6sdVSP+1oDmThdaHW4dcWzk0NYRSuQd/mvA=
-Received: by mail-lj1-f178.google.com with SMTP id i21so12380807ljj.3;
-        Tue, 18 Jun 2019 02:27:11 -0700 (PDT)
-X-Gm-Message-State: APjAAAWIOmHZair595unobivo5O9ctcDqAPo+FofS/yB+HXOa4Du+zcj
-        aDd27tcpSmwz86b8sggCNWKEiwNLTbPPJ9+H8qI=
-X-Google-Smtp-Source: APXvYqzv7Gbmd6Xf/1K1px/rY6lBV7NSaMJUwamp2eOU1O40f6wjgppWFyx9CidnmsTWpf06LGliW+GVZtXWpi54Tbo=
-X-Received: by 2002:a2e:8155:: with SMTP id t21mr10481642ljg.80.1560850029693;
- Tue, 18 Jun 2019 02:27:09 -0700 (PDT)
+        id S1729400AbfFRJ27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 05:28:59 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:53194 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729381AbfFRJ26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 05:28:58 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5I9SOg3084397;
+        Tue, 18 Jun 2019 04:28:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1560850104;
+        bh=Kw8nG2OFHl2HBlGRL+a2UliJaSPF/WqQQvZMqq7/T4s=;
+        h=From:To:CC:Subject:Date;
+        b=c4JeQcHIUouBKyFdsZqQAdYiWcrqhOOUabfp/itwz6tBKuSfQa4E4GCw0TLl8BPRj
+         eucqu8HvN3G0oYi2HRVE4Txh9R3OUS+f+P6qx30MlBlhXciRoNVEgEPar40andtfS4
+         U4owmVSquQPdClpByjp6N2YZPe0GOkJIW8jvO8Jc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5I9SOxF042590
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Jun 2019 04:28:24 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 18
+ Jun 2019 04:28:23 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 18 Jun 2019 04:28:23 -0500
+Received: from a0132425.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5I9SJRv067156;
+        Tue, 18 Jun 2019 04:28:19 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-mtd@lists.infradead.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
+        <devicetree@vger.kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v6 0/5] MTD: Add Initial Hyperbus support
+Date:   Tue, 18 Jun 2019 14:58:56 +0530
+Message-ID: <20190618092901.31764-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190614203144.3850-2-joseph.kogut@gmail.com> <20190614235719.8134-1-joseph.kogut@gmail.com>
-In-Reply-To: <20190614235719.8134-1-joseph.kogut@gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 18 Jun 2019 11:26:58 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPc-Xztou+xyibb8YZtfz20q3kzr_gTBoE=R3q_CSk9kzQ@mail.gmail.com>
-Message-ID: <CAJKOXPc-Xztou+xyibb8YZtfz20q3kzr_gTBoE=R3q_CSk9kzQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm: dts: add ARM Mali GPU node for Odroid XU3
-To:     Joseph Kogut <joseph.kogut@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
-        airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 15 Jun 2019 at 01:57, Joseph Kogut <joseph.kogut@gmail.com> wrote:
->
-> Add device tree node for mali gpu on Odroid XU3 SoCs.
->
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> ---
->
-> Changes v1 -> v2:
-> - Use interrupt name ordering from binding doc
-> - Specify a single clock for GPU node
-> - Add gpu opp table
-> - Fix warnings from IRQ_TYPE_NONE
->
->  .../boot/dts/exynos5422-odroidxu3-common.dtsi | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> index 93a48f2dda49..b8a4246e3b37 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-> @@ -48,6 +48,32 @@
->                 cooling-levels = <0 130 170 230>;
->         };
->
-> +       gpu: gpu@11800000 {
-> +               compatible = "samsung,exynos-mali", "arm,mali-t628";
-> +               reg = <0x11800000 0x5000>;
-> +               interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <GIC_SPI 74  IRQ_TYPE_LEVEL_HIGH>,
-> +                            <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-> +               interrupt-names = "job", "mmu", "gpu";
-> +               clocks = <&clock CLK_G3D>;
-> +               mali-supply = <&buck4_reg>;
-> +               operating-points-v2 = <&gpu_opp_table>;
-> +       };
-> +
-> +       gpu_opp_table: gpu-opp-table {
+Change log:
+Since v5:
+Fix up DT bindings comments for TI HBMC driver
+Move calibration sequence out of core into TI HBMC driver
 
-One more thing - use "opp_table" as node name (generic class of node,
-matches style with other tables).
+Since v4:
+Fix Rob's comments on dt-bindings of TI HBMC driver
 
-Best regards,
-Krzysztof
+Since v3:
+* Drop reading QRY string twice in hyperbus_calibrate()
+* Fix doc/misc comments on v3.
 
-> +               compatible = "operating-points-v2";
-> +
-> +               opp-177000000 {
-> +                       opp-hz = /bits/ 64 <117000000>;
-> +                       opp-microvolt = <812500>;
-> +               };
-> +
-> +               opp-600000000 {
-> +                       opp-hz = /bits/ 64 <600000000>;
-> +                       opp-microvolt = <1150000>;
-> +               };
-> +       };
-> +
->         thermal-zones {
->                 cpu0_thermal: cpu0-thermal {
->                         thermal-sensors = <&tmu_cpu0 0>;
-> --
-> 2.22.0
->
+Since RFC v2:
+* use map_word_xxx() for handling status register to support interleaved
+  flashes as suggested by Joakim Tjernlund <Joakim.Tjernlund@infinera.com>
+* Report error status/messages on erase/program failure by looking at
+  status register bits.
+* Add "cfi-flash" as fallback compatible for cypress,hyperflash
+* Add support to select between HyperBus and OSPI using mmio mux
+
+Since RFC v1:
+* Re-work Hyperbus core to provide separate struct representation for
+  controller and slave devices
+* Rename all files and func names to have hyperbus_ prefix
+* Provide default calibration routine for use by controller drivers
+* Fix up errors with patch spliting
+* Address comments by Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+
+
+Cypress HyperBus is Low Signal Count, High Performance Double Data Rate Bus
+interface between a host system master and one or more slave interfaces.
+HyperBus is used to connect microprocessor, microcontroller, or ASIC
+devices with random access NOR flash memory(called HyperFlash) or
+self refresh DRAM(called HyperRAM).
+
+Its a 8-bit data bus (DQ[7:0]) with  Read-Write Data Strobe (RWDS)
+signal and either Single-ended clock(3.0V parts) or Differential clock
+(1.8V parts). It uses ChipSelect lines to select b/w multiple slaves.
+At bus level, it follows a separate protocol described in HyperBus
+specification[1].
+
+HyperFlash follows CFI AMD/Fujitsu Extended Command Set (0x0002) similar
+to that of existing parallel NORs. Since Hyperbus is x8 DDR bus,
+its equivalent to x16 parallel NOR flash wrt bits per clk. But Hyperbus
+operates at >166MHz frequencies.
+HyperRAM provides direct random read/write access to flash memory
+array.
+Framework is modelled along the lines of spi-nor framework. HyperBus
+memory controller(HBMC) drivers call hyperbus_register_device() to register a
+single HyperFlash device. HyperFlash core parses MMIO access
+information from DT, sets up the map_info struct, probes CFI flash and
+registers it with MTD framework.
+
+This is an early RFC, to know if its okay to use maps framework and existing
+CFI compliant flash support code to support Hyperflash
+Also would like input on different types of HBMC master IPs out there
+and their programming sequences.
+Would appreciate any testing/review.
+
+Tested on modified TI AM654 EVM with Cypress Hyperflash S26KS512 by
+creating a UBIFS partition and writing and reading files to it.
+Stress tested by writing/reading 16MB flash repeatedly at different
+offsets using dd commmand.
+
+HyperBus specification can be found at[1]
+HyperFlash datasheet can be found at[2]
+TI's HBMC controller details at[3]
+
+[1] https://www.cypress.com/file/213356/download
+[2] https://www.cypress.com/file/213346/download
+[3] http://www.ti.com/lit/ug/spruid7b/spruid7b.pdf
+    Table 12-5741. HyperFlash Access Sequence
+
+
+Vignesh Raghavendra (5):
+  mtd: cfi_cmdset_0002: Add support for polling status register
+  dt-bindings: mtd: Add binding documentation for HyperFlash
+  mtd: Add support for HyperBus memory devices
+  dt-bindings: mtd: Add bindings for TI's AM654 HyperBus memory
+    controller
+  mtd: hyperbus: Add driver for TI's HyperBus memory controller
+
+ .../bindings/mtd/cypress,hyperflash.txt       |  13 ++
+ .../devicetree/bindings/mtd/ti,am654-hbmc.txt |  51 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/mtd/Kconfig                           |   2 +
+ drivers/mtd/Makefile                          |   1 +
+ drivers/mtd/chips/cfi_cmdset_0002.c           |  90 ++++++++++
+ drivers/mtd/hyperbus/Kconfig                  |  23 +++
+ drivers/mtd/hyperbus/Makefile                 |   4 +
+ drivers/mtd/hyperbus/hbmc-am654.c             | 141 ++++++++++++++++
+ drivers/mtd/hyperbus/hyperbus-core.c          | 154 ++++++++++++++++++
+ include/linux/mtd/cfi.h                       |   5 +
+ include/linux/mtd/hyperbus.h                  |  86 ++++++++++
+ 12 files changed, 578 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/cypress,hyperflash.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
+ create mode 100644 drivers/mtd/hyperbus/Kconfig
+ create mode 100644 drivers/mtd/hyperbus/Makefile
+ create mode 100644 drivers/mtd/hyperbus/hbmc-am654.c
+ create mode 100644 drivers/mtd/hyperbus/hyperbus-core.c
+ create mode 100644 include/linux/mtd/hyperbus.h
+
+-- 
+2.21.0
+
