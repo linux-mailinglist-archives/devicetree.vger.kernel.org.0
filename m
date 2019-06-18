@@ -2,107 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC4044A25B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C114A281
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 15:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726518AbfFRNgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 09:36:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:41510 "EHLO foss.arm.com"
+        id S1728881AbfFRNkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 09:40:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56598 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725919AbfFRNgA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 09:36:00 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C2E42B;
-        Tue, 18 Jun 2019 06:35:59 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CAA443F718;
-        Tue, 18 Jun 2019 06:35:57 -0700 (PDT)
-Date:   Tue, 18 Jun 2019 14:35:55 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     bhelgaas@google.com, thierry.reding@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V5 20/27] PCI: tegra: Use legacy IRQ for port service
- drivers
-Message-ID: <20190618133555.GB9002@e121166-lin.cambridge.arm.com>
-References: <20190617173952.29363-1-mmaddireddy@nvidia.com>
- <20190617173952.29363-21-mmaddireddy@nvidia.com>
- <8a8746f8-3e0f-c724-761e-8bc47b2cc3b6@nvidia.com>
+        id S1728572AbfFRNkj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 09:40:39 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 232B920823;
+        Tue, 18 Jun 2019 13:40:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560865238;
+        bh=TNcZttMiJiW3N92oHPvoksZuYuZdQPL9GJysjflSzqk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DQEWWNu3AuCggewd66xD7PLYu/7ezSmUQk4djDA5VfHjYRsKAtaBBO4S3lqs6p7YK
+         NmXfEdV5/pu8TGT/j6w5CIRPRRlzK+woGJNaRj/jd4YsWjguShI6Y/x3ku1ApERvQ7
+         +PtGIRE+h0mySVwE7F5Of1T0CBHZdFMNURHJGZl4=
+Date:   Tue, 18 Jun 2019 21:39:40 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: arm: fsl: Add missing schemas for
+ i.MX1/31/35
+Message-ID: <20190618133938.GJ1959@dragon>
+References: <20190617224244.30818-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8a8746f8-3e0f-c724-761e-8bc47b2cc3b6@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190617224244.30818-1-robh@kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 11:17:49AM +0530, Manikanta Maddireddy wrote:
+On Mon, Jun 17, 2019 at 04:42:44PM -0600, Rob Herring wrote:
+> The SoC/board bindings for i.MX1/31/35 are undocumented. Add the missing
+> bindings to the schema.
 > 
-> 
-> On 17-Jun-19 11:09 PM, Manikanta Maddireddy wrote:
-> > Tegra signals PCIe services like AER, PME, etc. over legacy IRQ line.
-> > By default, service drivers register interrupt routine over MSI IRQ line.
-> > Use pcie_pme_disable_msi() function to disable MSI for service drivers.
-> >
-> > PME and AER interrupts registered to MSI without this change,
-> > cat /proc/interrupts | grep -i pci
-> > 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
-> > 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
-> > 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
-> >
-> > PME and AER interrupts registered to legacy IRQ with this change,
-> > cat /proc/interrupts | grep -i pci
-> > 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
-> > 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
-> >
-> > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> > Acked-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> > V5: No change
-> >
-> > V4: No change
-> >
-> > V3: Corrected typo in commit log
-> >
-> > V2: No change
-> >
-> >  drivers/pci/controller/pci-tegra.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-> > index 73d5a8841405..9429c0c6a1f3 100644
-> > --- a/drivers/pci/controller/pci-tegra.c
-> > +++ b/drivers/pci/controller/pci-tegra.c
-> > @@ -41,6 +41,7 @@
-> >  #include <soc/tegra/pmc.h>
-> >  
-> >  #include "../pci.h"
-> > +#include "../pcie/portdrv.h"
-> >  
-> >  #define INT_PCI_MSI_NR (8 * 32)
-> >  
-> > @@ -2725,6 +2726,9 @@ static int tegra_pcie_probe(struct platform_device *pdev)
-> >  		goto put_resources;
-> >  	}
-> >  
-> > +	/* Switch to legacy IRQ for PCIe services like AER, PME*/
-> > +	pcie_pme_disable_msi();
-> > +
-> >  	pm_runtime_enable(pcie->dev);
-> >  	err = pm_runtime_get_sync(pcie->dev);
-> >  	if (err) {
-> 
-> Hi Lorenzo,
-> 
-> I forgot to address Bjorn's comment here, I will correct this in V6.
-> Let me know if I can publish it today or you want me to wait until
-> you look into other patches.
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-It should be fine to post v6 but please pay attention next time, it has
-been a while since this patch should have been updated.
-
-Lorenzo
+Applied, thanks.
