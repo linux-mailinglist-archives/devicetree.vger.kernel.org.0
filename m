@@ -2,139 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4054049CB6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F15749CF0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 11:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729102AbfFRJKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 05:10:31 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:12816 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729078AbfFRJKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 05:10:31 -0400
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
-  Tudor.Ambarus@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Tudor.Ambarus@microchip.com";
-  x-sender="Tudor.Ambarus@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Tudor.Ambarus@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com; spf=Pass smtp.mailfrom=Tudor.Ambarus@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
-X-IronPort-AV: E=Sophos;i="5.63,388,1557212400"; 
-   d="scan'208";a="36289472"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jun 2019 02:10:30 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex04.mchp-main.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 18 Jun 2019 02:10:26 -0700
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5 via Frontend
- Transport; Tue, 18 Jun 2019 02:10:25 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector1-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zCJ7UjcLdGTOJxl2Ic/6pe3UiUCoa+Tx0rGHCExjeyo=;
- b=2Tv9Xk4SkWto4IJEpdrrXDV18DTVJ5W4I1PAS+L81MdRwJ6EYjWOSUxhqPn9UBsB41AXyAt6hFwnKJ3v+OtEiCUmMPzXHNtYhVYqU3/yLDgGOMAhwY12Z6bfnlWYr91XWMMhivEhb+haBnTAlpiUm2QxwZgBn4I54FHNueoJt9Y=
-Received: from BN6PR11MB1842.namprd11.prod.outlook.com (10.175.98.146) by
- BN6PR11MB0019.namprd11.prod.outlook.com (10.161.155.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.11; Tue, 18 Jun 2019 09:10:25 +0000
-Received: from BN6PR11MB1842.namprd11.prod.outlook.com
- ([fe80::e581:f807:acdc:cb36]) by BN6PR11MB1842.namprd11.prod.outlook.com
- ([fe80::e581:f807:acdc:cb36%9]) with mapi id 15.20.1987.014; Tue, 18 Jun 2019
- 09:10:25 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <dinguyen@kernel.org>, <robh@kernel.org>
-CC:     <linux-mtd@lists.infradead.org>, <marex@denx.de>,
-        <bbrezillon@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <computersforpeace@gmail.com>, <dwmw2@infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCHv6 1/2] dt-bindings: cadence-quadspi: add options reset
- property
-Thread-Topic: [PATCHv6 1/2] dt-bindings: cadence-quadspi: add options reset
- property
-Thread-Index: AQHVIdusqBYcLDcbq02njfD9Z3kc16ahJ4oA
-Date:   Tue, 18 Jun 2019 09:10:24 +0000
-Message-ID: <40d77b71-efdd-08e6-3d66-743ab0623906@microchip.com>
-References: <20190613113138.8280-1-dinguyen@kernel.org>
-In-Reply-To: <20190613113138.8280-1-dinguyen@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1PR0602CA0020.eurprd06.prod.outlook.com
- (2603:10a6:800:bc::30) To BN6PR11MB1842.namprd11.prod.outlook.com
- (2603:10b6:404:101::18)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [94.177.32.154]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 80031b57-9825-42cf-990f-08d6f3cccc2f
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BN6PR11MB0019;
-x-ms-traffictypediagnostic: BN6PR11MB0019:
-x-microsoft-antispam-prvs: <BN6PR11MB0019D3F6A892EA381E5BA4BBF0EA0@BN6PR11MB0019.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 007271867D
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(396003)(366004)(39860400002)(376002)(346002)(199004)(189003)(102836004)(14454004)(256004)(14444005)(305945005)(316002)(72206003)(478600001)(73956011)(386003)(66946007)(6506007)(76176011)(66476007)(66446008)(66556008)(7736002)(25786009)(4326008)(186003)(5660300002)(36756003)(26005)(64756008)(110136005)(54906003)(53546011)(31686004)(6512007)(86362001)(486006)(6246003)(8676002)(6116002)(446003)(11346002)(476003)(2501003)(2616005)(52116002)(8936002)(3846002)(81156014)(81166006)(71190400001)(71200400001)(66066001)(68736007)(229853002)(31696002)(2906002)(53936002)(6436002)(99286004)(6486002);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR11MB0019;H:BN6PR11MB1842.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: /2p8k4z2ke/Asrh0RW8F1om2H7H4t18CC89U4MYPG6jZFajhPGmvCA5iQUQA25N0DNhVzZvs6kD3tPhlyXkXjVamao7ha0yfAvnhIRHm7z/jJtMljDn7wWHsjHMXQUabfeFlZiSMOX8hR9/xl8N1QQKmJ4OQ9MdDA4xQkR5yD2u18I9MnhImcerbjg+7GS7+v9EyyAnpBKVX4KDQyVsDviDtkBVosLBzufDnkANZiFS9ZROp3N8Q90VpWWoWQOvjcmwcikBtHYTKBzh/JIUOjOu+WaPA4o8jKO2csoDeMrZAzRtT+N3JWArZH1G3u0N40q8+Dnyysu+d8OA+Pub2QJ6KRx+Bzq85FsuyyXbBJf3bi3SYiTg+uL1NXLVbZiColSiivZwdP8mfOVp08W8WBbwbv4VeTU9OjE75eD98nL8=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1498D07C711E3A46BBAE89F1988EAF56@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1729180AbfFRJTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 05:19:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:58892 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729137AbfFRJTm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 05:19:42 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D547E344;
+        Tue, 18 Jun 2019 02:19:40 -0700 (PDT)
+Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A18AD3F246;
+        Tue, 18 Jun 2019 02:19:33 -0700 (PDT)
+Subject: Re: [PATCH V3 01/17] irqchip: tegra: do not disable COP IRQ during
+ suspend
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, linus.walleij@linaro.org, stefan@agner.ch,
+        mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        digetx@gmail.com, devicetree@vger.kernel.org
+References: <1560843991-24123-1-git-send-email-skomatineni@nvidia.com>
+ <1560843991-24123-2-git-send-email-skomatineni@nvidia.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ Z46HaNmN2hZS/oJ69c1DI5Rcww==
+Organization: ARM Ltd
+Message-ID: <dc4b60ae-8716-0e7e-4e41-431c0ef9f50f@arm.com>
+Date:   Tue, 18 Jun 2019 10:19:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80031b57-9825-42cf-990f-08d6f3cccc2f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2019 09:10:24.8496
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tudor.ambarus@microchip.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB0019
+In-Reply-To: <1560843991-24123-2-git-send-email-skomatineni@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-K1JvYiwgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCg0KSGksIFJvYiwNCg0KRGluaCBmb3Jn
-b3QgdG8gc2VuZCB0aGlzIHRvIHRoZSBkZXZpY2UgdHJlZSBtYWlsaW5nIGxpc3QuIFdvdWxkIHlv
-dSBwbGVhc2UNCnJldmlldyBpdD8NCg0KVGhhbmtzLA0KdGENCg0KT24gMDYvMTMvMjAxOSAwMjoz
-MSBQTSwgRGluaCBOZ3V5ZW4gd3JvdGU6DQo+IEV4dGVybmFsIEUtTWFpbA0KPiANCj4gDQo+IFRo
-ZSBRU1BJIG1vZHVsZSBjYW4gaGF2ZSBhbiBvcHRpb25hbCByZXNldCBzaWduYWxzIHRoYXQgd2ls
-bCBob2xkIHRoZQ0KPiBtb2R1bGUgaW4gYSByZXNldCBzdGF0ZS4NCj4gDQo+IFNpZ25lZC1vZmYt
-Ynk6IERpbmggTmd1eWVuIDxkaW5ndXllbkBrZXJuZWwub3JnPg0KPiAtLS0NCj4gdjY6IG5vIGNo
-YW5nZQ0KPiB2NTogZG9jdW1lbnQgcmVzZXQtbmFtZXMNCj4gdjQ6IG5vIGNoYW5nZQ0KPiB2Mzog
-Y3JlYXRlZCBiYXNlIG9uIHJldmlldyBjb21tZW50cw0KPiB2MjogZGlkIG5vdCBleGlzdA0KPiB2
-MTogZGlkIG5vdCBleGlzdA0KPiAtLS0NCj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9tdGQvY2FkZW5jZS1xdWFkc3BpLnR4dCB8IDUgKysrKysNCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCA1IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvbXRkL2NhZGVuY2UtcXVhZHNwaS50eHQgYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvbXRkL2NhZGVuY2UtcXVhZHNwaS50eHQNCj4gaW5kZXggNDM0NWMz
-YTZmNTMwLi45NDViZTdkNWIyMzYgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9tdGQvY2FkZW5jZS1xdWFkc3BpLnR4dA0KPiArKysgYi9Eb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL2NhZGVuY2UtcXVhZHNwaS50eHQNCj4gQEAgLTM1
-LDYgKzM1LDkgQEAgY3VzdG9tIHByb3BlcnRpZXM6DQo+ICAJCSAgKHFzcGlfbl9zc19vdXQpLg0K
-PiAgLSBjZG5zLHRzbGNoLW5zIDogRGVsYXkgaW4gbmFub3NlY29uZHMgYmV0d2VlbiBzZXR0aW5n
-IHFzcGlfbl9zc19vdXQgbG93DQo+ICAgICAgICAgICAgICAgICAgICBhbmQgZmlyc3QgYml0IHRy
-YW5zZmVyLg0KPiArLSByZXNldHMJOiBNdXN0IGNvbnRhaW4gYW4gZW50cnkgZm9yIGVhY2ggZW50
-cnkgaW4gcmVzZXQtbmFtZXMuDQo+ICsJCSAgU2VlIC4uL3Jlc2V0L3Jlc2V0LnR4dCBmb3IgZGV0
-YWlscy4NCj4gKy0gcmVzZXQtbmFtZXMJOiBNdXN0IGluY2x1ZGUgZWl0aGVyICJxc3BpIiBhbmQv
-b3IgInFzcGktb2NwIi4NCj4gIA0KPiAgRXhhbXBsZToNCj4gIA0KPiBAQCAtNTAsNiArNTMsOCBA
-QCBFeGFtcGxlOg0KPiAgCQljZG5zLGZpZm8tZGVwdGggPSA8MTI4PjsNCj4gIAkJY2RucyxmaWZv
-LXdpZHRoID0gPDQ+Ow0KPiAgCQljZG5zLHRyaWdnZXItYWRkcmVzcyA9IDwweDAwMDAwMDAwPjsN
-Cj4gKwkJcmVzZXRzID0gPCZyc3QgUVNQSV9SRVNFVD4sIDwmcnN0IFFTUElfT0NQX1JFU0VUPjsN
-Cj4gKwkJcmVzZXQtbmFtZXMgPSAicXNwaSIsICJxc3BpLW9jcCI7DQo+ICANCj4gIAkJZmxhc2gw
-OiBuMjVxMDBAMCB7DQo+ICAJCQkuLi4NCj4gDQo=
+On 18/06/2019 08:46, Sowjanya Komatineni wrote:
+> Tegra210 platforms use sc7 entry firmware to program Tegra LP0/SC7 entry
+> sequence and sc7 entry firmware is run from COP/BPMP-Lite.
+> 
+> So, COP/BPMP-Lite still need IRQ function to finish SC7 suspend sequence
+> for Tegra210.
+> 
+> This patch has fix for leaving the COP IRQ enabled for Tegra210 during
+> interrupt controller suspend operation.
+> 
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/irqchip/irq-tegra.c | 21 +++++++++++++++++++--
+>  1 file changed, 19 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-tegra.c b/drivers/irqchip/irq-tegra.c
+> index e1f771c72fc4..cf0c07052064 100644
+> --- a/drivers/irqchip/irq-tegra.c
+> +++ b/drivers/irqchip/irq-tegra.c
+> @@ -44,18 +44,22 @@ static unsigned int num_ictlrs;
+>  
+>  struct tegra_ictlr_soc {
+>  	unsigned int num_ictlrs;
+> +	bool supports_sc7;
+>  };
+>  
+>  static const struct tegra_ictlr_soc tegra20_ictlr_soc = {
+>  	.num_ictlrs = 4,
+> +	.supports_sc7 = false,
+
+nit: that's the default for a statically initialized structure.
+
+>  };
+>  
+>  static const struct tegra_ictlr_soc tegra30_ictlr_soc = {
+>  	.num_ictlrs = 5,
+> +	.supports_sc7 = false,
+>  };
+>  
+>  static const struct tegra_ictlr_soc tegra210_ictlr_soc = {
+>  	.num_ictlrs = 6,
+> +	.supports_sc7 = true,
+>  };
+>  
+>  static const struct of_device_id ictlr_matches[] = {
+> @@ -67,6 +71,7 @@ static const struct of_device_id ictlr_matches[] = {
+>  
+>  struct tegra_ictlr_info {
+>  	void __iomem *base[TEGRA_MAX_NUM_ICTLRS];
+> +	const struct tegra_ictlr_soc *soc;
+>  #ifdef CONFIG_PM_SLEEP
+>  	u32 cop_ier[TEGRA_MAX_NUM_ICTLRS];
+>  	u32 cop_iep[TEGRA_MAX_NUM_ICTLRS];
+> @@ -147,8 +152,19 @@ static int tegra_ictlr_suspend(void)
+>  		lic->cop_ier[i] = readl_relaxed(ictlr + ICTLR_COP_IER);
+>  		lic->cop_iep[i] = readl_relaxed(ictlr + ICTLR_COP_IEP_CLASS);
+>  
+> -		/* Disable COP interrupts */
+> -		writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+> +		/*
+> +		 * AVP/COP/BPMP-Lite is the Tegra boot processor.
+> +		 *
+> +		 * Tegra210 system suspend flow uses sc7entry firmware which
+> +		 * is executed by COP/BPMP and it includes disabling COP IRQ,
+> +		 * clamping CPU rail, turning off VDD_CPU, and preparing the
+> +		 * system to go to SC7/LP0.
+> +		 *
+> +		 * COP/BPMP wakes up when COP IRQ is triggered and runs
+> +		 * sc7entry-firmware. So need to keep COP interrupt enabled.
+
+It is great that you're describing what happens when the system does
+support this SC7 thing...
+
+> +		 */
+> +		if (!lic->soc->supports_sc7)
+> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+
+Except that the code actually deals with *not* having this SC7, and
+you've deleted the one line of comment that was explaining it.
+
+>  
+>  		/* Disable CPU interrupts */
+>  		writel_relaxed(~0ul, ictlr + ICTLR_CPU_IER_CLR);
+> @@ -339,6 +355,7 @@ static int __init tegra_ictlr_init(struct device_node *node,
+>  		goto out_unmap;
+>  	}
+>  
+> +	lic->soc = soc;
+>  	tegra_ictlr_syscore_init();
+>  
+>  	pr_info("%pOF: %d interrupts forwarded to %pOF\n",
+> 
+
+Otherwise looks OK to me.
+
+Thanks,
+
+	M.
+-- 
+Jazz is not dead. It just smells funny...
