@@ -2,96 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BCC1D4A6C5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDBDE4A6D1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2019 18:26:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729319AbfFRQZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 12:25:50 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:44430 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729295AbfFRQZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:25:50 -0400
-Received: by mail-lj1-f196.google.com with SMTP id k18so139546ljc.11;
-        Tue, 18 Jun 2019 09:25:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=aWbCD8GTr6CtvHS0OInn6v/N+gapK0DJLyamEDwpKj4=;
-        b=VJtYtneeXLFnE2Kgv8v9aKFOEvUb8xxc/1PCBD8efOOP50gl/24SIlGDQHYLAaIseE
-         XEjc4+xIiUKxYrcyxSL9H7IC7+DAxCyTbjGysv3Un0GvwpQYqb7ftjCmtVhy80fMXVQI
-         YlPtC1n/ckzTi7nwNaiaolzxT6s9UaGbRRvIRCL7SAYFwuEYz5iyBxgZxg24BbYoX5FL
-         9YbUaeHnrrXAqy+v/1JevuLwffDzTGBZTkhFJKogxgC5bm05Wj8DdJh4PaXxOZ72KgiF
-         xdP7VFh1dlQ6msfBBCS+ZeLoc1BMU/EAMOKjS60BSooTpx8Al5iBwcPKTf2e0p1U7YHA
-         3jgQ==
+        id S1729809AbfFRQ0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 12:26:52 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:38707 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729327AbfFRQ0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 12:26:51 -0400
+Received: by mail-qt1-f195.google.com with SMTP id n11so16061784qtl.5;
+        Tue, 18 Jun 2019 09:26:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=aWbCD8GTr6CtvHS0OInn6v/N+gapK0DJLyamEDwpKj4=;
-        b=SWaWtrVhLxG4xA4pnK0pmvM02cHG6Svvrxd0By7QT14ZHvirjyGoWenp96kv0aMpU6
-         CmCzlsa6rxTEQ7DtcfZtdrIc4GrcJ6WnxonImE38jFk3pouN05nebDznE1RUEXW9gcTT
-         jOzTFQTRUnSPrbxOcSx1wKBi6A34/ing5yBvUrT56xWcesjSXwXIeZ0lXlkBcJNrtPvp
-         dCaSscWPuDWD5N6MJaOSU3SS4CFF0n+uOJNRtXuyHvSBsccTUq4HCyISGGbRM/Fu9cno
-         u0Eyc88Cnm1+DMXOHovdfo/rPRDINjMtxOmvoou2aVhZeRCNMR8N4WhM0Gx9Anco94qd
-         8HGw==
-X-Gm-Message-State: APjAAAVDcoPPk+sED9kkKI+Pk1zgGi8R0ISL0yCqU78eQbWgkkLFHN1v
-        wDMFyByyqK95kWiXQPOxgpcQE35M
-X-Google-Smtp-Source: APXvYqzG2iTDPApqIc4jJGIBCo6+Ymm2Bv7Wobc3Cy6YTnyO4a/BGln0f6FiaOQMI6BNKcyIXRy5zA==
-X-Received: by 2002:a2e:8944:: with SMTP id b4mr22426619ljk.154.1560875147346;
-        Tue, 18 Jun 2019 09:25:47 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
-        by smtp.googlemail.com with ESMTPSA id q1sm2277023lfc.79.2019.06.18.09.25.46
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 09:25:46 -0700 (PDT)
-Subject: Re: [PATCH v2 1/8] regulator: core: Introduce API for regulators
- coupling customization
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190603235904.19097-1-digetx@gmail.com>
- <20190603235904.19097-2-digetx@gmail.com>
- <20190617152340.GX5316@sirena.org.uk>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <df8a9f20-5e44-a7aa-13db-c3ba7cbacab1@gmail.com>
-Date:   Tue, 18 Jun 2019 19:25:45 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        bh=U4eue9QD2pPeVeT2ai/iFEEFKk30Y43OtLfqYls/35g=;
+        b=QagC7sW2bP/MUt5RWlCOg9RwanF047NS3Fxmsmc18LrlD0Sa0izH8axZtcjB30+LKa
+         hlr1db+5X7V6P5xy0HqHuMUPfZ2Kmyfswm+8a5SS5MJR9wQDfm4SrZUlC8XVxcgPgWBC
+         IaYRYYMkP6xP6lPXk/86DDK2aPpvpnyS2ehhy9fKxRw1WMEI6hpd3302+QxFCTyNqgNZ
+         TqebdJctCE1dmPe1iiRb7Fg5lHdTMKUj9eCEsUju2dgOLKMcn43XvdValwzjWaxMJdhc
+         ZXx+laY/VRDZ0gdAb1AbAlNDl/+UsD0o55tl08QF4MKXyzA0v1gmJmIH88IncqC4aqZ0
+         5GiA==
+X-Gm-Message-State: APjAAAWa5vlAmCboCFC2rE8i9bXT2q442bFCJMVI33VwMW54IQWUaMcM
+        emyb0QPYvaY5cU6U+M8kFKQomSU=
+X-Google-Smtp-Source: APXvYqzzE34RMcgJY4arI8Ax7Qc+Kv32GC1vmCbW+uqEcP5YgCl0IgU3X47Rkrvutw6NRZBCeT6n8g==
+X-Received: by 2002:aed:3e3d:: with SMTP id l58mr51774215qtf.382.1560875210544;
+        Tue, 18 Jun 2019 09:26:50 -0700 (PDT)
+Received: from localhost.localdomain ([64.188.179.192])
+        by smtp.googlemail.com with ESMTPSA id a139sm8936713qkb.48.2019.06.18.09.26.49
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 18 Jun 2019 09:26:50 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: qcom: Add missing schema for IPQ4019 boards
+Date:   Tue, 18 Jun 2019 10:26:49 -0600
+Message-Id: <20190618162649.5901-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190617152340.GX5316@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.06.2019 18:23, Mark Brown пишет:
-> On Tue, Jun 04, 2019 at 02:58:57AM +0300, Dmitry Osipenko wrote:
->> Right now regulator core supports only one type of regulators coupling,
->> the "voltage max-spread" which keeps voltages of coupled regulators in a
->> given range from each other. A more sophisticated coupling may be required
->> in practice, one example is the NVIDIA Tegra SoC's which besides the
->> max-spreading have other restrictions that must be adhered. Introduce API
->> that allow platforms to provide their own customized coupling algorithms.
-> 
-> So, I don't completely hate this and I'm not sure there's any good
-> solutions here...
+The board bindings for IPQ4019 are undocumented. Add the missing bindings
+to the schema.
 
-Thanks!
+Cc: Andy Gross <agross@kernel.org>
+Cc: David Brown <david.brown@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Note that this doesn't match the dts files as they don't use both 
+compatible strings, just the board string. They need to be fixed.
 
->> + * @balance_voltage: Callback invoked when voltage of a coupled regulator is
->> + *                   changing. The callee should perform voltage balancing
->> + *                   and change voltage of the coupled regulators.
-> 
-> Some documentation on what the context for calling this is (locking and
-> so on) and how it should do the adjustments it wants to do would be
-> good.
-> 
+ Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Okay, I'll extend the doc.
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 04867577306a..54ef6b6b9189 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -119,6 +119,11 @@ properties:
+           - const: qcom,msm8996-mtp
+ 
+       - items:
++          - enum:
++              - qcom,ipq4019-ap-dk04.1-c3
++              - qcom,ipq4019-ap-dk07.1-c1
++              - qcom,ipq4019-ap-dk07.1-c2
++              - qcom,ipq4019-dk04.1-c1
+           - const: qcom,ipq4019
+ 
+       - items:
+-- 
+2.20.1
+
