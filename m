@@ -2,90 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B75B84BC16
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA3C64BCC3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 17:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729414AbfFSOyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 10:54:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50950 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725899AbfFSOyy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 10:54:54 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D55352182B;
-        Wed, 19 Jun 2019 14:54:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560956093;
-        bh=1o2dMj31GORXJZyOFULgtIRqexZMCNTkB7pR8LOrtJ4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WNj4iaYt8/G5RaEDTSZfDsFjp6NVfp8+Eao8HcnQtl2WtIz059/SPsFZ4/w3uv6px
-         67wlVpxhLvDfoTpoFbQZQOAr/v7soTPuK6Nq2xYD/iP4ju2Ax69/FF6c5ubeEBqbUi
-         4WJLwK3hQRENzyYmfVF27jQgQQ9f/GPh1m75B4zw=
-Received: by mail-qt1-f169.google.com with SMTP id s15so20195623qtk.9;
-        Wed, 19 Jun 2019 07:54:52 -0700 (PDT)
-X-Gm-Message-State: APjAAAVAxoTRzbQzaweSqxVwyrC5mo06bdWQCc1JF5ZdL39QRzkjj1X+
-        0TywWYfga3YGMqgVkiAtEF+wR68xDK4k7bi8cA==
-X-Google-Smtp-Source: APXvYqyIsFoKeKt8JjG9xmjujYGTtwkYLYLaB8h+ix0Pl7lN0krfkUYZCEy8rme8HA3CdujMucRPRNSAzdKC1rAn+e4=
-X-Received: by 2002:aed:3fb0:: with SMTP id s45mr53667104qth.136.1560956092103;
- Wed, 19 Jun 2019 07:54:52 -0700 (PDT)
+        id S1726109AbfFSP2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 11:28:48 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:42889 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726091AbfFSP2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 11:28:47 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hdcVs-0003oR-VH; Wed, 19 Jun 2019 17:28:40 +0200
+Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hdcVs-00081W-A2; Wed, 19 Jun 2019 17:28:40 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     sakari.ailus@linux.intel.com, mchehab@kernel.org,
+        robh+dt@kernel.org, Jacopo Mondi <jacopo@jmondi.org>
+Cc:     devicetree@vger.kernel.org, graphics@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: [PATCH v2 0/2] media: add Toshiba TC358746 Bridge support
+Date:   Wed, 19 Jun 2019 17:28:36 +0200
+Message-Id: <20190619152838.25079-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1559754961-26783-1-git-send-email-sricharan@codeaurora.org> <1559754961-26783-3-git-send-email-sricharan@codeaurora.org>
-In-Reply-To: <1559754961-26783-3-git-send-email-sricharan@codeaurora.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 19 Jun 2019 08:54:40 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+0TLtLiX17nRSyVWrJM2_UvLEVMsp7Hf2e3hU7fh4WGg@mail.gmail.com>
-Message-ID: <CAL_Jsq+0TLtLiX17nRSyVWrJM2_UvLEVMsp7Hf2e3hU7fh4WGg@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: qcom: Add ipq6018 bindings
-To:     Sricharan R <sricharan@codeaurora.org>
-Cc:     Stephen Boyd <sboyd@codeaurora.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 5, 2019 at 11:16 AM Sricharan R <sricharan@codeaurora.org> wrote:
->
-> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
-> Signed-off-by: speriaka <speriaka@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index f6316ab..7b19028 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -36,6 +36,7 @@ description: |
->         mdm9615
->         ipq8074
->         sdm845
-> +       ipq6018
+Hi,
 
-You need to add actual schema for this, not just a description.
+this is my v2 contains all the review feedback made on my v1 [1].
+Since Rob didn't responed to the question how we should handle the
+different input/output config I decided to use Jacopo approach since
+it is common for mux devices too.
 
->
->    The 'board' element must be one of the following strings:
->
-> @@ -45,6 +46,7 @@ description: |
->         mtp
->         sbc
->         hk01
-> +       cp01-c1
->
->    The 'soc_version' and 'board_version' elements take the form of v<Major>.<Minor>
->    where the minor number may be omitted when it's zero, i.e.  v1.0 is the same
-> --
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
->
+I rebased the patches ontop of media_tree/master so there should be no
+conflicts.
+
+Regards,
+  Marco
+
+[1] https://patchwork.ozlabs.org/cover/1015381/
+
+Marco Felsch (2):
+  media: dt-bindings: add bindings for Toshiba TC358746
+  media: tc358746: add Toshiba TC358746 Parallel to CSI-2 bridge driver
+
+ .../bindings/media/i2c/toshiba,tc358746.txt   |   95 +
+ MAINTAINERS                                   |    7 +
+ drivers/media/i2c/Kconfig                     |   12 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/tc358746.c                  | 1807 +++++++++++++++++
+ drivers/media/i2c/tc358746_regs.h             |  208 ++
+ 6 files changed, 2130 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
+ create mode 100644 drivers/media/i2c/tc358746.c
+ create mode 100644 drivers/media/i2c/tc358746_regs.h
+
+-- 
+2.20.1
+
