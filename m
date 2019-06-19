@@ -2,118 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E04B4BAC1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62EB34BAD2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728652AbfFSOH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 10:07:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54442 "EHLO mail.kernel.org"
+        id S1726330AbfFSOK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 10:10:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55454 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726047AbfFSOH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 10:07:26 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        id S1725893AbfFSOK0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 10:10:26 -0400
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7BCC220645;
-        Wed, 19 Jun 2019 14:07:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 75EEF206BF;
+        Wed, 19 Jun 2019 14:10:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560953244;
-        bh=Gv7KaRBWqiqr3hW8zTUm5eDPSIyUp9V9W3hE/9RwchI=;
+        s=default; t=1560953425;
+        bh=eAkETR1airFEdkrvmqxKAnHpAPALZYjF/U5gjIALrUM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ebHr6ZJnDUdRxTmLYwVgZWVw2cuDekuQMurelaVmvUxad7olctK7riRoGsa5LgR9J
-         i5uxAXpMzEkYK4dkvPkri1khmIAyvl+KYKnL7wp4kxhHTfcj/IjDo3dLpcRroofOSY
-         aHlVppyz5OgrlfmDW2mooBYVNFQhv7Zj64ZsFV64=
-Received: by mail-qt1-f176.google.com with SMTP id p15so20029944qtl.3;
-        Wed, 19 Jun 2019 07:07:24 -0700 (PDT)
-X-Gm-Message-State: APjAAAWo00mKM8PtUk9wy1Ntbe8Em/psP6yMJGRcB5xrUXj/Wypsd749
-        tr9ZYiQtdh7Y+jDQPPAxVQl+V6pEfQFbxeg7SA==
-X-Google-Smtp-Source: APXvYqwvt27LPCNKqYdTaksDB3XZrSVKGXUlUZqYHZQFzDcc2DcbrKLZm3Rpj9gJvYsnzw4i6A/E6B7YVSBCmxedYAQ=
-X-Received: by 2002:a0c:8a43:: with SMTP id 3mr34267465qvu.138.1560953243742;
- Wed, 19 Jun 2019 07:07:23 -0700 (PDT)
+        b=UuVQ+dfW0se8BadL24kxy8KpYt7nswO2DeKP9VFDc4smOqGT+DUiRX0yB2SodJEw6
+         CeSGRrMV5AncEhb1NwIH0SZMxo3PI6/ZbYRrgYvx+eCJzBIBd/BfQAnhOGveFtLUgY
+         NJcF4UvAjiAAShvHlsvcpVNeAgNYZa70+fg9sNY8=
+Received: by mail-qk1-f175.google.com with SMTP id m14so10963159qka.10;
+        Wed, 19 Jun 2019 07:10:25 -0700 (PDT)
+X-Gm-Message-State: APjAAAW/e6WePJDk6xWx4CwxqR7ZBprbuWNta+bxsGQTAxZjoyEpGKK+
+        1FJ5wzF9HGkviYc7Lq764or3B5BndWMOh1dfRw==
+X-Google-Smtp-Source: APXvYqw9X46Mgu2RprjLazOYn0ITq1U9dAZj6F7rqFtXuTxJ4ZNpg2PAEqixE+a2M0Jx4daY2/u8dIsGscF4zKKrR5U=
+X-Received: by 2002:a37:a6c9:: with SMTP id p192mr102502666qke.184.1560953424738;
+ Wed, 19 Jun 2019 07:10:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190508103703.40885-1-wen.he_1@nxp.com> <20190613200813.GA895@bogus>
- <DB7PR04MB5195E49670279C9A28C28A5EE2EB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-In-Reply-To: <DB7PR04MB5195E49670279C9A28C28A5EE2EB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 19 Jun 2019 08:07:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJnBw+OqEX46CC1E2=9CDmeT8hQtvMpufsnU8z3+1RoBQ@mail.gmail.com>
-Message-ID: <CAL_JsqJnBw+OqEX46CC1E2=9CDmeT8hQtvMpufsnU8z3+1RoBQ@mail.gmail.com>
-Subject: Re: [EXT] Re: [v1 1/4] dt-bindings: display: Add DT bindings for
- LS1028A HDP-TX PHY.
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>
+References: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
+ <a9c556114ab21793d100f31361da01a579bae84e.1560937626.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <a9c556114ab21793d100f31361da01a579bae84e.1560937626.git-series.maxime.ripard@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 19 Jun 2019 08:10:13 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLyByqjpdSoebU7xboupmnbZb5q3D2L_oQt_sigBQeMnQ@mail.gmail.com>
+Message-ID: <CAL_JsqLyByqjpdSoebU7xboupmnbZb5q3D2L_oQt_sigBQeMnQ@mail.gmail.com>
+Subject: Re: [PATCH v3 10/16] dt-bindings: net: sun8i-emac: Convert the
+ binding to a schemas
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev <netdev@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 16, 2019 at 7:45 PM Wen He <wen.he_1@nxp.com> wrote:
+On Wed, Jun 19, 2019 at 3:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
+> Switch our Allwinner H3 EMAC controller binding to a YAML schema to enable
+> the DT validation. Since that controller is based on a Synopsys IP, let's
+> add the validation to that schemas with a bunch of conditionals.
 >
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 >
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: 2019=E5=B9=B46=E6=9C=8814=E6=97=A5 4:08
-> > To: Wen He <wen.he_1@nxp.com>
-> > Cc: linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org; shawnguo@kernel.org; Leo Li
-> > <leoyang.li@nxp.com>
-> > Subject: [EXT] Re: [v1 1/4] dt-bindings: display: Add DT bindings for L=
-S1028A
-> > HDP-TX PHY.
-> >
-> > Caution: EXT Email
-> >
-> > On Wed, May 08, 2019 at 10:35:25AM +0000, Wen He wrote:
-> > > Add DT bindings documentmation for the HDP-TX PHY controller. The
-> > > describes which could be found on NXP Layerscape ls1028a platform.
-> >
-> > Drop the hard stop (.) from the subject.
-> >
-> > >
-> > > Signed-off-by: Wen He <wen.he_1@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/display/fsl,hdp.txt   | 56 +++++++++++++++++=
-++
-> > >  1 file changed, 56 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/fsl,hdp.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> > > b/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> > > new file mode 100644
-> > > index 000000000000..36b5687a1261
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> > > @@ -0,0 +1,56 @@
-> > > +NXP Layerscpae ls1028a HDP-TX PHY Controller
-> > > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > +
-> > > +The following bindings describe the Cadence HDP TX PHY on ls1028a
-> > > +that offer multi-protocol support of standars such as eDP and
-> > > +Displayport, supports for 25-600MHz pixel clock and up to 4k2k at 60=
-MHz
-> > resolution.
-> > > +The HDP transmitter is a Cadence HDP TX controller IP with a
-> > > +companion PHY IP.
-> >
-> > I'm confused. This binding covers both blocks or is just one of them?
-> >
+> ---
 >
-> Hi Rob,
+> Changes from v2:
+>   - Switch to phy-connection-type instead of phy-mode
+>   - Change the delay enum to using multipleOf
 >
-> This binding covers both blocks(HDP TX PHY and HDP TX Controller),
-> Because they are belong to the one IP.
+> Changes from v1:
+>   - Add specific binding document
+> ---
+>  Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml | 321 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+>  Documentation/devicetree/bindings/net/dwmac-sun8i.txt                | 201 +---------------------------------------------
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml                |  15 +++-
+>  3 files changed, 336 insertions(+), 201 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/dwmac-sun8i.txt
 
-In that case, you should also have an output port to a DP connector
-node (or DP panel).
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
