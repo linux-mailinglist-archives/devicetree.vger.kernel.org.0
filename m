@@ -2,136 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED5B84C280
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 22:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBF374C296
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 22:57:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726175AbfFSUo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 16:44:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52020 "EHLO mail.kernel.org"
+        id S1726322AbfFSU5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 16:57:09 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:38236 "EHLO mx1.redhat.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726230AbfFSUo2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 16:44:28 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726244AbfFSU5J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 16:57:09 -0400
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AB8142177E;
-        Wed, 19 Jun 2019 20:44:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560977066;
-        bh=PtdbT4+WZVrSzw4byKsl98ZDeoGvcEoZe9NmCjzp7NY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SmxtmjKiyfEWKKyjPAThNkWlA5SttyK01pMv/kTD8l61XVCe/7BjNti98SwgjiM/T
-         Q/ahTcG4e9SA1rQsFe1ZB5NVqF2LhqmjCO1o/p9OPoT0RoY5z/E168ZjUBv83d197K
-         Ta3vGJjMlOIct4TbSa/GiCtdVq8NU897XITaTlQ4=
-Received: by mail-qt1-f174.google.com with SMTP id y57so719523qtk.4;
-        Wed, 19 Jun 2019 13:44:26 -0700 (PDT)
-X-Gm-Message-State: APjAAAWIeCtW76D5IbAq0mpiKEUtNegXNfabI339J5hwdn9MjLSxtjW4
-        /IKuRmVA+CVnBUE3U6eba0FOrm8CuOPHvEkzrw==
-X-Google-Smtp-Source: APXvYqyVAwxgOJDLFwnKUkBgoRpv1RMyh0FtU2bURQqffQhs//0pjSXX6+r6qT6fEnddczKAAfSd98UZabnH3BaOarM=
-X-Received: by 2002:ac8:3908:: with SMTP id s8mr106885352qtb.224.1560977065877;
- Wed, 19 Jun 2019 13:44:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
- <e7c13fc3c4e287df6292dbee27ae1caeca0c06c4.1560937626.git-series.maxime.ripard@bootlin.com>
- <CAL_Jsq+A+jspyCpu9USL6FQ9y5qL_yqYS=DTE=aM5YzyeZwd0w@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+A+jspyCpu9USL6FQ9y5qL_yqYS=DTE=aM5YzyeZwd0w@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 19 Jun 2019 14:44:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLUDKi8jcJ=eZOAR9-ECX0bo9F8+d59sokWGOJzph_q7w@mail.gmail.com>
-Message-ID: <CAL_JsqLUDKi8jcJ=eZOAR9-ECX0bo9F8+d59sokWGOJzph_q7w@mail.gmail.com>
-Subject: Re: [PATCH v3 06/16] dt-bindings: net: sun4i-emac: Convert the
- binding to a schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
+        by mx1.redhat.com (Postfix) with ESMTPS id A385B30C1330;
+        Wed, 19 Jun 2019 20:57:06 +0000 (UTC)
+Received: from ovpn-112-53.rdu2.redhat.com (ovpn-112-53.rdu2.redhat.com [10.10.112.53])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id DACED608A7;
+        Wed, 19 Jun 2019 20:56:59 +0000 (UTC)
+Message-ID: <414bc504bf62ea8de2ad195c00ce64dc0acb773c.camel@redhat.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Dan Williams <dcbw@redhat.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Johannes Berg <johannes@sipsolutions.net>
+Cc:     Alex Elder <elder@linaro.org>,
+        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Date:   Wed, 19 Jun 2019 15:56:58 -0500
+In-Reply-To: <CAK8P3a3r95gXMdq7s9GF=37v6t4kR+-2iyC6bnmUDVuM+bn80Q@mail.gmail.com>
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+         <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+         <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
+         <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+         <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+         <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
+         <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
+         <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+         <d533b708-c97a-710d-1138-3ae79107f209@linaro.org>
+         <abdfc6b3a9981bcdef40f85f5442a425ce109010.camel@sipsolutions.net>
+         <CAK8P3a3ksrFTo2+dLB+doLeY+kPP7rYxv2O7BwvjYgK2cwCTuQ@mail.gmail.com>
+         <97cbfb3723607c95d78e25785262ae7b0acdb11c.camel@sipsolutions.net>
+         <CAK8P3a29+JKbDdS9ikhgaKa-AJ1qd1sDMTAfzivGh5wN4VL88A@mail.gmail.com>
+         <54a5acb6cf26ebc6447f8ebcbdcb8e0eed693ab3.camel@sipsolutions.net>
+         <CAK8P3a3r95gXMdq7s9GF=37v6t4kR+-2iyC6bnmUDVuM+bn80Q@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.45]); Wed, 19 Jun 2019 20:57:07 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 8:46 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Wed, Jun 19, 2019 at 3:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > Switch our Allwinner A10 EMAC controller binding to a YAML schema to enable
-> > the DT validation.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> >
-> > ---
-> >
-> > Changes from v2:
-> >   - Switch from the deprecated phy property to phy-handle
-> > ---
-> >  Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml | 55 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> >  Documentation/devicetree/bindings/net/allwinner,sun4i-emac.txt      | 19 -------------------
-> >  2 files changed, 55 insertions(+), 19 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/net/allwinner,sun4i-emac.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
-> > new file mode 100644
-> > index 000000000000..2ff9e605cd26
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
-> > @@ -0,0 +1,55 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/allwinner,sun4i-a10-emac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A10 EMAC Ethernet Controller Device Tree Bindings
-> > +
-> > +allOf:
-> > +  - $ref: "ethernet-controller.yaml#"
-> > +
-> > +maintainers:
-> > +  - Chen-Yu Tsai <wens@csie.org>
-> > +  - Maxime Ripard <maxime.ripard@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: allwinner,sun4i-a10-emac
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  allwinner,sram:
-> > +    description: Phandle to the device SRAM
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - phy-handle
->
-> Doesn't this throw an error if not listed in properties?
+On Tue, 2019-06-18 at 23:06 +0200, Arnd Bergmann wrote:
+> On Tue, Jun 18, 2019 at 10:39 PM Johannes Berg
+> <johannes@sipsolutions.net> wrote:
+> > On Tue, 2019-06-18 at 22:33 +0200, Arnd Bergmann wrote:
+> > It seems to me though that this is far more complex than what I'm
+> > proposing? What I'm proposing there doesn't even need any userspace
+> > involvement, as long as all the pieces are in the different sub-
+> > drivers,
+> > they'd fall out automatically.
+> > 
+> > And realistically, the wwan_device falls out anyway at some point,
+> > the
+> > only question is if we really make one specific driver be the
+> > "owner" of
+> > it. I'm suggesting that we don't, and just make its lifetime depend
+> > on
+> > the links to parts it has (unless something like IPA actually wants
+> > to
+> > be an owner).
+> 
+> My feeling so far is that having the wwan_device be owned by a device
+> gives a nicer abstraction model that is also simpler for the common
+> case. A device driver like ipa would end up with a probe() function
+> that does does wwan_device_alloc/wwan_device_register, corresponding
+> to alloc_etherdev/register_netdev, and then communicates through
+> callbacks.
+> 
+> I agree the compound device case would get more complex by
+> shoehorning it into this model, but that can be a valid tradeoff
+> if it's the exceptional case rather than the common one.
 
-NM, it doesn't.
+In my experience, the compound device model is by far the most
+prevalent for regular Linux distros or anything *not* running on an SoC
+with an integrated modem.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+But it's also quite common for Android, no? drivers/net/ethernet/msm/
+has rmnet and IPA ethernet drivers while arch/arm/mach-msm/ has various
+SMD-related control channel drivers like smd_tty.c and smd_qmi.c and
+smd_nmea.c. At least that's how I remember older SMD-based devices
+being in the 8xxx and 9xxx time.
 
-Rob
+Ideally those setups can benefit from this framework as well, without
+having to write entirely new composite drivers for those devices.
+
+Dan
+
