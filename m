@@ -2,116 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC7B4B76E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 267D24B778
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731526AbfFSLvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 07:51:52 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:5607 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727067AbfFSLvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 07:51:52 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0a21d70000>; Wed, 19 Jun 2019 04:51:51 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 19 Jun 2019 04:51:51 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 19 Jun 2019 04:51:51 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL106.nvidia.com
- (172.18.146.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun
- 2019 11:51:51 +0000
-Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Wed, 19 Jun 2019 11:51:50 +0000
-Received: from linux.nvidia.com (Not Verified[10.24.34.185]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d0a21d40002>; Wed, 19 Jun 2019 04:51:50 -0700
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH v6 2/2] arm64: tegra: enable ACONNECT, ADMA and AGIC
-Date:   Wed, 19 Jun 2019 17:21:22 +0530
-Message-ID: <1560945082-24554-2-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560945082-24554-1-git-send-email-spujar@nvidia.com>
-References: <1560945082-24554-1-git-send-email-spujar@nvidia.com>
+        id S1727244AbfFSLyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 07:54:17 -0400
+Received: from foss.arm.com ([217.140.110.172]:35630 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727067AbfFSLyR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 07:54:17 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 89DB6360;
+        Wed, 19 Jun 2019 04:54:16 -0700 (PDT)
+Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 71F893F738;
+        Wed, 19 Jun 2019 04:56:01 -0700 (PDT)
+Subject: Re: [PATCH 3/8] iommu/arm-smmu-v3: Support platform SSID
+To:     Will Deacon <will.deacon@arm.com>
+Cc:     "joro@8bytes.org" <joro@8bytes.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        "jacob.jun.pan@linux.intel.com" <jacob.jun.pan@linux.intel.com>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+ <20190610184714.6786-4-jean-philippe.brucker@arm.com>
+ <20190618180851.GK4270@fuggles.cambridge.arm.com>
+From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Message-ID: <73cfb797-5ae7-b9d9-01ea-fe98a1bed5c3@arm.com>
+Date:   Wed, 19 Jun 2019 12:53:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560945111; bh=c/NXql/GWMhzTpOWf4RDxWf3rsd+83SK8WOo1rYUd8g=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:MIME-Version:Content-Type;
-        b=qsD0C1LE/CChBIviSflWIFuTnXBczWY9SlMlr0Qi2ux4fYG1IqiFbi0tRTA50t0Bv
-         w57zFuV/7EvvD3CuKz5nrMh1OARm9aWDDTa8Lsmo3YDqEClXc3r+ugNquPeSamPHMR
-         bJvxryIGgWMys+XTrMtRX60cvvN8vkB3lB3n+FWk9/yGzFsaedwdGqBMBkmrchKiX3
-         THnRxWAHd3jUo6kdvyCrcPmmHKCMF/qkjvJ9Cw3BorbQuW8QbgOZOK1T4pne6z8WFf
-         +VgrABMKJHcVrb9ZG0Y/yJP0SWbeoORxbQje9XgIS+d30x6+WmFTYW7Ls7EJkMkEVk
-         WF5vCt2U9kdHw==
+In-Reply-To: <20190618180851.GK4270@fuggles.cambridge.arm.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable ACONNECT, ADMA and AGIC devices for following platforms
-  * Jetson TX2
-  * Jetson Xavier
+On 18/06/2019 19:08, Will Deacon wrote:
+>> +	/*
+>> +	 * If the SMMU doesn't support 2-stage CD, limit the linear
+>> +	 * tables to a reasonable number of contexts, let's say
+>> +	 * 64kB / sizeof(ctx_desc) = 1024 = 2^10
+>> +	 */
+>> +	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
+>> +		master->ssid_bits = min(master->ssid_bits, 10U);
+> 
+> Please introduce a #define for the 10, so that it is computed in the way
+> you describe in the comment (a bit like we do for things like queue sizes).
 
-Verified driver probe path and devices get registered fine.
+Ok
 
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
----
- changes in current revision
-   * renamed agic, interrupt-controller, name
+>> +
+>>  	group = iommu_group_get_for_dev(dev);
+>>  	if (!IS_ERR(group)) {
+>>  		iommu_group_put(group);
+>> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+>> index f04a6df65eb8..04f4f6b95d82 100644
+>> --- a/drivers/iommu/of_iommu.c
+>> +++ b/drivers/iommu/of_iommu.c
+>> @@ -206,8 +206,12 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+>>  			if (err)
+>>  				break;
+>>  		}
+>> -	}
+>>  
+>> +		fwspec = dev_iommu_fwspec_get(dev);
+>> +		if (!err && fwspec)
+>> +			of_property_read_u32(master_np, "pasid-num-bits",
+>> +					     &fwspec->num_pasid_bits);
+>> +	}
+> 
+> Hmm. Do you know if there's anything in ACPI for this?
 
- arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ++++++++++++
- arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 12 ++++++++++++
- 2 files changed, 24 insertions(+)
+Yes, IORT version D introduced a "substream width" field for the Named
+component node (platform device). I don't think it existed last time I
+checked, so I'll see about supporting it.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-index 5102de1..55c84bb 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-@@ -298,4 +298,16 @@
- 			vin-supply = <&vdd_5v0_sys>;
- 		};
- 	};
-+
-+	aconnect {
-+		status = "okay";
-+
-+		dma-controller@2930000 {
-+			status = "okay";
-+		};
-+
-+		interrupt-controller@2a40000 {
-+			status = "okay";
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index 6e6df65..5981cdc 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -167,4 +167,16 @@
- 			};
- 		};
- 	};
-+
-+	aconnect {
-+		status = "okay";
-+
-+		dma-controller@2930000 {
-+			status = "okay";
-+		};
-+
-+		interrupt-controller@2a40000 {
-+			status = "okay";
-+		};
-+	};
- };
--- 
-2.7.4
-
+Thanks,
+Jean
