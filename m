@@ -2,95 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFCE4B7FE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 531C84B813
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726246AbfFSMSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 08:18:53 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:57209 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727067AbfFSMSx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:18:53 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 9965320025;
-        Wed, 19 Jun 2019 14:18:47 +0200 (CEST)
-Date:   Wed, 19 Jun 2019 14:18:46 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>, od@zcrc.me,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
-Subject: Re: [PATCH v5 1/2] dt-bindings: Add doc for the Ingenic JZ47xx LCD
- controller driver
-Message-ID: <20190619121846.GA29084@ravnborg.org>
-References: <20190603152331.23160-1-paul@crapouillou.net>
- <20190611215554.GA23791@bogus>
- <1560329392.1823.1@crapouillou.net>
+        id S1727076AbfFSMXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 08:23:35 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:43198 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727068AbfFSMXe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:23:34 -0400
+Received: by mail-qt1-f196.google.com with SMTP id w17so13152921qto.10;
+        Wed, 19 Jun 2019 05:23:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QrX9o1dbIy2aZ5toQHumMIX6sMGzZ/T6xkwZyYDZz14=;
+        b=ZH75fDzvgr+v351pzpuF1wJIiGNKCEkUhTepEs8Cqhf2jd9FDqo41i05rqFiKXA992
+         qFTGU/iCJEG54ltzIArO9Zu0HRVoyNGqOxxhA6iunyxSYANAdMeL7HUFCtXFSzCWuniL
+         wlu9c0XjafBUdKXJaa3Zjyeoz9d0sdnRn8ES8YDqDR7n6GK7O6fO9f1aNydFSw1tuYqS
+         PRpN1Z1M6PvU8JGE6FgrE4YGxz0eB8TdaibiGhB/PzV/G0GOM6+2AwwgyKWP1c/dlhX1
+         3EZy5YBz/O1L9RwZ914eJxoaN8u2C9A6lgQbveV1Ws5q6LJWeiYNIC3m3XzNKejZbzOC
+         dvnA==
+X-Gm-Message-State: APjAAAVygYy3jledueOgj3pYEuLAUeAEUs6/wtn/TG+6SLphvm/w4RAK
+        qs2zAhlVbvYSXSdy/AAhy/YT/cq3WiyoRJD1JzI=
+X-Google-Smtp-Source: APXvYqxcz8Ej40t9XcWhbMi4v3hKL5jyoIkAsv3W8QipVsdMt2GfYFsVX2pYCz87FZfPkpHzUHY9w66Ewxo5eLZoIvA=
+X-Received: by 2002:aed:33a4:: with SMTP id v33mr70766520qtd.18.1560947013427;
+ Wed, 19 Jun 2019 05:23:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1560329392.1823.1@crapouillou.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=VwQbUJbxAAAA:8
-        a=ER_8r6IbAAAA:8 a=p6pI0oa4AAAA:8 a=GHe269Cog9DItrN4tF0A:9
-        a=wPNLvfGTeEIA:10 a=AjGcO6oz07-iQ99wixmX:22 a=9LHmKk7ezEChjTCyhBa9:22
-        a=9cw2y2bKwytFd151gpuR:22
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+ <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+ <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+ <066e9b39f937586f0f922abf801351553ec2ba1d.camel@sipsolutions.net>
+ <b3686626-e2d8-bc9c-6dd0-9ebb137715af@linaro.org> <b23a83c18055470c5308fcd1eed018056371fc1d.camel@sipsolutions.net>
+ <CAK8P3a1FeUQR3pgoQxHoRK05JGORyR+TFATVQiijLWtFKTv6OQ@mail.gmail.com>
+ <613cdfde488eb23d7207c7ba6258662702d04840.camel@sipsolutions.net>
+ <CAK8P3a2onXpxiE4y9PzRwuPM2dh=h_BKz7Eb0=LLPgBbZoK1bQ@mail.gmail.com> <6c70950d0c78bc02a3d016918ec3929e@codeaurora.org>
+In-Reply-To: <6c70950d0c78bc02a3d016918ec3929e@codeaurora.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 19 Jun 2019 14:23:16 +0200
+Message-ID: <CAK8P3a3e+U85yHTeE4dHa4okLVHgBd8Kke9=FytzvMwz+wB0sQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+To:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>
+Cc:     Johannes Berg <johannes@sipsolutions.net>,
+        Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
+        Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        Dan Williams <dcbw@redhat.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 10:49:52AM +0200, Paul Cercueil wrote:
-> 
-> 
-> Le mar. 11 juin 2019 à 23:55, Rob Herring <robh@kernel.org> a écrit :
-> > On Mon,  3 Jun 2019 17:23:30 +0200, Paul Cercueil wrote:
-> > >  Add documentation for the devicetree bindings of the LCD controller
-> > > present in
-> > >  the JZ47xx family of SoCs from Ingenic.
-> > > 
-> > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> > >  Tested-by: Artur Rojek <contact@artur-rojek.eu>
-> > >  ---
-> > > 
-> > >  Notes:
-> > >      v2: Remove ingenic,panel property.
-> > > 
-> > >      v3: - Rename compatible strings from ingenic,jz47XX-drm to
-> > > ingenic,jz47XX-lcd
-> > >          - The ingenic,lcd-mode property is now read from the panel
-> > > node instead
-> > >      	  of from the driver node
-> > > 
-> > >      v4: Remove ingenic,lcd-mode property completely.
-> > > 
-> > >      v5: No change
-> > > 
-> > >   .../bindings/display/ingenic,lcd.txt          | 44
-> > > +++++++++++++++++++
-> > >   1 file changed, 44 insertions(+)
-> > >   create mode 100644
-> > > Documentation/devicetree/bindings/display/ingenic,lcd.txt
-> > > 
-> > 
-> > Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> > there's no need to repost patches *only* to add the tags. The upstream
-> > maintainer will do that for acks received on the version they apply.
-> > 
-> > If a tag was not added on purpose, please state why and what changed.
-> 
-> Sorry Rob, my mistake. I simply forgot that you ever reviewed that patch.
-Added Rob's r-b and pushed to drm-misc-next
+On Tue, Jun 18, 2019 at 11:15 PM Subash Abhinov Kasiviswanathan
+<subashab@codeaurora.org> wrote:
+>
+> On 2019-06-18 14:55, Arnd Bergmann wrote:
+> > On Tue, Jun 18, 2019 at 10:36 PM Johannes Berg
+> > <johannes@sipsolutions.net> wrote:
+> >>
+> >> On Tue, 2019-06-18 at 21:59 +0200, Arnd Bergmann wrote:
+> >> >
+> >> > From my understanding, the ioctl interface would create the lower
+> >> > netdev after talking to the firmware, and then user space would use
+> >> > the rmnet interface to create a matching upper-level device for that.
+> >> > This is an artifact of the strong separation of ipa and rmnet in the
+> >> > code.
+> >>
+> >> Huh. But if rmnet has muxing, and IPA supports that, why would you
+> >> ever
+> >> need multiple lower netdevs?
+> >
+> > From my reading of the code, there is always exactly a 1:1 relationship
+> > between an rmnet netdev an an ipa netdev. rmnet does the encapsulation/
+> > decapsulation of the qmap data and forwards it to the ipa netdev,
+> > which then just passes data through between a hardware queue and
+> > its netdevice.
+> >
+>
+> There is a n:1 relationship between rmnet and IPA.
+> rmnet does the de-muxing to multiple netdevs based on the mux id
+> in the MAP header for RX packets and vice versa.
 
-	Sam
+Oh, so you mean that even though IPA supports multiple channels
+and multiple netdev instances for a physical device, all the
+rmnet devices end up being thrown into a single channel in IPA?
+
+What are the other channels for in IPA? I understand that there
+is one channel for commands that is separate, while the others
+are for network devices, but that seems to make no sense if
+we only use a single channel for rmnet data.
+
+> >> Yeah, but if you actually have a hardware queue per upper netdev then
+> >> you don't really need this - you just stop the netdev queue when the
+> >> hardware queue is full, and you have flow control automatically.
+> >>
+> >> So I really don't see any reason to have these messages going back and
+> >> forth unless you plan to have multiple sessions muxed on a single
+> >> hardware queue.
+> >
+>
+> Hardware may flow control specific PDNs (rmnet interfaces) based on QoS
+> -
+> not necessarily only in case of hardware queue full.
+
+Right, I guess that makes sense if everything ends up in a
+single queue in IPA.
+
+      Arnd
