@@ -2,99 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBE804C0B8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 20:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9EEC4C0E9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 20:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730089AbfFSSWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 14:22:30 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43900 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726265AbfFSSWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 14:22:30 -0400
-Received: by mail-pg1-f196.google.com with SMTP id f25so114101pgv.10
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 11:22:29 -0700 (PDT)
+        id S1730494AbfFSShr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 14:37:47 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:37864 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730479AbfFSShr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 14:37:47 -0400
+Received: by mail-pl1-f193.google.com with SMTP id bh12so175435plb.4
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 11:37:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=a3CSSzDK/AfPhvZqKleGWuu8i4FE7xZqKr9xr1bgsR4=;
-        b=E3au49N7pyG8Io5LsggllSx7dglzDxJO/ZYCU/ZSTkVipycqePAt9z+5/9dH+ZrnZ2
-         Krlr/654u5Ze421V3VWXqsZPmNeL8bLe+SAZEROt+8KSZm+Nkn8dntnbwFLYPLVnR+lO
-         kH0E7SlhlfFUdQ/W3p+WK3k4kPpccPSmKT/4Vxzy41XJLzHf18XGXYvBeRnvFp7JOPej
-         x/7WgYM+/FzjjC8n8K1HG4QmVxe7RPEO5/RX/F75WNrD3pyjLcR9Pv4PROpp3Yb4jkWp
-         3Nq5EgxniciE3TZoH4FCdBf+jjl8CwZC8op2/RZJnW6SH5ctaAcfZ5qxIlmvJxdNbomv
-         ZfGQ==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2UHrTE7B5XpI1WvMqZiW3y+ZVgQqpXieqgBOuUL3YDY=;
+        b=nXaidQykLu0h3v+pNAwd13wc4DhE5worNOflID9Mf2valzfpNLEoz/00pn7rrU7Dmn
+         FxeUrAO5yA7lCOSKq1jd1jzQ4O1aY0TxEMX08ip6aEoG4HxpImTpVC6VSk+69Kpzm6Ys
+         gmqahyhRmADeRLd6d+ldLEDrNFb2uHKhQjwM8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=a3CSSzDK/AfPhvZqKleGWuu8i4FE7xZqKr9xr1bgsR4=;
-        b=iU3sHKQEKhXNpXtVj9gTykxkt3SPqPQtAafbfHKglpvUJ63qYEBO3+ZB7hbZBxe10t
-         5bn7TBbCAYQEzINng/Tlv4wWmTQKEAOLi8EW375BAxvN4sEhK2fN4GTedo3g1fJ+BrkR
-         36KHujMi7KKh1lQqBWXCWlJdWtE1KmlCaDgjgmyg4PEg37w4bYBK23CuyHxD0Qn/AvCr
-         +xx9khdoccEUof1Jfr3RekeskRB4k+ycsahQ+8tfRhSaVhHcyFlhKPvPMbXCvqI5mfSr
-         dRMenraE0v15egkrdpfZ98N5K8UGHhn8kKAgZnwDLgLq1p4StOc7pwEuQYKgZKbGF3mY
-         I9zw==
-X-Gm-Message-State: APjAAAWNAkXDc0uxuVCFoMlgOV+Ce62FiAmTpIBeph3kRA0OQVseZo6n
-        x1N5zICFnAd5V3jT5ayx7EgCZA==
-X-Google-Smtp-Source: APXvYqyClqoHUcsBhAU04+uak3wpSqFomnm3WV7QpPGMHHCZMQNt6kymBIn1p6Xcwa/SNOlnvkRkdw==
-X-Received: by 2002:a63:6ec1:: with SMTP id j184mr9025604pgc.225.1560968549190;
-        Wed, 19 Jun 2019 11:22:29 -0700 (PDT)
-Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id p15sm16736653pgj.61.2019.06.19.11.22.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2UHrTE7B5XpI1WvMqZiW3y+ZVgQqpXieqgBOuUL3YDY=;
+        b=BNHkJG/q41Lq0CDgzovUQPo/64DTSPS7yJhriX9LA1wUVeJFTcnpJQSCE0KLS8/GeA
+         E1YWV1CAf3kSRAIPUlbzVQJUTKlI2mMCC8Hh1yeVzm4htqcVfFJfxUA3jWg4/L2V0hge
+         Y3FMtp+bYP9exR4RcVpMv88Z/shwuMymDJcpqJY3UqjCzsaZqU3kdRnz4tpTlu7SQZbV
+         AfTZDSyxIii4/CuqhNC3bwFHjkEnCNBAhyCebU5HQ9q66Y+8cBWT2L7YbXf8l3fz6bRd
+         BiooPZ3TdnKZs2iYFOD8eNZ2R5xOfeYDa+CYr0Wh4KtpwQtRNwJ007E/0QH9AWwANau0
+         nyCg==
+X-Gm-Message-State: APjAAAWKRH9Lx58XHFjabKgjSLBBswuGDOt+Dzif103mgHCiDgWjXfc1
+        P9DKDZEAOM43BS800+ZxPpuguA==
+X-Google-Smtp-Source: APXvYqw3w3u7xuqL2IUmlLYdr5iRpyNBWMi+c4rhFrkhqFLsCOFAK3UzXw/uPna24Mybo1ZWf+lnpA==
+X-Received: by 2002:a17:902:7e0e:: with SMTP id b14mr96610234plm.257.1560969466479;
+        Wed, 19 Jun 2019 11:37:46 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
+        by smtp.gmail.com with ESMTPSA id j16sm2681463pjz.31.2019.06.19.11.37.45
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 19 Jun 2019 11:22:28 -0700 (PDT)
-Date:   Wed, 19 Jun 2019 11:22:26 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Cc:     agross@kernel.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
+        Wed, 19 Jun 2019 11:37:46 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     heiko@sntech.de
+Cc:     linux-rockchip@lists.infradead.org, mka@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jeffrey.l.hugo@gmail.com, niklas.cassel@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs404-evb: fix vdd_apc supply
-Message-ID: <20190619182226.GK4814@minitux>
-References: <20190619181653.29407-1-jorge.ramirez-ortiz@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: rockchip: Configure BT_DEV_WAKE in on rk3288-veyron
+Date:   Wed, 19 Jun 2019 11:34:25 -0700
+Message-Id: <20190619183425.149470-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190619181653.29407-1-jorge.ramirez-ortiz@linaro.org>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 19 Jun 11:16 PDT 2019, Jorge Ramirez-Ortiz wrote:
+This is the other half of the hacky solution from commit f497ab6b4bb8
+("ARM: dts: rockchip: Configure BT_HOST_WAKE as wake-up signal on
+veyron").  Specifically the LPM driver that the Broadcom Bluetooth
+expects to have (but is missing in mainline) has two halves of the
+equation: BT_HOST_WAKE and BT_DEV_WAKE.  The BT_HOST_WAKE (which was
+handled in the previous commit) is the one that lets the Bluetooth
+wake the system up.  The BT_DEV_WAKE (this patch) tells the Bluetooth
+that it's OK to go into a low power mode.  That means we were burning
+a bit of extra power in S3 without this patch.  Measurements are a bit
+noisy, but it appears to be a few mA worth of difference.
 
-> The invalid definition in the supply causes the Qualcomm's EVB-1000
-> and EVB-4000 not to boot.
-> 
-> Fix the boot issue by correctly defining the supply: vdd_s3 (namely
-> "vdd_apc") is actually connected to vph_pwr.
-> 
+NOTE: Though these pins don't do much on systems with Marvell
+Bluetooth, downstream kernels set it on all veyron boards so we'll do
+the same.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
 
-> Reported-by: Niklas Cassel <niklas.cassel@linaro.org>
-> Tested-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-> index b6092a742675..11c0a7137823 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-> @@ -65,7 +65,7 @@
->  };
->  
->  &pms405_spmi_regulators {
-> -	vdd_s3-supply = <&pms405_s3>;
-> +	vdd_s3-supply = <&vph_pwr>;
->  
->  	pms405_s3: s3 {
->  		regulator-always-on;
-> -- 
-> 2.21.0
-> 
+ .../boot/dts/rk3288-veyron-chromebook.dtsi    |  2 ++
+ arch/arm/boot/dts/rk3288-veyron.dtsi          | 20 +++++++++++++++++++
+ 2 files changed, 22 insertions(+)
+
+diff --git a/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi b/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi
+index 5727017f34b2..1cadb522fd0d 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi
+@@ -237,6 +237,7 @@
+ 
+ 		/* Wake only */
+ 		&suspend_l_wake
++		&bt_dev_wake_awake
+ 	>;
+ 	pinctrl-1 = <
+ 		/* Common for sleep and wake, but no owners */
+@@ -246,6 +247,7 @@
+ 
+ 		/* Sleep only */
+ 		&suspend_l_sleep
++		&bt_dev_wake_sleep
+ 	>;
+ 
+ 	backlight {
+diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
+index e2635ad574e7..53d2f2452868 100644
+--- a/arch/arm/boot/dts/rk3288-veyron.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
+@@ -485,12 +485,18 @@
+ 		&ddr0_retention
+ 		&ddrio_pwroff
+ 		&global_pwroff
++
++		/* Wake only */
++		&bt_dev_wake_awake
+ 	>;
+ 	pinctrl-1 = <
+ 		/* Common for sleep and wake, but no owners */
+ 		&ddr0_retention
+ 		&ddrio_pwroff
+ 		&global_pwroff
++
++		/* Sleep only */
++		&bt_dev_wake_sleep
+ 	>;
+ 
+ 	pcfg_pull_none_drv_8ma: pcfg-pull-none-drv-8ma {
+@@ -596,6 +602,20 @@
+ 		sdio0_clk: sdio0-clk {
+ 			rockchip,pins = <4 RK_PD1 1 &pcfg_pull_none_drv_8ma>;
+ 		};
++
++		/*
++		 * These pins are only present on very new veyron boards; on
++		 * older boards bt_dev_wake is simply always high.  Note that
++		 * gpio4_D2 is a NC on old veyron boards, so it doesn't hurt
++		 * to map this pin everywhere
++		 */
++		bt_dev_wake_sleep: bt-dev-wake-sleep {
++			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_output_low>;
++		};
++
++		bt_dev_wake_awake: bt-dev-wake-awake {
++			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_output_high>;
++		};
+ 	};
+ 
+ 	tpm {
+-- 
+2.22.0.410.gd8fdbe21b5-goog
+
