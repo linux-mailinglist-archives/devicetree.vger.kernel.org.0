@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E81834AFD2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 04:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6AD4AFED
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 04:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbfFSCDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 22:03:16 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:56540 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726037AbfFSCDQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 22:03:16 -0400
-Received: from localhost (unknown [8.46.76.24])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 8661B14D8457B;
-        Tue, 18 Jun 2019 19:02:58 -0700 (PDT)
-Date:   Tue, 18 Jun 2019 22:02:51 -0400 (EDT)
-Message-Id: <20190618.220251.295948387700018458.davem@davemloft.net>
-To:     yash.shah@sifive.com
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, palmer@sifive.com,
-        aou@eecs.berkeley.edu, paul.walmsley@sifive.com, ynezz@true.cz,
-        sachin.ghadi@sifive.com
-Subject: Re: [PATCH v3 0/2] Add macb support for SiFive FU540-C000
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <1560844568-4746-1-git-send-email-yash.shah@sifive.com>
-References: <1560844568-4746-1-git-send-email-yash.shah@sifive.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Tue, 18 Jun 2019 19:03:16 -0700 (PDT)
+        id S1726238AbfFSCUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 22:20:13 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:43298 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726181AbfFSCUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 22:20:12 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 292061A0518;
+        Wed, 19 Jun 2019 04:20:11 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8F6081A0506;
+        Wed, 19 Jun 2019 04:20:01 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 818DA402F0;
+        Wed, 19 Jun 2019 10:19:49 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
+        j.neuschaefer@gmx.net, u.kleine-koenig@pengutronix.de,
+        leoyang.li@nxp.com, aisheng.dong@nxp.com, l.stach@pengutronix.de,
+        vabhav.sharma@nxp.com, bhaskar.upadhaya@nxp.com, ping.bai@nxp.com,
+        pramod.kumar_1@nxp.com, leonard.crestez@nxp.com,
+        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V4 1/4] dt-bindings: arm: imx: Add the soc binding for i.MX8MN
+Date:   Wed, 19 Jun 2019 10:21:42 +0800
+Message-Id: <20190619022145.42398-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yash Shah <yash.shah@sifive.com>
-Date: Tue, 18 Jun 2019 13:26:06 +0530
+From: Anson Huang <Anson.Huang@nxp.com>
 
-> On FU540, the management IP block is tightly coupled with the Cadence
-> MACB IP block. It manages many of the boundary signals from the MACB IP
-> This patchset controls the tx_clk input signal to the MACB IP. It
-> switches between the local TX clock (125MHz) and PHY TX clocks. This
-> is necessary to toggle between 1Gb and 100/10Mb speeds.
-> 
-> Future patches may add support for monitoring or controlling other IP
-> boundary signals.
-> 
-> This patchset is mostly based on work done by
-> Wesley Terpstra <wesley@sifive.com>
-> 
-> This patchset is based on Linux v5.2-rc1 and tested on HiFive Unleashed
-> board with additional board related patches needed for testing can be
-> found at dev/yashs/ethernet_v3 branch of:
-> https://github.com/yashshah7/riscv-linux.git
-> 
-> Change History:
- ...
+This patch adds the soc & board binding for i.MX8MN.
 
-Series applied, thank you.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+No change.
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 407138e..b35abb1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -177,6 +177,12 @@ properties:
+               - fsl,imx8mm-evk            # i.MX8MM EVK Board
+           - const: fsl,imx8mm
+ 
++      - description: i.MX8MN based Boards
++        items:
++          - enum:
++              - fsl,imx8mn-ddr4-evk            # i.MX8MN DDR4 EVK Board
++          - const: fsl,imx8mn
++
+       - description: i.MX8QXP based Boards
+         items:
+           - enum:
+-- 
+2.7.4
+
