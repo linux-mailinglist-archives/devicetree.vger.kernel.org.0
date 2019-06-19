@@ -2,132 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D6624B3C8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 10:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D17B4B3CC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 10:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731143AbfFSIQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 04:16:36 -0400
-Received: from shell.v3.sk ([90.176.6.54]:46808 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731064AbfFSIQf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 04:16:35 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 4D0BACA051;
-        Wed, 19 Jun 2019 10:16:32 +0200 (CEST)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 6FoiRkUxAFLs; Wed, 19 Jun 2019 10:16:27 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id AB0BBCA044;
-        Wed, 19 Jun 2019 10:16:26 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id VuwPrubCZcNl; Wed, 19 Jun 2019 10:16:25 +0200 (CEST)
-Received: from belphegor (nat-pool-brq-t.redhat.com [213.175.37.10])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id C4553CA01B;
-        Wed, 19 Jun 2019 10:16:24 +0200 (CEST)
-Message-ID: <f70270d3d67b276bcde7caa6891d655c78ad128f.camel@v3.sk>
-Subject: Re: [PATCH v5 02/10] [media] marvell-ccic: fix DMA s/g desc number
- calculation
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-media@vger.kernel.org,
+        id S1731245AbfFSIQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 04:16:49 -0400
+Received: from mail-eopbgr1410113.outbound.protection.outlook.com ([40.107.141.113]:30537
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731064AbfFSIQs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 04:16:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=85vsaUX0fABWpRB1uYMR3oB43Lmi5SxraSqZBgitBi8=;
+ b=CV8cLGferXkSIkLnQmxXgR4TGLVQl3BnnMMYBYJhFX5unWYsHCMkJ4UrPxMIwkcHJbbkpAhuoYMCyehYn4shEAocUf1N4U2jSEMVBIVO5keNpbvrvKmF/k7pS0PkDJlmp4ygrp/KF1ilVn6hyHYI4wToKIE1dOp+d07CUNBRj5o=
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
+ TY1PR01MB1596.jpnprd01.prod.outlook.com (52.133.162.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.12; Wed, 19 Jun 2019 08:16:43 +0000
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
+ 08:16:43 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Simon Horman <horms@verge.net.au>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        James Cameron <quozl@laptop.org>, Pavel Machek <pavel@ucw.cz>,
-        Libin Yang <lbyang@marvell.com>,
-        Albert Wang <twang13@marvell.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>
-Date:   Wed, 19 Jun 2019 10:16:23 +0200
-In-Reply-To: <20190614094128.miryq2wfzoewjoyn@uno.localdomain>
-References: <20190505140031.9636-1-lkundrak@v3.sk>
-         <20190505140031.9636-3-lkundrak@v3.sk>
-         <20190614094128.miryq2wfzoewjoyn@uno.localdomain>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>
+Subject: RE: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+Thread-Topic: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+Thread-Index: AQHVIrOD4fCNYWErgUiYJbbykExq36ahinuAgAAEL9CAAQ6hgIAACwaA
+Date:   Wed, 19 Jun 2019 08:16:43 +0000
+Message-ID: <TY1PR01MB1770F9972F006B57917A0731C0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+References: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <CAMuHMdU8oag+1oNa_jS=v99W05=8SRLhdoZdCusmeVf1VZbarQ@mail.gmail.com>
+ <TY1PR01MB17707C3C979FB60611FB34A7C0EA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+ <CAMuHMdVb+sc0vdvbsAE0fkEY6wFS7KsbtqLmtB03ghVeuiHe1w@mail.gmail.com>
+In-Reply-To: <CAMuHMdVb+sc0vdvbsAE0fkEY6wFS7KsbtqLmtB03ghVeuiHe1w@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7e7f4117-fc39-4bb6-54d0-08d6f48e76e4
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1596;
+x-ms-traffictypediagnostic: TY1PR01MB1596:
+x-microsoft-antispam-prvs: <TY1PR01MB159621C7F131FA586C67FEDDC0E50@TY1PR01MB1596.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0073BFEF03
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(346002)(366004)(136003)(376002)(396003)(189003)(199004)(37524003)(76176011)(26005)(66946007)(66446008)(66556008)(186003)(6116002)(66066001)(44832011)(66476007)(4326008)(3846002)(305945005)(7736002)(2906002)(76116006)(64756008)(25786009)(73956011)(446003)(53936002)(486006)(74316002)(6246003)(476003)(316002)(11346002)(33656002)(86362001)(71200400001)(110136005)(54906003)(53546011)(6506007)(55016002)(478600001)(229853002)(71190400001)(6436002)(102836004)(9686003)(14454004)(256004)(7696005)(99286004)(68736007)(81156014)(81166006)(8936002)(8676002)(52536014)(5660300002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1596;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: uIdNjBuISLSlPUEBatQg8pMJhCEkPPXV1JNWFam0Fgnmeg2rCJBFiV1lOP+lN+b1yszYzH2eqFeAO+Ri6EajEuuHwUx/EoFgjWOo6qh8hXfEHAg92W/K5vj6hX54AdN8o1xgkCBGWmwt5o+ZM+i0Nf0jJ821IuETBEFb+/12yyyABP5Zz0zJH9cQkdBhO63rDgv8rqY/+gEWJkPSFh/FP9bEv8AQ4/FMjH7WE2E1jWloDNbeUymFWvaFTpEtqn+Mi0JasPdoI/wKpY4DjedYzWolKs5/uIPwS6wz4buqdMc5GYvIB8aYapiUYN2vT7HO07vuVFpIHBajTSmmNf8dGHI3j1xb+m4OGGEVFH5QvEJUKpYQ7sk34MIW4kGhdw8lG+i8MfUGXX31TnexttCa3IT04Ws4SU4SaFb/d5QfqDI=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e7f4117-fc39-4bb6-54d0-08d6f48e76e4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 08:16:43.0556
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1596
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-06-14 at 11:41 +0200, Jacopo Mondi wrote:
-> Hi Lubomir,
-> 
-> On Sun, May 05, 2019 at 04:00:23PM +0200, Lubomir Rintel wrote:
-> > The commit d790b7eda953 ("[media] vb2-dma-sg: move dma_(un)map_sg here")
-> > left dma_desc_nent unset. It previously contained the number of DMA
-> > descriptors as returned from dma_map_sg().
-> > 
-> > We can now (since the commit referred to above) obtain the same value from
-> > the sg_table and drop dma_desc_nent altogether.
-> > 
-> > Tested on OLPC XO-1.75 machine. Doesn't affect the OLPC XO-1's Cafe
-> > driver, since that one doesn't do DMA.
-> > 
-> > Fixes: d790b7eda953df474f470169ebdf111c02fa7a2d
-> 
-> Could you use the proper 'fixes' format here?
-> Fixes: d790b7eda953 ("[media] vb2-dma-sg: move dma_(un)map_sg here")
-> 
-> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > ---
-> >  drivers/media/platform/marvell-ccic/mcam-core.c | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/media/platform/marvell-ccic/mcam-core.c b/drivers/media/platform/marvell-ccic/mcam-core.c
-> > index f1b301810260a..d97f39bde9bd6 100644
-> > --- a/drivers/media/platform/marvell-ccic/mcam-core.c
-> > +++ b/drivers/media/platform/marvell-ccic/mcam-core.c
-> > @@ -200,7 +200,6 @@ struct mcam_vb_buffer {
-> >  	struct list_head queue;
-> >  	struct mcam_dma_desc *dma_desc;	/* Descriptor virtual address */
-> >  	dma_addr_t dma_desc_pa;		/* Descriptor physical address */
-> > -	int dma_desc_nent;		/* Number of mapped descriptors */
-> >  };
-> > 
-> >  static inline struct mcam_vb_buffer *vb_to_mvb(struct vb2_v4l2_buffer *vb)
-> > @@ -608,9 +607,11 @@ static void mcam_dma_contig_done(struct mcam_camera *cam, int frame)
-> >  static void mcam_sg_next_buffer(struct mcam_camera *cam)
-> >  {
-> >  	struct mcam_vb_buffer *buf;
-> > +	struct sg_table *sg_table;
-> > 
-> >  	buf = list_first_entry(&cam->buffers, struct mcam_vb_buffer, queue);
-> >  	list_del_init(&buf->queue);
-> > +	sg_table = vb2_dma_sg_plane_desc(&buf->vb_buf.vb2_buf, 0);
-> >  	/*
-> >  	 * Very Bad Not Good Things happen if you don't clear
-> >  	 * C1_DESC_ENA before making any descriptor changes.
-> > @@ -618,7 +619,7 @@ static void mcam_sg_next_buffer(struct mcam_camera *cam)
-> >  	mcam_reg_clear_bit(cam, REG_CTRL1, C1_DESC_ENA);
-> >  	mcam_reg_write(cam, REG_DMA_DESC_Y, buf->dma_desc_pa);
-> >  	mcam_reg_write(cam, REG_DESC_LEN_Y,
-> > -			buf->dma_desc_nent*sizeof(struct mcam_dma_desc));
-> > +			sg_table->nents*sizeof(struct mcam_dma_desc));
-> 
-> Space betwen operators (it was there already, I know).
-> 
-> Apart for that, patch seems fine to me:
-> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-
-This has been already applied to media_tree.git, with the Fixes: tag
-corrected by Mauro Chehab.
-
-I suppose I can't make changes anymore and the space-between-operators
-things is not worth fixing up in a separate commit?
-
-> Thanks
->    j
-> >  	mcam_reg_write(cam, REG_DESC_LEN_U, 0);
-> >  	mcam_reg_write(cam, REG_DESC_LEN_V, 0);
-> >  	mcam_reg_set_bit(cam, REG_CTRL1, C1_DESC_ENA);
-> > 
-
-Thank you
-Lubo
-
+SGVsbG8gR2VlcnQsDQoNClRoYW5rIHlvdSBmb3IgeW91ciBmZWVkYmFjaw0KDQo+IEZyb206IGxp
+bnV4LXJlbmVzYXMtc29jLW93bmVyQHZnZXIua2VybmVsLm9yZyA8bGludXgtcmVuZXNhcy1zb2Mt
+b3duZXJAdmdlci5rZXJuZWwub3JnPiBPbiBCZWhhbGYgT2YgR2VlcnQgVXl0dGVyaG9ldmVuDQo+
+IFNlbnQ6IDE5IEp1bmUgMjAxOSAwODozNA0KPiBTdWJqZWN0OiBSZTogW1BBVENIXSBhcm02NDog
+ZHRzOiByZW5lc2FzOiBoaWhvcGUtY29tbW9uOiBBZGQgTEVEcyBzdXBwb3J0DQo+IA0KPiBIaSBG
+YWJyaXppbywNCj4gDQo+IE9uIFR1ZSwgSnVuIDE4LCAyMDE5IGF0IDU6NTYgUE0gRmFicml6aW8g
+Q2FzdHJvDQo+IDxmYWJyaXppby5jYXN0cm9AYnAucmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+ID4g
+RnJvbTogbGludXgtcmVuZXNhcy1zb2Mtb3duZXJAdmdlci5rZXJuZWwub3JnIDxsaW51eC1yZW5l
+c2FzLXNvYy1vd25lckB2Z2VyLmtlcm5lbC5vcmc+IE9uIEJlaGFsZiBPZiBHZWVydCBVeXR0ZXJo
+b2V2ZW4NCj4gPiA+IFNlbnQ6IDE4IEp1bmUgMjAxOSAxNjoxMA0KPiA+ID4gU3ViamVjdDogUmU6
+IFtQQVRDSF0gYXJtNjQ6IGR0czogcmVuZXNhczogaGlob3BlLWNvbW1vbjogQWRkIExFRHMgc3Vw
+cG9ydA0KPiA+ID4NCj4gPiA+IE9uIEZyaSwgSnVuIDE0LCAyMDE5IGF0IDM6MTcgUE0gRmFicml6
+aW8gQ2FzdHJvDQo+ID4gPiA8ZmFicml6aW8uY2FzdHJvQGJwLnJlbmVzYXMuY29tPiB3cm90ZToN
+Cj4gPiA+ID4gVGhpcyBwYXRjaCBhZGRzIExFRHMgc3VwcG9ydCB0byB0aGUgSGlIb3BlIFJaL0cy
+W01OXSBNYWluIEJvYXJkDQo+ID4gPiA+IGNvbW1vbiBkZXZpY2UgdHJlZS4NCj4gPiA+ID4NCj4g
+PiA+ID4gU2lnbmVkLW9mZi1ieTogRmFicml6aW8gQ2FzdHJvIDxmYWJyaXppby5jYXN0cm9AYnAu
+cmVuZXNhcy5jb20+DQo+ID4gPg0KPiA+ID4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiA+ID4N
+Cj4gPiA+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2FzL2hpaG9wZS1jb21tb24u
+ZHRzaQ0KPiA+ID4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvaGlob3BlLWNv
+bW1vbi5kdHNpDQo+ID4gPiA+IEBAIC0xNyw2ICsxNywzMCBAQA0KPiA+ID4gPiAgICAgICAgICAg
+ICAgICAgc3Rkb3V0LXBhdGggPSAic2VyaWFsMDoxMTUyMDBuOCI7DQo+ID4gPiA+ICAgICAgICAg
+fTsNCj4gPiA+ID4NCj4gPiA+ID4gKyAgICAgICBsZWRzIHsNCj4gPiA+ID4gKyAgICAgICAgICAg
+ICAgIGNvbXBhdGlibGUgPSAiZ3Bpby1sZWRzIjsNCj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAg
+ICAgICAgICAgbGVkMCB7DQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGdwaW9zID0g
+PCZncGlvNiAxMSBHUElPX0FDVElWRV9ISUdIPjsNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgbGFiZWwgPSAiTEVEMCI7DQo+ID4gPg0KPiA+ID4gVGhlcmUncyBubyBuZWVkIGZvciBh
+IGxhYmVsIHByb3BlcnR5LCBpZiBpdCBtYXRjaGVzIHRoZSBub2RlIG5hbWUNCj4gPiA+IChhcHBs
+aWVzIHRvIGFsbCBmb3VyIExFRHMpLg0KPiA+DQo+ID4gSSBjb3VsZCBoYXZlIHVzZWQgdGhlIGFj
+dHVhbCBuYW1lcyBvbiB0aGUgc2NoZW1hdGljLCBidXQgdGhlbiBJIHJlYWxpc2VkIHRoYXQNCj4g
+PiB3b3VsZCBub3QgaGF2ZSBiZWVuIHRvbyBoZWxwZnVsIGR1ZSB0byB0aGUgY29ycmVzcG9uZGlu
+ZyBzd2l0Y2ggbmFtZXM6DQo+ID4gTEVEMCAtIEdQNl8xMSAtIFNXMjIwMiAtIExFRDIyMDENCj4g
+PiBMRUQxIC0gR1A2XzEyIC0gU1cyMjAxIC0gTEVEMjIwMg0KPiA+IExFRDIgLSBHUDZfMTMgLSBT
+VzIyMDMgLSBMRUQyMjAzDQo+ID4gTEVEMyAtIEdQMF8wMCAtIE4vQSAtIExFRDI0MDINCj4gPiBU
+aGUgZmlyc3QgMyBMRURzIGFyZSBmb3VuZCBuZXh0IHRvIHRoZSBtaWNybyBVU0IgY29ubmVjdG9y
+IGZvciB0aGUgZGVidWcgY29uc29sZSwNCj4gPiB0aGUgZm9ydGggTEVEIGlzIGZvdW5kIG5leHQg
+dG8gdGhlIFdpRmkgYW5kIEJUIExFRHMuDQo+ID4NCj4gPiBJIHRob3VnaHQgdGhhdCB1c2luZyAi
+TEVEbiIgYXMgbGFiZWxzIHdvdWxkIHB1dCBhIHJlbWFyayBvbiB0aGUNCj4gPiAiZGVzaXJlZCBv
+cmRlcmluZyIgb2YgdGhlIExFRHMgKGV2ZW4gdGhvdWdoIHRoZXJlIGlzIG5vIGFjdHVhbA0KPiA+
+IHJlcXVpcmVtZW50IGZvciB0aGF0KSwgYnV0IGFzIHlvdSBwb2ludGVkIG91dCBpdCdzIHByb2Jh
+Ymx5IGEgYml0DQo+ID4gY29uZnVzaW5nPyBEbyB5b3UgdGhpbmsgSSBzaG91bGQgdGFrZSB0aGUg
+bGFiZWwgb3V0Pw0KPiANCj4gSWYgdGhlIExFRHMgZG9uJ3QgaGF2ZSBuaWNlIGxhYmVscyBvbiB0
+aGUgUENCLCBJIHdvdWxkIGRyb3AgdGhlIGxhYmVsDQo+IHByb3BlcnRpZXMuDQoNCldpbGwgZG8u
+IFNpbW9uLCBkbyB5b3Ugd2FudCBtZSB0byBzZW5kIGFuIGluY3JlbWVudGFsIHBhdGNoIGZvciB0
+aGlzICh0aGlzIHBhdGNoDQppcyBvbiBkZXZlbCBicmFuY2ggYWxyZWFkeSkgb3Igd291bGQgeW91
+IHJhdGhlciBJIHNlbnQgYSB2Mj8NCg0KVGhhbmtzLA0KRmFiDQoNCj4gDQo+ID4gPiBOb3RlIHRo
+YXQgdGhpcyBHUElPIGlzIHNoYXJlZCB3aXRoIGEgc3dpdGNoLCBsaWtlIG9uIFNhbHZhdG9yLVgo
+UykgYW5kDQo+ID4gPiBVTENCLiAgQXMgY3VycmVudGx5IExpbnV4IGNhbm5vdCBoYW5kbGUgYm90
+aCwgZGVzY3JpYmluZyB0aGUgTEVEDQo+ID4gPiBwcmVjbHVkZXMgYWRkaW5nIHRoZSBzd2l0Y2gg
+bGF0ZXIuDQo+ID4gPiAoYXBwbGllcyB0byB0aGUgZmlyc3QgMyBMRURzKS4NCj4gPg0KPiA+IFRo
+YW5rIHlvdSBmb3IgcG9pbnRpbmcgdGhpcyBvdXQuIFRoYXQncyBkZXNpcmVkIGJlaGF2aW91ciBp
+biB0aGlzIGNhc2UuDQo+IA0KPiBPSy4NCj4gDQo+ID4gPiA+ICsgICAgICAgICAgICAgICBsZWQz
+IHsNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgZ3Bpb3MgPSA8JmdwaW8wICAwIEdQ
+SU9fQUNUSVZFX0hJR0g+Ow0KPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBsYWJlbCA9
+ICJMRUQzIjsNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIH07DQo+ID4gPg0KPiA+ID4gSSBjYW5u
+b3QgZmluZCBMRUQzLiBBY2NvcmRpbmcgdG8gdGhlIHNjaGVtYXRpY3MgR1AwXzAgPT0gQ1MwbiBp
+cyB1c2VkDQo+ID4gPiBhcyB0aGUgY2hpcHNlbGVjdCBmb3IgdGhlIExWRFMgc3dpdGNoPw0KPiA+
+DQo+ID4gTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IENTMG4gaXMgb24gR1AxXzIwLCBjb3VsZCB5
+b3UgcGxlYXNlIGRvdWJsZQ0KPiA+IGNoZWNrPw0KPiA+IChwaW4gbmFtZTogQUo0KSBHUDBfMDAg
+PT0gRDAgPT0gRXhEMCBvbiB0aGUgc2NoZW1hdGljIEkgaGF2ZSwgSSB0aG91Z2h0DQo+ID4geW91
+IG1heSBoYXZlIGJlZW4gbG9va2luZyBhdCBhbiBvbGRlciB2ZXJzaW9uIG9mIHRoZSBzY2hlbWF0
+aWMsIGJ1dCBhZnRlcg0KPiA+IGdvaW5nIHRocm91Z2ggdGhlIGhpc3RvcnkgaXQgc2VlbXMgbGlr
+ZSB0aGF0IGxpbmUgaGFzIGFsd2F5cyBiZWVuIHRoZXJlLg0KPiANCj4gU29ycnksIG15IG1pc3Rh
+a2UuICBBcyB0aGVyZSBpcyBubyBHUDBfMCBpbiB0aGUgc2NoZW1hdGljLCBJIGxvb2tlZCB1cA0K
+PiB0aGUgcGluIG51bWJlciBpbiB0aGUgZG9jcywgYnV0IGVuZGVkIHVwIHVzaW5nIHRoZSBSLUNh
+ciBNMy1XIFNpUCBwaW4NCj4gbnVtYmVyLCBpbnN0ZWFkIG9mIHRoZSBSWi9HMk0gRkNCR0EgU29D
+IHBpbiBudW1iZXIgOi0oDQo+IA0KPiBHcntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAg
+ICAgICAgICAgICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0g
+VGhlcmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3Jn
+DQo+IA0KPiBJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwg
+SSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5h
+bGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdC4NCj4g
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcw0K
