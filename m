@@ -2,79 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5C6D4BA21
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C34934B9B7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:21:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729655AbfFSNjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 09:39:04 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:33499 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727040AbfFSNjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 09:39:04 -0400
-Received: by mail-lf1-f65.google.com with SMTP id y17so12186446lfe.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 06:39:02 -0700 (PDT)
+        id S1729627AbfFSNVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 09:21:19 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:36500 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726330AbfFSNVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 09:21:19 -0400
+Received: by mail-lj1-f193.google.com with SMTP id i21so3254887ljj.3;
+        Wed, 19 Jun 2019 06:21:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=QKggU93Ov3OGvJTHnvBvpp3+c/GovGceSumOJbG5Kag=;
-        b=g90t1pfGMsBwZkO7WMEchWQcZ+/SFokkE8pEWUuLCb4C3gYFVxXCamqCaOHb0oU86f
-         hKn1mrowaUHFrQhDAjQgFXxbg41JHSzq1WOEiWnerS2ucghntb6bKh1mc/92iTFACbbV
-         ir2tYsqSxKSCptkKdrbEiwPCf9vRVMh1WzcZoJzreE9lvPIWSArEMNbxvXH55EY0eHMJ
-         VCWVsBapJ5f1S4WGzeGFZvGIZYVs77NHAMs9895hD1WvrARdnQgxMzX8XwB7QkNTXyNw
-         TOcsiylUCckRO1mfm2IvdhpoopFTotV8sg8FNECsAi3P4PrzuPz1rGptQlH9L7wHUg96
-         QsHg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=g18058N/C2pjcBGgjgbat4LbXOhva175NVhezQY00XQ=;
+        b=tjPmzkP70fAsA26NOsSJclg4L+TUZI/ysTww8TpmgX4bSxFk0ASk0tUeVxZuNORPdX
+         CaTllXz7jbARzX1I+8qPEuPUZEOsjB+KDB3Jb+fLCml0fPsBUa/FuOxzBwydfY2JK1Kp
+         r0PZhb5pEycAT29k5T34UFbUu18o+yFJN9b4J52B+vPAdP0nKwcLyrjY7GjDMTFsycmT
+         N9GdVXdkfxSFregeODQs8CG4BXAH6S4P610UDPJvTkt+UbskAb69T4eA/Df8KacxurAF
+         dDgMS2W8C2xv7HdoziJtd0uFWbPc1TJnRsgByjPlGasOqZiTdNTyIhJ51E1YWvH8+B2z
+         TEbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QKggU93Ov3OGvJTHnvBvpp3+c/GovGceSumOJbG5Kag=;
-        b=r342Wa/W80wwQuT2qTE+ECvYRGHpqFSn2AChfkTL7BLoRRkK8g8rxC164iKvOef32O
-         2X+7uuXsFYpH+TWdQhkfghwcWjomEBZsAf9wdRAD9INeHFumqgfybfGAtTgTVtzw6x/j
-         T8IrWgO0lr9MOKUmTpThGplwbyWh/cQUzfcPo/LtE8aiWCfjbiXNMTYs4ZDMvDEl/l/N
-         VwiBrGfu1RsMUfORiC1nAS99L5bmUgIz16MpTOVa3XKzna72Yya/iSgCBGzBv0LaN7r/
-         2fZml6Ti0gUzrqOIdHlzXRC5ZrShtxpDlULZVEGfJpaKVyETvQYepp2rEVJ/ytAyOV7G
-         ctJA==
-X-Gm-Message-State: APjAAAV5wQUfJwUJvzWD+uZbyBP5r1ROq2DO185zVjOQmNB1lmwEzyCJ
-        F8UTL5nfl4D1v7Z2kX+R+rx0jMmOldyWPw==
-X-Google-Smtp-Source: APXvYqzy1/85AoVZe5aXzHxGKPGMI3YKh1i1xTNcGjAlPkxkPNjoWmNiF/UkKqbk9mR2Jw4m3oq8iA==
-X-Received: by 2002:a19:9156:: with SMTP id y22mr16577964lfj.43.1560951542029;
-        Wed, 19 Jun 2019 06:39:02 -0700 (PDT)
-Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
-        by smtp.gmail.com with ESMTPSA id c15sm3082664lja.79.2019.06.19.06.39.00
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 19 Jun 2019 06:39:00 -0700 (PDT)
-Date:   Wed, 19 Jun 2019 06:16:59 -0700
-From:   Olof Johansson <olof@lixom.net>
-To:     Baolin Wang <baolin.wang@linaro.org>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, arnd@arndb.de, vincent.guittot@linaro.org,
-        arm@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] arm64: dts: sprd: Add Spreadtrum SD host
- controller support
-Message-ID: <20190619131659.vjw5kgepe6pz5inz@localhost>
-References: <cover.1559635435.git.baolin.wang@linaro.org>
- <3ca273e341f2f5f66b121d411428c60afd412586.1559635435.git.baolin.wang@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=g18058N/C2pjcBGgjgbat4LbXOhva175NVhezQY00XQ=;
+        b=jkoV5sI/8R/qokOYvkk/VM0KcoqRvgS8fFW2OfJEdVWeeeM3xRtgaKugCwqXkcOKX3
+         oLCz/csOZFw5XirBopbdeOz8MIbIX/xI7osv1BYsjbDpQqK6E2uctcKZjhQqS+5uh2wF
+         aN3Vp267d4SJOrHF4mF5d4TJLqeTh7vIGXQecoFPaS5bx18y/vPryhE7iq47vY2cR0ln
+         PZD2vbLoCjWxDMTHw4JDLSxVYg5ZZzEEoxU9uGBkOJ+pbNad/IkIF2SvQl5qLqT0HB28
+         HJNiGRxETSetMye2UxijsYEDio2nURPB8VAJX/ITJoX2bEegCP1VjNJzA4c+yooIgjb5
+         PIqA==
+X-Gm-Message-State: APjAAAXYYBtZMBoddQj3Ue+tbit5NCdiQO/vU47uK/Gia61j+FVOiSbU
+        /GJKMJijxjADC6i75ehEAndksUEwQKU+cZj+BF8=
+X-Google-Smtp-Source: APXvYqyAMgmk6ys/VsOTesM/6z0KH2z75G1WFcyJbVadMJ+QdScEq8u41WtyiImcwlE2f5Aw7kaHsoWTLJ1vAaQzsSs=
+X-Received: by 2002:a2e:2c07:: with SMTP id s7mr26636418ljs.44.1560950476875;
+ Wed, 19 Jun 2019 06:21:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3ca273e341f2f5f66b121d411428c60afd412586.1559635435.git.baolin.wang@linaro.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <1560864646-1468-1-git-send-email-robert.chiras@nxp.com> <1560864646-1468-2-git-send-email-robert.chiras@nxp.com>
+In-Reply-To: <1560864646-1468-2-git-send-email-robert.chiras@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 19 Jun 2019 10:21:29 -0300
+Message-ID: <CAOMZO5DwwL5+V4Eifskk=pKzpceRmk5bvdXNeCzZfU3jVwEhEA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add support for
+ Raydium RM67191 panel
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 04:14:29PM +0800, Baolin Wang wrote:
-> Add one Spreadtrum SD host controller to support eMMC card for Spreadtrum
-> SC9860 platform.
-> 
-> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+Hi Robert,
 
-Applied, thanks!
+On Tue, Jun 18, 2019 at 10:33 AM Robert Chiras <robert.chiras@nxp.com> wrote:
 
+> +Optional properties:
+> +- reset-gpios:         a GPIO spec for the RST_B GPIO pin
+> +- pinctrl-0            phandle to the pin settings for the reset pin
+> +- width-mm:            physical panel width [mm]
+> +- height-mm:           physical panel height [mm]
+> +- display-timings:     timings for the connected panel according to [1]
 
--Olof
+Still not convinced we need the 'display-timings' property, even as an
+optional property. My understanding is that passing display timings in
+the devicetree is not encouraged.
+
+Last time you said you need to pass ''display-timings' to workaround
+the problem of connecting this panel to mx8m DCSS or eLCDIF.
+
+The panel timings come from the LCD manufacturer and it is agnostic to
+what display controller interface it is connected to.
+
+So I suggest making sure the timings passed in the driver are correct
+as per the vendor datasheet. If they are correct and one specific
+interface is not able to drive it, then probably it is a bug in this
+specific display controller interface or in the SoC clock driver.
