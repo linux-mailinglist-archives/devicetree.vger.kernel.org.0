@@ -2,179 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6E104B086
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 05:56:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7134B164
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 07:29:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729050AbfFSD43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 23:56:29 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:14842 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728195AbfFSD43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 23:56:29 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d09b26a0000>; Tue, 18 Jun 2019 20:56:26 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 18 Jun 2019 20:56:26 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 18 Jun 2019 20:56:26 -0700
-Received: from [10.24.192.29] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun
- 2019 03:56:23 +0000
-Subject: Re: [PATCH V6 20/27] PCI: tegra: Disable MSI for Tegra PCIe root port
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
-        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190618180206.4908-21-mmaddireddy@nvidia.com>
- <20190618194830.GA110859@google.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <e06f85eb-be0c-c2a5-84a9-51aa9b8372c3@nvidia.com>
-Date:   Wed, 19 Jun 2019 09:25:54 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1730519AbfFSF3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 01:29:04 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:40092 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726142AbfFSF3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 01:29:03 -0400
+Received: by mail-lj1-f193.google.com with SMTP id a21so1914643ljh.7
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 22:29:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mobiveil.co.in; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uCUAPV+QexPTMtFpELNiq1RlIWLicRq4oH7TLWUppok=;
+        b=06W/Y3cSZGK9qGdIkrRKae6GS83CtZgvcpLyiEYX/CH8oiz2QMNEnRHq9tkOe8Vhlv
+         AaYmyZRoz+2JGbAkSTfAL+lYDZe+EKPXLD87Ug+rDiga9JVBb1lAfYm/OHzqIe7QQ4sg
+         GNFRhx6EP/7BdHkzpUDQfWkORZMvcOicpDZ60=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uCUAPV+QexPTMtFpELNiq1RlIWLicRq4oH7TLWUppok=;
+        b=lI56GwmQ7lVAo36jfNpGs9mQmLnSB5xMs8WOZcEYGu6cONpFr9w4fmTrx5p6CStZ2Z
+         /8uz3v3AuZwjIayCw8FPqoSJan6nz3zrmUsZ5Wmq6E+7ljagSZhcw/97AIkvUToH3/QB
+         MP/3T9XnZ+XvmzgvMt27dDSwxcZI9em+T0Gv6VRdlB5jptJNLg7VTNuV5m/5svv94koa
+         XPH14E9M7h6hTikn6K2Ka6SuoqIUHUNN7djG+E1KkN6177I9IDz7edAvEDVSpQ9eYDYP
+         S8U9+f2Ku6lW0jLXx7aVwtbidUW3UOiOBdwifCyeku3yhpydmUwGah8HHa1rl1b0Ligu
+         l8Dw==
+X-Gm-Message-State: APjAAAUPTDLcLACkPsqZbVixCqzTtZv/+md7ETBRqCMqBl1a8cojX5c1
+        wPEVHpS/3Fb8KLO1RyfFDSxBFXowp6uY+sRUwzZwztylOfs32xmBz2kYQGkNfSqjACaJI3CCq9z
+        v7tYa1qbbX9aNOW7FzSpEHQTOBxmjOwA=
+X-Google-Smtp-Source: APXvYqzKCWyYVYljVoUu5JGomTGSMvq1652NRLfxnluH9rE+ab0jIubi+Ogd2Mw26Jaq0Y4Uxj/yFkRHTtCXrWX8zDQ=
+X-Received: by 2002:a2e:9bc6:: with SMTP id w6mr22630705ljj.156.1560922141583;
+ Tue, 18 Jun 2019 22:29:01 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190618194830.GA110859@google.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560916586; bh=4JstVY89KTv+Xb8i7slBmq/+fO6Mvwf3ij94+ExbInI=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=Bmvrxy4T7vbdnMZSgVZC9KVFU7iUyru5X4Uf4a33CZY42bCc6WQm4WzKkDEiPPdVT
-         7WMb8tavi7AkvANKRzJLnNAhuNelJrjWQbYArMS/9y32nmIdokw89cLsnNYqJCEcel
-         56s4oxttrVFYuXEYCYwXRRQ3WO0j2mn6abh5F+GkjGXWrHCudL8mT9vkwGbRmcRPxv
-         zTHAOOEDsY7KYYedOLBTewXGLXR+fKKepa8PGYpoI/0IUtIpJswg+p1QEfmcrmqaai
-         hA4vH7akZ7I2FM26FDOBQ+QJYwbs86Mm77oIWuxiyGdiSi7GXAG50qNZDgiuKhD3Dp
-         3XULOPXsIywFA==
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com> <20190412083635.33626-11-Zhiqiang.Hou@nxp.com>
+ <20190612150819.GD15747@redmoon> <CAKnKUHFMH6=ox=qdaUR1kNEhETDCVyu3jQZEj+taEbbMRBRuYA@mail.gmail.com>
+ <20190614104351.GA29955@e121166-lin.cambridge.arm.com>
+In-Reply-To: <20190614104351.GA29955@e121166-lin.cambridge.arm.com>
+From:   Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
+Date:   Wed, 19 Jun 2019 10:58:49 +0530
+Message-ID: <CAKnKUHHTAsjMoMkqaWq5z6r30JUGCpxSaYwyp8AuE3H5R0vBig@mail.gmail.com>
+Subject: Re: [PATCHv5 10/20] PCI: mobiveil: Fix the INTx process errors
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 19-Jun-19 1:18 AM, Bjorn Helgaas wrote:
-> On Tue, Jun 18, 2019 at 11:31:59PM +0530, Manikanta Maddireddy wrote:
->> Tegra PCIe generates PME and AER events over legacy interrupt line. Disable
->> MSI to avoid service drivers registering interrupt routine over MSI IRQ
->> line.
->>
->> PME and AER interrupts registered to MSI without this change,
->> cat /proc/interrupts | grep -i pci
->> 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
->> 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
->> 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
->>
->> PME and AER interrupts registered to legacy IRQ with this change,
->> cat /proc/interrupts | grep -i pci
->> 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
->> 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
->>
->> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
->> ---
->> V6: Replaced pcie_pme_disable_msi() with no_msi quirk
->>
->> V5: No change
->>
->> V4: No change
->>
->> V3: Corrected typo in commit log
->>
->> V2: No change
->>
->>  drivers/pci/quirks.c | 39 +++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 39 insertions(+)
->>
->> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
->> index a59ad09ce911..20dcad421991 100644
->> --- a/drivers/pci/quirks.c
->> +++ b/drivers/pci/quirks.c
->> @@ -2576,6 +2576,45 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA,
->>  			PCI_DEVICE_ID_NVIDIA_NVENET_15,
->>  			nvenet_msi_disable);
->>  
->> +/*
->> + * Tegra PCIe generates PME and AER events over legacy interrupt line.
->> + * So disable msi for Tegra PCIe root ports.
-> s/msi/MSI/
+On Fri, Jun 14, 2019 at 4:14 PM Lorenzo Pieralisi
+<lorenzo.pieralisi@arm.com> wrote:
 >
-> What's going on here?  Vidya posted a very similar patch [1] (although
-
-This series is focused on Tegra20, Tegra30, Tegra124, Tegra210 and Tegra186,
-whereas Vidya's series is focused only on Tegra194. So I didn't include
-Tegra194 device IDs.
-
-> his included nice spec citations, which you omitted), but his added
-> quirks for 0x1ad0, 0x1ad1, and 0x1ad2.  You didn't include any of
-> those here.
+> On Fri, Jun 14, 2019 at 12:38:51PM +0530, Karthikeyan Mitran wrote:
+> > Hi Lorenzo and Hou Zhiqiang
+> >  PAB_INTP_AMBA_MISC_STAT does have other status in the higher bits, it
+> > should have been masked before checking for the status
 >
-> Maybe Lorenzo will sort this all out, but it would make things easier
-> if you and Vidya got together and integrated your patches yourselves
-> so Lorenzo didn't have to worry about it.
+> You are the maintainer for this driver, so if there is something to be
+> changed you must post a patch to that extent, I do not understand what
+> the above means, write the code to fix it, I won't do it.
 >
-> [1] https://lore.kernel.org/lkml/20190612095339.20118-3-vidyas@nvidia.com
-
-I talked with Vidya, he will take this changes in his series if he needs
-to publish another version, or else he will publish a new patch to add
-quirk for legacy Tegra SOCs.
-
-Lorenzo,
-If this series is ready for integration, please drop this patch.
-
-Manikanta
+> I am getting a bit annoyed with this Mobiveil driver so either you guys
+> sort this out or I will have to remove it from the kernel.
+>
+> > Acked-by: Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
+>
+> Ok I assume this means you tested it but according to what you
+> say above, are there still issues with this code path ? Should
+> we update the patch ?
+Tested-by: Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
+This patch fixes the INTx status extraction and handling,
+I don't see any need to update this patch.
+>
+> Moreover:
+>
+> https://kernelnewbies.org/PatchCulture
+>
+> Please read it and never top-post.
+Thank you very much, for the information.
 
 >
->> + */
->> +static void pci_quirk_nvidia_tegra_disable_rp_msi(struct pci_dev *dev)
->> +{
->> +	dev->no_msi = 1;
->> +}
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf0,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf1,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1c,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1d,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e12,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e13,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0fae,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0faf,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e5,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e6,
->> +			      PCI_CLASS_BRIDGE_PCI, 8,
->> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
->> +
->>  /*
->>   * Some versions of the MCP55 bridge from Nvidia have a legacy IRQ routing
->>   * config register.  This register controls the routing of legacy
->> -- 
->> 2.17.1
->>
+> Thanks,
+> Lorenzo
+>
+> > On Wed, Jun 12, 2019 at 8:38 PM Lorenzo Pieralisi
+> > <lorenzo.pieralisi@arm.com> wrote:
+> > >
+> > > On Fri, Apr 12, 2019 at 08:36:12AM +0000, Z.q. Hou wrote:
+> > > > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > > >
+> > > > In the loop block, there is not code to update the loop key,
+> > > > this patch updates the loop key by re-read the INTx status
+> > > > register.
+> > > >
+> > > > This patch also add the clearing of the handled INTx status.
+> > > >
+> > > > Note: Need MV to test this fix.
+> > >
+> > > This means INTX were never tested and current code handling them is,
+> > > AFAICS, an infinite loop which is very very bad.
+> > >
+> > > This is a gross bug and must be fixed as soon as possible.
+> > >
+> > > I want Karthikeyan ACK and Tested-by on this patch.
+> > >
+> > > Lorenzo
+> > >
+> > > > Fixes: 9af6bcb11e12 ("PCI: mobiveil: Add Mobiveil PCIe Host Bridge IP driver")
+> > > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > > > Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
+> > > > Reviewed-by: Subrahmanya Lingappa <l.subrahmanya@mobiveil.co.in>
+> > > > ---
+> > > > V5:
+> > > >  - Corrected and retouched the subject and changelog.
+> > > >
+> > > >  drivers/pci/controller/pcie-mobiveil.c | 13 +++++++++----
+> > > >  1 file changed, 9 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> > > > index 4ba458474e42..78e575e71f4d 100644
+> > > > --- a/drivers/pci/controller/pcie-mobiveil.c
+> > > > +++ b/drivers/pci/controller/pcie-mobiveil.c
+> > > > @@ -361,6 +361,7 @@ static void mobiveil_pcie_isr(struct irq_desc *desc)
+> > > >       /* Handle INTx */
+> > > >       if (intr_status & PAB_INTP_INTX_MASK) {
+> > > >               shifted_status = csr_readl(pcie, PAB_INTP_AMBA_MISC_STAT);
+> > > > +             shifted_status &= PAB_INTP_INTX_MASK;
+> > > >               shifted_status >>= PAB_INTX_START;
+> > > >               do {
+> > > >                       for_each_set_bit(bit, &shifted_status, PCI_NUM_INTX) {
+> > > > @@ -372,12 +373,16 @@ static void mobiveil_pcie_isr(struct irq_desc *desc)
+> > > >                                       dev_err_ratelimited(dev, "unexpected IRQ, INT%d\n",
+> > > >                                                           bit);
+> > > >
+> > > > -                             /* clear interrupt */
+> > > > -                             csr_writel(pcie,
+> > > > -                                        shifted_status << PAB_INTX_START,
+> > > > +                             /* clear interrupt handled */
+> > > > +                             csr_writel(pcie, 1 << (PAB_INTX_START + bit),
+> > > >                                          PAB_INTP_AMBA_MISC_STAT);
+> > > >                       }
+> > > > -             } while ((shifted_status >> PAB_INTX_START) != 0);
+> > > > +
+> > > > +                     shifted_status = csr_readl(pcie,
+> > > > +                                                PAB_INTP_AMBA_MISC_STAT);
+> > > > +                     shifted_status &= PAB_INTP_INTX_MASK;
+> > > > +                     shifted_status >>= PAB_INTX_START;
+> > > > +             } while (shifted_status != 0);
+> > > >       }
+> > > >
+> > > >       /* read extra MSI status register */
+> > > > --
+> > > > 2.17.1
+> > > >
+> >
+> >
+> >
+> >
 
+-- 
+Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any 
+attachments, is for the sole use of the intended recipient(s) and may 
+contain proprietary confidential or privileged information or otherwise be 
+protected by law. Any unauthorized review, use, disclosure or distribution 
+is prohibited. If you are not the intended recipient, please notify the 
+sender and destroy all copies and the original message.
