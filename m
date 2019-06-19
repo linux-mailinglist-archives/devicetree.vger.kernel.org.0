@@ -2,90 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ECFF4B882
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B404B8A4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731983AbfFSMb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 08:31:27 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:1545 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731976AbfFSMb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 08:31:26 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5JCQNaW013623;
-        Wed, 19 Jun 2019 14:30:55 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=kxAUn6YKO/6reWm+S4P6PSKzShP240Rigo7ZQoE8C8M=;
- b=Ar7HMxacmbYTf5gEF8rpp907cGkQmoofbHV19CJ0Hr2/E9baYNAfy6tMHFBRX93GYGh5
- xswIqwZUXSVAt1Rv+YCY9d4J2r4/vzuYnaG57C9amNcCOvy++MlwKpUg0OwygIPmmJVG
- ijZ/YBnE1X9QSXps+3lv3SbuDIIuuUaHxZp6edTfBGO/bEpB9bHNtOXFBBkLTPM6S77N
- Z/hJloy+zPpflVsemzEvgM+xvOdvA65AYq9EXlQ8F2NVFZu5raRbqQ8fhRWCmkEJ16tz
- AvCyFM5UlNsOUpJ1mcbCEyeFcNO7dYQiJrJD+J9qVHSi6MZa0TojAVYDRc3wiuIOfhnH nw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2t781uux8t-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Wed, 19 Jun 2019 14:30:55 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1233634;
-        Wed, 19 Jun 2019 12:30:55 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E500D27A5;
-        Wed, 19 Jun 2019 12:30:54 +0000 (GMT)
-Received: from localhost (10.75.127.44) by SFHDAG5NODE3.st.com (10.75.127.15)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun 2019 14:30:54
- +0200
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>, <alexandre.torgue@st.com>
-CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <lars@metafoo.de>, <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
-        <fabrice.gasnier@st.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 5/5] ARM: dts: stm32: add missing vdda-supply to adc on stm32h743i-eval
-Date:   Wed, 19 Jun 2019 14:29:58 +0200
-Message-ID: <1560947398-11592-6-git-send-email-fabrice.gasnier@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560947398-11592-1-git-send-email-fabrice.gasnier@st.com>
-References: <1560947398-11592-1-git-send-email-fabrice.gasnier@st.com>
+        id S1731848AbfFSMdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 08:33:50 -0400
+Received: from ironport.klsmartin.com ([212.211.191.11]:37970 "EHLO
+        ironport.klsmartin.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731829AbfFSMdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:33:50 -0400
+X-IronPort-AV: E=Sophos;i="5.63,392,1557180000"; 
+   d="scan'208";a="1983562"
+Received: from unknown (HELO hera.klsmartin.com) ([172.30.5.66])
+  by ironport.klsmartin.com with ESMTP/TLS/DHE-RSA-AES256-SHA; 19 Jun 2019 14:33:48 +0200
+Received: from SUMMAIL01.UMK.KLS.zentral ([172.25.1.63])
+        by hera.klsmartin.com (8.14.3/8.13.1/SuSE Linux 0.7) with ESMTP id x5JCXRNj000379;
+        Wed, 19 Jun 2019 14:33:29 +0200
+Received: from SUMMBX01.UMK.KLS.zentral ([172.25.1.64]) by
+ SUMMAIL01.UMK.KLS.zentral ([172.25.1.63]) with mapi id 14.03.0439.000; Wed,
+ 19 Jun 2019 14:33:42 +0200
+From:   "Middelschulte, Leif" <Leif.Middelschulte@klsmartin.com>
+To:     "robh@kernel.org" <robh@kernel.org>
+CC:     "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+Subject: Re: [PATCH 03/10] dt-bindings: input: touchscreen: stmpe: add
+ resolution support
+Thread-Topic: [PATCH 03/10] dt-bindings: input: touchscreen: stmpe: add
+ resolution support
+Thread-Index: AQHVFKZiSNiCaHUC7UKcS7H8WZkpLKabi02AgAdgL4A=
+Date:   Wed, 19 Jun 2019 12:33:47 +0000
+Message-ID: <f90b0a81834f84ecf933ca79c3fd345cbbdf9361.camel@klsmartin.com>
+References: <20190527160736.30569-1-leif.middelschulte@klsmartin.com>
+         <20190527160736.30569-4-leif.middelschulte@klsmartin.com>
+         <20190614195507.GA27083@bogus>
+In-Reply-To: <20190614195507.GA27083@bogus>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.2.60]
+x-kse-serverinfo: SUMMAIL01.UMK.KLS.zentral, 9
+x-kse-attachmentfiltering-interceptor-info: protection disabled
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean, bases: 19.06.2019 07:52:00
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4AE61BA318EB014D9001390EA0849F99@klsmartin.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG5NODE3.st.com
- (10.75.127.15)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-19_07:,,
- signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing vdda-supply required by STM32 ADC.
-
-Fixes: 090992a9ca54 ("ARM: dts: stm32: enable ADC on stm32h743i-eval
-board")
-
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
----
- arch/arm/boot/dts/stm32h743i-eval.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/stm32h743i-eval.dts b/arch/arm/boot/dts/stm32h743i-eval.dts
-index ab78ad5..e4d3c58 100644
---- a/arch/arm/boot/dts/stm32h743i-eval.dts
-+++ b/arch/arm/boot/dts/stm32h743i-eval.dts
-@@ -87,6 +87,7 @@
- };
- 
- &adc_12 {
-+	vdda-supply = <&vdda>;
- 	vref-supply = <&vdda>;
- 	status = "okay";
- 	adc1: adc@0 {
--- 
-2.7.4
-
+QW0gRnJlaXRhZywgZGVuIDE0LjA2LjIwMTksIDEzOjU1IC0wNjAwIHNjaHJpZWIgUm9iIEhlcnJp
+bmc6DQo+IE9uIE1vbiwgTWF5IDI3LCAyMDE5IGF0IDA2OjA3OjI5UE0gKzAyMDAsIExlaWYgTWlk
+ZGVsc2NodWx0ZSB3cm90ZToNCj4gPiBUaGlzIGRvY3VtZW50cyB0aGUgc3VwcG9ydCBmb3Igc3Bl
+Y2lmeWluZyB0aGUgc2NyZWVuIHNpemUgaW4gbWlsaW1ldGVyDQo+ID4gYW5kIGl0cyBpbXBhY3Qg
+b24gcmVzb2x1dGlvbiBjYWxjdWxhdGlvbi4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBMZWlm
+IE1pZGRlbHNjaHVsdGUgPA0KPiA+IGxlaWYubWlkZGVsc2NodWx0ZUBrbHNtYXJ0aW4uY29tDQo+
+ID4gPg0KPiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW5w
+dXQvdG91Y2hzY3JlZW4vc3RtcGUudHh0IHwgNCArKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0
+IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2lucHV0L3RvdWNoc2NyZWVuL3N0bXBlLnR4dCBiL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnB1dC90b3VjaHNjcmVlbi9zdG1wZS50eHQNCj4gPiBp
+bmRleCAwNDk2MmUyZTFhZDAuLmQyMGRjNWE3ZDhhZCAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW5wdXQvdG91Y2hzY3JlZW4vc3RtcGUudHh0DQo+
+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L3RvdWNoc2Ny
+ZWVuL3N0bXBlLnR4dA0KPiA+IEBAIC0zOSw2ICszOSwxMCBAQCBPcHRpb25hbCBwcm9wZXJ0aWVz
+Og0KPiA+ICAJCQkJVGhlIGdpdmVuIHdpbmRvdyBhbHNvIGFmZmVjdHMgdGhlIHZhbHVlIHJhbmdl
+IChsaW1pdHMpIHNldA0KPiA+ICAJCQkJd2l0aGluIHRoZSBpbnB1dCBzdWJzeXN0ZW0gd2hpY2gs
+IGluIHR1cm4sIGFmZmVjdHMNCj4gPiAgCQkJCXRoZSBpbnB1dCByZXNvbHV0aW9uIGNhbGN1bGF0
+aW9uIG9uIGJvdGggYXhlcy4NCj4gPiArLSB0b3VjaHNjcmVlbi14LW1tCTogaG9yaXpvbnRhbCBs
+ZW5ndGggaW4gbW0gb2YgdGhlIHRvdWNoc2NyZWVuLiBJdCBhZmZlY3RzDQo+ID4gKwkJCQl0aGUg
+aW5wdXQgcmVzb2x1dGlvbiBjYWxjdWxhdGlvbiBvbiB0aGUgaG9yaXpvbnRhbCBheGlzLg0KPiA+
+ICstIHRvdWNoc2NyZWVuLXktbW0JOiB2ZXJ0aWNhbCBsZW5ndGggaW4gbW0gb2YgdGhlIHRvdWNo
+c2NyZWVuLiBJdCBhZmZlY3RzDQo+ID4gKwkJCQl0aGUgaW5wdXQgcmVzb2x1dGlvbiBjYWxjdWxh
+dGlvbiBvbiB0aGUgdmVydGljYWwgYXhpcy4NCj4gDQo+IE5vIG5lZWQgdG8gZGVmaW5lIHRoaXMg
+YWdhaW4uIEp1c3QgcmVmZXJlbmNlIHRoZSBjb21tb24gZGVmaW5pdGlvbi4gSWYgDQo+IHlvdSBo
+YXZlIGFueSBhZGRpdGlvbmFsIGNvbnN0cmFpbnRzLCB0aGVuIGFkZCB0aGVtLg0KDQpJIGFzc3Vt
+ZWQgaXQgc2hvdWxkIG5vdCBiZSByZWRlZmluZWQuIEkgbWVyZWx5IHdhbnRlZCB0byBkb2N1bWVu
+dCB0aGUgaW1wbGljYXRpb24NCnRoaXMgdmFsdWUgaGFzIG9uIHRoZSBhdXRvbWF0aWNhbGx5IGNv
+bmZpZ3VyZWQgcmVzb2x1dGlvbiB3aXRoaW4gYGFic19pbmZvYC4NCk90aGVyIGRyaXZlcnMgbWln
+aHQgbm90IHVzZSBpdCBpbiB0aGF0IHdheSwgYXMgdGhlIGdlbmVyYWwgZG9jdW1lbnRhdGlvblsw
+XSBkb2VzIG5vdA0KZG9jdW1lbnQgc3VjaCBhIGJlaGF2aW9yLg0KDQpbMF0gaHR0cHM6Ly93d3cu
+a2VybmVsLm9yZy9kb2MvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L3Rv
+dWNoc2NyZWVuL3RvdWNoc2NyZWVuLnR4dA0KDQo+IFJvYg0K
