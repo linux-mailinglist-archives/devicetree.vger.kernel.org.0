@@ -2,105 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F33EB4B69C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104DF4B6CA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:12:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727067AbfFSLDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 07:03:17 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:34726 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727126AbfFSLDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 07:03:17 -0400
-Received: by mail-lj1-f193.google.com with SMTP id p17so549166ljg.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 04:03:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=Luu+5rYK+UBQnap9xN87KqCbR3KAr2ZJr7v5Aor7Sgw=;
-        b=suXYxAMjz59lvhJQHLgFctHetXVze4fq6LJGfaHu6u7dSe6wuf8VLeA1vMnT0cU6rf
-         Z9pxXFNyqsVWBeGLKWj8hm4bYSCwh3SRygkdWUtJZ4pXHbDi1x83/66f4loPVQRUtUdo
-         X5RpmJ+T37cPHdZZ2syt9SQ8iMdI5qv4Ygyn8kmrVNopPOome4/wjVWlCoMw+e5ujuxp
-         F70SQkw9/wHNU4Y7qJNWVd30IopBNYHLRey89xb8qieITXXlaBBns4l+ac3+c8G0wVEd
-         reHNjtFKFKOlNoKOngYOc8Q0wNNwtQVfWG27aJHuhnhn7xLH/rHIbg/p+TDnt1GiPpnD
-         +NCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=Luu+5rYK+UBQnap9xN87KqCbR3KAr2ZJr7v5Aor7Sgw=;
-        b=HAvc1RnMuJnPB70XdVhaVq8Vet0xvGveOognW+lIg1nC1vAtrXG/oqhEtMMaZrtSP2
-         4Kw8aX2hiPO61TCW8HP6/8r0D2mUOwz+WXRX+ADZprjMqBvtevF/ysodxkxtFpapnoKK
-         f+ejJahq6kc6llRk9L1I1mbZmJsfS6fDeg5T7xXoOVPHLano7ETxwV6YOa8tp/eJuUGp
-         LS7QIi9OoB2AWXvymCtSLAGomSO6xPuhbnULofSalyIlpQa1KA7RDr5Uil0cbKNrYtt+
-         VOVFH1IZEeVZ+sUO/vH8ZuWF8z42CYK8oy9XoGWQKdTZbZIOvWWuh/NvCS1QYGhJvPoo
-         ZX+w==
-X-Gm-Message-State: APjAAAWjfjFejRoBG6MuD/6hhwDy/GNZDr1HoXpdapD9x4guzgfw6idi
-        9ITcY4Tl3pl0oNolJGaU3F81hA==
-X-Google-Smtp-Source: APXvYqxZ9IA0ppIbwUalwcRBMLFQVzuYiFSFtfCmTlzFHAB17QSbWvFXviSuBgZd2h5m1cAPIFzY6A==
-X-Received: by 2002:a2e:9b84:: with SMTP id z4mr36740332lji.75.1560942195085;
-        Wed, 19 Jun 2019 04:03:15 -0700 (PDT)
-Received: from localhost (89-233-230-99.cust.bredband2.com. [89.233.230.99])
-        by smtp.gmail.com with ESMTPSA id x19sm3062896ljb.6.2019.06.19.04.03.14
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 19 Jun 2019 04:03:14 -0700 (PDT)
-Date:   Wed, 19 Jun 2019 13:03:14 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-usb@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] dt-bindings: usb: renease_{usbhs,gen3} Rename
- bindings documentation files
-Message-ID: <20190619110314.GC18708@bigcity.dyn.berto.se>
-References: <20190617090603.8449-1-horms+renesas@verge.net.au>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190617090603.8449-1-horms+renesas@verge.net.au>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+        id S1726826AbfFSLMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 07:12:07 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:58632 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727126AbfFSLMH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 07:12:07 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5F4531A0619;
+        Wed, 19 Jun 2019 13:12:05 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E27651A061C;
+        Wed, 19 Jun 2019 13:12:01 +0200 (CEST)
+Received: from lsv03124.swis.in-blr01.nxp.com (lsv03124.swis.in-blr01.nxp.com [92.120.146.121])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 10F67402E1;
+        Wed, 19 Jun 2019 19:11:57 +0800 (SGT)
+From:   Ashish Kumar <Ashish.Kumar@nxp.com>
+To:     devicetree@vger.kernel.org
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: [PATCH] drivers: mtd: spi-nor: Add flash property for mt25qu512a and mt35xu02g
+Date:   Wed, 19 Jun 2019 16:41:52 +0530
+Message-Id: <1560942714-13330-1-git-send-email-Ashish.Kumar@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+From: Kuldeep Singh <kuldeep.singh@nxp.com>
 
-Thanks for your work.
+Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+---
+ drivers/mtd/spi-nor/spi-nor.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On 2019-06-17 11:06:01 +0200, Simon Horman wrote:
-> Hi,
-> 
-> For consistency with the naming of (most) other documentation files for DT
-> bindings for Renesas IP blocks rename the Renesas USBHS and USB 3.0
-> peripheral documentation files.
-
-With Shimoda-sans comment on 2/2 fixed for the whole series,
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> 
-> Simon Horman (2):
->   dt-bindings: usb: renesas_usbhs: Rename bindings documentation file
->   dt-bindings: usb: renesas_gen3: Rename bindings documentation file
-> 
->  .../devicetree/bindings/usb/{renesas_usb3.txt => renesas,usb3.txt}        | 0
->  .../devicetree/bindings/usb/{renesas_usbhs.txt => renesas,usbhs.txt}      | 0
->  2 files changed, 0 insertions(+), 0 deletions(-)
->  rename Documentation/devicetree/bindings/usb/{renesas_usb3.txt => renesas,usb3.txt} (100%)
->  rename Documentation/devicetree/bindings/usb/{renesas_usbhs.txt => renesas,usbhs.txt} (100%)
-> 
-> -- 
-> 2.11.0
-
+diff --git a/drivers/mtd/spi-nor/spi-nor.c b/drivers/mtd/spi-nor/spi-nor.c
+index 73172d7..34e33a7 100644
+--- a/drivers/mtd/spi-nor/spi-nor.c
++++ b/drivers/mtd/spi-nor/spi-nor.c
+@@ -1880,6 +1880,7 @@ static const struct flash_info spi_nor_ids[] = {
+ 	{ "n25q512ax3",  INFO(0x20ba20, 0, 64 * 1024, 1024, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ) },
+ 	{ "n25q00",      INFO(0x20ba21, 0, 64 * 1024, 2048, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
+ 	{ "n25q00a",     INFO(0x20bb21, 0, 64 * 1024, 2048, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
++	{ "mt25qu512a", INFO6(0x20bb20, 0x104400, 64 * 1024, 1024, SECT_4K | USE_FSR | SPI_NOR_4B_OPCODES) },
+ 	{ "mt25qu02g",   INFO(0x20bb22, 0, 64 * 1024, 4096, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
+ 
+ 	/* Micron */
+@@ -1888,6 +1889,7 @@ static const struct flash_info spi_nor_ids[] = {
+ 			SECT_4K | USE_FSR | SPI_NOR_OCTAL_READ |
+ 			SPI_NOR_4B_OPCODES)
+ 	},
++	{ "mt35xu02g",   INFO(0x2c5b1c, 0, 128 * 1024, 2048, SECT_4K | USE_FSR | SPI_NOR_OCTAL_READ | SPI_NOR_4B_OPCODES) },
+ 
+ 	/* PMC */
+ 	{ "pm25lv512",   INFO(0,        0, 32 * 1024,    2, SECT_4K_PMC) },
 -- 
-Regards,
-Niklas Söderlund
+2.7.4
+
