@@ -2,117 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B36FB4B83C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F724B870
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727068AbfFSM2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 08:28:54 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:57633 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbfFSM2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:28:54 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 9517A20026;
-        Wed, 19 Jun 2019 14:28:51 +0200 (CEST)
-Date:   Wed, 19 Jun 2019 14:28:50 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: Add King Display
- KD035G6-54NT panel documentation
-Message-ID: <20190619122850.GC29084@ravnborg.org>
-References: <20190603152555.23527-1-paul@crapouillou.net>
+        id S1731958AbfFSMbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 08:31:20 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:14444 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1731848AbfFSMbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 08:31:19 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5JCQNaU013623;
+        Wed, 19 Jun 2019 14:30:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=VBdmw2B8JzIwHBf2DCzNhNhp/wewpseJ6FglA41KzDA=;
+ b=HBwMhu88MDRfMzdTNuZfO7msKon03r30NvVEq2joa3SpqyF6u1Ahr7V9dClcMxhDJM+B
+ A7qZQcbSgM6+aTpoCbJYmW3jWzqRmVRQjhk0pb8H/tcGYHulHlQtUarS0QZ/PO7F+CkC
+ 2E0oJwOUFujNxMUDTHXAKZD5O9758tLWN/GM4QhvojMXNyJp8qdBN1cECDIU/Lc2/hwq
+ pFUSHe1weWajs/n7EHdyK18bIggS0X7ZXyoBTNQ8wqMKJDtDkT37Yo4IYo8ITP3T/LIy
+ 6RrDh29JksY8qR0EbBK1lvR6Jr1igmQSkGjGq/2lQGCnNbZ/CEjtkKi662oRKpshO82i ig== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2t781uux8d-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 19 Jun 2019 14:30:52 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C468938;
+        Wed, 19 Jun 2019 12:30:51 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 91CE227A7;
+        Wed, 19 Jun 2019 12:30:51 +0000 (GMT)
+Received: from localhost (10.75.127.47) by SFHDAG5NODE3.st.com (10.75.127.15)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun 2019 14:30:51
+ +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>, <alexandre.torgue@st.com>
+CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <lars@metafoo.de>, <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
+        <fabrice.gasnier@st.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/5] Add missing vdda-supply to STM32 ADC
+Date:   Wed, 19 Jun 2019 14:29:53 +0200
+Message-ID: <1560947398-11592-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190603152555.23527-1-paul@crapouillou.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=ER_8r6IbAAAA:8
-        a=7gkXJVJtAAAA:8 a=4-pPdtRa6f10XkIaLb0A:9 a=CjuIK1q_8ugA:10
-        a=9LHmKk7ezEChjTCyhBa9:22 a=E9Po1WZjFZOl8hwRPBS3:22
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG5NODE3.st.com
+ (10.75.127.15)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-19_07:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 03, 2019 at 05:25:54PM +0200, Paul Cercueil wrote:
-> The KD035G6-54NT is a 3.5" 320x240 24-bit TFT LCD panel.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+Add missing vdda-supply, analog power supply, to STM32 ADC. When vdda is
+an independent supply, it needs to be properly turned on or off to supply
+the ADC.
+This series proposes fixes for the dt-bindings, IIO driver and relevant
+device tree files.
 
-Rob - ping for review.
+Fabrice Gasnier (5):
+  dt-bindings: iio: adc: stm32: add missing vdda supply
+  iio: adc: stm32-adc: add missing vdda-supply
+  ARM: dts: stm32: remove fixed regulator unit address on stm32429i-eval
+  ARM: dts: stm32: add missing vdda-supply to adc on stm32429i-eval
+  ARM: dts: stm32: add missing vdda-supply to adc on stm32h743i-eval
 
-	Sam
+ .../devicetree/bindings/iio/adc/st,stm32-adc.txt   |  1 +
+ arch/arm/boot/dts/stm32429i-eval.dts               | 25 +++++++++++-----------
+ arch/arm/boot/dts/stm32h743i-eval.dts              |  1 +
+ drivers/iio/adc/stm32-adc-core.c                   | 21 +++++++++++++++++-
+ 4 files changed, 35 insertions(+), 13 deletions(-)
 
-> ---
-> 
-> Notes:
->     v2: - Add an address to the panel node
->     	- Add information about SPI properties
->     	- Add information about the 'port' sub-node
-> 
->  .../panel/kingdisplay,kd035g6-54nt.txt        | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
-> new file mode 100644
-> index 000000000000..fa9596082e44
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.txt
-> @@ -0,0 +1,42 @@
-> +King Display KD035G6-54NT 3.5" (320x240 pixels) 24-bit TFT LCD panel
-> +
-> +Required properties:
-> +- compatible: should be "kingdisplay,kd035g6-54nt"
-> +- power-supply: See panel-common.txt
-> +- reset-gpios: See panel-common.txt
-> +
-> +Optional properties:
-> +- backlight: see panel-common.txt
-> +
-> +The generic bindings for the SPI slaves documented in [1] also apply.
-> +
-> +The device node can contain one 'port' child node with one child
-> +'endpoint' node, according to the bindings defined in [2]. This
-> +node should describe panel's video bus.
-> +
-> +[1]: Documentation/devicetree/bindings/spi/spi-bus.txt
-> +[2]: Documentation/devicetree/bindings/graph.txt
-> +
-> +Example:
-> +
-> +&spi {
-> +	panel@0 {
-> +		compatible = "kingdisplay,kd035g6-54nt";
-> +		reg = <0>;
-> +
-> +		spi-max-frequency = <3125000>;
-> +		spi-3wire;
-> +		spi-cs-high;
-> +
-> +		reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
-> +
-> +		backlight = <&backlight>;
-> +		power-supply = <&ldo6>;
-> +
-> +		port {
-> +			panel_input: endpoint {
-> +				remote-endpoint = <&panel_output>;
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> 2.21.0.593.g511ec345e18
+-- 
+2.7.4
+
