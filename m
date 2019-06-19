@@ -2,121 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5DE4B570
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 11:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E29734B581
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 11:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731490AbfFSJu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 05:50:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:58806 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727067AbfFSJu4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 05:50:56 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2176A344;
-        Wed, 19 Jun 2019 02:50:56 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 168763F738;
-        Wed, 19 Jun 2019 02:52:40 -0700 (PDT)
-Date:   Wed, 19 Jun 2019 10:50:52 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>, thierry.reding@gmail.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V6 20/27] PCI: tegra: Disable MSI for Tegra PCIe root port
-Message-ID: <20190619095052.GB10372@e121166-lin.cambridge.arm.com>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190618180206.4908-21-mmaddireddy@nvidia.com>
- <20190618194830.GA110859@google.com>
- <e06f85eb-be0c-c2a5-84a9-51aa9b8372c3@nvidia.com>
+        id S1730996AbfFSJwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 05:52:39 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:57604 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726479AbfFSJwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 05:52:38 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5J9l43Y004729;
+        Wed, 19 Jun 2019 11:52:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=nty6ih6iIW5KM2QvYy/1B11xGsZE8DkrKWnNc/nyI6g=;
+ b=oBzmJN2JkzWIsWm32xd5oVFIvuGHnSMLHytkTJpZ/MVxjXnWr5pLpieutjXJYRJ7iARO
+ V6kHtLJIePQvjfRjFbPizBRVYa9j6OLQP12Z/t4tJBueeer4DFqWyDLmOqq2VlttP8j+
+ 4iQC+TSjXH8rFVdjvzSMOMLrHf7y+QxS9/J/nCJH4G3e66tpgYdHZWJcH9+PJ8TR3yD1
+ ec0HnBjyh1W++pyUnauzGvgLyTQzwxcKuhRE/vvft8u3rqlj4c9z/hw0lvwf/H5igyV+
+ uAOs71CXbF1DIsJZzLrmdc95WVlH9XG5nXEw2AHdQudPqpFNTXALrcnK1rJORk+5WzuI Hg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2t7812u73c-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 19 Jun 2019 11:52:14 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BAE6F38;
+        Wed, 19 Jun 2019 09:52:13 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 78AD524CC;
+        Wed, 19 Jun 2019 09:52:13 +0000 (GMT)
+Received: from localhost (10.75.127.44) by SFHDAG5NODE3.st.com (10.75.127.15)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun 2019 11:52:13
+ +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <alexandre.torgue@st.com>
+CC:     <mark.rutland@arm.com>, <linux@armlinux.org.uk>,
+        <mcoquelin.stm32@gmail.com>, <fabrice.gasnier@st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <benjamin.gaignard@st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH 0/5] Add missing pwm-cells to STM32 timers PWM
+Date:   Wed, 19 Jun 2019 11:52:00 +0200
+Message-ID: <1560937925-8990-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e06f85eb-be0c-c2a5-84a9-51aa9b8372c3@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG5NODE3.st.com
+ (10.75.127.15)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-19_05:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 09:25:54AM +0530, Manikanta Maddireddy wrote:
+This series adds missing generic 3-cells PWM to STM32 timers dt-bindings,
+PWM driver, and the relevant dtsi files for STM32F4, STM32F7 and STM32MP1.
 
-[...]
+Fabrice Gasnier (5):
+  dt-bindings: pwm-stm32: add #pwm-cells
+  pwm: stm32: use 3 cells ->of_xlate()
+  ARM: dts: stm32: add pwm cells to stm32mp157c
+  ARM: dts: stm32: add pwm cells to stm32f429
+  ARM: dts: stm32: add pwm cells to stm32f746
 
-> > s/msi/MSI/
-> >
-> > What's going on here?  Vidya posted a very similar patch [1] (although
-> 
-> This series is focused on Tegra20, Tegra30, Tegra124, Tegra210 and Tegra186,
-> whereas Vidya's series is focused only on Tegra194. So I didn't include
-> Tegra194 device IDs.
-> 
-> > his included nice spec citations, which you omitted), but his added
-> > quirks for 0x1ad0, 0x1ad1, and 0x1ad2.  You didn't include any of
-> > those here.
-> >
-> > Maybe Lorenzo will sort this all out, but it would make things easier
-> > if you and Vidya got together and integrated your patches yourselves
-> > so Lorenzo didn't have to worry about it.
-> >
-> > [1] https://lore.kernel.org/lkml/20190612095339.20118-3-vidyas@nvidia.com
-> 
-> I talked with Vidya, he will take this changes in his series if he needs
-> to publish another version, or else he will publish a new patch to add
-> quirk for legacy Tegra SOCs.
-> 
-> Lorenzo,
-> If this series is ready for integration, please drop this patch.
+ Documentation/devicetree/bindings/pwm/pwm-stm32.txt |  3 +++
+ arch/arm/boot/dts/stm32f429.dtsi                    | 12 ++++++++++++
+ arch/arm/boot/dts/stm32f746.dtsi                    | 12 ++++++++++++
+ arch/arm/boot/dts/stm32mp157c.dtsi                  | 12 ++++++++++++
+ drivers/pwm/pwm-stm32.c                             |  2 ++
+ 5 files changed, 41 insertions(+)
 
-OK, will do.
+-- 
+2.7.4
 
-Thanks,
-Lorenzo
-
-> Manikanta
-> 
-> >
-> >> + */
-> >> +static void pci_quirk_nvidia_tegra_disable_rp_msi(struct pci_dev *dev)
-> >> +{
-> >> +	dev->no_msi = 1;
-> >> +}
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf0,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf1,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1c,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1d,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e12,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e13,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0fae,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0faf,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e5,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e6,
-> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
-> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
-> >> +
-> >>  /*
-> >>   * Some versions of the MCP55 bridge from Nvidia have a legacy IRQ routing
-> >>   * config register.  This register controls the routing of legacy
-> >> -- 
-> >> 2.17.1
-> >>
-> 
