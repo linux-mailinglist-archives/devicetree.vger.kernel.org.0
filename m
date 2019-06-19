@@ -2,93 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DF64C3C6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 00:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9AC84C3E9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 01:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727076AbfFSWhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 18:37:36 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:42624 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726322AbfFSWhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 18:37:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=zcjS/s18VUk5NHxgGMeMZs6YK3QGGN5Y/fE+tjcEGRg=; b=JwJefaxTEVttzT/PqzqdqZKWI
-        HbRZGtMRQTaaktYIylLLJQqotSFoPEc4vgrV4ZMtN2BwFcr4HQuq4C+QWMcPzxIG2egW1g5accdwD
-        X458YE3Lm8w9Rj11wtIwgdPddJ6QYpiaUYRFpN11DC132Y2c6/nWQ4IV8pKRfP1UOVcqpYemr2McV
-        F37X0yPuPPhhxGTeMfPL+RBND/If5+Roi3pfmGvDBy9D3lspD8MGAsGg+fVnju689Om9P5JBoXw1u
-        cwgIQOnYnHoNQhIEjUElzTDo6Pdpz4VOY213yDK5v3sCognzz8kciDfnjErtUdv8liMzYN8pMSEWi
-        TIuD45uuA==;
-Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:58918)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1hdjCq-0003CH-GQ; Wed, 19 Jun 2019 23:37:28 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.89)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1hdjCp-0001mj-Fw; Wed, 19 Jun 2019 23:37:27 +0100
-Date:   Wed, 19 Jun 2019 23:37:27 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6qdl-sr-som: fix AR8035 phy interface mode
-Message-ID: <20190619223727.zgfypqxg7bpxtduh@shell.armlinux.org.uk>
-References: <E1hdjBO-0007Yt-9M@rmk-PC.armlinux.org.uk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1hdjBO-0007Yt-9M@rmk-PC.armlinux.org.uk>
-User-Agent: NeoMutt/20170113 (1.7.2)
+        id S1726297AbfFSXDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 19:03:16 -0400
+Received: from gate.crashing.org ([63.228.1.57]:48234 "EHLO gate.crashing.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726251AbfFSXDP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 19:03:15 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x5JN2NFs022741;
+        Wed, 19 Jun 2019 18:02:25 -0500
+Message-ID: <4c8b9ca5e84db7db67ad552d8fdbaa17d11b6432.camel@kernel.crashing.org>
+Subject: Re: [PATCH 1/2] i2c: aspeed: allow to customize base clock divisor
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     Tao Ren <taoren@fb.com>,
+        Brendan Higgins <brendanhiggins@google.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "ryan_chen@aspeedtech.com" <ryan_chen@aspeedtech.com>
+Date:   Thu, 20 Jun 2019 09:02:23 +1000
+In-Reply-To: <18565fcf-3dc1-b671-f826-e4417e4ad284@fb.com>
+References: <20190619205009.4176588-1-taoren@fb.com>
+         <CAFd5g45TMtXcuqONdkpN_K+c0O+wUw8wkGzcQfV+sO8p5Krc9w@mail.gmail.com>
+         <18565fcf-3dc1-b671-f826-e4417e4ad284@fb.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 11:35:58PM +0100, Russell King wrote:
-> A change to the AT803x driver fixed the handling of the phy interface
-> mode, but this breaks all platforms that use "rgmii" as the mode in
-> their DT.  Fix the Solidrun platforms.
+On Wed, 2019-06-19 at 22:32 +0000, Tao Ren wrote:
+> Thank you for the quick response, Brendan.
 > 
-> Fixes: 6d4cd041f0af ("net: phy: at803x: disable delay only for RGMII mode")
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+> Aspeed I2C bus frequency is defined by 3 parameters
+> (base_clk_divisor, clk_high_width, clk_low_width), and I choose
+> base_clk_divisor because it controls all the Aspeed I2C timings (such
+> as setup time and hold time). Once base_clk_divisor is decided
+> (either by the current logic in i2c-aspeed driver or manually set in
+> device tree), clk_high_width and clk_low_width will be calculated by
+> i2c-aspeed driver to meet the specified I2C bus speed.
+> 
+> For example, by setting I2C bus frequency to 100KHz on AST2500
+> platform, (base_clock_divisor, clk_high_width, clk_low_width) is set
+> to (3, 15, 14) by our driver. But some slave devices (on CMM i2c-8
+> and Minipack i2c-0) NACK byte transactions with the default timing
+> setting: the issue can be resolved by setting base_clk_divisor to 4,
+> and (clk_high_width, clk_low_width) will be set to (7, 7) by our i2c-
+> aspeed driver to achieve similar I2C bus speed.
+> 
+> Not sure if my answer helps to address your concerns, but kindly let
+> me know if you have further questions/suggestions.
 
-Note that without this, SolidRun Hummingboard and Cubox-i platforms
-have no working ethernet with at least 5.1 kernels, which is a
-regression.
+Did you look at the resulting output on a scope ? I'm curious what
+might be wrong.... 
 
-> ---
->  arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> index 4ccb7afc4b35..6d7f6b9035bc 100644
-> --- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> @@ -53,7 +53,7 @@
->  &fec {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_microsom_enet_ar8035>;
-> -	phy-mode = "rgmii";
-> +	phy-mode = "rgmii-id";
->  	phy-reset-duration = <2>;
->  	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
->  	status = "okay";
-> -- 
-> 2.7.4
-> 
-> 
+CCing Ryan from Aspeed, he might have some idea.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+Could it be that with some specific dividers you have more jitter ?
+Still, i2c devices tend to be rather robust vs crappy clocks unless you
+are massively out of bounds, which makes me wonder whether something
+else might be wrong in your setup.
+
+Cheers,
+Ben.
+
+
