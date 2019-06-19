@@ -2,145 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 713384B4A6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 11:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F3A4B4CC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 11:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731340AbfFSJGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 05:06:50 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39090 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731295AbfFSJGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 05:06:50 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6B88D27741D;
-        Wed, 19 Jun 2019 10:06:46 +0100 (BST)
-Date:   Wed, 19 Jun 2019 11:06:43 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     masonccyang@mxic.com.tw
-Cc:     bbrezillon@kernel.org, broonie@kernel.org,
-        christophe.kerello@st.com, computersforpeace@gmail.com,
-        devicetree@vger.kernel.org, dwmw2@infradead.org,
-        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
-        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
-        mark.rutland@arm.com, "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        paul.burton@mips.com, richard@nod.at, robh+dt@kernel.org,
-        stefan@agner.ch, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
- controller
-Message-ID: <20190619110643.523c1f56@collabora.com>
-In-Reply-To: <OF9EFE4BDE.3166D82B-ON4825841E.00307F51-4825841E.00310FB5@mxic.com.tw>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
-        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
-        <20190512151820.4f2dd9da@xps13>
-        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
-        <20190520142333.390091d5@xps13>
-        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
-        <20190527144250.71908bd9@xps13>
-        <OFE923A8E5.50375C30-ON48258409.0009AE1B-48258409.00119767@mxic.com.tw>
-        <20190617143510.4ded5728@xps13>
-        <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw>
-        <20190618081436.5d488320@collabora.com>
-        <20190618092901.3bdd9f61@collabora.com>
-        <OF5EAF94EB.AE31CF59-ON4825841E.002A2C38-4825841E.002C60BF@mxic.com.tw>
-        <20190619101519.391919ec@collabora.com>
-        <OF9EFE4BDE.3166D82B-ON4825841E.00307F51-4825841E.00310FB5@mxic.com.tw>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1731293AbfFSJR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 05:17:59 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:43850 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730996AbfFSJR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 05:17:59 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190619091756euoutp016184a914e58a557f12cb8ce3f169f9a3~pjujj3sYu1173611736euoutp01h
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 09:17:56 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190619091756euoutp016184a914e58a557f12cb8ce3f169f9a3~pjujj3sYu1173611736euoutp01h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1560935876;
+        bh=tkIJ6Zdk/r4opylr6EAzPBGo0oQmTLvcNpJPcBJpEcA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=boobkESBTTT8izIV5hAugqN3CjPDR0jVkm8uDBSWwKrvS49mWUY6GiSGr4x3IfTmB
+         HFPkylAIygkGnfCg630V2rvIPzAQDM0D4Id+1lXCUbiggHAnv0G31IaXc034NyzyLI
+         y2kk55jjXDWjmdNqLzXSez/fHKwFWYWcg6T8aofo=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190619091755eucas1p2c7036ec9b6c8be09b2cf2f8a5ae6f103~pjuihnVfu2998329983eucas1p2G;
+        Wed, 19 Jun 2019 09:17:55 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id DA.9D.04377.3CDF90D5; Wed, 19
+        Jun 2019 10:17:55 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190619091754eucas1p2edbfee21d2ec8feacc183927de9a0eae~pjuhufNCy2132521325eucas1p2l;
+        Wed, 19 Jun 2019 09:17:54 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190619091754eusmtrp196587f03ea943b7a4b68b6e3d4d171c5~pjuhfdH3d0190801908eusmtrp1L;
+        Wed, 19 Jun 2019 09:17:54 +0000 (GMT)
+X-AuditID: cbfec7f4-12dff70000001119-0a-5d09fdc3d42f
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id A9.B8.04140.2CDF90D5; Wed, 19
+        Jun 2019 10:17:54 +0100 (BST)
+Received: from [106.120.51.75] (unknown [106.120.51.75]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190619091753eusmtip1fa0a4c315cf7b4226f56c37589e72378~pjugkhlax2980129801eusmtip1b;
+        Wed, 19 Jun 2019 09:17:53 +0000 (GMT)
+Subject: Re: [RFT 02/10] clk: samsung: Add bus clock for GPU/G3D on
+ Exynos4412
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Olof Johansson <olof@lixom.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        Joseph Kogut <joseph.kogut@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <97cf3337-44da-b5b0-0b45-e44ef5c90615@samsung.com>
+Date:   Wed, 19 Jun 2019 11:17:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190618190534.4951-3-krzk@kernel.org>
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SaUxTWRj19q0Fiq8FwxecjGOjiZiouOZGjdHESd4/ifNDU0O06hMN0Gof
+        RdEQEUShrcqgE51ChIgIVg1aCEgVFwQKkoANCAbEusW6IWLrymbbVyO5f879vnPuOSe5LKE6
+        R8eyu3RpgkGnTVHTYWRty/fOeffG5InxtUWAj3W0yfBYYQuDr52povDQBQvCvT4PhSdq/yVw
+        SVMHhbs/D9G40F1AYsvRUQqfePGOwJ2dVxlsf9FD4WHLEwp3OYppfKbzlgxfaRpgcHmvS4Zd
+        9//G93u9NM5taGLweM81Etscowi/GW4lVwN/+exlxI/8KET80KNchm/4Ukry9dYBhrfb8mm+
+        7stTinebnTK++vxBvrs1m+KP19gQ77X/mRChCVu5XUjZlS4YFqzaErazaNBD7i5B++pvPkdZ
+        /mNCcha4JdDv+c6YUBir4ioRNA9bCeniQ9BRZw6yVJwXQUlf+i/FwLc+JJEqEHi7ykKKQQTv
+        i1voACuKS4D3+e+oAI7m4qB37CsVIBGci4aRLjMZWNDcQjjWfDxooeBWwfilHFkAk9xs+Hiq
+        J/jQNG4j+OrtIY4S2v5/GdTK/THOPssLcgguBrJ9FykJz4C6weJgIuAes3Dz4SGZlHstmKpc
+        odZR8NZZw0j4D2g/aSElQQ4Cy41+RroUIHA7S0OKFXDP6fJbsH6LOKhyLJDGa6C5/QMZGAMX
+        CY8GlVKISCisPU1IYwXkHVFJ7FkwYjsdihML5pcTZAFSWydVs06qY51Ux/rbtxSRNhQjGMXU
+        JEFcpBP2zhe1qaJRlzR/mz7Vjvw/t33c6buOHKNbGxHHInWEgvOyiSpKmy5mpDYiYAl1tCI8
+        R56oUmzXZuwXDPrNBmOKIDai6SypjlEcmPJ0k4pL0qYJyYKwWzD82spYeWwW0lQsDb/zsVy5
+        OK+oIX/TbWrm5w3L64+a1fod6w9nxP+X2ZHVvawyd0tEfE3PMs+JU/80RbUaybLItMyE6PRP
+        1Zk1erZa09Vnyp1z8Ea2vU/vKHe47657KJIXpyaLylee/ornE0Weeev3/GVi4pQzdA+S28I1
+        FZqcI5Wl7teevYJRTYo7tQvnEgZR+xPtrR3etQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTURzAObuP3VmD21Q8GGRdiDJoNnXtGCZ9ES5GURkUltitLiq6zXY3
+        yz6UVPYwNV1WNs2tSCN7zlapOKGL+SpaPpplLp8gIWZl2UutzRHI+fKD/+/HOQf+FKZwEKFU
+        us7IG3RcJkMG4C/mWj1rxVlZ8rrH3WGo8FW7BM2aW6TIXvaAQJPVBQD1fhsj0N8nJRiyNr8i
+        UM/3SRKZB4pxVHBmhkAXRsYx5HI9lKLaETeBvhR8IFB3QwWJylxNEnSv2SNFVb2dEtTZEY86
+        eqdIlOdslqI5tx1HNQ0zAH380oZvguzdyruA/fPbDNjJt3lS1jltw9l6i0fK1tacI9mn04ME
+        O3C+VcI+unmc7Wk7QbBFjhrATtUu27Y4SRlr0JuM/PI0vWDcyOxRoUilKgYpI6NjlKooTfKG
+        SDUTERd7kM9Mz+YNEXH7lGnlE2N4lhUcqW8cBrnekw9kFKSjoednn5cDKAVdBWCRWIrlA8o7
+        CIXWU4zfCYQz7nzS74wDeOX1MOEbBNJb4cV3/RIfB9HhsHf2B+GTMPoNCW+Jbwh/YQewrGAY
+        81kkrYKFz4vmr5bTcXDuzsn5GqdXws+lbtLHwfRuWN6Qi/udJbD96ug8y7xPrRw6O+9g9Co4
+        U9mF+TkEnvh2m/BzGHw6UYEVA4VlQW5ZkFgWJJYFiQ3gNSCINwnaVK0QqRQ4rWDSpSoP6LW1
+        wLsxT1p+OepA/qdEEdAUYBbL6z5TyQqCyxZytCKAFMYEyRedlCUr5Ae5nKO8QZ9iMGXyggjU
+        3s+VYKHBB/Te/dMZU1RqlQbFqDRRmqj1iAmRn6Wf7VXQqZyRz+D5LN7wv5NQstBcUJEqjnwP
+        cVS3JXQ7u4OtN0wZMcUR239nfV1eGV2iv2w/HNLXyt1fe8dqtbcZpxN6LomaXeJU4NIq86Bt
+        s3l112B4Y9oml8Rmix9LURx6vyKg0910Xbf/fWbfosIzOTsCkzhh8nRYoro/TDmalHhtKO+R
+        Z3RLF0M6jyW+3KmmnAwupHGqNZhB4P4BuA4FGkcDAAA=
+X-CMS-MailID: 20190619091754eucas1p2edbfee21d2ec8feacc183927de9a0eae
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190618190558epcas3p211c71991aba4f3a2273be82be41324a8
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190618190558epcas3p211c71991aba4f3a2273be82be41324a8
+References: <20190618190534.4951-1-krzk@kernel.org>
+        <CGME20190618190558epcas3p211c71991aba4f3a2273be82be41324a8@epcas3p2.samsung.com>
+        <20190618190534.4951-3-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Jun 2019 16:55:52 +0800
-masonccyang@mxic.com.tw wrote:
+On 6/18/19 21:05, Krzysztof Kozlowski wrote:
+> Add ID and gate for bus clock for GPU (Mali 400) on Exynos4412.
 
-> Hi Boris,
-> 
-> > > > 
-> > > > Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND   
-> controller
-> > > > 
-> > > > On Tue, 18 Jun 2019 08:14:36 +0200
-> > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
-> > > >   
-> > > > > > > > > > 
-> > > > > > > > > > How to make all #CS keep high for NAND to enter 
-> > > > > > > > > > low-power standby mode if driver don't use   
-> > > "legacy.select_chip()"   
-> > > > > > ?   
-> > > > > > > > > 
-> > > > > > > > > See commit 02b4a52604a4 ("mtd: rawnand: Make   
-> ->select_chip()   
-> > > > > > optional   
-> > > > > > > > > when ->exec_op() is implemented") which states:
-> > > > > > > > > 
-> > > > > > > > >         "When [->select_chip() is] not implemented, the   
-> core 
-> > > is   
-> > > > > > assuming   
-> > > > > > > > >    the CS line is automatically asserted/deasserted by the   
->  
-> > > driver   
-> > > > > > > > >    ->exec_op() implementation."   
-> > > > > > > > > 
-> > > > > > > > > Of course, the above is right only when the controller   
-> driver 
-> > >   
-> > > > > > supports   
-> > > > > > > > > the ->exec_op() interface.   
-> > > > > > > > 
-> > > > > > > > Currently, it seems that we will get the incorrect data and    
-> 
-> > > error  
-> > > > > > > > operation due to CS in error toggling if CS line is   
-> controlled 
-> > > in   
-> > > > > > > > ->exec_op().   
-> > > > 
-> > > > Oh, and please provide the modifications you added on top of this   
-> patch.
-> > > > Right now we're speculating on what you've done which is definitely   
-> not
-> > > > an efficient way to debug this sort of issues.   
-> > > 
-> > > The patch is to add in beginning of ->exec_op() to control CS# low and   
-> 
-> > > before return from ->exec_op() to control CS# High.
-> > > i.e,.
-> > > static in mxic_nand_exec_op( )
-> > > {
-> > >  cs_to_low();
-> > > 
-> > > 
-> > > 
-> > >  cs_to_high();
-> > >  return;
-> > > }
-> > > 
-> > > But for nand_onfi_detect(), 
-> > > it calls nand_read_param_page_op() and then nand_read_data_op().
-> > > mxic_nand_exec_op() be called twice for nand_onfi_detect() and
-> > > driver will get incorrect ONFI parameter table data from 
-> > > nand_read_data_op().  
-> > 
-> > And I think it's valid to release the CE pin between
-> > read_param_page_op() (CMD(0xEC)+ADDR(0x0)) and read_data_op() (data
-> > cycles) if your chip is CE-dont-care compliant. So, either you have a
-> > problem with your controller driver (CS-related timings are incorrect)
-> > or your chip is not CE-dont-care compliant.  
-> 
-> Understood, I will try to fix it on my NFC driver.
-
-Before you do that, can you please try to understand where the problem
-comes from and explain it to us? Hacking the NFC driver is only
-meaningful if the problem is on the NFC side. If your NAND chip does
-not support when the CS pin goes high between read_param_page_op() and
-read_data_op() the problem should be fixed in the core.
+Patch applied to clk/samsung tree, thanks.
