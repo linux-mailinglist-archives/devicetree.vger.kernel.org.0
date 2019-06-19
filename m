@@ -2,201 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC974B559
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 11:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E5DE4B570
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 11:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731536AbfFSJsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 05:48:45 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:36005 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731481AbfFSJsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 05:48:45 -0400
-X-Originating-IP: 90.88.23.150
-Received: from localhost (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id BA112E000D;
-        Wed, 19 Jun 2019 09:48:40 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?q?Antoine=20T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v3 16/16] arm64: dts: allwinner: Switch from phy-mode to phy-connection-type
-Date:   Wed, 19 Jun 2019 11:47:25 +0200
-Message-Id: <0afe15465ec548e5ae2304c822267710a678f6c4.1560937626.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
-References: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
+        id S1731490AbfFSJu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 05:50:57 -0400
+Received: from foss.arm.com ([217.140.110.172]:58806 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727067AbfFSJu4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 05:50:56 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2176A344;
+        Wed, 19 Jun 2019 02:50:56 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 168763F738;
+        Wed, 19 Jun 2019 02:52:40 -0700 (PDT)
+Date:   Wed, 19 Jun 2019 10:50:52 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>, thierry.reding@gmail.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V6 20/27] PCI: tegra: Disable MSI for Tegra PCIe root port
+Message-ID: <20190619095052.GB10372@e121166-lin.cambridge.arm.com>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+ <20190618180206.4908-21-mmaddireddy@nvidia.com>
+ <20190618194830.GA110859@google.com>
+ <e06f85eb-be0c-c2a5-84a9-51aa9b8372c3@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e06f85eb-be0c-c2a5-84a9-51aa9b8372c3@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The phy-mode device tree property has been deprecated in favor of
-phy-connection-type, let's replace it.
+On Wed, Jun 19, 2019 at 09:25:54AM +0530, Manikanta Maddireddy wrote:
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+[...]
 
----
+> > s/msi/MSI/
+> >
+> > What's going on here?  Vidya posted a very similar patch [1] (although
+> 
+> This series is focused on Tegra20, Tegra30, Tegra124, Tegra210 and Tegra186,
+> whereas Vidya's series is focused only on Tegra194. So I didn't include
+> Tegra194 device IDs.
+> 
+> > his included nice spec citations, which you omitted), but his added
+> > quirks for 0x1ad0, 0x1ad1, and 0x1ad2.  You didn't include any of
+> > those here.
+> >
+> > Maybe Lorenzo will sort this all out, but it would make things easier
+> > if you and Vidya got together and integrated your patches yourselves
+> > so Lorenzo didn't have to worry about it.
+> >
+> > [1] https://lore.kernel.org/lkml/20190612095339.20118-3-vidyas@nvidia.com
+> 
+> I talked with Vidya, he will take this changes in his series if he needs
+> to publish another version, or else he will publish a new patch to add
+> quirk for legacy Tegra SOCs.
+> 
+> Lorenzo,
+> If this series is ready for integration, please drop this patch.
 
-Changes from v2:
-  - new patch
----
- arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts        | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts          | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts           | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts        | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts         | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts              | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts    | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts          | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts             | 2 +-
- 10 files changed, 10 insertions(+), 10 deletions(-)
+OK, will do.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-index 208373efee49..2484142f855c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-@@ -127,7 +127,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_dc1sw>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
-index 9b9d9157128c..b8d93c6e9469 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
-@@ -102,7 +102,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_dcdc1>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-index 787ebd805a3b..ba7ba6d1d840 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-@@ -30,7 +30,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_dc1sw>;
- 	allwinner,tx-delay-ps = <600>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-index 01a9a52edae4..e3f691b358da 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-@@ -102,7 +102,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_dcdc1>;
- 	allwinner,tx-delay-ps = <600>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-index 5ef3c62c765e..738497489afd 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-@@ -129,7 +129,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_gmac_3v3>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts
-index 24f1aac366d6..234d0e66cbdc 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts
-@@ -52,7 +52,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-index 409523cb0950..7458469a60f7 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-@@ -103,7 +103,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rmii_pins>;
--	phy-mode = "rmii";
-+	phy-connection-type = "rmii";
- 	phy-handle = <&ext_rmii_phy1>;
- 	phy-supply = <&reg_dc1sw>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-index e6fb9683f213..14ba7f4119a3 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-@@ -115,7 +115,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_dc1sw>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 0dc33c90dd60..80916c0e08f2 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -64,7 +64,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&ext_rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_aldo2>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-index 9e464d40cbff..8292d944ff7b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-@@ -66,7 +66,7 @@
- &emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&ext_rgmii_pins>;
--	phy-mode = "rgmii";
-+	phy-connection-type = "rgmii";
- 	phy-handle = <&ext_rgmii_phy>;
- 	phy-supply = <&reg_aldo2>;
- 	allwinner,rx-delay-ps = <200>;
--- 
-git-series 0.9.1
+Thanks,
+Lorenzo
+
+> Manikanta
+> 
+> >
+> >> + */
+> >> +static void pci_quirk_nvidia_tegra_disable_rp_msi(struct pci_dev *dev)
+> >> +{
+> >> +	dev->no_msi = 1;
+> >> +}
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf0,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf1,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1c,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1d,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e12,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e13,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0fae,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0faf,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e5,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e6,
+> >> +			      PCI_CLASS_BRIDGE_PCI, 8,
+> >> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+> >> +
+> >>  /*
+> >>   * Some versions of the MCP55 bridge from Nvidia have a legacy IRQ routing
+> >>   * config register.  This register controls the routing of legacy
+> >> -- 
+> >> 2.17.1
+> >>
+> 
