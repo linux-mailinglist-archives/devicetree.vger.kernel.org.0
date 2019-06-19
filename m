@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7036E4B658
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 12:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F33EB4B69C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727129AbfFSKkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 06:40:43 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:6114 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726826AbfFSKkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 06:40:43 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0a112b0000>; Wed, 19 Jun 2019 03:40:43 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 19 Jun 2019 03:40:42 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 19 Jun 2019 03:40:42 -0700
-Received: from [10.21.132.148] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun
- 2019 10:40:41 +0000
-Subject: Re: [PATCH 1/4] arm64: tegra: Add ID EEPROM for Jetson TX2 module
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190613165331.8689-1-thierry.reding@gmail.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <bec2ec6d-a88e-4ebd-cef9-f0317097e618@nvidia.com>
-Date:   Wed, 19 Jun 2019 11:40:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727067AbfFSLDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 07:03:17 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:34726 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727126AbfFSLDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 07:03:17 -0400
+Received: by mail-lj1-f193.google.com with SMTP id p17so549166ljg.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 04:03:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=Luu+5rYK+UBQnap9xN87KqCbR3KAr2ZJr7v5Aor7Sgw=;
+        b=suXYxAMjz59lvhJQHLgFctHetXVze4fq6LJGfaHu6u7dSe6wuf8VLeA1vMnT0cU6rf
+         Z9pxXFNyqsVWBeGLKWj8hm4bYSCwh3SRygkdWUtJZ4pXHbDi1x83/66f4loPVQRUtUdo
+         X5RpmJ+T37cPHdZZ2syt9SQ8iMdI5qv4Ygyn8kmrVNopPOome4/wjVWlCoMw+e5ujuxp
+         F70SQkw9/wHNU4Y7qJNWVd30IopBNYHLRey89xb8qieITXXlaBBns4l+ac3+c8G0wVEd
+         reHNjtFKFKOlNoKOngYOc8Q0wNNwtQVfWG27aJHuhnhn7xLH/rHIbg/p+TDnt1GiPpnD
+         +NCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=Luu+5rYK+UBQnap9xN87KqCbR3KAr2ZJr7v5Aor7Sgw=;
+        b=HAvc1RnMuJnPB70XdVhaVq8Vet0xvGveOognW+lIg1nC1vAtrXG/oqhEtMMaZrtSP2
+         4Kw8aX2hiPO61TCW8HP6/8r0D2mUOwz+WXRX+ADZprjMqBvtevF/ysodxkxtFpapnoKK
+         f+ejJahq6kc6llRk9L1I1mbZmJsfS6fDeg5T7xXoOVPHLano7ETxwV6YOa8tp/eJuUGp
+         LS7QIi9OoB2AWXvymCtSLAGomSO6xPuhbnULofSalyIlpQa1KA7RDr5Uil0cbKNrYtt+
+         VOVFH1IZEeVZ+sUO/vH8ZuWF8z42CYK8oy9XoGWQKdTZbZIOvWWuh/NvCS1QYGhJvPoo
+         ZX+w==
+X-Gm-Message-State: APjAAAWjfjFejRoBG6MuD/6hhwDy/GNZDr1HoXpdapD9x4guzgfw6idi
+        9ITcY4Tl3pl0oNolJGaU3F81hA==
+X-Google-Smtp-Source: APXvYqxZ9IA0ppIbwUalwcRBMLFQVzuYiFSFtfCmTlzFHAB17QSbWvFXviSuBgZd2h5m1cAPIFzY6A==
+X-Received: by 2002:a2e:9b84:: with SMTP id z4mr36740332lji.75.1560942195085;
+        Wed, 19 Jun 2019 04:03:15 -0700 (PDT)
+Received: from localhost (89-233-230-99.cust.bredband2.com. [89.233.230.99])
+        by smtp.gmail.com with ESMTPSA id x19sm3062896ljb.6.2019.06.19.04.03.14
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 19 Jun 2019 04:03:14 -0700 (PDT)
+Date:   Wed, 19 Jun 2019 13:03:14 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-usb@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] dt-bindings: usb: renease_{usbhs,gen3} Rename
+ bindings documentation files
+Message-ID: <20190619110314.GC18708@bigcity.dyn.berto.se>
+References: <20190617090603.8449-1-horms+renesas@verge.net.au>
 MIME-Version: 1.0
-In-Reply-To: <20190613165331.8689-1-thierry.reding@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1560940843; bh=s96Udi+SmJdT0B/9Wp5y3qWh94REGP90zH1AEOlb8wo=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=JH6vu8dIyJs572TZa9bwXZ6G5AB+53eJoHIPUfAa3N6HsU5m85DdSE6JTB/YFsVaI
-         +xrjtB892zoOsPLyjXpeOBFX4AsGnPJYFHdMiu2peAyK67UHPJk9Ly60XEgBJG7Vuy
-         uzR4LRrQAmqftqhxPIMHdqXtm+HGY2SsXRgNoLS47/QBkCPIK/Hj9qU3bIIWX5dwIy
-         OxP+qpqXVf70ij1mq3cLkRM5UAs3QRrIhY89OMEOI32OZ6sbLC8Yx/GtrbtwsoYwh0
-         t3EwrIx0oTQDd6tLGiXUWXmZlToKZKlBc4zMttmra6rRYgt2KlO9Esp6CgzGTnY0sM
-         PZgLuuiiIQ7/w==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190617090603.8449-1-horms+renesas@verge.net.au>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Simon,
 
-On 13/06/2019 17:53, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> There is an ID EEPROM in the Jetson TX2 module that stores various bits
-> of information to indentify the module. Add the device tree node so that
-> operating systems can access this EEPROM.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-> index 38ad1053f21a..4bbee83d9943 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-> @@ -124,6 +124,17 @@
->  
->  	i2c@c250000 {
->  		status = "okay";
-> +
-> +		/* module ID EEPROM */
-> +		eeprom@50 {
-> +			compatible = "atmel,24c02";
-> +			reg = <0x50>;
-> +
-> +			address-bits = <8>;
-> +			page-size = <8>;
-> +			size = <256>;
-> +			read-only;
-> +		};
->  	};
->  
->  	rtc@c2a0000 {
-> 
+Thanks for your work.
 
+On 2019-06-17 11:06:01 +0200, Simon Horman wrote:
+> Hi,
+> 
+> For consistency with the naming of (most) other documentation files for DT
+> bindings for Renesas IP blocks rename the Renesas USBHS and USB 3.0
+> peripheral documentation files.
 
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
+With Shimoda-sans comment on 2/2 fixed for the whole series,
 
-Cheers
-Jon
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> 
+> Simon Horman (2):
+>   dt-bindings: usb: renesas_usbhs: Rename bindings documentation file
+>   dt-bindings: usb: renesas_gen3: Rename bindings documentation file
+> 
+>  .../devicetree/bindings/usb/{renesas_usb3.txt => renesas,usb3.txt}        | 0
+>  .../devicetree/bindings/usb/{renesas_usbhs.txt => renesas,usbhs.txt}      | 0
+>  2 files changed, 0 insertions(+), 0 deletions(-)
+>  rename Documentation/devicetree/bindings/usb/{renesas_usb3.txt => renesas,usb3.txt} (100%)
+>  rename Documentation/devicetree/bindings/usb/{renesas_usbhs.txt => renesas,usbhs.txt} (100%)
+> 
+> -- 
+> 2.11.0
 
 -- 
-nvpublic
+Regards,
+Niklas Söderlund
