@@ -2,88 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 258754B7AD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0709F4B7F4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbfFSMLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 08:11:04 -0400
-Received: from foss.arm.com ([217.140.110.172]:36270 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727068AbfFSMLE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 08:11:04 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 103F7360;
-        Wed, 19 Jun 2019 05:11:03 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CD1263F738;
-        Wed, 19 Jun 2019 05:10:59 -0700 (PDT)
-Date:   Wed, 19 Jun 2019 13:10:57 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Atish Patra <atish.patra@wdc.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Richard Fontana <rfontana@redhat.com>,
+        id S1727244AbfFSMSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 08:18:13 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:58832 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726246AbfFSMSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:18:13 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id EBC2225AF1B;
+        Wed, 19 Jun 2019 22:18:10 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 9217A9409FF; Wed, 19 Jun 2019 14:18:08 +0200 (CEST)
+Date:   Wed, 19 Jun 2019 14:18:08 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v7 4/7] arm: Use common cpu_topology structure and
- functions.
-Message-ID: <20190619121057.GE1360@e107155-lin>
-References: <20190617185920.29581-1-atish.patra@wdc.com>
- <20190617185920.29581-5-atish.patra@wdc.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>
+Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+Message-ID: <20190619121808.hnqoeihjch6silcd@verge.net.au>
+References: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <CAMuHMdU8oag+1oNa_jS=v99W05=8SRLhdoZdCusmeVf1VZbarQ@mail.gmail.com>
+ <TY1PR01MB17707C3C979FB60611FB34A7C0EA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+ <CAMuHMdVb+sc0vdvbsAE0fkEY6wFS7KsbtqLmtB03ghVeuiHe1w@mail.gmail.com>
+ <TY1PR01MB1770F9972F006B57917A0731C0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190617185920.29581-5-atish.patra@wdc.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <TY1PR01MB1770F9972F006B57917A0731C0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
-
-On Mon, Jun 17, 2019 at 11:59:17AM -0700, Atish Patra wrote:
-> Currently, ARM32 and ARM64 uses different data structures to represent
-> their cpu topologies. Since, we are moving the ARM64 topology to common
-> code to be used by other architectures, we can reuse that for ARM32 as
-> well.
+On Wed, Jun 19, 2019 at 08:16:43AM +0000, Fabrizio Castro wrote:
+> Hello Geert,
 > 
-> Take this opprtunity to remove the redundant functions from ARM32 and
-> reuse the common code instead.
+> Thank you for your feedback
 > 
-> To: Russell King <linux@armlinux.org.uk>
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> Tested-by: Sudeep Holla <sudeep.holla@arm.com> (on TC2)
-> Reviewed-by : Sudeep Holla <sudeep.holla@arm.com>
+> > From: linux-renesas-soc-owner@vger.kernel.org <linux-renesas-soc-owner@vger.kernel.org> On Behalf Of Geert Uytterhoeven
+> > Sent: 19 June 2019 08:34
+> > Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+> > 
+> > Hi Fabrizio,
+> > 
+> > On Tue, Jun 18, 2019 at 5:56 PM Fabrizio Castro
+> > <fabrizio.castro@bp.renesas.com> wrote:
+> > > > From: linux-renesas-soc-owner@vger.kernel.org <linux-renesas-soc-owner@vger.kernel.org> On Behalf Of Geert Uytterhoeven
+> > > > Sent: 18 June 2019 16:10
+> > > > Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+> > > >
+> > > > On Fri, Jun 14, 2019 at 3:17 PM Fabrizio Castro
+> > > > <fabrizio.castro@bp.renesas.com> wrote:
+> > > > > This patch adds LEDs support to the HiHope RZ/G2[MN] Main Board
+> > > > > common device tree.
+> > > > >
+> > > > > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> > > >
+> > > > Thanks for your patch!
+> > > >
+> > > > > --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> > > > > @@ -17,6 +17,30 @@
+> > > > >                 stdout-path = "serial0:115200n8";
+> > > > >         };
+> > > > >
+> > > > > +       leds {
+> > > > > +               compatible = "gpio-leds";
+> > > > > +
+> > > > > +               led0 {
+> > > > > +                       gpios = <&gpio6 11 GPIO_ACTIVE_HIGH>;
+> > > > > +                       label = "LED0";
+> > > >
+> > > > There's no need for a label property, if it matches the node name
+> > > > (applies to all four LEDs).
+> > >
+> > > I could have used the actual names on the schematic, but then I realised that
+> > > would not have been too helpful due to the corresponding switch names:
+> > > LED0 - GP6_11 - SW2202 - LED2201
+> > > LED1 - GP6_12 - SW2201 - LED2202
+> > > LED2 - GP6_13 - SW2203 - LED2203
+> > > LED3 - GP0_00 - N/A - LED2402
+> > > The first 3 LEDs are found next to the micro USB connector for the debug console,
+> > > the forth LED is found next to the WiFi and BT LEDs.
+> > >
+> > > I thought that using "LEDn" as labels would put a remark on the
+> > > "desired ordering" of the LEDs (even though there is no actual
+> > > requirement for that), but as you pointed out it's probably a bit
+> > > confusing? Do you think I should take the label out?
+> > 
+> > If the LEDs don't have nice labels on the PCB, I would drop the label
+> > properties.
 > 
-> ---
-> Hi Russell,
-> Can we get a ACK for this patch ? We are hoping that the entire
-> series can be merged at one go.
+> Will do. Simon, do you want me to send an incremental patch for this (this patch
+> is on devel branch already) or would you rather I sent a v2?
 
-It would be nice to get this in for v5.3 as it's almost there.
-Are you fine with these changes ?
-
---
-Regards,
-Sudeep
+Please send an incremental patch, thanks.
