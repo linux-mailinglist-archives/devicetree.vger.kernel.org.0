@@ -2,263 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0729C4BAF8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 238AB4BB19
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729507AbfFSOPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 10:15:47 -0400
-Received: from mail-eopbgr1410107.outbound.protection.outlook.com ([40.107.141.107]:6126
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725899AbfFSOPr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 10:15:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=45erZDECeD0HN16RpufBGSa8hcdPclbypFXW7uOKgFw=;
- b=fo1SoMx9pqYASxc0ThM8iSYHjyLr0/YiXtNvMGhPceEH6UGGlrxDHrnxEixRCJUkQ5yGsZCpLqMzBTMtTMbSHxke4kRvgrXUCFNhlAjaHYnLzyv7oeMQ5RRDZLUNrAOV57M3NG0lwpdE3IEzH8yvR4XfT1Ts8pCyfsBUv1rx72Q=
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
- TY1PR01MB1563.jpnprd01.prod.outlook.com (52.133.160.144) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.15; Wed, 19 Jun 2019 14:15:42 +0000
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
- 14:15:42 +0000
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Simon Horman <horms@verge.net.au>
-CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>
-Subject: RE: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI support
-Thread-Topic: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI support
-Thread-Index: AQHVJek7vUy9P93/fEWDP1bpe4SW26ai7NGAgAAAbxCAABdRgIAAAY+A
-Date:   Wed, 19 Jun 2019 14:15:42 +0000
-Message-ID: <TY1PR01MB1770E5A98A22F0902168F19DC0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-References: <1560871119-16570-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1560871119-16570-4-git-send-email-fabrizio.castro@bp.renesas.com>
- <20190619124131.GB21753@pendragon.ideasonboard.com>
- <TY1PR01MB1770B099456BD96D352DF526C0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190619140631.7jdbobstw7udgahy@verge.net.au>
-In-Reply-To: <20190619140631.7jdbobstw7udgahy@verge.net.au>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4591adcf-b601-411f-0b1a-08d6f4c09d11
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1563;
-x-ms-traffictypediagnostic: TY1PR01MB1563:
-x-microsoft-antispam-prvs: <TY1PR01MB156338F557218E1AF982F4B9C0E50@TY1PR01MB1563.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0073BFEF03
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(366004)(346002)(396003)(39860400002)(136003)(189003)(199004)(5660300002)(26005)(73956011)(66476007)(446003)(99286004)(64756008)(53936002)(55016002)(186003)(74316002)(7696005)(9686003)(316002)(33656002)(66446008)(229853002)(66556008)(66946007)(6916009)(256004)(81156014)(8676002)(6436002)(8936002)(52536014)(25786009)(81166006)(6246003)(44832011)(6116002)(66066001)(7736002)(68736007)(71200400001)(2906002)(71190400001)(3846002)(11346002)(54906003)(4326008)(102836004)(76116006)(76176011)(6506007)(305945005)(53546011)(86362001)(14454004)(486006)(478600001)(476003);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1563;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 0I35jnK1k+d3MkZx9CiWNiYunNtgh0/sfuZF+C4/J+fjhCqQlcJJZ7MsCHWC/oD6jJLhhDOLffXl9l+J7IhJ5ywC6qKpcWIkD8KF5VSt9nv21AnwgNO2yXjR91NUtPVXPLhXLi4O5Da5EXi49AwDnna/Z7TgPgTmydBM93WCsonbjLziyLAhOGsQBLJdlbo28VM5GFM0lc0uo6tzxkt587G3KI/qIKfL5OwcpIkzGzUsM5Vv2MzRylcLU2pArQ2AJDDLABwoEdSAK3ZXTDzhrLpNWHRU5v8LWnHa3A6ZPbIbbuLMJo7zmvlFZsjQj6yV90tl9WFd2JRbUU3IYpBhDSX7OhbMsibpRWOhf6SjS3xla2rO+e+sIEKsbB4rJXlgDB/EIj8heYSbEVDHBoW6rsQUjsuw+D5cj7MD4UyEcHw=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727242AbfFSOSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 10:18:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60706 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725893AbfFSOSG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 10:18:06 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 387A121783;
+        Wed, 19 Jun 2019 14:18:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560953885;
+        bh=cR/H6G5KIVj2Tl/rlffCQ7FS2/cGJNh3qbq5IZ8GGd4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IBG26sgsHejava7dMMDKid2azDT1wXKb5y0e/Tb2WqRj/64CY4K3+VD8Cg3mJp3CH
+         Jr8HP0mlnWjNb2LWK2jeYt7TL/mwbaqBQOWYLqqI3cbAjcnIrcSng4TXf/yAhJwaK9
+         uGkmdqEDwjxszz8qp+wv2io8n85Hhiz8nrR+bWYY=
+Received: by mail-qt1-f182.google.com with SMTP id s15so20022827qtk.9;
+        Wed, 19 Jun 2019 07:18:05 -0700 (PDT)
+X-Gm-Message-State: APjAAAUuPx6xEahXKkE/Z7OgZF2Y5uIXCpDSFPyqFR8fICy3YLxfz7dg
+        cfJVuRv/qK5Snn/ZpoufcqkZQ0Fthv1PqDDTog==
+X-Google-Smtp-Source: APXvYqyhdR1ApTNT0vTQ+yPM+vLDBBgTJuYVuRc+czCo8t7Z44TCthCHxu3q6kJsso6WcEaPhLDuWuqve5Eszjay4Ug=
+X-Received: by 2002:a0c:b627:: with SMTP id f39mr34384022qve.72.1560953884410;
+ Wed, 19 Jun 2019 07:18:04 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4591adcf-b601-411f-0b1a-08d6f4c09d11
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 14:15:42.4092
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1563
+References: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
+ <89b834af795fa6ad5ba1f04a5a61c54204bf4f96.1560937626.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <89b834af795fa6ad5ba1f04a5a61c54204bf4f96.1560937626.git-series.maxime.ripard@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 19 Jun 2019 08:17:52 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKeGrXEECmP8Gec5DdLTikyx0xS+kaopRXNQ7RUEJbx4g@mail.gmail.com>
+Message-ID: <CAL_JsqKeGrXEECmP8Gec5DdLTikyx0xS+kaopRXNQ7RUEJbx4g@mail.gmail.com>
+Subject: Re: [PATCH v3 03/16] dt-bindings: net: Add a YAML schemas for the
+ generic MDIO options
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev <netdev@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Simon,
-
-Thank you for your feedback!
-
-> From: Simon Horman <horms@verge.net.au>
-> Sent: 19 June 2019 15:07
-> Subject: Re: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI sup=
-port
->=20
-> On Wed, Jun 19, 2019 at 12:48:17PM +0000, Fabrizio Castro wrote:
-> > Hi Laurent,
-> >
-> > > From: linux-renesas-soc-owner@vger.kernel.org <linux-renesas-soc-owne=
-r@vger.kernel.org> On Behalf Of Laurent Pinchart
-> > > Sent: 19 June 2019 13:42
-> > > Subject: Re: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI=
- support
-> > >
-> > > Hi Fabrizio,
-> > >
-> > > Thank you for the patch.
-> > >
-> > > On Tue, Jun 18, 2019 at 04:18:39PM +0100, Fabrizio Castro wrote:
-> > > > Add HDMI support to the HiHope RZ/G2[MN] mother board common
-> > > > dtsi.
-> > > >
-> > > > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> > > >
-> > > > ---
-> > > > Please note that this patch was tested with a 4K monitor and cma=3D=
-96M
-> > > >
-> > > >  arch/arm64/boot/dts/renesas/hihope-common.dtsi | 62 ++++++++++++++=
-++++++++++++
-> > > >  1 file changed, 62 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/renesas/hihope-common.dtsi b/arch/=
-arm64/boot/dts/renesas/hihope-common.dtsi
-> > > > index 625c3aa..e7568e1 100644
-> > > > --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> > > > +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> > > > @@ -17,6 +17,18 @@
-> > > >  		stdout-path =3D "serial0:115200n8";
-> > > >  	};
-> > > >
-> > > > +	hdmi0-out {
-> > > > +		compatible =3D "hdmi-connector";
-> > > > +		label =3D "HDMI0 OUT";
-> > >
-> > > Is the label physically present on the device (printed on the board o=
-r
-> > > the case) ?
-> >
-> > I am afraid it's not. Shall I send a v2? Or perhaps Simon could take it=
- out while applying?
->=20
-> Thanks,
->=20
-> I have removed the label attribute when queuing this patch up for v5.3.
-> The result is as follows:
-
-Great, thank you Simon!
-
-Fab
-
->=20
-> From: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> Date: Tue, 18 Jun 2019 16:18:39 +0100
-> Subject: [PATCH] arm64: dts: renesas: hihope-common: Add HDMI support
->=20
-> Add HDMI support to the HiHope RZ/G2[MN] mother board common
-> dtsi.
->=20
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+On Wed, Jun 19, 2019 at 3:47 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> The MDIO buses have a number of available device tree properties that can
+> be used in their device tree node. Add a YAML schemas for those.
+>
+> Suggested-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+>
 > ---
->  arch/arm64/boot/dts/renesas/hihope-common.dtsi | 61 ++++++++++++++++++++=
-++++++
->  1 file changed, 61 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/hihope-common.dtsi b/arch/arm64/=
-boot/dts/renesas/hihope-common.dtsi
-> index 625c3aaead14..9f05e80cee10 100644
-> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> @@ -17,6 +17,17 @@
->  		stdout-path =3D "serial0:115200n8";
->  	};
->=20
-> +	hdmi0-out {
-> +		compatible =3D "hdmi-connector";
-> +		type =3D "a";
+>
+> Changes from v2:
+>   - New patch
+> ---
+>  Documentation/devicetree/bindings/net/mdio.txt  | 38 +-------------
+>  Documentation/devicetree/bindings/net/mdio.yaml | 51 ++++++++++++++++++-
+>  2 files changed, 52 insertions(+), 37 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/mdio.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/net/mdio.txt b/Documentation/devicetree/bindings/net/mdio.txt
+> index e3e1603f256c..cf8a0105488e 100644
+> --- a/Documentation/devicetree/bindings/net/mdio.txt
+> +++ b/Documentation/devicetree/bindings/net/mdio.txt
+> @@ -1,37 +1 @@
+> -Common MDIO bus properties.
+> -
+> -These are generic properties that can apply to any MDIO bus.
+> -
+> -Optional properties:
+> -- reset-gpios: One GPIO that control the RESET lines of all PHYs on that MDIO
+> -  bus.
+> -- reset-delay-us: RESET pulse width in microseconds.
+> -
+> -A list of child nodes, one per device on the bus is expected. These
+> -should follow the generic phy.txt, or a device specific binding document.
+> -
+> -The 'reset-delay-us' indicates the RESET signal pulse width in microseconds and
+> -applies to all PHY devices. It must therefore be appropriately determined based
+> -on all PHY requirements (maximum value of all per-PHY RESET pulse widths).
+> -
+> -Example :
+> -This example shows these optional properties, plus other properties
+> -required for the TI Davinci MDIO driver.
+> -
+> -       davinci_mdio: ethernet@5c030000 {
+> -               compatible = "ti,davinci_mdio";
+> -               reg = <0x5c030000 0x1000>;
+> -               #address-cells = <1>;
+> -               #size-cells = <0>;
+> -
+> -               reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
+> -               reset-delay-us = <2>;
+> -
+> -               ethphy0: ethernet-phy@1 {
+> -                       reg = <1>;
+> -               };
+> -
+> -               ethphy1: ethernet-phy@3 {
+> -                       reg = <3>;
+> -               };
+> -       };
+> +This file has moved to mdio.yaml.
+> diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentation/devicetree/bindings/net/mdio.yaml
+> new file mode 100644
+> index 000000000000..8f4f9d0a2882
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/mdio.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/mdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		port {
-> +			hdmi0_con: endpoint {
-> +				remote-endpoint =3D <&rcar_dw_hdmi0_out>;
-> +			};
-> +		};
-> +	};
+> +title: MDIO Bus Generic Binding
 > +
->  	leds {
->  		compatible =3D "gpio-leds";
->=20
-> @@ -82,6 +93,30 @@
->  		states =3D <3300000 1
->  			  1800000 0>;
->  	};
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +  - Florian Fainelli <f.fainelli@gmail.com>
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
 > +
-> +	x302_clk: x302-clock {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		clock-frequency =3D <33000000>;
-> +	};
+> +description:
+> +  These are generic properties that can apply to any MDIO bus. Any
+> +  MDIO bus must have a list of child nodes, one per device on the
+> +  bus. These should follow the generic ethernet-phy.yaml document, or
+> +  a device specific binding document.
 > +
-> +	x304_clk: x304-clock {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		clock-frequency =3D <25000000>;
-> +	};
-> +};
+> +properties:
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      The phandle and specifier for the GPIO that controls the RESET
+> +      lines of all PHYs on that MDIO bus.
 > +
-> +&du {
-> +	clocks =3D <&cpg CPG_MOD 724>,
-> +		 <&cpg CPG_MOD 723>,
-> +		 <&cpg CPG_MOD 722>,
-> +		 <&versaclock5 1>,
-> +		 <&x302_clk>,
-> +		 <&versaclock5 2>;
-> +	clock-names =3D "du.0", "du.1", "du.2",
-> +		      "dclkin.0", "dclkin.1", "dclkin.2";
-> +	status =3D "okay";
->  };
->=20
->  &ehci0 {
-> @@ -109,11 +144,37 @@
->  	};
->  };
->=20
-> +&hdmi0 {
-> +	status =3D "okay";
+> +  reset-delay-us:
+> +    description:
+> +      RESET pulse width in microseconds. It applies to all PHY devices
+> +      and must therefore be appropriately determined based on all PHY
+> +      requirements (maximum value of all per-PHY RESET pulse widths).
 > +
-> +	ports {
-> +		port@1 {
-> +			reg =3D <1>;
-> +			rcar_dw_hdmi0_out: endpoint {
-> +				remote-endpoint =3D <&hdmi0_con>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &hsusb {
->  	dr_mode =3D "otg";
->  	status =3D "okay";
->  };
->=20
-> +&i2c4 {
-> +	clock-frequency =3D <400000>;
-> +	status =3D "okay";
-> +
-> +	versaclock5: clock-generator@6a {
-> +		compatible =3D "idt,5p49v5923";
-> +		reg =3D <0x6a>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&x304_clk>;
-> +		clock-names =3D "xin";
-> +	};
-> +};
-> +
->  &ohci0 {
->  	status =3D "okay";
->  };
-> --
-> 2.11.0
+> +examples:
+> +  - |
+> +    davinci_mdio: ethernet@5c030000 {
 
+Shouldn't this be mdio@... ?
+
+> +        compatible = "ti,davinci_mdio";
+> +        reg = <0x5c030000 0x1000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        reset-gpios = <&gpio2 5 1>;
+> +        reset-delay-us = <2>;
+> +
+> +        ethphy0: ethernet-phy@1 {
+
+Would be good to have some unit-address checks. Could be a follow-up though.
+
+> +            reg = <1>;
+> +        };
+> +
+> +        ethphy1: ethernet-phy@3 {
+> +            reg = <3>;
+> +        };
+> +    };
+> --
+> git-series 0.9.1
