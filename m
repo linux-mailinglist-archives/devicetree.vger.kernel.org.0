@@ -2,154 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B835D4B71D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:34:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE304B741
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 13:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731632AbfFSLey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 07:34:54 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:39786 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731625AbfFSLey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 07:34:54 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 4D4EC609CD; Wed, 19 Jun 2019 11:34:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560944093;
-        bh=+py4XI3i/cm9QGyA40QRB2rUzMIk0lUgUsy44TbCmWI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hB4pf4B4OVpXEy8l93z1fgXcfIzXEaYqXqo/3dmAmjp1/zMY3f02pl3NA4yCo9ol1
-         KZp5OOel0kSD3A6ZryQuKv9l/pvJd+0gy6G3OJ2FmBoGuhg/uP/oiF/A1sgztMJ/yu
-         YiBctFwxPkSA+kzm7LASiX2qvMbN1yubpFLvAHcs=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2CB59607CA;
-        Wed, 19 Jun 2019 11:34:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560944092;
-        bh=+py4XI3i/cm9QGyA40QRB2rUzMIk0lUgUsy44TbCmWI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=POTxE52tKhsJG+vjMMNQ2p5oRrP+rRaljcWwUC+A3JSkr2rvpJkYoNu7dQ5Rbcsht
-         k4vLDVDs9rwMOBNIjUYJ0Lm6n5s7nZ1nC8Na0jAJIHFNwgQYjpc9a7DX0kd8qNNpGE
-         tHQz0lokvIsUj+drqbfqt3Bs3FBPjsP8SyrLYI+c=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2CB59607CA
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
-Received: by mail-ed1-f49.google.com with SMTP id i11so26764786edq.0;
-        Wed, 19 Jun 2019 04:34:52 -0700 (PDT)
-X-Gm-Message-State: APjAAAW42Zna0ZRjk/Kp9HbyqfvlBnhsCO29Dt7dI119lKSELY1011An
-        p4B+OCb6B8L9sLKhejafMcMxZNAm7K5dQHcIkUs=
-X-Google-Smtp-Source: APXvYqya/0GsL2StjgEiJLMyA9HmzxvSn4wjNxl+SCuHsa6xu0jYQ1AeSFdShTd/4VbcCeyO9S26gYnaP2uFrJFcOnE=
-X-Received: by 2002:a50:b36e:: with SMTP id r43mr76818996edd.106.1560944091001;
- Wed, 19 Jun 2019 04:34:51 -0700 (PDT)
+        id S1727591AbfFSLmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 07:42:45 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:44688 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727134AbfFSLmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 07:42:45 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5JBfBx0001850;
+        Wed, 19 Jun 2019 13:42:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=jAayPybMAxCHXtDmLft/T64tgWULV2g7e3s0ys/xt7c=;
+ b=WTev4s7P/RCeq68dfxKoEPTgP9Bu7gbgDy+JYF9OEUdefIGTl9aNQ7UStjd8GSgen5Ca
+ S19TE4IInepLFPfSV1l319VpIXdOHwhEyh1oQr98Jj5BagdyWQ47swgj6IoEbTXM8B54
+ gUdZFzYlJvjbCpOgNfuoqGf8SzVcbG89clmuriaSYu2OxcAh9bMCfQQkNeId5K34gby5
+ L4qdHbzzuVs+LXlTEKq4ZC1ATUILfD6qqAZsapjsq1CBCrtAzwXXHYkDSMQfnmj2li4v
+ 6sYjb425JJGipZeGXggc030pb7IiR0K7woGZj7DhMavWYjJ9yH4WY7QDP2e98etQOj9p Tg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2t7813bm3k-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 19 Jun 2019 13:42:24 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6AEF331;
+        Wed, 19 Jun 2019 11:42:23 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3DCAF26D5;
+        Wed, 19 Jun 2019 11:42:23 +0000 (GMT)
+Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG5NODE3.st.com
+ (10.75.127.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun
+ 2019 13:42:23 +0200
+Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
+ SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
+ 15.00.1347.000; Wed, 19 Jun 2019 13:42:22 +0200
+From:   Benjamin GAIGNARD <benjamin.gaignard@st.com>
+To:     Fabrice GASNIER <fabrice.gasnier@st.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@st.com>
+CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [PATCH 2/5] pwm: stm32: use 3 cells ->of_xlate()
+Thread-Topic: [PATCH 2/5] pwm: stm32: use 3 cells ->of_xlate()
+Thread-Index: AQHVJoSsYAMsPXn+akirjvBTdUuqe6aiuYoA
+Date:   Wed, 19 Jun 2019 11:42:22 +0000
+Message-ID: <c583094f-2429-d5f1-09df-fff54ab33af1@st.com>
+References: <1560937925-8990-1-git-send-email-fabrice.gasnier@st.com>
+ <1560937925-8990-3-git-send-email-fabrice.gasnier@st.com>
+In-Reply-To: <1560937925-8990-3-git-send-email-fabrice.gasnier@st.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.50]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <25284ABC327AEA4991DCD1504D64AD22@st.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
- <20190612071554.13573-2-vivek.gautam@codeaurora.org> <20190618175536.GI4270@fuggles.cambridge.arm.com>
-In-Reply-To: <20190618175536.GI4270@fuggles.cambridge.arm.com>
-From:   Vivek Gautam <vivek.gautam@codeaurora.org>
-Date:   Wed, 19 Jun 2019 17:04:39 +0530
-X-Gmail-Original-Message-ID: <CAFp+6iEwN6jeEGNxKVU5_i5NxdEbuF2ZggegEJZ1Rq6F=H34jg@mail.gmail.com>
-Message-ID: <CAFp+6iEwN6jeEGNxKVU5_i5NxdEbuF2ZggegEJZ1Rq6F=H34jg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] firmware: qcom_scm-64: Add atomic version of qcom_scm_call
-To:     Will Deacon <will.deacon@arm.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "robh+dt" <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-19_07:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 11:25 PM Will Deacon <will.deacon@arm.com> wrote:
->
-> On Wed, Jun 12, 2019 at 12:45:51PM +0530, Vivek Gautam wrote:
-> > There are scnenarios where drivers are required to make a
-> > scm call in atomic context, such as in one of the qcom's
-> > arm-smmu-500 errata [1].
-> >
-> > [1] ("https://source.codeaurora.org/quic/la/kernel/msm-4.9/commit/
-> >       drivers/iommu/arm-smmu.c?h=CogSystems-msm-49/
-> >       msm-4.9&id=da765c6c75266b38191b38ef086274943f353ea7")
-> >
-> > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  drivers/firmware/qcom_scm-64.c | 136 ++++++++++++++++++++++++++++-------------
-> >  1 file changed, 92 insertions(+), 44 deletions(-)
-> >
-> > diff --git a/drivers/firmware/qcom_scm-64.c b/drivers/firmware/qcom_scm-64.c
-> > index 91d5ad7cf58b..b6dca32c5ac4 100644
-> > --- a/drivers/firmware/qcom_scm-64.c
-> > +++ b/drivers/firmware/qcom_scm-64.c
-
-[snip]
-
-> > +
-> > +static void qcom_scm_call_do(const struct qcom_scm_desc *desc,
-> > +                          struct arm_smccc_res *res, u32 fn_id,
-> > +                          u64 x5, bool atomic)
-> > +{
->
-> Maybe pass in the call type (ARM_SMCCC_FAST_CALL vs ARM_SMCCC_STD_CALL)
-> instead of "bool atomic"? Would certainly make the callsites easier to
-> understand.
-
-Sure, will do that.
-
->
-> > +     int retry_count = 0;
-> > +
-> > +     if (!atomic) {
-> > +             do {
-> > +                     mutex_lock(&qcom_scm_lock);
-> > +
-> > +                     __qcom_scm_call_do(desc, res, fn_id, x5,
-> > +                                        ARM_SMCCC_STD_CALL);
-> > +
-> > +                     mutex_unlock(&qcom_scm_lock);
-> > +
-> > +                     if (res->a0 == QCOM_SCM_V2_EBUSY) {
-> > +                             if (retry_count++ > QCOM_SCM_EBUSY_MAX_RETRY)
-> > +                                     break;
-> > +                             msleep(QCOM_SCM_EBUSY_WAIT_MS);
-> > +                     }
-> > +             }  while (res->a0 == QCOM_SCM_V2_EBUSY);
-> > +     } else {
-> > +             __qcom_scm_call_do(desc, res, fn_id, x5, ARM_SMCCC_FAST_CALL);
-> > +     }
->
-> Is it safe to make concurrent FAST calls?
-
-I better add a spinlock here.
-
-Thanks & regards
-Vivek
-
->
-> Will
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
-
-
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+DQpPbiA2LzE5LzE5IDExOjUyIEFNLCBGYWJyaWNlIEdhc25pZXIgd3JvdGU6DQo+IFNUTTMyIFRp
+bWVycyBzdXBwb3J0IGdlbmVyaWMgMyBjZWxscyBQV00gdG8gZW5jb2RlIFBXTSBudW1iZXIsIHBl
+cmlvZCBhbmQNCj4gcG9sYXJpdHkuDQo+DQo+IEZpeGVzOiA3ZWRmNzM2OTIwNWIgKCJwd206IEFk
+ZCBkcml2ZXIgZm9yIFNUTTMyIHBsYWZ0b3JtIikNClJldmlld2VkLWJ5OiBCZW5qYW1pbiBHYWln
+bmFyZCA8YmVuamFtaW4uZ2FpZ25hcmRAc3QuY29tPg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBGYWJy
+aWNlIEdhc25pZXIgPGZhYnJpY2UuZ2FzbmllckBzdC5jb20+DQo+IC0tLQ0KPiAgIGRyaXZlcnMv
+cHdtL3B3bS1zdG0zMi5jIHwgMiArKw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
+KykNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcHdtL3B3bS1zdG0zMi5jIGIvZHJpdmVycy9w
+d20vcHdtLXN0bTMyLmMNCj4gaW5kZXggNGY4NDI1NS4uNzQwZTJkZSAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9wd20vcHdtLXN0bTMyLmMNCj4gKysrIGIvZHJpdmVycy9wd20vcHdtLXN0bTMyLmMN
+Cj4gQEAgLTYwOCw2ICs2MDgsOCBAQCBzdGF0aWMgaW50IHN0bTMyX3B3bV9wcm9iZShzdHJ1Y3Qg
+cGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiAgIAlwcml2LT5yZWdtYXAgPSBkZGF0YS0+cmVnbWFw
+Ow0KPiAgIAlwcml2LT5jbGsgPSBkZGF0YS0+Y2xrOw0KPiAgIAlwcml2LT5tYXhfYXJyID0gZGRh
+dGEtPm1heF9hcnI7DQo+ICsJcHJpdi0+Y2hpcC5vZl94bGF0ZSA9IG9mX3B3bV94bGF0ZV93aXRo
+X2ZsYWdzOw0KPiArCXByaXYtPmNoaXAub2ZfcHdtX25fY2VsbHMgPSAzOw0KPiAgIA0KPiAgIAlp
+ZiAoIXByaXYtPnJlZ21hcCB8fCAhcHJpdi0+Y2xrKQ0KPiAgIAkJcmV0dXJuIC1FSU5WQUw7
