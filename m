@@ -2,112 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0709F4B7F4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDFCE4B7FE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 14:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727244AbfFSMSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 08:18:13 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:58832 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbfFSMSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:18:13 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id EBC2225AF1B;
-        Wed, 19 Jun 2019 22:18:10 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 9217A9409FF; Wed, 19 Jun 2019 14:18:08 +0200 (CEST)
-Date:   Wed, 19 Jun 2019 14:18:08 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726246AbfFSMSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 08:18:53 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:57209 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727067AbfFSMSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 08:18:53 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 9965320025;
+        Wed, 19 Jun 2019 14:18:47 +0200 (CEST)
+Date:   Wed, 19 Jun 2019 14:18:46 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>
-Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
-Message-ID: <20190619121808.hnqoeihjch6silcd@verge.net.au>
-References: <1560518075-2254-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <CAMuHMdU8oag+1oNa_jS=v99W05=8SRLhdoZdCusmeVf1VZbarQ@mail.gmail.com>
- <TY1PR01MB17707C3C979FB60611FB34A7C0EA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <CAMuHMdVb+sc0vdvbsAE0fkEY6wFS7KsbtqLmtB03ghVeuiHe1w@mail.gmail.com>
- <TY1PR01MB1770F9972F006B57917A0731C0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, od@zcrc.me,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
+Subject: Re: [PATCH v5 1/2] dt-bindings: Add doc for the Ingenic JZ47xx LCD
+ controller driver
+Message-ID: <20190619121846.GA29084@ravnborg.org>
+References: <20190603152331.23160-1-paul@crapouillou.net>
+ <20190611215554.GA23791@bogus>
+ <1560329392.1823.1@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <TY1PR01MB1770F9972F006B57917A0731C0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1560329392.1823.1@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=VwQbUJbxAAAA:8
+        a=ER_8r6IbAAAA:8 a=p6pI0oa4AAAA:8 a=GHe269Cog9DItrN4tF0A:9
+        a=wPNLvfGTeEIA:10 a=AjGcO6oz07-iQ99wixmX:22 a=9LHmKk7ezEChjTCyhBa9:22
+        a=9cw2y2bKwytFd151gpuR:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 08:16:43AM +0000, Fabrizio Castro wrote:
-> Hello Geert,
+On Wed, Jun 12, 2019 at 10:49:52AM +0200, Paul Cercueil wrote:
 > 
-> Thank you for your feedback
 > 
-> > From: linux-renesas-soc-owner@vger.kernel.org <linux-renesas-soc-owner@vger.kernel.org> On Behalf Of Geert Uytterhoeven
-> > Sent: 19 June 2019 08:34
-> > Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
+> Le mar. 11 juin 2019 à 23:55, Rob Herring <robh@kernel.org> a écrit :
+> > On Mon,  3 Jun 2019 17:23:30 +0200, Paul Cercueil wrote:
+> > >  Add documentation for the devicetree bindings of the LCD controller
+> > > present in
+> > >  the JZ47xx family of SoCs from Ingenic.
+> > > 
+> > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> > >  Tested-by: Artur Rojek <contact@artur-rojek.eu>
+> > >  ---
+> > > 
+> > >  Notes:
+> > >      v2: Remove ingenic,panel property.
+> > > 
+> > >      v3: - Rename compatible strings from ingenic,jz47XX-drm to
+> > > ingenic,jz47XX-lcd
+> > >          - The ingenic,lcd-mode property is now read from the panel
+> > > node instead
+> > >      	  of from the driver node
+> > > 
+> > >      v4: Remove ingenic,lcd-mode property completely.
+> > > 
+> > >      v5: No change
+> > > 
+> > >   .../bindings/display/ingenic,lcd.txt          | 44
+> > > +++++++++++++++++++
+> > >   1 file changed, 44 insertions(+)
+> > >   create mode 100644
+> > > Documentation/devicetree/bindings/display/ingenic,lcd.txt
+> > > 
 > > 
-> > Hi Fabrizio,
+> > Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> > there's no need to repost patches *only* to add the tags. The upstream
+> > maintainer will do that for acks received on the version they apply.
 > > 
-> > On Tue, Jun 18, 2019 at 5:56 PM Fabrizio Castro
-> > <fabrizio.castro@bp.renesas.com> wrote:
-> > > > From: linux-renesas-soc-owner@vger.kernel.org <linux-renesas-soc-owner@vger.kernel.org> On Behalf Of Geert Uytterhoeven
-> > > > Sent: 18 June 2019 16:10
-> > > > Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Add LEDs support
-> > > >
-> > > > On Fri, Jun 14, 2019 at 3:17 PM Fabrizio Castro
-> > > > <fabrizio.castro@bp.renesas.com> wrote:
-> > > > > This patch adds LEDs support to the HiHope RZ/G2[MN] Main Board
-> > > > > common device tree.
-> > > > >
-> > > > > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> > > >
-> > > > Thanks for your patch!
-> > > >
-> > > > > --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> > > > > @@ -17,6 +17,30 @@
-> > > > >                 stdout-path = "serial0:115200n8";
-> > > > >         };
-> > > > >
-> > > > > +       leds {
-> > > > > +               compatible = "gpio-leds";
-> > > > > +
-> > > > > +               led0 {
-> > > > > +                       gpios = <&gpio6 11 GPIO_ACTIVE_HIGH>;
-> > > > > +                       label = "LED0";
-> > > >
-> > > > There's no need for a label property, if it matches the node name
-> > > > (applies to all four LEDs).
-> > >
-> > > I could have used the actual names on the schematic, but then I realised that
-> > > would not have been too helpful due to the corresponding switch names:
-> > > LED0 - GP6_11 - SW2202 - LED2201
-> > > LED1 - GP6_12 - SW2201 - LED2202
-> > > LED2 - GP6_13 - SW2203 - LED2203
-> > > LED3 - GP0_00 - N/A - LED2402
-> > > The first 3 LEDs are found next to the micro USB connector for the debug console,
-> > > the forth LED is found next to the WiFi and BT LEDs.
-> > >
-> > > I thought that using "LEDn" as labels would put a remark on the
-> > > "desired ordering" of the LEDs (even though there is no actual
-> > > requirement for that), but as you pointed out it's probably a bit
-> > > confusing? Do you think I should take the label out?
-> > 
-> > If the LEDs don't have nice labels on the PCB, I would drop the label
-> > properties.
+> > If a tag was not added on purpose, please state why and what changed.
 > 
-> Will do. Simon, do you want me to send an incremental patch for this (this patch
-> is on devel branch already) or would you rather I sent a v2?
+> Sorry Rob, my mistake. I simply forgot that you ever reviewed that patch.
+Added Rob's r-b and pushed to drm-misc-next
 
-Please send an incremental patch, thanks.
+	Sam
