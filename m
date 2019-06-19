@@ -2,133 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A3BE4BA1D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD7384BA33
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727314AbfFSNiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 09:38:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37744 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726047AbfFSNiT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 09:38:19 -0400
-Received: from localhost (173-25-83-245.client.mchsi.com [173.25.83.245])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9DEDD21670;
-        Wed, 19 Jun 2019 13:38:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560951498;
-        bh=KJcUw/bebtq9I++ah6a4S/3OIf7LqrHtimCrkZ/wWK0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wIFQ/Xt1OlABjDVNle4WZFATIxlHnOYobfhKB2GyKvKmPE375fctw17lUNdiT5vq5
-         NWaJ8We+ylYcNNbSA56BElUXBi5hsUDw90b4Hw4Q+/0Xd7ce/xEpXxjRDlcW5iGeKf
-         0gQKzQcMXHwoZ9dGDLCOGd0Do+Mug3ttP538pUiU=
-Date:   Wed, 19 Jun 2019 08:38:17 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Johannes Berg <johannes@sipsolutions.net>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH V4 22/28] PCI: tegra: Access endpoint config only if PCIe
- link is up
-Message-ID: <20190619133817.GA143205@google.com>
-References: <09bcc121-eaca-3866-d0ef-7806503e883f@nvidia.com>
- <ca34eb24-8696-576f-26bc-8d6141f81a41@nvidia.com>
- <20190613143946.GA30445@e121166-lin.cambridge.arm.com>
- <20190613154250.GA32713@ulmo>
- <a523a19c-fdfa-01f7-6f6d-2ca367a10a50@nvidia.com>
- <20190617114745.GL508@ulmo>
- <20190617193024.GC13533@google.com>
- <a7e0472d-f4a7-ed63-836a-b5e8b1360645@nvidia.com>
- <20190618104918.GA28892@ulmo>
- <9c0fb01f0dc6a193265297eaa100a35ff25413e7.camel@sipsolutions.net>
+        id S1730936AbfFSNjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 09:39:24 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:44932 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730889AbfFSNjY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 09:39:24 -0400
+Received: by mail-ua1-f68.google.com with SMTP id 8so9805396uaz.11
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 06:39:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ygy1CFkQCFTyi/IaVMEk8MlBKcngDnJcBhfNCxwCCbI=;
+        b=SJYrCy+bfnRbJ93ZqsjyRYfk4YZr6fNQVRLcOUDirI0mB2QZiVbpPFPpgOH4OwXisL
+         6T/Nz3oRrbVzY68aw9HU+kZGXvjwf7YTiDi4NxbV8yV0lyRy3Se3TO8YAaArfXc1NgtD
+         e+tZPzTrD/vCFJ9UNyQsw9tSySTeg9ZqTusm+nmEM3quTV5E2qsygs361Z4PwT5q2ykf
+         BhTkWoKQZX1OOVred+4P5uyHX9NfhGoPuKhVGsShL1G9F42URdX0phy2rRjOWz6ZkUDU
+         fdM5Rc71DmqsoooEurdw3vvURuQnOoBEoebttrxPtmjg8cQ01FaT8ZtaTsis8IXqNWm+
+         ZkQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ygy1CFkQCFTyi/IaVMEk8MlBKcngDnJcBhfNCxwCCbI=;
+        b=I0BjEGMQ3Pml5Z8hpFXuRnfh0IalZGW8Yf2QQspE0iFT4r9rU0StATp7RSP812Q5GP
+         DbEcdzzhSEXuRLtPn1M53dy7ZsPDzS8AONJ1yrtcAfCZDg8f6YXfph03e6Cu5POORuOM
+         dnYhW2YJLTmNihM3h6lKL0x4DYI1avT3HcEB9MxoVE/z0WB51NpOjfTSBWIMhLtiZ/zf
+         XYwDldI/eWL4Hm/Xqijv9VyN11zuuy+nl1JLaaGdW8CZmfLY3RF6u/52nypQEA3ITiBk
+         ABHla+bAbckh62IUefb+LfMPkg4DPA7CczB8Z0kITfF+ewiQNvEQIvJNmoBDZxXnx5pz
+         BDdA==
+X-Gm-Message-State: APjAAAUPzXGcVK22olIAAGmoOCoVO4hEbrcyGNnjtnEGUGsMun3k75bB
+        D7GEAB9/Gt4mQvHCn8s1Gf8QcAQ7Ppj/o9art+GwPQ==
+X-Google-Smtp-Source: APXvYqy2SC+4P4kfrJYqcfaPIIK+E7p9ADoB0DluVM96aMYIJtafUGfr1APFftQPqYnOav8bOUtdJ6QkFhwE1yInUVU=
+X-Received: by 2002:ab0:60ad:: with SMTP id f13mr15613313uam.129.1560951563492;
+ Wed, 19 Jun 2019 06:39:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9c0fb01f0dc6a193265297eaa100a35ff25413e7.camel@sipsolutions.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1560247011-26369-1-git-send-email-manish.narani@xilinx.com>
+ <1560247011-26369-4-git-send-email-manish.narani@xilinx.com>
+ <CAPDyKFrJwpwUUX_q2kcR9QY_fv9Lgos+ixPmU6JMeJVqJAiFpg@mail.gmail.com>
+ <5feac3fb-bef3-b7d1-57d6-81e115e1f555@xilinx.com> <CAPDyKFp_ZvSjFp2FGonzGsnc9xPyZ7qOCaRnX1SimBxLpfz9-Q@mail.gmail.com>
+ <MN2PR02MB6029DB87CEE32655B0F1E794C1E50@MN2PR02MB6029.namprd02.prod.outlook.com>
+In-Reply-To: <MN2PR02MB6029DB87CEE32655B0F1E794C1E50@MN2PR02MB6029.namprd02.prod.outlook.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 19 Jun 2019 15:38:47 +0200
+Message-ID: <CAPDyKFqb3uRU1XbrioSw6UZ5atZ8WwZNhQ_yq2+3JfxXZCxr7g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] mmc: sdhci-of-arasan: Add support for ZynqMP Platform
+ Tap Delays Setup
+To:     Manish Narani <MNARANI@xilinx.com>
+Cc:     Michal Simek <michals@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Rajan Vaja <RAJANV@xilinx.com>, Jolly Shah <JOLLYS@xilinx.com>,
+        Nava kishore Manne <navam@xilinx.com>,
+        Olof Johansson <olof@lixom.net>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 02:32:59PM +0200, Johannes Berg wrote:
-> On Tue, 2019-06-18 at 12:49 +0200, Thierry Reding wrote:
-> 
-> > > > > > > > > > 1. WiFi devices provides power-off feature for power saving
-> > > > > > > > > > in mobiles.  When WiFi is turned off we shouldn't power on
-> > > > > > > > > > the HW back without user turning it back on.
-> 
-> But why would you disconnect the PCIe device just to power it down?!
-> 
-> > > > > > > The problem that Manikanta is trying to solve here occurs in
-> > > > > > > this situation (Manikanta, correct me if I've got this wrong):
-> > > > > > > on some setups, a WiFi module connected over PCI will toggle a
-> > > > > > > power GPIO as part of runtime suspend. This effectively causes
-> > > > > > > the module to disappear from the PCI bus (i.e. it can no longer
-> > > > > > > be accessed until the power GPIO is toggled again).
-> > > > > > 
-> > > > > > GPIO is toggled as part of WiFi on/off, can be triggered from
-> > > > > > network manager UI.
-> 
-> That's kinda icky, IMHO.
-> 
-> > > > > > Correct, rfkill switch should handle the GPIO.
-> > > > > > Sequence will be,
-> > > > > >  - WiFi ON
-> > > > > >    - rfkill switch enables the WiFi GPIO
-> > > > > >    - Tegra PCIe receives hot plug event
-> > > > > >    - Tegra PCIe hot plug driver rescans PCI bus and enumerates the device
-> > > > > >    - PCI client driver is probed, which will create network interface
-> > > > > >  - WiFi OFF
-> > > > > >    - rfkill switch disables the WiFi GPIO
-> > > > > >    - Tegra PCIe receives hot unplug event
-> > > > > >    - Tegra PCIe hot plug driver removes PCI devices under the bus
-> > > > > >    - PCI client driver remove is executed, which will remove
-> > > > > >      network interface
-> > > > > > We don't need current patch in this case because PCI device is not
-> > > > > > present in the PCI hierarchy, so there cannot be EP config access
-> > > > > > with link down.  However Tegra doesn't support hot plug and unplug
-> > > > > > events. I am not sure if we have any software based hot plug event
-> > > > > > trigger.
-> 
-> Looks reasonable to me.
-> 
-> I guess if you absolutely know in software when the device is
-> present or not, you don't need "real" PCIe hotplug, just need to
-> tickle the software right?
-> 
-> > > > How does rfkill work?  It sounds like it completely removes
-> > > > power from the wifi device, putting it in D3cold.  Is there
-> > > > any software notification other than the "Slot present pin
-> > > > change" (which looks like a Tegra-specific thing)?
-> 
-> Well, they said above it's a GPIO that controls it, so the software
-> already knows and doesn't really need an event?
+On Wed, 19 Jun 2019 at 10:40, Manish Narani <MNARANI@xilinx.com> wrote:
+>
+> Hi Uffe,
+>
+>
+> > -----Original Message-----
+> > From: Ulf Hansson <ulf.hansson@linaro.org>
+> > Sent: Monday, June 17, 2019 5:51 PM
+> [...]
+> >
+> > The "const struct zynqmp_eemi_ops *eemi_ops; should then be moved into
+> > a clock provider specific struct, which is assigned when calling
+> > sdhci_arasan_register_sdclk. I understand that all the clock data is
+> > folded into struct sdhci_arasan_data today, but I think that should be
+> > moved into a "sub-struct" for the clock specifics.
+> >
+> > Moreover, when registering the clock, we should convert from using
+> > devm_clk_register() into devm_clk_hw_register() as the first one is
+> > now deprecated.
+>
+> Just a query here:
+> When we switch to using devm_clk_hw_register() here, it will register the clk_hw and return int.
+> Is there a way we can get the clk (related to the clk_hw registered) from the
+> clock framework?
+> I am asking this because we will need that clk pointer while calling clk_set_phase() function.
 
-Forgive my ignorance about rfkill.  At least in this Tegra case, it
-sounds like rfkill basically controls a power switch for the entire
-device, i.e., it doesn't merely turn off the radio portion of the
-device; it puts the entire PCI device in D3cold.
+I assume devm_clk_get() should work fine?
 
-Is rfkill integrated with the power management subsystem?  E.g., when
-lspci or X tries to read config space via pci_read_config(), does the
-pci_config_pm_runtime_get() in that path wake up the device?
-
-IMO, if the struct pci_dev exists, we should be able to rely on the
-device actually being accessible (possibly after bringing it back to
-D0).  If rfkill only turns off the radio, leaving the PCI interface
-active, that would be fine -- in that case generic PCI things like
-lspci would work normally and it would be up to the driver to manage
-network-related things.
-
-But if rfkill turns off PCI interface and the power management
-subsystem can't wake it up, I think we should unbind the driver and
-remove the pci_dev, so it wouldn't appear in lspci at all.
-
-Bjorn
+Kind regards
+Uffe
