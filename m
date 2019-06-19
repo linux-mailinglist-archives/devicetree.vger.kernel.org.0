@@ -2,92 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C34934B9B7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8D0F4B9DD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729627AbfFSNVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 09:21:19 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:36500 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726330AbfFSNVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 09:21:19 -0400
-Received: by mail-lj1-f193.google.com with SMTP id i21so3254887ljj.3;
-        Wed, 19 Jun 2019 06:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g18058N/C2pjcBGgjgbat4LbXOhva175NVhezQY00XQ=;
-        b=tjPmzkP70fAsA26NOsSJclg4L+TUZI/ysTww8TpmgX4bSxFk0ASk0tUeVxZuNORPdX
-         CaTllXz7jbARzX1I+8qPEuPUZEOsjB+KDB3Jb+fLCml0fPsBUa/FuOxzBwydfY2JK1Kp
-         r0PZhb5pEycAT29k5T34UFbUu18o+yFJN9b4J52B+vPAdP0nKwcLyrjY7GjDMTFsycmT
-         N9GdVXdkfxSFregeODQs8CG4BXAH6S4P610UDPJvTkt+UbskAb69T4eA/Df8KacxurAF
-         dDgMS2W8C2xv7HdoziJtd0uFWbPc1TJnRsgByjPlGasOqZiTdNTyIhJ51E1YWvH8+B2z
-         TEbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g18058N/C2pjcBGgjgbat4LbXOhva175NVhezQY00XQ=;
-        b=jkoV5sI/8R/qokOYvkk/VM0KcoqRvgS8fFW2OfJEdVWeeeM3xRtgaKugCwqXkcOKX3
-         oLCz/csOZFw5XirBopbdeOz8MIbIX/xI7osv1BYsjbDpQqK6E2uctcKZjhQqS+5uh2wF
-         aN3Vp267d4SJOrHF4mF5d4TJLqeTh7vIGXQecoFPaS5bx18y/vPryhE7iq47vY2cR0ln
-         PZD2vbLoCjWxDMTHw4JDLSxVYg5ZZzEEoxU9uGBkOJ+pbNad/IkIF2SvQl5qLqT0HB28
-         HJNiGRxETSetMye2UxijsYEDio2nURPB8VAJX/ITJoX2bEegCP1VjNJzA4c+yooIgjb5
-         PIqA==
-X-Gm-Message-State: APjAAAXYYBtZMBoddQj3Ue+tbit5NCdiQO/vU47uK/Gia61j+FVOiSbU
-        /GJKMJijxjADC6i75ehEAndksUEwQKU+cZj+BF8=
-X-Google-Smtp-Source: APXvYqyAMgmk6ys/VsOTesM/6z0KH2z75G1WFcyJbVadMJ+QdScEq8u41WtyiImcwlE2f5Aw7kaHsoWTLJ1vAaQzsSs=
-X-Received: by 2002:a2e:2c07:: with SMTP id s7mr26636418ljs.44.1560950476875;
- Wed, 19 Jun 2019 06:21:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <1560864646-1468-1-git-send-email-robert.chiras@nxp.com> <1560864646-1468-2-git-send-email-robert.chiras@nxp.com>
-In-Reply-To: <1560864646-1468-2-git-send-email-robert.chiras@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 19 Jun 2019 10:21:29 -0300
-Message-ID: <CAOMZO5DwwL5+V4Eifskk=pKzpceRmk5bvdXNeCzZfU3jVwEhEA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add support for
- Raydium RM67191 panel
+        id S1726013AbfFSNZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 09:25:52 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:59484 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726060AbfFSNZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 09:25:52 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 9B5C520023;
+        Wed, 19 Jun 2019 15:25:47 +0200 (CEST)
+Date:   Wed, 19 Jun 2019 15:25:46 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
 To:     Robert Chiras <robert.chiras@nxp.com>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [PATCH v2 2/2] drm/panel: Add support for Raydium RM67191 panel
+ driver
+Message-ID: <20190619132546.GB31903@ravnborg.org>
+References: <1560864646-1468-1-git-send-email-robert.chiras@nxp.com>
+ <1560864646-1468-3-git-send-email-robert.chiras@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1560864646-1468-3-git-send-email-robert.chiras@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=8AirrxEcAAAA:8
+        a=7gkXJVJtAAAA:8 a=Ec1C81j2VkJbqId89Q8A:9 a=CjuIK1q_8ugA:10
+        a=ST-jHhOKWsTCqRlWije3:22 a=E9Po1WZjFZOl8hwRPBS3:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
+On Tue, Jun 18, 2019 at 04:30:46PM +0300, Robert Chiras wrote:
+> This patch adds Raydium RM67191 TFT LCD panel driver (MIPI-DSI
+> protocol).
+> 
+> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+Please include in the changelog a list of what was updated - like this:
 
-On Tue, Jun 18, 2019 at 10:33 AM Robert Chiras <robert.chiras@nxp.com> wrote:
+v2:
+- added kconif symbol sorted (sam)
+- another nitpick (foo)
+- etc
 
-> +Optional properties:
-> +- reset-gpios:         a GPIO spec for the RST_B GPIO pin
-> +- pinctrl-0            phandle to the pin settings for the reset pin
-> +- width-mm:            physical panel width [mm]
-> +- height-mm:           physical panel height [mm]
-> +- display-timings:     timings for the connected panel according to [1]
+In general try to namme who gave feedback to give them some credit.
 
-Still not convinced we need the 'display-timings' property, even as an
-optional property. My understanding is that passing display timings in
-the devicetree is not encouraged.
+Who is maintainer for this onwards?
 
-Last time you said you need to pass ''display-timings' to workaround
-the problem of connecting this panel to mx8m DCSS or eLCDIF.
+> ---
+>  drivers/gpu/drm/panel/Kconfig                 |   9 +
+>  drivers/gpu/drm/panel/Makefile                |   1 +
+>  drivers/gpu/drm/panel/panel-raydium-rm67191.c | 709 ++++++++++++++++++++++++++
+>  3 files changed, 719 insertions(+)
+>  create mode 100644 drivers/gpu/drm/panel/panel-raydium-rm67191.c
+> 
+> +static int rad_panel_prepare(struct drm_panel *panel)
+> +{
+> +	struct rad_panel *rad = to_rad_panel(panel);
+> +
+> +	if (rad->prepared)
+> +		return 0;
+> +
+> +	if (rad->reset) {
+> +		gpiod_set_value_cansleep(rad->reset, 1);
+> +		usleep_range(3000, 5000);
+> +		gpiod_set_value_cansleep(rad->reset, 0);
 
-The panel timings come from the LCD manufacturer and it is agnostic to
-what display controller interface it is connected to.
+So writing a 0 will release reset.
+> +		usleep_range(18000, 20000);
+> +	}
+> +
+> +	rad->prepared = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rad_panel_unprepare(struct drm_panel *panel)
+> +{
+> +	struct rad_panel *rad = to_rad_panel(panel);
+> +
+> +	if (!rad->prepared)
+> +		return 0;
+> +
+> +	if (rad->reset) {
+> +		gpiod_set_value_cansleep(rad->reset, 1);
+> +		usleep_range(15000, 17000);
+> +		gpiod_set_value_cansleep(rad->reset, 0);
+Looks strange that reset is released in unprepare.
+I would expect it to stay reset to minimize power etc.
 
-So I suggest making sure the timings passed in the driver are correct
-as per the vendor datasheet. If they are correct and one specific
-interface is not able to drive it, then probably it is a bug in this
-specific display controller interface or in the SoC clock driver.
+> +
+> +	ret = drm_display_info_set_bus_formats(&connector->display_info,
+> +					       rad_bus_formats,
+> +					       ARRAY_SIZE(rad_bus_formats));
+
+Other drivers has this as the last stement in their enable function.
+I did not check why, but maybe something to invest a few minutes into.
+Be different only if there is a reason to do so.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_mode_probed_add(panel->connector, mode);
+> +
+> +	return 1;
+> +}
+> +
+> +
+> +#ifdef CONFIG_PM
+> +static int rad_panel_suspend(struct device *dev)
+> +{
+> +	struct rad_panel *rad = dev_get_drvdata(dev);
+> +
+> +	if (!rad->reset)
+> +		return 0;
+> +
+> +	devm_gpiod_put(dev, rad->reset);
+> +	rad->reset = NULL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rad_panel_resume(struct device *dev)
+> +{
+> +	struct rad_panel *rad = dev_get_drvdata(dev);
+> +
+> +	if (rad->reset)
+> +		return 0;
+> +
+> +	rad->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(rad->reset))
+> +		rad->reset = NULL;
+> +
+> +	return PTR_ERR_OR_ZERO(rad->reset);
+> +}
+> +
+> +#endif
+
+Use __maybe_unused for the tw functions above.
+And loose the ifdef...
+
+> +
+> +static const struct dev_pm_ops rad_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(rad_panel_suspend, rad_panel_resume, NULL)
+> +	SET_SYSTEM_SLEEP_PM_OPS(rad_panel_suspend, rad_panel_resume)
+> +};
+> +
+> +static const struct of_device_id rad_of_match[] = {
+> +	{ .compatible = "raydium,rm67191", },
+> +	{ }
+We often, but not always, write this as { /* sentinal */ },
+
+> +};
+> +MODULE_DEVICE_TABLE(of, rad_of_match);
+> +
+> +static struct mipi_dsi_driver rad_panel_driver = {
+> +	.driver = {
+> +		.name = "panel-raydium-rm67191",
+> +		.of_match_table = rad_of_match,
+> +		.pm	= &rad_pm_ops,
+> +	},
+> +	.probe = rad_panel_probe,
+> +	.remove = rad_panel_remove,
+> +	.shutdown = rad_panel_shutdown,
+> +};
+> +module_mipi_dsi_driver(rad_panel_driver);
+> +
+> +MODULE_AUTHOR("Robert Chiras <robert.chiras@nxp.com>");
+> +MODULE_DESCRIPTION("DRM Driver for Raydium RM67191 MIPI DSI panel");
+> +MODULE_LICENSE("GPL v2");
+
+With the above trivialities considered/fixed:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+
+	Sam
