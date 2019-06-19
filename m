@@ -2,150 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9EEC4C0E9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 20:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D854C0FB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 20:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730494AbfFSShr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 14:37:47 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:37864 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730479AbfFSShr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 14:37:47 -0400
-Received: by mail-pl1-f193.google.com with SMTP id bh12so175435plb.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 11:37:46 -0700 (PDT)
+        id S1726191AbfFSSqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 14:46:12 -0400
+Received: from mail-pf1-f174.google.com ([209.85.210.174]:39005 "EHLO
+        mail-pf1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726109AbfFSSqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 14:46:12 -0400
+Received: by mail-pf1-f174.google.com with SMTP id j2so121578pfe.6
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 11:46:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2UHrTE7B5XpI1WvMqZiW3y+ZVgQqpXieqgBOuUL3YDY=;
-        b=nXaidQykLu0h3v+pNAwd13wc4DhE5worNOflID9Mf2valzfpNLEoz/00pn7rrU7Dmn
-         FxeUrAO5yA7lCOSKq1jd1jzQ4O1aY0TxEMX08ip6aEoG4HxpImTpVC6VSk+69Kpzm6Ys
-         gmqahyhRmADeRLd6d+ldLEDrNFb2uHKhQjwM8=
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=wfp+JNfOpWcussOrqkZIVASVmRCNfV7M2rs/9KC1uF4=;
+        b=Q6etSWEvJMEFdoBH8SAp5/73koMIP/pwSWp4SmBb7bZ/GSZw8IBZ008EVkjZGbc7yW
+         qb3QbhUL18xB4YlAJ7beCmvQ7mFnXV2kjZuKXTLr0Oj8OBoOFDdrFe4ikTyFKfNguKqH
+         +kZZD9rqy+kU0kXt4fN/Pk5DJGpfpcixTT0dv6e6qolnoSZdbIERZchSONnXoHjjwqEg
+         2rPvxe2+SBL7Tsxd2lVE1/fUSkFkdC+aqqY5Zpy80Li2lVvaa0+oJ6pRWAsWMFNRK/Ov
+         dqAE9ifTonuvUp7u5fxNEupcOmzaeV7RGBi4T+JF5PrOfLtfv09xSOBwWyOhcthg/GxD
+         7jmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2UHrTE7B5XpI1WvMqZiW3y+ZVgQqpXieqgBOuUL3YDY=;
-        b=BNHkJG/q41Lq0CDgzovUQPo/64DTSPS7yJhriX9LA1wUVeJFTcnpJQSCE0KLS8/GeA
-         E1YWV1CAf3kSRAIPUlbzVQJUTKlI2mMCC8Hh1yeVzm4htqcVfFJfxUA3jWg4/L2V0hge
-         Y3FMtp+bYP9exR4RcVpMv88Z/shwuMymDJcpqJY3UqjCzsaZqU3kdRnz4tpTlu7SQZbV
-         AfTZDSyxIii4/CuqhNC3bwFHjkEnCNBAhyCebU5HQ9q66Y+8cBWT2L7YbXf8l3fz6bRd
-         BiooPZ3TdnKZs2iYFOD8eNZ2R5xOfeYDa+CYr0Wh4KtpwQtRNwJ007E/0QH9AWwANau0
-         nyCg==
-X-Gm-Message-State: APjAAAWKRH9Lx58XHFjabKgjSLBBswuGDOt+Dzif103mgHCiDgWjXfc1
-        P9DKDZEAOM43BS800+ZxPpuguA==
-X-Google-Smtp-Source: APXvYqw3w3u7xuqL2IUmlLYdr5iRpyNBWMi+c4rhFrkhqFLsCOFAK3UzXw/uPna24Mybo1ZWf+lnpA==
-X-Received: by 2002:a17:902:7e0e:: with SMTP id b14mr96610234plm.257.1560969466479;
-        Wed, 19 Jun 2019 11:37:46 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id j16sm2681463pjz.31.2019.06.19.11.37.45
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 19 Jun 2019 11:37:46 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     heiko@sntech.de
-Cc:     linux-rockchip@lists.infradead.org, mka@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: rockchip: Configure BT_DEV_WAKE in on rk3288-veyron
-Date:   Wed, 19 Jun 2019 11:34:25 -0700
-Message-Id: <20190619183425.149470-1-dianders@chromium.org>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=wfp+JNfOpWcussOrqkZIVASVmRCNfV7M2rs/9KC1uF4=;
+        b=gEQClEzOY+6Q19TphtNB38+ElN1yexEbTzW+YxYEqFA5GUDXHxgznx1DqZ+3e3SI+G
+         jKFrLpZQTumwvE9TrixT5CJRtf3V1eNEDhIsTnoNfsHRTwmucuG3g5+ZSzt7tijjXfjJ
+         ywCAYRE9QOolS3zpevMQw9wMz1xpCUSwpj1I+zWBsKN51EYgNXAL3d7Obwy7L9scnCTK
+         aik9WHQ7UeRvd7OjUoeDdJsODSDN0lCMKfBz7EVmp/6GXTg49dMK2l2yuIyMCF2vgQ4i
+         OhQEqSxpSPGQSSm7IsvvkhHjeVSLW9kDbd8G0JV1ldV/mgvIy0LhRYT2lxp2IhYxnFpf
+         mhPA==
+X-Gm-Message-State: APjAAAUP+3hVJHoNETN+3DKsz/nv8HcNvDBY+6v1gRH4tEnl5HGsqKyU
+        /FXsPRDmUzRZyguE76knXtN/DEkDclhNjyCjXj0=
+X-Google-Smtp-Source: APXvYqyy5o5OnIS43Af6d01LBalG0Vty5sR6St71JIyhRGW9irgTnmCzcoGb/4G8SZ74DP1n0GO/PgNwxj8dtKzUfJM=
+X-Received: by 2002:a63:4d0f:: with SMTP id a15mr9199858pgb.101.1560969971318;
+ Wed, 19 Jun 2019 11:46:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From:   Zhi Li <lznuaa@gmail.com>
+Date:   Wed, 19 Jun 2019 13:46:00 -0500
+Message-ID: <CAHrpEqT_34eNK-EzRgs-ocDD6pfLzD=FU8n83HgSQVsimJRxPw@mail.gmail.com>
+Subject: [PATCH V12 3/4] arm64: dts: imx8qxp: added ddr performance monitor nodes
+To:     Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the other half of the hacky solution from commit f497ab6b4bb8
-("ARM: dts: rockchip: Configure BT_HOST_WAKE as wake-up signal on
-veyron").  Specifically the LPM driver that the Broadcom Bluetooth
-expects to have (but is missing in mainline) has two halves of the
-equation: BT_HOST_WAKE and BT_DEV_WAKE.  The BT_HOST_WAKE (which was
-handled in the previous commit) is the one that lets the Bluetooth
-wake the system up.  The BT_DEV_WAKE (this patch) tells the Bluetooth
-that it's OK to go into a low power mode.  That means we were burning
-a bit of extra power in S3 without this patch.  Measurements are a bit
-noisy, but it appears to be a few mA worth of difference.
+Add ddr performance monitor
 
-NOTE: Though these pins don't do much on systems with Marvell
-Bluetooth, downstream kernels set it on all veyron boards so we'll do
-the same.
-
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 ---
 
- .../boot/dts/rk3288-veyron-chromebook.dtsi    |  2 ++
- arch/arm/boot/dts/rk3288-veyron.dtsi          | 20 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
+Resent without base64 encode
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi b/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi
-index 5727017f34b2..1cadb522fd0d 100644
---- a/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi
-@@ -237,6 +237,7 @@
- 
- 		/* Wake only */
- 		&suspend_l_wake
-+		&bt_dev_wake_awake
- 	>;
- 	pinctrl-1 = <
- 		/* Common for sleep and wake, but no owners */
-@@ -246,6 +247,7 @@
- 
- 		/* Sleep only */
- 		&suspend_l_sleep
-+		&bt_dev_wake_sleep
- 	>;
- 
- 	backlight {
-diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index e2635ad574e7..53d2f2452868 100644
---- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -485,12 +485,18 @@
- 		&ddr0_retention
- 		&ddrio_pwroff
- 		&global_pwroff
-+
-+		/* Wake only */
-+		&bt_dev_wake_awake
- 	>;
- 	pinctrl-1 = <
- 		/* Common for sleep and wake, but no owners */
- 		&ddr0_retention
- 		&ddrio_pwroff
- 		&global_pwroff
-+
-+		/* Sleep only */
-+		&bt_dev_wake_sleep
- 	>;
- 
- 	pcfg_pull_none_drv_8ma: pcfg-pull-none-drv-8ma {
-@@ -596,6 +602,20 @@
- 		sdio0_clk: sdio0-clk {
- 			rockchip,pins = <4 RK_PD1 1 &pcfg_pull_none_drv_8ma>;
- 		};
-+
-+		/*
-+		 * These pins are only present on very new veyron boards; on
-+		 * older boards bt_dev_wake is simply always high.  Note that
-+		 * gpio4_D2 is a NC on old veyron boards, so it doesn't hurt
-+		 * to map this pin everywhere
-+		 */
-+		bt_dev_wake_sleep: bt-dev-wake-sleep {
-+			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_output_low>;
-+		};
-+
-+		bt_dev_wake_awake: bt-dev-wake-awake {
-+			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_output_high>;
-+		};
- 	};
- 
- 	tpm {
--- 
-2.22.0.410.gd8fdbe21b5-goog
+Notes:
+    No change from v9 to v12
 
+    Change from v8 to v9
+    * put ddr-pmu under ddr_subsystem bus
+
+    Change from v3 to v8
+    * none
+
+    Change from v2 to v3
+    * ddr_pmu0 -> ddr-pmu
+
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+index 0683ee2..a33e08c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -378,6 +378,20 @@
+                };
+        };
+
++       ddr_subsyss: bus@5c000000 {
++               compatible = "simple-bus";
++               #address-cells = <1>;
++               #size-cells = <1>;
++               ranges = <0x5c000000 0x0 0x5c000000 0x1000000>;
++
++               ddr-pmu@5c020000 {
++                       compatible = "fsl,imx8-ddr-pmu";
++                       reg = <0x5c020000 0x10000>;
++                       interrupt-parent = <&gic>;
++                       interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
++               };
++       };
++
+        lsio_subsys: bus@5d000000 {
+                compatible = "simple-bus";
+                #address-cells = <1>;
+--
+2.5.2
