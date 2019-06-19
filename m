@@ -2,114 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1414B281
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 08:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F674B292
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 09:04:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730791AbfFSG6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 02:58:20 -0400
-Received: from mail-eopbgr1400122.outbound.protection.outlook.com ([40.107.140.122]:11834
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725946AbfFSG6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 02:58:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cb+aZBeU/C2Y0szaMFW9KKj6lHxZEqXNlG29ElRT7iM=;
- b=JftnLYKRnrNQbHCNjrjVCb/IMX9zsfeh2xZ26P9b4kmviXCt5kPlRbn7hpILTsYG2SMDvC80zftUI+OBBtRGFCEOsRw00w+s1lUwvIkEuSMsm4SAHeluouKnypVTw+xesbYcHnv5HrIsRwsSz56HpBWF3DROGvYOlRs6edsP6Qc=
-Received: from OSBPR01MB3590.jpnprd01.prod.outlook.com (20.178.97.80) by
- OSBPR01MB3414.jpnprd01.prod.outlook.com (20.178.99.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.11; Wed, 19 Jun 2019 06:58:17 +0000
-Received: from OSBPR01MB3590.jpnprd01.prod.outlook.com
- ([fe80::b1c2:125c:440d:e240]) by OSBPR01MB3590.jpnprd01.prod.outlook.com
- ([fe80::b1c2:125c:440d:e240%4]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
- 06:58:17 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Simon Horman <horms+renesas@verge.net.au>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?iso-8859-1?Q?Niklas_S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: RE: [PATCH 2/2] dt-bindings: usb: renesas_gen3: Rename bindings
- documentation file
-Thread-Topic: [PATCH 2/2] dt-bindings: usb: renesas_gen3: Rename bindings
- documentation file
-Thread-Index: AQHVJOvzrr8sipd+1UG4ND2WVDbsV6aijRlw
-Date:   Wed, 19 Jun 2019 06:58:17 +0000
-Message-ID: <OSBPR01MB35903D8166947D92B0026AEAD8E50@OSBPR01MB3590.jpnprd01.prod.outlook.com>
-References: <20190617090603.8449-1-horms+renesas@verge.net.au>
- <20190617090603.8449-3-horms+renesas@verge.net.au>
-In-Reply-To: <20190617090603.8449-3-horms+renesas@verge.net.au>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
-x-originating-ip: [118.238.235.108]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 90c1d0db-2d97-4ff0-615b-08d6f48381ca
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB3414;
-x-ms-traffictypediagnostic: OSBPR01MB3414:
-x-microsoft-antispam-prvs: <OSBPR01MB34147A66277334DDC9C452F9D8E50@OSBPR01MB3414.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0073BFEF03
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(396003)(346002)(366004)(39860400002)(376002)(199004)(189003)(486006)(81156014)(3846002)(9686003)(4326008)(110136005)(229853002)(6116002)(478600001)(26005)(81166006)(316002)(186003)(25786009)(55016002)(54906003)(14454004)(86362001)(66066001)(6246003)(6436002)(76116006)(33656002)(446003)(256004)(5660300002)(66556008)(2906002)(8936002)(66476007)(64756008)(66446008)(4744005)(11346002)(102836004)(76176011)(99286004)(7696005)(476003)(53936002)(305945005)(8676002)(73956011)(6506007)(71200400001)(66946007)(53546011)(71190400001)(74316002)(52536014)(7736002)(68736007);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB3414;H:OSBPR01MB3590.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: y3Y8keX/Ubc0tc56VNXeD50LXAjKLLA56LN0OKCKOKi6nyTy6Q+knmWHzqmkbvpyOd8ZgHQNj2nFWCJOlhGMOYYQ1IQiIo2NmT2q/Vwu5UbwwyuLJ8XndVeeKhDg6V7NI1gnuP0kGReEAd6lcUZ8BZW2UM0XQ4+JtvZOnjrPSiOwnRxahzbhaJAxo10P9PviQFlINr23/PP0TtIbXHfisDbt45Xrbu2PhKHdtIVCCRktJNTzqtXs4lzty3uKDy/a8GEPpOurs+cwIIIjXOgX/Q4QkCWfwilWuBhMYWRCZ8dyJ4v4gUXSk1WENZ1PorWghKfwXdQGxjo6Sfvra1sENeoVXKUl3xybOPY13rZ3OuFuS19BRjrbQD2pyXCh1ax1E50/7KJBObwPsMwqMt9FjQAWBZJJQPbmuPOU5OsXeEA=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90c1d0db-2d97-4ff0-615b-08d6f48381ca
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 06:58:17.3242
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yoshihiro.shimoda.uh@renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3414
+        id S1731039AbfFSHEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 03:04:14 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:39304 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725892AbfFSHEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 03:04:14 -0400
+Received: by mail-pl1-f194.google.com with SMTP id b7so6804087pls.6
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 00:04:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=PbYeBHsXCZa7rfwxfeGbM1ofQD9jWLYTMyvYxIoxevc=;
+        b=PYNn/GNILWTXQixS0j+NxbLAF6z0fwm/Fetz5fhzRvOPI9HaK8+lve4ch3ntANwWL2
+         ZwIpiNJNKIS/6ZI1NfKT1it9BBoCQF4zb0R53+g48qD7k+j596lRN0/DozpW4lINjoKN
+         703syOKkWrx6DIm4V8WDepc1mDcu5I4VUp4LXY6G+sK48GHA5ogH+3S3sir5KbZZIrZo
+         KmkqpIQdEMDmWEP/xixvamrq2lSDmTTDowls0RdyKezDICpC8BcJ3fYYSWwgOvd6tIkH
+         WB6LZW8hxIXPEfT8ewF/3CIXApVC89Ys0syVDbJtaa/tJXQP/gJ6nF8UqkXIfVyqvtOB
+         yVgw==
+X-Gm-Message-State: APjAAAXRZT8UP9aSErRX+48ZiOOTcsfIeGKEho5tuwlL7wgV6MGCSYBP
+        KU4v26vR7pMXHk6ev06LLOdGyg==
+X-Google-Smtp-Source: APXvYqy+pIFCp1pdmlOYEhY+tkWW1f8ElGIIEfuWVp0uAyCklawr9uR1wjJDEfCeh8fUXLizyuYroA==
+X-Received: by 2002:a17:902:848b:: with SMTP id c11mr95273759plo.217.1560927853629;
+        Wed, 19 Jun 2019 00:04:13 -0700 (PDT)
+Received: from localhost (amx-tls3.starhub.net.sg. [203.116.164.13])
+        by smtp.gmail.com with ESMTPSA id 125sm16255713pfg.99.2019.06.19.00.04.12
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 19 Jun 2019 00:04:12 -0700 (PDT)
+Date:   Wed, 19 Jun 2019 00:04:12 -0700 (PDT)
+X-Google-Original-Date: Wed, 19 Jun 2019 00:02:47 PDT (-0700)
+Subject:     Re: [PATCH 1/3] arch: riscv: add config option for building SiFive's SoC resource
+In-Reply-To: <1560799790-20287-2-git-send-email-lollivier@baylibre.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>, lollivier@baylibre.com,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, khilman@baylibre.com
+From:   Palmer Dabbelt <palmer@sifive.com>
+To:     lollivier@baylibre.com
+Message-ID: <mhng-57108556-f1ec-4ff8-a6a0-98ddfee8232a@palmer-si-x1e>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon-san,
+On Mon, 17 Jun 2019 12:29:48 PDT (-0700), lollivier@baylibre.com wrote:
+> Create a config option for building SiFive SoC specific resources
+> e.g. SiFive device tree, platform drivers...
+>
+> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Palmer Dabbelt <palmer@sifive.com>
+> ---
+>  arch/riscv/Kconfig                  | 2 ++
+>  arch/riscv/Kconfig.socs             | 8 ++++++++
+>  arch/riscv/boot/dts/sifive/Makefile | 2 +-
+>  3 files changed, 11 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/riscv/Kconfig.socs
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index ee32c66e1af3..eace5857c9e9 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -94,6 +94,8 @@ config PGTABLE_LEVELS
+>  	default 3 if 64BIT
+>  	default 2
+>
+> +source "arch/riscv/Kconfig.socs"
+> +
+>  menu "Platform type"
+>
+>  choice
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> new file mode 100644
+> index 000000000000..60dae1b5f276
+> --- /dev/null
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -0,0 +1,8 @@
+> +menu "SoC selection"
+> +
+> +config SOC_SIFIVE
+> +       bool "SiFive SoCs"
+> +       help
+> +         This enables support for SiFive SoC platform hardware.
+> +
+> +endmenu
+> diff --git a/arch/riscv/boot/dts/sifive/Makefile b/arch/riscv/boot/dts/sifive/Makefile
+> index baaeef9efdcb..6d6189e6e4af 100644
+> --- a/arch/riscv/boot/dts/sifive/Makefile
+> +++ b/arch/riscv/boot/dts/sifive/Makefile
+> @@ -1,2 +1,2 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> -dtb-y += hifive-unleashed-a00.dtb
+> +dtb-$(CONFIG_SOC_SIFIVE) += hifive-unleashed-a00.dtb
 
-> From: Simon Horman, Sent: Monday, June 17, 2019 6:06 PM
-> Subject: [PATCH 2/2] dt-bindings: usb: renesas_gen3: Rename bindings docu=
-mentation file
-
-s/gen3/usb3/g
-
-> For consistency with the naming of (most) other documentation files for D=
-T
-> bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
-> documentation file from renesas-gen3.txt to renesas,gen3.txt.
-
-Likewise.
-
-And, if possible, I'd like to rename it to renesas,usb3-peri.txt
-because the compatible is "renesas,<soc>-usb3-peri" and "usb3" is unclear
-(host or peripheral).
-# I don't remember, but I guess the driver side filename is
-# drivers/usb/gadget/udc/renesas_usb3.c, I named the binding doc as renesas=
-_usb3.txt.
-
-After fixed them,
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-
-Best regards,
-Yoshihiro Shimoda
-
+Reviewed-by: Palmer Dabbelt <palmer@sifive.com>
