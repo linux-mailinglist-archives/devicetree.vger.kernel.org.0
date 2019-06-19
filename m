@@ -2,84 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 072574BABF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E04B4BAC1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728699AbfFSOHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 10:07:11 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:36510 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728881AbfFSOHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 10:07:11 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id EA84125AF1B;
-        Thu, 20 Jun 2019 00:07:08 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id E871E9409FF; Wed, 19 Jun 2019 16:07:06 +0200 (CEST)
-Date:   Wed, 19 Jun 2019 16:07:06 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a774a1: Add HDMI encoder
- instance
-Message-ID: <20190619140706.klchxtzxjldnhh5r@verge.net.au>
-References: <1560871119-16570-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1560871119-16570-3-git-send-email-fabrizio.castro@bp.renesas.com>
- <20190619123856.GA21753@pendragon.ideasonboard.com>
- <TY1PR01MB177067A85CA3535257A38C2FC0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+        id S1728652AbfFSOH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 10:07:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54442 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726047AbfFSOH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 10:07:26 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7BCC220645;
+        Wed, 19 Jun 2019 14:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560953244;
+        bh=Gv7KaRBWqiqr3hW8zTUm5eDPSIyUp9V9W3hE/9RwchI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ebHr6ZJnDUdRxTmLYwVgZWVw2cuDekuQMurelaVmvUxad7olctK7riRoGsa5LgR9J
+         i5uxAXpMzEkYK4dkvPkri1khmIAyvl+KYKnL7wp4kxhHTfcj/IjDo3dLpcRroofOSY
+         aHlVppyz5OgrlfmDW2mooBYVNFQhv7Zj64ZsFV64=
+Received: by mail-qt1-f176.google.com with SMTP id p15so20029944qtl.3;
+        Wed, 19 Jun 2019 07:07:24 -0700 (PDT)
+X-Gm-Message-State: APjAAAWo00mKM8PtUk9wy1Ntbe8Em/psP6yMJGRcB5xrUXj/Wypsd749
+        tr9ZYiQtdh7Y+jDQPPAxVQl+V6pEfQFbxeg7SA==
+X-Google-Smtp-Source: APXvYqwvt27LPCNKqYdTaksDB3XZrSVKGXUlUZqYHZQFzDcc2DcbrKLZm3Rpj9gJvYsnzw4i6A/E6B7YVSBCmxedYAQ=
+X-Received: by 2002:a0c:8a43:: with SMTP id 3mr34267465qvu.138.1560953243742;
+ Wed, 19 Jun 2019 07:07:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TY1PR01MB177067A85CA3535257A38C2FC0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20190508103703.40885-1-wen.he_1@nxp.com> <20190613200813.GA895@bogus>
+ <DB7PR04MB5195E49670279C9A28C28A5EE2EB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
+In-Reply-To: <DB7PR04MB5195E49670279C9A28C28A5EE2EB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 19 Jun 2019 08:07:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJnBw+OqEX46CC1E2=9CDmeT8hQtvMpufsnU8z3+1RoBQ@mail.gmail.com>
+Message-ID: <CAL_JsqJnBw+OqEX46CC1E2=9CDmeT8hQtvMpufsnU8z3+1RoBQ@mail.gmail.com>
+Subject: Re: [EXT] Re: [v1 1/4] dt-bindings: display: Add DT bindings for
+ LS1028A HDP-TX PHY.
+To:     Wen He <wen.he_1@nxp.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 12:42:24PM +0000, Fabrizio Castro wrote:
-> Hello Laurent,
-> 
-> Thank you for your feedback.
-> 
-> > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Sent: 19 June 2019 13:39
-> > Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a774a1: Add HDMI encoder instance
-> > 
-> > Hi Fabrizio,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Tue, Jun 18, 2019 at 04:18:38PM +0100, Fabrizio Castro wrote:
-> > > Add the HDMI encoder to the R8A774A1 DT in disabled state.
+On Sun, Jun 16, 2019 at 7:45 PM Wen He <wen.he_1@nxp.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: 2019=E5=B9=B46=E6=9C=8814=E6=97=A5 4:08
+> > To: Wen He <wen.he_1@nxp.com>
+> > Cc: linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > devicetree@vger.kernel.org; shawnguo@kernel.org; Leo Li
+> > <leoyang.li@nxp.com>
+> > Subject: [EXT] Re: [v1 1/4] dt-bindings: display: Add DT bindings for L=
+S1028A
+> > HDP-TX PHY.
+> >
+> > Caution: EXT Email
+> >
+> > On Wed, May 08, 2019 at 10:35:25AM +0000, Wen He wrote:
+> > > Add DT bindings documentmation for the HDP-TX PHY controller. The
+> > > describes which could be found on NXP Layerscape ls1028a platform.
+> >
+> > Drop the hard stop (.) from the subject.
+> >
 > > >
-> > > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> > >
+> > > Signed-off-by: Wen He <wen.he_1@nxp.com>
 > > > ---
-> > > This patch depends on:
-> > > https://patchwork.kernel.org/patch/10995149/
-> > 
-> > Is that the correct one ? I don't see how CAN support is related.
-> 
-> It's only to please git ;-)
-> 
-> Thank you for reviewing this.
-> 
-> Fab
-> 
-> > 
-> > In any case,
-> > 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >  .../devicetree/bindings/display/fsl,hdp.txt   | 56 +++++++++++++++++=
+++
+> > >  1 file changed, 56 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/display/fsl,hdp.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/fsl,hdp.txt
+> > > b/Documentation/devicetree/bindings/display/fsl,hdp.txt
+> > > new file mode 100644
+> > > index 000000000000..36b5687a1261
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/fsl,hdp.txt
+> > > @@ -0,0 +1,56 @@
+> > > +NXP Layerscpae ls1028a HDP-TX PHY Controller
+> > > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > +
+> > > +The following bindings describe the Cadence HDP TX PHY on ls1028a
+> > > +that offer multi-protocol support of standars such as eDP and
+> > > +Displayport, supports for 25-600MHz pixel clock and up to 4k2k at 60=
+MHz
+> > resolution.
+> > > +The HDP transmitter is a Cadence HDP TX controller IP with a
+> > > +companion PHY IP.
+> >
+> > I'm confused. This binding covers both blocks or is just one of them?
+> >
+>
+> Hi Rob,
+>
+> This binding covers both blocks(HDP TX PHY and HDP TX Controller),
+> Because they are belong to the one IP.
 
-Thanks, I have queued this up for inclusion in v5.3.
+In that case, you should also have an output port to a DP connector
+node (or DP panel).
+
+Rob
