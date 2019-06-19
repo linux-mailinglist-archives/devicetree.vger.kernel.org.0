@@ -2,343 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC2B4B022
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 04:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E104B086
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 05:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730368AbfFSCcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 22:32:17 -0400
-Received: from onstation.org ([52.200.56.107]:35146 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730337AbfFSCcQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jun 2019 22:32:16 -0400
-Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 53F313EA0E;
-        Wed, 19 Jun 2019 02:32:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1560911535;
-        bh=fcgvpkLyM92w4+oGhzDyZOcpYDn3ZLNQMODBulNcsJc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=etUaTbFbhl0Q9JAqG66RCbE+cgOl6xzYi67cnsUlMeelxN+BjFB/maJrvBCmxUjLp
-         CK1jp1juzwCqGgReNtTsUOpSAKtpNYmMGOZtvz/vCohUzSrwjLz6vvPmmEXQLyk50Y
-         wwG6gA6l0k4H7OsK9GmJH0ZacGhOhsgFLs8yklmg=
-From:   Brian Masney <masneyb@onstation.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org,
-        david.brown@linaro.org, robdclark@gmail.com, sean@poorly.run,
-        robh+dt@kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
-        jonathan@marek.ca, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 6/6] drm/msm/gpu: add ocmem init/cleanup functions
-Date:   Tue, 18 Jun 2019 22:32:09 -0400
-Message-Id: <20190619023209.10036-7-masneyb@onstation.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190619023209.10036-1-masneyb@onstation.org>
-References: <20190619023209.10036-1-masneyb@onstation.org>
+        id S1729050AbfFSD43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 23:56:29 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:14842 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728195AbfFSD43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 23:56:29 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d09b26a0000>; Tue, 18 Jun 2019 20:56:26 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 18 Jun 2019 20:56:26 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 18 Jun 2019 20:56:26 -0700
+Received: from [10.24.192.29] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 19 Jun
+ 2019 03:56:23 +0000
+Subject: Re: [PATCH V6 20/27] PCI: tegra: Disable MSI for Tegra PCIe root port
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
+        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+ <20190618180206.4908-21-mmaddireddy@nvidia.com>
+ <20190618194830.GA110859@google.com>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <e06f85eb-be0c-c2a5-84a9-51aa9b8372c3@nvidia.com>
+Date:   Wed, 19 Jun 2019 09:25:54 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190618194830.GA110859@google.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1560916586; bh=4JstVY89KTv+Xb8i7slBmq/+fO6Mvwf3ij94+ExbInI=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=Bmvrxy4T7vbdnMZSgVZC9KVFU7iUyru5X4Uf4a33CZY42bCc6WQm4WzKkDEiPPdVT
+         7WMb8tavi7AkvANKRzJLnNAhuNelJrjWQbYArMS/9y32nmIdokw89cLsnNYqJCEcel
+         56s4oxttrVFYuXEYCYwXRRQ3WO0j2mn6abh5F+GkjGXWrHCudL8mT9vkwGbRmcRPxv
+         zTHAOOEDsY7KYYedOLBTewXGLXR+fKKepa8PGYpoI/0IUtIpJswg+p1QEfmcrmqaai
+         hA4vH7akZ7I2FM26FDOBQ+QJYwbs86Mm77oIWuxiyGdiSi7GXAG50qNZDgiuKhD3Dp
+         3XULOPXsIywFA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The files a3xx_gpu.c and a4xx_gpu.c have ifdefs for the OCMEM support
-that was missing upstream. Add two new functions (adreno_gpu_ocmem_init
-and adreno_gpu_ocmem_cleanup) that removes some duplicated code. We also
-need to change the ifdef check for CONFIG_MSM_OCMEM to CONFIG_QCOM_OCMEM
-now that OCMEM support is upstream.
 
-Signed-off-by: Brian Masney <masneyb@onstation.org>
----
-Changes since v1:
-- remove CONFIG_QCOM_OCMEM #ifdefs
-- use unsigned long for memory addresses instead of uint32_t
-- add 'depends on QCOM_OCMEM || QCOM_OCMEM=n' to Kconfig
 
- drivers/gpu/drm/msm/Kconfig             |  1 +
- drivers/gpu/drm/msm/adreno/a3xx_gpu.c   | 33 ++++++++---------------
- drivers/gpu/drm/msm/adreno/a3xx_gpu.h   |  3 +--
- drivers/gpu/drm/msm/adreno/a4xx_gpu.c   | 30 +++++++--------------
- drivers/gpu/drm/msm/adreno/a4xx_gpu.h   |  3 +--
- drivers/gpu/drm/msm/adreno/adreno_gpu.c | 36 +++++++++++++++++++++++++
- drivers/gpu/drm/msm/adreno/adreno_gpu.h | 10 +++++++
- 7 files changed, 70 insertions(+), 46 deletions(-)
+On 19-Jun-19 1:18 AM, Bjorn Helgaas wrote:
+> On Tue, Jun 18, 2019 at 11:31:59PM +0530, Manikanta Maddireddy wrote:
+>> Tegra PCIe generates PME and AER events over legacy interrupt line. Disable
+>> MSI to avoid service drivers registering interrupt routine over MSI IRQ
+>> line.
+>>
+>> PME and AER interrupts registered to MSI without this change,
+>> cat /proc/interrupts | grep -i pci
+>> 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
+>> 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
+>> 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
+>>
+>> PME and AER interrupts registered to legacy IRQ with this change,
+>> cat /proc/interrupts | grep -i pci
+>> 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
+>> 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> ---
+>> V6: Replaced pcie_pme_disable_msi() with no_msi quirk
+>>
+>> V5: No change
+>>
+>> V4: No change
+>>
+>> V3: Corrected typo in commit log
+>>
+>> V2: No change
+>>
+>>  drivers/pci/quirks.c | 39 +++++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 39 insertions(+)
+>>
+>> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+>> index a59ad09ce911..20dcad421991 100644
+>> --- a/drivers/pci/quirks.c
+>> +++ b/drivers/pci/quirks.c
+>> @@ -2576,6 +2576,45 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA,
+>>  			PCI_DEVICE_ID_NVIDIA_NVENET_15,
+>>  			nvenet_msi_disable);
+>>  
+>> +/*
+>> + * Tegra PCIe generates PME and AER events over legacy interrupt line.
+>> + * So disable msi for Tegra PCIe root ports.
+> s/msi/MSI/
+>
+> What's going on here?  Vidya posted a very similar patch [1] (although
 
-diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
-index 9c37e4de5896..b3d3b2172659 100644
---- a/drivers/gpu/drm/msm/Kconfig
-+++ b/drivers/gpu/drm/msm/Kconfig
-@@ -7,6 +7,7 @@ config DRM_MSM
- 	depends on OF && COMMON_CLK
- 	depends on MMU
- 	depends on INTERCONNECT || !INTERCONNECT
-+	depends on QCOM_OCMEM || QCOM_OCMEM=n
- 	select QCOM_MDT_LOADER if ARCH_QCOM
- 	select REGULATOR
- 	select DRM_KMS_HELPER
-diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-index c3b4bc6e4155..72720bb2aca1 100644
---- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-@@ -17,10 +17,6 @@
-  * this program.  If not, see <http://www.gnu.org/licenses/>.
-  */
- 
--#ifdef CONFIG_MSM_OCMEM
--#  include <mach/ocmem.h>
--#endif
--
- #include "a3xx_gpu.h"
- 
- #define A3XX_INT0_MASK \
-@@ -206,9 +202,9 @@ static int a3xx_hw_init(struct msm_gpu *gpu)
- 		gpu_write(gpu, REG_A3XX_RBBM_GPR0_CTL, 0x00000000);
- 
- 	/* Set the OCMEM base address for A330, etc */
--	if (a3xx_gpu->ocmem_hdl) {
-+	if (a3xx_gpu->ocmem.hdl) {
- 		gpu_write(gpu, REG_A3XX_RB_GMEM_BASE_ADDR,
--			(unsigned int)(a3xx_gpu->ocmem_base >> 14));
-+			(unsigned int)(a3xx_gpu->ocmem.base >> 14));
- 	}
- 
- 	/* Turn on performance counters: */
-@@ -329,10 +325,7 @@ static void a3xx_destroy(struct msm_gpu *gpu)
- 
- 	adreno_gpu_cleanup(adreno_gpu);
- 
--#ifdef CONFIG_MSM_OCMEM
--	if (a3xx_gpu->ocmem_base)
--		ocmem_free(OCMEM_GRAPHICS, a3xx_gpu->ocmem_hdl);
--#endif
-+	adreno_gpu_ocmem_cleanup(&a3xx_gpu->ocmem);
- 
- 	kfree(a3xx_gpu);
- }
-@@ -507,17 +500,10 @@ struct msm_gpu *a3xx_gpu_init(struct drm_device *dev)
- 
- 	/* if needed, allocate gmem: */
- 	if (adreno_is_a330(adreno_gpu)) {
--#ifdef CONFIG_MSM_OCMEM
--		/* TODO this is different/missing upstream: */
--		struct ocmem_buf *ocmem_hdl =
--				ocmem_allocate(OCMEM_GRAPHICS, adreno_gpu->gmem);
--
--		a3xx_gpu->ocmem_hdl = ocmem_hdl;
--		a3xx_gpu->ocmem_base = ocmem_hdl->addr;
--		adreno_gpu->gmem = ocmem_hdl->len;
--		DBG("using %dK of OCMEM at 0x%08x", adreno_gpu->gmem / 1024,
--				a3xx_gpu->ocmem_base);
--#endif
-+		ret = adreno_gpu_ocmem_init(&adreno_gpu->base.pdev->dev,
-+					    adreno_gpu, &a3xx_gpu->ocmem);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	if (!gpu->aspace) {
-@@ -530,11 +516,14 @@ struct msm_gpu *a3xx_gpu_init(struct drm_device *dev)
- 		 */
- 		DRM_DEV_ERROR(dev->dev, "No memory protection without IOMMU\n");
- 		ret = -ENXIO;
--		goto fail;
-+		goto fail_cleanup_ocmem;
- 	}
- 
- 	return gpu;
- 
-+fail_cleanup_ocmem:
-+	adreno_gpu_ocmem_cleanup(&a3xx_gpu->ocmem);
-+
- fail:
- 	if (a3xx_gpu)
- 		a3xx_destroy(&a3xx_gpu->base.base);
-diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.h b/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-index ab60dc9e344e..727c34f38f9e 100644
---- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-@@ -30,8 +30,7 @@ struct a3xx_gpu {
- 	struct adreno_gpu base;
- 
- 	/* if OCMEM is used for GMEM: */
--	uint32_t ocmem_base;
--	void *ocmem_hdl;
-+	struct adreno_ocmem ocmem;
- };
- #define to_a3xx_gpu(x) container_of(x, struct a3xx_gpu, base)
- 
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-index ab2b752566d8..b8f825107796 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-@@ -2,9 +2,6 @@
- /* Copyright (c) 2014 The Linux Foundation. All rights reserved.
-  */
- #include "a4xx_gpu.h"
--#ifdef CONFIG_MSM_OCMEM
--#  include <soc/qcom/ocmem.h>
--#endif
- 
- #define A4XX_INT0_MASK \
- 	(A4XX_INT0_RBBM_AHB_ERROR |        \
-@@ -188,7 +185,7 @@ static int a4xx_hw_init(struct msm_gpu *gpu)
- 			(1 << 30) | 0xFFFF);
- 
- 	gpu_write(gpu, REG_A4XX_RB_GMEM_BASE_ADDR,
--			(unsigned int)(a4xx_gpu->ocmem_base >> 14));
-+			(unsigned int)(a4xx_gpu->ocmem.base >> 14));
- 
- 	/* Turn on performance counters: */
- 	gpu_write(gpu, REG_A4XX_RBBM_PERFCTR_CTL, 0x01);
-@@ -318,10 +315,7 @@ static void a4xx_destroy(struct msm_gpu *gpu)
- 
- 	adreno_gpu_cleanup(adreno_gpu);
- 
--#ifdef CONFIG_MSM_OCMEM
--	if (a4xx_gpu->ocmem_base)
--		ocmem_free(OCMEM_GRAPHICS, a4xx_gpu->ocmem_hdl);
--#endif
-+	adreno_gpu_ocmem_cleanup(&a4xx_gpu->ocmem);
- 
- 	kfree(a4xx_gpu);
- }
-@@ -578,17 +572,10 @@ struct msm_gpu *a4xx_gpu_init(struct drm_device *dev)
- 
- 	/* if needed, allocate gmem: */
- 	if (adreno_is_a4xx(adreno_gpu)) {
--#ifdef CONFIG_MSM_OCMEM
--		/* TODO this is different/missing upstream: */
--		struct ocmem_buf *ocmem_hdl =
--				ocmem_allocate(OCMEM_GRAPHICS, adreno_gpu->gmem);
--
--		a4xx_gpu->ocmem_hdl = ocmem_hdl;
--		a4xx_gpu->ocmem_base = ocmem_hdl->addr;
--		adreno_gpu->gmem = ocmem_hdl->len;
--		DBG("using %dK of OCMEM at 0x%08x", adreno_gpu->gmem / 1024,
--				a4xx_gpu->ocmem_base);
--#endif
-+		ret = adreno_gpu_ocmem_init(dev->dev, adreno_gpu,
-+					    &a4xx_gpu->ocmem);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	if (!gpu->aspace) {
-@@ -601,11 +588,14 @@ struct msm_gpu *a4xx_gpu_init(struct drm_device *dev)
- 		 */
- 		DRM_DEV_ERROR(dev->dev, "No memory protection without IOMMU\n");
- 		ret = -ENXIO;
--		goto fail;
-+		goto fail_cleanup_ocmem;
- 	}
- 
- 	return gpu;
- 
-+fail_cleanup_ocmem:
-+	adreno_gpu_ocmem_cleanup(&a4xx_gpu->ocmem);
-+
- fail:
- 	if (a4xx_gpu)
- 		a4xx_destroy(&a4xx_gpu->base.base);
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.h b/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-index d506311ee240..a01448cba2ea 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-@@ -16,8 +16,7 @@ struct a4xx_gpu {
- 	struct adreno_gpu base;
- 
- 	/* if OCMEM is used for GMEM: */
--	uint32_t ocmem_base;
--	void *ocmem_hdl;
-+	struct adreno_ocmem ocmem;
- };
- #define to_a4xx_gpu(x) container_of(x, struct a4xx_gpu, base)
- 
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-index 6f7f4114afcf..3a1bef87bf5b 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-@@ -25,6 +25,7 @@
- #include <linux/pm_opp.h>
- #include <linux/slab.h>
- #include <linux/soc/qcom/mdt_loader.h>
-+#include <soc/qcom/ocmem.h>
- #include "adreno_gpu.h"
- #include "msm_gem.h"
- #include "msm_mmu.h"
-@@ -897,6 +898,41 @@ static int adreno_get_pwrlevels(struct device *dev,
- 	return 0;
- }
- 
-+int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-+			  struct adreno_ocmem *adreno_ocmem)
-+{
-+	struct ocmem_buf *ocmem_hdl;
-+	struct ocmem *ocmem;
-+
-+	ocmem = of_get_ocmem(dev);
-+	if (IS_ERR(ocmem)) {
-+		if (PTR_ERR(ocmem) == -ENXIO) {
-+			/* This is an optional property so return success. */
-+			return 0;
-+		}
-+
-+		return PTR_ERR(ocmem);
-+	}
-+
-+	ocmem_hdl = ocmem_allocate(ocmem, OCMEM_GRAPHICS, adreno_gpu->gmem);
-+	if (IS_ERR(ocmem_hdl))
-+		return PTR_ERR(ocmem_hdl);
-+
-+	adreno_ocmem->ocmem = ocmem;
-+	adreno_ocmem->base = ocmem_hdl->addr;
-+	adreno_ocmem->hdl = ocmem_hdl;
-+	adreno_gpu->gmem = ocmem_hdl->len;
-+
-+	return 0;
-+}
-+
-+void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
-+{
-+	if (adreno_ocmem && adreno_ocmem->base)
-+		ocmem_free(adreno_ocmem->ocmem, OCMEM_GRAPHICS,
-+			   adreno_ocmem->hdl);
-+}
-+
- int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 		struct adreno_gpu *adreno_gpu,
- 		const struct adreno_gpu_funcs *funcs, int nr_rings)
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-index 0925606ec9b5..0947a6124cac 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-@@ -136,6 +136,12 @@ struct adreno_gpu {
- };
- #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
- 
-+struct adreno_ocmem {
-+	struct ocmem *ocmem;
-+	unsigned long base;
-+	void *hdl;
-+};
-+
- /* platform config data (ie. from DT, or pdata) */
- struct adreno_platform_config {
- 	struct adreno_rev rev;
-@@ -241,6 +247,10 @@ void adreno_dump(struct msm_gpu *gpu);
- void adreno_wait_ring(struct msm_ringbuffer *ring, uint32_t ndwords);
- struct msm_ringbuffer *adreno_active_ring(struct msm_gpu *gpu);
- 
-+int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-+			  struct adreno_ocmem *ocmem);
-+void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *ocmem);
-+
- int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 		struct adreno_gpu *gpu, const struct adreno_gpu_funcs *funcs,
- 		int nr_rings);
--- 
-2.20.1
+This series is focused on Tegra20, Tegra30, Tegra124, Tegra210 and Tegra186,
+whereas Vidya's series is focused only on Tegra194. So I didn't include
+Tegra194 device IDs.
+
+> his included nice spec citations, which you omitted), but his added
+> quirks for 0x1ad0, 0x1ad1, and 0x1ad2.  You didn't include any of
+> those here.
+>
+> Maybe Lorenzo will sort this all out, but it would make things easier
+> if you and Vidya got together and integrated your patches yourselves
+> so Lorenzo didn't have to worry about it.
+>
+> [1] https://lore.kernel.org/lkml/20190612095339.20118-3-vidyas@nvidia.com
+
+I talked with Vidya, he will take this changes in his series if he needs
+to publish another version, or else he will publish a new patch to add
+quirk for legacy Tegra SOCs.
+
+Lorenzo,
+If this series is ready for integration, please drop this patch.
+
+Manikanta
+
+>
+>> + */
+>> +static void pci_quirk_nvidia_tegra_disable_rp_msi(struct pci_dev *dev)
+>> +{
+>> +	dev->no_msi = 1;
+>> +}
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf0,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0bf1,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1c,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e1d,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e12,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0e13,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0fae,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x0faf,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e5,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e6,
+>> +			      PCI_CLASS_BRIDGE_PCI, 8,
+>> +			      pci_quirk_nvidia_tegra_disable_rp_msi);
+>> +
+>>  /*
+>>   * Some versions of the MCP55 bridge from Nvidia have a legacy IRQ routing
+>>   * config register.  This register controls the routing of legacy
+>> -- 
+>> 2.17.1
+>>
 
