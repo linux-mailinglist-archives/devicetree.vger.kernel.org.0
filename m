@@ -2,128 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7843A4B3A2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 10:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF974B3AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 10:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731105AbfFSIIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 04:08:13 -0400
-Received: from mail-eopbgr1410129.outbound.protection.outlook.com ([40.107.141.129]:25774
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726142AbfFSIIN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 04:08:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wCZQBN+yvt3myNSu1yv2To5GMRbknMBc+SviwMgp/eo=;
- b=BExZB40OOAIw5vKK2e6EIlxgwOqYapC6w+t0ZuPQafYDpOXaUKRVGgbsL6fjizxoBqZC183CxPO5GTBHp5FwrYH+An2QcwiiWKMz9v0NLrn9z3d/bZfki7tZZgK14FnG6biJ7CTkISwCuoSGzqtyMg0F2wm20suyHnCQM5k5fKI=
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
- TY1PR01MB1850.jpnprd01.prod.outlook.com (52.133.162.140) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.11; Wed, 19 Jun 2019 08:08:09 +0000
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::8a0:4174:3c3f:f05b]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::8a0:4174:3c3f:f05b%7]) with mapi id 15.20.1987.014; Wed, 19 Jun 2019
- 08:08:09 +0000
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: RE: [PATCH 1/3] dt-bindings: display: renesas: Add r8a774a1 support
-Thread-Topic: [PATCH 1/3] dt-bindings: display: renesas: Add r8a774a1 support
-Thread-Index: AQHVJek3P4X/AbQjwUG5WDOZ21klq6ahniIAgAEB0lA=
-Date:   Wed, 19 Jun 2019 08:08:09 +0000
-Message-ID: <TY1PR01MB1770E12DBC116A3F395DE17BC0E50@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-References: <1560871119-16570-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1560871119-16570-2-git-send-email-fabrizio.castro@bp.renesas.com>
- <20190618164338.GG21105@pendragon.ideasonboard.com>
-In-Reply-To: <20190618164338.GG21105@pendragon.ideasonboard.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 94827198-ddb4-4e26-2ad0-08d6f48d448f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1850;
-x-ms-traffictypediagnostic: TY1PR01MB1850:
-x-microsoft-antispam-prvs: <TY1PR01MB1850E638A564179166CE816CC0E50@TY1PR01MB1850.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0073BFEF03
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(346002)(376002)(136003)(39860400002)(366004)(189003)(199004)(6916009)(316002)(11346002)(4326008)(14454004)(53936002)(3846002)(9686003)(6116002)(26005)(7736002)(7696005)(68736007)(6246003)(107886003)(229853002)(99286004)(73956011)(446003)(25786009)(74316002)(2906002)(14444005)(256004)(5660300002)(54906003)(8676002)(81156014)(52536014)(76176011)(7416002)(71200400001)(102836004)(8936002)(66476007)(44832011)(66066001)(476003)(86362001)(478600001)(71190400001)(486006)(81166006)(305945005)(186003)(55016002)(33656002)(6436002)(76116006)(66446008)(6506007)(53546011)(66556008)(66946007)(64756008);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1850;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1tfoIGCsBfofxfOHoiqMT9bgpgcsfNuR9/FQdHjyPYFQ0/8nNSdZMYlLBcAGVyOJ5i8fPX/8gKpWg5XxltoH1euL0qko7FFF6xUgOOX9A+Bx5uz/GZL3buhKnL9Jbhv/Otnu+VEVd7DsLDhpZAljFmFFnxLisFP3tbMn3xkYTdGEFdMsGLdE4T6U84+9ZdW6DeYs9fE7JhgJSGsTy+Kt3Q38nhE1121xUcZtSqEOvdLg0wU2CBmaqpiOc1JZklsIn+unogNZvl3RBeHQmR7qFjvqHiWu+1zhmKU1zFi9WUSTRB0HmIc+euDjZGKYh0h7+3U1tBMypNbzMCCCNGhnmcKkmYh2SbSrZc0emiUgRJT+ZxeqO14H98iRdkema1WhK9QJyzVBkm4bPY5//3MM12CtvEbtuOsmNRPRgkHq+GE=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1731064AbfFSIJT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 19 Jun 2019 04:09:19 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:54193 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726142AbfFSIJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 04:09:19 -0400
+X-Originating-IP: 90.88.23.150
+Received: from xps13 (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 726551BF203;
+        Wed, 19 Jun 2019 08:09:05 +0000 (UTC)
+Date:   Wed, 19 Jun 2019 10:09:04 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     masonccyang@mxic.com.tw
+Cc:     "Boris Brezillon" <boris.brezillon@collabora.com>,
+        bbrezillon@kernel.org, broonie@kernel.org,
+        christophe.kerello@st.com, computersforpeace@gmail.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org,
+        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
+        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
+        mark.rutland@arm.com, paul.burton@mips.com, richard@nod.at,
+        robh+dt@kernel.org, stefan@agner.ch, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
+ controller
+Message-ID: <20190619100904.6b759377@xps13>
+In-Reply-To: <OF5EAF94EB.AE31CF59-ON4825841E.002A2C38-4825841E.002C60BF@mxic.com.tw>
+References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
+        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
+        <20190512151820.4f2dd9da@xps13>
+        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
+        <20190520142333.390091d5@xps13>
+        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
+        <20190527144250.71908bd9@xps13>
+        <OFE923A8E5.50375C30-ON48258409.0009AE1B-48258409.00119767@mxic.com.tw>
+        <20190617143510.4ded5728@xps13>
+        <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw>
+        <20190618081436.5d488320@collabora.com>
+        <20190618092901.3bdd9f61@collabora.com>
+        <OF5EAF94EB.AE31CF59-ON4825841E.002A2C38-4825841E.002C60BF@mxic.com.tw>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94827198-ddb4-4e26-2ad0-08d6f48d448f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2019 08:08:09.4964
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1850
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTGF1cmVudCwNCg0KVGhhbmsgeW91IGZvciB5b3VyIGZlZWRiYWNrIQ0KDQo+IEZyb206IGxp
-bnV4LXJlbmVzYXMtc29jLW93bmVyQHZnZXIua2VybmVsLm9yZyA8bGludXgtcmVuZXNhcy1zb2Mt
-b3duZXJAdmdlci5rZXJuZWwub3JnPiBPbiBCZWhhbGYgT2YgTGF1cmVudCBQaW5jaGFydA0KPiBT
-ZW50OiAxOCBKdW5lIDIwMTkgMTc6NDQNCj4gU3ViamVjdDogUmU6IFtQQVRDSCAxLzNdIGR0LWJp
-bmRpbmdzOiBkaXNwbGF5OiByZW5lc2FzOiBBZGQgcjhhNzc0YTEgc3VwcG9ydA0KPiANCj4gSGkg
-RmFicml6aW8sDQo+IA0KPiBUaGFuayB5b3UgZm9yIHRoZSBwYXRjaC4NCj4gDQo+IE9uIFR1ZSwg
-SnVuIDE4LCAyMDE5IGF0IDA0OjE4OjM3UE0gKzAxMDAsIEZhYnJpemlvIENhc3RybyB3cm90ZToN
-Cj4gPiBEb2N1bWVudCBSWi9HMk0gKFI4QTc3NEExKSBTb0MgYmluZGluZ3MuDQo+ID4NCj4gPiBT
-aWduZWQtb2ZmLWJ5OiBGYWJyaXppbyBDYXN0cm8gPGZhYnJpemlvLmNhc3Ryb0BicC5yZW5lc2Fz
-LmNvbT4NCj4gDQo+IFJldmlld2VkLWJ5OiBMYXVyZW50IFBpbmNoYXJ0IDxsYXVyZW50LnBpbmNo
-YXJ0QGlkZWFzb25ib2FyZC5jb20+DQo+IA0KPiBJIGRvbid0IGhhdmUgcGVuZGluZyBjaGFuZ2Vz
-IGZvciB0aGlzIGZpbGUgZm9yIHRoaXMga2VybmVsIHJlbGVhc2UuIEFzDQo+IHlvdXIgc2VyaWVz
-IGNvbnRhaW5zIERUIGNoYW5nZXMsIEknbSBmaW5lIGlmIHRoaXMgcGF0Y2ggZ2V0cyBtZXJnZWQN
-Cj4gdGhyb3VnaCB0aGUgQVJNIFNvQyB0cmVlIGFsb25nIHdpdGggdGhlIHJlc3QuIE90aGVyd2lz
-ZSBwbGVhc2UgbGV0IG1lDQo+IGtub3cgaWYgSSBzaG91bGQgaGFuZGxlIGl0IG15c2VsZi4NCg0K
-VGhhbmsgeW91IExhdXJlbnQsIEkgdGhpbmsgdGhpcyBwYXRjaCBjYW4gZ28gYWxvbmcgd2l0aCB0
-aGUgcmVzdCwgaWYgdGhhdCdzIE9LIHdpdGgNClNpbW9uPw0KDQpUaGFua3MsDQpGYWINCg0KPiAN
-Cj4gPiAtLS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
-YnJpZGdlL3JlbmVzYXMsZHctaGRtaS50eHQgfCA0ICsrKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQs
-IDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9yZW5lc2FzLGR3
-LWhkbWkudHh0DQo+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
-YnJpZGdlL3JlbmVzYXMsZHctaGRtaS50eHQNCj4gPiBpbmRleCBhNDFkMjgwLi5kYjY4MDQxIDEw
-MDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5
-L2JyaWRnZS9yZW5lc2FzLGR3LWhkbWkudHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL3JlbmVzYXMsZHctaGRtaS50eHQNCj4gPiBA
-QCAtMTIsMTAgKzEyLDEyIEBAIGZvbGxvd2luZyBkZXZpY2Utc3BlY2lmaWMgcHJvcGVydGllcy4N
-Cj4gPiAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPg0KPiA+ICAtIGNvbXBhdGlibGUgOiBTaGFs
-bCBjb250YWluIG9uZSBvciBtb3JlIG9mDQo+ID4gKyAgLSAicmVuZXNhcyxyOGE3NzRhMS1oZG1p
-IiBmb3IgUjhBNzc0QTEgKFJaL0cyTSkgY29tcGF0aWJsZSBIRE1JIFRYDQo+ID4gICAgLSAicmVu
-ZXNhcyxyOGE3Nzk1LWhkbWkiIGZvciBSOEE3Nzk1IChSLUNhciBIMykgY29tcGF0aWJsZSBIRE1J
-IFRYDQo+ID4gICAgLSAicmVuZXNhcyxyOGE3Nzk2LWhkbWkiIGZvciBSOEE3Nzk2IChSLUNhciBN
-My1XKSBjb21wYXRpYmxlIEhETUkgVFgNCj4gPiAgICAtICJyZW5lc2FzLHI4YTc3OTY1LWhkbWki
-IGZvciBSOEE3Nzk2NSAoUi1DYXIgTTMtTikgY29tcGF0aWJsZSBIRE1JIFRYDQo+ID4gLSAgLSAi
-cmVuZXNhcyxyY2FyLWdlbjMtaGRtaSIgZm9yIHRoZSBnZW5lcmljIFItQ2FyIEdlbjMgY29tcGF0
-aWJsZSBIRE1JIFRYDQo+ID4gKyAgLSAicmVuZXNhcyxyY2FyLWdlbjMtaGRtaSIgZm9yIHRoZSBn
-ZW5lcmljIFItQ2FyIEdlbjMgYW5kIFJaL0cyIGNvbXBhdGlibGUNCj4gPiArCQkJICAgICBIRE1J
-IFRYDQo+ID4NCj4gPiAgICAgIFdoZW4gY29tcGF0aWJsZSB3aXRoIGdlbmVyaWMgdmVyc2lvbnMs
-IG5vZGVzIG11c3QgbGlzdCB0aGUgU29DLXNwZWNpZmljDQo+ID4gICAgICB2ZXJzaW9uIGNvcnJl
-c3BvbmRpbmcgdG8gdGhlIHBsYXRmb3JtIGZpcnN0LCBmb2xsb3dlZCBieSB0aGUNCj4gDQo+IC0t
-DQo+IFJlZ2FyZHMsDQo+IA0KPiBMYXVyZW50IFBpbmNoYXJ0DQo=
+Hi Mason,
+
+masonccyang@mxic.com.tw wrote on Wed, 19 Jun 2019 16:04:43 +0800:
+
+> Hi Boris,
+> 
+> > 
+> > Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND controller
+> > 
+> > On Tue, 18 Jun 2019 08:14:36 +0200
+> > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> >   
+> > > > > > > > 
+> > > > > > > > How to make all #CS keep high for NAND to enter 
+> > > > > > > > low-power standby mode if driver don't use   
+> "legacy.select_chip()" 
+> > > > ?   
+> > > > > > > 
+> > > > > > > See commit 02b4a52604a4 ("mtd: rawnand: Make ->select_chip()    
+> > > > optional   
+> > > > > > > when ->exec_op() is implemented") which states:
+> > > > > > > 
+> > > > > > >         "When [->select_chip() is] not implemented, the core   
+> is 
+> > > > assuming   
+> > > > > > >    the CS line is automatically asserted/deasserted by the   
+> driver 
+> > > > > > >    ->exec_op() implementation."   
+> > > > > > > 
+> > > > > > > Of course, the above is right only when the controller driver    
+>  
+> > > > supports   
+> > > > > > > the ->exec_op() interface.   
+> > > > > > 
+> > > > > > Currently, it seems that we will get the incorrect data and   
+> error
+> > > > > > operation due to CS in error toggling if CS line is controlled   
+> in 
+> > > > > > ->exec_op().   
+> > 
+> > Oh, and please provide the modifications you added on top of this patch.
+> > Right now we're speculating on what you've done which is definitely not
+> > an efficient way to debug this sort of issues.  
+> 
+
+We really need to see the datasheet of the NAND chip which has a
+problem and how this LPM mode is advertized to understand what the
+chip expects and eventually how to work-around it.
+
+> The patch is to add in beginning of ->exec_op() to control CS# low and 
+> before return from ->exec_op() to control CS# High.
+> i.e,.
+> static in mxic_nand_exec_op( )
+> {
+>  cs_to_low();
+> 
+> 
+> 
+>  cs_to_high();
+>  return;
+> }
+> 
+> But for nand_onfi_detect(), 
+> it calls nand_read_param_page_op() and then nand_read_data_op().
+> mxic_nand_exec_op() be called twice for nand_onfi_detect()
+
+Yes, this is expected and usually chips don't care.
+
+> and
+> driver will get incorrect ONFI parameter table data from 
+> nand_read_data_op().
+> 
+
+Thanks,
+Miquèl
