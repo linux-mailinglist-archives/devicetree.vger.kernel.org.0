@@ -2,115 +2,540 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E88584AEEF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 02:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 356D94AF24
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 02:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729159AbfFSAQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jun 2019 20:16:06 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:40851 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729050AbfFSAQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jun 2019 20:16:06 -0400
-Received: by mail-pg1-f196.google.com with SMTP id w10so3922604pgj.7
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2019 17:16:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=Rj1JwC5n4pB7Dhbe0Ao/biHZaqd5UjG4Gs7lrigeZc8=;
-        b=LoJJ45RA69zD11EO8Btx9b8gd9Cb8A9z4ALILngsiDR8YYbjzPANv5sy5o92/MuzhZ
-         5qNs5Ghml0uKqipt+uzpCItL8q6pP3A6iKs0ypT1DjLDlWr9NFbFIqa+WGHHN+dTg5h7
-         FhbArgWJvsqT1JV0KRkjAfxyuDxoHPi9ho7j7sl3mUzu1salMRc1MH3kqzD6gtWSkoHT
-         3ej9oGa5IYpZY5L6wLNUgQXbNLT1MbDXQSe7Shq7CswD3buRBTpxd4oMcTnTzesE/6Y+
-         hX2fukWWYW/tyPjUebUZNVsvoVnBGBkI6AmakeR1UaJtdOcwvOtyDa7i3taAPLSIxHRB
-         FeOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=Rj1JwC5n4pB7Dhbe0Ao/biHZaqd5UjG4Gs7lrigeZc8=;
-        b=f7eY8Ton/pPotTYUY3lvJq5FdhniRJUNjnhe1srQyC90hOMznidJGMfxIPqmEDDS9i
-         J52mN7fjy5DYF86McFqW0OP8TNmxn3qdQ3iBGi0PJdDjZM71gZ548IofnGGuyDznAvo+
-         ZG9TJNQ5pjHHJl6kPzqrbmsi/MEuMfYU4zfrTFt/+sI7lA/Lz+YMMk7Q+uI1Q82Hc5XQ
-         L4VvegOZK4jNyZMd6Yz9M9nGI9f5WI4TXfCMTogtDMG5BJ+tNX4oCja7uBFz6dcdvaHq
-         23l/aPECoIyKJtsSxYoaj7ou4+JBVjqc6fIMyBJNfPmI2nYuGhNyiTMDHMNg2eCB0Kgl
-         DIuA==
-X-Gm-Message-State: APjAAAXn8P7xxIs9Y7OdhDYdVKBw3Szdb0qFeH0gwbsxP1jJu4MkKBkt
-        n4yG03YjEl9So22pHtNbjjHzGQ==
-X-Google-Smtp-Source: APXvYqxmOTrQOpTGIV29dhD7dMfNmq7D3jbBdlbuSFW3gz8q8OTUWaN9T1MdLCPbnwZ3h5EqDt1bqg==
-X-Received: by 2002:a17:90a:a008:: with SMTP id q8mr8144509pjp.114.1560903365397;
-        Tue, 18 Jun 2019 17:16:05 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id m19sm26271431pff.153.2019.06.18.17.16.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jun 2019 17:16:04 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: msm8996: Rename smmu nodes
-Date:   Tue, 18 Jun 2019 17:16:02 -0700
-Message-Id: <20190619001602.4890-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.18.0
+        id S1729477AbfFSAlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jun 2019 20:41:22 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:52963 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726023AbfFSAlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jun 2019 20:41:22 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 6089622393;
+        Tue, 18 Jun 2019 20:41:18 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Tue, 18 Jun 2019 20:41:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to
+        :subject:content-type; s=fm3; bh=+gHRX6cTDmHSKWNNEZDiaV7fmTx8VY6
+        71JKMUQ7FfmQ=; b=Xol0YMadH0jNDydD1NfwOaNXlsouExZ4M1/9uyj0CJJ/jpZ
+        LNZvwztse1Y6jz3OP1zBUL0mJnRBH4otttEY/lzAyWs0lnJ7BtmEidtyfwZKq6GB
+        cumXGBzbtN2GPt8CSgoRe9u2TnBB2dAixuA8mKav6I9BRIm2bl4+KJ5m+eTYNbzm
+        URuxKfgvOf+uYiBbmKOJzJBOaF7WBjNnVJ05e/6py/S5soA6qTSJ2otMxaz9gXDK
+        vvxYo2ixeKftG2c11bfIv6MeqU3F1d8QFKsV3kv5IcbY6kMbmaUWXOvB1ggeGOWB
+        eIfKvP7lgNkpa8HEhkCf9G4cbvCx9RAnOe/nzZA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=+gHRX6
+        cTDmHSKWNNEZDiaV7fmTx8VY671JKMUQ7FfmQ=; b=rzs8gDE7sglQ0dagm6cfWP
+        QZ1hyCLw1DVZdOJ0txMIFdOBWwC5rxieibF2JFGcbOfXGhbJGeZoiQjtcT3vDaqi
+        jy7al+DQgCaIJ8aSwTXgNCruIYnm+4d6oXksOS9bqDNoLXx9yj5v8i0J70TYBH0E
+        l/poxoJsgAbHwLXnu0qXmja+Ncxo7uMJTrCKvdSVgwKqqLLndUO0sMnd78aR0Bh5
+        wR4SwMGqoADMlHkRPSa6wD6MSHSL23CSQrdIqwxt2Ww6H1oLk6U4W6Hn5n0a4LTu
+        siDDcnpbkmyl8/XXjs9hQDcBtQz1MX/jI+hdpg/PZ/7ET7yrwZHPaQ8kpb74u2Pg
+        ==
+X-ME-Sender: <xms:rYQJXa-A0RY1be8EltPd6m24OKzg4pp6JUVwSMzwVIBXG7ux2cfKdw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrtddugdefiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
+    ufhiiigvpedt
+X-ME-Proxy: <xmx:rYQJXRBI4ygcgye6OIWFLY_yQKTMsCXKYOUiVR79cwKYovE7uVkj-g>
+    <xmx:rYQJXctlfABcHf2rCDF4pjv5OISMtr_llb2bmbraEhfO_GNeOXYxcg>
+    <xmx:rYQJXREyR9Fq_ux5MV_uCxuV26L3guGYh9Xm5Wucd697lLaXUpEa_A>
+    <xmx:roQJXVYnljDdqWJlVb4MbfpeVUxSo-2sRru08PzriJHXlgl4mpwubQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 0505FE00A2; Tue, 18 Jun 2019 20:41:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-666-gb2312fa-fmstable-20190614v4
+Mime-Version: 1.0
+Message-Id: <d201fadc-0b8e-48df-8e50-bccd5d5019c7@www.fastmail.com>
+In-Reply-To: <20190618042421.1227372-1-taoren@fb.com>
+References: <20190618042421.1227372-1-taoren@fb.com>
+Date:   Wed, 19 Jun 2019 10:11:16 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Tao Ren" <taoren@fb.com>, "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH] ARM: dts: aspeed: Add Facebook Minipack BMC
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node names shouldn't include a vendor prefix and should whenever
-possible use a generic identifier. Resolve this by renaming the smmu
-nodes "iommu".
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
 
-Changes since v1:
-- Updated commit message to talk about vendor prefix rather than qcom,
+On Tue, 18 Jun 2019, at 13:54, Tao Ren wrote:
+> Add initial version of device tree for Facebook Minipack ast2500 BMC.
+> 
+> Signed-off-by: Tao Ren <taoren@fb.com>
 
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 2ecd9d775d61..c934e00434c7 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1163,7 +1163,7 @@
- 			};
- 		};
- 
--		vfe_smmu: arm,smmu@da0000 {
-+		vfe_smmu: iommu@da0000 {
- 			compatible = "qcom,msm8996-smmu-v2", "qcom,smmu-v2";
- 			reg = <0xda0000 0x10000>;
- 
-@@ -1314,7 +1314,7 @@
- 			};
- 		};
- 
--		adreno_smmu: arm,smmu@b40000 {
-+		adreno_smmu: iommu@b40000 {
- 			compatible = "qcom,msm8996-smmu-v2", "qcom,smmu-v2";
- 			reg = <0xb40000 0x10000>;
- 
-@@ -1331,7 +1331,7 @@
- 			power-domains = <&mmcc GPU_GDSC>;
- 		};
- 
--		mdp_smmu: arm,smmu@d00000 {
-+		mdp_smmu: iommu@d00000 {
- 			compatible = "qcom,msm8996-smmu-v2", "qcom,smmu-v2";
- 			reg = <0xd00000 0x10000>;
- 
-@@ -1347,7 +1347,7 @@
- 			power-domains = <&mmcc MDSS_GDSC>;
- 		};
- 
--		lpass_q6_smmu: arm,smmu-lpass_q6@1600000 {
-+		lpass_q6_smmu: iommu@1600000 {
- 			compatible = "qcom,msm8996-smmu-v2", "qcom,smmu-v2";
- 			reg = <0x1600000 0x20000>;
- 			#iommu-cells = <1>;
--- 
-2.18.0
-
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-facebook-minipack.dts | 429 ++++++++++++++++++
+>  2 files changed, 430 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 323fb7f13438..4c94e4c8de1e 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1267,6 +1267,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-arm-centriq2400-rep.dtb \
+>  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>  	aspeed-bmc-facebook-cmm.dtb \
+> +	aspeed-bmc-facebook-minipack.dtb \
+>  	aspeed-bmc-facebook-tiogapass.dtb \
+>  	aspeed-bmc-facebook-yamp.dtb \
+>  	aspeed-bmc-intel-s2600wf.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts 
+> b/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts
+> new file mode 100644
+> index 000000000000..c05478296446
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts
+> @@ -0,0 +1,429 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2018 Facebook Inc.
+> +/dts-v1/;
+> +
+> +#include "aspeed-g5.dtsi"
+> +
+> +/ {
+> +	model = "Facebook Minipack 100 BMC";
+> +	compatible = "facebook,minipack-bmc", "aspeed,ast2500";
+> +
+> +	aliases {
+> +		/*
+> +		 * Override the default serial aliases to avoid breaking
+> +		 * the legacy applications.
+> +		 */
+> +		serial0 = &uart5;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +
+> +		/*
+> +		 * i2c switch 2-0070, pca9548, 8 child channels assigned
+> +		 * with bus number 16-23.
+> +		 */
+> +		i2c16 = &imux16;
+> +		i2c17 = &imux17;
+> +		i2c18 = &imux18;
+> +		i2c19 = &imux19;
+> +		i2c20 = &imux20;
+> +		i2c21 = &imux21;
+> +		i2c22 = &imux22;
+> +		i2c23 = &imux23;
+> +
+> +		/*
+> +		 * i2c switch 8-0070, pca9548, 8 child channels assigned
+> +		 * with bus number 24-31.
+> +		 */
+> +		i2c24 = &imux24;
+> +		i2c25 = &imux25;
+> +		i2c26 = &imux26;
+> +		i2c27 = &imux27;
+> +		i2c28 = &imux28;
+> +		i2c29 = &imux29;
+> +		i2c30 = &imux30;
+> +		i2c31 = &imux31;
+> +
+> +		/*
+> +		 * i2c switch 9-0070, pca9548, 8 child channels assigned
+> +		 * with bus number 32-39.
+> +		 */
+> +		i2c32 = &imux32;
+> +		i2c33 = &imux33;
+> +		i2c34 = &imux34;
+> +		i2c35 = &imux35;
+> +		i2c36 = &imux36;
+> +		i2c37 = &imux37;
+> +		i2c38 = &imux38;
+> +		i2c39 = &imux39;
+> +
+> +		/*
+> +		 * i2c switch 11-0070, pca9548, 8 child channels assigned
+> +		 * with bus number 40-47.
+> +		 */
+> +		i2c40 = &imux40;
+> +		i2c41 = &imux41;
+> +		i2c42 = &imux42;
+> +		i2c43 = &imux43;
+> +		i2c44 = &imux44;
+> +		i2c45 = &imux45;
+> +		i2c46 = &imux46;
+> +		i2c47 = &imux47;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart1;
+> +		bootargs = "debug console=ttyS1,9600n8 root=/dev/ram rw";
+> +	};
+> +
+> +	memory@80000000 {
+> +		reg = <0x80000000 0x20000000>;
+> +	};
+> +};
+> +
+> +&wdt1 {
+> +	status = "okay";
+> +	aspeed,reset-type = "system";
+> +};
+> +
+> +&wdt2 {
+> +	status = "okay";
+> +	aspeed,reset-type = "system";
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "bmc";
+> +#include "facebook-bmc-flash-layout.dtsi"
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd1_default
+> +		     &pinctrl_rxd1_default
+> +		     &pinctrl_ncts1_default
+> +		     &pinctrl_ndsr1_default
+> +		     &pinctrl_ndtr1_default
+> +		     &pinctrl_nrts1_default>;
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd2_default
+> +		     &pinctrl_rxd2_default>;
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd3_default
+> +		     &pinctrl_rxd3_default>;
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd4_default
+> +		     &pinctrl_rxd4_default>;
+> +};
+> +
+> +&uart5 {
+> +	status = "okay";
+> +};
+> +
+> +&mac1 {
+> +	status = "okay";
+> +	no-hw-checksum;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +	bus-frequency = <400000>;
+> +	multi-master;
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	i2c-switch@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +
+> +		imux16: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +		};
+> +
+> +		imux17: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +		};
+> +
+> +		imux18: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +		};
+> +
+> +		imux19: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +		};
+> +
+> +		imux20: i2c@4 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <4>;
+> +		};
+> +
+> +		imux21: i2c@5 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <5>;
+> +		};
+> +
+> +		imux22: i2c@6 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <6>;
+> +		};
+> +
+> +		imux23: i2c@7 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <7>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +	multi-master;
+> +};
+> +
+> +&i2c5 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c7 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c8 {
+> +	status = "okay";
+> +
+> +	i2c-switch@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +
+> +		imux24: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +		};
+> +
+> +		imux25: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +		};
+> +
+> +		imux26: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +		};
+> +
+> +		imux27: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +		};
+> +
+> +		imux28: i2c@4 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <4>;
+> +		};
+> +
+> +		imux29: i2c@5 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <5>;
+> +		};
+> +
+> +		imux30: i2c@6 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <6>;
+> +		};
+> +
+> +		imux31: i2c@7 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <7>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c9 {
+> +	status = "okay";
+> +
+> +	i2c-switch@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +
+> +		imux32: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +		};
+> +
+> +		imux33: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +		};
+> +
+> +		imux34: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +		};
+> +
+> +		imux35: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +		};
+> +
+> +		imux36: i2c@4 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <4>;
+> +		};
+> +
+> +		imux37: i2c@5 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <5>;
+> +		};
+> +
+> +		imux38: i2c@6 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <6>;
+> +		};
+> +
+> +		imux39: i2c@7 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <7>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c10 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c11 {
+> +	status = "okay";
+> +
+> +	i2c-switch@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +
+> +		imux40: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +		};
+> +
+> +		imux41: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +		};
+> +
+> +		imux42: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +		};
+> +
+> +		imux43: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +		};
+> +
+> +		imux44: i2c@4 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <4>;
+> +		};
+> +
+> +		imux45: i2c@5 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <5>;
+> +		};
+> +
+> +		imux46: i2c@6 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <6>;
+> +		};
+> +
+> +		imux47: i2c@7 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <7>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c12 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c13 {
+> +	status = "okay";
+> +};
+> +
+> +&vhub {
+> +	status = "okay";
+> +};
+> -- 
+> 2.17.1
+> 
+>
