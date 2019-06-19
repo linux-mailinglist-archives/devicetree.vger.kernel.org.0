@@ -2,96 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E5774BA44
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5532C4BA49
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 15:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730603AbfFSNlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 09:41:03 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:36406 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726479AbfFSNlD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 09:41:03 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1hdapd-0001rq-9z; Wed, 19 Jun 2019 15:40:57 +0200
-Message-ID: <634be6de5fd29064bd41540a5d93d1756c06a980.camel@sipsolutions.net>
-Subject: Re: [PATCH V4 22/28] PCI: tegra: Access endpoint config only if
- PCIe link is up
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-wireless@vger.kernel.org
-Date:   Wed, 19 Jun 2019 15:40:54 +0200
-In-Reply-To: <20190619133817.GA143205@google.com>
-References: <09bcc121-eaca-3866-d0ef-7806503e883f@nvidia.com>
-         <ca34eb24-8696-576f-26bc-8d6141f81a41@nvidia.com>
-         <20190613143946.GA30445@e121166-lin.cambridge.arm.com>
-         <20190613154250.GA32713@ulmo>
-         <a523a19c-fdfa-01f7-6f6d-2ca367a10a50@nvidia.com>
-         <20190617114745.GL508@ulmo> <20190617193024.GC13533@google.com>
-         <a7e0472d-f4a7-ed63-836a-b5e8b1360645@nvidia.com>
-         <20190618104918.GA28892@ulmo>
-         <9c0fb01f0dc6a193265297eaa100a35ff25413e7.camel@sipsolutions.net>
-         <20190619133817.GA143205@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-2.fc28) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S1727069AbfFSNmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 09:42:13 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:63084 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726518AbfFSNmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 09:42:13 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5JDdSdv003080;
+        Wed, 19 Jun 2019 08:42:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type;
+ s=PODMain02222019; bh=2ql+gvu+ditouxByWHzzjagS21G7iQlQk1V9h7Fhqws=;
+ b=ngobzyIXPQ6BugdkPailRliW9IKGhKLcucDh+F7owqCPhG9WzGYJKT1EfeKf/lt0ZnwX
+ aTmGGYdrWjFx96kTdfWSWeq0Fj/9d0tzUlgJBevGAA1Ncd5JKT72WPcU5XDuIUl8yLlZ
+ YOGoBiakDLvndWZ3raIrw1k7DCOAuRBJs156Rj7Z1i8DaeBynI/np2rWVGziCNQuFqWP
+ eyJ2/HiF81VVg1+jfd+68ZArQhp3XRIChzYoqCG9dPV93HbCzWlc59QY+TkI75UtUoMR
+ LHfo3ej3MX1Ns9LsFdFeuUp30wwhBbd/PvRYLHUpkbLYiKHpmPCmfv9TcdKK1Y8g0KoJ Lg== 
+Authentication-Results: ppops.net;
+        spf=none smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from mail1.cirrus.com (mail1.cirrus.com [141.131.3.20])
+        by mx0a-001ae601.pphosted.com with ESMTP id 2t780gh1pr-1;
+        Wed, 19 Jun 2019 08:42:00 -0500
+Received: from EDIEX01.ad.cirrus.com (unknown [198.61.84.80])
+        by mail1.cirrus.com (Postfix) with ESMTP id 7EC59611C8C5;
+        Wed, 19 Jun 2019 08:41:59 -0500 (CDT)
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 19 Jun
+ 2019 14:41:59 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Wed, 19 Jun 2019 14:41:59 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 38B5845;
+        Wed, 19 Jun 2019 14:41:59 +0100 (BST)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <broonie@kernel.org>
+CC:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <lgirdwood@gmail.com>, <mark.rutland@arm.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH v3 1/5] ASoC: madera: Add DT bindings for Cirrus Logic Madera codecs
+Date:   Wed, 19 Jun 2019 14:41:55 +0100
+Message-ID: <20190619134159.23580-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
+ definitions=main-1906190112
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-06-19 at 08:38 -0500, Bjorn Helgaas wrote:
+From: Richard Fitzgerald <rf@opensource.cirrus.com>
 
-> > > > > How does rfkill work?  It sounds like it completely removes
-> > > > > power from the wifi device, putting it in D3cold.  Is there
-> > > > > any software notification other than the "Slot present pin
-> > > > > change" (which looks like a Tegra-specific thing)?
-> > 
-> > Well, they said above it's a GPIO that controls it, so the software
-> > already knows and doesn't really need an event?
-> 
-> Forgive my ignorance about rfkill.  At least in this Tegra case, it
-> sounds like rfkill basically controls a power switch for the entire
-> device, i.e., it doesn't merely turn off the radio portion of the
-> device; it puts the entire PCI device in D3cold.
+The Cirrus Logic Madera codecs are a family of related codecs with
+extensive digital and analogue I/O, digital mixing and routing,
+signal processing and programmable DSPs.
 
-Sort of. The actual (hardware) implementation seems a bit more
-complicated than a "power switch", but yes, that's the effect of it.
+Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+---
 
-> Is rfkill integrated with the power management subsystem?  E.g., when
-> lspci or X tries to read config space via pci_read_config(), does the
-> pci_config_pm_runtime_get() in that path wake up the device?
+Changes since v2:
+ - Minor tweak to out-mono to allow shorter arrays to be passed.
 
-No, that's the problem at hand AFAICT.
+Thanks,
+Charles
 
-> IMO, if the struct pci_dev exists, we should be able to rely on the
-> device actually being accessible (possibly after bringing it back to
-> D0).  If rfkill only turns off the radio, leaving the PCI interface
-> active, that would be fine -- in that case generic PCI things like
-> lspci would work normally and it would be up to the driver to manage
-> network-related things.
-> 
-> But if rfkill turns off PCI interface and the power management
-> subsystem can't wake it up, I think we should unbind the driver and
-> remove the pci_dev, so it wouldn't appear in lspci at all.
+ Documentation/devicetree/bindings/sound/madera.txt | 67 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ include/dt-bindings/sound/madera.h                 | 29 ++++++++++
+ 3 files changed, 97 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/madera.txt
+ create mode 100644 include/dt-bindings/sound/madera.h
 
-Right. That's being suggested here, but since the platform has no actual
-hardware hotplug, that needs to be implemented in software.
-
-The question at hand is *how* to actually achieve that.
-
-I'm kind of arguing that it's not rfkill that achieves it, but the
-underlying GPIO that toggles the device, since that GPIO could also be
-bound to something other than an rfkill-gpio instance.
-
-johannes
+diff --git a/Documentation/devicetree/bindings/sound/madera.txt b/Documentation/devicetree/bindings/sound/madera.txt
+new file mode 100644
+index 0000000000000..5e669ce552f47
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/madera.txt
+@@ -0,0 +1,67 @@
++Cirrus Logic Madera class audio codecs
++
++This describes audio configuration bindings for these codecs.
++
++See also the core bindings for the parent MFD driver:
++See Documentation/devicetree/bindings/mfd/madera.txt
++
++and defines for values used in these bindings:
++include/dt-bindings/sound/madera.h
++
++These properties are all contained in the parent MFD node.
++
++Optional properties:
++  - cirrus,dmic-ref : Indicates how the MICBIAS pins have been externally
++    connected to DMICs on each input, one cell per input.
++    <IN1 IN2 IN3 ...>
++    A value of 0 indicates MICVDD and is the default, other values depend on the
++    codec:
++    For CS47L35 one of the CS47L35_DMIC_REF_xxx values
++    For all other codecs one of the MADERA_DMIC_REF_xxx values
++    Also see the datasheet for a description of the INn_DMIC_SUP field.
++
++  - cirrus,inmode : A list of input mode settings for each input. A maximum of
++    16 cells, with four cells per input in the order INnAL, INnAR INnBL INnBR.
++    For non-muxed inputs the first two cells for that input set the mode for
++    the left and right channel and the second two cells must be 0.
++    For muxed inputs the first two cells for that input set the mode of the
++    left and right A inputs and the second two cells set the mode of the left
++    and right B inputs.
++    Valid mode values are one of the MADERA_INMODE_xxx. If the array is shorter
++    than the number of inputs the unspecified inputs default to
++    MADERA_INMODE_DIFF.
++
++  - cirrus,out-mono : Mono bit for each output, maximum of six cells if the
++    array is shorter outputs will be set to stereo.
++
++  - cirrus,max-channels-clocked : Maximum number of channels that I2S clocks
++    will be generated for. Useful when clock master for systems where the I2S
++    bus has multiple data lines.
++    One cell for each AIF, use a value of zero for AIFs that should be handled
++    normally.
++
++  - cirrus,pdm-fmt : PDM speaker data format, must contain 2 cells
++    (OUT5 and OUT6). See the PDM_SPKn_FMT field in the datasheet for a
++    description of this value.
++    The second cell is ignored for codecs that do not have OUT6.
++
++  - cirrus,pdm-mute : PDM mute format, must contain 2 cells
++    (OUT5 and OUT6). See the PDM_SPKn_CTRL_1 register in the datasheet for a
++    description of this value.
++    The second cell is ignored for codecs that do not have OUT6.
++
++Example:
++
++cs47l35@0 {
++	compatible = "cirrus,cs47l35";
++
++	cirrus,dmic-ref = <0 0 CS47L35_DMIC_REF_MICBIAS1B 0>;
++	cirrus,inmode = <
++		MADERA_INMODE_DMIC MADERA_INMODE_DMIC /* IN1A digital */
++		MADERA_INMODE_SE   MADERA_INMODE_SE   /* IN1B single-ended */
++		MADERA_INMODE_DIFF MADERA_INMODE_DIFF /* IN2 differential */
++		0 0 	/* not used on this codec */
++	>;
++	cirrus,out-mono = <0 0 0 0 0 0>;
++	cirrus,max-channels-clocked = <2 0 0>;
++};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index addc269ad75e9..55d8b3d1a5cff 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3927,6 +3927,7 @@ W:	https://github.com/CirrusLogic/linux-drivers/wiki
+ S:	Supported
+ F:	Documentation/devicetree/bindings/mfd/madera.txt
+ F:	Documentation/devicetree/bindings/pinctrl/cirrus,madera-pinctrl.txt
++F:	include/dt-bindings/sound/madera*
+ F:	include/linux/irqchip/irq-madera*
+ F:	include/linux/mfd/madera/*
+ F:	drivers/gpio/gpio-madera*
+diff --git a/include/dt-bindings/sound/madera.h b/include/dt-bindings/sound/madera.h
+new file mode 100644
+index 0000000000000..9ff4eae5259b0
+--- /dev/null
++++ b/include/dt-bindings/sound/madera.h
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Device Tree defines for Madera codecs
++ *
++ * Copyright (C) 2016-2017 Cirrus Logic, Inc. and
++ *                         Cirrus Logic International Semiconductor Ltd.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ */
++
++#ifndef DT_BINDINGS_SOUND_MADERA_H
++#define DT_BINDINGS_SOUND_MADERA_H
++
++#define MADERA_INMODE_DIFF		0
++#define MADERA_INMODE_SE		1
++#define MADERA_INMODE_DMIC		2
++
++#define MADERA_DMIC_REF_MICVDD		0
++#define MADERA_DMIC_REF_MICBIAS1	1
++#define MADERA_DMIC_REF_MICBIAS2	2
++#define MADERA_DMIC_REF_MICBIAS3	3
++
++#define CS47L35_DMIC_REF_MICBIAS1B	1
++#define CS47L35_DMIC_REF_MICBIAS2A	2
++#define CS47L35_DMIC_REF_MICBIAS2B	3
++
++#endif
+-- 
+2.11.0
 
