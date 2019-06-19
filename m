@@ -2,99 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B5B54C10A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 20:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C7604C231
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 22:17:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726479AbfFSSro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 14:47:44 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:52672 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726175AbfFSSro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 14:47:44 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id BFC886063F; Wed, 19 Jun 2019 18:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560970062;
-        bh=1yZ8gW4omtDGb+oqxDGLEnHBunqq4YkklbYTCwDXY3U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=kQIh5jOa/cXWbooFqk3WCsn70ABRuoV0jnfVYeJSkyHfIFkju+3qmGPNMdevfks3e
-         f2aBzUFDFi1wJmBElItePeSJlBzfqspKFXRjp/1g9ElfshPGiseUjQG0rTGega79Xr
-         IfBUZMyHrJlFlYzC6kSekM3CXRd102LAksKVSjrU=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id DADCA6063F;
-        Wed, 19 Jun 2019 18:47:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1560970061;
-        bh=1yZ8gW4omtDGb+oqxDGLEnHBunqq4YkklbYTCwDXY3U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=EYJPfomCH0dyi8k+h1DqgHcD2V+VGlCjTr2UW5kMNzdEfu1KOLIsNdJLhoktaOzmA
-         m/h33t+EefNSvWuAkeKELMtnzWcc+qBxt8d9cgJtkGZ48T9SKBFnd9AXK8qipv82lA
-         v0cg/okvJwlKbZsTmYQvUj8EwjwxzJTMZbjQGxjY=
+        id S1726449AbfFSURM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 16:17:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32810 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726175AbfFSURM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 16:17:12 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4282D217D9;
+        Wed, 19 Jun 2019 20:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560975431;
+        bh=541XiS0AbaClh3nYwpHX5EEggdOh+N+d4mSDoxX/Rpg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YVVZo+x89SxPwT5avxM6SUocpzWOqaV1fttnSeTufy/f48lKwzYOPqQV0k6yp4Ixf
+         GYbD1O/Lg6MbfB6VUF6kG2MAP8QOp3B2cucQt2I/CtVGotYf/GsYzQ2gSRnHctarOg
+         +VmQNytdY3f/ykQO4q1Ij6clsBS3a+LvOI0ddnQw=
+Received: by mail-qt1-f176.google.com with SMTP id h21so545584qtn.13;
+        Wed, 19 Jun 2019 13:17:11 -0700 (PDT)
+X-Gm-Message-State: APjAAAUFkK/fWdO4xLeia1qjFJdaivB8eeWh5jIm0q9dH9IVYs3yLn33
+        E4h4XTtIcYbQG540bhHAh+z0PpuDct/wAC909A==
+X-Google-Smtp-Source: APXvYqxlXaUhYK7Rc1Fe1p9kGyCNNEK0+tjQBq7joBikhFVY5XwyssWYCZlgH1+7TyA7AeG2N/Rd9++exvETdBgfXxg=
+X-Received: by 2002:a0c:8a43:: with SMTP id 3mr36153698qvu.138.1560975430399;
+ Wed, 19 Jun 2019 13:17:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 19 Jun 2019 12:47:41 -0600
-From:   Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Johannes Berg <johannes@sipsolutions.net>,
-        Alex Elder <elder@linaro.org>, abhishek.esse@gmail.com,
-        Ben Chan <benchan@google.com>,
+References: <20190616132930.6942-1-masneyb@onstation.org> <20190616132930.6942-3-masneyb@onstation.org>
+In-Reply-To: <20190616132930.6942-3-masneyb@onstation.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 19 Jun 2019 14:16:57 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Ne=NEcLbO6C19iOny4bwm_m5QEtcsM78ZDeBmDUVO_Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+Ne=NEcLbO6C19iOny4bwm_m5QEtcsM78ZDeBmDUVO_Q@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: display: msm: gmu: add optional ocmem property
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        Dan Williams <dcbw@redhat.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        syadagir@codeaurora.org
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-In-Reply-To: <CAK8P3a3e+U85yHTeE4dHa4okLVHgBd8Kke9=FytzvMwz+wB0sQ@mail.gmail.com>
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
- <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
- <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
- <066e9b39f937586f0f922abf801351553ec2ba1d.camel@sipsolutions.net>
- <b3686626-e2d8-bc9c-6dd0-9ebb137715af@linaro.org>
- <b23a83c18055470c5308fcd1eed018056371fc1d.camel@sipsolutions.net>
- <CAK8P3a1FeUQR3pgoQxHoRK05JGORyR+TFATVQiijLWtFKTv6OQ@mail.gmail.com>
- <613cdfde488eb23d7207c7ba6258662702d04840.camel@sipsolutions.net>
- <CAK8P3a2onXpxiE4y9PzRwuPM2dh=h_BKz7Eb0=LLPgBbZoK1bQ@mail.gmail.com>
- <6c70950d0c78bc02a3d016918ec3929e@codeaurora.org>
- <CAK8P3a3e+U85yHTeE4dHa4okLVHgBd8Kke9=FytzvMwz+wB0sQ@mail.gmail.com>
-Message-ID: <2926e45fd7ff62fd7c4af9b338bf0caa@codeaurora.org>
-X-Sender: subashab@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> There is a n:1 relationship between rmnet and IPA.
->> rmnet does the de-muxing to multiple netdevs based on the mux id
->> in the MAP header for RX packets and vice versa.
-> 
-> Oh, so you mean that even though IPA supports multiple channels
-> and multiple netdev instances for a physical device, all the
-> rmnet devices end up being thrown into a single channel in IPA?
-> 
-> What are the other channels for in IPA? I understand that there
-> is one channel for commands that is separate, while the others
-> are for network devices, but that seems to make no sense if
-> we only use a single channel for rmnet data.
-> 
+On Sun, Jun 16, 2019 at 7:29 AM Brian Masney <masneyb@onstation.org> wrote:
+>
+> Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
+> must use the On Chip MEMory (OCMEM) in order to be functional. Add the
+> optional ocmem property to the Adreno Graphics Management Unit bindings.
+>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/gmu.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.txt b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> index 90af5b0a56a9..c746b95e95d4 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gmu.txt
+> +++ b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> @@ -31,6 +31,10 @@ Required properties:
+>  - iommus: phandle to the adreno iommu
+>  - operating-points-v2: phandle to the OPP operating points
+>
+> +Optional properties:
+> +- ocmem: phandle to the On Chip Memory (OCMEM) that's present on some Snapdragon
+> +         SoCs. See Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml.
 
-AFAIK, the other channels are for use cases like tethering.
-There is only a single channel which is used for RX
-data which is then de-muxed using rmnet.
+We already have a couple of similar properties. Lets standardize on
+'sram' as that is what TI already uses.
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Also, is the whole OCMEM allocated to the GMU? If not you should have
+child nodes to subdivide the memory.
+
+Rob
