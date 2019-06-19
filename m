@@ -2,89 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E74294BAE0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA5A4BAFA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2019 16:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726238AbfFSOMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 10:12:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56470 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725893AbfFSOMX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 10:12:23 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 20B7B21855;
-        Wed, 19 Jun 2019 14:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560953542;
-        bh=LFjHq6ftsF8ixON43fD3Q6Ndtpt2rar3Y+/uG+MLXjw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=prEsNKmyAvAq7H0E/JU6DGY/fpy4Y2cDr8VFkyP0FxHF4wONETOFKBqM0n7WkBUfm
-         j52OugjC0IgrqAnsfY6ZBep9HodrOSCoRjJZixWjWyXd0qw8a1RksAOO01lwa+FqSs
-         q4uKK+ubteTIwOfjnQvUas0PoXRu5TyEwwd9xWFA=
-Received: by mail-qt1-f178.google.com with SMTP id h21so19981813qtn.13;
-        Wed, 19 Jun 2019 07:12:22 -0700 (PDT)
-X-Gm-Message-State: APjAAAWa6I3VqUT2v7ZDnbZ920SVkS7NB8Bujnc5rIerijFKYGNM90iK
-        vNq81TxFgjNihkCXd/5/ySJ0lsVK0wSym66mvQ==
-X-Google-Smtp-Source: APXvYqx7bOz4FzfPsClBOol4RpULcypOHhAO+WI7MhBrQEIGcxX/3pwVQ40KBd7vbLC3LPe64QmnNa+B23EWoR33xWw=
-X-Received: by 2002:ac8:368a:: with SMTP id a10mr23661785qtc.143.1560953541290;
- Wed, 19 Jun 2019 07:12:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
- <60569c4326437aeb1c13b3da4d00bcf6202e9e6b.1560937626.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <60569c4326437aeb1c13b3da4d00bcf6202e9e6b.1560937626.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 19 Jun 2019 08:12:09 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+D_=3V26Yj-EH4nJ0Hsx7-+73Q8iGD+s40iRz-EpS=kQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+D_=3V26Yj-EH4nJ0Hsx7-+73Q8iGD+s40iRz-EpS=kQ@mail.gmail.com>
-Subject: Re: [PATCH v3 08/16] dt-bindings: net: stmmac: Convert the binding to
- a schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        id S1729179AbfFSOQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 10:16:00 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:51295 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726047AbfFSOQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 10:16:00 -0400
+X-Originating-IP: 92.137.69.152
+Received: from localhost (alyon-656-1-672-152.w92-137.abo.wanadoo.fr [92.137.69.152])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 6C9761C0020;
+        Wed, 19 Jun 2019 14:15:54 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jason Cooper <jason@lakedaemon.net>,
         Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: [PATCH v6 0/6] Add CPU clock support for Armada 7K/8K
+Date:   Wed, 19 Jun 2019 16:15:33 +0200
+Message-Id: <20190619141539.16884-1-gregory.clement@bootlin.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 3:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Switch the STMMAC / Synopsys DesignWare MAC controller binding to a YAML
-> schema to enable the DT validation.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> ---
->
-> Changes from v2:
->   - Switch to phy-connection-type instead of phy-mode
->   - Fix the snps,*pbl properties type
->
-> Changes from v1:
->   - Restrict snps,tso to only a couple of compatibles
->   - Use an enum for the compatibles
->   - Add a custom select statement with the compatibles of all the generic
->     compatibles, including the deprecated ones. Remove the deprecated ones
->     from the valid compatible values to issue a warning when used.
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 389 +++++++++++-
->  Documentation/devicetree/bindings/net/stmmac.txt      | 179 +-----
->  2 files changed, 390 insertions(+), 178 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac.yaml
+Hello,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This is the sixth version of a series allowing to manage the cpu clock
+for Armada 7K/8K.
+
+For these SoCs, the CPUs share the same clock by cluster, so actually
+the clock management is done at cluster level.
+
+As for the other Armada 7K/8K clocks it is possible to have multiple
+AP so here again we need to have unique name: the purpose of the second
+patch is to share a common code which will be used in 3 drivers.
+
+The last 2 patch enable the driver at dt and platform level and will
+be applied through the mvebu subsystem.
+
+Changelog v5->v6:
+
+   - Restraint the reg property for the child node to not overlap the
+     other node.
+   - Give a specific compatible to ap_syscon1.
+
+Changelog v4->v5:
+
+ - As requested by the device tree maintainer make the reg property
+   mandatory
+
+ - Updated the device tree files accordingly with the new binding
+
+Changelog v3->v4:
+ - Rebased on v5.1-rc1
+ - Mention in the binding that a reg property can be used to make the
+   device tree maintainer happy in the hope that there will be finally
+   a review on this patch blocking the whole series.
+
+Changelog v2->v3:
+ - Add back the first patch documenting the binding
+
+Changelog v1->v2:
+ - Header cleanup
+ - Use unsigned int instead of it for cluster member of the ap_cpu_clk struct
+ - Use clk_hw instead of clk
+ - Use regmap_read_poll_timeout
+ - Use for_each_of_cpu_node
+ - Remove unnecessary WARN_ON()
+ - Remove headers from armada_ap_cp_helper.h
+ - Few other minor cleanup
+
+Gregory CLEMENT (6):
+  dt-bindings: ap806: add the cluster clock node in the syscon file
+  clk: mvebu: add helper file for Armada AP and CP clocks
+  clk: mvebu: add CPU clock driver for Armada 7K/8K
+  clk: mvebu: ap806: Fix clock name for the cluster
+  arm64: marvell: enable the  Armada 7K/8K CPU clk driver
+  arm64: dts: marvell: Add cpu clock node on Armada 7K/8K
+
+ .../arm/marvell/ap806-system-controller.txt   |  25 ++
+ arch/arm64/Kconfig.platforms                  |   1 +
+ .../boot/dts/marvell/armada-ap806-quad.dtsi   |   4 +
+ arch/arm64/boot/dts/marvell/armada-ap806.dtsi |   7 +
+ drivers/clk/mvebu/Kconfig                     |   8 +
+ drivers/clk/mvebu/Makefile                    |   2 +
+ drivers/clk/mvebu/ap-cpu-clk.c                | 259 ++++++++++++++++++
+ drivers/clk/mvebu/ap806-system-controller.c   |  24 +-
+ drivers/clk/mvebu/armada_ap_cp_helper.c       |  30 ++
+ drivers/clk/mvebu/armada_ap_cp_helper.h       |  11 +
+ drivers/clk/mvebu/cp110-system-controller.c   |  32 +--
+ 11 files changed, 361 insertions(+), 42 deletions(-)
+ create mode 100644 drivers/clk/mvebu/ap-cpu-clk.c
+ create mode 100644 drivers/clk/mvebu/armada_ap_cp_helper.c
+ create mode 100644 drivers/clk/mvebu/armada_ap_cp_helper.h
+
+-- 
+2.20.1
+
