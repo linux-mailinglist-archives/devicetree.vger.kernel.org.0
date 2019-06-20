@@ -2,127 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5B34CF97
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 15:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DAC64CF8D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 15:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732006AbfFTNvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 09:51:04 -0400
-Received: from mail-ua1-f65.google.com ([209.85.222.65]:44307 "EHLO
-        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731768AbfFTNvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 09:51:03 -0400
-Received: by mail-ua1-f65.google.com with SMTP id 8so1629252uaz.11
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 06:51:03 -0700 (PDT)
+        id S1729563AbfFTNus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 09:50:48 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:40735 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726757AbfFTNus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 09:50:48 -0400
+Received: by mail-lj1-f193.google.com with SMTP id a21so2772577ljh.7
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 06:50:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2IFwlqbKib7dWbeVbv8X2YweFdeF4XDbaSTOpsTFt9E=;
-        b=cnBfFGGl3pJdpKp1MmBsF47mWvkNWCygNpH36R5cENrnDyoojF55rqerYfDLfwbbTj
-         RFNj58C5CUCULzDhnJhuuGUawX8GzXHIVIZhOz7jX/xVeIdC14e76z4ee9EhQzScRn3r
-         yZyPrtDQwDjqyu6vqRuq4CLTKqp19vhLDP1kzyZlJral0qqZUmCvS5srHMy+sgfXo7OX
-         8J3/HDJJtVqUJPoO9R3c2uQaBqDPo5Hb8yFlY4a3lZNrdJXrZ2uvs7wDiEP1uZSr6Jfu
-         RATefM9/IOvINHrRt3pDF9AMIZimpQikwZUjdX3vOvvUC0JBvtUIxqFbJK3SbyUB77sX
-         swNA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=87/mmep8o4xjpng42pfKe0HvnZpFCEv5wyHUTYM4F04=;
+        b=VkyHNmJKqo0qrBEXD8HTGqBxcqBDEgbYFFaxDPeiq1NCPLpeT3i4FhyPn+6E294uNa
+         wLgstEm7V4BT2uRAGVrLmnFT8gWWzHOh/HxjX8bFdxwbEvp57J5LzK8jZ+j7Qm/gX5it
+         furkKmT7oIWSMPN/GhA1TwUb9f2MdzK1hFlYr9NYmb7rFeFfpzL+ug4fOn5ZgYoadReA
+         /dCD0iGDBzSl88mK7r8/u9D5m8O6brFsHMy18Rc7LvoCR2iaxOZvHL0rQP3miNDbjzkH
+         PwgiF6NtOaaVZXeeFmPSqiA+n0fDrM6OocjmaZeo3GNl5IONVZgY6Vl7Vq5QSw6m9MPy
+         L7uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2IFwlqbKib7dWbeVbv8X2YweFdeF4XDbaSTOpsTFt9E=;
-        b=HMLuQvKudEaHuIno2Y+i4UmzhZA8eYLCdOC6O0cR7zJt2woafVmzbzCXBwPBL5038u
-         P+tjWbOf+fpYqcFMS9ngtiMdkjoJ2sfo6qO1b/jQMqpRl9f6ZvZhn25AR/qf9k/hoYaK
-         cJw/qEZqOw4aPS89k/lmaCiz4ZFySkP9rOWBKtsIcEvbAzo5Mm43AQjb93M8P0bZgsej
-         7FyQ/H8IPTX7hFU1TZzvURb8S8ctwwIvNkHl0jI2kZMowHxBCQ7oi3gx+yR9SNmkMt35
-         AWDSyvyJtQYRaaEqdXjgisRy59FKzlaKgY5VFvBPqB22sIFvZLTeQCkc797dpc3l1h5M
-         WGgQ==
-X-Gm-Message-State: APjAAAVK1R0i1B3Msjh8ROwIfATy5kmGQkaAwu6zeiBuZO6oPs7HwArZ
-        /7PNdAYTFExeyRkhU+cHl352kJTfCg/k44DhVkCjBw==
-X-Google-Smtp-Source: APXvYqyZXCFrwLLbuKH87ntBoB1uPTcKE017Mrw8Z9+j3VOUxMLwq/g1pwfocngRvtK/nHu4TYQODtwzbAxVOv/4r8s=
-X-Received: by 2002:a9f:242e:: with SMTP id 43mr8151929uaq.100.1561038663128;
- Thu, 20 Jun 2019 06:51:03 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=87/mmep8o4xjpng42pfKe0HvnZpFCEv5wyHUTYM4F04=;
+        b=VSL0q8VrSKNbtM+XIaqR6Zy48VJERdeoc5F5QqdF0MhE6of+FARhZPYMNdMshByRBI
+         hIUrw7UN+FjLNWyR0a9wTOrK9DJr1VMYPndipejVuumuyYFATJlZlybo6Oq722rnduVw
+         K7xNu5acPNhB5IM4O2QcTmD2s4wTpvm/fsDaLWayeQyDh2iwRT9up3rJsGl7e08joy7D
+         34Nip6SNDEQkVFK/4YRj/KAJVrdFyxpbnsIu510i1bAf3GCm1MwTE1T9htU6XANrGUvH
+         qjg6kbNac4Cshqfy6viU4XYPkGd9QBKgj32B1X8FYGfmkgBy8d4lYcjjcXIDpp0P1fQ+
+         4CYA==
+X-Gm-Message-State: APjAAAW306eRZ/7eGxKVvHjAKZ15IoFBqPEBWU2W2UIcEZ0C8EiJzGwP
+        aQ1HUL1RyBqbdppABgNZg/mKZQ==
+X-Google-Smtp-Source: APXvYqxwnFna5l+CRnQ7eSfwSQ0TT6LbGX6hIoEfl7KwqgiayhTFixuAgZgGdrIsH5TwcHjccMaC/Q==
+X-Received: by 2002:a2e:81c4:: with SMTP id s4mr58341729ljg.182.1561038646384;
+        Thu, 20 Jun 2019 06:50:46 -0700 (PDT)
+Received: from centauri (m83-185-80-163.cust.tele2.se. [83.185.80.163])
+        by smtp.gmail.com with ESMTPSA id e26sm3537359ljl.33.2019.06.20.06.50.44
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 20 Jun 2019 06:50:45 -0700 (PDT)
+Date:   Thu, 20 Jun 2019 15:50:43 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+Cc:     agross@kernel.org, david.brown@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jeffrey.l.hugo@gmail.com
+Subject: Re: [PATCH] arm64: dts: qcom: qcs404-evb: fix vdd_apc supply
+Message-ID: <20190620135043.GA16411@centauri>
+References: <20190619181653.29407-1-jorge.ramirez-ortiz@linaro.org>
 MIME-Version: 1.0
-References: <1559577325-19266-1-git-send-email-ludovic.Barre@st.com>
- <5b7e1ae5-c97e-5a21-fc3e-7cc328087f04@st.com> <CAPDyKFrULRk=cHzVodU9aa6LDX9ip-VPHNwG7QXhmNZrMpPjGw@mail.gmail.com>
-In-Reply-To: <CAPDyKFrULRk=cHzVodU9aa6LDX9ip-VPHNwG7QXhmNZrMpPjGw@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 20 Jun 2019 15:50:26 +0200
-Message-ID: <CAPDyKFr_KNpNY-xgGdKXdAnmmD5OD1=wxgs2LmBAUJOn0mZwqg@mail.gmail.com>
-Subject: Re: [PATCH V3 0/3] mmc: mmci: add busy detect for stm32 sdmmc variant
-To:     Ludovic BARRE <ludovic.barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190619181653.29407-1-jorge.ramirez-ortiz@linaro.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ludovic,
+On Wed, Jun 19, 2019 at 08:16:53PM +0200, Jorge Ramirez-Ortiz wrote:
+> The invalid definition in the supply causes the Qualcomm's EVB-1000
+> and EVB-4000 not to boot.
+> 
+> Fix the boot issue by correctly defining the supply: vdd_s3 (namely
+> "vdd_apc") is actually connected to vph_pwr.
+> 
+> Reported-by: Niklas Cassel <niklas.cassel@linaro.org>
+> Tested-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> index b6092a742675..11c0a7137823 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> @@ -65,7 +65,7 @@
+>  };
+>  
+>  &pms405_spmi_regulators {
+> -	vdd_s3-supply = <&pms405_s3>;
+> +	vdd_s3-supply = <&vph_pwr>;
+>  
+>  	pms405_s3: s3 {
+>  		regulator-always-on;
+> -- 
+> 2.21.0
+> 
 
-On Thu, 13 Jun 2019 at 15:13, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Thu, 13 Jun 2019 at 15:02, Ludovic BARRE <ludovic.barre@st.com> wrote:
-> >
-> > hi Ulf
-> >
-> > Just a "gentleman ping" about this series.
-> > I know you are busy, it's just to be sure you do not forget me :-)
->
-> Thanks! I started briefly to review, but got distracted again. I will
-> come to it, but it just seems to take more time than it should, my
-> apologies.
-
-Alright, so I planned to review this this week - but failed. I have
-been overwhelmed with work lately (as usual when vacation is getting
-closer).
-
-I need to gently request to come back to this as of week 28, when I
-will give this the highest prio. Again apologize for the delays!
-
-Kind regards
-Uffe
-
->
-> Br
-> Uffe
->
-> >
-> > Regards
-> > Ludo
-> >
-> > On 6/3/19 5:55 PM, Ludovic Barre wrote:
-> > > From: Ludovic Barre <ludovic.barre@st.com>
-> > >
-> > > This patch series adds busy detect for stm32 sdmmc variant.
-> > > Some adaptations are required:
-> > > -Clear busy status bit if busy_detect_flag and busy_detect_mask are
-> > >   different.
-> > > -Add hardware busy timeout with MMCIDATATIMER register.
-> > >
-> > > V3:
-> > > -rebase on latest mmc next
-> > > -replace re-read by status parameter.
-> > >
-> > > V2:
-> > > -mmci_cmd_irq cleanup in separate patch.
-> > > -simplify the busy_detect_flag exclude
-> > > -replace sdmmc specific comment in
-> > > "mmc: mmci: avoid fake busy polling in mmci_irq"
-> > > to focus on common behavior
-> > >
-> > > Ludovic Barre (3):
-> > >    mmc: mmci: fix read status for busy detect
-> > >    mmc: mmci: add hardware busy timeout feature
-> > >    mmc: mmci: add busy detect for stm32 sdmmc variant
-> > >
-> > >   drivers/mmc/host/mmci.c | 49 +++++++++++++++++++++++++++++++++++++++++--------
-> > >   drivers/mmc/host/mmci.h |  3 +++
-> > >   2 files changed, 44 insertions(+), 8 deletions(-)
-> > >
+Tested-by: Niklas Cassel <niklas.cassel@linaro.org>
