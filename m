@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AA0B4D1A1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 17:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDC74D1D1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 17:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732067AbfFTPHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 11:07:45 -0400
-Received: from shell.v3.sk ([90.176.6.54]:51682 "EHLO shell.v3.sk"
+        id S1726661AbfFTPQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 11:16:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36372 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726649AbfFTPHo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 11:07:44 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 52E32CC52E;
-        Thu, 20 Jun 2019 17:07:42 +0200 (CEST)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id yO6QnH-kjdUF; Thu, 20 Jun 2019 17:07:36 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id DC783CC536;
-        Thu, 20 Jun 2019 17:07:31 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id tKXEbdIxRtDi; Thu, 20 Jun 2019 17:07:29 +0200 (CEST)
-Received: from belphegor.brq.redhat.com (nat-pool-brq-t.redhat.com [213.175.37.10])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id BDCCCCC539;
-        Thu, 20 Jun 2019 17:07:27 +0200 (CEST)
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>
-Subject: [PATCH 5/5] ARM: dts: mmp2: specify reg-shift for the UARTs
-Date:   Thu, 20 Jun 2019 17:07:24 +0200
-Message-Id: <20190620150724.1406757-6-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190620150724.1406757-1-lkundrak@v3.sk>
-References: <20190620150724.1406757-1-lkundrak@v3.sk>
+        id S1726512AbfFTPQE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 11:16:04 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 841C920B1F;
+        Thu, 20 Jun 2019 15:16:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561043763;
+        bh=kqza+dMOoVNjShbz0wsIGK4HV5GBcZakWICkYSesXsE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KNzeo49v0vOTjS2EQy022uLMpxcHWlEZ8M/of+GzhByi2foYnofiszsQLaOAWX1E+
+         92sv4Q3VOAyaO3X54baPuk2WiQgvWv4I8dE8Bq4BhdNlpDgRiPeh0uXFH2OKBr6Pd6
+         MnyCxa39GPOFV9GQx/Rx/2+c4Qxl4v4vTwujINvc=
+Received: by mail-qk1-f178.google.com with SMTP id i125so2150192qkd.6;
+        Thu, 20 Jun 2019 08:16:03 -0700 (PDT)
+X-Gm-Message-State: APjAAAUaVP00cy6LhlJPLD4lQOzedICyisV0KUrdG/cjOqD8E7lRFmjs
+        18kKEVP7/IW7pJqgP7pKCFFPimf7Au84ULjdVw==
+X-Google-Smtp-Source: APXvYqxCJPiM0PLJvXlPJ9GRTuKL8loc5/Q8qfIUqUa+TpkqcmApxW77au/op7OTbYOnqwwYfkxw+Hy2CzPIzvLxnFA=
+X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr11428589qkl.254.1561043762664;
+ Thu, 20 Jun 2019 08:16:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20190619215156.27795-1-robh@kernel.org> <20190620065508.GA24739@ravnborg.org>
+In-Reply-To: <20190620065508.GA24739@ravnborg.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 20 Jun 2019 09:15:51 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJYWW3TPhWy0=tGc_x99w3jZPsSxcKzQJWuE+FrS19t2g@mail.gmail.com>
+Message-ID: <CAL_JsqJYWW3TPhWy0=tGc_x99w3jZPsSxcKzQJWuE+FrS19t2g@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/4] dt-bindings: display: Convert common panel
+ bindings to DT schema
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This makes the 8250_of driver happy. There are two more drivers in the
-tree that bind to mrvl,mmp-uart compatibles: pxa and 8250_pxa and
-neither of them requires the reg-shift property, assuming it's always 2.
+On Thu, Jun 20, 2019 at 12:55 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Rob.
+>
+> Thanks for starting the conversion of panel bindings to yaml.
+>
+> On Wed, Jun 19, 2019 at 03:51:53PM -0600, Rob Herring wrote:
+> > Convert the common panel bindings to DT schema consolidating scattered
+> > definitions to a single schema file.
+> >
+> > The 'simple-panel' binding just a collection of properties and not a
+> > complete binding itself. All of the 'simple-panel' properties are
+> > covered by the panel-common.txt binding with the exception of the
+> > 'no-hpd' property, so add that to the schema.
+> >
+> > As there are lots of references to simple-panel.txt, just keep the file
+> > with a reference to panel-common.yaml for now until all the bindings are
+> > converted.
+> Good idea.
+>
+> >
+> > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > Note there's still some references to panel-common.txt that I need to
+> > update or just go ahead and convert to schema.
+> Better let it point to the .yaml variant, so this patchset does not
+> depend on too much other bindings to be converted.
 
-Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+There's only 8 files referencing panel-common.txt which was why I was
+debating just converting all of them.
 
----
- arch/arm/boot/dts/mmp2.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+> Then we can start the conversion of the remaining panel bindings.
+> Any tooling that helps the conversions?
 
-diff --git a/arch/arm/boot/dts/mmp2.dtsi b/arch/arm/boot/dts/mmp2.dtsi
-index 68b547077323..6a2f072c1d0a 100644
---- a/arch/arm/boot/dts/mmp2.dtsi
-+++ b/arch/arm/boot/dts/mmp2.dtsi
-@@ -214,6 +214,7 @@
- 				interrupts =3D <27>;
- 				clocks =3D <&soc_clocks MMP2_CLK_UART0>;
- 				resets =3D <&soc_clocks MMP2_CLK_UART0>;
-+				reg-shift =3D <2>;
- 				status =3D "disabled";
- 			};
-=20
-@@ -223,6 +224,7 @@
- 				interrupts =3D <28>;
- 				clocks =3D <&soc_clocks MMP2_CLK_UART1>;
- 				resets =3D <&soc_clocks MMP2_CLK_UART1>;
-+				reg-shift =3D <2>;
- 				status =3D "disabled";
- 			};
-=20
-@@ -232,6 +234,7 @@
- 				interrupts =3D <24>;
- 				clocks =3D <&soc_clocks MMP2_CLK_UART2>;
- 				resets =3D <&soc_clocks MMP2_CLK_UART2>;
-+				reg-shift =3D <2>;
- 				status =3D "disabled";
- 			};
-=20
-@@ -241,6 +244,7 @@
- 				interrupts =3D <46>;
- 				clocks =3D <&soc_clocks MMP2_CLK_UART3>;
- 				resets =3D <&soc_clocks MMP2_CLK_UART3>;
-+				reg-shift =3D <2>;
- 				status =3D "disabled";
- 			};
-=20
---=20
-2.21.0
+I have a doc2yaml script that helps with some of the boilerplate. It's
+in my yaml-bindings-v2 branch[1].
 
+> When this hits upstream I assume all future panel bindings shall be yaml
+> based - so we have a few pending contributions that need to do something.
+
+That would be ideal, but not strictly required. For pending things, no
+reason to make folks redo things. Requiring schema really depends on
+whomever is applying things to run at least 'make dt_binding_check'
+before accepting.
+
+>
+> For the actual conversion below:
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+Thanks.
+
+Rob
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/log/?h=yaml-bindings-v2
