@@ -2,97 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DAC64CF8D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 15:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D074CFBB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 15:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729563AbfFTNus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 09:50:48 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:40735 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726757AbfFTNus (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 09:50:48 -0400
-Received: by mail-lj1-f193.google.com with SMTP id a21so2772577ljh.7
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 06:50:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=87/mmep8o4xjpng42pfKe0HvnZpFCEv5wyHUTYM4F04=;
-        b=VkyHNmJKqo0qrBEXD8HTGqBxcqBDEgbYFFaxDPeiq1NCPLpeT3i4FhyPn+6E294uNa
-         wLgstEm7V4BT2uRAGVrLmnFT8gWWzHOh/HxjX8bFdxwbEvp57J5LzK8jZ+j7Qm/gX5it
-         furkKmT7oIWSMPN/GhA1TwUb9f2MdzK1hFlYr9NYmb7rFeFfpzL+ug4fOn5ZgYoadReA
-         /dCD0iGDBzSl88mK7r8/u9D5m8O6brFsHMy18Rc7LvoCR2iaxOZvHL0rQP3miNDbjzkH
-         PwgiF6NtOaaVZXeeFmPSqiA+n0fDrM6OocjmaZeo3GNl5IONVZgY6Vl7Vq5QSw6m9MPy
-         L7uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=87/mmep8o4xjpng42pfKe0HvnZpFCEv5wyHUTYM4F04=;
-        b=VSL0q8VrSKNbtM+XIaqR6Zy48VJERdeoc5F5QqdF0MhE6of+FARhZPYMNdMshByRBI
-         hIUrw7UN+FjLNWyR0a9wTOrK9DJr1VMYPndipejVuumuyYFATJlZlybo6Oq722rnduVw
-         K7xNu5acPNhB5IM4O2QcTmD2s4wTpvm/fsDaLWayeQyDh2iwRT9up3rJsGl7e08joy7D
-         34Nip6SNDEQkVFK/4YRj/KAJVrdFyxpbnsIu510i1bAf3GCm1MwTE1T9htU6XANrGUvH
-         qjg6kbNac4Cshqfy6viU4XYPkGd9QBKgj32B1X8FYGfmkgBy8d4lYcjjcXIDpp0P1fQ+
-         4CYA==
-X-Gm-Message-State: APjAAAW306eRZ/7eGxKVvHjAKZ15IoFBqPEBWU2W2UIcEZ0C8EiJzGwP
-        aQ1HUL1RyBqbdppABgNZg/mKZQ==
-X-Google-Smtp-Source: APXvYqxwnFna5l+CRnQ7eSfwSQ0TT6LbGX6hIoEfl7KwqgiayhTFixuAgZgGdrIsH5TwcHjccMaC/Q==
-X-Received: by 2002:a2e:81c4:: with SMTP id s4mr58341729ljg.182.1561038646384;
-        Thu, 20 Jun 2019 06:50:46 -0700 (PDT)
-Received: from centauri (m83-185-80-163.cust.tele2.se. [83.185.80.163])
-        by smtp.gmail.com with ESMTPSA id e26sm3537359ljl.33.2019.06.20.06.50.44
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 06:50:45 -0700 (PDT)
-Date:   Thu, 20 Jun 2019 15:50:43 +0200
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Cc:     agross@kernel.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jeffrey.l.hugo@gmail.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs404-evb: fix vdd_apc supply
-Message-ID: <20190620135043.GA16411@centauri>
-References: <20190619181653.29407-1-jorge.ramirez-ortiz@linaro.org>
+        id S1726562AbfFTN7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 09:59:48 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:9477 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726428AbfFTN7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 09:59:48 -0400
+X-UUID: 3ec89478192847369c3196d30ab18a5d-20190620
+X-UUID: 3ec89478192847369c3196d30ab18a5d-20190620
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1290995149; Thu, 20 Jun 2019 21:59:39 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 20 Jun
+ 2019 21:59:37 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 20 Jun 2019 21:59:36 +0800
+Message-ID: <1561039176.4021.21.camel@mhfsdcap03>
+Subject: Re: [PATCH v7 17/21] memory: mtk-smi: Get rid of need_larbid
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        "Tomasz Figa" <tfiga@google.com>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yingjoe.chen@mediatek.com>,
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, Matthias Kaehlcke <mka@chromium.org>
+Date:   Thu, 20 Jun 2019 21:59:36 +0800
+In-Reply-To: <1af7b67a-b73a-efb9-e1f8-5701f05a4af0@gmail.com>
+References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com>
+         <1560169080-27134-18-git-send-email-yong.wu@mediatek.com>
+         <1af7b67a-b73a-efb9-e1f8-5701f05a4af0@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190619181653.29407-1-jorge.ramirez-ortiz@linaro.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 2CA6D34368F87003217514E1A5818323AB156BC86301E5B7347A400EECEBE2612000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 08:16:53PM +0200, Jorge Ramirez-Ortiz wrote:
-> The invalid definition in the supply causes the Qualcomm's EVB-1000
-> and EVB-4000 not to boot.
+On Tue, 2019-06-18 at 15:45 +0200, Matthias Brugger wrote:
 > 
-> Fix the boot issue by correctly defining the supply: vdd_s3 (namely
-> "vdd_apc") is actually connected to vph_pwr.
+> On 10/06/2019 14:17, Yong Wu wrote:
+> > The "mediatek,larb-id" has already been parsed in MTK IOMMU driver.
+> > It's no need to parse it again in SMI driver. Only clean some codes.
+> > This patch is fit for all the current mt2701, mt2712, mt7623, mt8173
+> > and mt8183.
+> > 
+> > After this patch, the "mediatek,larb-id" only be needed for mt2712
+> > which have 2 M4Us. In the other SoCs, we can get the larb-id from M4U
+> > in which the larbs in the "mediatek,larbs" always are ordered.
+> > 
+> > Correspondingly, the larb_nr in the "struct mtk_smi_iommu" could also
+> > be deleted.
+> > 
 > 
-> Reported-by: Niklas Cassel <niklas.cassel@linaro.org>
-> Tested-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-> index b6092a742675..11c0a7137823 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-> @@ -65,7 +65,7 @@
->  };
->  
->  &pms405_spmi_regulators {
-> -	vdd_s3-supply = <&pms405_s3>;
-> +	vdd_s3-supply = <&vph_pwr>;
->  
->  	pms405_s3: s3 {
->  		regulator-always-on;
-> -- 
-> 2.21.0
-> 
+> I think we can get rid of struct mtk_smi_iommu and just add the
+> struct mtk_smi_larb_iommu larb_imu[MTK_LARB_NR_MAX] directly to mtk_iommu_data,
+> passing just that array to the components bind function.
 
-Tested-by: Niklas Cassel <niklas.cassel@linaro.org>
+Thanks. I will try this in a new patch.
+
+> 
+> Never the less this patch looks fine:
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+Really appreciate for reviewing so many patches.
+
+> 
+> > CC: Matthias Brugger <matthias.bgg@gmail.com>
+> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > Reviewed-by: Evan Green <evgreen@chromium.org>
+> > ---
+> >  drivers/iommu/mtk_iommu.c    |  1 -
+> >  drivers/iommu/mtk_iommu_v1.c |  2 --
+> >  drivers/memory/mtk-smi.c     | 26 ++------------------------
+> >  include/soc/mediatek/smi.h   |  1 -
+> >  4 files changed, 2 insertions(+), 28 deletions(-)
+> > 
+> > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> > index ec4ce74..6053b8b 100644
+> > --- a/drivers/iommu/mtk_iommu.c
+> > +++ b/drivers/iommu/mtk_iommu.c
+> > @@ -634,7 +634,6 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+> >  					     "mediatek,larbs", NULL);
+> >  	if (larb_nr < 0)
+> >  		return larb_nr;
+> > -	data->smi_imu.larb_nr = larb_nr;
+> >  
+> >  	for (i = 0; i < larb_nr; i++) {
+> >  		struct device_node *larbnode;
+> > diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
+> > index 52b01e3..73308ad 100644
+> > --- a/drivers/iommu/mtk_iommu_v1.c
+> > +++ b/drivers/iommu/mtk_iommu_v1.c
+> > @@ -624,8 +624,6 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+> >  		larb_nr++;
+> >  	}
+> >  
+> > -	data->smi_imu.larb_nr = larb_nr;
+> > -
+> >  	platform_set_drvdata(pdev, data);
+> >  
+> >  	ret = mtk_iommu_hw_init(data);
+> > diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> > index 08cf40d..10e6493 100644
+> > --- a/drivers/memory/mtk-smi.c
+> > +++ b/drivers/memory/mtk-smi.c
+> > @@ -67,7 +67,6 @@ struct mtk_smi_common_plat {
+> >  };
+> >  
+> >  struct mtk_smi_larb_gen {
+> > -	bool need_larbid;
+> >  	int port_in_larb[MTK_LARB_NR_MAX + 1];
+> >  	void (*config_port)(struct device *);
+> >  	unsigned int larb_direct_to_common_mask;
+> > @@ -153,18 +152,9 @@ void mtk_smi_larb_put(struct device *larbdev)
+> >  	struct mtk_smi_iommu *smi_iommu = data;
+> >  	unsigned int         i;
+> >  
+> > -	if (larb->larb_gen->need_larbid) {
+> > -		larb->mmu = &smi_iommu->larb_imu[larb->larbid].mmu;
+> > -		return 0;
+> > -	}
+> > -
+> > -	/*
+> > -	 * If there is no larbid property, Loop to find the corresponding
+> > -	 * iommu information.
+> > -	 */
+> > -	for (i = 0; i < smi_iommu->larb_nr; i++) {
+> > +	for (i = 0; i < MTK_LARB_NR_MAX; i++) {
+> >  		if (dev == smi_iommu->larb_imu[i].dev) {
+> > -			/* The 'mmu' may be updated in iommu-attach/detach. */
+> > +			larb->larbid = i;
+> >  			larb->mmu = &smi_iommu->larb_imu[i].mmu;
+> >  			return 0;
+> >  		}
+> > @@ -243,7 +233,6 @@ static void mtk_smi_larb_config_port_gen1(struct device *dev)
+> >  };
+> >  
+> >  static const struct mtk_smi_larb_gen mtk_smi_larb_mt2701 = {
+> > -	.need_larbid = true,
+> >  	.port_in_larb = {
+> >  		LARB0_PORT_OFFSET, LARB1_PORT_OFFSET,
+> >  		LARB2_PORT_OFFSET, LARB3_PORT_OFFSET
+> > @@ -252,7 +241,6 @@ static void mtk_smi_larb_config_port_gen1(struct device *dev)
+> >  };
+> >  
+> >  static const struct mtk_smi_larb_gen mtk_smi_larb_mt2712 = {
+> > -	.need_larbid = true,
+> >  	.config_port                = mtk_smi_larb_config_port_gen2_general,
+> >  	.larb_direct_to_common_mask = BIT(8) | BIT(9),      /* bdpsys */
+> >  };
+> > @@ -291,7 +279,6 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+> >  	struct device *dev = &pdev->dev;
+> >  	struct device_node *smi_node;
+> >  	struct platform_device *smi_pdev;
+> > -	int err;
+> >  
+> >  	larb = devm_kzalloc(dev, sizeof(*larb), GFP_KERNEL);
+> >  	if (!larb)
+> > @@ -321,15 +308,6 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+> >  	}
+> >  	larb->smi.dev = dev;
+> >  
+> > -	if (larb->larb_gen->need_larbid) {
+> > -		err = of_property_read_u32(dev->of_node, "mediatek,larb-id",
+> > -					   &larb->larbid);
+> > -		if (err) {
+> > -			dev_err(dev, "missing larbid property\n");
+> > -			return err;
+> > -		}
+> > -	}
+> > -
+> >  	smi_node = of_parse_phandle(dev->of_node, "mediatek,smi", 0);
+> >  	if (!smi_node)
+> >  		return -EINVAL;
+> > diff --git a/include/soc/mediatek/smi.h b/include/soc/mediatek/smi.h
+> > index 5201e90..a65324d 100644
+> > --- a/include/soc/mediatek/smi.h
+> > +++ b/include/soc/mediatek/smi.h
+> > @@ -29,7 +29,6 @@ struct mtk_smi_larb_iommu {
+> >  };
+> >  
+> >  struct mtk_smi_iommu {
+> > -	unsigned int larb_nr;
+> >  	struct mtk_smi_larb_iommu larb_imu[MTK_LARB_NR_MAX];
+> >  };
+> >  
+> > 
+
+
