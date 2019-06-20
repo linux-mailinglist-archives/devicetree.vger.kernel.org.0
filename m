@@ -2,79 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 465584D482
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 19:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 374B04D49F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 19:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726649AbfFTRFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 13:05:47 -0400
-Received: from node.akkea.ca ([192.155.83.177]:57056 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726530AbfFTRFr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 13:05:47 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id C9FF14E204D;
-        Thu, 20 Jun 2019 17:05:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1561050346; bh=DbHJKltugQqhptZWGL9LmNE+0Ii6tGA8ooe0jZKVPC4=;
-        h=From:To:Cc:Subject:Date;
-        b=GXYu8RiIpIiSVdyd5M9kCt1hInVJd8HO7NJkgdbMKVu7anVkmhCmi+BiALLAXOBue
-         4XtkZ1y0SqBEOlygGskB5+kAgZa4CtzdDLsx1kJbubiqNvCpVRTcxxwYFPY+LpoLXH
-         xEBQ0LtZCzMscgxSwpFhZrxH8SygQXuMrPKzg/ew=
-X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
-Received: from node.akkea.ca ([127.0.0.1])
-        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id qgvb6qYfPgiY; Thu, 20 Jun 2019 17:05:46 +0000 (UTC)
-Received: from localhost.localdomain (198-48-167-13.cpe.pppoe.ca [198.48.167.13])
-        by node.akkea.ca (Postfix) with ESMTPSA id AB07A4E204B;
-        Thu, 20 Jun 2019 17:05:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1561050346; bh=DbHJKltugQqhptZWGL9LmNE+0Ii6tGA8ooe0jZKVPC4=;
-        h=From:To:Cc:Subject:Date;
-        b=GXYu8RiIpIiSVdyd5M9kCt1hInVJd8HO7NJkgdbMKVu7anVkmhCmi+BiALLAXOBue
-         4XtkZ1y0SqBEOlygGskB5+kAgZa4CtzdDLsx1kJbubiqNvCpVRTcxxwYFPY+LpoLXH
-         xEBQ0LtZCzMscgxSwpFhZrxH8SygQXuMrPKzg/ew=
-From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
-To:     angus.ainslie@puri.sm
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: fsl: librem5: enable the SNVS power key
-Date:   Thu, 20 Jun 2019 11:05:32 -0600
-Message-Id: <20190620170532.18845-1-angus@akkea.ca>
-X-Mailer: git-send-email 2.17.1
+        id S1726943AbfFTRMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 13:12:08 -0400
+Received: from guitar.tcltek.co.il ([192.115.133.116]:33827 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726649AbfFTRMI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 13:12:08 -0400
+Received: from tarshish (unknown [10.0.8.4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id BC234440209;
+        Thu, 20 Jun 2019 20:12:05 +0300 (IDT)
+References: <20190618212229.32302-5-robh@kernel.org>
+User-agent: mu4e 1.0; emacs 26.1
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: arm: Convert Conexant Digicolor board/soc bindings to json-schema
+In-reply-to: <20190618212229.32302-5-robh@kernel.org>
+Date:   Thu, 20 Jun 2019 20:12:05 +0300
+Message-ID: <87a7ecqize.fsf@tarshish>
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the snvs power key.
+Hi Rob,
 
-Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 3 +++
- 1 file changed, 3 insertions(+)
+On Wed, Jun 19 2019, Rob Herring wrote:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index 93b3830e5406..e21215b01a62 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -715,6 +715,9 @@
- 	status = "okay";
- };
- 
-+&snvs_pwrkey {
-+	status = "okay";
-+};
- 
- &uart1 { /* console */
- 	pinctrl-names = "default";
+> Convert Conexant Digicolor SoC bindings to DT schema format using json-schema.
+>
+> Cc: Baruch Siach <baruch@tkos.co.il>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Acked-by: Baruch Siach <baruch@tkos.co.il>
+
+Thanks,
+baruch
+
+> ---
+>  .../devicetree/bindings/arm/digicolor.txt        |  6 ------
+>  .../devicetree/bindings/arm/digicolor.yaml       | 16 ++++++++++++++++
+>  2 files changed, 16 insertions(+), 6 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/digicolor.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/digicolor.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/digicolor.txt b/Documentation/devicetree/bindings/arm/digicolor.txt
+> deleted file mode 100644
+> index 658553f40b23..000000000000
+> --- a/Documentation/devicetree/bindings/arm/digicolor.txt
+> +++ /dev/null
+> @@ -1,6 +0,0 @@
+> -Conexant Digicolor Platforms Device Tree Bindings
+> -
+> -Each device tree must specify which Conexant Digicolor SoC it uses.
+> -Must be the following compatible string:
+> -
+> -  cnxt,cx92755
+> diff --git a/Documentation/devicetree/bindings/arm/digicolor.yaml b/Documentation/devicetree/bindings/arm/digicolor.yaml
+> new file mode 100644
+> index 000000000000..d9c80b827e9b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/digicolor.yaml
+> @@ -0,0 +1,16 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/digicolor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Conexant Digicolor Platforms Device Tree Bindings
+> +
+> +maintainers:
+> +  - Baruch Siach <baruch@tkos.co.il>
+> +
+> +properties:
+> +  compatible:
+> +    const: cnxt,cx92755
+> +
+> +...
+
+
 -- 
-2.17.1
-
+     http://baruch.siach.name/blog/                  ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
