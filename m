@@ -2,262 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3033D4D4FB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 19:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EDCF4D4E9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 19:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732502AbfFTRYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 13:24:49 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:58252 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732013AbfFTRYo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 13:24:44 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5KHOF8Q107129;
-        Thu, 20 Jun 2019 12:24:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1561051455;
-        bh=KkUTBryL+30HEKotpFhDl+D9hrx6taUH5J+mKBn1C6g=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=NQBDhfUxX7VT3IPHf/JjnrptTBvVR8H8behXYCWfLaplZoS30rf3qLPByz9NlOeAM
-         gKPiXn8xi9/1KASjZOZ7bxzP1AiEx6JUUFlDjDOOVV6N9w3+6kYp+Rr5t7mRRzBmyz
-         mIaQeU4y9DA3KcLLcEOgja39MMpnXkLOHKymmw7E=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5KHOFkg010366
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 20 Jun 2019 12:24:15 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 20
- Jun 2019 12:24:14 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 20 Jun 2019 12:24:14 -0500
-Received: from a0132425.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5KHNrJZ117342;
-        Thu, 20 Jun 2019 12:24:11 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-mtd@lists.infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        <devicetree@vger.kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Mason Yang <masonccyang@mxic.com.tw>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 5/5] mtd: hyperbus: Add driver for TI's HyperBus memory controller
-Date:   Thu, 20 Jun 2019 22:52:50 +0530
-Message-ID: <20190620172250.9102-6-vigneshr@ti.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190620172250.9102-1-vigneshr@ti.com>
-References: <20190620172250.9102-1-vigneshr@ti.com>
+        id S1732202AbfFTRYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 13:24:45 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:11359 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732433AbfFTRY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 13:24:27 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d0bc1490000>; Thu, 20 Jun 2019 10:24:25 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 20 Jun 2019 10:24:25 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 20 Jun 2019 10:24:25 -0700
+Received: from [10.24.70.135] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Jun
+ 2019 17:24:21 +0000
+Subject: Re: [PATCH V6 00/27] Enable Tegra PCIe root port features
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jonathanh@nvidia.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+ <20190620164650.GB18771@e121166-lin.cambridge.arm.com>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <34c8d404-1c2a-c542-4dc0-47fe9b09d331@nvidia.com>
+Date:   Thu, 20 Jun 2019 22:53:50 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20190620164650.GB18771@e121166-lin.cambridge.arm.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1561051465; bh=gAx/K89xttoGBxcXW6SxKGS7mW4iDgAhnoqrfnn5jXc=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=E/0kMQp2tU0oDT7cBF1UkIOPtywufxbb1pW1GdlXOAgnP89HXMP6VzoGIrNcsblDW
+         A5iSmAAi8tIF270LcaSk0qDe3B9hH6DUDlOZLF4WJk5uaRZQDllq7BGS19PYk7twVV
+         wW6Dwm/jg0jxlyoOoFA9X5ADFNbzGAbSfcDjFtkbqNj7Wyhs1D3nCpFbLqvvfm3jBN
+         WhWLMxBW2vGzr+DkLkicMJnM1dPU86gmJm8klS9jBQQE3oSKcVJL0fYeHNOumrvmVS
+         QKM6XmnVryNL1N7IyLVT7JiroCSg/HifpxPWLJZrxGL9S74SMZCFZIHrjlUJshRHVN
+         t0TdNkx0oy4pQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for HyperBus memory controller on TI's AM654 SoC. Programming
-IP is pretty simple and provides direct memory mapped access to
-connected Flash devices.
 
-Add basic support for the IP without DMA. Second chipSelect is not
-supported for now.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
-v7: No change
-v6: Move calibration routine here from core.
+On 20-Jun-19 10:16 PM, Lorenzo Pieralisi wrote:
+> On Tue, Jun 18, 2019 at 11:31:39PM +0530, Manikanta Maddireddy wrote:
+>> This series of patches adds,
+>> - Tegra root port features like Gen2, AER, etc
+>> - Power and perf optimizations
+>> - Fixes like "power up sequence", "dev_err prints", etc
+>>
+>> This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
+>> based Jetson-TX1, T124 based Jetson-TK1, Tegra20 and Tegra30 platforms.
+>>
+>> Changes from V5 to V6:
+>>   - Patch [V4, 20/27]: Replaced pcie_pme_disable_msi() with no_msi quirk
+>>
+>> Changes from V4 to V5:
+>>  - Patch [V4, 4/28]: Added blank line before block style comment
+>>  - Patch [V4, 22/28]: "Access endpoint config only if PCIe link is up"
+>> patch is dropped
+>>  - Patch [V4, 27/28]:
+>> * Updated reset gpio toggle logic to reflect active low usage
+>> * Replaced kasprintf() with devm_kasprintf()
+>> * Updated commit message with more information.
+>>
+>> Changes from V3 to V4:
+>>  - Patch [V3,27/29] is dropped
+>>  - Patch [V3,28/29]: devm_gpiod_get_from_of_node() is directly used in
+>>    pci-tegra driver instead of of_get_pci* wrapper function defined in
+>>    Patch [V3,27/29].
+>>
+>> Manikanta Maddireddy (27):
+>>   soc/tegra: pmc: Export tegra_powergate_power_on()
+>>   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
+>>   PCI: tegra: Rearrange Tegra PCIe driver functions
+>>   PCI: tegra: Mask AFI_INTR in runtime suspend
+>>   PCI: tegra: Fix PCIe host power up sequence
+>>   PCI: tegra: Add PCIe Gen2 link speed support
+>>   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
+>>   PCI: tegra: Program UPHY electrical settings for Tegra210
+>>   PCI: tegra: Enable opportunistic UpdateFC and ACK
+>>   PCI: tegra: Disable AFI dynamic clock gating
+>>   PCI: tegra: Process pending DLL transactions before entering L1 or L2
+>>   PCI: tegra: Enable PCIe xclk clock clamping
+>>   PCI: tegra: Increase the deskew retry time
+>>   PCI: tegra: Add SW fixup for RAW violations
+>>   PCI: tegra: Update flow control timer frequency in Tegra210
+>>   PCI: tegra: Set target speed as Gen1 before starting LTSSM
+>>   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
+>>   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
+>>   PCI: tegra: Change PRSNT_SENSE IRQ log to debug
+>>   PCI: tegra: Disable MSI for Tegra PCIe root port
+>>   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
+>>   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
+>>   arm64: tegra: Add PEX DPD states as pinctrl properties
+>>   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
+>>   PCI: Add DT binding for "reset-gpios" property
+>>   PCI: tegra: Add support for GPIO based PERST#
+>>   PCI: tegra: Change link retry log level to debug
+>>
+>>  .../bindings/pci/nvidia,tegra20-pcie.txt      |   8 +
+>>  Documentation/devicetree/bindings/pci/pci.txt |   3 +
+>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
+>>  drivers/pci/controller/pci-tegra.c            | 578 +++++++++++++++---
+>>  drivers/pci/quirks.c                          |  39 ++
+>>  drivers/soc/tegra/pmc.c                       |   1 +
+>>  6 files changed, 568 insertions(+), 80 deletions(-)
+> Applied with exceptions discussed to pci/tegra for v5.3, please
+> have a thorough look and report back if I am missing something.
+>
+> Thanks,
+> Lorenzo
 
- drivers/mtd/hyperbus/Kconfig      |  12 +++
- drivers/mtd/hyperbus/Makefile     |   1 +
- drivers/mtd/hyperbus/hbmc-am654.c | 141 ++++++++++++++++++++++++++++++
- 3 files changed, 154 insertions(+)
- create mode 100644 drivers/mtd/hyperbus/hbmc-am654.c
+All required patches are merged.
 
-diff --git a/drivers/mtd/hyperbus/Kconfig b/drivers/mtd/hyperbus/Kconfig
-index 98147e28caa0..cff6bbd226f5 100644
---- a/drivers/mtd/hyperbus/Kconfig
-+++ b/drivers/mtd/hyperbus/Kconfig
-@@ -9,3 +9,15 @@ menuconfig MTD_HYPERBUS
- 	  the HyperBus Controller driver to communicate with
- 	  HyperFlash. See Cypress HyperBus specification for more
- 	  details
-+
-+if MTD_HYPERBUS
-+
-+config HBMC_AM654
-+	tristate "HyperBus controller driver for AM65x SoC"
-+	select MULTIPLEXER
-+	select MUX_MMIO
-+	help
-+	 This is the driver for HyperBus controller on TI's AM65x and
-+	 other SoCs
-+
-+endif # MTD_HYPERBUS
-diff --git a/drivers/mtd/hyperbus/Makefile b/drivers/mtd/hyperbus/Makefile
-index ca61dedd730d..8a936e066f48 100644
---- a/drivers/mtd/hyperbus/Makefile
-+++ b/drivers/mtd/hyperbus/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_MTD_HYPERBUS)	+= hyperbus-core.o
-+obj-$(CONFIG_HBMC_AM654)	+= hbmc-am654.o
-diff --git a/drivers/mtd/hyperbus/hbmc-am654.c b/drivers/mtd/hyperbus/hbmc-am654.c
-new file mode 100644
-index 000000000000..ca3fe198169e
---- /dev/null
-+++ b/drivers/mtd/hyperbus/hbmc-am654.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
-+// Author: Vignesh Raghavendra <vigneshr@ti.com>
-+
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mtd/cfi.h>
-+#include <linux/mtd/hyperbus.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/types.h>
-+
-+#define AM654_HBMC_CALIB_COUNT 25
-+
-+struct am654_hbmc_priv {
-+	struct hyperbus_ctlr ctlr;
-+	struct hyperbus_device hbdev;
-+};
-+
-+static int am654_hbmc_calibrate(struct hyperbus_device *hbdev)
-+{
-+	struct map_info *map = &hbdev->map;
-+	struct cfi_private cfi;
-+	int count = AM654_HBMC_CALIB_COUNT;
-+	int pass_count = 0;
-+	int ret;
-+
-+	cfi.interleave = 1;
-+	cfi.device_type = CFI_DEVICETYPE_X16;
-+	cfi_send_gen_cmd(0xF0, 0, 0, map, &cfi, cfi.device_type, NULL);
-+	cfi_send_gen_cmd(0x98, 0x55, 0, map, &cfi, cfi.device_type, NULL);
-+
-+	while (count--) {
-+		ret = cfi_qry_present(map, 0, &cfi);
-+		if (ret)
-+			pass_count++;
-+		else
-+			pass_count = 0;
-+		if (pass_count == 5)
-+			break;
-+	}
-+
-+	cfi_qry_mode_off(0, map, &cfi);
-+
-+	return ret;
-+}
-+
-+static const struct hyperbus_ops am654_hbmc_ops = {
-+	.calibrate = am654_hbmc_calibrate,
-+};
-+
-+static int am654_hbmc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct am654_hbmc_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	if (of_property_read_bool(dev->of_node, "mux-controls")) {
-+		struct mux_control *control = devm_mux_control_get(dev, NULL);
-+
-+		if (IS_ERR(control))
-+			return PTR_ERR(control);
-+
-+		ret = mux_control_select(control, 1);
-+		if (ret) {
-+			dev_err(dev, "Failed to select HBMC mux\n");
-+			return ret;
-+		}
-+	}
-+
-+	pm_runtime_enable(dev);
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0) {
-+		pm_runtime_put_noidle(dev);
-+		goto disable_pm;
-+	}
-+
-+	priv->ctlr.dev = dev;
-+	priv->ctlr.ops = &am654_hbmc_ops;
-+	priv->hbdev.ctlr = &priv->ctlr;
-+	priv->hbdev.np = of_get_next_child(dev->of_node, NULL);
-+	ret = hyperbus_register_device(&priv->hbdev);
-+	if (ret) {
-+		dev_err(dev, "failed to register controller\n");
-+		pm_runtime_put_sync(&pdev->dev);
-+		goto disable_pm;
-+	}
-+
-+	return 0;
-+disable_pm:
-+	pm_runtime_disable(dev);
-+	return ret;
-+}
-+
-+static int am654_hbmc_remove(struct platform_device *pdev)
-+{
-+	struct am654_hbmc_priv *priv = platform_get_drvdata(pdev);
-+	int ret;
-+
-+	ret = hyperbus_unregister_device(&priv->hbdev);
-+	pm_runtime_put_sync(&pdev->dev);
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id am654_hbmc_dt_ids[] = {
-+	{
-+		.compatible = "ti,am654-hbmc",
-+	},
-+	{ /* end of table */ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, am654_hbmc_dt_ids);
-+
-+static struct platform_driver am654_hbmc_platform_driver = {
-+	.probe = am654_hbmc_probe,
-+	.remove = am654_hbmc_remove,
-+	.driver = {
-+		.name = "hbmc-am654",
-+		.of_match_table = am654_hbmc_dt_ids,
-+	},
-+};
-+
-+module_platform_driver(am654_hbmc_platform_driver);
-+
-+MODULE_DESCRIPTION("HBMC driver for AM654 SoC");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:hbmc-am654");
-+MODULE_AUTHOR("Vignesh Raghavendra <vigneshr@ti.com>");
--- 
-2.22.0
+Thank you
 
