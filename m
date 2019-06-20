@@ -2,184 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3814CCAD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 13:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4414CCAE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 13:15:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbfFTLOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 07:14:30 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:35203 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726234AbfFTLO3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 07:14:29 -0400
-Received: by mail-wm1-f66.google.com with SMTP id c6so2767264wml.0;
-        Thu, 20 Jun 2019 04:14:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Xc1nWAHhQ2GG/t3+rU+FbM/8TKa2OA/1DXvWS/SQYRY=;
-        b=kErXHNtMhxoZPvJr6kF4uJ0EMqs1oYD5lIIT3y8wDhoOCvB/hFUVyZv38owWC+A/Bu
-         az/20Oi3gNSpVx6LiMAjayqMhXiIsi3qG9H6CDz6KVlGI3kzwOjLyEYB640m15NTHt2E
-         QT/Uhb8yyqEQ9z+H9qLaO6FpBkb9FDhXLwmqXBCrlwj/ff+PLWLOM08HGYTChw7Am93F
-         iiDNY/KjxArzw6JWQOyx18Cs7PgHKdSvclMzakISEAIzBw51xFwvDOwNz07YRJHp+ugN
-         o7a0dQgMWSb+sl1n6nKQVN1d9yFnfg7+71o/ATxnLgttORWWcttfnIScnoCygkybOx4T
-         Iuww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Xc1nWAHhQ2GG/t3+rU+FbM/8TKa2OA/1DXvWS/SQYRY=;
-        b=S8hhxxkr1AsYEo5na347L76ulYaAcB9Ij7S+bXDUZ6tj8gxy8gYnYVncwK0yCyO9gg
-         wnx33qtUSONbzxQmI6LDc4YSpFyngzyzo/hgG912mVqOytXsKiDrCDuZe85E3SZNhwSx
-         shFbjQxAdfGg2tIijeMaoi16ZOG/lE9Eyo12J5qBWW1kubznD31TQr+CGGGVJZacs7PH
-         xJJsoIDGdYVhNTrAcdFIzpe81ZtNEzXif0ILACNWbWM3qSZohWNWHwuqjcHZvDtVVFMH
-         0e7Ar5cVjEcRZ96110FuhieIEXC6aOc4wo9Jkzn++YxaYp+JjnRLxEXIOCFu9Yqq4vWi
-         qBJw==
-X-Gm-Message-State: APjAAAVfEiGRouNDvQvcFO00TZjWhXCgC4FxI5zwDtFQFJpAjnRmPoFY
-        Q2zfEpjTbOHZe6XSXr7cFxY=
-X-Google-Smtp-Source: APXvYqz6Qi+Lnau5mw0sOkJBhgxoMZ9IN5Gd9xbua3JIQsMDUR0v3H0TnzE/MdpetN7YQsIGjgW1lw==
-X-Received: by 2002:a7b:c356:: with SMTP id l22mr2484455wmj.97.1561029266894;
-        Thu, 20 Jun 2019 04:14:26 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id o20sm27793599wro.65.2019.06.20.04.14.25
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 04:14:26 -0700 (PDT)
-Date:   Thu, 20 Jun 2019 13:14:25 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>,
-        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
-        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V6 00/27] Enable Tegra PCIe root port features
-Message-ID: <20190620111425.GA1000@ulmo>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190620102552.GB28703@ulmo>
- <20190620105301.GA23729@e121166-lin.cambridge.arm.com>
+        id S1726268AbfFTLP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 07:15:26 -0400
+Received: from foss.arm.com ([217.140.110.172]:60226 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726234AbfFTLPZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 07:15:25 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B2E3F2B;
+        Thu, 20 Jun 2019 04:15:24 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C64C23F718;
+        Thu, 20 Jun 2019 04:15:22 -0700 (PDT)
+Date:   Thu, 20 Jun 2019 12:15:20 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+Message-ID: <20190620111520.GB9575@e107155-lin>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+ <20190603083005.4304-3-peng.fan@nxp.com>
+ <20190620092301.GD1248@e107155-lin>
+ <AM0PR04MB4481203DE76D290F311E3BFA88E40@AM0PR04MB4481.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7JfCtLOvnd9MIVvH"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190620105301.GA23729@e121166-lin.cambridge.arm.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <AM0PR04MB4481203DE76D290F311E3BFA88E40@AM0PR04MB4481.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 20, 2019 at 10:21:09AM +0000, Peng Fan wrote:
+> Hi Sudeep,
+>
+> > Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+> >
+> > On Mon, Jun 03, 2019 at 04:30:05PM +0800, peng.fan@nxp.com wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > This mailbox driver implements a mailbox which signals transmitted
+> > > data via an ARM smc (secure monitor call) instruction. The mailbox
+> > > receiver is implemented in firmware and can synchronously return data
+> > > when it returns execution to the non-secure world again.
+> > > An asynchronous receive path is not implemented.
+> > > This allows the usage of a mailbox to trigger firmware actions on SoCs
+> > > which either don't have a separate management processor or on which
+> > > such a core is not available. A user of this mailbox could be the SCP
+> > > interface.
+> > >
+> > > Modified from Andre Przywara's v2 patch
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
+> > > .kernel.org%2Fpatchwork%2Fpatch%2F812999%2F&amp;data=02%7C01%7
+> > Cpeng.fa
+> > >
+> > n%40nxp.com%7C6b37f78032e446be750e08d6f560e707%7C686ea1d3bc2b4
+> > c6fa92cd
+> > >
+> > 99c5c301635%7C0%7C0%7C636966193913988679&amp;sdata=UNM4MTPs
+> > brqoMqWStEy
+> > > YzzwMEWTmX7hHO3TeNEz%2BOAw%3D&amp;reserved=0
+> > >
+> > > Cc: Andre Przywara <andre.przywara@arm.com>
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >
+> > > V2:
+> > >  Add interrupts notification support.
+> > >
+> > >  drivers/mailbox/Kconfig                 |   7 ++
+> > >  drivers/mailbox/Makefile                |   2 +
+> > >  drivers/mailbox/arm-smc-mailbox.c       | 190
+> > ++++++++++++++++++++++++++++++++
+> > >  include/linux/mailbox/arm-smc-mailbox.h |  10 ++
+> > >  4 files changed, 209 insertions(+)
+> > >  create mode 100644 drivers/mailbox/arm-smc-mailbox.c  create mode
+> > > 100644 include/linux/mailbox/arm-smc-mailbox.h
+> > >
+> > > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig index
+> > > 595542bfae85..c3bd0f1ddcd8 100644
+> > > --- a/drivers/mailbox/Kconfig
+> > > +++ b/drivers/mailbox/Kconfig
+> > > @@ -15,6 +15,13 @@ config ARM_MHU
+> > >  	  The controller has 3 mailbox channels, the last of which can be
+> > >  	  used in Secure mode only.
+> > >
+> > > +config ARM_SMC_MBOX
+> > > +	tristate "Generic ARM smc mailbox"
+> > > +	depends on OF && HAVE_ARM_SMCCC
+> > > +	help
+> > > +	  Generic mailbox driver which uses ARM smc calls to call into
+> > > +	  firmware for triggering mailboxes.
+> > > +
+> > >  config IMX_MBOX
+> > >  	tristate "i.MX Mailbox"
+> > >  	depends on ARCH_MXC || COMPILE_TEST
+> > > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile index
+> > > c22fad6f696b..93918a84c91b 100644
+> > > --- a/drivers/mailbox/Makefile
+> > > +++ b/drivers/mailbox/Makefile
+> > > @@ -7,6 +7,8 @@ obj-$(CONFIG_MAILBOX_TEST)	+= mailbox-test.o
+> > >
+> > >  obj-$(CONFIG_ARM_MHU)	+= arm_mhu.o
+> > >
+> > > +obj-$(CONFIG_ARM_SMC_MBOX)	+= arm-smc-mailbox.o
+> > > +
+> > >  obj-$(CONFIG_IMX_MBOX)	+= imx-mailbox.o
+> > >
+> > >  obj-$(CONFIG_ARMADA_37XX_RWTM_MBOX)	+=
+> > armada-37xx-rwtm-mailbox.o
+> > > diff --git a/drivers/mailbox/arm-smc-mailbox.c
+> > > b/drivers/mailbox/arm-smc-mailbox.c
+> > > new file mode 100644
+> > > index 000000000000..fef6e38d8b98
+> > > --- /dev/null
+> > > +++ b/drivers/mailbox/arm-smc-mailbox.c
+> > > @@ -0,0 +1,190 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Copyright (C) 2016,2017 ARM Ltd.
+> > > + * Copyright 2019 NXP
+> > > + */
+> > > +
+> > > +#include <linux/arm-smccc.h>
+> > > +#include <linux/device.h>
+> > > +#include <linux/kernel.h>
+> > > +#include <linux/interrupt.h>
+> > > +#include <linux/mailbox_controller.h> #include
+> > > +<linux/mailbox/arm-smc-mailbox.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/platform_device.h>
+> > > +
+> > > +#define ARM_SMC_MBOX_USE_HVC	BIT(0)
+> > > +#define ARM_SMC_MBOX_USB_IRQ	BIT(1)
+> > > +
+> > > +struct arm_smc_chan_data {
+> > > +	u32 function_id;
+> > > +	u32 flags;
+> > > +	int irq;
+> > > +};
+> > > +
+> > > +static int arm_smc_send_data(struct mbox_chan *link, void *data) {
+> > > +	struct arm_smc_chan_data *chan_data = link->con_priv;
+> > > +	struct arm_smccc_mbox_cmd *cmd = data;
+> > > +	struct arm_smccc_res res;
+> > > +	u32 function_id;
+> > > +
+> > > +	if (chan_data->function_id != UINT_MAX)
+> > > +		function_id = chan_data->function_id;
+> > > +	else
+> > > +		function_id = cmd->a0;
+> > > +
+> > > +	if (chan_data->flags & ARM_SMC_MBOX_USE_HVC)
+> > > +		arm_smccc_hvc(function_id, cmd->a1, cmd->a2, cmd->a3,
+> > cmd->a4,
+> > > +			      cmd->a5, cmd->a6, cmd->a7, &res);
+> > > +	else
+> > > +		arm_smccc_smc(function_id, cmd->a1, cmd->a2, cmd->a3,
+> > cmd->a4,
+> > > +			      cmd->a5, cmd->a6, cmd->a7, &res);
+> > > +
+> >
+> > So how will the SMC/HVC handler in EL3/2 find which mailbox is being
+> > referred with this command ? I prefer 2nd argument to be the mailbox
+> > number.
+> You mean channel number as following?
+>
+> @@ -37,10 +38,10 @@ static int arm_smc_send_data(struct mbox_chan *link, void *data)
+>                 function_id = cmd->a0;
+>
+>         if (chan_data->flags & ARM_SMC_MBOX_USE_HVC)
+> -               arm_smccc_hvc(function_id, cmd->a1, cmd->a2, cmd->a3, cmd->a4,
+> +               arm_smccc_hvc(function_id, chan_data->chan_id, cmd->a2, cmd->a3, cmd->a4,
+>                               cmd->a5, cmd->a6, cmd->a7, &res);
+>         else
+> -               arm_smccc_smc(function_id, cmd->a1, cmd->a2, cmd->a3, cmd->a4,
+> +               arm_smccc_smc(function_id, chan_data->chan_id, cmd->a2, cmd->a3, cmd->a4,
+>                               cmd->a5, cmd->a6, cmd->a7, &res);
+>
 
---7JfCtLOvnd9MIVvH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes something like above. There's a brief description of the same in
+latest SCMI specification though it's not related to SCMI, it more 
+general note for SMC based mailbox.
 
-On Thu, Jun 20, 2019 at 11:53:01AM +0100, Lorenzo Pieralisi wrote:
-> On Thu, Jun 20, 2019 at 12:25:52PM +0200, Thierry Reding wrote:
-> > On Tue, Jun 18, 2019 at 11:31:39PM +0530, Manikanta Maddireddy wrote:
-> > > This series of patches adds,
-> > > - Tegra root port features like Gen2, AER, etc
-> > > - Power and perf optimizations
-> > > - Fixes like "power up sequence", "dev_err prints", etc
-> > >=20
-> > > This series of patches are tested on Tegra186 based Jetson-TX2, Tegra=
-210
-> > > based Jetson-TX1, T124 based Jetson-TK1, Tegra20 and Tegra30 platform=
-s.
-> > >=20
-> > > Changes from V5 to V6:
-> > >   - Patch [V4, 20/27]: Replaced pcie_pme_disable_msi() with no_msi qu=
-irk
-> > >=20
-> > > Changes from V4 to V5:
-> > >  - Patch [V4, 4/28]: Added blank line before block style comment
-> > >  - Patch [V4, 22/28]: "Access endpoint config only if PCIe link is up"
-> > > patch is dropped
-> > >  - Patch [V4, 27/28]:
-> > > * Updated reset gpio toggle logic to reflect active low usage
-> > > * Replaced kasprintf() with devm_kasprintf()
-> > > * Updated commit message with more information.
-> > >=20
-> > > Changes from V3 to V4:
-> > >  - Patch [V3,27/29] is dropped
-> > >  - Patch [V3,28/29]: devm_gpiod_get_from_of_node() is directly used in
-> > >    pci-tegra driver instead of of_get_pci* wrapper function defined in
-> > >    Patch [V3,27/29].
-> > >=20
-> > > Manikanta Maddireddy (27):
-> > >   soc/tegra: pmc: Export tegra_powergate_power_on()
-> > >   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
-> > >   PCI: tegra: Rearrange Tegra PCIe driver functions
-> > >   PCI: tegra: Mask AFI_INTR in runtime suspend
-> > >   PCI: tegra: Fix PCIe host power up sequence
-> > >   PCI: tegra: Add PCIe Gen2 link speed support
-> > >   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
-> > >   PCI: tegra: Program UPHY electrical settings for Tegra210
-> > >   PCI: tegra: Enable opportunistic UpdateFC and ACK
-> > >   PCI: tegra: Disable AFI dynamic clock gating
-> > >   PCI: tegra: Process pending DLL transactions before entering L1 or =
-L2
-> > >   PCI: tegra: Enable PCIe xclk clock clamping
-> > >   PCI: tegra: Increase the deskew retry time
-> > >   PCI: tegra: Add SW fixup for RAW violations
-> > >   PCI: tegra: Update flow control timer frequency in Tegra210
-> > >   PCI: tegra: Set target speed as Gen1 before starting LTSSM
-> > >   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
-> > >   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
-> > >   PCI: tegra: Change PRSNT_SENSE IRQ log to debug
-> > >   PCI: tegra: Disable MSI for Tegra PCIe root port
-> > >   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
-> > >   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
-> > >   arm64: tegra: Add PEX DPD states as pinctrl properties
-> > >   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
-> > >   PCI: Add DT binding for "reset-gpios" property
-> > >   PCI: tegra: Add support for GPIO based PERST#
-> > >   PCI: tegra: Change link retry log level to debug
-> >=20
-> > Hi Lorenzo, Bjorn,
-> >=20
-> > There's a build-time dependency from the PCI patches on patch 1 of this
-> > series. I've already Acked that, so I think you should take it through
-> > the PCI tree along with the rest of the series.
-> >=20
-> > The only patch that I picked up is the DT change in patch 23, which is
-> > decoupled from the others via DT, though the data that it adds to DT
-> > will be used in patch 24.
-> >=20
-> > Does that sound good to you?
->=20
-> Yes, I will drop patch 20 too as requested. Is there a merge ordering
-> dependency between patch 23 and 24 ? If yes we should let Bjorn know
-> or you drop patch 23 and I will merge it via PCI, let us know.
+"In case the doorbell is SMC/HVC based, it should follow the SMC Calling
+Convention [SMCCC] and needs to provide the identifier of the Shared Memory
+area that contains the payload. On return from the call, the Shared Memory
+area which contained the payload is now updated with the SCMI return response.
+The identifier of the Shared Memory area should be 32-bits and each identifier
+should denote a distinct Shared Memory area."
 
-Nope, I don't think there are any issues with ordering. Patch 23
-basically just adds the DT content that will be used by patch 24 to
-dynamically change the pinmux options. Without patch 24, the default
-state will be applied, which is what the state will be on boot anyway.
-Patch 24 without patch 23 would mean that the PCI driver will try to
-select a pinctrl state which does not exist, but this is already handled
-gracefully in pinctrl_pm_select_state().
+> Or should that be passed from firmware driver?
+>
 
-Thierry
+No, we can't assume the id's in DT are 1-1 translation to mailbox ID used
+though it may be the same most of the time.
 
---7JfCtLOvnd9MIVvH
-Content-Type: application/pgp-signature; name="signature.asc"
+> If not from firmware driver, just as above, I do not have a good idea which
+> should be passed to smc, from cmd->a1 to a5 or from cmd->a2 to a6.
+>
 
------BEGIN PGP SIGNATURE-----
+Also I found copying those registers may not be always needed and can
+be sub-optimal. May be a way to indicate that this in DT whether
+register based transfers are used or using memory. Just a thought.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0LaooACgkQ3SOs138+
-s6HJPhAAjLhryaflH8uX3P6GIMNMIXi/tejz0MLtvqPqHRQU/DEIJaVg1KpUKgGB
-sS35X3nSVxmaVX+dcLwirdCQkHUlNefx00vtkUxgWYxrW9bokm6GLoAFt5p4k3iz
-CKdyz+WfSbek22kCJPidmHBcjQtMfS+GFSxvA9TTH0+dtw02cXkNSy1ySDBVNBH4
-rqhWsqFssy/QGCarz47nc0RjUJW0RrHJXYtRk1mDWpQzt3zBkEjiv3gDrTO6gPzV
-PFxIYGY8lxQl//PkZ2JtHI6Y2e+u0hf8HbC+4XKNp+jM4ZusEvKYSj6KMPphpxD0
-Mx5XXZT8bBjxsGrthPeRQSX9vpFMV0P6Q7S7D+reoWD1OVbz5UQv1Yg9PID71bgv
-XTPOkoklqud06pTzzKbzToXHQEUDaRdnEiwdyeQ3N21uh5027YJyo8rwcewJ3aMC
-ht10cqe30IS1PDiepOasOrx4AxxGjdSWVwqVa82sE62aNSfydcVbfw5sptiqNv/x
-utM1MMRT+fC2/XIZcfpbfcG8d02rCldCi+s4ToQ5lhz7n/vNdDZNgEwz70wwbqEy
-WQUBIsLRKTmAuRyuhiCAgaDGwWGbsx9r7D9wGBKQFBJlL14OdI/7tqjEsWP0Eb+i
-CCtvGG0B5Ii3IZZwmlUDKWDQgxntahFJYMgn2XkGWtpSWNkl0QM=
-=1uKr
------END PGP SIGNATURE-----
-
---7JfCtLOvnd9MIVvH--
+--
+Regards,
+Sudeep
