@@ -2,251 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5CE4CB32
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 11:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82CD04CB5C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 11:55:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731271AbfFTJmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 05:42:44 -0400
-Received: from mail-eopbgr820051.outbound.protection.outlook.com ([40.107.82.51]:11176
-        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725965AbfFTJmo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 05:42:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vXQQnqNNCdqJAWCuSxei/N8WB8wUBeQGuDm8VkLygFM=;
- b=mbwn4/k417OBX/5P7dqUJFz0x63+w7omLff3sg/P7nqJP5AUk28JhE/o3b+/IRsmX/hTW5SsiOXm+LTrrhKeyclQHB6FTxjCOnWnMExC1QxJXeBoC62WfyDSPceCWZ5Q+OHHwP55xXPiq+E4I2mMW9KjZjQBw6BvYwV5xtvU514=
-Received: from BN6PR03CA0113.namprd03.prod.outlook.com (2603:10b6:404:10::27)
- by CO2PR03MB2263.namprd03.prod.outlook.com (2603:10b6:102:a::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1987.12; Thu, 20 Jun
- 2019 09:42:40 +0000
-Received: from CY1NAM02FT040.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::209) by BN6PR03CA0113.outlook.office365.com
- (2603:10b6:404:10::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1987.13 via Frontend
- Transport; Thu, 20 Jun 2019 09:42:40 +0000
-Authentication-Results: spf=pass (sender IP is 137.71.25.57)
- smtp.mailfrom=analog.com; metafoo.de; dkim=none (message not signed)
- header.d=none;metafoo.de; dmarc=bestguesspass action=none
- header.from=analog.com;
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- CY1NAM02FT040.mail.protection.outlook.com (10.152.75.135) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1987.11
- via Frontend Transport; Thu, 20 Jun 2019 09:42:38 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x5K9gclY013393
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Thu, 20 Jun 2019 02:42:38 -0700
-Received: from mircea-Latitude-E6540.ad.analog.com (10.48.65.115) by
- NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
- 14.3.408.0; Thu, 20 Jun 2019 05:42:37 -0400
-From:   Mircea Caprioru <mircea.caprioru@analog.com>
-To:     <jic23@kernel.org>
-CC:     <Michael.Hennerich@analog.com>, <stefan.popa@analog.com>,
-        <lars@metafoo.de>, <gregkh@linuxfoundation.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        Mircea Caprioru <mircea.caprioru@analog.com>
-Subject: [RESEND PATCH 4/4] dt-bindings: iio: adc: Convert ad7124 documentation to YAML
-Date:   Thu, 20 Jun 2019 12:42:03 +0300
-Message-ID: <20190620094203.13654-4-mircea.caprioru@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190620094203.13654-1-mircea.caprioru@analog.com>
-References: <20190620094203.13654-1-mircea.caprioru@analog.com>
+        id S1730494AbfFTJz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 05:55:57 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42956 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726082AbfFTJz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 05:55:57 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5K9tfj3111742;
+        Thu, 20 Jun 2019 04:55:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561024541;
+        bh=gMzqG6E9O4i2YfBt81xekJ8pv03pPdWDJCxTqsWo7G0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=NQ1so63dygklF44KpEHQFiJ65zCl0/AG3QG3xL6D2Q80yRU4yN1Xr7yF7OXemcQ/g
+         L/6fgj0DcUkGXq9jDqzNfvHqmJLecmfbVOYF2e0EhgDKIlQ/N3PvauhHr48h0H6+Um
+         6Erh7jeFw3aOiugZPDZqfCMIL+NMlwhgpUM63Nuk=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5K9tfcN086307
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Jun 2019 04:55:41 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 20
+ Jun 2019 04:55:41 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 20 Jun 2019 04:55:41 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5K9tciC018188;
+        Thu, 20 Jun 2019 04:55:38 -0500
+Subject: Re: [PATCH 09/16] dt-bindings: dma: ti: Add document for K3 UDMA
+To:     Rob Herring <robh@kernel.org>
+CC:     Vinod <vkoul@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, Tony Lindgren <tony@atomide.com>
+References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
+ <20190506123456.6777-10-peter.ujfalusi@ti.com> <20190613181626.GA7039@bogus>
+ <e0d6a264-96b5-31a6-e70b-3b1c2d863988@ti.com>
+ <CAL_JsqJNMkKL_FubZfjKY6jLebMetmgR24EoendHoPM2ckrUQA@mail.gmail.com>
+ <e811d674-b79f-4da8-c632-c7a90844b6c5@ti.com>
+ <CAL_JsqJTWNKTB1D2wNysonzasgL9awLLvr1HdOckUnQbpgsDQw@mail.gmail.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <f7bb4e82-95ea-a043-e2b1-f429b16642ba@ti.com>
+Date:   Thu, 20 Jun 2019 12:56:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(346002)(396003)(136003)(39860400002)(376002)(2980300002)(199004)(189003)(7636002)(356004)(107886003)(8676002)(76176011)(48376002)(305945005)(186003)(26005)(316002)(2351001)(6666004)(7696005)(16586007)(246002)(54906003)(8936002)(50466002)(2906002)(70206006)(11346002)(4326008)(478600001)(5660300002)(1076003)(6306002)(51416003)(50226002)(6916009)(2616005)(70586007)(446003)(53376002)(486006)(86362001)(426003)(106002)(72206003)(36756003)(44832011)(476003)(966005)(77096007)(336012)(126002)(47776003);DIR:OUT;SFP:1101;SCL:1;SRVR:CO2PR03MB2263;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 13cea9dc-4138-4014-a4ea-08d6f563a268
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:CO2PR03MB2263;
-X-MS-TrafficTypeDiagnostic: CO2PR03MB2263:
-X-MS-Exchange-PUrlCount: 3
-X-Microsoft-Antispam-PRVS: <CO2PR03MB2263CB3C928ADBF1BD08EB7B81E40@CO2PR03MB2263.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-Forefront-PRVS: 0074BBE012
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: BkubUVsok9dg3KwqRG2juUOwVKUAjTpsloHwdtTcDYPKX7E6kp0b5+9P7CXy9NFOudhsTgjqKLGJh7cebzGoYoJs096GogMyyhCH0KNzgf6RlhZZXx0JzfERWioGH/DS7PWZXa9+HnbYxDXk/noKQWxVV8z4T+/PL1nxOUiu5rCn2D6xKRKhf9OCCqVTIxKFaRliKJSr6AFsFu8LHPXpdUxy93ut8+USZpiHzSvGygWiaRk3WkOJTCQmrPdk45kQmVuoa1YT0X4sTdzuur/BUt5WCoSAGFqvKGtkRRSTDSs22/nfgAnUw2VyKEDPvUVQ03W3HFK2NgjD8/sodcClMBsuCgiSQCTzIcwei+4+XG25lt4/9Nu6qYsh673wlWlgtt8AZ0elLq1JuZUObhjMWdkivWDLcwre5eJDa+GHz2c=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2019 09:42:38.9784
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13cea9dc-4138-4014-a4ea-08d6f563a268
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR03MB2263
+In-Reply-To: <CAL_JsqJTWNKTB1D2wNysonzasgL9awLLvr1HdOckUnQbpgsDQw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert AD7124 bindings documentation to YAML format.
 
-Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
----
- .../bindings/iio/adc/adi,ad7124.yaml          | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-new file mode 100644
-index 000000000000..2dba3759b8e3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: GPL-2.0
-+# Copyright 2019 Analog Devices Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bindings/iio/adc/adi,ad7124.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD7124 ADC device driver
-+
-+maintainers:
-+  - Stefan Popa <stefan.popa@analog.com>
-+
-+description: |
-+  Bindings for the Analog Devices AD7124 ADC device. Datasheet can be
-+  found here:
-+    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7124-8.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7124-4
-+      - adi,ad7124-8
-+
-+  reg:
-+    description: SPI chip select number for the device
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description: phandle to the master clock (mclk)
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-+  interrupts:
-+    description: IRQ line for the ADC
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  refin1-supply:
-+    description: refin1 supply can be used as reference for conversion.
-+    maxItems: 1
-+
-+  refin2-supply:
-+    description: refin2 supply can be used as reference for conversion.
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: avdd supply can be used as reference for conversion.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+patternProperties:
-+  "^channel@[01]$":
-+    type: object
-+    description: |
-+      Represents the external channels which are connected to the ADC.
-+      See Documentation/devicetree/bindings/iio/adc/adc.txt.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The channel number. It can have up to 8 channels on ad7124-4
-+          and 16 channels on ad7124-8, numbered from 0 to 15.
-+        maxItems: 1
-+
-+      adi,reference-select:
-+        description: |
-+          Select the reference source to use when converting on
-+          the specific channel.
-+          If this field is left empty, internal reference is selected.
-+        maxItems: 1
-+
-+      diff-channels:
-+        description: see Documentation/devicetree/bindings/iio/adc/adc.txt
-+        maxItems: 1
-+
-+      bipolar:
-+        description: see Documentation/devicetree/bindings/iio/adc/adc.txt
-+        maxItems: 1
-+
-+      adi,buffered-positive:
-+        description: Enable buffered mode for positive input.
-+        maxItems: 1
-+
-+      adi,buffered-negative:
-+        description: Enable buffered mode for negative input.
-+        maxItems: 1
-+
-+    required:
-+      - reg
-+      - diff-channels
-+
-+examples:
-+  - |
-+    adc@0 {
-+      compatible = "adi,ad7124-4";
-+      reg = <0>;
-+      spi-max-frequency = <5000000>;
-+      interrupts = <25 2>;
-+      interrupt-parent = <&gpio>;
-+      refin1-supply = <&adc_vref>;
-+      clocks = <&ad7124_mclk>;
-+      clock-names = "mclk";
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      channel@0 {
-+        reg = <0>;
-+        diff-channels = <0 1>;
-+        adi,reference-select = <0>;
-+        adi,buffered-positive;
-+      };
-+
-+      channel@1 {
-+        reg = <1>;
-+        bipolar;
-+        diff-channels = <2 3>;
-+        adi,reference-select = <0>;
-+        adi,buffered-positive;
-+        adi,buffered-negative;
-+      };
-+
-+      channel@2 {
-+        reg = <2>;
-+        diff-channels = <4 5>;
-+      };
-+
-+      channel@3 {
-+        reg = <3>;
-+        diff-channels = <6 7>;
-+      };
-+    };
--- 
-2.17.1
+On 19/06/2019 17.04, Rob Herring wrote:
+> On Fri, Jun 14, 2019 at 7:42 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
+>>
+>>
+>> On 14/06/2019 16.20, Rob Herring wrote:
+>>> On Thu, Jun 13, 2019 at 2:33 PM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
+>>>>
+>>>> Rob,
+>>>>
+>>>> On 13/06/2019 21.16, Rob Herring wrote:
+>>>>>> +Remote PSI-L endpoint
+>>>>>> +
+>>>>>> +Required properties:
+>>>>>> +--------------------
+>>>>>> +- ti,psil-base:             PSI-L thread ID base of the endpoint
+>>>>>> +
+>>>>>> +Within the PSI-L endpoint node thread configuration subnodes must present with:
+>>>>>> +ti,psil-configX naming convention, where X is the thread ID offset.
+>>>>>
+>>>>> Don't use vendor prefixes on node names.
+>>>>
+>>>> OK.
+>>>>
+>>>>>> +
+>>>>>> +Configuration node Required properties:
+>>>>>> +--------------------
+>>>>>> +- linux,udma-mode:  Channel mode, can be:
+>>>>>> +                    - UDMA_PKT_MODE: for Packet mode channels (peripherals)
+>>>>>> +                    - UDMA_TR_MODE: for Third-Party mode
+>>>>>
+>>>>> This is hardly a common linux thing. What determines the value here.
+>>>>
+>>>> Unfortunately it is.
+>>>
+>>> No, it's a feature of your h/w and in no way is something linux
+>>> defined which is the point of 'linux' prefix.
+>>
+>> The channel can be either Packet or TR mode. The HW is really flexible
+>> on this (and on other things as well).
+>> It just happens that Linux need to use specific channels in a specific mode.
+>>
+>> Would it help if we assume that all channels are used in Packet mode,
+>> but we have linux,tr-mode bool to indicate that the given channel in
+>> Linux need to be used in TR mode.
+> 
+> Your use of 'linux' prefix is wrong. Stop using it.
 
+OK, I can not argue with that.
+I'll have 'tr-mode' bool to indicate that the channel should be
+configured in TR mode for the given thread.
+
+>>>> Each channel can be configured to Packet or TR mode. For some
+>>>> peripherals it is true that they only support packet mode, these are the
+>>>> newer PSI-L native peripherals.
+>>>> For these channels a udma-mode property would be correct.
+>>>>
+>>>> But we have legacy peripherals as well and they are serviced by PDMA
+>>>> (which is a native peripheral designed to talk to the given legacy IP).
+>>>> We can use either packet or TR mode in UDMAP to talk to PDMAs, it is in
+>>>> most cases clear what to use, but for example for audio (McASP) channels
+>>>> Linux is using TR channel because we need cyclic DMA while for example
+>>>> RTOS is using Packet mode as it fits their needs better.
+>>>>
+>>>> Here I need to prefix the udma-mode with linux as the mode is used by
+>>>> Linux, but other OS might opt to use different channel mode.
+>>>
+>>> So you'd need <os>,udma-mode? That doesn't work... If the setting is
+>>> per OS, then it belongs in the OS because the same dtb should work
+>>> across OS's.
+>>
+>> So I should have a table for the thread IDs in the DMA driver and mark
+>> channels as TR or Packet in there for Linux use?
+> 
+> Perhaps. I haven't heard any reasons why you need this in DT. If Linux
+> is dictating the modes, then sounds like it should be in Linux.
+> 
+> But really, I don't fully understand what you are doing here to tell
+> you what to do beyond using 'linux' prefix is wrong.
+
+We have certain peripherals (McASP/UART/McSPI/etc) which is serviced by
+PDMAs to be compatible with the data movement architecture implemented
+within NAVSS.
+Unlike native peripherals, like networking we can configure the UDMAP
+channel to either Packet or TR mode. There are differences between the
+two modes, but the job can be done in both modes.
+In Linux we use TR mode for audio channels as it provides the needed
+functionality we need (efficient cyclic mode, can disable interrupts).
+
+There is no information from the HW on how a given thread is best used
+and other OSs can opt for not optimal use.
+
+But the majority of threads are better served in Packet mode, so adding
+a bool flag to the thread configuration to indicate that TR mode is the
+advised mode for it is perfectly fine.
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
