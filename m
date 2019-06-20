@@ -2,138 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AA4B4D062
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD15C4D06D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732021AbfFTO2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 10:28:07 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:40442 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726675AbfFTO2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 10:28:07 -0400
-Received: by mail-pf1-f195.google.com with SMTP id p184so1772869pfp.7;
-        Thu, 20 Jun 2019 07:28:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=MiA7cCUklcR2x8Sie2spJwpUdmRAd/CQhDcyA6ANjAw=;
-        b=E77kC/Jy7ff9yCCN4wKKj1l2m62PhfPe62rXCJ9KQ5VuseDlPTzVMnU5Kp9IBANVws
-         h1aaRoDp5RoL4fqsL9ZGtxfavOS8baMftS7UuneNm45Kdhhwx73RUmP6s4vkxOS8NYxY
-         H9bjvIH4YPorE7wKncvuD2AxkINuBxq8B2fjZj1F0a++B7Ej19nVoG9lP035huV+jDtZ
-         IUNMwjvNImBbH2dBwZfTq8eqL4+wh7Zc2O7/jJpEoEAgyCkzs3CUGpriT6JPw4hhTnKI
-         3WzfmRalISp4vhPcYaTa+C7E8SKymj8eJ+l4+kFHtZzUZvMSohpPIQcUebuClwsH+18e
-         k6ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=MiA7cCUklcR2x8Sie2spJwpUdmRAd/CQhDcyA6ANjAw=;
-        b=VrYo4264/kdkEKI4EERe/bvIsdsgm+mQMyV4Ua8nn0zwKPWzGLSJvSShfhbeCORSey
-         l8AP5dlTYydl032zPZzJYFgQreopiB3FaNLDe2b01YtPi+2i0f02asiiIhhvI/Neza0u
-         zpkQzVT1aO+l1MrNZRXHSAbMGVrnR3LgN56qUqDserYGnZq4Hu06p+D5E41zF7fZGAiv
-         HLtth/xS1TYTtFlr347v84wdzEqovRsUnLsue6/F0bagJdTCh7x6ZjjcWvwGb2knEme4
-         Va34LI3CuVw7r3PIpuQDkhC8k6UAOrl2nzYkhCWTTDi9XAeqkMP25tmhqcTj2e2B60Wb
-         3wWg==
-X-Gm-Message-State: APjAAAUMo8MGkT5gpead4dfoYc2NGRT9kz0SJqvr0XPH2wBU2IiTNRQR
-        3ryCylMaT9URxoyNQa8EROzW2aGR
-X-Google-Smtp-Source: APXvYqwUxehKoFEHxHlAA+fCC+vC65bHH7lMxN6+2Uzwp3CZwgxSvLXmRTIsn01Fhjt/gQDE1nAa0w==
-X-Received: by 2002:a62:d45d:: with SMTP id u29mr66380380pfl.135.1561040886466;
-        Thu, 20 Jun 2019 07:28:06 -0700 (PDT)
-Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id i9sm6682781pfa.168.2019.06.20.07.28.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 20 Jun 2019 07:28:05 -0700 (PDT)
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     benjamin.tissoires@redhat.com, dmitry.torokhov@gmail.com,
-        jikos@kernel.org, hdegoede@redhat.com, bjorn.andersson@linaro.org,
-        agross@kernel.org, lee.jones@linaro.org, xnox@ubuntu.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: [PATCH v7 0/5] Basic DT support for Lenovo Miix 630
-Date:   Thu, 20 Jun 2019 07:28:01 -0700
-Message-Id: <20190620142801.11827-1-jeffrey.l.hugo@gmail.com>
-X-Mailer: git-send-email 2.17.1
-To:     unlisted-recipients:; (no To-header on input)
+        id S1726675AbfFTOc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 10:32:56 -0400
+Received: from foss.arm.com ([217.140.110.172]:41472 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726428AbfFTOc4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 10:32:56 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7445A344;
+        Thu, 20 Jun 2019 07:32:55 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D1223F718;
+        Thu, 20 Jun 2019 07:32:54 -0700 (PDT)
+Date:   Thu, 20 Jun 2019 15:32:51 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     thierry.reding@gmail.com, bhelgaas@google.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, jonathanh@nvidia.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V6 06/27] PCI: tegra: Add PCIe Gen2 link speed support
+Message-ID: <20190620143251.GB31996@e121166-lin.cambridge.arm.com>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+ <20190618180206.4908-7-mmaddireddy@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190618180206.4908-7-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lenovo Miix 630 is one of three ARM based (specifically Qualcomm
-MSM8998) laptops that comes with Windows, and seems to have a dedicated
-following of folks intrested to get Linux up and running on it.
+On Tue, Jun 18, 2019 at 11:31:45PM +0530, Manikanta Maddireddy wrote:
+> Tegra124, Tegra132, Tegra210 and Tegra186 support Gen2 link speed. After
+> PCIe link is up in Gen1, set target link speed as Gen2 and retrain link.
+> Link switches to Gen2 speed if Gen2 capable end point is connected, else
+> link stays in Gen1.
+> 
+> Per PCIe 4.0r0.9 sec 7.6.3.7 implementation note, driver need to wait for
+> PCIe LTSSM to come back from recovery before retraining the link.
+> 
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> Acked-by: Thierry Reding <treding@nvidia.com>
+> ---
+> V6: No change
+> 
+> V5: No change
+> 
+> V4: No change
+> 
+> V3: Added blank line after each while loop.
+> 
+> V2: Changed "for loop" to "while", to make it compact and handled coding
+> style comments.
+> 
+>  drivers/pci/controller/pci-tegra.c | 64 ++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+> index 5e9fcef5f8eb..5d19067f7193 100644
+> --- a/drivers/pci/controller/pci-tegra.c
+> +++ b/drivers/pci/controller/pci-tegra.c
+> @@ -191,6 +191,8 @@
+>  #define  RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE	0x20000000
+>  #define  RP_LINK_CONTROL_STATUS_LINKSTAT_MASK	0x3fff0000
+>  
+> +#define RP_LINK_CONTROL_STATUS_2		0x000000b0
+> +
+>  #define PADS_CTL_SEL		0x0000009c
+>  
+>  #define PADS_CTL		0x000000a0
+> @@ -226,6 +228,7 @@
+>  #define PADS_REFCLK_CFG_DRVI_SHIFT		12 /* 15:12 */
+>  
+>  #define PME_ACK_TIMEOUT 10000
+> +#define LINK_RETRAIN_TIMEOUT 100000 /* in usec */
+>  
+>  struct tegra_msi {
+>  	struct msi_controller chip;
+> @@ -2089,6 +2092,64 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
+>  	return false;
+>  }
+>  
+> +static void tegra_pcie_change_link_speed(struct tegra_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->dev;
+> +	struct tegra_pcie_port *port, *tmp;
+> +	ktime_t deadline;
+> +	u32 value;
+> +
+> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
 
-This series adds support for the basic functionality this is validated
-towork using devicetree.  Although the laptops do feed ACPI to Windows,
-the existing MSM8998 support in mainline is DT based, so DT provides a
-quick path to functionality while ACPI support is investigated.
+And the reason to use the _safe version is ?
 
-The three devices are very similar, but do have differences in the set
-of peripherals supported, so the idea is that the vast majority of the
-support for all three can live in a common include, which should reduce
-overall duplication.  Adding support for the other two devices is tacked
-onto the end of the series.
+Lorenzo
 
-The bleeding edge work for these laptops and work in progress can be
-found at https://github.com/aarch64-laptops/prebuilt
-
-v7:
--Removed HID matching on compatible strings as it was determined to be
-not needed
-
-v6:
--Export the elan_i2c DT and ACPI ids so that hid-quirks can use them
--Use the elan_i2c ids within hid-quirks to reduce duplication
--Add DTs for the Asus and HP devices since the DT seems finalized, and
-folks have been asking
-
-v5:
--Split out elan_i2c changes into their own patch
--Use a static list of strings to match
--Fixed typo of "whitelist"
--Dropped incorrect thermal zones
--Dropped tags from Bjorn and Lee since the functional should be
-identical, but the code is structured different
-
-v4:
--Changed the hid-quirks ELAN handling around per Benjamin Tissoires
--Dropped new DT binding
-
-v3:
--Changed "clam" to "clamshell"
--Defined a dt binding for the combo Elan keyboard + touchpad device
--Adjusted the HID quirk to be correct for dt boot
--Removed extranious comment in board dts
--Fixed board level compatible
-
-v2:
--Changed "cls" to "clam" since feedback indicated "cls" is too opaque,
-but
-"clamshell" is a mouthfull.  "clam" seems to be a happy medium.
-
-Jeffrey Hugo (5):
-  Input: elan_i2c: Export the device id whitelist
-  HID: quirks: Refactor ELAN 400 and 401 handling
-  arm64: dts: qcom: Add Lenovo Miix 630
-  arm64: dts: qcom: Add HP Envy x2
-  arm64: dts: qcom: Add Asus NovaGo TP370QL
-
- arch/arm64/boot/dts/qcom/Makefile             |   3 +
- .../dts/qcom/msm8998-asus-novago-tp370ql.dts  |  47 ++++
- .../boot/dts/qcom/msm8998-clamshell.dtsi      | 240 ++++++++++++++++++
- .../boot/dts/qcom/msm8998-hp-envy-x2.dts      |  30 +++
- .../boot/dts/qcom/msm8998-lenovo-miix-630.dts |  30 +++
- drivers/hid/hid-quirks.c                      |  22 +-
- drivers/input/mouse/elan_i2c_core.c           |  54 +---
- include/linux/input/elan-i2c-ids.h            |  68 +++++
- 8 files changed, 430 insertions(+), 64 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
- create mode 100644 include/linux/input/elan-i2c-ids.h
-
--- 
-2.17.1
-
+> +		/*
+> +		 * "Supported Link Speeds Vector" in "Link Capabilities 2"
+> +		 * is not supported by Tegra. tegra_pcie_change_link_speed()
+> +		 * is called only for Tegra chips which support Gen2.
+> +		 * So there no harm if supported link speed is not verified.
+> +		 */
+> +		value = readl(port->base + RP_LINK_CONTROL_STATUS_2);
+> +		value &= ~PCI_EXP_LNKSTA_CLS;
+> +		value |= PCI_EXP_LNKSTA_CLS_5_0GB;
+> +		writel(value, port->base + RP_LINK_CONTROL_STATUS_2);
+> +
+> +		/*
+> +		 * Poll until link comes back from recovery to avoid race
+> +		 * condition.
+> +		 */
+> +		deadline = ktime_add_us(ktime_get(), LINK_RETRAIN_TIMEOUT);
+> +
+> +		while (ktime_before(ktime_get(), deadline)) {
+> +			value = readl(port->base + RP_LINK_CONTROL_STATUS);
+> +			if ((value & PCI_EXP_LNKSTA_LT) == 0)
+> +				break;
+> +
+> +			usleep_range(2000, 3000);
+> +		}
+> +
+> +		if (value & PCI_EXP_LNKSTA_LT)
+> +			dev_warn(dev, "PCIe port %u link is in recovery\n",
+> +				 port->index);
+> +
+> +		/* Retrain the link */
+> +		value = readl(port->base + RP_LINK_CONTROL_STATUS);
+> +		value |= PCI_EXP_LNKCTL_RL;
+> +		writel(value, port->base + RP_LINK_CONTROL_STATUS);
+> +
+> +		deadline = ktime_add_us(ktime_get(), LINK_RETRAIN_TIMEOUT);
+> +
+> +		while (ktime_before(ktime_get(), deadline)) {
+> +			value = readl(port->base + RP_LINK_CONTROL_STATUS);
+> +			if ((value & PCI_EXP_LNKSTA_LT) == 0)
+> +				break;
+> +
+> +			usleep_range(2000, 3000);
+> +		}
+> +
+> +		if (value & PCI_EXP_LNKSTA_LT)
+> +			dev_err(dev, "failed to retrain link of port %u\n",
+> +				port->index);
+> +	}
+> +}
+> +
+>  static void tegra_pcie_enable_ports(struct tegra_pcie *pcie)
+>  {
+>  	struct device *dev = pcie->dev;
+> @@ -2113,6 +2174,9 @@ static void tegra_pcie_enable_ports(struct tegra_pcie *pcie)
+>  		tegra_pcie_port_disable(port);
+>  		tegra_pcie_port_free(port);
+>  	}
+> +
+> +	if (pcie->soc->has_gen2)
+> +		tegra_pcie_change_link_speed(pcie);
+>  }
+>  
+>  static void tegra_pcie_disable_ports(struct tegra_pcie *pcie)
+> -- 
+> 2.17.1
+> 
