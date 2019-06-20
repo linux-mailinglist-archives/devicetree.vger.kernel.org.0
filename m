@@ -2,176 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20BF44DC46
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 23:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A994DC5C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 23:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726183AbfFTVMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 17:12:13 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:35815 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726098AbfFTVMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 17:12:13 -0400
-Received: by mail-ed1-f68.google.com with SMTP id p26so6716257edr.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 14:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=sender:date:from:to:cc:subject:message-id:mail-followup-to
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=959ru36WY2J0Xrly1vs1MXuZnqXsrreyoL0xoecTXQA=;
-        b=ZyyEIWc8g9qNg4ofLToKGhgAmro8fi/qsiplRDzzYnsQzgUBFe4c86Ee/wR4SebDjt
-         d63ZPlgcJxB1wYNf1eIPn3M3bB13fdEww4NsSF+uA3/ahauLDZUM1S12sFjWLoIzrkEq
-         HMbsASyI+4J0m7OfyVxoUW085H+KZiQlel8eY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=959ru36WY2J0Xrly1vs1MXuZnqXsrreyoL0xoecTXQA=;
-        b=sWutKmBGqCsdIZ3FK9yaod00CWomnswWeYnghlYCuuQxlz1YFK1f6q0NhAWrLai0NB
-         hWAYP5AuOORTdIrCOMkUAWMFBOmsReugS1TDgv8p766cGKIay5ybYeH9NAIh8iIrmegI
-         cbvs7NlnB9xUsFzhF5TEWn+CgY8dWiKWOdCH2f1rwuGzVJVlvdVt9JjrJxjW+5uEqnsB
-         56Ui5uCB5uVXeHEszF1LJ+z3X4kvEXvD5PCwhTnuw7tLkNVESpVOL8v35H3EA+eWDiV5
-         4pU6YpMbykp1uRVWxALu25jUFcTLJeTN9sGUqG2LYZGuwt5RsHPJyPn32/ThsUQw5H9L
-         JgQA==
-X-Gm-Message-State: APjAAAUVR20SakzFaPFk8oakdUKwdEh9ibwcFjIcAu05otD45Re16T39
-        oeBCtIZiu+6+tjDOJu19djnbbQ==
-X-Google-Smtp-Source: APXvYqx3EnsHuhcIFTP2RIslvwoM3AQZ6N+bN+bCoN37PG+nA2hCPhd0nIWscWNoh843HbyPEoTJjw==
-X-Received: by 2002:a17:906:2510:: with SMTP id i16mr98153366ejb.130.1561065130725;
-        Thu, 20 Jun 2019 14:12:10 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
-        by smtp.gmail.com with ESMTPSA id p18sm76849ejr.61.2019.06.20.14.12.08
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 14:12:09 -0700 (PDT)
-Date:   Thu, 20 Jun 2019 23:12:04 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Cheng-yi Chiang <cychiang@chromium.org>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>, tzungbi@chromium.org,
-        linux-media@vger.kernel.org,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Dariusz Marcinkiewicz <darekm@google.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 1/7] video: add HDMI state notifier support
-Message-ID: <20190620211204.GW12905@phenom.ffwll.local>
-Mail-Followup-To: Cheng-yi Chiang <cychiang@chromium.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>, tzungbi@chromium.org,
-        linux-media@vger.kernel.org,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <alsa-devel@alsa-project.org>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Dariusz Marcinkiewicz <darekm@google.com>
-References: <20190603080931.GG21222@phenom.ffwll.local>
- <CAFv8Nw+1sB8i1d87vLeKxRricZOi4gnXFSgOzW9k0sa_Tzybjg@mail.gmail.com>
- <20190604072411.GP21222@phenom.ffwll.local>
- <CAFv8NwKL9ZL=gNpDmdRV+R9eq22+Da_1kzuYBv8kMMyV3Hq14g@mail.gmail.com>
- <20190611123455.GD2458@phenom.ffwll.local>
- <CAFv8NwJxs-R=ehgeqyx=e+T5OmUBsk3uWnUb2t0cC-LDPS7G5w@mail.gmail.com>
- <20190618121220.GU12905@phenom.ffwll.local>
- <CAFv8NwLci2ALi3V-e=8jjatciHWOoOj-FeajwNLWRpWRtqgBdg@mail.gmail.com>
- <20190620092506.GP12905@phenom.ffwll.local>
- <CAFv8NwLbS_f4cfeorzqtmRzQSY0u1tgM7fitAokg_QfViPvq=Q@mail.gmail.com>
+        id S1726245AbfFTVRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 17:17:42 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:41003 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726244AbfFTVRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 17:17:42 -0400
+X-Originating-IP: 90.65.161.137
+Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr [90.65.161.137])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D39F9C0003;
+        Thu, 20 Jun 2019 21:17:36 +0000 (UTC)
+Date:   Thu, 20 Jun 2019 23:17:36 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Kevin Hilman <khilman@kernel.org>
+Cc:     linux-rtc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 2/2] rtc: Add Amlogic Virtual Wake RTC
+Message-ID: <20190620211736.GF23549@piout.net>
+References: <20190607194343.18359-1-khilman@kernel.org>
+ <20190607194343.18359-2-khilman@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAFv8NwLbS_f4cfeorzqtmRzQSY0u1tgM7fitAokg_QfViPvq=Q@mail.gmail.com>
-X-Operating-System: Linux phenom 4.19.0-5-amd64 
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190607194343.18359-2-khilman@kernel.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Massively cutting this thread, since halfway through in my previous reply
-I realized that maybe hdmi_codec is a much better starting point.
+Hello Kevin,
 
-On Thu, Jun 20, 2019 at 09:23:23PM +0800, Cheng-yi Chiang wrote:
-> On Thu, Jun 20, 2019 at 5:25 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > Yeah fully agreeing that hdmi_audio_code is probably a better starting
-> > point. Problem is that becuase hdmi_codec is built on top of platform
-> > device it's quite a bit harder to extend with callbacks and things like
-> > that, without breaking the driver model.
-> >
-> > I need to think about this more, but if all we need to look at is
-> > hdmi_codec, then I think this becomes a lot easier. And we can ignore
-> > drm_audio_component.h completely.
-> 
-> 
-> It is surprising that you think this way.
-> Maybe the original patch before hdmi-notifier was introduced is the
-> better way to solve this issue, if we only need to look at hdmi_codec.
-> 
-> The history of hdmi_codec driver is in this patch series:
-> 
-> https://lore.kernel.org/patchwork/patch/539656/
+On 07/06/2019 12:43:43-0700, Kevin Hilman wrote:
+> +static int meson_vrtc_read_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	unsigned long local_time;
+> +	struct timespec64 time;
+> +
+> +	ktime_get_raw_ts64(&time);
+> +	local_time = time.tv_sec - (sys_tz.tz_minuteswest * 60);
+The RTC is supposed to be set to UTC so the TZ adjustment is not
+necessary.
 
-Hm, this doesn't seem to be the hdmi_codec driver I meant, but another,
-new one. I was talking about SND_SOC_HDMI_CODEC.
+> +	rtc_time_to_tm(local_time, tm);
+> +
 
-> There was a callback mechanism implemented between dw-hdmi and hdmi
-> codec driver.
-> It was later consolidated by Doug in this patch for better jack status
-> reporting:
-> 
-> https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/303573/
+Please use the 64 bit version.
 
-Hm that still seems entirely separate hdmi-codec specific to dw-hdmi only
-...
+> +	return 0;
+> +}
+> +
+> +static void meson_vrtc_set_wakeup_time(struct meson_vrtc_data *vrtc,
+> +				       unsigned long time)
+> +{
+> +	writel_relaxed(time, vrtc->io_alarm);
+> +
+> +	dev_dbg(&vrtc->pdev->dev, "set_wakeup_time: %lu\n", time);
+> +}
+> +
+> +static int meson_vrtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
+> +{
+> +	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
+> +	struct timespec64 time;
+> +	unsigned long local_time;
+> +	unsigned long alarm_secs;
+> +	int ret;
+> +
+> +	if (alarm->enabled) {
+> +		ret = rtc_tm_to_time(&alarm->time, &alarm_secs);
+> +		if (ret)
+> +			return ret;
+> +
 
-> I am not sure why the original patch series did not get fully accepted
-> in the upstream.
-> It was quite long time ago.
-> 
-> But if you think this might be the right way to do, then it is even
-> better for us because the patch series and Doug's patch had been quite
-> stable
-> on our RK3288 products for about four years with plenty of users, so
-> we have much higher confidence in them.
-> I can rebase and clean up them and post another patch for review.
-> 
-> Please let me know what approach you feel is better.
-> Thanks again!
+Use the 64bit version which makes it clear that it never fails (checking
+ret is useless).
 
-Not sure we're talking about the same. What I had in mind is to add jack
-status to the hdmi-codec.c stuff, which is used by multiple soc drm
-display drivers already. Looking at git grep output, there seems to be
-already some support for dw-hdmi synopsys drm_bridge driver. I thought of
-extending that. Does that not work for you?
+> +		ktime_get_raw_ts64(&time);
+> +		local_time = time.tv_sec - (sys_tz.tz_minuteswest * 60);
+> +
+> +		vrtc->alarm_time = alarm_secs;
+> +
+> +		if (alarm_secs >= local_time) {
 
-Thanks, Daniel
+This is already ensured by the core so no need to check here.
+
+> +			alarm_secs = alarm_secs - local_time;
+> +
+> +			meson_vrtc_set_wakeup_time(vrtc, alarm_secs);
+> +
+> +			pr_debug("system will wakeup %lus later\n", alarm_secs);
+> +		}
+> +	} else {
+> +		vrtc->alarm_time = 0;
+> +		meson_vrtc_set_wakeup_time(vrtc, 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_vrtc_read_alarm(struct device *dev, struct rtc_wkalrm *alm)
+> +{
+> +	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
+> +
+> +	if (!vrtc->alarm_time) {
+
+I think this test is inverted.
+
+> +		alm->enabled = true;
+> +
+> +		rtc_time_to_tm(vrtc->alarm_time, &alm->time);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct rtc_class_ops meson_vrtc_ops = {
+> +	.read_time = meson_vrtc_read_time,
+> +	.set_alarm = meson_vrtc_set_alarm,
+> +	.read_alarm = meson_vrtc_read_alarm,
+> +};
+> +
+> +static int meson_vrtc_probe(struct platform_device *pdev)
+> +{
+> +	struct meson_vrtc_data *vrtc;
+> +	struct resource *res;
+> +
+> +	vrtc = devm_kzalloc(&pdev->dev, sizeof(*vrtc), GFP_KERNEL);
+> +	if (!vrtc)
+> +		return -ENOMEM;
+> +
+> +	vrtc->pdev = pdev;
+> +
+> +	/* Alarm registers */
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	vrtc->io_alarm = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(vrtc->io_alarm))
+> +		return PTR_ERR(vrtc->io_alarm);
+> +
+> +	device_init_wakeup(&pdev->dev, 1);
+> +
+> +	platform_set_drvdata(pdev, vrtc);
+> +
+> +	vrtc->rtc = devm_rtc_device_register(&pdev->dev, "meson-vrtc",
+> +					     &meson_vrtc_ops, THIS_MODULE);
+> +	if (IS_ERR(vrtc->rtc))
+> +		return PTR_ERR(vrtc->rtc);
+> +
+
+Please use devm_rtc_allocate_device and rtc_register_device. This
+doesn't help much but my plan is to get rid of devm_rtc_device_register.
+
+I suppose you don't get any interrupt for the alarm?
+
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
