@@ -2,109 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F074DD27
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 00:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3734D4DD94
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 00:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726079AbfFTWBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 18:01:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58250 "EHLO mail.kernel.org"
+        id S1725869AbfFTW7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 18:59:38 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:42164 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726027AbfFTWBd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 18:01:33 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C31F82082C;
-        Thu, 20 Jun 2019 22:01:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561068091;
-        bh=JbuElVbN3Z0lxncKmpOc3j7BcuU4pLJzsm2POWaHbOo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=r2ObBBEXMMVIpWzdPcHq+HCuoYoELbl52kWYsuBEcO/MYhbWgIFzfhhIzWmTqg1b7
-         u5NNWy2Sd4oq+dXI5MtYmQZ/C+MGQPQebzG9cwK/J3QlPTADjs19n197i/aAu0DUsr
-         gnAavpclHADBh73WeYugpvdNKIZXIELjHNx0vldc=
-Received: by mail-qk1-f177.google.com with SMTP id i125so3030633qkd.6;
-        Thu, 20 Jun 2019 15:01:31 -0700 (PDT)
-X-Gm-Message-State: APjAAAUAVA4xP+BSwMKPad0Cvp9T+WKLFw1Sd01Jimz9SdiLRJ2T0F+Q
-        f33qYvNEkqSXPSLod1o71Z4V1p9jamZXCrdQyA==
-X-Google-Smtp-Source: APXvYqxqswdc7BYIsSMkGt5yP29+KcMyoMC1aGIIaXPNTqblUxRNrTBW56OaKRe6HWPw4iAja6Qj6vVGBKu/Kf9NMWc=
-X-Received: by 2002:a37:69c5:: with SMTP id e188mr108358787qkc.119.1561068091034;
- Thu, 20 Jun 2019 15:01:31 -0700 (PDT)
+        id S1725815AbfFTW7i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 18:59:38 -0400
+Received: from localhost.localdomain (80-110-121-20.cgn.dynamic.surfer.at [80.110.121.20])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 66645C2A9C;
+        Thu, 20 Jun 2019 22:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1561071575; bh=FTGmDnKKypvtndUTsH4/yLMEt9oBVapsz5XGfmtXkW8=;
+        h=From:To:Cc:Subject:Date;
+        b=NXwWPSsFM6BHazsoRnGmTpS4FSl0Jj8sJIkZRKLbACrzEZxIOj8rEywV6txjwcpWt
+         OpZ66lqWMS65jcJZgjHGN1rDHvWrzPMqcleTxLfhjtUMSYL21QTPv63wRxuurvZSIT
+         j/Fap4/+l/w/BCLgTRfxs2z95cnbYkC+ffC7FoPI=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~martijnbraam/pmos-upstream@lists.sr.ht,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: msm8974-FP2: add reboot-mode node
+Date:   Fri, 21 Jun 2019 00:58:24 +0200
+Message-Id: <20190620225824.2845-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190619215156.27795-1-robh@kernel.org> <20190620090122.GB26689@ulmo>
- <CAL_JsqKC-RDjdMQWM6yk_HiWu-WwuU+vUf946t=TDJAxnqMW7Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqKC-RDjdMQWM6yk_HiWu-WwuU+vUf946t=TDJAxnqMW7Q@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 20 Jun 2019 16:01:19 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+LME4N4aoUsw946hBGO4y8Q8yBVa2coeSZMr1Ns_XrSg@mail.gmail.com>
-Message-ID: <CAL_Jsq+LME4N4aoUsw946hBGO4y8Q8yBVa2coeSZMr1Ns_XrSg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: display: Convert common panel
- bindings to DT schema
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 20, 2019 at 8:52 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Jun 20, 2019 at 3:01 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> >
-> > On Wed, Jun 19, 2019 at 03:51:53PM -0600, Rob Herring wrote:
-> > > Convert the common panel bindings to DT schema consolidating scattered
-> > > definitions to a single schema file.
-> > >
-> > > The 'simple-panel' binding just a collection of properties and not a
-> > > complete binding itself. All of the 'simple-panel' properties are
-> > > covered by the panel-common.txt binding with the exception of the
-> > > 'no-hpd' property, so add that to the schema.
-> > >
-> > > As there are lots of references to simple-panel.txt, just keep the file
-> > > with a reference to panel-common.yaml for now until all the bindings are
-> > > converted.
-> > >
-> > > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > > Note there's still some references to panel-common.txt that I need to
-> > > update or just go ahead and convert to schema.
-> > >
-> > >  .../bindings/display/panel/panel-common.txt   | 101 -------------
-> > >  .../bindings/display/panel/panel-common.yaml  | 143 ++++++++++++++++++
-> > >  .../bindings/display/panel/panel.txt          |   4 -
-> > >  .../bindings/display/panel/simple-panel.txt   |  29 +---
-> > >  4 files changed, 144 insertions(+), 133 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> >
-> > I know it was this way before, but perhaps remove the redundant panel-
-> > prefix while at it?
->
-> Sure.
+This enables userspace to signal the bootloader to go into the
+bootloader or recovery mode.
 
-On 2nd thought, I prefer it as-is. The reason being the schema
-including this file are more readable with:
+The magic values can be found in both the downstream kernel and the LK
+kernel (bootloader).
 
-allOf:
-  - $ref: panel-common.yaml#
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Sidenote: Why are there no userspace tools to be found that support
+this? Anyways, we have one now in postmarketOS :)
 
-Compared to one of:
+ arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-$ref: common.yaml#
-$ref: /schemas/display/panel/common.yaml#
+diff --git a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+index 643c57f84818..f86736a6d77e 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+@@ -338,6 +338,20 @@
+ 			};
+ 		};
+ 	};
++
++	imem@fe805000 {
++		compatible = "syscon", "simple-mfd";
++		reg = <0xfe805000 0x1000>;
++
++		reboot-mode {
++			compatible = "syscon-reboot-mode";
++			offset = <0x65c>;
++
++			mode-normal	= <0x77665501>;
++			mode-bootloader	= <0x77665500>;
++			mode-recovery	= <0x77665502>;
++		};
++	};
+ };
+ 
+ &spmi_bus {
+-- 
+2.22.0
 
-I suppose we could automagically include a 'common.yaml' file if
-existing in the same directory. That's a bigger change though...
-
-Rob
