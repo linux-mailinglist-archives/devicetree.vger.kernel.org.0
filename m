@@ -2,210 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D1B04D3D8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E134D3DE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726750AbfFTQej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 12:34:39 -0400
-Received: from vps.xff.cz ([195.181.215.36]:38884 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726530AbfFTQej (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 12:34:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1561048476; bh=o/Mcg/crtvpWxn1wzurghlzWgNJsvC2nPLJ6FrUQ/ak=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OOoXpp5AeLGNexNn7LTMlvWNXYoDw13vRczTqVmlZrlW5UUgGhVmdiiIW/gGRUUNV
-         aKjs8K0+yW7kBoCdZND1UogtHtgLvmCd+QQ4WN7NRpABKhWBBepxKGW9A8hISzRoBh
-         V5ZscyNMoQZc4A5tonmTLLytGu/CoBsMNjJHEPaw=
-Date:   Thu, 20 Jun 2019 18:34:36 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi@googlegroups.com,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [linux-sunxi] [PATCH v7 0/6] Add support for Orange Pi 3
-Message-ID: <20190620163436.upg5pkpspyz64brh@core.my.home>
-Mail-Followup-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-sunxi@googlegroups.com,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20190620134748.17866-1-megous@megous.com>
- <2263144.KN5DhQ2VKD@jernej-laptop>
+        id S1731455AbfFTQgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 12:36:06 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:8158 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726530AbfFTQgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 12:36:06 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d0bb5f40000>; Thu, 20 Jun 2019 09:36:04 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 20 Jun 2019 09:36:04 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 20 Jun 2019 09:36:04 -0700
+Received: from [10.24.70.135] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Jun
+ 2019 16:36:00 +0000
+Subject: Re: [PATCH V6 18/27] PCI: tegra: Program AFI_CACHE* registers only
+ for Tegra20
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jonathanh@nvidia.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+ <20190618180206.4908-19-mmaddireddy@nvidia.com>
+ <20190620162638.GA18771@e121166-lin.cambridge.arm.com>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <b90ebb2c-03b2-b7c0-7a70-02dfed00de3a@nvidia.com>
+Date:   Thu, 20 Jun 2019 22:05:30 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2263144.KN5DhQ2VKD@jernej-laptop>
+In-Reply-To: <20190620162638.GA18771@e121166-lin.cambridge.arm.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1561048564; bh=NI9/AKwnnR/ZexKWfXN0pUt6xoymGwAgrazJNTj4P4Y=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=B26v4Uo0SfFWQ2zmrzd78q9vpp+4IqwC8Phg9BvgDGJHRtVkBPT/3PuVsGQK7Dk3j
+         2N9JvW5eT0ZT934BZIBNfL1rjhW5qzAjdt2CmU/sLglGk9gIzUccU36BY5lwopIc6/
+         vLILYQ5MDxx/PTaJ8jGAqbxTeQItRKaf3rQ99zdfhKqaZkBbSTr+hbBWBkhfwKYCN4
+         8KNwd34KICd2MCxx3j6bMKuIIymnFXAxgXN7MV9AzuXio/gWaYw0jujLi707yES8WS
+         JSIfq9RO+KJR1KrX7hLI8dJTw0MmeWppJBOmGalk0ccsyjRaiPo70/t7x3v5WRVIph
+         1UMCHyolpNX2A==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jernej,
 
-On Thu, Jun 20, 2019 at 05:53:58PM +0200, Jernej Škrabec wrote:
-> Hi!
-> 
-> Dne četrtek, 20. junij 2019 ob 15:47:42 CEST je megous via linux-sunxi 
-> napisal(a):
-> > From: Ondrej Jirman <megous@megous.com>
-> > 
-> > This series implements support for Xunlong Orange Pi 3 board.
-> > 
-> > - ethernet support (patches 1-3)
-> 
-> Correct me if I'm wrong, but patches 1-2 aren't strictly necessary for 
-> OrangePi 3, right? H6 DTSI already has emac node with dual compatible (H6 and 
-> A64) and since OrangePi 3 uses gigabit ethernet, quirk introduced by patches 
-> 1-2 are not needed.
 
-I've checked with u-boot and md.l 0x03000030 (syscon_field) and the actual
-default value there on cold boot is 0x58000, just like on H3.
+On 20-Jun-19 9:56 PM, Lorenzo Pieralisi wrote:
+> On Tue, Jun 18, 2019 at 11:31:57PM +0530, Manikanta Maddireddy wrote:
+>> Cacheable upstream transactions are supported in Tegra20 and Tegra186 only.
+>> AFI_CACHE* registers are available in Tegra20 to support cacheable upstream
+>> transactions. In Tegra186, AFI_AXCACHE register is defined instead of
+>> AFI_CACHE* to be in line with its MSS design. Therefore, program AFI_CACHE*
+> What's an MSS ?
+>
+> Lorenzo
 
-H3_EPHY_SELECT is BIT(15)
+Memory subsystem.
+Sorry for using acronym, will you able to update the commit log before applying
+the patch?
 
-That means that those patches (1 and 2) are both doing the same thing, basicaly.
-H3_EPHY_SELECT bit needs to be cleared, and it is cleared either explicitly, or
-via default_syscon_value = 0x50000. It's also cleared incidentally by using
-emac_variant_a64, because it has default_syscon_value set to 0.
+Manikanta
 
-Meaning of those remaining set bits on H6[1] are the same as on H3. Bit 16 is
-SHUTDOWN (on 1) and bit 18 is CLK_SEL. At least SHUTDOWN bit should be kept
-high, as it keeps the EPHY shut down. Normally that would be ensured by the
-code, but only if soc_has_internal_phy is true, which it is not for
-emac_variant_a64.
+>
+>> registers only for Tegra20.
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> Acked-by: Thierry Reding <treding@nvidia.com>
+>> ---
+>> V6: No change
+>>
+>> V5: No change
+>>
+>> V4: No change
+>>
+>> V3: Initialized has_cache_bars variable for each soc data structure.
+>>
+>> V2: Used soc variable for comparision instead of compatible string.
+>>
+>>  drivers/pci/controller/pci-tegra.c | 18 +++++++++++++-----
+>>  1 file changed, 13 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+>> index 3d9028cecc18..a746d963ca36 100644
+>> --- a/drivers/pci/controller/pci-tegra.c
+>> +++ b/drivers/pci/controller/pci-tegra.c
+>> @@ -323,6 +323,7 @@ struct tegra_pcie_soc {
+>>  	bool program_deskew_time;
+>>  	bool raw_violation_fixup;
+>>  	bool update_fc_timer;
+>> +	bool has_cache_bars;
+>>  	struct {
+>>  		struct {
+>>  			u32 rp_ectl_2_r1;
+>> @@ -932,11 +933,13 @@ static void tegra_pcie_setup_translations(struct tegra_pcie *pcie)
+>>  	afi_writel(pcie, 0, AFI_AXI_BAR5_SZ);
+>>  	afi_writel(pcie, 0, AFI_FPCI_BAR5);
+>>  
+>> -	/* map all upstream transactions as uncached */
+>> -	afi_writel(pcie, 0, AFI_CACHE_BAR0_ST);
+>> -	afi_writel(pcie, 0, AFI_CACHE_BAR0_SZ);
+>> -	afi_writel(pcie, 0, AFI_CACHE_BAR1_ST);
+>> -	afi_writel(pcie, 0, AFI_CACHE_BAR1_SZ);
+>> +	if (pcie->soc->has_cache_bars) {
+>> +		/* map all upstream transactions as uncached */
+>> +		afi_writel(pcie, 0, AFI_CACHE_BAR0_ST);
+>> +		afi_writel(pcie, 0, AFI_CACHE_BAR0_SZ);
+>> +		afi_writel(pcie, 0, AFI_CACHE_BAR1_ST);
+>> +		afi_writel(pcie, 0, AFI_CACHE_BAR1_SZ);
+>> +	}
+>>  
+>>  	/* MSI translations are setup only when needed */
+>>  	afi_writel(pcie, 0, AFI_MSI_FPCI_BAR_ST);
+>> @@ -2441,6 +2444,7 @@ static const struct tegra_pcie_soc tegra20_pcie = {
+>>  	.program_deskew_time = false,
+>>  	.raw_violation_fixup = false,
+>>  	.update_fc_timer = false,
+>> +	.has_cache_bars = true,
+>>  	.ectl.enable = false,
+>>  };
+>>  
+>> @@ -2469,6 +2473,7 @@ static const struct tegra_pcie_soc tegra30_pcie = {
+>>  	.program_deskew_time = false,
+>>  	.raw_violation_fixup = false,
+>>  	.update_fc_timer = false,
+>> +	.has_cache_bars = false,
+>>  	.ectl.enable = false,
+>>  };
+>>  
+>> @@ -2492,6 +2497,7 @@ static const struct tegra_pcie_soc tegra124_pcie = {
+>>  	.program_deskew_time = false,
+>>  	.raw_violation_fixup = true,
+>>  	.update_fc_timer = false,
+>> +	.has_cache_bars = false,
+>>  	.ectl.enable = false,
+>>  };
+>>  
+>> @@ -2515,6 +2521,7 @@ static const struct tegra_pcie_soc tegra210_pcie = {
+>>  	.program_deskew_time = true,
+>>  	.raw_violation_fixup = false,
+>>  	.update_fc_timer = true,
+>> +	.has_cache_bars = false,
+>>  	.ectl = {
+>>  		.regs = {
+>>  			.rp_ectl_2_r1 = 0x0000000f,
+>> @@ -2555,6 +2562,7 @@ static const struct tegra_pcie_soc tegra186_pcie = {
+>>  	.program_deskew_time = false,
+>>  	.raw_violation_fixup = false,
+>>  	.update_fc_timer = false,
+>> +	.has_cache_bars = false,
+>>  	.ectl.enable = false,
+>>  };
+>>  
+>> -- 
+>> 2.17.1
+>>
 
-Thus the patch adds the emac_variant_h6 with a different default_syscon_value
-from A64.
-
-Dose the SHUTDOWN bit matter on H6? I don't know. I'm just trying to keep the
-default values of these bits unchanged. Maybe it would be nicer to have
-default_syscon_value be 0x58000 on H6, to avoid the boot warning.
-
-dwmac-sun8i 5020000.ethernet: Current syscon value is not the default 58000 (expect 50000)
-
-The same warning is there with A64 compatible (with "expect 0").
-
-[1] See page 238 in H6 manual.
-
-regards,
-	o.
-
-> However, it is nice to have this 100 Mbit fix, because most STB DTS will need 
-> it.
-> 
-> Best regards,
-> Jernej
-> 
-> > - HDMI support (patches 4-6)
-> > 
-> > For some people, ethernet doesn't work after reboot (but works on cold
-> > boot), when the stmmac driver is built into the kernel. It works when
-> > the driver is built as a module. It's either some timing issue, or power
-> > supply issue or a combination of both. Module build induces a power
-> > cycling of the phy.
-> > 
-> > I encourage people with this issue, to build the driver into the kernel,
-> > and try to alter the reset timings for the phy in DTS or
-> > startup-delay-us and report the findings.
-> > 
-> > 
-> > Please take a look.
-> > 
-> > thank you and regards,
-> >   Ondrej Jirman
-> > 
-> > 
-> > Changes in v7:
-> > - dropped stored reference to connector_pdev as suggested by Jernej
-> > - added forgotten dt-bindings reviewed-by tag
-> > 
-> > Changes in v6:
-> > - added dt-bindings reviewed-by tag
-> > - fix wording in stmmac commit (as suggested by Sergei)
-> > 
-> > Changes in v5:
-> > - dropped already applied patches (pinctrl patches, mmc1 pinconf patch)
-> > - rename GMAC-3V3 -> GMAC-3V to match the schematic (Jagan)
-> > - changed hdmi-connector's ddc-supply property to ddc-en-gpios
-> >   (Rob Herring)
-> > 
-> > Changes in v4:
-> > - fix checkpatch warnings/style issues
-> > - use enum in struct sunxi_desc_function for io_bias_cfg_variant
-> > - collected acked-by's
-> > - fix compile error in drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c:156
-> >   caused by missing conversion from has_io_bias_cfg struct member
-> >   (I've kept the acked-by, because it's a trivial change, but feel free
-> >   to object.) (reported by Martin A. on github)
-> >   I did not have A80 pinctrl enabled for some reason, so I did not catch
-> >   this sooner.
-> > - dropped brcm firmware patch (was already applied)
-> > - dropped the wifi dts patch (will re-send after H6 RTC gets merged,
-> >   along with bluetooth support, in a separate series)
-> > 
-> > Changes in v3:
-> > - dropped already applied patches
-> > - changed pinctrl I/O bias selection constants to enum and renamed
-> > - added /omit-if-no-ref/ to mmc1_pins
-> > - made mmc1_pins default pinconf for mmc1 in H6 dtsi
-> > - move ddc-supply to HDMI connector node, updated patch descriptions,
-> >   changed dt-bindings docs
-> > 
-> > Changes in v2:
-> > - added dt-bindings documentation for the board's compatible string
-> >   (suggested by Clement)
-> > - addressed checkpatch warnings and code formatting issues (on Maxime's
-> >   suggestions)
-> > - stmmac: dropped useless parenthesis, reworded description of the patch
-> >   (suggested by Sergei)
-> > - drop useles dev_info() about the selected io bias voltage
-> > - docummented io voltage bias selection variant macros
-> > - wifi: marked WiFi DTS patch and realted mmc1_pins as "DO NOT MERGE",
-> >   because wifi depends on H6 RTC support that's not merged yet (suggested
-> >   by Clement)
-> > - added missing signed-of-bys
-> > - changed &usb2otg dr_mode to otg, and added a note about VBUS
-> > - improved wording of HDMI driver's DDC power supply patch
-> > 
-> > Icenowy Zheng (2):
-> >   net: stmmac: sun8i: add support for Allwinner H6 EMAC
-> >   net: stmmac: sun8i: force select external PHY when no internal one
-> > 
-> > Ondrej Jirman (4):
-> >   arm64: dts: allwinner: orange-pi-3: Enable ethernet
-> >   dt-bindings: display: hdmi-connector: Support DDC bus enable
-> >   drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
-> >   arm64: dts: allwinner: orange-pi-3: Enable HDMI output
-> > 
-> >  .../display/connector/hdmi-connector.txt      |  1 +
-> >  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 70 +++++++++++++++++++
-> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         | 54 ++++++++++++--
-> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h         |  2 +
-> >  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 21 ++++++
-> >  5 files changed, 144 insertions(+), 4 deletions(-)
-> 
-> 
-> 
-> 
