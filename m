@@ -2,252 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C314CBAC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 12:21:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B3D4CBCB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 12:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730494AbfFTKVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 06:21:15 -0400
-Received: from mail-eopbgr150057.outbound.protection.outlook.com ([40.107.15.57]:17878
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726234AbfFTKVO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 06:21:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UIOpYSodBkqE4589Tv6vQLFnhgp51jM04awtfJuqltU=;
- b=fJ1und6rgvc/Vapd/mKbdSleOiEVGVa82iD6NN1AdMj9P5KzcfXY2DhQDVuFxN95pnyX4eMLRG0g7h3PxHI2FxO1g8u3dzIlgezJtmA9GqdlTv9MpFZDQQV8zcB/EtRHJmIqBfOwbKP1RXC+UEUDmPkH9qoKYxoKMURVTbCYe3U=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB4833.eurprd04.prod.outlook.com (20.176.215.30) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.15; Thu, 20 Jun 2019 10:21:09 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::6090:1f0b:b85b:8015]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::6090:1f0b:b85b:8015%3]) with mapi id 15.20.1987.014; Thu, 20 Jun 2019
- 10:21:09 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>
-Subject: RE: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
-Thread-Topic: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
-Thread-Index: AQHVGeZUO66GnquMY06cfK/cKOI4kaakX7aAgAAODnA=
-Date:   Thu, 20 Jun 2019 10:21:09 +0000
-Message-ID: <AM0PR04MB4481203DE76D290F311E3BFA88E40@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <20190603083005.4304-1-peng.fan@nxp.com>
- <20190603083005.4304-3-peng.fan@nxp.com> <20190620092301.GD1248@e107155-lin>
-In-Reply-To: <20190620092301.GD1248@e107155-lin>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e7c47a8b-e1ec-4fa8-1fd9-08d6f5690358
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4833;
-x-ms-traffictypediagnostic: AM0PR04MB4833:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <AM0PR04MB4833D97B5D5A9771324B7EB688E40@AM0PR04MB4833.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0074BBE012
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(366004)(136003)(39860400002)(376002)(346002)(189003)(199004)(14454004)(99286004)(446003)(66946007)(6506007)(25786009)(102836004)(476003)(66476007)(66556008)(8936002)(11346002)(64756008)(7416002)(316002)(76116006)(86362001)(73956011)(81166006)(7696005)(15650500001)(71200400001)(74316002)(71190400001)(6116002)(81156014)(4326008)(486006)(305945005)(54906003)(7736002)(6246003)(26005)(76176011)(186003)(66446008)(8676002)(53936002)(229853002)(9686003)(2906002)(52536014)(14444005)(44832011)(3846002)(6436002)(5660300002)(966005)(6916009)(33656002)(66066001)(68736007)(55016002)(478600001)(45080400002)(256004)(6306002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4833;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: X9HVBPs15QWEkL1NqcgIW5WlVhz9MaeTSSi67c0KHggLa/ZhY7rpC0r2854TpoBg1tHHSeF+Be+qM3QMTR+tmXjYcvxBkEzxY5JPVsZEFCKNVpeTfwzwrrA3Km4pPGu66IrpUb/GBUpXoyS7e8o2zB+TGdhg9yshK8RK8P4TW1rqWPve/MbtfKqtm2HJuDiQdxmZWRAZWidr/RJwQHPbgj3DpGyOTxPOY1leoas1qgJhjPUSiXa0ww0qF9+EM+OT1CYZ6qUZaYLX78AMCM5R2c953U/k1BCTXPvNcEgOYU81xwsE9gaiar8ZNN4WnxKmdJhISr/KIZPXFYble/djMvO67cDqeKlDWpguXDRz0BaWWjC0RAbxk1UD9M/N0RGU+fb7hnZrrsSY/TJWpsH782dzg5P9VyZ4hhf75XJOpow=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1731491AbfFTKZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 06:25:56 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42320 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726404AbfFTKZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 06:25:56 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x17so2422501wrl.9;
+        Thu, 20 Jun 2019 03:25:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=IZux+0y6W3wGncScY0sULaLkiLuQXyFaCcmHQcwF3Ek=;
+        b=iHK0GxqR8KLeoNT4IpWTYjL1C7r5Jim/Gu0U0xMYHbx28syynq99M64gRdc49CC/7M
+         QGPBdZu6pkGDMp1/VyvvHaOFw/+n3Y0qUf4v2gUHkK4Ip+HhM13hiGoHz9OZ2ZJw44jy
+         tH+a3kEUX+7x6eS57R0BhzJjtBicbTph3QAdlucBgw7vKhllZvWv4qHw5C3UjJzzmg7k
+         +14oAMO2um+xHvMmCM1hCi/fTa3Jd20lGny6f5EXPjTT2Ji2PRd+a/padOOTggiD8Twf
+         8z3G9Lzg6VNkmBJ4KRa2O175K8eEr2h9DnKCMBpkwh+3rvhqezf1+OoUFCAFFWKjDYfB
+         8LSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=IZux+0y6W3wGncScY0sULaLkiLuQXyFaCcmHQcwF3Ek=;
+        b=jNKxzp5bG/+s/brFTOxZ6L4APpL2lVXlGomCV1xf2r+8f4MgV9Zz0anw01axPNWBmJ
+         Q5cAZm8JNFre9S67FI9DLfCZKh+C2VLTPgmGy+va/MGwci5r7a6yFHQTseXlizIgNIFs
+         38W3Cz/zuFVQoVcB7Yvm+B2IMMCF4UBLsJ+AorlhZAOW1cqptXTmrSyutfJuD14G+X/Z
+         Fpw+CyvPtGTX7RylR18jUUP54b8+C2+dSl3OR+s5yWBFvacgZAlbt94Vi8cmm3jBsSDs
+         GmXHaQ9I6/aQ0yF15EpmJSFDuv+kRjMjeyvldbqKSfpDh6UmqF8p0bqnrIXihqQZbCNv
+         rXkw==
+X-Gm-Message-State: APjAAAUqDk5sozOZmojzYHZx37XCJr1TyDmSyd3P5N9wxot+jg79GUy7
+        WniF3C2HXNWQFonNuLPvTUnaKAUz1fk=
+X-Google-Smtp-Source: APXvYqxl64CuXACy1/N5308HxJq8t3k5eboPGmeDE9ZzreydTMgyOJxjaGjnqlcD4T9RPoOmBaOUGQ==
+X-Received: by 2002:adf:dd03:: with SMTP id a3mr38116705wrm.87.1561026354581;
+        Thu, 20 Jun 2019 03:25:54 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id a64sm7975774wmf.1.2019.06.20.03.25.53
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 20 Jun 2019 03:25:53 -0700 (PDT)
+Date:   Thu, 20 Jun 2019 12:25:52 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, jonathanh@nvidia.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V6 00/27] Enable Tegra PCIe root port features
+Message-ID: <20190620102552.GB28703@ulmo>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7c47a8b-e1ec-4fa8-1fd9-08d6f5690358
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2019 10:21:09.4922
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4833
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="St7VIuEGZ6dlpu13"
+Content-Disposition: inline
+In-Reply-To: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
 
-> Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+--St7VIuEGZ6dlpu13
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jun 18, 2019 at 11:31:39PM +0530, Manikanta Maddireddy wrote:
+> This series of patches adds,
+> - Tegra root port features like Gen2, AER, etc
+> - Power and perf optimizations
+> - Fixes like "power up sequence", "dev_err prints", etc
 >=20
-> On Mon, Jun 03, 2019 at 04:30:05PM +0800, peng.fan@nxp.com wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > This mailbox driver implements a mailbox which signals transmitted
-> > data via an ARM smc (secure monitor call) instruction. The mailbox
-> > receiver is implemented in firmware and can synchronously return data
-> > when it returns execution to the non-secure world again.
-> > An asynchronous receive path is not implemented.
-> > This allows the usage of a mailbox to trigger firmware actions on SoCs
-> > which either don't have a separate management processor or on which
-> > such a core is not available. A user of this mailbox could be the SCP
-> > interface.
-> >
-> > Modified from Andre Przywara's v2 patch
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flor=
-e
-> > .kernel.org%2Fpatchwork%2Fpatch%2F812999%2F&amp;data=3D02%7C01%7
-> Cpeng.fa
-> >
-> n%40nxp.com%7C6b37f78032e446be750e08d6f560e707%7C686ea1d3bc2b4
-> c6fa92cd
-> >
-> 99c5c301635%7C0%7C0%7C636966193913988679&amp;sdata=3DUNM4MTPs
-> brqoMqWStEy
-> > YzzwMEWTmX7hHO3TeNEz%2BOAw%3D&amp;reserved=3D0
-> >
-> > Cc: Andre Przywara <andre.przywara@arm.com>
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >
-> > V2:
-> >  Add interrupts notification support.
-> >
-> >  drivers/mailbox/Kconfig                 |   7 ++
-> >  drivers/mailbox/Makefile                |   2 +
-> >  drivers/mailbox/arm-smc-mailbox.c       | 190
-> ++++++++++++++++++++++++++++++++
-> >  include/linux/mailbox/arm-smc-mailbox.h |  10 ++
-> >  4 files changed, 209 insertions(+)
-> >  create mode 100644 drivers/mailbox/arm-smc-mailbox.c  create mode
-> > 100644 include/linux/mailbox/arm-smc-mailbox.h
-> >
-> > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig index
-> > 595542bfae85..c3bd0f1ddcd8 100644
-> > --- a/drivers/mailbox/Kconfig
-> > +++ b/drivers/mailbox/Kconfig
-> > @@ -15,6 +15,13 @@ config ARM_MHU
-> >  	  The controller has 3 mailbox channels, the last of which can be
-> >  	  used in Secure mode only.
-> >
-> > +config ARM_SMC_MBOX
-> > +	tristate "Generic ARM smc mailbox"
-> > +	depends on OF && HAVE_ARM_SMCCC
-> > +	help
-> > +	  Generic mailbox driver which uses ARM smc calls to call into
-> > +	  firmware for triggering mailboxes.
-> > +
-> >  config IMX_MBOX
-> >  	tristate "i.MX Mailbox"
-> >  	depends on ARCH_MXC || COMPILE_TEST
-> > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile index
-> > c22fad6f696b..93918a84c91b 100644
-> > --- a/drivers/mailbox/Makefile
-> > +++ b/drivers/mailbox/Makefile
-> > @@ -7,6 +7,8 @@ obj-$(CONFIG_MAILBOX_TEST)	+=3D mailbox-test.o
-> >
-> >  obj-$(CONFIG_ARM_MHU)	+=3D arm_mhu.o
-> >
-> > +obj-$(CONFIG_ARM_SMC_MBOX)	+=3D arm-smc-mailbox.o
-> > +
-> >  obj-$(CONFIG_IMX_MBOX)	+=3D imx-mailbox.o
-> >
-> >  obj-$(CONFIG_ARMADA_37XX_RWTM_MBOX)	+=3D
-> armada-37xx-rwtm-mailbox.o
-> > diff --git a/drivers/mailbox/arm-smc-mailbox.c
-> > b/drivers/mailbox/arm-smc-mailbox.c
-> > new file mode 100644
-> > index 000000000000..fef6e38d8b98
-> > --- /dev/null
-> > +++ b/drivers/mailbox/arm-smc-mailbox.c
-> > @@ -0,0 +1,190 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2016,2017 ARM Ltd.
-> > + * Copyright 2019 NXP
-> > + */
-> > +
-> > +#include <linux/arm-smccc.h>
-> > +#include <linux/device.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/mailbox_controller.h> #include
-> > +<linux/mailbox/arm-smc-mailbox.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#define ARM_SMC_MBOX_USE_HVC	BIT(0)
-> > +#define ARM_SMC_MBOX_USB_IRQ	BIT(1)
-> > +
-> > +struct arm_smc_chan_data {
-> > +	u32 function_id;
-> > +	u32 flags;
-> > +	int irq;
-> > +};
-> > +
-> > +static int arm_smc_send_data(struct mbox_chan *link, void *data) {
-> > +	struct arm_smc_chan_data *chan_data =3D link->con_priv;
-> > +	struct arm_smccc_mbox_cmd *cmd =3D data;
-> > +	struct arm_smccc_res res;
-> > +	u32 function_id;
-> > +
-> > +	if (chan_data->function_id !=3D UINT_MAX)
-> > +		function_id =3D chan_data->function_id;
-> > +	else
-> > +		function_id =3D cmd->a0;
-> > +
-> > +	if (chan_data->flags & ARM_SMC_MBOX_USE_HVC)
-> > +		arm_smccc_hvc(function_id, cmd->a1, cmd->a2, cmd->a3,
-> cmd->a4,
-> > +			      cmd->a5, cmd->a6, cmd->a7, &res);
-> > +	else
-> > +		arm_smccc_smc(function_id, cmd->a1, cmd->a2, cmd->a3,
-> cmd->a4,
-> > +			      cmd->a5, cmd->a6, cmd->a7, &res);
-> > +
+> This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
+> based Jetson-TX1, T124 based Jetson-TK1, Tegra20 and Tegra30 platforms.
 >=20
-> So how will the SMC/HVC handler in EL3/2 find which mailbox is being
-> referred with this command ? I prefer 2nd argument to be the mailbox
-> number.
-You mean channel number as following?
+> Changes from V5 to V6:
+>   - Patch [V4, 20/27]: Replaced pcie_pme_disable_msi() with no_msi quirk
+>=20
+> Changes from V4 to V5:
+>  - Patch [V4, 4/28]: Added blank line before block style comment
+>  - Patch [V4, 22/28]: "Access endpoint config only if PCIe link is up"
+> patch is dropped
+>  - Patch [V4, 27/28]:
+> * Updated reset gpio toggle logic to reflect active low usage
+> * Replaced kasprintf() with devm_kasprintf()
+> * Updated commit message with more information.
+>=20
+> Changes from V3 to V4:
+>  - Patch [V3,27/29] is dropped
+>  - Patch [V3,28/29]: devm_gpiod_get_from_of_node() is directly used in
+>    pci-tegra driver instead of of_get_pci* wrapper function defined in
+>    Patch [V3,27/29].
+>=20
+> Manikanta Maddireddy (27):
+>   soc/tegra: pmc: Export tegra_powergate_power_on()
+>   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
+>   PCI: tegra: Rearrange Tegra PCIe driver functions
+>   PCI: tegra: Mask AFI_INTR in runtime suspend
+>   PCI: tegra: Fix PCIe host power up sequence
+>   PCI: tegra: Add PCIe Gen2 link speed support
+>   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
+>   PCI: tegra: Program UPHY electrical settings for Tegra210
+>   PCI: tegra: Enable opportunistic UpdateFC and ACK
+>   PCI: tegra: Disable AFI dynamic clock gating
+>   PCI: tegra: Process pending DLL transactions before entering L1 or L2
+>   PCI: tegra: Enable PCIe xclk clock clamping
+>   PCI: tegra: Increase the deskew retry time
+>   PCI: tegra: Add SW fixup for RAW violations
+>   PCI: tegra: Update flow control timer frequency in Tegra210
+>   PCI: tegra: Set target speed as Gen1 before starting LTSSM
+>   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
+>   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
+>   PCI: tegra: Change PRSNT_SENSE IRQ log to debug
+>   PCI: tegra: Disable MSI for Tegra PCIe root port
+>   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
+>   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
+>   arm64: tegra: Add PEX DPD states as pinctrl properties
+>   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
+>   PCI: Add DT binding for "reset-gpios" property
+>   PCI: tegra: Add support for GPIO based PERST#
+>   PCI: tegra: Change link retry log level to debug
 
-@@ -37,10 +38,10 @@ static int arm_smc_send_data(struct mbox_chan *link, vo=
-id *data)
-                function_id =3D cmd->a0;
+Hi Lorenzo, Bjorn,
 
-        if (chan_data->flags & ARM_SMC_MBOX_USE_HVC)
--               arm_smccc_hvc(function_id, cmd->a1, cmd->a2, cmd->a3, cmd->=
-a4,
-+               arm_smccc_hvc(function_id, chan_data->chan_id, cmd->a2, cmd=
-->a3, cmd->a4,
-                              cmd->a5, cmd->a6, cmd->a7, &res);
-        else
--               arm_smccc_smc(function_id, cmd->a1, cmd->a2, cmd->a3, cmd->=
-a4,
-+               arm_smccc_smc(function_id, chan_data->chan_id, cmd->a2, cmd=
-->a3, cmd->a4,
-                              cmd->a5, cmd->a6, cmd->a7, &res);
+There's a build-time dependency from the PCI patches on patch 1 of this
+series. I've already Acked that, so I think you should take it through
+the PCI tree along with the rest of the series.
 
-Or should that be passed from firmware driver?
+The only patch that I picked up is the DT change in patch 23, which is
+decoupled from the others via DT, though the data that it adds to DT
+will be used in patch 24.
 
-If not from firmware driver, just as above, I do not have a good idea which=
- should be passed to smc,
-from cmd->a1 to a5 or from cmd->a2 to a6.
+Does that sound good to you?
 
-Thanks,
-Peng.
+Thierry
 
 >=20
-> --
-> Regards,
-> Sudeep
+>  .../bindings/pci/nvidia,tegra20-pcie.txt      |   8 +
+>  Documentation/devicetree/bindings/pci/pci.txt |   3 +
+>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
+>  drivers/pci/controller/pci-tegra.c            | 578 +++++++++++++++---
+>  drivers/pci/quirks.c                          |  39 ++
+>  drivers/soc/tegra/pmc.c                       |   1 +
+>  6 files changed, 568 insertions(+), 80 deletions(-)
+>=20
+> --=20
+> 2.17.1
+>=20
+
+--St7VIuEGZ6dlpu13
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0LXy0ACgkQ3SOs138+
+s6GtiRAAwFrY3sTpw//mIf0cd83jzuDuxWvqG/UEB4re3vClHiONc/rihLpZi0CY
+R5V8Ghe9gsuEQb1ttKobFX/YJ5omW/cXSA3Qc2dy9uQyvMkwcUlpQmfgzaZgl+v2
+G6BPqIMLz6/Zb5QeOKH3Dz9XNc1FoZz1mvD7gHdZGeLskAx3Qx9OyMmwLQA1gYSd
+rwSPV1uuP2Hpjv3MILNnFKQ/18wdk/fX6Wvnm6GnQAJCw9QywFHer5RvYThFxHrX
+oJpUTvCk5I/Z+0CBTOw00hIyV/7Ml4sQPrR4U1TVdBOnPn7HagiWNLkgPxU5KOsP
+hG6dvN67x8JuOpazK46UulyDGKUnlndOdRlpPeZDmfN5E6PuOUUIq+O5YjvClIw6
+PUg5wDd6eJJAC9U1B8QYIMBFt0EeZ8swYuXaXCE5KY6Ro4VvWW4ll3SMn0TOWjIA
+UpX1O9VACuqSXyOGkjA+tuTiSsV0t1mjusvaokEEOTEv0cBOeIi9RG+iYgQDG3l3
+hNJEH3I1QA41Hf3mMZuef9AEZl/FuWfpN792KN48cxM14RxuwjuwFA+z0Z1zHjqb
+s6ardenJPxEzXzW27x6GA4EcTCuu1Letun+5ew+D9FaefDlSkuM4eFV8ifxVDLFp
+Yf/iGDZhrkalTfoBUOs9E7AtAhSdF7n10rXRJ6mU/6EJw70OaqU=
+=Pbxk
+-----END PGP SIGNATURE-----
+
+--St7VIuEGZ6dlpu13--
