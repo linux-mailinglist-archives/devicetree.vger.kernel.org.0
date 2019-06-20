@@ -2,324 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D5E4D2E0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 540A54D300
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:13:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732007AbfFTQKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 12:10:32 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:40015 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726654AbfFTQKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 12:10:32 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p11so3618461wre.7;
-        Thu, 20 Jun 2019 09:10:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AjCnUL9Zjp9gdH93FC8LzoSZ0awpiTRcGWhly5iQH/I=;
-        b=syXDljo0sX8Ysi11sllg7jpfguuGD0oPx7QUVsS42NkoZ6Wf2pQKKVmL4Jj/aJo9cs
-         qOos2iLn8nYEkSOWdNx42otd73T4yyrklE+drM6KW5tU/Rh60R3i1uzOKUJ9XeJ4QVxG
-         VrB9ao5uW7E3howr5gT/YJ/jOgOVuBppPR08Y1Iq4G43IJvhSAnx1yaAdWER1AiRzGIV
-         pXgQgkHdOcVO0Gg1Hwy7b8laKJc3f/jyRwicafH3/I7Hnb/pk5ENqLNQl4dZC82NihXL
-         V70pA9iEchzKrtQPvu5d/ewV2oNo+cucs8gTf/OoDFwDTOJV0BXAMdCxP27jPTRwqGme
-         EGgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AjCnUL9Zjp9gdH93FC8LzoSZ0awpiTRcGWhly5iQH/I=;
-        b=cSwuOc4ohTjYF7w5aJSai5GhCbhd+OPR0QMVXF1AMQi9DWW27nW5RppzqHW45GVmQT
-         2quir2080z3NSq2eYOlzAkEaw8CDOHuXyXJ5ikdpeiVpfAkz1DCCR0L0OfLEhH7gM4Hg
-         z2Rxo73pFRMzr32dbyyGAaBwnvZ4T0YF949c301h3V0jv/Qxz0jLiTdZzo5VK49g9rHw
-         dqECgxgvoOB45tOzs/GMgRWDuEGIAv8RuzjTpu0IUWCy66TXyCLGtSf70WdDMvdZPv4T
-         +lKLVQAv64leNlLHH/Yq6QFEjPmoSvWwy6ceTeZxyRTIGDUX1F45+noPKfwmZ3CMQpbp
-         baKA==
-X-Gm-Message-State: APjAAAUiaEOSY3Gm513Gf2khx7FpXTgEQHo4cLW5HHow/dfiUKyWPzdM
-        UWtWXyUreTHLnbo4jyJFJizDZ+Sg
-X-Google-Smtp-Source: APXvYqw8upGkxDISzVoLmeX8o027CyJfx+6WKYEKEETs0PjTpUaK2NlpuVILTV5tFr3F5M4NQ+PN3g==
-X-Received: by 2002:a05:6000:11cc:: with SMTP id i12mr35028058wrx.243.1561047029455;
-        Thu, 20 Jun 2019 09:10:29 -0700 (PDT)
-Received: from [192.168.1.17] (bgr65.neoplus.adsl.tpnet.pl. [83.28.81.65])
-        by smtp.gmail.com with ESMTPSA id c6sm7521527wma.25.2019.06.20.09.10.27
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 20 Jun 2019 09:10:28 -0700 (PDT)
-Subject: Re: [PATCH v3 6/9] leds: multicolor: Introduce a multicolor class
- definition
-To:     Dan Murphy <dmurphy@ti.com>, pavel@ucw.cz, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-7-dmurphy@ti.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <2f91bd2b-1d69-c9c7-c20b-a7396c9e1ecd@gmail.com>
-Date:   Thu, 20 Jun 2019 18:10:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1732308AbfFTQNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 12:13:25 -0400
+Received: from foss.arm.com ([217.140.110.172]:46806 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732246AbfFTQNZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 12:13:25 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DDF42B;
+        Thu, 20 Jun 2019 09:13:24 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4E3563F246;
+        Thu, 20 Jun 2019 09:13:22 -0700 (PDT)
+Date:   Thu, 20 Jun 2019 17:13:19 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     <peng.fan@nxp.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jassisinghbrar@gmail.com>, <f.fainelli@gmail.com>,
+        <kernel@pengutronix.de>, <linux-imx@nxp.com>,
+        <shawnguo@kernel.org>, <festevam@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <van.freenix@gmail.com>
+Subject: Re: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC
+ mailbox
+Message-ID: <20190620171319.13dae226@donnerap.cambridge.arm.com>
+In-Reply-To: <20190620092241.GC1248@e107155-lin>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+        <20190603083005.4304-2-peng.fan@nxp.com>
+        <20190620092241.GC1248@e107155-lin>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190523190820.29375-7-dmurphy@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
+On Thu, 20 Jun 2019 10:22:41 +0100
+Sudeep Holla <sudeep.holla@arm.com> wrote:
 
-Thank you for the v5.
-
-I will confine myself to commenting only some parts since
-the rest will undergo rework due to removal of sync API.
-
-On 5/23/19 9:08 PM, Dan Murphy wrote:
-> Introduce a multicolor class that groups colored LEDs
-> within a LED node.
+> On Mon, Jun 03, 2019 at 04:30:04PM +0800, peng.fan@nxp.com wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> > 
+> > The ARM SMC mailbox binding describes a firmware interface to trigger
+> > actions in software layers running in the EL2 or EL3 exception levels.
+> > The term "ARM" here relates to the SMC instruction as part of the ARM
+> > instruction set, not as a standard endorsed by ARM Ltd.
+> > 
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> > 
+> > V2:
+> > Introduce interrupts as a property.
+> > 
+> > V1:
+> > arm,func-ids is still kept as an optional property, because there is no
+> > defined SMC funciton id passed from SCMI. So in my test, I still use
+> > arm,func-ids for ARM SIP service.
+> > 
+> >  .../devicetree/bindings/mailbox/arm-smc.txt        | 101 +++++++++++++++++++++
+> >  1 file changed, 101 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.txt b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > new file mode 100644
+> > index 000000000000..401887118c09
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> > @@ -0,0 +1,101 @@
+> > +ARM SMC Mailbox Interface
+> > +=========================
+> > +
+> > +This mailbox uses the ARM smc (secure monitor call) instruction to trigger
+> > +a mailbox-connected activity in firmware, executing on the very same core
+> > +as the caller. By nature this operation is synchronous and this mailbox
+> > +provides no way for asynchronous messages to be delivered the other way
+> > +round, from firmware to the OS, but asynchronous notification could also
+> > +be supported. However the value of r0/w0/x0 the firmware returns after
+> > +the smc call is delivered as a received message to the mailbox framework,
+> > +so a synchronous communication can be established, for a asynchronous
+> > +notification, no value will be returned. The exact meaning of both the
+> > +action the mailbox triggers as well as the return value is defined by
+> > +their users and is not subject to this binding.
+> > +
+> > +One use case of this mailbox is the SCMI interface, which uses shared memory
+> > +to transfer commands and parameters, and a mailbox to trigger a function
+> > +call. This allows SoCs without a separate management processor (or when
+> > +such a processor is not available or used) to use this standardized
+> > +interface anyway.
+> > +
+> > +This binding describes no hardware, but establishes a firmware interface.
+> > +Upon receiving an SMC using one of the described SMC function identifiers,
+> > +the firmware is expected to trigger some mailbox connected functionality.
+> > +The communication follows the ARM SMC calling convention[1].
+> > +Firmware expects an SMC function identifier in r0 or w0. The supported
+> > +identifiers are passed from consumers, or listed in the the arm,func-ids
+> > +properties as described below. The firmware can return one value in
+> > +the first SMC result register, it is expected to be an error value,
+> > +which shall be propagated to the mailbox client.
+> > +
+> > +Any core which supports the SMC or HVC instruction can be used, as long as
+> > +a firmware component running in EL3 or EL2 is handling these calls.
+> > +
+> > +Mailbox Device Node:
+> > +====================
+> > +
+> > +This node is expected to be a child of the /firmware node.
+> > +
+> > +Required properties:
+> > +--------------------
+> > +- compatible:		Shall be "arm,smc-mbox"
+> > +- #mbox-cells		Shall be 1 - the index of the channel needed.
+> > +- arm,num-chans		The number of channels supported.
+> > +- method:		A string, either:
+> > +			"hvc": if the driver shall use an HVC call, or
+> > +			"smc": if the driver shall use an SMC call.
+> > +
+> > +Optional properties:
+> > +- arm,func-ids		An array of 32-bit values specifying the function
+> > +			IDs used by each mailbox channel. Those function IDs
+> > +			follow the ARM SMC calling convention standard [1].
+> > +			There is one identifier per channel and the number
+> > +			of supported channels is determined by the length
+> > +			of this array.
+> > +- interrupts		SPI interrupts may be listed for notification,
+> > +			each channel should use a dedicated interrupt
+> > +			line.
+> > +  
 > 
-> The framework allows for dynamically setting individual LEDs
-> or setting brightness levels of LEDs and updating them virtually
-> simultaneously.
+> I think SMC mailbox as mostly unidirectional/Tx only channel. And the
+> interrupts here as stated are for notifications, so I prefer to keep
+> them separate channel. I assume SMC call return indicates completion.
+> Or do you plan to use these interrupts as the indication for completion
+> of the command? I see in patch 2/2 the absence of IRQ is anyway dealt
+> the way I mention above.
 > 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->   drivers/leds/Kconfig                 |  10 +
->   drivers/leds/Makefile                |   1 +
->   drivers/leds/led-class-multicolor.c  | 421 +++++++++++++++++++++++++++
->   include/linux/led-class-multicolor.h |  95 ++++++
->   4 files changed, 527 insertions(+)
->   create mode 100644 drivers/leds/led-class-multicolor.c
->   create mode 100644 include/linux/led-class-multicolor.h
-> 
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 0414adebb177..0696a13c9527 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -29,6 +29,16 @@ config LEDS_CLASS_FLASH
->   	  for the flash related features of a LED device. It can be built
->   	  as a module.
->   
-> +config LEDS_CLASS_MULTI_COLOR
-> +	tristate "LED Mulit Color LED Class Support"
-> +	depends on LEDS_CLASS
-> +	help
-> +	  This option enables the multicolor LED sysfs class in /sys/class/leds.
-> +	  It wraps LED Class and adds multicolor LED specific sysfs attributes
-> +	  and kernel internal API to it. You'll need this to provide support
-> +	  for multicolor LEDs that are grouped together. This class is not
-> +	  intended for single color LEDs.  It can be built as a module.
+> Does it make sense or am I missing something here ?
 
-extra whitespace:
+I think you are right. From a mailbox point of view "completion" means
+that the trigger has reached the other side. A returning smc call is a
+perfect indication of this fact. Whether the action triggered by this
+mailbox command has completed is a totally separate question and out of
+the scope of the mailbox. This should be handled by a higher level
+protocol (SCPI in this case). Which could mean that this employs a
+separate return mailbox channel, which is RX only and implemented by
+interrupts. Which could or could not be part of this driver.
 
-s/ It can/It can/
-
-[...]
-> +
-> +static int multicolor_set_brightness(struct led_classdev *led_cdev,
-> +			     enum led_brightness brightness)
-> +{
-> +	struct led_classdev_mc *mcled_cdev = lcdev_to_mccdev(led_cdev);
-> +	struct led_classdev_mc_data *data = mcled_cdev->data;
-> +	struct led_multicolor_ops *ops = mcled_cdev->ops;
-> +	struct led_classdev_mc_priv *priv;
-> +	unsigned long state = brightness;
-> +	int adj_value;
-> +	ssize_t ret = -EINVAL;
-> +
-> +	mutex_lock(&led_cdev->led_access);
-> +
-> +	if (ops->set_module_brightness) {
-> +		ret = ops->set_module_brightness(mcled_cdev, state);
-> +		goto unlock;
-> +	}
-> +
-> +	list_for_each_entry(priv, &data->color_list, list) {
-> +		if (state && priv->brightness && priv->max_brightness) {
-> +			adj_value = state * ((priv->brightness * 100) / priv->max_brightness);
-> +			adj_value = adj_value / 100;
-
-Why the multiplication an then division by 100? And priv->max_brightness
-stays unaltered? This changes the proportions. My python script works
-just fine without those.
-
-> +		} else
-> +			adj_value = LED_OFF;
-> +
-> +		ret = ops->set_color_brightness(priv->mcled_cdev,
-> +						priv->color_id,	adj_value);
-> +		if (ret < 0)
-> +			goto unlock;
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&led_cdev->led_access);
-> +	return ret;
-> +}
-[...]
-> +int led_classdev_multicolor_register_ext(struct device *parent,
-> +				     struct led_classdev_mc *mcled_cdev,
-> +				     struct led_init_data *init_data)
-> +{
-> +	struct led_classdev *led_cdev;
-> +	struct led_multicolor_ops *ops;
-> +	struct led_classdev_mc_data *data;
-> +	int ret;
-> +	int i;
-> +
-> +	if (!mcled_cdev)
-> +		return -EINVAL;
-> +
-> +	ops = mcled_cdev->ops;
-> +	if (!ops || !ops->set_color_brightness)
-> +		return -EINVAL;
-> +
-> +	data = kzalloc(sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	mcled_cdev->data = data;
-> +	led_cdev = &mcled_cdev->led_cdev;
-> +
-> +	if (led_cdev->brightness_set_blocking)
-> +		led_cdev->brightness_set_blocking = multicolor_set_brightness;
-
-This is weird. In leds-lp50xx.c you don't initialize
-brightness_set_blocking and this still works?
-
-I believe this is kind of omission.
-
-And it is not reasonable to just override driver supplied op with
-generic one just like that.
-
-I propose to initialize brightness_set or brightness_set_blocking
-op as we used to do it for monochrome LEDs. Those function(s) on
-driver side will either use device's hardware support for setting
-color lightness, or will call a generic function provided by
-LED multi color class for calculating intensities of all colors
-it comprises in the cluster.
-
-I know this is different to what we've discussed on IRC, but now
-it looks for me the most reasonable way to go.
-
-> +	INIT_LIST_HEAD(&data->color_list);
-> +
-> +	/* Register led class device */
-> +	ret = led_classdev_register_ext(parent, led_cdev, init_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = led_multicolor_init_color_dir(data, mcled_cdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Select the sysfs attributes to be created for the device */
-> +	for (i = 0; i < mcled_cdev->num_leds; i++) {
-> +		ret = led_multicolor_init_color(data, mcled_cdev,
-> +						mcled_cdev->available_colors[i]);
-> +		if (ret)
-> +			break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(led_classdev_multicolor_register_ext);
-> +
-> +void led_classdev_multicolor_unregister(struct led_classdev_mc *mcled_cdev)
-> +{
-> +	if (!mcled_cdev)
-> +		return;
-> +
-> +	led_classdev_unregister(&mcled_cdev->led_cdev);
-> +}
-> +EXPORT_SYMBOL_GPL(led_classdev_multicolor_unregister);
-> +
-> +static void devm_led_classdev_multicolor_release(struct device *dev, void *res)
-> +{
-> +	led_classdev_multicolor_unregister(*(struct led_classdev_mc **)res);
-> +}
-> +
-> +/**
-> + * devm_of_led_classdev_register - resource managed led_classdev_register()
-> + *
-> + * @parent: parent of LED device
-> + * @led_cdev: the led_classdev structure for this device.
-> + */
-> +int devm_led_classdev_multicolor_register(struct device *parent,
-> +					  struct led_classdev_mc *mcled_cdev)
-> +{
-> +	struct led_classdev_mc **dr;
-> +	int ret;
-> +
-> +	dr = devres_alloc(devm_led_classdev_multicolor_release,
-> +			  sizeof(*dr), GFP_KERNEL);
-> +	if (!dr)
-> +		return -ENOMEM;
-> +
-> +	ret = led_classdev_multicolor_register(parent, mcled_cdev);
-> +	if (ret) {
-> +		devres_free(dr);
-> +		return ret;
-> +	}
-> +
-> +	*dr = mcled_cdev;
-> +	devres_add(parent, dr);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_led_classdev_multicolor_register);
-> +
-> +static int devm_led_classdev_multicolor_match(struct device *dev,
-> +					      void *res, void *data)
-> +{
-> +	struct mcled_cdev **p = res;
-> +
-> +	if (WARN_ON(!p || !*p))
-> +		return 0;
-> +
-> +	return *p == data;
-> +}
-> +
-> +/**
-> + * devm_led_classdev_multicolor_unregister() - resource managed
-> + *					led_classdev_multicolor_unregister()
-> + * @parent: The device to unregister.
-> + * @mcled_cdev: the led_classdev_mc structure for this device.
-> + */
-> +void devm_led_classdev_multicolor_unregister(struct device *dev,
-> +				  struct led_classdev_mc *mcled_cdev)
-> +{
-> +	WARN_ON(devres_release(dev,
-> +			       devm_led_classdev_multicolor_release,
-> +			       devm_led_classdev_multicolor_match, mcled_cdev));
-> +}
-> +EXPORT_SYMBOL_GPL(devm_led_classdev_multicolor_unregister);
-> +
-> +MODULE_AUTHOR("Dan Murphy <dmurphy@ti.com>");
-> +MODULE_DESCRIPTION("Multi Color LED class interface");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/include/linux/led-class-multicolor.h b/include/linux/led-class-multicolor.h
-> new file mode 100644
-> index 000000000000..f9e71d984b03
-> --- /dev/null
-> +++ b/include/linux/led-class-multicolor.h
-> @@ -0,0 +1,95 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/* LED Multicolor class interface
-> + * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
-> + */
-
-Let's have C++ comment style also here.
-
-> +#ifndef __LINUX_MULTICOLOR_LEDS_H_INCLUDED
-> +#define __LINUX_MULTICOLOR_LEDS_H_INCLUDED
-> +
-> +#include <linux/leds.h>
-> +#include <dt-bindings/leds/common.h>
-[...]
-
-
--- 
-Best regards,
-Jacek Anaszewski
+Cheers,
+Andre
