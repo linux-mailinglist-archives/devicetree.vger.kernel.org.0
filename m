@@ -2,167 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A994DC5C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 23:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA73F4DC64
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 23:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726245AbfFTVRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 17:17:42 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:41003 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726244AbfFTVRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 17:17:42 -0400
-X-Originating-IP: 90.65.161.137
-Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr [90.65.161.137])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D39F9C0003;
-        Thu, 20 Jun 2019 21:17:36 +0000 (UTC)
-Date:   Thu, 20 Jun 2019 23:17:36 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Kevin Hilman <khilman@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 2/2] rtc: Add Amlogic Virtual Wake RTC
-Message-ID: <20190620211736.GF23549@piout.net>
-References: <20190607194343.18359-1-khilman@kernel.org>
- <20190607194343.18359-2-khilman@kernel.org>
+        id S1726018AbfFTVWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 17:22:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40428 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725906AbfFTVWB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 17:22:01 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E09122070B;
+        Thu, 20 Jun 2019 21:22:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561065721;
+        bh=PuhWklVRpaKRPUdE/osVEB200NX11siaEZ9LkAA1azU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=wMT/eGGX5rgi0UumcB9ySgJrQvnHSpdFkShEGs//+AtXtkl0Hx0HCBHM9CNdQiilm
+         5HOpAxBrRkCVv8/lp5t3aB/qHwrfsVkq+X+v/Tx5i3bOuV2rLmyPm+OfXiqh+999xt
+         Xt2kXsb0/2mmzNRBLFgp58Y0XgAW4RDO0/6tzuz4=
+Received: by mail-qt1-f178.google.com with SMTP id h21so4689369qtn.13;
+        Thu, 20 Jun 2019 14:22:00 -0700 (PDT)
+X-Gm-Message-State: APjAAAXStTYgAC9NDurR9ZpHguMPOTteioIhxY9InoCgipA60szdlUbs
+        DpN96ITYojJRTWXsZHP0h0rC7FGiGMAsOiChCA==
+X-Google-Smtp-Source: APXvYqy7ldYy4oFwY2FLe2za3Zythuiw6FYWYsjwzoz/t/Lj5bmUGGfLv9hFcgJ3gb3PjNVWliSHbjb7UzY8UtmgkE4=
+X-Received: by 2002:a0c:b627:: with SMTP id f39mr42469091qve.72.1561065720166;
+ Thu, 20 Jun 2019 14:22:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190607194343.18359-2-khilman@kernel.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190620195011.30942-1-tduszyns@gmail.com> <20190620195011.30942-2-tduszyns@gmail.com>
+In-Reply-To: <20190620195011.30942-2-tduszyns@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 20 Jun 2019 15:21:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLmZPTYqSkmSo-KuqUr7FY1BqE3XX7+PhcA_0phS4X3jQ@mail.gmail.com>
+Message-ID: <CAL_JsqLmZPTYqSkmSo-KuqUr7FY1BqE3XX7+PhcA_0phS4X3jQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: sps30: convert bindings
+ to yaml
+To:     Tomasz Duszynski <tduszyns@gmail.com>
+Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Kevin,
+On Thu, Jun 20, 2019 at 1:52 PM Tomasz Duszynski <tduszyns@gmail.com> wrote:
+>
+> Convert existing device tree bindings to yaml.
+>
+> Signed-off-by: Tomasz Duszynski <tduszyns@gmail.com>
+> ---
+>  .../bindings/iio/chemical/sensirion,sps30.txt | 12 ------
+>  .../iio/chemical/sensirion,sps30.yaml         | 39 +++++++++++++++++++
+>  2 files changed, 39 insertions(+), 12 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
 
-On 07/06/2019 12:43:43-0700, Kevin Hilman wrote:
-> +static int meson_vrtc_read_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	unsigned long local_time;
-> +	struct timespec64 time;
-> +
-> +	ktime_get_raw_ts64(&time);
-> +	local_time = time.tv_sec - (sys_tz.tz_minuteswest * 60);
-The RTC is supposed to be set to UTC so the TZ adjustment is not
-necessary.
-
-> +	rtc_time_to_tm(local_time, tm);
-> +
-
-Please use the 64 bit version.
-
-> +	return 0;
-> +}
-> +
-> +static void meson_vrtc_set_wakeup_time(struct meson_vrtc_data *vrtc,
-> +				       unsigned long time)
-> +{
-> +	writel_relaxed(time, vrtc->io_alarm);
-> +
-> +	dev_dbg(&vrtc->pdev->dev, "set_wakeup_time: %lu\n", time);
-> +}
-> +
-> +static int meson_vrtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-> +{
-> +	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
-> +	struct timespec64 time;
-> +	unsigned long local_time;
-> +	unsigned long alarm_secs;
-> +	int ret;
-> +
-> +	if (alarm->enabled) {
-> +		ret = rtc_tm_to_time(&alarm->time, &alarm_secs);
-> +		if (ret)
-> +			return ret;
-> +
-
-Use the 64bit version which makes it clear that it never fails (checking
-ret is useless).
-
-> +		ktime_get_raw_ts64(&time);
-> +		local_time = time.tv_sec - (sys_tz.tz_minuteswest * 60);
-> +
-> +		vrtc->alarm_time = alarm_secs;
-> +
-> +		if (alarm_secs >= local_time) {
-
-This is already ensured by the core so no need to check here.
-
-> +			alarm_secs = alarm_secs - local_time;
-> +
-> +			meson_vrtc_set_wakeup_time(vrtc, alarm_secs);
-> +
-> +			pr_debug("system will wakeup %lus later\n", alarm_secs);
-> +		}
-> +	} else {
-> +		vrtc->alarm_time = 0;
-> +		meson_vrtc_set_wakeup_time(vrtc, 0);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_vrtc_read_alarm(struct device *dev, struct rtc_wkalrm *alm)
-> +{
-> +	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
-> +
-> +	if (!vrtc->alarm_time) {
-
-I think this test is inverted.
-
-> +		alm->enabled = true;
-> +
-> +		rtc_time_to_tm(vrtc->alarm_time, &alm->time);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rtc_class_ops meson_vrtc_ops = {
-> +	.read_time = meson_vrtc_read_time,
-> +	.set_alarm = meson_vrtc_set_alarm,
-> +	.read_alarm = meson_vrtc_read_alarm,
-> +};
-> +
-> +static int meson_vrtc_probe(struct platform_device *pdev)
-> +{
-> +	struct meson_vrtc_data *vrtc;
-> +	struct resource *res;
-> +
-> +	vrtc = devm_kzalloc(&pdev->dev, sizeof(*vrtc), GFP_KERNEL);
-> +	if (!vrtc)
-> +		return -ENOMEM;
-> +
-> +	vrtc->pdev = pdev;
-> +
-> +	/* Alarm registers */
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	vrtc->io_alarm = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(vrtc->io_alarm))
-> +		return PTR_ERR(vrtc->io_alarm);
-> +
-> +	device_init_wakeup(&pdev->dev, 1);
-> +
-> +	platform_set_drvdata(pdev, vrtc);
-> +
-> +	vrtc->rtc = devm_rtc_device_register(&pdev->dev, "meson-vrtc",
-> +					     &meson_vrtc_ops, THIS_MODULE);
-> +	if (IS_ERR(vrtc->rtc))
-> +		return PTR_ERR(vrtc->rtc);
-> +
-
-Please use devm_rtc_allocate_device and rtc_register_device. This
-doesn't help much but my plan is to get rid of devm_rtc_device_register.
-
-I suppose you don't get any interrupt for the alarm?
-
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Rob Herring <robh@kernel.org>
