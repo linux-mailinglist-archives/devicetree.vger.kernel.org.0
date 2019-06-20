@@ -2,137 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97D564D7F7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 20:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A725A4D8A2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 20:28:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727638AbfFTSVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 14:21:19 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:43249 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726401AbfFTSVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 14:21:18 -0400
-Received: by mail-pl1-f193.google.com with SMTP id cl9so1701432plb.10
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 11:21:17 -0700 (PDT)
+        id S1727757AbfFTS16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 14:27:58 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:34754 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727700AbfFTS15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 14:27:57 -0400
+Received: by mail-io1-f66.google.com with SMTP id k8so1698342iot.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 11:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JZ2NT1GSY4hpKU63g205EVnDgpZqQ6NY0FJ4sZy9GQw=;
-        b=N8+of+nlHpwHnPETt6oXJ7W/ISn1rEby0yhxwKLPl3dnUC8wZeby8eohp1yM1lyhiI
-         x1r64JlKADc6skDXTaWeczVmFQOP637oOFQPTxG4i4mTwasaHuHWN3LjIw9Bblp/K7gK
-         lx2iUnn6VmSWj/jQNH3bgFhRFTt+Qhzhdh6XQ=
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mwbErLJ3V6vC6WVVwdxU2Qgp0s+ZMnyIhMQtnjCFBbU=;
+        b=RaSwuXUgC2LGddvftTsyMnDwQc4TrrqRNVm39hHPxMkFPpDShnxaupG/vuw6CFLbWo
+         DyN9e8hA5ArOojTwZxq9NdZpcSJG470rqjoGTPE9jkWmP4iE155nFyVjL6NebM1S29iE
+         YlG2Gtsn76EGrMkPGgJhBVv4qRBeMZuQvJaM4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JZ2NT1GSY4hpKU63g205EVnDgpZqQ6NY0FJ4sZy9GQw=;
-        b=EwfsjfdqvG4QSyokJq7Nr3tgPGXlcmlmWuoansGB8mgZxMhKRiQlAG19fVNMJugasP
-         SDbCXjLm++MPaOOK/qbyd+AqB1Cc+AqkMHKI7axVt6aT6zEwNAcZlR7AJARLCfzhzj6f
-         zEyAseEMhzPpt5Xw05M0O1SDvVvP29ZMNpjEQCy8qxbKeiNzluqDhScGGxcd2Ena5YWn
-         /WuBjt08gT40sWWDUjgol0jSowPa/8BMXNjdyX+C+z0uSkPqMpY1NoBL8v3NCT4RThQm
-         vVXqSNnLxp0zTSRQZ1O53Tl+DySYFNNLBNKbbyliNT+ER3v0gA1SNhlnTYvoREwupVTi
-         llpQ==
-X-Gm-Message-State: APjAAAU88nABrrVvm05CBkWbM8Nrq0cknAzRPUSY5i88AMf72PMvOZIi
-        b6yVCHXaedgX8+toy0xi7xHj7A==
-X-Google-Smtp-Source: APXvYqzhWDEoiLHEFAdu8IpSss+cbmdlR5vKAYaFqg89xARSeVwy0J/o2mSyNDJeF6hfVFRzRyob/w==
-X-Received: by 2002:a17:902:70cc:: with SMTP id l12mr10696711plt.87.1561054877425;
-        Thu, 20 Jun 2019 11:21:17 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id 188sm178081pfe.30.2019.06.20.11.21.16
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 11:21:17 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     heiko@sntech.de
-Cc:     enric.balletbo@collabora.com, mka@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mwbErLJ3V6vC6WVVwdxU2Qgp0s+ZMnyIhMQtnjCFBbU=;
+        b=YB50RE+Pb6JnTtv7XEd5KVYM+HZih9xYjsJzamJ2aXThY498cq9mnxOaeESm+8wkab
+         3trGvPCJjkvzpM01ikJpDRTXxxkgSlrwjyUZuPmCc1lQCcEmKtAi586HsTC/df10VUnQ
+         A3cVgS5WAPDJgJUsVx/fkGjMoRku+AEv/tObpTVqIUVj6/Kyz9sDqSAT0VHMclYMmVoF
+         KfMLWSXnR7ye/LvQMAH+/QFGZEmFFHjYsLEhUq4On0oFZVrvzRmmECRW0VJ7Cu94SfPj
+         AWLeDm4dsrUHFsExpSR44bDN939/Xd8tDj/lhamvM6TW9wBqs6ZAHi34mLjB4w5ZZuj7
+         mXFg==
+X-Gm-Message-State: APjAAAUjbfn/J8C3wI+AsgiTvm+18cjjlnPTAVGZSHBwk2yTcRuM2xux
+        iedde9DHT1GXkngeSf1XbMDl5fGTchyAoJLwsqm5kKXfLII=
+X-Google-Smtp-Source: APXvYqy4fUuMM1AjTIRVaQrstaOthDZ0Ysq8Fh3ybDJt6I0bHpFOzpD0N6IDrxhFGMaXznlVFY5rQRjVws2S1bG4c3I=
+X-Received: by 2002:a02:3308:: with SMTP id c8mr36993457jae.103.1561055276862;
+ Thu, 20 Jun 2019 11:27:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190124195900.22620-1-jagan@amarulasolutions.com>
+ <20190124195900.22620-12-jagan@amarulasolutions.com> <20190125212433.ni2jg3wvpyjazlxf@flea>
+ <CAMty3ZAsH2iZ+JEqTE3D58aXfGuhMSg9YoO56ZhhOeE4c4yQHQ@mail.gmail.com>
+ <20190129151348.mh27btttsqcmeban@flea> <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
+ <20190201143102.rcvrxstc365mezvx@flea> <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
+ <20190605064933.6bmskkxzzgn35xz7@flea> <CAMty3ZCCP=oCqm5=49BsjwoxdDETgBfU_5g8fQ=bz=iWApV0tw@mail.gmail.com>
+ <20190614142406.ybdiqfppo5mc5bgq@flea>
+In-Reply-To: <20190614142406.ybdiqfppo5mc5bgq@flea>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 20 Jun 2019 23:57:44 +0530
+Message-ID: <CAMty3ZB45cHx3WeXnywBh2_UA_bTmFs6yBTqLWA1BNf4fQtVvQ@mail.gmail.com>
+Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for PLL_MIPI
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] Revert "ARM: dts: rockchip: add startup delay to rk3288-veyron panel-regulators"
-Date:   Thu, 20 Jun 2019 11:20:56 -0700
-Message-Id: <20190620182056.61552-1-dianders@chromium.org>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 1f45e8c6d0161f044d679f242fe7514e2625af4a.
+On Fri, Jun 14, 2019 at 7:54 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Wed, Jun 05, 2019 at 01:03:16PM +0530, Jagan Teki wrote:
+> > On Wed, Jun 5, 2019 at 12:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > Hi,
+> > >
+> > > I've reordered the mail a bit to work on chunks
+> > >
+> > > On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
+> > > > > I wish it was in your commit log in the first place, instead of having
+> > > > > to exchange multiple mails over this.
+> > > > >
+> > > > > However, I don't think that's quite true, and it might be a bug in
+> > > > > Allwinner's implementation (or rather something quite confusing).
+> > > > >
+> > > > > You're right that the lcd_rate and pll_rate seem to be generated from
+> > > > > the pixel clock, and it indeed looks like the ratio between the pixel
+> > > > > clock and the TCON dotclock is defined through the number of bits per
+> > > > > lanes.
+> > > > >
+> > > > > However, in this case, dsi_rate is actually the same than lcd_rate,
+> > > > > since pll_rate is going to be divided by dsi_div:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
+> > > > >
+> > > > > Since lcd_div is 1, it also means that in this case, dsi_rate ==
+> > > > > dclk_rate.
+> > > > >
+> > > > > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
+> > > > > we look at:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
+> > > > >
+> > > > > We can see that the rate in clk_info is used if it's different than
+> > > > > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
+> > > > > DSI panel, will hardcode it to 148.5 MHz:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
+> > > >
+> > > > Let me explain, something more.
+> > > >
+> > > > According to bsp there are clk_info.tcon_div which I will explain below.
+> > > > clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
+> > > > is 6 for 24bpp and 4 lanes devices.
+> > > >
+> > > > PLL rate here depends on dsi_div (not tcon_div)
+> > > >
+> > > > Code here
+> > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
+> > > >
+> > > > is computing the actual set rate, which depends on dsi_rate.
+> > > >
+> > > > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > > > dsi_rate = pll_rate / clk_info.dsi_div;
+> > > >
+> > > > Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
+> > > > for above link you mentioned.
+> > > >
+> > > > Here are the evidence with some prints.
+> > > >
+> > > > https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
+> > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+> > >
+> > > Ok, so we agree up to this point, and the prints confirm that the
+> > > analysis above is the right one.
+> > >
+> > > > > So, the DSI clock is set to this here:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
+> > >
+> > > Your patch doesn't address that, so let's leave that one alone.
+> >
+> > Basically this is final pll set rate when sun4i_dotclock.c called the
+> > desired rate with ccu_nkm.c so it ended the final rate with parent as
+> > Line 8 of
+> > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+>
+> If that's important to the driver, it should be set explicitly then,
+> and not work by accident.
+>
+> > > > > The TCON *module* clock (the one in the clock controller) has been set
+> > > > > to lcd_rate (so the pixel clock times the number of bits per lane) here:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
+> > > > >
+> > > > > And the PLL has been set to the same rate here:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
+> > > > >
+> > > > > Let's take a step back now: that function we were looking at,
+> > > > > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
+> > > > > by disp_lcd_enable here:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
+> > > > >
+> > > > > The next function being called is disp_al_lcd_cfg, and that function
+> > > > > will hardcode the TCON dotclock divider to 4, here:
+> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
+> > > >
+> > > > tcon_div from BSP point-of-view of there are two variants
+> > > > 00) clk_info.tcon_div which is 4 and same is set the divider position
+> > > > in SUN4I_TCON0_DCLK_REG (like above link refer)
+> > > > 01) tcon_div which is 4 and used for edge timings computation
+> > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
+> > > >
+> > > > The real reason for 01) is again 4 is they set the divider to 4 in 00)
+> > > > which is technically wrong because the dividers which used during
+> > > > dotclock in above (dsi_div) should be used here as well. Since there
+> > > > is no dynamic way of doing this BSP hard-coding these values.
+> > > >
+> > > > Patches 5,6,7 on this series doing this
+> > > > https://patchwork.freedesktop.org/series/60847/
+> > > >
+> > > > Hope this explanation helps?
+> > >
+> > > It doesn't.
+> > >
+> > > The clock tree is this one:
+> > >
+> > > PLL(s) -> TCON module clock -> TCON dotclock.
+> > >
+> > > The links I mentioned above show that the clock set to lcd_rate is the
+> > > TCON module clocks (and it should be the one taking the bpp and lanes
+> > > into account), while the TCON dotclock uses a fixed divider of 4.
+> >
+> > Sorry, I can argue much other-than giving some code snips, according to [1]
+> >
+> > 00) Line 785, 786 with dclk_rate 148000000
+> >
+> > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > pll_rate = lcd_rate * clk_info.lcd_div;
+> >
+> > Since dsi_div is 6 (bpp/lanes), lcd_div 1
+> >
+> > lcd_rate = 888000000, pll_rate = 888000000
+> >
+> > 01)  Line 801, 804 are final rates computed as per clock driver (say
+> > ccu_nkm in mainline)
+> >
+> > lcd_rate_set=891000000
+> >
+> > As per your comments if it would be 4 then the desired numbers are
+> > would be 592000000 not 888000000.
+> >
+> > This is what I'm trying to say in all mails, and same as verified with
+> > 2-lanes devices as well where the dsi_div is 12 so the final rate is
+> > 290MHz * 12
+>
+> In the code you sent, you're forcing a divider on the internal TCON
+> clock, while that one is fixed in the BSP.
+>
+> There's indeed the bpp / lanes divider, but it's used in the *parent*
+> clock of the one you're changing.
+>
+> And the dsi0_clk clock you pointed out in the code snippet is yet
+> another clock, the MIPI DSI module clock.
 
-This 100 ms mystery delay is not on downstream kernels and no longer
-seems needed on upstream kernels either [1].  Presumably something in the
-meantime has made things better.  A few possibilities for patches that
-have landed in the meantime that could have made this better are
-commit 3157694d8c7f ("pwm-backlight: Add support for PWM delays
-proprieties."), commit 5fb5caee92ba ("pwm-backlight: Enable/disable
-the PWM before/after LCD enable toggle."), and commit 6d5922dd0d60
-("ARM: dts: rockchip: set PWM delay backlight settings for Veyron")
+Correct, look like I refereed wrong reference in the above mail. sorry
+for the noise.
 
-Let's revert and get our 100 ms back.
+Actually I'm trying to explain about pll_rate here which indeed
+depends on dsi.div
+https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L786
 
-[1] https://lkml.kernel.org/r/2226970.BAPq4liE1j@diego
+lcd_rate = dclk_rate * clk_info.dsi_div;
+pll_rate = lcd_rate * clk_info.lcd_div;
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+Say
 
- arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 1 -
- arch/arm/boot/dts/rk3288-veyron-jerry.dts  | 1 -
- arch/arm/boot/dts/rk3288-veyron-minnie.dts | 1 -
- arch/arm/boot/dts/rk3288-veyron-speedy.dts | 1 -
- 4 files changed, 4 deletions(-)
+1) For 148MHz dclk_rate with dsi_div is 6 (24/4) lcd_div is 1 which
+resulting pll_rate is 888MHz.
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-jaq.dts b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-index fcd119168cb6..5411ce148890 100644
---- a/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-@@ -24,7 +24,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&lcd_enable_h>;
- 		regulator-name = "panel_regulator";
--		startup-delay-us = <100000>;
- 		vin-supply = <&vcc33_sys>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-jerry.dts b/arch/arm/boot/dts/rk3288-veyron-jerry.dts
-index 164561f04c1d..82ac9d23480e 100644
---- a/arch/arm/boot/dts/rk3288-veyron-jerry.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-jerry.dts
-@@ -26,7 +26,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&lcd_enable_h>;
- 		regulator-name = "panel_regulator";
--		startup-delay-us = <100000>;
- 		vin-supply = <&vcc33_sys>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-index b2cc70a08554..f29501d8ff07 100644
---- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-@@ -33,7 +33,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&lcd_enable_h>;
- 		regulator-name = "panel_regulator";
--		startup-delay-us = <100000>;
- 		vin-supply = <&vcc33_sys>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-speedy.dts b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
-index 9b140db04456..a0f6fefc95f1 100644
---- a/arch/arm/boot/dts/rk3288-veyron-speedy.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
-@@ -24,7 +24,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&lcd_enable_h>;
- 		regulator-name = "panel_regulator";
--		startup-delay-us = <100000>;
- 		vin-supply = <&vcc33_sys>;
- 	};
- 
--- 
-2.22.0.410.gd8fdbe21b5-goog
+2) For 30MHz dclk_rate with 4 lane and 24 RGB the resulting pll_rate is 180MHz
 
+3) For 27.5MHz dclk_rate with 2 lane and 24 RGB the resulting pll_rate is 330MHz
+
+Here is the few more logs in code, for case 2)
+
+[    1.920441] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+[    1.920505] ideal = 180000000, rounded = 178200000
+[    1.920509] sun4i_dclk_round_rate: div = 6 rate = 29700000
+[    1.920514] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+[    1.920532] ideal = 180000000, rounded = 178200000
+[    1.920535] sun4i_dclk_round_rate: div = 6 rate = 29700000
+[    1.920572] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+[    1.920576] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+[    1.920597] rate = 178200000
+[    1.920599] parent_rate = 297000000
+[    1.920602] reg = 0x90c00000
+[    1.920605] _nkm.n = 3, nkm->n.offset = 0x1, nkm->n.shift = 8
+[    1.920609] _nkm.k = 2, nkm->k.offset = 0x1, nkm->k.shift = 4
+[    1.920612] _nkm.m = 10, nkm->m.offset = 0x1, nkm->m.shift = 0
+[    1.920958] sun4i_dclk_set_rate div 6
+[    1.920966] sun4i_dclk_recalc_rate: val = 6, rate = 29700000
+
+and clk_summary:
+
+    pll-video0                        1        1        1   297000000
+        0     0  50000
+       hdmi                           0        0        0   297000000
+        0     0  50000
+       tcon1                          0        0        0   297000000
+        0     0  50000
+       pll-mipi                       1        1        1   178200000
+        0     0  50000
+          tcon0                       2        2        1   178200000
+        0     0  50000
+             tcon-pixel-clock         1        1        1    29700000
+        0     0  50000
+       pll-video0-2x                  0        0        0   594000000
+        0     0  50000
