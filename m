@@ -2,27 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7055970F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 11:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DF954DC2C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 23:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726543AbfF1JN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 05:13:29 -0400
-Received: from tako.kondi.net ([192.166.219.46]:49336 "EHLO
-        grzegorz.bedra.webh.me" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726524AbfF1JN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 05:13:29 -0400
-Received: from tako.kondi.net (localhost [IPv6:::1])
-        by grzegorz.bedra.webh.me (Postfix) with SMTP id 2B4DF24831A7
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:02:57 +0200 (CEST)
-From:   devicetree@vger.kernel.org
-To:     QSJQO4Y6bdevicetree@vger.kernel.org
-Reply-To: prodawez@armyspy.com
-Subject: Klientskie bazy. Email: prodawez@armyspy.com Uznajte podrobnee.
-Message-Id: <20190620210257.2B4DF24831A7@grzegorz.bedra.webh.me>
-Date:   Thu, 20 Jun 2019 23:02:57 +0200 (CEST)
+        id S1726402AbfFTVKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 17:10:06 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:39697 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725958AbfFTVKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 17:10:06 -0400
+Received: by mail-pf1-f194.google.com with SMTP id j2so2354960pfe.6;
+        Thu, 20 Jun 2019 14:10:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=VDRRP2jmEvUN5ZqWT57WiSSliOdLym165LbfBV0ufl8=;
+        b=ProG7MrqukcAFzBntWXUMlWrfhIllH3qkkZwM1jAHnq+KCuZlLyVDOcs2+IebU1DNM
+         iE/jjhcfQH02JAU7QQx3ybWFBmWDoSyYgmsBbMUdNaxvr4qlRD4vk1MxcL04vg4GeYyq
+         OW/nPOzDBtSrxll3A5JuFEDpkcBAyD9c/J0WbuGE5hryXgp48fvd0QK6v+/U16z3NAmg
+         mhkIEV2ZIEFZ7sxlmO+YxuXRdID31STMycyajgpfy12BosBZ6lq72xlA678QnhUN54hI
+         X+gBK5FaaVzxuQHPdQGTyYZ6PnaxeHMXMcAroCHxS6v4I3cYaRQftffmAGVp4m4RAwW7
+         EEIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=VDRRP2jmEvUN5ZqWT57WiSSliOdLym165LbfBV0ufl8=;
+        b=N/zpLgm9AjBqxjUpKAuAqYOP1t+nU8GuxMIAu2K2B4hjeNysMDQZtqY5+Z0foYnArC
+         nW8GlLrkmJolOkHboeTuA5MtU7m8wW2J7Tb5XhzbLicrY7RV4NWDr0IQR0HKdylwi0Kn
+         rVJhGySDmUfvT305MlqfdZTgg51MwxL08Qbhvua/bzseuPFisX3N1PBJKS5eSaSusYEx
+         JR7KlvALt/Sa5zNv/xoeBAkIX8Akd+VXLRnPuRKIhWX9wUVExFZbz51lpZPne/WzNU2S
+         EDZGf70cCDRjCki1NwiEjKu1VCwiu7sQX35rkNdKi8cs9vXnGHduzyzEArOL919Kyt6b
+         dbLg==
+X-Gm-Message-State: APjAAAXnP6gabqnOPOfJOqIFlUoJ/1vv4l6lSBng34SsofSWxPJ/WfvE
+        lojz20TBeVESQazV8XW14fkX6STRWZE=
+X-Google-Smtp-Source: APXvYqyQ5odUgn5ZZgvSZn9v3pmiiWD4iDlEZqt2f/eaEqEQLVMgRgHH0ifDvVE5bSvqc8cODvCaSw==
+X-Received: by 2002:a63:db05:: with SMTP id e5mr14533284pgg.121.1561065005170;
+        Thu, 20 Jun 2019 14:10:05 -0700 (PDT)
+Received: from stbsrv-and-3.and.broadcom.com ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id p1sm386805pff.74.2019.06.20.14.10.02
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 20 Jun 2019 14:10:04 -0700 (PDT)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 0/6] usb: bdc: Updates and fixes to USB BDC driver
+Date:   Thu, 20 Jun 2019 17:09:45 -0400
+Message-Id: <1561064991-16874-1-git-send-email-alcooperx@gmail.com>
+X-Mailer: git-send-email 1.9.0.138.g2de3478
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Klientskie bazy. Email: prodawez@armyspy.com Uznajte podrobnee.
+This is a series of updates and fixes to the Broadcom USB BDC driver
+
+Al Cooper (6):
+  usb: bdc: driver runs out of buffer descriptors on large ADB transfers
+  usb: bdc: Cleanup clock support
+  usb: bdc: driver may fail to get USB PHY
+  usb: bdc: Fix bug causing crash after multiple disconnects
+  dt-bindings: usb: bdc: Update compatible strings
+  usb: bdc: Update compatible match strings
+
+ Documentation/devicetree/bindings/usb/brcm,bdc.txt |  4 ++--
+ drivers/usb/gadget/udc/bdc/bdc.h                   |  2 +-
+ drivers/usb/gadget/udc/bdc/bdc_core.c              | 26 ++++++++++++++++------
+ drivers/usb/gadget/udc/bdc/bdc_ep.c                | 16 ++++++++-----
+ 4 files changed, 32 insertions(+), 16 deletions(-)
+
+-- 
+1.9.0.138.g2de3478
+
