@@ -2,189 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9914D0EF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D3164D10E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:58:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726686AbfFTOwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 10:52:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52238 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726675AbfFTOwu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 10:52:50 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EEB7420679;
-        Thu, 20 Jun 2019 14:52:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561042369;
-        bh=EaDyAtg8euX5pskKcouYfYWBKvYrsXwOMR+jrlOcxls=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0Dnu+BLgZjPnr6dVZfMvc9QRpCCo9QL7NQCYB0LduXY0a3Rubd+QRCxquCtI9ydWN
-         modMScwVPqyXLJvh2J8qRhQaLTwUtTKEBMoVLNzMswBHo+Ayr4Z8bcSWxVwN7/yUax
-         be55PZYyBWukBftlXgAwMpGKM7cGveaPR1FvCMJg=
-Received: by mail-qt1-f169.google.com with SMTP id y57so3482414qtk.4;
-        Thu, 20 Jun 2019 07:52:48 -0700 (PDT)
-X-Gm-Message-State: APjAAAXQtYlcYe4hl/KwVdz9yOjw26xnfjHR80HHPeaCOhPGEf6/TMU0
-        FmBruWlJu/vu4b+fty6hmYOI1z4ZdgnGnqDbXw==
-X-Google-Smtp-Source: APXvYqyR3TdgTdHL9HJ+C/MH0tWTCoy8T6RDUCj3s/Rtzv9hCbDuW8dyF53jU3kMLWuDuPl6q2X9SvIBU++c4EcOkzw=
-X-Received: by 2002:aed:3fb0:: with SMTP id s45mr59844862qth.136.1561042368214;
- Thu, 20 Jun 2019 07:52:48 -0700 (PDT)
+        id S1726661AbfFTO6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 10:58:01 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:13866 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726530AbfFTO6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 10:58:01 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d0b9ef60000>; Thu, 20 Jun 2019 07:57:58 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 20 Jun 2019 07:57:59 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 20 Jun 2019 07:57:59 -0700
+Received: from [10.24.70.135] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Jun
+ 2019 14:57:53 +0000
+Subject: Re: [PATCH V6 06/27] PCI: tegra: Add PCIe Gen2 link speed support
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jonathanh@nvidia.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
+ <20190618180206.4908-7-mmaddireddy@nvidia.com>
+ <20190620143251.GB31996@e121166-lin.cambridge.arm.com>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <d46fbde3-1e42-e7b6-8926-efb599ad335f@nvidia.com>
+Date:   Thu, 20 Jun 2019 20:27:15 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-References: <20190619215156.27795-1-robh@kernel.org> <20190620090122.GB26689@ulmo>
-In-Reply-To: <20190620090122.GB26689@ulmo>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 20 Jun 2019 08:52:36 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKC-RDjdMQWM6yk_HiWu-WwuU+vUf946t=TDJAxnqMW7Q@mail.gmail.com>
-Message-ID: <CAL_JsqKC-RDjdMQWM6yk_HiWu-WwuU+vUf946t=TDJAxnqMW7Q@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: display: Convert common panel
- bindings to DT schema
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190620143251.GB31996@e121166-lin.cambridge.arm.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1561042679; bh=2S/ArD3L74xcVrtoGOwf8r/JIu/P3SRHFU4l7stm63M=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=q8smOu5BHToVrsT690tV4CUKDZBTnYS30PXuU3OiKsW3DDb/NsFMHrBD0VXJQiW07
+         MygeNAWOoU11gJ+n+ymZInEPozfP7CqNOkQ4qJ829OydHJdLOCGuqQuOj3ghHjB2F0
+         2/duAuTiTo3e48c1+6p1moQgh4H2ndlAkgq4u9+yi17nYXP/SI/P9dBp4jOKfhLzYm
+         G5wMiryrvAmpXJLGJQxHPNs8SsnN/V51mCba4IzibEcdRhhbWvQ+GRFWpJ3fzS5PIA
+         qj4Lj0OyrLmLfM1B8K8BhvXMNMOynZvOt4dOp3juUeGqQX7k8303FUgq4Qlnl2X5+f
+         MEujO30z2i6YA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 20, 2019 at 3:01 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+
+
+On 20-Jun-19 8:02 PM, Lorenzo Pieralisi wrote:
+> On Tue, Jun 18, 2019 at 11:31:45PM +0530, Manikanta Maddireddy wrote:
+>> Tegra124, Tegra132, Tegra210 and Tegra186 support Gen2 link speed. After
+>> PCIe link is up in Gen1, set target link speed as Gen2 and retrain link.
+>> Link switches to Gen2 speed if Gen2 capable end point is connected, else
+>> link stays in Gen1.
+>>
+>> Per PCIe 4.0r0.9 sec 7.6.3.7 implementation note, driver need to wait for
+>> PCIe LTSSM to come back from recovery before retraining the link.
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> Acked-by: Thierry Reding <treding@nvidia.com>
+>> ---
+>> V6: No change
+>>
+>> V5: No change
+>>
+>> V4: No change
+>>
+>> V3: Added blank line after each while loop.
+>>
+>> V2: Changed "for loop" to "while", to make it compact and handled coding
+>> style comments.
+>>
+>>  drivers/pci/controller/pci-tegra.c | 64 ++++++++++++++++++++++++++++++
+>>  1 file changed, 64 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+>> index 5e9fcef5f8eb..5d19067f7193 100644
+>> --- a/drivers/pci/controller/pci-tegra.c
+>> +++ b/drivers/pci/controller/pci-tegra.c
+>> @@ -191,6 +191,8 @@
+>>  #define  RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE	0x20000000
+>>  #define  RP_LINK_CONTROL_STATUS_LINKSTAT_MASK	0x3fff0000
+>>  
+>> +#define RP_LINK_CONTROL_STATUS_2		0x000000b0
+>> +
+>>  #define PADS_CTL_SEL		0x0000009c
+>>  
+>>  #define PADS_CTL		0x000000a0
+>> @@ -226,6 +228,7 @@
+>>  #define PADS_REFCLK_CFG_DRVI_SHIFT		12 /* 15:12 */
+>>  
+>>  #define PME_ACK_TIMEOUT 10000
+>> +#define LINK_RETRAIN_TIMEOUT 100000 /* in usec */
+>>  
+>>  struct tegra_msi {
+>>  	struct msi_controller chip;
+>> @@ -2089,6 +2092,64 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
+>>  	return false;
+>>  }
+>>  
+>> +static void tegra_pcie_change_link_speed(struct tegra_pcie *pcie)
+>> +{
+>> +	struct device *dev = pcie->dev;
+>> +	struct tegra_pcie_port *port, *tmp;
+>> +	ktime_t deadline;
+>> +	u32 value;
+>> +
+>> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
+> And the reason to use the _safe version is ?
 >
-> On Wed, Jun 19, 2019 at 03:51:53PM -0600, Rob Herring wrote:
-> > Convert the common panel bindings to DT schema consolidating scattered
-> > definitions to a single schema file.
-> >
-> > The 'simple-panel' binding just a collection of properties and not a
-> > complete binding itself. All of the 'simple-panel' properties are
-> > covered by the panel-common.txt binding with the exception of the
-> > 'no-hpd' property, so add that to the schema.
-> >
-> > As there are lots of references to simple-panel.txt, just keep the file
-> > with a reference to panel-common.yaml for now until all the bindings are
-> > converted.
-> >
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > Note there's still some references to panel-common.txt that I need to
-> > update or just go ahead and convert to schema.
-> >
-> >  .../bindings/display/panel/panel-common.txt   | 101 -------------
-> >  .../bindings/display/panel/panel-common.yaml  | 143 ++++++++++++++++++
-> >  .../bindings/display/panel/panel.txt          |   4 -
-> >  .../bindings/display/panel/simple-panel.txt   |  29 +---
-> >  4 files changed, 144 insertions(+), 133 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.txt
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.yaml
->
-> I know it was this way before, but perhaps remove the redundant panel-
-> prefix while at it?
+> Lorenzo
 
-Sure.
+This function is called in probe and resume_noirq. list entry is deleted in
+remove, I don't see any scenario where it can cause a race condition.
+It is fine to drop _safe. I will fix it in next version.
 
+Manikanta
 
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> > new file mode 100644
-> > index 000000000000..6fe87254edad
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> > @@ -0,0 +1,143 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/panel-common.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Common Properties for Display Panels
-> > +
-> > +maintainers:
-> > +  - Thierry Reding <thierry.reding@gmail.com>
-> > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > +
-> > +description: |
-> > +  This document defines device tree properties common to several classes of
-> > +  display panels. It doesn't constitue a device tree binding specification by
-> > +  itself but is meant to be referenced by device tree bindings.
-> > +
-> > +  When referenced from panel device tree bindings the properties defined in this
-> > +  document are defined as follows. The panel device tree bindings are
-> > +  responsible for defining whether each property is required or optional.
-> > +
-> > +
->
-> Are the two blank lines here on purpose?
+>> +		/*
+>> +		 * "Supported Link Speeds Vector" in "Link Capabilities 2"
+>> +		 * is not supported by Tegra. tegra_pcie_change_link_speed()
+>> +		 * is called only for Tegra chips which support Gen2.
+>> +		 * So there no harm if supported link speed is not verified.
+>> +		 */
+>> +		value = readl(port->base + RP_LINK_CONTROL_STATUS_2);
+>> +		value &= ~PCI_EXP_LNKSTA_CLS;
+>> +		value |= PCI_EXP_LNKSTA_CLS_5_0GB;
+>> +		writel(value, port->base + RP_LINK_CONTROL_STATUS_2);
+>> +
+>> +		/*
+>> +		 * Poll until link comes back from recovery to avoid race
+>> +		 * condition.
+>> +		 */
+>> +		deadline = ktime_add_us(ktime_get(), LINK_RETRAIN_TIMEOUT);
+>> +
+>> +		while (ktime_before(ktime_get(), deadline)) {
+>> +			value = readl(port->base + RP_LINK_CONTROL_STATUS);
+>> +			if ((value & PCI_EXP_LNKSTA_LT) == 0)
+>> +				break;
+>> +
+>> +			usleep_range(2000, 3000);
+>> +		}
+>> +
+>> +		if (value & PCI_EXP_LNKSTA_LT)
+>> +			dev_warn(dev, "PCIe port %u link is in recovery\n",
+>> +				 port->index);
+>> +
+>> +		/* Retrain the link */
+>> +		value = readl(port->base + RP_LINK_CONTROL_STATUS);
+>> +		value |= PCI_EXP_LNKCTL_RL;
+>> +		writel(value, port->base + RP_LINK_CONTROL_STATUS);
+>> +
+>> +		deadline = ktime_add_us(ktime_get(), LINK_RETRAIN_TIMEOUT);
+>> +
+>> +		while (ktime_before(ktime_get(), deadline)) {
+>> +			value = readl(port->base + RP_LINK_CONTROL_STATUS);
+>> +			if ((value & PCI_EXP_LNKSTA_LT) == 0)
+>> +				break;
+>> +
+>> +			usleep_range(2000, 3000);
+>> +		}
+>> +
+>> +		if (value & PCI_EXP_LNKSTA_LT)
+>> +			dev_err(dev, "failed to retrain link of port %u\n",
+>> +				port->index);
+>> +	}
+>> +}
+>> +
+>>  static void tegra_pcie_enable_ports(struct tegra_pcie *pcie)
+>>  {
+>>  	struct device *dev = pcie->dev;
+>> @@ -2113,6 +2174,9 @@ static void tegra_pcie_enable_ports(struct tegra_pcie *pcie)
+>>  		tegra_pcie_port_disable(port);
+>>  		tegra_pcie_port_free(port);
+>>  	}
+>> +
+>> +	if (pcie->soc->has_gen2)
+>> +		tegra_pcie_change_link_speed(pcie);
+>>  }
+>>  
+>>  static void tegra_pcie_disable_ports(struct tegra_pcie *pcie)
+>> -- 
+>> 2.17.1
+>>
 
-No.
-
-> The original document had two
-> blank lines here, but that was mostly for readability I would guess. The
-> YAML format doesn't really need additional formatting for readability,
-> so perhaps just remove the extra blank line?
->
-> > +properties:
-> > +  # Descriptive Properties
-> > +  width-mm:
-> > +    description: The width-mm and height-mm specify the width and height of the
-> > +      physical area where images are displayed. These properties are expressed
-> > +      in millimeters and rounded to the closest unit.
-> > +
-> > +  height-mm:
-> > +    description: The width-mm and height-mm specify the width and height of the
-> > +      physical area where images are displayed. These properties are expressed
-> > +      in millimeters and rounded to the closest unit.
->
-> I suppose there's no way in YAML to share the description between both
-> the width-mm and height-mm properties? It's a little unfortunate that we
-> have to copy, but if there's no better way, guess we'll have to live
-> with it.
-
-I could make it a comment instead, but then we loose being able to
-parse it. I should probably just reword them to be separate:
-
-"Specifies the height of the physical area where images are displayed.
-The property is expressed in millimeters and rounded to the closest
-unit."
-
-Also, just realized I need to make these 2 dependencies on either
-other (i.e. not valid to only have one).
-
-> > +  label:
-> > +    description: |
-> > +      The label property specifies a symbolic name for the panel as a
-> > +      string suitable for use by humans. It typically contains a name inscribed
-> > +      on the system (e.g. as an affixed label) or specified in the system's
-> > +      documentation (e.g. in the user's manual).
-> > +
-> > +      If no such name exists, and unless the property is mandatory according to
-> > +      device tree bindings, it shall rather be omitted than constructed of
-> > +      non-descriptive information. For instance an LCD panel in a system that
-> > +      contains a single panel shall not be labelled "LCD" if that name is not
-> > +      inscribed on the system or used in a descriptive fashion in system
-> > +      documentation.
-> > +
-> > +  rotation:
-> > +    description:
-> > +      Display rotation in degrees counter clockwise (0,90,180,270)
-> > +    allOf:
-> > +      - $ref: /schemas/types.yaml#/definitions/uint32
-> > +      - enum: [ 0, 90, 180, 270 ]
-> > +
-> > +  # Display Timings
-> > +  panel-timing:
->
-> Am I the only one bugged by the redundancy in this property name? What
-> else is the timing going to express if not the timing of the panel that
-> it's part of. "timing" really would be enough. Anyway, not much we can
-> do about it now.
-
-I'm just happy we have a defined name.
-
-Rob
