@@ -2,182 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9304D05D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA4B4D062
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:28:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726750AbfFTO1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 10:27:10 -0400
-Received: from foss.arm.com ([217.140.110.172]:41226 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726675AbfFTO1K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 10:27:10 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 297A9344;
-        Thu, 20 Jun 2019 07:27:09 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C90013F718;
-        Thu, 20 Jun 2019 07:27:07 -0700 (PDT)
-Date:   Thu, 20 Jun 2019 15:27:02 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     thierry.reding@gmail.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V6 04/27] PCI: tegra: Mask AFI_INTR in runtime suspend
-Message-ID: <20190620142702.GA31996@e121166-lin.cambridge.arm.com>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190618180206.4908-5-mmaddireddy@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190618180206.4908-5-mmaddireddy@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1732021AbfFTO2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 10:28:07 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:40442 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726675AbfFTO2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 10:28:07 -0400
+Received: by mail-pf1-f195.google.com with SMTP id p184so1772869pfp.7;
+        Thu, 20 Jun 2019 07:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=MiA7cCUklcR2x8Sie2spJwpUdmRAd/CQhDcyA6ANjAw=;
+        b=E77kC/Jy7ff9yCCN4wKKj1l2m62PhfPe62rXCJ9KQ5VuseDlPTzVMnU5Kp9IBANVws
+         h1aaRoDp5RoL4fqsL9ZGtxfavOS8baMftS7UuneNm45Kdhhwx73RUmP6s4vkxOS8NYxY
+         H9bjvIH4YPorE7wKncvuD2AxkINuBxq8B2fjZj1F0a++B7Ej19nVoG9lP035huV+jDtZ
+         IUNMwjvNImBbH2dBwZfTq8eqL4+wh7Zc2O7/jJpEoEAgyCkzs3CUGpriT6JPw4hhTnKI
+         3WzfmRalISp4vhPcYaTa+C7E8SKymj8eJ+l4+kFHtZzUZvMSohpPIQcUebuClwsH+18e
+         k6ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=MiA7cCUklcR2x8Sie2spJwpUdmRAd/CQhDcyA6ANjAw=;
+        b=VrYo4264/kdkEKI4EERe/bvIsdsgm+mQMyV4Ua8nn0zwKPWzGLSJvSShfhbeCORSey
+         l8AP5dlTYydl032zPZzJYFgQreopiB3FaNLDe2b01YtPi+2i0f02asiiIhhvI/Neza0u
+         zpkQzVT1aO+l1MrNZRXHSAbMGVrnR3LgN56qUqDserYGnZq4Hu06p+D5E41zF7fZGAiv
+         HLtth/xS1TYTtFlr347v84wdzEqovRsUnLsue6/F0bagJdTCh7x6ZjjcWvwGb2knEme4
+         Va34LI3CuVw7r3PIpuQDkhC8k6UAOrl2nzYkhCWTTDi9XAeqkMP25tmhqcTj2e2B60Wb
+         3wWg==
+X-Gm-Message-State: APjAAAUMo8MGkT5gpead4dfoYc2NGRT9kz0SJqvr0XPH2wBU2IiTNRQR
+        3ryCylMaT9URxoyNQa8EROzW2aGR
+X-Google-Smtp-Source: APXvYqwUxehKoFEHxHlAA+fCC+vC65bHH7lMxN6+2Uzwp3CZwgxSvLXmRTIsn01Fhjt/gQDE1nAa0w==
+X-Received: by 2002:a62:d45d:: with SMTP id u29mr66380380pfl.135.1561040886466;
+        Thu, 20 Jun 2019 07:28:06 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id i9sm6682781pfa.168.2019.06.20.07.28.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 20 Jun 2019 07:28:05 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     benjamin.tissoires@redhat.com, dmitry.torokhov@gmail.com,
+        jikos@kernel.org, hdegoede@redhat.com, bjorn.andersson@linaro.org,
+        agross@kernel.org, lee.jones@linaro.org, xnox@ubuntu.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH v7 0/5] Basic DT support for Lenovo Miix 630
+Date:   Thu, 20 Jun 2019 07:28:01 -0700
+Message-Id: <20190620142801.11827-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 11:31:43PM +0530, Manikanta Maddireddy wrote:
-> AFI_INTR is unmasked in tegra_pcie_enable_controller(), mask it to avoid
-> unwanted interrupts raised by AFI after pex_rst is asserted.
-> 
-> Following sequence triggers such scenario,
->  - tegra_pcie_remove() triggers runtime suspend
->  - pex_rst is asserted in runtime suspend
->  - PRSNT_MAP bit field in RP_PRIV_MISC register changes from EP_PRSNT to
->    EP_ABSNT
->  - This is sensed by AFI and triggers "Slot present pin change" interrupt
->  - tegra_pcie_isr() function accesses AFI register when runtime suspend
->    is going through power off sequence
-> 
-> rmmod pci-tegra
->  pci_generic_config_write32: 108 callbacks suppressed
->  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x4c may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x9c may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x88 may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x90 may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x4 may corrupt adjacent RW1C bits
->  igb 0002:04:00.1: removed PHC on enP2p4s0f1
->  igb 0002:04:00.0: removed PHC on enP2p4s0f0
->  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x4c may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x9c may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x88 may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x90 may corrupt adjacent RW1C bits
->  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x4 may corrupt adjacent RW1C bits
->  rcu: INFO: rcu_preempt self-detected stall on CPU
->  SError Interrupt on CPU0, code 0xbf000002 -- SError
->  CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.1.0-rc3-next-20190405-00027-gcd8110499e6f-dirty #42
->  Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
->  pstate: 20000085 (nzCv daIf -PAN -UAO)
->  pc : tegra_pcie_isr+0x58/0x178 [pci_tegra]
->  lr : tegra_pcie_isr+0x40/0x178 [pci_tegra]
->  sp : ffff000010003da0
->  x29: ffff000010003da0 x28: 0000000000000000
->  x27: ffff8000f9e61000 x26: ffff000010fbf420
->  x25: ffff000011427f93 x24: ffff8000fa600410
->  x23: ffff00001129d000 x22: ffff00001129d000
->  x21: ffff8000f18bf3c0 x20: 0000000000000070
->  x19: 00000000ffffffff x18: 0000000000000000
->  x17: 0000000000000000 x16: 0000000000000000
->  x15: 0000000000000000 x14: ffff000008d40a48
->  x13: ffff000008d40a30 x12: ffff000008d40a20
->  x11: ffff000008d40a10 x10: ffff000008d40a00
->  x9 : ffff000008d409e8 x8 : ffff000008d40ae8
->  x7 : ffff000008d40ad0 x6 : ffff000010003e58
->  x5 : ffff8000fac00248 x4 : 0000000000000000
->  x3 : ffff000008d40b08 x2 : fffffffffffffff8
->  x1 : ffff000008d3f4e8 x0 : 00000000ffffffff
->  Kernel panic - not syncing: Asynchronous SError Interrupt
->  CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.1.0-rc3-next-20190405-00027-gcd8110499e6f-dirty #42
->  Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
->  Call trace:
->   dump_backtrace+0x0/0x158
->   show_stack+0x14/0x20
->   dump_stack+0xa8/0xcc
->   panic+0x140/0x2f4
->   nmi_panic+0x6c/0x70
->   arm64_serror_panic+0x74/0x80
->   __pte_error+0x0/0x28
->   el1_error+0x84/0xf8
->   tegra_pcie_isr+0x58/0x178 [pci_tegra]
->   __handle_irq_event_percpu+0x70/0x198
->   handle_irq_event_percpu+0x34/0x88
->   handle_irq_event+0x48/0x78
->   handle_fasteoi_irq+0xb4/0x190
->   generic_handle_irq+0x24/0x38
->   __handle_domain_irq+0x5c/0xb8
->   gic_handle_irq+0x58/0xa8
->   el1_irq+0xb8/0x180
->   cpuidle_enter_state+0x138/0x358
->   cpuidle_enter+0x18/0x20
->   call_cpuidle+0x1c/0x48
->   do_idle+0x230/0x2d0
->   cpu_startup_entry+0x20/0x28
->   rest_init+0xd4/0xe0
->   arch_call_rest_init+0xc/0x14
->   start_kernel+0x444/0x470
-> 
-> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> ---
-> V6: No change
-> 
-> V5:
-> * Added blank line before block-style comment
-> 
-> V4: No change
-> 
-> V3:
-> * Update the commit log and comment to reflect why this fix is required
-> * MSI interrupt is not disabled
-> 
-> V2: This is new patch in V2
-> 
->  drivers/pci/controller/pci-tegra.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-> index bb3c0af9c830..0453bfb2726e 100644
-> --- a/drivers/pci/controller/pci-tegra.c
-> +++ b/drivers/pci/controller/pci-tegra.c
-> @@ -1622,6 +1622,15 @@ static int tegra_pcie_disable_msi(struct tegra_pcie *pcie)
->  	return 0;
->  }
->  
-> +static void tegra_pcie_disable_interrupts(struct tegra_pcie *pcie)
-> +{
-> +	u32 value;
-> +
-> +	value = afi_readl(pcie, AFI_INTR_MASK);
-> +	value &= ~AFI_INTR_MASK_INT_MASK;
-> +	afi_writel(pcie, value, AFI_INTR_MASK);
-> +}
-> +
->  static int tegra_pcie_get_xbar_config(struct tegra_pcie *pcie, u32 lanes,
->  				      u32 *xbar)
->  {
-> @@ -2467,6 +2476,12 @@ static int __maybe_unused tegra_pcie_pm_suspend(struct device *dev)
->  
->  	tegra_pcie_disable_ports(pcie);
->  
-> +	/*
-> +	 * AFI_INTR is unmasked in tegra_pcie_enable_controller(), mask it to
-> +	 * avoid unwanted interrupts raised by AFI after pex_rst is asserted.
-> +	 */
-> +	tegra_pcie_disable_interrupts(pcie);
+The Lenovo Miix 630 is one of three ARM based (specifically Qualcomm
+MSM8998) laptops that comes with Windows, and seems to have a dedicated
+following of folks intrested to get Linux up and running on it.
 
-When do you re-enable it ? I assume it is enabled by default for
-a reason, so if you disable on suspend you renable it on resume.
+This series adds support for the basic functionality this is validated
+towork using devicetree.  Although the laptops do feed ACPI to Windows,
+the existing MSM8998 support in mainline is DT based, so DT provides a
+quick path to functionality while ACPI support is investigated.
 
-Please explain or I will drop this patch from the series.
+The three devices are very similar, but do have differences in the set
+of peripherals supported, so the idea is that the vast majority of the
+support for all three can live in a common include, which should reduce
+overall duplication.  Adding support for the other two devices is tacked
+onto the end of the series.
 
-Lorenzo
+The bleeding edge work for these laptops and work in progress can be
+found at https://github.com/aarch64-laptops/prebuilt
 
-> +
->  	if (pcie->soc->program_uphy) {
->  		err = tegra_pcie_phy_power_off(pcie);
->  		if (err < 0)
-> -- 
-> 2.17.1
-> 
+v7:
+-Removed HID matching on compatible strings as it was determined to be
+not needed
+
+v6:
+-Export the elan_i2c DT and ACPI ids so that hid-quirks can use them
+-Use the elan_i2c ids within hid-quirks to reduce duplication
+-Add DTs for the Asus and HP devices since the DT seems finalized, and
+folks have been asking
+
+v5:
+-Split out elan_i2c changes into their own patch
+-Use a static list of strings to match
+-Fixed typo of "whitelist"
+-Dropped incorrect thermal zones
+-Dropped tags from Bjorn and Lee since the functional should be
+identical, but the code is structured different
+
+v4:
+-Changed the hid-quirks ELAN handling around per Benjamin Tissoires
+-Dropped new DT binding
+
+v3:
+-Changed "clam" to "clamshell"
+-Defined a dt binding for the combo Elan keyboard + touchpad device
+-Adjusted the HID quirk to be correct for dt boot
+-Removed extranious comment in board dts
+-Fixed board level compatible
+
+v2:
+-Changed "cls" to "clam" since feedback indicated "cls" is too opaque,
+but
+"clamshell" is a mouthfull.  "clam" seems to be a happy medium.
+
+Jeffrey Hugo (5):
+  Input: elan_i2c: Export the device id whitelist
+  HID: quirks: Refactor ELAN 400 and 401 handling
+  arm64: dts: qcom: Add Lenovo Miix 630
+  arm64: dts: qcom: Add HP Envy x2
+  arm64: dts: qcom: Add Asus NovaGo TP370QL
+
+ arch/arm64/boot/dts/qcom/Makefile             |   3 +
+ .../dts/qcom/msm8998-asus-novago-tp370ql.dts  |  47 ++++
+ .../boot/dts/qcom/msm8998-clamshell.dtsi      | 240 ++++++++++++++++++
+ .../boot/dts/qcom/msm8998-hp-envy-x2.dts      |  30 +++
+ .../boot/dts/qcom/msm8998-lenovo-miix-630.dts |  30 +++
+ drivers/hid/hid-quirks.c                      |  22 +-
+ drivers/input/mouse/elan_i2c_core.c           |  54 +---
+ include/linux/input/elan-i2c-ids.h            |  68 +++++
+ 8 files changed, 430 insertions(+), 64 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+ create mode 100644 include/linux/input/elan-i2c-ids.h
+
+-- 
+2.17.1
+
