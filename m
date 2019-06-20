@@ -2,127 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AEA74C996
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 10:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C604C9DD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 10:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730504AbfFTIhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 04:37:10 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:4395 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730401AbfFTIhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 04:37:10 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0b45b60002>; Thu, 20 Jun 2019 01:37:10 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Thu, 20 Jun 2019 01:37:09 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Thu, 20 Jun 2019 01:37:09 -0700
-Received: from [10.21.132.148] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Jun
- 2019 08:37:07 +0000
-Subject: Re: [PATCH v6 2/2] arm64: tegra: enable ACONNECT, ADMA and AGIC
-To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1560945082-24554-1-git-send-email-spujar@nvidia.com>
- <1560945082-24554-2-git-send-email-spujar@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <7a5cd105-0e49-cd5f-650a-e4caa64c6638@nvidia.com>
-Date:   Thu, 20 Jun 2019 09:37:06 +0100
+        id S1726084AbfFTIvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 04:51:17 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49342 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726071AbfFTIvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 04:51:17 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5K8oPWT013042;
+        Thu, 20 Jun 2019 03:50:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561020625;
+        bh=ZvdTayQSZVxrbxnmLhuudH8+x8XODmTbZSOFAYzkOH0=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=yQcQxeYXgas589nX61LGHgsETt9+I5jlLjqKaFQO/0cV80Umo8zpuMb9/74EeQj+W
+         pvcqdtOdUQsiPDP7w3uwKlyIXJzO7jrnZSRr+749ZIwZW5UpiNi2dr+dy5UG6528JU
+         YkxAWMVgKoblEXhXllSZe43sV0TPyezzuTVh1UXc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5K8oPQN092929
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Jun 2019 03:50:25 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 20
+ Jun 2019 03:50:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 20 Jun 2019 03:50:25 -0500
+Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5K8oIqb044496;
+        Thu, 20 Jun 2019 03:50:19 -0500
+Subject: Re: [PATCH v11 2/2] phy: Add driver for mixel mipi dphy found on
+ NXP's i.MX8 SoCs
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thierry Reding <treding@nvidia.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Hovold <johan@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+References: <cover.1557657814.git.agx@sigxcpu.org>
+ <2000bc4564175abd7966207a5e9fbb9bb7d82059.1557657814.git.agx@sigxcpu.org>
+ <CAOMZO5BaFYJxh1v46n2mdPyc+-jg6LgvoGR1rTE+yHZg_0Z8PA@mail.gmail.com>
+ <69fcb327-8b51-df9e-12d9-d75751974bce@ti.com>
+Message-ID: <9a872f5b-1544-32a0-bd93-1d6333468114@ti.com>
+Date:   Thu, 20 Jun 2019 14:18:53 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <1560945082-24554-2-git-send-email-spujar@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
+In-Reply-To: <69fcb327-8b51-df9e-12d9-d75751974bce@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1561019830; bh=kIzvlCTC2QG8LnzWlQUQjDEnI0BqnPyICmvbcCwX7/w=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=Cdhnf0MMHyLWN8DEMiK7tuJwFO9CiWRZ5JPHpfjPoZ6uHgE7m30AWjtSCEScIcsUK
-         ZKP0HkNaqX1H9IBR+GdW+1nGRj8QLBvSGusE4hCx4p+b6vfPPavbhmJ9+/6E2oLUze
-         cCiGI/niACbKIqMdhokMHz2vMoqLSXnjXS8+dBtiZenmM43BVCceVe/d2iVVeuX9nv
-         sf+Sgeido6NrpuoqFod0hG85ZOkl9af5BnEjKajBttpV4jX+ZxGBF5iO8v99l8Ez37
-         i2sk8APczjT8Pjz2xXcUVGrWmiCr+hxKk65iClcOhLGDt1spC50p7kHwu2jXXBFEaR
-         FNe6MNfjTjEkw==
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 19/06/2019 12:51, Sameer Pujar wrote:
-> Enable ACONNECT, ADMA and AGIC devices for following platforms
->   * Jetson TX2
->   * Jetson Xavier
+On 24/05/19 9:31 PM, Kishon Vijay Abraham I wrote:
+> Hi,
 > 
-> Verified driver probe path and devices get registered fine.
+> On 24/05/19 5:53 PM, Fabio Estevam wrote:
+>> Hi Kishon,
+>>
+>> On Sun, May 12, 2019 at 7:49 AM Guido Günther <agx@sigxcpu.org> wrote:
+>>>
+>>> This adds support for the Mixel DPHY as found on i.MX8 CPUs but since
+>>> this is an IP core it will likely be found on others in the future. So
+>>> instead of adding this to the nwl host driver make it a generic PHY
+>>> driver.
+>>>
+>>> The driver supports the i.MX8MQ. Support for i.MX8QM and i.MX8QXP can be
+>>> added once the necessary system controller bits are in via
+>>> mixel_dphy_devdata.
+>>>
+>>> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+>>> Co-developed-by: Robert Chiras <robert.chiras@nxp.com>
+>>> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+>>> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+>>> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+>>
+>> Would you have any comments on this series, please?
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  changes in current revision
->    * renamed agic, interrupt-controller, name
-> 
->  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ++++++++++++
->  arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 12 ++++++++++++
->  2 files changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-> index 5102de1..55c84bb 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-> @@ -298,4 +298,16 @@
->  			vin-supply = <&vdd_5v0_sys>;
->  		};
->  	};
-> +
-> +	aconnect {
-> +		status = "okay";
-> +
-> +		dma-controller@2930000 {
-> +			status = "okay";
-> +		};
-> +
-> +		interrupt-controller@2a40000 {
-> +			status = "okay";
-> +		};
-> +	};
->  };
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> index 6e6df65..5981cdc 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> @@ -167,4 +167,16 @@
->  			};
->  		};
->  	};
-> +
-> +	aconnect {
-> +		status = "okay";
-> +
-> +		dma-controller@2930000 {
-> +			status = "okay";
-> +		};
-> +
-> +		interrupt-controller@2a40000 {
-> +			status = "okay";
-> +		};
-> +	};
->  };
-> 
+> I don't have any comments. I'll queue this once I start queuing patches for the
+> next merge window.
 
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
+Can you fix the following checkpatch warning and repost?
+WARNING: quoted string split across lines
+#420: FILE: drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c:280:
++	dev_dbg(&phy->dev, "hs_prepare: %u, clk_prepare: %u, "
++		"hs_zero: %u, clk_zero: %u, "
 
-Cheers
-Jon
+WARNING: quoted string split across lines
+#421: FILE: drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c:281:
++		"hs_zero: %u, clk_zero: %u, "
++		"hs_trail: %u, clk_trail: %u, "
 
--- 
-nvpublic
+WARNING: quoted string split across lines
+#422: FILE: drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c:282:
++		"hs_trail: %u, clk_trail: %u, "
++		"rxhs_settle: %u\n",
+
+Thanks
+Kishon
