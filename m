@@ -2,207 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F28D4CECD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 15:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E2C4CF7A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 15:48:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726786AbfFTNeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 09:34:13 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:45251 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726697AbfFTNeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 09:34:13 -0400
-Received: by mail-vs1-f67.google.com with SMTP id n21so1536468vsp.12
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 06:34:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lc/q2X+pawBjOcnjA6oAKxvqiYph1jdqY4goob1kTPs=;
-        b=tdvbkHw9yUtnvDH/DJ4qWmkXoSxhraltCRvY1X1IFBEL7iCTQy4CP1dWXT+/akyp6q
-         JVcDjnV1Zb2+jCu7Z8+abWILa4iswW67/+nL0CtxhU62ToEpO6cshXSsn5K2lqTqKXLe
-         yysxyF4XMeEWHl51FGMFhtRL5QaJzYFtKNX2N2aX4eXe79A5KNyH7+CttCOsIC2I5EoJ
-         iBe301EIgQtd/7pUFr9efWvPmIqELB2tSqtUyaHsdojov0JtFBfBCUv5RFCWK8AtGL9K
-         n2owLAiOq75ICmeuyg+YvAqD57IyxLsFZAQg7BeIGNYjiZn4pRme4hDDuobgtTT8ky0T
-         OH4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lc/q2X+pawBjOcnjA6oAKxvqiYph1jdqY4goob1kTPs=;
-        b=Am9Oa3zv2SHqttZg5IZ/xa62NQVPKJG4u9j6aszK3ganMetijA0IhqH3jOFL4PUheg
-         Xxy94HJPfUSpthI2FVaDT1UhtT58sLOXzHL+KHceN07YHiBQm3NwLAaJeOEWYGj2jrGv
-         YiD8laN4v3dVAR3DrnAhemVpppyIZ/aHOl51GX1uE3Zg6GTgpddSmXXI6LpnIqNtkZHN
-         9WA1N/6Qt5bSySC/sAtnz1a/B+by2QFRiqFhBNU8zi2MmZ3rbkBGmNcNQWaRVLzVT73+
-         6r06RG6WaM/Lsy0K1L7VbINA6ziJSZ0zR5jzX0OqXSnQJZEUapUfYRaMQcVrPcL+reTP
-         Lfyg==
-X-Gm-Message-State: APjAAAUurjY6EEQwQ+ut3RWlT2KF2fIwRVjIdmOO3uNe2oUJlMIa/8Mi
-        sgrBzG6ihmMhqpUF/TVz6aYyDP/KP3pxWlVjWoGKuw==
-X-Google-Smtp-Source: APXvYqyVxyq7u8zNpM4Beo3pE18Ytv/hNPQHDG2Iz7I2nebi3e7qnCAQv4cYrfQ+b9EBhFO/oJjbJ1VfrfyqTZOoADI=
-X-Received: by 2002:a67:ee16:: with SMTP id f22mr21368556vsp.191.1561037651820;
- Thu, 20 Jun 2019 06:34:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <1560247011-26369-1-git-send-email-manish.narani@xilinx.com>
- <1560247011-26369-4-git-send-email-manish.narani@xilinx.com>
- <CAPDyKFrJwpwUUX_q2kcR9QY_fv9Lgos+ixPmU6JMeJVqJAiFpg@mail.gmail.com>
- <5feac3fb-bef3-b7d1-57d6-81e115e1f555@xilinx.com> <CAPDyKFp_ZvSjFp2FGonzGsnc9xPyZ7qOCaRnX1SimBxLpfz9-Q@mail.gmail.com>
- <MN2PR02MB6029DB87CEE32655B0F1E794C1E50@MN2PR02MB6029.namprd02.prod.outlook.com>
- <CAPDyKFqb3uRU1XbrioSw6UZ5atZ8WwZNhQ_yq2+3JfxXZCxr7g@mail.gmail.com> <MN2PR02MB602935234A2A779B5A05CD63C1E40@MN2PR02MB6029.namprd02.prod.outlook.com>
-In-Reply-To: <MN2PR02MB602935234A2A779B5A05CD63C1E40@MN2PR02MB6029.namprd02.prod.outlook.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 20 Jun 2019 15:33:34 +0200
-Message-ID: <CAPDyKFqwe7ss6r99Dxg_OFjKUmCYK_k3pyfYAe62BM7H=a4A7w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] mmc: sdhci-of-arasan: Add support for ZynqMP Platform
- Tap Delays Setup
-To:     Manish Narani <MNARANI@xilinx.com>
-Cc:     Michal Simek <michals@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1731952AbfFTNsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 09:48:20 -0400
+Received: from vps.xff.cz ([195.181.215.36]:36072 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726562AbfFTNry (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 09:47:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1561038471; bh=EtxBSRR4SpnZbnkKuYOnn0iuta6FqDZ+zK2kZr5kejg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ckh/EsuH/Dff/Yy+mbHihrInZ6GTZhgcUd7uRM8A84U3v10l+iavQuIZJl3zN8vet
+         Ky8x1QlNp3WkmgTTztO+7jm0lD1+d6ArTPoZzjauaYCjEyl/RIW4NKLRTP9CuDcAio
+         0YzHHuLwcPEcz2q2h2/j4xOEAZmQq3jnHefTrzBc=
+From:   megous@megous.com
+To:     linux-sunxi@googlegroups.com,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     Ondrej Jirman <megous@megous.com>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Rajan Vaja <RAJANV@xilinx.com>, Jolly Shah <JOLLYS@xilinx.com>,
-        Nava kishore Manne <navam@xilinx.com>,
-        Olof Johansson <olof@lixom.net>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v7 0/6] Add support for Orange Pi 3
+Date:   Thu, 20 Jun 2019 15:47:42 +0200
+Message-Id: <20190620134748.17866-1-megous@megous.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Jun 2019 at 10:14, Manish Narani <MNARANI@xilinx.com> wrote:
->
-> Hi Uffe,
->
->
-> > -----Original Message-----
-> > From: Ulf Hansson <ulf.hansson@linaro.org>
-> > Sent: Wednesday, June 19, 2019 7:09 PM
-> > To: Manish Narani <MNARANI@xilinx.com>
-> > Cc: Michal Simek <michals@xilinx.com>; Rob Herring <robh+dt@kernel.org>;
-> > Mark Rutland <mark.rutland@arm.com>; Adrian Hunter
-> > <adrian.hunter@intel.com>; Rajan Vaja <RAJANV@xilinx.com>; Jolly Shah
-> > <JOLLYS@xilinx.com>; Nava kishore Manne <navam@xilinx.com>; Olof
-> > Johansson <olof@lixom.net>; linux-mmc@vger.kernel.org; DTML
-> > <devicetree@vger.kernel.org>; Linux Kernel Mailing List <linux-
-> > kernel@vger.kernel.org>; Linux ARM <linux-arm-kernel@lists.infradead.org>
-> > Subject: Re: [PATCH 3/3] mmc: sdhci-of-arasan: Add support for ZynqMP
-> > Platform Tap Delays Setup
-> >
-> > On Wed, 19 Jun 2019 at 10:40, Manish Narani <MNARANI@xilinx.com> wrote:
-> > >
-> > > Hi Uffe,
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Ulf Hansson <ulf.hansson@linaro.org>
-> > > > Sent: Monday, June 17, 2019 5:51 PM
-> > > [...]
-> > > >
-> > > > The "const struct zynqmp_eemi_ops *eemi_ops; should then be moved into
-> > > > a clock provider specific struct, which is assigned when calling
-> > > > sdhci_arasan_register_sdclk. I understand that all the clock data is
-> > > > folded into struct sdhci_arasan_data today, but I think that should be
-> > > > moved into a "sub-struct" for the clock specifics.
-> > > >
-> > > > Moreover, when registering the clock, we should convert from using
-> > > > devm_clk_register() into devm_clk_hw_register() as the first one is
-> > > > now deprecated.
-> > >
-> > > Just a query here:
-> > > When we switch to using devm_clk_hw_register() here, it will register the
-> > clk_hw and return int.
-> > > Is there a way we can get the clk (related to the clk_hw registered) from the
-> > > clock framework?
-> > > I am asking this because we will need that clk pointer while calling
-> > clk_set_phase() function.
-> >
-> > I assume devm_clk_get() should work fine?
->
-> This clock does not come through ZynqMP Clock framework. We are initializing it in this 'sdhci-of-arasan' driver and getting only the clock name from "clock_output_names" property. So I think devm_clk_get() will not work here for our case.
+From: Ondrej Jirman <megous@megous.com>
 
-Well, I guess you need to register an OF clock provider to allow the
-clock lookup to work. Apologize, but I don't have the time, currently
-to point you in the exact direction.
+This series implements support for Xunlong Orange Pi 3 board.
 
-However, in principle, my point is, there should be no difference
-whether the clock is registered via the "ZynqMP Clock framework" or
-via the mmc driver. The *clk_get() thing need to work, otherwise I
-consider the clock registration in the mmc driver to be a hack. If you
-see what I mean.
+- ethernet support (patches 1-3)
+- HDMI support (patches 4-6)
 
-> I have gone through the clock framework and I found one function which may be used to create clock from clock hw, that is ' clk_hw_create_clk()' which can be used from our driver, however this needs change in the clock framework as below :
->
-> ---
-> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> index aa51756..4dc69ff 100644
-> --- a/drivers/clk/clk.c
-> +++ b/drivers/clk/clk.c
-> @@ -3420,6 +3420,7 @@ struct clk *clk_hw_create_clk(struct device *dev, struct clk_hw *hw,
->
->         return clk;
->  }
-> +EXPORT_SYMBOL_GPL(clk_hw_create_clk);
->
->  static int clk_cpy_name(const char **dst_p, const char *src, bool must_exist)
->  {
-> diff --git a/drivers/clk/clk.h b/drivers/clk/clk.h
-> index d8400d6..2319899 100644
-> --- a/drivers/clk/clk.h
-> +++ b/drivers/clk/clk.h
-> @@ -22,17 +22,9 @@ static inline struct clk_hw *of_clk_get_hw(struct device_node *np,
->  struct clk_hw *clk_find_hw(const char *dev_id, const char *con_id);
->
->  #ifdef CONFIG_COMMON_CLK
-> -struct clk *clk_hw_create_clk(struct device *dev, struct clk_hw *hw,
-> -                             const char *dev_id, const char *con_id);
->  void __clk_put(struct clk *clk);
->  #else
->  /* All these casts to avoid ifdefs in clkdev... */
-> -static inline struct clk *
-> -clk_hw_create_clk(struct device *dev, struct clk_hw *hw, const char *dev_id,
-> -                 const char *con_id)
-> -{
-> -       return (struct clk *)hw;
-> -}
->  static struct clk_hw *__clk_get_hw(struct clk *clk)
->  {
->         return (struct clk_hw *)clk;
-> diff --git a/include/linux/clk.h b/include/linux/clk.h
-> index f689fc5..d3f60fe 100644
-> --- a/include/linux/clk.h
-> +++ b/include/linux/clk.h
-> @@ -18,6 +18,7 @@
->
->  struct device;
->  struct clk;
-> +struct clk_hw;
->  struct device_node;
->  struct of_phandle_args;
->
-> @@ -934,4 +935,15 @@ static inline struct clk *of_clk_get_from_provider(struct of_phandle_args *clksp
->  }
->  #endif
->
-> +#ifdef CONFIG_COMMON_CLK
-> +struct clk *clk_hw_create_clk(struct device *dev, struct clk_hw *hw,
-> +                             const char *dev_id, const char *con_id);
-> +#else
-> +static inline struct clk *
-> +clk_hw_create_clk(struct device *dev, struct clk_hw *hw, const char *dev_id,
-> +                 const char *con_id)
-> +{
-> +       return (struct clk *)hw;
-> +}
-> +#endif
->  #endif
-> ---
->
-> This change should help other drivers (outside 'drivers/clk/') as well for getting the clock created from clk_hw.
-> Is this fine to do?
+For some people, ethernet doesn't work after reboot (but works on cold
+boot), when the stmmac driver is built into the kernel. It works when
+the driver is built as a module. It's either some timing issue, or power
+supply issue or a combination of both. Module build induces a power
+cycling of the phy.
 
-I think this is the wrong approach, see why further above.
+I encourage people with this issue, to build the driver into the kernel,
+and try to alter the reset timings for the phy in DTS or
+startup-delay-us and report the findings.
 
-Kind regards
-Uffe
+
+Please take a look.
+
+thank you and regards,
+  Ondrej Jirman
+
+
+Changes in v7:
+- dropped stored reference to connector_pdev as suggested by Jernej
+- added forgotten dt-bindings reviewed-by tag
+
+Changes in v6:
+- added dt-bindings reviewed-by tag
+- fix wording in stmmac commit (as suggested by Sergei)
+
+Changes in v5:
+- dropped already applied patches (pinctrl patches, mmc1 pinconf patch)
+- rename GMAC-3V3 -> GMAC-3V to match the schematic (Jagan)
+- changed hdmi-connector's ddc-supply property to ddc-en-gpios
+  (Rob Herring)
+
+Changes in v4:
+- fix checkpatch warnings/style issues
+- use enum in struct sunxi_desc_function for io_bias_cfg_variant
+- collected acked-by's
+- fix compile error in drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c:156
+  caused by missing conversion from has_io_bias_cfg struct member
+  (I've kept the acked-by, because it's a trivial change, but feel free
+  to object.) (reported by Martin A. on github)
+  I did not have A80 pinctrl enabled for some reason, so I did not catch
+  this sooner.
+- dropped brcm firmware patch (was already applied)
+- dropped the wifi dts patch (will re-send after H6 RTC gets merged,
+  along with bluetooth support, in a separate series)
+
+Changes in v3:
+- dropped already applied patches
+- changed pinctrl I/O bias selection constants to enum and renamed
+- added /omit-if-no-ref/ to mmc1_pins
+- made mmc1_pins default pinconf for mmc1 in H6 dtsi
+- move ddc-supply to HDMI connector node, updated patch descriptions,
+  changed dt-bindings docs
+
+Changes in v2:
+- added dt-bindings documentation for the board's compatible string
+  (suggested by Clement)
+- addressed checkpatch warnings and code formatting issues (on Maxime's
+  suggestions)
+- stmmac: dropped useless parenthesis, reworded description of the patch
+  (suggested by Sergei)
+- drop useles dev_info() about the selected io bias voltage
+- docummented io voltage bias selection variant macros
+- wifi: marked WiFi DTS patch and realted mmc1_pins as "DO NOT MERGE",
+  because wifi depends on H6 RTC support that's not merged yet (suggested
+  by Clement)
+- added missing signed-of-bys
+- changed &usb2otg dr_mode to otg, and added a note about VBUS
+- improved wording of HDMI driver's DDC power supply patch
+
+Icenowy Zheng (2):
+  net: stmmac: sun8i: add support for Allwinner H6 EMAC
+  net: stmmac: sun8i: force select external PHY when no internal one
+
+Ondrej Jirman (4):
+  arm64: dts: allwinner: orange-pi-3: Enable ethernet
+  dt-bindings: display: hdmi-connector: Support DDC bus enable
+  drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
+  arm64: dts: allwinner: orange-pi-3: Enable HDMI output
+
+ .../display/connector/hdmi-connector.txt      |  1 +
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 70 +++++++++++++++++++
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         | 54 ++++++++++++--
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h         |  2 +
+ .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 21 ++++++
+ 5 files changed, 144 insertions(+), 4 deletions(-)
+
+-- 
+2.22.0
+
