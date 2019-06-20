@@ -2,90 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 738C14DABB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 21:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B244DAE7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 22:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbfFTTwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 15:52:50 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:42557 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726178AbfFTTwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 15:52:45 -0400
-Received: by mail-lj1-f194.google.com with SMTP id t28so3812866lje.9;
-        Thu, 20 Jun 2019 12:52:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4H4GxMclDvVAq723JYHDFWc6hksl9ud+nP2g0Z/0gCg=;
-        b=rXxKuD+wOBnhqosxvMYJXMmPxBOV/JL2zZ7pLXea1KitFyKk7c1FTyOm4Di6BUBrsw
-         aFpGsAsROLfk2EBCbABqbW27S+iPX2+XWWtiitpP10Ei7PW2P+MYtF+33woS9metPwqm
-         g+qNGecWxETr3vETqDmIFDMYL4gvLb32aePP+l61d77drvPtErE0ZYD8EjTYtb8+YRq7
-         DH7dYAJUtDBIzfTWm9SNTHkqn9GKVc9/D040XFC5/5vA47DklJ3BV+lD1fG4+Nmpv6pH
-         un7OshTVQdgx4sutaQVHxSTuxRcBBfypJ++sD1C1L9e88/NGmEv1TA4F5VBSqvRY6NAs
-         9cSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4H4GxMclDvVAq723JYHDFWc6hksl9ud+nP2g0Z/0gCg=;
-        b=CF5Na2NRP0SVoI9Hk8tJsfNTNfsiXURQsvRK83L1bHpPHUMT3TNVVs9V134xDy803O
-         VKV7TAIMBcdj3wVsSgLHdCBPBnyradKiMFA/NuohaLQYRy8muzpJDdwVWX2RvjzioTqW
-         MNBF/ZUL5c6I4XuUMQGO2u1Cr3TD/BORFK2m0f1yMBxRH3vwS07Fv9VHO57sBijFeyfz
-         aVtx/TKzxai57w45iHMGxq2X8jjn2wAjU8j/Yu+tSjUmem4D2wvTWw4JsUnTXmOC0dC1
-         VAQSNFnhWZlgNL/Kz4qrNSYZD0nfhUsrv/5SltDqqlF/NKqK+Z+1TDNEEYCCjUij4WeF
-         1sFA==
-X-Gm-Message-State: APjAAAX/rsvVV7LkKABQ/hZj1AhcSKoOpUjHlkbi1k9iSz5DZ5v6SDiE
-        1fMJqR8gv5PTzpF9k0rZ561LMU9dyydqyg==
-X-Google-Smtp-Source: APXvYqya7BBXkKtzUdSgB7JBQXIPFLnUtFzubzm765BAVvS/2T7Gzq4mqoIfn2HYZcuAsXDD99Eslw==
-X-Received: by 2002:a2e:124c:: with SMTP id t73mr38012548lje.190.1561060362705;
-        Thu, 20 Jun 2019 12:52:42 -0700 (PDT)
-Received: from localhost.localdomain (89-64-59-58.dynamic.chello.pl. [89.64.59.58])
-        by smtp.gmail.com with ESMTPSA id t17sm74645ljj.55.2019.06.20.12.52.41
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 12:52:42 -0700 (PDT)
-From:   Tomasz Duszynski <tduszyns@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jic23@kernel.org, robh+dt@kernel.org,
-        Tomasz Duszynski <tduszyns@gmail.com>
-Subject: [PATCH 2/2] MAINTAINERS: add entry for sensirion sps30 driver
-Date:   Thu, 20 Jun 2019 21:50:11 +0200
-Message-Id: <20190620195011.30942-3-tduszyns@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190620195011.30942-1-tduszyns@gmail.com>
-References: <20190620195011.30942-1-tduszyns@gmail.com>
+        id S1726533AbfFTUGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 16:06:40 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:45150 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726338AbfFTUGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 16:06:40 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5KK6K90119626;
+        Thu, 20 Jun 2019 15:06:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561061180;
+        bh=Wfu4Q4NahOYVIgWoJmmtqDgJ5MC33mQqi/WAYuf8qlo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=c+81RS3GNzjtJnRb6cRvtbrZMwujMlL0nJ3qaXYu6x2o3Bn9ADl2kw5mMuN29R8pA
+         bXAKPIsAt20Q5GzBilCkO9QY0401+BUIyHwsoyk/kUkldYNQupByKspHkOg4cVCvcw
+         PM9hMDjUoDIIrDwPvIsjacdgAfKRfKiIijj2iU5M=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5KK6KGL030029
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Jun 2019 15:06:20 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 20
+ Jun 2019 15:06:19 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 20 Jun 2019 15:06:19 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5KK6JLm065075;
+        Thu, 20 Jun 2019 15:06:19 -0500
+Subject: Re: [PATCH v3 6/9] leds: multicolor: Introduce a multicolor class
+ definition
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-7-dmurphy@ti.com>
+ <2f91bd2b-1d69-c9c7-c20b-a7396c9e1ecd@gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <41353876-8671-3353-b27c-ab057699bbbe@ti.com>
+Date:   Thu, 20 Jun 2019 15:06:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <2f91bd2b-1d69-c9c7-c20b-a7396c9e1ecd@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as a sensirion sps30 driver maintainer.
+Jacek
 
-Signed-off-by: Tomasz Duszynski <tduszyns@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Thanks for the review
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1eb971608ac4..dafa02ba161c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14172,6 +14172,12 @@ S:	Maintained
- F:	drivers/misc/phantom.c
- F:	include/uapi/linux/phantom.h
- 
-+SENSIRION SPS30 AIR POLLUTION SENSOR DRIVER
-+M:	Tomasz Duszynski <tduszyns@gmail.com>
-+S:	Maintained
-+F:	drivers/iio/chemical/sps30.c
-+F:	Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-+
- SERIAL DEVICE BUS
- M:	Rob Herring <robh@kernel.org>
- L:	linux-serial@vger.kernel.org
--- 
-2.22.0
+On 6/20/19 11:10 AM, Jacek Anaszewski wrote:
+> Hi Dan,
+>
+> Thank you for the v5.
+>
+> I will confine myself to commenting only some parts since
+> the rest will undergo rework due to removal of sync API.
+>
+> On 5/23/19 9:08 PM, Dan Murphy wrote:
+>> Introduce a multicolor class that groups colored LEDs
+>> within a LED node.
+>>
+>> The framework allows for dynamically setting individual LEDs
+>> or setting brightness levels of LEDs and updating them virtually
+>> simultaneously.
+>>
+>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>> ---
+>>   drivers/leds/Kconfig                 |  10 +
+>>   drivers/leds/Makefile                |   1 +
+>>   drivers/leds/led-class-multicolor.c  | 421 +++++++++++++++++++++++++++
+>>   include/linux/led-class-multicolor.h |  95 ++++++
+>>   4 files changed, 527 insertions(+)
+>>   create mode 100644 drivers/leds/led-class-multicolor.c
+>>   create mode 100644 include/linux/led-class-multicolor.h
+>>
+>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+>> index 0414adebb177..0696a13c9527 100644
+>> --- a/drivers/leds/Kconfig
+>> +++ b/drivers/leds/Kconfig
+>> @@ -29,6 +29,16 @@ config LEDS_CLASS_FLASH
+>>         for the flash related features of a LED device. It can be built
+>>         as a module.
+>>   +config LEDS_CLASS_MULTI_COLOR
+>> +    tristate "LED Mulit Color LED Class Support"
+>> +    depends on LEDS_CLASS
+>> +    help
+>> +      This option enables the multicolor LED sysfs class in 
+>> /sys/class/leds.
+>> +      It wraps LED Class and adds multicolor LED specific sysfs 
+>> attributes
+>> +      and kernel internal API to it. You'll need this to provide 
+>> support
+>> +      for multicolor LEDs that are grouped together. This class is not
+>> +      intended for single color LEDs.  It can be built as a module.
+>
+> extra whitespace:
+>
+> s/ It can/It can/
 
+Ack
+
+>
+> [...]
+>> +
+>> +static int multicolor_set_brightness(struct led_classdev *led_cdev,
+>> +                 enum led_brightness brightness)
+>> +{
+>> +    struct led_classdev_mc *mcled_cdev = lcdev_to_mccdev(led_cdev);
+>> +    struct led_classdev_mc_data *data = mcled_cdev->data;
+>> +    struct led_multicolor_ops *ops = mcled_cdev->ops;
+>> +    struct led_classdev_mc_priv *priv;
+>> +    unsigned long state = brightness;
+>> +    int adj_value;
+>> +    ssize_t ret = -EINVAL;
+>> +
+>> +    mutex_lock(&led_cdev->led_access);
+>> +
+>> +    if (ops->set_module_brightness) {
+>> +        ret = ops->set_module_brightness(mcled_cdev, state);
+>> +        goto unlock;
+>> +    }
+>> +
+>> +    list_for_each_entry(priv, &data->color_list, list) {
+>> +        if (state && priv->brightness && priv->max_brightness) {
+>> +            adj_value = state * ((priv->brightness * 100) / 
+>> priv->max_brightness);
+>> +            adj_value = adj_value / 100;
+>
+> Why the multiplication an then division by 100? And priv->max_brightness
+> stays unaltered? This changes the proportions. My python script works
+> just fine without those.
+
+Because the kernel does not do floating point math and the calculation 
+is using the ratio
+
+between the intensity and max_intensity and multiplying against the 
+requested brightness.
+
+priv->intensity = 100 (This is the current intensity of the color LED)
+
+priv->max_intensity = 255
+
+state = 80 (This is the requested cluster brightness)
+
+100/255 = 0.392 which is 0.
+
+0 * 80 = 0 this is not what the value should be
+
+But with the multiplier.
+
+10000/255 = 39.2 which is 39 which means that the intensity is only 39% 
+of the
+
+max_intensity.
+
+39 * 80 = 3120  So to preserve the 39% from the 80 we multiply the 
+percentage * requested cluster brightness
+
+3120 / 100 = 31 then we normalize back
+
+I am not sure how your script is working without the multiplier.
+
+
+>
+>> +        } else
+>> +            adj_value = LED_OFF;
+>> +
+>> +        ret = ops->set_color_brightness(priv->mcled_cdev,
+>> +                        priv->color_id,    adj_value);
+>> +        if (ret < 0)
+>> +            goto unlock;
+>> +    }
+>> +
+>> +unlock:
+>> +    mutex_unlock(&led_cdev->led_access);
+>> +    return ret;
+>> +}
+> [...]
+>> +int led_classdev_multicolor_register_ext(struct device *parent,
+>> +                     struct led_classdev_mc *mcled_cdev,
+>> +                     struct led_init_data *init_data)
+>> +{
+>> +    struct led_classdev *led_cdev;
+>> +    struct led_multicolor_ops *ops;
+>> +    struct led_classdev_mc_data *data;
+>> +    int ret;
+>> +    int i;
+>> +
+>> +    if (!mcled_cdev)
+>> +        return -EINVAL;
+>> +
+>> +    ops = mcled_cdev->ops;
+>> +    if (!ops || !ops->set_color_brightness)
+>> +        return -EINVAL;
+>> +
+>> +    data = kzalloc(sizeof(*data), GFP_KERNEL);
+>> +    if (!data)
+>> +        return -ENOMEM;
+>> +
+>> +    mcled_cdev->data = data;
+>> +    led_cdev = &mcled_cdev->led_cdev;
+>> +
+>> +    if (led_cdev->brightness_set_blocking)
+>> +        led_cdev->brightness_set_blocking = multicolor_set_brightness;
+>
+> This is weird. In leds-lp50xx.c you don't initialize
+> brightness_set_blocking and this still works?
+
+I will have to look.  I don't believe I retested this on lp50xx only the 
+lp55xx code.
+
+>
+> I believe this is kind of omission.
+>
+> And it is not reasonable to just override driver supplied op with
+> generic one just like that.
+>
+> I propose to initialize brightness_set or brightness_set_blocking
+> op as we used to do it for monochrome LEDs. Those function(s) on
+> driver side will either use device's hardware support for setting
+> color lightness, or will call a generic function provided by
+> LED multi color class for calculating intensities of all colors
+> it comprises in the cluster.
+>
+> I know this is different to what we've discussed on IRC, but now
+> it looks for me the most reasonable way to go.
+
+So you want the device driver to handle the brightness request and call 
+into the framework for
+
+calculating the color intensities?
+
+That would work as well and solves a problem of HW supported brightness 
+control like the LP50xx.
+
+The LP50xx would not need to call into the function for calculated 
+intensities.
+
+
+>
+>> + INIT_LIST_HEAD(&data->color_list);
+>> +
+>> +    /* Register led class device */
+>> +    ret = led_classdev_register_ext(parent, led_cdev, init_data);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = led_multicolor_init_color_dir(data, mcled_cdev);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    /* Select the sysfs attributes to be created for the device */
+>> +    for (i = 0; i < mcled_cdev->num_leds; i++) {
+>> +        ret = led_multicolor_init_color(data, mcled_cdev,
+>> +                        mcled_cdev->available_colors[i]);
+>> +        if (ret)
+>> +            break;
+>> +    }
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(led_classdev_multicolor_register_ext);
+>> +
+>> +void led_classdev_multicolor_unregister(struct led_classdev_mc 
+>> *mcled_cdev)
+>> +{
+>> +    if (!mcled_cdev)
+>> +        return;
+>> +
+>> +    led_classdev_unregister(&mcled_cdev->led_cdev);
+>> +}
+>> +EXPORT_SYMBOL_GPL(led_classdev_multicolor_unregister);
+>> +
+>> +static void devm_led_classdev_multicolor_release(struct device *dev, 
+>> void *res)
+>> +{
+>> +    led_classdev_multicolor_unregister(*(struct led_classdev_mc 
+>> **)res);
+>> +}
+>> +
+>> +/**
+>> + * devm_of_led_classdev_register - resource managed 
+>> led_classdev_register()
+>> + *
+>> + * @parent: parent of LED device
+>> + * @led_cdev: the led_classdev structure for this device.
+>> + */
+>> +int devm_led_classdev_multicolor_register(struct device *parent,
+>> +                      struct led_classdev_mc *mcled_cdev)
+>> +{
+>> +    struct led_classdev_mc **dr;
+>> +    int ret;
+>> +
+>> +    dr = devres_alloc(devm_led_classdev_multicolor_release,
+>> +              sizeof(*dr), GFP_KERNEL);
+>> +    if (!dr)
+>> +        return -ENOMEM;
+>> +
+>> +    ret = led_classdev_multicolor_register(parent, mcled_cdev);
+>> +    if (ret) {
+>> +        devres_free(dr);
+>> +        return ret;
+>> +    }
+>> +
+>> +    *dr = mcled_cdev;
+>> +    devres_add(parent, dr);
+>> +
+>> +    return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(devm_led_classdev_multicolor_register);
+>> +
+>> +static int devm_led_classdev_multicolor_match(struct device *dev,
+>> +                          void *res, void *data)
+>> +{
+>> +    struct mcled_cdev **p = res;
+>> +
+>> +    if (WARN_ON(!p || !*p))
+>> +        return 0;
+>> +
+>> +    return *p == data;
+>> +}
+>> +
+>> +/**
+>> + * devm_led_classdev_multicolor_unregister() - resource managed
+>> + *                    led_classdev_multicolor_unregister()
+>> + * @parent: The device to unregister.
+>> + * @mcled_cdev: the led_classdev_mc structure for this device.
+>> + */
+>> +void devm_led_classdev_multicolor_unregister(struct device *dev,
+>> +                  struct led_classdev_mc *mcled_cdev)
+>> +{
+>> +    WARN_ON(devres_release(dev,
+>> +                   devm_led_classdev_multicolor_release,
+>> +                   devm_led_classdev_multicolor_match, mcled_cdev));
+>> +}
+>> +EXPORT_SYMBOL_GPL(devm_led_classdev_multicolor_unregister);
+>> +
+>> +MODULE_AUTHOR("Dan Murphy <dmurphy@ti.com>");
+>> +MODULE_DESCRIPTION("Multi Color LED class interface");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/include/linux/led-class-multicolor.h 
+>> b/include/linux/led-class-multicolor.h
+>> new file mode 100644
+>> index 000000000000..f9e71d984b03
+>> --- /dev/null
+>> +++ b/include/linux/led-class-multicolor.h
+>> @@ -0,0 +1,95 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +/* LED Multicolor class interface
+>> + * Copyright (C) 2019 Texas Instruments Incorporated - 
+>> http://www.ti.com/
+>> + */
+>
+> Let's have C++ comment style also here.
+>
+ACK
+
+
+>> +#ifndef __LINUX_MULTICOLOR_LEDS_H_INCLUDED
+>> +#define __LINUX_MULTICOLOR_LEDS_H_INCLUDED
+>> +
+>> +#include <linux/leds.h>
+>> +#include <dt-bindings/leds/common.h>
+> [...]
+>
+>
