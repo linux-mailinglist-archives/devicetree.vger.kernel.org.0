@@ -2,87 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38EB14C3F2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 01:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0EA24C463
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 02:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727244AbfFSXGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 19:06:36 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:42814 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726298AbfFSXGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jun 2019 19:06:36 -0400
-Received: by mail-lf1-f68.google.com with SMTP id y13so901982lfh.9
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2019 16:06:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=w4Y7npehQHkGR9ZyNktH8C9uASvmvTBedkhISQvIZ9k=;
-        b=Fcq06cp1h0q0diFEOmLP4HyLdcxpztf2pxFD7eZk/FNLGFoGQTR4vk1WfwUcVVGg0U
-         RXFC+R7dG4dBu/zzP0vxDcz8NTxCOuk3Sfzg34d7M7UEfPUv51Ux3y64hYB//jKOAC8d
-         XWq3CsV6aiAEOJGXfRMDLksIW/5n6j6y+SGDa5AtOpaEMv29nvp7RR1vTkspX3HRo3Lp
-         NxzF/ce2xuBrsI174TNraQqpUOm/+POA/I4WDKalmtHKdLMY8d+SnrmwYPWF8UQ67H1A
-         DoJ5i7aDG57ie0lmXDqyc8J5ORmgP6ulKNmmrTlWoHdo1qeDz11lB1RuadmxdxEF4kOJ
-         iuDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=w4Y7npehQHkGR9ZyNktH8C9uASvmvTBedkhISQvIZ9k=;
-        b=Yhpm5fT3Ca8ipNUUiyE/nmghor+LDkvo9Vtj/svLhA5f0eOvYP7Ie2yL3jLZpBdeTM
-         AWfTHPMtnEASiXneyIwmSV6fGGKBDZ4ZLi4FTnNBkvWHKMUjK/pJaoyUcc3r5J7Zo1wG
-         /P5GzjTGjdrOZ66Eb48zl9JOIoY+FX6cPFkFId1GJS21GLg/jNQdzO3k4lDsVrYDqGqn
-         F7isJlCnk942o2yYnItvbhqI+Qs2CuIpb3Uc9iCjklpwZYJQPY4rYum0i875Eleid6to
-         lSENSj6XOxSr4IUuh4IB4REeITdSrD0skBwGDQ8qE4SwwReixT5pCvH0RmL30aILrfPh
-         3USA==
-X-Gm-Message-State: APjAAAUGi3BYagpJLiOm6I/S7ZbvhpSWvEcJKQHskYNYIqRm4ClO1ByT
-        eKjl+iH68Tsg4ikZZBso1c8VIlhM0xV9IR5ujpU=
-X-Google-Smtp-Source: APXvYqz5qNp7bQl4P1c94Sxwx1VfLG74iLG2769221cs07F85IKx7mRaN69wQlVZ6VkqJUxd0h7cL2WMAyZrkdMu8E8=
-X-Received: by 2002:a19:5044:: with SMTP id z4mr3011881lfj.80.1560985594396;
- Wed, 19 Jun 2019 16:06:34 -0700 (PDT)
+        id S1730449AbfFTAP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 20:15:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56078 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726479AbfFTAP2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 20:15:28 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 93426218BE;
+        Thu, 20 Jun 2019 00:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1560989726;
+        bh=Cyw3CS4Us7cHDynulRLePwpLSsuY8ho08g4vXgTjDFM=;
+        h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
+        b=uxkDxyYpF7laGQMQdbheNapqj0FQjS0o/hFsG69mDV7yMnicTh9sX+q1GYO8mfbwg
+         E1z69sHUGBcQdsi2WlYDYbSc4B2+s17Nz6qJQoCAMJgUsjAbryk7FV2ai2kP081uXc
+         0hRlrWl2NbES9/L1UjKNP/E97FgjeS8RMgUcodoM=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <E1hdjBO-0007Yt-9M@rmk-PC.armlinux.org.uk> <20190619223727.zgfypqxg7bpxtduh@shell.armlinux.org.uk>
-In-Reply-To: <20190619223727.zgfypqxg7bpxtduh@shell.armlinux.org.uk>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 19 Jun 2019 20:06:49 -0300
-Message-ID: <CAOMZO5BfbGoh6N42xsv2WBz3cHot8VOqa-4rx0Y8YczC2Xzz0g@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-sr-som: fix AR8035 phy interface mode
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190617082613.109131-2-brendanhiggins@google.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com> <20190617082613.109131-2-brendanhiggins@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+User-Agent: alot/0.8.1
+Date:   Wed, 19 Jun 2019 17:15:25 -0700
+Message-Id: <20190620001526.93426218BE@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
+Quoting Brendan Higgins (2019-06-17 01:25:56)
+> diff --git a/kunit/test.c b/kunit/test.c
+> new file mode 100644
+> index 0000000000000..d05d254f1521f
+> --- /dev/null
+> +++ b/kunit/test.c
+> @@ -0,0 +1,210 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Base unit test (KUnit) API.
+> + *
+> + * Copyright (C) 2019, Google LLC.
+> + * Author: Brendan Higgins <brendanhiggins@google.com>
+> + */
+> +
+> +#include <linux/sched/debug.h>
+> +#include <kunit/test.h>
+> +
+> +static bool kunit_get_success(struct kunit *test)
+> +{
+> +       unsigned long flags;
+> +       bool success;
+> +
+> +       spin_lock_irqsave(&test->lock, flags);
+> +       success =3D test->success;
+> +       spin_unlock_irqrestore(&test->lock, flags);
 
-On Wed, Jun 19, 2019 at 7:37 PM Russell King - ARM Linux admin
-<linux@armlinux.org.uk> wrote:
->
-> On Wed, Jun 19, 2019 at 11:35:58PM +0100, Russell King wrote:
-> > A change to the AT803x driver fixed the handling of the phy interface
-> > mode, but this breaks all platforms that use "rgmii" as the mode in
-> > their DT.  Fix the Solidrun platforms.
-> >
-> > Fixes: 6d4cd041f0af ("net: phy: at803x: disable delay only for RGMII mode")
-> > Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
->
-> Note that without this, SolidRun Hummingboard and Cubox-i platforms
-> have no working ethernet with at least 5.1 kernels, which is a
-> regression.
+I still don't understand the locking scheme in this code. Is the
+intention to make getter and setter APIs that are "safe" by adding in a
+spinlock that is held around getting and setting various members in the
+kunit structure?
 
-Commit 0672d22a1924 ("ARM: dts: imx: Fix the AR803X phy-mode") fixes
-this issue in mainline and it has already been applied to the 5.1
-stable tree as well.
+In what situation is there more than one thread reading or writing the
+kunit struct? Isn't it only a single process that is going to be
+operating on this structure? And why do we need to disable irqs? Are we
+expecting to be modifying the unit tests from irq contexts?
 
-Thanks
+> +
+> +       return success;
+> +}
+> +
+> +static void kunit_set_success(struct kunit *test, bool success)
+> +{
+> +       unsigned long flags;
+> +
+> +       spin_lock_irqsave(&test->lock, flags);
+> +       test->success =3D success;
+> +       spin_unlock_irqrestore(&test->lock, flags);
+> +}
+> +
+> +static int kunit_vprintk_emit(int level, const char *fmt, va_list args)
+> +{
+> +       return vprintk_emit(0, level, NULL, 0, fmt, args);
+> +}
+> +
+> +static int kunit_printk_emit(int level, const char *fmt, ...)
+> +{
+> +       va_list args;
+> +       int ret;
+> +
+> +       va_start(args, fmt);
+> +       ret =3D kunit_vprintk_emit(level, fmt, args);
+> +       va_end(args);
+> +
+> +       return ret;
+> +}
+> +
+> +static void kunit_vprintk(const struct kunit *test,
+> +                         const char *level,
+> +                         struct va_format *vaf)
+> +{
+> +       kunit_printk_emit(level[1] - '0', "\t# %s: %pV", test->name, vaf);
+> +}
+> +
+> +static bool kunit_has_printed_tap_version;
+
+Can you please move this into function local scope in the function
+below?
+
+> +
+> +static void kunit_print_tap_version(void)
+> +{
+> +       if (!kunit_has_printed_tap_version) {
+> +               kunit_printk_emit(LOGLEVEL_INFO, "TAP version 14\n");
+> +               kunit_has_printed_tap_version =3D true;
+> +       }
+> +}
+> +
+[...]
+> +
+> +static bool kunit_module_has_succeeded(struct kunit_module *module)
+> +{
+> +       const struct kunit_case *test_case;
+> +       bool success =3D true;
+> +
+> +       for (test_case =3D module->test_cases; test_case->run_case; test_=
+case++)
+> +               if (!test_case->success) {
+> +                       success =3D false;
+> +                       break;
+
+Why not 'return false'?
+
+> +               }
+> +
+> +       return success;
+
+And 'return true'?
+
+> +}
+> +
+> +static size_t kunit_module_counter =3D 1;
+> +
+> +static void kunit_print_subtest_end(struct kunit_module *module)
+> +{
+> +       kunit_print_ok_not_ok(false,
+> +                             kunit_module_has_succeeded(module),
+> +                             kunit_module_counter++,
+> +                             module->name);
+> +}
+> +
+> +static void kunit_print_test_case_ok_not_ok(struct kunit_case *test_case,
+> +                                           size_t test_number)
+> +{
+> +       kunit_print_ok_not_ok(true,
+> +                             test_case->success,
+> +                             test_number,
+> +                             test_case->name);
+> +}
+> +
+> +void kunit_init_test(struct kunit *test, const char *name)
+> +{
+> +       spin_lock_init(&test->lock);
+> +       test->name =3D name;
+> +       test->success =3D true;
+> +}
+> +
+> +/*
+> + * Performs all logic to run a test case.
+> + */
+> +static void kunit_run_case(struct kunit_module *module,
+> +                          struct kunit_case *test_case)
+> +{
+> +       struct kunit test;
+> +       int ret =3D 0;
+> +
+> +       kunit_init_test(&test, test_case->name);
+> +
+> +       if (module->init) {
+> +               ret =3D module->init(&test);
+> +               if (ret) {
+> +                       kunit_err(&test, "failed to initialize: %d\n", re=
+t);
+> +                       kunit_set_success(&test, false);
+> +                       return;
+> +               }
+> +       }
+> +
+> +       if (!ret)
+> +               test_case->run_case(&test);
+
+Do we need this if condition? ret can only be set to non-zero above but
+then we'll exit the function early so it seems unnecessary. Given that,
+ret should probably be moved into the module->init path.
+
+> +
+> +       if (module->exit)
+> +               module->exit(&test);
+> +
+> +       test_case->success =3D kunit_get_success(&test);
+> +}
+> +
