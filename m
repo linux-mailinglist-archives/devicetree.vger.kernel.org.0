@@ -2,115 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1D74CA40
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 11:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89EDA4CA58
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 11:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725939AbfFTJHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 05:07:24 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39092 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725875AbfFTJHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 05:07:24 -0400
-Received: by mail-wm1-f65.google.com with SMTP id z23so2314550wma.4;
-        Thu, 20 Jun 2019 02:07:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=BMLC0UjeVndE6cwUWtdBVuBJxQ2ZnMRhYWK+s7JXyLM=;
-        b=NqToZ/ZSVmmCTY4A/gk7pQCnUSpLKfJazYKltxEIZq3TKVMZxYziIJWKH1ad5J+8X6
-         KRSxvfuf7M4Z0xI36IybU82GFicEn+CharNpV214AZQEgPCI0f5CuQQoir3B18ZDP2bv
-         qSJoLyneMJLJMhQOYb/c+wquZX60y0eiz/ppIcy5hu7WSQA9YK/0cSIYh+qH9CR6ti5W
-         aGLPUFMl/c/9N8cSClmiX+7ED6rvzQF6PUhp4HQ5qsFLo7gdOliRYknqQpeTHC5D6Z8y
-         tH2tFLXAfvLKK9ufbG/EBjP+0dfAkH1F82kZu3KwTrXP29MhHZ87jptowjI9fY+q45V/
-         6yig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BMLC0UjeVndE6cwUWtdBVuBJxQ2ZnMRhYWK+s7JXyLM=;
-        b=lSwrAQmsEP/k2llX4HZbHPMHK8A3HL3xCFvw4CWCtPRMDHxsTfVxKwWMuzo3p53jCm
-         9Fg13OvjKPYWdyxwYCO7eoiTxDGGkok2b8OQlYCjzmRYJhAyLm7cA7crPgLKQcbvibfH
-         IPTY6jGhvuRz/ozPLV53fO1SbfkA9TSCjDugI1y/cYAwRg9nLBETN+3qwKk4QyaMrMOv
-         X7h1E3GF7XOFiusTsrReJI0Y0fAXr261t0/+H66+BaIChSPr1xkgHlVmTjXlNBjp9CMd
-         u4uz+aY5oo4E9YX9vQ8GaDXS4DzHIaqXq57oh5phA5fbD3UOYh132qiAWXkUlDu66LR/
-         hiFA==
-X-Gm-Message-State: APjAAAVgNiMZTVJcHAgOtTzaA7QPEqY2hEpy9m0+i6Nygdu9l5wqbDg2
-        wPQMWBwXF+WU9obKjnYoWww=
-X-Google-Smtp-Source: APXvYqxPbf9Xd5arqQa1kZ0i/rECTVCH6BEUdMPQonyjrf/B5lGzLobyPIlNoNB1lm5COCbm9zZn0w==
-X-Received: by 2002:a1c:630a:: with SMTP id x10mr2044678wmb.113.1561021642104;
-        Thu, 20 Jun 2019 02:07:22 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id b2sm26630918wrp.72.2019.06.20.02.07.21
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 02:07:21 -0700 (PDT)
-Date:   Thu, 20 Jun 2019 11:07:20 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [RFC PATCH 4/4] dt-bindings: display: Convert innolux,ee101ia-01
- panel to DT schema
-Message-ID: <20190620090720.GE26689@ulmo>
-References: <20190619215156.27795-1-robh@kernel.org>
- <20190619215156.27795-4-robh@kernel.org>
+        id S1726497AbfFTJJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 05:09:03 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:48317 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731164AbfFTJJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 05:09:03 -0400
+X-Originating-IP: 90.88.23.150
+Received: from localhost (aaubervilliers-681-1-81-150.w90-88.abo.wanadoo.fr [90.88.23.150])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 145D4FF80E;
+        Thu, 20 Jun 2019 09:08:57 +0000 (UTC)
+Date:   Thu, 20 Jun 2019 11:08:57 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 01/16] dt-bindings: net: Add YAML schemas for the
+ generic Ethernet options
+Message-ID: <20190620090857.z6gru4cilq6z7e4w@flea>
+References: <27aeb33cf5b896900d5d11bd6957eda268014f0c.1560937626.git-series.maxime.ripard@bootlin.com>
+ <20190619140314.GC18352@lunn.ch>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2qXFWqzzG3v1+95a"
+        protocol="application/pgp-signature"; boundary="52tq5ryctgrkeugj"
 Content-Disposition: inline
-In-Reply-To: <20190619215156.27795-4-robh@kernel.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <20190619140314.GC18352@lunn.ch>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2qXFWqzzG3v1+95a
+--52tq5ryctgrkeugj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 19, 2019 at 03:51:56PM -0600, Rob Herring wrote:
-> Convert the innolux,ee101ia-01 LVDS panel binding to DT schema.
->=20
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../display/panel/innolux,ee101ia-01d.txt     |  7 -------
->  .../display/panel/innolux,ee101ia-01d.yaml    | 21 +++++++++++++++++++
->  2 files changed, 21 insertions(+), 7 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/innol=
-ux,ee101ia-01d.txt
->  create mode 100644 Documentation/devicetree/bindings/display/panel/innol=
-ux,ee101ia-01d.yaml
+Hi Andrew,
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+On Wed, Jun 19, 2019 at 04:03:14PM +0200, Andrew Lunn wrote:
+> > +  phy-connection-type:
+> > +    description:
+> > +      Operation mode of the PHY interface
+> > +    enum:
+> > +      # There is not a standard bus between the MAC and the PHY,
+> > +      # something proprietary is being used to embed the PHY in the
+> > +      # MAC.
+>
+> ...
+>
+> > +
+> > +  phy-mode:
+> > +    $ref: "#/properties/phy-connection-type"
+> > +    deprecated: true
+>
+> I don't think phy-mode is actually deprecated. ethernet.txt actually says:
+>
+> "This is now a de-facto standard property;" and no mentions that is
+> should not be used. Looking at actual device trees, phy-mode is by far
+> more popular than phy-connection-type.
 
---2qXFWqzzG3v1+95a
+Looking at the phy-connection-type documentation, I was under this
+impression, sorry.
+
+I'll drop it then.
+
+> fwnode_get_phy_mode() first looks for phy-mode and only falls back to
+> phy-connection-type if it is not present. The same is true for
+> of_get_phy_mode().
+>
+> > +  fixed-link:
+> > +    allOf:
+> > +      - if:
+> > +          type: array
+> > +        then:
+> > +          minItems: 1
+> > +          maxItems: 1
+> > +          items:
+> > +            items:
+> > +              - minimum: 0
+> > +                maximum: 31
+> > +                description:
+> > +                  Emulated PHY ID, choose any but unique to the all
+> > +                  specified fixed-links
+> > +
+> > +              - enum: [0, 1]
+> > +                description:
+> > +                  Duplex configuration. 0 for half duplex or 1 for
+> > +                  full duplex
+> > +
+> > +              - enum: [10, 100, 1000]
+> > +                description:
+> > +                  Link speed in Mbits/sec.
+> > +
+> > +              - enum: [0, 1]
+> > +                description:
+> > +                  Pause configuration. 0 for no pause, 1 for pause
+> > +
+> > +              - enum: [0, 1]
+> > +                description:
+> > +                  Asymmetric pause configuration. 0 for no asymmetric
+> > +                  pause, 1 for asymmetric pause
+> > +
+>
+> This array of 5 values format should be marked as deprecated.
+
+Right, I'll add it.
+
+> > +
+> > +      - if:
+> > +          type: object
+> > +        then:
+> > +          properties:
+> > +            speed:
+> > +              allOf:
+> > +                - $ref: /schemas/types.yaml#definitions/uint32
+> > +                - enum: [10, 100, 1000]
+>
+> This recently changed, depending on context. If PHYLINK is being used,
+> any speed is allowed. If phylib is used, then only these speeds are
+> allowed. And we are starting to see some speeds other than listed
+> here.
+
+phylink seems to be described in a separate binding document, maybe we
+can adjust that later?
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--52tq5ryctgrkeugj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0LTMgACgkQ3SOs138+
-s6HTnA//XpMRpvIzlsj6bjRvDhdgl8TvPHw+KHstPrkShJJAVgRtW2KVQLdY5nTm
-24C05Hn72m0VpcFpczml93ye6xWbctMc2fTEVXEEoA9sSi3n0MPPP07qoun+aDHk
-gA+NM90RqQVW68KAckevmejVJxzhlN8IsmvLuZLxx4x2EcbEqFO5z9yt199zvItU
-M41Xi2lWdLvDJplQHd5kKPYPHVYxyXNVd5mZA/LbFbWjVxp3RpcHOGDSIwLchLIP
-exole/KJ1H7RECQyShMq1FRkL8I7cxQKF39b1SA8qY0zsUo+t49247jZrCJgkU8u
-dvIRdNsT4mEVpIAuPIUTLeRxZigihvqbz2Ay00C6eGU7iL8HQX97dQKhn1/MImxe
-ck662ma0pZHNNgCkcN3Bf+4fxvHVsBt1a2X3V0MM3cDLc8Bu0TiIuIpH3H9Bh44h
-PbQzzH+1052oizKdXIiFtmoyGfJpZ5jHRuNQGbzE4ykAy6lb7uey8epWmDql9B14
-kBUOHgAOdF+LKKZZMH02p5ISXGMAJ4Pe6HoHL/ox5DfosyMUnUGRIflYpUenliZe
-Mgwr3ThVkTKeLwOpyhQdMvJStL1I3WafYH9vGYDgju0Vqn9jLCrf9+GonIj8NKVV
-vsn6jEkuy9AQi56DWl3YRFUyv8J8lJyIHkcTWYxGe60cYnkbQeU=
-=wPVf
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXQtNKQAKCRDj7w1vZxhR
+xU1mAP9UxX/bUs/+sGjv2lf1IVQAuWCDAFQPe+SNpltGaaRbzAD/Z9kZa0JhhgBo
+aIO1LH2YT0uPFhUlcf7U7bvipC2mnQ0=
+=QITW
 -----END PGP SIGNATURE-----
 
---2qXFWqzzG3v1+95a--
+--52tq5ryctgrkeugj--
