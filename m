@@ -2,170 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB204CFD1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D674D025
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726777AbfFTOBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 10:01:02 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:30104 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726802AbfFTOBC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 10:01:02 -0400
-X-UUID: 94cc822e567147ea8d262cb818830815-20190620
-X-UUID: 94cc822e567147ea8d262cb818830815-20190620
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 2051957500; Thu, 20 Jun 2019 22:00:54 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 20 Jun
- 2019 22:00:52 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 20 Jun 2019 22:00:51 +0800
-Message-ID: <1561039251.4021.24.camel@mhfsdcap03>
-Subject: Re: [PATCH v7 20/21] iommu/mediatek: Fix iova_to_phys PA start for
- 4GB mode
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Rob Herring" <robh+dt@kernel.org>, <youlin.pei@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        <srv_heupstream@mediatek.com>, Will Deacon <will.deacon@arm.com>,
-        <linux-kernel@vger.kernel.org>, Evan Green <evgreen@chromium.org>,
-        "Tomasz Figa" <tfiga@google.com>,
-        <iommu@lists.linux-foundation.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
-        <anan.sun@mediatek.com>, <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 20 Jun 2019 22:00:51 +0800
-In-Reply-To: <db9b3b2f-3206-01bf-f0f9-67251e5ff756@gmail.com>
-References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com>
-         <1560169080-27134-21-git-send-email-yong.wu@mediatek.com>
-         <db9b3b2f-3206-01bf-f0f9-67251e5ff756@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1731943AbfFTOQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 10:16:09 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:46274 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726686AbfFTOQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 10:16:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1561040165; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=61YqVHCdsBReXxm/3QTsbGF8fRfNDuePQ2kaErTMnAs=;
+        b=fYzlzc0aSLNqJ4oz7Y5SJxxDVNalZjIKYNa1B6M7JF5mbOthBfCzouM68lL+Ivzzx3sfxk
+        RLKq2Mqf15Xe+loGSqQmQ1aIFirnXaGY2YNuIyIr5T+8ehvWwXRzWh36uARG+zImqflEtw
+        +RnVcMiADHF6PqCywgI6huLIZX+Q270=
+Date:   Thu, 20 Jun 2019 16:15:59 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 2/2] DRM: Add KMS driver for the Ingenic JZ47xx SoCs
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, od@zcrc.me,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
+Message-Id: <1561040159.1978.0@crapouillou.net>
+In-Reply-To: <20190619122622.GB29084@ravnborg.org>
+References: <20190603152331.23160-1-paul@crapouillou.net>
+        <20190603152331.23160-2-paul@crapouillou.net>
+        <20190619122622.GB29084@ravnborg.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 9F3A6F19158ACBE29AA97F263B906A0DA454BBC7D4DEDC72D58952D01E5C29BA2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-06-18 at 18:35 +0200, Matthias Brugger wrote:
-> 
-> On 10/06/2019 14:17, Yong Wu wrote:
-> > In the 4GB mode, the physical address is remapped,
-> > 
-> > Here is the detailed remap relationship.
-> > CPU PA         ->    HW PA
-> > 0x4000_0000          0x1_4000_0000 (Add bit32)
-> > 0x8000_0000          0x1_8000_0000 ...
-> > 0xc000_0000          0x1_c000_0000 ...
-> > 0x1_0000_0000        0x1_0000_0000 (No change)
-> > 
-> > Thus, we always add bit32 for PA when entering mtk_iommu_map.
-> > But in the iova_to_phys, the CPU don't need this bit32 if the
-> > PA is from 0x1_4000_0000 to 0x1_ffff_ffff.
-> > This patch discards the bit32 in this iova_to_phys in the 4GB mode.
-> > 
-> > Fixes: 30e2fccf9512 ("iommu/mediatek: Enlarge the validate PA range
-> > for 4GB mode")
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > ---
-> >  drivers/iommu/mtk_iommu.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> > 
-> > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> > index 67cab2d..34f2e40 100644
-> > --- a/drivers/iommu/mtk_iommu.c
-> > +++ b/drivers/iommu/mtk_iommu.c
-> > @@ -119,6 +119,19 @@ struct mtk_iommu_domain {
-> >  
-> >  static const struct iommu_ops mtk_iommu_ops;
-> >  
-> > +/*
-> > + * In M4U 4GB mode, the physical address is remapped as below:
-> > + *  CPU PA         ->   M4U HW PA
-> > + *  0x4000_0000         0x1_4000_0000 (Add bit32)
-> > + *  0x8000_0000         0x1_8000_0000 ...
-> > + *  0xc000_0000         0x1_c000_0000 ...
-> > + *  0x1_0000_0000       0x1_0000_0000 (No change)
-> > + *
-> > + * Thus, We always add BIT32 in the iommu_map and disable BIT32 if PA is >=
-> > + * 0x1_4000_0000 in the iova_to_phys.
-> > + */
-> > +#define MTK_IOMMU_4GB_MODE_PA_140000000     0x140000000UL
-> > +
-> >  static LIST_HEAD(m4ulist);	/* List all the M4U HWs */
-> >  
-> >  #define for_each_m4u(data)	list_for_each_entry(data, &m4ulist, list)
-> > @@ -415,6 +428,7 @@ static phys_addr_t mtk_iommu_iova_to_phys(struct iommu_domain *domain,
-> >  					  dma_addr_t iova)
-> >  {
-> >  	struct mtk_iommu_domain *dom = to_mtk_domain(domain);
-> > +	struct mtk_iommu_data *data = mtk_iommu_get_m4u_data();
-> >  	unsigned long flags;
-> >  	phys_addr_t pa;
-> >  
-> > @@ -422,6 +436,10 @@ static phys_addr_t mtk_iommu_iova_to_phys(struct iommu_domain *domain,
-> >  	pa = dom->iop->iova_to_phys(dom->iop, iova);
-> >  	spin_unlock_irqrestore(&dom->pgtlock, flags);
-> >  
-> > +	if (data->plat_data->has_4gb_mode && data->dram_is_4gb &&
-> > +	    pa >= MTK_IOMMU_4GB_MODE_PA_140000000)
-> > +		pa &= ~BIT_ULL(32);
-> > +
-> 
-> Hm, I wonder if we could fix this as first patch in the series, especially before:
-> "[PATCH 06/21] iommu/io-pgtable-arm-v7s: Extend MediaTek 4GB Mode"
 
-OK.
 
-> 
-> This would make it easier for the stable maintainer to cherry-pick the fix.
-> Without 100% understanding the code, it seems suspicious to me, that you first
-> move the setting of the bit32 and bit33 into v7s and later explicitly clean the
-> bits here.
-> 
-> So my take on this is, that patch 6/21 introduced the regression you are trying
-> to fix here. As said that is speculation as I don't understand the code in its
-> whole.
-> 
-> Any clarification would be useful.
+Le mer. 19 juin 2019 =E0 14:26, Sam Ravnborg <sam@ravnborg.org> a =E9crit=20
+:
+> Hi Paul.
+>=20
+> On Mon, Jun 03, 2019 at 05:23:31PM +0200, Paul Cercueil wrote:
+>>  Add a KMS driver for the Ingenic JZ47xx family of SoCs.
+>>  This driver is meant to replace the aging jz4740-fb driver.
+>>=20
+>>  This driver does not make use of the simple pipe helper, for the=20
+>> reason
+>>  that it will soon be updated to support more advanced features like
+>>  multiple planes, IPU integration for colorspace conversion and=20
+>> up/down
+>>  scaling, support for DSI displays, and TV-out and HDMI outputs.
+>>=20
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  Tested-by: Artur Rojek <contact@artur-rojek.eu>
+>>  ---
+>>=20
+>>  Notes:
+>>      v2: - Remove custom handling of panel. The panel is now=20
+>> discovered using
+>>      	  the standard API.
+>>      	- Lots of small tweaks suggested by upstream
+>>=20
+>>      v3: - Use devm_drm_dev_init()
+>>      	- Update compatible strings to -lcd instead of -drm
+>>      	- Add destroy() callbacks to plane and crtc
+>>      	- The ingenic,lcd-mode is now read from the bridge's DT node
+>>=20
+>>      v4: Remove ingenic,lcd-mode property completely. The various=20
+>> modes are now
+>>      	deduced from the connector type, the pixel format or the bus=20
+>> flags.
+>>=20
+>>      v5: - Fix framebuffer size incorrectly calculated for 24bpp=20
+>> framebuffers
+>>      	- Use 32bpp framebuffer instead of 16bpp, as it'll work with=20
+>> both
+>>      	  16-bit and 24-bit panel
+>>      	- Get rid of drm_format_plane_cpp() which has been dropped=20
+>> upstream
+>>      	- Avoid using drm_format_info->depth, which is deprecated.
+> In the drm world we include the revision notes in the changelog.
+> So I did this when I applied it to drm-misc-next.
+>=20
+> Fixed a few trivial checkpatch warnings about indent too.
+> There was a few too-long-lines warnings that I ignored. Fixing them
+> would have hurt readability.
 
-I guess the commit message in [06/21] will be helpful.
+Thanks.
 
-In the previous mt8173 and mt2712, the M4U HW support "4GB mode" in
-which the range of dram is from 0x4000_0000 to 0x1_3fff_ffff and it was
-remapped to 0x1_0000_0000 ~0x1_ffff_ffff(For readable, I have wrote the
-re-map relationship into the code in this patch.). but mt8183 don't need
-remap the dram address(0x4000_0000 ~ 0x3_ffff_ffff).
+> I assume you will maintain this driver onwards from now.
+> Please request drm-misc commit rights (see
+> https://www.freedesktop.org/wiki/AccountRequests/)
+> You will need a legacy SSH account.
 
-In order to unify the code, we add bit32 for "4GB mode". But actually
-the PA doesn't always have bit32, thus, I have to remove bit32 when PA >
-0x1_4000_0000.
+I requested an account here:
+https://gitlab.freedesktop.org/freedesktop/freedesktop/issues/162
 
-So sorry that the "4GB mode" is a little unreadable and special, And the
-4GB patch(30e2fccf9512 ("iommu/mediatek: Enlarge the validate PA range
-for 4GB mode") has introduced several fix patches.
+> And you should familiarize yourself with the maintainer-tools:
+> https://drm.pages.freedesktop.org/maintainer-tools/index.html
+>=20
+> For my use I use "dim update-branches; dim apply; dim push
+> So only a small subset i needed for simple use.
+>=20
+> 	Sam
 
-> 
-> Regards,
-> Matthias
-> 
-> >  	return pa;
-> >  }
-> >  
-> > 
-> 
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
-
+=
 
