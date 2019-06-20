@@ -2,176 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E134D3DE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 818614D40C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:43:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731455AbfFTQgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 12:36:06 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:8158 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726530AbfFTQgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 12:36:06 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0bb5f40000>; Thu, 20 Jun 2019 09:36:04 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Thu, 20 Jun 2019 09:36:04 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Thu, 20 Jun 2019 09:36:04 -0700
-Received: from [10.24.70.135] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Jun
- 2019 16:36:00 +0000
-Subject: Re: [PATCH V6 18/27] PCI: tegra: Program AFI_CACHE* registers only
- for Tegra20
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <vidyas@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190618180206.4908-19-mmaddireddy@nvidia.com>
- <20190620162638.GA18771@e121166-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <b90ebb2c-03b2-b7c0-7a70-02dfed00de3a@nvidia.com>
-Date:   Thu, 20 Jun 2019 22:05:30 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1726965AbfFTQnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 12:43:51 -0400
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:43427 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726686AbfFTQnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 12:43:51 -0400
+Received: by mail-vs1-f66.google.com with SMTP id j26so1957124vsn.10
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 09:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OeFgssC06Ca4X3IXaHWlew+6T79MlwgCU07uMivbM10=;
+        b=TtS7/2F/OTZGse3QP1Ezkd7+vMwTgyaEqyIgOAtPig7D5aPJz70bKNReyIUkk7+On6
+         UWVf+T8HfAS8IFEMpSLgAMqz+HQoyrcztrkZ54szcGOHzusNg5Fw0O9cWtDmQmMLZwJE
+         SE7nqQdAv/L+QXxO/PwU7I4Nw3N5EnBJEPuVE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OeFgssC06Ca4X3IXaHWlew+6T79MlwgCU07uMivbM10=;
+        b=IozZds4JZBwj+x4/rw8vHCTGMLFOR4Q2ruI4Z/hStdNzs4ClLB+GI/2bInpebBchZA
+         5CxyFYGCdZvb7t+dxgggqlgE+ufoC56/cVV9RQ01DZd/kJfvnmEtpA0MdUFLYgvromm/
+         SzbTEhYbJG/UzDYrosJ4zDTraKtI+M/E3nYRVUXhTFvwCwqr/6Eev+SNDe7boxb0XABn
+         ELrLFgnNgANOrb1s4JLud3pG5eom02Wo6gxw07hIl/uFcSuh82tZT4VNcucMhLJYVSxi
+         bNt8BvhrmBBxHYNU6to/PFnL7GnOZtPbw0PUb6J11B9ANIXG+lyvIz7yQ1VgtRz8NYHF
+         hJ6g==
+X-Gm-Message-State: APjAAAVH4TZNaj25RDYO/Trkx2WVWT8mCrNiFuwKZL1sqhwS+xObkp+O
+        k2PwRGnSV7vMhE9xO/M1DPys2N9dXzY=
+X-Google-Smtp-Source: APXvYqxBcdq3T0XvHirXZGYCLz7NhfV0Ye7NxwAtNGQdWAkuVM3An/kFW7rFmQdLOV49BVMOsvmv/A==
+X-Received: by 2002:a67:c113:: with SMTP id d19mr54156170vsj.89.1561049030301;
+        Thu, 20 Jun 2019 09:43:50 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 127sm25365vsi.24.2019.06.20.09.43.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Thu, 20 Jun 2019 09:43:49 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id 190so1948869vsf.9
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 09:43:49 -0700 (PDT)
+X-Received: by 2002:a67:fd91:: with SMTP id k17mr58238625vsq.121.1561049028723;
+ Thu, 20 Jun 2019 09:43:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190620162638.GA18771@e121166-lin.cambridge.arm.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1561048564; bh=NI9/AKwnnR/ZexKWfXN0pUt6xoymGwAgrazJNTj4P4Y=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=B26v4Uo0SfFWQ2zmrzd78q9vpp+4IqwC8Phg9BvgDGJHRtVkBPT/3PuVsGQK7Dk3j
-         2N9JvW5eT0ZT934BZIBNfL1rjhW5qzAjdt2CmU/sLglGk9gIzUccU36BY5lwopIc6/
-         vLILYQ5MDxx/PTaJ8jGAqbxTeQItRKaf3rQ99zdfhKqaZkBbSTr+hbBWBkhfwKYCN4
-         8KNwd34KICd2MCxx3j6bMKuIIymnFXAxgXN7MV9AzuXio/gWaYw0jujLi707yES8WS
-         JSIfq9RO+KJR1KrX7hLI8dJTw0MmeWppJBOmGalk0ccsyjRaiPo70/t7x3v5WRVIph
-         1UMCHyolpNX2A==
+References: <20190618213406.7667-1-ezequiel@collabora.com> <20190618213406.7667-2-ezequiel@collabora.com>
+In-Reply-To: <20190618213406.7667-2-ezequiel@collabora.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 20 Jun 2019 09:43:33 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UpZAjrWkQ7qj5Wo2tf2wkg5Q-34Sun0MOtYLBAwY731Q@mail.gmail.com>
+Message-ID: <CAD=FV=UpZAjrWkQ7qj5Wo2tf2wkg5Q-34Sun0MOtYLBAwY731Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: rockchip: document VOP gamma
+ LUT address
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 20-Jun-19 9:56 PM, Lorenzo Pieralisi wrote:
-> On Tue, Jun 18, 2019 at 11:31:57PM +0530, Manikanta Maddireddy wrote:
->> Cacheable upstream transactions are supported in Tegra20 and Tegra186 only.
->> AFI_CACHE* registers are available in Tegra20 to support cacheable upstream
->> transactions. In Tegra186, AFI_AXCACHE register is defined instead of
->> AFI_CACHE* to be in line with its MSS design. Therefore, program AFI_CACHE*
-> What's an MSS ?
+On Tue, Jun 18, 2019 at 2:43 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
 >
-> Lorenzo
-
-Memory subsystem.
-Sorry for using acronym, will you able to update the commit log before applying
-the patch?
-
-Manikanta
-
+> Add the register specifier description for an
+> optional gamma LUT address.
 >
->> registers only for Tegra20.
->>
->> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> ---
->> V6: No change
->>
->> V5: No change
->>
->> V4: No change
->>
->> V3: Initialized has_cache_bars variable for each soc data structure.
->>
->> V2: Used soc variable for comparision instead of compatible string.
->>
->>  drivers/pci/controller/pci-tegra.c | 18 +++++++++++++-----
->>  1 file changed, 13 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
->> index 3d9028cecc18..a746d963ca36 100644
->> --- a/drivers/pci/controller/pci-tegra.c
->> +++ b/drivers/pci/controller/pci-tegra.c
->> @@ -323,6 +323,7 @@ struct tegra_pcie_soc {
->>  	bool program_deskew_time;
->>  	bool raw_violation_fixup;
->>  	bool update_fc_timer;
->> +	bool has_cache_bars;
->>  	struct {
->>  		struct {
->>  			u32 rp_ectl_2_r1;
->> @@ -932,11 +933,13 @@ static void tegra_pcie_setup_translations(struct tegra_pcie *pcie)
->>  	afi_writel(pcie, 0, AFI_AXI_BAR5_SZ);
->>  	afi_writel(pcie, 0, AFI_FPCI_BAR5);
->>  
->> -	/* map all upstream transactions as uncached */
->> -	afi_writel(pcie, 0, AFI_CACHE_BAR0_ST);
->> -	afi_writel(pcie, 0, AFI_CACHE_BAR0_SZ);
->> -	afi_writel(pcie, 0, AFI_CACHE_BAR1_ST);
->> -	afi_writel(pcie, 0, AFI_CACHE_BAR1_SZ);
->> +	if (pcie->soc->has_cache_bars) {
->> +		/* map all upstream transactions as uncached */
->> +		afi_writel(pcie, 0, AFI_CACHE_BAR0_ST);
->> +		afi_writel(pcie, 0, AFI_CACHE_BAR0_SZ);
->> +		afi_writel(pcie, 0, AFI_CACHE_BAR1_ST);
->> +		afi_writel(pcie, 0, AFI_CACHE_BAR1_SZ);
->> +	}
->>  
->>  	/* MSI translations are setup only when needed */
->>  	afi_writel(pcie, 0, AFI_MSI_FPCI_BAR_ST);
->> @@ -2441,6 +2444,7 @@ static const struct tegra_pcie_soc tegra20_pcie = {
->>  	.program_deskew_time = false,
->>  	.raw_violation_fixup = false,
->>  	.update_fc_timer = false,
->> +	.has_cache_bars = true,
->>  	.ectl.enable = false,
->>  };
->>  
->> @@ -2469,6 +2473,7 @@ static const struct tegra_pcie_soc tegra30_pcie = {
->>  	.program_deskew_time = false,
->>  	.raw_violation_fixup = false,
->>  	.update_fc_timer = false,
->> +	.has_cache_bars = false,
->>  	.ectl.enable = false,
->>  };
->>  
->> @@ -2492,6 +2497,7 @@ static const struct tegra_pcie_soc tegra124_pcie = {
->>  	.program_deskew_time = false,
->>  	.raw_violation_fixup = true,
->>  	.update_fc_timer = false,
->> +	.has_cache_bars = false,
->>  	.ectl.enable = false,
->>  };
->>  
->> @@ -2515,6 +2521,7 @@ static const struct tegra_pcie_soc tegra210_pcie = {
->>  	.program_deskew_time = true,
->>  	.raw_violation_fixup = false,
->>  	.update_fc_timer = true,
->> +	.has_cache_bars = false,
->>  	.ectl = {
->>  		.regs = {
->>  			.rp_ectl_2_r1 = 0x0000000f,
->> @@ -2555,6 +2562,7 @@ static const struct tegra_pcie_soc tegra186_pcie = {
->>  	.program_deskew_time = false,
->>  	.raw_violation_fixup = false,
->>  	.update_fc_timer = false,
->> +	.has_cache_bars = false,
->>  	.ectl.enable = false,
->>  };
->>  
->> -- 
->> 2.17.1
->>
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+>  .../bindings/display/rockchip/rockchip-vop.txt         | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.txt b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.txt
+> index 4f58c5a2d195..97ad78cc7e03 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.txt
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.txt
+> @@ -20,6 +20,13 @@ Required properties:
+>                 "rockchip,rk3228-vop";
+>                 "rockchip,rk3328-vop";
+>
+> +- reg: Must contain one entry corresponding to the base address and length
+> +       of the register space. Can optionally contain a second entry
+> +       corresponding to the CRTC gamma LUT address.
+> +
+> +- reg-names: "base" for the base register space. If present, the CRTC
+> +       gamma LUT name should be "lut".
 
+As per Rob Herring, current suggestion is to avoid reg-names when
+possible.  The code should just look for the presence of a 2nd entry
+and assume that if it's there that it's the lut range.  Full context:
+
+https://lore.kernel.org/lkml/CAL_Jsq+MMunmVWqeW9v2RyzsMKP+=kMzeTHNMG4JDHM7Fy0HBg@mail.gmail.com/
+
+-Doug
