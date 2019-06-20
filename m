@@ -2,191 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9E064D3B3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1B04D3D8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 18:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731967AbfFTQ1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 12:27:31 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42410 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726675AbfFTQ1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 12:27:31 -0400
-Received: by mail-io1-f66.google.com with SMTP id u19so2142736ior.9;
-        Thu, 20 Jun 2019 09:27:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CX8s9WxO1kjnOx1IAEplfhAOdKpdfU5oisESF2S2i2s=;
-        b=hW6d35dcH66VjSndHulXY8mLQ+4hFxOw0xq3JUzSx8xgA2yrP3QsqGercEeUzzVABP
-         3TUXmjzoz69MygoW2fqLQ+WFVVg4gAPHkyyrbquwuEGnXa9AfcjyamuERw6SlrNY4Oss
-         pxAicTcXQa1JY3uZ0ia9yjSXFtgujqrQKxnCgMzdApBPL2bzCo7ZCAL6P+gqucikXmTj
-         WNbzVKMcRcV/Q5DvQzCf82P12btX94yjaZtC9WaCmaOwWVbCbCZ/hp9M0s4QQdSOMShV
-         /Hgtud6VdargFmwxxr2DhXQCTXYdGcfcUAMVgxwCibGSLFbkcALOXSF+qRCbZjTKgZBu
-         Tt5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CX8s9WxO1kjnOx1IAEplfhAOdKpdfU5oisESF2S2i2s=;
-        b=aDCoS1AuRlLcGranhqw+6cxqNAU0nG9gnWBTdPa96QDK1zIIUHOEK2epnVP3focScN
-         2wofL+apm9K1jXtnTKF6tP2chPKK+yd7lgTvUsnCSjUU3kuwP8Mk3Hqi1eJ9Lh3fmiEk
-         EXO7l5UJKUGu0PdSPraQljg765a+QL53Q4EPODs6Z3bt1Wdwwra7lCRbkQuTwh1B7eqZ
-         yzPsFoUaxjv+hT+ZJ7gH8usu9ExtlRdnWtfLhH2r2xXLdjsIEgFJdh9htNk1rfRXG835
-         FJNqTC1HLgc9ro59Xf547LNN3wiH+HbxSaERHPwXyYnhXSJYEoIZ5h5z4Ia8g60SX6sW
-         Bc7g==
-X-Gm-Message-State: APjAAAU49d7ptPjEXn7C691tuM1N4Gjvq4R9iybiHO5IovXYCoS5uvxk
-        7l6QPpZalZ10UMr89nkmwjmrfO3UO2G4KiL4LCA=
-X-Google-Smtp-Source: APXvYqxIITI45eune2WDDNkDTdi9twqEa5g2nyH4P6h6nRs/ZfqhK7dpjVB/YYaNuTFCPikSAFjVk7xftozqQGfvaS0=
-X-Received: by 2002:a5d:8c81:: with SMTP id g1mr11763289ion.239.1561048049928;
- Thu, 20 Jun 2019 09:27:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190603083005.4304-1-peng.fan@nxp.com> <20190603083005.4304-2-peng.fan@nxp.com>
- <20190620092241.GC1248@e107155-lin> <20190620171319.13dae226@donnerap.cambridge.arm.com>
-In-Reply-To: <20190620171319.13dae226@donnerap.cambridge.arm.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Thu, 20 Jun 2019 11:27:19 -0500
-Message-ID: <CABb+yY0teBHHdtOFz6-ab3v2C2z39=t09XwL+=FKSp=ogQGENQ@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC mailbox
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, Peng Fan <peng.fan@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726750AbfFTQej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 12:34:39 -0400
+Received: from vps.xff.cz ([195.181.215.36]:38884 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726530AbfFTQej (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 12:34:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1561048476; bh=o/Mcg/crtvpWxn1wzurghlzWgNJsvC2nPLJ6FrUQ/ak=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OOoXpp5AeLGNexNn7LTMlvWNXYoDw13vRczTqVmlZrlW5UUgGhVmdiiIW/gGRUUNV
+         aKjs8K0+yW7kBoCdZND1UogtHtgLvmCd+QQ4WN7NRpABKhWBBepxKGW9A8hISzRoBh
+         V5ZscyNMoQZc4A5tonmTLLytGu/CoBsMNjJHEPaw=
+Date:   Thu, 20 Jun 2019 18:34:36 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     linux-sunxi@googlegroups.com,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        ", Sascha Hauer" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>, festevam@gmail.com,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, van.freenix@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [linux-sunxi] [PATCH v7 0/6] Add support for Orange Pi 3
+Message-ID: <20190620163436.upg5pkpspyz64brh@core.my.home>
+Mail-Followup-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        linux-sunxi@googlegroups.com,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20190620134748.17866-1-megous@megous.com>
+ <2263144.KN5DhQ2VKD@jernej-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2263144.KN5DhQ2VKD@jernej-laptop>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 20, 2019 at 11:13 AM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> On Thu, 20 Jun 2019 10:22:41 +0100
-> Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> > On Mon, Jun 03, 2019 at 04:30:04PM +0800, peng.fan@nxp.com wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > The ARM SMC mailbox binding describes a firmware interface to trigger
-> > > actions in software layers running in the EL2 or EL3 exception levels.
-> > > The term "ARM" here relates to the SMC instruction as part of the ARM
-> > > instruction set, not as a standard endorsed by ARM Ltd.
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >
-> > > V2:
-> > > Introduce interrupts as a property.
-> > >
-> > > V1:
-> > > arm,func-ids is still kept as an optional property, because there is no
-> > > defined SMC funciton id passed from SCMI. So in my test, I still use
-> > > arm,func-ids for ARM SIP service.
-> > >
-> > >  .../devicetree/bindings/mailbox/arm-smc.txt        | 101 +++++++++++++++++++++
-> > >  1 file changed, 101 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.txt b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> > > new file mode 100644
-> > > index 000000000000..401887118c09
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
-> > > @@ -0,0 +1,101 @@
-> > > +ARM SMC Mailbox Interface
-> > > +=========================
-> > > +
-> > > +This mailbox uses the ARM smc (secure monitor call) instruction to trigger
-> > > +a mailbox-connected activity in firmware, executing on the very same core
-> > > +as the caller. By nature this operation is synchronous and this mailbox
-> > > +provides no way for asynchronous messages to be delivered the other way
-> > > +round, from firmware to the OS, but asynchronous notification could also
-> > > +be supported. However the value of r0/w0/x0 the firmware returns after
-> > > +the smc call is delivered as a received message to the mailbox framework,
-> > > +so a synchronous communication can be established, for a asynchronous
-> > > +notification, no value will be returned. The exact meaning of both the
-> > > +action the mailbox triggers as well as the return value is defined by
-> > > +their users and is not subject to this binding.
-> > > +
-> > > +One use case of this mailbox is the SCMI interface, which uses shared memory
-> > > +to transfer commands and parameters, and a mailbox to trigger a function
-> > > +call. This allows SoCs without a separate management processor (or when
-> > > +such a processor is not available or used) to use this standardized
-> > > +interface anyway.
-> > > +
-> > > +This binding describes no hardware, but establishes a firmware interface.
-> > > +Upon receiving an SMC using one of the described SMC function identifiers,
-> > > +the firmware is expected to trigger some mailbox connected functionality.
-> > > +The communication follows the ARM SMC calling convention[1].
-> > > +Firmware expects an SMC function identifier in r0 or w0. The supported
-> > > +identifiers are passed from consumers, or listed in the the arm,func-ids
-> > > +properties as described below. The firmware can return one value in
-> > > +the first SMC result register, it is expected to be an error value,
-> > > +which shall be propagated to the mailbox client.
-> > > +
-> > > +Any core which supports the SMC or HVC instruction can be used, as long as
-> > > +a firmware component running in EL3 or EL2 is handling these calls.
-> > > +
-> > > +Mailbox Device Node:
-> > > +====================
-> > > +
-> > > +This node is expected to be a child of the /firmware node.
-> > > +
-> > > +Required properties:
-> > > +--------------------
-> > > +- compatible:              Shall be "arm,smc-mbox"
-> > > +- #mbox-cells              Shall be 1 - the index of the channel needed.
-> > > +- arm,num-chans            The number of channels supported.
-> > > +- method:          A string, either:
-> > > +                   "hvc": if the driver shall use an HVC call, or
-> > > +                   "smc": if the driver shall use an SMC call.
-> > > +
-> > > +Optional properties:
-> > > +- arm,func-ids             An array of 32-bit values specifying the function
-> > > +                   IDs used by each mailbox channel. Those function IDs
-> > > +                   follow the ARM SMC calling convention standard [1].
-> > > +                   There is one identifier per channel and the number
-> > > +                   of supported channels is determined by the length
-> > > +                   of this array.
-> > > +- interrupts               SPI interrupts may be listed for notification,
-> > > +                   each channel should use a dedicated interrupt
-> > > +                   line.
-> > > +
-> >
-> > I think SMC mailbox as mostly unidirectional/Tx only channel. And the
-> > interrupts here as stated are for notifications, so I prefer to keep
-> > them separate channel. I assume SMC call return indicates completion.
-> > Or do you plan to use these interrupts as the indication for completion
-> > of the command? I see in patch 2/2 the absence of IRQ is anyway dealt
-> > the way I mention above.
-> >
-> > Does it make sense or am I missing something here ?
->
-> I think you are right. From a mailbox point of view "completion" means
-> that the trigger has reached the other side. A returning smc call is a
-> perfect indication of this fact.
->
-Yes. mailbox only cares about message delivery.
+Hi Jernej,
 
-> Whether the action triggered by this
-> mailbox command has completed is a totally separate question and out of
-> the scope of the mailbox.
->
-Yes, whether the message is accepted/rejected at protocol level is a
-matter of upper layer (protocol).
+On Thu, Jun 20, 2019 at 05:53:58PM +0200, Jernej Škrabec wrote:
+> Hi!
+> 
+> Dne četrtek, 20. junij 2019 ob 15:47:42 CEST je megous via linux-sunxi 
+> napisal(a):
+> > From: Ondrej Jirman <megous@megous.com>
+> > 
+> > This series implements support for Xunlong Orange Pi 3 board.
+> > 
+> > - ethernet support (patches 1-3)
+> 
+> Correct me if I'm wrong, but patches 1-2 aren't strictly necessary for 
+> OrangePi 3, right? H6 DTSI already has emac node with dual compatible (H6 and 
+> A64) and since OrangePi 3 uses gigabit ethernet, quirk introduced by patches 
+> 1-2 are not needed.
 
-> This should be handled by a higher level
-> protocol (SCPI in this case). Which could mean that this employs a
-> separate return mailbox channel, which is RX only and implemented by
-> interrupts. Which could or could not be part of this driver.
->
-Any message received over the same class of channel should be handled
-in this driver.
+I've checked with u-boot and md.l 0x03000030 (syscon_field) and the actual
+default value there on cold boot is 0x58000, just like on H3.
 
-Cheers
+H3_EPHY_SELECT is BIT(15)
+
+That means that those patches (1 and 2) are both doing the same thing, basicaly.
+H3_EPHY_SELECT bit needs to be cleared, and it is cleared either explicitly, or
+via default_syscon_value = 0x50000. It's also cleared incidentally by using
+emac_variant_a64, because it has default_syscon_value set to 0.
+
+Meaning of those remaining set bits on H6[1] are the same as on H3. Bit 16 is
+SHUTDOWN (on 1) and bit 18 is CLK_SEL. At least SHUTDOWN bit should be kept
+high, as it keeps the EPHY shut down. Normally that would be ensured by the
+code, but only if soc_has_internal_phy is true, which it is not for
+emac_variant_a64.
+
+Thus the patch adds the emac_variant_h6 with a different default_syscon_value
+from A64.
+
+Dose the SHUTDOWN bit matter on H6? I don't know. I'm just trying to keep the
+default values of these bits unchanged. Maybe it would be nicer to have
+default_syscon_value be 0x58000 on H6, to avoid the boot warning.
+
+dwmac-sun8i 5020000.ethernet: Current syscon value is not the default 58000 (expect 50000)
+
+The same warning is there with A64 compatible (with "expect 0").
+
+[1] See page 238 in H6 manual.
+
+regards,
+	o.
+
+> However, it is nice to have this 100 Mbit fix, because most STB DTS will need 
+> it.
+> 
+> Best regards,
+> Jernej
+> 
+> > - HDMI support (patches 4-6)
+> > 
+> > For some people, ethernet doesn't work after reboot (but works on cold
+> > boot), when the stmmac driver is built into the kernel. It works when
+> > the driver is built as a module. It's either some timing issue, or power
+> > supply issue or a combination of both. Module build induces a power
+> > cycling of the phy.
+> > 
+> > I encourage people with this issue, to build the driver into the kernel,
+> > and try to alter the reset timings for the phy in DTS or
+> > startup-delay-us and report the findings.
+> > 
+> > 
+> > Please take a look.
+> > 
+> > thank you and regards,
+> >   Ondrej Jirman
+> > 
+> > 
+> > Changes in v7:
+> > - dropped stored reference to connector_pdev as suggested by Jernej
+> > - added forgotten dt-bindings reviewed-by tag
+> > 
+> > Changes in v6:
+> > - added dt-bindings reviewed-by tag
+> > - fix wording in stmmac commit (as suggested by Sergei)
+> > 
+> > Changes in v5:
+> > - dropped already applied patches (pinctrl patches, mmc1 pinconf patch)
+> > - rename GMAC-3V3 -> GMAC-3V to match the schematic (Jagan)
+> > - changed hdmi-connector's ddc-supply property to ddc-en-gpios
+> >   (Rob Herring)
+> > 
+> > Changes in v4:
+> > - fix checkpatch warnings/style issues
+> > - use enum in struct sunxi_desc_function for io_bias_cfg_variant
+> > - collected acked-by's
+> > - fix compile error in drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c:156
+> >   caused by missing conversion from has_io_bias_cfg struct member
+> >   (I've kept the acked-by, because it's a trivial change, but feel free
+> >   to object.) (reported by Martin A. on github)
+> >   I did not have A80 pinctrl enabled for some reason, so I did not catch
+> >   this sooner.
+> > - dropped brcm firmware patch (was already applied)
+> > - dropped the wifi dts patch (will re-send after H6 RTC gets merged,
+> >   along with bluetooth support, in a separate series)
+> > 
+> > Changes in v3:
+> > - dropped already applied patches
+> > - changed pinctrl I/O bias selection constants to enum and renamed
+> > - added /omit-if-no-ref/ to mmc1_pins
+> > - made mmc1_pins default pinconf for mmc1 in H6 dtsi
+> > - move ddc-supply to HDMI connector node, updated patch descriptions,
+> >   changed dt-bindings docs
+> > 
+> > Changes in v2:
+> > - added dt-bindings documentation for the board's compatible string
+> >   (suggested by Clement)
+> > - addressed checkpatch warnings and code formatting issues (on Maxime's
+> >   suggestions)
+> > - stmmac: dropped useless parenthesis, reworded description of the patch
+> >   (suggested by Sergei)
+> > - drop useles dev_info() about the selected io bias voltage
+> > - docummented io voltage bias selection variant macros
+> > - wifi: marked WiFi DTS patch and realted mmc1_pins as "DO NOT MERGE",
+> >   because wifi depends on H6 RTC support that's not merged yet (suggested
+> >   by Clement)
+> > - added missing signed-of-bys
+> > - changed &usb2otg dr_mode to otg, and added a note about VBUS
+> > - improved wording of HDMI driver's DDC power supply patch
+> > 
+> > Icenowy Zheng (2):
+> >   net: stmmac: sun8i: add support for Allwinner H6 EMAC
+> >   net: stmmac: sun8i: force select external PHY when no internal one
+> > 
+> > Ondrej Jirman (4):
+> >   arm64: dts: allwinner: orange-pi-3: Enable ethernet
+> >   dt-bindings: display: hdmi-connector: Support DDC bus enable
+> >   drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
+> >   arm64: dts: allwinner: orange-pi-3: Enable HDMI output
+> > 
+> >  .../display/connector/hdmi-connector.txt      |  1 +
+> >  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 70 +++++++++++++++++++
+> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         | 54 ++++++++++++--
+> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h         |  2 +
+> >  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 21 ++++++
+> >  5 files changed, 144 insertions(+), 4 deletions(-)
+> 
+> 
+> 
+> 
