@@ -2,229 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0EA24C463
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 02:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61ACF4C4B9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 03:02:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730449AbfFTAP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jun 2019 20:15:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56078 "EHLO mail.kernel.org"
+        id S1726262AbfFTBCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jun 2019 21:02:32 -0400
+Received: from foss.arm.com ([217.140.110.172]:38328 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726479AbfFTAP2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jun 2019 20:15:28 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 93426218BE;
-        Thu, 20 Jun 2019 00:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1560989726;
-        bh=Cyw3CS4Us7cHDynulRLePwpLSsuY8ho08g4vXgTjDFM=;
-        h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=uxkDxyYpF7laGQMQdbheNapqj0FQjS0o/hFsG69mDV7yMnicTh9sX+q1GYO8mfbwg
-         E1z69sHUGBcQdsi2WlYDYbSc4B2+s17Nz6qJQoCAMJgUsjAbryk7FV2ai2kP081uXc
-         0hRlrWl2NbES9/L1UjKNP/E97FgjeS8RMgUcodoM=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190617082613.109131-2-brendanhiggins@google.com>
-References: <20190617082613.109131-1-brendanhiggins@google.com> <20190617082613.109131-2-brendanhiggins@google.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
-User-Agent: alot/0.8.1
-Date:   Wed, 19 Jun 2019 17:15:25 -0700
-Message-Id: <20190620001526.93426218BE@mail.kernel.org>
+        id S1726165AbfFTBCc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jun 2019 21:02:32 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40347360;
+        Wed, 19 Jun 2019 18:02:31 -0700 (PDT)
+Received: from localhost.localdomain (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 096333F718;
+        Wed, 19 Jun 2019 18:02:29 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: allwinner: properly connect USB PHY to port 0
+Date:   Thu, 20 Jun 2019 02:01:27 +0100
+Message-Id: <20190620010127.12071-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.14.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-06-17 01:25:56)
-> diff --git a/kunit/test.c b/kunit/test.c
-> new file mode 100644
-> index 0000000000000..d05d254f1521f
-> --- /dev/null
-> +++ b/kunit/test.c
-> @@ -0,0 +1,210 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Base unit test (KUnit) API.
-> + *
-> + * Copyright (C) 2019, Google LLC.
-> + * Author: Brendan Higgins <brendanhiggins@google.com>
-> + */
-> +
-> +#include <linux/sched/debug.h>
-> +#include <kunit/test.h>
-> +
-> +static bool kunit_get_success(struct kunit *test)
-> +{
-> +       unsigned long flags;
-> +       bool success;
-> +
-> +       spin_lock_irqsave(&test->lock, flags);
-> +       success =3D test->success;
-> +       spin_unlock_irqrestore(&test->lock, flags);
+In recent Allwinner SoCs the first USB host controller (HCI0) shares
+the first PHY with the MUSB controller. Probably to make this sharing
+work, we were avoiding to declare this in the DT. This has two
+shortcomings:
+- U-Boot (which uses the same .dts) cannot use this port without a PHY
+  linked, so we were loosing one USB port there.
+- It requires the MUSB driver to be enabled and loaded, although we
+  don't actually use it.
 
-I still don't understand the locking scheme in this code. Is the
-intention to make getter and setter APIs that are "safe" by adding in a
-spinlock that is held around getting and setting various members in the
-kunit structure?
+For those (64-bit) boards which use an USB-A socket for HCI0/MUSB, add
+a "phys" property pointing to the USB PHY 0.
 
-In what situation is there more than one thread reading or writing the
-kunit struct? Isn't it only a single process that is going to be
-operating on this structure? And why do we need to disable irqs? Are we
-expecting to be modifying the unit tests from irq contexts?
+This makes it work in U-Boot, also improves compatiblity when no MUSB
+driver is loaded (for instance in distribution installers).
 
-> +
-> +       return success;
-> +}
-> +
-> +static void kunit_set_success(struct kunit *test, bool success)
-> +{
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(&test->lock, flags);
-> +       test->success =3D success;
-> +       spin_unlock_irqrestore(&test->lock, flags);
-> +}
-> +
-> +static int kunit_vprintk_emit(int level, const char *fmt, va_list args)
-> +{
-> +       return vprintk_emit(0, level, NULL, 0, fmt, args);
-> +}
-> +
-> +static int kunit_printk_emit(int level, const char *fmt, ...)
-> +{
-> +       va_list args;
-> +       int ret;
-> +
-> +       va_start(args, fmt);
-> +       ret =3D kunit_vprintk_emit(level, fmt, args);
-> +       va_end(args);
-> +
-> +       return ret;
-> +}
-> +
-> +static void kunit_vprintk(const struct kunit *test,
-> +                         const char *level,
-> +                         struct va_format *vaf)
-> +{
-> +       kunit_printk_emit(level[1] - '0', "\t# %s: %pV", test->name, vaf);
-> +}
-> +
-> +static bool kunit_has_printed_tap_version;
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+Hi,
 
-Can you please move this into function local scope in the function
-below?
+I have the feeling this belongs into the .dtsi, but cant't tell for sure
+how this interacts with the MUSB driver. If need be, we can always pull
+this up later, I guess.
 
-> +
-> +static void kunit_print_tap_version(void)
-> +{
-> +       if (!kunit_has_printed_tap_version) {
-> +               kunit_printk_emit(LOGLEVEL_INFO, "TAP version 14\n");
-> +               kunit_has_printed_tap_version =3D true;
-> +       }
-> +}
-> +
-[...]
-> +
-> +static bool kunit_module_has_succeeded(struct kunit_module *module)
-> +{
-> +       const struct kunit_case *test_case;
-> +       bool success =3D true;
-> +
-> +       for (test_case =3D module->test_cases; test_case->run_case; test_=
-case++)
-> +               if (!test_case->success) {
-> +                       success =3D false;
-> +                       break;
+Thanks,
+Andre
 
-Why not 'return false'?
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts           | 2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts | 2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts  | 2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts       | 2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts          | 2 ++
+ 5 files changed, 10 insertions(+)
 
-> +               }
-> +
-> +       return success;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+index 409523cb0950..b23e827a6065 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+@@ -93,6 +93,7 @@
+ };
+ 
+ &ehci0 {
++	phys = <&usbphy 0>;
+ 	status = "okay";
+ };
+ 
+@@ -147,6 +148,7 @@
+ };
+ 
+ &ohci0 {
++	phys = <&usbphy 0>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
+index e6fb9683f213..b422bef19fff 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
+@@ -105,6 +105,7 @@
+ };
+ 
+ &ehci0 {
++	phys = <&usbphy 0>;
+ 	status = "okay";
+ };
+ 
+@@ -151,6 +152,7 @@
+ };
+ 
+ &ohci0 {
++	phys = <&usbphy 0>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
+index 9887948d5c86..5da9cdfb4f48 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
+@@ -124,6 +124,7 @@
+ };
+ 
+ &ehci0 {
++	phys = <&usbphy 0>;
+ 	status = "okay";
+ };
+ 
+@@ -179,6 +180,7 @@
+ };
+ 
+ &ohci0 {
++	phys = <&usbphy 0>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+index 0dc33c90dd60..293f66c44032 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+@@ -58,6 +58,7 @@
+ };
+ 
+ &ehci0 {
++	phys = <&usb2phy 0>;
+ 	status = "okay";
+ };
+ 
+@@ -104,6 +105,7 @@
+ };
+ 
+ &ohci0 {
++	phys = <&usb2phy 0>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+index 9e464d40cbff..577f8133181e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+@@ -96,6 +96,7 @@
+ };
+ 
+ &ehci0 {
++	phys = <&usb2phy 0>;
+ 	status = "okay";
+ };
+ 
+@@ -120,6 +121,7 @@
+ };
+ 
+ &ohci0 {
++	phys = <&usb2phy 0>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.14.5
 
-And 'return true'?
-
-> +}
-> +
-> +static size_t kunit_module_counter =3D 1;
-> +
-> +static void kunit_print_subtest_end(struct kunit_module *module)
-> +{
-> +       kunit_print_ok_not_ok(false,
-> +                             kunit_module_has_succeeded(module),
-> +                             kunit_module_counter++,
-> +                             module->name);
-> +}
-> +
-> +static void kunit_print_test_case_ok_not_ok(struct kunit_case *test_case,
-> +                                           size_t test_number)
-> +{
-> +       kunit_print_ok_not_ok(true,
-> +                             test_case->success,
-> +                             test_number,
-> +                             test_case->name);
-> +}
-> +
-> +void kunit_init_test(struct kunit *test, const char *name)
-> +{
-> +       spin_lock_init(&test->lock);
-> +       test->name =3D name;
-> +       test->success =3D true;
-> +}
-> +
-> +/*
-> + * Performs all logic to run a test case.
-> + */
-> +static void kunit_run_case(struct kunit_module *module,
-> +                          struct kunit_case *test_case)
-> +{
-> +       struct kunit test;
-> +       int ret =3D 0;
-> +
-> +       kunit_init_test(&test, test_case->name);
-> +
-> +       if (module->init) {
-> +               ret =3D module->init(&test);
-> +               if (ret) {
-> +                       kunit_err(&test, "failed to initialize: %d\n", re=
-t);
-> +                       kunit_set_success(&test, false);
-> +                       return;
-> +               }
-> +       }
-> +
-> +       if (!ret)
-> +               test_case->run_case(&test);
-
-Do we need this if condition? ret can only be set to non-zero above but
-then we'll exit the function early so it seems unnecessary. Given that,
-ret should probably be moved into the module->init path.
-
-> +
-> +       if (module->exit)
-> +               module->exit(&test);
-> +
-> +       test_case->success =3D kunit_get_success(&test);
-> +}
-> +
