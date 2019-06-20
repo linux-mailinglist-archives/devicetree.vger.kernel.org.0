@@ -2,163 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E39D14C8AB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 09:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 756BD4C8C2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 09:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725912AbfFTHvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 03:51:55 -0400
-Received: from ozlabs.org ([203.11.71.1]:41009 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725953AbfFTHvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 03:51:54 -0400
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 45TvCn4f3jz9sBr; Thu, 20 Jun 2019 17:51:49 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1561017109;
-        bh=KY2I3dC1Px56+CQotFXwYFAvhLT69NhbHKJ1Ta4T1+Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Sha4u42YfDlRkYyVdHB+7UMxiKsSZOusC0WbZTwuwnE6jAKyBBTpF4VPpHzYTPEtf
-         fR8fgbrFr8gql9u7+f6oGqb9NBj9GsSH1lDcxIXx6YDqa+5B8Xx20rm1cPOapz0uy2
-         5TyrJ6kflvOgpok2aWwB5UoydscA5nQ2tjyRqRoM=
-Date:   Thu, 20 Jun 2019 17:45:17 +1000
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        linux-spdx@vger.kernel.org,
-        Devicetree Compiler <devicetree-compiler@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
+        id S1726391AbfFTH6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 03:58:06 -0400
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:36380 "EHLO
+        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726371AbfFTH6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 03:58:06 -0400
+Received: from pps.filterd (m0109333.ppops.net [127.0.0.1])
+        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5K7sGkw003449;
+        Thu, 20 Jun 2019 00:57:45 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=facebook;
+ bh=9mkV/NXUlt5XrPBELpS9BUgAgmSBEIgeZ78tpFg4D8g=;
+ b=TK0DuIcncbX4hCoc220+X8fE4Rk7WMy1WwIxKt/NqlI6+VNraUZ/RLOqDyPWlLoOwAol
+ huTG89ggOmQHzOUSlENfEYd39VjxvTlDogYQDZ37HvndgtZKCfKJ/fmP4xjjsOcPQ+9c
+ OZWsLO9nqcbzw0UcyfRp3jpZoL/k3qHq0rY= 
+Received: from maileast.thefacebook.com ([163.114.130.16])
+        by mx0a-00082601.pphosted.com with ESMTP id 2t7wrj1e0v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 20 Jun 2019 00:57:45 -0700
+Received: from ash-exhub101.TheFacebook.com (2620:10d:c0a8:82::e) by
+ ash-exhub103.TheFacebook.com (2620:10d:c0a8:82::c) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 20 Jun 2019 00:57:42 -0700
+Received: from NAM05-BY2-obe.outbound.protection.outlook.com (100.104.31.183)
+ by o365-in.thefacebook.com (100.104.35.173) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Thu, 20 Jun 2019 00:57:42 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
+ s=selector1-fb-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9mkV/NXUlt5XrPBELpS9BUgAgmSBEIgeZ78tpFg4D8g=;
+ b=Fqvf/dZs2srXY3Y5NWnR4BA+klCeGwUbih0QAxa28Hq/alntVGAmlWxvkGoedN8CxA+v15YXFQwbfw+XMZJY4neX4+OhOLDW/VW8cYBRYk7dAm7e7RGSj9yGY+WE9qDweP3CJ7OrkFiofnFYTf05iBmQOE7nS4d+qYbeuKBk37A=
+Received: from MWHPR15MB1216.namprd15.prod.outlook.com (10.175.2.17) by
+ MWHPR15MB1775.namprd15.prod.outlook.com (10.174.255.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11; Thu, 20 Jun 2019 07:57:26 +0000
+Received: from MWHPR15MB1216.namprd15.prod.outlook.com
+ ([fe80::d51f:8f19:e2b5:3ae8]) by MWHPR15MB1216.namprd15.prod.outlook.com
+ ([fe80::d51f:8f19:e2b5:3ae8%6]) with mapi id 15.20.1987.014; Thu, 20 Jun 2019
+ 07:57:26 +0000
+From:   Tao Ren <taoren@fb.com>
+To:     Ryan Chen <ryan_chen@aspeedtech.com>,
+        Brendan Higgins <brendanhiggins@google.com>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: SPDX conversion under scripts/dtc/ of Linux Kernel
-Message-ID: <20190620074517.GA2066@umbus.BigPond>
-References: <CAK7LNARHHXv5Tu4BHN1avKOExS6HmPfd2c0ELZiQaxtmETOsDw@mail.gmail.com>
- <20190619125948.GA27090@kroah.com>
- <CAL_JsqJQ0bkMMpgA_JpGf-mo8ue28XpGf7oMFJ8bScGAmc+_1g@mail.gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+Subject: Re: [PATCH 1/2] i2c: aspeed: allow to customize base clock divisor
+Thread-Topic: [PATCH 1/2] i2c: aspeed: allow to customize base clock divisor
+Thread-Index: AQHVJuIcteG+E70PmUey9PLXreYJ5KajfUSAgAASwwCAAJYbgIAAB62A
+Date:   Thu, 20 Jun 2019 07:57:26 +0000
+Message-ID: <bdd53adb-6987-1b91-adde-298839b2c066@fb.com>
+References: <20190619205009.4176588-1-taoren@fb.com>
+ <CAFd5g45TMtXcuqONdkpN_K+c0O+wUw8wkGzcQfV+sO8p5Krc9w@mail.gmail.com>
+ <18565fcf-3dc1-b671-f826-e4417e4ad284@fb.com>
+ <c610ecede7494c189a92a9a3f6d0fd16@TWMBX02.aspeed.com>
+In-Reply-To: <c610ecede7494c189a92a9a3f6d0fd16@TWMBX02.aspeed.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: MWHPR03CA0046.namprd03.prod.outlook.com
+ (2603:10b6:301:3b::35) To MWHPR15MB1216.namprd15.prod.outlook.com
+ (2603:10b6:320:22::17)
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [2620:10d:c090:180::1:75c6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 06c8c78d-992c-4a14-a670-08d6f554ef72
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:MWHPR15MB1775;
+x-ms-traffictypediagnostic: MWHPR15MB1775:
+x-microsoft-antispam-prvs: <MWHPR15MB1775F4F4CD54490AF0A8399EB2E40@MWHPR15MB1775.namprd15.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-forefront-prvs: 0074BBE012
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(376002)(396003)(39860400002)(366004)(346002)(189003)(199004)(86362001)(58126008)(46003)(68736007)(478600001)(486006)(14454004)(4744005)(476003)(2616005)(64126003)(71200400001)(71190400001)(7416002)(2906002)(8676002)(81156014)(81166006)(110136005)(316002)(54906003)(66476007)(6116002)(229853002)(305945005)(73956011)(66946007)(53546011)(64756008)(6512007)(66446008)(186003)(7736002)(65826007)(25786009)(256004)(6486002)(53936002)(76176011)(99286004)(31696002)(66556008)(65956001)(65806001)(102836004)(5660300002)(31686004)(8936002)(446003)(11346002)(52116002)(6246003)(6506007)(386003)(6436002)(36756003)(4326008);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR15MB1775;H:MWHPR15MB1216.namprd15.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: fb.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: fUAlk6DiJy6sWXQQgz6L6rxwIm5bWzYAwrm6K8boPqaWJ9ogUwzwQt037iYrBaV1LU4rgFjQpdIBrUfgrPog+/y2+Za1IhvLBZNC3dVt7r7bBFI4KpyaO11cTMqCmQ8atn3ZwEY80YqjSQnZ6HbMT6P3Wj9qbFLHoZBiCQFshXS6hsCUKtUskhaaH7Jabz9j1XfrG1jLOy59s6dVB8mgLeUZ/2ulwJV8VVlTDIyLOP4heKGkGJok0OxXyDw7RN/AoutH4ZCfrCTqeozLwu1Mo/9xDzw//ZLo+n39x2NNXqOCElj8Llzflu0Ip27zOsM5KJLjf3A04hz+i7Ac43W9hlLqNUV/IsH75Auo3JOD+lgFvkIg23z7MzmGYj7FfwGu7dCYYvqd15/zz7OZnf1/Wulfdqo2smx2ZJNSagqCGek=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0FB3EA1C925D3F45868E5B7441BA38C2@namprd15.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fdj2RfSjLxBAspz7"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJQ0bkMMpgA_JpGf-mo8ue28XpGf7oMFJ8bScGAmc+_1g@mail.gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06c8c78d-992c-4a14-a670-08d6f554ef72
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2019 07:57:26.6463
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: taoren@fb.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR15MB1775
+X-OriginatorOrg: fb.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-20_05:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1906200061
+X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---fdj2RfSjLxBAspz7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jun 19, 2019 at 09:39:13AM -0600, Rob Herring wrote:
-> On Wed, Jun 19, 2019 at 6:59 AM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Wed, Jun 19, 2019 at 07:23:19PM +0900, Masahiro Yamada wrote:
-> > > Hi.
-> > >
-> > > In this development cycle of Linux kernel,
-> > > lots of files were converted to use SPDX
-> > > instead of the license boilerplate.
-> > >
-> > > However.
-> > >
-> > > Some files were imported from a different project,
-> > > and are periodically synchronized with the upstream.
-> > > Have we discussed what to do about this case?
-> > >
-> > >
-> > > For example, scripts/dtc/ is the case.
-> > >
-> > > The files in scripts/dtc/ are synced with the upstream
-> > > device tree compiler.
-> > >
-> > > Rob Herring periodically runs scripts/dtc/update-dtc-source.sh
-> > > to import outcome from the upstream.
-> > >
-> > >
-> > > The upstream DTC has not adopted SPDX yet.
-> > >
-> > > Some files in Linux (e.g. scripts/dtc/dtc.c)
-> > > have been converted to SPDX.
-> > >
-> > > So, they are out of sync now.
-> > >
-> > > The license boilerplate will come back
-> > > when Rob runs scripts/dtc/update-dtc-source.sh
-> > > next time.
->=20
-> Already has. It just happened and is in next. The policy is everything
-> is upstream first and any changes to dtc in the kernel are rejected.
->=20
-> > >
-> > > What shall we do?
-> > >
-> > > [1] Convert upstream DTC to SPDX
-> > >
-> > > This will be a happy solution if it is acceptable in DTC.
-> > > Since we cannot push the decision of the kernel to a different
-> > > project, this is totally up to David Gibson.
-> >
-> > That's fine with me :)
->=20
-> I'll do the work if David is okay with it.
-
-I have no objection.
-
-
-> > > [2] Change scripts/dtc/update-dtc-source.sh to
-> > >     take care of the license block somehow
-> >
-> > That would also be good.
-> >
-> > > [3] Go back to license boilerplate, and keep the files
-> > >     synced with the upstream
-> > >     (and scripts/dtc/ should be excluded from the
-> > >      SPDX conversion tool.)
-> >
-> > nothing is being excluded from the SPDX conversions, sorry.  The goal is
-> > to do this for every file in the kernel tree.  Otherwise it's pointless.
-> >
-> > > Or, what else?
-> >
-> > Rob remembers to keep those first lines of the files intact when doing
-> > the next sync?
->=20
-> Patches to the import script are welcome. The only thing I have to
-> remember running the script is to add any new files. Otherwise, it's
-> scripted so I don't have to remember anything.
->=20
-> Rob
->=20
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---fdj2RfSjLxBAspz7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAl0LOYoACgkQbDjKyiDZ
-s5JO2Q//Qnvu8CIqR9v1DPhq1I1K6wFUT3RxjlX+pE03rujjRcwTv7K7d19AWqdL
-3lwaWAc8faWWg8/ceC8hBN/yXzNwtN1nnPyeeULgVUPWoPPPg4LzWjDFfuy+6M51
-CdS8lSkiCYNR52jEkirsDW6pd6NIwbaAsSgtYxd7EB39HGWwPk6xq726aPKqD6Vo
-ae70uJsDOH3tSbeXwFIx8//wvI1VtylMxROJU6MoKcs7c538jddrJSRQHjI1V0PY
-2Git/vQSI92xIkVc4ZrDCPhZ3TGUUuK+caYaxssLdK2lxd/lrQjL3fUCIoSykzOr
-u5vaBrxoYoP4GbZX9VxCZrwocXgAYn7Qf2ihw3Xs2/StrhdNsLVkrsuzP4A9pDbZ
-73Fr7FIw6UFarugBtKahlDV0yI3mQG42Awk6Is5SxLwFheyhrGMzkk8P33pV4ffb
-RYZ++8GwzVFl3ko0vf7tZIhNnLZLY4/MT+efPfmu+0+YF67oZ/TsdtHu1rHz+cJz
-tDj4hEzPXBRaj3jB3pEw3Xvs9EZvd6a3WeBEBoV8WtJWioS9cqHTvYtq5YQfOqzc
-qg82KlJpZg74ukamcHEmwfooC9AjfKFek/7ecqlBI5fBviEMM6fI7MfyTHAErVya
-ctngxdwSqxU/9DSCo5oRoSS7vgJkaaLo5rgNkd8M2DbmU9EM1ok=
-=vqV0
------END PGP SIGNATURE-----
-
---fdj2RfSjLxBAspz7--
+T24gNi8yMC8xOSAxMjoyOSBBTSwgUnlhbiBDaGVuIHdyb3RlOg0KPiBIZWxsbyBUYW8sDQo+IAlP
+dXIgcmVjb21tZW5kIGFib3V0IGNsayBkaXZpZGVyIHNldHRpbmcgaXMgZm9sbG93IHRoZSBkYXRh
+c2hlZXQgY2xvY2sgc2V0dGluZyB0YWJsZSBmb3IgY2xvY2sgZGl2aXNvci4gDQo+IA0KPiBSeWFu
+ICANCg0KVGhhbmtzIFJ5YW4gZm9yIHRoZSByZXNwb25zZS4gQ291bGQgeW91IGFsc28gc2hhcmUg
+c29tZSByZWNvbW1lbmRhdGlvbnMvaGludHMgb24gaG93IHRvIHNvbHZlIHRoZSBpbnRlcm1pdHRl
+bnQgaTJjIHRyYW5zYWN0aW9uIGZhaWx1cmVzIG9uIEZhY2Vib29rIEFTVDI1MDAgQk1DIHBsYXRm
+b3Jtcz8NCg0KQlRXLCB0aGUgcGF0Y2ggaXMgbm90IGFpbWVkIGF0IG1vZGlmeWluZyB0aGUgZXhp
+c3RpbmcgZm9ybXVsYSBvZiBjYWxjdWxhdGluZyBjbG9jayBzZXR0aW5ncyBpbiBpMmMtYXNwZWVk
+IGRyaXZlcjogcGVvcGxlIHN0aWxsIGdldCB0aGUgcmVjb21tZW5kZWQgc2V0dGluZ3MgYnkgZGVm
+YXVsdC4gVGhlIGdvYWwgb2YgdGhlIHBhdGNoIGlzIHRvIGFsbG93IHBlb3BsZSB0byBjdXN0b21p
+emUgY2xvY2sgc2V0dGluZ3MgaW4gY2FzZSB0aGUgZGVmYXVsdC9yZWNvbW1lbmRlZCBvbmUgZG9l
+c24ndCB3b3JrLg0KDQoNCkNoZWVycywgDQoNClRhbw0K
