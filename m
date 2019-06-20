@@ -2,219 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35F544D0A9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9914D0EF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2019 16:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726867AbfFTOrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 10:47:35 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:13335 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726649AbfFTOrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 10:47:35 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0b9c830004>; Thu, 20 Jun 2019 07:47:31 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 20 Jun 2019 07:47:32 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 20 Jun 2019 07:47:32 -0700
-Received: from [10.24.70.135] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Jun
- 2019 14:47:15 +0000
-Subject: Re: [PATCH V6 04/27] PCI: tegra: Mask AFI_INTR in runtime suspend
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <vidyas@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190618180206.4908-5-mmaddireddy@nvidia.com>
- <20190620142702.GA31996@e121166-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <a1666bdd-ea33-db95-ddc7-257d9e3a3988@nvidia.com>
-Date:   Thu, 20 Jun 2019 20:16:38 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1726686AbfFTOwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 10:52:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52238 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726675AbfFTOwu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 10:52:50 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EEB7420679;
+        Thu, 20 Jun 2019 14:52:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561042369;
+        bh=EaDyAtg8euX5pskKcouYfYWBKvYrsXwOMR+jrlOcxls=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0Dnu+BLgZjPnr6dVZfMvc9QRpCCo9QL7NQCYB0LduXY0a3Rubd+QRCxquCtI9ydWN
+         modMScwVPqyXLJvh2J8qRhQaLTwUtTKEBMoVLNzMswBHo+Ayr4Z8bcSWxVwN7/yUax
+         be55PZYyBWukBftlXgAwMpGKM7cGveaPR1FvCMJg=
+Received: by mail-qt1-f169.google.com with SMTP id y57so3482414qtk.4;
+        Thu, 20 Jun 2019 07:52:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAXQtYlcYe4hl/KwVdz9yOjw26xnfjHR80HHPeaCOhPGEf6/TMU0
+        FmBruWlJu/vu4b+fty6hmYOI1z4ZdgnGnqDbXw==
+X-Google-Smtp-Source: APXvYqyR3TdgTdHL9HJ+C/MH0tWTCoy8T6RDUCj3s/Rtzv9hCbDuW8dyF53jU3kMLWuDuPl6q2X9SvIBU++c4EcOkzw=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr59844862qth.136.1561042368214;
+ Thu, 20 Jun 2019 07:52:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190620142702.GA31996@e121166-lin.cambridge.arm.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1561042052; bh=NTHydstnbFbVPB33d0LB8odp5/Ty0DyeiINEbd+NdTI=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=ejG4RmBJFLBnrZ7mLg8wN6dP++3QRXJUhb12lyKemGJSMtdDcatG7vrfNxx0YWgvX
-         AJujQK9lGhE8a7VJUP8Io8GD1amU/ah9YKvQVosJw5lMhWRgOHa9Vfzq0T2YXqXoxl
-         z9IB2AWuiPub23aNJ92Yuqqz58+xtRgH8MJEdIadD9O/skUrgPlQdI7iAzz8gVdLW2
-         KeyHQob5JhJNTN8m7E9tn3L0Lm5B58LfmRLC6p5236fKyfGGR2z5NiFfKYlAtu8/uH
-         Ho0k8ozbWqBRci5A8lig4NT2JsnjABU0pXxj7REyZaY1DRfKAvNeAN1AQ2pTVqp8dw
-         e+bosVPQDKZ6g==
+References: <20190619215156.27795-1-robh@kernel.org> <20190620090122.GB26689@ulmo>
+In-Reply-To: <20190620090122.GB26689@ulmo>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 20 Jun 2019 08:52:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKC-RDjdMQWM6yk_HiWu-WwuU+vUf946t=TDJAxnqMW7Q@mail.gmail.com>
+Message-ID: <CAL_JsqKC-RDjdMQWM6yk_HiWu-WwuU+vUf946t=TDJAxnqMW7Q@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/4] dt-bindings: display: Convert common panel
+ bindings to DT schema
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 20-Jun-19 7:57 PM, Lorenzo Pieralisi wrote:
-> On Tue, Jun 18, 2019 at 11:31:43PM +0530, Manikanta Maddireddy wrote:
->> AFI_INTR is unmasked in tegra_pcie_enable_controller(), mask it to avoid
->> unwanted interrupts raised by AFI after pex_rst is asserted.
->>
->> Following sequence triggers such scenario,
->>  - tegra_pcie_remove() triggers runtime suspend
->>  - pex_rst is asserted in runtime suspend
->>  - PRSNT_MAP bit field in RP_PRIV_MISC register changes from EP_PRSNT to
->>    EP_ABSNT
->>  - This is sensed by AFI and triggers "Slot present pin change" interrupt
->>  - tegra_pcie_isr() function accesses AFI register when runtime suspend
->>    is going through power off sequence
->>
->> rmmod pci-tegra
->>  pci_generic_config_write32: 108 callbacks suppressed
->>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x4c may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x9c may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x88 may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x90 may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:02.0 offset 0x4 may corrupt adjacent RW1C bits
->>  igb 0002:04:00.1: removed PHC on enP2p4s0f1
->>  igb 0002:04:00.0: removed PHC on enP2p4s0f0
->>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x4c may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x9c may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x88 may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x90 may corrupt adjacent RW1C bits
->>  pci_bus 0002:00: 2-byte config write to 0002:00:01.0 offset 0x4 may corrupt adjacent RW1C bits
->>  rcu: INFO: rcu_preempt self-detected stall on CPU
->>  SError Interrupt on CPU0, code 0xbf000002 -- SError
->>  CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.1.0-rc3-next-20190405-00027-gcd8110499e6f-dirty #42
->>  Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
->>  pstate: 20000085 (nzCv daIf -PAN -UAO)
->>  pc : tegra_pcie_isr+0x58/0x178 [pci_tegra]
->>  lr : tegra_pcie_isr+0x40/0x178 [pci_tegra]
->>  sp : ffff000010003da0
->>  x29: ffff000010003da0 x28: 0000000000000000
->>  x27: ffff8000f9e61000 x26: ffff000010fbf420
->>  x25: ffff000011427f93 x24: ffff8000fa600410
->>  x23: ffff00001129d000 x22: ffff00001129d000
->>  x21: ffff8000f18bf3c0 x20: 0000000000000070
->>  x19: 00000000ffffffff x18: 0000000000000000
->>  x17: 0000000000000000 x16: 0000000000000000
->>  x15: 0000000000000000 x14: ffff000008d40a48
->>  x13: ffff000008d40a30 x12: ffff000008d40a20
->>  x11: ffff000008d40a10 x10: ffff000008d40a00
->>  x9 : ffff000008d409e8 x8 : ffff000008d40ae8
->>  x7 : ffff000008d40ad0 x6 : ffff000010003e58
->>  x5 : ffff8000fac00248 x4 : 0000000000000000
->>  x3 : ffff000008d40b08 x2 : fffffffffffffff8
->>  x1 : ffff000008d3f4e8 x0 : 00000000ffffffff
->>  Kernel panic - not syncing: Asynchronous SError Interrupt
->>  CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.1.0-rc3-next-20190405-00027-gcd8110499e6f-dirty #42
->>  Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
->>  Call trace:
->>   dump_backtrace+0x0/0x158
->>   show_stack+0x14/0x20
->>   dump_stack+0xa8/0xcc
->>   panic+0x140/0x2f4
->>   nmi_panic+0x6c/0x70
->>   arm64_serror_panic+0x74/0x80
->>   __pte_error+0x0/0x28
->>   el1_error+0x84/0xf8
->>   tegra_pcie_isr+0x58/0x178 [pci_tegra]
->>   __handle_irq_event_percpu+0x70/0x198
->>   handle_irq_event_percpu+0x34/0x88
->>   handle_irq_event+0x48/0x78
->>   handle_fasteoi_irq+0xb4/0x190
->>   generic_handle_irq+0x24/0x38
->>   __handle_domain_irq+0x5c/0xb8
->>   gic_handle_irq+0x58/0xa8
->>   el1_irq+0xb8/0x180
->>   cpuidle_enter_state+0x138/0x358
->>   cpuidle_enter+0x18/0x20
->>   call_cpuidle+0x1c/0x48
->>   do_idle+0x230/0x2d0
->>   cpu_startup_entry+0x20/0x28
->>   rest_init+0xd4/0xe0
->>   arch_call_rest_init+0xc/0x14
->>   start_kernel+0x444/0x470
->>
->> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> ---
->> V6: No change
->>
->> V5:
->> * Added blank line before block-style comment
->>
->> V4: No change
->>
->> V3:
->> * Update the commit log and comment to reflect why this fix is required
->> * MSI interrupt is not disabled
->>
->> V2: This is new patch in V2
->>
->>  drivers/pci/controller/pci-tegra.c | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>
->> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
->> index bb3c0af9c830..0453bfb2726e 100644
->> --- a/drivers/pci/controller/pci-tegra.c
->> +++ b/drivers/pci/controller/pci-tegra.c
->> @@ -1622,6 +1622,15 @@ static int tegra_pcie_disable_msi(struct tegra_pcie *pcie)
->>  	return 0;
->>  }
->>  
->> +static void tegra_pcie_disable_interrupts(struct tegra_pcie *pcie)
->> +{
->> +	u32 value;
->> +
->> +	value = afi_readl(pcie, AFI_INTR_MASK);
->> +	value &= ~AFI_INTR_MASK_INT_MASK;
->> +	afi_writel(pcie, value, AFI_INTR_MASK);
->> +}
->> +
->>  static int tegra_pcie_get_xbar_config(struct tegra_pcie *pcie, u32 lanes,
->>  				      u32 *xbar)
->>  {
->> @@ -2467,6 +2476,12 @@ static int __maybe_unused tegra_pcie_pm_suspend(struct device *dev)
->>  
->>  	tegra_pcie_disable_ports(pcie);
->>  
->> +	/*
->> +	 * AFI_INTR is unmasked in tegra_pcie_enable_controller(), mask it to
->> +	 * avoid unwanted interrupts raised by AFI after pex_rst is asserted.
->> +	 */
->> +	tegra_pcie_disable_interrupts(pcie);
-> When do you re-enable it ? I assume it is enabled by default for
-> a reason, so if you disable on suspend you renable it on resume.
+On Thu, Jun 20, 2019 at 3:01 AM Thierry Reding <thierry.reding@gmail.com> wrote:
 >
-> Please explain or I will drop this patch from the series.
+> On Wed, Jun 19, 2019 at 03:51:53PM -0600, Rob Herring wrote:
+> > Convert the common panel bindings to DT schema consolidating scattered
+> > definitions to a single schema file.
+> >
+> > The 'simple-panel' binding just a collection of properties and not a
+> > complete binding itself. All of the 'simple-panel' properties are
+> > covered by the panel-common.txt binding with the exception of the
+> > 'no-hpd' property, so add that to the schema.
+> >
+> > As there are lots of references to simple-panel.txt, just keep the file
+> > with a reference to panel-common.yaml for now until all the bindings are
+> > converted.
+> >
+> > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > Note there's still some references to panel-common.txt that I need to
+> > update or just go ahead and convert to schema.
+> >
+> >  .../bindings/display/panel/panel-common.txt   | 101 -------------
+> >  .../bindings/display/panel/panel-common.yaml  | 143 ++++++++++++++++++
+> >  .../bindings/display/panel/panel.txt          |   4 -
+> >  .../bindings/display/panel/simple-panel.txt   |  29 +---
+> >  4 files changed, 144 insertions(+), 133 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.txt
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.yaml
 >
-> Lorenzo
+> I know it was this way before, but perhaps remove the redundant panel-
+> prefix while at it?
 
-Power on reset value of AFI_INTR_MASK_INT_MASK is 0, it is not enabled by default.
-In suspend AFI reset is asserted, so in resume AFI programming has to be done
-again including AFI_INTR_MASK_INT_MASK. Even if I don't disable here, in resume
-it has to be enabled after bringing AFI out of reset.
+Sure.
 
-tegra_pcie_pm_resume() -> tegra_pcie_enable_controller() will enable it.
 
-Manikanta 
-
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+> > new file mode 100644
+> > index 000000000000..6fe87254edad
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+> > @@ -0,0 +1,143 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/panel-common.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Common Properties for Display Panels
+> > +
+> > +maintainers:
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > +
+> > +description: |
+> > +  This document defines device tree properties common to several classes of
+> > +  display panels. It doesn't constitue a device tree binding specification by
+> > +  itself but is meant to be referenced by device tree bindings.
+> > +
+> > +  When referenced from panel device tree bindings the properties defined in this
+> > +  document are defined as follows. The panel device tree bindings are
+> > +  responsible for defining whether each property is required or optional.
+> > +
+> > +
 >
->> +
->>  	if (pcie->soc->program_uphy) {
->>  		err = tegra_pcie_phy_power_off(pcie);
->>  		if (err < 0)
->> -- 
->> 2.17.1
->>
+> Are the two blank lines here on purpose?
 
+No.
+
+> The original document had two
+> blank lines here, but that was mostly for readability I would guess. The
+> YAML format doesn't really need additional formatting for readability,
+> so perhaps just remove the extra blank line?
+>
+> > +properties:
+> > +  # Descriptive Properties
+> > +  width-mm:
+> > +    description: The width-mm and height-mm specify the width and height of the
+> > +      physical area where images are displayed. These properties are expressed
+> > +      in millimeters and rounded to the closest unit.
+> > +
+> > +  height-mm:
+> > +    description: The width-mm and height-mm specify the width and height of the
+> > +      physical area where images are displayed. These properties are expressed
+> > +      in millimeters and rounded to the closest unit.
+>
+> I suppose there's no way in YAML to share the description between both
+> the width-mm and height-mm properties? It's a little unfortunate that we
+> have to copy, but if there's no better way, guess we'll have to live
+> with it.
+
+I could make it a comment instead, but then we loose being able to
+parse it. I should probably just reword them to be separate:
+
+"Specifies the height of the physical area where images are displayed.
+The property is expressed in millimeters and rounded to the closest
+unit."
+
+Also, just realized I need to make these 2 dependencies on either
+other (i.e. not valid to only have one).
+
+> > +  label:
+> > +    description: |
+> > +      The label property specifies a symbolic name for the panel as a
+> > +      string suitable for use by humans. It typically contains a name inscribed
+> > +      on the system (e.g. as an affixed label) or specified in the system's
+> > +      documentation (e.g. in the user's manual).
+> > +
+> > +      If no such name exists, and unless the property is mandatory according to
+> > +      device tree bindings, it shall rather be omitted than constructed of
+> > +      non-descriptive information. For instance an LCD panel in a system that
+> > +      contains a single panel shall not be labelled "LCD" if that name is not
+> > +      inscribed on the system or used in a descriptive fashion in system
+> > +      documentation.
+> > +
+> > +  rotation:
+> > +    description:
+> > +      Display rotation in degrees counter clockwise (0,90,180,270)
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +      - enum: [ 0, 90, 180, 270 ]
+> > +
+> > +  # Display Timings
+> > +  panel-timing:
+>
+> Am I the only one bugged by the redundancy in this property name? What
+> else is the timing going to express if not the timing of the panel that
+> it's part of. "timing" really would be enough. Anyway, not much we can
+> do about it now.
+
+I'm just happy we have a defined name.
+
+Rob
