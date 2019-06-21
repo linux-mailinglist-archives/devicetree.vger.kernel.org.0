@@ -2,140 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 519CD4F0C7
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 00:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDA84F135
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 01:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726202AbfFUWbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 18:31:33 -0400
-Received: from esa5.hgst.iphmx.com ([216.71.153.144]:14764 "EHLO
-        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726203AbfFUWba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 18:31:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1561156290; x=1592692290;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=CwTyE5oAojXhA3u6jQqYZFBh1XJD0rLbYRD5s+d6l+g=;
-  b=oK5wx/+n/M/HsK9S7nw9R/MPhNKRt+cjZBpa4insQBEdBaVeIbjtDG1g
-   6EGeUD7OGRTLeDadTMt0HR4o8JlcBtdjeqVIfiAqTOgXYF9Hnilng2xgE
-   tIf4LZ2CGNz3jmv/G71wjEZXTOmW48ctu2ecCR57waQZnilp/xnn4gTfg
-   Uu2opLpy7P4goHEIayw2LCltcREM7nCByvY8Yj5lNBJWIokaeoqkF86FD
-   jouyTnl7IqKVDsB1Mw/0lqAbbENhxwg+W2ZNwIxbpGPnZSRcf1U7eERLq
-   5u9Gw7YoYxXsHOUlongMO59blJPHDkgQLi449ck82ie7FTwpL4UtacQZt
-   w==;
-X-IronPort-AV: E=Sophos;i="5.63,402,1557158400"; 
-   d="scan'208";a="112418534"
-Received: from mail-by2nam01lp2050.outbound.protection.outlook.com (HELO NAM01-BY2-obe.outbound.protection.outlook.com) ([104.47.34.50])
-  by ob1.hgst.iphmx.com with ESMTP; 22 Jun 2019 06:31:29 +0800
+        id S1726049AbfFUXgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 19:36:12 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:35824 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726054AbfFUXgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 19:36:12 -0400
+Received: by mail-pl1-f196.google.com with SMTP id p1so3724857plo.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 16:36:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CwTyE5oAojXhA3u6jQqYZFBh1XJD0rLbYRD5s+d6l+g=;
- b=zRRJtZps0xN7icO/bbgp9vv4vZ+DpwoqgPZ2ua8a1oQyM74WtUKFLVNFyVeErlEsgmQe1+8J8uMoH96TR3M1lLJjJ2aRVm2ki8zM2bn3MVF8vxo8v+amyI/z5T51bS4ftJ3J1FskGAvz7h3qurhGr2fRvnZSvmxd4ZPmjfJFKXY=
-Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
- BYAPR04MB6056.namprd04.prod.outlook.com (20.178.233.218) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.15; Fri, 21 Jun 2019 22:31:28 +0000
-Received: from BYAPR04MB3782.namprd04.prod.outlook.com
- ([fe80::65e3:6069:d7d5:90a2]) by BYAPR04MB3782.namprd04.prod.outlook.com
- ([fe80::65e3:6069:d7d5:90a2%5]) with mapi id 15.20.1987.014; Fri, 21 Jun 2019
- 22:31:28 +0000
-From:   Atish Patra <Atish.Patra@wdc.com>
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rfontana@redhat.com" <rfontana@redhat.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "jhugo@codeaurora.org" <jhugo@codeaurora.org>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "mingo@kernel.org" <mingo@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "mchehab+samsung@kernel.org" <mchehab+samsung@kernel.org>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "morten.rasmussen@arm.com" <morten.rasmussen@arm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "palmer@sifive.com" <palmer@sifive.com>,
-        "peterz@infradead.org" <peterz@infradead.org>,
-        "ottosabart@seberm.com" <ottosabart@seberm.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "anup@brainfault.org" <anup@brainfault.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v7 3/7] cpu-topology: Move cpu topology code to common
- code.
-Thread-Topic: [PATCH v7 3/7] cpu-topology: Move cpu topology code to common
- code.
-Thread-Index: AQHVJT7xIDv/dWmHkUmsJR6AXUgH+qajQP2AgAN2pAA=
-Date:   Fri, 21 Jun 2019 22:31:27 +0000
-Message-ID: <91559562f2958fa904b53e621e596d6216efa9fb.camel@wdc.com>
-References: <20190617185920.29581-1-atish.patra@wdc.com>
-         <20190617185920.29581-4-atish.patra@wdc.com>
-         <20190619173801.GB20916@kroah.com>
-In-Reply-To: <20190619173801.GB20916@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Atish.Patra@wdc.com; 
-x-originating-ip: [199.255.44.250]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 16275102-8761-4c03-078c-08d6f6983390
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB6056;
-x-ms-traffictypediagnostic: BYAPR04MB6056:
-wdcipoutbound: EOP-TRUE
-x-microsoft-antispam-prvs: <BYAPR04MB6056F3504653162A4ECF3035FAE70@BYAPR04MB6056.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-forefront-prvs: 0075CB064E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(396003)(136003)(346002)(39860400002)(376002)(199004)(189003)(6116002)(5660300002)(76116006)(6436002)(76176011)(72206003)(81166006)(66946007)(256004)(99286004)(68736007)(2906002)(102836004)(54906003)(6506007)(3846002)(4744005)(6512007)(14454004)(316002)(478600001)(71190400001)(36756003)(81156014)(229853002)(8936002)(7416002)(73956011)(53936002)(8676002)(6916009)(66556008)(71200400001)(11346002)(476003)(446003)(4326008)(25786009)(26005)(2616005)(6246003)(66476007)(6486002)(66066001)(66446008)(64756008)(486006)(118296001)(86362001)(186003)(7736002)(305945005);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB6056;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: bpihA2OFNr62h73iZ0P9jpk7naT/xsUgCEuMtbqqLoDVkS7ut1yKmx7k5/M05DetLwIjsnkuRWpqVN4gG1eT15gXOUhOhlywGAEFiAcsNRdVZAOP2cb6wleyzYMOo6zyIEyVgbBdkbX6VwK/ZTV3BHtFsEkblh7Nzrw7969PBhELT/aZMvf8VxbwrwaXb0U1T6SQVFavyAmT34jNWdoqbkZvOk4ekx5tfaCFu0FIAcxDrSDbcD38GFh7BAGQtYlxVjBZHUjsx1iW41IlccMcMebWMA2xoPeLvfSm+x6RY9Vf2ZiUFbgA3y38BIyHoqnBXVIl7v45TAgQo65lxV1es8IP6JGnYzamQUrM1rRHFEQvjahVOHnI2jddpJHl716o/bEbwOwxSeV2P0w34/4e3VZgasiNf+3vPHjwWXjQTtE=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <27C05F5F6A9C554FA6F50BCF64D1706A@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Sb/H3tilyj0EK++EBKlbF8X4xe8yU07TZHy2A/fenNk=;
+        b=prCrzdXSk30AJCMv+sSZXVQB3mmI52zCpk3QjvPfrXjbWUmkr5RJeHN3VW/8BA6CtD
+         Jx+Y3u0DTDnIxHWzhNwKRF3g+yYiM0VQDnlPoGbWO6x9TECCHkj/zY2eNm2q4KwUaUZ/
+         PQbESGU8dN38EnQdNQDuqjJhGeXZSEH6VjPKkplzJ14HM3z2D0OLGNiCDAFsVLWwXGiA
+         7ZDc9Mw1C6t7AWgJLW2hxZEi1cehAPWXMRlpbHzdzBLMCJ0hGRQpxsZh6A2Mpc3unus3
+         j1UcGGXHaAcBECA9lXClfSZsiNhKKKtWOOzJkNkzfY2AZmXyeX6TxWegDfm7bsaZxvCf
+         PEmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Sb/H3tilyj0EK++EBKlbF8X4xe8yU07TZHy2A/fenNk=;
+        b=VjB21e4vK7wNJJNDjroDKsos4E9PKfOefgvLjMB7s6TOs1pVRbFkd15pCLMemEgOMn
+         u5122slqwiIA+Sc4okVuFPimjEYxXP3KBWggruze0fPp0efVPi04ygr+O7ZLgLQ+zUyr
+         QAfOCKlHTzDSHnTNktmwQTkzECdnjGYZ7wswBhhGXafAO8M3MtBzeRaDOuLDl+10qkfJ
+         ZZIej54bgHae2nGhwjkl5ErDgTKxSt8XWWlxBAYIFP6MTYowZj+enGtPloLPD/RSUQjL
+         41cVpKKib49Px3al3LpTZhYz/LmyDh04v7nQ2rHziD5h5OWtP1XZUuvCXxPwd8j6Q/R6
+         2O0w==
+X-Gm-Message-State: APjAAAVPxe3M6kPoTlrZB+qoIh6efXZVXylHr3cw02BCgcebCt1+aG+z
+        E7wqRMWnEFvM9uWbDSkSgR8jhcAZMyxJ1hV+gVeAUA==
+X-Google-Smtp-Source: APXvYqyDOITFnbEbjASefA/StmtDVD64C4tIs4B7EpCbn+epn4j9i0oWshY43Kw2oFG+/67p1uNjgDJBcCkm/XE/zVk=
+X-Received: by 2002:a17:902:2006:: with SMTP id n6mr78068890pla.232.1561160170725;
+ Fri, 21 Jun 2019 16:36:10 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16275102-8761-4c03-078c-08d6f6983390
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jun 2019 22:31:27.9153
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB6056
+References: <20190617082613.109131-1-brendanhiggins@google.com> <10feac3e-7621-65e5-fbf0-9c63fcbe09c9@gmail.com>
+In-Reply-To: <10feac3e-7621-65e5-fbf0-9c63fcbe09c9@gmail.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 21 Jun 2019 16:35:59 -0700
+Message-ID: <CAFd5g44S-3J+g328PT42HVd=v4Us-JAzFP0MuA7f_qJ-srddsg@mail.gmail.com>
+Subject: Re: [PATCH v5 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDE5LTA2LTE5IGF0IDE5OjM4ICswMjAwLCBHcmVnIEtyb2FoLUhhcnRtYW4gd3Jv
-dGU6DQo+IE9uIE1vbiwgSnVuIDE3LCAyMDE5IGF0IDExOjU5OjE2QU0gLTA3MDAsIEF0aXNoIFBh
-dHJhIHdyb3RlOg0KPiA+IEJvdGggUklTQy1WICYgQVJNNjQgYXJlIHVzaW5nIGNwdS1tYXAgZGV2
-aWNlIHRyZWUgdG8gZGVzY3JpYmUNCj4gPiB0aGVpciBjcHUgdG9wb2xvZ3kuIEl0J3MgYmV0dGVy
-IHRvIG1vdmUgdGhlIHJlbGV2YW50IGNvZGUgdG8NCj4gPiBhIGNvbW1vbiBwbGFjZSBpbnN0ZWFk
-IG9mIGR1cGxpY2F0ZSBjb2RlLg0KPiA+IA0KPiA+IFRvOiBXaWxsIERlYWNvbiA8d2lsbC5kZWFj
-b25AYXJtLmNvbT4NCj4gPiBUbzogQ2F0YWxpbiBNYXJpbmFzIDxjYXRhbGluLm1hcmluYXNAYXJt
-LmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBBdGlzaCBQYXRyYSA8YXRpc2gucGF0cmFAd2RjLmNv
-bT4NCj4gPiBbVGVzdGVkIG9uIFFERjI0MDBdDQo+ID4gVGVzdGVkLWJ5OiBKZWZmcmV5IEh1Z28g
-PGpodWdvQGNvZGVhdXJvcmEub3JnPg0KPiA+IFtUZXN0ZWQgb24gSnVubyBhbmQgb3RoZXIgZW1i
-ZWRkZWQgcGxhdGZvcm1zLl0NCj4gPiBUZXN0ZWQtYnk6IFN1ZGVlcCBIb2xsYSA8c3VkZWVwLmhv
-bGxhQGFybS5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IFN1ZGVlcCBIb2xsYSA8c3VkZWVwLmhvbGxh
-QGFybS5jb20+DQo+ID4gQWNrZWQtYnk6IFdpbGwgRGVhY29uIDx3aWxsLmRlYWNvbkBhcm0uY29t
-Pg0KPiANCj4gQWNrZWQtYnk6IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRh
-dGlvbi5vcmc+DQoNCkhpIFBhdWwsDQpJIGd1ZXNzIEdyZWcgaGFzIGFja2VkIHRoZSBzZXJpZXMg
-YXNzdW1pbmcgdGhhdCBpdCB3aWxsIGdvIHRocm91Z2ggc29tZQ0Kb3RoZXIgdHJlZS4gQ2FuIHlv
-dSB0YWtlIGl0IHRocm91Z2ggUklTQy1WIHRyZWUgPw0KDQpTb3JyeSBmb3IgdGhlIGNvbmZ1c2lv
-bi4NCg0KTm90ZTogV2UgYXJlIHN0aWxsIHdhaXRpbmcgZm9yIFJNSydzIEFDSyBvbiBhcm0gcGF0
-Y2ggYmVmb3JlIGl0IGNhbiBiZQ0Kc2VudCBhcyBhIFBSLg0KDQpSZWdhcmRzLA0KQXRpc2gNCg==
+On Wed, Jun 19, 2019 at 6:17 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> Hi Brendan,
+>
+> I am only responding to this because you asked me to in the v4 thread.
+
+Yes, I did! Thank you, I appreciate it!
+
+> Thank you for evaluating my comments in the v4 thread and asking me to
+> comment on v5
+
+Of course, I feel as though I ought to address any and all valid comments.
+
+> On 6/17/19 1:25 AM, Brendan Higgins wrote:
+> > ## TL;DR
+> >
+> > A not so quick follow-up to Stephen's suggestions on PATCH v4. Nothing
+> > that really changes any functionality or usage with the minor exception
+> > of a couple public functions that Stephen asked me to rename.
+> > Nevertheless, a good deal of clean up and fixes. See changes below.
+> >
+> > As for our current status, right now we got Reviewed-bys on all patches
+> > except:
+> >
+> > - [PATCH v5 08/18] objtool: add kunit_try_catch_throw to the noreturn
+> >   list
+> >
+> > However, it would probably be good to get reviews/acks from the
+> > subsystem maintainers on:
+> >
+> > - [PATCH v5 06/18] kbuild: enable building KUnit
+> > - [PATCH v5 08/18] objtool: add kunit_try_catch_throw to the noreturn
+> >   list
+> > - [PATCH v5 15/18] Documentation: kunit: add documentation for KUnit
+> > - [PATCH v5 17/18] kernel/sysctl-test: Add null pointer test for
+> >   sysctl.c:proc_dointvec()
+> > - [PATCH v5 18/18] MAINTAINERS: add proc sysctl KUnit test to PROC
+> >   SYSCTL section
+> >
+> > Other than that, I think we should be good to go.
+> >
+> > One last thing, I updated the background to include my thoughts on KUnit
+> > vs. in kernel testing with kselftest in the background sections as
+> > suggested by Frank in the discussion on PATCH v2.
+> >
+> > ## Background
+> >
+> > This patch set proposes KUnit, a lightweight unit testing and mocking
+> > framework for the Linux kernel.
+> >
+> > Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+> > it does not require installing the kernel on a test machine or in a VM
+> > (however, KUnit still allows you to run tests on test machines or in VMs
+> > if you want[1]) and does not require tests to be written in userspace
+> > running on a host kernel. Additionally, KUnit is fast: From invocation
+> > to completion KUnit can run several dozen tests in under a second.
+> > Currently, the entire KUnit test suite for KUnit runs in under a second
+> > from the initial invocation (build time excluded).
+> >
+> > KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+> > Googletest/Googlemock for C++. KUnit provides facilities for defining
+> > unit test cases, grouping related test cases into test suites, providing
+> > common infrastructure for running tests, mocking, spying, and much more.
+> >
+>
+> I looked only at this section, as was specifically requested:
+>
+> > ### But wait! Doesn't kselftest support in kernel testing?!
+> >
+> > In a previous version of this patchset Frank pointed out that kselftest
+> > already supports writing a test that resides in the kernel using the
+> > test module feature[2]. LWN did a really great summary on this
+> > discussion here[3].
+> >
+> > Kselftest has a feature that allows a test module to be loaded into a
+> > kernel using the kselftest framework; this does allow someone to write
+> > tests against kernel code not directly exposed to userland; however, it
+> > does not provide much of a framework around how to structure the tests.
+> > The kselftest test module feature just provides a header which has a
+> > standardized way of reporting test failures,
+>
+>
+> > and then provides
+> > infrastructure to load and run the tests using the kselftest test
+> > harness.
+>
+> The in-kernel tests can also be invoked at boot time if they are
+> configured (Kconfig) as in-kernel instead of as modules.  I did not
+> check how many of the tests have tri-state configuration to allow
+> this, but the few that I looked at did.
+>
+> >
+> > The kselftest test module does not seem to be opinionated at all in
+> > regards to how tests are structured, how they check for failures, how
+> > tests are organized. Even in the method it provides for reporting
+> > failures is pretty simple; it doesn't have any more advanced failure
+> > reporting or logging features. Given what's there, I think it is fair to
+> > say that it is not actually a framework, but a feature that makes it
+> > possible for someone to do some checks in kernel space.
+>
+> I would call that description a little dismissive.  The set of in-kernel
+> tests that I looked like followed a common pattern and reported results
+> in a uniform manner.
+
+I didn't mean to sound dismissive. I was only referring to what was
+present in the actual header itself. There really isn't much there; it
+provides a function which takes an expression, evaluates it,
+increments a counter of all tests, and if false, prints out a warning;
+also, it provides a module init which runs the user defined test
+function called selftest(), and then prints the number of tests that
+passed and the number of tests that failed; that's it. I was just
+trying to make the point that it is pretty bare bones, and isn't
+really much of a framework.
+
+> >
+> > Furthermore, kselftest test module has very few users. I checked for all
+> > the tests that use it using the following grep command:
+> >
+> > grep -Hrn -e 'kselftest_module\.h'
+> >
+> > and only got three results: lib/test_strscpy.c, lib/test_printf.c, and
+> > lib/test_bitmap.c.
+>
+> You missed many tests.  I listed much more than that in the v4 thread, and
+> someone else also listed more in the v4 thread.
+
+Oh, sorry, I forgot that more were listed in the thread.
+
+> >
+> > So despite kselftest test module's existence, there really is no feature
+> > overlap between kselftest and KUnit, save one: that you can use either
+> > to write an in-kernel test, but this is a very small feature in
+> > comparison to everything that KUnit allows you to do. KUnit is a full
+> > x-unit style unit testing framework, whereas kselftest looks a lot more
+> > like an end-to-end/functional testing framework, with a feature that
+> > makes it possible to write in-kernel tests.
+>
+> The description does not give enough credit to what is in kselftest.
+
+You are right about me missing a number of the tests, but there really
+is not much infrastructure in kselftest for this at all. It really
+doesn't impose any structure of any kind other than that there must be
+exactly one static function named selftest() that takes no arguments;
+and then you use KSTM_CHECK_ZERO() to do some checks; that's it. It
+doesn't have anything else in the actual kselftest module stuff.
+
+>
+> It does not matter whether KUnit provides additional things, relative
+> to kselftest.  The point I was making is that there appears to be
+> _some_ overlap between kselftest and KUnit, and if there is overlap
+> then it is worth considering whether the overlap can be unified instead
+> of duplicated.
+
+I think I understand what you are saying, but the point I was trying
+to make here is that it is so simplistic, it doesn't really
+conceptually overlap since it is so limited in what structure and
+features it provides. It's kind of like what Ted said previously about
+how you have C so you can technically do whatever you want, but there
+is nothing inherent to the kselftest test module that does any of
+those things (other than what I mentioned above).
+
+> I don't have a dog in this fight and the discussion in the v4 thread
+> went way off track.  Thus I am not going to get sucked back into a
+> pointless debate in this thread.
+
+Sure, I don't want to debate the point further either (I had a hard
+time understanding what the point was at the end myself).
+
+Nevertheless, I do want to make sure that I addressed this because I
+think you did indeed have a point that was worth addressing, and I
+don't want to waste anyone's time in the future by not addressing it.
+
+Nevertheless, like I said, I don't want to get too detailed on the
+topic otherwise like Shuah suggests later, it might end up just
+leading people to draw a comparison that doesn't need to be made, but
+I also don't want to misrepresent anything. In anycase, I will follow
+up on this point directly with Shuah.
+
+> Thanks for adding this section to address the issue.
+
+No need to thank me; that is what I felt is the correct thing to do. I
+didn't address the point before and it caused you and other to spend a
+lot of time debating the point.
+
+Also, it looks like Shuah is asking me to drop the section. I will
+discuss this point further there.
+
+Thanks!
+
+> -Frank
+>
+>
+> >
+> > ### What's so special about unit testing?
+> >
+> > A unit test is supposed to test a single unit of code in isolation,
+> > hence the name. There should be no dependencies outside the control of
+> > the test; this means no external dependencies, which makes tests orders
+> > of magnitudes faster. Likewise, since there are no external dependencies,
+> > there are no hoops to jump through to run the tests. Additionally, this
+> > makes unit tests deterministic: a failing unit test always indicates a
+> > problem. Finally, because unit tests necessarily have finer granularity,
+> > they are able to test all code paths easily solving the classic problem
+> > of difficulty in exercising error handling code.
+> >
+> > ### Is KUnit trying to replace other testing frameworks for the kernel?
+> >
+> > No. Most existing tests for the Linux kernel are end-to-end tests, which
+> > have their place. A well tested system has lots of unit tests, a
+> > reasonable number of integration tests, and some end-to-end tests. KUnit
+> > is just trying to address the unit test space which is currently not
+> > being addressed.
+> >
+> > ### More information on KUnit
+> >
+> > There is a bunch of documentation near the end of this patch set that
+> > describes how to use KUnit and best practices for writing unit tests.
+> > For convenience I am hosting the compiled docs here[4].
+> >
+> > Additionally for convenience, I have applied these patches to a
+> > branch[5]. The repo may be cloned with:
+> > git clone https://kunit.googlesource.com/linux
+> > This patchset is on the kunit/rfc/v5.2-rc4/v5 branch.
+> >
+> > ## Changes Since Last Version
+> >
+> > Aside from a couple public function renames, there isn't really anything
+> > in here that changes any functionality.
+> >
+> > - Went through and fixed a couple of anti-patterns suggested by Stephen
+> >   Boyd. Things like:
+> >   - Dropping an else clause at the end of a function.
+> >   - Dropping the comma on the closing sentinel, `{}`, of a list.
+> > - Inlines a bunch of functions in the test case running logic in patch
+> >   01/18 to make it more readable as suggested by Stephen Boyd
+> > - Found and fixed bug in resource deallocation logic in patch 02/18. Bug
+> >   was discovered as a result of making a change suggested by Stephen
+> >   Boyd. This does not substantially change how any of the code works
+> >   conceptually.
+> > - Renamed new_string_stream() to alloc_string_stream() as suggested by
+> >   Stephen Boyd.
+> > - Made string-stream a KUnit managed object - based on a suggestion made
+> >   by Stephen Boyd.
+> > - Renamed kunit_new_stream() to alloc_kunit_stream() as suggested by
+> >   Stephen Boyd.
+> > - Removed the ability to set log level after allocating a kunit_stream,
+> >   as suggested by Stephen Boyd.
+> >
+> > [1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+> > [2] https://www.kernel.org/doc/html/latest/dev-tools/kselftest.html#test-module
+> > [3] https://lwn.net/Articles/790235/
+> > [4] https://google.github.io/kunit-docs/third_party/kernel/docs/
+> > [5] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.2-rc4/v5
+> >
+>
