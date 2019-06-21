@@ -2,133 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 304D04E76F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 13:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E163A4E7E6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 14:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726285AbfFUL4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 07:56:18 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:45789 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726229AbfFUL4N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 07:56:13 -0400
-Received: by mail-lf1-f68.google.com with SMTP id u10so4848159lfm.12;
-        Fri, 21 Jun 2019 04:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pCsNSIhjCg2UmLajKiPXkdtHAurjo1ODjNh3/mWoClA=;
-        b=t6XLQK+21pUtRXc7cF53j9Jq3VtzW+ROxWWda0+c7ksrFBHTdz8iD1jgNN1UucJgOR
-         cy5F40eiIbhTg1StMkkocZlnVZyvdJDu8g9JiZjqKnRt2xDWB1Fx7W9bhhC1skRJoimc
-         CRxR1ZjllvBKZPzowD1n2HwVprm2bmBk4xQN9fX5SLLZQ9Q6nUVcGWTHSdtrSZkpE5RU
-         FKh1CO2EjUUek+3yQVs6Rw1KrDIAMYS15XhaTOHZt5zUGO/jhbZMYhXAZkusi4jpsHMt
-         gKIAYbODe/HkOl9Qjg7xx050nVAwt8lF2xVfCec70ljVQe4kb3df5lNsOtsJOcbdFTpV
-         uAag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pCsNSIhjCg2UmLajKiPXkdtHAurjo1ODjNh3/mWoClA=;
-        b=ai5Lfqwk6mqH4rsVecJHhOwuOcYwAx+RCvhKNjQ0yY0202a1ItIMDHHuJLZJhx2ksK
-         qdUZmEQ3dVYoGU+nhBpb4/xcUmdngA8sWCergIxa61hQEuIDy7/2mZuI8EpkVotYPQQ1
-         qMuml11noKjCt8cx83qVq0nOiAzBM3GFRYDvdT7B/zU5N9roUO6TUEh3h0fGAIcwuCjI
-         NefIjXKsgBS/xGvPlLSlVg7aU1erkYWEhECOUXkwINNbR7osjnm2v3ZScrw7k20zti06
-         5EizbdC+znldFH3WaL37V8FMurnLso+6Sx0crMDsIQ9FoLJGYzwhfjONX4QpCGp87kzo
-         +Ndw==
-X-Gm-Message-State: APjAAAXSmHAg70kgOYIfIm6V4q4/62Q9cbACzJz6BHRVVoCMnuB71hmN
-        jy4Fyi/re/JJf1ju0dGw/WQ=
-X-Google-Smtp-Source: APXvYqwm0zb8cKHdWTip+O/MfIH2WGl+lLZVyzk7rsIfknm+CFaWo6YdBbHwK8FAbWRlqBDECOKUow==
-X-Received: by 2002:ac2:54ae:: with SMTP id w14mr4069909lfk.124.1561118171386;
-        Fri, 21 Jun 2019 04:56:11 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:a315:5445:5300:a5e4:32fe:c6e4:d5eb])
-        by smtp.googlemail.com with ESMTPSA id s14sm356791ljd.88.2019.06.21.04.56.10
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 21 Jun 2019 04:56:10 -0700 (PDT)
-From:   =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
-To:     sre@kernel.org
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
-Subject: [PATCH v4 2/2] dt-bindings: mfd: max8998: Add charger subnode binding
-Date:   Fri, 21 Jun 2019 13:56:02 +0200
-Message-Id: <20190621115602.17559-3-pawel.mikolaj.chmiel@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190621115602.17559-1-pawel.mikolaj.chmiel@gmail.com>
-References: <20190621115602.17559-1-pawel.mikolaj.chmiel@gmail.com>
+        id S1726285AbfFUMSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 08:18:08 -0400
+Received: from benson.default.arb33.uk0.bigv.io ([46.43.0.16]:54871 "EHLO
+        benson.default.arb33.uk0.bigv.io" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726260AbfFUMSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jun 2019 08:18:08 -0400
+X-Greylist: delayed 998 seconds by postgrey-1.27 at vger.kernel.org; Fri, 21 Jun 2019 08:18:07 EDT
+Received: from cpc91198-cmbg18-2-0-cust103.5-4.cable.virginm.net ([81.98.98.104] helo=hastur.local)
+        by benson.default.arb33.uk0.bigv.io with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.84_2)
+        (envelope-from <ijc@hellion.org.uk>)
+        id 1heIER-0003vS-Mf; Fri, 21 Jun 2019 13:01:27 +0100
+Message-ID: <3bc28d409a6e09046c001611972cc3c33b1695e3.camel@hellion.org.uk>
+Subject: devicetree-rebasing.git updates pausing for a couple of months
+From:   Ian Campbell <ijc@hellion.org.uk>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andre Przywara <andre.przywara@arm.com>
+Date:   Fri, 21 Jun 2019 13:01:27 +0100
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds devicetree bindings documentation for
-battery charging controller as the subnode of MAX8998 PMIC.
+Hi all,
 
-Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
----
-Changes from v3:
-  - Property prefix should be maxim, not max8998
-  - Describe what End of Charge in percent means
+I've no idea if anyone actually uses it any more, but the split out
+devicetree only git repo [0] is not going to receive any new updates
+for a little while (likely 1-2 months) while I relocate to another
+country.
 
-Changes from v2:
-  - Make charge-restart-level-microvolt optional.
-  - Make charge-timeout-hours optional.
+Ian.
 
-Changes from v1:
-  - Removed unneeded Fixes tag
-  - Correct description of all charger values
-  - Added missing property unit
----
- .../devicetree/bindings/mfd/max8998.txt       | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/max8998.txt b/Documentation/devicetree/bindings/mfd/max8998.txt
-index 5f2f07c09c90..368f787d6079 100644
---- a/Documentation/devicetree/bindings/mfd/max8998.txt
-+++ b/Documentation/devicetree/bindings/mfd/max8998.txt
-@@ -48,6 +48,25 @@ Additional properties required if max8998,pmic-buck2-dvs-gpio is defined:
- - max8998,pmic-buck2-dvs-voltage: An array of 2 voltage values in microvolts
-   for buck2 regulator that can be selected using dvs gpio.
- 
-+Charger: Configuration for battery charging controller should be added
-+inside a child node named 'charger'.
-+  Required properties:
-+  - maxim,end-of-charge-percentage: End of Charge in percent.
-+    When the charge current in constant-voltage phase drops below
-+    end-of-charge-percentage of it's start value, charging is terminated.
-+    If value equals 0, leave it unchanged. Otherwise it should be value
-+    from 10 to 45 by 5 step.
-+
-+  Optional properties:
-+  - maxim,charge-restart-threshold: Charge restart threshold in millivolts.
-+    If property is not present, this will be disabled.
-+    Valid values are: 0, 100, 150, 200. If the value equals 0, leave it
-+    unchanged.
-+
-+  - maxim,charge-timeout: Charge timeout in hours. If property is not
-+    present, this will be disabled. Valid values are: 0, 5, 6, 7.
-+    If the value equals 0, leave it unchanged.
-+
- Regulators: All the regulators of MAX8998 to be instantiated shall be
- listed in a child node named 'regulators'. Each regulator is represented
- by a child node of the 'regulators' node.
-@@ -97,6 +116,13 @@ Example:
- 		max8998,pmic-buck2-dvs-gpio = <&gpx0 0 3 0 0>; /* SET3 */
- 		max8998,pmic-buck2-dvs-voltage = <1350000>, <1300000>;
- 
-+		/* Charger configuration */
-+		charger {
-+			maxim,end-of-charge-percentage = <20>;
-+			maxim,charge-restart-threshold = <100>;
-+			maxim,charge-timeout = <7>;
-+		};
-+
- 		/* Regulators to instantiate */
- 		regulators {
- 			ldo2_reg: LDO2 {
--- 
-2.17.1
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetree-rebasing.git/
 
