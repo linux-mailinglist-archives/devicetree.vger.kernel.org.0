@@ -2,182 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 672F14E348
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 11:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C96594E458
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 11:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726232AbfFUJTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 05:19:34 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35943 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726210AbfFUJTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 05:19:34 -0400
-Received: by mail-wm1-f65.google.com with SMTP id u8so5814136wmm.1;
-        Fri, 21 Jun 2019 02:19:31 -0700 (PDT)
+        id S1726803AbfFUJkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 05:40:13 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:43247 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726785AbfFUJkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 05:40:12 -0400
+Received: by mail-vk1-f196.google.com with SMTP id m193so1154931vke.10
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 02:40:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=uqOVQTxmNExiORglBPUYXCzHT8Z+/V19PnzivbaHVFg=;
-        b=AtY+EMm+8qKifhQvPhh0SzfwY8M40OwmQaZCjKlTFlON5z0akSBcx0Fj8962OPK3ax
-         qSeCVT1pZ7yHTxx1zUODdIkRlJf0v2QfrzZ0vXrWHmop2DQLKfQxfTbLBOBUC3Fxovef
-         hDWBmtqxaYo6hkz7FeuQGR9PkIz/Zg6AGkClzwe+5erBgT7hzbe60jJOYiN54ZTgWgFU
-         IpuQhCE6lGLTOnsgqCJda4W/R3IpPzppR+Jz8j05S+TyH4UcgUcxA+vs3ci829X4uaaC
-         UJKoOhqFMxgLLlRlQN2h2ZniFUDim5S9N8yK6CW5Ff2EI0fqFEnV3fTcbrlZl1Xf0ebw
-         7e5Q==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8vCdcbqoZQ1U1i7mBxY4bPH1TOrRBXQaqjxbkNh/nbQ=;
+        b=aISYU0AuOWSMAGgxgMsNgcwyyCsQfgC0WTiJZVc6DjDjjnxMKUEageDY0FcrkMp5o7
+         ifs6RlrFO0OjnAJaxSecDeakh4ZBOJPZ3vTpXi66AbMzyFoXJ4nrLFwPI1pk8zMLyg1v
+         CuJnbc9bE0uzsi55qKLvlz/emOEVFfRxcBzaA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=uqOVQTxmNExiORglBPUYXCzHT8Z+/V19PnzivbaHVFg=;
-        b=eauckQPq24eVQZqCmzqLjhOYHu0h7QEIVx7jE/gj7ozxtdTKBJfW4E6AhpWNLJ3QVf
-         xaaDMBkQlte4bm7O1ydq9FZsvEq14WD6vWvAKQMs6KgTuGljnKyqgmU2OY+rXh88BIRe
-         8sz1VhhFzfkS59GiqA4zhBzbFFldEeOaQ3d3d3weug89SfugXi3w+n42x2U8eqKmxxce
-         oRcFItEF6Tv+VKuPTpXG4zS7W+EkFZ6ifj/TnssKQhoAHhC7VwtohPVGiRrhxYp7HRfA
-         wq6A3Dc9gY2FbCsjTSkWRGiXR13IZPi8TNe7e/q2Cwr/rz8RLRwgvioqy+YwdzbPV1eu
-         iQMA==
-X-Gm-Message-State: APjAAAV7Xrfrp6h5hIHL1CWYqi1nTA4ucrXvtm1gWRbzA5Y+gSIrkJrp
-        Hx1FUk45ycRR4jdI3ZQbyik=
-X-Google-Smtp-Source: APXvYqyqeaEKJauyN71saFZvZTDk0qi91ACjIQXrzW5Yfpqp1okzyBsUv4pQHA0207ShjTomFKY7Lw==
-X-Received: by 2002:a1c:4b1a:: with SMTP id y26mr3294210wma.105.1561108771060;
-        Fri, 21 Jun 2019 02:19:31 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id r12sm1761771wrt.95.2019.06.21.02.19.29
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 21 Jun 2019 02:19:30 -0700 (PDT)
-Date:   Fri, 21 Jun 2019 11:19:28 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     "dbasehore ." <dbasehore@chromium.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8vCdcbqoZQ1U1i7mBxY4bPH1TOrRBXQaqjxbkNh/nbQ=;
+        b=meMWm6rdeay3tluF4z5zoewBISBvtgOQ8S6D2Jm9zvLdhQVhpIKA24nVeVkRBAR/15
+         NyvS5qo8GlW80v1Xmuoy362U9dgqa7rYewH8YJSlDkV7qyEYpOOGnYN2bvyI02y7QTY4
+         4nKeuZqfWdjv2gvD1PgZbOj6CEU6GLi5GPujtXaZMdmbLShtsaPOAGYtyqqMq1mTzvtz
+         WJQhsSzGLhNJ/SqF5/yKFhMOmaG3E67kDrEj798dEW7Fwtk5Wo7505oK4JxLZOmzBe9/
+         XSPptR4hvHbnSSIXo7wkKZgEgPRg9R8p1N4DMeLufGeKSVq9NYJk2xgDnIH58jyAMHeF
+         ho+Q==
+X-Gm-Message-State: APjAAAX3ZCOBkpYKbkilATELmuTwPJ9Ae1a2OgmuSpQXvXUqX2Gh9lyB
+        h6r2erYsR6xLJ0TBK79h32FA0QVmyIvb8gj+NilXPw==
+X-Google-Smtp-Source: APXvYqzqmaV63/sDh2pA+DmjqQt0rIScMqSjGIjM8UgwlzzNNUo2pMiNP3RyCDxLsaSVfiTVd9xkzA40WBjyjKt8VfQ=
+X-Received: by 2002:a1f:3692:: with SMTP id d140mr9227965vka.88.1561110010447;
+ Fri, 21 Jun 2019 02:40:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190603080931.GG21222@phenom.ffwll.local> <CAFv8Nw+1sB8i1d87vLeKxRricZOi4gnXFSgOzW9k0sa_Tzybjg@mail.gmail.com>
+ <20190604072411.GP21222@phenom.ffwll.local> <CAFv8NwKL9ZL=gNpDmdRV+R9eq22+Da_1kzuYBv8kMMyV3Hq14g@mail.gmail.com>
+ <20190611123455.GD2458@phenom.ffwll.local> <CAFv8NwJxs-R=ehgeqyx=e+T5OmUBsk3uWnUb2t0cC-LDPS7G5w@mail.gmail.com>
+ <20190618121220.GU12905@phenom.ffwll.local> <CAFv8NwLci2ALi3V-e=8jjatciHWOoOj-FeajwNLWRpWRtqgBdg@mail.gmail.com>
+ <20190620092506.GP12905@phenom.ffwll.local> <CAFv8NwLbS_f4cfeorzqtmRzQSY0u1tgM7fitAokg_QfViPvq=Q@mail.gmail.com>
+ <20190620211204.GW12905@phenom.ffwll.local>
+In-Reply-To: <20190620211204.GW12905@phenom.ffwll.local>
+From:   Cheng-yi Chiang <cychiang@chromium.org>
+Date:   Fri, 21 Jun 2019 17:39:43 +0800
+Message-ID: <CAFv8Nw+m-+pshD_cxKe4Nc_4wP3ttpAfDU7EFb-e+ZBcYNA51Q@mail.gmail.com>
+Subject: Re: [PATCH 1/7] video: add HDMI state notifier support
+To:     Cheng-yi Chiang <cychiang@chromium.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
         David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 3/5] drm/panel: Add attach/detach callbacks
-Message-ID: <20190621091928.GA11839@ulmo>
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-4-dbasehore@chromium.org>
- <20190611085722.GX21222@phenom.ffwll.local>
- <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cWoXeonUoKmBZSoM"
-Content-Disposition: inline
-In-Reply-To: <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+        Heiko Stuebner <heiko@sntech.de>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>, tzungbi@chromium.org,
+        linux-media@vger.kernel.org,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Dariusz Marcinkiewicz <darekm@google.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---cWoXeonUoKmBZSoM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jun 11, 2019 at 05:25:47PM -0700, dbasehore . wrote:
-> On Tue, Jun 11, 2019 at 1:57 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+On Fri, Jun 21, 2019 at 5:12 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> Massively cutting this thread, since halfway through in my previous reply
+> I realized that maybe hdmi_codec is a much better starting point.
+>
+ACK
+> On Thu, Jun 20, 2019 at 09:23:23PM +0800, Cheng-yi Chiang wrote:
+> > On Thu, Jun 20, 2019 at 5:25 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > Yeah fully agreeing that hdmi_audio_code is probably a better starting
+> > > point. Problem is that becuase hdmi_codec is built on top of platform
+> > > device it's quite a bit harder to extend with callbacks and things like
+> > > that, without breaking the driver model.
+> > >
+> > > I need to think about this more, but if all we need to look at is
+> > > hdmi_codec, then I think this becomes a lot easier. And we can ignore
+> > > drm_audio_component.h completely.
 > >
-> > On Mon, Jun 10, 2019 at 09:03:48PM -0700, Derek Basehore wrote:
-> > > This adds the attach/detach callbacks. These are for setting up
-> > > internal state for the connector/panel pair that can't be done at
-> > > probe (since the connector doesn't exist) and which don't need to be
-> > > repeatedly done for every get/modes, prepare, or enable callback.
-> > > Values such as the panel orientation, and display size can be filled
-> > > in for the connector.
-> > >
-> > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
-> > > ---
-> > >  drivers/gpu/drm/drm_panel.c | 14 ++++++++++++++
-> > >  include/drm/drm_panel.h     |  4 ++++
-> > >  2 files changed, 18 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-> > > index 3b689ce4a51a..72f67678d9d5 100644
-> > > --- a/drivers/gpu/drm/drm_panel.c
-> > > +++ b/drivers/gpu/drm/drm_panel.c
-> > > @@ -104,12 +104,23 @@ EXPORT_SYMBOL(drm_panel_remove);
-> > >   */
-> > >  int drm_panel_attach(struct drm_panel *panel, struct drm_connector *=
-connector)
-> > >  {
-> > > +     int ret;
-> > > +
-> > >       if (panel->connector)
-> > >               return -EBUSY;
-> > >
-> > >       panel->connector =3D connector;
-> > >       panel->drm =3D connector->dev;
-> > >
-> > > +     if (panel->funcs->attach) {
-> > > +             ret =3D panel->funcs->attach(panel);
-> > > +             if (ret < 0) {
-> > > +                     panel->connector =3D NULL;
-> > > +                     panel->drm =3D NULL;
-> > > +                     return ret;
-> > > +             }
-> > > +     }
 > >
-> > Why can't we just implement this in the drm helpers for everyone, by e.=
-g.
-> > storing a dt node in drm_panel? Feels a bit overkill to have these new
-> > hooks here.
+> > It is surprising that you think this way.
+> > Maybe the original patch before hdmi-notifier was introduced is the
+> > better way to solve this issue, if we only need to look at hdmi_codec.
 > >
-> > Also, my understanding is that this dt stuff is supposed to be
-> > standardized, so this should work.
->=20
-> So do you want all of this information added to the drm_panel struct?
-> If we do that, we don't necessarily even need the drm helper function.
-> We could just copy the values over here in the drm_panel_attach
-> function (and clear them in drm_panel_detach).
+> > The history of hdmi_codec driver is in this patch series:
+> >
+> > https://lore.kernel.org/patchwork/patch/539656/
+>
+> Hm, this doesn't seem to be the hdmi_codec driver I meant, but another,
+> new one. I was talking about SND_SOC_HDMI_CODEC.
+>
+Yes you are right. They are different codec drivers.
+Sorry for the confusion. What I meant was that my use case on RK3288
+was using dw-hdmi-audio.c codec driver,
+which was later replaced by a more general version hdmi-codec.c.
 
-Yeah, I think we should have all this extra information in the struct
-drm_panel. However, I think we need to more carefully split things such
-that the DT parsing happens at panel probe time. That way we can catch
-errors in DT, or missing entries/resources when we can still do
-something about it.
+> > There was a callback mechanism implemented between dw-hdmi and hdmi
+> > codec driver.
+> > It was later consolidated by Doug in this patch for better jack status
+> > reporting:
+> >
+> > https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/303573/
+>
+> Hm that still seems entirely separate hdmi-codec specific to dw-hdmi only
+> ...
+>
+Again you are right. Sorry for the confusion. What I meant is that
+this callback mechanism should work on hdmi-codec.c driver as well.
 
-If we start parsing DT and encounter failures, it's going to be very
-confusing if that's at panel attach time where code will usually just
-assume that everything is already validated and can't fail anymore.
+> > I am not sure why the original patch series did not get fully accepted
+> > in the upstream.
+> > It was quite long time ago.
+> >
+> > But if you think this might be the right way to do, then it is even
+> > better for us because the patch series and Doug's patch had been quite
+> > stable
+> > on our RK3288 products for about four years with plenty of users, so
+> > we have much higher confidence in them.
+> > I can rebase and clean up them and post another patch for review.
+> >
+> > Please let me know what approach you feel is better.
+> > Thanks again!
+>
+> Not sure we're talking about the same. What I had in mind is to add jack
+> status to the hdmi-codec.c stuff, which is used by multiple soc drm
+> display drivers already. Looking at git grep output, there seems to be
+> already some support for dw-hdmi synopsys drm_bridge driver. I thought of
+> extending that. Does that not work for you?
+>
+I think extending current interface will work.
+There is a struct hdmi_codec_pdata to let ALSA codec driver access
+some ops through platform data.
+And after this patch
 
-Thierry
+https://lore.kernel.org/patchwork/patch/692324/
 
---cWoXeonUoKmBZSoM
-Content-Type: application/pgp-signature; name="signature.asc"
+ALSA codec driver can get access to the struct on DRM side.
+Based on this I can add a new ops to register callback function for jack status.
+It will be similar to Doug's chromium patch above.
+I think that is quite a feasible way, and can benefit all boards using
+hdmi-codec.c.
 
------BEGIN PGP SIGNATURE-----
+Thanks a lot!!
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0MoR0ACgkQ3SOs138+
-s6HqSA/+K8hfGyhC4XmLpKlVudKyrd41RyGRD7AunVOl6aE/CaukHevacdCPSUtk
-d/jaIe1fC3ImLE/uIZQDQBsBL3JzwrJHo0RVxijTJ7P9X1jrMR1ynK5sOWW0dPxR
-Sd87iKVNNu0Rl8CxAYzucxHrr2Up2W6uT02H0Lbxk+idIWKixRrPbUAVCMpFHTyr
-MbaVLkRd1sOEqLzetlU7HoUCx3wKgWdQgeRllgTDYgGutEQWnizljTrTglT0IAeQ
-U2LAykWBhhM4LBxYoEcdfOnosYQpKrg9suaNHNXknN+KEB5lnt/UbWCi5poLg1P4
-vyXMGFN8GwXXRNEKP0hYKGlLTzM19i3g9FRXAzeKv1hxmYhdG6S3dnzX22TG75No
-g0mUT2aFCEImAtMtQaCsucDHAnU/+YfmTekla4NxZo2UdOh0GYyKTaZ8OKsaETu+
-Hb+l76/ebe16vU+nJUYzKF5i/T+UlplLKLLGF8ivNBDSbWDD4l5Gh+hec2akFAVd
-U/CvEE85FyPaUIM9rTztStgICDwaxJNk62apvYouCkIIHOR3QVlgkxvk6DM6O5/c
-AjfC0dJqHvnx1HYiD0Sz65SeWArm/ujA1tcNZAFKLtPN2P5CHo6b2P2C1DfclkCw
-HBVMLmjbClz3caQjKmTvXk9YSnSSZBejdPW6zptywAik+UBj2r0=
-=ph6O
------END PGP SIGNATURE-----
-
---cWoXeonUoKmBZSoM--
+> Thanks, Daniel
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
