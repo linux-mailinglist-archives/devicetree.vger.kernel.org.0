@@ -2,103 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 109164DFC5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 06:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCBD54E00C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 07:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725958AbfFUEeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 00:34:24 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:43233 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725876AbfFUEeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 00:34:23 -0400
-Received: by mail-io1-f66.google.com with SMTP id k20so75954ios.10;
-        Thu, 20 Jun 2019 21:34:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ica3ySUaR522yE/ZMxZYijSnhD1xDLlEp+v8Cx/mej0=;
-        b=Mxa9wvtP/UVcehlG+S94/uUMn1COAyoRZ2nTdlBsJ3zad9huyWhwYg/cSWnwOFXbOz
-         lrmnwE1Ha/V1irJ03HR0I9WNPsv0kaCxzt4z8cy0KJMIgB49TKsVhNqNBUoxVLIZ/zWc
-         mVha4mE8S1zpx44V9n5k/ORXV9M4TCZjXUtYknxYbCu2JI+SGYniuPlW84Z19kN7IjUT
-         cQoHtsbVqvxzOBherxXPhGvK137Jsm/Om0hvM5zNbsl3vpkuiDvvCSDVqYnWxfeKm1xT
-         SBoOj7gPBq2khCIR1k3yR+m/yZHVdHpRmC0oOGLT1nM/t0+UWtqP4VY2Lrk1MNKwAm/e
-         7QpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ica3ySUaR522yE/ZMxZYijSnhD1xDLlEp+v8Cx/mej0=;
-        b=WHQK/toU5lubVf5UhB5peFInL4xyfo8JwNE0iGHo3zqrU9AC+sceCsKwfOiNJk8WAN
-         2u98GGRHkjIRFHq7iVrmqGcylIPuRRLqM3JzVlI74/fhbA5uSXYS+h0wFSBlJ6MmT90O
-         mA/D+8YrkKP/H4ssK/x5Gxn7Q2WU+HLr+q0Rm5aD713L+56xaUuOH45YWvnGjxUXkpX2
-         CjCxZOH2k7dmcKqnQXfjQQc1hhotuMPSgRSKX2bjjDFRFN73qoLrqv5Lp4Xv960IAOWB
-         lKQyy2pWfC0hcA0oikjurQZQtKOJKV3ZMEG3Vn+XdUFE0XtN9MYQYdULjQKmqQ216YXK
-         RQIA==
-X-Gm-Message-State: APjAAAVePo1DPVbtqHqDo/G9uLNl+cEfHkHEdy+3T55J9sIisdp4luYj
-        SfIxRfsM3F3I99vwQrxvwmFpU805p9IVM+O2hVI=
-X-Google-Smtp-Source: APXvYqypTQWp8EcBhntIVc2vxfGSjLvBmtNgQYl5tub6+s8/UsvK5TV6Kcvr1YAq20lnIcw9L9ct7MBwgyUvalDzaD0=
-X-Received: by 2002:a5e:de4d:: with SMTP id e13mr20647673ioq.272.1561091662310;
- Thu, 20 Jun 2019 21:34:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190620142801.11827-1-jeffrey.l.hugo@gmail.com> <20190620143318.11880-1-jeffrey.l.hugo@gmail.com>
-In-Reply-To: <20190620143318.11880-1-jeffrey.l.hugo@gmail.com>
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Date:   Thu, 20 Jun 2019 21:34:10 -0700
-Message-ID: <CAKdAkRRstvEWXtwnLCMKoW6PcCz0W3+M9iYqVFshJpw6y_=9bA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/5] Input: elan_i2c: Export the device id whitelist
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Jiri Kosina <jikos@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        agross@kernel.org, Lee Jones <lee.jones@linaro.org>,
-        xnox@ubuntu.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
+        id S1725961AbfFUF0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 01:26:36 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:39093 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725956AbfFUF0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 01:26:35 -0400
+X-UUID: 62185891b5ac44099c682d9834e6dc56-20190621
+X-UUID: 62185891b5ac44099c682d9834e6dc56-20190621
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 353118230; Fri, 21 Jun 2019 13:26:25 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32N2.mediatek.inc
+ (172.27.4.72) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 21 Jun
+ 2019 13:26:20 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 21 Jun 2019 13:26:20 +0800
+Message-ID: <1561094780.19385.2.camel@mhfsdcap03>
+Subject: Re: [PATCH 2/6] usb: bdc: Cleanup clock support
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Al Cooper <alcooperx@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-usb@vger.kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 21 Jun 2019 13:26:20 +0800
+In-Reply-To: <1561064991-16874-3-git-send-email-alcooperx@gmail.com>
+References: <1561064991-16874-1-git-send-email-alcooperx@gmail.com>
+         <1561064991-16874-3-git-send-email-alcooperx@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: ECBE481D9A00CAE8B078A5BE72BABE4F8EF4629F8564CA86349D41B6532423062000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeffrey,
+On Thu, 2019-06-20 at 17:09 -0400, Al Cooper wrote:
+> - Fix driver to defer on clk_get defer
+> 
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> ---
+>  drivers/usb/gadget/udc/bdc/bdc_core.c | 15 +++++++++------
+>  1 file changed, 9 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/gadget/udc/bdc/bdc_core.c b/drivers/usb/gadget/udc/bdc/bdc_core.c
+> index ccbd1d34eb2a..11a43de6c1c6 100644
+> --- a/drivers/usb/gadget/udc/bdc/bdc_core.c
+> +++ b/drivers/usb/gadget/udc/bdc/bdc_core.c
+> @@ -490,8 +490,14 @@ static int bdc_probe(struct platform_device *pdev)
+>  
+>  	dev_dbg(dev, "%s()\n", __func__);
+>  
+> +	bdc = devm_kzalloc(dev, sizeof(*bdc), GFP_KERNEL);
+> +	if (!bdc)
+> +		return -ENOMEM;
+> +
+>  	clk = devm_clk_get(dev, "sw_usbd");
+>  	if (IS_ERR(clk)) {
+> +		if (PTR_ERR(clk) == -EPROBE_DEFER)
+> +			return -EPROBE_DEFER;
+what about using devm_clk_get_optional()?
 
-On Thu, Jun 20, 2019 at 7:33 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
->  #ifdef CONFIG_OF
-> -static const struct of_device_id elan_of_match[] = {
-> -       { .compatible = "elan,ekth3000" },
-> -       { /* sentinel */ }
-> -};
+>  		dev_info(dev, "Clock not found in Device Tree\n");
+>  		clk = NULL;
+>  	}
+> @@ -501,11 +507,6 @@ static int bdc_probe(struct platform_device *pdev)
+>  		dev_err(dev, "could not enable clock\n");
+>  		return ret;
+>  	}
+> -
+> -	bdc = devm_kzalloc(dev, sizeof(*bdc), GFP_KERNEL);
+> -	if (!bdc)
+> -		return -ENOMEM;
+> -
+>  	bdc->clk = clk;
+>  
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> @@ -551,7 +552,7 @@ static int bdc_probe(struct platform_device *pdev)
+>  	ret = bdc_phy_init(bdc);
+>  	if (ret) {
+>  		dev_err(bdc->dev, "BDC phy init failure:%d\n", ret);
+> -		return ret;
+> +		goto clk_cleanup;
+>  	}
+>  
+>  	temp = bdc_readl(bdc->regs, BDC_BDCCAP1);
+> @@ -583,6 +584,8 @@ static int bdc_probe(struct platform_device *pdev)
+>  	bdc_hw_exit(bdc);
+>  phycleanup:
+>  	bdc_phy_exit(bdc);
+> +clk_cleanup:
+> +	clk_disable_unprepare(bdc->clk);
+>  	return ret;
+>  }
+>  
 
-I think OF IDs should stay in this file since we agreed HID will not
-be checking them.
 
->  MODULE_DEVICE_TABLE(of, elan_of_match);
->  #endif
->
-> diff --git a/include/linux/input/elan-i2c-ids.h b/include/linux/input/elan-i2c-ids.h
-> new file mode 100644
-> index 000000000000..8130bbebbdda
-> --- /dev/null
-> +++ b/include/linux/input/elan-i2c-ids.h
-> @@ -0,0 +1,68 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Elan I2C Touchpad devide whitelist
-
-s/devide/device/
-
-> + *
-> + * Copyright (C) 2019 Jeffrey Hugo.  All rights reserved.
-
-This just moves the code around. If anything I'd say it should keep
-the original Elan copyright.
-
-Thanks.
-
--- 
-Dmitry
