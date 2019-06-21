@@ -2,121 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B98B4E6F8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 13:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E764E708
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 13:21:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726731AbfFULQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 07:16:29 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:46844 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726311AbfFULQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 07:16:29 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 81so3420570pfy.13;
-        Fri, 21 Jun 2019 04:16:29 -0700 (PDT)
+        id S1726556AbfFULVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 07:21:11 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:52924 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726289AbfFULVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 07:21:11 -0400
+Received: by mail-wm1-f65.google.com with SMTP id s3so5993620wms.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 04:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=KMyXv5aakUqqkMZrvi++eRfv70/KfjHLYwh+rLZXzWg=;
-        b=qsv5gJl+MMjFjLl6q60KT5vpch2f6ZLYb+7BzlP50HQ/8+LY1SZoelxfS45G4prSXP
-         M0BH3/HsELaYFRN0Utwi/uINzNXSRExFaBnR3RBr6b8MK+1DaYjMLMOsSsrHZMug8rIS
-         Zj5F1mf1roU56bjCSihvM5gOtX/x4SAYU85qjBD5eUmL+O0Nx6qJhAdTlbCNWqG2SXRI
-         50Ij1AOsMsM5sgYY9aY8aLPr0pG0zcYHY7X1CAzL30TOv9RDGOM8DpYeCmKnAC75hVj8
-         1lvMMZPSv/ViO0Z/6aDEgik+fu2FPqXsDTnzXVlBMY0UneMwanA6l78dTVotju8tFhbn
-         giHA==
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XAz5+1ZugVE5GkUQUctoaFL1CCKytfPvugsjxndG7cg=;
+        b=tto/SWz336iwBga4qSfNB9bs/TG22rJdxD0IgYr48cvF+K3ateyntpV/dUlyNZDL61
+         ZLmokGp2bumZ7ODNLi9hYawLy0ew4Tk4C8HYpY1KSFzvlUZ0JQy8pe5muHT9SrWzTdQB
+         yS9mlZ5DdniDCQDobAj8u4NHQNZWlHRXhQOTnjF6h9uk3/UQGqKgWVLKuVyeh4FolkiB
+         XsndbKlT3d5S3p5Tuq6uyLwJrbLlRk6APCom3X6vj3bR+ZP6fvBER+KgTzvkADIwJFj1
+         NDW4ZTD04S0vvZS9mhTv5HU6C8OzFt/MmxYbz6ppjN/DcMTLKCClTY084IXbfdw9Vlke
+         n89A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=KMyXv5aakUqqkMZrvi++eRfv70/KfjHLYwh+rLZXzWg=;
-        b=QTt56C6uswQqmI7YLn0f8w5uI2UA7Oxpnok1hJffA54iyxVc6kqwJw/CDwxuA/xqqj
-         glYTKk2ZIk1SyYRqQaKS3VUaLwrYx3yQNHm3oG9MWRyjlQJqGwgopFyO7uJP8xK2VHyO
-         cxTovIkxhG8vfzrwxpNweZNrMAr78ALObWjLQlJi2w2JOZHahrJhIbcFd9IOseSWoEli
-         WeV4B+s8O0nlcfO5PTG1pALrAJQMbVSkTGf+QBqUehfQPnkym7pcO5lj+js+2pahK7iY
-         9i5GHBi1PVO9u8QEg7Obsm+QRT5PpkFiUuHjcnjY/9AkdG7kcG3OpQ4eHEAEsbz0XGZI
-         IKPg==
-X-Gm-Message-State: APjAAAVeXjUbTonl7Z1FWKnoin3P7vRiPFDtuiC5U1xDfgAaAfj8oeRD
-        935GfqUajajSYgF3c7YrkdM=
-X-Google-Smtp-Source: APXvYqzYNtXxb4tzWuDYvtdWaeALgnRgqk7i5JnGPvjR757T4G/qDe0ZN4RVho1fH/Ibw4XCUdjIDg==
-X-Received: by 2002:a17:90a:9291:: with SMTP id n17mr5871711pjo.66.1561115788928;
-        Fri, 21 Jun 2019 04:16:28 -0700 (PDT)
-Received: from Pilot130.192.168.0.22 (211-20-114-70.HINET-IP.hinet.net. [211.20.114.70])
-        by smtp.googlemail.com with ESMTPSA id w4sm2405737pfw.97.2019.06.21.04.16.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 21 Jun 2019 04:16:28 -0700 (PDT)
-From:   "sudheer.v" <open.sudheer@gmail.com>
-To:     gregkh@linuxfoundation.org, jslaby@suse.com, joel@jms.id.au,
-        andrew@aj.id.au, benh@kernel.crashing.org, robh+dt@kernel.org,
-        mark.rutland@arm.com,
-        shivahshankar.shankarnarayanrao@aspeedtech.com,
-        shivahshankar@gmail.com, sudheer.veliseti@aspeedtech.com
-Cc:     sudheer veliseti <sudheer.open@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Subject: [patch 5/5] Documentation: DT bindings AST2500 DMA UART driver
-Date:   Fri, 21 Jun 2019 16:47:35 +0530
-Message-Id: <1561115855-4186-6-git-send-email-open.sudheer@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1561115855-4186-1-git-send-email-open.sudheer@gmail.com>
-References: <1561115855-4186-1-git-send-email-open.sudheer@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XAz5+1ZugVE5GkUQUctoaFL1CCKytfPvugsjxndG7cg=;
+        b=aGJdmFXoEI3sirU5mDLI9hJYDAdrFWBjILx+r01s8+9KMXuAKzal4LMB9rhItSRGlv
+         G0B72tLfQCC6WdsC+mTJkBI2oco3kw5XuwnUFeMivob7sUcZdQfOHrYJRO5ti9kMNnko
+         6mEQsVzNwE0Ry8u3pI7oiXBIH0Vw/RSGD3SXS8oZvI0pvjp7Hg/FeyQhWQHZDIhHJf2M
+         OQNdcFufSNcI73dStzXGjsDXDoBfrwcMnvH+TPxm5lePJAKVp4C+kDgftpXRSei+LQ0D
+         +a0IHkEHcEjv+6mrYZjBg9ZaSnK42C2nVo0J5P46fVUda7PqI6/eWOqNyhi7biU5V9D9
+         J4mw==
+X-Gm-Message-State: APjAAAULJnC3aSA64DFgryHG+DI2ZoRW4d6WFU4gWF7br9CaQdEURgw7
+        SECvXQNZE4GuuAgY0Cfwn1qaXj0g5Fije0hD537olw==
+X-Google-Smtp-Source: APXvYqwCkNmbGI1oEoF6P2VDTiGVGuWQkJhUYyk74HPQNXJGI2qWaNAhuxz1OHfnUA9Lp5z2MnK0iWTp48u7p/OPB3E=
+X-Received: by 2002:a1c:2dc2:: with SMTP id t185mr3889348wmt.52.1561116068934;
+ Fri, 21 Jun 2019 04:21:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <1561114429-29612-1-git-send-email-yash.shah@sifive.com> <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 21 Jun 2019 16:50:58 +0530
+Message-ID: <CAAhSdy2uuUDkB5wa1FJzBFqDtNi2HBWs-s7G3BhCpwGs=LRohg@mail.gmail.com>
+Subject: Re: [PATCH v2] riscv: dts: Add DT node for SiFive FU540 Ethernet
+ controller driver
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, sachin.ghadi@sifive.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: sudheer veliseti <sudheer.open@gmail.com>
+On Fri, Jun 21, 2019 at 4:27 PM Yash Shah <yash.shah@sifive.com> wrote:
+>
+> DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+>
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> ---
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 16 ++++++++++++++++
+>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  9 +++++++++
+>  2 files changed, 25 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> index 4e8fbde..c53b4ea 100644
+> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> @@ -225,5 +225,21 @@
+>                         #address-cells = <1>;
+>                         #size-cells = <0>;
+>                 };
+> +               eth0: ethernet@10090000 {
+> +                       compatible = "sifive,fu540-macb";
+> +                       interrupt-parent = <&plic0>;
+> +                       interrupts = <53>;
+> +                       reg = <0x0 0x10090000 0x0 0x2000
+> +                              0x0 0x100a0000 0x0 0x1000>;
+> +                       reg-names = "control";
+> +                       status = "disabled";
+> +                       local-mac-address = [00 00 00 00 00 00];
+> +                       clock-names = "pclk", "hclk";
+> +                       clocks = <&prci PRCI_CLK_GEMGXLPLL>,
+> +                                <&prci PRCI_CLK_GEMGXLPLL>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +               };
+> +
+>         };
+>  };
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> index 4da8870..d783bf2 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> @@ -63,3 +63,12 @@
+>                 disable-wp;
+>         };
+>  };
+> +
+> +&eth0 {
+> +       status = "okay";
+> +       phy-mode = "gmii";
+> +       phy-handle = <&phy1>;
+> +       phy1: ethernet-phy@0 {
+> +               reg = <0>;
+> +       };
+> +};
+> --
+> 1.9.1
+>
 
-Signed-off-by: sudheer veliseti <sudheer.open@gmail.com>
----
- .../bindings/serial/ast2500-dma-uart.txt      | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
+LGTM.
 
-diff --git a/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt b/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-new file mode 100644
-index 000000000000..6f01ddecba56
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-@@ -0,0 +1,40 @@
-+
-+node for DMA controller:
-+                       ast_uart_sdma: uart_sdma@1e79e000 {
-+                               compatible = "aspeed,ast-uart-sdma";
-+                               reg = <0x1e79e000 0x400>;
-+                               interrupts = <50>;
-+                               status = "disabled";
-+                       };
-+this node  doesn't binds with any driver.
-+DMA controller is handled as a separate SW layer,and is included in the same driver.
-+This DMA controller node is included in DT just for Register base and interrupt details
-+
-+
-+
-+node for DMA-UART :
-+
-+
-+Required properties:
-+
-+- compatible: "aspeed,ast-sdma-uart"
-+- reg: The base address of the UART register bank
-+- interrupts: should contain interrupt specifier.
-+- clocks: Clock driving the hardware;
-+- pinctrl-0 : list of pinconfigurations
-+- dma-channel: channel of DMA-controller which is used
-+
-+Example:
-+
-+                 dma_uart1: dma_uart1@1e783000{
-+                          compatible = "aspeed,ast-sdma-uart";
-+                          reg = <0x1e783000 0x1000>;
-+                          reg-shift = <2>;
-+                          interrupts = <9>;
-+                          clocks = <&syscon ASPEED_CLK_GATE_UART1CLK>;
-+                          dma-channel = <0>;
-+                          no-loopback-test;
-+                          pinctrl-names = "default";
-+                          pinctrl-0 = <&pinctrl_txd1_default &pinctrl_rxd1_default>;
-+                          status = "disabled";
-+                       };
--- 
-2.17.1
+Reviewed-by: Anup Patel <anup@brainfault.org>
 
+Regards,
+Anup
