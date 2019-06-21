@@ -2,144 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3CBB4DF08
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 04:14:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 241564DF63
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 05:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725941AbfFUCOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 22:14:46 -0400
-Received: from onstation.org ([52.200.56.107]:56560 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725906AbfFUCOq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jun 2019 22:14:46 -0400
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id D81933E9C9;
-        Fri, 21 Jun 2019 02:14:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1561083285;
-        bh=UMl+xDCel/ZpC8ltYDruApT4MS7N+u7XvaUpzvn6c5E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WN5tpYUjwkiOYyVBf/SFE9Yc8fRGfKwU9KMrtjMpDvNAyMVxoiSe9KN1sCvlD5UCk
-         YtMlsZQhOuPzLda11cqC2TZBgsbNFWFDHaEozfq1XpxBcDofSE6ok5X730teBjDO71
-         ahj3CZcZLeSD1T0q1kPeCTuqSizp4EJwFFlxtipc=
-Date:   Thu, 20 Jun 2019 22:14:44 -0400
-From:   Brian Masney <masneyb@onstation.org>
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: display: msm: gmu: add optional ocmem
- property
-Message-ID: <20190621021444.GA13972@onstation.org>
-References: <20190616132930.6942-1-masneyb@onstation.org>
- <20190616132930.6942-3-masneyb@onstation.org>
- <CAL_Jsq+Ne=NEcLbO6C19iOny4bwm_m5QEtcsM78ZDeBmDUVO_Q@mail.gmail.com>
- <CAF6AEGs6By9-LGRBAPw2OwR9tRKJtEiZVgS2WVWRXmOK1VxNLA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAF6AEGs6By9-LGRBAPw2OwR9tRKJtEiZVgS2WVWRXmOK1VxNLA@mail.gmail.com>
+        id S1725948AbfFUDvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 23:51:25 -0400
+Received: from conuserg-08.nifty.com ([210.131.2.75]:42309 "EHLO
+        conuserg-08.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725911AbfFUDvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 23:51:25 -0400
+Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
+        by conuserg-08.nifty.com with ESMTP id x5L3oRjU014254;
+        Fri, 21 Jun 2019 12:50:27 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-08.nifty.com x5L3oRjU014254
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1561089028;
+        bh=Bg7yz3kGp5oc02/SzDEjzmVnjSSRFRG856VaDIqk91k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=p0fbb/jsPohS5rptPzipnLIlvOWQM8tXMhDLb7YHN2+8Yor8zp2pNffgMTKrNuzg0
+         QysWHlt/6pjrwXVhsBAhyOVdhZvMg3OH4nrvyboQN1ZiHKr9gb2pCbqfnUGFzT92eE
+         FFz992l2m4GUK7HCud4x0sErnUpPaaTrP9b/dLpKz090TLQ/+lMlx1qz9fhelpRMIE
+         5DoOKUT90RO97+qkUUd3LBeen4gekxXCdOLu6GJNwkOwosDqCmhLaSA3LvGI/QnkGr
+         rdl90Lr0E8Dwt7NTzrz64W4QLWR07xIW1zT1dSAAjF/XFfHkldkyZCDClgUUn6Vlz8
+         Vjuh584X4d2Hw==
+X-Nifty-SrcIP: [153.142.97.92]
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+To:     linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH] dt-binding: mmc: rename tmio_mmc.txt to renesas_sdhi.txt
+Date:   Fri, 21 Jun 2019 12:50:10 +0900
+Message-Id: <20190621035010.13884-1-yamada.masahiro@socionext.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 01:21:20PM -0700, Rob Clark wrote:
-> On Wed, Jun 19, 2019 at 1:17 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Sun, Jun 16, 2019 at 7:29 AM Brian Masney <masneyb@onstation.org> wrote:
-> > >
-> > > Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
-> > > must use the On Chip MEMory (OCMEM) in order to be functional. Add the
-> > > optional ocmem property to the Adreno Graphics Management Unit bindings.
-> > >
-> > > Signed-off-by: Brian Masney <masneyb@onstation.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/display/msm/gmu.txt | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/msm/gmu.txt b/Documentation/devicetree/bindings/display/msm/gmu.txt
-> > > index 90af5b0a56a9..c746b95e95d4 100644
-> > > --- a/Documentation/devicetree/bindings/display/msm/gmu.txt
-> > > +++ b/Documentation/devicetree/bindings/display/msm/gmu.txt
-> > > @@ -31,6 +31,10 @@ Required properties:
-> > >  - iommus: phandle to the adreno iommu
-> > >  - operating-points-v2: phandle to the OPP operating points
-> > >
-> > > +Optional properties:
-> > > +- ocmem: phandle to the On Chip Memory (OCMEM) that's present on some Snapdragon
-> > > +         SoCs. See Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml.
-> >
-> > We already have a couple of similar properties. Lets standardize on
-> > 'sram' as that is what TI already uses.
-> >
-> > Also, is the whole OCMEM allocated to the GMU? If not you should have
-> > child nodes to subdivide the memory.
-> >
-> 
-> iirc, downstream a large chunk of OCMEM is statically allocated for
-> GPU.. the remainder is dynamically allocated for different use-cases.
-> The upstream driver Brian is proposing only handles the static
-> allocation case
+As commit b6147490e6aa ("mmc: tmio: split core functionality, DMA and
+MFD glue") said, these MMC controllers use the IP from Panasonic.
 
-It appears that the GPU expects to use a specific region of ocmem,
-specifically starting at 0. The freedreno driver allocates 1MB of
-ocmem on the Nexus 5 starting at ocmem address 0. As a test, I
-changed the starting address to 0.5MB and kmscube shows only half the
-cube, and four wide black bars across the screen:
+TMIO (Toshiba Mobile IO) MMC was the first upstreamed user of this IP.
+The common driver code was split and expanded as 'tmio-mmc-core', then
+it become historical misnomer since 'tmio' is not the name of this IP
+in the first place.
 
-https://www.flickr.com/photos/masneyb/48100534381/
+In the discussion [1], we decide to keep calling these MMC variants
+'TMIO MMC' at least in Linux driver level because renaming all of them
+is a big churn.
 
-> (and I don't think we have upstream support for the various audio and
-> video use-cases that used dynamic OCMEM allocation downstream)
+However, DT should not be oriented to a particular project even though
+it is developed in Linux communities.
 
-That's my understanding as well.
+Let's stop exporting this unfortunate things to other projects, where
+there is no good reason to call this "TMIO". Rename the file to
+renesas_sdhi.txt. In fact, all the information in this file is specific
+to the Renesas platform.
 
-> Although maybe we should still have a child node to separate the
-> statically and dynamically allocated parts?  I'm not sure what would
-> make the most sense..
+This commit also removes the first paragraph entirely. The DT-binding
+should describe the hardware. It is really strange to talk about Linux
+driver internals such as how the drivers are probed, how platform data
+are handed off, etc.
 
-Given that the GPU is expecting a fixed address in ocmem, perhaps it
-makes sense to have the child node. How about this based on the
-sram/sram.txt bindings?
+[1] https://www.spinics.net/lists/linux-mmc/msg46952.html
 
-  ocmem: ocmem@fdd00000 {
-    compatible = "qcom,msm8974-ocmem";
+Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+---
 
-    reg = <0xfdd00000 0x2000>, <0xfec00000 0x180000>;
-    reg-names = "ctrl", "mem";
+I sent this before, but it was dismissed somehow.
+I am resending this.
 
-    clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>, <&mmcc OCMEMCX_OCMEMNOC_CLK>;
-    clock-names = "core", "iface";
 
-    gmu-sram@0 {
-      reg = <0x0 0x100000>;
-      pool;
-    };
+ .../bindings/mmc/{tmio_mmc.txt => renesas_sdhi.txt}   | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+ rename Documentation/devicetree/bindings/mmc/{tmio_mmc.txt => renesas_sdhi.txt} (87%)
 
-    misc-sram@0 {
-      reg = <0x100000 0x080000>;
-      export;
-    };
-  };
+diff --git a/Documentation/devicetree/bindings/mmc/tmio_mmc.txt b/Documentation/devicetree/bindings/mmc/renesas_sdhi.txt
+similarity index 87%
+rename from Documentation/devicetree/bindings/mmc/tmio_mmc.txt
+rename to Documentation/devicetree/bindings/mmc/renesas_sdhi.txt
+index 2b4f17ca9087..dd08d038a65c 100644
+--- a/Documentation/devicetree/bindings/mmc/tmio_mmc.txt
++++ b/Documentation/devicetree/bindings/mmc/renesas_sdhi.txt
+@@ -1,13 +1,4 @@
+-* Toshiba Mobile IO SD/MMC controller
+-
+-The tmio-mmc driver doesn't probe its devices actively, instead its binding to
+-devices is managed by either MFD drivers or by the sh_mobile_sdhi platform
+-driver. Those drivers supply the tmio-mmc driver with platform data, that either
+-describe hardware capabilities, known to them, or are obtained by them from
+-their own platform data or from their DT information. In the latter case all
+-compulsory and any optional properties, common to all SD/MMC drivers, as
+-described in mmc.txt, can be used. Additionally the following tmio_mmc-specific
+-optional bindings can be used.
++* Renesas SDHI SD/MMC controller
+ 
+ Required properties:
+ - compatible: should contain one or more of the following:
+-- 
+2.17.1
 
-I marked the misc pool as export since I've seen in the downstream ocmem
-sources a reference to their closed libsensors that runs in userspace.
-
-Looking at the sram bindings led me to the genalloc API
-(Documentation/core-api/genalloc.rst). I wonder if this is the way that
-this should be done?
-
-Brian
