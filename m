@@ -2,76 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E524EAA3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 16:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 563D04EACC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 16:34:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726067AbfFUOb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 10:31:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57236 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726031AbfFUOb1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jun 2019 10:31:27 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BB739208C3;
-        Fri, 21 Jun 2019 14:31:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561127486;
-        bh=6Y0fFj3wNgB6evAG5+hEEThOfwgXc810fHqAa8tcPQU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=H2tOXqJ6TINLrZTvx/eNjHML0+blxFd0LoQFe/RGCWk2r+5gPisgUcOI2JJrzl9Z/
-         wCRgNbQGfzAvkgQw129veG7MGjnA+Eui7D8xTQerLjfAAhQmLnJmj4xr4b2Z7Pfac5
-         q/Y6r0njv+z4wtfqA+xFccY7hUdu5C1cNhlgcYsQ=
-Received: by mail-qk1-f169.google.com with SMTP id l128so4561219qke.2;
-        Fri, 21 Jun 2019 07:31:26 -0700 (PDT)
-X-Gm-Message-State: APjAAAVzUfqWdNuf7Kf3Whi9Tmuqs/4jCrfXlRRoqbUrP7AWmQTYKhtH
-        70N9E8dxF0EbBK+mr3b5cA6XlubUHMlcH+yhTw==
-X-Google-Smtp-Source: APXvYqxjUHWcRHOr8UxMSaUAXIxs2pGOijqyvXBq6LTF9gNlsVhsS95Y3V+zuGs9IJdIKHSTJzrV7xxlSXEjwJcO8uw=
-X-Received: by 2002:a37:6357:: with SMTP id x84mr5759194qkb.393.1561127486015;
- Fri, 21 Jun 2019 07:31:26 -0700 (PDT)
+        id S1726556AbfFUOej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 10:34:39 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35734 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726535AbfFUOej (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 10:34:39 -0400
+Received: by mail-io1-f68.google.com with SMTP id m24so1708514ioo.2;
+        Fri, 21 Jun 2019 07:34:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AECDYLxDxs7t3GCnNHcYsgiH9u/iWrvr6DiFBtVCaR0=;
+        b=mIhTAt82nLco82ZUCJu8f/BQnr1sKyonZ/h33w52rRQFbAOYmW2zAdH0eWvaTJf7Em
+         DkojVv9wiWl1xGazjMm7vANa5MqniYm2SNgbHhRHcbjhcsxUmhC+xSPMsvNvZl077ZXU
+         HvOFr05BCX8m5Js9aFlBaBOrX0OIeWz6z+1GNXjAk6tqk6GIa2BxsvSAdwXldf2GA5SX
+         GrmcZ69IVV7SMeiIzA3rEo/dniNGU7dAwPwGwUgSr+lBdmB8QN4xJqB4dvqBdBK5F9jo
+         SgdLf2McEtqSD1SHw+fYhZvNpfzZMGQ0E5fk5VA6hnPxroPzz6JqGFTVyUT/LsT1MRZy
+         FJFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AECDYLxDxs7t3GCnNHcYsgiH9u/iWrvr6DiFBtVCaR0=;
+        b=lMh5Xeg4FpEu+DQZYNgcmwN9wY00YtoOT5YOJqixJbbNGOC2C8LU8P8yii5hpI3/8r
+         PV3bR74Zm/P9eHIZ9G7W2yAOYNIPahz/2WOx9itIsWnhZdn6ogC/FtDKbKQo7YCoJp23
+         9s9U1S2x1RmE8TGUJmw/4Z91FsDmmM2Jc3KTM8fqvYxKpcweykMRdFQ9vvpFWj/91b22
+         H1KUgSGRbwQsisoGgwtLwZ47lkzx6owjCiyVWxDbvku7GwVz5n5wehtL4njHmQiZDuyH
+         BY0KuEKapKbJWNmGYYJXhzIt8OKLU6sEO8hepQsDubRpO7IkwYAKmlGlAJ43Fjpg+JFT
+         Nxsw==
+X-Gm-Message-State: APjAAAU5nydtAVBFDVq+dt5yCXwWj+csmGtwd5gPMtnm1IFlJr6Og2OF
+        3TDhKjb9E72U8APQzfRkLhzcnMbqRmgtWWvHqX0=
+X-Google-Smtp-Source: APXvYqz0iwFlA6JkJ14KUgH9IUB7/KVGlNFIqw6N33AuxBl5sBzGUS41/e3kXim7cgQDGO9nrhRXSXrQ9eLv923pxlw=
+X-Received: by 2002:a5d:8049:: with SMTP id b9mr2356470ior.199.1561127678260;
+ Fri, 21 Jun 2019 07:34:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190621121344.24917-1-mircea.caprioru@analog.com> <20190621121344.24917-4-mircea.caprioru@analog.com>
-In-Reply-To: <20190621121344.24917-4-mircea.caprioru@analog.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 21 Jun 2019 08:31:14 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLOMKQExp1Vu0Xo32Wx-ETdQk=AWSnex-GQ3QbzdZ7zQA@mail.gmail.com>
-Message-ID: <CAL_JsqLOMKQExp1Vu0Xo32Wx-ETdQk=AWSnex-GQ3QbzdZ7zQA@mail.gmail.com>
-Subject: Re: [PATCH V2 4/4] dt-bindings: iio: adc: Convert ad7124
- documentation to YAML
-To:     Mircea Caprioru <mircea.caprioru@analog.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
+References: <20190620142801.11827-1-jeffrey.l.hugo@gmail.com>
+ <20190620143318.11880-1-jeffrey.l.hugo@gmail.com> <CAKdAkRRstvEWXtwnLCMKoW6PcCz0W3+M9iYqVFshJpw6y_=9bA@mail.gmail.com>
+In-Reply-To: <CAKdAkRRstvEWXtwnLCMKoW6PcCz0W3+M9iYqVFshJpw6y_=9bA@mail.gmail.com>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Fri, 21 Jun 2019 08:34:26 -0600
+Message-ID: <CAOCk7NoKB6UtA3g-0+Yxi4Y46PDqapnOH0dHH0CupvnQ=ZSKVQ@mail.gmail.com>
+Subject: Re: [PATCH v7 1/5] Input: elan_i2c: Export the device id whitelist
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Jiri Kosina <jikos@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, xnox@ubuntu.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 21, 2019 at 6:15 AM Mircea Caprioru
-<mircea.caprioru@analog.com> wrote:
+On Thu, Jun 20, 2019 at 10:34 PM Dmitry Torokhov
+<dmitry.torokhov@gmail.com> wrote:
 >
-> Convert AD7124 bindings documentation to YAML format.
+> Hi Jeffrey,
 >
-> Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
-> ---
+> On Thu, Jun 20, 2019 at 7:33 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
+> >  #ifdef CONFIG_OF
+> > -static const struct of_device_id elan_of_match[] = {
+> > -       { .compatible = "elan,ekth3000" },
+> > -       { /* sentinel */ }
+> > -};
 >
-> Changelog v2:
-> - modified SPDX license to GPL-2.0 OR BSD-2-Clause
-> - added regex for a range from 0 to 15
-> - added minimum and maximum constraints for reg property
-> - set type and range of values for adi,reference-select property
-> - used items for diff-channels property
-> - set bipolar, adi,buffered-positive and negative to type: boolean
->
->  .../bindings/iio/adc/adi,ad7124.yaml          | 155 ++++++++++++++++++
->  1 file changed, 155 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> I think OF IDs should stay in this file since we agreed HID will not
+> be checking them.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I thought it would be convenient to keep all the IDs in one place, but
+I'll put these back.
+
+>
+> >  MODULE_DEVICE_TABLE(of, elan_of_match);
+> >  #endif
+> >
+> > diff --git a/include/linux/input/elan-i2c-ids.h b/include/linux/input/elan-i2c-ids.h
+> > new file mode 100644
+> > index 000000000000..8130bbebbdda
+> > --- /dev/null
+> > +++ b/include/linux/input/elan-i2c-ids.h
+> > @@ -0,0 +1,68 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Elan I2C Touchpad devide whitelist
+>
+> s/devide/device/
+
+Doh.  Will fix.
+
+>
+> > + *
+> > + * Copyright (C) 2019 Jeffrey Hugo.  All rights reserved.
+>
+> This just moves the code around. If anything I'd say it should keep
+> the original Elan copyright.
+
+Ok.  No problem.
+
+>
+> Thanks.
+>
+> --
+> Dmitry
