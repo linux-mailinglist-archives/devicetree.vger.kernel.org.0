@@ -2,133 +2,1307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5F44EA63
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 16:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 118024EA97
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 16:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbfFUORM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 10:17:12 -0400
-Received: from mail-eopbgr40087.outbound.protection.outlook.com ([40.107.4.87]:60902
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725975AbfFUORM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jun 2019 10:17:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fq/Z2rq1N2NySK5wO/nneFl43iIw00N+AmZgMnaFNnE=;
- b=AtAgQkpT9b63dDsrLm8KUqeJydRyTBqpO+hYHbREISFl1Qxi/DfQT/iXifgZZAQfgnOTw6D/9xxdgf9Kf+2OALS/k4BO4/B9vhU6ULg+ztRhdl3ESTGqEfyXhdZGPS1NKmOaEIFWuayBr3CBfDbERvivV1DoHXFeU3SkqxwUpSY=
-Received: from VI1PR04MB5967.eurprd04.prod.outlook.com (20.178.123.141) by
- VI1PR04MB4317.eurprd04.prod.outlook.com (52.134.31.160) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.13; Fri, 21 Jun 2019 14:16:28 +0000
-Received: from VI1PR04MB5967.eurprd04.prod.outlook.com
- ([fe80::3dd4:5031:dc06:1fd7]) by VI1PR04MB5967.eurprd04.prod.outlook.com
- ([fe80::3dd4:5031:dc06:1fd7%7]) with mapi id 15.20.1987.014; Fri, 21 Jun 2019
- 14:16:28 +0000
-From:   Robert Chiras <robert.chiras@nxp.com>
-To:     "festevam@gmail.com" <festevam@gmail.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "airlied@linux.ie" <airlied@linux.ie>
-Subject: Re: [EXT] Re: [PATCH v3 1/2] dt-bindings: display: panel: Add support
- for Raydium RM67191 panel
-Thread-Topic: [EXT] Re: [PATCH v3 1/2] dt-bindings: display: panel: Add
- support for Raydium RM67191 panel
-Thread-Index: AQHVJ2xX1b/vfXFflkiTFJeIvUdOWqamJJQAgAAEZ4A=
-Date:   Fri, 21 Jun 2019 14:16:28 +0000
-Message-ID: <1561126587.9328.76.camel@nxp.com>
-References: <1561037428-13855-1-git-send-email-robert.chiras@nxp.com>
-         <1561037428-13855-2-git-send-email-robert.chiras@nxp.com>
-         <CAOMZO5DunK3+ovBd0c0X4NTf-zkW1Tjz6KgXFMaRQKMk2SBMiw@mail.gmail.com>
-In-Reply-To: <CAOMZO5DunK3+ovBd0c0X4NTf-zkW1Tjz6KgXFMaRQKMk2SBMiw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=robert.chiras@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 10cc73a1-d7b7-417a-eb2e-08d6f6530d38
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4317;
-x-ms-traffictypediagnostic: VI1PR04MB4317:
-x-microsoft-antispam-prvs: <VI1PR04MB4317A15721CDE1EB8C33447BE3E70@VI1PR04MB4317.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-forefront-prvs: 0075CB064E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(346002)(136003)(366004)(396003)(39860400002)(189003)(199004)(76116006)(103116003)(66476007)(486006)(86362001)(6436002)(5640700003)(305945005)(54906003)(2501003)(73956011)(1361003)(6486002)(8676002)(66066001)(71200400001)(99286004)(5660300002)(229853002)(25786009)(316002)(36756003)(2906002)(4326008)(6246003)(1411001)(6512007)(44832011)(186003)(6916009)(1730700003)(7416002)(446003)(476003)(8936002)(53936002)(71190400001)(66556008)(256004)(50226002)(81156014)(102836004)(6506007)(64756008)(3846002)(2351001)(66946007)(66446008)(11346002)(81166006)(7736002)(478600001)(6116002)(53546011)(26005)(76176011)(2616005)(68736007)(14454004)(99106002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4317;H:VI1PR04MB5967.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: HpN0ykw6GU26lNgmuHBKNqrA4MByGFXB2AabWpPDUUe2xACzs8tIKsg9XYJ2uYB9SVGGsU3e+Pcrn5wSsZcqfwEN6v2f0lUdT1mwOy6XK2M3VL46fhseB/xTkdzOmtCMKyMrLSscVK3Y+etkUsBpnVPzJ2AaUc+i4EmyPCQ2OxSRLmc4PDhXRzP93OzzarCULcketo4Vk0p5yfN83mdliGHCJjbN2Yio17j16FrGMMdSopuWwK2mZVXbuu+n3VX1NTFXt9zQgDxi8MreUp7F6fX45eg8wYcpxnOdkzZJwfcQzZXcDBGfQyoAEeuvcu6QtMhIg+CcMvO9T/sqL2jZFTUt+PvE/UdU5FjYyVUmu42ZuNLniMP9nzHOjomUuSWnGNAjMS9jeNnMOKbe1jj1czvdMa6KbteYHU6mOqKXFGE=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9EF40643811A1D4193F3D91D3C679BD7@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1726045AbfFUO3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 10:29:06 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:37347 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbfFUO3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 10:29:06 -0400
+Received: by mail-io1-f68.google.com with SMTP id e5so154802iok.4;
+        Fri, 21 Jun 2019 07:29:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xu4kJhzJhrvstLOg2ov8ZfyYNtd4Cw2zWy/Us8B8Izk=;
+        b=ZD+V6OcrCK77cB4293ufvgVXBBOvfbPvfXxBsxTdLW0w2bUtckm/AUcqDS98F9bzME
+         l+9zbddGYwu3HTctMvwFs7AQvX45fg2avQh2FNVJUJ95Yh5+SkFS3o583x8EWsRp7AYj
+         NSDtCSAsBc1ti988QGUNVGukXpFaJWs9zYavrOgOvK7zZAFs4wJWj0hA16OZmlhSVngC
+         8FGw8x3qKF+7zQfj/IoEO2thATsiuarNYF7zzudonxkQSbkE2mExzyYvdsAhc3Xpc6/g
+         JSDuey78avj0b1AZLzBroMCEffCT127TVYC9PA7kt2hVW4CcEEwAu6G9wpbrbVBtOrvd
+         ffeg==
+X-Gm-Message-State: APjAAAW25SrmFmczyhmkCMqQzwk5dmyZvlanpo97gOE7LCeKOaaQKAG7
+        a9k04Ou1cP3VB77nNO6Sj9cIdNc=
+X-Google-Smtp-Source: APXvYqznx8R9PgZ5In1WgjG912EwWNKVKenTMEOZc1kl5NngYIl/Wnt3FiuJmWZq1BCQ3PSyNHOLlA==
+X-Received: by 2002:a02:cb96:: with SMTP id u22mr8302738jap.118.1561127342881;
+        Fri, 21 Jun 2019 07:29:02 -0700 (PDT)
+Received: from localhost.localdomain ([64.188.179.244])
+        by smtp.googlemail.com with ESMTPSA id t22sm2596463ioc.75.2019.06.21.07.29.01
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 21 Jun 2019 07:29:02 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: [PATCH] scripts/dtc: Update to upstream version v1.5.0-30-g702c1b6c0e73
+Date:   Fri, 21 Jun 2019 08:29:00 -0600
+Message-Id: <20190621142900.31988-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10cc73a1-d7b7-417a-eb2e-08d6f6530d38
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jun 2019 14:16:28.3256
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: robert.chiras@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4317
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRmFiaW8sDQoNCk9uIFZpLCAyMDE5LTA2LTIxIGF0IDExOjAwIC0wMzAwLCBGYWJpbyBFc3Rl
-dmFtIHdyb3RlOg0KPiBIaSBSb2JlcnQsDQo+IA0KPiBPbiBUaHUsIEp1biAyMCwgMjAxOSBhdCAx
-MDozMiBBTSBSb2JlcnQgQ2hpcmFzIDxyb2JlcnQuY2hpcmFzQG54cC5jb20NCj4gPiB3cm90ZToN
-Cj4gPiANCj4gPiANCj4gPiBBZGQgZHQtYmluZGluZ3MgZG9jdW1lbnRhdGlvbiBmb3IgUmF5ZGl1
-bSBSTTY3MTkxIERTSSBwYW5lbC4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBSb2JlcnQgQ2hp
-cmFzIDxyb2JlcnQuY2hpcmFzQG54cC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IFNhbSBSYXZuYm9y
-ZyA8c2FtQHJhdm5ib3JnLm9yZz4NCj4gPiAtLS0NCj4gPiDCoC4uLi9iaW5kaW5ncy9kaXNwbGF5
-L3BhbmVsL3JheWRpdW0scm02NzE5MS50eHTCoMKgwqDCoMKgfCAzOQ0KPiA+ICsrKysrKysrKysr
-KysrKysrKysrKysNCj4gPiDCoDEgZmlsZSBjaGFuZ2VkLCAzOSBpbnNlcnRpb25zKCspDQo+ID4g
-wqBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvZGlzcGxheS9wYW5lbC9yYXlkaXVtLHJtNjcxOTEudHh0DQo+ID4gDQo+ID4gZGlmZiAtLWdp
-dA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcGFuZWwv
-cmF5ZGl1bSxybTY3MTkxLnQNCj4gPiB4dA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2Rpc3BsYXkvcGFuZWwvcmF5ZGl1bSxybTY3MTkxLnQNCj4gPiB4dA0KPiA+IG5l
-dyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMC4uNTJhZjI3Mg0KPiA+IC0tLSAv
-ZGV2L251bGwNCj4gPiArKysNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9kaXNwbGF5L3BhbmVsL3JheWRpdW0scm02NzE5MS50DQo+ID4geHQNCj4gPiBAQCAtMCwwICsx
-LDM5IEBADQo+ID4gK1JheWRpdW0gUk02NzE3MSBPTEVEIExDRCBwYW5lbCB3aXRoIE1JUEktRFNJ
-IHByb3RvY29sDQo+ID4gKw0KPiA+ICtSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+ICstIGNvbXBh
-dGlibGU6wqDCoMKgwqDCoMKgwqDCoMKgwqAicmF5ZGl1bSxybTY3MTkxIg0KPiA+ICstIHJlZzrC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdmlydHVhbCBjaGFubmVsIGZvciBNSVBJ
-LURTSSBwcm90b2NvbA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgbXVzdCBiZSA8MD4NCj4gPiArLSBkc2ktbGFuZXM6wqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoG51bWJlciBvZiBEU0kgbGFuZXMgdG8gYmUgdXNlZA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbXVzdCBiZSA8Mz4gb3IgPDQ+DQo+ID4gKy0g
-cG9ydDrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlucHV0IHBvcnQgbm9kZSB3aXRo
-IGVuZHBvaW50IGRlZmluaXRpb24gYXMNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoGRlZmluZWQgaW4NCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvZ3JhcGgudHh0Ow0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgdGhlIGlucHV0IHBvcnQgc2hvdWxkIGJlIGNvbm5lY3RlZCB0byBh
-DQo+ID4gTUlQSS1EU0kgZGV2aWNlDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBkcml2ZXINCj4gPiArDQo+ID4gK09wdGlvbmFsIHByb3BlcnRpZXM6
-DQo+ID4gKy0gcmVzZXQtZ3Bpb3M6wqDCoMKgwqDCoMKgwqDCoMKgYSBHUElPIHNwZWMgZm9yIHRo
-ZSBSU1RfQiBHUElPIHBpbg0KPiA+ICstIHdpZHRoLW1tOsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oHNlZSBwYW5lbC1jb21tb24udHh0DQo+ID4gKy0gaGVpZ2h0LW1tOsKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBzZWUgcGFuZWwtY29tbW9uLnR4dA0KPiA+ICstIHZpZGVvLW1vZGU6wqDCoMKgwqDCoMKg
-wqDCoMKgwqAwIC0gYnVyc3QtbW9kZQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgMSAtIG5vbi1idXJzdCB3aXRoIHN5bmMgZXZlbnQNCj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDIgLSBub24tYnVyc3Qg
-d2l0aCBzeW5jIHBvIHVsc2UNCj4gTm8gcG93ZXItc3VwcGx5IHByb3BlcnR5Pw0KRnJvbSB3aGF0
-IEkndmUgc2VlbiBpbiB0aGUgc2NoZW1hdGljcywgdGhlIHBvd2VyIGxpbmVzIG9uIHRoZSBEU0kg
-cG9ydA0Kb24gYWxsIHRoZSBpLk1YOCBjb3JlcyBhcmUgY29taW5nIGZyb20gYSBQTUlDIHByb3Zp
-ZGluZyBwb3dlciBmb3IgYWxsDQp0aGUgcGVyaXBoZXJhbHMuIFNpbmNlIEkgZGlkbid0IGZpbmQg
-YSB3YXkgdG8gY3V0IHRoZSBwb3dlciBvbiBhIHNpbmdsZQ0KcGVyaXBoZXJhbCAobGlrZSBEU0ks
-IGZvciBleGFtcGxlKSBpdCBkb2Vzbid0IG1ha2Ugc2Vuc2UgZm9yIHBvd2VyLQ0Kc3VwcGx5IHBy
-b3BlcnR5LiBGb3Igbm93LCBhdCBsZWFzdC4=
+Pull in SPDX tag conversion from upstream dtc. This will replace the
+conversion done in the kernel tree copy in v5.2-rc2.
+
+This adds the following commits from upstream:
+
+702c1b6c0e73 README.license: Update to reflect SPDX tag usage
+4097bbffcf1d dtc: Add GPLv2 SPDX tags to files missing license text
+94f87cd5b7c5 libfdt: Add dual GPL/BSD SPDX tags to files missing license text
+c4ffc05574b1 tests: Replace license boilerplate with SPDX tags
+a5ac29baacd2 pylibfdt: Replace dual GPLv2/BSD license boilerplate with SPDX tags
+7fb0f4db2eb7 libfdt: Replace GPL/BSD boilerplate/reference with SPDX tags
+acfe84f2c47e dtc: Replace GPLv2 boilerplate/reference with SPDX tags
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ scripts/dtc/Makefile.dtc             |  1 +
+ scripts/dtc/checks.c                 | 17 +---------
+ scripts/dtc/data.c                   | 17 +---------
+ scripts/dtc/dtc-lexer.l              | 17 +---------
+ scripts/dtc/dtc-parser.y             | 17 +---------
+ scripts/dtc/dtc.c                    | 17 +---------
+ scripts/dtc/dtc.h                    | 17 +---------
+ scripts/dtc/flattree.c               | 17 +---------
+ scripts/dtc/fstree.c                 | 17 +---------
+ scripts/dtc/libfdt/Makefile.libfdt   |  1 +
+ scripts/dtc/libfdt/fdt.c             | 47 +---------------------------
+ scripts/dtc/libfdt/fdt.h             | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_addresses.c   | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_empty_tree.c  | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_overlay.c     | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_ro.c          | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_rw.c          | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_strerror.c    | 46 +--------------------------
+ scripts/dtc/libfdt/fdt_sw.c          | 47 +---------------------------
+ scripts/dtc/libfdt/fdt_wip.c         | 47 +---------------------------
+ scripts/dtc/libfdt/libfdt.h          | 47 +---------------------------
+ scripts/dtc/libfdt/libfdt_env.h      | 47 +---------------------------
+ scripts/dtc/libfdt/libfdt_internal.h | 47 +---------------------------
+ scripts/dtc/livetree.c               | 17 +---------
+ scripts/dtc/srcpos.c                 | 16 +---------
+ scripts/dtc/srcpos.h                 | 16 +---------
+ scripts/dtc/treesource.c             | 17 +---------
+ scripts/dtc/util.c                   | 16 +---------
+ scripts/dtc/util.h                   | 16 +---------
+ scripts/dtc/version_gen.h            |  2 +-
+ scripts/dtc/yamltree.c               | 16 +---------
+ 31 files changed, 31 insertions(+), 833 deletions(-)
+
+diff --git a/scripts/dtc/Makefile.dtc b/scripts/dtc/Makefile.dtc
+index d4375630a7f7..9c467b096f03 100644
+--- a/scripts/dtc/Makefile.dtc
++++ b/scripts/dtc/Makefile.dtc
+@@ -1,3 +1,4 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
+ # Makefile.dtc
+ #
+ # This is not a complete Makefile of itself.  Instead, it is designed to
+diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
+index 4719d658432b..d7986ee18012 100644
+--- a/scripts/dtc/checks.c
++++ b/scripts/dtc/checks.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2007.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include "dtc.h"
+diff --git a/scripts/dtc/data.c b/scripts/dtc/data.c
+index 4a204145cc7b..0a43b6de3264 100644
+--- a/scripts/dtc/data.c
++++ b/scripts/dtc/data.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include "dtc.h"
+diff --git a/scripts/dtc/dtc-lexer.l b/scripts/dtc/dtc-lexer.l
+index 06c040902444..5c6c3fd557d7 100644
+--- a/scripts/dtc/dtc-lexer.l
++++ b/scripts/dtc/dtc-lexer.l
+@@ -1,21 +1,6 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ %option noyywrap nounput noinput never-interactive
+diff --git a/scripts/dtc/dtc-parser.y b/scripts/dtc/dtc-parser.y
+index 2ec981e86111..2ed4dc1f07fd 100644
+--- a/scripts/dtc/dtc-parser.y
++++ b/scripts/dtc/dtc-parser.y
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ %{
+ #include <stdio.h>
+diff --git a/scripts/dtc/dtc.c b/scripts/dtc/dtc.c
+index 695e1f789fc7..bdb3f5945699 100644
+--- a/scripts/dtc/dtc.c
++++ b/scripts/dtc/dtc.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include <sys/stat.h>
+diff --git a/scripts/dtc/dtc.h b/scripts/dtc/dtc.h
+index 0d5fa215ac87..6e74ecea55a3 100644
+--- a/scripts/dtc/dtc.h
++++ b/scripts/dtc/dtc.h
+@@ -1,24 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #ifndef DTC_H
+ #define DTC_H
+ 
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include <stdio.h>
+diff --git a/scripts/dtc/flattree.c b/scripts/dtc/flattree.c
+index f7f70769d73f..bd6977eedcb8 100644
+--- a/scripts/dtc/flattree.c
++++ b/scripts/dtc/flattree.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include "dtc.h"
+diff --git a/scripts/dtc/fstree.c b/scripts/dtc/fstree.c
+index 1e7eeba47ff6..9871689b4afb 100644
+--- a/scripts/dtc/fstree.c
++++ b/scripts/dtc/fstree.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include "dtc.h"
+diff --git a/scripts/dtc/libfdt/Makefile.libfdt b/scripts/dtc/libfdt/Makefile.libfdt
+index 193da8c99d83..e54639738c8e 100644
+--- a/scripts/dtc/libfdt/Makefile.libfdt
++++ b/scripts/dtc/libfdt/Makefile.libfdt
+@@ -1,3 +1,4 @@
++# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ # Makefile.libfdt
+ #
+ # This is not a complete Makefile of itself.  Instead, it is designed to
+diff --git a/scripts/dtc/libfdt/fdt.c b/scripts/dtc/libfdt/fdt.c
+index ae03b1112961..179168ec63e9 100644
+--- a/scripts/dtc/libfdt/fdt.c
++++ b/scripts/dtc/libfdt/fdt.c
+@@ -1,52 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt.h b/scripts/dtc/libfdt/fdt.h
+index 74961f9026d1..f2e68807f277 100644
+--- a/scripts/dtc/libfdt/fdt.h
++++ b/scripts/dtc/libfdt/fdt.h
+@@ -1,55 +1,10 @@
++/* SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause) */
+ #ifndef FDT_H
+ #define FDT_H
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+  * Copyright 2012 Kim Phillips, Freescale Semiconductor.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
+ #ifndef __ASSEMBLY__
+diff --git a/scripts/dtc/libfdt/fdt_addresses.c b/scripts/dtc/libfdt/fdt_addresses.c
+index 2cc997ea5012..d8ba8ec60c6c 100644
+--- a/scripts/dtc/libfdt/fdt_addresses.c
++++ b/scripts/dtc/libfdt/fdt_addresses.c
+@@ -1,53 +1,8 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2014 David Gibson <david@gibson.dropbear.id.au>
+  * Copyright (C) 2018 embedded brains GmbH
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt_empty_tree.c b/scripts/dtc/libfdt/fdt_empty_tree.c
+index f2ae9b77c285..49d54d44b8e7 100644
+--- a/scripts/dtc/libfdt/fdt_empty_tree.c
++++ b/scripts/dtc/libfdt/fdt_empty_tree.c
+@@ -1,52 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2012 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt_overlay.c b/scripts/dtc/libfdt/fdt_overlay.c
+index d3e9ab2dbb7b..e97f12b1a780 100644
+--- a/scripts/dtc/libfdt/fdt_overlay.c
++++ b/scripts/dtc/libfdt/fdt_overlay.c
+@@ -1,53 +1,8 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2016 Free Electrons
+  * Copyright (C) 2016 NextThing Co.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt_ro.c b/scripts/dtc/libfdt/fdt_ro.c
+index 2c393a100bfc..6fd9ec170dbe 100644
+--- a/scripts/dtc/libfdt/fdt_ro.c
++++ b/scripts/dtc/libfdt/fdt_ro.c
+@@ -1,52 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt_rw.c b/scripts/dtc/libfdt/fdt_rw.c
+index 9e7661509e9f..8795947c00dd 100644
+--- a/scripts/dtc/libfdt/fdt_rw.c
++++ b/scripts/dtc/libfdt/fdt_rw.c
+@@ -1,52 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt_strerror.c b/scripts/dtc/libfdt/fdt_strerror.c
+index 0e6b4fd5e7ce..768db66eada5 100644
+--- a/scripts/dtc/libfdt/fdt_strerror.c
++++ b/scripts/dtc/libfdt/fdt_strerror.c
+@@ -1,51 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+  *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+diff --git a/scripts/dtc/libfdt/fdt_sw.c b/scripts/dtc/libfdt/fdt_sw.c
+index e773157d0fc4..76bea22f734f 100644
+--- a/scripts/dtc/libfdt/fdt_sw.c
++++ b/scripts/dtc/libfdt/fdt_sw.c
+@@ -1,52 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/fdt_wip.c b/scripts/dtc/libfdt/fdt_wip.c
+index 534c1cbbb2f3..f64139e0b3dc 100644
+--- a/scripts/dtc/libfdt/fdt_wip.c
++++ b/scripts/dtc/libfdt/fdt_wip.c
+@@ -1,52 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include "libfdt_env.h"
+ 
+diff --git a/scripts/dtc/libfdt/libfdt.h b/scripts/dtc/libfdt/libfdt.h
+index be14bf63e577..7b5ffd13a887 100644
+--- a/scripts/dtc/libfdt/libfdt.h
++++ b/scripts/dtc/libfdt/libfdt.h
+@@ -1,54 +1,9 @@
++/* SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause) */
+ #ifndef LIBFDT_H
+ #define LIBFDT_H
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
+ #include "libfdt_env.h"
+diff --git a/scripts/dtc/libfdt/libfdt_env.h b/scripts/dtc/libfdt/libfdt_env.h
+index 4d1cdfa58547..73b6d40450ac 100644
+--- a/scripts/dtc/libfdt/libfdt_env.h
++++ b/scripts/dtc/libfdt/libfdt_env.h
+@@ -1,55 +1,10 @@
++/* SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause) */
+ #ifndef LIBFDT_ENV_H
+ #define LIBFDT_ENV_H
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+  * Copyright 2012 Kim Phillips, Freescale Semiconductor.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
+ #include <stdbool.h>
+diff --git a/scripts/dtc/libfdt/libfdt_internal.h b/scripts/dtc/libfdt/libfdt_internal.h
+index 4109f890ae60..7830e550c37a 100644
+--- a/scripts/dtc/libfdt/libfdt_internal.h
++++ b/scripts/dtc/libfdt/libfdt_internal.h
+@@ -1,54 +1,9 @@
++/* SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause) */
+ #ifndef LIBFDT_INTERNAL_H
+ #define LIBFDT_INTERNAL_H
+ /*
+  * libfdt - Flat Device Tree manipulation
+  * Copyright (C) 2006 David Gibson, IBM Corporation.
+- *
+- * libfdt is dual licensed: you can use it either under the terms of
+- * the GPL, or the BSD license, at your option.
+- *
+- *  a) This library is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This library is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- *     You should have received a copy of the GNU General Public
+- *     License along with this library; if not, write to the Free
+- *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+- *     MA 02110-1301 USA
+- *
+- * Alternatively,
+- *
+- *  b) Redistribution and use in source and binary forms, with or
+- *     without modification, are permitted provided that the following
+- *     conditions are met:
+- *
+- *     1. Redistributions of source code must retain the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer.
+- *     2. Redistributions in binary form must reproduce the above
+- *        copyright notice, this list of conditions and the following
+- *        disclaimer in the documentation and/or other materials
+- *        provided with the distribution.
+- *
+- *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+- *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+- *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+- *     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+- *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+- *     CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+- *     SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+- *     NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+- *     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+- *     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+- *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+- *     OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+- *     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include <fdt.h>
+ 
+diff --git a/scripts/dtc/livetree.c b/scripts/dtc/livetree.c
+index 21c274125c2c..0c039993953a 100644
+--- a/scripts/dtc/livetree.c
++++ b/scripts/dtc/livetree.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include "dtc.h"
+diff --git a/scripts/dtc/srcpos.c b/scripts/dtc/srcpos.c
+index 41f83700ee91..f5205fb9c1ff 100644
+--- a/scripts/dtc/srcpos.c
++++ b/scripts/dtc/srcpos.c
+@@ -1,20 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * Copyright 2007 Jon Loeliger, Freescale Semiconductor, Inc.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #define _GNU_SOURCE
+diff --git a/scripts/dtc/srcpos.h b/scripts/dtc/srcpos.h
+index 6326a952c40e..4318d7ad34d9 100644
+--- a/scripts/dtc/srcpos.h
++++ b/scripts/dtc/srcpos.h
+@@ -1,20 +1,6 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ /*
+  * Copyright 2007 Jon Loeliger, Freescale Semiconductor, Inc.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #ifndef SRCPOS_H
+diff --git a/scripts/dtc/treesource.c b/scripts/dtc/treesource.c
+index 1af36628b75f..c9d980c8abfc 100644
+--- a/scripts/dtc/treesource.c
++++ b/scripts/dtc/treesource.c
+@@ -1,21 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include "dtc.h"
+diff --git a/scripts/dtc/util.c b/scripts/dtc/util.c
+index 9c6fb5f286ae..48af961dcc8c 100644
+--- a/scripts/dtc/util.c
++++ b/scripts/dtc/util.c
+@@ -1,24 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * Copyright 2011 The Chromium Authors, All Rights Reserved.
+  * Copyright 2008 Jon Loeliger, Freescale Semiconductor, Inc.
+  *
+  * util_is_printable_string contributed by
+  *	Pantelis Antoniou <pantelis.antoniou AT gmail.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include <ctype.h>
+diff --git a/scripts/dtc/util.h b/scripts/dtc/util.h
+index fc3c0d05ada3..ca5cb52928e3 100644
+--- a/scripts/dtc/util.h
++++ b/scripts/dtc/util.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #ifndef UTIL_H
+ #define UTIL_H
+ 
+@@ -8,21 +9,6 @@
+ /*
+  * Copyright 2011 The Chromium Authors, All Rights Reserved.
+  * Copyright 2008 Jon Loeliger, Freescale Semiconductor, Inc.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #ifdef __GNUC__
+diff --git a/scripts/dtc/version_gen.h b/scripts/dtc/version_gen.h
+index 2111a6e351f9..f2761e24cf40 100644
+--- a/scripts/dtc/version_gen.h
++++ b/scripts/dtc/version_gen.h
+@@ -1 +1 @@
+-#define DTC_VERSION "DTC 1.5.0-g87963ee2"
++#define DTC_VERSION "DTC 1.5.0-g702c1b6c"
+diff --git a/scripts/dtc/yamltree.c b/scripts/dtc/yamltree.c
+index a00285a5a9ec..5b6ea8ea862f 100644
+--- a/scripts/dtc/yamltree.c
++++ b/scripts/dtc/yamltree.c
+@@ -1,22 +1,8 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+  * (C) Copyright Linaro, Ltd. 2018
+  * (C) Copyright Arm Holdings.  2017
+  * (C) Copyright David Gibson <dwg@au1.ibm.com>, IBM Corporation.  2005.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- *  General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+- *                                                                   USA
+  */
+ 
+ #include <stdlib.h>
+-- 
+2.20.1
+
