@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D84B4E068
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CCD44E061
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726219AbfFUGMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 02:12:54 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:42385 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726218AbfFUGMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:12:54 -0400
-Received: by mail-pl1-f196.google.com with SMTP id ay6so2450382plb.9
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:12:53 -0700 (PDT)
+        id S1726309AbfFUGM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 02:12:58 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:32953 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726296AbfFUGM5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:12:57 -0400
+Received: by mail-pg1-f193.google.com with SMTP id m4so2228479pgk.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :in-reply-to:references;
-        bh=7nHW+SBzX1vnb4mk1MDf9lGhalkNUllPIWRi8UNhM/c=;
-        b=osCAdvXZJmd8s32WoaH84e0LvoQF3n8quJaSrFXXcZI2cepOsKaYqkZhdXl6Hipp1t
-         MNT21Hkn6pag47WU/b70key5vgzuhiyEbIyDFj7NUoKIwA4nVoTsgAr1LbAvE1e9580o
-         ojwN0FXPZn+ZwbFGBZaWJBlmoykMq8Y3IfDCrdn4Lje8NGTdaAn4Zu0K3ZaBj3ngMSzd
-         5heMfR7ve4WTUcKdL3TLMPPguf7EzfTIJCi6nJQkpc5I3ja4gL7elfXltWm2OukUep48
-         KQ6bedBrVvRAxuX0n+NXZV/uHEmz1LzGOWHDLYMm/iBXQpWgyeU+VJJSgISWBjEFC1++
-         gMwQ==
+        bh=sTCdN8+J6KLa7sEKH0EdC3HRf3eZR2ST2OSFrpSj98Q=;
+        b=hRj5ECnn+gxAxOedpghqwfXjTbai4FfzLUa9qcX00huzqhbDDBkKgalm3JGfPzF4sm
+         18yXQSv2ukoeVpjOkv7Db2DZDB28Ddz1Jkn3Q6od/ez8JwBgtOtfOj9X7ShDnaOcEZdA
+         KM1UOo97Eo5hwjvpmIQCLUrL2E1wytzb1SD4kV+ffY2IRcgG4TT9FyI62cGLmutOceIj
+         ipEH0GNu8YZ1aIGoR2Ku1j9iYaZQ84JO+TrBmMZYGD6Dx85JTEmWEO4lX7M6hvVTfA5N
+         dvfPJJ8svG6P159BVUNq3Xzv6MU6BxsEK4BoUVBA9CNKMzhFQvWUVgCUhAsWngA5gedR
+         Lbgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:in-reply-to:references;
-        bh=7nHW+SBzX1vnb4mk1MDf9lGhalkNUllPIWRi8UNhM/c=;
-        b=sG7rw0/009gOrSROd0eqOyFtec4DR4arzke7ldPjSX6BnkctcI4QXKAG4edMNvpwkL
-         /q9JapmqzFASZRfvLngjIujkL50UoR9Yq5wwmksV97W/6NNNuexbrDfNGLcIZdh+Y2eU
-         O8/k3DE9MIMD4LtUHUW6mBdPFzsvn5Fr0JJRQZNtz22u9ymw3itNW+ybMmWPXJWXc5jz
-         DQduFYVRW2jV65+E4D3+aY8il0CY6ShH6DCa+l+wYGwF9gRT82ToiFRxQYYN3BVngBf8
-         MT1aB3JrJhs+/A0ZYn4Heuqr/eQB+kSb1RzXRels6s5rbO7Z/YtNiAEqjzS39UN+29gW
-         iu2w==
-X-Gm-Message-State: APjAAAUX2/cQHkwRLnCWm5EPifR7IabeAuEWS3KNFyqcH3KOsyNknJq7
-        c5aINPF6r7zIdtEo9BjcO6hqjw==
-X-Google-Smtp-Source: APXvYqzV1QMcGWKHcO3GJFszFvYHtJaXinkBiAsjKQeNI5kSsCCcFHT5+Hm1oVT9CT+LJc1z8sKSjg==
-X-Received: by 2002:a17:902:7583:: with SMTP id j3mr11377956pll.196.1561097573451;
-        Thu, 20 Jun 2019 23:12:53 -0700 (PDT)
+        bh=sTCdN8+J6KLa7sEKH0EdC3HRf3eZR2ST2OSFrpSj98Q=;
+        b=d1I6dD1ir5FkBbdIOHOOnSl8svUx7Uk/+vt+5nnyGISPMMxV8ODg+k2LctorWJhNh4
+         7ZFAqK/wWNRDP+rNe693apysEz9Gmi50ZT3gG2agC6Q4TRMLp+hzgZ4i0tdpGoLGtFgi
+         fr/D020iWN57mAEpgAWG8tEF64Yqb0bCeVRdlfMY521qCmimS3M+KRjih1jUhD4uM1PY
+         w7nFriNTYFBd1St6ZhKSEW0Q4VtsWFeQZK+kaNZEMmCJN+7E47r39eADdXLwoXbRTXFI
+         d4ykY+kP97NIMVrLqc2i4435XXlTVJi2HCC7jAoUWSNF9GRsWPnKjrv+9bdC6rNp0V10
+         TpDA==
+X-Gm-Message-State: APjAAAX7Hl+64H1eF9Ojx4i65q6t/fUXGbhHj4QWHA0uVAcz6uuM+Zhq
+        F0u9Mqu1oxRzGEjEcN1pkhGc7g==
+X-Google-Smtp-Source: APXvYqxmGH0nMNJrwTfUuJHvrMIseiYEj2N0NeglRuKFRKi0jUIO0oJYd4+5NHEBufpTMCTrFHeIQQ==
+X-Received: by 2002:a17:90a:d814:: with SMTP id a20mr4358452pjv.48.1561097576891;
+        Thu, 20 Jun 2019 23:12:56 -0700 (PDT)
 Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id x7sm1266134pfm.82.2019.06.20.23.12.50
+        by smtp.gmail.com with ESMTPSA id x7sm1266134pfm.82.2019.06.20.23.12.53
         (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 20 Jun 2019 23:12:53 -0700 (PDT)
+        Thu, 20 Jun 2019 23:12:56 -0700 (PDT)
 From:   Baolin Wang <baolin.wang@linaro.org>
 To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
         zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
@@ -51,9 +51,9 @@ To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
 Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org,
         linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 1/3] mmc: sdhci-sprd: Add start_signal_voltage_switch ops
-Date:   Fri, 21 Jun 2019 14:12:31 +0800
-Message-Id: <89fb15e88f33a3c1ce7b5eefa9414a20c984c579.1561094029.git.baolin.wang@linaro.org>
+Subject: [PATCH 2/3] dt-bindings: mmc: sprd: Add pinctrl support
+Date:   Fri, 21 Jun 2019 14:12:32 +0800
+Message-Id: <73f6c1291e4c15da6be53a6dd4602622e142fefb.1561094029.git.baolin.wang@linaro.org>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1561094029.git.baolin.wang@linaro.org>
 References: <cover.1561094029.git.baolin.wang@linaro.org>
@@ -64,59 +64,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For Spreadtrum SD host controller, we can not use standard SD registers
-to change and detect the I/O voltage signals, since our voltage regulator
-for I/O is fixed in hardware, and no signals were connected to the SD
-controller. Thus add Spreadtrum specific voltage switch ops to change
-voltage instead of using standard SD host registers.
+When changing SD card voltage signal for Spreadtrum SD host controller,
+it also need to switch related pin's state. Thus add pinctrl properties'
+description in documentation.
 
 Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
 ---
- drivers/mmc/host/sdhci-sprd.c |   24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ .../devicetree/bindings/mmc/sdhci-sprd.txt         |    7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-index 024c3c5..8b23c88 100644
---- a/drivers/mmc/host/sdhci-sprd.c
-+++ b/drivers/mmc/host/sdhci-sprd.c
-@@ -403,6 +403,22 @@ static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 	sdhci_request(mmc, mrq);
- }
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+index e675397..eb7eb1b 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+@@ -19,6 +19,9 @@ Required properties:
+ Optional properties:
+ - assigned-clocks: the same with "sdio" clock
+ - assigned-clock-parents: the default parent of "sdio" clock
++- pinctrl-names: should be "default", "state_uhs"
++- pinctrl-0: should contain default/high speed pin control
++- pinctrl-1: should contain uhs mode pin control
  
-+static int sdhci_sprd_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
-+{
-+	int ret;
-+
-+	if (!IS_ERR(mmc->supply.vqmmc)) {
-+		ret = mmc_regulator_set_vqmmc(mmc, ios);
-+		if (ret) {
-+			pr_err("%s: Switching signalling voltage failed\n",
-+			       mmc_hostname(mmc));
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static void sdhci_sprd_hs400_enhanced_strobe(struct mmc_host *mmc,
- 					     struct mmc_ios *ios)
- {
-@@ -470,6 +486,14 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
- 	host->mmc_host_ops.request = sdhci_sprd_request;
- 	host->mmc_host_ops.hs400_enhanced_strobe =
- 		sdhci_sprd_hs400_enhanced_strobe;
-+	/*
-+	 * We can not use the standard ops to change and detect the voltage
-+	 * signal for Spreadtrum SD host controller, since our voltage regulator
-+	 * for I/O is fixed in hardware, that means we do not need control
-+	 * the standard SD host controller to change the I/O voltage.
-+	 */
-+	host->mmc_host_ops.start_signal_voltage_switch =
-+		sdhci_sprd_voltage_switch;
+ PHY DLL delays are used to delay the data valid window, and align the window
+ to sampling clock. PHY DLL delays can be configured by following properties,
+@@ -50,6 +53,10 @@ sdio0: sdio@20600000 {
+ 	assigned-clocks = <&ap_clk CLK_EMMC_2X>;
+ 	assigned-clock-parents = <&rpll CLK_RPLL_390M>;
  
- 	host->mmc->caps = MMC_CAP_SD_HIGHSPEED | MMC_CAP_MMC_HIGHSPEED |
- 		MMC_CAP_ERASE | MMC_CAP_CMD23;
++	pinctrl-names = "default", "state_uhs";
++	pinctrl-0 = <&sd0_pins_default>;
++	pinctrl-1 = <&sd0_pins_uhs>;
++
+ 	sprd,phy-delay-sd-uhs-sdr104 = <0x3f 0x7f 0x2e 0x2e>;
+ 	bus-width = <8>;
+ 	non-removable;
 -- 
 1.7.9.5
 
