@@ -2,115 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1B1E4E68C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 12:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ED404E6A8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 13:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726439AbfFUK5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 06:57:46 -0400
-Received: from mail-pg1-f173.google.com ([209.85.215.173]:35887 "EHLO
-        mail-pg1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726250AbfFUK5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 06:57:46 -0400
-Received: by mail-pg1-f173.google.com with SMTP id f21so3211620pgi.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 03:57:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=LfS7OaPkDmyWohtCv6+omHOKQ0iNU10OGK6bYTnhcSo=;
-        b=EkbAXsmiKWaXo7lR4QUiVCL3Qlcv5VjgIRJ0aK6NFuKAuTyEiZcnI5vTp9lBKiydzN
-         xC6cvtuwUV1tyZvDArgTgmcBgirg3MR79RamUeHI3xMVLq3/7R4M+MpAfyvVGEYeJgbB
-         PgwRRsU2ZoNIary8F1SjsWrxcWSY9vgdB9LcSLnOPck0160+E3v24EbE6LFUfKbFe29l
-         R4CRTdtb5UzyEfPhQsBfPQ+9AIlDmOJAaZh1qXb9rJbiVMWQEQijVf75CF4IUZ7OnKvH
-         HyLmU0RoHIVMnqj5BScwaEgx/hRKR1sUx6u8RRqdgnfJLVulA4vv4axkwpc17aFOdJzk
-         YJhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=LfS7OaPkDmyWohtCv6+omHOKQ0iNU10OGK6bYTnhcSo=;
-        b=bXL8yqglrW7ULm8WS333+AuY6qNOriq1gCzZJwmwxtRXwcTijW140RwQIhvjRWezsB
-         HPDrz+UT0tQh8txuFJ98vevKY+slwjKq/4ITz4Zs7GofF+3ZtuDDK4TJsOrmbo9O3BAg
-         Ug/AAnc7marg6Y5b/ldC16ftKmlD2nQpS4rakP07otbjdoA/85jN0gL0/nG9BFDltyhj
-         8oKXw/T9inXWPzfqBtbeBbbXfbkFi9mGgSUlrdPG38XLvnuNdq38UxMEjfcqzmk4hYfs
-         vAgN2bKpXpR0uDEgMri/2Ii2tCAFsZoWNBcwxbwtG7oa8H2gOFkQm0zjKWuli4thbxBh
-         Pu6g==
-X-Gm-Message-State: APjAAAWSEVr+jb1tmHDDkskclVGRhcVzcBuKoplOu3+j8DKdFGiIIYNm
-        gjazhWPwlAVa57VvH/JlYDpRAA==
-X-Google-Smtp-Source: APXvYqzyg4P7NwGYnubvr8F2/xiaWS2z04jXSX8kI2HlZUYsAEErfBxzBhb5mkAaVXVwDLS01pWL+Q==
-X-Received: by 2002:a63:f817:: with SMTP id n23mr17900412pgh.35.1561114665299;
-        Fri, 21 Jun 2019 03:57:45 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id q63sm3889442pfb.81.2019.06.21.03.57.41
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 21 Jun 2019 03:57:44 -0700 (PDT)
-From:   Yash Shah <yash.shah@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
-        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH v2] riscv: dts: Add DT node for SiFive FU540 Ethernet controller driver
-Date:   Fri, 21 Jun 2019 16:23:49 +0530
-Message-Id: <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
-References: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
+        id S1726311AbfFULDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 07:03:01 -0400
+Received: from conuserg-09.nifty.com ([210.131.2.76]:20684 "EHLO
+        conuserg-09.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726285AbfFULDB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 07:03:01 -0400
+Received: from localhost.localdomain (softbank126205003112.bbtec.net [126.205.3.112]) (authenticated)
+        by conuserg-09.nifty.com with ESMTP id x5LB2TFi005760;
+        Fri, 21 Jun 2019 20:02:30 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-09.nifty.com x5LB2TFi005760
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1561114952;
+        bh=566G5ZJA7HhdKKqomzyRKpv+TUpB4KwzLjdLVp/NDac=;
+        h=From:To:Cc:Subject:Date:From;
+        b=vZRndXuDCODRwLRC1TxbV4cOhoQvs3X2lq5+WWq/oatAqA9MbrYOlbtfOdKct4Caf
+         DwlAU9ym+XA6etPb0H6yJ4Ggj47YlNKfAKjHeA/BoptNoUJ9Er7NDoXTNfmzW36EVE
+         c9KVfSox+VhFPJUr+3cvnGjRSJYjyIgtLs7tUllSayTmHlv7LTsH+7RVaCuC/CI+q8
+         fNIO6avUpH6C4NH0AyxyaAxY2Cc0q1yuUxJVS73by7pnFv6PuX4V5sBVVXFcGTHNwW
+         a2EESx/S1DkPAuJQrnOnHezE7MAelTWvHlPubQheedQr2SxEky4k5gNl7CDwGUG/vi
+         BfF8LuxIYqebQ==
+X-Nifty-SrcIP: [126.205.3.112]
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH] arm64: dts: uniphier: update to new Denali NAND binding
+Date:   Fri, 21 Jun 2019 20:02:25 +0900
+Message-Id: <20190621110225.22710-1-yamada.masahiro@socionext.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+With commit d8e8fd0ebf8b ("mtd: rawnand: denali: decouple controller
+and NAND chips"), the Denali NAND controller driver migrated to the
+new controller/chip representation.
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
+Update DT for it.
+
+Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
 ---
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 16 ++++++++++++++++
- arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  9 +++++++++
- 2 files changed, 25 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 4e8fbde..c53b4ea 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -225,5 +225,21 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 		};
-+		eth0: ethernet@10090000 {
-+			compatible = "sifive,fu540-macb";
-+			interrupt-parent = <&plic0>;
-+			interrupts = <53>;
-+			reg = <0x0 0x10090000 0x0 0x2000
-+			       0x0 0x100a0000 0x0 0x1000>;
-+			reg-names = "control";
-+			status = "disabled";
-+			local-mac-address = [00 00 00 00 00 00];
-+			clock-names = "pclk", "hclk";
-+			clocks = <&prci PRCI_CLK_GEMGXLPLL>,
-+				 <&prci PRCI_CLK_GEMGXLPLL>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
+ arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts | 4 ++++
+ arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi       | 2 ++
+ arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi       | 2 ++
+ arch/arm64/boot/dts/socionext/uniphier-pxs3-ref.dts    | 4 ++++
+ arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi       | 2 ++
+ 5 files changed, 14 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts b/arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts
+index 7968d524351b..f72f048a0c9d 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts
++++ b/arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts
+@@ -163,4 +163,8 @@
+ 
+ &nand {
+ 	status = "okay";
 +
- 	};
- };
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 4da8870..d783bf2 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -63,3 +63,12 @@
- 		disable-wp;
- 	};
- };
-+
-+&eth0 {
-+	status = "okay";
-+	phy-mode = "gmii";
-+	phy-handle = <&phy1>;
-+	phy1: ethernet-phy@0 {
++	nand@0 {
 +		reg = <0>;
 +	};
-+};
+ };
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
+index a3cd475b48d2..e32f8aef40bf 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
++++ b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
+@@ -617,6 +617,8 @@
+ 			status = "disabled";
+ 			reg-names = "nand_data", "denali_reg";
+ 			reg = <0x68000000 0x20>, <0x68100000 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			interrupts = <0 65 4>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_nand>;
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+index 017f6328c191..0e1b30656fea 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
++++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
+@@ -921,6 +921,8 @@
+ 			status = "disabled";
+ 			reg-names = "nand_data", "denali_reg";
+ 			reg = <0x68000000 0x20>, <0x68100000 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			interrupts = <0 65 4>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_nand>;
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref.dts b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref.dts
+index 1965e4dfe4a4..754315bbd1c8 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref.dts
++++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref.dts
+@@ -115,4 +115,8 @@
+ 
+ &nand {
+ 	status = "okay";
++
++	nand@0 {
++		reg = <0>;
++	};
+ };
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
+index bb97abe1a55f..d3863157ddd9 100644
+--- a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
++++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
+@@ -779,6 +779,8 @@
+ 			status = "disabled";
+ 			reg-names = "nand_data", "denali_reg";
+ 			reg = <0x68000000 0x20>, <0x68100000 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			interrupts = <0 65 4>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_nand>;
 -- 
-1.9.1
+2.17.1
 
