@@ -2,183 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8054DEE2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 03:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3CBB4DF08
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 04:14:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726219AbfFUB6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 21:58:06 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:37886 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbfFUB6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 21:58:05 -0400
-Received: by mail-vs1-f67.google.com with SMTP id v6so2830721vsq.4
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 18:58:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v0FbC0Xdnnb68PWmVlA2vC7ih6OKam4biQiJRuW8orc=;
-        b=Szp2IOTt8MAH66bTRQ2mDk2Pfo0wUi0/7oMQgyfH6fEs59PGr+WL6otSTZ2TvBj84Y
-         9zhl+I1aG4XDrcYPISzPSKY2t+lFsNawmZ+y/3eCwhkS/Qscgfohk/FjGrZlkr29kFXw
-         TVx/+qhcv8lRwAP/98l1vJWFnhtUIalJBrsa4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v0FbC0Xdnnb68PWmVlA2vC7ih6OKam4biQiJRuW8orc=;
-        b=tLgtGLBXQz1Mh9u0Olo9wmzH0T9P37c2Zaa3yTaQo1ZwgLWDpIBv7fPWhYaEayoRoo
-         lwccj7EZhTi3unOu/841mzKlEtJRfX7QzmljOqnQ8zmOlqsYCuPCo1M38FZd7nLdNIUe
-         RspLhjSwUyJlXDRn9+73zPpmFLuiDrzQ0I5MpOHwnxJiIs/EID5vuJHgfpebSI+L63BS
-         nf016t7gtKSOBvpbQqn8hnmt0ANmahbZLXCUPdGFRG/KVsM90PVuWQqrQthJ7T9l8eEl
-         WsA5aIy31O8nzxkEu/Nk235PQhoRprca70fFsLTWl0ZIxSM53c7DEloOgSUzc4fAezYm
-         +hZg==
-X-Gm-Message-State: APjAAAV0tb7rA8059n+QkSzoT9EbYdKV2wgzBnyLWrOKvN/GnwEbM29d
-        ocgvNllXvTL88sFftZDqJJV9EY0dcv3pf82+GVwYZw==
-X-Google-Smtp-Source: APXvYqynIpC8UeAIAKmqGg7+BnEM5kPsN/6M+239KLGUtn+uDjwNBpvvs8RYiwSGVVeN8P2fBnGv1nECg5lE54nmZWg=
-X-Received: by 2002:a67:7d13:: with SMTP id y19mr53842535vsc.232.1561082283839;
- Thu, 20 Jun 2019 18:58:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190611040350.90064-1-dbasehore@chromium.org>
- <20190611040350.90064-4-dbasehore@chromium.org> <20190611085722.GX21222@phenom.ffwll.local>
- <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com>
-In-Reply-To: <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com>
-From:   "dbasehore ." <dbasehore@chromium.org>
-Date:   Thu, 20 Jun 2019 18:57:52 -0700
-Message-ID: <CAGAzgsoE5CgkQVhU_LSsetBRistMnuRqO7Sh+cuycMJa7QXzDg@mail.gmail.com>
-Subject: Re: [PATCH 3/5] drm/panel: Add attach/detach callbacks
-To:     Derek Basehore <dbasehore@chromium.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
+        id S1725941AbfFUCOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 22:14:46 -0400
+Received: from onstation.org ([52.200.56.107]:56560 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725906AbfFUCOq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jun 2019 22:14:46 -0400
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id D81933E9C9;
+        Fri, 21 Jun 2019 02:14:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1561083285;
+        bh=UMl+xDCel/ZpC8ltYDruApT4MS7N+u7XvaUpzvn6c5E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WN5tpYUjwkiOYyVBf/SFE9Yc8fRGfKwU9KMrtjMpDvNAyMVxoiSe9KN1sCvlD5UCk
+         YtMlsZQhOuPzLda11cqC2TZBgsbNFWFDHaEozfq1XpxBcDofSE6ok5X730teBjDO71
+         ahj3CZcZLeSD1T0q1kPeCTuqSizp4EJwFFlxtipc=
+Date:   Thu, 20 Jun 2019 22:14:44 -0400
+From:   Brian Masney <masneyb@onstation.org>
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
         Sean Paul <sean@poorly.run>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Intel Graphics <intel-gfx@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: display: msm: gmu: add optional ocmem
+ property
+Message-ID: <20190621021444.GA13972@onstation.org>
+References: <20190616132930.6942-1-masneyb@onstation.org>
+ <20190616132930.6942-3-masneyb@onstation.org>
+ <CAL_Jsq+Ne=NEcLbO6C19iOny4bwm_m5QEtcsM78ZDeBmDUVO_Q@mail.gmail.com>
+ <CAF6AEGs6By9-LGRBAPw2OwR9tRKJtEiZVgS2WVWRXmOK1VxNLA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAF6AEGs6By9-LGRBAPw2OwR9tRKJtEiZVgS2WVWRXmOK1VxNLA@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If we want to query the device tree outside of the panel code in
-helper functions, we can do this with the struct as is. There's
-already a device struct pointer in drm_panel, so I think we can pull
-from that.
-
-On Tue, Jun 11, 2019 at 5:25 PM dbasehore . <dbasehore@chromium.org> wrote:
->
-> On Tue, Jun 11, 2019 at 1:57 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+On Wed, Jun 19, 2019 at 01:21:20PM -0700, Rob Clark wrote:
+> On Wed, Jun 19, 2019 at 1:17 PM Rob Herring <robh+dt@kernel.org> wrote:
 > >
-> > On Mon, Jun 10, 2019 at 09:03:48PM -0700, Derek Basehore wrote:
-> > > This adds the attach/detach callbacks. These are for setting up
-> > > internal state for the connector/panel pair that can't be done at
-> > > probe (since the connector doesn't exist) and which don't need to be
-> > > repeatedly done for every get/modes, prepare, or enable callback.
-> > > Values such as the panel orientation, and display size can be filled
-> > > in for the connector.
+> > On Sun, Jun 16, 2019 at 7:29 AM Brian Masney <masneyb@onstation.org> wrote:
 > > >
-> > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > > Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
+> > > must use the On Chip MEMory (OCMEM) in order to be functional. Add the
+> > > optional ocmem property to the Adreno Graphics Management Unit bindings.
+> > >
+> > > Signed-off-by: Brian Masney <masneyb@onstation.org>
 > > > ---
-> > >  drivers/gpu/drm/drm_panel.c | 14 ++++++++++++++
-> > >  include/drm/drm_panel.h     |  4 ++++
-> > >  2 files changed, 18 insertions(+)
+> > >  Documentation/devicetree/bindings/display/msm/gmu.txt | 4 ++++
+> > >  1 file changed, 4 insertions(+)
 > > >
-> > > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-> > > index 3b689ce4a51a..72f67678d9d5 100644
-> > > --- a/drivers/gpu/drm/drm_panel.c
-> > > +++ b/drivers/gpu/drm/drm_panel.c
-> > > @@ -104,12 +104,23 @@ EXPORT_SYMBOL(drm_panel_remove);
-> > >   */
-> > >  int drm_panel_attach(struct drm_panel *panel, struct drm_connector *connector)
-> > >  {
-> > > +     int ret;
-> > > +
-> > >       if (panel->connector)
-> > >               return -EBUSY;
+> > > diff --git a/Documentation/devicetree/bindings/display/msm/gmu.txt b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> > > index 90af5b0a56a9..c746b95e95d4 100644
+> > > --- a/Documentation/devicetree/bindings/display/msm/gmu.txt
+> > > +++ b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> > > @@ -31,6 +31,10 @@ Required properties:
+> > >  - iommus: phandle to the adreno iommu
+> > >  - operating-points-v2: phandle to the OPP operating points
 > > >
-> > >       panel->connector = connector;
-> > >       panel->drm = connector->dev;
-> > >
-> > > +     if (panel->funcs->attach) {
-> > > +             ret = panel->funcs->attach(panel);
-> > > +             if (ret < 0) {
-> > > +                     panel->connector = NULL;
-> > > +                     panel->drm = NULL;
-> > > +                     return ret;
-> > > +             }
-> > > +     }
+> > > +Optional properties:
+> > > +- ocmem: phandle to the On Chip Memory (OCMEM) that's present on some Snapdragon
+> > > +         SoCs. See Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml.
 > >
-> > Why can't we just implement this in the drm helpers for everyone, by e.g.
-> > storing a dt node in drm_panel? Feels a bit overkill to have these new
-> > hooks here.
+> > We already have a couple of similar properties. Lets standardize on
+> > 'sram' as that is what TI already uses.
 > >
-> > Also, my understanding is that this dt stuff is supposed to be
-> > standardized, so this should work.
->
-> So do you want all of this information added to the drm_panel struct?
-> If we do that, we don't necessarily even need the drm helper function.
-> We could just copy the values over here in the drm_panel_attach
-> function (and clear them in drm_panel_detach).
->
-> > -Daniel
+> > Also, is the whole OCMEM allocated to the GMU? If not you should have
+> > child nodes to subdivide the memory.
 > >
-> > > +
-> > >       return 0;
-> > >  }
-> > >  EXPORT_SYMBOL(drm_panel_attach);
-> > > @@ -128,6 +139,9 @@ EXPORT_SYMBOL(drm_panel_attach);
-> > >   */
-> > >  int drm_panel_detach(struct drm_panel *panel)
-> > >  {
-> > > +     if (panel->funcs->detach)
-> > > +             panel->funcs->detach(panel);
-> > > +
-> > >       panel->connector = NULL;
-> > >       panel->drm = NULL;
-> > >
-> > > diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
-> > > index 13631b2efbaa..e136e3a3c996 100644
-> > > --- a/include/drm/drm_panel.h
-> > > +++ b/include/drm/drm_panel.h
-> > > @@ -37,6 +37,8 @@ struct display_timing;
-> > >   * struct drm_panel_funcs - perform operations on a given panel
-> > >   * @disable: disable panel (turn off back light, etc.)
-> > >   * @unprepare: turn off panel
-> > > + * @detach: detach panel->connector (clear internal state, etc.)
-> > > + * @attach: attach panel->connector (update internal state, etc.)
-> > >   * @prepare: turn on panel and perform set up
-> > >   * @enable: enable panel (turn on back light, etc.)
-> > >   * @get_modes: add modes to the connector that the panel is attached to and
-> > > @@ -70,6 +72,8 @@ struct display_timing;
-> > >  struct drm_panel_funcs {
-> > >       int (*disable)(struct drm_panel *panel);
-> > >       int (*unprepare)(struct drm_panel *panel);
-> > > +     void (*detach)(struct drm_panel *panel);
-> > > +     int (*attach)(struct drm_panel *panel);
-> > >       int (*prepare)(struct drm_panel *panel);
-> > >       int (*enable)(struct drm_panel *panel);
-> > >       int (*get_modes)(struct drm_panel *panel);
-> > > --
-> > > 2.22.0.rc2.383.gf4fbbf30c2-goog
-> > >
-> >
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+> 
+> iirc, downstream a large chunk of OCMEM is statically allocated for
+> GPU.. the remainder is dynamically allocated for different use-cases.
+> The upstream driver Brian is proposing only handles the static
+> allocation case
+
+It appears that the GPU expects to use a specific region of ocmem,
+specifically starting at 0. The freedreno driver allocates 1MB of
+ocmem on the Nexus 5 starting at ocmem address 0. As a test, I
+changed the starting address to 0.5MB and kmscube shows only half the
+cube, and four wide black bars across the screen:
+
+https://www.flickr.com/photos/masneyb/48100534381/
+
+> (and I don't think we have upstream support for the various audio and
+> video use-cases that used dynamic OCMEM allocation downstream)
+
+That's my understanding as well.
+
+> Although maybe we should still have a child node to separate the
+> statically and dynamically allocated parts?  I'm not sure what would
+> make the most sense..
+
+Given that the GPU is expecting a fixed address in ocmem, perhaps it
+makes sense to have the child node. How about this based on the
+sram/sram.txt bindings?
+
+  ocmem: ocmem@fdd00000 {
+    compatible = "qcom,msm8974-ocmem";
+
+    reg = <0xfdd00000 0x2000>, <0xfec00000 0x180000>;
+    reg-names = "ctrl", "mem";
+
+    clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>, <&mmcc OCMEMCX_OCMEMNOC_CLK>;
+    clock-names = "core", "iface";
+
+    gmu-sram@0 {
+      reg = <0x0 0x100000>;
+      pool;
+    };
+
+    misc-sram@0 {
+      reg = <0x100000 0x080000>;
+      export;
+    };
+  };
+
+I marked the misc pool as export since I've seen in the downstream ocmem
+sources a reference to their closed libsensors that runs in userspace.
+
+Looking at the sram bindings led me to the genalloc API
+(Documentation/core-api/genalloc.rst). I wonder if this is the way that
+this should be done?
+
+Brian
