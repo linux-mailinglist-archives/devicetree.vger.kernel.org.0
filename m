@@ -2,101 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 985D04E058
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC054E05C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726210AbfFUGKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 02:10:49 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:34179 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726198AbfFUGKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:10:49 -0400
-Received: by mail-pl1-f196.google.com with SMTP id i2so2471522plt.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:10:48 -0700 (PDT)
+        id S1726045AbfFUGMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 02:12:51 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:40857 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726027AbfFUGMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:12:51 -0400
+Received: by mail-pg1-f195.google.com with SMTP id w10so2824357pgj.7
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:12:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=xzioaCMOpZ9xQIhn8ZgZe3ezoCoNBuqDVW6enXrUWdI=;
-        b=ctO7hOIdc1bJes6IfW+jMC3YvFiVSz45t+/wcP7nl8TQnixOumEuakVUduy54+D7vJ
-         IdmjNUS/kNTfK7m3QaYMos3dbKCZRVWTfrJFCalZJNsrO1H1o/F7taY9HeBHZRisbRgf
-         NjO/pdbW9rE9yRbiBiXHxrhud2JsVcugAKH+sg89svmnAcKH7fuQ0977VQ8x1qNV3YbE
-         QthTsJiP1TuuIINMBQ3GV/EHrVuRwMj7SiMzRwunaN33CqyeO7qPgc4hmRVnbIFXtyop
-         jL+FJiNe7n3XdJTacXjginoA/dKAYtF0soKm0PxiGhj2m7/NHDZNIXnV7rrH0Aosw6a0
-         ZcKQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=hc7LlnhYKlripj8xIjUSqdLS+0TxDwaADDzz2U0auf4=;
+        b=zVvpyVBj1fJ344KOE4nUWG+7s5KWzpfOGopnV2cFnegqyPWrCuMoxxX5v9HH9Z5msi
+         N+J6AD7cAuJIKQSVYE4eCOBxlRNxKKlEfoKXWCdtKYRLsKnaFQGQhfcaPOo4UKJVgZgK
+         YLlilwII4SMLYxedxWDej8qvRFt9apfjzAZ5YWe8JdxKcqQzRCWNFlC8WpUSUJNerk9s
+         87e4tSDIkvdWO0XeezqDlD/2W8YEFn/gCClGB6eAmReP+Mjb/ECtelZA9y3w8YukhTzX
+         PGGG/3c8JxaIjGdLnwQnIfiP5eo8MTaf6AQDcw9BJ/b4GAS6IhnLQLehh+TOV9g30aSz
+         OPNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=xzioaCMOpZ9xQIhn8ZgZe3ezoCoNBuqDVW6enXrUWdI=;
-        b=dBtKyEPeIu/xSUOcapDwoCFYPq8WWRnJx5mC5qQ1d+PGbJaQmTXYCF4tBEcydbZKV+
-         Rmt7ZRFJvoGvmXJ4VBtllvRDnEyqliq1SUMWeBfMfA0e+aowjVwVz+LniMJoT9JDqrbi
-         F9Cc7OaipMOAQF5JmOAPZHtYC1fhmpFDsHzVV+sA4a+hJqDinQ98J+2mPBp3IBOTeWnZ
-         iT5SZ3AH3zqsFQVI+JHci+QQbRoHyMpJniRQ6lOdaSnMlQ1jYSPwxRHKY7FXJWtSF2P7
-         YblRBhRD4oIvKYPFfhQXNaJp7/skfkhDR1zxUIcNzofyVI7qXdDAe5Eqo9DKIbKA6SkC
-         TL7Q==
-X-Gm-Message-State: APjAAAWxnS7TMOlbsQx+ZhKU58ufku+CfuyAqgJV/B6ebRiKXqK6t03c
-        wcrUOmkPihkdW7bOD+LNXb9Ibg==
-X-Google-Smtp-Source: APXvYqwNG2i/oMNUPGHebpRlmIa/kWkRWV3Ez3z7eWR9nYZaeTxX5aOLEn6fqpOIvgHIP0ZnhK13+w==
-X-Received: by 2002:a17:902:b611:: with SMTP id b17mr77686806pls.261.1561097448592;
-        Thu, 20 Jun 2019 23:10:48 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id x17sm1450053pgk.72.2019.06.20.23.10.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 20 Jun 2019 23:10:47 -0700 (PDT)
-From:   Yash Shah <yash.shah@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
-        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH] riscv: dts: Add DT node for SiFive FU540 Ethernet controller driver
-Date:   Fri, 21 Jun 2019 11:40:22 +0530
-Message-Id: <1561097422-25130-2-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1561097422-25130-1-git-send-email-yash.shah@sifive.com>
-References: <1561097422-25130-1-git-send-email-yash.shah@sifive.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=hc7LlnhYKlripj8xIjUSqdLS+0TxDwaADDzz2U0auf4=;
+        b=AQeLOw2s2IJDVaEHUPkDWTOeOaNPBMRhClpWlwfnfKK0Ttwf2Rg6k6iF4HE08HMjHX
+         ITdbHxbP9U1blrWNZP+A8mHKm7TZKW6x203j5otZKiI/26O0DAPYxrQlgzNqJFiytu7q
+         kxsYWoQ4W6ip8dmwvPrbGz6qSCtJh4vR+eai22cT/hiRrnL7cPLVTLcYnZHgGsSO+czW
+         zxs2xluE+brcTW3+duntZXZs/ysISm9h2RyaPr3+Uf0JBeOB0KAABb/J9ODNBkFb05W4
+         S8F8r3CRUi1FHP6bxyBb1wfc3mTN6khA3hX06v65seEXdSHvIvy55CTxGq08fhsndZSg
+         HLYA==
+X-Gm-Message-State: APjAAAUSdL1Ru8ftt9lDUAHlt3BcHgkVdYXiUR6Q8FAceafcIbhUQZJH
+        zuu1860i/KOylGq8Bm1pr51IzQ==
+X-Google-Smtp-Source: APXvYqz+VB2OyxZohTciMXy6FWLRoUom4/hSeT25jg2KnM8hP9F1uMaTXlETllBlDuISal0kQwrtzA==
+X-Received: by 2002:a63:3d0f:: with SMTP id k15mr16737667pga.343.1561097570369;
+        Thu, 20 Jun 2019 23:12:50 -0700 (PDT)
+Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id x7sm1266134pfm.82.2019.06.20.23.12.47
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Thu, 20 Jun 2019 23:12:49 -0700 (PDT)
+From:   Baolin Wang <baolin.wang@linaro.org>
+To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/3] Optimize voltage switch for the SD controller
+Date:   Fri, 21 Jun 2019 14:12:30 +0800
+Message-Id: <cover.1561094029.git.baolin.wang@linaro.org>
+X-Mailer: git-send-email 1.7.9.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+This patch set is used to optimize voltage switch for the
+Spreadtrum SD host controller.
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Any comments are welcome. Thanks.
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 4e8fbde..584e737 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -225,5 +225,25 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 		};
-+		eth0: ethernet@10090000 {
-+			compatible = "sifive,fu540-macb";
-+			interrupt-parent = <&plic0>;
-+			interrupts = <53>;
-+			reg = <0x0 0x10090000 0x0 0x2000
-+			       0x0 0x100a0000 0x0 0x1000>;
-+			reg-names = "control";
-+			local-mac-address = [00 00 00 00 00 00];
-+			phy-mode = "gmii";
-+			phy-handle = <&phy1>;
-+			clock-names = "pclk", "hclk";
-+			clocks = <&prci PRCI_CLK_GEMGXLPLL>,
-+				 <&prci PRCI_CLK_GEMGXLPLL>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			phy1: ethernet-phy@0 {
-+				reg = <0>;
-+			};
-+		};
-+
- 	};
- };
+Baolin Wang (3):
+  mmc: sdhci-sprd: Add start_signal_voltage_switch ops
+  dt-bindings: mmc: sprd: Add pinctrl support
+  mmc: sdhci-sprd: Add pin control support for voltage switch
+
+ .../devicetree/bindings/mmc/sdhci-sprd.txt         |    7 ++
+ drivers/mmc/host/sdhci-sprd.c                      |   78 ++++++++++++++++++++
+ 2 files changed, 85 insertions(+)
+
 -- 
-1.9.1
+1.7.9.5
 
