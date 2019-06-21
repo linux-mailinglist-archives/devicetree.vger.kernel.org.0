@@ -2,78 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EB84F05A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 23:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E74A54F086
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 23:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726237AbfFUVOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 17:14:15 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:58684 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbfFUVOO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 17:14:14 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id A6D78260195
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-rockchip@lists.infradead.org,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726031AbfFUVjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 17:39:55 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:36540 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725985AbfFUVjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 17:39:54 -0400
+Received: by mail-pl1-f196.google.com with SMTP id k8so3613813plt.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 14:39:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=JMoEMgrx9ABy/aeE9DljEmAzYJ+e2IWt04xwOpLWckw=;
+        b=iAW0aDUcJ0jKVdqSoZM+ADII3msh5uwQR+1Wb/rOBQbCIoW7I+TEHmy7R1wsf5nrf5
+         9KLaFAsd9DvnwYD/kYyjAqHLZ3cAWt6yTImzLV+bBc+oJZUHR+HHEA0wjHiJFNMwGPG/
+         HbvH4Fk4EORE4Pt8EIeESxyklsFO8Pl8oKwzkUmUmMjMAY4uU6MqPDk4UMZSTPhu3/0y
+         4lPPBcIOptNi+3oQWElkloY28MOcbfB8RWBzFrQ9NwLystZ+tNEwb9fKNhX/7UtfkUf0
+         CSEr25T6LqV4SANHY6xyw3nRp7VrPSx86rhpX/4R7WXFrp6oI2tl6CaCsNBDle76lCvu
+         Xu+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=JMoEMgrx9ABy/aeE9DljEmAzYJ+e2IWt04xwOpLWckw=;
+        b=aa9glKQMSx1b40Q1jaSAdYuFknuL1G9weWBt/L/umJLXfbKOqR8O9LwKszTX7UNsV9
+         oyizqWJNN/0m801ubAg3XtY2Epr1OslBxjEvWlA2guvwVr0BssfxwtDhU/CWL02sApY9
+         0f/nkXN6bAm5ULN0E7PBalijSqZ32SjKQS8ZRJTPhoYfOk81NvKSyvF7DjsWn72ggq99
+         spkO0rNKerB/5PTDpfyuUrTblk4qs00RSPVFBjeRddkT0Fy6/6X1hAMeZx/BiEsMzIGb
+         UWL9tLG47ppIhYuqvzw8A6EdfV+EJ2xvgqnNroECMSyBXh33IYJjLOku24HQx1R3RBnR
+         PdIw==
+X-Gm-Message-State: APjAAAVJ76f7jC/S9VUWg/YdMp9v91vdEg2WgVwmAUlmc5j/3zit36AG
+        ljYfTr/L8pBriiFe32VE6rXYGQ==
+X-Google-Smtp-Source: APXvYqyblrrnBXKkDhx7UyIenPB3HwEhmGyd5F54TG0KrLjZjGruNROVTN0kh5NCGMpS/9u/4uyYgw==
+X-Received: by 2002:a17:902:7891:: with SMTP id q17mr78824512pll.236.1561153194070;
+        Fri, 21 Jun 2019 14:39:54 -0700 (PDT)
+Received: from localhost ([38.98.37.134])
+        by smtp.gmail.com with ESMTPSA id m20sm3367922pjn.16.2019.06.21.14.39.51
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 21 Jun 2019 14:39:53 -0700 (PDT)
+Date:   Fri, 21 Jun 2019 14:39:42 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Rob Herring <robh+dt@kernel.org>
+cc:     Palmer Dabbelt <palmer@sifive.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-riscv@lists.infradead.org, Paul Walmsley <paul@pwsan.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v2 3/3] ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
-Date:   Fri, 21 Jun 2019 18:13:46 -0300
-Message-Id: <20190621211346.1324-4-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190621211346.1324-1-ezequiel@collabora.com>
-References: <20190621211346.1324-1-ezequiel@collabora.com>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: riscv: convert cpu binding to
+ json-schema
+In-Reply-To: <CAL_JsqL1a-irBa4MaVzak5DrTjxiySuqTJSQOqwzymVa=Uz=gg@mail.gmail.com>
+Message-ID: <alpine.DEB.2.21.9999.1906211438210.16518@viisi.sifive.com>
+References: <20190602080126.31075-1-paul.walmsley@sifive.com> <20190602080126.31075-4-paul.walmsley@sifive.com> <CAL_JsqJd6s6ta==AoxmNXdpzWL1RytSwR2P4MOfAFSEJavbt+w@mail.gmail.com> <CAL_JsqL1a-irBa4MaVzak5DrTjxiySuqTJSQOqwzymVa=Uz=gg@mail.gmail.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RK3288 SoC VOPs have optional support Gamma LUT setting,
-which requires specifying the Gamma LUT address in the devicetree.
+On Fri, 21 Jun 2019, Rob Herring wrote:
 
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
-Changes from v1:
-* Drop reg-names, as suggested by Doug.
----
- arch/arm/boot/dts/rk3288.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> On Mon, Jun 10, 2019 at 3:46 PM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Sun, Jun 2, 2019 at 2:01 AM Paul Walmsley <paul.walmsley@sifive.com> wrote:
+> > >
+> > > At Rob's request, we're starting to migrate our DT binding
+> > > documentation to json-schema YAML format.  Start by converting our cpu
+> > > binding documentation.  While doing so, document more properties and
+> > > nodes.  This includes adding binding documentation support for the E51
+> > > and U54 CPU cores ("harts") that are present on this SoC. 
 
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index aa017abf4f42..40d5ebd663ef 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -1025,7 +1025,7 @@
- 
- 	vopb: vop@ff930000 {
- 		compatible = "rockchip,rk3288-vop";
--		reg = <0x0 0xff930000 0x0 0x19c>;
-+		reg = <0x0 0xff930000 0x0 0x19c>, <0x0 0xff931000 0x0 0x1000>;
- 		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_VOP0>, <&cru DCLK_VOP0>, <&cru HCLK_VOP0>;
- 		clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
-@@ -1075,7 +1075,7 @@
- 
- 	vopl: vop@ff940000 {
- 		compatible = "rockchip,rk3288-vop";
--		reg = <0x0 0xff940000 0x0 0x19c>;
-+		reg = <0x0 0xff940000 0x0 0x19c>, <0x0 0xff941000 0x0 0x1000>;
- 		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_VOP1>, <&cru DCLK_VOP1>, <&cru HCLK_VOP1>;
- 		clock-names = "aclk_vop", "dclk_vop", "hclk_vop";
--- 
-2.20.1
+[ ... ]
 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> You all have applied this now leaving the binding checks broken. I
+> have a fix for one issue validating the schema, but there's a
+> dependency on schemas/cpus.yaml which I gave feedback on.
+
+Sorry about that, Rob - will follow up.
+
+
+- Paul
