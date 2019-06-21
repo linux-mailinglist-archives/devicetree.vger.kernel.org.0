@@ -2,204 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B57014DE0B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 02:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 748924DE4A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 03:03:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725961AbfFUAW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 20:22:58 -0400
-Received: from mail-pf1-f182.google.com ([209.85.210.182]:35153 "EHLO
-        mail-pf1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725907AbfFUAW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 20:22:58 -0400
-Received: by mail-pf1-f182.google.com with SMTP id d126so2604923pfd.2;
-        Thu, 20 Jun 2019 17:22:57 -0700 (PDT)
+        id S1725958AbfFUBDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 21:03:20 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:33549 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725906AbfFUBDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 21:03:20 -0400
+Received: by mail-pg1-f193.google.com with SMTP id m4so1875464pgk.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 18:03:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=OfKMu2iAcPe+SgaPMfmOs4iKx9Rhc9WcDHM0DB8ECUY=;
-        b=WrE4Q5/u5xOSe2SX5QCQhxapxpvZmotpFqmMeQ1Aeq9d0STZdthw7JU1gCgElZH6Tv
-         TBvPtZxvtLRbHQhQvHbDdidGzvjxEVnXsgFhX60DEcQlPxXkl/A68j+U0BnZ+GQlTOdl
-         wm2X6rASGesN8Cv/QPJb6juZ5ZKVho+DUFzaHfPy+PJjKYZfb02H9NclKmhsCtyzrC2I
-         jK3N82eP2myUBbkJCiw/4nXI0+PlpBZwyjwdX+jaSqUnnCo4WqO+RvgtGzEPgP+mQn+B
-         tT8HrCFkCUVJYlA7JiKG8t1y4pI0NWiDVsnXPVD26v5yifDUvz07KKkOZIM407PZFRAk
-         cqXw==
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:to:from:subject:cc:user-agent:date;
+        bh=/QNfQWig2oeC5POufHOkxnAuAVkUYpsqHyVQpvyXPFM=;
+        b=YT9pP8mmnoLSnibB3gevIC8O4iva3l7WbYe+TvJLiuO8Sl8rGyxguOWdu9Xkz3aMFK
+         0JcQpSOWMOO4Ipb2MWZdlgVt1gqKnEVbbl/k08kEf7rdSzKoGFDVsTEq54pldf9AvuOi
+         AEJ/VAYyprATMD4PR72B+IkMkBKhPYLYh7Sug=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=OfKMu2iAcPe+SgaPMfmOs4iKx9Rhc9WcDHM0DB8ECUY=;
-        b=ZKz+owuAP8hXaENgLLjRZScheBYLK4YXiuTqd0Hf9xOcPelPT2gae6mjNSJmRgAQot
-         /H0UoWzUYs9AZEcLSAYcp9ZOFRV0FxmYD4I7gJ8VkEXqHzcroJyzNSPU/BFi2TC4l9kD
-         F1VyafDslDCYYWZd8BZs0aNThBjxE/ULY9ygyfw6B/Go6S14yNm/P7G9JxDHSAAG7e52
-         MAO6Tn5CRS/fetV11MKarrUNYWldCYHYfxBFvG6wHu9HnTwacCdqh6Rk89TDIUhRYEC+
-         IEOwzcjvdvdTdkxbRB4/TI6hEA0kBCTfuEk7s+HjdRxKhR5XEFlnR4kI4r5+DAMivAgi
-         lRew==
-X-Gm-Message-State: APjAAAXxMEOCZxif/7u7Jhfm0oYzWFf0U9qBAyZFZ7e/FJ/6iLldIkXS
-        ML28v36YjzqkO0eU9tn/NHA=
-X-Google-Smtp-Source: APXvYqxMrrgrDWCb6fLWKGsJn7A4fku1ruQeHqWX9BUEtDebV3r+9CBCQwK8Q6YUlhjaCi4XJ0BS+g==
-X-Received: by 2002:a65:620a:: with SMTP id d10mr15252567pgv.42.1561076577000;
-        Thu, 20 Jun 2019 17:22:57 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id j16sm735757pjz.31.2019.06.20.17.22.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 20 Jun 2019 17:22:56 -0700 (PDT)
-Subject: Re: [RFC] Initial state for GPIOs
-To:     Martyn Welch <martyn.welch@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>, kernel@collabora.com
-References: <bee53b48c96603ae8970d42bc4bff386b876bc51.camel@collabora.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <9d9caeea-4f24-7951-3bb6-fa5890744f06@gmail.com>
-Date:   Thu, 20 Jun 2019 17:22:55 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:to:from:subject:cc
+         :user-agent:date;
+        bh=/QNfQWig2oeC5POufHOkxnAuAVkUYpsqHyVQpvyXPFM=;
+        b=PdGQAHyZZOWfaRcpHxqaMzbyxkSze7TZUTMrTZFxZIaUUjn1D5vo9TUO+sTlfwAPoS
+         PsleUWVPvdzLGHdW/ltVZ/A2088NnSEeL5/C59ed/jnPll+7RN4NE+88EM0U0k1DlZxe
+         VTteklP9DnfnZqu7abkF5qRDPx2DHZdxhC4h9ruNmGdHKW2dE270jk/6vT5J7IPWb60V
+         9B1pWVPEnCoOqWhFOwUhokobfzuVZPzuNraC9Es0kOrCCacXhJ/RqnsfXJRUbZKFi/A6
+         GuwIXKBUs8Y+ulQpcdNpHCey0C/JU+TUQvryTVFqt5JRvKiIr/YtqY4FVi5rFu6Mb4G5
+         j6VQ==
+X-Gm-Message-State: APjAAAXkW5LvjLRAPTQuaHjaLPg+fyS/EnB/G94VeexJEALDpqLlXRyc
+        syA+Hrd/0CJJ5w4nINCGZng0/w==
+X-Google-Smtp-Source: APXvYqw5MjR8b5QF1inGOhF3D0ddQ3KFCau26pbHfnEVTRxI5c2/WPbsRNarL55GkCl3Ecm1fJ+H/A==
+X-Received: by 2002:a63:3c14:: with SMTP id j20mr3859916pga.169.1561078999454;
+        Thu, 20 Jun 2019 18:03:19 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id y185sm634195pfy.110.2019.06.20.18.03.18
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 20 Jun 2019 18:03:18 -0700 (PDT)
+Message-ID: <5d0c2cd6.1c69fb81.e66af.32bf@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <bee53b48c96603ae8970d42bc4bff386b876bc51.camel@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190617225134.GA30762@ziepe.ca>
+References: <20190613180931.65445-1-swboyd@chromium.org> <20190613180931.65445-2-swboyd@chromium.org> <20190613232613.GH22901@ziepe.ca> <5d03e394.1c69fb81.f028c.bffb@mx.google.com> <20190617225134.GA30762@ziepe.ca>
+To:     Jason Gunthorpe <jgg@ziepe.ca>
+From:   Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH 1/8] tpm: block messages while suspended
+Cc:     Peter Huewe <peterhuewe@gmx.de>,
+        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+        Andrey Pronin <apronin@chromium.org>,
+        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
+        Duncan Laurie <dlaurie@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        <linux-crypto@vger.kernel.org>
+User-Agent: alot/0.8.1
+Date:   Thu, 20 Jun 2019 18:03:17 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+frank (me)
+Quoting Jason Gunthorpe (2019-06-17 15:51:34)
+> On Fri, Jun 14, 2019 at 11:12:36AM -0700, Stephen Boyd wrote:
+> > Quoting Jason Gunthorpe (2019-06-13 16:26:13)
+> > > On Thu, Jun 13, 2019 at 11:09:24AM -0700, Stephen Boyd wrote:
+> > > > From: Andrey Pronin <apronin@chromium.org>
+> > > >=20
+> > > > Other drivers or userspace may initiate sending a message to the tpm
+> > > > while the device itself and the controller of the bus it is on are
+> > > > suspended. That may break the bus driver logic.
+> > > > Block sending messages while the device is suspended.
+> > > >=20
+> > > > Signed-off-by: Andrey Pronin <apronin@chromium.org>
+> > > > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > > >=20
+> > > > I don't think this was ever posted before.
+> > >=20
+> > > Use a real lock.
+> > >=20
+> >=20
+> > To make sure the bit is tested under a lock so that suspend/resume can't
+> > update the bit in parallel?
+>=20
+> No, just use a real lock, don't make locks out of test bit/set bit
+>=20
 
-On 6/20/19 6:16 AM, Martyn Welch wrote:
-> Hi Rob, Mark,
-> 
-> Attempts have been made to define an approach for describing the
-> initial state of gpios (direction and value when driven as an output) a
-> number of times in the past, but a concensus on the approach to take
-> seems to have never been reached.
-> 
-> The aim is to be able to describe GPIOs which a definitive use exists
-> (i.e. are routed from an SoC to a pin on another device with a
-> definitive purpose) and which the desired, and possibly required, state
-> of the pin is known. This differs from gpio-hog in that there is an
-> expectation that a consumer of the gpio may appear at a later date,
-> which may take the form of the GPIO being exported to user space.
-> 
-> Previous attempts have suggested a variation of the gpio-hogs[1][2].
-> "gpio-hogs" uses a node for each GPIO containing the "gpio-hogs"
-> property, with which the Linux kernel will act as a consumer,
-> statically setting the provided state on the GPIO line, for example:
-> 
->         qe_pio_a: gpio-controller@1400 {
->                 compatible = "fsl,qe-pario-bank-a", 
-> 			     "fsl,qe-pario-bank";
->                 reg = <0x1400 0x18>;
->                 gpio-controller;
->                 #gpio-cells = <2>;
-> 
->                 line_b {
->                         gpio-hog;
->                         gpios = <6 0>;
->                         output-low;
->                         line-name = "foo-bar-gpio";
->                 };
->         };
-> 
-> It had been suggested to either replace "gpio-hogs" with "gpio-initval" 
-> or to include a node without the "gpio-hogs" property to set an inital
-> state, but allow another consumer to come along at a later date.
-> 
-> A previous related attempt to upstream a "gpio-switch" consumer[3] also
-> took the approach of defining nodes in the device tree. The
-> conversation pointed towards a suggestion of using nodes with
-> compatible properties, for example:
-> 
->         &gpiochip {
->                 some_led {
->                         compatible = "gpio-leds";
->                         default-state = "on";
->                         gpios = <3 0>;
->                         line-name = "leda";
->                 };
-> 
->                 some_switch {
->                         compatible = "gpio-switch", "gpio-initval";
->                         gpios = <4 0>;
->                         line-name = "switch1";
-> 
->                         /*
-> 			 * This is used by gpio-initval in case 
-> 			 * gpio-switch is not implemented
-> 			 */
->                         output-low;
->                 };
-> 
->                 some_interrupt {
->                         gpios = <5 0>;
->                         line-name = "some_interrupt_line";
->                 };
-> 
->                 line_b {
->                         gpios = <6 0>;
->                         line-name = "line-b";
->                 };
->         };
-> 
-> An alternative that has been briefly raised[4] when I approached the
-> subject recently on the GPIO mailing list is to add a property to the
-> controller node, rather than child nodes, that listed the expected
-> initial states of the pins as an array, much like the line names are
-> handled through "gpio-line-names". I'm not quite sure how it would best
-> to treat offsets where no special initial state is required (gpio-line-
-> names uses empty strings). Something like this?:
-> 
-> --- gpio.h
->         /* Bit 4 express initial state */
->         #define GPIO_INPUT 0
->         #define GPIO_OUTPUT 16
-> 
->         /* Bit 5 express initial state */
->         #define GPIO_INITIAL_LOW 0
->         #define GPIO_INITIAL_HIGH 32
->         
->         #define GPIO_OUTPUT_LOW (GPIO_OUTPUT | GPIO_INITIAL_LOW)
->         #define GPIO_OUTPUT_HIGH (GPIO_OUTPUT | GPIO_INITIAL_HIGH)
-> ---
-> 
-> --- device tree
->         &gpiochip {
->                 gpio-line-names = "", "", "", "widget_en",
-> 			"widget_signal";
->                 gpio-initial-states = <>, <>, <>,
-> 			<GPIO_OUTPUT_HIGH | GPIO_LINE_OPEN_DRAIN>,
-> 			<GPIO_INPUT | GPIO_ACTIVE_LOW>;
->         };
-> ---        
-> 
-> An alternative option may be to provide the offset as the first item
-> (though this is then different from "gpio-line-names"), so:
-> 
-> --- device tree
->         &gpiochip {
->                 gpio-line-names = "", "", "", "widget_en",
-> 			"widget_signal";
->                 gpio-initial-states =
-> 			<3 GPIO_OUTPUT_HIGH | GPIO_LINE_OPEN_DRAIN>,
-> 			<4 GPIO_INPUT | GPIO_ACTIVE_LOW>;
->         };
-> ---        
-> 
-> I'm interested in understanding what form would be acceptable as part
-> of the device tree binding.
-> 
-> Thanks in advance,
-> 
-> Martyn
-> 
-> [1] https://marc.info/?l=devicetree&m=145621411916777&w=2
-> [2] https://patchwork.ozlabs.org/patch/545493/
-> [3] https://lore.kernel.org/patchwork/patch/624195/
-> [4] https://www.spinics.net/lists/linux-gpio/msg39810.html
-> 
-> 
+Ok. I looked back on the history of this change in our kernel (seems it
+wasn't attempted upstream for some time) and it looks like the problem
+may have been that the khwrng kthread (i.e. hwrng_fill()) isn't frozen
+across suspend/resume. This kthread runs concurrently with devices being
+resumed, the cr50 hardware is still suspended, and then a tpm command is
+sent and it hangs the I2C bus because the device hasn't been properly
+resumed yet.
 
+I suspect a better approach than trying to hold of all TPM commands
+across suspend/resume would be to fix the caller here to not even try to
+read the hwrng during this time. It's a general problem for other hwrngs
+that have some suspend/resume hooks too. This kthread is going to be
+running while suspend/resume is going on if the random entropy gets too
+low, and that probably shouldn't be the case.
+
+What do you think of the attached patch? I haven't tested it, but it
+would make sure that the kthread is frozen so that the hardware can be
+resumed before the kthread is thawed and tries to go touch the hardware.
+
+----8<-----
+diff --git a/drivers/char/hw_random/core.c b/drivers/char/hw_random/core.c
+index 95be7228f327..3b88af3149a7 100644
+--- a/drivers/char/hw_random/core.c
++++ b/drivers/char/hw_random/core.c
+@@ -13,6 +13,7 @@
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/err.h>
++#include <linux/freezer.h>
+ #include <linux/fs.h>
+ #include <linux/hw_random.h>
+ #include <linux/kernel.h>
+@@ -421,7 +422,9 @@ static int hwrng_fillfn(void *unused)
+ {
+ 	long rc;
+=20
+-	while (!kthread_should_stop()) {
++	set_freezable();
++
++	while (!kthread_freezable_should_stop(NULL)) {
+ 		struct hwrng *rng;
+=20
+ 		rng =3D get_current_rng();
