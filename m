@@ -2,141 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 058B64EB63
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 17:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 985264EBE3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 17:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726130AbfFUO74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 10:59:56 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:39901 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbfFUO7z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 10:59:55 -0400
-Received: by mail-pl1-f194.google.com with SMTP id b7so3138354pls.6;
-        Fri, 21 Jun 2019 07:59:55 -0700 (PDT)
+        id S1726147AbfFUPYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 11:24:00 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:39061 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726054AbfFUPYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 11:24:00 -0400
+Received: by mail-qk1-f193.google.com with SMTP id i125so4690486qkd.6
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 08:23:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Abt4RqBWuzAO1Yg7V0VfRrHk6H4CsqP60Bl2BbL+bIU=;
-        b=es3ZixTrMIQWERBBC4ZFxsre0+V0N1n5T37wF/Sp7+W8FY5o3DUuV4bOTJNNnjHnqW
-         H9BWQ9OaVZlrjlA5cf1e9Ps5Y/icmTiTyCZ0XdA1lxGBZlycq+5ozTTmQXjmmK1nLwq3
-         F/z/ObhC5et1xwz+cA/fibKLqYcSonF2WmfzLy1o+S3TyQgzSQuITF96rHl0xVqxnCC0
-         p0BiwDoCjfHwUZbEOlSdPFfBO3qrXje0nmDjyY9LA6L799NWzBkZD6x1+jm50HvXWd5A
-         8xx8FdRb6lQ9zhfcOMLkmzVO71nOEfAyYhvlcvjkGu1F7/0aLe/UFuAdnLVD9IZSJf5w
-         mZCw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=/6B5uybL/vQOh7w8hweF75PWuFBXAaXmKLIlmiYqweg=;
+        b=g0pqzczqGaVMaTZuZJeMymSTykrdujS2tAjfaNFFWLMkC/jEKcq2X+4DUkCTSiw785
+         5grPt95cpg2/4gapBk+7Y6G/j8akoUl9Jihm9TukMh1OjVN08v67LpXJS2ykJC880QLK
+         7GCjhqPWjkEfvtlklmrAGzHyNnd7Eo7jIsyESfSBbhV7HHQNj/nHkZQD3rbq3iz0jFjc
+         OPJV11qdzzV+jpVVNLCSmnIR6saHkkm59p63wVfhAsOpyk7hmK6CPLgtZdbLgbtuDQVT
+         0umQw9nk0PgzL9ODZ9wzFM5y+GXTbwF4w4Udey3EuEZjmNmd/ARY4x2zBg2uY+4nvOvq
+         w4YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Abt4RqBWuzAO1Yg7V0VfRrHk6H4CsqP60Bl2BbL+bIU=;
-        b=JE/2FFhFugJn/FAxCKNASEz27Q9u6LtIPRxv6PHb1ivx6C9hDR+HNshDDUq0HM35Kb
-         1qDZPwM/JJGiP7yc434/aJ45Xs4w1OdeAkwE5dsrLdofMHemJfkffBKA4GHoC4wl9PLO
-         o9MvrO3OhAkCg2zMzbYy4KMjpps5Oqqy5vx4CiIr3JJnAoyJTHF9GpLpCYHoAVrjbfvk
-         hgcuLyIdl7PBTHXY3MhxMU7Xj3ve1Q0kcEkgnhlPJBGDEfU9mJdlLXjEBqdEZUysF1EA
-         ValKwLN8tY4NTrcl6CoRMvemYxabXXOdcKxFPIJVyTG24vcYT44sp3F6PpDgpLKzN05A
-         sQfA==
-X-Gm-Message-State: APjAAAUCh60fg90XGanW52FovqYD5St+R6RZvHPtp5ZngoKDTR6rKG+a
-        hxz2p+vCtjw0tDFYzx2R++F0IDlj
-X-Google-Smtp-Source: APXvYqwaN0DOlyRP1f7amX1tgxpd1DIPm8wkTbTuuLQ1d9NPXLh6MqnBwKFpM/rNnqeAVfFJX64mIg==
-X-Received: by 2002:a17:902:d715:: with SMTP id w21mr132670828ply.234.1561129194997;
-        Fri, 21 Jun 2019 07:59:54 -0700 (PDT)
-Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id o13sm3049745pje.28.2019.06.21.07.59.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 21 Jun 2019 07:59:54 -0700 (PDT)
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-To:     bjorn.andersson@linaro.org, agross@kernel.org
-Cc:     benjamin.tissoires@redhat.com, dmitry.torokhov@gmail.com,
-        jikos@kernel.org, hdegoede@redhat.com, lee.jones@linaro.org,
-        xnox@ubuntu.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: [PATCH v8 5/5] arm64: dts: qcom: Add Asus NovaGo TP370QL
-Date:   Fri, 21 Jun 2019 07:59:51 -0700
-Message-Id: <20190621145951.38844-1-jeffrey.l.hugo@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190621144854.38568-1-jeffrey.l.hugo@gmail.com>
-References: <20190621144854.38568-1-jeffrey.l.hugo@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/6B5uybL/vQOh7w8hweF75PWuFBXAaXmKLIlmiYqweg=;
+        b=cv4nM8Rvk8zZvCuqaJ9BUPH8QPwIqp5si1NWBlPsuX+AzU/It1J5ZvkeDk0TnOhelm
+         bqBS8C7hyHYACVcZXssvvPfUCZlewarH0b2ePn75p1xDHzwSfZ73BYQ6TjE7mc2HXGpO
+         x27Jozhz2E4E9RnANgrAKshUxaR6cfA0e3ZvMxY8x7OsyBAo3g1VAZxFDEyVEDhaA6eV
+         I6V0xg9AyybWXZRoMPiHIH+TOsz7cYwbgJNuQC2hvIUSVhXehfEf+ghTB3wcKAyN3yzH
+         tzwBp6/Wc/xUe9GzXLf81PV133itHztAO4Lg2oRW34wOgZbhrH9zIXKPxHsOCKwDDR+o
+         60xA==
+X-Gm-Message-State: APjAAAX425ZuU7MArJvt/fX0BTgxWNwZpbtVbSFRsRpAYj47OJVwgoEv
+        OLygOkULI70gjZvFDLQjBujz0/rd
+X-Google-Smtp-Source: APXvYqyBh9OcvZBK+oCI8iXmztevd3t+ZZMXFFIpU7nhEYNgk9EMn749PuLBYmOO/b3CptX6ggx2LA==
+X-Received: by 2002:a37:4e8f:: with SMTP id c137mr75046030qkb.127.1561130639395;
+        Fri, 21 Jun 2019 08:23:59 -0700 (PDT)
+Received: from ubuntu (ool-18b82048.dyn.optonline.net. [24.184.32.72])
+        by smtp.gmail.com with ESMTPSA id g2sm1660017qkb.80.2019.06.21.08.23.57
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 21 Jun 2019 08:23:58 -0700 (PDT)
+Date:   Fri, 21 Jun 2019 11:23:55 -0400
+From:   Vivek Unune <npcomplete13@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add support for SkyKirin X99 TV Box
+Message-ID: <20190621152355.GA88160@ubuntu>
+References: <20190618051025.458-1-npcomplete13@gmail.com>
+ <2273961.GTPgWWlV5T@phil>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2273961.GTPgWWlV5T@phil>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the initial DT for the Asus NovaGo TP370QL laptop.  Supported
-functionality includes USB (host), microSD-card, keyboard, and trackpad.
+On Fri, Jun 21, 2019 at 03:31:51PM +0200, Heiko Stuebner wrote:
+> Hi Vivek,
+> 
+> > +	disable-wp;
+> > +	num-slots = <1>;
+> 
+> drop num-slots
+> 
+> 
+> Thanks
+> Heiko
+> 
+> 
 
-Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../dts/qcom/msm8998-asus-novago-tp370ql.dts  | 47 +++++++++++++++++++
- 2 files changed, 48 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 76436f33a013..5cd1844a6d33 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-asus-novago-tp370ql.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-hp-envy-x2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-lenovo-miix-630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts b/arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts
-new file mode 100644
-index 000000000000..db5821be1e2f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts
-@@ -0,0 +1,47 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (c) 2019, Jeffrey Hugo. All rights reserved. */
-+
-+/dts-v1/;
-+
-+#include "msm8998-clamshell.dtsi"
-+
-+/ {
-+	model = "Asus NovaGo TP370QL";
-+	compatible = "asus,novago-tp370ql", "qcom,msm8998";
-+};
-+
-+&blsp1_i2c6 {
-+	status = "okay";
-+
-+	touchpad@15 {
-+		compatible = "hid-over-i2c";
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <0x7b IRQ_TYPE_LEVEL_LOW>;
-+		reg = <0x15>;
-+		hid-descr-addr = <0x0001>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touchpad>;
-+	};
-+
-+	keyboard@3a {
-+		compatible = "hid-over-i2c";
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <0x25 IRQ_TYPE_LEVEL_LOW>;
-+		reg = <0x3a>;
-+		hid-descr-addr = <0x0001>;
-+	};
-+};
-+
-+&sdhc2 {
-+	cd-gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&tlmm {
-+	touchpad: touchpad {
-+		config {
-+			pins = "gpio123";
-+			bias-pull-up;
-+		};
-+	};
-+};
--- 
-2.17.1
-
+Thanks feedback Heiko, I'll revert with updated patch as suggested.
