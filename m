@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DAC054E05C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D84B4E068
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726045AbfFUGMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 02:12:51 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:40857 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726027AbfFUGMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:12:51 -0400
-Received: by mail-pg1-f195.google.com with SMTP id w10so2824357pgj.7
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:12:50 -0700 (PDT)
+        id S1726219AbfFUGMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 02:12:54 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:42385 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726218AbfFUGMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:12:54 -0400
+Received: by mail-pl1-f196.google.com with SMTP id ay6so2450382plb.9
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:12:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=hc7LlnhYKlripj8xIjUSqdLS+0TxDwaADDzz2U0auf4=;
-        b=zVvpyVBj1fJ344KOE4nUWG+7s5KWzpfOGopnV2cFnegqyPWrCuMoxxX5v9HH9Z5msi
-         N+J6AD7cAuJIKQSVYE4eCOBxlRNxKKlEfoKXWCdtKYRLsKnaFQGQhfcaPOo4UKJVgZgK
-         YLlilwII4SMLYxedxWDej8qvRFt9apfjzAZ5YWe8JdxKcqQzRCWNFlC8WpUSUJNerk9s
-         87e4tSDIkvdWO0XeezqDlD/2W8YEFn/gCClGB6eAmReP+Mjb/ECtelZA9y3w8YukhTzX
-         PGGG/3c8JxaIjGdLnwQnIfiP5eo8MTaf6AQDcw9BJ/b4GAS6IhnLQLehh+TOV9g30aSz
-         OPNQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :in-reply-to:references;
+        bh=7nHW+SBzX1vnb4mk1MDf9lGhalkNUllPIWRi8UNhM/c=;
+        b=osCAdvXZJmd8s32WoaH84e0LvoQF3n8quJaSrFXXcZI2cepOsKaYqkZhdXl6Hipp1t
+         MNT21Hkn6pag47WU/b70key5vgzuhiyEbIyDFj7NUoKIwA4nVoTsgAr1LbAvE1e9580o
+         ojwN0FXPZn+ZwbFGBZaWJBlmoykMq8Y3IfDCrdn4Lje8NGTdaAn4Zu0K3ZaBj3ngMSzd
+         5heMfR7ve4WTUcKdL3TLMPPguf7EzfTIJCi6nJQkpc5I3ja4gL7elfXltWm2OukUep48
+         KQ6bedBrVvRAxuX0n+NXZV/uHEmz1LzGOWHDLYMm/iBXQpWgyeU+VJJSgISWBjEFC1++
+         gMwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=hc7LlnhYKlripj8xIjUSqdLS+0TxDwaADDzz2U0auf4=;
-        b=AQeLOw2s2IJDVaEHUPkDWTOeOaNPBMRhClpWlwfnfKK0Ttwf2Rg6k6iF4HE08HMjHX
-         ITdbHxbP9U1blrWNZP+A8mHKm7TZKW6x203j5otZKiI/26O0DAPYxrQlgzNqJFiytu7q
-         kxsYWoQ4W6ip8dmwvPrbGz6qSCtJh4vR+eai22cT/hiRrnL7cPLVTLcYnZHgGsSO+czW
-         zxs2xluE+brcTW3+duntZXZs/ysISm9h2RyaPr3+Uf0JBeOB0KAABb/J9ODNBkFb05W4
-         S8F8r3CRUi1FHP6bxyBb1wfc3mTN6khA3hX06v65seEXdSHvIvy55CTxGq08fhsndZSg
-         HLYA==
-X-Gm-Message-State: APjAAAUSdL1Ru8ftt9lDUAHlt3BcHgkVdYXiUR6Q8FAceafcIbhUQZJH
-        zuu1860i/KOylGq8Bm1pr51IzQ==
-X-Google-Smtp-Source: APXvYqz+VB2OyxZohTciMXy6FWLRoUom4/hSeT25jg2KnM8hP9F1uMaTXlETllBlDuISal0kQwrtzA==
-X-Received: by 2002:a63:3d0f:: with SMTP id k15mr16737667pga.343.1561097570369;
-        Thu, 20 Jun 2019 23:12:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:in-reply-to:references;
+        bh=7nHW+SBzX1vnb4mk1MDf9lGhalkNUllPIWRi8UNhM/c=;
+        b=sG7rw0/009gOrSROd0eqOyFtec4DR4arzke7ldPjSX6BnkctcI4QXKAG4edMNvpwkL
+         /q9JapmqzFASZRfvLngjIujkL50UoR9Yq5wwmksV97W/6NNNuexbrDfNGLcIZdh+Y2eU
+         O8/k3DE9MIMD4LtUHUW6mBdPFzsvn5Fr0JJRQZNtz22u9ymw3itNW+ybMmWPXJWXc5jz
+         DQduFYVRW2jV65+E4D3+aY8il0CY6ShH6DCa+l+wYGwF9gRT82ToiFRxQYYN3BVngBf8
+         MT1aB3JrJhs+/A0ZYn4Heuqr/eQB+kSb1RzXRels6s5rbO7Z/YtNiAEqjzS39UN+29gW
+         iu2w==
+X-Gm-Message-State: APjAAAUX2/cQHkwRLnCWm5EPifR7IabeAuEWS3KNFyqcH3KOsyNknJq7
+        c5aINPF6r7zIdtEo9BjcO6hqjw==
+X-Google-Smtp-Source: APXvYqzV1QMcGWKHcO3GJFszFvYHtJaXinkBiAsjKQeNI5kSsCCcFHT5+Hm1oVT9CT+LJc1z8sKSjg==
+X-Received: by 2002:a17:902:7583:: with SMTP id j3mr11377956pll.196.1561097573451;
+        Thu, 20 Jun 2019 23:12:53 -0700 (PDT)
 Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id x7sm1266134pfm.82.2019.06.20.23.12.47
+        by smtp.gmail.com with ESMTPSA id x7sm1266134pfm.82.2019.06.20.23.12.50
         (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 20 Jun 2019 23:12:49 -0700 (PDT)
+        Thu, 20 Jun 2019 23:12:53 -0700 (PDT)
 From:   Baolin Wang <baolin.wang@linaro.org>
 To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
         zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
@@ -49,29 +51,72 @@ To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
 Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org,
         linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 0/3] Optimize voltage switch for the SD controller
-Date:   Fri, 21 Jun 2019 14:12:30 +0800
-Message-Id: <cover.1561094029.git.baolin.wang@linaro.org>
+Subject: [PATCH 1/3] mmc: sdhci-sprd: Add start_signal_voltage_switch ops
+Date:   Fri, 21 Jun 2019 14:12:31 +0800
+Message-Id: <89fb15e88f33a3c1ce7b5eefa9414a20c984c579.1561094029.git.baolin.wang@linaro.org>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1561094029.git.baolin.wang@linaro.org>
+References: <cover.1561094029.git.baolin.wang@linaro.org>
+In-Reply-To: <cover.1561094029.git.baolin.wang@linaro.org>
+References: <cover.1561094029.git.baolin.wang@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch set is used to optimize voltage switch for the
-Spreadtrum SD host controller.
+For Spreadtrum SD host controller, we can not use standard SD registers
+to change and detect the I/O voltage signals, since our voltage regulator
+for I/O is fixed in hardware, and no signals were connected to the SD
+controller. Thus add Spreadtrum specific voltage switch ops to change
+voltage instead of using standard SD host registers.
 
-Any comments are welcome. Thanks.
+Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+---
+ drivers/mmc/host/sdhci-sprd.c |   24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-Baolin Wang (3):
-  mmc: sdhci-sprd: Add start_signal_voltage_switch ops
-  dt-bindings: mmc: sprd: Add pinctrl support
-  mmc: sdhci-sprd: Add pin control support for voltage switch
-
- .../devicetree/bindings/mmc/sdhci-sprd.txt         |    7 ++
- drivers/mmc/host/sdhci-sprd.c                      |   78 ++++++++++++++++++++
- 2 files changed, 85 insertions(+)
-
+diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
+index 024c3c5..8b23c88 100644
+--- a/drivers/mmc/host/sdhci-sprd.c
++++ b/drivers/mmc/host/sdhci-sprd.c
+@@ -403,6 +403,22 @@ static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
+ 	sdhci_request(mmc, mrq);
+ }
+ 
++static int sdhci_sprd_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
++{
++	int ret;
++
++	if (!IS_ERR(mmc->supply.vqmmc)) {
++		ret = mmc_regulator_set_vqmmc(mmc, ios);
++		if (ret) {
++			pr_err("%s: Switching signalling voltage failed\n",
++			       mmc_hostname(mmc));
++			return ret;
++		}
++	}
++
++	return 0;
++}
++
+ static void sdhci_sprd_hs400_enhanced_strobe(struct mmc_host *mmc,
+ 					     struct mmc_ios *ios)
+ {
+@@ -470,6 +486,14 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
+ 	host->mmc_host_ops.request = sdhci_sprd_request;
+ 	host->mmc_host_ops.hs400_enhanced_strobe =
+ 		sdhci_sprd_hs400_enhanced_strobe;
++	/*
++	 * We can not use the standard ops to change and detect the voltage
++	 * signal for Spreadtrum SD host controller, since our voltage regulator
++	 * for I/O is fixed in hardware, that means we do not need control
++	 * the standard SD host controller to change the I/O voltage.
++	 */
++	host->mmc_host_ops.start_signal_voltage_switch =
++		sdhci_sprd_voltage_switch;
+ 
+ 	host->mmc->caps = MMC_CAP_SD_HIGHSPEED | MMC_CAP_MMC_HIGHSPEED |
+ 		MMC_CAP_ERASE | MMC_CAP_CMD23;
 -- 
 1.7.9.5
 
