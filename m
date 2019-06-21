@@ -2,142 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D22D4E9DD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 15:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AF574EA0A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 15:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725975AbfFUNsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 09:48:55 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:39145 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbfFUNsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 09:48:55 -0400
-Received: by mail-wr1-f68.google.com with SMTP id x4so6663336wrt.6
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 06:48:53 -0700 (PDT)
+        id S1726010AbfFUN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 09:59:04 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:34141 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725985AbfFUN7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 09:59:04 -0400
+Received: by mail-lj1-f195.google.com with SMTP id p17so6085190ljg.1;
+        Fri, 21 Jun 2019 06:59:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hVMU7oaSKdkRdlofymJ5DYfLIF+rwC/yvVaWh3kOoEw=;
-        b=JgTh/4RaznsHwkTN653/84e9sr7CP/NNg3yehyl8WKHWGl0VbSpb8RVRqYFsGV7EWo
-         LHVmS2028eAVgaoA36BkKonyKPyJhPREea/eOHDTH1R4xJtCMwwLY3WfoCC8p8kWXFCu
-         zy5qu7gv46sJfHcgCqEx6cfCfFEFJi48fvpL3sfOX9fyYMAMW/M9Dz2lXEaQyFOTki4s
-         jxDFwmpbiI3ycbK9UpNNJ7N/1/+QrDDmRKzxAp6JaahNzBnT80KH25uBBtwaXGQav74E
-         lNgkT4HZBdmB9HFHWlbNSpIB6X5H91uOoR7sE2bBo14aK6OHLjGE4mbVa2PKDpEYVW8Z
-         GqRQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z+WQ5L7jyykHtcS1CaXqa3gfb+mYN5tnXeopjV9M8CY=;
+        b=vgUpFjpv5ZZqrSFc78/TAZwdLTsExKEeFmU93mFN3yiJ8vozEvyCLfce/BIT0sk3ZX
+         fb4W7rysGrty4ceatf35AHHNPaGDJFsZ+s83f2WToV9Gko+fe3U/fFpD74uHYCMF5r1p
+         U+PfUIRAfCvp/0fY+a3BaBCvBdc+PHZkf9tAE4CCg6Cu96fcJsnwYsDZZoBpm2fxNRAW
+         wIfA5hq/bmruwJ9X1f21bZr8wmLeT30ZRXo5VIficsOnI9KiLr8CQTH/co8nhFGLLZZH
+         131Fl6emwOwazlwG66O/kw9N+SRT7zxvRT6nHm8ltg2by4h8KD6j2/uX14T3jGjNwop4
+         b+pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hVMU7oaSKdkRdlofymJ5DYfLIF+rwC/yvVaWh3kOoEw=;
-        b=r9iHzcRhtze8aow5fzsEtkqahuXT3mHcqWj6cM/vHAc3tjqRAw3NaQ/Jn0qe7le0IH
-         Nzv/zLIXGVckSquJQz6W2MlYHmNyVcVS8ecWmhYC+IdjD1NsWYl5BeyA2pX7AVGOU1ZG
-         qA2753R5h4gbMv6jPjdAmBP10dxbnprHKz2hL/pzY4oN/Sj8VVJObpKn8c6y3jjo27w1
-         /JqCS5kGl650hY5Egk1ZVZt8b4ONYylCucquMdnWcv90paxBCr0XkBqOt9FxMZ627/mm
-         q53BibazuAfC+Mt3RWTBjw1IQgc8X3yhzKNpF1ohLvj7cDqcSlYqY8yeXOv+HZJF4aMt
-         Amvg==
-X-Gm-Message-State: APjAAAV/I1V15lDFKAmoC2H53ZD3wuxUigyGK5wTGAWTv0vNADsTFs+u
-        8VipOIfzlyX+HpDG0enfH8J42g==
-X-Google-Smtp-Source: APXvYqwR9joQI2E3Vm5sKE/BzZA1o04AWct01TioDhmMeym+jKVOUv8KuGh9LmMdwjzUIU+jGE4/2w==
-X-Received: by 2002:adf:f946:: with SMTP id q6mr10474826wrr.109.1561124932997;
-        Fri, 21 Jun 2019 06:48:52 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.googlemail.com with ESMTPSA id 5sm5076469wrc.76.2019.06.21.06.48.51
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Fri, 21 Jun 2019 06:48:52 -0700 (PDT)
-Subject: Re: Re: Re: [PATCH 2/3] backlight/arcxcnn fix vendor prefix
-To:     Brian Dodge <bdodge09@gmail.com>, Pavel Machek <pavel@ucw.cz>
-Cc:     lee.jones@linaro.org, jingoohan1@gmail.com,
-        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Peter Bacon <pbacon@psemi.com>
-References: <1541592640-18478-1-git-send-email-bdodge09@gmail.com>
- <1541592640-18478-3-git-send-email-bdodge09@gmail.com>
- <20181111113053.GF27666@amd> <e372391c-1fd5-41ec-b766-7669fffb928d@gmail.com>
- <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-Message-ID: <da193d14-5cb7-3a1a-148e-fb8554c5def7@linaro.org>
-Date:   Fri, 21 Jun 2019 14:48:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z+WQ5L7jyykHtcS1CaXqa3gfb+mYN5tnXeopjV9M8CY=;
+        b=mjNiIFTmCvVonzI5/Dbc2g3z55mD0/1LPo+A37LzQWi0eDeXOsVIxrx/T0lFsHJf+n
+         S5sBSMS8jsQFNgie1ilB2lJ9ODmeZmdaDHdXRpe2rgeGlx/TGQcySpMnqWFataHfohOi
+         jb/X3R6LKbRjeZTKbdH32U6KHgnpyNcH7niJ6Z3y3NA/DF7tjoPBUW/22vRk49rv5lXT
+         aqjCRASItxXESejOpPemrzuqKc9hIRTmfc1FgjisNf62CnEEhUD8KVH8ZTJQP3iKtwke
+         d6u7Xu9jvL3AVBzHd8Enb167FELcJ0fddZhK2ix0DbuHY6mvwK7NBJSho5yBqU28XD3R
+         HKJQ==
+X-Gm-Message-State: APjAAAX+reoo9KnMyEbXTCT+13Yr+lLArf6H/dzvsU4k6S3bH9xbXt2d
+        plTCgVrSDyXP43NgP/DC+2b+vGjZ3wa+QygfcAo=
+X-Google-Smtp-Source: APXvYqyt8yBta8bXLwF3TPCIh4vXPw+1C+YH2PaA7n6MW+n+xOcCd+FZKm8ynnqW0f6tzdYQjTVqYzRna3Q4v+GilBY=
+X-Received: by 2002:a2e:8650:: with SMTP id i16mr24502679ljj.178.1561125542140;
+ Fri, 21 Jun 2019 06:59:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1561037428-13855-1-git-send-email-robert.chiras@nxp.com> <1561037428-13855-3-git-send-email-robert.chiras@nxp.com>
+In-Reply-To: <1561037428-13855-3-git-send-email-robert.chiras@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 21 Jun 2019 10:59:19 -0300
+Message-ID: <CAOMZO5DS2v15h9E=qKg2vKuFkBSQQwdBHA5Th5mZ+ca6DWgQsw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drm/panel: Add support for Raydium RM67191 panel driver
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2019 14:46, Daniel Thompson wrote:
-> [Sorry to those receiving this twice... had to dig this out from the 
-> archives and sent it to the lists from the wrong mailer]
-> 
-> On 27/11/2018 00:44, Brian Dodge wrote:
->> Thank you Pavel, that is a good point.
->>
->> The chip vendor has indicated that there is no reason to maintain the 
->> old/improper prefix and wishes to go forward (only) with the "arctic" 
->> prefix and any existing dts files are or will be updated.
-> 
-> Looks like this patch series has fallen into the cracks a little.
-> 
-> I think I assumed this info would end in the description of patch v2 1/3 
-> (in order to answer Rob's feedback) and I sat and waited for a respin. 
-> On the other hand... I didn't actually say that explicitly anywhere! 
-> So... I'd recommend a respin perhaps with a small bit of text explaining 
-> how the vendor can state that any existing dts files will be updated. 
-> This is a peripheral device so these strings are probably embedded into 
-> OEM devicetrees rather than exclusively under the control of the vendor.
+Hi Robert,
 
-In fact there's a publicly available example using this binding:
-https://chromium.googlesource.com/chromiumos/third_party/kernel/+/factory-gru-8652.B-chromeos-4.4/arch/arm64/boot/dts/rockchip/rk3399-gru-gru.dtsi
+On Thu, Jun 20, 2019 at 10:31 AM Robert Chiras <robert.chiras@nxp.com> wrote:
 
-I'm not sure it could be changed without maintaining support for old names.
+> +fail:
+> +       if (rad->reset)
+> +               gpiod_set_value_cansleep(rad->reset, 1);
 
+gpiod_set_value_cansleep() can handle NULL, so no need for the if() check.
 
-Daniel.
+> +static const struct display_timing rad_default_timing = {
+> +       .pixelclock = { 132000000, 132000000, 132000000 },
+
+Having the same information listed three times does not seem useful.
+
+You could use a drm_display_mode structure with a single entry instead.
+
+> +       videomode_from_timing(&rad_default_timing, &panel->vm);
+> +
+> +       of_property_read_u32(np, "width-mm", &panel->width_mm);
+> +       of_property_read_u32(np, "height-mm", &panel->height_mm);
+> +
+> +       panel->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+
+Since this is optional it would be better to use
+devm_gpiod_get_optional() instead.
 
 
-> 
-> 
-> Daniel.
-> 
-> 
->>
->> On 11/11/18 6:30 AM, Pavel Machek wrote:
->>> Hi!
->>>
->>>> The vendor-prefixes.txt file properly refers to ArcticSand
->>>> as arctic but the driver improperly abbreviated the prefix
->>>> to arc. This was a mistake in the original patch
->>>>
->>>> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
->>>> ---
->>>>   drivers/video/backlight/arcxcnn_bl.c | 22 +++++++++++-----------
->>>>   1 file changed, 11 insertions(+), 11 deletions(-)
->>>>
->>>>    *
->>>> - * Copyright 2016 ArcticSand, Inc.
->>>> - * Author : Brian Dodge <bdodge@arcticsand.com>
->>>> + * Copyright 2018 pSemi, Inc.
->>>> + * Author : Brian Dodge <bdodge@psemi.com>
->>> Ummm. Copyright 2016-2018?
->>>
->>>> @@ -202,27 +202,27 @@ static void arcxcnn_parse_dt(struct arcxcnn *lp)
->>>>       if (ret == 0)
->>>>           lp->pdata->initial_brightness = prog_val;
->>>>
->>>> -    ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
->>>> +    ret = of_property_read_u32(node, "arctic,led-config-0", 
->>>> &prog_val);
->>>>       if (ret == 0)
->>>>           lp->pdata->led_config_0 = (u8)prog_val;
->>>>
->>> If there's a dts using this, you want to update it at the same
->>> time. You may want to support both names going forward.
->>>                                     Pavel
-> 
+> +
+> +       if (IS_ERR(panel->reset))
+> +               panel->reset = NULL;
+> +       else
+> +               gpiod_set_value_cansleep(panel->reset, 1);
 
+This is not handling defer probing, so it would be better to do like this:
+
+panel->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+if (IS_ERR(panel->reset))
+      return  PTR_ERR(panel->reset);
+
+> +       memset(&bl_props, 0, sizeof(bl_props));
+> +       bl_props.type = BACKLIGHT_RAW;
+> +       bl_props.brightness = 255;
+> +       bl_props.max_brightness = 255;
+> +
+> +       panel->backlight = devm_backlight_device_register(dev, dev_name(dev),
+> +                                                         dev, dsi,
+> +                                                         &rad_bl_ops,
+> +                                                         &bl_props);
+
+Could you put more parameters into the same line?
+
+Using 4 lines seems excessive.
+
+> +       if (IS_ERR(panel->backlight)) {
+> +               ret = PTR_ERR(panel->backlight);
+> +               dev_err(dev, "Failed to register backlight (%d)\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       drm_panel_init(&panel->panel);
+> +       panel->panel.funcs = &rad_panel_funcs;
+> +       panel->panel.dev = dev;
+> +       dev_set_drvdata(dev, panel);
+> +
+> +       ret = drm_panel_add(&panel->panel);
+> +
+
+Unneeded blank line
+
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = mipi_dsi_attach(dsi);
+> +       if (ret < 0)
+> +               drm_panel_remove(&panel->panel);
+> +
+> +       return ret;
+
+You did not handle the "power" regulator.
+
+> +static int __maybe_unused rad_panel_suspend(struct device *dev)
+> +{
+> +       struct rad_panel *rad = dev_get_drvdata(dev);
+> +
+> +       if (!rad->reset)
+> +               return 0;
+> +
+> +       devm_gpiod_put(dev, rad->reset);
+> +       rad->reset = NULL;
+> +
+> +       return 0;
+> +}
+> +
+> +static int __maybe_unused rad_panel_resume(struct device *dev)
+> +{
+> +       struct rad_panel *rad = dev_get_drvdata(dev);
+> +
+> +       if (rad->reset)
+> +               return 0;
+> +
+> +       rad->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+
+Why do you call devm_gpiod_get() once again?
+
+I am having a hard time to understand the need for this suspend/resume hooks.
+
+Can't you simply remove them?
