@@ -2,142 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E1CC4F09C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 00:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9495A4F0A9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 00:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbfFUWGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 18:06:54 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:43862 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726058AbfFUWGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 18:06:54 -0400
-Received: by mail-pg1-f193.google.com with SMTP id f25so3981034pgv.10
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 15:06:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=ryaqQTZCUF/hF6VaO5QT3dMTov2dUM5dS2MnCcID9K0=;
-        b=bkZJOh+mMCVPn2xsEFJxgIc9ElvjsMXyto539DExGlvLKQCbEFYxF4Jd5vd9pOyLkR
-         CjV5R5M89170qSsfAspvKmuBX6HMni74NRnyMt67MKlELohZ00koslBoKOQTAk8T3c7r
-         Y9UBWw3sPchkhSZu2pX50693ihMbgRHvTpWtgjovbnAa0nIWZcVimE8RB9Q6XLJ42PnQ
-         +xlBpQUuXhrTABFgdtVBBW3U4jqW4BIeWNRNdETOZ/QW1Fj9s9CLDjVNWIYSuVgxkXWK
-         2j4QKgob0abP4Nspj5OVm0H74Oqa3n5eDNulAoiCVmSiZdLE1J7qooYddxZ6upU/MvtL
-         +Rsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=ryaqQTZCUF/hF6VaO5QT3dMTov2dUM5dS2MnCcID9K0=;
-        b=VfZflTs4Xbyi3JF4lOiao5NQg3CS0Ackt3sVHahfm4L6MZA7V/9z8bTIeFXQm0E5Ud
-         4dAFN/KIM2QZ+0RUdwzIKGEC7UySUMjFv1UbwDkqe5lomO00J41yscLfE4DTJcIRNKG/
-         9d5EfIm7ZE5ETJwayY3h7/IlZaR8gbYf3l4d7z0ta2p9mNrulNfuP+vB1zn5TnpLgQK8
-         ZOvyuaoJ2Aj1x4SbJWWtv90p8PocL55Ch7rsebfulPyW5eAxXs45jagjzi7fVxBz0Gl3
-         6acbX5t9qO0K3w3VpYWUhFGQCIrxM9mwKPQ7SUyeKPfQYFDrEl/c6xiLJfN2h4H6F03E
-         imZQ==
-X-Gm-Message-State: APjAAAWb5tpUptqTeo6f/8w8kZaPmFVNW5ApAVRANW/yvLpMlot3Q6Sc
-        +AaKGANHIELvPw7punfBHSGVQQ==
-X-Google-Smtp-Source: APXvYqxHWwW/4SNCVZPUXPZki+bZvZo66exifsW1I8Pi10mlK+p5QI70JPDdcKnzJm3wapKHkDCOCA==
-X-Received: by 2002:a63:4556:: with SMTP id u22mr14410988pgk.444.1561154814071;
-        Fri, 21 Jun 2019 15:06:54 -0700 (PDT)
-Received: from localhost ([38.98.37.134])
-        by smtp.gmail.com with ESMTPSA id x7sm3439038pfm.82.2019.06.21.15.06.51
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 21 Jun 2019 15:06:53 -0700 (PDT)
-Date:   Fri, 21 Jun 2019 15:06:29 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Yash Shah <yash.shah@sifive.com>
-cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
-        sachin.ghadi@sifive.com
-Subject: Re: [PATCH v2] riscv: dts: Add DT node for SiFive FU540 Ethernet
- controller driver
-In-Reply-To: <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
-Message-ID: <alpine.DEB.2.21.9999.1906211504170.16518@viisi.sifive.com>
-References: <1561114429-29612-1-git-send-email-yash.shah@sifive.com> <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1726099AbfFUWN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 18:13:28 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:48239 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726031AbfFUWN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 18:13:28 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 2CCC2805DE; Sat, 22 Jun 2019 00:13:15 +0200 (CEST)
+Date:   Sat, 22 Jun 2019 00:13:25 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Brian Dodge <bdodge09@gmail.com>, lee.jones@linaro.org,
+        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, Peter Bacon <pbacon@psemi.com>
+Subject: Re: Re: [PATCH 2/3] backlight/arcxcnn fix vendor prefix
+Message-ID: <20190621221325.GA2343@amd>
+References: <1541592640-18478-1-git-send-email-bdodge09@gmail.com>
+ <1541592640-18478-3-git-send-email-bdodge09@gmail.com>
+ <20181111113053.GF27666@amd>
+ <e372391c-1fd5-41ec-b766-7669fffb928d@gmail.com>
+ <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="VbJkn9YxBvnuCH5J"
+Content-Disposition: inline
+In-Reply-To: <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jun 2019, Yash Shah wrote:
 
-> DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
-> 
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+--VbJkn9YxBvnuCH5J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, dropped the "reg-names" property from the patch, and queued the 
-following updated version for v5.2-rc.
+Hi!
 
+> [Sorry to those receiving this twice... had to dig this out from the
+> archives and sent it to the lists from the wrong mailer]
+>=20
+> On 27/11/2018 00:44, Brian Dodge wrote:
+> >Thank you Pavel, that is a good point.
+> >
+> >The chip vendor has indicated that there is no reason to maintain the
+> >old/improper prefix and wishes to go forward (only) with the "arctic"
+> >prefix and any existing dts files are or will be updated.
+>=20
+> Looks like this patch series has fallen into the cracks a little.
+>=20
+> I think I assumed this info would end in the description of patch v2 1/3 =
+(in
+> order to answer Rob's feedback) and I sat and waited for a respin. On the
+> other hand... I didn't actually say that explicitly anywhere! So... I'd
+> recommend a respin perhaps with a small bit of text explaining how the
+> vendor can state that any existing dts files will be updated. This is a
+> peripheral device so these strings are probably embedded into OEM
+> devicetrees rather than exclusively under the control of the vendor.
 
-- Paul
+So in next email you give good reason not to apply this :-).
 
-From: Yash Shah <yash.shah@sifive.com>
-Date: Fri, 21 Jun 2019 16:23:49 +0530
-Subject: [PATCH] riscv: dts: Add DT node for SiFive FU540 Ethernet controller
- driver
+Anyway, this is Doc*/devicetree/, so not my area.
+									Pavel
 
-DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
-Tested-by: Atish Patra <atish.patra@wdc.com>
-[paul.walmsley@sifive.com: dropped the "reg-names" property, as it
- is not documented in the binding nor used in the driver]
-Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi       | 16 ++++++++++++++++
- .../boot/dts/sifive/hifive-unleashed-a00.dts     |  9 +++++++++
- 2 files changed, 25 insertions(+)
+--VbJkn9YxBvnuCH5J
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 3c06ee4b2b29..83f40b00ab63 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -211,5 +211,21 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 		};
-+		eth0: ethernet@10090000 {
-+			compatible = "sifive,fu540-macb";
-+			interrupt-parent = <&plic0>;
-+			interrupts = <53>;
-+			reg = <0x0 0x10090000 0x0 0x2000
-+			       0x0 0x100a0000 0x0 0x1000>;
-+			reg-names = "control";
-+			status = "disabled";
-+			local-mac-address = [00 00 00 00 00 00];
-+			clock-names = "pclk", "hclk";
-+			clocks = <&prci PRCI_CLK_GEMGXLPLL>,
-+				 <&prci PRCI_CLK_GEMGXLPLL>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
- 	};
- };
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 4da88707e28f..d783bf2c3507 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -63,3 +63,12 @@
- 		disable-wp;
- 	};
- };
-+
-+&eth0 {
-+	status = "okay";
-+	phy-mode = "gmii";
-+	phy-handle = <&phy1>;
-+	phy1: ethernet-phy@0 {
-+		reg = <0>;
-+	};
-+};
--- 
-2.20.1
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
+iEYEARECAAYFAl0NVoUACgkQMOfwapXb+vKcPQCeMXZLMpPGhmvkuIH+olZhfCFk
+CVIAoLN12wP5S77RinlmdQ/jZIZqwCWD
+=7Nqr
+-----END PGP SIGNATURE-----
+
+--VbJkn9YxBvnuCH5J--
