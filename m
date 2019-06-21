@@ -2,108 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71F784EA0F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 16:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2CD54EA3B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 16:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726002AbfFUOA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 10:00:26 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:41709 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbfFUOA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 10:00:26 -0400
-Received: by mail-lj1-f194.google.com with SMTP id s21so6060758lji.8;
-        Fri, 21 Jun 2019 07:00:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HdPpqlE5KQOryOI+FWcAGSlfSeIeXjYoyYw5O4jWzks=;
-        b=LIGoxNHDQCkPWYXbaamae5C9X8NCDUGNdSiwdnSAcKkGC4KheSc0mzoT1Cskr/yd3g
-         Wr+SU7sDp7Tw4CZQsezQV5/q+W+jASBXRTn4tXM+mHtiTG6qGGoASTAURKHSApuJo8+9
-         QSvN/nn5pFLhP5f1auMMhhQJOUwITRGQmUXw8MOjooFLqNZiGRoAfcCeG2jRn4wRla4B
-         WOxnCjZpJj+JoxeuujISG7BfaNMLW8WNf+KRHTrtZ5JinzZaFhuGLfA64Tt0muspivH1
-         zKh2eVkJotVuzkZGoS8ljYhrxU/37XydWz/dvzJeUU91iFZtbCmsHJOwsPRxLF+825bO
-         N6CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HdPpqlE5KQOryOI+FWcAGSlfSeIeXjYoyYw5O4jWzks=;
-        b=sSSkcg59vI55eh/8HzeOHMx+4EDGQCY5O0OFTeIixRrcZHAAmSgFm8BvnM+EX2hivC
-         /gcUW6zHgzXHN5/z6okmDSkYhyNMvYOPgVOU/UqQKa8fBIboJA9H+YRR6W9ollIHeTUp
-         RNV6ezGMI0YAX+McEHcY/35atZqNWEFqYpkYwZyw40DmqOl8p7/9WD+ABDs/7xWHmmS5
-         YIMGYTXOVEUuIXnu5LjzlmLV6JW508FqkDtpPSZgfOhp472QvVOQUHp+KwssQS5/7y0z
-         5ZkWT+Yi+ZuYLngIbOKUgMo5/4RyAFwLdZygCMP+Gf1ICZByTuTkEXYmNhIzwL0S1d2k
-         C7xw==
-X-Gm-Message-State: APjAAAU2ANldyoJOCOIoHsd6+WHG7qUPl5Q3t39paaeR+zKSbte6v1x9
-        8wgxXAY6x5CeTZX5nvC17c4mI338VV5HvkvFo6A=
-X-Google-Smtp-Source: APXvYqzHIiebJqKGNowqGUaOStPrvIC4CDHyk3T1vJyUD7aGteNqYdBz5YnghaRqCjI8auZqhyn4Z6jZuR2Eayg9KkA=
-X-Received: by 2002:a2e:8650:: with SMTP id i16mr24506131ljj.178.1561125624436;
- Fri, 21 Jun 2019 07:00:24 -0700 (PDT)
+        id S1726132AbfFUOIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 10:08:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39086 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725985AbfFUOIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jun 2019 10:08:49 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3FD02208C3;
+        Fri, 21 Jun 2019 14:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561126128;
+        bh=6jsH4MTy4+zhq/u0QzG9YpnTVIAk57iiJmEsRHSE4WE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VcL2TF8so2lJ/+I3uRM52dOgBUlATa9vuW/GRWD5Xsk5zLhz2aGSeQL+0SJImUqq0
+         DX8zvGnKW0tGNuNR8hQ3XNFWCFLsLy8UGFZyrcHi+ZzRNkdp/aCI8KfqWr0c0mIE2w
+         b9UvVvbZ4AMCpd4fWmIg47o1pDcfGDBgU9KiYiA4=
+Date:   Fri, 21 Jun 2019 16:08:45 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Boris Brezillon <bbrezillon@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        od@zcrc.me, Rob Herring <robh@kernel.org>
+Subject: Re: [RE-RESEND PATCH v3 1/4] dt-bindings: memory: jz4780: Add
+ compatible string for JZ4740 SoC
+Message-ID: <20190621140845.GA26434@kroah.com>
+References: <20190604143018.11644-1-paul@crapouillou.net>
 MIME-Version: 1.0
-References: <1561037428-13855-1-git-send-email-robert.chiras@nxp.com> <1561037428-13855-2-git-send-email-robert.chiras@nxp.com>
-In-Reply-To: <1561037428-13855-2-git-send-email-robert.chiras@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 21 Jun 2019 11:00:42 -0300
-Message-ID: <CAOMZO5DunK3+ovBd0c0X4NTf-zkW1Tjz6KgXFMaRQKMk2SBMiw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add support for
- Raydium RM67191 panel
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190604143018.11644-1-paul@crapouillou.net>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
-
-On Thu, Jun 20, 2019 at 10:32 AM Robert Chiras <robert.chiras@nxp.com> wrote:
->
-> Add dt-bindings documentation for Raydium RM67191 DSI panel.
->
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+On Tue, Jun 04, 2019 at 04:30:15PM +0200, Paul Cercueil wrote:
+> Add a compatible string to support the memory controller built into the
+> JZ4740 SoC from Ingenic.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> Reviewed-by: Boris Brezillon <bbrezillon@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/display/panel/raydium,rm67191.txt     | 39 ++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
-> new file mode 100644
-> index 0000000..52af272
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
-> @@ -0,0 +1,39 @@
-> +Raydium RM67171 OLED LCD panel with MIPI-DSI protocol
-> +
-> +Required properties:
-> +- compatible:          "raydium,rm67191"
-> +- reg:                 virtual channel for MIPI-DSI protocol
-> +                       must be <0>
-> +- dsi-lanes:           number of DSI lanes to be used
-> +                       must be <3> or <4>
-> +- port:                input port node with endpoint definition as
-> +                       defined in Documentation/devicetree/bindings/graph.txt;
-> +                       the input port should be connected to a MIPI-DSI device
-> +                       driver
-> +
-> +Optional properties:
-> +- reset-gpios:         a GPIO spec for the RST_B GPIO pin
-> +- width-mm:            see panel-common.txt
-> +- height-mm:           see panel-common.txt
-> +- video-mode:          0 - burst-mode
-> +                       1 - non-burst with sync event
-> +                       2 - non-burst with sync po ulse
+> 
+> Notes:
+>     v2: No change
+>     
+>     v3: Change compatible string for jz4740 instead of j4725b
+> 
+>  .../bindings/memory-controllers/ingenic,jz4780-nemc.txt          | 1 +
+>  1 file changed, 1 insertion(+)
 
-No power-supply property?
+I guess I'll take this series...
+
+Is there really no maintainer for drivers/memory/ anymore?
+
+
+greg k-h
