@@ -2,80 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 751184E688
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 12:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B1E4E68C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 12:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726260AbfFUK5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 06:57:31 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:40259 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726218AbfFUK5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 06:57:31 -0400
-Received: by mail-pg1-f194.google.com with SMTP id w10so3192802pgj.7
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 03:57:31 -0700 (PDT)
+        id S1726439AbfFUK5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 06:57:46 -0400
+Received: from mail-pg1-f173.google.com ([209.85.215.173]:35887 "EHLO
+        mail-pg1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726250AbfFUK5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 06:57:46 -0400
+Received: by mail-pg1-f173.google.com with SMTP id f21so3211620pgi.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 03:57:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=m4SystdEUYyTsZI3hnmFt3ur3sFjiDU6l/WcXNGnPvU=;
-        b=Spoip36rQtmU/CyiMWVfJkYQIPink69AqYVxGtT0MpDnfdIT8FRP/FE3WbuZtH5Udb
-         1zQ5J4mGDp2M57h6LgFxrEwKsi5/LPSA+xfL19vy/+41LBqTRapVUYPTVqEibPZwyN6t
-         xGC0HNetqBxwnbd7RVVshUR/qKe85V/san+6PTJT6etBRJhBdK64vEVvBUd2CaOA7EJV
-         kfSAnaKfW3RjlHQ2PbyyCGa/nW3NLdWUCU9APcgtpzH5+MwdjIAphhPYGrKy1y9onmIP
-         Q4/C+TtHoKZxaIdW4Vgy5uoMErHjx+atNADwwvOjae2ibnebibV/f9Bs1b/Fsnfe0tXN
-         hDJg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=LfS7OaPkDmyWohtCv6+omHOKQ0iNU10OGK6bYTnhcSo=;
+        b=EkbAXsmiKWaXo7lR4QUiVCL3Qlcv5VjgIRJ0aK6NFuKAuTyEiZcnI5vTp9lBKiydzN
+         xC6cvtuwUV1tyZvDArgTgmcBgirg3MR79RamUeHI3xMVLq3/7R4M+MpAfyvVGEYeJgbB
+         PgwRRsU2ZoNIary8F1SjsWrxcWSY9vgdB9LcSLnOPck0160+E3v24EbE6LFUfKbFe29l
+         R4CRTdtb5UzyEfPhQsBfPQ+9AIlDmOJAaZh1qXb9rJbiVMWQEQijVf75CF4IUZ7OnKvH
+         HyLmU0RoHIVMnqj5BScwaEgx/hRKR1sUx6u8RRqdgnfJLVulA4vv4axkwpc17aFOdJzk
+         YJhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=m4SystdEUYyTsZI3hnmFt3ur3sFjiDU6l/WcXNGnPvU=;
-        b=D/urqYGKTMz/T7woR+9CYvXPMNKltfHY8SkFG8ruhWi0iN3uFHCpX8BfpGIgJuDx+V
-         pxrH0YQLIhBjzPK2usm75IOFwu1Rqpr4PJhyp+FfkANVwBcsUoAxAU92+aEM6oQrxV42
-         t/o5PHd8APQtBm3PY8FoFAZ7OujGQckCapxXpmNXc68kBmzvPCbfvnKHzv24VeBjR5GR
-         LhQm3dwnc9zGuK7fWa6NaxiVhsPYGMIXpoUWz2cNimYFi0wvlWFBMA8YCO68PJyUo7/M
-         3zk94PjhBuy938J5uTpj9NPE+qXt+VyxKSwPGl5wbeBcGE77YEIoRTrTAbL5IifzJhke
-         ghiQ==
-X-Gm-Message-State: APjAAAXsup8+qk4mOcWgZno7FepkKn+3hwp4MYsBx3YP5uSlQ99jOalG
-        CrqlKzcCr1XHfJxDC4y8Gw+Xlg==
-X-Google-Smtp-Source: APXvYqwzjjm4483alu65arc4JSsx+I/alCHC31k15aRzcosRcQA2NcisAKHpGycWDhXMyiza4ypiEg==
-X-Received: by 2002:a63:c20e:: with SMTP id b14mr17159994pgd.96.1561114650984;
-        Fri, 21 Jun 2019 03:57:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=LfS7OaPkDmyWohtCv6+omHOKQ0iNU10OGK6bYTnhcSo=;
+        b=bXL8yqglrW7ULm8WS333+AuY6qNOriq1gCzZJwmwxtRXwcTijW140RwQIhvjRWezsB
+         HPDrz+UT0tQh8txuFJ98vevKY+slwjKq/4ITz4Zs7GofF+3ZtuDDK4TJsOrmbo9O3BAg
+         Ug/AAnc7marg6Y5b/ldC16ftKmlD2nQpS4rakP07otbjdoA/85jN0gL0/nG9BFDltyhj
+         8oKXw/T9inXWPzfqBtbeBbbXfbkFi9mGgSUlrdPG38XLvnuNdq38UxMEjfcqzmk4hYfs
+         vAgN2bKpXpR0uDEgMri/2Ii2tCAFsZoWNBcwxbwtG7oa8H2gOFkQm0zjKWuli4thbxBh
+         Pu6g==
+X-Gm-Message-State: APjAAAWSEVr+jb1tmHDDkskclVGRhcVzcBuKoplOu3+j8DKdFGiIIYNm
+        gjazhWPwlAVa57VvH/JlYDpRAA==
+X-Google-Smtp-Source: APXvYqzyg4P7NwGYnubvr8F2/xiaWS2z04jXSX8kI2HlZUYsAEErfBxzBhb5mkAaVXVwDLS01pWL+Q==
+X-Received: by 2002:a63:f817:: with SMTP id n23mr17900412pgh.35.1561114665299;
+        Fri, 21 Jun 2019 03:57:45 -0700 (PDT)
 Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id q63sm3889442pfb.81.2019.06.21.03.57.26
+        by smtp.googlemail.com with ESMTPSA id q63sm3889442pfb.81.2019.06.21.03.57.41
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 21 Jun 2019 03:57:30 -0700 (PDT)
+        Fri, 21 Jun 2019 03:57:44 -0700 (PDT)
 From:   Yash Shah <yash.shah@sifive.com>
 To:     robh+dt@kernel.org, paul.walmsley@sifive.com,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
         sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH v2] DT node for SiFive FU540 Ethernet Controller driver
-Date:   Fri, 21 Jun 2019 16:23:48 +0530
-Message-Id: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
+Subject: [PATCH v2] riscv: dts: Add DT node for SiFive FU540 Ethernet controller driver
+Date:   Fri, 21 Jun 2019 16:23:49 +0530
+Message-Id: <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
+References: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch-set is based on 'riscv-for-v5.2/fixes-rc6' tag of
-git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git
+DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
 
-Tested on HiFive Unleashed board with additional patches required for
-testing can be found at dev/yashs/ethernet_dt_v2 branch of:
-https://github.com/yashshah7/riscv-linux.git
-
-Change history:
-v2:
-- Set "status = disabled" in DTSI file and enable it in Board DTS file
-- Move PHY related nodes into board DTS file
-
-Yash Shah (1):
-  riscv: dts: Add DT node for SiFive FU540 Ethernet controller driver
-
+Signed-off-by: Yash Shah <yash.shah@sifive.com>
+---
  arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 16 ++++++++++++++++
  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  9 +++++++++
  2 files changed, 25 insertions(+)
 
+diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+index 4e8fbde..c53b4ea 100644
+--- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
++++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+@@ -225,5 +225,21 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 		};
++		eth0: ethernet@10090000 {
++			compatible = "sifive,fu540-macb";
++			interrupt-parent = <&plic0>;
++			interrupts = <53>;
++			reg = <0x0 0x10090000 0x0 0x2000
++			       0x0 0x100a0000 0x0 0x1000>;
++			reg-names = "control";
++			status = "disabled";
++			local-mac-address = [00 00 00 00 00 00];
++			clock-names = "pclk", "hclk";
++			clocks = <&prci PRCI_CLK_GEMGXLPLL>,
++				 <&prci PRCI_CLK_GEMGXLPLL>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
+ 	};
+ };
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 4da8870..d783bf2 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -63,3 +63,12 @@
+ 		disable-wp;
+ 	};
+ };
++
++&eth0 {
++	status = "okay";
++	phy-mode = "gmii";
++	phy-handle = <&phy1>;
++	phy1: ethernet-phy@0 {
++		reg = <0>;
++	};
++};
 -- 
 1.9.1
 
