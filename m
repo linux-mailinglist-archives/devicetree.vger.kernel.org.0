@@ -2,138 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 748924DE4A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 03:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA8054DEE2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 03:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725958AbfFUBDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 21:03:20 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:33549 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbfFUBDU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 21:03:20 -0400
-Received: by mail-pg1-f193.google.com with SMTP id m4so1875464pgk.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 18:03:19 -0700 (PDT)
+        id S1726219AbfFUB6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jun 2019 21:58:06 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:37886 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725911AbfFUB6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 21:58:05 -0400
+Received: by mail-vs1-f67.google.com with SMTP id v6so2830721vsq.4
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 18:58:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:to:from:subject:cc:user-agent:date;
-        bh=/QNfQWig2oeC5POufHOkxnAuAVkUYpsqHyVQpvyXPFM=;
-        b=YT9pP8mmnoLSnibB3gevIC8O4iva3l7WbYe+TvJLiuO8Sl8rGyxguOWdu9Xkz3aMFK
-         0JcQpSOWMOO4Ipb2MWZdlgVt1gqKnEVbbl/k08kEf7rdSzKoGFDVsTEq54pldf9AvuOi
-         AEJ/VAYyprATMD4PR72B+IkMkBKhPYLYh7Sug=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v0FbC0Xdnnb68PWmVlA2vC7ih6OKam4biQiJRuW8orc=;
+        b=Szp2IOTt8MAH66bTRQ2mDk2Pfo0wUi0/7oMQgyfH6fEs59PGr+WL6otSTZ2TvBj84Y
+         9zhl+I1aG4XDrcYPISzPSKY2t+lFsNawmZ+y/3eCwhkS/Qscgfohk/FjGrZlkr29kFXw
+         TVx/+qhcv8lRwAP/98l1vJWFnhtUIalJBrsa4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:to:from:subject:cc
-         :user-agent:date;
-        bh=/QNfQWig2oeC5POufHOkxnAuAVkUYpsqHyVQpvyXPFM=;
-        b=PdGQAHyZZOWfaRcpHxqaMzbyxkSze7TZUTMrTZFxZIaUUjn1D5vo9TUO+sTlfwAPoS
-         PsleUWVPvdzLGHdW/ltVZ/A2088NnSEeL5/C59ed/jnPll+7RN4NE+88EM0U0k1DlZxe
-         VTteklP9DnfnZqu7abkF5qRDPx2DHZdxhC4h9ruNmGdHKW2dE270jk/6vT5J7IPWb60V
-         9B1pWVPEnCoOqWhFOwUhokobfzuVZPzuNraC9Es0kOrCCacXhJ/RqnsfXJRUbZKFi/A6
-         GuwIXKBUs8Y+ulQpcdNpHCey0C/JU+TUQvryTVFqt5JRvKiIr/YtqY4FVi5rFu6Mb4G5
-         j6VQ==
-X-Gm-Message-State: APjAAAXkW5LvjLRAPTQuaHjaLPg+fyS/EnB/G94VeexJEALDpqLlXRyc
-        syA+Hrd/0CJJ5w4nINCGZng0/w==
-X-Google-Smtp-Source: APXvYqw5MjR8b5QF1inGOhF3D0ddQ3KFCau26pbHfnEVTRxI5c2/WPbsRNarL55GkCl3Ecm1fJ+H/A==
-X-Received: by 2002:a63:3c14:: with SMTP id j20mr3859916pga.169.1561078999454;
-        Thu, 20 Jun 2019 18:03:19 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id y185sm634195pfy.110.2019.06.20.18.03.18
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 20 Jun 2019 18:03:18 -0700 (PDT)
-Message-ID: <5d0c2cd6.1c69fb81.e66af.32bf@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v0FbC0Xdnnb68PWmVlA2vC7ih6OKam4biQiJRuW8orc=;
+        b=tLgtGLBXQz1Mh9u0Olo9wmzH0T9P37c2Zaa3yTaQo1ZwgLWDpIBv7fPWhYaEayoRoo
+         lwccj7EZhTi3unOu/841mzKlEtJRfX7QzmljOqnQ8zmOlqsYCuPCo1M38FZd7nLdNIUe
+         RspLhjSwUyJlXDRn9+73zPpmFLuiDrzQ0I5MpOHwnxJiIs/EID5vuJHgfpebSI+L63BS
+         nf016t7gtKSOBvpbQqn8hnmt0ANmahbZLXCUPdGFRG/KVsM90PVuWQqrQthJ7T9l8eEl
+         WsA5aIy31O8nzxkEu/Nk235PQhoRprca70fFsLTWl0ZIxSM53c7DEloOgSUzc4fAezYm
+         +hZg==
+X-Gm-Message-State: APjAAAV0tb7rA8059n+QkSzoT9EbYdKV2wgzBnyLWrOKvN/GnwEbM29d
+        ocgvNllXvTL88sFftZDqJJV9EY0dcv3pf82+GVwYZw==
+X-Google-Smtp-Source: APXvYqynIpC8UeAIAKmqGg7+BnEM5kPsN/6M+239KLGUtn+uDjwNBpvvs8RYiwSGVVeN8P2fBnGv1nECg5lE54nmZWg=
+X-Received: by 2002:a67:7d13:: with SMTP id y19mr53842535vsc.232.1561082283839;
+ Thu, 20 Jun 2019 18:58:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190617225134.GA30762@ziepe.ca>
-References: <20190613180931.65445-1-swboyd@chromium.org> <20190613180931.65445-2-swboyd@chromium.org> <20190613232613.GH22901@ziepe.ca> <5d03e394.1c69fb81.f028c.bffb@mx.google.com> <20190617225134.GA30762@ziepe.ca>
-To:     Jason Gunthorpe <jgg@ziepe.ca>
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH 1/8] tpm: block messages while suspended
-Cc:     Peter Huewe <peterhuewe@gmx.de>,
-        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        Andrey Pronin <apronin@chromium.org>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
-        Duncan Laurie <dlaurie@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        <linux-crypto@vger.kernel.org>
-User-Agent: alot/0.8.1
-Date:   Thu, 20 Jun 2019 18:03:17 -0700
+References: <20190611040350.90064-1-dbasehore@chromium.org>
+ <20190611040350.90064-4-dbasehore@chromium.org> <20190611085722.GX21222@phenom.ffwll.local>
+ <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com>
+In-Reply-To: <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com>
+From:   "dbasehore ." <dbasehore@chromium.org>
+Date:   Thu, 20 Jun 2019 18:57:52 -0700
+Message-ID: <CAGAzgsoE5CgkQVhU_LSsetBRistMnuRqO7Sh+cuycMJa7QXzDg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] drm/panel: Add attach/detach callbacks
+To:     Derek Basehore <dbasehore@chromium.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jason Gunthorpe (2019-06-17 15:51:34)
-> On Fri, Jun 14, 2019 at 11:12:36AM -0700, Stephen Boyd wrote:
-> > Quoting Jason Gunthorpe (2019-06-13 16:26:13)
-> > > On Thu, Jun 13, 2019 at 11:09:24AM -0700, Stephen Boyd wrote:
-> > > > From: Andrey Pronin <apronin@chromium.org>
-> > > >=20
-> > > > Other drivers or userspace may initiate sending a message to the tpm
-> > > > while the device itself and the controller of the bus it is on are
-> > > > suspended. That may break the bus driver logic.
-> > > > Block sending messages while the device is suspended.
-> > > >=20
-> > > > Signed-off-by: Andrey Pronin <apronin@chromium.org>
-> > > > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> > > >=20
-> > > > I don't think this was ever posted before.
-> > >=20
-> > > Use a real lock.
-> > >=20
-> >=20
-> > To make sure the bit is tested under a lock so that suspend/resume can't
-> > update the bit in parallel?
->=20
-> No, just use a real lock, don't make locks out of test bit/set bit
->=20
+If we want to query the device tree outside of the panel code in
+helper functions, we can do this with the struct as is. There's
+already a device struct pointer in drm_panel, so I think we can pull
+from that.
 
-Ok. I looked back on the history of this change in our kernel (seems it
-wasn't attempted upstream for some time) and it looks like the problem
-may have been that the khwrng kthread (i.e. hwrng_fill()) isn't frozen
-across suspend/resume. This kthread runs concurrently with devices being
-resumed, the cr50 hardware is still suspended, and then a tpm command is
-sent and it hangs the I2C bus because the device hasn't been properly
-resumed yet.
-
-I suspect a better approach than trying to hold of all TPM commands
-across suspend/resume would be to fix the caller here to not even try to
-read the hwrng during this time. It's a general problem for other hwrngs
-that have some suspend/resume hooks too. This kthread is going to be
-running while suspend/resume is going on if the random entropy gets too
-low, and that probably shouldn't be the case.
-
-What do you think of the attached patch? I haven't tested it, but it
-would make sure that the kthread is frozen so that the hardware can be
-resumed before the kthread is thawed and tries to go touch the hardware.
-
-----8<-----
-diff --git a/drivers/char/hw_random/core.c b/drivers/char/hw_random/core.c
-index 95be7228f327..3b88af3149a7 100644
---- a/drivers/char/hw_random/core.c
-+++ b/drivers/char/hw_random/core.c
-@@ -13,6 +13,7 @@
- #include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/err.h>
-+#include <linux/freezer.h>
- #include <linux/fs.h>
- #include <linux/hw_random.h>
- #include <linux/kernel.h>
-@@ -421,7 +422,9 @@ static int hwrng_fillfn(void *unused)
- {
- 	long rc;
-=20
--	while (!kthread_should_stop()) {
-+	set_freezable();
-+
-+	while (!kthread_freezable_should_stop(NULL)) {
- 		struct hwrng *rng;
-=20
- 		rng =3D get_current_rng();
+On Tue, Jun 11, 2019 at 5:25 PM dbasehore . <dbasehore@chromium.org> wrote:
+>
+> On Tue, Jun 11, 2019 at 1:57 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Mon, Jun 10, 2019 at 09:03:48PM -0700, Derek Basehore wrote:
+> > > This adds the attach/detach callbacks. These are for setting up
+> > > internal state for the connector/panel pair that can't be done at
+> > > probe (since the connector doesn't exist) and which don't need to be
+> > > repeatedly done for every get/modes, prepare, or enable callback.
+> > > Values such as the panel orientation, and display size can be filled
+> > > in for the connector.
+> > >
+> > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > > ---
+> > >  drivers/gpu/drm/drm_panel.c | 14 ++++++++++++++
+> > >  include/drm/drm_panel.h     |  4 ++++
+> > >  2 files changed, 18 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+> > > index 3b689ce4a51a..72f67678d9d5 100644
+> > > --- a/drivers/gpu/drm/drm_panel.c
+> > > +++ b/drivers/gpu/drm/drm_panel.c
+> > > @@ -104,12 +104,23 @@ EXPORT_SYMBOL(drm_panel_remove);
+> > >   */
+> > >  int drm_panel_attach(struct drm_panel *panel, struct drm_connector *connector)
+> > >  {
+> > > +     int ret;
+> > > +
+> > >       if (panel->connector)
+> > >               return -EBUSY;
+> > >
+> > >       panel->connector = connector;
+> > >       panel->drm = connector->dev;
+> > >
+> > > +     if (panel->funcs->attach) {
+> > > +             ret = panel->funcs->attach(panel);
+> > > +             if (ret < 0) {
+> > > +                     panel->connector = NULL;
+> > > +                     panel->drm = NULL;
+> > > +                     return ret;
+> > > +             }
+> > > +     }
+> >
+> > Why can't we just implement this in the drm helpers for everyone, by e.g.
+> > storing a dt node in drm_panel? Feels a bit overkill to have these new
+> > hooks here.
+> >
+> > Also, my understanding is that this dt stuff is supposed to be
+> > standardized, so this should work.
+>
+> So do you want all of this information added to the drm_panel struct?
+> If we do that, we don't necessarily even need the drm helper function.
+> We could just copy the values over here in the drm_panel_attach
+> function (and clear them in drm_panel_detach).
+>
+> > -Daniel
+> >
+> > > +
+> > >       return 0;
+> > >  }
+> > >  EXPORT_SYMBOL(drm_panel_attach);
+> > > @@ -128,6 +139,9 @@ EXPORT_SYMBOL(drm_panel_attach);
+> > >   */
+> > >  int drm_panel_detach(struct drm_panel *panel)
+> > >  {
+> > > +     if (panel->funcs->detach)
+> > > +             panel->funcs->detach(panel);
+> > > +
+> > >       panel->connector = NULL;
+> > >       panel->drm = NULL;
+> > >
+> > > diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
+> > > index 13631b2efbaa..e136e3a3c996 100644
+> > > --- a/include/drm/drm_panel.h
+> > > +++ b/include/drm/drm_panel.h
+> > > @@ -37,6 +37,8 @@ struct display_timing;
+> > >   * struct drm_panel_funcs - perform operations on a given panel
+> > >   * @disable: disable panel (turn off back light, etc.)
+> > >   * @unprepare: turn off panel
+> > > + * @detach: detach panel->connector (clear internal state, etc.)
+> > > + * @attach: attach panel->connector (update internal state, etc.)
+> > >   * @prepare: turn on panel and perform set up
+> > >   * @enable: enable panel (turn on back light, etc.)
+> > >   * @get_modes: add modes to the connector that the panel is attached to and
+> > > @@ -70,6 +72,8 @@ struct display_timing;
+> > >  struct drm_panel_funcs {
+> > >       int (*disable)(struct drm_panel *panel);
+> > >       int (*unprepare)(struct drm_panel *panel);
+> > > +     void (*detach)(struct drm_panel *panel);
+> > > +     int (*attach)(struct drm_panel *panel);
+> > >       int (*prepare)(struct drm_panel *panel);
+> > >       int (*enable)(struct drm_panel *panel);
+> > >       int (*get_modes)(struct drm_panel *panel);
+> > > --
+> > > 2.22.0.rc2.383.gf4fbbf30c2-goog
+> > >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
