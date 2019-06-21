@@ -2,227 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C55D84DF71
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 05:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 109164DFC5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 06:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725958AbfFUD5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jun 2019 23:57:40 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:43889 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725961AbfFUD5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jun 2019 23:57:39 -0400
-Received: by mail-ed1-f68.google.com with SMTP id e3so7873272edr.10
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 20:57:38 -0700 (PDT)
+        id S1725958AbfFUEeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 00:34:24 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:43233 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725876AbfFUEeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 00:34:23 -0400
+Received: by mail-io1-f66.google.com with SMTP id k20so75954ios.10;
+        Thu, 20 Jun 2019 21:34:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=CzpQ3kjwujWtzVv4DPV/tCEIfc/FEWMVjTdzmC0X/us=;
-        b=jzfqpCbIoHgGVRtBrF7lF9LbFU0bamZ0XcWct6qlfHV/QwB10qU/rA1lxfbJzreE4d
-         1Eb9Q3vlujL0JdKQ0P5PUa4L684fqSj0w+5LfiZXn3ZB6Ey+OfAyIYoMpv3x967xmxah
-         owqCTatdEiWnrqAb92DE1FkUfv1WWYVD9h1fE=
+        bh=ica3ySUaR522yE/ZMxZYijSnhD1xDLlEp+v8Cx/mej0=;
+        b=Mxa9wvtP/UVcehlG+S94/uUMn1COAyoRZ2nTdlBsJ3zad9huyWhwYg/cSWnwOFXbOz
+         lrmnwE1Ha/V1irJ03HR0I9WNPsv0kaCxzt4z8cy0KJMIgB49TKsVhNqNBUoxVLIZ/zWc
+         mVha4mE8S1zpx44V9n5k/ORXV9M4TCZjXUtYknxYbCu2JI+SGYniuPlW84Z19kN7IjUT
+         cQoHtsbVqvxzOBherxXPhGvK137Jsm/Om0hvM5zNbsl3vpkuiDvvCSDVqYnWxfeKm1xT
+         SBoOj7gPBq2khCIR1k3yR+m/yZHVdHpRmC0oOGLT1nM/t0+UWtqP4VY2Lrk1MNKwAm/e
+         7QpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=CzpQ3kjwujWtzVv4DPV/tCEIfc/FEWMVjTdzmC0X/us=;
-        b=ag/6o6jRK511jibLtkBinDFH6dJgt4xF30zvmkoYIhKvQDfHiI5OWG/4qb6Phj0rAU
-         pu2gsUSb7J/S2imqtiXYE1Dwkr8uA2RYo6RjiXTFrLMK1zOq2HKLFAzf4DUPhVQl47uu
-         4rxxLLor6ltcBCSOTS+zUTsL4xp1Kj6/521ZcyvLzL8zKginJRcexBH1UZVAwZY3Z4Ag
-         Atv8JOVGZVjOWjv3a0iXJVmwIgvtIV7cFhsdUWBMuOzHcWSy7GCk4wrcsKFK+Nl7hoVo
-         asWinaZPsC0rnrfQ51ozAtC4fzusTWI0HqR2kgCdY9dSAJW/K9s4MRI1nhAgsy8GEYH3
-         Hx6Q==
-X-Gm-Message-State: APjAAAXm8v20nuT1HAk1TjiLiOSf4ch2GYspxmLYKxya2mBR6MeHB9fw
-        AOP/BMXUSKpUG1LscRwLtvJVNFyj8ihWO4LuNuXDTw==
-X-Google-Smtp-Source: APXvYqxtQU/h9lU9BT7NNPLBVdxBj0QGosKYc3X2ZtxZ8KnWLpi5Bn5SLQLGMx+FINNzLp0Eu0dm/II4xxlh1U/V53Y=
-X-Received: by 2002:a50:b561:: with SMTP id z30mr89337967edd.87.1561089457646;
- Thu, 20 Jun 2019 20:57:37 -0700 (PDT)
+        bh=ica3ySUaR522yE/ZMxZYijSnhD1xDLlEp+v8Cx/mej0=;
+        b=WHQK/toU5lubVf5UhB5peFInL4xyfo8JwNE0iGHo3zqrU9AC+sceCsKwfOiNJk8WAN
+         2u98GGRHkjIRFHq7iVrmqGcylIPuRRLqM3JzVlI74/fhbA5uSXYS+h0wFSBlJ6MmT90O
+         mA/D+8YrkKP/H4ssK/x5Gxn7Q2WU+HLr+q0Rm5aD713L+56xaUuOH45YWvnGjxUXkpX2
+         CjCxZOH2k7dmcKqnQXfjQQc1hhotuMPSgRSKX2bjjDFRFN73qoLrqv5Lp4Xv960IAOWB
+         lKQyy2pWfC0hcA0oikjurQZQtKOJKV3ZMEG3Vn+XdUFE0XtN9MYQYdULjQKmqQ216YXK
+         RQIA==
+X-Gm-Message-State: APjAAAVePo1DPVbtqHqDo/G9uLNl+cEfHkHEdy+3T55J9sIisdp4luYj
+        SfIxRfsM3F3I99vwQrxvwmFpU805p9IVM+O2hVI=
+X-Google-Smtp-Source: APXvYqypTQWp8EcBhntIVc2vxfGSjLvBmtNgQYl5tub6+s8/UsvK5TV6Kcvr1YAq20lnIcw9L9ct7MBwgyUvalDzaD0=
+X-Received: by 2002:a5e:de4d:: with SMTP id e13mr20647673ioq.272.1561091662310;
+ Thu, 20 Jun 2019 21:34:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <1560169080-27134-1-git-send-email-yong.wu@mediatek.com>
- <1560169080-27134-17-git-send-email-yong.wu@mediatek.com> <CANdKZ0d873PJ2u=Hn_aUJBu3dDiNyueVwBv94-VXHGLJBvAbGg@mail.gmail.com>
- <eee15db0-e43f-de9b-28a0-93bdd04836d7@gmail.com> <effb4fff-da83-708f-ca10-50f2645c91c6@gmail.com>
-In-Reply-To: <effb4fff-da83-708f-ca10-50f2645c91c6@gmail.com>
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Date:   Fri, 21 Jun 2019 11:57:01 +0800
-Message-ID: <CANdKZ0cr=SMtQOTVduKZBOtw5E6ZOpShf3q2McDX=rFWbfB03A@mail.gmail.com>
-Subject: Re: [PATCH v7 16/21] memory: mtk-smi: Add bus_sel for mt8183
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        Will Deacon <will.deacon@arm.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, srv_heupstream@mediatek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        iommu@lists.linux-foundation.org,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <yingjoe.chen@mediatek.com>,
-        =?UTF-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= 
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        anan.sun@mediatek.com, Matthias Kaehlcke <mka@chromium.org>,
-        Sascha Hauer <kernel@pengutronix.de>
+References: <20190620142801.11827-1-jeffrey.l.hugo@gmail.com> <20190620143318.11880-1-jeffrey.l.hugo@gmail.com>
+In-Reply-To: <20190620143318.11880-1-jeffrey.l.hugo@gmail.com>
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Date:   Thu, 20 Jun 2019 21:34:10 -0700
+Message-ID: <CAKdAkRRstvEWXtwnLCMKoW6PcCz0W3+M9iYqVFshJpw6y_=9bA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/5] Input: elan_i2c: Export the device id whitelist
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Jiri Kosina <jikos@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        agross@kernel.org, Lee Jones <lee.jones@linaro.org>,
+        xnox@ubuntu.com, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 20, 2019 at 7:38 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
-> CCing Sascha
->
-> On 20/06/2019 11:35, Matthias Brugger wrote:
-> >
-> >
-> > On 13/06/2019 10:14, Pi-Hsun Shih wrote:
-> >> Hi,
-> >> When I tested this patch series (Based on linux 5.2.0-rc2, and with
-> >> various other patch series about MT8183) with lockdep enabled, and I'm
-> >> seeing the following lockdep warning on boot.
-> >>
-> >> By bisecting the commits, the first commit that introduce this warning
-> >> is this patch. The warning also doesn't appear if
-> >> https://lore.kernel.org/patchwork/patch/1086582/ and
-> >> https://lore.kernel.org/patchwork/patch/1086583/ are not applied.
-> >>
-> >> Do anyone have idea on why this is happening, or any suggestion on
-> >> which part I should be digging into to figure this out? Thanks.
-> >>
-> >> [    4.664194] ======================================================
-> >> [    4.670368] WARNING: possible circular locking dependency detected
-> >> [    4.676545] 5.2.0-rc2-next-20190528-44527-g6c94b6475c04 #20 Tainted: G S
-> >> [    4.684539] ------------------------------------------------------
-> >> [    4.690714] kworker/4:1/51 is trying to acquire lock:
-> >> [    4.695760] (____ptrval____) (regulator_list_mutex){+.+.},
-> >> at:regulator_lock_dependent+0xdc/0x6c4
-> >> [    4.704732]
-> >> [    4.704732] but task is already holding lock:
-> >> [    4.710556] (____ptrval____) (&genpd->mlock/1){+.+.},
-> >> at:genpd_lock_nested_mtx+0x24/0x30
-> >> [    4.718740]
-> >> [    4.718740] which lock already depends on the new lock.
-> >> [    4.718740]
-> >> [    4.726908]
-> >> [    4.726908] the existing dependency chain (in reverse order) is:
-> >> [    4.734382]
-> >> [    4.734382] -> #4 (&genpd->mlock/1){+.+.}:
-> >> [    4.739963]        __mutex_lock_common+0x1a0/0x1fe8
-> >> [    4.744836]        mutex_lock_nested+0x40/0x50
-> >> [    4.749275]        genpd_lock_nested_mtx+0x24/0x30
-> >> [    4.754063]        genpd_add_subdomain+0x150/0x524
-> >> [    4.758850]        pm_genpd_add_subdomain+0x3c/0x5c
-> >> [    4.763723]        scpsys_probe+0x520/0xe78
-> >> [    4.767902]        platform_drv_probe+0xf4/0x134
-> >> [    4.772517]        really_probe+0x214/0x4dc
-> >> [    4.776696]        driver_probe_device+0xcc/0x1d4
-> >> [    4.781396]        __device_attach_driver+0x10c/0x180
-> >> [    4.786442]        bus_for_each_drv+0x124/0x184
-> >> [    4.790968]        __device_attach+0x1c0/0x2d8
-> >> [    4.795407]        device_initial_probe+0x20/0x2c
-> >> [    4.800106]        bus_probe_device+0x80/0x16c
-> >> [    4.804546]        deferred_probe_work_func+0x120/0x168
-> >> [    4.809767]        process_one_work+0x858/0x1208
-> >> [    4.814379]        worker_thread+0x9ec/0xcb8
-> >> [    4.818644]        kthread+0x2b8/0x2d0
-> >> [    4.822391]        ret_from_fork+0x10/0x18
-> >> [    4.826480]
-> >> [    4.826480] -> #3 (&genpd->mlock){+.+.}:
-> >> [    4.831880]        __mutex_lock_common+0x1a0/0x1fe8
-> >> [    4.836752]        mutex_lock_nested+0x40/0x50
-> >> [    4.841190]        genpd_lock_mtx+0x20/0x2c
-> >> [    4.845369]        genpd_runtime_resume+0x140/0x434
-> >> [    4.850241]        __rpm_callback+0xb0/0x1e4
-> >> [    4.854506]        rpm_callback+0x54/0x1a8
-> >> [    4.858597]        rpm_resume+0xc6c/0x10c4
-> >> [    4.862689]        __pm_runtime_resume+0xb4/0x124
-> >> [    4.867387]        device_link_add+0x598/0x8d0
-> >
-> > For this looks as if you have also patch
-> > [PATCH v2 04/12] memory: mtk-smi: Add device-link between smi-larb and smi-common
-> > from series
-> > [PATCH v2 00/12] Clean up "mediatek,larb" after adding device_link
-> > applied.
-> >
->
-> My guess is, that we run into this, because we call genpd_runtime_resume before
-> we have finished the subdomain registration in scpsys_probe.
-> That implies that you also have the scpsys series for mt8183 added to your tree.
->
-> Anyway it looks to me as if we have to add the subdomains before we call
-> of_genpd_add_provider_onecell().
->
-> Regards,
-> Matthias
+Hi Jeffrey,
 
-Yes I do have scpsys series for mt8183 added in my tree. (I have about
-125 patches from list on top of 531b0a360899 "Add linux-next specific
-files for 20190528" to make the board boot)
-However the exact same warning still exists after I changed the order
-of of_genpd_add_provider_onecell and pm_genpd_add_subdomain, patch as
-follow:
-(Patch is based on commit f4788d37bc84 "Add linux-next specific files
-for 20190614")
+On Thu, Jun 20, 2019 at 7:33 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
+>  #ifdef CONFIG_OF
+> -static const struct of_device_id elan_of_match[] = {
+> -       { .compatible = "elan,ekth3000" },
+> -       { /* sentinel */ }
+> -};
 
-diff --git a/drivers/soc/mediatek/mtk-scpsys.c
-b/drivers/soc/mediatek/mtk-scpsys.c
-index 503222d0d0da..0cd9bdd4004e 100644
---- a/drivers/soc/mediatek/mtk-scpsys.c
-+++ b/drivers/soc/mediatek/mtk-scpsys.c
-@@ -440,8 +440,7 @@ static struct scp *init_scp(struct platform_device *pdev,
- static void mtk_register_power_domains(struct platform_device *pdev,
-  struct scp *scp, int num)
- {
-- struct genpd_onecell_data *pd_data;
-- int i, ret;
-+ int i;
+I think OF IDs should stay in this file since we agreed HID will not
+be checking them.
 
-  for (i = 0; i < num; i++) {
-  struct scp_domain *scpd = &scp->domains[i];
-@@ -457,18 +456,6 @@ static void mtk_register_power_domains(struct
-platform_device *pdev,
-
-  pm_genpd_init(genpd, NULL, false);
-  }
--
-- /*
-- * We are not allowed to fail here since there is no way to unregister
-- * a power domain. Once registered above we have to keep the domains
-- * valid.
-- */
--
-- pd_data = &scp->pd_data;
--
-- ret = of_genpd_add_provider_onecell(pdev->dev.of_node, pd_data);
-- if (ret)
-- dev_err(&pdev->dev, "Failed to add OF provider: %d\n", ret);
- }
-
- /*
-@@ -1053,6 +1040,16 @@ static int scpsys_probe(struct platform_device *pdev)
-  ret);
-  }
-
-+ /*
-+ * We are not allowed to fail here since there is no way to unregister
-+ * a power domain. Once registered above we have to keep the domains
-+ * valid.
-+ */
-+
-+ ret = of_genpd_add_provider_onecell(pdev->dev.of_node, pd_data);
-+ if (ret)
-+ dev_err(&pdev->dev, "Failed to add OF provider: %d\n", ret);
-+
-  return 0;
- }
-
+>  MODULE_DEVICE_TABLE(of, elan_of_match);
+>  #endif
 >
->
-> > Regards,
-> > Matthias
-> >
+> diff --git a/include/linux/input/elan-i2c-ids.h b/include/linux/input/elan-i2c-ids.h
+> new file mode 100644
+> index 000000000000..8130bbebbdda
+> --- /dev/null
+> +++ b/include/linux/input/elan-i2c-ids.h
+> @@ -0,0 +1,68 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Elan I2C Touchpad devide whitelist
+
+s/devide/device/
+
+> + *
+> + * Copyright (C) 2019 Jeffrey Hugo.  All rights reserved.
+
+This just moves the code around. If anything I'd say it should keep
+the original Elan copyright.
+
+Thanks.
+
+-- 
+Dmitry
