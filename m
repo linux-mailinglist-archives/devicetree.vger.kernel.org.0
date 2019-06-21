@@ -2,171 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 668554E063
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F23E4E078
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 08:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbfFUGNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 02:13:01 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:44412 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbfFUGNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:13:00 -0400
-Received: by mail-pl1-f195.google.com with SMTP id t7so2453869plr.11
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2019 23:13:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=ImM7LoJ0g/LV9Msk8fC9rkqyN6ipnuYryn1oHdAjw90=;
-        b=IsSBjGrF+DN7QHmXac43Ny79aaDEhysk2zRkeDW43Wox0gAQlxq2jhbf6FPNlZ0Ivg
-         W5dXPLPd/Gl+e6zZvdKMuSxCqWPSObH8X+6Ftomh0xUVUeY9bJW8JlShqfj7hcs/Efjb
-         WCJhUx6hG8j/IV54/quUx/94bk1d6jXYUvkajSza2zunVxXSy+NIClWkeztrxvb4bGIA
-         M0VGYyvy930CJIehNbG1vyrmufkJ6KudfaIw/VvW8p0aT4auVM1Gfc1eLZmKefZGqdyb
-         fWgl0VC4cT8ipH3uf17ndRAQsBWPklzGRQaHexZTkF7/F/oKNyfwQgR8BLi5BzlZwF2r
-         ADDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=ImM7LoJ0g/LV9Msk8fC9rkqyN6ipnuYryn1oHdAjw90=;
-        b=bEieTflk1NZIKXp8NhVMwXH1O8wxZl0rnayBYdRibBFSAXiErt+rpHoUAOSnXObF2b
-         39+5ykKiHnAhW8+82TsHqqN2Dhd0SBqngDnghvhAsugYMUakKmiKBCfRbDEh1/o+YKQC
-         qOzSHCwEIwdsExXJ+ktVdgXWziS7gIfTrOZ63pZYbbgvy9SWijWnQgqrv6t0qvakx5QT
-         iVwyyU/BPDaG4+p6lLdZSwcc/CQDEPVlYoVBlTywPL7lEzWKoH/IyYGFw8BEIH5STLfX
-         JNa8p/5jAf82rJiHBbE2uU8mc+Jo0ESYJVKfMTB0vf/29ZAxi5+e1WskHDSXzTCxIVyI
-         IEPA==
-X-Gm-Message-State: APjAAAWN+dBcK/zzGMLfm15t3xRDUyjYhiioTWkp8lmRVMbjL1FAW5oG
-        WNpW/GJouGkdtOTcLYYTVwQvjA==
-X-Google-Smtp-Source: APXvYqz898MP1cNZToQJ6foRRP/YHqudKpgx1HQy2pqhLZm61bx9cEa7MCexGOqYuMmbmiHTN0ANag==
-X-Received: by 2002:a17:902:b603:: with SMTP id b3mr69912736pls.72.1561097579911;
-        Thu, 20 Jun 2019 23:12:59 -0700 (PDT)
-Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id x7sm1266134pfm.82.2019.06.20.23.12.57
-        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 20 Jun 2019 23:12:59 -0700 (PDT)
-From:   Baolin Wang <baolin.wang@linaro.org>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 3/3] mmc: sdhci-sprd: Add pin control support for voltage switch
-Date:   Fri, 21 Jun 2019 14:12:33 +0800
-Message-Id: <db6d2b2d6170fd2409916c5c41b857f4bc587a15.1561094029.git.baolin.wang@linaro.org>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1561094029.git.baolin.wang@linaro.org>
-References: <cover.1561094029.git.baolin.wang@linaro.org>
-In-Reply-To: <cover.1561094029.git.baolin.wang@linaro.org>
-References: <cover.1561094029.git.baolin.wang@linaro.org>
+        id S1726054AbfFUGQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 02:16:52 -0400
+Received: from conssluserg-05.nifty.com ([210.131.2.90]:64994 "EHLO
+        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726027AbfFUGQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 02:16:52 -0400
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48]) (authenticated)
+        by conssluserg-05.nifty.com with ESMTP id x5L6GlEk022160;
+        Fri, 21 Jun 2019 15:16:48 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com x5L6GlEk022160
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1561097808;
+        bh=a1r/AXdPUfjndw8LmQLErWaw7Q5y8shtAXjWlzQTg3c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=S6BOnd4yTHvHwyp562WmDpcw6/IC4++QneQdjjlMP/28zko30KZpGq1c/wQ4rjKzF
+         DlMfkNnXteCuOK32TW7OTIqjD3t6384lscW3hhn1OHd440kpT7AQKUpwyEePs5iqpi
+         hEIljDYCq426yhPZL7C4SgkiYvOY4+U2dJ7a1GG0WoIHA32Oc5fkxq9VWAJKWfBRx/
+         6cKX9drWwZZlTmKFgYI4i6ts2f/EAVWZCDBBs0tQibZjA56A1o9T5fl8BOfI4ggZ0J
+         wg4hTo2PabQOYNkvH+Zxh6OX/lCBZCpin9gqsQnRAeM2psWO9J73taAFdEVF6u3xb4
+         KVhpuUjtLw5oQ==
+X-Nifty-SrcIP: [209.85.217.48]
+Received: by mail-vs1-f48.google.com with SMTP id k9so3129763vso.5;
+        Thu, 20 Jun 2019 23:16:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAVRNTHUosTbPQs3caKa1ctEz1bKKi/zUAbE1w+fOouiLUBS15gO
+        BPA5br6mp+2cmr0vO4zMJuAV6y9UleH9s0qDyrQ=
+X-Google-Smtp-Source: APXvYqwHdZIoIyJd+Mcw4P98HkdWmF2Q+PRm9NDtqftuDYgMf/FC7vKJHlCsVLajZw6+wNIrhdv2yhD9KlimPQ5/H0A=
+X-Received: by 2002:a67:8e0a:: with SMTP id q10mr3990201vsd.215.1561097807250;
+ Thu, 20 Jun 2019 23:16:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190621060511.29609-1-yamada.masahiro@socionext.com>
+In-Reply-To: <20190621060511.29609-1-yamada.masahiro@socionext.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Fri, 21 Jun 2019 15:16:11 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASGVbkGgu7psy4DfCxmr-AxSQ3fmGJ=aDAiuSkJ5hrDwA@mail.gmail.com>
+Message-ID: <CAK7LNASGVbkGgu7psy4DfCxmr-AxSQ3fmGJ=aDAiuSkJ5hrDwA@mail.gmail.com>
+Subject: Re: [PATCH] mmc: remove another TMIO MMC variant usdhi6rol0.c
+To:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rabin Vincent <rabin.vincent@axis.com>,
+        Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For Spreadtrum SD card voltage switching, besides regulator setting,
-it also need switch related pin's state to output corresponding voltage.
+(Added Lars Persson, Guennadi Liakhovetski)
 
-This patch adds pin control operation to support voltage switch.
+On Fri, Jun 21, 2019 at 3:06 PM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
 
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
----
- drivers/mmc/host/sdhci-sprd.c |   54 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+This needs Ack from Renesas.
+But, I do not know if TMIO folks are sure about this driver, though.
+(If they had been sure about it, they should not have duplicated the driver
+in the first place.)
 
-diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-index 8b23c88..6ee340a 100644
---- a/drivers/mmc/host/sdhci-sprd.c
-+++ b/drivers/mmc/host/sdhci-sprd.c
-@@ -12,6 +12,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/of_gpio.h>
-+#include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/regulator/consumer.h>
-@@ -72,6 +73,9 @@ struct sdhci_sprd_host {
- 	struct clk *clk_sdio;
- 	struct clk *clk_enable;
- 	struct clk *clk_2x_enable;
-+	struct pinctrl *pinctrl;
-+	struct pinctrl_state *pins_uhs;
-+	struct pinctrl_state *pins_default;
- 	u32 base_rate;
- 	int flags; /* backup of host attribute */
- 	u32 phy_delay[MMC_TIMING_MMC_HS400 + 2];
-@@ -405,6 +409,8 @@ static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 
- static int sdhci_sprd_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
- {
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_sprd_host *sprd_host = TO_SPRD_HOST(host);
- 	int ret;
- 
- 	if (!IS_ERR(mmc->supply.vqmmc)) {
-@@ -416,6 +422,37 @@ static int sdhci_sprd_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
- 		}
- 	}
- 
-+	if (IS_ERR(sprd_host->pinctrl))
-+		return 0;
-+
-+	switch (ios->signal_voltage) {
-+	case MMC_SIGNAL_VOLTAGE_180:
-+		ret = pinctrl_select_state(sprd_host->pinctrl,
-+					   sprd_host->pins_uhs);
-+		if (ret) {
-+			pr_err("%s: failed to select uhs pin state\n",
-+			       mmc_hostname(mmc));
-+			return ret;
-+		}
-+		break;
-+
-+	default:
-+		/* fall-through */
-+	case MMC_SIGNAL_VOLTAGE_330:
-+		ret = pinctrl_select_state(sprd_host->pinctrl,
-+					   sprd_host->pins_default);
-+		if (ret) {
-+			pr_err("%s: failed to select default pin state\n",
-+			       mmc_hostname(mmc));
-+			return ret;
-+		}
-+		break;
-+	}
-+
-+	/* Wait for 300 ~ 500 us for pin state stable */
-+	usleep_range(300, 500);
-+	sdhci_reset(host, SDHCI_RESET_CMD | SDHCI_RESET_DATA);
-+
- 	return 0;
- }
- 
-@@ -504,6 +541,23 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
- 	sprd_host = TO_SPRD_HOST(host);
- 	sdhci_sprd_phy_param_parse(sprd_host, pdev->dev.of_node);
- 
-+	sprd_host->pinctrl = devm_pinctrl_get(&pdev->dev);
-+	if (!IS_ERR(sprd_host->pinctrl)) {
-+		sprd_host->pins_uhs =
-+			pinctrl_lookup_state(sprd_host->pinctrl, "state_uhs");
-+		if (IS_ERR(sprd_host->pins_uhs)) {
-+			ret = PTR_ERR(sprd_host->pins_uhs);
-+			goto pltfm_free;
-+		}
-+
-+		sprd_host->pins_default =
-+			pinctrl_lookup_state(sprd_host->pinctrl, "default");
-+		if (IS_ERR(sprd_host->pins_default)) {
-+			ret = PTR_ERR(sprd_host->pins_default);
-+			goto pltfm_free;
-+		}
-+	}
-+
- 	clk = devm_clk_get(&pdev->dev, "sdio");
- 	if (IS_ERR(clk)) {
- 		ret = PTR_ERR(clk);
 -- 
-1.7.9.5
-
+Best Regards
+Masahiro Yamada
