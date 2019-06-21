@@ -2,128 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F54A4E9C2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 15:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BCE4E9C8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 15:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726049AbfFUNqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 09:46:09 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:42223 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbfFUNqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 09:46:09 -0400
-Received: by mail-wr1-f65.google.com with SMTP id x17so6630877wrl.9
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 06:46:07 -0700 (PDT)
+        id S1726127AbfFUNrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 09:47:09 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:38289 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726010AbfFUNrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 09:47:09 -0400
+Received: by mail-vs1-f65.google.com with SMTP id k9so3863853vso.5;
+        Fri, 21 Jun 2019 06:47:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Fsl6G8YTqffB4W+GrIdfXouKWDu5oZYLhjb4Pl5CbAc=;
-        b=maUqdBdFPl+T4iwpSMixGvxDvl62/w+KU299aTJVywzS6RF+/FyD5ACJTozKISJVYq
-         1+tdS+0sxEspNhEflbXcbBJ3+yoFsFxu94hv5EkqhGfVfOmqURvqs5vXE+iysGv2b1hA
-         TwThPtQplB9jihopLAL5D4RbNaj+hnzEGg4k+M1zC4k+7RxxF5YjtQLS0pvB8J3YGZBC
-         k4WhZ8fhm3mPcj96W/v1iXmdbJDc7K5QMjasLj7SE0PHCawZlDn0e3vAXe7xMmgpauSn
-         qwkeEKiMf8uiOZwdPQeGXBoOR7mz/AEd4niWPzKothP67RjI5hr8krPYi15okJCFq6hZ
-         ve/A==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AxgTleW+Rc+so/a6uCWVbqNZdSgwRgTWPFlaLkprW1g=;
+        b=l9d43X/RzidUfTeFaUJVIgSg7rFhPujB8t6MPaJkL+BXbiEMR8YjN7VdShjpz6bkvw
+         QUSOIfF+PUjcjx4bw+2nkVwanDIqb0OycwGWrAip5v9UQV3gFRNtAYIvjDs/Ub2qV5SD
+         X/oHMpMr7cF4fauaLi7WntWrzFLtvN/VpRL4LNO7nuRbPgjPirrwB7pBxdeMN1G8P27O
+         k0nfM/V6ILUo5GEBbm7OTcR3IHUKN6zk2NI0OZ6sTHIQqMHqmAIlgY/ZhiUdbfbDEu4I
+         FRtuF900pC+GrYLZ/jW6fXtW+onZWQQsERIV5e9829hqeYismMHoceM/BgR4P9bza5w/
+         D9Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Fsl6G8YTqffB4W+GrIdfXouKWDu5oZYLhjb4Pl5CbAc=;
-        b=BMJyIBG50vzcc3HfGc87t83iPHUdzqhQT31NHGRdiy8tY/swfw/XDrVDd+9B3Uglk+
-         TpxCZNx8/i3p3NShzssYCQZZtFrPFLI5brGjcg6sBKeKwQdwl/c1c5aHt1oK3GqKIoCY
-         daBKgvHlNoxNDiMVbbSI/iijs0/8TKXzGE0NxqE5e7lQohr3mH4zZB5EOTHNYKWiHVLx
-         1NYRHhdgn95Eq1CmAFBEN+sb6XdaqM0Nmkd1vmKi/pKtyzolD8iHlyaDWU4frxSgUzhL
-         HNzUXVITSVoOh/WhJW00u7C1tDV7ZKeZt2AsFPcYytqYu615nach2Egzo7DgENFZzRSy
-         NWDQ==
-X-Gm-Message-State: APjAAAXvoH0EXPxa7Ws+9uhQCfhg/NcstccVNBlbyix79nyTkRlZmB2j
-        hN9r0iA/F1VedlGKeqGXFt22QQ==
-X-Google-Smtp-Source: APXvYqzuxd700m2oO/6gDaV4ikgi9SOYwRR+juNE8PLe86NWJtDUoBfzcLJE+P87+e1rwJ4AtW3/Sg==
-X-Received: by 2002:adf:f186:: with SMTP id h6mr6525375wro.274.1561124766992;
-        Fri, 21 Jun 2019 06:46:06 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.googlemail.com with ESMTPSA id n14sm5486804wra.75.2019.06.21.06.46.05
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Fri, 21 Jun 2019 06:46:06 -0700 (PDT)
-Subject: Re: Re: [PATCH 2/3] backlight/arcxcnn fix vendor prefix
-To:     Brian Dodge <bdodge09@gmail.com>, Pavel Machek <pavel@ucw.cz>
-Cc:     lee.jones@linaro.org, jingoohan1@gmail.com,
-        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Peter Bacon <pbacon@psemi.com>
-References: <1541592640-18478-1-git-send-email-bdodge09@gmail.com>
- <1541592640-18478-3-git-send-email-bdodge09@gmail.com>
- <20181111113053.GF27666@amd> <e372391c-1fd5-41ec-b766-7669fffb928d@gmail.com>
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-Message-ID: <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
-Date:   Fri, 21 Jun 2019 14:46:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AxgTleW+Rc+so/a6uCWVbqNZdSgwRgTWPFlaLkprW1g=;
+        b=l3VZVcdav0k378bkweyZ/mjW5l8BRNVqC2jMB5yonfkoXqyqry/8whDlCJDcEbMI/s
+         t+IipYAaEGhCCk+bCEXv4EY0fG5oLI3gr6zT+VZZ6XqA8iLJd+goinnEA2UVkdZTaGwj
+         gVp7zzYd+UsmYEvf7wFhN1uQnGUiuRNT/NnExq7f4op7hxxfeyESyIzNlmWLiDdrbR2u
+         zFcfMoqJj8Y1497Ic0ci16hlVpc6HkVIC0LZ3I1zV660LIY6Lg9kQn3/03ZAlWKGTWfF
+         OjM52QzabBY/a7RbixW2pDXJeC9xy1ELxCxCyBuj3Z1H9q9dnX//TGlbzQIHiSBcAJLp
+         gyng==
+X-Gm-Message-State: APjAAAUcajHvfDP3s0obGpEtej0qeKSYx78qvPdXTHGVEUywUHXw4yhU
+        IyvrdgP9V7Y3YGtIU//NJQY6mHuy+YcNRcIIKcA=
+X-Google-Smtp-Source: APXvYqxZKAR0aVKbWTZb3KOX1ndR0McqkNuRlDo55A7wZdbzbHAPJempFQ7bqocfjDVzd2Hs92Tnq4oamZ0f1sblmJc=
+X-Received: by 2002:a67:3310:: with SMTP id z16mr57117243vsz.75.1561124827723;
+ Fri, 21 Jun 2019 06:47:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <e372391c-1fd5-41ec-b766-7669fffb928d@gmail.com>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1561064991-16874-1-git-send-email-alcooperx@gmail.com>
+ <1561064991-16874-7-git-send-email-alcooperx@gmail.com> <facac509-1e64-e35b-ee25-5ba265a514c4@cogentembedded.com>
+In-Reply-To: <facac509-1e64-e35b-ee25-5ba265a514c4@cogentembedded.com>
+From:   Alan Cooper <alcooperx@gmail.com>
+Date:   Fri, 21 Jun 2019 09:47:53 -0400
+Message-ID: <CAOGqxeWric9HkUGCJ9fKPh73Y6Do=wJnOjhubucqN6Qd006ExQ@mail.gmail.com>
+Subject: Re: [PATCH 6/6] usb: bdc: Update compatible match strings
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Cc:     ": Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Sorry to those receiving this twice... had to dig this out from the 
-archives and sent it to the lists from the wrong mailer]
+> > Remove "brcm,bdc-v0.16" because it was never used on any system.
+>
+>     You're not really removing it, are you?
 
-On 27/11/2018 00:44, Brian Dodge wrote:
-> Thank you Pavel, that is a good point.
-> 
-> The chip vendor has indicated that there is no reason to maintain the 
-> old/improper prefix and wishes to go forward (only) with the "arctic" 
-> prefix and any existing dts files are or will be updated.
+Whoops, it was supposed to be removed.
+Thanks
+Al
 
-Looks like this patch series has fallen into the cracks a little.
-
-I think I assumed this info would end in the description of patch v2 1/3 
-(in order to answer Rob's feedback) and I sat and waited for a respin. 
-On the other hand... I didn't actually say that explicitly anywhere! 
-So... I'd recommend a respin perhaps with a small bit of text explaining 
-how the vendor can state that any existing dts files will be updated. 
-This is a peripheral device so these strings are probably embedded into 
-OEM devicetrees rather than exclusively under the control of the vendor.
-
-
-Daniel.
-
-
-> 
-> On 11/11/18 6:30 AM, Pavel Machek wrote:
->> Hi!
->>
->>> The vendor-prefixes.txt file properly refers to ArcticSand
->>> as arctic but the driver improperly abbreviated the prefix
->>> to arc. This was a mistake in the original patch
->>>
->>> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
->>> ---
->>>   drivers/video/backlight/arcxcnn_bl.c | 22 +++++++++++-----------
->>>   1 file changed, 11 insertions(+), 11 deletions(-)
->>>
->>>    *
->>> - * Copyright 2016 ArcticSand, Inc.
->>> - * Author : Brian Dodge <bdodge@arcticsand.com>
->>> + * Copyright 2018 pSemi, Inc.
->>> + * Author : Brian Dodge <bdodge@psemi.com>
->> Ummm. Copyright 2016-2018?
->>
->>> @@ -202,27 +202,27 @@ static void arcxcnn_parse_dt(struct arcxcnn *lp)
->>>       if (ret == 0)
->>>           lp->pdata->initial_brightness = prog_val;
->>>
->>> -    ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
->>> +    ret = of_property_read_u32(node, "arctic,led-config-0", &prog_val);
->>>       if (ret == 0)
->>>           lp->pdata->led_config_0 = (u8)prog_val;
->>>
->> If there's a dts using this, you want to update it at the same
->> time. You may want to support both names going forward.
->>                                     Pavel
-
+On Fri, Jun 21, 2019 at 4:28 AM Sergei Shtylyov
+<sergei.shtylyov@cogentembedded.com> wrote:
+>
+> Hello!
+>
+> On 21.06.2019 0:09, Al Cooper wrote:
+>
+> > Remove "brcm,bdc-v0.16" because it was never used on any system.
+>
+>     You're not really removing it, are you?
+>
+> > Add "brcm,bdc-udc-v3.1" which exists for any STB system with BDC.
+> >
+> > Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> > ---
+> >   drivers/usb/gadget/udc/bdc/bdc_core.c | 1 +
+> >   1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/usb/gadget/udc/bdc/bdc_core.c b/drivers/usb/gadget/udc/bdc/bdc_core.c
+> > index 15e28790142d..e2b2628925e6 100644
+> > --- a/drivers/usb/gadget/udc/bdc/bdc_core.c
+> > +++ b/drivers/usb/gadget/udc/bdc/bdc_core.c
+> > @@ -644,6 +644,7 @@ static SIMPLE_DEV_PM_OPS(bdc_pm_ops, bdc_suspend,
+> >               bdc_resume);
+> >
+> >   static const struct of_device_id bdc_of_match[] = {
+> > +     { .compatible = "brcm,bdc-udc-v3.1" },
+> >       { .compatible = "brcm,bdc-v0.16" },
+> >       { .compatible = "brcm,bdc" },
+> >       { /* sentinel */ }
+>
+> MBR, Sergei
