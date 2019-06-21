@@ -2,161 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3117D4ED05
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 18:20:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 244C44ED66
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 18:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726054AbfFUQT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 12:19:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52506 "EHLO mail.kernel.org"
+        id S1726052AbfFUQtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 12:49:52 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:47820 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726031AbfFUQT6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jun 2019 12:19:58 -0400
-Received: from localhost.localdomain (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 483972089E;
-        Fri, 21 Jun 2019 16:19:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561133996;
-        bh=vZTIPel1k0Goob2NV5rhCNi/4PicEMn+Wbjb1yT/6XM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YUd1vKgbdSdGZc7N9T/+k9JhJB1idwqKfzo1/pjXfG3eYUDMIqiPnmQNisboqicJt
-         liqC5Y/9BlpTOPtrFYfPup8MjPvNqzAtZpDJ3Akx1CVW6kMICiWWEG1u7ZK1GBnOWy
-         Aq895LBsf0idoDc6SEPnCnEwUZVqmb5lVXhQyDVY=
-From:   Masami Hiramatsu <mhiramat@kernel.org>
-To:     Steven Rostedt <rostedt@goodmis.org>,
+        id S1726017AbfFUQtv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jun 2019 12:49:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=P71o6R9PwKrxfUlkCzThaAEbYlO5haANQ4Qx+hoNZ6s=; b=vkm8kqtoslv3JIikaTIBorlbNH
+        s88aHYfIZiSu8Iii2S8nQ6MYb1TCC1gZzo2J9oJ+pcto5nZNRyAlbFNKPNqXuNMX4uS+ZLqNRJNUx
+        Pw48ymqe6jF+YDuGxPHtBN6EDChwUDieXpmGsG1Epj6zOsfoE4hAABWRKgxb5GFI8WgI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1heMjM-0007Ft-HQ; Fri, 21 Jun 2019 18:49:40 +0200
+Date:   Fri, 21 Jun 2019 18:49:40 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        netdev@vger.kernel.org, alexandru.marginean@nxp.com,
+        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        Allan Nielsen <Allan.Nielsen@microsemi.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Tom Zanussi <tom.zanussi@linux.intel.com>
-Cc:     Ingo Molnar <mingo@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
-        Jiri Olsa <jolsa@redhat.com>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH 11/11] tracing: of: Add synthetic event support
-Date:   Sat, 22 Jun 2019 01:19:51 +0900
-Message-Id: <156113399174.28344.17111722475993258131.stgit@devnote2>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <156113387975.28344.16009584175308192243.stgit@devnote2>
-References: <156113387975.28344.16009584175308192243.stgit@devnote2>
-User-Agent: StGit/0.17.1-dirty
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next 4/6] arm64: dts: fsl: ls1028a: Add Felix switch
+ port DT node
+Message-ID: <20190621164940.GL31306@lunn.ch>
+References: <1561131532-14860-1-git-send-email-claudiu.manoil@nxp.com>
+ <1561131532-14860-5-git-send-email-claudiu.manoil@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1561131532-14860-5-git-send-email-claudiu.manoil@nxp.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add synthetic event node support. The synthetic event node must be
-a child node of ftrace node, and the node must start with "synth@"
-prefix. The synth node requires fields string (not string array),
-which defines the fields as same as tracing/synth_events interface.
+On Fri, Jun 21, 2019 at 06:38:50PM +0300, Claudiu Manoil wrote:
+> The switch device features 6 ports, 4 with external links
+> and 2 internally facing to the ls1028a SoC and connected via
+> fixed links to 2 internal enetc ethernet controller ports.
 
-Signed-off-by: Masami Hiramatsu <mhiramat@kernel.org>
----
- kernel/trace/trace_events_hist.c |    5 ++++
- kernel/trace/trace_of.c          |   54 ++++++++++++++++++++++++++++++++++++--
- 2 files changed, 56 insertions(+), 3 deletions(-)
+Hi Claudiu
 
-diff --git a/kernel/trace/trace_events_hist.c b/kernel/trace/trace_events_hist.c
-index db973928e580..e7f5d0a353e2 100644
---- a/kernel/trace/trace_events_hist.c
-+++ b/kernel/trace/trace_events_hist.c
-@@ -1343,6 +1343,11 @@ static int create_or_delete_synth_event(int argc, char **argv)
- 	return ret == -ECANCELED ? -EINVAL : ret;
- }
- 
-+int synth_event_run_command(const char *command)
-+{
-+	return trace_run_command(command, create_or_delete_synth_event);
-+}
-+
- static int synth_event_create(int argc, const char **argv)
- {
- 	const char *name = argv[0];
-diff --git a/kernel/trace/trace_of.c b/kernel/trace/trace_of.c
-index 43d87e5065a3..1b2a1306fc60 100644
---- a/kernel/trace/trace_of.c
-+++ b/kernel/trace/trace_of.c
-@@ -24,6 +24,7 @@ extern ssize_t tracing_resize_ring_buffer(struct trace_array *tr,
- 					  unsigned long size, int cpu_id);
- extern int trigger_process_regex(struct trace_event_file *file, char *buff);
- extern int trace_kprobe_run_command(const char *command);
-+extern int synth_event_run_command(const char *command);
- 
- static void __init
- trace_of_set_ftrace_options(struct trace_array *tr, struct device_node *node)
-@@ -133,6 +134,38 @@ trace_of_add_kprobe_event(struct device_node *node,
- 	return 0;
- }
- 
-+static int __init
-+trace_of_add_synth_event(struct device_node *node, const char *event)
-+{
-+	struct property *prop;
-+	char buf[MAX_BUF_LEN], *q;
-+	const char *p;
-+	int len, delta, ret;
-+
-+	len = ARRAY_SIZE(buf);
-+	delta = snprintf(buf, len, "%s", event);
-+	if (delta >= len) {
-+		pr_err("Event name is too long: %s\n", event);
-+		return -E2BIG;
-+	}
-+	len -= delta; q = buf + delta;
-+
-+	of_property_for_each_string(node, "fields", prop, p) {
-+		delta = snprintf(q, len, " %s;", p);
-+		if (delta >= len) {
-+			pr_err("fields string is too long: %s\n", p);
-+			return -E2BIG;
-+		}
-+		len -= delta; q += delta;
-+	}
-+
-+	ret = synth_event_run_command(buf);
-+	if (ret < 0)
-+		pr_err("Failed to add synthetic event: %s\n", buf);
-+
-+	return ret;
-+}
-+
- static void __init
- trace_of_init_one_event(struct trace_array *tr, struct device_node *node)
- {
-@@ -160,15 +193,30 @@ trace_of_init_one_event(struct trace_array *tr, struct device_node *node)
- 	event = buf;
- 
- 	group = strsep(&event, ":");
--	/* For a kprobe event, we have to generates an event at first */
-+
-+	/* Generates kprobe/synth event at first */
- 	if (of_find_property(node, "probes", NULL)) {
-+		if (of_find_property(node, "fields", NULL)) {
-+			pr_err("Error: %s node has both probes and fields\n",
-+				of_node_full_name(node));
-+			return;
-+		}
- 		if (!event) {
- 			event = buf;
- 			group = "kprobes";
- 		}
--		err = trace_of_add_kprobe_event(node, group, event);
--		if (err < 0)
-+		if (trace_of_add_kprobe_event(node, group, event) < 0)
-+			return;
-+	} else if (of_find_property(node, "fields", NULL)) {
-+		if (!event)
-+			event = buf;
-+		else if (strcmp(group, "synthetic") != 0) {
-+			pr_err("Synthetic event must be in synthetic group\n");
-+			return;
-+		}
-+		if (trace_of_add_synth_event(node, event) < 0)
- 			return;
-+		group = "synthetic";
- 	} else {
- 		if (!event) {
- 			pr_err("%s has no group name\n", buf);
+> +			switch@0,5 {
+> +				compatible = "mscc,felix-switch";
+> +				reg = <0x000500 0 0 0 0>;
+> +
+> +				ethernet-ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					/* external ports */
+> +					switch_port0: port@0 {
+> +						reg = <0>;
+> +					};
+> +					switch_port1: port@1 {
+> +						reg = <1>;
+> +					};
+> +					switch_port2: port@2 {
+> +						reg = <2>;
+> +					};
+> +					switch_port3: port@3 {
+> +						reg = <3>;
+> +					};
+> +					/* internal to-cpu ports */
+> +					port@4 {
+> +						reg = <4>;
+> +						fixed-link {
+> +							speed = <1000>;
+> +							full-duplex;
+> +						};
+> +					};
+> +					port@5 {
+> +						reg = <5>;
+> +						fixed-link {
+> +							speed = <1000>;
+> +							full-duplex;
+> +						};
+> +					};
+> +				};
+> +			};
+
+This sounds like a DSA setup, where you have SoC ports connected to
+the switch. With DSA, the CPU ports of the switch are special. We
+don't create netdev's for them, the binding explicitly list which SoC
+interface they are bound to, etc.
+
+What model are you using here? I'm just trying to understand the setup
+to ensure it is consistent with the swichdev model.
+
+   Thanks
+	Andrew
 
