@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B964ECFF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 18:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE014ED03
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2019 18:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726032AbfFUQTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 12:19:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52218 "EHLO mail.kernel.org"
+        id S1726518AbfFUQTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 12:19:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52372 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726052AbfFUQTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jun 2019 12:19:35 -0400
+        id S1726509AbfFUQTr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jun 2019 12:19:47 -0400
 Received: from localhost.localdomain (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 75F63208CA;
-        Fri, 21 Jun 2019 16:19:32 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5266F21537;
+        Fri, 21 Jun 2019 16:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561133974;
-        bh=/kwntWQW3LP0jIYi0ujmhqQBYlYdyIflNjwJ6hVtcyk=;
+        s=default; t=1561133986;
+        bh=ORMFjD6wvQgU8GJG9KyEN/0vByMQj7Txl0lQOL6VHH8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DeVZG3oHwcAJHg/sjbWMBLJuxrr2U8BBKSwHdXkkxtf531RZUR33wKuWqtOg0AmDZ
-         EgkIklMGEDcSGoS4PmsCKhkilU6HppGV9EpIurkBdhEv2JLsm9rFdd+NPJg/HdZWk8
-         srhKN2eMvErjIa3kjyKkG7oDbkrEHCC9YFY9Movo=
+        b=1qUowMlNFdqlG9xi/RUi5XqeU1RcVS3QWD9HL2jMV/QymdUoIaHZnNjRcJ/fSZw1q
+         OiTMj95vh99D6za79bG5n3YCgxTMOjvq7JfjLeUIZD/W1hcaxZ0qUhIVwu9PfDUmA8
+         486+k41d5qvsCTnEMRlU7M04IQyEhZZop0RjVkUM=
 From:   Masami Hiramatsu <mhiramat@kernel.org>
 To:     Steven Rostedt <rostedt@goodmis.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -32,9 +32,9 @@ Cc:     Ingo Molnar <mingo@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
         Jiri Olsa <jolsa@redhat.com>,
         Arnaldo Carvalho de Melo <acme@kernel.org>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH 09/11] tracing: of: Add trace event settings
-Date:   Sat, 22 Jun 2019 01:19:30 +0900
-Message-Id: <156113396992.28344.5633907708861645713.stgit@devnote2>
+Subject: [RFC PATCH 10/11] tracing: of: Add kprobe event support
+Date:   Sat, 22 Jun 2019 01:19:40 +0900
+Message-Id: <156113398039.28344.4353616217444927643.stgit@devnote2>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <156113387975.28344.16009584175308192243.stgit@devnote2>
 References: <156113387975.28344.16009584175308192243.stgit@devnote2>
@@ -47,131 +47,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add per-event settings, which includes filter and actions.
+Add kprobe event support in event node. User can add probe definitions
+by "probes" property as a string array.
 
 Signed-off-by: Masami Hiramatsu <mhiramat@kernel.org>
 ---
- kernel/trace/trace_events_trigger.c |    2 -
- kernel/trace/trace_of.c             |   81 +++++++++++++++++++++++++++++++++++
- 2 files changed, 82 insertions(+), 1 deletion(-)
+ kernel/trace/trace_kprobe.c |    5 +++
+ kernel/trace/trace_of.c     |   65 ++++++++++++++++++++++++++++++++++++-------
+ 2 files changed, 60 insertions(+), 10 deletions(-)
 
-diff --git a/kernel/trace/trace_events_trigger.c b/kernel/trace/trace_events_trigger.c
-index 2a2912cb4533..74a19c18219f 100644
---- a/kernel/trace/trace_events_trigger.c
-+++ b/kernel/trace/trace_events_trigger.c
-@@ -208,7 +208,7 @@ static int event_trigger_regex_open(struct inode *inode, struct file *file)
- 	return ret;
+diff --git a/kernel/trace/trace_kprobe.c b/kernel/trace/trace_kprobe.c
+index 5166a12a9d49..cc5ba13028cd 100644
+--- a/kernel/trace/trace_kprobe.c
++++ b/kernel/trace/trace_kprobe.c
+@@ -765,6 +765,11 @@ static int create_or_delete_trace_kprobe(int argc, char **argv)
+ 	return ret == -ECANCELED ? -EINVAL : ret;
  }
  
--static int trigger_process_regex(struct trace_event_file *file, char *buff)
-+int trigger_process_regex(struct trace_event_file *file, char *buff)
++int trace_kprobe_run_command(const char *command)
++{
++	return trace_run_command(command, create_or_delete_trace_kprobe);
++}
++
+ static int trace_kprobe_release(struct dyn_event *ev)
  {
- 	char *command, *next = buff;
- 	struct event_command *p;
+ 	struct trace_kprobe *tk = to_trace_kprobe(ev);
 diff --git a/kernel/trace/trace_of.c b/kernel/trace/trace_of.c
-index 5e34e2475d42..696f59234e62 100644
+index 696f59234e62..43d87e5065a3 100644
 --- a/kernel/trace/trace_of.c
 +++ b/kernel/trace/trace_of.c
-@@ -22,6 +22,7 @@ extern int ftrace_set_clr_event(struct trace_array *tr, char *buf, int set);
- extern void __init trace_init_tracepoint_printk(void);
+@@ -23,6 +23,7 @@ extern void __init trace_init_tracepoint_printk(void);
  extern ssize_t tracing_resize_ring_buffer(struct trace_array *tr,
  					  unsigned long size, int cpu_id);
-+extern int trigger_process_regex(struct trace_event_file *file, char *buff);
+ extern int trigger_process_regex(struct trace_event_file *file, char *buff);
++extern int trace_kprobe_run_command(const char *command);
  
  static void __init
  trace_of_set_ftrace_options(struct trace_array *tr, struct device_node *node)
-@@ -98,6 +99,85 @@ trace_of_enable_events(struct trace_array *tr, struct device_node *node)
+@@ -99,14 +100,47 @@ trace_of_enable_events(struct trace_array *tr, struct device_node *node)
  	}
  }
  
-+static void __init
-+trace_of_init_one_event(struct trace_array *tr, struct device_node *node)
++static int __init
++trace_of_add_kprobe_event(struct device_node *node,
++			  const char *group, const char *event)
 +{
-+	struct trace_event_file *file;
 +	struct property *prop;
 +	char buf[MAX_BUF_LEN];
-+	char *bufp;
 +	const char *p;
-+	int err;
++	char *q;
++	int len, ret;
 +
-+	if (!of_node_name_prefix(node, "event"))
-+		return;
-+
-+	err = of_property_read_string(node, "event", &p);
-+	if (err) {
-+		pr_err("Failed to find event on %s\n", of_node_full_name(node));
-+		return;
++	len = snprintf(buf, ARRAY_SIZE(buf) - 1, "p:%s/%s ", group, event);
++	if (len >= ARRAY_SIZE(buf)) {
++		pr_err("Event name is too long: %s\n", event);
++		return -E2BIG;
 +	}
++	q = buf + len;
++	len = ARRAY_SIZE(buf) - len;
 +
-+	err = strlcpy(buf, p, ARRAY_SIZE(buf));
-+	if (err >= ARRAY_SIZE(buf)) {
-+		pr_err("Event name is too long: %s\n", p);
-+		return;
-+	}
-+	bufp = buf;
-+
-+	p = strsep(&bufp, ":");
-+	if (!bufp) {
-+		pr_err("%s has no group name\n", buf);
-+		return;
-+	}
-+
-+	mutex_lock(&event_mutex);
-+	file = find_event_file(tr, buf, bufp);
-+	if (!file) {
-+		pr_err("Failed to find event: %s\n", buf);
-+		return;
-+	}
-+
-+	err = of_property_read_string(node, "filter", &p);
-+	if (!err) {
-+		if (strlcpy(buf, p, ARRAY_SIZE(buf)) >= ARRAY_SIZE(buf)) {
-+			pr_err("filter string is too long: %s\n", p);
-+			return;
++	of_property_for_each_string(node, "probes", prop, p) {
++		if (strlcpy(q, p, len) >= len) {
++			pr_err("Probe definition is too long: %s\n", p);
++			return -E2BIG;
 +		}
-+
-+		if (apply_event_filter(file, buf) < 0) {
-+			pr_err("Failed to apply filter: %s\n", buf);
-+			return;
++		ret = trace_kprobe_run_command(buf);
++		if (ret < 0) {
++			pr_err("Failed to add probe: %s\n", buf);
++			return ret;
 +		}
 +	}
 +
-+	of_property_for_each_string(node, "actions", prop, p) {
-+		if (strlcpy(buf, p, ARRAY_SIZE(buf)) >= ARRAY_SIZE(buf)) {
-+			pr_err("action string is too long: %s\n", p);
-+			continue;
-+		}
-+
-+		if (trigger_process_regex(file, buf) < 0)
-+			pr_err("Failed to apply an action: %s\n", buf);
-+	}
-+
-+	if (of_property_read_bool(node, "enable")) {
-+		if (trace_event_enable_disable(file, 1, 0) < 0)
-+			pr_err("Failed to enable event node: %s\n",
-+				of_node_full_name(node));
-+	}
-+	mutex_unlock(&event_mutex);
-+}
-+
-+static void __init
-+trace_of_init_events(struct trace_array *tr, struct device_node *node)
-+{
-+	struct device_node *enode;
-+
-+	for_each_child_of_node(node, enode)
-+		trace_of_init_one_event(tr, enode);
++	return 0;
 +}
 +
  static void __init
- trace_of_enable_tracer(struct trace_array *tr, struct device_node *trace_node)
+ trace_of_init_one_event(struct trace_array *tr, struct device_node *node)
  {
-@@ -126,6 +206,7 @@ static int __init trace_of_init(void)
- 		goto end;
+ 	struct trace_event_file *file;
+ 	struct property *prop;
+ 	char buf[MAX_BUF_LEN];
+-	char *bufp;
+-	const char *p;
++	const char *p, *group;
++	char *event;
+ 	int err;
  
- 	trace_of_set_ftrace_options(tr, trace_node);
-+	trace_of_init_events(tr, trace_node);
- 	trace_of_enable_events(tr, trace_node);
- 	trace_of_enable_tracer(tr, trace_node);
+ 	if (!of_node_name_prefix(node, "event"))
+@@ -123,18 +157,29 @@ trace_of_init_one_event(struct trace_array *tr, struct device_node *node)
+ 		pr_err("Event name is too long: %s\n", p);
+ 		return;
+ 	}
+-	bufp = buf;
+-
+-	p = strsep(&bufp, ":");
+-	if (!bufp) {
+-		pr_err("%s has no group name\n", buf);
+-		return;
++	event = buf;
++
++	group = strsep(&event, ":");
++	/* For a kprobe event, we have to generates an event at first */
++	if (of_find_property(node, "probes", NULL)) {
++		if (!event) {
++			event = buf;
++			group = "kprobes";
++		}
++		err = trace_of_add_kprobe_event(node, group, event);
++		if (err < 0)
++			return;
++	} else {
++		if (!event) {
++			pr_err("%s has no group name\n", buf);
++			return;
++		}
+ 	}
+ 
+ 	mutex_lock(&event_mutex);
+-	file = find_event_file(tr, buf, bufp);
++	file = find_event_file(tr, group, event);
+ 	if (!file) {
+-		pr_err("Failed to find event: %s\n", buf);
++		pr_err("Failed to find event: %s:%s\n", group, event);
+ 		return;
+ 	}
  
 
