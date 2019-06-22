@@ -2,190 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 795A94F2C1
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 02:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC564F2F4
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 03:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726289AbfFVAda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 20:33:30 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:41952 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726098AbfFVAda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 20:33:30 -0400
-Received: by mail-io1-f68.google.com with SMTP id w25so2121546ioc.8
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 17:33:29 -0700 (PDT)
+        id S1726210AbfFVBA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 21:00:27 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:45353 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726052AbfFVBA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 21:00:27 -0400
+Received: by mail-pg1-f193.google.com with SMTP id z19so1182666pgl.12
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 18:00:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=NHLr//yQH3FibWWGf0VOdOavz2CGejgKb89IUY1MXFo=;
-        b=Qrs+9teS7UTpNo2fGNSwnTnrhefMfzdW8D6HsbxK6k6IJ3rUcPChijTddejlho5w0k
-         lNhWWeMdKb7GSy5o9Wt/kZH6YUAlxG5bwjlHgjlqtwbYNjFgmSFrDySBkOH8VYiLFVog
-         BUPhcxeEr/MaJIiquLdplXElopUWHZT3bPTFr3cfFG7EfzGovHA9gRfEwdKuPQO5UqZu
-         MKDfFUcB5ltI9K145I5ktm68luneLChPyFgiorD4CMrNLC4j2MXFJEY6M7RjX9h3ctgo
-         48HG7QRrtcb37BD1k09Gw1yi3BKlSuxuaYLYXCYNDTE0B/XoRndnGTAMYA4ERncr/HxK
-         dazA==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pn4/IgcE/a3A9HRsf8YysVQmDOFkLMRirlv4eJOCAEY=;
+        b=r0d0D49hNJck2jmBOZ7hKq1EyIQm5VIsrCLXNfWA/zqw7JUB/PFT9/TEg3f9m8Exka
+         4OB4CLnAA+t7ZyRfMqNWActJqwB4eElCzw9OwOGul12RrF6Xah0/adQB3rDPYCiKwGSb
+         1cQfwLiJupuJHVE6kDeqU7eCLKZrrozRyUdaq1BAJ5w/IyIufGa6roBqLtZxSQ3wQLl8
+         cBD+npmSvsH7CB96WJOcXSzHxVdpszLog3BtkM+9yhp75ZfrhE2bcktgSWTAXvuCSrTY
+         kUvb5BfS0a52N4OmjgywAeDaICRhfTcMxYZ0cxZGqUP9umwcIynczzP5GVJDJnjw5aRm
+         2oGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=NHLr//yQH3FibWWGf0VOdOavz2CGejgKb89IUY1MXFo=;
-        b=BXMQVWMBSNcyqG/QfyKtjdjd9xTRZbTfo17hoZ3BmDJ90XML49gvrOGtALQNrGq8kA
-         WxoNiG4rrIliVeoLAOxSIwJCcYiAuVUdHOaPL8MHmTUDlJOvcKIyZii/gk8yH4u8RWZv
-         QuHxbDi06Bv3OBc0WmiX6vqeOwIGT/Y74Xcz/P7KlpgLouHe82KFMn0dZQaKQ+43R7B0
-         JEfFppsjsTd81reBpFtj7eILof/FgQGlFQ7MVuUXvxrHM0Bdkm7/iPbEdN6KmeJEOzuc
-         8OByv5AlDVttjHo6xWjMPF1maUkygTW/oQyJTgg4OHrk0eNgvMd+T6asrH4QXW4s3lSA
-         av6Q==
-X-Gm-Message-State: APjAAAUHjLsfvgB/bLkrIUqJLzYCo6fpYs/oBvSmtNZaTFeoQV8MXqhO
-        elBDJPhb1HVnCAp+IHIkB4G11w==
-X-Google-Smtp-Source: APXvYqxKicFVJ7wXzGl2bB4xCk/+YuG5c3I5NfchOVDHv5Um/Mjq2VFrSa7LjeWfHs1Nqhg56Sd1pQ==
-X-Received: by 2002:a5d:9c46:: with SMTP id 6mr3383520iof.6.1561163609280;
-        Fri, 21 Jun 2019 17:33:29 -0700 (PDT)
-Received: from [192.168.1.196] ([216.160.37.230])
-        by smtp.gmail.com with ESMTPSA id q13sm4895543ioh.36.2019.06.21.17.33.28
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 21 Jun 2019 17:33:28 -0700 (PDT)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Subject: Re: [PATCH v2] riscv: dts: Add DT node for SiFive FU540 Ethernet
- controller driver
-From:   Troy Benjegerdes <troy.benjegerdes@sifive.com>
-In-Reply-To: <43da99709709d2a480b78f25356cda9255205372.camel@wdc.com>
-Date:   Fri, 21 Jun 2019 19:33:27 -0500
-Cc:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "sachin.ghadi@sifive.com" <sachin.ghadi@sifive.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "yash.shah@sifive.com" <yash.shah@sifive.com>,
-        "palmer@sifive.com" <palmer@sifive.com>
-Content-Transfer-Encoding: 7bit
-Message-Id: <A3E7D245-ABFA-4D81-87D6-3F6983AA3A93@sifive.com>
-References: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
- <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
- <18c7992607dd1fed062bd295ac0738a759eff078.camel@wdc.com>
- <CAF5mof3QB8C7VjOyEvCsf9NEDkJhV3cBO5sBD+8z-GrWrnrAyg@mail.gmail.com>
- <3f91c8032e113a19dcec10ca71b017af1427ef7e.camel@wdc.com>
- <43da99709709d2a480b78f25356cda9255205372.camel@wdc.com>
-To:     Atish Patra <Atish.Patra@wdc.com>
-X-Mailer: Apple Mail (2.3445.9.1)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pn4/IgcE/a3A9HRsf8YysVQmDOFkLMRirlv4eJOCAEY=;
+        b=m9KQmL4ZkoLR7JTMRSuddIGWl3dhSym/N2wgaYZBH0xND/ilouDQIRq5Hw9enk4bcI
+         P8Pm6fZ6dcmRsAjd/6Gt6cdVsvmCl7f1CXXahN66xTp6SAVRa+c8V4I8h3FgqoDK+pZj
+         scvTpoGww/dFWgZR+k5Dmyk9e9+lb6+gXaAvnvvDWpdHRzsqrRHmbz1CT6oXBN/0JvOm
+         7VukcjOwB4plOuk3XLUKCFadcz7qBS/qmYkWX+gDAnvxg27Fl/eRP622meeAMfOizK2W
+         LCrRtUQesadUUBKqIJ7IcOpIyLaxR8Gthh1Cxn/nypcbTjtth9Fj5ElFNDu2Z6/agWkg
+         Y2zQ==
+X-Gm-Message-State: APjAAAXSleahQyXVbAwxFdFKPtxAngC48wJry4sDHUghvT5ffoQu8ASL
+        lyRPlvjPdZUAl+15aDsQlxPjbYIN37ME8m1fjrie1g==
+X-Google-Smtp-Source: APXvYqwOxize9xmrZ2ApT7No74w3onQmjRsjgozaiDJFMKpG33Vqht+PxeXD1e0v4vbFE+q+E/bORwyHwGlVO6g99RY=
+X-Received: by 2002:a17:90a:9382:: with SMTP id q2mr10190000pjo.131.1561164883594;
+ Fri, 21 Jun 2019 17:54:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <10feac3e-7621-65e5-fbf0-9c63fcbe09c9@gmail.com> <69809117-dcda-160a-ee0a-d1d3b4c5cd8a@kernel.org>
+ <20190621181342.GA17166@mit.edu> <6f3f5184-d14e-1b46-17f1-391ee67e699c@kernel.org>
+In-Reply-To: <6f3f5184-d14e-1b46-17f1-391ee67e699c@kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 21 Jun 2019 17:54:31 -0700
+Message-ID: <CAFd5g46W1u+6JKLW0WX9uicK5utvJe9tvq4YBsCkghuo0rCmng@mail.gmail.com>
+Subject: Re: [PATCH v5 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     shuah <shuah@kernel.org>
+Cc:     "Theodore Ts'o" <tytso@mit.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 21, 2019 at 12:21 PM shuah <shuah@kernel.org> wrote:
+>
+> On 6/21/19 12:13 PM, Theodore Ts'o wrote:
+> > On Fri, Jun 21, 2019 at 08:59:48AM -0600, shuah wrote:
+> >>>> ### But wait! Doesn't kselftest support in kernel testing?!
+> >>>>
+> >>>> ....
+> >>
+> >> I think I commented on this before. I agree with the statement that
+> >> there is no overlap between Kselftest and KUnit. I would like see this
+> >> removed. Kselftest module support supports use-cases KUnit won't be able
+> >> to. I can build an kernel with Kselftest test modules and use it in the
+> >> filed to load and run tests if I need to debug a problem and get data
+> >> from a system. I can't do that with KUnit.
 
+Sure, I think this point has been brought up a number of times before.
+Maybe I didn't write this section well because, like Frank said, it
+comes across as being critical of the Kselftest module support; that
+wasn't my intention. I was speaking from the perspective that
+Kselftest module support is just a feature of Kselftest, and not a
+full framework like KUnit is (obviously Kselftest itself *is* a
+framework, but a very small part of it is not).
 
-> On Jun 21, 2019, at 4:59 PM, Atish Patra <Atish.Patra@wdc.com> wrote:
-> 
-> On Fri, 2019-06-21 at 14:46 -0700, Atish Patra wrote:
->> On Fri, 2019-06-21 at 14:18 -0500, Troy Benjegerdes wrote:
->>> Can you post the fsbl and other images you used to boot/test this?
->>> 
->> 
-> 
-> Resending it without the attachment. Obviously, the mail did not go
-> through with the binary blob attached :( :(. My bad.
-> 
-> Let me know if you still want me to share the binary with you. I will
-> probably share it via some other method.
+It was obvious to me what Kselftest module support was intended for,
+and it is not intended to cover the use case that KUnit is targeting.
 
-The bl came through as it was sent direct to me, and I can deal with
-the tftp config manually. I have a kernel image, but not the boot.scr.uimg
-that it looks like you are using. Is that from Yocto?
+> >> In my mind, I am not viewing this as which is better. Kselftest and
+> >> KUnit both have their place in the kernel development process. It isn't
+> >> productive and/or necessary to comparing Kselftest and KUnit without a
+> >> good understanding of the problem spaces for each of these.
 
-> 
->> I have not changed fsbl. It's the default one came with the board.
->> Here are the heads of OpenSBI + U-Boot + Linux repo.
->> 
->> OpenSBI: cd2dfdc870ed (master)
->> U-boot: 77f6e2dd0551 + Anup's patch series (v4)
->> https://github.com/atishp04/u-boot/tree/unleashed_working
->> 
->> Linux: bed3c0d84e7e + Yash's Macb Series + this patch
->> https://github.com/atishp04/linux/tree/5.2-rc6-pre
->> 
->> I have also attached the OpenSBI + U-boot binary as well. But this is
->> pre-configured with my tftpboot server. You need to change that.
->> 
->>> I keep running into various failures when I build from source and I
->>> want to rule out potential hardware issues related to clock and/or
->>> ddr initialization
->>> 
->>> On Fri, Jun 21, 2019, 2:14 PM Atish Patra <Atish.Patra@wdc.com>
->>> wrote:
->>>> On Fri, 2019-06-21 at 16:23 +0530, Yash Shah wrote:
->>>>> DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver
->>>> added
->>>>> Signed-off-by: Yash Shah <yash.shah@sifive.com>
->>>>> ---
->>>>> arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 16
->>>>> ++++++++++++++++
->>>>> arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  9
->>>> +++++++++
->>>>> 2 files changed, 25 insertions(+)
->>>>> 
->>>>> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->>>>> b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->>>>> index 4e8fbde..c53b4ea 100644
->>>>> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->>>>> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->>>>> @@ -225,5 +225,21 @@
->>>>>                      #address-cells = <1>;
->>>>>                      #size-cells = <0>;
->>>>>              };
->>>>> +             eth0: ethernet@10090000 {
->>>>> +                     compatible = "sifive,fu540-macb";
->>>>> +                     interrupt-parent = <&plic0>;
->>>>> +                     interrupts = <53>;
->>>>> +                     reg = <0x0 0x10090000 0x0 0x2000
->>>>> +                            0x0 0x100a0000 0x0 0x1000>;
->>>>> +                     reg-names = "control";
->>>>> +                     status = "disabled";
->>>>> +                     local-mac-address = [00 00 00 00 00 00];
->>>>> +                     clock-names = "pclk", "hclk";
->>>>> +                     clocks = <&prci PRCI_CLK_GEMGXLPLL>,
->>>>> +                              <&prci PRCI_CLK_GEMGXLPLL>;
->>>>> +                     #address-cells = <1>;
->>>>> +                     #size-cells = <0>;
->>>>> +             };
->>>>> +
->>>>>      };
->>>>> };
->>>>> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-
->>>>> a00.dts
->>>>> b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
->>>>> index 4da8870..d783bf2 100644
->>>>> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
->>>>> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
->>>>> @@ -63,3 +63,12 @@
->>>>>              disable-wp;
->>>>>      };
->>>>> };
->>>>> +
->>>>> +&eth0 {
->>>>> +     status = "okay";
->>>>> +     phy-mode = "gmii";
->>>>> +     phy-handle = <&phy1>;
->>>>> +     phy1: ethernet-phy@0 {
->>>>> +             reg = <0>;
->>>>> +     };
->>>>> +};
->>>> 
->>>> Thanks. I am able to boot Unleashed with networking enabled with
->>>> this
->>>> patch.
->>>> 
->>>> FWIW, 
->>>> Tested-by: Atish Patra <atish.patra@wdc.com>
->>>> 
->>>> Regards,
->>>> Atish
->>>> _______________________________________________
->>>> linux-riscv mailing list
->>>> linux-riscv@lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Again, I didn't mean to draw a comparison of which is better than the
+other. I was just trying to point out that Kselftest module support
+doesn't make sense as a stand alone unit testing framework, or really
+a framework of any kind, despite how it might actually be used.
 
+> >> I would strongly recommend not making reference to Kselftest and talk
+> >> about what KUnit offers.
+
+I can see your point. It seems that both you and Frank seem to think
+that I drew a comparison between Kselftest and KUnit, which was
+unintended. I probably should have spent more time editing this
+section, but I can see the point of drawing the comparison itself
+might invite this confusion.
+
+> > Shuah,
+> >
+> > Just to recall the history, this section of the FAQ was added to rebut
+> > the ***very*** strong statements that Frank made that there was
+> > overlap between Kselftest and Kunit, and that having too many ways for
+> > kernel developers to do the identical thing was harmful (he said it
+> > was too much of a burden on a kernel developer) --- and this was an
+> > argument for not including Kunit in the upstream kernel.
+
+I don't think he was actually advocating that we don't include KUnit,
+maybe playing devil's advocate; nevertheless, at the end, Frank seemed
+to agree that there were valuable things that KUnit offered. I thought
+he just wanted to make the point that I hadn't made the distinction
+sufficiently clear in the cover letter, and other reviewers might get
+confused in the future as well.
+
+Additionally, it does look like people were trying to use Kselftest
+module support to cover some things which really were trying to be
+unit tests. I know this isn't really intended - everything looks like
+a nail when you only have a hammer, which I think Frank was pointing
+out furthers the above confusion.
+
+In anycase, it sounds like I have, if anything, only made the
+discussion even more confusing by adding this section; sorry about
+that.
+
+> > If we're past that objection, then perhaps this section can be
+> > dropped, but there's a very good reason why it was there.  I wouldn't
+> > Brendan to be accused of ignoring feedback from those who reviewed his
+> > patches.   :-)
+> >
+>
+> Agreed. I understand that this FAQ probably was needed at one time and
+> Brendan added it to address the concerns.
+
+I don't want to speak for Frank, but I don't think it was an objection
+to KUnit itself, but rather an objection to not sufficiently
+addressing the point about how they differ.
+
+> I think at some point we do need to have a document that outlines when
+> to KUnit and when to use Kselftest modules. I think one concern people
+> have is that if KUnit is perceived as a  replacement for Ksefltest
+> module, Kselftest module will be ignored leaving users without the
+> ability to build and run with Kselftest modules and load them on a need
+> basis to gather data on a systems that aren't dedicated strictly for
+> testing.
+
+I absolutely agree! I posed a suggestion here[1], which after I just
+now searched for a link, I realize for some reason it didn't seem like
+it reached a number of the mailing lists that I sent it to, so I
+should probably resend it.
+
+Anyway, a summary of what I suggested: We should start off by better
+organizing Documentation/dev-tools/ and create a landing page that
+groups the dev-tools by function according to what person is likely to
+use them and for what. Eventually and specifically for Kselftest and
+KUnit, I would like to have a testing guide for the kernel that
+explains what testing procedure should look like and what to use and
+when.
+
+> I am trying to move the conversation forward from KUnit vs. Kselftest
+> modules discussion to which problem areas each one addresses keeping
+> in mind that it is not about which is better. Kselftest and KUnit both
+> have their place in the kernel development process. We just have to be
+> clear on usage as we write tests for each.
+
+I think that is the right long term approach. I think a good place to
+start, like I suggested above, is cleaning up
+Documentation/dev-tools/, but I think that belongs in a (probably
+several) follow-up patchset.
+
+Frank, I believe your objection was mostly related to how KUnit is
+presented specifically in the cover letter, and doesn't necessarily
+deal with the intended use case. So I don't think that doing this,
+especially doing this later, really addresses your concern. I don't
+want to belabor the issue, but I would also rather not put words in
+your mouth, what are your thoughts on the above?
+
+I think my main concern moving forward on this point is that I am not
+sure that I can address the debate that this section covers in a way
+that is both sufficiently concise for a cover letter, but also doesn't
+invite more potential confusion. My inclination at this point is to
+drop it since I think the set of reviewers for this patchset has at
+this point become fixed, and it seems that it will likely cause more
+confusion rather than reduce it; also, I don't really think this will
+be an issue for end users, especially once we have proper
+documentation in place. Alternatively, I guess I could maybe address
+the point elsewhere and refer to it in the cover letter? Or maybe just
+put it at the end of the cover letter?
+
+[1] https://www.mail-archive.com/kgdb-bugreport@lists.sourceforge.net/msg05059.html
