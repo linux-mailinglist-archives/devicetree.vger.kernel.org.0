@@ -2,59 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BE2E4F5C7
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 14:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41444F5D8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 15:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726286AbfFVMp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jun 2019 08:45:28 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:45286 "EHLO
+        id S1726287AbfFVNKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jun 2019 09:10:48 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:44396 "EHLO
         mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726112AbfFVMp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jun 2019 08:45:28 -0400
-Received: by mail-lj1-f196.google.com with SMTP id m23so8323978lje.12;
-        Sat, 22 Jun 2019 05:45:27 -0700 (PDT)
+        with ESMTP id S1726286AbfFVNKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jun 2019 09:10:47 -0400
+Received: by mail-lj1-f196.google.com with SMTP id k18so8390894ljc.11;
+        Sat, 22 Jun 2019 06:10:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:reply-to:from:date:message-id
          :subject:to:cc:content-transfer-encoding;
-        bh=heSL+WGM2GJyAS9s3sd10GubIAAtqQkB37FZimio9Js=;
-        b=iiJ/mrz0Ki4ETv7y4D7UGRvIfRyLK+k9lZEUke1CeRaQXfnjTXKh+FALbAm7a1GNga
-         nKlPQJssp4H6lss9iFQWvgdTK2r3bdhp794Wy9oZjb5Tkv7RAKckbKF5K8pW5zfgehYO
-         a592Qpf3jr8t2cAKBujmsFGrBs32ivGwVrkJHnJCKWPe/G9j/il71zKX+v1Um158U2dt
-         9rN/aZxxkNDUzLzN7W2GbwzYo2CqFMkw0qua9XGfEI1+Dd6HXa1ibhXQbQiUXcgCMIT1
-         uHOd30M7e+a0+SvjPGKVd+HOh1TSVeFSJt0JH1W8wdAx83Eb4QckGgDfZdNkqEJOYumE
-         Kmig==
+        bh=JKJ7NdLuEooMFWo6LA3qa+n1zarZyBvo2gr/w64oEhU=;
+        b=cqTqJkmkzCJZgmZraBOEPTF4KFzVDxCz/wKOmehscUGO3xmmVvpoNvDfAFfDtJgdhd
+         6afLLU5VEDA0WzPYHeGc4SvNbWt3fkZewR/vK/epUG5aLa2FgLUtBnVfgEVhS/NTRHxI
+         UEoOyERmH5DWxyHzaKLt3jEMin17d7R3511BrX9Eqn0nmV5iwOQF9H05uRovkUpYp+iq
+         A3bmmp9lvnD3+eLNnWbGwR2/OHfhFpTGaaLu1yqWgZWJDaiGzIwpoQFs6x+itvhLI5hd
+         dR3x0ahsaq2djScI0cbXG0kavaXkRXWyd0AwH6eeQ5plXpsjrdy0lzTyF9Li3tVTTXOh
+         42/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
          :from:date:message-id:subject:to:cc:content-transfer-encoding;
-        bh=heSL+WGM2GJyAS9s3sd10GubIAAtqQkB37FZimio9Js=;
-        b=jyLC4cVAqXRkN/9q//ADqDtUuhq2+9Fob4hSKVMhsIoa4lpP3Em4N8dnYoblho2nmf
-         MuE1vUDTJWb1yAbhV+sv3lWcQegGJU59J151NyvsVBAgoBCyLLmE+ckaZHQZdmSpmhw5
-         QbPPx0W6JLZyzB8fEg/DrUyHHcr8Fkm6WIZCN6rXJ9EE5yGRuBU3RrqXvo45tvtjck/1
-         /uVJ2zVKZkSyCElqd7gIbvfZzmcAzNYqMsUklJqG1HOQXefpNdTzKElzLyYslQPbkyf7
-         KQCu1TL6G28WiBlEZqPaOCTwjetYzJWNaCy7t8513qJXPjyEb6HOpHDvEpH7MqniXdNw
-         Ff2w==
-X-Gm-Message-State: APjAAAXyYUMg2wXOd4dOY9Eh8NGbKswRN9P8cTQJR21k92K2sh3WdxdG
-        b6z/Ekg7+aM8EhBq2pCI8ptz5GAvDzrGMpDHlfY=
-X-Google-Smtp-Source: APXvYqwwzzLrOT6ulKtoJYJeUAopmAZ1Nc3CneWEwq5i7tKYFCRvciG0FPHiFXwOijwZdfIVaOQreuMbdrbbc7lIu2Y=
-X-Received: by 2002:a2e:8945:: with SMTP id b5mr35106486ljk.93.1561207526078;
- Sat, 22 Jun 2019 05:45:26 -0700 (PDT)
+        bh=JKJ7NdLuEooMFWo6LA3qa+n1zarZyBvo2gr/w64oEhU=;
+        b=kSCJJ1YzA70yUS4pE2YIgn7JA0GVaXE52yLcDjDapqT/Kf4TacENQm551egLUqnT6W
+         Li1CDuTwY73jorFbQ1qpND5HazITD7ici9ZfZ6eizzXie1FSwkxP0wPzJaMPxx7z3ekR
+         vFgxyco9PPz+pWHnuxrfU5/bWx1vB/u/X8p5dUmlOLCEnOQqPKC9jDCypWLS5FbqHCL7
+         dKPFBCQI6BYwMsSxe9Q7v2qGSX96e89KVQ92uqwHGM2N6spsTAzv1qSVCxZZMDtV4QpI
+         rw9SjNM18i/3PWoTxruREbyVpKfTDrlqKbAso+tx22GaAnJkV0mIgeW4Anu4s0ts58wu
+         OOPA==
+X-Gm-Message-State: APjAAAUVeshEkWuR29o6XVQ7pfKBIp84k9hy7hyr9qhyJXO5JJ9bEb/F
+        6jvi7dOBuf71Iit7CWNjqyv32n6wCtnmQi5wFgk=
+X-Google-Smtp-Source: APXvYqynjFLmTvY2JnFGiymi/s20MlB0RGAJBCuFJ20xD8lz5r0YsMLTewzKzTDqvog/w8S1ySij9keN4DPpz60sff4=
+X-Received: by 2002:a2e:8945:: with SMTP id b5mr35153457ljk.93.1561209044837;
+ Sat, 22 Jun 2019 06:10:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
-In-Reply-To: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
+References: <CGME20190614095328eucas1p24009b3a07322fd12e49eabb7a08baf50@eucas1p2.samsung.com>
+ <20190614095309.24100-1-l.luba@partner.samsung.com> <20190614095309.24100-10-l.luba@partner.samsung.com>
+In-Reply-To: <20190614095309.24100-10-l.luba@partner.samsung.com>
 Reply-To: cwchoi00@gmail.com
 From:   Chanwoo Choi <cwchoi00@gmail.com>
-Date:   Sat, 22 Jun 2019 21:44:49 +0900
-Message-ID: <CAGTfZH0EMos5AaLxeONDOd6_tyt5=Gt7s_Sam930H=6mf9rRiQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] extcon: Add fsa9480 extcon driver
-To:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+Date:   Sat, 22 Jun 2019 22:10:08 +0900
+Message-ID: <CAGTfZH35X0zE2LhGWJJp2xZNNk1ew7zNMoMqL+eZ5rcBFcPvew@mail.gmail.com>
+Subject: Re: [PATCH v10 09/13] drivers: devfreq: events: add Exynos PPMU new events
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>, keescook@chromium.org,
+        Tony Lindgren <tony@atomide.com>, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com,
+        Greg KH <gregkh@linuxfoundation.org>,
+        willy.mh.wolff.ml@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -64,44 +78,43 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-I applied this series to extcon-testing branch.
-If there are no build problem for few days, I'll move them to
-extcon-next branch.
-
-Best Regards,
-Chanwoo Choi
-
-2019=EB=85=84 6=EC=9B=94 21=EC=9D=BC (=EA=B8=88) =EC=98=A4=ED=9B=84 8:14, P=
-awe=C5=82 Chmiel <pawel.mikolaj.chmiel@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=
-=91=EC=84=B1:
+2019=EB=85=84 6=EC=9B=94 14=EC=9D=BC (=EA=B8=88) =EC=98=A4=ED=9B=84 6:54, L=
+ukasz Luba <l.luba@partner.samsung.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=
+=B1:
 >
-> This small patchset adds support for Fairchild Semiconductor FSA9480
-> microUSB switch.
+> Define new performance events supported by Exynos5422 SoC counters.
+> The counters are built-in in Dynamic Memory Controller and provide
+> information regarding memory utilization.
 >
-> It has been tested on Samsung Galaxy S and Samsung Fascinate 4G,
-> but it can be found also on other Samsung Aries (s5pv210) based devices.
+> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> ---
+>  drivers/devfreq/event/exynos-ppmu.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> Tomasz Figa (2):
->   dt-bindings: extcon: Add support for fsa9480 switch
->   extcon: Add fsa9480 extcon driver
+> diff --git a/drivers/devfreq/event/exynos-ppmu.c b/drivers/devfreq/event/=
+exynos-ppmu.c
+> index c2ea94957501..ce658c262c27 100644
+> --- a/drivers/devfreq/event/exynos-ppmu.c
+> +++ b/drivers/devfreq/event/exynos-ppmu.c
+> @@ -89,6 +89,12 @@ static struct __exynos_ppmu_events {
+>         PPMU_EVENT(d1-cpu),
+>         PPMU_EVENT(d1-general),
+>         PPMU_EVENT(d1-rt),
+> +
+> +       /* For Exynos5422 SoC */
+> +       PPMU_EVENT(dmc0_0),
+> +       PPMU_EVENT(dmc0_1),
+> +       PPMU_EVENT(dmc1_0),
+> +       PPMU_EVENT(dmc1_1),
+>  };
 >
-> Changes from v1:
->   - Added newline at end of dt-bindings file
->   - Removed interrupt-parent from dt-bindings file
->   - Added Acked-by to dt-bindings patch
->   - Remove license sentences from driver
->   - Remove custom sysfs entries and manual switch code
->   - Switch to using regmap api
->
->  .../bindings/extcon/extcon-fsa9480.txt        |  19 +
->  drivers/extcon/Kconfig                        |  12 +
->  drivers/extcon/Makefile                       |   1 +
->  drivers/extcon/extcon-fsa9480.c               | 395 ++++++++++++++++++
->  4 files changed, 427 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-fsa94=
-80.txt
->  create mode 100644 drivers/extcon/extcon-fsa9480.c
->
+>  static int exynos_ppmu_find_ppmu_id(struct devfreq_event_dev *edev)
 > --
 > 2.17.1
 >
+
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+
+--=20
+Best Regards,
+Chanwoo Choi
