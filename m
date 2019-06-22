@@ -2,56 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D1D4F63C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 16:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC494F64C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 16:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbfFVOfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jun 2019 10:35:15 -0400
-Received: from smtp1.ono.com ([62.42.230.162]:41126 "EHLO smtp1.ono.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726276AbfFVOfP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Jun 2019 10:35:15 -0400
-X-Junkmail-Premium-Raw: score=36/50,refid=2.7.2:2019.6.22.134518:17:36.586,ip=62.42.230.132,rules=__HAS_MSGID,
- __SANE_MSGID, MSGID_JMAIL_DEFAULT, INVALID_MSGID_NO_FQDN, __HAS_FROM,
- __HAS_REPLYTO, __FRAUD_WEBMAIL_REPLYTO, SUBJ_STARTS_IN_SPACE,
- __SUBJ_ALPHA_END, __MIME_VERSION, __CT, __CT_TEXT_PLAIN, __CTE,
- MISSING_HEADERS, __ANY_URI, __FRAUD_BODY_WEBMAIL, __URI_NO_WWW,
- __FRAUD_INTRO, __STOCK_PHRASE_7, __FRAUD_MONEY_BIG_COIN_DIG, __OEM_PRICE,
- __FRAUD_MONEY_CURRENCY_DOLLAR, __NO_HTML_TAG_RAW, BODYTEXTP_SIZE_400_LESS,
- BODYTEXTP_SIZE_3000_LESS, BODY_SIZE_300_399, __MIME_TEXT_P1,
- __MIME_TEXT_ONLY, __URI_NS, HTML_00_01, HTML_00_10, __FRAUD_MONEY_CURRENCY,
- __FRAUD_MONEY_BIG_COIN, __FRAUD_MONEY_VALUE, __PHISH_SPEAR_GREETING,
- __FRAUD_MONEY, FRAUD_X3, BODY_SIZE_5000_LESS, __FRAUD_WEBMAIL,
- WEBMAIL_REPLYTO_NOT_FROM, FRAUD_WEBMAIL_R_NOT_F, __MIME_TEXT_P,
- FRAUD_LITTLE_BODY, __PHISH_SPEAR_STRUCTURE_1, BODY_SIZE_1000_LESS,
- BODY_SIZE_2000_LESS, __PHISH_SPEAR_STRUCTURE_2, REPLYTO_FROM_DIFF_ADDY,
- NO_URI_HTTPS, BODY_SIZE_7000_LESS, TO_MALFORMED
-Received: from resprs02 (62.42.230.132) by smtp1.ono.com (9.0.019.09-1)
-        id 5C12554F09D791CB; Sat, 22 Jun 2019 16:34:15 +0200
-Received: from (149.126.75.9) by webmailcpr02n.ono.com;  Sat, 22 Jun 2019 16:34:15 +0200
-Message-ID: <2315778.927971561214055639.JavaMail.defaultUser@defaultHost>
-Date:   Sat, 22 Jun 2019 16:34:15 +0200 (CEST)
-From:   "Mrs.Patricia Lugan" <pasaca@ono.com>
-Reply-To: mrs.patricialugan@gmail.com
-Subject:  Mrs patricia lugan
+        id S1726286AbfFVOuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jun 2019 10:50:23 -0400
+Received: from www1102.sakura.ne.jp ([219.94.129.142]:50119 "EHLO
+        www1102.sakura.ne.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726138AbfFVOuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jun 2019 10:50:23 -0400
+Received: from fsav302.sakura.ne.jp (fsav302.sakura.ne.jp [153.120.85.133])
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id x5MEoBSI050936;
+        Sat, 22 Jun 2019 23:50:11 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Received: from www1102.sakura.ne.jp (219.94.129.142)
+ by fsav302.sakura.ne.jp (F-Secure/fsigk_smtp/530/fsav302.sakura.ne.jp);
+ Sat, 22 Jun 2019 23:50:10 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/530/fsav302.sakura.ne.jp)
+Received: from [192.168.1.2] (118.153.231.153.ap.dti.ne.jp [153.231.153.118])
+        (authenticated bits=0)
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id x5MEoAQH050929
+        (version=TLSv1.2 cipher=AES256-SHA bits=256 verify=NO);
+        Sat, 22 Jun 2019 23:50:10 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Subject: Re: [PATCH] ARM: dts: rockchip: add ethernet phy node for tinker
+ board
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190621180017.29646-1-katsuhiro@katsuster.net>
+ <1871177.hjLhdHVgcu@phil>
+From:   Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Message-ID: <ccf5ad2c-bd56-2d77-4728-d7906045e302@katsuster.net>
+Date:   Sat, 22 Jun 2019 23:50:10 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain;charset="UTF-8"
+In-Reply-To: <1871177.hjLhdHVgcu@phil>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
+Hello,
 
- I am Mrs Patricia lugan.am sending you this brief letter to solicit 
-your
- partnership to transfer $18.5 million US Dollars.I shall send you more
- information and procedures when I receive positive response from you.
- please send me a message in my Email box(mrs.patricialugan@gmail.com)
- as i wait to hear from you.
+Current linux-next on my environment, 'ifconfig eth0 up' does not
+work correctly with following message...
 
- Best regard
- Mrs patricia lugan
+-----
+root@linaro-alip:~# ifconfig eth0 up
+[  105.028916] rk_gmac-dwmac ff290000.ethernet eth0: stmmac_open: Cannot 
+attach to PHY (error: -19)
+SIOCSIFFLAGS: No such device
+-----
+
+I checked drivers/net/ethernet/stmicro/stmmac/stmmac_main.c and found
+stmmac_init_phy() is going to fail if ethernet device node does not
+have following property:
+   - phy-handle
+   - phy
+   - phy-device
+
+I salvaged old version of linux-next kernel (5.2.0-rc1-20190523),
+network device of my Tinker Board worked correctly if use it.
+
+I have not bisect commit of root cause yet... Is it better to bisect
+and find problem instead of sending this patch?
+
+Best Regards,
+---
+Katsuhiro Suzuki
+
+
+On 2019/06/22 17:33, Heiko Stuebner wrote:
+> Hi,
+> 
+> Am Freitag, 21. Juni 2019, 20:00:17 CEST schrieb Katsuhiro Suzuki:
+>> This patch adds missing mdio and ethernet PHY nodes for rk3328 ASUS
+>> tinker board.
+>>
+>> Signed-off-by: Katsuhiro Suzuki <katsuhiro@katsuster.net>
+> 
+> just for my understanding, which problem does this solve?
+> Normally the gmac can establish connections just fine on
+> the rk3288 by probing the phy in the automatic way.
+> 
+> And I also don't see any additional properties like phy
+> interrupt line below.
+> 
+> 
+> Thanks
+> Heiko
+> 
+>> ---
+>>   arch/arm/boot/dts/rk3288-tinker.dtsi | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
+>> index 293576869546..3190817e8d5d 100644
+>> --- a/arch/arm/boot/dts/rk3288-tinker.dtsi
+>> +++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
+>> @@ -117,6 +117,7 @@
+>>   	assigned-clocks = <&cru SCLK_MAC>;
+>>   	assigned-clock-parents = <&ext_gmac>;
+>>   	clock_in_out = "input";
+>> +	phy-handle = <&phy0>;
+>>   	phy-mode = "rgmii";
+>>   	phy-supply = <&vcc33_lan>;
+>>   	pinctrl-names = "default";
+>> @@ -127,6 +128,17 @@
+>>   	tx_delay = <0x30>;
+>>   	rx_delay = <0x10>;
+>>   	status = "ok";
+>> +
+>> +	mdio0 {
+>> +		compatible = "snps,dwmac-mdio";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		phy0: ethernet-phy@0 {
+>> +			compatible = "ethernet-phy-ieee802.3-c22";
+>> +			reg = <0>;
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &gpu {
+>>
+> 
+> 
+> 
+> 
+> 
 
