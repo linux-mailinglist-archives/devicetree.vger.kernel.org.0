@@ -2,93 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E8BDA4F31F
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 03:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39A684F323
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 03:55:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726097AbfFVBnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 21:43:04 -0400
-Received: from onstation.org ([52.200.56.107]:32872 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726083AbfFVBnE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jun 2019 21:43:04 -0400
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 3E58D3E9C9;
-        Sat, 22 Jun 2019 01:43:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1561167783;
-        bh=IzpR3342Zo9qt7/5FY4YZ3EhlrbdqIdBDC4xYGEgV/o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L7yPW+eol25pVIHxkWQyPNS4TRH6ITU3pzqmxKec/mnVuMtC19eJTijdX55303oHj
-         aoKQBSmVKw0/SXQkYhSaWobhcMwFTuEIufBrUlpplgcFjk+JBWL7HoSjXGNZ7vFQzK
-         xcFCjvFcaK4RdaZCa837DJQ1UqkoeYmp9/+PlXa0=
-Date:   Fri, 21 Jun 2019 21:43:02 -0400
-From:   Brian Masney <masneyb@onstation.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~martijnbraam/pmos-upstream@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
+        id S1726114AbfFVBzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 21:55:11 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:45985 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726083AbfFVBzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 21:55:10 -0400
+Received: by mail-vs1-f65.google.com with SMTP id h28so2045449vsl.12
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2019 18:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rJNwQ3mLV8c2DQL6zapl2FGuDETRbFo/82UxBr+AH6A=;
+        b=dvw6+h32jWORvo7jMZPESQgSthDbn7z03u9GLjsid38O6nYq1at3dkhVnc+MFLAUfy
+         XMWuL+lGSbdU4YUp+4DzaZDxDYW6Z8e8x/6ETdnfog16NJl7DmSRta5asKt5t2HKHSPo
+         iLp6MEOb/l0yLyh0JhQe7+EJtudxCM2ivTJ3c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rJNwQ3mLV8c2DQL6zapl2FGuDETRbFo/82UxBr+AH6A=;
+        b=poyZqlGqwayS/5Q+BdrvXI6YaajI5l6+NAfSwr+LW5OmPCyPfWJUTLcEfHaNRSvdjO
+         6ljkXxX36sOQZFDzl9puZVhwL5IWtpeZ3vVaTxLFIDvnber8zj56FfixE/NgwZQOaeBO
+         v+V1jyY7FrUtixdtvtDh6m/Ah+dxFfhINq4h+Bt1AhwCOlbqzuA6adKZWQAyIVvJjDuH
+         ua98XakN0uRmw/k5uOS3pF9JLv6CbGDmiAVITtu3NNn6LTUtqoVPHi4KVXrkre6BxUTa
+         bzJ1Yl/xJ/ywC/4ISG7EL/Ype8OwTSw+sWsa7QBHPsFXamoKoihIzMPH+Zz5d7VtpcKT
+         KWDQ==
+X-Gm-Message-State: APjAAAWE/BDOon+VtsZ3QxwGmQVsc9rKecG+2C6UP/V45Z/dxhhyD143
+        jhV4oUkAsRUVbhUDmn2xdaTEdJQs7ECIS6UqqCTGDw==
+X-Google-Smtp-Source: APXvYqxIUQ4BIsLDa7mjdOr3DxZ0fEYbaLvNVTh2X5FXEq12gxCyd4wyEmkfrQB7bvfwwvie1eNDWlSCYOg/Tnvc+qM=
+X-Received: by 2002:a67:7d13:: with SMTP id y19mr57281881vsc.232.1561168509102;
+ Fri, 21 Jun 2019 18:55:09 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190611040350.90064-1-dbasehore@chromium.org>
+ <20190611040350.90064-4-dbasehore@chromium.org> <20190611085722.GX21222@phenom.ffwll.local>
+ <CAGAzgsr2sh5B1xi_ztQPN0xoQsZd26DDXwWT_qqJ68XeKReJ_Q@mail.gmail.com> <20190621091928.GA11839@ulmo>
+In-Reply-To: <20190621091928.GA11839@ulmo>
+From:   "dbasehore ." <dbasehore@chromium.org>
+Date:   Fri, 21 Jun 2019 18:54:57 -0700
+Message-ID: <CAGAzgsqkJnc4jESSVMtYEQ4=DhmLVKbo_8CTk9cwH0j+55ZuTw@mail.gmail.com>
+Subject: Re: [PATCH 3/5] drm/panel: Add attach/detach callbacks
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: msm8974-FP2: add reboot-mode node
-Message-ID: <20190622014302.GA20947@onstation.org>
-References: <20190620225824.2845-1-luca@z3ntu.xyz>
- <20190621000122.GA13036@onstation.org>
- <4607058.UzJteFJyig@g550jk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4607058.UzJteFJyig@g550jk>
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Intel Graphics <intel-gfx@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 21, 2019 at 09:25:17PM +0200, Luca Weiss wrote:
-> On Freitag, 21. Juni 2019 02:01:22 CEST you wrote:
-> > I think that it makes sense to put this snippet in qcom-msm8974.dtsi
-> > with a status of disabled, and then enable it in
-> > qcom-msm8974-fairphone-fp2.dts like so:
-> > 
-> > imem@fe805000 {
-> > 	status = "ok";
-> > };
-> 
-> Do you want me to put the whole node in the the dtsi file? Even though these 
-> values are the same, there are also custom vendor-specified values for specific 
-> phones.
+On Fri, Jun 21, 2019 at 2:19 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+>
+> On Tue, Jun 11, 2019 at 05:25:47PM -0700, dbasehore . wrote:
+> > On Tue, Jun 11, 2019 at 1:57 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > >
+> > > On Mon, Jun 10, 2019 at 09:03:48PM -0700, Derek Basehore wrote:
+> > > > This adds the attach/detach callbacks. These are for setting up
+> > > > internal state for the connector/panel pair that can't be done at
+> > > > probe (since the connector doesn't exist) and which don't need to be
+> > > > repeatedly done for every get/modes, prepare, or enable callback.
+> > > > Values such as the panel orientation, and display size can be filled
+> > > > in for the connector.
+> > > >
+> > > > Signed-off-by: Derek Basehore <dbasehore@chromium.org>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_panel.c | 14 ++++++++++++++
+> > > >  include/drm/drm_panel.h     |  4 ++++
+> > > >  2 files changed, 18 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+> > > > index 3b689ce4a51a..72f67678d9d5 100644
+> > > > --- a/drivers/gpu/drm/drm_panel.c
+> > > > +++ b/drivers/gpu/drm/drm_panel.c
+> > > > @@ -104,12 +104,23 @@ EXPORT_SYMBOL(drm_panel_remove);
+> > > >   */
+> > > >  int drm_panel_attach(struct drm_panel *panel, struct drm_connector *connector)
+> > > >  {
+> > > > +     int ret;
+> > > > +
+> > > >       if (panel->connector)
+> > > >               return -EBUSY;
+> > > >
+> > > >       panel->connector = connector;
+> > > >       panel->drm = connector->dev;
+> > > >
+> > > > +     if (panel->funcs->attach) {
+> > > > +             ret = panel->funcs->attach(panel);
+> > > > +             if (ret < 0) {
+> > > > +                     panel->connector = NULL;
+> > > > +                     panel->drm = NULL;
+> > > > +                     return ret;
+> > > > +             }
+> > > > +     }
+> > >
+> > > Why can't we just implement this in the drm helpers for everyone, by e.g.
+> > > storing a dt node in drm_panel? Feels a bit overkill to have these new
+> > > hooks here.
+> > >
+> > > Also, my understanding is that this dt stuff is supposed to be
+> > > standardized, so this should work.
+> >
+> > So do you want all of this information added to the drm_panel struct?
+> > If we do that, we don't necessarily even need the drm helper function.
+> > We could just copy the values over here in the drm_panel_attach
+> > function (and clear them in drm_panel_detach).
+>
+> Yeah, I think we should have all this extra information in the struct
+> drm_panel. However, I think we need to more carefully split things such
+> that the DT parsing happens at panel probe time. That way we can catch
+> errors in DT, or missing entries/resources when we can still do
+> something about it.
 
-mach-msm in the downstream hammerhead sources has those addresses:
-https://github.com/AICP/kernel_lge_hammerhead/blob/n7.1/arch/arm/mach-msm/restart.c#L271
-This lead me to think that it applies to other msm8974-based systems as
-well.
+For now, I'll just put width, height, bpc, orientation, bus_flags, and
+bus_formats in the drm_panel struct. Those are pretty consistently set
+from either get_modes or prepare. The other thing those all have in
+common is that the values don't change.
 
-I tried your device tree snippet on the Nexus 5 and it reboots the phone
-for me.
+We could just add an entire drm_display_info struct inside drm_panel,
+but I don't know if we can just copy that over or set a pointer
+without breaking something else, since some of the values in the
+drm_display_info struct are not set by the panel (but maybe set by
+something else).
 
-/ # ./reboot-mode normal
-[   85.088556] reboot: Restarting system with command 'normal'
+>
+> If we start parsing DT and encounter failures, it's going to be very
+> confusing if that's at panel attach time where code will usually just
+> assume that everything is already validated and can't fail anymore.
+>
+> Thierry
 
-The recovery and bootloader modes reboot the phone but into normal mode.
-Oddly, the bootloader shows different power on reasons after the
-"welcome to hammerhead bootloader" message.
-
-normal = [10] Power on reason 20001
-recovery = [10] Power on reason 1
-bootloader = [10] Power on reason 20001
-
-> On the Linux kernel side, it has bootloader (0x77665500), recovery 
-> (0x77665502), rtc (0x77665503), oem-* (0x6f656d00 | somevalue), edl (some 
-> other addresses), and the else statements writes the 0x77665501 value in my 
-> patch.
-
-The downstream hammerhead sources have the oem-*, and emergency download
-modes (edl) listed as well.
-
-I'm not sure on your other questions.
-
-Brian
+Thanks for the review
