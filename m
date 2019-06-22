@@ -2,277 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 547224F798
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 19:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0764F7C4
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 20:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbfFVR4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jun 2019 13:56:23 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:15026 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726299AbfFVR4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jun 2019 13:56:23 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d0e6bc30000>; Sat, 22 Jun 2019 10:56:20 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Sat, 22 Jun 2019 10:56:20 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Sat, 22 Jun 2019 10:56:20 -0700
-Received: from [10.25.72.60] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 22 Jun
- 2019 17:56:13 +0000
-Subject: Re: [PATCH V10 13/15] phy: tegra: Add PCIe PIPE2UPHY support
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <catalin.marinas@arm.com>, <will.deacon@arm.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
-CC:     <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190612095339.20118-1-vidyas@nvidia.com>
- <20190612095339.20118-14-vidyas@nvidia.com>
- <9e699085-ef5e-f7be-e27c-23907ba92c82@ti.com>
- <68a6579b-af28-ed7e-35f8-d857638368ba@gmail.com>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <9fe060a1-947b-9fd4-d965-5393474116e1@nvidia.com>
-Date:   Sat, 22 Jun 2019 23:26:10 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <68a6579b-af28-ed7e-35f8-d857638368ba@gmail.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+        id S1726317AbfFVSPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jun 2019 14:15:36 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:40026 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725995AbfFVSPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jun 2019 14:15:36 -0400
+Received: by mail-io1-f65.google.com with SMTP id n5so496680ioc.7
+        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2019 11:15:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=BIcRqsgDXayymj+Ku1N955o6u3WrPmmoPvChsB+QKGI=;
+        b=at0ibNP5XuqFVFVIo8SswkbJu1g6jk8r4zMQhu18QrNYqV66ulyKPfysi4MW+yonvu
+         dSVYNeWEFEX9BVtKTOvAMRyvH0EUZIk246vNZYA1OmjwXfYbNN2Zx1mpz2Typjt7Yu5a
+         QoRG/aWeaGtoScqn+wmzvpoTblze7EvD/iuLH8xvm5jfDA8BqBxqPpo9WIhJZ2PTLJtn
+         jtR9skmCSNbjwJecOoeNa038Zdc09KlKcqbZKyVRdIFoBs9vcGfcI5+MNb4qwgU8owI6
+         eycrZ0b5e0qh+ske1yf+RUenwv0Ip5i7dx18JtxGhu/GAzja8We3mYXAhtw5T4kLyrWP
+         ivbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=BIcRqsgDXayymj+Ku1N955o6u3WrPmmoPvChsB+QKGI=;
+        b=JUGd76VOrlBX6KuN5DtHCUqHdHPpJTqkUupwqoqnhZTQx0QxXpNDOyM84FpjuvnLea
+         e7VCwknAEGSSn+CqshhoM/+zUXXl9+0WznFn5zAZicErQqHvZb70CO7ZZOHU6soLawAl
+         IguvlmdRNHhjOvsOuKf3GYitzv70BiPu3cBpFvHbgfY9DgwMdNmuxD0efCwQNGR8NrW5
+         0Yh9Qe3fV3trrgY7iJ63MFa4y1IQpyqYswLBBte9Tv6EPTwxV+z0bGSWacHtZEpS5PJd
+         jV09OUKKrMs6AS/YCxRn8BX+68Ugm0IOH5Lf+MJXwMYu40VCxrPf++TeGRotndq7FmEt
+         Rp/w==
+X-Gm-Message-State: APjAAAXPYlQzzfVZdfcAqkRiqqnwqyYk99hTaTBohxzyelPgDZArxNbl
+        b/UJgL9oFa0B3PGvDhXfJjEMnw==
+X-Google-Smtp-Source: APXvYqwbUuI6pYqEW3xUO9duU+C7aelY2bo+uYR/A2Ny5gYHLTlczbg6foBJTh1C3L//AV4ckU7iAQ==
+X-Received: by 2002:a5e:da47:: with SMTP id o7mr8936752iop.83.1561227335113;
+        Sat, 22 Jun 2019 11:15:35 -0700 (PDT)
+Received: from [192.168.1.196] ([216.160.37.230])
+        by smtp.gmail.com with ESMTPSA id l11sm7667385ioj.32.2019.06.22.11.15.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 22 Jun 2019 11:15:34 -0700 (PDT)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+Subject: Re: [PATCH v2] riscv: dts: Add DT node for SiFive FU540 Ethernet
+ controller driver
+From:   Troy Benjegerdes <troy.benjegerdes@sifive.com>
+In-Reply-To: <18c7992607dd1fed062bd295ac0738a759eff078.camel@wdc.com>
+Date:   Sat, 22 Jun 2019 13:15:33 -0500
+Cc:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "sachin.ghadi@sifive.com" <sachin.ghadi@sifive.com>,
+        "palmer@sifive.com" <palmer@sifive.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>
 Content-Transfer-Encoding: quoted-printable
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1561226180; bh=FPEqeVoOjkLE9CXebBQ5ns9O3vg2DvsSK/z3knmmwi4=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=cBMF6btYslhW+xqHD9ruSdhZ25KIXdXSaIwynub9LrME0LayuDOrnXFjWpeGS2oLq
-         Oo79fRdomyCU7PsnhR8OGKko+FmSJlRpJz/Q/pNHD1Ky7yQ67Nf1mQMt28yOpg3aEH
-         ijk4ES0kOHjA3kjXvUBs7KmcaW+ncOi5T0nEbWnqLIOB4B80ZhS2lNDl5pl+YFi/C6
-         dDH92+p0tiYQVzB8XoTNz25WvIlMfCanNwVDjmRHhGC4ZYXGcYSEXKUQflxqPBmye5
-         Z8XIcgRyT9u3GqIkShgdhXBgL+eciOFJj/gB0GtMH0jaPH0IX1KKa8ywZpEkuuDWuE
-         P0Z5wQHBlq0oA==
+Message-Id: <24385C38-D1FC-46B0-8AAA-0FB0B371784A@sifive.com>
+References: <1561114429-29612-1-git-send-email-yash.shah@sifive.com>
+ <1561114429-29612-2-git-send-email-yash.shah@sifive.com>
+ <18c7992607dd1fed062bd295ac0738a759eff078.camel@wdc.com>
+To:     Atish Patra <Atish.Patra@wdc.com>,
+        "yash.shah@sifive.com" <yash.shah@sifive.com>
+X-Mailer: Apple Mail (2.3445.9.1)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/21/2019 4:53 AM, Dmitry Osipenko wrote:
-> 20.06.2019 10:24, Kishon Vijay Abraham I =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>
->>
->> On 12/06/19 3:23 PM, Vidya Sagar wrote:
->>> Synopsys DesignWare core based PCIe controllers in Tegra 194 SoC interf=
-ace
->>> with Universal PHY (UPHY) module through a PIPE2UPHY (P2U) module.
->>> For each PCIe lane of a controller, there is a P2U unit instantiated at
->>> hardware level. This driver provides support for the programming requir=
-ed
->>> for each P2U that is going to be used for a PCIe controller.
->>
->> One minor comment below. With that fixed
->>
->> Acked-by: Kishon Vijay Abraham I <kishon@ti.com>
->>>
->>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->>> ---
->>> Changes since [v9]:
->>> * Used _relaxed() versions of readl() & writel()
->>>
->>> Changes since [v8]:
->>> * Made it dependent on ARCH_TEGRA_194_SOC directly instead of ARCH_TEGR=
-A
->>>
->>> Changes since [v7]:
->>> * Changed P2U driver file name from pcie-p2u-tegra194.c to phy-tegra194=
--p2u.c
->>>
->>> Changes since [v6]:
->>> * None
->>>
->>> Changes since [v5]:
->>> * Addressed review comments from Thierry
->>>
->>> Changes since [v4]:
->>> * None
->>>
->>> Changes since [v3]:
->>> * Rebased on top of linux-next top of the tree
->>>
->>> Changes since [v2]:
->>> * Replaced spaces with tabs in Kconfig file
->>> * Sorted header file inclusion alphabetically
->>>
->>> Changes since [v1]:
->>> * Added COMPILE_TEST in Kconfig
->>> * Removed empty phy_ops implementations
->>> * Modified code according to DT documentation file modifications
->>>
->>>   drivers/phy/tegra/Kconfig            |   7 ++
->>>   drivers/phy/tegra/Makefile           |   1 +
->>>   drivers/phy/tegra/phy-tegra194-p2u.c | 120 ++++++++++++++++++++++++++=
-+
->>>   3 files changed, 128 insertions(+)
->>>   create mode 100644 drivers/phy/tegra/phy-tegra194-p2u.c
->>>
->>> diff --git a/drivers/phy/tegra/Kconfig b/drivers/phy/tegra/Kconfig
->>> index e516967d695b..f9817c3ae85f 100644
->>> --- a/drivers/phy/tegra/Kconfig
->>> +++ b/drivers/phy/tegra/Kconfig
->>> @@ -7,3 +7,10 @@ config PHY_TEGRA_XUSB
->>>  =20
->>>   	  To compile this driver as a module, choose M here: the module will
->>>   	  be called phy-tegra-xusb.
->>> +
->>> +config PHY_TEGRA194_P2U
->>> +	tristate "NVIDIA Tegra194 PIPE2UPHY PHY driver"
->>> +	depends on ARCH_TEGRA_194_SOC || COMPILE_TEST
->>> +	select GENERIC_PHY
->>> +	help
->>> +	  Enable this to support the P2U (PIPE to UPHY) that is part of Tegra=
- 19x SOCs.
->>> diff --git a/drivers/phy/tegra/Makefile b/drivers/phy/tegra/Makefile
->>> index 64ccaeacb631..320dd389f34d 100644
->>> --- a/drivers/phy/tegra/Makefile
->>> +++ b/drivers/phy/tegra/Makefile
->>> @@ -6,3 +6,4 @@ phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_124_SOC) +=3D xusb-t=
-egra124.o
->>>   phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_132_SOC) +=3D xusb-tegra124.o
->>>   phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_210_SOC) +=3D xusb-tegra210.o
->>>   phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_186_SOC) +=3D xusb-tegra186.o
->>> +obj-$(CONFIG_PHY_TEGRA194_P2U) +=3D phy-tegra194-p2u.o
->>> diff --git a/drivers/phy/tegra/phy-tegra194-p2u.c b/drivers/phy/tegra/p=
-hy-tegra194-p2u.c
->>> new file mode 100644
->>> index 000000000000..df009abd2482
->>> --- /dev/null
->>> +++ b/drivers/phy/tegra/phy-tegra194-p2u.c
->>> @@ -0,0 +1,120 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +/*
->>> + * P2U (PIPE to UPHY) driver for Tegra T194 SoC
->>> + *
->>> + * Copyright (C) 2019 NVIDIA Corporation.
->>> + *
->>> + * Author: Vidya Sagar <vidyas@nvidia.com>
->>> + */
->>> +
->>> +#include <linux/err.h>
->>> +#include <linux/io.h>
->>> +#include <linux/module.h>
->>> +#include <linux/of.h>
->>> +#include <linux/of_platform.h>
->>> +#include <linux/phy/phy.h>
->>> +
->>> +#define P2U_PERIODIC_EQ_CTRL_GEN3	0xc0
->>> +#define P2U_PERIODIC_EQ_CTRL_GEN3_PERIODIC_EQ_EN		BIT(0)
->>> +#define P2U_PERIODIC_EQ_CTRL_GEN3_INIT_PRESET_EQ_TRAIN_EN	BIT(1)
->>> +#define P2U_PERIODIC_EQ_CTRL_GEN4	0xc4
->>> +#define P2U_PERIODIC_EQ_CTRL_GEN4_INIT_PRESET_EQ_TRAIN_EN	BIT(1)
->>> +
->>> +#define P2U_RX_DEBOUNCE_TIME				0xa4
->>> +#define P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_MASK	0xffff
->>> +#define P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_VAL		160
->>> +
->>> +struct tegra_p2u {
->>> +	void __iomem *base;
->>> +};
->>> +
->>> +static inline void p2u_writel(struct tegra_p2u *phy, const u32 value,
->>> +			      const u32 reg)
->>> +{
->>> +	writel_relaxed(value, phy->base + reg);
->>> +}
->>> +
->>> +static inline u32 p2u_readl(struct tegra_p2u *phy, const u32 reg)
->>> +{
->>> +	return readl_relaxed(phy->base + reg);
->>> +}
->>> +
->>> +static int tegra_p2u_power_on(struct phy *x)
->>> +{
->>> +	struct tegra_p2u *phy =3D phy_get_drvdata(x);
->>> +	u32 val;
->>> +
->>> +	val =3D p2u_readl(phy, P2U_PERIODIC_EQ_CTRL_GEN3);
->>> +	val &=3D ~P2U_PERIODIC_EQ_CTRL_GEN3_PERIODIC_EQ_EN;
->>> +	val |=3D P2U_PERIODIC_EQ_CTRL_GEN3_INIT_PRESET_EQ_TRAIN_EN;
->>> +	p2u_writel(phy, val, P2U_PERIODIC_EQ_CTRL_GEN3);
->>> +
->>> +	val =3D p2u_readl(phy, P2U_PERIODIC_EQ_CTRL_GEN4);
->>> +	val |=3D P2U_PERIODIC_EQ_CTRL_GEN4_INIT_PRESET_EQ_TRAIN_EN;
->>> +	p2u_writel(phy, val, P2U_PERIODIC_EQ_CTRL_GEN4);
->>> +
->>> +	val =3D p2u_readl(phy, P2U_RX_DEBOUNCE_TIME);
->>> +	val &=3D ~P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_MASK;
->>> +	val |=3D P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_VAL;
->>> +	p2u_writel(phy, val, P2U_RX_DEBOUNCE_TIME);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static const struct phy_ops ops =3D {
->>> +	.power_on =3D tegra_p2u_power_on,
->>> +	.owner =3D THIS_MODULE,
->>> +};
->>> +
->>> +static int tegra_p2u_probe(struct platform_device *pdev)
->>> +{
->>> +	struct phy_provider *phy_provider;
->>> +	struct device *dev =3D &pdev->dev;
->>> +	struct phy *generic_phy;
->>> +	struct tegra_p2u *phy;
->>> +	struct resource *res;
->>> +
->>> +	phy =3D devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
->>> +	if (!phy)
->>> +		return -ENOMEM;
->>> +
->>> +	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "ctl");
->>> +	phy->base =3D devm_ioremap_resource(dev, res);
->>> +	if (IS_ERR(phy->base))
->>> +		return PTR_ERR_OR_ZERO(phy->base);
->>> +
->>> +	platform_set_drvdata(pdev, phy);
->>> +
->>> +	generic_phy =3D devm_phy_create(dev, NULL, &ops);
->>> +	if (IS_ERR(generic_phy))
->>> +		return PTR_ERR_OR_ZERO(generic_phy);
->>> +
->>> +	phy_set_drvdata(generic_phy, phy);
->>> +
->>> +	phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xla=
-te);
->>> +	if (IS_ERR(phy_provider))
->>> +		return PTR_ERR_OR_ZERO(phy_provider);
->>> +
->>> +	return 0;
->>
->> Just make this..
->> phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate)=
-;
->> return PTR_ERR_OR_ZERO(phy_provider);
->=20
-> There is a need to s/PTR_ERR_OR_ZERO/PTR_ERR/ for all of the occurrences
-> in this patch because it is impossible to get ZERO if we already know
-> that pointer is a error.
-Agree with this point.
 
+
+> On Jun 21, 2019, at 2:14 PM, Atish Patra <Atish.Patra@wdc.com> wrote:
 >=20
-> Secondly, it is always cleaner to return 0 explicitly on success and
-> PTR_ERR_OR_ZERO(phy_provider) is a much less readable form than a simple
-> return 0. So I'm suggesting to keep that part as-is.
+> On Fri, 2019-06-21 at 16:23 +0530, Yash Shah wrote:
+>> DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+>>=20
+>> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+>> ---
+>> arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 16
+>> ++++++++++++++++
+>> arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  9 +++++++++
+>> 2 files changed, 25 insertions(+)
+>>=20
+>> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+>> b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+>> index 4e8fbde..c53b4ea 100644
+>> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+>> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+>> @@ -225,5 +225,21 @@
+>> 			#address-cells =3D <1>;
+>> 			#size-cells =3D <0>;
+>> 		};
+>> +		eth0: ethernet@10090000 {
+>> +			compatible =3D "sifive,fu540-macb";
+>> +			interrupt-parent =3D <&plic0>;
+>> +			interrupts =3D <53>;
+>> +			reg =3D <0x0 0x10090000 0x0 0x2000
+>> +			       0x0 0x100a0000 0x0 0x1000>;
+>> +			reg-names =3D "control";
+>> +			status =3D "disabled";
+>> +			local-mac-address =3D [00 00 00 00 00 00];
+>> +			clock-names =3D "pclk", "hclk";
+>> +			clocks =3D <&prci PRCI_CLK_GEMGXLPLL>,
+>> +				 <&prci PRCI_CLK_GEMGXLPLL>;
+>> +			#address-cells =3D <1>;
+>> +			#size-cells =3D <0>;
+>> +		};
+>> +
+>> 	};
+>> };
+>> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+>> b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+>> index 4da8870..d783bf2 100644
+>> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+>> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+>> @@ -63,3 +63,12 @@
+>> 		disable-wp;
+>> 	};
+>> };
+>> +
+>> +&eth0 {
+>> +	status =3D "okay";
+>> +	phy-mode =3D "gmii";
+>> +	phy-handle =3D <&phy1>;
+>> +	phy1: ethernet-phy@0 {
+>> +		reg =3D <0>;
+>> +	};
+>> +};
 >=20
-yes, true that. I'll address these in the next series
+> Thanks. I am able to boot Unleashed with networking enabled with this
+> patch.
+>=20
+> FWIW,=20
+> Tested-by: Atish Patra <atish.patra@wdc.com>
+>=20
+> Regards,
+> Atish
+
+I am able to boot using a build from the dev/new-dts branch of
+my freedom-u-sdk development tree [1] which has this patch
+with an additional reset-gpios entry for the ethernet phy in the
+DTS provided by the legacy U-boot[2].
+
+Tested-by: Troy Benjegerdes <troy.benjegerdes@sifive.com>
+
+[1] https://github.com/tmagik/freedom-u-sdk=20
+[2] =
+https://github.com/sifive/HiFive_U-Boot/blob/081373fa3eb0ca79ba3f4a703e8e8=
+3a15135a6d1/arch/riscv/dts/hifive_u540.dts#L73=
