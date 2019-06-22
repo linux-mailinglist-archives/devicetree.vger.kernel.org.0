@@ -2,118 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 461B94F33A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 04:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F4F4F35C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 05:39:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726101AbfFVCmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jun 2019 22:42:55 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:40257 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726049AbfFVCmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jun 2019 22:42:55 -0400
-X-UUID: 3a5c12a496284309aaa64221c992f670-20190622
-X-UUID: 3a5c12a496284309aaa64221c992f670-20190622
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1618682078; Sat, 22 Jun 2019 10:42:50 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 22 Jun
- 2019 10:42:48 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sat, 22 Jun 2019 10:42:47 +0800
-Message-ID: <1561171367.4850.8.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 02/12] iommu/mediatek: Add probe_defer for smi-larb
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        "Evan Green" <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Tomasz Figa" <tfiga@google.com>,
-        Will Deacon <will.deacon@arm.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yingjoe.chen@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>
-Date:   Sat, 22 Jun 2019 10:42:47 +0800
-In-Reply-To: <a11fa818-cf62-cc24-2c41-4688fda5a88f@gmail.com>
-References: <1560171313-28299-1-git-send-email-yong.wu@mediatek.com>
-         <1560171313-28299-3-git-send-email-yong.wu@mediatek.com>
-         <a11fa818-cf62-cc24-2c41-4688fda5a88f@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726052AbfFVDjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jun 2019 23:39:03 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:38198 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726049AbfFVDjD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jun 2019 23:39:03 -0400
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 120A6991F0451A546662;
+        Sat, 22 Jun 2019 11:39:01 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS414-HUB.china.huawei.com (10.3.19.214) with Microsoft SMTP Server id
+ 14.3.439.0; Sat, 22 Jun 2019 11:38:53 +0800
+From:   Kefeng Wang <wangkefeng.wang@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Kumar Gala <galak@kernel.crashing.org>
+Subject: [PATCH] dt-bindings: 83xx-512x-pci: Drop cell-index property
+Date:   Sat, 22 Jun 2019 11:45:57 +0800
+Message-ID: <20190622034557.196097-1-wangkefeng.wang@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 62D4D809DF879D30713C1D085668025D905896208B75832BE651A5243713B1D32000:8
-X-MTK:  N
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+28eac2b74cc7 ("powerpc/fsl: Remove cell-index from PCI nodes"),
+and for now it is still not used, drop it from doc.
 
-On Wed, 2019-06-19 at 15:52 +0200, Matthias Brugger wrote:
-> 
-> On 10/06/2019 14:55, Yong Wu wrote:
-> > The iommu consumer should use device_link to connect with the
-> > smi-larb(supplier). then the smi-larb should run before the iommu
-> > consumer. Here we delay the iommu driver until the smi driver is
-> > ready, then all the iommu consumer always is after the smi driver.
-> > 
-> > When there is no this patch, if some consumer drivers run before
-> > smi-larb, the supplier link_status is DL_DEV_NO_DRIVER(0) in the
-> > device_link_add, then device_links_driver_bound will use WARN_ON
-> > to complain that the link_status of supplier is not right.
-> > 
-> > This is a preparing patch for adding device_link.
-> > 
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > ---
-> >  drivers/iommu/mtk_iommu.c    | 2 +-
-> >  drivers/iommu/mtk_iommu_v1.c | 2 +-
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> > index 6fe3369..f7599d8 100644
-> > --- a/drivers/iommu/mtk_iommu.c
-> > +++ b/drivers/iommu/mtk_iommu.c
-> > @@ -664,7 +664,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
-> >  			id = i;
-> >  
-> >  		plarbdev = of_find_device_by_node(larbnode);
-> > -		if (!plarbdev) {
-> > +		if (!plarbdev || !plarbdev->dev.driver) {
-> 
-> can't we use:
-> device_lock()
-> device_is_bound(struct device *dev)
-> device_unlock()
+Cc: Kumar Gala <galak@kernel.crashing.org>
+Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+---
+ Documentation/devicetree/bindings/pci/83xx-512x-pci.txt | 1 -
+ 1 file changed, 1 deletion(-)
 
-A new API for me. Thanks the hint. I have tried. it is ok.
-
-
-> 
-> >  			of_node_put(larbnode);
-> >  			return -EPROBE_DEFER;
-> >  		}
-> > diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
-> > index 0b0908c..c43c4a0 100644
-> > --- a/drivers/iommu/mtk_iommu_v1.c
-> > +++ b/drivers/iommu/mtk_iommu_v1.c
-> > @@ -604,7 +604,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
-> >  			plarbdev = of_platform_device_create(
-> >  						larb_spec.np, NULL,
-> >  						platform_bus_type.dev_root);
-> > -			if (!plarbdev) {
-> > +			if (!plarbdev || !plarbdev->dev.driver) {
-> >  				of_node_put(larb_spec.np);
-> >  				return -EPROBE_DEFER;
-> >  			}
-> > 
-
-
+diff --git a/Documentation/devicetree/bindings/pci/83xx-512x-pci.txt b/Documentation/devicetree/bindings/pci/83xx-512x-pci.txt
+index b9165b72473c..3abeecf4983f 100644
+--- a/Documentation/devicetree/bindings/pci/83xx-512x-pci.txt
++++ b/Documentation/devicetree/bindings/pci/83xx-512x-pci.txt
+@@ -9,7 +9,6 @@ Freescale 83xx and 512x SOCs include the same PCI bridge core.
+ 
+ Example (MPC8313ERDB)
+ 	pci0: pci@e0008500 {
+-		cell-index = <1>;
+ 		interrupt-map-mask = <0xf800 0x0 0x0 0x7>;
+ 		interrupt-map = <
+ 				/* IDSEL 0x0E -mini PCI */
+-- 
+2.20.1
 
