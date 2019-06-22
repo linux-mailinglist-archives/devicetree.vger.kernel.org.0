@@ -2,93 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67BE04F465
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 10:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4856D4F471
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 10:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726299AbfFVIjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jun 2019 04:39:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58242 "EHLO mail.kernel.org"
+        id S1726276AbfFVIsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jun 2019 04:48:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41294 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726278AbfFVIjV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Jun 2019 04:39:21 -0400
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726137AbfFVIsz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Jun 2019 04:48:55 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A77EC215EA;
-        Sat, 22 Jun 2019 08:39:20 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 50AE3206BA;
+        Sat, 22 Jun 2019 08:48:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561192761;
-        bh=qAXXbtnQBFmUgmRyzc4VkIcs13YQ55kQtiIfHKdMQAM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nAiN3KHHuh3GDHGSYzoKQ0szWAcLEKSJR8fj6S3Puih9WsIT+QnfcZDq5/yl+I0Zb
-         TvVPIQYXNyxtSLhya0XjYCjcjb611p7Sc97ZU7oZtE2AkYFQH0TZ1gFUub9Eqic/Ty
-         BfdpaFciV4AdK/dyKmpoAR24cWyCdvkq9q16UJu0=
-Received: by mail-lj1-f175.google.com with SMTP id m23so7983634lje.12;
-        Sat, 22 Jun 2019 01:39:20 -0700 (PDT)
-X-Gm-Message-State: APjAAAVW/d4nQC74I5efjL4wWnGxn44Qrcriu4na50vcSOzKOB4PBVQ7
-        A9Re5FdfNgAcxbWiFZASiRxUWF7F2n/57Oy1eGc=
-X-Google-Smtp-Source: APXvYqxyRGkjOqMwnY3GOZOxtp7YuotqZNdcuHXzNI9tdgx7yO5ll/x9xEcbo852e3cgrZMCREphrlRE46xebyBF2zI=
-X-Received: by 2002:a2e:50e:: with SMTP id 14mr56971315ljf.5.1561192759012;
- Sat, 22 Jun 2019 01:39:19 -0700 (PDT)
+        s=default; t=1561193334;
+        bh=+jJMhm50tZhIKwXwnTVQfJQxfk46YzI7SOYvUv3LD+Y=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MABH9LOMcHbPiIs0fsfkNsPq4u+tZACIETiJwdl0x3xUDB5I5HJpovmcMx4cFXqGt
+         Az9RWUVVM2ZRR+j4vKMYUd7rmG0tz2JboL0FTo25RJY4d2zg7YX8onRIVVs88RjJ85
+         AcaVXJaidqyh7YuAich6puxyN4u20sIo1LYO/cV0=
+Date:   Sat, 22 Jun 2019 09:48:50 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Tomasz Duszynski <tduszyns@gmail.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: sps30: convert bindings
+ to yaml
+Message-ID: <20190622094850.6d0bea9e@archlinux>
+In-Reply-To: <CAL_JsqLmZPTYqSkmSo-KuqUr7FY1BqE3XX7+PhcA_0phS4X3jQ@mail.gmail.com>
+References: <20190620195011.30942-1-tduszyns@gmail.com>
+        <20190620195011.30942-2-tduszyns@gmail.com>
+        <CAL_JsqLmZPTYqSkmSo-KuqUr7FY1BqE3XX7+PhcA_0phS4X3jQ@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20190621180208.25361-1-krzk@kernel.org> <20190621180208.25361-7-krzk@kernel.org>
- <CA+E=qVe45NVCfpSHRF6=0aYRpURZA4DVz8W-XkSaNDB=1mX2kA@mail.gmail.com>
-In-Reply-To: <CA+E=qVe45NVCfpSHRF6=0aYRpURZA4DVz8W-XkSaNDB=1mX2kA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Sat, 22 Jun 2019 10:39:07 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdk2MmBHjiDU4M6PA6O4ifVe_sDifejUPJiGPCQ7MR1sQ@mail.gmail.com>
-Message-ID: <CAJKOXPdk2MmBHjiDU4M6PA6O4ifVe_sDifejUPJiGPCQ7MR1sQ@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] arm64: defconfig: Enable Panfrost driver
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Joseph Kogut <joseph.kogut@gmail.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jun 2019 at 22:15, Vasily Khoruzhick <anarsoul@gmail.com> wrote:
->
-> On Fri, Jun 21, 2019 at 11:04 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Thu, 20 Jun 2019 15:21:47 -0600
+Rob Herring <robh+dt@kernel.org> wrote:
+
+> On Thu, Jun 20, 2019 at 1:52 PM Tomasz Duszynski <tduszyns@gmail.com> wrote:
 > >
-> > Enable support for Mali GPU with Panfrost driver, e.g. for Exynos5433
-> > and Exynos7 (having Mali T760).
+> > Convert existing device tree bindings to yaml.
 > >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Signed-off-by: Tomasz Duszynski <tduszyns@gmail.com>
 > > ---
-> >  arch/arm64/configs/defconfig | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> > index 6b4f5cf23324..972b17239f13 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -517,6 +517,7 @@ CONFIG_DRM_HISI_HIBMC=m
-> >  CONFIG_DRM_HISI_KIRIN=m
-> >  CONFIG_DRM_MESON=m
-> >  CONFIG_DRM_PL111=m
-> > +CONFIG_DRM_PANFROST=m
->
-> It makes sense to enable lima for arm64 defconfig as well since it's
-> used on number of 64-bit Allwinner SoCs.
+> >  .../bindings/iio/chemical/sensirion,sps30.txt | 12 ------
+> >  .../iio/chemical/sensirion,sps30.yaml         | 39 +++++++++++++++++++
+> >  2 files changed, 39 insertions(+), 12 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.txt
+> >  create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml  
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I wasn't aware that some of ARMv8 SoCs still use Utgard. In such case
-it makes sense indeed, I will send a follow up.
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to play with it.
 
-Thanks for feedback!
+Thanks,
 
-Krzysztof
+Jonathan
