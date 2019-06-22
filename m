@@ -2,268 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC6524F83B
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2019 22:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06374F8ED
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 01:28:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726328AbfFVU5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jun 2019 16:57:31 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:49410 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725844AbfFVU5b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Jun 2019 16:57:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=oePEOBUvsBrcln8QForxiWhri9yf6+IUcHaEBSsdi/w=; b=nASuRUEENw6wlYLBmrsJ5oRi9W
-        pm7kmBa2z+1ftH8shG31OizOzSGC9CN6XcqbVNc1w73iqO4ttBzfbrvWOCNrmz5XCmS8hxHZI3ELj
-        vA+cIJCfMw/4kUj5miKevgCE8exySXKzF7LQpaabgIFH9clP9UDjQsEnwdGftl5wGdeo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hen4a-00048d-Rp; Sat, 22 Jun 2019 22:57:20 +0200
-Date:   Sat, 22 Jun 2019 22:57:20 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Claudiu Manoil <claudiu.manoil@nxp.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        netdev@vger.kernel.org, alexandru.marginean@nxp.com,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Allan Nielsen <Allan.Nielsen@microsemi.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Horghidan <catalin.horghidan@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 6/6] net/mssc/ocelot: Add basic Felix switch
- driver
-Message-ID: <20190622205720.GK8497@lunn.ch>
-References: <1561131532-14860-1-git-send-email-claudiu.manoil@nxp.com>
- <1561131532-14860-7-git-send-email-claudiu.manoil@nxp.com>
+        id S1726290AbfFVX2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jun 2019 19:28:38 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:39993 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726286AbfFVX2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jun 2019 19:28:38 -0400
+Received: by mail-ed1-f65.google.com with SMTP id k8so15646386eds.7;
+        Sat, 22 Jun 2019 16:28:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OvdGvB+gsBI8ix8GBbVgoDhcwK+AHVAdtlmUns+BMLk=;
+        b=l/U6ztiWvim6OPcpsFWv+8/nGMbNqRUP5HKW49NEuFiQ/2hm5kLZ4LOKVe4Dj9kDLL
+         h4stuhYillm96itObs7iUJZP+sT2TCufg4Cy9p25mhyv6xk4YFzCeWHzshYvdTM8syLa
+         XYDbgwvCQeZu1v0+Tf5TFOCIPu5oOP2Q9Z8BPZ8kuhFuBc9wZ4J6AgH/ubHeiOsmjlnK
+         2vm3QYGxJaVtJCyuCKlORFWR7xKSgmDUFAailHSENSEr0KXCUDn+AOsswOX+362EHKpm
+         DyjZE3VP2vqTXGZV7DJwj3grRVINabDTJQsScoIEKyoY5yJYNXK/JoU80CGqQRw3VJNU
+         Jquw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OvdGvB+gsBI8ix8GBbVgoDhcwK+AHVAdtlmUns+BMLk=;
+        b=KMN0zcxTfUqLq5DvtWt8+6aMj+KhuiX/udzLcs0SELBHNeucHtbcjZQFXV5rTy0PCg
+         6HNRRJVlsIw5dPoAY0DDNQpZhx6DHOldHwyUzXjfTHQPZFza17gPE/q7UKmh9Cqyhgtd
+         1orzl9Xbf0r/+ghUuSskIDJvdAiWr3jDE/xEK74c5Wd+LKcwq0x6PF+qhIZ4ug+bVSWZ
+         lpB4XZNPz7EL8AZUPDP+/PD0MnXM1ju3oMe+PubyTj52evUd14iJSJuB2Mxvs28XNbtt
+         QM6u+ZgC3ItI8Vfx6iXVrzAi7rE4pXpf28FGlVrawuov7BjxX7AUbF+qH3Nt+Fxu2iKr
+         BsJA==
+X-Gm-Message-State: APjAAAWUSOZ7MtlWaU4IW501gNJMNNfp52tABxS4wU9AdvJN4GbqhNUC
+        W/rdek0LXe40qOQf7oxxAyKbnC+hirotQA8gicfnhOx1
+X-Google-Smtp-Source: APXvYqwFLKK+g33AoATUdqVfqMxrjCm4EjDKVf4RHDoYPxn6MRppHUMZNpsmcSWHp1P/TWzfaasoZ54TfRUwqU9nxlo=
+X-Received: by 2002:a50:9468:: with SMTP id q37mr26168041eda.163.1561246115698;
+ Sat, 22 Jun 2019 16:28:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1561131532-14860-7-git-send-email-claudiu.manoil@nxp.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20190616132930.6942-1-masneyb@onstation.org> <20190616132930.6942-3-masneyb@onstation.org>
+ <CAL_Jsq+Ne=NEcLbO6C19iOny4bwm_m5QEtcsM78ZDeBmDUVO_Q@mail.gmail.com>
+ <CAF6AEGs6By9-LGRBAPw2OwR9tRKJtEiZVgS2WVWRXmOK1VxNLA@mail.gmail.com> <20190621021444.GA13972@onstation.org>
+In-Reply-To: <20190621021444.GA13972@onstation.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Sat, 22 Jun 2019 16:28:20 -0700
+Message-ID: <CAF6AEGuVKtAu60kLYNKOsy3=hT0FDbJ5vvEJE6gFLAodpU5MGA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: display: msm: gmu: add optional ocmem property
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 21, 2019 at 06:38:52PM +0300, Claudiu Manoil wrote:
-> This supports a switch core ethernet device from Microsemi
-> (VSC9959) that can be integrated on different SoCs as a PCIe
-> endpoint device.
-> 
-> The switchdev functionality is provided by the core Ocelot
-> switch driver. In this regard, the current driver is an
-> instance of Microsemi's Ocelot core driver.
-> 
-> The patch adds the PCI device driver part and defines the
-> register map for the Felix switch core, as it has some
-> differences in register addresses and bitfield mappings
-> compared to the Ocelot switch.  Also some registers or
-> bitfields present on Ocelot are not available on Felix.
-> That's why this driver has its own register map instance.
-> Other than that, the common registers and bitfields have the
-> same functionality and share the same name.
-> 
-> In a few cases, some h/w operations have to be done differently
-> on Felix due to missing bitfields.  This is the case for the
-> switch core reset and init.  Because for this operation Ocelot
-> uses some bits that are not present on Felix, the later has to
-> use a register from the global registers block (GCB) instead.
-> 
-> Signed-off-by: Catalin Horghidan <catalin.horghidan@gmail.com>
-> Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
-> ---
->  drivers/net/ethernet/mscc/Kconfig       |   8 +
->  drivers/net/ethernet/mscc/Makefile      |   9 +-
->  drivers/net/ethernet/mscc/felix_board.c | 392 +++++++++++++++++++++
->  drivers/net/ethernet/mscc/felix_regs.c  | 448 ++++++++++++++++++++++++
->  drivers/net/ethernet/mscc/ocelot.h      |   7 +
->  5 files changed, 862 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/net/ethernet/mscc/felix_board.c
->  create mode 100644 drivers/net/ethernet/mscc/felix_regs.c
-> 
-> diff --git a/drivers/net/ethernet/mscc/Kconfig b/drivers/net/ethernet/mscc/Kconfig
-> index bcec0587cf61..e5a7fa69307e 100644
-> --- a/drivers/net/ethernet/mscc/Kconfig
-> +++ b/drivers/net/ethernet/mscc/Kconfig
-> @@ -29,4 +29,12 @@ config MSCC_OCELOT_SWITCH_OCELOT
->  	  This driver supports the Ocelot network switch device as present on
->  	  the Ocelot SoCs.
->  
-> +config MSCC_FELIX_SWITCH
-> +	tristate "Felix switch driver"
-> +	depends on MSCC_OCELOT_SWITCH
-> +	depends on PCI
-> +	help
-> +	  This driver supports the Felix network switch device, connected as a
-> +	  PCI device.
-> +
->  endif # NET_VENDOR_MICROSEMI
-> diff --git a/drivers/net/ethernet/mscc/Makefile b/drivers/net/ethernet/mscc/Makefile
-> index 9a36c26095c8..81593feb2ea1 100644
-> --- a/drivers/net/ethernet/mscc/Makefile
-> +++ b/drivers/net/ethernet/mscc/Makefile
-> @@ -1,5 +1,10 @@
->  # SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  obj-$(CONFIG_MSCC_OCELOT_SWITCH) += mscc_ocelot_common.o
->  mscc_ocelot_common-y := ocelot.o ocelot_io.o
-> -mscc_ocelot_common-y += ocelot_regs.o ocelot_tc.o ocelot_police.o ocelot_ace.o ocelot_flower.o
-> -obj-$(CONFIG_MSCC_OCELOT_SWITCH_OCELOT) += ocelot_board.o
-> +mscc_ocelot_common-y += ocelot_tc.o ocelot_police.o ocelot_ace.o ocelot_flower.o
-> +
-> +obj-$(CONFIG_MSCC_OCELOT_SWITCH_OCELOT) += mscc_ocelot.o
-> +mscc_ocelot-$(CONFIG_MSCC_OCELOT_SWITCH_OCELOT) := ocelot_regs.o ocelot_board.o
-> +
-> +obj-$(CONFIG_MSCC_FELIX_SWITCH) += mscc_felix.o
-> +mscc_felix-$(CONFIG_MSCC_FELIX_SWITCH) := felix_regs.o felix_board.o
-> diff --git a/drivers/net/ethernet/mscc/felix_board.c b/drivers/net/ethernet/mscc/felix_board.c
-> new file mode 100644
-> index 000000000000..57f7a897b3ae
-> --- /dev/null
-> +++ b/drivers/net/ethernet/mscc/felix_board.c
-> @@ -0,0 +1,392 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/* Felix Switch driver
-> + *
-> + * Copyright 2018-2019 NXP
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/pci.h>
-> +#include <linux/netdevice.h>
-> +#include <linux/phy_fixed.h>
-> +#include <linux/phy.h>
-> +#include <linux/of_mdio.h>
-> +#include <linux/of_net.h>
-> +#include <linux/iopoll.h>
-> +#include <net/switchdev.h>
-> +#include "ocelot.h"
-> +
-> +#define FELIX_DRV_VER_MAJ 1
-> +#define FELIX_DRV_VER_MIN 0
-> +
-> +#define FELIX_DRV_STR	"Felix Switch driver"
-> +#define FELIX_DRV_VER_STR __stringify(FELIX_DRV_VER_MAJ) "." \
-> +			  __stringify(FELIX_DRV_VER_MIN)
+On Thu, Jun 20, 2019 at 7:14 PM Brian Masney <masneyb@onstation.org> wrote:
+>
+> On Wed, Jun 19, 2019 at 01:21:20PM -0700, Rob Clark wrote:
+> > On Wed, Jun 19, 2019 at 1:17 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > On Sun, Jun 16, 2019 at 7:29 AM Brian Masney <masneyb@onstation.org> wrote:
+> > > >
+> > > > Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
+> > > > must use the On Chip MEMory (OCMEM) in order to be functional. Add the
+> > > > optional ocmem property to the Adreno Graphics Management Unit bindings.
+> > > >
+> > > > Signed-off-by: Brian Masney <masneyb@onstation.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/display/msm/gmu.txt | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/msm/gmu.txt b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> > > > index 90af5b0a56a9..c746b95e95d4 100644
+> > > > --- a/Documentation/devicetree/bindings/display/msm/gmu.txt
+> > > > +++ b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> > > > @@ -31,6 +31,10 @@ Required properties:
+> > > >  - iommus: phandle to the adreno iommu
+> > > >  - operating-points-v2: phandle to the OPP operating points
+> > > >
+> > > > +Optional properties:
+> > > > +- ocmem: phandle to the On Chip Memory (OCMEM) that's present on some Snapdragon
+> > > > +         SoCs. See Documentation/devicetree/bindings/soc/qcom/qcom,ocmem.yaml.
+> > >
+> > > We already have a couple of similar properties. Lets standardize on
+> > > 'sram' as that is what TI already uses.
+> > >
+> > > Also, is the whole OCMEM allocated to the GMU? If not you should have
+> > > child nodes to subdivide the memory.
+> > >
+> >
+> > iirc, downstream a large chunk of OCMEM is statically allocated for
+> > GPU.. the remainder is dynamically allocated for different use-cases.
+> > The upstream driver Brian is proposing only handles the static
+> > allocation case
+>
+> It appears that the GPU expects to use a specific region of ocmem,
+> specifically starting at 0. The freedreno driver allocates 1MB of
+> ocmem on the Nexus 5 starting at ocmem address 0. As a test, I
+> changed the starting address to 0.5MB and kmscube shows only half the
+> cube, and four wide black bars across the screen:
+>
+> https://www.flickr.com/photos/masneyb/48100534381/
+>
+> > (and I don't think we have upstream support for the various audio and
+> > video use-cases that used dynamic OCMEM allocation downstream)
+>
+> That's my understanding as well.
+>
+> > Although maybe we should still have a child node to separate the
+> > statically and dynamically allocated parts?  I'm not sure what would
+> > make the most sense..
+>
+> Given that the GPU is expecting a fixed address in ocmem, perhaps it
+> makes sense to have the child node. How about this based on the
+> sram/sram.txt bindings?
+>
+>   ocmem: ocmem@fdd00000 {
+>     compatible = "qcom,msm8974-ocmem";
+>
+>     reg = <0xfdd00000 0x2000>, <0xfec00000 0x180000>;
+>     reg-names = "ctrl", "mem";
+>
+>     clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>, <&mmcc OCMEMCX_OCMEMNOC_CLK>;
+>     clock-names = "core", "iface";
+>
+>     gmu-sram@0 {
+>       reg = <0x0 0x100000>;
+>       pool;
+>     };
+>
+>     misc-sram@0 {
+>       reg = <0x100000 0x080000>;
+>       export;
+>     };
+>   };
+>
+> I marked the misc pool as export since I've seen in the downstream ocmem
+> sources a reference to their closed libsensors that runs in userspace.
+>
+> Looking at the sram bindings led me to the genalloc API
+> (Documentation/core-api/genalloc.rst). I wonder if this is the way that
+> this should be done?
 
-Driver version strings are pretty pointless. What you really want to
-know if the specific kernel version.
+won't claim to be a dt expert, but this seems somewhat sane..  maybe
+drop the export until a use-case comes along for that.. or even the
+entire second child node?  I guess that comes down to what robher and
+others prefer, I can't really speculate too much about the non-gpu
+use-cases for ocmem (or if they'll ever be upstream)
 
-> +
-> +#define FELIX_PORT_RES_START	0x0100000
-> +#define FELIX_PORT_RES_SIZE	0x10000
-
-This should really be in device tree. You then get a lot closer to the
-binding for mscc-ocelot, and you can reuse more of its code.
-
-> +static void felix_release_ports(struct ocelot *ocelot)
-> +{
-> +	struct ocelot_port *ocelot_port;
-> +	struct phy_device *phydev;
-> +	struct device_node *dn;
-> +	int i;
-> +
-> +	for (i = 0; i < ocelot->num_phys_ports; i++) {
-> +		ocelot_port = ocelot->ports[i];
-> +		if (!ocelot_port || !ocelot_port->phy || !ocelot_port->dev)
-> +			continue;
-
-Phys are often optional, e.g. an RGMII interface to another switch, or
-an SFP port.
-
-> +
-> +		phydev = ocelot_port->phy;
-> +		unregister_netdev(ocelot_port->dev);
-> +		free_netdev(ocelot_port->dev);
-> +
-> +		if (phy_is_pseudo_fixed_link(phydev)) {
-> +			dn = phydev->mdio.dev.of_node;
-> +			/* decr refcnt: of_phy_register_fixed_link */
-> +			of_phy_deregister_fixed_link(dn);
-> +		}
-> +		phy_device_free(phydev); /* decr refcnt: of_phy_find_device */
-
-To be on the safe side, you should probably not free the netdev until
-you free the phydev.
-
-This function also seems pretty generic. Should it be shared?
-
-> +static int felix_ports_init(struct pci_dev *pdev)
-> +{
-> +	struct ocelot *ocelot = pci_get_drvdata(pdev);
-> +	struct device_node *np = ocelot->dev->of_node;
-> +	struct device_node *phy_node, *portnp;
-> +	struct phy_device *phydev;
-> +	void __iomem *port_regs;
-> +	resource_size_t base;
-> +	u32 port;
-> +	int err;
-> +
-> +	ocelot->num_phys_ports = FELIX_MAX_NUM_PHY_PORTS;
-> +
-> +	np = of_get_child_by_name(np, "ethernet-ports");
-> +	if (!np) {
-> +		dev_err(&pdev->dev, "ethernet-ports sub-node not found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* alloc netdev for each port */
-> +	err = ocelot_init(ocelot);
-> +	if (err)
-> +		return err;
-> +
-> +	base = pci_resource_start(pdev, FELIX_SWITCH_BAR);
-> +	for_each_available_child_of_node(np, portnp) {
-> +		struct resource res = {};
-> +		int phy_mode;
-> +
-> +		if (!portnp || !portnp->name ||
-> +		    of_node_cmp(portnp->name, "port") ||
-
-The name of the node should not matter.
-
-> +static int felix_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
-> +{
-> +
-> +	register_netdevice_notifier(&ocelot_netdevice_nb);
-> +	register_switchdev_notifier(&ocelot_switchdev_nb);
-> +	register_switchdev_blocking_notifier(&ocelot_switchdev_blocking_nb);
-
-This is also shared. So maybe move it into a common function?
-
-> +
-> +	dev_info(&pdev->dev, "%s v%s\n", FELIX_DRV_STR, FELIX_DRV_VER_STR);
-> +	return 0;
-> +
-> +err_ports_init:
-> +err_chip_init:
-> +err_sw_core_init:
-> +	pci_iounmap(pdev, regs);
-> +err_iomap:
-> +err_resource_len:
-> +err_alloc_ocelot:
-> +err_dma:
-> +	pci_disable_device(pdev);
-> +
-> +	return err;
-> +}
-> +
-> +static void felix_pci_remove(struct pci_dev *pdev)
-> +{
-> +	struct ocelot *ocelot;
-> +
-> +	ocelot = pci_get_drvdata(pdev);
-> +
-> +	/* stop workqueue thread */
-> +	ocelot_deinit(ocelot);
-> +	unregister_switchdev_blocking_notifier(&ocelot_switchdev_blocking_nb);
-> +	unregister_switchdev_notifier(&ocelot_switchdev_nb);
-> +	unregister_netdevice_notifier(&ocelot_netdevice_nb);
-
-This is also common.
-
-     Andrew
+BR,
+-R
