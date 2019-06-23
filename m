@@ -2,134 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 220694FB30
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 12:53:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F13B4FB3A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 13:20:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726441AbfFWKxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 06:53:34 -0400
-Received: from onstation.org ([52.200.56.107]:35478 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726350AbfFWKxe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jun 2019 06:53:34 -0400
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id BE38C3E951;
-        Sun, 23 Jun 2019 10:53:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1561287212;
-        bh=QWDzJTgK2u7G6sVT2aNJPw8wBx+pnsIuHGrHBw4hX1M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SylbMrRuiOpN+Ee4P8jjYh0jWnVZKwulHNxQV4dWtYocaTVcBa+/PJSnMhp9LvI+S
-         uvG0O/rv8p5g0s2cuL4rw5aUVVcBJitbSXMwx+6oGa+Ss7yl34WPGBMQPFU5E/RPk6
-         UUEIzMp5beHwB+fPqSUYXjd8m4Y0HrSj1BLAlkmc=
-Date:   Sun, 23 Jun 2019 06:53:32 -0400
-From:   Brian Masney <masneyb@onstation.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RESEND] ARM: dts: qcom: msm8974-hammerhead: add device
- tree bindings for vibrator
-Message-ID: <20190623105332.GA25506@onstation.org>
-References: <20190516085018.2207-1-masneyb@onstation.org>
- <20190520142149.D56DA214AE@mail.kernel.org>
- <CACRpkdZxu1LfK11OHEx5L_4kyjMZ7qERpvDzFj5u3Pk2kD1qRA@mail.gmail.com>
- <20190529101231.GA14540@basecamp>
- <CACRpkdY-TcF7rizbPz=UcHrFvDgPJD68vbovNdcWP-aBYppp=g@mail.gmail.com>
+        id S1726453AbfFWLUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 07:20:40 -0400
+Received: from mail-eopbgr130050.outbound.protection.outlook.com ([40.107.13.50]:21984
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726350AbfFWLUk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 07:20:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NllZTFARPBiLY5Ad+Gn0ez9Ow5idh95H78uOc3HLrG4=;
+ b=VZ1oHWJZDm0K6Yel+lNvz179U9+FfZv2wzp22DJcbwKfV74qd7QBqIl03hRL5Pu1q2+jd/V5lDuh02WyuK5IgHKnxBjtlv5b8gDgdcSgLKRYE1wVeOYzhd/CMYEpaWHEaSp3WvptQLTDU0f/fe0LpgWeRvQtiNj3RGlD8DuQqsk=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3899.eurprd04.prod.outlook.com (52.134.71.154) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Sun, 23 Jun 2019 11:20:35 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2008.014; Sun, 23 Jun 2019
+ 11:20:34 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Martin Kepplinger <martink@posteo.de>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Abel Vesa <abel.vesa@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH 4/4] arm64: dts: imx8mm: Add system counter node
+Thread-Topic: [PATCH 4/4] arm64: dts: imx8mm: Add system counter node
+Thread-Index: AQHVJ/+/0SOBOWGUd0q/sAmaJpF3+6anlvCAgAGD/jA=
+Date:   Sun, 23 Jun 2019 11:20:34 +0000
+Message-ID: <DB3PR0402MB39164587E2F6F56DBB47BCE2F5E10@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190621070720.12395-1-Anson.Huang@nxp.com>
+ <20190621070720.12395-4-Anson.Huang@nxp.com>
+ <9f411a1c-50d2-e26b-a4e6-83e02b626378@posteo.de>
+In-Reply-To: <9f411a1c-50d2-e26b-a4e6-83e02b626378@posteo.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.68]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8feae21b-1f88-4472-bac9-08d6f7cccfa9
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3899;
+x-ms-traffictypediagnostic: DB3PR0402MB3899:
+x-microsoft-antispam-prvs: <DB3PR0402MB38996365D3EBF2A84A5120C1F5E10@DB3PR0402MB3899.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3968;
+x-forefront-prvs: 00770C4423
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(346002)(39860400002)(396003)(366004)(136003)(13464003)(199004)(189003)(6506007)(53546011)(66476007)(2501003)(3846002)(68736007)(52536014)(446003)(11346002)(6116002)(6436002)(76176011)(256004)(476003)(2906002)(5660300002)(99286004)(110136005)(25786009)(7696005)(186003)(66066001)(71200400001)(55016002)(6246003)(71190400001)(229853002)(66946007)(305945005)(102836004)(33656002)(53936002)(8936002)(26005)(9686003)(73956011)(44832011)(316002)(8676002)(66556008)(7736002)(7416002)(14454004)(76116006)(4326008)(486006)(74316002)(478600001)(86362001)(81156014)(2201001)(81166006)(66446008)(64756008)(32563001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3899;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: NxgQWbB5WrEz7EaW/3PVZ3s9P2bwHnvQURvM5Itr8NOAtmo0X9hCMDtsuYmGBUa1cg8YJTDYbMy5dV6MkAyKWFkDuYjk812RM8kaT3qUcp6WmAkVQvNP04aXUzCfBM3RcpVllZlZWyxraSSNPF3vb2Y9eUm6kumyfVDayadeUygVPWDzwRkvFPWJpM8MXxWBb4rQsXoLfPtBxIOB2y9CFwJ0DaSLpBBYGvm6HMTvNBtHCwVDYNTONiIPopV+hvidbew8fCztY4qSLOBX+197iegyGMVgYrEqj7dqBm/efcTNo/JRWkldVTNfgx4CkAfiY2FBx7jfEmw+qwEvv+TfFT0t35PT/a9F7R29wlNB5LXwMdsMFgW4SGzvg8+EskKqZzVIHlIkzowLEJD8yNOYr9pnZk/6RKr3K98KlK/tvpI=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdY-TcF7rizbPz=UcHrFvDgPJD68vbovNdcWP-aBYppp=g@mail.gmail.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8feae21b-1f88-4472-bac9-08d6f7cccfa9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2019 11:20:34.8050
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3899
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen and Thierry,
-
-On Fri, May 31, 2019 at 12:51:38PM +0200, Linus Walleij wrote:
-> On Wed, May 29, 2019 at 12:12 PM Brian Masney <masneyb@onstation.org> wrote:
-> 
-> > My first revision of this vibrator driver used the Linux PWM framework
-> > due to the variable duty cycle:
-> 
-> So what I perceive if I get the thread right is that actually a lot of
-> qcom clocks (all with the M/N/D counter set-up) have variable duty
-> cycle. Very few consumers use that feature.
-> 
-> It would be a bit much to ask that they all be implemented as PWMs
-> and then cast into clocks for the 50/50 dutycycle case, I get that.
-> 
-> What about simply doing both?
-> 
-> Export the same clocks from the clk and pwm frameworks and be
-> happy. Of course with some mutex inside the driver so that it can't
-> be used from both ends at the same time.
-
-Do you have any feedback about this? As far as I understand, there are
-two options on the table right now:
-
-1) Add support for the duty cycle to the qcom clk driver and write a
-   general purpose clk-vibra driver for the input subsystem.
-
-2) Do what Linus suggests above. We can use v1 of this series from last
-   September (see below for link) that adds this to the pwm subsystem.
-   The locking would need to be added so that it won't conflict with the
-   clk subsystem. This can be tied into the input subsystem with the
-   existing pwm-vibra driver.
-
-Either case, the msm-vibrator driver that I added to the input subsystem
-will be dropped.
-
-Thanks,
-
-Brian
-
-> 
-> Further Thierry comments
-> https://lore.kernel.org/lkml/20181012114749.GC31561@ulmo/
-> 
-> > The device itself doesn't seem to be a
-> > generic PWM in the way that the PWM framework
-> > expects it.
-> 
-> I don't see why.  I just look at this function from the original
-> patch series:
-> 
-> +static int msm_vibra_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
-> + int duty_ns, int period_ns)
-> +{
-> + struct msm_vibra_pwm *msm_pwm = to_msm_vibra_pwm(chip);
-> + int d_reg_val;
-> +
-> + d_reg_val = 127 - (((duty_ns / 1000) * 126) / (period_ns / 1000));
-> +
-> + msm_vibra_pwm_write(msm_pwm, REG_CFG_RCGR,
-> +    (2 << 12) | /* dual edge mode */
-> +    (0 << 8) |  /* cxo */
-> +    (7 << 0));
-> + msm_vibra_pwm_write(msm_pwm, REG_M, 1);
-> + msm_vibra_pwm_write(msm_pwm, REG_N, 128);
-> + msm_vibra_pwm_write(msm_pwm, REG_D, d_reg_val);
-> + msm_vibra_pwm_write(msm_pwm, REG_CMD_RCGR, 1);
-> + msm_vibra_pwm_write(msm_pwm, REG_CBCR, 1);
-> +
-> + return 0;
-> +}
-> 
-> How is this NOT a a generic PWM in the way that the PWM
-> framework expects it? It configures the period and duty cycle on
-> a square wave, that is what a generic PWM is in my book.
-> 
-> Yours,
-> Linus Walleij
+SGksIE1hcnRpbg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IE1hcnRp
+biBLZXBwbGluZ2VyIDxtYXJ0aW5rQHBvc3Rlby5kZT4NCj4gU2VudDogU2F0dXJkYXksIEp1bmUg
+MjIsIDIwMTkgODoxMCBQTQ0KPiBUbzogQW5zb24gSHVhbmcgPGFuc29uLmh1YW5nQG54cC5jb20+
+OyBjYXRhbGluLm1hcmluYXNAYXJtLmNvbTsNCj4gd2lsbEBrZXJuZWwub3JnOyByb2JoK2R0QGtl
+cm5lbC5vcmc7IG1hcmsucnV0bGFuZEBhcm0uY29tOw0KPiBzaGF3bmd1b0BrZXJuZWwub3JnOyBz
+LmhhdWVyQHBlbmd1dHJvbml4LmRlOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7DQo+IGZlc3RldmFt
+QGdtYWlsLmNvbTsgbXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb207IHNib3lkQGtlcm5lbC5vcmc7DQo+
+IExlb25hcmQgQ3Jlc3RleiA8bGVvbmFyZC5jcmVzdGV6QG54cC5jb20+OyBBaXNoZW5nIERvbmcN
+Cj4gPGFpc2hlbmcuZG9uZ0BueHAuY29tPjsgSmFja3kgQmFpIDxwaW5nLmJhaUBueHAuY29tPjsg
+RGFuaWVsIEJhbHV0YQ0KPiA8ZGFuaWVsLmJhbHV0YUBueHAuY29tPjsgUGVuZyBGYW4gPHBlbmcu
+ZmFuQG54cC5jb20+OyBBYmVsIFZlc2ENCj4gPGFiZWwudmVzYUBueHAuY29tPjsgbGludXgtYXJt
+LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eC0NCj4ga2VybmVsQHZnZXIua2VybmVs
+Lm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LQ0KPiBjbGtAdmdlci5rZXJu
+ZWwub3JnDQo+IENjOiBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPg0KPiBTdWJqZWN0
+OiBSZTogW1BBVENIIDQvNF0gYXJtNjQ6IGR0czogaW14OG1tOiBBZGQgc3lzdGVtIGNvdW50ZXIg
+bm9kZQ0KPiANCj4gT24gMjEuMDYuMTkgMDk6MDcsIEFuc29uLkh1YW5nQG54cC5jb20gd3JvdGU6
+DQo+ID4gRnJvbTogQW5zb24gSHVhbmcgPEFuc29uLkh1YW5nQG54cC5jb20+DQo+ID4NCj4gPiBB
+ZGQgaS5NWDhNTSBzeXN0ZW0gY291bnRlciBub2RlIHRvIGVuYWJsZSB0aW1lci1pbXgtc3lzY3Ry
+IGJyb2FkY2FzdA0KPiA+IHRpbWVyIGRyaXZlci4NCj4gPg0KPiANCj4gDQo+IGRvIHdlIG5lZWQg
+c2ltaWxhciBhZGRpdGlvbnMgdG8gaW14OG1xPyBJZiBzbywgSSB0aGluayB0aGVzZSB3b3VsZCBm
+aXQgaW4gaGVyZQ0KPiB0b28uDQoNCmkuTVg4TVEgaGFzIHNvbWV0aGluZyBkaWZmZXJlbnQgYWJv
+dXQgc3lzdGVtIGNvdW50ZXIgZHJpdmVyIGVuYWJsZW1lbnQsIEkgZGlkDQppdCBpbiBhbm90aGVy
+IHBhdGNoIHNlcmllcy4NCg0KQW5zb24uDQoNCj4gDQo+IHRoYW5rcywNCj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBtYXJ0aW4NCg0K
