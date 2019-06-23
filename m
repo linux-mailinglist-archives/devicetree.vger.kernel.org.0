@@ -2,66 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF274FAA0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 09:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A471E4FB4E
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 13:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726086AbfFWHgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 03:36:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50800 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726050AbfFWHgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jun 2019 03:36:18 -0400
-Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9C7E92073F;
-        Sun, 23 Jun 2019 07:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561275377;
-        bh=GoqMkEGAkw9RsRi9oynfQuaA0MqWs5oMzUhbx6/BIjk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h5cwObSJLtfGBmPwzlpJCw9ntlEZ/Hv7gCDQ5Zjnf8e0FlS3aGFVVwL1lY0V5NFVK
-         69x89nQrjd3MQ4CM3CrnMxSmU6LJSyuooXR0Np6mZhoPpahmsX4TO4pRx2XDckXB9A
-         NCM4R0rgY0oNLtu2yDTrgSg3PL3TNKjBwmKCwXM8=
-Date:   Sun, 23 Jun 2019 15:36:06 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     daniel.baluta@nxp.com
-Cc:     mark.rutland@arm.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        shengjiu.wang@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        m.felsch@pengutronix.de
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm-evk: Enable audio codec wm8524
-Message-ID: <20190623073605.GA3800@dragon>
-References: <20190604123257.2920-1-daniel.baluta@nxp.com>
- <20190604123257.2920-3-daniel.baluta@nxp.com>
+        id S1726540AbfFWLbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 07:31:35 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:33244 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726536AbfFWLbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 07:31:35 -0400
+X-Greylist: delayed 2685 seconds by postgrey-1.27 at vger.kernel.org; Sun, 23 Jun 2019 07:31:34 EDT
+Received: from p5b06daab.dip0.t-ipconnect.de ([91.6.218.171] helo=nanos)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+        (Exim 4.80)
+        (envelope-from <tglx@linutronix.de>)
+        id 1hf01B-0007hi-S8; Sun, 23 Jun 2019 12:46:42 +0200
+Date:   Sun, 23 Jun 2019 12:46:40 +0200 (CEST)
+From:   Thomas Gleixner <tglx@linutronix.de>
+To:     Anson.Huang@nxp.com
+cc:     daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, l.stach@pengutronix.de,
+        abel.vesa@nxp.com, ccaione@baylibre.com, angus@akkea.ca,
+        andrew.smirnov@gmail.com, agx@sigxcpu.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com
+Subject: Re: [PATCH 1/3] clocksource/drivers/sysctr: Add an optional
+ property
+In-Reply-To: <20190621082838.12630-1-Anson.Huang@nxp.com>
+Message-ID: <alpine.DEB.2.21.1906231232520.32342@nanos.tec.linutronix.de>
+References: <20190621082838.12630-1-Anson.Huang@nxp.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190604123257.2920-3-daniel.baluta@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain; charset=US-ASCII
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 04, 2019 at 08:32:57PM +0800, daniel.baluta@nxp.com wrote:
-> From: Daniel Baluta <daniel.baluta@nxp.com>
-> 
-> i.MX8MM has one wm8524 audio codec connected with
-> SAI3 digital audio interface.
-> 
-> This patch uses simple-card machine driver in order
-> to enable wm8524 codec.
-> 
-> We need to set:
-> 	* SAI3 pinctrl configuration
-> 	* codec reset gpio pinctrl configuration
-> 	* clock hierarchy
-> 	* codec node
-> 	* simple-card configuration
-> 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Anson,
 
-Applied, thanks.
+On Fri, 21 Jun 2019, Anson.Huang@nxp.com wrote:
+
+> Subject : [PATCH 1/3] clocksource/drivers/sysctr: Add an optional property
+
+That subject line is not really informative. From Documentation:
+
+     The ``summary phrase`` in the email's Subject should concisely
+     describe the patch which that email contains.
+
+That means that it should tell which property it adds so it's immediately
+clear what this is about. Something like:
+
+ Subject: clocksource/drivers/sysctr: Add optional clock-frequency property
+
+Hmm?
+
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> This patch adds an optional property "clock-frequency" to pass
+
+Please read Documentation/process/submitting-patches.rst and search for
+'This patch'
+
+> the system counter frequency value to kernel system counter
+> driver and indicate the driver to skip of_clk operations, this
+> is to support those platforms using platform driver model for
+> clock driver.
+
+That sentence does not parse. Please structure your changelog in the
+following order:
+
+   1) Context or problem
+
+   2) Detailed analysis (if applicable and necessary)
+
+   3) Short description of the solution (the rest is obvious from the patch
+      itself).
+
+So something like this (assumed I decoded the above correctly):
+
+   Systems which use the system counter with the platform driver model
+   require the clock frequency to be supplied via device tree.
+
+   This is necessary as in the platform driver model the of_clk operations
+   do not work correctly because LENGHTY EXPLANATION WHY ...
+
+   Add the optinal clock-frequency to the device tree bindings of the NXP
+   system counter so the frequency can be handed in and the of_clk
+   operations can be skipped.
+
+The important part is the missing LENGTHY EXPLANATION WHY. I can't fill
+that in because you did not provide that information.
+
+Thanks,
+
+	tglx
