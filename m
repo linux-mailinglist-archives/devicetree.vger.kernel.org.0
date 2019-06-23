@@ -2,114 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9AC44FB8F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 14:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4554FB9D
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 14:37:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726378AbfFWMY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 08:24:27 -0400
-Received: from mail-eopbgr70042.outbound.protection.outlook.com ([40.107.7.42]:12703
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725963AbfFWMY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jun 2019 08:24:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nbPrApaPO1J8+RuUsUfkGpPn4x1KcDxkk/WnZ3tI+Qk=;
- b=lK04Va+zi6g5aM+LcTScYPPrR71zuUu0/yRrtmnfpe+lT6/AW2dfDRst8nFFKPyJJcIAp4kXv1ylBAVRkpRy02rGYeVBq7iDxQxLFjEzmnXCmTET/ZtRvxJhFyYFgyXYcl8bXn7H6vhCc+93S0s4jXVRBSXC0YVSRWK0hH6wUO0=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3786.eurprd04.prod.outlook.com (52.134.71.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2008.16; Sun, 23 Jun 2019 12:24:15 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2008.014; Sun, 23 Jun 2019
- 12:24:15 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Thomas Gleixner <tglx@linutronix.de>
-CC:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH V2 2/3] clocksource: imx-sysctr: Add of_clk skip option
-Thread-Topic: [PATCH V2 2/3] clocksource: imx-sysctr: Add of_clk skip option
-Thread-Index: AQHVKbuWNWrHQhlrtkONmwA387ffcaapJ8uAgAABY9A=
-Date:   Sun, 23 Jun 2019 12:24:15 +0000
-Message-ID: <DB3PR0402MB3916EF5948655AE1373E0AF9F5E10@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190623120434.19556-1-Anson.Huang@nxp.com>
- <20190623120434.19556-2-Anson.Huang@nxp.com>
- <alpine.DEB.2.21.1906231413110.32342@nanos.tec.linutronix.de>
-In-Reply-To: <alpine.DEB.2.21.1906231413110.32342@nanos.tec.linutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a28c3474-ce7a-4895-6e18-08d6f7d5b52b
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3786;
-x-ms-traffictypediagnostic: DB3PR0402MB3786:
-x-microsoft-antispam-prvs: <DB3PR0402MB378663CF37E034B4375B38D7F5E10@DB3PR0402MB3786.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 00770C4423
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(39860400002)(346002)(396003)(366004)(54534003)(189003)(199004)(186003)(102836004)(229853002)(4326008)(86362001)(5660300002)(71200400001)(6916009)(26005)(478600001)(71190400001)(25786009)(73956011)(52536014)(66446008)(66556008)(14454004)(7416002)(66476007)(66946007)(76116006)(64756008)(81166006)(33656002)(7696005)(68736007)(81156014)(6506007)(486006)(44832011)(9686003)(476003)(256004)(6116002)(14444005)(11346002)(446003)(305945005)(74316002)(7736002)(3846002)(53936002)(2906002)(8936002)(316002)(99286004)(6246003)(55016002)(76176011)(66066001)(54906003)(8676002)(6436002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3786;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: NR3WsAjgzO64Z0QYiwy3JYp3jichEB0d6vK1Wk3jRxIo3L4VGQIMoFlsBQLV5EhHRzsVJ2jSe6j9vlShfFkcPZoJw4rQtLkgXZtYRA0luw2v+aypP9COhnY3aymdhHiUhxh3wNzkEvVZDmk2/x7GTpVx0FwBOrABnhx3jbpbQtYsKajaWf3FeMK1chBQSvBewam+gXnyPrybISAi8pci1ZkBs4HwxcLvifzg4RlWSkkPref2wphZ88omnqWB2kepwcmDBOuVrW7qEklFp6PDC6bCUE32lPbqxLYbdMXlH9jTSWm8Fp0GWTLrbyrIu7YePA5B1zNWw9sDns/aJJTShD48EUY+lK4O9klNMx6UaKLOuRfF0U8TfrSwwnuqW4PJOIFr4RXywbT91qCbvA9/okDBG2KPrcwgjKHh7mRhBjs=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a28c3474-ce7a-4895-6e18-08d6f7d5b52b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2019 12:24:15.7981
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3786
+        id S1726583AbfFWMhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 08:37:08 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:43100 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726386AbfFWMhH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 08:37:07 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1D0242003D1;
+        Sun, 23 Jun 2019 14:37:05 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2D7CC20012B;
+        Sun, 23 Jun 2019 14:36:56 +0200 (CEST)
+Received: from mega.ap.freescale.net (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3EA8C4030C;
+        Sun, 23 Jun 2019 20:36:45 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, l.stach@pengutronix.de,
+        abel.vesa@nxp.com, ccaione@baylibre.com, angus@akkea.ca,
+        andrew.smirnov@gmail.com, agx@sigxcpu.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH RESEND V2 1/3] clocksource/drivers/sysctr: Add optional clock-frequency property
+Date:   Sun, 23 Jun 2019 20:38:48 +0800
+Message-Id: <20190623123850.22584-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFRob21hcw0KDQo+IE9uIFN1biwgMjMgSnVuIDIwMTksIEFuc29uLkh1YW5nQG54cC5jb20g
-d3JvdGU6DQo+IA0KPiBBZ2FpbiB0aGUgc2hvcnQgc3VtbWFyeSBjb3VsZCBiZSBtb3JlIGluZm9y
-bWF0aXZlLiBJbnN0ZWFkIG9mICdBZGQgZm9vJw0KPiB5b3UgY291bGQgc2F5Og0KPiANCj4gICAg
-IC4uLi4uOiBNYWtlIHRpbWVyIHdvcmsgd2l0aCBwbGF0Zm9ybSBkcml2ZXIgbW9kZWwNCj4gDQo+
-IFRoYXQgc3VtcyB1cCB0aGUgcmVhbCBtZWF0IG9mIHRoZSBwYXRjaC4gJ0FkZCBzb21lIG9wdGlv
-bicgaXMgcHJldHR5DQo+IHVuaW5mb3JtYXRpdmUuDQoNCk1ha2VzIHNlbnNlLg0KDQo+IA0KPiA+
-IE9uIHNvbWUgaS5NWDhNIHBsYXRmb3JtcywgY2xvY2sgZHJpdmVyIHVzZXMgcGxhdGZvcm0gZHJp
-dmVyIG1vZGVsIGFuZA0KPiA+IGl0IGlzIE5PVCByZWFkeSBkdXJpbmcgdGltZXIgaW5pdGlhbGl6
-YXRpb24gcGhhc2UsIHRoZSBjbG9jaw0KPiA+IG9wZXJhdGlvbnMgd2lsbCBmYWlsIGFuZCBzeXN0
-ZW0gY291bnRlciBkcml2ZXIgd2lsbCBmYWlsIHRvby4gQXMgYWxsDQo+ID4gdGhlIGkuTVg4TSBw
-bGF0Zm9ybXMnIHN5c3RlbSBjb3VudGVyIGNsb2NrIGFyZSBmcm9tIE9TQyB3aGljaCBpcw0KPiA+
-IGFsd2F5cyBlbmFibGVkLCBzbyBpdCBpcyBubyBuZWVkIHRvIGVuYWJsZSBjbG9jayBmb3Igc3lz
-dGVtIGNvdW50ZXINCj4gPiBkcml2ZXIsIHRoZSBPTkxZIHRoaW5nIGlzIHRvIHBhc3MgY2xvY2sg
-ZnJlcXVlbmNlIHRvIGRyaXZlci4NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWRkcyBhbiBvcHRpb24g
-b2Ygc2tpcHBpbmcgb2ZfY2xrIG9wZXJhdGlvbiBmb3Igc3lzdGVtDQo+ID4gY291bnRlciBkcml2
-ZXIsIGFuIG9wdGlvbmFsIHByb3BlcnR5ICJjbG9jay1mcmVxdWVuY3kiDQo+ID4gaXMgaW50cm9k
-dWNlZCB0byBwYXNzIHRoZSBmcmVxdWVuY3kgdmFsdWUgdG8gc3lzdGVtIGNvdW50ZXIgZHJpdmVy
-IGFuZA0KPiA+IGluZGljYXRlIGRyaXZlciB0byBza2lwIG9mX2NsayBvcGVyYXRpb25zLg0KPiAN
-Cj4gVGhlIGNvbW1lbnRzIHRvIHRoZSBjaGFuZ2Vsb2cgb2YgcGF0Y2ggMSBhcHBseSBoZXJlIGFz
-IHdlbGwgOikNCj4gDQo+IEhpbnQ6ICdUaGlzIHBhdGNoJw0KDQpPb3BzLi4uZGlkIE5PVCBub3Rp
-Y2UgdGhhdCwgSSB3aWxsIHJlc2VuZCB0aGUgVjIgcGF0Y2ggc2VyaWVzIGFzIHRoZXkgYXJlIGFj
-dHVhbGx5DQpzaW1pbGFyIGlzc3Vlcy4NCg0KVGhhbmtzLA0KQW5zb24NCg0KPiANCj4gVGhhbmtz
-LA0KPiANCj4gCXRnbHgNCj4gDQoNCg==
+From: Anson Huang <Anson.Huang@nxp.com>
+
+Systems which use platform driver model for clock driver require the
+clock frequency to be supplied via device tree when system counter
+driver is enabled.
+
+This is necessary as in the platform driver model the of_clk operations
+do not work correctly because system counter driver is initialized in
+early phase of system boot up, and clock driver using platform driver
+model is NOT ready at that time, it will cause system counter driver
+initialization failed.
+
+Add the optinal clock-frequency to the device tree bindings of the NXP
+system counter, so the frequency can be handed in and the of_clk
+operations can be skipped.
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V1:
+	- improve commit log, no content change.
+---
+ Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
+index d576599..c9907a0 100644
+--- a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
++++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
+@@ -14,6 +14,11 @@ Required properties:
+ - clocks : 	    Specifies the counter clock.
+ - clock-names: 	    Specifies the clock's name of this module
+ 
++Optional properties:
++
++- clock-frequency : Specifies system counter clock frequency and indicates system
++		    counter driver to skip clock operations.
++
+ Example:
+ 
+ 	system_counter: timer@306a0000 {
+@@ -22,4 +27,5 @@ Example:
+ 		clocks = <&clk_8m>;
+ 		clock-names = "per";
+ 		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++		clock-frequency = <8333333>;
+ 	};
+-- 
+2.7.4
+
