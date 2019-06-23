@@ -2,200 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A56CE4FCD8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 18:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D89C34FD0A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 19:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727061AbfFWQmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 12:42:35 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:34780 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727051AbfFWQmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 12:42:35 -0400
-Received: by mail-pf1-f195.google.com with SMTP id c85so6126389pfc.1;
-        Sun, 23 Jun 2019 09:42:34 -0700 (PDT)
+        id S1726399AbfFWRIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 13:08:05 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:40265 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726417AbfFWRIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 13:08:04 -0400
+Received: by mail-qt1-f196.google.com with SMTP id a15so12104695qtn.7;
+        Sun, 23 Jun 2019 10:08:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Wt7RMWJEU5nf2APAW5wITney1vGRi8ExyzwA2ly5tbM=;
-        b=DO56xL8GNC3pRjMbczek/js2aH+Jr00XhhADU2CusMADs20FUQ6om0QfFNRcH7bIok
-         utY8iKwz2gs/7WHR18tlrl+XRM9KtdS9MZyCglgz5ZWErisPeGVp+BPEcw81Ezw1KyjP
-         +I7gFX+cYEvLyjmwJRHb04L6mRZ4LjmdVX+GURXCGE4Ky2HFiZkXGwRma8nQVRg7xzb1
-         OpjjtLiiCN+Zc/sg6Vk26H04UbcX2a5L9ZDyAyFJkne9LJuc3SjKpjccxQ4NfVaSg62X
-         sX8QGDvadx5+1F6N6uKmqbh/oIFj9SbUUmdqZyIvf9VMIoiCKn8bIS68Io+mfdDuE05u
-         4YKQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s6kjF5fXn7CUbLQsdln+pNA94ruY+IQSwhFY01H/Qs0=;
+        b=PgdexjanEdOhiC1e7XrrB0kACIXlVM4YPZNLusSVxV8F7FdKSyoaeGZUuzGLwol3hv
+         9jSCHyPbTgtJLupSe12qTtZLFZmYVv7WHAjSBbJwa9veh+3hSA4lOStXc1Vb6jTH6YE1
+         8IM5XrdHWpbbFJqawEjt2uFSCHnBbJdM0bcsPyDxYrWhnwIIPdtMDW5DgCLV1bkovRw/
+         ykU5WzMuEx+qSFwYP4ZLOqIAnYKQahoU2BxDPUot1kR+kBBlCe6c8vbLEJZlzqnUWBgC
+         CzHa/NvuP+R9HF55wfCXXs/w5TCh8fCSk3TindbHsnkNEVMPKeC0aFoIlBeVr53EdvZi
+         WPzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Wt7RMWJEU5nf2APAW5wITney1vGRi8ExyzwA2ly5tbM=;
-        b=fuO5jCXvT1vmpjRvtSuaDIkIg7S+7itQPALdSigBTo1jNPKqr0yf8Dx0+lljpn5ZnE
-         Y7wx43I3jTcF/jLWNG1xsZM66eosR8ZukLbd/Q+vP+Eqt6sDCHdHnoc4kKBLckAcVmlO
-         rL9tlvuPW1tqKyBSTzGw54rDqlo3IxTDbfw6knFH0TcctocewGuudeEaJGsmTzYMAHzG
-         /6ZCmCUPKrH+a81RT767/E5rhZjxLQ1kUBM2+hhtc1wQ010ndZc+xCFPtVeLfqnl1xab
-         Rx1pVE+YxKHMNHgkwfUN8qrAS4+/jbZj8vg3ul/3tO0m/1q0wJA1+xnqDUqtfkm48kiC
-         vZxA==
-X-Gm-Message-State: APjAAAVQHO5c5sns6gO7YkZPIOAX/sTt94K5OVx3W4YGnTByMEZPPGZ2
-        JmsewR9rTpyCUo6IqmFaZN0=
-X-Google-Smtp-Source: APXvYqyPdz3cE/WXdIcDs7kmAR8F/niCfqMamQH54dQcogysOpQv1BP/blKrSSByCMUg+zO2djgwVA==
-X-Received: by 2002:a17:90a:7f02:: with SMTP id k2mr19642846pjl.78.1561308154262;
-        Sun, 23 Jun 2019 09:42:34 -0700 (PDT)
-Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
-        by smtp.gmail.com with ESMTPSA id y17sm4923619pfe.148.2019.06.23.09.42.33
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 23 Jun 2019 09:42:33 -0700 (PDT)
-From:   Yangtao Li <tiny.windzz@gmail.com>
-To:     rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
-        davem@davemloft.net, gregkh@linuxfoundation.org,
-        mchehab+samsung@kernel.org, linus.walleij@linaro.org,
-        nicolas.ferre@microchip.com, paulmck@linux.ibm.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yangtao Li <tiny.windzz@gmail.com>
-Subject: [PATCH v4 11/11] thermal: sun8i: add thermal driver for h3
-Date:   Sun, 23 Jun 2019 12:42:06 -0400
-Message-Id: <20190623164206.7467-12-tiny.windzz@gmail.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <20190623164206.7467-1-tiny.windzz@gmail.com>
-References: <20190623164206.7467-1-tiny.windzz@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s6kjF5fXn7CUbLQsdln+pNA94ruY+IQSwhFY01H/Qs0=;
+        b=DM6Gov4qHAQnKjnfqxni+qnaduHtk+8aqg+LdBV3nkhY2Y3yR+bbVtO2/yXmsEsgD3
+         zJs+9BOf8xayQ0jXlM4L07G4W20wfXMG569l3NYMI2bjg0A+mw7BjjEhCErB29ra93ih
+         FghVphyaWqrcK49V7+qSWrO09SUMl3dX7TAyzPHmus6dZXOSkrMU+I3C2nRvFL+1+6dx
+         iOmgfcO/l+P3V2Il00zvwxpik/rGy2XM1Nq2AGLMQfemL2w0FhkFUMj3T9ihlC4WeDee
+         VSEmZF3BQQuMrxjZ/pa8ZZyUbhJ1eaUCsYk7mw2WwZSsmXF19JUr6XvGrjRCaP2U0ihA
+         ZZVA==
+X-Gm-Message-State: APjAAAUAo1fE/DEKPTlQl3G0RjHz6NnxPM4f4glP/F1S2n+cLJ28hpQK
+        YJ9lLgsbx/mdsQD3AJsYYgU=
+X-Google-Smtp-Source: APXvYqxzaFsjcPSti6Fji5wNYEaAxx/IvO8JkiRdoec5MecyPJfs37elqCcHrmJjE1ZnPjcyqooRuw==
+X-Received: by 2002:ac8:2e14:: with SMTP id r20mr68598966qta.241.1561309683700;
+        Sun, 23 Jun 2019 10:08:03 -0700 (PDT)
+Received: from localhost.localdomain (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.gmail.com with ESMTPSA id o54sm5790756qtb.63.2019.06.23.10.08.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 23 Jun 2019 10:08:02 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] NVIDIA Tegra Video Decoder driver improvements
+Date:   Sun, 23 Jun 2019 20:07:23 +0300
+Message-Id: <20190623170730.5095-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the support for allwinner h3 thermal sensor.
+Hello,
 
-Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
----
- drivers/thermal/sun8i_thermal.c | 72 +++++++++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+This series cleans up some of minor shortcomings that are caused by
+checkpatch recommendations that are not very applicable for the driver.
+Then IOMMU support is added to the driver and now it can handle sparse
+memory buffers that GPU hands to VDE in a default kernel configuration
+on Tegra30+.
 
-diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_thermal.c
-index 260b24340f5b..c8ee291f3b17 100644
---- a/drivers/thermal/sun8i_thermal.c
-+++ b/drivers/thermal/sun8i_thermal.c
-@@ -27,6 +27,14 @@
- #define TEMP_TO_REG				672
- #define CALIBRATE_DEFAULT			0x800
- 
-+#define SUN8I_THS_CTRL0				0x00
-+#define SUN8I_THS_CTRL2				0x40
-+#define SUN8I_THS_IC				0x44
-+#define SUN8I_THS_IS				0x48
-+#define SUN8I_THS_MFC				0x70
-+#define SUN8I_THS_TEMP_CALIB			0x74
-+#define SUN8I_THS_TEMP_DATA			0x80
-+
- #define SUN50I_THS_CTRL0			0x00
- #define SUN50I_H6_THS_ENABLE			0x04
- #define SUN50I_H6_THS_PC			0x08
-@@ -36,6 +44,9 @@
- #define SUN50I_H6_THS_TEMP_CALIB		0xa0
- #define SUN50I_H6_THS_TEMP_DATA			0xc0
- 
-+#define SUN8I_THS_CTRL0_T_ACQ0(x)		(GENMASK(15, 0) & (x))
-+#define SUN8I_THS_CTRL2_T_ACQ1(x)		((GENMASK(15, 0) & (x)) << 16)
-+
- #define SUN50I_THS_CTRL0_T_ACQ(x)		((GENMASK(15, 0) & (x)) << 16)
- #define SUN50I_THS_FILTER_EN			BIT(2)
- #define SUN50I_THS_FILTER_TYPE(x)		(GENMASK(1, 0) & (x))
-@@ -121,6 +132,21 @@ static const struct regmap_config config = {
- 	.fast_io = true,
- };
- 
-+static int sun8i_h3_irq_ack(struct ths_device *tmdev)
-+{
-+	int state, ret = 0;
-+
-+	regmap_read(tmdev->regmap, SUN8I_THS_IS, &state);
-+
-+	if (state & BIT(8)) {
-+		regmap_write(tmdev->regmap, SUN8I_THS_IS,
-+			     BIT(8));
-+		ret |= BIT(1);
-+	}
-+
-+	return ret;
-+}
-+
- static int sun50i_h6_irq_ack(struct ths_device *tmdev)
- {
- 	int i, state, ret = 0;
-@@ -154,6 +180,14 @@ static irqreturn_t sun8i_irq_thread(int irq, void *data)
- 	return IRQ_HANDLED;
- }
- 
-+static int sun8i_h3_ths_calibrate(struct ths_device *tmdev,
-+			       u16 *caldata, int callen)
-+{
-+	regmap_write(tmdev->regmap, SUN8I_THS_TEMP_CALIB, *caldata);
-+
-+	return 0;
-+}
-+
- static int sun50i_h6_ths_calibrate(struct ths_device *tmdev,
- 				   u16 *caldata, int callen)
- {
-@@ -325,6 +359,32 @@ static int sun8i_ths_resource_init(struct ths_device *tmdev)
- 	return ret;
- }
- 
-+static int sun8i_h3_thermal_init(struct ths_device *tmdev)
-+{
-+	/* average over 4 samples */
-+	regmap_write(tmdev->regmap, SUN8I_THS_MFC,
-+		     SUN50I_THS_FILTER_EN |
-+		     SUN50I_THS_FILTER_TYPE(1));
-+	/*
-+	 * period = (x + 1) * 4096 / clkin; ~10ms
-+	 * enable data interrupt
-+	 */
-+	regmap_write(tmdev->regmap, SUN8I_THS_IC,
-+		     SUN50I_H6_THS_PC_TEMP_PERIOD(58) | BIT(8));
-+	/*
-+	 * clkin = 24MHz
-+	 * T acquire = clkin / (x + 1)
-+	 *           = 20us
-+	 * enable sensor
-+	 */
-+	regmap_write(tmdev->regmap, SUN8I_THS_CTRL0,
-+		     SUN8I_THS_CTRL0_T_ACQ0(479));
-+	regmap_write(tmdev->regmap, SUN8I_THS_CTRL2,
-+		     SUN8I_THS_CTRL2_T_ACQ1(479) | BIT(0));
-+
-+	return 0;
-+}
-+
- static int sun50i_thermal_init(struct ths_device *tmdev)
- {
- 	int val;
-@@ -431,6 +491,17 @@ static int sun8i_ths_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static const struct ths_thermal_chip sun8i_h3_ths = {
-+	.sensor_num = 1,
-+	.offset = -1794,
-+	.scale = -121,
-+	.has_ahb_clk = true,
-+	.temp_data_base = SUN8I_THS_TEMP_DATA,
-+	.calibrate = sun8i_h3_ths_calibrate,
-+	.init = sun8i_h3_thermal_init,
-+	.irq_ack = sun8i_h3_irq_ack,
-+};
-+
- static const struct ths_thermal_chip sun50i_h6_ths = {
- 	.sensor_num = 2,
- 	.offset = -2794,
-@@ -443,6 +514,7 @@ static const struct ths_thermal_chip sun50i_h6_ths = {
- };
- 
- static const struct of_device_id of_ths_match[] = {
-+	{ .compatible = "allwinner,sun8i-h3-ths", .data = &sun8i_h3_ths },
- 	{ .compatible = "allwinner,sun50i-h6-ths", .data = &sun50i_h6_ths },
- 	{ /* sentinel */ },
- };
+Changelog:
+
+v3: - Fixed memory leak on driver's module reload. For some reason I
+      erroneously assumed that IOVA reservations are released on IOVA
+      destruction themselves.
+
+    - Corrected PFN's for the last-page's IOVA reservation. We want to
+      reserve the last page, but a page before the last was reserved.
+
+v2: - Fixed use-after-free bug and uninitialized-variable warning that
+      were reported by smatch and pointed out by Hans Verkuil in the
+      review comment to v1.
+
+    - Fixed build failure when CONFIG_ARM_DMA_USE_IOMMU=y and tested this
+      case properly (multi-platform kernel config).
+
+    - Made some extra minor changes, prettifying code a tad more.
+
+Dmitry Osipenko (4):
+  staging: media: tegra-vde: Remove BIT() macro from UAPI header
+  staging: media: tegra-vde: Manually pack UAPI structures
+  staging: media: tegra-vde: Add IOMMU support
+  staging: media: tegra-vde: Defer dmabuf's unmapping
+
+ drivers/staging/media/tegra-vde/Kconfig       |   1 +
+ drivers/staging/media/tegra-vde/Makefile      |   1 +
+ .../staging/media/tegra-vde/dmabuf-cache.c    | 226 ++++++++++++++++++
+ drivers/staging/media/tegra-vde/iommu.c       | 157 ++++++++++++
+ drivers/staging/media/tegra-vde/trace.h       |   2 +
+ drivers/staging/media/tegra-vde/uapi.h        |  48 ++--
+ .../media/tegra-vde/{tegra-vde.c => vde.c}    | 212 ++++++----------
+ drivers/staging/media/tegra-vde/vde.h         | 107 +++++++++
+ 8 files changed, 591 insertions(+), 163 deletions(-)
+ create mode 100644 drivers/staging/media/tegra-vde/dmabuf-cache.c
+ create mode 100644 drivers/staging/media/tegra-vde/iommu.c
+ rename drivers/staging/media/tegra-vde/{tegra-vde.c => vde.c} (88%)
+ create mode 100644 drivers/staging/media/tegra-vde/vde.h
+
 -- 
-2.17.1
+2.22.0
 
