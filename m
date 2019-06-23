@@ -2,116 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31D9B4FA91
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 09:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF274FAA0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 09:36:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726438AbfFWHFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 03:05:07 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:43428 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725268AbfFWHFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 03:05:07 -0400
-Received: by mail-pl1-f195.google.com with SMTP id cl9so5063324plb.10;
-        Sun, 23 Jun 2019 00:05:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=ZnpCzo1NN9Md21LN3g8I3RIF4YViSRZP0r1Fx0SQ3qk=;
-        b=jVEMmNei2LTirlxL0/IDX1B3y5pJJgi02yOX+2LKm83WV7r/qkwpHhzsDVlt4MlfsL
-         gLxlBAYRm+LmbywgT2m3fCT+OqBuWeB+gJkMIzbzVFjwonTWm6SkxDbPTvzik5qSEMcf
-         6YhwtJvv4gbVrCgwyAnBF4lfyoP9q0K6iR3ZxCNmHI0Ol0JEMSKrjAMIN6IfRCTiDwlX
-         nVvzAqTzJKhY1fEuS5XoSJ4zXZ+AhVTsyEcxyrttBWrLd+3N7E7fyjEOfs/kgpdX4iTn
-         ATpJlGA9iUR5jEJH8YgnCDaegvA6JtGOtXf1KuJeNAcui2MavguwTGnANMGl8+RC4thq
-         62cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=ZnpCzo1NN9Md21LN3g8I3RIF4YViSRZP0r1Fx0SQ3qk=;
-        b=hyny7k3MKC/spKyzNAkI7RSis1jFpuH7rLcWXksLjTz7Z6dE2UKW0/rddlVKc2Y/4u
-         /K+hzZtb4fc7jZjOJSl5RZpeUTu/hlurCPwurArwb2q68+UDWO76gz7tzHXGcOfZ0WR1
-         gB+CgJa2aImUpXmK0+5+Yy29BuZ/RLDeoPSFHndTbhrNz3ai3JELQlxp8JJO1f1S49Oe
-         Ycfg6aB/YhMiamV3BGLo6xq0q2Mxeef3gq1r4bFNcA8tbuRRE3Y1IdwlfEFCfv5m6zZv
-         cPnNwb2dnxLpHeLmZl+bW7dW16ePGIVQYTM/fGndglTuWfMLImBZ9ogdJSJK7T2TBLZf
-         tU7g==
-X-Gm-Message-State: APjAAAXGOipPiJaAwuhkjA8gDr2rMDNO6I/pIuuBNNWoaYcXaZ8sTpEL
-        t/gZnPJCCTqNGBH6ZhoQdto=
-X-Google-Smtp-Source: APXvYqw98NyNvej0S/JhvdpiCIMWy/Pmnw7NdOwIaICwB1nXmuJIZDwQ+TpJs8zZzwVw2jutwskfnw==
-X-Received: by 2002:a17:902:2a26:: with SMTP id i35mr101268234plb.315.1561273506124;
-        Sun, 23 Jun 2019 00:05:06 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
-        by smtp.gmail.com with ESMTPSA id r1sm7040201pji.15.2019.06.23.00.05.05
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sun, 23 Jun 2019 00:05:05 -0700 (PDT)
-Date:   Sun, 23 Jun 2019 00:05:04 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     =?iso-8859-1?Q?Myl=E8ne?= Josserand 
-        <mylene.josserand@bootlin.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com
-Subject: Re: [PATCH v1] Input: rotary-encoder - Add gpio as push button
-Message-ID: <20190623070504.GE204275@dtor-ws>
-References: <20190614133651.28396-1-mylene.josserand@bootlin.com>
- <20190614145158.ic5n4jauzigvcpru@flea>
+        id S1726086AbfFWHgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 03:36:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50800 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726050AbfFWHgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 03:36:18 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9C7E92073F;
+        Sun, 23 Jun 2019 07:36:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561275377;
+        bh=GoqMkEGAkw9RsRi9oynfQuaA0MqWs5oMzUhbx6/BIjk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h5cwObSJLtfGBmPwzlpJCw9ntlEZ/Hv7gCDQ5Zjnf8e0FlS3aGFVVwL1lY0V5NFVK
+         69x89nQrjd3MQ4CM3CrnMxSmU6LJSyuooXR0Np6mZhoPpahmsX4TO4pRx2XDckXB9A
+         NCM4R0rgY0oNLtu2yDTrgSg3PL3TNKjBwmKCwXM8=
+Date:   Sun, 23 Jun 2019 15:36:06 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     daniel.baluta@nxp.com
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        shengjiu.wang@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        m.felsch@pengutronix.de
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm-evk: Enable audio codec wm8524
+Message-ID: <20190623073605.GA3800@dragon>
+References: <20190604123257.2920-1-daniel.baluta@nxp.com>
+ <20190604123257.2920-3-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190614145158.ic5n4jauzigvcpru@flea>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190604123257.2920-3-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 14, 2019 at 04:51:58PM +0200, Maxime Ripard wrote:
-> Hi Mylene,
+On Tue, Jun 04, 2019 at 08:32:57PM +0800, daniel.baluta@nxp.com wrote:
+> From: Daniel Baluta <daniel.baluta@nxp.com>
 > 
-> On Fri, Jun 14, 2019 at 03:36:51PM +0200, Mylène Josserand wrote:
-> > Add the support of a gpio that can be defined as a push button.
-> > Thanks to that, it is possible to emit a keycode in case of a
-> > "push" event, if the rotary supports that.
-> >
-> > The keycode to emit is defined using "linux,code" property
-> > (such as in gpio-keys).
-> >
-> > Signed-off-by: Mylène Josserand <mylene.josserand@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/input/rotary-encoder.txt   |  5 +++
-> >  drivers/input/misc/rotary_encoder.c                | 50 ++++++++++++++++++++++
-> >  2 files changed, 55 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.txt b/Documentation/devicetree/bindings/input/rotary-encoder.txt
-> > index a644408b33b8..1cfce5d0b5c4 100644
-> > --- a/Documentation/devicetree/bindings/input/rotary-encoder.txt
-> > +++ b/Documentation/devicetree/bindings/input/rotary-encoder.txt
-> > @@ -22,6 +22,9 @@ Optional properties:
-> >  - wakeup-source: Boolean, rotary encoder can wake up the system.
-> >  - rotary-encoder,encoding: String, the method used to encode steps.
-> >    Supported are "gray" (the default and more common) and "binary".
-> > +- push-gpio: a gpio to be used as a detection of a push from the rotary.
+> i.MX8MM has one wm8524 audio codec connected with
+> SAI3 digital audio interface.
 > 
-> According to Documentation/devicetree/bindings/gpio/gpio.txt, GPIO
-> properties with a -gpio suffix are now deprecated in favor of the
-> -gpios suffix.
+> This patch uses simple-card machine driver in order
+> to enable wm8524 codec.
 > 
-> > +- linux,code: keycode to emit with the push-gpio of this rotary encoder.
-> > +  Required property in case "push-gpio"'s one is used.
+> We need to set:
+> 	* SAI3 pinctrl configuration
+> 	* codec reset gpio pinctrl configuration
+> 	* clock hierarchy
+> 	* codec node
+> 	* simple-card configuration
 > 
-> I guess we should make it clear in the property name that it's the
-> keycode emitted at push. Otherwise, it will be ambiguous between the
-> rotary itself, or the button.
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
-Also, I am pretty sure someone will come up with a switch instead of a
-button shortly after ;) so I think we should have an event type there as
-well.
-
-Thanks.
-
--- 
-Dmitry
+Applied, thanks.
