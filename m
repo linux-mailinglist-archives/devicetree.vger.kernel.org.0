@@ -2,76 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B4A4FB98
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 14:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42B754FBE6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 15:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbfFWMhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 08:37:09 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:43192 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726599AbfFWMhJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jun 2019 08:37:09 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id F0DD220012B;
-        Sun, 23 Jun 2019 14:37:07 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0DEAA2003D0;
-        Sun, 23 Jun 2019 14:36:59 +0200 (CEST)
-Received: from mega.ap.freescale.net (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8473F40318;
-        Sun, 23 Jun 2019 20:36:48 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, l.stach@pengutronix.de,
-        abel.vesa@nxp.com, ccaione@baylibre.com, angus@akkea.ca,
-        andrew.smirnov@gmail.com, agx@sigxcpu.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH RESEND V2 3/3] arm64: dts: imx8mq: Add system counter node
-Date:   Sun, 23 Jun 2019 20:38:50 +0800
-Message-Id: <20190623123850.22584-3-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190623123850.22584-1-Anson.Huang@nxp.com>
-References: <20190623123850.22584-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726414AbfFWNbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 09:31:33 -0400
+Received: from www1102.sakura.ne.jp ([219.94.129.142]:54697 "EHLO
+        www1102.sakura.ne.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726408AbfFWNbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 09:31:33 -0400
+Received: from fsav405.sakura.ne.jp (fsav405.sakura.ne.jp [133.242.250.104])
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id x5NDVU9l019165;
+        Sun, 23 Jun 2019 22:31:30 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Received: from www1102.sakura.ne.jp (219.94.129.142)
+ by fsav405.sakura.ne.jp (F-Secure/fsigk_smtp/530/fsav405.sakura.ne.jp);
+ Sun, 23 Jun 2019 22:31:30 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/530/fsav405.sakura.ne.jp)
+Received: from [192.168.1.2] (118.153.231.153.ap.dti.ne.jp [153.231.153.118])
+        (authenticated bits=0)
+        by www1102.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id x5NDVTux019135
+        (version=TLSv1.2 cipher=AES256-SHA bits=256 verify=NO);
+        Sun, 23 Jun 2019 22:31:29 +0900 (JST)
+        (envelope-from katsuhiro@katsuster.net)
+Subject: Re: [PATCH] ARM: dts: rockchip: add ethernet phy node for tinker
+ board
+To:     Andrew Lunn <andrew@lunn.ch>, Jose Abreu <joabreu@synopsys.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20190621180017.29646-1-katsuhiro@katsuster.net>
+ <1871177.hjLhdHVgcu@phil>
+ <ccf5ad2c-bd56-2d77-4728-d7906045e302@katsuster.net>
+ <20190622175508.GE8497@lunn.ch>
+From:   Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Message-ID: <8a006d47-a546-163f-0c3f-f35b0056ba3a@katsuster.net>
+Date:   Sun, 23 Jun 2019 22:31:29 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <20190622175508.GE8497@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+Hello Heiko, Andrew,
 
-Add i.MX8MQ system counter node to enable timer-imx-sysctr
-broadcast timer driver.
+Thank you for comments. I found the commit that has regression:
+   74371272f97f net: stmmac: Convert to phylink and remove phylib logic
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+So I'll report it to netdev and stmmac guys.
+
+Best Regards,
 ---
-No change.
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Katsuhiro Suzuki
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index d09b808..9d99191 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -635,6 +635,14 @@
- 				#pwm-cells = <2>;
- 				status = "disabled";
- 			};
-+
-+			system_counter: timer@306a0000 {
-+				compatible = "nxp,sysctr-timer";
-+				reg = <0x306a0000 0x30000>;
-+				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-frequency = <8333333>;
-+			};
- 		};
- 
- 		bus@30800000 { /* AIPS3 */
--- 
-2.7.4
+
+On 2019/06/23 2:55, Andrew Lunn wrote:
+> On Sat, Jun 22, 2019 at 11:50:10PM +0900, Katsuhiro Suzuki wrote:
+>> Hello,
+> 
+> Hi Katsuhiro
+> 
+> Please also report this to netdev, and the stmmac maintainers.
+> 
+> ./scripts/get_maintainer.pl -f drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> Giuseppe Cavallaro <peppe.cavallaro@st.com> (supporter:STMMAC ETHERNET DRIVER)
+> Alexandre Torgue <alexandre.torgue@st.com> (supporter:STMMAC ETHERNET DRIVER)
+> Jose Abreu <joabreu@synopsys.com> (supporter:STMMAC ETHERNET DRIVER)
+> "David S. Miller" <davem@davemloft.net> (odd fixer:NETWORKING DRIVERS)
+> Maxime Coquelin <mcoquelin.stm32@gmail.com> (maintainer:ARM/STM32 ARCHITECTURE)
+> netdev@vger.kernel.org (open list:STMMAC ETHERNET DRIVER)
+> linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE)
+> linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE)
+> linux-kernel@vger.kernel.org (open list)
+> 
+>> I have not bisect commit of root cause yet... Is it better to bisect
+>> and find problem instead of sending this patch?
+> 
+> My guess is that it is one of these three which broken it:
+> 
+> 74371272f97f net: stmmac: Convert to phylink and remove phylib logic
+> eeef2f6b9f6e net: stmmac: Start adding phylink support
+> 9ad372fc5aaf net: stmmac: Prepare to convert to phylink
+> 
+> 	     Andrew
+> 
 
