@@ -2,322 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F4E4FDB7
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 20:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2CB4FDE4
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 21:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726320AbfFWSpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 14:45:25 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:60887 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726740AbfFWSpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 14:45:25 -0400
-X-Originating-IP: 195.189.32.242
-Received: from pc.localdomain (unknown [195.189.32.242])
-        (Authenticated sender: contact@artur-rojek.eu)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 6FF74FF807;
-        Sun, 23 Jun 2019 18:45:21 +0000 (UTC)
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Jonathan Cameron <jic23@kernel.org>,
+        id S1726290AbfFWT6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 15:58:49 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:33215 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726285AbfFWT6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 15:58:49 -0400
+Received: by mail-pf1-f196.google.com with SMTP id x15so6263869pfq.0;
+        Sun, 23 Jun 2019 12:58:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wqiV2qXVyvyETTlywiwmX+J2RPyb6h6nZumJsLjKXn4=;
+        b=nnGf7v3TEnbkjrXe/VyQFFTzffyv3aeugSMMFJMJzFU4ktzIwhonDAtVt0MLjQQu72
+         gAeLDX5b/kN4w4d+iJ6znAfO3e4ulV+AUnPX4LQDiR8rtxkg423aZdodPX7ytQcHIIP2
+         u6QCGjKcnwcW/ghsR5sGA9XEpNOcR47Np3/3bK/BAVvm20LGzrDYrN4tIVz3LDcfC0X5
+         mzKTZkjuJCwMRFpXL7k0Ro+4vLSuC1674yIjsd6ZIQ/VbAjyO2ej2grxKJPiKessxR8q
+         P815pf7CQb84nDjSMozoJM8FcTvtOtwh/VufUcIzURDO5U5gUwjziTwSG7PxX01ZkOe4
+         da8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wqiV2qXVyvyETTlywiwmX+J2RPyb6h6nZumJsLjKXn4=;
+        b=XxqMKRIcPM0VSaNVBxQmjA27kwj90oY12fUbBDQ2pt05cGbagXkp6fWgu3yKfqEzy0
+         0MBLltNgtJFYmwLZ1qWju2cBBWC6sSwD9vZLv1ERuaMxXlUArO5/Bc0o9tZ4QOhbpmDs
+         mhlOaz8GILJwP18oHWm8uomZD/kHlbSjo6M0Wps5PLWQrgn2OXaXNHfHIhdQoH/LoxmW
+         Ubl6xdl35sDmPWw6EkhAtAbXUtC5yRBIcOeoMxasr4EDKciOGkreffaWzYxmUNT0I5NC
+         hOSLketIiSEnXci2IKvLCiIC420bz/3gwIYmxLaQZRQhSYpxt6/MeXIQqFr72aFzfT8n
+         O/zQ==
+X-Gm-Message-State: APjAAAXx+91odDM3r3oAGxtrdRuTuuF6b8VOVUquR9ln0KzOtPzqSp31
+        olDbPeaarFYim5CP7paUtHhn1mbD
+X-Google-Smtp-Source: APXvYqwW7yUmqsAtrFVBsCM0/4wlyw+6fwKkYWMtTdp+g72U8f1cGtDrWv2+pURe8Gl2smHe40rIQg==
+X-Received: by 2002:a63:81c6:: with SMTP id t189mr17058937pgd.15.1561319928089;
+        Sun, 23 Jun 2019 12:58:48 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id r4sm7830372pjd.25.2019.06.23.12.58.46
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 23 Jun 2019 12:58:47 -0700 (PDT)
+Subject: Re: [RFC PATCH 00/11] tracing: of: Boot time tracing using devicetree
+To:     Masami Hiramatsu <mhiramat@kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Maarten ter Huurne <maarten@treewalker.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Artur Rojek <contact@artur-rojek.eu>
-Subject: [PATCH 4/4] IIO: Ingenic JZ47xx: Add support for JZ4770 SoC ADC.
-Date:   Sun, 23 Jun 2019 20:47:32 +0200
-Message-Id: <20190623184732.5492-4-contact@artur-rojek.eu>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190623184732.5492-1-contact@artur-rojek.eu>
-References: <20190623184732.5492-1-contact@artur-rojek.eu>
+        Tom Zanussi <tom.zanussi@linux.intel.com>
+Cc:     Ingo Molnar <mingo@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
+        Jiri Olsa <jolsa@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <156113387975.28344.16009584175308192243.stgit@devnote2>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <f0cee7b6-b83b-b74c-82f5-f43e39bd391a@gmail.com>
+Date:   Sun, 23 Jun 2019 12:58:45 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <156113387975.28344.16009584175308192243.stgit@devnote2>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the ADC hardware present on Ingenic JZ4770 SoC.
+Hi Masami,
 
-Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
-Tested-by: Paul Cercueil <paul@crapouillou.net>
----
- drivers/iio/adc/ingenic-adc.c | 134 +++++++++++++++++++++++++++++++---
- 1 file changed, 123 insertions(+), 11 deletions(-)
+On 6/21/19 9:18 AM, Masami Hiramatsu wrote:
+> Hi,
+> 
+> Here is an RFC series of patches to add boot-time tracing using
+> devicetree.
+> 
+> Currently, kernel support boot-time tracing using kernel command-line
+> parameters. But that is very limited because of limited expressions
+> and limited length of command line. Recently, useful features like
+> histogram, synthetic events, etc. are being added to ftrace, but it is
+> clear that we can not expand command-line options to support these
+> features.
 
-diff --git a/drivers/iio/adc/ingenic-adc.c b/drivers/iio/adc/ingenic-adc.c
-index e234970b7150..68d1c3280d1a 100644
---- a/drivers/iio/adc/ingenic-adc.c
-+++ b/drivers/iio/adc/ingenic-adc.c
-@@ -25,9 +25,13 @@
- #define JZ_ADC_REG_ADSDAT		0x20
- #define JZ_ADC_REG_ADCLK		0x28
- 
-+#define JZ_ADC_REG_ENABLE_PD		BIT(7)
-+#define JZ_ADC_REG_CFG_AUX_MD		(BIT(0) | BIT(1))
- #define JZ_ADC_REG_CFG_BAT_MD		BIT(4)
- #define JZ_ADC_REG_ADCLK_CLKDIV_LSB	0
--#define JZ_ADC_REG_ADCLK_CLKDIV10US_LSB	16
-+#define JZ4725B_ADC_REG_ADCLK_CLKDIV10US_LSB	16
-+#define JZ4770_ADC_REG_ADCLK_CLKDIV10US_LSB	8
-+#define JZ4770_ADC_REG_ADCLK_CLKDIVMS_LSB	16
- 
- #define JZ_ADC_AUX_VREF				3300
- #define JZ_ADC_AUX_VREF_BITS			12
-@@ -37,6 +41,8 @@
- #define JZ4725B_ADC_BATTERY_HIGH_VREF_BITS	10
- #define JZ4740_ADC_BATTERY_HIGH_VREF		(7500 * 0.986)
- #define JZ4740_ADC_BATTERY_HIGH_VREF_BITS	12
-+#define JZ4770_ADC_BATTERY_VREF			6600
-+#define JZ4770_ADC_BATTERY_VREF_BITS		12
- 
- struct ingenic_adc;
- 
-@@ -47,6 +53,8 @@ struct ingenic_adc_soc_data {
- 	size_t battery_raw_avail_size;
- 	const int *battery_scale_avail;
- 	size_t battery_scale_avail_size;
-+	unsigned int battery_vref_mode: 1;
-+	unsigned int has_aux2: 1;
- 	int (*init_clk_div)(struct device *dev, struct ingenic_adc *adc);
- };
- 
-@@ -54,6 +62,7 @@ struct ingenic_adc {
- 	void __iomem *base;
- 	struct clk *clk;
- 	struct mutex lock;
-+	struct mutex aux_lock;
- 	const struct ingenic_adc_soc_data *soc_data;
- 	bool low_vref_mode;
- };
-@@ -120,6 +129,8 @@ static int ingenic_adc_write_raw(struct iio_dev *iio_dev,
- 	case IIO_CHAN_INFO_SCALE:
- 		switch (chan->channel) {
- 		case INGENIC_ADC_BATTERY:
-+			if (!adc->soc_data->battery_vref_mode)
-+				return -EINVAL;
- 			if (val > JZ_ADC_BATTERY_LOW_VREF) {
- 				ingenic_adc_set_config(adc,
- 						       JZ_ADC_REG_CFG_BAT_MD,
-@@ -158,6 +169,14 @@ static const int jz4740_adc_battery_scale_avail[] = {
- 	JZ_ADC_BATTERY_LOW_VREF, JZ_ADC_BATTERY_LOW_VREF_BITS,
- };
- 
-+static const int jz4770_adc_battery_raw_avail[] = {
-+	0, 1, (1 << JZ4770_ADC_BATTERY_VREF_BITS) - 1,
-+};
-+
-+static const int jz4770_adc_battery_scale_avail[] = {
-+	JZ4770_ADC_BATTERY_VREF, JZ4770_ADC_BATTERY_VREF_BITS,
-+};
-+
- static int jz4725b_adc_init_clk_div(struct device *dev, struct ingenic_adc *adc)
- {
- 	struct clk *parent_clk;
-@@ -187,7 +206,45 @@ static int jz4725b_adc_init_clk_div(struct device *dev, struct ingenic_adc *adc)
- 	/* We also need a divider that produces a 10us clock. */
- 	div_10us = DIV_ROUND_UP(rate, 100000);
- 
--	writel(((div_10us - 1) << JZ_ADC_REG_ADCLK_CLKDIV10US_LSB) |
-+	writel(((div_10us - 1) << JZ4725B_ADC_REG_ADCLK_CLKDIV10US_LSB) |
-+	       (div_main - 1) << JZ_ADC_REG_ADCLK_CLKDIV_LSB,
-+	       adc->base + JZ_ADC_REG_ADCLK);
-+
-+	return 0;
-+}
-+
-+static int jz4770_adc_init_clk_div(struct device *dev, struct ingenic_adc *adc)
-+{
-+	struct clk *parent_clk;
-+	unsigned long parent_rate, rate;
-+	unsigned int div_main, div_ms, div_10us;
-+
-+	parent_clk = clk_get_parent(adc->clk);
-+	if (!parent_clk) {
-+		dev_err(dev, "ADC clock has no parent\n");
-+		return -ENODEV;
-+	}
-+	parent_rate = clk_get_rate(parent_clk);
-+
-+	/*
-+	 * The JZ4770 ADC works at 20 kHz to 200 kHz.
-+	 * We pick the highest rate possible.
-+	 */
-+	div_main = DIV_ROUND_UP(parent_rate, 200000);
-+	div_main = clamp(div_main, 1u, 256u);
-+	rate = parent_rate / div_main;
-+	if (rate < 20000 || rate > 200000) {
-+		dev_err(dev, "No valid divider for ADC main clock\n");
-+		return -EINVAL;
-+	}
-+
-+	/* We also need a divider that produces a 10us clock. */
-+	div_10us = DIV_ROUND_UP(rate, 10000);
-+	/* And another, which produces a 1ms clock. */
-+	div_ms = DIV_ROUND_UP(rate, 1000);
-+
-+	writel(((div_ms - 1) << JZ4770_ADC_REG_ADCLK_CLKDIVMS_LSB) |
-+	       ((div_10us - 1) << JZ4770_ADC_REG_ADCLK_CLKDIV10US_LSB) |
- 	       (div_main - 1) << JZ_ADC_REG_ADCLK_CLKDIV_LSB,
- 	       adc->base + JZ_ADC_REG_ADCLK);
- 
-@@ -201,6 +258,8 @@ static const struct ingenic_adc_soc_data jz4725b_adc_soc_data = {
- 	.battery_raw_avail_size = ARRAY_SIZE(jz4725b_adc_battery_raw_avail),
- 	.battery_scale_avail = jz4725b_adc_battery_scale_avail,
- 	.battery_scale_avail_size = ARRAY_SIZE(jz4725b_adc_battery_scale_avail),
-+	.battery_vref_mode = true,
-+	.has_aux2 = false,
- 	.init_clk_div = jz4725b_adc_init_clk_div,
- };
- 
-@@ -211,9 +270,23 @@ static const struct ingenic_adc_soc_data jz4740_adc_soc_data = {
- 	.battery_raw_avail_size = ARRAY_SIZE(jz4740_adc_battery_raw_avail),
- 	.battery_scale_avail = jz4740_adc_battery_scale_avail,
- 	.battery_scale_avail_size = ARRAY_SIZE(jz4740_adc_battery_scale_avail),
-+	.battery_vref_mode = true,
-+	.has_aux2 = false,
- 	.init_clk_div = NULL, /* no ADCLK register on JZ4740 */
- };
- 
-+static const struct ingenic_adc_soc_data jz4770_adc_soc_data = {
-+	.battery_high_vref = JZ4770_ADC_BATTERY_VREF,
-+	.battery_high_vref_bits = JZ4770_ADC_BATTERY_VREF_BITS,
-+	.battery_raw_avail = jz4770_adc_battery_raw_avail,
-+	.battery_raw_avail_size = ARRAY_SIZE(jz4770_adc_battery_raw_avail),
-+	.battery_scale_avail = jz4770_adc_battery_scale_avail,
-+	.battery_scale_avail_size = ARRAY_SIZE(jz4770_adc_battery_scale_avail),
-+	.battery_vref_mode = false,
-+	.has_aux2 = true,
-+	.init_clk_div = jz4770_adc_init_clk_div,
-+};
-+
- static int ingenic_adc_read_avail(struct iio_dev *iio_dev,
- 				  struct iio_chan_spec const *chan,
- 				  const int **vals,
-@@ -246,19 +319,37 @@ static int ingenic_adc_read_raw(struct iio_dev *iio_dev,
- 				long m)
- {
- 	struct ingenic_adc *adc = iio_priv(iio_dev);
--	int ret;
-+	struct mutex *lock = NULL;
-+	int bit, ret, engine = 0;
- 
- 	switch (m) {
- 	case IIO_CHAN_INFO_RAW:
--		clk_enable(adc->clk);
--		ret = ingenic_adc_capture(adc, chan->channel);
--		if (ret) {
--			clk_disable(adc->clk);
--			return ret;
-+		switch (chan->channel) {
-+		case INGENIC_ADC_AUX:
-+		case INGENIC_ADC_AUX2:
-+			if (adc->soc_data->has_aux2)
-+				lock = &adc->aux_lock;
-+			break;
-+		case INGENIC_ADC_BATTERY:
-+			engine = 1;
-+			break;
- 		}
- 
-+		if (lock) /* We cannot sample AUX/AUX2 in parallel. */
-+			mutex_lock(lock);
-+		if (adc->soc_data->has_aux2 && engine == 0) {
-+			bit = BIT(chan->channel == INGENIC_ADC_AUX2);
-+			ingenic_adc_set_config(adc, JZ_ADC_REG_CFG_AUX_MD, bit);
-+		}
-+
-+		clk_enable(adc->clk);
-+		ret = ingenic_adc_capture(adc, engine);
-+		if (ret)
-+			goto out;
-+
- 		switch (chan->channel) {
- 		case INGENIC_ADC_AUX:
-+		case INGENIC_ADC_AUX2:
- 			*val = readw(adc->base + JZ_ADC_REG_ADSDAT);
- 			break;
- 		case INGENIC_ADC_BATTERY:
-@@ -266,12 +357,12 @@ static int ingenic_adc_read_raw(struct iio_dev *iio_dev,
- 			break;
- 		}
- 
--		clk_disable(adc->clk);
--
--		return IIO_VAL_INT;
-+		ret = IIO_VAL_INT;
-+		goto out;
- 	case IIO_CHAN_INFO_SCALE:
- 		switch (chan->channel) {
- 		case INGENIC_ADC_AUX:
-+		case INGENIC_ADC_AUX2:
- 			*val = JZ_ADC_AUX_VREF;
- 			*val2 = JZ_ADC_AUX_VREF_BITS;
- 			break;
-@@ -290,6 +381,13 @@ static int ingenic_adc_read_raw(struct iio_dev *iio_dev,
- 	default:
- 		return -EINVAL;
- 	}
-+
-+out:
-+	clk_disable(adc->clk);
-+	if (lock)
-+		mutex_unlock(lock);
-+
-+	return ret;
- }
- 
- static void ingenic_adc_clk_cleanup(void *data)
-@@ -322,6 +420,14 @@ static const struct iio_chan_spec ingenic_channels[] = {
- 		.indexed = 1,
- 		.channel = INGENIC_ADC_BATTERY,
- 	},
-+	{ /* Must always be last in the array. */
-+		.extend_name = "aux2",
-+		.type = IIO_VOLTAGE,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+		.indexed = 1,
-+		.channel = INGENIC_ADC_AUX2,
-+	},
- };
- 
- static int ingenic_adc_probe(struct platform_device *pdev)
-@@ -343,6 +449,7 @@ static int ingenic_adc_probe(struct platform_device *pdev)
- 
- 	adc = iio_priv(iio_dev);
- 	mutex_init(&adc->lock);
-+	mutex_init(&adc->aux_lock);
- 	adc->soc_data = soc_data;
- 
- 	mem_base = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-@@ -374,6 +481,7 @@ static int ingenic_adc_probe(struct platform_device *pdev)
- 	/* Put hardware in a known passive state. */
- 	writeb(0x00, adc->base + JZ_ADC_REG_ENABLE);
- 	writeb(0xff, adc->base + JZ_ADC_REG_CTRL);
-+	usleep_range(2000, 3000); /* Must wait at least 2ms. */
- 	clk_disable(adc->clk);
- 
- 	ret = devm_add_action_or_reset(dev, ingenic_adc_clk_cleanup, adc->clk);
-@@ -387,6 +495,9 @@ static int ingenic_adc_probe(struct platform_device *pdev)
- 	iio_dev->modes = INDIO_DIRECT_MODE;
- 	iio_dev->channels = ingenic_channels;
- 	iio_dev->num_channels = ARRAY_SIZE(ingenic_channels);
-+	/* Remove AUX2 from the list of supported channels. */
-+	if (!adc->soc_data->has_aux2)
-+		iio_dev->num_channels -= 1;
- 	iio_dev->info = &ingenic_adc_info;
- 
- 	ret = devm_iio_device_register(dev, iio_dev);
-@@ -400,6 +511,7 @@ static int ingenic_adc_probe(struct platform_device *pdev)
- static const struct of_device_id ingenic_adc_of_match[] = {
- 	{ .compatible = "ingenic,jz4725b-adc", .data = &jz4725b_adc_soc_data, },
- 	{ .compatible = "ingenic,jz4740-adc", .data = &jz4740_adc_soc_data, },
-+	{ .compatible = "ingenic,jz4770-adc", .data = &jz4770_adc_soc_data, },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, ingenic_adc_of_match);
--- 
-2.22.0
+"it is clear that we can not expand command-line options" needs a fuller
+explanation.  And maybe further exploration.
+
+
+> 
+> Hoever, I've found that there is a devicetree which can pass more
+> structured commands to kernel at boot time :) The devicetree is usually
+> used for dscribing hardware configuration, but I think we can expand it
+
+Devicetree is standardized and documented as hardware description.
+
+
+> for software configuration too (e.g. AOSP and OPTEE already introduced
+> firmware node.) Also, grub and qemu already supports loading devicetree,
+> so we can use it not only on embedded devices but also on x86 PC too.
+
+Devicetree is NOT for configuration information.  This has been discussed
+over and over again in mail lists, at various conferences, and was also an
+entire session at plumbers a few years ago:
+
+   https://elinux.org/Device_tree_future#Linux_Plumbers_2016_Device_Tree_Track
+
+There is one part of device tree that does allow non-hardware description,
+which is the "chosen" node which is provided to allow communication between
+the bootloader and the kernel.
+
+There clearly are many use cases for providing configuration information
+and other types of data to a booting kernel.  I have been encouraging
+people to come up with an additional boot time communication channel or
+data object to support this use case.  So far, no serious proposal that
+I am aware of.
+
+> 
+> With the devicetree, we can setup new kprobe and synthetic events, more
+> complicated event filters and trigger actions including histogram.
+> 
+> For example, following kernel parameters
+> 
+> trace_options=sym-addr trace_event=initcall:* tp_printk trace_buf_size=1M
+> 
+> it can be written in devicetree like below.
+> 
+> 	ftrace {
+> 		compatible = "linux,ftrace";
+> 		options = "sym-addr";
+> 		events = "initcall:*";
+> 		tp-printk;
+> 		buffer-size-kb = <0x400>;	// 1024KB == 1MB
+> 	};
+> 
+> Moreover, now we can expand it to add filters for events, kprobe events,
+> and synthetic events with histogram like below.
+> 
+> 	ftrace {
+> 		compatible = "linux,ftrace";
+> 		...
+> 		event0 {
+> 			event = "task:task_newtask";
+> 			filter = "pid < 128";	// adding filters
+> 			enable;
+> 		};
+> 		event1 {
+> 			event = "kprobes:vfs_read";
+> 			probes = "vfs_read $arg1 $arg2"; // add kprobes
+> 			filter = "common_pid < 200";
+> 			enable;
+> 		};
+> 		event2 {
+> 			event = "initcall_latency";	// add synth event
+> 			fields = "unsigned long func", "u64 lat";
+> 			// with histogram
+> 			actions = "hist:keys=func.sym,lat:vals=lat:sort=lat";
+> 		};
+> 		// and synthetic event callers
+> 		event3 {
+> 			event = "initcall:initcall_start";
+> 			actions = "hist:keys=func:ts0=common_timestamp.usecs";
+> 		};
+> 		event4 {
+> 			event = "initcall:initcall_finish";
+> 			actions = "hist:keys=func:lat=common_timestamp.usecs-$ts0:onmatch(initcall.initcall_start).initcall_latency(func,$lat)";
+> 		};
+> 	};
+> 
+> These complex configuration can not be done by kernel parameters.
+> However, this is not replacing boot-time tracing by kernel parameters.
+> This devicetree settings are applied in fs_initcall() stage, but kernel
+> parameters are applied earlier stage. Anyway, this is enough useful
+> for debugging/tracing kernel driver initializations.
+> 
+> I would like to discuss on some points about this idea.
+> 
+> - Can we use devicetree for configuring kernel dynamically?
+
+No.  Sorry.
+
+My understanding of this proposal is that it is intended to better
+support boot time kernel and driver debugging.  As an alternate
+implementation, could you compile the ftrace configuration information
+directly into a kernel data structure?  It seems like it would not be
+very difficult to populate the data structure data via a few macros.
+
+-Frank
+
+
+> - Would you have any comment for the devicetree format and default
+>   behaviors?
+> - Currently, kprobe and synthetic events are defined inside event
+>   node, but it is able to define globally in ftrace node. Which is
+>   better?
+> - Do we need to support "status" property on each event node so
+>   that someone can prepare "dtsi" include file and override the status?
+> - Do we need instance-wide pid filter (set_event_pid) when boot-time?
+> - Do we need more structured tree, like spliting event and group,
+>   event actions and probes to be a tree of node, etc?
+> - Do we need per group filter & enablement support?
+> - How to support instances? (nested tree or different tree?)
+> - What kind of options would we need?
+> 
+> Some kernel parameters are not implemented yet, like ftrace_filter,
+> ftrace_notrace, etc. These will be implemented afterwards.
+> 
+> Thank you,
+> 
+> ---
+> 
+> Masami Hiramatsu (11):
+>       tracing: Apply soft-disabled and filter to tracepoints printk
+>       tracing: kprobes: Output kprobe event to printk buffer
+>       tracing: Expose EXPORT_SYMBOL_GPL symbol
+>       tracing: kprobes: Register to dynevent earlier stage
+>       tracing: Accept different type for synthetic event fields
+>       tracing: Add NULL trace-array check in print_synth_event()
+>       dt-bindings: tracing: Add ftrace binding document
+>       tracing: of: Add setup tracing by devicetree support
+>       tracing: of: Add trace event settings
+>       tracing: of: Add kprobe event support
+>       tracing: of: Add synthetic event support
+> 
+> 
+>  .../devicetree/bindings/tracing/ftrace.yaml        |  170 +++++++++++
+>  include/linux/trace_events.h                       |    1 
+>  kernel/trace/Kconfig                               |   10 +
+>  kernel/trace/Makefile                              |    1 
+>  kernel/trace/trace.c                               |   49 ++-
+>  kernel/trace/trace_events.c                        |    3 
+>  kernel/trace/trace_events_hist.c                   |   14 +
+>  kernel/trace/trace_events_trigger.c                |    2 
+>  kernel/trace/trace_kprobe.c                        |   81 +++--
+>  kernel/trace/trace_of.c                            |  311 ++++++++++++++++++++
+>  10 files changed, 589 insertions(+), 53 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/tracing/ftrace.yaml
+>  create mode 100644 kernel/trace/trace_of.c
+> 
+> --
+> Masami Hiramatsu (Linaro) <mhiramat@kernel.org>
+> 
 
