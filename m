@@ -2,114 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0648E4FD66
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 19:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBFD4FDB0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2019 20:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726586AbfFWRvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 13:51:36 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:36185 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726399AbfFWRvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 13:51:35 -0400
-Received: by mail-io1-f65.google.com with SMTP id h6so1086558ioh.3
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2019 10:51:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=Q2J+zKT6qsK6pe1jDDGYOH9t9wEmd7xRD0oxX/ZUOXQ=;
-        b=mvMMAei/5azOZcypBaEq8btNPNLpZxE8KXSkooN06cOew1QavQgeymrVjqWBjat1GL
-         uzBIDawPiu/bbiNJmLhZPmISgjP9aSiopTaL/7FR1APjAYczi+W0RvE9jR1WzBLBerqU
-         7u5n19EJbrps00jQxZD4b5DiKjfAR2j6nJ3QDQUWgjjIP4uU7Rl5uAh4S4a2XlFtPU/d
-         Q/Hnk1VimSW17bTId6rZHzDJiIQT2NBzvQefxhxRpAncjpMwQ7wUhc12FxoK2tKIdDcx
-         XjQBxcDItwoOpcj78IDtHiU5jixCisA0Fsm4m9M9YUFLtXmouM0VW0sBz9+81nwGIiVL
-         jisg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=Q2J+zKT6qsK6pe1jDDGYOH9t9wEmd7xRD0oxX/ZUOXQ=;
-        b=Qc5myvr58sFsP9GMMKy7xqGWxT3/wyVsR6sqU6w0+3xGEIfPubV1c2/7AGlQzjAMt6
-         zMn5gbhV97547glqVXBq49uU7AMxZRohP/3AxdzlhRa+AdXMOOPGnMr+EdIyZv4hcZAj
-         9W1ASWEzr1+R3qrarKO6ofQRqnXnKgGPwT/A3JoqKtKnvCvCY1D/3R2LZmj9JvsrKC+V
-         qInOv+puy5qCtHn0SHOtiUmou8TVKJCc19f7/MLtZDGiCa2My3CbmwaZnwPqDs+cCwb2
-         mTjMZAsZLrh9mODExWHwd9iyMq5MZ8jun1VHZvk11dKL14o/ZbweYfbi2wdnEOApLDSp
-         8v2w==
-X-Gm-Message-State: APjAAAVGkLMl04feTAsn/5q5bMOKRLpvX7dtYoEz+W3retrko8IMONcB
-        aa6HjDzCTEPCPIIx5Bu/elTbOA==
-X-Google-Smtp-Source: APXvYqzhFIic7VRKdOafvYSegTmj3HQpbIxq+GXv4K4JVmIbUVqc3WLm1Nzru7qiZWB7KESBlTOu5w==
-X-Received: by 2002:a02:ce52:: with SMTP id y18mr19504458jar.78.1561312294952;
-        Sun, 23 Jun 2019 10:51:34 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id r5sm7607520iom.42.2019.06.23.10.51.34
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sun, 23 Jun 2019 10:51:34 -0700 (PDT)
-Date:   Sun, 23 Jun 2019 10:51:33 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <Atish.Patra@wdc.com>, linux@armlinux.org.uk
-cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rfontana@redhat.com" <rfontana@redhat.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "jhugo@codeaurora.org" <jhugo@codeaurora.org>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "mingo@kernel.org" <mingo@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "mchehab+samsung@kernel.org" <mchehab+samsung@kernel.org>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "morten.rasmussen@arm.com" <morten.rasmussen@arm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "palmer@sifive.com" <palmer@sifive.com>,
-        "peterz@infradead.org" <peterz@infradead.org>,
-        "ottosabart@seberm.com" <ottosabart@seberm.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "anup@brainfault.org" <anup@brainfault.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v7 3/7] cpu-topology: Move cpu topology code to common
- code.
-In-Reply-To: <91559562f2958fa904b53e621e596d6216efa9fb.camel@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1906231045280.13854@viisi.sifive.com>
-References: <20190617185920.29581-1-atish.patra@wdc.com>  <20190617185920.29581-4-atish.patra@wdc.com>  <20190619173801.GB20916@kroah.com> <91559562f2958fa904b53e621e596d6216efa9fb.camel@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1726785AbfFWSpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 14:45:23 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:38707 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726612AbfFWSpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 14:45:23 -0400
+X-Originating-IP: 195.189.32.242
+Received: from pc.localdomain (unknown [195.189.32.242])
+        (Authenticated sender: contact@artur-rojek.eu)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 4AA39FF803;
+        Sun, 23 Jun 2019 18:45:15 +0000 (UTC)
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Maarten ter Huurne <maarten@treewalker.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Artur Rojek <contact@artur-rojek.eu>
+Subject: [PATCH 1/4] dt-bindings: iio/adc: Add a compatible string for JZ4770 SoC ADC
+Date:   Sun, 23 Jun 2019 20:47:29 +0200
+Message-Id: <20190623184732.5492-1-contact@artur-rojek.eu>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Atish, Russell,
+Add a compatible string for the ADC controller present on
+Ingenic JZ4770 SoC.
 
-On Fri, 21 Jun 2019, Atish Patra wrote:
+Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+---
+ Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-> On Wed, 2019-06-19 at 19:38 +0200, Greg Kroah-Hartman wrote:
-> > On Mon, Jun 17, 2019 at 11:59:16AM -0700, Atish Patra wrote:
-> > > Both RISC-V & ARM64 are using cpu-map device tree to describe
-> > > their cpu topology. It's better to move the relevant code to
-> > > a common place instead of duplicate code.
+diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+index f01159f20d87..cd9048cf9dcf 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+@@ -5,6 +5,7 @@ Required properties:
+ - compatible: Should be one of:
+   * ingenic,jz4725b-adc
+   * ingenic,jz4740-adc
++  * ingenic,jz4770-adc
+ - reg: ADC controller registers location and length.
+ - clocks: phandle to the SoC's ADC clock.
+ - clock-names: Must be set to "adc".
+-- 
+2.22.0
 
-[ ... ]
-
-> I guess Greg has acked the series assuming that it will go through some
-> other tree. Can you take it through RISC-V tree ?
-> 
-> Sorry for the confusion.
-> 
-> Note: We are still waiting for RMK's ACK on arm patch before it can be
-> sent as a PR.
-
-I'm fine to take it through the RISC-V tree, once Russell acks the 
-arch/arm patch.
-
-
-- Paul
