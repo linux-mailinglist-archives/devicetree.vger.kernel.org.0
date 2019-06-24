@@ -2,211 +2,448 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 800B95060C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 11:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A883506B6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728314AbfFXJqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 05:46:34 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:37544 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726716AbfFXJqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 05:46:33 -0400
-Received: by mail-lf1-f65.google.com with SMTP id d11so9546681lfb.4;
-        Mon, 24 Jun 2019 02:46:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ev9Tj2wrV2sHVa78lJSUKLNtj813pnRYEFAtRIvugjE=;
-        b=qSCxSb4WXeoEdWJZpY6yBNK8LXScRMNlFQ6qW4vetx44ieE7bfXpvvHAA9dVyGi6W0
-         CkXlZVeJ6Xyz60NBJHmRkxeu60aF9Pmh1rLzqqpvUJ/J60YEk0b7O6F/yzgnKUHkMl3r
-         kSNAhNA0ozuVh4xziklAIjJ7ns5zqobvE0Z3I5SsdcXpc2MJM9jkpt55hD8UX98RjocV
-         Ay5xrZK/YLYBdbtMPBGacuWXzKMSsfDpEX7jhBfWUgInyyJi3DkMwMDM+XA+/4/2rnBm
-         3ZhfaUXVPaEKQQnlb1bL1Yft4giSc7pfAiB53860HM0iLNlHPY78Jov5uUZGTV/Mq2pI
-         sxOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Ev9Tj2wrV2sHVa78lJSUKLNtj813pnRYEFAtRIvugjE=;
-        b=Zm4dJUm/ViY1+n/hC6GJHb5weR5KeYLtdJ2Vvs4YXDkj5l42+o/YOYxRN/0AUK3enh
-         KUIP1opHVQuITyHfSbgmmEwhTAGcTboj6xJRA7VmHMRnzD2KeIfokTmTpansB43DlWVM
-         E77bbu71oAemMpo4Ta9VjUiCO+fKWhf9xfd3VZ+bASQY46rHKEpR2q4zSptPMzzNAww0
-         RPea3h1NSLWda4rV5Q7I0tNxVCtIhkNgL4ICbtaf05jKGMgviIFn5YbZPVCDPwYzxEWu
-         oew2e4R1jwBkoKAMJRbyRdZBW1gB9P0H8O3d7s0LEBzcrUlZCHiD9oEbr4JqDcw+dr6z
-         Pi4w==
-X-Gm-Message-State: APjAAAVas0V/XpGsgSmXW/PQgK/MfQRYWPLoOB/XqWT9njEzWuT+4w3M
-        P0E4uhUMuzxe02s71Uz1V4vyxB7w
-X-Google-Smtp-Source: APXvYqzsFhhIEFfn6HM3ZO8SBA4KV8ZzTlRkGff2B0yMJxryYKBTwQTW/XWgiiIfqrsVyzbYuiKkow==
-X-Received: by 2002:a19:550f:: with SMTP id n15mr3464871lfe.34.1561369590174;
-        Mon, 24 Jun 2019 02:46:30 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
-        by smtp.googlemail.com with ESMTPSA id z26sm1643515ljz.64.2019.06.24.02.46.28
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jun 2019 02:46:29 -0700 (PDT)
-Subject: Re: [PATCH V4 02/18] pinctrl: tegra: add suspend and resume support
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <1561345379-2429-1-git-send-email-skomatineni@nvidia.com>
- <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a03ce644-5efd-e721-fb06-16de097171bb@gmail.com>
-Date:   Mon, 24 Jun 2019 12:46:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1729028AbfFXJ6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 05:58:35 -0400
+Received: from mga11.intel.com ([192.55.52.93]:44388 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729018AbfFXJ6f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 05:58:35 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 24 Jun 2019 02:58:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,411,1557212400"; 
+   d="scan'208";a="182604821"
+Received: from kuha.fi.intel.com ([10.237.72.189])
+  by fmsmga001.fm.intel.com with SMTP; 24 Jun 2019 02:58:28 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 24 Jun 2019 12:58:27 +0300
+Date:   Mon, 24 Jun 2019 12:58:27 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yu Chen <chenyu56@huawei.com>,
+        Nagarjuna Kristam <nkristam@nvidia.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>
+Subject: Re: [PATCH v7 09/10] usb: roles: add USB Type-B GPIO connector driver
+Message-ID: <20190624095827.GA6501@kuha.fi.intel.com>
+References: <1560242680-23844-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1560242680-23844-10-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1560242680-23844-10-git-send-email-chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-24.06.2019 6:02, Sowjanya Komatineni пишет:
-> This patch adds support for Tegra pinctrl driver suspend and resume.
-> 
-> During suspend, context of all pinctrl registers are stored and
-> on resume they are all restored to have all the pinmux and pad
-> configuration for normal operation.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+Hi Chunfeng,
+
+On Tue, Jun 11, 2019 at 04:44:39PM +0800, Chunfeng Yun wrote:
+> Due to the requirement of usb-connector.txt binding, the old way
+> using extcon to support USB Dual-Role switch is now deprecated
+> when use Type-B connector.
+> This patch introduces a driver of Type-B connector which typically
+> uses an input GPIO to detect USB ID pin, and try to replace the
+> function provided by extcon-usb-gpio driver
+
+I'm sorry for asking this so late, but why is this driver a Type-B
+specific driver (I really thought somebody had already asked this
+question)?
+
+I don't see anything Type-B specific in the driver. Basically it looks
+to me like just a gpio based connection detection driver that would
+work fine with for example uAB connectors..
+
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Tested-by: Nagarjuna Kristam <nkristam@nvidia.com>
 > ---
->  drivers/pinctrl/tegra/pinctrl-tegra.c    | 47 ++++++++++++++++++++++++++++++++
->  drivers/pinctrl/tegra/pinctrl-tegra.h    |  4 +++
->  drivers/pinctrl/tegra/pinctrl-tegra210.c |  6 ++++
->  3 files changed, 57 insertions(+)
+> v7 changes:
+>   1. remove macro DEV_PMS_OPS suggested by Andy
+>   2. add tested-by Nagarjuna
 > 
-> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c b/drivers/pinctrl/tegra/pinctrl-tegra.c
-> index b03c465917b8..c0ba6fa63ad1 100644
-> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
-> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
-> @@ -631,6 +631,38 @@ static void tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
->  	}
->  }
+> v6 changes:
+>   1. get usb-role-swtich by usb_role_switch_get()
+> 
+> v5 changes:
+>   1. put usb_role_switch when error happens suggested by Biju
+>   2. don't treat bype-B connector as a virtual device suggested by Rob
+> 
+> v4 changes:
+>   1. remove linux/gpio.h suggested by Linus
+>   2. put node when error happens
+> 
+> v3 changes:
+>   1. treat bype-B connector as a virtual device;
+>   2. change file name again
+> 
+> v2 changes:
+>   1. file name is changed
+>   2. use new compatible
+> ---
+>  drivers/usb/roles/Kconfig           |  11 ++
+>  drivers/usb/roles/Makefile          |   1 +
+>  drivers/usb/roles/typeb-conn-gpio.c | 284 ++++++++++++++++++++++++++++
+
+..It also drives me crazy that you've put this driver under this
+folder. It does not create a role switch so ideally it should not go
+under driver/usb/roles/. I think a better place for it would be
+drivers/usb/misc/, or actually, maybe it should go under
+drivers/usb/common/?
+
+Could you still rename the driver to something like "usb-gpio.c" or
+conn-gpio.c, or something else, and also move it under
+drivers/usb/misc/ or drivers/usb/common/?
+
+>  3 files changed, 296 insertions(+)
+>  create mode 100644 drivers/usb/roles/typeb-conn-gpio.c
+> 
+> diff --git a/drivers/usb/roles/Kconfig b/drivers/usb/roles/Kconfig
+> index f8b31aa67526..d1156e18a81a 100644
+> --- a/drivers/usb/roles/Kconfig
+> +++ b/drivers/usb/roles/Kconfig
+> @@ -26,4 +26,15 @@ config USB_ROLES_INTEL_XHCI
+>  	  To compile the driver as a module, choose M here: the module will
+>  	  be called intel-xhci-usb-role-switch.
 >  
-> +int __maybe_unused tegra_pinctrl_suspend(struct device *dev)
+> +config TYPEB_CONN_GPIO
+> +	tristate "USB Type-B GPIO Connector"
 
-The "maybe_unused" attribute isn't needed for global functions because
-compiler always assumes that such functions are used somewhere outside.
+USB GPIO connection detection driver?
 
-> +{
-> +	struct tegra_pmx *pmx = dev_get_drvdata(dev);
-> +	u32 *backup_regs = pmx->backup_regs;
-> +	u32 *regs;
-> +	unsigned int i, j;
+> +	depends on GPIOLIB
+> +	help
+> +	  The driver supports USB role switch between host and device via GPIO
+> +	  based USB cable detection, used typically if an input GPIO is used
+> +	  to detect USB ID pin.
 > +
-> +	for (i = 0; i < pmx->nbanks; i++) {
-> +		regs = pmx->regs[i];
-> +		for (j = 0; j < pmx->reg_bank_size[i] / 4; j++)
-> +			*backup_regs++ = readl(regs++);
+> +	  To compile the driver as a module, choose M here: the module will
+> +	  be called typeb-conn-gpio.ko
+> +
+>  endif # USB_ROLE_SWITCH
+> diff --git a/drivers/usb/roles/Makefile b/drivers/usb/roles/Makefile
+> index 757a7d2797eb..5d5620d9d113 100644
+> --- a/drivers/usb/roles/Makefile
+> +++ b/drivers/usb/roles/Makefile
+> @@ -3,3 +3,4 @@
+>  obj-$(CONFIG_USB_ROLE_SWITCH)		+= roles.o
+>  roles-y					:= class.o
+>  obj-$(CONFIG_USB_ROLES_INTEL_XHCI)	+= intel-xhci-usb-role-switch.o
+> +obj-$(CONFIG_TYPEB_CONN_GPIO)		+= typeb-conn-gpio.o
+> diff --git a/drivers/usb/roles/typeb-conn-gpio.c b/drivers/usb/roles/typeb-conn-gpio.c
+> new file mode 100644
+> index 000000000000..e3fba1656069
+> --- /dev/null
+> +++ b/drivers/usb/roles/typeb-conn-gpio.c
+> @@ -0,0 +1,284 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * USB Type-B GPIO Connector Driver
+> + *
+> + * Copyright (C) 2019 MediaTek Inc.
+> + *
+> + * Author: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> + *
+> + * Some code borrowed from drivers/extcon/extcon-usb-gpio.c
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/usb/role.h>
+> +
+> +#define USB_GPIO_DEB_MS		20	/* ms */
+> +#define USB_GPIO_DEB_US		((USB_GPIO_DEB_MS) * 1000)	/* us */
+> +
+> +#define USB_CONN_IRQF	\
+> +	(IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING | IRQF_ONESHOT)
+> +
+> +struct usb_conn_info {
+> +	struct device *dev;
+> +	struct usb_role_switch *role_sw;
+> +	enum usb_role last_role;
+> +	struct regulator *vbus;
+> +	struct delayed_work dw_det;
+> +	unsigned long debounce_jiffies;
+> +
+> +	struct gpio_desc *id_gpiod;
+> +	struct gpio_desc *vbus_gpiod;
+> +	int id_irq;
+> +	int vbus_irq;
+> +};
+> +
+> +/**
+> + * "DEVICE" = VBUS and "HOST" = !ID, so we have:
+> + * Both "DEVICE" and "HOST" can't be set as active at the same time
+> + * so if "HOST" is active (i.e. ID is 0)  we keep "DEVICE" inactive
+> + * even if VBUS is on.
+> + *
+> + *  Role          |   ID  |  VBUS
+> + * ------------------------------------
+> + *  [1] DEVICE    |   H   |   H
+> + *  [2] NONE      |   H   |   L
+> + *  [3] HOST      |   L   |   H
+> + *  [4] HOST      |   L   |   L
+> + *
+> + * In case we have only one of these signals:
+> + * - VBUS only - we want to distinguish between [1] and [2], so ID is always 1
+> + * - ID only - we want to distinguish between [1] and [4], so VBUS = ID
+> + */
+> +static void usb_conn_detect_cable(struct work_struct *work)
+> +{
+> +	struct usb_conn_info *info;
+> +	enum usb_role role;
+> +	int id, vbus, ret;
+> +
+> +	info = container_of(to_delayed_work(work),
+> +			    struct usb_conn_info, dw_det);
+> +
+> +	/* check ID and VBUS */
+> +	id = info->id_gpiod ?
+> +		gpiod_get_value_cansleep(info->id_gpiod) : 1;
+> +	vbus = info->vbus_gpiod ?
+> +		gpiod_get_value_cansleep(info->vbus_gpiod) : id;
+> +
+> +	if (!id)
+> +		role = USB_ROLE_HOST;
+> +	else if (vbus)
+> +		role = USB_ROLE_DEVICE;
+> +	else
+> +		role = USB_ROLE_NONE;
+> +
+> +	dev_dbg(info->dev, "role %d/%d, gpios: id %d, vbus %d\n",
+> +		info->last_role, role, id, vbus);
+> +
+> +	if (info->last_role == role) {
+> +		dev_warn(info->dev, "repeated role: %d\n", role);
+> +		return;
 > +	}
 > +
-> +	return pinctrl_force_sleep(pmx->pctl);
+> +	if (info->last_role == USB_ROLE_HOST)
+> +		regulator_disable(info->vbus);
+> +
+> +	ret = usb_role_switch_set_role(info->role_sw, role);
+> +	if (ret)
+> +		dev_err(info->dev, "failed to set role: %d\n", ret);
+> +
+> +	if (role == USB_ROLE_HOST) {
+> +		ret = regulator_enable(info->vbus);
+> +		if (ret)
+> +			dev_err(info->dev, "enable vbus regulator failed\n");
+> +	}
+> +
+> +	info->last_role = role;
+> +
+> +	dev_dbg(info->dev, "vbus regulator is %s\n",
+> +		regulator_is_enabled(info->vbus) ? "enabled" : "disabled");
 > +}
 > +
-> +int __maybe_unused tegra_pinctrl_resume(struct device *dev)
+> +static void usb_conn_queue_dwork(struct usb_conn_info *info,
+> +				 unsigned long delay)
 > +{
-> +	struct tegra_pmx *pmx = dev_get_drvdata(dev);
-> +	u32 *backup_regs = pmx->backup_regs;
-> +	u32 *regs;
-> +	unsigned int i, j;
+> +	queue_delayed_work(system_power_efficient_wq, &info->dw_det, delay);
+> +}
 > +
-> +	for (i = 0; i < pmx->nbanks; i++) {
-> +		regs = pmx->regs[i];
-> +		for (j = 0; j < pmx->reg_bank_size[i] / 4; j++)
-> +			writel(*backup_regs++, regs++);
+> +static irqreturn_t usb_conn_isr(int irq, void *dev_id)
+> +{
+> +	struct usb_conn_info *info = dev_id;
+> +
+> +	usb_conn_queue_dwork(info, info->debounce_jiffies);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int usb_conn_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct usb_conn_info *info;
+> +	int ret = 0;
+> +
+> +	info = devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
+> +	if (!info)
+> +		return -ENOMEM;
+> +
+> +	info->dev = dev;
+> +	info->id_gpiod = devm_gpiod_get_optional(dev, "id", GPIOD_IN);
+> +	if (IS_ERR(info->id_gpiod))
+> +		return PTR_ERR(info->id_gpiod);
+> +
+> +	info->vbus_gpiod = devm_gpiod_get_optional(dev, "vbus", GPIOD_IN);
+> +	if (IS_ERR(info->vbus_gpiod))
+> +		return PTR_ERR(info->vbus_gpiod);
+> +
+> +	if (!info->id_gpiod && !info->vbus_gpiod) {
+> +		dev_err(dev, "failed to get gpios\n");
+> +		return -ENODEV;
 > +	}
+> +
+> +	if (info->id_gpiod)
+> +		ret = gpiod_set_debounce(info->id_gpiod, USB_GPIO_DEB_US);
+> +	if (!ret && info->vbus_gpiod)
+> +		ret = gpiod_set_debounce(info->vbus_gpiod, USB_GPIO_DEB_US);
+> +	if (ret < 0)
+> +		info->debounce_jiffies = msecs_to_jiffies(USB_GPIO_DEB_MS);
+> +
+> +	INIT_DELAYED_WORK(&info->dw_det, usb_conn_detect_cable);
+> +
+> +	info->vbus = devm_regulator_get(dev, "vbus");
+> +	if (IS_ERR(info->vbus)) {
+> +		dev_err(dev, "failed to get vbus\n");
+> +		return PTR_ERR(info->vbus);
+> +	}
+> +
+> +	info->role_sw = usb_role_switch_get(dev);
+> +	if (IS_ERR(info->role_sw)) {
+> +		if (PTR_ERR(info->role_sw) != -EPROBE_DEFER)
+> +			dev_err(dev, "failed to get role switch\n");
+> +
+> +		return PTR_ERR(info->role_sw);
+> +	}
+> +
+> +	if (info->id_gpiod) {
+> +		info->id_irq = gpiod_to_irq(info->id_gpiod);
+> +		if (info->id_irq < 0) {
+> +			dev_err(dev, "failed to get ID IRQ\n");
+> +			ret = info->id_irq;
+> +			goto put_role_sw;
+> +		}
+> +
+> +		ret = devm_request_threaded_irq(dev, info->id_irq, NULL,
+> +						usb_conn_isr, USB_CONN_IRQF,
+> +						pdev->name, info);
+> +		if (ret < 0) {
+> +			dev_err(dev, "failed to request ID IRQ\n");
+> +			goto put_role_sw;
+> +		}
+> +	}
+> +
+> +	if (info->vbus_gpiod) {
+> +		info->vbus_irq = gpiod_to_irq(info->vbus_gpiod);
+> +		if (info->vbus_irq < 0) {
+> +			dev_err(dev, "failed to get VBUS IRQ\n");
+> +			ret = info->vbus_irq;
+> +			goto put_role_sw;
+> +		}
+> +
+> +		ret = devm_request_threaded_irq(dev, info->vbus_irq, NULL,
+> +						usb_conn_isr, USB_CONN_IRQF,
+> +						pdev->name, info);
+> +		if (ret < 0) {
+> +			dev_err(dev, "failed to request VBUS IRQ\n");
+> +			goto put_role_sw;
+> +		}
+> +	}
+> +
+> +	platform_set_drvdata(pdev, info);
+> +
+> +	/* Perform initial detection */
+> +	usb_conn_queue_dwork(info, 0);
+> +
+> +	return 0;
+> +
+> +put_role_sw:
+> +	usb_role_switch_put(info->role_sw);
+> +	return ret;
+> +}
+> +
+> +static int usb_conn_remove(struct platform_device *pdev)
+> +{
+> +	struct usb_conn_info *info = platform_get_drvdata(pdev);
+> +
+> +	cancel_delayed_work_sync(&info->dw_det);
+> +
+> +	if (info->last_role == USB_ROLE_HOST)
+> +		regulator_disable(info->vbus);
+> +
+> +	usb_role_switch_put(info->role_sw);
 > +
 > +	return 0;
 > +}
 > +
->  static bool gpio_node_has_range(const char *compatible)
->  {
->  	struct device_node *np;
-> @@ -655,6 +687,7 @@ int tegra_pinctrl_probe(struct platform_device *pdev,
->  	int i;
->  	const char **group_pins;
->  	int fn, gn, gfn;
-> +	unsigned long backup_regs_size = 0;
->  
->  	pmx = devm_kzalloc(&pdev->dev, sizeof(*pmx), GFP_KERNEL);
->  	if (!pmx)
-> @@ -707,6 +740,7 @@ int tegra_pinctrl_probe(struct platform_device *pdev,
->  		res = platform_get_resource(pdev, IORESOURCE_MEM, i);
->  		if (!res)
->  			break;
-> +		backup_regs_size += resource_size(res);
->  	}
->  	pmx->nbanks = i;
->  
-> @@ -715,11 +749,24 @@ int tegra_pinctrl_probe(struct platform_device *pdev,
->  	if (!pmx->regs)
->  		return -ENOMEM;
->  
-> +	pmx->reg_bank_size = devm_kcalloc(&pdev->dev, pmx->nbanks,
-> +					  sizeof(*pmx->reg_bank_size),
-> +					  GFP_KERNEL);
-> +	if (!pmx->reg_bank_size)
-> +		return -ENOMEM;
+> +static int __maybe_unused usb_conn_suspend(struct device *dev)
+> +{
+> +	struct usb_conn_info *info = dev_get_drvdata(dev);
 > +
-> +	pmx->backup_regs = devm_kzalloc(&pdev->dev, backup_regs_size,
-> +					GFP_KERNEL);
-> +	if (!pmx->backup_regs)
-> +		return -ENOMEM;
+> +	if (info->id_gpiod)
+> +		disable_irq(info->id_irq);
+> +	if (info->vbus_gpiod)
+> +		disable_irq(info->vbus_irq);
 > +
->  	for (i = 0; i < pmx->nbanks; i++) {
->  		res = platform_get_resource(pdev, IORESOURCE_MEM, i);
->  		pmx->regs[i] = devm_ioremap_resource(&pdev->dev, res);
->  		if (IS_ERR(pmx->regs[i]))
->  			return PTR_ERR(pmx->regs[i]);
+> +	pinctrl_pm_select_sleep_state(dev);
 > +
-> +		pmx->reg_bank_size[i] = resource_size(res);
->  	}
->  
->  	pmx->pctl = devm_pinctrl_register(&pdev->dev, &tegra_pinctrl_desc, pmx);
-> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.h b/drivers/pinctrl/tegra/pinctrl-tegra.h
-> index 32642af3f871..65fcbf8c7579 100644
-> --- a/drivers/pinctrl/tegra/pinctrl-tegra.h
-> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.h
-> @@ -17,6 +17,8 @@ struct tegra_pmx {
->  
->  	int nbanks;
->  	void __iomem **regs;
-> +	size_t *reg_bank_size;
-> +	u32 *backup_regs;
->  };
->  
->  enum tegra_pinconf_param {
-> @@ -195,4 +197,6 @@ struct tegra_pinctrl_soc_data {
->  
->  int tegra_pinctrl_probe(struct platform_device *pdev,
->  			const struct tegra_pinctrl_soc_data *soc_data);
-> +int __maybe_unused tegra_pinctrl_suspend(struct device *dev);
-> +int __maybe_unused tegra_pinctrl_resume(struct device *dev);
->  #endif
-> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra210.c b/drivers/pinctrl/tegra/pinctrl-tegra210.c
-> index 617ad963f5ad..4616bbc2efba 100644
-> --- a/drivers/pinctrl/tegra/pinctrl-tegra210.c
-> +++ b/drivers/pinctrl/tegra/pinctrl-tegra210.c
-> @@ -1562,6 +1562,11 @@ static int tegra210_pinctrl_probe(struct platform_device *pdev)
->  	return tegra_pinctrl_probe(pdev, &tegra210_pinctrl);
->  }
->  
-> +static const struct dev_pm_ops tegra_pinctrl_pm = {
-> +	.suspend = &tegra_pinctrl_suspend,
-> +	.resume = &tegra_pinctrl_resume
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused usb_conn_resume(struct device *dev)
+> +{
+> +	struct usb_conn_info *info = dev_get_drvdata(dev);
+> +
+> +	pinctrl_pm_select_default_state(dev);
+> +
+> +	if (info->id_gpiod)
+> +		enable_irq(info->id_irq);
+> +	if (info->vbus_gpiod)
+> +		enable_irq(info->vbus_irq);
+> +
+> +	usb_conn_queue_dwork(info, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(usb_conn_pm_ops,
+> +			 usb_conn_suspend, usb_conn_resume);
+> +
+> +static const struct of_device_id usb_conn_dt_match[] = {
+> +	{ .compatible = "linux,typeb-conn-gpio", },
+> +	{ }
 > +};
+> +MODULE_DEVICE_TABLE(of, usb_conn_dt_match);
+> +
+> +static struct platform_driver usb_conn_driver = {
+> +	.probe		= usb_conn_probe,
+> +	.remove		= usb_conn_remove,
+> +	.driver		= {
+> +		.name	= "typeb-conn-gpio",
+> +		.pm	= &usb_conn_pm_ops,
+> +		.of_match_table = usb_conn_dt_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(usb_conn_driver);
+> +
+> +MODULE_AUTHOR("Chunfeng Yun <chunfeng.yun@mediatek.com>");
+> +MODULE_DESCRIPTION("USB Type-B GPIO connector driver");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.21.0
 
-What about to move tegra_pinctrl_pm out into pinctrl-tegra.c to make it
-common for all of the drivers?
+thanks,
+
+-- 
+heikki
