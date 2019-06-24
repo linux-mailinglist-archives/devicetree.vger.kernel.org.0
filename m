@@ -2,102 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC5EA4FEF2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:02:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A2454FED8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726836AbfFXCC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 22:02:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41332 "EHLO mail.kernel.org"
+        id S1726481AbfFXCBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 22:01:11 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:40558 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726543AbfFXCC0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jun 2019 22:02:26 -0400
-Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4F4202054F;
-        Mon, 24 Jun 2019 02:02:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561341745;
-        bh=Bn7UoFve4cZCWL5q6OYgRzDWd8sX0VxTtUWVf0R+mL8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pmPw7GaoUQCLfl0vL4q9rzC2fFVZE+HRV4JF2i7KXmYVh36zShWtupvNITqmizguE
-         0fgT7B+hV4/FC+sRaUfrJg4FW+jRQkDNDsAKK+932DEDsP21Ano+dfKc+j098imGFM
-         T8Jnqc7E4sbm8XapSUA24mqoD9G1tcIosDYYSI1g=
-Date:   Mon, 24 Jun 2019 10:02:14 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Zhi Li <lznuaa@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH V12 3/4] arm64: dts: imx8qxp: added ddr performance
- monitor nodes
-Message-ID: <20190624020210.GJ3800@dragon>
-References: <CAHrpEqT_34eNK-EzRgs-ocDD6pfLzD=FU8n83HgSQVsimJRxPw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHrpEqT_34eNK-EzRgs-ocDD6pfLzD=FU8n83HgSQVsimJRxPw@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+        id S1726331AbfFXCBL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 22:01:11 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C52FF20051F;
+        Mon, 24 Jun 2019 04:01:08 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 27F7D20051E;
+        Mon, 24 Jun 2019 04:01:02 +0200 (CEST)
+Received: from mega.ap.freescale.net (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 52C95402F6;
+        Mon, 24 Jun 2019 10:00:54 +0800 (SGT)
+From:   Peter Chen <peter.chen@nxp.com>
+To:     balbi@kernel.org, shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, aisheng.dong@nxp.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, chunfeng.yun@mediatek.com,
+        sergei.shtylyov@cogentembedded.com, Peter Chen <peter.chen@nxp.com>
+Subject: [PATCH v5 0/8] Add imx7ulp USBOTG1 support
+Date:   Mon, 24 Jun 2019 10:02:50 +0800
+Message-Id: <20190624020258.21690-1-peter.chen@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 19, 2019 at 01:46:00PM -0500, Zhi Li wrote:
-> Add ddr performance monitor
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> ---
-> 
-> Resent without base64 encode
-> 
-> Notes:
->     No change from v9 to v12
-> 
->     Change from v8 to v9
->     * put ddr-pmu under ddr_subsystem bus
-> 
->     Change from v3 to v8
->     * none
-> 
->     Change from v2 to v3
->     * ddr_pmu0 -> ddr-pmu
-> 
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> index 0683ee2..a33e08c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> @@ -378,6 +378,20 @@
->                 };
->         };
-> 
-> +       ddr_subsyss: bus@5c000000 {
-> +               compatible = "simple-bus";
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               ranges = <0x5c000000 0x0 0x5c000000 0x1000000>;
-> +
-> +               ddr-pmu@5c020000 {
-> +                       compatible = "fsl,imx8-ddr-pmu";
-> +                       reg = <0x5c020000 0x10000>;
-> +                       interrupt-parent = <&gic>;
-> +                       interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-> +               };
-> +       };
-> +
->         lsio_subsys: bus@5d000000 {
->                 compatible = "simple-bus";
->                 #address-cells = <1>;
+Changes for v5:
+- Change DT node name from 'usbphy' to usb-phy'. [Patch 1/8, 6/8]
 
-The patch format is corrupted.  All tabs are turned into spaces here.  I
-manually apply the patch, but please avoid it next time.
+Changes for v4:
+- Delete the oldest compatible for usbotg1, usbmisc and usbphy.
+[Patch 6/8]
 
-Shawn
+Changes for v3:
+- Using readl_poll_timeout to replace private function. [Patch 2/8]
+- Add more commit log for new flag CI_HDRC_PMQOS. [Patch 5/8]
+- Move 'compatible' at the beginning of propeties. [Patch 6/8]
 
-> --
-> 2.5.2
+Changes for v2:
+- Use common 'phys' property [Patch 6/8]
+- Add the last patch that "fsl,usbphy" phandle is not mandatory now
+[Patch 8/8]
+- Add Reviewed-by from Rob.
+
+
+There is a dual-role USB controller at imx7ulp, we add support for it
+in this patch set, and the dual-role function is tested at imx7ulp-evk
+board.
+
+Thanks.
+
+Peter Chen (8):
+  doc: dt-binding: mxs-usb-phy: add compatible for 7ulp
+  usb: phy: phy-mxs-usb: add imx7ulp support
+  doc: dt-binding: ci-hdrc-usb2: add compatible string for imx7ulp
+  doc: dt-binding: usbmisc-imx: add compatible string for imx7ulp
+  usb: chipidea: imx: add imx7ulp support
+  ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+  ARM: dts: imx7ulp-evk: enable USBOTG1 support
+  usb: chipidea: imx: "fsl,usbphy" phandle is not mandatory now
+
+ .../devicetree/bindings/phy/mxs-usb-phy.txt        |  3 +-
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt       |  1 +
+ .../devicetree/bindings/usb/usbmisc-imx.txt        |  1 +
+ arch/arm/boot/dts/imx7ulp-evk.dts                  | 35 +++++++++++
+ arch/arm/boot/dts/imx7ulp.dtsi                     | 28 +++++++++
+ drivers/usb/chipidea/ci_hdrc_imx.c                 | 33 ++++++++++-
+ drivers/usb/chipidea/usbmisc_imx.c                 |  4 ++
+ drivers/usb/phy/phy-mxs-usb.c                      | 67 +++++++++++++++++++++-
+ include/linux/usb/chipidea.h                       |  1 +
+ 9 files changed, 168 insertions(+), 5 deletions(-)
+
+-- 
+2.14.1
+
