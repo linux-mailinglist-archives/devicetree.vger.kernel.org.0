@@ -2,89 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C55D51BEA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 22:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A63451C39
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 22:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730044AbfFXUD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 16:03:57 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:42562 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727419AbfFXUDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 16:03:53 -0400
-Received: by mail-io1-f68.google.com with SMTP id u19so3865530ior.9
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 13:03:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MODC0ogg5YjkQPNkOGskIKtf6/ZXAORt86to46yuFlo=;
-        b=mDON5sJTCH+vmc//kOAbSHoxD8EtwXQ6+vuQPeBBhNsMTrLo/I/oEiAaPrFWCRuY6s
-         ucBjK3P6JnSVNSVjGZ++u+kSgkjIOYZt2ClKfKnxD5GySnrg+Otjy1+pkblkmRhJR9UM
-         OpsEFGn9pSmHlkpUUiqT+l1a9UmKWbf8YDGRk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MODC0ogg5YjkQPNkOGskIKtf6/ZXAORt86to46yuFlo=;
-        b=tVG6F/cNQmX3FOEE5Nx6M3Nn9wVPliVaAafP+mK4+L2R/9CNhI34DuSYjdy02xE/yV
-         /F6gg4XD2WIIJ0MVShMHgR4tji/xpMUDW+SvNt47bQsG7VWZ1U6N+8ib5WxIbOIBgmA+
-         2U1Nw6bnFoVqpv3MpVlWxcHKa+ztznpUuz0N5xtkZVAkmiyruHFLBM3Cc4NgciQtYaoW
-         8368t3zVCRqwMeKSaowohB7DWe+OffRfmMs+q/94/K+THh4rG7sYcaqejKZugrnmDPLl
-         fzE3hmgjSoupDeTHtjOq1jI9xrEwIy8T4Igc9KPotitU+HvQFkoLe7Qnc/5Ec7jR+rp8
-         xZNA==
-X-Gm-Message-State: APjAAAVdyJALi8OYYPt1m0pCuwbaOtYv2bWpAI0mKN3iVtRdPeBbo0wA
-        oklGTEiRr1YSqLUs1+gyeMjimSjdnIo=
-X-Google-Smtp-Source: APXvYqx3wn0qcJjaRwbu6W6fOjz6b1snzeOdOG6Qcm5RR7gU/RLJGd8ea/OXn6Cv/Mo2HTdTUs5DiA==
-X-Received: by 2002:a5d:904e:: with SMTP id v14mr21867165ioq.61.1561406632918;
-        Mon, 24 Jun 2019 13:03:52 -0700 (PDT)
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com. [209.85.166.52])
-        by smtp.gmail.com with ESMTPSA id f26sm10892066iob.4.2019.06.24.13.03.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jun 2019 13:03:50 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id n5so4924560ioc.7
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 13:03:49 -0700 (PDT)
-X-Received: by 2002:a02:a48f:: with SMTP id d15mr14797429jam.12.1561406629525;
- Mon, 24 Jun 2019 13:03:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190621211346.1324-1-ezequiel@collabora.com> <20190621211346.1324-4-ezequiel@collabora.com>
-In-Reply-To: <20190621211346.1324-4-ezequiel@collabora.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 24 Jun 2019 13:03:37 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UDswMa9X2QxRX9gRnY9=Y2ELMNOZvGZCz4g6fi2c6oEg@mail.gmail.com>
-Message-ID: <CAD=FV=UDswMa9X2QxRX9gRnY9=Y2ELMNOZvGZCz4g6fi2c6oEg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727165AbfFXUZB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Jun 2019 16:25:01 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:60448 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726393AbfFXUZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 16:25:00 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 378BE126B52D0;
+        Mon, 24 Jun 2019 13:24:59 -0700 (PDT)
+Date:   Mon, 24 Jun 2019 13:24:56 -0700 (PDT)
+Message-Id: <20190624.132456.2013417744691373807.davem@davemloft.net>
+To:     megous@megous.com
+Cc:     linux-sunxi@googlegroups.com, maxime.ripard@bootlin.com,
+        wens@csie.org, robh+dt@kernel.org, jernej.skrabec@gmail.com,
+        airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
+        peppe.cavallaro@st.com, alexandre.torgue@st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v7 0/6] Add support for Orange Pi 3
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190624174637.6sznc5ifiuh4c3sm@core.my.home>
+References: <20190620134748.17866-1-megous@megous.com>
+        <20190624.102927.1268781741493594465.davem@davemloft.net>
+        <20190624174637.6sznc5ifiuh4c3sm@core.my.home>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=iso-8859-2
+Content-Transfer-Encoding: 8BIT
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 24 Jun 2019 13:24:59 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Ondøej Jirman <megous@megous.com>
+Date: Mon, 24 Jun 2019 19:46:37 +0200
 
-On Fri, Jun 21, 2019 at 2:14 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
->
-> RK3288 SoC VOPs have optional support Gamma LUT setting,
-> which requires specifying the Gamma LUT address in the devicetree.
->
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> ---
-> Changes from v1:
-> * Drop reg-names, as suggested by Doug.
-> ---
->  arch/arm/boot/dts/rk3288.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> This series was even longer before, with patches all around for various
+> maintainers. I'd expect that relevant maintainers pick the range of patches
+> meant for them. I don't know who's exactly responsible for what, but I think,
+> this should work:
+> 
+> - 2 stmmac patches should go together via some networking tree (is there
+>   something specific for stmmac?)
+> - all DTS patches should go via sunxi
+> - hdmi patches via some drm tree
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Thank you.  So I'll merge the first two patches that touch the stmmac
+driver via my net-next tree.
