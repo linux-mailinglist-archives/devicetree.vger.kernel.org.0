@@ -2,202 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0946B51E50
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 00:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E877351E65
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 00:37:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726798AbfFXWbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 18:31:10 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41011 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726672AbfFXWbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 18:31:09 -0400
-Received: by mail-pf1-f194.google.com with SMTP id m30so8299743pff.8;
-        Mon, 24 Jun 2019 15:31:09 -0700 (PDT)
+        id S1726668AbfFXWhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 18:37:09 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:44142 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726658AbfFXWhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 18:37:09 -0400
+Received: by mail-pg1-f195.google.com with SMTP id n2so7841749pgp.11
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 15:37:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=sDhvHfU4nGf0uonBKZjM1IEpg98UHFSrxt5pp3t51DY=;
-        b=UBFFjWT7LOuvou/845a+CpgFGAlCRZd/d++Vvm5MbyCdmOB6uDYUhbEZ46v6N5zAw3
-         0UAgIHRt3RaI/dlynHv55AsUjRAHWaonVi1wqTPvZuJlfiVMJJaRb/cin9Mr6NFkvdui
-         nMZFmNk5xoI1k5S4W6grKEW9L7l6u4bAOKTmk2n3X40eN33za1M+v5xtKsmz2r0RlxaS
-         J/QNi8p8XnVGYuKm29TwOxkfYfEtV/KSzg4sNpuwsumcNAq+lyBhZBAMiasEmDfIq1es
-         rynDtul/z1NJoxaykKAPa4ue4pVR9POUH59gfeo/PDuHR83srjLeTwgpIzp+R8hWqoIJ
-         WMjQ==
+        d=android.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=PVdZv0wwo7AUgjgbTdtKv5MPkWck4LusYw9ccLhXv1g=;
+        b=unDytAdhv9eLs4aVxey+PovyA7OLrt6LzAdtbe1H2YsybDe0+cb7hmNY68HKFeky3Y
+         1/ShkybB54MeLfinqhItApaAIzOvsNZrpJy2FSOGjYIngKoQzZhTs+B68+lRrqNt8sjh
+         YmwCCSHqK0JUJkO0VPkbdGhnRDonwo4RbtKLh8ybeUwHkJTjGKq10uYMPJzbUxl5NUuj
+         yjX8P/d7jbJ1H0giv2DwKdsn1lY0QbGcMrBgwrr5D1AooqckKKJ1q4I+4AfEQFtEdOGn
+         voXfhbrXxCXMTEIGnNrbK6+TT5+NazPzBKDnngaC1paCg8DUd4YnnKSnI52uBa3h6Ygm
+         1xtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=sDhvHfU4nGf0uonBKZjM1IEpg98UHFSrxt5pp3t51DY=;
-        b=o0fgnHQdD1BCEWJXMBsSEuqUaUFIdPE6Bp/N33bSyg3sgMFZ/xNJoR0d1qHB6mO7o2
-         d/tiH6VwEWo0SmNNBOBjAXMpGnnjms9Qq3xhywjjOdqP/OrUnoODqVf5vp4sKy/pvdIN
-         ydGJQv3gV6eG8sZxzEio4VrD+BZWxQ5G5IRm2K2seEj9SZ4MWueGU/TtcbIivOtObrpe
-         oA9+Kt0v+LUJcKx7Mn64VV69yTshrtXQiOYlnT8HPoTlsf3yGJoOQuvMBTFn/rRPag8l
-         BEaJhx3bavBhsyX5OTYQiEhmoAjCzHbnGeVIJLq6b0rrJDBbYSBOON51UJy1dHu+Q7ML
-         ONBQ==
-X-Gm-Message-State: APjAAAVT08rZ5SectYDUzIxYRn49mTD5rRFKOZVnUWtdKW+ChmqFx2kZ
-        xlvwC8vfCi1R0lovBLhLbI0=
-X-Google-Smtp-Source: APXvYqxBVF71hCnhocjdmBxf48aLLf2UsC8HofCR0uK+Bz9FPmtB5MKqsbtad7nULsExdR7GNFUqVQ==
-X-Received: by 2002:a17:90a:346c:: with SMTP id o99mr26952184pjb.20.1561415469102;
-        Mon, 24 Jun 2019 15:31:09 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id m11sm398116pjv.21.2019.06.24.15.31.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jun 2019 15:31:08 -0700 (PDT)
-Subject: Re: [RFC PATCH 00/11] tracing: of: Boot time tracing using devicetree
-To:     Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     Steven Rostedt <rostedt@goodmis.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Zanussi <tom.zanussi@linux.intel.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Jiri Olsa <jolsa@redhat.com>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <156113387975.28344.16009584175308192243.stgit@devnote2>
- <f0cee7b6-b83b-b74c-82f5-f43e39bd391a@gmail.com>
- <20190624115223.db1e53549a15c6548bfa1fa1@kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <e5e3f55b-095b-e6fc-8734-d888ba5c87f3@gmail.com>
-Date:   Mon, 24 Jun 2019 15:31:07 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=PVdZv0wwo7AUgjgbTdtKv5MPkWck4LusYw9ccLhXv1g=;
+        b=tW9Ied5XZWt9VFfpf6Cxw8PzCZqhgQurav9yTFtJo9P51ThpxmrH6YwuPka1ndQgR1
+         WqjooBKVqjKKFHKMPcUyUqMkZLr8Zu98qUtcrFAbwSd9SuXqfWwxKVJoE9ruQj/+N0hc
+         IZc2qg2is5ZcdFqymLUr1su6v/phtNmgefgDuAE6h+wZF/xBTUzf9fgIfTiA2voGi8IX
+         wmIAyZP1etf0pB8XA6tsKGUdJ/Fd94V65Ga0hLd+ycRhUpilayWnZnHmFL4Y8shraZ5v
+         G8Y4FVEVm4POImN1+Sw2D13O9IWrVnt1rCQTF64uHl9j6BVSNPOOIXCoqqyPJCYQglgy
+         WDWw==
+X-Gm-Message-State: APjAAAXnLzNal5uvWvjKfIKQUxSXPhqWWFliGEKKOeXpGJw9LlcFhgXH
+        o9t/wS6K6HMEaNeOHRbKP3X4xg==
+X-Google-Smtp-Source: APXvYqxbNiviVhTgUYWHtVesC13Iu7nWAF+dX1SY1JxvDPDRzC0v5nulzld8pZohquqpsd44l5R6Sw==
+X-Received: by 2002:a63:f4e:: with SMTP id 14mr35285630pgp.58.1561415828288;
+        Mon, 24 Jun 2019 15:37:08 -0700 (PDT)
+Received: from localhost ([2620:0:1000:1601:3fed:2d30:9d40:70a3])
+        by smtp.gmail.com with ESMTPSA id t70sm5015290pgc.13.2019.06.24.15.37.07
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 24 Jun 2019 15:37:07 -0700 (PDT)
+Date:   Mon, 24 Jun 2019 15:37:07 -0700
+From:   Sandeep Patil <sspatil@android.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-team@android.com
+Subject: Re: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and
+ optimize probe ordering
+Message-ID: <20190624223707.GH203031@google.com>
+References: <20190604003218.241354-1-saravanak@google.com>
 MIME-Version: 1.0
-In-Reply-To: <20190624115223.db1e53549a15c6548bfa1fa1@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190604003218.241354-1-saravanak@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/23/19 7:52 PM, Masami Hiramatsu wrote:
-> Hi Frank,
-> 
-> Thank you for your comment!
-> 
-> On Sun, 23 Jun 2019 12:58:45 -0700
-> Frank Rowand <frowand.list@gmail.com> wrote:
-> 
->> Hi Masami,
->>
->> On 6/21/19 9:18 AM, Masami Hiramatsu wrote:
->>> Hi,
->>>
->>> Here is an RFC series of patches to add boot-time tracing using
->>> devicetree.
->>>
->>> Currently, kernel support boot-time tracing using kernel command-line
->>> parameters. But that is very limited because of limited expressions
->>> and limited length of command line. Recently, useful features like
->>> histogram, synthetic events, etc. are being added to ftrace, but it is
->>> clear that we can not expand command-line options to support these
->>> features.
->>
->> "it is clear that we can not expand command-line options" needs a fuller
->> explanation.  And maybe further exploration.
-> 
-> Indeed. As an example of tracing settings in the first mail, even for simple
-> use-case,  the trace command is long and complicated. I think it is hard to
-> express that as 1-liner kernel command line. But devicetree looks very good
-> for expressing structured data. That is great and I like it :)
+(Responding to the first email in the series to summarize the current
+situation and choices we have.)
 
-But you could extend the command line paradigm to meet your needs.
+On Mon, Jun 03, 2019 at 05:32:13PM -0700, 'Saravana Kannan' via kernel-team wrote:
+> Add a generic "depends-on" property that allows specifying mandatory
+> functional dependencies between devices. Add device-links after the
+> devices are created (but before they are probed) by looking at this
+> "depends-on" property.
+> 
+> This property is used instead of existing DT properties that specify
+> phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
+> is because not all resources referred to by existing DT properties are
+> mandatory functional dependencies. Some devices/drivers might be able
+> to operate with reduced functionality when some of the resources
+> aren't available. For example, a device could operate in polling mode
+> if no IRQ is available, a device could skip doing power management if
+> clock or voltage control isn't available and they are left on, etc.
+> 
+> So, adding mandatory functional dependency links between devices by
+> looking at referred phandles in DT properties won't work as it would
+> prevent probing devices that could be probed. By having an explicit
+> depends-on property, we can handle these cases correctly.
+> 
+> Having functional dependencies explicitly called out in DT and
+> automatically added before the devices are probed, provides the
+> following benefits:
+> 
+> - Optimizes device probe order and avoids the useless work of
+>   attempting probes of devices that will not probe successfully
+>   (because their suppliers aren't present or haven't probed yet).
+> 
+>   For example, in a commonly available mobile SoC, registering just
+>   one consumer device's driver at an initcall level earlier than the
+>   supplier device's driver causes 11 failed probe attempts before the
+>   consumer device probes successfully. This was with a kernel with all
+>   the drivers statically compiled in. This problem gets a lot worse if
+>   all the drivers are loaded as modules without direct symbol
+>   dependencies.
+> 
+> - Supplier devices like clock providers, regulators providers, etc
+>   need to keep the resources they provide active and at a particular
+>   state(s) during boot up even if their current set of consumers don't
+>   request the resource to be active. This is because the rest of the
+>   consumers might not have probed yet and turning off the resource
+>   before all the consumers have probed could lead to a hang or
+>   undesired user experience.
+> 
+>   Some frameworks (Eg: regulator) handle this today by turning off
+>   "unused" resources at late_initcall_sync and hoping all the devices
+>   have probed by then. This is not a valid assumption for systems with
+>   loadable modules. Other frameworks (Eg: clock) just don't handle
+>   this due to the lack of a clear signal for when they can turn off
+>   resources. This leads to downstream hacks to handle cases like this
+>   that can easily be solved in the upstream kernel.
+> 
+>   By linking devices before they are probed, we give suppliers a clear
+>   count of the number of dependent consumers. Once all of the
+>   consumers are active, the suppliers can turn off the unused
+>   resources without making assumptions about the number of consumers.
+> 
+> By default we just add device-links to track "driver presence" (probe
+> succeeded) of the supplier device. If any other functionality provided
+> by device-links are needed, it is left to the consumer/supplier
+> devices to change the link when they probe.
+>  
 
-> 
->>>
->>> Hoever, I've found that there is a devicetree which can pass more
->>> structured commands to kernel at boot time :) The devicetree is usually
->>> used for dscribing hardware configuration, but I think we can expand it
->>
->> Devicetree is standardized and documented as hardware description.
-> 
-> Yes, at this moment. Can't we talk about some future things?> 
->>> for software configuration too (e.g. AOSP and OPTEE already introduced
->>> firmware node.) Also, grub and qemu already supports loading devicetree,
->>> so we can use it not only on embedded devices but also on x86 PC too.
->>
->> Devicetree is NOT for configuration information.  This has been discussed
->> over and over again in mail lists, at various conferences, and was also an
->> entire session at plumbers a few years ago:
->>
->>    https://elinux.org/Device_tree_future#Linux_Plumbers_2016_Device_Tree_Track
-> 
-> Thanks, I'll check that.
-> 
->>
->> There is one part of device tree that does allow non-hardware description,
->> which is the "chosen" node which is provided to allow communication between
->> the bootloader and the kernel.
-> 
-> Ah, "chosen" will be suit for me :)
+We are trying to make sure that all (most) drivers in an Aarch64 system can
+be kernel modules for Android, like any other desktop system for
+example. There are a number of problems we need to fix before that happens
+ofcourse.
 
-No.  This is not communicating boot loader information.
+That patch series does the following -
 
-> 
->> There clearly are many use cases for providing configuration information
->> and other types of data to a booting kernel.  I have been encouraging
->> people to come up with an additional boot time communication channel or
->> data object to support this use case.  So far, no serious proposal that
->> I am aware of.
-> 
-> Hmm, then, can we add "ftrace" node under "chosen" node?
-> It seems that "chosen" is supporting some (flat) properties, and I would
-> like to add a tree of nodes for describing per-event setting.
-> 
-> What about something like below? (do we need "compatible" ?)
-> 
-> chosen {
-> 	linux,ftrace {
-> 		tp-printk;
-> 		buffer-size-kb = <400>;
-> 		event0 {
-> 			event = "...";
-> 		};
-> 	};
-> };
-> 
-> [..]
->>>
->>> I would like to discuss on some points about this idea.
->>>
->>> - Can we use devicetree for configuring kernel dynamically?
->>
->> No.  Sorry.
->>
->> My understanding of this proposal is that it is intended to better
->> support boot time kernel and driver debugging.  As an alternate
->> implementation, could you compile the ftrace configuration information
->> directly into a kernel data structure?  It seems like it would not be
->> very difficult to populate the data structure data via a few macros.
-> 
-> No, that is not what I intended. My intention was to trace boot up
-> process "without recompiling kernel", but with a structured data.
+1. Resolve the consumer<->supplier relationship in order for subsystems to
+turn off resources to save power is #1 on our list. This is because it will
+define how driver and DT writers define and write their code for Android
+devices.
 
-That is debugging.  Or if you want to be pedantic, a complex performance
-measurement of the boot process (more than holding a stopwatch in your
-hand).
+2. Resolve cyclic dependency between devices nodes as a side-effect.  That
+will make sure Android systems do not suffer from deferred probing and we
+have a generic way of serialize driver probes. (This can also be mitigated
+somewhat by module dependencies outside of the kernel.)
 
-Recompiling a single object file (containing the ftrace command data)
-and re-linking the kernel is not a big price in that context).  Or if
-you create a new communication channel, you will have the cost of
-creating that data object (certainly not much different than compiling
-a devicetree) and have the bootloader provide the ftrace data object
-to the kernel.
+Subsystems like regulator, interconnect can immediately benefit from #1 and
+it makes the module/driver loading possible for Android systems without
+regressing power horribly.
 
-> 
-> For such purpose, we have to implement a tool to parse and pack the
-> data and a channel to load it at earlier stage in bootloader. And
-> those are already done by devicetree. Thus I thought I could get a
-> piggyback on devicetree.
+After thinking about Rob's suggestion to loop though dependencies, I think it
+doesn't work because we don't know what to do when there are cycles. Drivers
+sometimes need to have access to phandles in order to retrieve resources from
+that phandle. We can't assume that is an implied "probe dependency". Saravana
+had several such examples already and it is a _real world_ scenario.
 
-Devicetree is not the universal dumping ground for communicating
-information to a booting kernel.  Please create another communication
-channel.
+I think the current binding are insufficient to describe the runtime hardware
+dependencies. IOW, the current bindinds were probably intended to be that, but
+drivers use them to get phandles for other nodes too and are not *strict*
+dependencies. Either way, for Android systems to realize this goal of having
+driver modules load on demand, we have to have something that does what this
+patch series does.
 
-> 
-> Thank you,
-> 
+I am also sensitive to the fact that adding a new binding in "depends-on"
+will mean all Android devices will start *depending on* that DT binding (no
+pun intended) without any upstream support. We want to avoid that as much
+as possible.
+
+I guess we are happy to hear better ways of doing this that work, but in the
+absence of that, we are going to have to carry the series for Android and
+that makes me sad :(
+
+Suggestions, thoughts, for what Android should do here...?
+
+Thanks
+- ssp
+
 
