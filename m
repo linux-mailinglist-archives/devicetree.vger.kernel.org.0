@@ -2,194 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3132A504FC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 10:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BDD50508
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 11:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727839AbfFXI5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 04:57:39 -0400
-Received: from twhmllg4.macronix.com ([122.147.135.202]:39818 "EHLO
-        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725916AbfFXI5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 04:57:39 -0400
-Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
-        by TWHMLLG4.macronix.com with ESMTP id x5O8te4j092345;
-        Mon, 24 Jun 2019 16:55:40 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
-        by Forcepoint Email with ESMTP id 61692E8312812FC0B8BA;
-        Mon, 24 Jun 2019 16:55:41 +0800 (CST)
-In-Reply-To: <20190619110643.523c1f56@collabora.com>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw> <20190512151820.4f2dd9da@xps13>
-        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw> <20190520142333.390091d5@xps13>
-        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw> <20190527144250.71908bd9@xps13>
-        <OFE923A8E5.50375C30-ON48258409.0009AE1B-48258409.00119767@mxic.com.tw> <20190617143510.4ded5728@xps13>
-        <OF1C1397B4.241DC339-ON4825841D.000482A2-4825841D.0007B67E@mxic.com.tw> <20190618081436.5d488320@collabora.com>
-        <20190618092901.3bdd9f61@collabora.com> <OF5EAF94EB.AE31CF59-ON4825841E.002A2C38-4825841E.002C60BF@mxic.com.tw>
-        <20190619101519.391919ec@collabora.com> <OF9EFE4BDE.3166D82B-ON4825841E.00307F51-4825841E.00310FB5@mxic.com.tw
- <20190619110643.523c1f56@collabora.com>
-To:     "Boris Brezillon" <boris.brezillon@collabora.com>
-Cc:     bbrezillon@kernel.org, broonie@kernel.org,
-        christophe.kerello@st.com, computersforpeace@gmail.com,
-        devicetree@vger.kernel.org, dwmw2@infradead.org,
-        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
-        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
-        mark.rutland@arm.com, "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        paul.burton@mips.com, richard@nod.at, robh+dt@kernel.org,
-        stefan@agner.ch, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND controller
+        id S1728170AbfFXJBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 05:01:30 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:45377 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728166AbfFXJBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 05:01:30 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190624090129euoutp019f688e5d21e3b9e5efbaaa0c70a9f3cd~rFunAYU1n1636116361euoutp01e
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 09:01:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190624090129euoutp019f688e5d21e3b9e5efbaaa0c70a9f3cd~rFunAYU1n1636116361euoutp01e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1561366889;
+        bh=1tUvwV6TPThs11nN+9aGdmPaQlqKKH5f6BaMh/ss/Bw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=GatHPGCaOPGcbbwA2rAwUNc687v8+IajG30iihPO1/14CUAUEi+4ZUgmGA+9YfkhF
+         BDu8RrCJM0a2V9nMqbscQL7WJACCrkRF2/uX8uX/rv7IjfqhqX3En63e9jso7tTH3r
+         7LwpsR1VdMVlntpGZB2hXKaZ3G8ikZr+Bexoa7pk=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190624090128eucas1p1da96f3b2a68421f66b6609fb1e8c7906~rFumkFvBM2770927709eucas1p1n;
+        Mon, 24 Jun 2019 09:01:28 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 18.61.04298.861901D5; Mon, 24
+        Jun 2019 10:01:28 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190624090127eucas1p1b71b2427ac9880533b0c20f82537016f~rFulwKJpm1081410814eucas1p14;
+        Mon, 24 Jun 2019 09:01:27 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190624090127eusmtrp120a622067f930c185b497305734827a3~rFuliGWOl1547615476eusmtrp1X;
+        Mon, 24 Jun 2019 09:01:27 +0000 (GMT)
+X-AuditID: cbfec7f2-f13ff700000010ca-44-5d1091688a05
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 56.DA.04140.761901D5; Mon, 24
+        Jun 2019 10:01:27 +0100 (BST)
+Received: from [106.120.50.25] (unknown [106.120.50.25]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190624090127eusmtip22e0282769642a7cbeba3cce3f8464e61~rFulH4ITK2745127451eusmtip2P;
+        Mon, 24 Jun 2019 09:01:26 +0000 (GMT)
+Subject: Re: [PATCH v2 3/4] ARM: dts: exynos: Add regulator suspend
+ configuration to Odroid XU3/XU4/HC1 family
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Anand Moon <linux.amoon@gmail.com>, Kukjin Kim <kgene@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <2f58b63e-adf1-7935-8849-f311dc991b84@samsung.com>
+Date:   Mon, 24 Jun 2019 11:01:25 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.2
 MIME-Version: 1.0
-X-KeepSent: C97D5691:B26644D3-48258423:002F8D47;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OFC97D5691.B26644D3-ON48258423.002F8D47-48258423.00310B3E@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Mon, 24 Jun 2019 16:55:41 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/06/24 PM 04:55:41,
-        Serialize complete at 2019/06/24 PM 04:55:41
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG4.macronix.com x5O8te4j092345
+In-Reply-To: <CAJKOXPeXELUjsuW9eyGuRj56067qnL-J2Lt4U42mYiyx=X+F_Q@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCKsWRmVeSWpSXmKPExsWy7djP87oZEwViDf7O5bGYf+Qcq0X/49fM
+        FufPb2C32PT4GqvF5V1z2CxmnN/HZLFu4y12B3aPnbPusntsWtXJ5rF5Sb3H501yASxRXDYp
+        qTmZZalF+nYJXBnvVnoXLBeuePtpF2sD43r+LkZODgkBE4nzz7awdjFycQgJrGCUmPK1gQnC
+        +cIosXXGIRaQKiGBz4wSD086wXT8mfaAEaJoOaPEz5MvmSGct4wSnydsYAKpEhYokOg8+pYN
+        xBYR0JS4/vc72A5mgaVMEl8PNLCDJNgEDCW63naBFfEK2Em8nXSWEcRmEVCV6G98BDZIVCBG
+        4uH8O1A1ghInZz4BO4lTIFBi6c8JYHFmAXmJ7W/nMEPY4hK3nswH+0FCYBW7xJJls5kh7naR
+        eLN9JTuELSzx6vgWKFtG4vTkHhaIhmagP8+tZYdwehglLjfNYISospY4fPwi0A8cQCs0Jdbv
+        0gcxJQQcJd5cS4Uw+SRuvBWEuIFPYtK26cwQYV6JjjYhiBlqErOOr4PbevDCJeYJjEqzkHw2
+        C8k3s5B8Mwth7QJGllWM4qmlxbnpqcWGeanlesWJucWleel6yfm5mxiBaef0v+OfdjB+vZR0
+        iFGAg1GJh1dgA3+sEGtiWXFl7iFGCQ5mJRHepYkCsUK8KYmVValF+fFFpTmpxYcYpTlYlMR5
+        qxkeRAsJpCeWpGanphakFsFkmTg4pRoYbb2k/nFsTTLb3+GcX1cnYZEUuNPbnSHp4d9LTLZ5
+        25x+rTrR0rDewfPT3O3JLe+nxH6YoPjW9OkaP7m5pzZLMfY0m/X3+3t2qbCGFd44qP7MXvls
+        9/nZpbePPDl5qmfS/ozI3y4sajuqu6ZVbEyuZIj8En3fP3nznEUXX74qzJbrkE2MbYhWYinO
+        SDTUYi4qTgQARj0T5jcDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsVy+t/xe7rpEwViDX7tFreYf+Qcq0X/49fM
+        FufPb2C32PT4GqvF5V1z2CxmnN/HZLFu4y12B3aPnbPusntsWtXJ5rF5Sb3H501yASxRejZF
+        +aUlqQoZ+cUltkrRhhZGeoaWFnpGJpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehnvVnoXLBeu
+        ePtpF2sD43r+LkZODgkBE4k/0x4wdjFycQgJLGWUuHvgCRtEQkbi5LQGVghbWOLPtS42iKLX
+        jBJzWvvAEsICBRKdR9+CNYgIaEpc//udFaSIWWApk8SFU0tYITq+MElM/72PEaSKTcBQoutt
+        F1gHr4CdxNtJZ8HiLAKqEv2Nj5hAbFGBGImuqT9ZIGoEJU7OfAJmcwoESiz9OQGsl1nATGLe
+        5ofMELa8xPa3c6BscYlbT+YzTWAUmoWkfRaSlllIWmYhaVnAyLKKUSS1tDg3PbfYSK84Mbe4
+        NC9dLzk/dxMjMNa2Hfu5ZQdj17vgQ4wCHIxKPLwCG/hjhVgTy4orcw8xSnAwK4nwLk0UiBXi
+        TUmsrEotyo8vKs1JLT7EaAr03ERmKdHkfGAayCuJNzQ1NLewNDQ3Njc2s1AS5+0QOBgjJJCe
+        WJKanZpakFoE08fEwSnVwBgZ4zl7v8lhqXm9e63kr1sc2HCedcJ/rSC3E2VbTV6lXV8kIv7B
+        pH419/GnvLPKup5Fh3/8zMLT6vLr5XKJhon2U3x3PLzo6nvp4OLi7t1xyX6izx69tC76pRvx
+        SOPh5g0f/gcY/17w5Osynr8yxYbdJmqq/xc/mmRq1W3oWLI3LZ/z3aP3M2cqsRRnJBpqMRcV
+        JwIAMEpbl8sCAAA=
+X-CMS-MailID: 20190624090127eucas1p1b71b2427ac9880533b0c20f82537016f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190623160226epcas2p3449814deb1faf7bf939481e6d4da2b86
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190623160226epcas2p3449814deb1faf7bf939481e6d4da2b86
+References: <20190621155845.7079-1-krzk@kernel.org>
+        <20190621155845.7079-3-krzk@kernel.org>
+        <CGME20190623160226epcas2p3449814deb1faf7bf939481e6d4da2b86@epcas2p3.samsung.com>
+        <CANAwSgTFQo8wL5s-djwPXFFOLtTHvRQif6234kFC=23PwMhuEQ@mail.gmail.com>
+        <d94a2f99-fb99-c238-7011-9bbb4c0cd90f@samsung.com>
+        <CAJKOXPeXELUjsuW9eyGuRj56067qnL-J2Lt4U42mYiyx=X+F_Q@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
-Hi Boris,
-
-
-> > > > > Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND 
-> > controller
-> > > > > 
-> > > > > On Tue, 18 Jun 2019 08:14:36 +0200
-> > > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
-> > > > > 
-> > > > > > > > > > > 
-> > > > > > > > > > > How to make all #CS keep high for NAND to enter 
-> > > > > > > > > > > low-power standby mode if driver don't use 
-> > > > "legacy.select_chip()" 
-> > > > > > > ? 
-> > > > > > > > > > 
-> > > > > > > > > > See commit 02b4a52604a4 ("mtd: rawnand: Make 
-> > ->select_chip() 
-> > > > > > > optional 
-> > > > > > > > > > when ->exec_op() is implemented") which states:
-> > > > > > > > > > 
-> > > > > > > > > >         "When [->select_chip() is] not implemented, 
-the 
-> > core 
-> > > > is 
-> > > > > > > assuming 
-> > > > > > > > > >    the CS line is automatically asserted/deasserted by 
-the 
-> > 
-> > > > driver 
-> > > > > > > > > >    ->exec_op() implementation." 
-> > > > > > > > > > 
-> > > > > > > > > > Of course, the above is right only when the controller 
- 
-> > driver 
-> > > > 
-> > > > > > > supports 
-> > > > > > > > > > the ->exec_op() interface. 
-> > > > > > > > > 
-> > > > > > > > > Currently, it seems that we will get the incorrect data 
-and 
-> > 
-> > > > error 
-> > > > > > > > > operation due to CS in error toggling if CS line is 
-> > controlled 
-> > > > in 
-> > > > > > > > > ->exec_op(). 
-> > > > > 
-> > > > > Oh, and please provide the modifications you added on top of 
-this 
-> > patch.
-> > > > > Right now we're speculating on what you've done which is 
-definitely 
-> > not
-> > > > > an efficient way to debug this sort of issues. 
-> > > > 
-> > > > The patch is to add in beginning of ->exec_op() to control CS# low 
-and 
-> > 
-> > > > before return from ->exec_op() to control CS# High.
-> > > > i.e,.
-> > > > static in mxic_nand_exec_op( )
-> > > > {
-> > > >  cs_to_low();
-> > > > 
-> > > > 
-> > > > 
-> > > >  cs_to_high();
-> > > >  return;
-> > > > }
-> > > > 
-> > > > But for nand_onfi_detect(), 
-> > > > it calls nand_read_param_page_op() and then nand_read_data_op().
-> > > > mxic_nand_exec_op() be called twice for nand_onfi_detect() and
-> > > > driver will get incorrect ONFI parameter table data from 
-> > > > nand_read_data_op(). 
-> > > 
-> > > And I think it's valid to release the CE pin between
-> > > read_param_page_op() (CMD(0xEC)+ADDR(0x0)) and read_data_op() (data
-> > > cycles) if your chip is CE-dont-care compliant. So, either you have 
-a
-> > > problem with your controller driver (CS-related timings are 
-incorrect)
-> > > or your chip is not CE-dont-care compliant. 
-> > 
-> > Understood, I will try to fix it on my NFC driver.
-> 
-> Before you do that, can you please try to understand where the problem
-> comes from and explain it to us? Hacking the NFC driver is only
-> meaningful if the problem is on the NFC side. If your NAND chip does
-> not support when the CS pin goes high between read_param_page_op() and
-> read_data_op() the problem should be fixed in the core.
-
-I think I have fixed the problem and the root cause is the our NFC's TX 
-FIFO counter 
-do a unnecessary reset in CS control function. Our NFC implement 
-read-write 
-buffer transfer to send command, address and data.
-A unnecessary reset to TX FIFO will send a command byte out first and this 
-extra
-command will make something wrong to next operation.
-
-For now, doing CS# control in ->exec_op() is OK to me.
-
-thanks & best regards,
-Mason
+On 2019-06-24 09:41, Krzysztof Kozlowski wrote:
+> On Mon, 24 Jun 2019 at 09:20, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>> On 2019-06-23 18:02, Anand Moon wrote:
+>>> Thanks for this patch. Please add my
+>>>
+>>> Tested-by: Anand Moon <linux.amoon@gmail.com>
+>>>
+>>> [snip]
+>>>
+>>> Could you integrate below small changes into this patch.
+>>> with these below changes suspend and resume work correctly at my end.
+>>>
+>>> [1] XU4_suspendresume.patch
+>>>
+>>> As per S2MPS11B PMIC 1.2.1 Regulator (Features)
+>>> Fix the min max value for *Buck7* and *Buck8*
+>>>
+>>> -- Buck7 (VDD_1.0V_LDO) 1.5 A (1.2 V to 1.5 V, 12.5 mV step, default on 1.35 V)
+>>> -- Buck8 (VDD_1.8V_LDO) 2.5 A (1.8 V to 2.1 V, 12.5 mV step, default on 2.0 V)
+>> Could you elaborate why such change for Buck7 and Buck8 is needed?
+> Anand has here valid point - the constraints in DTS do not match
+> hardware manual. This leads to question whether voltage table in
+> driver is proper... Another point is the voltage itself. The
+> schematics describes them as at specific voltage (1.35 V and 2.0 V)
+> but after boot they are 1.2 V and 1.85 V. Maybe this shift comes from
+> the problem above.
+>
+>>> Also add suspend-off for *Buck9*
+>>> Buck9 internally controls the power of USB hub.
+>>> Adding suspend the this node help proper reset of USB hub on Odroid
+>>> XU4 / HC1/ XU3
+>>> during suspend and resume. Below it the logs from my testing.
+>> Disabling Buck9 in suspend indeed reduces the power consumed by the
+>> board during suspend-to-ram from about 80mA to as little as 7-10mA, what
+>> matches the results of OdroidXU3. Thanks for the hint!
+> Although I did not get what is the difference in the logs (Anand
+> pasted two logs but they look the same) but the power consumption is
+> reason is good enough. I would be happy to put in the changelog entire
+> consumption  difference. I can measure it on XU3-Lite but can you give
+> me the XU4 (before and after)?\
 
 
+HC1:
 
-CONFIDENTIALITY NOTE:
+next-20190620: 120mA (@5V)
+this patchset: 72mA (@5V)
+this patchset + fixup from Anand: 7-10mA (@5V)
 
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
+XU4 (SDcard):
 
-Macronix International Co., Ltd.
-
-=====================================================================
+next-20190620: 88mA (@5V)
+this patchset: 74mA (@5V), sometimes 42mA (@5V)
+this patchset + fixup from Anand: 6-9mA (@5V)
 
 
+XU4 (eMMC):
 
-============================================================================
+next-20190620: 100mA (@5V)
+this patchset: 72mA (@5V), sometimes 41mA (@5V)
+this patchset + fixup from Anand: 6-9mA (@5V)
 
-CONFIDENTIALITY NOTE:
 
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
