@@ -2,228 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59368508E2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88DA1508FC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727368AbfFXK2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 06:28:51 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:42422 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726716AbfFXK2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 06:28:51 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 1460D60A44; Mon, 24 Jun 2019 10:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561372129;
-        bh=Yo8X3dqiiQ1UfNiElYZLxap+rtuWrdAb9vMVVB+Ox+0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Ae3GjDPONu0L4o01Dg+0ZPaoqbTuCx3E4go0l1apkykT3ssll2W0LxcKlIXoPuDcy
-         7ZT/N3bD78c5FiD7cRV481iMctHAd8dMc83WetlaHyZbLavVqJhOEaGMECP+qOAefZ
-         dBbVN8DhpFzKBrSr/XN4YqBs2/pHnytF2b9IA0B4=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 14CFB60741;
-        Mon, 24 Jun 2019 10:28:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561372126;
-        bh=Yo8X3dqiiQ1UfNiElYZLxap+rtuWrdAb9vMVVB+Ox+0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gDEuET4C0e23NAVMlDD0YYVtYeaZmhrDCpYHMy002urpTEz23zc3tLGyDg2gjdUUt
-         opfKWC41nGYYhIw0TUVpNNU5fUpTrM/aXR8Uk5+bEuT+pADrGXcgRuqiyyo1SaWWDV
-         0U9L8/Wn7opSTjmg3p94naSmpdMYaxdJl5Cd9ZG8=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 14CFB60741
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
-Received: by mail-ed1-f42.google.com with SMTP id e3so20988188edr.10;
-        Mon, 24 Jun 2019 03:28:45 -0700 (PDT)
-X-Gm-Message-State: APjAAAV4hCgXLh5Svq5C/sV93wasx6ZKVcN609hYtiBH76Fi0I6PTSww
-        KXUbqMhLDfAzHOVhjmMM316MfwDpQcknpjtJZQI=
-X-Google-Smtp-Source: APXvYqzS9YfgWqNtJBndTuIFVgJlLmOUhAdYZF1/h1ikpnhDX6yCJp0IUNtl0PCH/+Af5EI0Rq50UzRsBHoddpF7g0g=
-X-Received: by 2002:aa7:c515:: with SMTP id o21mr121190379edq.2.1561372124494;
- Mon, 24 Jun 2019 03:28:44 -0700 (PDT)
+        id S1728422AbfFXKdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 06:33:19 -0400
+Received: from ironport.klsmartin.com ([212.211.191.11]:54343 "EHLO
+        ironport.klsmartin.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727984AbfFXKdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 06:33:19 -0400
+X-IronPort-AV: E=Sophos;i="5.63,411,1557180000"; 
+   d="scan'208";a="2040921"
+Received: from unknown (HELO hera.klsmartin.com) ([172.30.5.66])
+  by ironport.klsmartin.com with ESMTP/TLS/DHE-RSA-AES256-SHA; 24 Jun 2019 12:33:16 +0200
+Received: from SUMMAIL01.UMK.KLS.zentral ([172.25.1.63])
+        by hera.klsmartin.com (8.14.3/8.13.1/SuSE Linux 0.7) with ESMTP id x5OAWqsc023339;
+        Mon, 24 Jun 2019 12:32:55 +0200
+Received: from SUMMBX01.UMK.KLS.zentral ([172.25.1.64]) by
+ SUMMAIL01.UMK.KLS.zentral ([172.25.1.63]) with mapi id 14.03.0439.000; Mon,
+ 24 Jun 2019 12:33:09 +0200
+From:   "Middelschulte, Leif" <Leif.Middelschulte@klsmartin.com>
+To:     "robh@kernel.org" <robh@kernel.org>
+CC:     "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+Subject: Re: [PATCH 01/10] dt-bindings: input: touchscreen: stmpe: add touch
+ window configuration
+Thread-Topic: [PATCH 01/10] dt-bindings: input: touchscreen: stmpe: add
+ touch window configuration
+Thread-Index: AQHVFKZfWxtzY275Mkuldb4w1Urs/KabiWYAgAdXhICAACBQAIAHpDkA
+Date:   Mon, 24 Jun 2019 10:33:12 +0000
+Message-ID: <8b9d362f16b817e828b774c6ac6532c6f2efb821.camel@klsmartin.com>
+References: <20190527160736.30569-1-leif.middelschulte@klsmartin.com>
+         <20190527160736.30569-2-leif.middelschulte@klsmartin.com>
+         <20190614194818.GA22146@bogus>
+         <b1f40349dced90ea2ab0c9e5dc528db883e62e8d.camel@klsmartin.com>
+         <CAL_JsqLrMk9yNAzHWCgOFaOqnHKiwSjLOfbhU5+DzLCNBD+H_w@mail.gmail.com>
+In-Reply-To: <CAL_JsqLrMk9yNAzHWCgOFaOqnHKiwSjLOfbhU5+DzLCNBD+H_w@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.2.60]
+x-kse-serverinfo: SUMMAIL01.UMK.KLS.zentral, 9
+x-kse-attachmentfiltering-interceptor-info: protection disabled
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean, bases: 24.06.2019 08:53:00
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2ED71AB4C8924248A52584C5413D964D@klsmartin.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
- <20190612071554.13573-4-vivek.gautam@codeaurora.org> <20190614040520.GK22737@tuxbook-pro>
- <3e1f5e03-6448-8730-056d-fc47bdd71b3f@codeaurora.org> <20190618175218.GH4270@fuggles.cambridge.arm.com>
-In-Reply-To: <20190618175218.GH4270@fuggles.cambridge.arm.com>
-From:   Vivek Gautam <vivek.gautam@codeaurora.org>
-Date:   Mon, 24 Jun 2019 15:58:32 +0530
-X-Gmail-Original-Message-ID: <CAFp+6iEynLa=Jt_-oAwt4zmzxzhEXtWNCmghz6rFzcpQVGwrMg@mail.gmail.com>
-Message-ID: <CAFp+6iEynLa=Jt_-oAwt4zmzxzhEXtWNCmghz6rFzcpQVGwrMg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] iommu/arm-smmu: Add support to handle Qcom's
- wait-for-safe logic
-To:     Will Deacon <will.deacon@arm.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "robh+dt" <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, pratikp@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Will,
-
-On Tue, Jun 18, 2019 at 11:22 PM Will Deacon <will.deacon@arm.com> wrote:
->
-> Hi Vivek,
->
-> On Fri, Jun 14, 2019 at 02:48:07PM +0530, Vivek Gautam wrote:
-> > On 6/14/2019 9:35 AM, Bjorn Andersson wrote:
-> > > On Wed 12 Jun 00:15 PDT 2019, Vivek Gautam wrote:
-> > >
-> > > > Qcom's implementation of arm,mmu-500 adds a WAIT-FOR-SAFE logic
-> > > > to address under-performance issues in real-time clients, such as
-> > > > Display, and Camera.
-> > > > On receiving an invalidation requests, the SMMU forwards SAFE request
-> > > > to these clients and waits for SAFE ack signal from real-time clients.
-> > > > The SAFE signal from such clients is used to qualify the start of
-> > > > invalidation.
-> > > > This logic is controlled by chicken bits, one for each - MDP (display),
-> > > > IFE0, and IFE1 (camera), that can be accessed only from secure software
-> > > > on sdm845.
-> > > >
-> > > > This configuration, however, degrades the performance of non-real time
-> > > > clients, such as USB, and UFS etc. This happens because, with wait-for-safe
-> > > > logic enabled the hardware tries to throttle non-real time clients while
-> > > > waiting for SAFE ack signals from real-time clients.
-> > > >
-> > > > On MTP sdm845 devices, with wait-for-safe logic enabled at the boot time
-> > > > by the bootloaders we see degraded performance of USB and UFS when kernel
-> > > > enables the smmu stage-1 translations for these clients.
-> > > > Turn off this wait-for-safe logic from the kernel gets us back the perf
-> > > > of USB and UFS devices until we re-visit this when we start seeing perf
-> > > > issues on display/camera on upstream supported SDM845 platforms.
->
-> Re-visit what exactly, and how?
->
-> > > > Now, different bootloaders with their access control policies allow this
-> > > > register access differently through secure monitor calls -
-> > > > 1) With one we can issue io-read/write secure monitor call (qcom-scm)
-> > > >     to update the register, while,
-> > > > 2) With other, such as one on MTP sdm845 we should use the specific
-> > > >     qcom-scm command to send request to do the complete register
-> > > >     configuration.
-> > > > Adding a separate device tree flag for arm-smmu to identify which
-> > > > firmware configuration of the two mentioned above we use.
-> > > > Not adding code change to allow type-(1) bootloaders to toggle the
-> > > > safe using io-read/write qcom-scm call.
-> > > >
-> > > > This change is inspired by the downstream change from Patrick Daly
-> > > > to address performance issues with display and camera by handling
-> > > > this wait-for-safe within separte io-pagetable ops to do TLB
-> > > > maintenance. So a big thanks to him for the change.
-> > > >
-> > > > Without this change the UFS reads are pretty slow:
-> > > > $ time dd if=/dev/sda of=/dev/zero bs=1048576 count=10 conv=sync
-> > > > 10+0 records in
-> > > > 10+0 records out
-> > > > 10485760 bytes (10.0MB) copied, 22.394903 seconds, 457.2KB/s
-> > > > real    0m 22.39s
-> > > > user    0m 0.00s
-> > > > sys     0m 0.01s
-> > > >
-> > > > With this change they are back to rock!
-> > > > $ time dd if=/dev/sda of=/dev/zero bs=1048576 count=300 conv=sync
-> > > > 300+0 records in
-> > > > 300+0 records out
-> > > > 314572800 bytes (300.0MB) copied, 1.030541 seconds, 291.1MB/s
-> > > > real    0m 1.03s
-> > > > user    0m 0.00s
-> > > > sys     0m 0.54s
-> > > >
-> > > > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
-> > > > ---
-> > > >   drivers/iommu/arm-smmu.c | 16 ++++++++++++++++
-> > > >   1 file changed, 16 insertions(+)
-> > > >
-> > > > diff --git a/drivers/iommu/arm-smmu.c b/drivers/iommu/arm-smmu.c
-> > > > index 0ad086da399c..3c3ad43eda97 100644
-> > > > --- a/drivers/iommu/arm-smmu.c
-> > > > +++ b/drivers/iommu/arm-smmu.c
-> > > > @@ -39,6 +39,7 @@
-> > > >   #include <linux/pci.h>
-> > > >   #include <linux/platform_device.h>
-> > > >   #include <linux/pm_runtime.h>
-> > > > +#include <linux/qcom_scm.h>
-> > > >   #include <linux/slab.h>
-> > > >   #include <linux/spinlock.h>
-> > > > @@ -177,6 +178,7 @@ struct arm_smmu_device {
-> > > >           u32                             features;
-> > > >   #define ARM_SMMU_OPT_SECURE_CFG_ACCESS (1 << 0)
-> > > > +#define ARM_SMMU_OPT_QCOM_FW_IMPL_SAFE_ERRATA (1 << 1)
-> > > >           u32                             options;
-> > > >           enum arm_smmu_arch_version      version;
-> > > >           enum arm_smmu_implementation    model;
-> > > > @@ -262,6 +264,7 @@ static bool using_legacy_binding, using_generic_binding;
-> > > >   static struct arm_smmu_option_prop arm_smmu_options[] = {
-> > > >           { ARM_SMMU_OPT_SECURE_CFG_ACCESS, "calxeda,smmu-secure-config-access" },
-> > > > + { ARM_SMMU_OPT_QCOM_FW_IMPL_SAFE_ERRATA, "qcom,smmu-500-fw-impl-safe-errata" },
-> > > This should be added to the DT binding as well.
-> >
-> > Ah right. I missed that. Will add this and respin unless Robin and Will have
-> > concerns with this change.
->
-> My only concern really is whether it's safe for us to turn this off. It's
-> clear that somebody went to a lot of effort to add this extra goodness to
-> the IP, but your benchmarks suggest they never actually tried it out after
-> they finished building it.
->
-> Is there some downside I'm not seeing from disabling this stuff?
-
-This wait-for-safe is a TLB invalidation enhancement to help display
-and camera devices.
-The SMMU hardware throttles the invalidations so that clients such as
-display and camera can indicate when to start the invalidation.
-So the SMMU essentially reduces the rate at which invalidations are
-serviced from its queue. This also throttles the invalidations from
-other masters too.
-
-On sdm845, the software is expected to serialize the invalidation
-command loading into SMMU invalidation FIFO using hardware locks
-(downstream code [2]), and is also expected to throttle non-real time
-clients while waiting for SAFE==1 (downstream code[2]). We don't do
-any of these yet, and as per my understanding as this wait-for-safe is
-enabled by the bootloader in a one time config, this logic reduces
-performance of devices such as usb and ufs.
-
-There's isn't any downside from disabling this logic until we have all
-the pieces together from downstream in upstream kernels, and until we
-have sdm845 devices that are running with full display/gfx stack
-running. That's when we plan to revisit this and enable all the pieces
-to get display and USB/UFS working with their optimum performance.
-
-[1] https://source.codeaurora.org/quic/la/kernel/msm-4.9/tree/drivers/iommu/arm-smmu.c?h=msm-4.9#n5172
-[2] https://source.codeaurora.org/quic/la/kernel/msm-4.9/tree/drivers/iommu/arm-smmu.c?h=msm-4.9#n5135
-
-Thanks
-Vivek
-
->
-> We probably also need some co-ordination with Andy if we're going to
-> merge this, since he maintains the firmware calling code.
->
-> Will
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
---
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+QW0gTWl0dHdvY2gsIGRlbiAxOS4wNi4yMDE5LCAwNzo1MSAtMDYwMCBzY2hyaWViIFJvYiBIZXJy
+aW5nOg0KPiBPbiBXZWQsIEp1biAxOSwgMjAxOSBhdCA1OjU2IEFNIE1pZGRlbHNjaHVsdGUsIExl
+aWYNCj4gPA0KPiBMZWlmLk1pZGRlbHNjaHVsdGVAa2xzbWFydGluLmNvbQ0KPiA+IHdyb3RlOg0K
+PiA+IEFtIEZyZWl0YWcsIGRlbiAxNC4wNi4yMDE5LCAxMzo0OCAtMDYwMCBzY2hyaWViIFJvYiBI
+ZXJyaW5nOg0KPiA+ID4gT24gTW9uLCBNYXkgMjcsIDIwMTkgYXQgMDY6MDc6MjdQTSArMDIwMCwg
+TGVpZiBNaWRkZWxzY2h1bHRlIHdyb3RlOg0KPiA+ID4gPiBUaGUgU1RNUEU4MTEgaXMgYWJsZSB0
+byBvbmx5IG1vbml0b3IgYSBzdWJ3aW5kb3cgb2YgdGhlDQo+ID4gPiA+IGVudGlyZSBzY3JlZW4u
+IFRvdWNoZXMgb3V0c2lkZSBvZiB0aGlzIHdpbmRvdyBhcmUgbmVnbGVjdGVkLg0KPiA+ID4gPiBU
+aGlzIGNoYW5nZSBhZGRzIHRoZSBjb3JyZXNwb25kaW5nIGRvY3VtZW50YXRpb24uDQo+ID4gPiAN
+Cj4gPiA+IFVubGVzcyB5b3UgYXJlIHRyeWluZyB0byBqdXN0IGZpbHRlciBvdXQgdGhlIGVkZ2Ug
+dmFsdWVzDQo+ID4gDQo+ID4gSSdtIHRyeWluZyB0byAianVzdCBmaWx0ZXIgb3V0IHRoZSBlZGdl
+IHZhbHVlcyIgYnkgZmlsdGVyaW5nIHRoZSB2YWx1ZXMNCj4gPiByaWdodCBvbiB0aGUgc21wdGUg
+bWljcm9jb250cm9sbGVyLiBJdCBpcyBhIGRldmljZSBzcGVjaWZpYyBmZWF0dXJlLCB0aGF0IGlz
+DQo+ID4gd2h5IEkgaW1wbGVtZW50ZWQgYW5kIGRvY3VtZW50ZWQgdGhlIHN1cHBvcnQuDQo+ID4g
+DQo+ID4gQnV0IHN1cmUsIG9uZSBjb3VsZCBsZWF2ZSB0aGF0IHRvIGEgY29ycmVzcG9uZGluZyBl
+bnRyeSBpbiB0aGUgaHdkYiB0aGF0DQo+ID4gd291bGQgbWFuaXB1bGF0ZSBhYnNpbmZvIHRvIGdh
+aW4gY2FsaWJyYXRlZCBpbnB1dCBbMV0uDQo+ID4gDQo+ID4gPiB3aGljaCBJIHRoaW5rIHdlIGFs
+cmVhZHkgaGF2ZSBwcm9wZXJ0aWVzIGZvciwNCj4gPiANCj4gPiBXaGlsZSB0aGVyZSBbMF0gaXMg
+InRvdWNoc2NyZWVuLW1pbi17eCx5fSIsIEkgY291bGQgbm90IHNwb3QgYSBjb3JyZXNwb25kaW5n
+DQo+ID4gInRvdWNoc2NyZWVuLW1heC17eCx5fSIuIENvdWxkIHlvdSBwb2ludCBtZSB0byB0aGUg
+cmlnaHQgcHJvcGVydHk/DQo+IA0KPiBQZXJoYXBzIGFkZCB0aGVtLiBJZiB3ZSBoYXZlIG1pbiwg
+YWRkaW5nIGEgbWF4IHNlZW1zIGxvZ2ljYWwuDQpUaGVyZSBhcmUgYHRvdWNoc2NyZWVuLXNpemUt
+eGAgYW5kIGB0b3VjaHNjcmVlbi1zaXplLXlgLCB3aGljaCBhcmUgZGVzY3JpYmVkWzBdIGFzDQoi
+aG9yaXpvbnRhbCByZXNvbHV0aW9uIG9mIHRvdWNoc2NyZWVuIChtYXhpbXVtIHggY29vcmRpbmF0
+ZSByZXBvcnRlZCArIDEpIg0KDQpUaGUgcG90ZW50aWFsbHkgbWlzbGVhZGluZyBwcm9wZXJ0eSBu
+YW1lIGFzaWRlLCB0aGUgZ2VuZXJhbA0KaW1wbGVtZW50YXRpb24gaW4gb2ZfdG91Y2hzY3JlZW4u
+Y1sxXSBhcHBsaWVzIGl0IGFzIG1heGltdW0gdmFsdWUuDQpJdCBpcyBub3QgYXBwbGllZCBhcyBy
+ZXNvbHV0aW9uIGFzIGluIHRoZSBjb250ZXh0IG9mIGlucHV0IGRldmljZXNbMl0uDQoNClNvIGhl
+cmUgYXJlIHRoZSBvcHRpb25zOg0KIEEpIEkgZ28gd2l0aCBgdG91Y2hzY3JlZW4tbWluLXt4LHl9
+YCBmb3IgbWluaW11bSB2YWx1ZXMgYW5kDQogICAgYHRvdWNoc2NyZWVuLXNpemUte3gseX1gIGZv
+ciBtYXhpbXVtIHZhbHVlcy4NCiBCKSBEZXByZWNhdGUgYHRvdWNoc2NyZWVuLXNpemUte3gseX1g
+IGZvciBuYW1lZCByZWFzb25zIGFuZA0KICAgIGludHJvZHVjZSBgdG91Y2hzY3JlZW4tbWF4LXt4
+LHl9YC4NCg0KSW4gbXkgY2FzZSwgSSBkbyBuZWVkIHRvIHNldCB0aGUgcmVzb2x1dGlvbiB0b28g
+dGhvdWdoLg0KDQpTbywgYW5vdGhlciBxdWVzdGlvbiB3b3VsZCBiZSBob3cgdG8gZ28gYWJvdXQg
+aGFuZGxpbmcgdGhlIHJlc29sdXRpb246DQogSSkgSW50cm9kdWNpbmcgYW4gZXhwbGljaXQgcmVz
+b2x1dGlvbiB0dXBsZT8gVGhpcyB3b3VsZCBiZSBiYWQNCiAgICBiZWNhdXNlIG9mIG11bHRpcGxl
+IGludmFsaWQgY29uc3RlbGF0aW9ucy4NCiBJSSkgSW1wbGljaXRseSBhcHBseWluZyBhIHJlc29s
+dXRpb24gaWYgYSBjb3Jyc3BvbmRpbmcNCiAgICAgYHRvdWNoc2NyZWVuLXt4LHl9LW1tYCBpcyBw
+cm92aWRlZCB0b28uIFRoaXMgYXBwcm9hY2ggd291bGQgY2hhbmdlDQogICAgIGJlaGF2aW9yIHRo
+b3VnaC4NCg0KDQpbMF0gaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L3RvdWNoc2NyZWVuL3RvdWNoc2NyZWVuLnR4dA0KWzFd
+IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRz
+L2xpbnV4LmdpdC90cmVlL2RyaXZlcnMvaW5wdXQvdG91Y2hzY3JlZW4vb2ZfdG91Y2hzY3JlZW4u
+Yz9oPXY1LjItcmM2I244MQ0KWzJdIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51
+eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4LmdpdC90cmVlL2luY2x1ZGUvdWFwaS9saW51eC9p
+bnB1dC5oI245NQ0KDQpMZWlmDQoNCj4gDQo+IFJvYg0KPiANCg==
