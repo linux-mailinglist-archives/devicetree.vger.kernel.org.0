@@ -2,141 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5F1F4FF3D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AEC74FF7C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726980AbfFXCV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 22:21:59 -0400
-Received: from mailout1.samsung.com ([203.254.224.24]:58563 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726930AbfFXCV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 22:21:59 -0400
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20190623235340epoutp0124bb53d23d136327920766500b47be2d~q_QToWVha0393903939epoutp01g
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2019 23:53:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20190623235340epoutp0124bb53d23d136327920766500b47be2d~q_QToWVha0393903939epoutp01g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1561334020;
-        bh=KFlrYEjo0jzFT6JMRF6jRvxqRSuR+ds4ksWexr+YB2o=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=GOvz/2ttBp4Eldyzsn53oFeHj4VXTa3etxCWoGOe1bQBIJNOo52vzY9yf8ydePLX4
-         t2TTI7Qsd/AilM3/AUe1xlywVvg0fglc8Wrh610C6riMc4Akw/Qq6msZZEMpC7S4P4
-         1oQViV0uUAF7cz/vdLsNFV1BrPkr2rlqYMqcsKYo=
-Received: from epsmges1p4.samsung.com (unknown [182.195.40.155]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190623235335epcas1p16165e77ecc55e20326e25c95a6d4191b~q_QPD9YCp0120301203epcas1p1W;
-        Sun, 23 Jun 2019 23:53:35 +0000 (GMT)
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F6.AF.04257.FF0101D5; Mon, 24 Jun 2019 08:53:35 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20190623235334epcas1p31f68310b57d9c565b60fa3672ba2e53c~q_QOKQRE32894228942epcas1p31;
-        Sun, 23 Jun 2019 23:53:34 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190623235334epsmtrp1bd8b149a93eb5a840b6fee088fd64d1f~q_QOJbSWr2617626176epsmtrp1f;
-        Sun, 23 Jun 2019 23:53:34 +0000 (GMT)
-X-AuditID: b6c32a38-5cbff700000010a1-f0-5d1010ff61a6
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        5D.DF.03662.EF0101D5; Mon, 24 Jun 2019 08:53:34 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190623235334epsmtip268db8037d684736d45b287830296547e~q_QN8kWVF2077720777epsmtip25;
-        Sun, 23 Jun 2019 23:53:34 +0000 (GMT)
-Subject: Re: [PATCH v2 0/2] extcon: Add fsa9480 extcon driver
-To:     =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        myungjoo.ham@samsung.com
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <871519f4-b653-e247-0afd-f7b1f29af8ae@samsung.com>
-Date:   Mon, 24 Jun 2019 08:56:09 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.7.1
+        id S1727122AbfFXCmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 22:42:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52830 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726510AbfFXCmY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 22:42:24 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 312382073F;
+        Mon, 24 Jun 2019 00:16:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561335418;
+        bh=rlOHzwEHb6pqbLmFFdbDpWnjpgMeLjwtJXHuyHU99k4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=roJv8fNnUZ0dRiuDvVUwCMeTZKp+rYD7LINPyt/Equnhsgqrl0uw2KlYXz3yv/oOz
+         LsjbdcChTu9SBpwoJkep+EimMkvVRkjQ0BK0ZtsArotoz5QR34PwqBsyCMuDxcASBL
+         BZJmJN/MJsDoVQKxEcXbXI5c6+E4rwQscQOAaLSc=
+Date:   Mon, 24 Jun 2019 08:16:45 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Robin Gong <yibin.gong@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 00/15] add ecspi ERR009165 for i.mx6/7 soc family
+Message-ID: <20190624001643.GB3800@dragon>
+References: <20190610081753.11422-1-yibin.gong@nxp.com>
+ <1561135476.7537.5.camel@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPJsWRmVeSWpSXmKPExsWy7bCmnu5/AYFYg6f9Ihbzj5xjtbi8aw6b
-        xdLrF5ksbjeuYLP4cbyP2aJ17xF2BzaPNfPWMHrsnHWX3WPTqk42j74tqxg9Pm+SC2CNyrbJ
-        SE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvMAbpASaEsMacU
-        KBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgWaBXnJhbXJqXrpecn2tlaGBgZApUmJCdcX//
-        V9aChVwVh3oesjQwPmLvYuTkkBAwkdi9bjJTFyMXh5DADkaJ/k+7WCGcT4wSZ3f+YIdwvjFK
-        /D8xhxGm5dXkecwQib2MEhvnX2UDSQgJvGeUaJye3MXIwSEsYCvxYDI/SFhEIE5iXttkFhCb
-        WSBDYsWV92Cr2QS0JPa/uAHWyi+gKHH1x2Ow+bwCdhKXNz9nBbFZBFQl3p57zQRiiwpESFze
-        sguqRlDi5MwnYDM5BVwkXm56xAoxX1zi1pP5TBC2vETz1tlgd0oIPGeTOH58HdQDLhLr38xg
-        grCFJV4d3wINCymJl/1tUHa1xMqTR9ggmjsYJbbsv8AKkTCW2L8UFGAcQBs0Jdbv0ocIK0rs
-        /D2XEWIxn8S7rz2sICUSArwSHW1CECXKEpcf3IVaKymxuL2TbQKj0iwk78xC8sIsJC/MQli2
-        gJFlFaNYakFxbnpqsWGBCXJkb2IEJ04tix2Me875HGIU4GBU4uEV2MAfK8SaWFZcmXuIUYKD
-        WUmElyeHJ1aINyWxsiq1KD++qDQntfgQoykwtCcyS4km5wOTel5JvKGpkbGxsYWJoZmpoaGS
-        OG88980YIYH0xJLU7NTUgtQimD4mDk6pBsYZvUXJgTcvdPsaeHZ+c5T9d/DLDGentodcmTOl
-        CkPOSH1wtvn8Tr3pboOWE3vwhBb7L68KPziVWM5Sz7U6/30O2/Pw8Hf2R7ZxMj/zcVjtXyfW
-        qbg/f+aOH42fTKd9n6r2RvRto10r4yLhp4+XaoV+uFyx5v+2g7aXuN/U65z5psIQyvNK/IUS
-        S3FGoqEWc1FxIgCpBcvisgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupikeLIzCtJLcpLzFFi42LZdlhJXvefgECswYdDQhbzj5xjtbi8aw6b
-        xdLrF5ksbjeuYLP4cbyP2aJ17xF2BzaPNfPWMHrsnHWX3WPTqk42j74tqxg9Pm+SC2CN4rJJ
-        Sc3JLEst0rdL4Mq4v/8ra8FCropDPQ9ZGhgfsXcxcnJICJhIvJo8j7mLkYtDSGA3o8Tpb1vZ
-        IBKSEtMuHgVKcADZwhKHDxdD1LxllPi99wgjSFxYwFbiwWR+kHIRgTiJiVv2s4LYzAIZEju+
-        LWGEqJ/OKNFz8i5Ygk1AS2L/ixtg8/kFFCWu/njMCGLzCthJXN78HKyGRUBV4u2510wgtqhA
-        hERf22w2iBpBiZMzn7CA2JwCLhIvNz2CWqYu8WfeJWYIW1zi1pP5TBC2vETz1tnMExiFZyFp
-        n4WkZRaSlllIWhYwsqxilEwtKM5Nzy02LDDKSy3XK07MLS7NS9dLzs/dxAiOIS2tHYwnTsQf
-        YhTgYFTi4RXYwB8rxJpYVlyZe4hRgoNZSYSXJ4cnVog3JbGyKrUoP76oNCe1+BCjNAeLkjiv
-        fP6xSCGB9MSS1OzU1ILUIpgsEwenVANjbVtZ1Nsq43sm6tlbUrbpnXxbXrFxUmXf2iUOZ167
-        6CeeM2De0OPRfbU/Nqkr/09tSf9HwboNmQFrmB+fvHR9faCm2PYUpqeT5ZmiGjR15JaU2MgW
-        TsucNtXyw+vQdRnZNwR5i8z51Bwt/0v2fbt/rk1RVX/JBSl/vansfL7PLm43CzfZvV+JpTgj
-        0VCLuag4EQDaHi34nQIAAA==
-X-CMS-MailID: 20190623235334epcas1p31f68310b57d9c565b60fa3672ba2e53c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20190621111402epcas4p2f65fb1b6d3e83bd69bd129b27c90d295
-References: <CGME20190621111402epcas4p2f65fb1b6d3e83bd69bd129b27c90d295@epcas4p2.samsung.com>
-        <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
+In-Reply-To: <1561135476.7537.5.camel@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19. 6. 21. ì˜¤í›„ 8:13, PaweÅ‚ Chmiel wrote:
-> This small patchset adds support for Fairchild Semiconductor FSA9480
-> microUSB switch.
-> 
-> It has been tested on Samsung Galaxy S and Samsung Fascinate 4G,
-> but it can be found also on other Samsung Aries (s5pv210) based devices.
-> 
-> Tomasz Figa (2):
->   dt-bindings: extcon: Add support for fsa9480 switch
->   extcon: Add fsa9480 extcon driver
-> 
-> Changes from v1:
->   - Added newline at end of dt-bindings file
->   - Removed interrupt-parent from dt-bindings file
->   - Added Acked-by to dt-bindings patch
->   - Remove license sentences from driver
->   - Remove custom sysfs entries and manual switch code
->   - Switch to using regmap api
-> 
->  .../bindings/extcon/extcon-fsa9480.txt        |  19 +
->  drivers/extcon/Kconfig                        |  12 +
->  drivers/extcon/Makefile                       |   1 +
->  drivers/extcon/extcon-fsa9480.c               | 395 ++++++++++++++++++
->  4 files changed, 427 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-fsa9480.txt
->  create mode 100644 drivers/extcon/extcon-fsa9480.c
-> 
+On Fri, Jun 21, 2019 at 08:42:48AM +0000, Robin Gong wrote:
+> Hello Shawn/Will,
+>   Do you have comments for this V5 patch set? I got tags from Mark,
+> Vinod and Rob.
 
-Applied this series to extcon-next
-after checked the build warning on extcon-testing branch.
+I'm fine with the DTS change, but not sure how the series should be
+merged.
 
-Thanks.
+Shawn
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+> 
+> On 2019-06-10 at 08:17 +0000, yibin.gong@nxp.com wrote:
+> > From: Robin Gong <yibin.gong@nxp.com>
+> > 
+> >   There is ecspi ERR009165 on i.mx6/7 soc family, which cause FIFO
+> > transfer to be send twice in DMA mode. Please get more information
+> > from:
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww
+> > .nxp.com%2Fdocs%2Fen%2Ferrata%2FIMX6DQCE.pdf&amp;data=02%7C01%7Cyibin
+> > .gong%40nxp.com%7C67d3e78fe5ef4428b3af08d6ed7beb74%7C686ea1d3bc2b4c6f
+> > a92cd99c5c301635%7C0%7C1%7C636957513814970412&amp;sdata=%2F9sbrDEmIpu
+> > OazcIAVpIrELZMEjO94%2Bjen7wOOlVsVk%3D&amp;reserved=0. The workaround
+> > is adding
+> > new sdma ram script which works in XCH  mode as PIO inside sdma
+> > instead
+> > of SMC mode, meanwhile, 'TX_THRESHOLD' should be 0. The issue should
+> > be
+> > exist on all legacy i.mx6/7 soc family before i.mx6ul.
+> >   NXP fix this design issue from i.mx6ul, so newer chips including
+> > i.mx6ul/
+> > 6ull/6sll do not need this workaroud anymore. All other i.mx6/7/8
+> > chips
+> > still need this workaroud. This patch set add new 'fsl,imx6ul-ecspi'
+> > for ecspi driver and 'ecspi_fixed' in sdma driver to choose if need
+> > errata
+> > or not.
+> >   The first two reverted patches should be the same issue, though, it
+> > seems 'fixed' by changing to other shp script. Hope Sean or Sascha
+> > could
+> > have the chance to test this patch set if could fix their issues.
+> >   Besides, enable sdma support for i.mx8mm/8mq and fix ecspi1 not
+> > work
+> > on i.mx8mm because the event id is zero.
+> > 
+> > PS:
+> >    Please get sdma firmware from below linux-firmware and copy it to
+> > your
+> > local rootfs /lib/firmware/imx/sdma.
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit
+> > .kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ffirmware%2Flinux-
+> > firmware.git%2Ftree%2Fimx%2Fsdma&amp;data=02%7C01%7Cyibin.gong%40nxp.
+> > com%7C67d3e78fe5ef4428b3af08d6ed7beb74%7C686ea1d3bc2b4c6fa92cd99c5c30
+> > 1635%7C0%7C1%7C636957513814970412&amp;sdata=xXHBWpSaSLmMosb%2FajOAiXn
+> > nkxaYV6HCt25OOzgRLbI%3D&amp;reserved=0
+> > 
+> > v2:
+> >   1.Add commit log for reverted patches.
+> >   2.Add comment for 'ecspi_fixed' in sdma driver.
+> >   3.Add 'fsl,imx6sll-ecspi' compatible instead of 'fsl,imx6ul-ecspi'
+> >     rather than remove.
+> > v3:
+> >   1.Confirm with design team make sure ERR009165 fixed on
+> > i.mx6ul/i.mx6ull
+> >     /i.mx6sll, not fixed on i.mx8m/8mm and other i.mx6/7 legacy
+> > chips.
+> >     Correct dts related dts patch in v2.
+> >   2.Clean eratta information in binding doc and new 'tx_glitch_fixed'
+> > flag
+> >     in spi-imx driver to state ERR009165 fixed or not.
+> >   3.Enlarge burst size to fifo size for tx since tx_wml set to 0 in
+> > the
+> >     errata workaroud, thus improve performance as possible.
+> > v4:
+> >   1.add Ack tag from Mark and Vinod
+> >   2. remove checking 'event_id1' zero as 'event_id0'.
+> > v5:
+> >   1.Add another patch for compatible with the current uart driver
+> > which
+> >     using rom script, so both uart ram script and rom script
+> > supported
+> >     in latest firmware, by default uart rom script used. UART driver
+> >     will be broken without this patch. Latest sdma firmware has been
+> >     already updated in linux-firmware. 
+> > 
+> > Robin Gong (15):
+> >   Revert "ARM: dts: imx6q: Use correct SDMA script for SPI5 core"
+> >   Revert "ARM: dts: imx6: Use correct SDMA script for SPI cores"
+> >   Revert "dmaengine: imx-sdma: refine to load context only once"
+> >   dmaengine: imx-sdma: remove dupilicated sdma_load_context
+> >   dmaengine: imx-sdma: add mcu_2_ecspi script
+> >   spi: imx: fix ERR009165
+> >   spi: imx: remove ERR009165 workaround on i.mx6ul
+> >   spi: imx: add new i.mx6ul compatible name in binding doc
+> >   dmaengine: imx-sdma: remove ERR009165 on i.mx6ul
+> >   dma: imx-sdma: add i.mx6ul/6sx compatible name
+> >   dmaengine: imx-sdma: fix ecspi1 rx dma not work on i.mx8mm
+> >   ARM: dts: imx6ul: add dma support on ecspi
+> >   ARM: dts: imx6sll: correct sdma compatible
+> >   arm64: defconfig: Enable SDMA on i.mx8mq/8mm
+> >   dmaengine: imx-sdma: add uart rom script
+> > 
+> >  .../devicetree/bindings/dma/fsl-imx-sdma.txt       |  2 +
+> >  .../devicetree/bindings/spi/fsl-imx-cspi.txt       |  1 +
+> >  arch/arm/boot/dts/imx6q.dtsi                       |  2 +-
+> >  arch/arm/boot/dts/imx6qdl.dtsi                     |  8 +-
+> >  arch/arm/boot/dts/imx6sll.dtsi                     |  2 +-
+> >  arch/arm/boot/dts/imx6ul.dtsi                      |  8 ++
+> >  arch/arm64/configs/defconfig                       |  3 +
+> >  drivers/dma/imx-sdma.c                             | 88
+> > ++++++++++++++++------
+> >  drivers/spi/spi-imx.c                              | 61
+> > ++++++++++++---
+> >  include/linux/platform_data/dma-imx-sdma.h         | 11 ++-
+> >  10 files changed, 145 insertions(+), 41 deletions(-)
+> > 
