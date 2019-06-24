@@ -2,90 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D8951B6E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 21:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A2FE51BC7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 21:55:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730246AbfFXTbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 15:31:08 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:37138 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727947AbfFXTbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 15:31:08 -0400
-Received: by mail-io1-f65.google.com with SMTP id e5so3457953iok.4
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=46YubdxCxrFPh8KrDchM0Ty2p47WTPPMVanoBQz+N5I=;
-        b=WapHHi8N2f4HLGXe8Azqgnk2rXsYnSSwWeXoyTGoqptEniMQ7RI34LHdkfRxx+PTYJ
-         6q8PlKhv4L+QPsNZCCEMml8wD0fIpbl5OiXhrEU0oePfqE5PupxtN+Plt9pm45DyQEdT
-         xLv0d4d/GDSlQZxVi/VWkz/v0k08TuKOrnfCQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=46YubdxCxrFPh8KrDchM0Ty2p47WTPPMVanoBQz+N5I=;
-        b=X5sLDSYRD1EHuJzb0unB9mwo1E45FJgC2sp7ZV60b4NBke/8MNJhHFCeZx5/KplKPr
-         qLcMO7zlKUEuZXdfNNNqUWQDG/98wdP1werERbVX4q9Z64AiR0WTSEr3e4yKeB7NBod+
-         DN/pSij95tZi0zCHqAdIpinnslRQgEmxhpRDpxxMx+AtoPbpp0VNgyfMrcyB9SmjdTW1
-         hkUT67CJq6DH6iCEZpT7nMGoaQ5fPGNkBU8cUVp5O00rBatU/twWAj1rjFYFQL5rHsBt
-         onHslH2goKb4bQBmoLhv88OvME6QkvtvhFJbrWGGs8syPJnwgUTjN5TPh8Z+xSYVSnKV
-         jY6w==
-X-Gm-Message-State: APjAAAV4+vkF0mPg1bE/xkCIUUZ6lhZ3m3ZvUFfYQp4RdufldVoVexKE
-        fkz5kaH1Mxkxh/vcC6yobtcdzXVNizo=
-X-Google-Smtp-Source: APXvYqwN6HS/jGeb1oppfnSEkTSv28AYkb5E1oCs4vZjthdIq9WyeSSPbCvsUreAXB8ZlSeTRJ6uqQ==
-X-Received: by 2002:a5e:c705:: with SMTP id f5mr15043558iop.113.1561404667408;
-        Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
-        by smtp.gmail.com with ESMTPSA id e84sm23021389iof.39.2019.06.24.12.31.07
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id i10so67893iol.13
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
-X-Received: by 2002:a02:aa1d:: with SMTP id r29mr14713662jam.127.1561404342590;
- Mon, 24 Jun 2019 12:25:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190621211346.1324-1-ezequiel@collabora.com> <20190621211346.1324-2-ezequiel@collabora.com>
-In-Reply-To: <20190621211346.1324-2-ezequiel@collabora.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 24 Jun 2019 12:25:29 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UO8S_MHPKvpu-Uc1pTAv2NN_hf+U6_HCntRU0hzGQtWw@mail.gmail.com>
-Message-ID: <CAD=FV=UO8S_MHPKvpu-Uc1pTAv2NN_hf+U6_HCntRU0hzGQtWw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: rockchip: document VOP gamma
- LUT address
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+        id S1729005AbfFXTyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 15:54:51 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:59406 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726774AbfFXTyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 15:54:51 -0400
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id A453D3078AB7;
+        Mon, 24 Jun 2019 19:54:38 +0000 (UTC)
+Received: from ovpn-112-53.rdu2.redhat.com (ovpn-112-53.rdu2.redhat.com [10.10.112.53])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id BFA0D5D70D;
+        Mon, 24 Jun 2019 19:54:31 +0000 (UTC)
+Message-ID: <f0fcee096d779837abc46e7badae9105ee8aaecf.camel@redhat.com>
+Subject: Re: WWAN Controller Framework (was IPA [PATCH v2 00/17])
+From:   Dan Williams <dcbw@redhat.com>
+To:     Alex Elder <elder@linaro.org>, davem@davemloft.net, arnd@arndb.de,
+        bjorn.andersson@linaro.org, ilias.apalodimas@linaro.org
+Cc:     evgreen@chromium.org, benchan@google.com, ejcaruso@google.com,
+        cpratapa@codeaurora.org, syadagir@codeaurora.org,
+        subashab@codeaurora.org, abhishek.esse@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Date:   Mon, 24 Jun 2019 14:54:30 -0500
+In-Reply-To: <23ff4cce-1fee-98ab-3608-1fd09c2d97f1@linaro.org>
+References: <20190531035348.7194-1-elder@linaro.org>
+         <23ff4cce-1fee-98ab-3608-1fd09c2d97f1@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.48]); Mon, 24 Jun 2019 19:54:51 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 2019-06-24 at 11:30 -0500, Alex Elder wrote:
+> OK I want to try to organize a little more concisely some of the
+> discussion on this, because there is a very large amount of volume
+> to date and I think we need to try to narrow the focus back down
+> again.
+> 
+> I'm going to use a few terms here.  Some of these I really don't
+> like, but I want to be unambiguous *and* (at least for now) I want
+> to avoid the very overloaded term "device".
+> 
+> I have lots more to say, but let's start with a top-level picture,
+> to make sure we're all on the same page.
+> 
+>          WWAN Communication
+>          Channel (Physical)
+>                  |     ------------------------
+> ------------     v     |           :+ Control |  \
+> >          |-----------|           :+ Data    |  |
+> >    AP    |           | WWAN unit :+ Voice   |   > Functions
+> >          |===========|           :+ GPS     |  |
+> ------------     ^     |           :+ ...     |  /
+>                  |     -------------------------
+>           Multiplexed WWAN
+>            Communication
+>          Channel (Physical)
+> 
+> - The *AP* is the main CPU complex that's running Linux on one or
+>   more CPU cores.
+> - A *WWAN unit* is an entity that shares one or more physical
+>   *WWAN communication channels* with the AP.
 
-On Fri, Jun 21, 2019 at 2:14 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
->
-> Add the register specifier description for an
-> optional gamma LUT address.
->
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> ---
-> Changes from v1:
-> * Drop reg-names, suggested by Doug.
-> ---
->  .../devicetree/bindings/display/rockchip/rockchip-vop.txt   | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+You could just say "WWAN modem" here.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> - A *WWAN communication channel* is a bidirectional means of
+>   carrying data between the AP and WWAN unit.
+> - A WWAN communication channel carries data using a *WWAN protocol*.
+> - A WWAN unit implements one or more *WWAN functions*, such as
+>   5G data, LTE voice, GPS, and so on.
+
+Go more generic here. Not just 5G data but any WWAN IP-based data
+(GPRS, EDGE, CDMA, UMTS, EVDO, LTE, 5G, etc). And not just LTE voice
+but any voice data; plenty of devices don't support LTE but still have
+"WWAN logical communication channels"
+
+> - A WWAN unit shall implement a *WWAN control function*, used to
+>   manage the use of other WWAN functions, as well as the WWAN unit
+>   itself.
+> - The AP communicates with a WWAN function using a WWAN protocol.
+> - A WWAN physical channel can be *multiplexed*, in which case it
+>   carries the data for one or more *WWAN logical channels*.
+
+It's unclear to me what "physical" means here. USB Interface or
+Endpoint or PCI Function or SMD channel? Or kernel TTY device?
+
+For example on Qualcomm-based USB dongles a given USB Interface's
+Endpoint represents a QMAP "IP data" channel which itself could be
+multiplexed into separate "IP data" channels.  Or that USB Endpoint(s)
+could be exposed as a TTY which itself can be MUX-ed dynamically using
+GSM 07.10.
+
+To me "physical" usually means the bus type (PCI, USB, SMD, whatever).
+A Linux hardware driver (IPA, qmi_wwan, option, sierra, etc) binds to
+that physical entity using hardware IDs (USB or PCI VID/PID, devicetree
+properties) and exposes some "WWAN logical communication channels".
+Those logical channels might be multiplexed and another driver (rmnet)
+could handle exposing the de-muxed logical channels that the muxed
+logical channel carries.
+
+> - A multiplexed WWAN communication channel uses a *WWAN wultiplexing
+>   protocol*, which is used to separate independent data streams
+>   carrying other WWAN protocols.
+> - A WWAN logical channel carries a bidirectional stream of WWAN
+>   protocol data between an entity on the AP and a WWAN function.
+
+It *usually* is bidirectional. For example some GPS logical
+communication channels just start spitting out NMEA when you give the
+control function a command. The NMEA ports themselves don't accept any
+input.
+
+> Does that adequately represent a very high-level picture of what
+> we're trying to manage?
+
+Yes, pretty well. Thanks for trying to specify it all.
+
+> And if I understand it right, the purpose of the generic framework
+> being discussed is to define a common mechanism for managing (i.e.,
+> discovering, creating, destroying, querying, configuring, enabling,
+> disabling, etc.) WWAN units and the functions they implement, along
+> with the communication and logical channels used to communicate with
+> them.
+
+Yes.
+
+Dan
+
+> Comments?
+> 
+> 					-Alex
+
