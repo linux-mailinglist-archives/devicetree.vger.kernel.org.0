@@ -2,53 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0445151AE8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 20:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D8951B6E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 21:31:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728744AbfFXSpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 14:45:13 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:16171 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726285AbfFXSpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 14:45:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1561401910;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=s0LbhSknlCM5hc8ANHokTmG0D8Dtvf0T0SdiBQitSTY=;
-        b=fTbb0NiwuBQ0VbR5R9c/m30pxhd8Q2KsH1atqNSCJt9Q76rh8E48Jrh5ixhjfxfjXV
-        Rvbi+esRxMofHc6sKYLFbGRsbjD0omlbgnJphUXuc6FM0ddbxcZUfgq04xCCRZ1dZaEK
-        qh6n9JVaEZk0zTEKKwcltmvsmSW31/yzJ6gNdEPBltC714syrZZQU5S0UJ7EEVw12H28
-        6RHvlaiW5dp2J9cIn0wY/ZChLgXGFt1sNDfb9A49NQiY6+NJQL/lN4tpwYip3x89j7yv
-        1H+a1jcQ/yxGSnxCpXNlv/p9hZrOaZKwJi6eWnd6g/AP+0yu1zUrvYe3gsBjS2CgyLIB
-        GdkQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHmAgw4vuNw=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 44.24 DYNA|AUTH)
-        with ESMTPSA id V09459v5OIj0Rvj
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Mon, 24 Jun 2019 20:45:00 +0200 (CEST)
-Content-Type: text/plain; charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [PATCH v3 0/5] drm/panel-simple: Add panel parameters for ortustech-com37h3m05dtc/99dtc and sharp-lq070y3dg3b
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <cover.1559905870.git.hns@goldelico.com>
-Date:   Mon, 24 Jun 2019 20:44:59 +0200
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, letux-kernel@openphoenux.org,
-        devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <0842FF88-D8E0-441B-837B-769C2EF6C1CB@goldelico.com>
-References: <cover.1559905870.git.hns@goldelico.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, tomi.valkeinen@ti.com,
-        imirkin@alum.mit.edu, marek.belisko@gmail.com,
+        id S1730246AbfFXTbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 15:31:08 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:37138 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727947AbfFXTbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 15:31:08 -0400
+Received: by mail-io1-f65.google.com with SMTP id e5so3457953iok.4
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=46YubdxCxrFPh8KrDchM0Ty2p47WTPPMVanoBQz+N5I=;
+        b=WapHHi8N2f4HLGXe8Azqgnk2rXsYnSSwWeXoyTGoqptEniMQ7RI34LHdkfRxx+PTYJ
+         6q8PlKhv4L+QPsNZCCEMml8wD0fIpbl5OiXhrEU0oePfqE5PupxtN+Plt9pm45DyQEdT
+         xLv0d4d/GDSlQZxVi/VWkz/v0k08TuKOrnfCQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=46YubdxCxrFPh8KrDchM0Ty2p47WTPPMVanoBQz+N5I=;
+        b=X5sLDSYRD1EHuJzb0unB9mwo1E45FJgC2sp7ZV60b4NBke/8MNJhHFCeZx5/KplKPr
+         qLcMO7zlKUEuZXdfNNNqUWQDG/98wdP1werERbVX4q9Z64AiR0WTSEr3e4yKeB7NBod+
+         DN/pSij95tZi0zCHqAdIpinnslRQgEmxhpRDpxxMx+AtoPbpp0VNgyfMrcyB9SmjdTW1
+         hkUT67CJq6DH6iCEZpT7nMGoaQ5fPGNkBU8cUVp5O00rBatU/twWAj1rjFYFQL5rHsBt
+         onHslH2goKb4bQBmoLhv88OvME6QkvtvhFJbrWGGs8syPJnwgUTjN5TPh8Z+xSYVSnKV
+         jY6w==
+X-Gm-Message-State: APjAAAV4+vkF0mPg1bE/xkCIUUZ6lhZ3m3ZvUFfYQp4RdufldVoVexKE
+        fkz5kaH1Mxkxh/vcC6yobtcdzXVNizo=
+X-Google-Smtp-Source: APXvYqwN6HS/jGeb1oppfnSEkTSv28AYkb5E1oCs4vZjthdIq9WyeSSPbCvsUreAXB8ZlSeTRJ6uqQ==
+X-Received: by 2002:a5e:c705:: with SMTP id f5mr15043558iop.113.1561404667408;
+        Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
+        by smtp.gmail.com with ESMTPSA id e84sm23021389iof.39.2019.06.24.12.31.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id i10so67893iol.13
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 12:31:07 -0700 (PDT)
+X-Received: by 2002:a02:aa1d:: with SMTP id r29mr14713662jam.127.1561404342590;
+ Mon, 24 Jun 2019 12:25:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190621211346.1324-1-ezequiel@collabora.com> <20190621211346.1324-2-ezequiel@collabora.com>
+In-Reply-To: <20190621211346.1324-2-ezequiel@collabora.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 24 Jun 2019 12:25:29 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UO8S_MHPKvpu-Uc1pTAv2NN_hf+U6_HCntRU0hzGQtWw@mail.gmail.com>
+Message-ID: <CAD=FV=UO8S_MHPKvpu-Uc1pTAv2NN_hf+U6_HCntRU0hzGQtWw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: rockchip: document VOP gamma
+ LUT address
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-X-Mailer: Apple Mail (2.3124)
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -56,62 +75,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-> Am 07.06.2019 um 13:11 schrieb H. Nikolaus Schaller =
-<hns@goldelico.com>:
->=20
-> V3:
-> * add bindings documentation (suggested by sam@ravnborg.org)
->=20
-> V2 2019-06-05 07:07:05:
-> * fix typo in 99dtc panel compatible string (reported by =
-imirkin@alum.mit.edu)
->=20
-> V1 2019-06-04 14:53:00:
->=20
-> Since v5.2-rc1 OMAP is no longer using a special display driver =
-architecture
-> for DPI panels, but uses the general drm/panel/panel-simple.
->=20
-> So we finally can add SoC independent panel definitions for two panel =
-models
-> which we already had worked on quite a while ago (before device tree =
-was
-> introduced):
->=20
-> 	https://patchwork.kernel.org/patch/2851295/
->=20
->=20
->=20
-> H. Nikolaus Schaller (5):
->  drm/panel: simple: Add Sharp LQ070Y3DG3B panel support
->  drm/panel: simple: Add Ortustech COM37H3M panel support
->  dt-bindings: drm/panel: simple: add ortustech,com37h3m05dtc panel
->  dt-bindings: drm/panel: simple: add ortustech,com37h3m99dtc panel
->  dt-bindings: drm/panel: simple: add sharp,lq070y3dg3b panel
->=20
-> .../display/panel/ortustech,com37h3m05dtc.txt | 12 ++++
-> .../display/panel/ortustech,com37h3m99dtc.txt | 12 ++++
-> .../display/panel/sharp,lq070y3dg3b.txt       | 12 ++++
-> drivers/gpu/drm/panel/panel-simple.c          | 63 +++++++++++++++++++
-> 4 files changed, 99 insertions(+)
-> create mode 100644 =
-Documentation/devicetree/bindings/display/panel/ortustech,com37h3m05dtc.tx=
-t
-> create mode 100644 =
-Documentation/devicetree/bindings/display/panel/ortustech,com37h3m99dtc.tx=
-t
-> create mode 100644 =
-Documentation/devicetree/bindings/display/panel/sharp,lq070y3dg3b.txt
->=20
-> --=20
-> 2.19.1
->=20
+On Fri, Jun 21, 2019 at 2:14 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
+>
+> Add the register specifier description for an
+> optional gamma LUT address.
+>
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+> Changes from v1:
+> * Drop reg-names, suggested by Doug.
+> ---
+>  .../devicetree/bindings/display/rockchip/rockchip-vop.txt   | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 
-any progress towards merging this somewhere? It did not yet arrive in =
-linux-next.
-
-BTW: should also be applied to 5.2
-
-BR and thanks,
-Nikolaus
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
