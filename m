@@ -2,63 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2F9517BB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 17:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C3051822
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 18:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729710AbfFXPzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 11:55:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49228 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728725AbfFXPzH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 11:55:07 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F3BF320663;
-        Mon, 24 Jun 2019 15:55:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561391706;
-        bh=nj7bRPb15L/qkOSEZwMEO7ceiq2iL+0rUoitbZZAxtc=;
-        h=From:To:Cc:Subject:Date:From;
-        b=LmXOEnRtX+0Ciea5kPax/pmf8bc8pI4KRt9ZUHY63OwJb1QsgWeeL/NUjqMDQlhs9
-         N7vpVnZlm/6owKYo2A4IeX3EY6BSR7I87WKr73zdxqCTSOBK2PzQ5MgscTO75psAPR
-         FOVKTfB6WsyMIo82X5tQyRLI0p4PaXbKAM2J8FYo=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: socfpga: add the QSPI OCP reset property on arria10
-Date:   Mon, 24 Jun 2019 10:45:58 -0500
-Message-Id: <20190624154558.5354-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
+        id S1731715AbfFXQNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 12:13:12 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:40218 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729467AbfFXQNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 12:13:12 -0400
+Received: by mail-lf1-f68.google.com with SMTP id a9so10493003lff.7;
+        Mon, 24 Jun 2019 09:13:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/GZPxaE4LPUF9+J5HPzKoEU19i8mw9pm9OwqCmXFx/U=;
+        b=Lq5xNcua1mi5U4qn9dT42BftsIszZlSpZZBUj17GZ1uG6Fe0nW/3v1hVO9AHREiul6
+         hLc7Z3BVLRPgBZ7oyFnDtYNipFqViKYVjlJB7hnP6oJStr+tm3yUCMkE12D6nZWkvQ5s
+         siA+nTZtbq8EEvEIUt/hGxcIYFgvNRlUXQjaMfCDAeQpCpqdI6OburRt3HmHKr/AYgNB
+         MepAdaWUnXGI7od7JnYyNbq0kmjXHDzwMomFt+0CnqGFMCjawuJDYg5V3gs9j0m9eu/I
+         tYM4XNa0/RsOVKntoQNGKqoOikRgaMiCt+RkoW/DkC9xO/BySbqATIYr6D/quf3e4e3W
+         /cOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/GZPxaE4LPUF9+J5HPzKoEU19i8mw9pm9OwqCmXFx/U=;
+        b=OQVl0jiXdekRYe0SXsGNhtSMR93zL/yX+WQXVyU8CbsfKJ243jMLcwT9NmJpLQ6mv+
+         ABCnSEsEVNXXGUQx5NE6m67Z9Cymi9ZuXALONuITR4SkfUtvhSDGrjnw7aP6Z0TpO3DN
+         rbjv4lLosTvaBrlnxLMhZ8Hj2DlHDPFxrKm3zOqqEshg7dZuX9zeBin6xeLdqLzbi7of
+         h5ZeiiI2/O4tGRy1NUYnn/5WP7MIz9beWW1KAwYrMMXxcjNixz1bnWzzutTW4bZSaYv1
+         DvgRwrf1bb7j28Xq80BhF+4UEFArTXlqj+w4Wo/+QLye7vFW2+NX3SD0NonHBdu1QvFT
+         PUeQ==
+X-Gm-Message-State: APjAAAWS1RtGJjwhEF4DRz+ADiO9wrV6JPOZh9ehVVDvo/30AsUqGpv0
+        q+Ie+z9OD0Exe2fTC2wTl6Bu/7AeZaF8xUIQNpE=
+X-Google-Smtp-Source: APXvYqxdP+JVlW5k+mSxUHwcly0JYp6JIPTVU2yVYp4LrSzBHV3NclYDyyL6oWgS9snh6oT01HXaRzoS5AtTl62eGn0=
+X-Received: by 2002:a19:5046:: with SMTP id z6mr28946753lfj.185.1561392789879;
+ Mon, 24 Jun 2019 09:13:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1561037428-13855-1-git-send-email-robert.chiras@nxp.com>
+ <1561037428-13855-3-git-send-email-robert.chiras@nxp.com> <CAOMZO5DS2v15h9E=qKg2vKuFkBSQQwdBHA5Th5mZ+ca6DWgQsw@mail.gmail.com>
+ <1561362278.9328.83.camel@nxp.com>
+In-Reply-To: <1561362278.9328.83.camel@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 24 Jun 2019 13:12:58 -0300
+Message-ID: <CAOMZO5CVPJqE0dR2PZvKem4WHztvTF=FT9K1x-b7TduH-yYb7A@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH v3 2/2] drm/panel: Add support for Raydium
+ RM67191 panel driver
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "sam@ravnborg.org" <sam@ravnborg.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "airlied@linux.ie" <airlied@linux.ie>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QSPI module needs the OCP reset bit deasserted as well.
+Hi Robert,
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- arch/arm/boot/dts/socfpga_arria10.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Mon, Jun 24, 2019 at 4:44 AM Robert Chiras <robert.chiras@nxp.com> wrote:
 
-diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
-index a0a6d8507265..20af1543819a 100644
---- a/arch/arm/boot/dts/socfpga_arria10.dtsi
-+++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
-@@ -753,7 +753,8 @@
- 			cdns,fifo-width = <4>;
- 			cdns,trigger-address = <0x00000000>;
- 			clocks = <&qspi_clk>;
--			resets = <&rst QSPI_RESET>;
-+			resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
-+			reset-names = "qspi", "qspi-ocp";
- 			status = "disabled";
- 		};
- 
--- 
-2.20.0
+> > You did not handle the "power" regulator.
+> There is no need for a power regulator.
 
+I am sure the panel requires power to be applied so that it can work :-)
+
+> > Can't you simply remove them?
+> The reset gpio pin is shared between the DSI display controller and
+
+Looking at the imx8mq-evk schematics it is not clear for me what pin
+in shared between the OLED display and touch screen.
+
+Could you please clarify which pin you are referring to?
+
+> touch controller, both found on the same panel. Since, the touch driver
+> also acceses this gpio pin, in some cases the display can be put to
+> sleep, but the touch is still active. This is why, during suspend I
+> release the gpio resource, and I have to take it back in resume.
+> Without this release/acquire mechanism during suspend/resume, stress-
+> tests showed some failures: the resume freezes completly.
+
+Looking at the imx8mq-evk dts from the vendor tree I see that the
+touchscreen is not supported in mainline yet.
+
+Maybe there is a better way to solve this, so what if you don't
+introduce the suspend/resume hooks for now and then we revisit this
+after the touchscreen driver is added?
