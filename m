@@ -2,61 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB1550484
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 10:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D079504D0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 10:47:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727991AbfFXI0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 04:26:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:43596 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726077AbfFXI0V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 04:26:21 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D2D8BC0A;
-        Mon, 24 Jun 2019 01:26:20 -0700 (PDT)
-Received: from [10.1.196.93] (en101.cambridge.arm.com [10.1.196.93])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C84BB3F71E;
-        Mon, 24 Jun 2019 01:26:18 -0700 (PDT)
-Subject: Re: [PATCHv3 1/1] coresight: Do not default to CPU0 for missing CPU
- phandle
-To:     saiprakash.ranjan@codeaurora.org, mathieu.poirier@linaro.org,
-        leo.yan@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        alexander.shishkin@linux.intel.com, andy.gross@linaro.org,
-        david.brown@linaro.org, mark.rutland@arm.com
-Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
-        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <cover.1561346998.git.saiprakash.ranjan@codeaurora.org>
- <635466ab6a27781966bb083e93d2ca2729473ced.1561346998.git.saiprakash.ranjan@codeaurora.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <4db99204-8553-7a80-f952-30cbd149593d@arm.com>
-Date:   Mon, 24 Jun 2019 09:26:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726690AbfFXIrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 04:47:49 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:55339 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726632AbfFXIrt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 04:47:49 -0400
+X-Originating-IP: 90.88.16.156
+Received: from localhost (aaubervilliers-681-1-41-156.w90-88.abo.wanadoo.fr [90.88.16.156])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id CC5071C0002;
+        Mon, 24 Jun 2019 08:47:37 +0000 (UTC)
+Date:   Mon, 24 Jun 2019 10:47:37 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Yangtao Li <tiny.windzz@gmail.com>
+Cc:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, wens@csie.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, mchehab+samsung@kernel.org,
+        linus.walleij@linaro.org, nicolas.ferre@microchip.com,
+        paulmck@linux.ibm.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 02/11] dt-bindings: thermal: add binding document for
+ h6 thermal controller
+Message-ID: <20190624084737.k5stgmqi2kx2p52o@flea>
+References: <20190623164206.7467-1-tiny.windzz@gmail.com>
+ <20190623164206.7467-3-tiny.windzz@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <635466ab6a27781966bb083e93d2ca2729473ced.1561346998.git.saiprakash.ranjan@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ivprrpimudesnwlt"
+Content-Disposition: inline
+In-Reply-To: <20190623164206.7467-3-tiny.windzz@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sai,
 
-Thanks for getting this done.
+--ivprrpimudesnwlt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 24/06/2019 04:36, Sai Prakash Ranjan wrote:
-> Coresight platform support assumes that a missing "cpu" phandle
-> defaults to CPU0. This could be problematic and unnecessarily binds
-> components to CPU0, where they may not be. Let us make the DT binding
-> rules a bit stricter by not defaulting to CPU0 for missing "cpu"
-> affinity information.
-> 
-> Also in coresight etm and cpu-debug drivers, abort the probe
-> for such cases.
-> 
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Hi,
 
-Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Sun, Jun 23, 2019 at 12:41:57PM -0400, Yangtao Li wrote:
+> This patch adds binding document for allwinner h6 thermal controller.
+>
+> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
+> ---
+>  .../bindings/thermal/sun8i-thermal.yaml       | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml b/Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
+> new file mode 100644
+> index 000000000000..2c5acc61ed03
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/sun8i-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner SUN8I Thermal Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Yangtao Li <tiny.windzz@gmail.com>
+> +
+> +description: |-
+> +  This describes the device tree binding for the Allwinner thermal
+> +  controller which measures the on-SoC temperatures.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun50i-h6-ths
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 1
+
+You can drop the minItems there
+
+> +  nvmem-cells:
+> +    items:
+> +      - description: ths calibrate data
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: calib
+
+And for these two, you don't need the items either, it can be directly
+const: calib (and the description for the first one).
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - '#thermal-sensor-cells'
+> +
+> +examples:
+> +  - |
+> +    ths: ths@5070400 {
+> +         compatible = "allwinner,sun50i-h6-ths";
+> +         reg = <0x05070400 0x100>;
+> +         clocks = <&ccu CLK_BUS_THS>;
+> +         clock-names = "bus";
+> +         resets = <&ccu RST_BUS_THS>;
+> +         interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+
+Did you try to run make dtbs_check? That one will probably not
+compile.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--ivprrpimudesnwlt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRCOKQAKCRDj7w1vZxhR
+xdBPAQDsYR1iG7lP4B3btdotbt4B3Mnzh74qRV6goFe8yPrtVQEAqTZEFyHblHwJ
+MP/jYXkzBszWwvzwTaG37gmvGqItzQg=
+=EY/h
+-----END PGP SIGNATURE-----
+
+--ivprrpimudesnwlt--
