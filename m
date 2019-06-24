@@ -2,150 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4513150D0C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 15:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A95050D51
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 16:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727967AbfFXN73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 09:59:29 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:37743 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727267AbfFXN73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 09:59:29 -0400
-Received: by mail-wr1-f67.google.com with SMTP id v14so14047412wrr.4
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 06:59:26 -0700 (PDT)
+        id S1731766AbfFXOJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 10:09:13 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:43886 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731756AbfFXOJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 10:09:12 -0400
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5OE8ZFb004224;
+        Mon, 24 Jun 2019 10:08:48 -0400
+Received: from nam05-dm3-obe.outbound.protection.outlook.com (mail-dm3nam05lp2057.outbound.protection.outlook.com [104.47.49.57])
+        by mx0a-00128a01.pphosted.com with ESMTP id 2t9e63dupf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jun 2019 10:08:48 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=HZydg61kd/5ZMS5RbhbADXYMXbV4sPeJO33INEjYDBA=;
-        b=cCn/f5WcbbLk18YiGYwGIt8mW7tsHJa6PwLBSZV9msR7EdDeabmbI8VfaREJiu6RVv
-         GVP/y61EwmE4mAeQWElaSCBxcJwkJaYuASeFL0ZU001nLQZveinpCXX0KQB1NK63NOez
-         KQk0I+BEK7epCJBbxY3uCLtC7T8rScva2GxHkYz86EdtrhNUuQWid0MjfLE17/fXM//1
-         bre8itTEokJn39L306+8TEsR52h/mWEgO3Q64yiWrystgcP+ARYQHDL6JPEHCq7yamEc
-         EjHkDyyLwUhpMlTnyebsq4Mz9xRaf9HkvF0hOaz1Jr3+SqZGbMRTeZTGkqg3vwu+3m70
-         Lvwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=HZydg61kd/5ZMS5RbhbADXYMXbV4sPeJO33INEjYDBA=;
-        b=LvAxNxVVAcJ4Bc3DjNI8+tir1iA2c8URPmDm2PxUuEZ4LBdJNzBHqBNHaMVLhGz513
-         85+Ogx6fmKCbEtfejP4zKpOotQgOWlxxc8vEWkHyT/oKwo5UyINNumYEoMjfQawotuRj
-         hdf/+W75gXOmI3b+0lAqq24/dSad8UbYkvRoSMUmy/jG5ShEMMpm/adc/gM4TJ0uvOjR
-         GgzTm4xwXDwDJxowyO5LpAUugUATS6sda9T/lxaASDLkJv0dYKWWpSvgivViH3Fqlylc
-         bV8mhEtadTzolyVfuRFD5DpqxGppfpP74SCiQkeCqI+xqElB3ckJn+L4XsazMZMhut+u
-         HYEA==
-X-Gm-Message-State: APjAAAXvjhyq01lcw7Eg/75erpfZxZvIbsahBoyLEo/YMmFVdKQBBrP1
-        wf0+IAaEdSjYFJAdeNIrpZA3Rg==
-X-Google-Smtp-Source: APXvYqyXl+oaJqy9dGnCwOyjNy47toUpLXcA2A7g32WAeammFUBUsdmAZWtzNQCfsd+Y2HZBQlSpLg==
-X-Received: by 2002:adf:e2c7:: with SMTP id d7mr53801722wrj.272.1561384766167;
-        Mon, 24 Jun 2019 06:59:26 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id r4sm9285460wrv.34.2019.06.24.06.59.24
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 24 Jun 2019 06:59:25 -0700 (PDT)
-Date:   Mon, 24 Jun 2019 14:59:23 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Brian Dodge <bdodge09@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, lee.jones@linaro.org,
-        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, Peter Bacon <pbacon@psemi.com>
-Subject: Re: [PATCH 2/3] backlight/arcxcnn fix vendor prefix
-Message-ID: <20190624135923.ej6o2oooncocjwyn@holly.lan>
-References: <1541592640-18478-1-git-send-email-bdodge09@gmail.com>
- <1541592640-18478-3-git-send-email-bdodge09@gmail.com>
- <20181111113053.GF27666@amd>
- <e372391c-1fd5-41ec-b766-7669fffb928d@gmail.com>
- <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
- <20190621221325.GA2343@amd>
- <20190624102405.gg2lnlw6wmfvjrxu@holly.lan>
- <9d590b7b-5477-249e-a482-1fc17d7a106f@gmail.com>
+ d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tbtYM6TFQdOxKuLzKw5MOPPqicJtbW7agMipMrUmpEE=;
+ b=Aw1qVF90vKKQBnGt21mkS05mR2Y4HUbMwTxOnlJx+RiaLXcNkMdraFmpxoLH9BuIH2JBeRijUsHLdfrMbiWaSpjMPmkfTfiOc2g17wSMTM+NzL9cyiR6xGwtgqjwO8dRBik7OqRdymW5QuuIjpBIImVJetTqvhCDaEeiH7MY2Ps=
+Received: from DM6PR03MB3658.namprd03.prod.outlook.com (20.176.85.151) by
+ DM6PR03MB4412.namprd03.prod.outlook.com (20.178.25.89) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.13; Mon, 24 Jun 2019 14:08:46 +0000
+Received: from DM6PR03MB3658.namprd03.prod.outlook.com
+ ([fe80::3d04:7ea3:14e6:de91]) by DM6PR03MB3658.namprd03.prod.outlook.com
+ ([fe80::3d04:7ea3:14e6:de91%7]) with mapi id 15.20.2008.014; Mon, 24 Jun 2019
+ 14:08:46 +0000
+From:   "Caprioru, Mircea" <Mircea.Caprioru@analog.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "lars@metafoo.de" <lars@metafoo.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Popa, Stefan Serban" <StefanSerban.Popa@analog.com>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH V3 4/5] dt-bindings: iio: adc: Convert ad7124
+ documentation to YAML
+Thread-Topic: [PATCH V3 4/5] dt-bindings: iio: adc: Convert ad7124
+ documentation to YAML
+Thread-Index: AQHVKmQnaX7c8Zkm3k6sgnGGJOqaBKaq0qgAgAAFKwA=
+Date:   Mon, 24 Jun 2019 14:08:46 +0000
+Message-ID: <6d9ae527d98c77812d5d261419db3e1ddd5e0e2e.camel@analog.com>
+References: <20190624080845.18537-1-mircea.caprioru@analog.com>
+         <20190624080845.18537-4-mircea.caprioru@analog.com>
+         <CAL_JsqJY_bO7EQa=Sfqs8Prwj483Q8Xs0+eX+HZyGsyr-4p-oQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJY_bO7EQa=Sfqs8Prwj483Q8Xs0+eX+HZyGsyr-4p-oQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.71.226.54]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5b438869-c3c2-42a6-3a6c-08d6f8ad794e
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DM6PR03MB4412;
+x-ms-traffictypediagnostic: DM6PR03MB4412:
+x-ld-processed: eaa689b4-8f87-40e0-9c6f-7228de4d754a,ExtAddr
+x-microsoft-antispam-prvs: <DM6PR03MB4412648EA90994299E985C1581E00@DM6PR03MB4412.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1091;
+x-forefront-prvs: 007814487B
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(136003)(346002)(396003)(366004)(39860400002)(54534003)(199004)(189003)(2616005)(68736007)(8936002)(2906002)(316002)(186003)(4326008)(81156014)(81166006)(3846002)(86362001)(8676002)(54906003)(66066001)(102836004)(53546011)(6506007)(26005)(229853002)(76176011)(6116002)(99286004)(53936002)(36756003)(66946007)(66476007)(66556008)(64756008)(66446008)(76116006)(73956011)(91956017)(6436002)(25786009)(6486002)(118296001)(6512007)(71190400001)(71200400001)(486006)(6246003)(5660300002)(14454004)(305945005)(478600001)(446003)(72206003)(256004)(11346002)(476003)(7736002)(14444005);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR03MB4412;H:DM6PR03MB3658.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: analog.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: EIuw3d45G2dYf1vgG8YcAa+RlsJgnpv64iEGHIub1r/jy93mM2Pb1hxPCIqYzU2qGd/KJ9XgBdTBge4a7EpPFULoCG6pTSC8wz81O4J9vAiv/uew7wBHb8M5+VWf7JQixp7GYUB1RiYwCs6oHxRBhpo6pAbDkkVYhI6qSwdzCoYvnXKLags2Ed1B5y3+fn/4aaicLyixnBYSSanraiHfC5VRv8JL9HjNTBpMtnkrRfa9nQMqKj3IHodAa4ZIeb5JO0VCe5WBC35+/vFiZp7SmTLXASQXatTnfqRpLx8NkvpRT2TvvX6xJUjwKJbiklOg0+DhSQvb04YojYONLZHFw3vb9BKeu1PbUKSTtSi3+Pz6U5GvubAzVVoPLZu9E7IwTEhZbCM+sTjxidHESXSpjbTsca+yMbu1KOtU2doH5hg=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9548103C6EA45F488CC1EB5B5F0929A9@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9d590b7b-5477-249e-a482-1fc17d7a106f@gmail.com>
-User-Agent: NeoMutt/20180716
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b438869-c3c2-42a6-3a6c-08d6f8ad794e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2019 14:08:46.5945
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Mircea.Caprioru@analog.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4412
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-24_10:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1906240116
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 24, 2019 at 07:29:20AM -0400, Brian Dodge wrote:
-> This sure did fall through the cracks.
-> 
-> I confirmed with the vendor that there are no existing embedded DTS with the
-> wrong name(s) in them before submitting this patch.
-> 
-> The new owner of this chip family, pSemi, just wanted me to wrap things up
-> and support all of there chips (3) in a single driver and that was the
-> extent of the work for me.  Since then the manager of the program there has
-> also changed.  I assume they'd still want these changes in for completeness.
-> 
-> AFAIK, there were just some quibbles about the copyright date range.  Can
-> you please help me push these patches in? It'll take me some time to get
-> back in to where I left things  since its been so long.  I know its a bit
-> messy but the DTS and driver changes need to be together to make sense so I
-> couldn't really do an incremental patch sequence.
-> 
-> What is the next step?
-
-The next step is getting the changes to DT bindings agreed. Until that
-happens the patchset cannot move and right now now the thread for that
-patch has feedback that was not replies to:
-https://patchwork.kernel.org/patch/10675451/
-
-The explanation of why it is safe to accept the change to the DT
-bindings really should end up in the patch description rather than the
-mail thread. It would probably also help to have a link to
-https://lkml.org/lkml/2018/9/25/726 where it looks like arc versus
-arctic was previously discussed.
-
-The following might also be convenient for you:
-
-  A quick web search for "arc,arc2c0608" suggests that the only public
-  user is the Samsung Chromebook Plus and it is likely that this device
-  will remain on the v4.4 kernel. For this reason we do not provide
-  any deprecated fallback names based on "arc".
-
-
-Daniel.
-
-> 
-> Brian
-> 
-> On 6/24/19 6:24 AM, Daniel Thompson wrote:
-> > On Sat, Jun 22, 2019 at 12:13:25AM +0200, Pavel Machek wrote:
-> > > Hi!
-> > > 
-> > > > [Sorry to those receiving this twice... had to dig this out from the
-> > > > archives and sent it to the lists from the wrong mailer]
-> > > > 
-> > > > On 27/11/2018 00:44, Brian Dodge wrote:
-> > > > > Thank you Pavel, that is a good point.
-> > > > > 
-> > > > > The chip vendor has indicated that there is no reason to maintain the
-> > > > > old/improper prefix and wishes to go forward (only) with the "arctic"
-> > > > > prefix and any existing dts files are or will be updated.
-> > > > Looks like this patch series has fallen into the cracks a little.
-> > > > 
-> > > > I think I assumed this info would end in the description of patch v2 1/3 (in
-> > > > order to answer Rob's feedback) and I sat and waited for a respin. On the
-> > > > other hand... I didn't actually say that explicitly anywhere! So... I'd
-> > > > recommend a respin perhaps with a small bit of text explaining how the
-> > > > vendor can state that any existing dts files will be updated. This is a
-> > > > peripheral device so these strings are probably embedded into OEM
-> > > > devicetrees rather than exclusively under the control of the vendor.
-> > > So in next email you give good reason not to apply this :-).
-> > Afraid so... it was on page 2 of my google search so I did a quick
-> > search, sent the first mail and then went back to my web browser.
-> > 
-> > It was at that moment that I decided a quick search wasn't enough and
-> > decided to got a little deeper!
-> > 
-> > 
-> > Daniel.
+T24gTW9uLCAyMDE5LTA2LTI0IGF0IDA3OjUwIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+W0V4dGVybmFsXQ0KPiANCj4gDQo+IE9uIE1vbiwgSnVuIDI0LCAyMDE5IGF0IDI6MDkgQU0gTWly
+Y2VhIENhcHJpb3J1DQo+IDxtaXJjZWEuY2FwcmlvcnVAYW5hbG9nLmNvbT4gd3JvdGU6DQo+ID4g
+DQo+ID4gQ29udmVydCBBRDcxMjQgYmluZGluZ3MgZG9jdW1lbnRhdGlvbiB0byBZQU1MIGZvcm1h
+dC4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBNaXJjZWEgQ2FwcmlvcnUgPG1pcmNlYS5jYXBy
+aW9ydUBhbmFsb2cuY29tPg0KPiA+IC0tLQ0KPiA+IA0KPiA+IENoYW5nZWxvZyB2MjoNCj4gPiAt
+IG1vZGlmaWVkIFNQRFggbGljZW5zZSB0byBHUEwtMi4wIE9SIEJTRC0yLUNsYXVzZQ0KPiA+IC0g
+YWRkZWQgcmVnZXggZm9yIGEgcmFuZ2UgZnJvbSAwIHRvIDE1DQo+ID4gLSBhZGRlZCBtaW5pbXVt
+IGFuZCBtYXhpbXVtIGNvbnN0cmFpbnRzIGZvciByZWcgcHJvcGVydHkNCj4gPiAtIHNldCB0eXBl
+IGFuZCByYW5nZSBvZiB2YWx1ZXMgZm9yIGFkaSxyZWZlcmVuY2Utc2VsZWN0IHByb3BlcnR5DQo+
+ID4gLSB1c2VkIGl0ZW1zIGZvciBkaWZmLWNoYW5uZWxzIHByb3BlcnR5DQo+ID4gLSBzZXQgYmlw
+b2xhciwgYWRpLGJ1ZmZlcmVkLXBvc2l0aXZlIGFuZCBuZWdhdGl2ZSB0byB0eXBlOiBib29sZWFu
+DQo+ID4gDQo+ID4gQ2hhbmdlbG9nIHYzOg0KPiA+IC0gbW92ZWQgYWRpLGJ1ZmZlcmVkLXBvc2l0
+aXZlIGFuZCBuZWdhdGl2ZSBwcm9wZXJ0aWVzIHRvIG93biBjb21taXQNCj4gPiANCj4gPiAgLi4u
+L2JpbmRpbmdzL2lpby9hZGMvYWRpLGFkNzEyNC55YW1sICAgICAgICAgIHwgMTQ0DQo+ID4gKysr
+KysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxNDQgaW5zZXJ0aW9ucygrKQ0K
+PiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvaWlvL2FkYy9hZGksYWQ3MTI0LnlhbWwNCj4gDQo+IFRoZSBzdWJqZWN0IHNheXMgJ0Nv
+bnZlcnQnLCBidXQgd2hlcmUncyB0aGUgcmVtb3ZhbCBvZiB0aGUgb2xkDQo+IGJpbmRpbmc/DQo+
+IA0KPiBSb2INCg0KWW91IGFyZSByaWdodCBJIHdhcyBub3Qgc3VyZSBpZiBJIHNob3VsZCBhbHNv
+IHJlbW92ZSB0aGUgb2xkIGJpbmRpbmcuDQpJJ2xsIGRvIGEgdjQgdG8gZGVsZXRlIGl0IGluIHRo
+aXMgcGF0Y2guDQoNClRoYW5rcywNCk1pcmNlYQ0K
