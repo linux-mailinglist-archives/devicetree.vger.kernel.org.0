@@ -2,145 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A06DD518DC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 18:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF6F518F0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 18:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728501AbfFXQlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 12:41:19 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:37530 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726700AbfFXQlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 12:41:19 -0400
-Received: by mail-qk1-f193.google.com with SMTP id d15so10238206qkl.4;
-        Mon, 24 Jun 2019 09:41:18 -0700 (PDT)
+        id S1729189AbfFXQqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 12:46:21 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:45256 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727847AbfFXQqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 12:46:20 -0400
+Received: by mail-pf1-f196.google.com with SMTP id r1so7828763pfq.12;
+        Mon, 24 Jun 2019 09:46:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=rk32yi4TS8gcxPCzX8v7QY6cOglFHE8dF0I29LG2lnc=;
+        b=THWg/XKi4hT+eXURO6zCxBWh5cSpNTHmniF8SOoFsAEqFw3MYLE75X73Ad7B0Uoa/u
+         Js0H1vA9IBcQT7Y2zHy34pz1g5j7v/pxeblkUMN1Rk1Xz1mPZ6gmwgJcNTFcmTXPsF08
+         SrSoJKUdi3xus6naqN3TllR7GRAsM4YE9Be/qcoLjROxw2xVWemXxpRXJ/fx3Yf90u1U
+         DhvS26rMMyGG74u6F2J/dT609qVBy/gKV5dk5hA9Rsm0gJVfmuByPHgw2qcLYBZUnE1x
+         3KNGBWUu1sus3xLGGP5KtbBKJQ8PZnNvr48Gb77b8xwc8IJUi+KjhZ0uIdZ9udXpVBls
+         p3QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UdA6Y6qkEPNcox/R4AD5p5PdgoW5IX8dJGvSgmjWmkg=;
-        b=JhxxntTYearder/a/p+OquDHNuX8jeZ9N2/zYjAaTHici1QdHNF3fXDeq+Qdy/ZELO
-         L28sxhlC4z73NiXjlOsmiGjIcgJxbK/4MBgu38/p6eIT5eTdF9nzIA6jlWhEF3TifzWE
-         LK70Fmoxgz0yWkXHzS4INQEof6R+A2BE9JX8Y2uvjVqkexfMaMendyllHIMS7k6eYaPp
-         QEp1Qa1KoKtTbyeCKaGp5HLl1TP2iS+haRKQkqIsq453Arb2D/ifMTObojJlN5VzUNSi
-         GJQzL2MnimDz+k/Wkv9t6LoyanZlY3neCtq5cmbLIOUFpPUiiIXyQK0hxYBDw/0YTI43
-         XuQw==
-X-Gm-Message-State: APjAAAWs0IPTFOKO2up/cHi5MamuliTC1GqqtjYWAFnZBg3hOJKTuiKm
-        F2r/jeRQD2cVK3ykHHr8HKL3ZQgvbjepAP95O54=
-X-Google-Smtp-Source: APXvYqx9IXxZ67+F4onDygsWo++RwTBrZyAF3TvR7CC3NoZfdYBTRnVe65OvdwgLfjKt586ottXwhlgpI1RplTtFttg=
-X-Received: by 2002:a05:620a:12db:: with SMTP id e27mr111628534qkl.352.1561394477622;
- Mon, 24 Jun 2019 09:41:17 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=rk32yi4TS8gcxPCzX8v7QY6cOglFHE8dF0I29LG2lnc=;
+        b=obBZZvmdXJkTWnoEI5vC0QNde4bIrk/KL7tpxd1f7ZhmhbHVzr33bTefDNSJHW1RqN
+         5QDr1uPMqZwNEZ5qxlSzBhdXfyFy013Y7szBKcww8rhxYJd7eoq9I7cXyEVArprWSYGC
+         T//S9JMH8G0oyo6flSdkhO8iAfRp+2Gk4siS2bE6bSi/CXOV+Esh2cWbBxl5S7y4XqSA
+         9BJ9TZcfZ9Hgc/fLSeH2G+fsJW7M77hCAlgdaWJa3qFZYyJVWHEA0M4ariia9zt7n33V
+         FlZ+GITTpFomfyrd1PzvDbccRYwHX8BnBM1TJwLMB5jMOqgjy+aeSK+xOgAYSe2gWyAv
+         mJSg==
+X-Gm-Message-State: APjAAAUlzW+cCmqheGilj+A/RlRZ2IbH+oJy8CLyBr8lSWCBvkrgUvmX
+        M5EIGLv2iRzZIEOHR4Kiks0=
+X-Google-Smtp-Source: APXvYqxi3TsEmcjsEdXwtgJuHHbQfba3PGZKeJ2cIWYwMjOqJarwHX0qFk08wKvYtbaSkUp58mDLAA==
+X-Received: by 2002:a17:90a:c504:: with SMTP id k4mr25698395pjt.104.1561394778617;
+        Mon, 24 Jun 2019 09:46:18 -0700 (PDT)
+Received: from ?IPv6:240b:10:2720:5510:a182:288:3ffa:432a? ([240b:10:2720:5510:a182:288:3ffa:432a])
+        by smtp.gmail.com with ESMTPSA id y22sm15041975pgj.38.2019.06.24.09.46.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Jun 2019 09:46:17 -0700 (PDT)
+Subject: Re: [PATCH v7 1/5] mtd: cfi_cmdset_0002: Add support for polling
+ status register
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        linux-arm-kernel@lists.infradead.org
+References: <20190620172250.9102-1-vigneshr@ti.com>
+ <20190620172250.9102-2-vigneshr@ti.com>
+From:   Tokunori Ikegami <ikegami.t@gmail.com>
+Message-ID: <571484c7-0cf4-6a7d-6d7f-375cfb13ce8b@gmail.com>
+Date:   Tue, 25 Jun 2019 01:46:13 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
- <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
- <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
- <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
- <36bca57c999f611353fd9741c55bb2a7@codeaurora.org> <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
- <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
- <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
- <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
- <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
- <d533b708-c97a-710d-1138-3ae79107f209@linaro.org> <abdfc6b3a9981bcdef40f85f5442a425ce109010.camel@sipsolutions.net>
- <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org>
-In-Reply-To: <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 24 Jun 2019 18:40:57 +0200
-Message-ID: <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Alex Elder <elder@linaro.org>
-Cc:     Johannes Berg <johannes@sipsolutions.net>,
-        Dan Williams <dcbw@redhat.com>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        syadagir@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190620172250.9102-2-vigneshr@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 24, 2019 at 6:21 PM Alex Elder <elder@linaro.org> wrote:
-> On 6/18/19 2:03 PM, Johannes Berg wrote:
+
+On 2019/06/21 2:22, Vignesh Raghavendra wrote:
+> HyperFlash devices are compliant with CFI AMD/Fujitsu Extended Command
+> Set (0x0002) for flash operations, therefore
+> drivers/mtd/chips/cfi_cmdset_0002.c can be used as is. But these devices
+> do not support DQ polling method of determining chip ready/good status.
+> These flashes provide Status Register whose bits can be polled to know
+> status of flash operation.
 >
-> > Really there are two possible ways (and they intersect to some extent).
-> >
-> > One is the whole multi-function device, where a single WWAN device is
-> > composed of channels offered by actually different drivers, e.g. for a
-> > typical USB device you might have something like cdc_ether and the
-> > usb_wwan TTY driver. In this way, we need to "compose" the WWAN device
-> > similarly, e.g. by using the underlying USB device "struct device"
-> > pointer to tie it together.
+> Cypress HyperFlash datasheet here[1], talks about CFI Amd/Fujitsu
+> Extended Query version 1.5. Bit 0 of "Software Features supported" field
+> of CFI Primary Vendor-Specific Extended Query table indicates
+> presence/absence of status register and Bit 1 indicates whether or not
+> DQ polling is supported. Using these bits, its possible to determine
+> whether flash supports DQ polling or need to use Status Register.
 >
-> I *think* this model makes the most sense.  But at this point
-> it would take very little to convince me otherwise...  (And then
-> I saw Arnd's message advocating the other one, unfortunately...)
+> Add support for polling Status Register to know device ready/status of
+> erase/write operations when DQ polling is not supported.
+> Print error messages on erase/program failure by looking at related
+> Status Register bits.
 >
-> > The other is something like IPA or the Intel modem driver, where the
-> > device is actually a single (e.g. PCIe) device and just has a single
-> > driver, but that single driver offers different channels.
+> [1] https://www.cypress.com/file/213346/download
 >
-> What I don't like about this is that it's more monolithic.  It
-> seems better to have the low-level IPA or Intel modem driver (or
-> any other driver that can support communication between the AP
-> and WWAN device) present communication paths that other function-
-> specific drivers can attach to and use.
-
-I did not understand Johannes description as two competing models
-for the same code, but rather two kinds of existing hardware that
-a new driver system would have to deal with.
-
-I was trying to simplify it to just having the second model, by adding
-a hack to support the first, but my view was rather unpopular so
-far, so if everyone agrees on one way to do it, don't worry about me ;-)
-
-> > Now, it's not clear to me where IPA actually falls, because so far we've
-> > been talking about the IPA driver only as providing *netdevs*, not any
-> > control channels, so I'm not actually sure where the control channel is.
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+> v7: No change
 >
-> There is user space code that handles all of this, and as far as I
-> can tell, parts of it will always remain proprietary.
-
-Two replies on this:
-
-- to answer Johannes question, my understanding is that the interface
-  between kernel and firmware/hardware for IPA has a single 'struct
-  device' that is used for both the data and the control channels,
-  rather than having a data channel and an independent control device,
-  so this falls into the same category as the Intel one (please correct
-  me on that)
-
-- The user space being proprietary is exactly what we need to avoid
-  with the wwan subsystem. We need to be able to use the same
-  method for setting up Intel, Qualcomm, Samsung, Unisoc or
-  Hisilicon modems or anything else that hooks into the subsystem,
-  and support that in network manager as well as the Android
-  equivalent.
-  If Qualcomm wants to provide their own proprietary user space
-  solution, we can't stop them, but then that should also work on
-  all the others unless they intentionally break it. ;-)
-
-> > and simply require that the channel is attached to the wwan device with
-> > the representation-specific call (wwan_attach_netdev, wwan_attach_tty,
-> > ...).
+>   drivers/mtd/chips/cfi_cmdset_0002.c | 90 +++++++++++++++++++++++++++++
+>   include/linux/mtd/cfi.h             |  5 ++
+>   2 files changed, 95 insertions(+)
 >
-> Or maybe have the WWAN device present interfaces with attributes,
-> and have drivers that are appropriate for each interface attach
-> to only the ones they recognize they support.
+> diff --git a/drivers/mtd/chips/cfi_cmdset_0002.c b/drivers/mtd/chips/cfi_cmdset_0002.c
+> index c8fa5906bdf9..0f571f162e3b 100644
+> --- a/drivers/mtd/chips/cfi_cmdset_0002.c
+> +++ b/drivers/mtd/chips/cfi_cmdset_0002.c
+> @@ -49,6 +49,16 @@
+>   #define SST49LF008A		0x005a
+>   #define AT49BV6416		0x00d6
+>   
+> +/*
+> + * Status Register bit description. Used by flash devices that don't
+> + * support DQ polling (e.g. HyperFlash)
+> + */
+> +#define CFI_SR_DRB		BIT(7)
+> +#define CFI_SR_ESB		BIT(5)
+> +#define CFI_SR_PSB		BIT(4)
+> +#define CFI_SR_WBASB		BIT(3)
+> +#define CFI_SR_SLSB		BIT(1)
+> +
+>   static int cfi_amdstd_read (struct mtd_info *, loff_t, size_t, size_t *, u_char *);
+>   static int cfi_amdstd_write_words(struct mtd_info *, loff_t, size_t, size_t *, const u_char *);
+>   static int cfi_amdstd_write_buffers(struct mtd_info *, loff_t, size_t, size_t *, const u_char *);
+> @@ -97,6 +107,48 @@ static struct mtd_chip_driver cfi_amdstd_chipdrv = {
+>   	.module		= THIS_MODULE
+>   };
+>   
+> +/*
+> + * Use status register to poll for Erase/write completion when DQ is not
+> + * supported. This is indicated by Bit[1:0] of SoftwareFeatures field in
+> + * CFI Primary Vendor-Specific Extended Query table 1.5
+> + */
+> +static int cfi_use_status_reg(struct cfi_private *cfi)
+> +{
+> +	struct cfi_pri_amdstd *extp = cfi->cmdset_priv;
+> +
+> +	return extp->MinorVersion >= '5' &&
+> +		(extp->SoftwareFeatures & 0x3) == 0x1;
 
-I think you both mean the same thing here, a structure with callback
-pointers that may or may not be filled by the driver depending on its
-capabilities.
+Seems to be better to use defined values instead of 0x3 and 0x1 hard 
+coded values.
 
-What we should try to avoid though is a way to add driver private
-interfaces that risk having multiple drivers create similar functionality
-in incompatible ways.
+> +}
+> +
+> +static void cfi_check_err_status(struct map_info *map, unsigned long adr)
+> +{
+> +	struct cfi_private *cfi = map->fldrv_priv;
+> +	map_word status;
+> +
+> +	if (!cfi_use_status_reg(cfi))
+> +		return;
+> +
+> +	cfi_send_gen_cmd(0x70, cfi->addr_unlock1, 0, map, cfi,
 
-        Arnd
+Is it not necessary to set chip->start as the base parameter for 
+cfi_send_gen_cmd()?
+
+> +			 cfi->device_type, NULL);
+> +	status = map_read(map, adr);
+> +
+> +	if (map_word_bitsset(map, status, CMD(0x3a))) {
+> +		unsigned long chipstatus = MERGESTATUS(status);
+> +
+> +		if (chipstatus & CFI_SR_ESB)
+> +			pr_err("%s erase operation failed, status %lx\n",
+> +			       map->name, chipstatus);
+> +		if (chipstatus & CFI_SR_PSB)
+> +			pr_err("%s program operation failed, status %lx\n",
+> +			       map->name, chipstatus);
+> +		if (chipstatus & CFI_SR_WBASB)
+> +			pr_err("%s buffer program command aborted, status %lx\n",
+> +			       map->name, chipstatus);
+> +		if (chipstatus & CFI_SR_SLSB)
+> +			pr_err("%s sector write protected, status %lx\n",
+> +			       map->name, chipstatus);
+> +	}
+> +}
+>   
+>   /* #define DEBUG_CFI_FEATURES */
+>   
+> @@ -744,8 +796,22 @@ static struct mtd_info *cfi_amdstd_setup(struct mtd_info *mtd)
+>    */
+>   static int __xipram chip_ready(struct map_info *map, unsigned long addr)
+>   {
+> +	struct cfi_private *cfi = map->fldrv_priv;
+>   	map_word d, t;
+>   
+> +	if (cfi_use_status_reg(cfi)) {
+> +		map_word ready = CMD(CFI_SR_DRB);
+> +		/*
+> +		 * For chips that support status register, check device
+> +		 * ready bit
+> +		 */
+> +		cfi_send_gen_cmd(0x70, cfi->addr_unlock1, 0, map, cfi,
+
+Same comment as cfi_check_err_status() about the base address.
+
+> +				 cfi->device_type, NULL);
+> +		d = map_read(map, addr);
+> +
+> +		return map_word_andequal(map, d, ready, ready);
+> +	}
+> +
+>   	d = map_read(map, addr);
+>   	t = map_read(map, addr);
+>   
+> @@ -769,8 +835,27 @@ static int __xipram chip_ready(struct map_info *map, unsigned long addr)
+>    */
+>   static int __xipram chip_good(struct map_info *map, unsigned long addr, map_word expected)
+>   {
+> +	struct cfi_private *cfi = map->fldrv_priv;
+>   	map_word oldd, curd;
+>   
+> +	if (cfi_use_status_reg(cfi)) {
+> +		map_word ready = CMD(CFI_SR_DRB);
+> +		map_word err = CMD(CFI_SR_PSB | CFI_SR_ESB);
+
+Is it not necessary to check CFI_SR_WBASB and CFI_SR_SLSB that are 
+checked by cfi_check_err_status()?
+
+> +		/*
+> +		 * For chips that support status register, check device
+> +		 * ready bit and Erase/Program status bit to know if
+> +		 * operation succeeded.
+> +		 */
+> +		cfi_send_gen_cmd(0x70, cfi->addr_unlock1, 0, map, cfi,
+
+Same as cfi_check_err_status() and chip_ready() about the base address.
+
+> +				 cfi->device_type, NULL);
+> +		curd = map_read(map, addr);
+> +
+> +		if (map_word_andequal(map, curd, ready, ready))
+> +			return !map_word_bitsset(map, curd, err);
+> +
+> +		return 0;
+> +	}
+> +
+>   	oldd = map_read(map, addr);
+>   	curd = map_read(map, addr);
+>   
+> @@ -1644,6 +1729,7 @@ static int __xipram do_write_oneword(struct map_info *map, struct flchip *chip,
+>   	/* Did we succeed? */
+>   	if (!chip_good(map, adr, datum)) {
+>   		/* reset on all failures. */
+> +		cfi_check_err_status(map, adr);
+>   		map_write(map, CMD(0xF0), chip->start);
+>   		/* FIXME - should have reset delay before continuing */
+>   
+> @@ -1901,6 +1987,7 @@ static int __xipram do_write_buffer(struct map_info *map, struct flchip *chip,
+>   	 * See e.g.
+>   	 * http://www.spansion.com/Support/Application%20Notes/MirrorBit_Write_Buffer_Prog_Page_Buffer_Read_AN.pdf
+>   	 */
+> +	cfi_check_err_status(map, adr);
+>   	cfi_send_gen_cmd(0xAA, cfi->addr_unlock1, chip->start, map, cfi,
+>   			 cfi->device_type, NULL);
+>   	cfi_send_gen_cmd(0x55, cfi->addr_unlock2, chip->start, map, cfi,
+> @@ -2107,6 +2194,7 @@ static int do_panic_write_oneword(struct map_info *map, struct flchip *chip,
+>   
+>   	if (!chip_good(map, adr, datum)) {
+>   		/* reset on all failures. */
+> +		cfi_check_err_status(map, adr);
+>   		map_write(map, CMD(0xF0), chip->start);
+>   		/* FIXME - should have reset delay before continuing */
+>   
+> @@ -2316,6 +2404,7 @@ static int __xipram do_erase_chip(struct map_info *map, struct flchip *chip)
+>   	/* Did we succeed? */
+>   	if (ret) {
+>   		/* reset on all failures. */
+> +		cfi_check_err_status(map, adr);
+>   		map_write(map, CMD(0xF0), chip->start);
+>   		/* FIXME - should have reset delay before continuing */
+>   
+> @@ -2412,6 +2501,7 @@ static int __xipram do_erase_oneblock(struct map_info *map, struct flchip *chip,
+>   	/* Did we succeed? */
+>   	if (ret) {
+>   		/* reset on all failures. */
+> +		cfi_check_err_status(map, adr);
+>   		map_write(map, CMD(0xF0), chip->start);
+>   		/* FIXME - should have reset delay before continuing */
+>   
+> diff --git a/include/linux/mtd/cfi.h b/include/linux/mtd/cfi.h
+> index 208c87cf2e3e..b50416169049 100644
+> --- a/include/linux/mtd/cfi.h
+> +++ b/include/linux/mtd/cfi.h
+> @@ -219,6 +219,11 @@ struct cfi_pri_amdstd {
+>   	uint8_t  VppMin;
+>   	uint8_t  VppMax;
+>   	uint8_t  TopBottom;
+> +	/* Below field are added from version 1.5 */
+> +	uint8_t  ProgramSuspend;
+> +	uint8_t  UnlockBypass;
+> +	uint8_t  SecureSiliconSector;
+> +	uint8_t  SoftwareFeatures;
+>   } __packed;
+>   
+>   /* Vendor-Specific PRI for Atmel chips (command set 0x0002) */
