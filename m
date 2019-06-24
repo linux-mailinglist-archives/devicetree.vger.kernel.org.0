@@ -2,105 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88DA1508FC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8693D50900
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728422AbfFXKdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 06:33:19 -0400
-Received: from ironport.klsmartin.com ([212.211.191.11]:54343 "EHLO
-        ironport.klsmartin.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727984AbfFXKdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 06:33:19 -0400
-X-IronPort-AV: E=Sophos;i="5.63,411,1557180000"; 
-   d="scan'208";a="2040921"
-Received: from unknown (HELO hera.klsmartin.com) ([172.30.5.66])
-  by ironport.klsmartin.com with ESMTP/TLS/DHE-RSA-AES256-SHA; 24 Jun 2019 12:33:16 +0200
-Received: from SUMMAIL01.UMK.KLS.zentral ([172.25.1.63])
-        by hera.klsmartin.com (8.14.3/8.13.1/SuSE Linux 0.7) with ESMTP id x5OAWqsc023339;
-        Mon, 24 Jun 2019 12:32:55 +0200
-Received: from SUMMBX01.UMK.KLS.zentral ([172.25.1.64]) by
- SUMMAIL01.UMK.KLS.zentral ([172.25.1.63]) with mapi id 14.03.0439.000; Mon,
- 24 Jun 2019 12:33:09 +0200
-From:   "Middelschulte, Leif" <Leif.Middelschulte@klsmartin.com>
-To:     "robh@kernel.org" <robh@kernel.org>
-CC:     "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-Subject: Re: [PATCH 01/10] dt-bindings: input: touchscreen: stmpe: add touch
- window configuration
-Thread-Topic: [PATCH 01/10] dt-bindings: input: touchscreen: stmpe: add
- touch window configuration
-Thread-Index: AQHVFKZfWxtzY275Mkuldb4w1Urs/KabiWYAgAdXhICAACBQAIAHpDkA
-Date:   Mon, 24 Jun 2019 10:33:12 +0000
-Message-ID: <8b9d362f16b817e828b774c6ac6532c6f2efb821.camel@klsmartin.com>
-References: <20190527160736.30569-1-leif.middelschulte@klsmartin.com>
-         <20190527160736.30569-2-leif.middelschulte@klsmartin.com>
-         <20190614194818.GA22146@bogus>
-         <b1f40349dced90ea2ab0c9e5dc528db883e62e8d.camel@klsmartin.com>
-         <CAL_JsqLrMk9yNAzHWCgOFaOqnHKiwSjLOfbhU5+DzLCNBD+H_w@mail.gmail.com>
-In-Reply-To: <CAL_JsqLrMk9yNAzHWCgOFaOqnHKiwSjLOfbhU5+DzLCNBD+H_w@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.2.60]
-x-kse-serverinfo: SUMMAIL01.UMK.KLS.zentral, 9
-x-kse-attachmentfiltering-interceptor-info: protection disabled
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean, bases: 24.06.2019 08:53:00
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2ED71AB4C8924248A52584C5413D964D@klsmartin.de>
-Content-Transfer-Encoding: base64
+        id S1727665AbfFXKem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 06:34:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34228 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726774AbfFXKem (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 06:34:42 -0400
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 91F7920674;
+        Mon, 24 Jun 2019 10:34:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561372480;
+        bh=SV0KHLSN6vZLGUuMtl2V9cwKaGSyM/pYO/cQlIB7+N8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KHXvwsNq1LygJo8JdUvMLWgk46PFYmBHeLBdlNfQw3UC89qCWnRZmfG6IOB21ylON
+         sX4XSQm8nZzE3qS7ahxxH/zkrTtLrYOOv68hB7DwPIyJWqMEzeAgesl5XLhbwarzMb
+         f/MogTTy76s13ELZfcWWC7vYoiRCQOZtx3USwQ7U=
+Received: by mail-wr1-f41.google.com with SMTP id f9so13278489wre.12;
+        Mon, 24 Jun 2019 03:34:40 -0700 (PDT)
+X-Gm-Message-State: APjAAAUnMlt9Lkdp+F40LQsUHHFP4ZLqzKp03mbQVZ3T8lYvh6DzHMiW
+        A6iYgwsfEliwnDmrKLE2xDtG1FFnK+yx/Q7uJt0=
+X-Google-Smtp-Source: APXvYqyH1r9rbTDr7f7A3CGLAPvjyUC9pTOBeqwhjMPglEFiQUwQ6jrIqyXxSd9CiE9M6mJbLG2M70cCye4u1ookXM0=
+X-Received: by 2002:adf:fc85:: with SMTP id g5mr22528717wrr.324.1561372479250;
+ Mon, 24 Jun 2019 03:34:39 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190604042337.26129-1-wens@kernel.org> <20190620162220.GA23549@piout.net>
+In-Reply-To: <20190620162220.GA23549@piout.net>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Mon, 24 Jun 2019 18:34:29 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67sf3L9zH9Li6tF3xunQ4-isoodBLQmSv2VJtAj6hS7Ug@mail.gmail.com>
+Message-ID: <CAGb2v67sf3L9zH9Li6tF3xunQ4-isoodBLQmSv2VJtAj6hS7Ug@mail.gmail.com>
+Subject: Re: [PATCH 0/3] rtc: pcf8563: Fix unhandled interrupt storm
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Vincent Donnefort <vdonnefort@gmail.com>,
+        linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QW0gTWl0dHdvY2gsIGRlbiAxOS4wNi4yMDE5LCAwNzo1MSAtMDYwMCBzY2hyaWViIFJvYiBIZXJy
-aW5nOg0KPiBPbiBXZWQsIEp1biAxOSwgMjAxOSBhdCA1OjU2IEFNIE1pZGRlbHNjaHVsdGUsIExl
-aWYNCj4gPA0KPiBMZWlmLk1pZGRlbHNjaHVsdGVAa2xzbWFydGluLmNvbQ0KPiA+IHdyb3RlOg0K
-PiA+IEFtIEZyZWl0YWcsIGRlbiAxNC4wNi4yMDE5LCAxMzo0OCAtMDYwMCBzY2hyaWViIFJvYiBI
-ZXJyaW5nOg0KPiA+ID4gT24gTW9uLCBNYXkgMjcsIDIwMTkgYXQgMDY6MDc6MjdQTSArMDIwMCwg
-TGVpZiBNaWRkZWxzY2h1bHRlIHdyb3RlOg0KPiA+ID4gPiBUaGUgU1RNUEU4MTEgaXMgYWJsZSB0
-byBvbmx5IG1vbml0b3IgYSBzdWJ3aW5kb3cgb2YgdGhlDQo+ID4gPiA+IGVudGlyZSBzY3JlZW4u
-IFRvdWNoZXMgb3V0c2lkZSBvZiB0aGlzIHdpbmRvdyBhcmUgbmVnbGVjdGVkLg0KPiA+ID4gPiBU
-aGlzIGNoYW5nZSBhZGRzIHRoZSBjb3JyZXNwb25kaW5nIGRvY3VtZW50YXRpb24uDQo+ID4gPiAN
-Cj4gPiA+IFVubGVzcyB5b3UgYXJlIHRyeWluZyB0byBqdXN0IGZpbHRlciBvdXQgdGhlIGVkZ2Ug
-dmFsdWVzDQo+ID4gDQo+ID4gSSdtIHRyeWluZyB0byAianVzdCBmaWx0ZXIgb3V0IHRoZSBlZGdl
-IHZhbHVlcyIgYnkgZmlsdGVyaW5nIHRoZSB2YWx1ZXMNCj4gPiByaWdodCBvbiB0aGUgc21wdGUg
-bWljcm9jb250cm9sbGVyLiBJdCBpcyBhIGRldmljZSBzcGVjaWZpYyBmZWF0dXJlLCB0aGF0IGlz
-DQo+ID4gd2h5IEkgaW1wbGVtZW50ZWQgYW5kIGRvY3VtZW50ZWQgdGhlIHN1cHBvcnQuDQo+ID4g
-DQo+ID4gQnV0IHN1cmUsIG9uZSBjb3VsZCBsZWF2ZSB0aGF0IHRvIGEgY29ycmVzcG9uZGluZyBl
-bnRyeSBpbiB0aGUgaHdkYiB0aGF0DQo+ID4gd291bGQgbWFuaXB1bGF0ZSBhYnNpbmZvIHRvIGdh
-aW4gY2FsaWJyYXRlZCBpbnB1dCBbMV0uDQo+ID4gDQo+ID4gPiB3aGljaCBJIHRoaW5rIHdlIGFs
-cmVhZHkgaGF2ZSBwcm9wZXJ0aWVzIGZvciwNCj4gPiANCj4gPiBXaGlsZSB0aGVyZSBbMF0gaXMg
-InRvdWNoc2NyZWVuLW1pbi17eCx5fSIsIEkgY291bGQgbm90IHNwb3QgYSBjb3JyZXNwb25kaW5n
-DQo+ID4gInRvdWNoc2NyZWVuLW1heC17eCx5fSIuIENvdWxkIHlvdSBwb2ludCBtZSB0byB0aGUg
-cmlnaHQgcHJvcGVydHk/DQo+IA0KPiBQZXJoYXBzIGFkZCB0aGVtLiBJZiB3ZSBoYXZlIG1pbiwg
-YWRkaW5nIGEgbWF4IHNlZW1zIGxvZ2ljYWwuDQpUaGVyZSBhcmUgYHRvdWNoc2NyZWVuLXNpemUt
-eGAgYW5kIGB0b3VjaHNjcmVlbi1zaXplLXlgLCB3aGljaCBhcmUgZGVzY3JpYmVkWzBdIGFzDQoi
-aG9yaXpvbnRhbCByZXNvbHV0aW9uIG9mIHRvdWNoc2NyZWVuIChtYXhpbXVtIHggY29vcmRpbmF0
-ZSByZXBvcnRlZCArIDEpIg0KDQpUaGUgcG90ZW50aWFsbHkgbWlzbGVhZGluZyBwcm9wZXJ0eSBu
-YW1lIGFzaWRlLCB0aGUgZ2VuZXJhbA0KaW1wbGVtZW50YXRpb24gaW4gb2ZfdG91Y2hzY3JlZW4u
-Y1sxXSBhcHBsaWVzIGl0IGFzIG1heGltdW0gdmFsdWUuDQpJdCBpcyBub3QgYXBwbGllZCBhcyBy
-ZXNvbHV0aW9uIGFzIGluIHRoZSBjb250ZXh0IG9mIGlucHV0IGRldmljZXNbMl0uDQoNClNvIGhl
-cmUgYXJlIHRoZSBvcHRpb25zOg0KIEEpIEkgZ28gd2l0aCBgdG91Y2hzY3JlZW4tbWluLXt4LHl9
-YCBmb3IgbWluaW11bSB2YWx1ZXMgYW5kDQogICAgYHRvdWNoc2NyZWVuLXNpemUte3gseX1gIGZv
-ciBtYXhpbXVtIHZhbHVlcy4NCiBCKSBEZXByZWNhdGUgYHRvdWNoc2NyZWVuLXNpemUte3gseX1g
-IGZvciBuYW1lZCByZWFzb25zIGFuZA0KICAgIGludHJvZHVjZSBgdG91Y2hzY3JlZW4tbWF4LXt4
-LHl9YC4NCg0KSW4gbXkgY2FzZSwgSSBkbyBuZWVkIHRvIHNldCB0aGUgcmVzb2x1dGlvbiB0b28g
-dGhvdWdoLg0KDQpTbywgYW5vdGhlciBxdWVzdGlvbiB3b3VsZCBiZSBob3cgdG8gZ28gYWJvdXQg
-aGFuZGxpbmcgdGhlIHJlc29sdXRpb246DQogSSkgSW50cm9kdWNpbmcgYW4gZXhwbGljaXQgcmVz
-b2x1dGlvbiB0dXBsZT8gVGhpcyB3b3VsZCBiZSBiYWQNCiAgICBiZWNhdXNlIG9mIG11bHRpcGxl
-IGludmFsaWQgY29uc3RlbGF0aW9ucy4NCiBJSSkgSW1wbGljaXRseSBhcHBseWluZyBhIHJlc29s
-dXRpb24gaWYgYSBjb3Jyc3BvbmRpbmcNCiAgICAgYHRvdWNoc2NyZWVuLXt4LHl9LW1tYCBpcyBw
-cm92aWRlZCB0b28uIFRoaXMgYXBwcm9hY2ggd291bGQgY2hhbmdlDQogICAgIGJlaGF2aW9yIHRo
-b3VnaC4NCg0KDQpbMF0gaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L3RvdWNoc2NyZWVuL3RvdWNoc2NyZWVuLnR4dA0KWzFd
-IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRz
-L2xpbnV4LmdpdC90cmVlL2RyaXZlcnMvaW5wdXQvdG91Y2hzY3JlZW4vb2ZfdG91Y2hzY3JlZW4u
-Yz9oPXY1LjItcmM2I244MQ0KWzJdIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51
-eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4LmdpdC90cmVlL2luY2x1ZGUvdWFwaS9saW51eC9p
-bnB1dC5oI245NQ0KDQpMZWlmDQoNCj4gDQo+IFJvYg0KPiANCg==
+On Fri, Jun 21, 2019 at 12:22 AM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> On 04/06/2019 12:23:34+0800, Chen-Yu Tsai wrote:
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > Hi everyone,
+> >
+> > While bringing up my Pine H64, I encountered an interrupt storm from the
+> > pcf8563 RTC. The RTC chip's interrupt line is shared with the PMIC, and
+> > was not properly added to the device tree. Also, the driver was using an
+> > trigger method incompatible with the PMIC, preventing the interrupt line
+> > from being shared. Last, the driver only clears and masks the alarm
+> > interrupt, while leaving the timer interrupt untouched. This is a
+> > problem if previous systems left the timer interrupt enabled, and there
+> > was an interrupt pending.
+> >
+> > This patch set fixes all three issues, one per patch.
+> >
+> > Please have a look.
+> >
+>
+> I don't have that particular RTC so I can't test but the interrupt
+> handling in pcf8563_irq seems problematic too. I guess the RTC will only
+> trigger once per second because the call to pcf8563_set_alarm_mode will
+> explicitely leave the alarm enabled. The core doesn't really care but it
+> doesn't really expect the alarm to stay enabled. i.e. It will ensure the
+> alarm is enabled again after setting it when necessary. I think it would
+> be safer to simply clear both AIE and AF here. Could you test?
+
+Yeah, that bit looked weird to me as well. And actually the alarm doesn't
+go down to the second, only the minute.
+
+Is there a test program I can use to test the alarms?
+
+Thanks
+ChenYu
+
+> > Chen-Yu Tsai (3):
+> >   rtc: pcf8563: Fix interrupt trigger method
+> >   rtc: pcf8563: Clear event flags and disable interrupts before
+> >     requesting irq
+> >   arm64: dts: allwinner: h6: Pine H64: Add interrupt line for RTC
+> >
+> >  .../arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts |  2 ++
+> >  drivers/rtc/rtc-pcf8563.c                           | 13 ++++++-------
+> >  2 files changed, 8 insertions(+), 7 deletions(-)
+> >
+> > --
+> > 2.20.1
+> >
+>
+> --
+> Alexandre Belloni, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
