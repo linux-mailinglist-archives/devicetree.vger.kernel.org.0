@@ -2,209 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EF9D50331
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 09:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7628F5035C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 09:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727385AbfFXHYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 03:24:37 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59104 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726719AbfFXHYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 03:24:37 -0400
-X-UUID: f99ff83372764d82ac28946816a925de-20190624
-X-UUID: f99ff83372764d82ac28946816a925de-20190624
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 176232665; Mon, 24 Jun 2019 15:24:30 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 24 Jun 2019 15:24:29 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 24 Jun 2019 15:24:28 +0800
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>
-CC:     Neal Liu <neal.liu@mediatek.com>,
-        Crystal Guo <Crystal.Guo@mediatek.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
-Subject: [PATCH v4 3/3] hwrng: add mtk-sec-rng driver
-Date:   Mon, 24 Jun 2019 15:24:12 +0800
-Message-ID: <1561361052-13072-4-git-send-email-neal.liu@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1561361052-13072-1-git-send-email-neal.liu@mediatek.com>
-References: <1561361052-13072-1-git-send-email-neal.liu@mediatek.com>
+        id S1727868AbfFXH3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 03:29:06 -0400
+Received: from mail-eopbgr70084.outbound.protection.outlook.com ([40.107.7.84]:22698
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726375AbfFXH3G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 03:29:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FcUMMlk2T6FCv3ooxkAw1KBcFem5h9ljJ6hTfF7mie8=;
+ b=BY8r3PHnQK6EYOsagGY5TaXi5Nu/yg8eIMSbgAcLrrL/3nRa4DqRfr9OJMxk0hNyCYDckMfdiE3EgmZfkYUWJnBlBn6stwTivVyAZdnOub9CBU4C/jCUM4ayaOEaERgwLQAQzofFlBobg5wPUqkZj0LqFKNsIMRMe8clWCkZM+U=
+Received: from AM6PR04MB5207.eurprd04.prod.outlook.com (20.177.35.159) by
+ AM6PR04MB6008.eurprd04.prod.outlook.com (20.178.95.77) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1987.11; Mon, 24 Jun 2019 07:28:59 +0000
+Received: from AM6PR04MB5207.eurprd04.prod.outlook.com
+ ([fe80::9c87:7753:43b9:6d4a]) by AM6PR04MB5207.eurprd04.prod.outlook.com
+ ([fe80::9c87:7753:43b9:6d4a%4]) with mapi id 15.20.2008.014; Mon, 24 Jun 2019
+ 07:28:59 +0000
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     "matti.vaittinen@fi.rohmeurope.com" 
+        <matti.vaittinen@fi.rohmeurope.com>,
+        "andradanciu1997@gmail.com" <andradanciu1997@gmail.com>
+CC:     Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Richard Hu <richard.hu@technexion.com>,
+        Pankaj Bansal <pankaj.bansal@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>,
+        "sriram.dash@nxp.com" <sriram.dash@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>
+Subject: Re: [RFC PATCH] arm64: dts: fsl: wandboard: Add a device tree for the
+ PICO-PI-IMX8M
+Thread-Topic: [RFC PATCH] arm64: dts: fsl: wandboard: Add a device tree for
+ the PICO-PI-IMX8M
+Thread-Index: AQHVJ2zohKcPnCfCB0KClMsEZavGNKaqUz+AgAAa4AA=
+Date:   Mon, 24 Jun 2019 07:28:59 +0000
+Message-ID: <0c09227705b9f06bff3dc4341538968cba6c6cd0.camel@nxp.com>
+References: <20190620133252.31373-1-andradanciu1997@gmail.com>
+         <20190624055247.GA10377@localhost.localdomain>
+In-Reply-To: <20190624055247.GA10377@localhost.localdomain>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=daniel.baluta@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d82dec5c-3901-4ea2-7d95-08d6f8759ff7
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB6008;
+x-ms-traffictypediagnostic: AM6PR04MB6008:
+x-ms-exchange-purlcount: 2
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-microsoft-antispam-prvs: <AM6PR04MB6008AD728D9AC83C9A0E2008F9E00@AM6PR04MB6008.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 007814487B
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(346002)(366004)(396003)(136003)(199004)(189003)(478600001)(6116002)(229853002)(66476007)(6436002)(53936002)(36756003)(66066001)(4744005)(186003)(71200400001)(11346002)(8676002)(316002)(66946007)(81166006)(8936002)(73956011)(54906003)(64756008)(91956017)(66556008)(110136005)(66446008)(2616005)(7416002)(71190400001)(102836004)(99286004)(2501003)(68736007)(118296001)(14454004)(6306002)(5660300002)(76116006)(81156014)(44832011)(966005)(26005)(305945005)(76176011)(6486002)(4326008)(6246003)(6512007)(6506007)(256004)(25786009)(446003)(50226002)(7736002)(2906002)(86362001)(3846002)(486006)(476003)(99106002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB6008;H:AM6PR04MB5207.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: b21gff9GuunTJrKJ1KvNg5vwRS7TCjosqW6RRG69idaeJa4u6SYJcPuxLw7cOcc/0zUuPiZ4Wxk0S10SKSPA/u+dq3kt0ISQK+iTXGtijhxrfa1Rad+f1jO1+g4OvPdgyfhKUMbf2oVf26T6w1PK23ygGtyzpRixuwme7WP0BhfHKjVIcSLVtK6lyFuonuH59zth+nGTPW32qsYNrVHONNTDdX4h35usjknVVbBMa/I549rX9KoGRug3pieEVAoKjWTc4ReqHB16cdxjeA6wYE4/J2ku5jdB7++Cobtgzqf7CDTlYZgcNwUSWyvOi7rtulWd0g9vBU4k0zx3tjQVVsEL4eiGe3IfUvxxuudxZMIHcj9RDlJzUbnQfgGa60bChL4ptmxmJ3ngLN40FrT9skgYnNVUjVkul5PFggl9g4E=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A1F1956BB4511F4DAD550F85FF77E2C0@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d82dec5c-3901-4ea2-7d95-08d6f8759ff7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2019 07:28:59.7463
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: daniel.baluta@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6008
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For MediaTek SoCs on ARMv8 with TrustZone enabled, peripherals like
-entropy sources is not accessible from normal world (linux) and
-rather accessible from secure world (ATF/TEE) only. This driver aims
-to provide a generic interface to ATF rng service.
-
-Signed-off-by: Neal Liu <neal.liu@mediatek.com>
----
- drivers/char/hw_random/Kconfig       |   16 ++++++
- drivers/char/hw_random/Makefile      |    1 +
- drivers/char/hw_random/mtk-sec-rng.c |   97 ++++++++++++++++++++++++++++++++++
- 3 files changed, 114 insertions(+)
- create mode 100644 drivers/char/hw_random/mtk-sec-rng.c
-
-diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-index 25a7d8f..6c82a3b 100644
---- a/drivers/char/hw_random/Kconfig
-+++ b/drivers/char/hw_random/Kconfig
-@@ -398,6 +398,22 @@ config HW_RANDOM_MTK
- 
- 	  If unsure, say Y.
- 
-+config HW_RANDOM_MTK_SEC
-+	tristate "MediaTek Security Random Number Generator support"
-+	depends on HW_RANDOM
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	default HW_RANDOM
-+	help
-+	  This driver provides kernel-side support for the Random Number
-+	  Generator hardware found on MediaTek SoCs. The difference with
-+	  mtk-rng is the Random Number Generator hardware is secure
-+	  access only.
-+
-+	  To compile this driver as a module, choose M here. the
-+	  module will be called mtk-sec-rng.
-+
-+	  If unsure, say Y.
-+
- config HW_RANDOM_S390
- 	tristate "S390 True Random Number Generator support"
- 	depends on S390
-diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
-index 7c9ef4a..0ae4993 100644
---- a/drivers/char/hw_random/Makefile
-+++ b/drivers/char/hw_random/Makefile
-@@ -36,6 +36,7 @@ obj-$(CONFIG_HW_RANDOM_PIC32) += pic32-rng.o
- obj-$(CONFIG_HW_RANDOM_MESON) += meson-rng.o
- obj-$(CONFIG_HW_RANDOM_CAVIUM) += cavium-rng.o cavium-rng-vf.o
- obj-$(CONFIG_HW_RANDOM_MTK)	+= mtk-rng.o
-+obj-$(CONFIG_HW_RANDOM_MTK_SEC) += mtk-sec-rng.o
- obj-$(CONFIG_HW_RANDOM_S390) += s390-trng.o
- obj-$(CONFIG_HW_RANDOM_KEYSTONE) += ks-sa-rng.o
- obj-$(CONFIG_HW_RANDOM_OPTEE) += optee-rng.o
-diff --git a/drivers/char/hw_random/mtk-sec-rng.c b/drivers/char/hw_random/mtk-sec-rng.c
-new file mode 100644
-index 0000000..ecd2e29
---- /dev/null
-+++ b/drivers/char/hw_random/mtk-sec-rng.c
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019 MediaTek Inc.
-+ */
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/hw_random.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/soc/mediatek/mtk_sip_svc.h>
-+
-+#define MT67XX_RNG_MAGIC	0x74726e67
-+#define SMC_RET_NUM		4
-+#define MTK_SEC_RND_SIZE	(sizeof(u32) * SMC_RET_NUM)
-+
-+struct mtk_sec_rng_priv {
-+	struct hwrng rng;
-+};
-+
-+static void mtk_sec_get_rnd(uint32_t *val)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_smc(MTK_SIP_KERNEL_GET_RND,
-+		      MT67XX_RNG_MAGIC, 0, 0, 0, 0, 0, 0, &res);
-+
-+	val[0] = res.a0;
-+	val[1] = res.a1;
-+	val[2] = res.a2;
-+	val[3] = res.a3;
-+}
-+
-+static int mtk_sec_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-+{
-+	u32 val[4] = {0};
-+	int retval = 0;
-+	int i;
-+
-+	while (max >= MTK_SEC_RND_SIZE) {
-+		mtk_sec_get_rnd(val);
-+
-+		for (i = 0; i < SMC_RET_NUM; i++) {
-+			*(u32 *)buf = val[i];
-+			buf += sizeof(u32);
-+		}
-+
-+		retval += MTK_SEC_RND_SIZE;
-+		max -= MTK_SEC_RND_SIZE;
-+	}
-+
-+	return retval;
-+}
-+
-+static int mtk_sec_rng_probe(struct platform_device *pdev)
-+{
-+	struct mtk_sec_rng_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->rng.name = pdev->name;
-+	priv->rng.read = mtk_sec_rng_read;
-+	priv->rng.priv = (unsigned long)&pdev->dev;
-+	priv->rng.quality = 900;
-+
-+	ret = devm_hwrng_register(&pdev->dev, &priv->rng);
-+	if (ret) {
-+		dev_err(&pdev->dev, "failed to register rng device: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id mtk_sec_rng_match[] = {
-+	{ .compatible = "mediatek,mtk-sec-rng", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mtk_sec_rng_match);
-+
-+static struct platform_driver mtk_sec_rng_driver = {
-+	.probe = mtk_sec_rng_probe,
-+	.driver = {
-+		.name = KBUILD_MODNAME,
-+		.owner = THIS_MODULE,
-+		.of_match_table = mtk_sec_rng_match,
-+	},
-+};
-+
-+module_platform_driver(mtk_sec_rng_driver);
-+
-+MODULE_DESCRIPTION("MediaTek Security Random Number Generator Driver");
-+MODULE_AUTHOR("Neal Liu <neal.liu@mediatek.com>");
-+MODULE_LICENSE("GPL");
--- 
-1.7.9.5
-
+T24gTW9uLCAyMDE5LTA2LTI0IGF0IDA4OjUyICswMzAwLCBNYXR0aSBWYWl0dGluZW4gd3JvdGU6
+DQo+IEhlbGxvIFJpY2hhcmQsDQo+IA0KPiBOaWNlIHRvIHNlZSB5b3UgdXBzdHJlYW1pbmcgdGhp
+cyEgVGh1bWJzIHVwIQ0KPiANCj4gSnVzdCBmZXcgcmVtYXJrcyB0byBwbWljIG5vZGUgZnJvbSBt
+ZToNCj4gDQo+IA0KDQpUaGFua3MgYSBsb3QgTWF0dGkgZm9yIHJldmlldy4gSSBhbSB3b3JraW5n
+IHRvZ2V0aGVyIHdpdGggQW5kcmENCmZvciBhIEdvb2dsZSBTdW1tZXIgb2YgQ29kZSBwcm9qZWN0
+LiANCg0KVGhlIGZpcnN0IHN0ZXAgb2YgdGhlIHByb2plY3QgaXMgdG8gaGF2ZSBQSUNPLVBJLUlN
+WDhNIHdvcmtpbmcgd2l0aA0KdGhlIHVwc3RyZWFtIGtlcm5lbC4NCg0KU28sIHdlIHRvb2sgdGhl
+IHBhdGNoZXMgZnJvbSBodHRwczovL2dpdGh1Yi5jb20vd2FuZGJvYXJkLW9yZyB0cmltbWVkDQp0
+aGVtIHRvIGhhdmUgYmFzaWMgYm9vdCBzdXBwb3J0IGFuZCBzZW50IHRoZW0gZm9yIHJldmlldy4N
+Cg0KV2Ugd2lsbCB0cnkgdG8gYWRkcmVzcyBhbGwgeW91ciBjb21tZW50cyBpbiB2Mi4gVGhhbmtz
+IGFnYWluIGZvcg0KcmV2aWV3IQ0KDQpBZGRpbmcgbGludXgtaW14IG1haWxpbmcgbGlzdC4gDQoN
+CkZvciBjb250ZXh0OiBodHRwczovL2xrbWwub3JnL2xrbWwvMjAxOS82LzIwLzQ4Nw0KDQpEYW5p
+ZWwuDQo=
