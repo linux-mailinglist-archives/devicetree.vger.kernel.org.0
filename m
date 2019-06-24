@@ -2,110 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA9B550B35
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 14:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9054D50B37
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 14:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728175AbfFXM4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 08:56:38 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:34046 "EHLO uho.ysoft.cz"
+        id S1726557AbfFXM6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 08:58:11 -0400
+Received: from foss.arm.com ([217.140.110.172]:49460 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726557AbfFXM4h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 08:56:37 -0400
-Received: from [10.1.8.111] (unknown [10.1.8.111])
-        by uho.ysoft.cz (Postfix) with ESMTP id 6243EA3CE0;
-        Mon, 24 Jun 2019 14:56:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1561380995;
-        bh=ftLh3jjn96azi7D40yoVAcACOsELxiOylqDXhJNBYqY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=F+cz7D0qNH+OMabqAaPEpFg2lOv2GVExnUwmrt73hWRux1wg4tQh8+CHFieEu6OKx
-         MnWRAJFsGjVXN0Gwp9/KEsjRgt6qQWm56YgkZlqpJj8/pSve1i8mK3LqqmIzHzKvXE
-         ACGqMio9jTjkklnaeoHDudWKXgSjVbgBO4bzkm0w=
-Subject: Re: [RFC PATCH v2 1/4] dt-bindings: input: Add support for the MPR121
- without interrupt line
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1725916AbfFXM6L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 08:58:11 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9BB65344;
+        Mon, 24 Jun 2019 05:58:10 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9745D3F718;
+        Mon, 24 Jun 2019 05:58:09 -0700 (PDT)
+Date:   Mon, 24 Jun 2019 13:58:06 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
- <1558098773-47416-2-git-send-email-michal.vokac@ysoft.com>
- <20190613223945.GA938@bogus>
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Message-ID: <69302603-f1a3-8955-7d90-74a290071794@ysoft.com>
-Date:   Mon, 24 Jun 2019 14:56:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+        Rob Herring <robh@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: properly connect USB PHY to port
+ 0
+Message-ID: <20190624135806.7bc78378@donnerap.cambridge.arm.com>
+In-Reply-To: <CAGb2v66WOTFvXWSSGwtLh3hD+N4CeJkFEPnCMXp0FuU2h=LS9Q@mail.gmail.com>
+References: <20190620010127.12071-1-andre.przywara@arm.com>
+        <CAGb2v66WOTFvXWSSGwtLh3hD+N4CeJkFEPnCMXp0FuU2h=LS9Q@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190613223945.GA938@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14. 06. 19 0:39, Rob Herring wrote:
-> On Fri, May 17, 2019 at 03:12:50PM +0200, Michal Vokáč wrote:
->> Normally, the MPR121 controller uses separate interrupt line to notify
->> the I2C host that a key was touched/released. To support platforms that
->> can not use the interrupt line, polling of the MPR121 registers can be
->> used.
+On Mon, 24 Jun 2019 16:25:47 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
+
+Hi,
+
+> On Thu, Jun 20, 2019 at 9:02 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > In recent Allwinner SoCs the first USB host controller (HCI0) shares
+> > the first PHY with the MUSB controller. Probably to make this sharing
+> > work, we were avoiding to declare this in the DT. This has two
+> > shortcomings:
+> > - U-Boot (which uses the same .dts) cannot use this port without a PHY
+> >   linked, so we were loosing one USB port there.
+> > - It requires the MUSB driver to be enabled and loaded, although we
+> >   don't actually use it.
+> >
+> > For those (64-bit) boards which use an USB-A socket for HCI0/MUSB, add
+> > a "phys" property pointing to the USB PHY 0.
+> >
+> > This makes it work in U-Boot, also improves compatiblity when no MUSB
+> > driver is loaded (for instance in distribution installers).
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> > Hi,
+> >
+> > I have the feeling this belongs into the .dtsi, but cant't tell for sure
+> > how this interacts with the MUSB driver. If need be, we can always pull
+> > this up later, I guess.  
 > 
-> 'separate' from what?
+> Have you tried if gadget mode and switching between gadget/host mode on
+> an otg port still works? AFAICT that would be the main thing to worry
+> about.
 
-"Separate" here is meant like "additional to the standard set of SCL
-and SDA I2C lines". Looks like inappropriately used word by
-a non-native speaker that can be omitted.
+I briefly tried gadget mode on a BPi-M64, and that still seemed to work,
+but I couldn't switch it to host mode. IIRC that didn't even work without
+this patch, but I didn't find the time to investigate yet.
 
->> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
->> ---
->> Changes since v1:
->> - Document the polled binding in the original file, do not create a new one.
->>    (Rob)
->>
->>   Documentation/devicetree/bindings/input/mpr121-touchkey.txt | 9 +++++++--
->>   1 file changed, 7 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/input/mpr121-touchkey.txt b/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
->> index b7c61ee5841b..97f55273d473 100644
->> --- a/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
->> +++ b/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
->> @@ -1,9 +1,14 @@
->> -* Freescale MPR121 Controllor
->> +* Freescale MPR121 Controller
->>   
->>   Required Properties:
->> -- compatible:		Should be "fsl,mpr121-touchkey"
->> +- compatible:		Should be one of:
->> +			- "fsl,mpr121-touchkey" - MPR121 with interrupt line
->> +			- "fsl,mpr121-touchkey-polled" - MPR121 with polling
->>   - reg:			The I2C slave address of the device.
->>   - interrupts:		The interrupt number to the cpu.
->> +			In case of "fsl,mpr121-touchkey-polled" the interrupt
->> +			line is not used and hence the interrupts property is
->> +			not required.
-> 
-> Absence of the interrupts property is enough to determine polled mode
-> and you don't need a separate compatible string.
+Is it supposed to switch automatically when the ID pin changes state? Do
+you know a board/kernel combination which is known to work?
 
-Would not this work only if the polled mode was implemented as
-part of the current driver? I raised this question in the cover letter.
-I do not really know how this should be done.
-
-So I implemented the polled mode in a new driver (taking the
-gpio-keys-polled as an example). Having separate compatible string is
-the only option I know of to match the right driver.
-
-Anyway, Dmitry already commented that his addition of input_polled_dev
-for creating polled input devices was not the best choice. He would
-rather like to implement polling mode for all regular input devices
-and that would allow to enable polling mode in existing drivers.
-
-Since I do not know how to help with that work I am stuck with the
-separate driver/compatible string solution.
+Cheers,
+Andre.
