@@ -2,89 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7CC350D64
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 16:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1815750C5D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 15:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731885AbfFXOKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 10:10:01 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:51848 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726351AbfFXOKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 10:10:00 -0400
-Received: from relay7-d.mail.gandi.net (unknown [217.70.183.200])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 996DF3AB767;
-        Mon, 24 Jun 2019 13:49:07 +0000 (UTC)
-X-Originating-IP: 90.88.16.156
-Received: from localhost (aaubervilliers-681-1-41-156.w90-88.abo.wanadoo.fr [90.88.16.156])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 7056A20015;
-        Mon, 24 Jun 2019 13:48:57 +0000 (UTC)
-Date:   Mon, 24 Jun 2019 15:48:56 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 9/9] ARM: dts: sun8i: s3: add devicetree for Lichee
- zero plus w/ S3
-Message-ID: <20190624134856.4cez7m3uc3tzkpuc@flea>
-References: <20190623043801.14040-1-icenowy@aosc.io>
- <20190623043801.14040-10-icenowy@aosc.io>
- <20190624124301.chwhfalk5o53fm5x@flea>
- <1E6AB747-5A4C-4515-A0EB-F0E89F520CF7@aosc.io>
+        id S1731339AbfFXNuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 09:50:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48020 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730189AbfFXNuQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 09:50:16 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D46F9208E4;
+        Mon, 24 Jun 2019 13:50:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561384215;
+        bh=D93F75MCf5Ifim/NA5/BmsC0u/Z/+dlTBc51xNbANYI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tOw8nminDrolY2+lEBkH6FywwYeWdFm1P0aTmxYzLEuHPQf+Iz4ixe+YgBTgOegQZ
+         Xaxn/0FWe+yH0ngMVpwBZL3YcZuX+gssnI/aLIuMXxgh5yXVfI9lVatXQFdtjdT6jc
+         B1dvbrkZSf/xkwTKnE8hRV2HDq80Y95FkK0sljWo=
+Received: by mail-qt1-f169.google.com with SMTP id i34so14490976qta.6;
+        Mon, 24 Jun 2019 06:50:14 -0700 (PDT)
+X-Gm-Message-State: APjAAAW29cuIjlao/kfmCs4ThAC9r+Xo4s5jZS+CKSg6/bRvmYVueGUQ
+        gSHCO3lhg7QzRgGRv6Ec2oX6Qzoo206ASppuyw==
+X-Google-Smtp-Source: APXvYqxmW7JPHc33YPuhk21FAE42NxsvsYvCz8xmz3rfBr2a2RuJ6mDF+EKi4YjQQN8aB0Jrk5c2f42QB2J0AaagZKE=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr47415116qtc.143.1561384214126;
+ Mon, 24 Jun 2019 06:50:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zxvkkmn55l32dkjm"
-Content-Disposition: inline
-In-Reply-To: <1E6AB747-5A4C-4515-A0EB-F0E89F520CF7@aosc.io>
-User-Agent: NeoMutt/20180716
+References: <20190624080845.18537-1-mircea.caprioru@analog.com> <20190624080845.18537-4-mircea.caprioru@analog.com>
+In-Reply-To: <20190624080845.18537-4-mircea.caprioru@analog.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 24 Jun 2019 07:50:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJY_bO7EQa=Sfqs8Prwj483Q8Xs0+eX+HZyGsyr-4p-oQ@mail.gmail.com>
+Message-ID: <CAL_JsqJY_bO7EQa=Sfqs8Prwj483Q8Xs0+eX+HZyGsyr-4p-oQ@mail.gmail.com>
+Subject: Re: [PATCH V3 4/5] dt-bindings: iio: adc: Convert ad7124
+ documentation to YAML
+To:     Mircea Caprioru <mircea.caprioru@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---zxvkkmn55l32dkjm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Jun 24, 2019 at 09:43:23PM +0800, Icenowy Zheng wrote:
-> >> +&usb_otg {
-> >> +	dr_mode = "otg";
-> >> +	status = "okay";
-> >> +};
-> >> +
-> >> +&usbphy {
-> >> +	usb0_id_det-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;
-> >> +	status = "okay";
-> >> +};
-> >
-> >How can it do OTG if there's no controllable VBUS regulator?
+On Mon, Jun 24, 2019 at 2:09 AM Mircea Caprioru
+<mircea.caprioru@analog.com> wrote:
 >
-> All 5V's are connected together, like Orange Pi Zero.
+> Convert AD7124 bindings documentation to YAML format.
+>
+> Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
+> ---
+>
+> Changelog v2:
+> - modified SPDX license to GPL-2.0 OR BSD-2-Clause
+> - added regex for a range from 0 to 15
+> - added minimum and maximum constraints for reg property
+> - set type and range of values for adi,reference-select property
+> - used items for diff-channels property
+> - set bipolar, adi,buffered-positive and negative to type: boolean
+>
+> Changelog v3:
+> - moved adi,buffered-positive and negative properties to own commit
+>
+>  .../bindings/iio/adc/adi,ad7124.yaml          | 144 ++++++++++++++++++
+>  1 file changed, 144 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
 
-So it's a "it can't"?
+The subject says 'Convert', but where's the removal of the old binding?
 
-And the orange pi zero says that it can only do peripheral.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---zxvkkmn55l32dkjm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRDUyAAKCRDj7w1vZxhR
-xf0zAQCi5yMphtVy7Fni1inyxiANdxNrQlQW3OVimG6brkVyVwEAo7h8m+NLImGt
-4bQgRfzj3aMgbAemt9y56Z7FeLYepwg=
-=+IOZ
------END PGP SIGNATURE-----
-
---zxvkkmn55l32dkjm--
+Rob
