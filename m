@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE944FEE8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE414FF15
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726819AbfFXCBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 22:01:23 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:40936 "EHLO inva021.nxp.com"
+        id S1726360AbfFXCId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 22:08:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43778 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726691AbfFXCBV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jun 2019 22:01:21 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9B41D20051A;
-        Mon, 24 Jun 2019 04:01:19 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id F0F34200522;
-        Mon, 24 Jun 2019 04:01:12 +0200 (CEST)
-Received: from mega.ap.freescale.net (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A15474031F;
-        Mon, 24 Jun 2019 10:01:04 +0800 (SGT)
-From:   Peter Chen <peter.chen@nxp.com>
-To:     balbi@kernel.org, shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, aisheng.dong@nxp.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, chunfeng.yun@mediatek.com,
-        sergei.shtylyov@cogentembedded.com, Peter Chen <peter.chen@nxp.com>
-Subject: [PATCH v5 8/8] usb: chipidea: imx: "fsl,usbphy" phandle is not mandatory now
-Date:   Mon, 24 Jun 2019 10:02:58 +0800
-Message-Id: <20190624020258.21690-9-peter.chen@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190624020258.21690-1-peter.chen@nxp.com>
-References: <20190624020258.21690-1-peter.chen@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726328AbfFXCId (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 22:08:33 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3DECD20679;
+        Mon, 24 Jun 2019 02:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561342112;
+        bh=44wBvcD8d69VIm5qFHtpW6IT0vLvVy7DqP9Th9ykY9c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k8Bl+LZLlB6Bvs6e6KOlFb3THQrGsEArVY0SKfD3f+p/3aA373sukqDA8FXWzVrLS
+         ooDICgBZUVxLPXctTGZEUuuij1HvCn908C7v/KbENJoggsF7mkoV8sg+CbjtE6BMVG
+         liMdFIxdgPE5Gid21A2sYsB6FyaFfzu3bbIC4dQ0=
+Date:   Mon, 24 Jun 2019 10:08:15 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
+Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: fsl: librem5: Limit the USB to 5V
+Message-ID: <20190624020815.GK3800@dragon>
+References: <20190620170439.18762-1-angus@akkea.ca>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190620170439.18762-1-angus@akkea.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the chipidea common code support get the USB PHY phandle from
-"phys", the glue layer is not mandatory to get the "fsl,usbphy" phandle
-any more.
+On Thu, Jun 20, 2019 at 11:04:39AM -0600, Angus Ainslie (Purism) wrote:
+> The charge controller can handle 14V but the PTC on the devkit can only
+> handle 6V so limit the negotiated voltage to 5V.
+> 
+> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
 
-Signed-off-by: Peter Chen <peter.chen@nxp.com>
----
- drivers/usb/chipidea/ci_hdrc_imx.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Prefix 'arm64: dts: librem5: ...' should be fine, so I changed it and
+applied the patch.
 
-diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
-index a76708501236..b5abfe89190c 100644
---- a/drivers/usb/chipidea/ci_hdrc_imx.c
-+++ b/drivers/usb/chipidea/ci_hdrc_imx.c
-@@ -398,8 +398,9 @@ static int ci_hdrc_imx_probe(struct platform_device *pdev)
- 		ret = PTR_ERR(data->phy);
- 		/* Return -EINVAL if no usbphy is available */
- 		if (ret == -ENODEV)
--			ret = -EINVAL;
--		goto err_clk;
-+			data->phy = NULL;
-+		else
-+			goto err_clk;
- 	}
- 
- 	pdata.usb_phy = data->phy;
--- 
-2.14.1
+Shawn
 
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> index 3f4736fd3cea..ec85ada77955 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> @@ -353,7 +353,7 @@
+>  			sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM |
+>  				PDO_FIXED_DUAL_ROLE |
+>  				PDO_FIXED_DATA_SWAP )
+> -			     PDO_VAR(5000, 12000, 2000)>;
+> +			     PDO_VAR(5000, 3000, 3000)>;
+>  			op-sink-microwatt = <10000000>;
+>  
+>  			ports {
+> -- 
+> 2.17.1
+> 
