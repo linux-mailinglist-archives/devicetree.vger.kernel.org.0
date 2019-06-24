@@ -2,121 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 572DA51866
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 18:22:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E6D51894
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 18:25:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727233AbfFXQWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 12:22:05 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:39835 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732055AbfFXQVx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 12:21:53 -0400
-Received: by mail-io1-f68.google.com with SMTP id r185so2093139iod.6
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 09:21:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EO8eeZ48f6EoVfLk0+Ia7DkcWqdLXYNwWud7QgwjUxA=;
-        b=j/ELAhg2UmVVT/WszfKjP0eVP6XomPXTVwyKZdSvtL+ZfxzgYeaOtX9ahKvHpdamwH
-         yVYSC/sOcvC8M2NmLy8DvQG5D7Z/9PyPVOM9lRo7OPF78WmueHL0Jgp1zGC2hWPlPP4l
-         hTKVN++WoXD0aVpQikgglS80GZqpeLwsNlRnC3v8TH9LiWO6KIVVwG513TZgIvq6yUod
-         bz50kbawIi6oofsSlwp9FymUCenj4mpFg7X7Uv9wYKx04iWTbcLMvqdhMU/A6/BaGxR+
-         Uv4bT5iOViDyTKoOUWZaxUnDw0W0DlptJe0+0yKvAjAmhuuHpCDLUYaCza9GBCGYL7XJ
-         R2aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EO8eeZ48f6EoVfLk0+Ia7DkcWqdLXYNwWud7QgwjUxA=;
-        b=Kb3S/Xf7lMev2gZcuK6tOLq95x1KIzDsIsvjGYs8PdAqFCCgGszz+fFRQqdocCVLvd
-         36cMkR8KoTU8+/vSXbju3CgVmc17su6ZBYogH68+wR5gl+UoW7XoJ6XEDmSnzBYdW+J/
-         L93MJ1+5Es0tGPASZvrJqnZ/BmmRNahpXtAFcrh4ZptWkik3VjQypc0+C5ViRHiaZ6CV
-         lFJVEYVjq3Z51Wp1miGQDsHYTXj+AZZNzoGBNzHNyP3UFsmC29c1EqMmeC6cAB1NJeVy
-         Y/ZxytH1nhX82sJ8k0xmoQlRRlovC/Q9ychv2Ntqz+x8O1OU6QXKiYh+RaDYv+HnJtYZ
-         YoCg==
-X-Gm-Message-State: APjAAAVnH9NlOdDOvPacBvBoGJALk9/WNLGQkFKlieDna9kGHU7645lK
-        JdF56R7p0/S8wFvvI9l7VSiuPg==
-X-Google-Smtp-Source: APXvYqxz3FaFhWw2FnWfg4aUKQQZ6vaEckamt/BYnOdzvhusMwszWyk5+OepCRBdKbupvmmVwjgR3w==
-X-Received: by 2002:a5e:9308:: with SMTP id k8mr266555iom.143.1561393312086;
-        Mon, 24 Jun 2019 09:21:52 -0700 (PDT)
-Received: from [172.22.22.26] (c-71-195-29-92.hsd1.mn.comcast.net. [71.195.29.92])
-        by smtp.googlemail.com with ESMTPSA id l11sm14545587ioj.32.2019.06.24.09.21.50
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jun 2019 09:21:51 -0700 (PDT)
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Johannes Berg <johannes@sipsolutions.net>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        Dan Williams <dcbw@redhat.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        syadagir@codeaurora.org
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
- <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
- <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
- <583907409fad854bd3c18be688ec2724ad7a60e9.camel@sipsolutions.net>
- <31c2c94c-c6d3-595b-c138-faa54d0bfc00@linaro.org>
- <b90977f94df020986c6bb490e7fd0262603726b0.camel@sipsolutions.net>
-From:   Alex Elder <elder@linaro.org>
-Message-ID: <5ffbcce1-f93d-5746-5037-9dcc03cd73f0@linaro.org>
-Date:   Mon, 24 Jun 2019 11:21:50 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1729329AbfFXQYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 12:24:41 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:54368 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728531AbfFXQYl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 12:24:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=fbuOEGD6/p3KGLV+SsGx2RFhZqUs0c/4MZswvhidVf4=; b=D2uGrxuEdFzruVC29WTvIkFpCi
+        bN7wchEmq/rvf1zT2YMyFEcF27QgmyFgbSsivPFALpo53XmgCKP0xOg5aL79oIMMZZJW+bXPWIN2q
+        Z4a5M+Mh2wBSH/YuO3dWLF0f0wHNGqfTwjrejeyYIudJJWMuetxRZA9BNAr3M/brhG30=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hfRlf-0006oM-P5; Mon, 24 Jun 2019 18:24:31 +0200
+Date:   Mon, 24 Jun 2019 18:24:31 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Allan W. Nielsen" <allan.nielsen@microchip.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Allan Nielsen <Allan.Nielsen@microsemi.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH net-next 4/6] arm64: dts: fsl: ls1028a: Add Felix switch
+ port DT node
+Message-ID: <20190624162431.GX31306@lunn.ch>
+References: <1561131532-14860-1-git-send-email-claudiu.manoil@nxp.com>
+ <1561131532-14860-5-git-send-email-claudiu.manoil@nxp.com>
+ <20190621164940.GL31306@lunn.ch>
+ <VI1PR04MB4880D8F90BBCD30BF8A69C9696E00@VI1PR04MB4880.eurprd04.prod.outlook.com>
+ <20190624115558.GA5690@piout.net>
+ <20190624142625.GR31306@lunn.ch>
+ <20190624152344.3bv46jjhhygo6zwl@lx-anielsen.microsemi.net>
 MIME-Version: 1.0
-In-Reply-To: <b90977f94df020986c6bb490e7fd0262603726b0.camel@sipsolutions.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190624152344.3bv46jjhhygo6zwl@lx-anielsen.microsemi.net>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/18/19 2:22 PM, Johannes Berg wrote:
-> On Tue, 2019-06-18 at 09:00 -0500, Alex Elder wrote:
-
-. . .
-
-> Anyway, I think for now we could probably live with not having this
-> configurable for the IPA driver, and if it *does* need to be
-> configurable, it seems like it should be a driver configuration, not a
-> channel configuration - so something like a debugfs hook if you really
-> just need to play with it for performance testing, or a module
-> parameter, or something else?
+On Mon, Jun 24, 2019 at 05:23:45PM +0200, Allan W. Nielsen wrote:
+> Hi Andrew,
 > 
-> Or even, in the WWAN framework, a knob that we provide there for the
-> WWAN device, rather than for the (newly created) channel.
-
-Agreed.  I think a knob is appropriate, it's just a question of how
-that control exposed.  Same answer to your question below.
-
-					-Alex
-
->> The hardware is capable of aggregating QMAP packets
->> arriving on a connection into a single buffer, so this provides
->> a way of requesting it do that.
->>
->>>> #define RMNET_FLAGS_INGRESS_MAP_COMMANDS          (1U << 1)
->>>
->>> Similar here? If you have flow control you probably want to use it?
->>
->> I agree with that, though perhaps there are cases where it
->> is pointless, or can't be supported, so one might want to
->> simply *not* implement/advertise the feature.  I don't know.
+> The 06/24/2019 16:26, Andrew Lunn wrote:
+> > > > Yeah, there are 2 ethernet controller ports (managed by the enetc driver) 
+> > > > connected inside the SoC via SGMII links to 2 of the switch ports, one of
+> > > > these switch ports can be configured as CPU port (with follow-up patches).
+> > > > 
+> > > > This configuration may look prettier on DSA, but the main restriction here
+> > > > is that the entire functionality is provided by the ocelot driver which is a
+> > > > switchdev driver.  I don't think it would be a good idea to copy-paste code
+> > > > from ocelot to a separate dsa driver.
+> > > > 
+> > > 
+> > > We should probably make the ocelot driver a DSA driver then...
+> > An important part of DSA is being able to direct frames out specific
+> > ports when they ingress via the CPU port. Does the silicon support
+> > this? At the moment, i think it is using polled IO.
 > 
-> Sure, but then that's likely something the driver would need to know,
-> not necessarily userspace?
+> That is supported, it requires a bit of initial configuration of the Chip, but
+> nothing big (I believe this configuration is part of Claudiu's change-set).
 > 
-> johannes
+> But how do you envision this done?
 > 
+> - Let the existing SwitchDev driver and the DSA driver use a set of common
+>   functions.
+> - Convert the existing Ocelot driver from SwitchDev to DSA
+> - Fork (copy) the existing driver of Ocelot, and modify it as needed for the
+>   Felix driver
+> 
+> My guess is the first one, but I would like to understand what you have in mind.
 
+I don't know the various architectures the switch is used in. But it
+does seem like a core library, and then a switchdev wrapper for Ocelot
+and a DSA wrapper for Felix would make sense.
+ 
+  Andrew
