@@ -2,85 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6593350921
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53CB250957
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:59:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729116AbfFXKmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 06:42:45 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:57125 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728676AbfFXKmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 06:42:45 -0400
-Received: from localhost (alyon-656-1-672-152.w92-137.abo.wanadoo.fr [92.137.69.152])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id BE47B100005;
-        Mon, 24 Jun 2019 10:42:38 +0000 (UTC)
-Date:   Mon, 24 Jun 2019 12:42:34 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Vincent Donnefort <vdonnefort@gmail.com>,
-        linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/3] rtc: pcf8563: Fix unhandled interrupt storm
-Message-ID: <20190624104234.GG3133@piout.net>
-References: <20190604042337.26129-1-wens@kernel.org>
- <20190620162220.GA23549@piout.net>
- <CAGb2v67sf3L9zH9Li6tF3xunQ4-isoodBLQmSv2VJtAj6hS7Ug@mail.gmail.com>
+        id S1728986AbfFXK7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 06:59:31 -0400
+Received: from mail-vk1-f194.google.com ([209.85.221.194]:36002 "EHLO
+        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726788AbfFXK7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 06:59:31 -0400
+Received: by mail-vk1-f194.google.com with SMTP id b69so2653071vkb.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 03:59:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XCwcD7XLjs4QJVO2Vvl3xOs3JgJGbqS6a9JuvllBGjA=;
+        b=M+sAyGUAO1nbrpYJFpcoZGhnbDisLD0MRfM5qeuHHFfWR8pcGyndCJ/+yVidJwJEQo
+         /Lkvcu7v60ZLUEFSOd1nQWoO2P+g4UIad+iPZyj/oVKnTC9WVKOhrXagW9DK4CHnQV2C
+         d4z9VBN2JAH5krvx7ll64enj3Rk5ntTbhj3F5ag5T8xu5Tpc2PiFEKeyvtk+YVyf+yUY
+         ZEQ70u3l/bndP7JXf7w1LrdtNiVaI1K2AwH5sfXj4Qxu+rhG+51ycS+5T8RHLs3z6yXG
+         5ZoWNZ4xuyZOOT6EewHuuYgaE3MZ/Kd6aAajr2wSpNuDCmG7FXuWPBBc3HwY0qybHkPz
+         IqhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XCwcD7XLjs4QJVO2Vvl3xOs3JgJGbqS6a9JuvllBGjA=;
+        b=PggNwUH5x6GzpV5oIC2R7bMgdvw5lcHqW5pLTU7T4iavjjaB+AnLKvyt45BR5/up8E
+         n/PEin81NBjs7XGO+rKIXR/+RyRQ0n+x7LxNNMREG4gYz/Odep+EhGn5AAqK3AIZJjJ0
+         mL6mBCU/yfrSFg1S0yVet034nmr4pHojyiqMxp+H1/UODVYO/uqLNXUsk6FdGn+HTCTh
+         qFVz5Uga9AkX5tlMSW/5LczYeTgCPLj+D+sehRLKKnJ0pgRnnw48EiLRs6fP+4MFM9N/
+         E+1FAl3sHvNYCZyvUF+gT4l8OJyGEUPFEVSO4I/qhu2ipF844eJZfFFbrIl8d7qN9IiI
+         GNHg==
+X-Gm-Message-State: APjAAAVumDd2vTWv/JU7zvskcyOKTU7oJrrLnUjexEgRfV278ZwZsbCl
+        dDBnJ/GzC9VW/fvYcGTU1XesW13MDWA2KzhAcCttsg==
+X-Google-Smtp-Source: APXvYqwzHREeoVrhXN3ra3YAtFVodCkeZ/L/8NKc/AjjPywx+f+rdelcxz5eHGeNcLNZvq3ejDZ+Qfe5kTtOS+X3uAU=
+X-Received: by 2002:a1f:50c1:: with SMTP id e184mr13989651vkb.86.1561373970631;
+ Mon, 24 Jun 2019 03:59:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGb2v67sf3L9zH9Li6tF3xunQ4-isoodBLQmSv2VJtAj6hS7Ug@mail.gmail.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+References: <cover.1553086065.git.amit.kucheria@linaro.org> <9108372823aba9288b98b1c8a003c21b578d1e13.1553086065.git.amit.kucheria@linaro.org>
+In-Reply-To: <9108372823aba9288b98b1c8a003c21b578d1e13.1553086065.git.amit.kucheria@linaro.org>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Mon, 24 Jun 2019 16:29:19 +0530
+Message-ID: <CAHLCerMr30LWt3QcoYVF9gyHjkmO5acTDV-39N6ZO22feYi9=Q@mail.gmail.com>
+Subject: Re: [PATCHv3 21/23] arm64: dts: qcom: qcs404: Add tsens controller
+To:     LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Andy Gross <andy.gross@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2019 18:34:29+0800, Chen-Yu Tsai wrote:
-> On Fri, Jun 21, 2019 at 12:22 AM Alexandre Belloni
-> <alexandre.belloni@bootlin.com> wrote:
-> >
-> > On 04/06/2019 12:23:34+0800, Chen-Yu Tsai wrote:
-> > > From: Chen-Yu Tsai <wens@csie.org>
-> > >
-> > > Hi everyone,
-> > >
-> > > While bringing up my Pine H64, I encountered an interrupt storm from the
-> > > pcf8563 RTC. The RTC chip's interrupt line is shared with the PMIC, and
-> > > was not properly added to the device tree. Also, the driver was using an
-> > > trigger method incompatible with the PMIC, preventing the interrupt line
-> > > from being shared. Last, the driver only clears and masks the alarm
-> > > interrupt, while leaving the timer interrupt untouched. This is a
-> > > problem if previous systems left the timer interrupt enabled, and there
-> > > was an interrupt pending.
-> > >
-> > > This patch set fixes all three issues, one per patch.
-> > >
-> > > Please have a look.
-> > >
-> >
-> > I don't have that particular RTC so I can't test but the interrupt
-> > handling in pcf8563_irq seems problematic too. I guess the RTC will only
-> > trigger once per second because the call to pcf8563_set_alarm_mode will
-> > explicitely leave the alarm enabled. The core doesn't really care but it
-> > doesn't really expect the alarm to stay enabled. i.e. It will ensure the
-> > alarm is enabled again after setting it when necessary. I think it would
-> > be safer to simply clear both AIE and AF here. Could you test?
-> 
-> Yeah, that bit looked weird to me as well. And actually the alarm doesn't
-> go down to the second, only the minute.
-> 
-> Is there a test program I can use to test the alarms?
-> 
+On Wed, Mar 20, 2019 at 6:50 PM Amit Kucheria <amit.kucheria@linaro.org> wrote:
+>
+> qcs404 has a single TSENS IP block with 10 sensors. The calibration data
+> is stored in an eeprom (qfprom) that is accessed through the nvmem
+> framework. We add the qfprom node to allow the tsens sensors to be
+> calibrated correctly.
+>
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 
-Sure, tools/testing/selftests/rtc/rtctest.c if you use a recent enough
-version, it will test minute boundaries.
+Hi Bjorn,
+
+Could you please pick this patch and patch 22 in this series if you
+have no other review comments? I can resend these separately if
+required.
+
+The driver (drivers/thermal/qcom/tsens-v1.c) was merged and only these
+DT changes are pending.
+
+Regards,
+Amit
 
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> ---
+>  arch/arm64/boot/dts/qcom/qcs404.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> index e8fd26633d57..7881792980b8 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> @@ -259,6 +259,16 @@
+>                         reg = <0x00060000 0x6000>;
+>                 };
+>
+> +               qfprom: qfprom@a4000 {
+> +                       compatible = "qcom,qfprom";
+> +                       reg = <0x000a4000 0x1000>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       tsens_caldata: caldata@d0 {
+> +                               reg = <0x1f8 0x14>;
+> +                       };
+> +               };
+> +
+>                 rng: rng@e3000 {
+>                         compatible = "qcom,prng-ee";
+>                         reg = <0x000e3000 0x1000>;
+> @@ -266,6 +276,16 @@
+>                         clock-names = "core";
+>                 };
+>
+> +               tsens: thermal-sensor@4a9000 {
+> +                       compatible = "qcom,qcs404-tsens", "qcom,tsens-v1";
+> +                       reg = <0x004a9000 0x1000>, /* TM */
+> +                             <0x004a8000 0x1000>; /* SROT */
+> +                       nvmem-cells = <&tsens_caldata>;
+> +                       nvmem-cell-names = "calib";
+> +                       #qcom,sensors = <10>;
+> +                       #thermal-sensor-cells = <1>;
+> +               };
+> +
+>                 tlmm: pinctrl@1000000 {
+>                         compatible = "qcom,qcs404-pinctrl";
+>                         reg = <0x01000000 0x200000>,
+> --
+> 2.17.1
+>
