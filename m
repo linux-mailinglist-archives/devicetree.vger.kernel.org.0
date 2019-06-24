@@ -2,133 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 157D950727
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 12:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44212503CD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 09:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726551AbfFXKEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 06:04:54 -0400
-Received: from 9.mo177.mail-out.ovh.net ([46.105.72.238]:41864 "EHLO
-        9.mo177.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728718AbfFXKEv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 06:04:51 -0400
-X-Greylist: delayed 4200 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 Jun 2019 06:04:50 EDT
-Received: from player690.ha.ovh.net (unknown [10.109.160.251])
-        by mo177.mail-out.ovh.net (Postfix) with ESMTP id 1C662FF65C
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 09:36:45 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player690.ha.ovh.net (Postfix) with ESMTPSA id 5A23C70AE81F;
-        Mon, 24 Jun 2019 07:36:34 +0000 (UTC)
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: fix PWM[1-4] interrupts
-To:     Shawn Guo <shawnguo@kernel.org>,
-        =?UTF-8?Q?Lothar_Wa=c3=9fmann?= <LW@KARO-electronics.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20190618155834.15545-1-sebastien.szymanski@armadeus.com>
- <20190624004703.GF3800@dragon>
-From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Openpgp: preference=signencrypt
-Message-ID: <670f98af-2c55-de1f-d36c-37d1f33086c7@armadeus.com>
-Date:   Mon, 24 Jun 2019 09:36:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1726304AbfFXHlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 03:41:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42968 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726077AbfFXHlm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 03:41:42 -0400
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CCDB8208CA;
+        Mon, 24 Jun 2019 07:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561362101;
+        bh=L6gUqCG8drdlw0JNPTw4WV1Q9+mlMVk9+r+rpW2w7AE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2qjE1E6++y+RdD7bONTE2cclIYxf/d21bmpIOBDi5ItxCTulU6+cCP4QmSQYO6Q99
+         YIp4tfIVt/RGRZdcKgp4rTNKKLxQx8VeMV8NJBA7JpbJSx9t0sPtfTX5tbxN5YUqPf
+         EWglztaz5Ph5WxfmAmG0DeQeohJ89YkYuATaiUtk=
+Received: by mail-lj1-f177.google.com with SMTP id p17so11612660ljg.1;
+        Mon, 24 Jun 2019 00:41:40 -0700 (PDT)
+X-Gm-Message-State: APjAAAWy02DJO3EKyZyRNz48xUG3DS+Bka/xPuEooUDBY9j3omCL+DBo
+        OzH02R35294DViDwAZGcejAixRiQ4RZ9ylKB5+0=
+X-Google-Smtp-Source: APXvYqyRaeX7TDpnwHIcIB85B+1Xs+snbFiN+OxL0vV5dvoDI7HDxPRSomSVeOWM1E7yFBBSG3qrtNjtyuH0wVO/59s=
+X-Received: by 2002:a2e:8155:: with SMTP id t21mr28115717ljg.80.1561362099155;
+ Mon, 24 Jun 2019 00:41:39 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190624004703.GF3800@dragon>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 9046605754512921669
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddruddugdduvdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+References: <20190621155845.7079-1-krzk@kernel.org> <20190621155845.7079-3-krzk@kernel.org>
+ <CGME20190623160226epcas2p3449814deb1faf7bf939481e6d4da2b86@epcas2p3.samsung.com>
+ <CANAwSgTFQo8wL5s-djwPXFFOLtTHvRQif6234kFC=23PwMhuEQ@mail.gmail.com> <d94a2f99-fb99-c238-7011-9bbb4c0cd90f@samsung.com>
+In-Reply-To: <d94a2f99-fb99-c238-7011-9bbb4c0cd90f@samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Mon, 24 Jun 2019 09:41:27 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPeXELUjsuW9eyGuRj56067qnL-J2Lt4U42mYiyx=X+F_Q@mail.gmail.com>
+Message-ID: <CAJKOXPeXELUjsuW9eyGuRj56067qnL-J2Lt4U42mYiyx=X+F_Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] ARM: dts: exynos: Add regulator suspend
+ configuration to Odroid XU3/XU4/HC1 family
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>, Kukjin Kim <kgene@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Mon, 24 Jun 2019 at 09:20, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>
+> Hi Anand,
+>
+> On 2019-06-23 18:02, Anand Moon wrote:
+> > Thanks for this patch. Please add my
+> >
+> > Tested-by: Anand Moon <linux.amoon@gmail.com>
+> >
+> > [snip]
+> >
+> > Could you integrate below small changes into this patch.
+> > with these below changes suspend and resume work correctly at my end.
+> >
+> > [1] XU4_suspendresume.patch
+> >
+> > As per S2MPS11B PMIC 1.2.1 Regulator (Features)
+> > Fix the min max value for *Buck7* and *Buck8*
+> >
+> > -- Buck7 (VDD_1.0V_LDO) 1.5 A (1.2 V to 1.5 V, 12.5 mV step, default on 1.35 V)
+> > -- Buck8 (VDD_1.8V_LDO) 2.5 A (1.8 V to 2.1 V, 12.5 mV step, default on 2.0 V)
+>
+> Could you elaborate why such change for Buck7 and Buck8 is needed?
 
-On 6/24/19 2:47 AM, Shawn Guo wrote:
-> +Lothar
-> 
-> On Tue, Jun 18, 2019 at 05:58:34PM +0200, Sébastien Szymanski wrote:
->> According to the i.MX6UL/L RM, table 3.1 "ARM Cortex A7 domain interrupt
->> summary", the interrupts for the PWM[1-4] go from 83 to 86.
->>
->> Fixes: b9901fe84f02 ("ARM: dts: imx6ul: add pwm[1-4] nodes")
->> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
-> 
-> Just curious - did you spot the error by testing PWM or merely by
-> looking at the code and document?
+Anand has here valid point - the constraints in DTS do not match
+hardware manual. This leads to question whether voltage table in
+driver is proper... Another point is the voltage itself. The
+schematics describes them as at specific voltage (1.35 V and 2.0 V)
+but after boot they are 1.2 V and 1.85 V. Maybe this shift comes from
+the problem above.
 
-I spotted the error when trying to play sound with PWM [1].
-The PWM driver (drivers/pwm/pwm-imx27.c) don't use interrupt that's
-probably why nobody notice this error.
+>
+> > Also add suspend-off for *Buck9*
+> > Buck9 internally controls the power of USB hub.
+> > Adding suspend the this node help proper reset of USB hub on Odroid
+> > XU4 / HC1/ XU3
+> > during suspend and resume. Below it the logs from my testing.
+>
+> Disabling Buck9 in suspend indeed reduces the power consumed by the
+> board during suspend-to-ram from about 80mA to as little as 7-10mA, what
+> matches the results of OdroidXU3. Thanks for the hint!
 
-[1] https://github.com/sasamy/imx-snd-pwm
+Although I did not get what is the difference in the logs (Anand
+pasted two logs but they look the same) but the power consumption is
+reason is good enough. I would be happy to put in the changelog entire
+consumption  difference. I can measure it on XU3-Lite but can you give
+me the XU4 (before and after)?
 
-Regards,
-
-> 
-> Shawn
-> 
->> ---
->>  arch/arm/boot/dts/imx6ul.dtsi | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
->> index bbf010c73336..a7f6d1d58e20 100644
->> --- a/arch/arm/boot/dts/imx6ul.dtsi
->> +++ b/arch/arm/boot/dts/imx6ul.dtsi
->> @@ -358,7 +358,7 @@
->>  			pwm1: pwm@2080000 {
->>  				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
->>  				reg = <0x02080000 0x4000>;
->> -				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
->> +				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
->>  				clocks = <&clks IMX6UL_CLK_PWM1>,
->>  					 <&clks IMX6UL_CLK_PWM1>;
->>  				clock-names = "ipg", "per";
->> @@ -369,7 +369,7 @@
->>  			pwm2: pwm@2084000 {
->>  				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
->>  				reg = <0x02084000 0x4000>;
->> -				interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
->> +				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
->>  				clocks = <&clks IMX6UL_CLK_PWM2>,
->>  					 <&clks IMX6UL_CLK_PWM2>;
->>  				clock-names = "ipg", "per";
->> @@ -380,7 +380,7 @@
->>  			pwm3: pwm@2088000 {
->>  				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
->>  				reg = <0x02088000 0x4000>;
->> -				interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
->> +				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
->>  				clocks = <&clks IMX6UL_CLK_PWM3>,
->>  					 <&clks IMX6UL_CLK_PWM3>;
->>  				clock-names = "ipg", "per";
->> @@ -391,7 +391,7 @@
->>  			pwm4: pwm@208c000 {
->>  				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
->>  				reg = <0x0208c000 0x4000>;
->> -				interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
->> +				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
->>  				clocks = <&clks IMX6UL_CLK_PWM4>,
->>  					 <&clks IMX6UL_CLK_PWM4>;
->>  				clock-names = "ipg", "per";
->> -- 
->> 2.21.0
->>
-
-
--- 
-Sébastien Szymanski
-Software engineer, Armadeus Systems
-Tel: +33 (0)9 72 29 41 44
-Fax: +33 (0)9 72 28 79 26
+Best regards,
+Krzysztof
