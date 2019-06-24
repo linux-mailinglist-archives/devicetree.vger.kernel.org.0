@@ -2,102 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE0394FEF6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 04:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A2BA4FECD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 03:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726762AbfFXCCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jun 2019 22:02:47 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:36795 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726438AbfFXCCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jun 2019 22:02:46 -0400
-Received: by mail-lj1-f193.google.com with SMTP id i21so10943540ljj.3;
-        Sun, 23 Jun 2019 19:02:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OpRgBHIbpOuAIRmC5hAbsG+gtGfST0EqR1Mz8i1XFZM=;
-        b=UEWHPIM+R5z0E3Vplag65jH9IWmRu9wJa1nac4dklpzcPXmjG2fcEVQAAwTskqlKYy
-         b8HncNdkOjk/MrtZmo+fb51cMIKolRAWYBlBJ07PFWFE4TqjErGBCImCjbv7W+hjc+qL
-         utZHi6XMY00Xmd4CGOwEBzOMP2mBVRNFfYQLcBSlkb5f7R8VQspzeub2Ux0NQfgRRc1L
-         4i/aJwtlv5ByK9HFttuMmj6md7UKZJKvVB4QVUZ2CcV/TFfCWx5smKPwRTIEPa7vF7w1
-         1M1jukjBUwKS7VGH159PX22M2FMaStEUUk6B0VfyxGCT/aHN0QHQ75yjdZXkbB+LmN2O
-         0NXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OpRgBHIbpOuAIRmC5hAbsG+gtGfST0EqR1Mz8i1XFZM=;
-        b=F6LP05d3d8TXxLwqR6nScJ2K8h7cO8zU4bfp5FXHMMcAC/AXLIGbdwo1qOQ26JnWX7
-         HQGCq39SNR8/yFfDFKkfiPu4bP6wpzqQHEzqTx//JD8+QoCzpfLF6JiH/6QzSMRnrTTI
-         TuuoLpxMo4+yOJ4JrP4W1iji3lFUGwtlfP+h2iHzNI/lsSGzImDFixbwZHfNUqDu4rjD
-         YsLraJmiIW/bwEZ+e05naOhKG5ii+4KuzrcfDZSyiPi1hchyaSnuQEfBO5QXQWCVBLZV
-         BfEHHNrVbrweSXktbS6lf/jGUpAp2KDrRzwNdruN85d5j/OXQl915RQYFkiKTV6PhQ9Z
-         Z7BQ==
-X-Gm-Message-State: APjAAAUnQ8Ki79/gCjJjy+Nb8fFTiwW9D56n5KmiEKrkAl7ZdBw4Y8n5
-        UJrnMo8olvFrOy9pBZX4AnGkg41p
-X-Google-Smtp-Source: APXvYqwOIUx48Ioz//gnowWELX2etqP+2SsH3RYNkIRjAlKOq3WdHRPiGHQeDullIbpvvxD5qqopEA==
-X-Received: by 2002:a2e:92c6:: with SMTP id k6mr4167363ljh.148.1561336327043;
-        Sun, 23 Jun 2019 17:32:07 -0700 (PDT)
-Received: from localhost.localdomain (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
-        by smtp.gmail.com with ESMTPSA id y5sm1495146ljj.5.2019.06.23.17.32.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 23 Jun 2019 17:32:06 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 10/10] ARM: dts: tegra30: Add External Memory Controller node
-Date:   Mon, 24 Jun 2019 03:31:32 +0300
-Message-Id: <20190624003132.29473-11-digetx@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190624003132.29473-1-digetx@gmail.com>
-References: <20190624003132.29473-1-digetx@gmail.com>
+        id S1726695AbfFXB5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jun 2019 21:57:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38794 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726631AbfFXB50 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jun 2019 21:57:26 -0400
+Received: from dragon (li1322-146.members.linode.com [45.79.223.146])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 059CD2251B;
+        Mon, 24 Jun 2019 00:38:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561336688;
+        bh=Rkjl5gTApPqzki0DX5HYPABKg7P9yNojh32UtZVda8I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bBk74pzZxzkzSSekTD4QzlPWB1hVYYmrstah59PHG1X9JJffa5REdlLWzKqAddzXb
+         vDsN4+eyYmiO6CTcae/6KohQIZNW5QOG84X/kBUn82zy757SVkmsS+WjkQ0j4xKBVk
+         r/C65rubIN15kKa12mvmJNYXgfM71a7ZwnfMnZEQ=
+Date:   Mon, 24 Jun 2019 08:37:56 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        Gilles.Buloz@kontron.com, frieder.schrempf@kontron.de,
+        thomas.schaefer@kontron.com, Stefan.Nickl@kontron.com,
+        Michael.Brunner@kontron.com, kernel@pengutronix.de,
+        festevam@gmail.com, plaes@plaes.org,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>
+Subject: Re: [PATCH v2 2/3] ARM: dts: imx6qdl-kontron-samx6i: Add iMX6-based
+ Kontron SMARC-sAMX6i module
+Message-ID: <20190624003755.GD3800@dragon>
+References: <20190617161432.32268-1-m.felsch@pengutronix.de>
+ <20190617161432.32268-3-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190617161432.32268-3-m.felsch@pengutronix.de>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add External Memory Controller node to the device-tree.
+On Mon, Jun 17, 2019 at 06:14:31PM +0200, Marco Felsch wrote:
+> From: Priit Laes <plaes@plaes.org>
+> 
+> SMARC-sAMX6i is a SMARC (Smart Mobility Architecture) compliant
+> module.
+> 
+> Signed-off-by: Priit Laes <plaes@plaes.org>
+> Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-Acked-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra30.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
-index e074258d4518..92c4aeafab29 100644
---- a/arch/arm/boot/dts/tegra30.dtsi
-+++ b/arch/arm/boot/dts/tegra30.dtsi
-@@ -732,6 +732,17 @@
- 		#reset-cells = <1>;
- 	};
- 
-+	memory-controller@7000f400 {
-+		compatible = "nvidia,tegra30-emc";
-+		reg = <0x7000f400 0x400>;
-+		interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&tegra_car TEGRA30_CLK_EMC>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nvidia,memory-controller = <&mc>;
-+	};
-+
- 	fuse@7000f800 {
- 		compatible = "nvidia,tegra30-efuse";
- 		reg = <0x7000f800 0x400>;
--- 
-2.22.0
-
+Applied, thanks.
