@@ -2,298 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 838A650F30
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 16:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3CD50FAE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 17:07:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727406AbfFXOxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 10:53:22 -0400
-Received: from mx.0dd.nl ([5.2.79.48]:33492 "EHLO mx.0dd.nl"
+        id S1729737AbfFXPHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 11:07:08 -0400
+Received: from foss.arm.com ([217.140.110.172]:53040 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726414AbfFXOxW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 10:53:22 -0400
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.0dd.nl (Postfix) with ESMTPS id 775D55FEAA;
-        Mon, 24 Jun 2019 16:53:19 +0200 (CEST)
-Authentication-Results: mx.0dd.nl;
-        dkim=pass (2048-bit key) header.d=vdorst.com header.i=@vdorst.com header.b="GL9iPASw";
-        dkim-atps=neutral
-Received: from pc-rene.vdorst.com (pc-rene.vdorst.com [192.168.2.125])
-        by mail.vdorst.com (Postfix) with ESMTPA id 41A5D1CC6F11;
-        Mon, 24 Jun 2019 16:53:19 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 41A5D1CC6F11
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1561387999;
-        bh=XQGc2L2tciEqhY0p8FDpM7GmACEvSx7FvJD+Y7Cy7oM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GL9iPASwY4YHDdgaltRtMfUc6NFKBnvaQ5z3/gDvHCuSnGsy4+jwDeJ2KY9nlBBoq
-         alpgYLUVqQ6nCUatu4CYCL60Wdmn/8mbM4C26pUq7zkkn/rtj6emfqct2h8gB1jABw
-         GnaiNDAaSNY0hk66FWFPjV25D7fEyqFJzcnc2cnuMEqmEKF2mGQMxjmcZ6aR7PKRso
-         l5MLyGHChYBUbqMVHMk9Ycf2Ydh44Kef6/j40NNYXcuwLvxKrHiOUiY0bjy1qr0tfs
-         iRW6HLLgdl3aF4uln2yzFDMIbCNNVub9cxWwIl6KU8gdQEr4Usi4ier7ss4ypkCt0M
-         Uk/Qisf3oyRDQ==
-From:   =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
-To:     sean.wang@mediatek.com, f.fainelli@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, matthias.bgg@gmail.com,
-        andrew@lunn.ch, vivien.didelot@gmail.com
-Cc:     frank-w@public-files.de, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH RFC net-next 2/5] dt-bindings: net: dsa: mt7530: Add support for port 5
-Date:   Mon, 24 Jun 2019 16:52:48 +0200
-Message-Id: <20190624145251.4849-3-opensource@vdorst.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190624145251.4849-1-opensource@vdorst.com>
-References: <20190624145251.4849-1-opensource@vdorst.com>
+        id S1728646AbfFXPHI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 11:07:08 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CDAD3344;
+        Mon, 24 Jun 2019 08:07:07 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B07D13F71E;
+        Mon, 24 Jun 2019 08:07:04 -0700 (PDT)
+Date:   Mon, 24 Jun 2019 16:06:58 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Russell King <linux@armlinux.org.uk>
+Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Richard Fontana <rfontana@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 4/7] arm: Use common cpu_topology structure and
+ functions.
+Message-ID: <20190624150658.GA1623@e107155-lin>
+References: <20190617185920.29581-1-atish.patra@wdc.com>
+ <20190617185920.29581-5-atish.patra@wdc.com>
+ <20190619121057.GE1360@e107155-lin>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190619121057.GE1360@e107155-lin>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT7530 port 5 has many modes/configurations.
-Update the documentation how to use port 5.
+On Wed, Jun 19, 2019 at 01:10:57PM +0100, Sudeep Holla wrote:
+> Hi Russell,
+>
+> On Mon, Jun 17, 2019 at 11:59:17AM -0700, Atish Patra wrote:
+> > Currently, ARM32 and ARM64 uses different data structures to represent
+> > their cpu topologies. Since, we are moving the ARM64 topology to common
+> > code to be used by other architectures, we can reuse that for ARM32 as
+> > well.
+> >
+> > Take this opprtunity to remove the redundant functions from ARM32 and
+> > reuse the common code instead.
+> >
+> > To: Russell King <linux@armlinux.org.uk>
+> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> > Tested-by: Sudeep Holla <sudeep.holla@arm.com> (on TC2)
+> > Reviewed-by : Sudeep Holla <sudeep.holla@arm.com>
+> >
+> > ---
+> > Hi Russell,
+> > Can we get a ACK for this patch ? We are hoping that the entire
+> > series can be merged at one go.
+>
+> It would be nice to get this in for v5.3 as it's almost there.
+> Are you fine with these changes ?
+>
 
-Signed-off-by: René van Dorst <opensource@vdorst.com>
-CC: devicetree@vger.kernel.org
----
- .../devicetree/bindings/net/dsa/mt7530.txt    | 215 ++++++++++++++++++
- 1 file changed, 215 insertions(+)
+Do you have any objections with this patch ? We plan to merge through
+RISC-V tree, please let us know. It has been acked-by all the other
+maintainers.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/mt7530.txt b/Documentation/devicetree/bindings/net/dsa/mt7530.txt
-index 47aa205ee0bd..f3486780f2c2 100644
---- a/Documentation/devicetree/bindings/net/dsa/mt7530.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/mt7530.txt
-@@ -35,6 +35,39 @@ Required properties for the child nodes within ports container:
- - phy-mode: String, must be either "trgmii" or "rgmii" for port labeled
- 	 "cpu".
- 
-+Port 5 of the switch is muxed between:
-+1. GMAC5: GMAC5 can interface with another external MAC or PHY.
-+2. PHY of port 0 or port 4: PHY interfaces with an external MAC like 2nd GMAC
-+   of the SOC. Used in many setups where port 0/4 becomes the WAN port.
-+
-+Port 5 modes/configurations:
-+1. Port 5 is disabled and isolated: An external phy can interface to the 2nd
-+   GMAC of the SOC.
-+   In the case of a build-in MT7530 switch, port 5 shares the RGMII bus with 2nd
-+   GMAC and an optional external phy. Mind the GPIO/pinctl settings of the SOC!
-+2. Port 5 is muxed to PHY of port 0/4: Port 0/4 interfaces with 2nd GMAC.
-+   It is a simple MAC to PHY interface, port 5 needs to be setup for xMII mode
-+   and RGMII delay.
-+3. Port 5 is muxed to GMAC5 and can interface to an external phy.
-+   Port 5 becomes an extra switch port.
-+   Only works on platform where external phy TX<->RX lines are swapped.
-+   Like in the Ubiquiti ER-X-SFP.
-+4. Port 5 is muxed to GMAC5 and interfaces with the 2nd GAMC as 2nd CPU port.
-+   Currently a 2nd CPU port is not supported by DSA code.
-+
-+Depending on how the external PHY is wired:
-+1. normal: The PHY can only connect to 2nd GMAC but not to the switch
-+2. swapped: RGMII TX, RX are swapped; external phy interface with the switch as
-+   a ethernet port. But can't interface to the 2nd GMAC.
-+
-+Based on the DT the port 5 mode is configured.
-+
-+Driver tries to lookup the phy-handle of the 2nd GMAC of the master device.
-+When phy-handle matches PHY of port 0 or 4 then port 5 set-up as mode 2.
-+phy-mode must be set, see also example 2 below!
-+ * mt7621: phy-mode = "rgmii-txid";
-+ * mt7623: phy-mode = "rgmii";
-+
- See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
- required, optional properties and how the integrated switch subnodes must
- be specified.
-@@ -94,3 +127,185 @@ Example:
- 			};
- 		};
- 	};
-+
-+Example 2: MT7621: Port 4 is WAN port: 2nd GMAC -> Port 5 -> PHY port 4.
-+
-+&eth {
-+	status = "okay";
-+
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "rgmii";
-+
-+		fixed-link {
-+			speed = <1000>;
-+			full-duplex;
-+			pause;
-+		};
-+	};
-+
-+	gmac1: mac@1 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <1>;
-+		phy-mode = "rgmii-txid";
-+		phy-handle = <&phy4>;
-+	};
-+
-+	mdio: mdio-bus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Internal phy */
-+		phy4: ethernet-phy@4 {
-+			reg = <4>;
-+		};
-+
-+		mt7530: switch@1f {
-+			compatible = "mediatek,mt7621";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x1f>;
-+			pinctrl-names = "default";
-+			mediatek,mcm;
-+
-+			resets = <&rstctrl 2>;
-+			reset-names = "mcm";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					label = "lan0";
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+				};
-+
-+/* Commented out. Port 4 is handled by 2nd GMAC.
-+				port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+				};
-+*/
-+
-+				cpu_port0: port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&gmac0>;
-+					phy-mode = "rgmii";
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+Example 3: MT7621: Port 5 is connected to external PHY: Port 5 -> external PHY.
-+
-+&eth {
-+	status = "okay";
-+
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "rgmii";
-+
-+		fixed-link {
-+			speed = <1000>;
-+			full-duplex;
-+			pause;
-+		};
-+	};
-+
-+	mdio: mdio-bus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* External phy */
-+		ephy5: ethernet-phy@7 {
-+			reg = <7>;
-+		};
-+
-+		mt7530: switch@1f {
-+			compatible = "mediatek,mt7621";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x1f>;
-+			pinctrl-names = "default";
-+			mediatek,mcm;
-+
-+			resets = <&rstctrl 2>;
-+			reset-names = "mcm";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					label = "lan0";
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+				};
-+
-+				port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+				};
-+
-+				port@5 {
-+					reg = <5>;
-+					label = "lan5";
-+					phy-mode = "rgmii";
-+					phy-handle = <&ephy5>;
-+				};
-+
-+				cpu_port0: port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&gmac0>;
-+					phy-mode = "rgmii";
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
--- 
-2.20.1
-
+--
+Regards,
+Sudeep
