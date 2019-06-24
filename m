@@ -2,395 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D409528A7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06DD518DC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 18:41:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727613AbfFYJyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 05:54:08 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37280 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729973AbfFYJyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 05:54:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=e01AUlSFaTJ9GcmDZIVEasSrQ0BpXEhV0xwoNCq8yP8=; b=XIZQDM/UzKWE
-        9FWSKfZ4Z1mpZ3KZGe/Sixs9C0WmF9gSMoy4swDLp0Z7kTAk6Do3Kz99R3ewHmB5iMc58n6aQGhmR
-        11z663kllUVAv1wj3RVp3yXASLdcxNcKMoYDptYxPm0Rvmnv/Ua6oF0liwM3aNMp1DNHuQtpIYkn0
-        x04Nk=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hfi9E-0004mQ-Tv; Tue, 25 Jun 2019 09:53:57 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 4A52A440064; Mon, 24 Jun 2019 17:32:21 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        devicetree@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Mark Brown <broonie@kernel.org>, notify@kernel.org,
-        Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Applied "regulator: s2mps11: Add support for disabling S2MPS11 regulators in suspend" to the regulator tree
-In-Reply-To: <20190620183530.5386-3-krzk@kernel.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20190624163221.4A52A440064@finisterre.sirena.org.uk>
-Date:   Mon, 24 Jun 2019 17:32:21 +0100 (BST)
+        id S1728501AbfFXQlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 12:41:19 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:37530 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726700AbfFXQlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 12:41:19 -0400
+Received: by mail-qk1-f193.google.com with SMTP id d15so10238206qkl.4;
+        Mon, 24 Jun 2019 09:41:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UdA6Y6qkEPNcox/R4AD5p5PdgoW5IX8dJGvSgmjWmkg=;
+        b=JhxxntTYearder/a/p+OquDHNuX8jeZ9N2/zYjAaTHici1QdHNF3fXDeq+Qdy/ZELO
+         L28sxhlC4z73NiXjlOsmiGjIcgJxbK/4MBgu38/p6eIT5eTdF9nzIA6jlWhEF3TifzWE
+         LK70Fmoxgz0yWkXHzS4INQEof6R+A2BE9JX8Y2uvjVqkexfMaMendyllHIMS7k6eYaPp
+         QEp1Qa1KoKtTbyeCKaGp5HLl1TP2iS+haRKQkqIsq453Arb2D/ifMTObojJlN5VzUNSi
+         GJQzL2MnimDz+k/Wkv9t6LoyanZlY3neCtq5cmbLIOUFpPUiiIXyQK0hxYBDw/0YTI43
+         XuQw==
+X-Gm-Message-State: APjAAAWs0IPTFOKO2up/cHi5MamuliTC1GqqtjYWAFnZBg3hOJKTuiKm
+        F2r/jeRQD2cVK3ykHHr8HKL3ZQgvbjepAP95O54=
+X-Google-Smtp-Source: APXvYqx9IXxZ67+F4onDygsWo++RwTBrZyAF3TvR7CC3NoZfdYBTRnVe65OvdwgLfjKt586ottXwhlgpI1RplTtFttg=
+X-Received: by 2002:a05:620a:12db:: with SMTP id e27mr111628534qkl.352.1561394477622;
+ Mon, 24 Jun 2019 09:41:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+ <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+ <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+ <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+ <36bca57c999f611353fd9741c55bb2a7@codeaurora.org> <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+ <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+ <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
+ <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
+ <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+ <d533b708-c97a-710d-1138-3ae79107f209@linaro.org> <abdfc6b3a9981bcdef40f85f5442a425ce109010.camel@sipsolutions.net>
+ <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org>
+In-Reply-To: <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 24 Jun 2019 18:40:57 +0200
+Message-ID: <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+To:     Alex Elder <elder@linaro.org>
+Cc:     Johannes Berg <johannes@sipsolutions.net>,
+        Dan Williams <dcbw@redhat.com>,
+        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Mon, Jun 24, 2019 at 6:21 PM Alex Elder <elder@linaro.org> wrote:
+> On 6/18/19 2:03 PM, Johannes Berg wrote:
+>
+> > Really there are two possible ways (and they intersect to some extent).
+> >
+> > One is the whole multi-function device, where a single WWAN device is
+> > composed of channels offered by actually different drivers, e.g. for a
+> > typical USB device you might have something like cdc_ether and the
+> > usb_wwan TTY driver. In this way, we need to "compose" the WWAN device
+> > similarly, e.g. by using the underlying USB device "struct device"
+> > pointer to tie it together.
+>
+> I *think* this model makes the most sense.  But at this point
+> it would take very little to convince me otherwise...  (And then
+> I saw Arnd's message advocating the other one, unfortunately...)
+>
+> > The other is something like IPA or the Intel modem driver, where the
+> > device is actually a single (e.g. PCIe) device and just has a single
+> > driver, but that single driver offers different channels.
+>
+> What I don't like about this is that it's more monolithic.  It
+> seems better to have the low-level IPA or Intel modem driver (or
+> any other driver that can support communication between the AP
+> and WWAN device) present communication paths that other function-
+> specific drivers can attach to and use.
 
-   regulator: s2mps11: Add support for disabling S2MPS11 regulators in suspend
+I did not understand Johannes description as two competing models
+for the same code, but rather two kinds of existing hardware that
+a new driver system would have to deal with.
 
-has been applied to the regulator tree at
+I was trying to simplify it to just having the second model, by adding
+a hack to support the first, but my view was rather unpopular so
+far, so if everyone agrees on one way to do it, don't worry about me ;-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.3
+> > Now, it's not clear to me where IPA actually falls, because so far we've
+> > been talking about the IPA driver only as providing *netdevs*, not any
+> > control channels, so I'm not actually sure where the control channel is.
+>
+> There is user space code that handles all of this, and as far as I
+> can tell, parts of it will always remain proprietary.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+Two replies on this:
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+- to answer Johannes question, my understanding is that the interface
+  between kernel and firmware/hardware for IPA has a single 'struct
+  device' that is used for both the data and the control channels,
+  rather than having a data channel and an independent control device,
+  so this falls into the same category as the Intel one (please correct
+  me on that)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+- The user space being proprietary is exactly what we need to avoid
+  with the wwan subsystem. We need to be able to use the same
+  method for setting up Intel, Qualcomm, Samsung, Unisoc or
+  Hisilicon modems or anything else that hooks into the subsystem,
+  and support that in network manager as well as the Android
+  equivalent.
+  If Qualcomm wants to provide their own proprietary user space
+  solution, we can't stop them, but then that should also work on
+  all the others unless they intentionally break it. ;-)
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> > and simply require that the channel is attached to the wwan device with
+> > the representation-specific call (wwan_attach_netdev, wwan_attach_tty,
+> > ...).
+>
+> Or maybe have the WWAN device present interfaces with attributes,
+> and have drivers that are appropriate for each interface attach
+> to only the ones they recognize they support.
 
-Thanks,
-Mark
+I think you both mean the same thing here, a structure with callback
+pointers that may or may not be filled by the driver depending on its
+capabilities.
 
-From 65d80db2ee92330269e90313c6af782036f4d23d Mon Sep 17 00:00:00 2001
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Thu, 20 Jun 2019 20:35:27 +0200
-Subject: [PATCH] regulator: s2mps11: Add support for disabling S2MPS11
- regulators in suspend
+What we should try to avoid though is a way to add driver private
+interfaces that risk having multiple drivers create similar functionality
+in incompatible ways.
 
-The driver supported turning off regulators in suspend only for S2MPS14
-device.  However this makes also sense for S2MPS11 and can reduce the
-power consumption during suspend to RAM.
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- drivers/regulator/s2mps11.c         | 210 +++++++++++++++-------------
- include/linux/mfd/samsung/s2mps11.h |   5 +
- 2 files changed, 120 insertions(+), 95 deletions(-)
-
-diff --git a/drivers/regulator/s2mps11.c b/drivers/regulator/s2mps11.c
-index 93570712eb56..9c06ecd80a90 100644
---- a/drivers/regulator/s2mps11.c
-+++ b/drivers/regulator/s2mps11.c
-@@ -34,7 +34,7 @@ struct s2mps11_info {
- 	enum sec_device_type dev_type;
- 
- 	/*
--	 * One bit for each S2MPS13/S2MPS14/S2MPU02 regulator whether
-+	 * One bit for each S2MPS11/S2MPS13/S2MPS14/S2MPU02 regulator whether
- 	 * the suspend mode was enabled.
- 	 */
- 	DECLARE_BITMAP(suspend_state, S2MPS_REGULATOR_MAX);
-@@ -225,27 +225,133 @@ static int s2mps11_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
- 				  1 << enable_shift, 0);
- }
- 
-+static int s2mps11_regulator_enable(struct regulator_dev *rdev)
-+{
-+	struct s2mps11_info *s2mps11 = rdev_get_drvdata(rdev);
-+	int rdev_id = rdev_get_id(rdev);
-+	unsigned int val;
-+
-+	switch (s2mps11->dev_type) {
-+	case S2MPS11X:
-+		if (test_bit(rdev_id, s2mps11->suspend_state))
-+			val = S2MPS14_ENABLE_SUSPEND;
-+		else
-+			val = rdev->desc->enable_mask;
-+		break;
-+	case S2MPS13X:
-+	case S2MPS14X:
-+		if (test_bit(rdev_id, s2mps11->suspend_state))
-+			val = S2MPS14_ENABLE_SUSPEND;
-+		else if (s2mps11->ext_control_gpiod[rdev_id])
-+			val = S2MPS14_ENABLE_EXT_CONTROL;
-+		else
-+			val = rdev->desc->enable_mask;
-+		break;
-+	case S2MPU02:
-+		if (test_bit(rdev_id, s2mps11->suspend_state))
-+			val = S2MPU02_ENABLE_SUSPEND;
-+		else
-+			val = rdev->desc->enable_mask;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(rdev->regmap, rdev->desc->enable_reg,
-+			rdev->desc->enable_mask, val);
-+}
-+
-+static int s2mps11_regulator_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	int ret;
-+	unsigned int val, state;
-+	struct s2mps11_info *s2mps11 = rdev_get_drvdata(rdev);
-+	int rdev_id = rdev_get_id(rdev);
-+
-+	/* Below LDO should be always on or does not support suspend mode. */
-+	switch (s2mps11->dev_type) {
-+	case S2MPS11X:
-+		switch (rdev_id) {
-+		case S2MPS11_LDO2:
-+		case S2MPS11_LDO36:
-+		case S2MPS11_LDO37:
-+		case S2MPS11_LDO38:
-+			return 0;
-+		default:
-+			state = S2MPS14_ENABLE_SUSPEND;
-+			break;
-+		}
-+		break;
-+	case S2MPS13X:
-+	case S2MPS14X:
-+		switch (rdev_id) {
-+		case S2MPS14_LDO3:
-+			return 0;
-+		default:
-+			state = S2MPS14_ENABLE_SUSPEND;
-+			break;
-+		}
-+		break;
-+	case S2MPU02:
-+		switch (rdev_id) {
-+		case S2MPU02_LDO13:
-+		case S2MPU02_LDO14:
-+		case S2MPU02_LDO15:
-+		case S2MPU02_LDO17:
-+		case S2MPU02_BUCK7:
-+			state = S2MPU02_DISABLE_SUSPEND;
-+			break;
-+		default:
-+			state = S2MPU02_ENABLE_SUSPEND;
-+			break;
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_read(rdev->regmap, rdev->desc->enable_reg, &val);
-+	if (ret < 0)
-+		return ret;
-+
-+	set_bit(rdev_id, s2mps11->suspend_state);
-+	/*
-+	 * Don't enable suspend mode if regulator is already disabled because
-+	 * this would effectively for a short time turn on the regulator after
-+	 * resuming.
-+	 * However we still want to toggle the suspend_state bit for regulator
-+	 * in case if it got enabled before suspending the system.
-+	 */
-+	if (!(val & rdev->desc->enable_mask))
-+		return 0;
-+
-+	return regmap_update_bits(rdev->regmap, rdev->desc->enable_reg,
-+				  rdev->desc->enable_mask, state);
-+}
-+
- static const struct regulator_ops s2mps11_ldo_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
- 	.is_enabled		= regulator_is_enabled_regmap,
--	.enable			= regulator_enable_regmap,
-+	.enable			= s2mps11_regulator_enable,
- 	.disable		= regulator_disable_regmap,
- 	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.set_suspend_disable	= s2mps11_regulator_set_suspend_disable,
- };
- 
- static const struct regulator_ops s2mps11_buck_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
- 	.is_enabled		= regulator_is_enabled_regmap,
--	.enable			= regulator_enable_regmap,
-+	.enable			= s2mps11_regulator_enable,
- 	.disable		= regulator_disable_regmap,
- 	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.set_voltage_time_sel	= s2mps11_regulator_set_voltage_time_sel,
- 	.set_ramp_delay		= s2mps11_set_ramp_delay,
-+	.set_suspend_disable	= s2mps11_regulator_set_suspend_disable,
- };
- 
- #define regulator_desc_s2mps11_ldo(num, step) {		\
-@@ -501,102 +607,16 @@ static const struct regulator_desc s2mps13_regulators[] = {
- 	regulator_desc_s2mps13_buck8_10(10, MIN_500_MV,  STEP_6_25_MV, 0x10),
- };
- 
--static int s2mps14_regulator_enable(struct regulator_dev *rdev)
--{
--	struct s2mps11_info *s2mps11 = rdev_get_drvdata(rdev);
--	int rdev_id = rdev_get_id(rdev);
--	unsigned int val;
--
--	switch (s2mps11->dev_type) {
--	case S2MPS13X:
--	case S2MPS14X:
--		if (test_bit(rdev_id, s2mps11->suspend_state))
--			val = S2MPS14_ENABLE_SUSPEND;
--		else if (s2mps11->ext_control_gpiod[rdev_id])
--			val = S2MPS14_ENABLE_EXT_CONTROL;
--		else
--			val = rdev->desc->enable_mask;
--		break;
--	case S2MPU02:
--		if (test_bit(rdev_id, s2mps11->suspend_state))
--			val = S2MPU02_ENABLE_SUSPEND;
--		else
--			val = rdev->desc->enable_mask;
--		break;
--	default:
--		return -EINVAL;
--	}
--
--	return regmap_update_bits(rdev->regmap, rdev->desc->enable_reg,
--			rdev->desc->enable_mask, val);
--}
--
--static int s2mps14_regulator_set_suspend_disable(struct regulator_dev *rdev)
--{
--	int ret;
--	unsigned int val, state;
--	struct s2mps11_info *s2mps11 = rdev_get_drvdata(rdev);
--	int rdev_id = rdev_get_id(rdev);
--
--	/* Below LDO should be always on or does not support suspend mode. */
--	switch (s2mps11->dev_type) {
--	case S2MPS13X:
--	case S2MPS14X:
--		switch (rdev_id) {
--		case S2MPS14_LDO3:
--			return 0;
--		default:
--			state = S2MPS14_ENABLE_SUSPEND;
--			break;
--		}
--		break;
--	case S2MPU02:
--		switch (rdev_id) {
--		case S2MPU02_LDO13:
--		case S2MPU02_LDO14:
--		case S2MPU02_LDO15:
--		case S2MPU02_LDO17:
--		case S2MPU02_BUCK7:
--			state = S2MPU02_DISABLE_SUSPEND;
--			break;
--		default:
--			state = S2MPU02_ENABLE_SUSPEND;
--			break;
--		}
--		break;
--	default:
--		return -EINVAL;
--	}
--
--	ret = regmap_read(rdev->regmap, rdev->desc->enable_reg, &val);
--	if (ret < 0)
--		return ret;
--
--	set_bit(rdev_id, s2mps11->suspend_state);
--	/*
--	 * Don't enable suspend mode if regulator is already disabled because
--	 * this would effectively for a short time turn on the regulator after
--	 * resuming.
--	 * However we still want to toggle the suspend_state bit for regulator
--	 * in case if it got enabled before suspending the system.
--	 */
--	if (!(val & rdev->desc->enable_mask))
--		return 0;
--
--	return regmap_update_bits(rdev->regmap, rdev->desc->enable_reg,
--			rdev->desc->enable_mask, state);
--}
--
- static const struct regulator_ops s2mps14_reg_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
- 	.is_enabled		= regulator_is_enabled_regmap,
--	.enable			= s2mps14_regulator_enable,
-+	.enable			= s2mps11_regulator_enable,
- 	.disable		= regulator_disable_regmap,
- 	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
--	.set_suspend_disable	= s2mps14_regulator_set_suspend_disable,
-+	.set_suspend_disable	= s2mps11_regulator_set_suspend_disable,
- };
- 
- #define regulator_desc_s2mps14_ldo(num, min, step) {	\
-@@ -888,24 +908,24 @@ static const struct regulator_ops s2mpu02_ldo_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
- 	.is_enabled		= regulator_is_enabled_regmap,
--	.enable			= s2mps14_regulator_enable,
-+	.enable			= s2mps11_regulator_enable,
- 	.disable		= regulator_disable_regmap,
- 	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
--	.set_suspend_disable	= s2mps14_regulator_set_suspend_disable,
-+	.set_suspend_disable	= s2mps11_regulator_set_suspend_disable,
- };
- 
- static const struct regulator_ops s2mpu02_buck_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
- 	.is_enabled		= regulator_is_enabled_regmap,
--	.enable			= s2mps14_regulator_enable,
-+	.enable			= s2mps11_regulator_enable,
- 	.disable		= regulator_disable_regmap,
- 	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
--	.set_suspend_disable	= s2mps14_regulator_set_suspend_disable,
-+	.set_suspend_disable	= s2mps11_regulator_set_suspend_disable,
- 	.set_ramp_delay		= s2mpu02_set_ramp_delay,
- };
- 
-diff --git a/include/linux/mfd/samsung/s2mps11.h b/include/linux/mfd/samsung/s2mps11.h
-index 6e7668a389a1..f6c035eb87be 100644
---- a/include/linux/mfd/samsung/s2mps11.h
-+++ b/include/linux/mfd/samsung/s2mps11.h
-@@ -188,4 +188,9 @@ enum s2mps11_regulators {
- #define S2MPS11_BUCK6_RAMP_EN_SHIFT	0
- #define S2MPS11_PMIC_EN_SHIFT	6
- 
-+/*
-+ * Bits for "enable suspend" (On/Off controlled by PWREN)
-+ * are the same as in S2MPS14: S2MPS14_ENABLE_SUSPEND
-+ */
-+
- #endif /*  __LINUX_MFD_S2MPS11_H */
--- 
-2.20.1
-
+        Arnd
