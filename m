@@ -2,76 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6599650C68
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 15:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4513150D0C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 15:59:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731378AbfFXNvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 09:51:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49220 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731316AbfFXNvQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 09:51:16 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 96E2E2145D;
-        Mon, 24 Jun 2019 13:51:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561384275;
-        bh=LpQdSoVTYU+Z7IJZrJzZg9lupJlicvmmyQWj7TK/jY0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uzjYjpnwFkvvUdIrrNnzR1u/i6x32DWPzybf1RDrakS+kVym5QcQoJvuLICCoRLDc
-         kN7OzNgCQ8Y92xXwKCIsZDN2BrOTLkHeWFHF795ia3+RGFKQnu1dd1q2rKNWwFj2UE
-         C4nb4vAdc1hNfT+mitvCUtvhL8DVGQAl3ZfJ4jQU=
-Received: by mail-qt1-f182.google.com with SMTP id s15so14464729qtk.9;
-        Mon, 24 Jun 2019 06:51:15 -0700 (PDT)
-X-Gm-Message-State: APjAAAV34fUbbTq5r7ZjRtHvq4HYyKg/IewN9zDlYwsHcK8wnUQ/nKhN
-        SDry//mwrBOSBLVtNrtCZBJ5QFVWM4grsO1V7g==
-X-Google-Smtp-Source: APXvYqztXa2HFgJk4Conk6Q6/OguLFGuWuEOOaPLK4wzwrU7A3FV3EDerug+MTP1AxEIK4z0CKM0BHsNOmXALNw2bDo=
-X-Received: by 2002:aed:3fb0:: with SMTP id s45mr77687933qth.136.1561384274872;
- Mon, 24 Jun 2019 06:51:14 -0700 (PDT)
+        id S1727967AbfFXN73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 09:59:29 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:37743 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727267AbfFXN73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 09:59:29 -0400
+Received: by mail-wr1-f67.google.com with SMTP id v14so14047412wrr.4
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 06:59:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=HZydg61kd/5ZMS5RbhbADXYMXbV4sPeJO33INEjYDBA=;
+        b=cCn/f5WcbbLk18YiGYwGIt8mW7tsHJa6PwLBSZV9msR7EdDeabmbI8VfaREJiu6RVv
+         GVP/y61EwmE4mAeQWElaSCBxcJwkJaYuASeFL0ZU001nLQZveinpCXX0KQB1NK63NOez
+         KQk0I+BEK7epCJBbxY3uCLtC7T8rScva2GxHkYz86EdtrhNUuQWid0MjfLE17/fXM//1
+         bre8itTEokJn39L306+8TEsR52h/mWEgO3Q64yiWrystgcP+ARYQHDL6JPEHCq7yamEc
+         EjHkDyyLwUhpMlTnyebsq4Mz9xRaf9HkvF0hOaz1Jr3+SqZGbMRTeZTGkqg3vwu+3m70
+         Lvwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=HZydg61kd/5ZMS5RbhbADXYMXbV4sPeJO33INEjYDBA=;
+        b=LvAxNxVVAcJ4Bc3DjNI8+tir1iA2c8URPmDm2PxUuEZ4LBdJNzBHqBNHaMVLhGz513
+         85+Ogx6fmKCbEtfejP4zKpOotQgOWlxxc8vEWkHyT/oKwo5UyINNumYEoMjfQawotuRj
+         hdf/+W75gXOmI3b+0lAqq24/dSad8UbYkvRoSMUmy/jG5ShEMMpm/adc/gM4TJ0uvOjR
+         GgzTm4xwXDwDJxowyO5LpAUugUATS6sda9T/lxaASDLkJv0dYKWWpSvgivViH3Fqlylc
+         bV8mhEtadTzolyVfuRFD5DpqxGppfpP74SCiQkeCqI+xqElB3ckJn+L4XsazMZMhut+u
+         HYEA==
+X-Gm-Message-State: APjAAAXvjhyq01lcw7Eg/75erpfZxZvIbsahBoyLEo/YMmFVdKQBBrP1
+        wf0+IAaEdSjYFJAdeNIrpZA3Rg==
+X-Google-Smtp-Source: APXvYqyXl+oaJqy9dGnCwOyjNy47toUpLXcA2A7g32WAeammFUBUsdmAZWtzNQCfsd+Y2HZBQlSpLg==
+X-Received: by 2002:adf:e2c7:: with SMTP id d7mr53801722wrj.272.1561384766167;
+        Mon, 24 Jun 2019 06:59:26 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id r4sm9285460wrv.34.2019.06.24.06.59.24
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 24 Jun 2019 06:59:25 -0700 (PDT)
+Date:   Mon, 24 Jun 2019 14:59:23 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Brian Dodge <bdodge09@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, lee.jones@linaro.org,
+        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, Peter Bacon <pbacon@psemi.com>
+Subject: Re: [PATCH 2/3] backlight/arcxcnn fix vendor prefix
+Message-ID: <20190624135923.ej6o2oooncocjwyn@holly.lan>
+References: <1541592640-18478-1-git-send-email-bdodge09@gmail.com>
+ <1541592640-18478-3-git-send-email-bdodge09@gmail.com>
+ <20181111113053.GF27666@amd>
+ <e372391c-1fd5-41ec-b766-7669fffb928d@gmail.com>
+ <c4477220-7159-b5a8-16ea-4f4dbb645ced@linaro.org>
+ <20190621221325.GA2343@amd>
+ <20190624102405.gg2lnlw6wmfvjrxu@holly.lan>
+ <9d590b7b-5477-249e-a482-1fc17d7a106f@gmail.com>
 MIME-Version: 1.0
-References: <20190624080845.18537-1-mircea.caprioru@analog.com> <20190624080845.18537-5-mircea.caprioru@analog.com>
-In-Reply-To: <20190624080845.18537-5-mircea.caprioru@analog.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 24 Jun 2019 07:51:04 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+8K=YJUAYE2fzXWpQxBdS8OCfDe5iM=ZbpJbB48ubtug@mail.gmail.com>
-Message-ID: <CAL_Jsq+8K=YJUAYE2fzXWpQxBdS8OCfDe5iM=ZbpJbB48ubtug@mail.gmail.com>
-Subject: Re: [PATCH V3 5/5] dt-bindings: iio: adc: Add buffered input property
-To:     Mircea Caprioru <mircea.caprioru@analog.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9d590b7b-5477-249e-a482-1fc17d7a106f@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 24, 2019 at 2:09 AM Mircea Caprioru
-<mircea.caprioru@analog.com> wrote:
->
-> This patch adds the buffered mode device tree property for positive and
-> negative inputs. Each option can be enabled independently.
->
-> In buffered mode, the input channel feeds into a high impedance input stage
-> of the buffer amplifier. Therefore, the input can tolerate significant
-> source impedances and is tailored for direct connection to external
-> resistive type sensors such as strain gages or RTDs.
->
-> Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
-> ---
->
-> Changelog v3:
-> - added this separate commit for adi,buffered-positive and negative
->   properties
->
->  .../devicetree/bindings/iio/adc/adi,ad7124.yaml       | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+On Mon, Jun 24, 2019 at 07:29:20AM -0400, Brian Dodge wrote:
+> This sure did fall through the cracks.
+> 
+> I confirmed with the vendor that there are no existing embedded DTS with the
+> wrong name(s) in them before submitting this patch.
+> 
+> The new owner of this chip family, pSemi, just wanted me to wrap things up
+> and support all of there chips (3) in a single driver and that was the
+> extent of the work for me.  Since then the manager of the program there has
+> also changed.  I assume they'd still want these changes in for completeness.
+> 
+> AFAIK, there were just some quibbles about the copyright date range.  Can
+> you please help me push these patches in? It'll take me some time to get
+> back in to where I left things  since its been so long.  I know its a bit
+> messy but the DTS and driver changes need to be together to make sense so I
+> couldn't really do an incremental patch sequence.
+> 
+> What is the next step?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The next step is getting the changes to DT bindings agreed. Until that
+happens the patchset cannot move and right now now the thread for that
+patch has feedback that was not replies to:
+https://patchwork.kernel.org/patch/10675451/
+
+The explanation of why it is safe to accept the change to the DT
+bindings really should end up in the patch description rather than the
+mail thread. It would probably also help to have a link to
+https://lkml.org/lkml/2018/9/25/726 where it looks like arc versus
+arctic was previously discussed.
+
+The following might also be convenient for you:
+
+  A quick web search for "arc,arc2c0608" suggests that the only public
+  user is the Samsung Chromebook Plus and it is likely that this device
+  will remain on the v4.4 kernel. For this reason we do not provide
+  any deprecated fallback names based on "arc".
+
+
+Daniel.
+
+> 
+> Brian
+> 
+> On 6/24/19 6:24 AM, Daniel Thompson wrote:
+> > On Sat, Jun 22, 2019 at 12:13:25AM +0200, Pavel Machek wrote:
+> > > Hi!
+> > > 
+> > > > [Sorry to those receiving this twice... had to dig this out from the
+> > > > archives and sent it to the lists from the wrong mailer]
+> > > > 
+> > > > On 27/11/2018 00:44, Brian Dodge wrote:
+> > > > > Thank you Pavel, that is a good point.
+> > > > > 
+> > > > > The chip vendor has indicated that there is no reason to maintain the
+> > > > > old/improper prefix and wishes to go forward (only) with the "arctic"
+> > > > > prefix and any existing dts files are or will be updated.
+> > > > Looks like this patch series has fallen into the cracks a little.
+> > > > 
+> > > > I think I assumed this info would end in the description of patch v2 1/3 (in
+> > > > order to answer Rob's feedback) and I sat and waited for a respin. On the
+> > > > other hand... I didn't actually say that explicitly anywhere! So... I'd
+> > > > recommend a respin perhaps with a small bit of text explaining how the
+> > > > vendor can state that any existing dts files will be updated. This is a
+> > > > peripheral device so these strings are probably embedded into OEM
+> > > > devicetrees rather than exclusively under the control of the vendor.
+> > > So in next email you give good reason not to apply this :-).
+> > Afraid so... it was on page 2 of my google search so I did a quick
+> > search, sent the first mail and then went back to my web browser.
+> > 
+> > It was at that moment that I decided a quick search wasn't enough and
+> > decided to got a little deeper!
+> > 
+> > 
+> > Daniel.
