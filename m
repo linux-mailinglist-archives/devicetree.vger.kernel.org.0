@@ -2,94 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 595FF505A1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 11:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 800B95060C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 11:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727302AbfFXJ2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 05:28:00 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46860 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726631AbfFXJ2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 05:28:00 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id C8DED60A05; Mon, 24 Jun 2019 09:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561368479;
-        bh=Rxclg2J+fWA8GUEmOU6NUxxB+KBcECPCvwJIpsOLICs=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=R7sTpfaUnBiAsHi9QzlvcwBvEgnqax/4UEsrkq3OvRM/v0oaOcrHTEBOSn9fuQHpB
-         FYOJhdyiXixMYbToP5dONeUR+9R6LrLQPkBsDhYJ5YnUQ3CSr7DBCRUouVc4l7FP3n
-         AZg5FIKSQv8/uT1Upxd+To/5PVCnt5/JwJRYy3rg=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.136.27] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6B25560208;
-        Mon, 24 Jun 2019 09:27:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561368479;
-        bh=Rxclg2J+fWA8GUEmOU6NUxxB+KBcECPCvwJIpsOLICs=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=R7sTpfaUnBiAsHi9QzlvcwBvEgnqax/4UEsrkq3OvRM/v0oaOcrHTEBOSn9fuQHpB
-         FYOJhdyiXixMYbToP5dONeUR+9R6LrLQPkBsDhYJ5YnUQ3CSr7DBCRUouVc4l7FP3n
-         AZg5FIKSQv8/uT1Upxd+To/5PVCnt5/JwJRYy3rg=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6B25560208
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
-Subject: Re: [PATCHv3 1/1] coresight: Do not default to CPU0 for missing CPU
- phandle
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        mathieu.poirier@linaro.org, leo.yan@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, alexander.shishkin@linux.intel.com,
-        andy.gross@linaro.org, david.brown@linaro.org, mark.rutland@arm.com
-Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
-        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <cover.1561346998.git.saiprakash.ranjan@codeaurora.org>
- <635466ab6a27781966bb083e93d2ca2729473ced.1561346998.git.saiprakash.ranjan@codeaurora.org>
- <4db99204-8553-7a80-f952-30cbd149593d@arm.com>
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Message-ID: <d1fadd8d-4b3d-38a4-1d26-e72e8eff8ff1@codeaurora.org>
-Date:   Mon, 24 Jun 2019 14:57:53 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1728314AbfFXJqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 05:46:34 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:37544 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726716AbfFXJqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 05:46:33 -0400
+Received: by mail-lf1-f65.google.com with SMTP id d11so9546681lfb.4;
+        Mon, 24 Jun 2019 02:46:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Ev9Tj2wrV2sHVa78lJSUKLNtj813pnRYEFAtRIvugjE=;
+        b=qSCxSb4WXeoEdWJZpY6yBNK8LXScRMNlFQ6qW4vetx44ieE7bfXpvvHAA9dVyGi6W0
+         CkXlZVeJ6Xyz60NBJHmRkxeu60aF9Pmh1rLzqqpvUJ/J60YEk0b7O6F/yzgnKUHkMl3r
+         kSNAhNA0ozuVh4xziklAIjJ7ns5zqobvE0Z3I5SsdcXpc2MJM9jkpt55hD8UX98RjocV
+         Ay5xrZK/YLYBdbtMPBGacuWXzKMSsfDpEX7jhBfWUgInyyJi3DkMwMDM+XA+/4/2rnBm
+         3ZhfaUXVPaEKQQnlb1bL1Yft4giSc7pfAiB53860HM0iLNlHPY78Jov5uUZGTV/Mq2pI
+         sxOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Ev9Tj2wrV2sHVa78lJSUKLNtj813pnRYEFAtRIvugjE=;
+        b=Zm4dJUm/ViY1+n/hC6GJHb5weR5KeYLtdJ2Vvs4YXDkj5l42+o/YOYxRN/0AUK3enh
+         KUIP1opHVQuITyHfSbgmmEwhTAGcTboj6xJRA7VmHMRnzD2KeIfokTmTpansB43DlWVM
+         E77bbu71oAemMpo4Ta9VjUiCO+fKWhf9xfd3VZ+bASQY46rHKEpR2q4zSptPMzzNAww0
+         RPea3h1NSLWda4rV5Q7I0tNxVCtIhkNgL4ICbtaf05jKGMgviIFn5YbZPVCDPwYzxEWu
+         oew2e4R1jwBkoKAMJRbyRdZBW1gB9P0H8O3d7s0LEBzcrUlZCHiD9oEbr4JqDcw+dr6z
+         Pi4w==
+X-Gm-Message-State: APjAAAVas0V/XpGsgSmXW/PQgK/MfQRYWPLoOB/XqWT9njEzWuT+4w3M
+        P0E4uhUMuzxe02s71Uz1V4vyxB7w
+X-Google-Smtp-Source: APXvYqzsFhhIEFfn6HM3ZO8SBA4KV8ZzTlRkGff2B0yMJxryYKBTwQTW/XWgiiIfqrsVyzbYuiKkow==
+X-Received: by 2002:a19:550f:: with SMTP id n15mr3464871lfe.34.1561369590174;
+        Mon, 24 Jun 2019 02:46:30 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.googlemail.com with ESMTPSA id z26sm1643515ljz.64.2019.06.24.02.46.28
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Jun 2019 02:46:29 -0700 (PDT)
+Subject: Re: [PATCH V4 02/18] pinctrl: tegra: add suspend and resume support
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <1561345379-2429-1-git-send-email-skomatineni@nvidia.com>
+ <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a03ce644-5efd-e721-fb06-16de097171bb@gmail.com>
+Date:   Mon, 24 Jun 2019 12:46:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <4db99204-8553-7a80-f952-30cbd149593d@arm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/24/2019 1:56 PM, Suzuki K Poulose wrote:
-> Sai,
+24.06.2019 6:02, Sowjanya Komatineni пишет:
+> This patch adds support for Tegra pinctrl driver suspend and resume.
 > 
-> Thanks for getting this done.
+> During suspend, context of all pinctrl registers are stored and
+> on resume they are all restored to have all the pinmux and pad
+> configuration for normal operation.
 > 
-> On 24/06/2019 04:36, Sai Prakash Ranjan wrote:
->> Coresight platform support assumes that a missing "cpu" phandle
->> defaults to CPU0. This could be problematic and unnecessarily binds
->> components to CPU0, where they may not be. Let us make the DT binding
->> rules a bit stricter by not defaulting to CPU0 for missing "cpu"
->> affinity information.
->>
->> Also in coresight etm and cpu-debug drivers, abort the probe
->> for such cases.
->>
->> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/pinctrl/tegra/pinctrl-tegra.c    | 47 ++++++++++++++++++++++++++++++++
+>  drivers/pinctrl/tegra/pinctrl-tegra.h    |  4 +++
+>  drivers/pinctrl/tegra/pinctrl-tegra210.c |  6 ++++
+>  3 files changed, 57 insertions(+)
 > 
-> Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c b/drivers/pinctrl/tegra/pinctrl-tegra.c
+> index b03c465917b8..c0ba6fa63ad1 100644
+> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
+> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
+> @@ -631,6 +631,38 @@ static void tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
+>  	}
+>  }
+>  
+> +int __maybe_unused tegra_pinctrl_suspend(struct device *dev)
 
-Thanks for the review Suzuki.
+The "maybe_unused" attribute isn't needed for global functions because
+compiler always assumes that such functions are used somewhere outside.
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+> +{
+> +	struct tegra_pmx *pmx = dev_get_drvdata(dev);
+> +	u32 *backup_regs = pmx->backup_regs;
+> +	u32 *regs;
+> +	unsigned int i, j;
+> +
+> +	for (i = 0; i < pmx->nbanks; i++) {
+> +		regs = pmx->regs[i];
+> +		for (j = 0; j < pmx->reg_bank_size[i] / 4; j++)
+> +			*backup_regs++ = readl(regs++);
+> +	}
+> +
+> +	return pinctrl_force_sleep(pmx->pctl);
+> +}
+> +
+> +int __maybe_unused tegra_pinctrl_resume(struct device *dev)
+> +{
+> +	struct tegra_pmx *pmx = dev_get_drvdata(dev);
+> +	u32 *backup_regs = pmx->backup_regs;
+> +	u32 *regs;
+> +	unsigned int i, j;
+> +
+> +	for (i = 0; i < pmx->nbanks; i++) {
+> +		regs = pmx->regs[i];
+> +		for (j = 0; j < pmx->reg_bank_size[i] / 4; j++)
+> +			writel(*backup_regs++, regs++);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static bool gpio_node_has_range(const char *compatible)
+>  {
+>  	struct device_node *np;
+> @@ -655,6 +687,7 @@ int tegra_pinctrl_probe(struct platform_device *pdev,
+>  	int i;
+>  	const char **group_pins;
+>  	int fn, gn, gfn;
+> +	unsigned long backup_regs_size = 0;
+>  
+>  	pmx = devm_kzalloc(&pdev->dev, sizeof(*pmx), GFP_KERNEL);
+>  	if (!pmx)
+> @@ -707,6 +740,7 @@ int tegra_pinctrl_probe(struct platform_device *pdev,
+>  		res = platform_get_resource(pdev, IORESOURCE_MEM, i);
+>  		if (!res)
+>  			break;
+> +		backup_regs_size += resource_size(res);
+>  	}
+>  	pmx->nbanks = i;
+>  
+> @@ -715,11 +749,24 @@ int tegra_pinctrl_probe(struct platform_device *pdev,
+>  	if (!pmx->regs)
+>  		return -ENOMEM;
+>  
+> +	pmx->reg_bank_size = devm_kcalloc(&pdev->dev, pmx->nbanks,
+> +					  sizeof(*pmx->reg_bank_size),
+> +					  GFP_KERNEL);
+> +	if (!pmx->reg_bank_size)
+> +		return -ENOMEM;
+> +
+> +	pmx->backup_regs = devm_kzalloc(&pdev->dev, backup_regs_size,
+> +					GFP_KERNEL);
+> +	if (!pmx->backup_regs)
+> +		return -ENOMEM;
+> +
+>  	for (i = 0; i < pmx->nbanks; i++) {
+>  		res = platform_get_resource(pdev, IORESOURCE_MEM, i);
+>  		pmx->regs[i] = devm_ioremap_resource(&pdev->dev, res);
+>  		if (IS_ERR(pmx->regs[i]))
+>  			return PTR_ERR(pmx->regs[i]);
+> +
+> +		pmx->reg_bank_size[i] = resource_size(res);
+>  	}
+>  
+>  	pmx->pctl = devm_pinctrl_register(&pdev->dev, &tegra_pinctrl_desc, pmx);
+> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.h b/drivers/pinctrl/tegra/pinctrl-tegra.h
+> index 32642af3f871..65fcbf8c7579 100644
+> --- a/drivers/pinctrl/tegra/pinctrl-tegra.h
+> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.h
+> @@ -17,6 +17,8 @@ struct tegra_pmx {
+>  
+>  	int nbanks;
+>  	void __iomem **regs;
+> +	size_t *reg_bank_size;
+> +	u32 *backup_regs;
+>  };
+>  
+>  enum tegra_pinconf_param {
+> @@ -195,4 +197,6 @@ struct tegra_pinctrl_soc_data {
+>  
+>  int tegra_pinctrl_probe(struct platform_device *pdev,
+>  			const struct tegra_pinctrl_soc_data *soc_data);
+> +int __maybe_unused tegra_pinctrl_suspend(struct device *dev);
+> +int __maybe_unused tegra_pinctrl_resume(struct device *dev);
+>  #endif
+> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra210.c b/drivers/pinctrl/tegra/pinctrl-tegra210.c
+> index 617ad963f5ad..4616bbc2efba 100644
+> --- a/drivers/pinctrl/tegra/pinctrl-tegra210.c
+> +++ b/drivers/pinctrl/tegra/pinctrl-tegra210.c
+> @@ -1562,6 +1562,11 @@ static int tegra210_pinctrl_probe(struct platform_device *pdev)
+>  	return tegra_pinctrl_probe(pdev, &tegra210_pinctrl);
+>  }
+>  
+> +static const struct dev_pm_ops tegra_pinctrl_pm = {
+> +	.suspend = &tegra_pinctrl_suspend,
+> +	.resume = &tegra_pinctrl_resume
+> +};
+
+What about to move tegra_pinctrl_pm out into pinctrl-tegra.c to make it
+common for all of the drivers?
