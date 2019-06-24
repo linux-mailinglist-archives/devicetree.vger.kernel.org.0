@@ -2,140 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 656A151946
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 19:06:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871E05198B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 19:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732290AbfFXRGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 13:06:20 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:35719 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732286AbfFXRGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 13:06:19 -0400
-Received: by mail-io1-f47.google.com with SMTP id m24so1177835ioo.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 10:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=iIXdeX2JiRmx4C9yHa4fiJw6+gLhZXZOz5wFmnOuZdE=;
-        b=jxF6qb/sV7LdwL/M+hfpYLQ7N5FXZV6n9NR3jTyAGA+GplqKPu7nlY6GaDSV5WogpJ
-         x5eIKLRlaYb94Or4C1um7mn7WyMOo4dBdef5p/nzVyUgjbyXrx8JH7EhAEca6FLfEfje
-         nyB4Moc3cuXQ0mGOOtjDIj4Yowe3z2ODg6M4k2rpxg1D/1N9whY5BWQw6//5kdkEdi++
-         Omw24Pvpq26FKnGtYJzLgnIvZHvyge1Woqy//RM3pArEUqeRr720cxBaRtcWL83at+Fi
-         iFRy/xrZO9pexKsKLe8Zyr1lGXPKKen7I1pj+mLedfcptv9lvd/L17l65g1nM3cIwimg
-         3tOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=iIXdeX2JiRmx4C9yHa4fiJw6+gLhZXZOz5wFmnOuZdE=;
-        b=ryH2CmUH3dlKR8fC6x3KkK2hGB00uTar+Q9WAtfnRII0o/wUnD+f4a2Enuhq6igU06
-         7LKcXZ9z0OqtAC+gMZ+Cful+CJp688arlxhVla+KzC0Ie0aCeUJEkppQmqYuM+d6QpS+
-         FjiWEG5fbMCdE2kXA+I99mdgBGrT+GzwhbrnwB1ufslSQR1jo6SN+fIWgYf0Je0NuQcz
-         9R1wj1ibohHRmUUvwqKD2dkWAhjOvodwB8LC8KLO2L1R9vDeM5ouDa80MFyj6icLpf6V
-         rG7hRIGjb44bNM/3G1uvAhjiECRgCbtsvXvv5hA+JqxRkopUe80wQ4LrPcXmRRPpDhws
-         Jhfg==
-X-Gm-Message-State: APjAAAXffKBBtLqEkIKzRvXIYVoJCCm3eFfvjc6QqbFqCEEcU5kRkpGd
-        0JoUyKDkNK29Um3NCdnZBLmN4Q==
-X-Google-Smtp-Source: APXvYqzVK8rqKQbqdwhHrTlxmKezzfLMdoJwvbpSG0OfjEOVBy5BTJ9p5dUhS23rTre1cQZCfpntYA==
-X-Received: by 2002:a6b:8bce:: with SMTP id n197mr18564360iod.299.1561395978680;
-        Mon, 24 Jun 2019 10:06:18 -0700 (PDT)
-Received: from [172.22.22.26] (c-71-195-29-92.hsd1.mn.comcast.net. [71.195.29.92])
-        by smtp.googlemail.com with ESMTPSA id z1sm24593121ioh.52.2019.06.24.10.06.17
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jun 2019 10:06:18 -0700 (PDT)
-Subject: Re: WWAN Controller Framework (was IPA [PATCH v2 00/17])
-From:   Alex Elder <elder@linaro.org>
-To:     davem@davemloft.net, arnd@arndb.de, bjorn.andersson@linaro.org,
-        ilias.apalodimas@linaro.org, Dan Williams <dcbw@redhat.com>,
-        Johannes Berg <johannes@sipsolutions.net>
-Cc:     evgreen@chromium.org, benchan@google.com, ejcaruso@google.com,
-        cpratapa@codeaurora.org, syadagir@codeaurora.org,
-        subashab@codeaurora.org, abhishek.esse@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-References: <20190531035348.7194-1-elder@linaro.org>
- <23ff4cce-1fee-98ab-3608-1fd09c2d97f1@linaro.org>
-Message-ID: <6dae9d1c-ceae-7e88-fe61-f4cda82820ea@linaro.org>
-Date:   Mon, 24 Jun 2019 12:06:16 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
-MIME-Version: 1.0
-In-Reply-To: <23ff4cce-1fee-98ab-3608-1fd09c2d97f1@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+        id S1732460AbfFXR3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 13:29:30 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:58092 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726009AbfFXR33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 13:29:29 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 5520C15065090;
+        Mon, 24 Jun 2019 10:29:28 -0700 (PDT)
+Date:   Mon, 24 Jun 2019 10:29:27 -0700 (PDT)
+Message-Id: <20190624.102927.1268781741493594465.davem@davemloft.net>
+To:     megous@megous.com
+Cc:     linux-sunxi@googlegroups.com, maxime.ripard@bootlin.com,
+        wens@csie.org, robh+dt@kernel.org, jernej.skrabec@gmail.com,
+        airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
+        peppe.cavallaro@st.com, alexandre.torgue@st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v7 0/6] Add support for Orange Pi 3
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190620134748.17866-1-megous@megous.com>
+References: <20190620134748.17866-1-megous@megous.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 24 Jun 2019 10:29:29 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry, I neglected to add Dan and Johannes--who have been
-primary contributors in this discussion--to this.  Adding now.
+From: megous@megous.com
+Date: Thu, 20 Jun 2019 15:47:42 +0200
 
-					-Alex
+> From: Ondrej Jirman <megous@megous.com>
+> 
+> This series implements support for Xunlong Orange Pi 3 board.
+> 
+> - ethernet support (patches 1-3)
+> - HDMI support (patches 4-6)
+> 
+> For some people, ethernet doesn't work after reboot (but works on cold
+> boot), when the stmmac driver is built into the kernel. It works when
+> the driver is built as a module. It's either some timing issue, or power
+> supply issue or a combination of both. Module build induces a power
+> cycling of the phy.
+> 
+> I encourage people with this issue, to build the driver into the kernel,
+> and try to alter the reset timings for the phy in DTS or
+> startup-delay-us and report the findings.
 
-On 6/24/19 11:30 AM, Alex Elder wrote:
-> OK I want to try to organize a little more concisely some of the
-> discussion on this, because there is a very large amount of volume
-> to date and I think we need to try to narrow the focus back down
-> again.
-> 
-> I'm going to use a few terms here.  Some of these I really don't
-> like, but I want to be unambiguous *and* (at least for now) I want
-> to avoid the very overloaded term "device".
-> 
-> I have lots more to say, but let's start with a top-level picture,
-> to make sure we're all on the same page.
-> 
->          WWAN Communication
->          Channel (Physical)
->                  |     ------------------------
-> ------------     v     |           :+ Control |  \
-> |          |-----------|           :+ Data    |  |
-> |    AP    |           | WWAN unit :+ Voice   |   > Functions
-> |          |===========|           :+ GPS     |  |
-> ------------     ^     |           :+ ...     |  /
->                  |     -------------------------
->           Multiplexed WWAN
->            Communication
->          Channel (Physical)
-> 
-> - The *AP* is the main CPU complex that's running Linux on one or
->   more CPU cores.
-> - A *WWAN unit* is an entity that shares one or more physical
->   *WWAN communication channels* with the AP.
-> - A *WWAN communication channel* is a bidirectional means of
->   carrying data between the AP and WWAN unit.
-> - A WWAN communication channel carries data using a *WWAN protocol*.
-> - A WWAN unit implements one or more *WWAN functions*, such as
->   5G data, LTE voice, GPS, and so on.
-> - A WWAN unit shall implement a *WWAN control function*, used to
->   manage the use of other WWAN functions, as well as the WWAN unit
->   itself.
-> - The AP communicates with a WWAN function using a WWAN protocol.
-> - A WWAN physical channel can be *multiplexed*, in which case it
->   carries the data for one or more *WWAN logical channels*.
-> - A multiplexed WWAN communication channel uses a *WWAN wultiplexing
->   protocol*, which is used to separate independent data streams
->   carrying other WWAN protocols.
-> - A WWAN logical channel carries a bidirectional stream of WWAN
->   protocol data between an entity on the AP and a WWAN function.
-> 
-> Does that adequately represent a very high-level picture of what
-> we're trying to manage?
-> 
-> And if I understand it right, the purpose of the generic framework
-> being discussed is to define a common mechanism for managing (i.e.,
-> discovering, creating, destroying, querying, configuring, enabling,
-> disabling, etc.) WWAN units and the functions they implement, along
-> with the communication and logical channels used to communicate with
-> them.
-> 
-> Comments?
-> 
-> 					-Alex
-> 
+This is a mixture of networking and non-networking changes so it really
+can't go through my tree.
 
+I wonder how you expect this series to be merged?
+
+Thanks.
