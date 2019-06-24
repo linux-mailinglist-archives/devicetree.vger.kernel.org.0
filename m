@@ -2,402 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52922519F3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 19:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FE265199C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2019 19:34:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727833AbfFXRsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 13:48:42 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:16981 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726351AbfFXRsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 13:48:42 -0400
-X-Greylist: delayed 721 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 Jun 2019 13:48:38 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1561398518;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=RehZXsnljfL8W9aIVqKOS4/ODAMLUOzzTFbzPcaNzvY=;
-        b=NL6r5vIbSPlpxtjmBOGHdsPfQnnZmZ33oyfMGfoGVsVNzrz6ssUbODf7o56zCtGxhM
-        bzkort4GMKNbaqtP5CxJ/Y6e4WFEAPVg+WFzgt75GgBb7fSzRwnGXxrKqtPbYmixyaYp
-        fBY+ZMz8g4SeZixhd3rMromWtiED9C90i3HPRNHZsN59qu6W/uXMmYUrf49L92kOlDy8
-        KM/C37fe4jO22ACcIVkK4v5Vj7WlDLa9OuK2a9SRi8S9C9QEIkoPvXV6bF08A4wlob/P
-        uUzqyscW0lylytDrGau3uC2UhPXkMBKt4WqAtXAXhe/sYrOyc1Xwy3yRTZu4J1zbGIfj
-        vOgA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQrEOHTIXuMzvsRY1"
-X-RZG-CLASS-ID: mo00
-Received: from localhost.localdomain
-        by smtp.strato.de (RZmta 44.24 AUTH)
-        with ESMTPSA id m0a13fv5OHaWSFD
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Mon, 24 Jun 2019 19:36:32 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [RFC PATCH] arm64: dts: qcom: Add device tree for Samsung Galaxy A3U/A5U
-Date:   Mon, 24 Jun 2019 19:33:43 +0200
-Message-Id: <20190624173341.5826-1-stephan@gerhold.net>
-X-Mailer: git-send-email 2.22.0
+        id S1732492AbfFXReP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 13:34:15 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:13975 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731032AbfFXReP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 13:34:15 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d1109970001>; Mon, 24 Jun 2019 10:34:15 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 24 Jun 2019 10:34:12 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 24 Jun 2019 10:34:12 -0700
+Received: from [10.110.103.70] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 24 Jun
+ 2019 17:34:12 +0000
+Subject: Re: [PATCH V4 02/18] pinctrl: tegra: add suspend and resume support
+To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
+        <linus.walleij@linaro.org>, <stefan@agner.ch>,
+        <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1561345379-2429-1-git-send-email-skomatineni@nvidia.com>
+ <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
+ <a03ce644-5efd-e721-fb06-16de097171bb@gmail.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <896de0f3-78b0-c5fc-9b74-fee442ab116c@nvidia.com>
+Date:   Mon, 24 Jun 2019 10:34:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <a03ce644-5efd-e721-fb06-16de097171bb@gmail.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1561397655; bh=NzR/wiwTNPCcINgNHsCVZEHZMVxCY29TCrZerR9QRUg=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=Q9j9IBGNeI+g8G/tmUEY8cIhD5DVdPRB7f001esMoAO0hpgulln/fBM2fT/wGSprP
+         jLFHAh3j8tptctGrM4a2k8qQ++h/ufDa/gRbRAkmYrY5H9rYDmkH4F2sRu1g16klfp
+         5vRfTbztrD3jqqKgpt/ehyDPASwzePTTOuvD2iD8jzeC+uPkY1oRwb6zRJo+EU4tsh
+         Ig07euNsRugFmWu7ROXq/MZZGtKnna6Hijbfa52tDolPRrCIjSk6/04gMYsMclWN3A
+         HRqYX+KxHTAHbiKHGuRJYPTH6IfH0bPsyQEqw9grqVEanPUw2mYqWrlt4Qm8sERjnM
+         Uqor3FN4ST5TQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy A3 (SM-A300FU) and Samsung Galaxy A5 (SM-A500FU)
-are smartphones using the MSM8916 SoC released in 2015.
 
-Add a device tree for A3U and A5U with initial support for:
-  - SDHCI (internal and external storage)
-  - USB Device Mode
-  - UART (on USB connector via the SM5502 MUIC)
-  - Regulators
-
-The two devices (and all other variants of A3/A5 released in 2015)
-are very similar, with some differences in display, touchscreen
-and sensors. The common parts are shared in
-msm8916-samsung-a2015-common.dtsi to reduce duplication.
-
-The device tree is loosely based on apq8016-sbc.dtsi and the
-downstream kernel provided by Samsung, mixed with a lot of own
-research.
-
-Co-developed-by: Michael Srba <Michael.Srba@seznam.cz>
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-The idea is to leverage the efforts that went into mainline for
-the Dragonboard 410c. So far this is going quite well.
-
-In addition to the functionality provided by this patch,
-the following features also seem to work in initial tests:
-
-  - Display/GPU
-  - Touchscreen
-  - Sound (Earpiece and Headphones)
-  - Accelerometer + Magnetometer
-
-Those will be added in future patch sets.
-
-The primary known limitation is the lack of PSCI support in the
-signed TrustZone firmware. It seems like all production MSM8916
-smartphones were released without PSCI support, and only DB410c
-was updated. Not sure if there is any good solution for this...
-
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../msm8916-samsung-a2015-common-pins.dtsi    |  15 ++
- .../qcom/msm8916-samsung-a2015-common.dtsi    | 226 ++++++++++++++++++
- .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts |  10 +
- .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |  10 +
- 5 files changed, 263 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common-pins.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index b3fe72ff2955..d07d9098cccf 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -3,6 +3,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a3u-eur.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common-pins.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common-pins.dtsi
-new file mode 100644
-index 000000000000..58e0d827526d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common-pins.dtsi
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+&msmgpio {
-+	muic_int_default: muic_int_default {
-+		pinmux {
-+			function = "gpio";
-+			pins = "gpio12";
-+		};
-+		pinconf {
-+			pins = "gpio12";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-new file mode 100644
-index 000000000000..e756b6a39fe9
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-@@ -0,0 +1,226 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8916.dtsi"
-+#include "pm8916.dtsi"
-+#include "msm8916-samsung-a2015-common-pins.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	aliases {
-+		serial0 = &blsp1_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	soc {
-+		i2c-muic {
-+			compatible = "i2c-gpio";
-+			sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+			scl-gpios = <&msmgpio 106 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			muic: sm5502@25 {
-+				compatible = "siliconmitus,sm5502-muic";
-+
-+				reg = <0x25>;
-+				interrupt-parent = <&msmgpio>;
-+				interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&muic_int_default>;
-+			};
-+		};
-+
-+		sdhci@7824000 {
-+			status = "okay";
-+
-+			vmmc-supply = <&pm8916_l8>;
-+			vqmmc-supply = <&pm8916_l5>;
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
-+			pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
-+		};
-+
-+		sdhci@7864000 {
-+			status = "okay";
-+
-+			vmmc-supply = <&pm8916_l11>;
-+			vqmmc-supply = <&pm8916_l12>;
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-+			pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-+
-+			cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		serial@78b0000 {
-+			status = "okay";
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&blsp1_uart2_default>;
-+			pinctrl-1 = <&blsp1_uart2_sleep>;
-+		};
-+
-+		usb@78d9000 {
-+			status = "okay";
-+			extcon = <&muic>;
-+
-+			hnp-disable;
-+			srp-disable;
-+			adp-disable;
-+
-+			ulpi {
-+				phy {
-+					extcon = <&muic>;
-+					v1p8-supply = <&pm8916_l7>;
-+					v3p3-supply = <&pm8916_l13>;
-+				};
-+			};
-+		};
-+
-+		/*
-+		 * Attempting to enable these devices causes a "synchronous
-+		 * external abort". Suspected cause is that the debug power
-+		 * domain is not enabled by default on this device.
-+		 * Disable these devices for now to avoid the crash.
-+		 *
-+		 * See: https://lore.kernel.org/linux-arm-msm/20190618202623.GA53651@gerhold.net/
-+		 */
-+		tpiu@820000 { status = "disabled"; };
-+		funnel@821000 { status = "disabled"; };
-+		replicator@824000 { status = "disabled"; };
-+		etf@825000 { status = "disabled"; };
-+		etr@826000 { status = "disabled"; };
-+		funnel@841000 { status = "disabled"; };
-+		debug@850000 { status = "disabled"; };
-+		debug@852000 { status = "disabled"; };
-+		debug@854000 { status = "disabled"; };
-+		debug@856000 { status = "disabled"; };
-+		etm@85c000 { status = "disabled"; };
-+		etm@85d000 { status = "disabled"; };
-+		etm@85e000 { status = "disabled"; };
-+		etm@85f000 { status = "disabled"; };
-+	};
-+};
-+
-+&smd_rpm_regulators {
-+	vdd_l1_l2_l3-supply = <&pm8916_s3>;
-+	vdd_l4_l5_l6-supply = <&pm8916_s4>;
-+	vdd_l7-supply = <&pm8916_s4>;
-+
-+	s1 {
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <1300000>;
-+	};
-+
-+	s3 {
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1300000>;
-+	};
-+
-+	s4 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	l1 {
-+		regulator-min-microvolt = <1225000>;
-+		regulator-max-microvolt = <1225000>;
-+	};
-+
-+	l2 {
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+	l3 {
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <1287500>;
-+	};
-+
-+	l4 {
-+		regulator-min-microvolt = <2050000>;
-+		regulator-max-microvolt = <2050000>;
-+	};
-+
-+	l5 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	l6 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	l7 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	l8 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2900000>;
-+	};
-+
-+	l9 {
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l10 {
-+		regulator-min-microvolt = <2700000>;
-+		regulator-max-microvolt = <2800000>;
-+	};
-+
-+	l11 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <2950000>;
-+		regulator-allow-set-load;
-+		regulator-system-load = <200000>;
-+	};
-+
-+	l12 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <2950000>;
-+	};
-+
-+	l13 {
-+		regulator-min-microvolt = <3075000>;
-+		regulator-max-microvolt = <3075000>;
-+	};
-+
-+	l14 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l15 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l16 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <3100000>;
-+	};
-+
-+	l18 {
-+		regulator-min-microvolt = <2700000>;
-+		regulator-max-microvolt = <2700000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-new file mode 100644
-index 000000000000..d10f7ac5089f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-a2015-common.dtsi"
-+
-+/ {
-+	model = "Samsung Galaxy A3U (EUR)";
-+	compatible = "samsung,a3u-eur", "qcom,msm8916";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-new file mode 100644
-index 000000000000..1aa59da98495
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-a2015-common.dtsi"
-+
-+/ {
-+	model = "Samsung Galaxy A5U (EUR)";
-+	compatible = "samsung,a5u-eur", "qcom,msm8916";
-+};
--- 
-2.22.0
-
+On 6/24/19 2:46 AM, Dmitry Osipenko wrote:
+> 24.06.2019 6:02, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> This patch adds support for Tegra pinctrl driver suspend and resume.
+>>
+>> During suspend, context of all pinctrl registers are stored and
+>> on resume they are all restored to have all the pinmux and pad
+>> configuration for normal operation.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   drivers/pinctrl/tegra/pinctrl-tegra.c    | 47 ++++++++++++++++++++++++=
+++++++++
+>>   drivers/pinctrl/tegra/pinctrl-tegra.h    |  4 +++
+>>   drivers/pinctrl/tegra/pinctrl-tegra210.c |  6 ++++
+>>   3 files changed, 57 insertions(+)
+>>
+>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c b/drivers/pinctrl/teg=
+ra/pinctrl-tegra.c
+>> index b03c465917b8..c0ba6fa63ad1 100644
+>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
+>> @@ -631,6 +631,38 @@ static void tegra_pinctrl_clear_parked_bits(struct =
+tegra_pmx *pmx)
+>>   	}
+>>   }
+>>  =20
+>> +int __maybe_unused tegra_pinctrl_suspend(struct device *dev)
+> The "maybe_unused" attribute isn't needed for global functions because
+> compiler always assumes that such functions are used somewhere outside.
+Will fix this in V5
+>> +{
+>> +	struct tegra_pmx *pmx =3D dev_get_drvdata(dev);
+>> +	u32 *backup_regs =3D pmx->backup_regs;
+>> +	u32 *regs;
+>> +	unsigned int i, j;
+>> +
+>> +	for (i =3D 0; i < pmx->nbanks; i++) {
+>> +		regs =3D pmx->regs[i];
+>> +		for (j =3D 0; j < pmx->reg_bank_size[i] / 4; j++)
+>> +			*backup_regs++ =3D readl(regs++);
+>> +	}
+>> +
+>> +	return pinctrl_force_sleep(pmx->pctl);
+>> +}
+>> +
+>> +int __maybe_unused tegra_pinctrl_resume(struct device *dev)
+>> +{
+>> +	struct tegra_pmx *pmx =3D dev_get_drvdata(dev);
+>> +	u32 *backup_regs =3D pmx->backup_regs;
+>> +	u32 *regs;
+>> +	unsigned int i, j;
+>> +
+>> +	for (i =3D 0; i < pmx->nbanks; i++) {
+>> +		regs =3D pmx->regs[i];
+>> +		for (j =3D 0; j < pmx->reg_bank_size[i] / 4; j++)
+>> +			writel(*backup_regs++, regs++);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static bool gpio_node_has_range(const char *compatible)
+>>   {
+>>   	struct device_node *np;
+>> @@ -655,6 +687,7 @@ int tegra_pinctrl_probe(struct platform_device *pdev=
+,
+>>   	int i;
+>>   	const char **group_pins;
+>>   	int fn, gn, gfn;
+>> +	unsigned long backup_regs_size =3D 0;
+>>  =20
+>>   	pmx =3D devm_kzalloc(&pdev->dev, sizeof(*pmx), GFP_KERNEL);
+>>   	if (!pmx)
+>> @@ -707,6 +740,7 @@ int tegra_pinctrl_probe(struct platform_device *pdev=
+,
+>>   		res =3D platform_get_resource(pdev, IORESOURCE_MEM, i);
+>>   		if (!res)
+>>   			break;
+>> +		backup_regs_size +=3D resource_size(res);
+>>   	}
+>>   	pmx->nbanks =3D i;
+>>  =20
+>> @@ -715,11 +749,24 @@ int tegra_pinctrl_probe(struct platform_device *pd=
+ev,
+>>   	if (!pmx->regs)
+>>   		return -ENOMEM;
+>>  =20
+>> +	pmx->reg_bank_size =3D devm_kcalloc(&pdev->dev, pmx->nbanks,
+>> +					  sizeof(*pmx->reg_bank_size),
+>> +					  GFP_KERNEL);
+>> +	if (!pmx->reg_bank_size)
+>> +		return -ENOMEM;
+>> +
+>> +	pmx->backup_regs =3D devm_kzalloc(&pdev->dev, backup_regs_size,
+>> +					GFP_KERNEL);
+>> +	if (!pmx->backup_regs)
+>> +		return -ENOMEM;
+>> +
+>>   	for (i =3D 0; i < pmx->nbanks; i++) {
+>>   		res =3D platform_get_resource(pdev, IORESOURCE_MEM, i);
+>>   		pmx->regs[i] =3D devm_ioremap_resource(&pdev->dev, res);
+>>   		if (IS_ERR(pmx->regs[i]))
+>>   			return PTR_ERR(pmx->regs[i]);
+>> +
+>> +		pmx->reg_bank_size[i] =3D resource_size(res);
+>>   	}
+>>  =20
+>>   	pmx->pctl =3D devm_pinctrl_register(&pdev->dev, &tegra_pinctrl_desc, =
+pmx);
+>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.h b/drivers/pinctrl/teg=
+ra/pinctrl-tegra.h
+>> index 32642af3f871..65fcbf8c7579 100644
+>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.h
+>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.h
+>> @@ -17,6 +17,8 @@ struct tegra_pmx {
+>>  =20
+>>   	int nbanks;
+>>   	void __iomem **regs;
+>> +	size_t *reg_bank_size;
+>> +	u32 *backup_regs;
+>>   };
+>>  =20
+>>   enum tegra_pinconf_param {
+>> @@ -195,4 +197,6 @@ struct tegra_pinctrl_soc_data {
+>>  =20
+>>   int tegra_pinctrl_probe(struct platform_device *pdev,
+>>   			const struct tegra_pinctrl_soc_data *soc_data);
+>> +int __maybe_unused tegra_pinctrl_suspend(struct device *dev);
+>> +int __maybe_unused tegra_pinctrl_resume(struct device *dev);
+>>   #endif
+>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra210.c b/drivers/pinctrl/=
+tegra/pinctrl-tegra210.c
+>> index 617ad963f5ad..4616bbc2efba 100644
+>> --- a/drivers/pinctrl/tegra/pinctrl-tegra210.c
+>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra210.c
+>> @@ -1562,6 +1562,11 @@ static int tegra210_pinctrl_probe(struct platform=
+_device *pdev)
+>>   	return tegra_pinctrl_probe(pdev, &tegra210_pinctrl);
+>>   }
+>>  =20
+>> +static const struct dev_pm_ops tegra_pinctrl_pm =3D {
+>> +	.suspend =3D &tegra_pinctrl_suspend,
+>> +	.resume =3D &tegra_pinctrl_resume
+>> +};
+> What about to move tegra_pinctrl_pm out into pinctrl-tegra.c to make it
+> common for all of the drivers?
+OK, Will do that in V5
