@@ -2,143 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D7655157
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:15:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC255516B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726659AbfFYOPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 10:15:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42262 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728252AbfFYOPc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 10:15:32 -0400
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 971C021655;
-        Tue, 25 Jun 2019 14:15:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561472130;
-        bh=CSPPQvXxxLJHjaf7mkYaItL0XCi+kuQqJ8aFZvaSQm4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=V8WtBeSoOtEfNzciSHEA3eF3ej1jkECegr5DZ2OYjOzIPhWsp2Qh/VZPOSVHXnl1s
-         l4cBB1coaSY9tOZx5+pqs2pK4cFlxPurht3JDscmUVkCZchTb663MaJM8pc/6EROaj
-         vN1AoNoU+XADmmdcbUoLpBqIrw9UguN76bgTpxog=
-Received: by mail-qk1-f179.google.com with SMTP id l128so12698492qke.2;
-        Tue, 25 Jun 2019 07:15:30 -0700 (PDT)
-X-Gm-Message-State: APjAAAUoz84m8BghnQeugmYDYcfAq58XWwR2kwTQ+Ohc74JHOqsIPPtW
-        FRwyZMEwTNmX+nfMK5ynecfZYPIOfCiZM89OGA==
-X-Google-Smtp-Source: APXvYqxa6TVufszE/k5zs2VqtcN0LZDhjRXpJC1lxui07oIGK8cq4yrxwm2/cWvAG89bDUtj9YcBt3/wHOVAhSm8bTM=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr55002727qke.223.1561472129808;
- Tue, 25 Jun 2019 07:15:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190624215649.8939-1-robh@kernel.org> <20190624215649.8939-7-robh@kernel.org>
- <20190625075542.u5kzex4cbrcss5ga@flea>
-In-Reply-To: <20190625075542.u5kzex4cbrcss5ga@flea>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 25 Jun 2019 08:15:18 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+OgNgS7yVgZaVLEo6=OeS9R9ebgBpUbPxz609C7G9oOw@mail.gmail.com>
-Message-ID: <CAL_Jsq+OgNgS7yVgZaVLEo6=OeS9R9ebgBpUbPxz609C7G9oOw@mail.gmail.com>
-Subject: Re: [PATCH v2 06/15] dt-bindings: display: Convert dlc,dlc0700yzg-1
- panel to DT schema
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
+        id S1729335AbfFYOUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 10:20:08 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:36574 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727070AbfFYOUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 10:20:08 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1hfmId-0005Mb-Le; Tue, 25 Jun 2019 16:19:55 +0200
+Message-ID: <efbcb3b84ff0a7d7eab875c37f3a5fa77e21d324.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Arnd Bergmann <arnd@arndb.de>, Alex Elder <elder@linaro.org>
+Cc:     Dan Williams <dcbw@redhat.com>,
+        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Date:   Tue, 25 Jun 2019 16:19:54 +0200
+In-Reply-To: <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com> (sfid-20190624_184119_378618_FFFDB00F)
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+         <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+         <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
+         <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+         <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+         <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
+         <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
+         <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+         <d533b708-c97a-710d-1138-3ae79107f209@linaro.org>
+         <abdfc6b3a9981bcdef40f85f5442a425ce109010.camel@sipsolutions.net>
+         <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org>
+         <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com>
+         (sfid-20190624_184119_378618_FFFDB00F)
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-3.fc28) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 1:55 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Hi,
->
-> On Mon, Jun 24, 2019 at 03:56:40PM -0600, Rob Herring wrote:
-> > Convert the dlc,dlc0700yzg-1 panel binding to DT schema.
-> >
-> > Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../display/panel/dlc,dlc0700yzg-1.txt        | 13 ---------
-> >  .../display/panel/dlc,dlc0700yzg-1.yaml       | 28 +++++++++++++++++++
-> >  2 files changed, 28 insertions(+), 13 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.txt
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.txt b/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.txt
-> > deleted file mode 100644
-> > index bf06bb025b08..000000000000
-> > --- a/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.txt
-> > +++ /dev/null
-> > @@ -1,13 +0,0 @@
-> > -DLC Display Co. DLC0700YZG-1 7.0" WSVGA TFT LCD panel
-> > -
-> > -Required properties:
-> > -- compatible: should be "dlc,dlc0700yzg-1"
-> > -- power-supply: See simple-panel.txt
-> > -
-> > -Optional properties:
-> > -- reset-gpios: See panel-common.txt
-> > -- enable-gpios: See simple-panel.txt
-> > -- backlight: See simple-panel.txt
-> > -
-> > -This binding is compatible with the simple-panel binding, which is specified
-> > -in simple-panel.txt in this directory.
-> > diff --git a/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml b/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
-> > new file mode 100644
-> > index 000000000000..1b0b63d46f3e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
-> > @@ -0,0 +1,28 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/dlc,dlc0700yzg-1.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: DLC Display Co. DLC0700YZG-1 7.0" WSVGA TFT LCD panel
-> > +
-> > +maintainers:
-> > +  - Philipp Zabel <p.zabel@pengutronix.de>
-> > +  - Thierry Reding <thierry.reding@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: dlc,dlc0700yzg-1
-> > +
-> > +  reset-gpios: true
-> > +  enable-gpios: true
-> > +  backlight: true
->
-> Do we need to list them?
->
-> Since we don't have additionalItems, it doesn't really change anything
-> since it will be validated by panel-common.
+On Mon, 2019-06-24 at 18:40 +0200, Arnd Bergmann wrote:
+> On Mon, Jun 24, 2019 at 6:21 PM Alex Elder <elder@linaro.org> wrote:
+> > On 6/18/19 2:03 PM, Johannes Berg wrote:
+> > 
+> > > Really there are two possible ways (and they intersect to some extent).
+> > > 
+> > > One is the whole multi-function device, where a single WWAN device is
+> > > composed of channels offered by actually different drivers, e.g. for a
+> > > typical USB device you might have something like cdc_ether and the
+> > > usb_wwan TTY driver. In this way, we need to "compose" the WWAN device
+> > > similarly, e.g. by using the underlying USB device "struct device"
+> > > pointer to tie it together.
+> > 
+> > I *think* this model makes the most sense.  But at this point
+> > it would take very little to convince me otherwise...  (And then
+> > I saw Arnd's message advocating the other one, unfortunately...)
+> > 
+> > > The other is something like IPA or the Intel modem driver, where the
+> > > device is actually a single (e.g. PCIe) device and just has a single
+> > > driver, but that single driver offers different channels.
+> > 
+> > What I don't like about this is that it's more monolithic.  It
+> > seems better to have the low-level IPA or Intel modem driver (or
+> > any other driver that can support communication between the AP
+> > and WWAN device) present communication paths that other function-
+> > specific drivers can attach to and use.
+> 
+> I did not understand Johannes description as two competing models
+> for the same code, but rather two kinds of existing hardware that
+> a new driver system would have to deal with.
 
-I've gone back and forth on it. I think we need to express what
-properties from the common properties apply for a particular panel.
-I've been requiring panel bindings to be explicit here rather than
-just say "uses the simple-panel binding." For example, if
-'power-supply' is not listed, does the panel have a single supply or
-multiple supplies that haven't haven't been considered?
+Right.
 
-> Either way, it should be consistent between your patches, and the
-> previous patches in this series didn't list all the properties in the
-> binding.
+> I was trying to simplify it to just having the second model, by adding
+> a hack to support the first, but my view was rather unpopular so
+> far, so if everyone agrees on one way to do it, don't worry about me ;-)
 
-Indeed.
+:-)
 
-Rob
+However, to also reply to Alex: I don't know exactly how IPA works, but
+for the Intel modem at least you can't fundamentally have two drivers
+for different parts of the functionality, since it's just a single piece
+of hardware and you need to allocate hardware resources from a common
+pool etc. So you cannot split the driver into "Intel modem control
+channel driver" and "Intel modem data channel driver". In fact, it's
+just a single "struct device" on the PCIe bus that you can bind to, and
+only one driver can bind at a time.
+
+So, IOW, I'm not sure I see how you'd split that up. I guess you could
+if you actually do something like the "rmnet" model, and I suppose
+you're free to do that for IPA if you like, but I tend to think that's
+actually a burden, not a win since you just get more complex code that
+needs to interact with more pieces. A single driver for a single
+hardware that knows about the few types of channels seems simpler to me.
+
+> - to answer Johannes question, my understanding is that the interface
+>   between kernel and firmware/hardware for IPA has a single 'struct
+>   device' that is used for both the data and the control channels,
+>   rather than having a data channel and an independent control device,
+>   so this falls into the same category as the Intel one (please correct
+>   me on that)
+
+That sounds about the same then, right.
+
+Are the control channels to IPA are actually also tunnelled over the
+rmnet protocol? And even if they are, perhaps they have a different
+hardware queue or so? That'd be the case for Intel - different hardware
+queue, same (or at least similar) protocol spoken for the DMA hardware
+itself, but different contents of the messages obviously.
+
+> - The user space being proprietary is exactly what we need to avoid
+>   with the wwan subsystem. We need to be able to use the same
+>   method for setting up Intel, Qualcomm, Samsung, Unisoc or
+>   Hisilicon modems or anything else that hooks into the subsystem,
+>   and support that in network manager as well as the Android
+>   equivalent.
+>   If Qualcomm wants to provide their own proprietary user space
+>   solution, we can't stop them, but then that should also work on
+>   all the others unless they intentionally break it. ;-)
+
+:-)
+
+I tend to think there's always going to be some level of specific
+handling here, because e.g. the Intel modem can expose MBIM or AT
+command control channels, but not much else (that'd be useful for us
+anyway, since we don't know how to speak debug protocol etc.). Other
+modems will expose *only* AT commands, or *only* MBIM, and yet others
+may also offer QMI and then that might be preferable.
+
+> > > and simply require that the channel is attached to the wwan device with
+> > > the representation-specific call (wwan_attach_netdev, wwan_attach_tty,
+> > > ...).
+> > 
+> > Or maybe have the WWAN device present interfaces with attributes,
+> > and have drivers that are appropriate for each interface attach
+> > to only the ones they recognize they support.
+> 
+> I think you both mean the same thing here, a structure with callback
+> pointers that may or may not be filled by the driver depending on its
+> capabilities.
+
+:-)
+
+> What we should try to avoid though is a way to add driver private
+> interfaces that risk having multiple drivers create similar functionality
+> in incompatible ways.
+
+Right.
+
+johannes
+
