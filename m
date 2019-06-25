@@ -2,66 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6DF252824
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 372035283D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728030AbfFYJcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 05:32:07 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:49503 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728768AbfFYJcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 05:32:06 -0400
-X-Originating-IP: 90.65.161.137
-Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr [90.65.161.137])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 96A0224000D;
-        Tue, 25 Jun 2019 09:31:57 +0000 (UTC)
-Date:   Tue, 25 Jun 2019 11:31:56 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Eugen.Hristev@microchip.com
-Cc:     peda@axentia.se, robh+dt@kernel.org, mark.rutland@arm.com,
-        Nicolas.Ferre@microchip.com, Ludovic.Desroches@microchip.com,
-        wsa@the-dreams.de, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] dt-bindings: i2c: at91: add binding for
- enable-ana-filt
-Message-ID: <20190625093156.GF5690@piout.net>
-References: <1561449642-26956-1-git-send-email-eugen.hristev@microchip.com>
- <1561449642-26956-7-git-send-email-eugen.hristev@microchip.com>
- <4e81d3c9-25f3-ca6e-f2d5-17fad5905bb8@axentia.se>
- <84628b5e-bea7-7d91-f790-f3a2650040fa@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <84628b5e-bea7-7d91-f790-f3a2650040fa@microchip.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+        id S1731646AbfFYJjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 05:39:31 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:33783 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728860AbfFYJjb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 05:39:31 -0400
+Received: by mail-pg1-f194.google.com with SMTP id m4so8077399pgk.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 02:39:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=hRi4ajiGUFKeMzAjuhkh1DNYz0dIJRV7lfjpx0rM/iM=;
+        b=odIajRsY6r2NF54OaBwCB+BsUDXSO9DNsNYRhMW0jMWkx7YmG/7/b6e5621mDDn68O
+         9xuQYj06n2U48X2fKiXLenv5Xis1YXbh7VoIqOSCEXch4/XJE5y3+x9+XSgN4vGgNPKD
+         7JzIMo8CmJj5GBV79ownYDFfSM2riIJIKZfQSP6DMidlRkeV9knBr7uMy5KUF0j+m/IW
+         vGhK06KzDMPbw2A0wwJrn2L6HeE+RaM6BHMMYUop9hDkSWfOlSOcpsp2DStpZ/eFK/SJ
+         cksa/X0T4zFrJ+Vum7GU2m07qF16/BzIxxYXyvbftcyf8+JnMzigaJxqOKECSWlE47wU
+         oPKw==
+X-Gm-Message-State: APjAAAUGU73CHdyDI584ZjwWWQDXSnlJCBlyJF76F2xk2ghggJD5oI8Q
+        J1sK+1raVnP8fDYFCM4U+HoO8A==
+X-Google-Smtp-Source: APXvYqybMotW0khjdQiV50T7VJy2vvzENYimZUiiJRHH4JCUBgizc2REGnBc7XVUCjvIwL26rpXvHg==
+X-Received: by 2002:a17:90a:bb94:: with SMTP id v20mr31266695pjr.88.1561455570111;
+        Tue, 25 Jun 2019 02:39:30 -0700 (PDT)
+Received: from localhost (220-132-236-182.HINET-IP.hinet.net. [220.132.236.182])
+        by smtp.gmail.com with ESMTPSA id p6sm13409409pgs.77.2019.06.25.02.39.29
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 25 Jun 2019 02:39:29 -0700 (PDT)
+Date:   Tue, 25 Jun 2019 02:39:29 -0700 (PDT)
+X-Google-Original-Date: Tue, 25 Jun 2019 02:38:09 PDT (-0700)
+Subject:     Re: [PATCH] riscv: Add cpu topology DT entry.
+In-Reply-To: <20190624223819.14320-1-atish.patra@wdc.com>
+CC:     linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
+        anup@brainfault.org, Atish Patra <Atish.Patra@wdc.com>,
+        yash.shah@sifive.com, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org
+From:   Palmer Dabbelt <palmer@sifive.com>
+To:     Atish Patra <Atish.Patra@wdc.com>
+Message-ID: <mhng-cbc0fa82-4c3e-4d7a-af9a-c730f7e3a3f1@palmer-si-x1e>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2019 09:14:13+0000, Eugen.Hristev@microchip.com wrote:
-> > Perhaps
-> > 
-> > 	microchip,digital-filter;
-> > 	microchip,analog-filter;
-> > 
-> > ?
-> 
-> Hi Peter,
-> 
-> Thanks for reviewing. The name of the property does not matter much to 
-> me, and we have properties prefixed with vendor, and some are not.
-> 
-> @Alexandre Belloni: which name you think it's best ?
-> 
+On Mon, 24 Jun 2019 15:38:19 PDT (-0700), Atish Patra wrote:
+> Currently, there is no CPU topology defined for RISC-V.
+> The following series adds topology support in RISC-V.
+>
+> http://lists.infradead.org/pipermail/linux-riscv/2019-June/005072.html
+>
+> Add a DT node for unleashed that describes the CPU topology
+> present in HiFive Unleashed.
+>
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> ---
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> index 83f40b00ab63..907564f4f07a 100644
+> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> @@ -22,6 +22,24 @@
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  		timebase-frequency = <1000000>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu1>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu2>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu3>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu4>;
+> +				};
+> +			};
+> +		};
+> +
+>  		cpu0: cpu@0 {
+>  			compatible = "sifive,e51", "sifive,rocket0", "riscv";
+>  			device_type = "cpu";
 
-I'm not sure, it depends on whether Wolfram thinks it is generic enough
-to be used without a vendor prefix.
-
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Palmer Dabbelt <palmer@sifive.com>
