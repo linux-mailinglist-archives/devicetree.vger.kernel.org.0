@@ -2,98 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC44526EF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 10:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8285F5271D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 10:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730843AbfFYIlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 04:41:52 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:38326 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730469AbfFYIlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 04:41:37 -0400
-Received: by mail-lj1-f193.google.com with SMTP id r9so15367221ljg.5
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 01:41:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yY87oqTTD0Lxu/Nod5+FQjpzkb9Bg3pO2iG7HQ35E9E=;
-        b=jy18i/ewXTLgSvPyNLRaupblj/y1T6RuSuzYOmPX9Rgd5ez/9RF4JcwCLM01Ki7+VD
-         Mw5HQ7AHG8KHsR5lDtc5F0J+vvOHsVnN8x7Z0VxqkiQBcWFPRj0tKwvNTVFWT7+kwa1o
-         CEz4MKcqB2akH4600BMlytNemC6KpfZ33ALUx0+guDJ1Mi3r13EBkSR1eYCAzLR4vLW6
-         5k1HUIjZywUQ5iTZwCWcARRV4pNq1caXQH1Z1u88Dg/rbv/Zbka2U5D1RwqR3Io1AUGC
-         CfJiRiBAVFDvL+akBMKt/EM4x1oAIOFHEABhAVVZBiPpfsZMNL+2AM65JSiPMyuwqe8R
-         45ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yY87oqTTD0Lxu/Nod5+FQjpzkb9Bg3pO2iG7HQ35E9E=;
-        b=kfibDg+CdZ7pqHxHXJHHw9EJwLebRMActEkzGwG5JvQZJVts7Lpr8WVS1Q+z2n7IkP
-         UnPGamEHlAAWuTJhtctmzRQMVsgrclL9kplc4v3edReIPE2T3EadoU2AlqAulrWXim1Z
-         prYcITK+nX6Q5886Eb4YlVvQ0DHQHuP/+gynLptYIca2ztBAe/QE6RtcHkeDD/0+nnSo
-         9ZS9dTqKNEM/mST4s3X99hztg+R4BTO40h+NS7mqYzA3HwBQ1IyOLYhcvVmeKETil85s
-         vaQPFgV7BA42sqyZ92l4VRHqH1RHqSVTdlU2r/htE+ghrN1wsij9mD4z7yYssB8g4ZBR
-         cvxQ==
-X-Gm-Message-State: APjAAAXkJYM8aQewrjNyE4eGZmC416IFWzlU7UW6S0nHz+6fpVWhHQ6A
-        IXH1fBprvU/vptkvUYey4V9vfjik8XIjXdMn51VkgA==
-X-Google-Smtp-Source: APXvYqy6jIwHwap88t5Oaa18Ta0HSwKvS14nJn1eTrjidyPzk7gb5fytFaXhj7sVmPkrE39Kdr2drRh47kPrl+2xWxs=
-X-Received: by 2002:a2e:a0cf:: with SMTP id f15mr8401315ljm.180.1561452095250;
- Tue, 25 Jun 2019 01:41:35 -0700 (PDT)
+        id S1730992AbfFYIvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 04:51:31 -0400
+Received: from mail-eopbgr70098.outbound.protection.outlook.com ([40.107.7.98]:27223
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729806AbfFYIvb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 04:51:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aNRey0Q/Xh555bd7+jbqJv2t7P70BgNv5KqDmeqs6ag=;
+ b=j0XaP3ySimDY/vPc8792zucRFEtZlXHME1hBISGieZ0GkA9qUV+ET/9+adn6zp5Jk01aIYryABiJILUD7bwRSvdiYOyTZddmJzu3FpCWD8xoDZvd9uVwCzww9UoJklPIDl8sfWKujmDcMmS8SOMT1K6FF2FYNdKxoGXOpX5xoTo=
+Received: from DB3PR0202MB3434.eurprd02.prod.outlook.com (52.134.66.158) by
+ DB3PR0202MB3401.eurprd02.prod.outlook.com (52.134.73.24) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Tue, 25 Jun 2019 08:51:27 +0000
+Received: from DB3PR0202MB3434.eurprd02.prod.outlook.com
+ ([fe80::29c5:d1ae:8855:3153]) by DB3PR0202MB3434.eurprd02.prod.outlook.com
+ ([fe80::29c5:d1ae:8855:3153%3]) with mapi id 15.20.2008.014; Tue, 25 Jun 2019
+ 08:51:27 +0000
+From:   Peter Rosin <peda@axentia.se>
+To:     "Eugen.Hristev@microchip.com" <Eugen.Hristev@microchip.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Nicolas.Ferre@microchip.com" <Nicolas.Ferre@microchip.com>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "Ludovic.Desroches@microchip.com" <Ludovic.Desroches@microchip.com>,
+        "wsa@the-dreams.de" <wsa@the-dreams.de>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 9/9] ARM: dts: at91: sama5d4_xplained: add analogic
+ filter for i2c
+Thread-Topic: [PATCH v2 9/9] ARM: dts: at91: sama5d4_xplained: add analogic
+ filter for i2c
+Thread-Index: AQHVKyzD88KDJW5qrEyetFFZXOAmS6asD/kA
+Date:   Tue, 25 Jun 2019 08:51:27 +0000
+Message-ID: <8b964ca4-58b6-5560-b06a-da3ad98dd36d@axentia.se>
+References: <1561449642-26956-1-git-send-email-eugen.hristev@microchip.com>
+ <1561449642-26956-10-git-send-email-eugen.hristev@microchip.com>
+In-Reply-To: <1561449642-26956-10-git-send-email-eugen.hristev@microchip.com>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
+x-originating-ip: [213.112.138.100]
+x-clientproxiedby: HE1PR0701CA0043.eurprd07.prod.outlook.com
+ (2603:10a6:3:9e::11) To DB3PR0202MB3434.eurprd02.prod.outlook.com
+ (2603:10a6:8:5::30)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peda@axentia.se; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 367c900a-b005-471b-1312-08d6f94a4f02
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DB3PR0202MB3401;
+x-ms-traffictypediagnostic: DB3PR0202MB3401:
+x-microsoft-antispam-prvs: <DB3PR0202MB34019D0DA115AE19E0AC1AFBBCE30@DB3PR0202MB3401.eurprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2803;
+x-forefront-prvs: 0079056367
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(396003)(376002)(39830400003)(366004)(136003)(199004)(189003)(71200400001)(71190400001)(66556008)(76176011)(5660300002)(66476007)(64756008)(66446008)(73956011)(6436002)(66946007)(486006)(7736002)(305945005)(186003)(508600001)(8936002)(6512007)(65826007)(64126003)(2501003)(52116002)(2906002)(99286004)(4744005)(31696002)(256004)(58126008)(6246003)(81156014)(7416002)(26005)(316002)(81166006)(8676002)(229853002)(110136005)(25786009)(68736007)(2616005)(11346002)(74482002)(14454004)(31686004)(65956001)(476003)(65806001)(66066001)(2201001)(6116002)(6486002)(36756003)(102836004)(6506007)(53546011)(446003)(53936002)(86362001)(386003)(3846002)(921003)(1121003);DIR:OUT;SFP:1102;SCL:1;SRVR:DB3PR0202MB3401;H:DB3PR0202MB3434.eurprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: axentia.se does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: pMOkyFz/1eyyAmnwxi1zallek3GFLVeFbMaR/87mjg4E90zBNF3kwD2HDIMKC4hxKuLZnxg256F+10NtZ9TljoNCtoopZZK4Relik5T4Y93VvITG/I1hACmqshNkupp7HBmM9aJC0w31Xxekvao0uFx75ShDUo5jCDYKh+AkYDSZyituOYTQlV/ai++Nddw6GZ8MvtTWjAVM++LiX+oNYImCVskVJgHFi6zf5BuxxS2/79hY1BCKlQQUnKfI1FCI/mwVZpwhyIvqyKVv0GnlkPULxJ1uDO1w2QHkxub8Coea3UDhmIhSUZuVgqaqFVsXGUcha+d2z7u2UTRtsjRAETY08jHSrJ2/bQ/4RO1ztn2VyDmThPHHaJb+npJbb8NxKEZK+lWbYNaBxkQbJNZoMrVk9bIsLDydCsPszEUE52Q=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <30346D7CF884B04D8E7CF466AED05481@eurprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190611122535.23583-1-Anson.Huang@nxp.com> <20190611122535.23583-3-Anson.Huang@nxp.com>
-In-Reply-To: <20190611122535.23583-3-Anson.Huang@nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 25 Jun 2019 10:41:24 +0200
-Message-ID: <CACRpkdZoySkQHc7sbHchR6O0UqxAjp8FS+ubdbXqESGnotDDpA@mail.gmail.com>
-Subject: Re: [PATCH V2 3/3] arm64: defconfig: Select CONFIG_PINCTRL_IMX8MN by default
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Olof Johansson <olof@lixom.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 367c900a-b005-471b-1312-08d6f94a4f02
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2019 08:51:27.1214
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peda@axentia.se
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0202MB3401
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 2:24 PM <Anson.Huang@nxp.com> wrote:
-
-> From: Anson Huang <Anson.Huang@nxp.com>
->
-> Enable CONFIG_PINCTRL_IMX8MN by default to support i.MX8MN
-> pinctrl driver.
->
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
-> Changes since V1:
->         - sort the change in alphabet order.
-
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-
-Please merge this through the ARM SoC tree.
-
-Yours,
-Linus Walleij
+T24gMjAxOS0wNi0yNSAxMDowNSwgRXVnZW4uSHJpc3RldkBtaWNyb2NoaXAuY29tIHdyb3RlOg0K
+PiBGcm9tOiBFdWdlbiBIcmlzdGV2IDxldWdlbi5ocmlzdGV2QG1pY3JvY2hpcC5jb20+DQo+IA0K
+PiBBZGQgcHJvcGVydHkgZm9yIGRpZ2l0YWwgZmlsdGVyIGZvciBpMmMwIG5vZGUgc2FtYTVkNF94
+cGxhaW5lZA0KDQpUaGlzIGRvZXMgbm90IG1hdGNoIHRoZSBiZWxvdyBodW5rLg0KDQpDaGVlcnMs
+DQpQZXRlcg0KDQo+IFNpZ25lZC1vZmYtYnk6IEV1Z2VuIEhyaXN0ZXYgPGV1Z2VuLmhyaXN0ZXZA
+bWljcm9jaGlwLmNvbT4NCj4gLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE1ZDRf
+eHBsYWluZWQuZHRzIHwgMSArDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4g
+DQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE1ZDRfeHBsYWluZWQu
+ZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hNWQ0X3hwbGFpbmVkLmR0cw0KPiBpbmRl
+eCBmZGZjMzdkLi4wNjA2OGRjIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9hdDkx
+LXNhbWE1ZDRfeHBsYWluZWQuZHRzDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2F0OTEtc2Ft
+YTVkNF94cGxhaW5lZC5kdHMNCj4gQEAgLTQ5LDYgKzQ5LDcgQEANCj4gIAkJCX07DQo+ICANCj4g
+IAkJCWkyYzA6IGkyY0BmODAxNDAwMCB7DQo+ICsJCQkJZW5hYmxlLWFuYS1maWx0Ow0KPiAgCQkJ
+CXN0YXR1cyA9ICJva2F5IjsNCj4gIAkJCX07DQo+ICANCj4gDQoNCg==
