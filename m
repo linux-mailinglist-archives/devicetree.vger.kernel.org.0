@@ -2,89 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5BC8558B8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 22:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BB92558D3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 22:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726420AbfFYU0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 16:26:17 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:44258 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726053AbfFYU0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 16:26:17 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 1465780301;
-        Tue, 25 Jun 2019 22:26:12 +0200 (CEST)
-Date:   Tue, 25 Jun 2019 22:26:11 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, tomi.valkeinen@ti.com,
-        imirkin@alum.mit.edu, marek.belisko@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        letux-kernel@openphoenux.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: drm/panel: simple: add ortustech,
- com37h3m05dtc panel
-Message-ID: <20190625202611.GA18595@ravnborg.org>
-References: <cover.1559905870.git.hns@goldelico.com>
- <a650cb8df1bdf58ec3c8a182532692db16b77f70.1559905870.git.hns@goldelico.com>
+        id S1726447AbfFYU2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 16:28:41 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:43276 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726772AbfFYU2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 16:28:37 -0400
+Received: by mail-pg1-f194.google.com with SMTP id f25so9507665pgv.10
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 13:28:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qq39ykktkvFBpmzRtbgM4tstWpOedFNE8kr26lh/InM=;
+        b=ni94OwioZx/gzf2szVloCDZTFFpJCo2YKSFZ2X9qr6bxYnBeEpnnagfszyXnnz51L8
+         DkJXaethFUsoHnz8KOQVG2ZSAlP6R4YiehiVV+cY7fw97Xus3XNQzLPLdgQULmgYaWnL
+         GEAS55DRith5+cQIVd4nDD9PnOpK5SEC0mcAjXyMYNE83XKQ2Jfbx9GzYoD6pnR9q88y
+         VjAnVY+gy9KsY/4+Tbda/+4DRlDyvSks4s9chgBxuZrKHnC3t/s2Oqm9eCfJpWO+nPcJ
+         ixgXgEVA9P9D5QKdeUq3VIirHZ16lxLB0iDdlrfqM9fruDTYYR+l+8zODcodp3flRnlv
+         dArA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qq39ykktkvFBpmzRtbgM4tstWpOedFNE8kr26lh/InM=;
+        b=D9jBMUsbNp1pZz6b9R4rYMZBgAsw7JF0ZPEZetY0Wgw7EgIjugG2ynFwP5u1VS+Q4U
+         NPvJ5RJCO0g9ePh1wE9rlYdJ6kGuv6e6z+ePYMRkg+uh0UgcNNcab3psVl34syF/uFGm
+         sbw1wgV8TbIBwcJjDtDXmsKDwR1KsIRzHzn2OxdYganzwh2UiLMXNxy36blrQ2CNyPek
+         jq9R+YMiPJ6KDq0GOYcLeJbqNoYlN2RmqR7BxMJRTYc7u1otF2jMY5mO+6d1y0KeNdDU
+         7LQTIQ6FeM8hVqmMOkQ3zIhpZRg+L9OQbkbHfv9RAkLV2+yPKwYvAZ9CcxxAumObfCNA
+         BOOg==
+X-Gm-Message-State: APjAAAVdCfw1fRcyBuRkpPi49EFZyfsiO/HGONJfvH6mGFEbOLYMDQoZ
+        YlcytURvFX0MNy8OkZ4SaOv6Gnpc8+sL0yhqSbk1aQ==
+X-Google-Smtp-Source: APXvYqzvk20XXdVFtm6zl0X1nrjaH0TttItfcdP9iwaQ+JKQIeNhKF1pa7VSVvlXNPpMAUzP/tv1oR2JBEXuSnWnLw4=
+X-Received: by 2002:a17:90b:f0e:: with SMTP id br14mr754020pjb.117.1561494516332;
+ Tue, 25 Jun 2019 13:28:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a650cb8df1bdf58ec3c8a182532692db16b77f70.1559905870.git.hns@goldelico.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=ztCEdXhiAAAA:8
-        a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=TaQvIJAheEgyp50s76YA:9
-        a=CjuIK1q_8ugA:10 a=nCm3ceeH17rKjHWsMeRo:22 a=E9Po1WZjFZOl8hwRPBS3:22
-        a=Vxmtnl_E_bksehYqCbjh:22
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-2-brendanhiggins@google.com> <20190620001526.93426218BE@mail.kernel.org>
+In-Reply-To: <20190620001526.93426218BE@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 25 Jun 2019 13:28:25 -0700
+Message-ID: <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com>
+Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 07, 2019 at 01:11:09PM +0200, H. Nikolaus Schaller wrote:
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+On Wed, Jun 19, 2019 at 5:15 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-06-17 01:25:56)
+> > diff --git a/kunit/test.c b/kunit/test.c
+> > new file mode 100644
+> > index 0000000000000..d05d254f1521f
+> > --- /dev/null
+> > +++ b/kunit/test.c
+> > @@ -0,0 +1,210 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Base unit test (KUnit) API.
+> > + *
+> > + * Copyright (C) 2019, Google LLC.
+> > + * Author: Brendan Higgins <brendanhiggins@google.com>
+> > + */
+> > +
+> > +#include <linux/sched/debug.h>
+> > +#include <kunit/test.h>
+> > +
+> > +static bool kunit_get_success(struct kunit *test)
+> > +{
+> > +       unsigned long flags;
+> > +       bool success;
+> > +
+> > +       spin_lock_irqsave(&test->lock, flags);
+> > +       success = test->success;
+> > +       spin_unlock_irqrestore(&test->lock, flags);
+>
+> I still don't understand the locking scheme in this code. Is the
+> intention to make getter and setter APIs that are "safe" by adding in a
+> spinlock that is held around getting and setting various members in the
+> kunit structure?
 
-We need OK from one of the DT people before we can apply this.
+Yes, your understanding is correct. It is possible for a user to write
+a test such that certain elements may be updated in different threads;
+this would most likely happen in the case where someone wants to make
+an assertion or an expectation in a thread created by a piece of code
+under test. Although this should generally be avoided, it is possible,
+and there are occasionally good reasons to do so, so it is
+functionality that we should support.
 
-	Sam
+Do you think I should add a comment to this effect?
 
-> ---
->  .../display/panel/ortustech,com37h3m05dtc.txt        | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/ortustech,com37h3m05dtc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/ortustech,com37h3m05dtc.txt b/Documentation/devicetree/bindings/display/panel/ortustech,com37h3m05dtc.txt
-> new file mode 100644
-> index 000000000000..c16907c02f80
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/ortustech,com37h3m05dtc.txt
-> @@ -0,0 +1,12 @@
-> +OrtusTech COM37H3M05DTC Blanview 3.7" VGA portrait TFT-LCD panel
-> +
-> +Required properties:
-> +- compatible: should be "ortustech,com37h3m05dtc"
-> +
-> +Optional properties:
-> +- enable-gpios: GPIO pin to enable or disable the panel
-> +- backlight: phandle of the backlight device attached to the panel
-> +- power-supply: phandle of the regulator that provides the supply voltage
-> +
-> +This binding is compatible with the simple-panel binding, which is specified
-> +in simple-panel.txt in this directory.
-> -- 
-> 2.19.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> In what situation is there more than one thread reading or writing the
+> kunit struct? Isn't it only a single process that is going to be
+
+As I said above, it is possible that the code under test may spawn a
+new thread that may make an expectation or an assertion. It is not a
+super common use case, but it is possible.
+
+> operating on this structure? And why do we need to disable irqs? Are we
+> expecting to be modifying the unit tests from irq contexts?
+
+There are instances where someone may want to test a driver which has
+an interrupt handler in it. I actually have (not the greatest) example
+here. Now in these cases, I expect someone to use a mock irqchip or
+some other fake mechanism to trigger the interrupt handler and not
+actual hardware; technically speaking in this case, it is not going to
+be accessed from a "real" irq context; however, the code under test
+should think that it is in an irq context; given that, I figured it is
+best to just treat it as a real irq context. Does that make sense?
+
+> > +
+> > +       return success;
+> > +}
+> > +
+> > +static void kunit_set_success(struct kunit *test, bool success)
+> > +{
+> > +       unsigned long flags;
+> > +
+> > +       spin_lock_irqsave(&test->lock, flags);
+> > +       test->success = success;
+> > +       spin_unlock_irqrestore(&test->lock, flags);
+> > +}
+> > +
+> > +static int kunit_vprintk_emit(int level, const char *fmt, va_list args)
+> > +{
+> > +       return vprintk_emit(0, level, NULL, 0, fmt, args);
+> > +}
+> > +
+> > +static int kunit_printk_emit(int level, const char *fmt, ...)
+> > +{
+> > +       va_list args;
+> > +       int ret;
+> > +
+> > +       va_start(args, fmt);
+> > +       ret = kunit_vprintk_emit(level, fmt, args);
+> > +       va_end(args);
+> > +
+> > +       return ret;
+> > +}
+> > +
+> > +static void kunit_vprintk(const struct kunit *test,
+> > +                         const char *level,
+> > +                         struct va_format *vaf)
+> > +{
+> > +       kunit_printk_emit(level[1] - '0', "\t# %s: %pV", test->name, vaf);
+> > +}
+> > +
+> > +static bool kunit_has_printed_tap_version;
+>
+> Can you please move this into function local scope in the function
+> below?
+
+Sure, that makes sense.
+
+> > +
+> > +static void kunit_print_tap_version(void)
+> > +{
+> > +       if (!kunit_has_printed_tap_version) {
+> > +               kunit_printk_emit(LOGLEVEL_INFO, "TAP version 14\n");
+> > +               kunit_has_printed_tap_version = true;
+> > +       }
+> > +}
+> > +
+> [...]
+> > +
+> > +static bool kunit_module_has_succeeded(struct kunit_module *module)
+> > +{
+> > +       const struct kunit_case *test_case;
+> > +       bool success = true;
+> > +
+> > +       for (test_case = module->test_cases; test_case->run_case; test_case++)
+> > +               if (!test_case->success) {
+> > +                       success = false;
+> > +                       break;
+>
+> Why not 'return false'?
+
+Also a good point. Will fix.
+
+> > +               }
+> > +
+> > +       return success;
+>
+> And 'return true'?
+
+Will fix.
+
+> > +}
+> > +
+> > +static size_t kunit_module_counter = 1;
+> > +
+> > +static void kunit_print_subtest_end(struct kunit_module *module)
+> > +{
+> > +       kunit_print_ok_not_ok(false,
+> > +                             kunit_module_has_succeeded(module),
+> > +                             kunit_module_counter++,
+> > +                             module->name);
+> > +}
+> > +
+> > +static void kunit_print_test_case_ok_not_ok(struct kunit_case *test_case,
+> > +                                           size_t test_number)
+> > +{
+> > +       kunit_print_ok_not_ok(true,
+> > +                             test_case->success,
+> > +                             test_number,
+> > +                             test_case->name);
+> > +}
+> > +
+> > +void kunit_init_test(struct kunit *test, const char *name)
+> > +{
+> > +       spin_lock_init(&test->lock);
+> > +       test->name = name;
+> > +       test->success = true;
+> > +}
+> > +
+> > +/*
+> > + * Performs all logic to run a test case.
+> > + */
+> > +static void kunit_run_case(struct kunit_module *module,
+> > +                          struct kunit_case *test_case)
+> > +{
+> > +       struct kunit test;
+> > +       int ret = 0;
+> > +
+> > +       kunit_init_test(&test, test_case->name);
+> > +
+> > +       if (module->init) {
+> > +               ret = module->init(&test);
+> > +               if (ret) {
+> > +                       kunit_err(&test, "failed to initialize: %d\n", ret);
+> > +                       kunit_set_success(&test, false);
+> > +                       return;
+> > +               }
+> > +       }
+> > +
+> > +       if (!ret)
+> > +               test_case->run_case(&test);
+>
+> Do we need this if condition? ret can only be set to non-zero above but
+> then we'll exit the function early so it seems unnecessary. Given that,
+> ret should probably be moved into the module->init path.
+
+Whoops. Sorry, another instance of how it evolved over time and I
+forgot why I did the check. Will fix.
+
+> > +
+> > +       if (module->exit)
+> > +               module->exit(&test);
+> > +
+> > +       test_case->success = kunit_get_success(&test);
+> > +}
+> > +
+
+Thanks!
