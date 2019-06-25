@@ -2,146 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A39527B6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C36152822
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:32:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730410AbfFYJOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 05:14:17 -0400
-Received: from esa2.microchip.iphmx.com ([68.232.149.84]:56258 "EHLO
-        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728823AbfFYJOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 05:14:17 -0400
-Received-SPF: Pass (esa2.microchip.iphmx.com: domain of
-  Eugen.Hristev@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa2.microchip.iphmx.com;
-  envelope-from="Eugen.Hristev@microchip.com";
-  x-sender="Eugen.Hristev@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa2.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa2.microchip.iphmx.com;
-  envelope-from="Eugen.Hristev@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa2.microchip.iphmx.com; spf=Pass smtp.mailfrom=Eugen.Hristev@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
-X-IronPort-AV: E=Sophos;i="5.63,415,1557212400"; 
-   d="scan'208";a="38780807"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jun 2019 02:14:16 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex03.mchp-main.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 25 Jun 2019 02:14:37 -0700
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Tue, 25 Jun 2019 02:14:37 -0700
+        id S1728846AbfFYJcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 05:32:06 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:35414 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728676AbfFYJcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 05:32:05 -0400
+Received: by mail-pf1-f193.google.com with SMTP id d126so9184946pfd.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 02:32:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector1-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oQboUQZRVJ1cLGfCsaE2CbtP+tIP5CWRsoBrKFaRZT0=;
- b=m/iMZuccxjq4szPCOT4OPZPLTjt6SBjN2JAlemPxKe5pOH8mO49gl5/ZX01EcpRbP4KPNgZffGaCd6x+I6gTndI9tABGwlqWm3FfFnGFS+eTaPBVFhiZH/NHt63wK7BajnlwGUsBPQVwdzlSkiVTNTh1t0JMS6I+gGSeuUImIRM=
-Received: from DM5PR11MB1242.namprd11.prod.outlook.com (10.168.108.8) by
- DM5PR11MB0075.namprd11.prod.outlook.com (10.164.155.144) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2008.16; Tue, 25 Jun 2019 09:14:13 +0000
-Received: from DM5PR11MB1242.namprd11.prod.outlook.com
- ([fe80::6476:ace0:bf3a:322]) by DM5PR11MB1242.namprd11.prod.outlook.com
- ([fe80::6476:ace0:bf3a:322%9]) with mapi id 15.20.2008.017; Tue, 25 Jun 2019
- 09:14:13 +0000
-From:   <Eugen.Hristev@microchip.com>
-To:     <peda@axentia.se>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <Ludovic.Desroches@microchip.com>, <wsa@the-dreams.de>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 6/9] dt-bindings: i2c: at91: add binding for
- enable-ana-filt
-Thread-Topic: [PATCH v2 6/9] dt-bindings: i2c: at91: add binding for
- enable-ana-filt
-Thread-Index: AQHVKyyv+/RK0NIkBk254PAOuF5Z96asET2AgAAEBoA=
-Date:   Tue, 25 Jun 2019 09:14:13 +0000
-Message-ID: <84628b5e-bea7-7d91-f790-f3a2650040fa@microchip.com>
-References: <1561449642-26956-1-git-send-email-eugen.hristev@microchip.com>
- <1561449642-26956-7-git-send-email-eugen.hristev@microchip.com>
- <4e81d3c9-25f3-ca6e-f2d5-17fad5905bb8@axentia.se>
-In-Reply-To: <4e81d3c9-25f3-ca6e-f2d5-17fad5905bb8@axentia.se>
-Accept-Language: ro-RO, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1PR0401CA0016.eurprd04.prod.outlook.com
- (2603:10a6:800:4a::26) To DM5PR11MB1242.namprd11.prod.outlook.com
- (2603:10b6:3:14::8)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tagtoolbar-keys: D20190625121017485
-x-originating-ip: [94.177.32.154]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8f064436-3c8c-4001-82b1-08d6f94d7d8a
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DM5PR11MB0075;
-x-ms-traffictypediagnostic: DM5PR11MB0075:
-x-microsoft-antispam-prvs: <DM5PR11MB0075FD35D254E0E3DAFA9E98E8E30@DM5PR11MB0075.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0079056367
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(346002)(396003)(366004)(39860400002)(136003)(189003)(199004)(5660300002)(305945005)(53936002)(6116002)(3846002)(86362001)(14454004)(25786009)(6436002)(2201001)(53546011)(446003)(66066001)(31696002)(6506007)(386003)(476003)(99286004)(8936002)(102836004)(6246003)(2616005)(486006)(229853002)(68736007)(6512007)(76176011)(7736002)(6486002)(66446008)(66556008)(66476007)(8676002)(64756008)(31686004)(2501003)(52116002)(478600001)(110136005)(81166006)(11346002)(26005)(66946007)(73956011)(316002)(72206003)(36756003)(186003)(256004)(2906002)(71190400001)(71200400001)(81156014)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR11MB0075;H:DM5PR11MB1242.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: iBXj0ulX8MxhJ1vuQAQpi93D15L7Oog5P1541b8v8sz1uzVsUDHdKqXWCXUyqmDgXRq5yfEpFWmocxt3E/LPLGgacRQm0IqgsD/e1ZsiL5LPO3KG4PkFTnvkv06kB5nPTwQFIsWOgA8jHjqossrS10RO5rZYrQn8DxtKYBFdwuv/LzRG+WzeGSQl8UWBrQWE7GDDpctULz3pasaAKnjx+Q/yd5zoRlLXP2uz97lDedOLC2LUC4iARcj8rEZt7DAsyMtJFP7o2OkYYPy5uMRAUGW966XAHLFdo6QzVmgmUJ9hq5dvGwHAIV439i8+aACcMCkJCn1+Nvmd5AXCYm2kI46msP4o6JjwTayRAp4ENTMMk2/IFrwGoG+pJRdDgXaAcDnYoO/H9cMGTC9xIqS7E2uckmCUsBn5t5svSS33d7Y=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <21506B8E5B03ED40A516D9564C071A00@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f064436-3c8c-4001-82b1-08d6f94d7d8a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2019 09:14:13.5723
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eugen.hristev@microchip.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB0075
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=rpStZmf35igMxqzLeEFybCYnhueTgWtLq21mpmx87uQ=;
+        b=lkRwaw1IUMjbuUdyCAHnbKBURaBkrUi37P3tS5gdfFTLedE3E79iT3ke2SHKBg9PZm
+         uweWcx3f9W4ua0SkJy+FupZMmVyBSYFKPFi9TcCe0MkoPpHZbR5dmglZFXbAhYkSrmnb
+         BHcQbrIRPav9Z2p0iJVqRb4I77GZkvtwdUJa+IrkhY/+rI/YTiDQRIydfn+QT2sa4JZc
+         Dk9+PbIY9ZlIFXzHVy8A6FjkvRx+e3nPJdDfvuVSdtFy31mZ52P7vlfrcEy3LJP1+C/6
+         Qpmw3cWv3L4O+jzdx8M0fqy32+Glba3bvb7tPgX4rwZktSZTJVoY7oGY3jC81O9tQTJP
+         TJLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rpStZmf35igMxqzLeEFybCYnhueTgWtLq21mpmx87uQ=;
+        b=uSr66FEIGh+aHSMDoVnd4QpHqluPTjL4TEVzIPPckGHRSo25Q3Lpauuk+Azx5UNKic
+         QRR1R93nFMTEge3dsk4hJhheuiDZ3x8ytu4GP74fs31tlr0DaWkZOxRBjPJ3qfIi0IJJ
+         CtPXRDJyVLkRlWwInKVdZo60fhweDPdmkQVSZwc7AC7Z0uepBmJhn4JJkUXUWm8McCpt
+         ZRuYzTJ5Q/v43s+N6WRMIyEMD248Ij6KdAJAgkiWbwBlN0qzL5ihJjWgIQoGiVS3rM6E
+         roJ55m7cydVUNwOczY7VsiM7Inl4BmG0fBSFaC8ak+YucmX4o93PlRRVMSbRRTPjp7qX
+         bwjA==
+X-Gm-Message-State: APjAAAU43+Tegr5tBwqHtVEXSQ1hAGqd0WEckOlEBUX5W1niGtIhez0D
+        s6mYTyEa0skCa+s5QA25PiAJbg==
+X-Google-Smtp-Source: APXvYqzbAg5MBG2Xe6ojTiLwa+O3LoQWCgWKX7EW8u/iOuynr270+kNo1TQksKvvhwhqxIO76r/FpQ==
+X-Received: by 2002:a63:d218:: with SMTP id a24mr38650537pgg.419.1561455125207;
+        Tue, 25 Jun 2019 02:32:05 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id q19sm16634877pfc.62.2019.06.25.02.32.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 25 Jun 2019 02:32:04 -0700 (PDT)
+From:   Yash Shah <yash.shah@sifive.com>
+To:     robh+dt@kernel.org, paul.walmsley@sifive.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
+        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH] riscv: dts: Re-organize the DT nodes
+Date:   Tue, 25 Jun 2019 15:01:31 +0530
+Message-Id: <1561455091-29488-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCk9uIDI1LjA2LjIwMTkgMTE6NTUsIFBldGVyIFJvc2luIHdyb3RlOg0KDQo+IA0KPiBPbiAy
-MDE5LTA2LTI1IDEwOjA1LCBFdWdlbi5IcmlzdGV2QG1pY3JvY2hpcC5jb20gd3JvdGU6DQo+PiBG
-cm9tOiBFdWdlbiBIcmlzdGV2IDxldWdlbi5ocmlzdGV2QG1pY3JvY2hpcC5jb20+DQo+Pg0KPj4g
-QWRkIGJpbmRpbmcgc3BlY2lmaWNhdGlvbiBmb3IgYW5hbG9naWMgZmlsdGVyIGluc2lkZSB0aGUg
-aTJjIGNvbnRyb2xsZXINCj4gDQo+IHMvYW5hbG9naWMvdGhlIGFuYWxvZy8NCj4gDQo+PiBTaWdu
-ZWQtb2ZmLWJ5OiBFdWdlbiBIcmlzdGV2IDxldWdlbi5ocmlzdGV2QG1pY3JvY2hpcC5jb20+DQo+
-PiAtLS0NCj4+ICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtYXQ5
-MS50eHQgfCA0ICsrKysNCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQ0KPj4N
-Cj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2ky
-Yy1hdDkxLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvaTJjLWF0
-OTEudHh0DQo+PiBpbmRleCA4MjY4NTk1Li4yMGQzMzRjIDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtYXQ5MS50eHQNCj4+ICsrKyBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvaTJjLWF0OTEudHh0DQo+PiBAQCAt
-MjMsNiArMjMsOSBAQCBPcHRpb25hbCBwcm9wZXJ0aWVzOg0KPj4gICAtIGVuYWJsZS1kaWctZmls
-dDogRW5hYmxlIHRoZSBidWlsdC1pbiBkaWdpdGFsIGZpbHRlciBvbiB0aGUgaTJjIGxpbmVzLA0K
-Pj4gICAgIHNwZWNpZmljYWxseSByZXF1aXJlZCBkZXBlbmRpbmcgb24gdGhlIGhhcmR3YXJlIFBD
-Qi9ib2FyZCBhbmQgaWYgdGhlDQo+PiAgICAgdmVyc2lvbiBvZiB0aGUgY29udHJvbGxlciBpbmNs
-dWRlcyBpdC4NCj4+ICstIGVuYWJsZS1hbmEtZmlsdDogRW5hYmxlIHRoZSBidWlsdC1pbiBhbmFs
-b2dpYyBmaWx0ZXIgb24gdGhlIGkyYyBsaW5lcywNCj4+ICsgIHNwZWNpZmljYWxseSByZXF1aXJl
-ZCBkZXBlbmRpbmcgb24gdGhlIGhhcmR3YXJlIFBDQi9ib2FyZCBhbmQgaWYgdGhlDQo+PiArICB2
-ZXJzaW9uIG9mIHRoZSBjb250cm9sbGVyIGluY2x1ZGVzIGl0Lg0KPj4gICAtIENoaWxkIG5vZGVz
-IGNvbmZvcm1pbmcgdG8gaTJjIGJ1cyBiaW5kaW5nDQo+PiAgIA0KPj4gICBFeGFtcGxlcyA6DQo+
-PiBAQCAtNjAsNiArNjMsNyBAQCBpMmMwOiBpMmNAZjgwMzQ2MDAgew0KPj4gICAJYXRtZWwsZmlm
-by1zaXplID0gPDE2PjsNCj4+ICAgCWkyYy1zZGEtaG9sZC10aW1lLW5zID0gPDMzNj47DQo+PiAg
-IAllbmFibGUtZGlnLWZpbHQ7DQo+PiArCWVuYWJsZS1hbmEtZmlsdDsNCj4gDQo+IFBlcmhhcHMN
-Cj4gDQo+IAltaWNyb2NoaXAsZGlnaXRhbC1maWx0ZXI7DQo+IAltaWNyb2NoaXAsYW5hbG9nLWZp
-bHRlcjsNCj4gDQo+ID8NCg0KSGkgUGV0ZXIsDQoNClRoYW5rcyBmb3IgcmV2aWV3aW5nLiBUaGUg
-bmFtZSBvZiB0aGUgcHJvcGVydHkgZG9lcyBub3QgbWF0dGVyIG11Y2ggdG8gDQptZSwgYW5kIHdl
-IGhhdmUgcHJvcGVydGllcyBwcmVmaXhlZCB3aXRoIHZlbmRvciwgYW5kIHNvbWUgYXJlIG5vdC4N
-Cg0KQEFsZXhhbmRyZSBCZWxsb25pOiB3aGljaCBuYW1lIHlvdSB0aGluayBpdCdzIGJlc3QgPw0K
-DQpFdWdlbg0KDQo+IA0KPiBDaGVlcnMsDQo+IFBldGVyDQo+IA0KPj4gICANCj4+ICAgCXdtODcz
-MTogd204NzMxQDFhIHsNCj4+ICAgCQljb21wYXRpYmxlID0gIndtODczMSI7DQo+Pg0KPiANCg==
+As per the convention for any SOC device with external connection,
+define only device DT node in SOC DTSi file with status = "disabled"
+and enable device in Board DTS file with status = "okay"
+
+Reported-by: Anup Patel <anup@brainfault.org>
+Signed-off-by: Yash Shah <yash.shah@sifive.com>
+---
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi          |  6 ++++++
+ arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 13 +++++++++++++
+ 2 files changed, 19 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+index 4e8fbde..cc73522 100644
+--- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
++++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+@@ -177,6 +177,7 @@
+ 			interrupt-parent = <&plic0>;
+ 			interrupts = <4>;
+ 			clocks = <&prci PRCI_CLK_TLCLK>;
++			status = "disabled";
+ 		};
+ 		uart1: serial@10011000 {
+ 			compatible = "sifive,fu540-c000-uart", "sifive,uart0";
+@@ -184,6 +185,7 @@
+ 			interrupt-parent = <&plic0>;
+ 			interrupts = <5>;
+ 			clocks = <&prci PRCI_CLK_TLCLK>;
++			status = "disabled";
+ 		};
+ 		i2c0: i2c@10030000 {
+ 			compatible = "sifive,fu540-c000-i2c", "sifive,i2c0";
+@@ -195,6 +197,7 @@
+ 			reg-io-width = <1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			status = "disabled";
+ 		};
+ 		qspi0: spi@10040000 {
+ 			compatible = "sifive,fu540-c000-spi", "sifive,spi0";
+@@ -205,6 +208,7 @@
+ 			clocks = <&prci PRCI_CLK_TLCLK>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			status = "disabled";
+ 		};
+ 		qspi1: spi@10041000 {
+ 			compatible = "sifive,fu540-c000-spi", "sifive,spi0";
+@@ -215,6 +219,7 @@
+ 			clocks = <&prci PRCI_CLK_TLCLK>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			status = "disabled";
+ 		};
+ 		qspi2: spi@10050000 {
+ 			compatible = "sifive,fu540-c000-spi", "sifive,spi0";
+@@ -224,6 +229,7 @@
+ 			clocks = <&prci PRCI_CLK_TLCLK>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++			status = "disabled";
+ 		};
+ 	};
+ };
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 4da8870..0b55c53 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -42,7 +42,20 @@
+ 	};
+ };
+ 
++&uart0 {
++	status = "okay";
++};
++
++&uart1 {
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++};
++
+ &qspi0 {
++	status = "okay";
+ 	flash@0 {
+ 		compatible = "issi,is25wp256", "jedec,spi-nor";
+ 		reg = <0>;
+-- 
+1.9.1
+
