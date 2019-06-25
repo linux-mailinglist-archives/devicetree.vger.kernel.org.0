@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 372035283D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2B1052846
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731646AbfFYJjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 05:39:31 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:33783 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728860AbfFYJjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 05:39:31 -0400
-Received: by mail-pg1-f194.google.com with SMTP id m4so8077399pgk.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 02:39:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=hRi4ajiGUFKeMzAjuhkh1DNYz0dIJRV7lfjpx0rM/iM=;
-        b=odIajRsY6r2NF54OaBwCB+BsUDXSO9DNsNYRhMW0jMWkx7YmG/7/b6e5621mDDn68O
-         9xuQYj06n2U48X2fKiXLenv5Xis1YXbh7VoIqOSCEXch4/XJE5y3+x9+XSgN4vGgNPKD
-         7JzIMo8CmJj5GBV79ownYDFfSM2riIJIKZfQSP6DMidlRkeV9knBr7uMy5KUF0j+m/IW
-         vGhK06KzDMPbw2A0wwJrn2L6HeE+RaM6BHMMYUop9hDkSWfOlSOcpsp2DStpZ/eFK/SJ
-         cksa/X0T4zFrJ+Vum7GU2m07qF16/BzIxxYXyvbftcyf8+JnMzigaJxqOKECSWlE47wU
-         oPKw==
-X-Gm-Message-State: APjAAAUGU73CHdyDI584ZjwWWQDXSnlJCBlyJF76F2xk2ghggJD5oI8Q
-        J1sK+1raVnP8fDYFCM4U+HoO8A==
-X-Google-Smtp-Source: APXvYqybMotW0khjdQiV50T7VJy2vvzENYimZUiiJRHH4JCUBgizc2REGnBc7XVUCjvIwL26rpXvHg==
-X-Received: by 2002:a17:90a:bb94:: with SMTP id v20mr31266695pjr.88.1561455570111;
-        Tue, 25 Jun 2019 02:39:30 -0700 (PDT)
-Received: from localhost (220-132-236-182.HINET-IP.hinet.net. [220.132.236.182])
-        by smtp.gmail.com with ESMTPSA id p6sm13409409pgs.77.2019.06.25.02.39.29
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 25 Jun 2019 02:39:29 -0700 (PDT)
-Date:   Tue, 25 Jun 2019 02:39:29 -0700 (PDT)
-X-Google-Original-Date: Tue, 25 Jun 2019 02:38:09 PDT (-0700)
-Subject:     Re: [PATCH] riscv: Add cpu topology DT entry.
-In-Reply-To: <20190624223819.14320-1-atish.patra@wdc.com>
-CC:     linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
-        anup@brainfault.org, Atish Patra <Atish.Patra@wdc.com>,
-        yash.shah@sifive.com, robh+dt@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org
-From:   Palmer Dabbelt <palmer@sifive.com>
-To:     Atish Patra <Atish.Patra@wdc.com>
-Message-ID: <mhng-cbc0fa82-4c3e-4d7a-af9a-c730f7e3a3f1@palmer-si-x1e>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1729441AbfFYJls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 05:41:48 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:52252 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726557AbfFYJls (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 05:41:48 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id AB1C8200EC5;
+        Tue, 25 Jun 2019 11:41:45 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 905922001B1;
+        Tue, 25 Jun 2019 11:41:38 +0200 (CEST)
+Received: from mega.ap.freescale.net (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AF9284028F;
+        Tue, 25 Jun 2019 17:41:29 +0800 (SGT)
+From:   yibin.gong@nxp.com
+To:     robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, mark.rutland@arm.com, vkoul@kernel.org,
+        dan.j.williams@intel.com, angelo@sysam.it
+Cc:     linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: [PATCH v5 0/6] add edma2 for i.mx7ulp
+Date:   Tue, 25 Jun 2019 17:43:18 +0800
+Message-Id: <20190625094324.19196-1-yibin.gong@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Jun 2019 15:38:19 PDT (-0700), Atish Patra wrote:
-> Currently, there is no CPU topology defined for RISC-V.
-> The following series adds topology support in RISC-V.
->
-> http://lists.infradead.org/pipermail/linux-riscv/2019-June/005072.html
->
-> Add a DT node for unleashed that describes the CPU topology
-> present in HiFive Unleashed.
->
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-> index 83f40b00ab63..907564f4f07a 100644
-> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-> @@ -22,6 +22,24 @@
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  		timebase-frequency = <1000000>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu1>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu2>;
-> +				};
-> +				core2 {
-> +					cpu = <&cpu3>;
-> +				};
-> +				core3 {
-> +					cpu = <&cpu4>;
-> +				};
-> +			};
-> +		};
-> +
->  		cpu0: cpu@0 {
->  			compatible = "sifive,e51", "sifive,rocket0", "riscv";
->  			device_type = "cpu";
+From: Robin Gong <yibin.gong@nxp.com>
 
-Reviewed-by: Palmer Dabbelt <palmer@sifive.com>
+This patch set add new version of edma for i.mx7ulp, the main changes
+are as belows:
+ 1. only one dmamux.
+ 2. another clock dma_clk except dmamux clk.
+ 3. 16 independent interrupts instead of only one interrupt for
+    all channels
+For the first change, need modify fsl-edma-common.c and mcf-edma,
+so create the first two patches to prepare without any function impact.
+
+For the third change, need request single irq for every channel with
+the legacy handler. But actually 2 dma channels share one interrupt(16
+channel interrupts, but 32 channels.),ch0/ch16,ch1/ch17... For now, just
+simply request irq without IRQF_SHARED flag, since 16 channels are enough
+on i.mx7ulp whose M4 domain own some peripherals.
+
+change from v1:
+  1. check .data of 'of_device_id' in probe instead of compatible name.
+
+change from v2:
+  1. move the difference between edma and edma2 into driver data so that
+     no need version checking in fsl-edma.c.
+
+change from v3:
+  1. remove duplicated 'version' and 'dmamux_nr' in 'struct fsl_edma_engine'
+     since they are included in drvdata already.
+  2. downgrade print log level.
+  3. address some minor indent issues raised by Vinod.
+
+change from v4:
+  1. correct typo.
+
+Robin Gong (6):
+  dmaengine: fsl-edma: add drvdata for fsl-edma
+  dmaengine: fsl-edma-common: move dmamux register to another single
+    function
+  dmaengine: fsl-edma-common: version check for v2 instead
+  dt-bindings: dma: fsl-edma: add new i.mx7ulp-edma
+  dmaengine: fsl-edma: add i.mx7ulp edma2 version support
+  ARM: dts: imx7ulp: add edma device node
+
+ Documentation/devicetree/bindings/dma/fsl-edma.txt |  44 ++++++++-
+ arch/arm/boot/dts/imx7ulp.dtsi                     |  28 ++++++
+ drivers/dma/fsl-edma-common.c                      |  83 ++++++++++------
+ drivers/dma/fsl-edma-common.h                      |  14 ++-
+ drivers/dma/fsl-edma.c                             | 109 ++++++++++++++++++---
+ drivers/dma/mcf-edma.c                             |  11 ++-
+ 6 files changed, 239 insertions(+), 50 deletions(-)
+
+-- 
+2.7.4
+
