@@ -2,121 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4F8752678
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 10:25:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D569052686
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 10:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728283AbfFYIZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 04:25:16 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:45845 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726702AbfFYIZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 04:25:16 -0400
-X-Originating-IP: 90.88.16.156
-Received: from localhost (aaubervilliers-681-1-41-156.w90-88.abo.wanadoo.fr [90.88.16.156])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 84BD740008;
-        Tue, 25 Jun 2019 08:25:07 +0000 (UTC)
-Date:   Tue, 25 Jun 2019 10:25:07 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
-        daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
-        edubezval@gmail.com, wens@csie.org, robh+dt@kernel.org,
-        mchehab+samsung@kernel.org, rui.zhang@intel.com,
-        paulmck@linux.ibm.com, davem@davemloft.net,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 08/11] thermal: sun8i: support ahb clocks
-Message-ID: <20190625082507.mgycs6rzlxpvgqgu@flea>
-References: <20190623164206.7467-1-tiny.windzz@gmail.com>
- <20190623164206.7467-9-tiny.windzz@gmail.com>
- <20190624182333.di7avywtdvzwukms@flea>
- <20190625003416.pxve36mrxmotg2bq@core.my.home>
+        id S1730109AbfFYI0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 04:26:55 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:39218 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730048AbfFYI0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 04:26:55 -0400
+Received: by mail-lf1-f66.google.com with SMTP id p24so11983496lfo.6
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 01:26:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kVHhWnDLvxp54p0ZCf93IIcQ0pUeJTPzai6D5SvqhUU=;
+        b=ahvbeOrhOMKsGcDJLfK6ZG9vmXqWuw4udju5Y7XpqqW1DUOva4Cags99u5WkqRcspN
+         HKsfE6dUhaOpSzrDd4oabGF7NILel7LxJasKXak5hlqyqlquO9bAkMvXc+fIzT8iGem2
+         1kPJ/qO1nmQR7V0iv+jqHp25lAGQW6wHSwol51ZC9n1BQNY2gfNpeYGVwbPWcfJ0CMrm
+         kObApMSAyf1QxKXJulzk7muEB9h5a4ujPDs55PzIhEppNJXZAJZxirUmFM3sIdka9kTh
+         Z5a7P48TRhVwaRzZz7ewu/ahP5ggAFRrr8gzEwwBhK+gPwAJiUj+PhTbIEcJKfa4fYKK
+         w0Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kVHhWnDLvxp54p0ZCf93IIcQ0pUeJTPzai6D5SvqhUU=;
+        b=TSYUATVS4ca+xszoWD+HaTc8JYV963MESGojVheQtZYPlZTgj0tFY1BXe6zcyj8sz2
+         EECp3jHMP9ox5LnuCy7Q1hhpz9s554y1/QTKrzeWF7Qz46ew5tZuvU/bY8BPreevSeYb
+         ZSKCITbqUVTFon7vMgIByk1ckQeWImXZFqyBBM90xzSdQLJMIVXq7AOqhO1K+2FqIlgK
+         sckEAxNLeS4BYXGEn6HncMoqZZMxDX+woReLO87xO/H82JqRC3bKSPiZYlIAtCOhfPEZ
+         21iXHWwZjPnCIv0jgotcPC1kdOjYo/cBaKK9AZjsLcrPm9iOmU+Xuu11PZwS4UBvceS9
+         FpNQ==
+X-Gm-Message-State: APjAAAV0/gk4af5twidsaHkSu4k/p0TGCeAdJlvqBroD1tm7+UDPQ2cJ
+        UPkzu9kA1R/KBoysSXfnBvXrJsnSrPyDEqDHhVrkJ1Jh
+X-Google-Smtp-Source: APXvYqz5PlZyVZy/nlr5ViEmoOLlNZX/LuhCuxl9zXLQIre7MazQ8oPXy4S78b4Y/RNU5/ZDJwICe+jEltkCW8JxKh4=
+X-Received: by 2002:ac2:598d:: with SMTP id w13mr75934082lfn.165.1561451213189;
+ Tue, 25 Jun 2019 01:26:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ry5qotdx34xj2snb"
-Content-Disposition: inline
-In-Reply-To: <20190625003416.pxve36mrxmotg2bq@core.my.home>
-User-Agent: NeoMutt/20180716
+References: <20190624215649.8939-1-robh@kernel.org> <20190624215649.8939-11-robh@kernel.org>
+ <CACRpkdYKE=zLJhmTeTWYGRCQNt3K8+rNNqsp5UDa2d31GG6Y2g@mail.gmail.com> <CAL_Jsq+uCMKhUFgCCK3uUetL9OwokQPaq74GJHQS2VS=UjVH8w@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+uCMKhUFgCCK3uUetL9OwokQPaq74GJHQS2VS=UjVH8w@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 25 Jun 2019 10:26:41 +0200
+Message-ID: <CACRpkdYnSZibUyhe5D8W259fCJBm05rG0_EmX+uoi=uqbrqEYA@mail.gmail.com>
+Subject: Re: [PATCH v2 10/15] dt-bindings: display: Convert tpo,tpg110 panel
+ to DT schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---ry5qotdx34xj2snb
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jun 25, 2019 at 02:34:16AM +0200, Ond=C5=99ej Jirman wrote:
-> On Mon, Jun 24, 2019 at 08:23:33PM +0200, Maxime Ripard wrote:
-> > On Sun, Jun 23, 2019 at 12:42:03PM -0400, Yangtao Li wrote:
-> > > H3 has extra clock, so introduce something in ths_thermal_chip/ths_de=
-vice
-> > > and adds the process of the clock.
-> > >
-> > > This is pre-work for supprt it.
-> > >
-> > > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> > > ---
-> > >  drivers/thermal/sun8i_thermal.c | 17 ++++++++++++++++-
-> > >  1 file changed, 16 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_=
-thermal.c
-> > > index ed1c19bb27cf..04f53ffb6a14 100644
-> > > --- a/drivers/thermal/sun8i_thermal.c
-> > > +++ b/drivers/thermal/sun8i_thermal.c
-> > > @@ -54,6 +54,7 @@ struct tsensor {
-> > >  };
-> > >
-> > >  struct ths_thermal_chip {
-> > > +	bool            has_ahb_clk;
-> > >  	int		sensor_num;
-> > >  	int		offset;
-> > >  	int		scale;
-> > > @@ -69,6 +70,7 @@ struct ths_device {
-> > >  	struct regmap				*regmap;
-> > >  	struct reset_control			*reset;
-> > >  	struct clk				*bus_clk;
-> > > +	struct clk                              *ahb_clk;
+On Tue, Jun 25, 2019 at 12:47 AM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Jun 24, 2019 at 4:13 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Mon, Jun 24, 2019 at 11:59 PM Rob Herring <robh@kernel.org> wrote:
 > >
-> > Hmm, thinking a bit about this, the name of those two clocks doesn't
-> > make sense. AHB is the bus being used to access that device, so the
-> > bus clock is the AHB clock.
+> > > Convert the tpo,tpg110 panel binding to DT schema.
+> > >
+> > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
 > >
-> > What is that clock being used for?
+> > Awesome, fixed up the MAINATINERS entry and applied and
+> > pushed for DRM next with my Reviewed-by.
 >
-> To control the A/D and sample averaging logic, I suppose. It's controlled=
- by the
-> THS_CLK_REG (THS Clock Register) in H3 user manual.
->
-> bus_clk controls THS_GATING in BUS_CLK_GATING_REG2 (THS module is connect=
-ed to
-> APB bus).
->
-> I'd call it ths_clk and bus_clk.
+> You shouldn't have because this is dependent on patch 2 and
+> panel-common.yaml. So now 'make dt_binding_check' is broken.
 
-Thanks. We've tried to make clock names a bit more generic and
-consistent, so let's use mod instead.
+Ooops easily happens when I am only adressee on this patch and
+there is no mention of any dependencies.
 
-Maxime
+Can I simply just merge the panel-common patch as well and we
+are all happy?
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+I can also pick up more panel binding patches, IMO the yaml
+conversions are especially uncontroversial and should have low
+threshold for merging.
 
---ry5qotdx34xj2snb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRHaYwAKCRDj7w1vZxhR
-xQrlAP9wwKwsQ2PbVvHGyuOJSFjRJZ9ASA22w83xIaKJDErjhgEAsmUAcw4APZyi
-BhQMziRi3MAIeW70nBIvZFtQhI4YBwI=
-=YZIB
------END PGP SIGNATURE-----
-
---ry5qotdx34xj2snb--
+Yours,
+Linus Walleij
