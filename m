@@ -2,105 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8865562C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 19:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 577695577B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 20:58:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730507AbfFYRrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 13:47:46 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:40816 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729493AbfFYRrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 13:47:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1561484862; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=EVTVbMsCSjQzsSGM7XCSUEIELSlkRRQLrdI9FXq1fYg=;
-        b=I5VaVXau0WYEvLY0+ThTCn8lOoVV25LOpS4WXggxtDRrOTlkMd1je79pyQQADeqrXUuEDs
-        4KVxkYs0sLV0LEQgVmb0LvE0ep2awhNb5yLGjDccUym35LLBRhSoRhcZyUcP3CQ9v1i+B9
-        fero1NZR8XqCyr37PzfLE+FpxGb8NKE=
-Date:   Tue, 25 Jun 2019 19:47:32 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v13 04/13] mfd: Add Ingenic TCU driver
-To:     Paul Burton <paul.burton@mips.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mathieu Malaterre <malat@debian.org>, od@zcrc.me,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
-Message-Id: <1561484852.10069.0@crapouillou.net>
-In-Reply-To: <20190625173026.dbvx44iwywnijjql@pburton-laptop>
-References: <20190624225759.18299-1-paul@crapouillou.net>
-        <20190624225759.18299-5-paul@crapouillou.net>
-        <20190625173026.dbvx44iwywnijjql@pburton-laptop>
+        id S1729496AbfFYS6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 14:58:34 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:43269 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727443AbfFYS6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 14:58:34 -0400
+Received: by mail-pl1-f196.google.com with SMTP id cl9so9301411plb.10
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 11:58:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:to:from:subject:cc:user-agent:date;
+        bh=ceYwWxpHgj6RW/JYcqBajIskiEr+F+sxlQ3dc5T/nMg=;
+        b=GdYu6MwK2G6F/JAK6zs9UqaJ/hUBYG2tPDfevtw76pWAuvtim4Xw6/eapRfCA9MPKG
+         FI5lNa+s+EAHloUsXAVmZoJrAp7wjrZiEWJooZ+yqVxu0AcsPVjoWYPj7f1nVVteyED0
+         d7uDZALsf8zJZQ2xUxjoM8EnSmVFD0bXCuX50=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:to:from:subject:cc
+         :user-agent:date;
+        bh=ceYwWxpHgj6RW/JYcqBajIskiEr+F+sxlQ3dc5T/nMg=;
+        b=SUmFCkE4C1ahA1hy7Pur48uQauv84yKGpym9nZPnJ9lyBmBUFm+v0yUzyR7MZB9Eka
+         k/JRQ5N+7WgGlDivxqG5XLtdLjk4OoNNhf9k16uZbqa2UWdPGp/cOUNZIrGKxcePdjCG
+         r5bYIFpx6jXHVifefQLT6juUdtjNRI+Sla8s5sgwyF07s6WWcEmNezGagF+QFszt1Npt
+         80qSRma1ToQdODDO1b5hc+nHmj/D5vUR1vDA/rX2zOoXVfxDLpwlaKm99TU20Z5mbkgW
+         STPxF6zkOyJNWeeaHNMr0tzOIHQ6GBgaJsIT1UxrtwPwZWmpLIsvPPBzgDCUzmi+CGpu
+         0EOQ==
+X-Gm-Message-State: APjAAAXegUvIOEI8OJLX1YoqTDzvqbdnUivh2N4m1nAiSyP3N1fHeVWI
+        8Zb8YOpa9NZqSOBAU5ZKypieDA==
+X-Google-Smtp-Source: APXvYqyLpKjy/3GnTOLrntTEq9f0J0rhFfy/VGKWAVK0naGezt3DbNhjBQAa8zeZYIrQi4p3+5v1zQ==
+X-Received: by 2002:a17:902:b609:: with SMTP id b9mr271486pls.8.1561489113820;
+        Tue, 25 Jun 2019 11:58:33 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id d5sm18582177pfn.25.2019.06.25.11.58.33
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 25 Jun 2019 11:58:33 -0700 (PDT)
+Message-ID: <5d126ed9.1c69fb81.82999.a20a@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190517015305.23194-1-robdclark@gmail.com>
+References: <20190517015305.23194-1-robdclark@gmail.com>
+To:     Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org
+From:   Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-cheza: add initial cheza dt
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Evan Green <evgreen@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Venkat Gopalakrishnan <venkatg@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+User-Agent: alot/0.8.1
+Date:   Tue, 25 Jun 2019 11:58:32 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Le mar. 25 juin 2019 =E0 19:30, Paul Burton <paul.burton@mips.com> a=20
-=E9crit :
-> Hi Paul,
+Quoting Rob Clark (2019-05-16 18:52:46)
+> From: Rob Clark <robdclark@chromium.org>
 >=20
-> On Tue, Jun 25, 2019 at 12:57:50AM +0200, Paul Cercueil wrote:
->>  +static const struct of_device_id ingenic_tcu_of_match[] =3D {
->>  +	{ .compatible =3D "ingenic,jz4740-tcu", .data =3D &jz4740_soc_info, }=
-,
->>  +	{ .compatible =3D "ingenic,jz4725b-tcu", .data =3D &jz4725b_soc_info,=
-=20
->> },
->>  +	{ .compatible =3D "ingenic,jz4770-tcu", .data =3D &jz4740_soc_info, }=
-,
->>  +	{ }
->>  +};
+> This is essentialy a squash of a bunch of history of cheza dt updates
+> from chromium kernel, some of which were themselves squashes of history
+> from older chromium kernels.
 >=20
-> Nit: why not order these numerically? ie. 25b, 40, 70.
-
-They are in chronological order - the jz4725b is newer than the jz4740.
-
->>  +static struct regmap * __init ingenic_tcu_create_regmap(struct=20
->> device_node *np)
->>  +{
->>  +	struct resource res;
->>  +	void __iomem *base;
->>  +	struct regmap *map;
->>  +
->>  +	if (!of_match_node(ingenic_tcu_of_match, np))
->>  +		return ERR_PTR(-EINVAL);
->>  +
->>  +	base =3D of_io_request_and_map(np, 0, "TCU");
->>  +	if (IS_ERR(base))
->>  +		return ERR_PTR(PTR_ERR(base));
+> I don't claim any credit other than wanting to more easily boot upstream
+> kernel on cheza to have an easier way to test upstream driver work ;-)
 >=20
-> This is equivalent to:
+> I've added below in Cc tags all the original actual authors (apologies
+> if I missed any).
 >=20
->     return ERR_CAST(base);
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Sibi Sankar <sibis@codeaurora.org>
+> Cc: Evan Green <evgreen@chromium.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Cc: Abhinav Kumar <abhinavk@codeaurora.org>
+> Cc: Brian Norris <briannorris@chromium.org>
+> Cc: Venkat Gopalakrishnan <venkatg@codeaurora.org>
+> Cc: Rajendra Nayak <rnayak@codeaurora.org>
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
+> ---
 
-Alright - I'll fix it in a following patch if this V13 gets merged,
-or in the V14 patchset.
+Probably too late, but at least for the list records
 
-> Apart from those:
->=20
->     Reviewed-by: Paul Burton <paul.burton@mips.com>
->=20
-> Thanks,
->     Paul
-
-=
+Tested-by: Stephen Boyd <swboyd@chromium.org>
 
