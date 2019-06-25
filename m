@@ -2,246 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E076D51EAF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 00:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80BBC51FE8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 02:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727714AbfFXW6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 18:58:43 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:33478 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727774AbfFXW6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 18:58:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1561417117; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zWjdcykpjKQClimLw5xcX56tflwMl1zBb3SZEkqGarQ=;
-        b=ZwD5uJBtou1ZKAyeoWGFigv+zFJUneW7Bz+s6hdxgq3i5m9eVHqi3ALhnBRSzvBi8i5RBv
-        f9zmNwv5sFwvq5TMMvVx9hvQErJib9V42HysVPFeOpM5a/V1T/m1FwBBOJ/R2mpjejhhzZ
-        /CgihDM/pbO62WVAzufJie0K8EyXBGs=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     Mathieu Malaterre <malat@debian.org>, od@zcrc.me,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
-        Artur Rojek <contact@artur-rojek.eu>
-Subject: [PATCH v13 13/13] MIPS: jz4740: Drop obsolete code
-Date:   Tue, 25 Jun 2019 00:57:59 +0200
-Message-Id: <20190624225759.18299-14-paul@crapouillou.net>
-In-Reply-To: <20190624225759.18299-1-paul@crapouillou.net>
-References: <20190624225759.18299-1-paul@crapouillou.net>
+        id S1727174AbfFYA2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 20:28:40 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50534 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726395AbfFYA2k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 20:28:40 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 45525ADD5;
+        Tue, 25 Jun 2019 00:28:38 +0000 (UTC)
+From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+To:     linux-csky@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] csky: dts: Add NationalChip GX6605S
+Date:   Tue, 25 Jun 2019 02:28:29 +0200
+Message-Id: <20190625002829.17409-1-afaerber@suse.de>
+X-Mailer: git-send-email 2.16.4
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The old clocksource/timer platform code is now obsoleted by the newly
-introduced TCU drivers.
+Add Device Trees for NationalChip GX6605S SoC (based on CK610 CPU) and its
+dev board. GxLoader expects as filename gx6605s.dtb, so keep that.
+The bootargs are prepared to boot from USB and to output to serial.
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Tested-by: Mathieu Malaterre <malat@debian.org>
-Tested-by: Artur Rojek <contact@artur-rojek.eu>
+Compatibles for the SoC and board are left out for now.
+
+Signed-off-by: Andreas Färber <afaerber@suse.de>
 ---
+ arch/csky/boot/dts/gx6605s.dts  | 104 ++++++++++++++++++++++++++++++++++++++++
+ arch/csky/boot/dts/gx6605s.dtsi |  82 +++++++++++++++++++++++++++++++
+ 2 files changed, 186 insertions(+)
+ create mode 100644 arch/csky/boot/dts/gx6605s.dts
+ create mode 100644 arch/csky/boot/dts/gx6605s.dtsi
 
-Notes:
-    v5: New patch
-    
-    v6-v11: No change
-    
-    v12: Only remove clocksource code. The rest will eventually be
-    	 removed in a future patchset when the PWM/watchdog drivers
-    	 are updated.
-    
-    v13: No change
-
- arch/mips/jz4740/time.c | 154 +---------------------------------------
- 1 file changed, 2 insertions(+), 152 deletions(-)
-
-diff --git a/arch/mips/jz4740/time.c b/arch/mips/jz4740/time.c
-index a3260c754e65..5476899f0882 100644
---- a/arch/mips/jz4740/time.c
-+++ b/arch/mips/jz4740/time.c
-@@ -4,164 +4,14 @@
-  *  JZ4740 platform time support
-  */
- 
--#include <linux/clk.h>
- #include <linux/clk-provider.h>
--#include <linux/interrupt.h>
--#include <linux/kernel.h>
--#include <linux/time.h>
-+#include <linux/clocksource.h>
- 
--#include <linux/clockchips.h>
--#include <linux/sched_clock.h>
--
--#include <asm/mach-jz4740/clock.h>
--#include <asm/mach-jz4740/irq.h>
- #include <asm/mach-jz4740/timer.h>
--#include <asm/time.h>
--
--#include "clock.h"
--
--#define TIMER_CLOCKEVENT 0
--#define TIMER_CLOCKSOURCE 1
--
--static uint16_t jz4740_jiffies_per_tick;
--
--static u64 jz4740_clocksource_read(struct clocksource *cs)
--{
--	return jz4740_timer_get_count(TIMER_CLOCKSOURCE);
--}
--
--static struct clocksource jz4740_clocksource = {
--	.name = "jz4740-timer",
--	.rating = 200,
--	.read = jz4740_clocksource_read,
--	.mask = CLOCKSOURCE_MASK(16),
--	.flags = CLOCK_SOURCE_IS_CONTINUOUS,
--};
--
--static u64 notrace jz4740_read_sched_clock(void)
--{
--	return jz4740_timer_get_count(TIMER_CLOCKSOURCE);
--}
--
--static irqreturn_t jz4740_clockevent_irq(int irq, void *devid)
--{
--	struct clock_event_device *cd = devid;
--
--	jz4740_timer_ack_full(TIMER_CLOCKEVENT);
--
--	if (!clockevent_state_periodic(cd))
--		jz4740_timer_disable(TIMER_CLOCKEVENT);
--
--	cd->event_handler(cd);
--
--	return IRQ_HANDLED;
--}
--
--static int jz4740_clockevent_set_periodic(struct clock_event_device *evt)
--{
--	jz4740_timer_set_count(TIMER_CLOCKEVENT, 0);
--	jz4740_timer_set_period(TIMER_CLOCKEVENT, jz4740_jiffies_per_tick);
--	jz4740_timer_irq_full_enable(TIMER_CLOCKEVENT);
--	jz4740_timer_enable(TIMER_CLOCKEVENT);
--
--	return 0;
--}
--
--static int jz4740_clockevent_resume(struct clock_event_device *evt)
--{
--	jz4740_timer_irq_full_enable(TIMER_CLOCKEVENT);
--	jz4740_timer_enable(TIMER_CLOCKEVENT);
--
--	return 0;
--}
--
--static int jz4740_clockevent_shutdown(struct clock_event_device *evt)
--{
--	jz4740_timer_disable(TIMER_CLOCKEVENT);
--
--	return 0;
--}
--
--static int jz4740_clockevent_set_next(unsigned long evt,
--	struct clock_event_device *cd)
--{
--	jz4740_timer_set_count(TIMER_CLOCKEVENT, 0);
--	jz4740_timer_set_period(TIMER_CLOCKEVENT, evt);
--	jz4740_timer_enable(TIMER_CLOCKEVENT);
--
--	return 0;
--}
--
--static struct clock_event_device jz4740_clockevent = {
--	.name = "jz4740-timer",
--	.features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT,
--	.set_next_event = jz4740_clockevent_set_next,
--	.set_state_shutdown = jz4740_clockevent_shutdown,
--	.set_state_periodic = jz4740_clockevent_set_periodic,
--	.set_state_oneshot = jz4740_clockevent_shutdown,
--	.tick_resume = jz4740_clockevent_resume,
--	.rating = 200,
--#ifdef CONFIG_MACH_JZ4740
--	.irq = JZ4740_IRQ_TCU0,
--#endif
--#if defined(CONFIG_MACH_JZ4770) || defined(CONFIG_MACH_JZ4780)
--	.irq = JZ4780_IRQ_TCU2,
--#endif
--};
--
--static struct irqaction timer_irqaction = {
--	.handler	= jz4740_clockevent_irq,
--	.flags		= IRQF_PERCPU | IRQF_TIMER,
--	.name		= "jz4740-timerirq",
--	.dev_id		= &jz4740_clockevent,
--};
- 
- void __init plat_time_init(void)
- {
--	int ret;
--	uint32_t clk_rate;
--	uint16_t ctrl;
--	struct clk *ext_clk;
--
- 	of_clk_init(NULL);
- 	jz4740_timer_init();
--
--	ext_clk = clk_get(NULL, "ext");
--	if (IS_ERR(ext_clk))
--		panic("unable to get ext clock");
--	clk_rate = clk_get_rate(ext_clk) >> 4;
--	clk_put(ext_clk);
--
--	jz4740_jiffies_per_tick = DIV_ROUND_CLOSEST(clk_rate, HZ);
--
--	clockevent_set_clock(&jz4740_clockevent, clk_rate);
--	jz4740_clockevent.min_delta_ns = clockevent_delta2ns(100, &jz4740_clockevent);
--	jz4740_clockevent.min_delta_ticks = 100;
--	jz4740_clockevent.max_delta_ns = clockevent_delta2ns(0xffff, &jz4740_clockevent);
--	jz4740_clockevent.max_delta_ticks = 0xffff;
--	jz4740_clockevent.cpumask = cpumask_of(0);
--
--	clockevents_register_device(&jz4740_clockevent);
--
--	ret = clocksource_register_hz(&jz4740_clocksource, clk_rate);
--
--	if (ret)
--		printk(KERN_ERR "Failed to register clocksource: %d\n", ret);
--
--	sched_clock_register(jz4740_read_sched_clock, 16, clk_rate);
--
--	setup_irq(jz4740_clockevent.irq, &timer_irqaction);
--
--	ctrl = JZ_TIMER_CTRL_PRESCALE_16 | JZ_TIMER_CTRL_SRC_EXT;
--
--	jz4740_timer_set_ctrl(TIMER_CLOCKEVENT, ctrl);
--	jz4740_timer_set_ctrl(TIMER_CLOCKSOURCE, ctrl);
--
--	jz4740_timer_set_period(TIMER_CLOCKEVENT, jz4740_jiffies_per_tick);
--	jz4740_timer_irq_full_enable(TIMER_CLOCKEVENT);
--
--	jz4740_timer_set_period(TIMER_CLOCKSOURCE, 0xffff);
--
--	jz4740_timer_enable(TIMER_CLOCKEVENT);
--	jz4740_timer_enable(TIMER_CLOCKSOURCE);
-+	timer_probe();
- }
+diff --git a/arch/csky/boot/dts/gx6605s.dts b/arch/csky/boot/dts/gx6605s.dts
+new file mode 100644
+index 000000000000..f7511024ec6f
+--- /dev/null
++++ b/arch/csky/boot/dts/gx6605s.dts
+@@ -0,0 +1,104 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
++/*
++ * GX6605S dev board
++ *
++ * Copyright (c) 2019 Andreas Färber
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "gx6605s.dtsi"
++
++/ {
++	model = "Nationalchip GX6605S";
++
++	aliases {
++		serial0 = &uart;
++	};
++
++	chosen {
++		bootargs = "console=ttyS0,115200n8 root=/dev/sda2 rw rootwait";
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory@10000000 {
++		device_type = "memory";
++		reg = <0x10000000 0x04000000>;
++	};
++
++	dummy_apb_clk: dummy-apb-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>; /* guesstimate */
++		#clock-cells = <0>;
++	};
++
++	buttons {
++		compatible = "gpio-keys-polled";
++		poll-interval = <100>;
++		autorepeat;
++
++		button5 {
++			label = "button5";
++			linux,code = <103>;
++			gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
++		};
++
++		button6 {
++			label = "button6";
++			linux,code = <106>;
++			gpios = <&gpio 6 GPIO_ACTIVE_LOW>;
++		};
++
++		button7 {
++			label = "button7";
++			linux,code = <28>;
++			gpios = <&gpio 7 GPIO_ACTIVE_LOW>;
++		};
++
++		button8 {
++			label = "button8";
++			linux,code = <105>;
++			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
++		};
++
++		button9 {
++			label = "button9";
++			linux,code = <108>;
++			gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led0 {
++			label = "led10";
++			gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "heartbeat";
++		};
++
++		led1 {
++			label = "led11";
++			gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "timer";
++		};
++
++		led2 {
++			label = "led12";
++			gpios = <&gpio 12 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "default-on";
++		};
++
++		led3 {
++			label = "led13";
++			gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "default-on";
++		};
++	};
++};
++
++&timer0 {
++		clocks = <&dummy_apb_clk>;
++};
+diff --git a/arch/csky/boot/dts/gx6605s.dtsi b/arch/csky/boot/dts/gx6605s.dtsi
+new file mode 100644
+index 000000000000..956af5674add
+--- /dev/null
++++ b/arch/csky/boot/dts/gx6605s.dtsi
+@@ -0,0 +1,82 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
++/*
++ * NationalChip GX6605S SoC
++ *
++ * Copyright (c) 2019 Andreas Färber
++ */
++
++/ {
++	#address-cells = <1>;
++	#size-cells = <1>;
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "csky,ck610";
++			reg = <0>;
++		};
++	};
++
++	soc {
++		compatible = "simple-bus";
++		interrupt-parent = <&intc>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		timer0: timer@20a000 {
++			compatible = "csky,gx6605s-timer";
++			reg = <0x0020a000 0x400>;
++			clocks = <&dummy_apb_clk>;
++			interrupts = <10>;
++		};
++
++		gpio: gpio@305000 {
++			compatible = "wd,mbl-gpio";
++			reg-names = "dirout", "dat", "set", "clr";
++			reg = <0x00305000 0x4>,
++			      <0x00305004 0x4>,
++			      <0x00305008 0x4>,
++			      <0x0030500c 0x4>;
++			gpio-controller;
++			#gpio-cells = <2>;
++		};
++
++		uart: serial@403000 {
++			compatible = "ns16550a";
++			reg = <0x00403000 0x400>;
++			interrupts = <15>;
++			clock-frequency = <29491200>;
++			reg-shift = <2>;
++			reg-io-width = <1>;
++		};
++
++		intc: interrupt-controller@500000 {
++			compatible = "csky,gx6605s-intc";
++			reg = <0x00500000 0x400>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++		};
++
++		ehci_hcd: usb@900000 {
++			compatible = "generic-ehci";
++			reg = <0x00900000 0x400>;
++			interrupts = <59>;
++		};
++
++		ohci_hcd0: usb@a00000 {
++			compatible = "generic-ohci";
++			reg = <0x00a00000 0x400>;
++			interrupts = <58>;
++		};
++
++		ohci_hcd1: usb@b00000 {
++			compatible = "generic-ohci";
++			reg = <0x00b00000 0x400>;
++			interrupts = <57>;
++		};
++	};
++};
 -- 
-2.21.0.593.g511ec345e18
+2.16.4
 
