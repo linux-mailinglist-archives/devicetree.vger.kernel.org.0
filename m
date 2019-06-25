@@ -2,206 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6127551D3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2252B5522A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730529AbfFYOgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 10:36:46 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:44931 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728710AbfFYOgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 10:36:46 -0400
-Received: by mail-io1-f65.google.com with SMTP id s7so3666655iob.11;
-        Tue, 25 Jun 2019 07:36:45 -0700 (PDT)
+        id S1731211AbfFYOkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 10:40:07 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:36922 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730689AbfFYOkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 10:40:06 -0400
+Received: by mail-lj1-f196.google.com with SMTP id 131so16533350ljf.4;
+        Tue, 25 Jun 2019 07:40:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=675OzOy+510rgklrUaR96A8aWWUmnotqZyJprpSFvDY=;
-        b=C8d6P2LjPsGOUIC0tsQoXICkz7v3AIjhqBGFbjqHH928L6FdjG1uNi8gPm9Z1CCbwV
-         Xzw4VD+dM9v7UVqP2QhYzm7D6YYREj4FneX1uUG8NUumMooHWJXNSCDQSvG64Xg6DbVg
-         sAY+9S8x4SkMiCeY0p4EgJqp1i8RthYYi+1ylaNW4MgmNsPEyY68KH8gFjpl6/vjD7nI
-         nurfPFrv12oiOHOL7PaG+VSnmAw+Bo79IO3jgbs4yA0Z9zTSHq+7paAUwF5MocNdOmNE
-         N1+TvLRKGzrvNYGzzoOrgFBrVv+EE8EhIsy1tpw7rqXz4CWW5OR+HVMhKuyIbnPRZDSX
-         fpUg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q0m3ZCcvvlamTMjrKbKQpPCjAq0COFaxIHyMR99gkW4=;
+        b=UH7jR3TDn/mUxso6TpcyTOtnuNk/kSdJZKteGrbYjSjp1oiEvdriH+931yXLyjy1P/
+         PfJU3kpY4MIkqm+n36A2osZQXizmmeYDQLbHsBA2b6LxpZGeBFe1sxmtrBonQwkYEE85
+         6a/iLuKv2fs9ncZFjrlli7ni4FOW2LPVk7T7dvI7HstK0w69OHQxGp1CdUd5nQOUOKq3
+         3vUX4SBh4JeldgoBofMvNlgBg588xFsMd/GlhH+0uT+2GGzvBxtdW4UPpCtBtI9QYtxB
+         JRlNrnTmzY7XiVUNSIR5qGOLmKV3z5h9JWNxH3kP8T4CmDLvFwSlbwECLY7tWy9MtcDA
+         kxog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=675OzOy+510rgklrUaR96A8aWWUmnotqZyJprpSFvDY=;
-        b=VkqViPQFBRY+jsCkNwsG1tzXs0sfzePVYIHHl3m6ZyCO3HYPNcr6DijKsEBV5OxZ5L
-         UFQfZ9gadJeS4TvbfPeAsKG010FV2LnTUysQhhad3WEP4gio3ZZMIpKiv2fY1aCZCzN8
-         fO+I37R/CBbopAff9JtlSwOK0ZRgUOCqvlY2uC9Wp0A8GiIfEdEXzWug7aRvuVLaegHV
-         LtFxkJu/j1oVQcSeSFYUc4IyqRF7hoxo6jNz2OWRrWWGx4Yrqfn4BhMYUkCwdawLdZN7
-         kGk8zfVdLv2UKDIb7dCPpxaDUthniBid44tf3BbBIdPh0JBqKFSjTN5TCeMnNuCXVqF+
-         rZYA==
-X-Gm-Message-State: APjAAAXNR13akbsO4V/a9l/56BknrxcSD/AmuKwQtlUp9nJyTeuWvgYi
-        LXuEQGPQOWyS70sQqHkr4UI4dn1yw74863ZTKdA=
-X-Google-Smtp-Source: APXvYqyIhHfq9+Y1O90Dc9QCg+QologakcjEJq20JB9jjKKHZ3UFv1CEoNGBNtNqH+gGzl2D3yh6phm+3DUz6D1TNAU=
-X-Received: by 2002:a6b:c90c:: with SMTP id z12mr1767390iof.11.1561473405499;
- Tue, 25 Jun 2019 07:36:45 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=q0m3ZCcvvlamTMjrKbKQpPCjAq0COFaxIHyMR99gkW4=;
+        b=PT0aUZr5zhjItdUwJfmV5H85exu2eZqvQ5rhCQomE18rqYxl+eZ1DCo+e4APLZugkS
+         +tTjv17j+PBlVpGwH+bKb6Wcs9LSFH/DzhsiHcXFVAGCjFC4yFM7x9G0Ruu0BQdEsLwu
+         DGUKCisNZbVoJE1vuK3Y1ofyC6UZtbutU3ibQvgTzQ+CwV1RAz248SmQORRVyxhxCoVB
+         CxnaNbbKLEIMJpDN43BNjUg4nZDBamlOHapTQVhaTcw4xQcK4n762M2ZFcV46euuAj8n
+         y6qyno0R2mo1cYsrsL8qo2bgzLH8LlGYuGG1KC072y0j8eQAdoEeODylcpXdaWsdf5gZ
+         CWfg==
+X-Gm-Message-State: APjAAAWnuV/SgdeTuf521o3x0VbuNMk+SfWyMRYtWg2N0VRvZ5TStubd
+        KKsESVw7YFNGf9slv4JfQkzFWvC8
+X-Google-Smtp-Source: APXvYqwwGogsn+0F5BzrzfyS8cU7M9D0Jg0oyoWVeDuvdXH78LpECLVu/4t74BUaXxcL4PdcgQSqtg==
+X-Received: by 2002:a2e:9a87:: with SMTP id p7mr36337953lji.133.1561473604136;
+        Tue, 25 Jun 2019 07:40:04 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-79-162-197.pppoe.mtu-net.ru. [91.79.162.197])
+        by smtp.googlemail.com with ESMTPSA id 25sm2273267ljv.40.2019.06.25.07.40.02
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 25 Jun 2019 07:40:03 -0700 (PDT)
+Subject: Re: [PATCH v3 2/5] regulator: core: Expose some of core functions
+ needed by couplers
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190623210835.26281-1-digetx@gmail.com>
+ <20190623210835.26281-3-digetx@gmail.com>
+ <20190625111946.GP5316@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a0626c9d-c68b-9043-8b2f-870f594938b8@gmail.com>
+Date:   Tue, 25 Jun 2019 17:40:01 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-References: <20190603083005.4304-1-peng.fan@nxp.com> <20190603083005.4304-3-peng.fan@nxp.com>
- <CABb+yY1wW-arSMQSYjrezXOZ0Ar_shAr78MOyUD3hBxXohWx3g@mail.gmail.com> <AM0PR04MB44813A4DE544E53EB7B6F02B88E30@AM0PR04MB4481.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB44813A4DE544E53EB7B6F02B88E30@AM0PR04MB4481.eurprd04.prod.outlook.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Tue, 25 Jun 2019 09:36:34 -0500
-Message-ID: <CABb+yY38MAZqVOhjyV+GByPvpFcTfKbNG1rJ8YDRd1vi1F4fqg@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        ", Sascha Hauer" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190625111946.GP5316@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 2:30 AM Peng Fan <peng.fan@nxp.com> wrote:
->
-> Hi Jassi
->
-> > Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
-> >
-> > On Mon, Jun 3, 2019 at 3:28 AM <peng.fan@nxp.com> wrote:
-> > >
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > This mailbox driver implements a mailbox which signals transmitted
-> > > data via an ARM smc (secure monitor call) instruction. The mailbox
-> > > receiver is implemented in firmware and can synchronously return data
-> > > when it returns execution to the non-secure world again.
-> > > An asynchronous receive path is not implemented.
-> > > This allows the usage of a mailbox to trigger firmware actions on SoCs
-> > > which either don't have a separate management processor or on which
-> > > such a core is not available. A user of this mailbox could be the SCP
-> > > interface.
-> > >
-> > > Modified from Andre Przywara's v2 patch
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
-> > > .kernel.org%2Fpatchwork%2Fpatch%2F812999%2F&amp;data=02%7C01%7
-> > Cpeng.fa
-> > >
-> > n%40nxp.com%7C1237677cb01044ad714508d6f59f648f%7C686ea1d3bc2b4
-> > c6fa92cd
-> > >
-> > 99c5c301635%7C0%7C0%7C636966462272457978&amp;sdata=Hzgeu43m5
-> > ZkeRMtL8Bx
-> > > gUm3%2B6FBObib1OPHPlSccE%2B0%3D&amp;reserved=0
-> > >
-> > > Cc: Andre Przywara <andre.przywara@arm.com>
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >
-> > > V2:
-> > >  Add interrupts notification support.
-> > >
-> > >  drivers/mailbox/Kconfig                 |   7 ++
-> > >  drivers/mailbox/Makefile                |   2 +
-> > >  drivers/mailbox/arm-smc-mailbox.c       | 190
-> > ++++++++++++++++++++++++++++++++
-> > >  include/linux/mailbox/arm-smc-mailbox.h |  10 ++
-> > >  4 files changed, 209 insertions(+)
-> > >  create mode 100644 drivers/mailbox/arm-smc-mailbox.c  create mode
-> > > 100644 include/linux/mailbox/arm-smc-mailbox.h
-> > >
-> > > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig index
-> > > 595542bfae85..c3bd0f1ddcd8 100644
-> > > --- a/drivers/mailbox/Kconfig
-> > > +++ b/drivers/mailbox/Kconfig
-> > > @@ -15,6 +15,13 @@ config ARM_MHU
-> > >           The controller has 3 mailbox channels, the last of which can be
-> > >           used in Secure mode only.
-> > >
-> > > +config ARM_SMC_MBOX
-> > > +       tristate "Generic ARM smc mailbox"
-> > > +       depends on OF && HAVE_ARM_SMCCC
-> > > +       help
-> > > +         Generic mailbox driver which uses ARM smc calls to call into
-> > > +         firmware for triggering mailboxes.
-> > > +
-> > >  config IMX_MBOX
-> > >         tristate "i.MX Mailbox"
-> > >         depends on ARCH_MXC || COMPILE_TEST diff --git
-> > > a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile index
-> > > c22fad6f696b..93918a84c91b 100644
-> > > --- a/drivers/mailbox/Makefile
-> > > +++ b/drivers/mailbox/Makefile
-> > > @@ -7,6 +7,8 @@ obj-$(CONFIG_MAILBOX_TEST)      += mailbox-test.o
-> > >
-> > >  obj-$(CONFIG_ARM_MHU)  += arm_mhu.o
-> > >
-> > > +obj-$(CONFIG_ARM_SMC_MBOX)     += arm-smc-mailbox.o
-> > > +
-> > >  obj-$(CONFIG_IMX_MBOX) += imx-mailbox.o
-> > >
-> > >  obj-$(CONFIG_ARMADA_37XX_RWTM_MBOX)    +=
-> > armada-37xx-rwtm-mailbox.o
-> > > diff --git a/drivers/mailbox/arm-smc-mailbox.c
-> > > b/drivers/mailbox/arm-smc-mailbox.c
-> > > new file mode 100644
-> > > index 000000000000..fef6e38d8b98
-> > > --- /dev/null
-> > > +++ b/drivers/mailbox/arm-smc-mailbox.c
-> > > @@ -0,0 +1,190 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2016,2017 ARM Ltd.
-> > > + * Copyright 2019 NXP
-> > > + */
-> > > +
-> > > +#include <linux/arm-smccc.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/kernel.h>
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/mailbox_controller.h> #include
-> > > +<linux/mailbox/arm-smc-mailbox.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +#define ARM_SMC_MBOX_USE_HVC   BIT(0)
-> > > +#define ARM_SMC_MBOX_USB_IRQ   BIT(1)
-> > > +
-> > IRQ bit is unused (and unnecessary IMO)
-> >
-> > > +struct arm_smc_chan_data {
-> > > +       u32 function_id;
-> > > +       u32 flags;
-> > > +       int irq;
-> > > +};
-> > > +
-> > > +static int arm_smc_send_data(struct mbox_chan *link, void *data) {
-> > > +       struct arm_smc_chan_data *chan_data = link->con_priv;
-> > > +       struct arm_smccc_mbox_cmd *cmd = data;
-> > > +       struct arm_smccc_res res;
-> > > +       u32 function_id;
-> > > +
-> > > +       if (chan_data->function_id != UINT_MAX)
-> > > +               function_id = chan_data->function_id;
-> > > +       else
-> > > +               function_id = cmd->a0;
-> > > +
-> > Not sure about chan_data->function_id.  Why restrict from DT?
-> > 'a0' is the function_id register, let the user pass func-id via the 'a0' like other
-> > values via 'a[1-7]'
->
-> Missed to reply this comment.
->
-> The firmware driver might not have func-id, such as SCMI/SCPI.
-> So add an optional func-id to let smc mailbox driver could
-> use smc SiP func id.
->
-There is no end to conforming to protocols. Controller drivers should
-be written having no particular client in mind.
+25.06.2019 14:19, Mark Brown пишет:
+> On Mon, Jun 24, 2019 at 12:08:32AM +0300, Dmitry Osipenko wrote:
+>> Expose some of internal functions that are required for implementation of
+>> customized regulator couplers.
+> 
+> The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
+> 
+>   Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git tags/regulator-couple-api
+> 
+> for you to fetch changes up to d22b85a1b97d12a4940ef9d778f6122546736f78:
+> 
+>   regulator: core: Expose some of core functions needed by couplers (2019-06-25 12:15:35 +0100)
+> 
+> ----------------------------------------------------------------
+> regulator: Coupling API
+> 
+> This series introduces a way of specifying a customized regulators coupler
+> which is necessary for cases like a non-trivial DVFS implementation.
+> 
+> ----------------------------------------------------------------
+> Dmitry Osipenko (2):
+>       regulator: core: Introduce API for regulators coupling customization
+>       regulator: core: Expose some of core functions needed by couplers
+> 
+>  drivers/regulator/core.c          | 194 ++++++++++++++++++++++++++++----------
+>  drivers/regulator/of_regulator.c  |  63 +++++++++----
+>  include/linux/regulator/coupler.h |  97 +++++++++++++++++++
+>  include/linux/regulator/driver.h  |   6 +-
+>  include/linux/regulator/machine.h |   2 +-
+>  5 files changed, 287 insertions(+), 75 deletions(-)
+>  create mode 100644 include/linux/regulator/coupler.h
+> 
+
+Thank you very much! Very nice to see some more progress!
