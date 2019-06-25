@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B9AC52851
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D791528B1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 11:55:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731698AbfFYJmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 05:42:00 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:35244 "EHLO inva020.nxp.com"
+        id S1726772AbfFYJzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 05:55:37 -0400
+Received: from sauhun.de ([88.99.104.3]:43854 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731690AbfFYJl7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 05:41:59 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 52BB61A0774;
-        Tue, 25 Jun 2019 11:41:57 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 380371A0789;
-        Tue, 25 Jun 2019 11:41:50 +0200 (CEST)
-Received: from mega.ap.freescale.net (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id F10464031E;
-        Tue, 25 Jun 2019 17:41:37 +0800 (SGT)
-From:   yibin.gong@nxp.com
-To:     robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, mark.rutland@arm.com, vkoul@kernel.org,
-        dan.j.williams@intel.com, angelo@sysam.it
-Cc:     linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: [PATCH v5 6/6] ARM: dts: imx7ulp: add edma device node
-Date:   Tue, 25 Jun 2019 17:43:24 +0800
-Message-Id: <20190625094324.19196-7-yibin.gong@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190625094324.19196-1-yibin.gong@nxp.com>
-References: <20190625094324.19196-1-yibin.gong@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726421AbfFYJzh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 05:55:37 -0400
+Received: from localhost (p54B333A7.dip0.t-ipconnect.de [84.179.51.167])
+        by pokefinder.org (Postfix) with ESMTPSA id 275C22C376D;
+        Tue, 25 Jun 2019 11:55:34 +0200 (CEST)
+Date:   Tue, 25 Jun 2019 11:55:33 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Eugen.Hristev@microchip.com, peda@axentia.se, robh+dt@kernel.org,
+        mark.rutland@arm.com, Nicolas.Ferre@microchip.com,
+        Ludovic.Desroches@microchip.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Pierre-Yves MORDRET <pierre-yves.mordret@st.com>
+Subject: I2C filtering (was Re: [PATCH v2 6/9] dt-bindings: i2c: at91: add
+ binding for enable-ana-filt)
+Message-ID: <20190625095533.GC1688@kunai>
+References: <1561449642-26956-1-git-send-email-eugen.hristev@microchip.com>
+ <1561449642-26956-7-git-send-email-eugen.hristev@microchip.com>
+ <4e81d3c9-25f3-ca6e-f2d5-17fad5905bb8@axentia.se>
+ <84628b5e-bea7-7d91-f790-f3a2650040fa@microchip.com>
+ <20190625093156.GF5690@piout.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="PuGuTyElPB9bOcsM"
+Content-Disposition: inline
+In-Reply-To: <20190625093156.GF5690@piout.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robin Gong <yibin.gong@nxp.com>
 
-Add edma device node in dts.
+--PuGuTyElPB9bOcsM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Robin Gong <yibin.gong@nxp.com>
----
- arch/arm/boot/dts/imx7ulp.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+On Tue, Jun 25, 2019 at 11:31:56AM +0200, Alexandre Belloni wrote:
+> On 25/06/2019 09:14:13+0000, Eugen.Hristev@microchip.com wrote:
+> > > Perhaps
+> > >=20
+> > > 	microchip,digital-filter;
+> > > 	microchip,analog-filter;
+> > >=20
+> > > ?
+> >=20
+> > Hi Peter,
+> >=20
+> > Thanks for reviewing. The name of the property does not matter much to=
+=20
+> > me, and we have properties prefixed with vendor, and some are not.
+> >=20
+> > @Alexandre Belloni: which name you think it's best ?
+> >=20
+>=20
+> I'm not sure, it depends on whether Wolfram thinks it is generic enough
+> to be used without a vendor prefix.
 
-diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-index dc5bc32..97496cf 100644
---- a/arch/arm/boot/dts/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/imx7ulp.dtsi
-@@ -123,6 +123,34 @@
- 			};
- 		};
- 
-+		edma1: dma-controller@40080000 {
-+			#dma-cells = <2>;
-+			compatible = "fsl,imx7ulp-edma";
-+			reg = <0x40080000 0x2000>,
-+				<0x40210000 0x1000>;
-+			dma-channels = <32>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "dma", "dmamux0";
-+			clocks = <&pcc2 IMX7ULP_CLK_DMA1>,
-+				 <&pcc2 IMX7ULP_CLK_DMA_MUX1>;
-+		};
-+
- 		lpuart4: serial@402d0000 {
- 			compatible = "fsl,imx7ulp-lpuart";
- 			reg = <0x402d0000 0x1000>;
--- 
-2.7.4
+I could imagine that we design a generic property for filters. The ones
+above make me wonder, though, because they are bool. I'd think you can
+configure the filters in some way, too?
 
+I never used such filtering, so I am unaware of the parameters needed /
+suitable. Quick grepping through I2C master drivers reveals that
+i2c-stm32f7.c also handles filters, but only with default values. Maybe
+DT configuration would be benefitial to that driver, too?
+
+Adding some people to CC.
+
+
+--PuGuTyElPB9bOcsM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0R75EACgkQFA3kzBSg
+KbaFyA//UefpasMtRS97YQqN/2m6N9Xgl7LiXTof1v53GW/mee1Y8ce675X8tAHL
+H2Hcvak1eeDIBiN+FPopoUSZ3EhxO3jsMeuR4cAXAKgbFS9lngHGyQcYWd8EZG3p
+lxcbnahpnUOBnvFKHet1j84f3RAkk8tksxEc7sFaV5puN3dReSBA5e++trJz73yk
+oUjx+42R9Zytrt27IsH+Vy86znzzuDboc+ngLwl+deTGG3E56xLAUNX4U5eGLJiJ
+jL7Ot0GUBIw+iHI610z+HrzuKREIQGY3XkGowq+ZU6RxgSnpdf0faRp8EqfRaJdb
+i0379EM5C0Hb4O0l7RLMmlNPWaIGPVhoh7Hr2cBSEXMmL4Fr8uBWNlpkKU1aFM4v
+4mq4KBULWYfihJ2CfFqWyKOLzY4320whOiHcq0O+81nYSrRoXCEpYyxHMLpfTicW
+YSysulIyWNbAv+j+Cns7y6SRE/Pm6HBaWsHuP8gqKha0+wjmAs+eE6zwZ4RiUYez
+tSqP31BTOQw7UG26/FOX+N/fAtBGQP2NcBePPSAmMBLTGAiAXWnEIZv/x9MO9qJ1
+kVEs2wtgeyX93qxwedyL9ueTa/d5HbmMpYDN0R3PFwpqGyC+qkyNlatWd/DJutwP
+oXKFHwEdabgjoSwYIaIfHkP4gxF/5BJp3F0H+vR/n+sDlQoaWp4=
+=qB/9
+-----END PGP SIGNATURE-----
+
+--PuGuTyElPB9bOcsM--
