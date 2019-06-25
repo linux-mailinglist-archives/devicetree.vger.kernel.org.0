@@ -2,119 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DE1255576
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 19:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 399BD555E4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 19:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730571AbfFYRFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 13:05:35 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:34132 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730596AbfFYRF2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 13:05:28 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 4E704FB05;
-        Tue, 25 Jun 2019 19:05:26 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id H3d_FJEAHz_q; Tue, 25 Jun 2019 19:05:24 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 6C67448E38; Tue, 25 Jun 2019 19:05:19 +0200 (CEST)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Purism Kernel Team <kernel@puri.sm>
-Subject: [PATCH 4/4] drm/panel: jh057n0090: Add regulator support
-Date:   Tue, 25 Jun 2019 19:05:19 +0200
-Message-Id: <b239f1db7a1f67988a9bd1ed62f6a1cf1dce944c.1561482165.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1561482165.git.agx@sigxcpu.org>
-References: <cover.1561482165.git.agx@sigxcpu.org>
+        id S1727181AbfFYRad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 13:30:33 -0400
+Received: from mail-eopbgr750122.outbound.protection.outlook.com ([40.107.75.122]:56192
+        "EHLO NAM02-BL2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727652AbfFYRad (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 13:30:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=wavesemi.onmicrosoft.com; s=selector1-wavesemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rLaO9QWBVrbx1WHdWWcpHYHC7RcnT/IaFQfxF+WZUWQ=;
+ b=GcTgXpx1p5Ev5wCCmWM868S5FeQxAVrewWsehXbfli40a4ZsnjOq+NBw4+Hndw3XXhfsfqRyBkC81NpnLU5LHkdNxJz3g+6FdWscnd1fh1D3h/02oVUW4BcOE4xGGQot60ZckFliV22JXypxbYsMKJqZivDlnf9C5ofCI5M+9QM=
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
+ MWHPR2201MB1341.namprd22.prod.outlook.com (10.172.63.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Tue, 25 Jun 2019 17:30:29 +0000
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::6975:b632:c85b:9e40]) by MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::6975:b632:c85b:9e40%2]) with mapi id 15.20.2008.017; Tue, 25 Jun 2019
+ 17:30:28 +0000
+From:   Paul Burton <paul.burton@mips.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+CC:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        James Hogan <jhogan@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mathieu Malaterre <malat@debian.org>,
+        "od@zcrc.me" <od@zcrc.me>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Artur Rojek <contact@artur-rojek.eu>
+Subject: Re: [PATCH v13 04/13] mfd: Add Ingenic TCU driver
+Thread-Topic: [PATCH v13 04/13] mfd: Add Ingenic TCU driver
+Thread-Index: AQHVKuBSgPmYVawSQ0eFKnC+vy7xnKasoZqA
+Date:   Tue, 25 Jun 2019 17:30:28 +0000
+Message-ID: <20190625173026.dbvx44iwywnijjql@pburton-laptop>
+References: <20190624225759.18299-1-paul@crapouillou.net>
+ <20190624225759.18299-5-paul@crapouillou.net>
+In-Reply-To: <20190624225759.18299-5-paul@crapouillou.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BYAPR01CA0063.prod.exchangelabs.com (2603:10b6:a03:94::40)
+ To MWHPR2201MB1277.namprd22.prod.outlook.com (2603:10b6:301:18::12)
+user-agent: NeoMutt/20180716
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pburton@wavecomp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [12.94.197.246]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a0554db2-ea68-411f-b3a9-08d6f992d0b8
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1341;
+x-ms-traffictypediagnostic: MWHPR2201MB1341:
+x-microsoft-antispam-prvs: <MWHPR2201MB1341128582984F2461DC3983C1E30@MWHPR2201MB1341.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 0079056367
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(366004)(396003)(136003)(39840400004)(376002)(346002)(199004)(189003)(66066001)(81166006)(446003)(33716001)(58126008)(476003)(8676002)(54906003)(6116002)(44832011)(186003)(81156014)(6246003)(316002)(11346002)(4326008)(7416002)(478600001)(53936002)(3846002)(26005)(305945005)(1076003)(7736002)(8936002)(14454004)(6512007)(6506007)(25786009)(76176011)(486006)(5660300002)(4744005)(102836004)(6916009)(6486002)(2906002)(386003)(6436002)(14444005)(71200400001)(71190400001)(256004)(99286004)(64756008)(66446008)(66556008)(66476007)(42882007)(73956011)(66946007)(9686003)(68736007)(52116002)(229853002);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1341;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: wavecomp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: oB4wAzcuoF+S/KJh0iA8dcAOQUARodytMY4ybVoFZGXn4FkT2ZgLYT8cHfpaC/R2XP52B1GzdkuNk50IFMDM+Fr0vV/TMESh58fr7aDlVdC8hLr1e09doRZuk/Z64gh7VchexPbVQ08cTmiqu9yV8QSDW7zeFAeyJnGo7sP6MgmunELcc31UGXx0uCcKi4geXv1LMO2b3XXffrWK559fcTReCLD4vv69bfnHvuDA65GPJbxY83UDHbjNwosA9qzd7vHo8d0v/3hbeIN1zAzz1z2NhE6vyzsSC5cSpvw73YfyZdUw1Tu7BcEYK5MzwikT+pXhY3rv78bsI92u6Fjh21jxkTh7ZIPhHKDfxKf0BP+4QMGhBSjz50UHvmjm8TBHN+im6RfSePZ9RKnqew1Z9mTybRFWVFz5av0Z5yIy448=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <9BAE9DD0984EBD4FBCD7F23175005B2A@namprd22.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: mips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0554db2-ea68-411f-b3a9-08d6f992d0b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2019 17:30:28.7845
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pburton@wavecomp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1341
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow to specify regulators for vcc and iovcc. According to the data
-sheet the panel wants vcc (2.8V) and iovcc (1.8V) and there's no startup
-dependency between the two.
+Hi Paul,
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
----
- .../drm/panel/panel-rocktech-jh057n00900.c    | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+On Tue, Jun 25, 2019 at 12:57:50AM +0200, Paul Cercueil wrote:
+> +static const struct of_device_id ingenic_tcu_of_match[] =3D {
+> +	{ .compatible =3D "ingenic,jz4740-tcu", .data =3D &jz4740_soc_info, },
+> +	{ .compatible =3D "ingenic,jz4725b-tcu", .data =3D &jz4725b_soc_info, }=
+,
+> +	{ .compatible =3D "ingenic,jz4770-tcu", .data =3D &jz4740_soc_info, },
+> +	{ }
+> +};
 
-diff --git a/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c b/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-index b8a069055fbc..f8f6f087b9bc 100644
---- a/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-+++ b/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-@@ -15,6 +15,7 @@
- #include <linux/gpio/consumer.h>
- #include <linux/media-bus-format.h>
- #include <linux/module.h>
-+#include <linux/regulator/consumer.h>
- #include <video/display_timing.h>
- #include <video/mipi_display.h>
- 
-@@ -47,6 +48,8 @@ struct jh057n {
- 	struct drm_panel panel;
- 	struct gpio_desc *reset_gpio;
- 	struct backlight_device *backlight;
-+	struct regulator *vcc;
-+	struct regulator *iovcc;
- 	bool prepared;
- 
- 	struct dentry *debugfs;
-@@ -160,6 +163,8 @@ static int jh057n_unprepare(struct drm_panel *panel)
- 		return 0;
- 
- 	mipi_dsi_dcs_set_display_off(dsi);
-+	regulator_disable(ctx->iovcc);
-+	regulator_disable(ctx->vcc);
- 	ctx->prepared = false;
- 
- 	return 0;
-@@ -174,6 +179,13 @@ static int jh057n_prepare(struct drm_panel *panel)
- 		return 0;
- 
- 	DRM_DEV_DEBUG_DRIVER(ctx->dev, "Resetting the panel\n");
-+	ret = regulator_enable(ctx->vcc);
-+	if (ret < 0)
-+		return ret;
-+	ret = regulator_enable(ctx->iovcc);
-+	if (ret < 0)
-+		return ret;
-+
- 	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
- 	usleep_range(20, 40);
- 	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-@@ -301,6 +313,13 @@ static int jh057n_probe(struct mipi_dsi_device *dsi)
- 	if (IS_ERR(ctx->backlight))
- 		return PTR_ERR(ctx->backlight);
- 
-+	ctx->vcc = devm_regulator_get(dev, "vcc");
-+	if (IS_ERR(ctx->vcc))
-+		return PTR_ERR(ctx->vcc);
-+	ctx->iovcc = devm_regulator_get(dev, "iovcc");
-+	if (IS_ERR(ctx->iovcc))
-+		return PTR_ERR(ctx->iovcc);
-+
- 	drm_panel_init(&ctx->panel);
- 	ctx->panel.dev = dev;
- 	ctx->panel.funcs = &jh057n_drm_funcs;
--- 
-2.20.1
+Nit: why not order these numerically? ie. 25b, 40, 70.
 
+> +static struct regmap * __init ingenic_tcu_create_regmap(struct device_no=
+de *np)
+> +{
+> +	struct resource res;
+> +	void __iomem *base;
+> +	struct regmap *map;
+> +
+> +	if (!of_match_node(ingenic_tcu_of_match, np))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	base =3D of_io_request_and_map(np, 0, "TCU");
+> +	if (IS_ERR(base))
+> +		return ERR_PTR(PTR_ERR(base));
+
+This is equivalent to:
+
+    return ERR_CAST(base);
+
+Apart from those:
+
+    Reviewed-by: Paul Burton <paul.burton@mips.com>
+
+Thanks,
+    Paul
