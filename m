@@ -2,204 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8E255342
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 17:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 631A05536C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 17:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729885AbfFYPWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 11:22:46 -0400
-Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:47536 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728946AbfFYPWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 11:22:45 -0400
-Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
-        by mx0b-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5PFIeN5020897;
-        Tue, 25 Jun 2019 08:22:33 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=proofpoint;
- bh=axsMklROpfZit99IlYQJrDgrcEftVzRl/BKG3fJNoU8=;
- b=EDgItxgiAE8NcgaQ0XMESqBuXirPvP7v6H6MQyhOx2/ms9Xjs50KyQdBZ2eHVwbb/cBi
- ENCdD8IYwKunWgnGljikNTkv5JfdfsIWyvugco+j96PROYkskg+SZKvYPRhDsmX7ClBf
- HrHgSw8Ed2314ex5U1eItjOFudIMRrLmF4VVJCHRG9oGutTNGFBxYSfwOUAXjwuWlU3F
- do4t1LwkopPd9xUwZFyi2gLWePRuGM1tq2xhz8LjKOqe481KB5/K15gHWRahAnf5k4k5
- LrtaY1o4XyPVQSod3ZmOQPP5VIT+JEFl9iQRnmO/fYHO/ZJsvd9Se+Y866w7iAaFN7kq gg== 
-Authentication-Results: cadence.com;
-        spf=pass smtp.mailfrom=piotrs@cadence.com
-Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2058.outbound.protection.outlook.com [104.47.37.58])
-        by mx0b-0014ca01.pphosted.com with ESMTP id 2t9fwtx6y2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jun 2019 08:22:33 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=axsMklROpfZit99IlYQJrDgrcEftVzRl/BKG3fJNoU8=;
- b=tBEpfni/z83ciVRITG3pDiP038dFDEeN52PPVyLHlTERsNRMAAlc2Q9ah2SwWu4SNacNcRw3RKj7AtdMuK9TPexbPcdEZIdNJXwY5cfC/B9Kb7I2L97wczuGT0lfL/BGgbSCh1ZjiY+Wvsj/VapL3HM8eI/L8TTx0SxxJkGl5NA=
-Received: from BN8PR07CA0029.namprd07.prod.outlook.com (2603:10b6:408:ac::42)
- by BY5PR07MB6968.namprd07.prod.outlook.com (2603:10b6:a03:1e7::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2008.16; Tue, 25 Jun
- 2019 15:22:31 +0000
-Received: from DM3NAM05FT051.eop-nam05.prod.protection.outlook.com
- (2a01:111:f400:7e51::209) by BN8PR07CA0029.outlook.office365.com
- (2603:10b6:408:ac::42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2008.16 via Frontend
- Transport; Tue, 25 Jun 2019 15:22:30 +0000
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- cadence.com discourages use of 158.140.1.28 as permitted sender)
-Received: from sjmaillnx1.cadence.com (158.140.1.28) by
- DM3NAM05FT051.mail.protection.outlook.com (10.152.98.165) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2032.6 via Frontend Transport; Tue, 25 Jun 2019 15:22:29 +0000
-Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
-        by sjmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id x5PFMRWs001097
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Tue, 25 Jun 2019 08:22:28 -0700
-X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
-Received: from maileu3.global.cadence.com (10.160.88.99) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3; Tue, 25 Jun 2019 17:22:26 +0200
-Received: from lvlogina.cadence.com (10.165.176.102) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3 via Frontend Transport; Tue, 25 Jun 2019 17:22:26 +0200
-Received: from lvlogina.cadence.com (localhost.localdomain [127.0.0.1])
-        by lvlogina.cadence.com (8.14.4/8.14.4) with ESMTP id x5PFMQqm021221;
-        Tue, 25 Jun 2019 16:22:26 +0100
-Received: (from piotrs@localhost)
-        by lvlogina.cadence.com (8.14.4/8.14.4/Submit) id x5PFMPuJ021210;
-        Tue, 25 Jun 2019 16:22:25 +0100
-From:   Piotr Sroka <piotrs@cadence.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     David Woodhouse <dwmw2@infradead.org>,
-        BrianNorris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        "Marek Vasut" <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Piotr Sroka <piotrs@cadence.com>
-Subject: [v4 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
-Date:   Tue, 25 Jun 2019 16:22:18 +0100
-Message-ID: <20190625152218.21102-1-piotrs@cadence.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20190625151559.15270-1-piotrs@cadence.com>
-References: <20190625151559.15270-1-piotrs@cadence.com>
+        id S1731110AbfFYPau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 11:30:50 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39956 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731154AbfFYPat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 11:30:49 -0400
+Received: by mail-io1-f67.google.com with SMTP id n5so1832781ioc.7
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 08:30:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DbjGcIHVq7Seqb3nFBpJ2SDuEzj1Vg1xGKOHQ0u+QVE=;
+        b=Krs9nOlvnvHdMjsdtHJ7Ga1LoWQORO6Tl6eR5IJaTZwVZdxwwpMdcqjSqJoz1l4uxi
+         H2K5c9m1KMJJxCejXU3ZvZMVusP1A9qCgRTFMxUP4NYxfUHvxFHPCts+fi7e8L7KZBC9
+         e9x1ilGAVUnotFiE5m73bfM1ds/KjI30ytC2Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DbjGcIHVq7Seqb3nFBpJ2SDuEzj1Vg1xGKOHQ0u+QVE=;
+        b=UT4kQYu30goh+RIg4QImCwnAH0eIw4b2hEtXvSCjWCRqNcrwLddEMFO8Cokf+an0r2
+         Cru/17uCg3ULy0xGBqY9QX2+YRjQwiBSTS0/gSSKDtgi2iT5Dou7kKyna0CG8RdBBo0I
+         C7JUHZoqz7AB2uBBmayneBBnnvWjZxNfbrsQ88SkNUhAp/VJr5dDBlNICRyUAJkL7LRg
+         EpSOrdSFyvYuh7reuXDKT7uXPazC2lborYPwrdoBMy/QTT6VR4ds3y1Ug6jdD/vZkU7H
+         Na0BofKaYERQyX3cezZuGXVWftdYZuYraLPpD2jns0ABlJMf7JdKAK3Plcc+xP4rfFcP
+         DGFQ==
+X-Gm-Message-State: APjAAAUCTH5+B0yoqANtcqd20TFeZXhyoEveqGW8Nq1u9F2F1aSNXC7c
+        45kmnFpF5df5G74SFQ4wzcarOUXmOTf5cBn5xGI4MA==
+X-Google-Smtp-Source: APXvYqzFxPeDibOft1CSvr6wMS/7trjG/8osga1n8VjObABAl/tWabbodMYYTHWbArt1xrqx7Zh3yMUZGkCesx8u5vs=
+X-Received: by 2002:a6b:6a01:: with SMTP id x1mr1078839iog.77.1561476647519;
+ Tue, 25 Jun 2019 08:30:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-OrganizationHeadersPreserved: maileu3.global.cadence.com
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(346002)(376002)(136003)(39860400002)(2980300002)(189003)(199004)(36092001)(316002)(336012)(6916009)(16586007)(446003)(11346002)(2616005)(426003)(2906002)(2351001)(486006)(87636003)(305945005)(478600001)(476003)(26826003)(126002)(47776003)(356004)(86362001)(6666004)(36756003)(7416002)(1076003)(246002)(7636002)(50466002)(51416003)(50226002)(5660300002)(186003)(8936002)(76130400001)(48376002)(70586007)(76176011)(4326008)(8676002)(42186006)(107886003)(54906003)(26005)(70206006);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR07MB6968;H:sjmaillnx1.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:corp.cadence.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 65a7d20b-afce-459c-867f-08d6f980f06a
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);SRVR:BY5PR07MB6968;
-X-MS-TrafficTypeDiagnostic: BY5PR07MB6968:
-X-Microsoft-Antispam-PRVS: <BY5PR07MB69689C3E196B069DE398E7D7DDE30@BY5PR07MB6968.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:285;
-X-Forefront-PRVS: 0079056367
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: 8nv+0DLaJ5amrSDzqs62STJQ9GEkinSg499+TfDS0o81k5DMoDUbyKlh3GPzG5IhrDvFqgVVnLFb5qX98b1/MD2de1HSJSCD2Owsynv+F5br+3r8nytOV7gPn7nhEYKDKDrxPNXXX8sXqn6oS4RPSRhbsY/A+hp68ie2n/k9oKEQ4tJw0o9YuPylOTwsUb6F2sqS+AfwVvbgfFzWA3jyZSSYHmYeq8LB7KoMikYajibTXAaEtYpGfkWp+3LNchBKOQCS4AY35orIRLkQjsXQ4ANDiwylCXCx3TzT6sB8QcgEKrNtBjqShnNjS0Ppr0R56FirTiFnM5XOsbjNCjgHVkJyzfG0hvhz4mjs364Qw2H9WRJpkh/x97jItbsoUD2v4G3iCUuXWh6RNQTmtL1NBcLlI1eWrNMaw3KNV/w56HI=
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2019 15:22:29.7792
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65a7d20b-afce-459c-867f-08d6f980f06a
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx1.cadence.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR07MB6968
-X-Proofpoint-SPF-Result: pass
-X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
- include:mktomail.com include:spf-0014ca01.pphosted.com
- include:spf.protection.outlook.com include:auth.msgapp.com
- include:spf.mandrillapp.com ~all
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-25_11:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
- priorityscore=1501 malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0
- spamscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=985 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1906250117
+References: <20190125212433.ni2jg3wvpyjazlxf@flea> <CAMty3ZAsH2iZ+JEqTE3D58aXfGuhMSg9YoO56ZhhOeE4c4yQHQ@mail.gmail.com>
+ <20190129151348.mh27btttsqcmeban@flea> <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
+ <20190201143102.rcvrxstc365mezvx@flea> <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
+ <20190605064933.6bmskkxzzgn35xz7@flea> <CAMty3ZCCP=oCqm5=49BsjwoxdDETgBfU_5g8fQ=bz=iWApV0tw@mail.gmail.com>
+ <20190614142406.ybdiqfppo5mc5bgq@flea> <CAMty3ZB45cHx3WeXnywBh2_UA_bTmFs6yBTqLWA1BNf4fQtVvQ@mail.gmail.com>
+ <20190625144930.5hegt6bkzqzykjid@flea>
+In-Reply-To: <20190625144930.5hegt6bkzqzykjid@flea>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 25 Jun 2019 21:00:36 +0530
+Message-ID: <CAMty3ZCmj0Rz7MMhLqihsvLQi+1CHf0fAoJQ4QN65xB-bwxaJw@mail.gmail.com>
+Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for PLL_MIPI
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the bindings used by Cadence NAND controller driver
+On Tue, Jun 25, 2019 at 8:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Thu, Jun 20, 2019 at 11:57:44PM +0530, Jagan Teki wrote:
+> > On Fri, Jun 14, 2019 at 7:54 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > On Wed, Jun 05, 2019 at 01:03:16PM +0530, Jagan Teki wrote:
+> > > > On Wed, Jun 5, 2019 at 12:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > >
+> > > > > Hi,
+> > > > >
+> > > > > I've reordered the mail a bit to work on chunks
+> > > > >
+> > > > > On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
+> > > > > > > I wish it was in your commit log in the first place, instead of having
+> > > > > > > to exchange multiple mails over this.
+> > > > > > >
+> > > > > > > However, I don't think that's quite true, and it might be a bug in
+> > > > > > > Allwinner's implementation (or rather something quite confusing).
+> > > > > > >
+> > > > > > > You're right that the lcd_rate and pll_rate seem to be generated from
+> > > > > > > the pixel clock, and it indeed looks like the ratio between the pixel
+> > > > > > > clock and the TCON dotclock is defined through the number of bits per
+> > > > > > > lanes.
+> > > > > > >
+> > > > > > > However, in this case, dsi_rate is actually the same than lcd_rate,
+> > > > > > > since pll_rate is going to be divided by dsi_div:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
+> > > > > > >
+> > > > > > > Since lcd_div is 1, it also means that in this case, dsi_rate ==
+> > > > > > > dclk_rate.
+> > > > > > >
+> > > > > > > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
+> > > > > > > we look at:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
+> > > > > > >
+> > > > > > > We can see that the rate in clk_info is used if it's different than
+> > > > > > > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
+> > > > > > > DSI panel, will hardcode it to 148.5 MHz:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
+> > > > > >
+> > > > > > Let me explain, something more.
+> > > > > >
+> > > > > > According to bsp there are clk_info.tcon_div which I will explain below.
+> > > > > > clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
+> > > > > > is 6 for 24bpp and 4 lanes devices.
+> > > > > >
+> > > > > > PLL rate here depends on dsi_div (not tcon_div)
+> > > > > >
+> > > > > > Code here
+> > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
+> > > > > >
+> > > > > > is computing the actual set rate, which depends on dsi_rate.
+> > > > > >
+> > > > > > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > > > > > dsi_rate = pll_rate / clk_info.dsi_div;
+> > > > > >
+> > > > > > Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
+> > > > > > for above link you mentioned.
+> > > > > >
+> > > > > > Here are the evidence with some prints.
+> > > > > >
+> > > > > > https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
+> > > > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+> > > > >
+> > > > > Ok, so we agree up to this point, and the prints confirm that the
+> > > > > analysis above is the right one.
+> > > > >
+> > > > > > > So, the DSI clock is set to this here:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
+> > > > >
+> > > > > Your patch doesn't address that, so let's leave that one alone.
+> > > >
+> > > > Basically this is final pll set rate when sun4i_dotclock.c called the
+> > > > desired rate with ccu_nkm.c so it ended the final rate with parent as
+> > > > Line 8 of
+> > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+> > >
+> > > If that's important to the driver, it should be set explicitly then,
+> > > and not work by accident.
+> > >
+> > > > > > > The TCON *module* clock (the one in the clock controller) has been set
+> > > > > > > to lcd_rate (so the pixel clock times the number of bits per lane) here:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
+> > > > > > >
+> > > > > > > And the PLL has been set to the same rate here:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
+> > > > > > >
+> > > > > > > Let's take a step back now: that function we were looking at,
+> > > > > > > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
+> > > > > > > by disp_lcd_enable here:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
+> > > > > > >
+> > > > > > > The next function being called is disp_al_lcd_cfg, and that function
+> > > > > > > will hardcode the TCON dotclock divider to 4, here:
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
+> > > > > >
+> > > > > > tcon_div from BSP point-of-view of there are two variants
+> > > > > > 00) clk_info.tcon_div which is 4 and same is set the divider position
+> > > > > > in SUN4I_TCON0_DCLK_REG (like above link refer)
+> > > > > > 01) tcon_div which is 4 and used for edge timings computation
+> > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
+> > > > > >
+> > > > > > The real reason for 01) is again 4 is they set the divider to 4 in 00)
+> > > > > > which is technically wrong because the dividers which used during
+> > > > > > dotclock in above (dsi_div) should be used here as well. Since there
+> > > > > > is no dynamic way of doing this BSP hard-coding these values.
+> > > > > >
+> > > > > > Patches 5,6,7 on this series doing this
+> > > > > > https://patchwork.freedesktop.org/series/60847/
+> > > > > >
+> > > > > > Hope this explanation helps?
+> > > > >
+> > > > > It doesn't.
+> > > > >
+> > > > > The clock tree is this one:
+> > > > >
+> > > > > PLL(s) -> TCON module clock -> TCON dotclock.
+> > > > >
+> > > > > The links I mentioned above show that the clock set to lcd_rate is the
+> > > > > TCON module clocks (and it should be the one taking the bpp and lanes
+> > > > > into account), while the TCON dotclock uses a fixed divider of 4.
+> > > >
+> > > > Sorry, I can argue much other-than giving some code snips, according to [1]
+> > > >
+> > > > 00) Line 785, 786 with dclk_rate 148000000
+> > > >
+> > > > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > > > pll_rate = lcd_rate * clk_info.lcd_div;
+> > > >
+> > > > Since dsi_div is 6 (bpp/lanes), lcd_div 1
+> > > >
+> > > > lcd_rate = 888000000, pll_rate = 888000000
+> > > >
+> > > > 01)  Line 801, 804 are final rates computed as per clock driver (say
+> > > > ccu_nkm in mainline)
+> > > >
+> > > > lcd_rate_set=891000000
+> > > >
+> > > > As per your comments if it would be 4 then the desired numbers are
+> > > > would be 592000000 not 888000000.
+> > > >
+> > > > This is what I'm trying to say in all mails, and same as verified with
+> > > > 2-lanes devices as well where the dsi_div is 12 so the final rate is
+> > > > 290MHz * 12
+> > >
+> > > In the code you sent, you're forcing a divider on the internal TCON
+> > > clock, while that one is fixed in the BSP.
+> > >
+> > > There's indeed the bpp / lanes divider, but it's used in the *parent*
+> > > clock of the one you're changing.
+> > >
+> > > And the dsi0_clk clock you pointed out in the code snippet is yet
+> > > another clock, the MIPI DSI module clock.
+> >
+> > Correct, look like I refereed wrong reference in the above mail. sorry
+> > for the noise.
+> >
+> > Actually I'm trying to explain about pll_rate here which indeed
+> > depends on dsi.div
+> > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L786
+> >
+> > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > pll_rate = lcd_rate * clk_info.lcd_div;
+> >
+> > Say
+> >
+> > 1) For 148MHz dclk_rate with dsi_div is 6 (24/4) lcd_div is 1 which
+> > resulting pll_rate is 888MHz.
+> >
+> > 2) For 30MHz dclk_rate with 4 lane and 24 RGB the resulting pll_rate is 180MHz
+> >
+> > 3) For 27.5MHz dclk_rate with 2 lane and 24 RGB the resulting pll_rate is 330MHz
+> >
+> > Here is the few more logs in code, for case 2)
+> >
+> > [    1.920441] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+> > [    1.920505] ideal = 180000000, rounded = 178200000
+> > [    1.920509] sun4i_dclk_round_rate: div = 6 rate = 29700000
+> > [    1.920514] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+> > [    1.920532] ideal = 180000000, rounded = 178200000
+> > [    1.920535] sun4i_dclk_round_rate: div = 6 rate = 29700000
+> > [    1.920572] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+> > [    1.920576] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+> > [    1.920597] rate = 178200000
+> > [    1.920599] parent_rate = 297000000
+> > [    1.920602] reg = 0x90c00000
+> > [    1.920605] _nkm.n = 3, nkm->n.offset = 0x1, nkm->n.shift = 8
+> > [    1.920609] _nkm.k = 2, nkm->k.offset = 0x1, nkm->k.shift = 4
+> > [    1.920612] _nkm.m = 10, nkm->m.offset = 0x1, nkm->m.shift = 0
+> > [    1.920958] sun4i_dclk_set_rate div 6
+> > [    1.920966] sun4i_dclk_recalc_rate: val = 6, rate = 29700000
+> >
+> > and clk_summary:
+> >
+> >     pll-video0                        1        1        1   297000000
+> >         0     0  50000
+> >        hdmi                           0        0        0   297000000
+> >         0     0  50000
+> >        tcon1                          0        0        0   297000000
+> >         0     0  50000
+> >        pll-mipi                       1        1        1   178200000
+> >         0     0  50000
+> >           tcon0                       2        2        1   178200000
+> >         0     0  50000
+> >              tcon-pixel-clock         1        1        1    29700000
+> >         0     0  50000
+> >        pll-video0-2x                  0        0        0   594000000
+> >         0     0  50000
+>
+> This discussion is going nowhere. I'm telling you that your patch
+> doesn't apply the divider you want on the proper clock, and you're
+> replying that indeed, you're applying it on the wrong clock.
+>
+> It might work by accident in your case, but the board I have here
+> clearly indicates otherwise, so there's two possible way out here:
+>
+>   - Either you apply that divider to the TCON *module* clock, and not
+>     the dclk
+>
+>   - Or you point to somewhere in the allwinner code where the bpp /
+>     lanes divider is used for the dclk divider.
 
-Signed-off-by: Piotr Sroka <piotrs@cadence.com>
----
-Changes for v4:
-- add commit message
-Changes for v3:
-- add unit suffix for board_delay 
-- move child description to proper place
-- remove prefix cadence_ for reg and sdma fields
-Changes for v2:
-- remove chip dependends parameters from dts bindings
-- add names for register ranges in dts bindings
-- add generic bindings to describe NAND chip representation
----
- .../bindings/mtd/cadence-nand-controller.txt       | 51 ++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+I don't know how to proceed further on this, as you say it might work
+in accident but I have tested this in A33, A64 and R40 with 4
+different DSI panels and one DSI-RGB bridge. All of them do use
+PLL_MIPI (pll_rate) and it indeed depends on bpp/lanes
 
-diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-new file mode 100644
-index 000000000000..e485b87075bd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-@@ -0,0 +1,51 @@
-+* Cadence NAND controller
-+
-+Required properties:
-+  - compatible : "cdns,hpnfc"
-+  - reg : Contains two entries, each of which is a tuple consisting of a
-+	  physical address and length. The first entry is the address and
-+	  length of the controller register set. The second entry is the
-+	  address and length of the Slave DMA data port.
-+  - reg-names: should contain "reg" and "sdma"
-+  - interrupts : The interrupt number.
-+  - clocks: phandle of the controller core clock (nf_clk).
-+
-+Optional properties:
-+  - dmas: shall reference DMA channel associated to the NAND controller
-+  - cdns,board-delay_ps : Estimated Board delay. The value includes the total
-+    round trip delay for the signals and is used for deciding on values
-+    associated with data read capture. The example formula for SDR mode is
-+    the following:
-+    board_delay = RE#PAD_delay + PCB trace to device + PCB trace from device
-+    + DQ PAD delay
-+
-+Children nodes represent the available NAND chips.
-+
-+Required properties of NAND chips:
-+  - reg: shall contain the native Chip Select ids from 0 to max supported by
-+    the cadence nand flash controller
-+
-+
-+See Documentation/devicetree/bindings/mtd/nand.txt for more details on
-+generic bindings.
-+
-+Example:
-+
-+nand_controller: nand-controller @60000000 {
-+
-+	  compatible = "cdns,hpnfc";
-+	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
-+	  reg-names = "reg", "sdma";
-+	  clocks = <&nf_clk>;
-+	  cdns,board-delay_ps = <4830>;
-+	  interrupts = <2 0>;
-+	  nand@0 {
-+	      reg = <0>;
-+	      label = "nand-1";
-+	  };
-+	  nand@1 {
-+	      reg = <1>;
-+	      label = "nand-2";
-+	  };
-+
-+};
--- 
-2.15.0
+4-lane, 24-bit: Novatek NT35596 panel
+4-lane, 24-bit: Feiyang, FY07024di26a30d panel
+4-lane, 24-bit: Bananapi-s070wv20 panel
+2-lane, 24-bit: Techstar,ts8550b panel
 
+and
+
+4-lane, 24-bit, ICN6211 DSI-to-RGB bridge panel
+
+All above listed panels and bridges are working as per BSP and do
+follow bpp/lanes and for DIVIDER 4 no panel is working.
+
+The panels/bridges I have has tested in BSP and as you mentioned in
+another mail, your panel is not tested in BSP - this is the only
+difference. I did much reverse-engineering on PLL_MIPI clocking in BSP
+so I'm afraid what can I do next on this, If you want to look further
+on BSP I would suggest to verify on pll_rate side. If you feel
+anything I'm missing please let me know.
+
+Jagan.
