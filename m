@@ -2,117 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0439355BA1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 00:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 769A055BE3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 01:03:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbfFYWuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 18:50:04 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:32961 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725782AbfFYWuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 18:50:00 -0400
-Received: by mail-lj1-f194.google.com with SMTP id h10so162729ljg.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 15:49:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=oauyc528nBeA4aGB8HdudXwgvOR2M6xqw+qp8qrMia0=;
-        b=bsG0SS1331T2u5dmwMsWL5Mj0pDUYEJeS3x/a7g8HquS+iweixO7wS7VJSEpoTi3qV
-         nuPog56Of0ICCYrDywtGn1ibAaoMzBfJ0O2x753kYh6mwxaLA6pPl0WPqys4+kmd46Jq
-         rIsYCCZxCs33VBJGmf++ljLlMwhKk4609tQym+TGgY8G9VfxrtJCGVeYE5q5Nv/EWdBb
-         9YomnEjSNUKKZybvNhj4bcSAi4lFZCDmKYmnbBUBMoRe0luDo7+NKcilgdxESGUr6Bv1
-         8oE2HePy+PkGqZW4W/Q7dVoNdKg3qs2bj61g5enDhyYdyoeki0viAd/yTw4AoSrs8h9J
-         Q3ug==
+        id S1726373AbfFYXC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 19:02:56 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:42763 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725782AbfFYXC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 19:02:56 -0400
+Received: by mail-pg1-f194.google.com with SMTP id k13so165620pgq.9;
+        Tue, 25 Jun 2019 16:02:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=oauyc528nBeA4aGB8HdudXwgvOR2M6xqw+qp8qrMia0=;
-        b=IW0UbLo2kWYdss4OsSQwkA/GRWqyi5yQY5WucyRw1CjgnUZIaO1NDasxeNtDXBFhH2
-         fS42sFRffVBnpCgrNn3yp4rsj+aEGIG9Hngeuh8Fx6BGbuFA1xavJNiObydDBKKYoWZX
-         rLOT/vS/w7ZN33ZevuiPn9nQNZIp2D1d8wth+ukD+/zqn6cM14uu5o6sKTVIBPG/R+F7
-         hPk/TTlE860dnnd5DAsSFvDOst4c2v3+nYBGp3oL2E448joWP26vth6n73DY3DGw+nR5
-         YrZCQf/nLohDMuSz/k/Zv8SSn3JRlPzu14ZNTUgYTQo9HryTUF0bHOSFIV5WpDN1ECLc
-         6NeA==
-X-Gm-Message-State: APjAAAX75nDwF2Gq7grnMdo7ei73+kn8o5ygklGL52jAkR2Bo9pkxgPp
-        cSkDyu4g4cbTUSYF+RDNxBi4og==
-X-Google-Smtp-Source: APXvYqzz8flqZD3CtlEaWTG6dgDQmMup6wovwU1fK+ijn1DOb2NtHpvpDzMqmApGLfzEkGldQTuXAg==
-X-Received: by 2002:a2e:b0ea:: with SMTP id h10mr575866ljl.50.1561502997676;
-        Tue, 25 Jun 2019 15:49:57 -0700 (PDT)
-Received: from khorivan (59-201-94-178.pool.ukrtel.net. [178.94.201.59])
-        by smtp.gmail.com with ESMTPSA id w1sm1580368lfe.50.2019.06.25.15.49.56
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 25 Jun 2019 15:49:57 -0700 (PDT)
-Date:   Wed, 26 Jun 2019 01:49:54 +0300
-From:   Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     netdev@vger.kernel.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sekhar Nori <nsekhar@ti.com>, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH v4 net-next 10/11] ARM: dts: am57xx-idk: add dt nodes
- for new cpsw switch dev driver
-Message-ID: <20190625224953.GD6485@khorivan>
-Mail-Followup-To: Grygorii Strashko <grygorii.strashko@ti.com>,
-        netdev@vger.kernel.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sekhar Nori <nsekhar@ti.com>, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20190621181314.20778-1-grygorii.strashko@ti.com>
- <20190621181314.20778-11-grygorii.strashko@ti.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=IAVXlfOigyJbEa5HhE6BwBcpEncScOxFXJXYNv1k45k=;
+        b=fkL5OZuDVWkej5ZG4VatI21hHWlzGJXK0Si9AQAW9zoGDwMiyZEPuYRirz3Q0aByJu
+         9VSHMOkGBUWW+0XoBoEXFmw+r8dtWGNTMbrgcKs5Y6TE4ftvqTFwaaqA+U2WFhJQIFlw
+         4KKH74x4Ywbb000a83LtPoyMHZ5lCRuW/S7lvrp3MQNb3camzLJIdH0ezPRKVp/yWlMv
+         3/Q1tmNtE2UScpSpGJSN7CWBf4L/z22TrszMAenhqm81+BrbizGlhy6Mq2867Dogh+6s
+         QTfxli/sBvaR+SMxqvkCI0RltTgT8RpA3KvJKAQJ31dHl2que9hlT0apwrDNqHfDlHEN
+         pogA==
+X-Gm-Message-State: APjAAAUEy5rjIl2ApPQlP2hKVqp/KAyOmZgVXhTaR1V8Qxen5rTjMWmm
+        DtEyG+GK0eMtcjV02R/Fmj4=
+X-Google-Smtp-Source: APXvYqzZBw/dqZhBTNHNMDfHye5/2eZRaAS1PSupftYRQhWIaCqeSFUapN9xTbqyZVwDxqRVbGqHHQ==
+X-Received: by 2002:a17:90a:ac13:: with SMTP id o19mr354796pjq.143.1561503775428;
+        Tue, 25 Jun 2019 16:02:55 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+        by smtp.gmail.com with ESMTPSA id r1sm92074pji.15.2019.06.25.16.02.53
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 25 Jun 2019 16:02:54 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+        id 64827401EB; Tue, 25 Jun 2019 23:02:53 +0000 (UTC)
+Date:   Tue, 25 Jun 2019 23:02:53 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        Theodore Ts'o <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
+Message-ID: <20190625230253.GQ19023@42.do-not-panic.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-2-brendanhiggins@google.com>
+ <20190620001526.93426218BE@mail.kernel.org>
+ <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com>
+ <20190625214427.GN19023@42.do-not-panic.com>
+ <CAFd5g47OABqN127cPKqoCOA_Wr9w=LFh_0XkF7LXu2iY9sFkSw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190621181314.20778-11-grygorii.strashko@ti.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <CAFd5g47OABqN127cPKqoCOA_Wr9w=LFh_0XkF7LXu2iY9sFkSw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 21, 2019 at 09:13:13PM +0300, Grygorii Strashko wrote:
->Add DT nodes for new cpsw switch dev driver.
->
->Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
->---
-> arch/arm/boot/dts/am571x-idk.dts         | 28 +++++++++++++
-> arch/arm/boot/dts/am572x-idk.dts         |  5 +++
-> arch/arm/boot/dts/am574x-idk.dts         |  5 +++
-> arch/arm/boot/dts/am57xx-idk-common.dtsi |  2 +-
-> arch/arm/boot/dts/dra7-l4.dtsi           | 53 ++++++++++++++++++++++++
-> 5 files changed, 92 insertions(+), 1 deletion(-)
->
+On Tue, Jun 25, 2019 at 03:14:45PM -0700, Brendan Higgins wrote:
+> On Tue, Jun 25, 2019 at 2:44 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+> > Since its a new architecture and since you seem to imply most tests
+> > don't require locking or even IRQs disabled, I think its worth to
+> > consider the impact of adding such extreme locking requirements for
+> > an initial ramp up.
+> 
+> Fair enough, I can see the point of not wanting to use irq disabled
+> until we get someone complaining about it, but I think making it
+> thread safe is reasonable. It means there is one less thing to confuse
+> a KUnit user and the only penalty paid is some very minor performance.
 
-[...]
+One reason I'm really excited about kunit is speed... so by all means I
+think we're at a good point to analyze performance optimizationsm if
+they do make sense.
 
->diff --git a/arch/arm/boot/dts/am57xx-idk-common.dtsi 
->b/arch/arm/boot/dts/am57xx-idk-common.dtsi
->index f7bd26458915..5c7663699efa 100644
->--- a/arch/arm/boot/dts/am57xx-idk-common.dtsi
->+++ b/arch/arm/boot/dts/am57xx-idk-common.dtsi
->@@ -367,7 +367,7 @@
-> };
->
-> &mac {
->-	status = "okay";
->+//	status = "okay";
-?
+While on the topic of parallization, what about support for running
+different test cases in parallel? Or at the very least different kunit
+modules in parallel.  Few questions come up based on this prospect:
 
+  * Why not support parallelism from the start?
+  * Are you opposed to eventually having this added? For instance, there is
+    enough code on lib/test_kmod.c for batching tons of kthreads each
+    one running its own thing for testing purposes which could be used
+    as template.
+  * If we eventually *did* support it:
+    - Would logs be skewed?
+    - Could we have a way to query: give me log for only kunit module
+      named "foo"?
 
--- 
-Regards,
-Ivan Khoronzhuk
+  Luis
