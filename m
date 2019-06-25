@@ -2,164 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2694B5200E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 02:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF4135201D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 02:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729453AbfFYAnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 20:43:10 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:45318 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729446AbfFYAnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 20:43:10 -0400
-Received: by mail-qk1-f196.google.com with SMTP id s22so11233287qkj.12
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 17:43:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=e2ogumH57Dk+mOO0y5/CmcdAve3k/tPr0Lofkj3W1yQ=;
-        b=gn85bRpxX7rX0vPi2OF9kz6nsjSpDytW5uaW02EslXpNifmNJJW+bfXA/vNHvtnfyd
-         LEbGvEe0UTmhomOdUgl3WLDYKeBbP9GS8Ul3o4lm0omA18ix5UVvi5y53tJ9mWlSYZ+O
-         2tGmkRpE9D4p4h3dyylbbuMMhbJXozsVkMUW4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=e2ogumH57Dk+mOO0y5/CmcdAve3k/tPr0Lofkj3W1yQ=;
-        b=M/Rcu7Tb4ZwMYrwawaDpqy/CPYWp/G4FJcaEPDz0YXhlks6y7ru1wynfMXi1FmyXps
-         R/BI8xc88dAgzNTxw2QWkgmU34rG120efDE2bG4zK/hzbv+Ypi4w54ZOiNWXDJ4jYezL
-         wydfg/4T/o+/p6PnoZZzJHNAUOEGtP1JTeyFkrlGBo957Tk4kcDI+iSi53+pMOzlAwwH
-         WP764CLPMikDlJZcQ3tGu7286mE8MrfBc9rcAxCbQgXxcx5AmNmUdbiEw8l9FpmPhQrQ
-         U4jMLZvMUGVm29GDbvSbl0zPQ7kkxJgWPlDF7GAnlrzP/NiemPt6s1UIxYzZuOkk9LPv
-         Ngiw==
-X-Gm-Message-State: APjAAAUpfrmHlIxU0mrjFB4MaV3xfGx2niasa8kU8Z8f6QLtlGCJl7uG
-        Dfsg+B83tWIBs4+Hohm3cM/cEsOU5p6oNyCLyjgVlA==
-X-Google-Smtp-Source: APXvYqwwA4s9JiBdyoHXEJ7/imxeIhWDD7nr1Z+Ib6NtNVV+u9MWlCR9lGtMIebURg5vdee28cPPsppvaqexL5f8k3E=
-X-Received: by 2002:a37:9c88:: with SMTP id f130mr19471044qke.457.1561423388940;
- Mon, 24 Jun 2019 17:43:08 -0700 (PDT)
+        id S1728883AbfFYAqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 20:46:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55812 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727648AbfFYAqH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jun 2019 20:46:07 -0400
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5368D2077C;
+        Tue, 25 Jun 2019 00:46:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561423565;
+        bh=RNzIAso/rxBfUpe7MNS93/SEMT2Rlb+4I7VdtoiS4Ao=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Sg/xYLajjPzvbCUt3gTxv+J3BGhiIKQCGXIfEbrs29tmJaMzUjIDeBFZub4k+s9ZU
+         kxCBkjBXSrjMWDFRRNbx9bfFUxh/uDGSkOJRZqG3Y3uKYNJexxo0k4V6XRt8okkaHO
+         N+xrLWqOFndyRz+6BsqtLqv6+AtSEYXxhcZM5MO8=
+Received: by mail-wr1-f50.google.com with SMTP id x4so15775132wrt.6;
+        Mon, 24 Jun 2019 17:46:05 -0700 (PDT)
+X-Gm-Message-State: APjAAAUbAq75J7g2S0GjZ/I61CZY4XPlK6AOmZuGND04tpitMXoC/oRc
+        krSl6pafEOF0JQtq5mzKXsusHxtrTRYd8vUh+DA=
+X-Google-Smtp-Source: APXvYqzKYUCkQ9YHQyKo9cbGgoCkXaJbgZgwvjyDy4gpYiUq/NjlZHSjWg2dvXgMl4unyn/RE1JzYUxIYwZlkTfP9a8=
+X-Received: by 2002:a05:6000:42:: with SMTP id k2mr63999161wrx.80.1561423563959;
+ Mon, 24 Jun 2019 17:46:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190624080001.67222-1-jitao.shi@mediatek.com> <20190624080001.67222-3-jitao.shi@mediatek.com>
-In-Reply-To: <20190624080001.67222-3-jitao.shi@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Tue, 25 Jun 2019 08:42:57 +0800
-Message-ID: <CANMq1KDixwQN13o84Jp6E6tyfTQSZjiZSMzaNFZ02LEVPx0Z8g@mail.gmail.com>
-Subject: Re: [v2 2/2] drm/panel: support for auo, kd101n80-45na wuxga dsi
- video mode panel
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
-        dri-devel@lists.freedesktop.org,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        cawa cheng <cawa.cheng@mediatek.com>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Sean Paul <seanpaul@chromium.org>
+References: <20190625002829.17409-1-afaerber@suse.de>
+In-Reply-To: <20190625002829.17409-1-afaerber@suse.de>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Tue, 25 Jun 2019 08:45:51 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTnhTQK-mOyC+e8U8xrDwaoDUACb1R_zQfDCKwdKzc96w@mail.gmail.com>
+Message-ID: <CAJF2gTTnhTQK-mOyC+e8U8xrDwaoDUACb1R_zQfDCKwdKzc96w@mail.gmail.com>
+Subject: Re: [PATCH] csky: dts: Add NationalChip GX6605S
+To:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
+Cc:     linux-csky@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 24, 2019 at 4:00 PM Jitao Shi <jitao.shi@mediatek.com> wrote:
+Thx for the patch. No need seperate part into dtsi, just follow:
+https://lore.kernel.org/linux-csky/1561376581-19568-1-git-send-email-guoren=
+@kernel.org/T/#u
+
+On Tue, Jun 25, 2019 at 8:28 AM Andreas F=C3=A4rber <afaerber@suse.de> wrot=
+e:
 >
-> Auo,kd101n80-45na's connector is same as boe,tv101wum-nl6.
-> The most codes can be reuse.
-> So auo,kd101n80-45na and boe,tv101wum-nl6 use one driver file.
-> Add the different parts in driver data.
+> Add Device Trees for NationalChip GX6605S SoC (based on CK610 CPU) and it=
+s
+> dev board. GxLoader expects as filename gx6605s.dtb, so keep that.
+> The bootargs are prepared to boot from USB and to output to serial.
 >
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Compatibles for the SoC and board are left out for now.
+>
+> Signed-off-by: Andreas F=C3=A4rber <afaerber@suse.de>
 > ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
+>  arch/csky/boot/dts/gx6605s.dts  | 104 ++++++++++++++++++++++++++++++++++=
+++++++
+>  arch/csky/boot/dts/gx6605s.dtsi |  82 +++++++++++++++++++++++++++++++
+>  2 files changed, 186 insertions(+)
+>  create mode 100644 arch/csky/boot/dts/gx6605s.dts
+>  create mode 100644 arch/csky/boot/dts/gx6605s.dtsi
 >
-> diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> index 6e06c8506623..d1ee43cfcbe2 100644
-> --- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> +++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> @@ -372,6 +372,15 @@ static const struct panel_init_cmd boe_init_cmd[] = {
->         {},
->  };
->
-> +static const struct panel_init_cmd auo_init_cmd[] = {
-> +       _INIT_DELAY_CMD(24),
-> +       _INIT_DCS_CMD(0x11),
-> +       _INIT_DELAY_CMD(120),
-> +       _INIT_DCS_CMD(0x29),
-> +       _INIT_DELAY_CMD(120),
-> +       {},
+> diff --git a/arch/csky/boot/dts/gx6605s.dts b/arch/csky/boot/dts/gx6605s.=
+dts
+> new file mode 100644
+> index 000000000000..f7511024ec6f
+> --- /dev/null
+> +++ b/arch/csky/boot/dts/gx6605s.dts
+> @@ -0,0 +1,104 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
+> +/*
+> + * GX6605S dev board
+> + *
+> + * Copyright (c) 2019 Andreas F=C3=A4rber
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +#include "gx6605s.dtsi"
+> +
+> +/ {
+> +       model =3D "Nationalchip GX6605S";
+> +
+> +       aliases {
+> +               serial0 =3D &uart;
+> +       };
+> +
+> +       chosen {
+> +               bootargs =3D "console=3DttyS0,115200n8 root=3D/dev/sda2 r=
+w rootwait";
+> +               stdout-path =3D "serial0:115200n8";
+> +       };
+> +
+> +       memory@10000000 {
+> +               device_type =3D "memory";
+> +               reg =3D <0x10000000 0x04000000>;
+> +       };
+> +
+> +       dummy_apb_clk: dummy-apb-clk {
+> +               compatible =3D "fixed-clock";
+> +               clock-frequency =3D <24000000>; /* guesstimate */
+> +               #clock-cells =3D <0>;
+> +       };
+> +
+> +       buttons {
+> +               compatible =3D "gpio-keys-polled";
+> +               poll-interval =3D <100>;
+> +               autorepeat;
+> +
+> +               button5 {
+> +                       label =3D "button5";
+> +                       linux,code =3D <103>;
+> +                       gpios =3D <&gpio 5 GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               button6 {
+> +                       label =3D "button6";
+> +                       linux,code =3D <106>;
+> +                       gpios =3D <&gpio 6 GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               button7 {
+> +                       label =3D "button7";
+> +                       linux,code =3D <28>;
+> +                       gpios =3D <&gpio 7 GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               button8 {
+> +                       label =3D "button8";
+> +                       linux,code =3D <105>;
+> +                       gpios =3D <&gpio 8 GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               button9 {
+> +                       label =3D "button9";
+> +                       linux,code =3D <108>;
+> +                       gpios =3D <&gpio 9 GPIO_ACTIVE_LOW>;
+> +               };
+> +       };
+> +
+> +       leds {
+> +               compatible =3D "gpio-leds";
+> +
+> +               led0 {
+> +                       label =3D "led10";
+> +                       gpios =3D <&gpio 10 GPIO_ACTIVE_LOW>;
+> +                       linux,default-trigger =3D "heartbeat";
+> +               };
+> +
+> +               led1 {
+> +                       label =3D "led11";
+> +                       gpios =3D <&gpio 11 GPIO_ACTIVE_LOW>;
+> +                       linux,default-trigger =3D "timer";
+> +               };
+> +
+> +               led2 {
+> +                       label =3D "led12";
+> +                       gpios =3D <&gpio 12 GPIO_ACTIVE_LOW>;
+> +                       linux,default-trigger =3D "default-on";
+> +               };
+> +
+> +               led3 {
+> +                       label =3D "led13";
+> +                       gpios =3D <&gpio 13 GPIO_ACTIVE_LOW>;
+> +                       linux,default-trigger =3D "default-on";
+> +               };
+> +       };
 > +};
 > +
->  static inline struct boe_panel *to_boe_panel(struct drm_panel *panel)
->  {
->         return container_of(panel, struct boe_panel, base);
-> @@ -572,6 +581,34 @@ static const struct panel_desc boe_tv101wum_nl6_desc = {
->         .init_cmds = boe_init_cmd,
->  };
->
-> +static const struct drm_display_mode auo_default_mode = {
-> +       .clock = 157000,
-> +       .hdisplay = 1200,
-> +       .hsync_start = 1200 + 80,
-> +       .hsync_end = 1200 + 80 + 24,
-> +       .htotal = 1200 + 80 + 24 + 36,
-> +       .vdisplay = 1920,
-> +       .vsync_start = 1920 + 16,
-> +       .vsync_end = 1920 + 16 + 4,
-> +       .vtotal = 1920 + 16 + 4 + 16,
-> +       .vrefresh = 60,
-> +       .type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
+> +&timer0 {
+> +               clocks =3D <&dummy_apb_clk>;
 > +};
+> diff --git a/arch/csky/boot/dts/gx6605s.dtsi b/arch/csky/boot/dts/gx6605s=
+.dtsi
+> new file mode 100644
+> index 000000000000..956af5674add
+> --- /dev/null
+> +++ b/arch/csky/boot/dts/gx6605s.dtsi
+> @@ -0,0 +1,82 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
+> +/*
+> + * NationalChip GX6605S SoC
+> + *
+> + * Copyright (c) 2019 Andreas F=C3=A4rber
+> + */
 > +
-> +static const struct panel_desc auo_kd101n80_45na_desc = {
-> +       .modes = &auo_default_mode,
-> +       .bpc = 8,
-> +       .size = {
-> +               .width = 216,
-> +               .height = 135,
-
-Same issue as the BOE panel:
-This is wrong, as this is a portrait panel, should be: width=135, height=216.
-
-> +       },
-> +       .lanes = 4,
-> +       .format = MIPI_DSI_FMT_RGB888,
-> +       .mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-> +                     MIPI_DSI_MODE_LPM,
-> +       .init_cmds = auo_init_cmd,
+> +/ {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <1>;
+> +
+> +       cpus {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               cpu0: cpu@0 {
+> +                       device_type =3D "cpu";
+> +                       compatible =3D "csky,ck610";
+> +                       reg =3D <0>;
+> +               };
+> +       };
+> +
+> +       soc {
+> +               compatible =3D "simple-bus";
+> +               interrupt-parent =3D <&intc>;
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+> +               ranges;
+> +
+> +               timer0: timer@20a000 {
+> +                       compatible =3D "csky,gx6605s-timer";
+> +                       reg =3D <0x0020a000 0x400>;
+> +                       clocks =3D <&dummy_apb_clk>;
+> +                       interrupts =3D <10>;
+> +               };
+> +
+> +               gpio: gpio@305000 {
+> +                       compatible =3D "wd,mbl-gpio";
+> +                       reg-names =3D "dirout", "dat", "set", "clr";
+> +                       reg =3D <0x00305000 0x4>,
+> +                             <0x00305004 0x4>,
+> +                             <0x00305008 0x4>,
+> +                             <0x0030500c 0x4>;
+> +                       gpio-controller;
+> +                       #gpio-cells =3D <2>;
+> +               };
+> +
+> +               uart: serial@403000 {
+> +                       compatible =3D "ns16550a";
+> +                       reg =3D <0x00403000 0x400>;
+> +                       interrupts =3D <15>;
+> +                       clock-frequency =3D <29491200>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <1>;
+> +               };
+> +
+> +               intc: interrupt-controller@500000 {
+> +                       compatible =3D "csky,gx6605s-intc";
+> +                       reg =3D <0x00500000 0x400>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells =3D <1>;
+> +               };
+> +
+> +               ehci_hcd: usb@900000 {
+> +                       compatible =3D "generic-ehci";
+> +                       reg =3D <0x00900000 0x400>;
+> +                       interrupts =3D <59>;
+> +               };
+> +
+> +               ohci_hcd0: usb@a00000 {
+> +                       compatible =3D "generic-ohci";
+> +                       reg =3D <0x00a00000 0x400>;
+> +                       interrupts =3D <58>;
+> +               };
+> +
+> +               ohci_hcd1: usb@b00000 {
+> +                       compatible =3D "generic-ohci";
+> +                       reg =3D <0x00b00000 0x400>;
+> +                       interrupts =3D <57>;
+> +               };
+> +       };
 > +};
-> +
->  static int boe_panel_get_modes(struct drm_panel *panel)
->  {
->         struct boe_panel *boe = to_boe_panel(panel);
-> @@ -695,6 +732,9 @@ static const struct of_device_id boe_of_match[] = {
->         { .compatible = "boe,tv101wum-nl6",
->           .data = &boe_tv101wum_nl6_desc
->         },
-> +       { .compatible = "auo,kd101n80-45na",
-> +         .data = &auo_kd101n80_45na_desc
-> +       },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, boe_of_match);
 > --
-> 2.21.0
+> 2.16.4
 >
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
+--=20
+Best Regards
+ Guo Ren
+
+ML: https://lore.kernel.org/linux-csky/
