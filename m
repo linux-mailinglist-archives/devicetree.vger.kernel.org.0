@@ -2,234 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AFF25207D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 03:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52C2852144
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 05:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730065AbfFYB5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 21:57:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53294 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729894AbfFYB5x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 21:57:53 -0400
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8157D2077C;
-        Tue, 25 Jun 2019 01:57:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561427871;
-        bh=MJtxpRjdgeKsk26oDPJlP5SZ3sdJ7xVel8rCfI+KFQw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OeVfDOhXwkdHsuv30TcUVHuS5CGGEteTOw4/RjtT/8EOZ30xuE580ExalG5bqfmVc
-         B4+cWaTq/9LzqBFF44awiqFvhomIF+TwfYNm+3gpdCTtuZg+PWzaGM9PfgspgZcDjP
-         4eTrsCjkpz0glIZM+0rPZaAyJV1EVuqwDY0ajKUA=
-Received: by mail-wm1-f50.google.com with SMTP id s3so1117724wms.2;
-        Mon, 24 Jun 2019 18:57:51 -0700 (PDT)
-X-Gm-Message-State: APjAAAUb6pOnsAF1fUJJFZXo5l6vY0zDMOi0TTkiNAd3ijr+DB/HQefx
-        kZNOz5uOgYZhb2FaLbFDASqEKMZX0xGsX35oBks=
-X-Google-Smtp-Source: APXvYqzkCXe52mlQoLGvpJrB37dUOrIl+OdJu8k0kgiwPLIagTSgY8ydNzJ37lBhg64m2YTHjPqAvODk8VK8MaqhCc8=
-X-Received: by 2002:a7b:cd84:: with SMTP id y4mr17852370wmj.79.1561427870082;
- Mon, 24 Jun 2019 18:57:50 -0700 (PDT)
+        id S1726706AbfFYDbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jun 2019 23:31:48 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:40336 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726614AbfFYDbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jun 2019 23:31:48 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v19so1281554wmj.5
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2019 20:31:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hreneRMdosQHoew3G/ulwzqPUoN3bk6y0Mh9gFGiOHc=;
+        b=YutOJx/yNHxHBs7eip+GCzWGxLqBKS6HyqZOc89ENz9rJ34KjLkKIpDBw4RWPnmHLa
+         MgchNwF70fF15hKZ24AWHDw+jN7rsCA9L13wkYtqXguEBXH072x8pEdHIijavPAOQufT
+         ULwurfHUvacfjYlhENKW0MRK/d7rmWJ8yu0OcsDgVV91KEtrztuDNtXClNYJMgLaBzjI
+         tEDhtW2KUAkF61HI2Etk6L3uJMrm7rBqP7pglkCVqUtohmQL0WgIPACLQTdzadflJn8N
+         stPVpKOCO7djrBVvPtAQGvlSeYrSfjepK5GDBspXz4SOq5mnCipmYi9j4vRInCQRf0gk
+         ZlBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hreneRMdosQHoew3G/ulwzqPUoN3bk6y0Mh9gFGiOHc=;
+        b=fTVKQ+wt72fFNlIE+gqWoTgMU+naSfSbkFwLIojvG3YrYaAIWc8/wBmOF5w6qCe9Oh
+         SKUrLwIk5jLt6eryFQbdaX6Y6mRlUKyuHTnDfW62geiE7NJdCBBJgBflurwYYf2nF7wR
+         jIgVzqxhHh+Ej69jM5M6TbnXyEt8XnWPiLyIbmba8qNSWyUlUWp6qSehO+MTekvtDihz
+         T/yO4tahfWzLIOK+mPM2XiXrctn/Gmcy4ADiGKCzxq1xNORoBzCg+awhN4BThO/JNE6E
+         CdfrNzaSQl9WaJl7CHod5Fm86TDXFF2EtmmS8yVmaOQZBfjg8x3ppZPBHVfYKPPPsFOT
+         N6Vw==
+X-Gm-Message-State: APjAAAUXefsLcp9OALBctMaB6RdJBVX4RrVEP2JhfAZuYKS+RR34xbul
+        x42c3cQUQvKPyOWUamk42ywW+jwNZnhAVSPcjQaI1Q==
+X-Google-Smtp-Source: APXvYqwcYlRtlu/HQuSek8ocdSv5LWy+5p/nWI6LivltsiY0CBh5f2cBsro42LBCqwPhF/BJ5ow4BED0pcLfkh3uKF8=
+X-Received: by 2002:a1c:740f:: with SMTP id p15mr17990557wmc.103.1561433506287;
+ Mon, 24 Jun 2019 20:31:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190625002829.17409-1-afaerber@suse.de> <CAJF2gTTnhTQK-mOyC+e8U8xrDwaoDUACb1R_zQfDCKwdKzc96w@mail.gmail.com>
- <a27255d3-e21c-787d-c510-359d72f53a1c@suse.de>
-In-Reply-To: <a27255d3-e21c-787d-c510-359d72f53a1c@suse.de>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Tue, 25 Jun 2019 09:57:38 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTRkB+W_pYJYJLLcL=hkUm5Y6dvH_Z=BSdkz=M0+D0UOiA@mail.gmail.com>
-Message-ID: <CAJF2gTRkB+W_pYJYJLLcL=hkUm5Y6dvH_Z=BSdkz=M0+D0UOiA@mail.gmail.com>
-Subject: Re: [PATCH] csky: dts: Add NationalChip GX6605S
-To:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
-Cc:     linux-csky@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+References: <1561375453-3135-1-git-send-email-yash.shah@sifive.com> <alpine.DEB.2.21.9999.1906241421550.22820@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1906241421550.22820@viisi.sifive.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 25 Jun 2019 09:01:33 +0530
+Message-ID: <CAAhSdy0Z_uGMYqC+6yRPFzEBDGi+SHkrvhe2+1ZMt9heHhJ0=g@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: Re-organize SPI DT nodes
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     Yash Shah <yash.shah@sifive.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, sachin.ghadi@sifive.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
+On Tue, Jun 25, 2019 at 2:53 AM Paul Walmsley <paul.walmsley@sifive.com> wrote:
+>
+> On Mon, 24 Jun 2019, Yash Shah wrote:
+>
+> > As per the General convention, define only device DT node in SOC DTSi
+> > file with status = "disabled" and enable device in Board DTS file with
+> > status = "okay"
+> >
+> > Reported-by: Anup Patel <anup@brainfault.org>
+> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+>
+> This is a good start, but should also cover the other I/O devices in the
+> chip DT file.  The mandatory internal devices, like the PRCI and PLIC, can
+> stay the way they are.
 
-On Tue, Jun 25, 2019 at 9:25 AM Andreas F=C3=A4rber <afaerber@suse.de> wrot=
-e:
->
-> Am 25.06.19 um 02:45 schrieb Guo Ren:
-> > Thx for the patch. No need seperate part into dtsi,
->
-> Sorry, I know from many arm contributions that using a .dtsi is the
-> right thing here. It logically separates the chip from the board, even
-> if there's only one evaluation board currently. Think about set-top
-> boxes that someone might author a .dts for - they should be able to
-> reuse the .dtsi for the SoC rather than copy it.
-gx6605s.dts is simple now, it's unnecessary to seperate it into two
-pieces. Other things from you is all OK for me.
+Yes, this convention only applies to SoC devices with external connections
+so PRCI, PLIC, and CLINT DT nodes are not required to follow this.
 
->
-> > just follow:
-> > https://lore.kernel.org/linux-csky/1561376581-19568-1-git-send-email-gu=
-oren@kernel.org/T/#u
->
-> Thanks for that pointer! I still think my node names are cleaner and
-> also the structure of keeping clocks and gpio users outside of /soc. I
-> see the value you use is 27 MHz, will try it tomorrow. I see you use
-> nice KEY_ constants, whereas I just took the raw values from the dtb.
->
-> I notice that your patch doesn't have any Copyright header, how should I
-> credit you in the resulting combined patch? I would then also add your
-> SoB from the patch you linked to.
-Copyright could be the same in arch/csky/kernel/setup.c or add yours
-in addition.
+Eventually, this convention helps when we have multiple boards of same
+SOC and each board having different set of peripherals connections.
 
->
-> More comments inline...
->
-> > On Tue, Jun 25, 2019 at 8:28 AM Andreas F=C3=A4rber <afaerber@suse.de> =
-wrote:
-> >>
-> >> Add Device Trees for NationalChip GX6605S SoC (based on CK610 CPU) and=
- its
-> >> dev board. GxLoader expects as filename gx6605s.dtb, so keep that.
-> >> The bootargs are prepared to boot from USB and to output to serial.
-> >>
-> >> Compatibles for the SoC and board are left out for now.
-> >>
-> >> Signed-off-by: Andreas F=C3=A4rber <afaerber@suse.de>
-> >> ---
-> >>  arch/csky/boot/dts/gx6605s.dts  | 104 +++++++++++++++++++++++++++++++=
-+++++++++
-> >>  arch/csky/boot/dts/gx6605s.dtsi |  82 +++++++++++++++++++++++++++++++
-> >>  2 files changed, 186 insertions(+)
-> >>  create mode 100644 arch/csky/boot/dts/gx6605s.dts
-> >>  create mode 100644 arch/csky/boot/dts/gx6605s.dtsi
-> >>
-> >> diff --git a/arch/csky/boot/dts/gx6605s.dts b/arch/csky/boot/dts/gx660=
-5s.dts
-> >> new file mode 100644
-> >> index 000000000000..f7511024ec6f
-> >> --- /dev/null
-> >> +++ b/arch/csky/boot/dts/gx6605s.dts
-> [...]
-> >> +       leds {
-> >> +               compatible =3D "gpio-leds";
-> >> +
-> >> +               led0 {
-> >> +                       label =3D "led10";
->
-> I forgot to align the numbering here. The label matches the GPIO and
-> what is printed on the board.
-leds and button is so specific, that's is just a example. You could
-keep your own style in the dts.
-
->
-> >> +                       gpios =3D <&gpio 10 GPIO_ACTIVE_LOW>;
-> >> +                       linux,default-trigger =3D "heartbeat";
->
-> This green one stops blinking and stays on.
-Seems there is no driver for it.
-
->
-> >> +               };
-> >> +
-> >> +               led1 {
-> >> +                       label =3D "led11";
-> >> +                       gpios =3D <&gpio 11 GPIO_ACTIVE_LOW>;
-> >> +                       linux,default-trigger =3D "timer";
->
-> This red one keeps blinking after the panic.
->
-> >> +               };
-> >> +
-> >> +               led2 {
-> >> +                       label =3D "led12";
-> >> +                       gpios =3D <&gpio 12 GPIO_ACTIVE_LOW>;
-> >> +                       linux,default-trigger =3D "default-on";
-> >> +               };
-> >> +
-> >> +               led3 {
-> >> +                       label =3D "led13";
-> >> +                       gpios =3D <&gpio 13 GPIO_ACTIVE_LOW>;
-> >> +                       linux,default-trigger =3D "default-on";
->
-> These two remain off. So I wonder whether the GPIO polarity is wrong?
-> In the example usb.img the gpio-leds module is not loaded by default, so
-> maybe it wasn't noticed before?
-I try this 1 years ago in linux-4.9 and it need verifying.
-
->
-> Also, many arm boards use more complex LED labels with multiple parts
-> separated by colon, like "boardname:name:function" or so.
-Name is Ok for me as long as it's correct.
-
->
-> >> +               };
-> >> +       };
-> [...]
-> >> diff --git a/arch/csky/boot/dts/gx6605s.dtsi b/arch/csky/boot/dts/gx66=
-05s.dtsi
-> >> new file mode 100644
-> >> index 000000000000..956af5674add
-> >> --- /dev/null
-> >> +++ b/arch/csky/boot/dts/gx6605s.dtsi
-> >> @@ -0,0 +1,82 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
-> >> +/*
-> >> + * NationalChip GX6605S SoC
-> >> + *
-> >> + * Copyright (c) 2019 Andreas F=C3=A4rber
-> >> + */
-> >> +
-> >> +/ {
-> >> +       #address-cells =3D <1>;
-> >> +       #size-cells =3D <1>;
-> >> +
-> >> +       cpus {
-> >> +               #address-cells =3D <1>;
-> >> +               #size-cells =3D <0>;
-> >> +
-> >> +               cpu0: cpu@0 {
-> >> +                       device_type =3D "cpu";
-> >> +                       compatible =3D "csky,ck610";
-> >> +                       reg =3D <0>;
-> >> +               };
-> >> +       };
-> >> +
-> >> +       soc {
-> >> +               compatible =3D "simple-bus";
-> >> +               interrupt-parent =3D <&intc>;
-> >> +               #address-cells =3D <1>;
-> >> +               #size-cells =3D <1>;
-> >> +               ranges;
-> >> +
-> >> +               timer0: timer@20a000 {
-> >> +                       compatible =3D "csky,gx6605s-timer";
->
-> The reason I left out the compatible for the SoC/board is that it looks
-> unclean to me that you're using a "csky," vendor prefix for interrupt
-> controller and timer instead of a new "nationalchip," prefix for the SoC
-> vendor. Did I miss some reasoning for that, or did that slip through
-> patch review?
-csky is my current company and nationalchip is my prior company. The
-gx6605s is belong to nationachip and gx6605s use csky 610 as its CPU.
-
->
-> Being the first board we'd need to create a new YAML file to document
-> them, I assume. Not sure what the best scope (=3Dname) would be here.
->
-> >> +                       reg =3D <0x0020a000 0x400>;
-> >> +                       clocks =3D <&dummy_apb_clk>;
-> >> +                       interrupts =3D <10>;
-> >> +               };
-> [...]
-> >> +               intc: interrupt-controller@500000 {
-> >> +                       compatible =3D "csky,gx6605s-intc";
->
-> Here's the other SoC compatible.
-It's defined in irqchip/irq-csky-apb-intc.c.
-
---=20
-Best Regards
- Guo Ren
-
-ML: https://lore.kernel.org/linux-csky/
+Regards,
+Anup
