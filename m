@@ -2,126 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D16C5517D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAC705519C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730202AbfFYOWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 10:22:04 -0400
-Received: from mail-eopbgr60082.outbound.protection.outlook.com ([40.107.6.82]:39335
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728252AbfFYOWD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 10:22:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vyjNARllyvJSmD8LmaYeP4Xkh6ob0o5S2vQ5dg9Y3fk=;
- b=Ylmwq1gSB0exWozTN+z8I7q6cNSPhy2BpVivVl0wPnFGjOmXOvGDcANfiKkcTQ6oobXsI+QEPOt9kqanVL1rsB352GRxnVPwqdOxerLakJgPYiIYhJNUwXbdGiTmRqylpsh03WcRazMd95e5mkhIQsljTYTtygQVQEfiDTknl+E=
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
- VI1PR04MB6976.eurprd04.prod.outlook.com (52.133.246.212) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2008.16; Tue, 25 Jun 2019 14:22:00 +0000
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::d83:14c4:dedb:213b]) by VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::d83:14c4:dedb:213b%5]) with mapi id 15.20.2008.014; Tue, 25 Jun 2019
- 14:22:00 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Abel Vesa <abel.vesa@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>, Jacky Bai <ping.bai@nxp.com>
-CC:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mq: Init rates and parents configs for
- clocks
-Thread-Topic: [PATCH] arm64: dts: imx8mq: Init rates and parents configs for
- clocks
-Thread-Index: AQHVK1SzBLyg7yu1NUGWmKUxLWsOPA==
-Date:   Tue, 25 Jun 2019 14:22:00 +0000
-Message-ID: <VI1PR04MB50550ACBAEA73FD7B5A97DD8EEE30@VI1PR04MB5055.eurprd04.prod.outlook.com>
-References: <1561467081-25701-1-git-send-email-abel.vesa@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b9626825-8f06-44b0-7087-08d6f9787cd5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB6976;
-x-ms-traffictypediagnostic: VI1PR04MB6976:
-x-microsoft-antispam-prvs: <VI1PR04MB6976E904E8DE81270D21A23EEEE30@VI1PR04MB6976.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 0079056367
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(376002)(39860400002)(396003)(366004)(189003)(199004)(6246003)(52536014)(305945005)(316002)(6436002)(66066001)(6116002)(74316002)(102836004)(25786009)(76176011)(110136005)(55016002)(68736007)(7696005)(54906003)(8936002)(26005)(9686003)(14454004)(4326008)(7416002)(229853002)(256004)(2906002)(86362001)(8676002)(81166006)(53546011)(478600001)(186003)(7736002)(5660300002)(44832011)(81156014)(53936002)(33656002)(6506007)(486006)(73956011)(476003)(71200400001)(71190400001)(99286004)(6636002)(66946007)(64756008)(76116006)(66446008)(446003)(91956017)(66476007)(66556008)(3846002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB6976;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: PIfCXF/oVmzJipsl0N3MIYOBzh0g6iyev9ly/P3+S35VF05jkHe5tPph02rXbps9LMzjxJBXI1tOcgUMo+NpaOG0F58tgGWUPhtvlHu+AVwFkfWpSwjmNWSMne+wDO3Te2xlnCyOqdEsONUgdcnlDVaADv/E51Vq1sysCTofODXS4CzI6pH5zWJmT3cOrxWp//xCHRZN/9Nu2aLESCu/ITfER8l5wcsq+obvH4Vg8OvCF6jOXJY8/WW+PNYK8jcUhfS3fPw+OMvLtEbvNeDBHMkawJaRhAGVj6iRR9SGXoDfKd2w0I+0oxFOJ2Ef7tLBnoa/uHX8Zfpkf87Q8Qi5ztCHJme/cdlSTCXbp58OD4JFabKT2S4p1LtSo0Akytfa6VMGVnn0zAHv4ISeUMeUL3Ohu3cSYgeE/KQg4F+YunU=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1729846AbfFYO0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 10:26:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48864 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727070AbfFYO0G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 10:26:06 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D57C52168B;
+        Tue, 25 Jun 2019 14:26:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561472765;
+        bh=O6AXf/DyRDLOn9NPLCpej84UeR2WezCnkvp4XKyJzzI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KsuUk7mSNplqf8/tk2M9YTB9f40AKsvTVrOhUv0pB44x7j2CG4+vXw39YgKLqOT+/
+         DTn2ZZUWWg7tHjemLZU4Du7R21PlxYeJWTdyMIBFmiT3wAJuaGfsHBXRCpBmEmPmq1
+         9ANy6VV2Zi66L8UGvwgFsoqMaNuErhEjCjW/L/j0=
+Received: by mail-qt1-f175.google.com with SMTP id d23so3213570qto.2;
+        Tue, 25 Jun 2019 07:26:04 -0700 (PDT)
+X-Gm-Message-State: APjAAAXuS/qyCYS3kOlNrZDCIRKCkA8NmLgOOHc1RYJ9xwI68VsrXN1c
+        8QhJZKK3Nrk3cf6lG7S3WdBS/+M3pVNV/OpJbw==
+X-Google-Smtp-Source: APXvYqxUTYLPlSnkrI0aZx53sOAqRFA18v5vioDTrIGFaeyy1WiJA6yC0931kiCv4v228poHZKovX+TYxFfLmkH2ync=
+X-Received: by 2002:a0c:b786:: with SMTP id l6mr63405459qve.148.1561472764055;
+ Tue, 25 Jun 2019 07:26:04 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9626825-8f06-44b0-7087-08d6f9787cd5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2019 14:22:00.4818
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6976
+References: <20190624215649.8939-1-robh@kernel.org> <20190624215649.8939-11-robh@kernel.org>
+ <CACRpkdYKE=zLJhmTeTWYGRCQNt3K8+rNNqsp5UDa2d31GG6Y2g@mail.gmail.com>
+ <CAL_Jsq+uCMKhUFgCCK3uUetL9OwokQPaq74GJHQS2VS=UjVH8w@mail.gmail.com> <CACRpkdYnSZibUyhe5D8W259fCJBm05rG0_EmX+uoi=uqbrqEYA@mail.gmail.com>
+In-Reply-To: <CACRpkdYnSZibUyhe5D8W259fCJBm05rG0_EmX+uoi=uqbrqEYA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 25 Jun 2019 08:25:51 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+45dKRMdRCjfKgEkvsk1MLyeXnY4fjZmh50WLweyJfCg@mail.gmail.com>
+Message-ID: <CAL_Jsq+45dKRMdRCjfKgEkvsk1MLyeXnY4fjZmh50WLweyJfCg@mail.gmail.com>
+Subject: Re: [PATCH v2 10/15] dt-bindings: display: Convert tpo,tpg110 panel
+ to DT schema
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.06.2019 15:51, Abel Vesa wrote:=0A=
-> Add the initial configuration for clocks that need default parent and rat=
-e=0A=
-> setting. This is based on the vendor tree clock provider parents and rate=
-s=0A=
-> configuration except this is doing the setup in dts rather then using clo=
-ck=0A=
-> consumer API in a clock provider driver.=0A=
-> =0A=
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>=0A=
-> ---=0A=
->   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 34 ++++++++++++++++++++++++=
-+++++++=0A=
->   1 file changed, 34 insertions(+)=0A=
-> =0A=
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mq.dtsi=0A=
-> index d09b808..e0abe02 100644=0A=
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi=0A=
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi=0A=
-> @@ -489,6 +489,40 @@=0A=
-=0A=
-> +					<&clk IMX8MQ_CLK_PCIE1_CTRL>,=0A=
-> +					<&clk IMX8MQ_CLK_PCIE1_PHY>,=0A=
-> +					<&clk IMX8MQ_CLK_PCIE2_CTRL>,=0A=
-> +					<&clk IMX8MQ_CLK_PCIE2_PHY>,=0A=
-> +					<&clk IMX8MQ_CLK_CSI1_CORE>,=0A=
-> +					<&clk IMX8MQ_CLK_CSI1_PHY_REF>,=0A=
-> +					<&clk IMX8MQ_CLK_CSI1_ESC>,=0A=
-> +					<&clk IMX8MQ_CLK_CSI2_CORE>,=0A=
-> +					<&clk IMX8MQ_CLK_CSI2_PHY_REF>,=0A=
-> +					<&clk IMX8MQ_CLK_CSI2_ESC>;=0A=
-=0A=
-This stuff (and NAND) looks like it would belong to device nodes instead.=
-=0A=
-=0A=
-The rest seem fine though I'm not sure why exactly those clks are =0A=
-adjusted in vendor tree.=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+On Tue, Jun 25, 2019 at 2:26 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Tue, Jun 25, 2019 at 12:47 AM Rob Herring <robh@kernel.org> wrote:
+> > On Mon, Jun 24, 2019 at 4:13 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > On Mon, Jun 24, 2019 at 11:59 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > > Convert the tpo,tpg110 panel binding to DT schema.
+> > > >
+> > > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > > > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> > > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > Cc: dri-devel@lists.freedesktop.org
+> > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > >
+> > > Awesome, fixed up the MAINATINERS entry and applied and
+> > > pushed for DRM next with my Reviewed-by.
+> >
+> > You shouldn't have because this is dependent on patch 2 and
+> > panel-common.yaml. So now 'make dt_binding_check' is broken.
+>
+> Ooops easily happens when I am only adressee on this patch and
+> there is no mention of any dependencies.
+
+It's a series. I would assume the default is 1 person applies a series
+unless explicitly stated otherwise.
+
+> Can I simply just merge the panel-common patch as well and we
+> are all happy?
+
+I have drm-misc commit rights too, so I'll apply the whole lot when it's ready.
+
+> I can also pick up more panel binding patches, IMO the yaml
+> conversions are especially uncontroversial and should have low
+> threshold for merging.
+
+Yes, but the threshold is at least 'make dt_binding_check' should not
+break. But don't worry, there are 2 other breakages in linux-next
+currently.
+
+Rob
