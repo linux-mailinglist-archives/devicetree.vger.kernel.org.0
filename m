@@ -2,291 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 228EB552AF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 17:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8E255342
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 17:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731142AbfFYPAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 11:00:10 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:45135 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730878AbfFYPAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 11:00:09 -0400
-Received: by mail-lj1-f195.google.com with SMTP id m23so16565416lje.12
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 08:00:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hxzjHuG9f6eUk/5rGX6/OuDQOCaB5EwP2dw41LeV6K8=;
-        b=AyBJ/0k4t0R+ZNhuo6Cj3euoENM7e+ETH+ppQ8P/g8a8iOGDQ9i3KYqZPNlgRwhdYa
-         HNgCuF9aOGMC4pif11HKSdH7nLXFwZCaAwFYXIy8pDMaxul/tzcooc7K3hPb0APvqbRc
-         yO2MIWjaUbxu/jo3Xn6tLmThmhdU/7XO3KYICtqF8fXp3rD/zuc4bm1OPTNeS+jxUqFI
-         i9yXwovchx6i/kc4A1Jwny9Y892R+1xFmZxjboJ5MCLi3udZG6VDL2mRPAodbY1Y8+z9
-         Ok1W9+o7dv0EXzbj6zd4MZfE6BE2g/9iRXWvYo1FBnb0jYfv2lY0isDmbrISV5x04cB1
-         86DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hxzjHuG9f6eUk/5rGX6/OuDQOCaB5EwP2dw41LeV6K8=;
-        b=dLqQyx/HrdbPy3Zg1bTkDbAUoQNcD6QY/W85w8q3KOj0vRkzfP8FrxTSnRr6pfVCK2
-         bF/OXLZ6UailyMzgXahNMQtbxZkC0q28oW602D1AhN7TxzN+iXBrZQsZxICqqFEwsZFI
-         DJ7/OuaWiRMVahc6QZJK5b1QWAx4Grgu2GIK9d7WJNdJfp0NPlqJVjO7+TYTNzBhXvdC
-         nyIWOMUyEX5E+whcjHM/+AWfTyVY03Te+JwgbSefl+qa+8ETNlaviUzUpxaI+0aEJ83a
-         paTLaq7NrhJkmSi+k/nfwdOEvzXqOAQWnMm9R5RtspTlZuvwdWJ1D8dJdFgBUV8sy4GC
-         zwiA==
-X-Gm-Message-State: APjAAAWGAo0zR6FRnHg3ktN19HlViM5qlhIHyTsIqUCNSrHKMWi4HuiM
-        N4PuaDlmUJbbjRJ1nadG+bmApg==
-X-Google-Smtp-Source: APXvYqzUsCIjayB8S/ee9C8qDkFsJ5Ca3H2eUQarQho9CCtEp8Es+VmFR6AU8AXHS1eCzMLtKq83cA==
-X-Received: by 2002:a2e:968e:: with SMTP id q14mr41485988lji.195.1561474807414;
-        Tue, 25 Jun 2019 08:00:07 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id j11sm1991092lfm.29.2019.06.25.08.00.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 25 Jun 2019 08:00:06 -0700 (PDT)
-Subject: Re: [PATCH v4 1/5] dt-bindings: interconnect: Add Qualcomm QCS404 DT
- bindings
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, vkoul@kernel.org,
-        evgreen@chromium.org, daidavid1@codeaurora.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20190613151323.10850-1-georgi.djakov@linaro.org>
- <20190613151323.10850-2-georgi.djakov@linaro.org>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <c99c052d-40e7-1bff-34f9-3b48a821a175@linaro.org>
-Date:   Tue, 25 Jun 2019 18:00:05 +0300
+        id S1729885AbfFYPWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 11:22:46 -0400
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:47536 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728946AbfFYPWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 11:22:45 -0400
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5PFIeN5020897;
+        Tue, 25 Jun 2019 08:22:33 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=proofpoint;
+ bh=axsMklROpfZit99IlYQJrDgrcEftVzRl/BKG3fJNoU8=;
+ b=EDgItxgiAE8NcgaQ0XMESqBuXirPvP7v6H6MQyhOx2/ms9Xjs50KyQdBZ2eHVwbb/cBi
+ ENCdD8IYwKunWgnGljikNTkv5JfdfsIWyvugco+j96PROYkskg+SZKvYPRhDsmX7ClBf
+ HrHgSw8Ed2314ex5U1eItjOFudIMRrLmF4VVJCHRG9oGutTNGFBxYSfwOUAXjwuWlU3F
+ do4t1LwkopPd9xUwZFyi2gLWePRuGM1tq2xhz8LjKOqe481KB5/K15gHWRahAnf5k4k5
+ LrtaY1o4XyPVQSod3ZmOQPP5VIT+JEFl9iQRnmO/fYHO/ZJsvd9Se+Y866w7iAaFN7kq gg== 
+Authentication-Results: cadence.com;
+        spf=pass smtp.mailfrom=piotrs@cadence.com
+Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2058.outbound.protection.outlook.com [104.47.37.58])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 2t9fwtx6y2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jun 2019 08:22:33 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=axsMklROpfZit99IlYQJrDgrcEftVzRl/BKG3fJNoU8=;
+ b=tBEpfni/z83ciVRITG3pDiP038dFDEeN52PPVyLHlTERsNRMAAlc2Q9ah2SwWu4SNacNcRw3RKj7AtdMuK9TPexbPcdEZIdNJXwY5cfC/B9Kb7I2L97wczuGT0lfL/BGgbSCh1ZjiY+Wvsj/VapL3HM8eI/L8TTx0SxxJkGl5NA=
+Received: from BN8PR07CA0029.namprd07.prod.outlook.com (2603:10b6:408:ac::42)
+ by BY5PR07MB6968.namprd07.prod.outlook.com (2603:10b6:a03:1e7::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2008.16; Tue, 25 Jun
+ 2019 15:22:31 +0000
+Received: from DM3NAM05FT051.eop-nam05.prod.protection.outlook.com
+ (2a01:111:f400:7e51::209) by BN8PR07CA0029.outlook.office365.com
+ (2603:10b6:408:ac::42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2008.16 via Frontend
+ Transport; Tue, 25 Jun 2019 15:22:30 +0000
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ cadence.com discourages use of 158.140.1.28 as permitted sender)
+Received: from sjmaillnx1.cadence.com (158.140.1.28) by
+ DM3NAM05FT051.mail.protection.outlook.com (10.152.98.165) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2032.6 via Frontend Transport; Tue, 25 Jun 2019 15:22:29 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by sjmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id x5PFMRWs001097
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Tue, 25 Jun 2019 08:22:28 -0700
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Tue, 25 Jun 2019 17:22:26 +0200
+Received: from lvlogina.cadence.com (10.165.176.102) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Tue, 25 Jun 2019 17:22:26 +0200
+Received: from lvlogina.cadence.com (localhost.localdomain [127.0.0.1])
+        by lvlogina.cadence.com (8.14.4/8.14.4) with ESMTP id x5PFMQqm021221;
+        Tue, 25 Jun 2019 16:22:26 +0100
+Received: (from piotrs@localhost)
+        by lvlogina.cadence.com (8.14.4/8.14.4/Submit) id x5PFMPuJ021210;
+        Tue, 25 Jun 2019 16:22:25 +0100
+From:   Piotr Sroka <piotrs@cadence.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     David Woodhouse <dwmw2@infradead.org>,
+        BrianNorris <computersforpeace@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        "Marek Vasut" <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Piotr Sroka <piotrs@cadence.com>
+Subject: [v4 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
+Date:   Tue, 25 Jun 2019 16:22:18 +0100
+Message-ID: <20190625152218.21102-1-piotrs@cadence.com>
+X-Mailer: git-send-email 2.15.0
+In-Reply-To: <20190625151559.15270-1-piotrs@cadence.com>
+References: <20190625151559.15270-1-piotrs@cadence.com>
 MIME-Version: 1.0
-In-Reply-To: <20190613151323.10850-2-georgi.djakov@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(346002)(376002)(136003)(39860400002)(2980300002)(189003)(199004)(36092001)(316002)(336012)(6916009)(16586007)(446003)(11346002)(2616005)(426003)(2906002)(2351001)(486006)(87636003)(305945005)(478600001)(476003)(26826003)(126002)(47776003)(356004)(86362001)(6666004)(36756003)(7416002)(1076003)(246002)(7636002)(50466002)(51416003)(50226002)(5660300002)(186003)(8936002)(76130400001)(48376002)(70586007)(76176011)(4326008)(8676002)(42186006)(107886003)(54906003)(26005)(70206006);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR07MB6968;H:sjmaillnx1.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:corp.cadence.com;MX:1;A:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 65a7d20b-afce-459c-867f-08d6f980f06a
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);SRVR:BY5PR07MB6968;
+X-MS-TrafficTypeDiagnostic: BY5PR07MB6968:
+X-Microsoft-Antispam-PRVS: <BY5PR07MB69689C3E196B069DE398E7D7DDE30@BY5PR07MB6968.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:285;
+X-Forefront-PRVS: 0079056367
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: 8nv+0DLaJ5amrSDzqs62STJQ9GEkinSg499+TfDS0o81k5DMoDUbyKlh3GPzG5IhrDvFqgVVnLFb5qX98b1/MD2de1HSJSCD2Owsynv+F5br+3r8nytOV7gPn7nhEYKDKDrxPNXXX8sXqn6oS4RPSRhbsY/A+hp68ie2n/k9oKEQ4tJw0o9YuPylOTwsUb6F2sqS+AfwVvbgfFzWA3jyZSSYHmYeq8LB7KoMikYajibTXAaEtYpGfkWp+3LNchBKOQCS4AY35orIRLkQjsXQ4ANDiwylCXCx3TzT6sB8QcgEKrNtBjqShnNjS0Ppr0R56FirTiFnM5XOsbjNCjgHVkJyzfG0hvhz4mjs364Qw2H9WRJpkh/x97jItbsoUD2v4G3iCUuXWh6RNQTmtL1NBcLlI1eWrNMaw3KNV/w56HI=
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2019 15:22:29.7792
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65a7d20b-afce-459c-867f-08d6f980f06a
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR07MB6968
+X-Proofpoint-SPF-Result: pass
+X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
+ include:mktomail.com include:spf-0014ca01.pphosted.com
+ include:spf.protection.outlook.com include:auth.msgapp.com
+ include:spf.mandrillapp.com ~all
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-25_11:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
+ priorityscore=1501 malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=985 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1906250117
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Document the bindings used by Cadence NAND controller driver
 
-On 6/13/19 18:13, Georgi Djakov wrote:
-> The Qualcomm QCS404 platform has several buses that could be controlled
-> and tuned according to the bandwidth demand.
-> 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> ---
-> 
-> v4:
-> - Add the DT header into this patch.
-> - Pick Bjorn's r-b.
-> 
-> v3:
-> - Add a reg property and move the interconnect nodes under the "soc" node.
-> 
-> v2:
-> - No changes.
-> 
->  .../bindings/interconnect/qcom,qcs404.txt     | 46 ++++++++++
->  .../dt-bindings/interconnect/qcom,qcs404.h    | 88 +++++++++++++++++++
->  2 files changed, 134 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
->  create mode 100644 include/dt-bindings/interconnect/qcom,qcs404.h
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> new file mode 100644
-> index 000000000000..14a827268dda
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> @@ -0,0 +1,46 @@
-> +Qualcomm QCS404 Network-On-Chip interconnect driver binding
-> +-----------------------------------------------------------
-> +
-> +Required properties :
-> +- compatible : shall contain only one of the following:
-> +			"qcom,qcs404-bimc"
-> +			"qcom,qcs404-pcnoc"
-> +			"qcom,qcs404-snoc"
-> +- #interconnect-cells : should contain 1
-> +
-> +Optional properties :
-> +reg : specifies the physical base address and size of registers
-> +clocks : list of phandles and specifiers to all interconnect bus clocks
-> +clock-names : clock names should include both "bus_clk" and "bus_a_clk"
-> +
-> +Example:
-> +
-> +soc {
-> +	...
-> +	bimc: interconnect@400000 {
-> +		reg = <0x00400000 0x80000>;
-> +		compatible = "qcom,qcs404-bimc";
-> +		#interconnect-cells = <1>;
-> +		clock-names = "bus_clk", "bus_a_clk";
-> +		clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-> +			<&rpmcc RPM_SMD_BIMC_A_CLK>;
-> +	};
-> +
-> +	pnoc: interconnect@500000 {
-> +		reg = <0x00500000 0x15080>;
-> +		compatible = "qcom,qcs404-pcnoc";
-> +		#interconnect-cells = <1>;
-> +		clock-names = "bus_clk", "bus_a_clk";
-> +		clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
-> +			<&rpmcc RPM_SMD_PNOC_A_CLK>;
-> +	};
-> +
-> +	snoc: interconnect@580000 {
-> +		reg = <0x00580000 0x23080>;
-> +		compatible = "qcom,qcs404-snoc";
-> +		#interconnect-cells = <1>;
-> +		clock-names = "bus_clk", "bus_a_clk";
-> +		clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-> +			<&rpmcc RPM_SMD_SNOC_A_CLK>;
-> +	};
-> +};
+Signed-off-by: Piotr Sroka <piotrs@cadence.com>
+---
+Changes for v4:
+- add commit message
+Changes for v3:
+- add unit suffix for board_delay 
+- move child description to proper place
+- remove prefix cadence_ for reg and sdma fields
+Changes for v2:
+- remove chip dependends parameters from dts bindings
+- add names for register ranges in dts bindings
+- add generic bindings to describe NAND chip representation
+---
+ .../bindings/mtd/cadence-nand-controller.txt       | 51 ++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
 
-Does this look ok from DT perspective?
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+new file mode 100644
+index 000000000000..e485b87075bd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+@@ -0,0 +1,51 @@
++* Cadence NAND controller
++
++Required properties:
++  - compatible : "cdns,hpnfc"
++  - reg : Contains two entries, each of which is a tuple consisting of a
++	  physical address and length. The first entry is the address and
++	  length of the controller register set. The second entry is the
++	  address and length of the Slave DMA data port.
++  - reg-names: should contain "reg" and "sdma"
++  - interrupts : The interrupt number.
++  - clocks: phandle of the controller core clock (nf_clk).
++
++Optional properties:
++  - dmas: shall reference DMA channel associated to the NAND controller
++  - cdns,board-delay_ps : Estimated Board delay. The value includes the total
++    round trip delay for the signals and is used for deciding on values
++    associated with data read capture. The example formula for SDR mode is
++    the following:
++    board_delay = RE#PAD_delay + PCB trace to device + PCB trace from device
++    + DQ PAD delay
++
++Children nodes represent the available NAND chips.
++
++Required properties of NAND chips:
++  - reg: shall contain the native Chip Select ids from 0 to max supported by
++    the cadence nand flash controller
++
++
++See Documentation/devicetree/bindings/mtd/nand.txt for more details on
++generic bindings.
++
++Example:
++
++nand_controller: nand-controller @60000000 {
++
++	  compatible = "cdns,hpnfc";
++	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
++	  reg-names = "reg", "sdma";
++	  clocks = <&nf_clk>;
++	  cdns,board-delay_ps = <4830>;
++	  interrupts = <2 0>;
++	  nand@0 {
++	      reg = <0>;
++	      label = "nand-1";
++	  };
++	  nand@1 {
++	      reg = <1>;
++	      label = "nand-2";
++	  };
++
++};
+-- 
+2.15.0
 
-Thanks,
-Georgi
-
-> diff --git a/include/dt-bindings/interconnect/qcom,qcs404.h b/include/dt-bindings/interconnect/qcom,qcs404.h
-> new file mode 100644
-> index 000000000000..960f6e39c5f2
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,qcs404.h
-> @@ -0,0 +1,88 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Qualcomm interconnect IDs
-> + *
-> + * Copyright (c) 2019, Linaro Ltd.
-> + * Author: Georgi Djakov <georgi.djakov@linaro.org>
-> + */
-> +
-> +#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_QCS404_H
-> +#define __DT_BINDINGS_INTERCONNECT_QCOM_QCS404_H
-> +
-> +#define MASTER_AMPSS_M0			0
-> +#define MASTER_OXILI			1
-> +#define MASTER_MDP_PORT0		2
-> +#define MASTER_SNOC_BIMC_1		3
-> +#define MASTER_TCU_0			4
-> +#define SLAVE_EBI_CH0			5
-> +#define SLAVE_BIMC_SNOC			6
-> +
-> +#define MASTER_SPDM			0
-> +#define MASTER_BLSP_1			1
-> +#define MASTER_BLSP_2			2
-> +#define MASTER_XI_USB_HS1		3
-> +#define MASTER_CRYPT0			4
-> +#define MASTER_SDCC_1			5
-> +#define MASTER_SDCC_2			6
-> +#define MASTER_SNOC_PCNOC		7
-> +#define MASTER_QPIC			8
-> +#define PCNOC_INT_0			9
-> +#define PCNOC_INT_2			10
-> +#define PCNOC_INT_3			11
-> +#define PCNOC_S_0			12
-> +#define PCNOC_S_1			13
-> +#define PCNOC_S_2			14
-> +#define PCNOC_S_3			15
-> +#define PCNOC_S_4			16
-> +#define PCNOC_S_6			17
-> +#define PCNOC_S_7			18
-> +#define PCNOC_S_8			19
-> +#define PCNOC_S_9			20
-> +#define PCNOC_S_10			21
-> +#define PCNOC_S_11			22
-> +#define SLAVE_SPDM			23
-> +#define SLAVE_PDM			24
-> +#define SLAVE_PRNG			25
-> +#define SLAVE_TCSR			26
-> +#define SLAVE_SNOC_CFG			27
-> +#define SLAVE_MESSAGE_RAM		28
-> +#define SLAVE_DISP_SS_CFG		29
-> +#define SLAVE_GPU_CFG			30
-> +#define SLAVE_BLSP_1			31
-> +#define SLAVE_BLSP_2			32
-> +#define SLAVE_TLMM_NORTH		33
-> +#define SLAVE_PCIE			34
-> +#define SLAVE_ETHERNET			35
-> +#define SLAVE_TLMM_EAST			36
-> +#define SLAVE_TCU			37
-> +#define SLAVE_PMIC_ARB			38
-> +#define SLAVE_SDCC_1			39
-> +#define SLAVE_SDCC_2			40
-> +#define SLAVE_TLMM_SOUTH		41
-> +#define SLAVE_USB_HS			42
-> +#define SLAVE_USB3			43
-> +#define SLAVE_CRYPTO_0_CFG		44
-> +#define SLAVE_PCNOC_SNOC		45
-> +
-> +#define MASTER_QDSS_BAM			0
-> +#define MASTER_BIMC_SNOC		1
-> +#define MASTER_PCNOC_SNOC		2
-> +#define MASTER_QDSS_ETR			3
-> +#define MASTER_EMAC			4
-> +#define MASTER_PCIE			5
-> +#define MASTER_USB3			6
-> +#define QDSS_INT			7
-> +#define SNOC_INT_0			8
-> +#define SNOC_INT_1			9
-> +#define SNOC_INT_2			10
-> +#define SLAVE_KPSS_AHB			11
-> +#define SLAVE_WCSS			12
-> +#define SLAVE_SNOC_BIMC_1		13
-> +#define SLAVE_IMEM			14
-> +#define SLAVE_SNOC_PCNOC		15
-> +#define SLAVE_QDSS_STM			16
-> +#define SLAVE_CATS_0			17
-> +#define SLAVE_CATS_1			18
-> +#define SLAVE_LPASS			19
-> +
-> +#endif
-> 
