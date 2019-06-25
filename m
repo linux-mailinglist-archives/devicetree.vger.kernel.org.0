@@ -2,116 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7BC54C98
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 12:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4076C54C7F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 12:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726908AbfFYKol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 06:44:41 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:43670 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726509AbfFYKok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 06:44:40 -0400
-Received: by mail-lj1-f193.google.com with SMTP id 16so15721415ljv.10
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 03:44:39 -0700 (PDT)
+        id S1728041AbfFYKmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 06:42:43 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:45084 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726756AbfFYKmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 06:42:43 -0400
+Received: by mail-pg1-f194.google.com with SMTP id z19so5815406pgl.12;
+        Tue, 25 Jun 2019 03:42:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jsvGDP3O+XzFp/xfkf+e0ws5gNSJsQ+j5+W+9OgxK2I=;
-        b=gpKBF6Fr3SWTHkXloOK3bqab5HWcaBUrFM84VNJ9gOYFWCzTe+yr+bVrp0jdUekwpd
-         C3jKxlB1PLe01sjo0VHY78ITl1KTyKIjJMNa0GgnmLD4Mcsl0p2EBIUiJROgWxLYUv3c
-         l/OuHbFSJMRMFHYsRV+jN5HL2uIudHx3Z3q5Vc8ghC1jTeFb7a6BOxcTP27CAxSgUxAG
-         dRjlCKdxWX4u9w7WTPNE65fCJbUrGx/g5YLwFQuljqXkdGqryy/IpItwvIjPNHrPFp4L
-         K1/8xfxZweoGz/MUjyxzj+hwbZPLAp0b3X2FdppqQlhErVa/nHI8p163GTc1jeyElC6T
-         oNBA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=1uMFvdA9zD0TW36wu1ROblZoYCBPkNlkO2ia2DlAOOo=;
+        b=f0R/j+8cwVS5csLWk6p5Ykg9xNZW0+umrEPAJ3HxBV4gG9Bw2yhyhB9sn49qE5Zrv+
+         AGFN3ejYP8YtKwR7g8vgMWS3lRP/dY6SmujIakxV4B/gwq2fepV15w/4waWXzPY1qZfJ
+         Vk51rxlvmoCKoFn6zALdPIwIj24YqqeCKjywnR6ottpAP7NU1ndYJ4+kHvZkZTf1iL9+
+         /ElGY1TjxP0hHokScFuCqeW4Gvl+8Xxp2d/iwMKwIKu5VY0uaSoLu3ctv8IgDqoHP887
+         unK7l0vZ0ltcYjo+Rg86TIpmX6Wgn5rAYY2vujaTRmhqba2E5tRU01mGmHyNL31LZxxt
+         /DBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jsvGDP3O+XzFp/xfkf+e0ws5gNSJsQ+j5+W+9OgxK2I=;
-        b=DtDjKO4ssShihE4/B4Q/Aq+wZ43bDTdt1aDzaHrCi6fiWkuO/3DDTeONG6Qd0uuHoh
-         D53ibmyiKpdC7fOMMV/Agb0zAU4GirmqZ7imnxWWAl/E0MQPfLa+LVsJs0qlHw+IJ2uP
-         GrZvHwCw7GgHO2y91dxUqSquDPgYzt6Zu7XBtpyIft3bDy1L/eJPYs3aS8VrVMhYbc+X
-         AufTty8QKUjXNe7MJxWjyeOrk/taANA5c5Oy6y8a3MQJqjuP/tooIowk9PIaMlLyNKBC
-         /kT7YpgK5+qUlZhFdA23kBUsXCiF3oD6sWUE50wfcw5pFnrrLZ3DXgj1xxSIBwVA/Zy+
-         Ax2Q==
-X-Gm-Message-State: APjAAAVAES1NuOKln9azSOk5/wcCGSMUlr3pAtSbqltMk8iQnpAukuVR
-        PlcA8gzhmkrhkolJkBgkjeRlfQ==
-X-Google-Smtp-Source: APXvYqxI2jFR9JznTkJkKHZQjIwY1mg/2t3rJgPvLAWFigH6qUGCnFy6MFatythU6HZZ5fwMjlS2bw==
-X-Received: by 2002:a05:651c:150:: with SMTP id c16mr42375330ljd.193.1561459478823;
-        Tue, 25 Jun 2019 03:44:38 -0700 (PDT)
-Received: from [192.168.1.100] ([213.87.147.32])
-        by smtp.gmail.com with ESMTPSA id h84sm2189770ljf.42.2019.06.25.03.44.37
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 25 Jun 2019 03:44:38 -0700 (PDT)
-Subject: Re: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Peter Chen <Peter.Chen@nxp.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <8b8ffbd5-e481-b425-aa8c-c1b13e93faee@cogentembedded.com>
-Date:   Tue, 25 Jun 2019 13:44:30 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=1uMFvdA9zD0TW36wu1ROblZoYCBPkNlkO2ia2DlAOOo=;
+        b=ThvHToR614SQdLTIVzuDENyr7potFUGv5ryZbtf1/5w3ZmIoMDbof4HS3Z+SJTR8H6
+         9TbX9Nrr5pIkAQN6hMZMeNm+LyaQ8s49rzrprAy53Dh9xA3JbyskxKmrjQgFCskJ70uF
+         q/rVtbrCqqZg9pArznLSUx/VLZhHw8mZ2eE/xXhBWcnrpqol7JqaU04HmwA3SL+Mt76J
+         cYvFFjZAGwO7m6dABCSwfRWFyp4rL6Ui3XAIbn3HeINqWp3NMwQb5u8Z+bAvVC1ul7eE
+         fPH0XrixFqhbbWtdyf9hw/O/ltTsgG+TqSKcLU6AdF+om7QranpoL3i829s/qRB+WPs+
+         VQ1w==
+X-Gm-Message-State: APjAAAUaRQtf8Xln+7MzVamCB04PTYxLkWF35lSl7+A3EQlPFb/Xn52k
+        WZIXH3o2k8+leHK9MzDgHzU=
+X-Google-Smtp-Source: APXvYqz07ytF5AwY9QhulPVIkFTT7bio8bpxCxvXzud/mQQUQXGy0FbUpYnn5JsBdLZntdfuj+fjHg==
+X-Received: by 2002:a63:f342:: with SMTP id t2mr35787408pgj.83.1561459362300;
+        Tue, 25 Jun 2019 03:42:42 -0700 (PDT)
+Received: from Pilot130.192.168.0.22 (211-20-114-70.HINET-IP.hinet.net. [211.20.114.70])
+        by smtp.googlemail.com with ESMTPSA id 14sm22026759pfj.36.2019.06.25.03.42.38
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 25 Jun 2019 03:42:41 -0700 (PDT)
+From:   "sudheer.v" <open.sudheer@gmail.com>
+To:     gregkh@linuxfoundation.org, jslaby@suse.com, joel@jms.id.au,
+        andrew@aj.id.au, benh@kernel.crashing.org, robh+dt@kernel.org,
+        mark.rutland@arm.com,
+        shivahshankar.shankarnarayanrao@aspeedtech.com,
+        shivahshankar@gmail.com, sudheer.veliseti@aspeedtech.com
+Cc:     sudheer veliseti <sudheer.open@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+Subject: [patch v3 0/5] *** DMA based UART driver for AST2500 ***
+Date:   Tue, 25 Jun 2019 16:14:31 +0530
+Message-Id: <1561459476-14268-1-git-send-email-open.sudheer@gmail.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+From: sudheer veliseti <sudheer.open@gmail.com>
 
-On 25.06.2019 13:04, Uwe Kleine-König wrote:
+Hi,
+AST2500 has dedicated Uart DMA controller which has 12 sets of
+Tx and RX channels connected to UART controller directly.
+Since the DMA controller have dedicated buffers and registers,
+there would be little benifit in adding DMA framework overhead.
+So the software for DMA controller is included within the UART driver itself.
 
-> The usb phys are internal to the SoC and so it their 5V supply. With
+Thanks and Regards
+Sudheer.V
 
-    s/it/is/?
+changes in v3:
+- custom debugs replaced with pr_debug in 8250_ast2500_uart_dma.c
+- change logs added in patches
 
-> this regulator added explicitly the following (harmless) boot messages
-> go away:
-> 
-> 	usb_phy_generic usbphy:usb-phy@0: usbphy:usb-phy@0 supply vcc not found, using dummy regulator
-> 	usb_phy_generic usbphy:usb-phy@1: usbphy:usb-phy@1 supply vcc not found, using dummy regulator
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> ---
-> Hello,
-> 
-> note I'm an USB noob, so please consider carefully before applying :-)
-> I also put the regulator near the usbphy node instead of in alphabetic
-> order. Not sure what is sensible/usual here, too.
-> 
-> Best regards
-> Uwe
-> 
->   arch/arm/boot/dts/imx25.dtsi | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx25.dtsi b/arch/arm/boot/dts/imx25.dtsi
-> --- a/arch/arm/boot/dts/imx25.dtsi
-> +++ b/arch/arm/boot/dts/imx25.dtsi
-> @@ -614,6 +614,11 @@
->   		};
->   	};
->   
-> +	reg_usb: regulator_usbphy {
+sudheer veliseti (5):
+  AST2500 DMA UART driver
+  build configuration for AST2500 DMA UART driver
+  DT nodes for AST2500 DMA UART driver
+  defconfig and MAINTAINERS updated for AST2500 DMA UART driver
+  Documentation: DT bindings AST2500 DMA UART driver
 
-    Hyphens are preferred to underscores in the prop names.
+ .../bindings/serial/ast2500-dma-uart.txt      |   40 +
+ MAINTAINERS                                   |   13 +
+ arch/arm/boot/dts/aspeed-ast2500-evb.dts      |   21 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   71 +-
+ arch/arm/configs/aspeed_g5_defconfig          |    1 +
+ .../tty/serial/8250/8250_ast2500_uart_dma.c   | 1879 +++++++++++++++++
+ drivers/tty/serial/8250/Kconfig               |   35 +-
+ drivers/tty/serial/8250/Makefile              |    1 +
+ 8 files changed, 2056 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
+ create mode 100644 drivers/tty/serial/8250/8250_ast2500_uart_dma.c
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb-phy supply";
-> +	};
-> +
-[...]
+-- 
+2.17.1
 
-MBR, Sergei
+
