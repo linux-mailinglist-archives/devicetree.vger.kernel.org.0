@@ -2,564 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B83254EF1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 14:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ECDF54F87
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 15:02:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727953AbfFYMe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 08:34:27 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:56276 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726653AbfFYMe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 08:34:26 -0400
-Received: by mail-wm1-f68.google.com with SMTP id a15so2631582wmj.5;
-        Tue, 25 Jun 2019 05:34:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=CC4YE86QtOg4NxoeCs2Jrma7W56DR7TN4ZywVRYX0TY=;
-        b=CcNfQghezl4a6aeE43mpBy2cypM9gm0r7xrnXROurnilyPdkS1kmtv/eetb2oVqYwq
-         rGXx7TRHL4qR1PJzlK6U843sbuXp12BXHlbViMOx8Fv46mYu1oMiLP0azGMLTdm7ST2t
-         rejfYTTx3HW5z11eBlbVv7QduqYCwpCpZhGR5ReysZgsv6vs+7y443trE4KVRoGDKCl3
-         me5TsO9Tf7v1qEJ1V4rW9SO0KFc44CXYMrS2w6RneSvUTPX/rdzmyHgfEwyZW/c95oLK
-         vifdpRgMLFGkZ5FXB7/2YQam5RUjZRVpu23gAgraIYIP5TFFO4FlCXpKJFXejOLkw1M1
-         5ZVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=CC4YE86QtOg4NxoeCs2Jrma7W56DR7TN4ZywVRYX0TY=;
-        b=Zat6hIxzaQtt+dxmaeOpWhuuhBrzY8LqZbFt3ebZDn1hj+0BcLalHGmDoDMsMsrAcN
-         BvM5wB3Mq+r/fzP3inY78Ic1l7xesYvZPZs+eP160NnRkkglbooqWEm05Yr3dPh9Xj9F
-         7Pw4kkmQ8AVbfEyCrIyzpfO/IcK4zBneSj/T6utAg6D7r8qxspRj5vSSZavOFX82MKHR
-         eO1gV1FjmJp4LGc3FlZRUg59yuQsrzSe4ARbxzZq8JagaBB+xp6FZH/uxovHw8tHFd/8
-         KSZFq2oZ6vA7y8bCTypbVy4CVATpfrCgmobapJN3R/d3VsJiq8HTpbOv1m60NxOUxKCb
-         Vnew==
-X-Gm-Message-State: APjAAAWg4Oscei974U22x8Bk0FiYYuS3w1+0Xi3e1AfYw5Pro4LLPxiD
-        IPvMSPzkVAjx+fQMhUOH/cCc81aB4rIgBw==
-X-Google-Smtp-Source: APXvYqylxpnjkG+TJmazS8HIvgK6sK0v9PRkBdWxXaH9fJEuKPxQlriZmfGHzMs+B+rXkpXHuy80SA==
-X-Received: by 2002:a1c:c583:: with SMTP id v125mr18666160wmf.158.1561466062750;
-        Tue, 25 Jun 2019 05:34:22 -0700 (PDT)
-Received: from localhost.localdomain ([212.146.100.6])
-        by smtp.gmail.com with ESMTPSA id j132sm1732006wmj.21.2019.06.25.05.34.20
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 25 Jun 2019 05:34:22 -0700 (PDT)
-From:   Andra Danciu <andradanciu1997@gmail.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org
-Cc:     leoyang.li@nxp.com, festevam@gmail.com, aisheng.dong@nxp.com,
-        l.stach@pengutronix.de, angus@akkea.ca, vabhav.sharma@nxp.com,
-        pankaj.bansal@nxp.com, bhaskar.upadhaya@nxp.com, ping.bai@nxp.com,
-        manivannan.sadhasivam@linaro.org, richard.hu@technexion.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        matti.vaittinen@fi.rohmeurope.com, linux-imx@nxp.com,
-        daniel.baluta@nxp.com
-Subject: [PATCH v2] arm64: dts: fsl: pico-pi: Add a device tree for the PICO-PI-IMX8M
-Date:   Tue, 25 Jun 2019 15:34:07 +0300
-Message-Id: <20190625123407.15888-1-andradanciu1997@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S1730164AbfFYNCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 09:02:20 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:13502 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730150AbfFYNCS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 09:02:18 -0400
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20190625130215epoutp022c176f7a0d5ddecfb2d488f76c7705a8~rcqHWzwGe0062100621epoutp02g
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 13:02:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20190625130215epoutp022c176f7a0d5ddecfb2d488f76c7705a8~rcqHWzwGe0062100621epoutp02g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1561467735;
+        bh=1mfCW/D0RvA9qgVuTZWRRLeacuSFvpug25rw8ivnGkE=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=UDobX6GWkv6jtBcI5pdVOi3ojv1Z/LhJh6JK7gU1PMBLKMlVKAJaZt5k+BMA3QDGP
+         xaa0VNa0sdi7+3s9FSHsudo/RexyOorTbh73BEX5QqoS0CBtUU0m7ceoGd0JIgxFhR
+         M0EuOqS/r8CcRITeBoug3CbB6oOLepkmzbTDrCEw=
+Received: from epsmges5p3new.samsung.com (unknown [182.195.42.75]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20190625130214epcas5p1b5abed54d0f40c0dfa17e35ef4c14060~rcqHCuiRY0738707387epcas5p1o;
+        Tue, 25 Jun 2019 13:02:14 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        DC.CE.04067.65B121D5; Tue, 25 Jun 2019 22:02:14 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20190625130214epcas5p39bf94a9a6d46d83c9da55df0eb8e3df1~rcqGVA_o62450024500epcas5p3k;
+        Tue, 25 Jun 2019 13:02:14 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190625130214epsmtrp25225908f950faabb0dd1de864cbbce03~rcqGUPivn0790407904epsmtrp2u;
+        Tue, 25 Jun 2019 13:02:14 +0000 (GMT)
+X-AuditID: b6c32a4b-7a3ff70000000fe3-f5-5d121b56fc76
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        27.FF.03662.55B121D5; Tue, 25 Jun 2019 22:02:13 +0900 (KST)
+Received: from [107.108.73.28] (unknown [107.108.73.28]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190625130212epsmtip2ef4a176364b84106f7faf62e3d3ebc4a~rcqEgAkIx0459504595epsmtip2U;
+        Tue, 25 Jun 2019 13:02:12 +0000 (GMT)
+Subject: Re: [PATCH v3 1/3] scsi: ufs: Introduce vops for resetting device
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Avri Altman <avri.altman@wdc.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+Message-ID: <ad1c2a2a-91d6-25ce-9dfb-3b386b572ee2@samsung.com>
+Date:   Tue, 25 Jun 2019 18:11:24 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.1
+MIME-Version: 1.0
+In-Reply-To: <20190608050450.12056-2-bjorn.andersson@linaro.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SeUgUcRTH+83Mzo7iys/V8qWRsaWQkZYHDRQmXQzaBdGJlkNOarrrsuuR
+        USHaqR2aVLa5aoIaJkWbeIuyLR5YZtqqiEHYFmlkpqslhuQ4Rv73ee993/v+3uPHkEqrzIOJ
+        0yQJOg2foKIdqepX6303HvFURm5qaAxguz7NUuzIjJVmO5vHKLbI0iVjSwaqCTa3+Y2c7a0v
+        oNns/lqaLe1/R7DlbXMEe7l1imKvNFnkoU5cZWEl4kwVN2huqK+R5nJKWhD38/MgxVU1TyJu
+        0rSau9aSTRxkTjhuixYS4lIEnX9IlGPso8ZxpH2x4pzVWClPRyMuWciBARwE9l6bLAs5Mkrc
+        gODtx3eLwQSCiXwbIQXTCNpr7xH/WqzfyiiRlbgJwag9QBJ9R5CXcx+JBVccBlmXByix4IaH
+        57tvz8rFgMQ2BANzGQsqGm+ADw+qFsYqcAhYhnpokSnsDTXGaZnIy/Ex6K2qR5LGBToe2uan
+        MowDDgVLXbKYJrE7DNqKCIm9oOZ7ASl6AS6RQ8ZT++Kzd0Fn5UtSYlcYbauSS+wBk2NNtDgT
+        cDzcrA+U0hegtLCVkng7tLwvWLAl8Xp4Xu8vWTnDrVnxQmKnAq5fVUpqb8gcsy52ekJudrZM
+        Yg76Mp4g6VYdCKbKjSgHrTEsWcywZBvDkm0M/52LEVWBVgpavTpG0AdrAzVCqp+eV+uTNTF+
+        pxPVJrTw2XzDa5Gpa68ZYQapnBS/W3GkUsan6NPUZgQMqXJTlPLzKUU0n3Ze0CWe0iUnCHoz
+        8mQolbvirswaocQxfJIQLwhaQfevSjAOHulIWx1z3H5mzxxx/tKv/N2r9ge3W7wy73np/qzr
+        iP02PlrdLK9zcbsalHpoxnvLmi/OaXyUz/SOZUfnTmGfwsMnn5etvWOyJ9sL97Kk884Irc5p
+        z1Z7XpixLjFYLe/5cdL6bLi7QvM4/LU2Pt1mqT17MWmf8auvObXb4J4V3bmj2HxARelj+c2+
+        pE7P/wUN40LhaAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLIsWRmVeSWpSXmKPExsWy7bCSvG6otFCswcQWG4tzj3+zWLz8eZXN
+        4vT+dywW84+cY7VYdGMbk8XE/WfZLS7vmsNm0X19B5vF0usXmSyWH//HZNFy7CuLReveI+wO
+        PB5r5q1h9Ni0qpPN4861PWweExYdYPT4+PQWi8eW/Z8ZPT5vkvNoP9DNFMARxWWTkpqTWZZa
+        pG+XwJUxe88HxoKNYhVX565hb2B8KdjFyMkhIWAicfX1MpYuRi4OIYHdjBLTNy5lgkhIS1zf
+        OIEdwhaWWPnvOTtE0WtGiSXPtrKAJIQFvCS6Wm6AdYsIPGKUmHZjETOIwyzwBKhq2XuwKiGB
+        k4wSf19GgNhsAtoSd6dvAVvBK2AnceTOJTYQm0VAVWL73G+sILaoQIREX9tsNogaQYmTM58A
+        zeHg4BRwkDiysxQkzCxgJjFv80NmCFtc4taT+UwQtrzE9rdzmCcwCs1C0j0LScssJC2zkLQs
+        YGRZxSiZWlCcm55bbFhglJdarlecmFtcmpeul5yfu4kRHIlaWjsYT5yIP8QowMGoxMO74IhA
+        rBBrYllxZe4hRgkOZiUR3qWJQCHelMTKqtSi/Pii0pzU4kOM0hwsSuK88vnHIoUE0hNLUrNT
+        UwtSi2CyTBycUg2MmbOjNdZNUNW5GNMxYY94V+OygKliNnuPCTj98emdlG3256x83kHNyc9v
+        OWzdpu5xb3rCbq+7G2ucbih4T425wjfLcJHYlbVVyZvUtesmGDQG+c5ONVUWnLPsolra5w+z
+        diaz5diKT+f0fxpTw3laM13s3qWGDK+vuqe/Cm96U9Ry8tKSi0+UlFiKMxINtZiLihMBZOtz
+        EsACAAA=
+X-CMS-MailID: 20190625130214epcas5p39bf94a9a6d46d83c9da55df0eb8e3df1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CMS-RootMailID: 20190608050458epcas1p30f03f6d448eb962a6af56a4c0b021ef0
+References: <20190608050450.12056-1-bjorn.andersson@linaro.org>
+        <CGME20190608050458epcas1p30f03f6d448eb962a6af56a4c0b021ef0@epcas1p3.samsung.com>
+        <20190608050450.12056-2-bjorn.andersson@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Hu <richard.hu@technexion.com>
+Hi Bjorn,
+Are you planning to address Bean's comment on patch#2 and want to 
+re-spin this series?
+I am ok with taking this patch as it is and take a Softreset patch as a 
+separate patch.
 
-The current level of support yields a working console and is able to boot
-userspace from an initial ramdisk copied via u-boot in RAM.
-
-Additional subsystems that are active :
-	- Ethernet
-	- USB
-
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Richard Hu <richard.hu@technexion.com>
-Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
----
-Changes since v1:
- - renamed wandboard-pi-8m.dts to pico-pi-8m.dts
- - removed pinctrl_csi1, pinctrl_wifi_ctrl
- - used generic name for pmic
- - removed gpo node
- - delete regulator-virtuals node
- - remove always-on property from buck1-8 and ldo3-7
- - remove pmic-buck-uses-i2c-dvs property for buck1-4
-
- arch/arm64/boot/dts/freescale/Makefile       |   1 +
- arch/arm64/boot/dts/freescale/pico-pi-8m.dts | 458 +++++++++++++++++++++++++++
- 2 files changed, 459 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index c043aca66572..538422903e8a 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -26,3 +26,4 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-+dtb-$(CONFIG_ARCH_MXC) += pico-pi-8m.dtb
-diff --git a/arch/arm64/boot/dts/freescale/pico-pi-8m.dts b/arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-new file mode 100644
-index 000000000000..23422c8fc43f
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-@@ -0,0 +1,458 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright 2018 Wandboard, Org.
-+ * Copyright 2017 NXP
-+ *
-+ * Author: Richard Hu <hakahu@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mq.dtsi"
-+
-+/ {
-+	model = "PICO-PI-8M";
-+	compatible = "wand,imx8mq-pico-pi", "fsl,imx8mq";
-+
-+	chosen {
-+		bootargs = "console=ttymxc0,115200 earlycon=ec_imx6q,0x30860000,115200";
-+		stdout-path = &uart1;
-+	};
-+
-+	regulators {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reg_usb_otg_vbus: usb_otg_vbus {
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinctrl_otg_vbus>;
-+			compatible = "regulator-fixed";
-+			regulator-name = "usb_otg_vbus";
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			gpio = <&gpio3 14 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+
-+	wand-pi-8m {
-+		pinctrl_otg_vbus: otgvbusgrp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_NAND_DQS_GPIO3_IO14		0x19   /* USB OTG VBUS Enable */
-+			>;
-+		};
-+
-+		pinctrl_enet_3v3: enet3v3grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x19
-+			>;
-+		};
-+
-+		pinctrl_fec1: fec1grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC		0x3
-+				MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO	0x23
-+				MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
-+				MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
-+				MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
-+				MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
-+				MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
-+				MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
-+				MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
-+				MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
-+				MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
-+				MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
-+				MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-+				MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-+				MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9	0x19
-+			>;
-+		};
-+
-+		pinctrl_i2c1: i2c1grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL			0x4000007f
-+				MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA			0x4000007f
-+			>;
-+		};
-+
-+		pinctrl_i2c2: i2c2grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_I2C2_SCL_I2C2_SCL			0x4000007f
-+				MX8MQ_IOMUXC_I2C2_SDA_I2C2_SDA			0x4000007f
-+			>;
-+		};
-+
-+		pinctrl_uart1: uart1grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
-+				MX8MQ_IOMUXC_UART1_TXD_UART1_DCE_TX		0x49
-+			>;
-+		};
-+
-+		pinctrl_uart2: uart2grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x49
-+				MX8MQ_IOMUXC_UART2_TXD_UART2_DCE_TX		0x49
-+				MX8MQ_IOMUXC_UART4_RXD_UART2_DCE_CTS_B		0x49
-+				MX8MQ_IOMUXC_UART4_TXD_UART2_DCE_RTS_B		0x49
-+			>;
-+		};
-+
-+		pinctrl_usdhc1: usdhc1grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
-+				MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc3
-+				MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc3
-+				MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc3
-+				MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x83
-+			>;
-+		};
-+
-+		pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x85
-+				MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc5
-+				MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc5
-+				MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc5
-+				MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x85
-+			>;
-+		};
-+
-+		pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x87
-+				MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc7
-+				MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc7
-+				MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc7
-+				MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x87
-+			>;
-+		};
-+
-+		pinctrl_usdhc2_gpio: usdhc2grpgpio {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD2_CD_B_GPIO2_IO12	0x41
-+			>;
-+		};
-+
-+		pinctrl_usdhc2: usdhc2grp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x83
-+				MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc3
-+				MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc3
-+				MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc3
-+				MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc3
-+				MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc3
-+				MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
-+			>;
-+		};
-+
-+		pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x85
-+				MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc5
-+				MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc5
-+				MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc5
-+				MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc5
-+				MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc5
-+				MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
-+			>;
-+		};
-+
-+		pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x87
-+				MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc7
-+				MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc7
-+				MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc7
-+				MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc7
-+				MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc7
-+				MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
-+			>;
-+		};
-+
-+		pinctrl_wdog: wdoggrp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B 0xc6
-+			>;
-+		};
-+
-+		pinctrl_pmic: pmicirq {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x41
-+			>;
-+		};
-+
-+		pinctrl_tusb320_irq: tusb320_irqgrp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_NAND_DATA00_GPIO3_IO6	0x41
-+			>;
-+		};
-+
-+		pinctrl_typec_ss_sel: typec_ss_selgrp {
-+			fsl,pins = <
-+				MX8MQ_IOMUXC_NAND_CLE_GPIO3_IO5		0x19
-+			>;
-+		};
-+	};
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec1 &pinctrl_enet_3v3>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-assert-gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
-+	phy-handle = <&ethphy0>;
-+	fsl,magic-packet;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@1 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <1>;
-+			at803x,led-act-blind-workaround;
-+			at803x,eee-disabled;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	typec_tusb320:tusb320@47 {
-+		compatible = "ti,tusb320";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tusb320_irq &pinctrl_typec_ss_sel>;
-+		reg = <0x47>;
-+		vbus-supply = <&reg_usb_otg_vbus>;
-+		ss-sel-gpios = <&gpio3 5 GPIO_ACTIVE_HIGH>;
-+		tusb320,int-gpio = <&gpio3 6 GPIO_ACTIVE_LOW>;
-+		tusb320,select-mode = <0>;
-+		tusb320,dfp-power = <0>;
-+	};
-+
-+	pmic: pmic@4b {
-+		reg = <0x4b>;
-+		compatible = "rohm,bd71837";
-+		/* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		gpio_intr = <&gpio1 3 GPIO_ACTIVE_LOW>;
-+
-+		regulators {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			buck1: BUCK1 {
-+				regulator-name = "buck1";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				regulator-ramp-delay = <1250>;
-+				rohm,dvs-run-voltage = <900000>;
-+				rohm,dvs-idle-voltage = <850000>;
-+				rohm,dvs-suspend-voltage = <800000>;
-+			};
-+
-+			buck2: BUCK2 {
-+				regulator-name = "buck2";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				regulator-ramp-delay = <1250>;
-+				rohm,dvs-run-voltage = <1000000>;
-+				rohm,dvs-idle-voltage = <900000>;
-+			};
-+
-+			buck3: BUCK3 {
-+				regulator-name = "buck3";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				rohm,dvs-run-voltage = <1000000>;
-+			};
-+
-+			buck4: BUCK4 {
-+				regulator-name = "buck4";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				rohm,dvs-run-voltage = <1000000>;
-+			};
-+
-+			buck5: BUCK5 {
-+				regulator-name = "buck5";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-boot-on;
-+			};
-+
-+			buck6: BUCK6 {
-+				regulator-name = "buck6";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+			};
-+
-+			buck7: BUCK7 {
-+				regulator-name = "buck7";
-+				regulator-min-microvolt = <1605000>;
-+				regulator-max-microvolt = <1995000>;
-+				regulator-boot-on;
-+			};
-+
-+			buck8: BUCK8 {
-+				regulator-name = "buck8";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1400000>;
-+				regulator-boot-on;
-+			};
-+
-+			ldo1: LDO1 {
-+				regulator-name = "ldo1";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2: LDO2 {
-+				regulator-name = "ldo2";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3: LDO3 {
-+				regulator-name = "ldo3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+			};
-+
-+			ldo4: LDO4 {
-+				regulator-name = "ldo4";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+			};
-+
-+			ldo5: LDO5 {
-+				regulator-name = "ldo5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+			};
-+
-+			ldo6: LDO6 {
-+				regulator-name = "ldo6";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+			};
-+
-+			ldo7: LDO7 {
-+				regulator-name = "ldo7";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+};
-+
-+&uart1 { /* console */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	bus-width = <4>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	extcon = <&typec_tusb320>;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&A53_0 {
-+	operating-points = <
-+		/* kHz    uV */
-+		1500000 1000000
-+		1300000 1000000
-+		1000000 900000
-+		800000  900000
-+	>;
-+};
--- 
-2.11.0
-
+On 6/8/19 10:34 AM, Bjorn Andersson wrote:
+> Some UFS memory devices needs their reset line toggled in order to get
+> them into a good state for initialization. Provide a new vops to allow
+> the platform driver to implement this operation.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+feel free to add
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> 
+> Changes since v2:
+> - New patch, to allow moving implementation to platform driver
+> 
+>   drivers/scsi/ufs/ufshcd.c | 6 ++++++
+>   drivers/scsi/ufs/ufshcd.h | 8 ++++++++
+>   2 files changed, 14 insertions(+)
+> 
+> diff --git a/drivers/scsi/ufs/ufshcd.c b/drivers/scsi/ufs/ufshcd.c
+> index 04d3686511c8..ee895a625456 100644
+> --- a/drivers/scsi/ufs/ufshcd.c
+> +++ b/drivers/scsi/ufs/ufshcd.c
+> @@ -6191,6 +6191,9 @@ static int ufshcd_reset_and_restore(struct ufs_hba *hba)
+>   	int retries = MAX_HOST_RESET_RETRIES;
+>   
+>   	do {
+> +		/* Reset the attached device */
+> +		ufshcd_vops_device_reset(hba);
+> +
+>   		err = ufshcd_host_reset_and_restore(hba);
+>   	} while (err && --retries);
+>   
+> @@ -8322,6 +8325,9 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
+>   		goto exit_gating;
+>   	}
+>   
+> +	/* Reset the attached device */
+> +	ufshcd_vops_device_reset(hba);
+> +
+>   	/* Host controller enable */
+>   	err = ufshcd_hba_enable(hba);
+>   	if (err) {
+> diff --git a/drivers/scsi/ufs/ufshcd.h b/drivers/scsi/ufs/ufshcd.h
+> index 994d73d03207..cd8139052ed6 100644
+> --- a/drivers/scsi/ufs/ufshcd.h
+> +++ b/drivers/scsi/ufs/ufshcd.h
+> @@ -298,6 +298,7 @@ struct ufs_pwr_mode_info {
+>    * @resume: called during host controller PM callback
+>    * @dbg_register_dump: used to dump controller debug information
+>    * @phy_initialization: used to initialize phys
+> + * @device_reset: called to issue a reset pulse on the UFS device
+>    */
+>   struct ufs_hba_variant_ops {
+>   	const char *name;
+> @@ -326,6 +327,7 @@ struct ufs_hba_variant_ops {
+>   	int     (*resume)(struct ufs_hba *, enum ufs_pm_op);
+>   	void	(*dbg_register_dump)(struct ufs_hba *hba);
+>   	int	(*phy_initialization)(struct ufs_hba *);
+> +	void	(*device_reset)(struct ufs_hba *);
+>   };
+>   
+>   /* clock gating state  */
+> @@ -1045,6 +1047,12 @@ static inline void ufshcd_vops_dbg_register_dump(struct ufs_hba *hba)
+>   		hba->vops->dbg_register_dump(hba);
+>   }
+>   
+> +static inline void ufshcd_vops_device_reset(struct ufs_hba *hba)
+> +{
+> +	if (hba->vops && hba->vops->device_reset)
+> +		hba->vops->device_reset(hba);
+> +}
+> +
+>   extern struct ufs_pm_lvl_states ufs_pm_lvl_states[];
+>   
+>   /*
+> 
