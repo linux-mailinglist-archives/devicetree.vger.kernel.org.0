@@ -2,112 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 822D45510C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D78E555126
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:10:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726827AbfFYOGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 10:06:14 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:35813 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726532AbfFYOGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 10:06:14 -0400
-Received: by mail-lj1-f194.google.com with SMTP id x25so16429908ljh.2;
-        Tue, 25 Jun 2019 07:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gwp5TPT2ciji6ZbRTS8ylz/3kQtDNDOoQTxqYxzhue4=;
-        b=B5UWY1gddbzn9ZLIi8SZCis+WjCApR9XfktQCcFIAjw0Qdpn1tYHBslBg6Fm0bv5M9
-         Fihue0aKzZs/rPMWqLdluURhozdqsw46dLIgG2qxPeuLs2zBx5md0t3mp7D/ZS1FgK05
-         hR/B9zbdpyMY0pPE4xbbwUwQwdfQc1m7T4SKUSy71cJ8s4QOGQ6xvmP/seeu/1haYNix
-         RWFBcSbGirNkGljtsf4Whr5xFTrL2BY+exlqkypZAYlhMmCa43IKbiGa6ggbDMkYImBH
-         tAi7qTRfAbThUZ9xxVKCjN3J2fOGOa+7RvQB70odU2vMpPgGt9hq8IlnbbhqDUpUncef
-         SGag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gwp5TPT2ciji6ZbRTS8ylz/3kQtDNDOoQTxqYxzhue4=;
-        b=kG4+dkEjZ7aIKsIZJP4/o9UnKvaxwZb81oUT8MWNYKLMUxfGcHDjqGg1xahaPo+QY6
-         8CdsE5U2OzKqJi9F1mmrkQhoFSWZm0NNKK32v2tTHqszh+EyZ0cJ3CVJSo/zoVEPS4OC
-         7gktZjNd60GsJaZsRLOl/6EHIPDLRhGdsGRDa84oBZKaPvVi4SgHEM8a2dWhfUaPJJAO
-         OV+Rs1JpoLuzyKvrkRl30iptj5Yp8K3y04JP5ocT+74RjGRe5q4vbB9TuVygPAGbevkP
-         Jk5HfKV0PwomNocol2c0fCEUmYdx9N1hExtGLZvkLQuF+EseBq99z7/OUUpLcb2HuVFp
-         16FQ==
-X-Gm-Message-State: APjAAAVZUs5ZZIQvph0ejLuF3TSZdfqsakqn9vpmT9lD9dZMdpfzjjQU
-        hvJfBzHmLVvKMp/Bevc4k1t29woNPPum2uEgUQWeyxOw
-X-Google-Smtp-Source: APXvYqyD9vbCXVj03O4VOu4s63qOdHOwOoitgDj9Psv2kO0edfMrJWar0ZJjhTNy7ix+aZWgLSVPOZL/wDQHhlDtods=
-X-Received: by 2002:a2e:970a:: with SMTP id r10mr24948199lji.115.1561471572106;
- Tue, 25 Jun 2019 07:06:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <1561446674-25084-1-git-send-email-robert.chiras@nxp.com> <1561446674-25084-3-git-send-email-robert.chiras@nxp.com>
-In-Reply-To: <1561446674-25084-3-git-send-email-robert.chiras@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 25 Jun 2019 11:06:00 -0300
-Message-ID: <CAOMZO5C2syuzyGcpjVOvSvDghaA-ifc8oL-pqhivP49wBf=GSw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] drm/panel: Add support for Raydium RM67191 panel driver
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1728247AbfFYOKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 10:10:31 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:58235 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727251AbfFYOKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 10:10:31 -0400
+X-Originating-IP: 90.88.16.156
+Received: from localhost (aaubervilliers-681-1-41-156.w90-88.abo.wanadoo.fr [90.88.16.156])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 6653940003;
+        Tue, 25 Jun 2019 14:10:26 +0000 (UTC)
+Date:   Tue, 25 Jun 2019 16:10:25 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [PATCH v3 1/9] pinctrl: sunxi: v3s: introduce support for V3
+Message-ID: <20190625141025.uvewl7arnsz5grr3@flea>
+References: <20190623043801.14040-1-icenowy@aosc.io>
+ <20190623043801.14040-2-icenowy@aosc.io>
+ <20190624124019.o6acnnkjikekshl5@flea>
+ <CACRpkdaQSg4qWWF1XurWA8wnW+ezGtTympVT9DvkF87VKEQVzw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uh3numobk6gzuc5u"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdaQSg4qWWF1XurWA8wnW+ezGtTympVT9DvkF87VKEQVzw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
 
-On Tue, Jun 25, 2019 at 4:28 AM Robert Chiras <robert.chiras@nxp.com> wrote:
+--uh3numobk6gzuc5u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +static int rad_bl_get_brightness(struct backlight_device *bl)
-> +{
-> +       struct mipi_dsi_device *dsi = bl_get_data(bl);
-> +       struct rad_panel *rad = mipi_dsi_get_drvdata(dsi);
-> +       struct device *dev = &dsi->dev;
-> +       u16 brightness;
-> +       int ret;
-> +
-> +       if (!rad->prepared)
-> +               return 0;
-> +
-> +       DRM_DEV_DEBUG_DRIVER(dev, "\n");
+On Tue, Jun 25, 2019 at 03:57:15PM +0200, Linus Walleij wrote:
+> On Mon, Jun 24, 2019 at 2:40 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > On Sun, Jun 23, 2019 at 12:37:53PM +0800, Icenowy Zheng wrote:
+> > > Introduce the GPIO pins that is only available on V3 (not on V3s) to the
+> > > V3s pinctrl driver.
+> > >
+> > > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> > > ---
+> > > Changes in v3:
+> > > - Fixed code alignment.
+> > > - Fixed LVDS function number.
+>
+> > > -               SUNXI_FUNCTION(0x2, "uart2"),         /* TX */
+> > > -               SUNXI_FUNCTION_IRQ_BANK(0x6, 0, 0)),  /* PB_EINT0 */
+> > > +               SUNXI_FUNCTION(0x2, "uart2"),                 /* TX */
+> > > +               SUNXI_FUNCTION_IRQ_BANK(0x6, 0, 0)),          /* PB_EINT0 */
+> >
+> > I'm not sure why all that churn is needed.
+> >
+> > Looks good otherwise.
+>
+> Should I apply the patch or wait for a new version without the
+> whitespace fixes?
 
-Please remove this debug line.
+I'd rather not have the indentation changes in that patch.
 
-> +       if (!rad->prepared)
-> +               return 0;
-> +
-> +       DRM_DEV_DEBUG_DRIVER(dev, "New brightness: %d\n", bl->props.brightness);
+And we've sent the changes for 5.3 already, so it's going to be 5.4
+material anyway.
 
-Please remove it.
+Maxime
 
-> +       ret = of_property_read_u32(np, "dsi-lanes", &dsi->lanes);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to get dsi-lanes property (%d)\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       panel->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Even it is optional, you still need to check for error and propagate
-it in the case of error.
+--uh3numobk6gzuc5u
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Otherwise defer probe will not work.
+-----BEGIN PGP SIGNATURE-----
 
-> +       ret = drm_panel_add(&panel->panel);
-> +       if (ret)
-> +               return ret;
-> +
-> +
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRIrUQAKCRDj7w1vZxhR
+xUx/APwJxRclTo/OlevMmcYPGQ1p1ck7FN1SUXrdShcLFeCyjwD/Y20Bm5HFxJ74
+8AikfrRhA+M905RT/a5BkSxvJYhOeg0=
+=yyVJ
+-----END PGP SIGNATURE-----
 
-One blank line is enough.
+--uh3numobk6gzuc5u--
