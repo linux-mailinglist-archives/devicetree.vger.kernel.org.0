@@ -2,127 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C174054C90
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 12:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E9BE54D6A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 13:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728020AbfFYKnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 06:43:17 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:43404 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726576AbfFYKnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 06:43:17 -0400
-Received: by mail-pl1-f194.google.com with SMTP id cl9so8611976plb.10;
-        Tue, 25 Jun 2019 03:43:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=rkU+SjzCEWdgQCPJHmPaU3HbLqD9ceb7FSy53eQ0IIE=;
-        b=kUuIF6rHI5NKBa5iWf2twpG18ea8+rZHSY1Kax01fxVPvrvjYf9h+7itV2ANaHaT4S
-         0wXmGNs1c1XvV5YWxiFZW5J2iynhf+YLlkfLnTN3QQoY5KN3oqXr6/A1Gv/VVY08ZVB2
-         Y/OSPQMKwzsVXe7KuIbBd6CiXikmUoYcJ35JT1qV1fHn++ZnWK+Yr9ley14eD+aVuD79
-         DLycYsfIqXwGL+rz1pPWUF+Hgk05kzp+3w8ys2UzNednQ1E0ptHsiIprP9o4zN2aUguG
-         K8GzkUQB7pvVNBp1Hi+eJjU/Qnz3CE+DYOyz82XW/46iAn7D9hYHXJJHM2AGVMynzFpe
-         Zd9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=rkU+SjzCEWdgQCPJHmPaU3HbLqD9ceb7FSy53eQ0IIE=;
-        b=oESAx17mpGUdkFBliSQgQbriZDSZAe7Iny2MzbGUB41ONxsvSclJxKBH/VKnNBQpX4
-         R1IQXz96oMdf9tT2oXFPuuUSXGY+ghEhzJisGIETgz/HwG3gtDW/9FQvS3YUx0lEUMd3
-         LX/8edDw0122As31RdABu0P0nmPf09bWwT/yM9XYG+J7JWkHxSS6cbKIfjCYJZe1fqUO
-         DaAFuMsQX8/3n5ooJu9lte4Vj2kZgiyJYLg1jcWKyqPV1ronhVnPr0wklGO3bJnkvqd+
-         i7rrnGrqWhyjVqFZhGTJfG3cMl5jYTsraPNRBHBF5OrPRHUoYiCJOqWfBvJ/biTRs0Ds
-         bLUw==
-X-Gm-Message-State: APjAAAU17tWbbgsLLZl8wSHr3Jzx3NjSmi09Z4a/Gz5wNQD0Jwj/PcKk
-        apC9xu76nm6bbDV/fuMIGDo=
-X-Google-Smtp-Source: APXvYqzZn/CgQDrn7rDPGw4KYvyAuYwZGm7rkrHHdSrHZZfcaTfeRmErNwWLBQ9WwkiMPzzf74Eh1g==
-X-Received: by 2002:a17:902:4201:: with SMTP id g1mr45846094pld.300.1561459396428;
-        Tue, 25 Jun 2019 03:43:16 -0700 (PDT)
-Received: from Pilot130.192.168.0.22 (211-20-114-70.HINET-IP.hinet.net. [211.20.114.70])
-        by smtp.googlemail.com with ESMTPSA id 14sm22026759pfj.36.2019.06.25.03.43.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 25 Jun 2019 03:43:15 -0700 (PDT)
-From:   "sudheer.v" <open.sudheer@gmail.com>
-To:     gregkh@linuxfoundation.org, jslaby@suse.com, joel@jms.id.au,
-        andrew@aj.id.au, benh@kernel.crashing.org, robh+dt@kernel.org,
-        mark.rutland@arm.com,
-        shivahshankar.shankarnarayanrao@aspeedtech.com,
-        shivahshankar@gmail.com, sudheer.veliseti@aspeedtech.com
-Cc:     sudheer veliseti <sudheer.open@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Subject: [patch v3 5/5] Documentation: DT bindings AST2500 DMA UART driver
-Date:   Tue, 25 Jun 2019 16:14:36 +0530
-Message-Id: <1561459476-14268-6-git-send-email-open.sudheer@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1561459476-14268-1-git-send-email-open.sudheer@gmail.com>
-References: <1561459476-14268-1-git-send-email-open.sudheer@gmail.com>
+        id S1728374AbfFYLTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 07:19:51 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40364 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727138AbfFYLTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 07:19:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=JCFOlY7my5LaNTExvJt7ORvW5sA/RJVVsz2dF8gTHNY=; b=UV1bFLAxFhqpsTRLYrIOSnkUm
+        Zp7bkceku7WRDzTJcfrwG/udKCHgZki8IlMw/T/ujjHJzENADaWcx8xI92qETqPO0Z1vmuNZrMvK3
+        C+ZX2mAveWVF13pbON8bjOe/X15KFtFothA4KVuN0KXKLDSmmc3QO/NLekrMJFVsW7LpM=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hfjUK-00057J-1Q; Tue, 25 Jun 2019 11:19:48 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 223C5440046; Tue, 25 Jun 2019 12:19:47 +0100 (BST)
+Date:   Tue, 25 Jun 2019 12:19:47 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] regulator: core: Expose some of core functions
+ needed by couplers
+Message-ID: <20190625111946.GP5316@sirena.org.uk>
+References: <20190623210835.26281-1-digetx@gmail.com>
+ <20190623210835.26281-3-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pSb/ns2SnWJqkKHb"
+Content-Disposition: inline
+In-Reply-To: <20190623210835.26281-3-digetx@gmail.com>
+X-Cookie: Editing is a rewording activity.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: sudheer veliseti <sudheer.open@gmail.com>
 
-documentation for Dt bindings for DMA based UARTs in AST2500
+--pSb/ns2SnWJqkKHb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: sudheer veliseti <sudheer.open@gmail.com>
----
+On Mon, Jun 24, 2019 at 12:08:32AM +0300, Dmitry Osipenko wrote:
+> Expose some of internal functions that are required for implementation of
+> customized regulator couplers.
 
-Changes in v3:
-- change logs added
+The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
 
-.../bindings/serial/ast2500-dma-uart.txt      | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
+  Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
 
-diff --git a/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt b/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-new file mode 100644
-index 000000000000..6f01ddecba56
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-@@ -0,0 +1,40 @@
-+
-+node for DMA controller:
-+                       ast_uart_sdma: uart_sdma@1e79e000 {
-+                               compatible = "aspeed,ast-uart-sdma";
-+                               reg = <0x1e79e000 0x400>;
-+                               interrupts = <50>;
-+                               status = "disabled";
-+                       };
-+this node  doesn't binds with any driver.
-+DMA controller is handled as a separate SW layer,and is included in the same driver.
-+This DMA controller node is included in DT just for Register base and interrupt details
-+
-+
-+
-+node for DMA-UART :
-+
-+
-+Required properties:
-+
-+- compatible: "aspeed,ast-sdma-uart"
-+- reg: The base address of the UART register bank
-+- interrupts: should contain interrupt specifier.
-+- clocks: Clock driving the hardware;
-+- pinctrl-0 : list of pinconfigurations
-+- dma-channel: channel of DMA-controller which is used
-+
-+Example:
-+
-+                 dma_uart1: dma_uart1@1e783000{
-+                          compatible = "aspeed,ast-sdma-uart";
-+                          reg = <0x1e783000 0x1000>;
-+                          reg-shift = <2>;
-+                          interrupts = <9>;
-+                          clocks = <&syscon ASPEED_CLK_GATE_UART1CLK>;
-+                          dma-channel = <0>;
-+                          no-loopback-test;
-+                          pinctrl-names = "default";
-+                          pinctrl-0 = <&pinctrl_txd1_default &pinctrl_rxd1_default>;
-+                          status = "disabled";
-+                       };
--- 
-2.17.1
+are available in the Git repository at:
 
+  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git tags/regulator-couple-api
+
+for you to fetch changes up to d22b85a1b97d12a4940ef9d778f6122546736f78:
+
+  regulator: core: Expose some of core functions needed by couplers (2019-06-25 12:15:35 +0100)
+
+----------------------------------------------------------------
+regulator: Coupling API
+
+This series introduces a way of specifying a customized regulators coupler
+which is necessary for cases like a non-trivial DVFS implementation.
+
+----------------------------------------------------------------
+Dmitry Osipenko (2):
+      regulator: core: Introduce API for regulators coupling customization
+      regulator: core: Expose some of core functions needed by couplers
+
+ drivers/regulator/core.c          | 194 ++++++++++++++++++++++++++++----------
+ drivers/regulator/of_regulator.c  |  63 +++++++++----
+ include/linux/regulator/coupler.h |  97 +++++++++++++++++++
+ include/linux/regulator/driver.h  |   6 +-
+ include/linux/regulator/machine.h |   2 +-
+ 5 files changed, 287 insertions(+), 75 deletions(-)
+ create mode 100644 include/linux/regulator/coupler.h
+
+--pSb/ns2SnWJqkKHb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0SA1IACgkQJNaLcl1U
+h9B/agf/ZN1FfEH/kisPsw/QpppR+haTC2xYUvHQmelY29bbY2yXwjPYBpXl8Ztk
+/rE6ZjD3gCdXzuBBSCyd8P+RTnkb/18NynDJAVv9WLe6AOZ/e1UYB4d7mh0O/IAB
+bjE+IiBMcwzgaMBnBTyF+EJ8JmhWkkEl9Z/FE0RcXT4oiTAU6oHSQ8Xs96H9/374
+Hqf9QfEge+nvqAdVwsmhJ2cbb+BXbGDfmcMRJjWv0swcRfJqDrLTFn6ATq/i5o7j
+ni2sOaGeQj0x5dhMUUT8oq4+ElSHJaJft2jpwb3xRdCehu+UYdLWeP13jwiS0afJ
+NIcKyExMiyb/PEYmhAN57EljvVIoGA==
+=6Ntz
+-----END PGP SIGNATURE-----
+
+--pSb/ns2SnWJqkKHb--
