@@ -2,147 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE66C52735
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 10:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 976285273E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 10:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730860AbfFYIzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 04:55:39 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:45329 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730923AbfFYIzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 04:55:39 -0400
-Received: by mail-wr1-f66.google.com with SMTP id f9so16856219wre.12
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 01:55:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=z+PEbZrcWsg/sfdRRqnH3yNiO1c5IQdDweuvUj+RdlY=;
-        b=LpOvY4Y/Xp6kcxkeGGWl5Ga1uyDShUmNT0B0vb1XysMnFJ8OiNfztz6lJTuywUtAEp
-         6RzYY+Cv1oy9edc0yZA05NhSucLvFXJHHr2JCpjV/0jMROnNLwQHwHdCDuoHrjaw937d
-         CAYam5pvNQ131EpeGwGBFcU/a3P9F4w45uH15cjQ4R1P2OwSbesnRRNenYNhTOPm6/ly
-         l7LHmB9FEwGB3uwEoH5HSaVIWjUowBs9NVKAEFrYwsMsG0itq++y6gNCbQo6u5gxop0E
-         PHGu9LmJn8d6vw6buFXektsMC7UorgoL7C+ZRa4rYxkft6MpRruLR7POuz59WAvo1glo
-         nAAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=z+PEbZrcWsg/sfdRRqnH3yNiO1c5IQdDweuvUj+RdlY=;
-        b=obFhFDM4vNSXBWfVSfb7KWzccTnUKTTJbfEODGJWWBJVZI6n4Psvdaq9CB8SOFHiEx
-         f1QjBLOqsQhNJAEjA9OSItN6EqBzzqoFha53Rl4CTE4fW4arkORv9kyt1eo3NXdnfyJ9
-         bdzgTYky/Ztgh2pKA0/vyv12RcUNTApgw7KxO79++PxYNOI22Grxt0+r/7klx6VqNf4I
-         HZCywk0T0rqSc2EHmrNED2WmbN8g9ZVMxvrBMqsk3e0MN5YA5bpbGOqIwG82g4Yw2iiK
-         y3SVdCJA023YVkxRPWkaTgdYPLaenwb0iFh/xG11AoGuPECARYVzKnw04tuSwo/c7ftk
-         H1HQ==
-X-Gm-Message-State: APjAAAX119zLZUm7cB6Xw9eAW5D78kAjXx1Bx8eLp9g1kVb7M4uijJwZ
-        zurThBcw2+4D4rR4l9GDBLZsmA==
-X-Google-Smtp-Source: APXvYqxFEeOqm4oLNY5l5ka6WBRsFT3+qsMRNi25s2VSLy6UfyHaCehvfuHvOlO6Kx6fFOy37zXAJA==
-X-Received: by 2002:adf:e2cb:: with SMTP id d11mr105800458wrj.66.1561452936808;
-        Tue, 25 Jun 2019 01:55:36 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id o6sm2163440wmc.15.2019.06.25.01.55.35
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 25 Jun 2019 01:55:35 -0700 (PDT)
-Date:   Tue, 25 Jun 2019 09:55:34 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Brian Dodge <bdodge09@gmail.com>
-Cc:     pavel@ucw.cz, lee.jones@linaro.org, jingoohan1@gmail.com,
-        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, pbacon@psemi.com
-Subject: Re: [PATCH 1/2]    dt-bindings: backlight: fix vendor prefix for
- ArcticSand arcxcnn driver bindings
-Message-ID: <20190625085534.xf2ullyju3ewbgik@holly.lan>
-References: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
- <1561435529-7835-2-git-send-email-bdodge09@gmail.com>
+        id S1731128AbfFYIz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 04:55:56 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:13548 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730923AbfFYIzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 04:55:55 -0400
+X-UUID: 8a407f64fa044f7c9e5ff29f519f0d6e-20190625
+X-UUID: 8a407f64fa044f7c9e5ff29f519f0d6e-20190625
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 2075891572; Tue, 25 Jun 2019 16:55:50 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 25 Jun
+ 2019 16:55:48 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 25 Jun 2019 16:55:47 +0800
+Message-ID: <1561452947.32589.25.camel@mhfsdcap03>
+Subject: Re: [PATCH v7 09/10] usb: roles: add USB Type-B GPIO connector
+ driver
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        "Badhri Jagan Sridharan" <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yu Chen <chenyu56@huawei.com>,
+        "Nagarjuna Kristam" <nkristam@nvidia.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>
+Date:   Tue, 25 Jun 2019 16:55:47 +0800
+In-Reply-To: <20190624095827.GA6501@kuha.fi.intel.com>
+References: <1560242680-23844-1-git-send-email-chunfeng.yun@mediatek.com>
+         <1560242680-23844-10-git-send-email-chunfeng.yun@mediatek.com>
+         <20190624095827.GA6501@kuha.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1561435529-7835-2-git-send-email-bdodge09@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 12:05:28AM -0400, Brian Dodge wrote:
->     The vendor-prefixes.txt file properly refers to ArcticSand
->     as arctic but the driver bindings improperly abbreviated the
->     prefix to arc. This was a mistake in the original patch
+Hi Heikki,
+
+On Mon, 2019-06-24 at 12:58 +0300, Heikki Krogerus wrote:
+> Hi Chunfeng,
 > 
-> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
-> ---
->  .../bindings/leds/backlight/arcxcnn_bl.txt         | 24 +++++++++++++---------
->  1 file changed, 14 insertions(+), 10 deletions(-)
+> On Tue, Jun 11, 2019 at 04:44:39PM +0800, Chunfeng Yun wrote:
+> > Due to the requirement of usb-connector.txt binding, the old way
+> > using extcon to support USB Dual-Role switch is now deprecated
+> > when use Type-B connector.
+> > This patch introduces a driver of Type-B connector which typically
+> > uses an input GPIO to detect USB ID pin, and try to replace the
+> > function provided by extcon-usb-gpio driver
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt b/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> index 230abde..9cf4c44 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> +++ b/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> @@ -1,8 +1,12 @@
-> -Binding for ArcticSand arc2c0608 LED driver
-> +Binding for ArcticSand arc family LED drivers
->  
->  Required properties:
-> -- compatible:		should be "arc,arc2c0608"
-> -- reg:			slave address
-> +- compatible: one of
-> +	"arctic,arc1c0608"
-> +	"arctic,arc2c0608"
-> +	"arctic,arc3c0845"
+> I'm sorry for asking this so late, but why is this driver a Type-B
+> specific driver (I really thought somebody had already asked this
+> question)?
+It's mainly used for Type-B connector with ID pin. 
 
-This is more a question for the DT folks than for Brian but...
-
-AFAICT this patch is fixing the binding for the ArcticSand devices to
-use the correct value from vendor-prefixes.yaml and has been previously
-discussed here:
-https://lkml.org/lkml/2018/9/25/726
-
-Currently this patch series just updates the DT bindings but the
-implementation also honours the old values (since there is a Chromebook
-in the wild that uses the current bindings).
-
-Hence I'm not clear whether the bindings should document the deprecated
-options too (e.g. make it easier to find the bindings doc with git grep
-and friends).
-
-
-Daniel.
-
-
-> +
-> +- reg:		slave address
->  
->  Optional properties:
->  - default-brightness:	brightness value on boot, value from: 0-4095
-> @@ -11,19 +15,19 @@ Optional properties:
->  - led-sources:		List of enabled channels from 0 to 5.
->  			See Documentation/devicetree/bindings/leds/common.txt
->  
-> -- arc,led-config-0:	setting for register ILED_CONFIG_0
-> -- arc,led-config-1:	setting for register ILED_CONFIG_1
-> -- arc,dim-freq:		PWM mode frequence setting (bits [3:0] used)
-> -- arc,comp-config:	setting for register CONFIG_COMP
-> -- arc,filter-config:	setting for register FILTER_CONFIG
-> -- arc,trim-config:	setting for register IMAXTUNE
-> +- arctic,led-config-0:	setting for register ILED_CONFIG_0
-> +- arctic,led-config-1:	setting for register ILED_CONFIG_1
-> +- arctic,dim-freq:		PWM mode frequence setting (bits [3:0] used)
-> +- arctic,comp-config:	setting for register CONFIG_COMP
-> +- arctic,filter-config:	setting for register FILTER_CONFIG
-> +- arctic,trim-config:	setting for register IMAXTUNE
->  
->  Note: Optional properties not specified will default to values in IC EPROM
->  
->  Example:
->  
->  arc2c0608@30 {
-> -	compatible = "arc,arc2c0608";
-> +	compatible = "arctic,arc2c0608";
->  	reg = <0x30>;
->  	default-brightness = <500>;
->  	label = "lcd-backlight";
-> -- 
-> 2.7.4
 > 
+> I don't see anything Type-B specific in the driver. 
+It's need add another compatible "usb-b-connector" except the driver
+provided.
+
+> Basically it looks
+> to me like just a gpio based connection detection driver that would
+> work fine with for example uAB connectors..
+Yes, it is.
+> 
+> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > Tested-by: Nagarjuna Kristam <nkristam@nvidia.com>
+> > ---
+> > v7 changes:
+> >   1. remove macro DEV_PMS_OPS suggested by Andy
+> >   2. add tested-by Nagarjuna
+> > 
+> > v6 changes:
+> >   1. get usb-role-swtich by usb_role_switch_get()
+> > 
+> > v5 changes:
+> >   1. put usb_role_switch when error happens suggested by Biju
+> >   2. don't treat bype-B connector as a virtual device suggested by Rob
+> > 
+> > v4 changes:
+> >   1. remove linux/gpio.h suggested by Linus
+> >   2. put node when error happens
+> > 
+> > v3 changes:
+> >   1. treat bype-B connector as a virtual device;
+> >   2. change file name again
+> > 
+> > v2 changes:
+> >   1. file name is changed
+> >   2. use new compatible
+> > ---
+> >  drivers/usb/roles/Kconfig           |  11 ++
+> >  drivers/usb/roles/Makefile          |   1 +
+> >  drivers/usb/roles/typeb-conn-gpio.c | 284 ++++++++++++++++++++++++++++
+> 
+> ..It also drives me crazy that you've put this driver under this
+> folder. It does not create a role switch so ideally it should not go
+> under driver/usb/roles/. 
+agree:)
+
+> I think a better place for it would be
+> drivers/usb/misc/, or actually, maybe it should go under
+> drivers/usb/common/?
+I'm not sure, but prefer misc/ folder.
+
+Hi Greg, 
+
+would you please give me some suggestions about this?  which folder I
+should put the driver into?
+
+> 
+> Could you still rename the driver to something like "usb-gpio.c" or
+> conn-gpio.c,
+I think about the name for a long time before, and have some doubt
+whether it's suitable to add typeb into the name.
+How about using usb-conn-gpio.c or conn-usb-gpio.c?
+
+Thanks a lot
+
+>  or something else, and also move it under
+> drivers/usb/misc/ or drivers/usb/common/?
+> 
+> >  3 files changed, 296 insertions(+)
+> >  create mode 100644 drivers/usb/roles/typeb-conn-gpio.c
+> > 
+> > diff --git a/drivers/usb/roles/Kconfig b/drivers/usb/roles/Kconfig
+> > index f8b31aa67526..d1156e18a81a 100644
+> > --- a/drivers/usb/roles/Kconfig
+> > +++ b/drivers/usb/roles/Kconfig
+> > @@ -26,4 +26,15 @@ config USB_ROLES_INTEL_XHCI
+> >  	  To compile the driver as a module, choose M here: the module will
+> >  	  be called intel-xhci-usb-role-switch.
+> >  
+> > +config TYPEB_CONN_GPIO
+> > +	tristate "USB Type-B GPIO Connector"
+> 
+> USB GPIO connection detection driver?
+> 
+> > +	depends on GPIOLIB
+> > +	help
+> > +	  The driver supports USB role switch between host and device via GPIO
+> > +	  based USB cable detection, used typically if an input GPIO is used
+> > +	  to detect USB ID pin.
+> > +
+> > +	  To compile the driver as a module, choose M here: the module will
+> > +	  be called typeb-conn-gpio.ko
+> > +
+> >  endif # USB_ROLE_SWITCH
+> > diff --git a/drivers/usb/roles/Makefile b/drivers/usb/roles/Makefile
+> > index 757a7d2797eb..5d5620d9d113 100644
+> > --- a/drivers/usb/roles/Makefile
+> > +++ b/drivers/usb/roles/Makefile
+> > @@ -3,3 +3,4 @@
+> >  obj-$(CONFIG_USB_ROLE_SWITCH)		+= roles.o
+> >  roles-y					:= class.o
+> >  obj-$(CONFIG_USB_ROLES_INTEL_XHCI)	+= intel-xhci-usb-role-switch.o
+> > +obj-$(CONFIG_TYPEB_CONN_GPIO)		+= typeb-conn-gpio.o
+> > diff --git a/drivers/usb/roles/typeb-conn-gpio.c b/drivers/usb/roles/typeb-conn-gpio.c
+> > new file mode 100644
+> > index 000000000000..e3fba1656069
+> > --- /dev/null
+> > +++ b/drivers/usb/roles/typeb-conn-gpio.c
+> > @@ -0,0 +1,284 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+
+
