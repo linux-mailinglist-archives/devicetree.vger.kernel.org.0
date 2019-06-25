@@ -2,145 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EC055A17
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 23:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A393655A20
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 23:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726334AbfFYVkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 17:40:14 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:47696 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbfFYVkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 17:40:14 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 7EC11607DE; Tue, 25 Jun 2019 21:40:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561498813;
-        bh=bLNbB/wHffe8tnD85S1I4XRP7Q8LNOpQNbcN6gnQHik=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=KNV+IWEtx26RrBF2mjrL8FZ5sEEC0fUDdkQg+qcuU7zB5TUU5fD/DIjDROLdf2+Ul
-         8W+5VAYv+3N0wmwIpQnjlYziBuGG/2ORJMYQAZbosQNu7i3FLl8fj+HX/VhldQ+stV
-         AoQCOWtZtmLMZsouABavCFmztfLHd5fKUoac18Jg=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id C40BD6025A;
-        Tue, 25 Jun 2019 21:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561498812;
-        bh=bLNbB/wHffe8tnD85S1I4XRP7Q8LNOpQNbcN6gnQHik=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HVzO5XMGrkRQ9N+4jkM5KWi2oBHxPEqbkeGaXyjuaK+P06Fj5uZcSTpB91Jo8liS2
-         yyLiarSH2HrghFlaAgAigZVBtxpNOLvVao936C4NfPatY69IIKunaeCDRrbia1wyk0
-         tjO1H84806DCkaMVBdSRrMFLRpoIgO5RoI5jORKE=
+        id S1726331AbfFYVob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 17:44:31 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:42541 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726014AbfFYVob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 17:44:31 -0400
+Received: by mail-pg1-f195.google.com with SMTP id k13so83720pgq.9;
+        Tue, 25 Jun 2019 14:44:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9dxyIPqcP8jDSy0GUtYumC+DRq05muFlYTTdqsbRigE=;
+        b=Np3R7TUmILE29O//nVuQfb8yO1wVcahnUfTjdtvU2lq8kSBEy4G01ML0evh6hXqY3P
+         JdJYiB/SOPSeyLonNoAeydK24aduweVZFxgapxiS1BvMs+R+ufmdNabKiXQ68OMlYl5R
+         OiT0I+k75dkcqvFHgl3euEV/F5j4Xdr+yVOMXIfF4BAHPkwgtuyvuNjjYmr5zmfzJ+Wq
+         KTfPIkrvbwNh+FOflVSPWWuqa6B/n5xZg6GgkyLRI/y5wjlFWE2NUEMER3MNI1vK4hhn
+         ymJG85juyts/9Kt1otvUbLtOqZAzR/jnICFuI2BBq6jU/pHBZY8aw1LmhPwmRIBp/TL0
+         rD5g==
+X-Gm-Message-State: APjAAAX1NsvFzVybXC8wdG79ohNTc/zd7YpsIDRW+vpp1whgTT/IlNwj
+        Q1NKZROB0q1QN6I6Tsw1un4=
+X-Google-Smtp-Source: APXvYqz8MfGhRhi/dlXuLkoaF1E80HXc/ju/CwZ7//TYZw6Vnsx8tuHl88GSOvVc/go3GBogDeg5Ig==
+X-Received: by 2002:a63:7d18:: with SMTP id y24mr36133502pgc.438.1561499069415;
+        Tue, 25 Jun 2019 14:44:29 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+        by smtp.gmail.com with ESMTPSA id a20sm13423142pgb.72.2019.06.25.14.44.27
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 25 Jun 2019 14:44:27 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+        id 3C710401EB; Tue, 25 Jun 2019 21:44:27 +0000 (UTC)
+Date:   Tue, 25 Jun 2019 21:44:27 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        Theodore Ts'o <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
+Message-ID: <20190625214427.GN19023@42.do-not-panic.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-2-brendanhiggins@google.com>
+ <20190620001526.93426218BE@mail.kernel.org>
+ <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 25 Jun 2019 14:40:12 -0700
-From:   Jeykumar Sankaran <jsanka@codeaurora.org>
-To:     dhar@codeaurora.org
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, chandanu@codeaurora.org,
-        nganji@codeaurora.org, jshekhar@codeaurora.org
-Subject: Re: drm/msm/dpu: Correct dpu encoder spinlock initialization
-In-Reply-To: <d61d7805b4ac0ec45309bf5b65841262@codeaurora.org>
-References: <1561357632-15361-1-git-send-email-dhar@codeaurora.org>
- <efade579f7ba59585b88ecb367422e5c@codeaurora.org>
- <d61d7805b4ac0ec45309bf5b65841262@codeaurora.org>
-Message-ID: <627144af54459a203f1583d2ad9b390c@codeaurora.org>
-X-Sender: jsanka@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-06-24 22:44, dhar@codeaurora.org wrote:
-> On 2019-06-25 03:56, Jeykumar Sankaran wrote:
->> On 2019-06-23 23:27, Shubhashree Dhar wrote:
->>> dpu encoder spinlock should be initialized during dpu encoder
->>> init instead of dpu encoder setup which is part of commit.
->>> There are chances that vblank control uses the uninitialized
->>> spinlock if not initialized during encoder init.
->> Not much can be done if someone is performing a vblank operation
->> before encoder_setup is done.
->> Can you point to the path where this lock is acquired before
->> the encoder_setup?
->> 
->> Thanks
->> Jeykumar S.
->>> 
+On Tue, Jun 25, 2019 at 01:28:25PM -0700, Brendan Higgins wrote:
+> On Wed, Jun 19, 2019 at 5:15 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Quoting Brendan Higgins (2019-06-17 01:25:56)
+> > > diff --git a/kunit/test.c b/kunit/test.c
+> > > new file mode 100644
+> > > index 0000000000000..d05d254f1521f
+> > > --- /dev/null
+> > > +++ b/kunit/test.c
+> > > @@ -0,0 +1,210 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Base unit test (KUnit) API.
+> > > + *
+> > > + * Copyright (C) 2019, Google LLC.
+> > > + * Author: Brendan Higgins <brendanhiggins@google.com>
+> > > + */
+> > > +
+> > > +#include <linux/sched/debug.h>
+> > > +#include <kunit/test.h>
+> > > +
+> > > +static bool kunit_get_success(struct kunit *test)
+> > > +{
+> > > +       unsigned long flags;
+> > > +       bool success;
+> > > +
+> > > +       spin_lock_irqsave(&test->lock, flags);
+> > > +       success = test->success;
+> > > +       spin_unlock_irqrestore(&test->lock, flags);
+> >
+> > I still don't understand the locking scheme in this code. Is the
+> > intention to make getter and setter APIs that are "safe" by adding in a
+> > spinlock that is held around getting and setting various members in the
+> > kunit structure?
 > 
-> When running some dp usecase, we are hitting this callstack.
+> Yes, your understanding is correct. It is possible for a user to write
+> a test such that certain elements may be updated in different threads;
+> this would most likely happen in the case where someone wants to make
+> an assertion or an expectation in a thread created by a piece of code
+> under test. Although this should generally be avoided, it is possible,
+> and there are occasionally good reasons to do so, so it is
+> functionality that we should support.
 > 
-> Process kworker/u16:8 (pid: 215, stack limit = 0x00000000df9dd930)
-> Call trace:
->  spin_dump+0x84/0x8c
->  spin_dump+0x0/0x8c
->  do_raw_spin_lock+0x80/0xb0
->  _raw_spin_lock_irqsave+0x34/0x44
->  dpu_encoder_toggle_vblank_for_crtc+0x8c/0xe8
->  dpu_crtc_vblank+0x168/0x1a0
->  dpu_kms_enable_vblank+0[   11.648998]  vblank_ctrl_worker+0x3c/0x60
->  process_one_work+0x16c/0x2d8
->  worker_thread+0x1d8/0x2b0
->  kthread+0x124/0x134
+> Do you think I should add a comment to this effect?
 > 
-> Looks like vblank is getting enabled earlier causing this issue and we
-> are using the spinlock without initializing it.
+> > In what situation is there more than one thread reading or writing the
+> > kunit struct? Isn't it only a single process that is going to be
 > 
-> Thanks,
-> Shubhashree
-> 
-DP calls into set_encoder_mode during hotplug before even notifying the
-u/s. Can you trace out the original caller of this stack?
+> As I said above, it is possible that the code under test may spawn a
+> new thread that may make an expectation or an assertion. It is not a
+> super common use case, but it is possible.
 
-Even though the patch is harmless, I am not entirely convinced to move 
-this
-initialization. Any call which acquires the lock before encoder_setup
-will be a no-op since there will not be any physical encoder to work 
-with.
+I wonder if it is worth to have then different types of tests based on
+locking requirements. One with no locking, since it seems you imply
+most tests would fall under this category, then locking, and another
+with IRQ context.
 
-Thanks and Regards,
-Jeykumar S.
+If no locking is done at all for all tests which do not require locking,
+is there any gains at run time? I'm sure it might be minimum but
+curious.
 
->>> Change-Id: I5a18b95fa47397c834a266b22abf33a517b03a4e
->>> Signed-off-by: Shubhashree Dhar <dhar@codeaurora.org>
->>> ---
->>>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 3 +--
->>>  1 file changed, 1 insertion(+), 2 deletions(-)
->>> 
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> index 5f085b5..22938c7 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> @@ -2195,8 +2195,6 @@ int dpu_encoder_setup(struct drm_device *dev, 
->>> struct
->>> drm_encoder *enc,
->>>  	if (ret)
->>>  		goto fail;
->>> 
->>> -	spin_lock_init(&dpu_enc->enc_spinlock);
->>> -
->>>  	atomic_set(&dpu_enc->frame_done_timeout, 0);
->>>  	timer_setup(&dpu_enc->frame_done_timer,
->>>  			dpu_encoder_frame_done_timeout, 0);
->>> @@ -2250,6 +2248,7 @@ struct drm_encoder *dpu_encoder_init(struct
->>> drm_device *dev,
->>> 
->>>  	drm_encoder_helper_add(&dpu_enc->base, &dpu_encoder_helper_funcs);
->>> 
->>> +	spin_lock_init(&dpu_enc->enc_spinlock);
->>>  	dpu_enc->enabled = false;
->>> 
->>>  	return &dpu_enc->base;
+> > operating on this structure? And why do we need to disable irqs? Are we
+> > expecting to be modifying the unit tests from irq contexts?
+> 
+> There are instances where someone may want to test a driver which has
+> an interrupt handler in it. I actually have (not the greatest) example
+> here. Now in these cases, I expect someone to use a mock irqchip or
+> some other fake mechanism to trigger the interrupt handler and not
+> actual hardware; technically speaking in this case, it is not going to
+> be accessed from a "real" irq context; however, the code under test
+> should think that it is in an irq context; given that, I figured it is
+> best to just treat it as a real irq context. Does that make sense?
 
--- 
-Jeykumar S
+Since its a new architecture and since you seem to imply most tests
+don't require locking or even IRQs disabled, I think its worth to
+consider the impact of adding such extreme locking requirements for
+an initial ramp up.
+
+  Luis
