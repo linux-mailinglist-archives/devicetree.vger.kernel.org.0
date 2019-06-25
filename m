@@ -2,170 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EC255516B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D16C5517D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 16:22:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729335AbfFYOUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 10:20:08 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:36574 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727070AbfFYOUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 10:20:08 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1hfmId-0005Mb-Le; Tue, 25 Jun 2019 16:19:55 +0200
-Message-ID: <efbcb3b84ff0a7d7eab875c37f3a5fa77e21d324.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Arnd Bergmann <arnd@arndb.de>, Alex Elder <elder@linaro.org>
-Cc:     Dan Williams <dcbw@redhat.com>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
+        id S1730202AbfFYOWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 10:22:04 -0400
+Received: from mail-eopbgr60082.outbound.protection.outlook.com ([40.107.6.82]:39335
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728252AbfFYOWD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jun 2019 10:22:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vyjNARllyvJSmD8LmaYeP4Xkh6ob0o5S2vQ5dg9Y3fk=;
+ b=Ylmwq1gSB0exWozTN+z8I7q6cNSPhy2BpVivVl0wPnFGjOmXOvGDcANfiKkcTQ6oobXsI+QEPOt9kqanVL1rsB352GRxnVPwqdOxerLakJgPYiIYhJNUwXbdGiTmRqylpsh03WcRazMd95e5mkhIQsljTYTtygQVQEfiDTknl+E=
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
+ VI1PR04MB6976.eurprd04.prod.outlook.com (52.133.246.212) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Tue, 25 Jun 2019 14:22:00 +0000
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::d83:14c4:dedb:213b]) by VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::d83:14c4:dedb:213b%5]) with mapi id 15.20.2008.014; Tue, 25 Jun 2019
+ 14:22:00 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Abel Vesa <abel.vesa@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>, Jacky Bai <ping.bai@nxp.com>
+CC:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Anson Huang <anson.huang@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        syadagir@codeaurora.org
-Date:   Tue, 25 Jun 2019 16:19:54 +0200
-In-Reply-To: <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com> (sfid-20190624_184119_378618_FFFDB00F)
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
-         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
-         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
-         <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
-         <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
-         <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
-         <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
-         <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
-         <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
-         <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
-         <d533b708-c97a-710d-1138-3ae79107f209@linaro.org>
-         <abdfc6b3a9981bcdef40f85f5442a425ce109010.camel@sipsolutions.net>
-         <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org>
-         <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com>
-         (sfid-20190624_184119_378618_FFFDB00F)
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-3.fc28) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        Andrey Smirnov <andrew.smirnov@gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mq: Init rates and parents configs for
+ clocks
+Thread-Topic: [PATCH] arm64: dts: imx8mq: Init rates and parents configs for
+ clocks
+Thread-Index: AQHVK1SzBLyg7yu1NUGWmKUxLWsOPA==
+Date:   Tue, 25 Jun 2019 14:22:00 +0000
+Message-ID: <VI1PR04MB50550ACBAEA73FD7B5A97DD8EEE30@VI1PR04MB5055.eurprd04.prod.outlook.com>
+References: <1561467081-25701-1-git-send-email-abel.vesa@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b9626825-8f06-44b0-7087-08d6f9787cd5
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB6976;
+x-ms-traffictypediagnostic: VI1PR04MB6976:
+x-microsoft-antispam-prvs: <VI1PR04MB6976E904E8DE81270D21A23EEEE30@VI1PR04MB6976.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 0079056367
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(376002)(39860400002)(396003)(366004)(189003)(199004)(6246003)(52536014)(305945005)(316002)(6436002)(66066001)(6116002)(74316002)(102836004)(25786009)(76176011)(110136005)(55016002)(68736007)(7696005)(54906003)(8936002)(26005)(9686003)(14454004)(4326008)(7416002)(229853002)(256004)(2906002)(86362001)(8676002)(81166006)(53546011)(478600001)(186003)(7736002)(5660300002)(44832011)(81156014)(53936002)(33656002)(6506007)(486006)(73956011)(476003)(71200400001)(71190400001)(99286004)(6636002)(66946007)(64756008)(76116006)(66446008)(446003)(91956017)(66476007)(66556008)(3846002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB6976;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: PIfCXF/oVmzJipsl0N3MIYOBzh0g6iyev9ly/P3+S35VF05jkHe5tPph02rXbps9LMzjxJBXI1tOcgUMo+NpaOG0F58tgGWUPhtvlHu+AVwFkfWpSwjmNWSMne+wDO3Te2xlnCyOqdEsONUgdcnlDVaADv/E51Vq1sysCTofODXS4CzI6pH5zWJmT3cOrxWp//xCHRZN/9Nu2aLESCu/ITfER8l5wcsq+obvH4Vg8OvCF6jOXJY8/WW+PNYK8jcUhfS3fPw+OMvLtEbvNeDBHMkawJaRhAGVj6iRR9SGXoDfKd2w0I+0oxFOJ2Ef7tLBnoa/uHX8Zfpkf87Q8Qi5ztCHJme/cdlSTCXbp58OD4JFabKT2S4p1LtSo0Akytfa6VMGVnn0zAHv4ISeUMeUL3Ohu3cSYgeE/KQg4F+YunU=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9626825-8f06-44b0-7087-08d6f9787cd5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2019 14:22:00.4818
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6976
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-06-24 at 18:40 +0200, Arnd Bergmann wrote:
-> On Mon, Jun 24, 2019 at 6:21 PM Alex Elder <elder@linaro.org> wrote:
-> > On 6/18/19 2:03 PM, Johannes Berg wrote:
-> > 
-> > > Really there are two possible ways (and they intersect to some extent).
-> > > 
-> > > One is the whole multi-function device, where a single WWAN device is
-> > > composed of channels offered by actually different drivers, e.g. for a
-> > > typical USB device you might have something like cdc_ether and the
-> > > usb_wwan TTY driver. In this way, we need to "compose" the WWAN device
-> > > similarly, e.g. by using the underlying USB device "struct device"
-> > > pointer to tie it together.
-> > 
-> > I *think* this model makes the most sense.  But at this point
-> > it would take very little to convince me otherwise...  (And then
-> > I saw Arnd's message advocating the other one, unfortunately...)
-> > 
-> > > The other is something like IPA or the Intel modem driver, where the
-> > > device is actually a single (e.g. PCIe) device and just has a single
-> > > driver, but that single driver offers different channels.
-> > 
-> > What I don't like about this is that it's more monolithic.  It
-> > seems better to have the low-level IPA or Intel modem driver (or
-> > any other driver that can support communication between the AP
-> > and WWAN device) present communication paths that other function-
-> > specific drivers can attach to and use.
-> 
-> I did not understand Johannes description as two competing models
-> for the same code, but rather two kinds of existing hardware that
-> a new driver system would have to deal with.
-
-Right.
-
-> I was trying to simplify it to just having the second model, by adding
-> a hack to support the first, but my view was rather unpopular so
-> far, so if everyone agrees on one way to do it, don't worry about me ;-)
-
-:-)
-
-However, to also reply to Alex: I don't know exactly how IPA works, but
-for the Intel modem at least you can't fundamentally have two drivers
-for different parts of the functionality, since it's just a single piece
-of hardware and you need to allocate hardware resources from a common
-pool etc. So you cannot split the driver into "Intel modem control
-channel driver" and "Intel modem data channel driver". In fact, it's
-just a single "struct device" on the PCIe bus that you can bind to, and
-only one driver can bind at a time.
-
-So, IOW, I'm not sure I see how you'd split that up. I guess you could
-if you actually do something like the "rmnet" model, and I suppose
-you're free to do that for IPA if you like, but I tend to think that's
-actually a burden, not a win since you just get more complex code that
-needs to interact with more pieces. A single driver for a single
-hardware that knows about the few types of channels seems simpler to me.
-
-> - to answer Johannes question, my understanding is that the interface
->   between kernel and firmware/hardware for IPA has a single 'struct
->   device' that is used for both the data and the control channels,
->   rather than having a data channel and an independent control device,
->   so this falls into the same category as the Intel one (please correct
->   me on that)
-
-That sounds about the same then, right.
-
-Are the control channels to IPA are actually also tunnelled over the
-rmnet protocol? And even if they are, perhaps they have a different
-hardware queue or so? That'd be the case for Intel - different hardware
-queue, same (or at least similar) protocol spoken for the DMA hardware
-itself, but different contents of the messages obviously.
-
-> - The user space being proprietary is exactly what we need to avoid
->   with the wwan subsystem. We need to be able to use the same
->   method for setting up Intel, Qualcomm, Samsung, Unisoc or
->   Hisilicon modems or anything else that hooks into the subsystem,
->   and support that in network manager as well as the Android
->   equivalent.
->   If Qualcomm wants to provide their own proprietary user space
->   solution, we can't stop them, but then that should also work on
->   all the others unless they intentionally break it. ;-)
-
-:-)
-
-I tend to think there's always going to be some level of specific
-handling here, because e.g. the Intel modem can expose MBIM or AT
-command control channels, but not much else (that'd be useful for us
-anyway, since we don't know how to speak debug protocol etc.). Other
-modems will expose *only* AT commands, or *only* MBIM, and yet others
-may also offer QMI and then that might be preferable.
-
-> > > and simply require that the channel is attached to the wwan device with
-> > > the representation-specific call (wwan_attach_netdev, wwan_attach_tty,
-> > > ...).
-> > 
-> > Or maybe have the WWAN device present interfaces with attributes,
-> > and have drivers that are appropriate for each interface attach
-> > to only the ones they recognize they support.
-> 
-> I think you both mean the same thing here, a structure with callback
-> pointers that may or may not be filled by the driver depending on its
-> capabilities.
-
-:-)
-
-> What we should try to avoid though is a way to add driver private
-> interfaces that risk having multiple drivers create similar functionality
-> in incompatible ways.
-
-Right.
-
-johannes
-
+On 25.06.2019 15:51, Abel Vesa wrote:=0A=
+> Add the initial configuration for clocks that need default parent and rat=
+e=0A=
+> setting. This is based on the vendor tree clock provider parents and rate=
+s=0A=
+> configuration except this is doing the setup in dts rather then using clo=
+ck=0A=
+> consumer API in a clock provider driver.=0A=
+> =0A=
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>=0A=
+> ---=0A=
+>   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 34 ++++++++++++++++++++++++=
++++++++=0A=
+>   1 file changed, 34 insertions(+)=0A=
+> =0A=
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mq.dtsi=0A=
+> index d09b808..e0abe02 100644=0A=
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi=0A=
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi=0A=
+> @@ -489,6 +489,40 @@=0A=
+=0A=
+> +					<&clk IMX8MQ_CLK_PCIE1_CTRL>,=0A=
+> +					<&clk IMX8MQ_CLK_PCIE1_PHY>,=0A=
+> +					<&clk IMX8MQ_CLK_PCIE2_CTRL>,=0A=
+> +					<&clk IMX8MQ_CLK_PCIE2_PHY>,=0A=
+> +					<&clk IMX8MQ_CLK_CSI1_CORE>,=0A=
+> +					<&clk IMX8MQ_CLK_CSI1_PHY_REF>,=0A=
+> +					<&clk IMX8MQ_CLK_CSI1_ESC>,=0A=
+> +					<&clk IMX8MQ_CLK_CSI2_CORE>,=0A=
+> +					<&clk IMX8MQ_CLK_CSI2_PHY_REF>,=0A=
+> +					<&clk IMX8MQ_CLK_CSI2_ESC>;=0A=
+=0A=
+This stuff (and NAND) looks like it would belong to device nodes instead.=
+=0A=
+=0A=
+The rest seem fine though I'm not sure why exactly those clks are =0A=
+adjusted in vendor tree.=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
