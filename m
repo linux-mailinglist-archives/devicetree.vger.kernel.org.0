@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2DD85216B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 05:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14E12521A5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2019 06:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727457AbfFYDyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jun 2019 23:54:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36108 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726833AbfFYDyB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jun 2019 23:54:01 -0400
-Received: from localhost (unknown [116.226.249.212])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 46DAB20881;
-        Tue, 25 Jun 2019 03:54:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561434840;
-        bh=XFOziIOM9oCu/OsWx9RnmlS+cF5ZLW17HEIlZAqOimY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZX3zvzlmNRbixI1+LVRfKTQyDeWhML4ya2bKjMyZ4vz3QOLIT8+uvcED6v14tRaER
-         4haun38H99VjEAFN/GUrWwuiXWjy+Dba35v3ZpruSScBfefS76bGrsNUM4/VcV//0z
-         8VIIVE0LCzZmJ5UtM4SeHg5DJQQFCthwS/cUGpDc=
-Date:   Tue, 25 Jun 2019 11:53:13 +0800
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sandeep Patil <sspatil@android.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-Subject: Re: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and
- optimize probe ordering
-Message-ID: <20190625035313.GA13239@kroah.com>
-References: <20190604003218.241354-1-saravanak@google.com>
- <20190624223707.GH203031@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190624223707.GH203031@google.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        id S1728195AbfFYEFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 00:05:48 -0400
+Received: from mail-qt1-f178.google.com ([209.85.160.178]:43336 "EHLO
+        mail-qt1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726631AbfFYEFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 00:05:48 -0400
+Received: by mail-qt1-f178.google.com with SMTP id w17so16917164qto.10;
+        Mon, 24 Jun 2019 21:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=XoSvE7N+j3Mxg/IlWBM7LJa1qcyCkhIFO08QDOH/raI=;
+        b=aZEOJgBocvFcnzN3COTXh7aIr/gTmHFXM+R2u8j0mtd/ktaH/5E2KiFSboc7jqTj/h
+         alfDJZPhA0GjokbKjupf3AhMI80ijLB9I/Zhx0bARILpwCMqpyKCS//ecExyEOplmeqN
+         BLc5AI76ePPltb5EAnxkLXP/H/Q3WSMYjbk9b4T2gBWP8RkACXMR+HcqB/6hoGJCDzCj
+         7TAzVU55bsuWOPZHIbNpS+QDyUO+dwzGaUhPazvQXlXIJ9KDVfS1v4FR5qg4Kf56YjBu
+         1AZ4W4xNam/hll9H+fnBVeew6HRm0bNmAvsIyhfSMCCRV7M14jNE3ypaa6r3M6ApdAlZ
+         v5aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=XoSvE7N+j3Mxg/IlWBM7LJa1qcyCkhIFO08QDOH/raI=;
+        b=e240a3uJ7rZ7+fuHQrQwluGAdD6Z+Q7Vczm6WY+Z0GJILWZ1xY6O4wyaNXTxGB5Zy3
+         NIyXasWZAn3FGnGtVqQm7QeXWsUSAFPlLd2yc0UaI1ZeRlCpFGWIFmULoetmKVxzxaYg
+         Mqek7/o4P+j89BPvfwTr36gEkV0MOB7ntu840mNVmuXNlIWlY3leOXV41vMYK8e5JLBW
+         5X8LTBt9PZVze7ZPLs4hzxVrPyX97WzErAuLEgOeCdO+ETc1P0Z9fawG2ZzGdTM6e3QP
+         llsbYTDcgnZCku5pi+3WYGIwsyzw43Cj15QiZu+grcMs7CPuMxgSsxfewWF3RVWShL0L
+         KyDA==
+X-Gm-Message-State: APjAAAVJRimwAWw+CUGMRi3qWzROiMDDcoPTEUj806ZozBDyfMjv9AgN
+        BT9ONvLPn4G3IKE8k/kO6NA=
+X-Google-Smtp-Source: APXvYqzVgLl6NC4D8YY3vGIeOwlowXRytM35NnhS97fSyed0a2UigQzw125JadsbBPopKo7Dxfr+dg==
+X-Received: by 2002:ac8:29c9:: with SMTP id 9mr106932315qtt.196.1561435546877;
+        Mon, 24 Jun 2019 21:05:46 -0700 (PDT)
+Received: from bdodge-linux-ub.fios-router.home (pool-100-0-123-202.bstnma.fios.verizon.net. [100.0.123.202])
+        by smtp.gmail.com with ESMTPSA id e8sm6741029qkn.95.2019.06.24.21.05.45
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 24 Jun 2019 21:05:46 -0700 (PDT)
+From:   Brian Dodge <bdodge09@gmail.com>
+To:     pavel@ucw.cz
+Cc:     daniel.thompson@linaro.org, lee.jones@linaro.org,
+        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
+        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        pbacon@psemi.com
+Subject: [PATCH 0/2] fix vendor prefix for arcxcnn driver and bindings
+Date:   Tue, 25 Jun 2019 00:05:27 -0400
+Message-Id: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 24, 2019 at 03:37:07PM -0700, Sandeep Patil wrote:
-> We are trying to make sure that all (most) drivers in an Aarch64 system can
-> be kernel modules for Android, like any other desktop system for
-> example. There are a number of problems we need to fix before that happens
-> ofcourse.
 
-I will argue that this is NOT an android-specific issue.  If the goal of
-creating an arm64 kernel that will "just work" for a wide range of
-hardware configurations without rebuilding is going to happen, we need
-to solve this problem with DT.  This goal was one of the original wishes
-of the arm64 development effort, let's not loose sight of it as
-obviously, this is not working properly just yet.
+These two patches supercede the prior similar three-patch set 
+submitted on 6 Mov 2018. Apologies for the confusion.
 
-It just seems that Android is the first one to actually try and
-implement that goal :)
+This patch is to update the arcxcnn backlight driver to use the
+proper "arctic" vendor-prefix and document that in the device-
+tree bindings.
 
-thanks,
+There is at least one existing device using the old "arc"
+vendor-prefix (Samsung Chromebook Plus), so support for that
+remains in the driver source.
 
-greg k-h
+Unlike the previous patch set which hasn't been applied, there
+there is no actual functionality change here.
