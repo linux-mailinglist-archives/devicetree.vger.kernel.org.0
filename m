@@ -2,309 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9FAA56C97
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F9EB56CA8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:48:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728310AbfFZOri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 10:47:38 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:33672 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728302AbfFZOrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 10:47:37 -0400
-Received: by mail-wm1-f65.google.com with SMTP id h19so4833659wme.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 07:47:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=xsTfqRnHu+yQAKX4GSdpcV7YIOXv0BcnKYn3cggw+uw=;
-        b=uCMX4F8iGggQQEfo1YHDs45vJQldgTNLLEWqA4bs5uJ8rgruvQst/74UEEZ2RuIn0U
-         3xs4hD0OgMFKcfgRUhQZO+1778f1C383ur2O5UOslKkS2Yy+sPQqJpmBEYv0bJKsKNd0
-         m4Rph0JSrHIzvhZp0txs0xx4bnu9I4a+ekrRKxBcXIjRguk84EdWFaJNJO48kOrazebt
-         nGA91F8hY/grVHXOzwDUdCChFzqLm5QD3FVjAlfrR6DvunWUhV9HgR74dN64hJRJbD59
-         JsN8aVDRXbIT8PWUmPmBDTjnVEy/kOBhEoKxdO7d6HnvE8sfN/7AEBgN4URyIlBE22Ux
-         m1sA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=xsTfqRnHu+yQAKX4GSdpcV7YIOXv0BcnKYn3cggw+uw=;
-        b=tbwmAZDUTkciHLEC5lHtepXdHk3z2tj2VR3yOlL4ncOErkf+QiTcEf1gIb0/kFtGsd
-         nWJaU2hYEH4935MHhp+Pr+rWFgeq6tzi6MvYbNfCsTtrURhbzRkEfiWHb2kVV/a0GF+b
-         TZ29Bq/fAOW4iIQOjC2UrM+KuImYzevRg2qQagx8kxzlQ/VPHg8zJt76x5OB4B8WWdz9
-         Kq/4KkfmLfCyYu/JWxEKZ4L+VW80gPF2O00Ptyoh3+m52OpasQ2kaBe02xhReZ4LyBKE
-         J0JO0jXsQzReC6H7oWRUWZFf1p9MflTVd7bV+slCfTEcZ2RQ8iG7kLWdzISJ0O7JI+Jx
-         +IKA==
-X-Gm-Message-State: APjAAAW3I2RX3mGOjuTk3dOcXqePzNoDmRPly4/aqYAt4681TizqB4bt
-        84PTthsKQxhKoGFFVckFRArMEQ==
-X-Google-Smtp-Source: APXvYqyNKMpip8WgGg3+itTl/Rh4ircBsj+OVmz7Sn4sXjY6lFQpeUlWQ0M8NbmK90waZ3glavLAPA==
-X-Received: by 2002:a05:600c:2383:: with SMTP id m3mr2975708wma.20.1561560455437;
-        Wed, 26 Jun 2019 07:47:35 -0700 (PDT)
-Received: from mai.imgcgcw.net (26.92.130.77.rev.sfr.net. [77.130.92.26])
-        by smtp.gmail.com with ESMTPSA id h84sm2718557wmf.43.2019.06.26.07.47.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 Jun 2019 07:47:34 -0700 (PDT)
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-To:     tglx@linutronix.de
-Cc:     linux-kernel@vger.kernel.org, Bai Ping <ping.bai@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE)
-Subject: [PATCH 14/25] clocksource/drivers/sysctr: Add nxp system counter timer driver support
-Date:   Wed, 26 Jun 2019 16:46:40 +0200
-Message-Id: <20190626144651.16742-14-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190626144651.16742-1-daniel.lezcano@linaro.org>
-References: <adba7d03-e9bd-9542-60bc-0f2d4874a40e@linaro.org>
- <20190626144651.16742-1-daniel.lezcano@linaro.org>
+        id S1728025AbfFZOsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 10:48:09 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51122 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728398AbfFZOr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 10:47:57 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QElSHR080337;
+        Wed, 26 Jun 2019 09:47:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561560448;
+        bh=euKafHZbspwxm0WbBPizKb3mUMGv/MWPwIANUP7B8M8=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=h/IXXlmmt4ncU4+QQRtcmK4UwK9El/hxz7x4t8V/h8ghkG0KJ30UZL6Q+qb/Fc3Z3
+         99h4bwh+AHOjJj2hTZDDdoFzzuj548JusSiIacn7H6KNrdgPah3mV4orod+HhF52YF
+         Yz42z9yZzJLh3P13XA3zwJpZD4x3O+ye1pXGqNiQ=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QElSp7067781
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Jun 2019 09:47:28 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 26
+ Jun 2019 09:47:27 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 26 Jun 2019 09:47:27 -0500
+Received: from [10.250.96.121] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QElOE7019579;
+        Wed, 26 Jun 2019 09:47:24 -0500
+Subject: Re: [RFC PATCH v4 net-next 06/11] net: ethernet: ti: introduce cpsw
+ switchdev based driver part 1 - dual-emac
+To:     <netdev@vger.kernel.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiri Pirko <jiri@resnulli.us>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        Ivan Vecera <ivecera@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+References: <20190621181314.20778-1-grygorii.strashko@ti.com>
+ <20190621181314.20778-7-grygorii.strashko@ti.com>
+ <20190626095839.GE6485@khorivan>
+From:   grygorii <grygorii.strashko@ti.com>
+Message-ID: <d6f1f1fb-21c3-ca5f-2585-8d1c3a4f571d@ti.com>
+Date:   Wed, 26 Jun 2019 17:47:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190626095839.GE6485@khorivan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bai Ping <ping.bai@nxp.com>
 
-The system counter (sys_ctr) is a programmable system counter
-which provides a shared time base to the Cortex A15, A7, A53 etc cores.
-It is intended for use in applications where the counter is always
-powered on and supports multiple, unrelated clocks. The sys_ctr hardware
-supports:
- - 56-bit counter width (roll-over time greater than 40 years)
- - compare frame(64-bit compare value) contains programmable interrupt
-   generation when compare value <= counter value.
 
-[dlezcano] Fixed over 80 chars length warning
+On 26/06/2019 12:58, Ivan Khoronzhuk wrote:
+> Hi Grygorii
+> 
+> Too much code, but I've tried pass thru.
+> Probably expectation the devlink to be reviewed, but several
+> common replies that should be reflected in non RFC v.
+> 
+> On Fri, Jun 21, 2019 at 09:13:09PM +0300, Grygorii Strashko wrote:
+>> From: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+>>
+>> Part 1:
+>> Introduce basic CPSW dual_mac driver (cpsw_new.c) which is operating in
+>> dual-emac mode by default, thus working as 2 individual network interfaces.
+>> Main differences from legacy CPSW driver are:
+>>
+>> - optimized promiscuous mode: The P0_UNI_FLOOD (both ports) is enabled in
+>> addition to ALLMULTI (current port) instead of ALE_BYPASS. So, Ports in
+>> promiscuous mode will keep possibility of mcast and vlan filtering, which
+>> is provides significant benefits when ports are joined to the same bridge,
+>> but without enabling "switch" mode, or to different bridges.
+>> - learning disabled on ports as it make not too much sense for
+>>   segregated ports - no forwarding in HW.
+>> - enabled basic support for devlink.
+>>
+>>     devlink dev show
+>>         platform/48484000.ethernet_switch
+>>
+>>     devlink dev param show
+>>      platform/48484000.ethernet_switch:
+>>     name ale_bypass type driver-specific
+>>      values:
+>>         cmode runtime value false
+>>
+>> - "ale_bypass" devlink driver parameter allows to enable
+>> ALE_CONTROL(4).BYPASS mode for debug purposes.
+>> - updated DT bindings.
+>>
+>> Signed-off-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+>> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+>
 
-Signed-off-by: Bai Ping <ping.bai@nxp.com>
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- .../bindings/timer/nxp,sysctr-timer.txt       |  25 +++
- drivers/clocksource/Kconfig                   |   7 +
- drivers/clocksource/Makefile                  |   1 +
- drivers/clocksource/timer-imx-sysctr.c        | 145 ++++++++++++++++++
- 4 files changed, 178 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
- create mode 100644 drivers/clocksource/timer-imx-sysctr.c
+[...]
 
-diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-new file mode 100644
-index 000000000000..d57659996d62
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-@@ -0,0 +1,25 @@
-+NXP System Counter Module(sys_ctr)
-+
-+The system counter(sys_ctr) is a programmable system counter which provides
-+a shared time base to Cortex A15, A7, A53, A73, etc. it is intended for use in
-+applications where the counter is always powered and support multiple,
-+unrelated clocks. The compare frame inside can be used for timer purpose.
-+
-+Required properties:
-+
-+- compatible :      should be "nxp,sysctr-timer"
-+- reg :             Specifies the base physical address and size of the comapre
-+                    frame and the counter control, read & compare.
-+- interrupts :      should be the first compare frames' interrupt
-+- clocks : 	    Specifies the counter clock.
-+- clock-names: 	    Specifies the clock's name of this module
-+
-+Example:
-+
-+	system_counter: timer@306a0000 {
-+		compatible = "nxp,sysctr-timer";
-+		reg = <0x306a0000 0x20000>;/* system-counter-rd & compare */
-+		clocks = <&clk_8m>;
-+		clock-names = "per";
-+		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index d17a347e813a..e9936992934a 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -617,6 +617,13 @@ config CLKSRC_IMX_TPM
- 	  Enable this option to use IMX Timer/PWM Module (TPM) timer as
- 	  clocksource.
- 
-+config TIMER_IMX_SYS_CTR
-+	bool "i.MX system counter timer" if COMPILE_TEST
-+	select TIMER_OF
-+	help
-+	  Enable this option to use i.MX system counter timer as a
-+	  clockevent.
-+
- config CLKSRC_ST_LPC
- 	bool "Low power clocksource found in the LPC" if COMPILE_TEST
- 	select TIMER_OF if OF
-diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-index 4145b21eaed3..0939886b305f 100644
---- a/drivers/clocksource/Makefile
-+++ b/drivers/clocksource/Makefile
-@@ -74,6 +74,7 @@ obj-$(CONFIG_CLKSRC_MIPS_GIC)		+= mips-gic-timer.o
- obj-$(CONFIG_CLKSRC_TANGO_XTAL)		+= timer-tango-xtal.o
- obj-$(CONFIG_CLKSRC_IMX_GPT)		+= timer-imx-gpt.o
- obj-$(CONFIG_CLKSRC_IMX_TPM)		+= timer-imx-tpm.o
-+obj-$(CONFIG_TIMER_IMX_SYS_CTR)		+= timer-imx-sysctr.o
- obj-$(CONFIG_ASM9260_TIMER)		+= asm9260_timer.o
- obj-$(CONFIG_H8300_TMR8)		+= h8300_timer8.o
- obj-$(CONFIG_H8300_TMR16)		+= h8300_timer16.o
-diff --git a/drivers/clocksource/timer-imx-sysctr.c b/drivers/clocksource/timer-imx-sysctr.c
-new file mode 100644
-index 000000000000..fd7d68066efb
---- /dev/null
-+++ b/drivers/clocksource/timer-imx-sysctr.c
-@@ -0,0 +1,145 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+//
-+// Copyright 2017-2019 NXP
-+
-+#include <linux/interrupt.h>
-+#include <linux/clockchips.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+
-+#include "timer-of.h"
-+
-+#define CMP_OFFSET	0x10000
-+
-+#define CNTCV_LO	0x8
-+#define CNTCV_HI	0xc
-+#define CMPCV_LO	(CMP_OFFSET + 0x20)
-+#define CMPCV_HI	(CMP_OFFSET + 0x24)
-+#define CMPCR		(CMP_OFFSET + 0x2c)
-+
-+#define SYS_CTR_EN		0x1
-+#define SYS_CTR_IRQ_MASK	0x2
-+
-+static void __iomem *sys_ctr_base;
-+static u32 cmpcr;
-+
-+static void sysctr_timer_enable(bool enable)
-+{
-+	writel(enable ? cmpcr | SYS_CTR_EN : cmpcr, sys_ctr_base + CMPCR);
-+}
-+
-+static void sysctr_irq_acknowledge(void)
-+{
-+	/*
-+	 * clear the enable bit(EN =0) will clear
-+	 * the status bit(ISTAT = 0), then the interrupt
-+	 * signal will be negated(acknowledged).
-+	 */
-+	sysctr_timer_enable(false);
-+}
-+
-+static inline u64 sysctr_read_counter(void)
-+{
-+	u32 cnt_hi, tmp_hi, cnt_lo;
-+
-+	do {
-+		cnt_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
-+		cnt_lo = readl_relaxed(sys_ctr_base + CNTCV_LO);
-+		tmp_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
-+	} while (tmp_hi != cnt_hi);
-+
-+	return  ((u64) cnt_hi << 32) | cnt_lo;
-+}
-+
-+static int sysctr_set_next_event(unsigned long delta,
-+				 struct clock_event_device *evt)
-+{
-+	u32 cmp_hi, cmp_lo;
-+	u64 next;
-+
-+	sysctr_timer_enable(false);
-+
-+	next = sysctr_read_counter();
-+
-+	next += delta;
-+
-+	cmp_hi = (next >> 32) & 0x00fffff;
-+	cmp_lo = next & 0xffffffff;
-+
-+	writel_relaxed(cmp_hi, sys_ctr_base + CMPCV_HI);
-+	writel_relaxed(cmp_lo, sys_ctr_base + CMPCV_LO);
-+
-+	sysctr_timer_enable(true);
-+
-+	return 0;
-+}
-+
-+static int sysctr_set_state_oneshot(struct clock_event_device *evt)
-+{
-+	return 0;
-+}
-+
-+static int sysctr_set_state_shutdown(struct clock_event_device *evt)
-+{
-+	sysctr_timer_enable(false);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t sysctr_timer_interrupt(int irq, void *dev_id)
-+{
-+	struct clock_event_device *evt = dev_id;
-+
-+	sysctr_irq_acknowledge();
-+
-+	evt->event_handler(evt);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static struct timer_of to_sysctr = {
-+	.flags = TIMER_OF_IRQ | TIMER_OF_CLOCK | TIMER_OF_BASE,
-+	.clkevt = {
-+		.name			= "i.MX system counter timer",
-+		.features		= CLOCK_EVT_FEAT_ONESHOT |
-+						CLOCK_EVT_FEAT_DYNIRQ,
-+		.set_state_oneshot	= sysctr_set_state_oneshot,
-+		.set_next_event		= sysctr_set_next_event,
-+		.set_state_shutdown	= sysctr_set_state_shutdown,
-+		.rating			= 200,
-+	},
-+	.of_irq = {
-+		.handler		= sysctr_timer_interrupt,
-+		.flags			= IRQF_TIMER | IRQF_IRQPOLL,
-+	},
-+	.of_clk = {
-+		.name = "per",
-+	},
-+};
-+
-+static void __init sysctr_clockevent_init(void)
-+{
-+	to_sysctr.clkevt.cpumask = cpumask_of(0);
-+
-+	clockevents_config_and_register(&to_sysctr.clkevt,
-+					timer_of_rate(&to_sysctr),
-+					0xff, 0x7fffffff);
-+}
-+
-+static int __init sysctr_timer_init(struct device_node *np)
-+{
-+	int ret = 0;
-+
-+	ret = timer_of_init(np, &to_sysctr);
-+	if (ret)
-+		return ret;
-+
-+	sys_ctr_base = timer_of_base(&to_sysctr);
-+	cmpcr = readl(sys_ctr_base + CMPCR);
-+	cmpcr &= ~SYS_CTR_EN;
-+
-+	sysctr_clockevent_init();
-+
-+	return 0;
-+}
-+TIMER_OF_DECLARE(sysctr_timer, "nxp,sysctr-timer", sysctr_timer_init);
+>> +
+>> +    /* setup host port priority mapping */
+>> +    writel_relaxed(CPDMA_TX_PRIORITY_MAP,
+>> +               &cpsw->host_port_regs->cpdma_tx_pri_map);
+>> +    writel_relaxed(0, &cpsw->host_port_regs->cpdma_rx_chan_map);
+> 
+> ----
+>> +
+>> +    /* disable priority elevation */
+>> +    writel_relaxed(0, &cpsw->regs->ptype);
+>> +
+>> +    /* enable statistics collection only on all ports */
+>> +    writel_relaxed(0x7, &cpsw->regs->stat_port_en);
+>> +
+>> +    /* Enable internal fifo flow control */
+>> +    writel(0x7, &cpsw->regs->flow_control);
+> ---
+> 
+> Would be nice to do the same in old driver.
+> I mean moving it from ndo_open
+> Also were thoughts about this.
+
+I have no plans to perform any kind of optimization in old driver any more.
+
+Agree with other comments.
+
+[...]
+
+Thank you.
+
 -- 
-2.17.1
-
+Best regards,
+grygorii
