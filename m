@@ -2,121 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FAB5702F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 20:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9166457089
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 20:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726537AbfFZSAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 14:00:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51152 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726042AbfFZSAc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 14:00:32 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E2FC12177B;
-        Wed, 26 Jun 2019 18:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561572030;
-        bh=amZXky+dzy6w//rZtfTX48NyKxgLPjoPas3mxcVTbe4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=yjWHcRlpFsV3Ts63y+nh2Wr5JEyOiV/tm3lCQSVSJrExovUYgChIQnL3RkPEkPy//
-         tRDUh7tJNyr68TWwrj1bgCY2qwIjsKCfUqYb45HxZltQOPAlWt/6Vm7V739Xajuanf
-         wfGUH0ykQmRyIrO+fVMe1WlTsvKPI8heorx98kQA=
-Date:   Wed, 26 Jun 2019 19:00:26 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Cc:     will.deacon@arm.com, joro@8bytes.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, robin.murphy@arm.com,
-        jacob.jun.pan@linux.intel.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, eric.auger@redhat.com
-Subject: Re: [PATCH 4/8] iommu/arm-smmu-v3: Add support for Substream IDs
-Message-ID: <20190626180025.g4clm6qnbbna65de@willie-the-truck>
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
- <20190610184714.6786-5-jean-philippe.brucker@arm.com>
+        id S1726239AbfFZS1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 14:27:53 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:40131 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726104AbfFZS1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 14:27:53 -0400
+Received: by mail-io1-f67.google.com with SMTP id n5so3838877ioc.7;
+        Wed, 26 Jun 2019 11:27:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sZfM3WNDDF9GuJKzE5mdCdSAtOo3TH52oJkX/nrxJjM=;
+        b=G0Y7nsmQdmW7klneIUIoJ3Pb5aD5br9jJpfpTuL41AlhhjSMaEA7NKcN4FNTP9Czmp
+         iIi1g/Nlh0hIndZaxk6sMXCEURxf+fu+VVScYvY5NPC8vsmxpwPvO2Icji+7q3XU2HZv
+         LHYILL5lIS3+YS3tWTQV1cP2q3uq89/TCwggdyXJZRuvnDEz5aDusH47p58E38okLekG
+         lcRHbFfvQUxi4rLpaLJKmzu8CJNO+n1BA8YBadPMmgD7HY17iB0qwEiwRt4QRzVKfYMl
+         nkPAvI0uw1BYCNrxP1mqMjTe850DG5MSSw0ncRFAmHr3/uLI/jfBgxZhYLjTENWtjirM
+         dvkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sZfM3WNDDF9GuJKzE5mdCdSAtOo3TH52oJkX/nrxJjM=;
+        b=jdrPNlJ5tGb1EyfQ9xnWq5TJGGn0/g8Parc9TEWwEGwCz6JqWy/NJ62acDK69cvqXR
+         rm01TE/l+11iOTTACaytRZ/sJN1w7uP3D1SioVU1iDcEGziCLxF0ZWsp/XEhTAr9ZUIh
+         CLVuuB5V449G1bMXRctqhW9kl3wMzAEPL4htMAWU7MgIRgoIK+yWPZfj04qIDnVYHzz4
+         zaN8rbAyWGwQABUA/6RC/RtQ3qkpanYHlh2ccw4ypfHtZd7GFhOlUVLymhk7JIIh7J6O
+         4Qmw7VqaKYnrpANIBxLtG2xNPLTdhZpfGoiPhw3GM3Z4NfTsmboQEcFHrrjUXfBYw8EH
+         JNQA==
+X-Gm-Message-State: APjAAAUywvu1jNYQhdDbv0lzb4+LDs4QSORQQbkhGjw9tNnV7N3TrerB
+        jPO5aA1ZPN7LJJRzW8QoK06jx4ZbdLKYs4mSYMs=
+X-Google-Smtp-Source: APXvYqzICV2CVaS0x99+KU5be+tDhkjLlvc37tKr4vvOVEWKczPXIXw4jK2QjINe4XC+jyYlQ7NLHLeaSXSzULDIjX8=
+X-Received: by 2002:a02:c492:: with SMTP id t18mr6474836jam.67.1561573672517;
+ Wed, 26 Jun 2019 11:27:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190610184714.6786-5-jean-philippe.brucker@arm.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20190603083005.4304-1-peng.fan@nxp.com> <20190603083005.4304-3-peng.fan@nxp.com>
+ <CABb+yY1wW-arSMQSYjrezXOZ0Ar_shAr78MOyUD3hBxXohWx3g@mail.gmail.com>
+ <AM0PR04MB44813A4DE544E53EB7B6F02B88E30@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <CABb+yY38MAZqVOhjyV+GByPvpFcTfKbNG1rJ8YDRd1vi1F4fqg@mail.gmail.com>
+ <AM0PR04MB44814D3BD59033ECDDE3094C88E20@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <e49278ba-f734-e019-ab44-53afe558bd85@gmail.com>
+In-Reply-To: <e49278ba-f734-e019-ab44-53afe558bd85@gmail.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 26 Jun 2019 13:27:41 -0500
+Message-ID: <CABb+yY2B_bGqZhd3HRm2qOwGNXG8UYvRo0_uBmwGbx_1gA-vfA@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        ", Sascha Hauer" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 07:47:10PM +0100, Jean-Philippe Brucker wrote:
-> At the moment, the SMMUv3 driver implements only one stage-1 or stage-2
-> page directory per device. However SMMUv3 allows more than one address
-> space for some devices, by providing multiple stage-1 page directories. In
-> addition to the Stream ID (SID), that identifies a device, we can now have
-> Substream IDs (SSID) identifying an address space. In PCIe, SID is called
-> Requester ID (RID) and SSID is called Process Address-Space ID (PASID).
-> 
-> Prepare the driver for SSID support, by adding context descriptor tables
-> in STEs (previously a single static context descriptor). A complete
-> stage-1 walk is now performed like this by the SMMU:
-> 
->       Stream tables          Ctx. tables          Page tables
->         +--------+   ,------->+-------+   ,------->+-------+
->         :        :   |        :       :   |        :       :
->         +--------+   |        +-------+   |        +-------+
->    SID->|  STE   |---'  SSID->|  CD   |---'  IOVA->|  PTE  |--> IPA
->         +--------+            +-------+            +-------+
->         :        :            :       :            :       :
->         +--------+            +-------+            +-------+
-> 
-> Implement a single level of context descriptor table for now, but as with
-> stream and page tables, an SSID can be split to index multiple levels of
-> tables.
-> 
-> In all stream table entries, we set S1DSS=SSID0 mode, making translations
-> without an SSID use context descriptor 0. Although it would be possible by
-> setting S1DSS=BYPASS, we don't currently support SSID when user selects
-> iommu.passthrough.
+On Wed, Jun 26, 2019 at 11:44 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> On 6/26/19 6:31 AM, Peng Fan wrote:
+> >>> The firmware driver might not have func-id, such as SCMI/SCPI.
+> >>> So add an optional func-id to let smc mailbox driver could
+> >>> use smc SiP func id.
+> >>>
+> >> There is no end to conforming to protocols. Controller drivers should
+> >> be written having no particular client in mind.
+> >
+> > If the func-id needs be passed from user, then the chan_id suggested
+> > by Sudeep should also be passed from user, not in mailbox driver.
+> >
+> > Jassi, so from your point, arm_smc_send_data just send a0 - a6
+> > to firmware, right?
+> >
+> > Sudeep, Andre, Florian,
+> >
+> > What's your suggestion? SCMI not support, do you have
+> > plan to add smc transport in SCMI?
+>
+> On the platforms that I work with, we have taken the liberty of
+> implementing SCMI in our monitor firmware because the other MCU we use
+> for dynamic voltage and frequency scaling did not have enough memory to
+> support that and we still had the ability to make that firmware be
+> trusted enough we could give it power management responsibilities. I
+> would certainly feel more comfortable if the SCMI specification was
+> amended to indicate that the Agent could be such a software entity,
+> still residing on the same host CPU as the Platform(s), but if not,
+> that's fine.
+>
+> This has lead us to implement a mailbox driver that uses a proprietary
+> SMC call for the P2A path ("tx" channel) and the return being done via
+> either that same SMC or through SGI. You can take a look at it in our
+> downstream tree here actually:
+>
+> https://github.com/Broadcom/stblinux-4.9/blob/master/linux/drivers/mailbox/brcmstb-mailbox.c
+>
+> If we can get rid of our own driver and uses a standard SMC based
+> mailbox driver that supports our use case that involves interrupts (we
+> can always change their kind without our firmware/boot loader since FDT
+> is generated from that component), that would be great.
+>
+static irqreturn_t brcm_isr(void)
+{
+         mbox_chan_received_data(&chans[0], NULL);
+         return IRQ_HANDLED;
+}
 
-I don't understand your comment here: iommu.passthrough works just as it did
-before, right, since we set bypass in the STE config field so S1DSS is not
-relevant? I also notice that SSID0 causes transactions with SSID==0 to
-abort. Is a PASID of 0 reserved, so this doesn't matter?
-
-> @@ -1062,33 +1143,90 @@ static u64 arm_smmu_cpu_tcr_to_cd(u64 tcr)
->  	return val;
->  }
->  
-> -static void arm_smmu_write_ctx_desc(struct arm_smmu_device *smmu,
-> -				    struct arm_smmu_s1_cfg *cfg)
-> +static int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain,
-> +				   int ssid, struct arm_smmu_ctx_desc *cd)
->  {
->  	u64 val;
-> +	bool cd_live;
-> +	struct arm_smmu_device *smmu = smmu_domain->smmu;
-> +	__le64 *cdptr = arm_smmu_get_cd_ptr(&smmu_domain->s1_cfg, ssid);
->  
->  	/*
-> -	 * We don't need to issue any invalidation here, as we'll invalidate
-> -	 * the STE when installing the new entry anyway.
-> +	 * This function handles the following cases:
-> +	 *
-> +	 * (1) Install primary CD, for normal DMA traffic (SSID = 0).
-> +	 * (2) Install a secondary CD, for SID+SSID traffic.
-> +	 * (3) Update ASID of a CD. Atomically write the first 64 bits of the
-> +	 *     CD, then invalidate the old entry and mappings.
-> +	 * (4) Remove a secondary CD.
->  	 */
-> -	val = arm_smmu_cpu_tcr_to_cd(cfg->cd.tcr) |
-> +
-> +	if (!cdptr)
-> +		return -ENOMEM;
-> +
-> +	val = le64_to_cpu(cdptr[0]);
-> +	cd_live = !!(val & CTXDESC_CD_0_V);
-> +
-> +	if (!cd) { /* (4) */
-> +		cdptr[0] = 0;
-
-Should we be using WRITE_ONCE here? (although I notice we don't seem to
-bother for STEs either...)
-
-Will
+Sorry, I fail to understand why the irq can't be moved inside the
+client driver itself? There can't be more cost to it and there
+definitely is no functionality lost.
