@@ -2,129 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAE8A56B66
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7996D56B7B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:03:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727831AbfFZN7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:59:08 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:39362 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726131AbfFZN7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:59:07 -0400
-Received: by mail-qk1-f196.google.com with SMTP id i125so1695128qkd.6;
-        Wed, 26 Jun 2019 06:59:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pXxa75AgHN+kU67J58uXazk7bwNbQuP7iiHjqwf4SQ4=;
-        b=gWVaiNG0AiSBIu6RNEZ0S4AHFqEJe2bvqxr04kC5HxBjVUnql1ZJyobnXjQMbPOFd8
-         WYg9lwyQPObS8rNb0s2h6h/m1TducNij9eOejFBq/n0/3QLqw5JvF6pn38PHBw1aRc3W
-         xOJParZGaq5mFy8SggNuC+9HGtLMKPVWBrr+j+sHc3X89MD8Z0y6xm6lCPKQ3pe7Qc0/
-         RLvycB36FIJ+kzCNVWi1UfNeLosSNxBlRqnsAmratmfst533DatZ0Y47k7Af8nOBNzXX
-         WirHVGfoG1m6N0/J7gaQqRIVbpD8+Li+TMiPw+fjS3g7KUfr0akSzzLqWMACpGP505eo
-         PpFA==
-X-Gm-Message-State: APjAAAWnb8iQ/mmxvFyaFGUGjBRL4eKeqPJBaLAH1qYjSgPSHYGW8PGv
-        xVK5yw7wxCjTYEbWNfjXi4fTbDPOjCE0g5+Z0U8=
-X-Google-Smtp-Source: APXvYqzCvw9vZuTjsXYQyBmuA+cZgPu3mswH6EYEmNOv8664CbCqBtT59doitfBhiAj6kcOMBfEiw3S5FFDSDbmyUmo=
-X-Received: by 2002:a37:76c5:: with SMTP id r188mr3978511qkc.394.1561557546341;
- Wed, 26 Jun 2019 06:59:06 -0700 (PDT)
+        id S1726723AbfFZODz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 10:03:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57080 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725958AbfFZODz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 10:03:55 -0400
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E61CD21743;
+        Wed, 26 Jun 2019 14:03:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561557834;
+        bh=0EZ735cO6WH/zngCSpQYINiI6lsHShiMasjlVmMZiqE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=W2dvXsfmTlJ5ZxCUixGz+eN0toacav4i4Qqfl01vqSuO7PYoLOQNveiYV9Dh01J26
+         S0VHWWdYGs0BlZrl/M23HVxxxbttUpAX9x/0kSPspy2JGz2ruC8N77pHWRPgmWJiVI
+         Sh8qaOc+cB/bvQKpxEMfcsAIUPx7qjseSy5zm7tQ=
+Received: by mail-lf1-f49.google.com with SMTP id a25so1676489lfg.2;
+        Wed, 26 Jun 2019 07:03:53 -0700 (PDT)
+X-Gm-Message-State: APjAAAV//I9En6iyfRGG4aKmwaefBAgSzV6dcH2MmdK8n7uUDCIEMXYI
+        2kdRBzPAYFGjkyjbiqt3AdS7iAhSFXj4T4mcaLk=
+X-Google-Smtp-Source: APXvYqyvRHLVun8VIxnYqIMpihADmlhhPWXQ+dcfiSv6kMVGtgzFKGF77U1LP5lSdXe0G6tHdeMBQn2d+loljViWvfA=
+X-Received: by 2002:ac2:5601:: with SMTP id v1mr2820771lfd.106.1561557832087;
+ Wed, 26 Jun 2019 07:03:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
- <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
- <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
- <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
- <36bca57c999f611353fd9741c55bb2a7@codeaurora.org> <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
- <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
- <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
- <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
- <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
- <d533b708-c97a-710d-1138-3ae79107f209@linaro.org> <abdfc6b3a9981bcdef40f85f5442a425ce109010.camel@sipsolutions.net>
- <db34aa39-6cf1-4844-1bfe-528e391c3729@linaro.org> <CAK8P3a1ixL9ZjYz=pWTxvMfeD89S6QxSeHt9ZCL9dkCNV5pMHQ@mail.gmail.com>
- <efbcb3b84ff0a7d7eab875c37f3a5fa77e21d324.camel@sipsolutions.net> <edea19ef-f225-bdcd-f394-77e326d1d3ad@linaro.org>
-In-Reply-To: <edea19ef-f225-bdcd-f394-77e326d1d3ad@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 26 Jun 2019 15:58:48 +0200
-Message-ID: <CAK8P3a3wHe_6ay8P+F9Vo=k19P5fifs6RWozxFF5nGYYjO_=Xw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
-To:     Alex Elder <elder@linaro.org>
-Cc:     Johannes Berg <johannes@sipsolutions.net>,
-        Dan Williams <dcbw@redhat.com>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
-        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
-        syadagir@codeaurora.org
+References: <CGME20190605091304eucas1p21e0717cafa17a14de569f1773cc7abe5@eucas1p2.samsung.com>
+ <20190605091236.24263-1-l.luba@partner.samsung.com> <20190605091236.24263-5-l.luba@partner.samsung.com>
+ <CAGTfZH2kTNWtx=Jp1UJaLN50Qxbq+Q9ThV4vhQ240QbOy1TRMQ@mail.gmail.com> <7498059d-95f7-e154-cf49-bcbc8ee6fdb9@partner.samsung.com>
+In-Reply-To: <7498059d-95f7-e154-cf49-bcbc8ee6fdb9@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 26 Jun 2019 16:03:41 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPc6304D=HNQnrvhBH6qKxhkf=VQ2Gg6Q2FMP2hYOTYSDQ@mail.gmail.com>
+Message-ID: <CAJKOXPc6304D=HNQnrvhBH6qKxhkf=VQ2Gg6Q2FMP2hYOTYSDQ@mail.gmail.com>
+Subject: Re: [PATCH v4 4/5] Documentation: devicetree: add PPMU events description
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     cwchoi00@gmail.com, devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com, kgene@kernel.org,
+        willy.mh.wolff.ml@gmail.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 3:39 PM Alex Elder <elder@linaro.org> wrote:
-> On 6/25/19 9:19 AM, Johannes Berg wrote:
-> > On Mon, 2019-06-24 at 18:40 +0200, Arnd Bergmann wrote:
+On Wed, 26 Jun 2019 at 15:58, Lukasz Luba <l.luba@partner.samsung.com> wrot=
+e:
 >
-> > So, IOW, I'm not sure I see how you'd split that up. I guess you could
-> > if you actually do something like the "rmnet" model, and I suppose
-> > you're free to do that for IPA if you like, but I tend to think that's
-> > actually a burden, not a win since you just get more complex code that
-> > needs to interact with more pieces. A single driver for a single
-> > hardware that knows about the few types of channels seems simpler to me.
+> Hi Chanwoo,
+>
+> On 6/26/19 10:23 AM, Chanwoo Choi wrote:
+> > Hi Lukasz,
 > >
-> >> - to answer Johannes question, my understanding is that the interface
-> >>   between kernel and firmware/hardware for IPA has a single 'struct
-> >>   device' that is used for both the data and the control channels,
-> >>   rather than having a data channel and an independent control device,
-> >>   so this falls into the same category as the Intel one (please correct
-> >>   me on that)
->
-> I don't think that's quite right, but it might be partially
-> right.  There is a single device representing IPA, but the
-> picture is a little more complicated.
->
-> The IPA hardware is actually something that sits *between* the
-> AP and the modem.  It implements one form of communication
-> pathway (IP data), but there are others (including QMI, which
-> presents a network-like interface but it's actually implemented
-> via clever use of shared memory and interrupts).
-
-Can you clarify how QMI fits in here? Do you mean one has to
-talk to both IPA and QMI to use the modem, or are these two
-alternative implementations for the same basic purpose?
-
-> > That sounds about the same then, right.
+> > 2019=EB=85=84 6=EC=9B=94 5=EC=9D=BC (=EC=88=98) 18:14, Lukasz Luba <l.l=
+uba@partner.samsung.com
+> > <mailto:l.luba@partner.samsung.com>>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=
+=B1:
 > >
-> > Are the control channels to IPA are actually also tunnelled over the
-> > rmnet protocol? And even if they are, perhaps they have a different
-> > hardware queue or so? That'd be the case for Intel - different hardware
-> > queue, same (or at least similar) protocol spoken for the DMA hardware
-> > itself, but different contents of the messages obviously.
+> >     Extend the documenation by events description with new 'event-data-=
+type'
+> >     field. Add example how the event might be defined in DT.
+> >
+> >     Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com
+> >     <mailto:l.luba@partner.samsung.com>>
+> >     Signed-off-by: Chanwoo Choi <cw00.choi@samsung.com
+> >     <mailto:cw00.choi@samsung.com>>
+> >     ---
+> >       .../bindings/devfreq/event/exynos-ppmu.txt    | 26 ++++++++++++++=
++++--
+> >       1 file changed, 24 insertions(+), 2 deletions(-)
+> >
+> >
+> >
+> > Acked-by: Chanwoo Choi <cw00.choi@samsung.com
 >
-> I want to be careful talking about "control" but for IPA it comes
-> from user space.  For the purpose of getting initial code upstream,
-> all of that control functionality (which was IOCTL based) has been
-> removed, and a fixed configuration is assumed.
+> Thank you for the ACKs for this a 2/5 patch.
+> Do you think the v4 could be merged now?
 
-My previous understanding was that from the hardware perspective
-there is only one control interface, which is for IPA. Part of this
-is abstracted to user space with ioctl commands to the IPA driver,
-and then one must set up rmnet to match these by configuring
-an rmnet device over netlink messages from user space, but
-rmnet does not have a control protocol with the hardware.
+I think you have all necessary acks. I can take the DTS patch (5/5)
+although probably for next merge window as I just sent one.
 
-The exception here is the flow control, which is handled using
-in-band XON/OFF messages from the modem to rmnet (and
-corresponding Acks the other way) that IPA just passes through.
-
-If we also need to talk to QMI, that would be something completely
-different though.
-
-       Arnd
+Best regards,
+Krzysztof
