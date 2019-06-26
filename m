@@ -2,125 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B4F5663E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 210D956641
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726329AbfFZKHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 06:07:48 -0400
-Received: from aserp2120.oracle.com ([141.146.126.78]:40088 "EHLO
-        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725379AbfFZKHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 06:07:48 -0400
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x5QA46G6175214;
-        Wed, 26 Jun 2019 10:07:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2018-07-02;
- bh=sZHNwp+ow4eTnQBS2L7JrzKbWMnpcS05kMGZkUoPxQM=;
- b=oyR15kS+fVCpC9vPc9oG2JMUeFWLoLx8ZLKESHYF+DYnaL/XDVbXMUJ+nOnSSX74HwzC
- wmgGnJQZmlfXripSQyZOqmJuWh9WcPAtGUm9kFRub7pEHa48sp4fdB/CQhMf0hnrvbaP
- f0djsyhP8+qv86FIwzWe3PBZS5DfmSKLNKWyP3sX0Dzs51omxX5M8TF/gdNhec671343
- ToHWtELuxCPnS71bzk67QXkzrHNHxxUUkwi7oUaFIUchH5o51yh0nYT7r1ohylNGfI5J
- n2fnrTZzWmkhIioqYlZhSr+sYIlJ4nvjtUbBZ3AKCGrgT7uE+bcQlh77nFb+Is/auuev sw== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by aserp2120.oracle.com with ESMTP id 2t9c9psccn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 26 Jun 2019 10:07:44 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x5QA7hIs167703;
-        Wed, 26 Jun 2019 10:07:43 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by aserp3030.oracle.com with ESMTP id 2t9accm73j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 26 Jun 2019 10:07:43 +0000
-Received: from abhmp0014.oracle.com (abhmp0014.oracle.com [141.146.116.20])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x5QA7XB8003609;
-        Wed, 26 Jun 2019 10:07:33 GMT
-Received: from mwanda (/41.57.98.10)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Wed, 26 Jun 2019 03:07:32 -0700
-Date:   Wed, 26 Jun 2019 13:07:27 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     robh@kernel.org
-Cc:     devicetree@vger.kernel.org
-Subject: [bug report] scripts/dtc: Update to upstream version
- v1.5.0-23-g87963ee20693
-Message-ID: <20190626100727.GC3242@mwanda>
+        id S1726242AbfFZKJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 06:09:01 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:51392 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725379AbfFZKJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 06:09:01 -0400
+Received: by mail-wm1-f67.google.com with SMTP id 207so1462713wma.1;
+        Wed, 26 Jun 2019 03:08:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=eh72jYgq1NzpoJM5GSmuS2w6GC2KJuJcmy3C/KF8pOo=;
+        b=NxWG7d2hsU8+G8B+sd6acROP9qiVfzFqGwM5+Um+4E31aiHqecuQHX0sSBikcOx5o9
+         D9KplpB0Fae5BYlPx52E9MOxMDTcdPR1AInrtZBQDq2GJu9iMqf1ZXKucGQAxlddk2/7
+         tlyyGPJ3FHP0s5CfM6sTrwZcQbM2fgeRNqaVEZgEt0uIVoQ6Bkalav+oCi9hEXe7cLhz
+         N/WkMm3QNiCo+0DujMxzMp6ceKZTHTn2vO7LP967BkFSroigY1abp481PGaWEWiXzDNd
+         Rvnh/v+lcHrrExVLppPy9HAJCg2sX1RKfNQJIfY7yPvXBhzrprtFM1zI0stHcP1/wfQe
+         nKow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=eh72jYgq1NzpoJM5GSmuS2w6GC2KJuJcmy3C/KF8pOo=;
+        b=fd63sfQOdK6e8cOPTtk5PD12Jr6nf9xdlxZQkSXpIqoP3chjhzTukOnioS9r4uA2cs
+         qsvfb43Xf5ifwYgHN6nq20VI8BSdtxLXgimMfOwnjfJ8b8B8J+Ik1LmVsTGKqeAgDAK7
+         kG1aTbl07xSekb3Sfn+nC2KsV7KihzxO88Jlb1p2sM3KKGtEHoCpzSvcssWctfz1rnIR
+         nyxNhPHatGbyMLsXVJgA7cQg93WkdyeL/6U1pqn2OMrMD5xCfy2lp32p4UzCzweEFfZ5
+         A0KVbQqN/mETZdVUSZqxM1PdmkZPgaaJePpAQ72n1pZnvfWr2p8SB3RH2XMXvbsvS/mU
+         ndWQ==
+X-Gm-Message-State: APjAAAWMhzA9PKGOIKYFVpI5bVK9TIFiNpl7xcp1gTS3gLWFfZIl2gGZ
+        6UJ5CMu+/Pxf1ja5/O+LdWM=
+X-Google-Smtp-Source: APXvYqzoA6QrxagizSCN3/1xiuVTfua3S6di9JlBeGe8VSiJJ/5Vd7rsm01UbWZyaC21FwnCwR7IKQ==
+X-Received: by 2002:a1c:9813:: with SMTP id a19mr2097774wme.11.1561543738215;
+        Wed, 26 Jun 2019 03:08:58 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id x17sm15782750wrq.64.2019.06.26.03.08.57
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 26 Jun 2019 03:08:57 -0700 (PDT)
+Date:   Wed, 26 Jun 2019 12:08:56 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     jonathanh@nvidia.com, tglx@linutronix.de, jason@lakedaemon.net,
+        marc.zyngier@arm.com, linus.walleij@linaro.org, stefan@agner.ch,
+        mark.rutland@arm.com, pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, jckuo@nvidia.com, josephl@nvidia.com,
+        talho@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, digetx@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 02/18] pinctrl: tegra: add suspend and resume support
+Message-ID: <20190626100856.GB6362@ulmo>
+References: <1561345379-2429-1-git-send-email-skomatineni@nvidia.com>
+ <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="WhfpMioaduB5tiZL"
 Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9299 signatures=668687
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=1 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=959
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1906260121
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9299 signatures=668687
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=1 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1906260121
+In-Reply-To: <1561345379-2429-3-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob Herring,
 
-The patch 9bb9c6a110ea: "scripts/dtc: Update to upstream version
-v1.5.0-23-g87963ee20693" from Jun 12, 2019, leads to the following
-static checker warning:
+--WhfpMioaduB5tiZL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-	./scripts/dtc/libfdt/fdt_addresses.c:74 fdt_appendprop_addrrange()
-	warn: integer overflow (literal): u32max + 1
+On Sun, Jun 23, 2019 at 08:02:43PM -0700, Sowjanya Komatineni wrote:
+> This patch adds support for Tegra pinctrl driver suspend and resume.
+>=20
+> During suspend, context of all pinctrl registers are stored and
+> on resume they are all restored to have all the pinmux and pad
+> configuration for normal operation.
+>=20
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/pinctrl/tegra/pinctrl-tegra.c    | 47 ++++++++++++++++++++++++++=
+++++++
+>  drivers/pinctrl/tegra/pinctrl-tegra.h    |  4 +++
+>  drivers/pinctrl/tegra/pinctrl-tegra210.c |  6 ++++
+>  3 files changed, 57 insertions(+)
 
-./scripts/dtc/libfdt/fdt_addresses.c
-    54  /* This function assumes that [address|size]_cells is 1 or 2 */
-    55  int fdt_appendprop_addrrange(void *fdt, int parent, int nodeoffset,
-    56                               const char *name, uint64_t addr, uint64_t size)
-    57  {
-    58          int addr_cells, size_cells, ret;
-    59          uint8_t data[sizeof(fdt64_t) * 2], *prop;
-    60  
-    61          ret = fdt_address_cells(fdt, parent);
-    62          if (ret < 0)
-    63                  return ret;
-    64          addr_cells = ret;
-    65  
-    66          ret = fdt_size_cells(fdt, parent);
-    67          if (ret < 0)
-    68                  return ret;
-    69          size_cells = ret;
-    70  
-    71          /* check validity of address */
-    72          prop = data;
-    73          if (addr_cells == 1) {
-    74                  if ((addr > UINT32_MAX) || ((UINT32_MAX + 1 - addr) < size))
-                                                     ^^^^^^^^^^^^^^
-UINT32_MAX + 1 is just zero.
+With Dmitry's comments addressed, this is:
 
-    75                          return -FDT_ERR_BADVALUE;
-    76  
-    77                  fdt32_st(prop, (uint32_t)addr);
-    78          } else if (addr_cells == 2) {
-    79                  fdt64_st(prop, addr);
-    80          } else {
-    81                  return -FDT_ERR_BADNCELLS;
-    82          }
-    83  
-    84          /* check validity of size */
-    85          prop += addr_cells * sizeof(fdt32_t);
-    86          if (size_cells == 1) {
-    87                  if (size > UINT32_MAX)
-    88                          return -FDT_ERR_BADVALUE;
-    89  
-    90                  fdt32_st(prop, (uint32_t)size);
-    91          } else if (size_cells == 2) {
-    92                  fdt64_st(prop, size);
-    93          } else {
-    94                  return -FDT_ERR_BADNCELLS;
-    95          }
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-regards,
-dan carpenter
+--WhfpMioaduB5tiZL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0TRDUACgkQ3SOs138+
+s6GvzxAAiFH/gYSVcwCuGy396VD5pJeLGEfJDzcnWqlSTP7KjyLuPUbzCaT79xLd
+d3YULAplbjAKrhKnlWQJdI/8yFkOUB8fVsj1Dsxw6uMsPvh9UeRjGS7QV1a5ophH
+xLTPD3WuXqY8BHmQ2uTQ8gTGq2/6JT3F+wNl/Uv7jj3i0EieUo0/o1nvUhkX6obL
+hW1quyskaRdTtJDGlGwOqbV/eqCSoW1nRoCGHL/4JTcuVa6hovz86g0jgl2ugMxu
+Rn2jHHHhVoq3WA856YGzSGn453Oj7ddh1gCX8ZG0NfjA2JfBLjb6s1EB35FNtot/
+jI68p7QZV0AVwE4CFjEy4Dc7YUP/I8xQvwOeaFu3/++v6EPckyNP00grYhsf42GW
+oZQoQ0LgyCL1BGzxfD3AoioDVIxqtI4H8jCObu1Hond7B+4FI+mXa+SGf+vm25y4
+doXsqjgv4Nu1QkFd+xToWK1irVnQoXYIYsub96XnX6+AsPb6EOB50rtl6zXfCzZn
+ZWa8KCk00T/ur2CI2Sk12rHxlQ0nA9IDq2eFeEuQwz3O2R6+ZUwISeLLRvI1bGji
+dhwO65R/a9FQc5PM0tzkrfhoxKatl/vVxmBFIeEIVpFBhaJ7rA1HlPoscQQ5J50C
+lv+T2xtIODfuEchmgf4tZc4QMnZ8gw1UG+2n71EZZRX3qp5QQ6s=
+=iW3N
+-----END PGP SIGNATURE-----
+
+--WhfpMioaduB5tiZL--
