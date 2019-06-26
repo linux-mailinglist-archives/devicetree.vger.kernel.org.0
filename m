@@ -2,317 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A41855E4D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 04:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA1F55F11
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 04:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfFZCWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 22:22:15 -0400
-Received: from onstation.org ([52.200.56.107]:46138 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726544AbfFZCWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 22:22:08 -0400
-Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 376553EE89;
-        Wed, 26 Jun 2019 02:22:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1561515727;
-        bh=LBCaCRM6w6Uabl3MsfrPJPOnv+N3GJ0Ml0bf2tLp41c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qwJlhetM5GmYsN943ky2dnW/hHh6gH9XLsBuijPp7WM2kFRNQB6bUS2IH2+aALWPQ
-         MlfBreOlekzwaSnfRLtNkjXSU99dx7Zt8rQ6MjywOC32CdlgI3GtdR4h3Yb3chEcDg
-         tE2Z/yJ7P91+e66SNUyCepFc9ncBjfa8MoZZWEhg=
-From:   Brian Masney <masneyb@onstation.org>
-To:     agross@kernel.org, robdclark@gmail.com, sean@poorly.run,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
-        jonathan@marek.ca, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        jcrouse@codeaurora.org
-Subject: [PATCH v3 6/6] drm/msm/gpu: add ocmem init/cleanup functions
-Date:   Tue, 25 Jun 2019 22:21:48 -0400
-Message-Id: <20190626022148.23712-7-masneyb@onstation.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190626022148.23712-1-masneyb@onstation.org>
-References: <20190626022148.23712-1-masneyb@onstation.org>
+        id S1726606AbfFZCiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 22:38:13 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:34771 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726474AbfFZCiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 22:38:12 -0400
+Received: by mail-pl1-f193.google.com with SMTP id i2so530849plt.1;
+        Tue, 25 Jun 2019 19:38:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xyvmsuEmijKSbxFAnA4vq/E+5XBo5Wy44kba2nyP6go=;
+        b=BZ4Ebg4Mt6iFRuTXwwNgpnI8OJuJfNv6Djd1wfAGtRm4J6le9LnoXlG+dUNYWOR9D7
+         SHVbvleUAs8CQCfiP053jw77OWwAH7Qu+pCbIWytWn1qVhaklx8aiVg/91zaBAqJVQtp
+         sXkggoTIDiN/db5MeQ3pRaodF5e9xQTEcpluL/yT8iiuIiJ8pE+eoGGmkH0zII+dlNkT
+         4IIZ/BgaUA2p5OeaYmxSqry1EQBjr9/lb1BV0QgKZB9DnJmpILUtCQFi+Dm/Hh1V1rrV
+         mhlv8L/GIPHj6Kh0QlD02v8RGP8vBoN+9LtnPNuRNt0up7Nwe1pnhAz3F+YM+SX833Rp
+         8ZYw==
+X-Gm-Message-State: APjAAAXBfkt/cK+pdF8iQ9Rnchzts0gS6EGxjDfhR3ikZMvWGKP7Libt
+        jNDamToKkzhoHpeM+IGDZYc=
+X-Google-Smtp-Source: APXvYqzDq44Q6ELr7lMNQzzU3Ay+P/NMrvUlNETj0hOmt7FHk+liK3UY9V/aPmtCKjArXN7tpqRtdw==
+X-Received: by 2002:a17:902:e512:: with SMTP id ck18mr2107905plb.53.1561516691699;
+        Tue, 25 Jun 2019 19:38:11 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+        by smtp.gmail.com with ESMTPSA id a16sm20081945pfd.68.2019.06.25.19.38.10
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 25 Jun 2019 19:38:10 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+        id BC94340336; Wed, 26 Jun 2019 02:38:09 +0000 (UTC)
+Date:   Wed, 26 Jun 2019 02:38:09 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        gregkh@linuxfoundation.org, jpoimboe@redhat.com,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com
+Subject: Re: [PATCH v5 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190626023809.GW19023@42.do-not-panic.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <10feac3e-7621-65e5-fbf0-9c63fcbe09c9@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10feac3e-7621-65e5-fbf0-9c63fcbe09c9@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The files a3xx_gpu.c and a4xx_gpu.c have ifdefs for the OCMEM support
-that was missing upstream. Add two new functions (adreno_gpu_ocmem_init
-and adreno_gpu_ocmem_cleanup) that removes some duplicated code.
+On Wed, Jun 19, 2019 at 06:17:51PM -0700, Frank Rowand wrote:
+> It does not matter whether KUnit provides additional things, relative
+> to kselftest.  The point I was making is that there appears to be
+> _some_ overlap between kselftest and KUnit, and if there is overlap
+> then it is worth considering whether the overlap can be unified instead
+> of duplicated.
 
-Signed-off-by: Brian Masney <masneyb@onstation.org>
----
-Changes since v2:
-- Check for -ENODEV error of_get_ocmem()
-- remove fail_cleanup_ocmem label in a[34]xx_gpu_init
+From my experience as an author of several kselftests drivers, one
+faily complex, and after reviewing the sysctl kunit test module, I
+disagree with this.
 
-Changes since v1:
-- remove CONFIG_QCOM_OCMEM #ifdefs
-- use unsigned long for memory addresses instead of uint32_t
-- add 'depends on QCOM_OCMEM || QCOM_OCMEM=n' to Kconfig
+Even if there were an overlap, I'd say let the best test harness win.
+Just as we have different LSMs that do something similar.
 
- drivers/gpu/drm/msm/Kconfig             |  1 +
- drivers/gpu/drm/msm/adreno/a3xx_gpu.c   | 28 +++++------------
- drivers/gpu/drm/msm/adreno/a3xx_gpu.h   |  3 +-
- drivers/gpu/drm/msm/adreno/a4xx_gpu.c   | 25 ++++------------
- drivers/gpu/drm/msm/adreno/a4xx_gpu.h   |  3 +-
- drivers/gpu/drm/msm/adreno/adreno_gpu.c | 40 +++++++++++++++++++++++++
- drivers/gpu/drm/msm/adreno/adreno_gpu.h | 10 +++++++
- 7 files changed, 66 insertions(+), 44 deletions(-)
+But this is not about that though. Although both are testing code,
+they do so in *very* different ways.
 
-diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
-index 9c37e4de5896..b3d3b2172659 100644
---- a/drivers/gpu/drm/msm/Kconfig
-+++ b/drivers/gpu/drm/msm/Kconfig
-@@ -7,6 +7,7 @@ config DRM_MSM
- 	depends on OF && COMMON_CLK
- 	depends on MMU
- 	depends on INTERCONNECT || !INTERCONNECT
-+	depends on QCOM_OCMEM || QCOM_OCMEM=n
- 	select QCOM_MDT_LOADER if ARCH_QCOM
- 	select REGULATOR
- 	select DRM_KMS_HELPER
-diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-index c3b4bc6e4155..b3ef06a39653 100644
---- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-@@ -17,10 +17,6 @@
-  * this program.  If not, see <http://www.gnu.org/licenses/>.
-  */
- 
--#ifdef CONFIG_MSM_OCMEM
--#  include <mach/ocmem.h>
--#endif
--
- #include "a3xx_gpu.h"
- 
- #define A3XX_INT0_MASK \
-@@ -206,9 +202,9 @@ static int a3xx_hw_init(struct msm_gpu *gpu)
- 		gpu_write(gpu, REG_A3XX_RBBM_GPR0_CTL, 0x00000000);
- 
- 	/* Set the OCMEM base address for A330, etc */
--	if (a3xx_gpu->ocmem_hdl) {
-+	if (a3xx_gpu->ocmem.hdl) {
- 		gpu_write(gpu, REG_A3XX_RB_GMEM_BASE_ADDR,
--			(unsigned int)(a3xx_gpu->ocmem_base >> 14));
-+			(unsigned int)(a3xx_gpu->ocmem.base >> 14));
- 	}
- 
- 	/* Turn on performance counters: */
-@@ -329,10 +325,7 @@ static void a3xx_destroy(struct msm_gpu *gpu)
- 
- 	adreno_gpu_cleanup(adreno_gpu);
- 
--#ifdef CONFIG_MSM_OCMEM
--	if (a3xx_gpu->ocmem_base)
--		ocmem_free(OCMEM_GRAPHICS, a3xx_gpu->ocmem_hdl);
--#endif
-+	adreno_gpu_ocmem_cleanup(&a3xx_gpu->ocmem);
- 
- 	kfree(a3xx_gpu);
- }
-@@ -507,17 +500,10 @@ struct msm_gpu *a3xx_gpu_init(struct drm_device *dev)
- 
- 	/* if needed, allocate gmem: */
- 	if (adreno_is_a330(adreno_gpu)) {
--#ifdef CONFIG_MSM_OCMEM
--		/* TODO this is different/missing upstream: */
--		struct ocmem_buf *ocmem_hdl =
--				ocmem_allocate(OCMEM_GRAPHICS, adreno_gpu->gmem);
--
--		a3xx_gpu->ocmem_hdl = ocmem_hdl;
--		a3xx_gpu->ocmem_base = ocmem_hdl->addr;
--		adreno_gpu->gmem = ocmem_hdl->len;
--		DBG("using %dK of OCMEM at 0x%08x", adreno_gpu->gmem / 1024,
--				a3xx_gpu->ocmem_base);
--#endif
-+		ret = adreno_gpu_ocmem_init(&adreno_gpu->base.pdev->dev,
-+					    adreno_gpu, &a3xx_gpu->ocmem);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	if (!gpu->aspace) {
-diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.h b/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-index ab60dc9e344e..727c34f38f9e 100644
---- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-@@ -30,8 +30,7 @@ struct a3xx_gpu {
- 	struct adreno_gpu base;
- 
- 	/* if OCMEM is used for GMEM: */
--	uint32_t ocmem_base;
--	void *ocmem_hdl;
-+	struct adreno_ocmem ocmem;
- };
- #define to_a3xx_gpu(x) container_of(x, struct a3xx_gpu, base)
- 
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-index ab2b752566d8..b01388a9e89e 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-@@ -2,9 +2,6 @@
- /* Copyright (c) 2014 The Linux Foundation. All rights reserved.
-  */
- #include "a4xx_gpu.h"
--#ifdef CONFIG_MSM_OCMEM
--#  include <soc/qcom/ocmem.h>
--#endif
- 
- #define A4XX_INT0_MASK \
- 	(A4XX_INT0_RBBM_AHB_ERROR |        \
-@@ -188,7 +185,7 @@ static int a4xx_hw_init(struct msm_gpu *gpu)
- 			(1 << 30) | 0xFFFF);
- 
- 	gpu_write(gpu, REG_A4XX_RB_GMEM_BASE_ADDR,
--			(unsigned int)(a4xx_gpu->ocmem_base >> 14));
-+			(unsigned int)(a4xx_gpu->ocmem.base >> 14));
- 
- 	/* Turn on performance counters: */
- 	gpu_write(gpu, REG_A4XX_RBBM_PERFCTR_CTL, 0x01);
-@@ -318,10 +315,7 @@ static void a4xx_destroy(struct msm_gpu *gpu)
- 
- 	adreno_gpu_cleanup(adreno_gpu);
- 
--#ifdef CONFIG_MSM_OCMEM
--	if (a4xx_gpu->ocmem_base)
--		ocmem_free(OCMEM_GRAPHICS, a4xx_gpu->ocmem_hdl);
--#endif
-+	adreno_gpu_ocmem_cleanup(&a4xx_gpu->ocmem);
- 
- 	kfree(a4xx_gpu);
- }
-@@ -578,17 +572,10 @@ struct msm_gpu *a4xx_gpu_init(struct drm_device *dev)
- 
- 	/* if needed, allocate gmem: */
- 	if (adreno_is_a4xx(adreno_gpu)) {
--#ifdef CONFIG_MSM_OCMEM
--		/* TODO this is different/missing upstream: */
--		struct ocmem_buf *ocmem_hdl =
--				ocmem_allocate(OCMEM_GRAPHICS, adreno_gpu->gmem);
--
--		a4xx_gpu->ocmem_hdl = ocmem_hdl;
--		a4xx_gpu->ocmem_base = ocmem_hdl->addr;
--		adreno_gpu->gmem = ocmem_hdl->len;
--		DBG("using %dK of OCMEM at 0x%08x", adreno_gpu->gmem / 1024,
--				a4xx_gpu->ocmem_base);
--#endif
-+		ret = adreno_gpu_ocmem_init(dev->dev, adreno_gpu,
-+					    &a4xx_gpu->ocmem);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	if (!gpu->aspace) {
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.h b/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-index d506311ee240..a01448cba2ea 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-@@ -16,8 +16,7 @@ struct a4xx_gpu {
- 	struct adreno_gpu base;
- 
- 	/* if OCMEM is used for GMEM: */
--	uint32_t ocmem_base;
--	void *ocmem_hdl;
-+	struct adreno_ocmem ocmem;
- };
- #define to_a4xx_gpu(x) container_of(x, struct a4xx_gpu, base)
- 
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-index 6f7f4114afcf..67ec111f36cb 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-@@ -25,6 +25,7 @@
- #include <linux/pm_opp.h>
- #include <linux/slab.h>
- #include <linux/soc/qcom/mdt_loader.h>
-+#include <soc/qcom/ocmem.h>
- #include "adreno_gpu.h"
- #include "msm_gem.h"
- #include "msm_mmu.h"
-@@ -897,6 +898,45 @@ static int adreno_get_pwrlevels(struct device *dev,
- 	return 0;
- }
- 
-+int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-+			  struct adreno_ocmem *adreno_ocmem)
-+{
-+	struct ocmem_buf *ocmem_hdl;
-+	struct ocmem *ocmem;
-+
-+	ocmem = of_get_ocmem(dev);
-+	if (IS_ERR(ocmem)) {
-+		if (PTR_ERR(ocmem) == -ENODEV) {
-+			/*
-+			 * Return success since either the ocmem property was
-+			 * not specified in device tree, or ocmem support is
-+			 * not compiled into the kernel.
-+			 */
-+			return 0;
-+		}
-+
-+		return PTR_ERR(ocmem);
-+	}
-+
-+	ocmem_hdl = ocmem_allocate(ocmem, OCMEM_GRAPHICS, adreno_gpu->gmem);
-+	if (IS_ERR(ocmem_hdl))
-+		return PTR_ERR(ocmem_hdl);
-+
-+	adreno_ocmem->ocmem = ocmem;
-+	adreno_ocmem->base = ocmem_hdl->addr;
-+	adreno_ocmem->hdl = ocmem_hdl;
-+	adreno_gpu->gmem = ocmem_hdl->len;
-+
-+	return 0;
-+}
-+
-+void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
-+{
-+	if (adreno_ocmem && adreno_ocmem->base)
-+		ocmem_free(adreno_ocmem->ocmem, OCMEM_GRAPHICS,
-+			   adreno_ocmem->hdl);
-+}
-+
- int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 		struct adreno_gpu *adreno_gpu,
- 		const struct adreno_gpu_funcs *funcs, int nr_rings)
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-index 0925606ec9b5..0947a6124cac 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-@@ -136,6 +136,12 @@ struct adreno_gpu {
- };
- #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
- 
-+struct adreno_ocmem {
-+	struct ocmem *ocmem;
-+	unsigned long base;
-+	void *hdl;
-+};
-+
- /* platform config data (ie. from DT, or pdata) */
- struct adreno_platform_config {
- 	struct adreno_rev rev;
-@@ -241,6 +247,10 @@ void adreno_dump(struct msm_gpu *gpu);
- void adreno_wait_ring(struct msm_ringbuffer *ring, uint32_t ndwords);
- struct msm_ringbuffer *adreno_active_ring(struct msm_gpu *gpu);
- 
-+int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-+			  struct adreno_ocmem *ocmem);
-+void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *ocmem);
-+
- int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 		struct adreno_gpu *gpu, const struct adreno_gpu_funcs *funcs,
- 		int nr_rings);
--- 
-2.20.1
+The design philosophy and architecture are fundamentally different. The
+*only* thing I can think of where there is overlap is that both can test
+similar code paths. Beyond that, the layout of how one itemizes tests
+could be borrowed, but that would be up to each kselftest author to
+decide, in fact some ksefltests do exist which follow similar pattern of
+itemizing test cases and running them. Kunit just provides a proper
+framework to do this easily but also with a focus on UML. This last
+aspect makes kselftests fundamentally orthogonal from an architecture /
+design perspective.
 
+After careful review, I cannot personally identify what could be shared
+at this point. Can you? If you did identify one part, how do you
+recommend to share it?
+
+  Luis
