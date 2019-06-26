@@ -2,83 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E3955C4B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 01:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA6C55CB5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 02:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726339AbfFYX2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 19:28:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58032 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725782AbfFYX2W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jun 2019 19:28:22 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1D4A20645;
-        Tue, 25 Jun 2019 23:28:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561505300;
-        bh=6+te7mpJt5x4SRywvdcyKAoVs6nKqWEZS+6deQkXGH8=;
-        h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=mNi8EavtpgSP7114DE4Fp5biFG5wHsOt3mCwaHqAvPfToIR33ip/aGcRxUCsKxc0s
-         EXhLCkwtAoStCqe+GzLtuLgPgtQZ1pupbmDvgjVncKJH5h41SuyDXxIch7EZ52g+6a
-         B0t6ZoE7uS0Gi+Lpb5A0gDs/i/stm1Y4Kn4Lr/kU=
-Content-Type: text/plain; charset="utf-8"
+        id S1726068AbfFZABy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jun 2019 20:01:54 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:41270 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725782AbfFZABy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 20:01:54 -0400
+Received: by mail-pf1-f193.google.com with SMTP id m30so247312pff.8;
+        Tue, 25 Jun 2019 17:01:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8jiVaE2JFBMfd+G3WCzNTPAlyBMExhnepJubp+vEbhM=;
+        b=k+q+lL9JnManagsxYEhmD0SBcXkhaynxhSHiLAl0Ja+vnLH1iUkw4tZmA1+71kxgZE
+         bgqgqaUKVuS0AOS342nb17+pjIKKxRi3U/ZWIYxDD7ND7INQyVWdDJisf5tOxstRt1Ky
+         QxAxufzM5o2vnvYo7pLaEI32jWlufcvAMoN6UQN3eWfrdH+PVSOFXJ26Q+gIqH2Yd4ik
+         buLtYhv3wnjU7FRRAHC7pWlG9dd0mPyoYvRDKEG1XdxXlXJmNJ4HfXqpk2FCdBoyDmOK
+         hfsMtbCBdWAg0ReHyde2M31PpclLEkcwoSDyubDLiob12mO1J5PnhKo/Ph+klZQvoVOD
+         Yoeg==
+X-Gm-Message-State: APjAAAVWja7kG8Zm87XUU0bTOOui8G/YIPiDi0TnKNdYJ2B5jsSUw9EX
+        mWX4/p/eXJ5PsjgU9ZOj1M8=
+X-Google-Smtp-Source: APXvYqzNTUiSwWdZ3UgJYHzcAJb5xsbwt8eGmi7SJjyzu5XA3lIGVxbDEngQABiwrdIPUAy8M4OQFg==
+X-Received: by 2002:a63:d756:: with SMTP id w22mr33935466pgi.156.1561507312844;
+        Tue, 25 Jun 2019 17:01:52 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+        by smtp.gmail.com with ESMTPSA id z22sm14694045pgu.28.2019.06.25.17.01.51
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 25 Jun 2019 17:01:51 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+        id 0674940336; Wed, 26 Jun 2019 00:01:50 +0000 (UTC)
+Date:   Wed, 26 Jun 2019 00:01:50 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, peterz@infradead.org,
+        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org, tytso@mit.edu,
+        yamada.masahiro@socionext.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
+        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
+        daniel@ffwll.ch, jdike@addtoit.com, joel@jms.id.au,
+        julia.lawall@lip6.fr, khilman@baylibre.com, knut.omang@oracle.com,
+        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
+        rdunlap@infradead.org, richard@nod.at, rientjes@google.com,
+        rostedt@goodmis.org, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+Subject: Re: [PATCH v5 13/18] kunit: tool: add Python wrappers for running
+ KUnit tests
+Message-ID: <20190626000150.GT19023@42.do-not-panic.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-14-brendanhiggins@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1561502227.10069.1@crapouillou.net>
-References: <20190624225759.18299-1-paul@crapouillou.net> <20190624225759.18299-6-paul@crapouillou.net> <20190625220931.2F69B2086D@mail.kernel.org> <1561502227.10069.1@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v13 05/13] clk: ingenic: Add driver for the TCU clocks
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        James Hogan <jhogan@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mathieu Malaterre <malat@debian.org>, od@zcrc.me,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
-User-Agent: alot/0.8.1
-Date:   Tue, 25 Jun 2019 16:28:20 -0700
-Message-Id: <20190625232820.D1D4A20645@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190617082613.109131-14-brendanhiggins@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Paul Cercueil (2019-06-25 15:37:07)
-> >=20
-> > Do you need to get the clk by name? Or can that clk be "known" to the
-> > TCU somehow so we can already have a direct clk pointer?
->=20
-> This clock is provided by a separate driver, so I have to obtain the
-> clock pointer from devicetree.
+On Mon, Jun 17, 2019 at 01:26:08AM -0700, Brendan Higgins wrote:
+>  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-all_passed.log
+>  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-crash.log
+>  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-failure.log
+>  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-no_tests_run.log
+>  create mode 100644 tools/testing/kunit/test_data/test_output_isolated_correctly.log
+>  create mode 100644 tools/testing/kunit/test_data/test_read_from_file.kconfig
 
-Ok.
+Why are these being added upstream? The commit log does not explain
+this.
 
-> >>  +}
-> >>  +
-> >>  +static int __maybe_unused tcu_pm_suspend(void)
-> >>  +{
-> >>  +       struct ingenic_tcu *tcu =3D ingenic_tcu;
-> >>  +
-> >>  +       if (tcu->clk)
-> >>  +               clk_disable(tcu->clk);
-> >=20
-> > Do you need to unprepare? Or it just isn't possible because this is
-> > called from syscore and thus we can't sleep?
->=20
-> I thought that clk_disable() was enough. We don't actually need to
-> unprepare, do we? And yes, as you pointed out, this call cannot sleep.
-
-Yeah unprepare isn't necessary, but it will be different on different
-platforms. This is a highly platform specific driver though so I suspect
-this is all fine.
-
+  Luis
