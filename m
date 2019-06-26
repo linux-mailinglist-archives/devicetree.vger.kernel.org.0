@@ -2,76 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B2E56A7A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE27956A98
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727443AbfFZNbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:31:18 -0400
-Received: from sauhun.de ([88.99.104.3]:56206 "EHLO pokefinder.org"
+        id S1727727AbfFZNcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 09:32:25 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:57316 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727323AbfFZNbS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 09:31:18 -0400
-Received: from localhost (p54B330AF.dip0.t-ipconnect.de [84.179.48.175])
-        by pokefinder.org (Postfix) with ESMTPSA id 9A4DC2C0114;
-        Wed, 26 Jun 2019 15:31:16 +0200 (CEST)
-Date:   Wed, 26 Jun 2019 15:31:16 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+        id S1726462AbfFZNcZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 09:32:25 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1DB852009AC;
+        Wed, 26 Jun 2019 15:32:22 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1069F2009AB;
+        Wed, 26 Jun 2019 15:32:22 +0200 (CEST)
+Received: from fsr-ub1664-120.ea.freescale.net (fsr-ub1664-120.ea.freescale.net [10.171.82.81])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 6078A205DB;
+        Wed, 26 Jun 2019 15:32:21 +0200 (CEST)
+From:   Robert Chiras <robert.chiras@nxp.com>
+To:     Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: i2c: mv64xxx: Add YAML schemas
-Message-ID: <20190626133116.GJ801@ninjato>
-References: <20190611090309.7930-1-maxime.ripard@bootlin.com>
- <20190611090309.7930-2-maxime.ripard@bootlin.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZG+WKzXzVby2T9Ro"
-Content-Disposition: inline
-In-Reply-To: <20190611090309.7930-2-maxime.ripard@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>
+Subject: [PATCH 00/10] Improvements and fixes for mxsfb DRM driver
+Date:   Wed, 26 Jun 2019 16:32:08 +0300
+Message-Id: <1561555938-21595-1-git-send-email-robert.chiras@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch-set improves the use of eLCDIF block on iMX 8 SoCs (like 8MQ, 8MM
+and 8QXP). Following, are the new features added and fixes from this
+patch-set:
 
---ZG+WKzXzVby2T9Ro
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+1. Add support for drm_bridge
+On 8MQ and 8MM, the LCDIF block is not directly connected to a parallel
+display connector, where an LCD panel can be attached, but instead it is
+connected to DSI controller. Since this DSI stands between the display
+controller (eLCDIF) and the physical connector, the DSI can be implemented
+as a DRM bridge. So, in order to be able to connect the mxsfb driver to
+the DSI driver, the support for a drm_bridge was needed in mxsfb DRM
+driver (the actual driver for the eLCDIF block).
 
-On Tue, Jun 11, 2019 at 11:03:09AM +0200, Maxime Ripard wrote:
-> Switch the DT binding to a YAML schema to enable the DT validation.
->=20
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->=20
+2. Add support for additional pixel formats
+Some of the pixel formats needed by Android were not implemented in this
+driver, but they were actually supported. So, add support for them.
 
-Applied to for-next, thanks!
+3. Add support for horizontal stride
+Having support for horizontal stride allows the use of eLCDIF with a GPU
+(for example) that can only output resolution sizes multiple of a power of
+8. For example, 1080 is not a power of 16, so in order to support 1920x1080
+output from GPUs that can produce linear buffers only in sizes multiple to 16,
+this feature is needed.
 
+3. Few minor features and bug-fixing
+The addition of max-res DT property was actually needed in order to limit
+the bandwidth usage of the eLCDIF block. This is need on systems where
+multiple display controllers are presend and the memory bandwidth is not
+enough to handle all of them at maximum capacity (like it is the case on
+8MQ, where there are two display controllers: DCSS and eLCDIF).
+The rest of the patches are bug-fixes.
 
---ZG+WKzXzVby2T9Ro
-Content-Type: application/pgp-signature; name="signature.asc"
+Mirela Rabulea (1):
+  drm/mxsfb: Signal mode changed when bpp changed
 
------BEGIN PGP SIGNATURE-----
+Robert Chiras (9):
+  drm/mxsfb: Update mxsfb to support a bridge
+  drm/mxsfb: Update mxsfb with additional pixel formats
+  drm/mxsfb: Fix the vblank events
+  dt-bindings: display: Add max-res property for mxsfb
+  drm/mxsfb: Add max-res property for MXSFB
+  drm/mxsfb: Update mxsfb to support LCD reset
+  drm/mxsfb: Improve the axi clock usage
+  drm/mxsfb: Clear OUTSTANDING_REQS bits
+  drm/mxsfb: Add support for horizontal stride
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0Tc6QACgkQFA3kzBSg
-KbYHgA/9F8nLcTx2NE4YvEyysDBH0L3/XFU39GvfNfR00Uu3Js8xbbyCmj/GYwLr
-fPMNWfOtjF5ROVZOnhKc8BVhk9ps9qzOVDjn11VgnScxpWym2IuvpFfY1yXfT0H6
-9arS6XHnikWTkLUpZIAWSA4yHByNptL+ZRmcJ2gcabBn/8rCrfwe2JvxfLNyLAsI
-rL+ynFioJZqhZOEXrag9AwPPzIH8UnItUbt/yFgNdurRynJUDmKM2eZ/xwf8mgga
-WXVGHIVHjSJFp0kool7FJagDUqJ5nVTMDBkUePCxUihg6CSse2YDQtONGKY2fxmY
-2aSpGhNYUj+jRTOtJSHPjGfCFJ7t6k6nhuk0Psqz5rOV3fxy+Hldi23MJa5D6GWb
-jbclbxhwIKKuBsCx694ESa2yUoKXdPkIukw1IDTynpFUgF5/Gm9cafxcCGK5wNrd
-aIzPaDVP/9JGdXx/i7kkVTFtPO+J3ToXqA/UHhbz/JoX8ORlun18NBrcgfpl26p3
-TST6uEr15dx+SR46ebz7r5RdnirxWyBD2kn4iMnj7YmUi9ONSPXttjN+4/Mnq1wk
-9wnM4tic6utMMEQN5oHCnViFi1ZS4/FqEQ0CTZlb1+DG5UwRTSUAgN4v+fWffM/2
-k4Mnmq4JmdQaFsFmcM282vpYVQAm7UwU5wQYZOd1Be/tWe+Tsxg=
-=RozK
------END PGP SIGNATURE-----
+ .../devicetree/bindings/display/mxsfb.txt          |   6 +
+ drivers/gpu/drm/mxsfb/mxsfb_crtc.c                 | 290 ++++++++++++++++++---
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c                  | 189 +++++++++++---
+ drivers/gpu/drm/mxsfb/mxsfb_drv.h                  |  10 +-
+ drivers/gpu/drm/mxsfb/mxsfb_out.c                  |  26 +-
+ drivers/gpu/drm/mxsfb/mxsfb_regs.h                 | 128 ++++++---
+ 6 files changed, 531 insertions(+), 118 deletions(-)
 
---ZG+WKzXzVby2T9Ro--
+-- 
+2.7.4
+
