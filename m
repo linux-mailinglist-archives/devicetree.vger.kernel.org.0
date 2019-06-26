@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65C1B56ABB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012E456ABC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727795AbfFZNgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:36:37 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:33416 "EHLO
+        id S1727793AbfFZNgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 09:36:39 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:40254 "EHLO
         mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727641AbfFZNgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:36:37 -0400
-Received: by mail-wr1-f67.google.com with SMTP id n9so2817129wru.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 06:36:36 -0700 (PDT)
+        with ESMTP id S1727727AbfFZNgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:36:39 -0400
+Received: by mail-wr1-f67.google.com with SMTP id p11so2778764wre.7
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 06:36:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gnbXfzzoDtydJ87Q5fD6teACNHZuePi08QBtGx5OaUc=;
-        b=blN2Wv4WVam0hiUqSylbBjtVDmRMsW53HOX2psNbZKAxgOV2/z/PkOMtPkvN/ugaMZ
-         Sg4t47aCwoKzFiHw5nHazKAzbtIIT1w5Cg3nv+jk5gdLshoApig4CdNMpdMnYHjq9tnk
-         CedAXDygrR2Ry2XQZjRO9kNtKX+IT1NbJk0z0dwj9Lpr0DgIjdw6g0Z9+faU+mkx7mrF
-         CTbKNYE6FmB6gqFUzdzYfA74pNkEU/94kdqZgl9dh8fj7D+Yhwb2d2/+4XhXJeLiYfEa
-         RHU/dazcHlX1nB+mtKcX232onWixjioT9LUKx+Rkgfh1Q3bg1P6IAwWw0fNvYbujtGBk
-         gw+w==
+        bh=T7ZRClmFeqyZ4D18CQN6W27UJDdTkTXzm4pfq532FJg=;
+        b=TWguFFAXrPN64W+X4eBYlZPZH2QrZ3RtaEk2RtjrznN+tIo2MHrKBmJuHOYO0Uxo82
+         CFP2HHb8vbibDiKipegaJwcQALrm2NrxCXayWfVXmKAcXmPvc89FzlJn27GwnE9dp9Jn
+         TOmD7Y531MOUW4bMYKxXAlil3CTluuV2QY2Ocwu8EhCb9Ddn60MQ4rZjV5KStJJJZEny
+         g1ynMXpyyM6tb5symDm+PSC0EgIq5hVwtlbTPNM1Yc333p5mIi/fL9jVfe4gbsAqYZDn
+         xi7Sho9UEBe6Y+B41ZD6Fh4xckuLJjEvfvy8pec2lLenRMJaJVqr9uOUMwAgWUFtQMv5
+         uFxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gnbXfzzoDtydJ87Q5fD6teACNHZuePi08QBtGx5OaUc=;
-        b=di4L6BB+3FhyLepP/id/I2Y6WluyhXA/H3p/VqOmnT3l7Wa7K3Ws6fTJT++rmWdrLW
-         lstaO45Vvq4zaM7aHDVPAby6yigPTTj02ics7l9MVtTFYTXZs9Cqc0fnu8lkT11bY7uz
-         zBB7FY80/RbzQjHad6PZmdeBmG1drWcKC4XILVbzN/twcoXeU97Pu6XFw+/Tt8+ZC9fY
-         VHR4uLw9BeX2ffW8LyCnsNEtvcpdpzs0/P+PJEWaw7POwG/bPcPvBfev5qWivu1doXf6
-         tu3AxQBhRKqZIdpdz0CRYmBQFPaQiEcwOFYjk5QCLzEbIymsIxxnEcJKXS6wU6TOWgyu
-         rXew==
-X-Gm-Message-State: APjAAAWO0UI3dlQAFPP/s1aRsSF5Y2jDToQU0Z3s7AQ6BJn0W1OkPf6z
-        5rFD7DzmNV4hdjaT9axymmNlIQ==
-X-Google-Smtp-Source: APXvYqw4hWzpgN2aSWbX3Ju7Pa2dKjxwWsjZwurpIK/EUEgT1P05NHGu8zYfqRbAxNX4dVIeZVs39A==
-X-Received: by 2002:a5d:67cd:: with SMTP id n13mr2478127wrw.138.1561556195567;
-        Wed, 26 Jun 2019 06:36:35 -0700 (PDT)
+        bh=T7ZRClmFeqyZ4D18CQN6W27UJDdTkTXzm4pfq532FJg=;
+        b=Mf5fpjle1/3Wvd2MdEwI4dY7h4vGZqiiQ5gVvhq+tdu3PZa+6R7/Pvllt5ai3TI84Q
+         KV7n7K6XvPix9m3YyrW16te/W+P/kVaBdBmZYnrN5up77ZLxbPcraLsskDhiyn4FpimA
+         ///3jVUEDtmvxTj9mQJBsWlPyFjFEMqptInp8JKyorjWWZjJno8bcU94fVe4T+K1UWyG
+         pTY4Ps/Tr8Tyj04nGPWvh+sUlKM+0IZrIr6ytr/hFqYkW7yodjMVfh9Y0aZbLYBQ5z4P
+         2BFyOmDo4rQfVHwAfS6MHJeHdlBLma7Jb3GzY7C8Cv6q/o52h4oqtNtSNx670qBElPnm
+         rgoA==
+X-Gm-Message-State: APjAAAW6HEdZKL7YfPf1UnZC0Jl1uB1F8whdXrQsowzRfNIf9BFTZ1hD
+        +4CT8hCe/9zmUpgLIRVzcr/zmA==
+X-Google-Smtp-Source: APXvYqyQoNCoBKyM9obg5usRFdzjH1ex5bqDtX67GdFzjV+14hTLDxL2tfEZx8cpYrkZQuJiZNlvnw==
+X-Received: by 2002:a5d:4949:: with SMTP id r9mr3595411wrs.289.1561556196920;
+        Wed, 26 Jun 2019 06:36:36 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id w185sm2877880wma.39.2019.06.26.06.36.34
+        by smtp.googlemail.com with ESMTPSA id w185sm2877880wma.39.2019.06.26.06.36.35
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 26 Jun 2019 06:36:35 -0700 (PDT)
+        Wed, 26 Jun 2019 06:36:36 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Kevin Hilman <khilman@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH 1/2] ASoC: soc-core: defer card registration if codec component is missing
-Date:   Wed, 26 Jun 2019 15:36:16 +0200
-Message-Id: <20190626133617.25959-2-jbrunet@baylibre.com>
+        linux-amlogic@lists.infradead.org,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH 2/2] ASoC: soc-core: support dai_link with platforms_num != 1
+Date:   Wed, 26 Jun 2019 15:36:17 +0200
+Message-Id: <20190626133617.25959-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190626133617.25959-1-jbrunet@baylibre.com>
 References: <20190626133617.25959-1-jbrunet@baylibre.com>
@@ -65,39 +66,172 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Like cpus and platforms, defer sound card initialization if the codec
-component is missing when initializing the dai_link
+Add support platforms_num != 1 in dai_link. Initially, the main purpose of
+this change was to make the platform optional in the dai_link, instead of
+inserting the dummy platform driver.
 
+This particular case had just been solved by Kuninori Morimoto with
+commit 1d7689892878 ("ASoC: soc-core: allow no Platform on dai_link").
+
+However, this change may still be useful for those who need multiple
+platform components on a single dai_link (it solves one of the FIXME
+note in soc-core)
+
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/soc-core.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ include/sound/soc.h  |  6 ++++
+ sound/soc/soc-core.c | 66 +++++++++++++++++++-------------------------
+ 2 files changed, 34 insertions(+), 38 deletions(-)
 
+diff --git a/include/sound/soc.h b/include/sound/soc.h
+index 64405cdab8bb..4e8071269639 100644
+--- a/include/sound/soc.h
++++ b/include/sound/soc.h
+@@ -997,6 +997,12 @@ struct snd_soc_dai_link {
+ 	     ((i) < link->num_codecs) && ((codec) = &link->codecs[i]);	\
+ 	     (i)++)
+ 
++#define for_each_link_platforms(link, i, platform)			\
++	for ((i) = 0;							\
++	     ((i) < link->num_platforms) &&				\
++	     ((platform) = &link->platforms[i]);			\
++	     (i)++)
++
+ /*
+  * Sample 1 : Single CPU/Codec/Platform
+  *
 diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
-index 358f1fbf9a30..002ddbf4e5a3 100644
+index 002ddbf4e5a3..3053a4a461b3 100644
 --- a/sound/soc/soc-core.c
 +++ b/sound/soc/soc-core.c
-@@ -1064,12 +1064,20 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+@@ -887,7 +887,7 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 	struct snd_soc_dai_link *dai_link)
+ {
+ 	struct snd_soc_pcm_runtime *rtd;
+-	struct snd_soc_dai_link_component *codecs;
++	struct snd_soc_dai_link_component *dlc;
+ 	struct snd_soc_component *component;
+ 	int i;
+ 
+@@ -917,13 +917,14 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 
+ 	/* Find CODEC from registered CODECs */
+ 	rtd->num_codecs = dai_link->num_codecs;
+-	for_each_link_codecs(dai_link, i, codecs) {
+-		rtd->codec_dais[i] = snd_soc_find_dai(codecs);
++	for_each_link_codecs(dai_link, i, dlc) {
++		rtd->codec_dais[i] = snd_soc_find_dai(dlc);
+ 		if (!rtd->codec_dais[i]) {
+ 			dev_info(card->dev, "ASoC: CODEC DAI %s not registered\n",
+-				 codecs->dai_name);
++				 dlc->dai_name);
+ 			goto _err_defer;
+ 		}
++
+ 		snd_soc_rtdcom_add(rtd, rtd->codec_dais[i]->component);
+ 	}
+ 
+@@ -931,12 +932,13 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 	rtd->codec_dai = rtd->codec_dais[0];
+ 
+ 	/* Find PLATFORM from registered PLATFORMs */
+-	for_each_component(component) {
+-		if (!snd_soc_is_matching_component(dai_link->platforms,
+-						   component))
+-			continue;
++	for_each_link_platforms(dai_link, i, dlc) {
++		for_each_component(component) {
++			if (!snd_soc_is_matching_component(dlc, component))
++				continue;
+ 
+-		snd_soc_rtdcom_add(rtd, component);
++			snd_soc_rtdcom_add(rtd, component);
++		}
+ 	}
+ 
+ 	soc_add_pcm_runtime(card, rtd);
+@@ -1051,22 +1053,22 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 			     struct snd_soc_dai_link *link)
+ {
+ 	int i;
+-	struct snd_soc_dai_link_component *codec;
++	struct snd_soc_dai_link_component *dlc;
+ 
+-	for_each_link_codecs(link, i, codec) {
++	for_each_link_codecs(link, i, dlc) {
+ 		/*
+ 		 * Codec must be specified by 1 of name or OF node,
+ 		 * not both or neither.
+ 		 */
+-		if (!!codec->name ==
+-		    !!codec->of_node) {
++		if (!!dlc->name ==
++		    !!dlc->of_node) {
+ 			dev_err(card->dev, "ASoC: Neither/both codec name/of_node are set for %s\n",
  				link->name);
  			return -EINVAL;
  		}
-+
+ 
  		/* Codec DAI name must be specified */
- 		if (!codec->dai_name) {
+-		if (!codec->dai_name) {
++		if (!dlc->dai_name) {
  			dev_err(card->dev, "ASoC: codec_dai_name not set for %s\n",
  				link->name);
  			return -EINVAL;
- 		}
-+
-+		/*
-+		 * Defer card registartion if codec component is not added to
-+		 * component list.
-+		 */
-+		if (!soc_find_component(codec))
-+			return -EPROBE_DEFER;
+@@ -1076,40 +1078,28 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 		 * Defer card registartion if codec component is not added to
+ 		 * component list.
+ 		 */
+-		if (!soc_find_component(codec))
++		if (!soc_find_component(dlc))
+ 			return -EPROBE_DEFER;
  	}
  
- 	/*
+-	/*
+-	 * Platform may be specified by either name or OF node,
+-	 * or no Platform.
+-	 *
+-	 * FIXME
+-	 *
+-	 * We need multi-platform support
+-	 */
+-	if (link->num_platforms > 0) {
+-
+-		if (link->num_platforms > 1) {
+-			dev_err(card->dev,
+-				"ASoC: multi platform is not yet supported %s\n",
+-				link->name);
+-			return -EINVAL;
+-		}
+-
+-		if (link->platforms->name && link->platforms->of_node) {
++	for_each_link_platforms(link, i, dlc) {
++		/*
++		 * Platform may be specified by either name or OF node, but it
++		 * can be left unspecified, then no components will be inserted
++		 * in the rtdcom list
++		 */
++		if (!!dlc->name == !!dlc->of_node) {
+ 			dev_err(card->dev,
+-				"ASoC: Both platform name/of_node are set for %s\n",
++				"ASoC: Neither/both platform name/of_node are set for %s\n",
+ 				link->name);
+ 			return -EINVAL;
+ 		}
+ 
+ 		/*
+-		 * Defer card registartion if platform dai component is not
+-		 * added to component list.
++		 * Defer card registartion if platform component is not added to
++		 * component list.
+ 		 */
+-		if ((link->platforms->of_node || link->platforms->name) &&
+-		    !soc_find_component(link->platforms))
++		if (!soc_find_component(dlc))
+ 			return -EPROBE_DEFER;
+ 	}
+ 
 -- 
 2.21.0
 
