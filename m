@@ -2,68 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B47567A7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 13:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33C2567DC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 13:43:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727318AbfFZLdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 07:33:12 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:46876 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727296AbfFZLdM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 07:33:12 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 7EC2380349;
-        Wed, 26 Jun 2019 13:33:08 +0200 (CEST)
-Date:   Wed, 26 Jun 2019 13:33:06 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH v5 2/2] drm/panel: Add support for Raydium RM67191 panel
- driver
-Message-ID: <20190626113306.GA24921@ravnborg.org>
-References: <1561544420-15572-1-git-send-email-robert.chiras@nxp.com>
- <1561544420-15572-3-git-send-email-robert.chiras@nxp.com>
+        id S1726484AbfFZLnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 07:43:12 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:42166 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726462AbfFZLnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 07:43:12 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QBh1Dt058683;
+        Wed, 26 Jun 2019 06:43:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561549381;
+        bh=WwHQvZVuBJ4XkmGdaiEi/q1HLv0u2YRrE022uHmQfco=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=vJiJSx52YheNxh4+vzGtHWRxLhdiTdGWocbHw532ycmCrV6zNoXKf1Yf+g+J4pcPh
+         1By/DdttkARmrxJM4ndjIf4x8bkugjXs8+wAKtovVhW3dWiW5ddvCQYPqZLm17bHE2
+         dYYnnsn24/w7//JL/RKCWSCrUNJJtSmwVEpk+E3E=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QBh1fe101052
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Jun 2019 06:43:01 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 26
+ Jun 2019 06:43:01 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 26 Jun 2019 06:43:01 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QBh0dl016779;
+        Wed, 26 Jun 2019 06:43:00 -0500
+Subject: Re: [PATCH 2/2] backlight: arcxcnn: add "arctic" vendor prefix
+To:     Brian Dodge <bdodge09@gmail.com>, <pavel@ucw.cz>
+CC:     <daniel.thompson@linaro.org>, <lee.jones@linaro.org>,
+        <jingoohan1@gmail.com>, <jacek.anaszewski@gmail.com>,
+        <robh+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <pbacon@psemi.com>
+References: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
+ <1561435529-7835-3-git-send-email-bdodge09@gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <e3a6f4f5-8da9-f533-5cef-3ae2a87f52bc@ti.com>
+Date:   Wed, 26 Jun 2019 06:42:43 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1561544420-15572-3-git-send-email-robert.chiras@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=IkcTkHD0fZMA:10
-        a=R-vzCapntemROrW6nt8A:9 a=QEXdDO2ut3YA:10
+In-Reply-To: <1561435529-7835-3-git-send-email-bdodge09@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert.
+Hello
 
-On Wed, Jun 26, 2019 at 01:20:20PM +0300, Robert Chiras wrote:
-> This patch adds Raydium RM67191 TFT LCD panel driver (MIPI-DSI
-> protocol).
+On 6/24/19 11:05 PM, Brian Dodge wrote:
+> The original patch adding this driver and DT bindings improperly
+> used "arc" as the vendor-prefix. This adds "arctic" which is the
+> proper prefix and retains "arc" to allow existing users of the
+> "arc" prefix to update to new kernels. There is at least one
+> (Samsung Chromebook Plus)
+>
+> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
+> ---
+>   drivers/video/backlight/arcxcnn_bl.c | 35 +++++++++++++++++++++++++----------
+>   1 file changed, 25 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/video/backlight/arcxcnn_bl.c b/drivers/video/backlight/arcxcnn_bl.c
+> index 7b1c0a0..14c67f2 100644
+> --- a/drivers/video/backlight/arcxcnn_bl.c
+> +++ b/drivers/video/backlight/arcxcnn_bl.c
+> @@ -1,9 +1,9 @@
+>   // SPDX-License-Identifier: GPL-2.0-only
+>   /*
+> - * Backlight driver for ArcticSand ARC_X_C_0N_0N Devices
+> + * Backlight driver for pSemi (formerly ArcticSand) ARC_X_C_0N_0N Devices
+>    *
+> - * Copyright 2016 ArcticSand, Inc.
+> - * Author : Brian Dodge <bdodge@arcticsand.com>
+> + * Copyright 2016-2019  pSemi, Inc.
+> + * Author : Brian Dodge <bdodge@psemi.com>
+>    */
+>   
+>   #include <linux/backlight.h>
+> @@ -191,27 +191,40 @@ static void arcxcnn_parse_dt(struct arcxcnn *lp)
+>   	if (ret == 0)
+>   		lp->pdata->initial_brightness = prog_val;
+>   
+> -	ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,led-config-0", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
+Can you add new lines between these and all below
+>   	if (ret == 0)
+>   		lp->pdata->led_config_0 = (u8)prog_val;
+>   
+> -	ret = of_property_read_u32(node, "arc,led-config-1", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,led-config-1", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,led-config-1", &prog_val);
+>   	if (ret == 0)
+>   		lp->pdata->led_config_1 = (u8)prog_val;
+>   
+> -	ret = of_property_read_u32(node, "arc,dim-freq", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,dim-freq", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,dim-freq", &prog_val);
+>   	if (ret == 0)
+>   		lp->pdata->dim_freq = (u8)prog_val;
+>   
+> -	ret = of_property_read_u32(node, "arc,comp-config", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,comp-config", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,comp-config", &prog_val);
+>   	if (ret == 0)
+>   		lp->pdata->comp_config = (u8)prog_val;
+>   
+> -	ret = of_property_read_u32(node, "arc,filter-config", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,filter-config", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node,
+> +				"arc,filter-config", &prog_val);
+>   	if (ret == 0)
+>   		lp->pdata->filter_config = (u8)prog_val;
+>   
+> -	ret = of_property_read_u32(node, "arc,trim-config", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,trim-config", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,trim-config", &prog_val);
+>   	if (ret == 0)
+>   		lp->pdata->trim_config = (u8)prog_val;
+>   
+> @@ -381,6 +394,8 @@ static int arcxcnn_remove(struct i2c_client *cl)
+>   }
+>   
+>   static const struct of_device_id arcxcnn_dt_ids[] = {
+> +	{ .compatible = "arctic,arc2c0608" },
+> +	/* here to remaim compatible with an older binding, do not use */
 
-I was about to apply these - but I get following warnings during build:
-  CC      drivers/gpu/drm/panel/panel-raydium-rm67191.o
-/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c: In function ‘rad_bl_get_brightness’:
-/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c:470:17: warning: unused variable ‘dev’ [-Wunused-variable]
-  struct device *dev = &dsi->dev;
-                 ^~~
-/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c: In function ‘rad_bl_update_status’:
-/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c:492:17: warning: unused variable ‘dev’ [-Wunused-variable]
-  struct device *dev = &dsi->dev;
-                 ^~~
+s/remaim/remain
 
-Please fix and update your scripts to catch this in the future.
 
-	Sam
+>   	{ .compatible = "arc,arc2c0608" },
+>   	{ }
+>   };
+> @@ -404,5 +419,5 @@ static struct i2c_driver arcxcnn_driver = {
+>   module_i2c_driver(arcxcnn_driver);
+>   
+>   MODULE_LICENSE("GPL v2");
+> -MODULE_AUTHOR("Brian Dodge <bdodge@arcticsand.com>");
+> +MODULE_AUTHOR("Brian Dodge <bdodge@psemi.com>");
+>   MODULE_DESCRIPTION("ARCXCNN Backlight driver");
