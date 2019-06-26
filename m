@@ -2,89 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C0D569E5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC1E7569F5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbfFZNAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:00:14 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:36119 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbfFZNAO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:00:14 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 03DA42003C;
-        Wed, 26 Jun 2019 15:00:08 +0200 (CEST)
-Date:   Wed, 26 Jun 2019 15:00:07 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1727181AbfFZNFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 09:05:03 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:47092 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726131AbfFZNFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:05:02 -0400
+Received: by mail-qk1-f193.google.com with SMTP id x18so1497168qkn.13
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 06:05:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=k5O9oE6uVEOIMk3nCZB+QbyTxE9Wg+XK01suEC8a+TA=;
+        b=uPYvYvEk0Nkk2u2fD9IWk96MmABOeM3RBQCROHdDlEqDdqZHW4OubafQKAzNMvuovq
+         iKeH4fPhxifsQyjIVZoAMmZRPzpb5o3amMYjAncq43pR7apSABLA4WZiinICdzE/jLaD
+         +z5w93D93nlvSvHYQeHHivRvQOYEHMCwkD4SKo+wdaM5ZT0crBBlSvsagvdFObKxJ1c7
+         bocIph99Gy4sM2i0KtqVO5ukWbsz3CfetmvblpluClMV0HqTDTeHurtmiJxhrn5V+9dJ
+         F2FJRumHlQ/55CBEe3Hr4vof/j/apcTUtDex+4s1uwDw7Zgaoy2/sN/9zbzYaomPjLbs
+         mVFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=k5O9oE6uVEOIMk3nCZB+QbyTxE9Wg+XK01suEC8a+TA=;
+        b=Sc7pNaJeBwa0EJjw1RHNAK+HI2UjWjcp5pbrVcfBy+e823d5x5QFF+KYo+K7UURRds
+         mzDUIjKYYl+KE7SlpKY7fVuSWWGoE4qyZOTxD8rIzkeISLE/vovxf4+SewgZCFWAAUpW
+         roOJcnlEtef7gsnFKR8xs3DuCZkJyCwLFFEf7V8jaosPQIP/yjdADJIgvcqDrgmt2obB
+         wzQmhwZhLu1/IsPtf9k0sztE5FDFL1W63+UBJ0xUTYocxtjDONmVRLW/Y0kmOAP/47fm
+         HdJgUxzq1bCRmM2GPjf5LEbDMzpau8k7Ewcbha3H36c2zpHVLEiErVx4/p0AUITOPSxX
+         D5Zw==
+X-Gm-Message-State: APjAAAVP3+FxEmr4MzOFOXEKxDOd+SGhp7iNY8DoioqMxEnMVEJ7Cqp5
+        CWrF7034lrqoMsJvKIaJV6s=
+X-Google-Smtp-Source: APXvYqwZyDh14JaHgMEUYlacuj4zCZLs8pL9lTam984XGbMtpUzCvpXgIxneOdxOTTMDhd+634gBwA==
+X-Received: by 2002:a05:620a:1106:: with SMTP id o6mr3650393qkk.272.1561554301257;
+        Wed, 26 Jun 2019 06:05:01 -0700 (PDT)
+Received: from firefly.sparksnet (c-98-233-237-228.hsd1.md.comcast.net. [98.233.237.228])
+        by smtp.gmail.com with ESMTPSA id k58sm10368382qtc.38.2019.06.26.06.05.00
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 26 Jun 2019 06:05:00 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     "Leonidas P . Papadakos" <papadakospan@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Brian Norris <briannorris@chromium.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Enric =?iso-8859-1?Q?Balletb=F2?= <enric.balletbo@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>, mka@chromium.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jose Abreu <jose.abreu@synopsys.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 0/7] drm/panel: simple: Add mode support to devicetree
-Message-ID: <20190626130007.GE23428@ravnborg.org>
-References: <20190401171724.215780-1-dianders@chromium.org>
+Subject: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii performance.
+Date:   Wed, 26 Jun 2019 13:04:43 +0000
+Message-Id: <20190626130443.22025-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190401171724.215780-1-dianders@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8
-        a=cKMTf3WC4CzyLkAXteUA:9 a=CjuIK1q_8ugA:10 a=PO69wPE_V6wA:10
-        a=Vxmtnl_E_bksehYqCbjh:22
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Douglas.
+Currently the rk3328-roc-cc ethernet is enabled using "snps,force_thresh_dma_mode".
+While this works, the performance leaves a lot to be desired.
+A previous attempt to improve performance used "snps,txpbl = <0x4>".
+This also allowed networking to function, but performance varied between boards.
 
-On Mon, Apr 01, 2019 at 10:17:17AM -0700, Douglas Anderson wrote:
-> I'm reviving Sean Paul's old patchset to get mode support in device
-> tree.  The cover letter for his v3 is at:
-> https://lists.freedesktop.org/archives/dri-devel/2018-February/165162.html
-> 
-> No code is different between v4 and v5, just commit messages and text
-> in the bindings.
-> 
-> I've pulled together the patches that didn't land in v3, addressed
-> outstanding feedback, and reposted.  Atop them I've added patches for
-> rk3288-veyron-chromebook (used for jaq, jerry, mighty, speedy) and
-> rk3288-veryon-minnie.
-> 
-> Please let me know how they look.
-> 
-> In general I have added people to the whole series who I think would
-> like the whole series and then let get_maintainer pick extra people it
-> thinks are relevant to each individual patch.  If I see you respond to
-> any of the patches in the series, though, I'll add you to the whole
-> series Cc list next time.
-> 
-> Changes in v5:
-> - Removed bit about OS may ignore (Rob/Ezequiel)
-> - Added Heiko's Tested-by
-> - It's not just jerry, it's most rk3288 Chromebooks (Heiko)
+This patch takes that one step further.
+Set txpbl and rxpbl to 0x4.
+This can also be accomplished with "snps,pbl =<0x4>" which affects both.
+Also set "snps,aal" which forces address aligned DMA mode.
 
-What are the plans to move forward with this?
-Or did you drop the whole idea again?
+Fixes: 4bc4d6013b7f (arm64: dts: rockchip: fix rk3328-roc-cc gmac2io stability issues)
 
-	Sam
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+
+Tested-by: Leonidas P. Papadakos <papadakospan@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+index 5d499c9086fb..8bcc08de82fb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+@@ -141,10 +141,12 @@
+ 	phy-mode = "rgmii";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rgmiim1_pins>;
+-	snps,force_thresh_dma_mode;
+ 	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+ 	snps,reset-active-low;
+ 	snps,reset-delays-us = <0 10000 50000>;
++	snps,txpbl = <0x4>;
++	snps,rxpbl = <0x4>;
++	snps,aal;
+ 	tx_delay = <0x24>;
+ 	rx_delay = <0x18>;
+ 	status = "okay";
+-- 
+2.20.1
+
