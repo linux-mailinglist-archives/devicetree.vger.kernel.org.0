@@ -2,101 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD65357496
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 00:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD405749F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 01:00:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726387AbfFZW41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 18:56:27 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:44978 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726379AbfFZW41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 18:56:27 -0400
-Received: by mail-pf1-f195.google.com with SMTP id t16so173222pfe.11
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 15:56:27 -0700 (PDT)
+        id S1726472AbfFZXAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 19:00:54 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35446 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726487AbfFZXAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 19:00:53 -0400
+Received: by mail-pl1-f195.google.com with SMTP id w24so157971plp.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 16:00:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=IuI6M4VGf1cjQTUKZW+l4CbPnBlOyXj2+eIKebMch1k=;
-        b=PkX050BpppH3H/7xYIywyS+Db9gQLAlPfiWuw1cGsyQZ+YKibWRElZhD+84sVsUSU4
-         1E/w5nwSOoby0+/SDXrA61D0g/IS1aMnxZCOMTDSwtiArIylZ2mxQdb7Hki56EuRiFRd
-         DKOTP6SJn52T4RzoGRJhl5q9+Wn0GLrQzS178=
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=turlNrZcH8tuujf37Q7HEe8hyhwhiMkMAGSNncSmJd0=;
+        b=tPbLhI6p7V77PIMP2Ixa9TxEo7roY6MVHPMR6jgk7ZuALrFWvqeemx+Wplsc+xCraa
+         pdqaYu92o/6BUX2InP+i1EHq6YxT7QAYYWFgD1MBvytI5KSVDogEPNSSYbdTqT2lCSQ0
+         Fn3GAaSQ9CIrxWUpqqCpg+X3DttzdAEUoMp1XrupALh+W8vxcCBtUuzpQXYzG6c3iMf7
+         UhPmfILyu8sJnTsr66nAy/yDGC9ePdyx7iIS/nUONAHd9nJ8GTtoBAj4b7HYxRUEhl1e
+         BHevIfb/hk6Fobzekl76hHs0k5V4Gu3QLYcO3BnbTSkfvMzcisvJPBxENYWRxYw+rWCH
+         v0ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IuI6M4VGf1cjQTUKZW+l4CbPnBlOyXj2+eIKebMch1k=;
-        b=DhOTvsyMamnGvxd7sGkAhJOI6+SpVs2fSKAfk6JgE4dCQoa1RXsBaJnKqV1dqj89Xr
-         TEwFPfY3P750UNLTyEjlvx0tGFUBflg7ZD9UQF3ZIyXxNc18jKI/5E6PfMLA+UznsH4d
-         4lITSsjwaVfQXQpu3O2OjlgSV3NpDLlpDNwe7C2YtLIQcaAFGqOtnKriUtEVkQEz5Hos
-         VEVvrhaFQb0xLiqf73siF5w8gcNcxdEOz7AQg16wEceApNAxbIi1pD49os+jcMKBTKjn
-         /p4kGtO5AWg69ajh5ImamS9d56B267WQ/uEchlcTVgYCAsbWF89NC6De8YaUNnUXWnMx
-         wOCw==
-X-Gm-Message-State: APjAAAVmXa17Z37x4ZxrSnvZrRwESRnTq7HqhbnKigdN/5NIsHO2LyVq
-        yHxltcigbpgPP8AZsx5BOINDE0ryDdI=
-X-Google-Smtp-Source: APXvYqyx8pJF4J/wTCH99KCJF8FrgEcnvbR4pUyscuGINJgi0EniQVKfjOWyJ2HNdG0cgwESpM13NA==
-X-Received: by 2002:a17:90a:2385:: with SMTP id g5mr1954277pje.12.1561589786991;
-        Wed, 26 Jun 2019 15:56:26 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id f88sm3487343pjg.5.2019.06.26.15.56.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 Jun 2019 15:56:26 -0700 (PDT)
-Date:   Wed, 26 Jun 2019 15:56:24 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        enric.balletbo@collabora.com
-Subject: Re: [PATCH 1/2] ARM: dts: rockchip: move rk3288-veryon display
- settings into a separate file
-Message-ID: <20190626225624.GC137143@google.com>
-References: <20190625222629.154619-1-mka@chromium.org>
- <2418036.tTYI8lUvN5@phil>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=turlNrZcH8tuujf37Q7HEe8hyhwhiMkMAGSNncSmJd0=;
+        b=YDdKWLzIqCs8r0v/CVNYuNa5XBE6GVBk6E7mQDhGWSP9+myCUlRdo/QSAQOd/7eOio
+         cs0c6nDKqDHOFc6jQuS8S6EaiVzXkqkyeLU5ZqiVNT7TGILWwpJXmY1WJIyZp72G1LJH
+         RiajC+jkJFg/qv53NXGJVtGk7A98zwNXuFtjpCB+l7vAiBaUt060u+ncpgqlW/u/47GI
+         dP3VvTz/iymSAZcfv0Bka6mNpGN0MPHIw7D2t7/ZN2qfslnGJ9Ogin/K83l7MglAbu9R
+         Gr4vbHvhedjUd0a3wb/1fzvyJbX6zMTCt4SZMxmIw79jcdQl0L/Cnzfc3A7RNcV5amfi
+         gJWA==
+X-Gm-Message-State: APjAAAUvEGSIzIehMPKJoKeh7szok5zQEPI+wbSs/8aXWod4tVNzPTS2
+        tRNWXRRwAN60nOZVsDC9av8QHk1VzzhxwnfQwksyag==
+X-Google-Smtp-Source: APXvYqyVbS9SuPoqv6WFyOjCnMYrySBcHNuv6jq0PUoe5f5yqgIDv1bI73Ejus2aEdQ4kXu4W/T/wMpAMZdGpDkQTLk=
+X-Received: by 2002:a17:902:2006:: with SMTP id n6mr669016pla.232.1561590052378;
+ Wed, 26 Jun 2019 16:00:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2418036.tTYI8lUvN5@phil>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-2-brendanhiggins@google.com> <20190620001526.93426218BE@mail.kernel.org>
+ <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com> <20190626034100.B238520883@mail.kernel.org>
+In-Reply-To: <20190626034100.B238520883@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Wed, 26 Jun 2019 16:00:40 -0700
+Message-ID: <CAFd5g46zHAupdUh3wDuqPJti2M+_=oje_5weFe7AVLQfkDDM6A@mail.gmail.com>
+Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 27, 2019 at 12:19:27AM +0200, Heiko Stuebner wrote:
-> Hi Matthias,
-> 
-> Am Mittwoch, 26. Juni 2019, 00:26:28 CEST schrieb Matthias Kaehlcke:
-> > The chromebook .dtsi file contains common settings for veyron
-> > Chromebooks with eDP displays. Some veyron devices with a display
-> > aren't Chromebooks (e.g. 'tiger' aka 'AOpen Chromebase Mini'), move
-> > display related bits from the chromebook .dtsi into a separate file
-> > to avoid redundant DT settings.
-> > 
-> > The new file is included from the chromebook .dtsi and can be
-> > included by non-Chromebook devices with a display.
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > This series is based on v5.3-armsoc/dts32 (f497ab6b4bb8 "ARM:
-> > dts: rockchip: Configure BT_HOST_WAKE as wake-up signal on
-> > veyron") plus the display timing patches from Doug:
-> 
-> the display-timing patches are still stuck on panel-review.
-> 
-> But while we wait for that to get resolved, you could also check if
-> the veyron panels could use Enric's fanzy new automatic calculation
-> of brightness-leves in the pwm-backlight driver, so that we possibly
-> could get rid of the long table of levels.
+On Tue, Jun 25, 2019 at 8:41 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-06-25 13:28:25)
+> > On Wed, Jun 19, 2019 at 5:15 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Quoting Brendan Higgins (2019-06-17 01:25:56)
+> > > > diff --git a/kunit/test.c b/kunit/test.c
+> > > > new file mode 100644
+> > > > index 0000000000000..d05d254f1521f
+> > > > --- /dev/null
+> > > > +++ b/kunit/test.c
+> > > > @@ -0,0 +1,210 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * Base unit test (KUnit) API.
+> > > > + *
+> > > > + * Copyright (C) 2019, Google LLC.
+> > > > + * Author: Brendan Higgins <brendanhiggins@google.com>
+> > > > + */
+> > > > +
+> > > > +#include <linux/sched/debug.h>
+> > > > +#include <kunit/test.h>
+> > > > +
+> > > > +static bool kunit_get_success(struct kunit *test)
+> > > > +{
+> > > > +       unsigned long flags;
+> > > > +       bool success;
+> > > > +
+> > > > +       spin_lock_irqsave(&test->lock, flags);
+> > > > +       success = test->success;
+> > > > +       spin_unlock_irqrestore(&test->lock, flags);
+> > >
+> > > I still don't understand the locking scheme in this code. Is the
+> > > intention to make getter and setter APIs that are "safe" by adding in a
+> > > spinlock that is held around getting and setting various members in the
+> > > kunit structure?
+> >
+> > Yes, your understanding is correct. It is possible for a user to write
+> > a test such that certain elements may be updated in different threads;
+> > this would most likely happen in the case where someone wants to make
+> > an assertion or an expectation in a thread created by a piece of code
+> > under test. Although this should generally be avoided, it is possible,
+> > and there are occasionally good reasons to do so, so it is
+> > functionality that we should support.
+> >
+> > Do you think I should add a comment to this effect?
+>
+> No, I think the locking should be removed.
+>
+> >
+> > > In what situation is there more than one thread reading or writing the
+> > > kunit struct? Isn't it only a single process that is going to be
+> >
+> > As I said above, it is possible that the code under test may spawn a
+> > new thread that may make an expectation or an assertion. It is not a
+> > super common use case, but it is possible.
+>
+> Sure, sounds super possible and OK.
+>
+> >
+> > > operating on this structure? And why do we need to disable irqs? Are we
+> > > expecting to be modifying the unit tests from irq contexts?
+> >
+> > There are instances where someone may want to test a driver which has
+> > an interrupt handler in it. I actually have (not the greatest) example
+> > here. Now in these cases, I expect someone to use a mock irqchip or
+> > some other fake mechanism to trigger the interrupt handler and not
+> > actual hardware; technically speaking in this case, it is not going to
+> > be accessed from a "real" irq context; however, the code under test
+> > should think that it is in an irq context; given that, I figured it is
+> > best to just treat it as a real irq context. Does that make sense?
+>
+> Can you please describe the scenario in which grabbing the lock here,
+> updating a single variable, and then releasing the lock right after
+> does anything useful vs. not having the lock? I'm looking for a two CPU
 
-We could get rid of the tables after "backlight: pwm_bl: Fix heuristic
-to determine number of brightness levels"
-(https://lore.kernel.org/patchwork/patch/1087809/) lands.
+Sure.
 
-Ideally we would also have something like this series
-https://lore.kernel.org/patchwork/project/lkml/list/?series=399607 ,
-to provide userspace information about the brightness scale. Currently
-Chrome OS would interpret Enric's table as being linear and adjust the
-brightness slider incorrectly.
+> scenario like below, but where it is a problem. There could be three
+> CPUs, or even one CPU and three threads if you want to describe the
+> extra thread scenario.
+>
+> Here's my scenario where it isn't needed:
+>
+>     CPU0                                      CPU1
+>     ----                                      ----
+>     kunit_run_test(&test)
+>                                               test_case_func()
+>                                                 ....
+>                                               [mock hardirq]
+>                                                 kunit_set_success(&test)
+>                                               [hardirq ends]
+>                                                 ...
+>                                                 complete(&test_done)
+>       wait_for_completion(&test_done)
+>       kunit_get_success(&test)
+>
+> We don't need to care about having locking here because success or
+> failure only happens in one place and it's synchronized with the
+> completion.
+
+Here is the scenario I am concerned about:
+
+CPU0                      CPU1                       CPU2
+----                      ----                       ----
+kunit_run_test(&test)
+                          test_case_func()
+                            ....
+                            schedule_work(foo_func)
+                          [mock hardirq]             foo_func()
+                            ...                        ...
+                            kunit_set_success(false)   kunit_set_success(false)
+                          [hardirq ends]               ...
+                            ...
+                            complete(&test_done)
+  wait_for_completion(...)
+  kunit_get_success(&test)
+
+In my scenario, since both CPU1 and CPU2 update the success status of
+the test simultaneously, even though they are setting it to the same
+value. If my understanding is correct, this could result in a
+write-tear on some architectures in some circumstances. I suppose we
+could just make it an atomic boolean, but I figured locking is also
+fine, and generally preferred.
+
+Also, to be clear, I am onboard with dropping then IRQ stuff for now.
+I am fine moving to a mutex for the time being.
+
+>
+> >
+> > > > +
+> > > > +       return success;
+> > > > +}
+> > > > +
+> > > > +static void kunit_set_success(struct kunit *test, bool success)
+> > > > +{
+> > > > +       unsigned long flags;
+> > > > +
+> > > > +       spin_lock_irqsave(&test->lock, flags);
+> > > > +       test->success = success;
+> > > > +       spin_unlock_irqrestore(&test->lock, flags);
+> > > > +}
