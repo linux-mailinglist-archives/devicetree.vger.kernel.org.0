@@ -2,104 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0344F56C6B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B5E56C6E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbfFZOnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 10:43:04 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34672 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbfFZOnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 10:43:04 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QEgYSO026643;
-        Wed, 26 Jun 2019 09:42:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1561560154;
-        bh=JQTsc372ZbtieW6Fo3QsbkjZrLLE5ueFi63b7dRTl4c=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=kOdAPlvju6ImTTkUKJpjLOaQbVwlSty9CUpFjGolXUM/l/Y1TvDpAlIcJj8kqo/P9
-         OXZRDV+CAYR1DjQAP/57Z5/0okfurKo9+2WzM2kblpSl2aVMXbd/Iv1J1sWUkX7K5g
-         TnxoIRX+kXX7gyrpx4ZPallDebew116A7zzBBn10=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QEgYjd113018
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Jun 2019 09:42:34 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 26
- Jun 2019 09:42:34 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 26 Jun 2019 09:42:34 -0500
-Received: from [10.250.96.121] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QEgTNu089437;
-        Wed, 26 Jun 2019 09:42:30 -0500
-Subject: Re: [RFC PATCH v4 net-next 10/11] ARM: dts: am57xx-idk: add dt nodes
- for new cpsw switch dev driver
-To:     <netdev@vger.kernel.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-References: <20190621181314.20778-1-grygorii.strashko@ti.com>
- <20190621181314.20778-11-grygorii.strashko@ti.com>
- <20190625224953.GD6485@khorivan>
-From:   grygorii <grygorii.strashko@ti.com>
-Message-ID: <311aa679-2656-ad1c-d2fb-b16efa1c33c4@ti.com>
-Date:   Wed, 26 Jun 2019 17:42:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1728025AbfFZOnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 10:43:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46234 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726157AbfFZOnZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 10:43:25 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E5C1B2080C;
+        Wed, 26 Jun 2019 14:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561560204;
+        bh=00rC0wdpAdD7iwooPkJILqIhsMM0FV+mEJjQaxzmaM8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bbLSFe0hmo/BVopnXvLcUiwWWKLYb6WnJZuMmJ0fMJRQnKhfz4iKW+qNz+E4hibsh
+         WHkP05nOJLH3js7w+1dbZ1Dz+femBXT6l+JiEcrBqb5/GrEt0TVyaw9lXqrc8u+5QP
+         detnyz80PaTcTeuhixV1PgwNOVd5BOJz/jCAKiCE=
+Received: by mail-qt1-f169.google.com with SMTP id d23so2649336qto.2;
+        Wed, 26 Jun 2019 07:43:23 -0700 (PDT)
+X-Gm-Message-State: APjAAAVFjsx6WfYPxS/rGNVqcEpvPWHU217UHv9KUcKZLNDAD/v8sCJ4
+        PDDlylafALrV1MQGSzUlfOzHFXgjkOYY6pzijA==
+X-Google-Smtp-Source: APXvYqyr8Zlz8fpqgay129UIrkPbfTa84lhlkGKPvEDgHYVRyKeCNl7CMNHQYKrlqQCQGb5m02XxK/OTjfw2ow7sePk=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr4212078qth.136.1561560203223;
+ Wed, 26 Jun 2019 07:43:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190625224953.GD6485@khorivan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
+ <1561435529-7835-2-git-send-email-bdodge09@gmail.com> <20190625085534.xf2ullyju3ewbgik@holly.lan>
+ <CAFaGBPnH=75=wJRM4EX9MYR8MSehEa2_hBEOsqo-DZvD6c6f_A@mail.gmail.com> <20190626105614.ujmryi7qou2ra7aq@holly.lan>
+In-Reply-To: <20190626105614.ujmryi7qou2ra7aq@holly.lan>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 26 Jun 2019 08:43:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL2XXZY-vxb16=6Mh8cV=YaMv0U7d+SHzzgWHwEWFy4Sg@mail.gmail.com>
+Message-ID: <CAL_JsqL2XXZY-vxb16=6Mh8cV=YaMv0U7d+SHzzgWHwEWFy4Sg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: backlight: fix vendor prefix for
+ ArcticSand arcxcnn driver bindings
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     Brian Dodge <bdodge09@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org, pbacon@psemi.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 26, 2019 at 4:56 AM Daniel Thompson
+<daniel.thompson@linaro.org> wrote:
+>
+> On Tue, Jun 25, 2019 at 07:44:06AM -0400, Brian Dodge wrote:
+> > I would like to deprecate the old prefix in the future after communicating
+> > with all chip customers, which is why the old prefix is not documented in
+> > the new bindings.
+>
+> Deprecation is fine (by me at least) it's just that I'm not sure that
+> removing the documentation for the deprecated bindings is the right way
+> to do it. What is the prior art here?
 
+Kind of depends on how widely used something is and we've done both
+ways generally. If there are not any upstream dts files, removal is
+fine IMO.
 
-On 26/06/2019 01:49, Ivan Khoronzhuk wrote:
-> On Fri, Jun 21, 2019 at 09:13:13PM +0300, Grygorii Strashko wrote:
->> Add DT nodes for new cpsw switch dev driver.
->>
->> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
->> ---
->> arch/arm/boot/dts/am571x-idk.dts         | 28 +++++++++++++
->> arch/arm/boot/dts/am572x-idk.dts         |  5 +++
->> arch/arm/boot/dts/am574x-idk.dts         |  5 +++
->> arch/arm/boot/dts/am57xx-idk-common.dtsi |  2 +-
->> arch/arm/boot/dts/dra7-l4.dtsi           | 53 ++++++++++++++++++++++++
->> 5 files changed, 92 insertions(+), 1 deletion(-)
->>
-> 
-> [...]
-> 
->> diff --git a/arch/arm/boot/dts/am57xx-idk-common.dtsi b/arch/arm/boot/dts/am57xx-idk-common.dtsi
->> index f7bd26458915..5c7663699efa 100644
->> --- a/arch/arm/boot/dts/am57xx-idk-common.dtsi
->> +++ b/arch/arm/boot/dts/am57xx-idk-common.dtsi
->> @@ -367,7 +367,7 @@
->> };
->>
->> &mac {
->> -    status = "okay";
->> +//    status = "okay";
-> ?
+With schema, there's a 'deprecated' keyword coming in draft8. So we'll
+have a defined way to keep things documented as needed and also warn
+about their use.
 
-This i'm going to clean up as part of next submission.
-
--- 
-Best regards,
-grygorii
+Rob
