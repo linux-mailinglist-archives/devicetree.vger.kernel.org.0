@@ -2,118 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 005AB56170
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 06:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04AF756183
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 06:41:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726157AbfFZEbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 00:31:02 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:36477 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725954AbfFZEbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 00:31:02 -0400
-Received: by mail-pf1-f196.google.com with SMTP id r7so616852pfl.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 21:31:01 -0700 (PDT)
+        id S1726682AbfFZElS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 00:41:18 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:43590 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726553AbfFZElS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 00:41:18 -0400
+Received: by mail-wr1-f65.google.com with SMTP id p13so976493wru.10
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 21:41:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=android.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3z6m3SSAf9dzi6GckItcH8BCeyReu+5tuH/lpHr1y9I=;
-        b=svL4AoXElLa69UBtPYJXEZbtdQKGjP/1YJiTvdQGpN7WsmK1MlC29B208zuqfbwpU4
-         ttUMSGa2VIYL2YGDMGdRj4wXYD9gDn3u3UnHbS8LjmgFmtkuw8E1afO6yEyiGJA/4ZFV
-         H0n1LBFrWXR2dEdyVxfDA+oRGeSg+58XA4W4FpDTr47cZAqJlcc83qzUUxIgebeRdPil
-         ACKb6HjqBT8SLg326ZKOxwVMZHSMRA4wA2abaG6Ru7ZdINoZHjm07VRUs1xe0I0nmNuA
-         RNOjiwIAW1029+IAoXWnYSXUxONDY9K0Rpy0M0CvEVRUWidlFy+n9mXQa3qx59rqIQ7R
-         9Z3A==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ntAoYL/Rm2CJcPJUaWQJZo0Ebr78bwFEe95ZmtoSouc=;
+        b=f1P00UfE/WsJ1aI7gyl8grjD6wzsTo/IZw8xeM220M8Jgg/3M7/yR2e9+ahFRvj6l4
+         0C73HTn4zvlzhYTL8jSPROB/ELQHqNmfxjHWwZ4CDqp3X4BBwUgZtRB1WUNnPhgh6X28
+         eWs5tuJrhkcLcPa4sTmw7ZDDIDeVUcS2/KSPY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3z6m3SSAf9dzi6GckItcH8BCeyReu+5tuH/lpHr1y9I=;
-        b=dNAAkcv++9izdwA1dxV+KpTwukLBVLbJl/ni6hGO4lsfvdZ93u2PIjZ9rJ4TPUYKD7
-         6ODTo4tz060o9bZ8TTgM0p2T2xqWdGbnq6/3foFHuu9pnwadvNwjDCWgow1NbH5IY6Rx
-         t+D8BDE5+ct7PJD0MMCnuZJR6LwSyIY0c1YTNd5+moW8q6CP61q0SfjqykoFN1D2gcY+
-         GHhJWVHYBVLiaIFrWuq8FmzRn9bPDyJcZXbaJnT32YwqcuSOaib7nkcq1g+xV1NyU+hi
-         40ESgMiuUvKOkqpiy4Sl5XpRaxXvNqhV/AhUWkj2x0AphQAJz46sJZdQrUzbBrnoqwmk
-         yXVw==
-X-Gm-Message-State: APjAAAX5uIRT+F4Izv0pIvbkc8XCoZTDkrza9OTyBhwy0CZXlAG79JN8
-        1XinN0Nz9SRz8OB21EuLMMKrzSUvjfM=
-X-Google-Smtp-Source: APXvYqyH2EzWemz4wKkvwI/pC+bUNAK6TGqYc/Kliu7VARqUH2Nlt+4+Cwrnre1mqCY/BXRZHOXZIw==
-X-Received: by 2002:a63:de45:: with SMTP id y5mr797887pgi.113.1561523461441;
-        Tue, 25 Jun 2019 21:31:01 -0700 (PDT)
-Received: from localhost ([38.98.37.136])
-        by smtp.gmail.com with ESMTPSA id y12sm19242910pfn.187.2019.06.25.21.31.00
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 25 Jun 2019 21:31:00 -0700 (PDT)
-Date:   Tue, 25 Jun 2019 21:30:52 -0700
-From:   Sandeep Patil <sspatil@android.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-Subject: Re: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and
- optimize probe ordering
-Message-ID: <20190626043052.GF212690@google.com>
-References: <20190604003218.241354-1-saravanak@google.com>
- <20190624223707.GH203031@google.com>
- <20190625035313.GA13239@kroah.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ntAoYL/Rm2CJcPJUaWQJZo0Ebr78bwFEe95ZmtoSouc=;
+        b=okIsjGog2OL7c2cMoouEOOkdDWLLMv+srKkdc5VWPAZKjO5Pmb0gv+Kj+1ehVjn6JR
+         RD+b4p95h4jrc6JNVT3h9pX9tPkZ/8I8TqmsVz0IZwC8iweXweIfqoQbRFWs0IeqLBOZ
+         Y6K73R2QYvKpOfqPOWih4HZSUFl60Gh5zlHJwfiU/eIhWGrJThoR4tfSFUVrXxJnroHv
+         eu8KBfL91IW/vwcbwGhxvTEtD2goDq/v316uStz4bqKu/hosfHiQ+CHuhMcs9mjrV/KS
+         yA3cXoO/CuiZuE31hlObQyRMeoFiXl67/UZJWIee1DgrSBgzaJ7YI/qJk+WGdgEDg5CA
+         /MVA==
+X-Gm-Message-State: APjAAAVPL1/Z+yRkhntjdnoEXagluNsIPMmHHnZyvjpL21+W+4PgUt2E
+        I2TLx7cbIfuqK3kfJu9+hYuEASfsofs5+03NNmk1LQ==
+X-Google-Smtp-Source: APXvYqwwaq2zdvwYCzJZqL3hdUoXF8+GcySNmmBoqCYQlQWdKeqD1faXsoyJVX1HjTCqAM3+Dom4UvO0x/DwX4HQvck=
+X-Received: by 2002:adf:e48e:: with SMTP id i14mr1474498wrm.311.1561524075932;
+ Tue, 25 Jun 2019 21:41:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190625035313.GA13239@kroah.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190516032332.56844-1-daoyuan.huang@mediatek.com>
+ <20190516032332.56844-5-daoyuan.huang@mediatek.com> <20190604112039.GA12168@chromium.org>
+ <CAPBb6MUCYK3eyk5Oq_p8yBvFh1EszzPDcvbB0VLTu_KKzCLTMA@mail.gmail.com>
+In-Reply-To: <CAPBb6MUCYK3eyk5Oq_p8yBvFh1EszzPDcvbB0VLTu_KKzCLTMA@mail.gmail.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Wed, 26 Jun 2019 13:41:04 +0900
+Message-ID: <CAHD77HkJ8aHgKugC3+Du-OoqP9yg0yKt+-_RyL1cZ4e5QkuUhQ@mail.gmail.com>
+Subject: Re: [RFC v2 4/4] media: platform: mtk-mdp3: Add Mediatek MDP3 driver
+To:     Alexandre Courbot <acourbot@chromium.org>
+Cc:     Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Yu Zhao <yuzhao@chromium.org>,
+        Ross Zwisler <zwisler@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?SG9sbWVzIENoaW91ICjpgrHmjLop?= 
+        <holmes.chiou@mediatek.com>,
+        Frederic Chen <frederic.chen@mediatek.com>,
+        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree@vger.kernel.org,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 11:53:13AM +0800, Greg Kroah-Hartman wrote:
-> On Mon, Jun 24, 2019 at 03:37:07PM -0700, Sandeep Patil wrote:
-> > We are trying to make sure that all (most) drivers in an Aarch64 system can
-> > be kernel modules for Android, like any other desktop system for
-> > example. There are a number of problems we need to fix before that happens
-> > ofcourse.
-> 
-> I will argue that this is NOT an android-specific issue.  If the goal of
-> creating an arm64 kernel that will "just work" for a wide range of
-> hardware configurations without rebuilding is going to happen, we need
-> to solve this problem with DT.  This goal was one of the original wishes
-> of the arm64 development effort, let's not loose sight of it as
-> obviously, this is not working properly just yet.
+On Thu, Jun 20, 2019 at 1:48 PM Alexandre Courbot <acourbot@chromium.org> wrote:
+>
+> On Tue, Jun 4, 2019 at 8:20 PM Tomasz Figa <tfiga@chromium.org> wrote:
+> > > +
+> > > +     ret = mdp_vpu_get_locked(mdp);
+> > > +     if (ret < 0)
+> > > +             goto err_load_vpu;
+> >
+> > This shouldn't happen in open(), but rather the latest possible point in
+> > time. If one needs to keep the VPU running for the time of streaming, then
+> > it should be start_streaming. If one can safely turn the VPU off if there is
+> > no frame queued for long time, it should be just in m2m job_run.
+> >
+> > Generally the userspace should be able to
+> > just open an m2m device for querying it, without any side effects like
+> > actually powering on the hardware or grabbing a hardware instance (which
+> > could block some other processes, trying to grab one too).
+>
+> OTOH looking at the code of mdp_vpu_get_locked(), we do the whole
+> rproc_boot and VPU init procedure if we were the only user. So I can
+> understand we want to avoid doing this too often.
+>
+> Maybe mdp_vpu_get_locked() can be reorganized in a better way. I feel
+> like the call to mdp_vpu_register() should be done in probe, and maybe
+> we can use runtime PM (with a reasonable timeout) to control the rproc
+> and VPU init?
 
-I believe the proposed solution in this patch series is just that. I am not
-sure what the alternatives are. The alternative suggested was to reuse
-pre-existing dt-bindings for dependency based probe re-ordering and resolution.
+I think it depends on when exactly the rproc and VPU need stay
+initialized. In general, we want to turn off as much as possible as
+quickly as possible, but keeping in mind any turn on latencies.
 
-However, it seems we had no way to *really* check if these dependencies are
-the real. So, a device may or may not actually depend on the other device for
-probe / initialization when the dependency is mentioned in it's dt node. From
-DT's point of view, there is no way to tell this ..
+For example. if it takes 10 ms to boot rproc/VPU, we probably
+shouldn't turn it off unless we already spent 20-30 ms idling, which
+could be handled with runtime PM with (delayed) autosuspend. However,
+things like clock gating are normally very fast, so we could just stop
+any clocks as soon as frame processing ends and restart when next
+frame is getting scheduled and if we use autosuspend, we wouldn't be
+able to do it using PM runtime.
 
-I don't know how this is handled in x86. With DT, I don't see how we can do
-this unless DT dependencies are _really_ tied with runtime dependencies (The
-cycles would have been apparent if that was the case.
+My point was that just open() is not the right place for doing this.
+Any later stage should be okay, as long as it suits the hardware
+architecture.
 
-Honestly, the "depends-on" property suggested here just piles on to the
-existing state. So, it is somewhat doubling the exiting bindings. It says,
-you must use depends-on property to define probe / initialization dependency.
-The existing bindings like 'clock', 'interrupt', '*-supply' do not enforce
-that right now, so you will have device nodes that have these bindings right
-now but don't necessarily need them for successful probe for example.
-
-> 
-> It just seems that Android is the first one to actually try and
-> implement that goal :)
-
-I guess :)
-
-- ssp
-
-> 
-> thanks,
-> 
-> greg k-h
+Best regards,
+Tomasz
