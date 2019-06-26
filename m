@@ -2,104 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1E7569F5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DA3569FA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727181AbfFZNFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:05:03 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:47092 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726131AbfFZNFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:05:02 -0400
-Received: by mail-qk1-f193.google.com with SMTP id x18so1497168qkn.13
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 06:05:01 -0700 (PDT)
+        id S1726462AbfFZNGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 09:06:30 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:56052 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726347AbfFZNGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:06:30 -0400
+Received: by mail-wm1-f66.google.com with SMTP id a15so2031833wmj.5
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 06:06:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=k5O9oE6uVEOIMk3nCZB+QbyTxE9Wg+XK01suEC8a+TA=;
-        b=uPYvYvEk0Nkk2u2fD9IWk96MmABOeM3RBQCROHdDlEqDdqZHW4OubafQKAzNMvuovq
-         iKeH4fPhxifsQyjIVZoAMmZRPzpb5o3amMYjAncq43pR7apSABLA4WZiinICdzE/jLaD
-         +z5w93D93nlvSvHYQeHHivRvQOYEHMCwkD4SKo+wdaM5ZT0crBBlSvsagvdFObKxJ1c7
-         bocIph99Gy4sM2i0KtqVO5ukWbsz3CfetmvblpluClMV0HqTDTeHurtmiJxhrn5V+9dJ
-         F2FJRumHlQ/55CBEe3Hr4vof/j/apcTUtDex+4s1uwDw7Zgaoy2/sN/9zbzYaomPjLbs
-         mVFA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=jasW8iOP/d7sV94RnAWZopvnxi1Y0wq0BsXNBk9SRx0=;
+        b=az3YMGn6W5/V0lTRT7btk/EvmdAaHV3zlj7lFfCrrDaPgWeW+GkaDdCLu5Ti3YcHJh
+         Fx7JihhubV9v9A08WOjo1XrhxT5tKrFosChP6JevXIKk+A8kTQvG6fox4JmIB7y1V+N8
+         JgMotdeT1jmFxqF2uEzKkknQCaPmv8DrNqEplpZpBan+ElZb4oW2suYIwNnMqCjoLSiH
+         hmjt/pQiYxutG3NxKvZZ/LO+LJ6es5KMaEVmgjmCWx+Vclj2PZHQZyE0xferHxhTR8ww
+         TF01LNoctOqtERCc0HaXPpKvxcKGAr2WArzXblymP/ju5pIv6V9uj1zcHczpyK2IQC1E
+         T2Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=k5O9oE6uVEOIMk3nCZB+QbyTxE9Wg+XK01suEC8a+TA=;
-        b=Sc7pNaJeBwa0EJjw1RHNAK+HI2UjWjcp5pbrVcfBy+e823d5x5QFF+KYo+K7UURRds
-         mzDUIjKYYl+KE7SlpKY7fVuSWWGoE4qyZOTxD8rIzkeISLE/vovxf4+SewgZCFWAAUpW
-         roOJcnlEtef7gsnFKR8xs3DuCZkJyCwLFFEf7V8jaosPQIP/yjdADJIgvcqDrgmt2obB
-         wzQmhwZhLu1/IsPtf9k0sztE5FDFL1W63+UBJ0xUTYocxtjDONmVRLW/Y0kmOAP/47fm
-         HdJgUxzq1bCRmM2GPjf5LEbDMzpau8k7Ewcbha3H36c2zpHVLEiErVx4/p0AUITOPSxX
-         D5Zw==
-X-Gm-Message-State: APjAAAVP3+FxEmr4MzOFOXEKxDOd+SGhp7iNY8DoioqMxEnMVEJ7Cqp5
-        CWrF7034lrqoMsJvKIaJV6s=
-X-Google-Smtp-Source: APXvYqwZyDh14JaHgMEUYlacuj4zCZLs8pL9lTam984XGbMtpUzCvpXgIxneOdxOTTMDhd+634gBwA==
-X-Received: by 2002:a05:620a:1106:: with SMTP id o6mr3650393qkk.272.1561554301257;
-        Wed, 26 Jun 2019 06:05:01 -0700 (PDT)
-Received: from firefly.sparksnet (c-98-233-237-228.hsd1.md.comcast.net. [98.233.237.228])
-        by smtp.gmail.com with ESMTPSA id k58sm10368382qtc.38.2019.06.26.06.05.00
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 26 Jun 2019 06:05:00 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     "Leonidas P . Papadakos" <papadakospan@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jose Abreu <jose.abreu@synopsys.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: rockchip: improve rk3328-roc-cc rgmii performance.
-Date:   Wed, 26 Jun 2019 13:04:43 +0000
-Message-Id: <20190626130443.22025-1-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=jasW8iOP/d7sV94RnAWZopvnxi1Y0wq0BsXNBk9SRx0=;
+        b=rPU8t0RmlWa+CRrc9Y0tZih4zPZst2hqBroVKxzFD18fzTx3DhPrQyiYpgG5V9GXAq
+         Q4jDpHmnCkKatRsilBhurYoujGCkwBX7zKLWyo9cFdwdSQC+Q/mzMmK+q03yrbN4Ob/9
+         v00Mh004so96NtPRZSOIBy4de4mJVDT3FbWJ6O1xgoz6DrXyQvkPU5JOCOURn2uQwi3p
+         yBkrfUNCWDzw7Hqohi1MjeVq+bAQT5wtOH13ww4poNCn+JR46di34hV99VpD/Ke4L2EQ
+         Xfn4eX4zuP3yB2tGIJcp1sIZbV39sqrLhZbkKB5lRpondrMloLZUr8yz3OI0DG8FewuW
+         bIJA==
+X-Gm-Message-State: APjAAAXI8jtHCR5/Ky7HRjc9Zt8X9Fp2K7ZTSAkhOllufGYt6+0nT1mi
+        fa5hOr0QZamq9Oocs4eWfTx8fg==
+X-Google-Smtp-Source: APXvYqy7eXiwnfpfAmsno9wnKxOy/4jY/0GIhWf/bt1xBsOxMhdmhWTPBButZn+09ZxaqLFX7HZJOQ==
+X-Received: by 2002:a1c:c6:: with SMTP id 189mr2743811wma.112.1561554387914;
+        Wed, 26 Jun 2019 06:06:27 -0700 (PDT)
+Received: from dell ([2.27.35.164])
+        by smtp.gmail.com with ESMTPSA id d1sm15782413wru.41.2019.06.26.06.06.26
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 26 Jun 2019 06:06:26 -0700 (PDT)
+Date:   Wed, 26 Jun 2019 14:06:24 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>
+Cc:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: mfd: max8998: Add charger subnode
+ binding
+Message-ID: <20190626130624.GT21119@dell>
+References: <20190621115602.17559-1-pawel.mikolaj.chmiel@gmail.com>
+ <20190621115602.17559-3-pawel.mikolaj.chmiel@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190621115602.17559-3-pawel.mikolaj.chmiel@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the rk3328-roc-cc ethernet is enabled using "snps,force_thresh_dma_mode".
-While this works, the performance leaves a lot to be desired.
-A previous attempt to improve performance used "snps,txpbl = <0x4>".
-This also allowed networking to function, but performance varied between boards.
+On Fri, 21 Jun 2019, Paweł Chmiel wrote:
 
-This patch takes that one step further.
-Set txpbl and rxpbl to 0x4.
-This can also be accomplished with "snps,pbl =<0x4>" which affects both.
-Also set "snps,aal" which forces address aligned DMA mode.
+> This patch adds devicetree bindings documentation for
+> battery charging controller as the subnode of MAX8998 PMIC.
 
-Fixes: 4bc4d6013b7f (arm64: dts: rockchip: fix rk3328-roc-cc gmac2io stability issues)
+It makes sense to place this in:
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+ Documentation/devicetree/bindings/power/supply/
 
-Tested-by: Leonidas P. Papadakos <papadakospan@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+And link to it from this file using the following syntax:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-index 5d499c9086fb..8bcc08de82fb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
-@@ -141,10 +141,12 @@
- 	phy-mode = "rgmii";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmiim1_pins>;
--	snps,force_thresh_dma_mode;
- 	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
- 	snps,reset-active-low;
- 	snps,reset-delays-us = <0 10000 50000>;
-+	snps,txpbl = <0x4>;
-+	snps,rxpbl = <0x4>;
-+	snps,aal;
- 	tx_delay = <0x24>;
- 	rx_delay = <0x18>;
- 	status = "okay";
+ See: ../power/supply/<file>.txt
+
+> Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+> ---
+> Changes from v3:
+>   - Property prefix should be maxim, not max8998
+>   - Describe what End of Charge in percent means
+> 
+> Changes from v2:
+>   - Make charge-restart-level-microvolt optional.
+>   - Make charge-timeout-hours optional.
+> 
+> Changes from v1:
+>   - Removed unneeded Fixes tag
+>   - Correct description of all charger values
+>   - Added missing property unit
+> ---
+>  .../devicetree/bindings/mfd/max8998.txt       | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/max8998.txt b/Documentation/devicetree/bindings/mfd/max8998.txt
+> index 5f2f07c09c90..368f787d6079 100644
+> --- a/Documentation/devicetree/bindings/mfd/max8998.txt
+> +++ b/Documentation/devicetree/bindings/mfd/max8998.txt
+> @@ -48,6 +48,25 @@ Additional properties required if max8998,pmic-buck2-dvs-gpio is defined:
+>  - max8998,pmic-buck2-dvs-voltage: An array of 2 voltage values in microvolts
+>    for buck2 regulator that can be selected using dvs gpio.
+>  
+> +Charger: Configuration for battery charging controller should be added
+> +inside a child node named 'charger'.
+> +  Required properties:
+> +  - maxim,end-of-charge-percentage: End of Charge in percent.
+> +    When the charge current in constant-voltage phase drops below
+> +    end-of-charge-percentage of it's start value, charging is terminated.
+> +    If value equals 0, leave it unchanged. Otherwise it should be value
+> +    from 10 to 45 by 5 step.
+> +
+> +  Optional properties:
+> +  - maxim,charge-restart-threshold: Charge restart threshold in millivolts.
+> +    If property is not present, this will be disabled.
+> +    Valid values are: 0, 100, 150, 200. If the value equals 0, leave it
+> +    unchanged.
+> +
+> +  - maxim,charge-timeout: Charge timeout in hours. If property is not
+> +    present, this will be disabled. Valid values are: 0, 5, 6, 7.
+> +    If the value equals 0, leave it unchanged.
+> +
+>  Regulators: All the regulators of MAX8998 to be instantiated shall be
+>  listed in a child node named 'regulators'. Each regulator is represented
+>  by a child node of the 'regulators' node.
+> @@ -97,6 +116,13 @@ Example:
+>  		max8998,pmic-buck2-dvs-gpio = <&gpx0 0 3 0 0>; /* SET3 */
+>  		max8998,pmic-buck2-dvs-voltage = <1350000>, <1300000>;
+>  
+> +		/* Charger configuration */
+> +		charger {
+> +			maxim,end-of-charge-percentage = <20>;
+> +			maxim,charge-restart-threshold = <100>;
+> +			maxim,charge-timeout = <7>;
+> +		};
+> +
+>  		/* Regulators to instantiate */
+>  		regulators {
+>  			ldo2_reg: LDO2 {
+
 -- 
-2.20.1
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
