@@ -2,170 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36661560CD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 05:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDC65616F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 06:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727002AbfFZDse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jun 2019 23:48:34 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:45809 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727621AbfFZDoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jun 2019 23:44:38 -0400
-Received: by mail-pf1-f196.google.com with SMTP id r1so529709pfq.12
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 20:44:38 -0700 (PDT)
+        id S1725790AbfFZEad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 00:30:33 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:44445 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725379AbfFZEad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 00:30:33 -0400
+Received: by mail-ed1-f65.google.com with SMTP id k8so1170388edr.11
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 21:30:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=LqmJogVNFsB+g8IvvX5zj4pKPaA/7R5yFx4LbjFnmV4=;
-        b=gANyKfdaTg5/MdqZmJB3zBjd0+SwlPrzaWPrUzkCwurzqStTwtxA6W7Ezglr0+ZcKG
-         9eCN8IhNomZ3gmueFdxUDDnI92q7+xmSDkoV8Q+y2aKdt9v6JzX7ECWnNoAzZwjIEJY6
-         uBgvejbkfXI6KyYweG9b+Xfav4RrlV8zWcSlcnvPRF8Pj94IOxhxpdKvhSYlLG0ifAx2
-         ApzCOOyJU/iDqBIQahCwrH4FOpDF8+Bxa974TiDSoMeB0kn8UwDxZBcAZGjHFyrS9AqF
-         6Ys8h1EtVT1tPJQIdhBKcTSORSoJ0pehqkmmrT90oehqg4SmFXClQL3EOSpLpGQt4pY4
-         Vg2Q==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JGn88fpcggP80EkMgEhpFVRWZldlC/S/PfPy9x+l7EY=;
+        b=hi8YC5l2qnHJT78/R3Yl+wiWfpyHlT9IXtzh1VS1PICGF31g3Sd4fkgIjvpsp8FRoa
+         WlqxY21l97Rs1fnUZYuObwB0GeRk1VP1/z8vP6UQmCvp04MzAgdWJ3ZXXSogouCRq06O
+         s597zeVBW3g4IN6wQn6Wu6HlR7dlexDixfOpQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LqmJogVNFsB+g8IvvX5zj4pKPaA/7R5yFx4LbjFnmV4=;
-        b=ixZRq+Eq2z/Vo5xrry/iy6rbndfXA0ijEt2WdCqcLgfs7KO/wEYVlI5AIT2MYzzeb/
-         tPs+q29x+tXtt38lXi2wzPm1ZOtigwEg4FI8sKl28YZbD0+nCmXBReOZVbnil7lei8ph
-         xrENsXAykTFwdLe9vAFC9vFpQOGUHiOWc/kBm5UNY3fYtgVsZDquck9XjzJjPg6TiDeq
-         3D32QOqnbR2CwOOY2W9n2Kn0a9o8c+MKn1ly63bhnAcyodwsUaJr2Ogmisj+ag/rMLI/
-         1o4eVfi0ygqclkqqvsURn3cMcqYx7ONvJoNQomn58S/BOqDiyfdmFyVAfq1bYW1R4o+E
-         xf6w==
-X-Gm-Message-State: APjAAAVadYDoA0Q0eFo3FmvCBlH3tdUKRDUUFgXFAlixT3NPiwvp8Kqm
-        r6NprB479egiQJwbQxnSG+M+cg==
-X-Google-Smtp-Source: APXvYqzB5kIs4zKVnHKkkES7b22zMAzjv6fDHE/nuMQDUGcdoG8vh5I/UyKxYvGsy8yxONWhs9EsNg==
-X-Received: by 2002:a63:8a41:: with SMTP id y62mr607190pgd.38.1561520677526;
-        Tue, 25 Jun 2019 20:44:37 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id v9sm20038199pgj.69.2019.06.25.20.44.35
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 25 Jun 2019 20:44:36 -0700 (PDT)
-Date:   Tue, 25 Jun 2019 20:45:29 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] scsi: ufs: Introduce vops for resetting device
-Message-ID: <20190626034529.GE24205@tuxbook-pro>
-References: <20190608050450.12056-1-bjorn.andersson@linaro.org>
- <CGME20190608050458epcas1p30f03f6d448eb962a6af56a4c0b021ef0@epcas1p3.samsung.com>
- <20190608050450.12056-2-bjorn.andersson@linaro.org>
- <ad1c2a2a-91d6-25ce-9dfb-3b386b572ee2@samsung.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JGn88fpcggP80EkMgEhpFVRWZldlC/S/PfPy9x+l7EY=;
+        b=I6Wgcay+OtVc3mWNIkgk8ZdP6pO1O0Vhu4o4y0trOgPRMKCIIGCMY1QRx2xyAkprtC
+         va6tg2eNpejCo6q0xTEeQp26BuT28cFsopHEIJ0nJi60JInDubVhbnfAU8oy7Ak9gvQX
+         17anUV8PNV7zOHAt7TQP+PglQWaPCYg7jy2ULK1wEywQaiIiz0qQm0Gi2jZUz9Vx2CLS
+         XGaTqpsW+aG7Wrzbp9gAixEn3qAVBZEazQvjKeeMmMMgq+BgSZbV0whiAP580ygfoIBG
+         Uc4GsugwElRuHmLmifgCvvMcbHDjAKwW/U5u3jZCzpHoqvQ/CfmZCfj25MfYwbhpYS3D
+         mmsg==
+X-Gm-Message-State: APjAAAWi0OV2fHOFDJgY91whyflFri+hHNLPBoRfqt8BcrmeNfrqQQyw
+        BHbqp4/QTIeaEHNyfd+il6tShyOteI1nHg==
+X-Google-Smtp-Source: APXvYqzpJosekM6vtUPqVtkv5Yt3YtQrH7PSirmjvPKPQh3I/Ajq13MeZBUIS83ua8Ey7RNfwz4szw==
+X-Received: by 2002:a17:906:3956:: with SMTP id g22mr1996869eje.292.1561523430620;
+        Tue, 25 Jun 2019 21:30:30 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
+        by smtp.gmail.com with ESMTPSA id h10sm5387338ede.93.2019.06.25.21.30.30
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 25 Jun 2019 21:30:30 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id k11so1009025wrl.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 21:30:30 -0700 (PDT)
+X-Received: by 2002:adf:f246:: with SMTP id b6mr1497996wrp.92.1561523106726;
+ Tue, 25 Jun 2019 21:25:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad1c2a2a-91d6-25ce-9dfb-3b386b572ee2@samsung.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190417104511.21514-1-frederic.chen@mediatek.com>
+ <20190417104511.21514-7-frederic.chen@mediatek.com> <20190509094846.GA65444@google.com>
+ <1561464978.23799.37.camel@mtksdccf07>
+In-Reply-To: <1561464978.23799.37.camel@mtksdccf07>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Wed, 26 Jun 2019 13:24:54 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5D8WDQJaN8SYKwOXyC9-YPRC1U58HirPVzL5969MSvkgA@mail.gmail.com>
+Message-ID: <CAAFQd5D8WDQJaN8SYKwOXyC9-YPRC1U58HirPVzL5969MSvkgA@mail.gmail.com>
+Subject: Re: [RFC PATCH V1 6/6] platform: mtk-isp: Add Mediatek DIP driver
+To:     Frederic Chen <frederic.chen@mediatek.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>
+Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?SG9sbWVzIENoaW91ICjpgrHmjLop?= 
+        <holmes.chiou@mediatek.com>,
+        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree@vger.kernel.org, Shik Chen <shik@chromium.org>,
+        suleiman@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 25 Jun 05:41 PDT 2019, Alim Akhtar wrote:
+Hi Frederic,
 
-> Hi Bjorn,
-> Are you planning to address Bean's comment on patch#2 and want to 
-> re-spin this series?
-> I am ok with taking this patch as it is and take a Softreset patch as a 
-> separate patch.
-> 
+On Tue, Jun 25, 2019 at 9:16 PM Frederic Chen
+<frederic.chen@mediatek.com> wrote:
+>
+> Dear Tomasz,
+>
+> Would you comment on the following points in further? Thank you for the
+> review.
+>
+> On Thu, 2019-05-09 at 18:48 +0900, Tomasz Figa wrote:
+> > Hi Frederic,
+> >
+>
+> [snip]
+>
+> > > +int mtk_dip_pipe_job_start(struct mtk_dip_pipe *dip_pipe,
+> > > +                          struct mtk_dip_pipe_job_info *pipe_job_info)
+> > > +{
+> > > +       struct platform_device *pdev = dip_pipe->dip_dev->pdev;
+> > > +       int ret;
+> > > +       int out_img_buf_idx;
+> > > +       struct img_ipi_frameparam dip_param;
+> > > +       struct mtk_dip_dev_buffer *dev_buf_in;
+> > > +       struct mtk_dip_dev_buffer *dev_buf_out;
+> > > +       struct mtk_dip_dev_buffer *dev_buf_tuning;
+> > > +
+> > > +       if (!pipe_job_info) {
+> > > +               dev_err(&pdev->dev,
+> > > +                       "pipe_job_info(%p) in start can't be NULL\n",
+> > > +                       pipe_job_info);
+> > > +               return -EINVAL;
+> > > +       }
+> >
+> > This should be impossible to happen.
+> >
+> > > +
+> > > +       /* We need RAW and at least MDP0 or MDP 1 buffer */
+> > > +       if (!pipe_job_info->buf_map[MTK_DIP_VIDEO_NODE_ID_RAW_OUT] ||
+> > > +           (!pipe_job_info->buf_map[MTK_DIP_VIDEO_NODE_ID_MDP0_CAPTURE] &&
+> > > +                !pipe_job_info->buf_map[MTK_DIP_VIDEO_NODE_ID_MDP1_CAPTURE])){
+> > > +               struct mtk_dip_dev_buffer **map = pipe_job_info->buf_map;
+> > > +
+> > > +               dev_dbg(&pdev->dev,
+> > > +                       "can't trigger job: raw(%p), mdp0(%p), mdp1(%p)\n",
+> > > +                       map[MTK_DIP_VIDEO_NODE_ID_RAW_OUT],
+> > > +                       map[MTK_DIP_VIDEO_NODE_ID_MDP0_CAPTURE],
+> > > +                       map[MTK_DIP_VIDEO_NODE_ID_MDP1_CAPTURE]);
+> > > +               return -EINVAL;
+> >
+> > This must be validated at the time of request_validate. We can't fail at
+> > this stage anymore.
+>
+> After the modification about checking the required buffers in
+> req_validate(), we got failed in the following testRequests()
+> of V4L2 compliance test. The V4L2 compliance test case doesn't know
+> which buffers of the video devices are required and expects that the
+> MEDIA_REQUEST_IOC_QUEUE succeed when the request has any valid buffer.
+>
+> For example, when the request has MDP 0 buffer only, the DIP's
+> req_validate() should return an error since it also need a buffer
+> from RAW video device, but it make compliance test get failed.
+>
+> May I still check the required buffers in req_validate() in the next
+> patch? I will add some note to explain that the compliance test failed
+> item is related to the limitation?
+>
+> =======================================================
+> int testRequests(struct node *node, bool test_streaming)
+> // ......
+> if (i)
+>         fail_on_test(!buf.qbuf(node));
+> buf.s_flags(buf.g_flags() | V4L2_BUF_FLAG_REQUEST_FD);
+> buf.s_request_fd(buf_req_fds[i]);
+> buf.s_field(V4L2_FIELD_ANY);
+> fail_on_test(buf.qbuf(node));
+> if (v4l_type_is_video(buf.g_type()) && v4l_type_is_output(buf.g_type()))
+>         fail_on_test(buf.g_field() == V4L2_FIELD_ANY);
+> fail_on_test(buf.querybuf(node, i));
+>
+> // ......
+>
+> // LINE 1807 in v4l2-test-buffers.cpp, we will got the  failed here.
+> // Since we need one RAW and one MDP0 buffer at least.
+> // v4l2-test-buffers.cpp(1807): doioctl_fd(buf_req_fds[i],
+> // MEDIA_REQUEST_IOC_QUEUE, 0)
+> //      test Requests: FAIL
+> fail_on_test(doioctl_fd(buf_req_fds[i], MEDIA_REQUEST_IOC_QUEUE, 0));
+> =======================================================
+>
 
-I still intend to attempt to implement a softreset "fallback", per
-Bean's suggestion - just haven't found the time yet. But I would be
-happy to see these patches merged in the meantime, as they do resolve
-the issue of failing to being up the UFS link on a significant number of
-Qualcomm devices.
+Sounds like a limitation of the compliance test. Request API testing
+there is still new and possibly just made for simple mem-to-mem
+devices.
 
+Hans, the driver always requires some buffers to be given, like the
+raw frame input, while other, e.g. downscaled output, are optional.
+Any ideas?
 
-I think it's best if you take patch 1 and 2 through your tree and we
-take the dts patch through the Qualcomm/arm-soc tree.
+> > > +
+> > > +static int mtk_dip_vb2_queue_setup(struct vb2_queue *vq,
+> > > +                                  unsigned int *num_buffers,
+> > > +                                  unsigned int *num_planes,
+> > > +                                  unsigned int sizes[],
+> > > +                                  struct device *alloc_devs[])
+> > > +{
+> > > +       struct mtk_dip_pipe *dip_pipe = vb2_get_drv_priv(vq);
+> > > +       struct mtk_dip_video_device *node =
+> > > +               mtk_dip_vbq_to_node(vq);
+> > > +       struct device *dev = &dip_pipe->dip_dev->pdev->dev;
+> > > +       struct device *buf_alloc_ctx;
+> > > +
+>
+> [snip]
+>
+> > > +
+> > > +       if (vq->type == V4L2_BUF_TYPE_META_CAPTURE ||
+> > > +           vq->type == V4L2_BUF_TYPE_META_OUTPUT)
+> > > +               size = fmt->fmt.meta.buffersize;
+> > > +       else
+> > > +               size = fmt->fmt.pix_mp.plane_fmt[0].sizeimage;
+> > > +
+> > > +       if (*num_planes) {
+> > > +               if (sizes[0] < size) {
+> > > +                       dev_dbg(dev, "%s:%s:%s: size error(user:%d, max:%d)\n",
+> > > +                               __func__, dip_pipe->desc->name,
+> > > +                               node->desc->name, sizes[0], size);
+> > > +                       return -EINVAL;
+> > > +               }
+> >
+> > I don't think this is an error. This is for handling VIDIOC_CREATE_BUFS,
+> > which can allocate for any arbitrary format.
+> >
+> > Whether the size of the buffer is big enough for current format should be
+> > checked in .buf_prepare callback.
+>
+> When executing V4L2 compliance test, we need to check this image size to
+> pass the following q.create_bufs() test (LINE:709,
+> v4l2-test-buffers.cpp).
+>
+> ========================================================
+> node->g_fmt(fmt, q.g_type());
+> //....
+> fmt.s_height(fmt.g_height() / 2);
+> for (unsigned p = 0; p < fmt.g_num_planes(); p++)
+>         fmt.s_sizeimage(fmt.g_sizeimage(p) / 2, p);
+>
+> // LINE 709 in v4l2-test-buffers.cpp
+> // It seems that the driver needs to return EINVAL when the buffer
+> //size is smaller than the sizeimage required
+>         fail_on_test(q.create_bufs(node, 1, &fmt) != EINVAL);
+> ========================================================
+>
+> The kernel document has some similar description on VIDIOC_CREATE_BUFS.
+>
+> https://www.kernel.org/doc/html/latest/media/uapi/v4l/vidioc-create-bufs.html
+>
+> =======================================================
+> Usually if the format.pix.sizeimage field is less than the minimum
+> required for the given format, then an error will be returned since
+> drivers will typically not allow this.
+> =======================================================
+>
+> Should we check the image size of each plane here so that we can pass
+> the test?
 
-Thanks,
-Bjorn
+Note that "given format" there means the format field of
+structv4l2_create_buffers, _not_ the currently active format. That's
+really strange because we don't get that inside queue_setup.
 
-> On 6/8/19 10:34 AM, Bjorn Andersson wrote:
-> > Some UFS memory devices needs their reset line toggled in order to get
-> > them into a good state for initialization. Provide a new vops to allow
-> > the platform driver to implement this operation.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> feel free to add
-> Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-> > 
-> > Changes since v2:
-> > - New patch, to allow moving implementation to platform driver
-> > 
-> >   drivers/scsi/ufs/ufshcd.c | 6 ++++++
-> >   drivers/scsi/ufs/ufshcd.h | 8 ++++++++
-> >   2 files changed, 14 insertions(+)
-> > 
-> > diff --git a/drivers/scsi/ufs/ufshcd.c b/drivers/scsi/ufs/ufshcd.c
-> > index 04d3686511c8..ee895a625456 100644
-> > --- a/drivers/scsi/ufs/ufshcd.c
-> > +++ b/drivers/scsi/ufs/ufshcd.c
-> > @@ -6191,6 +6191,9 @@ static int ufshcd_reset_and_restore(struct ufs_hba *hba)
-> >   	int retries = MAX_HOST_RESET_RETRIES;
-> >   
-> >   	do {
-> > +		/* Reset the attached device */
-> > +		ufshcd_vops_device_reset(hba);
-> > +
-> >   		err = ufshcd_host_reset_and_restore(hba);
-> >   	} while (err && --retries);
-> >   
-> > @@ -8322,6 +8325,9 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
-> >   		goto exit_gating;
-> >   	}
-> >   
-> > +	/* Reset the attached device */
-> > +	ufshcd_vops_device_reset(hba);
-> > +
-> >   	/* Host controller enable */
-> >   	err = ufshcd_hba_enable(hba);
-> >   	if (err) {
-> > diff --git a/drivers/scsi/ufs/ufshcd.h b/drivers/scsi/ufs/ufshcd.h
-> > index 994d73d03207..cd8139052ed6 100644
-> > --- a/drivers/scsi/ufs/ufshcd.h
-> > +++ b/drivers/scsi/ufs/ufshcd.h
-> > @@ -298,6 +298,7 @@ struct ufs_pwr_mode_info {
-> >    * @resume: called during host controller PM callback
-> >    * @dbg_register_dump: used to dump controller debug information
-> >    * @phy_initialization: used to initialize phys
-> > + * @device_reset: called to issue a reset pulse on the UFS device
-> >    */
-> >   struct ufs_hba_variant_ops {
-> >   	const char *name;
-> > @@ -326,6 +327,7 @@ struct ufs_hba_variant_ops {
-> >   	int     (*resume)(struct ufs_hba *, enum ufs_pm_op);
-> >   	void	(*dbg_register_dump)(struct ufs_hba *hba);
-> >   	int	(*phy_initialization)(struct ufs_hba *);
-> > +	void	(*device_reset)(struct ufs_hba *);
-> >   };
-> >   
-> >   /* clock gating state  */
-> > @@ -1045,6 +1047,12 @@ static inline void ufshcd_vops_dbg_register_dump(struct ufs_hba *hba)
-> >   		hba->vops->dbg_register_dump(hba);
-> >   }
-> >   
-> > +static inline void ufshcd_vops_device_reset(struct ufs_hba *hba)
-> > +{
-> > +	if (hba->vops && hba->vops->device_reset)
-> > +		hba->vops->device_reset(hba);
-> > +}
-> > +
-> >   extern struct ufs_pm_lvl_states ufs_pm_lvl_states[];
-> >   
-> >   /*
-> > 
+Hans, how should we handle this in the driver? Right now we just call
+vb2_create_bufs(), which doesn't care about anything else than
+sizeimage. Do we need to implement our own .vidioc_create_bufs()
+handler that validates the sizeimage wrt the other parts of the given
+format before calling vb2_create_bufs()?
+
+Another thing is that the spec isn't very precise on this, especially
+given the "usually" and "typically" in the description quoted above.
+
+Best regards,
+Tomasz
