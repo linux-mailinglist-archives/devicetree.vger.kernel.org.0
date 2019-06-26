@@ -2,106 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AB7457262
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 22:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A0B157381
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 23:20:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbfFZUNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 16:13:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44354 "EHLO mail.kernel.org"
+        id S1726223AbfFZVU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 17:20:27 -0400
+Received: from mga09.intel.com ([134.134.136.24]:62816 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726227AbfFZUNh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 16:13:37 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E8EA32086D;
-        Wed, 26 Jun 2019 20:13:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561580016;
-        bh=0jQodpDRuAkFZgDiEgerdZvI7o/ZwZ0KSv4xKSQprD8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tiV3ftktTDsuAQeR2z4Vu6D7XRs6u+SF4+yX/FgFVai8l8bUkuTUjNKxRN+hTBvVu
-         aNhjRw7hskTBnc6xC++D5aSsmyL4+HvgvW4E7J1VEXO4x13+P8xYWfipHsMIrwoQ0S
-         hdTU5lJgCY0k6PYgyysagmt1viul5eTn+QvL1jao=
-Date:   Wed, 26 Jun 2019 21:13:31 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Stefan Popa <stefan.popa@analog.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] iio: frequency: adf4371: Add support for output
- stage mute
-Message-ID: <20190626211331.6e335fe8@archlinux>
-In-Reply-To: <CAL_JsqL-Pxef5oNAx5-crGxL9Q0Ph5gx2Z=KejLSq_jdgVUvbQ@mail.gmail.com>
-References: <1561389236-26464-1-git-send-email-stefan.popa@analog.com>
-        <CAL_JsqL-Pxef5oNAx5-crGxL9Q0Ph5gx2Z=KejLSq_jdgVUvbQ@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726289AbfFZVU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 17:20:27 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Jun 2019 14:20:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,421,1557212400"; 
+   d="scan'208";a="188793233"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga002.fm.intel.com with ESMTP; 26 Jun 2019 14:20:26 -0700
+Received: from iriji-mobl1.ger.corp.intel.com (unknown [10.252.28.127])
+        by linux.intel.com (Postfix) with ESMTP id A171658046A;
+        Wed, 26 Jun 2019 14:20:23 -0700 (PDT)
+Subject: Re: [alsa-devel] [PATCH 1/2] ASoC: soc-core: defer card registration
+ if codec component is missing
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20190626133617.25959-1-jbrunet@baylibre.com>
+ <20190626133617.25959-2-jbrunet@baylibre.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <8b4822f7-6671-1c23-572d-37f7e94ea8cc@linux.intel.com>
+Date:   Wed, 26 Jun 2019 23:20:22 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190626133617.25959-2-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jun 2019 13:59:49 -0600
-Rob Herring <robh+dt@kernel.org> wrote:
-
-> On Mon, Jun 24, 2019 at 9:14 AM Stefan Popa <stefan.popa@analog.com> wrote:
-> >
-> > Another feature of the ADF4371/ADF4372 is that the supply current to the
-> > RF8P and RF8N output stage can shut down until the ADF4371 achieves lock
-> > as measured by the digital lock detect circuitry. The mute to lock
-> > detect bit (MUTE_LD) in REG25 enables this function.
-> >
-> > Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-> > ---
-> >  .../devicetree/bindings/iio/frequency/adf4371.yaml          |  6 ++++++  
+On 6/26/19 3:36 PM, Jerome Brunet wrote:
+> Like cpus and platforms, defer sound card initialization if the codec
+> component is missing when initializing the dai_link
 > 
-> If you resend and in the future, please split bindings to separate patch.
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>   sound/soc/soc-core.c | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> >  drivers/iio/frequency/adf4371.c                             | 13 +++++++++++++
-> >  2 files changed, 19 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> > index a268a9d..6db8742 100644
-> > --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> > @@ -32,6 +32,12 @@ properties:
-> >      items:
-> >        - clkin
-> >
-> > +  adi,mute-till-lock-en:
-> > +    description:
-> > +      If this property is present, then the supply current to RF8P and RF8N
-> > +      output stage will shut down until the ADF4371/ADF4372 achieves lock as
-> > +      measured by the digital lock detect circuitry.  
+> diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
+> index 358f1fbf9a30..002ddbf4e5a3 100644
+> --- a/sound/soc/soc-core.c
+> +++ b/sound/soc/soc-core.c
+> @@ -1064,12 +1064,20 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+>   				link->name);
+>   			return -EINVAL;
+>   		}
+> +
+>   		/* Codec DAI name must be specified */
+>   		if (!codec->dai_name) {
+>   			dev_err(card->dev, "ASoC: codec_dai_name not set for %s\n",
+>   				link->name);
+>   			return -EINVAL;
+>   		}
+> +
+> +		/*
+> +		 * Defer card registartion if codec component is not added to
+
+registration
+
+> +		 * component list.
+> +		 */
+> +		if (!soc_find_component(codec))
+> +			return -EPROBE_DEFER;
+>   	}
+>   
+>   	/*
 > 
-> You need to define the type:
-> 
-> type: boolean
-> 
-> Maybe Jonathan will fix up.
-Doh. I should have caught that.
-
-Fixed up with
-type: boolean
-
-Hopefully I did it right
-
-https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=testing&id=6e68162fcc94ec81c1656e15e6e1893fee0c309a
-
-Thanks Rob!
-
-Jonathan
-
-> 
-> Rob
 
