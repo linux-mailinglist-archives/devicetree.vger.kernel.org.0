@@ -2,131 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D588561DE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 07:49:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C673561EB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 07:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726640AbfFZFtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 01:49:36 -0400
-Received: from mail-yb1-f193.google.com ([209.85.219.193]:37498 "EHLO
-        mail-yb1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725790AbfFZFtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 01:49:36 -0400
-Received: by mail-yb1-f193.google.com with SMTP id p201so405133ybg.4;
-        Tue, 25 Jun 2019 22:49:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=FLRyyUyuqTKbfuiIxj3YsbjK74R9lyj03vqxwLtsrQA=;
-        b=BguRsox6h/qJV4eeNuftnjwImpoOBaTMM+ZxODhqBau2qM0uqSm3DbQhxrF+09eatF
-         yEujr0vRThsycLh+ocSTu6M+2l1lDStjThzWGIWJo4joANPDqr6xxPJu1Fr27bl3Bf0u
-         511zsXeswlJWII9yjG7ewy+pdNUXdsEG6iquXU3Y+2VNZnKFjrqeNHvY+T+rJ9icGMZY
-         NDFbakjdcW2I2+1dCnNRYVtpmJ59RbX+mgG/Xqh9x8ORjMEpSyq+kDES+rsgILFih8Gt
-         srdVNSrwT+q/Alxpi4bhZ/gh8w39Pv1SqrViab0mgdxdm4SXQV7iqF658d3r5hKv/Cyq
-         dkVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=FLRyyUyuqTKbfuiIxj3YsbjK74R9lyj03vqxwLtsrQA=;
-        b=tPy3vac01WcElU3QxOSC7nx7ndPxFQm7R/O1VIAgh6Y1M6Rddck94OE4Bg1ZjoMBst
-         B5jeHsw/BvhgUsymtJjiZz2zmoogItaip/zMqvcHfceFUzCeWdGaUuE/mZpCBOSVIfTN
-         5y+ackupt13E8O10XaEjLmWhw8PbGNcPVY2by4T8s+KcukaNunF0/L/UyUqlFI1DQMeI
-         MscadTjyBVUbEDYTbweKRXjeDvFiLEerQC3ukSiraSM5WUBQTLDBw5m+quzYOLWNIX/o
-         hhGpK9HzOYRYt2+ZWeO3LdAzBls6SI+3kzQ7bYY3AQzGTFyB2P60QNVICG1bAeFAX7V0
-         Q1TQ==
-X-Gm-Message-State: APjAAAUDH4sXG9J4LNIYYj+vuw4YmZFY61OM12Y3JZRL9cAetqXqESLN
-        McJZOVCY49Qr4knOn5oaEVY=
-X-Google-Smtp-Source: APXvYqxB5EKk0BXWRFX4VoMgn+lBpogZBtaCwNZ5pmK2sYGd/RHlDbpCU+tLYl3lG7Tt5x5yKBbEQQ==
-X-Received: by 2002:a25:1f09:: with SMTP id f9mr1507101ybf.184.1561528175767;
-        Tue, 25 Jun 2019 22:49:35 -0700 (PDT)
-Received: from [192.168.43.210] (mobile-166-172-58-106.mycingular.net. [166.172.58.106])
-        by smtp.gmail.com with ESMTPSA id 135sm1623784ywk.46.2019.06.25.22.49.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 25 Jun 2019 22:49:35 -0700 (PDT)
-Subject: Re: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and
- optimize probe ordering
-To:     Sandeep Patil <sspatil@android.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-References: <20190604003218.241354-1-saravanak@google.com>
- <20190624223707.GH203031@google.com> <20190625035313.GA13239@kroah.com>
- <20190626043052.GF212690@google.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <f9ddae55-91b3-27b2-0919-579f4d895e99@gmail.com>
-Date:   Tue, 25 Jun 2019 22:49:32 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1725790AbfFZFyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 01:54:11 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:59513 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725536AbfFZFyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 01:54:11 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hg0sk-000438-38; Wed, 26 Jun 2019 07:54:10 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hg0sj-00026T-6k; Wed, 26 Jun 2019 07:54:09 +0200
+Date:   Wed, 26 Jun 2019 07:54:09 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Peter Chen <peter.chen@nxp.com>
+Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+Message-ID: <20190626055409.jjiwptyths6p6jty@pengutronix.de>
+References: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
+ <VI1PR04MB5327E09DB0DFEB7E868DB59D8BE20@VI1PR04MB5327.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <20190626043052.GF212690@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <VI1PR04MB5327E09DB0DFEB7E868DB59D8BE20@VI1PR04MB5327.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:52:11 up 39 days, 12:10, 47 users,  load average: 0.01, 0.04,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/25/19 9:30 PM, Sandeep Patil wrote:
-> On Tue, Jun 25, 2019 at 11:53:13AM +0800, Greg Kroah-Hartman wrote:
->> On Mon, Jun 24, 2019 at 03:37:07PM -0700, Sandeep Patil wrote:
->>> We are trying to make sure that all (most) drivers in an Aarch64 system can
->>> be kernel modules for Android, like any other desktop system for
->>> example. There are a number of problems we need to fix before that happens
->>> ofcourse.
->>
->> I will argue that this is NOT an android-specific issue.  If the goal of
->> creating an arm64 kernel that will "just work" for a wide range of
->> hardware configurations without rebuilding is going to happen, we need
->> to solve this problem with DT.  This goal was one of the original wishes
->> of the arm64 development effort, let's not loose sight of it as
->> obviously, this is not working properly just yet.
+On 19-06-26 02:40, Peter Chen wrote:
+>  
+> > Subject: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+> > 
+> > The usb phys are internal to the SoC and so it their 5V supply. With this regulator
+> > added explicitly the following (harmless) boot messages go away:
+> > 
+> > 	usb_phy_generic usbphy:usb-phy@0: usbphy:usb-phy@0 supply vcc not
+> > found, using dummy regulator
+> > 	usb_phy_generic usbphy:usb-phy@1: usbphy:usb-phy@1 supply vcc not
+> > found, using dummy regulator
+> > 
 > 
-> I believe the proposed solution in this patch series is just that. I am not
-> sure what the alternatives are. The alternative suggested was to reuse
+> To eliminate the warning message, I suggest doing below changes, as vcc
+> supply is not mandatory.
+> 
+> diff --git a/drivers/usb/phy/phy-generic.c b/drivers/usb/phy/phy-generic.c
+> index a53b89be5324..01a5ff1a0515 100644
+> --- a/drivers/usb/phy/phy-generic.c
+> +++ b/drivers/usb/phy/phy-generic.c
+> @@ -275,7 +275,7 @@ int usb_phy_gen_create_phy(struct device *dev, struct usb_phy_generic *nop,
+>                 }   
+>         }   
+>  
+> -       nop->vcc = devm_regulator_get(dev, "vcc");
+> +       nop->vcc = devm_regulator_get_optional(dev, "vcc");
 
-Look at the responses from myself and from Rob to patch 0.  No one responded
-to our comments.
+Is the regulator optional? IMHO this shouldn't be the fix. I think the
+right fix is Uwe's approach.
 
--Frank
+Regards,
+  Marco
 
+>         if (IS_ERR(nop->vcc)) {
+>                 dev_dbg(dev, "Error getting vcc regulator: %ld\n",
+>                                         PTR_ERR(nop->vcc));
+> 
+> Peter
+> 
+> > Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > ---
+> > Hello,
+> > 
+> > note I'm an USB noob, so please consider carefully before applying :-) I also put the
+> > regulator near the usbphy node instead of in alphabetic order. Not sure what is
+> > sensible/usual here, too.
+> > 
+> > Best regards
+> > Uwe
+> > 
+> >  arch/arm/boot/dts/imx25.dtsi | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/imx25.dtsi b/arch/arm/boot/dts/imx25.dtsi
+> > --- a/arch/arm/boot/dts/imx25.dtsi
+> > +++ b/arch/arm/boot/dts/imx25.dtsi
+> > @@ -614,6 +614,11 @@
+> >  		};
+> >  	};
+> > 
+> > +	reg_usb: regulator_usbphy {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "usb-phy supply";
+> > +	};
+> > +
+> >  	usbphy {
+> >  		compatible = "simple-bus";
+> >  		#address-cells = <1>;
+> > @@ -623,12 +630,14 @@
+> >  			reg = <0>;
+> >  			compatible = "usb-nop-xceiv";
+> >  			#phy-cells = <0>;
+> > +			vcc-supply = <&reg_usb>;
+> >  		};
+> > 
+> >  		usbphy1: usb-phy@1 {
+> >  			reg = <1>;
+> >  			compatible = "usb-nop-xceiv";
+> >  			#phy-cells = <0>;
+> > +			vcc-supply = <&reg_usb>;
+> >  		};
+> >  	};
+> >  };
+> > --
+> > 2.20.1
+> 
 
-> pre-existing dt-bindings for dependency based probe re-ordering and resolution.
-> 
-> However, it seems we had no way to *really* check if these dependencies are
-> the real. So, a device may or may not actually depend on the other device for
-> probe / initialization when the dependency is mentioned in it's dt node. From
-> DT's point of view, there is no way to tell this ..
-> 
-> I don't know how this is handled in x86. With DT, I don't see how we can do
-> this unless DT dependencies are _really_ tied with runtime dependencies (The
-> cycles would have been apparent if that was the case.
-> 
-> Honestly, the "depends-on" property suggested here just piles on to the
-> existing state. So, it is somewhat doubling the exiting bindings. It says,
-> you must use depends-on property to define probe / initialization dependency.
-> The existing bindings like 'clock', 'interrupt', '*-supply' do not enforce
-> that right now, so you will have device nodes that have these bindings right
-> now but don't necessarily need them for successful probe for example.
-> 
->>
->> It just seems that Android is the first one to actually try and
->> implement that goal :)
-> 
-> I guess :)
-> 
-> - ssp
-> 
->>
->> thanks,
->>
->> greg k-h
-> 
-
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
