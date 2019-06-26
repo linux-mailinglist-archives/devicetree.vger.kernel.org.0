@@ -2,129 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C6885625F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 08:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B79E5627D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 08:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726006AbfFZGdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 02:33:18 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:48720 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725930AbfFZGdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 02:33:18 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 044406085C; Wed, 26 Jun 2019 06:33:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561530797;
-        bh=y47EEs3j4rFzzvuVXrP3J8qbvCWGuKExlUyEKd82I3U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WXPNfFc7x8o1APQwf2+yUaKgztd49KbSbqeJuRMssVZUx0iomT0YMLRYC13NC5GLJ
-         Ro+GVuouTTYIJ797GZL6qLuxapN54wXlOhY1MHI3OWXLLoq5Kg5OLyn47dxZuqt4qz
-         iUIFRybXuErG0sEBvtHyyS95+DGdqCoSm4sLg8kQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3FB076021C;
-        Wed, 26 Jun 2019 06:33:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561530796;
-        bh=y47EEs3j4rFzzvuVXrP3J8qbvCWGuKExlUyEKd82I3U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=jQKSqoT+OGc8qK8Cb0iV+ye/w4DWERiv1kTftNL9AIgnn//NI911jxMDig+YJht0O
-         YnwT3aDe/XWiP+7Mr36XIL10jnMh3o3aEXDtUm79gOIG39ZLp/q1WVMrtYj0EtvkMO
-         3TUP3A5gdmO2R+drNSNvRhjCPL9n1GCgI0NboenE=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3FB076021C
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
-Received: by mail-ed1-f42.google.com with SMTP id k8so1553038edr.11;
-        Tue, 25 Jun 2019 23:33:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAWG+ZAZzmRPGYjKkQ7vBlmFPSmz2hCtRO7TAkmlEJs0UFqc/6dp
-        a4SFonCIT49qeWlxfPEnYFHKH+NZmvWNDBpJSxc=
-X-Google-Smtp-Source: APXvYqzcofv0J7lRvmc0VYLV63Qeh9E/WHjj9IAHvvhUT2XF9QKRxQkifiF3lHlmVsEOxNk/acWViwQ7ifuOVtKvPYA=
-X-Received: by 2002:a17:906:6582:: with SMTP id x2mr2509409ejn.2.1561530795089;
- Tue, 25 Jun 2019 23:33:15 -0700 (PDT)
+        id S1726642AbfFZGmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 02:42:00 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:44206 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726006AbfFZGmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 02:42:00 -0400
+Received: by mail-pl1-f193.google.com with SMTP id t7so850813plr.11
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2019 23:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=97fNQhRc8wq4ewqRwHUZivSXGNy3wo+DiktNt6BuM1o=;
+        b=m8w/QLFUOkV2r8nM4dXom4nB8yKJb7/7QTMOMQn0qijo9CexrHeK+bR0MPOk7K64RN
+         oMDOQhVkXnI4UYsxoZERTzMchuU8ZuSXQVbe7PD7GBq58swJ1B0wl9zg2T1jDJjIFcpW
+         O/5R7uaHiYc5vvAJDPHpVhmTpcBeCykDYFrlkLu92iDqXDEGHmkNFrPVme8ha3yeMa+9
+         SSjqnz+drMupIrIAA5p2oUG6JB/gHz+XdzOb+NPLguWQM152NiUsdJnj04d+wIazVHoY
+         RqDDXsDiktD7TWekl63ZaXNaVelF0ltlqznPeRmml4YQVzfq60nVLckHZybN7zV2zT1m
+         aBEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=97fNQhRc8wq4ewqRwHUZivSXGNy3wo+DiktNt6BuM1o=;
+        b=Z/lecXoUt5/XPogsF594rsoypteBwtUe6wp98WBUULlokUD0U9b0KhZn3MM5MhOBlR
+         rsRwDIE9Xcao227AMWiU5gkY9mUfcO5bMmBLWEzlYn/8X/FqzLGXmH4moiqdcn9d/lf5
+         0ZZ3fWIQ1kp3PE/rB6kVljHanMKRSI4/HT/nQ2aTKmmBYjZH0WySsQEEOpTC6Hg4yg6Z
+         S2WG4kSKwtAzCrL80SwXM5jIWRjI9nqNrGncpQuqkGexy3hLlDWOwGlW6d2E2LfTfhfm
+         Usj1zbg2/jNf7waYuaLtAsvVW0NfCgnoSCCfD96FgOUj3275hTIt57RHmiWlkSwsszzH
+         GflQ==
+X-Gm-Message-State: APjAAAVW69mWziOXC6elAPA9v9VlreEUo+ETS1MiYgXrhoYPAmh8yI8I
+        0i6vpIQPvNa0Kcfo5NPuKFiQjprHgs1SAlhnKO4/Jw==
+X-Google-Smtp-Source: APXvYqybmTOAarjOR0jsvnzpNTD7C7S9tNEkokPreMksaC4ZkzPoppWa0LA/1WlZ/NQmXAUQqe9Hs4JcwK0nevbM4K4=
+X-Received: by 2002:a17:902:1004:: with SMTP id b4mr3503891pla.325.1561531318934;
+ Tue, 25 Jun 2019 23:41:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
- <20190612071554.13573-4-vivek.gautam@codeaurora.org> <20190614040520.GK22737@tuxbook-pro>
- <3e1f5e03-6448-8730-056d-fc47bdd71b3f@codeaurora.org> <20190618175218.GH4270@fuggles.cambridge.arm.com>
- <CAFp+6iEynLa=Jt_-oAwt4zmzxzhEXtWNCmghz6rFzcpQVGwrMg@mail.gmail.com>
- <20190624170348.7dncuc5qezqeyvq2@willie-the-truck> <CAFp+6iF0TQtAy2JFXk6zjX5GpjeLFesqPZV6ezbDXmc85yvMEA@mail.gmail.com>
- <20190625133924.fqq3y7p3i3fqem5p@willie-the-truck>
-In-Reply-To: <20190625133924.fqq3y7p3i3fqem5p@willie-the-truck>
-From:   Vivek Gautam <vivek.gautam@codeaurora.org>
-Date:   Wed, 26 Jun 2019 12:03:02 +0530
-X-Gmail-Original-Message-ID: <CAFp+6iH-KzX7x1j8AAuKJcOP6v=fyP-yLvaeeE_Ly3oueu_ngg@mail.gmail.com>
-Message-ID: <CAFp+6iH-KzX7x1j8AAuKJcOP6v=fyP-yLvaeeE_Ly3oueu_ngg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] iommu/arm-smmu: Add support to handle Qcom's
- wait-for-safe logic
-To:     Will Deacon <will@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        "robh+dt" <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-2-brendanhiggins@google.com> <20190620001526.93426218BE@mail.kernel.org>
+ <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com>
+ <20190625214427.GN19023@42.do-not-panic.com> <CAFd5g47OABqN127cPKqoCOA_Wr9w=LFh_0XkF7LXu2iY9sFkSw@mail.gmail.com>
+ <20190625230253.GQ19023@42.do-not-panic.com>
+In-Reply-To: <20190625230253.GQ19023@42.do-not-panic.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 25 Jun 2019 23:41:47 -0700
+Message-ID: <CAFd5g45fSdpytudDyD3Yo1ti=kU_JJ6S9yz53_L=pnZTjQFU9A@mail.gmail.com>
+Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 7:09 PM Will Deacon <will@kernel.org> wrote:
+On Tue, Jun 25, 2019 at 4:02 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
 >
-> On Tue, Jun 25, 2019 at 12:34:56PM +0530, Vivek Gautam wrote:
-> > On Mon, Jun 24, 2019 at 10:33 PM Will Deacon <will@kernel.org> wrote:
-> > > Instead, I think this needs to be part of a separate file that is maintained
-> > > by you, which follows on from the work that Krishna is doing for nvidia
-> > > built on top of Robin's prototype patches:
-> > >
-> > > http://linux-arm.org/git?p=linux-rm.git;a=shortlog;h=refs/heads/iommu/smmu-impl
+> On Tue, Jun 25, 2019 at 03:14:45PM -0700, Brendan Higgins wrote:
+> > On Tue, Jun 25, 2019 at 2:44 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+> > > Since its a new architecture and since you seem to imply most tests
+> > > don't require locking or even IRQs disabled, I think its worth to
+> > > consider the impact of adding such extreme locking requirements for
+> > > an initial ramp up.
 > >
-> > Looking at this branch quickly, it seem there can be separate implementation
-> > level configuration file that can be added.
-> > But will this also handle separate page table ops when required in future.
+> > Fair enough, I can see the point of not wanting to use irq disabled
+> > until we get someone complaining about it, but I think making it
+> > thread safe is reasonable. It means there is one less thing to confuse
+> > a KUnit user and the only penalty paid is some very minor performance.
 >
-> Nothing's set in stone, but having the implementation-specific code
-> constrain the page-table format (especially wrt quirks) sounds reasonable to
-> me. I'm currently waiting for Krishna to respin the nvidia changes [1] on
-> top of this so that we can see how well the abstractions are holding up.
+> One reason I'm really excited about kunit is speed... so by all means I
+> think we're at a good point to analyze performance optimizationsm if
+> they do make sense.
 
-Sure. Would you want me to try Robin's branch and take out the qualcomm
-related stuff to its own implementation? Or, would you like me to respin this
-series so that you can take it in to enable SDM845 boards such as, MTP
-and dragonboard to have a sane build - debian, etc. so people benefit
-out of it.
-Qualcomm stuff is lying in qcom-smmu and arm-smmu and may take some
-time to stub out the implementation related details.
-Let me know your take.
+Yeah, but I think there are much lower hanging fruit than this (as you
+point out below). I am all for making/keeping KUnit super fast, but I
+also don't want to waste time with premature optimizations and I think
+having thread safe expectations and non-thread safe expectations hurts
+usability.
 
-Thanks & regards
-Vivek
+Still, I am on board with making this a mutex instead of a spinlock for now.
 
+> While on the topic of parallization, what about support for running
+> different test cases in parallel? Or at the very least different kunit
+> modules in parallel.  Few questions come up based on this prospect:
 >
-> I certainly won't merge the stuff until we have a user.
->
-> Will
->
-> [1] https://lkml.kernel.org/r/1543887414-18209-1-git-send-email-vdumpa@nvidia.com
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
+>   * Why not support parallelism from the start?
 
+Just because it is more work and there isn't much to gain from it right now.
 
+Some numbers:
+I currently have a collection of 86 test cases in the branch that this
+patchset is from. I turned on PRINTK_TIME and looked at the first
+KUnit output and the last. On UML, start time was 0.090000, and end
+time was 0.090000. Looks like sched_clock is not very good on UML.
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Still it seems quite likely that all of these tests run around 0.01
+seconds or less on UML: I ran KUnit with only 2 test cases enabled
+three times and got an average runtime of 1.55867 seconds with a
+standard deviation of 0.0346747. I then ran it another three times
+with all test cases enabled and got an average runtime of 1.535
+seconds with a standard deviation of 0.0150997. The second average is
+less, but that doesn't really mean anything because it is well within
+one standard deviation with a very small sample size. Nevertheless, we
+can conclude that the actual runtime of those 84 test cases is most
+likely within one standard deviation, so on the order of 0.01 seconds.
+
+On x86 running on QEMU, first message from KUnit was printed at
+0.194251 and the last KUnit message was printed at 0.340915, meaning
+that all 86 test cases ran in about 0.146664 seconds.
+
+In any case, running KUnit tests in parallel is definitely something I
+plan on adding it eventually, but it just doesn't really seem worth it
+right now. I find the incremental build time of the kernel to
+typically be between 3 and 30 seconds, and a clean build to be between
+30 seconds to several minutes, depending on the number of available
+cores, so I don't think most users would even notice the amount of
+runtime contributed by the actual unit tests until we start getting
+into the 1000s of test cases. I don't suspect it will become an issue
+until we get into the 10,000s of test cases. I think we are a pretty
+long way off from that.
+
+>   * Are you opposed to eventually having this added? For instance, there is
+>     enough code on lib/test_kmod.c for batching tons of kthreads each
+>     one running its own thing for testing purposes which could be used
+>     as template.
+
+I am not opposed to adding it eventually at all. I actually plan on
+doing so, just not in this patchset. There are a lot of additional
+features, improvements, and sugar that I really want to add, so much
+so that most of it doesn't belong in this patchset; I just think this
+is one of those things that belongs in a follow up. I tried to boil
+down this patchset to as small as I could while still being useful;
+this is basically an MVP. Maybe after this patchset gets merged I
+should post a list of things I have ready for review, or would like to
+work on, and people can comment on what things they want to see next.
+
+>   * If we eventually *did* support it:
+>     - Would logs be skewed?
+
+Probably, before I went with the TAP approach, I was tagging each
+message with the test case it came from and I could have parsed it and
+assembled a coherent view of the logs using that; now that I am using
+TAP conforming output, that won't work. I haven't really thought too
+hard about how to address it, but there are ways. For the UML users, I
+am planning on adding a feature to guarantee hermeticity between tests
+running in different modules by adding a feature that allows a single
+kernel to be built with all tests included, and then determine which
+tests get run by passing in command line arguments or something. This
+way you can get the isolation from running tests in separate
+environments without increasing the build cost. We could also use this
+method to achieve parallelism by dispatching multiple kernels at once.
+That only works for UML, but I imagine you could do something similar
+for users running tests under qemu.
+
+>     - Could we have a way to query: give me log for only kunit module
+>       named "foo"?
+
+Yeah, I think that would make sense as part of the hermeticity thing I
+mentioned above.
+
+Hope that seems reasonable!
