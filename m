@@ -2,121 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDB1156FFD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 19:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BADA57014
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 19:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726805AbfFZRv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 13:51:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45390 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726796AbfFZRvz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 13:51:55 -0400
-Received: from localhost (c-67-164-175-55.hsd1.co.comcast.net [67.164.175.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B046B216FD;
-        Wed, 26 Jun 2019 17:51:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561571514;
-        bh=Sca4Z3OaKtXYUI/5YyPbiGGtd0DSIOE2gztWP1tFwRg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LZnYzW45b3DGtb+CSPIw9lW7eg1jZASAqQPgdDRKfJ/J8WWC8+6IG/TKWE9KqQEdV
-         1qvhJ3wa+JEDaYDwsmK2m9ViNBpE+a6nXrW7LmK++vw19GHOw3SzLOY98opv9FCoEH
-         8lOrIL5bqyp5EksDA0XqzgVxiLhcPXvGcyMNLcNo=
-Date:   Wed, 26 Jun 2019 12:51:53 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        leoyang.li@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        arnd@arndb.de, gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
-        mingkai.hu@nxp.com, roy.zang@nxp.com, kstewart@linuxfoundation.org,
-        pombredanne@nexb.com, shawn.lin@rock-chips.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCHv2 2/2] PCI: layerscape: EP and RC drivers are compiled
- separately
-Message-ID: <20190626175153.GC103694@google.com>
-References: <20190626111139.32878-1-xiaowei.bao@nxp.com>
- <20190626111139.32878-2-xiaowei.bao@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190626111139.32878-2-xiaowei.bao@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726307AbfFZR4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 13:56:05 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:46934 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726271AbfFZR4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 13:56:05 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1hgC99-00081y-NE; Wed, 26 Jun 2019 19:55:51 +0200
+Message-ID: <98101e9d46604927e04735f3bb5c4fc8586e6a92.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Alex Elder <elder@linaro.org>, Dan Williams <dcbw@redhat.com>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        abhishek.esse@gmail.com, Ben Chan <benchan@google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        cpratapa@codeaurora.org, David Miller <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Eric Caruso <ejcaruso@google.com>, evgreen@chromium.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-soc@vger.kernel.org, Networking <netdev@vger.kernel.org>,
+        syadagir@codeaurora.org
+Date:   Wed, 26 Jun 2019 19:55:48 +0200
+In-Reply-To: <0f5c0332-6894-2fdd-fd25-7af9a21b445b@linaro.org> (sfid-20190626_153658_340951_528F9725)
+References: <380a6185-7ad1-6be0-060b-e6e5d4126917@linaro.org>
+         <a94676381a5ca662c848f7a725562f721c43ce76.camel@sipsolutions.net>
+         <CAK8P3a0kV-i7BJJ2X6C=5n65rSGfo8fUiC4J_G-+M8EctYKbkg@mail.gmail.com>
+         <fc0d08912bc10ad089eb74034726308375279130.camel@redhat.com>
+         <36bca57c999f611353fd9741c55bb2a7@codeaurora.org>
+         <153fafb91267147cf22e2bf102dd822933ec823a.camel@redhat.com>
+         <CAK8P3a2Y+tcL1-V57dtypWHndNT3eDJdcKj29c_v+k8o1HHQig@mail.gmail.com>
+         <f4249aa5f5acdd90275eda35aa16f3cfb29d29be.camel@redhat.com>
+         <CAK8P3a2nzZKtshYfomOOSYkqx5HdU15Wr9b+3va0B1euNhFOAg@mail.gmail.com>
+         <dbb32f185d2c3a654083ee0a7188379e1f88d899.camel@sipsolutions.net>
+         <e6ba8a9063e63506c0b88a70418d74ca4efe85cd.camel@sipsolutions.net>
+         <850eed1d-0fec-c396-6e91-b5f1f8440ded@linaro.org>
+         <84153d9e7c903084b492ceccc0dd98cbb32c12ac.camel@redhat.com>
+         <7de004be-27b6-ac63-389d-8ea9d23d0361@linaro.org>
+         <868e949b1fc8cf22307f579ab1f14543064bec20.camel@sipsolutions.net>
+         <0f5c0332-6894-2fdd-fd25-7af9a21b445b@linaro.org>
+         (sfid-20190626_153658_340951_528F9725)
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-3.fc28) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If you post another revision for any reason, please change the subject
-so it's worded as a command and mentions the new config options, e.g.,
+On Wed, 2019-06-26 at 08:36 -0500, Alex Elder wrote:
+> 
+> We need to identify the existence of a WWAN device (which is I
+> guess--typically? always?--a modem).  Perhaps that can be
+> discovered in some cases but I think it means a node described
+> by Device Tree.
 
-  PCI: layerscape: Add CONFIG_PCI_LAYERSCAPE_EP to build EP/RC separately
+Yeah, perhaps that's something you could do. I'm not sure though. For
+one, for USB devices, obviously it isn't :-) And even for IPA you might
+want to support existing DTs I guess.
 
-On Wed, Jun 26, 2019 at 07:11:39PM +0800, Xiaowei Bao wrote:
-> Compile the EP and RC drivers separately with different configuration
-> options, this looks clearer.
+> So you're saying you have a single Ethernet driver, and it can
+> drive an Ethernet device connected to a WWAN, or not connected
+> to a WWAN, without any changes.  The only distinction is that
+> if the device is part of a WWAN it needs to register with the
+> WWAN framework.  Is that right?
+
+That's what I'm thinking, and I believe (mostly from discussions with
+Dan) that this actually exists.
+
+> > > So maybe:
+> > > - Hardware probe detects a WWAN device
+> > > - The drivers that detect the WWAN device register it with the
+> > >   WWAN core code.
+> > > - A control channel is instantiated at/before the time the WWAN
+> > >   device is registered
+> > > - Something in user space should manage the bring-up of any
+> > >   other things on the WWAN device thereafter
+> > 
+> > But those things need to actually get connected first :-)
 > 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> ---
-> v2:
->  - No change.
+> What I meant is that the registering with the "WWAN core code"
+> is what does that "connecting."  The WWAN code has the information
+> about what got registered.  But as I said above, this WWAN device
+> needs to be identified, and I think (at least for IPA) that will
+> require something in Device Tree.  That will "connect" them.
 > 
->  drivers/pci/controller/dwc/Kconfig  |   20 ++++++++++++++++++--
->  drivers/pci/controller/dwc/Makefile |    3 ++-
->  2 files changed, 20 insertions(+), 3 deletions(-)
+> Or I might be misunderstanding your point.
+
+No, I think we're mostly agreeing, just thinking about different
+scenarios. I think for IPA you don't really *need* anything in the DT
+though - as soon as the IPA driver is loaded you know for sure you
+actually have a modem there, and the IPA driver presumably loads based
+on some existing probing (didn't look at it now).
+
+Now, I don't know how the QMI channel to the modem is set up, so of
+course you'd want a way of identifying that the two channels (IPA and
+QMI) go to the same device and link them together in the WWAN framework.
+
+> > If userspace actually had the ability to create (data) channels, then it
+> > would have the ability to also remove them. Right now, this may or may
+> > not be supported by the drivers that act together to form the interfaces
+> > to a WWAN device.
 > 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index a6ce1ee..a41ccf5 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -131,13 +131,29 @@ config PCI_KEYSTONE_EP
->  	  DesignWare core functions to implement the driver.
->  
->  config PCI_LAYERSCAPE
-> -	bool "Freescale Layerscape PCIe controller"
-> +	bool "Freescale Layerscape PCIe controller - Host mode"
->  	depends on OF && (ARM || ARCH_LAYERSCAPE || COMPILE_TEST)
->  	depends on PCI_MSI_IRQ_DOMAIN
->  	select MFD_SYSCON
->  	select PCIE_DW_HOST
->  	help
-> -	  Say Y here if you want PCIe controller support on Layerscape SoCs.
-> +	  Say Y here if you want to enable PCIe controller support on Layerscape
-> +	  SoCs to work in Host mode.
-> +	  This controller can work either as EP or RC. The RCW[HOST_AGT_PEX]
-> +	  determines which PCIe controller works in EP mode and which PCIe
-> +	  controller works in RC mode.
-> +
-> +config PCI_LAYERSCAPE_EP
-> +	bool "Freescale Layerscape PCIe controller - Endpoint mode"
-> +	depends on OF && (ARM || ARCH_LAYERSCAPE || COMPILE_TEST)
-> +	depends on PCI_ENDPOINT
-> +	select PCIE_DW_EP
-> +	help
-> +	  Say Y here if you want to enable PCIe controller support on Layerscape
-> +	  SoCs to work in Endpoint mode.
-> +	  This controller can work either as EP or RC. The RCW[HOST_AGT_PEX]
-> +	  determines which PCIe controller works in EP mode and which PCIe
-> +	  controller works in RC mode.
->  
->  config PCI_HISI
->  	depends on OF && (ARM64 || COMPILE_TEST)
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index b085dfd..824fde7 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -8,7 +8,8 @@ obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
->  obj-$(CONFIG_PCI_IMX6) += pci-imx6.o
->  obj-$(CONFIG_PCIE_SPEAR13XX) += pcie-spear13xx.o
->  obj-$(CONFIG_PCI_KEYSTONE) += pci-keystone.o
-> -obj-$(CONFIG_PCI_LAYERSCAPE) += pci-layerscape.o pci-layerscape-ep.o
-> +obj-$(CONFIG_PCI_LAYERSCAPE) += pci-layerscape.o
-> +obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
->  obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
->  obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
->  obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
-> -- 
-> 1.7.1
-> 
+> I think this (user space control) needs to be an option, but
+> it doesn't have to be the only way.
+
+Agree.
+
+johannes
+
