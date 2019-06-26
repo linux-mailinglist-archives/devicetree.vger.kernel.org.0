@@ -2,81 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A7E45674D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C37BA56771
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 13:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726387AbfFZK7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 06:59:46 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:37058 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726104AbfFZK7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 06:59:46 -0400
-Received: by mail-lj1-f195.google.com with SMTP id 131so1720265ljf.4;
-        Wed, 26 Jun 2019 03:59:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Fv9xgHLhDYmnhdRlJ12b6ZaV6F7rsmVKSKGlSFypmB0=;
-        b=AW93f0+wWO8xHqfQfeq02+uVvagQqg6g2aSwBswZ1jGXrtgSYEwDc4vrVjHnuHlusy
-         9ITI9WY6oemJDG13jGFQ8JytMx1Wa6+NtkgUnCFPVstLuqJRoQ0O5fdaD95S064TV+OU
-         xsm1LPYvsy/e1ujhFxUSIEw4YlJCcYUSYVeKqUYv0gNJB9Gl5AKBknpE1JbXhUssFjW6
-         NRRBN/FDvEPV6ZTQ+caKanSaEFRg4K5nDzMdsWRdhr2kRNxzkH8HjaMxPX8WcNvtMlHe
-         qIkm6FpIuodkpacPFmqbfYd/KNpwm/U8iwvnw05/9R5sDtmghJT31ZCCBLXkKrdiz8So
-         FBFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Fv9xgHLhDYmnhdRlJ12b6ZaV6F7rsmVKSKGlSFypmB0=;
-        b=WsVfXgivSu+nH93Hnpb01QKOR/mHShnBzU0Uv32QGdaNnzlJTg8E1nI/74ieOHQbLD
-         gJHvI3FiS8S2KzkxWZy4v8nmVadmT7kYcD7YH3j96c3peM1el+HghYXuzdpoiXeYtUxD
-         BfKlWMUg8Ahlip4rHoTMHyx/cbyVIoVOe+00hvg5N70QZIQ9jQnWUStwDlN7ZXX78TRN
-         U+EFkD1Idie3gN6QJmRrsWJCxHUxT0MWorGWo04Y4w0x0nOi/wyenrAvMp9oBK7srQEl
-         hD6wGJJhauCK9D20G4weAX5iGQ4zoXUSvy5wX8X5rGGNHaoOjht0zDx4ov3KfNegcMpF
-         gQ5w==
-X-Gm-Message-State: APjAAAXxsTDYILH0kcFLky2pPvrxOWjzpmmXUBcq3rD0Aetgn/SHZ430
-        fyl7+XszHFUNtL504coi1ywYYAgIeLuZN4WbNLY=
-X-Google-Smtp-Source: APXvYqyaajySBdajl3vqXKwz2VD2Lk2DSCmiP3YMTp9EcxBO9jpD7CRAiLKwQLplLJ3nVmvjUP4aURNpERdDUfw/E+8=
-X-Received: by 2002:a2e:7d03:: with SMTP id y3mr2525177ljc.240.1561546784065;
- Wed, 26 Jun 2019 03:59:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <1561544420-15572-1-git-send-email-robert.chiras@nxp.com> <1561544420-15572-3-git-send-email-robert.chiras@nxp.com>
-In-Reply-To: <1561544420-15572-3-git-send-email-robert.chiras@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 26 Jun 2019 07:59:34 -0300
-Message-ID: <CAOMZO5CFSXHe7bFQ1xudmnm2=9sUL-FRqtzOtf_c=f7=e=bdqg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] drm/panel: Add support for Raydium RM67191 panel driver
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726723AbfFZLUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 07:20:53 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:42418 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726077AbfFZLUx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 07:20:53 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CF2D71A0071;
+        Wed, 26 Jun 2019 13:20:51 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 87BEC1A09EE;
+        Wed, 26 Jun 2019 13:20:41 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id F2CB1402D5;
+        Wed, 26 Jun 2019 19:20:28 +0800 (SGT)
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
+        lorenzo.pieralisi@arm.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
+        mingkai.hu@nxp.com, roy.zang@nxp.com, kstewart@linuxfoundation.org,
+        pombredanne@nexb.com, shawn.lin@rock-chips.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: [PATCHv2 1/2] PCI: layerscape: Add the bar_fixed_64bit property in EP driver.
+Date:   Wed, 26 Jun 2019 19:11:38 +0800
+Message-Id: <20190626111139.32878-1-xiaowei.bao@nxp.com>
+X-Mailer: git-send-email 2.14.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
+The PCIe controller of layerscape just have 4 BARs, BAR0 and BAR1
+is 32bit, BAR3 and BAR4 is 64bit, this is determined by hardware,
+so set the bar_fixed_64bit with 0x14.
 
-On Wed, Jun 26, 2019 at 7:21 AM Robert Chiras <robert.chiras@nxp.com> wrote:
->
-> This patch adds Raydium RM67191 TFT LCD panel driver (MIPI-DSI
-> protocol).
->
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+---
+v2:
+ - Replace value 0x14 with a macro.
 
-Looks good to me:
+ drivers/pci/controller/dwc/pci-layerscape-ep.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+index be61d96..227c33b 100644
+--- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
++++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+@@ -44,6 +44,7 @@ static int ls_pcie_establish_link(struct dw_pcie *pci)
+ 	.linkup_notifier = false,
+ 	.msi_capable = true,
+ 	.msix_capable = false,
++	.bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
+ };
+ 
+ static const struct pci_epc_features*
+-- 
+1.7.1
 
-Thanks
