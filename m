@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B5E56C6E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E7756C76
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728025AbfFZOnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 10:43:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46234 "EHLO mail.kernel.org"
+        id S1727276AbfFZOot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 10:44:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46720 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726157AbfFZOnZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 10:43:25 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        id S1725958AbfFZOot (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 10:44:49 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E5C1B2080C;
-        Wed, 26 Jun 2019 14:43:23 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id DDEB921670;
+        Wed, 26 Jun 2019 14:44:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561560204;
-        bh=00rC0wdpAdD7iwooPkJILqIhsMM0FV+mEJjQaxzmaM8=;
+        s=default; t=1561560288;
+        bh=WQB0Cb0Fwe1e0rrZlhVBU+AwLgt65MtTJ2khFSrZn0o=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bbLSFe0hmo/BVopnXvLcUiwWWKLYb6WnJZuMmJ0fMJRQnKhfz4iKW+qNz+E4hibsh
-         WHkP05nOJLH3js7w+1dbZ1Dz+femBXT6l+JiEcrBqb5/GrEt0TVyaw9lXqrc8u+5QP
-         detnyz80PaTcTeuhixV1PgwNOVd5BOJz/jCAKiCE=
-Received: by mail-qt1-f169.google.com with SMTP id d23so2649336qto.2;
-        Wed, 26 Jun 2019 07:43:23 -0700 (PDT)
-X-Gm-Message-State: APjAAAVFjsx6WfYPxS/rGNVqcEpvPWHU217UHv9KUcKZLNDAD/v8sCJ4
-        PDDlylafALrV1MQGSzUlfOzHFXgjkOYY6pzijA==
-X-Google-Smtp-Source: APXvYqyr8Zlz8fpqgay129UIrkPbfTa84lhlkGKPvEDgHYVRyKeCNl7CMNHQYKrlqQCQGb5m02XxK/OTjfw2ow7sePk=
-X-Received: by 2002:aed:3fb0:: with SMTP id s45mr4212078qth.136.1561560203223;
- Wed, 26 Jun 2019 07:43:23 -0700 (PDT)
+        b=LOZNuS5FQwrKpVsEzn+lGfI1b+0GrSDNZoDXqhZ5pPhq+BAlqKj2U3xjo2PltRuok
+         VTJNPeHr2G5MIScnD1cTC16xGA8HCo3pSk7KOaqBqRKzMM0+uUZRueYfYFrkMHNYAu
+         ItEKdvja+WFtZU3Xszgzuwry7RXgIQLD+Xt63Jes=
+Received: by mail-qt1-f181.google.com with SMTP id d17so2609912qtj.8;
+        Wed, 26 Jun 2019 07:44:47 -0700 (PDT)
+X-Gm-Message-State: APjAAAWLwpY8DWFQUcQsxgSJz6ZzZFKDrCY6SejdT4YqP1LWEGi1K1Kx
+        MmA4WFWYPER1HN0n770aEp0cMpIZD8bCb+LDyg==
+X-Google-Smtp-Source: APXvYqy3AyboNNaUxEOTVD3G9r/1zIYtxuabnm8obQmyQ2sNWzb05eFckEI9upYAQjZ4FNmk2ANMRn/4A6VU93yWGpo=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr4218147qth.136.1561560287185;
+ Wed, 26 Jun 2019 07:44:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
- <1561435529-7835-2-git-send-email-bdodge09@gmail.com> <20190625085534.xf2ullyju3ewbgik@holly.lan>
- <CAFaGBPnH=75=wJRM4EX9MYR8MSehEa2_hBEOsqo-DZvD6c6f_A@mail.gmail.com> <20190626105614.ujmryi7qou2ra7aq@holly.lan>
-In-Reply-To: <20190626105614.ujmryi7qou2ra7aq@holly.lan>
+References: <20190625081128.22190-1-mircea.caprioru@analog.com> <20190625081128.22190-4-mircea.caprioru@analog.com>
+In-Reply-To: <20190625081128.22190-4-mircea.caprioru@analog.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 26 Jun 2019 08:43:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL2XXZY-vxb16=6Mh8cV=YaMv0U7d+SHzzgWHwEWFy4Sg@mail.gmail.com>
-Message-ID: <CAL_JsqL2XXZY-vxb16=6Mh8cV=YaMv0U7d+SHzzgWHwEWFy4Sg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: fix vendor prefix for
- ArcticSand arcxcnn driver bindings
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Brian Dodge <bdodge09@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org, pbacon@psemi.com
+Date:   Wed, 26 Jun 2019 08:44:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLHpT1z3O5QctG6WWB6bcOms5XYTOOrq6tK6uOZPNQtDQ@mail.gmail.com>
+Message-ID: <CAL_JsqLHpT1z3O5QctG6WWB6bcOms5XYTOOrq6tK6uOZPNQtDQ@mail.gmail.com>
+Subject: Re: [PATCH V4 4/5] dt-bindings: iio: adc: Convert ad7124
+ documentation to YAML
+To:     Mircea Caprioru <mircea.caprioru@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 4:56 AM Daniel Thompson
-<daniel.thompson@linaro.org> wrote:
+On Tue, Jun 25, 2019 at 2:12 AM Mircea Caprioru
+<mircea.caprioru@analog.com> wrote:
 >
-> On Tue, Jun 25, 2019 at 07:44:06AM -0400, Brian Dodge wrote:
-> > I would like to deprecate the old prefix in the future after communicating
-> > with all chip customers, which is why the old prefix is not documented in
-> > the new bindings.
+> Convert AD7124 bindings documentation to YAML format.
 >
-> Deprecation is fine (by me at least) it's just that I'm not sure that
-> removing the documentation for the deprecated bindings is the right way
-> to do it. What is the prior art here?
+> Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
+> ---
+>
+> Changelog v2:
+> - modified SPDX license to GPL-2.0 OR BSD-2-Clause
+> - added regex for a range from 0 to 15
+> - added minimum and maximum constraints for reg property
+> - set type and range of values for adi,reference-select property
+> - used items for diff-channels property
+> - set bipolar, adi,buffered-positive and negative to type: boolean
+>
+> Changelog v3:
+> - moved adi,buffered-positive and negative properties to own commit
+>
+> Changelog v4:
+> - removed old txt dt-binding
+>
+>  .../bindings/iio/adc/adi,ad7124.txt           |  75 ---------
+>  .../bindings/iio/adc/adi,ad7124.yaml          | 144 ++++++++++++++++++
+>  2 files changed, 144 insertions(+), 75 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7124.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
 
-Kind of depends on how widely used something is and we've done both
-ways generally. If there are not any upstream dts files, removal is
-fine IMO.
-
-With schema, there's a 'deprecated' keyword coming in draft8. So we'll
-have a defined way to keep things documented as needed and also warn
-about their use.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
