@@ -2,178 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D8A756738
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D7356749
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726387AbfFZK4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 06:56:20 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:43780 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726339AbfFZK4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 06:56:20 -0400
-Received: by mail-wr1-f66.google.com with SMTP id p13so2170714wru.10
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 03:56:17 -0700 (PDT)
+        id S1726946AbfFZK6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 06:58:52 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:38360 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726131AbfFZK6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 06:58:52 -0400
+Received: by mail-lj1-f194.google.com with SMTP id r9so1714973ljg.5;
+        Wed, 26 Jun 2019 03:58:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=j2eG3tSDbarkCwpmXUvGaJx+Wh9f5fwEAaa9WZrgNI0=;
-        b=BOKTavz/4nPTkI1bDzm/v1kGi3+GDZ3FBIh3ofIszJbiO4XEozsgDAJXZDdNZsE/Lp
-         dswNw+B+0X2HRezmnGjA745HV/iopd2wx0kxd9s/7TTmPXhhgyMP8lFr2Mh1bCBSpidX
-         4LlaUU6wIcT6VKpytLluyfeMKqSqRkhQVypPVxN7S5dOEyvc5VXfd4asnouS/DlCNgM2
-         ZJY9XKix+GXxmMU1q9mhknf56u0Ftt1DqeRyiJ5U8xhVAyTxdDA109iKBnfwaoLTRO4p
-         dp/Ro22jNKqRJWkRpW09LCkCIW780VgAz5jzpUFjpWOlP+T1LaQVlcxy3+h2SZAe4sfJ
-         PsXg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vBnSNkpp1XS13FbQfXNNjthLGvaxRDnVZe4G6iUXAtU=;
+        b=GaqgAuFEfvv3hBS0MaU6uk4aVJXr6o+2pG+er+XZSrXJmKaX1hSvGbNyogXUrcLE1F
+         8uPyzO20cWhgn+6ogJWZGBUDgM/+hmdodS2rGfiJw+hYmHysEcAjmj6xP3Fee5JK8Emq
+         loi84Jm74kjpfhji/XqX0xwnoCYYdgWSjGLQq8wzHtt2nSe0/KvZ6HHheCZpk8jL9kN5
+         ePK310T6x5hfCUeiiB+CAwL2vR/E5Nd3/aRMdJydETRe0FPBo9xfRQRHMxYNWqCI5m8P
+         pUZHLmizbJuiS5WGXpaGO86UWbuiqs23zbiILID8Ga3NGnYbkerHBO9gQa2OE40nmKrC
+         g3Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=j2eG3tSDbarkCwpmXUvGaJx+Wh9f5fwEAaa9WZrgNI0=;
-        b=XKJ0u5eI8Wb7cX/fdIY0biTFvbkZMWvipHqqO6gitu7cVPy4UxswmzYJ6Wc6CVk0CZ
-         COa2p3pyhOaBjS78jv0aRDvzc8WoG6/ZKh3Mt449Uj77LpPvpbArwi3uuZJg40ninv/K
-         IgDTXzK1PkCu7ISPdrXHC1Esh8jjyaR4K6coxbPNsbwkwiZKsQzBR+rfYhMsYD2w+I8x
-         aon3iRplktEucujEW638Z6o5xMN3PSWAlnilAOzRyXQHaAO8piAzCA+vmhRAhFG6pTKh
-         3stT/urA3Qa/ig0Sm68Zc825DoLxhgz6bMk/6JlODq5UamAFZFbO5rWREigxIIFhJ8HA
-         z5Zw==
-X-Gm-Message-State: APjAAAUKGG1gBM2CjmKL4cHi75eShzz2/WDJ5s05xWynI6PrZGXcwiKD
-        G96AYajbz8CG1n6rUQXJJVBDrg==
-X-Google-Smtp-Source: APXvYqyYMXk739SFIZW8rU7j/7NYZ/CNk4T4NZtdoU8WWWjOZHSL/n3F4W7cK9xHaLb3iGZ02Hm7qw==
-X-Received: by 2002:adf:fed0:: with SMTP id q16mr3113776wrs.127.1561546577205;
-        Wed, 26 Jun 2019 03:56:17 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id y184sm1642151wmg.14.2019.06.26.03.56.16
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 26 Jun 2019 03:56:16 -0700 (PDT)
-Date:   Wed, 26 Jun 2019 11:56:14 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Brian Dodge <bdodge09@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, lee.jones@linaro.org,
-        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
-        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        pbacon@psemi.com
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: fix vendor prefix for
- ArcticSand arcxcnn driver bindings
-Message-ID: <20190626105614.ujmryi7qou2ra7aq@holly.lan>
-References: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
- <1561435529-7835-2-git-send-email-bdodge09@gmail.com>
- <20190625085534.xf2ullyju3ewbgik@holly.lan>
- <CAFaGBPnH=75=wJRM4EX9MYR8MSehEa2_hBEOsqo-DZvD6c6f_A@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vBnSNkpp1XS13FbQfXNNjthLGvaxRDnVZe4G6iUXAtU=;
+        b=cWX+3LE8slfiGr1ef79WOIbIA0KtK2eYL783MjmS4fKxc61YL5w9IG1nNWjNRgiEgp
+         hMzz5xQa37pFSqD1G05ZF88viMe7OT7/1RoA/Cp+k0sq5ccV7hP1V3pCa/rOClvTNONM
+         8ANK2Gcl/WkW5HAvNhU8seIvYeqbkb+FQ5ji5qZAbkM9y8oVIdleTngyPNaQcuNbLAV7
+         E9vTqpSLwfVWlSRO0r6Mqmc0YusEqH3O1CtI/AUFPweGF3513dfBfSjCt9jh0BBA/gmm
+         qqxr4/We5SEpZVlTSN7W+tsBd8XOsMfaXtA42VKdgAlXZQ3ah3I6wcKiWz+MTz2Dl1tz
+         Jcvw==
+X-Gm-Message-State: APjAAAV2vrQdKDSR2xNLb7yBcXQTkU+kSb7WOE2XQpbk1KGw2cR4Tt0c
+        rZ18uF+R88dI0Rp9+tM5ve9NUZ8yIGXDxFqF5pc=
+X-Google-Smtp-Source: APXvYqxgoOFc17kD7+phBGYs9B/nP1o8ns/3dGiVnoxKpmtsSjv06Im4LhGmDTJDnuu5JdispKhyHp6RMeFmjrm7eYo=
+X-Received: by 2002:a2e:8650:: with SMTP id i16mr2529260ljj.178.1561546729355;
+ Wed, 26 Jun 2019 03:58:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFaGBPnH=75=wJRM4EX9MYR8MSehEa2_hBEOsqo-DZvD6c6f_A@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+References: <1561544420-15572-1-git-send-email-robert.chiras@nxp.com> <1561544420-15572-2-git-send-email-robert.chiras@nxp.com>
+In-Reply-To: <1561544420-15572-2-git-send-email-robert.chiras@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 26 Jun 2019 07:58:39 -0300
+Message-ID: <CAOMZO5AKOgcRcyOyz71MyHY5VbGF2OCSdVfREwoNPrVk8rbVAA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: display: panel: Add support for
+ Raydium RM67191 panel
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 07:44:06AM -0400, Brian Dodge wrote:
-> I would like to deprecate the old prefix in the future after communicating
-> with all chip customers, which is why the old prefix is not documented in
-> the new bindings.
+On Wed, Jun 26, 2019 at 7:21 AM Robert Chiras <robert.chiras@nxp.com> wrote:
+>
+> Add dt-bindings documentation for Raydium RM67191 DSI panel.
+>
+> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
-Deprecation is fine (by me at least) it's just that I'm not sure that
-removing the documentation for the deprecated bindings is the right way
-to do it. What is the prior art here?
-
-
-Daniel.
-
-
-
-> 
-> 
-> On Tue, Jun 25, 2019, 4:55 AM Daniel Thompson <daniel.thompson@linaro.org>
-> wrote:
-> 
-> > On Tue, Jun 25, 2019 at 12:05:28AM -0400, Brian Dodge wrote:
-> > >     The vendor-prefixes.txt file properly refers to ArcticSand
-> > >     as arctic but the driver bindings improperly abbreviated the
-> > >     prefix to arc. This was a mistake in the original patch
-> > >
-> > > Signed-off-by: Brian Dodge <bdodge09@gmail.com>
-> > > ---
-> > >  .../bindings/leds/backlight/arcxcnn_bl.txt         | 24
-> > +++++++++++++---------
-> > >  1 file changed, 14 insertions(+), 10 deletions(-)
-> > >
-> > > diff --git
-> > a/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > b/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > > index 230abde..9cf4c44 100644
-> > > --- a/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > > +++ b/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > > @@ -1,8 +1,12 @@
-> > > -Binding for ArcticSand arc2c0608 LED driver
-> > > +Binding for ArcticSand arc family LED drivers
-> > >
-> > >  Required properties:
-> > > -- compatible:                should be "arc,arc2c0608"
-> > > -- reg:                       slave address
-> > > +- compatible: one of
-> > > +     "arctic,arc1c0608"
-> > > +     "arctic,arc2c0608"
-> > > +     "arctic,arc3c0845"
-> >
-> > This is more a question for the DT folks than for Brian but...
-> >
-> > AFAICT this patch is fixing the binding for the ArcticSand devices to
-> > use the correct value from vendor-prefixes.yaml and has been previously
-> > discussed here:
-> > https://lkml.org/lkml/2018/9/25/726
-> >
-> > Currently this patch series just updates the DT bindings but the
-> > implementation also honours the old values (since there is a Chromebook
-> > in the wild that uses the current bindings).
-> >
-> > Hence I'm not clear whether the bindings should document the deprecated
-> > options too (e.g. make it easier to find the bindings doc with git grep
-> > and friends).
-> >
-> >
-> > Daniel.
-> >
-> >
-> > > +
-> > > +- reg:               slave address
-> > >
-> > >  Optional properties:
-> > >  - default-brightness:        brightness value on boot, value from:
-> > 0-4095
-> > > @@ -11,19 +15,19 @@ Optional properties:
-> > >  - led-sources:               List of enabled channels from 0 to 5.
-> > >                       See
-> > Documentation/devicetree/bindings/leds/common.txt
-> > >
-> > > -- arc,led-config-0:  setting for register ILED_CONFIG_0
-> > > -- arc,led-config-1:  setting for register ILED_CONFIG_1
-> > > -- arc,dim-freq:              PWM mode frequence setting (bits [3:0]
-> > used)
-> > > -- arc,comp-config:   setting for register CONFIG_COMP
-> > > -- arc,filter-config: setting for register FILTER_CONFIG
-> > > -- arc,trim-config:   setting for register IMAXTUNE
-> > > +- arctic,led-config-0:       setting for register ILED_CONFIG_0
-> > > +- arctic,led-config-1:       setting for register ILED_CONFIG_1
-> > > +- arctic,dim-freq:           PWM mode frequence setting (bits [3:0]
-> > used)
-> > > +- arctic,comp-config:        setting for register CONFIG_COMP
-> > > +- arctic,filter-config:      setting for register FILTER_CONFIG
-> > > +- arctic,trim-config:        setting for register IMAXTUNE
-> > >
-> > >  Note: Optional properties not specified will default to values in IC
-> > EPROM
-> > >
-> > >  Example:
-> > >
-> > >  arc2c0608@30 {
-> > > -     compatible = "arc,arc2c0608";
-> > > +     compatible = "arctic,arc2c0608";
-> > >       reg = <0x30>;
-> > >       default-brightness = <500>;
-> > >       label = "lcd-backlight";
-> > > --
-> > > 2.7.4
-> > >
-> >
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
