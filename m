@@ -2,82 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 905FE56DC2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 17:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFBD56E9E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 18:23:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726948AbfFZPe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 11:34:56 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:45690 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726104AbfFZPe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 11:34:56 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QFYoKV122586;
-        Wed, 26 Jun 2019 10:34:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1561563290;
-        bh=dK1G/bNOQ6OS0Z2ejZP3H9rjyJyasJF3sJZnOOHmNRk=;
-        h=To:From:Subject:Date;
-        b=cJOXxujzKDbhXM7qOTyBgKyU4JsF4T/s1vDKBCEf4xyD9bUp7QWnoCY4Xggk9IN5I
-         LmxeFgufscbuyq6fl83OSVOCVhkbazbYU+D2dA+c24nhyni0bbG4f4ZrEQG9xeZE94
-         DYFjZEIUec6K10v5SdscZ6BhENmm2Tf9klLWlpjU=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QFYoD7044396
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Jun 2019 10:34:50 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 26
- Jun 2019 10:34:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 26 Jun 2019 10:34:50 -0500
-Received: from [10.250.97.31] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QFYnbo038873;
-        Wed, 26 Jun 2019 10:34:49 -0500
-To:     <devicetree@vger.kernel.org>, <jacek.anaszewski@gmail.com>,
-        <pavel@ucw.cz>, <linux-leds@vger.kernel.org>, <robh@kernel.org>,
-        "Valkeinen, Tomi" <tomi.valkeinen@ti.com>
-From:   Jean-Jacques Hiblot <jjhiblot@ti.com>
-Subject: devicetree bindings for a generic led-based backlight driver
-Message-ID: <69f3a300-9e37-448d-e6fa-49c1c9ca0dd6@ti.com>
-Date:   Wed, 26 Jun 2019 17:34:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726289AbfFZQXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 12:23:45 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:37948 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725958AbfFZQXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 12:23:45 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 155F72753CB;
+        Wed, 26 Jun 2019 17:23:43 +0100 (BST)
+Date:   Wed, 26 Jun 2019 18:23:39 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Qii Wang <qii.wang@mediatek.com>
+Cc:     <bbrezillon@kernel.org>, <matthias.bgg@gmail.com>,
+        <linux-i3c@lists.infradead.org>, <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <liguo.zhang@mediatek.com>, <xinping.qian@mediatek.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i3c: Document MediaTek I3C master
+ bindings
+Message-ID: <20190626182339.0c6301a2@collabora.com>
+In-Reply-To: <1561527388-4829-2-git-send-email-qii.wang@mediatek.com>
+References: <1561527388-4829-1-git-send-email-qii.wang@mediatek.com>
+        <1561527388-4829-2-git-send-email-qii.wang@mediatek.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, 26 Jun 2019 13:36:27 +0800
+Qii Wang <qii.wang@mediatek.com> wrote:
 
-A few years ago (2015), Tomi Valkeinen posted a series implementing a 
-backlight driver on top of a LED device.
+> Document MediaTek I3C master DT bindings.
+> 
+> Signed-off-by: Qii Wang <qii.wang@mediatek.com>
+> ---
+>  .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   47 ++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> new file mode 100644
+> index 0000000..3fd4f17
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> @@ -0,0 +1,47 @@
+> +Bindings for MediaTek I3C master block
+> +=====================================
+> +
+> +Required properties:
+> +--------------------
+> +- compatible: shall be "mediatek,i3c-master"
+> +- reg: physical base address of the controller and apdma base, length of
+> +  memory mapped region.
+> +- reg-names: should be "main" for controller and "dma" for apdma.
+> +- interrupts: interrupt number to the cpu.
 
-https://patchwork.kernel.org/patch/7293991/
-https://patchwork.kernel.org/patch/7294001/
-https://patchwork.kernel.org/patch/7293981/
+Depending on the interrupt controller, each interrupt cell might
+contain more than just the interrupt number.
 
-The discussion stopped  because he lacked the time to work on it.
+> +- clocks: clock name from clock manager.
 
-I will be taking over the task and, before heading in the wrong 
-direction, wanted a confirmation that the binding Tomi last proposed in 
-hist last email was indeed the preferred option.
+This property does not contain clock names but clk references.
 
-It will probably require some modifications in the LED core to create 
-the right kind of led-device (normal, flash or backlight) based on the 
-compatible option.
+> +- clock-names: must include "main" and "dma".
+> +
+> +Mandatory properties defined by the generic binding (see
+> +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +
+> +- #address-cells: shall be set to 3
+> +- #size-cells: shall be set to 0
+> +
+> +Optional properties defined by the generic binding (see
+> +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +
+> +- i2c-scl-hz
+> +- i3c-scl-hz
+> +
+> +I3C device connected on the bus follow the generic description (see
+> +Documentation/devicetree/bindings/i3c/i3c.txt for more details).
+> +
+> +Example:
+> +
+> +	i3c0: i3c@1100d000 {
+> +		compatible = "mediatek,i3c-master";
+> +		reg = <0x1100d000 0x100>,
+> +		      <0x11000300 0x80>;
+> +		reg-names = "main", "dma";
+> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
+> +		clocks = <&i3c0_ck>, <&ap_dma_ck>;
+> +		clock-names = "main", "dma";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		i2c-scl-hz = <100000>;
+> +
+> +		nunchuk: nunchuk@52 {
+> +			compatible = "nintendo,nunchuk";
+> +			reg = <0x52 0x80000010 0>;
 
-Thanks for your feedback
+reg is wrong here, should be
 
-JJ
+			reg = <0x52 0x0 0x10>;
 
+While at it, can you send a patch to fix the example in the cadence
+binding doc?
 
-
+> +		};
+> +	};
 
