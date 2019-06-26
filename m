@@ -2,96 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C93573A8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 23:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D899A573F7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 23:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbfFZVcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 17:32:42 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:46376 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726271AbfFZVcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 17:32:42 -0400
-Received: by mail-pf1-f194.google.com with SMTP id 81so71240pfy.13
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 14:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:to:cc:from:user-agent:date;
-        bh=xaNe52gTlH7uRzDXkViS1kydi/Gmc6DAN/0reN+QD/8=;
-        b=HGVs1bclAbOEXXG+00ww1YiAcgPJaUDs8c6KhzZs0qSXho81TRV1hIRDYI4p3P+oS5
-         wxJihsS1sEj2TMViHikFUkrsrQGyTia8SAyrkZaPBkVceiLL4rujCxA/m5LRUoCr2ZpX
-         bS1Ukkj1FBQTy+QAHrTZIcv/ZmCGwUEuolewg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:to:cc:from
-         :user-agent:date;
-        bh=xaNe52gTlH7uRzDXkViS1kydi/Gmc6DAN/0reN+QD/8=;
-        b=H0SOZAb3uVDQ2VBq0CMRch73OtG+2jAIP20g+mbK65DdrDU7pHxhy0b4yjyB40RnVJ
-         aBWQhizfd6ckGkQGj6anz6vYJwb4KQPL24IWDIfqoahk2MKmshINNoQzk1sU14CuN6w9
-         Xgpzf8JPgKtxSmd7iqS4sS3NSuu2p9UK6C5vWqD8Y8fgIUtNHJHaRfqH99geFYtLuBsJ
-         sQAM2Q3y8Skox78ym7OqI+90h4qbJMS/XxfiN33CU7F5QqP7JaiTWaFFgrvTrkdcEyM+
-         nGalrXUnRnQrNqyhCi9s4L6PCaUjEsXIFLmS8iWrWoPizfwFRyvTPMIHVk2UwlMcoDNy
-         wE8A==
-X-Gm-Message-State: APjAAAXlWjGH7PPATLDc4i/Z03HEtPE7uZWxAMQyoDlNrkPnFaHbALVd
-        4oOPWhXt6S+hnKKrQpWxmmxusQ==
-X-Google-Smtp-Source: APXvYqx1s5f135al8fvcz9ybaaaQrPCh6UykGfmm1OcWMXuY9lKQcBeG5D68heUPHZLR1mClZF5ETQ==
-X-Received: by 2002:a17:90a:24e4:: with SMTP id i91mr1546271pje.9.1561584761690;
-        Wed, 26 Jun 2019 14:32:41 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id x3sm5124124pja.4.2019.06.26.14.32.41
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 26 Jun 2019 14:32:41 -0700 (PDT)
-Message-ID: <5d13e479.1c69fb81.dd08b.b1e4@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1726368AbfFZV7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 17:59:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35744 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726359AbfFZV7E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 17:59:04 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A555221743;
+        Wed, 26 Jun 2019 21:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561586343;
+        bh=dp3wSsPNYah0quSfVuxFUWJYCawQNw3wrHk37cc0CCk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QlRu2S4GcDicDAUHvW8Ndm1sD/BnM/FPYr0MPJZMarYL6aDAnEnluttBu1crIOsAo
+         f1HvVyY+iRLJO80XuK8Vgt65SuXS0mersjGCOS9vqSK6+F0QyBE1VlbjIOMaPAUGPj
+         uMtQC0vPqTLPFsGhF1/ArzSWy0+OfVyQDwip7T/w=
+Received: by mail-qk1-f172.google.com with SMTP id l128so39018qke.2;
+        Wed, 26 Jun 2019 14:59:03 -0700 (PDT)
+X-Gm-Message-State: APjAAAUbnrgGsRH3sAz+kvnZ7/Po+WSOu+9jgDWCIocZZL6I3mA6fycA
+        l+O67UDZd63r010yuNHQwA0aA7XY5CexGv65ng==
+X-Google-Smtp-Source: APXvYqxuinlLaUR/0xCYGvj5qXU4IVL5IKudGzHnRidM4al+AE+ur52RvUa1X1QjoOtwwoQuds1mokcgTUI/Rz4zSlI=
+X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr316379qkl.254.1561586342888;
+ Wed, 26 Jun 2019 14:59:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1561550047-19600-1-git-send-email-amasule@codeaurora.org>
-References: <1561550047-19600-1-git-send-email-amasule@codeaurora.org>
-Subject: Re: [PATCH] arm64: dts: sdm845: Add video nodes
-To:     Aniket Masule <amasule@codeaurora.org>, andy.gross@linaro.org,
-        david.brown@linaro.org, mark.rutland@arm.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mgottam@codeaurora.org,
-        vgarodia@codeaurora.org, Aniket Masule <amasule@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.8.1
-Date:   Wed, 26 Jun 2019 14:32:40 -0700
+References: <156113387975.28344.16009584175308192243.stgit@devnote2>
+In-Reply-To: <156113387975.28344.16009584175308192243.stgit@devnote2>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 26 Jun 2019 15:58:50 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJOc+tkFEGcc+KN0RE8Xjg_i9icPWZ37Ynk_9sR2X1Uwg@mail.gmail.com>
+Message-ID: <CAL_JsqJOc+tkFEGcc+KN0RE8Xjg_i9icPWZ37Ynk_9sR2X1Uwg@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/11] tracing: of: Boot time tracing using devicetree
+To:     Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     Steven Rostedt <rostedt@goodmis.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Tom Zanussi <tom.zanussi@linux.intel.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Jiri Olsa <jolsa@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Aniket Masule (2019-06-26 04:54:07)
-> This adds video nodes to sdm845 based on the examples
-> in the bindings.
->=20
-> Signed-off-by: Malathi Gottam <mgottam@codeaurora.org>
+On Fri, Jun 21, 2019 at 10:18 AM Masami Hiramatsu <mhiramat@kernel.org> wrote:
+>
+> Hi,
+>
+> Here is an RFC series of patches to add boot-time tracing using
+> devicetree.
+>
+> Currently, kernel support boot-time tracing using kernel command-line
+> parameters. But that is very limited because of limited expressions
+> and limited length of command line. Recently, useful features like
+> histogram, synthetic events, etc. are being added to ftrace, but it is
+> clear that we can not expand command-line options to support these
+> features.
+>
+> Hoever, I've found that there is a devicetree which can pass more
+> structured commands to kernel at boot time :) The devicetree is usually
+> used for dscribing hardware configuration, but I think we can expand it
+> for software configuration too (e.g. AOSP and OPTEE already introduced
+> firmware node.) Also, grub and qemu already supports loading devicetree,
+> so we can use it not only on embedded devices but also on x86 PC too.
 
-There should be a From: line with this person's name in the email if
-they're the author. Otherwise this sign-off chain doesn't make sense and
-it should most likely have a Co-developed-by tag instead.
+Do the x86 versions of grub, qemu, EFI, any other bootloader actually
+enable DT support? I didn't think so. Certainly, an x86 kernel doesn't
+normally (other than OLPC and ce4100) have a defined way to even pass
+a dtb from the bootloader to the kernel and the kernel doesn't
+unflatten the dtb.
 
-> Signed-off-by: Aniket Masule <amasule@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/q=
-com/sdm845.dtsi
-> index fcb9330..ff94cfa 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2437,6 +2437,36 @@
->                                 <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
->                         iommus =3D <&apps_smmu 0x0040 0x1>;
->                 };
-> +
-> +               video-codec@aa00000 {
+For arm64, the bootloader to kernel interface is DT even for ACPI
+based systems. So unlike Frank, I'm not completely against DT being
+the interface, but it's hardly universal across architectures and
+something like this should be. Neither making DT the universal kernel
+boot interface nor creating some new channel as Frank suggested seems
+like an easy task.
 
-This needs to be sorted by address. It doesn't come after 18800000 (the
-address of the node above).
-
-> +                       compatible =3D "qcom,sdm845-venus";
-> +                       reg =3D <0x0aa00000 0xff000>;
-> +                       interrupts =3D <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+Rob
