@@ -2,147 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F9EB56CA8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ADB956CC6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 16:49:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728025AbfFZOsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 10:48:09 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:51122 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728398AbfFZOr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 10:47:57 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QElSHR080337;
-        Wed, 26 Jun 2019 09:47:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1561560448;
-        bh=euKafHZbspwxm0WbBPizKb3mUMGv/MWPwIANUP7B8M8=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=h/IXXlmmt4ncU4+QQRtcmK4UwK9El/hxz7x4t8V/h8ghkG0KJ30UZL6Q+qb/Fc3Z3
-         99h4bwh+AHOjJj2hTZDDdoFzzuj548JusSiIacn7H6KNrdgPah3mV4orod+HhF52YF
-         Yz42z9yZzJLh3P13XA3zwJpZD4x3O+ye1pXGqNiQ=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QElSp7067781
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Jun 2019 09:47:28 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 26
- Jun 2019 09:47:27 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 26 Jun 2019 09:47:27 -0500
-Received: from [10.250.96.121] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QElOE7019579;
-        Wed, 26 Jun 2019 09:47:24 -0500
-Subject: Re: [RFC PATCH v4 net-next 06/11] net: ethernet: ti: introduce cpsw
- switchdev based driver part 1 - dual-emac
-To:     <netdev@vger.kernel.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-References: <20190621181314.20778-1-grygorii.strashko@ti.com>
- <20190621181314.20778-7-grygorii.strashko@ti.com>
- <20190626095839.GE6485@khorivan>
-From:   grygorii <grygorii.strashko@ti.com>
-Message-ID: <d6f1f1fb-21c3-ca5f-2585-8d1c3a4f571d@ti.com>
-Date:   Wed, 26 Jun 2019 17:47:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1728521AbfFZOsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 10:48:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49792 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728520AbfFZOsv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 10:48:51 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A227A205C9;
+        Wed, 26 Jun 2019 14:48:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561560530;
+        bh=Q0fkJnt5Wk/wU807scvnJI4s4UA4UjwWKB0s0wc3Xm0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FVyyJTKAehLp05zG/pwe9Aa0/ZSb6jmhAh7fYWRrQXRe15i7Nde+lWOqOrHb21zCS
+         I5b5iC0ODpC6vtRvyZwwNJHkjG6b2B82I8tgZ7I8FFj5w751IN+kgPwk5zvzxXWuut
+         Ad9RXJbltpQ3GJ3YyUAXj1PB4wW1p/znSA1zDdnw=
+Date:   Wed, 26 Jun 2019 15:48:45 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        robh+dt <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v3 3/4] iommu/arm-smmu: Add support to handle Qcom's
+ wait-for-safe logic
+Message-ID: <20190626144844.key3n6ueb6skgkp4@willie-the-truck>
+References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
+ <20190612071554.13573-4-vivek.gautam@codeaurora.org>
+ <20190614040520.GK22737@tuxbook-pro>
+ <3e1f5e03-6448-8730-056d-fc47bdd71b3f@codeaurora.org>
+ <20190618175218.GH4270@fuggles.cambridge.arm.com>
+ <CAFp+6iEynLa=Jt_-oAwt4zmzxzhEXtWNCmghz6rFzcpQVGwrMg@mail.gmail.com>
+ <20190624170348.7dncuc5qezqeyvq2@willie-the-truck>
+ <CAFp+6iF0TQtAy2JFXk6zjX5GpjeLFesqPZV6ezbDXmc85yvMEA@mail.gmail.com>
+ <20190625133924.fqq3y7p3i3fqem5p@willie-the-truck>
+ <CAFp+6iH-KzX7x1j8AAuKJcOP6v=fyP-yLvaeeE_Ly3oueu_ngg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190626095839.GE6485@khorivan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFp+6iH-KzX7x1j8AAuKJcOP6v=fyP-yLvaeeE_Ly3oueu_ngg@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26/06/2019 12:58, Ivan Khoronzhuk wrote:
-> Hi Grygorii
+On Wed, Jun 26, 2019 at 12:03:02PM +0530, Vivek Gautam wrote:
+> On Tue, Jun 25, 2019 at 7:09 PM Will Deacon <will@kernel.org> wrote:
+> >
+> > On Tue, Jun 25, 2019 at 12:34:56PM +0530, Vivek Gautam wrote:
+> > > On Mon, Jun 24, 2019 at 10:33 PM Will Deacon <will@kernel.org> wrote:
+> > > > Instead, I think this needs to be part of a separate file that is maintained
+> > > > by you, which follows on from the work that Krishna is doing for nvidia
+> > > > built on top of Robin's prototype patches:
+> > > >
+> > > > http://linux-arm.org/git?p=linux-rm.git;a=shortlog;h=refs/heads/iommu/smmu-impl
+> > >
+> > > Looking at this branch quickly, it seem there can be separate implementation
+> > > level configuration file that can be added.
+> > > But will this also handle separate page table ops when required in future.
+> >
+> > Nothing's set in stone, but having the implementation-specific code
+> > constrain the page-table format (especially wrt quirks) sounds reasonable to
+> > me. I'm currently waiting for Krishna to respin the nvidia changes [1] on
+> > top of this so that we can see how well the abstractions are holding up.
 > 
-> Too much code, but I've tried pass thru.
-> Probably expectation the devlink to be reviewed, but several
-> common replies that should be reflected in non RFC v.
-> 
-> On Fri, Jun 21, 2019 at 09:13:09PM +0300, Grygorii Strashko wrote:
->> From: Ilias Apalodimas <ilias.apalodimas@linaro.org>
->>
->> Part 1:
->> Introduce basic CPSW dual_mac driver (cpsw_new.c) which is operating in
->> dual-emac mode by default, thus working as 2 individual network interfaces.
->> Main differences from legacy CPSW driver are:
->>
->> - optimized promiscuous mode: The P0_UNI_FLOOD (both ports) is enabled in
->> addition to ALLMULTI (current port) instead of ALE_BYPASS. So, Ports in
->> promiscuous mode will keep possibility of mcast and vlan filtering, which
->> is provides significant benefits when ports are joined to the same bridge,
->> but without enabling "switch" mode, or to different bridges.
->> - learning disabled on ports as it make not too much sense for
->>   segregated ports - no forwarding in HW.
->> - enabled basic support for devlink.
->>
->>     devlink dev show
->>         platform/48484000.ethernet_switch
->>
->>     devlink dev param show
->>      platform/48484000.ethernet_switch:
->>     name ale_bypass type driver-specific
->>      values:
->>         cmode runtime value false
->>
->> - "ale_bypass" devlink driver parameter allows to enable
->> ALE_CONTROL(4).BYPASS mode for debug purposes.
->> - updated DT bindings.
->>
->> Signed-off-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
->> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
->
+> Sure. Would you want me to try Robin's branch and take out the qualcomm
+> related stuff to its own implementation? Or, would you like me to respin this
+> series so that you can take it in to enable SDM845 boards such as, MTP
+> and dragonboard to have a sane build - debian, etc. so people benefit
+> out of it.
 
-[...]
+I can't take this series without Acks on the firmware calling changes, and I
+plan to send my 5.3 patches to Joerg at the end of the week so they get some
+time in -next. In which case, I think it may be worth you having a play with
+the branch above so we can get a better idea of any additional smmu_impl hooks
+you may need.
 
->> +
->> +    /* setup host port priority mapping */
->> +    writel_relaxed(CPDMA_TX_PRIORITY_MAP,
->> +               &cpsw->host_port_regs->cpdma_tx_pri_map);
->> +    writel_relaxed(0, &cpsw->host_port_regs->cpdma_rx_chan_map);
-> 
-> ----
->> +
->> +    /* disable priority elevation */
->> +    writel_relaxed(0, &cpsw->regs->ptype);
->> +
->> +    /* enable statistics collection only on all ports */
->> +    writel_relaxed(0x7, &cpsw->regs->stat_port_en);
->> +
->> +    /* Enable internal fifo flow control */
->> +    writel(0x7, &cpsw->regs->flow_control);
-> ---
-> 
-> Would be nice to do the same in old driver.
-> I mean moving it from ndo_open
-> Also were thoughts about this.
+> Qualcomm stuff is lying in qcom-smmu and arm-smmu and may take some
+> time to stub out the implementation related details.
 
-I have no plans to perform any kind of optimization in old driver any more.
+Not sure I follow you here. Are you talking about qcom_iommu.c?
 
-Agree with other comments.
-
-[...]
-
-Thank you.
-
--- 
-Best regards,
-grygorii
+Will
