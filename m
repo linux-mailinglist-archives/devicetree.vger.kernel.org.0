@@ -2,273 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9217C56A89
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C42356AB7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:36:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727831AbfFZNck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:32:40 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:57642 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727782AbfFZNcb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 09:32:31 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A0DDE2009AA;
-        Wed, 26 Jun 2019 15:32:29 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 92D002009A9;
-        Wed, 26 Jun 2019 15:32:29 +0200 (CEST)
-Received: from fsr-ub1664-120.ea.freescale.net (fsr-ub1664-120.ea.freescale.net [10.171.82.81])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id E2E56205DB;
-        Wed, 26 Jun 2019 15:32:28 +0200 (CEST)
-From:   Robert Chiras <robert.chiras@nxp.com>
-To:     Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Robert Chiras <robert.chiras@nxp.com>
-Subject: [PATCH 10/10] drm/mxsfb: Add support for horizontal stride
-Date:   Wed, 26 Jun 2019 16:32:18 +0300
-Message-Id: <1561555938-21595-11-git-send-email-robert.chiras@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1561555938-21595-1-git-send-email-robert.chiras@nxp.com>
-References: <1561555938-21595-1-git-send-email-robert.chiras@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727437AbfFZNge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 09:36:34 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:53109 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726484AbfFZNge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:36:34 -0400
+Received: by mail-wm1-f67.google.com with SMTP id s3so2142525wms.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 06:36:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4FQg0smS+mfYMsusPPdodpkb22WraUSysEIqfJJV0yM=;
+        b=VHEsNntS0B4pEO3c7fwECuQ4V7xeuFnooK6MO9IMX978YagrBVIBsBiTY/LeigduXr
+         hEbi1aImDb5PmCDtCL69RpPzO091ws2GrWX+YPTWXyBl39/QnErn31JHaEHU3SibngUj
+         FNNYMAXWu1Tqgnw5sz2ykr2xgdx7q4KTMKiPYaaQ3KGcDx/koVCST9+xzBl5+BtWNtFP
+         5p9Zdc76EobXrkOX18uFkB+3jY53S8T2F5N8v1f5SFftwAhZPOnZY1ma88QRv2JP5rfh
+         Tx4fBaWB37o2j1YJ6zOKCb4gZpNh05B4LnMrZroeTsw6Y75HgPdAiFYDfOektVxiXGer
+         IPfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4FQg0smS+mfYMsusPPdodpkb22WraUSysEIqfJJV0yM=;
+        b=VH62OusDXXHBdmpoPKGWwXTsW9SKYab/9y+2ZaIK2ckrUqzqR6mHyUTJosrCVp4fVr
+         NdHWf/KVk3JFGI2oG4kpKBTj7W1rNziyFOqSiRuWZ6xtSV5XUN/UW5r928wFKC3JrG3L
+         HRQRw3irFrGqtfzoMejI1MgzMdoIk6WHtPKXaxuTIUCcaYqGOnyMjZ0vJleL/dd7B+k6
+         doqPqbrKXlAid+ibMskspid+j8NYN85OvB23QxkK+nTzDJ7s606edIoT7Q4Fi9KqEMv4
+         mwHxlQdv/V2Cz0opCUDrlahpJ45gVnXC7NG4wx3MrwQi7DJLsPAG6qQkpwIIq0SuLlCW
+         ohwg==
+X-Gm-Message-State: APjAAAVDqtkcMMT+YkeUH5is8hzn995rcenr4hIynQklUQY8RaGcKUAZ
+        WHihftB3uokBRa42LdAsKH6kQg==
+X-Google-Smtp-Source: APXvYqysws+jQlqShYlTKNd5YEBpxaojbCsgdCSKH4ZtXxVfdbxFbdzZ7FYDDAUJSCKD6wEDIJmj7g==
+X-Received: by 2002:a1c:3:: with SMTP id 3mr2866435wma.6.1561556192208;
+        Wed, 26 Jun 2019 06:36:32 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id w185sm2877880wma.39.2019.06.26.06.36.31
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 26 Jun 2019 06:36:31 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH 0/2] ASoC: soc-core: update dai_link init
+Date:   Wed, 26 Jun 2019 15:36:15 +0200
+Message-Id: <20190626133617.25959-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Besides the eLCDIF block, there is another IP block, used in the past
-for EPDC panels. Since the iMX.8mq doesn't have an EPDC connector, this
-block is not documented, but we can use it to do additional operations
-on the frame buffer.
-In this case, we can use the pigeon registers from this IP block in
-order to do horizontal crop on the frame buffer processed by the eLCDIF
-block.
+My initial goal with this patchset was to allow a dai_link to have no
+no platform component, instead of having dummy by default.
 
-Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
----
- drivers/gpu/drm/mxsfb/mxsfb_crtc.c | 79 +++++++++++++++++++++++++++++++++++---
- drivers/gpu/drm/mxsfb/mxsfb_drv.c  | 26 ++++++++++++-
- drivers/gpu/drm/mxsfb/mxsfb_regs.h | 16 ++++++++
- 3 files changed, 113 insertions(+), 8 deletions(-)
+However, when rebasing, I discovered that Kuninori Morimoto had recently
+done that in a different way :)
 
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-index 02a5684..712494e 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-@@ -9,6 +9,7 @@
-  */
- 
- #include <drm/drmP.h>
-+#include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_fb_helper.h>
-@@ -430,15 +431,67 @@ void mxsfb_crtc_disable(struct mxsfb_drm_private *mxsfb)
- 	clk_disable_unprepare(mxsfb->clk_axi);
- }
- 
-+void mxsfb_set_fb_hcrop(struct mxsfb_drm_private *mxsfb, u32 src_w, u32 fb_w)
-+{
-+	u32 mask_cnt, htotal, hcount;
-+	u32 vdctrl2, vdctrl3, vdctrl4, transfer_count;
-+	u32 pigeon_12_0, pigeon_12_1, pigeon_12_2;
-+
-+	if (src_w == fb_w) {
-+		writel(0x0, mxsfb->base + HW_EPDC_PIGEON_12_0);
-+		writel(0x0, mxsfb->base + HW_EPDC_PIGEON_12_1);
-+
-+		return;
-+	}
-+
-+	transfer_count = readl(mxsfb->base + LCDC_V4_TRANSFER_COUNT);
-+	hcount = TRANSFER_COUNT_GET_HCOUNT(transfer_count);
-+
-+	transfer_count &= ~TRANSFER_COUNT_SET_HCOUNT(0xffff);
-+	transfer_count |= TRANSFER_COUNT_SET_HCOUNT(fb_w);
-+	writel(transfer_count, mxsfb->base + LCDC_V4_TRANSFER_COUNT);
-+
-+	vdctrl2 = readl(mxsfb->base + LCDC_VDCTRL2);
-+	htotal  = VDCTRL2_GET_HSYNC_PERIOD(vdctrl2);
-+	htotal  += fb_w - hcount;
-+	vdctrl2 &= ~VDCTRL2_SET_HSYNC_PERIOD(0x3ffff);
-+	vdctrl2 |= VDCTRL2_SET_HSYNC_PERIOD(htotal);
-+	writel(vdctrl2, mxsfb->base + LCDC_VDCTRL2);
-+
-+	vdctrl4 = readl(mxsfb->base + LCDC_VDCTRL4);
-+	vdctrl4 &= ~SET_DOTCLK_H_VALID_DATA_CNT(0x3ffff);
-+	vdctrl4 |= SET_DOTCLK_H_VALID_DATA_CNT(fb_w);
-+	writel(vdctrl4, mxsfb->base + LCDC_VDCTRL4);
-+
-+	/* configure related pigeon registers */
-+	vdctrl3  = readl(mxsfb->base + LCDC_VDCTRL3);
-+	mask_cnt = GET_HOR_WAIT_CNT(vdctrl3) - 5;
-+
-+	pigeon_12_0 = PIGEON_12_0_SET_STATE_MASK(0x24)		|
-+		      PIGEON_12_0_SET_MASK_CNT(mask_cnt)	|
-+		      PIGEON_12_0_SET_MASK_CNT_SEL(0x6)		|
-+		      PIGEON_12_0_POL_ACTIVE_LOW		|
-+		      PIGEON_12_0_EN;
-+	writel(pigeon_12_0, mxsfb->base + HW_EPDC_PIGEON_12_0);
-+
-+	pigeon_12_1 = PIGEON_12_1_SET_CLR_CNT(src_w) |
-+		      PIGEON_12_1_SET_SET_CNT(0x0);
-+	writel(pigeon_12_1, mxsfb->base + HW_EPDC_PIGEON_12_1);
-+
-+	pigeon_12_2 = 0x0;
-+	writel(pigeon_12_2, mxsfb->base + HW_EPDC_PIGEON_12_2);
-+}
-+
- void mxsfb_plane_atomic_update(struct mxsfb_drm_private *mxsfb,
- 			       struct drm_plane_state *old_state)
- {
- 	struct drm_simple_display_pipe *pipe = &mxsfb->pipe;
- 	struct drm_crtc *crtc = &pipe->crtc;
-+	struct drm_plane_state *state = pipe->plane.state;
- 	struct drm_framebuffer *fb = pipe->plane.state->fb;
- 	struct drm_framebuffer *old_fb = old_state->fb;
- 	struct drm_pending_vblank_event *event;
--	dma_addr_t paddr;
-+	u32 fb_addr, src_off, src_w, stride, cpp = 0;
- 
- 	spin_lock_irq(&crtc->dev->event_lock);
- 	event = crtc->state->event;
-@@ -453,15 +506,29 @@ void mxsfb_plane_atomic_update(struct mxsfb_drm_private *mxsfb,
- 	}
- 	spin_unlock_irq(&crtc->dev->event_lock);
- 
--	paddr = mxsfb_get_fb_paddr(mxsfb);
--	if (paddr) {
-+	if (!fb || !old_fb)
-+		return;
-+
-+	fb_addr = mxsfb_get_fb_paddr(mxsfb);
-+	if (mxsfb->devdata->ipversion >= 4) {
-+		cpp = fb->format->cpp[0];
-+		src_off = (state->src_y >> 16) * fb->pitches[0] +
-+			  (state->src_x >> 16) * cpp;
-+		fb_addr += fb->offsets[0] + src_off;
-+	}
-+
-+	if (fb_addr) {
- 		clk_prepare_enable(mxsfb->clk_axi);
--		writel(paddr, mxsfb->base + mxsfb->devdata->next_buf);
-+		writel(fb_addr, mxsfb->base + mxsfb->devdata->next_buf);
- 		clk_disable_unprepare(mxsfb->clk_axi);
- 	}
- 
--	if (!fb || !old_fb)
--		return;
-+	if (mxsfb->devdata->ipversion >= 4 &&
-+	    unlikely(drm_atomic_crtc_needs_modeset(state->crtc->state))) {
-+		stride = DIV_ROUND_UP(fb->pitches[0], cpp);
-+		src_w = state->src_w >> 16;
-+		mxsfb_set_fb_hcrop(mxsfb, src_w, stride);
-+	}
- 
- 	/*
- 	 * TODO: Currently, we only support pixel format change, but we need
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-index a164f4d..ffc4b0a 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-@@ -132,6 +132,7 @@ static int mxsfb_atomic_helper_check(struct drm_device *dev,
- 		if (old_bpp != new_bpp)
- 			new_state->mode_changed = true;
- 	}
-+
- 	return ret;
- }
- 
-@@ -145,6 +146,25 @@ static const struct drm_mode_config_helper_funcs mxsfb_mode_config_helpers = {
- 	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
- };
- 
-+static int mxsfb_pipe_check(struct drm_simple_display_pipe *pipe,
-+			    struct drm_plane_state *plane_state,
-+			    struct drm_crtc_state *crtc_state)
-+{
-+	struct drm_framebuffer *fb = plane_state->fb;
-+	struct drm_framebuffer *old_fb = pipe->plane.state->fb;
-+
-+	/* force 'mode_changed' when fb pitches changed, since
-+	 * the pitch related registers configuration of LCDIF
-+	 * can not be done when LCDIF is running.
-+	 */
-+	if (old_fb && likely(!crtc_state->mode_changed)) {
-+		if (old_fb->pitches[0] != fb->pitches[0])
-+			crtc_state->mode_changed = true;
-+	}
-+
-+	return 0;
-+}
-+
- static void mxsfb_pipe_enable(struct drm_simple_display_pipe *pipe,
- 			      struct drm_crtc_state *crtc_state,
- 			      struct drm_plane_state *plane_state)
-@@ -241,6 +261,7 @@ static void mxsfb_pipe_disable_vblank(struct drm_simple_display_pipe *pipe)
- }
- 
- static struct drm_simple_display_pipe_funcs mxsfb_funcs = {
-+	.check          = mxsfb_pipe_check,
- 	.enable		= mxsfb_pipe_enable,
- 	.disable	= mxsfb_pipe_disable,
- 	.update		= mxsfb_pipe_update,
-@@ -344,8 +365,9 @@ static int mxsfb_load(struct drm_device *drm, unsigned long flags)
- 
- 	drm->mode_config.min_width	= MXSFB_MIN_XRES;
- 	drm->mode_config.min_height	= MXSFB_MIN_YRES;
--	drm->mode_config.max_width	= max_res[0];
--	drm->mode_config.max_height	= max_res[1];
-+	/* Add additional 16 pixels for possible strides */
-+	drm->mode_config.max_width	= max_res[0] + 16;
-+	drm->mode_config.max_height	= max_res[1] + 16;
- 	drm->mode_config.funcs		= &mxsfb_mode_config_funcs;
- 	drm->mode_config.helper_private	= &mxsfb_mode_config_helpers;
- 
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_regs.h b/drivers/gpu/drm/mxsfb/mxsfb_regs.h
-index 2583a69..54b0ed1 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_regs.h
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_regs.h
-@@ -40,6 +40,11 @@
- #define LCDC_AS_BUF			0x220
- #define LCDC_AS_NEXT_BUF		0x230
- 
-+/* pigeon registers for crop */
-+#define HW_EPDC_PIGEON_12_0		0xb00
-+#define HW_EPDC_PIGEON_12_1		0xb10
-+#define HW_EPDC_PIGEON_12_2		0xb20
-+
- /* reg bit manipulation */
- #define REG_MASK(e, s) (((1 << ((e) - (s) + 1)) - 1) << (s))
- #define REG_PUT(x, e, s) (((x) << (s)) & REG_MASK(e, s))
-@@ -121,6 +126,17 @@
- #define VDCTRL4_SYNC_SIGNALS_ON		BIT(18)
- #define SET_DOTCLK_H_VALID_DATA_CNT(x)	((x) & 0x3ffff)
- 
-+#define PIGEON_12_0_SET_STATE_MASK(x)	REG_PUT((x), 31, 24)
-+#define PIGEON_12_0_SET_MASK_CNT(x)	REG_PUT((x), 23, 12)
-+#define PIGEON_12_0_SET_MASK_CNT_SEL(x)	REG_PUT((x), 11,  8)
-+#define PIGEON_12_0_SET_OFFSET(x)	REG_PUT((x),  7,  4)
-+#define PIGEON_12_0_SET_INC_SEL(x)	REG_PUT((x),  3,  2)
-+#define PIGEON_12_0_POL_ACTIVE_LOW	BIT(1)
-+#define PIGEON_12_0_EN			BIT(0)
-+
-+#define PIGEON_12_1_SET_CLR_CNT(x)	REG_PUT((x), 31, 16)
-+#define PIGEON_12_1_SET_SET_CNT(x)	REG_PUT((x), 15,  0)
-+
- #define DEBUG0_HSYNC			(1 < 26)
- #define DEBUG0_VSYNC			(1 < 25)
- 
+I am still submitting my change since it should allow multiple platform
+components on a dai_link, which is one of the FIXME note in soc-core.
+
+I have also added a check on the codecs component availability to align
+on what was done for platforms and cpus
+
+Jerome Brunet (2):
+  ASoC: soc-core: defer card registration if codec component is missing
+  ASoC: soc-core: support dai_link with platforms_num != 1
+
+ include/sound/soc.h  |  6 ++++
+ sound/soc/soc-core.c | 72 +++++++++++++++++++++-----------------------
+ 2 files changed, 41 insertions(+), 37 deletions(-)
+
 -- 
-2.7.4
+2.21.0
 
