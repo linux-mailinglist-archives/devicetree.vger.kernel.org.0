@@ -2,143 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E80C356704
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B52E56734
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 12:53:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726242AbfFZKkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 06:40:31 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:54662 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725876AbfFZKka (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 06:40:30 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id DE6ACFB03;
-        Wed, 26 Jun 2019 12:40:28 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id ERi-EqMGy_Mt; Wed, 26 Jun 2019 12:40:27 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 72BD248EAB; Wed, 26 Jun 2019 12:40:27 +0200 (CEST)
-Date:   Wed, 26 Jun 2019 12:40:27 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Purism Kernel Team <kernel@puri.sm>
-Subject: Re: [PATCH 4/4] drm/panel: jh057n0090: Add regulator support
-Message-ID: <20190626104027.GA12710@bogon.m.sigxcpu.org>
-References: <cover.1561482165.git.agx@sigxcpu.org>
- <b239f1db7a1f67988a9bd1ed62f6a1cf1dce944c.1561482165.git.agx@sigxcpu.org>
- <20190625212419.GB20625@ravnborg.org>
+        id S1726347AbfFZKxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 06:53:34 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:33789 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726131AbfFZKxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 06:53:34 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n9so2217835wru.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 03:53:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ChXMkAxeEFCNB3SeouYi0F3f5ZyPMoaVbI0gBmbhYQs=;
+        b=iwElkoCgU+DdnxpiGXXE03SHKznHfYnZB3x9WftPaQusBZYk212oLoVKXLkTH7GyBq
+         2WU8o7YT2z4OvQPkY5c0bvxUqPHf4s6tn0/PJNKuDiL9/a/1cOcpYCy/Lk/So56QUguq
+         KTexW+BCVxEXNeXye1/JJxruD4OgkdsWbX6+QGAizek8BYbu5nSo9FVVtjYNlNLdQCEc
+         4pXs/zhHMKAaWrA2kKOkwLmsUS9bITrT4Fecmi0fdl41QLdBFzeC0ldVnElChkVAoLCr
+         eHzm07DdF/7yQAKldNBmVQ6QO+yRu4Wy0LXxAmnOj9NEKRQ7lOHirrBMQUcq1tGkJMbC
+         YTKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ChXMkAxeEFCNB3SeouYi0F3f5ZyPMoaVbI0gBmbhYQs=;
+        b=OcXMuNf7a+RFb7JxIvY85+wguMO47FFInlC/OSr31Jloi9CQUGK7BXSRrApcnWBqbC
+         25HxplowJJmjjszNcyMQ7xjRmsp8hzKhsI/M1g+etQw7InUpjvcx32HfbXxDsOloB5WV
+         qGmMMfvo8O0VS12jTtnJYL3VuSvBINms0Z16N3OxEopcgp2VpRfSCiy4BtiMkyRYk6ld
+         rErgc9ZIJSVQql+llJtKvlewiz0nDNKQ3cPdUaqD4Wuzsa1iUsTydKjv6DlY6lXtgzD7
+         4xavwIN3ZGC0PQl94h0IMY8sci0O9YD36KwpPx5kbq4PxN+nRyeLUYSX/dW/LVNZE5i5
+         qX4g==
+X-Gm-Message-State: APjAAAW/tuVfXiCuxLF4LwfzUpISRBKzuYZUUbh8qICCZ/Ywfi520+LK
+        pfi8SVtFsCBhWXnTjlRiDh1VuF9EHPJriA==
+X-Google-Smtp-Source: APXvYqw8cRV8HFzMlxssHezN2+vB4WDc6ges9QHy25V3fxPaVhe1dudUKE9VexzAKWJDGVkJZ3u5wQ==
+X-Received: by 2002:a5d:6b90:: with SMTP id n16mr3300909wrx.206.1561546411052;
+        Wed, 26 Jun 2019 03:53:31 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id o14sm13726415wrp.77.2019.06.26.03.53.30
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 26 Jun 2019 03:53:30 -0700 (PDT)
+Date:   Wed, 26 Jun 2019 11:53:28 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Brian Dodge <bdodge09@gmail.com>
+Cc:     pavel@ucw.cz, lee.jones@linaro.org, jingoohan1@gmail.com,
+        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, pbacon@psemi.com
+Subject: Re: [PATCH 2/2] backlight: arcxcnn: add "arctic" vendor prefix
+Message-ID: <20190626105328.f7mb2n7xo5afhuq2@holly.lan>
+References: <1561435529-7835-1-git-send-email-bdodge09@gmail.com>
+ <1561435529-7835-3-git-send-email-bdodge09@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190625212419.GB20625@ravnborg.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1561435529-7835-3-git-send-email-bdodge09@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
-On Tue, Jun 25, 2019 at 11:24:19PM +0200, Sam Ravnborg wrote:
-> On Tue, Jun 25, 2019 at 07:05:19PM +0200, Guido Günther wrote:
-> > Allow to specify regulators for vcc and iovcc. According to the data
-> > sheet the panel wants vcc (2.8V) and iovcc (1.8V) and there's no startup
-> > dependency between the two.
-> s/jh057n0090/jh057n00900
+On Tue, Jun 25, 2019 at 12:05:29AM -0400, Brian Dodge wrote:
+> The original patch adding this driver and DT bindings improperly
+> used "arc" as the vendor-prefix. This adds "arctic" which is the
+> proper prefix and retains "arc" to allow existing users of the
+> "arc" prefix to update to new kernels. There is at least one
+> (Samsung Chromebook Plus)
 > 
-> > 
-> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> > ---
-> >  .../drm/panel/panel-rocktech-jh057n00900.c    | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c b/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-> > index b8a069055fbc..f8f6f087b9bc 100644
-> > --- a/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-> > +++ b/drivers/gpu/drm/panel/panel-rocktech-jh057n00900.c
-> > @@ -15,6 +15,7 @@
-> >  #include <linux/gpio/consumer.h>
-> >  #include <linux/media-bus-format.h>
-> >  #include <linux/module.h>
-> > +#include <linux/regulator/consumer.h>
-> >  #include <video/display_timing.h>
-> >  #include <video/mipi_display.h>
-> >  
-> > @@ -47,6 +48,8 @@ struct jh057n {
-> >  	struct drm_panel panel;
-> >  	struct gpio_desc *reset_gpio;
-> >  	struct backlight_device *backlight;
-> > +	struct regulator *vcc;
-> > +	struct regulator *iovcc;
-> >  	bool prepared;
-> >  
-> >  	struct dentry *debugfs;
-> > @@ -160,6 +163,8 @@ static int jh057n_unprepare(struct drm_panel *panel)
-> >  		return 0;
-> >  
-> >  	mipi_dsi_dcs_set_display_off(dsi);
-> > +	regulator_disable(ctx->iovcc);
-> > +	regulator_disable(ctx->vcc);
-> >  	ctx->prepared = false;
-> >  
-> >  	return 0;
-> > @@ -174,6 +179,13 @@ static int jh057n_prepare(struct drm_panel *panel)
-> >  		return 0;
-> >  
-> >  	DRM_DEV_DEBUG_DRIVER(ctx->dev, "Resetting the panel\n");
-> > +	ret = regulator_enable(ctx->vcc);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	ret = regulator_enable(ctx->iovcc);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> >  	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> >  	usleep_range(20, 40);
-> >  	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> > @@ -301,6 +313,13 @@ static int jh057n_probe(struct mipi_dsi_device *dsi)
-> >  	if (IS_ERR(ctx->backlight))
-> >  		return PTR_ERR(ctx->backlight);
-> >  
-> > +	ctx->vcc = devm_regulator_get(dev, "vcc");
-> > +	if (IS_ERR(ctx->vcc))
-> > +		return PTR_ERR(ctx->vcc);
-> > +	ctx->iovcc = devm_regulator_get(dev, "iovcc");
-> > +	if (IS_ERR(ctx->iovcc))
-> > +		return PTR_ERR(ctx->iovcc);
-> > +
-> Consider to write an error message.
-> The regulators are now mandatory, but they be missing in some device
-> trees. So it would be good to help them to understand why it fails.
+> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
 
-I've fixed this and your other comments in v2.
+Still needs consensus on the DT bindings but for any future resends
+please add this (to this patch only):
+
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+
+
+Daniel.
+> ---
+>  drivers/video/backlight/arcxcnn_bl.c | 35 +++++++++++++++++++++++++----------
+>  1 file changed, 25 insertions(+), 10 deletions(-)
 > 
-> With this considered:
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-
-Thanks! I've not added this yet since I made two more changes:
-
-- also print an error when regulator_enable() fails
-- disable vcc if enabling iovcc fails afterwards
-
-Hope this looks sane now.
-
-Cheers,
- -- Guido
-
-> 
-> 	Sam
+> diff --git a/drivers/video/backlight/arcxcnn_bl.c b/drivers/video/backlight/arcxcnn_bl.c
+> index 7b1c0a0..14c67f2 100644
+> --- a/drivers/video/backlight/arcxcnn_bl.c
+> +++ b/drivers/video/backlight/arcxcnn_bl.c
+> @@ -1,9 +1,9 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Backlight driver for ArcticSand ARC_X_C_0N_0N Devices
+> + * Backlight driver for pSemi (formerly ArcticSand) ARC_X_C_0N_0N Devices
+>   *
+> - * Copyright 2016 ArcticSand, Inc.
+> - * Author : Brian Dodge <bdodge@arcticsand.com>
+> + * Copyright 2016-2019  pSemi, Inc.
+> + * Author : Brian Dodge <bdodge@psemi.com>
+>   */
+>  
+>  #include <linux/backlight.h>
+> @@ -191,27 +191,40 @@ static void arcxcnn_parse_dt(struct arcxcnn *lp)
+>  	if (ret == 0)
+>  		lp->pdata->initial_brightness = prog_val;
+>  
+> -	ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,led-config-0", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
+>  	if (ret == 0)
+>  		lp->pdata->led_config_0 = (u8)prog_val;
+>  
+> -	ret = of_property_read_u32(node, "arc,led-config-1", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,led-config-1", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,led-config-1", &prog_val);
+>  	if (ret == 0)
+>  		lp->pdata->led_config_1 = (u8)prog_val;
+>  
+> -	ret = of_property_read_u32(node, "arc,dim-freq", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,dim-freq", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,dim-freq", &prog_val);
+>  	if (ret == 0)
+>  		lp->pdata->dim_freq = (u8)prog_val;
+>  
+> -	ret = of_property_read_u32(node, "arc,comp-config", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,comp-config", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,comp-config", &prog_val);
+>  	if (ret == 0)
+>  		lp->pdata->comp_config = (u8)prog_val;
+>  
+> -	ret = of_property_read_u32(node, "arc,filter-config", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,filter-config", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node,
+> +				"arc,filter-config", &prog_val);
+>  	if (ret == 0)
+>  		lp->pdata->filter_config = (u8)prog_val;
+>  
+> -	ret = of_property_read_u32(node, "arc,trim-config", &prog_val);
+> +	ret = of_property_read_u32(node, "arctic,trim-config", &prog_val);
+> +	if (ret)
+> +		ret = of_property_read_u32(node, "arc,trim-config", &prog_val);
+>  	if (ret == 0)
+>  		lp->pdata->trim_config = (u8)prog_val;
+>  
+> @@ -381,6 +394,8 @@ static int arcxcnn_remove(struct i2c_client *cl)
+>  }
+>  
+>  static const struct of_device_id arcxcnn_dt_ids[] = {
+> +	{ .compatible = "arctic,arc2c0608" },
+> +	/* here to remaim compatible with an older binding, do not use */
+>  	{ .compatible = "arc,arc2c0608" },
+>  	{ }
+>  };
+> @@ -404,5 +419,5 @@ static struct i2c_driver arcxcnn_driver = {
+>  module_i2c_driver(arcxcnn_driver);
+>  
+>  MODULE_LICENSE("GPL v2");
+> -MODULE_AUTHOR("Brian Dodge <bdodge@arcticsand.com>");
+> +MODULE_AUTHOR("Brian Dodge <bdodge@psemi.com>");
+>  MODULE_DESCRIPTION("ARCXCNN Backlight driver");
+> -- 
+> 2.7.4
 > 
