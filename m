@@ -2,180 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C72B56F02
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 18:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB05656F11
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 18:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726239AbfFZQoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 12:44:20 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:33974 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726006AbfFZQoU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 12:44:20 -0400
-Received: by mail-wr1-f65.google.com with SMTP id k11so3553046wrl.1;
-        Wed, 26 Jun 2019 09:44:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+Kl6zqvRZLZ9lQVoKaV2eqKE+0ZKBG6ehD62Gdt20JA=;
-        b=uU2pTcrxx3uMqfgAS4VpCdKScq1eWw199rVUyEd8NlrFqrQKIr+zLIpfhSAhdLtSsF
-         g7sn0TBRGaT8F1zuWI1Xr7w7g1CIZvSiDtFZN1JmuXrRDMjoNyE0U/S+536chovbg2xB
-         VdZkbqkQln02gT6MBYgaXRMdXtpKIwxbvuVCaB9JTXf5QLR1EbogkYegTDs6BOpwfivU
-         E/pbRSQ1WYSfpn8/u+xVtkURAqK5SiwKfncihP3NikZ8mjoUc3wclXn6q6kBe9+gzAUM
-         cG5aKPkFaob3WSbbtfBSp8+te99ec09QfbpfAsIKRhbnQTbgAzKogYdUkplReEUbKErr
-         bTdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=+Kl6zqvRZLZ9lQVoKaV2eqKE+0ZKBG6ehD62Gdt20JA=;
-        b=shN1BP2U4ije97iQrvvuTSstSbVGDdOl/Lvo8ao11O6cJPjF7pcZpfAQ8p3ZVXz7b3
-         Al3uNFzsxpiwI576xFcmH+8q5LUVtt9B4Qh2Z/F/Mp/CZPL59TLpVvJ/2jpDK08PDTcr
-         mGv0qTkZlNOsRRUR0K3j82rC65Livjpr181WCr/Ki/nVuh3VS5H4l5zyy31O/TnSTzSe
-         NgGw2VfDm1X5bKXhzUbRA5SUIUMcYjZy1MjwAydwi0dahH+AcqAAneCL/mh2+3CjSvMf
-         FpOo7t81etQIC00LMm2r7vglKk7b8uZe0quxkeOj4LA2f+wSjumCvynn3+bVA2L1irzj
-         mkvA==
-X-Gm-Message-State: APjAAAXH3gjEar7DDok4SkdF5UH3w2KAv9Ki3ppIzVJKDhnR2Ct5jwh3
-        XLyZkMnabIZEX54bwdcwkFI=
-X-Google-Smtp-Source: APXvYqxJZP9ymydSN8OAbncAuf/kBPPhE0TJlylnWDhH736obr9Q/siBlt+RlXYXcysk5w8L4+CI5Q==
-X-Received: by 2002:a5d:680d:: with SMTP id w13mr4504587wru.141.1561567456730;
-        Wed, 26 Jun 2019 09:44:16 -0700 (PDT)
-Received: from [10.67.50.91] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id t1sm24161642wra.74.2019.06.26.09.44.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 Jun 2019 09:44:16 -0700 (PDT)
-Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
-To:     Peng Fan <peng.fan@nxp.com>, Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        ", Sascha Hauer" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>
-References: <20190603083005.4304-1-peng.fan@nxp.com>
- <20190603083005.4304-3-peng.fan@nxp.com>
- <CABb+yY1wW-arSMQSYjrezXOZ0Ar_shAr78MOyUD3hBxXohWx3g@mail.gmail.com>
- <AM0PR04MB44813A4DE544E53EB7B6F02B88E30@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <CABb+yY38MAZqVOhjyV+GByPvpFcTfKbNG1rJ8YDRd1vi1F4fqg@mail.gmail.com>
- <AM0PR04MB44814D3BD59033ECDDE3094C88E20@AM0PR04MB4481.eurprd04.prod.outlook.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <e49278ba-f734-e019-ab44-53afe558bd85@gmail.com>
-Date:   Wed, 26 Jun 2019 09:44:06 -0700
+        id S1726468AbfFZQqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 12:46:38 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:8493 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726227AbfFZQqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 12:46:37 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d13a16d0001>; Wed, 26 Jun 2019 09:46:37 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 26 Jun 2019 09:46:34 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 26 Jun 2019 09:46:34 -0700
+Received: from [10.2.169.244] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 26 Jun
+ 2019 16:46:31 +0000
+Subject: Re: [PATCH V4 12/18] clk: tegra210: support for Tegra210 clocks
+ suspend and resume
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <jonathanh@nvidia.com>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
+        <linus.walleij@linaro.org>, <stefan@agner.ch>,
+        <mark.rutland@arm.com>, <pdeschrijver@nvidia.com>,
+        <pgaikwad@nvidia.com>, <sboyd@kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <jckuo@nvidia.com>, <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <digetx@gmail.com>, <devicetree@vger.kernel.org>
+References: <1561345379-2429-1-git-send-email-skomatineni@nvidia.com>
+ <1561345379-2429-13-git-send-email-skomatineni@nvidia.com>
+ <20190626101616.GE6362@ulmo>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <2dad8c70-2501-5cc0-9b8a-9c1a437ebc05@nvidia.com>
+Date:   Wed, 26 Jun 2019 09:46:29 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <AM0PR04MB44814D3BD59033ECDDE3094C88E20@AM0PR04MB4481.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190626101616.GE6362@ulmo>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1561567597; bh=f/btVB27Am+mVQsxQjKjkhfm1RXwG9pGuiNvyRx23jo=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=ICoHuZUWkTAXTSDtyT4AGtdPQyfi3+bu0lN93jP0fk0AihzFg70+w8iX18IQ579p0
+         aL6WIU6qoLxe2e5BV8beNtZnZLMt2h9XoZi2f/0wq2n9/Naw6XLnxQqKr6YCxp4mr3
+         sjw55r3p98+4/HdZD7xYr8Qm7/WMBoi3eheESH6ma/sztmVNCU3ZWfl6d39Ww5ndHU
+         zp5v0zFfNFDAWwHf399R6gvtzAq9f+JMYT+rqh0Szyc3L1GlHiZk7wB+L3N1aRRoTg
+         9z+Dg96VFU8ECs3UMhKkoahcYVdGmvqGZq+3hCBZiV1Bm9pkeP404euMlKd1BxruIc
+         QyQ36HubLaeFQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/26/19 6:31 AM, Peng Fan wrote:
->>> The firmware driver might not have func-id, such as SCMI/SCPI.
->>> So add an optional func-id to let smc mailbox driver could
->>> use smc SiP func id.
->>>
->> There is no end to conforming to protocols. Controller drivers should
->> be written having no particular client in mind.
-> 
-> If the func-id needs be passed from user, then the chan_id suggested
-> by Sudeep should also be passed from user, not in mailbox driver.
-> 
-> Jassi, so from your point, arm_smc_send_data just send a0 - a6
-> to firmware, right?
-> 
-> Sudeep, Andre, Florian,
-> 
-> What's your suggestion? SCMI not support, do you have
-> plan to add smc transport in SCMI?
 
-On the platforms that I work with, we have taken the liberty of
-implementing SCMI in our monitor firmware because the other MCU we use
-for dynamic voltage and frequency scaling did not have enough memory to
-support that and we still had the ability to make that firmware be
-trusted enough we could give it power management responsibilities. I
-would certainly feel more comfortable if the SCMI specification was
-amended to indicate that the Agent could be such a software entity,
-still residing on the same host CPU as the Platform(s), but if not,
-that's fine.
-
-This has lead us to implement a mailbox driver that uses a proprietary
-SMC call for the P2A path ("tx" channel) and the return being done via
-either that same SMC or through SGI. You can take a look at it in our
-downstream tree here actually:
-
-https://github.com/Broadcom/stblinux-4.9/blob/master/linux/drivers/mailbox/brcmstb-mailbox.c
-
-If we can get rid of our own driver and uses a standard SMC based
-mailbox driver that supports our use case that involves interrupts (we
-can always change their kind without our firmware/boot loader since FDT
-is generated from that component), that would be great.
--- 
-Florian
+On 6/26/19 3:16 AM, Thierry Reding wrote:
+> On Sun, Jun 23, 2019 at 08:02:53PM -0700, Sowjanya Komatineni wrote:
+>> This patch adds system suspend and resume support for Tegra210
+>> clocks.
+>>
+>> All the CAR controller settings are lost on suspend when core power
+>> goes off.
+>>
+>> This patch has implementation for saving and restoring all the PLLs
+>> and clocks context during system suspend and resume to have the
+>> clocks back to same state for normal operation.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   drivers/clk/tegra/clk-tegra210.c | 115 ++++++++++++++++++++++++++++++++++++++-
+>>   drivers/clk/tegra/clk.c          |  14 +++++
+>>   drivers/clk/tegra/clk.h          |   1 +
+>>   3 files changed, 127 insertions(+), 3 deletions(-)
+> Can you give a brief overview of how you've been testing this? Is this
+> just about confirming that "things work fine" after resume? Could we be
+> more methodical and perhaps check the state of the clock tree before
+> suspend (perhaps by inspecting debugfs) and comparing it to the state
+> after resume?
+>
+> One minor nit below...
+Yes, I tested by checking clock tree for counts and rate through debugfs 
+clk_rate nodes as well for all clocks before suspend and on resume.
+>> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-tegra210.c
+>> index c414cd72d045..4fb3509fe9f6 100644
+>> --- a/drivers/clk/tegra/clk-tegra210.c
+>> +++ b/drivers/clk/tegra/clk-tegra210.c
+>> @@ -9,10 +9,12 @@
+>>   #include <linux/clkdev.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_address.h>
+>> +#include <linux/of_platform.h>
+>>   #include <linux/delay.h>
+>>   #include <linux/export.h>
+>>   #include <linux/mutex.h>
+>>   #include <linux/clk/tegra.h>
+>> +#include <linux/syscore_ops.h>
+>>   #include <dt-bindings/clock/tegra210-car.h>
+>>   #include <dt-bindings/reset/tegra210-car.h>
+>>   #include <linux/iopoll.h>
+>> @@ -20,6 +22,7 @@
+>>   #include <soc/tegra/pmc.h>
+>>   
+>>   #include "clk.h"
+>> +#include "clk-dfll.h"
+>>   #include "clk-id.h"
+>>   
+>>   /*
+>> @@ -225,6 +228,7 @@
+>>   
+>>   #define CLK_RST_CONTROLLER_RST_DEV_Y_SET 0x2a8
+>>   #define CLK_RST_CONTROLLER_RST_DEV_Y_CLR 0x2ac
+>> +#define CPU_SOFTRST_CTRL 0x380
+>>   
+>>   #define LVL2_CLK_GATE_OVRA 0xf8
+>>   #define LVL2_CLK_GATE_OVRC 0x3a0
+>> @@ -2820,6 +2824,7 @@ static int tegra210_enable_pllu(void)
+>>   	struct tegra_clk_pll_freq_table *fentry;
+>>   	struct tegra_clk_pll pllu;
+>>   	u32 reg;
+>> +	int ret;
+>>   
+>>   	for (fentry = pll_u_freq_table; fentry->input_rate; fentry++) {
+>>   		if (fentry->input_rate == pll_ref_freq)
+>> @@ -2847,10 +2852,10 @@ static int tegra210_enable_pllu(void)
+>>   	fence_udelay(1, clk_base);
+>>   	reg |= PLL_ENABLE;
+>>   	writel(reg, clk_base + PLLU_BASE);
+>> +	fence_udelay(1, clk_base);
+>>   
+>> -	readl_relaxed_poll_timeout_atomic(clk_base + PLLU_BASE, reg,
+>> -					  reg & PLL_BASE_LOCK, 2, 1000);
+>> -	if (!(reg & PLL_BASE_LOCK)) {
+>> +	ret = tegra210_wait_for_mask(&pllu, PLLU_BASE, PLL_BASE_LOCK);
+>> +	if (ret) {
+>>   		pr_err("Timed out waiting for PLL_U to lock\n");
+>>   		return -ETIMEDOUT;
+>>   	}
+>> @@ -3282,6 +3287,103 @@ static void tegra210_disable_cpu_clock(u32 cpu)
+>>   }
+>>   
+>>   #ifdef CONFIG_PM_SLEEP
+>> +static u32 cpu_softrst_ctx[3];
+>> +static struct platform_device *dfll_pdev;
+>> +#define car_readl(_base, _off) readl_relaxed(clk_base + (_base) + ((_off) * 4))
+>> +#define car_writel(_val, _base, _off) \
+>> +		writel_relaxed(_val, clk_base + (_base) + ((_off) * 4))
+>> +
+>> +static int tegra210_clk_suspend(void)
+>> +{
+>> +	int i;
+> This can be unsigned int.
+>
+>> +	struct device_node *node;
+>> +
+>> +	tegra_cclkg_burst_policy_save_context();
+>> +
+>> +	if (!dfll_pdev) {
+>> +		node = of_find_compatible_node(NULL, NULL,
+>> +					       "nvidia,tegra210-dfll");
+>> +		if (node)
+>> +			dfll_pdev = of_find_device_by_node(node);
+>> +
+>> +		of_node_put(node);
+>> +		if (!dfll_pdev)
+>> +			pr_err("dfll node not found. no suspend for dfll\n");
+>> +	}
+>> +
+>> +	if (dfll_pdev)
+>> +		tegra_dfll_suspend(dfll_pdev);
+>> +
+>> +	/* Enable PLLP_OUT_CPU after dfll suspend */
+>> +	tegra_clk_set_pllp_out_cpu(true);
+>> +
+>> +	tegra_sclk_cclklp_burst_policy_save_context();
+>> +
+>> +	clk_save_context();
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(cpu_softrst_ctx); i++)
+>> +		cpu_softrst_ctx[i] = car_readl(CPU_SOFTRST_CTRL, i);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void tegra210_clk_resume(void)
+>> +{
+>> +	int i;
+> And here too.
+>
+> With that:
+>
+> Acked-by: Thierry Reding <treding@nvidia.com>
+>
+>> +	struct clk_hw *parent;
+>> +	struct clk *clk;
+>> +
+>> +	/*
+>> +	 * clk_restore_context restores clocks as per the clock tree.
+>> +	 *
+>> +	 * dfllCPU_out is first in the clock tree to get restored and it
+>> +	 * involves programming DFLL controller along with restoring CPUG
+>> +	 * clock burst policy.
+>> +	 *
+>> +	 * DFLL programming needs dfll_ref and dfll_soc peripheral clocks
+>> +	 * to be restores which are part ofthe peripheral clocks.
+>> +	 * So, peripheral clocks restore should happen prior to dfll clock
+>> +	 * restore.
+>> +	 */
+>> +
+>> +	tegra_clk_osc_resume(clk_base);
+>> +	for (i = 0; i < ARRAY_SIZE(cpu_softrst_ctx); i++)
+>> +		car_writel(cpu_softrst_ctx[i], CPU_SOFTRST_CTRL, i);
+>> +
+>> +	/* restore all plls and peripheral clocks */
+>> +	tegra210_init_pllu();
+>> +	clk_restore_context();
+>> +
+>> +	fence_udelay(5, clk_base);
+>> +
+>> +	/* resume SCLK and CPULP clocks */
+>> +	tegra_sclk_cpulp_burst_policy_restore_context();
+>> +
+>> +	/*
+>> +	 * restore CPUG clocks:
+>> +	 * - enable DFLL in open loop mode
+>> +	 * - switch CPUG to DFLL clock source
+>> +	 * - close DFLL loop
+>> +	 * - sync PLLX state
+>> +	 */
+>> +	if (dfll_pdev)
+>> +		tegra_dfll_resume(dfll_pdev, false);
+>> +
+>> +	tegra_cclkg_burst_policy_restore_context();
+>> +	fence_udelay(2, clk_base);
+>> +
+>> +	if (dfll_pdev)
+>> +		tegra_dfll_resume(dfll_pdev, true);
+>> +
+>> +	parent = clk_hw_get_parent(__clk_get_hw(clks[TEGRA210_CLK_CCLK_G]));
+>> +	clk = clks[TEGRA210_CLK_PLL_X];
+>> +	if (parent != __clk_get_hw(clk))
+>> +		tegra_clk_sync_state_pll(__clk_get_hw(clk));
+>> +
+>> +	/* Disable PLL_OUT_CPU after DFLL resume */
+>> +	tegra_clk_set_pllp_out_cpu(false);
+>> +}
+>> +
+>>   static void tegra210_cpu_clock_suspend(void)
+>>   {
+>>   	/* switch coresite to clk_m, save off original source */
+>> @@ -3297,6 +3399,11 @@ static void tegra210_cpu_clock_resume(void)
+>>   }
+>>   #endif
+>>   
+>> +static struct syscore_ops tegra_clk_syscore_ops = {
+>> +	.suspend = tegra210_clk_suspend,
+>> +	.resume = tegra210_clk_resume,
+>> +};
+>> +
+>>   static struct tegra_cpu_car_ops tegra210_cpu_car_ops = {
+>>   	.wait_for_reset	= tegra210_wait_cpu_in_reset,
+>>   	.disable_clock	= tegra210_disable_cpu_clock,
+>> @@ -3582,5 +3689,7 @@ static void __init tegra210_clock_init(struct device_node *np)
+>>   	tegra210_mbist_clk_init();
+>>   
+>>   	tegra_cpu_car_ops = &tegra210_cpu_car_ops;
+>> +
+>> +	register_syscore_ops(&tegra_clk_syscore_ops);
+>>   }
+>>   CLK_OF_DECLARE(tegra210, "nvidia,tegra210-car", tegra210_clock_init);
+>> diff --git a/drivers/clk/tegra/clk.c b/drivers/clk/tegra/clk.c
+>> index 9e863362d2bf..96cc9937ea37 100644
+>> --- a/drivers/clk/tegra/clk.c
+>> +++ b/drivers/clk/tegra/clk.c
+>> @@ -23,6 +23,7 @@
+>>   #define CLK_OUT_ENB_W			0x364
+>>   #define CLK_OUT_ENB_X			0x280
+>>   #define CLK_OUT_ENB_Y			0x298
+>> +#define CLK_ENB_PLLP_OUT_CPU		BIT(31)
+>>   #define CLK_OUT_ENB_SET_L		0x320
+>>   #define CLK_OUT_ENB_CLR_L		0x324
+>>   #define CLK_OUT_ENB_SET_H		0x328
+>> @@ -205,6 +206,19 @@ const struct tegra_clk_periph_regs *get_reg_bank(int clkid)
+>>   	}
+>>   }
+>>   
+>> +void tegra_clk_set_pllp_out_cpu(bool enable)
+>> +{
+>> +	u32 val;
+>> +
+>> +	val = readl_relaxed(clk_base + CLK_OUT_ENB_Y);
+>> +	if (enable)
+>> +		val |= CLK_ENB_PLLP_OUT_CPU;
+>> +	else
+>> +		val &= ~CLK_ENB_PLLP_OUT_CPU;
+>> +
+>> +	writel_relaxed(val, clk_base + CLK_OUT_ENB_Y);
+>> +}
+>> +
+>>   void tegra_cclkg_burst_policy_save_context(void)
+>>   {
+>>   	unsigned int i;
+>> diff --git a/drivers/clk/tegra/clk.h b/drivers/clk/tegra/clk.h
+>> index 7b99496fefb9..b994dfaa9602 100644
+>> --- a/drivers/clk/tegra/clk.h
+>> +++ b/drivers/clk/tegra/clk.h
+>> @@ -862,6 +862,7 @@ void tegra_cclkg_burst_policy_restore_context(void);
+>>   void tegra_sclk_cclklp_burst_policy_save_context(void);
+>>   void tegra_sclk_cpulp_burst_policy_restore_context(void);
+>>   void tegra_clk_osc_resume(void __iomem *clk_base);
+>> +void tegra_clk_set_pllp_out_cpu(bool enable);
+>>   
+>>   /* Combined read fence with delay */
+>>   #define fence_udelay(delay, reg)	\
+>> -- 
+>> 2.7.4
+>>
