@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16723569EB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B47567A7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 13:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727259AbfFZNA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:00:59 -0400
-Received: from zyloware.com ([23.95.19.78]:39109 "EHLO chulaseafood.com"
-        rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726628AbfFZNA7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 09:00:59 -0400
-X-Greylist: delayed 1352 seconds by postgrey-1.27 at vger.kernel.org; Wed, 26 Jun 2019 09:00:57 EDT
-To:     devicetree@vger.kernel.org
-Subject: =?UTF-8?B?IHF1aWNrIHF1ZXN0aW9u4oCm?=
-Message-ID: <d767dc0da0f09ab4b2f0556e98cbcfe8@inaflashweb.com>
-Date:   Wed, 26 Jun 2019 13:15:55 +0200
-From:   "Laura" <ansitaasdsaksi@verizon.net>
-Reply-To: ansitaasdsaksi@verizon.net
+        id S1727318AbfFZLdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 07:33:12 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:46876 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727296AbfFZLdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 07:33:12 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 7EC2380349;
+        Wed, 26 Jun 2019 13:33:08 +0200 (CEST)
+Date:   Wed, 26 Jun 2019 13:33:06 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [PATCH v5 2/2] drm/panel: Add support for Raydium RM67191 panel
+ driver
+Message-ID: <20190626113306.GA24921@ravnborg.org>
+References: <1561544420-15572-1-git-send-email-robert.chiras@nxp.com>
+ <1561544420-15572-3-git-send-email-robert.chiras@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1561544420-15572-3-git-send-email-robert.chiras@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=IkcTkHD0fZMA:10
+        a=R-vzCapntemROrW6nt8A:9 a=QEXdDO2ut3YA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Robert.
 
-Did you see my email below from last week?
+On Wed, Jun 26, 2019 at 01:20:20PM +0300, Robert Chiras wrote:
+> This patch adds Raydium RM67191 TFT LCD panel driver (MIPI-DSI
+> protocol).
 
-We manufacture ALL custom LOGO and branded products – over 300,000 to
-choose from.
+I was about to apply these - but I get following warnings during build:
+  CC      drivers/gpu/drm/panel/panel-raydium-rm67191.o
+/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c: In function ‘rad_bl_get_brightness’:
+/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c:470:17: warning: unused variable ‘dev’ [-Wunused-variable]
+  struct device *dev = &dsi->dev;
+                 ^~~
+/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c: In function ‘rad_bl_update_status’:
+/home/sam/drm/linux.git/drivers/gpu/drm/panel/panel-raydium-rm67191.c:492:17: warning: unused variable ‘dev’ [-Wunused-variable]
+  struct device *dev = &dsi->dev;
+                 ^~~
 
-The most asked about product that we make, are the custom printed USB flash
-drives!
-We can print your logo on them and load your digital images, videos and
-files!
+Please fix and update your scripts to catch this in the future.
 
-http://inaflashweb.com
-
-Here is what we include:
--Any size memory you need: 64MB up to 128GB
--We will print your logo on both sides, just ask!
--Very Low Order Minimums
--Need them quickly? Not a problem, we offer Rush Service
-http://inaflashweb.com
-
-NEW: We can make a custom shaped USB drive to look like your Logo or
-product!
-
-Email over a copy of your logo and we will create a design mock up for you
-at no cost!
-
-Our higher memory sizes are a really good option right now!
-
-Ask about the “Double Your Memory” upgrade promotion going on right
-now!
-
-Pricing is low right now, so let us know what you need and we will get you
-a quick quote.
-
-We will beat any competitors pricing, send us your last invoice and we will
-beat it!
-
-We always offer great rates for schools and nonprofits as well.
-
-Let us know what you would like quoted?
-http://inaflashweb.com
-
-Regards,
-
-
-
-Sabrina Millons
-+1-888-480-8218
-Custom USB Account Manager
-http://inaflashweb.com
-
+	Sam
