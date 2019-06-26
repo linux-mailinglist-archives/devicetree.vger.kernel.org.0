@@ -2,311 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6968E56B5B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC01A56B63
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2019 15:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727562AbfFZN4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 09:56:01 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:46584 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727428AbfFZN4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:56:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1561557358; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=yhdJpb8qFY4pN1bmwePHN5J0Vlqv/2Y1pQ5hvnLuosU=;
-        b=qCmcwoT/0Aye4UItUOfH/impi67W/75PsUYWY1aJWBEzOsp+BzuTZY+vBeU31tyYnyV8TR
-        4u86ez5LTMrwxizwnkaPiAE9QP7+2Fsgrh9lBQwRiiTFAwEMj8IHB8SbmxB7UzsRexIqw3
-        TEnQN3vVPzCN3ouH2g+CNVEPgWWBYGU=
-Date:   Wed, 26 Jun 2019 15:55:50 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v12 04/13] mfd: Add Ingenic TCU driver
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mathieu Malaterre <malat@debian.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, od@zcrc.me
-Message-Id: <1561557350.1872.0@crapouillou.net>
-In-Reply-To: <20190626131850.GW21119@dell>
-References: <20190521145141.9813-1-paul@crapouillou.net>
-        <20190521145141.9813-5-paul@crapouillou.net> <20190626131850.GW21119@dell>
+        id S1725958AbfFZN64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 09:58:56 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:43123 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726723AbfFZN6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 09:58:55 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190626135852euoutp01c9e85987c932b50b5eb93a63c5dc8ffb~rxE10wN7u2339523395euoutp01L
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 13:58:52 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190626135852euoutp01c9e85987c932b50b5eb93a63c5dc8ffb~rxE10wN7u2339523395euoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1561557532;
+        bh=BT3zIcGmvUV+ueH1TilZMhs4g/vfOTc1I+ZwJJdTOdI=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=P9Eghto3c5GHdQbSZgR9ytQs7pme55qEmeJAKtmXwNgYcF2wQqa0Wt+ZeDDifpIn/
+         PMnj2zWFzkM9zgas7G07f/EN/6CyF3fW8ZSoqpQe6pm5hJ1ZXjZsKF1po7AKXw5zZ8
+         Inj9Ti1Iv8Lvo/O2mxF1eybn0wNYhMWDGt4YbUsA=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190626135851eucas1p16099d70110d216a9de1c227f02331451~rxE04uHpe0568305683eucas1p1S;
+        Wed, 26 Jun 2019 13:58:51 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id E9.95.04298.B1A731D5; Wed, 26
+        Jun 2019 14:58:51 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190626135850eucas1p11ee7d7e5e2ae50e8245e2f6366d365eb~rxEz7Lnl-0630806308eucas1p1K;
+        Wed, 26 Jun 2019 13:58:50 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190626135850eusmtrp145647492546fa5341906e8062e54e818~rxEzs0GTO0282502825eusmtrp1U;
+        Wed, 26 Jun 2019 13:58:50 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-cf-5d137a1bb4a6
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 2A.11.04140.A1A731D5; Wed, 26
+        Jun 2019 14:58:50 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190626135849eusmtip228f6bdc30e55bd68f74a4eccc4642b46~rxEzAIVz31436614366eusmtip2c;
+        Wed, 26 Jun 2019 13:58:49 +0000 (GMT)
+Subject: Re: [PATCH v4 4/5] Documentation: devicetree: add PPMU events
+ description
+To:     cwchoi00@gmail.com
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com,
+        krzk@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        cw00.choi@samsung.com, kyungmin.park@samsung.com,
+        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+        myungjoo.ham@samsung.com, kgene@kernel.org,
+        willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <7498059d-95f7-e154-cf49-bcbc8ee6fdb9@partner.samsung.com>
+Date:   Wed, 26 Jun 2019 15:58:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAGTfZH2kTNWtx=Jp1UJaLN50Qxbq+Q9ThV4vhQ240QbOy1TRMQ@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SeUhUURjFu/OWeUpj1xnTLw2NifbStj8utlBSMlS0WFAUam/yoaKONi8r
+        LVDbTNHMCq1pUaN1chknLbUMHS0T0bGC9sUaKTI1cSyyRXLmGfnf77vfOfeeA5ejlK8Zby5a
+        t0vQ6/hYNetK33owaJ3jk6wKnXsl35uUny5jyLOBTwz5eH8WKWhsY0iO7QtFrFaTnLQe6JYT
+        s+0pQ57UnGOJPbsRkdPWezJS0vhGTi4/eyQjr9KuseRwbaOcNHSnM+T7ww9ombum+EIx0lQb
+        3sg1ZmMGq7l5KUVzrMKINHaz73p2q+viCCE2eregD1i63TWq50+dLGGA3Ztbb5KnojtMJnLh
+        AC+EoUOHqEzkyinxNQT9v0tZx0KJBxDcaF8lsR2BqXLuP0PH3c+MZLiK4E7HIC0NPQj6Svtk
+        DpUKb4Ihs8XJHtgTbud1IoeIws0UtPZahgeOY7E/VBl3OjQKHAynKrNpB9N4Chiyjji94/EW
+        GKg2I0njDs1nOp0aF7wBrCU2Z1IKe8HLzgKZxH5wsPKssw7gNA7qGq6zUuwVUGgvG2EVdDVV
+        yCWeCC0ns2iJRUjNLkIS7wdbzvkRzSJoaHrEODJTeAaU1QQ4EPByaL44TkI3eN7jLiVwgxO3
+        8inpWAFHjyilO6ZDRVa7TGJPuFqcJz+O1IZRvQyjuhhGdTH8f7YQ0UbkJSSKcZGCOE8n7PEX
+        +TgxURfpvyM+zoyG/1zLUFN/Ffr2WGtBmEPqsYpUP2WokuF3i0lxFgQcpfZQXOZxqFIRwScl
+        C/r4cH1irCBakA9Hq70U+8Z0bFPiSH6XECMICYL+31bGuXinosDt8zMrMtJKs2bnvzVqTJ1r
+        UP66fb6DVU+ntq7cr4oJ1MVmBM7qnRT0YvI227gfubJLN4vLN4fgr7kxpv4qe1iKtvadqpv8
+        pMu/1acH9/yZkHmuYP3q81AUNmYa3xX/vrXLeLessDvCnhK+MehXSV/C2gXaqUtCErTJ2rbk
+        tjAcrqbFKH7eTEov8n8BL6Fkn28DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrEIsWRmVeSWpSXmKPExsVy+t/xe7pSVcKxBg9eSFpsnLGe1eL6l+es
+        Fs+OalvMP3KO1aL/8Wtmi/PnN7BbnG16w26x6fE1VovLu+awWXzuPcJoMeP8PiaLtUfuslss
+        vX6RyeJ24wo2i9a9R9gtDr9pZ7X4duIRo4Ogx5p5axg9ds66y+6xaVUnm8fmJfUefVtWMXp8
+        3iQXwBalZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwea2VkqqRvZ5OSmpNZllqkb5eg
+        l/H27wGmgi9sFRMPbmBvYNzN2sXIySEhYCLxYM9LMFtIYCmjxK93ARBxMYlJ+7azQ9jCEn+u
+        dbF1MXIB1bxmlLi6fzcbSEJYIETi36ZDTCC2CFDD9mlPGEGKmAVOMktc2nKdEaJjApPE3T2v
+        gBwODjYBPYkdqwpBGngF3CSmbO1lAbFZBFQlZvW0gQ0SFYiQmL2rgQWiRlDi5MwnYDanQKDE
+        +bWPwRYzC5hJzNv8kBnCFpe49WQ+E4QtL9G8dTbzBEahWUjaZyFpmYWkZRaSlgWMLKsYRVJL
+        i3PTc4uN9IoTc4tL89L1kvNzNzEC43vbsZ9bdjB2vQs+xCjAwajEw9sgLxQrxJpYVlyZe4hR
+        goNZSYR3aaJArBBvSmJlVWpRfnxRaU5q8SFGU6DnJjJLiSbnA1NPXkm8oamhuYWlobmxubGZ
+        hZI4b4fAwRghgfTEktTs1NSC1CKYPiYOTqkGxk1nDFxeB1o/narb89rXXuR9yaboM88Zskw4
+        rK4su7yzgntiO/sKs6dL9q5V/PHt1MXU2vuerlmXxec6LDtv9/t1Z5LqXd3UaQkXN7CfEFay
+        ncTu5a5/3bjxdPH8r6m/cs4yTvGZ1S+9f+mhCAFfSd4i09SLhy+9YAyIb3mfUuj46QKLys/l
+        HUosxRmJhlrMRcWJAKM4h7sFAwAA
+X-CMS-MailID: 20190626135850eucas1p11ee7d7e5e2ae50e8245e2f6366d365eb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190605091304eucas1p21e0717cafa17a14de569f1773cc7abe5
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190605091304eucas1p21e0717cafa17a14de569f1773cc7abe5
+References: <CGME20190605091304eucas1p21e0717cafa17a14de569f1773cc7abe5@eucas1p2.samsung.com>
+        <20190605091236.24263-1-l.luba@partner.samsung.com>
+        <20190605091236.24263-5-l.luba@partner.samsung.com>
+        <CAGTfZH2kTNWtx=Jp1UJaLN50Qxbq+Q9ThV4vhQ240QbOy1TRMQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Hi Chanwoo,
 
-Le mer. 26 juin 2019 =C3=A0 15:18, Lee Jones <lee.jones@linaro.org> a=20
-=C3=A9crit :
-> On Tue, 21 May 2019, Paul Cercueil wrote:
->=20
->>  This driver will provide a regmap that can be retrieved very early=20
->> in
->>  the boot process through the API function ingenic_tcu_get_regmap().
->>=20
->>  Additionally, it will call devm_of_platform_populate() so that all=20
->> the
->>  children devices will be probed.
->>=20
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  ---
->>=20
->>  Notes:
->>      v12: New patch
->>=20
->>   drivers/mfd/Kconfig             |   8 +++
->>   drivers/mfd/Makefile            |   1 +
->>   drivers/mfd/ingenic-tcu.c       | 113=20
->> ++++++++++++++++++++++++++++++++
->>   include/linux/mfd/ingenic-tcu.h |   8 +++
->>   4 files changed, 130 insertions(+)
->>   create mode 100644 drivers/mfd/ingenic-tcu.c
->>=20
->>  diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->>  index 294d9567cc71..a13544474e05 100644
->>  --- a/drivers/mfd/Kconfig
->>  +++ b/drivers/mfd/Kconfig
->>  @@ -494,6 +494,14 @@ config HTC_I2CPLD
->>   	  This device provides input and output GPIOs through an I2C
->>   	  interface to one or more sub-chips.
->>=20
->>  +config INGENIC_TCU
->>  +	bool "Ingenic Timer/Counter Unit (TCU) support"
->>  +	depends on MIPS || COMPILE_TEST
->>  +	select REGMAP_MMIO
->>  +	help
->>  +	  Say yes here to support the Timer/Counter Unit (TCU) IP present
->>  +	  in the JZ47xx SoCs from Ingenic.
->>  +
->>   config MFD_INTEL_QUARK_I2C_GPIO
->>   	tristate "Intel Quark MFD I2C GPIO"
->>   	depends on PCI
->>  diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
->>  index 52b1a90ff515..fb89e131ae98 100644
->>  --- a/drivers/mfd/Makefile
->>  +++ b/drivers/mfd/Makefile
->>  @@ -180,6 +180,7 @@ obj-$(CONFIG_AB8500_CORE)	+=3D ab8500-core.o=20
->> ab8500-sysctrl.o
->>   obj-$(CONFIG_MFD_TIMBERDALE)    +=3D timberdale.o
->>   obj-$(CONFIG_PMIC_ADP5520)	+=3D adp5520.o
->>   obj-$(CONFIG_MFD_KEMPLD)	+=3D kempld-core.o
->>  +obj-$(CONFIG_INGENIC_TCU)	+=3D ingenic-tcu.o
->>   obj-$(CONFIG_MFD_INTEL_QUARK_I2C_GPIO)	+=3D intel_quark_i2c_gpio.o
->>   obj-$(CONFIG_LPC_SCH)		+=3D lpc_sch.o
->>   obj-$(CONFIG_LPC_ICH)		+=3D lpc_ich.o
->>  diff --git a/drivers/mfd/ingenic-tcu.c b/drivers/mfd/ingenic-tcu.c
->>  new file mode 100644
->>  index 000000000000..6c1d5e4310c1
->>  --- /dev/null
->>  +++ b/drivers/mfd/ingenic-tcu.c
->>  @@ -0,0 +1,113 @@
->>  +// SPDX-License-Identifier: GPL-2.0
->>  +/*
->>  + * JZ47xx SoCs TCU MFD driver
->=20
-> Nit: Another line here please.
->=20
->>  + * Copyright (C) 2019 Paul Cercueil <paul@crapouillou.net>
->>  + */
->>  +
->>  +#include <linux/mfd/ingenic-tcu.h>
->>  +#include <linux/of_address.h>
->>  +#include <linux/of_platform.h>
->>  +#include <linux/platform_device.h>
->>  +#include <linux/regmap.h>
->>  +
->>  +struct ingenic_soc_info {
->>  +	unsigned int num_channels;
->>  +};
->>  +
->>  +static struct regmap *tcu_regmap __initdata;
->>  +
->>  +static const struct regmap_config ingenic_tcu_regmap_config =3D {
->>  +	.reg_bits =3D 32,
->>  +	.val_bits =3D 32,
->>  +	.reg_stride =3D 4,
->>  +	.max_register =3D TCU_REG_OST_CNTHBUF,
->>  +};
->>  +
->>  +static const struct ingenic_soc_info jz4740_soc_info =3D {
->>  +	.num_channels =3D 8,
->>  +};
->>  +
->>  +static const struct ingenic_soc_info jz4725b_soc_info =3D {
->>  +	.num_channels =3D 6,
->>  +};
->>  +
->>  +static const struct of_device_id ingenic_tcu_of_match[] =3D {
->>  +	{ .compatible =3D "ingenic,jz4740-tcu", .data =3D &jz4740_soc_info, }=
-,
->>  +	{ .compatible =3D "ingenic,jz4725b-tcu", .data =3D &jz4725b_soc_info,=
-=20
->> },
->>  +	{ .compatible =3D "ingenic,jz4770-tcu", .data =3D &jz4740_soc_info, }=
-,
->>  +	{ }
->>  +};
->>  +
->>  +static struct regmap * __init ingenic_tcu_create_regmap(struct=20
->> device_node *np)
->>  +{
->>  +	struct resource res;
->>  +	void __iomem *base;
->>  +	struct regmap *map;
->>  +
->>  +	if (!of_match_node(ingenic_tcu_of_match, np))
->>  +		return ERR_PTR(-EINVAL);
->>  +
->>  +	base =3D of_io_request_and_map(np, 0, "TCU");
->>  +	if (IS_ERR(base))
->>  +		return ERR_PTR(PTR_ERR(base));
->>  +
->>  +	map =3D regmap_init_mmio(NULL, base, &ingenic_tcu_regmap_config);
->>  +	if (IS_ERR(map))
->>  +		goto err_iounmap;
->>  +
->>  +	return map;
->>  +
->>  +err_iounmap:
->>  +	iounmap(base);
->>  +	of_address_to_resource(np, 0, &res);
->>  +	release_mem_region(res.start, resource_size(&res));
->>  +
->>  +	return map;
->>  +}
->=20
-> Why does this need to be set-up earlier than probe()?
+On 6/26/19 10:23 AM, Chanwoo Choi wrote:
+> Hi Lukasz,
+> 
+> 2019년 6월 5일 (수) 18:14, Lukasz Luba <l.luba@partner.samsung.com 
+> <mailto:l.luba@partner.samsung.com>>님이 작성:
+> 
+>     Extend the documenation by events description with new 'event-data-type'
+>     field. Add example how the event might be defined in DT.
+> 
+>     Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com
+>     <mailto:l.luba@partner.samsung.com>>
+>     Signed-off-by: Chanwoo Choi <cw00.choi@samsung.com
+>     <mailto:cw00.choi@samsung.com>>
+>     ---
+>       .../bindings/devfreq/event/exynos-ppmu.txt    | 26 +++++++++++++++++--
+>       1 file changed, 24 insertions(+), 2 deletions(-)
+> 
+> 
+> 
+> Acked-by: Chanwoo Choi <cw00.choi@samsung.com 
 
-See the explanation below.
+Thank you for the ACKs for this a 2/5 patch.
+Do you think the v4 could be merged now?
 
->>  +static int __init ingenic_tcu_probe(struct platform_device *pdev)
->>  +{
->>  +	struct regmap *map =3D ingenic_tcu_get_regmap(pdev->dev.of_node);
->>  +
->>  +	platform_set_drvdata(pdev, map);
->>  +
->>  +	regmap_attach_dev(&pdev->dev, map, &ingenic_tcu_regmap_config);
->>  +
->>  +	return devm_of_platform_populate(&pdev->dev);
->>  +}
->>  +
->>  +static struct platform_driver ingenic_tcu_driver =3D {
->>  +	.driver =3D {
->>  +		.name =3D "ingenic-tcu",
->>  +		.of_match_table =3D ingenic_tcu_of_match,
->>  +	},
->>  +};
->>  +
->>  +static int __init ingenic_tcu_platform_init(void)
->>  +{
->>  +	return platform_driver_probe(&ingenic_tcu_driver,
->>  +				     ingenic_tcu_probe);
->=20
-> What?  Why?
-
-The device driver probed here will populate the children devices,
-which will be able to retrieve the pointer to the regmap through
-device_get_regmap(dev->parent).
-
-The children devices are normal platform drivers that can be probed
-the normal way. These are the PWM driver, the watchdog driver, and the
-OST (OS Timer) clocksource driver, all part of the same hardware block
-(the Timer/Counter Unit or TCU).
-
->>  +}
->>  +subsys_initcall(ingenic_tcu_platform_init);
->>  +
->>  +struct regmap * __init ingenic_tcu_get_regmap(struct device_node=20
->> *np)
->>  +{
->>  +	if (!tcu_regmap)
->>  +		tcu_regmap =3D ingenic_tcu_create_regmap(np);
->>  +
->>  +	return tcu_regmap;
->>  +}
->=20
-> This makes me pretty uncomfortable.
->=20
-> What calls it?
-
-The TCU IRQ driver (patch [06/13]), clocks driver (patch [05/13]), and=20
-the
-non-OST clocksource driver (patch [07/13]) all probe very early in the=20
-boot
-process, and share the same devicetree node. They call this function to=20
-get
-a pointer to the regmap.
-
->>  +bool ingenic_tcu_pwm_can_use_chn(struct device *dev, unsigned int=20
->> channel)
->>  +{
->>  +	const struct ingenic_soc_info *soc =3D=20
->> device_get_match_data(dev->parent);
->>  +
->>  +	/* Enable all TCU channels for PWM use by default except channels=20
->> 0/1 */
->>  +	u32 pwm_channels_mask =3D GENMASK(soc->num_channels - 1, 2);
->>  +
->>  +	device_property_read_u32(dev->parent, "ingenic,pwm-channels-mask",
->>  +				 &pwm_channels_mask);
->>  +
->>  +	return !!(pwm_channels_mask & BIT(channel));
->>  +}
->>  +EXPORT_SYMBOL_GPL(ingenic_tcu_pwm_can_use_chn);
->>  diff --git a/include/linux/mfd/ingenic-tcu.h=20
->> b/include/linux/mfd/ingenic-tcu.h
->>  index 2083fa20821d..21df23916cd2 100644
->>  --- a/include/linux/mfd/ingenic-tcu.h
->>  +++ b/include/linux/mfd/ingenic-tcu.h
->>  @@ -6,6 +6,11 @@
->>   #define __LINUX_MFD_INGENIC_TCU_H_
->>=20
->>   #include <linux/bitops.h>
->>  +#include <linux/init.h>
->>  +
->>  +struct device;
->>  +struct device_node;
->>  +struct regmap;
->>=20
->>   #define TCU_REG_WDT_TDR		0x00
->>   #define TCU_REG_WDT_TCER	0x04
->>  @@ -53,4 +58,7 @@
->>   #define TCU_REG_TCNTc(c)	(TCU_REG_TCNT0 + ((c) *=20
->> TCU_CHANNEL_STRIDE))
->>   #define TCU_REG_TCSRc(c)	(TCU_REG_TCSR0 + ((c) *=20
->> TCU_CHANNEL_STRIDE))
->>=20
->>  +struct regmap * __init ingenic_tcu_get_regmap(struct device_node=20
->> *np);
->>  +bool ingenic_tcu_pwm_can_use_chn(struct device *dev, unsigned int=20
->> channel);
->>  +
->>   #endif /* __LINUX_MFD_INGENIC_TCU_H_ */
->=20
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Linaro Services Technical Lead
-> Linaro.org =E2=94=82 Open source software for ARM SoCs
-> Follow Linaro: Facebook | Twitter | Blog
-
-=
-
+Regards,
+Lukasz
