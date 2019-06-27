@@ -2,219 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 867B557BA8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 07:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2495D57BBA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 08:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbfF0F4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 01:56:11 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:45018 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725385AbfF0F4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 01:56:11 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id D59BA6019D; Thu, 27 Jun 2019 05:56:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561614969;
-        bh=NQmFaOvOVJfUDh5Dl+DU341nQ5fC4vPdyjSO6MXe63c=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ITVHzzgh2L0K1yzwIy89XgnF7z73DhjoKe2/J5HVswHKBHxKP7Gi7brrxe2XUaWvb
-         vnBl2VT5BfAGwNMWhbCOyPqoz5CYSKgSiUBBY2C9htTHbUmgtYiErqvD9R48w3HbhM
-         uYutOKXhIPFyTKCOjo+MXnHcHXyaOy8p4zANVRdI=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 54D706019D;
-        Thu, 27 Jun 2019 05:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561614968;
-        bh=NQmFaOvOVJfUDh5Dl+DU341nQ5fC4vPdyjSO6MXe63c=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=f7jJhVo5WGvo+YvXasBsVAJl09bTSQ8O9ZdgEONJBZ6+MQj5oSCU8DMhPq/UfBetJ
-         FVMxTWqXkEo089NWutkXKkO0imULf09xHJprNL3nYa13i2n2Nm/E8dUinUlXfrlA3l
-         Fvxq7ZVaX5yayyMvasKVt3OnKJburFJxynpHrRaU=
+        id S1725787AbfF0GKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 02:10:33 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:39235 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725770AbfF0GKc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 02:10:32 -0400
+Received: by mail-pl1-f193.google.com with SMTP id b7so679005pls.6;
+        Wed, 26 Jun 2019 23:10:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ZwcXPCGwZbn09o1uwc7hniPSeMrN6eJpmY4d6Wfxi5c=;
+        b=nJUgXmKQ0n/tCSTXSwTOf323Ng7Vbr8non3mik66azIBefrY1hqPJ+fUw+0vF+W567
+         Sbx3FqnthpQkLTYeqMaPlT9pcZgWb9K8gNefyjYZe6Q9YMfR/smySJvyY2XfXynGxBSD
+         m/OBPEDLQg8o+rKByuBjvs8suB8HJ/ORwAbgHh771iUNV/GPQCTNNXYad005uKvyIQbJ
+         R6rUs3GXBa/r38GotkXo3nqsP+CHlwZgejmhEO3yIN5wYmTe7woPDafzo9zB0Mh7zG2r
+         2H2Kr4YxgQSD6CBZCarufQ3kWHT6gGp7aeF1nImzZ6BBjjH4FTQatMHOYXqctJwL67ky
+         nYng==
+X-Gm-Message-State: APjAAAV+kc7BHr4DW0XZTeWYCEBqZtl1G0r7lngNZt84ifZ2u/IdWc2I
+        9lGAJRVThAFm5Tq17TA2bAw=
+X-Google-Smtp-Source: APXvYqwfDFSlOkWhmFZzzgQYetrDxzZaKzvd9ZX5n/88iknHRTMqvTXQfyQDDioGRxixBQmy4Bo+mg==
+X-Received: by 2002:a17:902:8489:: with SMTP id c9mr2593873plo.327.1561615831154;
+        Wed, 26 Jun 2019 23:10:31 -0700 (PDT)
+Received: from 42.do-not-panic.com ([157.230.128.187])
+        by smtp.gmail.com with ESMTPSA id u21sm1323644pfm.70.2019.06.26.23.10.27
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 26 Jun 2019 23:10:27 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+        id 7944140256; Thu, 27 Jun 2019 06:10:21 +0000 (UTC)
+Date:   Thu, 27 Jun 2019 06:10:21 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Iurii Zaikin <yzaikin@google.com>, linux-api@vger.kernel.org,
+        "Michael Kerrisk (man-pages)" <mtk.manpages@gmail.com>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, Kees Cook <keescook@google.com>,
+        kieran.bingham@ideasonboard.com, peterz@infradead.org,
+        robh@kernel.org, Stephen Boyd <sboyd@kernel.org>, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        Daniel Vetter <daniel@ffwll.ch>, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
+        David Rientjes <rientjes@google.com>, rostedt@goodmis.org,
+        wfg@linux.intel.com
+Subject: Re: [PATCH v5 17/18] kernel/sysctl-test: Add null pointer test for
+ sysctl.c:proc_dointvec()
+Message-ID: <20190627061021.GE19023@42.do-not-panic.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-18-brendanhiggins@google.com>
+ <20190626021744.GU19023@42.do-not-panic.com>
+ <CAAXuY3p+kVhjQ4LYtzormqVcH2vKu1abc_K9Z0XY=JX=bp8NcQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 27 Jun 2019 11:26:08 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>, vireshk@kernel.org,
-        sboyd@kernel.org, nm@ti.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, rjw@rjwysocki.net
-Cc:     jcrouse@codeaurora.org, vincent.guittot@linaro.org,
-        bjorn.andersson@linaro.org, amit.kucheria@linaro.org,
-        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
-        evgreen@chromium.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] interconnect: Add of_icc_get_by_index() helper
- function
-In-Reply-To: <e6469e3b-3653-d20b-b27d-242547a777df@codeaurora.org>
-References: <20190423132823.7915-1-georgi.djakov@linaro.org>
- <20190423132823.7915-3-georgi.djakov@linaro.org>
- <e6469e3b-3653-d20b-b27d-242547a777df@codeaurora.org>
-Message-ID: <199da2ca8a21b179e3e153623c69e8a0@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAAXuY3p+kVhjQ4LYtzormqVcH2vKu1abc_K9Z0XY=JX=bp8NcQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Georgi,
+On Wed, Jun 26, 2019 at 09:07:43PM -0700, Iurii Zaikin wrote:
+> On Tue, Jun 25, 2019 at 7:17 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+> > > +static void sysctl_test_dointvec_table_maxlen_unset(struct kunit *test)
+> > > +{
+> > > +     struct ctl_table table = {
+> > > +             .procname = "foo",
+> > > +             .data           = &test_data.int_0001,
+> > > +             .maxlen         = 0,
+> > > +             .mode           = 0644,
+> > > +             .proc_handler   = proc_dointvec,
+> > > +             .extra1         = &i_zero,
+> > > +             .extra2         = &i_one_hundred,
+> > > +     };
+> > > +     void  *buffer = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > +     size_t len;
+> > > +     loff_t pos;
+> > > +
+> > > +     len = 1234;
+> > > +     KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 0, buffer, &len, &pos));
+> > > +     KUNIT_EXPECT_EQ(test, (size_t)0, len);
+> > > +     len = 1234;
+> > > +     KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, buffer, &len, &pos));
+> > > +     KUNIT_EXPECT_EQ(test, (size_t)0, len);
+> > > +}
+> >
+> > In a way this is also testing for general kernel API changes. This is and the
+> > last one were good examples. So this is not just testing functionality
+> > here. There is no wrong or write answer if 0 or -EINVAL was returned
+> > other than the fact that we have been doing this for years.
+> >
+> > Its a perhaps small but important difference for some of these tests.  I
+> > *do* think its worth clarifying through documentation which ones are
+> > testing for API consistency Vs proper correctness.
+>
+> You make a good point that the test codifies the existing behavior of
+> the function in lieu of formal documentation.  However, the test cases
+> were derived from examining the source code of the function under test
+> and attempting to cover all branches. The assertions were added only
+> for the values that appeared to be set deliberately in the
+> implementation. And it makes sense to me to test that the code does
+> exactly what the implementation author intended.
 
-I heard there is a follow up discussion
-planned to finalize on the which approach
-to follow. If we do end up with your series,
-I found some fixes that you might want to
-use when you re-post.
+I'm not arguing against adding them. I'm suggesting that it is different
+to test for API than for correctness of intended functionality, and
+it would be wise to make it clear which test cases are for API and which
+for correctness.
 
-On 2019-05-07 17:29, Sibi Sankar wrote:
-> Hey Georgi,
-> 
-> On 4/23/19 6:58 PM, Georgi Djakov wrote:
->> This is the same as the traditional of_icc_get() function, but the
->> difference is that it takes index as an argument, instead of name.
->> 
->> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
->> ---
->>   drivers/interconnect/core.c  | 45 
->> ++++++++++++++++++++++++++++--------
->>   include/linux/interconnect.h |  6 +++++
->>   2 files changed, 41 insertions(+), 10 deletions(-)
->> 
->> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
->> index 871eb4bc4efc..a7c3c262c974 100644
->> --- a/drivers/interconnect/core.c
->> +++ b/drivers/interconnect/core.c
->> @@ -295,9 +295,9 @@ static struct icc_node 
->> *of_icc_get_from_provider(struct of_phandle_args *spec)
->>   }
->>     /**
->> - * of_icc_get() - get a path handle from a DT node based on name
->> + * of_icc_get_by_index() - get a path handle from a DT node based on 
->> index
->>    * @dev: device pointer for the consumer device
->> - * @name: interconnect path name
->> + * @idx: interconnect path index
->>    *
->>    * This function will search for a path between two endpoints and 
->> return an
->>    * icc_path handle on success. Use icc_put() to release constraints 
->> when they
->> @@ -309,13 +309,12 @@ static struct icc_node 
->> *of_icc_get_from_provider(struct of_phandle_args *spec)
->>    * Return: icc_path pointer on success or ERR_PTR() on error. NULL 
->> is returned
->>    * when the API is disabled or the "interconnects" DT property is 
->> missing.
->>    */
->> -struct icc_path *of_icc_get(struct device *dev, const char *name)
->> +struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
->>   {
->>   	struct icc_path *path = ERR_PTR(-EPROBE_DEFER);
->>   	struct icc_node *src_node, *dst_node;
->>   	struct device_node *np = NULL;
->>   	struct of_phandle_args src_args, dst_args;
->> -	int idx = 0;
->>   	int ret;
->>     	if (!dev || !dev->of_node)
->> @@ -335,12 +334,6 @@ struct icc_path *of_icc_get(struct device *dev, 
->> const char *name)
->>   	 * lets support only global ids and extend this in the future if 
->> needed
->>   	 * without breaking DT compatibility.
->>   	 */
->> -	if (name) {
->> -		idx = of_property_match_string(np, "interconnect-names", name);
->> -		if (idx < 0)
->> -			return ERR_PTR(idx);
->> -	}
->> -
->>   	ret = of_parse_phandle_with_args(np, "interconnects",
->>   					 "#interconnect-cells", idx * 2,
->>   					 &src_args);
->> @@ -383,6 +376,38 @@ struct icc_path *of_icc_get(struct device *dev, 
->> const char *name)
->>     	return path;
->>   }
->> +
->> +/**
->> + * of_icc_get() - get a path handle from a DT node based on name
->> + * @dev: device pointer for the consumer device
->> + * @name: interconnect path name
->> + *
->> + * This function will search for a path between two endpoints and 
->> return an
->> + * icc_path handle on success. Use icc_put() to release constraints 
->> when they
->> + * are not needed anymore.
->> + * If the interconnect API is disabled, NULL is returned and the 
->> consumer
->> + * drivers will still build. Drivers are free to handle this 
->> specifically,
->> + * but they don't have to.
->> + *
->> + * Return: icc_path pointer on success or ERR_PTR() on error. NULL is 
->> returned
->> + * when the API is disabled or the "interconnects" DT property is 
->> missing.
->> + */
+This will come up later for other kunit tests and it would be great
+to set precendent so that other kunit tests can follow similar
+practices to ensure its clear what is API realted Vs correctness of
+intended functionality.
 
-please change the description since it does not
-return NULL when the property is missing.
+In fact, I'm not yet sure if its possible to test public kernel API to
+userspace with kunit, but if it is possible... well, that could make
+linux-api folks happy as they could enable us to codify interpreation of
+what is expected into kunit test cases, and we'd ensure that the
+codified interpretation is not only documented in man pages but also
+through formal kunit test cases.
 
->> +struct icc_path *of_icc_get(struct device *dev, const char *name)
->> +{
->> +	int idx = 0;
->> +
->> +	if (!dev || !dev->of_node)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	if (name) {
->> +		idx = of_property_match_string(dev->of_node,
->> +					       "interconnect-names", name);
->> +		if (idx < 0)
->> +			return ERR_PTR(idx);
->> +	}
->> +
->> +	return of_icc_get_by_index(dev, idx);
->> +}
->>   EXPORT_SYMBOL_GPL(of_icc_get);
->>     /**
->> diff --git a/include/linux/interconnect.h 
->> b/include/linux/interconnect.h
->> index dc25864755ba..0e430b3b6519 100644
->> --- a/include/linux/interconnect.h
->> +++ b/include/linux/interconnect.h
->> @@ -28,6 +28,7 @@ struct device;
->>   struct icc_path *icc_get(struct device *dev, const int src_id,
->>   			 const int dst_id);
->>   struct icc_path *of_icc_get(struct device *dev, const char *name);
->> +struct icc_path *of_icc_get_by_index(struct device *dev, int idx);
->>   void icc_put(struct icc_path *path);
->>   int icc_set_bw(struct icc_path *path, u32 avg_bw, u32 peak_bw);
->>   @@ -45,6 +46,11 @@ static inline struct icc_path *of_icc_get(struct 
->> device *dev,
->>   	return NULL;
->>   }
->>   +struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
-> 
-> This should be static inline instead
-> 
->> +{
->> +	return NULL;
->> +}
->> +
->>   static inline void icc_put(struct icc_path *path)
->>   {
->>   }
->> 
+A regression in linux-api then could be formalized through a proper
+kunit tests case. And if an API evolves, it would force developers to
+update the respective kunit which codifies that contract.
 
--- 
--- Sibi Sankar --
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+> > > +static void sysctl_test_dointvec_single_less_int_min(struct kunit *test)
+> > > +{
+> > > +     struct ctl_table table = {
+> > > +             .procname = "foo",
+> > > +             .data           = &test_data.int_0001,
+> > > +             .maxlen         = sizeof(int),
+> > > +             .mode           = 0644,
+> > > +             .proc_handler   = proc_dointvec,
+> > > +             .extra1         = &i_zero,
+> > > +             .extra2         = &i_one_hundred,
+> > > +     };
+> > > +     char input[32];
+> > > +     size_t len = sizeof(input) - 1;
+> > > +     loff_t pos = 0;
+> > > +     unsigned long abs_of_less_than_min = (unsigned long)INT_MAX
+> > > +                                          - (INT_MAX + INT_MIN) + 1;
+> > > +
+> > > +     KUNIT_EXPECT_LT(test,
+> > > +                     (size_t)snprintf(input, sizeof(input), "-%lu",
+> > > +                                      abs_of_less_than_min),
+> > > +                     sizeof(input));
+> > > +
+> > > +     table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > +     KUNIT_EXPECT_EQ(test, -EINVAL,
+> > > +                     proc_dointvec(&table, 1, input, &len, &pos));
+> > > +     KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > +     KUNIT_EXPECT_EQ(test, 0, ((int *)table.data)[0]);
+> > > +}
+> >
+> > API test.
+> >
+> Not sure why.
+
+Because you are codifying that we *definitely* return -EINVAL on
+overlow. Some parts of the kernel return -ERANGE for overflows for
+instance.
+
+It would be a generic test for overflow if it would just test
+for any error.
+
+It is a fine and good test to keep. All these tests are good to keep.
+
+> I believe there has been a real bug with int overflow in
+> proc_dointvec.
+> Covering it with test seems like a good idea.
+
+Oh definitely.
+
+> > > +static void sysctl_test_dointvec_single_greater_int_max(struct kunit *test)
+> > > +{
+> > > +     struct ctl_table table = {
+> > > +             .procname = "foo",
+> > > +             .data           = &test_data.int_0001,
+> > > +             .maxlen         = sizeof(int),
+> > > +             .mode           = 0644,
+> > > +             .proc_handler   = proc_dointvec,
+> > > +             .extra1         = &i_zero,
+> > > +             .extra2         = &i_one_hundred,
+> > > +     };
+> > > +     char input[32];
+> > > +     size_t len = sizeof(input) - 1;
+> > > +     loff_t pos = 0;
+> > > +     unsigned long greater_than_max = (unsigned long)INT_MAX + 1;
+> > > +
+> > > +     KUNIT_EXPECT_GT(test, greater_than_max, (unsigned long)INT_MAX);
+> > > +     KUNIT_EXPECT_LT(test, (size_t)snprintf(input, sizeof(input), "%lu",
+> > > +                                            greater_than_max),
+> > > +                     sizeof(input));
+> > > +     table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > +     KUNIT_EXPECT_EQ(test, -EINVAL,
+> > > +                     proc_dointvec(&table, 1, input, &len, &pos));
+> > > +     KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > +     KUNIT_EXPECT_EQ(test, 0, ((int *)table.data)[0]);
+> > > +}
+> > > +
+> >
+> > API test.
+> >
+> > > +static struct kunit_case sysctl_test_cases[] = {
+> > > +     KUNIT_CASE(sysctl_test_dointvec_null_tbl_data),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_table_maxlen_unset),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_table_len_is_zero),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_table_read_but_position_set),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_happy_single_positive),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_happy_single_negative),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_single_less_int_min),
+> > > +     KUNIT_CASE(sysctl_test_dointvec_single_greater_int_max),
+> > > +     {}
+> > > +};
+> >
+> > Oh all are API tests.. perhaps then just rename then
+> > sysctl_test_cases to sysctl_api_test_cases.
+> >
+> > Would be good to add at least *two* other tests cases for this
+> > example, one which does a valid read and one which does a valid write.
+> Added valid reads. There already are 2 valid writes.
+
+Thanks.
+
+> > If that is done either we add another kunit test module for correctness
+> > or just extend the above and use prefix / postfixes on the functions
+> > to distinguish between API / correctness somehow.
+> >
+> > > +
+> > > +static struct kunit_module sysctl_test_module = {
+> > > +     .name = "sysctl_test",
+> > > +     .test_cases = sysctl_test_cases,
+> > > +};
+> > > +
+> > > +module_test(sysctl_test_module);
+> > > diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+> > > index cbdfae3798965..389b8986f5b77 100644
+> > > --- a/lib/Kconfig.debug
+> > > +++ b/lib/Kconfig.debug
+> > > @@ -1939,6 +1939,16 @@ config TEST_SYSCTL
+> > >
+> > >         If unsure, say N.
+> > >
+> > > +config SYSCTL_KUNIT_TEST
+> > > +     bool "KUnit test for sysctl"
+> > > +     depends on KUNIT
+> > > +     help
+> > > +       This builds the proc sysctl unit test, which runs on boot. For more
+> > > +       information on KUnit and unit tests in general please refer to the
+> > > +       KUnit documentation in Documentation/dev-tools/kunit/.
+> >
+> > A little more description here would help. It is testing for API and
+> > hopefully also correctness (if extended with those two examples I
+> > mentioned).
+> >
+> Added "Tests the API contract and implementation correctness of sysctl."
+
+Yes, much clearer, thanks!
+
+  Luis
+
