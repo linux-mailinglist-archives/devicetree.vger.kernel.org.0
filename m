@@ -2,118 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E877958405
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 15:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A1F558413
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 16:02:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726976AbfF0N7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 09:59:52 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:33613 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726614AbfF0N7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 09:59:50 -0400
-Received: by mail-wm1-f66.google.com with SMTP id h19so7159205wme.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 06:59:50 -0700 (PDT)
+        id S1726441AbfF0OCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 10:02:21 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:33728 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726497AbfF0OCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 10:02:21 -0400
+Received: by mail-lj1-f195.google.com with SMTP id h10so2507836ljg.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 07:02:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=HZ7QyNPTvF6/RgnmII34ur/JGsTqdFkUnUKXTuvqG/w=;
-        b=ooazNoLWOxU7IwbCJhoA5ND74omxfkNA0U1UpIkyKlNt0uKAfdvPmkJmQH421o+src
-         vHLl/RyQplDDT1tW40Dp93vFXUKuqLfSJXg+XUzCJcoYTZZGO4+o0KU/ZfLagw0bgegz
-         wZBSx99uweaNbb2vAFhf51jahF3xYUMLdJMKzZid2NhISCpPSl25DVCmAaHc/iCEvqzt
-         V15JjUpQIM1tcn7pXWbEW6dhtbporZSui1zZxUUr7YTVTg347Lia76DJHNyeo5Dbwg1w
-         hv1riHzjcdEwAokiYUSBUrUU76pCTDr2HpASIT86s3UXxmXaVYUxyRFIB2OcBe61Dt1L
-         f56Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=94jsv7PelsPB2ELSJjxjeuXE1UpF8XX/bIuYToAgwnk=;
+        b=b9I+dUWBM0fhRcRju6K0FJydpPHBep0v9JJycFT32uDQhEtMDeFusBtNkcSytsauPJ
+         zug6M3BCakgcl6maoGCYN7WNkPpYqhBV7WuXWqjGcpd77Cy4acZ6vOjvlT7VhvGRhKTN
+         HI06dQ8x5ixWxE10eD9YkfB14wWvqzZtkxhQKG0Ed+GXbZbwWUuKdc4Q6D2hTkFHbGf9
+         a0IZ2Vd3NqTH01FIddnMT6H+1jxJh/BJo58Jpi45ffyOwvOuHOyH1iARAID41tbeSKy5
+         xFJUem00SubwrYs27OaKBZFMY+t7jyTyem7w83I+x9eMetsj50kVf9rFVTGN5JHurowy
+         5f0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=HZ7QyNPTvF6/RgnmII34ur/JGsTqdFkUnUKXTuvqG/w=;
-        b=Ck2q19169Q1Hsn0TNwsgNlEHn48zrRYBTrSBRuqZY5oQ+mXDnPBdhBXS8B+QLIe+yZ
-         R7Pmsn0my8KPl78FoRFywlOalwLovfzyiCX4GXW4YZd+cgIaNT6RQYU6n8c5XaSiP2VH
-         n/P6M679wLXUnBl6IsxzG/Z9DwSlGXdq7LUvNzQdiB2dHl2boWhxTIW4U7dFGnbAeYGC
-         yewDNfuPWqOOPUoNf+rLufhuq5mpdedqHREYlWGY8c6p/akLdTJoBRAajJrIa8uz8O0Q
-         DFFsJBYB/m7UGzvPof+aH+tGVDguh0nZsCdBb+QgODLjDaAaFurv/yV6YAPwxyA5+x15
-         8/Sw==
-X-Gm-Message-State: APjAAAVLW2yAyoKRvFb1Riy0NTkZA5oUSo/kYstzzgyJ9rROc52W87Gz
-        FGpxyYW5IPA7G0yE6RY9hV09YA==
-X-Google-Smtp-Source: APXvYqwaxWiKD/K7An3E8jt0LE3Y8mQ4GeKWfysCY8bRIdbz0ryFrlEPnonTiu8gbtoYhCpar5TrSg==
-X-Received: by 2002:a1c:b146:: with SMTP id a67mr3282875wmf.124.1561643989260;
-        Thu, 27 Jun 2019 06:59:49 -0700 (PDT)
-Received: from dell ([2.27.35.164])
-        by smtp.gmail.com with ESMTPSA id y184sm5473350wmg.14.2019.06.27.06.59.48
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 27 Jun 2019 06:59:48 -0700 (PDT)
-Date:   Thu, 27 Jun 2019 14:59:46 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Tony Xie <tony.xie@rock-chips.com>
-Cc:     heiko@sntech.de, broonie@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, chenjh@rock-chips.com,
-        xsf@rock-chips.com, zhangqing@rock-chips.com,
-        huangtao@rock-chips.com
-Subject: [GIT PULL] Immutable branch between MFD, Clk, Regulator and RTC due
- for the v5.3 merge window
-Message-ID: <20190627135946.GI2000@dell>
-References: <20190621103258.8154-1-tony.xie@rock-chips.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=94jsv7PelsPB2ELSJjxjeuXE1UpF8XX/bIuYToAgwnk=;
+        b=W/vKsROu0Qwoz4eXzqHlufBMkK/Cc31ioVnbA+Q7jS48VnTwHQBvE8ciQNSWvnHY+x
+         vFN9sj6VSqLo4MbNM62bGfaYKx4xrcPa1v8Vq3bNxg5HWR+Fq9sqGTwcVUy0j+v65HPs
+         +Ou6pA3q21FvXO2wYqt3hbhpDJbrttX0MU7yMpuG3cOKahjnzabFlWfOYMEbpCOvLuTu
+         GEGBS0ZdudSXVWElaQZ4khbDA2UqxaBJzwfiIvP/PyFTwYetSmOu7b77ZPLcrp1s1TBy
+         aUiE9jjtIr7+EsEIkECdGzzuuSUVknc/76TamqlTQKJahx/VEmYZGfcJpxKDJwRtDQJq
+         9AYQ==
+X-Gm-Message-State: APjAAAXYJjirYRu2m+ZzqXGRJ3XwEOUhhimczD9akPTGFDz/j3FRX4QA
+        t7nNgN4I2n/qxXkofSOdX1eMlQ==
+X-Google-Smtp-Source: APXvYqzxJ0VUhkIPVpSdqTGdQEaidRatTXiOp2u0HYctB8MKiMI9g6sp+ofTLrzI++WxMqoQwEfnww==
+X-Received: by 2002:a2e:9dc1:: with SMTP id x1mr2791979ljj.0.1561644138909;
+        Thu, 27 Jun 2019 07:02:18 -0700 (PDT)
+Received: from centauri.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id y25sm564036lja.45.2019.06.27.07.02.17
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 27 Jun 2019 07:02:18 -0700 (PDT)
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     amit.kucheria@linaro.org, Niklas Cassel <niklas.cassel@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qcs404: Add missing space for cooling-cells property
+Date:   Thu, 27 Jun 2019 16:02:15 +0200
+Message-Id: <20190627140215.29353-1-niklas.cassel@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190621103258.8154-1-tony.xie@rock-chips.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enjoy!
+There should be a space both before and after the equal sign.
+Add a missing space for the cooling cells property.
 
-The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
+Fixes: f48cee3239a1 ("arm64: dts: qcom: qcs404: Add thermal zones for each sensor")
+Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-  Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-clk-regulator-rtc-v5.3
-
-for you to fetch changes up to 8ed14401974830f316a419b073e58ef75a473a63:
-
-  clk: RK808: Add RK809 and RK817 support. (2019-06-27 14:57:59 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, Clk, Regulator and RTC due for the v5.3 merge window
-
-----------------------------------------------------------------
-Heiko Stuebner (1):
-      regulator: rk808: Add RK809 and RK817 support.
-
-Tony Xie (4):
-      mfd: rk808: Add RK817 and RK809 support
-      dt-bindings: mfd: rk808: Add binding information for RK809 and RK817.
-      rtc: rk808: Add RK809 and RK817 support.
-      clk: RK808: Add RK809 and RK817 support.
-
- Documentation/devicetree/bindings/mfd/rk808.txt |  44 ++
- drivers/clk/Kconfig                             |   9 +-
- drivers/clk/clk-rk808.c                         |  64 ++-
- drivers/mfd/Kconfig                             |   6 +-
- drivers/mfd/rk808.c                             | 192 ++++++-
- drivers/regulator/Kconfig                       |   4 +-
- drivers/regulator/rk808-regulator.c             | 646 +++++++++++++++++++++++-
- drivers/rtc/Kconfig                             |   4 +-
- drivers/rtc/rtc-rk808.c                         |  68 ++-
- include/linux/mfd/rk808.h                       | 175 +++++++
- 10 files changed, 1156 insertions(+), 56 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 01a51f381850..3d0789775009 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -35,7 +35,7 @@
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SLEEP_0>;
+ 			next-level-cache = <&L2_0>;
+-			#cooling-cells= <2>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		CPU1: cpu@101 {
+@@ -45,7 +45,7 @@
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SLEEP_0>;
+ 			next-level-cache = <&L2_0>;
+-			#cooling-cells= <2>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		CPU2: cpu@102 {
+@@ -55,7 +55,7 @@
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SLEEP_0>;
+ 			next-level-cache = <&L2_0>;
+-			#cooling-cells= <2>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		CPU3: cpu@103 {
+@@ -65,7 +65,7 @@
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SLEEP_0>;
+ 			next-level-cache = <&L2_0>;
+-			#cooling-cells= <2>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		L2_0: l2-cache {
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.21.0
+
