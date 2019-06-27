@@ -2,136 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4FE575B3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C4D577DB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727246AbfF0Abn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 20:31:43 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34943 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727244AbfF0Abj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 20:31:39 -0400
-Received: by mail-io1-f66.google.com with SMTP id m24so890795ioo.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 17:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=ne57qfOBbrpWTmSwKmjlTjKmsCo+Sn2qKc5QwP4b3qo=;
-        b=MH3wkoDXHfXF5fF0q+4ozL7+zgvn5SeiKtLiHYzCNIcqFHXPkPAwLMDAdDzk2aiIwQ
-         J78PjhZZ31NuKv8zy1/s8y3MRPBSFAVisSCw3pC/YBe5ea4C6Y+uFm5wHpal8nsxZLgB
-         17lsiKG0OIZo1/fcOW8X2bMD/PSdyDvCVff3iu2G8wmtMH1QHqrOcCB6eOgDt4VuNjyk
-         Poo9nGwiL6andopg9rnVNY+S336HW1WgpryVcFd4HvLr9UhpPKVIrzsbJAzaKITb3fvh
-         sahpopsxSkGUr9VegYM/UOtFcnxFerQwnrKs330QIqOEtyCvWxY78rUw69KxygSiqpv1
-         hjdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=ne57qfOBbrpWTmSwKmjlTjKmsCo+Sn2qKc5QwP4b3qo=;
-        b=Wxzu3fwTI0vTlqLoiHRIX9ptDarcT622CDUcG9ChpnDuhV76TGxZ0l2Z4LYDmI6IoF
-         3IpLIvjeVWJ7rzeGuH42dmk5cmq1EIDYv/PUZU9LBMBsRkJlsMg7bsQhFdGJfzD77TP9
-         uP9wWH632tqjOTEiqtpHG+vXf4kWw+kJ2JCT98/tSFLPaowHurH8SBkFP1UvmB9wDJvt
-         Lu0RX4dHbtCUZsQi+M14sMQNxYTU4G/OLvl8EhQNbTxxo2mwfd+72wKI1gcGGbsZaO4l
-         jHXUBTVdqrIPoTDSXI/cCunDB4Sd6OBzi5LsJvwWtBw8pAtrTiZmj6xPit7uRbWjRaOq
-         RnTg==
-X-Gm-Message-State: APjAAAV5ucZGnKD0KUeeQSq2q98NCClf0ZaEWUTpDDOigky+ekEP0mLv
-        yHSY+jIL+c+lnqWZUBWvEbeyUg==
-X-Google-Smtp-Source: APXvYqzkfD/79362o4UBWtnH1yN59+5ocrB6dWn1PQrF9lxmChizX5AwqLnfXA+vMES0ciXEXr5ebA==
-X-Received: by 2002:a6b:3c0a:: with SMTP id k10mr1187601iob.271.1561595498768;
-        Wed, 26 Jun 2019 17:31:38 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id n26sm410757ioc.74.2019.06.26.17.31.37
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 26 Jun 2019 17:31:38 -0700 (PDT)
-Date:   Wed, 26 Jun 2019 17:31:37 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Atish Patra <atish.patra@wdc.com>
-cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v7 1/7] Documentation: DT: arm: add support for sockets
- defining package boundaries
-In-Reply-To: <20190617185920.29581-2-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1906261724000.23534@viisi.sifive.com>
-References: <20190617185920.29581-1-atish.patra@wdc.com> <20190617185920.29581-2-atish.patra@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1728578AbfF0AhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 20:37:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41790 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728574AbfF0AhS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 20:37:18 -0400
+Received: from sasha-vm.mshome.net (unknown [107.242.116.147])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 817B4217F9;
+        Thu, 27 Jun 2019 00:37:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561595837;
+        bh=ydOv2WDZFlwGjNlsS62+9dwQ4kXG/VqdWxVpFUs3naA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=fS94l2oYeUH/KIuuvfRbDavVtki3ZmsM4tj29Ld5POfODW9TRM80S9RrLqBh6RD+7
+         8FurVcVaSFogKSC+twOFbMWdvoFpFXelPIqASK0+80dx6a/trDrqIZFQQ9rr0nsrWB
+         m8QfFwyRx/jBMqWniYW7m2ZnLDGMvkg5xp7GEiAM=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Sean Nyekjaer <sean@geanix.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Sasha Levin <sashal@kernel.org>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 21/60] dt-bindings: can: mcp251x: add mcp25625 support
+Date:   Wed, 26 Jun 2019 20:35:36 -0400
+Message-Id: <20190627003616.20767-21-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190627003616.20767-1-sashal@kernel.org>
+References: <20190627003616.20767-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep, Atish,
+From: Sean Nyekjaer <sean@geanix.com>
 
-On Mon, 17 Jun 2019, Atish Patra wrote:
+[ Upstream commit 0df82dcd55832a99363ab7f9fab954fcacdac3ae ]
 
-> From: Sudeep Holla <sudeep.holla@arm.com>
-> 
-> The current ARM DT topology description provides the operating system
-> with a topological view of the system that is based on leaf nodes
-> representing either cores or threads (in an SMT system) and a
-> hierarchical set of cluster nodes that creates a hierarchical topology
-> view of how those cores and threads are grouped.
-> 
-> However this hierarchical representation of clusters does not allow to
-> describe what topology level actually represents the physical package or
-> the socket boundary, which is a key piece of information to be used by
-> an operating system to optimize resource allocation and scheduling.
-> 
-> Lets add a new "socket" node type in the cpu-map node to describe the
-> same.
-> 
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Fully compatible with mcp2515, the mcp25625 have integrated transceiver.
 
-This one doesn't apply cleanly here on top of v5.2-rc2, Linus's master 
-branch, and next-20190626.  The reject file is below.  Am I missing 
-a patch?
+This patch add the mcp25625 to the device tree bindings documentation.
 
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-- Paul
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
+index 188c8bd4eb67..5a0111d4de58 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
+@@ -4,6 +4,7 @@ Required properties:
+  - compatible: Should be one of the following:
+    - "microchip,mcp2510" for MCP2510.
+    - "microchip,mcp2515" for MCP2515.
++   - "microchip,mcp25625" for MCP25625.
+  - reg: SPI chip select.
+  - clocks: The clock feeding the CAN controller.
+  - interrupts: Should contain IRQ line for the CAN controller.
+-- 
+2.20.1
 
---- Documentation/devicetree/bindings/arm/topology.txt
-+++ Documentation/devicetree/bindings/arm/topology.txt
-@@ -185,13 +206,15 @@ Bindings for cluster/cpu/thread nodes are defined as follows:
- 4 - Example dts
- ===========================================
- 
--Example 1 (ARM 64-bit, 16-cpu system, two clusters of clusters):
-+Example 1 (ARM 64-bit, 16-cpu system, two clusters of clusters in a single
-+physical socket):
- 
- cpus {
- 	#size-cells = <0>;
- 	#address-cells = <2>;
- 
- 	cpu-map {
-+		socket0 {
- 			cluster0 {
- 				cluster0 {
- 					core0 {
