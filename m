@@ -2,194 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 800D958079
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3CC3580B9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbfF0Ke0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 06:34:26 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:33058 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726431AbfF0KeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 06:34:25 -0400
-Received: by mail-wm1-f65.google.com with SMTP id h19so6742973wme.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 03:34:23 -0700 (PDT)
+        id S1726422AbfF0KoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 06:44:21 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:37074 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726370AbfF0KoU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 06:44:20 -0400
+Received: by mail-io1-f45.google.com with SMTP id e5so3680675iok.4
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 03:44:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UKhEVSzNYhuLc7bB+Vv+QK/Ge2ckuEBmrCEQh4DWmKo=;
-        b=PQMBg8ucdEMhBRC5xmxUcn5xjXfJn2NBQ33ZDtCqzs8AiScwd6IBvKiYV80bRnIdD3
-         Sm9P+LwGBXszBCn1mh0TRk35gb1OqWbqxfZI0lN6ZzSc9axAl7swa5cEIVGBmLOxvRXe
-         fk7Gwgg2M4i8wG3UsX4gqWElRxwBHcf/o3WHIwAlO0+P3DYInhoKc4eEtz/axYr6JIY5
-         RFhT1ah/Iq10sGX5K5LHQ2kjl20GA1rGmcUqIWWiP8948LjpB+LEKpDiJBbUDA9bZeoe
-         Gine1+CccltfF71ORIzN0USF0NhXJnpzpEHb3TfUYlp+xZwS8I3tFSzRMCkhevJlwocN
-         omAw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bhdwCmeLwlRZ/4GZ9S8B4tPx6Z/f2FMcyMJaWntmaFI=;
+        b=sJOk+MjPQYVBSdGSy/F3aJNIiLK9PptVgyZtF7ZlCEP5CH/Of4Yh4aGlHV1I8nDijB
+         pnhz9XLqLEpyHOzbb7aCp2zmx/etXdOhQW1yVVebpXTdAdYRmfCDLuEj/RZGaC9ISkLM
+         ERYkxLY0BrDEpLRO1E/trT7a7FW0yHqiN7UqSmMhlbU4FQQViafYuTzwiThE8cLgXEWm
+         hmLnSONjsKHptGuWJH0gF3my1fm+peqzLx+dvCax//tcaH8DERrT6TXE1yD5pFhPig54
+         //IkVsr7UekgTG3d9f2LLnZCh6nDVbXvdSZTQGZbMZI//OPC8Xdm/hPtOFNycVDkyhdw
+         z/hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=UKhEVSzNYhuLc7bB+Vv+QK/Ge2ckuEBmrCEQh4DWmKo=;
-        b=G1gCDkuNGm7lTvXh3vBtuX/BH/KUuRsCImJvX1PlFAJff86AoNoXrQfHPic7LmYxCY
-         a283ijtmyoGaKKk26WW++fQl1FLAJSBwBHN3jcBc5oaXQwBZY9XtamdIEI0Tx52nDR07
-         cKpJS8bA0+vRHSajAdMHjw914aa9hCjhCfr6s24/SI9NT8Z27RZv5YODvL55HxYLNJb0
-         g9vrTy1fapVTevlqxlcwyOoSh8Ka5XO+QPhX/Q1OsWqKfe7wex4KTPR3bod67fquM2Vc
-         UfAU0wbY6pvJCUz4bL4TaRrBpXGptlMrCN7ht8UOLDAhHjKB7BRBqH8/PzMRRwQaAvPs
-         l4mg==
-X-Gm-Message-State: APjAAAXlxDalNni8UsLzsqrBtF/lfwW27UwVhhhcXpu42EOWqgQQIekf
-        PtZncAUBtLVoLE4k1NqS6AblFQ==
-X-Google-Smtp-Source: APXvYqwJdiMNqcGIqlp3qRgPLBWLDsDkg/syR4BBrAtbtB1o8YLYfzNdH12h4+uIIkI33Zh1viOq0Q==
-X-Received: by 2002:a7b:cbcb:: with SMTP id n11mr2652393wmi.146.1561631662433;
-        Thu, 27 Jun 2019 03:34:22 -0700 (PDT)
-Received: from [192.168.0.41] (113.102.130.77.rev.sfr.net. [77.130.102.113])
-        by smtp.googlemail.com with ESMTPSA id l16sm2253662wrw.42.2019.06.27.03.34.20
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 27 Jun 2019 03:34:21 -0700 (PDT)
-Subject: Re: [PATCH RESEND V2 1/3] clocksource/drivers/sysctr: Add optional
- clock-frequency property
-To:     Anson.Huang@nxp.com, tglx@linutronix.de, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, l.stach@pengutronix.de,
-        abel.vesa@nxp.com, ccaione@baylibre.com, angus@akkea.ca,
-        andrew.smirnov@gmail.com, agx@sigxcpu.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-References: <20190623123850.22584-1-Anson.Huang@nxp.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <bb362db6-9c50-5d2c-349a-4097dea0449f@linaro.org>
-Date:   Thu, 27 Jun 2019 12:34:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bhdwCmeLwlRZ/4GZ9S8B4tPx6Z/f2FMcyMJaWntmaFI=;
+        b=lolnrRw1EJe/rV8QbJniIZLYJDFNKiKGmLz8BXT7fdCSYdG6VtSPEnDxDoRDTJ3VcF
+         19UZgaOQxgK4OJvj0xIaviRzE0VUqiMzHVNlcrmH1BSXjkzY2tRsainSgMGZsXq2wcxh
+         eEEPSg2FBRWlFyrS1iGv8U+ZsC/8DFddY7U8QJshzKmSkspjt30k3xXIKSLjvHSZO4cT
+         djHqN8tlu0DuJ2CQKnE2gkeW1Lw2L+GSC+y6RUUIDr3vWU6zM8R9gj1jN7imVwF6paLo
+         ai+4SeIglZLRcaRFK6TWpOQHf8OwsLYumspbmmb+2xNB07J/VgesVV3ATwchHEOplR3L
+         hhXA==
+X-Gm-Message-State: APjAAAVXxPqCuQHfYfnFM5hwbXUt+KCxFnoerpNr+iJEx2qju/pFCuRq
+        jlDaseQc7VPeETclbyj5bEve67drM2vnThXVgXtQkSu7
+X-Google-Smtp-Source: APXvYqzsMvyajYKscZuvXGyO/uG20bY9rbOyNTfBIyX48cGkhEmIyXq+26ilHc1b1zQXOfKxvsmbY0Uiu67vRj7xpPs=
+X-Received: by 2002:a02:4484:: with SMTP id o126mr3872937jaa.34.1561632259888;
+ Thu, 27 Jun 2019 03:44:19 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190623123850.22584-1-Anson.Huang@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <CALtMJEBpxc+oN1Uf03F0oG-smHZazeeptE=BRX7tPpixnAgFrw@mail.gmail.com>
+In-Reply-To: <CALtMJEBpxc+oN1Uf03F0oG-smHZazeeptE=BRX7tPpixnAgFrw@mail.gmail.com>
+From:   Andreas Fenkart <afenkart@gmail.com>
+Date:   Thu, 27 Jun 2019 12:44:08 +0200
+Message-ID: <CALtMJEBEo8u0YSqqAbRY0YwnuzCByAuQ8YKt8FrPzhoJpW_YCg@mail.gmail.com>
+Subject: Re: regression: nand/spi flashes listed in reversed order after "ARM:
+ dts: at91: Switch to the new NAND bindings"
+To:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
+Cc:     alexandre.belloni@free-electrons.com,
+        "Michonski, Krzysztof" <krzysztof.michonski@digitalstrom.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2019 14:38, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
-> 
-> Systems which use platform driver model for clock driver require the
-> clock frequency to be supplied via device tree when system counter
-> driver is enabled.
-> 
-> This is necessary as in the platform driver model the of_clk operations
-> do not work correctly because system counter driver is initialized in
-> early phase of system boot up, and clock driver using platform driver
-> model is NOT ready at that time, it will cause system counter driver
-> initialization failed.
-> 
-> Add the optinal clock-frequency to the device tree bindings of the NXP
-> system counter, so the frequency can be handed in and the of_clk
-> operations can be skipped.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> Changes since V1:
-> 	- improve commit log, no content change.
-> ---
->  Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> index d576599..c9907a0 100644
-> --- a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> +++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> @@ -14,6 +14,11 @@ Required properties:
->  - clocks : 	    Specifies the counter clock.
->  - clock-names: 	    Specifies the clock's name of this module
->  
-> +Optional properties:
-> +
-> +- clock-frequency : Specifies system counter clock frequency and indicates system
-> +		    counter driver to skip clock operations.
-> +
+fyi,
 
-Shouldn't it be required and mutually exclusive with clocks/clock-names?
+actually straight forward when also dumping the attributes:
+udevadm info -a /dev/mtd0
 
->  Example:
->  
->  	system_counter: timer@306a0000 {
-> @@ -22,4 +27,5 @@ Example:
->  		clocks = <&clk_8m>;
->  		clock-names = "per";
->  		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-> +		clock-frequency = <8333333>;
->  	};
-> 
+here my rules
+SUBSYSTEM=="mtd", ATTR{type}=="nand", ACTION=="add", SYMLINK+="mtd/%s{name}"
+SUBSYSTEM=="mtd", ATTR{type}=="nor", ACTION=="add" SYMLINK+="mtd/spi"
 
+/andi
 
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Am Mi., 26. Juni 2019 um 11:36 Uhr schrieb Andreas Fenkart <afenkart@gmail.com>:
+>
+> After this patch, which is of course much appreciated:
+>
+> 1004a2977bdc7566bca87c565541c3232ed467c4
+> Refs: v4.12-rc1-7-g1004a2977bdc
+> Author:     Boris Brezillon <boris.brezillon@free-electrons.com>
+> AuthorDate: Tue May 30 11:20:53 2017 +0200
+> Commit:     Alexandre Belloni <alexandre.belloni@free-electrons.com>
+> CommitDate: Wed May 31 11:55:41 2017 +0200
+>
+>     ARM: dts: at91: Switch to the new NAND bindings
+>
+>     Use the new EBI/NAND bindings to declare NAND chips and remove old NAND
+>     nodes along the way.
+>
+>     Note that we keep using old bindings in at91rm9200.dtsi because this
+>     SoC is not supported by the EBI driver.
+>
+> The listing and indexing of my mtd devices changed:
+>
+> root@after:~# cat /proc/mtd
+> dev:    size   erasesize  name
+> mtd0: 00080000 00010000 "spi32766.0"
+> ...
+> mtd4: 32000000 00080000 "rootfs"
+> mtd5: 0bc00000 00080000 "config"
+>
+> root@before:~# cat /proc/mtd
+> dev:    size   erasesize  name
+> ...
+> mtd3: 32000000 00080000 "rootfs"
+> mtd4: 0bc00000 00080000 "config"
+> mtd5: 00080000 00010000 "spi32766.0"
+>
+>
+> I assume sorting the mtd listing in a specific order is not supported
+> nor desired by the mtd maintainers. So I'm not argueing about that.
+>
+> But since the index of rootfs device is hard-coded in the cmdline, the
+> fw-utils config file and a custom script to backup/retrieve
+> configuration, this is causing me some problems.
+>
+> The nand is partitioned, the spi is not:
+> mtdparts=mtdparts=atmel_nand:2M(foo),2M(bar),32M(baz),800M(rootfs),-(config)
+>
+> While the bootargs can be fixed easily by using the human readable
+> name (ubi.mtd=rootfs). I can't retrieve that human readable name from
+> udev alone, nor can I build something from major/minor alone, since
+> the major is the same for nand/spi flash.
+>
+> root@before:/etc/udev/rules.d# udevadm info /dev/mtd3
+> P: /devices/platform/ahb/40000000.nand/mtd/mtd3
+> N: mtd3
+> E: DEVNAME=/dev/mtd3
+> E: DEVPATH=/devices/platform/ahb/40000000.nand/mtd/mtd3
+> E: DEVTYPE=mtd
+> E: MAJOR=90
+> E: MINOR=6
+>
+> root@dSS:/etc/udev/rules.d# udevadm info /dev/mtd5
+> P: /devices/platform/ahb/ahb:apb/fffc8000.spi/spi_master/spi32766/spi32766.0/mtd/mtd5
+> N: mtd5
+> E: DEVNAME=/dev/mtd5
+> E: DEVPATH=/devices/platform/ahb/ahb:apb/fffc8000.spi/spi_master/spi32766/spi32766.0/mtd/mtd5
+> E: DEVTYPE=mtd
+> E: MAJOR=90
+> E: MINOR=10
+> E: OF_COMPATIBLE_0=st,m25p40
+> E: OF_COMPATIBLE_N=1
+> E: OF_FULLNAME=/ahb/apb/spi@fffc8000/m25p40@0
+> E: OF_NAME=m25p40
+> E: SUBSYSTEM=mtd
+>
+> What is the preferred to make the rootfs agnostic of a particular mtd
+> listing order
