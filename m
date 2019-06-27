@@ -2,136 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B847B5801F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 540E65803E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726422AbfF0KXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 06:23:24 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:38152 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbfF0KXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 06:23:23 -0400
-Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
-  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-  envelope-from="Claudiu.Beznea@microchip.com";
-  x-sender="Claudiu.Beznea@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa1.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-  envelope-from="Claudiu.Beznea@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa1.microchip.iphmx.com; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
-X-IronPort-AV: E=Sophos;i="5.63,423,1557212400"; 
-   d="scan'208";a="40635198"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jun 2019 03:23:11 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex04.mchp-main.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 27 Jun 2019 03:23:11 -0700
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 27 Jun 2019 03:23:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
- b=UoXvXCGdWPxZM8QyCQ3dHvBRethP37s6BSlXWZHt1Esf3yYmKA9uGMJQYEbo0T8cSeXhKABeKAI0F8Ky1J0JaywOT6HbDrma0G98a8/ebgSyHVsD7hMnW1xoAeCeSP8kOi0uUbNg2yi8I27fZ9MEPQhRLZU/uKTHXdycOZ117d4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=testarcselector01;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xk7Q7cPpHrDcx5gv6G4AsNOONZ3amReZ9FSlg4N6AcA=;
- b=ORhM3vr+Qfn9oTJF3MlhqMb4VqpYBZ8rklZ87U8nXexRJPmJKEp0sAOXg6HBt87Xovq3hIRoh78w0+XsR45/ldfVVEfrqFnSYyYbC3vvwN62X6bImhM2Xg/nsYj6fjhDydNSXWo2py+Gat5s+2hsTNjNkNUAF2byDVuh3WsMoN0=
-ARC-Authentication-Results: i=1; test.office365.com
- 1;spf=none;dmarc=none;dkim=none;arc=none
+        id S1726576AbfF0K1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 06:27:45 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:33469 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726574AbfF0K1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 06:27:45 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n9so1948287wru.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 03:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector1-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xk7Q7cPpHrDcx5gv6G4AsNOONZ3amReZ9FSlg4N6AcA=;
- b=HWjU5uE4wxDJ9/GSjB0YbSypmUmrPvWltJAv0R8+VomZPOvVctAE6MbHGKJrcQUMuXFPV7YFWOctzF/7ygQJcnGi6HCb7FztHFMTRUrbnIxzsXGC+JSZptCvZEY95+rN4elOyus8LaFipN01oeXMcYvbL48qcDdJJHKektvuNPQ=
-Received: from MWHPR11MB1549.namprd11.prod.outlook.com (10.172.54.17) by
- MWHPR11MB1536.namprd11.prod.outlook.com (10.172.53.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2008.16; Thu, 27 Jun 2019 10:23:08 +0000
-Received: from MWHPR11MB1549.namprd11.prod.outlook.com
- ([fe80::7d59:2a2f:90f1:2720]) by MWHPR11MB1549.namprd11.prod.outlook.com
- ([fe80::7d59:2a2f:90f1:2720%9]) with mapi id 15.20.2008.018; Thu, 27 Jun 2019
- 10:23:08 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <sboyd@kernel.org>, <Ludovic.Desroches@microchip.com>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <mark.rutland@arm.com>, <mturquette@baylibre.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] clk: at91: sckc: add support for SAM9X60
-Thread-Topic: [PATCH v4 4/4] clk: at91: sckc: add support for SAM9X60
-Thread-Index: AQHVD72Q4ne6wpY5kEOC3wMr7TLsAQ==
-Date:   Thu, 27 Jun 2019 10:23:08 +0000
-Message-ID: <cc8b808e-d6b5-8ba1-13ff-218876d1b398@microchip.com>
-References: <1558433454-27971-1-git-send-email-claudiu.beznea@microchip.com>
- <1558433454-27971-5-git-send-email-claudiu.beznea@microchip.com>
- <20190626183658.BA53A216FD@mail.kernel.org>
-In-Reply-To: <20190626183658.BA53A216FD@mail.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1PR04CA0071.eurprd04.prod.outlook.com
- (2603:10a6:802:2::42) To MWHPR11MB1549.namprd11.prod.outlook.com
- (2603:10b6:301:c::17)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tagtoolbar-keys: D20190627132300653
-x-originating-ip: [94.177.32.154]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 31398580-f122-44ba-737b-08d6fae972b5
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:MWHPR11MB1536;
-x-ms-traffictypediagnostic: MWHPR11MB1536:
-x-microsoft-antispam-prvs: <MWHPR11MB153635DD96F349AC202ED1C187FD0@MWHPR11MB1536.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 008184426E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(39860400002)(136003)(396003)(376002)(346002)(189003)(199004)(4326008)(8676002)(2501003)(486006)(446003)(66946007)(66556008)(66446008)(11346002)(64756008)(476003)(73956011)(86362001)(81156014)(2201001)(81166006)(5660300002)(8936002)(2616005)(66476007)(6246003)(31696002)(7736002)(66066001)(4744005)(25786009)(305945005)(31686004)(72206003)(68736007)(2906002)(71200400001)(71190400001)(256004)(14454004)(36756003)(478600001)(53936002)(6512007)(99286004)(6436002)(6486002)(110136005)(316002)(52116002)(76176011)(3846002)(53546011)(102836004)(26005)(186003)(386003)(6506007)(6116002)(229853002)(54906003);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR11MB1536;H:MWHPR11MB1549.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: GX3PYNlv8z9aJ7NN26nmePu+j2ub3VFciQt+O3fRMA+USxMIdZTAyqQgJWspZLENignE5O7gJBT+lGw3iXUudKBeIynqABauebJIdHu1ZMgLH2HFqdY+F2K6rmMnbXtXDf7Z34Z010OtmNJDoeIJXZqtuNlYY6a8g3ti5Qjp1sXi8vVEbjCgfRhXnboZdxMLEPgXtBy5NG371MjLzJpJ71HTGJx6Akif3NNX9gqA1b9+MsMVxXChBYh7hFHMppYNRFiKyzfK9si+t2YruLaMkyQ/Rtko+FUavgQ6o4kFj9CtGlRvJGZeT27f6gYd4FeDRY8Lw7Tj+BV6d0L+nK1abxeGscgc8rcRxYag9/rhDwmBtrexqaRVovbhNm/ew0EcJIW8j6XJINIwS2AeCBbFOtxn74ZHOiNx6T7QB0R5Xyk=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F8DE88AC1A63DC43A1B6B0C9677F015F@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Bbt3iD0RuM1MWWR+I8B1kKnSONTbv3aEdP5kqBIyOco=;
+        b=UOWSXKTLXY4x4TfC/d0c9DZELYKd3roJE/3u1j2etH3otViKBlReANbLqJPxE5brNK
+         ueeRf3Bef46tKFhuXK4yUfp+IRGdk68mQmkErqqRfLYqjqtXZGHs+PUUOo9QnaHAUUfL
+         e1LZqET0ctg28UoWwUPwF/s8VehPibX9itNhcZtWz57dp1G2ZPRa2sNf/oenLzXuDj6B
+         LEIeCfOmVMXb2EnpcKCRK8gamR/D+8tfhacUePO73aYRUk7NmGhGEo+Rd08zVN68qJiB
+         1IeP8VI1KsWaDDlVIrA+I3B1eQi9AoFNlXSUN8WyUlvzJZrgVGwbACRb5SvG7M/SbDLT
+         hvPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Bbt3iD0RuM1MWWR+I8B1kKnSONTbv3aEdP5kqBIyOco=;
+        b=bo1E/IKB4McBiHiKWQksQaWKX3s5au2bsnqFJMx3ZDdlm43I7plAF710cWV/Og5Q0H
+         hHjfHAsiQyvnR41gymbDPjn5IPBz450lJ0pMH4vC4hB5rPT0mCgiFmGIRuL/BzVALdpH
+         QXmD60dnbB0VqqeVt0ua9jheX7Q6Kw+3gSQEFtmT399H7rNGsMFN05L30eM6QDms8Ut4
+         6x5SL/in+QfvogES55qR8oGnpGbcJ0SzDpkom1Au/94BhiA4YJftBHiv62g09MgNal6U
+         xLEP3b664Iw9yYxve4jMWITfKzYResGAOkCuKrw/ii6YAGz9uNPVAv/A6N7/XfrQT6/f
+         trwA==
+X-Gm-Message-State: APjAAAWQVGGfhxBjOdTQH8rOTJ8FQGSRnMvkCQqSB9lIgBJOmoYuR+iF
+        YhYpjqKuondVdX1bRzPys8S2Sg==
+X-Google-Smtp-Source: APXvYqw4D4C0n3ZtXVOVBTtfm6Td7K//e1OP5JV0M8oPddf7DJjMHL1hP2Ubwb5ZKvdF07DnCAw7FA==
+X-Received: by 2002:a5d:40ca:: with SMTP id b10mr2785889wrq.171.1561631260868;
+        Thu, 27 Jun 2019 03:27:40 -0700 (PDT)
+Received: from [192.168.0.41] (113.102.130.77.rev.sfr.net. [77.130.102.113])
+        by smtp.googlemail.com with ESMTPSA id b5sm1785802wru.69.2019.06.27.03.27.38
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Jun 2019 03:27:40 -0700 (PDT)
+Subject: Re: [PATCH RESEND V2 1/3] clocksource/drivers/sysctr: Add optional
+ clock-frequency property
+To:     Anson Huang <anson.huang@nxp.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        Arnd Bergmann <arnd.bergmann@linaro.org>
+References: <20190623123850.22584-1-Anson.Huang@nxp.com>
+ <55abafbd-c010-32b5-6d76-26040830d5b0@linaro.org>
+ <DB3PR0402MB3916AB9F2260B0E46CCDDEC0F5E20@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+ <9c017ba9-ac6b-480b-d1f3-120289343101@linaro.org>
+ <DB3PR0402MB3916ED4AB17B6DDD2248DD44F5FD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+ <8f8aa6e0-5f31-8047-14b5-0e1f65316453@linaro.org>
+ <DB3PR0402MB39162DB95FA958AC1425BFFDF5FD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <f29a9a4b-8922-c8b5-f197-d33853f6341e@linaro.org>
+Date:   Thu, 27 Jun 2019 12:27:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31398580-f122-44ba-737b-08d6fae972b5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2019 10:23:08.2905
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: claudiu.beznea@microchip.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1536
+In-Reply-To: <DB3PR0402MB39162DB95FA958AC1425BFFDF5FD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCk9uIDI2LjA2LjIwMTkgMjE6MzYsIFN0ZXBoZW4gQm95ZCB3cm90ZToNCj4gUXVvdGluZyBD
-bGF1ZGl1LkJlem5lYUBtaWNyb2NoaXAuY29tICgyMDE5LTA1LTIxIDAzOjExOjMzKQ0KPj4gRnJv
-bTogQ2xhdWRpdSBCZXpuZWEgPGNsYXVkaXUuYmV6bmVhQG1pY3JvY2hpcC5jb20+DQo+Pg0KPj4g
-QWRkIHN1cHBvcnQgZm9yIFNBTTlYNjAncyBzbG93IGNsb2NrLg0KPj4NCj4+IFNpZ25lZC1vZmYt
-Ynk6IENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1LmJlem5lYUBtaWNyb2NoaXAuY29tPg0KPj4gQWNr
-ZWQtYnk6IEFsZXhhbmRyZSBCZWxsb25pIDxhbGV4YW5kcmUuYmVsbG9uaUBib290bGluLmNvbT4N
-Cj4+IC0tLQ0KPiANCj4gRllJLCB0aGlzIHBhdGNoIGlzIGJhc2U2NCBlbmNvZGVkIGFuZCBjYXVz
-ZXMgbXkgTVVBIHRvIGhhdmUgbG90cyBvZg0KPiBwYWluLiBJdCB3b3VsZCBiZSBuaWNlIGlmIHlv
-dSBjb3VsZCBzZW5kIHBsYWluIHRleHQgZW1haWxzLCBvdGhlcndpc2UgaXQNCj4gdGFrZXMgbWUg
-YSBmZXcgbW9yZSBzZWNvbmRzIHRvIGV4dHJhY3QgdGhlIHBhdGNoLiBPZiBjb3Vyc2UsIGl0IHJl
-bWluZHMNCj4gbWUgdGhhdCBJIG5lZWQgdG8gZml4IG15IE1VQSBzbyBtYXliZSB0aGlzIGlzIE9L
-IQ0KPiANCg0KU29ycnkgZm9yIHRoYXQsIEkgd2lsbCByZXNlbmQgYWxsIHNlcmllcy4gSSBzZWUg
-dGhhdCBhbGwgcGF0Y2hlcyBpbiB0aGlzIHNlcmllcw0KYXJlIGFmZmVjdGVkLg0KDQpUaGFuayB5
-b3UsDQpDbGF1ZGl1IEJlem5lYQ0K
+
+Hi Anson,
+
+On 27/06/2019 10:11, Anson Huang wrote:
+> Hi, Daniel
+> 
+>> On 27/06/2019 02:43, Anson Huang wrote:
+>>> Hi, Daniel
+>>>
+>>>> On 26/06/2019 03:42, Anson Huang wrote:
+>>>>> Hi, Daniel
+>>>>>
+>>>>>> On 23/06/2019 14:38, Anson.Huang@nxp.com wrote:
+>>>>>>> From: Anson Huang <Anson.Huang@nxp.com>
+>>>>>>>
+>>>>>>> Systems which use platform driver model for clock driver require
+>>>>>>> the clock frequency to be supplied via device tree when system
+>>>>>>> counter driver is enabled.
+>>>>>>>
+>>>>>>> This is necessary as in the platform driver model the of_clk
+>>>>>>> operations do not work correctly because system counter driver is
+>>>>>>> initialized in early phase of system boot up, and clock driver
+>>>>>>> using platform driver model is NOT ready at that time, it will
+>>>>>>> cause system counter driver initialization failed.
+>>>>>>>
+>>>>>>> Add the optinal clock-frequency to the device tree bindings of the
+>>>>>>> NXP system counter, so the frequency can be handed in and the
+>>>>>>> of_clk operations can be skipped.
+>>>>>>
+>>>>>> Isn't it possible to create a fixed-clock and refer to it? So no
+>>>>>> need to create a specific action before calling timer_of_init() ?
+>>>>>>
+>>>>>
+>>>>> As the clock must be ready before the TIMER_OF_DECLARE, so adding a
+>>>>> CLK_OF_DECLARE_DRIVER in clock driver to ONLY register a fixed-clock?
+>>>>> The system counter's frequency are different on different platforms,
+>>>>> so adding fixed clock in system counter driver is NOT a good idea,
+>>>>> ONLY the DT node or the clock driver can create this fixed clock
+>>>>> according to
+>>>> platforms, can you advise where to create this fixed clock is better?
+>>>>
+>>>> Can you point me to a DT with the "nxp,sysctr-timer" ?
+>>>
+>>> The DT node of system counter is new added in 3/3 of this patch
+>>> series, also can be found from below link:
+>>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
+>>>
+>> hwork.kernel.org%2Fpatch%2F11011703%2F&amp;data=02%7C01%7Canson.
+>> huang%
+>>>
+>> 40nxp.com%7C8b9519ecceb346712be808d6fad675e4%7C686ea1d3bc2b4c6f
+>> a92cd99
+>>>
+>> c5c301635%7C0%7C0%7C636972196338405582&amp;sdata=sOQQzDFxoCqe
+>> VuHFuYPHh
+>>> F8Bdj2Zu9WS7Go%2FV9lrWa8%3D&amp;reserved=0
+>>
+>> Sorry, I was unclear. I meant a patch with the timer defined using a clock as
+>> defined currently in the binding (no clock-frequency).
+> 
+> OK, for i.MX8MM, we use clocks, check below patch series:
+> 
+> https://patchwork.kernel.org/patch/11008519/
+> 
+> code piece as below:
+> 
+> +			system_counter: timer@306a0000 {
+> +				compatible = "nxp,sysctr-timer";
+> +				reg = <0x306a0000 0x30000>;
+> +				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX8MM_CLK_SYS_CTR>;
+> +				clock-names = "per";
+> +			};
+
+Thanks,
+
+The fixed-clock can help to keep the code and the DT definition for the
+timer untouched as the 'clocks' above will refer to it. But that means
+we describe a fake clock. So it is up to you to decide if you want to
+stick the clock-frequency or use a fixed-clock.
+
+
+
+
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
