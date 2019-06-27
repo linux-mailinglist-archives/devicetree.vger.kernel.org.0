@@ -2,302 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86152579CA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 04:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A15A0579E3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 05:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727121AbfF0C7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 22:59:25 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:52834 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726913AbfF0C7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 22:59:25 -0400
-X-UUID: 6283f5920c9c432a82f7c0b539638a1c-20190627
-X-UUID: 6283f5920c9c432a82f7c0b539638a1c-20190627
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 755802418; Thu, 27 Jun 2019 10:59:11 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 27 Jun
- 2019 10:59:10 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (172.27.4.253) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Thu, 27 Jun 2019 10:59:08 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Jitao Shi <jitao.shi@mediatek.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <ck.hu@mediatek.com>, <stonea168@163.com>
-Subject: [v5 3/3] drm/mediatek: add mipi_tx driver for mt8183
-Date:   Thu, 27 Jun 2019 10:59:01 +0800
-Message-ID: <20190627025901.28418-4-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190627025901.28418-1-jitao.shi@mediatek.com>
-References: <20190627025901.28418-1-jitao.shi@mediatek.com>
+        id S1726762AbfF0DPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 23:15:55 -0400
+Received: from mail-eopbgr80055.outbound.protection.outlook.com ([40.107.8.55]:35779
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726658AbfF0DPy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 23:15:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
+ b=eOpPOJORTld4S5EGUtNArXZhNWedGwkNSuWZV6/lJn418/yIH9iypZm1C4n/r9drUq8exdnowpMltqpR3Gxu1ICU5owNn0lp4WhY0g7PCq/WssAwGE9Id9tlNJ2RAO2qnLljp8KZH28t2Y0/atHDLsibgEkIIBZplU5/A+EJBCE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=testarcselector01;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=//FTMzMLu4qy16pZrlWVzETg1EFJoMb9nkKmOsuKJR0=;
+ b=sGcQua/UZMIlzjJ2D5wNvHSaPZzQy/1vPBRSmRTSDE4Mw7E33jQU5yDNhbKzQd9VPnV50LBl5o4pYxLMZAHgbnpqPJHhbvbmBo7f2MmvCe437faxzScP2r+2KygIZmHNjUCfMaRGrSdmXDYpP6sY0xlrNLCYA7Ga0jF+lEItoEg=
+ARC-Authentication-Results: i=1; test.office365.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=//FTMzMLu4qy16pZrlWVzETg1EFJoMb9nkKmOsuKJR0=;
+ b=W0jmCSawPWsjdYNnrVf2hx2B946jULC0iJCaVWfqkNOxrndDGwnu0IOX9l7+wrKC1SOJ9mNFxJ8lbxtxNv1/UPgFxCZSTD9GK4J5FxiOXE/0ruw8O8+6xNpTSI4+sBM9tFmbCwVQzx6B8TegUpopBASqYECBgl7nD8pCkU+lpzU=
+Received: from VI1PR04MB5327.eurprd04.prod.outlook.com (20.177.52.16) by
+ VI1PR04MB3247.eurprd04.prod.outlook.com (10.170.232.160) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Thu, 27 Jun 2019 03:15:10 +0000
+Received: from VI1PR04MB5327.eurprd04.prod.outlook.com
+ ([fe80::c1bf:7842:6630:b87a]) by VI1PR04MB5327.eurprd04.prod.outlook.com
+ ([fe80::c1bf:7842:6630:b87a%7]) with mapi id 15.20.2008.014; Thu, 27 Jun 2019
+ 03:15:10 +0000
+From:   Peter Chen <peter.chen@nxp.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>
+CC:     =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: RE: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+Thread-Topic: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+Thread-Index: AQHVKz1enai+x3/0XUiWuEOLFWXTl6atMdCggAA+2YCAAWVgEA==
+Date:   Thu, 27 Jun 2019 03:15:10 +0000
+Message-ID: <VI1PR04MB53270E979BA9817D47A7AFC88BFD0@VI1PR04MB5327.eurprd04.prod.outlook.com>
+References: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
+ <VI1PR04MB5327E09DB0DFEB7E868DB59D8BE20@VI1PR04MB5327.eurprd04.prod.outlook.com>
+ <20190626055409.jjiwptyths6p6jty@pengutronix.de>
+In-Reply-To: <20190626055409.jjiwptyths6p6jty@pengutronix.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peter.chen@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: be3b1208-ab83-4d52-b975-08d6faada9b2
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB3247;
+x-ms-traffictypediagnostic: VI1PR04MB3247:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <VI1PR04MB3247A1E13C951FA5A26CD8348BFD0@VI1PR04MB3247.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 008184426E
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(396003)(366004)(136003)(346002)(199004)(189003)(6436002)(76176011)(5660300002)(99286004)(2501003)(53546011)(68736007)(14444005)(3846002)(54906003)(6506007)(476003)(66574012)(186003)(6246003)(55016002)(71200400001)(2906002)(256004)(52536014)(110136005)(11346002)(66066001)(71190400001)(7696005)(81156014)(33656002)(53936002)(8936002)(305945005)(81166006)(6116002)(102836004)(446003)(45080400002)(66476007)(7736002)(26005)(9686003)(64756008)(14454004)(73956011)(44832011)(86362001)(8676002)(316002)(76116006)(66556008)(6306002)(486006)(4326008)(66946007)(74316002)(25786009)(229853002)(66446008)(966005)(478600001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3247;H:VI1PR04MB5327.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ZpbfG2WyoMpzpdQcf7Zr16DmTKXOifMmJlACHQ6jOF37wC4cCTGBw7zTL+KI4l07UvUb9V93XIRU1rdimQUb69CWHdI7txzp8BJx6mBA1i706XEqA0p9SLTbo/Rl5z6FxVV9wUZAdlPiVk19EQlgojIERocZ9RMh6C+DBpq7j/QHBcjZWWBBdQyM2BjlHhIfDeUb8WJQ3IaJWtx049T0mc4YmBQWu9jDPpfUZHbl1Hoodg2xP44pjNhjPZWeuKZrWjYND+RhsPh0PYknoumNOlCGUfAue3QEw86zS87WAeayQtRol0M8RgB6iHJE1whGWKqWLSMjbkwk8KfJmRQXLqZah24dS6K3eX0dzGijWiDOSu1ViFO1Gnni7aIWxWC9Zm4P78DWTUYjt2nlkuFpXv4HvmVLnTk2vegarEMBHzQ=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: be3b1208-ab83-4d52-b975-08d6faada9b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2019 03:15:10.2272
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peter.chen@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3247
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add mt8183 mipi_tx driver.
-And also support other chips that use the same binding and driver.
+=20
+> On 19-06-26 02:40, Peter Chen wrote:
+> >
+> > > Subject: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+> > >
+> > > The usb phys are internal to the SoC and so it their 5V supply. With
+> > > this regulator added explicitly the following (harmless) boot message=
+s go away:
+> > >
+> > > 	usb_phy_generic usbphy:usb-phy@0: usbphy:usb-phy@0 supply vcc not
+> > > found, using dummy regulator
+> > > 	usb_phy_generic usbphy:usb-phy@1: usbphy:usb-phy@1 supply vcc not
+> > > found, using dummy regulator
+> > >
+> >
+> > To eliminate the warning message, I suggest doing below changes, as
+> > vcc supply is not mandatory.
+> >
+> > diff --git a/drivers/usb/phy/phy-generic.c
+> > b/drivers/usb/phy/phy-generic.c index a53b89be5324..01a5ff1a0515
+> > 100644
+> > --- a/drivers/usb/phy/phy-generic.c
+> > +++ b/drivers/usb/phy/phy-generic.c
+> > @@ -275,7 +275,7 @@ int usb_phy_gen_create_phy(struct device *dev, stru=
+ct
+> usb_phy_generic *nop,
+> >                 }
+> >         }
+> >
+> > -       nop->vcc =3D devm_regulator_get(dev, "vcc");
+> > +       nop->vcc =3D devm_regulator_get_optional(dev, "vcc");
+>=20
+> Is the regulator optional? IMHO this shouldn't be the fix. I think the ri=
+ght fix is Uwe's
+> approach.
+>=20
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
- drivers/gpu/drm/mediatek/Makefile             |   1 +
- drivers/gpu/drm/mediatek/mtk_mipi_tx.c        |   2 +
- drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |   1 +
- drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c | 181 ++++++++++++++++++
- 4 files changed, 185 insertions(+)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
+Add Felipe.
 
-diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-index 2c8de1f5a5ee..8067a4be8311 100644
---- a/drivers/gpu/drm/mediatek/Makefile
-+++ b/drivers/gpu/drm/mediatek/Makefile
-@@ -13,6 +13,7 @@ mediatek-drm-y := mtk_disp_color.o \
- 		  mtk_dsi.o \
- 		  mtk_mipi_tx.o \
- 		  mtk_mt8173_mipi_tx.o \
-+		  mtk_mt8183_mipi_tx.o \
- 		  mtk_dpi.o
- 
- obj-$(CONFIG_DRM_MEDIATEK) += mediatek-drm.o
-diff --git a/drivers/gpu/drm/mediatek/mtk_mipi_tx.c b/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-index cdc68b88cefd..ab0fbfba5572 100644
---- a/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-+++ b/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-@@ -182,6 +182,8 @@ static const struct of_device_id mtk_mipi_tx_match[] = {
- 	  .data = &mt2701_mipitx_data },
- 	{ .compatible = "mediatek,mt8173-mipi-tx",
- 	  .data = &mt8173_mipitx_data },
-+	{ .compatible = "mediatek,mt8183-mipi-tx",
-+	  .data = &mt8183_mipitx_data },
- 	{ },
- };
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_mipi_tx.h b/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-index 660726924992..3fd24563952e 100644
---- a/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-+++ b/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-@@ -45,5 +45,6 @@ unsigned long mtk_mipi_tx_pll_recalc_rate(struct clk_hw *hw,
- 
- extern const struct mtk_mipitx_data mt2701_mipitx_data;
- extern const struct mtk_mipitx_data mt8173_mipitx_data;
-+extern const struct mtk_mipitx_data mt8183_mipitx_data;
- 
- #endif
-diff --git a/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c b/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-new file mode 100644
-index 000000000000..7758bc95555c
---- /dev/null
-+++ b/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-@@ -0,0 +1,181 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ * Author: jitao.shi <jitao.shi@mediatek.com>
-+ */
-+
-+#include "mtk_mipi_tx.h"
-+
-+#define MIPITX_LANE_CON		0x000c
-+#define RG_DSI_CPHY_T1DRV_EN		BIT(0)
-+#define RG_DSI_ANA_CK_SEL		BIT(1)
-+#define RG_DSI_PHY_CK_SEL		BIT(2)
-+#define RG_DSI_CPHY_EN			BIT(3)
-+#define RG_DSI_PHYCK_INV_EN		BIT(4)
-+#define RG_DSI_PWR04_EN			BIT(5)
-+#define RG_DSI_BG_LPF_EN		BIT(6)
-+#define RG_DSI_BG_CORE_EN		BIT(7)
-+#define RG_DSI_PAD_TIEL_SEL		BIT(8)
-+
-+#define MIPITX_PLL_PWR	0x0028
-+#define MIPITX_PLL_CON0	0x002c
-+#define MIPITX_PLL_CON1	0x0030
-+#define MIPITX_PLL_CON2	0x0034
-+#define MIPITX_PLL_CON3	0x0038
-+#define MIPITX_PLL_CON4	0x003c
-+#define RG_DSI_PLL_IBIAS		(3 << 10)
-+
-+#define MIPITX_D2_SW_CTL_EN	0x0144
-+#define MIPITX_D0_SW_CTL_EN	0x0244
-+#define MIPITX_CK_CKMODE_EN	0x0328
-+#define DSI_CK_CKMODE_EN		BIT(0)
-+#define MIPITX_CK_SW_CTL_EN	0x0344
-+#define MIPITX_D1_SW_CTL_EN	0x0444
-+#define MIPITX_D3_SW_CTL_EN	0x0544
-+#define DSI_SW_CTL_EN			BIT(0)
-+#define AD_DSI_PLL_SDM_PWR_ON		BIT(0)
-+#define AD_DSI_PLL_SDM_ISO_EN		BIT(1)
-+
-+#define RG_DSI_PLL_EN			BIT(4)
-+#define RG_DSI_PLL_POSDIV		(0x7 << 8)
-+
-+static int mtk_mipi_tx_pll_prepare(struct clk_hw *hw)
-+{
-+	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-+	int ret = 0;
-+
-+	ret = clk_prepare(mipi_tx->ref_clk);
-+	if (ret < 0)
-+		dev_err(mipi_tx->dev,
-+			"can't prepare mipi_tx ref_clk %d\n", ret);
-+
-+	return ret;
-+}
-+
-+static int mtk_mipi_tx_pll_enable(struct clk_hw *hw)
-+{
-+	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-+	unsigned int txdiv, txdiv0;
-+	u64 pcw;
-+	int ret;
-+
-+	dev_dbg(mipi_tx->dev, "enable: %u bps\n", mipi_tx->data_rate);
-+
-+	if (mipi_tx->data_rate >= 2000000000) {
-+		txdiv = 1;
-+		txdiv0 = 0;
-+	} else if (mipi_tx->data_rate >= 1000000000) {
-+		txdiv = 2;
-+		txdiv0 = 1;
-+	} else if (mipi_tx->data_rate >= 500000000) {
-+		txdiv = 4;
-+		txdiv0 = 2;
-+	} else if (mipi_tx->data_rate > 250000000) {
-+		txdiv = 8;
-+		txdiv0 = 3;
-+	} else if (mipi_tx->data_rate >= 125000000) {
-+		txdiv = 16;
-+		txdiv0 = 4;
-+	} else {
-+		return -EINVAL;
-+	}
-+
-+	ret = clk_enable(mipi_tx->ref_clk);
-+	if (ret < 0) {
-+		dev_err(mipi_tx->dev,
-+			"can't enable mipi_tx ref_clk %d\n", ret);
-+		return ret;
-+	}
-+
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON4, RG_DSI_PLL_IBIAS);
-+
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-+	udelay(1);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-+	pcw = div_u64(((u64)mipi_tx->data_rate * txdiv) << 24, 26000000);
-+	writel(pcw, mipi_tx->regs + MIPITX_PLL_CON0);
-+	mtk_mipi_tx_update_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV,
-+				txdiv0 << 8);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-+
-+	return 0;
-+}
-+
-+static void mtk_mipi_tx_pll_unprepare(struct clk_hw *hw)
-+{
-+	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-+
-+	clk_unprepare(mipi_tx->ref_clk);
-+}
-+
-+static void mtk_mipi_tx_pll_disable(struct clk_hw *hw)
-+{
-+	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-+
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-+
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-+	clk_disable(mipi_tx->ref_clk);
-+}
-+
-+static long mtk_mipi_tx_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-+				       unsigned long *prate)
-+{
-+	return clamp_val(rate, 50000000, 1600000000);
-+}
-+
-+static const struct clk_ops mtk_mipi_tx_pll_ops = {
-+	.prepare = mtk_mipi_tx_pll_prepare,
-+	.enable = mtk_mipi_tx_pll_enable,
-+	.unprepare = mtk_mipi_tx_pll_unprepare,
-+	.disable = mtk_mipi_tx_pll_disable,
-+	.round_rate = mtk_mipi_tx_pll_round_rate,
-+	.set_rate = mtk_mipi_tx_pll_set_rate,
-+	.recalc_rate = mtk_mipi_tx_pll_recalc_rate,
-+};
-+
-+static void mtk_mipi_tx_power_on_signal(struct phy *phy)
-+{
-+	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
-+
-+	/* BG_LPF_EN / BG_CORE_EN */
-+	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN,
-+	       mipi_tx->regs + MIPITX_LANE_CON);
-+	usleep_range(30, 100);
-+	writel(RG_DSI_BG_CORE_EN | RG_DSI_BG_LPF_EN,
-+	       mipi_tx->regs + MIPITX_LANE_CON);
-+
-+	/* Switch OFF each Lane */
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
-+
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_CK_CKMODE_EN, DSI_CK_CKMODE_EN);
-+}
-+
-+static void mtk_mipi_tx_power_off_signal(struct phy *phy)
-+{
-+	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
-+
-+	/* Switch ON each Lane */
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
-+
-+	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN,
-+	       mipi_tx->regs + MIPITX_LANE_CON);
-+	writel(RG_DSI_PAD_TIEL_SEL, mipi_tx->regs + MIPITX_LANE_CON);
-+}
-+
-+const struct mtk_mipitx_data mt8183_mipitx_data = {
-+	.mipi_tx_clk_ops = &mtk_mipi_tx_pll_ops,
-+	.mipi_tx_enable_signal = mtk_mipi_tx_power_on_signal,
-+	.mipi_tx_disable_signal = mtk_mipi_tx_power_off_signal,
-+};
-+
--- 
-2.21.0
+Some USB PHY's power are from the core system's power (eg, DDR), and some a=
+re
+fixed at the board and no switch for it. So, it is transparent for software=
+ at some cases.
 
+Peter
+
+> Regards,
+>   Marco
+>=20
+> >         if (IS_ERR(nop->vcc)) {
+> >                 dev_dbg(dev, "Error getting vcc regulator: %ld\n",
+> >                                         PTR_ERR(nop->vcc));
+> >
+> > Peter
+> >
+> > > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > > ---
+> > > Hello,
+> > >
+> > > note I'm an USB noob, so please consider carefully before applying
+> > > :-) I also put the regulator near the usbphy node instead of in
+> > > alphabetic order. Not sure what is sensible/usual here, too.
+> > >
+> > > Best regards
+> > > Uwe
+> > >
+> > >  arch/arm/boot/dts/imx25.dtsi | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > >
+> > > diff --git a/arch/arm/boot/dts/imx25.dtsi
+> > > b/arch/arm/boot/dts/imx25.dtsi
+> > > --- a/arch/arm/boot/dts/imx25.dtsi
+> > > +++ b/arch/arm/boot/dts/imx25.dtsi
+> > > @@ -614,6 +614,11 @@
+> > >  		};
+> > >  	};
+> > >
+> > > +	reg_usb: regulator_usbphy {
+> > > +		compatible =3D "regulator-fixed";
+> > > +		regulator-name =3D "usb-phy supply";
+> > > +	};
+> > > +
+> > >  	usbphy {
+> > >  		compatible =3D "simple-bus";
+> > >  		#address-cells =3D <1>;
+> > > @@ -623,12 +630,14 @@
+> > >  			reg =3D <0>;
+> > >  			compatible =3D "usb-nop-xceiv";
+> > >  			#phy-cells =3D <0>;
+> > > +			vcc-supply =3D <&reg_usb>;
+> > >  		};
+> > >
+> > >  		usbphy1: usb-phy@1 {
+> > >  			reg =3D <1>;
+> > >  			compatible =3D "usb-nop-xceiv";
+> > >  			#phy-cells =3D <0>;
+> > > +			vcc-supply =3D <&reg_usb>;
+> > >  		};
+> > >  	};
+> > >  };
+> > > --
+> > > 2.20.1
+> >
+>=20
+> --
+> Pengutronix e.K.                           |                             =
+|
+> Industrial Linux Solutions                 |
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.pe=
+ngutro
+> nix.de%2F&amp;data=3D02%7C01%7Cpeter.chen%40nxp.com%7Cd1a839827b3a49
+> 0624f508d6f9fab73f%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63
+> 6971252538657445&amp;sdata=3DkfTeGJ99AfS74BqdRAOLVJm52jIFIdNmZXXYPX
+> SzAcA%3D&amp;reserved=3D0  |
+> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    =
+|
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
+|
