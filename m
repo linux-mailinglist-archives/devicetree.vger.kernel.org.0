@@ -2,224 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF95157D4B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 09:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 225C157D5E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 09:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726370AbfF0Hke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 03:40:34 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:44924 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726408AbfF0Hke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 03:40:34 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r16so1273136wrl.11;
-        Thu, 27 Jun 2019 00:40:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/CusHUsM6XBNBHQs7MdEGbKPt4N56lsbxJiB8DbM+Z0=;
-        b=ZfY73UsMmYZTZ2IIzZqyeoW3A47H0VdM45mnwO6/FEXr5+5BtJVHRSJ1voTQIb7jB1
-         dMJg3oTHwqtDy/ky1rX86bB4DVIetXwUx+n/UJO2uw9pY+5Fn1bTZsxYthM2M0Zin1tm
-         +pUZ1Md2wrkEqr/cQm3qfCgF4ZAY0+M4N8gi6hj54wGbz0uzYYFJJZuPw3mNulbgNVcn
-         7e4Rg+o7J4qQwLe2HSxhFJER1qjgbuaZV4SLyR2RgtCH05C/aNf/uz5wn+blxi6+9+g6
-         ss59sET0yCb+LUPAEWa2CifGp/oUGoulOFzEWREf/ok+o+LpVg3PMtSEJ+usQhYgvOmm
-         8lbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/CusHUsM6XBNBHQs7MdEGbKPt4N56lsbxJiB8DbM+Z0=;
-        b=lSriAhLgz38FN556xe6KNOCxvEVRXEzdvHS2kRvY4uOfQvupBo4kEB8emoy9l0YeDB
-         dmbktkSxTDMFaOwqM85O7pfoFX7lLQDegUmjUPS0OYDVpZNFd1P+Wv9L39H+GJDCc8My
-         jCEyHEJVyuasBAVZS52kb/jQx0NuwAvIHALMDn4D0xIkL/MTkSUUbKUR0iVftIPx/nuI
-         UfltYINZSYOiS0F2bEFkkg6rMCj1HBTCZcgFHFXHzzDtJE8zembfcYqCmvUjhupVZHw4
-         hSRCpUjgzGFBkojgqA74U3pWTDG4h+jsl+TzpVoXRfNqIW+CNfEt+8JJU6Y1iBUrrpE7
-         zm9Q==
-X-Gm-Message-State: APjAAAU0pnYfH5sYtB/XQ7ym5PKYU1I2oOCmWVciMBVeYcuRsWbud/OA
-        Gy/m93J3JeL8VmGAt9PkO23gu+ebZxjZ4yl3MpY=
-X-Google-Smtp-Source: APXvYqwEX7xmuzgZaxM1cTe6YGW6FKOn1KskW1Shqf2w0aTgNW3SDIZUqgip+czOjj7Yuoue0KQMw3jRSKKqFQPLI/s=
-X-Received: by 2002:adf:db12:: with SMTP id s18mr1535921wri.335.1561621231319;
- Thu, 27 Jun 2019 00:40:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190614081650.11880-1-daniel.baluta@nxp.com> <20190614081650.11880-3-daniel.baluta@nxp.com>
- <CAL_JsqJKgMB1PNA33gmFju4AQTc2WaSBoOGQExVaGd9LZRmk_g@mail.gmail.com>
- <CAEnQRZBNA4ndSL1vMStHemYkzt9TxqjgdWWjqFwnBFQ+ha+egA@mail.gmail.com> <CAL_JsqJQRbuWKgON+ukZ3GRwyq8SvTZ=PRGwMhQjAxKPSP-Fkw@mail.gmail.com>
-In-Reply-To: <CAL_JsqJQRbuWKgON+ukZ3GRwyq8SvTZ=PRGwMhQjAxKPSP-Fkw@mail.gmail.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Thu, 27 Jun 2019 10:40:19 +0300
-Message-ID: <CAEnQRZCjp9dUt0JTjhN0CnV0+Xzc+q1EHCnJn_TNOQoUWZBTsg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: Add DSP IPC binding support
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1726445AbfF0HoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 03:44:20 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:13208 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726418AbfF0HoU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 03:44:20 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5R7gOnU025955;
+        Thu, 27 Jun 2019 09:44:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=LDoJwloACDp1lGUZApvN4oyiNkplfSxCLcnyBGjtIdA=;
+ b=XrnCaniJnt+gl9vXyW6BD2LVyOZphOSHEMdn+2YU/6WsShJD7mp6zhUBFVzODTt4UUTg
+ iKEWCb/XOyPKcyA8uuTRd0+U92x7RurNOaBMUwbUygxEKVjUgMaIhTtq6zq6nuztWrob
+ 5WI//0387MhTAF7S+ow70dHPr9FL75veV4vs5RL2V4cuHC8lgkI1UOKOnbBH1u4xEoo3
+ g0lpxJJT1MMM4E6dJFTuJ8Xa4rQUXKWw8nQAaxzHNY5ezamXC99PJaAG58WMtZ2AU8Rh
+ pgLp+LsybXBLgu5dh9vVBKbO50+E9IIKRM1tLKaZ1LJsNwT82bgNFuRxC7W0id95HYy6 3A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2t9d2gn3nd-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Thu, 27 Jun 2019 09:44:07 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2D8C831;
+        Thu, 27 Jun 2019 07:44:06 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EA24B157A;
+        Thu, 27 Jun 2019 07:44:05 +0000 (GMT)
+Received: from SAFEX1HUBCAS22.st.com (10.75.90.93) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 27 Jun
+ 2019 09:44:05 +0200
+Received: from lmecxl0923.lme.st.com (10.48.0.237) by Webmail-ga.st.com
+ (10.75.90.48) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 27 Jun
+ 2019 09:44:05 +0200
+From:   Ludovic Barre <ludovic.Barre@st.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, Ludovic Barre <ludovic.barre@st.com>
+Subject: [PATCH] dt-bindings: spi: stm32-qspi: add dma properties
+Date:   Thu, 27 Jun 2019 09:43:58 +0200
+Message-ID: <1561621439-7305-1-git-send-email-ludovic.Barre@st.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.237]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-27_03:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-<snip>
+From: Ludovic Barre <ludovic.barre@st.com>
 
-> > > > +  mboxes:
-> > > > +    description:
-> > > > +      List of phandle of 2 MU channels for TXDB, 2 MU channels for=
- RXDB
-> > > > +      (see mailbox/fsl,mu.txt)
-> > > > +    maxItems: 1
-> > >
-> > > Should be 4?
-> >
-> > Actually is just a list with 1 item. I think is the terminology:
-> >
-> > You can have an example here of the mboxes defined for SCU.
-> > https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/frees=
-cale/imx8qxp.dtsi#L123
->
-> mboxes =3D <&lsio_mu1 0 0
-> &lsio_mu1 0 1
-> &lsio_mu1 0 2
-> &lsio_mu1 0 3
-> &lsio_mu1 1 0
-> &lsio_mu1 1 1
-> &lsio_mu1 1 2
-> &lsio_mu1 1 3
-> &lsio_mu1 3 3>;
->
-> Logically, this is 9 entries and each entry is 3 cells ( or phandle
-> plus 2 cells). More below...
+This patch adds description of dma properties (optional).
 
-Ok..
+Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+---
+ Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
->
-> > > > +
-> > > > +  mbox-names
->
-> Also, missing a ':' here. This won't build. Make sure you build this
-> (make dt_binding_check). See
-> Documentation/devicetree/writing-schemas.md.
->
-Fixed in v2. Awesome!
+diff --git a/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt b/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt
+index adeeb63..bfc038b 100644
+--- a/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt
++++ b/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt
+@@ -19,8 +19,11 @@ Required properties:
+ - reg: chip-Select number (QSPI controller may connect 2 flashes)
+ - spi-max-frequency: max frequency of spi bus
+ 
+-Optional property:
++Optional properties:
+ - spi-rx-bus-width: see ./spi-bus.txt for the description
++- dmas: DMA specifiers for tx and rx dma. See the DMA client binding,
++Documentation/devicetree/bindings/dma/dma.txt.
++- dma-names: DMA request names should include "tx" and "rx" if present.
+ 
+ Example:
+ 
+-- 
+2.7.4
 
-I thought that Documentation/devicetree/bindings/dsp/fsl,dsp_ipc.yaml
-is purely decorative and used as an example. But it's actually the schema f=
-or
-the newly yaml dts, right?
-
-Used make dt_binding_check everything looks OK now.
-
-> > > > +    description:
-> > > > +      Mailboxes names
-> > > > +    allOf:
-> > > > +      - $ref: "/schemas/types.yaml#/definitions/string"
-> > >
-> > > No need for this, '*-names' already has a defined type.
-> > So, should I remove the above two lines ?
->
-> Actually, all 4. There's no need to describe what 'mbox-names' is.
->
-> > > > +      - enum: [ "txdb0", "txdb1", "rxdb0", "rxdb1" ]
-> > >
-> > > Should be an 'items' list with 4 entries?
-> >
-> > Let me better read the yaml spec. But "items" list indeed sounds better=
-.
->
-> What you should end up with is:
->
-> items:
->   - const: txdb0
->   - const: txdb1
->   - const: rxdb0
->   - const: rxdb1
->
-> This is saying you have 4 strings in the listed order. The enum you
-> had would be a single string of one of the 4 values.
->
-I see! Thanks.
-
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - mboxes
-> > > > +  - mbox-names
-> > >
-> > > This seems incomplete. How does one boot the DSP? Load firmware? No
-> > > resources that Linux has to manage. Shared memory?
-> >
-> > This is only the IPC mailboxes used by DSP to communicate with Linux. T=
-he
-> > loading of the firmware, the resources needed to be managed by Linux, e=
-tc
-> > are part of the DSP node.
->
-> You should just add the mailboxes to the DSP node then. I suppose you
-> didn't because you want 2 drivers? If so, that's the OS's problem and
-> not part of DT. A Linux driver can instantiate devices for other
-> drivers.
-
-Yes, I want the DSP IPC driver to be separated. And then the SOF Linux
-driver that needs
-to communicate with DSP just gets a handle to DSP IPC driver and does
-the communication.
-
-dts relevant nodes look like this now:
-
-=C2=BB       dsp_ipc: dsp_ipc {
-=C2=BB       =C2=BB       compatible =3D "fsl,imx8qxp-dsp";
-=C2=BB       =C2=BB       mbox-names =3D "txdb0", "txdb1",
-=C2=BB       =C2=BB       =C2=BB            "rxdb0", "rxdb1";
-=C2=BB       =C2=BB       mboxes =3D <&lsio_mu13 2 0>,
-=C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 2 1>,
-=C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 0>,
-=C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 1>;
-=C2=BB       };
-
-=C2=BB       adma_dsp: dsp@596e8000 {
-=C2=BB       =C2=BB       compatible =3D "fsl,imx8qxp-sof-dsp";
-=C2=BB       =C2=BB       reg =3D <0x596e8000 0x88000>;
-=C2=BB       =C2=BB       reserved-region =3D <&dsp_reserved>;
-=C2=BB       =C2=BB       ipc =3D <&dsp_ipc>;
-=C2=BB       };
-
-Your suggeston would be to have something like this:
-
-=C2=BB       adma_dsp: dsp@596e8000 {
-=C2=BB       =C2=BB       compatible =3D "fsl,imx8qxp-sof-dsp";
-=C2=BB       =C2=BB       reg =3D <0x596e8000 0x88000>;
-=C2=BB       =C2=BB       reserved-region =3D <&dsp_reserved>;
-=C2=BB                mbox-names =3D "txdb0", "txdb1",
-=C2=BB       =C2=BB       =C2=BB            "rxdb0", "rxdb1";
-=C2=BB       =C2=BB       mboxes =3D <&lsio_mu13 2 0>,
-=C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 2 1>,
-=C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 0>,
-=C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 1>;
-=C2=BB       };
-
-Not sure exactly how to instantiate IPC DSP driver then.
-
-I already have prepared v2 with most of your feedback incorporated,
-but not this latest
-change with moving mboxes inside dsp driver.
-
-More than that I have followed the model of SCFW IPC and having to
-different approach
-for similar IPC mechanism is a little bit confusing.
-
-Anyhow, will try to address your further feedback, will send v2 now to
-have more feedback from
-Oleksij.
-
-thanks,
-Daniel.
