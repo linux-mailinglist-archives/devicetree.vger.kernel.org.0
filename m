@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3A9B58C32
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 22:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3B3958CED
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 23:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbfF0U5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 16:57:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38002 "EHLO mail.kernel.org"
+        id S1726605AbfF0VRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 17:17:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53348 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726384AbfF0U5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 16:57:04 -0400
+        id S1726595AbfF0VRe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 17:17:34 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0DAF22075E;
-        Thu, 27 Jun 2019 20:57:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BAF71208CB;
+        Thu, 27 Jun 2019 21:17:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561669023;
-        bh=6SwJC37GCqSvZUlaUhRiy7DG00rYsYmII/3PWle/kFU=;
+        s=default; t=1561670253;
+        bh=tjUVhNwUylYppI6L6ObcmsGvQ+mV0tCzi7qFIIABWjY=;
         h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=pnfrN9orlr/OwdxPyJvm143GzHwF6MzUrCMtXLgNUkkDsjZFnkdizTI9a/HUQiF/k
-         vXA8LBQChoI0qAtvL51nAgECprbEkc1xt61DILEECBR7rKuScSZSKST/YwTv0R7Lfd
-         LLbwIl53n6RFq3kpLV33zfnspgOzoIO1NHIOUfzE=
+        b=aWl5mqAk/vpVHjuT4R7MHOR602Sabl1/FTGMf9lDfznlYJKf/cslkrOdOoRm2rFBh
+         EC9vqz3p0DLCo95kIUJnNUlhQATKxV3UoWXeJZEz4YGYGVP6fThubszzVZ8tsVayD1
+         Rc/7iZEs4/VddxPSRsOK7+gi5DGcxUSnPseEA674=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190517132020.31081-1-mike.looijmans@topic.nl>
-References: <20190424090216.18417-1-mike.looijmans@topic.nl> <155623344648.15276.18213024444708122458@swboyd.mtv.corp.google.com> <3ea2d720-f49b-586c-e402-07db289b39a8@topic.nl> <155632584222.168659.9675557812377718927@swboyd.mtv.corp.google.com> <cd52a35b-d289-24e1-70db-9d63fd9f6448@topic.nl> <20190507140413.28335-1-mike.looijmans@topic.nl> <20190513203146.GA24085@bogus> <20190517132020.31081-1-mike.looijmans@topic.nl>
-To:     Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+In-Reply-To: <20190627085517.17587-1-ckeepax@opensource.cirrus.com>
+References: <20190627085517.17587-1-ckeepax@opensource.cirrus.com>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        mturquette@baylibre.com
 From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: clock: Add silabs,si5341
-Cc:     linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        Mike Looijmans <mike.looijmans@topic.nl>
+Subject: Re: [PATCH] clk: lochnagar: Update DT binding doc to include the primary SPDIF MCLK
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@opensource.cirrus.com
 User-Agent: alot/0.8.1
-Date:   Thu, 27 Jun 2019 13:57:02 -0700
-Message-Id: <20190627205703.0DAF22075E@mail.kernel.org>
+Date:   Thu, 27 Jun 2019 14:17:33 -0700
+Message-Id: <20190627211733.BAF71208CB@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Mike Looijmans (2019-05-17 06:20:20)
-> Adds the devicetree bindings for the Si5341 and Si5340 chips from
-> Silicon Labs. These are multiple-input multiple-output clock
-> synthesizers.
+Quoting Charles Keepax (2019-06-27 01:55:17)
+> This clock was missed when the binding was initially merged but is
+> supported by the driver, so add it to the binding document.
 >=20
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
->=20
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 > ---
 
 Applied to clk-next
