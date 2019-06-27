@@ -2,166 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 179DB57931
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 04:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2080E57961
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 04:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727000AbfF0CAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 22:00:55 -0400
-Received: from mail-eopbgr20086.outbound.protection.outlook.com ([40.107.2.86]:46656
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726756AbfF0CAz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 22:00:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kh3ndaU6ZdNCZItesSx6DlqtV91F1OIGNRLIRiX0xkQ=;
- b=ppk1SxM4RNEJg1Zi6qUhe0a75sr/lHpbBkq/LYdg3hB19blnajA4dnqQLpiyn6yJ5+nEO+YRHorPE+w7oZivwe0MuRJjT4OZ9m9/Z/qrsJrwvf78Hgat/EHJbH5JbX7+jMl5Cfpn+WV6d9sYfhpeah1viZBvro9lS4aJpvzRpN8=
-Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
- AM5PR04MB3235.eurprd04.prod.outlook.com (10.167.171.28) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2008.16; Thu, 27 Jun 2019 02:00:48 +0000
-Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
- ([fe80::85dc:ed8:2a0d:4afe]) by AM5PR04MB3299.eurprd04.prod.outlook.com
- ([fe80::85dc:ed8:2a0d:4afe%6]) with mapi id 15.20.2008.017; Thu, 27 Jun 2019
- 02:00:48 +0000
-From:   Xiaowei Bao <xiaowei.bao@nxp.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        "kstewart@linuxfoundation.org" <kstewart@linuxfoundation.org>,
-        "pombredanne@nexb.com" <pombredanne@nexb.com>,
-        "shawn.lin@rock-chips.com" <shawn.lin@rock-chips.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        id S1726862AbfF0CSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 22:18:39 -0400
+Received: from esa1.hgst.iphmx.com ([68.232.141.245]:33003 "EHLO
+        esa1.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726830AbfF0CSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 22:18:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1561601918; x=1593137918;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=Tfwp7gFaZ6qND8kZaF7KWkT1wyf1zxCP1c9dIpITNvc=;
+  b=VyopmJiJ2dTyiLq1F0/B5SezS3UXRMLoYs1s/dm5lEOxLIw73Qt1bP4C
+   Qlwe7BKPRKFDYR0TEGTMw7r5w+/GcwzTfLt4jF19PPf3s8Bzeu1JRhlHJ
+   5toKFkDJqJxt2KgRssbbtdBFxitGik3DxTkMhtTJGbFigXYyRZfmK+6P6
+   udKcVIDIHDR02KTUBcmi+O+wAbBUWnGRZHmqbChkAnCEpYW5S3ww1ynC5
+   S577drFVcRrHh54vemkEycct/irWA5MSA9qHJ6n06H/Ebkl/DPmRYjNLj
+   SA3mIBjf4UrCfEP8YDeMcArDEKLJm2hKp7nuZQ9tzdKzTQBq/z2gulyzz
+   A==;
+X-IronPort-AV: E=Sophos;i="5.63,422,1557158400"; 
+   d="scan'208";a="218020175"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 27 Jun 2019 10:18:38 +0800
+IronPort-SDR: Etgl/ZFsNqgFjy1k+Q6uALRkqorriwzWpOEiL33wGew0nGkUmQi02F/zmmPqagcdO4KqGMkmV2
+ xx6F10y/WU1VG0EO+vClyYAYe7XN9Cy+J/HeP71XyUCu1oBEvPzC5hkuXKOUak5SGRKgH2Ygce
+ tUyzpOpby3nda6HqhdYWaMApiKxlWxCP8wsSHbJ75jVFOBRllkCW+21pBUFVHKGINyUEXMHagX
+ /IYAyypUk1zJdeJH+50tZgnAI08r8UbrclMnrgugF779VKoJ530NQN6KzGVbXVwKRWyPUc36Fp
+ eW54F9wUMk4GEUt1KD6qG+ah
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP; 26 Jun 2019 19:17:46 -0700
+IronPort-SDR: ciLexNHCv6HL8MZuckFUeBuAAqxAHwDwL0T3akazDuuvQlT+UmUai8SZlQcgLlMo31DzQYCy9C
+ hUmWFABApl4vhwrHwwwNgApIeFL7zgMAQsNfesmsMzYlcHY/bExk7+MCe6LFtwJP5mf9NcCS5I
+ yosY85vqe7YCnHakfyQMwyQjzZEz/2iJf1D2qk2ScLEpepDs50z5eYX5Yas7bf4/E5rwInY8df
+ VA2fHixn7pD+aJT3u6PzOm755RWHxstUQ+JkAIqkjoIGczFDwhyJa85Jy2zwmAziFv0/Njm1rR
+ +rY=
+Received: from usa005100.ad.shared (HELO [10.225.99.96]) ([10.225.99.96])
+  by uls-op-cesaip01.wdc.com with ESMTP; 26 Jun 2019 19:18:37 -0700
+Subject: Re: [PATCH v7 1/7] Documentation: DT: arm: add support for sockets
+ defining package boundaries
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Richard Fontana <rfontana@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: RE: [EXT] Re: [PATCHv2 2/2] PCI: layerscape: EP and RC drivers are
- compiled separately
-Thread-Topic: [EXT] Re: [PATCHv2 2/2] PCI: layerscape: EP and RC drivers are
- compiled separately
-Thread-Index: AQHVLBE4IA2SIKwZ+ECco9RDrpxLQ6auN4qAgACIFLA=
-Date:   Thu, 27 Jun 2019 02:00:47 +0000
-Message-ID: <AM5PR04MB329928579BA98A3429A0B412F5FD0@AM5PR04MB3299.eurprd04.prod.outlook.com>
-References: <20190626111139.32878-1-xiaowei.bao@nxp.com>
- <20190626111139.32878-2-xiaowei.bao@nxp.com>
- <20190626175153.GC103694@google.com>
-In-Reply-To: <20190626175153.GC103694@google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=xiaowei.bao@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5e0d3ea3-f2c2-446a-1633-08d6faa34611
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM5PR04MB3235;
-x-ms-traffictypediagnostic: AM5PR04MB3235:
-x-microsoft-antispam-prvs: <AM5PR04MB3235064E9A862F8C7F73A344F5FD0@AM5PR04MB3235.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 008184426E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(396003)(39860400002)(366004)(346002)(13464003)(189003)(199004)(76176011)(486006)(186003)(14454004)(26005)(7696005)(478600001)(102836004)(44832011)(66066001)(53546011)(6506007)(99286004)(74316002)(68736007)(5660300002)(81166006)(8676002)(81156014)(8936002)(7736002)(4326008)(6916009)(7416002)(25786009)(305945005)(256004)(33656002)(52536014)(76116006)(3846002)(66946007)(66476007)(73956011)(229853002)(54906003)(66446008)(66556008)(64756008)(53936002)(6116002)(6436002)(9686003)(316002)(71200400001)(71190400001)(2906002)(6246003)(446003)(86362001)(11346002)(55016002)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3235;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1rAeelWrgHa/SmKdfvoE68z5ijxT48W0Ug6kYTk25Us0MErOx/jXpJiYiuak57kwipvyGCOSEGfj1Hcc2F1vLJT5goz1Qm2ocSkzdgl9cVjWBGPTrZ+54ki1Gd2gHA9FepgGyZH5lnEoTJbfMex25+JiiB6f61JjeoTX+B9T6U+pGVN8gmuqFZW5CydSx00jNv6O1KaFV+FftKXeaiqtgxyrSDeTif80md8u2oKJeOYu0W5zYp9e6bWuvqgmY8ZTXlxROMwqGjuw8OeDkAO9W7vxGDH84Qs2732OF87PcMJ7635fnwGpVwIzRb+kJeiaOpQD61GOVNfGat05Jlim7uvQLDljZovIb3XU9VozptH3qDlqtY+ANJZpyy3iq6HMGdEkbQmz2xrh522glKO7OOsI+yFEqYR7BA30C5SUZi8=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        Russell King <linux@armlinux.org.uk>
+References: <20190617185920.29581-1-atish.patra@wdc.com>
+ <20190617185920.29581-2-atish.patra@wdc.com>
+ <alpine.DEB.2.21.9999.1906261724000.23534@viisi.sifive.com>
+From:   Atish Patra <atish.patra@wdc.com>
+Message-ID: <873a80f0-e704-dd7e-4db9-b159b23847fc@wdc.com>
+Date:   Wed, 26 Jun 2019 19:18:36 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e0d3ea3-f2c2-446a-1633-08d6faa34611
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2019 02:00:47.9363
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xiaowei.bao@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3235
+In-Reply-To: <alpine.DEB.2.21.9999.1906261724000.23534@viisi.sifive.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQmpvcm4sDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQmpvcm4g
-SGVsZ2FhcyA8aGVsZ2Fhc0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDE5xOo21MIyN8jVIDE6NTIN
-Cj4gVG86IFhpYW93ZWkgQmFvIDx4aWFvd2VpLmJhb0BueHAuY29tPg0KPiBDYzogcm9iaCtkdEBr
-ZXJuZWwub3JnOyBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsgc2hhd25ndW9Aa2VybmVsLm9yZzsgTGVv
-DQo+IExpIDxsZW95YW5nLmxpQG54cC5jb20+OyBraXNob25AdGkuY29tOyBsb3JlbnpvLnBpZXJh
-bGlzaUBhcm0uY29tOw0KPiBhcm5kQGFybmRiLmRlOyBncmVna2hAbGludXhmb3VuZGF0aW9uLm9y
-ZzsgTS5oLiBMaWFuDQo+IDxtaW5naHVhbi5saWFuQG54cC5jb20+OyBNaW5na2FpIEh1IDxtaW5n
-a2FpLmh1QG54cC5jb20+OyBSb3kgWmFuZw0KPiA8cm95LnphbmdAbnhwLmNvbT47IGtzdGV3YXJ0
-QGxpbnV4Zm91bmRhdGlvbi5vcmc7DQo+IHBvbWJyZWRhbm5lQG5leGIuY29tOyBzaGF3bi5saW5A
-cm9jay1jaGlwcy5jb207DQo+IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVA
-dmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBsaW51eC1h
-cm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+IGxpbnV4cHBjLWRldkBsaXN0cy5vemxh
-YnMub3JnDQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBbUEFUQ0h2MiAyLzJdIFBDSTogbGF5ZXJzY2Fw
-ZTogRVAgYW5kIFJDIGRyaXZlcnMgYXJlDQo+IGNvbXBpbGVkIHNlcGFyYXRlbHkNCj4gDQo+IENh
-dXRpb246IEVYVCBFbWFpbA0KPiANCj4gSWYgeW91IHBvc3QgYW5vdGhlciByZXZpc2lvbiBmb3Ig
-YW55IHJlYXNvbiwgcGxlYXNlIGNoYW5nZSB0aGUgc3ViamVjdCBzbyBpdCdzDQo+IHdvcmRlZCBh
-cyBhIGNvbW1hbmQgYW5kIG1lbnRpb25zIHRoZSBuZXcgY29uZmlnIG9wdGlvbnMsIGUuZy4sDQo+
-IA0KPiAgIFBDSTogbGF5ZXJzY2FwZTogQWRkIENPTkZJR19QQ0lfTEFZRVJTQ0FQRV9FUCB0byBi
-dWlsZCBFUC9SQw0KPiBzZXBhcmF0ZWx5DQpbWGlhb3dlaSBCYW9dIE9LLCB0aGFua3MsIHRoaXMg
-c3ViamVjdCBsb29rcyB3ZWxsLg0KPiANCj4gT24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMDc6MTE6
-MzlQTSArMDgwMCwgWGlhb3dlaSBCYW8gd3JvdGU6DQo+ID4gQ29tcGlsZSB0aGUgRVAgYW5kIFJD
-IGRyaXZlcnMgc2VwYXJhdGVseSB3aXRoIGRpZmZlcmVudCBjb25maWd1cmF0aW9uDQo+ID4gb3B0
-aW9ucywgdGhpcyBsb29rcyBjbGVhcmVyLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWGlhb3dl
-aSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gdjI6DQo+ID4gIC0gTm8g
-Y2hhbmdlLg0KPiA+DQo+ID4gIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL0tjb25maWcgIHwg
-ICAyMCArKysrKysrKysrKysrKysrKystLQ0KPiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3
-Yy9NYWtlZmlsZSB8ICAgIDMgKystDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMjAgaW5zZXJ0aW9u
-cygrKSwgMyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9j
-b250cm9sbGVyL2R3Yy9LY29uZmlnDQo+ID4gYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9L
-Y29uZmlnDQo+ID4gaW5kZXggYTZjZTFlZS4uYTQxY2NmNSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2
-ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9LY29uZmlnDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29u
-dHJvbGxlci9kd2MvS2NvbmZpZw0KPiA+IEBAIC0xMzEsMTMgKzEzMSwyOSBAQCBjb25maWcgUENJ
-X0tFWVNUT05FX0VQDQo+ID4gICAgICAgICBEZXNpZ25XYXJlIGNvcmUgZnVuY3Rpb25zIHRvIGlt
-cGxlbWVudCB0aGUgZHJpdmVyLg0KPiA+DQo+ID4gIGNvbmZpZyBQQ0lfTEFZRVJTQ0FQRQ0KPiA+
-IC0gICAgIGJvb2wgIkZyZWVzY2FsZSBMYXllcnNjYXBlIFBDSWUgY29udHJvbGxlciINCj4gPiAr
-ICAgICBib29sICJGcmVlc2NhbGUgTGF5ZXJzY2FwZSBQQ0llIGNvbnRyb2xsZXIgLSBIb3N0IG1v
-ZGUiDQo+ID4gICAgICAgZGVwZW5kcyBvbiBPRiAmJiAoQVJNIHx8IEFSQ0hfTEFZRVJTQ0FQRSB8
-fCBDT01QSUxFX1RFU1QpDQo+ID4gICAgICAgZGVwZW5kcyBvbiBQQ0lfTVNJX0lSUV9ET01BSU4N
-Cj4gPiAgICAgICBzZWxlY3QgTUZEX1NZU0NPTg0KPiA+ICAgICAgIHNlbGVjdCBQQ0lFX0RXX0hP
-U1QNCj4gPiAgICAgICBoZWxwDQo+ID4gLSAgICAgICBTYXkgWSBoZXJlIGlmIHlvdSB3YW50IFBD
-SWUgY29udHJvbGxlciBzdXBwb3J0IG9uIExheWVyc2NhcGUgU29Dcy4NCj4gPiArICAgICAgIFNh
-eSBZIGhlcmUgaWYgeW91IHdhbnQgdG8gZW5hYmxlIFBDSWUgY29udHJvbGxlciBzdXBwb3J0IG9u
-DQo+IExheWVyc2NhcGUNCj4gPiArICAgICAgIFNvQ3MgdG8gd29yayBpbiBIb3N0IG1vZGUuDQo+
-ID4gKyAgICAgICBUaGlzIGNvbnRyb2xsZXIgY2FuIHdvcmsgZWl0aGVyIGFzIEVQIG9yIFJDLiBU
-aGUNCj4gUkNXW0hPU1RfQUdUX1BFWF0NCj4gPiArICAgICAgIGRldGVybWluZXMgd2hpY2ggUENJ
-ZSBjb250cm9sbGVyIHdvcmtzIGluIEVQIG1vZGUgYW5kIHdoaWNoDQo+IFBDSWUNCj4gPiArICAg
-ICAgIGNvbnRyb2xsZXIgd29ya3MgaW4gUkMgbW9kZS4NCj4gPiArDQo+ID4gK2NvbmZpZyBQQ0lf
-TEFZRVJTQ0FQRV9FUA0KPiA+ICsgICAgIGJvb2wgIkZyZWVzY2FsZSBMYXllcnNjYXBlIFBDSWUg
-Y29udHJvbGxlciAtIEVuZHBvaW50IG1vZGUiDQo+ID4gKyAgICAgZGVwZW5kcyBvbiBPRiAmJiAo
-QVJNIHx8IEFSQ0hfTEFZRVJTQ0FQRSB8fCBDT01QSUxFX1RFU1QpDQo+ID4gKyAgICAgZGVwZW5k
-cyBvbiBQQ0lfRU5EUE9JTlQNCj4gPiArICAgICBzZWxlY3QgUENJRV9EV19FUA0KPiA+ICsgICAg
-IGhlbHANCj4gPiArICAgICAgIFNheSBZIGhlcmUgaWYgeW91IHdhbnQgdG8gZW5hYmxlIFBDSWUg
-Y29udHJvbGxlciBzdXBwb3J0IG9uDQo+IExheWVyc2NhcGUNCj4gPiArICAgICAgIFNvQ3MgdG8g
-d29yayBpbiBFbmRwb2ludCBtb2RlLg0KPiA+ICsgICAgICAgVGhpcyBjb250cm9sbGVyIGNhbiB3
-b3JrIGVpdGhlciBhcyBFUCBvciBSQy4gVGhlDQo+IFJDV1tIT1NUX0FHVF9QRVhdDQo+ID4gKyAg
-ICAgICBkZXRlcm1pbmVzIHdoaWNoIFBDSWUgY29udHJvbGxlciB3b3JrcyBpbiBFUCBtb2RlIGFu
-ZCB3aGljaA0KPiBQQ0llDQo+ID4gKyAgICAgICBjb250cm9sbGVyIHdvcmtzIGluIFJDIG1vZGUu
-DQo+ID4NCj4gPiAgY29uZmlnIFBDSV9ISVNJDQo+ID4gICAgICAgZGVwZW5kcyBvbiBPRiAmJiAo
-QVJNNjQgfHwgQ09NUElMRV9URVNUKSBkaWZmIC0tZ2l0DQo+ID4gYS9kcml2ZXJzL3BjaS9jb250
-cm9sbGVyL2R3Yy9NYWtlZmlsZQ0KPiA+IGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvTWFr
-ZWZpbGUNCj4gPiBpbmRleCBiMDg1ZGZkLi44MjRmZGU3IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZl
-cnMvcGNpL2NvbnRyb2xsZXIvZHdjL01ha2VmaWxlDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29u
-dHJvbGxlci9kd2MvTWFrZWZpbGUNCj4gPiBAQCAtOCw3ICs4LDggQEAgb2JqLSQoQ09ORklHX1BD
-SV9FWFlOT1MpICs9IHBjaS1leHlub3Mubw0KPiA+ICBvYmotJChDT05GSUdfUENJX0lNWDYpICs9
-IHBjaS1pbXg2Lm8NCj4gPiAgb2JqLSQoQ09ORklHX1BDSUVfU1BFQVIxM1hYKSArPSBwY2llLXNw
-ZWFyMTN4eC5vDQo+ID4gIG9iai0kKENPTkZJR19QQ0lfS0VZU1RPTkUpICs9IHBjaS1rZXlzdG9u
-ZS5vDQo+ID4gLW9iai0kKENPTkZJR19QQ0lfTEFZRVJTQ0FQRSkgKz0gcGNpLWxheWVyc2NhcGUu
-byBwY2ktbGF5ZXJzY2FwZS1lcC5vDQo+ID4gK29iai0kKENPTkZJR19QQ0lfTEFZRVJTQ0FQRSkg
-Kz0gcGNpLWxheWVyc2NhcGUubw0KPiA+ICtvYmotJChDT05GSUdfUENJX0xBWUVSU0NBUEVfRVAp
-ICs9IHBjaS1sYXllcnNjYXBlLWVwLm8NCj4gPiAgb2JqLSQoQ09ORklHX1BDSUVfUUNPTSkgKz0g
-cGNpZS1xY29tLm8NCj4gPiAgb2JqLSQoQ09ORklHX1BDSUVfQVJNQURBXzhLKSArPSBwY2llLWFy
-bWFkYThrLm8NCj4gPiAgb2JqLSQoQ09ORklHX1BDSUVfQVJUUEVDNikgKz0gcGNpZS1hcnRwZWM2
-Lm8NCj4gPiAtLQ0KPiA+IDEuNy4xDQo+ID4NCg==
+On 6/26/19 5:31 PM, Paul Walmsley wrote:
+> Hi Sudeep, Atish,
+> 
+> On Mon, 17 Jun 2019, Atish Patra wrote:
+> 
+>> From: Sudeep Holla <sudeep.holla@arm.com>
+>>
+>> The current ARM DT topology description provides the operating system
+>> with a topological view of the system that is based on leaf nodes
+>> representing either cores or threads (in an SMT system) and a
+>> hierarchical set of cluster nodes that creates a hierarchical topology
+>> view of how those cores and threads are grouped.
+>>
+>> However this hierarchical representation of clusters does not allow to
+>> describe what topology level actually represents the physical package or
+>> the socket boundary, which is a key piece of information to be used by
+>> an operating system to optimize resource allocation and scheduling.
+>>
+>> Lets add a new "socket" node type in the cpu-map node to describe the
+>> same.
+>>
+>> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> This one doesn't apply cleanly here on top of v5.2-rc2, Linus's master
+> branch, and next-20190626.  The reject file is below.  Am I missing
+> a patch?
+> 
+
+That's weird. I could apply the patch from any git tree (github or 
+git.kernel.org) but not from mail or patchworks.
+
+git log doesn't show any recent modifications of that file. I am trying 
+to figure out what's wrong.
+> 
+> - Paul
+> 
+> --- Documentation/devicetree/bindings/arm/topology.txt
+> +++ Documentation/devicetree/bindings/arm/topology.txt
+> @@ -185,13 +206,15 @@ Bindings for cluster/cpu/thread nodes are defined as follows:
+>   4 - Example dts
+>   ===========================================
+>   
+> -Example 1 (ARM 64-bit, 16-cpu system, two clusters of clusters):
+> +Example 1 (ARM 64-bit, 16-cpu system, two clusters of clusters in a single
+> +physical socket):
+>   
+>   cpus {
+>   	#size-cells = <0>;
+>   	#address-cells = <2>;
+>   
+>   	cpu-map {
+> +		socket0 {
+>   			cluster0 {
+>   				cluster0 {
+>   					core0 {
+> 
+
+
+-- 
+Regards,
+Atish
