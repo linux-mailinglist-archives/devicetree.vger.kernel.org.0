@@ -2,307 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A327557F1D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 11:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B979957F26
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 11:21:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726295AbfF0JT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 05:19:59 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:36004 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725385AbfF0JT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 05:19:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1561627196; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0A2M0LxPrGpAS+jxE9tL/0Cm4nT3Zid9/9XUbmHvEOA=;
-        b=E3S6Pl3G1sZ8hIOBN3swFfLuT00hdR2jLNKnH49vDd2Dq4VM01jWTWc5gXixwZN1TmTP7O
-        M5bdhZ5UlpPBcTghZF4EmLw1Ol3DwSnJnajiPww/ZDeMBomNGA4+E45ir0vuOi1pnyyyn+
-        0fZ8d5iwYCP8cI3qCp4aOQ1SlveohLo=
-Date:   Thu, 27 Jun 2019 11:19:48 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v12 04/13] mfd: Add Ingenic TCU driver
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mathieu Malaterre <malat@debian.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, od@zcrc.me
-Message-Id: <1561627188.1745.1@crapouillou.net>
-In-Reply-To: <20190627090102.GA2000@dell>
-References: <20190521145141.9813-1-paul@crapouillou.net>
-        <20190521145141.9813-5-paul@crapouillou.net> <20190626131850.GW21119@dell>
-        <1561557350.1872.0@crapouillou.net> <20190627065808.GY21119@dell>
-        <1561625387.1745.0@crapouillou.net> <20190627090102.GA2000@dell>
+        id S1726425AbfF0JVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 05:21:31 -0400
+Received: from mail-wm1-f47.google.com ([209.85.128.47]:35407 "EHLO
+        mail-wm1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725385AbfF0JVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 05:21:31 -0400
+Received: by mail-wm1-f47.google.com with SMTP id c6so4913148wml.0;
+        Thu, 27 Jun 2019 02:21:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XYHmvNKfy7VaUIGa95USoScIHooaSeDsjmWpbc/DlZM=;
+        b=DK0XgveLOfXKoA649LTTdPi/DSfOwWltI5/VhpCt8qdMXCdG/HDrBfIC9o7AVdaC7n
+         G2FD7ZlweT/YtWhN+//m8VLERojrbI+zEVeHJt05Wks+/TgDsALoyUeh/EKaOhGQ+CZt
+         vPPFoQ97rYKXUieGTPup6C4WwAnM1r/5ZKKWkhaPs/CcameJY49f2RnPKdj1IIzW5DGO
+         GUF2zrBAS2Dyf2IWxi8wQyorAKQYsu2nTGOqFlZ5OewHxoU7U5tLOKED3I+1brS6Pua/
+         fvHFq3UwM1bM6ScUNvNea3V6BqOJbOnsEk4mlaQu6GHU/iojbfQaiVwW59jrTxpx0yKu
+         X7ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XYHmvNKfy7VaUIGa95USoScIHooaSeDsjmWpbc/DlZM=;
+        b=TFKZxyTEZ+uG6xlzg6Bj5c70Xv0gsFHgB4bwbuQMQKP1z8XOoT2h1vTmckMpe8vQak
+         cQW0IdaDGIb9+i49nbxfq032m8hHoLerkSbrig0d2DluKd/og0eu1LSxOuqL1Zdyd4RG
+         9iZoDqLOJYDC0jBh02NcICNEEUH4m6OZa0Fwp7E3Relrxcj/4vlxUptOE4hAav4cGW3a
+         +FLCUSTFaJnyUQyizmJm3wpAfayMfJ5RwHN/LJmSKF24LHKXOYL4MmZ+ej0TCq9ZguqY
+         u9Bt7XIjkVRt//m0/z5raXU57MHFZrlshb2IZ7DstC0ndsy7PeqhebE+JgrhHPc2Od6X
+         Lz+A==
+X-Gm-Message-State: APjAAAVyDOk6trHNpetywvRaWUF97aUxreOXlh93Mpg0mazYCVpEDP4R
+        2Js410SlFAfbgI2MIYWH/GM=
+X-Google-Smtp-Source: APXvYqwYL8z8jMUPRofjPKuNLXPr3ImEkCSknCI7b4LFfUESMzeJ8hzWZnq7kotQ0Gmb0f0NNk1H5g==
+X-Received: by 2002:a05:600c:2218:: with SMTP id z24mr2510332wml.84.1561627288941;
+        Thu, 27 Jun 2019 02:21:28 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id d5sm1351023wrc.17.2019.06.27.02.21.27
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 27 Jun 2019 02:21:27 -0700 (PDT)
+Date:   Thu, 27 Jun 2019 11:21:26 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Nagarjuna Kristam <nkristam@nvidia.com>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, jonathanh@nvidia.com,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [Patch V4 2/8] phy: tegra: xusb: t210: add usb3 port fake support
+Message-ID: <20190627092126.GA21242@ulmo>
+References: <1560161949-26031-1-git-send-email-nkristam@nvidia.com>
+ <1560161949-26031-3-git-send-email-nkristam@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jRHKVT23PllUwdXP"
+Content-Disposition: inline
+In-Reply-To: <1560161949-26031-3-git-send-email-nkristam@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--jRHKVT23PllUwdXP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Le jeu. 27 juin 2019 =C3=A0 11:01, Lee Jones <lee.jones@linaro.org> a=20
-=C3=A9crit :
-> On Thu, 27 Jun 2019, Paul Cercueil wrote:
->>  Le jeu. 27 juin 2019 =C3=A0 8:58, Lee Jones <lee.jones@linaro.org> a=20
->> =C3=A9crit :
->>  > On Wed, 26 Jun 2019, Paul Cercueil wrote:
->>  > >  Le mer. 26 juin 2019 =C3=A0 15:18, Lee Jones=20
->> <lee.jones@linaro.org> a
->>  > > =C3=A9crit :
->>  > >  > On Tue, 21 May 2019, Paul Cercueil wrote:
->>  > >  >
->>  > >  > >  This driver will provide a regmap that can be retrieved=20
->> very
->>  > > early
->>  > >  > > in
->>  > >  > >  the boot process through the API function
->>  > > ingenic_tcu_get_regmap().
->>  > >  > >
->>  > >  > >  Additionally, it will call devm_of_platform_populate() so=20
->> that
->>  > > all
->>  > >  > > the
->>  > >  > >  children devices will be probed.
->>  > >  > >
->>  > >  > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  > >  > >  ---
->>  > >  > >
->>  > >  > >  Notes:
->>  > >  > >      v12: New patch
->>  > >  > >
->>  > >  > >   drivers/mfd/Kconfig             |   8 +++
->>  > >  > >   drivers/mfd/Makefile            |   1 +
->>  > >  > >   drivers/mfd/ingenic-tcu.c       | 113
->>  > >  > > ++++++++++++++++++++++++++++++++
->>  > >  > >   include/linux/mfd/ingenic-tcu.h |   8 +++
->>  > >  > >   4 files changed, 130 insertions(+)
->>  > >  > >   create mode 100644 drivers/mfd/ingenic-tcu.c
->>  >
->>  > [...]
->>  >
->>  > >  > >  +static struct regmap * __init=20
->> ingenic_tcu_create_regmap(struct
->>  > >  > > device_node *np)
->>  > >  > >  +{
->>  > >  > >  +	struct resource res;
->>  > >  > >  +	void __iomem *base;
->>  > >  > >  +	struct regmap *map;
->>  > >  > >  +
->>  > >  > >  +	if (!of_match_node(ingenic_tcu_of_match, np))
->>  > >  > >  +		return ERR_PTR(-EINVAL);
->>  >
->>  > Drop this check.
->>  >
->>  > >  > >  +	base =3D of_io_request_and_map(np, 0, "TCU");
->>  > >  > >  +	if (IS_ERR(base))
->>  > >  > >  +		return ERR_PTR(PTR_ERR(base));
->>  > >  > >  +
->>  > >  > >  +	map =3D regmap_init_mmio(NULL, base,
->>  > > &ingenic_tcu_regmap_config);
->>  > >  > >  +	if (IS_ERR(map))
->>  > >  > >  +		goto err_iounmap;
->>  >
->>  > Place this inside probe().
->>  >
->>  > >  > >  +	return map;
->>  > >  > >  +
->>  > >  > >  +err_iounmap:
->>  > >  > >  +	iounmap(base);
->>  > >  > >  +	of_address_to_resource(np, 0, &res);
->>  > >  > >  +	release_mem_region(res.start, resource_size(&res));
->>  > >  > >  +
->>  > >  > >  +	return map;
->>  > >  > >  +}
->>  > >  >
->>  > >  > Why does this need to be set-up earlier than probe()?
->>  > >
->>  > >  See the explanation below.
->>  >
->>  > I think the answer is, it doesn't.
->>  >
->>  > >  > >  +static int __init ingenic_tcu_probe(struct=20
->> platform_device
->>  > > *pdev)
->>  > >  > >  +{
->>  > >  > >  +	struct regmap *map =3D
->>  > > ingenic_tcu_get_regmap(pdev->dev.of_node);
->>  > >  > >  +
->>  > >  > >  +	platform_set_drvdata(pdev, map);
->>  > >  > >  +
->>  > >  > >  +	regmap_attach_dev(&pdev->dev, map,
->>  > > &ingenic_tcu_regmap_config);
->>  > >  > >  +
->>  > >  > >  +	return devm_of_platform_populate(&pdev->dev);
->>  > >  > >  +}
->>  > >  > >  +
->>  > >  > >  +static struct platform_driver ingenic_tcu_driver =3D {
->>  > >  > >  +	.driver =3D {
->>  > >  > >  +		.name =3D "ingenic-tcu",
->>  > >  > >  +		.of_match_table =3D ingenic_tcu_of_match,
->>  > >  > >  +	},
->>  > >  > >  +};
->>  > >  > >  +
->>  > >  > >  +static int __init ingenic_tcu_platform_init(void)
->>  > >  > >  +{
->>  > >  > >  +	return platform_driver_probe(&ingenic_tcu_driver,
->>  > >  > >  +				     ingenic_tcu_probe);
->>  > >  >
->>  > >  > What?  Why?
->>  > >
->>  > >  The device driver probed here will populate the children=20
->> devices,
->>  > >  which will be able to retrieve the pointer to the regmap=20
->> through
->>  > >  device_get_regmap(dev->parent).
->>  >
->>  > I've never heard of this call.  Where is it?
->>=20
->>  dev_get_regmap, in <linux/regmap.h>.
->>=20
->>  > >  The children devices are normal platform drivers that can be=20
->> probed
->>  > >  the normal way. These are the PWM driver, the watchdog driver,=20
->> and
->>  > > the
->>  > >  OST (OS Timer) clocksource driver, all part of the same=20
->> hardware
->>  > > block
->>  > >  (the Timer/Counter Unit or TCU).
->>  >
->>  > If they are normal devices, then there is no need to roll your own
->>  > regmap-getter implementation like this.
->>  >
->>  > >  > >  +}
->>  > >  > >  +subsys_initcall(ingenic_tcu_platform_init);
->>  > >  > >  +
->>  > >  > >  +struct regmap * __init ingenic_tcu_get_regmap(struct
->>  > > device_node
->>  > >  > > *np)
->>  > >  > >  +{
->>  > >  > >  +	if (!tcu_regmap)
->>  > >  > >  +		tcu_regmap =3D ingenic_tcu_create_regmap(np);
->>  > >  > >  +
->>  > >  > >  +	return tcu_regmap;
->>  > >  > >  +}
->>  > >  >
->>  > >  > This makes me pretty uncomfortable.
->>  > >  >
->>  > >  > What calls it?
->>  > >
->>  > >  The TCU IRQ driver (patch [06/13]), clocks driver (patch=20
->> [05/13]),
->>  > > and the
->>  > >  non-OST clocksource driver (patch [07/13]) all probe very=20
->> early in
->>  > > the boot
->>  > >  process, and share the same devicetree node. They call this
->>  > > function to get
->>  > >  a pointer to the regmap.
->>  >
->>  > Horrible!
->>  >
->>  > Instead, you should send it through platform_set_drvdata() and=20
->> collect
->>  > it in the child drivers with platform_get_drvdata(dev->parent).
->>=20
->>  The IRQ, clocks and clocksource driver do NOT have a "struct=20
->> device" to
->>  begin with. They are not platform drivers, and cannot be platform=20
->> drivers,
->>  as they must register so early in the boot process, before "struct=20
->> device"
->>  is even a thing.
->>=20
->>  All they get is a pointer to the same devicetree node. Since all of=20
->> these
->>  have to use the same registers, they need to use a shared regmap,=20
->> which
->>  they obtain by calling ingenic_tcu_get_regmap() below.
->>=20
->>  Then, when this driver's probe gets called, the regmap is retrieved=20
->> and
->>  attached to the struct device, and then the children devices will be
->>  probed: the watchdog device, the PWM device, the OST device. These=20
->> three
->>  will retrieve the regmap by calling dev_get_regmap(dev->parent,=20
->> NULL).
+On Mon, Jun 10, 2019 at 03:49:03PM +0530, Nagarjuna Kristam wrote:
+> On Tegra210, usb2 only otg/peripheral ports dont work in device mode.
+> They need an assosciated usb3 port to work in device mode. Identify
+> an unused usb3 port and assign it as a fake USB3 port to USB2 only
+> port whose mode is otg/peripheral.
 >=20
-> That makes sense.
+> Based on work by BH Hsieh <bhsieh@nvidia.com>.
 >=20
-> This explanation certainly belongs in the commit log.
+> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+> ---
+>  drivers/phy/tegra/xusb-tegra210.c | 56 +++++++++++++++++++++++++++++++++
+>  drivers/phy/tegra/xusb.c          | 65 +++++++++++++++++++++++++++++++++=
+++++++
+>  drivers/phy/tegra/xusb.h          |  2 ++
+>  3 files changed, 123 insertions(+)
 
-Right.
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-> Can you send your v14, as you intended.  I will re-review it with new
-> eyes when you do.
+--jRHKVT23PllUwdXP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Could you review v13 instead? v14 will be a v13 with tiny teeny
-non-code fixes (delete some newlines, replace %i with %d, and
-convert the documentation from .txt to .rst).
+-----BEGIN PGP SIGNATURE-----
 
->>  > >  > >  +bool ingenic_tcu_pwm_can_use_chn(struct device *dev,=20
->> unsigned
->>  > > int
->>  > >  > > channel)
->>  > >  > >  +{
->>  > >  > >  +	const struct ingenic_soc_info *soc =3D
->>  > >  > > device_get_match_data(dev->parent);
->>  > >  > >  +
->>  > >  > >  +	/* Enable all TCU channels for PWM use by default except
->>  > > channels
->>  > >  > > 0/1 */
->>  > >  > >  +	u32 pwm_channels_mask =3D GENMASK(soc->num_channels - 1,=20
->> 2);
->>  > >  > >  +
->>  > >  > >  +	device_property_read_u32(dev->parent,
->>  > > "ingenic,pwm-channels-mask",
->>  > >  > >  +				 &pwm_channels_mask);
->>  >
->>  > Doesn't this call overwrite the previous assignment above?
->>=20
->>  Yes, that's intended. You have a default value, that can be=20
->> overriden
->>  by a device property.
->=20
-> You should provide a comment here to make your intentions clear.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0UipMACgkQ3SOs138+
+s6Hecg/+JCCGEunVOF6lHr9nPIXV42u9d0szF6m1qKtcHCVItNkzqPKrOu4f3UrD
+b/tj93rC6g5qp1SWgv/APmLDb5jwi8enZOrXBsffw8wVnxzYgQ6XInIIY2v4Jkvr
+3hFEvAfsIZoDVmEMVTSxMqCMxgixKvEvURD8NPw367PSt1+K/OCpFAiFZpADmov9
+x8HHQPyD/GjNk4bhrP9XfZYErApF60JKiSq7J8dke/VH/hH97b0Wb8s4k5hCzDsv
+cWYClQEvIAzwM0g8NwuRqxAi07qlZsaBoOtX53MysagRjuUbv7yO706qGlcUpsen
+SEICZIR68OSx4iCcAcFfFvMPjOy3JwUYZI8PTO05PISKp+jdRzyDO+da2rQrYzkH
+X/Wb8TKYUE+otEH+PmQ+Rf/9yks1vTWCdkPN9JbsDVpHYBuoaVCrxel0h5WwRBVk
+yXR/t5qKEX0t5IapnISMrZNf+o5kGMl/jDV9OWZyG/Z1XCvNCxss1sQHFu6qffqT
+TR02FMqBYbkMnWaPBxgWYk7IgJhHs0/dKakgzRedjLVyrZXC+uV+KXnUdu7oNgy+
+6HQJg3ML4OjoXhzdDAxyGkb0dvP8YKckpBhZUdYVBihVglhPAgc26mKxOXmNi1yp
+7jLPGQItg2J3Fp1Qb5EIIhjHnrYIkM6kD0uRRj9uvxBpAlpAifw=
+=fS/u
+-----END PGP SIGNATURE-----
 
-Ok.
-
->>  > >  > >  +	return !!(pwm_channels_mask & BIT(channel));
->>  > >  > >  +}
->>  > >  > >  +EXPORT_SYMBOL_GPL(ingenic_tcu_pwm_can_use_chn);
->>  >
->>  > Where is this called from?
->>=20
->>  This is called from the PWM driver.
->=20
-> Why can't it live in the PWM driver?
-
-It totally can. I'll move it there.
-
->=20
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Linaro Services Technical Lead
-> Linaro.org =E2=94=82 Open source software for ARM SoCs
-> Follow Linaro: Facebook | Twitter | Blog
-
-=
-
+--jRHKVT23PllUwdXP--
