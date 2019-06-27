@@ -2,53 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B3958CED
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 23:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6367158EC2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 01:49:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbfF0VRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 17:17:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53348 "EHLO mail.kernel.org"
+        id S1726859AbfF0Xtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 19:49:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34384 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726595AbfF0VRe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 17:17:34 -0400
+        id S1726563AbfF0Xtb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 19:49:31 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BAF71208CB;
-        Thu, 27 Jun 2019 21:17:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B78E520815;
+        Thu, 27 Jun 2019 23:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561670253;
-        bh=tjUVhNwUylYppI6L6ObcmsGvQ+mV0tCzi7qFIIABWjY=;
+        s=default; t=1561679369;
+        bh=DPfoFDaQ0osnbl2xTlc3KM41TZ8uixeInq46nR6zOn8=;
         h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=aWl5mqAk/vpVHjuT4R7MHOR602Sabl1/FTGMf9lDfznlYJKf/cslkrOdOoRm2rFBh
-         EC9vqz3p0DLCo95kIUJnNUlhQATKxV3UoWXeJZEz4YGYGVP6fThubszzVZ8tsVayD1
-         Rc/7iZEs4/VddxPSRsOK7+gi5DGcxUSnPseEA674=
+        b=IrbogHQm/l14pPv3a7QeEDVXQO+JiyRJfBAx8wE5snW7UwJrjnxkFdi9V7lmzOrEI
+         Po5a7CnbBM7me/pNjIdZI04CJsyHvfrzlPfc/a2oGLR6ITPsI+ae6RjFZEeC2G5GqO
+         XJhBZob3sGfJRIJcZsst0xI8yhZJf56ux8RpTtHQ=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190627085517.17587-1-ckeepax@opensource.cirrus.com>
-References: <20190627085517.17587-1-ckeepax@opensource.cirrus.com>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>,
-        mturquette@baylibre.com
+In-Reply-To: <20190625005434.GA6401@onstation.org>
+References: <20190516085018.2207-1-masneyb@onstation.org> <20190520142149.D56DA214AE@mail.kernel.org> <CACRpkdZxu1LfK11OHEx5L_4kyjMZ7qERpvDzFj5u3Pk2kD1qRA@mail.gmail.com> <20190529101231.GA14540@basecamp> <CACRpkdY-TcF7rizbPz=UcHrFvDgPJD68vbovNdcWP-aBYppp=g@mail.gmail.com> <20190623105332.GA25506@onstation.org> <CACRpkdYTaM+sBs-bhaXVtAwFtp6+_PWWJ_k9jobd7qB41HubDg@mail.gmail.com> <20190625005434.GA6401@onstation.org>
+To:     Brian Masney <masneyb@onstation.org>,
+        Linus Walleij <linus.walleij@linaro.org>
 From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH] clk: lochnagar: Update DT binding doc to include the primary SPDIF MCLK
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@opensource.cirrus.com
+Subject: Re: [PATCH RESEND] ARM: dts: qcom: msm8974-hammerhead: add device tree bindings for vibrator
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 User-Agent: alot/0.8.1
-Date:   Thu, 27 Jun 2019 14:17:33 -0700
-Message-Id: <20190627211733.BAF71208CB@mail.kernel.org>
+Date:   Thu, 27 Jun 2019 16:49:28 -0700
+Message-Id: <20190627234929.B78E520815@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Charles Keepax (2019-06-27 01:55:17)
-> This clock was missed when the binding was initially merged but is
-> supported by the driver, so add it to the binding document.
+Quoting Brian Masney (2019-06-24 17:54:34)
+> On Tue, Jun 25, 2019 at 12:29:29AM +0200, Linus Walleij wrote:
+> > On Sun, Jun 23, 2019 at 12:53 PM Brian Masney <masneyb@onstation.org> w=
+rote:
+> >=20
+> > > 2) Do what Linus suggests above. We can use v1 of this series from la=
+st
+> > >    September (see below for link) that adds this to the pwm subsystem.
+> > >    The locking would need to be added so that it won't conflict with =
+the
+> > >    clk subsystem. This can be tied into the input subsystem with the
+> > >    existing pwm-vibra driver.
+> >=20
+> > What I imagined was that the clk driver would double as a pwm driver.
+> > Just register both interfaces.
+> >=20
+> > There are already plenty of combines clk+reset drivers for example.
+> >=20
+> > Otherwise I'm all for this approach (but that's just me).
 >=20
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> ---
+> I agree that this makes sense. I especially like that it'll allow us
+> to use the existing pwm-vibra driver in the input subsystem with this
+> approach.
+>=20
 
-Applied to clk-next
+This whole discussion is ignoring that clk_set_duty_cycle() exists.
+Maybe you can look back on the history of why the duty cycle API was
+added to the clk framework to make a strong argument for the replacement
+of this API with your proposal of registering to two different
+frameworks instead?
+
+Here's the first few parts of the commit text of 9fba738a53dd ("clk: add
+duty cycle support"):
+
+    Add the possibility to apply and query the clock signal duty cycle rati=
+o.
+
+    This is useful when the duty cycle of the clock signal depends on some
+    other parameters controlled by the clock framework.
+
+    For example, the duty cycle of a divider may depends on the raw divider
+    setting (ratio =3D N / div) , which is controlled by the CCF. In such c=
+ase,
+    going through the pwm framework to control the duty cycle ratio of this
+    clock would be a burden.
+
+In the case of qcom clks, I seem to recall the frequency of the clk
+depends on the duty cycle settings. The duty cycle is constrained by the
+M/N values which determine the frequency of the clk after it's
+pre-divided. We did some sort of bit trick to set the duty cycle to the
+N value inverted or something so that we always got 50% duty cycle.
 
