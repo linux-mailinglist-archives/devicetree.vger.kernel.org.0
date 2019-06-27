@@ -2,58 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8411C581BE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 13:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 101A858231
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 14:09:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726443AbfF0LjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 07:39:08 -0400
-Received: from muru.com ([72.249.23.125]:53712 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726375AbfF0LjI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 07:39:08 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 43780805C;
-        Thu, 27 Jun 2019 11:39:30 +0000 (UTC)
-Date:   Thu, 27 Jun 2019 04:39:04 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Faiz Abbas <faiz_abbas@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, robertcnelson@gmail.com
-Subject: Re: [PATCH] ARM: dts: am57xx: Disable voltage switching for SD card
-Message-ID: <20190627113904.GI5447@atomide.com>
-References: <20190619102454.5097-1-faiz_abbas@ti.com>
+        id S1726375AbfF0MJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 08:09:36 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:38202 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726445AbfF0MJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 08:09:36 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5RC978P027890;
+        Thu, 27 Jun 2019 14:09:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=YhbGT74N+NBt7diBF1bSd0/WlzOVPJg/StbhMe0pCCw=;
+ b=q1ldMIaPhSmX9byvqp4QjPhafsAc0jBnCLQFu9stlJliO/Td13SvJLIUUniXG9EHj3CZ
+ 9FPZV/Ar7YAXvuL+6rusfmbFvory1CaV5/cMKMyeatIWVpR4lrTxcSJFH5M9p4WYO2gx
+ M1Gz9qYpctH25Gp40FGgB69z1K9yF3cPIdyBwHxUUItx5DC+q+DfAnBy+NMQFKRCRfiB
+ fQNt965WFpbhky6Hr1M0dRlSbNgIHh7ytbirl2OFQuxxL6enhebbN8ohh5pQ0Bkc9rdm
+ vJHx21hn79dGR4pAIb3oGqFi7DkC13bP+ZS59qcbmsl4xIIg15RIhUDxcCBfCySY3pnQ iQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2t9d2jy4j5-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Thu, 27 Jun 2019 14:09:24 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 44D5B49;
+        Thu, 27 Jun 2019 12:09:23 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 19A7F272F;
+        Thu, 27 Jun 2019 12:09:23 +0000 (GMT)
+Received: from SAFEX1HUBCAS22.st.com (10.75.90.93) by SAFEX1HUBCAS21.st.com
+ (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 27 Jun
+ 2019 14:09:23 +0200
+Received: from lmecxl0923.lme.st.com (10.48.0.237) by Webmail-ga.st.com
+ (10.75.90.48) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 27 Jun
+ 2019 14:09:22 +0200
+From:   Ludovic Barre <ludovic.Barre@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Ludovic Barre <ludovic.barre@st.com>
+Subject: [PATCH] ARM: dts: stm32: activate dma for qspi on stm32mp157
+Date:   Thu, 27 Jun 2019 14:09:05 +0200
+Message-ID: <1561637345-31441-1-git-send-email-ludovic.Barre@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190619102454.5097-1-faiz_abbas@ti.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.237]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-27_07:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Faiz Abbas <faiz_abbas@ti.com> [190619 03:25]:
-> If UHS speed modes are enabled, a compatible SD card switches down to
-> 1.8V during enumeration. If after this a software reboot/crash takes
-> place and on-chip ROM tries to enumerate the SD card, the difference in
-> IO voltages (host @ 3.3V and card @ 1.8V) may end up damaging the card.
-> 
-> The fix for this is to have support for power cycling the card in
-> hardware (with a PORz/soft-reset line causing a power cycle of the
-> card). Because the beaglebone X15 (rev A,B and C), am57xx-idks and
-> am57xx-evms don't have this capability, disable voltage switching for
-> these boards.
-> 
-> The major effect of this is that the maximum supported speed
-> mode is now high speed(50 MHz) down from SDR104(200 MHz).
-> 
-> commit 88a748419b84 ("ARM: dts: am57xx-idk: Remove support for voltage
-> switching for SD card") did this only for idk boards. Do it for all
-> affected boards.
+From: Ludovic Barre <ludovic.barre@st.com>
 
-Thanks applying into fixes.
+This patch activates dma for qspi on stm32mp157.
 
-Regards,
+Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+---
+ arch/arm/boot/dts/stm32mp157c.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Tony
+diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
+index 2afeee6..205ea1d 100644
+--- a/arch/arm/boot/dts/stm32mp157c.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c.dtsi
+@@ -1074,6 +1074,9 @@
+ 			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
+ 			reg-names = "qspi", "qspi_mm";
+ 			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&mdma1 22 0x10 0x100002 0x0 0x0>,
++			       <&mdma1 22 0x10 0x100008 0x0 0x0>;
++			dma-names = "tx", "rx";
+ 			clocks = <&rcc QSPI_K>;
+ 			resets = <&rcc QSPI_R>;
+ 			status = "disabled";
+-- 
+2.7.4
+
