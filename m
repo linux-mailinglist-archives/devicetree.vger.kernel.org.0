@@ -2,81 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77D9E58ADC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 21:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D17A958AE5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 21:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726506AbfF0TRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 15:17:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38562 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726384AbfF0TRx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 15:17:53 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4119B216E3;
-        Thu, 27 Jun 2019 19:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561663073;
-        bh=jVA4VB9s5NNy9GIAi2iskWf5Auj5Utva7w73gHJYNuA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Ae4utuPSQV3RWm09jXUtYypQOUgcyxetwsNCrFA24+VnggTEpoFKEvr0UyFZmkJL7
-         s6tzk/zlkcFOBr6INX6mshjna79/iSbjeSCbX3mHV36qVnXrlAJWLc+zy3nhGp2Npe
-         pH18Ipb481m/RGHEM6joBPRqQ66+BtHmh6V6WpUY=
-Received: by mail-qk1-f171.google.com with SMTP id m14so2724914qka.10;
-        Thu, 27 Jun 2019 12:17:53 -0700 (PDT)
-X-Gm-Message-State: APjAAAVIsb8IauMx5YZNX6ZzqwNmjhVCbucqKcOjp9WO0PumuXDrludc
-        UvN1BycspAojJ1//j9p6BAcg7IWOgfy26VeiqQ==
-X-Google-Smtp-Source: APXvYqwMe03fvIIa3Mb5qmrWDe/3LSiR1s/xQeMGkTRSxCRPlyYgVVQQnPRou7SUsvG7QpKsbJzlqXNsXyomtemEUa0=
-X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr5051184qkl.254.1561663072405;
- Thu, 27 Jun 2019 12:17:52 -0700 (PDT)
+        id S1726426AbfF0TUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 15:20:38 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:6906 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726384AbfF0TUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 15:20:38 -0400
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5RJGYtu093530
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 15:20:37 -0400
+Received: from e35.co.us.ibm.com (e35.co.us.ibm.com [32.97.110.153])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2td1tcdqa2-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 15:20:30 -0400
+Received: from localhost
+        by e35.co.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <eajames@linux.ibm.com>;
+        Thu, 27 Jun 2019 20:19:54 +0100
+Received: from b03cxnp08027.gho.boulder.ibm.com (9.17.130.19)
+        by e35.co.us.ibm.com (192.168.1.135) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Thu, 27 Jun 2019 20:19:50 +0100
+Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x5RJJnLr61145392
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 27 Jun 2019 19:19:50 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id DB5A9136053;
+        Thu, 27 Jun 2019 19:19:49 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id B900213604F;
+        Thu, 27 Jun 2019 19:19:48 +0000 (GMT)
+Received: from [9.85.237.135] (unknown [9.85.237.135])
+        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Thu, 27 Jun 2019 19:19:48 +0000 (GMT)
+Subject: Re: [PATCH v3 1/8] dt-bindings: soc: Add Aspeed XDMA engine binding
+ documentation
+To:     Andrew Jeffery <andrew@aj.id.au>, linux-aspeed@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, Joel Stanley <joel@jms.id.au>
+References: <1559153408-31190-1-git-send-email-eajames@linux.ibm.com>
+ <1559153408-31190-2-git-send-email-eajames@linux.ibm.com>
+ <58b74556-cbf0-4da2-9392-4c4ac40ad760@www.fastmail.com>
+From:   Eddie James <eajames@linux.ibm.com>
+Date:   Thu, 27 Jun 2019 14:19:47 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <cover.e80da8845680a45c2e07d5f17280fdba84555b8a.1561649505.git-series.maxime.ripard@bootlin.com>
- <20190627.102256.1839462093915893704.davem@davemloft.net>
-In-Reply-To: <20190627.102256.1839462093915893704.davem@davemloft.net>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 27 Jun 2019 13:17:40 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ9VtRv6QKuPO9kXst61ndG1UNBnx8qMkkv879GG7JTXg@mail.gmail.com>
-Message-ID: <CAL_JsqJ9VtRv6QKuPO9kXst61ndG1UNBnx8qMkkv879GG7JTXg@mail.gmail.com>
-Subject: Re: [PATCH v4 00/13] net: Add generic and Allwinner YAML bindings
-To:     David Miller <davem@davemloft.net>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <58b74556-cbf0-4da2-9392-4c4ac40ad760@www.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-TM-AS-GCONF: 00
+x-cbid: 19062719-0012-0000-0000-00001749ABD0
+X-IBM-SpamModules-Scores: 
+X-IBM-SpamModules-Versions: BY=3.00011342; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000286; SDB=6.01224131; UDB=6.00644264; IPR=6.01005319;
+ MB=3.00027493; MTD=3.00000008; XFM=3.00000015; UTC=2019-06-27 19:19:53
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19062719-0013-0000-0000-000057DB5727
+Message-Id: <c8d80e9a-6fa9-aa57-3b5f-e20b20dd0f66@linux.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-27_13:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1906270220
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 27, 2019 at 11:22 AM David Miller <davem@davemloft.net> wrote:
->
-> From: Maxime Ripard <maxime.ripard@bootlin.com>
-> Date: Thu, 27 Jun 2019 17:31:42 +0200
->
-> > This is an attempt at getting the main generic DT bindings for the ethernet
-> > (and related) devices, and convert some DT bindings for the Allwinner DTs
-> > to YAML as well.
-> >
-> > This should provide some DT validation coverage.
->
-> I don't think this should go via my tree as it's all DT stuff.
 
-That's fine. I can take it. There's one conflict with commit
-79b647a0c0d5 ("dt-bindings: net: document new usxgmii phy mode"), but
-that's easy enough to handle. Any other changes to the binding docs
-will need to go thru me this cycle.
+On 5/30/19 12:30 AM, Andrew Jeffery wrote:
+>
+> On Thu, 30 May 2019, at 03:40, Eddie James wrote:
+>> Document the bindings.
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>>   .../devicetree/bindings/soc/aspeed/xdma.txt        | 23 ++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+>> b/Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+>> new file mode 100644
+>> index 0000000..85e82ea
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+>> @@ -0,0 +1,23 @@
+>> +* Device tree bindings for the Aspeed XDMA Engine
+>> +
+>> +The XDMA Engine embedded in the AST2500 SOC can perform automatic DMA
+>> +operations over PCI between the AST2500 (acting as a BMC) and a host
+>> processor.
+>> +
+>> +Required properties:
+>> +
+>> + - compatible		"aspeed,ast2500-xdma"
+>> + - reg			contains the offset and length of the memory region
+>> +			assigned to the XDMA registers
+>> + - resets		reset specifier for the syscon reset associated with
+>> +			the XDMA engine
+>> + - interrupts		the interrupt associated with the XDMA engine on this
+>> +			platform
+> The indentation is quite distracting. If you rev the series can you fix it?
 
-Rob
+
+I think the diff is throwing it off; it all lines up when applied.
+
+Thanks,
+
+Eddie
+
+
+>
+> Otherwise,
+>
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+>
+>> +
+>> +Example:
+>> +
+>> +    xdma@1e6e7000 {
+>> +        compatible = "aspeed,ast2500-xdma";
+>> +        reg = <0x1e6e7000 0x100>;
+>> +        resets = <&syscon ASPEED_RESET_XDMA>;
+>> +        interrupts = <6>;
+>> +    };
+>> -- 
+>> 1.8.3.1
+>>
+>>
+
