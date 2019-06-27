@@ -2,148 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CDF2589A3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 20:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9F8589C4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 20:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726616AbfF0SQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 14:16:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47568 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726508AbfF0SQi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 14:16:38 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726620AbfF0SWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 14:22:06 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:43574 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726508AbfF0SWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 14:22:06 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 37A1060A0A; Thu, 27 Jun 2019 18:22:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1561659726;
+        bh=L4rcvZr/+aW0fXo6jf8y6SY/AYN6T06PMSeRbTAx/RQ=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=bz9ZvbKk+19cPUYMoVAHtGANzVgSuBRp/ozL/ndHQM3D8RVuuxcyw0hTF86WXXS6h
+         9++uVXYO49wWWrosmRXwMNfFrXvbdoXXQFNHytkfUTh7AqWIurHlJvAFBxGMSl+gX4
+         iwuMbPOmm7qrzRH2MOeyYiNBi5yJumE/Ks0JAHMk=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.100] (unknown [157.45.87.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5EA752064A;
-        Thu, 27 Jun 2019 18:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561659396;
-        bh=2oWUiLUFI+CqOolaOKVa4jJ21rR9UR/fuLhE4nLYjdw=;
-        h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
-        b=zM1PuCQOlI4msEkFixz730kc8/zFbvwJnRkqkjMyx+3IZ/8lQrJkX5bjK8+tcjTpD
-         9YTsqw4mLY9MvEtPAy8WslYPIgMqfSsLuNDFSuTYyeTtiNsbbEN2c2e7JVMq1S+AoJ
-         JJirWvQWTUXBy4OsdUUrOSg+eULRykDPesnCIHuI=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAFd5g46zHAupdUh3wDuqPJti2M+_=oje_5weFe7AVLQfkDDM6A@mail.gmail.com>
-References: <20190617082613.109131-1-brendanhiggins@google.com> <20190617082613.109131-2-brendanhiggins@google.com> <20190620001526.93426218BE@mail.kernel.org> <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com> <20190626034100.B238520883@mail.kernel.org> <CAFd5g46zHAupdUh3wDuqPJti2M+_=oje_5weFe7AVLQfkDDM6A@mail.gmail.com>
-To:     Brendan Higgins <brendanhiggins@google.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        Theodore Ts'o <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C9AB56021C;
+        Thu, 27 Jun 2019 18:21:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1561659725;
+        bh=L4rcvZr/+aW0fXo6jf8y6SY/AYN6T06PMSeRbTAx/RQ=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=EZDHDrlLSCTmFKqx3BjfzxaFmF3ZfvGKnPZ5oWdKl9PIvqN5VaMsgsaMgh86g7I3E
+         rmbmn62Xl/6Z7nbfE7QJri2QUjRtXObt411a6Tv3fJOospRRPIYZFancWErn1IpP6R
+         4EcuZvfI5z8eOvnDDh7F44ysWsqGuVtl6bbrle7g=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C9AB56021C
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+Subject: Re: [RESEND PATCHv4 1/1] coresight: Do not default to CPU0 for
+ missing CPU phandle
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Leo Yan <leo.yan@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        David Brown <david.brown@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-User-Agent: alot/0.8.1
-Date:   Thu, 27 Jun 2019 11:16:35 -0700
-Message-Id: <20190627181636.5EA752064A@mail.kernel.org>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <cover.1561610498.git.saiprakash.ranjan@codeaurora.org>
+ <0a20cf9eb34b14a191381af98af1694bbc222734.1561610498.git.saiprakash.ranjan@codeaurora.org>
+ <CANLsYkyaeroow1dRaffy5pxSCH7ocb9=EMeZeSjgpjDWXu18vg@mail.gmail.com>
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Message-ID: <0e33a1f2-f535-91e3-635d-dc8852833a0b@codeaurora.org>
+Date:   Thu, 27 Jun 2019 23:51:56 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <CANLsYkyaeroow1dRaffy5pxSCH7ocb9=EMeZeSjgpjDWXu18vg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-06-26 16:00:40)
-> On Tue, Jun 25, 2019 at 8:41 PM Stephen Boyd <sboyd@kernel.org> wrote:
->=20
-> > scenario like below, but where it is a problem. There could be three
-> > CPUs, or even one CPU and three threads if you want to describe the
-> > extra thread scenario.
-> >
-> > Here's my scenario where it isn't needed:
-> >
-> >     CPU0                                      CPU1
-> >     ----                                      ----
-> >     kunit_run_test(&test)
-> >                                               test_case_func()
-> >                                                 ....
-> >                                               [mock hardirq]
-> >                                                 kunit_set_success(&test)
-> >                                               [hardirq ends]
-> >                                                 ...
-> >                                                 complete(&test_done)
-> >       wait_for_completion(&test_done)
-> >       kunit_get_success(&test)
-> >
-> > We don't need to care about having locking here because success or
-> > failure only happens in one place and it's synchronized with the
-> > completion.
->=20
-> Here is the scenario I am concerned about:
->=20
-> CPU0                      CPU1                       CPU2
-> ----                      ----                       ----
-> kunit_run_test(&test)
->                           test_case_func()
->                             ....
->                             schedule_work(foo_func)
->                           [mock hardirq]             foo_func()
->                             ...                        ...
->                             kunit_set_success(false)   kunit_set_success(=
-false)
->                           [hardirq ends]               ...
->                             ...
->                             complete(&test_done)
->   wait_for_completion(...)
->   kunit_get_success(&test)
->=20
-> In my scenario, since both CPU1 and CPU2 update the success status of
-> the test simultaneously, even though they are setting it to the same
-> value. If my understanding is correct, this could result in a
-> write-tear on some architectures in some circumstances. I suppose we
-> could just make it an atomic boolean, but I figured locking is also
-> fine, and generally preferred.
+On 6/27/2019 10:54 PM, Mathieu Poirier wrote:
+> 
+> I want to apply your code to my tree but it isn't easy for me to do
+> so.  Did you notice the checkpatch.pl warning about the DT bindings
+> being in a separate patch?  In this case it is not a new binding but
+> following the process gives the DT maintainers the opportunity to at
+> least look at your patch.  Because the changes are trivial they may
+> decide to ignore it but that choice it theirs to make.
+> 
 
-This is what we have WRITE_ONCE() and READ_ONCE() for. Maybe you could
-just use that in the getter and setters and remove the lock if it isn't
-used for anything else.
+Hmm, git log on coresight dt-bindings showed some examples like
+this where bindings were updated in the same patch.
 
-It may also be a good idea to have a kunit_fail_test() API that fails
-the test passed in with a WRITE_ONCE(false). Otherwise, the test is
-assumed successful and it isn't even possible for a test to change the
-state from failure to success due to a logical error because the API
-isn't available. Then we don't really need to have a generic
-kunit_set_success() function at all. We could have a kunit_test_failed()
-function too that replaces the kunit_get_success() function. That would
-read better in an if condition.
+Anyways, I have separated out the patch now and resent v5.
 
->=20
-> Also, to be clear, I am onboard with dropping then IRQ stuff for now.
-> I am fine moving to a mutex for the time being.
->=20
+Thanks,
+Sai
 
-Ok.
-
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
