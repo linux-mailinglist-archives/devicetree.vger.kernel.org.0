@@ -2,81 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E7A9578D4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 03:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37018578D9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 03:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726502AbfF0BCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 21:02:24 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:45631 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbfF0BCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 21:02:24 -0400
-Received: by mail-io1-f67.google.com with SMTP id e3so903539ioc.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 18:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=LukHuzspVdtsbWmPrQxtJofMfIkJuuBn4KLHq+hXvnA=;
-        b=S+FOaFSkDCDJ8fulPJ2UtIixLPm6C3blKm64Y26FpWliH1L0Kug+UoWJSnPzdI0Hcj
-         WIpQSV5+lHeemPxtT7Xcm9l2PGDireS9Cy5y9WyCF6nc8MvNf86DT26n4Uj7szEVflXK
-         7TdcSck6au5p+xNo79U3stPs5H1RUiTS20Kh1vpGpP8BZLL1aurZbclNgue4GAr053eG
-         IbbEFmsd4K4jnK/HKIBOTzUgeV8PgouYszZgI9mVl29aXMFMCPbfE0b+q6K1Srmh1sdH
-         CjXuVDZOcP7s9hMhGovvS1kStrCycR0lygvxsnRqkr3dk1iFcCEqAziHpxKtYM1HyLRb
-         9oCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=LukHuzspVdtsbWmPrQxtJofMfIkJuuBn4KLHq+hXvnA=;
-        b=JTsm/FVRLB+WBvkYNPshZPxi2e3VrUPKt7zc3Gpg+1ZL8ti4GqDsEVNFViTgMsPAkb
-         kZ0Z6kkvu0PfAJrFFAalqLaBdO/0NGh2/pvyLT3Vr3BGCLI1R6jNot5/gqvz2OmLC6O+
-         U7nDPoOdTIjthiak5X7D8ydQJQgFt9yqgJiTmqyzsi4Xk+Ag8ytWk1pIFxgXBVlyAEVS
-         iR3SFnEJHfgYbLdZYbK/oxPl6Wnx6Gyha8v1m1Olx9GzVgLaCUUT3fIr2Um7KpS4WOsm
-         iCQoRsg5qEP6vqNs4fdF7IPTAvJAqJ23ubVqfnJ4HTe5AomVr1A29pUlHjK9gGQl9fQe
-         00/A==
-X-Gm-Message-State: APjAAAVoDuxhq6PYJbICo8WHiJTP7emCgxkesDXYd9O65p7gYu0pjYke
-        BzcWBeyyh3kHR35DOGhWSbiFSw==
-X-Google-Smtp-Source: APXvYqxH6d/kyIhVX9FR3/pclmA0eMPc/eQpoi25e5p7JBHqOX5DR5DbYu4JLM1fBKxoY3ScgDchXQ==
-X-Received: by 2002:a6b:f711:: with SMTP id k17mr1267637iog.273.1561597343694;
-        Wed, 26 Jun 2019 18:02:23 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id p10sm1457892iob.54.2019.06.26.18.02.23
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 26 Jun 2019 18:02:23 -0700 (PDT)
-Date:   Wed, 26 Jun 2019 18:02:22 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Rob Herring <robh@kernel.org>
-cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH] dt-bindings: arm: Limit cpus schema to only check Arm
- 'cpu' nodes
-In-Reply-To: <20190627000044.12739-1-robh@kernel.org>
-Message-ID: <alpine.DEB.2.21.9999.1906261759390.29311@viisi.sifive.com>
-References: <20190627000044.12739-1-robh@kernel.org>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        id S1726836AbfF0BIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 21:08:48 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:51011 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726748AbfF0BIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 21:08:48 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C99512212;
+        Wed, 26 Jun 2019 21:08:46 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 26 Jun 2019 21:08:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=ZiI3xxfYKmvDILJvqB7fVk8L/I2NP9d
+        zhcO3iE+B9zo=; b=BrQd3vXrWK9cQIP8itJI4yLnYhOACmlwPP91fUYKHYbtLHN
+        0ogcNMGV9W8splCz6t+XZdCMVtGizKYBnKF6spbmNMI1eNJ6r+zmg0k/+6d1W4q7
+        +k6I7itFCu1bItE/yvKsMYtBMQbyf7ltQhuQNYElu9gTFj+zsRAICpm4ZS3tjhSO
+        8KyHLX8mudpz7eKttQhCLCyBwkrhEGeoJnAWoKEEPhEBLvIUpP4H96wTd8IEJ2ZZ
+        LX5xaOVrj7Rhsd0+tt7yoGhVBceeevSXkUP0PmG4wUmk0duMN1c4jl9K34kW1Pta
+        3zBsro14GpbO11VWv70wehz/6gPZQ0EQNjl1Piw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=ZiI3xx
+        fYKmvDILJvqB7fVk8L/I2NP9dzhcO3iE+B9zo=; b=x28MdS6aAMJjnWtjtB7WWg
+        2siByivl2x8w5XEtXmNUvuYl+f7lY2HcDQ86cOF1asYgl4kcNcg1cZt4i7zxB5jt
+        QLsmQfxgwN/OVfIho5k3aZXV16b3jTI9CGMsq+mLV2Mw+Cru7l+nAhf6g6scykvS
+        CyOmU//+0e1r94HNCD1RhlilF5TDfmJxqfxE6RufpkkVCZOakaa4O1t0F9bog91/
+        dsylEeldN0KuO6YCmLCDGMdG5MVJSV7fIU6bJdjmwrepQbWMvRtZOsjWqPt5BYIe
+        Tr2y1WFdqUMW48LKh7xQOcYHCDELGsFjj0dIFABn9Z9DM3Z8p7qh4W+IeQt01QsA
+        ==
+X-ME-Sender: <xms:HBcUXX9FfhoRdrZDn36epoq77XF1EsuU37NtY6YFC6mM-c415dWkyg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudejgdeggecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
+    ufhiiigvpedt
+X-ME-Proxy: <xmx:HBcUXUa9j9KOY8Ak6gZmtFfiRtd6UUY3gCF_-AYMovCK0o5If44DJQ>
+    <xmx:HBcUXQHivyoiGtCZ9rm7PPsGCC4-WmZYREdnJi8mTclO6S1TV9k9Yw>
+    <xmx:HBcUXTfyfDK7LxhQ-rnDeLeXIxlh1SBIgW46klopWxzc6IF3JiH6uQ>
+    <xmx:HhcUXdmMuLkZk_6WEw1ZXYe924zdtpZ1RXGCq9Fe19peV19V36hFLw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id CAAE4E00A2; Wed, 26 Jun 2019 21:08:44 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-730-g63f2c3b-fmstable-20190622v1
+Mime-Version: 1.0
+Message-Id: <fa54f9a1-481e-4146-a4c2-7c43cf9a26e8@www.fastmail.com>
+In-Reply-To: <CACRpkdboxjMmeb8feffyG5JJ7fGPR6hqC8sc+XV5We3TC__LXg@mail.gmail.com>
+References: <20190626071430.28556-1-andrew@aj.id.au>
+ <CACRpkdboxjMmeb8feffyG5JJ7fGPR6hqC8sc+XV5We3TC__LXg@mail.gmail.com>
+Date:   Thu, 27 Jun 2019 10:38:44 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Linus Walleij" <linus.walleij@linaro.org>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org,
+        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/8] pinctrl: aspeed: Preparation for AST2600
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jun 2019, Rob Herring wrote:
 
-> Matching on the 'cpus' node was a bad choice because the schema is
-> incorrectly applied to non-Arm cpus nodes. As we now have a common cpus
-> schema which checks the general structure, it is also redundant to do so
-> in the Arm CPU schema.
+
+On Wed, 26 Jun 2019, at 17:25, Linus Walleij wrote:
+> On Wed, Jun 26, 2019 at 9:15 AM Andrew Jeffery <andrew@aj.id.au> wrote:
 > 
-> The downside is one could conceivably mix different architecture's cpu
-> nodes or have typos in the compatible string. The latter problem pretty
-> much exists for every schema.
+> > The ASPEED AST2600 is in the pipeline, and we have enough information to start
+> > preparing to upstream support for it. This series lays some ground work;
+> > splitting the bindings and dicing the implementation up a little further to
+> > facilitate differences between the 2600 and previous SoC generations.
+> 
+> All looks good to me, but Rob should have a glance at the DT bindings
+> and YAML syntax before I proceed to apply them.
 
-The RISC-V patch applies cleanly, but this one doesn't apply here on 
-either master or next-20190626.  Is there a different base commit?
+Thanks for the quick review. Rob's responded, looks like I'll need to send a v2 at
+least. Might need a hand sorting out describing generic pinctrl dt bits (subnodes
+with function and group properties).
 
+Cheers,
 
-- Paul
+Andrew
