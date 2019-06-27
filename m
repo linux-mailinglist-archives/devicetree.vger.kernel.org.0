@@ -2,218 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D821658481
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 16:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CACD5584A5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 16:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726669AbfF0OcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 10:32:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34008 "EHLO mail.kernel.org"
+        id S1726702AbfF0Oin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 10:38:43 -0400
+Received: from foss.arm.com ([217.140.110.172]:55674 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726422AbfF0OcZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 10:32:25 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 50A942086D;
-        Thu, 27 Jun 2019 14:32:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561645944;
-        bh=5gJW6fGPom2YZXQO7oraQBq3Ezn53za/ZomUeOryuos=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L84JxVPONwTSWDeE2j2Txu83VK3qGUsMBySI/HbGywHTCcrAsWiftM/7yeAW3kyDy
-         X/dnZasddSr3Kotsqll9NSWUhR8RKxMNh03Y4hMBDc1zsQvCaz/VyWaMCKGcKaB1ok
-         GGelQUWMYzx0Gg6ZfHX71pJuCimyD1IAtW3Bmg/0=
-Received: by mail-qt1-f182.google.com with SMTP id x47so2613264qtk.11;
-        Thu, 27 Jun 2019 07:32:24 -0700 (PDT)
-X-Gm-Message-State: APjAAAWgF5I3NZgYE7IodxLmh6XcQP23xhquQBmYyvjdy7cZCpVhQ13Z
-        dy+Mk7Xgon1z5iLJKnYwdueaJn8xd8FqD55y0w==
-X-Google-Smtp-Source: APXvYqxCriH4LIaua+ro0nEzcOl+UHtCcZ9e0ZZlsjRTUIGNCXkYM/ZEkGcn66TVjEXD/NEZLSfavgIvkuGoTx14AGg=
-X-Received: by 2002:ac8:3908:: with SMTP id s8mr3407669qtb.224.1561645943537;
- Thu, 27 Jun 2019 07:32:23 -0700 (PDT)
+        id S1726431AbfF0Oin (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 10:38:43 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 72489360;
+        Thu, 27 Jun 2019 07:38:42 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DD71B3F246;
+        Thu, 27 Jun 2019 07:38:39 -0700 (PDT)
+Date:   Thu, 27 Jun 2019 15:38:37 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, digetx@gmail.com,
+        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V11 01/12] PCI: Add #defines for some of PCIe spec r4.0
+ features
+Message-ID: <20190627143837.GC3782@e121166-lin.cambridge.arm.com>
+References: <20190624091505.1711-1-vidyas@nvidia.com>
+ <20190624091505.1711-2-vidyas@nvidia.com>
 MIME-Version: 1.0
-References: <20190626071430.28556-1-andrew@aj.id.au> <20190626071430.28556-3-andrew@aj.id.au>
- <CAL_JsqKXPzFYTHos-uvCUtBj-bcsNfrzt5GjxQ=PmgeXpp5J-A@mail.gmail.com> <30d5585b-7591-4149-87c4-816e4c18fb9d@www.fastmail.com>
-In-Reply-To: <30d5585b-7591-4149-87c4-816e4c18fb9d@www.fastmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 27 Jun 2019 08:32:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJo37LQV9WKx_Zqy8KZ52=37TiGcNbFah6MsJmMYP23XA@mail.gmail.com>
-Message-ID: <CAL_JsqJo37LQV9WKx_Zqy8KZ52=37TiGcNbFah6MsJmMYP23XA@mail.gmail.com>
-Subject: Re: [PATCH 2/8] dt-bindings: pinctrl: aspeed: Convert AST2400
- bindings to json-schema
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190624091505.1711-2-vidyas@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 9:55 PM Andrew Jeffery <andrew@aj.id.au> wrote:
->
->
->
-> On Wed, 26 Jun 2019, at 23:17, Rob Herring wrote:
-> > On Wed, Jun 26, 2019 at 1:21 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > > +  The pin controller node should be the child of a syscon node with the
-> > > +  required property:
-> > > +
-> > > +  - compatible:     Should be one of the following:
-> > > +                    "aspeed,ast2400-scu", "syscon", "simple-mfd"
-> > > +                    "aspeed,g4-scu", "syscon", "simple-mfd"
-> > > +
-> > > +  Refer to the the bindings described in
-> > > +  Documentation/devicetree/bindings/mfd/syscon.txt
-> > > +
-> > > +  For the AST2400 pinmux, each mux function has only one associated pin group.
-> > > +  Each group is named by its function. The following values for the function
-> > > +  and groups properties are supported:
-> > > +
-> > > +  ACPI ADC0 ADC1 ADC10 ADC11 ADC12 ADC13 ADC14 ADC15 ADC2 ADC3 ADC4 ADC5 ADC6
-> > > +  ADC7 ADC8 ADC9 BMCINT DDCCLK DDCDAT EXTRST FLACK FLBUSY FLWP GPID GPID0 GPID2
-> > > +  GPID4 GPID6 GPIE0 GPIE2 GPIE4 GPIE6 I2C10 I2C11 I2C12 I2C13 I2C14 I2C3 I2C4
-> > > +  I2C5 I2C6 I2C7 I2C8 I2C9 LPCPD LPCPME LPCRST LPCSMI MAC1LINK MAC2LINK MDIO1
-> > > +  MDIO2 NCTS1 NCTS2 NCTS3 NCTS4 NDCD1 NDCD2 NDCD3 NDCD4 NDSR1 NDSR2 NDSR3 NDSR4
-> > > +  NDTR1 NDTR2 NDTR3 NDTR4 NDTS4 NRI1 NRI2 NRI3 NRI4 NRTS1 NRTS2 NRTS3 OSCCLK
-> > > +  PWM0 PWM1 PWM2 PWM3 PWM4 PWM5 PWM6 PWM7 RGMII1 RGMII2 RMII1 RMII2 ROM16 ROM8
-> > > +  ROMCS1 ROMCS2 ROMCS3 ROMCS4 RXD1 RXD2 RXD3 RXD4 SALT1 SALT2 SALT3 SALT4 SD1
-> > > +  SD2 SGPMCK SGPMI SGPMLD SGPMO SGPSCK SGPSI0 SGPSI1 SGPSLD SIOONCTRL SIOPBI
-> > > +  SIOPBO SIOPWREQ SIOPWRGD SIOS3 SIOS5 SIOSCI SPI1 SPI1DEBUG SPI1PASSTHRU
-> > > +  SPICS1 TIMER3 TIMER4 TIMER5 TIMER6 TIMER7 TIMER8 TXD1 TXD2 TXD3 TXD4 UART6
-> > > +  USB11D1 USB11H2 USB2D1 USB2H1 USBCKI VGABIOS_ROM VGAHS VGAVS VPI18 VPI24
-> > > +  VPI30 VPO12 VPO24 WDTRST1 WDTRST2
-> >
-> > This should be a schema. You need to define child nodes and list these
-> > as values for 'function' and 'group'. Ideally, the child nodes would
-> > have some sort of pattern, but if not, you can just match on '^.*$'
-> > under patternProperties.
->
-> The children don't have any pattern in their node name, which drives
-> me towards the '^.*$' pattern match, however, what I've found is that
-> I get the following errors for some of the relevant dts files:
->
-> ```
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dt.yaml: compatible: ['aspeed,g4-pinctrl'] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dt.yaml: pinctrl-names: ['default'] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dt.yaml: pinctrl-0: [[7, 8, 9, 10, 11, 12]] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dt.yaml: phandle: [[13]] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dt.yaml: $nodename: ['pinctrl'] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-quanta-q71l.dt.yaml: compatible: ['aspeed,g4-pinctrl'] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-quanta-q71l.dt.yaml: pinctrl-names: ['default'] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-quanta-q71l.dt.yaml: pinctrl-0: [[9, 10, 11, 12]] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-quanta-q71l.dt.yaml: phandle: [[13]] is not of type 'object'
-> /home/andrew/src/linux/aspeed/arch/arm/boot/dts/aspeed-bmc-quanta-q71l.dt.yaml: $nodename: ['pinctrl'] is not of type 'object'
-> ```
->
+On Mon, Jun 24, 2019 at 02:44:54PM +0530, Vidya Sagar wrote:
+> Add #defines only for the Data Link Feature and Physical Layer 16.0 GT/s
+> features.
+> 
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes since [v10]:
+> * None
+> 
+> Changes since [v9]:
+> * None
+> 
+> Changes since [v8]:
+> * None
+> 
+> Changes since [v7]:
+> * None
+> 
+> Changes since [v6]:
+> * None
+> 
+> Changes since [v5]:
+> * None
+> 
+> Changes since [v4]:
+> * None
+> 
+> Changes since [v3]:
+> * None
+> 
+> Changes since [v2]:
+> * Updated commit message and description to explicitly mention that defines are
+>   added only for some of the features and not all.
+> 
+> Changes since [v1]:
+> * None
+> 
+>  include/uapi/linux/pci_regs.h | 22 +++++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
 
-The problem is "^.*$" matches both properties and child nodes.
+I need Bjorn's ACK to merge this patch.
 
-> We shouldn't be expecting these properties in the child nodes, so
-> something is busted. Looking at processed-schema.yaml, we have:
->
-> ```
-> - $filename: /home/andrew/src/linux/aspeed/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
->   $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2400-pinctrl.yaml#
->   $schema: http://devicetree.org/meta-schemas/core.yaml#
->   patternProperties:
->     ^.*$:
->       patternProperties:
->         ^function|groups$:
->           allOf:
->           - {$ref: /schemas/types.yaml#/definitions/string}
->           - additionalItems: false
->             items:
->               enum: [ACPI, ADC0, ADC1, ADC10, ADC11, ADC12, ADC13, ADC14, ADC15, ADC2,
->                 ADC3, ADC4, ADC5, ADC6, ADC7, ADC8, ADC9, BMCINT, DDCCLK, DDCDAT,
->                 EXTRST, FLACK, FLBUSY, FLWP, GPID, GPID0, GPID2, GPID4, GPID6, GPIE0,
->                 GPIE2, GPIE4, GPIE6, I2C10, I2C11, I2C12, I2C13, I2C14, I2C3, I2C4,
->                 I2C5, I2C6, I2C7, I2C8, I2C9, LPCPD, LPCPME, LPCRST, LPCSMI, MAC1LINK,
->                 MAC2LINK, MDIO1, MDIO2, NCTS1, NCTS2, NCTS3, NCTS4, NDCD1, NDCD2,
->                 NDCD3, NDCD4, NDSR1, NDSR2, NDSR3, NDSR4, NDTR1, NDTR2, NDTR3, NDTR4,
->                 NDTS4, NRI1, NRI2, NRI3, NRI4, NRTS1, NRTS2, NRTS3, OSCCLK, PWM0,
->                 PWM1, PWM2, PWM3, PWM4, PWM5, PWM6, PWM7, RGMII1, RGMII2, RMII1, RMII2,
->                 ROM16, ROM8, ROMCS1, ROMCS2, ROMCS3, ROMCS4, RXD1, RXD2, RXD3, RXD4,
->                 SALT1, SALT2, SALT3, SALT4, SD1, SD2, SGPMCK, SGPMI, SGPMLD, SGPMO,
->                 SGPSCK, SGPSI0, SGPSI1, SGPSLD, SIOONCTRL, SIOPBI, SIOPBO, SIOPWREQ,
->                 SIOPWRGD, SIOS3, SIOS5, SIOSCI, SPI1, SPI1DEBUG, SPI1PASSTHRU, SPICS1,
->                 TIMER3, TIMER4, TIMER5, TIMER6, TIMER7, TIMER8, TXD1, TXD2, TXD3,
->                 TXD4, UART6, USB11D1, USB11H2, USB2D1, USB2H1, USBCKI, VGABIOS_ROM,
->                 VGAHS, VGAVS, VPI18, VPI24, VPI30, VPO12, VPO24, WDTRST1, WDTRST2]
->             maxItems: 1
->             minItems: 1
->             type: array
->         pinctrl-[0-9]+: true
->       properties: {phandle: true, pinctrl-names: true, status: true}
->       type: object
->     pinctrl-[0-9]+: true
->   properties:
->     $nodename: true
->     compatible:
->       additionalItems: false
->       items:
->       - enum: ['aspeed,ast2400-pinctrl', 'aspeed,g4-pinctrl']
->       maxItems: 1
->       minItems: 1
->       type: array
->     phandle: true
->     pinctrl-names: true
->     status: true
->   required: [compatible]
->   select:
->     properties:
->       compatible:
->         contains:
->           enum: ['aspeed,ast2400-pinctrl', 'aspeed,g4-pinctrl']
->     required: [compatible]
->   title: ASPEED AST2400 Pin Controller
-> ```
->
-> `properties: {phandle: true, pinctrl-names: true, status: true}` has been
-> merged into my '^.*$' patternProperty, presumably partly from
-> pinctrl-consumer.yaml, and this seems to be the source of the bad
-> output. If as a hack I change my pattern to '^.*_default$' the problem
-> goes away as we no longer try to enforce the constraints on properties
-> provided by other bindings, but the problem is the node names are
-> largely freeform[1] (unless I enforce a naming constraint as part of my
-> bindings?).
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt?h=v5.2-rc6#n112
->
-> >
-> > BTW, You can put the names under a 'definitions' key and then use
-> > '$ref' to reference them from function and group to avoid duplicating
-> > the names. Or use patternProperties with '^(function|group)$'.
->
-> I've used the patternProperties approach above as I couldn't get the
-> definitions/$ref approach to work. I did the following:
+Lorenzo
 
-The problem is we'd need to process the schema under definitions. The
-YAML encoding we validate against always encodes strings as arrays as
-dtc has no way of knowing if a given property is a string array or
-single string. So to avoid a bunch of boilerplate in every binding, we
-process the schema to transform single strings into arrays of length
-1.
-
-It's probably best to stick with the patternProperties approach. I
-think you can do something like this:
-
-"^.*$":
-  if:
-    type: object
-  then:
-    patternProperties:
-       '^(function|group)$':
-         ...
-
-I'm not completely certain this works though, so if you can send me an
-updated binding with what you have so far I can test it out.
-
-Rob
+> diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
+> index f28e562d7ca8..1c79f6a097d2 100644
+> --- a/include/uapi/linux/pci_regs.h
+> +++ b/include/uapi/linux/pci_regs.h
+> @@ -713,7 +713,9 @@
+>  #define PCI_EXT_CAP_ID_DPC	0x1D	/* Downstream Port Containment */
+>  #define PCI_EXT_CAP_ID_L1SS	0x1E	/* L1 PM Substates */
+>  #define PCI_EXT_CAP_ID_PTM	0x1F	/* Precision Time Measurement */
+> -#define PCI_EXT_CAP_ID_MAX	PCI_EXT_CAP_ID_PTM
+> +#define PCI_EXT_CAP_ID_DLF	0x25	/* Data Link Feature */
+> +#define PCI_EXT_CAP_ID_PL	0x26	/* Physical Layer 16.0 GT/s */
+> +#define PCI_EXT_CAP_ID_MAX	PCI_EXT_CAP_ID_PL
+>  
+>  #define PCI_EXT_CAP_DSN_SIZEOF	12
+>  #define PCI_EXT_CAP_MCAST_ENDPOINT_SIZEOF 40
+> @@ -1053,4 +1055,22 @@
+>  #define  PCI_L1SS_CTL1_LTR_L12_TH_SCALE	0xe0000000  /* LTR_L1.2_THRESHOLD_Scale */
+>  #define PCI_L1SS_CTL2		0x0c	/* Control 2 Register */
+>  
+> +/* Data Link Feature */
+> +#define PCI_DLF_CAP		0x04	/* Capabilities Register */
+> +#define  PCI_DLF_LOCAL_DLF_SUP_MASK	0x007fffff  /* Local Data Link Feature Supported */
+> +#define  PCI_DLF_EXCHANGE_ENABLE	0x80000000  /* Data Link Feature Exchange Enable */
+> +#define PCI_DLF_STS		0x08	/* Status Register */
+> +#define  PCI_DLF_REMOTE_DLF_SUP_MASK	0x007fffff  /* Remote Data Link Feature Supported */
+> +#define  PCI_DLF_REMOTE_DLF_SUP_VALID	0x80000000  /* Remote Data Link Feature Support Valid */
+> +
+> +/* Physical Layer 16.0 GT/s */
+> +#define PCI_PL_16GT_CAP		0x04	/* Capabilities Register */
+> +#define PCI_PL_16GT_CTRL	0x08	/* Control Register */
+> +#define PCI_PL_16GT_STS		0x0c	/* Status Register */
+> +#define PCI_PL_16GT_LDPM_STS	0x10	/* Local Data Parity Mismatch Status Register */
+> +#define PCI_PL_16GT_FRDPM_STS	0x14	/* First Retimer Data Parity Mismatch Status Register */
+> +#define PCI_PL_16GT_SRDPM_STS	0x18	/* Second Retimer Data Parity Mismatch Status Register */
+> +#define PCI_PL_16GT_RSVD	0x1C	/* Reserved */
+> +#define PCI_PL_16GT_LE_CTRL	0x20	/* Lane Equalization Control Register */
+> +
+>  #endif /* LINUX_PCI_REGS_H */
+> -- 
+> 2.17.1
+> 
