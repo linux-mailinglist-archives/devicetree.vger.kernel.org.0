@@ -2,132 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CA8857574
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D319578A5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726489AbfF0AXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 20:23:25 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:41553 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726707AbfF0AXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 20:23:25 -0400
-Received: by mail-pl1-f195.google.com with SMTP id m7so240961pls.8
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 17:23:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=c34/FfI7PALcZVh0MK4YlFiWvnY7m44Qb8oCZcTiVbU=;
-        b=a1r7b0eQqi65SnqqxyoyNoD4dz3PJJz11oTPJDYx1ctiFPDiwwrUHcLazOdtvx2h+b
-         BJ557GOrC/erbl4AklySqzJS15SQHRCyi1pl5V+Ls9UzeK+ybM4aUzx/S+y9D7ra9gXL
-         ud7lUYI/Zqb2M3pihkmgYamKJ46DHL/UUeQ91qNrgnYGOngk+Ky+30mJQ2BAC1N4CLmf
-         9YUjsBmnOgUwCj1x8uLgqFqywqoB2YH5RUIgldau68pKxTutIfleZKg6l9x3MWTSKJaB
-         ouNqg9FBjBvdFyIKXW5If/Gp0dxolKfdIn0hpcE+lOOFMC9WXHkJlNZBl9+xdWTdckpr
-         zuaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c34/FfI7PALcZVh0MK4YlFiWvnY7m44Qb8oCZcTiVbU=;
-        b=BXlbWLdNJdG6a/lVdx91cduh0MELVt0mHM8DdB+cf0XPsP39Ghp1gVQMgJKFQB4fbt
-         fhJXyNz8IK5yyg83j/UbgrHGoOpungGDTQrmKXJ62DCS1xizwKFR2ID9G9PDZMCYzpta
-         eWLrwUL08F9QCSO++rSJq0ZDm9Rc6aAFSKqWZXBZiHOzEA6jaIaEgTCOO1UJCUuOTtqO
-         ykf+e4GUS3HWWHjRkFJmxJHyWPKC/LTRDyCN2Zi8fcIsWRMohy4dDE0XCPlD6E6RxGnr
-         cZtsaDAhIIGLjleYyynvGY7BcyjB6u9QnnoAZajbEkjuUKIO4agxLn8hY82Cf2bzjR/N
-         6QBg==
-X-Gm-Message-State: APjAAAXqrzd+vpCXeplQRY4ZwpVxMV/3YFw4cCm7xC+n8DGQUkBvfgqZ
-        0zSU/FbL+tGTRmi8I9M7c/Dwc+Sj7DQcWLRg195kWg==
-X-Google-Smtp-Source: APXvYqz8ozeAzYHPHzqs1rNqRCdggL5+4sDGi+NHmPQJCmuSKDQDwiM3UtGQ8HWyljDXcSyRIYd62W6XpQAlC3xYRPM=
-X-Received: by 2002:a17:902:29e6:: with SMTP id h93mr950785plb.297.1561595003889;
- Wed, 26 Jun 2019 17:23:23 -0700 (PDT)
+        id S1726801AbfF0Aa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 20:30:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33578 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726669AbfF0Aa0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 20:30:26 -0400
+Received: from sasha-vm.mshome.net (unknown [107.242.116.147])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 15CAE2083B;
+        Thu, 27 Jun 2019 00:30:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561595426;
+        bh=jJl5kpA+E32dBal3DNwg0dA7AW6IVwSm/fbfo6drkYw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=d5IdQFqP2sUpqxxv28WzsyYTCaHZcFTQ3srQ7jjMmSu2EbFNRELYaBglP6P1Js++4
+         /nma/Rgo1A43IGZASrqbJSt+fPsoPmTi35/Z19UGKpmO1fbs4k8qavlLe3c0lcNvZl
+         OyApoPB4KmySijwQZRS41wbIMq0qHHCKiWhk8xx8=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Keerthy <j-keerthy@ti.com>, Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.1 01/95] ARM: dts: dra76x: Disable rtc target module
+Date:   Wed, 26 Jun 2019 20:28:46 -0400
+Message-Id: <20190627003021.19867-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190617082613.109131-1-brendanhiggins@google.com>
- <20190617082613.109131-14-brendanhiggins@google.com> <20190626000150.GT19023@42.do-not-panic.com>
- <CAFd5g44kkepB2hZcpYL-NB5ZHYE5tP7W-0yducGCX7Khd9gd9w@mail.gmail.com> <20190626220350.GA19023@42.do-not-panic.com>
-In-Reply-To: <20190626220350.GA19023@42.do-not-panic.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Wed, 26 Jun 2019 17:23:12 -0700
-Message-ID: <CAFd5g44ZbVCM3rksF44z_diiejS+Xc+qcXm120L+t+FHwuGyrA@mail.gmail.com>
-Subject: Re: [PATCH v5 13/18] kunit: tool: add Python wrappers for running
- KUnit tests
-To:     Luis Chamberlain <mcgrof@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 3:03 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
->
-> On Wed, Jun 26, 2019 at 01:02:55AM -0700, Brendan Higgins wrote:
-> > On Tue, Jun 25, 2019 at 5:01 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
-> > >
-> > > On Mon, Jun 17, 2019 at 01:26:08AM -0700, Brendan Higgins wrote:
-> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-all_passed.log
-> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-crash.log
-> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-failure.log
-> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-no_tests_run.log
-> > > >  create mode 100644 tools/testing/kunit/test_data/test_output_isolated_correctly.log
-> > > >  create mode 100644 tools/testing/kunit/test_data/test_read_from_file.kconfig
-> > >
-> > > Why are these being added upstream? The commit log does not explain
-> > > this.
-> >
-> > Oh sorry, those are for testing purposes. I thought that was clear
-> > from being in the test_data directory. I will reference it in the
-> > commit log in the next revision.
->
-> Still, I don't get it. They seem to be results from a prior run. Why do
-> we need them for testing purposes?
+From: Keerthy <j-keerthy@ti.com>
 
-Those logs are the raw output from UML with KUnit installed. They are
-for testing kunit_tool, the Python scripts added in this commit. One
-of the things that kunit_tool does is parses the results output by
-UML, extracts the KUnit data, and presents it in a user friendly
-manner.
+[ Upstream commit f7b9cb944a5d41fdede4e928a47e9d5fce5169d7 ]
 
-I added these logs so I could test that kunit_tool parses certain
-kinds of output correctly. For example, I want to know that it parses
-a test failure correctly and includes the appropriate context. So I
-have a log from a unit test that failed, and I have a test (a Python
-test that is also in this commit) that tests whether kunit_tool can
-parse the log correctly.
+rtc is fused out on dra76 and accessing target module
+register is causing a boot crash hence disable it.
 
-Does that make sense?
+Fixes: 549fce068a3112 ("ARM: dts: dra7: Add l4 interconnect hierarchy and ti-sysc data")
+Signed-off-by: Keerthy <j-keerthy@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/dra7-l4.dtsi | 2 +-
+ arch/arm/boot/dts/dra76x.dtsi  | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
+index 414f1cd68733..73f5c050f586 100644
+--- a/arch/arm/boot/dts/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/dra7-l4.dtsi
+@@ -3543,7 +3543,7 @@
+ 			};
+ 		};
+ 
+-		target-module@38000 {			/* 0x48838000, ap 29 12.0 */
++		rtctarget: target-module@38000 {			/* 0x48838000, ap 29 12.0 */
+ 			compatible = "ti,sysc-omap4-simple", "ti,sysc";
+ 			ti,hwmods = "rtcss";
+ 			reg = <0x38074 0x4>,
+diff --git a/arch/arm/boot/dts/dra76x.dtsi b/arch/arm/boot/dts/dra76x.dtsi
+index 9ee45aa365d8..5c437271d307 100644
+--- a/arch/arm/boot/dts/dra76x.dtsi
++++ b/arch/arm/boot/dts/dra76x.dtsi
+@@ -81,3 +81,7 @@
+ 		reg = <0x3fc>;
+ 	};
+ };
++
++&rtctarget {
++	status = "disabled";
++};
+-- 
+2.20.1
+
