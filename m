@@ -2,147 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3BF57CB5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 09:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97D4F57D1A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 09:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726059AbfF0HFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 03:05:18 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:38128 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726049AbfF0HFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 03:05:18 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 6253460DAD; Thu, 27 Jun 2019 07:05:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561619117;
-        bh=4sMYL/vEnFR3JJT1yrTXKeeZBriSZ99gcmBVQPeanvA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ou36ma9pIfK8dHNclgs1noT/MtX+sA0jszvw2qqktBI0k/jiXntFE9wnYEXwFXhCz
-         eV/0NdpCw1OP/InYN6MODkWArQCj05X6ScVlHBn1eTpLiS3WIrm/cjYJjoR5neJevQ
-         wLMRqjxMU7DZOsP7gPkKNAuzGhZjgi3cRU+llTmI=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 660F160A97;
-        Thu, 27 Jun 2019 07:05:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561619116;
-        bh=4sMYL/vEnFR3JJT1yrTXKeeZBriSZ99gcmBVQPeanvA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=T5JUl9dOKs584jzJCP5evvyeb+cbHKsbUC9uA/y/6lVmoqUfm2nICNb2OL0x5Hv5D
-         LDrkfdjzofe4VU1Rd71dSZtTXQ+tmoP+ylLpOelUKnfBOWhHQL4sAcnh7qRFrAYseH
-         GHui+PNF0pjVTEJqsQ5j/lR/pRM8NPkFEznQcV3M=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 660F160A97
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
-Received: by mail-ed1-f47.google.com with SMTP id k21so6016284edq.3;
-        Thu, 27 Jun 2019 00:05:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAVT4wSofyO8o16Bfw+zTCFnyv9jjpksaMsDXAMUW8U8aZGdR2sb
-        Os6h9VOL/faa2T9Mc73J6piqq6PDcA5LgFb35Ok=
-X-Google-Smtp-Source: APXvYqy6/T0+BAERf4oMw5abJsW76giuCjeiXeBDMRRBEFACHq6VcztnGhX1IL9uJkMy8ums6cUkmiXVqPScbQRjh1Y=
-X-Received: by 2002:a17:906:3c1:: with SMTP id c1mr1624686eja.221.1561619115146;
- Thu, 27 Jun 2019 00:05:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
- <20190612071554.13573-4-vivek.gautam@codeaurora.org> <20190614040520.GK22737@tuxbook-pro>
- <3e1f5e03-6448-8730-056d-fc47bdd71b3f@codeaurora.org> <20190618175218.GH4270@fuggles.cambridge.arm.com>
- <CAFp+6iEynLa=Jt_-oAwt4zmzxzhEXtWNCmghz6rFzcpQVGwrMg@mail.gmail.com>
- <20190624170348.7dncuc5qezqeyvq2@willie-the-truck> <CAFp+6iF0TQtAy2JFXk6zjX5GpjeLFesqPZV6ezbDXmc85yvMEA@mail.gmail.com>
- <20190625133924.fqq3y7p3i3fqem5p@willie-the-truck> <CAFp+6iH-KzX7x1j8AAuKJcOP6v=fyP-yLvaeeE_Ly3oueu_ngg@mail.gmail.com>
- <20190626144844.key3n6ueb6skgkp4@willie-the-truck>
-In-Reply-To: <20190626144844.key3n6ueb6skgkp4@willie-the-truck>
-From:   Vivek Gautam <vivek.gautam@codeaurora.org>
-Date:   Thu, 27 Jun 2019 12:35:02 +0530
-X-Gmail-Original-Message-ID: <CAFp+6iGvUd6QhmEO0rSSXAZnYt3x_5G0HuGUJYZ203W1_ER+=w@mail.gmail.com>
-Message-ID: <CAFp+6iGvUd6QhmEO0rSSXAZnYt3x_5G0HuGUJYZ203W1_ER+=w@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] iommu/arm-smmu: Add support to handle Qcom's
- wait-for-safe logic
-To:     Will Deacon <will@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S1726472AbfF0HZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 03:25:37 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:15498 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726054AbfF0HZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 03:25:36 -0400
+X-UUID: 614d39dd1c094839a0d063f808a5f889-20190627
+X-UUID: 614d39dd1c094839a0d063f808a5f889-20190627
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 916891549; Thu, 27 Jun 2019 15:25:29 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 27 Jun
+ 2019 15:25:27 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 27 Jun 2019 15:25:27 +0800
+Message-ID: <1561620327.12217.27.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i3c: Document MediaTek I3C master
+ bindings
+From:   Qii Wang <qii.wang@mediatek.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+CC:     <bbrezillon@kernel.org>, <matthias.bgg@gmail.com>,
+        <linux-i3c@lists.infradead.org>, <gregkh@linuxfoundation.org>,
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        "robh+dt" <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Clark <robdclark@gmail.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <liguo.zhang@mediatek.com>, <xinping.qian@mediatek.com>
+Date:   Thu, 27 Jun 2019 15:25:27 +0800
+In-Reply-To: <20190626182339.0c6301a2@collabora.com>
+References: <1561527388-4829-1-git-send-email-qii.wang@mediatek.com>
+         <1561527388-4829-2-git-send-email-qii.wang@mediatek.com>
+         <20190626182339.0c6301a2@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 8:18 PM Will Deacon <will@kernel.org> wrote:
->
-> On Wed, Jun 26, 2019 at 12:03:02PM +0530, Vivek Gautam wrote:
-> > On Tue, Jun 25, 2019 at 7:09 PM Will Deacon <will@kernel.org> wrote:
-> > >
-> > > On Tue, Jun 25, 2019 at 12:34:56PM +0530, Vivek Gautam wrote:
-> > > > On Mon, Jun 24, 2019 at 10:33 PM Will Deacon <will@kernel.org> wrote:
-> > > > > Instead, I think this needs to be part of a separate file that is maintained
-> > > > > by you, which follows on from the work that Krishna is doing for nvidia
-> > > > > built on top of Robin's prototype patches:
-> > > > >
-> > > > > http://linux-arm.org/git?p=linux-rm.git;a=shortlog;h=refs/heads/iommu/smmu-impl
-> > > >
-> > > > Looking at this branch quickly, it seem there can be separate implementation
-> > > > level configuration file that can be added.
-> > > > But will this also handle separate page table ops when required in future.
-> > >
-> > > Nothing's set in stone, but having the implementation-specific code
-> > > constrain the page-table format (especially wrt quirks) sounds reasonable to
-> > > me. I'm currently waiting for Krishna to respin the nvidia changes [1] on
-> > > top of this so that we can see how well the abstractions are holding up.
-> >
-> > Sure. Would you want me to try Robin's branch and take out the qualcomm
-> > related stuff to its own implementation? Or, would you like me to respin this
-> > series so that you can take it in to enable SDM845 boards such as, MTP
-> > and dragonboard to have a sane build - debian, etc. so people benefit
-> > out of it.
->
-> I can't take this series without Acks on the firmware calling changes, and I
-> plan to send my 5.3 patches to Joerg at the end of the week so they get some
-> time in -next. In which case, I think it may be worth you having a play with
-> the branch above so we can get a better idea of any additional smmu_impl hooks
-> you may need.
+On Wed, 2019-06-26 at 18:23 +0200, Boris Brezillon wrote:
+> On Wed, 26 Jun 2019 13:36:27 +0800
+> Qii Wang <qii.wang@mediatek.com> wrote:
+> 
+> > Document MediaTek I3C master DT bindings.
+> > 
+> > Signed-off-by: Qii Wang <qii.wang@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   47 ++++++++++++++++++++
+> >  1 file changed, 47 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> > new file mode 100644
+> > index 0000000..3fd4f17
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> > @@ -0,0 +1,47 @@
+> > +Bindings for MediaTek I3C master block
+> > +=====================================
+> > +
+> > +Required properties:
+> > +--------------------
+> > +- compatible: shall be "mediatek,i3c-master"
+> > +- reg: physical base address of the controller and apdma base, length of
+> > +  memory mapped region.
+> > +- reg-names: should be "main" for controller and "dma" for apdma.
+> > +- interrupts: interrupt number to the cpu.
+> 
+> Depending on the interrupt controller, each interrupt cell might
+> contain more than just the interrupt number.
+> 
 
-Cool. I will play around with it and get something tangible and meaningful.
+ok, I will modify it as "the interrupt line connected to this I3C
+master"
 
->
-> > Qualcomm stuff is lying in qcom-smmu and arm-smmu and may take some
-> > time to stub out the implementation related details.
->
-> Not sure I follow you here. Are you talking about qcom_iommu.c?
+> > +- clocks: clock name from clock manager.
+> 
+> This property does not contain clock names but clk references.
+> 
 
-That's right. The qcom_iommu.c solved a different issue of secure context bank
-allocations, when Rob forked out this driver and reused some of the
-arm-smmu.c stuff.
+ok, I will modify it as "shall reference the i3c and apdma clocks"
 
-We will take a look at that once we start adding the qcom implementation.
+> > +- clock-names: must include "main" and "dma".
+> > +
+> > +Mandatory properties defined by the generic binding (see
+> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> > +
+> > +- #address-cells: shall be set to 3
+> > +- #size-cells: shall be set to 0
+> > +
+> > +Optional properties defined by the generic binding (see
+> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> > +
+> > +- i2c-scl-hz
+> > +- i3c-scl-hz
+> > +
+> > +I3C device connected on the bus follow the generic description (see
+> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details).
+> > +
+> > +Example:
+> > +
+> > +	i3c0: i3c@1100d000 {
+> > +		compatible = "mediatek,i3c-master";
+> > +		reg = <0x1100d000 0x100>,
+> > +		      <0x11000300 0x80>;
+> > +		reg-names = "main", "dma";
+> > +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
+> > +		clocks = <&i3c0_ck>, <&ap_dma_ck>;
+> > +		clock-names = "main", "dma";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +		i2c-scl-hz = <100000>;
+> > +
+> > +		nunchuk: nunchuk@52 {
+> > +			compatible = "nintendo,nunchuk";
+> > +			reg = <0x52 0x80000010 0>;
+> 
+> reg is wrong here, should be
+> 
+> 			reg = <0x52 0x0 0x10>;
+> 
+> While at it, can you send a patch to fix the example in the cadence
+> binding doc?
+> 
 
-Thanks
-Vivek
+ok, I will do it. Thanks for your review.
 
->
-> Will
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
+> > +		};
+> > +	};
+> 
 
 
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
