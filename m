@@ -2,112 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD5F58103
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D736B58175
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 13:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726422AbfF0K60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 06:58:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40182 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726315AbfF0K6Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 06:58:25 -0400
-Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1F4F32085A;
-        Thu, 27 Jun 2019 10:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561633104;
-        bh=eqIMm2IvCi/2kqSke0jwsbTzK/3H02BMhTr01hNqdt8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iauW/gb5jLquigQ+Cdzh/i9Pn3zW17VkPlONdHo7xFd7dA32bVmDJ/Yyb0bkTe8EG
-         kIrY8RkURU97+7yoOa31J72E27OcFr0fIRUwyB35ALlHqV0dmT8JKXqUb21IVMoo+X
-         l5U9Ro8xIQgWHOpJmZaP0lAAll1CxzuY2yED7AZg=
-Date:   Thu, 27 Jun 2019 19:58:17 +0900
-From:   Masami Hiramatsu <mhiramat@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Steven Rostedt <rostedt@goodmis.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Tom Zanussi <tom.zanussi@linux.intel.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Jiri Olsa <jolsa@redhat.com>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 00/11] tracing: of: Boot time tracing using
- devicetree
-Message-Id: <20190627195817.211ab4bea422f37e539e47e8@kernel.org>
-In-Reply-To: <CAL_JsqJOc+tkFEGcc+KN0RE8Xjg_i9icPWZ37Ynk_9sR2X1Uwg@mail.gmail.com>
-References: <156113387975.28344.16009584175308192243.stgit@devnote2>
-        <CAL_JsqJOc+tkFEGcc+KN0RE8Xjg_i9icPWZ37Ynk_9sR2X1Uwg@mail.gmail.com>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1726375AbfF0L00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 07:26:26 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:42049 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726682AbfF0L0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 07:26:23 -0400
+Received: by mail-lf1-f68.google.com with SMTP id x144so1307397lfa.9
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 04:26:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yf/4QsQz71xnsufXmplIhM5PQjWjtA8iRNvCLywUsCI=;
+        b=HiozRSV9jjoEd8lgVneXDXnUBP1+IEYIg+jfVj3yu3YE2rDCh0mQf6PCltXafOZuRQ
+         wgzquUBxyhWo7PDBS9m/LWFwnCANPBpvCZrQYE2oHj20GZq/2E9ThKk3E8NPw81Lz1IR
+         6wqLETMA8WyJzKNmXnDzqbNY6sUIuKzxUMVE+GnlYNfor+m9ZCB+VLKecag/t5wKJ6Jd
+         T9zmH0RwA2Aq86TTmuzE2Qjhpw0IXYMX8T1nY+VIb685SluVHK84SiGlfHixp33uk0NX
+         kmZSALvd+oLO52Ab1ZdDT5vg1sdlJ8tHsJXVo/3VFxdWskcobVYms8f/hqACvEI3a+uf
+         LmpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yf/4QsQz71xnsufXmplIhM5PQjWjtA8iRNvCLywUsCI=;
+        b=o6HB38S50oktjMD/S7p8weuX3t6xJZ5IPXsGFTPecB0ypbMXwg3jJBFzHkaDyZeEfx
+         aRbU7MnUZgnxmLTVO6bHUNrtktogCWRNoVDp8TO1EitDjV49L7DwMTdWfluGM7nyNQbe
+         C9oUpgZ+0k9I2kF9r/HoMlgKyHF9Z27G37PXsJjAqULucLRnVluR973eJt+X12OlZmTl
+         sKFB5v0D3r4SyBbVwwvJt6F4RBKaOhq3RhG8BvvzASEYJ8q2JomTtQlPyaACvq4sRDwQ
+         UWosm7xG8p22M1U3YpuOqKCcUrQADoSoQtCZXdqA2YeeCK/S1KFWc67BUlOAQFVDnc4F
+         8lVA==
+X-Gm-Message-State: APjAAAWswgasNK0P3/RgK0ukH6YBN5R7p/JDs5IhfWhFZzSSoUqa/GxE
+        pepCAkiUFbPAdg781pCDUNurhOd/SkWEWQg8XhPZIQ==
+X-Google-Smtp-Source: APXvYqzeLT9m0qZPhFXMQe7bGeM0G0YNhFKZNBdroL1getpvV13XvxWgav2h1PfavnIunwZFc7NAtBe9miLt5qxA34s=
+X-Received: by 2002:a19:dc0d:: with SMTP id t13mr1687908lfg.152.1561634781537;
+ Thu, 27 Jun 2019 04:26:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190626071430.28556-1-andrew@aj.id.au> <20190626071430.28556-2-andrew@aj.id.au>
+ <CACPK8Xfdd1ReAHr9f6zRbZ-WJRquDJsTdUQeT_JuEBhOzS8tig@mail.gmail.com>
+In-Reply-To: <CACPK8Xfdd1ReAHr9f6zRbZ-WJRquDJsTdUQeT_JuEBhOzS8tig@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 27 Jun 2019 12:26:10 +0100
+Message-ID: <CACRpkdZtTy-HHu2O4aOaqV5ZdxcYYPFRuxK2jjnw+_O1xcF1rg@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: pinctrl: aspeed: Split bindings document
+ in two
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-aspeed@lists.ozlabs.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, Jun 27, 2019 at 4:32 AM Joel Stanley <joel@jms.id.au> wrote:
 
-On Wed, 26 Jun 2019 15:58:50 -0600
-Rob Herring <robh+dt@kernel.org> wrote:
+> I think we can use this as an opportunity to drop the unused g4-scu
+> compatible from the bindings. Similarly for the g5.
+>
+> Acked-by: Joel Stanley <joel@jms.id.au>
 
-> On Fri, Jun 21, 2019 at 10:18 AM Masami Hiramatsu <mhiramat@kernel.org> wrote:
-> >
-> > Hi,
-> >
-> > Here is an RFC series of patches to add boot-time tracing using
-> > devicetree.
-> >
-> > Currently, kernel support boot-time tracing using kernel command-line
-> > parameters. But that is very limited because of limited expressions
-> > and limited length of command line. Recently, useful features like
-> > histogram, synthetic events, etc. are being added to ftrace, but it is
-> > clear that we can not expand command-line options to support these
-> > features.
-> >
-> > Hoever, I've found that there is a devicetree which can pass more
-> > structured commands to kernel at boot time :) The devicetree is usually
-> > used for dscribing hardware configuration, but I think we can expand it
-> > for software configuration too (e.g. AOSP and OPTEE already introduced
-> > firmware node.) Also, grub and qemu already supports loading devicetree,
-> > so we can use it not only on embedded devices but also on x86 PC too.
-> 
-> Do the x86 versions of grub, qemu, EFI, any other bootloader actually
-> enable DT support? I didn't think so. Certainly, an x86 kernel doesn't
-> normally (other than OLPC and ce4100) have a defined way to even pass
-> a dtb from the bootloader to the kernel and the kernel doesn't
-> unflatten the dtb.
+I assume I should wait for a new version of the patches that does
+this?
 
-Sorry, the grub part, I just found this entry. I need to check this
-can work on x86 too.
-
-https://www.gnu.org/software/grub/manual/grub/html_node/devicetree.html
-
-Anyway, I've tested this series on qemu-x86 with --dtb option.
-The kernel boot with ACPI and DT (hardware drivers seem initialized
-by ACPI), and it seems unflatten the dtb correctly.
-
-> 
-> For arm64, the bootloader to kernel interface is DT even for ACPI
-> based systems. So unlike Frank, I'm not completely against DT being
-> the interface, but it's hardly universal across architectures and
-> something like this should be. Neither making DT the universal kernel
-> boot interface nor creating some new channel as Frank suggested seems
-> like an easy task.
-
-I don't want it making this for all architectures but an option for
-architecutres which supports DT already...
-
-Thank you,
-
-
-> 
-> Rob
-
-
--- 
-Masami Hiramatsu <mhiramat@kernel.org>
+Yours,
+Linus Walleij
