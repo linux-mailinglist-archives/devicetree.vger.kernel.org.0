@@ -2,124 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82AF558B2B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 21:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 170D258B4D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 21:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726540AbfF0Tza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 15:55:30 -0400
-Received: from esa5.hgst.iphmx.com ([216.71.153.144]:23412 "EHLO
-        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726384AbfF0Tza (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 15:55:30 -0400
+        id S1726465AbfF0T6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 15:58:55 -0400
+Received: from esa4.hgst.iphmx.com ([216.71.154.42]:26986 "EHLO
+        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726441AbfF0T6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 15:58:55 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1561665329; x=1593201329;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=oQMIBe4X+ZjTJgO+RVN0FBG87NxgHXHIhEqoSO1Ulas=;
-  b=CryAIpE7+zwyO+o322PXl//j8b5VCcQKz9oQOaOC3/d0IUUrIwryqw3N
-   g61y8O00V+AIUH1SPAaO3X7EGXSGSpqiU8uZNuS6SuxW36J66wRz1Lkve
-   Unpgn4qQYfUcZwLquSnFTbbGmAMrEKe+UobFKzT2z0a5rhRuVfCl7UGBl
-   +8AnduDvPPKw0ykDy7EEYV39uO1sUFip+FAtaCLOLaTwwRa1MOgqX9GEW
-   WRIj5UIB7cwGqhTXPmLIa3FD55vEP8AhzgGvJZIKn/2y0G4yw6Vd6Ijda
-   2zPa0bIDHu4lJMmxGKNKVrgu3XWPYwto5VCDXJ42m80KJdh+Kg7LgG0Yp
-   g==;
+  t=1561665535; x=1593201535;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=n6edhB3zslEinTxR6XjdzVfqoOAN7Hj7J8gj/v3kkmU=;
+  b=NaRKL4nCf4f6DEyia1Enmv/Y9Q/MmQCNyNkCdp+qEGFbClRn3GH+Fq1B
+   EjyMpVCOj+a/zeg8u8ZPbg5K0KA66wlIXunDHD7btUszKERbxmmS+mlwC
+   VzEufbaopS3Rt/JrYFxGh4rJZyKIHpqL2ETOod7EmyQBQwQ8JkYsLM3zC
+   zjWw6gic08Mp3goNp+T+98lUHDoxgpKJs0dFVW4AvoCA2HqAfPy2SSoHs
+   vLOV2gBV4dG0CEpcRthM81hXINFGLl6yCea4y6L5mccZZWM38FAzFJFex
+   ADMHmIW3G4J/U4Hep8FRPcsS9FEiP/hp9/xm4mUUU00bu71XLc5gEjMey
+   w==;
 X-IronPort-AV: E=Sophos;i="5.63,424,1557158400"; 
-   d="scan'208";a="112927466"
-Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 28 Jun 2019 03:55:29 +0800
-IronPort-SDR: HMKH8QWbrWA6J9efJC2ADmscU6l3hO1gBEJziRdcJQcolMfWrDdrLPr1/ifNyZxMNS79tfKiXL
- DNl6cVcsvxn8GS2946Q969mSUFrpNtQifoL57TiVMvM1Ovz8OFZtYzYP32v4XeXJfGvoIyXdny
- JZM0mA1qXHh25i3XKj6Uo9EvMvRKtnFD1BfcLLLQiD7oaiXlu6l/YIQWg99C/TQxjnUtm1Ckad
- ly/oEjptJ2skpvqHFesbGUlv7FjQCfUDzwz8FTqZZX59DqVjVJjCSJe0epdoHBzo815kdKRKAP
- cbEkItu0kzHjAubj4kPvTVPv
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP; 27 Jun 2019 12:54:42 -0700
-IronPort-SDR: VKMKNLoNwcVlcafpKYKocVIPgXmwVxuRxjJwhvS06W1GGyBrtK7utAxstFIXBnWKdzCF1x8wsK
- XJZctog61N4/pDEuD0ioEVUe5arFvGOiD+0uQOXuasKnvmvKaP5h/TGkH6UL8gbfz0YoH51WFH
- xrSwRYbO/moGR7R87FJCQ97cpTUvhwbD5ewCvzhOpnTniTpRB+KlumuU7I2vU8/O4gvbAauHLz
- cgrRMGMuG4NbZ/B6aDXGUTCFMTaGyew2ePpYxLxvH6dLfxOxh3jbGPfnhFGwCTZ/6aqR+81OZT
- sHw=
-Received: from jedi-01.sdcorp.global.sandisk.com (HELO jedi-01.int.fusionio.com) ([10.11.143.218])
-  by uls-op-cesaip01.wdc.com with ESMTP; 27 Jun 2019 12:55:29 -0700
-From:   Atish Patra <atish.patra@wdc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Juri Lelli <juri.lelli@redhat.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
-        Johan Hovold <johan@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Russell King <linux@armlinux.org.uk>
-Subject: [PATCH v8 7/7] MAINTAINERS: Add an entry for generic architecture topology
-Date:   Thu, 27 Jun 2019 12:53:02 -0700
-Message-Id: <20190627195302.28300-8-atish.patra@wdc.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190627195302.28300-1-atish.patra@wdc.com>
-References: <20190627195302.28300-1-atish.patra@wdc.com>
+   d="scan'208";a="111722026"
+Received: from mail-co1nam03lp2051.outbound.protection.outlook.com (HELO NAM03-CO1-obe.outbound.protection.outlook.com) ([104.47.40.51])
+  by ob1.hgst.iphmx.com with ESMTP; 28 Jun 2019 03:58:52 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
+ b=FrsGql4ytWzwIFg476I5wA27ntxbHl5OIz2w9mmv8NyF8AqvuoWTmehTbHNIL6o3D2FGi48OWs2ySIfJnAE9tk+nakqn97gniEf5psdZn3TD50rXOcm1AEIzD3vUxFjEALo86TP+HFf2PKNa32ehBE07OThLGgq4YhaGaMC5Azw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=testarcselector01;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n6edhB3zslEinTxR6XjdzVfqoOAN7Hj7J8gj/v3kkmU=;
+ b=bQJQCestRN+6r+83hLJ0OIvHs4CEaCdmK2j4mJliK7DuzODgPfx6v5KVW8BLRnROfDAln2oOn5zT3hfE0idBfD2ZuAhRj1TjBMxX6hKGvx567/+hKZPzg0dkgRA6hOvHiPkGmLWxQqri93oCZOB6Vu1il+EorWwcMsKdILIQBKc=
+ARC-Authentication-Results: i=1; test.office365.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n6edhB3zslEinTxR6XjdzVfqoOAN7Hj7J8gj/v3kkmU=;
+ b=ID3fgXMz+hO55eNAgSZ1WhHXsPr5NqpouwKoLcHDBYDLQhjLG5bEMsDCanGvvcPZvttn3BBh9QaVYLDKDqELndpunftiL+mmfPMCXTMVbk22dsH6ByHhBbtUpjiB0Hw1f16JpBuI5AqAJon02kka+8y2wfKipV3vFgUxsd0PIWA=
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
+ BYAPR04MB4392.namprd04.prod.outlook.com (20.176.252.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.17; Thu, 27 Jun 2019 19:58:50 +0000
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::65e3:6069:d7d5:90a2]) by BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::65e3:6069:d7d5:90a2%5]) with mapi id 15.20.2008.014; Thu, 27 Jun 2019
+ 19:58:50 +0000
+From:   Atish Patra <Atish.Patra@wdc.com>
+To:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>
+CC:     "will.deacon@arm.com" <will.deacon@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "rfontana@redhat.com" <rfontana@redhat.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "palmer@sifive.com" <palmer@sifive.com>,
+        "mchehab+samsung@kernel.org" <mchehab+samsung@kernel.org>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "mingo@kernel.org" <mingo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "ottosabart@seberm.com" <ottosabart@seberm.com>,
+        "morten.rasmussen@arm.com" <morten.rasmussen@arm.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "peterz@infradead.org" <peterz@infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "anup@brainfault.org" <anup@brainfault.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v7 1/7] Documentation: DT: arm: add support for sockets
+ defining package boundaries
+Thread-Topic: [PATCH v7 1/7] Documentation: DT: arm: add support for sockets
+ defining package boundaries
+Thread-Index: AQHVJT7fBHlkRRyCkEKayvZI2kbcaqautN6AgAAd5ACAASg6AA==
+Date:   Thu, 27 Jun 2019 19:58:50 +0000
+Message-ID: <513883349e80792884b3754c259357d8066ad348.camel@wdc.com>
+References: <20190617185920.29581-1-atish.patra@wdc.com>
+         <20190617185920.29581-2-atish.patra@wdc.com>
+         <alpine.DEB.2.21.9999.1906261724000.23534@viisi.sifive.com>
+         <873a80f0-e704-dd7e-4db9-b159b23847fc@wdc.com>
+In-Reply-To: <873a80f0-e704-dd7e-4db9-b159b23847fc@wdc.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Atish.Patra@wdc.com; 
+x-originating-ip: [199.255.44.250]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 155fd803-5438-43c2-e3b0-08d6fb39dfe7
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB4392;
+x-ms-traffictypediagnostic: BYAPR04MB4392:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BYAPR04MB4392F743BD6A9E509C34C142FAFD0@BYAPR04MB4392.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 008184426E
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(136003)(39860400002)(396003)(366004)(346002)(376002)(189003)(199004)(6436002)(186003)(8676002)(26005)(76176011)(4326008)(305945005)(478600001)(99286004)(66066001)(8936002)(102836004)(6246003)(71190400001)(25786009)(81156014)(81166006)(68736007)(7736002)(71200400001)(54906003)(6306002)(53546011)(53936002)(6506007)(6512007)(36756003)(316002)(86362001)(110136005)(66446008)(66476007)(2906002)(2501003)(5660300002)(64756008)(14454004)(446003)(66556008)(73956011)(11346002)(66946007)(76116006)(3846002)(6116002)(7416002)(118296001)(476003)(486006)(72206003)(6486002)(229853002)(256004)(966005)(2616005);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB4392;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: MK5/kmFVBNzglmcSiekWRmgYFkbaJPDTdPr7P2JtIT4FkhV3V+n/zuXRQ4cU9WZ41SCq4bfiC9E34SzEDd8dM3bJarkqwwzC5QCVF2YbC0Y1ttJpBnB/A0Hljum4k1wGWBU1S4+R69dUP5t5sgP1GXkALMozCa8MPFnVuwLlsk7HPNVkijnPQhhP7VDTCqfAzj7Bya7orH0vW8WyqsLaVtUgafAyBF1NYfDbn/hsRgXPbz186X4ab2vB0w79wcRhorNhBqYHUGPcUo6VXiI7pUE/gXiPzLdGznPT2VKSXL4ibJhJbeY/5owcC7vk0mgriOOV1jG9BBjOak7CvKGikJMKL/mHXyeA0Q11VlQflUC0P7MX+kwvScQnkV0Z9O955N/xTmnWVxSexEf7RaecJKI0pl/wBCyBcKsCqSYVMpI=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DE6C3B113F433D42A951EC64A666E802@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 155fd803-5438-43c2-e3b0-08d6fb39dfe7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2019 19:58:50.4899
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4392
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sudeep Holla <sudeep.holla@arm.com>
-
-arm and arm64 shared lot of CPU topology related code. This was
-consolidated under driver/base/arch_topology.c by Juri. Now RISC-V
-is also started sharing the same code pulling more code from arm64
-into arch_topology.c
-
-Since I was involved in the review from the beginning, I would like
-to assume maintenance for the same.
-
-Cc: Will Deacon <will.deacon@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Acked-by: Juri Lelli <juri.lelli@redhat.com>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d0ed735994a5..453d2eebcff0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6594,6 +6594,13 @@ W:	https://linuxtv.org
- S:	Maintained
- F:	drivers/media/radio/radio-gemtek*
- 
-+GENERIC ARCHITECTURE TOPOLOGY
-+M:	Sudeep Holla <sudeep.holla@arm.com>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	drivers/base/arch_topology.c
-+F:	include/linux/arch_topology.h
-+
- GENERIC GPIO I2C DRIVER
- M:	Wolfram Sang <wsa+renesas@sang-engineering.com>
- S:	Supported
--- 
-2.21.0
-
+T24gV2VkLCAyMDE5LTA2LTI2IGF0IDE5OjE4IC0wNzAwLCBBdGlzaCBQYXRyYSB3cm90ZToNCj4g
+T24gNi8yNi8xOSA1OjMxIFBNLCBQYXVsIFdhbG1zbGV5IHdyb3RlOg0KPiA+IEhpIFN1ZGVlcCwg
+QXRpc2gsDQo+ID4gDQo+ID4gT24gTW9uLCAxNyBKdW4gMjAxOSwgQXRpc2ggUGF0cmEgd3JvdGU6
+DQo+ID4gDQo+ID4gPiBGcm9tOiBTdWRlZXAgSG9sbGEgPHN1ZGVlcC5ob2xsYUBhcm0uY29tPg0K
+PiA+ID4gDQo+ID4gPiBUaGUgY3VycmVudCBBUk0gRFQgdG9wb2xvZ3kgZGVzY3JpcHRpb24gcHJv
+dmlkZXMgdGhlIG9wZXJhdGluZw0KPiA+ID4gc3lzdGVtDQo+ID4gPiB3aXRoIGEgdG9wb2xvZ2lj
+YWwgdmlldyBvZiB0aGUgc3lzdGVtIHRoYXQgaXMgYmFzZWQgb24gbGVhZiBub2Rlcw0KPiA+ID4g
+cmVwcmVzZW50aW5nIGVpdGhlciBjb3JlcyBvciB0aHJlYWRzIChpbiBhbiBTTVQgc3lzdGVtKSBh
+bmQgYQ0KPiA+ID4gaGllcmFyY2hpY2FsIHNldCBvZiBjbHVzdGVyIG5vZGVzIHRoYXQgY3JlYXRl
+cyBhIGhpZXJhcmNoaWNhbA0KPiA+ID4gdG9wb2xvZ3kNCj4gPiA+IHZpZXcgb2YgaG93IHRob3Nl
+IGNvcmVzIGFuZCB0aHJlYWRzIGFyZSBncm91cGVkLg0KPiA+ID4gDQo+ID4gPiBIb3dldmVyIHRo
+aXMgaGllcmFyY2hpY2FsIHJlcHJlc2VudGF0aW9uIG9mIGNsdXN0ZXJzIGRvZXMgbm90DQo+ID4g
+PiBhbGxvdyB0bw0KPiA+ID4gZGVzY3JpYmUgd2hhdCB0b3BvbG9neSBsZXZlbCBhY3R1YWxseSBy
+ZXByZXNlbnRzIHRoZSBwaHlzaWNhbA0KPiA+ID4gcGFja2FnZSBvcg0KPiA+ID4gdGhlIHNvY2tl
+dCBib3VuZGFyeSwgd2hpY2ggaXMgYSBrZXkgcGllY2Ugb2YgaW5mb3JtYXRpb24gdG8gYmUNCj4g
+PiA+IHVzZWQgYnkNCj4gPiA+IGFuIG9wZXJhdGluZyBzeXN0ZW0gdG8gb3B0aW1pemUgcmVzb3Vy
+Y2UgYWxsb2NhdGlvbiBhbmQNCj4gPiA+IHNjaGVkdWxpbmcuDQo+ID4gPiANCj4gPiA+IExldHMg
+YWRkIGEgbmV3ICJzb2NrZXQiIG5vZGUgdHlwZSBpbiB0aGUgY3B1LW1hcCBub2RlIHRvIGRlc2Ny
+aWJlDQo+ID4gPiB0aGUNCj4gPiA+IHNhbWUuDQo+ID4gPiANCj4gPiA+IFNpZ25lZC1vZmYtYnk6
+IFN1ZGVlcCBIb2xsYSA8c3VkZWVwLmhvbGxhQGFybS5jb20+DQo+ID4gPiBSZXZpZXdlZC1ieTog
+Um9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCj4gPiANCj4gPiBUaGlzIG9uZSBkb2Vzbid0
+IGFwcGx5IGNsZWFubHkgaGVyZSBvbiB0b3Agb2YgdjUuMi1yYzIsIExpbnVzJ3MNCj4gPiBtYXN0
+ZXINCj4gPiBicmFuY2gsIGFuZCBuZXh0LTIwMTkwNjI2LiAgVGhlIHJlamVjdCBmaWxlIGlzIGJl
+bG93LiAgQW0gSSBtaXNzaW5nDQo+ID4gYSBwYXRjaD8NCj4gPiANCj4gDQo+IFRoYXQncyB3ZWly
+ZC4gSSBjb3VsZCBhcHBseSB0aGUgcGF0Y2ggZnJvbSBhbnkgZ2l0IHRyZWUgKGdpdGh1YiBvciAN
+Cj4gZ2l0Lmtlcm5lbC5vcmcpIGJ1dCBub3QgZnJvbSBtYWlsIG9yIHBhdGNod29ya3MuDQo+IA0K
+PiBnaXQgbG9nIGRvZXNuJ3Qgc2hvdyBhbnkgcmVjZW50IG1vZGlmaWNhdGlvbnMgb2YgdGhhdCBm
+aWxlLiBJIGFtDQo+IHRyeWluZyANCj4gdG8gZmlndXJlIG91dCB3aGF0J3Mgd3JvbmcuDQoNClRo
+ZSBzcGFjZSBjaGFuZ2VzIGluIHRoaXMgcGF0Y2ggY2F1c2VkIHRoZSBjb25mbGljdC4gVGhlIHBh
+dGNoIHdhcw0KZ2VuZXJhdGVkIHdpdGggLWIgd2hpY2ggd2FzIHN1Z2dlc3RlZCBkdXJpbmcgdGhl
+IGluaXRpYWwgcmV2aWV3LiANCg0KSSBzaG91bGQgcmVtb3ZlZCBpdCBiZWZvcmUgc2VuZGluZyB2
+Ny4gTXkgYmFkLg0KSSBoYXZlIGZpeGVkIHRoYXQgYW5kIHNlbnQgYSB2OCB0aGF0IHNob3VsZCBi
+ZSBjbGVhbmx5IGFwcGxpZWQgb24NCmxhdGVzdCBtYXN0ZXIuIFRoZSBwYXRjaCBzZXJpZXMgaXMg
+YWxzbyBhdmFpbGFibGUgYXQgDQoNCmh0dHBzOi8vZ2l0aHViLmNvbS9hdGlzaHAwNC9saW51eC90
+cmVlLzUuMi1yYzZfdG9wb2xvZ3kNCg0KUmVnYXJkcywNCkF0aXNoDQo+ID4gLSBQYXVsDQo+ID4g
+DQo+ID4gLS0tIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vdG9wb2xvZ3ku
+dHh0DQo+ID4gKysrIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vdG9wb2xv
+Z3kudHh0DQo+ID4gQEAgLTE4NSwxMyArMjA2LDE1IEBAIEJpbmRpbmdzIGZvciBjbHVzdGVyL2Nw
+dS90aHJlYWQgbm9kZXMgYXJlDQo+ID4gZGVmaW5lZCBhcyBmb2xsb3dzOg0KPiA+ICAgNCAtIEV4
+YW1wbGUgZHRzDQo+ID4gICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09DQo+ID4gICANCj4gPiAtRXhhbXBsZSAxIChBUk0gNjQtYml0LCAxNi1jcHUgc3lzdGVtLCB0
+d28gY2x1c3RlcnMgb2YgY2x1c3RlcnMpOg0KPiA+ICtFeGFtcGxlIDEgKEFSTSA2NC1iaXQsIDE2
+LWNwdSBzeXN0ZW0sIHR3byBjbHVzdGVycyBvZiBjbHVzdGVycyBpbg0KPiA+IGEgc2luZ2xlDQo+
+ID4gK3BoeXNpY2FsIHNvY2tldCk6DQo+ID4gICANCj4gPiAgIGNwdXMgew0KPiA+ICAgCSNzaXpl
+LWNlbGxzID0gPDA+Ow0KPiA+ICAgCSNhZGRyZXNzLWNlbGxzID0gPDI+Ow0KPiA+ICAgDQo+ID4g
+ICAJY3B1LW1hcCB7DQo+ID4gKwkJc29ja2V0MCB7DQo+ID4gICAJCQljbHVzdGVyMCB7DQo+ID4g
+ICAJCQkJY2x1c3RlcjAgew0KPiA+ICAgCQkJCQljb3JlMCB7DQo+ID4gDQo+IA0KPiANCg==
