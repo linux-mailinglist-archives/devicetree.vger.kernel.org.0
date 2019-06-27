@@ -2,200 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E4A6587AF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 18:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E800587F7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 19:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbfF0QwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 12:52:14 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:14316 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726619AbfF0QwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 12:52:13 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d14f43a0000>; Thu, 27 Jun 2019 09:52:10 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 27 Jun 2019 09:52:12 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 27 Jun 2019 09:52:12 -0700
-Received: from [10.25.73.176] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 27 Jun
- 2019 16:52:06 +0000
-Subject: Re: [PATCH V11 03/12] PCI: dwc: Perform dbi regs write lock towards
- the end
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     <bhelgaas@google.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
-        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
-        <gustavo.pimentel@synopsys.com>, <digetx@gmail.com>,
-        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190624091505.1711-1-vidyas@nvidia.com>
- <20190624091505.1711-4-vidyas@nvidia.com>
- <20190627145800.GD3782@e121166-lin.cambridge.arm.com>
- <ecae46b4-54cc-7f4d-5a86-908431fd472a@nvidia.com>
- <20190627155047.GF3782@e121166-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <fbef2fee-1ca9-b894-6d1a-f2a9449968a5@nvidia.com>
-Date:   Thu, 27 Jun 2019 22:22:03 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726558AbfF0RHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 13:07:44 -0400
+Received: from foss.arm.com ([217.140.110.172]:59058 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726425AbfF0RHo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 13:07:44 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 69900360;
+        Thu, 27 Jun 2019 10:07:43 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 815AA3F718;
+        Thu, 27 Jun 2019 10:07:41 -0700 (PDT)
+Date:   Thu, 27 Jun 2019 18:07:35 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        ", Sascha Hauer" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+Message-ID: <20190627170735.GA27591@e107155-lin>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+ <20190603083005.4304-3-peng.fan@nxp.com>
+ <CABb+yY1wW-arSMQSYjrezXOZ0Ar_shAr78MOyUD3hBxXohWx3g@mail.gmail.com>
+ <AM0PR04MB44813A4DE544E53EB7B6F02B88E30@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <CABb+yY38MAZqVOhjyV+GByPvpFcTfKbNG1rJ8YDRd1vi1F4fqg@mail.gmail.com>
+ <AM0PR04MB44814D3BD59033ECDDE3094C88E20@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <e49278ba-f734-e019-ab44-53afe558bd85@gmail.com>
+ <CABb+yY2B_bGqZhd3HRm2qOwGNXG8UYvRo0_uBmwGbx_1gA-vfA@mail.gmail.com>
+ <20190627090903.GD13572@e107155-lin>
+ <CABb+yY1aVbKfuqX=GvTzyjkgRXB3DXLvgjZARGn8k8m2R2vSqA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190627155047.GF3782@e121166-lin.cambridge.arm.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1561654330; bh=yvZTQ4IOvwV6hxGeLW9GOQ2PqNDwou5Z7nhqxb2MGzs=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=iYpJIifkIFk1Yn0Eghy9VIv8CWqVmaUl2NjkJCcCnw4fa44o14waMoJZ5wiY2vv4i
-         AonS5CXCnMzgLrRHT3pgAav4AlJ6wHA79wV19iTR2hU3lKQPkXn5ZeZN30IhnSEuTl
-         7j+nz+zLL7eMFU1AYZsTIvEY7gReETQa/nmiCqdp/KsBYN1ZLNckPodg5tL8PvbqWq
-         qyy9BkbegqMYkCWBvxKzXSi8ha/QC9Q0lbPnkvEN07Bphh/8hxtwnaBr0qB8/Js98s
-         qDXzoUxEMVyK/6y0EGWf0UF0sCYc+P7x/uEBCX5HiehRt9Opb3Ipyiu4L+dzJi0aHz
-         4x3HfLnIFxTEQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABb+yY1aVbKfuqX=GvTzyjkgRXB3DXLvgjZARGn8k8m2R2vSqA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/27/2019 9:20 PM, Lorenzo Pieralisi wrote:
-> On Thu, Jun 27, 2019 at 09:03:08PM +0530, Vidya Sagar wrote:
->> On 6/27/2019 8:28 PM, Lorenzo Pieralisi wrote:
->>> On Mon, Jun 24, 2019 at 02:44:56PM +0530, Vidya Sagar wrote:
->>>> Remove multiple write enable and disable sequences of dbi registers as
->>>> Tegra194 implements writes to BAR-0 register (offset: 0x10) controlled by
->>>> DBI write-lock enable bit thereby not allowing any further writes to BAR-0
->>>> register in config space to take place. Hence enabling write permission at
->>>> the start of function and disabling the same only towards the end.
->>>
->>> I do not understand what this patch does, I would like to rephrase
->>> the commit log in a way that is easier to parse.
->>>
->>> In particular I do not get what you mean in relation to BAR-0, I am
->>> confused, please clarify.
->>>
->>> Lorenzo
->> Well, some of the Synopsys DesignWare core's DBI registers are
->> protected with a lock without which, they are read-only by default.
->> Existing code in dw_pcie_setup_rc() API tries to unlock and lock
->> multiple times whenever it wants to update those write-protected
->> registers. This patch attempts to unlock all such write-protected
->> registers for writing once in the beginning of the function and lock
->> them back towards the end.  As far as BAR-0 register (which is at
->> offset 0x10 in DBI space... nothing but the config space) in Tegra194
->> is concerned, it is one of those registers to which writes are
->> protected. I could have added unlock/lock pair around accessing this
->> register, but that would bloat this API with one more pair of
->> unlock/lock, instead I chose to remove unlock/lock pairs for all
->> protected registers and have unlock in the beginning and lock towards
->> the end.
-> 
-> Ok, so DBI space registers that require write permissions are per-IP.
-> This is clearer so the commit log must be rewritten, it is not clear at
-> all in this respect at least not as-is, if you read it you will
-> notice ;-)
-Ok. I'll update commit message in next patch series.
+On Thu, Jun 27, 2019 at 10:32:27AM -0500, Jassi Brar wrote:
+> On Thu, Jun 27, 2019 at 4:09 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > On Wed, Jun 26, 2019 at 01:27:41PM -0500, Jassi Brar wrote:
+> > > On Wed, Jun 26, 2019 at 11:44 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> > > >
+> > > > On 6/26/19 6:31 AM, Peng Fan wrote:
+> > > > >>> The firmware driver might not have func-id, such as SCMI/SCPI.
+> > > > >>> So add an optional func-id to let smc mailbox driver could
+> > > > >>> use smc SiP func id.
+> > > > >>>
+> > > > >> There is no end to conforming to protocols. Controller drivers should
+> > > > >> be written having no particular client in mind.
+> > > > >
+> > > > > If the func-id needs be passed from user, then the chan_id suggested
+> > > > > by Sudeep should also be passed from user, not in mailbox driver.
+> > > > >
+> > > > > Jassi, so from your point, arm_smc_send_data just send a0 - a6
+> > > > > to firmware, right?
+> > > > >
+> > > > > Sudeep, Andre, Florian,
+> > > > >
+> > > > > What's your suggestion? SCMI not support, do you have
+> > > > > plan to add smc transport in SCMI?
+> > > >
+> > > > On the platforms that I work with, we have taken the liberty of
+> > > > implementing SCMI in our monitor firmware because the other MCU we use
+> > > > for dynamic voltage and frequency scaling did not have enough memory to
+> > > > support that and we still had the ability to make that firmware be
+> > > > trusted enough we could give it power management responsibilities. I
+> > > > would certainly feel more comfortable if the SCMI specification was
+> > > > amended to indicate that the Agent could be such a software entity,
+> > > > still residing on the same host CPU as the Platform(s), but if not,
+> > > > that's fine.
+> > > >
+> > > > This has lead us to implement a mailbox driver that uses a proprietary
+> > > > SMC call for the P2A path ("tx" channel) and the return being done via
+> > > > either that same SMC or through SGI. You can take a look at it in our
+> > > > downstream tree here actually:
+> > > >
+> > > > https://github.com/Broadcom/stblinux-4.9/blob/master/linux/drivers/mailbox/brcmstb-mailbox.c
+> > > >
+> > > > If we can get rid of our own driver and uses a standard SMC based
+> > > > mailbox driver that supports our use case that involves interrupts (we
+> > > > can always change their kind without our firmware/boot loader since FDT
+> > > > is generated from that component), that would be great.
+> > > >
+> > > static irqreturn_t brcm_isr(void)
+> > > {
+> > >          mbox_chan_received_data(&chans[0], NULL);
+> > >          return IRQ_HANDLED;
+> > > }
+> > >
+> > > Sorry, I fail to understand why the irq can't be moved inside the
+> > > client driver itself? There can't be more cost to it and there
+> > > definitely is no functionality lost.
+> >
+> > What if there are multiple clients ?
+> >
+> There is a flag IRQF_SHARED for such situations.
 
--Vidya Sagar
-> 
-> Lorenzo
-> 
->>
->> -Vidya Sagar
->>
->>>
->>>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->>>> Reviewed-by: Thierry Reding <treding@nvidia.com>
->>>> Acked-by: Jingoo Han <jingoohan1@gmail.com>
->>>> ---
->>>> Changes since [v10]:
->>>> * None
->>>>
->>>> Changes since [v9]:
->>>> * None
->>>>
->>>> Changes since [v8]:
->>>> * None
->>>>
->>>> Changes since [v7]:
->>>> * None
->>>>
->>>> Changes since [v6]:
->>>> * None
->>>>
->>>> Changes since [v5]:
->>>> * Moved write enable to the beginning of the API and write disable to the end
->>>>
->>>> Changes since [v4]:
->>>> * None
->>>>
->>>> Changes since [v3]:
->>>> * None
->>>>
->>>> Changes since [v2]:
->>>> * None
->>>>
->>>> Changes since [v1]:
->>>> * None
->>>>
->>>>    drivers/pci/controller/dwc/pcie-designware-host.c | 14 ++++++++------
->>>>    1 file changed, 8 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
->>>> index f93252d0da5b..d3156446ff27 100644
->>>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
->>>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
->>>> @@ -628,6 +628,12 @@ void dw_pcie_setup_rc(struct pcie_port *pp)
->>>>    	u32 val, ctrl, num_ctrls;
->>>>    	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->>>> +	/*
->>>> +	 * Enable DBI read-only registers for writing/updating configuration.
->>>> +	 * Write permission gets disabled towards the end of this function.
->>>> +	 */
->>>> +	dw_pcie_dbi_ro_wr_en(pci);
->>>> +
->>>>    	dw_pcie_setup(pci);
->>>>    	if (!pp->ops->msi_host_init) {
->>>> @@ -650,12 +656,10 @@ void dw_pcie_setup_rc(struct pcie_port *pp)
->>>>    	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_1, 0x00000000);
->>>>    	/* Setup interrupt pins */
->>>> -	dw_pcie_dbi_ro_wr_en(pci);
->>>>    	val = dw_pcie_readl_dbi(pci, PCI_INTERRUPT_LINE);
->>>>    	val &= 0xffff00ff;
->>>>    	val |= 0x00000100;
->>>>    	dw_pcie_writel_dbi(pci, PCI_INTERRUPT_LINE, val);
->>>> -	dw_pcie_dbi_ro_wr_dis(pci);
->>>>    	/* Setup bus numbers */
->>>>    	val = dw_pcie_readl_dbi(pci, PCI_PRIMARY_BUS);
->>>> @@ -687,15 +691,13 @@ void dw_pcie_setup_rc(struct pcie_port *pp)
->>>>    	dw_pcie_wr_own_conf(pp, PCI_BASE_ADDRESS_0, 4, 0);
->>>> -	/* Enable write permission for the DBI read-only register */
->>>> -	dw_pcie_dbi_ro_wr_en(pci);
->>>>    	/* Program correct class for RC */
->>>>    	dw_pcie_wr_own_conf(pp, PCI_CLASS_DEVICE, 2, PCI_CLASS_BRIDGE_PCI);
->>>> -	/* Better disable write permission right after the update */
->>>> -	dw_pcie_dbi_ro_wr_dis(pci);
->>>>    	dw_pcie_rd_own_conf(pp, PCIE_LINK_WIDTH_SPEED_CONTROL, 4, &val);
->>>>    	val |= PORT_LOGIC_SPEED_CHANGE;
->>>>    	dw_pcie_wr_own_conf(pp, PCIE_LINK_WIDTH_SPEED_CONTROL, 4, val);
->>>> +
->>>> +	dw_pcie_dbi_ro_wr_dis(pci);
->>>>    }
->>>>    EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
->>>> -- 
->>>> 2.17.1
->>>>
->>
+Indeed, we can use it.
 
+> (good to see you considering multiple clients per channel as a legit scenario)
+>
+
+Not single channel, but single IRQ shared by multiple channels.
+We can have multiple SMC based mailbox but one shared IRQ.
+
+> > And I assume you are referring to case like this where IRQ is not tied
+> > to the mailbox IP.
+> >
+> Yes, and that is the reason the irq should not be manageid by the mailbox driver.
+
+Thanks for confirmation.
+
+--
+Regards,
+Sudeep
