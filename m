@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 101A858231
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 14:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0AA5824B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 14:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726375AbfF0MJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 08:09:36 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:38202 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726445AbfF0MJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 08:09:36 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x5RC978P027890;
-        Thu, 27 Jun 2019 14:09:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=YhbGT74N+NBt7diBF1bSd0/WlzOVPJg/StbhMe0pCCw=;
- b=q1ldMIaPhSmX9byvqp4QjPhafsAc0jBnCLQFu9stlJliO/Td13SvJLIUUniXG9EHj3CZ
- 9FPZV/Ar7YAXvuL+6rusfmbFvory1CaV5/cMKMyeatIWVpR4lrTxcSJFH5M9p4WYO2gx
- M1Gz9qYpctH25Gp40FGgB69z1K9yF3cPIdyBwHxUUItx5DC+q+DfAnBy+NMQFKRCRfiB
- fQNt965WFpbhky6Hr1M0dRlSbNgIHh7ytbirl2OFQuxxL6enhebbN8ohh5pQ0Bkc9rdm
- vJHx21hn79dGR4pAIb3oGqFi7DkC13bP+ZS59qcbmsl4xIIg15RIhUDxcCBfCySY3pnQ iQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2t9d2jy4j5-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Thu, 27 Jun 2019 14:09:24 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 44D5B49;
-        Thu, 27 Jun 2019 12:09:23 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 19A7F272F;
-        Thu, 27 Jun 2019 12:09:23 +0000 (GMT)
-Received: from SAFEX1HUBCAS22.st.com (10.75.90.93) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 27 Jun
- 2019 14:09:23 +0200
-Received: from lmecxl0923.lme.st.com (10.48.0.237) by Webmail-ga.st.com
- (10.75.90.48) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 27 Jun
- 2019 14:09:22 +0200
-From:   Ludovic Barre <ludovic.Barre@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Ludovic Barre <ludovic.barre@st.com>
-Subject: [PATCH] ARM: dts: stm32: activate dma for qspi on stm32mp157
-Date:   Thu, 27 Jun 2019 14:09:05 +0200
-Message-ID: <1561637345-31441-1-git-send-email-ludovic.Barre@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726431AbfF0MOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 08:14:14 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:55478 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726721AbfF0MOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 08:14:01 -0400
+Received: by mail-wm1-f66.google.com with SMTP id a15so5498896wmj.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 05:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LdXcbqi//1yQdo7sH21GuoXxU61NLp73gRkdlfRljFs=;
+        b=XdfbE24dBpd/sTmZ7q4zvtKudeNA2u1ZlCAXEV6LSSX9MhXFeHsJA89RAGLWnAXKz5
+         SVrwt61pY7t/JEyrDiZRvdMmw8qKctFALBIdVUuWRHU/WnvcCMDN0IK8U+OnimL7puwF
+         Slbnn8jecmWciwC7EuS8Tpk8VdmPuwZClsYozfuX6VZCVQoOeDpzVlchZJU26FXwdfy5
+         pORUGm/YZEaHE/qjgWXlN/Ue67kPhK9qdJhmrEEL3hxk4wJJEcoOXRqO7ZG4kfkJ6OeQ
+         UAG56yvB+/TjPpdUMEllkNehJ0aDgHDSIXuvklQkgtlY3BaehtSzHPujwV7ITEOl4np3
+         uOKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LdXcbqi//1yQdo7sH21GuoXxU61NLp73gRkdlfRljFs=;
+        b=rsWVB23BuvXfuDxPEsyNsMrOV3Jpa6XxqXXHlgy3DT7tSmEwNOWCNoCmQADja87+rt
+         cptV0M/lXfa9f+e5pZJpjsty9UUtZ0sagFMUJuOWKZk6XFfAah26dakxYzZQpWtXVWDv
+         K7TeOkLxS8xyX5JMDm9LkCfYg21zuTLizW+6bx2eaP07vNjHg0KJzZ/Ryq1Cir8IJUjL
+         dcAQiZydWoiUqqiBQ/LWE8e1z4pLM+LvembNH5XVzUe/fEef5neTEnbWcrxRmNZGiQD9
+         zY4zzdtUrfhYtTqTNQa4uZ57dL3w1MVcOmGRY3NyExX2ZrOl7WGS4hoc7lWuCu7iGES9
+         3oQQ==
+X-Gm-Message-State: APjAAAWtxc7UfAA6YhBdmu1BV00L22LF/ZfDwmj5qQHE2EHbL0Wh3ZBx
+        vpsMHKTe2KhpkTQ1bqzuQJ5GkrcZ6xcrtg==
+X-Google-Smtp-Source: APXvYqxfToTeP7Z6wbZ2zjURbfpnhMu6weuA67216EZ1Md0Y5D3hlgGZi/3X8aMdt1KW9lO/15lYrg==
+X-Received: by 2002:a1c:9ac9:: with SMTP id c192mr3273937wme.0.1561637639202;
+        Thu, 27 Jun 2019 05:13:59 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id i11sm6160594wmi.33.2019.06.27.05.13.57
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 27 Jun 2019 05:13:58 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH v2 0/2] ASoC: soc-core: update dai_link init
+Date:   Thu, 27 Jun 2019 14:13:48 +0200
+Message-Id: <20190627121350.21027-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.237]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-06-27_07:,,
- signatures=0
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ludovic Barre <ludovic.barre@st.com>
+My initial goal with this patchset was to allow a dai_link to have no
+no platform component, instead of having dummy by default.
 
-This patch activates dma for qspi on stm32mp157.
+However, when rebasing, I discovered that Kuninori Morimoto had recently
+done that in a different way :)
 
-Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
----
- arch/arm/boot/dts/stm32mp157c.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+I am still submitting my change since it should allow multiple platform
+components on a dai_link, which is one of the FIXME note in soc-core.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
-index 2afeee6..205ea1d 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -1074,6 +1074,9 @@
- 			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
- 			reg-names = "qspi", "qspi_mm";
- 			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&mdma1 22 0x10 0x100002 0x0 0x0>,
-+			       <&mdma1 22 0x10 0x100008 0x0 0x0>;
-+			dma-names = "tx", "rx";
- 			clocks = <&rcc QSPI_K>;
- 			resets = <&rcc QSPI_R>;
- 			status = "disabled";
+I have also added a check on the codecs component availability to align
+on what was done for platforms and cpus
+
+Change since v1 [0]:
+* Fix registartion typo
+* Rename dlc variable to codec/platform
+
+[0]: https://lkml.kernel.org/r/20190626133617.25959-1-jbrunet@baylibre.com
+
+Jerome Brunet (2):
+  ASoC: soc-core: defer card registration if codec component is missing
+  ASoC: soc-core: support dai_link with platforms_num != 1
+
+ include/sound/soc.h  |  6 ++++
+ sound/soc/soc-core.c | 67 +++++++++++++++++++++-----------------------
+ 2 files changed, 38 insertions(+), 35 deletions(-)
+
 -- 
-2.7.4
+2.21.0
 
