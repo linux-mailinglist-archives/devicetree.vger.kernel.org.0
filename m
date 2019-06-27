@@ -2,52 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E138C57561
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CA8857574
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726798AbfF0AVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 20:21:11 -0400
-Received: from mga12.intel.com ([192.55.52.136]:65362 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726521AbfF0AVL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 20:21:11 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Jun 2019 17:21:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,421,1557212400"; 
-   d="scan'208";a="156052762"
-Received: from mwsinger-mobl3.ger.corp.intel.com ([10.252.48.211])
-  by orsmga008.jf.intel.com with ESMTP; 26 Jun 2019 17:21:05 -0700
-Message-ID: <4402fd48b978dc7982912359b775a0d74564b287.camel@linux.intel.com>
-Subject: Re: [PATCH v1 2/2] char: tpm: add new driver for tpm i2c ptp
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     Oshri Alkoby <oshrialkoby85@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org, oshri.alkoby@nuvoton.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, gcwilson@us.ibm.com,
-        kgoldman@us.ibm.com, nayna@linux.vnet.ibm.com,
-        tomer.maimon@nuvoton.com
-Date:   Thu, 27 Jun 2019 03:21:17 +0300
-In-Reply-To: <20190625223503.367710-3-oshrialkoby85@gmail.com>
-References: <20190625223503.367710-1-oshrialkoby85@gmail.com>
-         <20190625223503.367710-3-oshrialkoby85@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.1-2 
+        id S1726489AbfF0AXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 20:23:25 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:41553 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726707AbfF0AXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jun 2019 20:23:25 -0400
+Received: by mail-pl1-f195.google.com with SMTP id m7so240961pls.8
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2019 17:23:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c34/FfI7PALcZVh0MK4YlFiWvnY7m44Qb8oCZcTiVbU=;
+        b=a1r7b0eQqi65SnqqxyoyNoD4dz3PJJz11oTPJDYx1ctiFPDiwwrUHcLazOdtvx2h+b
+         BJ557GOrC/erbl4AklySqzJS15SQHRCyi1pl5V+Ls9UzeK+ybM4aUzx/S+y9D7ra9gXL
+         ud7lUYI/Zqb2M3pihkmgYamKJ46DHL/UUeQ91qNrgnYGOngk+Ky+30mJQ2BAC1N4CLmf
+         9YUjsBmnOgUwCj1x8uLgqFqywqoB2YH5RUIgldau68pKxTutIfleZKg6l9x3MWTSKJaB
+         ouNqg9FBjBvdFyIKXW5If/Gp0dxolKfdIn0hpcE+lOOFMC9WXHkJlNZBl9+xdWTdckpr
+         zuaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c34/FfI7PALcZVh0MK4YlFiWvnY7m44Qb8oCZcTiVbU=;
+        b=BXlbWLdNJdG6a/lVdx91cduh0MELVt0mHM8DdB+cf0XPsP39Ghp1gVQMgJKFQB4fbt
+         fhJXyNz8IK5yyg83j/UbgrHGoOpungGDTQrmKXJ62DCS1xizwKFR2ID9G9PDZMCYzpta
+         eWLrwUL08F9QCSO++rSJq0ZDm9Rc6aAFSKqWZXBZiHOzEA6jaIaEgTCOO1UJCUuOTtqO
+         ykf+e4GUS3HWWHjRkFJmxJHyWPKC/LTRDyCN2Zi8fcIsWRMohy4dDE0XCPlD6E6RxGnr
+         cZtsaDAhIIGLjleYyynvGY7BcyjB6u9QnnoAZajbEkjuUKIO4agxLn8hY82Cf2bzjR/N
+         6QBg==
+X-Gm-Message-State: APjAAAXqrzd+vpCXeplQRY4ZwpVxMV/3YFw4cCm7xC+n8DGQUkBvfgqZ
+        0zSU/FbL+tGTRmi8I9M7c/Dwc+Sj7DQcWLRg195kWg==
+X-Google-Smtp-Source: APXvYqz8ozeAzYHPHzqs1rNqRCdggL5+4sDGi+NHmPQJCmuSKDQDwiM3UtGQ8HWyljDXcSyRIYd62W6XpQAlC3xYRPM=
+X-Received: by 2002:a17:902:29e6:: with SMTP id h93mr950785plb.297.1561595003889;
+ Wed, 26 Jun 2019 17:23:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-14-brendanhiggins@google.com> <20190626000150.GT19023@42.do-not-panic.com>
+ <CAFd5g44kkepB2hZcpYL-NB5ZHYE5tP7W-0yducGCX7Khd9gd9w@mail.gmail.com> <20190626220350.GA19023@42.do-not-panic.com>
+In-Reply-To: <20190626220350.GA19023@42.do-not-panic.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Wed, 26 Jun 2019 17:23:12 -0700
+Message-ID: <CAFd5g44ZbVCM3rksF44z_diiejS+Xc+qcXm120L+t+FHwuGyrA@mail.gmail.com>
+Subject: Re: [PATCH v5 13/18] kunit: tool: add Python wrappers for running
+ KUnit tests
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-06-26 at 01:35 +0300, Oshri Alkoby wrote:
-> Signed-off-by: Oshri Alkoby <oshrialkoby85@gmail.com>
+On Wed, Jun 26, 2019 at 3:03 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+>
+> On Wed, Jun 26, 2019 at 01:02:55AM -0700, Brendan Higgins wrote:
+> > On Tue, Jun 25, 2019 at 5:01 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+> > >
+> > > On Mon, Jun 17, 2019 at 01:26:08AM -0700, Brendan Higgins wrote:
+> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-all_passed.log
+> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-crash.log
+> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-failure.log
+> > > >  create mode 100644 tools/testing/kunit/test_data/test_is_test_passed-no_tests_run.log
+> > > >  create mode 100644 tools/testing/kunit/test_data/test_output_isolated_correctly.log
+> > > >  create mode 100644 tools/testing/kunit/test_data/test_read_from_file.kconfig
+> > >
+> > > Why are these being added upstream? The commit log does not explain
+> > > this.
+> >
+> > Oh sorry, those are for testing purposes. I thought that was clear
+> > from being in the test_data directory. I will reference it in the
+> > commit log in the next revision.
+>
+> Still, I don't get it. They seem to be results from a prior run. Why do
+> we need them for testing purposes?
 
-...
+Those logs are the raw output from UML with KUnit installed. They are
+for testing kunit_tool, the Python scripts added in this commit. One
+of the things that kunit_tool does is parses the results output by
+UML, extracts the KUnit data, and presents it in a user friendly
+manner.
 
-/Jarkko
+I added these logs so I could test that kunit_tool parses certain
+kinds of output correctly. For example, I want to know that it parses
+a test failure correctly and includes the appropriate context. So I
+have a log from a unit test that failed, and I have a test (a Python
+test that is also in this commit) that tests whether kunit_tool can
+parse the log correctly.
 
+Does that make sense?
