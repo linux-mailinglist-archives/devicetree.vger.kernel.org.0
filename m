@@ -2,293 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D6FA57ED4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 11:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A1557EF8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 11:09:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726543AbfF0JBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 05:01:08 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:42034 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726375AbfF0JBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 05:01:08 -0400
-Received: by mail-wr1-f66.google.com with SMTP id x17so1574376wrl.9
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 02:01:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=5yFNTNnYD7AZEAM6W7oabAyA0yimjLZpguXQ1Xm49Vg=;
-        b=CFDV7CfOV2SJdhiXOFJzFWZSUa0+9azsQyqHbGb7JaZXEDNJu8G2ggwXsoYG3y4bO5
-         XZ/xytS6NhoXMe4CGyOJJJb4Yh5oiKRvnutFxuTF7cAGAWgpGKVKfQO0hF8C4+/tYgp8
-         JIC1qwS2jv4/Tgx9+jAOkpknvbQLJ9l2YxGmw6fVAWVcNNMBM48Fo0xR5J1IdAwXZP3M
-         blnKXig95Q662W+6nfZiuQF33YMrYt+aYM+F4/E1wmrGxb735SjeB4hLbhWIK4PEvqCn
-         NA7jrdITJCqAxOvcnMlNy/Ja8U4woLp0e5xeYc8LAKSykNOTwTv7qS5lteHyjGW/juTD
-         eI1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=5yFNTNnYD7AZEAM6W7oabAyA0yimjLZpguXQ1Xm49Vg=;
-        b=heiGJVmYAiDPUEWJfhk43eyc0WqxNqioThFC1eH4sabkH/LTJcoH/qPZDaYXt1oNx6
-         n0NFAP4Bi01niYGnLMoQTbKNtzvOp+q40lN8pk235jrDifLG0IVeNuObUvCx4os/9AEn
-         Ctc5OYVB9PTrddG57IfadnR2DR/pSucevpTViNkdQgbiDyzmEH0aeKJstG4dRCaynZCP
-         fXM0Y5logAToT2le81+Qii5y9MBIB91t+BgDBBz4vAFFp13JvKeFLeaL4VJyF2WiLMup
-         /zXZoeBcJn1Jkr090nL4WfwaTP3p20JsspLtpr98BFerun6YRoh6H95fVF2bxxfANbYF
-         Bysw==
-X-Gm-Message-State: APjAAAXd96hpAoIa8KdSX+MvziK4zoVj0ovzF320GBLa6d1YvaCbYngs
-        MaradC2EFp2+/HZd55xCHho6yw==
-X-Google-Smtp-Source: APXvYqzstXSmcKcm/aUFC5bedh0bUG3qltP+jnjnJm3BgcuiWoAt0Fg1yN82dJApydf41ZpPu5vZtg==
-X-Received: by 2002:a5d:6b90:: with SMTP id n16mr2328097wrx.206.1561626064958;
-        Thu, 27 Jun 2019 02:01:04 -0700 (PDT)
-Received: from dell ([2.27.35.164])
-        by smtp.gmail.com with ESMTPSA id g123sm1063998wme.12.2019.06.27.02.01.03
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 27 Jun 2019 02:01:04 -0700 (PDT)
-Date:   Thu, 27 Jun 2019 10:01:02 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726293AbfF0JJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 05:09:09 -0400
+Received: from foss.arm.com ([217.140.110.172]:49694 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725385AbfF0JJI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 05:09:08 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E0B772B;
+        Thu, 27 Jun 2019 02:09:07 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 06B373F718;
+        Thu, 27 Jun 2019 02:09:05 -0700 (PDT)
+Date:   Thu, 27 Jun 2019 10:09:03 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mathieu Malaterre <malat@debian.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, od@zcrc.me
-Subject: Re: [PATCH v12 04/13] mfd: Add Ingenic TCU driver
-Message-ID: <20190627090102.GA2000@dell>
-References: <20190521145141.9813-1-paul@crapouillou.net>
- <20190521145141.9813-5-paul@crapouillou.net>
- <20190626131850.GW21119@dell>
- <1561557350.1872.0@crapouillou.net>
- <20190627065808.GY21119@dell>
- <1561625387.1745.0@crapouillou.net>
+        ", Sascha Hauer" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH V2 2/2] mailbox: introduce ARM SMC based mailbox
+Message-ID: <20190627090903.GD13572@e107155-lin>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+ <20190603083005.4304-3-peng.fan@nxp.com>
+ <CABb+yY1wW-arSMQSYjrezXOZ0Ar_shAr78MOyUD3hBxXohWx3g@mail.gmail.com>
+ <AM0PR04MB44813A4DE544E53EB7B6F02B88E30@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <CABb+yY38MAZqVOhjyV+GByPvpFcTfKbNG1rJ8YDRd1vi1F4fqg@mail.gmail.com>
+ <AM0PR04MB44814D3BD59033ECDDE3094C88E20@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <e49278ba-f734-e019-ab44-53afe558bd85@gmail.com>
+ <CABb+yY2B_bGqZhd3HRm2qOwGNXG8UYvRo0_uBmwGbx_1gA-vfA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1561625387.1745.0@crapouillou.net>
+In-Reply-To: <CABb+yY2B_bGqZhd3HRm2qOwGNXG8UYvRo0_uBmwGbx_1gA-vfA@mail.gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Jun 2019, Paul Cercueil wrote:
-> Le jeu. 27 juin 2019 à 8:58, Lee Jones <lee.jones@linaro.org> a écrit :
-> > On Wed, 26 Jun 2019, Paul Cercueil wrote:
-> > >  Le mer. 26 juin 2019 à 15:18, Lee Jones <lee.jones@linaro.org> a
-> > > écrit :
-> > >  > On Tue, 21 May 2019, Paul Cercueil wrote:
-> > >  >
-> > >  > >  This driver will provide a regmap that can be retrieved very
-> > > early
-> > >  > > in
-> > >  > >  the boot process through the API function
-> > > ingenic_tcu_get_regmap().
-> > >  > >
-> > >  > >  Additionally, it will call devm_of_platform_populate() so that
-> > > all
-> > >  > > the
-> > >  > >  children devices will be probed.
-> > >  > >
-> > >  > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> > >  > >  ---
-> > >  > >
-> > >  > >  Notes:
-> > >  > >      v12: New patch
-> > >  > >
-> > >  > >   drivers/mfd/Kconfig             |   8 +++
-> > >  > >   drivers/mfd/Makefile            |   1 +
-> > >  > >   drivers/mfd/ingenic-tcu.c       | 113
-> > >  > > ++++++++++++++++++++++++++++++++
-> > >  > >   include/linux/mfd/ingenic-tcu.h |   8 +++
-> > >  > >   4 files changed, 130 insertions(+)
-> > >  > >   create mode 100644 drivers/mfd/ingenic-tcu.c
-> > 
-> > [...]
-> > 
-> > >  > >  +static struct regmap * __init ingenic_tcu_create_regmap(struct
-> > >  > > device_node *np)
-> > >  > >  +{
-> > >  > >  +	struct resource res;
-> > >  > >  +	void __iomem *base;
-> > >  > >  +	struct regmap *map;
-> > >  > >  +
-> > >  > >  +	if (!of_match_node(ingenic_tcu_of_match, np))
-> > >  > >  +		return ERR_PTR(-EINVAL);
-> > 
-> > Drop this check.
-> > 
-> > >  > >  +	base = of_io_request_and_map(np, 0, "TCU");
-> > >  > >  +	if (IS_ERR(base))
-> > >  > >  +		return ERR_PTR(PTR_ERR(base));
-> > >  > >  +
-> > >  > >  +	map = regmap_init_mmio(NULL, base,
-> > > &ingenic_tcu_regmap_config);
-> > >  > >  +	if (IS_ERR(map))
-> > >  > >  +		goto err_iounmap;
-> > 
-> > Place this inside probe().
-> > 
-> > >  > >  +	return map;
-> > >  > >  +
-> > >  > >  +err_iounmap:
-> > >  > >  +	iounmap(base);
-> > >  > >  +	of_address_to_resource(np, 0, &res);
-> > >  > >  +	release_mem_region(res.start, resource_size(&res));
-> > >  > >  +
-> > >  > >  +	return map;
-> > >  > >  +}
-> > >  >
-> > >  > Why does this need to be set-up earlier than probe()?
-> > > 
-> > >  See the explanation below.
-> > 
-> > I think the answer is, it doesn't.
-> > 
-> > >  > >  +static int __init ingenic_tcu_probe(struct platform_device
-> > > *pdev)
-> > >  > >  +{
-> > >  > >  +	struct regmap *map =
-> > > ingenic_tcu_get_regmap(pdev->dev.of_node);
-> > >  > >  +
-> > >  > >  +	platform_set_drvdata(pdev, map);
-> > >  > >  +
-> > >  > >  +	regmap_attach_dev(&pdev->dev, map,
-> > > &ingenic_tcu_regmap_config);
-> > >  > >  +
-> > >  > >  +	return devm_of_platform_populate(&pdev->dev);
-> > >  > >  +}
-> > >  > >  +
-> > >  > >  +static struct platform_driver ingenic_tcu_driver = {
-> > >  > >  +	.driver = {
-> > >  > >  +		.name = "ingenic-tcu",
-> > >  > >  +		.of_match_table = ingenic_tcu_of_match,
-> > >  > >  +	},
-> > >  > >  +};
-> > >  > >  +
-> > >  > >  +static int __init ingenic_tcu_platform_init(void)
-> > >  > >  +{
-> > >  > >  +	return platform_driver_probe(&ingenic_tcu_driver,
-> > >  > >  +				     ingenic_tcu_probe);
-> > >  >
-> > >  > What?  Why?
-> > > 
-> > >  The device driver probed here will populate the children devices,
-> > >  which will be able to retrieve the pointer to the regmap through
-> > >  device_get_regmap(dev->parent).
-> > 
-> > I've never heard of this call.  Where is it?
+On Wed, Jun 26, 2019 at 01:27:41PM -0500, Jassi Brar wrote:
+> On Wed, Jun 26, 2019 at 11:44 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >
+> > On 6/26/19 6:31 AM, Peng Fan wrote:
+> > >>> The firmware driver might not have func-id, such as SCMI/SCPI.
+> > >>> So add an optional func-id to let smc mailbox driver could
+> > >>> use smc SiP func id.
+> > >>>
+> > >> There is no end to conforming to protocols. Controller drivers should
+> > >> be written having no particular client in mind.
+> > >
+> > > If the func-id needs be passed from user, then the chan_id suggested
+> > > by Sudeep should also be passed from user, not in mailbox driver.
+> > >
+> > > Jassi, so from your point, arm_smc_send_data just send a0 - a6
+> > > to firmware, right?
+> > >
+> > > Sudeep, Andre, Florian,
+> > >
+> > > What's your suggestion? SCMI not support, do you have
+> > > plan to add smc transport in SCMI?
+> >
+> > On the platforms that I work with, we have taken the liberty of
+> > implementing SCMI in our monitor firmware because the other MCU we use
+> > for dynamic voltage and frequency scaling did not have enough memory to
+> > support that and we still had the ability to make that firmware be
+> > trusted enough we could give it power management responsibilities. I
+> > would certainly feel more comfortable if the SCMI specification was
+> > amended to indicate that the Agent could be such a software entity,
+> > still residing on the same host CPU as the Platform(s), but if not,
+> > that's fine.
+> >
+> > This has lead us to implement a mailbox driver that uses a proprietary
+> > SMC call for the P2A path ("tx" channel) and the return being done via
+> > either that same SMC or through SGI. You can take a look at it in our
+> > downstream tree here actually:
+> >
+> > https://github.com/Broadcom/stblinux-4.9/blob/master/linux/drivers/mailbox/brcmstb-mailbox.c
+> >
+> > If we can get rid of our own driver and uses a standard SMC based
+> > mailbox driver that supports our use case that involves interrupts (we
+> > can always change their kind without our firmware/boot loader since FDT
+> > is generated from that component), that would be great.
+> >
+> static irqreturn_t brcm_isr(void)
+> {
+>          mbox_chan_received_data(&chans[0], NULL);
+>          return IRQ_HANDLED;
+> }
 > 
-> dev_get_regmap, in <linux/regmap.h>.
-> 
-> > >  The children devices are normal platform drivers that can be probed
-> > >  the normal way. These are the PWM driver, the watchdog driver, and
-> > > the
-> > >  OST (OS Timer) clocksource driver, all part of the same hardware
-> > > block
-> > >  (the Timer/Counter Unit or TCU).
-> > 
-> > If they are normal devices, then there is no need to roll your own
-> > regmap-getter implementation like this.
-> > 
-> > >  > >  +}
-> > >  > >  +subsys_initcall(ingenic_tcu_platform_init);
-> > >  > >  +
-> > >  > >  +struct regmap * __init ingenic_tcu_get_regmap(struct
-> > > device_node
-> > >  > > *np)
-> > >  > >  +{
-> > >  > >  +	if (!tcu_regmap)
-> > >  > >  +		tcu_regmap = ingenic_tcu_create_regmap(np);
-> > >  > >  +
-> > >  > >  +	return tcu_regmap;
-> > >  > >  +}
-> > >  >
-> > >  > This makes me pretty uncomfortable.
-> > >  >
-> > >  > What calls it?
-> > > 
-> > >  The TCU IRQ driver (patch [06/13]), clocks driver (patch [05/13]),
-> > > and the
-> > >  non-OST clocksource driver (patch [07/13]) all probe very early in
-> > > the boot
-> > >  process, and share the same devicetree node. They call this
-> > > function to get
-> > >  a pointer to the regmap.
-> > 
-> > Horrible!
-> > 
-> > Instead, you should send it through platform_set_drvdata() and collect
-> > it in the child drivers with platform_get_drvdata(dev->parent).
-> 
-> The IRQ, clocks and clocksource driver do NOT have a "struct device" to
-> begin with. They are not platform drivers, and cannot be platform drivers,
-> as they must register so early in the boot process, before "struct device"
-> is even a thing.
-> 
-> All they get is a pointer to the same devicetree node. Since all of these
-> have to use the same registers, they need to use a shared regmap, which
-> they obtain by calling ingenic_tcu_get_regmap() below.
-> 
-> Then, when this driver's probe gets called, the regmap is retrieved and
-> attached to the struct device, and then the children devices will be
-> probed: the watchdog device, the PWM device, the OST device. These three
-> will retrieve the regmap by calling dev_get_regmap(dev->parent, NULL).
+> Sorry, I fail to understand why the irq can't be moved inside the
+> client driver itself? There can't be more cost to it and there
+> definitely is no functionality lost.
 
-That makes sense.
+What if there are multiple clients ?
+And I assume you are referring to case like this where IRQ is not tied
+to the mailbox IP.
 
-This explanation certainly belongs in the commit log.
+--
+Regards,
+Sudeep
 
-Can you send your v14, as you intended.  I will re-review it with new
-eyes when you do.
-
-> > >  > >  +bool ingenic_tcu_pwm_can_use_chn(struct device *dev, unsigned
-> > > int
-> > >  > > channel)
-> > >  > >  +{
-> > >  > >  +	const struct ingenic_soc_info *soc =
-> > >  > > device_get_match_data(dev->parent);
-> > >  > >  +
-> > >  > >  +	/* Enable all TCU channels for PWM use by default except
-> > > channels
-> > >  > > 0/1 */
-> > >  > >  +	u32 pwm_channels_mask = GENMASK(soc->num_channels - 1, 2);
-> > >  > >  +
-> > >  > >  +	device_property_read_u32(dev->parent,
-> > > "ingenic,pwm-channels-mask",
-> > >  > >  +				 &pwm_channels_mask);
-> > 
-> > Doesn't this call overwrite the previous assignment above?
-> 
-> Yes, that's intended. You have a default value, that can be overriden
-> by a device property.
-
-You should provide a comment here to make your intentions clear.
-
-> > >  > >  +	return !!(pwm_channels_mask & BIT(channel));
-> > >  > >  +}
-> > >  > >  +EXPORT_SYMBOL_GPL(ingenic_tcu_pwm_can_use_chn);
-> > 
-> > Where is this called from?
-> 
-> This is called from the PWM driver.
-
-Why can't it live in the PWM driver?
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
