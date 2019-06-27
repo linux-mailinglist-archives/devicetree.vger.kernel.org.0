@@ -2,244 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 540E65803E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B8A58058
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 12:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726576AbfF0K1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 06:27:45 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:33469 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726574AbfF0K1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 06:27:45 -0400
-Received: by mail-wr1-f67.google.com with SMTP id n9so1948287wru.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 03:27:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Bbt3iD0RuM1MWWR+I8B1kKnSONTbv3aEdP5kqBIyOco=;
-        b=UOWSXKTLXY4x4TfC/d0c9DZELYKd3roJE/3u1j2etH3otViKBlReANbLqJPxE5brNK
-         ueeRf3Bef46tKFhuXK4yUfp+IRGdk68mQmkErqqRfLYqjqtXZGHs+PUUOo9QnaHAUUfL
-         e1LZqET0ctg28UoWwUPwF/s8VehPibX9itNhcZtWz57dp1G2ZPRa2sNf/oenLzXuDj6B
-         LEIeCfOmVMXb2EnpcKCRK8gamR/D+8tfhacUePO73aYRUk7NmGhGEo+Rd08zVN68qJiB
-         1IeP8VI1KsWaDDlVIrA+I3B1eQi9AoFNlXSUN8WyUlvzJZrgVGwbACRb5SvG7M/SbDLT
-         hvPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Bbt3iD0RuM1MWWR+I8B1kKnSONTbv3aEdP5kqBIyOco=;
-        b=bo1E/IKB4McBiHiKWQksQaWKX3s5au2bsnqFJMx3ZDdlm43I7plAF710cWV/Og5Q0H
-         hHjfHAsiQyvnR41gymbDPjn5IPBz450lJ0pMH4vC4hB5rPT0mCgiFmGIRuL/BzVALdpH
-         QXmD60dnbB0VqqeVt0ua9jheX7Q6Kw+3gSQEFtmT399H7rNGsMFN05L30eM6QDms8Ut4
-         6x5SL/in+QfvogES55qR8oGnpGbcJ0SzDpkom1Au/94BhiA4YJftBHiv62g09MgNal6U
-         xLEP3b664Iw9yYxve4jMWITfKzYResGAOkCuKrw/ii6YAGz9uNPVAv/A6N7/XfrQT6/f
-         trwA==
-X-Gm-Message-State: APjAAAWQVGGfhxBjOdTQH8rOTJ8FQGSRnMvkCQqSB9lIgBJOmoYuR+iF
-        YhYpjqKuondVdX1bRzPys8S2Sg==
-X-Google-Smtp-Source: APXvYqw4D4C0n3ZtXVOVBTtfm6Td7K//e1OP5JV0M8oPddf7DJjMHL1hP2Ubwb5ZKvdF07DnCAw7FA==
-X-Received: by 2002:a5d:40ca:: with SMTP id b10mr2785889wrq.171.1561631260868;
-        Thu, 27 Jun 2019 03:27:40 -0700 (PDT)
-Received: from [192.168.0.41] (113.102.130.77.rev.sfr.net. [77.130.102.113])
-        by smtp.googlemail.com with ESMTPSA id b5sm1785802wru.69.2019.06.27.03.27.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 27 Jun 2019 03:27:40 -0700 (PDT)
-Subject: Re: [PATCH RESEND V2 1/3] clocksource/drivers/sysctr: Add optional
- clock-frequency property
-To:     Anson Huang <anson.huang@nxp.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     dl-linux-imx <linux-imx@nxp.com>,
-        Arnd Bergmann <arnd.bergmann@linaro.org>
-References: <20190623123850.22584-1-Anson.Huang@nxp.com>
- <55abafbd-c010-32b5-6d76-26040830d5b0@linaro.org>
- <DB3PR0402MB3916AB9F2260B0E46CCDDEC0F5E20@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <9c017ba9-ac6b-480b-d1f3-120289343101@linaro.org>
- <DB3PR0402MB3916ED4AB17B6DDD2248DD44F5FD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <8f8aa6e0-5f31-8047-14b5-0e1f65316453@linaro.org>
- <DB3PR0402MB39162DB95FA958AC1425BFFDF5FD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <f29a9a4b-8922-c8b5-f197-d33853f6341e@linaro.org>
-Date:   Thu, 27 Jun 2019 12:27:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <DB3PR0402MB39162DB95FA958AC1425BFFDF5FD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1726518AbfF0K2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 06:28:21 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:44104 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726523AbfF0K2S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 06:28:18 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 86600200BAD;
+        Thu, 27 Jun 2019 12:28:16 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9C497200BA3;
+        Thu, 27 Jun 2019 12:28:12 +0200 (CEST)
+Received: from lsv03124.swis.in-blr01.nxp.com (lsv03124.swis.in-blr01.nxp.com [92.120.146.121])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4D5D34030D;
+        Thu, 27 Jun 2019 18:28:07 +0800 (SGT)
+From:   Ashish Kumar <Ashish.Kumar@nxp.com>
+To:     devicetree@vger.kernel.org
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org, Ashish Kumar <ashish.kumar@nxp.com>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: [Patch v2] drivers: mtd: spi-nor: Add flash property for mt25qu512a and mt35xu02g
+Date:   Thu, 27 Jun 2019 15:58:03 +0530
+Message-Id: <1561631283-30937-1-git-send-email-Ashish.Kumar@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Ashish Kumar <ashish.kumar@nxp.com>
 
-Hi Anson,
+mt25qu512a is rebranded after its spinoff from STM, so it is
+different only in term of extended jedec ID, initial JEDEC id
+is same as that of n25q512a.In order to avoid any confussion 
+with respect to name new entry is added.
+This flash is tested for Single I/O mode on LS1046FRWY although
+it does support QUAD I/O.
 
-On 27/06/2019 10:11, Anson Huang wrote:
-> Hi, Daniel
-> 
->> On 27/06/2019 02:43, Anson Huang wrote:
->>> Hi, Daniel
->>>
->>>> On 26/06/2019 03:42, Anson Huang wrote:
->>>>> Hi, Daniel
->>>>>
->>>>>> On 23/06/2019 14:38, Anson.Huang@nxp.com wrote:
->>>>>>> From: Anson Huang <Anson.Huang@nxp.com>
->>>>>>>
->>>>>>> Systems which use platform driver model for clock driver require
->>>>>>> the clock frequency to be supplied via device tree when system
->>>>>>> counter driver is enabled.
->>>>>>>
->>>>>>> This is necessary as in the platform driver model the of_clk
->>>>>>> operations do not work correctly because system counter driver is
->>>>>>> initialized in early phase of system boot up, and clock driver
->>>>>>> using platform driver model is NOT ready at that time, it will
->>>>>>> cause system counter driver initialization failed.
->>>>>>>
->>>>>>> Add the optinal clock-frequency to the device tree bindings of the
->>>>>>> NXP system counter, so the frequency can be handed in and the
->>>>>>> of_clk operations can be skipped.
->>>>>>
->>>>>> Isn't it possible to create a fixed-clock and refer to it? So no
->>>>>> need to create a specific action before calling timer_of_init() ?
->>>>>>
->>>>>
->>>>> As the clock must be ready before the TIMER_OF_DECLARE, so adding a
->>>>> CLK_OF_DECLARE_DRIVER in clock driver to ONLY register a fixed-clock?
->>>>> The system counter's frequency are different on different platforms,
->>>>> so adding fixed clock in system counter driver is NOT a good idea,
->>>>> ONLY the DT node or the clock driver can create this fixed clock
->>>>> according to
->>>> platforms, can you advise where to create this fixed clock is better?
->>>>
->>>> Can you point me to a DT with the "nxp,sysctr-timer" ?
->>>
->>> The DT node of system counter is new added in 3/3 of this patch
->>> series, also can be found from below link:
->>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
->>>
->> hwork.kernel.org%2Fpatch%2F11011703%2F&amp;data=02%7C01%7Canson.
->> huang%
->>>
->> 40nxp.com%7C8b9519ecceb346712be808d6fad675e4%7C686ea1d3bc2b4c6f
->> a92cd99
->>>
->> c5c301635%7C0%7C0%7C636972196338405582&amp;sdata=sOQQzDFxoCqe
->> VuHFuYPHh
->>> F8Bdj2Zu9WS7Go%2FV9lrWa8%3D&amp;reserved=0
->>
->> Sorry, I was unclear. I meant a patch with the timer defined using a clock as
->> defined currently in the binding (no clock-frequency).
-> 
-> OK, for i.MX8MM, we use clocks, check below patch series:
-> 
-> https://patchwork.kernel.org/patch/11008519/
-> 
-> code piece as below:
-> 
-> +			system_counter: timer@306a0000 {
-> +				compatible = "nxp,sysctr-timer";
-> +				reg = <0x306a0000 0x30000>;
-> +				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MM_CLK_SYS_CTR>;
-> +				clock-names = "per";
-> +			};
+mt35xu02g is Octal flash supporting Single I/O and QCTAL I/O
+and has been tested on LS1028ARDB
 
-Thanks,
+Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
+---
+V2:
+Re-work based on review comments from Vignesh R
 
-The fixed-clock can help to keep the code and the DT definition for the
-timer untouched as the 'clocks' above will refer to it. But that means
-we describe a fake clock. So it is up to you to decide if you want to
-stick the clock-frequency or use a fixed-clock.
+ drivers/mtd/spi-nor/spi-nor.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-
-
-
+diff --git a/drivers/mtd/spi-nor/spi-nor.c b/drivers/mtd/spi-nor/spi-nor.c
+index 73172d7..34e33a7 100644
+--- a/drivers/mtd/spi-nor/spi-nor.c
++++ b/drivers/mtd/spi-nor/spi-nor.c
+@@ -1880,6 +1880,7 @@ static const struct flash_info spi_nor_ids[] = {
+ 	{ "n25q512ax3",  INFO(0x20ba20, 0, 64 * 1024, 1024, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ) },
+ 	{ "n25q00",      INFO(0x20ba21, 0, 64 * 1024, 2048, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
+ 	{ "n25q00a",     INFO(0x20bb21, 0, 64 * 1024, 2048, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
++	{ "mt25qu512a", INFO6(0x20bb20, 0x104400, 64 * 1024, 1024, SECT_4K | USE_FSR | SPI_NOR_4B_OPCODES) },
+ 	{ "mt25qu02g",   INFO(0x20bb22, 0, 64 * 1024, 4096, SECT_4K | USE_FSR | SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
+ 
+ 	/* Micron */
+@@ -1888,6 +1889,7 @@ static const struct flash_info spi_nor_ids[] = {
+ 			SECT_4K | USE_FSR | SPI_NOR_OCTAL_READ |
+ 			SPI_NOR_4B_OPCODES)
+ 	},
++	{ "mt35xu02g",   INFO(0x2c5b1c, 0, 128 * 1024, 2048, SECT_4K | USE_FSR | SPI_NOR_OCTAL_READ | SPI_NOR_4B_OPCODES) },
+ 
+ 	/* PMC */
+ 	{ "pm25lv512",   INFO(0,        0, 32 * 1024,    2, SECT_4K_PMC) },
 -- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.7.4
 
