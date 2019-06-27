@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE98575CA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E099575DC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2019 02:34:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727495AbfF0Ac3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jun 2019 20:32:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36180 "EHLO mail.kernel.org"
+        id S1727095AbfF0AdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jun 2019 20:33:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36822 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727491AbfF0Ac2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jun 2019 20:32:28 -0400
+        id S1727644AbfF0Ac6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jun 2019 20:32:58 -0400
 Received: from sasha-vm.mshome.net (unknown [107.242.116.147])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 380A121738;
-        Thu, 27 Jun 2019 00:32:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B23CB217D7;
+        Thu, 27 Jun 2019 00:32:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561595547;
-        bh=ydOv2WDZFlwGjNlsS62+9dwQ4kXG/VqdWxVpFUs3naA=;
+        s=default; t=1561595577;
+        bh=+ZN2H1Rhb2nLG7GYH4zcFDSdXLZMZUmax+jn/se6dp4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fzWqlQ4hFYZGUINBPv4rkdtFBkJKxXr+F57fTZhvobiZkcpieK0rXY98LoVN0GWA7
-         S99yTBHZLcR4YtFdasmFI+xgapvbAPkwyay4in6g7dhG7P4dLtAg7SUXw6pJnM3rAT
-         xzbo2EPVqGE6LgTkMZ+2e8oO2uLZRH0mvAp7MBZg=
+        b=2XIXLJxSsYQoH3N99LtQjKbZeJaXSL5srr9aEaGWRveCrvkKBorycFsxRx5Ocg6mz
+         7d4Fzz6388paREQz2cry/XxGWRbshdED+qfjPEKVXU/7t2bs91+CQz/CcGN2yrbKeW
+         uV+Su3Tqe3ntRAZdkbrNZL1f4Vt+tH+XXLdjEEeM=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Sean Nyekjaer <sean@geanix.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Sasha Levin <sashal@kernel.org>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.1 37/95] dt-bindings: can: mcp251x: add mcp25625 support
-Date:   Wed, 26 Jun 2019 20:29:22 -0400
-Message-Id: <20190627003021.19867-37-sashal@kernel.org>
+Cc:     Teresa Remmet <t.remmet@phytec.de>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.1 46/95] ARM: dts: am335x phytec boards: Fix cd-gpios active level
+Date:   Wed, 26 Jun 2019 20:29:31 -0400
+Message-Id: <20190627003021.19867-46-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190627003021.19867-1-sashal@kernel.org>
 References: <20190627003021.19867-1-sashal@kernel.org>
@@ -44,33 +44,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Nyekjaer <sean@geanix.com>
+From: Teresa Remmet <t.remmet@phytec.de>
 
-[ Upstream commit 0df82dcd55832a99363ab7f9fab954fcacdac3ae ]
+[ Upstream commit 8a0098c05a272c9a68f6885e09755755b612459c ]
 
-Fully compatible with mcp2515, the mcp25625 have integrated transceiver.
+Active level of the mmc1 cd gpio needs to be low instead of high.
+Fix PCM-953 and phyBOARD-WEGA.
 
-This patch add the mcp25625 to the device tree bindings documentation.
-
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/am335x-pcm-953.dtsi | 2 +-
+ arch/arm/boot/dts/am335x-wega.dtsi    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
-index 188c8bd4eb67..5a0111d4de58 100644
---- a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
-+++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
-@@ -4,6 +4,7 @@ Required properties:
-  - compatible: Should be one of the following:
-    - "microchip,mcp2510" for MCP2510.
-    - "microchip,mcp2515" for MCP2515.
-+   - "microchip,mcp25625" for MCP25625.
-  - reg: SPI chip select.
-  - clocks: The clock feeding the CAN controller.
-  - interrupts: Should contain IRQ line for the CAN controller.
+diff --git a/arch/arm/boot/dts/am335x-pcm-953.dtsi b/arch/arm/boot/dts/am335x-pcm-953.dtsi
+index 1ec8e0d80191..572fbd254690 100644
+--- a/arch/arm/boot/dts/am335x-pcm-953.dtsi
++++ b/arch/arm/boot/dts/am335x-pcm-953.dtsi
+@@ -197,7 +197,7 @@
+ 	bus-width = <4>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc1_pins>;
+-	cd-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
++	cd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/am335x-wega.dtsi b/arch/arm/boot/dts/am335x-wega.dtsi
+index 8ce541739b24..83e4fe595e37 100644
+--- a/arch/arm/boot/dts/am335x-wega.dtsi
++++ b/arch/arm/boot/dts/am335x-wega.dtsi
+@@ -157,7 +157,7 @@
+ 	bus-width = <4>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc1_pins>;
+-	cd-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
++	cd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ };
+ 
 -- 
 2.20.1
 
