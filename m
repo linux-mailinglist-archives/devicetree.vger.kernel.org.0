@@ -2,101 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7FCD59861
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 12:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6355159888
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 12:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726524AbfF1K2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 06:28:24 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:42901 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726502AbfF1K2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 06:28:24 -0400
-Received: by mail-lf1-f66.google.com with SMTP id x144so3621841lfa.9
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 03:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=uNia+wXcww8hJhPTXh8yCLt0TR3O7aaW7PyNXd3ivCM=;
-        b=IKVorRDRsqKEUM0hcVl2t5iU7B8+N4xQ56gnE/B0TdoxPE0f06DGV1Th3bnGVPq+1i
-         qlOJbbrdlJWGYB2HGyV/JbdKNdMgZH9cyHeWFO9XiY5LT4+XFkdj4mO9fAtZF/PIRgRL
-         QsOfuUs4WXfJQ9yaUWnoReSSMZtIgKJlc1k7j6J/e3aNmQoK5MC7YHX0WpUu/l6naqlC
-         UFNH2eoSon5kdtoLPbZLbBRvk0s7tiEQVtwKkuuyAUuftFUTUMqeSmFrOXbLfmHfotyX
-         k3wxCIRXYcHy6YjAhtcIkgNwuzbYoSWXsk/UZx3BWa6ZCuJupTnj5F5XXV3J4GKI/RjQ
-         emoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=uNia+wXcww8hJhPTXh8yCLt0TR3O7aaW7PyNXd3ivCM=;
-        b=m36CoztUPNFyyyGzV64greY01fL6XGxuv0HqKDITeuTVkYPG7ZnxmfuvgL+aIXdvTd
-         38LaEV/DcUoFq7kkhGke5u1aKcjQhMYnj8NBKEWrpmeTo6/wS8yQuqFPv0RKi1P7mwoB
-         jXE0ztH3dP+K8FiZg8GDidK191z/IfpklqGX4hcKZf97OiSP0S/LG99lwGgLrLFS0lvm
-         3itQq9294dvyAkaftv91YvGwU8/Y/e+ePRg4e1hicdXsfcY74HsX26edW7DEfjACA2SS
-         Og9kBEE3Xih7IGf+Sq4Zdyt6VNRpOKIZ/45JcuSDmSM93Gr9HhGTd9H0dLgtue5tQlfY
-         qOYA==
-X-Gm-Message-State: APjAAAXfTTMn5Vq4FOSt+e2KHr6nj8596Hywa+MhMhmtQI9aKvmMVfpT
-        6MfH7YqvDany5U41rnQtQEYHbwJTmCWadfLv4kFaVg==
-X-Google-Smtp-Source: APXvYqyTSELuCwdqtXQ6xfh9OQghPYDZrodDsVKXcdIIzGQolnUkGedUB3xgSLIxsiO7L8/FxlqG97FHQGkNNX4PzBg=
-X-Received: by 2002:a19:6a01:: with SMTP id u1mr4549883lfu.141.1561717702644;
- Fri, 28 Jun 2019 03:28:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
-In-Reply-To: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 28 Jun 2019 11:28:11 +0100
-Message-ID: <CACRpkdYD7Z7XX9wXFtBehJG_4NCt=m_MNsR5cESPRnO3tomKmQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] extcon: Add fsa9480 extcon driver
-To:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Donggeun Kim <dg77.kim@samsung.com>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726528AbfF1Kjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 06:39:39 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:42349 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726514AbfF1Kjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 06:39:39 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190628103937euoutp02c20a31490064a9284beb9db4206afbe8~sVpcI0S480063400634euoutp02C
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 10:39:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190628103937euoutp02c20a31490064a9284beb9db4206afbe8~sVpcI0S480063400634euoutp02C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1561718377;
+        bh=KxYCFb299NuCBuskzrs32fM+mCiZc0Ki+XeRZlLfjq0=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=jsdULTZwxp+xU/hui5qSc5dMtcUCAD+wD4H6XURck7iAQx2nlOVnpZSO8jyOoV42M
+         z+1ogKFgVEelOCnGCxeuVB5HxL2mTPKyOQo8jpatoz0hO26WrGJrmwgQ+UlhO+LujG
+         cLeWhgUlCou8ay8nB0cMWRZTmkTyPNPalAey4PkM=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190628103936eucas1p26685f8adf006b35a11477e4280202310~sVpbOfd-B2835028350eucas1p2-;
+        Fri, 28 Jun 2019 10:39:36 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 49.14.04298.86EE51D5; Fri, 28
+        Jun 2019 11:39:36 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190628103935eucas1p1ed57a3e2f9ecae6cb299cfacb48452d3~sVpaJGe031469414694eucas1p1v;
+        Fri, 28 Jun 2019 10:39:35 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190628103935eusmtrp1331c3b3754737d4a782136682bb7f5bf~sVpZ64OIs2528125281eusmtrp17;
+        Fri, 28 Jun 2019 10:39:35 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-f6-5d15ee68253a
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id B6.DB.04146.66EE51D5; Fri, 28
+        Jun 2019 11:39:35 +0100 (BST)
+Received: from [106.120.51.74] (unknown [106.120.51.74]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190628103934eusmtip265136dc79895f63db099ac34349007b6~sVpZCX4-D1929119291eusmtip2P;
+        Fri, 28 Jun 2019 10:39:34 +0000 (GMT)
+Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345
+ bridge on Teres-I
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Torsten Duwe <duwe@lst.de>, Harald Geyer <harald@ccbib.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+From:   Andrzej Hajda <a.hajda@samsung.com>
+Message-ID: <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
+Date:   Fri, 28 Jun 2019 12:39:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190612152022.c3cfhp4cauhzhfyr@flea>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTYRjG+85tR2t1PC72lkW1KCrIjAo+ulHhHwciiCCKLtjKk0pOZafZ
+        xcphTrQStRBxmVlp11Wy6WqaCNNcZs7UYRcyLe2OpqmLBWmbx8D/fjzP877f93x8LMkXM7PZ
+        uISjoj5BG69hgil7g69leWz/zP0RT58E4Wx3I4FNDZ8RHrPnkfhqvZvGnpGfDPZ6nhP47I2H
+        DK6oaqbx0LX3BM7KK1Vga08Hjdurihhc9qqVwN3fahE21dQrcGd5M8I2az6JfVXFFPY5W4hN
+        ocIN3yghWIotSCi2pAif6n4ohMvGVkoo/3iPFmq8JZTgMHf6tcxCWrDezWKEfrdbITzydtNC
+        7RWLQug67yIEW2mqUP3GyGwP2RO8PlqMj0sW9Ss2HgiO/WYbZZJs6uNDpnuUEeWEnkNBLHCr
+        IS3jGXUOBbM8dxuBK6sTBQyeG0aQb+FlYwhB4+s2+v/EcMZ1Sg7dQjB2RyeH+hB42gYVASOU
+        2wM5tQVEgFXccsguuUQHQiTXTsPQy6/jBsMthb+2N0yAldxGyLHnjm+luEXwosk7fo2Z3G4Y
+        dliRnAmBxsLe8UwQtwrSPMNkgEkuAuqvF9Eyz4NHfUUTuhre9l4lAgcD52GhocBIyRUiIb26
+        k5A5FL67KhQyz4GmSxcmMqnQdTudlIczEVSWO0jZWAd1rtaJt9gMfwacfmb9PB1e94XIB0+H
+        i/YCUpaVkJnBy+kF0NVcObFFDWUvR5hcpDFPqmaeVMc8qY55Up0SRN1FatEg6WJEaWWCeCxc
+        0uokQ0JM+KFEnRX5f23TqOvXYzTSdtCJOBZppinnO1T7eVqbLJ3QORGwpEalnOX2S8po7YmT
+        oj4xSm+IFyUnCmMpjVqZMqV7L8/FaI+KR0QxSdT/dwk2aLYRpQ+GrZtxeHfI4jT+ftlY/v2B
+        nvIHjrXn/7ZUj605dWyh9MmwRTX1ZtKuDX1hW76kZuQbInGlqa7QvmPV6UMDDfVZD7MvtEd1
+        fIja+bx/X+7guwiDq8NycQ6n6kj21VSEt5rcqp+XV2/7PXfrElNP4j5vTbNvgz57seJMV+kP
+        3tRbnaKhpFjtymWkXtL+A3HRcwKxAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRjHec9tU1sct5lvQmWDwAKPHS/5Gir1oTgWhNAXsSQPetJoF9mZ
+        ZgU1MkOtMEtBN2+lJukg20pTEXGKZda6eMtA0zRjSQZdBotabc7Ab3/+z+/3vLzwSHF5Bxkm
+        PaU1CHotr1ZRgcSo58lsZM5KSMbua2p03TGCoeLhJYD+dlbgqGHIQaLxn18p5Bp/hqGipvsU
+        etjzgkTfb89iqLSiWYKsC5MkGuuppVDL1GsMzTn7ASruG5KgmY4XANmsVThy99QTyG1/ie1T
+        cE1uD8ZZ6i2Aq7ec5z4OLks4s/E1wXV8aCe5PlcjwXWbZrxdSQ3JWdtKKW7F4ZBwXa45kuuv
+        s0i491efYJyt+SLXO22kUoPTmUS9Lt8ghOfqREOS6hiLohk2ATHRsQkMGxOfsTc6ThWVnJgt
+        qE8VCPqo5Ewm12nzUHm20MLvxe2EEZQrykCAFNKx8MeVO0QZCJTK6RYAS8vMmH8QCnsbvuD+
+        rIC/J8soP7QMYNfAAvANFHQ6fNVftAop6Uh4vfEW6YNweoqEVZUda2tbCfi0+gHpoyh6J/xj
+        m6Z8WUYnw/LOG4QvE/QO+HzUtbo1hE6D5h4j4WeC4UjN4moOoGPgpfEfq6/hNAMfT/0i/Xkb
+        7PpSu9aHwneLDdgNIDet003rFNM6xbROaQREG1AK+aImRyOyjMhrxHxtDpOl01iB91o6h922
+        x+DNg6N2QEuBaoMsvFuZISf5AvGsxg6gFFcpZZsd3kqWzZ89J+h1J/T5akG0gzjv5yrwsJAs
+        nff2tIYTbBwbjxLY+Jj4mD1IFSoroQeOy+kc3iCcFoQ8Qf/fw6QBYUaQpP4JJ5T2TM6T5ko6
+        +PCee3vyOWfQpju6X+Vv48IignhnxK1a5oCiM3Ne9inrcHWVLPvIYHapem+ieUmUXX6UZTBH
+        p7TuE8ZSq1siU2KTwk82ba/bksu7rU5d3xls8MLnAzdTqXnPxmXthIUNOmSn9i+tFN28WxnY
+        Ujj7besRFSHm8uwuXC/y/wB7i4BKQwMAAA==
+X-CMS-MailID: 20190628103935eucas1p1ed57a3e2f9ecae6cb299cfacb48452d3
+X-Msg-Generator: CA
+X-RootMTR: 20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752
+References: <20190604122150.29D6468B05@newverein.lst.de>
+        <20190604122308.98D4868B20@newverein.lst.de>
+        <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
+        <20190605101317.GA9345@lst.de> <20190605120237.ekmytfxcwbjaqy3x@flea>
+        <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
+        <20190607062802.m5wslx3imiqooq5a@flea>
+        <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
+        <20190607094030.GA12373@lst.de>
+        <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
+        <20190612152022.c3cfhp4cauhzhfyr@flea>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 21, 2019 at 12:14 PM Pawe=C5=82 Chmiel
-<pawel.mikolaj.chmiel@gmail.com> wrote:
+Hi Maxime,
 
-> This small patchset adds support for Fairchild Semiconductor FSA9480
-> microUSB switch.
+It seems I have missed your response.
+
+On 12.06.2019 17:20, Maxime Ripard wrote:
+>> I am not sure if I understand whole discussion here, but I also do not
+>> understand whole edp-connector thing.
+> The context is this one:
+> https://patchwork.freedesktop.org/patch/257352/?series=51182&rev=1
+> https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1
+> https://patchwork.freedesktop.org/patch/286468/?series=56776&rev=2
 >
-> It has been tested on Samsung Galaxy S and Samsung Fascinate 4G,
-> but it can be found also on other Samsung Aries (s5pv210) based devices.
+> TL;DR: This bridge is being used on ARM laptops that can come with
+> different eDP panels. Some of these panels require a regulator to be
+> enabled for the panel to work, and this is obviously something that
+> should be in the DT.
 >
-> Tomasz Figa (2):
->   dt-bindings: extcon: Add support for fsa9480 switch
->   extcon: Add fsa9480 extcon driver
+> However, we can't really describe the panel itself, since the vendor
+> uses several of them and just relies on the eDP bus to do its job at
+> retrieving the EDIDs. A generic panel isn't really working either
+> since that would mean having a generic behaviour for all the panels
+> connected to that bus, which isn't there either.
+>
+> The connector allows to expose this nicely.
 
-This is surely an important driver since almost all elder Samsung
-mobiles use this kind of switch. So
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-This driver I see is already sent to Greg for inclusion in the next kernel.
-I just wonder if you guys are even aware of this driver for the same
-hardware added by Donggeun Kim in 2011:
-drivers/misc/fsa9480.c
+As VESA presentation says[1] eDP is based on DP but is much more
+flexible, it is up to integrator (!!!) how the connection, power
+up/down, initialization sequence should be performed. Trying to cover
+every such case in edp-connector seems to me similar to panel-simple
+attempt failure. Moreover there is no such thing as physical standard
+eDP connector. Till now I though DT connector should describe physical
+connector on the device, now I am lost, are there some DT bindings
+guidelines about definition of a connector?
 
-That said I am all for pulling in this new driver because it is surely
-better and supports device tree.
+Maybe instead of edp-connector one would introduce integrator's specific
+connector, for example with compatible "olimex,teres-edp-connector"
+which should follow edp abstract connector rules? This will be at least
+consistent with below presentation[1] - eDP requirements depends on
+integrator. Then if olimex has standard way of dealing with panels
+present in olimex/teres platforms the driver would then create
+drm_panel/drm_connector/drm_bridge(?) according to these rules, I guess.
+Anyway it still looks fishy for me :), maybe because I am not
+familiarized with details of these platforms.
 
-But can we please also send Greg a patch to delete the old driver
-so we don't have two of them now?
+[1]: https://www.vesa.org/wp-content/uploads/2010/12/DisplayPort-DevCon-Presentation-eDP-Dec-2010-v3.pdf
 
-The old driver have no in-tree users so it can be deleted without
-side effects. Out-of-tree users can certainly adapt to the new
-extcon driver.
 
-If you want I can send a deletion patch for the misc driver?
+>
+>> According to VESA[1] eDP is "Internal display interface" - there is no
+>> external connector for eDP, the way it is connected is integrator's
+>> decision, but it is fixed - ie end user do not plug/unplug it.
+> I'm not sure if you mean DRM or DT connector here though. In DRM,
+> we're doing this all the time for panels. I'm literaly typing this
+> from a laptop that has a screen with an eDP connector.
 
-Yours,
-Linus Walleij
+
+VESA describes only hardware, but since DT also describes hardware I
+guess it should be similar.
+
+
+Regards
+
+Andrzej
+
+
+
+
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+
