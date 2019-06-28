@@ -2,105 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BB4B591F2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 05:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FEE659202
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 05:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727047AbfF1DZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 23:25:55 -0400
-Received: from anchovy1.45ru.net.au ([203.30.46.145]:34255 "EHLO
-        anchovy1.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727053AbfF1DZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 23:25:55 -0400
-Received: (qmail 16938 invoked by uid 5089); 28 Jun 2019 03:19:13 -0000
-Received: by simscan 1.2.0 ppid: 16838, pid: 16840, t: 0.0301s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-X-RBL:  $rbltext
-Received: from unknown (HELO preid-c7.electromag.com.au) (preid@electromag.com.au@203.59.235.95)
-  by anchovy1.45ru.net.au with ESMTPA; 28 Jun 2019 03:19:13 -0000
-Received: by preid-c7.electromag.com.au (Postfix, from userid 1000)
-        id 002992007789B; Fri, 28 Jun 2019 11:19:11 +0800 (AWST)
-From:   Phil Reid <preid@electromag.com.au>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, preid@electromag.com.au,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] clk: clk-cdce925: Add regulator support
-Date:   Fri, 28 Jun 2019 11:19:10 +0800
-Message-Id: <1561691950-42154-3-git-send-email-preid@electromag.com.au>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1561691950-42154-1-git-send-email-preid@electromag.com.au>
-References: <1561691950-42154-1-git-send-email-preid@electromag.com.au>
+        id S1726678AbfF1DhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 23:37:13 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:49728 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726565AbfF1DhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 23:37:13 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 71D601A1046;
+        Fri, 28 Jun 2019 05:37:11 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9F1CA1A0F05;
+        Fri, 28 Jun 2019 05:37:01 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A6B1D402FB;
+        Fri, 28 Jun 2019 11:36:49 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        leonard.crestez@nxp.com, viresh.kumar@linaro.org, ping.bai@nxp.com,
+        daniel.baluta@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        andrew.smirnov@gmail.com, ccaione@baylibre.com, angus@akkea.ca,
+        agx@sigxcpu.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/2] arm64: dts: imx8mq: Correct OPP table according to latest datasheet
+Date:   Fri, 28 Jun 2019 11:27:59 +0800
+Message-Id: <20190628032800.8428-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.14.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cdce925 power supplies could be controllable on some platforms.
-Enable them before communicating with the cdce925.
+From: Anson Huang <Anson.Huang@nxp.com>
 
-Signed-off-by: Phil Reid <preid@electromag.com.au>
+According to latest datasheet (Rev.1, 10/2018) from below links,
+in the consumer datasheet, 1.5GHz is mentioned as highest opp but
+depends on speed grading fuse, and in the industrial datasheet,
+1.3GHz is mentioned as highest opp but depends on speed grading
+fuse. 1.5GHz and 1.3GHz opp use same voltage, so no need for
+consumer part to support 1.3GHz opp, with same voltage, CPU should
+run at highest frequency in order to go into idle as quick as
+possible, this can save power.
+
+That means for consumer part, 1GHz/1.5GHz are supported, for
+industrial part, 800MHz/1.3GHz are supported, and then check the
+speed grading fuse to limit the highest CPU frequency further.
+Correct the market segment bits in opp table to make them work
+according to datasheets.
+
+https://www.nxp.com/docs/en/data-sheet/IMX8MDQLQIEC.pdf
+https://www.nxp.com/docs/en/data-sheet/IMX8MDQLQCEC.pdf
+
+Fixes: 12629c5c3749 ("arm64: dts: imx8mq: Add cpu speed grading and all OPPs")
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
- drivers/clk/clk-cdce925.c | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/clk-cdce925.c b/drivers/clk/clk-cdce925.c
-index a98b3f19..2678ee6 100644
---- a/drivers/clk/clk-cdce925.c
-+++ b/drivers/clk/clk-cdce925.c
-@@ -16,6 +16,7 @@
- #include <linux/module.h>
- #include <linux/i2c.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- #include <linux/gcd.h>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 9d99191..bea53bc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -169,7 +169,8 @@
+ 		opp-1300000000 {
+ 			opp-hz = /bits/ 64 <1300000000>;
+ 			opp-microvolt = <1000000>;
+-			opp-supported-hw = <0xc>, <0x7>;
++			/* Industrial only but rely on speed grading */
++			opp-supported-hw = <0xc>, <0x4>;
+ 			clock-latency-ns = <150000>;
+ 		};
  
-@@ -602,6 +603,30 @@ static int cdce925_regmap_i2c_read(void *context,
- 	return &data->clk[idx].hw;
- }
- 
-+static void cdce925_regulator_disable(void *regulator)
-+{
-+	regulator_disable(regulator);
-+}
-+
-+static int cdce925_regulator_enable(struct device *dev, const char *name)
-+{
-+	struct regulator *regulator;
-+	int err;
-+
-+	regulator = devm_regulator_get(dev, name);
-+	if (IS_ERR(regulator))
-+		return PTR_ERR(regulator);
-+
-+	err = regulator_enable(regulator);
-+	if (err) {
-+		dev_err(dev, "Failed to enable %s: %d\n", name, err);
-+		return err;
-+	}
-+
-+	return devm_add_action_or_reset(dev, cdce925_regulator_disable,
-+					regulator);
-+}
-+
- /* The CDCE925 uses a funky way to read/write registers. Bulk mode is
-  * just weird, so just use the single byte mode exclusively. */
- static struct regmap_bus regmap_cdce925_bus = {
-@@ -630,6 +655,15 @@ static int cdce925_probe(struct i2c_client *client,
+@@ -177,7 +178,7 @@
+ 			opp-hz = /bits/ 64 <1500000000>;
+ 			opp-microvolt = <1000000>;
+ 			/* Consumer only but rely on speed grading */
+-			opp-supported-hw = <0x8>, <0x7>;
++			opp-supported-hw = <0x8>, <0x3>;
+ 			clock-latency-ns = <150000>;
+ 		};
  	};
- 
- 	dev_dbg(&client->dev, "%s\n", __func__);
-+
-+	err = cdce925_regulator_enable(&client->dev, "vdd");
-+	if (err)
-+		return err;
-+
-+	err = cdce925_regulator_enable(&client->dev, "vddout");
-+	if (err)
-+		return err;
-+
- 	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
 -- 
-1.8.3.1
+2.7.4
 
