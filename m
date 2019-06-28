@@ -2,176 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A74E595C6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 839CC595D7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726697AbfF1IJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 04:09:57 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:44899 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726549AbfF1IJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:09:57 -0400
-Received: by mail-pf1-f194.google.com with SMTP id t16so2566716pfe.11
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 01:09:56 -0700 (PDT)
+        id S1726519AbfF1IRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 04:17:14 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34912 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726513AbfF1IRO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:17:14 -0400
+Received: by mail-wr1-f67.google.com with SMTP id f15so5306942wrp.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 01:17:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yibP/Iv6ps2Lbs4MfioQUnaQ1X0MZgCBiZaerRAAUs0=;
-        b=e5kLlPi61UOlg3aWbm3hyHJ6zEvPrbJg4WaMTgr5J7N6beCFHbvMVMWvXm34zFIMK6
-         sy+TCthgNvl6QKdGAvF199JWgLSzY0riL7Qema9Z8eQSMrEVD7QmDgObmKA9VnGm6jQk
-         Qk9Vw4tG1NS/Rsaor+MwqJJtzbW9NLCCg64qdKIwo/lqdLjqjD0HoEJZR2UkGwIQNQU7
-         B8LVi8olEdiEG1gQQPAGB3QH7tntl/R65/A9R5rItsLpolqg+IRJEp1Du/WH5LqoOfL3
-         I3l8I0kuDspWHSG/V5vI+q5UJh9nND3VlxUlk753w0GhWsuvm1nMSIm2VqKl1wq8mbGo
-         9uhw==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0iX4GoXUMjYo0yWAqnak7nWNu9SahWjJ+qIlyX2DjnA=;
+        b=pqUrZZrHnpMwYQiyu/1jCW1Vn1dbIBUApoVZMhyhBwvnhvhfumKMpGn/HD06hkyLKV
+         mAr70tgH1UWNF40M5i4Iu7TZyBCOF9E4DVrgXNhfgFoe68UERxt7W4BtnpD/aXQbHgrr
+         KSKRFDsze0oQlGIrrEesEJEXxvjGoX7ByoMNidbjknRj4Bylt+bqRjjgIIVO6eX4pKnN
+         1AmfDbD/NeC/4Z9WHyrLlNhDEE1EW62NsHUnaW1L+cOpLHwoL1tVmmD214BJEgmzEGJp
+         UBCPbzQkK8BSlSG9gz7fGNCBlajjvLjh/2C21gkCh6AjXCuIST7i+hrq6mn684QyGZ60
+         KhUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yibP/Iv6ps2Lbs4MfioQUnaQ1X0MZgCBiZaerRAAUs0=;
-        b=AD7TD9pvx2ok0ra5fHF0IIYm+tkWqNcrVIbIzaI/LvV0QkLVUObVerPJaoxxplxmLw
-         gWcKjM0+ReHYxCgDRn4TRL/jRhU+duq0l3i6hmWABDa+HXOAGjPuEkZxf4n9M9m8NxEk
-         lPrxqSg3qUPngnl0/yZO/vOmpwb5sIzhJg0H/7oqe6qXBP7Y43BzFijc2Ob1bkFrB7Vk
-         zWUp2X3vfXoSyjroWZweIbTq8dsU/LG8BF4lgzs2aAlqZGlA6ELSC2EGXpvtVJqqyMPa
-         aGfcD7f+hp46/dNznTxiS0Ih0kfqMLsamcnRtdZzGDos56V88NvHSgGExiAsCGwtocLU
-         WY3Q==
-X-Gm-Message-State: APjAAAWmzRAv1E+FqKqPmJZR7ezWTQ4eYj9zBEqtNAQBfH9Jv/eI6xJG
-        PQ2Te8omhOqQhTgLYktIjkHVXkZHozgLo6p+c1kxuQ==
-X-Google-Smtp-Source: APXvYqwa5Gi43WdeQYYulM3cScojWTt0/MI+kDN9NbNdt1CeW4jxKTFR3Algm98Jmh+XvwAADJqdAi9a1c1dDVA05Ew=
-X-Received: by 2002:a17:90a:be0d:: with SMTP id a13mr11033056pjs.84.1561709395368;
- Fri, 28 Jun 2019 01:09:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0iX4GoXUMjYo0yWAqnak7nWNu9SahWjJ+qIlyX2DjnA=;
+        b=Vgk6i8bXa2dRZUzWVW1+KjXbKkpnJfxjUAaAT5b6gY8yW+HD/Lyv0goU7HrNo8ThuE
+         9hIoo8Pe5uvQAXEC7hBvU0wEA5umMo1iTs5TC9ZEQ5CTVhwEWxidzHhotC10xfADo2Fx
+         GByh4OlSslEXyQxrakh4qkiA9iMyQsSWoI/NYofGYJcH8NNVH4mN+52oMKSWDHSCl8Hj
+         AFag2ULRlktGyo0+k7KVQ+xMkc+QgBDMF0wLiU1kvlIQsndT0SyWxIpn5GPEidRZuePd
+         N6uQ4x/2uh4djdqhFQURZQWy9HO8FDTIiemilq+0/kVNCtOb7xZdDAUgoG2Sm+32BNy2
+         EWIg==
+X-Gm-Message-State: APjAAAXFb5aaGkrPpfxlwIFrU+4X5xk2SxLjGTHE4efFZtyagwR4PXhO
+        6Ogt7fmtAhJmRhV7InCxtRFVzQ==
+X-Google-Smtp-Source: APXvYqw+rkcyh3PTU9URJjuIKiu4kZ97NgtKOX3PAukWMiU12hf7kxkJIrnT5wyWxV6LyDzzRWcw8A==
+X-Received: by 2002:a05:6000:124a:: with SMTP id j10mr6749454wrx.191.1561709832291;
+        Fri, 28 Jun 2019 01:17:12 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id r5sm2819216wrg.10.2019.06.28.01.17.11
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 28 Jun 2019 01:17:11 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Subject: [PATCH] ASoC: meson: axg-card: remove useless check on codec
+Date:   Fri, 28 Jun 2019 10:17:08 +0200
+Message-Id: <20190628081708.22039-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190617082613.109131-1-brendanhiggins@google.com>
- <20190617082613.109131-2-brendanhiggins@google.com> <20190620001526.93426218BE@mail.kernel.org>
- <CAFd5g46Jhxsz6_VXHEVYvTeDRwwzgKpr=aUWLL5b3S4kUukb8g@mail.gmail.com>
- <20190626034100.B238520883@mail.kernel.org> <CAFd5g46zHAupdUh3wDuqPJti2M+_=oje_5weFe7AVLQfkDDM6A@mail.gmail.com>
- <20190627181636.5EA752064A@mail.kernel.org>
-In-Reply-To: <20190627181636.5EA752064A@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Fri, 28 Jun 2019 01:09:44 -0700
-Message-ID: <CAFd5g44V3ZLNazUOgOo2sFR3zzbNnTkH4e9uxGX4iHi7G73Mzw@mail.gmail.com>
-Subject: Re: [PATCH v5 01/18] kunit: test: add KUnit test runner core
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 27, 2019 at 11:16 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Brendan Higgins (2019-06-26 16:00:40)
-> > On Tue, Jun 25, 2019 at 8:41 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > > scenario like below, but where it is a problem. There could be three
-> > > CPUs, or even one CPU and three threads if you want to describe the
-> > > extra thread scenario.
-> > >
-> > > Here's my scenario where it isn't needed:
-> > >
-> > >     CPU0                                      CPU1
-> > >     ----                                      ----
-> > >     kunit_run_test(&test)
-> > >                                               test_case_func()
-> > >                                                 ....
-> > >                                               [mock hardirq]
-> > >                                                 kunit_set_success(&test)
-> > >                                               [hardirq ends]
-> > >                                                 ...
-> > >                                                 complete(&test_done)
-> > >       wait_for_completion(&test_done)
-> > >       kunit_get_success(&test)
-> > >
-> > > We don't need to care about having locking here because success or
-> > > failure only happens in one place and it's synchronized with the
-> > > completion.
-> >
-> > Here is the scenario I am concerned about:
-> >
-> > CPU0                      CPU1                       CPU2
-> > ----                      ----                       ----
-> > kunit_run_test(&test)
-> >                           test_case_func()
-> >                             ....
-> >                             schedule_work(foo_func)
-> >                           [mock hardirq]             foo_func()
-> >                             ...                        ...
-> >                             kunit_set_success(false)   kunit_set_success(false)
-> >                           [hardirq ends]               ...
-> >                             ...
-> >                             complete(&test_done)
-> >   wait_for_completion(...)
-> >   kunit_get_success(&test)
-> >
-> > In my scenario, since both CPU1 and CPU2 update the success status of
-> > the test simultaneously, even though they are setting it to the same
-> > value. If my understanding is correct, this could result in a
-> > write-tear on some architectures in some circumstances. I suppose we
-> > could just make it an atomic boolean, but I figured locking is also
-> > fine, and generally preferred.
->
-> This is what we have WRITE_ONCE() and READ_ONCE() for. Maybe you could
-> just use that in the getter and setters and remove the lock if it isn't
-> used for anything else.
->
-> It may also be a good idea to have a kunit_fail_test() API that fails
-> the test passed in with a WRITE_ONCE(false). Otherwise, the test is
-> assumed successful and it isn't even possible for a test to change the
-> state from failure to success due to a logical error because the API
-> isn't available. Then we don't really need to have a generic
-> kunit_set_success() function at all. We could have a kunit_test_failed()
-> function too that replaces the kunit_get_success() function. That would
-> read better in an if condition.
+While checking cpus before dereferencing the pointer is required, it is
+not necessary for codecs. 'codec' can't possibly be NULL in the loop
 
-You know what, I think you are right.
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/axg-card.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Sorry, for not realizing this earlier, I think you mentioned something
-along these lines a long time ago.
+diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
+index 70bb0cbad233..14a8321744da 100644
+--- a/sound/soc/meson/axg-card.c
++++ b/sound/soc/meson/axg-card.c
+@@ -118,8 +118,7 @@ static void axg_card_clean_references(struct axg_card *priv)
+ 			if (link->cpus)
+ 				of_node_put(link->cpus->of_node);
+ 			for_each_link_codecs(link, j, codec)
+-				if (codec)
+-					of_node_put(codec->of_node);
++				of_node_put(codec->of_node);
+ 		}
+ 	}
+ 
+-- 
+2.21.0
 
-Thanks for your patience!
-
-> >
-> > Also, to be clear, I am onboard with dropping then IRQ stuff for now.
-> > I am fine moving to a mutex for the time being.
-> >
->
-> Ok.
-
-Thanks!
