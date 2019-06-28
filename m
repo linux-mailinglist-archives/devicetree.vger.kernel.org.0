@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE705965A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71CD559677
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726502AbfF1Iq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 04:46:28 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:38603 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726240AbfF1Iq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:46:28 -0400
-Received: by mail-lj1-f194.google.com with SMTP id r9so5178015ljg.5
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 01:46:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lQNaKSJYVO+SBfhaRTd+ObgB+axwBGKUKZwAi5fi5AM=;
-        b=LpBzdV3DdCgI12TYlbjXRnT2CgY9b7ToRmHBIC2H6bjhKPSz1XhedsQivDv9ZCFlo0
-         x/RZj+DG0L5MS7QwKo3vx9AB0bQVZKUyDvM1d4RLV65hkoRS07x50oEqd56ghXPp1aMT
-         yc1Aml6llp192DO7H7nz5YU1Og/Li6VqEtg9Iix/DA7kNYY41wrxANScMvWiC+w1gpLG
-         HKWDL/E1p8OlH9CEwDjU9sGQ0pVe8gu7TuscxNRFR9aLJzwrt4s22+9mUBiS5pPxe3N4
-         ZWjO0mJ3TwID3DKeegQDd49Yw69IOT4Apurk7LWuwnDk3KxZQsPNrOreu0yGYjcsEqyt
-         hRNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lQNaKSJYVO+SBfhaRTd+ObgB+axwBGKUKZwAi5fi5AM=;
-        b=b74xyZlu7oKSYU0sV2G+QhaBTXCEEeXp9aStcR0Q+jKzn2gXqUuAFTD1ZoNoCMalWx
-         TkpOSDDU0ZTqbJdl4BFjEoXyOnqENeXfz7FMcJpE04wwwxDOoRt3ffMU/rw31xZxJkLD
-         aLOeP+akaSKYOnlXzt/3zMtFt6JLtHSma8BbC44jusBDRq96r4ExtnL1mDT3nrVk2UB/
-         USwROCVlhHwfdq/tAGSJbUnjjW3ByH53zA7IUpgVMTS0CLmD3Vjjn5nNH8HcIDPLTdlG
-         NIsrhXTVYZfgO2oPNFqF87spKqgx/xGp+aCQoUEleD57a17alkUYV9Ng0XQIT9KG1jGj
-         eEbw==
-X-Gm-Message-State: APjAAAUG3fod6LuiwE0VcL6SNgbaqWIyjymXLbXs2B33JWUBHKOUIk0L
-        XweTFLBxGN3BEUB3D7kA5uRYLMtoDbgoQbVilA9dqQ==
-X-Google-Smtp-Source: APXvYqzc5ofASQo8XlbqJgoQuOO8xPB1ETbBcPY7tE1jHcs9PNbLzQhP0le41W253nzsHWKxeEpUBcvYWJY2K+Tgzbg=
-X-Received: by 2002:a2e:2c14:: with SMTP id s20mr5415213ljs.54.1561711586591;
- Fri, 28 Jun 2019 01:46:26 -0700 (PDT)
+        id S1726465AbfF1IxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 04:53:05 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:36336 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726431AbfF1IxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:53:04 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5S8qwtl090825;
+        Fri, 28 Jun 2019 03:52:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561711978;
+        bh=s6Qrrrvm1pvduF1jVmT3oz+jOvVyYBP1mFLaUgRMnC4=;
+        h=From:Subject:To:CC:References:Date:In-Reply-To;
+        b=MR7Z+Uer5CDQ9n+64R3MyDIMIQkCO9iM2mXvw1RmdkDc2ATZ2PRIPhSsc3Mk4a4Yl
+         nrl0opxBKlNvwBLcwO+R6yxaYRQFJYp9irqxKb+BdJJO0C1j4JAGYZwniLvg6YfL8h
+         +/hAnwc4POka+MpGaUVNktkKtYcG2a18Vf5BlOAM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5S8qvkd007561
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Jun 2019 03:52:58 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 28
+ Jun 2019 03:52:57 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 28 Jun 2019 03:52:57 -0500
+Received: from [172.24.145.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5S8qtjw050681;
+        Fri, 28 Jun 2019 03:52:55 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: i2c: omap: Add new compatible for J721E SoCs
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190605084504.2777-1-vigneshr@ti.com>
+ <20190626134302.GM801@ninjato>
+Message-ID: <a6cc4e71-e717-2f6e-5662-84067e1b979f@ti.com>
+Date:   Fri, 28 Jun 2019 14:22:54 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <20190609190803.14815-1-jacek.anaszewski@gmail.com> <20190609190803.14815-6-jacek.anaszewski@gmail.com>
-In-Reply-To: <20190609190803.14815-6-jacek.anaszewski@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 28 Jun 2019 09:46:14 +0100
-Message-ID: <CACRpkdYdqKZVKSaQB0THi=iZcRT04EKX2-85__Hw1f53o8vsuw@mail.gmail.com>
-Subject: Re: [PATCH v5 05/26] leds: core: Add support for composing LED class
- device names
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-        Dmitry Torokhov <dtor@google.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dan Murphy <dmurphy@ti.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190626134302.GM801@ninjato>
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 9, 2019 at 8:08 PM Jacek Anaszewski
-<jacek.anaszewski@gmail.com> wrote:
 
-> Add generic support for composing LED class device name. The newly
-> introduced led_compose_name() function composes device name according
-> to either <color:function> or <devicename:color:function> pattern,
-> depending on the configuration of initialization data.
->
-> Backward compatibility with in-driver hard-coded LED class device
-> names is assured thanks to the default_label and devicename properties
-> of newly introduced struct led_init_data.
->
-> In case none of the aforementioned properties was found, then, for OF
-> nodes, the node name is adopted for LED class device name.
->
-> At the occassion of amending the Documentation/leds/leds-class.txt
-> unify spelling: colour -> color.
->
-> Alongside these changes added is a new tool - tools/leds/get_led_device_info.sh.
-> The tool allows retrieving details of a LED class device's parent device,
-> which proves that using vendor or product name for devicename part
-> of LED name doesn't convey any added value since that information had been
-> already available in sysfs. The script performs also basic validation
-> of a LED class device name.
->
-> Signed-off-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> Cc: Baolin Wang <baolin.wang@linaro.org>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Dan Murphy <dmurphy@ti.com>
-> Cc: Daniel Mack <daniel@zonque.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Oleh Kravchenko <oleg@kaa.org.ua>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Simon Shields <simon@lineageos.org>
 
-This is good progress on trying to bring order in chaos.
+On 26/06/19 7:13 PM, Wolfram Sang wrote:
+> On Wed, Jun 05, 2019 at 02:15:04PM +0530, Vignesh Raghavendra wrote:
+>> From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>>
+>> J721E SoCs have same I2C IP as OMAP SoCs. Add new compatible to
+>> handle J721E SoCs.
+>>
+>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> 
+> Applied to for-next, thanks!
+> 
 
-A problem with LEDs is that it invites bikeshedding because it is too
-relateable.
+Thanks!
 
-So by the motto "rough consensus and running code":
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Sorry for the delay, I was waiting for an ack to show up. I totally
+> missed you are the maintainer :( Won't happen again!
+> 
 
-Yours,
-Linus Walleij
+No worries :)
+
+Regards
+Vignesh
