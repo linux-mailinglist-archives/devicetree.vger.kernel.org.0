@@ -2,81 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C37AF59217
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 05:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA195927C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 06:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726834AbfF1DkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 23:40:13 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:52406 "EHLO inva020.nxp.com"
+        id S1725792AbfF1ETo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 00:19:44 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:55958 "EHLO deadmen.hmeau.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726817AbfF1DkN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jun 2019 23:40:13 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 778DB1A02E9;
-        Fri, 28 Jun 2019 05:40:11 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id BD7131A02D8;
-        Fri, 28 Jun 2019 05:40:00 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A72F740318;
-        Fri, 28 Jun 2019 11:39:37 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, leonard.crestez@nxp.com,
-        viresh.kumar@linaro.org, daniel.baluta@nxp.com, ping.bai@nxp.com,
-        l.stach@pengutronix.de, abel.vesa@nxp.com,
-        andrew.smirnov@gmail.com, ccaione@baylibre.com, angus@akkea.ca,
-        agx@sigxcpu.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V3 5/5] arm64: dts: imx8mm: Add system counter node
-Date:   Fri, 28 Jun 2019 11:30:41 +0800
-Message-Id: <20190628033041.8513-5-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20190628033041.8513-1-Anson.Huang@nxp.com>
-References: <20190628033041.8513-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725770AbfF1ETo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 00:19:44 -0400
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
+        id 1hgiMO-0004wu-AY; Fri, 28 Jun 2019 12:19:40 +0800
+Received: from herbert by gondobar with local (Exim 4.89)
+        (envelope-from <herbert@gondor.apana.org.au>)
+        id 1hgiMN-00026A-6w; Fri, 28 Jun 2019 12:19:39 +0800
+Date:   Fri, 28 Jun 2019 12:19:39 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     davem@davemloft.net, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, t-kristo@ti.com, nm@ti.com
+Subject: Re: [PATCH 00/10] crypto: k3: Add sa2ul driver
+Message-ID: <20190628041939.7yduk77x62twath6@gondor.apana.org.au>
+References: <20190618120843.18777-1-j-keerthy@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190618120843.18777-1-j-keerthy@ti.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On Tue, Jun 18, 2019 at 05:38:33PM +0530, Keerthy wrote:
+> The series adds Crypto hardware accelerator support for SA2UL.
+> SA2UL stands for security accelerator ultra lite.
 
-Add i.MX8MM system counter node to enable timer-imx-sysctr
-broadcast timer driver.
+Please cc linux-crypto@vger.kernel.org.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-New patch:
-	- As i.MX8MM clock driver will be soon moved to using platform driver model, so the patch
-	  series I sent out for i.MX8MM system counter driver support will need rework accordingly,
-	  so I add the i.MX8MM DT support in this patch series, it uses same method as i.MX8MQ's
-	  system counter driver.
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 63f4731..aa985a0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -528,6 +528,14 @@
- 				#pwm-cells = <2>;
- 				status = "disabled";
- 			};
-+
-+			system_counter: timer@306a0000 {
-+				compatible = "nxp,sysctr-timer";
-+				reg = <0x306a0000 0x30000>;
-+				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-frequency = <8000000>;
-+			};
- 		};
- 
- 		aips3: bus@30800000 {
+Thanks,
 -- 
-2.7.4
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
