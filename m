@@ -2,99 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E14159135
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 04:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 112C95913C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 04:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725770AbfF1ChY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 22:37:24 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:45787 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726542AbfF1ChY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 22:37:24 -0400
-Received: by mail-ot1-f66.google.com with SMTP id x21so4447481otq.12
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 19:37:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ROfllzNv1k9NDF/hlSsi9MTdRbiwcSwhYFfnNLljdsA=;
-        b=eMmKxTeBkxf4BXVCFIwfX+lNGeR04Lq1XpCjpcH+o/qKSalxUKW9BfMhkLEkZywfiL
-         US9yhcrXMpz01dnHrw9CNVD8I7T857D1vSYs4Wv37NbJrzOJCX85SKv9hhXPfV1HtLRD
-         8Mlb22+BWpESlHekijJgdUmIso/IdWLbkohKERjj1kboVd09ypBQqvGSczXuZKi40rhY
-         TgoqVN3geRzcv3wXLisHXklaKTNYSO/AENX6TjS5eNc1L2bQDl+TG/vgn6iVmhScIqj8
-         dejoUq78veURkqAc1iDQgIOSPdWsvASLr+Ty5LfYnsozMkgjlobYlisyffHZqBwCMXNF
-         fL4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ROfllzNv1k9NDF/hlSsi9MTdRbiwcSwhYFfnNLljdsA=;
-        b=BwKL5mw2pJvuagp6Gfv7m6cutPvUnhIVCM0MiO0htE/AhpOrcffThFl/Sn81INB+et
-         /ukUP18lqfiqZ8shH3MKkJFw/7ERgOVnQqnjwFR9x9dkbVbRw5BwbHmBW6u/xxErJd++
-         8vgCzSAG+glPlphsXYPHQEitRBuAKALm8aFO2vxwMHrNm9cy6V8Xf99WvS/lYfzQRnL/
-         cQosqznBHVFIjSejUr9vlRN9Lp82MJAlz34kWAL8k1Nq8iwdtLMM1XFCP2i4M9RrkPIe
-         rZaaKJevVO5M5V47nLlIzR7ruZk8khdpQyI9Y6LLx+QgMCq+ZH91OI48wo457RryvcPW
-         vxSQ==
-X-Gm-Message-State: APjAAAVoJCX8AQ88KBjJ5C2v8IOe44DjQI3UZaranbTbuZk6PwD8Lvi/
-        7kc0puJg23qnZiqVTohEo8dn8QbQ3NhoRta3hAijXA==
-X-Google-Smtp-Source: APXvYqyie0y5w2KOZY+Btvx6QWtUDpapjyXxLTFHGIRTIv6FpF1+JIFZ/2WWuWimM0DC1TIfEqXHny3uVLLJrXYwp4A=
-X-Received: by 2002:a05:6830:160c:: with SMTP id g12mr6507861otr.231.1561689443012;
- Thu, 27 Jun 2019 19:37:23 -0700 (PDT)
+        id S1726514AbfF1CjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 22:39:17 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:51903 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726437AbfF1CjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jun 2019 22:39:17 -0400
+X-Greylist: delayed 156216 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 Jun 2019 22:39:16 EDT
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 815292AF1;
+        Thu, 27 Jun 2019 22:39:15 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Thu, 27 Jun 2019 22:39:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=yaZ8S1F4kpu7z+66z1meDyHJPf
+        imSKA8ebK+XQtSMvQ=; b=NtUdJbkc1H6xTV2I1gWf5YqUN4TAuHw7T6lBKjQdqW
+        anSWElodRu3vvtJkIhAGW9GBuDMJ+OCXK8YiAZtaHQ0xn+6b2qRKzMeedsmj4e33
+        L4P2AyyQoRZbisN/lEDLaWuzc85pA0+bleB9Tz3/JitwdMpRB3gPDr3FPxSSFX7j
+        fi52LZv3OR5CS1PiaI2YYMKGZNmniqHdxx0mxrc0HnzU+y8b3zBgD7/XB7WNixzq
+        axipiLsaJO5qo22jLQ2nFNj+gZBxp8hJuos2QHmARFJGTMSRcINCgSBesivJTKiJ
+        Zb6DlX1TGKZQ/TdFsG5rlO61sFNPdLMw9E+zMCX9sTXg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=yaZ8S1F4kpu7z+66z
+        1meDyHJPfimSKA8ebK+XQtSMvQ=; b=1wH69+gbM+nYJEPjyqCx+VxVugCPiDcZb
+        xVbI3FrgkTTrAcTAJQCRwBbqrUkcGDFRGULJAkwQTW5PWux+GroMcqTzUzdXz6Z0
+        Gc2+xascjMVMjtsLeQElKVrlCY+BtgOU2r0wxKxGh4Z6y4V/RPu9pPwcXb2ZNTeL
+        FH67M8iTbfMuxBQiWiKG1dUoe6LcG/9MMGE20T9Nz3Iuknxv9gGhIoc1xKzwZZ/k
+        x3kAJHjYrTPRSgVlebStgrVTGvxa/TNS5a0jGneKgMybE8UXo2a8bNlZjhj5y2MZ
+        n6I9J4yb+V2cDNHgMejWHIk8rfxHcn9o4YcHxMoS+AzI/d61cPm6g==
+X-ME-Sender: <xms:0n0VXf4vXXZim-nddahFx3PYbz0h9eHXRfbqeFD9uDu8QCVQcODwZA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudelgdeiudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghjrdhi
+    ugdrrghuqeenucffohhmrghinhepshhpihhnihgtshdrnhgvthenucfkphepvddtvddrke
+    durddukedrfedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhi
+    ugdrrghunecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:0n0VXYnkZJjFZXe-swgjdqTBDjNLGt6-jADzwyO9MUXnSLF7_Vij5w>
+    <xmx:0n0VXQS_V01O7qUlm_VNF49YQerGc5rbEogO6QskTDtCeYJhLj7uIQ>
+    <xmx:0n0VXXFclzcNw5DE0TuIlnwYKAhk4-Ukygs9G-kLM9_vCrLGJgzZ8Q>
+    <xmx:030VXTVX5_S09UVLkYsCfSas_ol6uZ3C5_4SUe_YrjcwZdWH7S1v_A>
+Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
+        by mail.messagingengine.com (Postfix) with ESMTPA id B68FC380075;
+        Thu, 27 Jun 2019 22:39:10 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-gpio@vger.kernel.org
+Cc:     ryan_chen@aspeedtech.com, Andrew Jeffery <andrew@aj.id.au>,
+        linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        joel@jms.id.au, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/8] pinctrl: aspeed: Preparation for AST2600
+Date:   Fri, 28 Jun 2019 12:08:30 +0930
+Message-Id: <20190628023838.15426-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190604003218.241354-1-saravanak@google.com> <20190624223707.GH203031@google.com>
- <20190625035313.GA13239@kroah.com> <CAL_JsqJyO9Fpq+Lzrc9NdiFBZ_9M31_mjfRyKM=ENtW-zVa8VA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJyO9Fpq+Lzrc9NdiFBZ_9M31_mjfRyKM=ENtW-zVa8VA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 27 Jun 2019 19:36:46 -0700
-Message-ID: <CAGETcx-OmbNYJB_1wEX5c=tVC+yPLhgiEXqq3EZnM6JAZxLPdA@mail.gmail.com>
-Subject: Re: [RESEND PATCH v1 0/5] Solve postboot supplier cleanup and
- optimize probe ordering
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sandeep Patil <sspatil@android.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 2:31 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Mon, Jun 24, 2019 at 9:54 PM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Mon, Jun 24, 2019 at 03:37:07PM -0700, Sandeep Patil wrote:
-> > > We are trying to make sure that all (most) drivers in an Aarch64 system can
-> > > be kernel modules for Android, like any other desktop system for
-> > > example. There are a number of problems we need to fix before that happens
-> > > ofcourse.
-> >
-> > I will argue that this is NOT an android-specific issue.  If the goal of
-> > creating an arm64 kernel that will "just work" for a wide range of
-> > hardware configurations without rebuilding is going to happen, we need
-> > to solve this problem with DT.  This goal was one of the original wishes
-> > of the arm64 development effort, let's not loose sight of it as
-> > obviously, this is not working properly just yet.
->
-> I fail to see how the different Linux behavior between drivers
-> built-in and as modules has anything whatsoever to do with DT.
+Hello!
 
-You are right, built-in vs module problem is not a DT issue. But this
-is not so much a built-in vs module issue. It's just that built-in has
-a hack available that works sometimes. But really, both are broken.
+The ASPEED AST2600 is in the pipeline, and we have enough information to start
+preparing to upstream support for it. This series lays some ground work;
+splitting the bindings and dicing the implementation up a little further to
+facilitate differences between the 2600 and previous SoC generations.
 
-> Fix the
-> problems in Linux and use the dependencies that are already expressed
-> in DT and *then* we can talk about using DT to provide *hints* for
-> solving any remaining problems.
+v2 addresses Rob's comments on the bindings conversion patches. v1 can be found
+here:
 
-Done. Sent v2 patch series that uses existing bindings.
+https://www.spinics.net/lists/linux-gpio/msg40157.html
 
--Saravana
+Please review!
+
+Andrew
+
+Andrew Jeffery (8):
+  dt-bindings: pinctrl: aspeed: Split bindings document in two
+  dt-bindings: pinctrl: aspeed: Convert AST2400 bindings to json-schema
+  dt-bindings: pinctrl: aspeed: Convert AST2500 bindings to json-schema
+  MAINTAINERS: Add entry for ASPEED pinctrl drivers
+  pinctrl: aspeed: Correct comment that is no longer true
+  pinctrl: aspeed: Clarify comment about strapping W1C
+  pinctrl: aspeed: Split out pinmux from general pinctrl
+  pinctrl: aspeed: Add implementation-related documentation
+
+ .../pinctrl/aspeed,ast2400-pinctrl.yaml       |  81 ++
+ .../pinctrl/aspeed,ast2500-pinctrl.yaml       | 134 ++++
+ .../bindings/pinctrl/pinctrl-aspeed.txt       | 172 ----
+ MAINTAINERS                                   |   9 +
+ drivers/pinctrl/aspeed/Makefile               |   2 +-
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g4.c    |  94 ++-
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    | 123 ++-
+ drivers/pinctrl/aspeed/pinctrl-aspeed.c       | 250 +-----
+ drivers/pinctrl/aspeed/pinctrl-aspeed.h       | 549 +------------
+ drivers/pinctrl/aspeed/pinmux-aspeed.c        |  96 +++
+ drivers/pinctrl/aspeed/pinmux-aspeed.h        | 735 ++++++++++++++++++
+ 11 files changed, 1312 insertions(+), 933 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-aspeed.txt
+ create mode 100644 drivers/pinctrl/aspeed/pinmux-aspeed.c
+ create mode 100644 drivers/pinctrl/aspeed/pinmux-aspeed.h
+
+-- 
+2.20.1
+
