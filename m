@@ -2,142 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5205859648
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7364C5964D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbfF1InU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 04:43:20 -0400
-Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:46971 "EHLO
-        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726385AbfF1InU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 04:43:20 -0400
-Received: from [192.168.2.10] ([46.9.252.75])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id gmTShkM8SSfvXgmTWhQzDe; Fri, 28 Jun 2019 10:43:18 +0200
-Subject: Re: [PATCH v5 08/10] media: dt-bindings: Document i.MX8MQ and i.MX8MM
- VPU bindings
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-To:     Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-References: <20190612093915.18973-1-p.zabel@pengutronix.de>
- <20190612093915.18973-9-p.zabel@pengutronix.de>
- <315a8cd5-76c5-7fd3-3cfe-8ef47a46b4b4@xs4all.nl>
-Message-ID: <a1a8dd40-a1b6-ce66-e4ad-fc130a551790@xs4all.nl>
-Date:   Fri, 28 Jun 2019 10:43:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726426AbfF1Ioh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jun 2019 04:44:37 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:53737 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726385AbfF1Ioh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:44:37 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id D638BFF813;
+        Fri, 28 Jun 2019 08:44:23 +0000 (UTC)
+Date:   Fri, 28 Jun 2019 10:44:23 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     masonccyang@mxic.com.tw
+Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
+        broonie@kernel.org, christophe.kerello@st.com,
+        computersforpeace@gmail.com, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
+        richard@nod.at, stefan@agner.ch, vigneshr@ti.com
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: Add Macronix Raw NAND controller
+Message-ID: <20190628104423.5eb3058a@xps13>
+In-Reply-To: <OF2EDB7089.FAD92F61-ON48258427.002D122A-48258427.002ECEF3@mxic.com.tw>
+References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw>
+        <1561443056-13766-2-git-send-email-masonccyang@mxic.com.tw>
+        <20190627193635.29abff43@xps13>
+        <OFDDC43C05.7B4092B5-ON48258427.001EE57E-48258427.002122D1@mxic.com.tw>
+        <20190628091836.3148d450@xps13>
+        <OF2EDB7089.FAD92F61-ON48258427.002D122A-48258427.002ECEF3@mxic.com.tw>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <315a8cd5-76c5-7fd3-3cfe-8ef47a46b4b4@xs4all.nl>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfBLXN/v6BbapYJSgpIwIx0GuSDLbcXscIlGHqgD1ISQWw6745q/4H/je6IccqX8ZLh1tXsOAaPg2Ok9PeIjm5O4ctJLCnVWSz47egcefu3opF7DuzPvQ
- xaZPseFE7Dhb9UT0U7sdZ9IItXLXoXQF+H1Q6/rDSrE0uqFunS/zA4TgOKCU00zOX34EOSu4UwR/vIeZZUnTrUzbOCwZTNOArLVO2lKsO09qjMyFBjN4juyh
- 2nyLI0LV1iNfw6JaFemsNfz1nRoUYq32KAN7rWXZCPZogwNmgvsUgBfCd2NDAO914BoF/9k2p687kAOod/LMF5QyyTfA6m9Uemd5UyzAsfilQ3sUreryvg6I
- F5V35pwIvlrY9rOp1HcFtSs86CPLuqYfEV8yj2xCCvYZ3cPzqxk4oSnfG1lfqf//54WUPXrJ0jB2sZTdENOdAI+EnVwIug==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/28/19 10:42 AM, Hans Verkuil wrote:
-> Two typos for imx8mm:
-> 
-> On 6/12/19 11:39 AM, Philipp Zabel wrote:
->> Add devicetree binding documentation for the Hantro G1/G2 VPU on i.MX8MQ
->> and for the Hantro G1/G2/H1 VPU on i.MX8MM.
->>
->> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
->> ---
->>  .../devicetree/bindings/media/imx8m-vpu.txt   | 56 +++++++++++++++++++
->>  1 file changed, 56 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/media/imx8m-vpu.txt
->>
->> diff --git a/Documentation/devicetree/bindings/media/imx8m-vpu.txt b/Documentation/devicetree/bindings/media/imx8m-vpu.txt
->> new file mode 100644
->> index 000000000000..659bd28dd002
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/imx8m-vpu.txt
->> @@ -0,0 +1,56 @@
->> +device-tree bindings for Hantro G1/G2/H1 VPU codecs implemented on i.MX8M SoCs
->> +
->> +Required properties:
->> +- compatible: value should be one of the following
->> +		"nxp,imx8mq-vpu",
->> +		"nxp,imx8mm-vpu";
->> +- regs: VPU core and control block register ranges
->> +- reg-names: should be
->> +		"g1", "g2", "ctrl" on i.MX8MQ,
->> +		"g1", "g2", "h1", "ctrl" on i.MX8MM.
->> +- interrupts: encoding and decoding interrupt specifiers
->> +- interrupt-names: should be
->> +		"g1", "g2" on i.MX8MQ,
->> +		"g1", "g2", "h1" on i.MX8MM.
->> +- clocks: phandle to VPU core clocks and bus clock
->> +- clock-names: should be
->> +		"g1", "g2", "bus" on i.MX8MQ,
->> +		"g1", "g2", "h1", "bus" on i.MX8MM.
->> +- power-domains: phandle to power domain node
->> +
->> +Examples:
->> +
->> +	vpu: vpu@38300000 {
->> +		compatible = "nxp,imx8mq-vpu";
->> +		reg = <0x38300000 0x10000>,
->> +		      <0x38310000 0x10000>,
->> +		      <0x38320000 0x10000>;
->> +		reg-names = "g1", "g2", "ctrl";
->> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-names = "g1", "g2";
->> +		clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
->> +			 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
->> +			 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
->> +		clock-names = "g1", "g2", "bus";
->> +		power-domains = <&pgc_vpu>;
->> +	};
->> +
->> +	vpu: vpu@38300000 {
->> +		compatible = "nxp,imx8mm-vpu";
->> +		reg = <0x38300000 0x10000>,
->> +		      <0x38310000 0x10000>,
->> +		      <0x38320000 0x10000>;
-> 
-> ; -> ,
-> 
->> +		      <0x38330000 0x10000>;
->> +		reg-names = "g1", "g2", "h1", "ctrl";
->> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> ; -> ,
-> 
->> +			     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-names = "g1", "g2", "h1";
->> +		clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
->> +			 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
->> +			 <&clk IMX8MQ_CLK_VPU_H1_ROOT>,
->> +			 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+Hi Mason,
 
-More typos: IMX8MQ -> IMX8MM for the 4 lines above.
+masonccyang@mxic.com.tw wrote on Fri, 28 Jun 2019 16:31:16 +0800:
 
-Regards,
-
-	Hans
-
->> +		clock-names = "g1", "g2", "h1", "bus";
->> +		power-domains = <&pgc_vpu>;
->> +	};
->>
+> Hi Miquel,
 > 
-> Regards,
+> > >   
+> > > > > Add a driver for Macronix raw NAND controller.   
+> > > > 
+> > > > Could you pass userspace major MTD tests and can you   
+> attach/mount/edit
+> > > > a UBI/UBIFS storage?   
+> > > 
+> > > mtd_debug passed and using dd utility to read and write 
+> > > with md5sum checking passed.  
+> > 
+> > Please don't use dd, use nanddump/nandwrite/flasherase/nandbiterrs and
+> > run the other tests from the mtd-utils test suite (available in
+> > Buildroot for instance).
+> >   
 > 
-> 	Hans
+> Got it.
 > 
+> But may I know why 'dd' utility is not preferences ?
+> I generate a random data file and write to Flash by
+> using dd with bs=page size and read data back from Flash.
+> Checking data by md5sum.
 
+Because dd works on block devices. MTD devices are way different. You
+cannot write to OOB with dd. You cannot erase before write with dd. And
+dd does not know about bad blocks. Please simply avoid using dd.
+
+> The write and read testing data size is easily adjustable.
+
+So are the MTD utils.
+
+Thanks,
+Miquèl
