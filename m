@@ -2,138 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 26D1D59513
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 09:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 389775953E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 09:43:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbfF1Hf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 03:35:28 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:31242 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726463AbfF1Hf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 03:35:28 -0400
-X-UUID: 4171d408b6704aee9ef5500fff449928-20190628
-X-UUID: 4171d408b6704aee9ef5500fff449928-20190628
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 217366862; Fri, 28 Jun 2019 15:35:14 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 28 Jun 2019 15:35:13 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 28 Jun 2019 15:35:12 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Ryder Lee <ryder.lee@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <youlin.pei@mediatek.com>,
-        <jianjun.wang@mediatek.com>
-Subject: [v2,2/2] PCI: mediatek: Add controller support for MT7629
-Date:   Fri, 28 Jun 2019 15:34:25 +0800
-Message-ID: <20190628073425.25165-3-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190628073425.25165-1-jianjun.wang@mediatek.com>
-References: <20190628073425.25165-1-jianjun.wang@mediatek.com>
+        id S1726431AbfF1HnB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jun 2019 03:43:01 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:59717 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726385AbfF1HnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 03:43:01 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 6B4AEFF803;
+        Fri, 28 Jun 2019 07:42:51 +0000 (UTC)
+Date:   Fri, 28 Jun 2019 09:42:50 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     masonccyang@mxic.com.tw
+Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
+        broonie@kernel.org, christophe.kerello@st.com,
+        computersforpeace@gmail.com, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
+        richard@nod.at, stefan@agner.ch, vigneshr@ti.com,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: Document Macronix raw NAND
+ controller bindings
+Message-ID: <20190628094250.1fd84505@xps13>
+In-Reply-To: <OFFBD1710A.54AC467B-ON48258427.0023FCA3-48258427.00255B71@mxic.com.tw>
+References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw>
+        <1561443056-13766-3-git-send-email-masonccyang@mxic.com.tw>
+        <20190627192609.0965f6d5@xps13>
+        <OFFBD1710A.54AC467B-ON48258427.0023FCA3-48258427.00255B71@mxic.com.tw>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 91FA08810E71FD46B88CAD112DFCA01B16B5ED1478AE18F4B91DC42D229A45642000:8
-X-MTK:  N
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT7629 is an ARM platform SoC which has the same PCIe IP with MT7622.
+Hi Mason,
 
-The HW default value of its Device ID is invalid, fix its Device ID to
-match the hardware implementation.
+Please always Cc: Rob (robh+dt@kernel.org) when you send bindings
+related patches.
 
-Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
----
- drivers/pci/controller/pcie-mediatek.c | 18 ++++++++++++++++++
- include/linux/pci_ids.h                |  1 +
- 2 files changed, 19 insertions(+)
+masonccyang@mxic.com.tw wrote on Fri, 28 Jun 2019
+14:48:02 +0800:
 
-diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-index 80601e1b939e..e5e6740b635d 100644
---- a/drivers/pci/controller/pcie-mediatek.c
-+++ b/drivers/pci/controller/pcie-mediatek.c
-@@ -73,6 +73,7 @@
- #define PCIE_MSI_VECTOR		0x0c0
- 
- #define PCIE_CONF_VEND_ID	0x100
-+#define PCIE_CONF_DEVICE_ID	0x102
- #define PCIE_CONF_CLASS_ID	0x106
- 
- #define PCIE_INT_MASK		0x420
-@@ -141,12 +142,16 @@ struct mtk_pcie_port;
- /**
-  * struct mtk_pcie_soc - differentiate between host generations
-  * @need_fix_class_id: whether this host's class ID needed to be fixed or not
-+ * @need_fix_device_id: whether this host's Device ID needed to be fixed or not
-+ * @device_id: Device ID which this host need to be fixed
-  * @ops: pointer to configuration access functions
-  * @startup: pointer to controller setting functions
-  * @setup_irq: pointer to initialize IRQ functions
-  */
- struct mtk_pcie_soc {
- 	bool need_fix_class_id;
-+	bool need_fix_device_id;
-+	unsigned int device_id;
- 	struct pci_ops *ops;
- 	int (*startup)(struct mtk_pcie_port *port);
- 	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
-@@ -696,6 +701,9 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 		writew(val, port->base + PCIE_CONF_CLASS_ID);
- 	}
- 
-+	if (soc->need_fix_device_id)
-+		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
-+
- 	/* 100ms timeout value should be enough for Gen1/2 training */
- 	err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_V2, val,
- 				 !!(val & PCIE_PORT_LINKUP_V2), 20,
-@@ -1216,11 +1224,21 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
- 	.setup_irq = mtk_pcie_setup_irq,
- };
- 
-+static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
-+	.need_fix_class_id = true,
-+	.need_fix_device_id = true,
-+	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
-+	.ops = &mtk_pcie_ops_v2,
-+	.startup = mtk_pcie_startup_port_v2,
-+	.setup_irq = mtk_pcie_setup_irq,
-+};
-+
- static const struct of_device_id mtk_pcie_ids[] = {
- 	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
- 	{ .compatible = "mediatek,mt7622-pcie", .data = &mtk_pcie_soc_mt7622 },
-+	{ .compatible = "mediatek,mt7629-pcie", .data = &mtk_pcie_soc_mt7629 },
- 	{},
- };
- 
-diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
-index 70e86148cb1e..aa32962759b2 100644
---- a/include/linux/pci_ids.h
-+++ b/include/linux/pci_ids.h
-@@ -2131,6 +2131,7 @@
- #define PCI_VENDOR_ID_MYRICOM		0x14c1
- 
- #define PCI_VENDOR_ID_MEDIATEK		0x14c3
-+#define PCI_DEVICE_ID_MEDIATEK_7629	0x7629
- 
- #define PCI_VENDOR_ID_TITAN		0x14D2
- #define PCI_DEVICE_ID_TITAN_010L	0x8001
--- 
-2.18.0
+> Hi Miquel,
+> 
+> > > Document the bindings used by the Macronix raw NAND controller.
+> > > 
+> > > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> > > ---
+> > >  .../devicetree/bindings/mtd/mxic-nand.txt          | 26   
+> ++++++++++++++++++++++
+> > >  1 file changed, 26 insertions(+)
+> > >  create mode 100644   
+> Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/  
+> > Documentation/devicetree/bindings/mtd/mxic-nand.txt  
+> > > new file mode 100644
+> > > index 0000000..3d198e4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> > > @@ -0,0 +1,26 @@
+> > > +Macronix Raw NAND Controller Device Tree Bindings
+> > > +-------------------------------------------------
+> > > +
+> > > +Required properties:
+> > > +- compatible: should be "mxic,raw-nand-ctlr"  
+> > 
+> > I would prefer "macronix,nand-controller"  
+> 
+> okay, will patch it.
+> 
+> >   
+> > > +- reg: should contain 1 entrie for the registers  
+> > 
+> >                            entry
+> >   
+> > > +- reg-names: should contain "regs"  
+> > 
+> > Not sure you need that?  
+> 
+> for a base address of ctlr registers.
 
+Yes I know, I mean: you don't necessarily need the 'reg-names' property
+as it is supposed that the only entry will be the IP registers (unless
+there are more). I don't know what's Rob preference here but I would
+either drop the reg-names property or enhance the name, "regs" is
+terribly not descriptive.
+
+> > > +- interrupts: interrupt line connected to this NAND controller
+> > > +- clock-names: should contain "ps_clk", "send_clk" and "send_dly_clk"
+> > > +- clocks: should contain 3 entries for the "ps_clk", "send_clk" and
+> > > +    "send_dly_clk" clocks  
+> > 
+> > s/entries/phandles/ ?  
+> 
+> ?
+> as I know that kernel views the phandle values as device tree structure
+> information instead of device tree data and thus does not store them as
+> properties.
+
+The bindings have nothing to do with the kernel views. They might
+actually be merged in a different project, out of the kernel.
+
+
+Thanks,
+Miquèl
