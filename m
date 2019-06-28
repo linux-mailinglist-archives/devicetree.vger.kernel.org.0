@@ -2,55 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28C0959A29
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:13:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AD4E59B4F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726884AbfF1MMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 08:12:55 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:58260 "EHLO
+        id S1726921AbfF1McL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 08:32:11 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:39380 "EHLO
         bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726843AbfF1MMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 08:12:37 -0400
+        with ESMTP id S1727047AbfF1Man (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 08:30:43 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
         MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
         Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
         Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
         List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=DA5BRTxHzFjkBauyNUPvpbdDgMAgRoAJatIYSdac51Y=; b=GzGXMBGMhZgxGjDLabVorg221y
-        bS7w5BY+Q1miuA/PUaqiffFgVEdiXTBIA7gka+FIRi+WCuK1EGAVR7tjNUGkYGHjFnMhzxX/MF7Et
-        06RmQJzWB8ZmPHRtwyu/zlSNFLiGPse2XIfiDUqVENYO4A4p9ubbL7dkubhn23WsiXnv7xAuc/wkF
-        CrHTBlb8RV3D9GZeYL8M3wjFiLPA6zDZVVbAy1/B3M4EvHjsTEl4+uP3K6ltoNY9VLt+YC1hFEDU4
-        7LJjK9Sicr7VNXHsYd938oyo7GQu0JQ1XGeTU2+ztXDgnr2Vmzyhngv63eGAA79lkILCddXwr15PV
-        +g8LFQrw==;
+        bh=9x6MnELpm41+8+il8SzONc8VzOlbzKYgL1wPINAhEuU=; b=JTRIUwajdrDihDEkBt/zx/3w+b
+        U67j76+Puudo7N4rJUEJ6sU9zLuGZKUBOdsRnW/R5JsgtnxgT9M+8wIzVvoEgLsh3v1DskXsW+EyK
+        zidvAYPNYnWaBDtfUuOIfXodjjOxrrrrNiuX2l5sIat4zAZDzqv7hUZ4kMh0q87WNPHohB6hqU1DI
+        VeUPT4BzyvKLUwPnd2OMY0e28x+bPcN3uuQGYK8sgcNMdue3MsnhKya/GcoQGN7VhoPLPJnL+3EWZ
+        LiKjtuxM7kRBNSWjTlMYoFm3E0RzHPJOTIeiJskH5ZAjZXPBGXpB9tHZZ3M5W+6K0fcnlGJmvTI2r
+        qO36jZtg==;
 Received: from [186.213.242.156] (helo=bombadil.infradead.org)
         by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hgpk3-0005Bb-B8; Fri, 28 Jun 2019 12:12:35 +0000
+        id 1hgq1U-00055r-Od; Fri, 28 Jun 2019 12:30:36 +0000
 Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
         (envelope-from <mchehab@bombadil.infradead.org>)
-        id 1hgpk0-0004zb-AD; Fri, 28 Jun 2019 09:12:32 -0300
+        id 1hgq1S-0005TY-QB; Fri, 28 Jun 2019 09:30:34 -0300
 From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
 Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
         Mauro Carvalho Chehab <mchehab@infradead.org>,
         linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
-        devicetree@vger.kernel.org, intel-gfx@lists.freedesktop.org,
-        dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 5/9] docs: fix some broken references due to txt->rst renames
-Date:   Fri, 28 Jun 2019 09:12:27 -0300
-Message-Id: <5ebb42791ebe353c346b44d6bd8f2c03d61d1115.1561723736.git.mchehab+samsung@kernel.org>
+        Kamil Debski <kamil@wypas.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 33/39] docs: phy: place documentation under driver-api
+Date:   Fri, 28 Jun 2019 09:30:26 -0300
+Message-Id: <df0337d37a924dcfa1f528734ffd3bae430d93c4.1561724493.git.mchehab+samsung@kernel.org>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1561723736.git.mchehab+samsung@kernel.org>
-References: <cover.1561723736.git.mchehab+samsung@kernel.org>
+In-Reply-To: <cover.1561724493.git.mchehab+samsung@kernel.org>
+References: <cover.1561724493.git.mchehab+samsung@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -58,56 +53,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are three left-overs from the recent file renames,
-probably due to some other conflicting patch.
-
-Fix them.
+This subsystem-specific documentation belongs to the
+driver-api.
 
 Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Acked-by: Wolfram Sang <wsa@the-dreams.de>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- Documentation/devicetree/bindings/arm/idle-states.txt | 2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.h               | 2 +-
- drivers/i2c/busses/i2c-nvidia-gpu.c                   | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/phy/phy-bindings.txt     |  2 +-
+ .../devicetree/bindings/phy/phy-pxa-usb.txt      |  2 +-
+ Documentation/driver-api/index.rst               |  1 +
+ Documentation/driver-api/phy/index.rst           | 16 ++++++++++++++++
+ .../{phy.txt => driver-api/phy/phy.rst}          |  0
+ .../{ => driver-api}/phy/samsung-usb2.rst        |  0
+ Documentation/index.rst                          |  1 -
+ MAINTAINERS                                      |  2 +-
+ 8 files changed, 20 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/driver-api/phy/index.rst
+ rename Documentation/{phy.txt => driver-api/phy/phy.rst} (100%)
+ rename Documentation/{ => driver-api}/phy/samsung-usb2.rst (100%)
 
-diff --git a/Documentation/devicetree/bindings/arm/idle-states.txt b/Documentation/devicetree/bindings/arm/idle-states.txt
-index 3bdbe675b9e6..d8d9aa7167e8 100644
---- a/Documentation/devicetree/bindings/arm/idle-states.txt
-+++ b/Documentation/devicetree/bindings/arm/idle-states.txt
-@@ -703,4 +703,4 @@ cpus {
-     https://www.devicetree.org/specifications/
+diff --git a/Documentation/devicetree/bindings/phy/phy-bindings.txt b/Documentation/devicetree/bindings/phy/phy-bindings.txt
+index a403b81d0679..c4eb38902533 100644
+--- a/Documentation/devicetree/bindings/phy/phy-bindings.txt
++++ b/Documentation/devicetree/bindings/phy/phy-bindings.txt
+@@ -1,5 +1,5 @@
+ This document explains only the device tree data binding. For general
+-information about PHY subsystem refer to Documentation/phy.txt
++information about PHY subsystem refer to Documentation/driver-api/phy/phy.rst
  
- [6] ARM Linux Kernel documentation - Booting AArch64 Linux
--    Documentation/arm64/booting.txt
-+    Documentation/arm64/booting.rst
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index 473c4850c01d..2ee8f9522e05 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -45,7 +45,7 @@ enum i915_drm_suspend_mode {
-  * to be disabled. This shouldn't happen and we'll print some error messages in
-  * case it happens.
-  *
-- * For more, read the Documentation/power/runtime_pm.txt.
-+ * For more, read the Documentation/power/runtime_pm.rst.
-  */
- struct intel_runtime_pm {
- 	atomic_t wakeref_count;
-diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
-index cfc76b5de726..5a1235fd86bb 100644
---- a/drivers/i2c/busses/i2c-nvidia-gpu.c
-+++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
-@@ -364,7 +364,7 @@ static void gpu_i2c_remove(struct pci_dev *pdev)
- /*
-  * We need gpu_i2c_suspend() even if it is stub, for runtime pm to work
-  * correctly. Without it, lspci shows runtime pm status as "D0" for the card.
-- * Documentation/power/pci.txt also insists for driver to provide this.
-+ * Documentation/power/pci.rst also insists for driver to provide this.
-  */
- static __maybe_unused int gpu_i2c_suspend(struct device *dev)
- {
+ PHY device node
+ ===============
+diff --git a/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt b/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt
+index 93fc09c12954..d80e36a77ec5 100644
+--- a/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt
++++ b/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt
+@@ -15,4 +15,4 @@ Example:
+ 	};
+ 
+ This document explains the device tree binding. For general
+-information about PHY subsystem refer to Documentation/phy.txt
++information about PHY subsystem refer to Documentation/driver-api/phy/phy.rst
+diff --git a/Documentation/driver-api/index.rst b/Documentation/driver-api/index.rst
+index d6f532c8d824..12d68c3ab792 100644
+--- a/Documentation/driver-api/index.rst
++++ b/Documentation/driver-api/index.rst
+@@ -85,6 +85,7 @@ available subsections can be seen below.
+    parport-lowlevel
+    pps
+    ptp
++   phy/index
+    pti_intel_mid
+    pwm
+    rfkill
+diff --git a/Documentation/driver-api/phy/index.rst b/Documentation/driver-api/phy/index.rst
+new file mode 100644
+index 000000000000..fce9ffae2812
+--- /dev/null
++++ b/Documentation/driver-api/phy/index.rst
+@@ -0,0 +1,16 @@
++=====================
++Generic PHY Framework
++=====================
++
++.. toctree::
++
++   phy
++   samsung-usb2
++
++.. only::  subproject and html
++
++   Indices
++   =======
++
++   * :ref:`genindex`
++
+diff --git a/Documentation/phy.txt b/Documentation/driver-api/phy/phy.rst
+similarity index 100%
+rename from Documentation/phy.txt
+rename to Documentation/driver-api/phy/phy.rst
+diff --git a/Documentation/phy/samsung-usb2.rst b/Documentation/driver-api/phy/samsung-usb2.rst
+similarity index 100%
+rename from Documentation/phy/samsung-usb2.rst
+rename to Documentation/driver-api/phy/samsung-usb2.rst
+diff --git a/Documentation/index.rst b/Documentation/index.rst
+index 28e6b5ef17b4..ea33cbbccd9d 100644
+--- a/Documentation/index.rst
++++ b/Documentation/index.rst
+@@ -112,7 +112,6 @@ needed).
+    usb/index
+    misc-devices/index
+    mic/index
+-   phy/samsung-usb2
+    scheduler/index
+ 
+ Architecture-specific documentation
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 856db8015edd..cda68bbd9d1c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14031,7 +14031,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
+ L:	linux-kernel@vger.kernel.org
+ S:	Supported
+ F:	Documentation/devicetree/bindings/phy/samsung-phy.txt
+-F:	Documentation/phy/samsung-usb2.rst
++F:	Documentation/driver-api/phy/samsung-usb2.rst
+ F:	drivers/phy/samsung/phy-exynos4210-usb2.c
+ F:	drivers/phy/samsung/phy-exynos4x12-usb2.c
+ F:	drivers/phy/samsung/phy-exynos5250-usb2.c
 -- 
 2.21.0
 
