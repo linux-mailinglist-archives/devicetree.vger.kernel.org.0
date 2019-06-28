@@ -2,128 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7FF59D8F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 16:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 351A05A0CC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726657AbfF1ONp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 10:13:45 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:34370 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726616AbfF1ONp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 10:13:45 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 5FF8B634C7F;
-        Fri, 28 Jun 2019 17:13:27 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.89)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1hgrd0-0000lV-Ns; Fri, 28 Jun 2019 17:13:26 +0300
-Date:   Fri, 28 Jun 2019 17:13:26 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Luis Oliveira <Luis.Oliveira@synopsys.com>
-Cc:     mchehab@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
-        robh@kernel.org, nicolas.ferre@microchip.com,
-        paulmck@linux.ibm.com, mark.rutland@arm.com, kishon@ti.com,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Joao.Pinto@synopsys.com
-Subject: Re: [v4 1/6] dt-bindings: media: Document bindings for DW MIPI CSI-2
- Host
-Message-ID: <20190628141326.swgl3kg4fj5pmlqx@valkosipuli.retiisi.org.uk>
-References: <1560280855-18085-1-git-send-email-luis.oliveira@synopsys.com>
- <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
+        id S1726787AbfF1Q2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 12:28:16 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:50944 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726772AbfF1Q2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 12:28:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=aiJProecfCoOFOmMzWWwfmO5TFzjKsVdJFvDr/zMYYo=; b=HBGZ+5qpNe4XDtk4pe9C5Q4z1
+        5uaCDcqpoKb76uGbK0SMlo3mlLJGiIdvt73p4wedBNFu0A4+LMJdGnDslEkQBY3+FchygQrM9X5r3
+        l7fn98KeEEsrcTVcf4Ue4NC+97J4U5bYAg7Svk9esf8foCGUGYAjsZHC8Pl6tFfkLBuMM=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hgtjO-00075K-Pu; Fri, 28 Jun 2019 16:28:10 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 660E0440050; Fri, 28 Jun 2019 15:32:29 +0100 (BST)
+Date:   Fri, 28 Jun 2019 15:32:29 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Fabrice Gasnier <fabrice.gasnier@st.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, alexandre.torgue@st.com,
+        mcoquelin.stm32@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] regulator: add support for the stm32-booster
+Message-ID: <20190628143229.GI5379@sirena.org.uk>
+References: <1561709289-11174-1-git-send-email-fabrice.gasnier@st.com>
+ <1561709289-11174-3-git-send-email-fabrice.gasnier@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+ZmrHH5cGjskQnY1"
 Content-Disposition: inline
-In-Reply-To: <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <1561709289-11174-3-git-send-email-fabrice.gasnier@st.com>
+X-Cookie: You need not be present to win.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luis,
 
-Thank you for the patchset.
+--+ZmrHH5cGjskQnY1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 11, 2019 at 09:20:50PM +0200, Luis Oliveira wrote:
-> From: Luis Oliveira <lolivei@synopsys.com>
-> 
-> Add bindings for Synopsys DesignWare MIPI CSI-2 host.
-> 
-> Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
-> ---
-> Changelog
-> v3-v4
-> - remove "plat" from the block name @rob @laurent
-> - remove "phy-names" when single-entry @rob
-> - remove "snps,output-type" -> went to the driver config @laurent
-> 
->  .../devicetree/bindings/media/snps,dw-csi.txt      | 41 ++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/snps,dw-csi.txt b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> new file mode 100644
-> index 0000000..613b7f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> @@ -0,0 +1,41 @@
-> +Synopsys DesignWare CSI-2 Host controller
-> +
-> +Description
-> +-----------
-> +
-> +This HW block is used to receive image coming from an MIPI CSI-2 compatible
-> +camera.
-> +
-> +Required properties:
-> +- compatible		: shall be "snps,dw-csi"
-> +- reg			: physical base address and size of the device memory
-> +			  mapped registers;
-> +- interrupts		: DW CSI-2 Host interrupts
-> +- phys			: List of one PHY specifier (as defined in
-> +			  Documentation/devicetree/bindings/phy/phy-bindings.txt).
-> +			  This PHY is a MIPI DPHY working in RX mode.
-> +- resets		: Reference to a reset controller (optional)
-> +
-> +The per-board settings:
-> + - port sub-node describing a single endpoint connected to the camera as
-> +   described in video-interfaces.txt[1].
+On Fri, Jun 28, 2019 at 10:08:07AM +0200, Fabrice Gasnier wrote:
+> Add support for the 3.3V booster regulator embedded in stm32h7 and stm32m=
+p1
+> devices, that can be used to supply ADC analog input switches.
+>=20
+> This regulator is supplied by vdda. It's controlled by using SYSCFG:
+> - STM32H7 has a unique register to set/clear the booster enable bit
+> - STM32MP1 has separate set and clear registers to configure it.
 
-Which endpoint properties in video-interfaces.txt are relevant for the
-hardware? Which values may they have?
+This doesn't apply against current code, please check and resend.
 
-> +
-> +Example:
-> +
-> +	csi2: csi2@3000 {
-> +		compatible = "snps,dw-csi";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		reg = < 0x03000 0x7FF>;
+--+ZmrHH5cGjskQnY1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-reg = <0x03000 0x7FF>;
+-----BEGIN PGP SIGNATURE-----
 
-> +		phys = <&mipi_dphy_rx>;
-> +		resets = <&dw_rst 1>;
-> +		interrupts = <2>;
-> +
-> +		port@0 {
-> +			reg = <0>;
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0WJPwACgkQJNaLcl1U
+h9CEYwf/S479W8LgrEaeHTTFG3CzS+H7XcqwsFf6ZMmLHg4A/fZD3UOrWsupb7XW
+5Pn1ugPul+BpUs3M6dew3VdsiqOt/JWl3QC0KPKetya58X+NKnGTtnv+F17u5WyL
+pv5f6/FzM3/rN6AhpDN3pbRxUbMj87J3dxVDS/rNh6IYiTjrkIvkXIWO1oiN84aD
+KjarUQFfuqKmKDGsCvkzysX+e7npMdAyqntAdYJqtBVsUHPWDPygEfgedZlFjFUa
+ktNcysf3sDZpFdDiqzCgLYA52R2rWjJGQbZN9TlMx5iK45iLVjGjTbf11arVCcUw
+HT/WrvMzxZT3GvZsaV/sSCOpY7di8A==
+=l6Rr
+-----END PGP SIGNATURE-----
 
-You can drop "@0" and the reg property.
-
-> +			csi_ep1: endpoint {
-> +				remote-endpoint = <&camera_1>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-
--- 
-Kind regards,
-
-Sakari Ailus
+--+ZmrHH5cGjskQnY1--
