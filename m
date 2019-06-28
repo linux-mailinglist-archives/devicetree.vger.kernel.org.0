@@ -2,85 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7364C5964D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DE705965A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbfF1Ioh convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jun 2019 04:44:37 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:53737 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726385AbfF1Ioh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:44:37 -0400
-X-Originating-IP: 86.250.200.211
-Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id D638BFF813;
-        Fri, 28 Jun 2019 08:44:23 +0000 (UTC)
-Date:   Fri, 28 Jun 2019 10:44:23 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     masonccyang@mxic.com.tw
-Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
-        broonie@kernel.org, christophe.kerello@st.com,
-        computersforpeace@gmail.com, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
-        richard@nod.at, stefan@agner.ch, vigneshr@ti.com
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: Add Macronix Raw NAND controller
-Message-ID: <20190628104423.5eb3058a@xps13>
-In-Reply-To: <OF2EDB7089.FAD92F61-ON48258427.002D122A-48258427.002ECEF3@mxic.com.tw>
-References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw>
-        <1561443056-13766-2-git-send-email-masonccyang@mxic.com.tw>
-        <20190627193635.29abff43@xps13>
-        <OFDDC43C05.7B4092B5-ON48258427.001EE57E-48258427.002122D1@mxic.com.tw>
-        <20190628091836.3148d450@xps13>
-        <OF2EDB7089.FAD92F61-ON48258427.002D122A-48258427.002ECEF3@mxic.com.tw>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726502AbfF1Iq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 04:46:28 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:38603 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726240AbfF1Iq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:46:28 -0400
+Received: by mail-lj1-f194.google.com with SMTP id r9so5178015ljg.5
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 01:46:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lQNaKSJYVO+SBfhaRTd+ObgB+axwBGKUKZwAi5fi5AM=;
+        b=LpBzdV3DdCgI12TYlbjXRnT2CgY9b7ToRmHBIC2H6bjhKPSz1XhedsQivDv9ZCFlo0
+         x/RZj+DG0L5MS7QwKo3vx9AB0bQVZKUyDvM1d4RLV65hkoRS07x50oEqd56ghXPp1aMT
+         yc1Aml6llp192DO7H7nz5YU1Og/Li6VqEtg9Iix/DA7kNYY41wrxANScMvWiC+w1gpLG
+         HKWDL/E1p8OlH9CEwDjU9sGQ0pVe8gu7TuscxNRFR9aLJzwrt4s22+9mUBiS5pPxe3N4
+         ZWjO0mJ3TwID3DKeegQDd49Yw69IOT4Apurk7LWuwnDk3KxZQsPNrOreu0yGYjcsEqyt
+         hRNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lQNaKSJYVO+SBfhaRTd+ObgB+axwBGKUKZwAi5fi5AM=;
+        b=b74xyZlu7oKSYU0sV2G+QhaBTXCEEeXp9aStcR0Q+jKzn2gXqUuAFTD1ZoNoCMalWx
+         TkpOSDDU0ZTqbJdl4BFjEoXyOnqENeXfz7FMcJpE04wwwxDOoRt3ffMU/rw31xZxJkLD
+         aLOeP+akaSKYOnlXzt/3zMtFt6JLtHSma8BbC44jusBDRq96r4ExtnL1mDT3nrVk2UB/
+         USwROCVlhHwfdq/tAGSJbUnjjW3ByH53zA7IUpgVMTS0CLmD3Vjjn5nNH8HcIDPLTdlG
+         NIsrhXTVYZfgO2oPNFqF87spKqgx/xGp+aCQoUEleD57a17alkUYV9Ng0XQIT9KG1jGj
+         eEbw==
+X-Gm-Message-State: APjAAAUG3fod6LuiwE0VcL6SNgbaqWIyjymXLbXs2B33JWUBHKOUIk0L
+        XweTFLBxGN3BEUB3D7kA5uRYLMtoDbgoQbVilA9dqQ==
+X-Google-Smtp-Source: APXvYqzc5ofASQo8XlbqJgoQuOO8xPB1ETbBcPY7tE1jHcs9PNbLzQhP0le41W253nzsHWKxeEpUBcvYWJY2K+Tgzbg=
+X-Received: by 2002:a2e:2c14:: with SMTP id s20mr5415213ljs.54.1561711586591;
+ Fri, 28 Jun 2019 01:46:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <20190609190803.14815-1-jacek.anaszewski@gmail.com> <20190609190803.14815-6-jacek.anaszewski@gmail.com>
+In-Reply-To: <20190609190803.14815-6-jacek.anaszewski@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 28 Jun 2019 09:46:14 +0100
+Message-ID: <CACRpkdYdqKZVKSaQB0THi=iZcRT04EKX2-85__Hw1f53o8vsuw@mail.gmail.com>
+Subject: Re: [PATCH v5 05/26] leds: core: Add support for composing LED class
+ device names
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dtor@google.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dan Murphy <dmurphy@ti.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
+On Sun, Jun 9, 2019 at 8:08 PM Jacek Anaszewski
+<jacek.anaszewski@gmail.com> wrote:
 
-masonccyang@mxic.com.tw wrote on Fri, 28 Jun 2019 16:31:16 +0800:
+> Add generic support for composing LED class device name. The newly
+> introduced led_compose_name() function composes device name according
+> to either <color:function> or <devicename:color:function> pattern,
+> depending on the configuration of initialization data.
+>
+> Backward compatibility with in-driver hard-coded LED class device
+> names is assured thanks to the default_label and devicename properties
+> of newly introduced struct led_init_data.
+>
+> In case none of the aforementioned properties was found, then, for OF
+> nodes, the node name is adopted for LED class device name.
+>
+> At the occassion of amending the Documentation/leds/leds-class.txt
+> unify spelling: colour -> color.
+>
+> Alongside these changes added is a new tool - tools/leds/get_led_device_info.sh.
+> The tool allows retrieving details of a LED class device's parent device,
+> which proves that using vendor or product name for devicename part
+> of LED name doesn't convey any added value since that information had been
+> already available in sysfs. The script performs also basic validation
+> of a LED class device name.
+>
+> Signed-off-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Cc: Baolin Wang <baolin.wang@linaro.org>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Dan Murphy <dmurphy@ti.com>
+> Cc: Daniel Mack <daniel@zonque.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Oleh Kravchenko <oleg@kaa.org.ua>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Simon Shields <simon@lineageos.org>
 
-> Hi Miquel,
-> 
-> > >   
-> > > > > Add a driver for Macronix raw NAND controller.   
-> > > > 
-> > > > Could you pass userspace major MTD tests and can you   
-> attach/mount/edit
-> > > > a UBI/UBIFS storage?   
-> > > 
-> > > mtd_debug passed and using dd utility to read and write 
-> > > with md5sum checking passed.  
-> > 
-> > Please don't use dd, use nanddump/nandwrite/flasherase/nandbiterrs and
-> > run the other tests from the mtd-utils test suite (available in
-> > Buildroot for instance).
-> >   
-> 
-> Got it.
-> 
-> But may I know why 'dd' utility is not preferences ?
-> I generate a random data file and write to Flash by
-> using dd with bs=page size and read data back from Flash.
-> Checking data by md5sum.
+This is good progress on trying to bring order in chaos.
 
-Because dd works on block devices. MTD devices are way different. You
-cannot write to OOB with dd. You cannot erase before write with dd. And
-dd does not know about bad blocks. Please simply avoid using dd.
+A problem with LEDs is that it invites bikeshedding because it is too
+relateable.
 
-> The write and read testing data size is easily adjustable.
+So by the motto "rough consensus and running code":
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-So are the MTD utils.
-
-Thanks,
-Miquèl
+Yours,
+Linus Walleij
