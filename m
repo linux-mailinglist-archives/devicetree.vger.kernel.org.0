@@ -2,163 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AD4E59B4F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFE0F59BA8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726921AbfF1McL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 08:32:11 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:39380 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727047AbfF1Man (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 08:30:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
-        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=9x6MnELpm41+8+il8SzONc8VzOlbzKYgL1wPINAhEuU=; b=JTRIUwajdrDihDEkBt/zx/3w+b
-        U67j76+Puudo7N4rJUEJ6sU9zLuGZKUBOdsRnW/R5JsgtnxgT9M+8wIzVvoEgLsh3v1DskXsW+EyK
-        zidvAYPNYnWaBDtfUuOIfXodjjOxrrrrNiuX2l5sIat4zAZDzqv7hUZ4kMh0q87WNPHohB6hqU1DI
-        VeUPT4BzyvKLUwPnd2OMY0e28x+bPcN3uuQGYK8sgcNMdue3MsnhKya/GcoQGN7VhoPLPJnL+3EWZ
-        LiKjtuxM7kRBNSWjTlMYoFm3E0RzHPJOTIeiJskH5ZAjZXPBGXpB9tHZZ3M5W+6K0fcnlGJmvTI2r
-        qO36jZtg==;
-Received: from [186.213.242.156] (helo=bombadil.infradead.org)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hgq1U-00055r-Od; Fri, 28 Jun 2019 12:30:36 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
-        (envelope-from <mchehab@bombadil.infradead.org>)
-        id 1hgq1S-0005TY-QB; Fri, 28 Jun 2019 09:30:34 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        id S1727093AbfF1Mhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 08:37:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41922 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726657AbfF1Mhm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 08:37:42 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 931D22086D;
+        Fri, 28 Jun 2019 12:37:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561725461;
+        bh=K3UBGXrrHfd4Rj6E4sYT2Xo8TM8WdQzvGLsW84DNbmY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eAx3cZYO9TbLmxfJsvb08T1MROzkNh1KsIMn4RpIHOzGOiM3IlGcluHRsll0SqLzO
+         FtpwpndZu4NOK0XrNWqRpb/ti5PNaGeunsEkPxmbFyU+C1QvdaBQcWVIfvOYDBfL0H
+         muRjP0UnsdqYgUcCFyLzvTxG1+Fyef2TKX8kR9+o=
+Date:   Fri, 28 Jun 2019 14:37:38 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
+        Donggeun Kim <dg77.kim@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kamil Debski <kamil@wypas.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 33/39] docs: phy: place documentation under driver-api
-Date:   Fri, 28 Jun 2019 09:30:26 -0300
-Message-Id: <df0337d37a924dcfa1f528734ffd3bae430d93c4.1561724493.git.mchehab+samsung@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1561724493.git.mchehab+samsung@kernel.org>
-References: <cover.1561724493.git.mchehab+samsung@kernel.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] extcon: Add fsa9480 extcon driver
+Message-ID: <20190628123738.GA25339@kroah.com>
+References: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
+ <CACRpkdYD7Z7XX9wXFtBehJG_4NCt=m_MNsR5cESPRnO3tomKmQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdYD7Z7XX9wXFtBehJG_4NCt=m_MNsR5cESPRnO3tomKmQ@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This subsystem-specific documentation belongs to the
-driver-api.
+On Fri, Jun 28, 2019 at 11:28:11AM +0100, Linus Walleij wrote:
+> On Fri, Jun 21, 2019 at 12:14 PM Paweł Chmiel
+> <pawel.mikolaj.chmiel@gmail.com> wrote:
+> 
+> > This small patchset adds support for Fairchild Semiconductor FSA9480
+> > microUSB switch.
+> >
+> > It has been tested on Samsung Galaxy S and Samsung Fascinate 4G,
+> > but it can be found also on other Samsung Aries (s5pv210) based devices.
+> >
+> > Tomasz Figa (2):
+> >   dt-bindings: extcon: Add support for fsa9480 switch
+> >   extcon: Add fsa9480 extcon driver
+> 
+> This is surely an important driver since almost all elder Samsung
+> mobiles use this kind of switch. So
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> This driver I see is already sent to Greg for inclusion in the next kernel.
+> I just wonder if you guys are even aware of this driver for the same
+> hardware added by Donggeun Kim in 2011:
+> drivers/misc/fsa9480.c
+> 
+> That said I am all for pulling in this new driver because it is surely
+> better and supports device tree.
+> 
+> But can we please also send Greg a patch to delete the old driver
+> so we don't have two of them now?
+> 
+> The old driver have no in-tree users so it can be deleted without
+> side effects. Out-of-tree users can certainly adapt to the new
+> extcon driver.
+> 
+> If you want I can send a deletion patch for the misc driver?
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
----
- .../devicetree/bindings/phy/phy-bindings.txt     |  2 +-
- .../devicetree/bindings/phy/phy-pxa-usb.txt      |  2 +-
- Documentation/driver-api/index.rst               |  1 +
- Documentation/driver-api/phy/index.rst           | 16 ++++++++++++++++
- .../{phy.txt => driver-api/phy/phy.rst}          |  0
- .../{ => driver-api}/phy/samsung-usb2.rst        |  0
- Documentation/index.rst                          |  1 -
- MAINTAINERS                                      |  2 +-
- 8 files changed, 20 insertions(+), 4 deletions(-)
- create mode 100644 Documentation/driver-api/phy/index.rst
- rename Documentation/{phy.txt => driver-api/phy/phy.rst} (100%)
- rename Documentation/{ => driver-api}/phy/samsung-usb2.rst (100%)
+Please, I'll gladly take a patch that deletes code :)
 
-diff --git a/Documentation/devicetree/bindings/phy/phy-bindings.txt b/Documentation/devicetree/bindings/phy/phy-bindings.txt
-index a403b81d0679..c4eb38902533 100644
---- a/Documentation/devicetree/bindings/phy/phy-bindings.txt
-+++ b/Documentation/devicetree/bindings/phy/phy-bindings.txt
-@@ -1,5 +1,5 @@
- This document explains only the device tree data binding. For general
--information about PHY subsystem refer to Documentation/phy.txt
-+information about PHY subsystem refer to Documentation/driver-api/phy/phy.rst
- 
- PHY device node
- ===============
-diff --git a/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt b/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt
-index 93fc09c12954..d80e36a77ec5 100644
---- a/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt
-+++ b/Documentation/devicetree/bindings/phy/phy-pxa-usb.txt
-@@ -15,4 +15,4 @@ Example:
- 	};
- 
- This document explains the device tree binding. For general
--information about PHY subsystem refer to Documentation/phy.txt
-+information about PHY subsystem refer to Documentation/driver-api/phy/phy.rst
-diff --git a/Documentation/driver-api/index.rst b/Documentation/driver-api/index.rst
-index d6f532c8d824..12d68c3ab792 100644
---- a/Documentation/driver-api/index.rst
-+++ b/Documentation/driver-api/index.rst
-@@ -85,6 +85,7 @@ available subsections can be seen below.
-    parport-lowlevel
-    pps
-    ptp
-+   phy/index
-    pti_intel_mid
-    pwm
-    rfkill
-diff --git a/Documentation/driver-api/phy/index.rst b/Documentation/driver-api/phy/index.rst
-new file mode 100644
-index 000000000000..fce9ffae2812
---- /dev/null
-+++ b/Documentation/driver-api/phy/index.rst
-@@ -0,0 +1,16 @@
-+=====================
-+Generic PHY Framework
-+=====================
-+
-+.. toctree::
-+
-+   phy
-+   samsung-usb2
-+
-+.. only::  subproject and html
-+
-+   Indices
-+   =======
-+
-+   * :ref:`genindex`
-+
-diff --git a/Documentation/phy.txt b/Documentation/driver-api/phy/phy.rst
-similarity index 100%
-rename from Documentation/phy.txt
-rename to Documentation/driver-api/phy/phy.rst
-diff --git a/Documentation/phy/samsung-usb2.rst b/Documentation/driver-api/phy/samsung-usb2.rst
-similarity index 100%
-rename from Documentation/phy/samsung-usb2.rst
-rename to Documentation/driver-api/phy/samsung-usb2.rst
-diff --git a/Documentation/index.rst b/Documentation/index.rst
-index 28e6b5ef17b4..ea33cbbccd9d 100644
---- a/Documentation/index.rst
-+++ b/Documentation/index.rst
-@@ -112,7 +112,6 @@ needed).
-    usb/index
-    misc-devices/index
-    mic/index
--   phy/samsung-usb2
-    scheduler/index
- 
- Architecture-specific documentation
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 856db8015edd..cda68bbd9d1c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14031,7 +14031,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
- L:	linux-kernel@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/phy/samsung-phy.txt
--F:	Documentation/phy/samsung-usb2.rst
-+F:	Documentation/driver-api/phy/samsung-usb2.rst
- F:	drivers/phy/samsung/phy-exynos4210-usb2.c
- F:	drivers/phy/samsung/phy-exynos4x12-usb2.c
- F:	drivers/phy/samsung/phy-exynos5250-usb2.c
--- 
-2.21.0
+thanks,
 
+greg k-h
