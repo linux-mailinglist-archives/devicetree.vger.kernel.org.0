@@ -2,160 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 448A159024
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 04:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2299D5909E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 04:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbfF1CDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 22:03:02 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:36781 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725770AbfF1CDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 22:03:02 -0400
-X-UUID: c2ece93bab67479591380ff8da29426a-20190628
-X-UUID: c2ece93bab67479591380ff8da29426a-20190628
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1235482751; Fri, 28 Jun 2019 10:02:55 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- MTKMBS33DR.mediatek.inc (172.27.6.106) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 28 Jun 2019 10:02:52 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 28 Jun 2019 10:02:51 +0800
-Message-ID: <1561687371.29330.11.camel@mtksdaap41>
-Subject: Re: [v5 2/3] drm/mediatek: separate mipi_tx to different file
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Thierry Reding" <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        "Inki Dae" <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        "Sean Paul" <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        "Andy Yan" <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Fri, 28 Jun 2019 10:02:51 +0800
-In-Reply-To: <20190627025901.28418-3-jitao.shi@mediatek.com>
-References: <20190627025901.28418-1-jitao.shi@mediatek.com>
-         <20190627025901.28418-3-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726587AbfF1CNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 22:13:36 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:5470 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725770AbfF1CNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 22:13:36 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d1577d00000>; Thu, 27 Jun 2019 19:13:36 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 27 Jun 2019 19:13:33 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 27 Jun 2019 19:13:33 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 28 Jun
+ 2019 02:13:32 +0000
+Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Fri, 28 Jun 2019 02:13:33 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.110.102.155]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d1577cd0000>; Thu, 27 Jun 2019 19:13:33 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
+        <stefan@agner.ch>, <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>, <skomatineni@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <digetx@gmail.com>, <devicetree@vger.kernel.org>
+Subject: [PATCH V5 00/18] SC7 entry and exit support for Tegra210
+Date:   Thu, 27 Jun 2019 19:12:34 -0700
+Message-ID: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: SMEX-12.5.0.1684-8.5.1010-24722.000
-X-TM-AS-Result: No-10.247700-8.000000-10
-X-TMASE-MatchedRID: L8tZF6zWW2rmLzc6AOD8DfHkpkyUphL9APiR4btCEeZJK2eJhY02w+Z5
-        Gn23AeDZBCJmNbrkQwEB1c8PTXnqofI1YbpS1+avgmAd4Attpn/YuVu0X/rOkBpX1zEL4nq3zod
-        Om+zp8Klvb8FTrUVVI7tTg4w4u0QPVdgv/fqHkl7obINHZkH5xqgmQ5FI9tvDDlLOAk1ICsupTt
-        npKpQyOnuvCtBi52L250DWRAwkrYTtmWsUlPYSbZXIRfiL5JZTGEfoClqBl86bKItl61J/ycnjL
-        TA/UDoAoTCA5Efyn8CNo+PRbWqfRDsAVzN+Ov/sHFf9y5qyR15CjO3g32i4QW3xAkDtY0KKM0RM
-        yIBWAJybBCcU0pWFpQ==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--10.247700-8.000000
-X-TMASE-Version: SMEX-12.5.0.1684-8.5.1010-24722.000
-X-TM-SNTS-SMTP: 5329DA286C4A6660442E20F3A9F915E02E66B2517D31A07EE8877C820797CA0F2000:8
-X-MTK:  N
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1561688016; bh=ZOCE9zjoMHUFAnpZCSr2RE82QUgVkauUv+okuy0Asas=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=BWazzRGIkGQ1ebBLvfe4M/Tei5UPV8iq2oYuyAKDuF98G9dfvbrslhzBqfxH3cYq6
+         njz+RCv/o6QJnOyQ/PRVhLz5dnR2SFzMp/16nEDNGYFSQ4JAsiXafBvUfwpsrlh5XK
+         9Skrfk9zUm9qAi1jmKFnFq56/YVcG/rxD6JqQfF14+wPhhtJ3vA844p9CmtMfHxxch
+         ryH8finaYUrOOTtTV86T8C0sapaXtgF5bi5KyQ52YHSxil4VcRVB3vb0BWA+jSJ003
+         9b6TJBMtgTSXkL52FaxSBwvNskDHG0jG9RsLHeVkKdt8QsnXJIbOCcZL9IWCYHXorv
+         dQWWHgbEJZD/g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
+This patch series includes Tegra210 deepsleep support with RTC alarm
+wake event.
 
-On Thu, 2019-06-27 at 10:59 +0800, Jitao Shi wrote:
-> Different IC has different mipi_tx setting of dsi.
-> This patch separates the mipi_tx hardware relate part for mt8173.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/Makefile             |   1 +
->  drivers/gpu/drm/mediatek/mtk_mipi_tx.c        | 343 ++----------------
->  drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |  49 +++
->  drivers/gpu/drm/mediatek/mtk_mt8173_mipi_tx.c | 289 +++++++++++++++
->  4 files changed, 363 insertions(+), 319 deletions(-)
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_mipi_tx.h
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8173_mipi_tx.c
-> 
+This series also includes save and restore of PLLs, clocks, OSC contexts
+for deepsleep exit to normal operation.
 
-[snip]
+This patch series doesn't support 100% suspend/resume to allow fully
+functional state upon resume and we are working on some more drivers suspend
+and resume implementations.
 
-> @@ -391,10 +101,8 @@ static int mtk_mipi_tx_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct mtk_mipi_tx *mipi_tx;
->  	struct resource *mem;
-> -	struct clk *ref_clk;
->  	const char *ref_clk_name;
->  	struct clk_init_data clk_init = {
-> -		.ops = &mtk_mipi_tx_pll_ops,
->  		.num_parents = 1,
->  		.parent_names = (const char * const *)&ref_clk_name,
->  		.flags = CLK_SET_RATE_GATE,
-> @@ -408,6 +116,7 @@ static int mtk_mipi_tx_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  
->  	mipi_tx->driver_data = of_device_get_match_data(dev);
-> +
->  	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	mipi_tx->regs = devm_ioremap_resource(dev, mem);
->  	if (IS_ERR(mipi_tx->regs)) {
-> @@ -416,13 +125,14 @@ static int mtk_mipi_tx_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> -	ref_clk = devm_clk_get(dev, NULL);
-> -	if (IS_ERR(ref_clk)) {
-> -		ret = PTR_ERR(ref_clk);
-> +	mipi_tx->ref_clk = devm_clk_get(dev, NULL);
+[V5]: Changes between V4 & V5 are
+	- V4 feedback fixes
 
-I think you need not to keep ref_clk in driver private data because you
-would not use it any more.
+[V4]: Changes between V3 & V4 are
+	- V3 feedback fixes
+	- Removed park bits clear for EMMC pads in pinctrl-tegra driver
+	  function tegra_pinctrl_clear_parked_bits as based on V3 feedback
+	  parked_bit is updated to parked_bitmask to use with DRV_PINGROUP
+	  as well and thierry posted patch series for this.
+	- Implemented all peripheral clocks save and restore through their
+	  corresponding clk_ops save_context and restore_context and removed
+	  all direct registers store and restore in clk-tegra210 driver.
+	- Created separate patch for fence_delay update during PLLU init based
+	  on V3 feedback.
+	- Added more comments in tegra210_clk_resume regarding dfll restore
+	  sequence and its dependency on peripheral clocks restore.
 
-Regards,
-CK
+[V3]: Changes between V2 & V3 are
+	- V2 feedback fixes
+	- GPIO restore should happen prior to Pinctrl restore to prevent
+	  glitch on GPIO lines. So using resume_noirq for gpio tegra to allow
+	  gpio resume prior to pinctrl resume.
+	- Implemented save_context and restore_context callbacks for clock
+	  plls, pll outs and dividers in corresponding drivers.
+	  Note: Peripheral clocks and clock enable and reset need to be in
+	  Tegra210 clock suspend/resume as they need to be in proper sequence
+	  w.r.t DFLL resume for restoring CPU clock.
+	- Removed gpio-tegra changes for hierarchical support to have PMC as
+	  parent to GPIOs for GPIO wake event support. Thierry is working on
+	  gpiolib for some cleanup before adding hierarchical support. So
+	  holding on to GPIO wake support for now.
 
-> +	if (IS_ERR(mipi_tx->ref_clk)) {
-> +		ret = PTR_ERR(mipi_tx->ref_clk);
->  		dev_err(dev, "Failed to get reference clock: %d\n", ret);
->  		return ret;
->  	}
-> -	ref_clk_name = __clk_get_name(ref_clk);
-> +
-> +	ref_clk_name = __clk_get_name(mipi_tx->ref_clk);
->  
->  	ret = of_property_read_string(dev->of_node, "clock-output-names",
->  				      &clk_init.name);
-> @@ -431,6 +141,8 @@ static int mtk_mipi_tx_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	clk_init.ops = mipi_tx->driver_data->mipi_tx_clk_ops;
-> +
->  	mipi_tx->pll_hw.init = &clk_init;
->  	mipi_tx->pll = devm_clk_register(dev, &mipi_tx->pll_hw);
->  	if (IS_ERR(mipi_tx->pll)) {
-> @@ -465,20 +177,12 @@ static int mtk_mipi_tx_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
+[V2] : V1 feedback fixes
+	Patch 0002: This version still using syscore. Thierry suggest not to
+	use syscore and waiting on suggestion from Linux Walleij for any better
+	way of storing current state of pins before suspend entry and restoring
+	them on resume at very early stage. So left this the same way as V1 and
+	will address once I get more feedback on this.
+	Also need to findout and implement proper way of forcing resume order
+	between pinctrl and gpio driver.
+
+[V1]:	Tegra210 SC7 entry and exit thru RTC wake and Power button GPIO wake
+	using hierarchical IRQ with PMC as parent to GPIO.
 
 
 
+
+Sowjanya Komatineni (18):
+  irqchip: tegra: do not disable COP IRQ during suspend
+  pinctrl: tegra: add suspend and resume support
+  clk: tegra: save and restore divider rate
+  clk: tegra: pllout: save and restore pllout context
+  clk: tegra: pll: save and restore pll context
+  clk: tegra: save and restore CPU and System clocks context
+  clk: tegra: support for saving and restoring OSC context
+  clk: tegra: add suspend resume support for DFLL
+  clk: tegra: add save and restore context support for peripheral clocks
+  clk: tegra210: use fence_udelay during PLLU init
+  clk: tegra210: support for Tegra210 clocks suspend and resume
+  soc/tegra: pmc: allow support for more tegra wake
+  soc/tegra: pmc: add pmc wake support for tegra210
+  arm64: tegra: enable wake from deep sleep on RTC alarm.
+  soc/tegra: pmc: configure core power request polarity
+  soc/tegra: pmc: configure deep sleep control settings
+  arm64: dts: tegra210-p2180: Jetson TX1 SC7 timings
+  arm64: dts: tegra210-p2180: Jetson nano SC7 timings
+
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi     |   7 +
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts |   7 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   5 +-
+ drivers/clk/tegra/clk-dfll.c                       |  78 ++++++++++++
+ drivers/clk/tegra/clk-dfll.h                       |   2 +
+ drivers/clk/tegra/clk-divider.c                    |  23 ++++
+ drivers/clk/tegra/clk-periph-fixed.c               |  31 +++++
+ drivers/clk/tegra/clk-periph-gate.c                |  34 +++++
+ drivers/clk/tegra/clk-periph.c                     |  43 +++++++
+ drivers/clk/tegra/clk-pll-out.c                    |  28 ++++
+ drivers/clk/tegra/clk-pll.c                        | 121 +++++++++++++-----
+ drivers/clk/tegra/clk-sdmmc-mux.c                  |  30 +++++
+ drivers/clk/tegra/clk-tegra-fixed.c                |  14 ++
+ drivers/clk/tegra/clk-tegra-super-gen4.c           |   4 -
+ drivers/clk/tegra/clk-tegra210.c                   | 128 +++++++++++++++++--
+ drivers/clk/tegra/clk.c                            |  94 ++++++++++++++
+ drivers/clk/tegra/clk.h                            |  45 ++++++-
+ drivers/irqchip/irq-tegra.c                        |  20 ++-
+ drivers/pinctrl/tegra/pinctrl-tegra.c              |  52 ++++++++
+ drivers/pinctrl/tegra/pinctrl-tegra.h              |   3 +
+ drivers/pinctrl/tegra/pinctrl-tegra210.c           |   1 +
+ drivers/soc/tegra/pmc.c                            | 141 ++++++++++++++++++++-
+ 22 files changed, 858 insertions(+), 53 deletions(-)
+
+-- 
+2.7.4
 
