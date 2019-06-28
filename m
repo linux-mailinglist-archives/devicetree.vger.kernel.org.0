@@ -2,124 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4878A59BE8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB6D859C76
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 15:04:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726564AbfF1MpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 08:45:24 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:36514 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726707AbfF1MpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 08:45:24 -0400
-Received: by mail-lj1-f193.google.com with SMTP id i21so5870398ljj.3;
-        Fri, 28 Jun 2019 05:45:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GEqhSw7XoHXqMZnEsUEUEWbSTHqXhJJe8Wyf3XsI9mU=;
-        b=dY48gQrBtGafKX3VvVgG7RpEAGIy+5X/y+FG0d3UCbDJ4d9iyBGO6HbW1R+UOX4pHu
-         j69y2wbXVY8t6JNPD1xqtGbZ7dWJqomIwfmjZmOB0/QKW501dSrMWcT7ZlW2Gf0J9Ss9
-         k7xx98PMtJAnIcHts8YOmW0Mqi5qQknsZo7TA9SaLMkIAkgUrYHFAT4IiNIooPhfmyC3
-         0JIfgkBJEMp8Qjr9AMdUBsuK4okety0MJyqZeeHsg0zM8hHMvEI/3DRZQ/BpGleU+MOF
-         nA3YQ3nrHw9wGDCmEfDNYffOTPtIXgOQulHJw6bx30DYt0vIWSJ7eII1DxhDiUyW2KZb
-         o6Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GEqhSw7XoHXqMZnEsUEUEWbSTHqXhJJe8Wyf3XsI9mU=;
-        b=s49Sj7u+rbZChMczS1deQmzGWZUcMEMcOHGSZraplJA9GtH3o51htDn7Wptp2SH/n2
-         XvX8DReNHU+2INy5Ht1kezahH+eCyEVlp9/VWotUEyOg5oYPW/4xtUUCgwygJ1CxSXLR
-         H9JnlkyJMqwMgZXBj3MmYMJP0TOnJbOLvhVjDII/yvXHH66VhSzz+O4x7KTT8FSd6vx8
-         BL22yKU7TNRcA8EdJqKP5pyjYammq8yOOkzS4Z5eg1IrkkWLS/5pxqZtAMHUmG/AiHR7
-         Oomt+hCSWy4FgSdWClAgT4vpLBkSpQ1ty+N8oEUvNH5YBLTU9vZc5UYXvHAKKpsIT9Tt
-         0Png==
-X-Gm-Message-State: APjAAAXWtCr8RZKKh/rcD6r86dtUV8NrOoTwscnGcLUdxjNjwFOqStYx
-        Z0Ch2MGRm8VLntkjGSa5VMM=
-X-Google-Smtp-Source: APXvYqxbkmX0DrMhEJRm5Y9OKIyBKj8ZNBWPG12rr9g1LqN7g2am6xv6zFO8SX7pBLbrCVvykSDmQg==
-X-Received: by 2002:a2e:858b:: with SMTP id b11mr6010343lji.159.1561725921854;
-        Fri, 28 Jun 2019 05:45:21 -0700 (PDT)
-Received: from pablo-laptop ([2a02:a315:5445:5300:8da:9ea2:4aa2:e04a])
-        by smtp.googlemail.com with ESMTPSA id e12sm544262lfb.66.2019.06.28.05.45.20
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 28 Jun 2019 05:45:21 -0700 (PDT)
-Message-ID: <3193437b89fdb22ccc69d654153e5b2b692d207b.camel@gmail.com>
-Subject: Re: [PATCH v2 0/2] extcon: Add fsa9480 extcon driver
-From:   =?UTF-8?Q?Pawe=C5=82?= Chmiel <pawel.mikolaj.chmiel@gmail.com>
-To:     Greg KH <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Donggeun Kim <dg77.kim@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Date:   Fri, 28 Jun 2019 14:45:19 +0200
-In-Reply-To: <20190628123738.GA25339@kroah.com>
-References: <20190621111352.22976-1-pawel.mikolaj.chmiel@gmail.com>
-         <CACRpkdYD7Z7XX9wXFtBehJG_4NCt=m_MNsR5cESPRnO3tomKmQ@mail.gmail.com>
-         <20190628123738.GA25339@kroah.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726828AbfF1NEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 09:04:14 -0400
+Received: from smtp.missinglinkelectronics.com ([94.130.14.54]:54308 "EHLO
+        smtp.missinglinkelectronics.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726558AbfF1NEN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 09:04:13 -0400
+X-Greylist: delayed 381 seconds by postgrey-1.27 at vger.kernel.org; Fri, 28 Jun 2019 09:04:12 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by smtp.missinglinkelectronics.com (Postfix) with ESMTP id 63012E01A1;
+        Fri, 28 Jun 2019 14:57:50 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at missinglinkelectronics.com
+Received: from smtp.missinglinkelectronics.com ([127.0.0.1])
+        by localhost (mail.missinglinkelectronics.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id WC4rP6wvBcCL; Fri, 28 Jun 2019 14:57:50 +0200 (CEST)
+Received: from mail.missinglinkelectronics.com (localhost [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: david)
+        by smtp.missinglinkelectronics.com (Postfix) with ESMTPSA id 2AFBEE010A;
+        Fri, 28 Jun 2019 14:57:50 +0200 (CEST)
+Received: from 10.10.2.7 (proxying for 87.140.91.254)
+        (SquirrelMail authenticated user david)
+        by mail.missinglinkelectronics.com with HTTP;
+        Fri, 28 Jun 2019 14:57:50 +0200
+Message-ID: <a1af77a8b6d6832f888e6a55f5732982.squirrel@mail.missinglinkelectronics.com>
+Date:   Fri, 28 Jun 2019 14:57:50 +0200
+Subject: [PATCH] dt-bindings: ASoC: tlv320aic32x4: Fix property name
+From:   "David Epping" <david.epping@missinglinkelectronics.com>
+To:     "Mark Brown" <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, trivial@kernel.org
+User-Agent: SquirrelMail/1.4.22
+MIME-Version: 1.0
+Content-Type:   text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+X-Priority: 3 (Normal)
+Importance: Normal
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-06-28 at 14:37 +0200, Greg KH wrote:
-> On Fri, Jun 28, 2019 at 11:28:11AM +0100, Linus Walleij wrote:
-> > On Fri, Jun 21, 2019 at 12:14 PM Paweł Chmiel
-> > <pawel.mikolaj.chmiel@gmail.com> wrote:
-> > 
-> > > This small patchset adds support for Fairchild Semiconductor
-> > > FSA9480
-> > > microUSB switch.
-> > > 
-> > > It has been tested on Samsung Galaxy S and Samsung Fascinate 4G,
-> > > but it can be found also on other Samsung Aries (s5pv210) based
-> > > devices.
-> > > 
-> > > Tomasz Figa (2):
-> > >   dt-bindings: extcon: Add support for fsa9480 switch
-> > >   extcon: Add fsa9480 extcon driver
-> > 
-> > This is surely an important driver since almost all elder Samsung
-> > mobiles use this kind of switch. So
-> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> > 
-> > This driver I see is already sent to Greg for inclusion in the next
-> > kernel.
-> > I just wonder if you guys are even aware of this driver for the
-> > same
-> > hardware added by Donggeun Kim in 2011:
-> > drivers/misc/fsa9480.c
-Yes, new one is based on this driver (plus device tree and regmap).
-Originally this new driver was written for 3.18 kernel.
-> > 
-> > That said I am all for pulling in this new driver because it is
-> > surely
-> > better and supports device tree.
-> > 
-> > But can we please also send Greg a patch to delete the old driver
-> > so we don't have two of them now?
-> > 
-> > The old driver have no in-tree users so it can be deleted without
-> > side effects. Out-of-tree users can certainly adapt to the new
-> > extcon driver.
-> > 
-> > If you want I can send a deletion patch for the misc driver?
-If You could do this (and maybe it'll get merged faster) i'll be great.
+From: David Epping <david.epping@missinglinkelectronics.com>
 
-Thanks
-> 
-> Please, I'll gladly take a patch that deletes code :)If You ca
->
-> thanks,
-> 
-> greg k-h
+dt-bindings: ASoC: tlv320aic32x4: Fix property name
+
+The 'supply' string is a suffix to the actual supply name, not a prefix.
+Also extend the example section with required supply properties.
+
+Signed-off-by: David Epping <david.epping@missinglinkelectronics.com>
+---
+ Documentation/devicetree/bindings/sound/tlv320aic32x4.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
+b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
+index ca75890..439eaf7 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
++++ b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
+@@ -7,7 +7,7 @@ Required properties:
+        "ti,tlv320aic32x4" TLV320AIC3204
+        "ti,tlv320aic32x6" TLV320AIC3206, TLV320AIC3256
+  - reg: I2C slave address
+- - supply-*: Required supply regulators are:
++ - *-supply: Required supply regulators are:
+     "iov" - digital IO power supply
+     "ldoin" - LDO power supply
+     "dv" - Digital core power supply
+@@ -31,6 +31,8 @@ codec: tlv320aic32x4@18 {
+        reg = <0x18>;
+        clocks = <&clks 201>;
+        clock-names = "mclk";
++       iov-supply = <&reg_3v3>;
++       ldoin-supply = <&reg_3v3>;
+        aic32x4-gpio-func= <
+                        0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
+                        0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
+-- 
+2.7.4
+
 
