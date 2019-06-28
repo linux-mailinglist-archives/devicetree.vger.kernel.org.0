@@ -2,133 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA26597C9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 11:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D0C5984C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 12:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726420AbfF1Jm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 05:42:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:43844 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726476AbfF1Jm5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 05:42:57 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FEC628;
-        Fri, 28 Jun 2019 02:42:56 -0700 (PDT)
-Received: from lakrids.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E4B553F718;
-        Fri, 28 Jun 2019 02:42:53 -0700 (PDT)
-Date:   Fri, 28 Jun 2019 10:42:51 +0100
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-Subject: Re: [PATCH v6 3/3] arm64: kexec_file: add rng-seed support
-Message-ID: <20190628094251.GC36437@lakrids.cambridge.arm.com>
-References: <20190612043258.166048-1-hsinyi@chromium.org>
- <20190612043258.166048-4-hsinyi@chromium.org>
+        id S1726524AbfF1KZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 06:25:08 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:56240 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726502AbfF1KZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 06:25:08 -0400
+Received: by mail-wm1-f68.google.com with SMTP id a15so8562625wmj.5;
+        Fri, 28 Jun 2019 03:25:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+gSDQlprC3wNVZJTkEDEwtkD07MIUVX5qMZNbzm3ynQ=;
+        b=PxCcngHcfZRARVD6NmZbBJD4QlvgXY6SEXWfEYyJypBHAtTPANXPXiB0N778DL4zG5
+         /6tf2wO9OHv+aH1YOdgfj5j4OsFTc5jZPNRAEzsCHN45rF4yDVTMWTL7UJpaEukHjOff
+         PryTnfTmZC95X9cgOK8ky/KSdrCi3SyuYjbE5qtZOMk2332CNK4/UDKCkHSYbRZGwmsr
+         Jjgq1TMLfUOn5wNKSpo4oQU7/Yg5QKFJjkFPTL9LZLUjBPqtjVsIqs+CtS1MHoXSyNv7
+         x2GzJQSiMZbmcV/Vfcuuxbgkscrj14UApQqt1b4bYgcWNTC2WoXKrnsjaBWB033xS8Fa
+         JZjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+gSDQlprC3wNVZJTkEDEwtkD07MIUVX5qMZNbzm3ynQ=;
+        b=DWMvbtWuTjriENYfrVWOMxDynAouJSoDsLdSY/7bKWwDn380AM5YHS4xp8kaQmP07w
+         c65Z5C3rJ2lCdAn+Pl9nSEU9j1nth49lUwJ3bYaT1kEmlZiPpHTwezcuGcG1gKKDsAiV
+         nkbRLhh8hlmpHyTPoQ7ocS29T5QXxbzbFoB6OlSTsXqAHv1qQdn399EebeXsVsIWI5Hp
+         wUIpI1VfUgJK+oQ7StJTNcC+brPPrjSSqwpim6GUXEU/J5K4ephquzXsA4Oide7QXzUr
+         SDYiuOoSg3za1cHmw9dXQ/SnhJ1wwMdWQma/fJJcS8nCoB9EGcvp6pE1c7ugfvkoc5TG
+         EaOQ==
+X-Gm-Message-State: APjAAAWA62FuNpZAO4VoVVNt4br0FXqaYnohK3arvbLSI6ANj80gmBQa
+        IyK3hKUU/y5P8Y+G28S/rKbNC4HvBlVxKHZefAQ=
+X-Google-Smtp-Source: APXvYqxM13BhXdAFu5qp47wTYBemlGsB9zTErhcOOBhxiB0lkff6jlFmCfZ1EdLSkLO+KM5c9OxqtFufIMjqnL37XcM=
+X-Received: by 2002:a1c:96c7:: with SMTP id y190mr6191140wmd.87.1561717504973;
+ Fri, 28 Jun 2019 03:25:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190612043258.166048-4-hsinyi@chromium.org>
-User-Agent: Mutt/1.11.1+11 (2f07cb52) (2018-12-01)
+References: <20190614081650.11880-1-daniel.baluta@nxp.com> <20190614081650.11880-3-daniel.baluta@nxp.com>
+ <CAL_JsqJKgMB1PNA33gmFju4AQTc2WaSBoOGQExVaGd9LZRmk_g@mail.gmail.com>
+ <CAEnQRZBNA4ndSL1vMStHemYkzt9TxqjgdWWjqFwnBFQ+ha+egA@mail.gmail.com>
+ <CAL_JsqJQRbuWKgON+ukZ3GRwyq8SvTZ=PRGwMhQjAxKPSP-Fkw@mail.gmail.com>
+ <CAEnQRZCjp9dUt0JTjhN0CnV0+Xzc+q1EHCnJn_TNOQoUWZBTsg@mail.gmail.com> <CAL_Jsq+rWn+vVfBGdAB23Xu0RaFV1HwSdBbfj9F4M3W1EUo9_A@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+rWn+vVfBGdAB23Xu0RaFV1HwSdBbfj9F4M3W1EUo9_A@mail.gmail.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Fri, 28 Jun 2019 13:24:53 +0300
+Message-ID: <CAEnQRZCLUKxWD31bMS_Smc-dj0W0qWz7YsO6txftWX9nm9R_6Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: Add DSP IPC binding support
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 12:33:02PM +0800, Hsin-Yi Wang wrote:
-> Adding "rng-seed" to dtb. It's fine to add this property if original
-> fdt doesn't contain it. Since original seed will be wiped after
-> read, so use a default size 128 bytes here.
+On Thu, Jun 27, 2019 at 6:59 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Jun 27, 2019 at 1:40 AM Daniel Baluta <daniel.baluta@gmail.com> w=
+rote:
+> >
+> > <snip>
+> >
+> > > > > > +  mboxes:
+> > > > > > +    description:
+> > > > > > +      List of phandle of 2 MU channels for TXDB, 2 MU channels=
+ for RXDB
+> > > > > > +      (see mailbox/fsl,mu.txt)
+> > > > > > +    maxItems: 1
+> > > > >
+> > > > > Should be 4?
+> > > >
+> > > > Actually is just a list with 1 item. I think is the terminology:
+> > > >
+> > > > You can have an example here of the mboxes defined for SCU.
+> > > > https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/f=
+reescale/imx8qxp.dtsi#L123
+> > >
+> > > mboxes =3D <&lsio_mu1 0 0
+> > > &lsio_mu1 0 1
+> > > &lsio_mu1 0 2
+> > > &lsio_mu1 0 3
+> > > &lsio_mu1 1 0
+> > > &lsio_mu1 1 1
+> > > &lsio_mu1 1 2
+> > > &lsio_mu1 1 3
+> > > &lsio_mu1 3 3>;
+> > >
+> > > Logically, this is 9 entries and each entry is 3 cells ( or phandle
+> > > plus 2 cells). More below...
+> >
+> > Ok..
+> >
+> > >
+> > > > > > +
+> > > > > > +  mbox-names
+> > >
+> > > Also, missing a ':' here. This won't build. Make sure you build this
+> > > (make dt_binding_check). See
+> > > Documentation/devicetree/writing-schemas.md.
+> > >
+> > Fixed in v2. Awesome!
+> >
+> > I thought that Documentation/devicetree/bindings/dsp/fsl,dsp_ipc.yaml
+> > is purely decorative and used as an example. But it's actually the sche=
+ma for
+> > the newly yaml dts, right?
+>
+> Yes, that's the point. Enforcing that dts files contain what the
+> binding docs say.
+>
+> >
+> > Used make dt_binding_check everything looks OK now.
+> >
+> > > > > > +    description:
+> > > > > > +      Mailboxes names
+> > > > > > +    allOf:
+> > > > > > +      - $ref: "/schemas/types.yaml#/definitions/string"
+> > > > >
+> > > > > No need for this, '*-names' already has a defined type.
+> > > > So, should I remove the above two lines ?
+> > >
+> > > Actually, all 4. There's no need to describe what 'mbox-names' is.
+> > >
+> > > > > > +      - enum: [ "txdb0", "txdb1", "rxdb0", "rxdb1" ]
+> > > > >
+> > > > > Should be an 'items' list with 4 entries?
+> > > >
+> > > > Let me better read the yaml spec. But "items" list indeed sounds be=
+tter.
+> > >
+> > > What you should end up with is:
+> > >
+> > > items:
+> > >   - const: txdb0
+> > >   - const: txdb1
+> > >   - const: rxdb0
+> > >   - const: rxdb1
+> > >
+> > > This is saying you have 4 strings in the listed order. The enum you
+> > > had would be a single string of one of the 4 values.
+> > >
+> > I see! Thanks.
+> >
+> > > > > > +required:
+> > > > > > +  - compatible
+> > > > > > +  - mboxes
+> > > > > > +  - mbox-names
+> > > > >
+> > > > > This seems incomplete. How does one boot the DSP? Load firmware? =
+No
+> > > > > resources that Linux has to manage. Shared memory?
+> > > >
+> > > > This is only the IPC mailboxes used by DSP to communicate with Linu=
+x. The
+> > > > loading of the firmware, the resources needed to be managed by Linu=
+x, etc
+> > > > are part of the DSP node.
+> > >
+> > > You should just add the mailboxes to the DSP node then. I suppose you
+> > > didn't because you want 2 drivers? If so, that's the OS's problem and
+> > > not part of DT. A Linux driver can instantiate devices for other
+> > > drivers.
+> >
+> > Yes, I want the DSP IPC driver to be separated. And then the SOF Linux
+> > driver that needs
+> > to communicate with DSP just gets a handle to DSP IPC driver and does
+> > the communication.
+> >
+> > dts relevant nodes look like this now:
+> >
+> > =C2=BB       dsp_ipc: dsp_ipc {
+> > =C2=BB       =C2=BB       compatible =3D "fsl,imx8qxp-dsp";
+> > =C2=BB       =C2=BB       mbox-names =3D "txdb0", "txdb1",
+> > =C2=BB       =C2=BB       =C2=BB            "rxdb0", "rxdb1";
+> > =C2=BB       =C2=BB       mboxes =3D <&lsio_mu13 2 0>,
+> > =C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 2 1>,
+> > =C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 0>,
+> > =C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 1>;
+> > =C2=BB       };
+> >
+> > =C2=BB       adma_dsp: dsp@596e8000 {
+> > =C2=BB       =C2=BB       compatible =3D "fsl,imx8qxp-sof-dsp";
+> > =C2=BB       =C2=BB       reg =3D <0x596e8000 0x88000>;
+> > =C2=BB       =C2=BB       reserved-region =3D <&dsp_reserved>;
+> > =C2=BB       =C2=BB       ipc =3D <&dsp_ipc>;
+> > =C2=BB       };
+> >
+> > Your suggeston would be to have something like this:
+> >
+> > =C2=BB       adma_dsp: dsp@596e8000 {
+> > =C2=BB       =C2=BB       compatible =3D "fsl,imx8qxp-sof-dsp";
+> > =C2=BB       =C2=BB       reg =3D <0x596e8000 0x88000>;
+> > =C2=BB       =C2=BB       reserved-region =3D <&dsp_reserved>;
+> > =C2=BB                mbox-names =3D "txdb0", "txdb1",
+> > =C2=BB       =C2=BB       =C2=BB            "rxdb0", "rxdb1";
+> > =C2=BB       =C2=BB       mboxes =3D <&lsio_mu13 2 0>,
+> > =C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 2 1>,
+> > =C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 0>,
+> > =C2=BB       =C2=BB       =C2=BB        <&lsio_mu13 3 1>;
+> > =C2=BB       };
+> >
+> > Not sure exactly how to instantiate IPC DSP driver then.
+>
+> DT is not the only way to instantiate drivers. A driver can create a
+> platform device itself which will then instantiate a 2nd driver.
+>
+> Presumably the DSP needs to be booted, resources enabled, and firmware
+> loaded before IPC will work. The DSP driver controlling the lifetime
+> of the IPC driver is the right way to manage the dependencies.
 
-Why is 128 bytes the default value?
+I see your point. This way I will resolve the dependency problem. So far
+SOF driver was probed before IPC driver and I needed to return -EPROBE_DEFF=
+ER.
 
-I didn't see an update to Documentation/devicetree/bindings/chosen.txt,
-so it's not clear to me precisely what we expect.
+The "sad" part is that SOF driver also needs in the same way the
+System Controller
+Firmware driver to be probed.
 
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
-> change log v5->v6:
-> * no change
-> ---
->  arch/arm64/kernel/machine_kexec_file.c | 22 +++++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-> index 58871333737a..d40fde72a023 100644
-> --- a/arch/arm64/kernel/machine_kexec_file.c
-> +++ b/arch/arm64/kernel/machine_kexec_file.c
-> @@ -27,6 +27,8 @@
->  #define FDT_PROP_INITRD_END	"linux,initrd-end"
->  #define FDT_PROP_BOOTARGS	"bootargs"
->  #define FDT_PROP_KASLR_SEED	"kaslr-seed"
-> +#define FDT_PROP_RNG_SEED	"rng-seed"
-> +#define RNG_SEED_SIZE		128
->  
->  const struct kexec_file_ops * const kexec_file_loaders[] = {
->  	&kexec_image_ops,
-> @@ -102,6 +104,23 @@ static int setup_dtb(struct kimage *image,
->  				FDT_PROP_KASLR_SEED);
->  	}
->  
-> +	/* add rng-seed */
-> +	if (rng_is_initialized()) {
-> +		void *rng_seed = kmalloc(RNG_SEED_SIZE, GFP_ATOMIC);
+But the SC driver is already accepted with an interface that looks
+like my old approach.
 
-For 128 bytes, it would be better to use a buffer on the stack. That
-avoids the possibility of the allocation failing.
+https://elixir.bootlin.com/linux/v5.2-rc6/source/drivers/firmware/imx/imx-s=
+cu.c#L93
 
-> +		get_random_bytes(rng_seed, RNG_SEED_SIZE);
-> +
-> +		ret = fdt_setprop(dtb, off, FDT_PROP_RNG_SEED, rng_seed,
-> +				RNG_SEED_SIZE);
-> +		kfree(rng_seed);
-> +
-> +		if (ret)
-> +			goto out;
+Oh, well.
+>
+> >
+> > I already have prepared v2 with most of your feedback incorporated,
+> > but not this latest
+> > change with moving mboxes inside dsp driver.
+> >
+> > More than that I have followed the model of SCFW IPC and having to
+> > different approach
+> > for similar IPC mechanism is a little bit confusing.
+>
+> SC is system controller? Maybe I missed it, but I don't think system
+> controllers usually have 2 nodes. You only have the communications
+> interface exposed as the SC provides services to Linux and Linux
+> doesn't manage the SC resources.
 
-If the RNG wasn't initialised, we'd carry on with a warning. Why do we
-follow a different policy here?
+Yes, SC is the system controller.
 
-Thanks,
-Mark.
+https://elixir.bootlin.com/linux/v5.2-rc6/source/drivers/firmware/imx/imx-s=
+cu.c
 
-> +
-> +	} else {
-> +		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
-> +				FDT_PROP_RNG_SEED);
-> +	}
-> +
->  out:
->  	if (ret)
->  		return (ret == -FDT_ERR_NOSPACE) ? -ENOMEM : -EINVAL;
-> @@ -110,7 +129,8 @@ static int setup_dtb(struct kimage *image,
->  }
->  
->  /*
-> - * More space needed so that we can add initrd, bootargs and kaslr-seed.
-> + * More space needed so that we can add initrd, bootargs, kaslr-seed, and
-> + * rng-seed.
->   */
->  #define DTB_EXTRA_SPACE 0x1000
->  
-> -- 
-> 2.20.1
-> 
+I see your point of only have 1 node and I will implement it like that.
