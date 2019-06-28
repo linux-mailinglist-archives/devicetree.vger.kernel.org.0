@@ -2,113 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A585F592D5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 06:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B76459329
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 06:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726985AbfF1E2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 00:28:08 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:58080 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726961AbfF1E2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 00:28:02 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5S4Rsjg003036;
-        Thu, 27 Jun 2019 23:27:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1561696074;
-        bh=y47Dmxqdu2axu8XFuL5chdma5kAOZBKLQnnNccav38w=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=wTgnMSG1EnCSpzKdj0L05ZF21h4ZXDMeep3xa+FESUPz/zN2EaeijIQFEI3gcJ2FV
-         I74buze/0BngPIlAXc7CKxkXZ2GpHDFBPdmPi+C2ckC/W5T1dN2w1a2T/oynpEn9do
-         6ngzyrV/5xkWdy+E8giwq8qVNyiEtwjD0Lu9AQ4c=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5S4RsqR032679
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Jun 2019 23:27:54 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 27
- Jun 2019 23:27:54 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 27 Jun 2019 23:27:54 -0500
-Received: from a0393675ula.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5S4RKPU062595;
-        Thu, 27 Jun 2019 23:27:51 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <t-kristo@ti.com>,
-        <j-keerthy@ti.com>, <linux-crypto@vger.kernel.org>, <nm@ti.com>
-Subject: [RESEND PATCH 10/10] arm64: dts: k3-am6: Add crypto accelarator node
-Date:   Fri, 28 Jun 2019 09:57:45 +0530
-Message-ID: <20190628042745.28455-11-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190628042745.28455-1-j-keerthy@ti.com>
-References: <20190628042745.28455-1-j-keerthy@ti.com>
+        id S1726619AbfF1E6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 00:58:53 -0400
+Received: from hel-mailgw-01.vaisala.com ([193.143.230.17]:56084 "EHLO
+        hel-mailgw-01.vaisala.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726240AbfF1E6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 00:58:53 -0400
+X-Greylist: delayed 576 seconds by postgrey-1.27 at vger.kernel.org; Fri, 28 Jun 2019 00:58:51 EDT
+X-IronPort-AV: E=Sophos;i="5.63,426,1557176400"; 
+   d="scan'208";a="223942606"
+Subject: Re: [PATCH v4 0/2] Use NVMEM as reboot-mode write interface
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20190515104658.25535-1-nandor.han@vaisala.com>
+ <20190627183330.aole6zumw3l2vyet@earth.universe>
+From:   Nandor Han <nandor.han@vaisala.com>
+Message-ID: <75db3e6e-cf95-cdd0-7446-380a686992d2@vaisala.com>
+Date:   Fri, 28 Jun 2019 07:49:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20190627183330.aole6zumw3l2vyet@earth.universe>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 28 Jun 2019 04:49:11.0053 (UTC) FILETIME=[D3CE53D0:01D52D6C]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add crypto accelarator node. Define the psil specific config
-node as well. This can be used in Packet Mode alone.
+Hi,
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 33 ++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+>> Changes since v3:
+>> ----------------
+>>   - documentation updated according to the comments
+> 
+> Thanks, queued. Please fix your git/mail setup, I had to fix the
+> line endings (\r\n -> \n) to apply this.
+> 
+> -- Sebastian
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 91ca5bfeefc2..5e4f9ec39f01 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -91,6 +91,39 @@
- 		power-domains = <&k3_pds 148>;
- 	};
- 
-+	crypto: crypto@4E00000 {
-+		compatible = "ti,sa2ul-crypto";
-+		label = "crypto-aes-gbe";
-+		reg = <0x0 0x4E00000 0x0 0x1200>;
-+
-+		status = "okay";
-+		ti,psil-base = <0x4000>;
-+
-+		/* tx: crypto_pnp-1, rx: crypto_pnp-1 */
-+		dmas = <&main_udmap &crypto 0 UDMA_DIR_TX>,
-+				<&main_udmap &crypto 0 UDMA_DIR_RX>,
-+				<&main_udmap &crypto 1 UDMA_DIR_RX>;
-+		dma-names = "tx", "rx1", "rx2";
-+
-+		ti,psil-config0 {
-+			linux,udma-mode = <UDMA_PKT_MODE>;
-+			ti,needs-epib;
-+			ti,psd-size = <64>;
-+		};
-+
-+		ti,psil-config1 {
-+			linux,udma-mode = <UDMA_PKT_MODE>;
-+			ti,needs-epib;
-+			ti,psd-size = <64>;
-+		};
-+
-+		ti,psil-config2 {
-+			linux,udma-mode = <UDMA_PKT_MODE>;
-+			ti,needs-epib;
-+			ti,psd-size = <64>;
-+		};
-+	};
-+
- 	main_pmx0: pinmux@11c000 {
- 		compatible = "pinctrl-single";
- 		reg = <0x0 0x11c000 0x0 0x2e4>;
--- 
-2.17.1
+Ok. Thanks Sebastian.
 
+--
+Nandor
