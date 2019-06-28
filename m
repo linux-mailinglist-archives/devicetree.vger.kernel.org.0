@@ -2,56 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B76459329
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 06:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6596F59305
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 06:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726619AbfF1E6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 00:58:53 -0400
-Received: from hel-mailgw-01.vaisala.com ([193.143.230.17]:56084 "EHLO
-        hel-mailgw-01.vaisala.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726240AbfF1E6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 00:58:53 -0400
-X-Greylist: delayed 576 seconds by postgrey-1.27 at vger.kernel.org; Fri, 28 Jun 2019 00:58:51 EDT
-X-IronPort-AV: E=Sophos;i="5.63,426,1557176400"; 
-   d="scan'208";a="223942606"
-Subject: Re: [PATCH v4 0/2] Use NVMEM as reboot-mode write interface
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20190515104658.25535-1-nandor.han@vaisala.com>
- <20190627183330.aole6zumw3l2vyet@earth.universe>
-From:   Nandor Han <nandor.han@vaisala.com>
-Message-ID: <75db3e6e-cf95-cdd0-7446-380a686992d2@vaisala.com>
-Date:   Fri, 28 Jun 2019 07:49:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+        id S1726476AbfF1ExW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 00:53:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59606 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726240AbfF1ExW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 00:53:22 -0400
+Received: from sol.localdomain (c-24-5-143-220.hsd1.ca.comcast.net [24.5.143.220])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AC29A20656;
+        Fri, 28 Jun 2019 04:53:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561697600;
+        bh=xyfM4ZWcVSKm8cjlTQWt6Dt2SEgAkACNyGwMNKTacAo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Z3bBPa40+DwkDvULVLnnYbo1JZ4XWv6vjxv/VDsDg4XaHDOxyLs/a29o2G5izpXRS
+         tV9rI2CL2aUtlgnfH29W2eShhpazNje3MwhMuKTERKz5mbpC59ewRFYE2CXkMeCQdj
+         aQLfoPNd/8LGSWv1cB0P8081htHFDUfJPm7MmVg4=
+Date:   Thu, 27 Jun 2019 21:53:18 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     herbert@gondor.apana.org.au, davem@davemloft.net,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        t-kristo@ti.com, linux-crypto@vger.kernel.org, nm@ti.com
+Subject: Re: [RESEND PATCH 00/10] crypto: k3: Add sa2ul driver
+Message-ID: <20190628045318.GC673@sol.localdomain>
+References: <20190628042745.28455-1-j-keerthy@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20190627183330.aole6zumw3l2vyet@earth.universe>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-OriginalArrivalTime: 28 Jun 2019 04:49:11.0053 (UTC) FILETIME=[D3CE53D0:01D52D6C]
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190628042745.28455-1-j-keerthy@ti.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Keerthy,
 
->> Changes since v3:
->> ----------------
->>   - documentation updated according to the comments
+On Fri, Jun 28, 2019 at 09:57:35AM +0530, Keerthy wrote:
+> The series adds Crypto hardware accelerator support for SA2UL.
+> SA2UL stands for security accelerator ultra lite.
 > 
-> Thanks, queued. Please fix your git/mail setup, I had to fix the
-> line endings (\r\n -> \n) to apply this.
+> The Security Accelerator (SA2_UL) subsystem provides hardware
+> cryptographic acceleration for the following use cases:
+> • Encryption and authentication for secure boot
+> • Encryption and authentication of content in applications
+>   requiring DRM (digital rights management) and
+>   content/asset protection
+> The device includes one instantiation of SA2_UL named SA2_UL0
 > 
-> -- Sebastian
+> SA2UL needs on tx channel and a pair of rx dma channels.
 > 
+> This series has dependency on UDMA series. Hence is based on top of:
+> 
+> https://patchwork.kernel.org/project/linux-dmaengine/list/?series=114105
+> 
+> The above series adds couple of dmaengine APIs that are used
+> by the sa2ul driver. Hence there is a hard dependency on the
+> above series.
+> 
+> Resending with linux-crypto list in Cc.
+> 
+> Keerthy (10):
+>   dt-bindings: crypto: k3: Add sa2ul bindings documentation
+>   crypto: sa2ul: Add crypto driver
+>   crypto: sa2ul: Add AES ECB Mode support
+>   crypto: sa2ul: Add aead support for hmac(sha1)cbc(aes) algorithm
+>   crypto: sha256_generic: Export the Transform function
+>   crypto: sa2ul: Add hmac(sha256)cbc(aes) AEAD Algo support
+>   crypto: sa2ul: Add hmac(sha1) HMAC algorithm support
+>   crypto: sa2ul: Add hmac(sha256) HMAC algorithm support
+>   sa2ul: Add 3DES ECB & CBC Mode support
+>   arm64: dts: k3-am6: Add crypto accelarator node
+> 
+>  .../devicetree/bindings/crypto/sa2ul.txt      |   47 +
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |   33 +
+>  crypto/sha256_generic.c                       |    3 +-
+>  drivers/crypto/Kconfig                        |   17 +
+>  drivers/crypto/Makefile                       |    1 +
+>  drivers/crypto/sa2ul.c                        | 2232 +++++++++++++++++
+>  drivers/crypto/sa2ul.h                        |  384 +++
+>  include/crypto/sha.h                          |    1 +
+>  8 files changed, 2717 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/sa2ul.txt
+>  create mode 100644 drivers/crypto/sa2ul.c
+>  create mode 100644 drivers/crypto/sa2ul.h
 
-Ok. Thanks Sebastian.
+Did you run the crypto self-tests on this driver?  i.e. boot a kernel with
 
---
-Nandor
+	# CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+	CONFIG_DEBUG_KERNEL=y
+	CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+
+What are the results?
+
+Also, this patchset does not compile for me.
+
+Error: arch/arm64/boot/dts/ti/k3-am65-main.dtsi:103.33-34 syntax error
+FATAL ERROR: Unable to parse input tree
+  DTC     arch/arm64/boot/dts/nvidia/tegra210-p2571.dtb
+make[2]: *** [scripts/Makefile.lib:294: arch/arm64/boot/dts/ti/k3-am654-base-board.dtb] Error 1
+make[1]: *** [scripts/Makefile.build:489: arch/arm64/boot/dts/ti] Error 2
+make[1]: *** Waiting for unfinished jobs....
+
+- Eric
