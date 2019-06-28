@@ -2,85 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 351A05A0CC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 291B659DD9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 16:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbfF1Q2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 12:28:16 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:50944 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726772AbfF1Q2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 12:28:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=aiJProecfCoOFOmMzWWwfmO5TFzjKsVdJFvDr/zMYYo=; b=HBGZ+5qpNe4XDtk4pe9C5Q4z1
-        5uaCDcqpoKb76uGbK0SMlo3mlLJGiIdvt73p4wedBNFu0A4+LMJdGnDslEkQBY3+FchygQrM9X5r3
-        l7fn98KeEEsrcTVcf4Ue4NC+97J4U5bYAg7Svk9esf8foCGUGYAjsZHC8Pl6tFfkLBuMM=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hgtjO-00075K-Pu; Fri, 28 Jun 2019 16:28:10 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 660E0440050; Fri, 28 Jun 2019 15:32:29 +0100 (BST)
-Date:   Fri, 28 Jun 2019 15:32:29 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Fabrice Gasnier <fabrice.gasnier@st.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, alexandre.torgue@st.com,
-        mcoquelin.stm32@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] regulator: add support for the stm32-booster
-Message-ID: <20190628143229.GI5379@sirena.org.uk>
-References: <1561709289-11174-1-git-send-email-fabrice.gasnier@st.com>
- <1561709289-11174-3-git-send-email-fabrice.gasnier@st.com>
+        id S1726723AbfF1OgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 10:36:08 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:56966 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726616AbfF1OgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 10:36:08 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5SEZmsd069055;
+        Fri, 28 Jun 2019 09:35:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1561732548;
+        bh=1EuGAs9Hme8Xg3Fp5x6Mxds32XVEe/eAw1K3JA7yOTI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=FJj16cKDdf1jFEiZABXWqguchaVeSfpmtqdb9qMByJyUsuWjYm/w/2tqhrgpT9QvS
+         FEQgBCHZzQf5CAaO6zKxS8p/ePzE4bb+xDiAI9IPtemLh7vT6mpDm0MK+reLjHHa0D
+         nD5L0YQZql4sfHcqb3o4vM2UrRaCs2nzFy/QmYnU=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5SEZm56059265
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Jun 2019 09:35:48 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 28
+ Jun 2019 09:35:48 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 28 Jun 2019 09:35:48 -0500
+Received: from [10.250.132.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5SEZhKg090817;
+        Fri, 28 Jun 2019 09:35:44 -0500
+Subject: Re: [PATCH v8 0/5] MTD: Add Initial Hyperbus support
+To:     Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-mtd@lists.infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        <devicetree@vger.kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tokunori Ikegami <ikegami.t@gmail.com>
+References: <20190625075746.10439-1-vigneshr@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <89b4b00a-0564-2b69-4324-d2554f69e9bf@ti.com>
+Date:   Fri, 28 Jun 2019 20:05:43 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+ZmrHH5cGjskQnY1"
-Content-Disposition: inline
-In-Reply-To: <1561709289-11174-3-git-send-email-fabrice.gasnier@st.com>
-X-Cookie: You need not be present to win.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190625075746.10439-1-vigneshr@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---+ZmrHH5cGjskQnY1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 25-Jun-19 1:27 PM, Vignesh Raghavendra wrote:
+[...]
+> Vignesh Raghavendra (5):
+>   mtd: cfi_cmdset_0002: Add support for polling status register
+>   dt-bindings: mtd: Add binding documentation for HyperFlash
+>   mtd: Add support for HyperBus memory devices
+>   dt-bindings: mtd: Add bindings for TI's AM654 HyperBus memory
+>     controller
+>   mtd: hyperbus: Add driver for TI's HyperBus memory controller
+> 
 
-On Fri, Jun 28, 2019 at 10:08:07AM +0200, Fabrice Gasnier wrote:
-> Add support for the 3.3V booster regulator embedded in stm32h7 and stm32m=
-p1
-> devices, that can be used to supply ADC analog input switches.
->=20
-> This regulator is supplied by vdda. It's controlled by using SYSCFG:
-> - STM32H7 has a unique register to set/clear the booster enable bit
-> - STM32MP1 has separate set and clear registers to configure it.
 
-This doesn't apply against current code, please check and resend.
+Fixed comments on patch 3/5 locally and series applied to
+https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git
+branch mtd/next.
 
---+ZmrHH5cGjskQnY1
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards
+Vignesh
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0WJPwACgkQJNaLcl1U
-h9CEYwf/S479W8LgrEaeHTTFG3CzS+H7XcqwsFf6ZMmLHg4A/fZD3UOrWsupb7XW
-5Pn1ugPul+BpUs3M6dew3VdsiqOt/JWl3QC0KPKetya58X+NKnGTtnv+F17u5WyL
-pv5f6/FzM3/rN6AhpDN3pbRxUbMj87J3dxVDS/rNh6IYiTjrkIvkXIWO1oiN84aD
-KjarUQFfuqKmKDGsCvkzysX+e7npMdAyqntAdYJqtBVsUHPWDPygEfgedZlFjFUa
-ktNcysf3sDZpFdDiqzCgLYA52R2rWjJGQbZN9TlMx5iK45iLVjGjTbf11arVCcUw
-HT/WrvMzxZT3GvZsaV/sSCOpY7di8A==
-=l6Rr
------END PGP SIGNATURE-----
-
---+ZmrHH5cGjskQnY1--
+>  .../bindings/mtd/cypress,hyperflash.txt       |  13 ++
+>  .../devicetree/bindings/mtd/ti,am654-hbmc.txt |  51 ++++++
+>  MAINTAINERS                                   |   8 +
+>  drivers/mtd/Kconfig                           |   2 +
+>  drivers/mtd/Makefile                          |   1 +
+>  drivers/mtd/chips/cfi_cmdset_0002.c           | 130 +++++++++++++--
+>  drivers/mtd/hyperbus/Kconfig                  |  23 +++
+>  drivers/mtd/hyperbus/Makefile                 |   4 +
+>  drivers/mtd/hyperbus/hbmc-am654.c             | 141 ++++++++++++++++
+>  drivers/mtd/hyperbus/hyperbus-core.c          | 154 ++++++++++++++++++
+>  include/linux/mtd/cfi.h                       |   7 +
+>  include/linux/mtd/hyperbus.h                  |  86 ++++++++++
+>  12 files changed, 603 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/cypress,hyperflash.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/ti,am654-hbmc.txt
+>  create mode 100644 drivers/mtd/hyperbus/Kconfig
+>  create mode 100644 drivers/mtd/hyperbus/Makefile
+>  create mode 100644 drivers/mtd/hyperbus/hbmc-am654.c
+>  create mode 100644 drivers/mtd/hyperbus/hyperbus-core.c
+>  create mode 100644 include/linux/mtd/hyperbus.h
+> 
