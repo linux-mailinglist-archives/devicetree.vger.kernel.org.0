@@ -2,145 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DC65A02B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:03:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33E95A022
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbfF1QDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 12:03:24 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:47033 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726723AbfF1QDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 12:03:24 -0400
-Received: by mail-io1-f67.google.com with SMTP id i10so13510582iol.13
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 09:03:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qvsku1LsJlCMNeTol53NqA/7OgT8tqKKHqYv+Wh37GE=;
-        b=CzTrUukzMMeVRGwtHonyk2yl+qyq6WCscFXVn/MC+4gnXi3vA+3kMHy6iRQGqVZrU5
-         w20Qcluka+u28ayDtwVRqBQcrYz+4pCRRXefNm0+pAj+0E4hSBY3IzGe9/jYZeN6+zm7
-         0cy9PihW6uY+H+FazttpKeB7XOxwJRVWhPe0M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qvsku1LsJlCMNeTol53NqA/7OgT8tqKKHqYv+Wh37GE=;
-        b=ej2NSdjjI+6D7YJRVqUppiSWfL/YoQwVOvl7txU266wKe6ufcfu97INzcxf+Fvvs8H
-         40cDduZyg/fGJ3Hz5oxWdh/dDGakso5EX65QAFCOIK5hovZrohXyrjRM+MyTqIxqxZP8
-         5o9wrlk5JwD0MA4q8UiRN8aFYEf7RgtpA+bB4socOc8rsiiUi4fBboQFP3k1SbbgeAsZ
-         lOYLp/G+MIrVvQbMsvI1fk+ChA11W5SoZf2JWfUMMURGDB0CwL12DvqKFHWLXGnrxJDx
-         Ys0ismcc8aaf43CvBhVYN5I1R+7oJcKxua6zsDPrxZCR2XJYpOTXYfoG4DNgvNzmvcZw
-         OJRg==
-X-Gm-Message-State: APjAAAWd37L2kS2gsB35LfvFaoiNLrpk/o0KEcBK2C8DxDRNHaTgFxE8
-        NYjt+OeScOinCF+3jnGZR6zu8YQvTmc=
-X-Google-Smtp-Source: APXvYqyKBs5MgNTQzNI5gCe8t1e5Wchgg+MBCPxsakbUHRbo3DqOvnsgQ3BwSwTBy7jR6L5rqEUoww==
-X-Received: by 2002:a6b:4107:: with SMTP id n7mr474379ioa.12.1561737802711;
-        Fri, 28 Jun 2019 09:03:22 -0700 (PDT)
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
-        by smtp.gmail.com with ESMTPSA id z17sm3259542iol.73.2019.06.28.09.03.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Fri, 28 Jun 2019 09:03:22 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id n5so13577979ioc.7
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 09:03:22 -0700 (PDT)
-X-Received: by 2002:a5d:96d8:: with SMTP id r24mr1014520iol.269.1561737344434;
- Fri, 28 Jun 2019 08:55:44 -0700 (PDT)
+        id S1726787AbfF1QCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 12:02:18 -0400
+Received: from foss.arm.com ([217.140.110.172]:50876 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726657AbfF1QCS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 12:02:18 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A3B328;
+        Fri, 28 Jun 2019 09:02:17 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4826E3F706;
+        Fri, 28 Jun 2019 09:02:15 -0700 (PDT)
+Date:   Fri, 28 Jun 2019 17:02:12 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCHv5 08/20] PCI: mobiveil: Use the 1st inbound window for
+ MEM inbound transactions
+Message-ID: <20190628160212.GB21829@e121166-lin.cambridge.arm.com>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-9-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190626130007.GE23428@ravnborg.org> <CAD=FV=U4UU8q+CS76uuuGUP=EVnE6+BTUf8U=j7uwfczNgkrZw@mail.gmail.com>
-In-Reply-To: <CAD=FV=U4UU8q+CS76uuuGUP=EVnE6+BTUf8U=j7uwfczNgkrZw@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 28 Jun 2019 08:55:38 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vi2C7s2oWBDD0n+HK=_SuBYhRM9saMK-y6Qa0+k-g17w@mail.gmail.com>
-Message-ID: <CAD=FV=Vi2C7s2oWBDD0n+HK=_SuBYhRM9saMK-y6Qa0+k-g17w@mail.gmail.com>
-Subject: Re: [PATCH v5 0/7] drm/panel: simple: Add mode support to devicetree
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Brian Norris <briannorris@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190412083635.33626-9-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Apr 12, 2019 at 08:36:00AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> The inbound windows have independent register set against outbound windows.
+> This patch change the MEM inbound window to the first one.
 
-On Wed, Jun 26, 2019 at 7:41 AM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Wed, Jun 26, 2019 at 6:00 AM Sam Ravnborg <sam@ravnborg.org> wrote:
-> >
-> > Hi Douglas.
-> >
-> > On Mon, Apr 01, 2019 at 10:17:17AM -0700, Douglas Anderson wrote:
-> > > I'm reviving Sean Paul's old patchset to get mode support in device
-> > > tree.  The cover letter for his v3 is at:
-> > > https://lists.freedesktop.org/archives/dri-devel/2018-February/165162.html
-> > >
-> > > No code is different between v4 and v5, just commit messages and text
-> > > in the bindings.
-> > >
-> > > I've pulled together the patches that didn't land in v3, addressed
-> > > outstanding feedback, and reposted.  Atop them I've added patches for
-> > > rk3288-veyron-chromebook (used for jaq, jerry, mighty, speedy) and
-> > > rk3288-veryon-minnie.
-> > >
-> > > Please let me know how they look.
-> > >
-> > > In general I have added people to the whole series who I think would
-> > > like the whole series and then let get_maintainer pick extra people it
-> > > thinks are relevant to each individual patch.  If I see you respond to
-> > > any of the patches in the series, though, I'll add you to the whole
-> > > series Cc list next time.
-> > >
-> > > Changes in v5:
-> > > - Removed bit about OS may ignore (Rob/Ezequiel)
-> > > - Added Heiko's Tested-by
-> > > - It's not just jerry, it's most rk3288 Chromebooks (Heiko)
-> >
-> > What are the plans to move forward with this?
-> > Or did you drop the whole idea again?
->
-> At the moment I'm blocked on Thierry responding, either taking the
-> patch or telling me what I need to do to fix it.  I saw Sean Paul ping
-> Thierry on IRC on June 3rd and as far as I could tell there was no
-> response.
->
-> https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2019-06-03&show_html=true
->
-> ...and as you can see Heiko pinged this thread on June 14th.
->
-> Thierry: can you help give us some direction?  Are you uninterested in
-> reviewing them and would prefer that I find someone to land them in
-> drm-misc directly?
+You mean that windows 0 can be used as well as window 1 for inbound
+windows so it is better to opt for window 0 for consistency ?
 
-Sam: Oh!  I hadn't noticed that you've been added as a panel
-maintainer in commit ef0db94f94a0 ("MAINTAINERS: Add Sam as reviewer
-for drm/panel").  Does that mean you are able to provide some advice
-for how to land this series?  As far as I know everything is in order
-for it to land, but if you are aware of something I need to do to spin
-it then please let me know!
+Lorenzo
 
-Thanks!
-
--Doug
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
+> Reviewed-by: Subrahmanya Lingappa <l.subrahmanya@mobiveil.co.in>
+> ---
+> V5:
+>  - Corrected and retouched the subject and changelog.
+> 
+>  drivers/pci/controller/pcie-mobiveil.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> index df71c11b4810..e88afc792a5c 100644
+> --- a/drivers/pci/controller/pcie-mobiveil.c
+> +++ b/drivers/pci/controller/pcie-mobiveil.c
+> @@ -616,7 +616,7 @@ static int mobiveil_host_init(struct mobiveil_pcie *pcie)
+>  			   CFG_WINDOW_TYPE, resource_size(pcie->ob_io_res));
+>  
+>  	/* memory inbound translation window */
+> -	program_ib_windows(pcie, WIN_NUM_1, 0, MEM_WINDOW_TYPE, IB_WIN_SIZE);
+> +	program_ib_windows(pcie, WIN_NUM_0, 0, MEM_WINDOW_TYPE, IB_WIN_SIZE);
+>  
+>  	/* Get the I/O and memory ranges from DT */
+>  	resource_list_for_each_entry(win, &pcie->resources) {
+> -- 
+> 2.17.1
+> 
