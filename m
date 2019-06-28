@@ -2,259 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8AC35A12B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07BC5A179
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726796AbfF1Qlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 12:41:44 -0400
-Received: from foss.arm.com ([217.140.110.172]:51622 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726694AbfF1Qln (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 12:41:43 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8462928;
-        Fri, 28 Jun 2019 09:41:42 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 816453F706;
-        Fri, 28 Jun 2019 09:41:40 -0700 (PDT)
-Date:   Fri, 28 Jun 2019 17:41:38 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv5 09/20] PCI: mobiveil: Correct inbound/outbound window
- setup routines
-Message-ID: <20190628164138.GC21829@e121166-lin.cambridge.arm.com>
-References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
- <20190412083635.33626-10-Zhiqiang.Hou@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190412083635.33626-10-Zhiqiang.Hou@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726925AbfF1Q4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 12:56:37 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:42504 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726880AbfF1Q4h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 12:56:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=9kUAjdy2iW6Uc+2HQD3Freg59GbE2w/VGxT6YCQv6To=; b=ick8YSwuhryY
+        5UBEv9SG1hZuPf6yMSWnq94/a1Wi1LmaElRJNXqPrvTro+V9oaaky59JgmSTAk6XjFjsYK4DEKvDM
+        mI+cAGLv8FVuhHmh/KdEa2lk8upP6cxQ4G0wsP2wgqB/P5Yikb7RUJ7/fQ5SavHin8uS+Dl29aVzb
+        cyoK8=;
+Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hguAm-0007BX-NQ; Fri, 28 Jun 2019 16:56:28 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 26843440046; Fri, 28 Jun 2019 17:56:28 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Applied "ASoC: soc-core: support dai_link with platforms_num != 1" to the asoc tree
+In-Reply-To: <20190627121350.21027-3-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190628165628.26843440046@finisterre.sirena.org.uk>
+Date:   Fri, 28 Jun 2019 17:56:28 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 12, 2019 at 08:36:06AM +0000, Z.q. Hou wrote:
-> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> 
-> Outbound window routine:
->  - Remove unused var definitions and register read operations.
->  - Add the upper 32-bit cpu address setup of the window.
->  - Instead of blindly write, only change the fields specified.
->  - Mask the lower bits of window size in case override the
->    control bits.
->  - Check if the passing window number is available, instead of
->    the total number of the initialized windows.
-> 
-> Inbound window routine:
->  - Add parameter 'u64 cpu_addr' to specify the cpu address
->    of the window instead of using 'pci_addr'.
->  - Change 'int pci_addr' to 'u64 pci_addr', and add setup
->    of the upper 32-bit PCI address of the window.
->  - Move the PCIe PIO master enablement to mobiveil_host_init().
->  - Instead of blindly write, only change the fields specified.
->  - Mask the lower bits of window size in case override the
->    control bits.
->  - Check if the passing window number is available, instead of
->    the total number of the initialized windows.
->  - And add the statistic of initialized inbound windows.
-> 
-> Fixes: 9af6bcb11e12 ("PCI: mobiveil: Add Mobiveil PCIe Host Bridge IP driver")
-> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
-> Reviewed-by: Subrahmanya Lingappa <l.subrahmanya@mobiveil.co.in>
-> ---
-> V5:
->  - Corrected and retouched the subject and changelog.
-> 
->  drivers/pci/controller/pcie-mobiveil.c | 70 +++++++++++++++-----------
->  1 file changed, 42 insertions(+), 28 deletions(-)
+The patch
 
-There are two things to be done here:
+   ASoC: soc-core: support dai_link with platforms_num != 1
 
-1) Separate fixes from refactoring
-2) Each fix should be standalone and solve one problem only
+has been applied to the asoc tree at
 
-The commit log is a list of changes, some of which I can't
-parse.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
 
-You should split this patch as described above and repost it
-separately but first I will try to merge what I can from this
-series, do not repost as yet.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Lorenzo
+Mark
 
-> diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
-> index e88afc792a5c..4ba458474e42 100644
-> --- a/drivers/pci/controller/pcie-mobiveil.c
-> +++ b/drivers/pci/controller/pcie-mobiveil.c
-> @@ -65,9 +65,13 @@
->  #define PAB_AXI_AMAP_CTRL(win)		PAB_REG_ADDR(0x0ba0, win)
->  #define  WIN_ENABLE_SHIFT		0
->  #define  WIN_TYPE_SHIFT			1
-> +#define  WIN_TYPE_MASK			0x3
-> +#define  WIN_SIZE_SHIFT			10
-> +#define  WIN_SIZE_MASK			0x3fffff
->  
->  #define PAB_EXT_AXI_AMAP_SIZE(win)	PAB_EXT_REG_ADDR(0xbaf0, win)
->  
-> +#define PAB_EXT_AXI_AMAP_AXI_WIN(win)	PAB_EXT_REG_ADDR(0x80a0, win)
->  #define PAB_AXI_AMAP_AXI_WIN(win)	PAB_REG_ADDR(0x0ba4, win)
->  #define  AXI_WINDOW_ALIGN_MASK		3
->  
-> @@ -82,8 +86,10 @@
->  #define PAB_PEX_AMAP_CTRL(win)		PAB_REG_ADDR(0x4ba0, win)
->  #define  AMAP_CTRL_EN_SHIFT		0
->  #define  AMAP_CTRL_TYPE_SHIFT		1
-> +#define  AMAP_CTRL_TYPE_MASK		3
->  
->  #define PAB_EXT_PEX_AMAP_SIZEN(win)	PAB_EXT_REG_ADDR(0xbef0, win)
-> +#define PAB_EXT_PEX_AMAP_AXI_WIN(win)	PAB_EXT_REG_ADDR(0xb4a0, win)
->  #define PAB_PEX_AMAP_AXI_WIN(win)	PAB_REG_ADDR(0x4ba4, win)
->  #define PAB_PEX_AMAP_PEX_WIN_L(win)	PAB_REG_ADDR(0x4ba8, win)
->  #define PAB_PEX_AMAP_PEX_WIN_H(win)	PAB_REG_ADDR(0x4bac, win)
-> @@ -455,49 +461,51 @@ static int mobiveil_pcie_parse_dt(struct mobiveil_pcie *pcie)
->  }
->  
->  static void program_ib_windows(struct mobiveil_pcie *pcie, int win_num,
-> -			       int pci_addr, u32 type, u64 size)
-> +			       u64 cpu_addr, u64 pci_addr, u32 type, u64 size)
->  {
-> -	int pio_ctrl_val;
-> -	int amap_ctrl_dw;
-> +	u32 value;
->  	u64 size64 = ~(size - 1);
->  
-> -	if ((pcie->ib_wins_configured + 1) > pcie->ppio_wins) {
-> +	if (win_num >= pcie->ppio_wins) {
->  		dev_err(&pcie->pdev->dev,
->  			"ERROR: max inbound windows reached !\n");
->  		return;
->  	}
->  
-> -	pio_ctrl_val = csr_readl(pcie, PAB_PEX_PIO_CTRL);
-> -	pio_ctrl_val |= 1 << PIO_ENABLE_SHIFT;
-> -	csr_writel(pcie, pio_ctrl_val, PAB_PEX_PIO_CTRL);
-> -
-> -	amap_ctrl_dw = csr_readl(pcie, PAB_PEX_AMAP_CTRL(win_num));
-> -	amap_ctrl_dw |= (type << AMAP_CTRL_TYPE_SHIFT) |
-> -			(1 << AMAP_CTRL_EN_SHIFT) |
-> -			lower_32_bits(size64);
-> -	csr_writel(pcie, amap_ctrl_dw, PAB_PEX_AMAP_CTRL(win_num));
-> +	value = csr_readl(pcie, PAB_PEX_AMAP_CTRL(win_num));
-> +	value &= ~(AMAP_CTRL_TYPE_MASK << AMAP_CTRL_TYPE_SHIFT |
-> +		 WIN_SIZE_MASK << WIN_SIZE_SHIFT);
-> +	value |= (type << AMAP_CTRL_TYPE_SHIFT) | (1 << AMAP_CTRL_EN_SHIFT) |
-> +		 (lower_32_bits(size64) & WIN_SIZE_MASK << WIN_SIZE_SHIFT);
-> +	csr_writel(pcie, value, PAB_PEX_AMAP_CTRL(win_num));
->  
->  	csr_writel(pcie, upper_32_bits(size64),
->  		   PAB_EXT_PEX_AMAP_SIZEN(win_num));
->  
-> -	csr_writel(pcie, pci_addr, PAB_PEX_AMAP_AXI_WIN(win_num));
-> +	csr_writel(pcie, lower_32_bits(cpu_addr),
-> +		   PAB_PEX_AMAP_AXI_WIN(win_num));
-> +	csr_writel(pcie, upper_32_bits(cpu_addr),
-> +		   PAB_EXT_PEX_AMAP_AXI_WIN(win_num));
-> +
-> +	csr_writel(pcie, lower_32_bits(pci_addr),
-> +		   PAB_PEX_AMAP_PEX_WIN_L(win_num));
-> +	csr_writel(pcie, upper_32_bits(pci_addr),
-> +		   PAB_PEX_AMAP_PEX_WIN_H(win_num));
->  
-> -	csr_writel(pcie, pci_addr, PAB_PEX_AMAP_PEX_WIN_L(win_num));
-> -	csr_writel(pcie, 0, PAB_PEX_AMAP_PEX_WIN_H(win_num));
-> +	pcie->ib_wins_configured++;
->  }
->  
->  /*
->   * routine to program the outbound windows
->   */
->  static void program_ob_windows(struct mobiveil_pcie *pcie, int win_num,
-> -			       u64 cpu_addr, u64 pci_addr,
-> -			       u32 config_io_bit, u64 size)
-> +			       u64 cpu_addr, u64 pci_addr, u32 type, u64 size)
->  {
->  
-> -	u32 value, type;
-> +	u32 value;
->  	u64 size64 = ~(size - 1);
->  
-> -	if ((pcie->ob_wins_configured + 1) > pcie->apio_wins) {
-> +	if (win_num >= pcie->apio_wins) {
->  		dev_err(&pcie->pdev->dev,
->  			"ERROR: max outbound windows reached !\n");
->  		return;
-> @@ -507,10 +515,12 @@ static void program_ob_windows(struct mobiveil_pcie *pcie, int win_num,
->  	 * program Enable Bit to 1, Type Bit to (00) base 2, AXI Window Size Bit
->  	 * to 4 KB in PAB_AXI_AMAP_CTRL register
->  	 */
-> -	type = config_io_bit;
->  	value = csr_readl(pcie, PAB_AXI_AMAP_CTRL(win_num));
-> -	csr_writel(pcie, 1 << WIN_ENABLE_SHIFT | type << WIN_TYPE_SHIFT |
-> -		   lower_32_bits(size64), PAB_AXI_AMAP_CTRL(win_num));
-> +	value &= ~(WIN_TYPE_MASK << WIN_TYPE_SHIFT |
-> +		 WIN_SIZE_MASK << WIN_SIZE_SHIFT);
-> +	value |= 1 << WIN_ENABLE_SHIFT | type << WIN_TYPE_SHIFT |
-> +		 (lower_32_bits(size64) & WIN_SIZE_MASK << WIN_SIZE_SHIFT);
-> +	csr_writel(pcie, value, PAB_AXI_AMAP_CTRL(win_num));
->  
->  	csr_writel(pcie, upper_32_bits(size64), PAB_EXT_AXI_AMAP_SIZE(win_num));
->  
-> @@ -518,11 +528,10 @@ static void program_ob_windows(struct mobiveil_pcie *pcie, int win_num,
->  	 * program AXI window base with appropriate value in
->  	 * PAB_AXI_AMAP_AXI_WIN0 register
->  	 */
-> -	value = csr_readl(pcie, PAB_AXI_AMAP_AXI_WIN(win_num));
-> -	csr_writel(pcie, cpu_addr & (~AXI_WINDOW_ALIGN_MASK),
-> +	csr_writel(pcie, lower_32_bits(cpu_addr) & (~AXI_WINDOW_ALIGN_MASK),
->  		   PAB_AXI_AMAP_AXI_WIN(win_num));
-> -
-> -	value = csr_readl(pcie, PAB_AXI_AMAP_PEX_WIN_H(win_num));
-> +	csr_writel(pcie, upper_32_bits(cpu_addr),
-> +		   PAB_EXT_AXI_AMAP_AXI_WIN(win_num));
->  
->  	csr_writel(pcie, lower_32_bits(pci_addr),
->  		   PAB_AXI_AMAP_PEX_WIN_L(win_num));
-> @@ -604,6 +613,11 @@ static int mobiveil_host_init(struct mobiveil_pcie *pcie)
->  	value |= APIO_EN_MASK;
->  	csr_writel(pcie, value, PAB_AXI_PIO_CTRL);
->  
-> +	/* Enable PCIe PIO master */
-> +	value = csr_readl(pcie, PAB_PEX_PIO_CTRL);
-> +	value |= 1 << PIO_ENABLE_SHIFT;
-> +	csr_writel(pcie, value, PAB_PEX_PIO_CTRL);
-> +
->  	/*
->  	 * we'll program one outbound window for config reads and
->  	 * another default inbound window for all the upstream traffic
-> @@ -616,7 +630,7 @@ static int mobiveil_host_init(struct mobiveil_pcie *pcie)
->  			   CFG_WINDOW_TYPE, resource_size(pcie->ob_io_res));
->  
->  	/* memory inbound translation window */
-> -	program_ib_windows(pcie, WIN_NUM_0, 0, MEM_WINDOW_TYPE, IB_WIN_SIZE);
-> +	program_ib_windows(pcie, WIN_NUM_0, 0, 0, MEM_WINDOW_TYPE, IB_WIN_SIZE);
->  
->  	/* Get the I/O and memory ranges from DT */
->  	resource_list_for_each_entry(win, &pcie->resources) {
-> -- 
-> 2.17.1
-> 
+From 34614739988ad60c3493da66dd856002ee93edf9 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 27 Jun 2019 14:13:50 +0200
+Subject: [PATCH] ASoC: soc-core: support dai_link with platforms_num != 1
+
+Add support platforms_num != 1 in dai_link. Initially, the main purpose of
+this change was to make the platform optional in the dai_link, instead of
+inserting the dummy platform driver.
+
+This particular case had just been solved by Kuninori Morimoto with
+commit 1d7689892878 ("ASoC: soc-core: allow no Platform on dai_link").
+
+However, this change may still be useful for those who need multiple
+platform components on a single dai_link (it solves one of the FIXME
+note in soc-core)
+
+Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ include/sound/soc.h  |  6 +++++
+ sound/soc/soc-core.c | 59 ++++++++++++++++++--------------------------
+ 2 files changed, 30 insertions(+), 35 deletions(-)
+
+diff --git a/include/sound/soc.h b/include/sound/soc.h
+index 64405cdab8bb..4e8071269639 100644
+--- a/include/sound/soc.h
++++ b/include/sound/soc.h
+@@ -997,6 +997,12 @@ struct snd_soc_dai_link {
+ 	     ((i) < link->num_codecs) && ((codec) = &link->codecs[i]);	\
+ 	     (i)++)
+ 
++#define for_each_link_platforms(link, i, platform)			\
++	for ((i) = 0;							\
++	     ((i) < link->num_platforms) &&				\
++	     ((platform) = &link->platforms[i]);			\
++	     (i)++)
++
+ /*
+  * Sample 1 : Single CPU/Codec/Platform
+  *
+diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
+index b5f3c09311c3..b9061cd8d787 100644
+--- a/sound/soc/soc-core.c
++++ b/sound/soc/soc-core.c
+@@ -896,7 +896,7 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 	struct snd_soc_dai_link *dai_link)
+ {
+ 	struct snd_soc_pcm_runtime *rtd;
+-	struct snd_soc_dai_link_component *codecs;
++	struct snd_soc_dai_link_component *codec, *platform;
+ 	struct snd_soc_component *component;
+ 	int i;
+ 
+@@ -926,13 +926,14 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 
+ 	/* Find CODEC from registered CODECs */
+ 	rtd->num_codecs = dai_link->num_codecs;
+-	for_each_link_codecs(dai_link, i, codecs) {
+-		rtd->codec_dais[i] = snd_soc_find_dai(codecs);
++	for_each_link_codecs(dai_link, i, codec) {
++		rtd->codec_dais[i] = snd_soc_find_dai(codec);
+ 		if (!rtd->codec_dais[i]) {
+ 			dev_info(card->dev, "ASoC: CODEC DAI %s not registered\n",
+-				 codecs->dai_name);
++				 codec->dai_name);
+ 			goto _err_defer;
+ 		}
++
+ 		snd_soc_rtdcom_add(rtd, rtd->codec_dais[i]->component);
+ 	}
+ 
+@@ -940,12 +941,13 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 	rtd->codec_dai = rtd->codec_dais[0];
+ 
+ 	/* Find PLATFORM from registered PLATFORMs */
+-	for_each_component(component) {
+-		if (!snd_soc_is_matching_component(dai_link->platforms,
+-						   component))
+-			continue;
++	for_each_link_platforms(dai_link, i, platform) {
++		for_each_component(component) {
++			if (!snd_soc_is_matching_component(platform, component))
++				continue;
+ 
+-		snd_soc_rtdcom_add(rtd, component);
++			snd_soc_rtdcom_add(rtd, component);
++		}
+ 	}
+ 
+ 	soc_add_pcm_runtime(card, rtd);
+@@ -1058,15 +1060,14 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 			     struct snd_soc_dai_link *link)
+ {
+ 	int i;
+-	struct snd_soc_dai_link_component *codec;
++	struct snd_soc_dai_link_component *codec, *platform;
+ 
+ 	for_each_link_codecs(link, i, codec) {
+ 		/*
+ 		 * Codec must be specified by 1 of name or OF node,
+ 		 * not both or neither.
+ 		 */
+-		if (!!codec->name ==
+-		    !!codec->of_node) {
++		if (!!codec->name == !!codec->of_node) {
+ 			dev_err(card->dev, "ASoC: Neither/both codec name/of_node are set for %s\n",
+ 				link->name);
+ 			return -EINVAL;
+@@ -1087,36 +1088,24 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 			return -EPROBE_DEFER;
+ 	}
+ 
+-	/*
+-	 * Platform may be specified by either name or OF node,
+-	 * or no Platform.
+-	 *
+-	 * FIXME
+-	 *
+-	 * We need multi-platform support
+-	 */
+-	if (link->num_platforms > 0) {
+-
+-		if (link->num_platforms > 1) {
+-			dev_err(card->dev,
+-				"ASoC: multi platform is not yet supported %s\n",
+-				link->name);
+-			return -EINVAL;
+-		}
+-
+-		if (link->platforms->name && link->platforms->of_node) {
++	for_each_link_platforms(link, i, platform) {
++		/*
++		 * Platform may be specified by either name or OF node, but it
++		 * can be left unspecified, then no components will be inserted
++		 * in the rtdcom list
++		 */
++		if (!!platform->name == !!platform->of_node) {
+ 			dev_err(card->dev,
+-				"ASoC: Both platform name/of_node are set for %s\n",
++				"ASoC: Neither/both platform name/of_node are set for %s\n",
+ 				link->name);
+ 			return -EINVAL;
+ 		}
+ 
+ 		/*
+-		 * Defer card registartion if platform dai component is not
+-		 * added to component list.
++		 * Defer card registration if platform component is not added to
++		 * component list.
+ 		 */
+-		if ((link->platforms->of_node || link->platforms->name) &&
+-		    !soc_find_component(link->platforms))
++		if (!soc_find_component(platform))
+ 			return -EPROBE_DEFER;
+ 	}
+ 
+-- 
+2.20.1
+
