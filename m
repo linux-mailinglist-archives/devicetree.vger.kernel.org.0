@@ -2,82 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29C98591D9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 05:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA86591F1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 05:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726663AbfF1DLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jun 2019 23:11:01 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:38479 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726441AbfF1DLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 23:11:01 -0400
-Received: by mail-io1-f68.google.com with SMTP id j6so9444301ioa.5
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2019 20:11:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=3an8xkdD/hzVPbbvgTnxXA33dOKRmSHUjpIJuQZqGvA=;
-        b=JrDwtixMw/3IlOWIM41ySM9lxTxda7b5hi8+7ZSQSKlOM0qEsMmefPmS6lnIukM792
-         rJLcpnxJPLBtyHdBTKEU95fMJyoTW6j4QVsPsrKb9+NdQdGHv53Y6VhcjdkHaMtGrfL3
-         lB6U7omhyz445enMU2nMTV10DZ1ybovtuMYUlxBYFgoEZ3eDbK197yh16Yke5NZaRysG
-         cJi/9IhaybCnP4SVuDjSeNurFbQS1LOiIB8jSb0swifI1V2dCqmBMSXPHm2iDX6as/UI
-         a+tuuakpmXoGaF5jHPHtk25VaOpP9wD9bbaDBXRo258SCCQMvPo5Qn2d7huyxS0vY9Ri
-         /7HQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=3an8xkdD/hzVPbbvgTnxXA33dOKRmSHUjpIJuQZqGvA=;
-        b=hLjrOYM9iAdgg0Vxzov9bERMG1SYNYqVphOPBVHNUZK3EbUSqLEoluxBFiMGg1Oyy7
-         dWgZ8KcmZcwkC5+oFKfI5Irbm01h9pd4StcuezWnX1X3x2g5+wLNprKCKjUdYS8Dgwyh
-         s0HUYYC/dobA1ClYBoReUUitUbmNCsF/q6jMUWqeOhd6KsLOiFp8YiQiPfbM6WnUr3jQ
-         iS4JLUHE1y2fJBbNl7lGzWHgLY9l+vDy3G5pnD4DxmasnO2Q8iPhI3WxT8UWgwmhaar6
-         XCpPd7UVXN2dolIt8Km15dXBSy63FfFAHyseEUmS8Q6dkNAXrnMfrHDEj6Z/qERs84Qy
-         Jx2g==
-X-Gm-Message-State: APjAAAUGFTjVkQd9xRkKp2YLH/fw/g+JwrlHAGJ4vBu+ZLmAZO1N08Rh
-        8gUp4bQKOR42rlZyK6HWsiTyag==
-X-Google-Smtp-Source: APXvYqzzedYsmPMz6paqYM6clmX/4PiLCsiEE/jsoyj1Qo/J8MkgXEwQvtF7zSVFKDSYWMZk7TrDDQ==
-X-Received: by 2002:a02:9a0f:: with SMTP id b15mr8932363jal.32.1561691460545;
-        Thu, 27 Jun 2019 20:11:00 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id a15sm813161ioc.27.2019.06.27.20.10.59
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 27 Jun 2019 20:11:00 -0700 (PDT)
-Date:   Thu, 27 Jun 2019 20:10:59 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Loys Ollivier <lollivier@baylibre.com>
-cc:     Palmer Dabbelt <palmer@sifive.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 0/3] riscv: add SOC_SIFIVE config for SiFive specific
- resource
-In-Reply-To: <1560799790-20287-1-git-send-email-lollivier@baylibre.com>
-Message-ID: <alpine.DEB.2.21.9999.1906272006410.3867@viisi.sifive.com>
-References: <1560799790-20287-1-git-send-email-lollivier@baylibre.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        id S1726918AbfF1DZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jun 2019 23:25:55 -0400
+Received: from anchovy2.45ru.net.au ([203.30.46.146]:51431 "EHLO
+        anchovy2.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727047AbfF1DZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jun 2019 23:25:55 -0400
+Received: (qmail 11898 invoked by uid 5089); 28 Jun 2019 03:19:13 -0000
+Received: by simscan 1.2.0 ppid: 11873, pid: 11874, t: 0.0449s
+         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
+X-RBL:  $rbltext
+Received: from unknown (HELO preid-c7.electromag.com.au) (preid@electromag.com.au@203.59.235.95)
+  by anchovy3.45ru.net.au with ESMTPA; 28 Jun 2019 03:19:13 -0000
+Received: by preid-c7.electromag.com.au (Postfix, from userid 1000)
+        id ED70320077899; Fri, 28 Jun 2019 11:19:11 +0800 (AWST)
+From:   Phil Reid <preid@electromag.com.au>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, preid@electromag.com.au,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] clk: clk-cdce925: Add regulator support
+Date:   Fri, 28 Jun 2019 11:19:08 +0800
+Message-Id: <1561691950-42154-1-git-send-email-preid@electromag.com.au>
+X-Mailer: git-send-email 1.8.3.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Loys,
+The cdce925 power supplies could be controllable on some platforms.
+Enable them before communicating with the cdce925.
 
-On Mon, 17 Jun 2019, Loys Ollivier wrote:
-
-> Following is a patch series that adds a SOC_SIFIVE config.
-> The purpose of this config is to group all the code specific to the SiFive
-> architecture such as device tree and platform drivers.
-> 
-> The initial thought/discussion came from [0].
-> 
-> [0] https://lore.kernel.org/linux-riscv/20190602080500.31700-1-paul.walmsley@sifive.com/
-
-Thanks for giving us a good start here.  Queued for v5.3 with Palmer's 
-Reviewed-by:s.
+Changes from V1
+- Add devicetree updates
 
 
-- Paul
+Phil Reid (2):
+  dt-bindings: clock: cdce925: Add regulator documentation
+  clk: clk-cdce925: Add regulator support
+
+ .../devicetree/bindings/clock/ti,cdce925.txt       |  4 +++
+ drivers/clk/clk-cdce925.c                          | 34 ++++++++++++++++++++++
+ 2 files changed, 38 insertions(+)
+
+-- 
+1.8.3.1
+
