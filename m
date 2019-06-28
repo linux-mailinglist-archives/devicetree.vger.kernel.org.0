@@ -2,93 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C72EA5A539
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 21:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD2AA5A5E7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 22:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726956AbfF1Th3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 15:37:29 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:40565 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726497AbfF1Th3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 15:37:29 -0400
-Received: by mail-io1-f66.google.com with SMTP id n5so14902930ioc.7
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 12:37:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rOnt24OKyg8IYLadN6LWQaA2kEEaOS+arIfbwjhJNR4=;
-        b=mrPwaMJSME/T5LZzKa4WM600nicbMkBbiMi3qcyttidiopggQ1VoxuUiboPbB3yrjW
-         rDEo67tadLuzUjrKqdvnHUD+SNa0C5WhHn45iOpiodNPzR1nQy1Lsv0y079uZYaMKOuV
-         SXJW8UykwePEWdBsOVbeeEr8ZpDt1xHtQqqwjgBfYZjBHu8tVDqDKzYv07qzIZFrQOP9
-         IXozt7ALnh2Ba2j2kt2xjIbIg2arbMtD7E3L8nx/rLYV3PvpXR+bX/ciNVRwFrKOTH2S
-         uXaKNPCkO/mI2ecHtXNyraHAxRGCHcrmTXiiyW4imDF2P3GEeS7Zp+A43FMMlucBuLam
-         H01w==
-X-Gm-Message-State: APjAAAWZeFz12XSDgwfDIteYH64iywixe33liLFkPDTHxkW1SjyI4DvO
-        iYXr3zH19NaCt8DVreLfrvyR69U=
-X-Google-Smtp-Source: APXvYqxtxWXQqs4yhNzHBeBOuvHhYb9tx5z9qryUXj1LZrI9tRYnL6j8xUuN4/7v7qTG4as0xfM0hw==
-X-Received: by 2002:a02:cd83:: with SMTP id l3mr10927291jap.66.1561750647827;
-        Fri, 28 Jun 2019 12:37:27 -0700 (PDT)
-Received: from localhost.localdomain ([64.188.179.243])
-        by smtp.googlemail.com with ESMTPSA id q15sm3160061ioi.15.2019.06.28.12.37.26
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 28 Jun 2019 12:37:27 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: mtd: sunxi-nand: Drop 'maxItems' from child 'reg' property
-Date:   Fri, 28 Jun 2019 13:35:25 -0600
-Message-Id: <20190628193525.7785-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1727133AbfF1Uc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 16:32:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54406 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727042AbfF1Uc2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 16:32:28 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8960A214AF;
+        Fri, 28 Jun 2019 20:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561753947;
+        bh=nIIHPYVF/yLKT9Kd+T0+WBhtRttyLnFzsf/YfQlcS5I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=wLQq17BvzxyNlq1t5I4duxVE2UpZL+u6VkeTC6m/6zhcoUjximdIIWTF4XSFIsNgP
+         HNNma++/g3HknbooVG2pSr44CHsAAY8l0ade8kfv4ZVfjHezfp2y67DawPOsI+3aI5
+         CjRhl8Td1qVsKPxfmFlqf3mhFIKQmHAg3lUTOuJA=
+Received: by mail-qk1-f171.google.com with SMTP id g18so6034573qkl.3;
+        Fri, 28 Jun 2019 13:32:27 -0700 (PDT)
+X-Gm-Message-State: APjAAAXtR/7svaxX0XxQm7hTxQm+3w7TiSggZ1MOvtMTBqbKJjvvpKVA
+        PPbVHyxdwDrbriAZF2mpO/DomTUBXLxbtFGUfw==
+X-Google-Smtp-Source: APXvYqz2D0+DUUlKtR1qaP9vt2oqvuZ5e8zpaIXRl6gPIZnL9R+FlitcymlNefVcbVGbAxG1BBP1c4Nopp23cNH6MRE=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr10667886qke.223.1561753946755;
+ Fri, 28 Jun 2019 13:32:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190627000044.12739-1-robh@kernel.org> <alpine.DEB.2.21.9999.1906261759390.29311@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1906261759390.29311@viisi.sifive.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 28 Jun 2019 14:32:15 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Ej15JfU_Mx0g+Hkpz6+1CnMem507RPgUgW7CB0U8hCA@mail.gmail.com>
+Message-ID: <CAL_Jsq+Ej15JfU_Mx0g+Hkpz6+1CnMem507RPgUgW7CB0U8hCA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: Limit cpus schema to only check Arm
+ 'cpu' nodes
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mixing 'maxItems' and scalar properties doesn't make much sense, so drop
-'maxItems' as a single item is implied.
+On Wed, Jun 26, 2019 at 7:02 PM Paul Walmsley <paul.walmsley@sifive.com> wrote:
+>
+> On Wed, 26 Jun 2019, Rob Herring wrote:
+>
+> > Matching on the 'cpus' node was a bad choice because the schema is
+> > incorrectly applied to non-Arm cpus nodes. As we now have a common cpus
+> > schema which checks the general structure, it is also redundant to do so
+> > in the Arm CPU schema.
+> >
+> > The downside is one could conceivably mix different architecture's cpu
+> > nodes or have typos in the compatible string. The latter problem pretty
+> > much exists for every schema.
+>
+> The RISC-V patch applies cleanly, but this one doesn't apply here on
+> either master or next-20190626.  Is there a different base commit?
 
-Cc: David Woodhouse <dwmw2@infradead.org>
-Cc: Brian Norris <computersforpeace@gmail.com>
-Cc: Marek Vasut <marek.vasut@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: linux-mtd@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-I'll take this in the DT tree if that's okay.
+Ugg, sorry. I had another commit colliding with this in my tree. I've
+fixed it now and it's in my dt/next branch.
 
 Rob
-
- .../devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml        | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-index fbd4da3684fc..e5a411518be1 100644
---- a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-@@ -57,7 +57,6 @@ patternProperties:
-   "^nand@[a-f0-9]+$":
-     properties:
-       reg:
--        maxItems: 1
-         minimum: 0
-         maximum: 7
- 
--- 
-2.20.1
-
