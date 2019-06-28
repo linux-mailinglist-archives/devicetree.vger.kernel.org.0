@@ -2,83 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB55259E18
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 16:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2161559E57
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 17:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726720AbfF1Onb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 10:43:31 -0400
-Received: from node.akkea.ca ([192.155.83.177]:50288 "EHLO node.akkea.ca"
+        id S1726716AbfF1PCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 11:02:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57470 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726616AbfF1Onb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 10:43:31 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id 403B34E204B; Fri, 28 Jun 2019 14:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1561733011; bh=vL6EoMdz85KeCXb25zgF163ifKwysc+oVzgF2OUUHn0=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=ubYJwhBx0LVLah3yR7dGCU86T3sBjzjPcEihX0mJAf3otSYyjuwTwlQsH1hZwb3Ey
-         r9LwKQ8HRfgyVvsPdWu1BxJx1na498IxAXRUu5gcJtZiXwCKE85IeBkf3qdp5LCwA6
-         cQPBCTwGG/F7J1S4z5KizNo4L88/jqRp46Gv6kJo=
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mq-librem5: Enable MIPI D-PHY
-X-PHP-Originating-Script: 1000:rcube.php
+        id S1726616AbfF1PCz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 11:02:55 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B51F420828;
+        Fri, 28 Jun 2019 15:02:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561734174;
+        bh=z3Dn3El1yjq4ZvN1Ri3867ZpWWj2G37nsF3RYxODv08=;
+        h=From:To:Cc:Subject:Date:From;
+        b=VCyAWtWRCcxtcvbSW5pxWgQrde8RnPPz1zdlD2ixppQo/PDi+CBqgtAsqsMVxobpb
+         AjblYUQ9hY9M8OLsC6F8WonNQSvHx9129A/Hzl48hoAJb7tHajKy4Za2pDmL4R7Yqx
+         dXdADIXOR88GbSDZZMxCuwwdTOnYUTymQdEZReDM=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Tudor.Ambarus@microchip.com
+Subject: [PATCHv6 RESEND] dt-bindings: cadence-quadspi: add options reset property
+Date:   Fri, 28 Jun 2019 10:02:45 -0500
+Message-Id: <20190628150245.23785-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Fri, 28 Jun 2019 08:43:31 -0600
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <d9a2076bd4231398bd131483db8b05a7e5d56d8b.1561451144.git.agx@sigxcpu.org>
-References: <cover.1561451144.git.agx@sigxcpu.org>
- <d9a2076bd4231398bd131483db8b05a7e5d56d8b.1561451144.git.agx@sigxcpu.org>
-Message-ID: <b533e051f4f9b89fed8917954d328c7c@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-06-25 02:27, Guido Günther wrote:
-> This enables the Mixel MIPI D-PHY on the Librem 5 devkit
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+The QSPI module can have an optional reset signals that will hold the
+module in a reset state.
 
-Acked-by: Angus Ainslie (Purism) <angus@akkea.ca>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+v6: no change
+v5: document reset-names
+v4: no change
+v3: created base on review comments
+v2: did not exist
+v1: did not exist
+---
+ Documentation/devicetree/bindings/mtd/cadence-quadspi.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> index 93b3830e5406..83c965773a29 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> @@ -174,6 +174,10 @@
->  	assigned-clock-rates = <786432000>, <722534400>;
->  };
-> 
-> +&dphy {
-> +	status = "okay";
-> +};
-> +
->  &fec1 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_fec1>;
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+index 4345c3a6f530..945be7d5b236 100644
+--- a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
++++ b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+@@ -35,6 +35,9 @@ custom properties:
+ 		  (qspi_n_ss_out).
+ - cdns,tslch-ns : Delay in nanoseconds between setting qspi_n_ss_out low
+                   and first bit transfer.
++- resets	: Must contain an entry for each entry in reset-names.
++		  See ../reset/reset.txt for details.
++- reset-names	: Must include either "qspi" and/or "qspi-ocp".
+ 
+ Example:
+ 
+@@ -50,6 +53,8 @@ Example:
+ 		cdns,fifo-depth = <128>;
+ 		cdns,fifo-width = <4>;
+ 		cdns,trigger-address = <0x00000000>;
++		resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
++		reset-names = "qspi", "qspi-ocp";
+ 
+ 		flash0: n25q00@0 {
+ 			...
+-- 
+2.20.0
 
