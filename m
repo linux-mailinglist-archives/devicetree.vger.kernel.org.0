@@ -2,87 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB6D859C76
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 15:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C7E59CF4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 15:30:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbfF1NEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 09:04:14 -0400
-Received: from smtp.missinglinkelectronics.com ([94.130.14.54]:54308 "EHLO
-        smtp.missinglinkelectronics.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726558AbfF1NEN (ORCPT
+        id S1726558AbfF1Nai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 09:30:38 -0400
+Received: from eu-smtp-delivery-151.mimecast.com ([146.101.78.151]:25644 "EHLO
+        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726663AbfF1Nai (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 09:04:13 -0400
-X-Greylist: delayed 381 seconds by postgrey-1.27 at vger.kernel.org; Fri, 28 Jun 2019 09:04:12 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by smtp.missinglinkelectronics.com (Postfix) with ESMTP id 63012E01A1;
-        Fri, 28 Jun 2019 14:57:50 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at missinglinkelectronics.com
-Received: from smtp.missinglinkelectronics.com ([127.0.0.1])
-        by localhost (mail.missinglinkelectronics.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id WC4rP6wvBcCL; Fri, 28 Jun 2019 14:57:50 +0200 (CEST)
-Received: from mail.missinglinkelectronics.com (localhost [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: david)
-        by smtp.missinglinkelectronics.com (Postfix) with ESMTPSA id 2AFBEE010A;
-        Fri, 28 Jun 2019 14:57:50 +0200 (CEST)
-Received: from 10.10.2.7 (proxying for 87.140.91.254)
-        (SquirrelMail authenticated user david)
-        by mail.missinglinkelectronics.com with HTTP;
-        Fri, 28 Jun 2019 14:57:50 +0200
-Message-ID: <a1af77a8b6d6832f888e6a55f5732982.squirrel@mail.missinglinkelectronics.com>
-Date:   Fri, 28 Jun 2019 14:57:50 +0200
-Subject: [PATCH] dt-bindings: ASoC: tlv320aic32x4: Fix property name
-From:   "David Epping" <david.epping@missinglinkelectronics.com>
-To:     "Mark Brown" <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, trivial@kernel.org
-User-Agent: SquirrelMail/1.4.22
+        Fri, 28 Jun 2019 09:30:38 -0400
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-19-F5JmhSpNN6W7HG1xDN_l_A-1; Fri, 28 Jun 2019 14:30:31 +0100
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Fri, 28 Jun 2019 14:30:30 +0100
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000;
+ Fri, 28 Jun 2019 14:30:30 +0100
+From:   David Laight <David.Laight@ACULAB.COM>
+To:     'Linus Walleij' <linus.walleij@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+CC:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dtor@google.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dan Murphy <dmurphy@ti.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>
+Subject: RE: [PATCH v5 05/26] leds: core: Add support for composing LED class
+ device names
+Thread-Topic: [PATCH v5 05/26] leds: core: Add support for composing LED class
+ device names
+Thread-Index: AQHVLY38Qac3tLDSDEaPU1xemGxruKaw8U2g
+Date:   Fri, 28 Jun 2019 13:30:30 +0000
+Message-ID: <643e3b10fe9d45b59ed063ffc6d578ff@AcuMS.aculab.com>
+References: <20190609190803.14815-1-jacek.anaszewski@gmail.com>
+ <20190609190803.14815-6-jacek.anaszewski@gmail.com>
+ <CACRpkdYdqKZVKSaQB0THi=iZcRT04EKX2-85__Hw1f53o8vsuw@mail.gmail.com>
+In-Reply-To: <CACRpkdYdqKZVKSaQB0THi=iZcRT04EKX2-85__Hw1f53o8vsuw@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type:   text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7BIT
-X-Priority: 3 (Normal)
-Importance: Normal
+X-MC-Unique: F5JmhSpNN6W7HG1xDN_l_A-1
+X-Mimecast-Spam-Score: 0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Epping <david.epping@missinglinkelectronics.com>
-
-dt-bindings: ASoC: tlv320aic32x4: Fix property name
-
-The 'supply' string is a suffix to the actual supply name, not a prefix.
-Also extend the example section with required supply properties.
-
-Signed-off-by: David Epping <david.epping@missinglinkelectronics.com>
----
- Documentation/devicetree/bindings/sound/tlv320aic32x4.txt | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-index ca75890..439eaf7 100644
---- a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-+++ b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-@@ -7,7 +7,7 @@ Required properties:
-        "ti,tlv320aic32x4" TLV320AIC3204
-        "ti,tlv320aic32x6" TLV320AIC3206, TLV320AIC3256
-  - reg: I2C slave address
-- - supply-*: Required supply regulators are:
-+ - *-supply: Required supply regulators are:
-     "iov" - digital IO power supply
-     "ldoin" - LDO power supply
-     "dv" - Digital core power supply
-@@ -31,6 +31,8 @@ codec: tlv320aic32x4@18 {
-        reg = <0x18>;
-        clocks = <&clks 201>;
-        clock-names = "mclk";
-+       iov-supply = <&reg_3v3>;
-+       ldoin-supply = <&reg_3v3>;
-        aic32x4-gpio-func= <
-                        0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
-                        0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
--- 
-2.7.4
-
+RnJvbTogTGludXMgV2FsbGVpag0KPiBTZW50OiAyOCBKdW5lIDIwMTkgMDk6NDYNCi4uLg0KPiBB
+IHByb2JsZW0gd2l0aCBMRURzIGlzIHRoYXQgaXQgaW52aXRlcyBiaWtlc2hlZGRpbmcgYmVjYXVz
+ZSBpdCBpcyB0b28NCj4gcmVsYXRlYWJsZS4NCg0KQmlrZXNoZWRkaW5nIGxlZHMgOi0pDQoNCkl0
+IGFsc28gaXNuJ3QgYXQgYWxsIGNsZWFyIGhvdyB0byBoYW5kbGUgYmktY29sb3VyIGFuZCB0cmkt
+Y29sb3VyIGxlZHMuDQpJU1RSIHRoZSB1c3VhbCBpbnRlcmZhY2UgbGV0cyB5b3Ugc2V0IHRoZSBi
+cmlnaHRuZXNzLCBidXQgbW9yZSBvZnRlbg0KbGVkcyBhcmUgc2luZ2xlIGJyaWdodG5lc3MgYnV0
+IG11bHRpLWNvbG91ci4NCkVnIHRoZSBldGhlcm5ldCAnc3BlZWQnIGxlZCB3aGljaCBpcyAodXN1
+YWxseSkgb2ZmL29yYW5nZS9ncmVlbi4NCg0KQ2hhbmdpbmcgdGhlIGJyaWdodG5lc3MgZWl0aGVy
+IG1lYW5zIGNoYW5naW5nIHRoZSBjdXJyZW50IG9yIHVzaW5nIFBXTS4NCkJvdGggcmVhbGx5IHJl
+cXVpcmUgbW9yZSBoYXJkd2FyZSBzdXBwb3J0IHRoYW4gY2hhbmdpbmcgY29sb3Vycy4NCg0KSSd2
+ZSBkb25lIHNvbWUgbGVkIGRyaXZpbmcgKGZvciBhIGZyb250IHBhbmVsKSBmcm9tIGEgUExEIChz
+bWFsbCBGUEdBKS4NCkFzIHdlbGwgYXMgdGhlIG9idmlvdXMgdGhpbmdzIEkgZGlkOg0KLSBkaW06
+IDEvOHRoIG9uIGF0IDgwSHouDQotIGZsYXNoOiAxLzh0aCBvbiBhdCA0SHouDQotIG9yYW5nZTog
+NTAtNTAgcmVkLWdyZWVuIGF0IDgwSHogb24gYW4gUkdCIGxlZC4NCg0KVGhlcmUgd2FzIGFsc28g
+dGhlICdldGhlcm5ldCBhY3Rpdml0eScgbGVkIHdoaWNoIGNvdWxkIGVpdGhlciBiZSBkcml2ZW4N
+CmJ5IHRoZSBoYXJkd2FyZSwgb3IgZm9yY2VkIG9uL29mZi9mbGFzaCBieSB0aGUgZHJpdmVyLg0K
+SWYgZHJpdmVuIGJ5IHRoZSBoYXJkd2FyZSwgdGhlIHNvZnR3YXJlIGNvdWxkIHJlYWQgdGhlIGN1
+cnJlbnQgc3RhdGUuDQoNCk5vbmUgb2YgdGhpcyByZWFsbHkgZml0dGVkIHRoZSBMaW51eCBsZWRz
+IGludGVyZmFjZS4NCg0KCURhdmlkDQoNCi0NClJlZ2lzdGVyZWQgQWRkcmVzcyBMYWtlc2lkZSwg
+QnJhbWxleSBSb2FkLCBNb3VudCBGYXJtLCBNaWx0b24gS2V5bmVzLCBNSzEgMVBULCBVSw0KUmVn
+aXN0cmF0aW9uIE5vOiAxMzk3Mzg2IChXYWxlcykNCg==
 
