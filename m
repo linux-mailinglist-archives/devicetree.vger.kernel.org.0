@@ -2,123 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9564459416
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 08:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A79F5941D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 08:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726645AbfF1GRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 02:17:06 -0400
-Received: from mail-eopbgr140079.outbound.protection.outlook.com ([40.107.14.79]:37565
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726553AbfF1GRG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 02:17:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5Otidic48NaX7uFm0CLUqjtm4OAKPL0s2t8BR6VoEfM=;
- b=hKTRZylDYqFaT3Nl+sxnQNDmlsp6d0GT5fY+jIvl4uUhjCGgJ123iO5A7cONg1a43ULK42ed8aUllFeDcpsFgxYNlQcDG8NaNrwz1RBKWtZtUijx0L/n9ykm2eM/Pjo5i9jXs5E20BPMn60F2CRIkf1QDFZDptVWrhKeIkE3VGc=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3865.eurprd04.prod.outlook.com (52.134.73.19) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.17; Fri, 28 Jun 2019 06:17:03 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2032.018; Fri, 28 Jun 2019
- 06:17:03 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1726991AbfF1GU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 02:20:56 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:19295 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726553AbfF1GU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 02:20:56 -0400
+X-UUID: 13fb9bf17b8f491988d8b93c1557e9ee-20190628
+X-UUID: 13fb9bf17b8f491988d8b93c1557e9ee-20190628
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 478309057; Fri, 28 Jun 2019 14:20:41 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS33N2.mediatek.inc (172.27.4.76) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 28 Jun 2019 14:20:38 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 28 Jun 2019 14:20:38 +0800
+Message-ID: <1561702838.18399.10.camel@mtksdaap41>
+Subject: Re: [v5 1/3] dt-bindings: display: mediatek: update dsi supported
+ chips
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>, Rob Herring <robh@kernel.org>
+CC:     arPawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Vincent Palatin" <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 2/2] arm64: dts: imx8mm: Correct OPP table according to
- latest datasheet
-Thread-Topic: [PATCH 2/2] arm64: dts: imx8mm: Correct OPP table according to
- latest datasheet
-Thread-Index: AQHVLWLHg6KdHi+3c0WVoeANpMOeYKawly3g
-Date:   Fri, 28 Jun 2019 06:17:02 +0000
-Message-ID: <DB3PR0402MB39167143DD42C6A76B2A2A7BF5FC0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190628032800.8428-1-Anson.Huang@nxp.com>
- <20190628032800.8428-2-Anson.Huang@nxp.com>
- <VI1PR04MB50555399D8A3E4890D8C91E6EEFC0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB50555399D8A3E4890D8C91E6EEFC0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f195e96d-962b-4bb8-4662-08d6fb903c9c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3865;
-x-ms-traffictypediagnostic: DB3PR0402MB3865:
-x-microsoft-antispam-prvs: <DB3PR0402MB386521395D4831DE55E24A07F5FC0@DB3PR0402MB3865.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 00826B6158
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(136003)(366004)(39860400002)(376002)(396003)(189003)(199004)(13464003)(478600001)(186003)(102836004)(316002)(26005)(110136005)(6246003)(54906003)(229853002)(11346002)(476003)(99286004)(8676002)(4326008)(8936002)(53936002)(81156014)(9686003)(55016002)(7696005)(44832011)(81166006)(6436002)(446003)(14444005)(6506007)(53546011)(256004)(76176011)(33656002)(68736007)(2501003)(74316002)(66066001)(305945005)(71190400001)(486006)(3846002)(6116002)(7736002)(14454004)(25786009)(52536014)(66446008)(76116006)(71200400001)(66476007)(66556008)(64756008)(66946007)(73956011)(5660300002)(7416002)(86362001)(2906002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3865;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 7aHZv2Z+/LQt2E4z6FNrLKUi+ryzGj/FHSH41Q6EbbDI6o5Glfzg65pIi1nlV+TNQC1sglHGChE/4zj0dw8CfnXvUXGWHcecpg+GKxGbivsH2I8DfGInpo6WzjzHSGQX5LSgM4hs0WXCK1cIurrJD15i14JoTukl0BxJzMRsttr9EQHNIjVm5G1XetEmMFcKUaDLqU+5jNPb1zya4xusJiU86jH4NUxW1CrfAvapkIXD4HF9qGqqc6kKC7f4FtrmKzD3z+cJIQ6KZloeiHKtlxEBkECRcQq9we06NTVCurOy88iX+wK7PUempNiUa1N8XL9VhK4WXgTBqBlyBElNkaBHKVfkXeDmQl2OkYFOhvgmRjk9LWR2WIwlM2z2kGdOYXpV3uA9DCACyRb1edzZ7RWEXY1LegdLVQA18qimPlU=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <stonea168@163.com>, "Rob Herring" <robh@kernel.org>
+Date:   Fri, 28 Jun 2019 14:20:38 +0800
+In-Reply-To: <20190627025901.28418-2-jitao.shi@mediatek.com>
+References: <20190627025901.28418-1-jitao.shi@mediatek.com>
+         <20190627025901.28418-2-jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f195e96d-962b-4bb8-4662-08d6fb903c9c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2019 06:17:02.9001
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3865
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: F5593DFD1B0197145068EEEC130C459B1EEAED2C72C02013EB643222CBB8C0B72000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIExlb25hcmQNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMZW9u
-YXJkIENyZXN0ZXoNCj4gU2VudDogRnJpZGF5LCBKdW5lIDI4LCAyMDE5IDI6MDEgUE0NCj4gVG86
-IEFuc29uIEh1YW5nIDxhbnNvbi5odWFuZ0BueHAuY29tPjsgSmFja3kgQmFpIDxwaW5nLmJhaUBu
-eHAuY29tPjsNCj4gbC5zdGFjaEBwZW5ndXRyb25peC5kZQ0KPiBDYzogcm9iaCtkdEBrZXJuZWwu
-b3JnOyBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsgc2hhd25ndW9Aa2VybmVsLm9yZzsNCj4gcy5oYXVl
-ckBwZW5ndXRyb25peC5kZTsga2VybmVsQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5j
-b207DQo+IHZpcmVzaC5rdW1hckBsaW5hcm8ub3JnOyBEYW5pZWwgQmFsdXRhIDxkYW5pZWwuYmFs
-dXRhQG54cC5jb20+OyBBYmVsDQo+IFZlc2EgPGFiZWwudmVzYUBueHAuY29tPjsgYW5kcmV3LnNt
-aXJub3ZAZ21haWwuY29tOw0KPiBjY2Fpb25lQGJheWxpYnJlLmNvbTsgYW5ndXNAYWtrZWEuY2E7
-IGFneEBzaWd4Y3B1Lm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFy
-bS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5l
-bC5vcmc7IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0ggMi8yXSBhcm02NDogZHRzOiBpbXg4bW06IENvcnJlY3QgT1BQIHRhYmxlIGFjY29yZGlu
-ZyB0bw0KPiBsYXRlc3QgZGF0YXNoZWV0DQo+IA0KPiBPbiAyOC4wNi4yMDE5IDA2OjM3LCBBbnNv
-bi5IdWFuZ0BueHAuY29tIHdyb3RlOg0KPiANCj4gPiBBY2NvcmRpbmcgdG8gbGF0ZXN0IGRhdGFz
-aGVldCAoUmV2LjAuMiwgMDQvMjAxOSkgZnJvbSBiZWxvdyBsaW5rcywNCj4gPiAxLjhHSHogaXMg
-T05MWSBhdmFpbGFibGUgZm9yIGNvbnN1bWVyIHBhcnQsIHNvIHRoZSBtYXJrZXQgc2VnbWVudCBi
-aXRzDQo+ID4gZm9yIDEuOEdIeiBvcHAgc2hvdWxkIE9OTFkgYXZhaWxhYmxlIGZvciBjb25zdW1l
-ciBwYXJ0IGFjY29yZGluZ2x5Lg0KPiA+DQo+ID4gICAJCQlvcHAtaHogPSAvYml0cy8gNjQgPDE4
-MDAwMDAwMDA+Ow0KPiA+ICAgCQkJb3BwLW1pY3Jvdm9sdCA9IDwxMDAwMDAwPjsNCj4gPiAgIAkJ
-CS8qIENvbnN1bWVyIG9ubHkgYnV0IHJlbHkgb24gc3BlZWQgZ3JhZGluZyAqLw0KPiA+IC0JCQlv
-cHAtc3VwcG9ydGVkLWh3ID0gPDB4OD4sIDwweDc+Ow0KPiA+ICsJCQlvcHAtc3VwcG9ydGVkLWh3
-ID0gPDB4OD4sIDwweDM+Ow0KPiANCj4gT25seSBjb25zdW1lciBwYXJ0cyBzaG91bGQgYmUgZnVz
-ZWQgZm9yIHRoaXMgaGlnaGVzdCBPUFAuIElmIHlvdSBkb24ndCB3YW50DQo+IHRvIHJlbHkgb24g
-dGhpcyB0aGVuIG1heWJlIGFsc28gZGVsZXRlIHRoZSBjb21tZW50IGFib3ZlPw0KDQpBcyBJIHJl
-cGxpZWQgaW4gcHJldmlvdXMgaS5NWDhNUSBwYXRjaCwgaWYgdGhlIGNvbW1lbnRzIG1ha2UgcmVh
-ZGVyIGNvbmZ1c2VkLA0Kc2hvdWxkIHdlIGp1c3QgcmVtb3ZlIGFsbCB0aG9zZSBjb21tZW50cz8N
-Cg0KVGhhbmtzLA0KQW5zb24uDQoNCj4gDQo+IC0tDQo+IFJlZ2FyZHMsDQo+IGxlb25hcmQNCg==
+Hi, Jitao:
+
+On Thu, 2019-06-27 at 10:58 +0800, Jitao Shi wrote:
+> Update device tree binding documentation for the dsi for
+> Mediatek MT8183 SoCs.
+> 
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+
+This version is different than previous version, so I think you should
+remove the Acked-by tag. Or Rob could give a tag again on this patch.
+
+Regards,
+CK
+
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,dsi.txt     | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> index fadf327c7cdf..a19a6cc375ed 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> @@ -7,7 +7,7 @@ channel output.
+>  
+>  Required properties:
+>  - compatible: "mediatek,<chip>-dsi"
+> -  the supported chips are mt2701 and mt8173.
+> +  the supported chips are mt2701, mt8173 and mt8183.
+>  - reg: Physical base address and length of the controller's registers
+>  - interrupts: The interrupt signal from the function block.
+>  - clocks: device clocks
+> @@ -26,7 +26,7 @@ The MIPI TX configuration module controls the MIPI D-PHY.
+>  
+>  Required properties:
+>  - compatible: "mediatek,<chip>-mipi-tx"
+> -  the supported chips are mt2701 and mt8173.
+> +  the supported chips are mt2701, mt8173 and mt8183.
+>  - reg: Physical base address and length of the controller's registers
+>  - clocks: PLL reference clock
+>  - clock-output-names: name of the output clock line to the DSI encoder
+
+
