@@ -2,87 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61BE35A514
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 21:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72EA5A539
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 21:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726562AbfF1TWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 15:22:41 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:38334 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726497AbfF1TWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 15:22:41 -0400
-Received: by mail-io1-f68.google.com with SMTP id j6so14835735ioa.5;
-        Fri, 28 Jun 2019 12:22:40 -0700 (PDT)
+        id S1726956AbfF1Th3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 15:37:29 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:40565 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726497AbfF1Th3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 15:37:29 -0400
+Received: by mail-io1-f66.google.com with SMTP id n5so14902930ioc.7
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 12:37:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SV3UaGLoeKUQCI7wGZiOfbddOtsjqVsakZX22AHysxE=;
-        b=AfS92IuksD4AqsR+XNQaGaqAbBSKk/Ot7d+SNdIKKF5RIa0dQWPBfoZHWqwcqehPvo
-         GGqJpQd8X91Vdj0GpfEJiSHcwGfSfgAkmVaHj/WpLG5GshlmejcX17GaOh9LJy7SByPN
-         K+E+pFsmgs1JQjNqWNtqYcAEPLH2itf3TudSmUGIbZYjd+ofPKIcOSyVyyuUpSENnRmJ
-         2ZitEvjq+cWl9m6jhTdRegKea7LxSkzBLT1xjxh/Ks+NPm22AjAfJDrqQ8rO2AnuFmYe
-         xJxh5hrq/jqsNpZc9e2Qokqd8eBm/ADG7rGD5yGG4GswsInyrwh1WEGonQfzBIm/3v0U
-         RLjg==
-X-Gm-Message-State: APjAAAV4rJo22fDnSMMH1hZxqV8WRTxmq+piH0wNOcFUrPX+0QTb+stF
-        aboOIT/R1724axJRNEwv2Q==
-X-Google-Smtp-Source: APXvYqzFAiaMqX9Kc+pU35sAZ092vTl08ulqOCvMY9sGS0us9aZUSx2qrN6swZfkkImylaZ6IpC8fg==
-X-Received: by 2002:a5d:9bc6:: with SMTP id d6mr1291115ion.160.1561749759989;
-        Fri, 28 Jun 2019 12:22:39 -0700 (PDT)
-Received: from localhost ([64.188.179.243])
-        by smtp.gmail.com with ESMTPSA id c23sm2720600iod.11.2019.06.28.12.22.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rOnt24OKyg8IYLadN6LWQaA2kEEaOS+arIfbwjhJNR4=;
+        b=mrPwaMJSME/T5LZzKa4WM600nicbMkBbiMi3qcyttidiopggQ1VoxuUiboPbB3yrjW
+         rDEo67tadLuzUjrKqdvnHUD+SNa0C5WhHn45iOpiodNPzR1nQy1Lsv0y079uZYaMKOuV
+         SXJW8UykwePEWdBsOVbeeEr8ZpDt1xHtQqqwjgBfYZjBHu8tVDqDKzYv07qzIZFrQOP9
+         IXozt7ALnh2Ba2j2kt2xjIbIg2arbMtD7E3L8nx/rLYV3PvpXR+bX/ciNVRwFrKOTH2S
+         uXaKNPCkO/mI2ecHtXNyraHAxRGCHcrmTXiiyW4imDF2P3GEeS7Zp+A43FMMlucBuLam
+         H01w==
+X-Gm-Message-State: APjAAAWZeFz12XSDgwfDIteYH64iywixe33liLFkPDTHxkW1SjyI4DvO
+        iYXr3zH19NaCt8DVreLfrvyR69U=
+X-Google-Smtp-Source: APXvYqxtxWXQqs4yhNzHBeBOuvHhYb9tx5z9qryUXj1LZrI9tRYnL6j8xUuN4/7v7qTG4as0xfM0hw==
+X-Received: by 2002:a02:cd83:: with SMTP id l3mr10927291jap.66.1561750647827;
+        Fri, 28 Jun 2019 12:37:27 -0700 (PDT)
+Received: from localhost.localdomain ([64.188.179.243])
+        by smtp.googlemail.com with ESMTPSA id q15sm3160061ioi.15.2019.06.28.12.37.26
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 28 Jun 2019 12:22:39 -0700 (PDT)
-Date:   Fri, 28 Jun 2019 13:22:38 -0600
+        Fri, 28 Jun 2019 12:37:27 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     robh+dt@kernel.org, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
-        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dmurphy@ti.com, jonathan@marek.ca
-Subject: Re: [PATCH] dt-bindings: backlight: lm3630a: correct schema
- validation
-Message-ID: <20190628192238.GA8617@bogus>
-References: <20190520085846.22320-1-masneyb@onstation.org>
+To:     devicetree@vger.kernel.org
+Cc:     David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: mtd: sunxi-nand: Drop 'maxItems' from child 'reg' property
+Date:   Fri, 28 Jun 2019 13:35:25 -0600
+Message-Id: <20190628193525.7785-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190520085846.22320-1-masneyb@onstation.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 May 2019 04:58:46 -0400, Brian Masney wrote:
-> The '#address-cells' and '#size-cells' properties were not defined in
-> the lm3630a bindings and would cause the following error when
-> attempting to validate the examples against the schema:
-> 
-> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
-> '#address-cells', '#size-cells' do not match any of the regexes:
-> '^led@[01]$', 'pinctrl-[0-9]+'
-> 
-> Correct this by adding those two properties.
-> 
-> While we're here, move the ti,linear-mapping-mode property to the
-> led@[01] child nodes to correct the following validation error:
-> 
-> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
-> led@0: 'ti,linear-mapping-mode' does not match any of the regexes:
-> 'pinctrl-[0-9]+'
-> 
-> Fixes: 32fcb75c66a0 ("dt-bindings: backlight: Add lm3630a bindings")
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
-> Reported-by: Rob Herring <robh+dt@kernel.org>
-> ---
->  .../leds/backlight/lm3630a-backlight.yaml     | 20 +++++++++++++------
->  1 file changed, 14 insertions(+), 6 deletions(-)
-> 
+Mixing 'maxItems' and scalar properties doesn't make much sense, so drop
+'maxItems' as a single item is implied.
 
-Applied, thanks.
+Cc: David Woodhouse <dwmw2@infradead.org>
+Cc: Brian Norris <computersforpeace@gmail.com>
+Cc: Marek Vasut <marek.vasut@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: linux-mtd@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+I'll take this in the DT tree if that's okay.
 
 Rob
+
+ .../devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml        | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
+index fbd4da3684fc..e5a411518be1 100644
+--- a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
++++ b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
+@@ -57,7 +57,6 @@ patternProperties:
+   "^nand@[a-f0-9]+$":
+     properties:
+       reg:
+-        maxItems: 1
+         minimum: 0
+         maximum: 7
+ 
+-- 
+2.20.1
+
