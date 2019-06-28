@@ -2,120 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E7E0593EF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 08:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAA14593F9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 08:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726622AbfF1GBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 02:01:09 -0400
-Received: from mail-eopbgr150048.outbound.protection.outlook.com ([40.107.15.48]:21524
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726574AbfF1GBJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 02:01:09 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
- b=vMSZXLs2zgnXksxOvtguTdDtZrDo72XxHRZATH3eAktda2oBkHocBJDvvWUxSqJnWmaBfC8DWK3jpH1ym0aJpVoWYEOR4bBAmzxUm7Le3tWsjYeuvMO3pI3w2WQ28URmZqO/1SGv4KXuEPEzyQGC2zqk/PCtlIYTEAtgotEYoqk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=testarcselector01;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n5MvjqRN8k7G3UzEiU6XyuFXA+0gesu54QUz4e9/cQk=;
- b=hx4bpta30YOriIuzTTHJm/MaM0Lj58Ws/OZlf2uO2qiLZvJcElsw9zLqCaCL/eJsqBTCOx1/FMKi/ADKAI0RmeS0pkgh8lO0Cl2NjVvjFArbC9Vz15S26WX5tKQcRJ7I+N9sQ9RS3qUMzs0EK/Te7iIXMbOzfUSLm3ak3bZuBfE=
-ARC-Authentication-Results: i=1; test.office365.com
- 1;spf=none;dmarc=none;dkim=none;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n5MvjqRN8k7G3UzEiU6XyuFXA+0gesu54QUz4e9/cQk=;
- b=erydpXdUkI1hSwJg3gWkU5SYCHaAmqrt2kW1L+UW5Gsw9EaBqTrAKrVgRqjZbX6qKlXVUW+cT/X419Sm4PO4ZYFrO5wE8AVvSpFTqXg/uo9nnX2LhOFK0FPGPrfAc2VOTnSBCqcqljH0IRINdsESPmHukRcKTwfKE1JDxqJKwfU=
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
- VI1PR04MB4861.eurprd04.prod.outlook.com (20.177.49.146) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2008.16; Fri, 28 Jun 2019 06:01:05 +0000
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::d83:14c4:dedb:213b]) by VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::d83:14c4:dedb:213b%5]) with mapi id 15.20.2008.014; Fri, 28 Jun 2019
- 06:01:05 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Anson Huang <anson.huang@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mm: Correct OPP table according to
- latest datasheet
-Thread-Topic: [PATCH 2/2] arm64: dts: imx8mm: Correct OPP table according to
- latest datasheet
-Thread-Index: AQHVLWLHJZvOkljf/UeBT/cVdVnPoQ==
-Date:   Fri, 28 Jun 2019 06:01:05 +0000
-Message-ID: <VI1PR04MB50555399D8A3E4890D8C91E6EEFC0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-References: <20190628032800.8428-1-Anson.Huang@nxp.com>
- <20190628032800.8428-2-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [2a04:241e:500:9200:e6e7:49ff:fe63:c221]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f32db33f-55e1-4e34-547b-08d6fb8e01b5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4861;
-x-ms-traffictypediagnostic: VI1PR04MB4861:
-x-microsoft-antispam-prvs: <VI1PR04MB4861CAB1DC4DCD309769B726EEFC0@VI1PR04MB4861.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 00826B6158
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(39860400002)(346002)(396003)(366004)(136003)(199004)(189003)(5660300002)(52536014)(476003)(99286004)(81156014)(68736007)(66946007)(54906003)(6116002)(256004)(2501003)(110136005)(71200400001)(6246003)(6436002)(186003)(66476007)(6506007)(76176011)(7696005)(14444005)(25786009)(2906002)(55016002)(71190400001)(4744005)(46003)(229853002)(33656002)(53936002)(102836004)(53546011)(66446008)(446003)(8936002)(44832011)(316002)(478600001)(73956011)(7416002)(7736002)(76116006)(9686003)(8676002)(66556008)(486006)(4326008)(74316002)(14454004)(305945005)(86362001)(81166006)(64756008)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4861;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: OxpCvGmj1WZuuAde2/P+msuo2ONlEXSza09xe1UrYCZX9QQedTyOb/QFeMmWeVBcNp1Nnvl/buDFqPtdPZ/EAWi1Yr/5BEpHK2ekF+d3WZ3Nxmh/fdOgF/E8s/edMBjCjdZVy2twRiiYb9+Bg+n4rFztEtWlWdtqBvoEG3KJotLNylrLkahgOpTwOTiPoCu8xKjxVTXcPFxVh8wYhn3qZAaHFvAmfRm8LiO3EqEFyK8Yzozaeu2bS8VsXZGDl3X95PS2WS6gZ2D4u3RSIQH6tEWJVkJbvH7J2xLrJWP2jk3O5EW6I5mmxFIfCwBGOdBUg269tzyqwga9NVQg3EH5K5Q7F3FQuqdhd/qi0ksiYFB5EXerYk2lgK36vZhDu1km5AYIvK25PrHIxALzEF5NEicjaqSMgnncqacy9wStvhA=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726682AbfF1GCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 02:02:03 -0400
+Received: from twhmllg3.macronix.com ([122.147.135.201]:38585 "EHLO
+        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726622AbfF1GCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 02:02:03 -0400
+Received: from twhfmlp1.macronix.com (twhfm1p1.macronix.com [172.17.20.91])
+        by TWHMLLG3.macronix.com with ESMTP id x5S61tNF083187;
+        Fri, 28 Jun 2019 14:01:55 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id 8B3D25791B757428CD0E;
+        Fri, 28 Jun 2019 14:01:55 +0800 (CST)
+In-Reply-To: <20190627193635.29abff43@xps13>
+References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw> <1561443056-13766-2-git-send-email-masonccyang@mxic.com.tw> <20190627193635.29abff43@xps13>
+To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
+Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
+        broonie@kernel.org, christophe.kerello@st.com,
+        computersforpeace@gmail.com, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
+        richard@nod.at, stefan@agner.ch, vigneshr@ti.com
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: Add Macronix Raw NAND controller
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f32db33f-55e1-4e34-547b-08d6fb8e01b5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2019 06:01:05.0783
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4861
+X-KeepSent: DDC43C05:7B4092B5-48258427:001EE57E;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OFDDC43C05.7B4092B5-ON48258427.001EE57E-48258427.002122D1@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Fri, 28 Jun 2019 14:01:55 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/06/28 PM 02:01:55,
+        Serialize complete at 2019/06/28 PM 02:01:55
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG3.macronix.com x5S61tNF083187
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.06.2019 06:37, Anson.Huang@nxp.com wrote:=0A=
-=0A=
-> According to latest datasheet (Rev.0.2, 04/2019) from below links,=0A=
-> 1.8GHz is ONLY available for consumer part, so the market segment=0A=
-> bits for 1.8GHz opp should ONLY available for consumer part accordingly.=
-=0A=
-> =0A=
->   			opp-hz =3D /bits/ 64 <1800000000>;=0A=
->   			opp-microvolt =3D <1000000>;=0A=
->   			/* Consumer only but rely on speed grading */=0A=
-> -			opp-supported-hw =3D <0x8>, <0x7>;=0A=
-> +			opp-supported-hw =3D <0x8>, <0x3>;=0A=
-=0A=
-Only consumer parts should be fused for this highest OPP. If you don't =0A=
-want to rely on this then maybe also delete the comment above?=0A=
-=0A=
---=0A=
-Regards,=0A=
-leonard=0A=
+
+Hi Miquel,
+
+
+> > Add a driver for Macronix raw NAND controller.
+> 
+> Could you pass userspace major MTD tests and can you attach/mount/edit
+> a UBI/UBIFS storage?
+
+mtd_debug passed and using dd utility to read and write 
+with md5sum checking passed.
+
+UBI/UBIFS testing is not yet. will do it.
+
+
+> > +static int mxic_nfc_clk_enable(struct mxic_nand_ctlr *nfc)
+> > +{
+> > +   int ret;
+> > +
+> > +   ret = clk_prepare_enable(nfc->send_clk);
+> > +   if (ret)
+> > +      return ret;
+> > +
+> > +   ret = clk_prepare_enable(nfc->send_dly_clk);
+> > +   if (ret)
+> > +      goto err_send_dly_clk;
+> 
+> I'm not sure why you only enable 2 out of 3 clocks and also why ou
+> handle two of them here (which is great, I prefer having a separate
+> helper for that) and the other one elsewhere?
+> 
+
+send_clk and send_dly_clk are device domain clocks.
+
+send_clk is clock without phase delay to ps_clk, used for sending device
+signals except for SIO[7:0].
+send_dly_clk is clock with phase delay to ps_clk, used for sending 
+SIO[7:0]
+
+ps_clk is system domain clock and it's a source clock of send_clk and 
+send_dly_clk.
+
+> > +
+> > +   return ret;
+> > +
+> > +err_send_dly_clk:
+> > +   clk_disable_unprepare(nfc->send_clk);
+> > +
+> > +   return ret;
+> > +}
+> > +
+> > +static void mxic_nfc_clk_disable(struct mxic_nand_ctlr *nfc)
+> > +{
+> > +   clk_disable_unprepare(nfc->send_clk);
+> > +   clk_disable_unprepare(nfc->send_dly_clk);
+> > +}
+> > +
+> > +static void mxic_nfc_set_input_delay(struct mxic_nand_ctlr *nfc, u8 
+idly_code)
+> > +{
+> > +   writel(IDLY_CODE_VAL(0, idly_code) |
+> > +          IDLY_CODE_VAL(1, idly_code) |
+> > +          IDLY_CODE_VAL(2, idly_code) |
+> > +          IDLY_CODE_VAL(3, idly_code),
+> > +          nfc->regs + IDLY_CODE(0));
+> > +   writel(IDLY_CODE_VAL(4, idly_code) |
+> > +          IDLY_CODE_VAL(5, idly_code) |
+> > +          IDLY_CODE_VAL(6, idly_code) |
+> > +          IDLY_CODE_VAL(7, idly_code),
+> > +          nfc->regs + IDLY_CODE(1));
+> > +}
+> > +
+> > +static int mxic_nfc_clk_setup(struct mxic_nand_ctlr *nfc, unsigned 
+long freq)
+> > +{
+> > +   int ret;
+> > +
+> > +   ret = clk_set_rate(nfc->send_clk, freq);
+> > +   if (ret)
+> > +      return ret;
+> > +
+> > +   ret = clk_set_rate(nfc->send_dly_clk, freq);
+> > +   if (ret)
+> > +      return ret;
+> > +
+> > +   /*
+> > +    * A constant delay range from 0x0 ~ 0x1F for input delay,
+> > +    * the unit is 78 ps, the max input delay is 2.418 ns.
+> > +    */
+> > +   mxic_nfc_set_input_delay(nfc, 0xf);
+> > +
+> > +   /*
+> > +    * Phase degree = 360 * freq * output-delay
+> > +    * where output-delay is a constant value 1 ns in FPGA.
+> 
+> Will it always be in FPGA?
+
+yes.
+
+> 
+> > +    *
+> > +    * Get Phase degree = 360 * freq * 1 ns
+> > +    *                  = 360 * freq * 1 sec / 1000000000
+> > +    *                  = 9 * freq / 25000000
+> > +    */
+> > +   ret = clk_set_phase(nfc->send_dly_clk, 9 * freq / 25000000);
+> > +   if (ret)
+> > +      return ret;
+> > +
+> > +   return 0;
+> > +}
+> > +
+> > +static int mxic_nfc_set_freq(struct mxic_nand_ctlr *nfc, unsigned 
+long freq)
+> > +{
+> > +   int ret;
+> > +
+> > +   if (freq > MXIC_NFC_MAX_CLK_HZ)
+> > +      freq = MXIC_NFC_MAX_CLK_HZ;
+> > +
+> > +   mxic_nfc_clk_disable(nfc);
+> > +   ret = mxic_nfc_clk_setup(nfc, freq);
+> > +   if (ret)
+> > +      return ret;
+> > +
+> > +   ret = mxic_nfc_clk_enable(nfc);
+> > +   if (ret)
+> > +      return ret;
+> > +
+> > +   return 0;
+> > +}
+> > +
+> > +static void mxic_nfc_hw_init(struct mxic_nand_ctlr *nfc)
+> > +{
+> > +   writel(DATA_STROB_EDO_EN, nfc->regs + DATA_STROB);
+> > +   writel(HC_CFG_NIO(8) | HC_CFG_TYPE(1, HC_CFG_TYPE_RAW_NAND) |
+> > +          HC_CFG_SLV_ACT(0) | HC_CFG_MAN_CS_EN |
+> > +          HC_CFG_IDLE_SIO_LVL(1), nfc->regs + HC_CFG);
+> > +   writel(INT_STS_ALL, nfc->regs + INT_STS_EN);
+> > +   writel(0x0, nfc->regs + ONFI_DIN_CNT(0));
+> > +   writel(0, nfc->regs + LRD_CFG);
+> > +   writel(0, nfc->regs + LRD_CTRL);
+> > +   writel(0x0, nfc->regs + HC_EN);
+> > +
+> > +   /* Default 10 MHz to setup tRC_min/tWC_min:100 ns */
+> > +   mxic_nfc_set_freq(nfc, 10000000);
+> > +}
+> > +
+> > +static void mxic_nfc_cs_enable(struct mxic_nand_ctlr *nfc)
+> > +{
+> > +   writel(readl(nfc->regs + HC_CFG) | HC_CFG_MAN_CS_EN,
+> > +          nfc->regs + HC_CFG);
+> > +   writel(HC_CFG_MAN_CS_ASSERT | readl(nfc->regs + HC_CFG),
+> > +          nfc->regs + HC_CFG);
+> 
+> So you can drive only one CS with this controller?
+
+yes,
+
+> 
+> > +}
+> > +
+> > +static void mxic_nfc_cs_disable(struct mxic_nand_ctlr *nfc)
+> > +{
+> > +   writel(~HC_CFG_MAN_CS_ASSERT & readl(nfc->regs + HC_CFG),
+> > +          nfc->regs + HC_CFG);
+> > +}
+> > +
+> > +static int  mxic_nfc_wait_ready(struct nand_chip *chip)
+> > +{
+> > +   struct mxic_nand_ctlr *nfc = nand_get_controller_data(chip);
+> > +   u32 sts;
+> > +
+> > +   return readl_poll_timeout(nfc->regs + INT_STS, sts,
+> > +              sts & INT_RDY_PIN, 0, USEC_PER_SEC);
+> > +}
+> > +
+> > +static int mxic_nfc_data_xfer(struct mxic_nand_ctlr *nfc, const void 
+*txbuf,
+> > +               void *rxbuf, unsigned int len)
+> > +{
+> > +   unsigned int pos = 0;
+> > +
+> > +   while (pos < len) {
+> > +      unsigned int nbytes = len - pos;
+> > +      u32 data = 0xffffffff;
+> > +      u32 sts;
+> > +      int ret;
+> > +
+> > +      if (nbytes > 4)
+> > +         nbytes = 4;
+> > +
+> > +      if (txbuf)
+> > +         memcpy(&data, txbuf + pos, nbytes);
+> > +
+> > +      ret = readl_poll_timeout(nfc->regs + INT_STS, sts,
+> > +                sts & INT_TX_EMPTY, 0, USEC_PER_SEC);
+> > +      if (ret)
+> > +         return ret;
+> > +
+> > +      writel(data, nfc->regs + TXD(nbytes % 4));
+> > +
+> > +      if (rxbuf) {
+> > +         ret = readl_poll_timeout(nfc->regs + INT_STS, sts,
+> > +                   sts & INT_TX_EMPTY, 0,
+> > +                   USEC_PER_SEC);
+> > +         if (ret)
+> > +            return ret;
+> > +
+> > +         ret = readl_poll_timeout(nfc->regs + INT_STS, sts,
+> > +                   sts & INT_RX_NOT_EMPTY, 0,
+> > +                   USEC_PER_SEC);
+> > +         if (ret)
+> > +            return ret;
+> > +
+> > +         data = readl(nfc->regs + RXD);
+> > +         data >>= (8 * (4 - nbytes));
+> > +         memcpy(rxbuf + pos, &data, nbytes);
+> > +         WARN_ON(readl(nfc->regs + INT_STS) & INT_RX_NOT_EMPTY);
+> > +      } else {
+> > +         readl(nfc->regs + RXD);
+> > +      }
+> > +      WARN_ON(readl(nfc->regs + INT_STS) & INT_RX_NOT_EMPTY);
+> 
+> WARN_ON() is maybe a bit overkill here?
+
+should I remove it ?
+
+
+thanks for your review.
+best regards,
+Mason
+
+
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
