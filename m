@@ -2,131 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B26025994B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 13:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2DF59962
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 13:47:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbfF1LgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 07:36:05 -0400
-Received: from foss.arm.com ([217.140.110.172]:45856 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726514AbfF1LgF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 07:36:05 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 036A728;
-        Fri, 28 Jun 2019 04:36:04 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F40DC3F718;
-        Fri, 28 Jun 2019 04:36:01 -0700 (PDT)
-Date:   Fri, 28 Jun 2019 12:35:55 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv5 04/20] PCI: mobiveil: Remove the flag
- MSI_FLAG_MULTI_PCI_MSI
-Message-ID: <20190628113555.GA21829@e121166-lin.cambridge.arm.com>
-References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
- <20190412083635.33626-5-Zhiqiang.Hou@nxp.com>
- <20190611165935.GA22836@redmoon>
- <AM0PR04MB67383023B81AEB33DAF9C35584EC0@AM0PR04MB6738.eurprd04.prod.outlook.com>
- <20190612130813.GA15747@redmoon>
- <AM0PR04MB6738B93C7F1B5BE433753CF584E90@AM0PR04MB6738.eurprd04.prod.outlook.com>
- <20190617093337.GD18020@e121166-lin.cambridge.arm.com>
- <AM6PR04MB67425792524FBA1C773F137984EB0@AM6PR04MB6742.eurprd04.prod.outlook.com>
+        id S1726741AbfF1Lrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 07:47:47 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:33385 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726605AbfF1Lrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 07:47:47 -0400
+Received: by mail-qk1-f195.google.com with SMTP id r6so4521792qkc.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 04:47:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hnrNJm+YPQ9P/zBeIY5Q0s4HopjViLSRE1ga8Evn3gQ=;
+        b=nAdwaoFQWMK/thL2OEH/rLDCYdBnzoQTtEM6UcrKBEmJQKF6ko515Bi6qtrIdXDt15
+         ixrnyV55XUQ08KxuoymqWCYvAquA66hzFuvBfNRqZUrp4+6Yn8YXtiAOaHTcEAIP6I29
+         0kgKXVjJNGQvg7lzEJnk75HtFdgoa1aD+8i7o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hnrNJm+YPQ9P/zBeIY5Q0s4HopjViLSRE1ga8Evn3gQ=;
+        b=P/L5VHVQdOP9SwKfeW9gWhAG482b1N+sJaIqISxDJfvCPgdo6dVoC/4Fju3rqkKTuW
+         pmFW3HQbAjh9eVf4AVRQVjktQP0xlCQG/NsfRj7QYXPrg2zF8xxoboopu/FKULxXHTrr
+         OLONiS3Fh/H1r0s41VHrAoC725tthBIKNvqBBc+MtF5/qNcVDE2fnvDPts91iUq+Sqr4
+         NKzdREwmXFbsgHeX7+YjfZ6QqSCPUoy2coVmcIj11B+80J1BNNuzDmiBtrNtDTU8WFIy
+         IeGS2LHVhHYAfSn2tQ280+xZ5hXK0r9KtPEIeuEk8+21+aej3PuKdTsG9mjpglZ51Czg
+         0XyQ==
+X-Gm-Message-State: APjAAAWhis6tral+iCS5f/scl0+GeFZBD+4A26TuT0Y5Jy8Laf99CARC
+        eG8DTJIwmpZqhPgg5swuTdqAom7NAuQdO8tunLxmKQ==
+X-Google-Smtp-Source: APXvYqzQhSBa4VdeP8zdX3MfsDpwnzjGB/9TwQnwrCUPanMsHkJGMPExpgescOhQ+3g3ljoWtSM2K9PaHPvV17b7bgA=
+X-Received: by 2002:a37:9e4b:: with SMTP id h72mr8236923qke.297.1561722466499;
+ Fri, 28 Jun 2019 04:47:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM6PR04MB67425792524FBA1C773F137984EB0@AM6PR04MB6742.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190612043258.166048-1-hsinyi@chromium.org> <20190612043258.166048-4-hsinyi@chromium.org>
+ <20190628094251.GC36437@lakrids.cambridge.arm.com>
+In-Reply-To: <20190628094251.GC36437@lakrids.cambridge.arm.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 28 Jun 2019 19:47:20 +0800
+Message-ID: <CAJMQK-iRKkOS9q-qGVj-3o6BVMeANrBoF_4MWQ1g-=4_6HRdbw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] arm64: kexec_file: add rng-seed support
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 17, 2019 at 10:34:35AM +0000, Z.q. Hou wrote:
+On Fri, Jun 28, 2019 at 5:42 PM Mark Rutland <mark.rutland@arm.com> wrote:
+>
+> On Wed, Jun 12, 2019 at 12:33:02PM +0800, Hsin-Yi Wang wrote:
+> > Adding "rng-seed" to dtb. It's fine to add this property if original
+> > fdt doesn't contain it. Since original seed will be wiped after
+> > read, so use a default size 128 bytes here.
+>
+> Why is 128 bytes the default value?
+More than 64 bytes should be enough.
+>
+> I didn't see an update to Documentation/devicetree/bindings/chosen.txt,
+> so it's not clear to me precisely what we expect.
+>
+Rob suggested to update in a newer dt-schema documentation at
+https://github.com/devicetree-org/dt-schema.
+A pull request has been sent but perhaps it would continue if kernel
+patches are accepted.
+>
+> For 128 bytes, it would be better to use a buffer on the stack. That
+> avoids the possibility of the allocation failing.
+>
+Okay, I'll update this.
+>
+> If the RNG wasn't initialised, we'd carry on with a warning. Why do we
+> follow a different policy here?
+>
+For failure case, I think kernel can still be boot since this is not a
+very fatal case, just same as the seed wasn't provided by bootloader
+at first boot. So I'll also let fdt_setprop() failed case carry on
+with warning.
 
-[...]
-
-> > There is nothing obvious. Write what you are fixing in the commit log and I will
-> > apply the patch, I won't write the commit log for you. Anyone should be able
-> > to understand why a patch was needed by reading the commit log, it is as
-> > important as writing the code itself.
-> 
-> With the flag MSI_FLAG_MULTI_PCI_MSI, when the Endpoint allocates
-> multiple MSI, it will trigger the "WARN_ON(nr_irqs != 1);" in
-> mobiveil_irq_msi_domain_alloc(), this is the issue this patch want to
-> fix. 
-
-And that's wrong. Marc explained why this controller does not support
-Multi MSI and that's what should go in the commit log, triggering
-a WARN_ON is the least of the problems (and the WARN_ON can even
-be removed after this patch is applied), if it was used as a bandaid
-to prevent allocating Multi MSI it is even more broken.
-
-Lorenzo
-
-> Thanks,
-> Zhiqiang
-> 
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> > > Thanks,
-> > > Zhiqiang
-> > >
-> > > >
-> > > > Lorenzo
-> > > >
-> > > > > Subbu, did you test with Endpoint supporting multi MSI?
-> > > > >
-> > > > > Thanks,
-> > > > > Zhiqiang
-> > > > >
-> > > > > >
-> > > > > > Thanks,
-> > > > > > Lorenzo
-> > > > > >
-> > > > > > > Fixes: 1e913e58335f ("PCI: mobiveil: Add MSI support")
-> > > > > > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > > > > > > Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
-> > > > > > > ---
-> > > > > > > V5:
-> > > > > > >  - Corrected the subject.
-> > > > > > >
-> > > > > > >  drivers/pci/controller/pcie-mobiveil.c | 2 +-
-> > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/pci/controller/pcie-mobiveil.c
-> > > > > > > b/drivers/pci/controller/pcie-mobiveil.c
-> > > > > > > index 563210e731d3..a0dd337c6214 100644
-> > > > > > > --- a/drivers/pci/controller/pcie-mobiveil.c
-> > > > > > > +++ b/drivers/pci/controller/pcie-mobiveil.c
-> > > > > > > @@ -703,7 +703,7 @@ static struct irq_chip
-> > > > > > > mobiveil_msi_irq_chip = {
-> > > > > > >
-> > > > > > >  static struct msi_domain_info mobiveil_msi_domain_info = {
-> > > > > > >  	.flags	= (MSI_FLAG_USE_DEF_DOM_OPS |
-> > > > > > MSI_FLAG_USE_DEF_CHIP_OPS |
-> > > > > > > -		   MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
-> > > > > > > +		   MSI_FLAG_PCI_MSIX),
-> > > > > > >  	.chip	= &mobiveil_msi_irq_chip,
-> > > > > > >  };
-> > > > > > >
-> > > > > > > --
-> > > > > > > 2.17.1
-> > > > > > >
+Thanks
