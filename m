@@ -2,270 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B40659408
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 08:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8522659411
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 08:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726572AbfF1GLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 02:11:20 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:30498 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726553AbfF1GLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 02:11:20 -0400
-X-UUID: edc76ffecb64420db929cd2b85374bec-20190628
-X-UUID: edc76ffecb64420db929cd2b85374bec-20190628
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 16841167; Fri, 28 Jun 2019 14:11:04 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS33DR.mediatek.inc (172.27.6.106) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 28 Jun 2019 14:11:00 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 28 Jun 2019 14:10:59 +0800
-Message-ID: <1561702259.18399.7.camel@mtksdaap41>
-Subject: Re: [v5 1/7] drm/mediatek: move mipi_dsi_host_register to probe
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Thierry Reding" <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        "Inki Dae" <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        "Sean Paul" <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        "Andy Yan" <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
+        id S1726645AbfF1GQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 02:16:05 -0400
+Received: from mail-eopbgr140050.outbound.protection.outlook.com ([40.107.14.50]:55461
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726553AbfF1GQF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 02:16:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+BV46yX/0oYx/ElfV9CKy95sbRnD1yIUVbioe7zWDhk=;
+ b=VrpvgnktL4k5VQxtdztodoTMHA7ZHYu0Ts5xl/cbx4dt7sHN04CegvWMbp4BOa4A16OL6PFCB57i0asRdpwbPdypOm2fp8gXGISMK2ZAZ0jSittckl65bOpvibZPG43evLDfkY1zBuxnvgOa8+yZS8txIigOpetmNqFyxlkbpl4=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3865.eurprd04.prod.outlook.com (52.134.73.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2032.17; Fri, 28 Jun 2019 06:16:00 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2032.018; Fri, 28 Jun 2019
+ 06:16:00 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Leonard Crestez <leonard.crestez@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Fri, 28 Jun 2019 14:10:59 +0800
-In-Reply-To: <20190627080116.40264-2-jitao.shi@mediatek.com>
-References: <20190627080116.40264-1-jitao.shi@mediatek.com>
-         <20190627080116.40264-2-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH 1/2] arm64: dts: imx8mq: Correct OPP table according to
+ latest datasheet
+Thread-Topic: [PATCH 1/2] arm64: dts: imx8mq: Correct OPP table according to
+ latest datasheet
+Thread-Index: AQHVLWLGC+RlanjcBUWXXhB78aHmNqawlITg
+Date:   Fri, 28 Jun 2019 06:16:00 +0000
+Message-ID: <DB3PR0402MB39161C60DC780B693933F9EAF5FC0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190628032800.8428-1-Anson.Huang@nxp.com>
+ <VI1PR04MB50553915C0D978A8019BDC5CEEFC0@VI1PR04MB5055.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB50553915C0D978A8019BDC5CEEFC0@VI1PR04MB5055.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c0d5d6b8-74ff-4637-bccc-08d6fb90172b
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3865;
+x-ms-traffictypediagnostic: DB3PR0402MB3865:
+x-microsoft-antispam-prvs: <DB3PR0402MB3865EA2B1D0EE068FD8DE3DFF5FC0@DB3PR0402MB3865.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 00826B6158
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(136003)(366004)(39860400002)(376002)(396003)(189003)(199004)(13464003)(478600001)(186003)(102836004)(316002)(26005)(110136005)(6246003)(54906003)(229853002)(11346002)(476003)(99286004)(8676002)(4326008)(8936002)(53936002)(81156014)(9686003)(55016002)(7696005)(44832011)(81166006)(6436002)(446003)(14444005)(6506007)(53546011)(256004)(76176011)(33656002)(68736007)(2501003)(74316002)(66066001)(305945005)(71190400001)(486006)(3846002)(6116002)(7736002)(14454004)(25786009)(52536014)(66446008)(76116006)(71200400001)(66476007)(66556008)(64756008)(66946007)(73956011)(5660300002)(7416002)(86362001)(2906002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3865;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: U2kfR7jcPLVwDqhJCVNT/HyW53ab6R27wCqFPaCdoac5s5Ezu3FJjKm9SqwJyCGlsHlp8dKgKcAvFK/Yu3jyxAGrdxb5+bru/wf0gLa18GZlc4ei7++84JCKAT6g6e67kOnPOeLpvdCIkEGXhK34US9fXXp5iAZzmvzhlXQU2DRf+eN+4z0VCmKGakubYs3eg++FFXPhoFMvwFBXjEceHAaCUfz4MLQU3TIt2XKC9Z20YOEUdOJRlgoQ3PXe0fYTN4Zk8MDUcyq6gVHJZlVo/TC9RxFujrz09MWNkIkbAD9OYqM8qMNu1MvPwpW8e4lD/1roP5wcp5RVjotDkk8dxWvfYPSFSMdSv+Kvi54xJGEDMk9xF1E+ebzlqd70WTz6jSQYzJ/vvgs/aIcp6bLdWPW9k8RfWKuX+my+PkqiGVY=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: SMEX-12.5.0.1684-8.5.1010-24724.003
-X-TM-AS-Result: No-14.037400-8.000000-10
-X-TMASE-MatchedRID: xcONGPdDH5qi6/VcDv9f0PZvT2zYoYOwC/ExpXrHizxUvqB5o/Lqc/OP
-        Ra/sN+oGYBSAIERqajwv+9DfuTEff7Ui+RdXr/ZOtbv6jY5MxFxp4xorO9dSmaB7/OvuB9jpd28
-        7y76rWl0+Qs+JOuQ+IlY7maOxI4yfSiFYFnhBX7pj2Mi9Aq5L042QIlTs17Vzp0b7LIq4ACtfTm
-        YPGZ1ZXQQiZjW65EMBQ9LDjgaivlliWV0DQ85LUho8wYJxWb0Oa01mhnn7t6RXiLrvhpKLfJgM2
-        5fIhnOfCHezjIJ0pLdIj6eJVvD1DFpf1fzvophNR4PPMO+JjQ78k99z1mnW8f/rgj9ncWz9xF/T
-        +1U99xstA6/Mm2plyirq6U1+7Bo3Zq5LaqHIPFRxoP7A9oFi1mfTym7IX+XOQW6eCaGxKwK8qAh
-        8pZVO7cW9Hv1VMZJ6kZOl7WKIImrvXOvQVlExsFZ0V5tYhzdWxEHRux+uk8h+ICquNi0WJE/4MB
-        J0dRDUt3l2bABoIbpXxQxn/ClNvtIxpUgjBEIFftwZ3X11IV0=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--14.037400-8.000000
-X-TMASE-Version: SMEX-12.5.0.1684-8.5.1010-24724.003
-X-TM-SNTS-SMTP: 4958778A01CFEBB7262B1AF145B46BFD43D375275B178C9456AA22C035062F192000:8
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0d5d6b8-74ff-4637-bccc-08d6fb90172b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2019 06:16:00.0999
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3865
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-On Thu, 2019-06-27 at 16:01 +0800, Jitao Shi wrote:
-> DSI panel driver need attach function which is inculde in
-> mipi_dsi_host_ops.
-> 
-> If mipi_dsi_host_register is not in probe, dsi panel will
-> probe more delay.
-> 
-> So move the mipi_dsi_host_register to probe from bind.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
-This version is different than v4, so please remove reviewed-by tag when
-this patch change. When I see a reviewed-by tag of mine, I would just
-skip review it again because I assume this patch is the same as previous
-version.
-
-For this version, I give still give it a
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 53 +++++++++++++++++-------------
->  1 file changed, 31 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index b00eb2d2e086..595b3b047c7b 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -528,7 +528,7 @@ static s32 mtk_dsi_switch_to_cmd_mode(struct mtk_dsi *dsi, u8 irq_flag, u32 t)
->  
->  static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  {
-> -	struct device *dev = dsi->dev;
-> +	struct device *dev = dsi->->host.dev;
->  	int ret;
->  	u64 pixel_clock, total_bits;
->  	u32 htotal, htotal_bits, bit_per_pixel, overhead_cycles, overhead_bits;
-> @@ -1045,12 +1045,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
->  		return ret;
->  	}
->  
-> -	ret = mipi_dsi_host_register(&dsi->host);
-> -	if (ret < 0) {
-> -		dev_err(dev, "failed to register DSI host: %d\n", ret);
-> -		goto err_ddp_comp_unregister;
-> -	}
-> -
->  	ret = mtk_dsi_create_conn_enc(drm, dsi);
->  	if (ret) {
->  		DRM_ERROR("Encoder create failed with %d\n", ret);
-> @@ -1060,8 +1054,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
->  	return 0;
->  
->  err_unregister:
-> -	mipi_dsi_host_unregister(&dsi->host);
-> -err_ddp_comp_unregister:
->  	mtk_ddp_comp_unregister(drm, &dsi->ddp_comp);
->  	return ret;
->  }
-> @@ -1073,7 +1065,6 @@ static void mtk_dsi_unbind(struct device *dev, struct device *master,
->  	struct mtk_dsi *dsi = dev_get_drvdata(dev);
->  
->  	mtk_dsi_destroy_conn_enc(dsi);
-> -	mipi_dsi_host_unregister(&dsi->host);
->  	mtk_ddp_comp_unregister(drm, &dsi->ddp_comp);
->  }
->  
-> @@ -1097,31 +1088,36 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->  
->  	dsi->host.ops = &mtk_dsi_ops;
->  	dsi->host.dev = dev;
-> +	ret = mipi_dsi_host_register(&dsi->host);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to register DSI host: %d\n", ret);
-> +		return ret;
-> +	}
->  
->  	ret = drm_of_find_panel_or_bridge(dev->of_node, 0, 0,
->  					  &dsi->panel, &dsi->bridge);
->  	if (ret)
-> -		return ret;
-> +		goto err_unregister_host;
->  
->  	dsi->engine_clk = devm_clk_get(dev, "engine");
->  	if (IS_ERR(dsi->engine_clk)) {
->  		ret = PTR_ERR(dsi->engine_clk);
->  		dev_err(dev, "Failed to get engine clock: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	dsi->digital_clk = devm_clk_get(dev, "digital");
->  	if (IS_ERR(dsi->digital_clk)) {
->  		ret = PTR_ERR(dsi->digital_clk);
->  		dev_err(dev, "Failed to get digital clock: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	dsi->hs_clk = devm_clk_get(dev, "hs");
->  	if (IS_ERR(dsi->hs_clk)) {
->  		ret = PTR_ERR(dsi->hs_clk);
->  		dev_err(dev, "Failed to get hs clock: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> @@ -1129,33 +1125,35 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->  	if (IS_ERR(dsi->regs)) {
->  		ret = PTR_ERR(dsi->regs);
->  		dev_err(dev, "Failed to ioremap memory: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	dsi->phy = devm_phy_get(dev, "dphy");
->  	if (IS_ERR(dsi->phy)) {
->  		ret = PTR_ERR(dsi->phy);
->  		dev_err(dev, "Failed to get MIPI-DPHY: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	comp_id = mtk_ddp_comp_get_id(dev->of_node, MTK_DSI);
->  	if (comp_id < 0) {
->  		dev_err(dev, "Failed to identify by alias: %d\n", comp_id);
-> -		return comp_id;
-> +		ret = comp_id;
-> +		goto err_unregister_host;
->  	}
->  
->  	ret = mtk_ddp_comp_init(dev, dev->of_node, &dsi->ddp_comp, comp_id,
->  				&mtk_dsi_funcs);
->  	if (ret) {
->  		dev_err(dev, "Failed to initialize component: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	irq_num = platform_get_irq(pdev, 0);
->  	if (irq_num < 0) {
-> -		dev_err(&pdev->dev, "failed to request dsi irq resource\n");
-> -		return -EPROBE_DEFER;
-> +		dev_err(&pdev->dev, "failed to get dsi irq_num: %d\n", irq_num);
-> +		ret = irq_num;
-> +		goto err_unregister_host;
->  	}
->  
->  	irq_set_status_flags(irq_num, IRQ_TYPE_LEVEL_LOW);
-> @@ -1163,14 +1161,24 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->  			       IRQF_TRIGGER_LOW, dev_name(&pdev->dev), dsi);
->  	if (ret) {
->  		dev_err(&pdev->dev, "failed to request mediatek dsi irq\n");
-> -		return -EPROBE_DEFER;
-> +		goto err_unregister_host;
->  	}
->  
->  	init_waitqueue_head(&dsi->irq_wait_queue);
->  
->  	platform_set_drvdata(pdev, dsi);
->  
-> -	return component_add(&pdev->dev, &mtk_dsi_component_ops);
-> +	ret = component_add(&pdev->dev, &mtk_dsi_component_ops);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to add component: %d\n", ret);
-> +		goto err_unregister_host;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_unregister_host:
-> +	mipi_dsi_host_unregister(&dsi->host);
-> +	return ret;
->  }
->  
->  static int mtk_dsi_remove(struct platform_device *pdev)
-> @@ -1179,6 +1187,7 @@ static int mtk_dsi_remove(struct platform_device *pdev)
->  
->  	mtk_output_dsi_disable(dsi);
->  	component_del(&pdev->dev, &mtk_dsi_component_ops);
-> +	mipi_dsi_host_unregister(&dsi->host);
->  
->  	return 0;
->  }
-
-
+SGksIExlb25hcmQNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMZW9u
+YXJkIENyZXN0ZXoNCj4gU2VudDogRnJpZGF5LCBKdW5lIDI4LCAyMDE5IDE6NTkgUE0NCj4gVG86
+IEFuc29uIEh1YW5nIDxhbnNvbi5odWFuZ0BueHAuY29tPjsgc2hhd25ndW9Aa2VybmVsLm9yZzsg
+SmFja3kNCj4gQmFpIDxwaW5nLmJhaUBueHAuY29tPjsgbC5zdGFjaEBwZW5ndXRyb25peC5kZQ0K
+PiBDYzogcm9iaCtkdEBrZXJuZWwub3JnOyBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsgcy5oYXVlckBw
+ZW5ndXRyb25peC5kZTsNCj4ga2VybmVsQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5j
+b207IHZpcmVzaC5rdW1hckBsaW5hcm8ub3JnOw0KPiBEYW5pZWwgQmFsdXRhIDxkYW5pZWwuYmFs
+dXRhQG54cC5jb20+OyBBYmVsIFZlc2EgPGFiZWwudmVzYUBueHAuY29tPjsNCj4gYW5kcmV3LnNt
+aXJub3ZAZ21haWwuY29tOyBjY2Fpb25lQGJheWxpYnJlLmNvbTsgYW5ndXNAYWtrZWEuY2E7DQo+
+IGFneEBzaWd4Y3B1Lm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS0N
+Cj4ga2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5v
+cmc7IGRsLWxpbnV4LWlteA0KPiA8bGludXgtaW14QG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBb
+UEFUQ0ggMS8yXSBhcm02NDogZHRzOiBpbXg4bXE6IENvcnJlY3QgT1BQIHRhYmxlIGFjY29yZGlu
+ZyB0bw0KPiBsYXRlc3QgZGF0YXNoZWV0DQo+IA0KPiBPbiAyOC4wNi4yMDE5IDA2OjM3LCBBbnNv
+bi5IdWFuZ0BueHAuY29tIHdyb3RlOg0KPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFu
+Z0BueHAuY29tPg0KPiA+DQo+ID4gQWNjb3JkaW5nIHRvIGxhdGVzdCBkYXRhc2hlZXQgKFJldi4x
+LCAxMC8yMDE4KSBmcm9tIGJlbG93IGxpbmtzLCBpbg0KPiA+IHRoZSBjb25zdW1lciBkYXRhc2hl
+ZXQsIDEuNUdIeiBpcyBtZW50aW9uZWQgYXMgaGlnaGVzdCBvcHAgYnV0IGRlcGVuZHMNCj4gPiBv
+biBzcGVlZCBncmFkaW5nIGZ1c2UsIGFuZCBpbiB0aGUgaW5kdXN0cmlhbCBkYXRhc2hlZXQsIDEu
+M0dIeiBpcw0KPiA+IG1lbnRpb25lZCBhcyBoaWdoZXN0IG9wcCBidXQgZGVwZW5kcyBvbiBzcGVl
+ZCBncmFkaW5nIGZ1c2UuIDEuNUdIeiBhbmQNCj4gPiAxLjNHSHogb3BwIHVzZSBzYW1lIHZvbHRh
+Z2UsIHNvIG5vIG5lZWQgZm9yIGNvbnN1bWVyIHBhcnQgdG8gc3VwcG9ydA0KPiA+IDEuM0dIeiBv
+cHAsIHdpdGggc2FtZSB2b2x0YWdlLCBDUFUgc2hvdWxkIHJ1biBhdCBoaWdoZXN0IGZyZXF1ZW5j
+eSBpbg0KPiA+IG9yZGVyIHRvIGdvIGludG8gaWRsZSBhcyBxdWljayBhcyBwb3NzaWJsZSwgdGhp
+cyBjYW4gc2F2ZSBwb3dlci4NCj4gDQo+IEkgbG9va2VkIGF0IHRoZSBzYW1lIGRhdGFzaGVldHMg
+YW5kIGl0J3Mgbm90IGNsZWFyIHRvIG1lIHRoYXQgMS4zIEdoeiBzaG91bGQNCj4gYmUgZGlzYWxs
+b3dlZCBmb3IgY29uc3VtZXIgcGFydHMuIFBvd2VyIGNvbnN1bXB0aW9uIGluY3JlYXNlcyB3aXRo
+IGJvdGgNCj4gdm9sdGFnZSBhbmQgZnJlcXVlbmN5IHNvIGhhdmluZyB0d28gT1BQcyB3aXRoIHNh
+bWUgdm9sdGFnZSBkb2VzIG1ha2UNCj4gc2Vuc2UuDQoNClRoZSBjb25zdW1lciBwYXJ0IGRhdGFz
+aGVldCBkb2VzIE5PVCBtZW50aW9uIDEuM0dIeiBhdCBhbGwsIHNvIGNvbnN1bWVyIHBhcnQgT05M
+WQ0Kc3VwcG9ydCAxR0h6LzEuNUdIeiwgYW5kIGluZHVzdHJpYWwgcGFydCBPTkxZIHN1cHBvcnQg
+ODAwTUh6LzEuM0dIeiwgdGhpcyBpcyB3aGF0DQp3ZSBkaWQgaW4gb3VyIGludGVybmFsIHRyZWUg
+YW5kIE5QSSByZWxlYXNlLCBzbyBiZXR0ZXIgdG8gbWFrZSB0aGVtIGFsaWduZWQsIG90aGVyd2lz
+ZSwNCndlIGhhdmUgdG8gY2hhbmdlIGl0IHdoZW4ga2VybmVsIHVwZ3JhZGUuDQoNCkFuZCBub3Jt
+YWxseSwgd2l0aCBzYW1lIHZvbHRhZ2UsIGkuTVggU29DcyBhbHdheXMgcnVuIGF0IGhpZ2hlc3Qg
+ZnJlcXVlbmN5LCBzbyBpdCBpcyBiZXR0ZXINCnRvIGtlZXAgdGhlIHJ1bGUsIG90aGVyd2lzZSBj
+dXN0b21lciBtYXkgYXNrLCBob3cgYWJvdXQgdXNpbmcgc2FtZSB2b2x0YWdlIHRvIHJ1biBhdCAx
+LjJHSHogb3INCjEuMUdIej8NCg0KPiANCj4gPiAgIAkJCW9wcC1oeiA9IC9iaXRzLyA2NCA8MTMw
+MDAwMDAwMD47DQo+ID4gICAJCQlvcHAtbWljcm92b2x0ID0gPDEwMDAwMDA+Ow0KPiA+IC0JCQlv
+cHAtc3VwcG9ydGVkLWh3ID0gPDB4Yz4sIDwweDc+Ow0KPiA+ICsJCQkvKiBJbmR1c3RyaWFsIG9u
+bHkgYnV0IHJlbHkgb24gc3BlZWQgZ3JhZGluZyAqLw0KPiA+ICsJCQlvcHAtc3VwcG9ydGVkLWh3
+ID0gPDB4Yz4sIDwweDQ+Ow0KPiANCj4gQ29tbWVudCBpcyBmYWxzZSwgeW91J3JlIGV4cGxpY2l0
+bHkgZXhjbHVkaW5nIGNvbnN1bWVyIHBhcnRzIHZpYSB0aGUgc2Vjb25kDQo+IGVsZW1lbnQuDQoN
+ClllcywgdGhhdCBpcyB3aGF0IEkgbWVhbnQgdG8gZG8sIGFzIHdlIG5vIG5lZWQgdG8gc3VwcG9y
+dCAxLjNHSHogZm9yIGNvbnN1bWVyDQpwYXJ0LCB3aXRoIDEuMFYsIGNvbnN1bWVyIHBhcnQgY2Fu
+IHJ1biB1cCB0byAxLjVHSHouDQoNCj4gDQo+ID4gICAJCQlvcHAtaHogPSAvYml0cy8gNjQgPDE1
+MDAwMDAwMDA+Ow0KPiA+ICAgCQkJb3BwLW1pY3Jvdm9sdCA9IDwxMDAwMDAwPjsNCj4gPiAgIAkJ
+CS8qIENvbnN1bWVyIG9ubHkgYnV0IHJlbHkgb24gc3BlZWQgZ3JhZGluZyAqLw0KPiA+IC0JCQlv
+cHAtc3VwcG9ydGVkLWh3ID0gPDB4OD4sIDwweDc+Ow0KPiA+ICsJCQlvcHAtc3VwcG9ydGVkLWh3
+ID0gPDB4OD4sIDwweDM+Ow0KPiANCj4gSWYgeW91IGRvbid0IHdhbnQgdG8gcmVseSBvbiB0aGUg
+ZmFjdCB0aGF0IG9ubHkgY29uc3VtZXIgcGFydHMgc2hvdWxkIGJlDQo+IGZ1c2VkIGZvciAxLjUg
+R2h6IHRoZW4gcGxlYXNlIGRlbGV0ZSB0aGUgY29tbWVudC4NCg0KRG9uJ3QgcXVpdGUgdW5kZXJz
+dGFuZCwgMS41R0h6IGlzIGluZGVlZCBjb25zdW1lciBPTkxZLCBidXQgaWYgdGhlIGNvbnN1bWVy
+DQpwYXJ0IGlzIGZ1c2VkIHRvIDFHSHosIHRoZW4gMS41R0h6IGlzIGFsc28gTk9UIGF2YWlsYWJs
+ZSwgc28gaXQgYWxzbyByZWx5IG9uIHNwZWVkDQpncmFkaW5nLiBTbyBrZWVwIHRoZSBjb21tZW50
+IHRoZXJlIGlzIE9LPw0KDQpUaGFua3MsDQpBbnNvbi4NCg0K
