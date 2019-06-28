@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91B4C5A18F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61DE35A177
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 18:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726894AbfF1Q4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 12:56:37 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:42502 "EHLO
+        id S1726673AbfF1Q4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 12:56:33 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:42410 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726605AbfF1Q4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 12:56:37 -0400
+        with ESMTP id S1726605AbfF1Q4d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 12:56:33 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=aC9fWPYqc3WgfJHm0DcB4vDnamPIlvUEdZf1IR7iVGA=; b=C2SlVTwCB5LA
-        48CwtqPxDjOYZHk4Vq8CvPo/1o4VALbxwkiqKEKYnGTeJKcvVl6ynlushqpdiO8HqBChpDVM6DW4c
-        SEtAeGdoT/f+MjYcE2bH1HYGZhCRB8WT21CAh/nUBSdVvEqnv7xv47QLNpJo2ZaqWZirU+/OJfiY1
-        ZpNvs=;
+        List-Archive; bh=ecIA+WKfp5Dim18TsWkMPLdTo8UyAuEPpYiOnFVbOeE=; b=bgpibUjtu/Wu
+        dqFPepZZSSjLL8ajojpvvnFlDJik2XlCFpoq3h4EesaqHWlKbN8/neuLZQ5Iu0gF4jVT/N1bD2zeV
+        aZZ0OKrngbxsDJwahuyjET6lwbhNlKeKlZ9ZCceKovxUZdEiKmzfBl5qxlJ3ejE75xniMGGy+MNa7
+        inXsg=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=finisterre.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hguAm-0007BU-Hg; Fri, 28 Jun 2019 16:56:28 +0000
+        id 1hguAm-0007Bd-P3; Fri, 28 Jun 2019 16:56:28 +0000
 Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 0CCBA44004B; Fri, 28 Jun 2019 17:56:28 +0100 (BST)
+        id 3FB8B44004C; Fri, 28 Jun 2019 17:56:28 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     alsa-devel@alsa-project.org,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: meson: axg-card: remove useless check on codec" to the asoc tree
-In-Reply-To: <20190628081708.22039-1-jbrunet@baylibre.com>
+Subject: Applied "ASoC: soc-core: defer card registration if codec component is missing" to the asoc tree
+In-Reply-To: <20190627121350.21027-2-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190628165628.0CCBA44004B@finisterre.sirena.org.uk>
+Message-Id: <20190628165628.3FB8B44004C@finisterre.sirena.org.uk>
 Date:   Fri, 28 Jun 2019 17:56:28 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -48,7 +47,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: meson: axg-card: remove useless check on codec
+   ASoC: soc-core: defer card registration if codec component is missing
 
 has been applied to the asoc tree at
 
@@ -73,35 +72,46 @@ to this mail.
 Thanks,
 Mark
 
-From 8fc22fa4b2cd983e4c542d1841b3d2212ad18ed4 Mon Sep 17 00:00:00 2001
+From af18b13fedae4637b439d1265038b30929ca5a4c Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Fri, 28 Jun 2019 10:17:08 +0200
-Subject: [PATCH] ASoC: meson: axg-card: remove useless check on codec
+Date: Thu, 27 Jun 2019 14:13:49 +0200
+Subject: [PATCH] ASoC: soc-core: defer card registration if codec component is
+ missing
 
-While checking cpus before dereferencing the pointer is required, it is
-not necessary for codecs. 'codec' can't possibly be NULL in the loop
+Like cpus and platforms, defer sound card initialization if the codec
+component is missing when initializing the dai_link
 
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/axg-card.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ sound/soc/soc-core.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index 70bb0cbad233..14a8321744da 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -118,8 +118,7 @@ static void axg_card_clean_references(struct axg_card *priv)
- 			if (link->cpus)
- 				of_node_put(link->cpus->of_node);
- 			for_each_link_codecs(link, j, codec)
--				if (codec)
--					of_node_put(codec->of_node);
-+				of_node_put(codec->of_node);
+diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
+index 05cd710273b6..b5f3c09311c3 100644
+--- a/sound/soc/soc-core.c
++++ b/sound/soc/soc-core.c
+@@ -1071,12 +1071,20 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 				link->name);
+ 			return -EINVAL;
  		}
++
+ 		/* Codec DAI name must be specified */
+ 		if (!codec->dai_name) {
+ 			dev_err(card->dev, "ASoC: codec_dai_name not set for %s\n",
+ 				link->name);
+ 			return -EINVAL;
+ 		}
++
++		/*
++		 * Defer card registration if codec component is not added to
++		 * component list.
++		 */
++		if (!soc_find_component(codec))
++			return -EPROBE_DEFER;
  	}
  
+ 	/*
 -- 
 2.20.1
 
