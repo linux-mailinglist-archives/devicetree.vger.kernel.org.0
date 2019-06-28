@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB4175A7BB
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 01:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62E215A7C2
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 01:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726947AbfF1Xrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 19:47:53 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:55535 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726643AbfF1Xrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 19:47:52 -0400
-Received: by mail-wm1-f68.google.com with SMTP id a15so10580727wmj.5;
-        Fri, 28 Jun 2019 16:47:51 -0700 (PDT)
+        id S1726672AbfF1Xtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 19:49:51 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:42660 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726643AbfF1Xtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 19:49:51 -0400
+Received: by mail-wr1-f65.google.com with SMTP id x17so7838293wrl.9;
+        Fri, 28 Jun 2019 16:49:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=WpQcKsFD0NKZ7fPE5iTV9T6ToE9rNRS6uT4dH8oCPLc=;
-        b=TWvOtAdomHPpfqXEDjnGsUAE3rCGlYqAN8dwbsRG1MOzi5mIpkI8S96tuE/Kpa2n+B
-         Jo1O0Xs8KFecgA39TZq8DETewatPBOCRCN3NeiriIwStN5Ndeby3p39OFU4WVMISyxU+
-         LNEovz2X/nWrrvbC8zBvcDYzWt0Tfpjup3ksupEMAN6CG92A/piwxTfEzBw7bOGKgqgD
-         pP4c1YFtF1XLhmrbm3hfbQWaXuxAG2JfA6rCx2iekseDJ0RyTKZTbEUfMEgouKmJg7cZ
-         WvwWbI21l39jAFtFVdXg5Cs8/+zfbca73AR0vrdT+95M4lIGJIz3+ZkJn5/2067p6gMy
-         GQuA==
+        bh=Q7IEImnfjv+A3lRFXyTXResy2KVoDPFK5pOWIOXw67k=;
+        b=vG3d8acLaTa36M8Qk+1Ig6NnkHOM4RXcyJFhhNYvfAeittbGLBIk42dMPmgjNUsdn5
+         FuYVQa5cR7tHr2HSfddbCSHiQE09EEBRNwSaFvQfSxIOOjgnN2uv5TAD5a7xmftR1T5T
+         pwq8FCkeB+h/d/mMeVatdy/dOi9jzYpHc8DizVguo7L2LBu1Frni/N7D6Ji4+QESaydA
+         6CkAd7WRlSIFr1DbePAevzpDomH5OxStI3Qj/Gndq12vMLl42ZMaSDAnZbNnui7niT0N
+         L8iltdGDiezmYdLexEiKRS5zIuJc3XejBOaAIAXAiVoL2uKNPXt8Eu2bcyM+3tG1iuQq
+         qUqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WpQcKsFD0NKZ7fPE5iTV9T6ToE9rNRS6uT4dH8oCPLc=;
-        b=Kp9s3E2xWUq9WjuPy6QM8CVFH50sKZNYIhqyRgIpi8OvssVA53zNnEAnMFiXl4uiJB
-         rLzbSSneuKoRkEz+ygieQPLl97X04a2eJD94H2w98iFSEHHPIIru284evTFkok2WdD2G
-         QYp8DSRbEte8vOcvItybJHnznXPyMRKzjCTOQ80knN4sHXl0Tn5VntvlG4PXfwERF4D3
-         nR+6tsJCbiuPVqo+jjivq3pe5B563tX/gRriURBI1NJj8IcOt/AZchxxTQh/r5WP93ws
-         6w5/4PJ8dFb7+sx2Fa9/tjKjMpb3y+ugS0P7KNtORZ7nwf1C2T3fOGblSet3mRvcwzog
-         9g5A==
-X-Gm-Message-State: APjAAAX4aTKAPaJwbhtMFi1WXGOphnCx/DTD039miILSkOpVfSHI2yte
-        7SRimclU8JPFesdUFsBH7os=
-X-Google-Smtp-Source: APXvYqw6ZEMnpha5XCDbIvNtiOuep0jp4imvqTJh2Woy7CGxoh5T4N0DDfQGVf/ZJoBoO90+uDIqLg==
-X-Received: by 2002:a7b:c313:: with SMTP id k19mr8328858wmj.2.1561765670272;
-        Fri, 28 Jun 2019 16:47:50 -0700 (PDT)
+        bh=Q7IEImnfjv+A3lRFXyTXResy2KVoDPFK5pOWIOXw67k=;
+        b=efl1VCKG1NYIg7r+3lfhRYNejOx43sBJ1Kc0eXNNu6mVfCP1b0u039z0+Gu5t4YtbY
+         rH+BL4TgleBliOVN31BPRCOzkDbe1OViXRs5DldV77zTQClyvnXEgV3lbtu7UaGBUNih
+         W+F4nIAEtEmc3qDk51CGuTm97WqMsg6fwc0T/DaDqtDBuvIFuZ/ceEccnT854sJsLgmx
+         xQQTyB+GxosAkuVrNL6nd1BITc7oyKvafTWroIV8LG61yi+j3JzAzyBBqJNqQ6brsZJe
+         K8dLlJropWuXwSirFrKY+Hu6fl45XrpiOryzY2/+XqBMEpWjQ5H2CKPy5PkvaDERzOFB
+         NNnA==
+X-Gm-Message-State: APjAAAX2eakf8urgZovgroMVsn46EWD7AxdNBWQ5jVyDumcByputo/Pk
+        lqctfBICko/r4hQMy/9VYlw=
+X-Google-Smtp-Source: APXvYqxqv88pnNrGXl9e9tW3mOegaQe/CRnhjJlMga0gyKaLHiB23YZKxAYNn9ymY4Gf8UHD1YMp7A==
+X-Received: by 2002:adf:fecd:: with SMTP id q13mr9877353wrs.97.1561765788237;
+        Fri, 28 Jun 2019 16:49:48 -0700 (PDT)
 Received: from localhost (p200300E41F2AB200021F3CFFFE37B91B.dip0.t-ipconnect.de. [2003:e4:1f2a:b200:21f:3cff:fe37:b91b])
-        by smtp.gmail.com with ESMTPSA id 18sm2622459wmg.43.2019.06.28.16.47.48
+        by smtp.gmail.com with ESMTPSA id s188sm3658105wmf.40.2019.06.28.16.49.47
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 28 Jun 2019 16:47:48 -0700 (PDT)
-Date:   Sat, 29 Jun 2019 01:47:47 +0200
+        Fri, 28 Jun 2019 16:49:47 -0700 (PDT)
+Date:   Sat, 29 Jun 2019 01:49:46 +0200
 From:   Thierry Reding <thierry.reding@gmail.com>
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>,
@@ -59,20 +59,18 @@ Cc:     Heiko Stuebner <heiko@sntech.de>,
         Eric Anholt <eric@anholt.net>,
         Jeffy Chen <jeffy.chen@rock-chips.com>,
         =?utf-8?B?U3TDqXBoYW5l?= Marchesin <marcheu@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v5 1/7] dt-bindings: Add panel-timing subnode to
- simple-panel
-Message-ID: <20190628234747.GA1189@mithrandir>
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override
+ typical timing
+Message-ID: <20190628234946.GB1189@mithrandir>
 References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-2-dianders@chromium.org>
+ <20190401171724.215780-3-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4Ckj6UjgE2iN1+kY"
+        protocol="application/pgp-signature"; boundary="NDin8bjvE/0mNLFQ"
 Content-Disposition: inline
-In-Reply-To: <20190401171724.215780-2-dianders@chromium.org>
+In-Reply-To: <20190401171724.215780-3-dianders@chromium.org>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -80,30 +78,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4Ckj6UjgE2iN1+kY
+--NDin8bjvE/0mNLFQ
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 01, 2019 at 10:17:18AM -0700, Douglas Anderson wrote:
+On Mon, Apr 01, 2019 at 10:17:19AM -0700, Douglas Anderson wrote:
 > From: Sean Paul <seanpaul@chromium.org>
 >=20
-> This patch adds a new subnode to simple-panel allowing us to override
-> the typical timing expressed in the panel's display_timing.
+> This patch adds the ability to override the typical display timing for a
+> given panel. This is useful for devices which have timing constraints
+> that do not apply across the entire display driver (eg: to avoid
+> crosstalk between panel and digitizer on certain laptops). The rules are
+> as follows:
+>=20
+> - panel must not specify fixed mode (since the override mode will
+>   either be the same as the fixed mode, or we'll be unable to
+>   check the bounds of the overried)
+> - panel must specify at least one display_timing range which will be
+>   used to ensure the override mode fits within its bounds
 >=20
 > Changes in v2:
->  - Split out the binding into a new patch (Rob)
->  - display-timings is a new section (Rob)
->  - Use the full display-timings subnode instead of picking the timing
->    out (Rob/Thierry)
+>  - Parse the full display-timings node (using the native-mode) (Rob)
 > Changes in v3:
->  - Go back to using the timing subnode directly, but rename to
->    panel-timing (Rob)
+>  - No longer parse display-timings subnode, use panel-timing (Rob)
 > Changes in v4:
->  - Simplify desc. for when override should be used (Thierry/Laurent)
->  - Removed Rob H review since it's been a year and wording changed
+>  - Don't add mode from timing if override was specified (Thierry)
+>  - Add warning if timing and fixed mode was specified (Thierry)
+>  - Don't add fixed mode if timing was specified (Thierry)
+>  - Refactor/rename a bit to avoid extra indentation from "if" tests
+>  - i should be unsigned (Thierry)
+>  - Add annoying WARN_ONs for some cases (Thierry)
+>  - Simplify 'No display_timing found' handling (Thierry)
+>  - Rename to panel_simple_parse_override_mode() (Thierry)
 > Changes in v5:
->  - Removed bit about OS may ignore (Rob/Ezequiel)
+>  - Added Heiko's Tested-by
 >=20
 > Cc: Doug Anderson <dianders@chromium.org>
 > Cc: Eric Anholt <eric@anholt.net>
@@ -114,36 +123,35 @@ On Mon, Apr 01, 2019 at 10:17:18AM -0700, Douglas Anderson wrote:
 > Cc: Thierry Reding <thierry.reding@gmail.com>
 > Cc: devicetree@vger.kernel.org
 > Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-rockchip@lists.infradead.org
 > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Tested-by: Heiko Stuebner <heiko@sntech.de>
 > ---
 >=20
->  .../bindings/display/panel/simple-panel.txt   | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
-
-Sorry for taking so long to get back to this, sounds good to me:
+>  drivers/gpu/drm/panel/panel-simple.c | 109 +++++++++++++++++++++++++--
+>  1 file changed, 104 insertions(+), 5 deletions(-)
 
 Acked-by: Thierry Reding <thierry.reding@gmail.com>
 
---4Ckj6UjgE2iN1+kY
+--NDin8bjvE/0mNLFQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0Wpx0ACgkQ3SOs138+
-s6FkAA//dq1vkl6yNj7/hlMzdjFe9maoEW7fwyt9MG/kUuV2+7K/iB2hj9M9DaKS
-36rSIataHUoMbKAZprhPFKpa4Ux0KVuFcld+pU/GfvX1ux+omwfYZioEtkacrlFa
-FVpTSbqsQm/A1a6jTK/44si7bTgnG3AiJ7Nz+7+VBEn0Fsf+Hua9GUbwMHCPz1lb
-fRuJXIEGj6s9ZnCd/2YevxcrAscypxSeU5kAePyZF2i7bdeta2TR7655vYQkdqOb
-nNFz+2R53UC5P4K9ekNZPue3QivyLjyN9M+OCmf+uSkdCK2RLF/lGKDtzcxtbMJF
-FK4bsJRqF0icbG7bQucnIIIf5zgUFWuURWyzciqEa0TjnkqIy4Ugdw7iUY6MERlE
-fn2u1wJAjWuztuyl9FSOgBs86zFvlnW79FkX7q4Db4BZSU1c7Vld08Cw0/scsuuW
-fwJMzZSf/vSshfuJrXRo8wB+YsU7WgY0Y6v7IYx+5r3gvxKAGy02i/rjvPRb+e9c
-0kvQKZqBYPxZDv3xkWZHLD4fZo5vkluDnxxTU/6omXTRCsqIAS26XZ8jlXE5fcHk
-0hfy2HaCXhG7ckpQusum9uasjhcpQg3QKxul3oqM2iD1XvJIwcBwJq15pMvUm5w3
-Qqm5DatatB3t0U+G84KTeIEzFIBNjeLY0kNjTOa0Ke9GRDyGoEU=
-=lrYn
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0Wp5oACgkQ3SOs138+
+s6HkOA//aJRj++gDyHqyv+35Dnz1qJOb04MLQT25wHlW53LhiXm6APFDfKgu6GY1
+jEhdqsfBT7y0c+yM8SQRwJx44H4QN8YbkqpH0jFsvLli7S8oalKWtu6ti1nRv1XB
+oW2oTzn340rTKD1zeqQL1A26GF7G3COyKIOBhW+yHNAGA4gqi3XMi3RwKP0tLYWa
+1zpI7ZMQw8kwprzPZZbsEnfRYj1R5YUfBO1252HaixMStJbJGj5vfhKFE2H7wTJv
+zCz0JlxX6kepkO7aHmrwOWHYgnvrcCaphJy8YBWMhsBRN7UdOlLjjcBtvqGidKbc
+5bBZucu8NOKSBVKP9V7HlWgQjoCI4uPXSJ+Z9G+NemzcqFtLOYAgGezKiTVjnw1T
+AvEbEQ2ed9MPm2Yt93ozVgR0fvTqeJu0t5ybGaVhUXqevtek7HTCDbCiY+oFLBGs
+ubaXXPCJaYls415YuHWxeIOBuyuyAkSihPy9JB2SZ5jZbXgRiXFrppGI+/zcTklX
+InfVw9QwQMMHay+FhcnET0HkWiD47kvEnVBmaeHoMEnYKrE3p1IVZMXlzQsLqefL
+ADaFGSl0UIS5kyS6yB/b82C2XkyuyFqG40ohDu3qpa2ShzY7iovd1rJBRFmI22/3
+05j4j/3dS0eGTqoVVM1zpmdAaIvHaw7GbVjIEsd0BtG+51TIhW4=
+=P4R1
 -----END PGP SIGNATURE-----
 
---4Ckj6UjgE2iN1+kY--
+--NDin8bjvE/0mNLFQ--
