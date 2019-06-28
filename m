@@ -2,104 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9318059D2D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 15:46:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7FF59D8F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 16:13:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbfF1NqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 09:46:01 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:44849 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726619AbfF1NqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 09:46:01 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 2633B240009;
-        Fri, 28 Jun 2019 13:45:54 +0000 (UTC)
-Date:   Fri, 28 Jun 2019 15:45:53 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v4 03/13] dt-bindings: net: Add a YAML schemas for the
- generic MDIO options
-Message-ID: <20190628134553.l445r5idtejwlryl@flea>
-References: <cover.e80da8845680a45c2e07d5f17280fdba84555b8a.1561649505.git-series.maxime.ripard@bootlin.com>
- <e99ff7377a0d3d140cf62200fd9d62c108dac24e.1561649505.git-series.maxime.ripard@bootlin.com>
- <CAL_JsqKQoj6x-8cMxp2PFQLcu93aitGO2wALDYaH2h72cPSyfg@mail.gmail.com>
- <20190627155708.myxychzngc3trxhc@flea>
- <CAL_JsqLhUP62vP=RY8Bn_0X92hFphbk_gLqi4K48us56Gxw7tA@mail.gmail.com>
+        id S1726657AbfF1ONp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 10:13:45 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:34370 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726616AbfF1ONp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 10:13:45 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 5FF8B634C7F;
+        Fri, 28 Jun 2019 17:13:27 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.89)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1hgrd0-0000lV-Ns; Fri, 28 Jun 2019 17:13:26 +0300
+Date:   Fri, 28 Jun 2019 17:13:26 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Luis Oliveira <Luis.Oliveira@synopsys.com>
+Cc:     mchehab@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
+        robh@kernel.org, nicolas.ferre@microchip.com,
+        paulmck@linux.ibm.com, mark.rutland@arm.com, kishon@ti.com,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Joao.Pinto@synopsys.com
+Subject: Re: [v4 1/6] dt-bindings: media: Document bindings for DW MIPI CSI-2
+ Host
+Message-ID: <20190628141326.swgl3kg4fj5pmlqx@valkosipuli.retiisi.org.uk>
+References: <1560280855-18085-1-git-send-email-luis.oliveira@synopsys.com>
+ <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zjmpquddmsmyw3nm"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLhUP62vP=RY8Bn_0X92hFphbk_gLqi4K48us56Gxw7tA@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Luis,
 
---zjmpquddmsmyw3nm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thank you for the patchset.
 
-On Thu, Jun 27, 2019 at 10:06:57AM -0600, Rob Herring wrote:
-> On Thu, Jun 27, 2019 at 9:57 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > +
-> > > > +        reset-gpios = <&gpio2 5 1>;
-> > > > +        reset-delay-us = <2>;
-> > > > +
-> > > > +        ethphy0: ethernet-phy@1 {
-> > > > +            reg = <1>;
-> > >
-> > > Need a child node schema to validate the unit-address and reg property.
-> >
-> > This should be already covered by the ethernet-phy.yaml schemas
-> > earlier in this series.
->
-> Partially, yes.
->
-> > Were you expecting something else?
->
-> That would not prevent having a child node such as 'foo {};'  or
-> 'foo@bad {};'. It would also not check valid nodes named something
-> other than 'ethernet-phy'.
+On Tue, Jun 11, 2019 at 09:20:50PM +0200, Luis Oliveira wrote:
+> From: Luis Oliveira <lolivei@synopsys.com>
+> 
+> Add bindings for Synopsys DesignWare MIPI CSI-2 host.
+> 
+> Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
+> ---
+> Changelog
+> v3-v4
+> - remove "plat" from the block name @rob @laurent
+> - remove "phy-names" when single-entry @rob
+> - remove "snps,output-type" -> went to the driver config @laurent
+> 
+>  .../devicetree/bindings/media/snps,dw-csi.txt      | 41 ++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-csi.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/snps,dw-csi.txt b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
+> new file mode 100644
+> index 0000000..613b7f9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
+> @@ -0,0 +1,41 @@
+> +Synopsys DesignWare CSI-2 Host controller
+> +
+> +Description
+> +-----------
+> +
+> +This HW block is used to receive image coming from an MIPI CSI-2 compatible
+> +camera.
+> +
+> +Required properties:
+> +- compatible		: shall be "snps,dw-csi"
+> +- reg			: physical base address and size of the device memory
+> +			  mapped registers;
+> +- interrupts		: DW CSI-2 Host interrupts
+> +- phys			: List of one PHY specifier (as defined in
+> +			  Documentation/devicetree/bindings/phy/phy-bindings.txt).
+> +			  This PHY is a MIPI DPHY working in RX mode.
+> +- resets		: Reference to a reset controller (optional)
+> +
+> +The per-board settings:
+> + - port sub-node describing a single endpoint connected to the camera as
+> +   described in video-interfaces.txt[1].
 
-Right, but listing the nodes won't either, since we can't enable
-additionalProperties in that schema. So any node that wouldn't match
-ethernet-phy@.* wouldn't be validated, but wouldn't generate a warning
-either.
+Which endpoint properties in video-interfaces.txt are relevant for the
+hardware? Which values may they have?
 
-Maxime
+> +
+> +Example:
+> +
+> +	csi2: csi2@3000 {
+> +		compatible = "snps,dw-csi";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = < 0x03000 0x7FF>;
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+reg = <0x03000 0x7FF>;
 
---zjmpquddmsmyw3nm
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		phys = <&mipi_dphy_rx>;
+> +		resets = <&dw_rst 1>;
+> +		interrupts = <2>;
+> +
+> +		port@0 {
+> +			reg = <0>;
 
------BEGIN PGP SIGNATURE-----
+You can drop "@0" and the reg property.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRYaEQAKCRDj7w1vZxhR
-xcfbAP0StcNKYljUjaKh+7kNRQmW2KY7UHR2qG+yIslRuaKsBwEA9WACBZA+N2PQ
-q0Mqev0oV23zbWU9jcIrJV2ljPCzGwE=
-=Klyx
------END PGP SIGNATURE-----
+> +			csi_ep1: endpoint {
+> +				remote-endpoint = <&camera_1>;
+> +				data-lanes = <1 2>;
+> +			};
+> +		};
+> +	};
 
---zjmpquddmsmyw3nm--
+-- 
+Kind regards,
+
+Sakari Ailus
