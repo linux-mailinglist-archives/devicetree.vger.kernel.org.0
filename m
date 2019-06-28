@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2161559E57
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 17:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76FD259E8B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 17:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726716AbfF1PCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 11:02:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57470 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726616AbfF1PCz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jun 2019 11:02:55 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B51F420828;
-        Fri, 28 Jun 2019 15:02:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561734174;
-        bh=z3Dn3El1yjq4ZvN1Ri3867ZpWWj2G37nsF3RYxODv08=;
-        h=From:To:Cc:Subject:Date:From;
-        b=VCyAWtWRCcxtcvbSW5pxWgQrde8RnPPz1zdlD2ixppQo/PDi+CBqgtAsqsMVxobpb
-         AjblYUQ9hY9M8OLsC6F8WonNQSvHx9129A/Hzl48hoAJb7tHajKy4Za2pDmL4R7Yqx
-         dXdADIXOR88GbSDZZMxCuwwdTOnYUTymQdEZReDM=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Tudor.Ambarus@microchip.com
-Subject: [PATCHv6 RESEND] dt-bindings: cadence-quadspi: add options reset property
-Date:   Fri, 28 Jun 2019 10:02:45 -0500
-Message-Id: <20190628150245.23785-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726892AbfF1POI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 11:14:08 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:37008 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726835AbfF1POI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 11:14:08 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id x5SFDUEl004543;
+        Fri, 28 Jun 2019 18:13:30 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 20053)
+        id 58EE361FCC; Fri, 28 Jun 2019 18:13:30 +0300 (IDT)
+From:   Oshri Alkoby <oshrialkoby85@gmail.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
+        jarkko.sakkinen@linux.intel.com, jgg@ziepe.ca, arnd@arndb.de,
+        gregkh@linuxfoundation.org, oshrialkoby85@gmail.com,
+        oshri.alkoby@nuvoton.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, gcwilson@us.ibm.com,
+        kgoldman@us.ibm.com, nayna@linux.vnet.ibm.com,
+        dan.morav@nuvoton.com, tomer.maimon@nuvoton.com
+Subject: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
+Date:   Fri, 28 Jun 2019 18:13:25 +0300
+Message-Id: <20190628151327.206818-1-oshrialkoby85@gmail.com>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QSPI module can have an optional reset signals that will hold the
-module in a reset state.
+This patch set adds support for TPM devices that implement the I2C
+interface defined by TCG PTP specification:
+https://trustedcomputinggroup.org/wp-content/uploads/TCG_PC_Client_Platform_TPM_Profile_PTP_2.0_r1.03_v22.pdf
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v6: no change
-v5: document reset-names
-v4: no change
-v3: created base on review comments
-v2: did not exist
-v1: did not exist
----
- Documentation/devicetree/bindings/mtd/cadence-quadspi.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+The driver was tested on Raspberry-Pie 3, using Nuvoton NPCT75X TPM.
 
-diff --git a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
-index 4345c3a6f530..945be7d5b236 100644
---- a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
-+++ b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
-@@ -35,6 +35,9 @@ custom properties:
- 		  (qspi_n_ss_out).
- - cdns,tslch-ns : Delay in nanoseconds between setting qspi_n_ss_out low
-                   and first bit transfer.
-+- resets	: Must contain an entry for each entry in reset-names.
-+		  See ../reset/reset.txt for details.
-+- reset-names	: Must include either "qspi" and/or "qspi-ocp".
- 
- Example:
- 
-@@ -50,6 +53,8 @@ Example:
- 		cdns,fifo-depth = <128>;
- 		cdns,fifo-width = <4>;
- 		cdns,trigger-address = <0x00000000>;
-+		resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
-+		reset-names = "qspi", "qspi-ocp";
- 
- 		flash0: n25q00@0 {
- 			...
+changes
+-------
+
+v2:
+- Extended device tree binding description
+
+v1:
+- Initial version
+
+Oshri Alkoby (2):
+  dt-bindings: tpm: add the TPM I2C PTP device tree binding
+    documentation
+  char: tpm: add new driver for tpm i2c ptp
+
+ .../bindings/security/tpm/tpm-i2c-ptp.txt     |   24 +
+ drivers/char/tpm/Kconfig                      |   22 +
+ drivers/char/tpm/Makefile                     |    1 +
+ drivers/char/tpm/tpm_i2c_ptp.c                | 1099 +++++++++++++++++
+ 4 files changed, 1146 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c-ptp.txt
+ create mode 100644 drivers/char/tpm/tpm_i2c_ptp.c
+
 -- 
-2.20.0
+2.18.0
 
