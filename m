@@ -2,89 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B1DF5977F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 11:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C8359791
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 11:35:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726506AbfF1JbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 05:31:05 -0400
-Received: from relay1.mentorg.com ([192.94.38.131]:51497 "EHLO
-        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726385AbfF1JbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 05:31:05 -0400
-Received: from nat-ies.mentorg.com ([192.94.31.2] helo=svr-ies-mbx-01.mgc.mentorg.com)
-        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-        id 1hgnDj-0002lR-A5 from Harish_Kandiga@mentor.com ; Fri, 28 Jun 2019 02:31:03 -0700
-Received: from hkandiga-VirtualBox.ina-wifi.mentorg.com (137.202.0.90) by
- svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1) with Microsoft SMTP Server
- (TLS) id 15.0.1320.4; Fri, 28 Jun 2019 10:30:57 +0100
-From:   Harish Jenny K N <harish_kandiga@mentor.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>
-Subject: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-Date:   Fri, 28 Jun 2019 15:00:50 +0530
-Message-ID: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726431AbfF1Jff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 05:35:35 -0400
+Received: from foss.arm.com ([217.140.110.172]:43706 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726420AbfF1Jff (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Jun 2019 05:35:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 97EB928;
+        Fri, 28 Jun 2019 02:35:34 -0700 (PDT)
+Received: from lakrids.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27E9F3F718;
+        Fri, 28 Jun 2019 02:35:32 -0700 (PDT)
+Date:   Fri, 28 Jun 2019 10:35:30 +0100
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Subject: Re: [PATCH v6 2/3] fdt: add support for rng-seed
+Message-ID: <20190628093529.GB36437@lakrids.cambridge.arm.com>
+References: <20190612043258.166048-1-hsinyi@chromium.org>
+ <20190612043258.166048-3-hsinyi@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: SVR-IES-MBX-07.mgc.mentorg.com (139.181.222.7) To
- svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190612043258.166048-3-hsinyi@chromium.org>
+User-Agent: Mutt/1.11.1+11 (2f07cb52) (2018-12-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the device tree binding for the inverter gpio
-controller to configure the polarity of the gpio pins
-used by the consumers.
+On Wed, Jun 12, 2019 at 12:33:00PM +0800, Hsin-Yi Wang wrote:
+> Introducing a chosen node, rng-seed, which is an entropy that can be
+> passed to kernel called very early to increase initial device
+> randomness. Bootloader should provide this entropy and the value is
+> read from /chosen/rng-seed in DT.
 
-Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
----
- .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+Could you please elaborate on this?
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
-new file mode 100644
-index 0000000..8bb6b2e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
-@@ -0,0 +1,29 @@
-+GPIO-INVERTER
-+======
-+This binding defines the gpio-inverter. The gpio-inverter is a driver that
-+allows to properly describe the gpio polarities on the hardware.
-+
-+Please refer to gpio.txt for generic information regarding GPIO bindings.
-+
-+Required properties:
-+- compatible : "gpio-inverter".
-+- gpio-controller: Marks the port as GPIO controller.
-+- #gpio-cells: One. This is the pin number.
-+- inverted-gpios: Array of GPIO pins required from consumers, whose polarity
-+  has to be inverted in the driver.
-+Note: gpio flag should be set as GPIO_ACTIVE_HIGH. Using GPIO_ACTICE_LOW will
-+cause double inversion.
-+
-+Optional properties:
-+- gpio-line-names: Refer to gpio.txt for details regarding this property.
-+
-+Example:
-+
-+gpio_inv: gpio-inv {
-+	compatible = "gpio-inverter";
-+	gpio-controller;
-+	#gpio-cells = <1>;
-+	inverted-gpios = <&gpio5 24 GPIO_ACTIVE_HIGH>,
-+	<&gpio7 0 GPIO_ACTIVE_HIGH>, <&gpio7 1 GPIO_ACTIVE_HIGH>;
-+	gpio-line-names = "JTAG_DNL_EN", "lvds-pwrdwn", "lcd-on";
-+};
---
-2.7.4
+* What is this initial entropy used by, and why is this important? I
+  assume that devices which can populate this will have a HW RNG that
+  the kernel will eventually make use of.
 
+* How much entropy is necessary or sufficient?
+
+* Why is the DT the right mechanism for this?
+
+Thanks,
+Mark.
+
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+> change log v5->v6:
+> * remove Documentation change
+> ---
+>  drivers/of/fdt.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 3d36b5afd9bd..369130dbd42c 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -24,6 +24,7 @@
+>  #include <linux/debugfs.h>
+>  #include <linux/serial_core.h>
+>  #include <linux/sysfs.h>
+> +#include <linux/random.h>
+>  
+>  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+>  #include <asm/page.h>
+> @@ -1052,6 +1053,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>  {
+>  	int l;
+>  	const char *p;
+> +	const void *rng_seed;
+>  
+>  	pr_debug("search \"chosen\", depth: %d, uname: %s\n", depth, uname);
+>  
+> @@ -1086,6 +1088,14 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>  
+>  	pr_debug("Command line is: %s\n", (char*)data);
+>  
+> +	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
+> +	if (rng_seed && l > 0) {
+> +		add_device_randomness(rng_seed, l);
+> +
+> +		/* try to clear seed so it won't be found. */
+> +		fdt_nop_property(initial_boot_params, node, "rng-seed");
+> +	}
+> +
+>  	/* break now */
+>  	return 1;
+>  }
+> -- 
+> 2.20.1
+> 
