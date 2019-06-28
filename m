@@ -2,119 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 389775953E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 09:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F70D5957B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 10:02:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726431AbfF1HnB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jun 2019 03:43:01 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:59717 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726385AbfF1HnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 03:43:01 -0400
-X-Originating-IP: 86.250.200.211
-Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 6B4AEFF803;
-        Fri, 28 Jun 2019 07:42:51 +0000 (UTC)
-Date:   Fri, 28 Jun 2019 09:42:50 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     masonccyang@mxic.com.tw
-Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
-        broonie@kernel.org, christophe.kerello@st.com,
-        computersforpeace@gmail.com, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
-        richard@nod.at, stefan@agner.ch, vigneshr@ti.com,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: Document Macronix raw NAND
- controller bindings
-Message-ID: <20190628094250.1fd84505@xps13>
-In-Reply-To: <OFFBD1710A.54AC467B-ON48258427.0023FCA3-48258427.00255B71@mxic.com.tw>
-References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw>
-        <1561443056-13766-3-git-send-email-masonccyang@mxic.com.tw>
-        <20190627192609.0965f6d5@xps13>
-        <OFFBD1710A.54AC467B-ON48258427.0023FCA3-48258427.00255B71@mxic.com.tw>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726587AbfF1ICH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 04:02:07 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:46410 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726557AbfF1ICG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 04:02:06 -0400
+Received: by mail-pl1-f195.google.com with SMTP id e5so2780134pls.13
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2019 01:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WZq6BCzx2oAYKBXZwpH6LRexuDJ0/444+0e0Mc/hDbY=;
+        b=Rd9lRP9zAd/kbl3ZE7qYqE71uAPpqI08y9O8Z8POPjewUXfV5BkcxB5GlkY7Lz2EvR
+         L0vi5OB036U4FKFCgIDZv8F3y6lztLOxmk0kwy/NUBPaZkq+ECaVF1Jt2lfubLgAj49H
+         Uk6C/xmHOoJyYfOl2AD99Cc4Ji0bJcI5iEK/IOzTvY7wn8alGsOUKlv4FIhRP3sRGF55
+         fIMKwrwTaQtuY+hOsydah24wbl/mQVSW6sltZZBybHwghcYUR14MnHCnTHXmgdqPSQtw
+         agAI8RdzSUB0Onytip3sOEuouLaTLd1x4D+UiNdsy+ktLsNeIwWlm9Q+91kPa3V5g02W
+         Z4fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WZq6BCzx2oAYKBXZwpH6LRexuDJ0/444+0e0Mc/hDbY=;
+        b=F7TGGOALWRySRo0brGOypTBVFFRcgpK/tU7EeyJwb2POQU7Ov9l17BDcIrz08fWiVg
+         Ad2dHTiVtp/KvZjgzUwUxVFNH/ZB+rSkP/NVdsCyXvIeKAitzJ5fBVTwXYic/kgRaGk8
+         EW+VFStezDIA8LYNgmQGNgOxXA+h4lrH+8ZOq/P7eAcs+ThKbyhecuB/CLgZPBz7wWM0
+         fyzDOORNtuhVHjncAz31S3TrPuD9wW8V4azANTgjkjL6J6WqKFRBqktyI2j48LmtexW4
+         bMuvRL+qX+vX5FZix8cdq9vOnydM2oTl48FB8+DKAucQ0AJC5wfivgdCU/Kc2bCZ5I/V
+         VDOA==
+X-Gm-Message-State: APjAAAWpAHwcNFX9tVu/Jn5ne4/2uLOwazvJjFu0rZDnx8koVs89YZSC
+        Cj2nMmGPWf0J+c/DjYCVZZ5n4ZDrTEFQ2yLayJ4hkg==
+X-Google-Smtp-Source: APXvYqwmEZtlGKAjiLJWvizo9Zwmik6FWTQ62cPvtwGWDViEZL1wVsPAEfk8YLKeNB7mUaMkZVTde4hFd59dR/Vcw90=
+X-Received: by 2002:a17:902:2006:: with SMTP id n6mr10173684pla.232.1561708925220;
+ Fri, 28 Jun 2019 01:02:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-18-brendanhiggins@google.com> <20190626021744.GU19023@42.do-not-panic.com>
+ <CAAXuY3p+kVhjQ4LYtzormqVcH2vKu1abc_K9Z0XY=JX=bp8NcQ@mail.gmail.com> <20190627061021.GE19023@42.do-not-panic.com>
+In-Reply-To: <20190627061021.GE19023@42.do-not-panic.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 28 Jun 2019 01:01:54 -0700
+Message-ID: <CAFd5g45VJ9yfuESUc=E0ydJyN+mk1b1kyHSCYvO2x9KPC7+3GQ@mail.gmail.com>
+Subject: Re: [PATCH v5 17/18] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     Iurii Zaikin <yzaikin@google.com>, linux-api@vger.kernel.org,
+        "Michael Kerrisk (man-pages)" <mtk.manpages@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
+On Wed, Jun 26, 2019 at 11:10 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+>
+> On Wed, Jun 26, 2019 at 09:07:43PM -0700, Iurii Zaikin wrote:
+> > On Tue, Jun 25, 2019 at 7:17 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+> > > > +static void sysctl_test_dointvec_table_maxlen_unset(struct kunit *test)
+> > > > +{
+> > > > +     struct ctl_table table = {
+> > > > +             .procname = "foo",
+> > > > +             .data           = &test_data.int_0001,
+> > > > +             .maxlen         = 0,
+> > > > +             .mode           = 0644,
+> > > > +             .proc_handler   = proc_dointvec,
+> > > > +             .extra1         = &i_zero,
+> > > > +             .extra2         = &i_one_hundred,
+> > > > +     };
+> > > > +     void  *buffer = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > > +     size_t len;
+> > > > +     loff_t pos;
+> > > > +
+> > > > +     len = 1234;
+> > > > +     KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 0, buffer, &len, &pos));
+> > > > +     KUNIT_EXPECT_EQ(test, (size_t)0, len);
+> > > > +     len = 1234;
+> > > > +     KUNIT_EXPECT_EQ(test, 0, proc_dointvec(&table, 1, buffer, &len, &pos));
+> > > > +     KUNIT_EXPECT_EQ(test, (size_t)0, len);
+> > > > +}
+> > >
+> > > In a way this is also testing for general kernel API changes. This is and the
+> > > last one were good examples. So this is not just testing functionality
+> > > here. There is no wrong or write answer if 0 or -EINVAL was returned
+> > > other than the fact that we have been doing this for years.
+> > >
+> > > Its a perhaps small but important difference for some of these tests.  I
+> > > *do* think its worth clarifying through documentation which ones are
+> > > testing for API consistency Vs proper correctness.
+> >
+> > You make a good point that the test codifies the existing behavior of
+> > the function in lieu of formal documentation.  However, the test cases
+> > were derived from examining the source code of the function under test
+> > and attempting to cover all branches. The assertions were added only
+> > for the values that appeared to be set deliberately in the
+> > implementation. And it makes sense to me to test that the code does
+> > exactly what the implementation author intended.
+>
+> I'm not arguing against adding them. I'm suggesting that it is different
+> to test for API than for correctness of intended functionality, and
+> it would be wise to make it clear which test cases are for API and which
+> for correctness.
 
-Please always Cc: Rob (robh+dt@kernel.org) when you send bindings
-related patches.
+I see later on that some of the API stuff you are talking about is
+public APIs from the standpoint of user (outside of LInux) visible. To
+be clear, is that what you mean by public APIs throughout, or would
+you distinguish between correctness tests, internal API tests, and
+external API tests?
 
-masonccyang@mxic.com.tw wrote on Fri, 28 Jun 2019
-14:48:02 +0800:
+> This will come up later for other kunit tests and it would be great
+> to set precendent so that other kunit tests can follow similar
+> practices to ensure its clear what is API realted Vs correctness of
+> intended functionality.
+>
+> In fact, I'm not yet sure if its possible to test public kernel API to
+> userspace with kunit, but if it is possible... well, that could make
+> linux-api folks happy as they could enable us to codify interpreation of
+> what is expected into kunit test cases, and we'd ensure that the
+> codified interpretation is not only documented in man pages but also
+> through formal kunit test cases.
+>
+> A regression in linux-api then could be formalized through a proper
+> kunit tests case. And if an API evolves, it would force developers to
+> update the respective kunit which codifies that contract.
 
-> Hi Miquel,
-> 
-> > > Document the bindings used by the Macronix raw NAND controller.
-> > > 
-> > > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> > > ---
-> > >  .../devicetree/bindings/mtd/mxic-nand.txt          | 26   
-> ++++++++++++++++++++++
-> > >  1 file changed, 26 insertions(+)
-> > >  create mode 100644   
-> Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/  
-> > Documentation/devicetree/bindings/mtd/mxic-nand.txt  
-> > > new file mode 100644
-> > > index 0000000..3d198e4
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> > > @@ -0,0 +1,26 @@
-> > > +Macronix Raw NAND Controller Device Tree Bindings
-> > > +-------------------------------------------------
-> > > +
-> > > +Required properties:
-> > > +- compatible: should be "mxic,raw-nand-ctlr"  
-> > 
-> > I would prefer "macronix,nand-controller"  
-> 
-> okay, will patch it.
-> 
-> >   
-> > > +- reg: should contain 1 entrie for the registers  
-> > 
-> >                            entry
-> >   
-> > > +- reg-names: should contain "regs"  
-> > 
-> > Not sure you need that?  
-> 
-> for a base address of ctlr registers.
+Yep, I think that is long term hope. Some of the file system interface
+stuff that requires a filesystem to be mounted somewhere might get a
+little weird/difficult, but I suspect we should be able to do it
+eventually. I mean it's all just C code right? Should mostly boil down
+to someone figuring out how to do it the first time.
 
-Yes I know, I mean: you don't necessarily need the 'reg-names' property
-as it is supposed that the only entry will be the IP registers (unless
-there are more). I don't know what's Rob preference here but I would
-either drop the reg-names property or enhance the name, "regs" is
-terribly not descriptive.
+> > > > +static void sysctl_test_dointvec_single_less_int_min(struct kunit *test)
+> > > > +{
+> > > > +     struct ctl_table table = {
+> > > > +             .procname = "foo",
+> > > > +             .data           = &test_data.int_0001,
+> > > > +             .maxlen         = sizeof(int),
+> > > > +             .mode           = 0644,
+> > > > +             .proc_handler   = proc_dointvec,
+> > > > +             .extra1         = &i_zero,
+> > > > +             .extra2         = &i_one_hundred,
+> > > > +     };
+> > > > +     char input[32];
+> > > > +     size_t len = sizeof(input) - 1;
+> > > > +     loff_t pos = 0;
+> > > > +     unsigned long abs_of_less_than_min = (unsigned long)INT_MAX
+> > > > +                                          - (INT_MAX + INT_MIN) + 1;
+> > > > +
+> > > > +     KUNIT_EXPECT_LT(test,
+> > > > +                     (size_t)snprintf(input, sizeof(input), "-%lu",
+> > > > +                                      abs_of_less_than_min),
+> > > > +                     sizeof(input));
+> > > > +
+> > > > +     table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > > +     KUNIT_EXPECT_EQ(test, -EINVAL,
+> > > > +                     proc_dointvec(&table, 1, input, &len, &pos));
+> > > > +     KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > > +     KUNIT_EXPECT_EQ(test, 0, ((int *)table.data)[0]);
+> > > > +}
+> > >
+> > > API test.
+> > >
+> > Not sure why.
+>
+> Because you are codifying that we *definitely* return -EINVAL on
+> overlow. Some parts of the kernel return -ERANGE for overflows for
+> instance.
+>
+> It would be a generic test for overflow if it would just test
+> for any error.
+>
+> It is a fine and good test to keep. All these tests are good to keep.
+>
+> > I believe there has been a real bug with int overflow in
+> > proc_dointvec.
+> > Covering it with test seems like a good idea.
+>
+> Oh definitely.
+>
+> > > > +static void sysctl_test_dointvec_single_greater_int_max(struct kunit *test)
+> > > > +{
+> > > > +     struct ctl_table table = {
+> > > > +             .procname = "foo",
+> > > > +             .data           = &test_data.int_0001,
+> > > > +             .maxlen         = sizeof(int),
+> > > > +             .mode           = 0644,
+> > > > +             .proc_handler   = proc_dointvec,
+> > > > +             .extra1         = &i_zero,
+> > > > +             .extra2         = &i_one_hundred,
+> > > > +     };
+> > > > +     char input[32];
+> > > > +     size_t len = sizeof(input) - 1;
+> > > > +     loff_t pos = 0;
+> > > > +     unsigned long greater_than_max = (unsigned long)INT_MAX + 1;
+> > > > +
+> > > > +     KUNIT_EXPECT_GT(test, greater_than_max, (unsigned long)INT_MAX);
+> > > > +     KUNIT_EXPECT_LT(test, (size_t)snprintf(input, sizeof(input), "%lu",
+> > > > +                                            greater_than_max),
+> > > > +                     sizeof(input));
+> > > > +     table.data = kunit_kzalloc(test, sizeof(int), GFP_USER);
+> > > > +     KUNIT_EXPECT_EQ(test, -EINVAL,
+> > > > +                     proc_dointvec(&table, 1, input, &len, &pos));
+> > > > +     KUNIT_EXPECT_EQ(test, sizeof(input) - 1, len);
+> > > > +     KUNIT_EXPECT_EQ(test, 0, ((int *)table.data)[0]);
+> > > > +}
+> > > > +
+> > >
+> > > API test.
+> > >
+> > > > +static struct kunit_case sysctl_test_cases[] = {
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_null_tbl_data),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_table_maxlen_unset),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_table_len_is_zero),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_table_read_but_position_set),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_happy_single_positive),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_happy_single_negative),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_single_less_int_min),
+> > > > +     KUNIT_CASE(sysctl_test_dointvec_single_greater_int_max),
+> > > > +     {}
+> > > > +};
+> > >
+> > > Oh all are API tests.. perhaps then just rename then
+> > > sysctl_test_cases to sysctl_api_test_cases.
+> > >
+> > > Would be good to add at least *two* other tests cases for this
+> > > example, one which does a valid read and one which does a valid write.
+> > Added valid reads. There already are 2 valid writes.
+>
+> Thanks.
+>
+> > > If that is done either we add another kunit test module for correctness
+> > > or just extend the above and use prefix / postfixes on the functions
+> > > to distinguish between API / correctness somehow.
+> > >
+> > > > +
+> > > > +static struct kunit_module sysctl_test_module = {
+> > > > +     .name = "sysctl_test",
+> > > > +     .test_cases = sysctl_test_cases,
+> > > > +};
+> > > > +
+> > > > +module_test(sysctl_test_module);
+> > > > diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+> > > > index cbdfae3798965..389b8986f5b77 100644
+> > > > --- a/lib/Kconfig.debug
+> > > > +++ b/lib/Kconfig.debug
+> > > > @@ -1939,6 +1939,16 @@ config TEST_SYSCTL
+> > > >
+> > > >         If unsure, say N.
+> > > >
+> > > > +config SYSCTL_KUNIT_TEST
+> > > > +     bool "KUnit test for sysctl"
+> > > > +     depends on KUNIT
+> > > > +     help
+> > > > +       This builds the proc sysctl unit test, which runs on boot. For more
+> > > > +       information on KUnit and unit tests in general please refer to the
+> > > > +       KUnit documentation in Documentation/dev-tools/kunit/.
+> > >
+> > > A little more description here would help. It is testing for API and
+> > > hopefully also correctness (if extended with those two examples I
+> > > mentioned).
+> > >
+> > Added "Tests the API contract and implementation correctness of sysctl."
+>
+> Yes, much clearer, thanks!
 
-> > > +- interrupts: interrupt line connected to this NAND controller
-> > > +- clock-names: should contain "ps_clk", "send_clk" and "send_dly_clk"
-> > > +- clocks: should contain 3 entries for the "ps_clk", "send_clk" and
-> > > +    "send_dly_clk" clocks  
-> > 
-> > s/entries/phandles/ ?  
-> 
-> ?
-> as I know that kernel views the phandle values as device tree structure
-> information instead of device tree data and thus does not store them as
-> properties.
-
-The bindings have nothing to do with the kernel views. They might
-actually be merged in a different project, out of the kernel.
-
-
-Thanks,
-Miquèl
+Cheers!
