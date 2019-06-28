@@ -2,108 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D46E7599FE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 962C159A22
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2019 14:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbfF1MFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 08:05:52 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:33473 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726514AbfF1MFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 08:05:51 -0400
-Received: by mail-lf1-f68.google.com with SMTP id y17so3835586lfe.0;
-        Fri, 28 Jun 2019 05:05:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HA/mPpQJOKYmVDyeCe0ETFHFBZHAQQF5tQSIphSoyfk=;
-        b=unBDizVA3kYuY0YF8aLYmRhRZrrqklXZDHk1SvjbwIEQuEmA87L1/au6QBeUR0gnNm
-         gKZfpFreasGnUWIuaFOpP8M6475t1ynfTv7VoOwWF7LjU84m5F2xONdilbuR256ErgcK
-         udQnRpeNuHB8WN8isFNQshf9NwXiK+iaLIhqQY8Em4os6fkb+nLL3lY98B+HkYmQrvlX
-         8vVi3ZYS9pKxz5bsYFgeyCKveeNnu8dp2NrDRpt3quWe5YnVz7UxrSlH4N9vD8JcKNj+
-         9qdFki+pvKdT6N7wjczDD04WMJZiHUAmtbEgOqExdqzcMUj8k136X6GGbsUMMCc6Hkxa
-         kutQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HA/mPpQJOKYmVDyeCe0ETFHFBZHAQQF5tQSIphSoyfk=;
-        b=tR4d2xI/K1zh2Oi5GqI4mB0s4nKAbwoJDwfr9GhMwKfTXoVw+TNulbzHJqDfxyCBdO
-         x1DpyiLr+VS6r+iIdmtm3+BA+RSh6jQYuRnaRmek1amB8y8sTl3/nwxAuxzt57nxHyxG
-         11HVhvFbi7hs+uakTQtD1yaW3eKDWa4LbiKE9zN4+2Rn4pX3XxlvpNjUvUJ9VB5Vp9WA
-         v6cd6Ovxqh08xsuxaRoe8vuDIML4/yT0ln8R44NQzD/IGzX79A8TacwYfj102s0rUPit
-         MYpcvqYDF0Qo8OJTLgeKE/izOr+xl6u3zmmujaJwEXjHJ/NG9GGdN5zIPN4KcBlXAFkY
-         YYTg==
-X-Gm-Message-State: APjAAAWVHFv3jvk78os1JrOc2N24zyRqveVsJP8lt1Te9rj714c7TBuC
-        WnEMPkY6uVb1U4r6FL3oTAAUs8ED
-X-Google-Smtp-Source: APXvYqxYiX9E8tGPpW2NlAcJ5oa6Bfp5m9cKFDQysAJTMIDvJhIFywx9lJeV13Ji3iPVX/JLRCw5QQ==
-X-Received: by 2002:ac2:5446:: with SMTP id d6mr4727924lfn.138.1561723548837;
-        Fri, 28 Jun 2019 05:05:48 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id a17sm561986lfk.0.2019.06.28.05.05.47
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 28 Jun 2019 05:05:48 -0700 (PDT)
-Subject: Re: [PATCH V5 02/18] pinctrl: tegra: Add suspend and resume support
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
- <1561687972-19319-3-git-send-email-skomatineni@nvidia.com>
- <0409f478-e425-4e7f-5fff-8c3a94f47ee8@gmail.com>
-Message-ID: <ca8199af-43db-c878-a93f-66c275acf864@gmail.com>
-Date:   Fri, 28 Jun 2019 15:05:46 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1727033AbfF1MMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 08:12:37 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:58280 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726940AbfF1MMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 08:12:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=Ptxuhcj9Nnd93IGVkYIIiqtv0theLtZeYCYEFYFjzcQ=; b=iJ2Q7DMrmIn6Encrs9rppRJsg
+        FeL4mBoGRLfaKCHHXrV206GIZ3P/XJemOOMbKDJ1w3SXWtsq4LYO5EGt6J8qVs2Or4osVQfUxapi/
+        zjd+hS2S4uaEf7v6XI6b4710tSuAp66i3CHlRgr2MfjGGDbZW1DEQ9gmDkjZxESSIYJlH8OZ9HlkK
+        TFdqcGlGS1dlQlgTpXIwtU/CKPSGpMWA5VBUVqYCF/HlnncDfCbol6UXVluUS3GBn4xs2BOZRRdne
+        WnPt1VQf1Pp7XWZUQVTsRumVGa7ZhQipl4HHUoDpeOm5kmiY37Rdd4l5z+9p+ucjFP48Xjx6y80vH
+        qSast0vWA==;
+Received: from [186.213.242.156] (helo=bombadil.infradead.org)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
+        id 1hgpk3-0005Bd-Cu; Fri, 28 Jun 2019 12:12:35 +0000
+Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
+        (envelope-from <mchehab@bombadil.infradead.org>)
+        id 1hgpk0-0004zI-5t; Fri, 28 Jun 2019 09:12:32 -0300
+From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        linux-leds@vger.kernel.org, kvm@vger.kernel.org,
+        =?UTF-8?q?Radim=20Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@redhat.com>,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        platform-driver-x86@vger.kernel.org,
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Sean Paul <sean@poorly.run>,
+        Darren Hart <dvhart@infradead.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-i2c@vger.kernel.org, Ajay Gupta <ajayg@nvidia.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Dan Murphy <dmurphy@ti.com>, devicetree@vger.kernel.org,
+        Andy Shevchenko <andy@infradead.org>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH 0/9] Some doc fixes
+Date:   Fri, 28 Jun 2019 09:12:22 -0300
+Message-Id: <cover.1561723736.git.mchehab+samsung@kernel.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <0409f478-e425-4e7f-5fff-8c3a94f47ee8@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-28.06.2019 14:56, Dmitry Osipenko пишет:
-> 28.06.2019 5:12, Sowjanya Komatineni пишет:
->> This patch adds support for Tegra pinctrl driver suspend and resume.
->>
->> During suspend, context of all pinctrl registers are stored and
->> on resume they are all restored to have all the pinmux and pad
->> configuration for normal operation.
->>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
+This patch series is against linux-next (next-20190627). I doubt those
+would apply cleanly against docs next tree.
 
->>  int tegra_pinctrl_probe(struct platform_device *pdev,
->>  			const struct tegra_pinctrl_soc_data *soc_data);
->>  #endif
->> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra210.c b/drivers/pinctrl/tegra/pinctrl-tegra210.c
->> index 0b56ad5c9c1c..edd3f4606cdb 100644
->> --- a/drivers/pinctrl/tegra/pinctrl-tegra210.c
->> +++ b/drivers/pinctrl/tegra/pinctrl-tegra210.c
->> @@ -1571,6 +1571,7 @@ static struct platform_driver tegra210_pinctrl_driver = {
->>  	.driver = {
->>  		.name = "tegra210-pinctrl",
->>  		.of_match_table = tegra210_pinctrl_of_match,
->> +		.pm = &tegra_pinctrl_pm,
->>  	},
->>  	.probe = tegra210_pinctrl_probe,
->>  };
->>
-> 
-> Could you please address my comments in the next revision if there will be one?
-> 
+So, please apply it via the subsystem trees. Otherwise, they could
+be pushed by the end of the merge window or for -rc1 via a docs tree.
 
-Also, what about adding ".pm' for other Tegras? I'm sure Jon could test them for you.
+Most, if not all were I already sent.
+
+
+Mauro Carvalho Chehab (9):
+  hrtimer: Use a bullet for the returns bullet list
+  docs: trace: fix a broken label
+  docs: signal: fix a kernel-doc markup
+  dt: leds-lm36274.txt: fix a broken reference to ti-lmu.txt
+  docs: fix some broken references due to txt->rst renames
+  docs: virtual: there are two orphan docs there
+  docs: gpu: add msm-crash-dump.rst to the index.rst file
+  drm: fix a reference for a renamed file: fb/modedb.rst
+  platform: x86: get rid of a non-existent document
+
+ Documentation/devicetree/bindings/arm/idle-states.txt   | 2 +-
+ Documentation/devicetree/bindings/leds/leds-lm36274.txt | 2 +-
+ Documentation/gpu/drivers.rst                           | 1 +
+ Documentation/gpu/msm-crash-dump.rst                    | 2 --
+ Documentation/trace/kprobetrace.rst                     | 1 +
+ Documentation/virtual/kvm/amd-memory-encryption.rst     | 2 ++
+ Documentation/virtual/kvm/vcpu-requests.rst             | 2 ++
+ drivers/gpu/drm/drm_modes.c                             | 2 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.h                 | 2 +-
+ drivers/i2c/busses/i2c-nvidia-gpu.c                     | 2 +-
+ drivers/platform/x86/Kconfig                            | 3 ---
+ kernel/signal.c                                         | 2 +-
+ kernel/time/hrtimer.c                                   | 7 ++++---
+ 13 files changed, 16 insertions(+), 14 deletions(-)
+
+-- 
+2.21.0
+
+
