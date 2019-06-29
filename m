@@ -2,138 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3BC45AC45
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 17:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9045AC53
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 17:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726865AbfF2PqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jun 2019 11:46:12 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:43379 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726851AbfF2PqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jun 2019 11:46:12 -0400
-Received: by mail-lf1-f68.google.com with SMTP id j29so5913296lfk.10;
-        Sat, 29 Jun 2019 08:46:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=n+gNnWdOpo6++IaBlEaAMij5pbe3mgcwedV0Vv4+onQ=;
-        b=fRVlUvQXovrUlPYw7k2mzgm/PbfGIKtOwLbGID5Xz6XTSUrulJ0ZIzjDIEIMh4n0cY
-         P3jZqaUuFvJlIP6NHtOMaWdhQaYXpBNJXZMwuwGUHshlQlkKTPVyeCV0x94tnsqO+vQs
-         y6Bz0zLBuGqn726quhESW0fEXR7zh5Rv4krT6/CBv6udMy1QCoTUmH/gTfrlqN+TKPfU
-         bDwu+5g8h58e8ppDQJc7shixnVoD38lb/99hHEQ6hmYZ0Jse5lIChpRrgdMAMG0EbAKm
-         1s/VEGZ8Stpo+t8D9HXtNf+8W/7N2mXkTetW5G30o406eRbjbcl2GDHWKJ8n/5OE44ET
-         hKuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=n+gNnWdOpo6++IaBlEaAMij5pbe3mgcwedV0Vv4+onQ=;
-        b=hkDxSvmjy3aK9o377uBhFShrKjmlSoGrmVWqEH7naSCLmKXJJvYh/wJCyhjZgDRHbh
-         T0S0/vOLsEatHcmhSc4BzOYvUIYY18JgnbfyY76WMj1Ues7Q+OcFADOlts3hgn70vKQx
-         swkO/ITaSWE4BFod0kxhtjlhiU0Mj8d++dTOztE3oJehna9vyK4pM57TIzrJNopm74Mq
-         kiuQYMLALaLk+KkXwokfs2e1fqxfcA5J6boP4vmORWDb7g3LR7tUH7ljTCHzgBG5QwS3
-         QIGt8InyOLMphsMb/fzBmNJbdrx4KDC0zsr+7k5arbkE3j7EsHl0R8bNBkOFYdywNpks
-         hHog==
-X-Gm-Message-State: APjAAAWhLk3rYtE5RLAO47jURYmxO5EdcH2cfXeqd1tgiLUXDIDk8ieZ
-        NzS2M00eO3oI3oOwfnZCTMjabPDR
-X-Google-Smtp-Source: APXvYqy7YekYw8JmgtfA4nsL3wHd1utlE8sfnJfjNNLZPLqCWDAidNBFFDhibWWYp6ElEtz9reX8TQ==
-X-Received: by 2002:a05:6512:51c:: with SMTP id o28mr8016798lfb.67.1561823169770;
-        Sat, 29 Jun 2019 08:46:09 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id i2sm1790541ljc.96.2019.06.29.08.46.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 29 Jun 2019 08:46:09 -0700 (PDT)
-Subject: Re: [PATCH V5 02/18] pinctrl: tegra: Add suspend and resume support
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
- <1561687972-19319-3-git-send-email-skomatineni@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a262cbb3-845c-3ad1-16cc-375a24b9f7e9@gmail.com>
-Date:   Sat, 29 Jun 2019 18:46:07 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1726851AbfF2P6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jun 2019 11:58:23 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:61038 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726837AbfF2P6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jun 2019 11:58:23 -0400
+X-UUID: cb4d007beed24b438c80b8f6513dc84b-20190629
+X-UUID: cb4d007beed24b438c80b8f6513dc84b-20190629
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <ryder.lee@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 750830825; Sat, 29 Jun 2019 23:58:17 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Sat, 29 Jun 2019 23:58:16 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 29 Jun 2019 23:58:16 +0800
+Message-ID: <1561823896.29227.0.camel@mtkswgap22>
+Subject: Re: [PATCH v1] arm: dts: mediatek: add basic support for MT7629 SoC
+From:   Ryder Lee <ryder.lee@mediatek.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+CC:     <ryder.lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Weijie Gao <weijie.gao@mediatek.com>,
+        "Sean Wang" <sean.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Steven Liu <steven.liu@mediatek.com>
+Date:   Sat, 29 Jun 2019 23:58:16 +0800
+In-Reply-To: <7hy31lp9q5.fsf@baylibre.com>
+References: <a8ca0018ac8a4c5f61a7a1efc9dc5dccd768628b.1552449524.git.ryder.lee@mediatek.com>
+         <7hy31lp9q5.fsf@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-In-Reply-To: <1561687972-19319-3-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-28.06.2019 5:12, Sowjanya Komatineni пишет:
-> This patch adds support for Tegra pinctrl driver suspend and resume.
+On Fri, 2019-06-28 at 16:32 -0700, Kevin Hilman wrote:
+> <ryder.lee@kernel.org> writes:
 > 
-> During suspend, context of all pinctrl registers are stored and
-> on resume they are all restored to have all the pinmux and pad
-> configuration for normal operation.
+> > From: Ryder Lee <ryder.lee@mediatek.com>
+> >
+> > This adds basic support for MT7629 reference board.
+> >
+> > Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
 > 
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/pinctrl/tegra/pinctrl-tegra.c    | 52 ++++++++++++++++++++++++++++++++
->  drivers/pinctrl/tegra/pinctrl-tegra.h    |  3 ++
->  drivers/pinctrl/tegra/pinctrl-tegra210.c |  1 +
->  3 files changed, 56 insertions(+)
+> Just noticing this is not upstream yet.
 > 
-> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c b/drivers/pinctrl/tegra/pinctrl-tegra.c
-> index 34596b246578..e7c0a1011cba 100644
-> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
-> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
-> @@ -621,6 +621,43 @@ static void tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
->  	}
->  }
->  
-> +static int tegra_pinctrl_suspend(struct device *dev)
-> +{
-> +	struct tegra_pmx *pmx = dev_get_drvdata(dev);
-> +	u32 *backup_regs = pmx->backup_regs;
-> +	u32 *regs;
-> +	unsigned int i, j;
-> +
-> +	for (i = 0; i < pmx->nbanks; i++) {
-> +		regs = pmx->regs[i];
-> +		for (j = 0; j < pmx->reg_bank_size[i] / 4; j++)
-> +			*backup_regs++ = readl(regs++);
-> +	}
-> +
-> +	return pinctrl_force_sleep(pmx->pctl);
-> +}
-> +
-> +static int tegra_pinctrl_resume(struct device *dev)
-> +{
-> +	struct tegra_pmx *pmx = dev_get_drvdata(dev);
-> +	u32 *backup_regs = pmx->backup_regs;
-> +	u32 *regs;
-> +	unsigned int i, j;
-> +
-> +	for (i = 0; i < pmx->nbanks; i++) {
-> +		regs = pmx->regs[i];
-> +		for (j = 0; j < pmx->reg_bank_size[i] / 4; j++)
-> +			writel(*backup_regs++, regs++);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +const struct dev_pm_ops tegra_pinctrl_pm = {
-> +	.suspend = &tegra_pinctrl_suspend,
-> +	.resume = &tegra_pinctrl_resume
-> +};
+> I did a basic boot test to ramdisk on the mt7629-rfb board donated for
+> kernelCI (thanks MediaTek!) and it boots just fine.
+> 
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> 
+> Kevin
 
-Hm, so this are the generic platform-driver suspend-resume OPS here, which is very
-nice! But.. shouldn't pinctrl be resumed before the CLK driver (which is syscore_ops
-in this version of the series)? .. Given that "clock" function may need to be
-selected for some of the pins.
+Thanks. I'll post v3 with some fixups soon.
+
+Ryder
+
+
