@@ -2,156 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E215A7C2
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 01:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617E85A7EC
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 02:55:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbfF1Xtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jun 2019 19:49:51 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:42660 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726643AbfF1Xtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 19:49:51 -0400
-Received: by mail-wr1-f65.google.com with SMTP id x17so7838293wrl.9;
-        Fri, 28 Jun 2019 16:49:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Q7IEImnfjv+A3lRFXyTXResy2KVoDPFK5pOWIOXw67k=;
-        b=vG3d8acLaTa36M8Qk+1Ig6NnkHOM4RXcyJFhhNYvfAeittbGLBIk42dMPmgjNUsdn5
-         FuYVQa5cR7tHr2HSfddbCSHiQE09EEBRNwSaFvQfSxIOOjgnN2uv5TAD5a7xmftR1T5T
-         pwq8FCkeB+h/d/mMeVatdy/dOi9jzYpHc8DizVguo7L2LBu1Frni/N7D6Ji4+QESaydA
-         6CkAd7WRlSIFr1DbePAevzpDomH5OxStI3Qj/Gndq12vMLl42ZMaSDAnZbNnui7niT0N
-         L8iltdGDiezmYdLexEiKRS5zIuJc3XejBOaAIAXAiVoL2uKNPXt8Eu2bcyM+3tG1iuQq
-         qUqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Q7IEImnfjv+A3lRFXyTXResy2KVoDPFK5pOWIOXw67k=;
-        b=efl1VCKG1NYIg7r+3lfhRYNejOx43sBJ1Kc0eXNNu6mVfCP1b0u039z0+Gu5t4YtbY
-         rH+BL4TgleBliOVN31BPRCOzkDbe1OViXRs5DldV77zTQClyvnXEgV3lbtu7UaGBUNih
-         W+F4nIAEtEmc3qDk51CGuTm97WqMsg6fwc0T/DaDqtDBuvIFuZ/ceEccnT854sJsLgmx
-         xQQTyB+GxosAkuVrNL6nd1BITc7oyKvafTWroIV8LG61yi+j3JzAzyBBqJNqQ6brsZJe
-         K8dLlJropWuXwSirFrKY+Hu6fl45XrpiOryzY2/+XqBMEpWjQ5H2CKPy5PkvaDERzOFB
-         NNnA==
-X-Gm-Message-State: APjAAAX2eakf8urgZovgroMVsn46EWD7AxdNBWQ5jVyDumcByputo/Pk
-        lqctfBICko/r4hQMy/9VYlw=
-X-Google-Smtp-Source: APXvYqxqv88pnNrGXl9e9tW3mOegaQe/CRnhjJlMga0gyKaLHiB23YZKxAYNn9ymY4Gf8UHD1YMp7A==
-X-Received: by 2002:adf:fecd:: with SMTP id q13mr9877353wrs.97.1561765788237;
-        Fri, 28 Jun 2019 16:49:48 -0700 (PDT)
-Received: from localhost (p200300E41F2AB200021F3CFFFE37B91B.dip0.t-ipconnect.de. [2003:e4:1f2a:b200:21f:3cff:fe37:b91b])
-        by smtp.gmail.com with ESMTPSA id s188sm3658105wmf.40.2019.06.28.16.49.47
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 28 Jun 2019 16:49:47 -0700 (PDT)
-Date:   Sat, 29 Jun 2019 01:49:46 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>,
-        linux-rockchip@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Enric =?utf-8?B?QmFsbGV0YsOy?= <enric.balletbo@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>, mka@chromium.org,
-        Eric Anholt <eric@anholt.net>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        =?utf-8?B?U3TDqXBoYW5l?= Marchesin <marcheu@chromium.org>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override
- typical timing
-Message-ID: <20190628234946.GB1189@mithrandir>
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-3-dianders@chromium.org>
+        id S1726652AbfF2AzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jun 2019 20:55:09 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:55146 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726643AbfF2AzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jun 2019 20:55:09 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 63AA960ACA; Sat, 29 Jun 2019 00:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1561769707;
+        bh=DD3dTYKuw/wp0q8UkjPv+YJJrGGBDRXZ5f6BJ6RRMqY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=JH/o9DNTDn9yl9tKzsN3Lbr41S4Esf7sPZLbLq8m3rkiavsFdrlTk2VXk2DKppgmC
+         PaajjNC8Aec0wK7EdBIgfqBYbSJg8Rg2zIsPJBt5h/pP+h2r1JkVfRLsidew4Mx/fy
+         +UQciog+mv+a0rETQbBO3dzqxzXHHnehjjssiAig=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.46.160.165] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: collinsd@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 60E71607C3;
+        Sat, 29 Jun 2019 00:55:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1561769705;
+        bh=DD3dTYKuw/wp0q8UkjPv+YJJrGGBDRXZ5f6BJ6RRMqY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=J3mHqmdeJAe3uOjEjYxIkJ8qATiCRlu6mC9Bg5yN+lNYs+RM8Qj8ZdB3G0xtH6ZX5
+         AITqBtLakq1Qm7EP4P9aemfc3e/755OVGUZy8mFwOYnJdB19YeOwQUDGx2qo7+2FTH
+         Ch2oL2KMyeviCRuQkNpYBoEWMIIbRCdG7w6UGbrY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 60E71607C3
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=collinsd@codeaurora.org
+Subject: Re: [PATCH v2 2/3] of/platform: Add functional dependency link from
+ DT bindings
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-team@android.com
+References: <20190628022202.118166-1-saravanak@google.com>
+ <20190628022202.118166-3-saravanak@google.com>
+From:   David Collins <collinsd@codeaurora.org>
+Message-ID: <d97de5ef-68a3-795f-2532-24da8cd2d130@codeaurora.org>
+Date:   Fri, 28 Jun 2019 17:55:04 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NDin8bjvE/0mNLFQ"
-Content-Disposition: inline
-In-Reply-To: <20190401171724.215780-3-dianders@chromium.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190628022202.118166-3-saravanak@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Saravana,
 
---NDin8bjvE/0mNLFQ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6/27/19 7:22 PM, Saravana Kannan wrote:
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 04ad312fd85b..8d690fa0f47c 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -61,6 +61,72 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+>  EXPORT_SYMBOL(of_find_device_by_node);
+>  
+>  #ifdef CONFIG_OF_ADDRESS
+> +static int of_link_binding(struct device *dev, char *binding, char *cell)
+> +{
+> +	struct of_phandle_args sup_args;
+> +	struct platform_device *sup_dev;
+> +	unsigned int i = 0, links = 0;
+> +	u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
+> +
+> +	while (!of_parse_phandle_with_args(dev->of_node, binding, cell, i,
+> +					   &sup_args)) {
+> +		i++;
+> +		sup_dev = of_find_device_by_node(sup_args.np);
+> +		if (!sup_dev)
+> +			continue;
 
-On Mon, Apr 01, 2019 at 10:17:19AM -0700, Douglas Anderson wrote:
-> From: Sean Paul <seanpaul@chromium.org>
->=20
-> This patch adds the ability to override the typical display timing for a
-> given panel. This is useful for devices which have timing constraints
-> that do not apply across the entire display driver (eg: to avoid
-> crosstalk between panel and digitizer on certain laptops). The rules are
-> as follows:
->=20
-> - panel must not specify fixed mode (since the override mode will
->   either be the same as the fixed mode, or we'll be unable to
->   check the bounds of the overried)
-> - panel must specify at least one display_timing range which will be
->   used to ensure the override mode fits within its bounds
->=20
-> Changes in v2:
->  - Parse the full display-timings node (using the native-mode) (Rob)
-> Changes in v3:
->  - No longer parse display-timings subnode, use panel-timing (Rob)
-> Changes in v4:
->  - Don't add mode from timing if override was specified (Thierry)
->  - Add warning if timing and fixed mode was specified (Thierry)
->  - Don't add fixed mode if timing was specified (Thierry)
->  - Refactor/rename a bit to avoid extra indentation from "if" tests
->  - i should be unsigned (Thierry)
->  - Add annoying WARN_ONs for some cases (Thierry)
->  - Simplify 'No display_timing found' handling (Thierry)
->  - Rename to panel_simple_parse_override_mode() (Thierry)
-> Changes in v5:
->  - Added Heiko's Tested-by
->=20
-> Cc: Doug Anderson <dianders@chromium.org>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: St=C3=A9phane Marchesin <marcheu@chromium.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->=20
->  drivers/gpu/drm/panel/panel-simple.c | 109 +++++++++++++++++++++++++--
->  1 file changed, 104 insertions(+), 5 deletions(-)
+This check means that a required dependency link between a consumer and
+supplier will not be added in the case that the consumer device is created
+before the supply device.  If the supplier device is created and
+immediately bound to its driver after late_initcall_sync(), then it is
+possible for the sync_state() callback of the supplier to be called before
+the consumer gets a chance to probe since its link was never captured.
 
-Acked-by: Thierry Reding <thierry.reding@gmail.com>
+of_platform_default_populate() below will only create devices for the
+first level DT nodes directly under "/".  Suppliers DT nodes can exist as
+second level nodes under a first level bus node (e.g. I2C, SPMI, RPMh,
+etc).  Thus, it is quite likely that not all supplier devices will have
+been created when device_link_check_waiting_consumers() is called.
 
---NDin8bjvE/0mNLFQ
-Content-Type: application/pgp-signature; name="signature.asc"
+As far as I can tell, this effectively breaks the sync_state()
+functionality (and thus proxy un-voting built on top of it) when using
+kernel modules for both the supplier and consumer drivers which are probed
+after late_initcall_sync().  I'm not sure how this can be avoided given
+that the linking is done between devices in the process of sequentially
+adding devices.  Perhaps linking between device nodes instead of devices
+might be able to overcome this issue.
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0Wp5oACgkQ3SOs138+
-s6HkOA//aJRj++gDyHqyv+35Dnz1qJOb04MLQT25wHlW53LhiXm6APFDfKgu6GY1
-jEhdqsfBT7y0c+yM8SQRwJx44H4QN8YbkqpH0jFsvLli7S8oalKWtu6ti1nRv1XB
-oW2oTzn340rTKD1zeqQL1A26GF7G3COyKIOBhW+yHNAGA4gqi3XMi3RwKP0tLYWa
-1zpI7ZMQw8kwprzPZZbsEnfRYj1R5YUfBO1252HaixMStJbJGj5vfhKFE2H7wTJv
-zCz0JlxX6kepkO7aHmrwOWHYgnvrcCaphJy8YBWMhsBRN7UdOlLjjcBtvqGidKbc
-5bBZucu8NOKSBVKP9V7HlWgQjoCI4uPXSJ+Z9G+NemzcqFtLOYAgGezKiTVjnw1T
-AvEbEQ2ed9MPm2Yt93ozVgR0fvTqeJu0t5ybGaVhUXqevtek7HTCDbCiY+oFLBGs
-ubaXXPCJaYls415YuHWxeIOBuyuyAkSihPy9JB2SZ5jZbXgRiXFrppGI+/zcTklX
-InfVw9QwQMMHay+FhcnET0HkWiD47kvEnVBmaeHoMEnYKrE3p1IVZMXlzQsLqefL
-ADaFGSl0UIS5kyS6yB/b82C2XkyuyFqG40ohDu3qpa2ShzY7iovd1rJBRFmI22/3
-05j4j/3dS0eGTqoVVM1zpmdAaIvHaw7GbVjIEsd0BtG+51TIhW4=
-=P4R1
------END PGP SIGNATURE-----
+> +		if (device_link_add(dev, &sup_dev->dev, dl_flags))
+> +			links++;
+> +		put_device(&sup_dev->dev);
+> +	}
+> +	if (links < i)
+> +		return -ENODEV;
+> +	return 0;
+> +}
+> +
+> +/*
+> + * List of bindings and their cell names (use NULL if no cell names) from which
+> + * device links need to be created.
+> + */
+> +static char *link_bindings[] = {
+> +#ifdef CONFIG_OF_DEVLINKS
+> +	"clocks", "#clock-cells",
+> +	"interconnects", "#interconnect-cells",
+> +#endif
+> +};
 
---NDin8bjvE/0mNLFQ--
+This list and helper function above are missing support for regulator
+<arbitrary-consumer-name>-supply properties.  We require this support on
+QTI boards in order to handle regulator proxy un-voting when booting with
+kernel modules.  Are you planning to add this support in a follow-on
+version of this patch or in an additional patch?
+
+Note that handling regulator supply properties will be very challenging
+for at least these reasons:
+
+1. There is not a consistent DT property name used for regulator supplies.
+
+2. The device node referenced in a regulator supply phandle is usually not
+the device node which correspond to the device pointer for the supplier.
+This is because a single regulator supplier device node (which will have
+an associated device pointer) typically has a subnode for each of the
+regulators it supports.  Consumers then use phandles for the subnodes.
+
+3. The specification of parent supplies for regulators frequently results
+in *-supply properties in a node pointing to child subnodes of that node.
+ See [1] for an example.  Special care would need to be taken to avoid
+trying to mark a regulator supplier as a supplier to itself as well as to
+avoid blocking its own probing due to an unlinked supply dependency.
+
+4. Not all DT properties of the form "*-supply" are regulator supplies.
+(Note, this case has been discussed, but I was not able to locate an
+example of it.)
+
+
+Clocks also have a problem.  A recent patch [2] allows clock provider
+parent clocks to be specified via DT.  This could lead to cases of
+circular "clocks" property dependencies where there are two clock supplier
+devices A and B with A having some clocks with B clock parents along with
+B having some clocks with A clock parents.  If "clocks" properties are
+followed, then neither device would ever be able to probe.
+
+This does not present a problem without this patch series because the
+clock framework supports late binding of parents specifically to avoid
+issues with clocks not registering in perfectly topological order of
+parent dependencies.
+
+
+> +
+> +static int of_link_to_suppliers(struct device *dev)
+> +{
+> +	unsigned int i = 0;
+> +	bool done = true;
+> +
+> +	if (unlikely(!dev->of_node))
+> +		return 0;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(link_bindings) / 2; i++)
+> +		if (of_link_binding(dev, link_bindings[i * 2],
+> +					link_bindings[i * 2 + 1]))
+> +			done = false;
+> +
+> +	if (!done)
+> +		return -ENODEV;
+> +	return 0;
+> +}
+> +
+> +static void link_waiting_consumers_func(struct work_struct *work)
+> +{
+> +	device_link_check_waiting_consumers(of_link_to_suppliers);
+> +}
+> +static DECLARE_WORK(link_waiting_consumers_work, link_waiting_consumers_func);
+> +
+> +static bool link_waiting_consumers_enable;
+> +static void link_waiting_consumers_trigger(void)
+> +{
+> +	if (!link_waiting_consumers_enable)
+> +		return;
+> +
+> +	schedule_work(&link_waiting_consumers_work);
+> +}
+> +
+>  /*
+>   * The following routines scan a subtree and registers a device for
+>   * each applicable node.
+> @@ -192,10 +258,13 @@ static struct platform_device *of_platform_device_create_pdata(
+>  	dev->dev.platform_data = platform_data;
+>  	of_msi_configure(&dev->dev, dev->dev.of_node);
+>  
+> +	if (of_link_to_suppliers(&dev->dev))
+> +		device_link_wait_for_supplier(&dev->dev);
+>  	if (of_device_add(dev) != 0) {
+>  		platform_device_put(dev);
+>  		goto err_clear_flag;
+>  	}
+> +	link_waiting_consumers_trigger();
+>  
+>  	return dev;
+>  
+> @@ -541,6 +610,10 @@ static int __init of_platform_default_populate_init(void)
+>  	/* Populate everything else. */
+>  	of_platform_default_populate(NULL, NULL, NULL);
+>  
+> +	/* Make the device-links between suppliers and consumers */
+> +	link_waiting_consumers_enable = true;
+> +	device_link_check_waiting_consumers(of_link_to_suppliers);
+> +
+>  	return 0;
+>  }
+>  arch_initcall_sync(of_platform_default_populate_init);
+> 
+
+Thanks,
+David
+
+[1]:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-mtp.dts?h=v5.2-rc5#n73
+
+[2]:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=fc0c209c147f35ed2648adda09db39fcad89e334
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
