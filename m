@@ -2,61 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E9D5AA09
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 12:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA62C5AA27
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 12:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726916AbfF2KOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jun 2019 06:14:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35036 "EHLO mail.kernel.org"
+        id S1726884AbfF2KbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jun 2019 06:31:11 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:33704 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726895AbfF2KOH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jun 2019 06:14:07 -0400
-Received: from lore-desk-wlan.lan (unknown [151.66.61.123])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D74B21670;
-        Sat, 29 Jun 2019 10:14:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561803246;
-        bh=M2vob7JhqBqWeRxI1/r38gcAXr+gyORK3M0dMl07nX8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Hkcf9psuqlEbUQ230brPCSAd2YIotTjGAWTJiZwaMgwR8qGAWjb65zONqHIUVNOKe
-         VnuFgTDJNaBGoD68JuensHsTdLYxBtSGongzOlbio8IM15uO6cc7y/EL+f4VCpWTjM
-         dGXWPmo9gCnrtgpjMCtbdhOjuap45yJG4GKPt1vk=
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add lsm6ds3tr-c device bindings
-Date:   Sat, 29 Jun 2019 12:13:54 +0200
-Message-Id: <89edf867d6abb738527889040f030036173fd5b8.1561802767.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1561802767.git.lorenzo@kernel.org>
-References: <cover.1561802767.git.lorenzo@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726839AbfF2KbL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jun 2019 06:31:11 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A8C9E2005C3;
+        Sat, 29 Jun 2019 12:31:09 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D54F52005BD;
+        Sat, 29 Jun 2019 12:30:59 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D551D402F6;
+        Sat, 29 Jun 2019 18:30:47 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        leonard.crestez@nxp.com, viresh.kumar@linaro.org, ping.bai@nxp.com,
+        daniel.baluta@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        andrew.smirnov@gmail.com, ccaione@baylibre.com, angus@akkea.ca,
+        agx@sigxcpu.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 1/2] arm64: dts: imx8mm: Correct OPP table according to latest datasheet
+Date:   Sat, 29 Jun 2019 18:21:56 +0800
+Message-Id: <20190629102157.8026-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.14.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
- 1 file changed, 1 insertion(+)
+From: Anson Huang <Anson.Huang@nxp.com>
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-index efec9ece034a..92b48f242356 100644
---- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-+++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-@@ -11,6 +11,7 @@ Required properties:
-   "st,asm330lhh"
-   "st,lsm6dsox"
-   "st,lsm6dsr"
-+  "st,lsm6ds3tr-c"
- - reg: i2c address of the sensor / spi cs line
- 
- Optional properties:
+According to latest datasheet (Rev.0.2, 04/2019) from below links,
+1.8GHz is ONLY available for consumer part, so the market segment
+bits for 1.8GHz opp should ONLY available for consumer part accordingly.
+
+https://www.nxp.com/docs/en/data-sheet/IMX8MMIEC.pdf
+https://www.nxp.com/docs/en/data-sheet/IMX8MMCEC.pdf
+
+Fixes: f403a26c865b (arm64: dts: imx8mm: Add cpu speed grading and all OPPs)
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V1:
+	- remove the comment to avoid any confusion.
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index 70de15c..f0ac027 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -134,8 +134,7 @@
+ 		opp-1800000000 {
+ 			opp-hz = /bits/ 64 <1800000000>;
+ 			opp-microvolt = <1000000>;
+-			/* Consumer only but rely on speed grading */
+-			opp-supported-hw = <0x8>, <0x7>;
++			opp-supported-hw = <0x8>, <0x3>;
+ 			clock-latency-ns = <150000>;
+ 		};
+ 	};
 -- 
-2.21.0
+2.7.4
 
