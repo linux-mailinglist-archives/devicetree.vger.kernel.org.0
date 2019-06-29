@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E3905AA29
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 12:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB90C5AA4A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 12:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726912AbfF2KbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jun 2019 06:31:15 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:34926 "EHLO inva020.nxp.com"
+        id S1726892AbfF2K5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jun 2019 06:57:53 -0400
+Received: from sauhun.de ([88.99.104.3]:60668 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726941AbfF2KbN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jun 2019 06:31:13 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 76E101A05B9;
-        Sat, 29 Jun 2019 12:31:11 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A438D1A028A;
-        Sat, 29 Jun 2019 12:31:01 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A94E94030F;
-        Sat, 29 Jun 2019 18:30:49 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        leonard.crestez@nxp.com, viresh.kumar@linaro.org, ping.bai@nxp.com,
-        daniel.baluta@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
-        andrew.smirnov@gmail.com, ccaione@baylibre.com, angus@akkea.ca,
-        agx@sigxcpu.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2 2/2] arm64: dts: imx8mq: Correct OPP table according to latest datasheet
-Date:   Sat, 29 Jun 2019 18:21:57 +0800
-Message-Id: <20190629102157.8026-2-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20190629102157.8026-1-Anson.Huang@nxp.com>
-References: <20190629102157.8026-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726874AbfF2K5x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jun 2019 06:57:53 -0400
+Received: from localhost (p5486CA23.dip0.t-ipconnect.de [84.134.202.35])
+        by pokefinder.org (Postfix) with ESMTPSA id EB8862C047A;
+        Sat, 29 Jun 2019 12:57:49 +0200 (CEST)
+Date:   Sat, 29 Jun 2019 12:57:49 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Andreas Werner <andreas.werner@men.de>,
+        Rudolf Marek <r.marek@assembler.cz>,
+        Seth Heasley <seth.heasley@intel.com>,
+        Neil Horman <nhorman@tuxdriver.com>,
+        Vadim Pasternak <vadimp@mellanox.com>,
+        Michael Shych <michaelsh@mellanox.com>,
+        Ajay Gupta <ajayg@nvidia.com>,
+        Peter Korsgaard <peter@korsgaard.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Jim Cromie <jim.cromie@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 3/5] docs: i2c: convert to ReST and add to driver-api
+ bookset
+Message-ID: <20190629105749.GA1685@kunai>
+References: <cover.1561756511.git.mchehab+samsung@kernel.org>
+ <3997b54a2e73887b96ec665573f08ded78b71421.1561756511.git.mchehab+samsung@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wRRV7LY7NUeQGEoC"
+Content-Disposition: inline
+In-Reply-To: <3997b54a2e73887b96ec665573f08ded78b71421.1561756511.git.mchehab+samsung@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
 
-According to latest datasheet (Rev.1, 10/2018) from below links,
-in the consumer datasheet, 1.5GHz is mentioned as highest opp but
-depends on speed grading fuse, and in the industrial datasheet,
-1.3GHz is mentioned as highest opp but depends on speed grading
-fuse. 1.5GHz and 1.3GHz opp use same voltage, so no need for
-consumer part to support 1.3GHz opp, with same voltage, CPU should
-run at highest frequency in order to go into idle as quick as
-possible, this can save power.
+--wRRV7LY7NUeQGEoC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That means for consumer part, 1GHz/1.5GHz are supported, for
-industrial part, 800MHz/1.3GHz are supported, and then check the
-speed grading fuse to limit the highest CPU frequency further.
-Correct the market segment bits in opp table to make them work
-according to datasheets.
+On Fri, Jun 28, 2019 at 06:23:14PM -0300, Mauro Carvalho Chehab wrote:
+> Convert each file at I2C subsystem, renaming them to .rst and
+> adding to the driver-api book.
+>=20
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 
-https://www.nxp.com/docs/en/data-sheet/IMX8MDQLQIEC.pdf
-https://www.nxp.com/docs/en/data-sheet/IMX8MDQLQCEC.pdf
+I glimpsed over it and it looks basically OK. I won't have time to
+actually review all of this. But I trust you and we can fix things
+later. So:
 
-Fixes: 12629c5c3749 ("arm64: dts: imx8mq: Add cpu speed grading and all OPPs")
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-Changes since V1:
-	- remove the comment to avoid any confusion.
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Acked-by: Wolfram Sang <wsa@the-dreams.de>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 9d99191..477c523 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -169,15 +169,14 @@
- 		opp-1300000000 {
- 			opp-hz = /bits/ 64 <1300000000>;
- 			opp-microvolt = <1000000>;
--			opp-supported-hw = <0xc>, <0x7>;
-+			opp-supported-hw = <0xc>, <0x4>;
- 			clock-latency-ns = <150000>;
- 		};
- 
- 		opp-1500000000 {
- 			opp-hz = /bits/ 64 <1500000000>;
- 			opp-microvolt = <1000000>;
--			/* Consumer only but rely on speed grading */
--			opp-supported-hw = <0x8>, <0x7>;
-+			opp-supported-hw = <0x8>, <0x3>;
- 			clock-latency-ns = <150000>;
- 		};
- 	};
--- 
-2.7.4
+I assume this goes in via your or doc-tree?
 
+>  Next/merge.log                                |   6 +-
+
+This file doesn't exist upstream, though.
+
+
+--wRRV7LY7NUeQGEoC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0XRCkACgkQFA3kzBSg
+KbaLuBAAhCf3TNn+xCMcOgGyyRchSfnkRlEbd1ptubc40pHEy7Qw7R8spyI7CKjK
+S8R50Cj2tH4i6DPbAjQeGi5ofxQZ1RABHJ9iW6nphOdpGtsmfpyabgu85Q40Atqp
+kvu0OAkfeei37NPiNhIbCS7kRfjUtKgihy5V9gkcqlil3VTsUwF1nCyFOGuCxnfO
+D01UaoItfPqPDOSrXRsRvDUGe4CR4jStuUd5SADKrvewvfky7ZpK36oMBfyRBwH9
+sCLErIk3Dvpf538qcBQFklQ/wipy/d2ubulNtrAYuTn1IBKMrV03126mhAj+LZru
+lOEuBxq/Xpq7P4WaQr/BuZHJtQnW9D8m4f1jlWMZsUFEdUzTl+oaAEiZkuFY8pvB
+XjNYuYcOdRnKOcD4IiRnZxyoKc/9tuInVjugogRrbafOfg1u45wF9uL+T6y051NC
+6+v4wBEm6IFaw2BMRa0rk92wFmEmejeRzIofSS/qxBJR1TAS9r1cvOb+yaJYaDSg
+1hH5B0qXKYK+g1fNeaiSD1dtRnEhNKw5mXGrj74R637xFE9tOO3hAoWUnb9M72b3
+N+9e//Ry4PhsL/bK/p2T0jHYL5dSX7UYPdYJLAnxvaDv8EdCZc5+VbhGXmYsUB5p
++YA9xi1SfGk3kHnJm7JMKAO94RpOmAAiON8FhApNx/kzLO1FNlA=
+=5j5T
+-----END PGP SIGNATURE-----
+
+--wRRV7LY7NUeQGEoC--
