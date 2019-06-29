@@ -2,59 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB90C5AA4A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 12:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED1535AA6E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 13:32:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726892AbfF2K5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jun 2019 06:57:53 -0400
-Received: from sauhun.de ([88.99.104.3]:60668 "EHLO pokefinder.org"
+        id S1726912AbfF2Lch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jun 2019 07:32:37 -0400
+Received: from sauhun.de ([88.99.104.3]:32836 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726874AbfF2K5x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jun 2019 06:57:53 -0400
+        id S1726874AbfF2Lch (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jun 2019 07:32:37 -0400
 Received: from localhost (p5486CA23.dip0.t-ipconnect.de [84.134.202.35])
-        by pokefinder.org (Postfix) with ESMTPSA id EB8862C047A;
-        Sat, 29 Jun 2019 12:57:49 +0200 (CEST)
-Date:   Sat, 29 Jun 2019 12:57:49 +0200
+        by pokefinder.org (Postfix) with ESMTPSA id D849B3E43C6;
+        Sat, 29 Jun 2019 13:32:35 +0200 (CEST)
+Date:   Sat, 29 Jun 2019 13:32:35 +0200
 From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Andreas Werner <andreas.werner@men.de>,
-        Rudolf Marek <r.marek@assembler.cz>,
-        Seth Heasley <seth.heasley@intel.com>,
-        Neil Horman <nhorman@tuxdriver.com>,
-        Vadim Pasternak <vadimp@mellanox.com>,
-        Michael Shych <michaelsh@mellanox.com>,
-        Ajay Gupta <ajayg@nvidia.com>,
-        Peter Korsgaard <peter@korsgaard.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Jim Cromie <jim.cromie@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 3/5] docs: i2c: convert to ReST and add to driver-api
- bookset
-Message-ID: <20190629105749.GA1685@kunai>
-References: <cover.1561756511.git.mchehab+samsung@kernel.org>
- <3997b54a2e73887b96ec665573f08ded78b71421.1561756511.git.mchehab+samsung@kernel.org>
+To:     Fabrice Gasnier <fabrice.gasnier@st.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        pierre-yves.mordret@st.com, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c-stm32: document optional dmas
+Message-ID: <20190629113235.GG1685@kunai>
+References: <1559655253-27008-1-git-send-email-fabrice.gasnier@st.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wRRV7LY7NUeQGEoC"
+        protocol="application/pgp-signature"; boundary="Qf1oXS95uex85X0R"
 Content-Disposition: inline
-In-Reply-To: <3997b54a2e73887b96ec665573f08ded78b71421.1561756511.git.mchehab+samsung@kernel.org>
+In-Reply-To: <1559655253-27008-1-git-send-email-fabrice.gasnier@st.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -62,48 +38,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---wRRV7LY7NUeQGEoC
+--Qf1oXS95uex85X0R
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 28, 2019 at 06:23:14PM -0300, Mauro Carvalho Chehab wrote:
-> Convert each file at I2C subsystem, renaming them to .rst and
-> adding to the driver-api book.
+On Tue, Jun 04, 2019 at 03:34:13PM +0200, Fabrice Gasnier wrote:
+> Add missing documentation for "dmas" and "dma-names" properties that can =
+be
+> used on i2c-stm32.
 >=20
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
 
-I glimpsed over it and it looks basically OK. I won't have time to
-actually review all of this. But I trust you and we can fix things
-later. So:
-
-Acked-by: Wolfram Sang <wsa@the-dreams.de>
-
-I assume this goes in via your or doc-tree?
-
->  Next/merge.log                                |   6 +-
-
-This file doesn't exist upstream, though.
+Applied to for-next, thanks!
 
 
---wRRV7LY7NUeQGEoC
+--Qf1oXS95uex85X0R
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0XRCkACgkQFA3kzBSg
-KbaLuBAAhCf3TNn+xCMcOgGyyRchSfnkRlEbd1ptubc40pHEy7Qw7R8spyI7CKjK
-S8R50Cj2tH4i6DPbAjQeGi5ofxQZ1RABHJ9iW6nphOdpGtsmfpyabgu85Q40Atqp
-kvu0OAkfeei37NPiNhIbCS7kRfjUtKgihy5V9gkcqlil3VTsUwF1nCyFOGuCxnfO
-D01UaoItfPqPDOSrXRsRvDUGe4CR4jStuUd5SADKrvewvfky7ZpK36oMBfyRBwH9
-sCLErIk3Dvpf538qcBQFklQ/wipy/d2ubulNtrAYuTn1IBKMrV03126mhAj+LZru
-lOEuBxq/Xpq7P4WaQr/BuZHJtQnW9D8m4f1jlWMZsUFEdUzTl+oaAEiZkuFY8pvB
-XjNYuYcOdRnKOcD4IiRnZxyoKc/9tuInVjugogRrbafOfg1u45wF9uL+T6y051NC
-6+v4wBEm6IFaw2BMRa0rk92wFmEmejeRzIofSS/qxBJR1TAS9r1cvOb+yaJYaDSg
-1hH5B0qXKYK+g1fNeaiSD1dtRnEhNKw5mXGrj74R637xFE9tOO3hAoWUnb9M72b3
-N+9e//Ry4PhsL/bK/p2T0jHYL5dSX7UYPdYJLAnxvaDv8EdCZc5+VbhGXmYsUB5p
-+YA9xi1SfGk3kHnJm7JMKAO94RpOmAAiON8FhApNx/kzLO1FNlA=
-=5j5T
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0XTFMACgkQFA3kzBSg
+Kba1Uw//Z9FKUMwchGR8MkpSsz1F6e5FkOb3MsnEAyXHrXNW9muX2GEbkEWYgYEl
+ArkjPGXaoCeOaf5zKRi1enmAa/XU8wYDZ5lRFG1onmzneFlRdHe2tEHWob6Z208n
+xaizWUyhE/mmMWMMsGMB7g/VCYuAjomn0/j4qUxUoRMiPf2W/xSzn3eIgDerCBuR
+wm+5rVPqN/O1C7JXKsUg35bqBioEhZSqWHAuz3MNnThc3YEgEqEGnWJPm3hPfOnn
+mHfb3Q6dpuzVcuQFQbf8fmwcSW2fJyNLV220Qk8z7t6LkAv1e67BghnAWL9DUv9l
+0kypkamIy45XbZoZ5ga4rCoPBmwmW7flpy6sjTre3vgrwDHUgf5F85EH3uJ8ahe0
+gLWv9YBrxngDLIEzzeHKCURXJI0KQaRHXCYpIEQLF0iIKHmpsV4szxzk8yw1YsvR
+p6yD6AwnOG2f5qc87+xd01SJVnSKU2/dwKbG9tI8IooTtnWt6kMaeBks6oUxl8/u
+494OXDL341x/blvNxOzVsuySL3bz3NCTEw25iSpX0pe0nd/LgMOjVW4sUZYim+MD
+uFcLiKLSbTDr2jkH0edVIbQmElJgIzd7HTkWe6GMzsgesJ/XK/eLU555j3luuuKi
+6v1KOb3rE+vKsc2QPfADJkp+tGiVeeF81u+bx0hbqmyDSzvbu/A=
+=QtOX
 -----END PGP SIGNATURE-----
 
---wRRV7LY7NUeQGEoC--
+--Qf1oXS95uex85X0R--
