@@ -2,110 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA4415ACF2
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 20:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBF9C5AD87
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 23:45:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726944AbfF2S5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jun 2019 14:57:46 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:34671 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726891AbfF2S5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jun 2019 14:57:46 -0400
-Received: by mail-pl1-f194.google.com with SMTP id i2so5075975plt.1
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2019 11:57:46 -0700 (PDT)
+        id S1726925AbfF2Vpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jun 2019 17:45:47 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:38268 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726923AbfF2Vpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jun 2019 17:45:47 -0400
+Received: by mail-qt1-f193.google.com with SMTP id n11so10429287qtl.5;
+        Sat, 29 Jun 2019 14:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0uwyMT5kJax/pL1jOjeLm1qOkWd4WLOXSR140tRuxek=;
-        b=qN+7iBT07Kph9Rpi4qRmEYDRkGQSIyxa1AWRbuJoBD/GGBsgzv9EMLYZuBaybUkJPO
-         928wSxRDL9iLFs9beRDmk8SaNEj3mGyQoCN7bE8qbp0hRGLUAfTX7PO6m6uhB/LAPom0
-         TQELEMAje8JWX3kYiW+M6fYbdopJBNzBmmR8zBYEgM++zeqmSrZ1abMqRZ2OenGZhzI1
-         gyy/JljHBQug3tZ4WsdRuG/p7M+K0GDWCHc6SOIJ074oBQxeF0BExI23iJ+SsrzdI7Xw
-         QcVf9q9vK77QxtQhJFRE8WFu7fXDtBlF4j68xMnYVLdherYFN0d4Df39R19oivkg49qW
-         0MdQ==
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PydfWRx3VTHAN1rB2bk+LBoB6vW7pvGp02+1fwRJ1RE=;
+        b=ooD/XQQOQhvoEjTcZV6/wWStcuJOHhQMYnlsHrJ+EZACNHEgB+ETmYQVB1+KkPL0mv
+         +ZTWXmMYQ5LzQL2UNNw3atUoWU6DjrpOfQyyKTM20LU2WWtAyWtPW5H97uWBVF/0DOp8
+         p5QIBlCQ4WYMWAz35A5rnFrUOWaiDuWgPErcAS/bepzjkfr9c12dlMStrP3HOWV2d064
+         1VqsugQ4Ln8GmzJvaYBCvCCfmYUrY/Lt5yoJK0U9FOQ/nnADrqpcmdywc2e9nBGMFsKT
+         oKZ9M2SQbYZh5hUBDoSrwIHqYHRkK7vxqTYr0LhO4ztn4mGmpeZFshB23SjG9t6F2J8E
+         6G0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0uwyMT5kJax/pL1jOjeLm1qOkWd4WLOXSR140tRuxek=;
-        b=nIrepu6vuTA1hgZBCuH/Ahme6Buv1epPwX9a+km7loukZh92gC5CcemXXAkGcN1hY8
-         CSSgYlzaIRK0zeHsSnMfwFnWjE3ax9PvY1QQH/DKTvqkuljzoR4x6q7HEIp+Rphfdu4D
-         Iq61ZQhhqx7LXsM8/f5Mg0TgkntIdKzeRm0cpvFqvrsVQo7WaizP3+NhfOA5ZWU1FcaB
-         lUXAfBieHdacnw5wpzioWypNL+s0Z2S2k4CtIg7zWgV6+UQX6jc+09XmJKZjaJF+McJF
-         PP8kc4szxGMV2ZKiXb1+5w42xTkuBceXLZRTGk8A1GqTbkrIk+5BugG9xExCa5EUkk5+
-         vYxQ==
-X-Gm-Message-State: APjAAAVS8diwW4g78/fAh+xZ7no8Ti5IauGRPQsQS8P0Bi39mA11S30r
-        8LFuI7WTy0cEYqXJWvHIO7Dr6w9ywGs=
-X-Google-Smtp-Source: APXvYqw9J7xQauFQr3WOlY6Dt3tYd3yx0nLfr/60YZFabkrGW26ZmmZkZYy/tKhQ/MO/onltwhqghg==
-X-Received: by 2002:a17:902:9688:: with SMTP id n8mr18660494plp.227.1561834665686;
-        Sat, 29 Jun 2019 11:57:45 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id s129sm5781898pfb.186.2019.06.29.11.57.44
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 29 Jun 2019 11:57:44 -0700 (PDT)
-Date:   Sat, 29 Jun 2019 11:57:42 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add HwSpinlock support for TI K3 SoCs
-Message-ID: <20190629185742.GC23094@builder>
-References: <20190531021321.14025-1-s-anna@ti.com>
- <90211f72-7ce4-94e5-aef7-bbe14266dfbb@ti.com>
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PydfWRx3VTHAN1rB2bk+LBoB6vW7pvGp02+1fwRJ1RE=;
+        b=Q+txQT4l3rdGJlC9uEbLQy1lDjMqHoSpN24BNzCxYH6zamKDAXT0vOx8WfakHJOiF6
+         PsQX3dbEaOjq+j59vpbHv8Ei34iZGPI+yxcVT55WREvbVgd3eZZCwuHOJNzvjbNveMYJ
+         pSH4aHeEX/72cSPrBzFTzn6tjHzdBtod+kHyrRY/yB6eLL8CCKJG9UDiRJa/WLN+vZLe
+         PNfymA+cMI5evWQ8m/zyVXlnsZbvngAxwhwnA8Waroz8SPslQRqyKnRtnwhUESiPDkjl
+         LFe80Eda+KWGyeM0NK+r5vzNb9NpJQ1eTcYS9adhLoON21mZUxjnE3GW03gJgSWBOCfx
+         AitQ==
+X-Gm-Message-State: APjAAAWmspr7bnGsKbqikkWNXzifdo/R4IYiD8MGYJBn6UxKuCc+2Q2y
+        v/hjqFTz4URHp/x+PBpZQowsbQRJ
+X-Google-Smtp-Source: APXvYqxA4587hJlAfsh1OBgH3szPnO3jRvYdnE8AaoChTYYqPjyg0eVjEufh+AkrbjRBUIV36G6PTQ==
+X-Received: by 2002:ac8:30a7:: with SMTP id v36mr13504603qta.119.1561844745818;
+        Sat, 29 Jun 2019 14:45:45 -0700 (PDT)
+Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.googlemail.com with ESMTPSA id k38sm3244931qtk.10.2019.06.29.14.45.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 29 Jun 2019 14:45:45 -0700 (PDT)
+Subject: Re: [PATCH V5 08/18] clk: tegra: Add suspend resume support for DFLL
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
+ <1561687972-19319-9-git-send-email-skomatineni@nvidia.com>
+ <594adc1e-4345-33ae-c79f-ad6f00964587@gmail.com>
+Message-ID: <e641e95e-57e5-4654-c951-a3b63d3b37c4@gmail.com>
+Date:   Sun, 30 Jun 2019 00:45:39 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <90211f72-7ce4-94e5-aef7-bbe14266dfbb@ti.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+In-Reply-To: <594adc1e-4345-33ae-c79f-ad6f00964587@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 24 Jun 13:38 PDT 2019, Suman Anna wrote:
-
-> Hi Bjorn,
+29.06.2019 16:28, Dmitry Osipenko пишет:
+> 28.06.2019 5:12, Sowjanya Komatineni пишет:
+>> This patch creates APIs for supporting Tegra210 clock driver to
+>> perform DFLL suspend and resume operation.
+>>
+>> During suspend, DFLL mode is saved and on resume Tegra210 clock driver
+>> invokes DFLL resume API to re-initialize DFLL to enable target device
+>> clock in open loop mode or closed loop mode.
+>>
+>> Acked-by: Thierry Reding <treding@nvidia.com>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>  drivers/clk/tegra/clk-dfll.c | 78 ++++++++++++++++++++++++++++++++++++++++++++
+>>  drivers/clk/tegra/clk-dfll.h |  2 ++
+>>  2 files changed, 80 insertions(+)
+>>
+>> diff --git a/drivers/clk/tegra/clk-dfll.c b/drivers/clk/tegra/clk-dfll.c
+>> index f8688c2ddf1a..a1f37cf99b00 100644
+>> --- a/drivers/clk/tegra/clk-dfll.c
+>> +++ b/drivers/clk/tegra/clk-dfll.c
+>> @@ -277,6 +277,7 @@ struct tegra_dfll {
+>>  	unsigned long			dvco_rate_min;
+>>  
+>>  	enum dfll_ctrl_mode		mode;
+>> +	enum dfll_ctrl_mode		resume_mode;
+>>  	enum dfll_tune_range		tune_range;
+>>  	struct dentry			*debugfs_dir;
+>>  	struct clk_hw			dfll_clk_hw;
+>> @@ -1864,6 +1865,83 @@ static int dfll_fetch_common_params(struct tegra_dfll *td)
+>>  }
+>>  
+>>  /*
+>> + * tegra_dfll_suspend
+>> + * @pdev: DFLL instance
+>> + *
+>> + * dfll controls clock/voltage to other devices, including CPU. Therefore,
+>> + * dfll driver pm suspend callback does not stop cl-dvfs operations.
+>> + */
+>> +void tegra_dfll_suspend(struct platform_device *pdev)
+>> +{
+>> +	struct tegra_dfll *td = dev_get_drvdata(&pdev->dev);
+>> +
+>> +	if (!td)
+>> +		return;
+>> +
+>> +	if (td->mode <= DFLL_DISABLED)
+>> +		return;
+>> +
+>> +	td->resume_mode = td->mode;
+>> +	switch (td->mode) {
+>> +	case DFLL_CLOSED_LOOP:
+>> +		dfll_set_mode(td, DFLL_CLOSED_LOOP);
+>> +		dfll_set_frequency_request(td, &td->last_req);
+>> +
+>> +		dfll_unlock(td);
+>> +		break;
+>> +	default:
+>> +		break;
+>> +	}
+>> +}
+>> +
+>> +/**
+>> + * tegra_dfll_resume - reprogram the DFLL after context-loss
+>> + * @pdev: DFLL instance
+>> + *
+>> + * Re-initialize and enable target device clock in open loop mode. Called
+>> + * directly from SoC clock resume syscore operation. Closed loop will be
+>> + * re-entered in platform syscore ops as well after CPU clock source is
+>> + * switched to DFLL in open loop.
+>> + */
+>> +void tegra_dfll_resume(struct platform_device *pdev, bool on_dfll)
+>> +{
+>> +	struct tegra_dfll *td = dev_get_drvdata(&pdev->dev);
+>> +
+>> +	if (!td)
+>> +		return;
+>> +
+>> +	if (on_dfll) {
+>> +		if (td->resume_mode == DFLL_CLOSED_LOOP)
+>> +			dfll_lock(td);
+>> +		td->resume_mode = DFLL_DISABLED;
+>> +		return;
+>> +	}
+>> +
+>> +	reset_control_deassert(td->dvco_rst);
+>> +
+>> +	pm_runtime_get(td->dev);
 > 
-
-Hi Suman,
-
-> On 5/30/19 9:13 PM, Suman Anna wrote:
-> > Hi Bjorn,
-> > 
-> > The following series adds the support for the HwSpinlock IP present
-> > on the newer TI K3 AM65x and J721E SoCs. The first 2 patches are
-> > related to the K3 support, and the last patch is a minor debug related
-> > trace to see the number of locks registered on each SoC.
-> > 
-> > I will be posting the DT nodes once the binding is acked.
+> pm_runtime_get_sync()?
 > 
-> If you do not have any comments, can you please pick up this series for
-> 5.3 merge window?
-> 
+> Otherwise looks like you're risking a lot here because pm_runtime_get() is an
+> asynchronous request.
 
-I was waiting for Rob's ack on the dt change, but as it's just a minor
-modification I've merged the series.
-
-Thanks,
-Bjorn
-
-> Thanks,
-> Suman
-> 
-> > 
-> > regards
-> > Suman
-> > 
-> > Suman Anna (3):
-> >   dt-bindings: hwlock: Update OMAP binding for TI K3 SoCs
-> >   hwspinlock/omap: Add support for TI K3 SoCs
-> >   hwspinlock/omap: Add a trace during probe
-> > 
-> >  .../bindings/hwlock/omap-hwspinlock.txt       | 25 +++++++++++++++----
-> >  drivers/hwspinlock/Kconfig                    |  2 +-
-> >  drivers/hwspinlock/omap_hwspinlock.c          |  4 +++
-> >  3 files changed, 25 insertions(+), 6 deletions(-)
-> > 
-> 
+It looks like DFLL driver should be masked as IRQ-safe using pm_runtime_irq_safe()
+and then the synchronous resume could be used..
