@@ -2,130 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 863B55AE09
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2019 06:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 762DB5AF2E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2019 09:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725976AbfF3ED1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jun 2019 00:03:27 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:41790 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725613AbfF3ED1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jun 2019 00:03:27 -0400
-Received: by mail-pg1-f196.google.com with SMTP id q4so2893977pgj.8
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2019 21:03:26 -0700 (PDT)
+        id S1726472AbfF3HSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jun 2019 03:18:53 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:33016 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725959AbfF3HSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jun 2019 03:18:53 -0400
+Received: by mail-pf1-f193.google.com with SMTP id x15so5011449pfq.0;
+        Sun, 30 Jun 2019 00:18:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=FottbFd+Y+82l+HM3Qswb2Sq8WrNqq+eO0NHXgs+EzI=;
-        b=Jbxz7MfdMmZ9o9WU6TyUqf6ZrfL8RUrvfvoPxbBG22L3Tk4Wp4DfYo+d5qshIfFkE9
-         fgBRyvXj3dz2nThbe4d4j5HkIqi5yJKZqqq58a5QkEIa5ucRT5F3Q/RESOgmYITY8I40
-         5336Xb0h7bFTtr/NhQA5vU2YWSvUZFBZP7s9FlQUeRlqCPcqmQkagTr3JIx2v6PUz3Y5
-         QG74FO1lM5nd/FfBjZJDEvn4mXH25GFuLaBuXo2Rh3w8Oz3yUqYF0Mtmrr/RjPdRbs+l
-         DyWY2Oz1E+/p+cFcFnewixFBpL9QEfwc4srdp17MhLaVfLGmWp+vtSHJpldVrahD+6Zf
-         3Vkw==
+        bh=L1zJ2W+96P13I/+gOzVIhzbXaF9vE8FnVg3sinlm8kw=;
+        b=RfkjlSI+78cCByRJyNCQkZ9m0+2ScCsAj7a7yjXw+iKVXYU35+MSDQc5n70nhVJfq+
+         4RL1UU+Fss+/gLVeiU2OyjAfsqgFBiVrQakal7tuo0zAJLKzj0TFvq1+JcvfY++qUSoe
+         Xh7CnVH3PWL4nxzIxBxIfqLZP3vaULjeuZ3X7hxpHxHfIeA7duqRMFqSvGDPE6mt7pcu
+         QWBC52vOAgn8kWyL4s73X7hlwlHJSFmFgAkMtChZ9Jc9dME7KEs94AN4ygMmFMvB3WgX
+         8diNIhO0orMJAmWGX0pCVmIX94I6SiwefcH81W28WnvyMErzH+G1CUoTQalZl8iIjoa3
+         3gOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FottbFd+Y+82l+HM3Qswb2Sq8WrNqq+eO0NHXgs+EzI=;
-        b=d8ZMfghDDYncVsW7Vt3PzLzabplRg2u41eE1XoyMjmuCAjlLpu4nXVAtWZd5AF0mib
-         tXgXzu4KsDuLmN+4R0X0OIVTEmzksvZ68SnMhav7ZsCXeRo813WI2ggGJDQarM3dOylA
-         SgUQ/K8H6BlIeODcwsKuAu7Kc5zmXC4Rfcwr6nnAoHu6QDtS8fYPRMVrfPR/eSibzpXf
-         j0ljTunJyCKRJpBg8naWw9OJ0rzQHEx0VLJzREPHNcgPg4FXCjSbTqXJk55B9ZoLkO08
-         ZyPlGY+A/G5DTQ1OmeapqY7f3fyNdK40/QVGv0K4yeqRawWFw2CEKGYBJ9yn8c2VaHyL
-         hqTQ==
-X-Gm-Message-State: APjAAAXBr8+QJRc7kn8hfR30cjwgocBtQsiXGymrLygohFLxA6mR/Fdg
-        AyCLGBUtuwI3B5AV2ZJU0+1hOA==
-X-Google-Smtp-Source: APXvYqxVT5FLTspCDUieP0WCVk9yzwrr53RtQxt9iPVStpUeXliigG7L7l0TCjnf4tDvnu5Xv5KGMw==
-X-Received: by 2002:a63:f146:: with SMTP id o6mr17077968pgk.179.1561867405996;
-        Sat, 29 Jun 2019 21:03:25 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id j15sm6860777pfr.146.2019.06.29.21.03.24
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 29 Jun 2019 21:03:25 -0700 (PDT)
-Date:   Sat, 29 Jun 2019 21:03:22 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Fabien Dessenne <fabien.dessenne@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        bh=L1zJ2W+96P13I/+gOzVIhzbXaF9vE8FnVg3sinlm8kw=;
+        b=Swl1EvXA5bRzmixTmSAa7NLU3n+yrS/UZRJ+20C/ANNCFR2TYcvUV+klr8sO25cn8T
+         8vaJ6L56XTvCHA6niSVzxJGGyoAK0qyfkTOWw6bNj0zeTnj1qXcLi0GmGbxbD8XIa9dT
+         4PbTgFmH8fYDiYGxyO44itHKC/uk8n9Da+5AyY0AujWR3+yKlDGw2ztLtDpzxQ8bkUDH
+         gejHIxcWzMu0eMMA714pflM0xK0Vd4pmuOGuBXfPsodk5GsZsJ8gpHaojCXrnZcvrvcH
+         t/5xF6PIVbemknq0Cm2INQnOSS6Jcp2DFyd9hN1VV3T6uwX/vwgZa9WhDUyMuoh+668D
+         KzCQ==
+X-Gm-Message-State: APjAAAWeouiLZ94328IBAjk4vE9HOhwpq6vcAFgFNaO1ANDKE8HrHwMP
+        FLcTF4FHVxgqTFsZJ2VWACg=
+X-Google-Smtp-Source: APXvYqw/AYvmo+4cEzjA8UtFDO+cQHBLBzP1386VYzmO26ym583UvDi9cfABTn0zEKKl+5kbM0IHFA==
+X-Received: by 2002:a63:c60b:: with SMTP id w11mr17431144pgg.356.1561879132310;
+        Sun, 30 Jun 2019 00:18:52 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id j2sm7736958pfn.135.2019.06.30.00.18.51
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sun, 30 Jun 2019 00:18:51 -0700 (PDT)
+Date:   Sun, 30 Jun 2019 00:18:49 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Jiri Kosina <jikos@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, xnox@ubuntu.com,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        Loic Pallardy <loic.pallardy@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Ludovic Barre <ludovic.barre@st.com>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: Re: [PATCH v4 0/8] stm32 m4 remoteproc on STM32MP157c
-Message-ID: <20190630040322.GH23094@builder>
-References: <1557822423-22658-1-git-send-email-fabien.dessenne@st.com>
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 1/5] Input: elan_i2c: Export the device id whitelist
+Message-ID: <20190630071849.GC91171@dtor-ws>
+References: <20190621144854.38568-1-jeffrey.l.hugo@gmail.com>
+ <20190621145042.38637-1-jeffrey.l.hugo@gmail.com>
+ <20190623062000.GB204275@dtor-ws>
+ <CAOCk7Nr4+Sj9U=qAZTEhPGgZNrZ1VVvNtuUg-9vQzp15xFdCUw@mail.gmail.com>
+ <CAO-hwJLEDCbMud6dCfvXzwDfauAgfOZmQwkmELEF2e6-4Oe6=g@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1557822423-22658-1-git-send-email-fabien.dessenne@st.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+In-Reply-To: <CAO-hwJLEDCbMud6dCfvXzwDfauAgfOZmQwkmELEF2e6-4Oe6=g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 14 May 01:26 PDT 2019, Fabien Dessenne wrote:
+On Thu, Jun 27, 2019 at 04:29:29PM +0200, Benjamin Tissoires wrote:
+> On Thu, Jun 27, 2019 at 4:02 PM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
+> >
+> > On Sun, Jun 23, 2019 at 12:20 AM Dmitry Torokhov
+> > <dmitry.torokhov@gmail.com> wrote:
+> > >
+> > > On Fri, Jun 21, 2019 at 07:50:42AM -0700, Jeffrey Hugo wrote:
+> > > > Elan_i2c and hid-quirks work in conjunction to decide which devices each
+> > > > driver will handle.  Elan_i2c has a whitelist of devices that should be
+> > > > consumed by hid-quirks so that there is one master list of devices to
+> > > > handoff between the drivers.  Put the ids in a header file so that
+> > > > hid-quirks can consume it instead of duplicating the list.
+> > > >
+> > > > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> > >
+> > > Benjamin, are you happy with this version?
+> >
+> > Benjamin, ping?
+> > Sorry to be a bother, but I'm still anxious to get this queued for 5.3.
+> 
+> Ooops, yeah, sorry I missed Dmitry's email.
+> 
+> Fine by me:
+> Acked-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
 
-> STMicrolectronics STM32MP157 MPU are based on a Dual Arm Cortex-A7 core and a
-> Cortex-M4.
-> This patchset adds the support of the stm32_rproc driver allowing to control
-> the M4 remote processor.
-> 
+Applied, thank you.
 
-Applied patches 1 through 3, with a few fixes of compile warnings on
-data types in dev_dbg, in patch 3.
-
-Thanks,
-Bjorn
-
-> Changes since v3:
-> -Replaced "st,auto_boot" with "st,auto-boot"
-> -Update m4 reg values and align with unit-address
-> 
-> Changes since v2:
-> - Clarified "reg" description
-> - Change m4 unit adress to 38000000
-> - Renamed "auto_boot" in "st,auto-boot"
-> 
-> Changes since v1:
-> - Gave details about the memory mapping (in bindings).
-> - Used 'dma-ranges' instead of 'ranges'.
-> - Updated the 'compatible' property.
-> - Remove the 'recovery', 'reset-names' and 'interrupt-names' properties.
-> - Clarified why / when mailboxes are optional.
-> 
-> Fabien Dessenne (8):
->   dt-bindings: stm32: add bindings for ML-AHB interconnect
->   dt-bindings: remoteproc: add bindings for stm32 remote processor
->     driver
->   remoteproc: stm32: add an ST stm32_rproc driver
->   ARM: dts: stm32: add m4 remoteproc support on STM32MP157c
->   ARM: dts: stm32: declare copro reserved memories on STM32MP157c-ed1
->   ARM: dts: stm32: enable m4 coprocessor support on STM32MP157c-ed1
->   ARM: dts: stm32: declare copro reserved memories on STM32MP157a-dk1
->   ARM: dts: stm32: enable m4 coprocessor support on STM32MP157a-dk1
-> 
->  .../devicetree/bindings/arm/stm32/mlahb.txt        |  37 ++
->  .../devicetree/bindings/remoteproc/stm32-rproc.txt |  63 +++
->  arch/arm/boot/dts/stm32mp157a-dk1.dts              |  52 ++
->  arch/arm/boot/dts/stm32mp157c-ed1.dts              |  52 ++
->  arch/arm/boot/dts/stm32mp157c.dtsi                 |  20 +
->  drivers/remoteproc/Kconfig                         |  15 +
->  drivers/remoteproc/Makefile                        |   1 +
->  drivers/remoteproc/stm32_rproc.c                   | 628 +++++++++++++++++++++
->  8 files changed, 868 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/stm32/mlahb.txt
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
->  create mode 100644 drivers/remoteproc/stm32_rproc.c
-> 
-> -- 
-> 2.7.4
-> 
+-- 
+Dmitry
