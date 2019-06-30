@@ -2,170 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBF9C5AD87
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2019 23:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863B55AE09
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2019 06:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726925AbfF2Vpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jun 2019 17:45:47 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:38268 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726923AbfF2Vpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jun 2019 17:45:47 -0400
-Received: by mail-qt1-f193.google.com with SMTP id n11so10429287qtl.5;
-        Sat, 29 Jun 2019 14:45:46 -0700 (PDT)
+        id S1725976AbfF3ED1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jun 2019 00:03:27 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:41790 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725613AbfF3ED1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jun 2019 00:03:27 -0400
+Received: by mail-pg1-f196.google.com with SMTP id q4so2893977pgj.8
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2019 21:03:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PydfWRx3VTHAN1rB2bk+LBoB6vW7pvGp02+1fwRJ1RE=;
-        b=ooD/XQQOQhvoEjTcZV6/wWStcuJOHhQMYnlsHrJ+EZACNHEgB+ETmYQVB1+KkPL0mv
-         +ZTWXmMYQ5LzQL2UNNw3atUoWU6DjrpOfQyyKTM20LU2WWtAyWtPW5H97uWBVF/0DOp8
-         p5QIBlCQ4WYMWAz35A5rnFrUOWaiDuWgPErcAS/bepzjkfr9c12dlMStrP3HOWV2d064
-         1VqsugQ4Ln8GmzJvaYBCvCCfmYUrY/Lt5yoJK0U9FOQ/nnADrqpcmdywc2e9nBGMFsKT
-         oKZ9M2SQbYZh5hUBDoSrwIHqYHRkK7vxqTYr0LhO4ztn4mGmpeZFshB23SjG9t6F2J8E
-         6G0A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=FottbFd+Y+82l+HM3Qswb2Sq8WrNqq+eO0NHXgs+EzI=;
+        b=Jbxz7MfdMmZ9o9WU6TyUqf6ZrfL8RUrvfvoPxbBG22L3Tk4Wp4DfYo+d5qshIfFkE9
+         fgBRyvXj3dz2nThbe4d4j5HkIqi5yJKZqqq58a5QkEIa5ucRT5F3Q/RESOgmYITY8I40
+         5336Xb0h7bFTtr/NhQA5vU2YWSvUZFBZP7s9FlQUeRlqCPcqmQkagTr3JIx2v6PUz3Y5
+         QG74FO1lM5nd/FfBjZJDEvn4mXH25GFuLaBuXo2Rh3w8Oz3yUqYF0Mtmrr/RjPdRbs+l
+         DyWY2Oz1E+/p+cFcFnewixFBpL9QEfwc4srdp17MhLaVfLGmWp+vtSHJpldVrahD+6Zf
+         3Vkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PydfWRx3VTHAN1rB2bk+LBoB6vW7pvGp02+1fwRJ1RE=;
-        b=Q+txQT4l3rdGJlC9uEbLQy1lDjMqHoSpN24BNzCxYH6zamKDAXT0vOx8WfakHJOiF6
-         PsQX3dbEaOjq+j59vpbHv8Ei34iZGPI+yxcVT55WREvbVgd3eZZCwuHOJNzvjbNveMYJ
-         pSH4aHeEX/72cSPrBzFTzn6tjHzdBtod+kHyrRY/yB6eLL8CCKJG9UDiRJa/WLN+vZLe
-         PNfymA+cMI5evWQ8m/zyVXlnsZbvngAxwhwnA8Waroz8SPslQRqyKnRtnwhUESiPDkjl
-         LFe80Eda+KWGyeM0NK+r5vzNb9NpJQ1eTcYS9adhLoON21mZUxjnE3GW03gJgSWBOCfx
-         AitQ==
-X-Gm-Message-State: APjAAAWmspr7bnGsKbqikkWNXzifdo/R4IYiD8MGYJBn6UxKuCc+2Q2y
-        v/hjqFTz4URHp/x+PBpZQowsbQRJ
-X-Google-Smtp-Source: APXvYqxA4587hJlAfsh1OBgH3szPnO3jRvYdnE8AaoChTYYqPjyg0eVjEufh+AkrbjRBUIV36G6PTQ==
-X-Received: by 2002:ac8:30a7:: with SMTP id v36mr13504603qta.119.1561844745818;
-        Sat, 29 Jun 2019 14:45:45 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id k38sm3244931qtk.10.2019.06.29.14.45.41
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 29 Jun 2019 14:45:45 -0700 (PDT)
-Subject: Re: [PATCH V5 08/18] clk: tegra: Add suspend resume support for DFLL
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
- <1561687972-19319-9-git-send-email-skomatineni@nvidia.com>
- <594adc1e-4345-33ae-c79f-ad6f00964587@gmail.com>
-Message-ID: <e641e95e-57e5-4654-c951-a3b63d3b37c4@gmail.com>
-Date:   Sun, 30 Jun 2019 00:45:39 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=FottbFd+Y+82l+HM3Qswb2Sq8WrNqq+eO0NHXgs+EzI=;
+        b=d8ZMfghDDYncVsW7Vt3PzLzabplRg2u41eE1XoyMjmuCAjlLpu4nXVAtWZd5AF0mib
+         tXgXzu4KsDuLmN+4R0X0OIVTEmzksvZ68SnMhav7ZsCXeRo813WI2ggGJDQarM3dOylA
+         SgUQ/K8H6BlIeODcwsKuAu7Kc5zmXC4Rfcwr6nnAoHu6QDtS8fYPRMVrfPR/eSibzpXf
+         j0ljTunJyCKRJpBg8naWw9OJ0rzQHEx0VLJzREPHNcgPg4FXCjSbTqXJk55B9ZoLkO08
+         ZyPlGY+A/G5DTQ1OmeapqY7f3fyNdK40/QVGv0K4yeqRawWFw2CEKGYBJ9yn8c2VaHyL
+         hqTQ==
+X-Gm-Message-State: APjAAAXBr8+QJRc7kn8hfR30cjwgocBtQsiXGymrLygohFLxA6mR/Fdg
+        AyCLGBUtuwI3B5AV2ZJU0+1hOA==
+X-Google-Smtp-Source: APXvYqxVT5FLTspCDUieP0WCVk9yzwrr53RtQxt9iPVStpUeXliigG7L7l0TCjnf4tDvnu5Xv5KGMw==
+X-Received: by 2002:a63:f146:: with SMTP id o6mr17077968pgk.179.1561867405996;
+        Sat, 29 Jun 2019 21:03:25 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id j15sm6860777pfr.146.2019.06.29.21.03.24
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 29 Jun 2019 21:03:25 -0700 (PDT)
+Date:   Sat, 29 Jun 2019 21:03:22 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Fabien Dessenne <fabien.dessenne@st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        Loic Pallardy <loic.pallardy@st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        Ludovic Barre <ludovic.barre@st.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: Re: [PATCH v4 0/8] stm32 m4 remoteproc on STM32MP157c
+Message-ID: <20190630040322.GH23094@builder>
+References: <1557822423-22658-1-git-send-email-fabien.dessenne@st.com>
 MIME-Version: 1.0
-In-Reply-To: <594adc1e-4345-33ae-c79f-ad6f00964587@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557822423-22658-1-git-send-email-fabien.dessenne@st.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-29.06.2019 16:28, Dmitry Osipenko пишет:
-> 28.06.2019 5:12, Sowjanya Komatineni пишет:
->> This patch creates APIs for supporting Tegra210 clock driver to
->> perform DFLL suspend and resume operation.
->>
->> During suspend, DFLL mode is saved and on resume Tegra210 clock driver
->> invokes DFLL resume API to re-initialize DFLL to enable target device
->> clock in open loop mode or closed loop mode.
->>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>  drivers/clk/tegra/clk-dfll.c | 78 ++++++++++++++++++++++++++++++++++++++++++++
->>  drivers/clk/tegra/clk-dfll.h |  2 ++
->>  2 files changed, 80 insertions(+)
->>
->> diff --git a/drivers/clk/tegra/clk-dfll.c b/drivers/clk/tegra/clk-dfll.c
->> index f8688c2ddf1a..a1f37cf99b00 100644
->> --- a/drivers/clk/tegra/clk-dfll.c
->> +++ b/drivers/clk/tegra/clk-dfll.c
->> @@ -277,6 +277,7 @@ struct tegra_dfll {
->>  	unsigned long			dvco_rate_min;
->>  
->>  	enum dfll_ctrl_mode		mode;
->> +	enum dfll_ctrl_mode		resume_mode;
->>  	enum dfll_tune_range		tune_range;
->>  	struct dentry			*debugfs_dir;
->>  	struct clk_hw			dfll_clk_hw;
->> @@ -1864,6 +1865,83 @@ static int dfll_fetch_common_params(struct tegra_dfll *td)
->>  }
->>  
->>  /*
->> + * tegra_dfll_suspend
->> + * @pdev: DFLL instance
->> + *
->> + * dfll controls clock/voltage to other devices, including CPU. Therefore,
->> + * dfll driver pm suspend callback does not stop cl-dvfs operations.
->> + */
->> +void tegra_dfll_suspend(struct platform_device *pdev)
->> +{
->> +	struct tegra_dfll *td = dev_get_drvdata(&pdev->dev);
->> +
->> +	if (!td)
->> +		return;
->> +
->> +	if (td->mode <= DFLL_DISABLED)
->> +		return;
->> +
->> +	td->resume_mode = td->mode;
->> +	switch (td->mode) {
->> +	case DFLL_CLOSED_LOOP:
->> +		dfll_set_mode(td, DFLL_CLOSED_LOOP);
->> +		dfll_set_frequency_request(td, &td->last_req);
->> +
->> +		dfll_unlock(td);
->> +		break;
->> +	default:
->> +		break;
->> +	}
->> +}
->> +
->> +/**
->> + * tegra_dfll_resume - reprogram the DFLL after context-loss
->> + * @pdev: DFLL instance
->> + *
->> + * Re-initialize and enable target device clock in open loop mode. Called
->> + * directly from SoC clock resume syscore operation. Closed loop will be
->> + * re-entered in platform syscore ops as well after CPU clock source is
->> + * switched to DFLL in open loop.
->> + */
->> +void tegra_dfll_resume(struct platform_device *pdev, bool on_dfll)
->> +{
->> +	struct tegra_dfll *td = dev_get_drvdata(&pdev->dev);
->> +
->> +	if (!td)
->> +		return;
->> +
->> +	if (on_dfll) {
->> +		if (td->resume_mode == DFLL_CLOSED_LOOP)
->> +			dfll_lock(td);
->> +		td->resume_mode = DFLL_DISABLED;
->> +		return;
->> +	}
->> +
->> +	reset_control_deassert(td->dvco_rst);
->> +
->> +	pm_runtime_get(td->dev);
-> 
-> pm_runtime_get_sync()?
-> 
-> Otherwise looks like you're risking a lot here because pm_runtime_get() is an
-> asynchronous request.
+On Tue 14 May 01:26 PDT 2019, Fabien Dessenne wrote:
 
-It looks like DFLL driver should be masked as IRQ-safe using pm_runtime_irq_safe()
-and then the synchronous resume could be used..
+> STMicrolectronics STM32MP157 MPU are based on a Dual Arm Cortex-A7 core and a
+> Cortex-M4.
+> This patchset adds the support of the stm32_rproc driver allowing to control
+> the M4 remote processor.
+> 
+
+Applied patches 1 through 3, with a few fixes of compile warnings on
+data types in dev_dbg, in patch 3.
+
+Thanks,
+Bjorn
+
+> Changes since v3:
+> -Replaced "st,auto_boot" with "st,auto-boot"
+> -Update m4 reg values and align with unit-address
+> 
+> Changes since v2:
+> - Clarified "reg" description
+> - Change m4 unit adress to 38000000
+> - Renamed "auto_boot" in "st,auto-boot"
+> 
+> Changes since v1:
+> - Gave details about the memory mapping (in bindings).
+> - Used 'dma-ranges' instead of 'ranges'.
+> - Updated the 'compatible' property.
+> - Remove the 'recovery', 'reset-names' and 'interrupt-names' properties.
+> - Clarified why / when mailboxes are optional.
+> 
+> Fabien Dessenne (8):
+>   dt-bindings: stm32: add bindings for ML-AHB interconnect
+>   dt-bindings: remoteproc: add bindings for stm32 remote processor
+>     driver
+>   remoteproc: stm32: add an ST stm32_rproc driver
+>   ARM: dts: stm32: add m4 remoteproc support on STM32MP157c
+>   ARM: dts: stm32: declare copro reserved memories on STM32MP157c-ed1
+>   ARM: dts: stm32: enable m4 coprocessor support on STM32MP157c-ed1
+>   ARM: dts: stm32: declare copro reserved memories on STM32MP157a-dk1
+>   ARM: dts: stm32: enable m4 coprocessor support on STM32MP157a-dk1
+> 
+>  .../devicetree/bindings/arm/stm32/mlahb.txt        |  37 ++
+>  .../devicetree/bindings/remoteproc/stm32-rproc.txt |  63 +++
+>  arch/arm/boot/dts/stm32mp157a-dk1.dts              |  52 ++
+>  arch/arm/boot/dts/stm32mp157c-ed1.dts              |  52 ++
+>  arch/arm/boot/dts/stm32mp157c.dtsi                 |  20 +
+>  drivers/remoteproc/Kconfig                         |  15 +
+>  drivers/remoteproc/Makefile                        |   1 +
+>  drivers/remoteproc/stm32_rproc.c                   | 628 +++++++++++++++++++++
+>  8 files changed, 868 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/stm32/mlahb.txt
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
+>  create mode 100644 drivers/remoteproc/stm32_rproc.c
+> 
+> -- 
+> 2.7.4
+> 
