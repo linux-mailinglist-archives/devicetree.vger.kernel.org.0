@@ -2,31 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAEF65C4D1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 23:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCC15C4F0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 23:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726688AbfGAVJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 17:09:11 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46700 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726686AbfGAVJL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 17:09:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=FS3zYKTfBQ7R4y1qqZSwORo7QgLWjEnpO+Ly/y1JU2M=; b=ATUYRVdJ0TirIyX8MylR5qrsnz
-        6YH5mWLYJEZAMBPjQyFeVPahNq938hS11OP7jm4VYwrrVQm8LCvFYbD1ljAfKnwk0g3hJkgpdrKAI
-        A3EjlBVImAyeVHEaUU/+VVK/R5m65jfeKtvRM5lEqb4QAzNcS6qYs4shoqF3Oztf1+Qc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hi3Xq-0001t5-9g; Mon, 01 Jul 2019 23:09:02 +0200
-Date:   Mon, 1 Jul 2019 23:09:02 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
+        id S1727000AbfGAVV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 17:21:58 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:37442 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726658AbfGAVVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 17:21:53 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 19so7178373pfa.4
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 14:21:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=70Y1QPu/qhMgHyq/2RSm32FTi8ixyuGULx6P5hAiwAo=;
+        b=huVj3wZJ/5a01x2u8yW9IKMsW2kdHXmGlQ6d+tRcMwljLwf9bU3a87QCR33p1OfXgi
+         z+0x6xiwiY1ZVtrHhxpX6jhBU3FHsRO7qVLmJzH4EDPQjePaS9VmDNkWo5bQbSkitBhw
+         st31rPwZIa9/knPvA1KVMpYLI4u4aysRL6QO8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=70Y1QPu/qhMgHyq/2RSm32FTi8ixyuGULx6P5hAiwAo=;
+        b=aqxNq9mjgGk8sel0Ok0tLWkbtWXK8tHmpU+P2yc1iOCdUABuhzMKJ7ygEVjGxwtTmB
+         XE3NA5R8ifXvmtBpzBM7trOi1+xOHN3E7w54oEDZiEXhui/Jxr7HyNK1KRNDONVSGoWc
+         OoE4wmpmwD2PpmvIplrJl7r4rLJNTFQmCtpkebV+3erHUzQKeaD5nqA4v9F5Bje9I9KQ
+         ypNWiugZ0ziIdopS3DkxKiNb6C5HQkcWdhcEh7RzOYNAboTE+BbujKij399+ci1aleFi
+         nMGbfLcKnX/+X1OFJsZU69/rS6k0u6fT3hdhZGiOCOBnSSGMh37wFSrvSEhloU/yH9MH
+         THzA==
+X-Gm-Message-State: APjAAAUUji74AQt6HzENCqE0ZeW+t43DccbCqXRaOAqC2VXJFxqJD4Uw
+        i+/baWyiYQCfkQyY6WXxwVHNRA==
+X-Google-Smtp-Source: APXvYqwNXsJhhY160Fk9GwXuW8u5kfJBWIDO19fh8yy/VUem+6dkNurZTZpdAhxeEGrNG+RIrLLtCQ==
+X-Received: by 2002:a65:5242:: with SMTP id q2mr12138983pgp.135.1562016112307;
+        Mon, 01 Jul 2019 14:21:52 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id h62sm11280323pgc.54.2019.07.01.14.21.51
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Jul 2019 14:21:51 -0700 (PDT)
+Date:   Mon, 1 Jul 2019 14:21:49 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -36,16 +54,16 @@ Cc:     Matthias Kaehlcke <mka@chromium.org>,
         Douglas Anderson <dianders@chromium.org>
 Subject: Re: [PATCH 2/3] net: phy: realtek: Enable accessing RTL8211E
  extension pages
-Message-ID: <20190701210902.GL30468@lunn.ch>
+Message-ID: <20190701212149.GA250418@google.com>
 References: <20190701195225.120808-1-mka@chromium.org>
  <20190701195225.120808-2-mka@chromium.org>
  <20190701200248.GJ30468@lunn.ch>
  <35db1bff-f48e-5372-06b7-3140cb7cbb71@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 In-Reply-To: <35db1bff-f48e-5372-06b7-3140cb7cbb71@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -70,7 +88,6 @@ On Mon, Jul 01, 2019 at 10:37:16PM +0200, Heiner Kallweit wrote:
 > > 
 > AFAIK: no
 
-This it would be better to make use of the core paged access support,
-so that locking is done correctly.
-
-   Andrew
+From my observations it looks like registers 0x00 to 0x0f are still
+accessible, but not the ones above. IIUC 0x00-0x0f are standard
+registers, the others are vendor specific.
