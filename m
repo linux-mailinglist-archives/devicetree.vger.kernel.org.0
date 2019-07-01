@@ -2,398 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A885B40B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 07:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70DA95B442
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 07:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727050AbfGAFar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 01:30:47 -0400
-Received: from mail-eopbgr760052.outbound.protection.outlook.com ([40.107.76.52]:59529
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
+        id S1727093AbfGAFhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 01:37:55 -0400
+Received: from mail-eopbgr780045.outbound.protection.outlook.com ([40.107.78.45]:9760
+        "EHLO NAM03-BY2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727529AbfGAFaL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 01:30:11 -0400
+        id S1725777AbfGAFhz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jul 2019 01:37:55 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dUA72EvoKP7jjMM7blwJWBJAdFDGoEeg8uvtkSuLNgI=;
- b=BRZoW+paXVC+RBh3Z5h8+1DQODcrAeRs+J9eND3eCLLZ55chm1I9nox8WEhSFZI+0iCViO0PX0tQ0EltjJ4MfbNhU3xVqtzO4enjqt01S38qgk8OZiX405+XDVvPdJLRkYjGqeubAkEGyNxg47YhXWPyG4zdrArYnaKIOjSYUA8=
-Received: from SN4PR0201CA0012.namprd02.prod.outlook.com
- (2603:10b6:803:2b::22) by DM6PR02MB5244.namprd02.prod.outlook.com
- (2603:10b6:5:48::17) with Microsoft SMTP Server (version=TLS1_2,
+ bh=F8KIoRpl+4FW2unzwthd45gQGD7fobv7LrzhR+W+2mY=;
+ b=xGSJD16Tvmts+TdHal0SgIU8D9+iuOgeBi6V6+v08P6bA+oDfWSjKUzBjTbgpecpon9ITfeBwP8EUwjOVjPBSWxLdr3UAyRGGm2QJ7kD/ZET1UGVZVMFZMIdFjKe5wL/g2AdQ+8ID3keXJcEphTvggKoFLz+8nKtir81GBT7kz0=
+Received: from SN4PR0201CA0032.namprd02.prod.outlook.com
+ (2603:10b6:803:2e::18) by BY5PR02MB6324.namprd02.prod.outlook.com
+ (2603:10b6:a03:1f6::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2032.20; Mon, 1 Jul
- 2019 05:30:07 +0000
-Received: from BL2NAM02FT008.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::209) by SN4PR0201CA0012.outlook.office365.com
- (2603:10b6:803:2b::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2032.20 via Frontend
- Transport; Mon, 1 Jul 2019 05:30:07 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ 2019 05:37:53 +0000
+Received: from BL2NAM02FT029.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::205) by SN4PR0201CA0032.outlook.office365.com
+ (2603:10b6:803:2e::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2032.18 via Frontend
+ Transport; Mon, 1 Jul 2019 05:37:52 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.100)
  smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
  header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
  header.from=xilinx.com;
 Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- BL2NAM02FT008.mail.protection.outlook.com (10.152.76.162) with Microsoft SMTP
+ 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
+Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
+ BL2NAM02FT029.mail.protection.outlook.com (10.152.77.100) with Microsoft SMTP
  Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2032.15
- via Frontend Transport; Mon, 1 Jul 2019 05:30:07 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+ via Frontend Transport; Mon, 1 Jul 2019 05:37:52 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]:53301 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
         (envelope-from <manish.narani@xilinx.com>)
-        id 1hhotC-0002rn-Dt; Sun, 30 Jun 2019 22:30:06 -0700
+        id 1hhp0h-0006Z9-KF; Sun, 30 Jun 2019 22:37:51 -0700
 Received: from [127.0.0.1] (helo=localhost)
         by xsj-pvapsmtp01 with smtp (Exim 4.63)
         (envelope-from <manish.narani@xilinx.com>)
-        id 1hhot7-0003EO-8P; Sun, 30 Jun 2019 22:30:01 -0700
-Received: from xsj-pvapsmtp01 (xsj-smtp.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x615TuGY008189;
-        Sun, 30 Jun 2019 22:29:56 -0700
+        id 1hhp0c-0006Vc-Gw; Sun, 30 Jun 2019 22:37:46 -0700
+Received: from xsj-pvapsmtp01 (smtp.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x615bZW5024757;
+        Sun, 30 Jun 2019 22:37:35 -0700
 Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
         by xsj-pvapsmtp01 with esmtp (Exim 4.63)
         (envelope-from <mnarani@xilinx.com>)
-        id 1hhot2-0003Cg-4i; Sun, 30 Jun 2019 22:29:56 -0700
+        id 1hhp0R-0006UM-47; Sun, 30 Jun 2019 22:37:35 -0700
 Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
-        id 667AD12175A; Mon,  1 Jul 2019 10:59:54 +0530 (IST)
+        id 4CAFA121726; Mon,  1 Jul 2019 11:07:34 +0530 (IST)
 From:   Manish Narani <manish.narani@xilinx.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        heiko@sntech.de, michal.simek@xilinx.com, adrian.hunter@intel.com,
-        christoph.muellner@theobroma-systems.com,
-        philipp.tomsich@theobroma-systems.com, viresh.kumar@linaro.org,
-        scott.branden@broadcom.com, ayaka@soulik.info, kernel@esmil.dk,
-        tony.xie@rock-chips.com, rajan.vaja@xilinx.com,
-        jolly.shah@xilinx.com, nava.manne@xilinx.com, mdf@kernel.org,
-        manish.narani@xilinx.com, olof@lixom.net
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 11/11] mmc: sdhci-of-arasan: Add support for ZynqMP Platform Tap Delays Setup
-Date:   Mon,  1 Jul 2019 10:59:51 +0530
-Message-Id: <1561958991-21935-12-git-send-email-manish.narani@xilinx.com>
+To:     robh+dt@kernel.org, michal.simek@xilinx.com, mark.rutland@arm.com,
+        manish.narani@xilinx.com, sudeep.holla@arm.com,
+        rrichter@cavium.com, gregory.clement@bootlin.com,
+        amit.kucheria@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: zynqmp: Add ZynqMP SDHCI compatible string
+Date:   Mon,  1 Jul 2019 11:07:32 +0530
+Message-Id: <1561959452-22915-1-git-send-email-manish.narani@xilinx.com>
 X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
-References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
 X-RCIS-Action: ALLOW
 X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
 X-TM-AS-User-Approved-Sender: Yes;Yes
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(136003)(376002)(396003)(39860400002)(2980300002)(189003)(199004)(336012)(4326008)(6266002)(5660300002)(426003)(52956003)(106002)(103686004)(42186006)(478600001)(72206003)(50226002)(2906002)(63266004)(7416002)(51416003)(36756003)(476003)(70206006)(81166006)(126002)(8936002)(50466002)(26005)(356004)(76176011)(186003)(6666004)(48376002)(47776003)(81156014)(446003)(2616005)(8676002)(36386004)(11346002)(305945005)(14444005)(316002)(486006)(44832011)(16586007)(70586007)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR02MB5244;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(396003)(376002)(136003)(346002)(2980300002)(199004)(189003)(16586007)(42186006)(106002)(966005)(478600001)(316002)(44832011)(126002)(476003)(4326008)(486006)(70586007)(70206006)(36386004)(63266004)(50466002)(50226002)(72206003)(5660300002)(47776003)(103686004)(36756003)(305945005)(51416003)(81156014)(81166006)(14444005)(8676002)(6266002)(336012)(426003)(356004)(2616005)(186003)(26005)(6306002)(8936002)(2906002)(52956003)(48376002)(5001870100001);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR02MB6324;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-100.xilinx.com,xapps1.xilinx.com;A:1;MX:1;
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5df68a71-4728-4b1e-a9a7-08d6fde52d8f
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:DM6PR02MB5244;
-X-MS-TrafficTypeDiagnostic: DM6PR02MB5244:
-X-Microsoft-Antispam-PRVS: <DM6PR02MB52447D04F942CAE9FC95AABDC1F90@DM6PR02MB5244.namprd02.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 3ae3bc95-876f-43af-cec3-08d6fde642c3
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:BY5PR02MB6324;
+X-MS-TrafficTypeDiagnostic: BY5PR02MB6324:
+X-MS-Exchange-PUrlCount: 1
+X-Microsoft-Antispam-PRVS: <BY5PR02MB63247EB84535C3B55C75E9D6C1F90@BY5PR02MB6324.namprd02.prod.outlook.com>
 X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-Forefront-PRVS: 00851CA28B
 X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: wi9ef65SqQ7ogaew/4nrVOKx4WSEBFtIWgNVujDO+GDF/0VWYa7Pds8zABf43HcXtXJDXTvJjPZcref0pZYG0o9KV6DMWzJUEn2A73Jt7lEecxwZYECb/BjNOZqSroHHmKSrY2VjrBjtkTu0zOq6YLeLl1y6q9WOmXeCOGL3yQA0sQGzsmPppCaNMt00StqMbjTQV22DwQpF+MFnXh9LwrHBAs2Xq0BcOZCP602M8ZbKaeq5TUQI1UgC6T9/X+BhbsWWhOPqKC7Av/qHvL1GoCgYNnPG+zyRZ4jI8k4wknU49wtspwZb6i/G3TGIYDxcpXeZthZjZCI0Yx0AElYuqW9Ty81eH50eH4q9BxHwfD1LVJl+N6LmZLSZPkE+KkEHD4jf/vV07FJVTHH0ObKCRYQv06MhiBy++SlxZfe0SJU=
+X-Microsoft-Antispam-Message-Info: ScAECnxM3Ok2YwLv5rr4uodfUPwLQdw5yT177HRRrmQqmmziArSwp8M1512Mpmy7cLTCYYxStyta8SGCjfYAEK4gxcRoNoDkoxOtmn6PQ/3fMA8ZpdhGRE1IXZU/QZ9NQByA1/bD9HhbC4Y6L6OhmKTWOjnl2aNVngjyCz6G5vj+3Y6v72hESXWTBP2BRHqZjZfavQUrKRGOX2hjgi/+lRvqf1lBOrhdHAgQBbvchfqTDAVges9h3CqcfhUi9joD6YIsog/zSPO5ZtZNOR2cGASJzEKFceAr2K8LFddohg5IKvTVYrVGD/PObI2Srth0S/8Rzgw2ruxagMW6ICzYYw4b1TRz1AJ/ZDjS7PDsQKJwPbpj1aM8Gn1uUnOHBa/2xQKzDxJGSQoIappLMmmz8rki2sJ5HtuoKYrbFDlXuvQ=
 X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2019 05:30:07.0219
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2019 05:37:52.2216
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5df68a71-4728-4b1e-a9a7-08d6fde52d8f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae3bc95-876f-43af-cec3-08d6fde642c3
 X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5244
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6324
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apart from taps set by auto tuning, ZynqMP platform has feature to set
-the tap values manually. Add support to set tap delay values in HW via
-ZynqMP SoC framework.
+Add the new compatible string for ZynqMP SD Host Controller for its use
+in the Arasan SDHCI driver for some of the ZynqMP specific operations.
+Add required properties for the same.
 
 Signed-off-by: Manish Narani <manish.narani@xilinx.com>
 ---
- drivers/mmc/host/sdhci-of-arasan.c | 200 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 198 insertions(+), 2 deletions(-)
+This patch depends on the below series of patches:
+https://lkml.org/lkml/2019/7/1/25
 
-diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-index a545221..508d942 100644
---- a/drivers/mmc/host/sdhci-of-arasan.c
-+++ b/drivers/mmc/host/sdhci-of-arasan.c
-@@ -22,6 +22,7 @@
- #include <linux/phy/phy.h>
- #include <linux/regmap.h>
- #include <linux/of.h>
-+#include <linux/firmware/xlnx-zynqmp.h>
- 
- #include "cqhci.h"
- #include "sdhci-pltfm.h"
-@@ -32,6 +33,10 @@
- 
- #define PHY_CLK_TOO_SLOW_HZ		400000
- 
-+/* Default settings for ZynqMP Clock Phases */
-+#define ZYNQMP_ICLK_PHASE {0, 63, 63, 0, 63,  0,   0, 183, 54,  0, 0}
-+#define ZYNQMP_OCLK_PHASE {0, 60, 72, 0, 60, 72, 135, 180, 72, 36, 0}
-+
- /*
-  * On some SoCs the syscon area has a feature where the upper 16-bits of
-  * each 32-bit register act as a write mask for the lower 16-bits.  This allows
-@@ -80,6 +85,7 @@ struct sdhci_arasan_soc_ctl_map {
-  * @clk_phase_in:	Array of Input Clock Phase Delays for all speed modes
-  * @clk_phase_out:	Array of Output Clock Phase Delays for all speed modes
-  * @set_clk_delays:	Function pointer for setting Clock Delays
-+ * @clk_of_data:	Platform specific runtime clock data storage pointer
-  */
- struct sdhci_arasan_clk_data {
- 	struct clk_hw	sdcardclk_hw;
-@@ -89,6 +95,11 @@ struct sdhci_arasan_clk_data {
- 	int		clk_phase_in[MMC_TIMING_MMC_HS400 + 1];
- 	int		clk_phase_out[MMC_TIMING_MMC_HS400 + 1];
- 	void 		(*set_clk_delays)(struct sdhci_host *host);
-+	void		*clk_of_data;
-+};
-+
-+struct sdhci_arasan_zynqmp_clk_data {
-+	const struct zynqmp_eemi_ops *eemi_ops;
+Changes in v2:
+	- Added clock-names for SD card clocks for getting clocks in the driver
+---
+ arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi |  4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi     | 14 ++++++++++----
+ 2 files changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi
+index 306ad21..24c04a1 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi
+@@ -177,11 +177,11 @@
  };
  
- /**
-@@ -510,6 +521,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
- 		.compatible = "arasan,sdhci-4.9a",
- 		.data = &sdhci_arasan_data,
- 	},
-+	{
-+		.compatible = "xlnx,zynqmp-8.9a",
-+		.data = &sdhci_arasan_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, sdhci_arasan_of_match);
-@@ -569,6 +584,144 @@ static const struct clk_ops arasan_sampleclk_ops = {
+ &sdhci0 {
+-	clocks = <&clk200 &clk200>;
++	clocks = <&clk200>, <&clk200>, <&sdhci0 0>, <&sdhci0 1>;
  };
  
- /**
-+ * sdhci_zynqmp_sdcardclk_set_phase - Set the SD Output Clock Tap Delays
-+ *
-+ * Set the SD Output Clock Tap Delays for Output path
-+ *
-+ * @hw:			Pointer to the hardware clock structure.
-+ * @degrees		The clock phase shift between 0 - 359.
-+ * Return: 0 on success and error value on error
-+ */
-+static int sdhci_zynqmp_sdcardclk_set_phase(struct clk_hw *hw, int degrees)
-+
-+{
-+	struct sdhci_arasan_clk_data *clk_data =
-+		container_of(hw, struct sdhci_arasan_clk_data, sdcardclk_hw);
-+	struct sdhci_arasan_data *sdhci_arasan =
-+		container_of(clk_data, struct sdhci_arasan_data, clk_data);
-+	struct sdhci_host *host = sdhci_arasan->host;
-+	struct sdhci_arasan_zynqmp_clk_data *zynqmp_clk_data =
-+		clk_data->clk_of_data;
-+	const struct zynqmp_eemi_ops *eemi_ops = zynqmp_clk_data->eemi_ops;
-+	const char *clk_name = clk_hw_get_name(hw);
-+	u32 device_id = !strcmp(clk_name, "clk_out_sd0") ? 0 : 1;
-+	u8 tap_delay, tap_max = 0;
-+
-+	if (!eemi_ops->sdio_out_setphase)
-+		return -ENODEV;
-+
-+	/*
-+	 * This is applicable for SDHCI_SPEC_300 and above
-+	 * ZynqMP does not set phase for <=25MHz clock.
-+	 * If degrees is zero, no need to do anything.
-+	 */
-+	if (host->version < SDHCI_SPEC_300 ||
-+	    host->timing == MMC_TIMING_LEGACY ||
-+	    host->timing == MMC_TIMING_UHS_SDR12 || !degrees)
-+		return 0;
-+
-+	switch (host->timing) {
-+	case MMC_TIMING_MMC_HS:
-+	case MMC_TIMING_SD_HS:
-+	case MMC_TIMING_UHS_SDR25:
-+	case MMC_TIMING_UHS_DDR50:
-+	case MMC_TIMING_MMC_DDR52:
-+		/* For 50MHz clock, 30 Taps are available */
-+		tap_max = 30;
-+		break;
-+	case MMC_TIMING_UHS_SDR50:
-+		/* For 100MHz clock, 15 Taps are available */
-+		tap_max = 15;
-+		break;
-+	case MMC_TIMING_UHS_SDR104:
-+	case MMC_TIMING_MMC_HS200:
-+		/* For 200MHz clock, 8 Taps are available */
-+		tap_max = 8;
-+	default:
-+		break;
-+	}
-+
-+	tap_delay = (degrees * tap_max) / 360;
-+
-+	/* Set the Clock Phase */
-+	return eemi_ops->sdio_out_setphase(device_id, tap_delay);
-+}
-+
-+static const struct clk_ops zynqmp_sdcardclk_ops = {
-+	.recalc_rate = sdhci_arasan_sdcardclk_recalc_rate,
-+	.set_phase = sdhci_zynqmp_sdcardclk_set_phase,
-+};
-+
-+/**
-+ * sdhci_zynqmp_sampleclk_set_phase - Set the SD Input Clock Tap Delays
-+ *
-+ * Set the SD Input Clock Tap Delays for Input path
-+ *
-+ * @hw:			Pointer to the hardware clock structure.
-+ * @degrees		The clock phase shift between 0 - 359.
-+ * Return: 0 on success and error value on error
-+ */
-+static int sdhci_zynqmp_sampleclk_set_phase(struct clk_hw *hw, int degrees)
-+
-+{
-+	struct sdhci_arasan_clk_data *clk_data =
-+		container_of(hw, struct sdhci_arasan_clk_data, sampleclk_hw);
-+	struct sdhci_arasan_data *sdhci_arasan =
-+		container_of(clk_data, struct sdhci_arasan_data, clk_data);
-+	struct sdhci_host *host = sdhci_arasan->host;
-+	struct sdhci_arasan_zynqmp_clk_data *zynqmp_clk_data =
-+		clk_data->clk_of_data;
-+	const struct zynqmp_eemi_ops *eemi_ops = zynqmp_clk_data->eemi_ops;
-+	const char *clk_name = clk_hw_get_name(hw);
-+	u32 device_id = !strcmp(clk_name, "clk_in_sd0") ? 0 : 1;
-+	u8 tap_delay, tap_max = 0;
-+
-+	if (!eemi_ops->sdio_in_setphase)
-+		return -ENODEV;
-+
-+	/*
-+	 * This is applicable for SDHCI_SPEC_300 and above
-+	 * ZynqMP does not set phase for <=25MHz clock.
-+	 * If degrees is zero, no need to do anything.
-+	 */
-+	if (host->version < SDHCI_SPEC_300 ||
-+	    host->timing == MMC_TIMING_LEGACY ||
-+	    host->timing == MMC_TIMING_UHS_SDR12 || !degrees)
-+		return 0;
-+
-+	switch (host->timing) {
-+	case MMC_TIMING_MMC_HS:
-+	case MMC_TIMING_SD_HS:
-+	case MMC_TIMING_UHS_SDR25:
-+	case MMC_TIMING_UHS_DDR50:
-+	case MMC_TIMING_MMC_DDR52:
-+		/* For 50MHz clock, 120 Taps are available */
-+		tap_max = 120;
-+		break;
-+	case MMC_TIMING_UHS_SDR50:
-+		/* For 100MHz clock, 60 Taps are available */
-+		tap_max = 60;
-+		break;
-+	case MMC_TIMING_UHS_SDR104:
-+	case MMC_TIMING_MMC_HS200:
-+		/* For 200MHz clock, 30 Taps are available */
-+		tap_max = 30;
-+	default:
-+		break;
-+	}
-+
-+	tap_delay = (degrees * tap_max) / 360;
-+
-+	/* Set the Clock Phase */
-+	return eemi_ops->sdio_in_setphase(device_id, tap_delay);
-+}
-+
-+static const struct clk_ops zynqmp_sampleclk_ops = {
-+	.recalc_rate = sdhci_arasan_sampleclk_recalc_rate,
-+	.set_phase = sdhci_zynqmp_sampleclk_set_phase,
-+};
-+
-+/**
-  * sdhci_arasan_update_clockmultiplier - Set corecfg_clockmultiplier
-  *
-  * The corecfg_clockmultiplier is supposed to contain clock multiplier
-@@ -693,6 +846,10 @@ static void arasan_dt_read_clk_phase(struct device *dev,
- static void arasan_dt_parse_clk_phases(struct device *dev,
- 				      struct sdhci_arasan_clk_data *clk_data)
- {
-+	int *iclk_phase, *oclk_phase;
-+	u32 mio_bank = 0;
-+	int i;
-+
- 	/*
- 	 * This has been kept as a pointer and is assigned a function here.
- 	 * So that different controller variants can assign their own handling
-@@ -700,6 +857,22 @@ static void arasan_dt_parse_clk_phases(struct device *dev,
- 	 */
- 	clk_data->set_clk_delays = sdhci_arasan_set_clk_delays;
+ &sdhci1 {
+-	clocks = <&clk200 &clk200>;
++	clocks = <&clk200>, <&clk200>, <&sdhci1 0>, <&sdhci1 1>;
+ };
  
-+	if (of_device_is_compatible(dev->of_node, "xlnx,zynqmp-8.9a")) {
-+		iclk_phase = (int [MMC_TIMING_MMC_HS400 + 1]) ZYNQMP_ICLK_PHASE;
-+		oclk_phase = (int [MMC_TIMING_MMC_HS400 + 1]) ZYNQMP_OCLK_PHASE;
-+
-+		of_property_read_u32(dev->of_node, "xlnx,mio-bank", &mio_bank);
-+		if (mio_bank == 2) {
-+			oclk_phase[MMC_TIMING_UHS_SDR104] = 90;
-+			oclk_phase[MMC_TIMING_MMC_HS200] = 90;
-+		}
-+
-+		for (i = 0; i <= MMC_TIMING_MMC_HS400; i++) {
-+			clk_data->clk_phase_in[i] = iclk_phase[i];
-+			clk_data->clk_phase_out[i] = oclk_phase[i];
-+		}
-+	}
-+
- 	arasan_dt_read_clk_phase(dev, clk_data, MMC_TIMING_LEGACY,
- 				 "clk-phase-legacy");
- 	arasan_dt_read_clk_phase(dev, clk_data, MMC_TIMING_MMC_HS,
-@@ -770,7 +943,10 @@ sdhci_arasan_register_sdcardclk(struct sdhci_arasan_data *sdhci_arasan,
- 	sdcardclk_init.parent_names = &parent_clk_name;
- 	sdcardclk_init.num_parents = 1;
- 	sdcardclk_init.flags = CLK_GET_RATE_NOCACHE;
--	sdcardclk_init.ops = &arasan_sdcardclk_ops;
-+	if (of_device_is_compatible(np, "xlnx,zynqmp-8.9a"))
-+		sdcardclk_init.ops = &zynqmp_sdcardclk_ops;
-+	else
-+		sdcardclk_init.ops = &arasan_sdcardclk_ops;
+ &spi0 {
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 9aa6734..4c21346 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -493,21 +493,27 @@
+ 		};
  
- 	clk_data->sdcardclk_hw.init = &sdcardclk_init;
- 	ret = devm_clk_hw_register(dev, &clk_data->sdcardclk_hw);
-@@ -834,7 +1010,10 @@ sdhci_arasan_register_sampleclk(struct sdhci_arasan_data *sdhci_arasan,
- 	sampleclk_init.parent_names = &parent_clk_name;
- 	sampleclk_init.num_parents = 1;
- 	sampleclk_init.flags = CLK_GET_RATE_NOCACHE;
--	sampleclk_init.ops = &arasan_sampleclk_ops;
-+	if (of_device_is_compatible(np, "xlnx,zynqmp-8.9a"))
-+		sampleclk_init.ops = &zynqmp_sampleclk_ops;
-+	else
-+		sampleclk_init.ops = &arasan_sampleclk_ops;
+ 		sdhci0: mmc@ff160000 {
+-			compatible = "arasan,sdhci-8.9a";
++			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+ 			status = "disabled";
+ 			interrupt-parent = <&gic>;
+ 			interrupts = <0 48 4>;
+ 			reg = <0x0 0xff160000 0x0 0x1000>;
+-			clock-names = "clk_xin", "clk_ahb";
++			clock-names = "clk_xin", "clk_ahb",
++				      "clk_sdcard", "clk_sample";
++			#clock-cells = <1>;
++			clock-output-names = "clk_out_sd0", "clk_in_sd0";
+ 		};
  
- 	clk_data->sampleclk_hw.init = &sampleclk_init;
- 	ret = devm_clk_hw_register(dev, &clk_data->sampleclk_hw);
-@@ -1012,6 +1191,23 @@ static int sdhci_arasan_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto unreg_clk;
+ 		sdhci1: mmc@ff170000 {
+-			compatible = "arasan,sdhci-8.9a";
++			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+ 			status = "disabled";
+ 			interrupt-parent = <&gic>;
+ 			interrupts = <0 49 4>;
+ 			reg = <0x0 0xff170000 0x0 0x1000>;
+-			clock-names = "clk_xin", "clk_ahb";
++			clock-names = "clk_xin", "clk_ahb",
++				      "clk_sdcard", "clk_sample";
++			#clock-cells = <1>;
++			clock-output-names = "clk_out_sd1", "clk_in_sd1";
+ 		};
  
-+	if (of_device_is_compatible(np, "xlnx,zynqmp-8.9a")) {
-+		struct sdhci_arasan_zynqmp_clk_data *zynqmp_clk_data;
-+		const struct zynqmp_eemi_ops *eemi_ops;
-+
-+		zynqmp_clk_data = devm_kzalloc(&pdev->dev,
-+					       sizeof(*zynqmp_clk_data),
-+					       GFP_KERNEL);
-+		eemi_ops = zynqmp_pm_get_eemi_ops();
-+		if (IS_ERR(eemi_ops)) {
-+			ret = PTR_ERR(eemi_ops);
-+			goto unreg_clk;
-+		}
-+
-+		zynqmp_clk_data->eemi_ops = eemi_ops;
-+		sdhci_arasan->clk_data.clk_of_data = zynqmp_clk_data;
-+	}
-+
- 	arasan_dt_parse_clk_phases(&pdev->dev, &sdhci_arasan->clk_data);
- 
- 	ret = mmc_of_parse(host->mmc);
+ 		smmu: smmu@fd800000 {
 -- 
 2.1.1
 
