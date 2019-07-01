@@ -2,179 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 883845C3A6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 21:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D95F35C3DF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 21:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbfGATaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 15:30:21 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:39762 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726076AbfGATaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 15:30:21 -0400
-Received: by mail-lj1-f193.google.com with SMTP id v18so14400790ljh.6;
-        Mon, 01 Jul 2019 12:30:19 -0700 (PDT)
+        id S1726780AbfGATwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 15:52:31 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:45032 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726586AbfGATwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 15:52:31 -0400
+Received: by mail-pg1-f193.google.com with SMTP id i18so1842918pgl.11
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 12:52:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=c2eFfHmfd9U9AMnKFnD7g9eg9q57yzBinw/q4+GoLBk=;
-        b=prz9JSr0Ix/WEdo4cL4SdYm7c5EuCT+Kyz0mYTOybz6lg9vOtPNg0KBN36C+D7A+95
-         pVxPfXyCS9zSpZ6W40JayIh0zBBAU4KZ5/P2M71D96mxyMyVnooItQXuadtMCJKUNf6q
-         9xVN9KI872oKfQyBGV2HpNrjMVnPCzfWNcixCp5s/42qk/AHIkBGxq77H8nBlpCeTcU6
-         kqeSOAjzzN9PSAddCq9fFyrLSNYhzFB+gUQT4aZqbln4aS2zOQ0EZNjcDuFlf5nOK1Sc
-         tA1fzcbbC12A3APOFXZDkPZR/V3023ZoVSgKHtlMaYNsc1Ye/qh+LCgtFS/cTdXnZVx2
-         S6Dg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y4Hod/x1MVNHO5bSEWzPdLsP26qI40u5ky94UaZs3Ok=;
+        b=RG1N9qyoJc8Gm1mGDNB+WCBLXDNI+CswCxWxzW1nPlRqvvtqh6yqfRwMyDL1wIbxUW
+         shUYjVAbOiNaLQqgic7RgUERn5Xd5mKsMxX+lsCCYm1/BDq5b1nJYhaZP37eyh0NxrCM
+         SHkjoSPJM/HW4DBdT9aEbAFBc5TbMpKPJzkoQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=c2eFfHmfd9U9AMnKFnD7g9eg9q57yzBinw/q4+GoLBk=;
-        b=HuZo0TIQc74oEbt3gVbMDmXYNV/j2knojVVhqEVt3Ezg8xcU+tRHf+0LTQ1qLLTos1
-         HW0W/rrntYXgFPocTl2G91/rtKjUhvZ+/3FyFjJ3OdnBDEz9p7XgLomAfUsH4ivTcGQq
-         oM+20H4MTeiHjirIgnjzJKQYwuCWkqtJmO8VCBDtKIWIAbZHbkDPhajdbh/9ORxK/dI7
-         Qm/Xqv2Rwe5pWYohbcIwOAdNN9cg+YCajl2BjKEQdstG89SmV8x29XhmTZKzH/TxHUwv
-         hgwx6KjJVQtfpF5fl5dhU4h4fIl1tAMVw1Z1eegofACny0gmGIgEzdnnqPTKsHIiymOt
-         DsGw==
-X-Gm-Message-State: APjAAAWh3dFBhF6qcjFQWsjpXmcN+hchnN8qMwTLl5z1e51OkFg5XPt9
-        kVbvDYjWcrPVX/U+Urd0Z8Ql13mP
-X-Google-Smtp-Source: APXvYqyt7pIhGs2lNgfb9Ej2qDR5BG2Vm8qXWoVDPEMZd8CXonitUT2Jb1OUibTRNSj7RCOuN90Yaw==
-X-Received: by 2002:a2e:96d5:: with SMTP id d21mr3513670ljj.170.1562009418517;
-        Mon, 01 Jul 2019 12:30:18 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id u18sm2582661lfe.65.2019.07.01.12.30.17
+        bh=Y4Hod/x1MVNHO5bSEWzPdLsP26qI40u5ky94UaZs3Ok=;
+        b=hR+Qnn0TBAVozeDyHX7SXkNo7sHO/lvPssq4zPUrqYIp2Lot/cHXygVS4HAz+OdLT/
+         RCaItatf3Ms2CwzcOa5t3625YSeqBvWFFD33PKtgtsKhc/9terfzdVdzUjliT+SGclZo
+         DppB3pEeTTFDeVUo5d5Uq6vcux0Mxc7aedazbFvpEkdwTx9rOHxo0EruWgU+DIjKzNDM
+         +cq6X1enj1dDilhzEXkUHS+tdADu5SJOEQLIbme3BLIg5BqAkYh5BSXi4bArRAyb/wJh
+         dDciggC3k7EBRVlbkpDVylQMhBp0LTMw9w1pdAZ5azZYoKL61CVnMKRaJ55/iarWcN6X
+         rQQg==
+X-Gm-Message-State: APjAAAXlAzSiuKwQ0l0R0O9K6xIG/1kcd4ZjJlFiZPz0oxXViTMHe9j9
+        i1iHPlFgW+2MqwjpnMwrDcZ2dw==
+X-Google-Smtp-Source: APXvYqwQMv6Ji9rV5QoYqMLRG2WCQNLYyCsww96zbtRJtLi1AdVa1f2X6XL5FCL9ah8axoRlfhKodA==
+X-Received: by 2002:a63:d0:: with SMTP id 199mr26577010pga.85.1562010750726;
+        Mon, 01 Jul 2019 12:52:30 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id v23sm11428812pff.185.2019.07.01.12.52.29
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Jul 2019 12:30:17 -0700 (PDT)
-Subject: Re: [PATCH v6 07/15] dt-bindings: memory: tegra30: Convert to
- Tegra124 YAML
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk <linux-clk@vger.kernel.org>,
-        linux-tegra@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20190630210019.26914-1-digetx@gmail.com>
- <20190630210019.26914-8-digetx@gmail.com>
- <CAL_JsqJq5iwQcbUixMWK819OTof8DzrZ3UMhByc1pTAFTdwnjg@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <ba299725-b65b-ce7d-6376-a26918cc985b@gmail.com>
-Date:   Mon, 1 Jul 2019 22:30:15 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        Mon, 01 Jul 2019 12:52:30 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH 1/3] dt-bindings: net: Add bindings for Realtek PHYs
+Date:   Mon,  1 Jul 2019 12:52:23 -0700
+Message-Id: <20190701195225.120808-1-mka@chromium.org>
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJq5iwQcbUixMWK819OTof8DzrZ3UMhByc1pTAFTdwnjg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.07.2019 22:11, Rob Herring пишет:
-> On Sun, Jun 30, 2019 at 3:04 PM Dmitry Osipenko <digetx@gmail.com> wrote:
->>
-> 
-> "Convert" implies you delete the old binding doc.
+Add the 'realtek,enable-ssc' property to enable Spread Spectrum
+Clocking (SSC) on Realtek PHYs that support it.
 
-Yes, unfortunately the deletion got lost by accident after rebase and it was already
-too late when I noticed that. Will be fixed in the next revision.
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+ .../devicetree/bindings/net/realtek.txt       | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/realtek.txt
 
->> The Tegra30 binding will actually differ from the Tegra124 a tad, in
->> particular the EMEM configuration description. Hence rename the binding
->> to Tegra124 during of the conversion to YAML.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  .../nvidia,tegra124-mc.yaml                   | 149 ++++++++++++++++++
->>  1 file changed, 149 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
->> new file mode 100644
->> index 000000000000..d18242510295
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
->> @@ -0,0 +1,149 @@
->> +# SPDX-License-Identifier: (GPL-2.0)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra124-mc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title:
->> +  NVIDIA Tegra124 SoC Memory Controller
->> +
->> +maintainers:
->> +  - Jon Hunter <jonathanh@nvidia.com>
->> +  - Thierry Reding <thierry.reding@gmail.com>
->> +
->> +description: |
->> +  Tegra124 SoC features a hybrid 2x32-bit / 1x64-bit memory controller.
->> +  These are interleaved to provide high performance with the load shared across
->> +  two memory channels. The Tegra124 Memory Controller handles memory requests
->> +  from internal clients and arbitrates among them to allocate memory bandwidth
->> +  for DDR3L and LPDDR3 SDRAMs.
->> +
->> +properties:
->> +  compatible:
->> +    const: nvidia,tegra124-mc
->> +
->> +  reg:
->> +    maxItems: 1
->> +    description:
->> +      Physical base address.
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description:
->> +      Memory Controller clock.
->> +
->> +  clock-names:
->> +    items:
->> +      - const: mc
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description:
->> +      Memory Controller interrupt.
->> +
->> +  "#reset-cells":
->> +    const: 1
->> +
->> +  "#iommu-cells":
->> +    const: 1
->> +
->> +patternProperties:
->> +  ".*":
-> 
-> Please define a node name or pattern for node names.
+diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
+new file mode 100644
+index 000000000000..9fad97e7404f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/realtek.txt
+@@ -0,0 +1,21 @@
++Realtek PHY properties.
++
++This document describes properties of Realtek PHYs.
++
++Optional properties:
++- realtek,enable-ssc	Enable Spread Spectrum Clocking (SSC) on this port.
++			SSC is only available on some Realtek PHYs (e.g.
++			RTL8211E).
++
++Example:
++
++mdio0 {
++	compatible = "snps,dwmac-mdio";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	ethphy: ethernet-phy@1 {
++		reg = <1>;
++		realtek,enable-ssc;
++	};
++};
+-- 
+2.22.0.410.gd8fdbe21b5-goog
 
-There was no pattern specified in the original binding. But I guess the existing
-upstream device-trees could be used as the source for the pattern.
-
->> +    properties:
->> +      nvidia,ram-code:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          Value of RAM_CODE this timing set is used for.
->> +
->> +    patternProperties:
->> +      ".*":
-> 
-> Same here.
-> 
->> +        properties:
->> +          clock-frequency:
->> +            description:
->> +              Memory clock rate in Hz.
-> 
-> No constraints? Anything from 0 to 4GHz works?
-
-Okay, will add the min/max. I'm not sure what is the exact upper freq limit, probably
-~1GHz.
