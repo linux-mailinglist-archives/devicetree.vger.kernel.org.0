@@ -2,86 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B24785C3EA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 21:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A68F5C417
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 22:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727096AbfGATyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 15:54:21 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:18626 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727094AbfGATyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 15:54:21 -0400
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x61JbOjd110305;
-        Mon, 1 Jul 2019 15:54:10 -0400
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2tfqcbu8w6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 01 Jul 2019 15:54:10 -0400
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x61JYmmG006203;
-        Mon, 1 Jul 2019 19:54:09 GMT
-Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
-        by ppma03dal.us.ibm.com with ESMTP id 2tdym6s3wp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 01 Jul 2019 19:54:09 +0000
-Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
-        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x61Js8Ws55968092
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 1 Jul 2019 19:54:08 GMT
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 0605D6E054;
-        Mon,  1 Jul 2019 19:54:08 +0000 (GMT)
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 6ADE96E050;
-        Mon,  1 Jul 2019 19:54:07 +0000 (GMT)
-Received: from talon7.ibm.com (unknown [9.41.179.222])
-        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Mon,  1 Jul 2019 19:54:07 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     linux-kernel@vger.kernel.org, arnd@arndb.de, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org, joel@jms.id.au,
-        eduval@amazon.com, Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH v4 8/8] ARM: dts: aspeed: witherspoon: Enable XDMA Engine
-Date:   Mon,  1 Jul 2019 14:53:59 -0500
-Message-Id: <1562010839-1113-9-git-send-email-eajames@linux.ibm.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1562010839-1113-1-git-send-email-eajames@linux.ibm.com>
-References: <1562010839-1113-1-git-send-email-eajames@linux.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-01_12:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=807 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1907010230
+        id S1726605AbfGAUC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 16:02:57 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:46530 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726586AbfGAUC5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jul 2019 16:02:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=PQFAkapfS8xgZfnHXRT1zDqAKUWQOTpuUjViOkWeAro=; b=0hxt4DjO0jhoaYw+djxVjTVxNF
+        +Dmlef7Xy2ylTdCkLXQzKY14rVGEylt4UE8hKAQs2cwMab7AAnECCexrj4c+WArywGYDAriMr9r3l
+        0NqL/Yd1OnxQrZtzlFXAtt2Fpa073PuooQqhr6/mNUhL5ijA/hSQFGEZISwT9q1IngHY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hi2Vk-0001Nm-Ep; Mon, 01 Jul 2019 22:02:48 +0200
+Date:   Mon, 1 Jul 2019 22:02:48 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH 2/3] net: phy: realtek: Enable accessing RTL8211E
+ extension pages
+Message-ID: <20190701200248.GJ30468@lunn.ch>
+References: <20190701195225.120808-1-mka@chromium.org>
+ <20190701195225.120808-2-mka@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190701195225.120808-2-mka@chromium.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the XDMA engine node.
+On Mon, Jul 01, 2019 at 12:52:24PM -0700, Matthias Kaehlcke wrote:
+> The RTL8211E has extension pages, which can be accessed after
+> selecting a page through a custom method. Add a function to
+> modify bits in a register of an extension page and a few
+> helpers for dealing with ext pages.
+> 
+> rtl8211e_modify_ext_paged() and rtl821e_restore_page() are
+> inspired by their counterparts phy_modify_paged() and
+> phy_restore_page().
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Hi Matthias
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts b/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-index 31ea34e..1d247cd 100644
---- a/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-@@ -653,4 +653,8 @@
- 	memory-region = <&video_engine_memory>;
- };
- 
-+&xdma {
-+	status = "okay";
-+};
-+
- #include "ibm-power9-dual.dtsi"
--- 
-1.8.3.1
+While an extended page is selected, what happens to the normal
+registers in the range 0-0x1c? Are they still accessible?
 
+	  Andrew
