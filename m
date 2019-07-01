@@ -2,95 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A365C330
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 20:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E403B5C339
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 20:51:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726076AbfGASoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 14:44:32 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:37674 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726316AbfGASoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 14:44:30 -0400
-Received: by mail-io1-f68.google.com with SMTP id e5so31152873iok.4
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 11:44:29 -0700 (PDT)
+        id S1726658AbfGASvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 14:51:48 -0400
+Received: from esa5.hgst.iphmx.com ([216.71.153.144]:30374 "EHLO
+        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726076AbfGASvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 14:51:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1562007107; x=1593543107;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=wsFMrpFkypitlxZTPfuvrvWi2NGHfqSRrPvaLJ+D9eg=;
+  b=kYGAoyVC8Nv7hTt18o2gjmAHGshLQeZ2OPyN+1GOrDFEOy+7rcpUfiRh
+   bfxhNF4KA92sywV6dT8tcGDLByVS41kejU7c/HEzHuEoXpttLZI2xIr58
+   SP26joNgJnXTyvwW63lXejRznnZMlsOZ4sM3/ur8aV1+5CEOlKKvAuyqJ
+   ViceMsWlpatzAhnVU7cvx7IiLIXpUuKWywznAmhMcWZEF7xnWssqsPY+A
+   3R66F7pzZ9DJ0Ms30uiRJDN7RMZbb2D1/9UQHdeYZfdsb03U8ergsQA8k
+   J4B4g8cIZk2COaKy76WfT/SPbIL9WzNaqXneAwPdsC6ZlGZRr3ssU/t5O
+   g==;
+X-IronPort-AV: E=Sophos;i="5.63,440,1557158400"; 
+   d="scan'208";a="113181740"
+Received: from mail-dm3nam05lp2056.outbound.protection.outlook.com (HELO NAM05-DM3-obe.outbound.protection.outlook.com) ([104.47.49.56])
+  by ob1.hgst.iphmx.com with ESMTP; 02 Jul 2019 02:51:44 +0800
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=bSTnHtp/qhRiiFxmYq0H9zpn3MvujD6lIHKJwuiBfis=;
-        b=VENu4NGbxX9bBv++0v0xk7rmRY0ned7O9Ue/mAwONZX5N1UjMcBAqNDoKuUbB/1caz
-         7UmBvWce/C5S9oDTfW41WbyUhEWe2f8u18HrIOOSGlD+co1L/cmNyAENRbntBgt3FcTv
-         uZMsUdqQ9hnsysRafRhHNvLBpSJECP1e19Cugq4Lndm4L6xIPMu0fBvsKBCDr0YbWVEZ
-         T8ARPO8vl1Eoh2y4JDMZFokvS5pGwxDtO/7m4WODds56U3ABCip2rfzGjcNuGZNDqfrS
-         dADsLa5cjLoP7freLQErygWRw+405uFlBf5+0qsJzzBFdp0WswPHcKdROa0xAQjjZv2j
-         UtIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=bSTnHtp/qhRiiFxmYq0H9zpn3MvujD6lIHKJwuiBfis=;
-        b=jLTMQSCmdGh8UUbW1oHeIH1qOW87Fupx4Bf9zZB/V3D7PJI9n/eyA94FRL2cG1rIti
-         lyOm6cjUyZVrAlaZuszx4xKfELKqMBKxxOaseUP4LWvjCwIMK4wWmG4nJYbIUrO3crsT
-         zIGcGVGc+lwB/F4+putB21mZOLyrWIt+uIjkpCSkTELaZAlzWRpR4L7fLHcgrvwxWM8z
-         qRFTce+24tQmd6v2NT5VU/4gwbTm9uX//i+E1G1TCnsWE619LWm3/dSXpX+AECJfM3w3
-         tcsi2sBTB0TSuYBTRylZtEWlHD459jn8A9OHKfnnznXkQ9+FtmGdi1xOMGdRcyYlqkYT
-         J9QA==
-X-Gm-Message-State: APjAAAX0JjVg6Q4tF3hXB2In5T+YeiAbovPR4vyWszcDMkpExCer7Rmu
-        kaM3zfagAbWf2hiYQDuUe7jDTQ==
-X-Google-Smtp-Source: APXvYqy4v6fZ9ogTn8bf8AazDvAe8JAZOIcDVtOTmJRQqIHjzLDu5ONK3oMbH8yyVfz/V3hVwiftDQ==
-X-Received: by 2002:a5d:904e:: with SMTP id v14mr26401863ioq.61.1562006668920;
-        Mon, 01 Jul 2019 11:44:28 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id f26sm9796697iob.4.2019.07.01.11.44.28
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 01 Jul 2019 11:44:28 -0700 (PDT)
-Date:   Mon, 1 Jul 2019 11:44:27 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <atish.patra@wdc.com>
-cc:     linux-kernel@vger.kernel.org,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Johan Hovold <johan@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V 
-In-Reply-To: <20190627195302.28300-1-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1907011143520.3867@viisi.sifive.com>
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wsFMrpFkypitlxZTPfuvrvWi2NGHfqSRrPvaLJ+D9eg=;
+ b=RfqzLov5NarLkM8BxjVMolrawSzZ7kxcMuH4T2bEZWPiciRW50zB0SlovdIj0CESN6p6JBqw6h40OWfHNQH7MSu6XR6bV6Nuo37FzXTdbd9x8C0FrhJgcR2lVkqg/HS5Kvc6x0muW1IX7d5d3ASy83QbIGjKMqqq2s0e06xF1Z0=
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
+ BYAPR04MB5573.namprd04.prod.outlook.com (20.178.232.160) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2032.18; Mon, 1 Jul 2019 18:51:43 +0000
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::65e3:6069:d7d5:90a2]) by BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::65e3:6069:d7d5:90a2%5]) with mapi id 15.20.2032.019; Mon, 1 Jul 2019
+ 18:51:43 +0000
+From:   Atish Patra <Atish.Patra@wdc.com>
+To:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "palmer@sifive.com" <palmer@sifive.com>,
+        "mchehab+samsung@kernel.org" <mchehab+samsung@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "jeremy.linton@arm.com" <jeremy.linton@arm.com>,
+        "mingo@kernel.org" <mingo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "morten.rasmussen@arm.com" <morten.rasmussen@arm.com>,
+        "ottosabart@seberm.com" <ottosabart@seberm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "johan@kernel.org" <johan@kernel.org>,
+        "peterz@infradead.org" <peterz@infradead.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "anup@brainfault.org" <anup@brainfault.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V
+Thread-Topic: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V
+Thread-Index: AQHVLSJGz+hI7exIqkGm7p6W+lzWB6a2H8CAgAACBYA=
+Date:   Mon, 1 Jul 2019 18:51:42 +0000
+Message-ID: <5f31cb3c576bdbd89665614582af66d04ece8f29.camel@wdc.com>
 References: <20190627195302.28300-1-atish.patra@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+         <alpine.DEB.2.21.9999.1907011143520.3867@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1907011143520.3867@viisi.sifive.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Atish.Patra@wdc.com; 
+x-originating-ip: [199.255.44.250]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 13061295-fae4-4586-376b-08d6fe5528e2
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB5573;
+x-ms-traffictypediagnostic: BYAPR04MB5573:
+wdcipoutbound: EOP-TRUE
+x-microsoft-antispam-prvs: <BYAPR04MB55733C91F6FA52B2049E51D1FAF90@BYAPR04MB5573.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2331;
+x-forefront-prvs: 00851CA28B
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(376002)(39860400002)(396003)(136003)(346002)(366004)(189003)(199004)(73956011)(99286004)(53936002)(76116006)(476003)(229853002)(66066001)(486006)(316002)(71190400001)(256004)(71200400001)(81156014)(66946007)(6512007)(4326008)(36756003)(6506007)(446003)(66556008)(11346002)(6916009)(66476007)(54906003)(14454004)(7736002)(26005)(2501003)(66446008)(118296001)(68736007)(2351001)(2616005)(64756008)(478600001)(6246003)(72206003)(186003)(8936002)(5640700003)(558084003)(2906002)(305945005)(7416002)(76176011)(102836004)(6436002)(6116002)(3846002)(6486002)(86362001)(81166006)(8676002)(25786009)(5660300002);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB5573;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: IF9yspacXgspoXBZOzePbf2cN0MuQl7fXZl5Jtw8FqSwpsLOjcIpk+GqwhGBqkNTCJrFcPv25KNNuBwQHOhrcfuRKS/z2yz5jr7IdakI4L8EmH0E/TRoZ+PThfdzNqrmilooHS4vFSjEeEVh/dol9E2vtXuAFmJOi6LxcUpuKJt3mh5skEXZ5ifOKIPh0rbe/C/lhO7ALP4+k2qQeIRh8Tbmw9cEX44LIEhkXB6XFm4ze+HKYVnXfdkUqkmKTwR2OdSCzLWXAeVrIrQYJxaBA8372tH3lOjphjDHF14637IzEb5STCFGQ8e/BYM4t/0Jsip3uFSO+jPXCW3kXPExjUMtG/XtUS8BsGQPj6VzUrBUVp/902X5i6aGbw5L7dhpo8GiWUUH2vVRwUKKjsgPd3RNjf4vAES0gO9W1qgQs4c=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D7966FEDC0A0FA4DAA6BF6422A399875@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13061295-fae4-4586-376b-08d6fe5528e2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2019 18:51:42.8544
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB5573
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Atish
-
-Looks like patches 1, 6, and 7 are missing your Signed-off-by:.  Can I add 
-those?
-
-
-- Paul
+T24gTW9uLCAyMDE5LTA3LTAxIGF0IDExOjQ0IC0wNzAwLCBQYXVsIFdhbG1zbGV5IHdyb3RlOg0K
+PiBIaSBBdGlzaA0KPiANCj4gTG9va3MgbGlrZSBwYXRjaGVzIDEsIDYsIGFuZCA3IGFyZSBtaXNz
+aW5nIHlvdXIgU2lnbmVkLW9mZi1ieTouICBDYW4NCj4gSSBhZGQgDQo+IHRob3NlPw0KPiANClN1
+cmUuIA0KDQpJcyBpdCBhIGNvbW1vbiBwcmFjdGljZSB0byBhZGQgIlNpZ25lZC1vZmYtYnk6IiB0
+aGUgc2VuZGVyIGV2ZW4gaWYgdGhlDQpzZW5kZXIgaGFzIG5vdCB0b3VjaGVkIHRoZSBwYXRjaCBh
+dCBhbGw/DQoNClJlZ2FyZHMsDQpBdGlzaA0KPiANCj4gLSBQYXVsDQoNCg==
