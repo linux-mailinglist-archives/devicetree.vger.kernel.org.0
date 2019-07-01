@@ -2,172 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70DA95B442
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 07:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED0AC5B45D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 07:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727093AbfGAFhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 01:37:55 -0400
-Received: from mail-eopbgr780045.outbound.protection.outlook.com ([40.107.78.45]:9760
-        "EHLO NAM03-BY2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725777AbfGAFhz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 01:37:55 -0400
+        id S1727391AbfGAFvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 01:51:00 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:42211 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725777AbfGAFvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 01:51:00 -0400
+Received: by mail-pl1-f193.google.com with SMTP id ay6so6682903plb.9
+        for <devicetree@vger.kernel.org>; Sun, 30 Jun 2019 22:50:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F8KIoRpl+4FW2unzwthd45gQGD7fobv7LrzhR+W+2mY=;
- b=xGSJD16Tvmts+TdHal0SgIU8D9+iuOgeBi6V6+v08P6bA+oDfWSjKUzBjTbgpecpon9ITfeBwP8EUwjOVjPBSWxLdr3UAyRGGm2QJ7kD/ZET1UGVZVMFZMIdFjKe5wL/g2AdQ+8ID3keXJcEphTvggKoFLz+8nKtir81GBT7kz0=
-Received: from SN4PR0201CA0032.namprd02.prod.outlook.com
- (2603:10b6:803:2e::18) by BY5PR02MB6324.namprd02.prod.outlook.com
- (2603:10b6:a03:1f6::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2032.20; Mon, 1 Jul
- 2019 05:37:53 +0000
-Received: from BL2NAM02FT029.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::205) by SN4PR0201CA0032.outlook.office365.com
- (2603:10b6:803:2e::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2032.18 via Frontend
- Transport; Mon, 1 Jul 2019 05:37:52 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.100)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
-Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
- BL2NAM02FT029.mail.protection.outlook.com (10.152.77.100) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2032.15
- via Frontend Transport; Mon, 1 Jul 2019 05:37:52 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]:53301 helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1hhp0h-0006Z9-KF; Sun, 30 Jun 2019 22:37:51 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1hhp0c-0006Vc-Gw; Sun, 30 Jun 2019 22:37:46 -0700
-Received: from xsj-pvapsmtp01 (smtp.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x615bZW5024757;
-        Sun, 30 Jun 2019 22:37:35 -0700
-Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <mnarani@xilinx.com>)
-        id 1hhp0R-0006UM-47; Sun, 30 Jun 2019 22:37:35 -0700
-Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
-        id 4CAFA121726; Mon,  1 Jul 2019 11:07:34 +0530 (IST)
-From:   Manish Narani <manish.narani@xilinx.com>
-To:     robh+dt@kernel.org, michal.simek@xilinx.com, mark.rutland@arm.com,
-        manish.narani@xilinx.com, sudeep.holla@arm.com,
-        rrichter@cavium.com, gregory.clement@bootlin.com,
-        amit.kucheria@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: zynqmp: Add ZynqMP SDHCI compatible string
-Date:   Mon,  1 Jul 2019 11:07:32 +0530
-Message-Id: <1561959452-22915-1-git-send-email-manish.narani@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(396003)(376002)(136003)(346002)(2980300002)(199004)(189003)(16586007)(42186006)(106002)(966005)(478600001)(316002)(44832011)(126002)(476003)(4326008)(486006)(70586007)(70206006)(36386004)(63266004)(50466002)(50226002)(72206003)(5660300002)(47776003)(103686004)(36756003)(305945005)(51416003)(81156014)(81166006)(14444005)(8676002)(6266002)(336012)(426003)(356004)(2616005)(186003)(26005)(6306002)(8936002)(2906002)(52956003)(48376002)(5001870100001);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR02MB6324;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-100.xilinx.com,xapps1.xilinx.com;A:1;MX:1;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=A/bf03g2B0LFEMWFVuMqS52+scFCs4jGeSMIYZD/Yek=;
+        b=Iix6DCQErETbgO5HQHrWqtCbZiPADvJ2Zlncl2KylCIk8Cg93HCSVs81Bx75VxNm5Q
+         PP5sfNRFhvD+AqwURTKNnqfnR9cQYYSAPtqGAvDt1ETLY2Ewu0DYvu02sMU3MDbATy+n
+         pzDjHcXKRMZtzEjlxpPg31D7lH+UlA7Cy7fvA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=A/bf03g2B0LFEMWFVuMqS52+scFCs4jGeSMIYZD/Yek=;
+        b=TTRRmxOJaMqfw8OV3cQHxWYu1JCzj6ykBaREV8U+h0AqwvLimUZJ7jukaCwzzgC86V
+         Dca9kwkelqJCGrkguogjKvL/e45HaByFgH7twNBIdv+ghcleilXNrI5OQ08vu0ZJgBBk
+         0hsND62LtMIJDf/HoA54JsdHCvmaaskLroPdF8YwtQ6xnoLSV3IyHZ9Jm5A+MT2h3AyP
+         Fk1W2j0jH25ikmVklQGSasWork1OBPE6GtBRETTgZ3LwN2HKfX+7Iw4UJQcSm/kUqZJ/
+         iWrPfBzmKNrorZtlBwJrqkCNqM9OCTgb0Tu16s0Iral7y7NLioUk0kkmPLWrEKS3jMhc
+         8Ctw==
+X-Gm-Message-State: APjAAAXVBHNtDDwX+IDZXI0i2uUDT9TNVNMHrU4smLzRb9k9YFuq6c6h
+        8P7gktgvmFoSvEqto87k0fp0ag==
+X-Google-Smtp-Source: APXvYqzC+Op6oAeeU9AgUZ7d0ASyA+LyLyhKBUxNaOMz6Sx06gGxqMdsPUz/BBlKvF7i0lYhlvijjA==
+X-Received: by 2002:a17:902:9896:: with SMTP id s22mr15507737plp.4.1561960259568;
+        Sun, 30 Jun 2019 22:50:59 -0700 (PDT)
+Received: from chromium.org ([2401:fa00:4:4:6d27:f13:a0fa:d4b6])
+        by smtp.gmail.com with ESMTPSA id m11sm8243540pjv.21.2019.06.30.22.50.55
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sun, 30 Jun 2019 22:50:58 -0700 (PDT)
+Date:   Mon, 1 Jul 2019 14:50:53 +0900
+From:   Tomasz Figa <tfiga@chromium.org>
+To:     Jungo Lin <jungo.lin@mediatek.com>
+Cc:     hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com,
+        matthias.bgg@gmail.com, mchehab@kernel.org,
+        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        srv_heupstream@mediatek.com, ddavenport@chromium.org,
+        robh@kernel.org, sean.cheng@mediatek.com, sj.huang@mediatek.com,
+        frederic.chen@mediatek.com, ryan.yu@mediatek.com,
+        rynn.wu@mediatek.com, frankie.chiu@mediatek.com
+Subject: Re: [RFC,v3 5/9] media: platform: Add Mediatek ISP P1 V4L2 control
+Message-ID: <20190701055053.GA137710@chromium.org>
+References: <jungo.lin@mediatek.com>
+ <20190611035344.29814-1-jungo.lin@mediatek.com>
+ <20190611035344.29814-6-jungo.lin@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3ae3bc95-876f-43af-cec3-08d6fde642c3
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:BY5PR02MB6324;
-X-MS-TrafficTypeDiagnostic: BY5PR02MB6324:
-X-MS-Exchange-PUrlCount: 1
-X-Microsoft-Antispam-PRVS: <BY5PR02MB63247EB84535C3B55C75E9D6C1F90@BY5PR02MB6324.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
-X-Forefront-PRVS: 00851CA28B
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: ScAECnxM3Ok2YwLv5rr4uodfUPwLQdw5yT177HRRrmQqmmziArSwp8M1512Mpmy7cLTCYYxStyta8SGCjfYAEK4gxcRoNoDkoxOtmn6PQ/3fMA8ZpdhGRE1IXZU/QZ9NQByA1/bD9HhbC4Y6L6OhmKTWOjnl2aNVngjyCz6G5vj+3Y6v72hESXWTBP2BRHqZjZfavQUrKRGOX2hjgi/+lRvqf1lBOrhdHAgQBbvchfqTDAVges9h3CqcfhUi9joD6YIsog/zSPO5ZtZNOR2cGASJzEKFceAr2K8LFddohg5IKvTVYrVGD/PObI2Srth0S/8Rzgw2ruxagMW6ICzYYw4b1TRz1AJ/ZDjS7PDsQKJwPbpj1aM8Gn1uUnOHBa/2xQKzDxJGSQoIappLMmmz8rki2sJ5HtuoKYrbFDlXuvQ=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2019 05:37:52.2216
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae3bc95-876f-43af-cec3-08d6fde642c3
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6324
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190611035344.29814-6-jungo.lin@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible string for ZynqMP SD Host Controller for its use
-in the Arasan SDHCI driver for some of the ZynqMP specific operations.
-Add required properties for the same.
+Hi Jungo,
 
-Signed-off-by: Manish Narani <manish.narani@xilinx.com>
----
-This patch depends on the below series of patches:
-https://lkml.org/lkml/2019/7/1/25
+On Tue, Jun 11, 2019 at 11:53:40AM +0800, Jungo Lin wrote:
+> Reserved Mediatek ISP P1 V4L2 control number with 16.
+> Moreover, add two V4L2 controls for ISP P1 user space
+> usage.
+> 
+> 1. V4L2_CID_MTK_GET_BIN_INFO
+> - Provide the image output width & height in case
+> camera binning mode is enabled.
 
-Changes in v2:
-	- Added clock-names for SD card clocks for getting clocks in the driver
----
- arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi |  4 ++--
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi     | 14 ++++++++++----
- 2 files changed, 12 insertions(+), 6 deletions(-)
+Could you explain with a bit more details what these binned width and height
+would mean? How would they relate to the video CAPTURE node width and height?
+Isn't this something that should be rather exposed as an appropriate
+selection rectangle, instead of custom controls?
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi
-index 306ad21..24c04a1 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk.dtsi
-@@ -177,11 +177,11 @@
- };
- 
- &sdhci0 {
--	clocks = <&clk200 &clk200>;
-+	clocks = <&clk200>, <&clk200>, <&sdhci0 0>, <&sdhci0 1>;
- };
- 
- &sdhci1 {
--	clocks = <&clk200 &clk200>;
-+	clocks = <&clk200>, <&clk200>, <&sdhci1 0>, <&sdhci1 1>;
- };
- 
- &spi0 {
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 9aa6734..4c21346 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -493,21 +493,27 @@
- 		};
- 
- 		sdhci0: mmc@ff160000 {
--			compatible = "arasan,sdhci-8.9a";
-+			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
- 			status = "disabled";
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 48 4>;
- 			reg = <0x0 0xff160000 0x0 0x1000>;
--			clock-names = "clk_xin", "clk_ahb";
-+			clock-names = "clk_xin", "clk_ahb",
-+				      "clk_sdcard", "clk_sample";
-+			#clock-cells = <1>;
-+			clock-output-names = "clk_out_sd0", "clk_in_sd0";
- 		};
- 
- 		sdhci1: mmc@ff170000 {
--			compatible = "arasan,sdhci-8.9a";
-+			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
- 			status = "disabled";
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 49 4>;
- 			reg = <0x0 0xff170000 0x0 0x1000>;
--			clock-names = "clk_xin", "clk_ahb";
-+			clock-names = "clk_xin", "clk_ahb",
-+				      "clk_sdcard", "clk_sample";
-+			#clock-cells = <1>;
-+			clock-output-names = "clk_out_sd1", "clk_in_sd1";
- 		};
- 
- 		smmu: smmu@fd800000 {
--- 
-2.1.1
+> 
+> 2. V4L2_CID_MTK_RAW_PATH
+> - Export the path control of the main stream to user space.
+> One is pure raw and the other is processing raw.
+> The default value is 0 which outputs the pure raw bayer image
+> from sesnor, without image processing in ISP HW.
+
+Is it just effectively a full processing bypass? The driver seems to only
+update the related configuration when the streaming starts. Can it be
+controlled per-frame?
+
+Generally this sounds more like something that should be modelled using the
+media topology, similar to the example below.
+
+/----------------\   /-------------------\   /--------------\
+|                |---|                   |   |              |
+| Capture Subdev |   | Processing Subdev |-o-| CAPTURE node |
+|                |-\ |                   | | |              |
+\----------------/ | \-------------------/ | \--------------/
+                   |                       |
+                   \-----------------------/
+
+Then the userspace can select whether it wants the image from the capture
+interface directly or procesed by the ISP by configuring the media links
+appropriately.
+
+The current limitation of this model is that it can't be easily configured
+per-frame, as media configurations are not included in the requests yet.
+
+[snip]
+
+> +static int handle_ctrl_get_bin_info(struct v4l2_ctrl *ctrl, int is_width)
+> +{
+> +	struct mtk_cam_dev *cam_dev = ctrl->priv;
+> +	struct v4l2_format *fmt;
+> +
+> +	fmt = &cam_dev->vdev_nodes[MTK_CAM_P1_MAIN_STREAM_OUT].vdev_fmt;
+> +
+> +	dev_dbg(&cam_dev->pdev->dev, "Get bin info w*h:%d*%d is_width:%d",
+> +		fmt->fmt.pix_mp.width, fmt->fmt.pix_mp.height, is_width);
+> +
+> +	if (is_width)
+> +		ctrl->val = fmt->fmt.pix_mp.width;
+> +	else
+> +		ctrl->val = fmt->fmt.pix_mp.height;
+
+This seems to contradict to what the comment in the header says, because it just
+always returns the video node format and doesn't seem to care about whether
+binning is enabled or not.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int handle_ctrl_get_process_raw(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct mtk_cam_dev *cam_dev = ctrl->priv;
+> +	struct isp_p1_device *p1_dev = get_p1_device(&cam_dev->pdev->dev);
+> +
+> +	ctrl->val = (p1_dev->isp_ctx.isp_raw_path == ISP_PROCESS_RAW_PATH);
+> +
+> +	dev_dbg(&cam_dev->pdev->dev, "Get process raw:%d", ctrl->val);
+> +
+> +	return 0;
+> +}
+> +
+> +static int handle_ctrl_set_process_raw(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct mtk_cam_dev *cam_dev = ctrl->priv;
+> +	struct isp_p1_device *p1_dev = get_p1_device(&cam_dev->pdev->dev);
+> +
+> +	p1_dev->isp_ctx.isp_raw_path = (ctrl->val) ?
+> +		ISP_PROCESS_RAW_PATH : ISP_PURE_RAW_PATH;
+> +	dev_dbg(&cam_dev->pdev->dev, "Set process raw:%d", ctrl->val);
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_dev_g_ctrl(struct v4l2_ctrl *ctrl)
+
+This is g_volatile_ctrl not, g_ctrl.
+
+> +{
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_MTK_PROCESSING_RAW:
+> +		handle_ctrl_get_process_raw(ctrl);
+> +		break;
+
+No need to provide getters for non-volatile controls. The
+framework manages them.
+
+> +	case V4L2_CID_MTK_GET_BIN_WIDTH:
+> +		handle_ctrl_get_bin_info(ctrl, 1);
+> +		break;
+> +	case V4L2_CID_MTK_GET_BIN_HEIGTH:
+> +		handle_ctrl_get_bin_info(ctrl, 0);
+
+It's trivial to get the value, so there isn't much benefit in having a
+function to do so, especially if one needs something like a is_width
+argument that further complicates the code.
+
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_dev_s_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_MTK_PROCESSING_RAW:
+> +		return handle_ctrl_set_process_raw(ctrl);
+
+Same as above. The operation is too trivial to deserve a function.
+
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct v4l2_ctrl_ops mtk_cam_dev_ctrl_ops = {
+> +	.g_volatile_ctrl = mtk_cam_dev_g_ctrl,
+> +	.s_ctrl = mtk_cam_dev_s_ctrl,
+> +};
+> +
+> +struct v4l2_ctrl_config mtk_cam_controls[] = {
+> +	{
+> +	.ops = &mtk_cam_dev_ctrl_ops,
+> +	.id = V4L2_CID_MTK_PROCESSING_RAW,
+> +	.name = "MTK CAM PROCESSING RAW",
+> +	.type = V4L2_CTRL_TYPE_BOOLEAN,
+> +	.min = 0,
+> +	.max = 1,
+> +	.step = 1,
+> +	.def = 1,
+> +	},
+> +	{
+> +	.ops = &mtk_cam_dev_ctrl_ops,
+> +	.id = V4L2_CID_MTK_GET_BIN_WIDTH,
+> +	.name = "MTK CAM GET BIN WIDTH",
+> +	.type = V4L2_CTRL_TYPE_INTEGER,
+> +	.min = IMG_MIN_WIDTH,
+> +	.max = IMG_MAX_WIDTH,
+> +	.step = 1,
+> +	.def = IMG_MAX_WIDTH,
+> +	.flags = V4L2_CTRL_FLAG_READ_ONLY | V4L2_CTRL_FLAG_VOLATILE,
+> +	},
+> +	{
+> +	.ops = &mtk_cam_dev_ctrl_ops,
+> +	.id = V4L2_CID_MTK_GET_BIN_HEIGTH,
+> +	.name = "MTK CAM GET BIN HEIGHT",
+> +	.type = V4L2_CTRL_TYPE_INTEGER,
+> +	.min = IMG_MIN_HEIGHT,
+> +	.max = IMG_MAX_HEIGHT,
+> +	.step = 1,
+> +	.def = IMG_MAX_HEIGHT,
+> +	.flags = V4L2_CTRL_FLAG_READ_ONLY | V4L2_CTRL_FLAG_VOLATILE,
+> +	},
+> +};
+> +
+> +int mtk_cam_ctrl_init(struct mtk_cam_dev *cam_dev,
+> +		      struct v4l2_ctrl_handler *hdl)
+> +{
+> +	unsigned int i;
+> +
+> +	/* Initialized HW controls, allow V4L2_CID_MTK_CAM_MAX ctrls */
+> +	v4l2_ctrl_handler_init(hdl, V4L2_CID_MTK_CAM_MAX);
+> +	if (hdl->error) {
+
+This should be checked at the end, after all the controls are added.
+
+Best regards,
+Tomasz
 
