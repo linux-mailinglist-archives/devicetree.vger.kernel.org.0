@@ -2,224 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 486FF5B237
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 00:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 319475B273
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 02:28:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727137AbfF3WQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jun 2019 18:16:56 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:44274 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726040AbfF3WQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Jun 2019 18:16:56 -0400
-X-Greylist: delayed 1908 seconds by postgrey-1.27 at vger.kernel.org; Sun, 30 Jun 2019 18:16:53 EDT
-Received: from [78.134.78.251] (port=38792 helo=[192.168.77.66])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1hhhd6-000CcS-Hw; Sun, 30 Jun 2019 23:45:00 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v9 2/2] media: v4l: xilinx: Add Xilinx MIPI CSI-2 Rx
- Subsystem driver
-To:     Vishal Sagar <vishal.sagar@xilinx.com>,
-        Hyun Kwon <hyunk@xilinx.com>,
-        laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        Michal Simek <michals@xilinx.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hans.verkuil@cisco.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Dinesh Kumar <dineshk@xilinx.com>,
-        Sandip Kothari <sandipk@xilinx.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-References: <1560247809-117978-1-git-send-email-vishal.sagar@xilinx.com>
- <1560247809-117978-3-git-send-email-vishal.sagar@xilinx.com>
-Message-ID: <b51bdf5d-4002-5ec6-d687-b97b4f8bbd78@lucaceresoli.net>
-Date:   Sun, 30 Jun 2019 23:45:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <1560247809-117978-3-git-send-email-vishal.sagar@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+        id S1726667AbfGAA2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jun 2019 20:28:31 -0400
+Received: from mail-qk1-f171.google.com ([209.85.222.171]:46491 "EHLO
+        mail-qk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726086AbfGAA2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jun 2019 20:28:30 -0400
+Received: by mail-qk1-f171.google.com with SMTP id x18so9666617qkn.13;
+        Sun, 30 Jun 2019 17:28:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=7qYFyTa++dPYcTB/wPOOwVksoths7n3J/hGDQEqBk9Y=;
+        b=bPXYpNuRbzysSa/8pQCMk6dwAcL9Rtn+30GYHuF+swMnoy5/1OZjhO3+YEJF4yiLiJ
+         dRO6CwvPWIcEUAISJnt5OmmrTt1sR+mHIVck4aKRa0Jmc7yXUX6hwNbOBjSrn60yCSE+
+         fp+sf/xnjLOSE+KTH4ZZLmZyfC5hAIYP/VNyOJGu1KcB6OZMUkCCbwkixfQuyrOBojm2
+         Bn1rSadoFV/D3ufymRmWCdA0dYC7d/y/u4Dl6OlMzx+GXFuajZ8CteB04fXipQlYHkGt
+         qqvkgxAn4Nc76faUjYWMvInhnnYEiPh5cxRQkJsg9PuP2+63mUjtkNAjhJHYCkMRkQVm
+         IGGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=7qYFyTa++dPYcTB/wPOOwVksoths7n3J/hGDQEqBk9Y=;
+        b=j83y9GZuLJxkDKGfGVNivNQXdbVlushGEIn/0f8D58DKn29mgeCtE0AwaaPdynXZE7
+         1xz+Yv9yMKN3hbQpvLkixQqmhUMmN7Bd0twnf+9quP8ASf+k89nCs5jil7hKbaED3qmV
+         H1oTAInJ5G1PuM1h+6UmgIGLNtOZgNxxL/N7FnbI6cfMMx/d9INCvDD3xsaxGN6L8mXN
+         W7d1XhK4B5Roh5peIWCpGEC+TLo8LReP9It+5Xf+v9G2WdlpB60ASeEIUy5NoSISCCgp
+         IIGsmrHmJZ+Qzg8/z+Y2BI4qDRWjH4WzmbjpgiRlogSHhSGkxz33C0aphy2NraDZ4kY7
+         aXAg==
+X-Gm-Message-State: APjAAAVIBxkfSFH0swbUpC2iZELXdoD0cTcGQyRaJMtLAflmKgUXEV0P
+        zNMnZNI3EeuzD+SJJIShtXc=
+X-Google-Smtp-Source: APXvYqzYYg9GzCKY0A+FyNahVdDjis8vR4irKL7u8oE3utcfTC+p0obqxkqpQ/Hs/TZEqdYpGLNMew==
+X-Received: by 2002:a05:620a:124c:: with SMTP id a12mr17969302qkl.336.1561940909759;
+        Sun, 30 Jun 2019 17:28:29 -0700 (PDT)
+Received: from bdodge-linux-ub.fios-router.home (pool-100-0-123-202.bstnma.fios.verizon.net. [100.0.123.202])
+        by smtp.gmail.com with ESMTPSA id 70sm3971404qkj.118.2019.06.30.17.28.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 30 Jun 2019 17:28:28 -0700 (PDT)
+From:   Brian Dodge <bdodge09@gmail.com>
+To:     pavel@ucw.cz
+Cc:     daniel.thompson@linaro.org, lee.jones@linaro.org,
+        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
+        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        pbacon@psemi.com
+Subject: [PATCH v2 0/2] fix vendor prefix for arcxcnn driver and bindings
+Date:   Sun, 30 Jun 2019 20:28:13 -0400
+Message-Id: <1561940895-15837-1-git-send-email-bdodge09@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vishal,
+These v2 patches incorporate the following changes
 
-a few questions below about the SLBF error management.
+1/2 dt-bindings: backlight:
 
-On 11/06/19 12:10, Vishal Sagar wrote:
-> The Xilinx MIPI CSI-2 Rx Subsystem soft IP is used to capture images
-> from MIPI CSI-2 camera sensors and output AXI4-Stream video data ready
-> for image processing. Please refer to PG232 for details.
-> 
-> The driver is used to set the number of active lanes, if enabled
-> in hardware. The CSI2 Rx controller filters out all packets except for
-> the packets with data type fixed in hardware. RAW8 packets are always
-> allowed to pass through.
-> 
-> It is also used to setup and handle interrupts and enable the core. It
-> logs all the events in respective counters between streaming on and off.
-> 
-> The driver supports only the video format bridge enabled configuration.
-> Some data types like YUV 422 10bpc, RAW16, RAW20 are supported when the
-> CSI v2.0 feature is enabled in design. When the VCX feature is enabled,
-> the maximum number of virtual channels becomes 16 from 4.
-> 
-> Signed-off-by: Vishal Sagar <vishal.sagar@xilinx.com>
-> Reviewed-by: Hyun Kwon <hyun.kwon@xilinx.com>
+The documentation for "arc" has been re-added but marked (deprecated)
+to match the actual driver support for that
 
-...
+2/2 backlight: arcxcnn:
 
-> --- /dev/null
-> +++ b/drivers/media/platform/xilinx/xilinx-csi2rxss.c
+Added new-lines and fixed spelling as per feedback
 
-...
-> +/**
-> + * xcsi2rxss_irq_handler - Interrupt handler for CSI-2
-> + * @irq: IRQ number
-> + * @dev_id: Pointer to device state
-> + *
-> + * In the interrupt handler, a list of event counters are updated for
-> + * corresponding interrupts. This is useful to get status / debug.
-> + *
-> + * In case of stream line buffer full condition, the IP is reset, stopped and
-> + * an event is raised.
-> + *
-> + * Return: IRQ_HANDLED after handling interrupts
-> + *         IRQ_NONE is no interrupts
-> + */
-> +static irqreturn_t xcsi2rxss_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct xcsi2rxss_state *state = (struct xcsi2rxss_state *)dev_id;
-> +	struct xcsi2rxss_core *core = &state->core;
-> +	u32 status;
-> +
-> +	status = xcsi2rxss_read(core, XCSI_ISR_OFFSET) & XCSI_ISR_ALLINTR_MASK;
-> +	dev_dbg_ratelimited(core->dev, "interrupt status = 0x%08x\n", status);
-> +
-> +	if (!status)
-> +		return IRQ_NONE;
-> +
-> +	/* Received a short packet */
-> +	if (status & XCSI_ISR_SPFIFONE) {
-> +		dev_dbg_ratelimited(core->dev, "Short packet = 0x%08x\n",
-> +				    xcsi2rxss_read(core, XCSI_SPKTR_OFFSET));
-> +	}
-> +
-> +	/* Short packet FIFO overflow */
-> +	if (status & XCSI_ISR_SPFIFOF)
-> +		dev_alert_ratelimited(core->dev, "Short packet FIFO overflowed\n");
-> +
-> +	/*
-> +	 * Stream line buffer full
-> +	 * This means there is a backpressure from downstream IP
-> +	 */
-> +	if (status & XCSI_ISR_SLBF) {
-> +		dev_alert_ratelimited(core->dev, "Stream Line Buffer Full!\n");
-> +		if (core->rst_gpio) {
-> +			gpiod_set_value(core->rst_gpio, 1);
-> +			/* minimum 40 dphy_clk_200M cycles */
-> +			ndelay(250);
-> +			gpiod_set_value(core->rst_gpio, 0);
-> +		}
-> +		xcsi2rxss_stop_stream(state);
+Original patch description:
 
-I've been hit by the dreadful "Stream Line Buffer Full" error, getting
-the CSI-2 RX completely stuck in SLBF and not transmitting any frames
-sporadically after glitches in the incoming MIPI stream. And I found
-that adding xcsi2rxss_start_stream() here just after
-xcsi2rxss_stop_stream() allows to continue the stream with almost no
-interruption and without userspace intervention.
+This patch is to update the arcxcnn backlight driver to use the
+proper "arctic" vendor-prefix and document that in the device-
+tree bindings.
 
-Do you think this is a reliable solution, or does it have side-effects I
-didn't encounter? Note I'm not using pm nor the ctrls, so register
-writes are limited to the enable/disable code paths.
+There is at least one existing device using the old "arc"
+vendor-prefix (Samsung Chromebook Plus), so support for that
+remains in the driver source.
 
-Does video_aresetn also reset registers?
-
-BTW in my code I also moved xcsi2rxss_stop_stream() before the if
-(core->rst_gpio) {}. There is no strong reason for this, I didn't
-observe any functional difference, it just looks
-more logical to me to stop the IP before resetting it.
-
-...
-
-> +static int xcsi2rxss_probe(struct platform_device *pdev)
-> +{
-> +	struct v4l2_subdev *subdev;
-> +	struct xcsi2rxss_state *xcsi2rxss;
-> +	struct xcsi2rxss_core *core;
-> +	struct resource *res;
-> +	int ret, num_ctrls, i;
-> +
-> +	xcsi2rxss = devm_kzalloc(&pdev->dev, sizeof(*xcsi2rxss), GFP_KERNEL);
-> +	if (!xcsi2rxss)
-> +		return -ENOMEM;
-> +
-> +	core = &xcsi2rxss->core;
-> +	core->dev = &pdev->dev;
-> +
-> +	core->clks = devm_kmemdup(core->dev, xcsi2rxss_clks,
-> +				  sizeof(xcsi2rxss_clks), GFP_KERNEL);
-> +	if (!core->clks)
-> +		return -ENOMEM;
-> +
-> +	/* Reset GPIO */
-> +	core->rst_gpio = devm_gpiod_get_optional(core->dev, "reset",
-> +						 GPIOD_OUT_HIGH);
-
-Is GPIOD_OUT_HIGH correct? video_aresetn is active low.
-
-> +	if (IS_ERR(core->rst_gpio)) {
-> +		if (PTR_ERR(core->rst_gpio) != -EPROBE_DEFER)
-> +			dev_err(core->dev, "Video Reset GPIO not setup in DT");
-> +		return PTR_ERR(core->rst_gpio);
-> +	}
-> +
-> +	mutex_init(&xcsi2rxss->lock);
-> +
-> +	ret = xcsi2rxss_parse_of(xcsi2rxss);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	core->iomem = devm_ioremap_resource(core->dev, res);
-> +	if (IS_ERR(core->iomem))
-> +		return PTR_ERR(core->iomem);
-> +
-> +	core->num_clks = ARRAY_SIZE(xcsi2rxss_clks);
-> +
-> +	ret = clk_bulk_get(core->dev, core->num_clks, core->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_bulk_prepare_enable(core->num_clks, core->clks);
-> +	if (ret)
-> +		goto err_clk_put;
-> +
-> +	if (xcsi2rxss->core.rst_gpio) {
-> +		gpiod_set_value_cansleep(xcsi2rxss->core.rst_gpio, 1);
-> +		/* minimum of 40 dphy_clk_200M cycles */
-> +		usleep_range(1, 2);
-> +		gpiod_set_value_cansleep(xcsi2rxss->core.rst_gpio, 0);
-> +	}
-
-"xcsi2rxss->core" -> "core" in these lines.
-
-Thanks,
--- 
-Luca
