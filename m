@@ -2,82 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F24D5B505
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 08:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764375B535
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 08:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726036AbfGAG0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 02:26:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59564 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725616AbfGAG0T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 02:26:19 -0400
-Received: from localhost (unknown [122.167.76.109])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4D294208E4;
-        Mon,  1 Jul 2019 06:26:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1561962378;
-        bh=Z6vFclLDtr2AoU8Vp/xJdqBe4Z3jocZDSO6y16utDDM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZIPCW9Z+lUgyeWItAJlvT0JsYrb1wgnMKoM3MFZTwidBNPr9O3AOh9rzBzlEfGeBG
-         cg6N8LltVJu42futYsOGC9duSKK01q1ykbjoAyN6zy06EJ/jUz/KEn6ejCE5TYvEg3
-         u7BesR045CuWo20adDyD1Mih+wylLxE+JpTKU9y8=
-Date:   Mon, 1 Jul 2019 11:53:04 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     broonie@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        mark.rutland@arm.com, pierre-louis.bossart@linux.intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        bgoswami@quicinc.com
-Subject: Re: [RFC PATCH 3/5] soundwire: add module_sdw_driver helper macro
-Message-ID: <20190701062304.GL2911@vkoul-mobl>
-References: <20190611104043.22181-1-srinivas.kandagatla@linaro.org>
- <20190611104043.22181-4-srinivas.kandagatla@linaro.org>
+        id S1727251AbfGAGmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 02:42:12 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:10379 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725616AbfGAGmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 02:42:12 -0400
+X-UUID: 9dafeb1bcff74413b6d2fe727a7d3b41-20190701
+X-UUID: 9dafeb1bcff74413b6d2fe727a7d3b41-20190701
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 361156208; Mon, 01 Jul 2019 14:42:06 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 1 Jul 2019 14:42:05 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 1 Jul 2019 14:42:04 +0800
+From:   <qii.wang@mediatek.com>
+To:     <bbrezillon@kernel.org>
+CC:     <robh+dt@kernel.org>, <linux-i3c@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <qii.wang@mediatek.com>,
+        <matthias.bgg@gmail.com>
+Subject: [PATCH] dt-bindings: i3c: cdns: Use correct cells for I2C device
+Date:   Mon, 1 Jul 2019 14:42:02 +0800
+Message-ID: <1561963322-11513-1-git-send-email-qii.wang@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190611104043.22181-4-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-06-19, 11:40, Srinivas Kandagatla wrote:
-> This Helper macro is for SoundWire drivers which do not do anything special in
-> module init/exit. This eliminates a lot of boilerplate. Each module may only
-> use this macro once, and calling it replaces module_init() and module_exit()
+From: Qii Wang <qii.wang@mediatek.com>
 
-Applied, thanks
+I2C device reg should be "reg = <0x52 0x0 0x10>;"
 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  include/linux/soundwire/sdw_type.h | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/include/linux/soundwire/sdw_type.h b/include/linux/soundwire/sdw_type.h
-> index 9c756b5a0dfe..aaa7f4267c14 100644
-> --- a/include/linux/soundwire/sdw_type.h
-> +++ b/include/linux/soundwire/sdw_type.h
-> @@ -16,4 +16,15 @@ void sdw_unregister_driver(struct sdw_driver *drv);
->  
->  int sdw_slave_modalias(const struct sdw_slave *slave, char *buf, size_t size);
->  
-> +/**
-> + * module_sdw_driver() - Helper macro for registering a Soundwire driver
-> + * @__sdw_driver: soundwire slave driver struct
-> + *
-> + * Helper macro for Soundwire drivers which do not do anything special in
-> + * module init/exit. This eliminates a lot of boilerplate. Each module may only
-> + * use this macro once, and calling it replaces module_init() and module_exit()
-> + */
-> +#define module_sdw_driver(__sdw_driver) \
-> +	module_driver(__sdw_driver, sdw_register_driver, \
-> +			sdw_unregister_driver)
->  #endif /* __SOUNDWIRE_TYPES_H */
-> -- 
-> 2.21.0
+Signed-off-by: Qii Wang <qii.wang@mediatek.com>
+---
+ .../devicetree/bindings/i3c/cdns,i3c-master.txt    |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
+index 69da211..1cf6182 100644
+--- a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
++++ b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
+@@ -38,6 +38,6 @@ Example:
+ 
+ 		nunchuk: nunchuk@52 {
+ 			compatible = "nintendo,nunchuk";
+-			reg = <0x52 0x80000010 0>;
++			reg = <0x52 0x0 0x10>;
+ 		};
+ 	};
 -- 
-~Vinod
+1.7.9.5
+
