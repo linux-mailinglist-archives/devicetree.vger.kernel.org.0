@@ -2,280 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E2B5B2C8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 03:43:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 200135B330
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 06:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727268AbfGABnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jun 2019 21:43:32 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:18008 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727254AbfGABnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jun 2019 21:43:32 -0400
-X-UUID: 97e9298511544f678217b87340050466-20190701
-X-UUID: 97e9298511544f678217b87340050466-20190701
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        id S1725747AbfGAEAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 00:00:40 -0400
+Received: from mailgw01.mediatek.com ([216.200.240.184]:53742 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725616AbfGAEAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 00:00:39 -0400
+X-Greylist: delayed 300 seconds by postgrey-1.27 at vger.kernel.org; Mon, 01 Jul 2019 00:00:39 EDT
+X-UUID: e1d7852b40184f43b704b28d2b031933-20190630
+X-UUID: e1d7852b40184f43b704b28d2b031933-20190630
+Received: from mtkcas67.mediatek.inc [(172.29.193.45)] by mailgw01.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1285107656; Mon, 01 Jul 2019 09:43:25 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS33N2.mediatek.inc (172.27.4.76) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 1 Jul 2019 09:43:18 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+        (musrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 2113796546; Sun, 30 Jun 2019 19:55:34 -0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Sun, 30 Jun 2019 20:55:31 -0700
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 1 Jul 2019 09:43:07 +0800
-Message-ID: <1561945387.17120.4.camel@mtksdaap41>
-Subject: Re: [v5 6/7] drm/mediatek: change the dsi phytiming calculate method
+ Transport; Mon, 1 Jul 2019 11:55:17 +0800
+Message-ID: <1561953318.25914.9.camel@mtksdaap41>
+Subject: Re: [PATCH v5 08/12] dt-bindings: mediatek: Change the binding for
+ mmsys clocks
 From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+To:     Matthias Brugger <mbrugger@suse.com>
+CC:     Stephen Boyd <sboyd@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        "Thierry Reding" <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        "Inki Dae" <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        "Sean Paul" <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        "Andy Yan" <andy.yan@rock-chips.com>,
+        Rob Herring <robh@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        "David Airlie" <airlied@linux.ie>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "Randy Dunlap" <rdunlap@infradead.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+        "matthias.bgg@kernel.org" <matthias.bgg@kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
         <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>, "Ryan Case" <ryandcase@chromium.org>
-Date:   Mon, 1 Jul 2019 09:43:07 +0800
-In-Reply-To: <20190627080116.40264-7-jitao.shi@mediatek.com>
-References: <20190627080116.40264-1-jitao.shi@mediatek.com>
-         <20190627080116.40264-7-jitao.shi@mediatek.com>
+        linux-clk <linux-clk@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 1 Jul 2019 11:55:18 +0800
+In-Reply-To: <a229bfc7-683f-5b0d-7b71-54f934de6214@suse.com>
+References: <20181116125449.23581-1-matthias.bgg@kernel.org>
+         <20181116125449.23581-9-matthias.bgg@kernel.org>
+         <20181116231522.GA18006@bogus>
+         <2a23e407-4cd4-2e2b-97a5-4e2bb96846e0@gmail.com>
+         <CAL_JsqKJQwfDJbpmwW+oCxiDkSp5+6mG-uoURmCQVEMP_jFOEg@mail.gmail.com>
+         <154281878765.88331.10581984256202566195@swboyd.mtv.corp.google.com>
+         <458178ac-c0fc-9671-7fc8-ed2d6f61424c@suse.com>
+         <154356023767.88331.18401188808548429052@swboyd.mtv.corp.google.com>
+         <a229bfc7-683f-5b0d-7b71-54f934de6214@suse.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 7D73A884143A183CC5055765D067BC0CCD0AF259C8AD423183E83DE5433058D82000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
+Hi, Matthias:
 
-On Thu, 2019-06-27 at 16:01 +0800, Jitao Shi wrote:
-> Change the method of frame rate calc which can get more accurate
-> frame rate.
+On Fri, 2018-11-30 at 16:59 +0800, Matthias Brugger wrote:
 > 
-> data rate = pixel_clock * bit_per_pixel / lanes
-> Adjust hfp_wc to adapt the additional phy_data
+> On 30/11/2018 07:43, Stephen Boyd wrote:
+> > Quoting Matthias Brugger (2018-11-21 09:09:52)
+> >>
+> >>
+> >> On 21/11/2018 17:46, Stephen Boyd wrote:
+> >>> Quoting Rob Herring (2018-11-19 11:15:16)
+> >>>> On Sun, Nov 18, 2018 at 11:12 AM Matthias Brugger
+> >>>> <matthias.bgg@gmail.com> wrote:
+> >>>>> On 11/17/18 12:15 AM, Rob Herring wrote:
+> >>>>>> On Fri, Nov 16, 2018 at 01:54:45PM +0100, matthias.bgg@kernel.org wrote:
+> >>>>>>> -    #clock-cells = <1>;
+> >>>>>>> +
+> >>>>>>> +    mmsys_clk: clock-controller@14000000 {
+> >>>>>>> +            compatible = "mediatek,mt2712-mmsys-clk";
+> >>>>>>> +            #clock-cells = <1>;
+> >>>>>>
+> >>>>>> This goes against the general direction of not defining separate nodes
+> >>>>>> for providers with no resources.
+> >>>>>>
+> >>>>>> Why do you need this and what does it buy if you have to continue to
+> >>>>>> support the existing chips?
+> >>>>>>
+> >>>>>
+> >>>>> It would show explicitly that the mmsys block is used to probe two
+> >>>>> drivers, one for the gpu and one for the clocks. Otherwise that is
+> >>>>> hidden in the drm driver code. I think it is cleaner to describe that in
+> >>>>> the device tree.
+> >>>>
+> >>>> No, that's maybe cleaner for the driver implementation in the Linux
+> >>>> kernel. What about other OS's or when Linux drivers and subsystems
+> >>>> needs change? Cleaner for DT is design bindings that reflect the h/w.
+> >>>> Hardware is sometimes just messy.
+> >>>>
+> >>>
+> >>> I agree. I fail to see what this patch series is doing besides changing
+> >>> driver probe and device creation methods and making a backwards
+> >>> incompatible change to DT. Is there any other benefit here?
+> >>>
+> >>
+> >> You are referring whole series?
+> >> Citing the cover letter:
+> >> "MMSYS in Mediatek SoCs has some registers to control clock gates (which is
+> >> used in the clk driver) and some registers to set the routing and enable
+> >> the differnet (sic!) blocks of the display subsystem.
+> >>
+> >> Up to now both drivers, clock and drm are probed with the same device tree
+> >> compatible. But only the first driver get probed, which in effect breaks
+> >> graphics on mt8173 and mt2701.
+> > 
+> > Ouch!
+> > 
 > 
-> if MIPI_DSI_MODE_VIDEO_BURST
-> 	hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12 - 6;
-> else
-> 	hfp_wc = hfp * bpp - data_phy_cycles * lanes - 12;
+> Yes :)
 > 
-> Note:
-> //(2: 1 for sync, 1 for phy idle)
-> data_phy_cycles = T_hs_exit + T_lpx + T_hs_prepare + T_hs_zero + 2;
+> >>
+> >> This patch uses a platform device registration in the DRM driver, which
+> >> will trigger the probe of the corresponding clock driver. It was tested on the
+> >> bananapi-r2 and the Acer R13 Chromebook."
+> > 
+> > Alright, please don't add nodes in DT just to make device drivers probe.
+> > Instead, register clks from the drm driver or create a child platform
+> > device for the clk bits purely in the drm driver and have that probe the
+> > associated clk driver from there.
+> > 
 > 
-> bpp: bit per pixel
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Tested-by: Ryan Case <ryandcase@chromium.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> I'll make the other SoCs probe via a child platform device from the drm driver,
+> as already done in 2/12 and 3/12.
 
-This version is different than previous version, so you should remove
-Reviewed-by tag. For this version, I still give you a
+This series have been pending for half an year, would you keep going on
+this series? If you're busy, I could complete this series, but I need to
+know what you have plan to do.
 
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
+I guess that 1/12 ~ 5/12 is for MT2701/MT8173 and that patches meet this
+discussion. 6/12 ~ 12/12 is for MT2712/MT6797 but that patches does not
+meet this discussion. So the unfinished work is to make MT2712/MT6797 to
+align MT2701/MT8173, is this right?
 
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 117 ++++++++++++++++++++---------
->  1 file changed, 80 insertions(+), 37 deletions(-)
+Regards,
+CK
+
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index 1621e8cdacc2..cefdcb1509cb 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -144,12 +144,6 @@
->  #define DATA_0				(0xff << 16)
->  #define DATA_1				(0xff << 24)
->  
-> -#define T_LPX		5
-> -#define T_HS_PREP	6
-> -#define T_HS_TRAIL	8
-> -#define T_HS_EXIT	7
-> -#define T_HS_ZERO	10
-> -
->  #define NS_TO_CYCLE(n, c)    ((n) / (c) + (((n) % (c)) ? 1 : 0))
->  
->  #define MTK_DSI_HOST_IS_READ(type) \
-> @@ -158,6 +152,25 @@
->  	(type == MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM) || \
->  	(type == MIPI_DSI_DCS_READ))
->  
-> +struct mtk_phy_timing {
-> +	u32 lpx;
-> +	u32 da_hs_prepare;
-> +	u32 da_hs_zero;
-> +	u32 da_hs_trail;
-> +
-> +	u32 ta_go;
-> +	u32 ta_sure;
-> +	u32 ta_get;
-> +	u32 da_hs_exit;
-> +
-> +	u32 clk_hs_zero;
-> +	u32 clk_hs_trail;
-> +
-> +	u32 clk_hs_prepare;
-> +	u32 clk_hs_post;
-> +	u32 clk_hs_exit;
-> +};
-> +
->  struct phy;
->  
->  struct mtk_dsi_driver_data {
-> @@ -188,6 +201,7 @@ struct mtk_dsi {
->  	enum mipi_dsi_pixel_format format;
->  	unsigned int lanes;
->  	struct videomode vm;
-> +	struct mtk_phy_timing phy_timing;
->  	int refcount;
->  	bool enabled;
->  	u32 irq_data;
-> @@ -221,17 +235,36 @@ static void mtk_dsi_phy_timconfig(struct mtk_dsi *dsi)
->  {
->  	u32 timcon0, timcon1, timcon2, timcon3;
->  	u32 ui, cycle_time;
-> +	struct mtk_phy_timing *timing = &dsi->phy_timing;
-> +
-> +	ui = 1000000000 / dsi->data_rate;
-> +	cycle_time = div_u64(8000000000ULL, dsi->data_rate);
-> +
-> +	timing->lpx = NS_TO_CYCLE(60, cycle_time);
-> +	timing->da_hs_prepare = NS_TO_CYCLE(40 + 5 * ui, cycle_time);
-> +	timing->da_hs_zero = NS_TO_CYCLE(110 + 6 * ui, cycle_time);
-> +	timing->da_hs_trail = NS_TO_CYCLE(80 + 4 * ui, cycle_time);
->  
-> -	ui = 1000 / dsi->data_rate + 0x01;
-> -	cycle_time = 8000 / dsi->data_rate + 0x01;
-> +	timing->ta_go = 4 * timing->lpx;
-> +	timing->ta_sure = 3 * timing->lpx / 2;
-> +	timing->ta_get = 5 * timing->lpx;
-> +	timing->da_hs_exit = 2 * timing->lpx;
->  
-> -	timcon0 = T_LPX | T_HS_PREP << 8 | T_HS_ZERO << 16 | T_HS_TRAIL << 24;
-> -	timcon1 = 4 * T_LPX | (3 * T_LPX / 2) << 8 | 5 * T_LPX << 16 |
-> -		  T_HS_EXIT << 24;
-> -	timcon2 = ((NS_TO_CYCLE(0x64, cycle_time) + 0xa) << 24) |
-> -		  (NS_TO_CYCLE(0x150, cycle_time) << 16);
-> -	timcon3 = NS_TO_CYCLE(0x40, cycle_time) | (2 * T_LPX) << 16 |
-> -		  NS_TO_CYCLE(80 + 52 * ui, cycle_time) << 8;
-> +	timing->clk_hs_zero = NS_TO_CYCLE(336, cycle_time);
-> +	timing->clk_hs_trail = NS_TO_CYCLE(100, cycle_time) + 10;
-> +
-> +	timing->clk_hs_prepare = NS_TO_CYCLE(64, cycle_time);
-> +	timing->clk_hs_post = NS_TO_CYCLE(80 + 52 * ui, cycle_time);
-> +	timing->clk_hs_exit = 2 * timing->lpx;
-> +
-> +	timcon0 = timing->lpx | timing->da_hs_prepare << 8 |
-> +		  timing->da_hs_zero << 16 | timing->da_hs_trail << 24;
-> +	timcon1 = timing->ta_go | timing->ta_sure << 8 |
-> +		  timing->ta_get << 16 | timing->da_hs_exit << 24;
-> +	timcon2 = 1 << 8 | timing->clk_hs_zero << 16 |
-> +		  timing->clk_hs_trail << 24;
-> +	timcon3 = timing->clk_hs_prepare | timing->clk_hs_post << 8 |
-> +		  timing->clk_hs_exit << 16;
->  
->  	writel(timcon0, dsi->regs + DSI_PHY_TIMECON0);
->  	writel(timcon1, dsi->regs + DSI_PHY_TIMECON1);
-> @@ -418,7 +451,8 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->  	u32 horizontal_sync_active_byte;
->  	u32 horizontal_backporch_byte;
->  	u32 horizontal_frontporch_byte;
-> -	u32 dsi_tmp_buf_bpp;
-> +	u32 dsi_tmp_buf_bpp, data_phy_cycles;
-> +	struct mtk_phy_timing *timing = &dsi->phy_timing;
->  
->  	struct videomode *vm = &dsi->vm;
->  
-> @@ -445,7 +479,34 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->  		horizontal_backporch_byte = ((vm->hback_porch + vm->hsync_len) *
->  			dsi_tmp_buf_bpp - 10);
->  
-> -	horizontal_frontporch_byte = (vm->hfront_porch * dsi_tmp_buf_bpp - 12);
-> +	data_phy_cycles = timing->lpx + timing->da_hs_prepare +
-> +				  timing->da_hs_zero + timing->da_hs_exit + 2;
-> +
-> +	if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
-> +		if (vm->hfront_porch * dsi_tmp_buf_bpp >
-> +		    data_phy_cycles * dsi->lanes + 18) {
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp -
-> +						     data_phy_cycles *
-> +						     dsi->lanes - 18;
-> +		} else {
-> +			DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp;
-> +		}
-> +	} else {
-> +		if (vm->hfront_porch * dsi_tmp_buf_bpp >
-> +		    data_phy_cycles * dsi->lanes + 12) {
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp -
-> +						     data_phy_cycles *
-> +						     dsi->lanes - 12;
-> +		} else {
-> +			DRM_WARN("HFP less than d-phy, FPS will under 60Hz\n");
-> +			horizontal_frontporch_byte = vm->hfront_porch *
-> +						     dsi_tmp_buf_bpp;
-> +		}
-> +	}
->  
->  	writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
->  	writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
-> @@ -545,8 +606,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  {
->  	struct device *dev = dsi->->host.dev;
->  	int ret;
-> -	u64 pixel_clock, total_bits;
-> -	u32 htotal, htotal_bits, bit_per_pixel, overhead_cycles, overhead_bits;
-> +	u32 bit_per_pixel;
->  
->  	if (++dsi->refcount != 1)
->  		return 0;
-> @@ -565,24 +625,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  		break;
->  	}
->  
-> -	/**
-> -	 * htotal_time = htotal * byte_per_pixel / num_lanes
-> -	 * overhead_time = lpx + hs_prepare + hs_zero + hs_trail + hs_exit
-> -	 * mipi_ratio = (htotal_time + overhead_time) / htotal_time
-> -	 * data_rate = pixel_clock * bit_per_pixel * mipi_ratio / num_lanes;
-> -	 */
-> -	pixel_clock = dsi->vm.pixelclock;
-> -	htotal = dsi->vm.hactive + dsi->vm.hback_porch + dsi->vm.hfront_porch +
-> -			dsi->vm.hsync_len;
-> -	htotal_bits = htotal * bit_per_pixel;
-> -
-> -	overhead_cycles = T_LPX + T_HS_PREP + T_HS_ZERO + T_HS_TRAIL +
-> -			T_HS_EXIT;
-> -	overhead_bits = overhead_cycles * dsi->lanes * 8;
-> -	total_bits = htotal_bits + overhead_bits;
-> -
-> -	dsi->data_rate = DIV_ROUND_UP_ULL(pixel_clock * total_bits,
-> -					  htotal * dsi->lanes);
-> +	dsi->data_rate = DIV_ROUND_UP_ULL(dsi->vm.pixelclock * bit_per_pixel, dsi->lanes);
->  
->  	ret = clk_set_rate(dsi->hs_clk, dsi->data_rate);
->  	if (ret < 0) {
+> Regards,
+> Matthias
+> 
+> >>
+> >> DT is broken right now, because two drivers rely on the same node, which gets
+> >> consumed just once. The new DT introduced does not break anything because it is
+> >> only used for boards that: "[..] are not available to the general public
+> >> (mt2712e) or only have the mmsys clock driver part implemented (mt6797)."
+> > 
+> > Ok, so backwards compatibility is irrelevant then. Sounds fine to me.
+> > 
+> > 
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
 
 
